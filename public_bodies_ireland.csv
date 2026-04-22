@@ -1,0 +1,287 @@
+public_body_id,public_body_name,public_body_short_name,public_body_url,public_body_category
+1001,"Department of Agriculture, Food and the Marine",DAFM,https://www.gov.ie/en/organisation/department-of-agriculture-food-and-the-marine/,government department
+1002,"Department of Children, Equality, Disability, Integration and Youth",DCEDIY,https://www.gov.ie/en/organisation/department-of-children-equality-disability-integration-and-youth/,government department
+1003,"Department of Climate, Energy and the Environment",DCEE,https://www.gov.ie/en/organisation/department-of-the-environment-climate-and-communications/,government department
+1004,"Department of Tourism, Culture, Arts, Gaeltacht, Sport and Media",DTCAGSM,https://www.gov.ie/en/organisation/department-of-tourism-culture-arts-gaeltacht-sport-and-media/,government department
+1005,Department of Defence,DoD,https://www.gov.ie/en/organisation/department-of-defence/,government department
+1006,Department of Education and Youth,DoEY,https://www.gov.ie/en/organisation/department-of-education/,government department
+1007,"Department of Enterprise, Tourism and Employment",DETE,https://www.gov.ie/en/organisation/department-of-enterprise-trade-and-employment/,government department
+1008,Department of Finance,DoF,https://www.gov.ie/en/organisation/department-of-finance/,government department
+1009,Department of Foreign Affairs and Trade,DFA,https://www.gov.ie/en/organisation/department-of-foreign-affairs-and-trade/,government department
+1010,"Department of Further and Higher Education, Research, Innovation and Science",DFHERIS,https://www.gov.ie/en/organisation/department-of-higher-education-innovation-and-science/,government department
+1011,Department of Health,DoH,https://www.gov.ie/en/organisation/department-of-health/,government department
+1012,"Department of Housing, Local Government and Heritage",DHLGH,https://www.gov.ie/en/organisation/department-of-housing-local-government-and-heritage/,government department
+1013,"Department of Justice, Home Affairs and Migration",DoJ,https://www.gov.ie/en/organisation/department-of-justice/,government department
+1014,"Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation",DPER,https://www.gov.ie/en/organisation/department-of-public-expenditure-and-reform/,government department
+1015,Department of Rural and Community Development and the Gaeltacht,DRCDG,https://www.gov.ie/en/organisation/department-of-rural-and-community-development/,government department
+1016,Department of Social Protection,DSP,https://www.gov.ie/en/organisation/department-of-social-protection/,government department
+1017,Department of the Taoiseach,DT,https://www.gov.ie/en/organisation/department-of-the-taoiseach/,government department
+1018,Department of Transport,DoTr,https://www.gov.ie/en/organisation/department-of-transport/,government department
+1019,An Coimisiún Pleanála,ACPl,https://www.pleanala.ie/en-ie/home,public service body
+1020,An Garda Síochána,AGS,https://www.garda.ie/en/,public service body
+1021,An Rialálaí Agraibhia (Agri-Food Regulator),AFR,https://www.agrifoodregulator.ie/,public service body
+1022,Aquaculture Licences Appeals Board,ALAB,https://alab.ie/,public service body
+1023,Bord Bia (Irish Food Board),Bord Bia,https://www.bordbia.ie/,public service body
+1024,Bord Iascaigh Mhara (BIM),BIM,https://bim.ie/,public service body
+1025,Central Bank of Ireland,CBI,https://www.centralbank.ie/,public service body
+1026,Central Statistics Office,CSO,https://www.cso.ie/en/index.html,public service body
+1027,Coillte,Coillte,https://www.coillte.ie/,public service body
+1028,Commission for Public Service Appointments (CPSA),CPSA,https://www.cpsa.ie/en/,public service body
+1029,Competition and Consumer Protection Commission (CCPC),CCPC,https://www.ccpc.ie/,public service body
+1030,Courts Service,Courts Service,https://www.courts.ie/,public service body
+1031,Criminal Assets Bureau,CAB,https://www.cab.ie/,public service body
+1032,Data Protection Commission,DPC,https://dataprotection.ie/,public service body
+1033,Digital Hub Development Agency,DHDA,https://thedigitalhub.com/,public service body
+1034,Educational Research Centre (ERC),ERC,https://www.erc.ie/,public service body
+1035,Enterprise Ireland,EI,https://www.enterprise-ireland.com/en/,public service body
+1036,Financial Services and Pensions Ombudsman (FSPO),FSPO,https://www.fspo.ie/,public service body
+1037,Fiosrú – the Office of the Police Ombudsman,Fiosrú,https://www.fiosru.ie/,public service body
+1038,Forensic Science Ireland,FSI,https://forensicscience.ie/,public service body
+1039,Gambling Regulatory Authority of Ireland,GRAI,https://www.grai.ie/,public service body
+1040,Garda Inspectorate,Garda Inspectorate,https://www.gsinsp.ie/,public service body
+1041,Greyhound Racing Ireland (GRI),GRI,https://www.grireland.ie/,public service body
+1042,Health Research Board (HRB),HRB,https://www.hrb.ie/,public service body
+1043,Health Service Executive,HSE,https://www.hse.ie/,public service body
+1044,Healthy Ireland,Healthy Ireland,https://www.gov.ie/en/organisation/healthy-ireland-/,public service body
+1045,Higher Education Authority (HEA),HEA,https://hea.ie/,public service body
+1046,Horse Racing Ireland (HRI),HRI,https://www.hri.ie/,public service body
+1047,IDA Ireland,IDA,https://www.idaireland.com/,public service body
+1048,Irish National Stud and Gardens,Irish National Stud,https://irishnationalstud.ie/,public service body
+1049,Irish Prison Service,IPS,https://www.irishprisons.ie/,public service body
+1050,Local Government Management Agency (LGMA),LGMA,https://www.lgma.ie/en/,public service body
+1051,Marine Institute,Marine Institute,https://www.marine.ie/,public service body
+1052,National Asset Management Agency (NAMA),NAMA,https://www.nama.ie/,public service body
+1053,National Shared Services Office,NSSO,https://www.nsso.gov.ie/en/,public service body
+1054,National Standards Authority of Ireland (NSAI),NSAI,https://www.nsai.ie/,public service body
+1055,National Transport Authority (NTA),NTA,https://www.nationaltransport.ie/,public service body
+1056,National Treasury Management Agency (NTMA),NTMA,https://www.ntma.ie/,public service body
+1057,Office of Public Works,OPW,https://www.gov.ie/en/organisation/office-of-public-works/,public service body
+1058,Office of the Attorney General,AG,https://www.attorneygeneral.ie/,public service body
+1059,Office of the Comptroller and Auditor General,C&AG,https://www.audit.gov.ie/en/,public service body
+1060,Office of the Information Commissioner (OIC),OIC,https://www.oic.ie/,public service body
+1061,Office of the Ombudsman,Ombudsman,https://www.ombudsman.ie/,public service body
+1062,Office of the Planning Regulator,OPR,https://www.opr.ie/,public service body
+1063,Office of the Protected Disclosures Commissioner (OPDC),OPDC,https://www.opdc.ie/,public service body
+1064,Office of the Revenue Commissioners,Revenue,https://www.revenue.ie/en/home.aspx,public service body
+1065,Pobal,Pobal,https://www.pobal.ie/,public service body
+1066,President's Establishment,President,https://president.ie/en/about/organisational-information,public service body
+1067,Probation Service,Probation Service,https://www.probation.ie/,public service body
+1068,Carlow County Council,Carlow CC,https://carlow.ie/,local authority
+1069,Cavan County Council,Cavan CC,https://www.cavancoco.ie/,local authority
+1070,Clare County Council,Clare CC,https://www.clarecoco.ie/,local authority
+1071,Cork City Council,Cork City CC,https://www.corkcity.ie/en/,local authority
+1072,Cork County Council,Cork CC,https://www.corkcoco.ie/en,local authority
+1073,Donegal County Council,Donegal CC,https://www.donegalcoco.ie/,local authority
+1074,Dublin City Council,Dublin City CC,https://www.dublincity.ie/council,local authority
+1075,Dún Laoghaire–Rathdown County Council,DLRCC,https://www.dlrcoco.ie/,local authority
+1076,Fingal County Council,Fingal CC,https://www.fingal.ie/,local authority
+1077,Galway City Council,Galway City CC,https://www.galwaycity.ie/,local authority
+1078,Galway County Council,Galway CC,https://www.galway.ie/en/,local authority
+1079,Kerry County Council,Kerry CC,https://www.kerrycoco.ie/,local authority
+1080,Kildare County Council,Kildare CC,https://www.kildarecoco.ie/,local authority
+1081,Kilkenny County Council,Kilkenny CC,https://kilkennycoco.ie/eng/,local authority
+1082,Laois County Council,Laois CC,https://laois.ie/,local authority
+1083,Leitrim County Council,Leitrim CC,https://www.leitrim.ie/,local authority
+1084,Limerick City and County Council,Limerick CC,https://www.limerick.ie/council,local authority
+1085,Longford County Council,Longford CC,https://www.longfordcoco.ie/,local authority
+1086,Louth County Council,Louth CC,https://www.louthcoco.ie/en/,local authority
+1087,Mayo County Council,Mayo CC,https://www.mayo.ie/,local authority
+1088,Meath County Council,Meath CC,https://www.meath.ie/,local authority
+1089,Monaghan County Council,Monaghan CC,https://monaghan.ie/,local authority
+1090,Offaly County Council,Offaly CC,https://www.offaly.ie/,local authority
+1091,Roscommon County Council,Roscommon CC,https://www.roscommoncoco.ie/en/,local authority
+1092,Sligo County Council,Sligo CC,https://www.sligococo.ie/,local authority
+1093,South Dublin County Council,SDCC,https://www.sdcc.ie/en/,local authority
+1094,Tipperary County Council,Tipperary CC,https://www.tipperarycoco.ie/,local authority
+1095,Waterford City and County Council,Waterford CC,https://waterfordcouncil.ie/,local authority
+1096,Westmeath County Council,Westmeath CC,https://www.westmeathcoco.ie/en/,local authority
+1097,Wexford County Council,Wexford CC,https://www.wexfordcoco.ie/,local authority
+1098,Wicklow County Council,Wicklow CC,https://www.wicklow.ie/,local authority
+1099,Adoption Authority of Ireland (AAI),AAoI,https://aai.gov.ie/en/,public service body
+1100,An Bord Pleanála,ABP,https://www.pleanala.ie/en-ie/home,public service body
+1101,An Rialálaí Agraibhia,ARA,https://www.agrifoodregulator.ie/,public service body
+1102,Aquaculture Licences Appeals Board (ALAB),ALAB,https://alab.ie/,public service body
+1103,Arts Council (An Chomhairle Ealaíon),ACCE,https://www.artscouncil.ie/home/,public service body
+1104,Athlone Institute of Technology,AIoT,https://tus.ie/campuses/athlone/,public service body
+1105,Bord Iascaigh Mhara (Irish Sea Fisheries Board),BIMS,https://bim.ie/,public service body
+1106,Cavan and Monaghan Education and Training Board,CaME,https://www.cmetb.ie/,public service body
+1107,Chester Beatty Library,CBL,https://chesterbeatty.ie/,public service body
+1108,Chief State Solicitor’s Office,CSSO,https://www.gov.ie/en/organisation/chief-state-solicitors-office/,public service body
+1109,Child and Family Agency (Tusla),CaFA,https://www.tusla.ie/,public service body
+1110,Chomhairle um Oideachais Gaeltachta agus Gaelscolaíochta,CuOG,https://cogg.ie/?lang=en,public service body
+1111,Circulars Archive,CA,https://circulars.gov.ie/,public service body
+1112,Citizens Information Board,CIB,https://www.citizensinformationboard.ie/en/,public service body
+1113,City of Dublin Education and Training Board,CoDE,https://www.cityofdublinetb.ie/,public service body
+1114,Civil Justice Review,CJR,https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/campaigns/review-of-the-administration-of-civil-justice/,public service body
+1115,Civil Service Employee Assistance Service,CSEA,https://www.cseas.per.gov.ie/,public service body
+1116,Commission for Aviation Regulation,CfAR,https://www.iaa.ie/,public service body
+1117,Commission for Communications Regulation (CCR ComReg),CfCR,https://www.comreg.ie/,public service body
+1118,Commission for Public Service Appointments,CfPS,https://www.cpsa.ie/en/,public service body
+1119,Commission for Railway Regulation,CfRR,https://www.crr.ie/,public service body
+1120,Commission for Regulation of Utilities (CRU),CfRo,https://www.cru.ie/,public service body
+1121,Commission on Taxation and Welfare,CoTa,https://www.gov.ie/en/organisation/c526e-commission-on-taxation-and-welfare/,public service body
+1122,Commission on the Defence Forces,CotD,https://www.gov.ie/en/organisation/20d04-commission-of-the-defence-forces/,public service body
+1123,Commission to Inquire into Child Abuse,CtIi,https://childabusecommission.ie/,public service body
+1124,Commissioner for Environmental Information,CfEI,https://www.ocei.ie/en/,public service body
+1125,Commissioners of Irish Lights,CoIL,https://www.irishlights.ie/,public service body
+1126,Coimisiún na Meán,CnM,https://www.cnam.ie/,public service body
+1127,Cork Education and Training Board,CEaT,https://www.corketb.ie/,public service body
+1128,Cork Institute of Technology,CIoT,https://www.cit.ie/,public service body
+1129,Crawford Art Gallery,CAG,https://crawfordartgallery.ie/,public service body
+1130,Defence Forces of Ireland,DFoI,https://www.military.ie/en/#1,public service body
+1131,Dental Council,DC,https://www.dentalcouncil.ie/,public service body
+1132,Director of Public Prosecutions,DoPP,https://www.dppireland.ie/,public service body
+1133,Discovery Programme,DP,https://discoveryprogramme.ie/,public service body
+1134,Donegal Education and Training Board,DEaT,https://www.donegaletb.ie/,public service body
+1135,Dublin and Dun Laoghaire Education and Training Board,DaDL,https://www.ddletb.ie/,public service body
+1136,Dublin Institute for Advanced Studies,DIfA,https://www.dias.ie/,public service body
+1137,Dublin Institute of Technology,DIoT,https://www.tudublin.ie/,public service body
+1138,Dundalk Institute of Technology,DIoT,https://www.dkit.ie/,public service body
+1139,Eastern and Midland Regional Assembly,EaMR,https://emra.ie/,public service body
+1140,Environmental Protection Agency (EPA),EPA,https://www.epa.ie/,public service body
+1141,Food Safety Authority of Ireland (FSAI),FSAo,https://www.fsai.ie/home,public service body
+1142,Food Safety Promotion Board (safefood),FSPB,https://www.safefood.net/,public service body
+1143,Foras na Gaeilge - An Foras Teanga (The Language Body),FnGA,https://www.forasnagaeilge.ie/?lang=en,public service body
+1144,Fáilte Ireland,FI,https://www.failteireland.ie/,public service body
+1145,Gaisce (President's National Challenge Award),GNCA,https://www.gaisce.ie/,public service body
+1146,Galway and Roscommon Education and Training Board,GaRE,https://gretb.ie/,public service body
+1147,Galway-Mayo Institute of Technology,GIoT,https://www.gmit.ie/,public service body
+1148,Garda Ombudsman,GO,https://www.gardaombudsman.ie/,public service body
+1149,Gender Equality,GE,https://www.gov.ie/en/organisation/f1304-gender-equality/,public service body
+1150,Grangegorman Development Agency,GDA,https://ggda.ie/,public service body
+1151,Health and Safety Authority,HaSA,https://hsa.ie/eng/,public service body
+1152,Health and Social Care Professionals Council,HaSC,https://www.coru.ie/health-and-social-care-professionals/,public service body
+1153,Health Information and Quality Authority (HIQA),HIaQ,https://www.hiqa.ie/,public service body
+1154,Health Insurance Authority,HIA,https://www.hia.ie/,public service body
+1155,Health Products Regulatory Authority (HPRA),HPRA,https://www.hpra.ie/,public service body
+1156,Health Service National Partnership Forum (Lenus),HSNP,https://www.lenus.ie/handle/10147/575382,public service body
+1157,Horse Sport Ireland,HSI,https://www.horsesportireland.ie/,public service body
+1158,Housing Agency,HA,https://www.housingagency.ie/,public service body
+1159,Housing Finance Agency,HFA,https://hfa.ie/hfa/live/release/website/homepage/index.html,public service body
+1160,Inland Fisheries Ireland,IFI,https://www.fisheriesireland.ie/,public service body
+1161,Insolvency Service Ireland,ISI,https://www.isi.gov.ie/,public service body
+1162,"Institute of Art, Design and Technology, Dun Laoghaire",IoAD,https://iadt.ie/,public service body
+1163,Institute of Public Health in Ireland (IPH),IoPH,https://www.publichealth.ie/,public service body
+1164,Institute of Technology Blanchardstown,IoTB,https://www.tudublin.ie/explore/our-campuses/blanchardstown/,public service body
+1165,Institute of Technology Carlow,IoTC,https://www.setu.ie/,public service body
+1166,Institute of Technology Sligo,IoTS,https://www.itsligo.ie/,public service body
+1167,Institute of Technology Tallaght,IoTT,https://www.tudublin.ie/explore/our-campuses/tallaght/,public service body
+1168,Institute of Technology Tralee,IoTT,https://www.ittralee.ie/en/,public service body
+1169,International Protection Accommodation Services (IPAS),IPAS,https://www.gov.ie/en/campaigns/d9f43-international-protection-accommodation-services-ipas/,public service body
+1170,International Protection Appeals Tribunal,IPAT,https://www.protectionappeals.ie/,public service body
+1171,Irish Auditing and Accounting Supervisory Authority,IAaA,https://iaasa.ie/,public service body
+1172,Irish Blood Transfusion Service Board (IBTS),IBTS,https://www.giveblood.ie/,public service body
+1173,Irish Film Classification Office,IFCO,https://www.ifco.ie/,public service body
+1174,Irish Financial Services Appeals Tribunal,IFSA,https://www.ifsat.ie/,public service body
+1175,Irish Fiscal Advisory Council,IFAC,https://www.fiscalcouncil.ie/,public service body
+1176,Irish Heritage Trust,IHT,https://irishheritagetrust.ie/,public service body
+1177,Irish Human Rights and Equality Commission,IHRa,https://www.ihrec.ie/,public service body
+1178,Irish Manuscripts Commission,IMC,https://www.irishmanuscripts.ie/,public service body
+1179,Irish Museum of Modern Art (IMMA),IMoM,https://imma.ie/,public service body
+1180,Irish National Stud,INS,https://irishnationalstud.ie/,public service body
+1181,Irish Rail,IR,https://www.irishrail.ie/en-ie/,public service body
+1182,Irish Water,IW,https://www.water.ie/,public service body
+1183,Irish Water Safety,IWS,https://watersafety.ie/,public service body
+1184,Kerry Education and Training Board,KEaT,https://www.kerryetb.ie/,public service body
+1185,Kildare and Wicklow Education and Training Board,KaWE,https://kwetb.ie/,public service body
+1186,Kilkenny and Carlow Education and Training Board,KaCE,https://kcetb.ie/en/,public service body
+1187,Laois and Offaly Education and Training Board,LaOE,https://www.loetb.ie/,public service body
+1188,Legal Aid Board,LAB,https://www.legalaidboard.ie/en/,public service body
+1189,Legal Services Regulatory Authority,LSRA,https://www.lsra.ie/,public service body
+1190,Letterkenny Institute of Technology,LIoT,https://www.lyit.ie/,public service body
+1191,Limerick and Clare Education and Training Board,LaCE,https://lcetb.ie/,public service body
+1192,Limerick Institute of Technology,LIoT,https://tus.ie/,public service body
+1193,Longford and Westmeath Education and Training Board,LaWE,https://www.lwetb.ie/,public service body
+1194,Louth and Meath Education and Training Board,LaME,https://www.lmetb.ie/,public service body
+1195,Léargas (Exchange Bureau),LB,https://www.leargas.ie/,public service body
+1196,Marine Casualty Investigation Board,MCIB,https://www.mcib.ie/,public service body
+1197,Marine Institute (Foras na Mara),MInM,https://www.marine.ie/,public service body
+1198,Maritime Area Regulatory Authority,MARA,https://www.maritimeregulator.ie/,public service body
+1199,"Mayo, Sligo and Leitrim Education and Training Board",MSaL,https://msletb.ie/,public service body
+1200,Medical Bureau of Road Safety,MBoR,https://www.ucd.ie/mbrs/,public service body
+1201,Medical Council,MC,https://www.medicalcouncil.ie/,public service body
+1202,Mental Health (Criminal Law) Review Board,MHLR,https://www.mhclrb.ie/,public service body
+1203,Mental Health Commission,MHC,https://www.mhcirl.ie/,public service body
+1204,Moorepark Technology Ltd,MTL,https://www.moorepark.ie/,public service body
+1205,NAMA-National Asset Management Agency,NAMA,https://www.nama.ie/,public service body
+1206,National Archives of Ireland,NAoI,https://www.nationalarchives.ie/,public service body
+1207,National Cancer Registry Board,NCRB,https://www.ncri.ie/,public service body
+1208,National Centre for Guidance in Education,NCfG,https://www.gov.ie/en/organisation/17161907-national-centre-for-guidance-in-education/,public service body
+1209,National Council for Curriculum and Assessment,NCfC,https://ncca.ie/en/,public service body
+1210,National Council for Special Education,NCfS,https://ncse.ie/,public service body
+1211,National Development Finance Agency (NDFA),NDFA,https://www.ntma.ie/business-areas/national-development-finance-agency,public service body
+1212,National Disability Authority,NDA,https://nda.ie/,public service body
+1213,National Economic and Social Council,NEaS,https://www.nesc.ie/,public service body
+1214,National Gallery of Ireland,NGoI,https://www.nationalgallery.ie/,public service body
+1215,National Library of Ireland (NLI),NLoI,https://www.nli.ie/,public service body
+1216,National Milk Agency,NMA,https://nationalmilkagency.ie/,public service body
+1217,National Museum of Ireland (NMI),NMoI,https://www.museum.ie/en-ie/home,public service body
+1218,National Oil Reserves Agency (NORA),NORA,https://www.nora.ie/,public service body
+1219,National Property Services Regulatory Authority,NPSR,https://www.psr.ie/,public service body
+1220,National Transport Authority,NTA,https://www.nationaltransport.ie/,public service body
+1221,National Treatment Purchase Fund Board,NTPF,https://www.ntpf.ie/home/home.htm,public service body
+1222,Northern and Western Regional Assembly,NaWR,https://www.nwra.ie/,public service body
+1223,Nursing and Midwifery Board of Ireland,NaMB,https://www.nmbi.ie/home,public service body
+1224,Oberstown Children Detention Campus,OCDC,https://www.oberstown.com/,public service body
+1225,Office of Emergency Planning,OoEP,https://www.gov.ie/en/campaigns/624e4-emergency-planning/,public service body
+1226,Office of Government Procurement,OoGP,https://www.gov.ie/en/organisation/office-of-government-procurement/,public service body
+1227,Office of Ombudsman for Children,OoOf,https://www.oco.ie/,public service body
+1228,Office of Ombudsman for the Defence Forces,OoOf,https://www.odf.ie/,public service body
+1229,Office of the Information Commissioner,OotI,https://www.oic.ie/,public service body
+1230,Oifig Choimisinéir na dTeangacha Oifigúla,OCnd,https://www.coimisineir.ie/,public service body
+1231,Parliamentary Budget Office,PBO,https://www.oireachtas.ie/en/how-parliament-is-run/houses-of-the-oireachtas-service/parliamentary-budget-office/,public service body
+1232,Parole Board,PB,https://www.gov.ie/en/parole-board/,public service body
+1233,Pensions Council,PC,https://pensionscouncil.ie/,public service body
+1234,Personal Injuries Assessment Board,PIAB,https://www.piab.ie/eng/,public service body
+1235,Pharmaceutical Society of Ireland,PSoI,https://www.thepsi.ie/gns/home.aspx,public service body
+1236,Pre-Hospital Emergency Care Council (PHECC),PECC,https://www.phecit.ie/,public service body
+1237,Private Security Authority,PSA,https://www.psa-gov.ie/,public service body
+1238,Public Appointments Service,PAS,https://publicjobs.ie/en/,public service body
+1239,Quality and Qualifications Ireland,QaQI,https://www.qqi.ie/,public service body
+1240,Regulator of the National Lottery,RotN,https://www.rnl.ie/,public service body
+1241,Residential Institutions Redress Board (RIRB),RIRB,https://www.rirb.ie/,public service body
+1242,Residential Institutions Statutory Fund Board (CaraNua),RISF,https://caranua.ie/,public service body
+1243,Residential Tenancies Board (PRTB),RTB,https://www.rtb.ie/,public service body
+1244,Road Safety Authority,RSA,https://www.rsa.ie/,public service body
+1245,RTÉ – Raidió Teilifís Éireann,RRTÉ,https://www.rte.ie/,public service body
+1246,Safety on the Water,SotW,https://www.gov.ie/en/campaigns/777947-safety-on-the-water/,public service body
+1247,Screen Ireland (Fís Éireann),SIÉ,https://www.screenireland.ie/,public service body
+1248,Sea Fisheries Protection Authority (SFPA),SFPA,https://www.sfpa.ie/,public service body
+1249,Skillnet Ireland,SI,https://www.skillnetireland.ie/,public service body
+1250,Social Welfare Appeals Office,SWAO,https://www.gov.ie/en/organisation/4d5227-social-welfare-appeals-office/,public service body
+1251,Solas,S,https://www.solas.ie/,public service body
+1252,Southern Regional Assembly,SRA,https://www.southernassembly.ie/,public service body
+1253,Special EU Programmes Body,SEPB,https://www.seupb.eu/,public service body
+1254,Sport Ireland,SI,https://www.sportireland.ie/,public service body
+1255,Standards in Public Office Commission,SiPO,https://www.sipo.ie/,public service body
+1256,State Examinations Commission (SEC),SEC,https://www.examinations.ie/,public service body
+1257,Strategic Banking Corporation of Ireland,SBCo,https://sbci.gov.ie/,public service body
+1258,Sustainable Energy Authority of Ireland (SEAI),SEAo,https://www.seai.ie/,public service body
+1259,Tax Appeals Commission,TAC,https://www.taxappeals.ie/,public service body
+1260,Taighde Éireann – Research Ireland,TÉRI,https://www.researchireland.ie/,public service body
+1261,Tailte Éireann,TÉ,https://www.tailte.ie/,public service body
+1262,Teaching Council,TC,https://www.teachingcouncil.ie/,public service body
+1263,Teagasc (Agriculture and Food Development Authority),TaFD,https://www.teagasc.ie/,public service body
+1264,Teilifís na Gaeilge - TG4,TnGT,https://www.tg4.ie/en/,public service body
+1265,The Charities Regulator,TCR,https://www.charitiesregulator.ie/,public service body
+1266,The Courts Service,TCS,https://www.courts.ie/,public service body
+1267,The Heritage Council,THC,https://www.heritagecouncil.ie/,public service body
+1268,The International Protection Office,TIPO,https://www.ipo.gov.ie/,public service body
+1269,The Loughs Agency,TLA,https://www.loughs-agency.org/,public service body
+1270,The National Oversight and Audit Commission,TNOa,https://noac.ie/,public service body
+1271,The Pensions Authority,TPA,https://pensionsauthority.ie/,public service body
+1272,The State Laboratory,TSL,https://www.statelab.ie/,public service body
+1273,The Water Advisory Body,TWAB,https://www.wateradvisorybody.ie/,public service body
+1274,Tipperary Education and Training Board,TEaT,https://tipperaryetb.ie/,public service body
+1275,Tourism Ireland,TI,https://www.tourismireland.com/,public service body
+1276,Trade and Business Development Body (InterTradeIreland),TaBD,https://intertradeireland.com/,public service body
+1277,Transport Infrastructure Ireland,TII,https://www.tii.ie/,public service body
+1278,Traveller and Roma Inclusion Unit,TaRI,https://www.travellerinclusion.ie/website/travpolicy/travinclusionweb.nsf/page/index-en,public service body
+1279,Ulster-Scots Agency,UA,https://www.ulsterscotsagency.com/,public service body
+1280,Water Safety,WS,https://watersafety.ie/,public service body
+1281,Waterford and Wexford Education and Training Board,WaWE,https://www.wwetb.ie/,public service body
+1282,Waterford Institute of Technology,WIoT,https://www.setu.ie/,public service body
+1283,Waterways Ireland,WI,https://www.waterwaysireland.org/,public service body
+1284,Western Development Commission (WDC),WDC,https://westerndevelopment.ie/,public service body
+1285,Workplace Relations Commission,WRC,https://workplacerelations.ie/en/,public service body
+1286,Údarás na Gaeltachta,ÚnG,https://udaras.ie/,public service body
