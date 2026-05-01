@@ -1,4 +1,4 @@
-name: Build and Deploy to Hetzner
+name: Build and Deploy to Bunny.net
 
 on:
   push:
@@ -51,18 +51,38 @@ jobs:
         working-directory: publicinfo-prototype
         run: npm run build
 
-      - name: Deploy to Hetzner via SFTP
+      - name: Install curl (if not available)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq curl
+
+      - name: Upload to Bunny Edge Storage
         working-directory: publicinfo-prototype
         env:
-          SFTP_USER: ${{ secrets.HETZNER_SFTP_USERNAME }}
-          SFTP_PASS: ${{ secrets.HETZNER_SFTP_PASSWORD }}
-          SFTP_HOST: ${{ secrets.HETZNER_SFTP_HOST }}
-          SFTP_PATH: ${{ secrets.HETZNER_SFTP_PATH }}
+          BUNNY_STORAGE_ZONE_NAME: ${{ secrets.BUNNY_STORAGE_ZONE_NAME }}
+          BUNNY_STORAGE_ZONE_PASSWORD: ${{ secrets.BUNNY_STORAGE_ZONE_PASSWORD }}
         run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
-          lftp -u "$SFTP_USER,$SFTP_PASS" "sftp://$SFTP_HOST" <<LFTP_SCRIPT
-          set sftp:auto-confirm yes
-          set net:timeout 30
-          mirror -R --delete --verbose ./dist/ $SFTP_PATH
-          bye
-          LFTP_SCRIPT
+          # Upload all files from dist/ to storage zone root
+          find dist -type f | while read -r file; do
+            # Get relative path from dist/
+            rel_path="${file#dist/}"
+            # Skip empty paths (dist/ itself)
+            if [ -n "$rel_path" ]; then
+              echo "Uploading $rel_path..."
+              curl -s -X PUT \
+                --url "https://storage.bunnycdn.com/$BUNNY_STORAGE_ZONE_NAME/$rel_path" \
+                -H "AccessKey: $BUNNY_STORAGE_ZONE_PASSWORD" \
+                --upload-file "$file" \
+                --fail
+            fi
+          done
+
+      - name: Purge Pull Zone Cache
+        working-directory: publicinfo-prototype
+        env:
+          BUNNY_API_KEY: ${{ secrets.BUNNY_API_KEY }}
+          BUNNY_PULL_ZONE_ID: ${{ secrets.BUNNY_PULL_ZONE_ID }}
+        run: |
+          curl -X POST \
+            "https://api.bunny.net/pullzone/$BUNNY_PULL_ZONE_ID/purgeCache" \
+            -H "AccessKey: $BUNNY_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{}'
