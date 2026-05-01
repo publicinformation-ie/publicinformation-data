@@ -11,30 +11,15 @@ import csv
 import re
 import sys
 import time
-import truststore
 from datetime import date
 from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
 
-truststore.inject_into_ssl()
-
-HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (compatible; FOI-Contact-Info-Extractor/1.0)'
-}
+from common.http import _request, HEADERS, RATE_LIMIT_DELAY
 
 FOI_PAGE_URL_COLUMN = 'foi_page_url'
-RATE_LIMIT_DELAY = 0.2  # seconds between requests
-
-
-def _request(method, url, **kwargs):
-    """Reusable request method with SSL fallback."""
-    try:
-        return requests.request(method, url, headers=HEADERS, **kwargs)
-    except requests.exceptions.SSLError:
-        print(f"SSL verification failed for {url}, retrying without verification", file=sys.stderr)
-        return requests.request(method, url, headers=HEADERS, verify=False, **kwargs)
 
 
 def find_foi_email(url):

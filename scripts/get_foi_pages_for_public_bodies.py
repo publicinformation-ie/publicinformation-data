@@ -11,24 +11,12 @@ from urllib.parse import urlparse
 
 import requests
 
-HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (compatible; FOI-Page-Finder/1.0)'
-}
+from common.http import _request, HEADERS, RATE_LIMIT_DELAY
 
 URL_COLUMN = 'public_body_url'
-RATE_LIMIT_DELAY = 0.2  # seconds between requests
 FOI_KEYWORDS = ('foi', 'freedom-of-information', 'freedom_of_information')
 FOI_TEXT_KEYWORDS = FOI_KEYWORDS + ('freedom of information',)
 MAX_CHILD_SITEMAPS = 10
-
-
-def _request(method, url, **kwargs):
-    # SSL fallback for sites with broken certificate chains
-    try:
-        return requests.request(method, url, headers=HEADERS, **kwargs)
-    except requests.exceptions.SSLError:
-        print(f"SSL verification failed for {url}, retrying without verification", file=sys.stderr)
-        return requests.request(method, url, headers=HEADERS, verify=False, **kwargs)
 
 
 _robots_cache: dict = {}
