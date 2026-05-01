@@ -51,9 +51,6 @@ jobs:
         working-directory: publicinfo-prototype
         run: npm run build
 
-      - name: Install curl (if not available)
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq curl
-
       - name: Upload to Bunny Edge Storage
         working-directory: publicinfo-prototype
         env:
