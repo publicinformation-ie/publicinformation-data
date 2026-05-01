@@ -1,0 +1,41 @@
+---
+interface Props {
+  title?: string;
+}
+const { title = 'publicinformation.ie' } = Astro.props;
+---
+
+<nav class="app-nav" role="navigation" aria-label="Main navigation">
+  <div class="app-nav__container">
+    <a href="/" class="app-nav__brand">{title}</a>
+  </div>
+</nav>
+
+<style>
+  .app-nav {
+    background-color: var(--color-secondary);
+    padding: var(--space-3) 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .app-nav__container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+  }
+
+  .app-nav__brand {
+    color: var(--color-white);
+    font-size: var(--text-m);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .app-nav__brand:hover,
+  .app-nav__brand:focus {
+    color: var(--color-white);
+    text-decoration: underline;
+  }
+</style>

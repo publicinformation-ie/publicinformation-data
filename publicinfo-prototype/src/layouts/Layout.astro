@@ -1,34 +1,71 @@
 ---
 import '../styles/global.css';
+import AppNav from '../components/AppNav.astro';
+import AppFooter from '../components/AppFooter.astro';
+
 interface Props {
   title: string;
   showBackLink?: boolean;
 }
 const { title, showBackLink = false } = Astro.props;
 ---
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="List of public bodies in Ireland subject to Freedom of Information." />
+    <meta name="description" content="Public bodies in Ireland subject to Freedom of Information." />
     <title>{title}</title>
   </head>
-  <body class="bg-white text-gray-900 min-h-screen">
-    <!-- Header -->
-    <header class="border-b border-gray-200 bg-white sticky top-0 z-10">
-      <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
-        <a href="/" class="text-xl font-bold text-gray-900 hover:text-blue-700">
-          Public Bodies in Ireland
-        </a>
-        {showBackLink && (
-          <a href="/" class="text-sm text-gray-600 hover:text-blue-700 hover:underline flex items-center gap-1">
-            &larr; Back to All Bodies
-          </a>
-        )}
-      </div>
-    </header>
+  <body class="bg-white text-black min-h-screen">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     
-    <slot />
+    <AppNav />
+    
+    <main id="main-content" tabindex="-1" class="main-content">
+      {showBackLink && (
+        <nav class="back-link-container" aria-label="Breadcrumb">
+          <a href="/" class="back-link">
+            <span aria-hidden="true">←</span> Back to All Bodies
+          </a>
+        </nav>
+      )}
+      <slot />
+    </main>
+    
+    <AppFooter />
   </body>
 </html>
+
+<style>
+  .min-h-screen {
+    min-height: 100vh;
+  }
+
+  .main-content {
+    padding: var(--space-5) 0;
+  }
+
+  .back-link-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 var(--space-4) var(--space-4);
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--color-secondary);
+    text-decoration: none;
+    font-size: var(--text-body-s);
+    font-weight: 600;
+  }
+
+  .back-link:hover,
+  .back-link:focus {
+    color: var(--color-secondary-dark);
+    text-decoration: underline;
+  }
+</style>

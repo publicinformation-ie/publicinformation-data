@@ -1,48 +1,61 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AuthorityCard from '../components/AuthorityCard.astro';
 import bodies from '../data/public_bodies.json';
 ---
+
 <Layout title="Public Bodies in Ireland">
-  <main class="max-w-4xl mx-auto px-4 py-8">
-    <p class="text-gray-500 mb-8">{bodies.length} bodies listed</p>
+  <div class="page-container">
+    <header class="page-header">
+      <h1>Public Bodies in Ireland</h1>
+      <p class="page-description">
+        All Irish public bodies subject to the Freedom of Information Act 2014.
+      </p>
+    </header>
 
     {bodies.length > 0 ? (
-      <ul class="space-y-3">
+      <ul class="authority-list">
         {bodies.map((body) => (
-          <li class="border rounded-lg p-4 hover:bg-gray-50 transition-colors">
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <a
-                  href={`/body/${body.public_body_id}`}
-                  class="text-lg font-semibold text-blue-700 hover:underline"
-                >
-                  {body.public_body_name}
-                </a>
-                {body.public_body_short_name && (
-                  <span class="ml-2 text-sm text-gray-500">({body.public_body_short_name})</span>
-                )}
-                {body.public_body_url && (
-                  <div class="mt-1">
-                    <a 
-                      href={body.public_body_url}
-                      class="text-xs text-blue-600 hover:underline"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View Website
-                    </a>
-                  </div>
-                )}
-              </div>
-              <span class="text-xs text-gray-400 whitespace-nowrap capitalize shrink-0">
-                {body.public_body_category}
-              </span>
-            </div>
+          <li key={body.public_body_id} class="authority-list__item">
+            <AuthorityCard authority={body} />
           </li>
         ))}
       </ul>
     ) : (
-      <p class="text-gray-500">No public bodies data available.</p>
+      <p class="empty-message">No public bodies data available.</p>
     )}
-  </main>
+  </div>
 </Layout>
+
+<style>
+  .page-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+  }
+
+  .page-header {
+    margin-bottom: var(--space-6);
+  }
+
+  .page-description {
+    color: var(--color-grey-dark);
+    font-size: var(--text-body);
+  }
+
+  .authority-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .authority-list__item {
+    margin-bottom: var(--space-3);
+  }
+
+  .empty-message {
+    color: var(--color-grey-mid);
+    text-align: center;
+    padding: var(--space-6) 0;
+  }
+</style>

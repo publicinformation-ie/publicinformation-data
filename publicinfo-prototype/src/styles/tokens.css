@@ -1,0 +1,82 @@
+/* CSS Custom Properties - Design Tokens */
+/* Source: HANDOFF-ASTRO.md */
+
+:root {
+  /* ===================================================================
+     COLOR PALETTE
+     =================================================================== */
+
+  /* Brand Colors */
+  --color-primary: #00723B;        /* Primary actions, links, Irish civic identity */
+  --color-primary-dark: #005A2E;   /* Hover/active states on primary elements */
+  --color-secondary: #1B3A5C;      /* Navigation background, headings, authority */
+  --color-secondary-dark: #122840; /* Hover states on secondary elements */
+  --color-focus: #FFDD00;          /* Keyboard focus ring (GOV.UK pattern) */
+
+  /* Neutral Colors */
+  --color-white: #FFFFFF;         /* Page background, card background */
+  --color-grey-lightest: #F3F2F1; /* Section backgrounds, zebra stripes */
+  --color-grey-light: #DEE0E2;    /* Borders, dividers, input borders */
+  --color-grey-mid: #B1B4B6;      /* Placeholder text, disabled states */
+  --color-grey-dark: #505A5F;     /* Secondary text, captions, metadata */
+  --color-black: #0B0C0C;         /* All body text (not pure black) */
+
+  /* Status Colors (badges only) */
+  --status-awaiting-response: #1D70B8;
+  --status-awaiting-response-text: #FFFFFF;
+  --status-acknowledged: #5694CA;
+  --status-acknowledged-text: #FFFFFF;
+  --status-extension-granted: #6F3FBF;
+  --status-extension-granted-text: #FFFFFF;
+  --status-overdue: #D4351C;
+  --status-overdue-text: #FFFFFF;
+  --status-stale: #B58900;
+  --status-stale-text: #0B0C0C;
+  --status-successful: #00703C;
+  --status-successful-text: #FFFFFF;
+  --status-partially-successful: #28A197;
+  --status-partially-successful-text: #FFFFFF;
+  --status-refused: #F47738;
+  --status-refused-text: #0B0C0C;
+  --status-under-internal-review: #4C2C92;
+  --status-under-internal-review-text: #FFFFFF;
+  --status-appealed-to-oic: #3D2375;
+  --status-appealed-to-oic-text: #FFFFFF;
+  --status-withdrawn: #6F777B;
+  --status-withdrawn-text: #FFFFFF;
+
+  /* ===================================================================
+     TYPE SCALE
+     =================================================================== */
+
+  /* Desktop sizes */
+  --text-xl: 3rem;          /* 48px - page hero titles */
+  --text-l: 2.25rem;        /* 36px - page headings */
+  --text-m: 1.5rem;         /* 24px - section headings, card titles */
+  --text-s: 1.25rem;        /* 20px - sub-section headings */
+  --text-body: 1.1875rem;   /* 19px - all body copy */
+  --text-body-s: 1rem;      /* 16px - captions, metadata, helper text */
+  --text-body-xs: 0.875rem; /* 14px - status badges, tags */
+
+  /* ===================================================================
+     SPACING SCALE (8px base unit)
+     =================================================================== */
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 96px;
+}
+
+/* Mobile scaling for typography */
+@media (max-width: 639px) {
+  :root {
+    --text-xl: 2rem;       /* 32px */
+    --text-l: 1.625rem;    /* 26px */
+    /* body text stays at 19px - never reduce */
+  }
+}
