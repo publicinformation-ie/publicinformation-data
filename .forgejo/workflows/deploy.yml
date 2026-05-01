@@ -38,10 +38,10 @@ jobs:
           fi
           echo "JSON file size: $(wc -c < src/data/public_bodies.json) bytes"
 
-      - name: Set up Node.js 20
+      - name: Set up Node.js 22
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Install Node dependencies
         working-directory: publicinfo-prototype
