@@ -6,7 +6,8 @@ on:
     paths:
       - 'publicinfo-prototype/src/**'
       - 'publicinfo-prototype/scripts/csv_to_json.py'
-      - '.codeberg/workflows/deploy.yml'
+      - '.forgejo/workflows/deploy.yml'
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
