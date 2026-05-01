@@ -96,6 +96,34 @@ class TestEnrichRowsAlias(unittest.TestCase):
 
         self.assertEqual(result[0]['foi_contact_email'], 'foi@garda.ie')
 
+    def test_alias_with_integer_public_body_id(self):
+        # Bug: when public_body_id is an integer, alias lookup fails
+        # even though the alias exists with a string key
+        rows = [{'public_body_id': 1004, 'public_body_name': 'Department of Tourism, Culture, Arts, Gaeltacht, Sport and Media',
+                 'foi_contact_email': '', 'last_checked': '', 'last_modified': ''}]
+        scraped = {'department of tourism culture arts gaeltacht sport media': 'foi@tourism.ie'}
+        aliases = {'1004': 'Department of Tourism, Culture, Arts, Gaeltacht, Sport & Media'}
+
+        result = enrich_rows(rows, scraped, aliases)
+
+        # This should pass but currently fails because pub_id (int) is not in aliases (str keys)
+        self.assertEqual(result[0]['foi_contact_email'], 'foi@tourism.ie')
+
+    def test_fallback_to_public_body_name_when_alias_normalized_differs(self):
+        # Bug: when alias has '&' but foi.gov.ie has 'and', the normalized names differ
+        # The code should fall back to using public_body_name if alias doesn't match
+        rows = [{'public_body_id': '1004', 'public_body_name': 'Department of Tourism, Culture, Arts, Gaeltacht, Sport and Media',
+                 'foi_contact_email': '', 'last_checked': '', 'last_modified': ''}]
+        # Simulate scraped data having the name with 'and' (not '&')
+        scraped = {'department of tourism culture arts gaeltacht sport and media': 'foi@tourism.ie'}
+        # Alias has '&' which normalizes differently
+        aliases = {'1004': 'Department of Tourism, Culture, Arts, Gaeltacht, Sport & Media'}
+
+        result = enrich_rows(rows, scraped, aliases)
+
+        # Should fall back to public_body_name and find the match
+        self.assertEqual(result[0]['foi_contact_email'], 'foi@tourism.ie')
+
 
 class TestEnrichRowsNoMatch(unittest.TestCase):
 

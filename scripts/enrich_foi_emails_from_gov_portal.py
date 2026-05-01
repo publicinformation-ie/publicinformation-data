@@ -72,21 +72,31 @@ def enrich_rows(rows, scraped, aliases, force_update=False):
         pub_id = row.get('public_body_id', '')
         pub_name = row.get('public_body_name', '')
 
-        if pub_id in aliases:
-            key = normalize_name(aliases[pub_id])
-        else:
-            key = normalize_name(pub_name)
-
         row['last_checked'] = today
 
-        if key in scraped:
+        # Try to find a match: first using alias if available, then using public_body_name
+        key = None
+        if str(pub_id) in aliases:
+            alias_key = normalize_name(aliases[str(pub_id)])
+            if alias_key in scraped:
+                key = alias_key
+
+        if key is None:
+            # Try using public_body_name directly
+            pub_name_key = normalize_name(pub_name)
+            if pub_name_key in scraped:
+                key = pub_name_key
+
+        if key is not None:
             new_email = scraped[key] or ''
             if new_email != row.get('foi_contact_email', ''):
                 row['last_modified'] = today
             row['foi_contact_email'] = new_email
         else:
+            # Neither alias nor public_body_name matched
+            alias_name = aliases.get(str(pub_id)) if str(pub_id) in aliases else ''
             print(
-                f'No match for public_body_id={pub_id} name="{pub_name}" — add to public_bodies_aliases.csv',
+                f'No match for public_body_id={pub_id} name="{pub_name}" alias="{alias_name}" — add to public_bodies_aliases.csv',
                 file=sys.stderr
             )
 
