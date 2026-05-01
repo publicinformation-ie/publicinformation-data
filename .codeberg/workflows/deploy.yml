@@ -1,0 +1,67 @@
+name: Build and Deploy to Hetzner
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'publicinfo-prototype/src/**'
+      - 'publicinfo-prototype/scripts/csv_to_json.py'
+      - '.codeberg/workflows/deploy.yml'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install requests
+
+      - name: Generate JSON from CSV
+        working-directory: publicinfo-prototype
+        run: python scripts/csv_to_json.py
+
+      - name: Verify JSON was generated
+        working-directory: publicinfo-prototype
+        run: |
+          if [ ! -f src/data/public_bodies.json ]; then
+            echo "ERROR: public_bodies.json was not created" >&2
+            exit 1
+          fi
+          echo "JSON file size: $(wc -c < src/data/public_bodies.json) bytes"
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install Node dependencies
+        working-directory: publicinfo-prototype
+        run: npm ci
+
+      - name: Build Astro site
+        working-directory: publicinfo-prototype
+        run: npm run build
+
+      - name: Deploy to Hetzner via SFTP
+        working-directory: publicinfo-prototype
+        env:
+          SFTP_USER: ${{ secrets.HETZNER_SFTP_USERNAME }}
+          SFTP_PASS: ${{ secrets.HETZNER_SFTP_PASSWORD }}
+          SFTP_HOST: ${{ secrets.HETZNER_SFTP_HOST }}
+          SFTP_PATH: ${{ secrets.HETZNER_SFTP_PATH }}
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          lftp -u "$SFTP_USER,$SFTP_PASS" "sftp://$SFTP_HOST" <<LFTP_SCRIPT
+          set sftp:auto-confirm yes
+          set net:timeout 30
+          mirror -R --delete --verbose ./dist/ $SFTP_PATH
+          bye
+          LFTP_SCRIPT
