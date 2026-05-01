@@ -1,29 +1,50 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import AuthorityCard from '../components/AuthorityCard.astro';
 import bodies from '../data/public_bodies.json';
----
+
+// Get unique categories
+const categories = [...new Set(bodies.map(b => b.public_body_category))];
+
+// Category display names and URL slugs
+const categoryConfig = {
+  'government department': { slug: 'government-department', name: 'Government Departments' },
+  'public service body': { slug: 'public-service-body', name: 'Public Service Bodies' },
+  'local authority': { slug: 'local-authority', name: 'Local Authorities' },
+};
+
+// Get count for each category
+const getCategoryCount = (category: string) => 
+  bodies.filter(b => b.public_body_category === category).length;
+--- 
 
 <Layout title="Public Bodies in Ireland">
   <div class="page-container">
     <header class="page-header">
       <h1>Public Bodies in Ireland</h1>
       <p class="page-description">
-        All Irish public bodies subject to the Freedom of Information Act 2014.
+        All Irish public bodies subject to the Freedom of Information Act 2014, 
+        organised by category.
       </p>
     </header>
 
-    {bodies.length > 0 ? (
-      <ul class="authority-list">
-        {bodies.map((body) => (
-          <li key={body.public_body_id} class="authority-list__item">
-            <AuthorityCard authority={body} />
-          </li>
-        ))}
-      </ul>
-    ) : (
-      <p class="empty-message">No public bodies data available.</p>
-    )}
+    <div class="category-grid">
+      {categories.map((category) => {
+        const config = categoryConfig[category as keyof typeof categoryConfig];
+        const count = getCategoryCount(category);
+        return (
+          <a 
+            href={`/${config.slug}`} 
+            class="category-card"
+            key={category}
+          >
+            <div class="category-card__content">
+              <h2 class="category-card__title">{config.name}</h2>
+              <span class="category-card__link-text">{count} bodies →</span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
   </div>
 </Layout>
 
@@ -43,19 +64,66 @@ import bodies from '../data/public_bodies.json';
     font-size: var(--text-body);
   }
 
-  .authority-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-4);
   }
 
-  .authority-list__item {
-    margin-bottom: var(--space-3);
+  .category-card {
+    border: 1px solid var(--color-grey-light);
+    border-radius: 4px;
+    padding: var(--space-4);
+    background-color: var(--color-white);
+    text-decoration: none;
+    color: var(--color-black);
+    transition: background-color 0.2s ease-in-out, 
+                transform 0.2s ease-in-out;
+    display: block;
+    height: 100%;
   }
 
-  .empty-message {
-    color: var(--color-grey-mid);
-    text-align: center;
-    padding: var(--space-6) 0;
+  .category-card:hover,
+  .category-card:focus {
+    background-color: var(--color-grey-lightest);
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+
+  .category-card:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  .category-card__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .category-card__title {
+    font-size: var(--text-m);
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 var(--space-3);
+    color: var(--color-secondary);
+  }
+
+  .category-card__link-text {
+    display: inline-block;
+    padding: var(--space-1) var(--space-2);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: var(--text-body-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 639px) {
+    .category-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
