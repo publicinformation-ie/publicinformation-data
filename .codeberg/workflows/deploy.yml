@@ -1,4 +1,4 @@
-name: Build and Deploy to Hetzner
+name: Build and Deploy to Hosting
 
 on:
   push:
