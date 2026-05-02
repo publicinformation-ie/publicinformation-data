@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import AuthorityCard from '../components/AuthorityCard.astro';
+import DownloadButtons from '../components/DownloadButtons.astro';
 import bodies from '../data/public_bodies.json';
 
 // Category slug to display name mapping
@@ -42,9 +43,12 @@ const displayName = categoryName || category;
 <Layout title={`${displayName} - Public Bodies in Ireland`} showBackLink={true}>
   <div class="page-container">
     <header class="page-header">
-      <h1>{displayName}</h1>
+      <div class="page-header__top">
+        <h1>{displayName}</h1>
+        <DownloadButtons dataset={category as 'government-department' | 'public-service-body' | 'local-authority'} />
+      </div>
       <p class="page-description">
-        {filteredBodies.length} public {filteredBodies.length === 1 ? 'body' : 'bodies'} 
+        {filteredBodies.length} public {filteredBodies.length === 1 ? 'body' : 'bodies'}
         in this category subject to the Freedom of Information Act 2014.
       </p>
     </header>
@@ -72,6 +76,19 @@ const displayName = categoryName || category;
 
   .page-header {
     margin-bottom: var(--space-6);
+  }
+
+  .page-header__top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-2);
+  }
+
+  .page-header__top h1 {
+    margin-bottom: 0;
   }
 
   .page-description {
