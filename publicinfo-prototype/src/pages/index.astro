@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import DownloadButtons from '../components/DownloadButtons.astro';
 import bodies from '../data/public_bodies.json';
 
 // Get unique categories
@@ -26,6 +27,10 @@ const getCategoryCount = (category: string) =>
         organised by category.
       </p>
     </header>
+
+    <div class="homepage-downloads">
+      <DownloadButtons dataset="all" label="Download full list:" />
+    </div>
 
     <div class="category-grid">
       {categories.map((category) => {
@@ -62,6 +67,10 @@ const getCategoryCount = (category: string) =>
   .page-description {
     color: var(--color-grey-dark);
     font-size: var(--text-body);
+  }
+
+  .homepage-downloads {
+    margin-bottom: var(--space-5);
   }
 
   .category-grid {
