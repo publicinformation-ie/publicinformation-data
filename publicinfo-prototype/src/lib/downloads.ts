@@ -27,8 +27,11 @@ export function toCSV(records: BodyRecord[]): string {
   const rows = records.map((r) =>
     keys
       .map((k) => {
-        const value = String(r[k]);
-        return value.includes(',') ? `"${value}"` : value;
+        const raw = String(r[k]);
+        const escaped = raw.replace(/"/g, '""');
+        return raw.includes(',') || raw.includes('"') || raw.includes('\n')
+          ? `"${escaped}"`
+          : raw;
       })
       .join(',')
   );

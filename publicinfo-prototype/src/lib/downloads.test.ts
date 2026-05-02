@@ -76,6 +76,18 @@ describe('toCSV', () => {
     const csv = toCSV([record]);
     expect(csv).toContain('"Dept, of Commas"');
   });
+
+  it('quotes and escapes values that contain double quotes', () => {
+    const record = {
+      public_body_id: 100,
+      public_body_name: 'He said "hello"',
+      public_body_short_name: 'HS',
+      public_body_url: 'https://example.com',
+      public_body_category: 'government department',
+    };
+    const csv = toCSV([record]);
+    expect(csv).toContain('"He said ""hello"""');
+  });
 });
 
 describe('toJSON', () => {
