@@ -7,7 +7,7 @@ from pathlib import Path
 
 from scripts.file_utils import write_json, write_status
 
-STEP_NAME = "import_disclosures"
+STEP_NAME = "export_status"
 
 
 def main():

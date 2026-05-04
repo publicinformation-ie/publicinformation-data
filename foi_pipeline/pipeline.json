@@ -9,6 +9,6 @@
     "find_disclosure_files",
     "transform_disclosure_files",
     "extract_disclosures",
-    "import_disclosures"
+    "export_status"
   ]
 }
