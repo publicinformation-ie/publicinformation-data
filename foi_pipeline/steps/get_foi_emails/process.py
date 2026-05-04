@@ -52,12 +52,14 @@ def process(input_data, step_dir):
 
     for item in reachable:
         url = item["foi_page_url"]
+        name = item.get("name", "")
         try:
             response = fetch("GET", url, allow_redirects=True)
             emails = extract_emails(response.text)
             foi_email, email_status = pick_foi_email(emails)
             results.append({
                 "public_body_id": item["public_body_id"],
+                "name": name,
                 "foi_page_url": url,
                 "foi_email": foi_email,
                 "email_status": email_status,
@@ -68,7 +70,7 @@ def process(input_data, step_dir):
                 "timestamp": datetime.now(timezone.utc).isoformat(),
                 "error_type": type(e).__name__,
                 "error_message": str(e),
-                "context": {"url": url, "public_body_id": item["public_body_id"]},
+                "context": {"url": url, "public_body_id": item["public_body_id"], "name": name},
             })
 
     return results

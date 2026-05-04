@@ -5,8 +5,8 @@ from steps.find_disclosure_pages.process import process, STEP_NAME, find_disclos
 INPUT = {
     "metadata": {"step": "get_foi_emails", "completed_at": "2026-05-04T00:00:00+00:00"},
     "results": [
-        {"public_body_id": 1001, "foi_page_url": "https://dept-a.ie/foi/", "foi_email": "foi@dept-a.ie", "email_status": "found"},
-        {"public_body_id": 1002, "foi_page_url": "https://dept-b.ie/foi/", "foi_email": None, "email_status": "not_found"},
+        {"public_body_id": 1001, "name": "Dept A", "foi_page_url": "https://dept-a.ie/foi/", "foi_email": "foi@dept-a.ie", "email_status": "found"},
+        {"public_body_id": 1002, "name": "Dept B", "foi_page_url": "https://dept-b.ie/foi/", "foi_email": None, "email_status": "not_found"},
     ],
 }
 

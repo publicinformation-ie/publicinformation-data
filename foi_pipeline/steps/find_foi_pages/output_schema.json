@@ -14,9 +14,10 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["public_body_id", "official_website_url", "foi_page_url", "source_method"],
+        "required": ["public_body_id", "name", "official_website_url", "foi_page_url", "source_method"],
         "properties": {
           "public_body_id": { "type": "integer" },
+          "name": { "type": "string" },
           "official_website_url": { "type": "string" },
           "foi_page_url": { "type": "string" },
           "source_method": { "enum": ["crawl", "serper"] }

@@ -50,7 +50,7 @@ def test_output_has_required_fields(requests_mock, tmp_path):
     requests_mock.get("https://dept-a.ie/", status_code=200)
     requests_mock.get("https://dept-b.ie/", status_code=200)
     for r in process(INPUT, tmp_path):
-        assert {"public_body_id", "official_website_url", "is_reachable", "http_status", "checked_at"} <= r.keys()
+        assert {"public_body_id", "name", "official_website_url", "is_reachable", "http_status", "checked_at"} <= r.keys()
 
 
 def test_errors_json_reset_on_each_run(requests_mock, tmp_path):

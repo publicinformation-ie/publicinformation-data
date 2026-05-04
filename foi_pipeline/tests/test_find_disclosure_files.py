@@ -5,8 +5,8 @@ from steps.find_disclosure_files.process import process, STEP_NAME, find_file_li
 INPUT = {
     "metadata": {"step": "find_disclosure_pages", "completed_at": "2026-05-04T00:00:00+00:00"},
     "results": [
-        {"public_body_id": 1001, "foi_page_url": "https://dept-a.ie/foi/", "disclosure_page_url": "https://dept-a.ie/foi/disclosure/"},
-        {"public_body_id": 1002, "foi_page_url": "https://dept-b.ie/foi/", "disclosure_page_url": "https://dept-b.ie/foi/disclosure/"},
+        {"public_body_id": 1001, "name": "Dept A", "foi_page_url": "https://dept-a.ie/foi/", "disclosure_page_url": "https://dept-a.ie/foi/disclosure/"},
+        {"public_body_id": 1002, "name": "Dept B", "foi_page_url": "https://dept-b.ie/foi/", "disclosure_page_url": "https://dept-b.ie/foi/disclosure/"},
     ],
 }
 

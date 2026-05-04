@@ -21,6 +21,7 @@ def process(input_data, step_dir):
             response = fetch("GET", url, allow_redirects=True)
             results.append({
                 "public_body_id": body["public_body_id"],
+                "name": body.get("name", ""),
                 "official_website_url": url,
                 "is_reachable": response.ok,
                 "http_status": response.status_code,
@@ -36,6 +37,7 @@ def process(input_data, step_dir):
             })
             results.append({
                 "public_body_id": body["public_body_id"],
+                "name": body.get("name", ""),
                 "official_website_url": url,
                 "is_reachable": False,
                 "http_status": None,

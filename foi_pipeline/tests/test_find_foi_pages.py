@@ -5,8 +5,8 @@ from steps.find_foi_pages.process import process, STEP_NAME, find_foi_link_on_pa
 INPUT = {
     "metadata": {"step": "validate_websites", "completed_at": "2026-05-04T00:00:00+00:00"},
     "results": [
-        {"public_body_id": 1001, "official_website_url": "https://dept-a.ie/", "is_reachable": True, "http_status": 200, "checked_at": "2026-05-04T00:00:00+00:00"},
-        {"public_body_id": 1002, "official_website_url": "https://dept-b.ie/", "is_reachable": False, "http_status": 404, "checked_at": "2026-05-04T00:00:00+00:00"},
+        {"public_body_id": 1001, "name": "Dept A", "official_website_url": "https://dept-a.ie/", "is_reachable": True, "http_status": 200, "checked_at": "2026-05-04T00:00:00+00:00"},
+        {"public_body_id": 1002, "name": "Dept B", "official_website_url": "https://dept-b.ie/", "is_reachable": False, "http_status": 404, "checked_at": "2026-05-04T00:00:00+00:00"},
     ],
 }
 
@@ -43,6 +43,8 @@ def test_serper_fallback_when_crawl_finds_nothing(requests_mock, tmp_path, monke
     assert len(results) == 1
     assert results[0]["source_method"] == "serper"
     assert results[0]["foi_page_url"] == "https://dept-a.ie/foi/"
+    # Verify Serper query includes department name
+    assert "Dept A" in requests_mock.last_request.json()["q"]
 
 
 def test_body_excluded_when_no_foi_link_and_no_serper_key(requests_mock, tmp_path, monkeypatch):
@@ -50,6 +52,10 @@ def test_body_excluded_when_no_foi_link_and_no_serper_key(requests_mock, tmp_pat
     monkeypatch.delenv("SERPER_API_KEY", raising=False)
     results = process(INPUT, tmp_path)
     assert len(results) == 0
+    # Verify that an error was logged for the missing API key
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert len(errors) == 1
+    assert "SERPER_API_KEY not set" in errors[0]["error_message"]
 
 
 def test_connection_error_logs_and_skips_body(requests_mock, tmp_path):
@@ -65,7 +71,7 @@ def test_connection_error_logs_and_skips_body(requests_mock, tmp_path):
 def test_output_has_required_fields(requests_mock, tmp_path):
     requests_mock.get("https://dept-a.ie/", text=HTML_WITH_FOI_LINK)
     r = process(INPUT, tmp_path)[0]
-    assert {"public_body_id", "official_website_url", "foi_page_url", "source_method"} <= r.keys()
+    assert {"public_body_id", "name", "official_website_url", "foi_page_url", "source_method"} <= r.keys()
 
 
 def test_find_foi_link_returns_none_when_no_match():

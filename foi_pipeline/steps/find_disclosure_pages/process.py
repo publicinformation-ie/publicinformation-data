@@ -31,11 +31,13 @@ def process(input_data, step_dir):
     results = []
     for item in input_data["results"]:
         url = item["foi_page_url"]
+        name = item.get("name", "")
         try:
             response = fetch("GET", url, allow_redirects=True)
             disclosure_url = find_disclosure_link(response.text, url) or url
             results.append({
                 "public_body_id": item["public_body_id"],
+                "name": name,
                 "foi_page_url": url,
                 "disclosure_page_url": disclosure_url,
             })
@@ -45,7 +47,7 @@ def process(input_data, step_dir):
                 "timestamp": datetime.now(timezone.utc).isoformat(),
                 "error_type": type(e).__name__,
                 "error_message": str(e),
-                "context": {"url": url, "public_body_id": item["public_body_id"]},
+                "context": {"url": url, "public_body_id": item["public_body_id"], "name": name},
             })
 
     return results

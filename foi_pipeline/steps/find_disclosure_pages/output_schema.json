@@ -14,9 +14,10 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["public_body_id", "foi_page_url", "disclosure_page_url"],
+        "required": ["public_body_id", "name", "foi_page_url", "disclosure_page_url"],
         "properties": {
           "public_body_id": { "type": "integer" },
+          "name": { "type": "string" },
           "foi_page_url": { "type": "string" },
           "disclosure_page_url": { "type": "string" }
         }

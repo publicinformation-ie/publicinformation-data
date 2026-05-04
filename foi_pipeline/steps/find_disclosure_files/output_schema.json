@@ -14,9 +14,10 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["public_body_id", "disclosure_page_url", "file_url", "file_type"],
+        "required": ["public_body_id", "name", "disclosure_page_url", "file_url", "file_type"],
         "properties": {
           "public_body_id": { "type": "integer" },
+          "name": { "type": "string" },
           "disclosure_page_url": { "type": "string" },
           "file_url": { "type": "string" },
           "file_type": { "enum": ["pdf", "xlsx", "xls"] }

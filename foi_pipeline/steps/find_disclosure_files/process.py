@@ -57,11 +57,13 @@ def process(input_data, step_dir):
     results = []
     for item in input_data["results"]:
         url = item["disclosure_page_url"]
+        name = item.get("name", "")
         try:
             response = fetch("GET", url, allow_redirects=True)
             for file_info in find_file_links(response.text, url):
                 results.append({
                     "public_body_id": item["public_body_id"],
+                    "name": name,
                     "disclosure_page_url": url,
                     **file_info,
                 })
@@ -71,7 +73,7 @@ def process(input_data, step_dir):
                 "timestamp": datetime.now(timezone.utc).isoformat(),
                 "error_type": type(e).__name__,
                 "error_message": str(e),
-                "context": {"url": url, "public_body_id": item["public_body_id"]},
+                "context": {"url": url, "public_body_id": item["public_body_id"], "name": name},
             })
 
     return results

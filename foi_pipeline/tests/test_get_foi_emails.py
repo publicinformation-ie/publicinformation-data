@@ -7,6 +7,7 @@ INPUT = {
     "results": [
         {
             "public_body_id": 1001,
+            "name": "Dept A",
             "official_website_url": "https://dept-a.ie/",
             "foi_page_url": "https://dept-a.ie/foi/",
             "source_method": "crawl",
@@ -16,6 +17,7 @@ INPUT = {
         },
         {
             "public_body_id": 1002,
+            "name": "Dept B",
             "official_website_url": "https://dept-b.ie/",
             "foi_page_url": "https://dept-b.ie/foi/",
             "source_method": "crawl",
@@ -91,7 +93,7 @@ def test_connection_error_logs_and_skips(requests_mock, tmp_path):
 def test_output_has_required_fields(requests_mock, tmp_path):
     requests_mock.get("https://dept-a.ie/foi/", text=HTML_ONE_MAILTO)
     r = process(INPUT, tmp_path)[0]
-    assert {"public_body_id", "foi_page_url", "foi_email", "email_status"} <= r.keys()
+    assert {"public_body_id", "name", "foi_page_url", "foi_email", "email_status"} <= r.keys()
 
 
 def test_extract_emails_finds_mailto():

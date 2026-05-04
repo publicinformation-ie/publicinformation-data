@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -24,9 +25,11 @@ def find_foi_link_on_page(html, base_url):
     return None
 
 
-def find_foi_via_serper(website_url):
+def find_foi_via_serper(website_url, name):
     domain = urlparse(website_url).netloc
-    results = search_serper(f"site:{domain} freedom of information")
+    # Include department name in search for gov.ie sites to find the correct page
+    query = f"site:{domain} {name} freedom of information"
+    results = search_serper(query)
     if results:
         return results[0].get("link")
     return None
@@ -41,13 +44,20 @@ def process(input_data, step_dir):
 
     for body in reachable:
         url = body["official_website_url"]
+        name = body.get("name", "")
         try:
             response = fetch("GET", url, allow_redirects=True)
             foi_url = find_foi_link_on_page(response.text, url)
             source_method = "crawl"
 
             if foi_url is None:
-                foi_url = find_foi_via_serper(url)
+                # Need to use Serper - check if API key is available
+                if not os.environ.get("SERPER_API_KEY"):
+                    raise ValueError(
+                        f"SERPER_API_KEY not set and FOI page not found via crawl for {name} ({url}). "
+                        "Set SERPER_API_KEY environment variable or fix crawl logic."
+                    )
+                foi_url = find_foi_via_serper(url, name)
                 source_method = "serper"
 
             if foi_url is None:
@@ -55,6 +65,7 @@ def process(input_data, step_dir):
 
             results.append({
                 "public_body_id": body["public_body_id"],
+                "name": name,
                 "official_website_url": url,
                 "foi_page_url": foi_url,
                 "source_method": source_method,
@@ -65,7 +76,7 @@ def process(input_data, step_dir):
                 "timestamp": datetime.now(timezone.utc).isoformat(),
                 "error_type": type(e).__name__,
                 "error_message": str(e),
-                "context": {"url": url, "public_body_id": body["public_body_id"]},
+                "context": {"url": url, "public_body_id": body["public_body_id"], "name": name},
             })
 
     return results

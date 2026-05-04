@@ -7,12 +7,14 @@ INPUT = {
     "results": [
         {
             "public_body_id": 1001,
+            "name": "Dept A",
             "official_website_url": "https://dept-a.ie/",
             "foi_page_url": "https://dept-a.ie/foi/",
             "source_method": "crawl",
         },
         {
             "public_body_id": 1002,
+            "name": "Dept B",
             "official_website_url": "https://dept-b.ie/",
             "foi_page_url": "https://dept-b.ie/foi/",
             "source_method": "serper",
@@ -40,6 +42,7 @@ def test_all_upstream_fields_carried_forward(requests_mock, tmp_path):
     requests_mock.get("https://dept-a.ie/foi/", status_code=200)
     requests_mock.get("https://dept-b.ie/foi/", status_code=200)
     r = process(INPUT, tmp_path)[0]
+    assert r["name"] == "Dept A"
     assert r["official_website_url"] == "https://dept-a.ie/"
     assert r["foi_page_url"] == "https://dept-a.ie/foi/"
     assert r["source_method"] == "crawl"
