@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+import argparse
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+from scripts.file_utils import append_error, read_json, write_json, write_status
+from scripts.http_utils import fetch
+
+STEP_NAME = "validate_websites"
+
+
+def process(input_data, step_dir):
+    errors_path = Path(step_dir) / "errors.json"
+    write_json(errors_path, [])
+
+    results = []
+    for body in input_data["public_bodies"]:
+        url = body["official_website_url"]
+        try:
+            response = fetch("GET", url, allow_redirects=True)
+            results.append({
+                "public_body_id": body["public_body_id"],
+                "official_website_url": url,
+                "is_reachable": response.ok,
+                "http_status": response.status_code,
+                "checked_at": datetime.now(timezone.utc).isoformat(),
+            })
+        except Exception as e:
+            append_error(step_dir, {
+                "step": STEP_NAME,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "context": {"url": url, "public_body_id": body["public_body_id"]},
+            })
+            results.append({
+                "public_body_id": body["public_body_id"],
+                "official_website_url": url,
+                "is_reachable": False,
+                "http_status": None,
+                "checked_at": datetime.now(timezone.utc).isoformat(),
+            })
+    return results
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Validate public body websites")
+    parser.add_argument("--input", required=True)
+    parser.add_argument("--output", required=True)
+    parser.add_argument("--force", action="store_true")
+    args = parser.parse_args()
+
+    step_dir = Path(__file__).parent
+    output_path = Path(args.output)
+
+    if not args.force and output_path.exists():
+        print(f"Output exists at {output_path}, skipping (use --force to re-run)")
+        sys.exit(0)
+
+    try:
+        input_data = read_json(args.input)
+    except Exception as e:
+        print(f"Fatal: could not read input: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    results = process(input_data, step_dir)
+    output = {
+        "metadata": {"step": STEP_NAME, "completed_at": datetime.now(timezone.utc).isoformat()},
+        "results": results,
+    }
+    write_json(output_path, output)
+    write_status(step_dir, len(results))
+    print(f"Wrote {len(results)} records to {output_path}")
+
+
+if __name__ == "__main__":
+    main()
