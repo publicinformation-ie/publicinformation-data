@@ -9,27 +9,36 @@ from steps.find_public_bodies.process import scrape_public_bodies, STEP_NAME, BA
 SAMPLE_HTML = """
 <!DOCTYPE html>
 <html><body>
-  <nav><a href="/en/organisation/department-of-finance/">Department of Finance</a></nav>
-  <main>
-    <a href="/en/organisation/department-of-health/">Department of Health</a>
-    <a href="/en/organisation/department-of-education/">Department of Education</a>
-    <a href="/en/other-page/">Not an organisation</a>
-    <a href="https://external.example.com/">External link</a>
-  </main>
+  <nav><a href="/en/some-nav-link/">Nav Link</a></nav>
+  <section id="departments">
+    <a href="/en/department-of-finance/">Department of Finance</a>
+    <a href="/en/department-of-health/">Department of Health</a>
+  </section>
+  <section id="agencies">
+    <a href="/en/central-bank-of-ireland/">Central Bank of Ireland</a>
+  </section>
+  <section id="local-authorities">
+    <a href="/en/carlow-county-council/">Carlow County Council</a>
+  </section>
+  <footer><a href="/en/privacy-policy/">Privacy Policy</a></footer>
 </body></html>
 """
 
 DUPLICATE_HTML = """
 <html><body>
-  <a href="/en/organisation/dept-finance/">Dept Finance</a>
-  <a href="/en/organisation/dept-finance/">Dept Finance (again)</a>
+  <section id="departments">
+    <a href="/en/dept-finance/">Dept Finance</a>
+    <a href="/en/dept-finance/">Dept Finance (again)</a>
+  </section>
 </body></html>
 """
 
 NAMELESS_LINK_HTML = """
 <html><body>
-  <a href="/en/organisation/dept-finance/">  </a>
-  <a href="/en/organisation/dept-health/">Health</a>
+  <section id="agencies">
+    <a href="/en/dept-finance/">  </a>
+    <a href="/en/dept-health/">Health</a>
+  </section>
 </body></html>
 """
 
@@ -38,17 +47,18 @@ def test_scrape_extracts_organisation_links(requests_mock, tmp_path):
     requests_mock.get("https://www.gov.ie/en/departments/", text=SAMPLE_HTML)
     bodies = scrape_public_bodies(tmp_path)
     urls = [b["official_website_url"] for b in bodies]
-    assert "https://www.gov.ie/en/organisation/department-of-finance/" in urls
-    assert "https://www.gov.ie/en/organisation/department-of-health/" in urls
-    assert "https://www.gov.ie/en/organisation/department-of-education/" in urls
+    assert "https://www.gov.ie/en/department-of-finance/" in urls
+    assert "https://www.gov.ie/en/department-of-health/" in urls
+    assert "https://www.gov.ie/en/central-bank-of-ireland/" in urls
+    assert "https://www.gov.ie/en/carlow-county-council/" in urls
 
 
 def test_scrape_excludes_non_organisation_links(requests_mock, tmp_path):
     requests_mock.get("https://www.gov.ie/en/departments/", text=SAMPLE_HTML)
     bodies = scrape_public_bodies(tmp_path)
     urls = [b["official_website_url"] for b in bodies]
-    assert not any("other-page" in u for u in urls)
-    assert not any("external.example.com" in u for u in urls)
+    assert not any("some-nav-link" in u for u in urls)
+    assert not any("privacy-policy" in u for u in urls)
 
 
 def test_scrape_deduplicates_urls(requests_mock, tmp_path):
