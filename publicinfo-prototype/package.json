@@ -9,7 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "prebuild": "mkdir -p src/data && (cp ../foi_pipeline/steps/find_public_bodies/output.json src/data/pipeline-status.json 2>/dev/null || echo '{\"metadata\": {}, \"public_bodies\": []}' > src/data/pipeline-status.json)",
+    "prebuild": "mkdir -p src/data && (cp ../foi_pipeline/steps/export_status/output.json src/data/pipeline-status.json 2>/dev/null || echo '{\"metadata\": {}, \"public_bodies\": []}' > src/data/pipeline-status.json)",
     "astro": "astro",
     "test": "vitest run",
     "test:watch": "vitest"
