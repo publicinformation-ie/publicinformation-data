@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -14,6 +15,41 @@ STEP_NAME = "find_public_bodies"
 SOURCE_URL = "https://www.gov.ie/en/departments/"
 SECTION_IDS = ["departments", "agencies", "local-authorities"]
 BASE_ID = 1000
+
+
+def generate_short_name(name):
+    """Generate short name from public body name."""
+    # Common acronyms mapping
+    acronyms = {
+        "Department of Health": "DoH",
+        "Department of Education": "DoE",
+        "Department of Justice": "DoJ",
+        "Department of Finance": "DoF",
+        "Department of Transport": "DoT",
+        "Department of Housing": "DoH",
+        "Department of Social Protection": "DSP",
+        "Department of Agriculture": "DAFM",
+        "Revenue Commissioners": "Revenue",
+        "Health Service Executive": "HSE",
+        "Office of the": "O",
+    }
+    
+    # Check for known acronym
+    if name in acronyms:
+        return acronyms[name]
+    
+    # Try to extract acronym from name (e.g., "HSE" from "Health Service Executive")
+    # Look for all-caps sequences
+    caps_matches = re.findall(r'\b[A-Z]{2,}\b', name)
+    if caps_matches:
+        return caps_matches[0]
+    
+    # Fallback: first word or first 3 letters
+    words = name.split()
+    if words:
+        return words[0][:3].upper()
+    
+    return "N/A"
 
 
 def scrape_public_bodies(step_dir):
@@ -45,7 +81,14 @@ def scrape_public_bodies(step_dir):
             bodies.append({
                 "public_body_id": body_id,
                 "name": name,
+                "short_name": generate_short_name(name),
                 "official_website_url": full_url,
+                "status": {
+                    "website": {
+                        "url": full_url,
+                        "status": "not_attempted"
+                    }
+                }
             })
             body_id += 1
 
@@ -86,7 +129,14 @@ def main():
         print("Fatal error: scrape returned 0 bodies - page structure may have changed", file=sys.stderr)
         sys.exit(1)
 
-    write_json(output_path, bodies)
+    output = {
+        "metadata": {
+            "step": "find_public_bodies",
+            "completed_at": datetime.now(timezone.utc).isoformat()
+        },
+        "public_bodies": bodies
+    }
+    write_json(output_path, output)
     write_status(step_dir, len(bodies))
     print(f"Wrote {len(bodies)} public bodies to {output_path}")
 
