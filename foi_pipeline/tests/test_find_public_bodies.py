@@ -115,7 +115,11 @@ def test_process_writes_output_and_status(requests_mock, tmp_path, monkeypatch):
     )
     assert result.returncode == 0, result.stderr.decode()
     assert output_path.exists()
-    bodies = json.loads(output_path.read_text())
+    output = json.loads(output_path.read_text())
+    assert isinstance(output, dict)
+    assert "metadata" in output
+    assert "public_bodies" in output
+    bodies = output["public_bodies"]
     assert isinstance(bodies, list)
     assert len(bodies) > 0
     status = json.loads((pipeline_dir / "steps" / "find_public_bodies" / "pipeline-status.json").read_text())
