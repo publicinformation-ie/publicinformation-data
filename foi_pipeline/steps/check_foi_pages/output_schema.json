@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "required": ["metadata", "results"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["step", "completed_at"],
+      "properties": {
+        "step": { "type": "string" },
+        "completed_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["public_body_id", "official_website_url", "foi_page_url", "source_method", "is_reachable", "http_status", "checked_at"],
+        "properties": {
+          "public_body_id": { "type": "integer" },
+          "official_website_url": { "type": "string" },
+          "foi_page_url": { "type": "string" },
+          "source_method": { "enum": ["crawl", "serper"] },
+          "is_reachable": { "type": "boolean" },
+          "http_status": { "type": ["integer", "null"] },
+          "checked_at": { "type": "string", "format": "date-time" }
+        }
+      }
+    }
+  }
+}
