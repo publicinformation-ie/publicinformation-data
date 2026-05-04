@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import argparse
-import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -15,75 +14,6 @@ STEP_NAME = "find_public_bodies"
 SOURCE_URL = "https://www.gov.ie/en/departments/"
 SECTION_IDS = ["departments", "agencies", "local-authorities"]
 BASE_ID = 1000
-
-
-def generate_short_name(name):
-    """Generate short name from public body name."""
-    # Common acronyms mapping - ordered by specificity (longest first)
-    acronyms = {
-        "Department of Agriculture, Food and the Marine": "DAFM",
-        "Department of Social Protection": "DSP",
-        "Department of Housing, Local Government and Heritage": "DHLGH",
-        "Department of Health": "DoH",
-        "Department of Education": "DoE",
-        "Department of Justice": "DoJ",
-        "Department of Finance": "DoF",
-        "Department of Transport": "DoT",
-        "Department of Public Expenditure, NDP Delivery and Reform": "DPER",
-        "Department of Enterprise, Trade and Employment": "DETE",
-        "Department of Environment, Climate and Communications": "DECC",
-        "Department of Further and Higher Education, Research, Innovation and Science": "DFHERIS",
-        "Department of Children, Equality, Disability, Integration and Youth": "DCEDIY",
-        "Department of the Taoiseach": "Taoiseach",
-        "Department of the Tánaiste": "Tánaiste",
-        "Revenue Commissioners": "Revenue",
-        "Health Service Executive": "HSE",
-        "Central Statistics Office": "CSO",
-        "Office of the President": "President",
-        "Office of the Taoiseach": "Taoiseach",
-        "Office of the Tánaiste": "Tánaiste",
-        "Office of the Attorney General": "AG",
-    }
-    
-    # Check for exact match first
-    if name in acronyms:
-        return acronyms[name]
-    
-    # Check for prefix matches (e.g., "Department of ...")
-    for prefix, short in acronyms.items():
-        if name.startswith(prefix):
-            return short
-    
-    # Try to extract known acronym from name (case-insensitive)
-    # Look for common patterns like HSE, CSO, etc.
-    caps_matches = re.findall(r'\b(HSE|CSO|IDA|ESB|EIRGRID|RTE|NTMA|NTA|CIE|Iarnrod Eireann|Irish Rail)\b', name, re.IGNORECASE)
-    if caps_matches:
-        return caps_matches[0].upper()
-    
-    # Try to extract all-caps sequences (2+ letters)
-    caps_matches = re.findall(r'\b[A-Z]{2,}\b', name)
-    if caps_matches:
-        return caps_matches[0]
-    
-    # For departments without specific mapping, use "Dept" prefix
-    if name.startswith("Department of"):
-        # Extract first significant word after "Department of"
-        words = name.split()
-        if len(words) >= 3:
-            return f"Dept {words[2][:3].upper()}"
-        return "Dept"
-    
-    # Fallback: use acronym from first letters of each word (max 5 letters)
-    words = [w for w in name.split() if w not in ("the", "of", "and", "for", "&", "a", "an")]
-    if words:
-        # For single word, take first 3 letters
-        if len(words) == 1:
-            return words[0][:3].upper()
-        # For multiple words, take first letter of each word
-        acronym = "".join(w[0].upper() for w in words[:5])
-        return acronym if len(acronym) <= 5 else acronym[:5]
-    
-    return "N/A"
 
 
 def scrape_public_bodies(step_dir):
@@ -115,7 +45,6 @@ def scrape_public_bodies(step_dir):
             bodies.append({
                 "public_body_id": body_id,
                 "name": name,
-                "short_name": generate_short_name(name),
                 "official_website_url": full_url,
                 "status": {
                     "website_url": {

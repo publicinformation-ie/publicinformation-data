@@ -14,11 +14,10 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["public_body_id", "name", "short_name", "official_website_url", "status"],
+        "required": ["public_body_id", "name", "official_website_url", "status"],
         "properties": {
           "public_body_id": { "type": "integer" },
           "name": { "type": "string" },
-          "short_name": { "type": "string" },
           "official_website_url": { "type": "string", "format": "uri" },
           "status": {
             "type": "object",
