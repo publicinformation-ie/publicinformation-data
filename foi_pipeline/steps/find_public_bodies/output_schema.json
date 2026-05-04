@@ -1,14 +1,42 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "array",
-  "items": {
-    "type": "object",
-    "required": ["public_body_id", "name", "official_website_url"],
-    "additionalProperties": false,
-    "properties": {
-      "public_body_id": { "type": "integer", "minimum": 1 },
-      "name": { "type": "string", "minLength": 1 },
-      "official_website_url": { "type": "string", "format": "uri" }
+  "type": "object",
+  "required": ["metadata", "public_bodies"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["step", "completed_at"],
+      "properties": {
+        "step": { "type": "string" },
+        "completed_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "public_bodies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["public_body_id", "name", "short_name", "official_website_url", "status"],
+        "properties": {
+          "public_body_id": { "type": "integer" },
+          "name": { "type": "string" },
+          "short_name": { "type": "string" },
+          "official_website_url": { "type": "string", "format": "uri" },
+          "status": {
+            "type": "object",
+            "required": ["website"],
+            "properties": {
+              "website": {
+                "type": "object",
+                "required": ["url", "status"],
+                "properties": {
+                  "url": { "type": "string", "format": "uri" },
+                  "status": { "enum": ["success", "failed", "not_attempted"] }
+                }
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
     }
   }
 }
