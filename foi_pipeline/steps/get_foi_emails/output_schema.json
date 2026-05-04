@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "required": ["metadata", "results"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["step", "completed_at"],
+      "properties": {
+        "step": { "type": "string" },
+        "completed_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["public_body_id", "foi_page_url", "foi_email", "email_status"],
+        "properties": {
+          "public_body_id": { "type": "integer" },
+          "foi_page_url": { "type": "string" },
+          "foi_email": { "type": ["string", "null"] },
+          "email_status": { "enum": ["found", "not_found", "multiple_found", "invalid"] }
+        }
+      }
+    }
+  }
+}
