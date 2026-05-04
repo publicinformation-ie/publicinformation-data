@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["public_body_id", "name", "official_website_url"],
+    "additionalProperties": false,
+    "properties": {
+      "public_body_id": { "type": "integer", "minimum": 1 },
+      "name": { "type": "string", "minLength": 1 },
+      "official_website_url": { "type": "string", "format": "uri" }
+    }
+  }
+}
