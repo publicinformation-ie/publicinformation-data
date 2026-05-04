@@ -319,4 +319,4 @@ a:hover {
 .status-grey-mid { color: var(--color-grey-mid); }
 .status-primary { color: var(--color-primary); }
 .status-refused { color: var(--status-refused); }
-.status-extension { color: var(--status-extension-granted); }
+.status-extension-granted { color: var(--status-extension-granted); }

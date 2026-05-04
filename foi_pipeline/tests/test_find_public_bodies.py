@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from steps.find_public_bodies.process import scrape_public_bodies, STEP_NAME, BASE_ID
+from steps.find_public_bodies.process import scrape_public_bodies, STEP_NAME, BASE_ID, generate_short_name
 
 SAMPLE_HTML = """
 <!DOCTYPE html>
@@ -122,6 +122,86 @@ def test_process_writes_output_and_status(requests_mock, tmp_path, monkeypatch):
     bodies = output["public_bodies"]
     assert isinstance(bodies, list)
     assert len(bodies) > 0
+    # Verify new fields exist on first body
+    first_body = bodies[0]
+    assert "short_name" in first_body, "short_name field missing"
+    assert "status" in first_body, "status field missing"
+    assert isinstance(first_body["short_name"], str), "short_name should be a string"
+    assert isinstance(first_body["status"], dict), "status should be a dict"
+    # Verify all required status subfields exist
+    required_status_fields = ["website_url", "foi_page", "foi_email", "disclosures_page", "disclosure_files", "foi_requests"]
+    for field in required_status_fields:
+        assert field in first_body["status"], f"status.{field} field missing"
     status = json.loads((pipeline_dir / "steps" / "find_public_bodies" / "pipeline-status.json").read_text())
     assert status["record_count"] == len(bodies)
     assert "completed_at" in status
+
+
+# Tests for generate_short_name function
+class TestGenerateShortName:
+    """Tests for the generate_short_name function."""
+
+    def test_known_departments(self):
+        """Test that known departments return correct acronyms."""
+        assert generate_short_name("Department of Health") == "DoH"
+        assert generate_short_name("Department of Finance") == "DoF"
+        assert generate_short_name("Department of Education") == "DoE"
+        assert generate_short_name("Department of Justice") == "DoJ"
+        assert generate_short_name("Department of Transport") == "DoT"
+
+    def test_full_department_names(self):
+        """Test that full department names with long titles work."""
+        assert generate_short_name("Department of Housing, Local Government and Heritage") == "DHLGH"
+        assert generate_short_name("Department of Agriculture, Food and the Marine") == "DAFM"
+        assert generate_short_name("Department of Social Protection") == "DSP"
+        assert generate_short_name("Department of Public Expenditure, NDP Delivery and Reform") == "DPER"
+        assert generate_short_name("Department of Enterprise, Trade and Employment") == "DETE"
+
+    def test_known_agencies(self):
+        """Test that known agencies return correct acronyms."""
+        assert generate_short_name("Health Service Executive") == "HSE"
+        assert generate_short_name("Revenue Commissioners") == "Revenue"
+        assert generate_short_name("Central Statistics Office") == "CSO"
+
+    def test_office_names(self):
+        """Test that office names return correct acronyms."""
+        assert generate_short_name("Office of the President") == "President"
+        assert generate_short_name("Office of the Taoiseach") == "Taoiseach"
+        assert generate_short_name("Office of the Tánaiste") == "Tánaiste"
+        assert generate_short_name("Office of the Attorney General") == "AG"
+
+    def test_caps_extraction(self):
+        """Test extraction of all-caps sequences."""
+        assert generate_short_name("Some HSE Organization") == "HSE"
+        assert generate_short_name("IDA Ireland") == "IDA"
+
+    def test_unknown_department_fallback(self):
+        """Test fallback for unknown departments."""
+        result = generate_short_name("Department of Something Unknown")
+        assert result.startswith("Dept")
+
+    def test_generic_organization_fallback(self):
+        """Test fallback for generic organizations."""
+        result = generate_short_name("Carlow County Council")
+        assert result == "CCC"
+
+    def test_single_word(self):
+        """Test single word input."""
+        assert generate_short_name("Organization") == "ORG"
+
+    def test_empty_string(self):
+        """Test empty string input."""
+        assert generate_short_name("") == "N/A"
+
+    def test_whitespace_only(self):
+        """Test whitespace-only input."""
+        assert generate_short_name("   ") == "N/A"
+
+    def test_no_collision_between_departments(self):
+        """Test that different departments don't collide."""
+        # Previously DoH was used for both Health and Housing
+        health = generate_short_name("Department of Health")
+        housing = generate_short_name("Department of Housing, Local Government and Heritage")
+        assert health != housing
+        assert health == "DoH"
+        assert housing == "DHLGH"
