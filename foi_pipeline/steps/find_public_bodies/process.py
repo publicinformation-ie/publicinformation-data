@@ -31,6 +31,7 @@ def scrape_public_bodies(step_dir):
     for section_id in SECTION_IDS:
         section = soup.find("section", id=section_id)
         if not section:
+            print(f"Warning: section '{section_id}' not found on page", file=sys.stderr)
             continue
         for link in section.find_all("a", href=True):
             href = link["href"]
@@ -79,6 +80,10 @@ def main():
             },
         )
         print(f"Fatal error: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    if not bodies:
+        print("Fatal error: scrape returned 0 bodies - page structure may have changed", file=sys.stderr)
         sys.exit(1)
 
     write_json(output_path, bodies)
