@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Try to import the status data - may not exist during development
+let statusData;
+try {
+  statusData = await import('../data/pipeline-status.json', { assert: { type: 'json' } });
+} catch (e) {
+  // If file doesn't exist, use empty structure
+  statusData = { metadata: {}, public_bodies: [] };
+}
+
+const getStatus = (field, body) => {
+  const data = body.status?.[field];
+  if (!data || data.status === 'not_attempted') {
+    return { char: '\u2014', color: 'grey-mid' };
+  }
+  if (data.status === 'success') {
+    return { char: '\u2713', color: 'primary' };
+  }
+  if (data.status === 'failed') {
+    return { char: '\u2717', color: 'status-refused' };
+  }
+  if (field === 'disclosureFiles') {
+    if (data.total === 0) return { char: '\u2014', color: 'grey-mid' };
+    if (data.failed === 0) return { char: '\u2713', color: 'primary' };
+    if (data.valid === 0) return { char: '\u2717', color: 'status-refused' };
+    return { char: '\u0021', color: 'status-extension' };
+  }
+  return { char: '\u2014', color: 'grey-mid' };
+};
+
+const getFoiRequestsDisplay = (body) => {
+  const data = body.status?.foi_requests;
+  if (!data) {
+    return { display: '\u2014', color: 'grey-mid' };
+  }
+  const total = data.valid + data.errors;
+  const display = `${data.valid}/${total}`;
+  const color = data.errors === 0 ? 'primary' : 'status-refused';
+  return { display, color };
+};
+
+const sortedBodies = statusData.public_bodies
+  .sort((a, b) => a.name.localeCompare(b.name));
+---
+
+<Layout title="Data Status">
+  <main>
+    <h1>Public Body Data Status</h1>
+    <p class="body-s text-grey-dark">
+      This page shows the completeness and validation status of data for each Irish public body.
+    </p>
+    
+    <table class="status-table">
+      <thead>
+        <tr>
+          <th scope="col">Public Body</th>
+          <th scope="col">Website</th>
+          <th scope="col">FOI Page</th>
+          <th scope="col">FOI Email</th>
+          <th scope="col">Disclosures Page</th>
+          <th scope="col">Disclosure Files</th>
+          <th scope="col">FOI Requests</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sortedBodies.map(body => (
+          <tr key={body.public_body_id}>
+            <td><strong>{body.name}</strong> <span class="text-body-s">({body.short_name})</span></td>
+            <td class={`status-${getStatus('website', body).color}`} aria-label="Website: {getStatus('website', body).color}">
+              {getStatus('website', body).char}
+            </td>
+            <td class={`status-${getStatus('foi_page', body).color}`} aria-label="FOI Page: {getStatus('foi_page', body).color}">
+              {getStatus('foi_page', body).char}
+            </td>
+            <td class={`status-${getStatus('foi_email', body).color}`} aria-label="FOI Email: {getStatus('foi_email', body).color}">
+              {getStatus('foi_email', body).char}
+            </td>
+            <td class={`status-${getStatus('disclosures_page', body).color}`} aria-label="Disclosures Page: {getStatus('disclosures_page', body).color}">
+              {getStatus('disclosures_page', body).char}
+            </td>
+            <td class={`status-${getStatus('disclosureFiles', body).color}`} aria-label="Disclosure Files: {getStatus('disclosureFiles', body).color}">
+              {getStatus('disclosureFiles', body).char}
+            </td>
+            <td class={`status-${getFoiRequestsDisplay(body).color}`} aria-label="FOI Requests: {getFoiRequestsDisplay(body).display}">
+              {getFoiRequestsDisplay(body).display}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </main>
+</Layout>
