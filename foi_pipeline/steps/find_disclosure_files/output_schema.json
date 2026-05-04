@@ -1,0 +1,27 @@
+{
+  "type": "object",
+  "required": ["metadata", "results"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["step", "completed_at"],
+      "properties": {
+        "step": { "type": "string" },
+        "completed_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["public_body_id", "disclosure_page_url", "file_url", "file_type"],
+        "properties": {
+          "public_body_id": { "type": "integer" },
+          "disclosure_page_url": { "type": "string" },
+          "file_url": { "type": "string" },
+          "file_type": { "enum": ["pdf", "xlsx", "xls"] }
+        }
+      }
+    }
+  }
+}
