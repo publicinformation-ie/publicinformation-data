@@ -13,6 +13,7 @@ _SERPER_ENDPOINT = "https://google.serper.dev/search"
 
 def fetch(method, url, **kwargs):
     merged_headers = {**HEADERS, **kwargs.pop("headers", {})}
+    kwargs.setdefault("timeout", 30)
     try:
         return requests.request(method, url, headers=merged_headers, **kwargs)
     except requests.exceptions.SSLError:
