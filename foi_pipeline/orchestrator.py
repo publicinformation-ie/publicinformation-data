@@ -42,7 +42,8 @@ def main():
                 prev_out = step_out
                 continue
 
-        if not args.force and not is_stale(step_out, prev_out):
+        is_from_step = (args.from_step is not None and step_name == args.from_step)
+        if not args.force and not is_from_step and not is_stale(step_out, prev_out):
             print(f"Skipping {step_name} (up to date)")
             prev_out = step_out
             continue
