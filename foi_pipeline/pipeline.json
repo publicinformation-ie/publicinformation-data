@@ -1,5 +1,14 @@
 {
   "steps": [
-    "find_public_bodies"
+    "find_public_bodies",
+    "validate_websites",
+    "find_foi_pages",
+    "check_foi_pages",
+    "get_foi_emails",
+    "find_disclosure_pages",
+    "find_disclosure_files",
+    "transform_disclosure_files",
+    "extract_disclosures",
+    "import_disclosures"
   ]
 }
