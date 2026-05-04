@@ -278,3 +278,45 @@ a:hover {
     flex-direction: column;
   }
 }
+
+/* ============================================
+   Public Body Status Page Styles
+   ============================================ */
+
+.status-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.status-table th,
+.status-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-grey-light);
+}
+
+.status-table thead th {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.status-table thead tr {
+  border-bottom: 2px solid var(--color-grey-dark);
+}
+
+.status-table tbody tr:nth-child(even) {
+  background-color: var(--color-grey-lightest);
+}
+
+.status-table tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Status indicator colors */
+.status-grey-mid { color: var(--color-grey-mid); }
+.status-primary { color: var(--color-primary); }
+.status-refused { color: var(--status-refused); }
+.status-extension { color: var(--status-extension-granted); }
