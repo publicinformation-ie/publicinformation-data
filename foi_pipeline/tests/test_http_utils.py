@@ -32,7 +32,7 @@ def test_rate_limit_delay_value():
 
 def test_search_serper_returns_empty_without_key(monkeypatch):
     monkeypatch.delenv("SERPER_API_KEY", raising=False)
-    results = search_serper("example.com")
+    results = search_serper("site:example.com")
     assert results == []
 
 
@@ -42,7 +42,7 @@ def test_search_serper_uses_env_key(requests_mock, monkeypatch):
         "https://google.serper.dev/search",
         json={"organic": [{"link": "https://example.com/foi", "title": "FOI"}]},
     )
-    results = search_serper("example.com")
+    results = search_serper("site:example.com")
     assert len(results) == 1
     assert results[0]["link"] == "https://example.com/foi"
     assert requests_mock.last_request.headers["X-API-KEY"] == "test-key-123"
@@ -54,11 +54,23 @@ def test_search_serper_explicit_key_overrides_env(requests_mock, monkeypatch):
         "https://google.serper.dev/search",
         json={"organic": []},
     )
-    search_serper("example.com", api_key="explicit-key")
+    search_serper("site:example.com", api_key="explicit-key")
     assert requests_mock.last_request.headers["X-API-KEY"] == "explicit-key"
 
 
 def test_search_serper_returns_empty_on_bad_status(requests_mock, monkeypatch):
     monkeypatch.setenv("SERPER_API_KEY", "key")
     requests_mock.post("https://google.serper.dev/search", status_code=429)
-    assert search_serper("example.com") == []
+    assert search_serper("site:example.com") == []
+
+
+def test_fetch_sleeps_between_requests(requests_mock, monkeypatch):
+    import time
+    import scripts.http_utils as hu
+    monkeypatch.setattr(hu, "RATE_LIMIT_DELAY", 0.05)
+    calls = []
+    real_sleep = time.sleep
+    monkeypatch.setattr(time, "sleep", lambda s: calls.append(s))
+    requests_mock.get("https://example.com/", status_code=200)
+    hu.fetch("GET", "https://example.com/")
+    assert calls == [0.05]

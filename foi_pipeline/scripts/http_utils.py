@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 
 import requests
 import truststore
@@ -12,6 +13,7 @@ _SERPER_ENDPOINT = "https://google.serper.dev/search"
 
 
 def fetch(method, url, **kwargs):
+    time.sleep(RATE_LIMIT_DELAY)
     merged_headers = {**HEADERS, **kwargs.pop("headers", {})}
     kwargs.setdefault("timeout", 30)
     try:
@@ -21,7 +23,7 @@ def fetch(method, url, **kwargs):
         return requests.request(method, url, headers=merged_headers, verify=False, **kwargs)
 
 
-def search_serper(domain, api_key=None):
+def search_serper(query, api_key=None):
     if api_key is None:
         api_key = os.environ.get("SERPER_API_KEY")
     if not api_key:
@@ -30,7 +32,7 @@ def search_serper(domain, api_key=None):
         response = requests.post(
             _SERPER_ENDPOINT,
             headers={"X-API-KEY": api_key, "Content-Type": "application/json"},
-            json={"q": f"site:{domain}"},
+            json={"q": query},
             timeout=15,
         )
         if response.status_code != 200:
