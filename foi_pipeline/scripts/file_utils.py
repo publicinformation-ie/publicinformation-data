@@ -9,15 +9,18 @@ def read_json(path):
 
 
 def write_json(path, data):
-    with open(path, "w", encoding="utf-8") as f:
+    path = Path(path)
+    tmp = path.with_suffix(".tmp")
+    with open(tmp, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
+    tmp.replace(path)
 
 
 def append_error(step_dir, error_dict):
     errors_path = Path(step_dir) / "errors.json"
     try:
         errors = read_json(errors_path)
-    except FileNotFoundError:
+    except (FileNotFoundError, json.JSONDecodeError):
         errors = []
     errors.append(error_dict)
     write_json(errors_path, errors)
