@@ -1,0 +1,253 @@
+# FOI Pipeline - Agent Documentation
+
+This document explains how the FOI (Freedom of Information) pipeline processes public body data for the publicinformation.ie project.
+
+## Overview
+
+The pipeline is a series of Python steps that:
+1. Discover Irish public bodies subject to FOI
+2. Validate and enrich their contact information
+3. Extract disclosure data
+4. Consolidate all results into a final status output
+
+## Pipeline Architecture
+
+### Pipeline Steps (in order)
+
+1. **find_public_bodies** - Scrapes the list of Irish public bodies from foi.gov.ie
+2. **validate_websites** - Checks if each public body's website is reachable
+3. **find_foi_pages** - Discovers FOI-specific pages on each website
+4. **check_foi_pages** - Validates the FOI pages are accessible
+5. **get_foi_emails** - Extracts FOI email addresses from websites
+6. **find_disclosure_pages** - Locates disclosure/log pages
+7. **find_disclosure_files** - Finds disclosure documents (PDFs, CSVs, etc.)
+8. **transform_disclosure_files** - Processes disclosure files into structured data
+9. **extract_disclosures** - Extracts individual disclosure records
+10. **export_status** - **Final step** - Fan-in merges all step outputs into consolidated status
+
+### Data Flow
+
+```
+find_public_bodies/output.json (base data)
+    |
+    v
+validate_websites/output.json (website status)
+    |
+    v
+find_foi_pages/output.json (FOI page URLs)
+    |
+    v
+check_foi_pages/output.json (FOI page status)
+    |
+    v
+get_foi_emails/output.json (email addresses)
+    |
+    v
+find_disclosure_pages/output.json (disclosure page URLs)
+    |
+    v
+find_disclosure_files/output.json (disclosure file counts)
+    |
+    v
+transform_disclosure_files/output.json (processed files)
+    |
+    v
+extract_disclosures/output.json (extracted records)
+    |
+    v
+export_status/output.json (CONSOLIDATED STATUS - used by website)
+```
+
+## export_status Step (Key Step for Website)
+
+The `export_status` step is the **final aggregator** that merges data from all previous steps into a single, comprehensive output file that the publicinfo-prototype website consumes.
+
+### Input
+- Reads `pipeline.json` to get the list of all steps
+- Uses `find_public_bodies/output.json` as the base
+- Merges in data from all other step outputs that exist
+
+### Output Structure
+
+The `export_status/output.json` contains:
+
+```json
+{
+  "metadata": {
+    "step": "export_status",
+    "completed_at": "2026-05-05T20:00:00.000000+00:00"
+  },
+  "public_bodies": [
+    {
+      "public_body_id": 1001,
+      "name": "Department of Agriculture, Food and the Marine",
+      "short_name": "DAFM",
+      "official_website_url": "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/",
+      "status": {
+        "website_url": {
+          "url": "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/",
+          "status": "success" | "failed" | "not_attempted"
+        },
+        "foi_page": {
+          "url": "https://.../foi" | null,
+          "status": "success" | "failed" | "not_attempted"
+        },
+        "foi_email": {
+          "email": "foi@dept.gov.ie" | null,
+          "status": "success" | "failed" | "not_attempted"
+        },
+        "disclosures_page": {
+          "url": "https://.../disclosures" | null,
+          "status": "success" | "failed" | "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 5,
+          "valid": 5,
+          "failed": 0,
+          "status": "success" | "failed" | "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    }
+  ]
+}
+```
+
+### Status Field Values
+
+Each status field can have one of three values:
+- **"success"** - The step completed successfully for this body
+- **"failed"** - The step was attempted but failed for this body
+- **"not_attempted"** - The step was not run or this body was not in its results
+
+### Merging Logic
+
+The export_status step uses a **fan-in merge** approach:
+
+1. Starts with a deep copy of `find_public_bodies/output.json`
+2. For each subsequent step in pipeline.json:
+   - If step has a merger function (defined in STEP_MERGERS), apply it
+   - If step output.json exists, load and merge it
+   - If step output.json doesn't exist, skip it (fields remain "not_attempted")
+3. Adds `short_name` to each body if not already present
+4. Writes consolidated output to `export_status/output.json`
+
+### Step Mergers
+
+Each merger function updates the status fields for public bodies:
+
+| Step | Merger Function | Updates |
+|------|----------------|--------|
+| validate_websites | merge_validate_websites | status.website_url.status |
+| find_foi_pages | merge_find_foi_pages | status.foi_page.url, status.foi_page.status |
+| check_foi_pages | merge_check_foi_pages | status.foi_page.status (refines find_foi_pages) |
+| get_foi_emails | merge_get_foi_emails | status.foi_email.email, status.foi_email.status |
+| find_disclosure_pages | merge_find_disclosure_pages | status.disclosures_page.url, status.disclosures_page.status |
+| find_disclosure_files | merge_find_disclosure_files | status.disclosure_files.total/valid/failed/status |
+
+Steps without mergers (transform_disclosure_files, extract_disclosures) are skipped during merge.
+
+## Running the Pipeline
+
+### Full Pipeline
+
+```bash
+cd foi_pipeline
+python orchestrator.py --force
+```
+
+This runs all steps in order from `pipeline.json`.
+
+### From a Specific Step
+
+```bash
+cd foi_pipeline
+python orchestrator.py --from export_status --force
+```
+
+This skips all steps before `export_status` and starts from there.
+
+### Single Step
+
+```bash
+cd foi_pipeline
+PYTHONPATH=. python steps/export_status/process.py \
+  --input steps/extract_disclosures/output.json \
+  --output steps/export_status/output.json \
+  --force
+```
+
+Note: The `--input` argument is required by the CLI but ignored by export_status. It uses the pipeline.json and step directory structure instead.
+
+## Pipeline Output Locations
+
+Each step writes its output to:
+- `<step_directory>/output.json` - Main output data
+- `<step_directory>/status.json` - Step execution status
+- `<step_directory>/errors.json` - Any errors encountered
+- `<step_directory>/pipeline-status.json` - Copy of output (for debugging)
+
+## Troubleshooting
+
+### export_status/output.json not generated
+
+If the website's data-status page is empty:
+
+1. Check if export_status/output.json exists:
+   ```bash
+   ls -la foi_pipeline/steps/export_status/output.json
+   ```
+
+2. If missing, run the export_status step manually:
+   ```bash
+   cd foi_pipeline
+   PYTHONPATH=. python steps/export_status/process.py \
+     --input steps/find_public_bodies/output.json \
+     --output steps/export_status/output.json \
+     --force
+   ```
+
+3. If that fails, check:
+   - Does find_public_bodies/output.json exist?
+   - Does pipeline.json exist in the foi_pipeline directory?
+   - Are there any Python errors?
+
+### Data not appearing on website
+
+The website uses a prebuild script that copies export_status/output.json. If data is missing:
+
+1. The prebuild script has a fallback chain:
+   - First tries: `../foi_pipeline/steps/export_status/output.json`
+   - Falls back to: `../foi_pipeline/steps/find_public_bodies/output.json`
+   - Final fallback: Creates empty JSON `{metadata: {}, public_bodies: []}`
+
+2. Check which file is being used:
+   ```bash
+   python3 -c "import json; data=json.load(open('publicinfo-prototype/src/data/pipeline-status.json')); print('Source step:', data['metadata'].get('step'))"
+   ```
+
+3. If showing "find_public_bodies", the export_status step hasn't been run yet.
+
+### short_name missing
+
+If public bodies show without short names (e.g., "Department of Health ()"):
+
+1. The export_status step generates short_name automatically if missing
+2. If using find_public_bodies directly (fallback), short_name won't be present
+3. The website handles missing short_name gracefully by omitting the span
+
+To ensure short_name is present, run the export_status step.
+
+## Data Model Evolution
+
+The data model has evolved over time:
+
+- **v1**: find_public_bodies included `short_name` field
+- **v2**: short_name was removed from find_public_bodies (commit 3dc28a8)
+- **v3**: short_name generation moved to export_status step (this fix)
+
+The current approach centralizes short_name generation in the final export step, ensuring all public bodies have this field regardless of which pipeline steps have been run.
