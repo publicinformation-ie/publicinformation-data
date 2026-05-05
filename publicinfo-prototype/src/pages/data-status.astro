@@ -70,7 +70,7 @@ const sortedBodies = statusData.public_bodies
       <tbody>
         {sortedBodies.map(body => (
           <tr key={body.public_body_id}>
-            <td><strong>{body.name}</strong> <span class="text-body-s">({body.short_name})</span></td>
+            <td><strong>{body.name}</strong> {body.short_name ? <span class="text-body-s">({body.short_name})</span> : null}</td>
             <td class={`status-${getStatus('website_url', body).color}`} aria-label="Website: {getStatus('website_url', body).color}">
               {getStatus('website_url', body).char}
             </td>
