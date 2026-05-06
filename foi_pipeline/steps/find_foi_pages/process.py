@@ -2,6 +2,7 @@
 import argparse
 import os
 import sys
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
@@ -13,6 +14,10 @@ from scripts.http_utils import fetch, search_serper
 
 STEP_NAME = "find_foi_pages"
 FOI_KEYWORDS = ["foi", "freedom of information", "freedom-of-information", "freedom_of_information"]
+FOI_PAGE_BLOCKLIST = {
+    "https://www.gov.ie/en/topics/freedom-of-information",
+    "https://www.gov.ie/en/topics/freedom-of-information/",
+}
 
 
 def find_foi_link_on_page(html, base_url):
@@ -49,7 +54,7 @@ def process(input_data, step_dir):
     write_json(errors_path, [])
 
     reachable = [r for r in input_data["results"] if r["is_reachable"]]
-    results = []
+    candidates = []
 
     for body in reachable:
         url = body["official_website_url"]
@@ -60,7 +65,6 @@ def process(input_data, step_dir):
             source_method = "crawl"
 
             if foi_url is None:
-                # Need to use Serper - check if API key is available
                 if not os.environ.get("SERPER_API_KEY"):
                     raise ValueError(
                         f"SERPER_API_KEY not set and FOI page not found via crawl for {name} ({url}). "
@@ -72,7 +76,10 @@ def process(input_data, step_dir):
             if foi_url is None:
                 continue
 
-            results.append({
+            if foi_url in FOI_PAGE_BLOCKLIST:
+                continue
+
+            candidates.append({
                 "public_body_id": body["public_body_id"],
                 "name": name,
                 "official_website_url": url,
@@ -87,6 +94,26 @@ def process(input_data, step_dir):
                 "error_message": str(e),
                 "context": {"url": url, "public_body_id": body["public_body_id"], "name": name},
             })
+
+    # Uniqueness pass: remove all entries whose foi_page_url appears more than once
+    url_counts = Counter(c["foi_page_url"] for c in candidates)
+    results = []
+    for candidate in candidates:
+        if url_counts[candidate["foi_page_url"]] > 1:
+            append_error(step_dir, {
+                "step": STEP_NAME,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "error_type": "DuplicateFoiPageUrl",
+                "error_message": f"foi_page_url appears for multiple bodies: {candidate['foi_page_url']}",
+                "context": {
+                    "url": candidate["official_website_url"],
+                    "public_body_id": candidate["public_body_id"],
+                    "name": candidate["name"],
+                    "foi_page_url": candidate["foi_page_url"],
+                },
+            })
+        else:
+            results.append(candidate)
 
     return results
 

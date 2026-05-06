@@ -152,3 +152,57 @@ def test_serper_gov_ie_no_matching_prefix_returns_nothing(requests_mock, tmp_pat
     )
     results = process(GOV_IE_INPUT, tmp_path)
     assert len(results) == 0
+
+
+# Input with two bodies that will both resolve to the same (blocked) URL
+BLOCKLIST_INPUT = {
+    "metadata": {"step": "validate_websites", "completed_at": "2026-05-04T00:00:00+00:00"},
+    "results": [
+        {"public_body_id": 3001, "name": "Agency A", "official_website_url": "https://agency-a.ie/", "is_reachable": True, "http_status": 200, "checked_at": "2026-05-04T00:00:00+00:00"},
+        {"public_body_id": 3002, "name": "Agency B", "official_website_url": "https://agency-b.ie/", "is_reachable": True, "http_status": 200, "checked_at": "2026-05-04T00:00:00+00:00"},
+    ],
+}
+
+BLOCKED_URL_HTML = '<html><body><a href="https://www.gov.ie/en/topics/freedom-of-information">FOI</a></body></html>'
+BLOCKED_URL_TRAILING_SLASH_HTML = '<html><body><a href="https://www.gov.ie/en/topics/freedom-of-information/">FOI</a></body></html>'
+DUPLICATE_FOI_HTML = '<html><body><a href="https://shared-foi.ie/foi/">FOI</a></body></html>'
+
+
+def test_blocklisted_url_excluded_from_crawl_results(requests_mock, tmp_path):
+    requests_mock.get("https://agency-a.ie/", text=BLOCKED_URL_HTML)
+    requests_mock.get("https://agency-b.ie/", text=HTML_WITH_FOI_LINK)
+    results = process(BLOCKLIST_INPUT, tmp_path)
+    assert all(r["public_body_id"] != 3001 for r in results)
+    assert any(r["public_body_id"] == 3002 for r in results)
+
+
+def test_blocklisted_url_with_trailing_slash_excluded(requests_mock, tmp_path):
+    requests_mock.get("https://agency-a.ie/", text=BLOCKED_URL_TRAILING_SLASH_HTML)
+    requests_mock.get("https://agency-b.ie/", text=HTML_WITH_FOI_LINK)
+    results = process(BLOCKLIST_INPUT, tmp_path)
+    assert all(r["public_body_id"] != 3001 for r in results)
+
+
+def test_duplicate_foi_urls_removed_from_output(requests_mock, tmp_path):
+    # Both bodies resolve to the same foi page URL
+    requests_mock.get("https://agency-a.ie/", text=DUPLICATE_FOI_HTML)
+    requests_mock.get("https://agency-b.ie/", text=DUPLICATE_FOI_HTML)
+    results = process(BLOCKLIST_INPUT, tmp_path)
+    assert len(results) == 0
+
+
+def test_duplicate_foi_urls_logged_to_errors(requests_mock, tmp_path):
+    requests_mock.get("https://agency-a.ie/", text=DUPLICATE_FOI_HTML)
+    requests_mock.get("https://agency-b.ie/", text=DUPLICATE_FOI_HTML)
+    process(BLOCKLIST_INPUT, tmp_path)
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    duplicate_errors = [e for e in errors if e.get("error_type") == "DuplicateFoiPageUrl"]
+    assert len(duplicate_errors) == 2
+    assert {e["context"]["public_body_id"] for e in duplicate_errors} == {3001, 3002}
+
+
+def test_non_duplicate_urls_not_affected_by_uniqueness_pass(requests_mock, tmp_path):
+    requests_mock.get("https://dept-a.ie/", text=HTML_WITH_FOI_LINK)
+    results = process(INPUT, tmp_path)
+    assert len(results) == 1
+    assert results[0]["foi_page_url"] == "https://dept-a.ie/freedom-of-information/"
