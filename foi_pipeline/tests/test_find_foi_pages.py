@@ -333,6 +333,44 @@ def test_retry_still_failing_body_remains_in_errors(requests_mock, tmp_path, mon
     assert errors[0]["context"]["public_body_id"] == 1002
 
 
+HOMEPAGE_WITH_CONTACT_LINK = '<html><body><a href="/contact/">Contact</a></body></html>'
+CONTACT_PAGE_WITH_FOI_LINK = '<html><body><a href="/foi/">Freedom of Information</a></body></html>'
+# Note: HTML_WITHOUT_FOI already contains a /contact/ link, so we need separate HTML for
+# the "no secondary crawl target" test case.
+HTML_NO_SECONDARY_LINKS = '<html><body><a href="/news/">Latest news</a></body></html>'
+
+
+def test_secondary_crawl_finds_foi_link_on_contact_page(requests_mock, tmp_path, monkeypatch):
+    """When homepage has no FOI link but has a contact page, crawl that contact page."""
+    monkeypatch.delenv("SERPER_API_KEY", raising=False)
+    requests_mock.get("https://dept-a.ie/", text=HOMEPAGE_WITH_CONTACT_LINK)
+    requests_mock.get("https://dept-a.ie/contact/", text=CONTACT_PAGE_WITH_FOI_LINK)
+    results = process(INPUT, tmp_path)
+    assert len(results) == 1
+    assert results[0]["foi_page_url"] == "https://dept-a.ie/foi/"
+    assert results[0]["source_method"] == "crawl"
+
+
+def test_secondary_crawl_only_fetches_one_additional_page(requests_mock, tmp_path, monkeypatch):
+    """Secondary crawl should only fetch one additional page (contact/about), not spider deeply."""
+    monkeypatch.delenv("SERPER_API_KEY", raising=False)
+    requests_mock.get("https://dept-a.ie/", text=HOMEPAGE_WITH_CONTACT_LINK)
+    requests_mock.get("https://dept-a.ie/contact/", text=HTML_NO_SECONDARY_LINKS)
+    results = process(INPUT, tmp_path)
+    assert len(results) == 0
+    # Only 2 requests: homepage + contact page (no further crawling)
+    assert len([r for r in requests_mock.request_history if "dept-a.ie" in r.url]) == 2
+
+
+def test_secondary_crawl_not_attempted_when_no_contact_or_about_link(requests_mock, tmp_path, monkeypatch):
+    """If homepage has no contact/about link, secondary crawl is skipped."""
+    monkeypatch.delenv("SERPER_API_KEY", raising=False)
+    requests_mock.get("https://dept-a.ie/", text=HTML_NO_SECONDARY_LINKS)
+    results = process(INPUT, tmp_path)
+    assert len(results) == 0
+    assert len([r for r in requests_mock.request_history if "dept-a.ie" in r.url]) == 1
+
+
 def test_serper_rejects_result_with_no_foi_keyword_in_url(requests_mock, tmp_path, monkeypatch):
     """Serper results whose URL path contains no FOI keyword should be rejected."""
     requests_mock.get("https://dept-a.ie/", text=HTML_WITHOUT_FOI)

@@ -36,6 +36,21 @@ def find_foi_link_on_page(html, base_url):
     return None
 
 
+SECONDARY_CRAWL_KEYWORDS = ["contact", "about", "our-organisation", "organisation-information"]
+
+
+def find_secondary_crawl_url(html, base_url):
+    """Find a contact/about page URL from the homepage for secondary crawl."""
+    soup = BeautifulSoup(html, "html.parser")
+    for link in soup.find_all("a", href=True):
+        href = link["href"].lower()
+        if href.startswith("mailto:") or href.startswith("javascript:"):
+            continue
+        if any(kw in href for kw in SECONDARY_CRAWL_KEYWORDS):
+            return urljoin(base_url, link["href"])
+    return None
+
+
 def find_foi_via_serper(website_url, name):
     domain = urlparse(website_url).netloc
     query = f"site:{domain} {name} freedom of information"
@@ -80,6 +95,17 @@ def process(input_data, step_dir):
             response = fetch("GET", url, allow_redirects=True)
             foi_url = find_foi_link_on_page(response.text, url)
             source_method = "crawl"
+
+            if foi_url is None:
+                # Try secondary crawl (contact/about page) before Serper
+                secondary_url = find_secondary_crawl_url(response.text, url)
+                if secondary_url:
+                    try:
+                        secondary_response = fetch("GET", secondary_url, allow_redirects=True)
+                        foi_url = find_foi_link_on_page(secondary_response.text, secondary_url)
+                        source_method = "crawl"
+                    except Exception:
+                        pass
 
             if foi_url is None:
                 if not os.environ.get("SERPER_API_KEY"):
