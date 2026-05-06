@@ -206,7 +206,12 @@ def main():
     }
     write_json(output_path, output)
     write_status(step_dir, len(bodies))
+
+    repo_root = pipeline_dir.parent
+    public_path = write_public_output(output, repo_root)
+
     print(f"Wrote {len(bodies)} public bodies to {output_path}")
+    print(f"Wrote public data to {public_path}")
 
 
 if __name__ == "__main__":
