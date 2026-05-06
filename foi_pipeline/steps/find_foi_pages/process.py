@@ -19,6 +19,8 @@ def find_foi_link_on_page(html, base_url):
     soup = BeautifulSoup(html, "html.parser")
     for link in soup.find_all("a", href=True):
         href = link["href"].lower()
+        if href.startswith("mailto:"):
+            continue
         text = link.get_text(strip=True).lower()
         if any(kw in href or kw in text for kw in FOI_KEYWORDS):
             return urljoin(base_url, link["href"])

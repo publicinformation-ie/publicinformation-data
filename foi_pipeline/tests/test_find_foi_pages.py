@@ -83,3 +83,15 @@ def test_find_foi_link_resolves_relative_urls():
     html = '<html><body><a href="/foi/">FOI</a></body></html>'
     result = find_foi_link_on_page(html, "https://example.ie/")
     assert result == "https://example.ie/foi/"
+
+
+def test_mailto_link_not_returned_by_crawl(requests_mock, tmp_path):
+    html = '<html><body><a href="mailto:foi@dept-a.ie">Email FOI</a></body></html>'
+    requests_mock.get("https://dept-a.ie/", text=html)
+    results = process(INPUT, tmp_path)
+    assert len(results) == 0
+
+
+def test_mailto_not_matched_by_find_foi_link_on_page():
+    html = '<html><body><a href="mailto:foi@body.ie">FOI Contact</a></body></html>'
+    assert find_foi_link_on_page(html, "https://body.ie/") is None
