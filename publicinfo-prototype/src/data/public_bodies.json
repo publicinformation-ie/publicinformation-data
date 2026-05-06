@@ -1,0 +1,2004 @@
+[
+  {
+    "public_body_id": 1001,
+    "public_body_name": "Department of Agriculture, Food and the Marine",
+    "public_body_short_name": "DAFM",
+    "public_body_url": "https://www.gov.ie/en/organisation/department-of-agriculture-food-and-the-marine/",
+    "public_body_category": "government department"
+  },
+  {
+    "public_body_id": 1002,
+    "public_body_name": "Department of Children, Equality, Disability, Integration and Youth",
+    "public_body_short_name": "DCEDIY",
+    "public_body_url": "https://www.gov.ie/en/organisation/department-of-children-equality-disability-integration-and-youth/",
+    "public_body_category": "government department"
+  },
+  {
+    "public_body_id": 1003,
+    "public_body_name": "Department of Climate, Energy and the Environment",
+    "public_body_short_name": "DCEE",
+    "public_body_url": "https://www.gov.ie/en/organisation/department-of-the-environment-climate-and-communications/",
+    "public_body_category": "government department"
+  },
+  {
+    "public_body_id": 1004,
+    "public_body_name": "Department of Tourism, Culture, Arts, Gaeltacht, Sport and Media",
+    "public_body_short_name": "DTCAGSM",
+    "public_body_url": "https://www.gov.ie/en/organisation/department-of-tourism-culture-arts-gaeltacht-sport-and-media/",
+    "public_body_category": "government department"
+  },
+  {
+    "public_body_id": 1005,
+    "public_body_name": "Department of Defence",
+    "public_body_short_name": "DoD",
+    "public_body_url": "https://www.gov.ie/en/organisation/department-of-defence/",
+    "public_body_category": "government department"
+  },
+  {
+    "public_body_id": 1006,
+    "public_body_name": "Department of Education and Youth",
+    "public_body_short_name": "DoEY",
+    "public_body_url": "https://www.gov.ie/en/organisation/department-of-education/",
+    "public_body_category": "government department"
+  },
+  {
+    "public_body_id": 1007,
+    "public_body_name": "Department of Enterprise, Tourism and Employment",
+    "public_body_short_name": "DETE",
+    "public_body_url": "https://enterprise.gov.ie/en/",
+    "public_body_category": "government department"
+  },
+  {
+    "public_body_id": 1008,
+    "public_body_name": "Department of Finance",
+    "public_body_short_name": "DoF",
+    "public_body_url": "https://www.gov.ie/en/organisation/department-of-finance/",
+    "public_body_category": "government department"
+  },
+  {
+    "public_body_id": 1009,
+    "public_body_name": "Department of Foreign Affairs and Trade",
+    "public_body_short_name": "DFA",
+    "public_body_url": "https://www.gov.ie/en/organisation/department-of-foreign-affairs-and-trade/",
+    "public_body_category": "government department"
+  },
+  {
+    "public_body_id": 1010,
+    "public_body_name": "Department of Further and Higher Education, Research, Innovation and Science",
+    "public_body_short_name": "DFHERIS",
+    "public_body_url": "https://www.gov.ie/en/organisation/department-of-higher-education-innovation-and-science/",
+    "public_body_category": "government department"
+  },
+  {
+    "public_body_id": 1011,
+    "public_body_name": "Department of Health",
+    "public_body_short_name": "DoH",
+    "public_body_url": "https://www.gov.ie/en/organisation/department-of-health/",
+    "public_body_category": "government department"
+  },
+  {
+    "public_body_id": 1012,
+    "public_body_name": "Department of Housing, Local Government and Heritage",
+    "public_body_short_name": "DHLGH",
+    "public_body_url": "https://www.gov.ie/en/organisation/department-of-housing-local-government-and-heritage/",
+    "public_body_category": "government department"
+  },
+  {
+    "public_body_id": 1013,
+    "public_body_name": "Department of Justice, Home Affairs and Migration",
+    "public_body_short_name": "DoJ",
+    "public_body_url": "https://www.gov.ie/en/organisation/department-of-justice/",
+    "public_body_category": "government department"
+  },
+  {
+    "public_body_id": 1014,
+    "public_body_name": "Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation",
+    "public_body_short_name": "DPER",
+    "public_body_url": "https://www.gov.ie/en/organisation/department-of-public-expenditure-and-reform/",
+    "public_body_category": "government department"
+  },
+  {
+    "public_body_id": 1015,
+    "public_body_name": "Department of Rural and Community Development and the Gaeltacht",
+    "public_body_short_name": "DRCDG",
+    "public_body_url": "https://www.gov.ie/en/organisation/department-of-rural-and-community-development/",
+    "public_body_category": "government department"
+  },
+  {
+    "public_body_id": 1016,
+    "public_body_name": "Department of Social Protection",
+    "public_body_short_name": "DSP",
+    "public_body_url": "https://www.gov.ie/en/organisation/department-of-social-protection/",
+    "public_body_category": "government department"
+  },
+  {
+    "public_body_id": 1017,
+    "public_body_name": "Department of the Taoiseach",
+    "public_body_short_name": "DT",
+    "public_body_url": "https://www.gov.ie/en/organisation/department-of-the-taoiseach/",
+    "public_body_category": "government department"
+  },
+  {
+    "public_body_id": 1018,
+    "public_body_name": "Department of Transport",
+    "public_body_short_name": "DoTr",
+    "public_body_url": "https://www.gov.ie/en/organisation/department-of-transport/",
+    "public_body_category": "government department"
+  },
+  {
+    "public_body_id": 1019,
+    "public_body_name": "An Coimisiún Pleanála",
+    "public_body_short_name": "ACPl",
+    "public_body_url": "https://www.pleanala.ie/en-ie/home",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1020,
+    "public_body_name": "An Garda Síochána",
+    "public_body_short_name": "AGS",
+    "public_body_url": "https://www.garda.ie/en/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1021,
+    "public_body_name": "An Rialálaí Agraibhia (Agri-Food Regulator)",
+    "public_body_short_name": "AFR",
+    "public_body_url": "https://www.agrifoodregulator.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1022,
+    "public_body_name": "Aquaculture Licences Appeals Board",
+    "public_body_short_name": "ALAB",
+    "public_body_url": "https://alab.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1023,
+    "public_body_name": "Bord Bia (Irish Food Board)",
+    "public_body_short_name": "Bord Bia",
+    "public_body_url": "https://www.bordbia.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1024,
+    "public_body_name": "Bord Iascaigh Mhara (BIM)",
+    "public_body_short_name": "BIM",
+    "public_body_url": "https://bim.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1025,
+    "public_body_name": "Central Bank of Ireland",
+    "public_body_short_name": "CBI",
+    "public_body_url": "https://www.centralbank.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1026,
+    "public_body_name": "Central Statistics Office",
+    "public_body_short_name": "CSO",
+    "public_body_url": "https://www.cso.ie/en/index.html",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1027,
+    "public_body_name": "Coillte",
+    "public_body_short_name": "Coillte",
+    "public_body_url": "https://www.coillte.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1028,
+    "public_body_name": "Commission for Public Service Appointments (CPSA)",
+    "public_body_short_name": "CPSA",
+    "public_body_url": "https://www.cpsa.ie/en/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1029,
+    "public_body_name": "Competition and Consumer Protection Commission (CCPC)",
+    "public_body_short_name": "CCPC",
+    "public_body_url": "https://www.ccpc.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1030,
+    "public_body_name": "Courts Service",
+    "public_body_short_name": "Courts Service",
+    "public_body_url": "https://www.courts.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1031,
+    "public_body_name": "Criminal Assets Bureau",
+    "public_body_short_name": "CAB",
+    "public_body_url": "https://www.cab.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1032,
+    "public_body_name": "Data Protection Commission",
+    "public_body_short_name": "DPC",
+    "public_body_url": "https://dataprotection.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1033,
+    "public_body_name": "Digital Hub Development Agency",
+    "public_body_short_name": "DHDA",
+    "public_body_url": "https://thedigitalhub.com/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1034,
+    "public_body_name": "Educational Research Centre (ERC)",
+    "public_body_short_name": "ERC",
+    "public_body_url": "https://www.erc.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1035,
+    "public_body_name": "Enterprise Ireland",
+    "public_body_short_name": "EI",
+    "public_body_url": "https://www.enterprise-ireland.com/en/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1036,
+    "public_body_name": "Financial Services and Pensions Ombudsman (FSPO)",
+    "public_body_short_name": "FSPO",
+    "public_body_url": "https://www.fspo.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1037,
+    "public_body_name": "Fiosrú – the Office of the Police Ombudsman",
+    "public_body_short_name": "Fiosrú",
+    "public_body_url": "https://www.fiosru.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1038,
+    "public_body_name": "Forensic Science Ireland",
+    "public_body_short_name": "FSI",
+    "public_body_url": "https://forensicscience.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1039,
+    "public_body_name": "Gambling Regulatory Authority of Ireland",
+    "public_body_short_name": "GRAI",
+    "public_body_url": "https://www.grai.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1040,
+    "public_body_name": "Garda Inspectorate",
+    "public_body_short_name": "Garda Inspectorate",
+    "public_body_url": "https://www.gsinsp.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1041,
+    "public_body_name": "Greyhound Racing Ireland (GRI)",
+    "public_body_short_name": "GRI",
+    "public_body_url": "https://www.grireland.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1042,
+    "public_body_name": "Health Research Board (HRB)",
+    "public_body_short_name": "HRB",
+    "public_body_url": "https://www.hrb.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1043,
+    "public_body_name": "Health Service Executive",
+    "public_body_short_name": "HSE",
+    "public_body_url": "https://www.hse.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1044,
+    "public_body_name": "Healthy Ireland",
+    "public_body_short_name": "Healthy Ireland",
+    "public_body_url": "https://www.gov.ie/en/organisation/healthy-ireland-/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1045,
+    "public_body_name": "Higher Education Authority (HEA)",
+    "public_body_short_name": "HEA",
+    "public_body_url": "https://hea.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1046,
+    "public_body_name": "Horse Racing Ireland (HRI)",
+    "public_body_short_name": "HRI",
+    "public_body_url": "https://www.hri.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1047,
+    "public_body_name": "IDA Ireland",
+    "public_body_short_name": "IDA",
+    "public_body_url": "https://www.idaireland.com/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1048,
+    "public_body_name": "Irish National Stud and Gardens",
+    "public_body_short_name": "Irish National Stud",
+    "public_body_url": "https://irishnationalstud.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1049,
+    "public_body_name": "Irish Prison Service",
+    "public_body_short_name": "IPS",
+    "public_body_url": "https://www.irishprisons.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1050,
+    "public_body_name": "Local Government Management Agency (LGMA)",
+    "public_body_short_name": "LGMA",
+    "public_body_url": "https://www.lgma.ie/en/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1051,
+    "public_body_name": "Marine Institute",
+    "public_body_short_name": "Marine Institute",
+    "public_body_url": "https://www.marine.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1052,
+    "public_body_name": "National Asset Management Agency (NAMA)",
+    "public_body_short_name": "NAMA",
+    "public_body_url": "https://www.nama.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1053,
+    "public_body_name": "National Shared Services Office",
+    "public_body_short_name": "NSSO",
+    "public_body_url": "https://www.nsso.gov.ie/en/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1054,
+    "public_body_name": "National Standards Authority of Ireland (NSAI)",
+    "public_body_short_name": "NSAI",
+    "public_body_url": "https://www.nsai.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1055,
+    "public_body_name": "National Transport Authority (NTA)",
+    "public_body_short_name": "NTA",
+    "public_body_url": "https://www.nationaltransport.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1056,
+    "public_body_name": "National Treasury Management Agency (NTMA)",
+    "public_body_short_name": "NTMA",
+    "public_body_url": "https://www.ntma.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1057,
+    "public_body_name": "Office of Public Works",
+    "public_body_short_name": "OPW",
+    "public_body_url": "https://www.gov.ie/en/organisation/office-of-public-works/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1058,
+    "public_body_name": "Office of the Attorney General",
+    "public_body_short_name": "AG",
+    "public_body_url": "https://www.attorneygeneral.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1059,
+    "public_body_name": "Office of the Comptroller and Auditor General",
+    "public_body_short_name": "C&AG",
+    "public_body_url": "https://www.audit.gov.ie/en/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1060,
+    "public_body_name": "Office of the Information Commissioner (OIC)",
+    "public_body_short_name": "OIC",
+    "public_body_url": "https://www.oic.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1061,
+    "public_body_name": "Office of the Ombudsman",
+    "public_body_short_name": "Ombudsman",
+    "public_body_url": "https://www.ombudsman.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1062,
+    "public_body_name": "Office of the Planning Regulator",
+    "public_body_short_name": "OPR",
+    "public_body_url": "https://www.opr.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1063,
+    "public_body_name": "Office of the Protected Disclosures Commissioner (OPDC)",
+    "public_body_short_name": "OPDC",
+    "public_body_url": "https://www.opdc.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1064,
+    "public_body_name": "Office of the Revenue Commissioners",
+    "public_body_short_name": "Revenue",
+    "public_body_url": "https://www.revenue.ie/en/home.aspx",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1065,
+    "public_body_name": "Pobal",
+    "public_body_short_name": "Pobal",
+    "public_body_url": "https://www.pobal.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1066,
+    "public_body_name": "President's Establishment",
+    "public_body_short_name": "President",
+    "public_body_url": "https://president.ie/en/about/organisational-information",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1067,
+    "public_body_name": "Probation Service",
+    "public_body_short_name": "Probation Service",
+    "public_body_url": "https://www.probation.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1068,
+    "public_body_name": "Carlow County Council",
+    "public_body_short_name": "Carlow CC",
+    "public_body_url": "https://carlow.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1069,
+    "public_body_name": "Cavan County Council",
+    "public_body_short_name": "Cavan CC",
+    "public_body_url": "https://www.cavancoco.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1070,
+    "public_body_name": "Clare County Council",
+    "public_body_short_name": "Clare CC",
+    "public_body_url": "https://www.clarecoco.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1071,
+    "public_body_name": "Cork City Council",
+    "public_body_short_name": "Cork City CC",
+    "public_body_url": "https://www.corkcity.ie/en/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1072,
+    "public_body_name": "Cork County Council",
+    "public_body_short_name": "Cork CC",
+    "public_body_url": "https://www.corkcoco.ie/en",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1073,
+    "public_body_name": "Donegal County Council",
+    "public_body_short_name": "Donegal CC",
+    "public_body_url": "https://www.donegalcoco.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1074,
+    "public_body_name": "Dublin City Council",
+    "public_body_short_name": "Dublin City CC",
+    "public_body_url": "https://www.dublincity.ie/council",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1075,
+    "public_body_name": "Dún Laoghaire–Rathdown County Council",
+    "public_body_short_name": "DLRCC",
+    "public_body_url": "https://www.dlrcoco.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1076,
+    "public_body_name": "Fingal County Council",
+    "public_body_short_name": "Fingal CC",
+    "public_body_url": "https://www.fingal.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1077,
+    "public_body_name": "Galway City Council",
+    "public_body_short_name": "Galway City CC",
+    "public_body_url": "https://www.galwaycity.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1078,
+    "public_body_name": "Galway County Council",
+    "public_body_short_name": "Galway CC",
+    "public_body_url": "https://www.galway.ie/en/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1079,
+    "public_body_name": "Kerry County Council",
+    "public_body_short_name": "Kerry CC",
+    "public_body_url": "https://www.kerrycoco.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1080,
+    "public_body_name": "Kildare County Council",
+    "public_body_short_name": "Kildare CC",
+    "public_body_url": "https://www.kildarecoco.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1081,
+    "public_body_name": "Kilkenny County Council",
+    "public_body_short_name": "Kilkenny CC",
+    "public_body_url": "https://kilkennycoco.ie/eng/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1082,
+    "public_body_name": "Laois County Council",
+    "public_body_short_name": "Laois CC",
+    "public_body_url": "https://laois.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1083,
+    "public_body_name": "Leitrim County Council",
+    "public_body_short_name": "Leitrim CC",
+    "public_body_url": "https://www.leitrim.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1084,
+    "public_body_name": "Limerick City and County Council",
+    "public_body_short_name": "Limerick CC",
+    "public_body_url": "https://www.limerick.ie/council",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1085,
+    "public_body_name": "Longford County Council",
+    "public_body_short_name": "Longford CC",
+    "public_body_url": "https://www.longfordcoco.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1086,
+    "public_body_name": "Louth County Council",
+    "public_body_short_name": "Louth CC",
+    "public_body_url": "https://www.louthcoco.ie/en/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1087,
+    "public_body_name": "Mayo County Council",
+    "public_body_short_name": "Mayo CC",
+    "public_body_url": "https://www.mayo.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1088,
+    "public_body_name": "Meath County Council",
+    "public_body_short_name": "Meath CC",
+    "public_body_url": "https://www.meath.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1089,
+    "public_body_name": "Monaghan County Council",
+    "public_body_short_name": "Monaghan CC",
+    "public_body_url": "https://monaghan.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1090,
+    "public_body_name": "Offaly County Council",
+    "public_body_short_name": "Offaly CC",
+    "public_body_url": "https://www.offaly.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1091,
+    "public_body_name": "Roscommon County Council",
+    "public_body_short_name": "Roscommon CC",
+    "public_body_url": "https://www.roscommoncoco.ie/en/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1092,
+    "public_body_name": "Sligo County Council",
+    "public_body_short_name": "Sligo CC",
+    "public_body_url": "https://www.sligococo.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1093,
+    "public_body_name": "South Dublin County Council",
+    "public_body_short_name": "SDCC",
+    "public_body_url": "https://www.sdcc.ie/en/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1094,
+    "public_body_name": "Tipperary County Council",
+    "public_body_short_name": "Tipperary CC",
+    "public_body_url": "https://www.tipperarycoco.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1095,
+    "public_body_name": "Waterford City and County Council",
+    "public_body_short_name": "Waterford CC",
+    "public_body_url": "https://waterfordcouncil.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1096,
+    "public_body_name": "Westmeath County Council",
+    "public_body_short_name": "Westmeath CC",
+    "public_body_url": "https://www.westmeathcoco.ie/en/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1097,
+    "public_body_name": "Wexford County Council",
+    "public_body_short_name": "Wexford CC",
+    "public_body_url": "https://www.wexfordcoco.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1098,
+    "public_body_name": "Wicklow County Council",
+    "public_body_short_name": "Wicklow CC",
+    "public_body_url": "https://www.wicklow.ie/",
+    "public_body_category": "local authority"
+  },
+  {
+    "public_body_id": 1099,
+    "public_body_name": "Adoption Authority of Ireland (AAI)",
+    "public_body_short_name": "AAoI",
+    "public_body_url": "https://aai.gov.ie/en/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1100,
+    "public_body_name": "An Bord Pleanála",
+    "public_body_short_name": "ABP",
+    "public_body_url": "https://www.pleanala.ie/en-ie/home",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1101,
+    "public_body_name": "An Rialálaí Agraibhia",
+    "public_body_short_name": "ARA",
+    "public_body_url": "https://www.agrifoodregulator.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1102,
+    "public_body_name": "Aquaculture Licences Appeals Board (ALAB)",
+    "public_body_short_name": "ALAB",
+    "public_body_url": "https://alab.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1103,
+    "public_body_name": "Arts Council (An Chomhairle Ealaíon)",
+    "public_body_short_name": "ACCE",
+    "public_body_url": "https://www.artscouncil.ie/home/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1104,
+    "public_body_name": "Athlone Institute of Technology",
+    "public_body_short_name": "AIoT",
+    "public_body_url": "https://tus.ie/campuses/athlone/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1105,
+    "public_body_name": "Bord Iascaigh Mhara (Irish Sea Fisheries Board)",
+    "public_body_short_name": "BIMS",
+    "public_body_url": "https://bim.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1106,
+    "public_body_name": "Cavan and Monaghan Education and Training Board",
+    "public_body_short_name": "CaME",
+    "public_body_url": "https://www.cmetb.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1107,
+    "public_body_name": "Chester Beatty Library",
+    "public_body_short_name": "CBL",
+    "public_body_url": "https://chesterbeatty.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1108,
+    "public_body_name": "Chief State Solicitor’s Office",
+    "public_body_short_name": "CSSO",
+    "public_body_url": "https://www.gov.ie/en/organisation/chief-state-solicitors-office/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1109,
+    "public_body_name": "Child and Family Agency (Tusla)",
+    "public_body_short_name": "CaFA",
+    "public_body_url": "https://www.tusla.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1110,
+    "public_body_name": "Chomhairle um Oideachais Gaeltachta agus Gaelscolaíochta",
+    "public_body_short_name": "CuOG",
+    "public_body_url": "https://cogg.ie/?lang=en",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1111,
+    "public_body_name": "Circulars Archive",
+    "public_body_short_name": "CA",
+    "public_body_url": "https://circulars.gov.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1112,
+    "public_body_name": "Citizens Information Board",
+    "public_body_short_name": "CIB",
+    "public_body_url": "https://www.citizensinformationboard.ie/en/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1113,
+    "public_body_name": "City of Dublin Education and Training Board",
+    "public_body_short_name": "CoDE",
+    "public_body_url": "https://www.cityofdublinetb.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1114,
+    "public_body_name": "Civil Justice Review",
+    "public_body_short_name": "CJR",
+    "public_body_url": "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/campaigns/review-of-the-administration-of-civil-justice/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1115,
+    "public_body_name": "Civil Service Employee Assistance Service",
+    "public_body_short_name": "CSEA",
+    "public_body_url": "https://www.cseas.per.gov.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1116,
+    "public_body_name": "Commission for Aviation Regulation",
+    "public_body_short_name": "CfAR",
+    "public_body_url": "https://www.iaa.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1117,
+    "public_body_name": "Commission for Communications Regulation (CCR ComReg)",
+    "public_body_short_name": "CfCR",
+    "public_body_url": "https://www.comreg.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1118,
+    "public_body_name": "Commission for Public Service Appointments",
+    "public_body_short_name": "CfPS",
+    "public_body_url": "https://www.cpsa.ie/en/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1119,
+    "public_body_name": "Commission for Railway Regulation",
+    "public_body_short_name": "CfRR",
+    "public_body_url": "https://www.crr.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1120,
+    "public_body_name": "Commission for Regulation of Utilities (CRU)",
+    "public_body_short_name": "CfRo",
+    "public_body_url": "https://www.cru.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1121,
+    "public_body_name": "Commission on Taxation and Welfare",
+    "public_body_short_name": "CoTa",
+    "public_body_url": "https://www.gov.ie/en/organisation/c526e-commission-on-taxation-and-welfare/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1122,
+    "public_body_name": "Commission on the Defence Forces",
+    "public_body_short_name": "CotD",
+    "public_body_url": "https://www.gov.ie/en/organisation/20d04-commission-of-the-defence-forces/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1123,
+    "public_body_name": "Commission to Inquire into Child Abuse",
+    "public_body_short_name": "CtIi",
+    "public_body_url": "https://childabusecommission.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1124,
+    "public_body_name": "Commissioner for Environmental Information",
+    "public_body_short_name": "CfEI",
+    "public_body_url": "https://www.ocei.ie/en/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1125,
+    "public_body_name": "Commissioners of Irish Lights",
+    "public_body_short_name": "CoIL",
+    "public_body_url": "https://www.irishlights.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1126,
+    "public_body_name": "Coimisiún na Meán",
+    "public_body_short_name": "CnM",
+    "public_body_url": "https://www.cnam.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1127,
+    "public_body_name": "Cork Education and Training Board",
+    "public_body_short_name": "CEaT",
+    "public_body_url": "https://www.corketb.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1128,
+    "public_body_name": "Cork Institute of Technology",
+    "public_body_short_name": "CIoT",
+    "public_body_url": "https://www.cit.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1129,
+    "public_body_name": "Crawford Art Gallery",
+    "public_body_short_name": "CAG",
+    "public_body_url": "https://crawfordartgallery.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1130,
+    "public_body_name": "Defence Forces of Ireland",
+    "public_body_short_name": "DFoI",
+    "public_body_url": "https://www.military.ie/en/#1",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1131,
+    "public_body_name": "Dental Council",
+    "public_body_short_name": "DC",
+    "public_body_url": "https://www.dentalcouncil.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1132,
+    "public_body_name": "Director of Public Prosecutions",
+    "public_body_short_name": "DoPP",
+    "public_body_url": "https://www.dppireland.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1133,
+    "public_body_name": "Discovery Programme",
+    "public_body_short_name": "DP",
+    "public_body_url": "https://discoveryprogramme.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1134,
+    "public_body_name": "Donegal Education and Training Board",
+    "public_body_short_name": "DEaT",
+    "public_body_url": "https://www.donegaletb.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1135,
+    "public_body_name": "Dublin and Dun Laoghaire Education and Training Board",
+    "public_body_short_name": "DaDL",
+    "public_body_url": "https://www.ddletb.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1136,
+    "public_body_name": "Dublin Institute for Advanced Studies",
+    "public_body_short_name": "DIfA",
+    "public_body_url": "https://www.dias.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1137,
+    "public_body_name": "Dublin Institute of Technology",
+    "public_body_short_name": "DIoT",
+    "public_body_url": "https://www.tudublin.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1138,
+    "public_body_name": "Dundalk Institute of Technology",
+    "public_body_short_name": "DIoT",
+    "public_body_url": "https://www.dkit.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1139,
+    "public_body_name": "Eastern and Midland Regional Assembly",
+    "public_body_short_name": "EaMR",
+    "public_body_url": "https://emra.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1140,
+    "public_body_name": "Environmental Protection Agency (EPA)",
+    "public_body_short_name": "EPA",
+    "public_body_url": "https://www.epa.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1141,
+    "public_body_name": "Food Safety Authority of Ireland (FSAI)",
+    "public_body_short_name": "FSAo",
+    "public_body_url": "https://www.fsai.ie/home",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1142,
+    "public_body_name": "Food Safety Promotion Board (safefood)",
+    "public_body_short_name": "FSPB",
+    "public_body_url": "https://www.safefood.net/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1143,
+    "public_body_name": "Foras na Gaeilge - An Foras Teanga (The Language Body)",
+    "public_body_short_name": "FnGA",
+    "public_body_url": "https://www.forasnagaeilge.ie/?lang=en",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1144,
+    "public_body_name": "Fáilte Ireland",
+    "public_body_short_name": "FI",
+    "public_body_url": "https://www.failteireland.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1145,
+    "public_body_name": "Gaisce (President's National Challenge Award)",
+    "public_body_short_name": "GNCA",
+    "public_body_url": "https://www.gaisce.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1146,
+    "public_body_name": "Galway and Roscommon Education and Training Board",
+    "public_body_short_name": "GaRE",
+    "public_body_url": "https://gretb.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1147,
+    "public_body_name": "Galway-Mayo Institute of Technology",
+    "public_body_short_name": "GIoT",
+    "public_body_url": "https://www.gmit.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1148,
+    "public_body_name": "Garda Ombudsman",
+    "public_body_short_name": "GO",
+    "public_body_url": "https://www.gardaombudsman.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1149,
+    "public_body_name": "Gender Equality",
+    "public_body_short_name": "GE",
+    "public_body_url": "https://www.gov.ie/en/organisation/f1304-gender-equality/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1150,
+    "public_body_name": "Grangegorman Development Agency",
+    "public_body_short_name": "GDA",
+    "public_body_url": "https://ggda.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1151,
+    "public_body_name": "Health and Safety Authority",
+    "public_body_short_name": "HaSA",
+    "public_body_url": "https://hsa.ie/eng/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1152,
+    "public_body_name": "Health and Social Care Professionals Council",
+    "public_body_short_name": "HaSC",
+    "public_body_url": "https://www.coru.ie/health-and-social-care-professionals/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1153,
+    "public_body_name": "Health Information and Quality Authority (HIQA)",
+    "public_body_short_name": "HIaQ",
+    "public_body_url": "https://www.hiqa.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1154,
+    "public_body_name": "Health Insurance Authority",
+    "public_body_short_name": "HIA",
+    "public_body_url": "https://www.hia.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1155,
+    "public_body_name": "Health Products Regulatory Authority (HPRA)",
+    "public_body_short_name": "HPRA",
+    "public_body_url": "https://www.hpra.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1156,
+    "public_body_name": "Health Service National Partnership Forum (Lenus)",
+    "public_body_short_name": "HSNP",
+    "public_body_url": "https://www.lenus.ie/handle/10147/575382",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1157,
+    "public_body_name": "Horse Sport Ireland",
+    "public_body_short_name": "HSI",
+    "public_body_url": "https://www.horsesportireland.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1158,
+    "public_body_name": "Housing Agency",
+    "public_body_short_name": "HA",
+    "public_body_url": "https://www.housingagency.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1159,
+    "public_body_name": "Housing Finance Agency",
+    "public_body_short_name": "HFA",
+    "public_body_url": "https://hfa.ie/hfa/live/release/website/homepage/index.html",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1160,
+    "public_body_name": "Inland Fisheries Ireland",
+    "public_body_short_name": "IFI",
+    "public_body_url": "https://www.fisheriesireland.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1161,
+    "public_body_name": "Insolvency Service Ireland",
+    "public_body_short_name": "ISI",
+    "public_body_url": "https://www.isi.gov.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1162,
+    "public_body_name": "Institute of Art, Design and Technology, Dun Laoghaire",
+    "public_body_short_name": "IoAD",
+    "public_body_url": "https://iadt.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1163,
+    "public_body_name": "Institute of Public Health in Ireland (IPH)",
+    "public_body_short_name": "IoPH",
+    "public_body_url": "https://www.publichealth.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1164,
+    "public_body_name": "Institute of Technology Blanchardstown",
+    "public_body_short_name": "IoTB",
+    "public_body_url": "https://www.tudublin.ie/explore/our-campuses/blanchardstown/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1165,
+    "public_body_name": "Institute of Technology Carlow",
+    "public_body_short_name": "IoTC",
+    "public_body_url": "https://www.setu.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1166,
+    "public_body_name": "Institute of Technology Sligo",
+    "public_body_short_name": "IoTS",
+    "public_body_url": "https://www.itsligo.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1167,
+    "public_body_name": "Institute of Technology Tallaght",
+    "public_body_short_name": "IoTT",
+    "public_body_url": "https://www.tudublin.ie/explore/our-campuses/tallaght/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1168,
+    "public_body_name": "Institute of Technology Tralee",
+    "public_body_short_name": "IoTT",
+    "public_body_url": "https://www.ittralee.ie/en/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1169,
+    "public_body_name": "International Protection Accommodation Services (IPAS)",
+    "public_body_short_name": "IPAS",
+    "public_body_url": "https://www.gov.ie/en/campaigns/d9f43-international-protection-accommodation-services-ipas/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1170,
+    "public_body_name": "International Protection Appeals Tribunal",
+    "public_body_short_name": "IPAT",
+    "public_body_url": "https://www.protectionappeals.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1171,
+    "public_body_name": "Irish Auditing and Accounting Supervisory Authority",
+    "public_body_short_name": "IAaA",
+    "public_body_url": "https://iaasa.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1172,
+    "public_body_name": "Irish Blood Transfusion Service Board (IBTS)",
+    "public_body_short_name": "IBTS",
+    "public_body_url": "https://www.giveblood.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1173,
+    "public_body_name": "Irish Film Classification Office",
+    "public_body_short_name": "IFCO",
+    "public_body_url": "https://www.ifco.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1174,
+    "public_body_name": "Irish Financial Services Appeals Tribunal",
+    "public_body_short_name": "IFSA",
+    "public_body_url": "https://www.ifsat.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1175,
+    "public_body_name": "Irish Fiscal Advisory Council",
+    "public_body_short_name": "IFAC",
+    "public_body_url": "https://www.fiscalcouncil.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1176,
+    "public_body_name": "Irish Heritage Trust",
+    "public_body_short_name": "IHT",
+    "public_body_url": "https://irishheritagetrust.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1177,
+    "public_body_name": "Irish Human Rights and Equality Commission",
+    "public_body_short_name": "IHRa",
+    "public_body_url": "https://www.ihrec.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1178,
+    "public_body_name": "Irish Manuscripts Commission",
+    "public_body_short_name": "IMC",
+    "public_body_url": "https://www.irishmanuscripts.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1179,
+    "public_body_name": "Irish Museum of Modern Art (IMMA)",
+    "public_body_short_name": "IMoM",
+    "public_body_url": "https://imma.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1180,
+    "public_body_name": "Irish National Stud",
+    "public_body_short_name": "INS",
+    "public_body_url": "https://irishnationalstud.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1181,
+    "public_body_name": "Irish Rail",
+    "public_body_short_name": "IR",
+    "public_body_url": "https://www.irishrail.ie/en-ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1182,
+    "public_body_name": "Irish Water",
+    "public_body_short_name": "IW",
+    "public_body_url": "https://www.water.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1183,
+    "public_body_name": "Irish Water Safety",
+    "public_body_short_name": "IWS",
+    "public_body_url": "https://watersafety.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1184,
+    "public_body_name": "Kerry Education and Training Board",
+    "public_body_short_name": "KEaT",
+    "public_body_url": "https://www.kerryetb.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1185,
+    "public_body_name": "Kildare and Wicklow Education and Training Board",
+    "public_body_short_name": "KaWE",
+    "public_body_url": "https://kwetb.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1186,
+    "public_body_name": "Kilkenny and Carlow Education and Training Board",
+    "public_body_short_name": "KaCE",
+    "public_body_url": "https://kcetb.ie/en/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1187,
+    "public_body_name": "Laois and Offaly Education and Training Board",
+    "public_body_short_name": "LaOE",
+    "public_body_url": "https://www.loetb.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1188,
+    "public_body_name": "Legal Aid Board",
+    "public_body_short_name": "LAB",
+    "public_body_url": "https://www.legalaidboard.ie/en/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1189,
+    "public_body_name": "Legal Services Regulatory Authority",
+    "public_body_short_name": "LSRA",
+    "public_body_url": "https://www.lsra.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1190,
+    "public_body_name": "Letterkenny Institute of Technology",
+    "public_body_short_name": "LIoT",
+    "public_body_url": "https://www.lyit.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1191,
+    "public_body_name": "Limerick and Clare Education and Training Board",
+    "public_body_short_name": "LaCE",
+    "public_body_url": "https://lcetb.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1192,
+    "public_body_name": "Limerick Institute of Technology",
+    "public_body_short_name": "LIoT",
+    "public_body_url": "https://tus.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1193,
+    "public_body_name": "Longford and Westmeath Education and Training Board",
+    "public_body_short_name": "LaWE",
+    "public_body_url": "https://www.lwetb.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1194,
+    "public_body_name": "Louth and Meath Education and Training Board",
+    "public_body_short_name": "LaME",
+    "public_body_url": "https://www.lmetb.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1195,
+    "public_body_name": "Léargas (Exchange Bureau)",
+    "public_body_short_name": "LB",
+    "public_body_url": "https://www.leargas.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1196,
+    "public_body_name": "Marine Casualty Investigation Board",
+    "public_body_short_name": "MCIB",
+    "public_body_url": "https://www.mcib.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1197,
+    "public_body_name": "Marine Institute (Foras na Mara)",
+    "public_body_short_name": "MInM",
+    "public_body_url": "https://www.marine.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1198,
+    "public_body_name": "Maritime Area Regulatory Authority",
+    "public_body_short_name": "MARA",
+    "public_body_url": "https://www.maritimeregulator.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1199,
+    "public_body_name": "Mayo, Sligo and Leitrim Education and Training Board",
+    "public_body_short_name": "MSaL",
+    "public_body_url": "https://msletb.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1200,
+    "public_body_name": "Medical Bureau of Road Safety",
+    "public_body_short_name": "MBoR",
+    "public_body_url": "https://www.ucd.ie/mbrs/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1201,
+    "public_body_name": "Medical Council",
+    "public_body_short_name": "MC",
+    "public_body_url": "https://www.medicalcouncil.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1202,
+    "public_body_name": "Mental Health (Criminal Law) Review Board",
+    "public_body_short_name": "MHLR",
+    "public_body_url": "https://www.mhclrb.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1203,
+    "public_body_name": "Mental Health Commission",
+    "public_body_short_name": "MHC",
+    "public_body_url": "https://www.mhcirl.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1204,
+    "public_body_name": "Moorepark Technology Ltd",
+    "public_body_short_name": "MTL",
+    "public_body_url": "https://www.moorepark.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1205,
+    "public_body_name": "NAMA-National Asset Management Agency",
+    "public_body_short_name": "NAMA",
+    "public_body_url": "https://www.nama.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1206,
+    "public_body_name": "National Archives of Ireland",
+    "public_body_short_name": "NAoI",
+    "public_body_url": "https://www.nationalarchives.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1207,
+    "public_body_name": "National Cancer Registry Board",
+    "public_body_short_name": "NCRB",
+    "public_body_url": "https://www.ncri.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1208,
+    "public_body_name": "National Centre for Guidance in Education",
+    "public_body_short_name": "NCfG",
+    "public_body_url": "https://www.gov.ie/en/organisation/17161907-national-centre-for-guidance-in-education/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1209,
+    "public_body_name": "National Council for Curriculum and Assessment",
+    "public_body_short_name": "NCfC",
+    "public_body_url": "https://ncca.ie/en/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1210,
+    "public_body_name": "National Council for Special Education",
+    "public_body_short_name": "NCfS",
+    "public_body_url": "https://ncse.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1211,
+    "public_body_name": "National Development Finance Agency (NDFA)",
+    "public_body_short_name": "NDFA",
+    "public_body_url": "https://www.ntma.ie/business-areas/national-development-finance-agency",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1212,
+    "public_body_name": "National Disability Authority",
+    "public_body_short_name": "NDA",
+    "public_body_url": "https://nda.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1213,
+    "public_body_name": "National Economic and Social Council",
+    "public_body_short_name": "NEaS",
+    "public_body_url": "https://www.nesc.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1214,
+    "public_body_name": "National Gallery of Ireland",
+    "public_body_short_name": "NGoI",
+    "public_body_url": "https://www.nationalgallery.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1215,
+    "public_body_name": "National Library of Ireland (NLI)",
+    "public_body_short_name": "NLoI",
+    "public_body_url": "https://www.nli.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1216,
+    "public_body_name": "National Milk Agency",
+    "public_body_short_name": "NMA",
+    "public_body_url": "https://nationalmilkagency.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1217,
+    "public_body_name": "National Museum of Ireland (NMI)",
+    "public_body_short_name": "NMoI",
+    "public_body_url": "https://www.museum.ie/en-ie/home",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1218,
+    "public_body_name": "National Oil Reserves Agency (NORA)",
+    "public_body_short_name": "NORA",
+    "public_body_url": "https://www.nora.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1219,
+    "public_body_name": "National Property Services Regulatory Authority",
+    "public_body_short_name": "NPSR",
+    "public_body_url": "https://www.psr.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1220,
+    "public_body_name": "National Transport Authority",
+    "public_body_short_name": "NTA",
+    "public_body_url": "https://www.nationaltransport.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1221,
+    "public_body_name": "National Treatment Purchase Fund Board",
+    "public_body_short_name": "NTPF",
+    "public_body_url": "https://www.ntpf.ie/home/home.htm",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1222,
+    "public_body_name": "Northern and Western Regional Assembly",
+    "public_body_short_name": "NaWR",
+    "public_body_url": "https://www.nwra.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1223,
+    "public_body_name": "Nursing and Midwifery Board of Ireland",
+    "public_body_short_name": "NaMB",
+    "public_body_url": "https://www.nmbi.ie/home",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1224,
+    "public_body_name": "Oberstown Children Detention Campus",
+    "public_body_short_name": "OCDC",
+    "public_body_url": "https://www.oberstown.com/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1225,
+    "public_body_name": "Office of Emergency Planning",
+    "public_body_short_name": "OoEP",
+    "public_body_url": "https://www.gov.ie/en/campaigns/624e4-emergency-planning/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1226,
+    "public_body_name": "Office of Government Procurement",
+    "public_body_short_name": "OoGP",
+    "public_body_url": "https://www.gov.ie/en/organisation/office-of-government-procurement/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1227,
+    "public_body_name": "Office of Ombudsman for Children",
+    "public_body_short_name": "OoOf",
+    "public_body_url": "https://www.oco.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1228,
+    "public_body_name": "Office of Ombudsman for the Defence Forces",
+    "public_body_short_name": "OoOf",
+    "public_body_url": "https://www.odf.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1229,
+    "public_body_name": "Office of the Information Commissioner",
+    "public_body_short_name": "OotI",
+    "public_body_url": "https://www.oic.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1230,
+    "public_body_name": "Oifig Choimisinéir na dTeangacha Oifigúla",
+    "public_body_short_name": "OCnd",
+    "public_body_url": "https://www.coimisineir.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1231,
+    "public_body_name": "Parliamentary Budget Office",
+    "public_body_short_name": "PBO",
+    "public_body_url": "https://www.oireachtas.ie/en/how-parliament-is-run/houses-of-the-oireachtas-service/parliamentary-budget-office/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1232,
+    "public_body_name": "Parole Board",
+    "public_body_short_name": "PB",
+    "public_body_url": "https://www.gov.ie/en/parole-board/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1233,
+    "public_body_name": "Pensions Council",
+    "public_body_short_name": "PC",
+    "public_body_url": "https://pensionscouncil.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1234,
+    "public_body_name": "Personal Injuries Assessment Board",
+    "public_body_short_name": "PIAB",
+    "public_body_url": "https://www.injuries.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1235,
+    "public_body_name": "Pharmaceutical Society of Ireland",
+    "public_body_short_name": "PSoI",
+    "public_body_url": "https://www.thepsi.ie/gns/home.aspx",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1236,
+    "public_body_name": "Pre-Hospital Emergency Care Council (PHECC)",
+    "public_body_short_name": "PECC",
+    "public_body_url": "https://www.phecit.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1237,
+    "public_body_name": "Private Security Authority",
+    "public_body_short_name": "PSA",
+    "public_body_url": "https://www.psa-gov.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1238,
+    "public_body_name": "Public Appointments Service",
+    "public_body_short_name": "PAS",
+    "public_body_url": "https://publicjobs.ie/en/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1239,
+    "public_body_name": "Quality and Qualifications Ireland",
+    "public_body_short_name": "QaQI",
+    "public_body_url": "https://www.qqi.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1240,
+    "public_body_name": "Regulator of the National Lottery",
+    "public_body_short_name": "RotN",
+    "public_body_url": "https://www.rnl.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1241,
+    "public_body_name": "Residential Institutions Redress Board (RIRB)",
+    "public_body_short_name": "RIRB",
+    "public_body_url": "https://www.rirb.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1242,
+    "public_body_name": "Residential Institutions Statutory Fund Board (CaraNua)",
+    "public_body_short_name": "RISF",
+    "public_body_url": "https://caranua.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1243,
+    "public_body_name": "Residential Tenancies Board (PRTB)",
+    "public_body_short_name": "RTB",
+    "public_body_url": "https://www.rtb.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1244,
+    "public_body_name": "Road Safety Authority",
+    "public_body_short_name": "RSA",
+    "public_body_url": "https://www.rsa.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1245,
+    "public_body_name": "RTÉ – Raidió Teilifís Éireann",
+    "public_body_short_name": "RRTÉ",
+    "public_body_url": "https://www.rte.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1246,
+    "public_body_name": "Safety on the Water",
+    "public_body_short_name": "SotW",
+    "public_body_url": "https://www.gov.ie/en/campaigns/777947-safety-on-the-water/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1247,
+    "public_body_name": "Screen Ireland (Fís Éireann)",
+    "public_body_short_name": "SIÉ",
+    "public_body_url": "https://www.screenireland.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1248,
+    "public_body_name": "Sea Fisheries Protection Authority (SFPA)",
+    "public_body_short_name": "SFPA",
+    "public_body_url": "https://www.sfpa.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1249,
+    "public_body_name": "Skillnet Ireland",
+    "public_body_short_name": "SI",
+    "public_body_url": "https://www.skillnetireland.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1250,
+    "public_body_name": "Social Welfare Appeals Office",
+    "public_body_short_name": "SWAO",
+    "public_body_url": "https://www.gov.ie/en/organisation/4d5227-social-welfare-appeals-office/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1251,
+    "public_body_name": "Solas",
+    "public_body_short_name": "S",
+    "public_body_url": "https://www.solas.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1252,
+    "public_body_name": "Southern Regional Assembly",
+    "public_body_short_name": "SRA",
+    "public_body_url": "https://www.southernassembly.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1253,
+    "public_body_name": "Special EU Programmes Body",
+    "public_body_short_name": "SEPB",
+    "public_body_url": "https://www.seupb.eu/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1254,
+    "public_body_name": "Sport Ireland",
+    "public_body_short_name": "SI",
+    "public_body_url": "https://www.sportireland.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1255,
+    "public_body_name": "Standards in Public Office Commission",
+    "public_body_short_name": "SiPO",
+    "public_body_url": "https://www.sipo.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1256,
+    "public_body_name": "State Examinations Commission (SEC)",
+    "public_body_short_name": "SEC",
+    "public_body_url": "https://www.examinations.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1257,
+    "public_body_name": "Strategic Banking Corporation of Ireland",
+    "public_body_short_name": "SBCo",
+    "public_body_url": "https://sbci.gov.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1258,
+    "public_body_name": "Sustainable Energy Authority of Ireland (SEAI)",
+    "public_body_short_name": "SEAo",
+    "public_body_url": "https://www.seai.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1259,
+    "public_body_name": "Tax Appeals Commission",
+    "public_body_short_name": "TAC",
+    "public_body_url": "https://www.taxappeals.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1260,
+    "public_body_name": "Taighde Éireann – Research Ireland",
+    "public_body_short_name": "TÉRI",
+    "public_body_url": "https://www.researchireland.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1261,
+    "public_body_name": "Tailte Éireann",
+    "public_body_short_name": "TÉ",
+    "public_body_url": "https://www.tailte.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1262,
+    "public_body_name": "Teaching Council",
+    "public_body_short_name": "TC",
+    "public_body_url": "https://www.teachingcouncil.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1263,
+    "public_body_name": "Teagasc (Agriculture and Food Development Authority)",
+    "public_body_short_name": "TaFD",
+    "public_body_url": "https://www.teagasc.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1264,
+    "public_body_name": "Teilifís na Gaeilge - TG4",
+    "public_body_short_name": "TnGT",
+    "public_body_url": "https://www.tg4.ie/en/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1265,
+    "public_body_name": "The Charities Regulator",
+    "public_body_short_name": "TCR",
+    "public_body_url": "https://www.charitiesregulator.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1266,
+    "public_body_name": "The Courts Service",
+    "public_body_short_name": "TCS",
+    "public_body_url": "https://www.courts.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1267,
+    "public_body_name": "The Heritage Council",
+    "public_body_short_name": "THC",
+    "public_body_url": "https://www.heritagecouncil.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1268,
+    "public_body_name": "The International Protection Office",
+    "public_body_short_name": "TIPO",
+    "public_body_url": "https://www.ipo.gov.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1269,
+    "public_body_name": "The Loughs Agency",
+    "public_body_short_name": "TLA",
+    "public_body_url": "https://www.loughs-agency.org/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1270,
+    "public_body_name": "The National Oversight and Audit Commission",
+    "public_body_short_name": "TNOa",
+    "public_body_url": "https://noac.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1271,
+    "public_body_name": "The Pensions Authority",
+    "public_body_short_name": "TPA",
+    "public_body_url": "https://pensionsauthority.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1272,
+    "public_body_name": "The State Laboratory",
+    "public_body_short_name": "TSL",
+    "public_body_url": "https://www.statelab.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1273,
+    "public_body_name": "The Water Advisory Body",
+    "public_body_short_name": "TWAB",
+    "public_body_url": "https://www.wateradvisorybody.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1274,
+    "public_body_name": "Tipperary Education and Training Board",
+    "public_body_short_name": "TEaT",
+    "public_body_url": "https://tipperaryetb.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1275,
+    "public_body_name": "Tourism Ireland",
+    "public_body_short_name": "TI",
+    "public_body_url": "https://www.tourismireland.com/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1276,
+    "public_body_name": "Trade and Business Development Body (InterTradeIreland)",
+    "public_body_short_name": "TaBD",
+    "public_body_url": "https://intertradeireland.com/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1277,
+    "public_body_name": "Transport Infrastructure Ireland",
+    "public_body_short_name": "TII",
+    "public_body_url": "https://www.tii.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1278,
+    "public_body_name": "Traveller and Roma Inclusion Unit",
+    "public_body_short_name": "TaRI",
+    "public_body_url": "https://www.travellerinclusion.ie/website/travpolicy/travinclusionweb.nsf/page/index-en",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1279,
+    "public_body_name": "Ulster-Scots Agency",
+    "public_body_short_name": "UA",
+    "public_body_url": "https://www.ulsterscotsagency.com/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1280,
+    "public_body_name": "Water Safety",
+    "public_body_short_name": "WS",
+    "public_body_url": "https://watersafety.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1281,
+    "public_body_name": "Waterford and Wexford Education and Training Board",
+    "public_body_short_name": "WaWE",
+    "public_body_url": "https://www.wwetb.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1282,
+    "public_body_name": "Waterford Institute of Technology",
+    "public_body_short_name": "WIoT",
+    "public_body_url": "https://www.setu.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1283,
+    "public_body_name": "Waterways Ireland",
+    "public_body_short_name": "WI",
+    "public_body_url": "https://www.waterwaysireland.org/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1284,
+    "public_body_name": "Western Development Commission (WDC)",
+    "public_body_short_name": "WDC",
+    "public_body_url": "https://westerndevelopment.ie/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1285,
+    "public_body_name": "Workplace Relations Commission",
+    "public_body_short_name": "WRC",
+    "public_body_url": "https://workplacerelations.ie/en/",
+    "public_body_category": "public service body"
+  },
+  {
+    "public_body_id": 1286,
+    "public_body_name": "Údarás na Gaeltachta",
+    "public_body_short_name": "ÚnG",
+    "public_body_url": "https://udaras.ie/",
+    "public_body_category": "public service body"
+  }
+]
