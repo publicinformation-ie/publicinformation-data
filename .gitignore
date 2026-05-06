@@ -4,3 +4,8 @@ __pycache__/
 docs/
 .worktrees/
 .claude/settings.local.json
+
+# Pipeline output files (at any level)
+**/output.json
+**/errors.json
+**/pipeline-status.json
