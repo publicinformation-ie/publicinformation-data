@@ -37,31 +37,35 @@ def test_search_serper_returns_empty_without_key(monkeypatch):
 
 
 def test_search_serper_uses_env_key(requests_mock, monkeypatch):
-    monkeypatch.setenv("SERPER_API_KEY", "test-key-123")
+    # Use a valid-length API key (32 chars)
+    valid_key = "a" * 32
+    monkeypatch.setenv("SERPER_API_KEY", valid_key)
     requests_mock.post(
         "https://google.serper.dev/search",
-        json={"organic": [{"link": "https://example.com/foi", "title": "FOI"}]},
+        json={"organic": [{"link": "https://www.gov.ie/foi", "title": "FOI"}]},
     )
-    results = search_serper("site:example.com")
+    results = search_serper("site:www.gov.ie")
     assert len(results) == 1
-    assert results[0]["link"] == "https://example.com/foi"
-    assert requests_mock.last_request.headers["X-API-KEY"] == "test-key-123"
+    assert results[0]["link"] == "https://www.gov.ie/foi"
+    assert requests_mock.last_request.headers["X-API-KEY"] == valid_key
 
 
 def test_search_serper_explicit_key_overrides_env(requests_mock, monkeypatch):
-    monkeypatch.setenv("SERPER_API_KEY", "env-key")
+    # Use valid-length API keys
+    monkeypatch.setenv("SERPER_API_KEY", "a" * 32)
     requests_mock.post(
         "https://google.serper.dev/search",
         json={"organic": []},
     )
-    search_serper("site:example.com", api_key="explicit-key")
-    assert requests_mock.last_request.headers["X-API-KEY"] == "explicit-key"
+    search_serper("site:www.gov.ie", api_key="b" * 32)
+    assert requests_mock.last_request.headers["X-API-KEY"] == "b" * 32
 
 
 def test_search_serper_returns_empty_on_bad_status(requests_mock, monkeypatch):
-    monkeypatch.setenv("SERPER_API_KEY", "key")
+    # Use a valid-length API key
+    monkeypatch.setenv("SERPER_API_KEY", "a" * 32)
     requests_mock.post("https://google.serper.dev/search", status_code=429)
-    assert search_serper("site:example.com") == []
+    assert search_serper("site:www.gov.ie") == []
 
 
 def test_fetch_sleeps_between_requests(requests_mock, monkeypatch):

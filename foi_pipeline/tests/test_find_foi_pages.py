@@ -37,7 +37,7 @@ def test_unreachable_body_excluded(requests_mock, tmp_path):
 
 def test_serper_fallback_when_crawl_finds_nothing(requests_mock, tmp_path, monkeypatch):
     requests_mock.get("https://dept-a.ie/", text=HTML_WITHOUT_FOI)
-    monkeypatch.setenv("SERPER_API_KEY", "test-key")
+    monkeypatch.setenv("SERPER_API_KEY", "a" * 32)  # Valid-length API key
     requests_mock.post("https://google.serper.dev/search", json={"organic": [{"link": "https://dept-a.ie/foi/"}]})
     results = process(INPUT, tmp_path)
     assert len(results) == 1
@@ -115,7 +115,7 @@ GOV_IE_INPUT = {
 
 def test_serper_gov_ie_filters_to_path_prefix(requests_mock, tmp_path, monkeypatch):
     requests_mock.get("https://www.gov.ie/en/courts-service/", text=HTML_WITHOUT_FOI)
-    monkeypatch.setenv("SERPER_API_KEY", "test-key")
+    monkeypatch.setenv("SERPER_API_KEY", "a" * 32)  # Valid-length API key
     # Serper returns a cross-body result first, then the correct one
     requests_mock.post(
         "https://google.serper.dev/search",
@@ -133,7 +133,7 @@ def test_serper_gov_ie_filters_to_path_prefix(requests_mock, tmp_path, monkeypat
 
 def test_serper_non_gov_ie_not_filtered(requests_mock, tmp_path, monkeypatch):
     requests_mock.get("https://dept-a.ie/", text=HTML_WITHOUT_FOI)
-    monkeypatch.setenv("SERPER_API_KEY", "test-key")
+    monkeypatch.setenv("SERPER_API_KEY", "a" * 32)  # Valid-length API key
     requests_mock.post(
         "https://google.serper.dev/search",
         json={"organic": [{"link": "https://dept-a.ie/foi/"}]},
@@ -145,7 +145,7 @@ def test_serper_non_gov_ie_not_filtered(requests_mock, tmp_path, monkeypatch):
 
 def test_serper_gov_ie_no_matching_prefix_returns_nothing(requests_mock, tmp_path, monkeypatch):
     requests_mock.get("https://www.gov.ie/en/courts-service/", text=HTML_WITHOUT_FOI)
-    monkeypatch.setenv("SERPER_API_KEY", "test-key")
+    monkeypatch.setenv("SERPER_API_KEY", "a" * 32)  # Valid-length API key
     requests_mock.post(
         "https://google.serper.dev/search",
         json={"organic": [{"link": "https://www.gov.ie/en/social-welfare-appeals/foi/"}]},
