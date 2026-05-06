@@ -1,6 +1,7 @@
 import json
 import pytest
-from steps.find_foi_pages.process import process, STEP_NAME, find_foi_link_on_page
+from scripts.file_utils import write_json
+from steps.find_foi_pages.process import process, retry, STEP_NAME, find_foi_link_on_page
 
 INPUT = {
     "metadata": {"step": "validate_websites", "completed_at": "2026-05-04T00:00:00+00:00"},
@@ -168,6 +169,30 @@ BLOCKED_URL_TRAILING_SLASH_HTML = '<html><body><a href="https://www.gov.ie/en/to
 DUPLICATE_FOI_HTML = '<html><body><a href="https://shared-foi.ie/foi/">FOI</a></body></html>'
 
 
+def test_no_foi_found_logs_error(requests_mock, tmp_path, monkeypatch):
+    """When crawl and serper both return nothing, an error should be logged."""
+    requests_mock.get("https://dept-a.ie/", text=HTML_WITHOUT_FOI)
+    monkeypatch.setenv("SERPER_API_KEY", "a" * 32)
+    requests_mock.post("https://google.serper.dev/search", json={"organic": []})
+    results = process(INPUT, tmp_path)
+    assert len(results) == 0
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert len(errors) == 1
+    assert errors[0]["error_type"] == "FoiPageNotFound"
+    assert errors[0]["context"]["public_body_id"] == 1001
+
+
+def test_blocklisted_url_logs_error(requests_mock, tmp_path):
+    """When crawl finds a blocklisted URL, an error should be logged for that body."""
+    requests_mock.get("https://agency-a.ie/", text=BLOCKED_URL_HTML)
+    requests_mock.get("https://agency-b.ie/", text=HTML_WITH_FOI_LINK)
+    process(BLOCKLIST_INPUT, tmp_path)
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    blocklist_errors = [e for e in errors if e["error_type"] == "BlocklistedFoiPageUrl"]
+    assert len(blocklist_errors) == 1
+    assert blocklist_errors[0]["context"]["public_body_id"] == 3001
+
+
 def test_blocklisted_url_excluded_from_crawl_results(requests_mock, tmp_path):
     requests_mock.get("https://agency-a.ie/", text=BLOCKED_URL_HTML)
     requests_mock.get("https://agency-b.ie/", text=HTML_WITH_FOI_LINK)
@@ -206,3 +231,170 @@ def test_non_duplicate_urls_not_affected_by_uniqueness_pass(requests_mock, tmp_p
     results = process(INPUT, tmp_path)
     assert len(results) == 1
     assert results[0]["foi_page_url"] == "https://dept-a.ie/freedom-of-information/"
+
+
+# --- Retry tests ---
+
+RETRY_INPUT = {
+    "metadata": {"step": "validate_websites", "completed_at": "2026-05-04T00:00:00+00:00"},
+    "results": [
+        {"public_body_id": 1001, "name": "Dept A", "official_website_url": "https://dept-a.ie/", "is_reachable": True, "http_status": 200, "checked_at": "2026-05-04T00:00:00+00:00"},
+        {"public_body_id": 1002, "name": "Dept B", "official_website_url": "https://dept-b.ie/", "is_reachable": True, "http_status": 200, "checked_at": "2026-05-04T00:00:00+00:00"},
+    ],
+}
+
+EXISTING_RESULT = {
+    "public_body_id": 1001, "name": "Dept A",
+    "official_website_url": "https://dept-a.ie/",
+    "foi_page_url": "https://dept-a.ie/foi/", "source_method": "crawl",
+}
+
+SERPER_ERROR = {
+    "step": STEP_NAME,
+    "timestamp": "2026-05-06T14:00:00+00:00",
+    "error_type": "ValueError",
+    "error_message": "SERPER_API_KEY not set and FOI page not found via crawl for Dept B",
+    "context": {"url": "https://dept-b.ie/", "public_body_id": 1002, "name": "Dept B"},
+}
+
+
+def test_retry_with_no_errors_file_does_not_modify_output(tmp_path):
+    output_path = tmp_path / "output.json"
+    write_json(output_path, {"metadata": {}, "results": [EXISTING_RESULT]})
+    input_path = tmp_path / "input.json"
+    write_json(input_path, RETRY_INPUT)
+
+    retry(str(input_path), output_path, tmp_path)
+
+    results = json.loads(output_path.read_text())["results"]
+    assert results == [EXISTING_RESULT]
+
+
+def test_retry_with_empty_errors_does_not_modify_output(tmp_path):
+    write_json(tmp_path / "errors.json", [])
+    output_path = tmp_path / "output.json"
+    write_json(output_path, {"metadata": {}, "results": [EXISTING_RESULT]})
+    input_path = tmp_path / "input.json"
+    write_json(input_path, RETRY_INPUT)
+
+    retry(str(input_path), output_path, tmp_path)
+
+    results = json.loads(output_path.read_text())["results"]
+    assert results == [EXISTING_RESULT]
+
+
+def test_retry_processes_only_previously_failed_bodies(requests_mock, tmp_path, monkeypatch):
+    monkeypatch.setenv("SERPER_API_KEY", "a" * 32)
+    write_json(tmp_path / "errors.json", [SERPER_ERROR])
+    output_path = tmp_path / "output.json"
+    write_json(output_path, {"metadata": {}, "results": [EXISTING_RESULT]})
+    input_path = tmp_path / "input.json"
+    write_json(input_path, RETRY_INPUT)
+
+    requests_mock.get("https://dept-b.ie/", text='<html><body><a href="/foi/">FOI</a></body></html>')
+
+    retry(str(input_path), output_path, tmp_path)
+
+    results = json.loads(output_path.read_text())["results"]
+    ids = {r["public_body_id"] for r in results}
+    assert ids == {1001, 1002}
+
+
+def test_retry_does_not_refetch_already_successful_body(requests_mock, tmp_path, monkeypatch):
+    monkeypatch.setenv("SERPER_API_KEY", "a" * 32)
+    write_json(tmp_path / "errors.json", [SERPER_ERROR])
+    output_path = tmp_path / "output.json"
+    write_json(output_path, {"metadata": {}, "results": [EXISTING_RESULT]})
+    input_path = tmp_path / "input.json"
+    write_json(input_path, RETRY_INPUT)
+
+    requests_mock.get("https://dept-b.ie/", text='<html><body><a href="/foi/">FOI</a></body></html>')
+
+    retry(str(input_path), output_path, tmp_path)
+
+    fetched_urls = [r.url for r in requests_mock.request_history]
+    assert "https://dept-a.ie/" not in fetched_urls
+
+
+def test_retry_still_failing_body_remains_in_errors(requests_mock, tmp_path, monkeypatch):
+    monkeypatch.delenv("SERPER_API_KEY", raising=False)
+    write_json(tmp_path / "errors.json", [SERPER_ERROR])
+    output_path = tmp_path / "output.json"
+    write_json(output_path, {"metadata": {}, "results": [EXISTING_RESULT]})
+    input_path = tmp_path / "input.json"
+    write_json(input_path, RETRY_INPUT)
+
+    requests_mock.get("https://dept-b.ie/", text=HTML_WITHOUT_FOI)
+
+    retry(str(input_path), output_path, tmp_path)
+
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert len(errors) == 1
+    assert errors[0]["context"]["public_body_id"] == 1002
+
+
+def test_serper_rejects_result_with_no_foi_keyword_in_url(requests_mock, tmp_path, monkeypatch):
+    """Serper results whose URL path contains no FOI keyword should be rejected."""
+    requests_mock.get("https://dept-a.ie/", text=HTML_WITHOUT_FOI)
+    monkeypatch.setenv("SERPER_API_KEY", "a" * 32)
+    # Serper returns a URL with no FOI keyword in path
+    requests_mock.post(
+        "https://google.serper.dev/search",
+        json={"organic": [{"link": "https://dept-a.ie/publications/annual-report-2024/"}]},
+    )
+    results = process(INPUT, tmp_path)
+    assert len(results) == 0
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert any(e["error_type"] == "FoiPageNotFound" for e in errors)
+
+
+def test_serper_accepts_result_with_foi_keyword_in_url(requests_mock, tmp_path, monkeypatch):
+    """Serper results whose URL path contains an FOI keyword should be accepted."""
+    requests_mock.get("https://dept-a.ie/", text=HTML_WITHOUT_FOI)
+    monkeypatch.setenv("SERPER_API_KEY", "a" * 32)
+    requests_mock.post(
+        "https://google.serper.dev/search",
+        json={"organic": [{"link": "https://dept-a.ie/access-to-information/"}]},
+    )
+    results = process(INPUT, tmp_path)
+    assert len(results) == 1
+    assert results[0]["foi_page_url"] == "https://dept-a.ie/access-to-information/"
+
+
+def test_serper_falls_back_to_second_result_when_first_has_no_foi_keyword(requests_mock, tmp_path, monkeypatch):
+    """If first Serper result fails the FOI keyword check, try subsequent results."""
+    requests_mock.get("https://dept-a.ie/", text=HTML_WITHOUT_FOI)
+    monkeypatch.setenv("SERPER_API_KEY", "a" * 32)
+    requests_mock.post(
+        "https://google.serper.dev/search",
+        json={
+            "organic": [
+                {"link": "https://dept-a.ie/publications/annual-report/"},  # no FOI keyword
+                {"link": "https://dept-a.ie/foi/"},                          # has FOI keyword
+            ]
+        },
+    )
+    results = process(INPUT, tmp_path)
+    assert len(results) == 1
+    assert results[0]["foi_page_url"] == "https://dept-a.ie/foi/"
+
+
+def test_retry_cross_set_duplicate_url_removed(requests_mock, tmp_path, monkeypatch):
+    monkeypatch.setenv("SERPER_API_KEY", "a" * 32)
+    write_json(tmp_path / "errors.json", [SERPER_ERROR])
+    output_path = tmp_path / "output.json"
+    # 1001 already holds dept-b.ie/foi/ — same URL that 1002's retry will resolve to
+    existing = {**EXISTING_RESULT, "foi_page_url": "https://dept-b.ie/foi/"}
+    write_json(output_path, {"metadata": {}, "results": [existing]})
+    input_path = tmp_path / "input.json"
+    write_json(input_path, RETRY_INPUT)
+
+    requests_mock.get("https://dept-b.ie/", text='<html><body><a href="/foi/">FOI</a></body></html>')
+
+    retry(str(input_path), output_path, tmp_path)
+
+    results = json.loads(output_path.read_text())["results"]
+    assert len(results) == 0
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    duplicate_errors = [e for e in errors if e["error_type"] == "DuplicateFoiPageUrl"]
+    assert len(duplicate_errors) == 2

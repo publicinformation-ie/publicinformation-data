@@ -14,6 +14,10 @@ from scripts.http_utils import fetch, is_safe_url, search_serper, validate_url_o
 
 STEP_NAME = "find_foi_pages"
 FOI_KEYWORDS = ["foi", "freedom of information", "freedom-of-information", "freedom_of_information"]
+FOI_URL_KEYWORDS = [
+    "foi", "freedom-of-information", "freedom_of_information",
+    "freedom-information", "access-to-information",
+]
 FOI_PAGE_BLOCKLIST = {
     "https://www.gov.ie/en/topics/freedom-of-information",
     "https://www.gov.ie/en/topics/freedom-of-information/",
@@ -44,16 +48,18 @@ def find_foi_via_serper(website_url, name):
         path_prefix = parsed.path
         results = [r for r in results if urlparse(r.get("link", "")).path.startswith(path_prefix)]
 
-    # Validate all returned URLs
     for r in results:
-        if 'link' in r and r['link']:
-            try:
-                validate_url_or_raise(r['link'], context="serper_result")
-            except ValueError:
-                continue
+        link = r.get("link", "")
+        if not link:
+            continue
+        try:
+            validate_url_or_raise(link, context="serper_result")
+        except ValueError:
+            continue
+        path = urlparse(link).path.lower()
+        if any(kw in path for kw in FOI_URL_KEYWORDS):
+            return link
 
-    if results:
-        return results[0].get("link")
     return None
 
 
@@ -85,12 +91,26 @@ def process(input_data, step_dir):
                 source_method = "serper"
 
             if foi_url is None:
+                append_error(step_dir, {
+                    "step": STEP_NAME,
+                    "timestamp": datetime.now(timezone.utc).isoformat(),
+                    "error_type": "FoiPageNotFound",
+                    "error_message": f"No FOI page found via crawl or serper for {name} ({url})",
+                    "context": {"url": url, "public_body_id": body["public_body_id"], "name": name},
+                })
                 continue
 
             # Validate the FOI URL
             validate_url_or_raise(foi_url, context=f"foi_url_{body['public_body_id']}")
 
             if foi_url in FOI_PAGE_BLOCKLIST:
+                append_error(step_dir, {
+                    "step": STEP_NAME,
+                    "timestamp": datetime.now(timezone.utc).isoformat(),
+                    "error_type": "BlocklistedFoiPageUrl",
+                    "error_message": f"FOI page URL is blocklisted for {name}: {foi_url}",
+                    "context": {"url": url, "public_body_id": body["public_body_id"], "name": name, "foi_page_url": foi_url},
+                })
                 continue
 
             candidates.append({
@@ -132,15 +152,73 @@ def process(input_data, step_dir):
     return results
 
 
+def retry(input_path, output_path, step_dir):
+    """Re-process bodies listed in errors.json and merge into existing output.json."""
+    errors_path = Path(step_dir) / "errors.json"
+
+    if not errors_path.exists():
+        print("No errors to retry")
+        return
+
+    errors = read_json(errors_path)
+    if not errors:
+        print("No errors to retry")
+        return
+
+    failed_ids = {e["context"]["public_body_id"] for e in errors}
+    input_data = read_json(input_path)
+    retry_input = {
+        **input_data,
+        "results": [r for r in input_data["results"] if r["public_body_id"] in failed_ids],
+    }
+
+    existing_results = read_json(output_path)["results"]
+    new_results = process(retry_input, step_dir)
+
+    all_candidates = existing_results + new_results
+    url_counts = Counter(r["foi_page_url"] for r in all_candidates)
+    merged = []
+    for r in all_candidates:
+        if url_counts[r["foi_page_url"]] > 1:
+            append_error(step_dir, {
+                "step": STEP_NAME,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "error_type": "DuplicateFoiPageUrl",
+                "error_message": f"foi_page_url appears for multiple bodies: {r['foi_page_url']}",
+                "context": {
+                    "url": r["official_website_url"],
+                    "public_body_id": r["public_body_id"],
+                    "name": r["name"],
+                    "foi_page_url": r["foi_page_url"],
+                },
+            })
+        else:
+            merged.append(r)
+
+    output = {
+        "metadata": {"step": STEP_NAME, "completed_at": datetime.now(timezone.utc).isoformat()},
+        "results": merged,
+    }
+    write_json(output_path, output)
+    write_status(step_dir, len(merged))
+    print(f"Retry: merged {len(merged)} records to {output_path}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Find FOI pages for public bodies")
     parser.add_argument("--input", required=True)
     parser.add_argument("--output", required=True)
-    parser.add_argument("--force", action="store_true")
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--force", action="store_true")
+    group.add_argument("--retry", action="store_true")
     args = parser.parse_args()
 
     step_dir = Path(__file__).parent
     output_path = Path(args.output)
+
+    if args.retry:
+        retry(args.input, output_path, step_dir)
+        sys.exit(0)
 
     if not args.force and output_path.exists():
         print(f"Output exists at {output_path}, skipping (use --force to re-run)")
