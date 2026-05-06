@@ -1,6 +1,8 @@
 import os
 import sys
 import time
+from collections import defaultdict
+from datetime import datetime, timedelta
 from urllib.parse import urlparse
 
 import requests
@@ -8,9 +10,17 @@ import truststore
 
 truststore.inject_into_ssl()
 
+# Configuration
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; PublicInformation-FOI-Scraper/1.0)"}
-RATE_LIMIT_DELAY = 0.2
+DEFAULT_RATE_LIMIT_DELAY = 0.2  # seconds between requests
+MIN_RATE_LIMIT_DELAY = 0.1  # minimum delay
+MAX_RATE_LIMIT_DELAY = 5.0  # maximum delay
 _SERPER_ENDPOINT = "https://google.serper.dev/search"
+
+# Rate limiting state
+_domain_last_request = defaultdict(lambda: datetime.min)
+_domain_request_count = defaultdict(int)
+_RATE_LIMIT_WINDOW = timedelta(seconds=60)
 
 # Allowed URL schemes for security
 ALLOWED_SCHEMES = {'http', 'https'}
@@ -107,6 +117,33 @@ def is_safe_url(url):
     return False
 
 
+def get_rate_limit_delay(domain):
+    """
+    Calculate adaptive rate limit delay for a domain.
+
+    Uses token bucket algorithm with per-domain tracking.
+    """
+    now = datetime.now()
+    last = _domain_last_request[domain]
+    elapsed = (now - last).total_seconds()
+
+    # If we've waited long enough, reset count
+    if elapsed > _RATE_LIMIT_WINDOW.total_seconds():
+        _domain_request_count[domain] = 0
+        _domain_last_request[domain] = now
+        return DEFAULT_RATE_LIMIT_DELAY
+
+    # Calculate delay based on request count
+    count = _domain_request_count[domain]
+    delay = min(DEFAULT_RATE_LIMIT_DELAY * (2 ** count), MAX_RATE_LIMIT_DELAY)
+    delay = max(delay, MIN_RATE_LIMIT_DELAY)
+
+    _domain_last_request[domain] = now
+    _domain_request_count[domain] = count + 1
+
+    return delay
+
+
 def validate_url_or_raise(url, context=""):
     """
     Validate URL and raise SecurityError if unsafe.
@@ -131,10 +168,15 @@ def validate_url_or_raise(url, context=""):
 
 
 def fetch(method, url, **kwargs):
-    time.sleep(RATE_LIMIT_DELAY)
+    from urllib.parse import urlparse
     
     # Validate URL for security (prevent SSRF)
     validate_url_or_raise(url, context="fetch")
+    
+    # Extract domain for rate limiting
+    domain = urlparse(url).netloc
+    delay = get_rate_limit_delay(domain)
+    time.sleep(delay)
     
     merged_headers = {**HEADERS, **kwargs.pop("headers", {})}
     kwargs.setdefault("timeout", 30)

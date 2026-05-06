@@ -3,7 +3,7 @@ import os
 import pytest
 import requests_mock as requests_mock_module
 
-from scripts.http_utils import HEADERS, RATE_LIMIT_DELAY, fetch, search_serper
+from scripts.http_utils import HEADERS, DEFAULT_RATE_LIMIT_DELAY, fetch, search_serper
 
 
 def test_fetch_success(requests_mock):
@@ -27,7 +27,7 @@ def test_fetch_merges_extra_headers(requests_mock):
 
 
 def test_rate_limit_delay_value():
-    assert RATE_LIMIT_DELAY == 0.2
+    assert DEFAULT_RATE_LIMIT_DELAY == 0.2
 
 
 def test_search_serper_returns_empty_without_key(monkeypatch):
@@ -67,10 +67,20 @@ def test_search_serper_returns_empty_on_bad_status(requests_mock, monkeypatch):
 def test_fetch_sleeps_between_requests(requests_mock, monkeypatch):
     import time
     import scripts.http_utils as hu
-    monkeypatch.setattr(hu, "RATE_LIMIT_DELAY", 0.05)
+    from scripts.http_utils import DEFAULT_RATE_LIMIT_DELAY
+    # Save original value
+    original_delay = hu.DEFAULT_RATE_LIMIT_DELAY
+    monkeypatch.setattr(hu, "DEFAULT_RATE_LIMIT_DELAY", 0.05)
+    # Also need to reset the domain tracking
+    hu._domain_last_request.clear()
+    hu._domain_request_count.clear()
+    
     calls = []
     real_sleep = time.sleep
     monkeypatch.setattr(time, "sleep", lambda s: calls.append(s))
     requests_mock.get("https://www.gov.ie/", status_code=200)
     hu.fetch("GET", "https://www.gov.ie/")
     assert calls == [0.05]
+    
+    # Restore original value
+    monkeypatch.setattr(hu, "DEFAULT_RATE_LIMIT_DELAY", original_delay)
