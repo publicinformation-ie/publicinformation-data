@@ -46,6 +46,7 @@ ALLOWED_DOMAINS = {
     'dept-a.ie', 'dept-b.ie',
     'agency-a.ie', 'agency-b.ie',
     'shared-foi.ie',
+    'example.ie',
 }
 
 
