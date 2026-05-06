@@ -8,7 +8,7 @@ from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 
 from scripts.file_utils import append_error, read_json, write_json, write_status
-from scripts.http_utils import fetch
+from scripts.http_utils import fetch, is_safe_url, validate_url_or_raise
 
 STEP_NAME = "find_disclosure_pages"
 DISCLOSURE_KEYWORDS = ["disclosure", "log", "request"]
@@ -20,7 +20,10 @@ def find_disclosure_link(html, base_url):
         href = link["href"].lower()
         text = link.get_text(strip=True).lower()
         if any(kw in href or kw in text for kw in DISCLOSURE_KEYWORDS):
-            return urljoin(base_url, link["href"])
+            full_url = urljoin(base_url, link["href"])
+            # Validate URL before returning
+            if is_safe_url(full_url):
+                return full_url
     return None
 
 
@@ -33,8 +36,16 @@ def process(input_data, step_dir):
         url = item["foi_page_url"]
         name = item.get("name", "")
         try:
+            # Validate URL
+            validate_url_or_raise(url, context=f"disclosure_page_{item['public_body_id']}")
+
             response = fetch("GET", url, allow_redirects=True)
             disclosure_url = find_disclosure_link(response.text, url) or url
+            
+            # If disclosure_url is not None, validate it
+            if disclosure_url:
+                validate_url_or_raise(disclosure_url, context=f"disclosure_url_{item['public_body_id']}")
+
             results.append({
                 "public_body_id": item["public_body_id"],
                 "name": name,

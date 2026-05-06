@@ -7,21 +7,21 @@ from scripts.http_utils import HEADERS, RATE_LIMIT_DELAY, fetch, search_serper
 
 
 def test_fetch_success(requests_mock):
-    requests_mock.get("https://example.com/page", text="hello world")
-    resp = fetch("GET", "https://example.com/page")
+    requests_mock.get("https://www.gov.ie/page", text="hello world")
+    resp = fetch("GET", "https://www.gov.ie/page")
     assert resp.status_code == 200
     assert resp.text == "hello world"
 
 
 def test_fetch_sends_user_agent(requests_mock):
-    requests_mock.get("https://example.com/page", text="ok")
-    fetch("GET", "https://example.com/page")
+    requests_mock.get("https://www.gov.ie/page", text="ok")
+    fetch("GET", "https://www.gov.ie/page")
     assert requests_mock.last_request.headers["User-Agent"] == HEADERS["User-Agent"]
 
 
 def test_fetch_merges_extra_headers(requests_mock):
-    requests_mock.get("https://example.com/page", text="ok")
-    fetch("GET", "https://example.com/page", headers={"X-Custom": "yes"})
+    requests_mock.get("https://www.gov.ie/page", text="ok")
+    fetch("GET", "https://www.gov.ie/page", headers={"X-Custom": "yes"})
     assert requests_mock.last_request.headers["X-Custom"] == "yes"
     assert requests_mock.last_request.headers["User-Agent"] == HEADERS["User-Agent"]
 
@@ -71,6 +71,6 @@ def test_fetch_sleeps_between_requests(requests_mock, monkeypatch):
     calls = []
     real_sleep = time.sleep
     monkeypatch.setattr(time, "sleep", lambda s: calls.append(s))
-    requests_mock.get("https://example.com/", status_code=200)
-    hu.fetch("GET", "https://example.com/")
+    requests_mock.get("https://www.gov.ie/", status_code=200)
+    hu.fetch("GET", "https://www.gov.ie/")
     assert calls == [0.05]

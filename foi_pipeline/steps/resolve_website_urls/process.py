@@ -8,7 +8,7 @@ from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 
 from scripts.file_utils import append_error, read_json, write_json, write_status
-from scripts.http_utils import fetch
+from scripts.http_utils import fetch, is_safe_url, validate_url_or_raise
 
 STEP_NAME = "resolve_website_urls"
 STUB_MARKER = "There is a separate website for"
@@ -16,13 +16,19 @@ STUB_MARKER = "There is a separate website for"
 
 def resolve_stub_url(html, original_url):
     """Return external URL if page is a gov.ie stub portal, else original_url."""
+    # Validate original URL
+    validate_url_or_raise(original_url, context="resolve_stub_url")
+
     if STUB_MARKER not in html:
         return original_url
     soup = BeautifulSoup(html, "html.parser")
     for text_node in soup.find_all(string=lambda t: t and STUB_MARKER in t):
         next_a = text_node.find_next("a", href=True)
         if next_a:
-            return urljoin(original_url, next_a["href"])
+            resolved = urljoin(original_url, next_a["href"])
+            # Validate resolved URL
+            if is_safe_url(resolved):
+                return resolved
     return original_url
 
 

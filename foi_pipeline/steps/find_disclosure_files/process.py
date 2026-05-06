@@ -9,7 +9,7 @@ from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
 
 from scripts.file_utils import append_error, read_json, write_json, write_status
-from scripts.http_utils import fetch
+from scripts.http_utils import fetch, is_safe_url
 
 STEP_NAME = "find_disclosure_files"
 FILE_EXTENSIONS = {".pdf": "pdf", ".xlsx": "xlsx", ".xls": "xls"}
@@ -25,6 +25,11 @@ def find_file_links(html, base_url, follow_year_pages=True):
     for link in soup.find_all("a", href=True):
         href = link["href"]
         full_url = urljoin(base_url, href)
+        
+        # Skip non-HTTP URLs
+        if not is_safe_url(full_url):
+            continue
+        
         ext = Path(urlparse(href).path).suffix.lower()
 
         if ext in FILE_EXTENSIONS:

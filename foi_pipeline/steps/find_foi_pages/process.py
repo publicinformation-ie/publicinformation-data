@@ -10,7 +10,7 @@ from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
 
 from scripts.file_utils import append_error, read_json, write_json, write_status
-from scripts.http_utils import fetch, search_serper
+from scripts.http_utils import fetch, is_safe_url, search_serper, validate_url_or_raise
 
 STEP_NAME = "find_foi_pages"
 FOI_KEYWORDS = ["foi", "freedom of information", "freedom-of-information", "freedom_of_information"]
@@ -44,6 +44,14 @@ def find_foi_via_serper(website_url, name):
         path_prefix = parsed.path
         results = [r for r in results if urlparse(r.get("link", "")).path.startswith(path_prefix)]
 
+    # Validate all returned URLs
+    for r in results:
+        if 'link' in r and r['link']:
+            try:
+                validate_url_or_raise(r['link'], context="serper_result")
+            except ValueError:
+                continue
+
     if results:
         return results[0].get("link")
     return None
@@ -60,6 +68,9 @@ def process(input_data, step_dir):
         url = body["official_website_url"]
         name = body.get("name", "")
         try:
+            # Validate the base URL
+            validate_url_or_raise(url, context=f"process_{body['public_body_id']}")
+
             response = fetch("GET", url, allow_redirects=True)
             foi_url = find_foi_link_on_page(response.text, url)
             source_method = "crawl"
@@ -75,6 +86,9 @@ def process(input_data, step_dir):
 
             if foi_url is None:
                 continue
+
+            # Validate the FOI URL
+            validate_url_or_raise(foi_url, context=f"foi_url_{body['public_body_id']}")
 
             if foi_url in FOI_PAGE_BLOCKLIST:
                 continue
