@@ -18,9 +18,11 @@ def fetch(method, url, **kwargs):
     kwargs.setdefault("timeout", 30)
     try:
         return requests.request(method, url, headers=merged_headers, **kwargs)
-    except requests.exceptions.SSLError:
-        print(f"SSL verification failed for {url}, retrying without verification", file=sys.stderr)
-        return requests.request(method, url, headers=merged_headers, verify=False, **kwargs)
+    except requests.exceptions.SSLError as e:
+        raise RuntimeError(
+            f"SSL verification failed for {url}. "
+            f"This is a security error. Do not disable verification. Error: {e}"
+        ) from e
 
 
 def search_serper(query, api_key=None):
