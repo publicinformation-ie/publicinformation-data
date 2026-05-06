@@ -29,9 +29,16 @@ def find_foi_link_on_page(html, base_url):
 
 def find_foi_via_serper(website_url, name):
     domain = urlparse(website_url).netloc
-    # Include department name in search for gov.ie sites to find the correct page
     query = f"site:{domain} {name} freedom of information"
     results = search_serper(query)
+    if not results:
+        return None
+
+    parsed = urlparse(website_url)
+    if parsed.netloc == "www.gov.ie":
+        path_prefix = parsed.path
+        results = [r for r in results if urlparse(r.get("link", "")).path.startswith(path_prefix)]
+
     if results:
         return results[0].get("link")
     return None

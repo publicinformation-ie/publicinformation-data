@@ -95,3 +95,60 @@ def test_mailto_link_not_returned_by_crawl(requests_mock, tmp_path):
 def test_mailto_not_matched_by_find_foi_link_on_page():
     html = '<html><body><a href="mailto:foi@body.ie">FOI Contact</a></body></html>'
     assert find_foi_link_on_page(html, "https://body.ie/") is None
+
+
+# Additional INPUT fixture for gov.ie bodies
+GOV_IE_INPUT = {
+    "metadata": {"step": "validate_websites", "completed_at": "2026-05-04T00:00:00+00:00"},
+    "results": [
+        {
+            "public_body_id": 2001,
+            "name": "Courts Service",
+            "official_website_url": "https://www.gov.ie/en/courts-service/",
+            "is_reachable": True,
+            "http_status": 200,
+            "checked_at": "2026-05-04T00:00:00+00:00",
+        },
+    ],
+}
+
+
+def test_serper_gov_ie_filters_to_path_prefix(requests_mock, tmp_path, monkeypatch):
+    requests_mock.get("https://www.gov.ie/en/courts-service/", text=HTML_WITHOUT_FOI)
+    monkeypatch.setenv("SERPER_API_KEY", "test-key")
+    # Serper returns a cross-body result first, then the correct one
+    requests_mock.post(
+        "https://google.serper.dev/search",
+        json={
+            "organic": [
+                {"link": "https://www.gov.ie/en/social-welfare-appeals/foi/"},  # wrong body
+                {"link": "https://www.gov.ie/en/courts-service/foi/"},           # correct
+            ]
+        },
+    )
+    results = process(GOV_IE_INPUT, tmp_path)
+    assert len(results) == 1
+    assert results[0]["foi_page_url"] == "https://www.gov.ie/en/courts-service/foi/"
+
+
+def test_serper_non_gov_ie_not_filtered(requests_mock, tmp_path, monkeypatch):
+    requests_mock.get("https://dept-a.ie/", text=HTML_WITHOUT_FOI)
+    monkeypatch.setenv("SERPER_API_KEY", "test-key")
+    requests_mock.post(
+        "https://google.serper.dev/search",
+        json={"organic": [{"link": "https://dept-a.ie/foi/"}]},
+    )
+    results = process(INPUT, tmp_path)
+    assert len(results) == 1
+    assert results[0]["foi_page_url"] == "https://dept-a.ie/foi/"
+
+
+def test_serper_gov_ie_no_matching_prefix_returns_nothing(requests_mock, tmp_path, monkeypatch):
+    requests_mock.get("https://www.gov.ie/en/courts-service/", text=HTML_WITHOUT_FOI)
+    monkeypatch.setenv("SERPER_API_KEY", "test-key")
+    requests_mock.post(
+        "https://google.serper.dev/search",
+        json={"organic": [{"link": "https://www.gov.ie/en/social-welfare-appeals/foi/"}]},
+    )
+    results = process(GOV_IE_INPUT, tmp_path)
+    assert len(results) == 0
