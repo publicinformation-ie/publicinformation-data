@@ -145,6 +145,14 @@ STEP_MERGERS = {
 }
 
 
+def write_public_output(output, repo_root):
+    public_dir = repo_root / "public"
+    public_dir.mkdir(parents=True, exist_ok=True)
+    public_path = public_dir / "pipeline-data.json"
+    write_json(public_path, output)
+    return public_path
+
+
 def merge(steps_dir, pipeline_steps):
     base_data = read_json(steps_dir / "find_public_bodies" / "output.json")
     bodies = copy.deepcopy(base_data["public_bodies"])

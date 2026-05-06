@@ -10,6 +10,7 @@ from steps.export_status.process import (
     merge_get_foi_emails,
     merge_find_disclosure_pages,
     merge_find_disclosure_files,
+    write_public_output,
 )
 
 # ---------------------------------------------------------------------------
@@ -433,3 +434,44 @@ def test_merge_full_pipeline(tmp_path):
     assert b["status"]["foi_email"]["status"] == "failed"
     assert b["status"]["disclosures_page"]["status"] == "failed"
     assert b["status"]["disclosure_files"]["status"] == "failed"
+
+
+# ---------------------------------------------------------------------------
+# write_public_output
+# ---------------------------------------------------------------------------
+
+def test_write_public_output_returns_correct_path(tmp_path):
+    output = {"metadata": {"step": "export_status"}, "public_bodies": []}
+    path = write_public_output(output, tmp_path)
+    assert path == tmp_path / "public" / "pipeline-data.json"
+
+
+def test_write_public_output_creates_file(tmp_path):
+    output = {"metadata": {"step": "export_status"}, "public_bodies": []}
+    write_public_output(output, tmp_path)
+    assert (tmp_path / "public" / "pipeline-data.json").exists()
+
+
+def test_write_public_output_content_matches(tmp_path):
+    output = {
+        "metadata": {"step": "export_status", "completed_at": "2026-05-06T00:00:00+00:00"},
+        "public_bodies": [{"public_body_id": 1001, "name": "Dept A"}],
+    }
+    write_public_output(output, tmp_path)
+    data = json.loads((tmp_path / "public" / "pipeline-data.json").read_text())
+    assert data == output
+
+
+def test_write_public_output_creates_public_dir(tmp_path):
+    output = {"metadata": {}, "public_bodies": []}
+    write_public_output(output, tmp_path)
+    assert (tmp_path / "public").is_dir()
+
+
+def test_write_public_output_overwrites_existing_file(tmp_path):
+    (tmp_path / "public").mkdir()
+    (tmp_path / "public" / "pipeline-data.json").write_text('{"old": true}')
+    output = {"metadata": {}, "public_bodies": [{"public_body_id": 99}]}
+    write_public_output(output, tmp_path)
+    data = json.loads((tmp_path / "public" / "pipeline-data.json").read_text())
+    assert data["public_bodies"][0]["public_body_id"] == 99
