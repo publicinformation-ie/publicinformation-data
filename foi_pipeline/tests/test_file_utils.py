@@ -135,3 +135,108 @@ class TestSanitizeErrorContext:
         assert sanitize_error_context(None) == {}
         assert sanitize_error_context("string") == {}
         assert sanitize_error_context(123) == {}
+
+
+import sys
+from scripts.file_utils import IncrementalWriter
+
+
+class TestIncrementalWriter:
+    def test_fresh_start_empty_results(self, tmp_path):
+        w = IncrementalWriter(tmp_path / "output.json", "test_step")
+        assert w.results == []
+        assert w.processed_keys == set()
+
+    def test_resume_loads_existing_results(self, tmp_path):
+        existing = {
+            "metadata": {"step": "test_step"},
+            "results": [
+                {"public_body_id": 1, "name": "A"},
+                {"public_body_id": 2, "name": "B"},
+            ],
+        }
+        write_json(tmp_path / "output.json", existing)
+        w = IncrementalWriter(tmp_path / "output.json", "test_step")
+        assert len(w.results) == 2
+        assert w.processed_keys == {1, 2}
+
+    def test_force_ignores_existing_output(self, tmp_path):
+        existing = {
+            "metadata": {"step": "test_step"},
+            "results": [{"public_body_id": 1}],
+        }
+        write_json(tmp_path / "output.json", existing)
+        w = IncrementalWriter(tmp_path / "output.json", "test_step", force=True)
+        assert w.results == []
+        assert w.processed_keys == set()
+
+    def test_is_processed_returns_true_for_loaded_key(self, tmp_path):
+        existing = {
+            "metadata": {"step": "test_step"},
+            "results": [{"public_body_id": 42}],
+        }
+        write_json(tmp_path / "output.json", existing)
+        w = IncrementalWriter(tmp_path / "output.json", "test_step")
+        assert w.is_processed(42) is True
+        assert w.is_processed(99) is False
+
+    def test_append_empty_writes_partial_and_prints_dot(self, tmp_path, capsys):
+        w = IncrementalWriter(tmp_path / "output.json", "test_step")
+        w.append([])
+        out = capsys.readouterr().out
+        assert "." in out
+        data = read_json(tmp_path / "output.json")
+        assert data["results"] == []
+        assert "completed_at" not in data["metadata"]
+
+    def test_append_items_extends_results_and_writes(self, tmp_path):
+        w = IncrementalWriter(tmp_path / "output.json", "test_step")
+        w.append([{"public_body_id": 1, "val": "x"}])
+        w.append([{"public_body_id": 2, "val": "y"}, {"public_body_id": 2, "val": "z"}])
+        assert len(w.results) == 3
+        data = read_json(tmp_path / "output.json")
+        assert len(data["results"]) == 3
+
+    def test_append_updates_processed_keys(self, tmp_path):
+        w = IncrementalWriter(tmp_path / "output.json", "test_step")
+        w.append([{"public_body_id": 7}])
+        assert 7 in w.processed_keys
+
+    def test_append_empty_does_not_update_processed_keys(self, tmp_path):
+        w = IncrementalWriter(tmp_path / "output.json", "test_step")
+        w.append([])
+        assert w.processed_keys == set()
+
+    def test_finalize_adds_completed_at(self, tmp_path):
+        w = IncrementalWriter(tmp_path / "output.json", "test_step")
+        w.append([{"public_body_id": 1}])
+        w.finalize()
+        data = read_json(tmp_path / "output.json")
+        assert "completed_at" in data["metadata"]
+
+    def test_finalize_returns_count(self, tmp_path):
+        w = IncrementalWriter(tmp_path / "output.json", "test_step")
+        w.append([{"public_body_id": 1}, {"public_body_id": 2}])
+        assert w.finalize() == 2
+
+    def test_finalize_prints_newline(self, tmp_path, capsys):
+        w = IncrementalWriter(tmp_path / "output.json", "test_step")
+        w.finalize()
+        out = capsys.readouterr().out
+        assert "\n" in out
+
+    def test_custom_key_field(self, tmp_path):
+        existing = {
+            "metadata": {"step": "test_step"},
+            "results": [{"file_url": "https://example.com/a.pdf"}],
+        }
+        write_json(tmp_path / "output.json", existing)
+        w = IncrementalWriter(tmp_path / "output.json", "test_step", key_field="file_url")
+        assert "https://example.com/a.pdf" in w.processed_keys
+
+    def test_append_writes_atomically_via_tmp(self, tmp_path, monkeypatch):
+        # Verify tmp file is used (replaced, not left behind)
+        w = IncrementalWriter(tmp_path / "output.json", "test_step")
+        w.append([{"public_body_id": 1}])
+        assert not (tmp_path / "output.tmp").exists()
+        assert (tmp_path / "output.json").exists()

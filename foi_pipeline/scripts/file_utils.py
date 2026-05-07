@@ -17,6 +17,52 @@ def write_json(path, data):
     tmp.replace(path)
 
 
+class IncrementalWriter:
+    def __init__(self, output_path, step_name, key_field="public_body_id", force=False):
+        self.output_path = Path(output_path)
+        self.step_name = step_name
+        self.key_field = key_field
+        self.results = []
+        self.processed_keys = set()
+
+        if not force and self.output_path.exists():
+            try:
+                existing = read_json(self.output_path)
+                self.results = existing.get("results", [])
+                self.processed_keys = {r[key_field] for r in self.results if key_field in r}
+            except (json.JSONDecodeError, KeyError):
+                self.results = []
+                self.processed_keys = set()
+
+    def is_processed(self, key) -> bool:
+        return key in self.processed_keys
+
+    def append(self, items: list):
+        self.results.extend(items)
+        for item in items:
+            if self.key_field in item:
+                self.processed_keys.add(item[self.key_field])
+        write_json(
+            self.output_path,
+            {"metadata": {"step": self.step_name}, "results": self.results},
+        )
+        print(".", end="", flush=True)
+
+    def finalize(self) -> int:
+        write_json(
+            self.output_path,
+            {
+                "metadata": {
+                    "step": self.step_name,
+                    "completed_at": datetime.now(timezone.utc).isoformat(),
+                },
+                "results": self.results,
+            },
+        )
+        print()
+        return len(self.results)
+
+
 def sanitize_url_for_logging(url):
     """
     Sanitize URL for safe logging.
