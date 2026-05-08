@@ -26,13 +26,29 @@ FOI_PAGE_BLOCKLIST = {
 
 def find_foi_link_on_page(html, base_url):
     soup = BeautifulSoup(html, "html.parser")
+    
+    # Check if current page IS an FOI page (Problem 2):
+    # Does the page body (excluding link text) contain FOI keywords?
+    soup_no_links = BeautifulSoup(html, "html.parser")
+    for a in soup_no_links.find_all("a"):
+        a.decompose()
+    page_text = soup_no_links.get_text().lower()
+    if any(kw in page_text for kw in FOI_KEYWORDS):
+        return base_url
+    
+    # Otherwise, try to find FOI links (Problem 1: filter non-http(s))
     for link in soup.find_all("a", href=True):
-        href = link["href"].lower()
-        if href.startswith("mailto:"):
+        href = link["href"]
+        parsed = urlparse(href)
+
+        if parsed.scheme and parsed.scheme not in ('http', 'https'):
             continue
+
+        href_lower = href.lower()
         text = link.get_text(strip=True).lower()
-        if any(kw in href or kw in text for kw in FOI_KEYWORDS):
-            return urljoin(base_url, link["href"])
+        if any(kw in href_lower or kw in text for kw in FOI_KEYWORDS):
+            return urljoin(base_url, href)
+    
     return None
 
 

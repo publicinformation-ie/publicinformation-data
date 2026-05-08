@@ -297,3 +297,28 @@ def test_retry_processes_only_failed_bodies(requests_mock, tmp_path):
     ids = {r["public_body_id"] for r in result["results"]}
     assert 1001 in ids
     assert 1002 in ids
+
+
+def test_tel_link_with_foi_text_is_rejected():
+    html = '<html><body><a href="tel:+35312345678">FOI Contact</a></body></html>'
+    assert find_foi_link_on_page(html, "https://example.ie/") is None
+
+
+def test_javascript_link_with_foi_text_is_rejected():
+    html = '<html><body><a href="javascript:void(0)">Freedom of Information</a></body></html>'
+    assert find_foi_link_on_page(html, "https://example.ie/") is None
+
+
+def test_page_with_foi_text_returns_base_url():
+    html = '<html><body><h1>Freedom of Information</h1><p>Request FOI here</p></body></html>'
+    assert find_foi_link_on_page(html, "https://example.ie/") == "https://example.ie/"
+
+
+def test_page_with_foi_text_in_body_returns_base_url():
+    html = '<html><body><p>This is our freedom of information page</p></body></html>'
+    assert find_foi_link_on_page(html, "https://example.ie/foi") == "https://example.ie/foi"
+
+
+def test_page_with_foi_text_and_link_returns_base_url():
+    html = '<html><body><h1>Freedom of Information</h1><a href="/foi-page/">FOI Page</a></body></html>'
+    assert find_foi_link_on_page(html, "https://example.ie/") == "https://example.ie/"

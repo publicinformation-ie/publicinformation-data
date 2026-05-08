@@ -3,12 +3,35 @@ import argparse
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
+import re
 
 from bs4 import BeautifulSoup
 
 from scripts.file_utils import append_error, write_json, write_status
 from scripts.http_utils import fetch
+
+
+def find_actual_homepage(page_url):
+    """Find the actual homepage URL if the gov.ie page contains a 'separate website' link."""
+    try:
+        response = fetch("GET", page_url, timeout=10)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        pattern = re.compile(r'there is a separate website for', re.IGNORECASE)
+        elements = soup.find_all(string=pattern)
+
+        for elem in elements:
+            next_a = elem.find_next("a", href=True)
+            if next_a:
+                return urljoin(page_url, next_a["href"])
+
+    except Exception as e:
+        print(f"Warning: Could not check for separate website link on {page_url}: {e}", file=sys.stderr)
+
+    return page_url
+
 
 STEP_NAME = "find_public_bodies"
 SOURCE_URL = "https://www.gov.ie/en/departments/"
@@ -41,14 +64,22 @@ def scrape_public_bodies(step_dir):
             name = link.get_text(strip=True)
             if not name:
                 continue
-            seen_urls.add(full_url)
+
+            # Resolve actual homepage if this is a gov.ie page with separate website link
+            parsed = urlparse(full_url)
+            if parsed.netloc.endswith("gov.ie"):
+                actual_url = find_actual_homepage(full_url)
+            else:
+                actual_url = full_url
+
+            seen_urls.add(actual_url)
             bodies.append({
                 "public_body_id": body_id,
                 "name": name,
-                "official_website_url": full_url,
+                "official_website_url": actual_url,
                 "status": {
                     "website_url": {
-                        "url": full_url,
+                        "url": actual_url,
                         "status": "not_attempted"
                     },
                     "foi_page": {
