@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import argparse
 import copy
-import re
 import sys
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -10,50 +9,6 @@ from pathlib import Path
 from scripts.file_utils import read_json, write_json, write_status
 
 STEP_NAME = "export_status"
-
-
-def generate_short_name(name):
-    """Generate short name from public body name."""
-    # Common acronyms mapping
-    acronyms = {
-        "Department of Agriculture, Food and the Marine": "DAFM",
-        "Department of Children, Disability and Equality": "Dept CHI",
-        "Department of Climate, Energy and the Environment": "DCCEA",
-        "Department of Culture, Communications and Sport": "DCCS",
-        "Department of Education and Youth": "DEY",
-        "Department of Enterprise, Tourism and Employment": "DETE",
-        "Department of Finance": "DoF",
-        "Department of Foreign Affairs and Trade": "DFAT",
-        "Department of Further and Higher Education, Research, Innovation and Science": "DFHERIS",
-        "Department of Health": "DoH",
-        "Department of Housing, Local Government and Heritage": "DHLGH",
-        "Department of Justice, Home Affairs and Migration": "DJHAM",
-        "Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation": "DPER",
-        "Department of Rural and Community Development and the Gaeltacht": "DRCDG",
-        "Department of Social Protection": "DSP",
-        "Department of the Taoiseach": "DtoT",
-        "Department of Transport": "DoT",
-        "Revenue Commissioners": "Revenue",
-        "Health Service Executive": "HSE",
-        "Office of the": "O",
-    }
-    
-    # Check for known acronym
-    if name in acronyms:
-        return acronyms[name]
-    
-    # Try to extract acronym from name (e.g., "HSE" from "Health Service Executive")
-    # Look for all-caps sequences
-    caps_matches = re.findall(r'\b[A-Z]{2,}\b', name)
-    if caps_matches:
-        return caps_matches[0]
-    
-    # Fallback: first word or first 3 letters
-    words = name.split()
-    if words:
-        return words[0][:3].upper()
-    
-    return "N/A"
 
 
 def merge_validate_websites(body_map, step_data):
@@ -157,11 +112,6 @@ def merge(steps_dir, pipeline_steps):
     base_data = read_json(steps_dir / "find_public_bodies" / "output.json")
     bodies = copy.deepcopy(base_data["public_bodies"])
     body_map = {b["public_body_id"]: b for b in bodies}
-
-    # Add short_name to each body if not already present
-    for bid, body in body_map.items():
-        if "short_name" not in body:
-            body["short_name"] = generate_short_name(body["name"])
 
     for step_name in pipeline_steps:
         if step_name in ("find_public_bodies", STEP_NAME):
