@@ -1,4 +1,5 @@
 import json
+import jsonschema
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
@@ -18,7 +19,8 @@ def write_json(path, data):
 
 
 class IncrementalWriter:
-    def __init__(self, output_path, step_name, key_field="public_body_id", force=False):
+    def __init__(self, output_path, step_name, key_field="public_body_id",
+                 force=False, override_path=None):
         self.output_path = Path(output_path)
         self.step_name = step_name
         self.key_field = key_field
@@ -33,6 +35,43 @@ class IncrementalWriter:
             except (json.JSONDecodeError, KeyError):
                 self.results = []
                 self.processed_keys = set()
+
+        if override_path and Path(override_path).exists():
+            self._load_overrides(Path(override_path))
+
+    def _load_overrides(self, override_path):
+        overrides = read_json(override_path)
+
+        item_schema = None
+        schema_path = override_path.parent / "output_schema.json"
+        if schema_path.exists():
+            schema = read_json(schema_path)
+            props = schema.get("properties", {})
+            for collection_key in ("results", "public_bodies"):
+                if collection_key in props and "items" in props[collection_key]:
+                    item_schema = props[collection_key]["items"]
+                    break
+
+        loaded_ids = []
+        for record in overrides:
+            key = record.get(self.key_field)
+            if key is not None and key not in self.processed_keys:
+                if item_schema is not None:
+                    try:
+                        jsonschema.validate(record, item_schema)
+                    except jsonschema.ValidationError as e:
+                        raise ValueError(
+                            f"Override record {self.key_field}={key} failed schema validation: {e.message}"
+                        ) from e
+                self.results.append(record)
+                self.processed_keys.add(key)
+                loaded_ids.append(key)
+
+        if loaded_ids:
+            print(
+                f"Override: {len(loaded_ids)} record(s) loaded from override.json "
+                f"[{self.key_field}s: {', '.join(str(k) for k in loaded_ids)}]"
+            )
 
     def is_processed(self, key) -> bool:
         return key in self.processed_keys
