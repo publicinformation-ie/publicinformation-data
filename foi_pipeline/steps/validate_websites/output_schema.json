@@ -21,7 +21,8 @@
           "official_website_url": { "type": "string" },
           "is_reachable": { "type": "boolean" },
           "http_status": { "type": ["integer", "null"] },
-          "checked_at": { "type": "string", "format": "date-time" }
+          "checked_at": { "type": "string", "format": "date-time" },
+          "overridden": { "type": "boolean" }
         }
       }
     }

@@ -20,7 +20,8 @@
           "name": { "type": "string" },
           "disclosure_page_url": { "type": "string" },
           "file_url": { "type": "string" },
-          "file_type": { "enum": ["pdf", "xlsx", "xls"] }
+          "file_type": { "enum": ["pdf", "xlsx", "xls"] },
+          "overridden": { "type": "boolean" }
         }
       }
     }

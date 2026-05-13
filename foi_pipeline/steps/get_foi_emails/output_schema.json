@@ -20,7 +20,8 @@
           "name": { "type": "string" },
           "foi_page_url": { "type": "string" },
           "foi_email": { "type": ["string", "null"] },
-          "email_status": { "enum": ["found", "not_found", "multiple_found", "invalid"] }
+          "email_status": { "enum": ["found", "not_found", "multiple_found", "invalid"] },
+          "overridden": { "type": "boolean" }
         }
       }
     }

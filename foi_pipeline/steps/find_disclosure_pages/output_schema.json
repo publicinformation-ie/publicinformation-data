@@ -19,7 +19,8 @@
           "public_body_id": { "type": "integer" },
           "name": { "type": "string" },
           "foi_page_url": { "type": "string" },
-          "disclosure_page_url": { "type": "string" }
+          "disclosure_page_url": { "type": "string" },
+          "overridden": { "type": "boolean" }
         }
       }
     }

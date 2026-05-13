@@ -22,7 +22,8 @@
           "status": {
             "type": "object",
             "additionalProperties": true
-          }
+          },
+          "overridden": { "type": "boolean" }
         }
       }
     }

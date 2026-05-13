@@ -20,7 +20,8 @@
           "name": { "type": "string" },
           "official_website_url": { "type": "string" },
           "foi_page_url": { "type": "string" },
-          "source_method": { "enum": ["crawl", "serper"] }
+          "source_method": { "enum": ["crawl", "serper", "manual"] },
+          "overridden": { "type": "boolean" }
         }
       }
     }
