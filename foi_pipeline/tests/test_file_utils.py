@@ -240,3 +240,74 @@ class TestIncrementalWriter:
         w.append([{"public_body_id": 1}])
         assert not (tmp_path / "output.tmp").exists()
         assert (tmp_path / "output.json").exists()
+
+
+class TestIncrementalWriterOverride:
+    def test_override_records_preloaded(self, tmp_path):
+        override_path = tmp_path / "override.json"
+        write_json(override_path, [
+            {"public_body_id": 99, "name": "Manual Body", "overridden": True, "source_method": "manual"}
+        ])
+        w = IncrementalWriter(tmp_path / "output.json", "test_step", override_path=override_path)
+        assert 99 in w.processed_keys
+        assert w.results[0]["public_body_id"] == 99
+        assert w.results[0]["overridden"] is True
+
+    def test_override_survives_force(self, tmp_path):
+        override_path = tmp_path / "override.json"
+        write_json(override_path, [
+            {"public_body_id": 99, "name": "Manual Body", "overridden": True, "source_method": "manual"}
+        ])
+        w = IncrementalWriter(tmp_path / "output.json", "test_step", force=True, override_path=override_path)
+        assert 99 in w.processed_keys
+        assert len(w.results) == 1
+        assert w.results[0]["public_body_id"] == 99
+
+    def test_override_duplicate_first_wins(self, tmp_path):
+        override_path = tmp_path / "override.json"
+        write_json(override_path, [
+            {"public_body_id": 99, "name": "First", "overridden": True},
+            {"public_body_id": 99, "name": "Second", "overridden": True},
+        ])
+        w = IncrementalWriter(tmp_path / "output.json", "test_step", override_path=override_path)
+        assert len([r for r in w.results if r["public_body_id"] == 99]) == 1
+        assert w.results[0]["name"] == "First"
+
+    def test_override_prints_notice(self, tmp_path, capsys):
+        override_path = tmp_path / "override.json"
+        write_json(override_path, [{"public_body_id": 99, "name": "Manual Body", "overridden": True}])
+        IncrementalWriter(tmp_path / "output.json", "test_step", override_path=override_path)
+        out = capsys.readouterr().out
+        assert "Override" in out
+        assert "99" in out
+
+    def test_override_missing_file_is_ignored(self, tmp_path):
+        w = IncrementalWriter(tmp_path / "output.json", "test_step",
+                              override_path=tmp_path / "nonexistent.json")
+        assert w.results == []
+        assert w.processed_keys == set()
+
+    def test_invalid_override_raises_with_body_id(self, tmp_path):
+        schema = {
+            "type": "object",
+            "required": ["metadata", "results"],
+            "properties": {
+                "metadata": {"type": "object"},
+                "results": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": ["public_body_id", "name"],
+                        "properties": {
+                            "public_body_id": {"type": "integer"},
+                            "name": {"type": "string"},
+                        },
+                    },
+                },
+            },
+        }
+        write_json(tmp_path / "output_schema.json", schema)
+        override_path = tmp_path / "override.json"
+        write_json(override_path, [{"public_body_id": 99}])  # missing required "name"
+        with pytest.raises(ValueError, match="99"):
+            IncrementalWriter(tmp_path / "output.json", "test_step", override_path=override_path)

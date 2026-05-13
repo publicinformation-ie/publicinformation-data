@@ -16,6 +16,7 @@ def zero_rate_limit(monkeypatch):
 
 @pytest.fixture
 def make_writer(tmp_path):
-    def _make(step_name, key_field="public_body_id", force=True):
-        return IncrementalWriter(tmp_path / "output.json", step_name, key_field=key_field, force=force)
+    def _make(step_name, key_field="public_body_id", force=True, override_path=None):
+        return IncrementalWriter(tmp_path / "output.json", step_name, key_field=key_field,
+                                 force=force, override_path=override_path)
     return _make
