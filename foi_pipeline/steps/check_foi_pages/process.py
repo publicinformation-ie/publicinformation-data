@@ -55,6 +55,7 @@ def main():
 
     step_dir = Path(__file__).parent
     output_path = Path(args.output)
+    override_path = step_dir / "override.json"
 
     try:
         input_data = read_json(args.input)
@@ -62,7 +63,8 @@ def main():
         print(f"Fatal: could not read input: {e}", file=sys.stderr)
         sys.exit(1)
 
-    writer = IncrementalWriter(output_path, STEP_NAME, force=args.force)
+    writer = IncrementalWriter(output_path, STEP_NAME, force=args.force,
+                               override_path=override_path)
 
     if writer.processed_keys:
         print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")
