@@ -1,6 +1,6 @@
 import json
 import pytest
-from scripts.file_utils import write_json
+from scripts.file_utils import write_json, IncrementalWriter
 from steps.find_foi_pages.process import process, retry, STEP_NAME, find_foi_link_on_page
 
 INPUT = {
@@ -322,3 +322,85 @@ def test_page_with_foi_text_in_body_returns_base_url():
 def test_page_with_foi_text_and_link_returns_base_url():
     html = '<html><body><h1>Freedom of Information</h1><a href="/foi-page/">FOI Page</a></body></html>'
     assert find_foi_link_on_page(html, "https://example.ie/") == "https://example.ie/"
+
+
+def test_override_body_not_fetched(requests_mock, tmp_path):
+    """Override record in processed_keys — process() must not make any HTTP call for it."""
+    override_path = tmp_path / "override.json"
+    write_json(override_path, [{
+        "public_body_id": 1001,
+        "name": "Dept A",
+        "official_website_url": "https://dept-a.ie/",
+        "foi_page_url": "https://dept-a.ie/foi/",
+        "source_method": "manual",
+        "overridden": True,
+    }])
+    # Writer pre-loads override; body 1001 is in processed_keys before process() runs
+    writer = IncrementalWriter(tmp_path / "output.json", STEP_NAME, override_path=override_path)
+
+    # No HTTP mock for dept-a.ie — requests_mock raises ConnectionError if called
+    process(INPUT, tmp_path, writer)
+
+    result = next(r for r in writer.results if r["public_body_id"] == 1001)
+    assert result["foi_page_url"] == "https://dept-a.ie/foi/"
+    assert result["source_method"] == "manual"
+    assert result["overridden"] is True
+
+
+def test_override_body_survives_force_writer(tmp_path):
+    """force=True clears automated results; override records are still loaded."""
+    override_path = tmp_path / "override.json"
+    write_json(override_path, [{
+        "public_body_id": 1001,
+        "name": "Dept A",
+        "official_website_url": "https://dept-a.ie/",
+        "foi_page_url": "https://dept-a.ie/foi/",
+        "source_method": "manual",
+        "overridden": True,
+    }])
+    writer = IncrementalWriter(tmp_path / "output.json", STEP_NAME,
+                               force=True, override_path=override_path)
+    assert 1001 in writer.processed_keys
+    assert writer.results[0]["foi_page_url"] == "https://dept-a.ie/foi/"
+
+
+def test_uniqueness_pass_keeps_override_drops_automated_duplicate(requests_mock, tmp_path):
+    """When override and automated result share foi_page_url, automated is dropped."""
+    shared_url = "https://shared-foi.ie/foi/"
+    override_path = tmp_path / "override.json"
+    write_json(override_path, [{
+        "public_body_id": 1001,
+        "name": "Dept A",
+        "official_website_url": "https://dept-a.ie/",
+        "foi_page_url": shared_url,
+        "source_method": "manual",
+        "overridden": True,
+    }])
+
+    extra_input = {
+        "metadata": INPUT["metadata"],
+        "results": [
+            # 1001 is overridden — will be skipped by process()
+            INPUT["results"][0],
+            # 1003 is new; crawl will find the same foi_page_url
+            {
+                "public_body_id": 1003,
+                "name": "Dept C",
+                "official_website_url": "https://dept-c.ie/",
+                "is_reachable": True,
+                "http_status": 200,
+                "checked_at": "2026-05-04T00:00:00+00:00",
+            },
+        ],
+    }
+    requests_mock.get(
+        "https://dept-c.ie/",
+        text=f'<html><body><a href="{shared_url}">FOI</a></body></html>',
+    )
+
+    writer = IncrementalWriter(tmp_path / "output.json", STEP_NAME, override_path=override_path)
+    process(extra_input, tmp_path, writer)
+
+    body_ids = [r["public_body_id"] for r in writer.results]
+    assert 1001 in body_ids   # override survives
+    assert 1003 not in body_ids  # automated duplicate dropped
