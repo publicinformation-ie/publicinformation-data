@@ -74,6 +74,33 @@ def test_scrape_skips_nameless_links(requests_mock, tmp_path):
     assert bodies[0]["name"] == "Health"
 
 
+def test_scrape_includes_category_field(requests_mock, tmp_path):
+    requests_mock.get("https://www.gov.ie/en/departments/", text=SAMPLE_HTML)
+    bodies = scrape_public_bodies(tmp_path)
+    assert all("category" in b for b in bodies)
+
+
+def test_scrape_departments_have_government_department_category(requests_mock, tmp_path):
+    requests_mock.get("https://www.gov.ie/en/departments/", text=SAMPLE_HTML)
+    bodies = scrape_public_bodies(tmp_path)
+    dept = next(b for b in bodies if "department-of-finance" in b["official_website_url"])
+    assert dept["category"] == "government department"
+
+
+def test_scrape_agencies_have_public_service_body_category(requests_mock, tmp_path):
+    requests_mock.get("https://www.gov.ie/en/departments/", text=SAMPLE_HTML)
+    bodies = scrape_public_bodies(tmp_path)
+    agency = next(b for b in bodies if "central-bank" in b["official_website_url"])
+    assert agency["category"] == "public service body"
+
+
+def test_scrape_local_authorities_have_local_authority_category(requests_mock, tmp_path):
+    requests_mock.get("https://www.gov.ie/en/departments/", text=SAMPLE_HTML)
+    bodies = scrape_public_bodies(tmp_path)
+    council = next(b for b in bodies if "carlow" in b["official_website_url"])
+    assert council["category"] == "local authority"
+
+
 def test_scrape_ids_start_at_1001(requests_mock, tmp_path):
     requests_mock.get("https://www.gov.ie/en/departments/", text=SAMPLE_HTML)
     bodies = scrape_public_bodies(tmp_path)

@@ -36,6 +36,11 @@ def find_actual_homepage(page_url):
 STEP_NAME = "find_public_bodies"
 SOURCE_URL = "https://www.gov.ie/en/departments/"
 SECTION_IDS = ["departments", "agencies", "local-authorities"]
+SECTION_CATEGORIES = {
+    "departments": "government department",
+    "agencies": "public service body",
+    "local-authorities": "local authority",
+}
 BASE_ID = 1000
 
 
@@ -52,6 +57,7 @@ def scrape_public_bodies(step_dir):
     body_id = BASE_ID + 1
 
     for section_id in SECTION_IDS:
+        category = SECTION_CATEGORIES[section_id]
         section = soup.find("section", id=section_id)
         if not section:
             print(f"Warning: section '{section_id}' not found on page", file=sys.stderr)
@@ -77,6 +83,7 @@ def scrape_public_bodies(step_dir):
                 "public_body_id": body_id,
                 "name": name,
                 "official_website_url": actual_url,
+                "category": category,
                 "status": {
                     "website_url": {
                         "url": actual_url,
