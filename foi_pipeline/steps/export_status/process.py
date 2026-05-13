@@ -112,6 +112,11 @@ def merge(steps_dir, pipeline_steps):
     base_data = read_json(steps_dir / "find_public_bodies" / "output.json")
     bodies = copy.deepcopy(base_data["public_bodies"])
     body_map = {b["public_body_id"]: b for b in bodies}
+    for body in body_map.values():
+        body["public_body_name"] = body.pop("name")
+        body["public_body_url"] = body.pop("official_website_url")
+        body["public_body_category"] = body.pop("category")
+        body.pop("short_name", None)
 
     for step_name in pipeline_steps:
         if step_name in ("find_public_bodies", STEP_NAME):
