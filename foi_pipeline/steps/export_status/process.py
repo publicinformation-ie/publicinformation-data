@@ -108,10 +108,37 @@ def write_public_output(output, repo_root):
     return public_path
 
 
+def write_disclosure_files_output(steps_dir, repo_root):
+    input_path = Path(steps_dir) / "find_disclosure_files" / "output.json"
+    if not input_path.exists():
+        return None
+    data = read_json(input_path)
+    records = [
+        {
+            "public_body_id": r["public_body_id"],
+            "document_url": r["file_url"],
+            "source_page_url": r["disclosure_page_url"],
+            "file_type": r["file_type"],
+            "date_added": None,
+        }
+        for r in data["results"]
+    ]
+    public_dir = Path(repo_root) / "public"
+    public_dir.mkdir(parents=True, exist_ok=True)
+    output_path = public_dir / "disclosure-files.json"
+    write_json(output_path, records)
+    return output_path
+
+
 def merge(steps_dir, pipeline_steps):
     base_data = read_json(steps_dir / "find_public_bodies" / "output.json")
     bodies = copy.deepcopy(base_data["public_bodies"])
     body_map = {b["public_body_id"]: b for b in bodies}
+    for body in body_map.values():
+        body["public_body_name"] = body.pop("name")
+        body["public_body_url"] = body.pop("official_website_url")
+        body["public_body_category"] = body.pop("category")
+        body.pop("short_name", None)
 
     for step_name in pipeline_steps:
         if step_name in ("find_public_bodies", STEP_NAME):
@@ -159,9 +186,12 @@ def main():
 
     repo_root = pipeline_dir.parent
     public_path = write_public_output(output, repo_root)
+    disclosure_path = write_disclosure_files_output(steps_dir, repo_root)
 
     print(f"Wrote {len(bodies)} public bodies to {output_path}")
     print(f"Wrote public data to {public_path}")
+    if disclosure_path:
+        print(f"Wrote disclosure files to {disclosure_path}")
 
 
 if __name__ == "__main__":

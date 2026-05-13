@@ -11,6 +11,7 @@ from steps.export_status.process import (
     merge_find_disclosure_pages,
     merge_find_disclosure_files,
     write_public_output,
+    write_disclosure_files_output,
 )
 
 # ---------------------------------------------------------------------------
@@ -37,6 +38,7 @@ BASE_OUTPUT = {
             "public_body_id": 1001,
             "name": "Dept A",
             "official_website_url": "https://dept-a.ie/",
+            "category": "government department",
             "status": {
                 "website_url": {"url": "https://dept-a.ie/", "status": "not_attempted"},
                 "foi_page": {"url": None, "status": "not_attempted"},
@@ -50,6 +52,7 @@ BASE_OUTPUT = {
             "public_body_id": 1002,
             "name": "Dept B",
             "official_website_url": "https://dept-b.ie/",
+            "category": "public service body",
             "status": {
                 "website_url": {"url": "https://dept-b.ie/", "status": "not_attempted"},
                 "foi_page": {"url": None, "status": "not_attempted"},
@@ -68,6 +71,7 @@ def make_body(bid):
         "public_body_id": bid,
         "name": f"Body {bid}",
         "official_website_url": f"https://body-{bid}.ie/",
+        "category": "government department",
         "status": {
             "website_url": {"url": f"https://body-{bid}.ie/", "status": "not_attempted"},
             "foi_page": {"url": None, "status": "not_attempted"},
@@ -436,6 +440,29 @@ def test_merge_full_pipeline(tmp_path):
     assert b["status"]["disclosure_files"]["status"] == "failed"
 
 
+def test_merge_renames_name_to_public_body_name(tmp_path):
+    steps_dir = setup_steps_dir(tmp_path, {"find_public_bodies": BASE_OUTPUT})
+    result = merge(steps_dir, PIPELINE_STEPS)
+    assert result[0]["public_body_name"] == "Dept A"
+    assert "name" not in result[0]
+
+
+def test_merge_renames_official_website_url_to_public_body_url(tmp_path):
+    steps_dir = setup_steps_dir(tmp_path, {"find_public_bodies": BASE_OUTPUT})
+    result = merge(steps_dir, PIPELINE_STEPS)
+    assert result[0]["public_body_url"] == "https://dept-a.ie/"
+    assert "official_website_url" not in result[0]
+
+
+def test_merge_renames_category_to_public_body_category(tmp_path):
+    steps_dir = setup_steps_dir(tmp_path, {"find_public_bodies": BASE_OUTPUT})
+    result = merge(steps_dir, PIPELINE_STEPS)
+    by_id = {b["public_body_id"]: b for b in result}
+    assert by_id[1001]["public_body_category"] == "government department"
+    assert by_id[1002]["public_body_category"] == "public service body"
+    assert "category" not in by_id[1001]
+
+
 # ---------------------------------------------------------------------------
 # write_public_output
 # ---------------------------------------------------------------------------
@@ -475,3 +502,86 @@ def test_write_public_output_overwrites_existing_file(tmp_path):
     write_public_output(output, tmp_path)
     data = json.loads((tmp_path / "public" / "pipeline-data.json").read_text())
     assert data["public_bodies"][0]["public_body_id"] == 99
+
+
+# ---------------------------------------------------------------------------
+# write_disclosure_files_output
+# ---------------------------------------------------------------------------
+
+
+def _make_disclosure_steps_dir(tmp_path, results):
+    """Helper: write find_disclosure_files/output.json into a steps dir."""
+    steps_dir = tmp_path / "steps"
+    disc_dir = steps_dir / "find_disclosure_files"
+    disc_dir.mkdir(parents=True)
+    (disc_dir / "output.json").write_text(json.dumps({
+        "metadata": {"step": "find_disclosure_files"},
+        "results": results,
+    }))
+    return steps_dir
+
+
+def test_write_disclosure_files_output_maps_fields(tmp_path):
+    steps_dir = _make_disclosure_steps_dir(tmp_path, [
+        {
+            "public_body_id": 1001,
+            "name": "Dept A",
+            "disclosure_page_url": "https://dept-a.ie/disclosure/",
+            "file_url": "https://assets.gov.ie/q1.pdf",
+            "file_type": "pdf",
+        }
+    ])
+    write_disclosure_files_output(steps_dir, tmp_path)
+    data = json.loads((tmp_path / "public" / "disclosure-files.json").read_text())
+    assert len(data) == 1
+    assert data[0]["document_url"] == "https://assets.gov.ie/q1.pdf"
+    assert data[0]["source_page_url"] == "https://dept-a.ie/disclosure/"
+    assert data[0]["file_type"] == "pdf"
+    assert data[0]["date_added"] is None
+    assert data[0]["public_body_id"] == 1001
+    assert "file_url" not in data[0]
+    assert "name" not in data[0]
+    assert "disclosure_page_url" not in data[0]
+
+
+def test_write_disclosure_files_output_returns_path(tmp_path):
+    steps_dir = _make_disclosure_steps_dir(tmp_path, [])
+    path = write_disclosure_files_output(steps_dir, tmp_path)
+    assert path == tmp_path / "public" / "disclosure-files.json"
+
+
+def test_write_disclosure_files_output_returns_none_when_no_input(tmp_path):
+    steps_dir = tmp_path / "steps"
+    steps_dir.mkdir()
+    path = write_disclosure_files_output(steps_dir, tmp_path)
+    assert path is None
+
+
+def test_write_disclosure_files_output_creates_public_dir(tmp_path):
+    steps_dir = _make_disclosure_steps_dir(tmp_path, [])
+    write_disclosure_files_output(steps_dir, tmp_path)
+    assert (tmp_path / "public").is_dir()
+
+
+def test_write_disclosure_files_output_multiple_bodies(tmp_path):
+    steps_dir = _make_disclosure_steps_dir(tmp_path, [
+        {
+            "public_body_id": 1001,
+            "name": "Dept A",
+            "disclosure_page_url": "https://dept-a.ie/disclosure/",
+            "file_url": "https://assets.gov.ie/q1.pdf",
+            "file_type": "pdf",
+        },
+        {
+            "public_body_id": 1002,
+            "name": "Dept B",
+            "disclosure_page_url": "https://dept-b.ie/disclosure/",
+            "file_url": "https://assets.gov.ie/q2.xlsx",
+            "file_type": "xlsx",
+        },
+    ])
+    write_disclosure_files_output(steps_dir, tmp_path)
+    data = json.loads((tmp_path / "public" / "disclosure-files.json").read_text())
+    assert len(data) == 2
+    ids = {r["public_body_id"] for r in data}
+    assert ids == {1001, 1002}
