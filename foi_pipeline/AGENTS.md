@@ -251,3 +251,60 @@ The data model has evolved over time:
 - **v3**: short_name generation moved to export_status step (this fix)
 
 The current approach centralizes short_name generation in the final export step, ensuring all public bodies have this field regardless of which pipeline steps have been run.
+
+## Override System
+
+Some pipeline steps produce incorrect results that are impractical to fix via automated scraping alone. The override system lets you inject manually-authored records that are **never overwritten** by automated re-runs.
+
+### How It Works
+
+Each step directory may contain an optional `override.json` file. When `IncrementalWriter` is constructed, it reads this file (if present) and pre-loads the records into `processed_keys` before `process()` runs. Because `process()` skips any body whose ID is already in `processed_keys`, no HTTP calls are made for overridden bodies. Manual data is preserved even on `--force` runs.
+
+### Override File Format
+
+`override.json` is an array of complete result records conforming to the step's `output_schema.json`. Two fields distinguish override records from automated results:
+
+- `"source_method": "manual"` — replaces `"crawl"` or `"serper"` (only for steps that have `source_method`)
+- `"overridden": true` — explicit marker for filtering and auditing
+
+Example for `find_foi_pages`:
+
+```json
+[
+  {
+    "public_body_id": 1025,
+    "name": "Capital Works Management Framework",
+    "official_website_url": "https://constructionprocurement.gov.ie/",
+    "foi_page_url": "https://constructionprocurement.gov.ie/freedom-of-information/",
+    "source_method": "manual",
+    "overridden": true
+  }
+]
+```
+
+### Flag Interaction Matrix
+
+| Scenario | Behaviour |
+|---|---|
+| Normal run, no override.json | No change from current behaviour |
+| Normal run, override.json present | Override bodies pre-loaded; skipped by `process()` |
+| `--force`, override.json present | Automated results reprocessed; override bodies still skipped |
+| `--retry`, override.json present | Only errored bodies retried; override bodies absent from `errors.json` so never retried |
+| Override body also in errors.json | Body skipped in processing; error record left as-is |
+| Duplicate `public_body_id` in override.json | First record wins |
+
+### Workflow
+
+1. Identify a body whose automated result is wrong (e.g., FOI page URL not found or incorrect)
+2. Create `foi_pipeline/steps/<step_name>/override.json` if it does not exist
+3. Add a complete result record with `"source_method": "manual"` and `"overridden": true`
+4. Commit `override.json` to git — this is the source of truth for manually-curated data
+5. Re-run the step normally; the override body will be skipped by automation
+
+### Validation
+
+Records in `override.json` are validated against `output_schema.json` at startup. An invalid record causes an immediate `ValueError` identifying the offending `public_body_id`. Fix the record and re-run. Steps without `output_schema.json` (e.g. `extract_disclosures`) skip validation.
+
+### Uniqueness Pass Interaction (find_foi_pages only)
+
+`find_foi_pages` runs a post-process uniqueness check that removes records sharing a `foi_page_url`. Override records participate in this pass. If an override record shares a `foi_page_url` with an automated result, the automated result is dropped — manual truth wins.
