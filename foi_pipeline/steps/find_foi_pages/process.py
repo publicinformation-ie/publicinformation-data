@@ -174,7 +174,6 @@ def process(input_data, step_dir, writer):
     # Uniqueness pass: drop automated results that share foi_page_url with another record.
     # Override records (overridden=True) always win — conflicting automated results are dropped.
     url_counts = Counter(r["foi_page_url"] for r in writer.results)
-    overridden_urls = {r["foi_page_url"] for r in writer.results if r.get("overridden")}
     filtered = []
     for r in writer.results:
         if url_counts[r["foi_page_url"]] <= 1:
@@ -217,7 +216,7 @@ def retry(input_path, output_path, step_dir):
         "results": [r for r in input_data["results"] if r["public_body_id"] in failed_ids],
     }
 
-    existing_results = read_json(output_path)["results"]
+    existing_results = [r for r in read_json(output_path)["results"] if not r.get("overridden")]
 
     # Process retry subset using a temporary writer
     tmp_output = output_path.with_suffix(".retry.tmp.json")

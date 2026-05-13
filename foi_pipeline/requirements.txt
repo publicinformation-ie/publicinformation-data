@@ -1,5 +1,5 @@
 beautifulsoup4==4.14.3
-jsonschema
+jsonschema==4.26.0
 requests==2.33.1
 truststore==0.10.4
 pytest==9.0.3
