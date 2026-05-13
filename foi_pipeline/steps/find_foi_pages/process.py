@@ -171,25 +171,29 @@ def process(input_data, step_dir, writer):
             })
             writer.append([])
 
-    # Uniqueness pass: remove candidates whose foi_page_url appears more than once
+    # Uniqueness pass: drop automated results that share foi_page_url with another record.
+    # Override records (overridden=True) always win — conflicting automated results are dropped.
     url_counts = Counter(r["foi_page_url"] for r in writer.results)
+    overridden_urls = {r["foi_page_url"] for r in writer.results if r.get("overridden")}
     filtered = []
     for r in writer.results:
-        if url_counts[r["foi_page_url"]] > 1:
+        if url_counts[r["foi_page_url"]] <= 1:
+            filtered.append(r)
+        elif r.get("overridden"):
+            filtered.append(r)  # override always survives a URL collision
+        else:
             append_error(step_dir, {
                 "step": STEP_NAME,
                 "timestamp": datetime.now(timezone.utc).isoformat(),
                 "error_type": "DuplicateFoiPageUrl",
                 "error_message": f"foi_page_url appears for multiple bodies: {r['foi_page_url']}",
                 "context": {
-                    "url": r["official_website_url"],
+                    "url": r.get("official_website_url", ""),
                     "public_body_id": r["public_body_id"],
-                    "name": r["name"],
+                    "name": r.get("name", ""),
                     "foi_page_url": r["foi_page_url"],
                 },
             })
-        else:
-            filtered.append(r)
     writer.results = filtered
 
 
@@ -218,33 +222,38 @@ def retry(input_path, output_path, step_dir):
     # Process retry subset using a temporary writer
     tmp_output = output_path.with_suffix(".retry.tmp.json")
     try:
-        retry_writer = IncrementalWriter(tmp_output, STEP_NAME, force=True)
+        override_path = Path(step_dir) / "override.json"
+        retry_writer = IncrementalWriter(tmp_output, STEP_NAME, force=True,
+                                         override_path=override_path)
         process(retry_input, step_dir, retry_writer)
         new_results = retry_writer.results
     finally:
         if tmp_output.exists():
             tmp_output.unlink()
 
-    # Merge and re-check uniqueness across combined set
+    # Merge and re-check uniqueness across combined set.
+    # Override records survive URL collisions; automated duplicates are dropped.
     all_candidates = existing_results + new_results
     url_counts = Counter(r["foi_page_url"] for r in all_candidates)
     merged = []
     for r in all_candidates:
-        if url_counts[r["foi_page_url"]] > 1:
+        if url_counts[r["foi_page_url"]] <= 1:
+            merged.append(r)
+        elif r.get("overridden"):
+            merged.append(r)
+        else:
             append_error(step_dir, {
                 "step": STEP_NAME,
                 "timestamp": datetime.now(timezone.utc).isoformat(),
                 "error_type": "DuplicateFoiPageUrl",
                 "error_message": f"foi_page_url appears for multiple bodies: {r['foi_page_url']}",
                 "context": {
-                    "url": r["official_website_url"],
+                    "url": r.get("official_website_url", ""),
                     "public_body_id": r["public_body_id"],
-                    "name": r["name"],
+                    "name": r.get("name", ""),
                     "foi_page_url": r["foi_page_url"],
                 },
             })
-        else:
-            merged.append(r)
 
     output = {
         "metadata": {"step": STEP_NAME, "completed_at": datetime.now(timezone.utc).isoformat()},
@@ -266,6 +275,7 @@ def main():
 
     step_dir = Path(__file__).parent
     output_path = Path(args.output)
+    override_path = step_dir / "override.json"
 
     if args.retry:
         retry(args.input, output_path, step_dir)
@@ -277,7 +287,8 @@ def main():
         print(f"Fatal: could not read input: {e}", file=sys.stderr)
         sys.exit(1)
 
-    writer = IncrementalWriter(output_path, STEP_NAME, force=args.force)
+    writer = IncrementalWriter(output_path, STEP_NAME, force=args.force,
+                               override_path=override_path)
 
     if writer.processed_keys:
         print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")
