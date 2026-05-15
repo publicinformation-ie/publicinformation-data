@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 
 from scripts.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
 from scripts.http_utils import fetch, is_safe_url, validate_url_or_raise
+from .domains import find_disclosure_page as domain_find
 
 STEP_NAME = "find_disclosure_pages"
 DISCLOSURE_KEYWORDS = ["disclosure", "log", "request"]
@@ -39,8 +40,10 @@ def process(input_data, step_dir, writer, verbose=False):
         name = item.get("name", "")
         try:
             validate_url_or_raise(url, context=f"disclosure_page_{body_id}")
-            response = fetch("GET", url, allow_redirects=True)
-            disclosure_url = find_disclosure_link(response.text, url) or url
+            disclosure_url = domain_find(name, url)
+            if disclosure_url is None:
+                response = fetch("GET", url, allow_redirects=True)
+                disclosure_url = find_disclosure_link(response.text, url) or url
             if disclosure_url:
                 validate_url_or_raise(disclosure_url, context=f"disclosure_url_{body_id}")
             writer.append([{
