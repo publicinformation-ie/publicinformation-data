@@ -343,3 +343,35 @@ def test_process_multiple_sheets_writes_record_and_warning(requests_mock, tmp_pa
     errors = json.loads((tmp_path / "errors.json").read_text())
     assert len(errors) == 1
     assert errors[0]["error_type"] == "MultipleSheetWarning"
+
+
+# ── process() — CellSerializationWarning ─────────────────────────────────────
+
+def test_process_cell_serialization_warning(requests_mock, tmp_path, make_writer, monkeypatch):
+    """Verify that fallback cells trigger a CellSerializationWarning in errors.json."""
+    import steps.transform_disclosure_files.process as proc_mod
+
+    original_serialise = proc_mod.serialise_cell
+    call_count = {"n": 0}
+
+    def patched_serialise(value):
+        call_count["n"] += 1
+        if call_count["n"] == 1:
+            # Force the first cell to hit the fallback
+            return str(value) + "_fallback", True
+        return original_serialise(value)
+
+    monkeypatch.setattr(proc_mod, "serialise_cell", patched_serialise)
+
+    xlsx_bytes = _make_xlsx([["Header", "Value"], ["row1", "data"]])
+    requests_mock.get("https://assets.gov.ie/log.xlsx", content=xlsx_bytes)
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(XLSX_INPUT, tmp_path, writer)
+
+    # Record is still written despite the fallback
+    assert len(writer.results) == 1
+
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert len(errors) == 1
+    assert errors[0]["error_type"] == "CellSerializationWarning"
+    assert "cells" in errors[0]["context"]
