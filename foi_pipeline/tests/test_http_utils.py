@@ -71,20 +71,22 @@ def test_search_serper_returns_empty_on_bad_status(requests_mock, monkeypatch):
 def test_fetch_sleeps_between_requests(requests_mock, monkeypatch):
     import time
     import scripts.http_utils as hu
-    from scripts.http_utils import DEFAULT_RATE_LIMIT_DELAY
-    # Save original value
-    original_delay = hu.DEFAULT_RATE_LIMIT_DELAY
+
     monkeypatch.setattr(hu, "DEFAULT_RATE_LIMIT_DELAY", 0.05)
-    # Also need to reset the domain tracking
     hu._domain_last_request.clear()
-    hu._domain_request_count.clear()
-    
+
     calls = []
-    real_sleep = time.sleep
     monkeypatch.setattr(time, "sleep", lambda s: calls.append(s))
     requests_mock.get("https://www.gov.ie/", status_code=200)
+
+    # First fetch — no prior request, so delay is 0
     hu.fetch("GET", "https://www.gov.ie/")
-    assert calls == [0.05]
-    
-    # Restore original value
-    monkeypatch.setattr(hu, "DEFAULT_RATE_LIMIT_DELAY", original_delay)
+    assert calls == [0.0]
+
+    calls.clear()
+
+    # Second fetch immediately after — must sleep up to DEFAULT_RATE_LIMIT_DELAY
+    hu.fetch("GET", "https://www.gov.ie/")
+    assert len(calls) == 1
+    assert calls[0] > 0
+    assert calls[0] <= 0.05

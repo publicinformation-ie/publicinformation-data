@@ -3,71 +3,48 @@ from datetime import datetime, timedelta
 
 import pytest
 
-from scripts.http_utils import (
-    DEFAULT_RATE_LIMIT_DELAY,
-    _domain_last_request,
-    _domain_request_count,
-    _RATE_LIMIT_WINDOW,
-    get_rate_limit_delay,
-)
+from scripts.http_utils import DEFAULT_RATE_LIMIT_DELAY, _domain_last_request, get_rate_limit_delay
 
 
 @pytest.fixture(autouse=True)
-def reset_rate_limit_config(monkeypatch):
-    """Reset rate limit config to default for these tests."""
+def reset_rate_limit_state(monkeypatch):
+    """Reset per-domain state and restore default delay (overrides conftest zero_rate_limit)."""
     import scripts.http_utils as hu
     monkeypatch.setattr(hu, "DEFAULT_RATE_LIMIT_DELAY", 0.2)
+    _domain_last_request.clear()
+    yield
+    _domain_last_request.clear()
 
 
 class TestRateLimiting:
-    """Tests for rate limiting functionality."""
+    def test_first_request_to_new_domain_has_no_delay(self):
+        """No previous request means elapsed time is huge — delay must be 0."""
+        delay = get_rate_limit_delay("www.gov.ie")
+        assert delay == 0.0
 
-    def setup_method(self):
-        """Reset state before each test."""
-        _domain_last_request.clear()
-        _domain_request_count.clear()
+    def test_rapid_second_request_is_throttled(self):
+        """A second call immediately after the first should return the full default delay."""
+        _domain_last_request["www.gov.ie"] = datetime.now()
+        delay = get_rate_limit_delay("www.gov.ie")
+        assert abs(delay - DEFAULT_RATE_LIMIT_DELAY) < 0.01
 
-    def test_rate_limit_delay_increases_with_requests(self):
-        """Rate limit delay should increase with repeated requests to same domain."""
+    def test_request_after_sufficient_gap_needs_no_delay(self):
+        """If enough time has already elapsed, no additional sleep is needed."""
+        _domain_last_request["www.gov.ie"] = (
+            datetime.now() - timedelta(seconds=DEFAULT_RATE_LIMIT_DELAY + 1)
+        )
+        delay = get_rate_limit_delay("www.gov.ie")
+        assert delay == 0.0
+
+    def test_delay_never_exceeds_default(self):
+        """Delay is bounded above by DEFAULT_RATE_LIMIT_DELAY regardless of call count."""
         domain = "www.gov.ie"
-
-        # First request - default delay
-        delay1 = get_rate_limit_delay(domain)
-        assert delay1 == DEFAULT_RATE_LIMIT_DELAY
-
-        # Second request - same delay (count=0, then increments to 1)
-        delay2 = get_rate_limit_delay(domain)
-        assert delay2 == DEFAULT_RATE_LIMIT_DELAY
-
-        # Third request - increased delay (count=1)
-        delay3 = get_rate_limit_delay(domain)
-        assert delay3 > delay2
-
-        # Fourth request - even more delay (count=2)
-        delay4 = get_rate_limit_delay(domain)
-        assert delay4 > delay3
-
-    def test_rate_limit_delay_resets_after_window(self):
-        """Rate limit delay should reset after time window."""
-        domain = "www.gov.ie"
-
-        # Make several requests
-        get_rate_limit_delay(domain)
-        get_rate_limit_delay(domain)
-        delay_before = get_rate_limit_delay(domain)
-
-        # Simulate waiting for window to pass
-        _domain_last_request[domain] = datetime.now() - _RATE_LIMIT_WINDOW - timedelta(seconds=1)
-
-        # Next request should have reset delay
-        delay_after = get_rate_limit_delay(domain)
-        assert delay_after == DEFAULT_RATE_LIMIT_DELAY
-
-    def test_rate_limit_delay_capped_at_max(self):
-        """Rate limit delay should not exceed maximum."""
-        domain = "www.gov.ie"
-
-        # Make many requests
-        for _ in range(100):
+        for _ in range(20):
             delay = get_rate_limit_delay(domain)
-            assert delay <= 5.0  # MAX_RATE_LIMIT_DELAY
+            assert delay <= DEFAULT_RATE_LIMIT_DELAY
+
+    def test_different_domains_tracked_independently(self):
+        """Requests to one domain must not affect delay for a different domain."""
+        _domain_last_request["www.gov.ie"] = datetime.now()
+        delay = get_rate_limit_delay("hse.ie")
+        assert delay == 0.0

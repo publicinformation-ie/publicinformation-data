@@ -1,6 +1,7 @@
 import os
 import re
 import sys
+import threading
 import time
 from collections import defaultdict
 from datetime import datetime, timedelta
@@ -14,8 +15,6 @@ truststore.inject_into_ssl()
 # Configuration
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; PublicInformation-FOI-Scraper/1.0)"}
 DEFAULT_RATE_LIMIT_DELAY = 0.2  # seconds between requests
-MIN_RATE_LIMIT_DELAY = 0.1  # minimum delay
-MAX_RATE_LIMIT_DELAY = 5.0  # maximum delay
 _SERPER_ENDPOINT = "https://google.serper.dev/search"
 
 # API key validation pattern (Serper API keys are typically 32-64 char alphanumeric)
@@ -23,8 +22,7 @@ API_KEY_PATTERN = re.compile(r'^[a-zA-Z0-9_-]{32,64}$')
 
 # Rate limiting state
 _domain_last_request = defaultdict(lambda: datetime.min)
-_domain_request_count = defaultdict(int)
-_RATE_LIMIT_WINDOW = timedelta(seconds=60)
+_rate_limit_lock = threading.Lock()
 
 # Allowed URL schemes for security
 ALLOWED_SCHEMES = {'http', 'https'}
@@ -127,30 +125,11 @@ def is_safe_url(url):
 
 
 def get_rate_limit_delay(domain):
-    """
-    Calculate adaptive rate limit delay for a domain.
-
-    Uses token bucket algorithm with per-domain tracking.
-    """
-    now = datetime.now()
-    last = _domain_last_request[domain]
-    elapsed = (now - last).total_seconds()
-
-    # If we've waited long enough, reset count
-    if elapsed > _RATE_LIMIT_WINDOW.total_seconds():
-        _domain_request_count[domain] = 0
+    with _rate_limit_lock:
+        now = datetime.now()
+        elapsed = (now - _domain_last_request[domain]).total_seconds()
         _domain_last_request[domain] = now
-        return DEFAULT_RATE_LIMIT_DELAY
-
-    # Calculate delay based on request count
-    count = _domain_request_count[domain]
-    delay = min(DEFAULT_RATE_LIMIT_DELAY * (2 ** count), MAX_RATE_LIMIT_DELAY)
-    delay = max(delay, MIN_RATE_LIMIT_DELAY)
-
-    _domain_last_request[domain] = now
-    _domain_request_count[domain] = count + 1
-
-    return delay
+    return max(0.0, DEFAULT_RATE_LIMIT_DELAY - elapsed)
 
 
 def validate_api_key(api_key):
