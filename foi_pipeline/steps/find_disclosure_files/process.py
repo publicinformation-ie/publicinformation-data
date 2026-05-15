@@ -55,7 +55,7 @@ def find_file_links(html, base_url, follow_year_pages=True):
     return files
 
 
-def process(input_data, step_dir, writer):
+def process(input_data, step_dir, writer, verbose=False):
     errors_path = Path(step_dir) / "errors.json"
     write_json(errors_path, [])
 
@@ -86,6 +86,8 @@ def process(input_data, step_dir, writer):
                 "context": {"url": url, "public_body_id": body_id, "name": name},
             })
             writer.append([])
+        if verbose:
+            print(".", end="", flush=True)
 
 
 def main():
@@ -93,6 +95,7 @@ def main():
     parser.add_argument("--input", required=True)
     parser.add_argument("--output", required=True)
     parser.add_argument("--force", action="store_true")
+    parser.add_argument("--verbose", action="store_true")
     args = parser.parse_args()
 
     step_dir = Path(__file__).parent
@@ -111,9 +114,11 @@ def main():
     if writer.processed_keys:
         print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")
 
-    process(input_data, step_dir, writer)
+    process(input_data, step_dir, writer, verbose=args.verbose)
     count = writer.finalize()
     write_status(step_dir, count)
+    if args.verbose:
+        print()
     print(f"Wrote {count} records to {output_path}")
 
 

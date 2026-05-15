@@ -21,6 +21,7 @@ def main():
     parser.add_argument("--force", action="store_true", help="Re-run all steps regardless of staleness")
     parser.add_argument("--from", dest="from_step", metavar="STEP", help="Resume from this step; earlier steps are skipped")
     parser.add_argument("--stop-on-error", action="store_true", help="Halt pipeline on first non-zero exit code")
+    parser.add_argument("--verbose", action="store_true", help="Pass --verbose to each step for per-item progress dots")
     args = parser.parse_args()
 
     pipeline_dir = Path(args.pipeline_dir)
@@ -56,6 +57,8 @@ def main():
         ]
         if args.force:
             cmd.append("--force")
+        if args.verbose:
+            cmd.append("--verbose")
 
         env = {**os.environ, "PYTHONPATH": str(pipeline_dir)}
         result = subprocess.run(cmd, env=env)
