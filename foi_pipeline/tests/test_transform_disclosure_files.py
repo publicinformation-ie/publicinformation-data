@@ -8,6 +8,9 @@ import xlwt
 
 from steps.transform_disclosure_files.process import (
     serialise_cell,
+    _extract_xlsx,
+    _extract_xls,
+    process,
     STEP_NAME,
 )
 
