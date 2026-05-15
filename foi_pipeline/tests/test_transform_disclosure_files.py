@@ -295,3 +295,51 @@ def test_process_skips_already_processed(requests_mock, tmp_path, make_writer):
     process(XLSX_INPUT, tmp_path, writer)
     assert requests_mock.call_count == 0
     assert len(writer.results) == 1
+
+
+# ── process() — error handling ────────────────────────────────────────────────
+
+def test_process_download_failure_logs_error(requests_mock, tmp_path, make_writer):
+    import requests as req
+    requests_mock.get("https://assets.gov.ie/log.xlsx",
+                      exc=req.exceptions.ConnectionError("timeout"))
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(XLSX_INPUT, tmp_path, writer)
+    assert writer.results == []  # no record written
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert len(errors) == 1
+    assert errors[0]["step"] == STEP_NAME
+    assert errors[0]["error_type"] == "ConnectionError"
+
+
+def test_process_parse_failure_logs_error(requests_mock, tmp_path, make_writer):
+    requests_mock.get("https://assets.gov.ie/log.xlsx", content=b"not-a-valid-xlsx")
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(XLSX_INPUT, tmp_path, writer)
+    assert writer.results == []
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert len(errors) == 1
+    assert errors[0]["step"] == STEP_NAME
+
+
+def test_process_download_failure_does_not_mark_processed(requests_mock, tmp_path, make_writer):
+    """After a failure, the file_url is NOT marked processed (allows retry)."""
+    import requests as req
+    requests_mock.get("https://assets.gov.ie/log.xlsx",
+                      exc=req.exceptions.ConnectionError("x"))
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(XLSX_INPUT, tmp_path, writer)
+    # Error does not mark the file_url as processed — allows retry on next run
+    assert not writer.is_processed("https://assets.gov.ie/log.xlsx")
+
+
+def test_process_multiple_sheets_writes_record_and_warning(requests_mock, tmp_path, make_writer):
+    xlsx_bytes = _make_xlsx([["Col A"]], extra_sheets=2)
+    requests_mock.get("https://assets.gov.ie/log.xlsx", content=xlsx_bytes)
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(XLSX_INPUT, tmp_path, writer)
+    assert len(writer.results) == 1  # record still written
+    assert writer.results[0]["rows"][0] == ["Col A"]
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert len(errors) == 1
+    assert errors[0]["error_type"] == "MultipleSheetWarning"
