@@ -9,7 +9,8 @@
     "find_disclosure_pages",
     "find_disclosure_files",
     "transform_disclosure_files",
-    "extract_disclosures",
+    "extract_disclosures_detect_header_row",
+    "extract_disclosures_canonicalize",
     "export_status"
   ]
 }
