@@ -52,9 +52,43 @@ def _extract_xlsx(file_bytes):
     return sheet_name, rows, fallback_cells, has_multiple_sheets
 
 
+def _xlrd_cell_to_python(cell, datemode):
+    """Convert an xlrd Cell to a Python value suitable for serialise_cell."""
+    import xlrd
+    if cell.ctype in (xlrd.XL_CELL_EMPTY, xlrd.XL_CELL_BLANK):
+        return None
+    if cell.ctype == xlrd.XL_CELL_TEXT:
+        return cell.value
+    if cell.ctype == xlrd.XL_CELL_NUMBER:
+        return cell.value  # always float from xlrd
+    if cell.ctype == xlrd.XL_CELL_DATE:
+        return datetime.datetime(*xlrd.xldate_as_tuple(cell.value, datemode))
+    if cell.ctype == xlrd.XL_CELL_BOOLEAN:
+        return bool(cell.value)
+    return cell.value  # XL_CELL_ERROR — hits str() fallback in serialise_cell
+
+
 def _extract_xls(file_bytes):
-    """Parse XLS bytes. Placeholder for future implementation."""
-    pass
+    """Parse XLS bytes. Returns (sheet_name, rows, fallback_cells, has_multiple_sheets)."""
+    import xlrd
+    wb = xlrd.open_workbook(file_contents=file_bytes)
+    has_multiple_sheets = wb.nsheets > 1
+    ws = wb.sheets()[0]
+    sheet_name = ws.name
+    rows = []
+    fallback_cells = []
+    for row_idx in range(ws.nrows):
+        serialised_row = []
+        for col_idx in range(ws.ncols):
+            raw = _xlrd_cell_to_python(ws.cell(row_idx, col_idx), wb.datemode)
+            val, used_fallback = serialise_cell(raw)
+            if used_fallback:
+                fallback_cells.append(
+                    (row_idx, col_idx, type(raw).__name__, repr(raw)[:50])
+                )
+            serialised_row.append(val)
+        rows.append(serialised_row)
+    return sheet_name, rows, fallback_cells, has_multiple_sheets
 
 
 def process(input_path, output_path):

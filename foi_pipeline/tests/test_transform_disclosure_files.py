@@ -146,3 +146,38 @@ def test_extract_xlsx_fallback_cell_collected():
     _, rows, fallback_cells, _ = _extract_xlsx(xlsx_bytes)
     # openpyxl loads Decimal-written cells as floats — either way, no fallback
     assert fallback_cells == []
+
+
+# ── _extract_xls ──────────────────────────────────────────────────────────────
+
+def test_extract_xls_single_sheet_rows():
+    xls_bytes = _make_xls([["Our Reference", "Date"], ["16/002", "2016-01-05"]])
+    sheet_name, rows, fallback_cells, has_multiple_sheets = _extract_xls(xls_bytes)
+    assert sheet_name == "Sheet1"
+    assert rows[0] == ["Our Reference", "Date"]
+    assert rows[1] == ["16/002", "2016-01-05"]
+    assert fallback_cells == []
+    assert has_multiple_sheets is False
+
+
+def test_extract_xls_multiple_sheets_flag():
+    xls_bytes = _make_xls([["a", "b"]], extra_sheets=2)
+    _, rows, _, has_multiple_sheets = _extract_xls(xls_bytes)
+    assert has_multiple_sheets is True
+    assert rows[0] == ["a", "b"]
+
+
+def test_extract_xls_numeric_cell():
+    xls_bytes = _make_xls([[42.0, 3.14]])
+    _, rows, fallback_cells, _ = _extract_xls(xls_bytes)
+    assert rows[0][0] == 42.0
+    assert abs(rows[0][1] - 3.14) < 1e-9
+    assert fallback_cells == []
+
+
+def test_extract_xls_empty_cell_is_none():
+    # xlwt writes an empty string for missing cells; xlrd reads blank cells as empty str
+    # Write one cell and leave the rest of the row empty
+    xls_bytes = _make_xls([["only-col-a"]])
+    _, rows, _, _ = _extract_xls(xls_bytes)
+    assert rows[0][0] == "only-col-a"
