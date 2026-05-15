@@ -146,6 +146,7 @@ def process(input_data, step_dir, writer, verbose=False):
                 "error_message": str(e),
                 "context": {"file_url": file_url},
             })
+            writer.processed_keys.add(file_url)
             writer.append([])
 
         if verbose:
