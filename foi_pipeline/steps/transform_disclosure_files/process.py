@@ -91,6 +91,62 @@ def _extract_xls(file_bytes):
     return sheet_name, rows, fallback_cells, has_multiple_sheets
 
 
-def process(input_path, output_path):
-    """Placeholder for main process function."""
-    pass
+def process(input_data, step_dir, writer, verbose=False):
+    from datetime import datetime, timezone
+    errors_path = Path(step_dir) / "errors.json"
+    write_json(errors_path, [])
+
+    for item in input_data["results"]:
+        file_url = item["file_url"]
+        if writer.is_processed(file_url):
+            continue
+
+        file_type = item["file_type"]
+
+        if file_type == "pdf":
+            writer.append([{**item, "sheet_name": None, "rows": None}])
+            if verbose:
+                print(".", end="", flush=True)
+            continue
+
+        try:
+            response = fetch("GET", file_url, allow_redirects=True)
+            file_bytes = response.content
+
+            if file_type == "xlsx":
+                sheet_name, rows, fallback_cells, has_multiple_sheets = _extract_xlsx(file_bytes)
+            else:
+                sheet_name, rows, fallback_cells, has_multiple_sheets = _extract_xls(file_bytes)
+
+            if has_multiple_sheets:
+                append_error(step_dir, {
+                    "step": STEP_NAME,
+                    "timestamp": datetime.now(timezone.utc).isoformat(),
+                    "error_type": "MultipleSheetWarning",
+                    "error_message": "File has multiple sheets; only the first sheet was extracted.",
+                    "context": {"file_url": file_url},
+                })
+
+            if fallback_cells:
+                append_error(step_dir, {
+                    "step": STEP_NAME,
+                    "timestamp": datetime.now(timezone.utc).isoformat(),
+                    "error_type": "CellSerializationWarning",
+                    "error_message": f"{len(fallback_cells)} cell(s) used str() fallback.",
+                    "context": {"file_url": file_url, "cells": fallback_cells},
+                })
+
+            writer.append([{**item, "sheet_name": sheet_name, "rows": rows}])
+
+        except Exception as e:
+            append_error(step_dir, {
+                "step": STEP_NAME,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "context": {"file_url": file_url},
+            })
+            writer.append([])
+
+        if verbose:
+            print(".", end="", flush=True)

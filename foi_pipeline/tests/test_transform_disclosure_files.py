@@ -181,3 +181,117 @@ def test_extract_xls_empty_cell_is_none():
     xls_bytes = _make_xls([["only-col-a"]])
     _, rows, _, _ = _extract_xls(xls_bytes)
     assert rows[0][0] == "only-col-a"
+
+
+# ── process() fixtures ────────────────────────────────────────────────────────
+
+BASE_ITEM = {
+    "public_body_id": 1001,
+    "name": "Dept A",
+    "disclosure_page_url": "https://dept-a.ie/disclosures/",
+}
+
+PDF_INPUT = {
+    "metadata": {"step": "find_disclosure_files"},
+    "results": [
+        {**BASE_ITEM, "file_url": "https://assets.gov.ie/report.pdf", "file_type": "pdf"},
+    ],
+}
+
+XLSX_INPUT = {
+    "metadata": {"step": "find_disclosure_files"},
+    "results": [
+        {**BASE_ITEM, "file_url": "https://assets.gov.ie/log.xlsx", "file_type": "xlsx"},
+    ],
+}
+
+XLS_INPUT = {
+    "metadata": {"step": "find_disclosure_files"},
+    "results": [
+        {**BASE_ITEM, "file_url": "https://assets.gov.ie/log.xls", "file_type": "xls"},
+    ],
+}
+
+
+# ── process() — pass-through ──────────────────────────────────────────────────
+
+def test_process_pdf_passthrough(tmp_path, make_writer):
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(PDF_INPUT, tmp_path, writer)
+    assert len(writer.results) == 1
+    r = writer.results[0]
+    assert r["file_url"] == "https://assets.gov.ie/report.pdf"
+    assert r["sheet_name"] is None
+    assert r["rows"] is None
+
+
+def test_process_pdf_no_errors_written(tmp_path, make_writer):
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(PDF_INPUT, tmp_path, writer)
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert errors == []
+
+
+# ── process() — XLSX happy path ───────────────────────────────────────────────
+
+def test_process_xlsx_extracts_rows(requests_mock, tmp_path, make_writer):
+    xlsx_bytes = _make_xlsx([["Col A", "Col B"], ["val1", "val2"]])
+    requests_mock.get("https://assets.gov.ie/log.xlsx", content=xlsx_bytes)
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(XLSX_INPUT, tmp_path, writer)
+    assert len(writer.results) == 1
+    r = writer.results[0]
+    assert r["rows"][0] == ["Col A", "Col B"]
+    assert r["rows"][1] == ["val1", "val2"]
+    assert r["sheet_name"] == "Sheet1"
+
+
+def test_process_xlsx_no_errors_on_clean_file(requests_mock, tmp_path, make_writer):
+    xlsx_bytes = _make_xlsx([["a", "b"]])
+    requests_mock.get("https://assets.gov.ie/log.xlsx", content=xlsx_bytes)
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(XLSX_INPUT, tmp_path, writer)
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert errors == []
+
+
+# ── process() — XLS happy path ────────────────────────────────────────────────
+
+def test_process_xls_extracts_rows(requests_mock, tmp_path, make_writer):
+    xls_bytes = _make_xls([["Ref", "Detail"], ["16/001", "Request about X"]])
+    requests_mock.get("https://assets.gov.ie/log.xls", content=xls_bytes)
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(XLS_INPUT, tmp_path, writer)
+    assert len(writer.results) == 1
+    r = writer.results[0]
+    assert r["rows"][0] == ["Ref", "Detail"]
+    assert r["sheet_name"] == "Sheet1"
+
+
+def test_process_output_has_required_fields(requests_mock, tmp_path, make_writer):
+    xlsx_bytes = _make_xlsx([["h1"]])
+    requests_mock.get("https://assets.gov.ie/log.xlsx", content=xlsx_bytes)
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(XLSX_INPUT, tmp_path, writer)
+    r = writer.results[0]
+    assert {"public_body_id", "file_url", "file_type", "sheet_name", "rows"} <= r.keys()
+
+
+def test_process_skips_already_processed(requests_mock, tmp_path, make_writer):
+    from scripts.file_utils import write_json, IncrementalWriter
+    partial = {
+        "metadata": {"step": STEP_NAME},
+        "results": [{
+            **BASE_ITEM,
+            "file_url": "https://assets.gov.ie/log.xlsx",
+            "file_type": "xlsx",
+            "sheet_name": "Sheet1",
+            "rows": [["already", "processed"]],
+        }],
+    }
+    write_json(tmp_path / "output.json", partial)
+    writer = IncrementalWriter(tmp_path / "output.json", STEP_NAME,
+                               key_field="file_url", force=False)
+    process(XLSX_INPUT, tmp_path, writer)
+    assert requests_mock.call_count == 0
+    assert len(writer.results) == 1
