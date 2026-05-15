@@ -73,7 +73,7 @@ def _normalise(header: str) -> str:
     return re.sub(r'[\s_]+', ' ', header.strip().lower())
 
 
-def canonicalize_header(header) -> Optional[str]:
+def canonicalize_header(header: str | None) -> Optional[str]:
     """Return the canonical key for a header string, or None if unrecognised."""
     if not header or not str(header).strip():
         return None
@@ -86,6 +86,6 @@ def canonicalize_header(header) -> Optional[str]:
     return None
 
 
-def canonicalize_headers(headers: list) -> dict[str, Optional[str]]:
+def canonicalize_headers(headers: list[str]) -> dict[str, Optional[str]]:
     """Map a list of header strings to canonical keys."""
     return {h: canonicalize_header(h) for h in headers}
