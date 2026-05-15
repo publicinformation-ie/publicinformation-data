@@ -281,6 +281,24 @@ class TestIncrementalWriterOverride:
         assert "Override" in out
         assert "99" in out
 
+    def test_override_replaces_existing_output_record(self, tmp_path):
+        output_path = tmp_path / "output.json"
+        write_json(output_path, {
+            "metadata": {"step": "test_step"},
+            "results": [
+                {"public_body_id": 99, "name": "Stale Name", "foi_page_url": "http://old.example.com", "disclosure_page_url": "http://old.example.com/disclosure"},
+            ],
+        })
+        override_path = tmp_path / "override.json"
+        write_json(override_path, [
+            {"public_body_id": 99, "name": "Corrected Name", "foi_page_url": "http://new.example.com", "disclosure_page_url": "http://new.example.com/disclosure", "overridden": True},
+        ])
+        w = IncrementalWriter(output_path, "test_step", override_path=override_path)
+        matching = [r for r in w.results if r["public_body_id"] == 99]
+        assert len(matching) == 1
+        assert matching[0]["name"] == "Corrected Name"
+        assert matching[0].get("overridden") is True
+
     def test_override_missing_file_is_ignored(self, tmp_path):
         w = IncrementalWriter(tmp_path / "output.json", "test_step",
                               override_path=tmp_path / "nonexistent.json")
@@ -311,3 +329,83 @@ class TestIncrementalWriterOverride:
         write_json(override_path, [{"public_body_id": 99}])  # missing required "name"
         with pytest.raises(ValueError, match="99"):
             IncrementalWriter(tmp_path / "output.json", "test_step", override_path=override_path)
+
+
+class TestIncrementalWriterDirtyPropagation:
+    _RECORD = {"public_body_id": 99, "name": "Body", "foi_page_url": "http://x.com", "disclosure_page_url": "http://x.com/d"}
+
+    def _output_with(self, tmp_path, records):
+        p = tmp_path / "output.json"
+        write_json(p, {"metadata": {"step": "test_step"}, "results": records})
+        return p
+
+    def test_evicts_record_matching_dirty_id(self, tmp_path):
+        output_path = self._output_with(tmp_path, [self._RECORD])
+        dirty_path = tmp_path / "dirty_ids.json"
+        write_json(dirty_path, [99])
+        w = IncrementalWriter(output_path, "test_step", upstream_dirty_path=dirty_path)
+        assert 99 not in w.processed_keys
+        assert all(r["public_body_id"] != 99 for r in w.results)
+
+    def test_eviction_not_processed_so_step_reruns(self, tmp_path):
+        output_path = self._output_with(tmp_path, [self._RECORD])
+        dirty_path = tmp_path / "dirty_ids.json"
+        write_json(dirty_path, [99])
+        w = IncrementalWriter(output_path, "test_step", upstream_dirty_path=dirty_path)
+        assert not w.is_processed(99)
+
+    def test_evicts_by_public_body_id_when_key_is_file_url(self, tmp_path):
+        record = {**self._RECORD, "file_url": "http://x.com/file.pdf", "file_type": "pdf"}
+        output_path = self._output_with(tmp_path, [record])
+        dirty_path = tmp_path / "dirty_ids.json"
+        write_json(dirty_path, [99])
+        w = IncrementalWriter(output_path, "test_step", key_field="file_url",
+                              upstream_dirty_path=dirty_path)
+        assert "http://x.com/file.pdf" not in w.processed_keys
+        assert w.results == []
+
+    def test_finalize_writes_dirty_ids_json_after_eviction(self, tmp_path):
+        output_path = self._output_with(tmp_path, [self._RECORD])
+        dirty_path = tmp_path / "dirty_ids.json"
+        write_json(dirty_path, [99])
+        w = IncrementalWriter(output_path, "test_step", upstream_dirty_path=dirty_path)
+        w.finalize()
+        written = read_json(tmp_path / "dirty_ids.json")
+        assert 99 in written
+
+    def test_finalize_writes_empty_dirty_ids_when_no_eviction(self, tmp_path):
+        output_path = self._output_with(tmp_path, [self._RECORD])
+        w = IncrementalWriter(output_path, "test_step")
+        w.finalize()
+        written = read_json(tmp_path / "dirty_ids.json")
+        assert written == []
+
+    def test_override_marks_dirty_when_data_changes(self, tmp_path):
+        output_path = self._output_with(tmp_path, [self._RECORD])
+        changed = {**self._RECORD, "disclosure_page_url": "http://x.com/new"}
+        override_path = tmp_path / "override.json"
+        write_json(override_path, [changed])
+        w = IncrementalWriter(output_path, "test_step", override_path=override_path)
+        w.finalize()
+        assert 99 in read_json(tmp_path / "dirty_ids.json")
+
+    def test_override_does_not_mark_dirty_when_data_unchanged(self, tmp_path):
+        output_path = self._output_with(tmp_path, [self._RECORD])
+        override_path = tmp_path / "override.json"
+        write_json(override_path, [self._RECORD])  # identical record
+        w = IncrementalWriter(output_path, "test_step", override_path=override_path)
+        w.finalize()
+        assert read_json(tmp_path / "dirty_ids.json") == []
+
+    def test_empty_upstream_dirty_file_is_ignored(self, tmp_path):
+        output_path = self._output_with(tmp_path, [self._RECORD])
+        dirty_path = tmp_path / "dirty_ids.json"
+        write_json(dirty_path, [])
+        w = IncrementalWriter(output_path, "test_step", upstream_dirty_path=dirty_path)
+        assert 99 in w.processed_keys  # nothing evicted
+
+    def test_nonexistent_upstream_dirty_file_is_ignored(self, tmp_path):
+        output_path = self._output_with(tmp_path, [self._RECORD])
+        w = IncrementalWriter(output_path, "test_step",
+                              upstream_dirty_path=tmp_path / "nonexistent.json")
+        assert 99 in w.processed_keys

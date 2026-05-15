@@ -9,3 +9,4 @@ docs/
 **/output.json
 **/errors.json
 **/pipeline-status.json
+**/dirty_ids.json

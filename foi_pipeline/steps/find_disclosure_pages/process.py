@@ -81,7 +81,8 @@ def main():
         sys.exit(1)
 
     writer = IncrementalWriter(output_path, STEP_NAME, force=args.force,
-                               override_path=override_path)
+                               override_path=override_path,
+                               upstream_dirty_path=Path(args.input).parent / "dirty_ids.json")
 
     if writer.processed_keys:
         print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")

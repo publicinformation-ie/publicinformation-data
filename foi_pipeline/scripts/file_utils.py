@@ -20,12 +20,13 @@ def write_json(path, data):
 
 class IncrementalWriter:
     def __init__(self, output_path, step_name, key_field="public_body_id",
-                 force=False, override_path=None):
+                 force=False, override_path=None, upstream_dirty_path=None):
         self.output_path = Path(output_path)
         self.step_name = step_name
         self.key_field = key_field
         self.results = []
         self.processed_keys = set()
+        self.dirty_body_ids = set()
 
         if not force and self.output_path.exists():
             try:
@@ -36,8 +37,29 @@ class IncrementalWriter:
                 self.results = []
                 self.processed_keys = set()
 
+        if upstream_dirty_path and Path(upstream_dirty_path).exists():
+            self._evict_upstream_dirty(Path(upstream_dirty_path))
+
         if override_path and Path(override_path).exists():
             self._load_overrides(Path(override_path))
+
+    def _evict_upstream_dirty(self, dirty_path):
+        dirty_ids = set(read_json(dirty_path))
+        if not dirty_ids:
+            return
+        to_evict = [r for r in self.results if r.get("public_body_id") in dirty_ids]
+        if not to_evict:
+            return
+        evicted_body_ids = {r["public_body_id"] for r in to_evict if "public_body_id" in r}
+        evicted_keys = {r[self.key_field] for r in to_evict if self.key_field in r}
+        self.results = [r for r in self.results if r.get("public_body_id") not in dirty_ids]
+        self.processed_keys -= evicted_keys
+        self.dirty_body_ids.update(evicted_body_ids)
+        print(
+            f"Dirty: evicted {len(to_evict)} record(s) for "
+            f"{len(evicted_body_ids)} body ID(s): "
+            f"{', '.join(str(k) for k in sorted(evicted_body_ids))}"
+        )
 
     def _load_overrides(self, override_path):
         overrides = read_json(override_path)
@@ -52,20 +74,31 @@ class IncrementalWriter:
                     item_schema = props[collection_key]["items"]
                     break
 
+        pre_override_keys = set(self.processed_keys)
         loaded_ids = []
         for record in overrides:
             key = record.get(self.key_field)
-            if key is not None and key not in self.processed_keys:
-                if item_schema is not None:
-                    try:
-                        jsonschema.validate(record, item_schema)
-                    except jsonschema.ValidationError as e:
-                        raise ValueError(
-                            f"Override record {self.key_field}={key} failed schema validation: {e.message}"
-                        ) from e
-                self.results.append(record)
-                self.processed_keys.add(key)
-                loaded_ids.append(key)
+            if key is None:
+                continue
+            if key in self.processed_keys and key not in pre_override_keys:
+                continue  # duplicate in override file — first entry wins
+            if item_schema is not None:
+                try:
+                    jsonschema.validate(record, item_schema)
+                except jsonschema.ValidationError as e:
+                    raise ValueError(
+                        f"Override record {self.key_field}={key} failed schema validation: {e.message}"
+                    ) from e
+            if key in pre_override_keys:
+                existing = next((r for r in self.results if r.get(self.key_field) == key), None)
+                self.results = [r for r in self.results if r.get(self.key_field) != key]
+                if existing != record:
+                    body_id = record.get("public_body_id")
+                    if body_id is not None:
+                        self.dirty_body_ids.add(body_id)
+            self.results.append(record)
+            self.processed_keys.add(key)
+            loaded_ids.append(key)
 
         if loaded_ids:
             print(
@@ -98,6 +131,7 @@ class IncrementalWriter:
                 "results": self.results,
             },
         )
+        write_json(self.output_path.parent / "dirty_ids.json", sorted(self.dirty_body_ids))
         print()
         return len(self.results)
 
