@@ -74,3 +74,49 @@ def test_resume_skips_already_processed_body(requests_mock, tmp_path):
     process(INPUT, tmp_path, writer)
     dept_a_calls = [r for r in requests_mock.request_history if "dept-a.ie" in r.url]
     assert len(dept_a_calls) == 0
+
+
+DISCLOSURE_URL = (
+    "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/"
+    "collections/freedom-of-information-disclosure-logs/"
+)
+
+INPUT_GOV_IE = {
+    "metadata": {"step": "find_foi_pages", "completed_at": "2026-05-04T00:00:00+00:00"},
+    "results": [
+        {
+            "public_body_id": 2001,
+            "name": "Department of Agriculture, Food and the Marine",
+            "foi_page_url": "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/",
+            "source_method": "crawl",
+        }
+    ],
+}
+
+
+def test_gov_ie_uses_domain_handler_not_crawl(requests_mock, tmp_path, make_writer, monkeypatch):
+    monkeypatch.setattr(
+        "steps.find_disclosure_pages.domains.search_serper",
+        lambda q: [{"link": DISCLOSURE_URL}],
+    )
+    writer = make_writer(STEP_NAME)
+    process(INPUT_GOV_IE, tmp_path, writer)
+    result = next(r for r in writer.results if r["public_body_id"] == 2001)
+    assert result["disclosure_page_url"] == DISCLOSURE_URL
+    gov_ie_crawl_calls = [r for r in requests_mock.request_history if "gov.ie" in r.url]
+    assert gov_ie_crawl_calls == [], "gov.ie FOI page must not be crawled when domain handler returns a result"
+
+
+def test_gov_ie_falls_back_to_crawl_when_domain_handler_returns_none(requests_mock, tmp_path, make_writer, monkeypatch):
+    monkeypatch.setattr(
+        "steps.find_disclosure_pages.domains.search_serper",
+        lambda q: [],
+    )
+    requests_mock.get(
+        "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/",
+        text='<html><body><a href="/collections/foi-disclosure-log/">Disclosure Log</a></body></html>',
+    )
+    writer = make_writer(STEP_NAME)
+    process(INPUT_GOV_IE, tmp_path, writer)
+    result = next(r for r in writer.results if r["public_body_id"] == 2001)
+    assert "collections/foi-disclosure-log" in result["disclosure_page_url"]
