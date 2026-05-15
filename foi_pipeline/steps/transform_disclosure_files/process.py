@@ -33,7 +33,10 @@ def _extract_xlsx(file_bytes):
     """Parse XLSX bytes. Returns (sheet_name, rows, fallback_cells, has_multiple_sheets)."""
     import openpyxl
     wb = openpyxl.load_workbook(io.BytesIO(file_bytes), read_only=True, data_only=True)
-    has_multiple_sheets = len(wb.sheetnames) > 1
+    has_multiple_sheets = any(
+        any(v is not None for row in ws.iter_rows(values_only=True) for v in row)
+        for ws in wb.worksheets[1:]
+    )
     ws = wb.worksheets[0]
     sheet_name = ws.title
     rows = []
@@ -72,7 +75,7 @@ def _extract_xls(file_bytes):
     """Parse XLS bytes. Returns (sheet_name, rows, fallback_cells, has_multiple_sheets)."""
     import xlrd
     wb = xlrd.open_workbook(file_contents=file_bytes)
-    has_multiple_sheets = wb.nsheets > 1
+    has_multiple_sheets = any(ws.nrows > 0 for ws in wb.sheets()[1:])
     ws = wb.sheets()[0]
     sheet_name = ws.name
     rows = []

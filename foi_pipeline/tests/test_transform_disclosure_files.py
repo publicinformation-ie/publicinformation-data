@@ -17,7 +17,7 @@ from steps.transform_disclosure_files.process import (
 
 # ── helpers ──────────────────────────────────────────────────────────────────
 
-def _make_xlsx(rows, sheet_name="Sheet1", extra_sheets=0):
+def _make_xlsx(rows, sheet_name="Sheet1", extra_sheets=0, extra_sheet_rows=None):
     """Return bytes of an XLSX workbook with one (or more) sheets."""
     wb = openpyxl.Workbook()
     ws = wb.active
@@ -25,13 +25,16 @@ def _make_xlsx(rows, sheet_name="Sheet1", extra_sheets=0):
     for row in rows:
         ws.append(row)
     for i in range(extra_sheets):
-        wb.create_sheet(f"Extra{i + 1}")
+        extra_ws = wb.create_sheet(f"Extra{i + 1}")
+        if extra_sheet_rows:
+            for row in extra_sheet_rows:
+                extra_ws.append(row)
     buf = io.BytesIO()
     wb.save(buf)
     return buf.getvalue()
 
 
-def _make_xls(rows, sheet_name="Sheet1", extra_sheets=0):
+def _make_xls(rows, sheet_name="Sheet1", extra_sheets=0, extra_sheet_rows=None):
     """Return bytes of an XLS workbook with one (or more) sheets."""
     wb = xlwt.Workbook()
     ws = wb.add_sheet(sheet_name)
@@ -39,7 +42,11 @@ def _make_xls(rows, sheet_name="Sheet1", extra_sheets=0):
         for c_idx, val in enumerate(row):
             ws.write(r_idx, c_idx, val)
     for i in range(extra_sheets):
-        wb.add_sheet(f"Extra{i + 1}")
+        extra_ws = wb.add_sheet(f"Extra{i + 1}")
+        if extra_sheet_rows:
+            for r_idx, row in enumerate(extra_sheet_rows):
+                for c_idx, val in enumerate(row):
+                    extra_ws.write(r_idx, c_idx, val)
     buf = io.BytesIO()
     wb.save(buf)
     return buf.getvalue()
@@ -120,10 +127,18 @@ def test_extract_xlsx_single_sheet_rows():
 
 
 def test_extract_xlsx_multiple_sheets_flag():
-    xlsx_bytes = _make_xlsx([["a", "b"]], extra_sheets=2)
+    xlsx_bytes = _make_xlsx([["a", "b"]], extra_sheets=2, extra_sheet_rows=[["c", "d"]])
     _, rows, _, has_multiple_sheets = _extract_xlsx(xlsx_bytes)
     assert has_multiple_sheets is True
     assert rows[0] == ["a", "b"]  # still got data from first sheet
+
+
+def test_extract_xlsx_empty_extra_sheets_not_counted():
+    # Sheets with no content should not trigger the multiple-sheets warning
+    xlsx_bytes = _make_xlsx([["a", "b"]], extra_sheets=2)
+    _, rows, _, has_multiple_sheets = _extract_xlsx(xlsx_bytes)
+    assert has_multiple_sheets is False
+    assert rows[0] == ["a", "b"]
 
 
 def test_extract_xlsx_datetime_cell_serialised():
@@ -161,9 +176,17 @@ def test_extract_xls_single_sheet_rows():
 
 
 def test_extract_xls_multiple_sheets_flag():
-    xls_bytes = _make_xls([["a", "b"]], extra_sheets=2)
+    xls_bytes = _make_xls([["a", "b"]], extra_sheets=2, extra_sheet_rows=[["c", "d"]])
     _, rows, _, has_multiple_sheets = _extract_xls(xls_bytes)
     assert has_multiple_sheets is True
+    assert rows[0] == ["a", "b"]
+
+
+def test_extract_xls_empty_extra_sheets_not_counted():
+    # Sheets with no content should not trigger the multiple-sheets warning
+    xls_bytes = _make_xls([["a", "b"]], extra_sheets=2)
+    _, rows, _, has_multiple_sheets = _extract_xls(xls_bytes)
+    assert has_multiple_sheets is False
     assert rows[0] == ["a", "b"]
 
 
@@ -334,7 +357,7 @@ def test_process_download_failure_does_not_mark_processed(requests_mock, tmp_pat
 
 
 def test_process_multiple_sheets_writes_record_and_warning(requests_mock, tmp_path, make_writer):
-    xlsx_bytes = _make_xlsx([["Col A"]], extra_sheets=2)
+    xlsx_bytes = _make_xlsx([["Col A"]], extra_sheets=2, extra_sheet_rows=[["Col B"]])
     requests_mock.get("https://assets.gov.ie/log.xlsx", content=xlsx_bytes)
     writer = make_writer(STEP_NAME, key_field="file_url")
     process(XLSX_INPUT, tmp_path, writer)
