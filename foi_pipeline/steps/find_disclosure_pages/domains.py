@@ -19,7 +19,7 @@ def _find_gov_ie(name: str, foi_url: str) -> str | None:
             continue
         try:
             validate_url_or_raise(link, context=f"gov_ie_serper_{name}")
-        except Exception:
+        except ValueError:
             continue
         return link
     return None
