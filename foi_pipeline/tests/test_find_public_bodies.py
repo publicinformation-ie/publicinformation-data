@@ -125,6 +125,55 @@ def test_scrape_resets_errors_json(requests_mock, tmp_path):
     assert errors == []
 
 
+SEPARATE_WEBSITE_HTML = """
+<html><body>
+  <section id="departments">
+    <a href="/en/dept-a/">Dept A</a>
+    <a href="/en/dept-b/">Dept B</a>
+  </section>
+</body></html>
+"""
+
+DEPT_A_PAGE = """
+<html><body>
+  <p>there is a separate website for <a href="https://dept-a.ie/">Dept A</a></p>
+</body></html>
+"""
+
+DEPT_B_PAGE = """
+<html><body>
+  <p>No separate website here.</p>
+</body></html>
+"""
+
+
+def test_parallel_resolution_follows_separate_website_links(requests_mock, tmp_path):
+    """Dept A redirects to dept-a.ie; Dept B stays on gov.ie. Order must be preserved."""
+    requests_mock.get("https://www.gov.ie/en/departments/", text=SEPARATE_WEBSITE_HTML)
+    requests_mock.get("https://www.gov.ie/en/dept-a/", text=DEPT_A_PAGE)
+    requests_mock.get("https://www.gov.ie/en/dept-b/", text=DEPT_B_PAGE)
+
+    bodies = scrape_public_bodies(tmp_path)
+
+    assert len(bodies) == 2
+    dept_a = next(b for b in bodies if b["name"] == "Dept A")
+    dept_b = next(b for b in bodies if b["name"] == "Dept B")
+    assert dept_a["official_website_url"] == "https://dept-a.ie/"
+    assert dept_b["official_website_url"] == "https://www.gov.ie/en/dept-b/"
+
+
+def test_parallel_resolution_preserves_insertion_order(requests_mock, tmp_path):
+    """Bodies must appear in the same order as in the source HTML after parallel resolution."""
+    requests_mock.get("https://www.gov.ie/en/departments/", text=SEPARATE_WEBSITE_HTML)
+    requests_mock.get("https://www.gov.ie/en/dept-a/", text=DEPT_A_PAGE)
+    requests_mock.get("https://www.gov.ie/en/dept-b/", text=DEPT_B_PAGE)
+
+    bodies = scrape_public_bodies(tmp_path)
+
+    assert bodies[0]["name"] == "Dept A"
+    assert bodies[1]["name"] == "Dept B"
+
+
 def test_process_writes_output_and_status(requests_mock, tmp_path, monkeypatch):
     requests_mock.get("https://www.gov.ie/en/departments/", text=SAMPLE_HTML)
     monkeypatch.chdir(tmp_path)

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import sys
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
@@ -42,9 +43,10 @@ SECTION_CATEGORIES = {
     "local-authorities": "local authority",
 }
 BASE_ID = 1000
+MAX_WORKERS = 10
 
 
-def scrape_public_bodies(step_dir):
+def scrape_public_bodies(step_dir, verbose=False):
     errors_path = Path(step_dir) / "errors.json"
     write_json(errors_path, [])
 
@@ -52,10 +54,8 @@ def scrape_public_bodies(step_dir):
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
 
-    bodies = []
-    seen_urls = set()
-    body_id = BASE_ID + 1
-
+    # Phase 1: collect all (name, url, category) candidates — no HTTP calls
+    candidates = []
     for section_id in SECTION_IDS:
         category = SECTION_CATEGORIES[section_id]
         section = soup.find("section", id=section_id)
@@ -63,21 +63,30 @@ def scrape_public_bodies(step_dir):
             print(f"Warning: section '{section_id}' not found on page", file=sys.stderr)
             continue
         for link in section.find_all("a", href=True):
-            href = link["href"]
-            full_url = urljoin(SOURCE_URL, href)
-            if full_url in seen_urls:
-                continue
+            full_url = urljoin(SOURCE_URL, link["href"])
             name = link.get_text(strip=True)
-            if not name:
+            if name:
+                candidates.append((name, full_url, category))
+
+    # Phase 2: resolve actual homepages in parallel (preserves order via executor.map)
+    def resolve(item):
+        name, full_url, category = item
+        if urlparse(full_url).netloc.endswith("gov.ie"):
+            actual_url = find_actual_homepage(full_url)
+        else:
+            actual_url = full_url
+        return name, actual_url, category
+
+    bodies = []
+    seen_urls = set()
+    body_id = BASE_ID + 1
+
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        for name, actual_url, category in executor.map(resolve, candidates):
+            if actual_url in seen_urls:
                 continue
-
-            # Resolve actual homepage if this is a gov.ie page with separate website link
-            parsed = urlparse(full_url)
-            if parsed.netloc.endswith("gov.ie"):
-                actual_url = find_actual_homepage(full_url)
-            else:
-                actual_url = full_url
-
+            if verbose:
+                print(".", end="", flush=True)
             seen_urls.add(actual_url)
             bodies.append({
                 "public_body_id": body_id,
@@ -85,34 +94,15 @@ def scrape_public_bodies(step_dir):
                 "official_website_url": actual_url,
                 "category": category,
                 "status": {
-                    "website_url": {
-                        "url": actual_url,
-                        "status": "not_attempted"
-                    },
-                    "foi_page": {
-                        "url": None,
-                        "status": "not_attempted"
-                    },
-                    "foi_email": {
-                        "email": None,
-                        "status": "not_attempted"
-                    },
-                    "disclosures_page": {
-                        "url": None,
-                        "status": "not_attempted"
-                    },
+                    "website_url": {"url": actual_url, "status": "not_attempted"},
+                    "foi_page": {"url": None, "status": "not_attempted"},
+                    "foi_email": {"email": None, "status": "not_attempted"},
+                    "disclosures_page": {"url": None, "status": "not_attempted"},
                     "disclosure_files": {
-                        "total": 0,
-                        "valid": 0,
-                        "failed": 0,
-                        "status": "not_attempted"
+                        "total": 0, "valid": 0, "failed": 0, "status": "not_attempted"
                     },
-                    "foi_requests": {
-                        "valid": 0,
-                        "errors": 0,
-                        "status": "not_attempted"
-                    }
-                }
+                    "foi_requests": {"valid": 0, "errors": 0, "status": "not_attempted"},
+                },
             })
             body_id += 1
 
@@ -124,6 +114,7 @@ def main():
     parser.add_argument("--input", required=True, help="Previous step output (unused for first step)")
     parser.add_argument("--output", default=None, help="Path to write output.json")
     parser.add_argument("--force", action="store_true", help="Overwrite existing output")
+    parser.add_argument("--verbose", action="store_true", help="Print a dot per website checked to show progress")
     args = parser.parse_args()
 
     step_dir = Path(__file__).parent
@@ -134,7 +125,7 @@ def main():
         sys.exit(0)
 
     try:
-        bodies = scrape_public_bodies(step_dir)
+        bodies = scrape_public_bodies(step_dir, verbose=args.verbose)
     except Exception as e:
         append_error(
             step_dir,
@@ -162,6 +153,8 @@ def main():
     }
     write_json(output_path, output)
     write_status(step_dir, len(bodies))
+    if args.verbose:
+        print()
     print(f"Wrote {len(bodies)} public bodies to {output_path}")
 
 
