@@ -217,14 +217,14 @@ PDF_ITEM = {
 
 def test_process_emits_flat_foi_records(tmp_path):
     results, errors_out = [], []
-    process(_make_canonicalize_input([FULL_ITEM]), tmp_path, results, errors_out)
+    process(_make_canonicalize_input([FULL_ITEM]), results, errors_out)
     assert len(results) == 1
     assert results[0]["foi_reference_id"] == "16/002"
 
 
 def test_process_skips_pdf_records(tmp_path):
     results, errors_out = [], []
-    process(_make_canonicalize_input([PDF_ITEM]), tmp_path, results, errors_out)
+    process(_make_canonicalize_input([PDF_ITEM]), results, errors_out)
     assert results == []
     assert errors_out == []
 
@@ -237,7 +237,7 @@ def test_process_logs_error_for_missing_required_columns(tmp_path):
         "rows": [["Date Received"], ["2016-01-01"]],
     }
     results, errors_out = [], []
-    process(_make_canonicalize_input([item]), tmp_path, results, errors_out)
+    process(_make_canonicalize_input([item]), results, errors_out)
     assert results == []
     assert len(errors_out) == 1
     assert errors_out[0]["error_type"] == "MissingRequiredColumns"
@@ -255,5 +255,25 @@ def test_process_multiple_files_multiple_records(tmp_path):
         ],
     }
     results, errors_out = [], []
-    process(_make_canonicalize_input([FULL_ITEM, item2]), tmp_path, results, errors_out)
+    process(_make_canonicalize_input([FULL_ITEM, item2]), results, errors_out)
     assert len(results) == 3
+
+
+def test_canonicalize_file_empty_rows_returns_empty():
+    results, errors = canonicalize_file({**BASE_META, "rows": [], "header_row_idx": 0})
+    assert results == []
+    assert errors == []
+
+
+def test_canonicalize_file_none_header_row_idx_with_rows_returns_empty():
+    rows = [["Our Reference", "Request Details"], ["16/001", "a request"]]
+    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": None})
+    assert results == []
+    assert errors == []
+
+
+def test_process_uses_two_list_args(tmp_path):
+    # Confirm process() signature: no step_dir param
+    results, errors_out = [], []
+    process(_make_canonicalize_input([FULL_ITEM]), results, errors_out)
+    assert len(results) == 1

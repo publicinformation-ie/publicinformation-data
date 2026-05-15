@@ -24,6 +24,9 @@ def canonicalize_file(item):
     if rows is None:
         return [], []
 
+    if header_row_idx is None or header_row_idx >= len(rows):
+        return [], []
+
     meta = {
         "public_body_id": item["public_body_id"],
         "name": item["name"],
@@ -64,7 +67,7 @@ def canonicalize_file(item):
     return results, []
 
 
-def process(input_data, step_dir, results_out, errors_out, verbose=False):
+def process(input_data, results_out, errors_out, verbose=False):
     for item in input_data["results"]:
         if item.get("rows") is None:
             continue
@@ -96,7 +99,7 @@ def main():
     results: list = []
     errors: list = []
 
-    process(input_data, step_dir, results, errors, verbose=args.verbose)
+    process(input_data, results, errors, verbose=args.verbose)
 
     write_json(output_path, {
         "metadata": {
