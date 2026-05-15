@@ -34,9 +34,11 @@ class TestIsSafeUrl:
     def test_rejects_mailto_scheme(self):
         assert is_safe_url("mailto:test@example.com") is False
 
-    def test_rejects_non_gov_ie_domains(self):
-        assert is_safe_url("https://evil.com/") is False
-        assert is_safe_url("https://google.com/") is False
+    def test_allows_arbitrary_public_hostnames(self):
+        # Policy change: any public-routable hostname is allowed; only private/internal
+        # IPs and reserved hostnames are blocked (SSRF prevention, not domain allowlist).
+        assert is_safe_url("https://www.courts.ie/") is True
+        assert is_safe_url("https://www.garda.ie/") is True
 
     def test_rejects_empty_url(self):
         assert is_safe_url("") is False

@@ -1,3 +1,4 @@
+import ipaddress
 import os
 import re
 import sys
@@ -27,41 +28,20 @@ _rate_limit_lock = threading.Lock()
 # Allowed URL schemes for security
 ALLOWED_SCHEMES = {'http', 'https'}
 
-# Allowed domains - gov.ie and its subdomains, plus known Irish government domains
-ALLOWED_DOMAINS = {
-    'gov.ie',
-    'www.gov.ie',
-    # Add other known Irish government domains as needed
-    'hse.ie', 'www.hse.ie',
-    'revenue.ie', 'www.revenue.ie',
-    'welfare.ie', 'www.welfare.ie',
-    'education.ie', 'www.education.ie',
-    'justice.ie', 'www.justice.ie',
-    'defence.ie', 'www.defence.ie',
-    'agriculture.gov.ie',
-    'health.gov.ie',
-    # Test domains used in tests
-    'dept-a.ie', 'dept-b.ie',
-    'agency-a.ie', 'agency-b.ie',
-    'shared-foi.ie',
-    'example.ie',
-}
+# Hostnames that resolve to internal infrastructure regardless of their IP
+_BLOCKED_HOSTNAMES = {'localhost', 'metadata.google.internal'}
 
 
 def is_safe_url(url):
     """
-    Validate that a URL is safe to fetch.
+    Validate that a URL is safe to fetch (SSRF prevention).
 
-    Security checks:
-    - Only http/https schemes allowed (no file://, javascript:, etc.)
-    - Domain must be in allowed list or subdomain of gov.ie
-    - URL must be well-formed
+    Blocks:
+    - Non-http/https schemes
+    - Private/loopback/link-local IP addresses (RFC 1918, 169.254.x.x, ::1, etc.)
+    - Known internal hostnames (localhost, metadata.google.internal)
 
-    Args:
-        url: The URL to validate
-
-    Returns:
-        bool: True if URL is safe, False otherwise
+    Any public-routable hostname is allowed — no domain allowlist required.
     """
     if not isinstance(url, str):
         return False
@@ -71,57 +51,25 @@ def is_safe_url(url):
     except ValueError:
         return False
 
-    # Check scheme
     if parsed.scheme not in ALLOWED_SCHEMES:
         return False
 
-    # Check domain
-    domain = parsed.netloc.lower()
-    if not domain:
+    host = parsed.hostname  # strips brackets from IPv6, lowercases
+    if not host:
         return False
 
-    # Allow exact matches
-    if domain in ALLOWED_DOMAINS:
-        return True
+    if host in _BLOCKED_HOSTNAMES:
+        return False
 
-    # Allow subdomains of gov.ie
-    if domain.endswith('.gov.ie'):
-        return True
+    # If the host is a literal IP address, reject private/reserved ranges.
+    try:
+        addr = ipaddress.ip_address(host)
+        if addr.is_loopback or addr.is_private or addr.is_link_local or addr.is_unspecified:
+            return False
+    except ValueError:
+        pass  # host is a hostname, not an IP — allow it
 
-    # Allow other known patterns (e.g., coillte.ie, teagasc.ie)
-    # These are Irish public bodies but not under gov.ie
-    if domain in {
-        'coillte.ie', 'www.coillte.ie',
-        'teagasc.ie', 'www.teagasc.ie',
-        'marine.ie', 'www.marine.ie',
-        'nsai.ie', 'www.nsai.ie',
-        'ntma.ie', 'www.ntma.ie',
-        'dataprotection.ie', 'www.dataprotection.ie',
-        'pleanala.ie', 'www.pleanala.ie',
-        'opr.ie', 'www.opr.ie',
-        'grireland.ie', 'www.grireland.ie',
-        'hri.ie', 'www.hri.ie',
-        'fingal.ie', 'www.fingal.ie',
-        'donegalcoco.ie', 'www.donegalcoco.ie',
-        'galwaycity.ie', 'www.galwaycity.ie',
-        'laois.ie', 'www.laois.ie',
-        'mayococo.ie', 'www.mayococo.ie',
-        'meath.ie', 'www.meath.ie',
-        'monaghan.ie', 'www.monaghan.ie',
-        'sligococo.ie', 'www.sligococo.ie',
-        'tipperarycoco.ie', 'www.tipperarycoco.ie',
-        'westmeathcoco.ie', 'www.westmeathcoco.ie',
-        'lgma.ie', 'www.lgma.ie',
-        'nsso.gov.ie', 'www.nsso.gov.ie',
-        'constructionprocurement.gov.ie',
-        'circulars.gov.ie',
-        'president.ie', 'www.president.ie',
-        'sbci.gov.ie', 'www.sbci.gov.ie',
-        'singlepensionscheme.gov.ie',
-    }:
-        return True
-
-    return False
+    return True
 
 
 def get_rate_limit_delay(domain):
