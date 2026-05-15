@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 import argparse
 import sys
-from datetime import datetime, timezone
 from pathlib import Path
 
-from scripts.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
+from scripts.file_utils import read_json, write_json, write_status, IncrementalWriter
 
 STEP_NAME = "extract_disclosures_detect_header_row"
 
