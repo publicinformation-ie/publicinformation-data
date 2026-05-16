@@ -10,6 +10,7 @@ from steps.export_status.process import (
     merge_get_foi_emails,
     merge_find_disclosure_pages,
     merge_find_disclosure_files,
+    merge_extract_disclosures_canonicalize,
     write_public_output,
     write_disclosure_files_output,
 )
@@ -20,6 +21,7 @@ from steps.export_status.process import (
 
 PIPELINE_STEPS = [
     "find_public_bodies",
+    "resolve_website_urls",
     "validate_websites",
     "find_foi_pages",
     "check_foi_pages",
@@ -27,7 +29,8 @@ PIPELINE_STEPS = [
     "find_disclosure_pages",
     "find_disclosure_files",
     "transform_disclosure_files",
-    "extract_disclosures",
+    "extract_disclosures_detect_header_row",
+    "extract_disclosures_canonicalize",
     "export_status",
 ]
 
@@ -292,6 +295,59 @@ def test_find_disclosure_files_counts_are_per_body():
 
 
 # ---------------------------------------------------------------------------
+# merge_extract_disclosures_canonicalize
+# ---------------------------------------------------------------------------
+
+def test_extract_disclosures_canonicalize_counts_records_sets_success():
+    body_map = make_body_map(1001)
+    merge_extract_disclosures_canonicalize(body_map, {
+        "results": [
+            {"public_body_id": 1001, "foi_reference_id": "16/001"},
+            {"public_body_id": 1001, "foi_reference_id": "16/002"},
+        ]
+    })
+    assert body_map[1001]["status"]["foi_requests"]["valid"] == 2
+    assert body_map[1001]["status"]["foi_requests"]["errors"] == 0
+    assert body_map[1001]["status"]["foi_requests"]["status"] == "success"
+
+
+def test_extract_disclosures_canonicalize_absent_body_sets_failed():
+    body_map = make_body_map(1001, 1002)
+    merge_extract_disclosures_canonicalize(body_map, {
+        "results": [{"public_body_id": 1001, "foi_reference_id": "16/001"}]
+    })
+    assert body_map[1002]["status"]["foi_requests"]["status"] == "failed"
+
+
+def test_extract_disclosures_canonicalize_counts_are_per_body():
+    body_map = make_body_map(1001, 1002)
+    merge_extract_disclosures_canonicalize(body_map, {
+        "results": [
+            {"public_body_id": 1001, "foi_reference_id": "16/001"},
+            {"public_body_id": 1001, "foi_reference_id": "16/002"},
+            {"public_body_id": 1002, "foi_reference_id": "16/003"},
+        ]
+    })
+    assert body_map[1001]["status"]["foi_requests"]["valid"] == 2
+    assert body_map[1002]["status"]["foi_requests"]["valid"] == 1
+
+
+def test_extract_disclosures_canonicalize_empty_results_sets_failed():
+    body_map = make_body_map(1001)
+    merge_extract_disclosures_canonicalize(body_map, {"results": []})
+    assert body_map[1001]["status"]["foi_requests"]["status"] == "failed"
+
+
+def test_extract_disclosures_canonicalize_does_not_touch_other_status_fields():
+    body_map = make_body_map(1001)
+    merge_extract_disclosures_canonicalize(body_map, {
+        "results": [{"public_body_id": 1001, "foi_reference_id": "16/001"}]
+    })
+    assert body_map[1001]["status"]["disclosure_files"]["status"] == "not_attempted"
+    assert body_map[1001]["status"]["foi_page"]["status"] == "not_attempted"
+
+
+# ---------------------------------------------------------------------------
 # merge() orchestration
 # ---------------------------------------------------------------------------
 
@@ -356,7 +412,7 @@ def test_merge_skips_step_with_no_output_file(tmp_path):
 
 
 def test_merge_skips_steps_with_no_merger(tmp_path):
-    """Steps not in STEP_MERGERS (transform_disclosure_files, extract_disclosures, export_status)
+    """Steps not in STEP_MERGERS (e.g. transform_disclosure_files, extract_disclosures_detect_header_row)
     are silently skipped without error."""
     steps_dir = setup_steps_dir(tmp_path, {
         "find_public_bodies": BASE_OUTPUT,

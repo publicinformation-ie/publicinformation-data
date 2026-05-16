@@ -90,6 +90,20 @@ def merge_find_disclosure_files(body_map, step_data):
             body["status"]["disclosure_files"]["status"] = "failed"
 
 
+def merge_extract_disclosures_canonicalize(body_map, step_data):
+    counts = defaultdict(int)
+    for r in step_data["results"]:
+        counts[r["public_body_id"]] += 1
+    for bid, body in body_map.items():
+        if bid in counts:
+            total = counts[bid]
+            body["status"]["foi_requests"]["valid"] = total
+            body["status"]["foi_requests"]["errors"] = 0
+            body["status"]["foi_requests"]["status"] = "success" if total > 0 else "failed"
+        else:
+            body["status"]["foi_requests"]["status"] = "failed"
+
+
 STEP_MERGERS = {
     "validate_websites": merge_validate_websites,
     "find_foi_pages": merge_find_foi_pages,
@@ -97,6 +111,7 @@ STEP_MERGERS = {
     "get_foi_emails": merge_get_foi_emails,
     "find_disclosure_pages": merge_find_disclosure_pages,
     "find_disclosure_files": merge_find_disclosure_files,
+    "extract_disclosures_canonicalize": merge_extract_disclosures_canonicalize,
 }
 
 
