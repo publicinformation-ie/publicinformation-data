@@ -145,6 +145,18 @@ def write_disclosure_files_output(steps_dir, repo_root):
     return output_path
 
 
+def write_foi_disclosures_output(steps_dir, repo_root):
+    input_path = Path(steps_dir) / "extract_disclosures_canonicalize" / "output.json"
+    if not input_path.exists():
+        return None
+    data = read_json(input_path)
+    public_dir = Path(repo_root) / "public"
+    public_dir.mkdir(parents=True, exist_ok=True)
+    output_path = public_dir / "foi-disclosures.json"
+    write_json(output_path, data["results"])
+    return output_path
+
+
 def merge(steps_dir, pipeline_steps):
     base_data = read_json(steps_dir / "find_public_bodies" / "output.json")
     bodies = copy.deepcopy(base_data["public_bodies"])
@@ -203,11 +215,14 @@ def main():
     repo_root = pipeline_dir.parent
     public_path = write_public_output(output, repo_root)
     disclosure_path = write_disclosure_files_output(steps_dir, repo_root)
+    foi_disclosures_path = write_foi_disclosures_output(steps_dir, repo_root)
 
     print(f"Wrote {len(bodies)} public bodies to {output_path}")
     print(f"Wrote public data to {public_path}")
     if disclosure_path:
         print(f"Wrote disclosure files to {disclosure_path}")
+    if foi_disclosures_path:
+        print(f"Wrote FOI disclosures to {foi_disclosures_path}")
 
 
 if __name__ == "__main__":

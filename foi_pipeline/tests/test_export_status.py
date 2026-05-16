@@ -13,6 +13,7 @@ from steps.export_status.process import (
     merge_extract_disclosures_canonicalize,
     write_public_output,
     write_disclosure_files_output,
+    write_foi_disclosures_output,
 )
 
 # ---------------------------------------------------------------------------
@@ -638,6 +639,94 @@ def test_write_disclosure_files_output_multiple_bodies(tmp_path):
     ])
     write_disclosure_files_output(steps_dir, tmp_path)
     data = json.loads((tmp_path / "public" / "disclosure-files.json").read_text())
+    assert len(data) == 2
+    ids = {r["public_body_id"] for r in data}
+    assert ids == {1001, 1002}
+
+
+# ---------------------------------------------------------------------------
+# write_foi_disclosures_output
+# ---------------------------------------------------------------------------
+
+
+def _make_canonicalize_steps_dir(tmp_path, results):
+    """Helper: write extract_disclosures_canonicalize/output.json into a steps dir."""
+    steps_dir = tmp_path / "steps"
+    canon_dir = steps_dir / "extract_disclosures_canonicalize"
+    canon_dir.mkdir(parents=True)
+    (canon_dir / "output.json").write_text(json.dumps({
+        "metadata": {"step": "extract_disclosures_canonicalize"},
+        "results": results,
+    }))
+    return steps_dir
+
+
+def test_write_foi_disclosures_output_returns_correct_path(tmp_path):
+    steps_dir = _make_canonicalize_steps_dir(tmp_path, [])
+    path = write_foi_disclosures_output(steps_dir, tmp_path)
+    assert path == tmp_path / "public" / "foi-disclosures.json"
+
+
+def test_write_foi_disclosures_output_creates_file(tmp_path):
+    steps_dir = _make_canonicalize_steps_dir(tmp_path, [])
+    write_foi_disclosures_output(steps_dir, tmp_path)
+    assert (tmp_path / "public" / "foi-disclosures.json").exists()
+
+
+def test_write_foi_disclosures_output_content(tmp_path):
+    record = {
+        "public_body_id": 1001,
+        "name": "Dept A",
+        "file_url": "https://x.ie/q1.xlsx",
+        "file_type": "xlsx",
+        "foi_reference_id": "16/001",
+        "decision_date": None,
+        "requester_type": None,
+        "decision_status": None,
+        "review_status": None,
+        "related_request": None,
+        "request_description": "Test request",
+    }
+    steps_dir = _make_canonicalize_steps_dir(tmp_path, [record])
+    write_foi_disclosures_output(steps_dir, tmp_path)
+    data = json.loads((tmp_path / "public" / "foi-disclosures.json").read_text())
+    assert len(data) == 1
+    assert data[0] == record
+
+
+def test_write_foi_disclosures_output_returns_none_when_no_input(tmp_path):
+    steps_dir = tmp_path / "steps"
+    steps_dir.mkdir()
+    path = write_foi_disclosures_output(steps_dir, tmp_path)
+    assert path is None
+
+
+def test_write_foi_disclosures_output_creates_public_dir(tmp_path):
+    steps_dir = _make_canonicalize_steps_dir(tmp_path, [])
+    write_foi_disclosures_output(steps_dir, tmp_path)
+    assert (tmp_path / "public").is_dir()
+
+
+def test_write_foi_disclosures_output_multiple_bodies(tmp_path):
+    records = [
+        {
+            "public_body_id": 1001, "name": "Dept A",
+            "file_url": "https://x.ie/q1.xlsx", "file_type": "xlsx",
+            "foi_reference_id": "16/001", "decision_date": None,
+            "requester_type": None, "decision_status": None, "review_status": None,
+            "related_request": None, "request_description": "First",
+        },
+        {
+            "public_body_id": 1002, "name": "Dept B",
+            "file_url": "https://y.ie/q1.xlsx", "file_type": "xlsx",
+            "foi_reference_id": "17/001", "decision_date": None,
+            "requester_type": None, "decision_status": None, "review_status": None,
+            "related_request": None, "request_description": "Second",
+        },
+    ]
+    steps_dir = _make_canonicalize_steps_dir(tmp_path, records)
+    write_foi_disclosures_output(steps_dir, tmp_path)
+    data = json.loads((tmp_path / "public" / "foi-disclosures.json").read_text())
     assert len(data) == 2
     ids = {r["public_body_id"] for r in data}
     assert ids == {1001, 1002}
