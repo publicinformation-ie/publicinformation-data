@@ -148,14 +148,36 @@ Each merger function updates the status fields for public bodies:
 | get_foi_emails | merge_get_foi_emails | status.foi_email.email, status.foi_email.status |
 | find_disclosure_pages | merge_find_disclosure_pages | status.disclosures_page.url, status.disclosures_page.status |
 | find_disclosure_files | merge_find_disclosure_files | status.disclosure_files.total/valid/failed/status |
+| transform_disclosure_files | merge_transform_disclosure_files | status.disclosure_files.valid (overrides find count with actual transform count) |
 
-Steps without mergers (transform_disclosure_files, extract_disclosures) are skipped during merge.
+Steps without mergers (e.g. extract_disclosures_detect_header_row) are skipped during merge.
+
+## Python Environment
+
+All Python commands must be run with the virtual environment active. The venv lives at `scripts/.venv` (one level up from this directory):
+
+```bash
+source ../scripts/.venv/bin/activate
+# or, from the repo root:
+source scripts/.venv/bin/activate
+```
+
+Once active, use `python` / `pytest` directly.
+
+### Running Tests
+
+```bash
+source ../scripts/.venv/bin/activate
+cd foi_pipeline
+pytest tests/ -q
+```
 
 ## Running the Pipeline
 
 ### Full Pipeline
 
 ```bash
+source ../scripts/.venv/bin/activate
 cd foi_pipeline
 python orchestrator.py --force
 ```
