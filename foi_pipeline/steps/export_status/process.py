@@ -90,6 +90,16 @@ def merge_find_disclosure_files(body_map, step_data):
             body["status"]["disclosure_files"]["status"] = "failed"
 
 
+def merge_transform_disclosure_files(body_map, step_data):
+    counts = defaultdict(int)
+    for r in step_data["results"]:
+        if r.get("rows") is not None:
+            counts[r["public_body_id"]] += 1
+    for bid, body in body_map.items():
+        if body["status"]["disclosure_files"]["total"] > 0:
+            body["status"]["disclosure_files"]["valid"] = counts.get(bid, 0)
+
+
 def merge_extract_disclosures_canonicalize(body_map, step_data):
     counts = defaultdict(int)
     for r in step_data["results"]:
@@ -111,6 +121,7 @@ STEP_MERGERS = {
     "get_foi_emails": merge_get_foi_emails,
     "find_disclosure_pages": merge_find_disclosure_pages,
     "find_disclosure_files": merge_find_disclosure_files,
+    "transform_disclosure_files": merge_transform_disclosure_files,
     "extract_disclosures_canonicalize": merge_extract_disclosures_canonicalize,
 }
 

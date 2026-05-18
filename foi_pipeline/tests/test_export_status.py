@@ -10,6 +10,7 @@ from steps.export_status.process import (
     merge_get_foi_emails,
     merge_find_disclosure_pages,
     merge_find_disclosure_files,
+    merge_transform_disclosure_files,
     merge_extract_disclosures_canonicalize,
     write_public_output,
     write_disclosure_files_output,
@@ -296,6 +297,99 @@ def test_find_disclosure_files_counts_are_per_body():
 
 
 # ---------------------------------------------------------------------------
+# merge_transform_disclosure_files
+# ---------------------------------------------------------------------------
+
+def test_transform_disclosure_files_counts_xlsx_with_rows():
+    body_map = make_body_map(1001)
+    body_map[1001]["status"]["disclosure_files"]["total"] = 2
+    merge_transform_disclosure_files(body_map, {
+        "results": [
+            {"public_body_id": 1001, "file_url": "https://dept-a.ie/q1.xlsx", "file_type": "xlsx", "rows": [["a", "b"]]},
+            {"public_body_id": 1001, "file_url": "https://dept-a.ie/q2.xlsx", "file_type": "xlsx", "rows": [["c", "d"]]},
+        ]
+    })
+    assert body_map[1001]["status"]["disclosure_files"]["valid"] == 2
+
+
+def test_transform_disclosure_files_pdf_rows_none_not_counted():
+    body_map = make_body_map(1001)
+    body_map[1001]["status"]["disclosure_files"]["total"] = 3
+    merge_transform_disclosure_files(body_map, {
+        "results": [
+            {"public_body_id": 1001, "file_url": "https://dept-a.ie/q1.xlsx", "file_type": "xlsx", "rows": [["a"]]},
+            {"public_body_id": 1001, "file_url": "https://dept-a.ie/q2.pdf", "file_type": "pdf", "rows": None},
+            {"public_body_id": 1001, "file_url": "https://dept-a.ie/q3.pdf", "file_type": "pdf", "rows": None},
+        ]
+    })
+    assert body_map[1001]["status"]["disclosure_files"]["valid"] == 1
+
+
+def test_transform_disclosure_files_failed_transform_rows_none_not_counted():
+    body_map = make_body_map(1001)
+    body_map[1001]["status"]["disclosure_files"]["total"] = 2
+    merge_transform_disclosure_files(body_map, {
+        "results": [
+            {"public_body_id": 1001, "file_url": "https://dept-a.ie/q1.xlsx", "file_type": "xlsx", "rows": [["a"]]},
+            {"public_body_id": 1001, "file_url": "https://dept-a.ie/q2.xlsx", "file_type": "xlsx", "rows": None},
+        ]
+    })
+    assert body_map[1001]["status"]["disclosure_files"]["valid"] == 1
+
+
+def test_transform_disclosure_files_counts_are_per_body():
+    body_map = make_body_map(1001, 1002)
+    body_map[1001]["status"]["disclosure_files"]["total"] = 2
+    body_map[1002]["status"]["disclosure_files"]["total"] = 1
+    merge_transform_disclosure_files(body_map, {
+        "results": [
+            {"public_body_id": 1001, "file_url": "https://dept-a.ie/q1.xlsx", "file_type": "xlsx", "rows": [["a"]]},
+            {"public_body_id": 1001, "file_url": "https://dept-a.ie/q2.pdf", "file_type": "pdf", "rows": None},
+            {"public_body_id": 1002, "file_url": "https://dept-b.ie/q1.xlsx", "file_type": "xlsx", "rows": [["b"]]},
+        ]
+    })
+    assert body_map[1001]["status"]["disclosure_files"]["valid"] == 1
+    assert body_map[1002]["status"]["disclosure_files"]["valid"] == 1
+
+
+def test_transform_disclosure_files_body_with_no_transform_records_gets_zero():
+    body_map = make_body_map(1001, 1002)
+    body_map[1001]["status"]["disclosure_files"]["total"] = 2
+    body_map[1002]["status"]["disclosure_files"]["total"] = 1
+    merge_transform_disclosure_files(body_map, {
+        "results": [
+            {"public_body_id": 1001, "file_url": "https://dept-a.ie/q1.xlsx", "file_type": "xlsx", "rows": [["a"]]},
+            {"public_body_id": 1001, "file_url": "https://dept-a.ie/q2.xlsx", "file_type": "xlsx", "rows": [["b"]]},
+            # 1002 is absent from transform output
+        ]
+    })
+    assert body_map[1001]["status"]["disclosure_files"]["valid"] == 2
+    assert body_map[1002]["status"]["disclosure_files"]["valid"] == 0
+
+
+def test_transform_disclosure_files_skips_bodies_with_no_found_files():
+    """Bodies with total=0 are not touched — no transform data means nothing to report."""
+    body_map = make_body_map(1001)
+    body_map[1001]["status"]["disclosure_files"]["total"] = 0
+    original_valid = body_map[1001]["status"]["disclosure_files"]["valid"]
+    merge_transform_disclosure_files(body_map, {"results": []})
+    assert body_map[1001]["status"]["disclosure_files"]["valid"] == original_valid
+
+
+def test_transform_disclosure_files_does_not_touch_other_fields():
+    body_map = make_body_map(1001)
+    body_map[1001]["status"]["disclosure_files"]["total"] = 1
+    merge_transform_disclosure_files(body_map, {
+        "results": [
+            {"public_body_id": 1001, "file_url": "https://dept-a.ie/q1.xlsx", "file_type": "xlsx", "rows": [["a"]]},
+        ]
+    })
+    assert body_map[1001]["status"]["foi_page"]["status"] == "not_attempted"
+    assert body_map[1001]["status"]["disclosure_files"]["total"] == 1
+    assert body_map[1001]["status"]["disclosure_files"]["failed"] == 0
+
+
+# ---------------------------------------------------------------------------
 # merge_extract_disclosures_canonicalize
 # ---------------------------------------------------------------------------
 
@@ -413,7 +507,7 @@ def test_merge_skips_step_with_no_output_file(tmp_path):
 
 
 def test_merge_skips_steps_with_no_merger(tmp_path):
-    """Steps not in STEP_MERGERS (e.g. transform_disclosure_files, extract_disclosures_detect_header_row)
+    """Steps not in STEP_MERGERS (e.g. extract_disclosures_detect_header_row)
     are silently skipped without error."""
     steps_dir = setup_steps_dir(tmp_path, {
         "find_public_bodies": BASE_OUTPUT,
@@ -470,7 +564,15 @@ def test_merge_full_pipeline(tmp_path):
         "find_disclosure_files": {
             "metadata": {},
             "results": [
-                {"public_body_id": 1001, "file_url": "https://dept-a.ie/q1.pdf", "file_type": "pdf"},
+                {"public_body_id": 1001, "file_url": "https://dept-a.ie/q1.xlsx", "file_type": "xlsx"},
+                {"public_body_id": 1001, "file_url": "https://dept-a.ie/q2.pdf", "file_type": "pdf"},
+            ],
+        },
+        "transform_disclosure_files": {
+            "metadata": {},
+            "results": [
+                {"public_body_id": 1001, "file_url": "https://dept-a.ie/q1.xlsx", "file_type": "xlsx", "rows": [["a"]]},
+                {"public_body_id": 1001, "file_url": "https://dept-a.ie/q2.pdf", "file_type": "pdf", "rows": None},
             ],
         },
     })
@@ -485,7 +587,8 @@ def test_merge_full_pipeline(tmp_path):
     assert a["status"]["foi_email"]["status"] == "success"
     assert a["status"]["disclosures_page"]["url"] == "https://dept-a.ie/disclosure/"
     assert a["status"]["disclosures_page"]["status"] == "success"
-    assert a["status"]["disclosure_files"]["total"] == 1
+    assert a["status"]["disclosure_files"]["total"] == 2
+    assert a["status"]["disclosure_files"]["valid"] == 1  # only the xlsx
     assert a["status"]["disclosure_files"]["status"] == "success"
     assert a["status"]["foi_requests"]["status"] == "not_attempted"
 
