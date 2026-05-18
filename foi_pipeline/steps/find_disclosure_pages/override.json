@@ -1,9 +1,11 @@
 [
   {
-    "public_body_id": 1019,
-    "name": "An Coimisiún Pleanála",
-    "foi_page_url": "https://www.pleanala.ie/en-ie/freedom-of-information-(foi)",
-    "disclosure_page_url": "https://www.pleanala.ie/en-ie/freedom-of-information-(foi)/freedom-of-information-(foi)-disclosure-log"
+    "public_body_id": 1002,
+    "name": "Department of Children, Disability and Equality",
+    "foi_page_url": "https://www.gov.ie/en/department-of-children-disability-and-equality/organisation-information/freedom-of-information-foi/",
+    "disclosure_page_url": "https://www.gov.ie/en/department-of-children-disability-and-equality/collections/quarterly-foi-log/",
+    "source_method": "manual",
+    "overridden": true
   },
   {
     "public_body_id": 1008,
@@ -12,5 +14,11 @@
     "disclosure_page_url": "https://www.gov.ie/en/department-of-finance/collections/foi-decisions/",
     "source_method": "manual",
     "overridden": true
+  },
+  {
+    "public_body_id": 1019,
+    "name": "An Coimisiún Pleanála",
+    "foi_page_url": "https://www.pleanala.ie/en-ie/freedom-of-information-(foi)",
+    "disclosure_page_url": "https://www.pleanala.ie/en-ie/freedom-of-information-(foi)/freedom-of-information-(foi)-disclosure-log"
   }
 ]

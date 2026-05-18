@@ -11,7 +11,7 @@ def find_disclosure_page(name: str, foi_url: str) -> str | None:
 
 
 def _find_gov_ie(name: str, foi_url: str) -> str | None:
-    query = f'"{name}" foi disclosure log site:gov.ie'
+    query = f'"{name}" publications disclosure foi log site:gov.ie'
     results = search_serper(query)
     for result in results:
         link = result.get("link", "")
