@@ -19,6 +19,8 @@ def merge_validate_websites(body_map, step_data):
             body_map[bid]["status"]["website_url"]["status"] = (
                 "success" if r["is_reachable"] else "failed"
             )
+            if r.get("overridden"):
+                body_map[bid]["status"]["website_url"]["verified"] = True
     for bid, body in body_map.items():
         if bid not in present:
             body["status"]["website_url"]["status"] = "failed"
@@ -31,6 +33,8 @@ def merge_find_foi_pages(body_map, step_data):
         if bid in body_map:
             body_map[bid]["status"]["foi_page"]["url"] = r["foi_page_url"]
             body_map[bid]["status"]["foi_page"]["status"] = "success"
+            if r.get("overridden"):
+                body_map[bid]["status"]["foi_page"]["verified"] = True
     for bid, body in body_map.items():
         if bid not in present:
             body["status"]["foi_page"]["status"] = "failed"
@@ -58,6 +62,8 @@ def merge_get_foi_emails(body_map, step_data):
             body_map[bid]["status"]["foi_email"]["status"] = (
                 "success" if r.get("email_status") == "found" else "failed"
             )
+            if r.get("overridden"):
+                body_map[bid]["status"]["foi_email"]["verified"] = True
     for bid, body in body_map.items():
         if bid not in present:
             body["status"]["foi_email"]["status"] = "failed"
@@ -70,6 +76,8 @@ def merge_find_disclosure_pages(body_map, step_data):
         if bid in body_map:
             body_map[bid]["status"]["disclosures_page"]["url"] = r["disclosure_page_url"]
             body_map[bid]["status"]["disclosures_page"]["status"] = "success"
+            if r.get("overridden"):
+                body_map[bid]["status"]["disclosures_page"]["verified"] = True
     for bid, body in body_map.items():
         if bid not in present:
             body["status"]["disclosures_page"]["status"] = "failed"
