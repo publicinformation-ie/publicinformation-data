@@ -93,7 +93,7 @@ async function signKarma(did) {
   return record;
 }
 
-function buildOverrideRecord(correction, publicBodiesResults, foiPagesResults, foiPageUrlOverride) {
+function buildOverrideRecord(correction, publicBodiesResults, foiPagesResults, foiPageUrlOverride, officialWebsiteUrlOverride) {
   const { bodyId, bodyName, field, suggestedValue } = correction;
   const now = new Date().toISOString();
 
@@ -113,7 +113,7 @@ function buildOverrideRecord(correction, publicBodiesResults, foiPagesResults, f
     return {
       public_body_id: bodyId,
       name: bodyName,
-      official_website_url: body?.official_website_url ?? null,
+      official_website_url: officialWebsiteUrlOverride ?? body?.official_website_url ?? null,
       foi_page_url: suggestedValue,
       source_method: 'manual',
       overridden: true,
@@ -137,6 +137,7 @@ function buildOverrideRecord(correction, publicBodiesResults, foiPagesResults, f
       name: bodyName,
       foi_page_url: foiPageUrlOverride ?? foiPage?.foi_page_url ?? null,
       disclosure_page_url: suggestedValue,
+      source_method: 'manual',
       overridden: true,
     };
   }
@@ -199,16 +200,36 @@ async function main() {
     if (answer === 'a') {
       try {
         let foiPageUrlOverride = null;
+        let officialWebsiteUrlOverride = null;
+
         if (field === 'foi_email' || field === 'disclosures_page') {
           const existing = foiPagesResults?.find(r => r.public_body_id === bodyId);
           if (!existing?.foi_page_url) {
-            const entered = await prompt(rl, '      foi_page_url not in output — enter manually (or Enter to leave null): ');
-            foiPageUrlOverride = entered.trim() || null;
+            const entered = (await prompt(rl, '      foi_page_url not in output — enter (required): ')).trim();
+            if (!entered) {
+              console.error('✗ foi_page_url is required — correction skipped.');
+              skipped++;
+              continue;
+            }
+            foiPageUrlOverride = entered;
+          }
+        }
+
+        if (field === 'foi_page') {
+          const body = publicBodiesResults?.find(b => b.public_body_id === bodyId);
+          if (!body?.official_website_url) {
+            const entered = (await prompt(rl, '      official_website_url not in output — enter (required): ')).trim();
+            if (!entered) {
+              console.error('✗ official_website_url is required — correction skipped.');
+              skipped++;
+              continue;
+            }
+            officialWebsiteUrlOverride = entered;
           }
         }
 
         const step = FIELD_STEP_MAP[field];
-        const newRecord = buildOverrideRecord(correction, publicBodiesResults, foiPagesResults, foiPageUrlOverride);
+        const newRecord = buildOverrideRecord(correction, publicBodiesResults, foiPagesResults, foiPageUrlOverride, officialWebsiteUrlOverride);
 
         const records = await readOverride(step);
         const idx = records.findIndex(r => r.public_body_id === bodyId);
