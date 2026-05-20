@@ -319,6 +319,11 @@ def test_page_with_foi_text_in_body_returns_base_url():
     assert find_foi_link_on_page(html, "https://example.ie/foi") == "https://example.ie/foi"
 
 
+def test_find_foi_link_skips_irish_language_links():
+    html = '<html><body><a href="/ga/freedom-of-information/">Saoráil Faisnéise</a></body></html>'
+    assert find_foi_link_on_page(html, "https://www.gov.ie/en/some-body/") is None
+
+
 def test_page_with_foi_text_and_link_returns_base_url():
     html = '<html><body><h1>Freedom of Information</h1><a href="/foi-page/">FOI Page</a></body></html>'
     assert find_foi_link_on_page(html, "https://example.ie/") == "https://example.ie/"

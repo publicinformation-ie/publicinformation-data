@@ -44,6 +44,8 @@ def find_foi_link_on_page(html, base_url):
         if parsed.scheme and parsed.scheme not in ('http', 'https'):
             continue
 
+        if "/ga/" in urlparse(urljoin(base_url, href)).path:
+            continue
         href_lower = href.lower()
         text = link.get_text(strip=True).lower()
         if any(kw in href_lower or kw in text for kw in FOI_KEYWORDS):

@@ -107,6 +107,16 @@ def test_gov_ie_uses_domain_handler_not_crawl(requests_mock, tmp_path, make_writ
     assert gov_ie_crawl_calls == [], "gov.ie FOI page must not be crawled when domain handler returns a result"
 
 
+def test_skips_irish_language_disclosure_links(requests_mock, tmp_path, make_writer):
+    writer = make_writer(STEP_NAME)
+    html = '<html><body><a href="/ga/disclosure-log/">Nochtadh</a></body></html>'
+    requests_mock.get("https://dept-a.ie/foi/", text=html)
+    requests_mock.get("https://dept-b.ie/foi/", text=HTML_WITHOUT_DISCLOSURE_LINK)
+    process(INPUT, tmp_path, writer)
+    a = next(r for r in writer.results if r["public_body_id"] == 1001)
+    assert a["disclosure_page_url"] == "https://dept-a.ie/foi/"
+
+
 def test_gov_ie_falls_back_to_crawl_when_domain_handler_returns_none(requests_mock, tmp_path, make_writer, monkeypatch):
     monkeypatch.setattr(
         "steps.find_disclosure_pages.domains.search_serper",

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urljoin
@@ -23,6 +24,8 @@ def find_disclosure_link(html, base_url):
         if any(kw in href or kw in text for kw in DISCLOSURE_KEYWORDS):
             if ("annual" in href and "report" in href) or "protected-disclosures" in href:
                 continue
+            if "/ga/" in link["href"]:
+                continue
             full_url = urljoin(base_url, link["href"])
             if is_safe_url(full_url):
                 return full_url
@@ -39,10 +42,15 @@ def process(input_data, step_dir, writer, verbose=False):
             continue
         url = item["foi_page_url"]
         name = item.get("name", "")
+        if verbose:
+            print(f"  {name} ({url}) ...", end=" ", flush=True)
+        t_start = time.perf_counter()
+        method = "domain"
         try:
             validate_url_or_raise(url, context=f"disclosure_page_{body_id}")
             disclosure_url = domain_find(name, url)
             if disclosure_url is None:
+                method = "crawl"
                 response = fetch("GET", url, allow_redirects=True)
                 disclosure_url = find_disclosure_link(response.text, url) or url
             if disclosure_url:
@@ -63,7 +71,8 @@ def process(input_data, step_dir, writer, verbose=False):
             })
             writer.append([])
         if verbose:
-            print(".", end="", flush=True)
+            elapsed = time.perf_counter() - t_start
+            print(f"[{method:6s}] {elapsed:5.1f}s", flush=True)
 
 
 def main():
@@ -94,8 +103,6 @@ def main():
     process(input_data, step_dir, writer, verbose=args.verbose)
     count = writer.finalize()
     write_status(step_dir, count)
-    if args.verbose:
-        print()
     print(f"Wrote {count} records to {output_path}")
 
 
