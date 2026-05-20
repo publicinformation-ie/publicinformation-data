@@ -21,8 +21,9 @@ def find_disclosure_link(html, base_url):
         href = link["href"].lower()
         text = link.get_text(strip=True).lower()
         if any(kw in href or kw in text for kw in DISCLOSURE_KEYWORDS):
+            if ("annual" in href and "report" in href) or "protected-disclosures" in href:
+                continue
             full_url = urljoin(base_url, link["href"])
-            # Validate URL before returning
             if is_safe_url(full_url):
                 return full_url
     return None

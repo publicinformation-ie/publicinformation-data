@@ -10,3 +10,4 @@ docs/
 **/errors.json
 **/pipeline-status.json
 **/dirty_ids.json
+.env.admin

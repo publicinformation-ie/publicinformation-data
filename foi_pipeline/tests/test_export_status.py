@@ -833,3 +833,71 @@ def test_write_foi_disclosures_output_multiple_bodies(tmp_path):
     assert len(data) == 2
     ids = {r["public_body_id"] for r in data}
     assert ids == {1001, 1002}
+
+
+# ---------------------------------------------------------------------------
+# verified flag — overridden records propagate verified: True
+# ---------------------------------------------------------------------------
+
+def test_validate_websites_overridden_sets_verified():
+    body_map = make_body_map(1001)
+    merge_validate_websites(body_map, {
+        "results": [{"public_body_id": 1001, "is_reachable": True, "overridden": True}]
+    })
+    assert body_map[1001]["status"]["website_url"].get("verified") is True
+
+
+def test_validate_websites_not_overridden_omits_verified():
+    body_map = make_body_map(1001)
+    merge_validate_websites(body_map, {
+        "results": [{"public_body_id": 1001, "is_reachable": True}]
+    })
+    assert "verified" not in body_map[1001]["status"]["website_url"]
+
+
+def test_find_foi_pages_overridden_sets_verified():
+    body_map = make_body_map(1001)
+    merge_find_foi_pages(body_map, {
+        "results": [{"public_body_id": 1001, "foi_page_url": "https://dept-a.ie/foi/", "overridden": True}]
+    })
+    assert body_map[1001]["status"]["foi_page"].get("verified") is True
+
+
+def test_find_foi_pages_not_overridden_omits_verified():
+    body_map = make_body_map(1001)
+    merge_find_foi_pages(body_map, {
+        "results": [{"public_body_id": 1001, "foi_page_url": "https://dept-a.ie/foi/"}]
+    })
+    assert "verified" not in body_map[1001]["status"]["foi_page"]
+
+
+def test_get_foi_emails_overridden_sets_verified():
+    body_map = make_body_map(1001)
+    merge_get_foi_emails(body_map, {
+        "results": [{"public_body_id": 1001, "foi_email": "foi@dept-a.ie", "email_status": "found", "overridden": True}]
+    })
+    assert body_map[1001]["status"]["foi_email"].get("verified") is True
+
+
+def test_get_foi_emails_not_overridden_omits_verified():
+    body_map = make_body_map(1001)
+    merge_get_foi_emails(body_map, {
+        "results": [{"public_body_id": 1001, "foi_email": "foi@dept-a.ie", "email_status": "found"}]
+    })
+    assert "verified" not in body_map[1001]["status"]["foi_email"]
+
+
+def test_find_disclosure_pages_overridden_sets_verified():
+    body_map = make_body_map(1001)
+    merge_find_disclosure_pages(body_map, {
+        "results": [{"public_body_id": 1001, "disclosure_page_url": "https://dept-a.ie/disclosure/", "overridden": True}]
+    })
+    assert body_map[1001]["status"]["disclosures_page"].get("verified") is True
+
+
+def test_find_disclosure_pages_not_overridden_omits_verified():
+    body_map = make_body_map(1001)
+    merge_find_disclosure_pages(body_map, {
+        "results": [{"public_body_id": 1001, "disclosure_page_url": "https://dept-a.ie/disclosure/"}]
+    })
+    assert "verified" not in body_map[1001]["status"]["disclosures_page"]

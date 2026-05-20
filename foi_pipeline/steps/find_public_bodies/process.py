@@ -45,6 +45,16 @@ SECTION_CATEGORIES = {
 BASE_ID = 1000
 MAX_WORKERS = 10
 
+# These entries appear on the canonical source page but are not subject to FOI.
+# Keyed by gov.ie source URL (before homepage resolution).
+NOT_SUBJECT_TO_FOI_URLS = {
+    "https://www.gov.ie/en/circulars-archive/",         # not a public body
+    "https://www.gov.ie/en/coillte/",                   # AIE only, not FOI
+    "https://www.gov.ie/en/coroner/",                   # not subject to FOI
+    "https://www.gov.ie/en/criminal-assets-bureau/",    # not subject to FOI
+    "https://www.gov.ie/en/criminal-injuries-compensation-scheme/",  # not a public body
+}
+
 
 def scrape_public_bodies(step_dir, verbose=False):
     errors_path = Path(step_dir) / "errors.json"
@@ -82,13 +92,15 @@ def scrape_public_bodies(step_dir, verbose=False):
     body_id = BASE_ID + 1
 
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        for name, actual_url, category in executor.map(resolve, candidates):
+        for (name, source_url, category), (_, actual_url, _) in zip(
+            candidates, executor.map(resolve, candidates)
+        ):
             if actual_url in seen_urls:
                 continue
             if verbose:
                 print(".", end="", flush=True)
             seen_urls.add(actual_url)
-            bodies.append({
+            entry = {
                 "public_body_id": body_id,
                 "name": name,
                 "official_website_url": actual_url,
@@ -103,7 +115,10 @@ def scrape_public_bodies(step_dir, verbose=False):
                     },
                     "foi_requests": {"valid": 0, "errors": 0, "status": "not_attempted"},
                 },
-            })
+            }
+            if source_url in NOT_SUBJECT_TO_FOI_URLS:
+                entry["not_subject_to_foi"] = True
+            bodies.append(entry)
             body_id += 1
 
     return bodies
