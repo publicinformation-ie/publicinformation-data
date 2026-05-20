@@ -309,9 +309,10 @@ def test_javascript_link_with_foi_text_is_rejected():
     assert find_foi_link_on_page(html, "https://example.ie/") is None
 
 
-def test_page_with_foi_text_returns_base_url():
+def test_page_with_foi_text_but_no_foi_url_keyword_returns_none():
+    """FOI text alone is not enough — the URL must also contain an FOI keyword."""
     html = '<html><body><h1>Freedom of Information</h1><p>Request FOI here</p></body></html>'
-    assert find_foi_link_on_page(html, "https://example.ie/") == "https://example.ie/"
+    assert find_foi_link_on_page(html, "https://example.ie/") is None
 
 
 def test_page_with_foi_text_in_body_returns_base_url():
@@ -324,9 +325,38 @@ def test_find_foi_link_skips_irish_language_links():
     assert find_foi_link_on_page(html, "https://www.gov.ie/en/some-body/") is None
 
 
-def test_page_with_foi_text_and_link_returns_base_url():
+def test_page_with_foi_text_and_foi_link_returns_the_link():
+    """When the URL has no FOI keyword, link discovery runs and finds the specific FOI page."""
     html = '<html><body><h1>Freedom of Information</h1><a href="/foi-page/">FOI Page</a></body></html>'
-    assert find_foi_link_on_page(html, "https://example.ie/") == "https://example.ie/"
+    assert find_foi_link_on_page(html, "https://example.ie/") == "https://example.ie/foi-page/"
+
+
+def test_about_page_with_embedded_foi_section_does_not_return_itself():
+    """An about/general page that mentions FOI in body text is not the FOI page."""
+    html = (
+        '<html><body>'
+        '<h1>About the Council</h1>'
+        '<p>General info.</p>'
+        '<h2>Freedom of Information</h2>'
+        '<p>We are a prescribed body under the FOI Acts.</p>'
+        '</body></html>'
+    )
+    result = find_foi_link_on_page(html, "https://example.ie/about-the-council/")
+    assert result is None
+
+
+def test_fragment_anchor_with_foi_text_not_returned():
+    """A bare fragment like #FOI is an in-page anchor, not an FOI page URL."""
+    html = '<html><body><a href="#FOI">Freedom of Information</a></body></html>'
+    result = find_foi_link_on_page(html, "https://example.ie/about/")
+    assert result is None
+
+
+def test_dedicated_foi_page_with_foi_url_keyword_returns_itself():
+    """A dedicated FOI page (FOI keyword in URL) with FOI body text is correctly recognised."""
+    html = '<html><body><h1>Freedom of Information</h1><p>Request FOI here.</p></body></html>'
+    result = find_foi_link_on_page(html, "https://example.ie/freedom-of-information/")
+    assert result == "https://example.ie/freedom-of-information/"
 
 
 def test_override_body_not_fetched(requests_mock, tmp_path):

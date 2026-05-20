@@ -27,18 +27,22 @@ FOI_PAGE_BLOCKLIST = {
 def find_foi_link_on_page(html, base_url):
     soup = BeautifulSoup(html, "html.parser")
     
-    # Check if current page IS an FOI page (Problem 2):
-    # Does the page body (excluding link text) contain FOI keywords?
+    # Check if current page IS a dedicated FOI page: body text contains FOI keywords
+    # AND the URL path itself contains an FOI keyword (prevents about/general pages
+    # that merely mention FOI from being mistaken for the FOI page).
     soup_no_links = BeautifulSoup(html, "html.parser")
     for a in soup_no_links.find_all("a"):
         a.decompose()
     page_text = soup_no_links.get_text().lower()
-    if any(kw in page_text for kw in FOI_KEYWORDS):
+    page_path = urlparse(base_url).path.lower()
+    if any(kw in page_text for kw in FOI_KEYWORDS) and any(kw in page_path for kw in FOI_URL_KEYWORDS):
         return base_url
-    
+
     # Otherwise, try to find FOI links (Problem 1: filter non-http(s))
     for link in soup.find_all("a", href=True):
         href = link["href"]
+        if href.startswith("#"):
+            continue  # in-page anchor, not a navigable FOI page
         parsed = urlparse(href)
 
         if parsed.scheme and parsed.scheme not in ('http', 'https'):
