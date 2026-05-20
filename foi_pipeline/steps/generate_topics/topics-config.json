@@ -1,0 +1,12 @@
+[
+  {
+    "slug": "housing",
+    "label": "Housing",
+    "keywords": ["housing", "rent", "homeless", "eviction"]
+  },
+  {
+    "slug": "covid-contracts",
+    "label": "Covid Contracts",
+    "keywords": ["covid", "ppe", "pandemic", "procurement"]
+  }
+]
