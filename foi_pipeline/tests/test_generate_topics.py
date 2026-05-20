@@ -1,5 +1,6 @@
 import pytest
-from steps.generate_topics.process import process_topics, sort_disclosures, STEP_NAME
+import json
+from steps.generate_topics.process import process_topics, sort_disclosures, write_public_topics, STEP_NAME
 
 
 # ---------------------------------------------------------------------------
@@ -216,3 +217,44 @@ def test_process_topics_empty_disclosures_all_zero():
     for topic in result:
         assert topic["match_count"] == 0
         assert topic["disclosures"] == []
+
+
+# ---------------------------------------------------------------------------
+# write_public_topics
+# ---------------------------------------------------------------------------
+
+
+def test_write_public_topics_creates_file(tmp_path):
+    results = [{"slug": "housing", "label": "Housing", "keywords": [], "match_count": 0, "disclosures": []}]
+    write_public_topics(results, tmp_path)
+    assert (tmp_path / "public" / "topics.json").exists()
+
+
+def test_write_public_topics_returns_path(tmp_path):
+    path = write_public_topics([], tmp_path)
+    assert path == tmp_path / "public" / "topics.json"
+
+
+def test_write_public_topics_content(tmp_path):
+    results = [
+        {"slug": "housing", "label": "Housing", "keywords": ["rent"], "match_count": 2, "disclosures": []},
+    ]
+    write_public_topics(results, tmp_path)
+    data = json.loads((tmp_path / "public" / "topics.json").read_text())
+    assert len(data) == 1
+    assert data[0]["slug"] == "housing"
+    assert data[0]["match_count"] == 2
+
+
+def test_write_public_topics_creates_public_dir(tmp_path):
+    write_public_topics([], tmp_path)
+    assert (tmp_path / "public").is_dir()
+
+
+def test_write_public_topics_overwrites_existing(tmp_path):
+    (tmp_path / "public").mkdir()
+    (tmp_path / "public" / "topics.json").write_text('[{"slug": "old"}]')
+    results = [{"slug": "housing", "label": "Housing", "keywords": [], "match_count": 0, "disclosures": []}]
+    write_public_topics(results, tmp_path)
+    data = json.loads((tmp_path / "public" / "topics.json").read_text())
+    assert data[0]["slug"] == "housing"
