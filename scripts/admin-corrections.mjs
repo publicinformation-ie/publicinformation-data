@@ -58,7 +58,7 @@ async function fetchPending() {
   const res = await fetch(`${CORRECTIONS_URL}/pending`, {
     headers: { 'x-api-key': ADMIN_API_KEY },
   });
-  if (!res.ok) throw new Error(`Fetch failed: ${res.status} ${res.statusText}`);
+  if (!res.ok) throw new Error(`Fetch failed: ${res.url} ${res.status} ${res.statusText}`);
   return res.json();
 }
 

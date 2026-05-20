@@ -14,6 +14,17 @@ from scripts.http_utils import fetch, is_safe_url
 STEP_NAME = "find_disclosure_files"
 FILE_EXTENSIONS = {".pdf": "pdf", ".xlsx": "xlsx", ".xls": "xls"}
 YEAR_PATTERN = re.compile(r"\b(20\d{2})\b")
+ANNUAL_REPORT_PATTERN = re.compile(r"annual.{0,10}report", re.IGNORECASE)
+PROTECTED_DISCLOSURE_PATTERN = re.compile(r"protected.disclosure", re.IGNORECASE)
+
+
+def _is_false_positive(url, link_text):
+    combined = f"{url} {link_text}"
+    if PROTECTED_DISCLOSURE_PATTERN.search(combined):
+        return True
+    if ANNUAL_REPORT_PATTERN.search(combined):
+        return True
+    return False
 
 
 def find_file_links(html, base_url, follow_year_pages=True):
@@ -25,11 +36,15 @@ def find_file_links(html, base_url, follow_year_pages=True):
     for link in soup.find_all("a", href=True):
         href = link["href"]
         full_url = urljoin(base_url, href)
-        
+
         # Skip non-HTTP URLs
         if not is_safe_url(full_url):
             continue
-        
+
+        link_text = link.get_text(strip=True)
+        if _is_false_positive(full_url, link_text):
+            continue
+
         ext = Path(urlparse(href).path).suffix.lower()
 
         if ext in FILE_EXTENSIONS:

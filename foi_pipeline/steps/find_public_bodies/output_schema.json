@@ -19,6 +19,7 @@
           "public_body_id": { "type": "integer" },
           "name": { "type": "string" },
           "official_website_url": { "type": "string", "format": "uri" },
+          "not_subject_to_foi": { "type": "boolean" },
           "status": {
             "type": "object",
             "required": ["website"],
