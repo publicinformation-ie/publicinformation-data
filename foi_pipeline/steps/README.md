@@ -1,0 +1,37 @@
+# Pipeline Steps
+
+The authoritative step order is defined in [`../pipeline.json`](../pipeline.json). Steps run sequentially; each writes its output to `<step>/output.json` for the next step to consume.
+
+## Step sequence
+
+| # | Step | What it does |
+|---|---|---|
+| 1 | [`find_public_bodies`](find_public_bodies/) | Scrapes gov.ie to build the master list of Irish public bodies, resolving stub portal URLs to real homepages. |
+| 2 | [`resolve_website_urls`](resolve_website_urls/) | Second-pass resolution of any remaining gov.ie stub pages that weren't resolved in step 1. |
+| 3 | [`validate_websites`](validate_websites/) | HTTP-checks each public body's website and records reachability and HTTP status. |
+| 4 | [`find_foi_pages`](find_foi_pages/) | Crawls each reachable website to locate its FOI page, using homepage crawl → secondary crawl → Serper search fallback. |
+| 5 | [`check_foi_pages`](check_foi_pages/) | HTTP-checks each discovered FOI page URL to confirm it is still reachable. |
+| 6 | [`get_foi_emails`](get_foi_emails/) | Scrapes each FOI page and extracts the FOI contact email address. |
+| 7 | [`find_disclosure_pages`](find_disclosure_pages/) | Locates the disclosure log page for each body using domain-specific rules or crawl fallback. |
+| 8 | [`find_disclosure_files`](find_disclosure_files/) | Crawls each disclosure log page and collects links to PDF/XLSX/XLS files. |
+| 9 | [`transform_disclosure_files`](transform_disclosure_files/) | Downloads spreadsheet files and converts them into JSON row arrays; PDFs are passed through unmodified. |
+| 10 | [`extract_disclosures_detect_header_row`](extract_disclosures_detect_header_row/) | Detects which spreadsheet row is the header using a 2-non-empty-cell heuristic. |
+| 11 | [`extract_disclosures_canonicalize`](extract_disclosures_canonicalize/) | Maps raw column headers to canonical field names and emits flat FOI request records. |
+| 12 | [`export_status`](export_status/) | Fan-in step: merges all step outputs into a unified per-body status report and writes the public JSON files consumed by the website. |
+| 13 | [`generate_topics`](generate_topics/) | Matches canonical FOI records to keyword-defined topics and writes `public/topics.json`. |
+
+> **Stub:** [`extract_disclosures`](extract_disclosures/) is a placeholder step (not yet implemented) for future PDF extraction. It currently produces no output.
+
+## Common files in each step directory
+
+| File | Purpose |
+|---|---|
+| `process.py` | Entry point for the step |
+| `output.json` | Step output, consumed by the next step |
+| `errors.json` | Per-record errors (non-fatal warnings and failures) |
+| `override.json` | Manually curated records that are never overwritten by automation |
+| `dirty_ids.json` | Body IDs whose upstream data changed; signals downstream steps to reprocess those records |
+| `pipeline-status.json` | Execution metadata written by the orchestrator |
+| `output_schema.json` | JSON Schema for validating `output.json` and `override.json` |
+
+See the parent [`AGENTS.md`](../AGENTS.md) for how to run the pipeline, the override system, and troubleshooting guidance.

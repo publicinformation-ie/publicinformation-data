@@ -8,5 +8,10 @@
     "slug": "covid-contracts",
     "label": "Covid Contracts",
     "keywords": ["covid", "ppe", "pandemic", "procurement"]
+  },
+  {
+    "slug": "it-spend",
+    "label": "IT Spending",
+    "keywords": ["IT ", "software"]
   }
 ]
