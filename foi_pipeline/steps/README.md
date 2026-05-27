@@ -19,6 +19,7 @@ The authoritative step order is defined in [`../pipeline.json`](../pipeline.json
 | 11 | [`extract_disclosures_canonicalize`](extract_disclosures_canonicalize/) | Maps raw column headers to canonical field names and emits flat FOI request records. |
 | 12 | [`export_status`](export_status/) | Fan-in step: merges all step outputs into a unified per-body status report and writes the public JSON files consumed by the website. |
 | 13 | [`generate_topics`](generate_topics/) | Matches canonical FOI records to keyword-defined topics and writes `public/topics.json`. |
+| 14 | [`db_upload`](db_upload/) | Clears the six pipeline-data tables in the libSQL database and re-populates them from all upstream step outputs. |
 
 > **Stub:** [`extract_disclosures`](extract_disclosures/) is a placeholder step (not yet implemented) for future PDF extraction. It currently produces no output.
 

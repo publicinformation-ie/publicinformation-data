@@ -62,18 +62,22 @@ This document provides an overview of how data flows from the FOI pipeline to th
 
 ### Pipeline Steps
 
-The FOI pipeline consists of 10 sequential steps that process public body data:
+The FOI pipeline consists of 14 sequential steps that process public body data:
 
 1. **find_public_bodies** - Base data (scrapes foi.gov.ie)
-2. **validate_websites** - Checks website reachability
-3. **find_foi_pages** - Discovers FOI pages
-4. **check_foi_pages** - Validates FOI pages
-5. **get_foi_emails** - Extracts FOI email addresses
-6. **find_disclosure_pages** - Locates disclosure pages
-7. **find_disclosure_files** - Finds disclosure documents
-8. **transform_disclosure_files** - Processes files
-9. **extract_disclosures** - Extracts disclosure records
-10. **export_status** - **Fan-in merge** (final consolidator)
+2. **resolve_website_urls** - Second-pass URL resolution
+3. **validate_websites** - Checks website reachability
+4. **find_foi_pages** - Discovers FOI pages
+5. **check_foi_pages** - Validates FOI pages
+6. **get_foi_emails** - Extracts FOI email addresses
+7. **find_disclosure_pages** - Locates disclosure pages
+8. **find_disclosure_files** - Finds disclosure documents
+9. **transform_disclosure_files** - Processes files
+10. **extract_disclosures_detect_header_row** - Detects header row
+11. **extract_disclosures_canonicalize** - Extracts canonical FOI records
+12. **export_status** - Fan-in merge (status consolidator for the website)
+13. **generate_topics** - Groups records into keyword topics
+14. **db_upload** - Populates the libSQL database
 
 Each step reads from the previous step's output and adds its own data.
 

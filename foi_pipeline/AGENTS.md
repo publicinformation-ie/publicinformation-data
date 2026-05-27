@@ -15,15 +15,19 @@ The pipeline is a series of Python steps that:
 ### Pipeline Steps (in order)
 
 1. **find_public_bodies** - Scrapes the list of Irish public bodies from foi.gov.ie
-2. **validate_websites** - Checks if each public body's website is reachable
-3. **find_foi_pages** - Discovers FOI-specific pages on each website
-4. **check_foi_pages** - Validates the FOI pages are accessible
-5. **get_foi_emails** - Extracts FOI email addresses from websites
-6. **find_disclosure_pages** - Locates disclosure/log pages
-7. **find_disclosure_files** - Finds disclosure documents (PDFs, CSVs, etc.)
-8. **transform_disclosure_files** - Processes disclosure files into structured data
-9. **extract_disclosures** - Extracts individual disclosure records
-10. **export_status** - **Final step** - Fan-in merges all step outputs into consolidated status
+2. **resolve_website_urls** - Second-pass resolution of gov.ie stub URLs
+3. **validate_websites** - Checks if each public body's website is reachable
+4. **find_foi_pages** - Discovers FOI-specific pages on each website
+5. **check_foi_pages** - Validates the FOI pages are accessible
+6. **get_foi_emails** - Extracts FOI email addresses from websites
+7. **find_disclosure_pages** - Locates disclosure/log pages
+8. **find_disclosure_files** - Finds disclosure documents (PDFs, CSVs, etc.)
+9. **transform_disclosure_files** - Processes disclosure files into structured data
+10. **extract_disclosures_detect_header_row** - Detects header row in spreadsheets
+11. **extract_disclosures_canonicalize** - Maps raw columns to canonical FOI record fields
+12. **export_status** - Fan-in merges all step outputs into a consolidated status report
+13. **generate_topics** - Groups FOI records into keyword-defined topics
+14. **db_upload** - **Final step** - Populates the libSQL database from pipeline output
 
 ### Data Flow
 
@@ -56,6 +60,12 @@ extract_disclosures/output.json (extracted records)
     |
     v
 export_status/output.json (CONSOLIDATED STATUS - used by website)
+    |
+    v
+generate_topics/output.json (topic groups + matched disclosures)
+    |
+    v
+db_upload → libSQL database (public_bodies, disclosure_files, foi_disclosures, topics, …)
 ```
 
 ## export_status Step (Key Step for Website)
@@ -152,24 +162,32 @@ Each merger function updates the status fields for public bodies:
 
 Steps without mergers (e.g. extract_disclosures_detect_header_row) are skipped during merge.
 
-## Python Environment
+## Database (db_upload step)
 
-All Python commands must be run with the virtual environment active. The venv lives at `scripts/.venv` (one level up from this directory):
+The final `db_upload` step writes pipeline data to a libSQL database. The target is controlled by two environment variables (set in `.env.admin`):
+
+| Variable | Local dev | Production |
+|---|---|---|
+| `DATABASE_URL` | `file:./local.db` | Bunny dashboard connection URL (`https://…`) |
+| `DATABASE_AUTH_TOKEN` | *(leave empty)* | Bunny auth token |
+
+`scripts/db_client.py` abstracts sqlite3 (local) and libSQL HTTP v2 (remote) behind a single `DbClient` interface. The canonical schema lives at `schema.sql` in the repo root.
+
+To populate a local SQLite database from existing pipeline output:
 
 ```bash
-source ../scripts/.venv/bin/activate
-# or, from the repo root:
-source scripts/.venv/bin/activate
+DATABASE_URL=file:./local.db python orchestrator.py foi_pipeline/ --from export_status
 ```
 
-Once active, use `python` / `pytest` directly.
+## Python Environment
+
+The project uses `uv` for Python dependency management.
 
 ### Running Tests
 
 ```bash
-source ../scripts/.venv/bin/activate
 cd foi_pipeline
-pytest tests/ -q
+uv run pytest tests/ -q
 ```
 
 ## Running the Pipeline
