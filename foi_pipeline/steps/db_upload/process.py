@@ -96,7 +96,7 @@ def upload_disclosure_files(db, steps_dir):
 
 
 def upload_foi_disclosures(db, steps_dir):
-    """Returns (count, {(public_body_id, file_url): db_id}) for topic linking."""
+    """Returns (count, {(public_body_id, file_url, foi_reference_id): db_id}) for topic linking."""
     data = read_json(steps_dir / "extract_disclosures_canonicalize" / "output.json")
     rows = [
         [
@@ -110,10 +110,10 @@ def upload_foi_disclosures(db, steps_dir):
     max_before = db.execute("SELECT COALESCE(MAX(id), 0) AS m FROM foi_disclosures")[0]["m"]
     db.executemany(_INSERT_FOI_DISCLOSURE, rows)
     id_rows = db.execute(
-        "SELECT id, public_body_id, file_url FROM foi_disclosures WHERE id > ?",
+        "SELECT id, public_body_id, file_url, foi_reference_id FROM foi_disclosures WHERE id > ?",
         [max_before],
     )
-    id_map = {(r["public_body_id"], r["file_url"]): r["id"] for r in id_rows}
+    id_map = {(r["public_body_id"], r["file_url"], r["foi_reference_id"]): r["id"] for r in id_rows}
     return len(rows), id_map
 
 
@@ -126,12 +126,16 @@ def upload_topics(db, steps_dir, disclosure_id_map):
     kw_rows = [[t["slug"], kw] for t in topics for kw in t["keywords"]]
     db.executemany(_INSERT_KEYWORD, kw_rows)
 
+    td_seen = set()
     td_rows = []
     for t in topics:
         for d in t["disclosures"]:
-            disc_id = disclosure_id_map.get((d["public_body_id"], d["file_url"]))
+            disc_id = disclosure_id_map.get((d["public_body_id"], d["file_url"], d.get("foi_reference_id")))
             if disc_id is not None:
-                td_rows.append([t["slug"], disc_id])
+                pair = (t["slug"], disc_id)
+                if pair not in td_seen:
+                    td_seen.add(pair)
+                    td_rows.append(list(pair))
     db.executemany(_INSERT_TOPIC_DISCLOSURE, td_rows)
 
     return len(topics)

@@ -3,7 +3,10 @@ __pycache__/
 *.pyc
 docs/
 .worktrees/
+
+#claude
 .claude/settings.local.json
+.superpowers/
 
 # Pipeline output files (at any level)
 **/output.json
@@ -11,3 +14,4 @@ docs/
 **/pipeline-status.json
 **/dirty_ids.json
 .env.admin
+local.db

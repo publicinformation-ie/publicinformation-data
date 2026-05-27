@@ -199,8 +199,8 @@ class TestUploadFoiDisclosures:
             [1, "Body 1", "https://body1.ie", "Government Department"],
         )
         _, id_map = upload_foi_disclosures(db, steps_dir)
-        assert (1, "https://body1.ie/foi0.pdf") in id_map
-        assert (1, "https://body1.ie/foi1.pdf") in id_map
+        assert (1, "https://body1.ie/foi0.pdf", "REF-0") in id_map
+        assert (1, "https://body1.ie/foi1.pdf", "REF-1") in id_map
 
 
 class TestUploadTopics:

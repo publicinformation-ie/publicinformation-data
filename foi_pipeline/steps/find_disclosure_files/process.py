@@ -14,17 +14,29 @@ from scripts.http_utils import fetch, is_safe_url
 STEP_NAME = "find_disclosure_files"
 FILE_EXTENSIONS = {".pdf": "pdf", ".xlsx": "xlsx", ".xls": "xls"}
 YEAR_PATTERN = re.compile(r"\b(20\d{2})\b")
-ANNUAL_REPORT_PATTERN = re.compile(r"annual.{0,10}report", re.IGNORECASE)
-PROTECTED_DISCLOSURE_PATTERN = re.compile(r"protected.disclosure", re.IGNORECASE)
+
+_FOI_KEYWORDS = ['disclosure', 'log', 'foi-log', 'foi_log', 'published-foi-requests', 'foi-decisions']
+_NEGATIVE_KEYWORDS = list(set([k.lower() for k in [
+    'policy', 'scheme', 'guide', 'minutes', 'report', 'annual', 'agenda',
+    'protected-disclosure', 'annual-report', 'debaterecord', 'governance'
+    'committee_on', 'strategic-plan', 'climate-action', 'expense',
+    'diary', 'mou', 'lrd-opinion', 'planningapplicationsrefused',
+    'fiscal', 'committee', 'planning-application', 'code', 'statement', 'plan', 'press', 'elections',
+    'strategy', 'leaflet', 'article', 'application form', '-form', '_form', 'assessment', 'tax', 'grants',
+    'template', 'award', 'irishstatute', 'conference', 'training', 'guidance'
+]]))
 
 
-def _is_false_positive(url, link_text):
-    combined = f"{url} {link_text}"
-    if PROTECTED_DISCLOSURE_PATTERN.search(combined):
-        return True
-    if ANNUAL_REPORT_PATTERN.search(combined):
-        return True
-    return False
+def _url_score(url):
+    url_lower = str(url).lower()
+    for k in _NEGATIVE_KEYWORDS:
+        if k in url_lower:
+            return -1000
+    score = 0
+    for k in _FOI_KEYWORDS:
+        if k in url_lower:
+            score += 100
+    return score
 
 
 def find_file_links(html, base_url, follow_year_pages=True):
@@ -41,17 +53,17 @@ def find_file_links(html, base_url, follow_year_pages=True):
         if not is_safe_url(full_url):
             continue
 
-        link_text = link.get_text(strip=True)
-        if _is_false_positive(full_url, link_text):
+        if _url_score(full_url) < 0:
             continue
 
+        link_text = link.get_text(strip=True)
         ext = Path(urlparse(href).path).suffix.lower()
 
         if ext in FILE_EXTENSIONS:
             if full_url not in seen_urls:
                 seen_urls.add(full_url)
                 files.append({"file_url": full_url, "file_type": FILE_EXTENSIONS[ext]})
-        elif follow_year_pages and YEAR_PATTERN.search(link.get_text(strip=True)):
+        elif follow_year_pages and YEAR_PATTERN.search(link_text):
             if full_url not in seen_urls:
                 seen_urls.add(full_url)
                 year_page_urls.append(full_url)
