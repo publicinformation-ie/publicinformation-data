@@ -55,7 +55,7 @@ def test_foi_plus_decisions():
 
 
 def test_published_plus_foi():
-    assert _score_link({"published", "foi", "requests"}) == 70
+    assert _score_link({"published", "foi"}) == 70
 
 
 def test_disclosure_alone_is_medium():
@@ -84,3 +84,8 @@ def test_how_to_make_a_request_disqualified():
 def test_publication_scheme_disqualified():
     assert _score_link({"freedom", "information", "publication", "scheme"}) == 0
     assert _score_link({"model", "publication", "scheme"}) == 0
+
+
+def test_guide_and_guidance_disqualified():
+    assert _score_link({"guide", "foi"}) == 0
+    assert _score_link({"guidance", "foi"}) == 0
