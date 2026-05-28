@@ -329,6 +329,8 @@ XLS_INPUT = {
     ],
 }
 
+PDF_URL = "https://assets.gov.ie/report.pdf"
+
 
 # ── process() — pass-through ──────────────────────────────────────────────────
 
@@ -347,6 +349,65 @@ def test_process_pdf_no_errors_written(tmp_path, make_writer):
     process(PDF_INPUT, tmp_path, writer)
     errors = json.loads((tmp_path / "errors.json").read_text())
     assert errors == []
+
+
+# ── process() — PDF happy path ────────────────────────────────────────────────
+
+def test_process_pdf_extracts_rows(requests_mock, tmp_path, make_writer):
+    rows_in = [["Ref", "Date"], ["16/002", "2016-01-05"]]
+    pdf_bytes = _make_pdf([[rows_in]])
+    requests_mock.get(PDF_URL, content=pdf_bytes)
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(PDF_INPUT, tmp_path, writer)
+    assert len(writer.results) == 1
+    r = writer.results[0]
+    assert r["sheet_name"] == "page 1"
+    assert r["rows"][0] == ["Ref", "Date"]
+    assert r["rows"][1] == ["16/002", "2016-01-05"]
+
+
+def test_process_pdf_no_errors_on_clean_file(requests_mock, tmp_path, make_writer):
+    pdf_bytes = _make_pdf([[[ ["Col A", "Col B"], ["v1", "v2"] ]]])
+    requests_mock.get(PDF_URL, content=pdf_bytes)
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(PDF_INPUT, tmp_path, writer)
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert errors == []
+
+
+def test_process_pdf_multiple_tables_writes_record_and_warning(requests_mock, tmp_path, make_writer):
+    table1 = [["Ref", "Date"], ["001", "2024-01-01"]]
+    table2 = [["002", "2024-01-02"]]
+    pdf_bytes = _make_pdf([[table1, table2]])
+    requests_mock.get(PDF_URL, content=pdf_bytes)
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(PDF_INPUT, tmp_path, writer)
+    assert len(writer.results) == 1  # record still written
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert len(errors) == 1
+    assert errors[0]["error_type"] == "MultipleTableWarning"
+
+
+def test_process_pdf_no_tables_logs_error_and_skips_record(requests_mock, tmp_path, make_writer):
+    pdf_bytes = _make_pdf_no_tables()
+    requests_mock.get(PDF_URL, content=pdf_bytes)
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(PDF_INPUT, tmp_path, writer)
+    assert writer.results == []
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert len(errors) == 1
+    assert errors[0]["step"] == STEP_NAME
+    assert errors[0]["error_type"] == "ValueError"
+
+
+def test_process_pdf_corrupt_logs_error_and_skips_record(requests_mock, tmp_path, make_writer):
+    requests_mock.get(PDF_URL, content=b"not a valid pdf")
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(PDF_INPUT, tmp_path, writer)
+    assert writer.results == []
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert len(errors) == 1
+    assert errors[0]["step"] == STEP_NAME
 
 
 # ── process() — XLSX happy path ───────────────────────────────────────────────

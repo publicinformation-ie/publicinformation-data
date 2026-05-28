@@ -126,29 +126,40 @@ def process(input_data, step_dir, writer, verbose=False):
 
         file_type = item["file_type"]
 
-        if file_type == "pdf":
-            writer.append([{**item, "sheet_name": None, "rows": None}])
-            if verbose:
-                print(".", end="", flush=True)
-            continue
-
         try:
             response = fetch("GET", file_url, allow_redirects=True)
             file_bytes = response.content
 
             if file_type == "xlsx":
-                sheet_name, rows, fallback_cells, has_multiple_sheets = _extract_xlsx(file_bytes)
-            else:
-                sheet_name, rows, fallback_cells, has_multiple_sheets = _extract_xls(file_bytes)
-
-            if has_multiple_sheets:
-                append_error(step_dir, {
-                    "step": STEP_NAME,
-                    "timestamp": datetime.now(timezone.utc).isoformat(),
-                    "error_type": "MultipleSheetWarning",
-                    "error_message": "File has multiple sheets; only the first sheet was extracted.",
-                    "context": {"file_url": file_url},
-                })
+                sheet_name, rows, fallback_cells, has_multiple = _extract_xlsx(file_bytes)
+                if has_multiple:
+                    append_error(step_dir, {
+                        "step": STEP_NAME,
+                        "timestamp": datetime.now(timezone.utc).isoformat(),
+                        "error_type": "MultipleSheetWarning",
+                        "error_message": "File has multiple sheets; only the first sheet was extracted.",
+                        "context": {"file_url": file_url},
+                    })
+            elif file_type == "xls":
+                sheet_name, rows, fallback_cells, has_multiple = _extract_xls(file_bytes)
+                if has_multiple:
+                    append_error(step_dir, {
+                        "step": STEP_NAME,
+                        "timestamp": datetime.now(timezone.utc).isoformat(),
+                        "error_type": "MultipleSheetWarning",
+                        "error_message": "File has multiple sheets; only the first sheet was extracted.",
+                        "context": {"file_url": file_url},
+                    })
+            else:  # pdf
+                sheet_name, rows, fallback_cells, has_multiple = _extract_pdf(file_bytes)
+                if has_multiple:
+                    append_error(step_dir, {
+                        "step": STEP_NAME,
+                        "timestamp": datetime.now(timezone.utc).isoformat(),
+                        "error_type": "MultipleTableWarning",
+                        "error_message": "File has multiple tables; all table rows were concatenated.",
+                        "context": {"file_url": file_url},
+                    })
 
             if fallback_cells:
                 append_error(step_dir, {
