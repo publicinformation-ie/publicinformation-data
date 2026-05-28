@@ -14,7 +14,6 @@ from scripts.http_utils import fetch, is_safe_url, validate_url_or_raise
 from steps.find_disclosure_pages.domains import find_disclosure_page as domain_find
 
 STEP_NAME = "find_disclosure_pages"
-DISCLOSURE_KEYWORDS = ["disclosure", "log", "request"]
 
 
 def _tokenize(*strings):
@@ -77,18 +76,30 @@ def _score_link(tokens):
 
 
 def find_disclosure_link(html, base_url):
+    """Return (best_url, score) for the highest-scoring disclosure-log link on
+    the page, or None if nothing scores at or above ACCEPT_THRESHOLD.
+
+    Unlike the old first-match-wins behaviour, this scores every candidate and
+    returns the best, so a real 'foi-disclosure-log' link beats a 'login' link
+    that happens to appear earlier in the DOM.
+    """
     soup = BeautifulSoup(html, "html.parser")
+    best = None
+    best_score = 0
     for link in soup.find_all("a", href=True):
-        href = link["href"].lower()
-        text = link.get_text(strip=True).lower()
-        if any(kw in href or kw in text for kw in DISCLOSURE_KEYWORDS):
-            if ("annual" in href and "report" in href) or "protected-disclosures" in href:
-                continue
-            if "/ga/" in link["href"]:
-                continue
-            full_url = urljoin(base_url, link["href"])
-            if is_safe_url(full_url):
-                return full_url
+        href = link["href"]
+        if "/ga/" in href:  # Irish-language mirror pages
+            continue
+        tokens = _tokenize(href, link.get_text(strip=True))
+        sc = _score_link(tokens)
+        if sc <= best_score:
+            continue
+        full_url = urljoin(base_url, href)
+        if not is_safe_url(full_url):
+            continue
+        best, best_score = full_url, sc
+    if best is not None and best_score >= ACCEPT_THRESHOLD:
+        return best, best_score
     return None
 
 
@@ -112,7 +123,8 @@ def process(input_data, step_dir, writer, verbose=False):
             if disclosure_url is None:
                 method = "crawl"
                 response = fetch("GET", url, allow_redirects=True)
-                disclosure_url = find_disclosure_link(response.text, url) or url
+                match = find_disclosure_link(response.text, url)
+                disclosure_url = match[0] if match else url
             if disclosure_url:
                 validate_url_or_raise(disclosure_url, context=f"disclosure_url_{body_id}")
             writer.append([{

@@ -89,3 +89,32 @@ def test_publication_scheme_disqualified():
 def test_guide_and_guidance_disqualified():
     assert _score_link({"guide", "foi"}) == 0
     assert _score_link({"guidance", "foi"}) == 0
+
+
+from steps.find_disclosure_pages.process import find_disclosure_link
+
+
+def test_find_link_picks_highest_scoring_not_first():
+    html = """<html><body>
+      <a href="/account/login">Login</a>
+      <a href="/blog">Blog</a>
+      <a href="/foi/foi-disclosure-log/">FOI Disclosure Log</a>
+    </body></html>"""
+    url, sc = find_disclosure_link(html, "https://x.ie/foi/")
+    assert url == "https://x.ie/foi/foi-disclosure-log/"
+    assert sc == 100
+
+
+def test_find_link_returns_none_when_only_noise():
+    html = '<html><body><a href="/login">Login</a><a href="/blog">Blog</a></body></html>'
+    assert find_disclosure_link(html, "https://x.ie/foi/") is None
+
+
+def test_find_link_skips_irish_language_ga_path():
+    html = '<html><body><a href="/ga/foi-disclosure-log/">Nochtadh</a></body></html>'
+    assert find_disclosure_link(html, "https://x.ie/foi/") is None
+
+
+def test_find_link_rejects_how_to_request_form():
+    html = '<html><body><a href="/how-to-make-an-foi-request/">How to make an FOI request</a></body></html>'
+    assert find_disclosure_link(html, "https://x.ie/foi/") is None
