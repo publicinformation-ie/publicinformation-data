@@ -116,22 +116,32 @@ def process(input_data, step_dir, writer, verbose=False):
         if verbose:
             print(f"  {name} ({url}) ...", end=" ", flush=True)
         t_start = time.perf_counter()
-        method = "domain"
+        method = "unknown"
         try:
             validate_url_or_raise(url, context=f"disclosure_page_{body_id}")
             disclosure_url = domain_find(name, url)
-            if disclosure_url is None:
-                method = "crawl"
+            if disclosure_url is not None:
+                method = "domain"
+                confidence = "high"
+            else:
                 response = fetch("GET", url, allow_redirects=True)
                 match = find_disclosure_link(response.text, url)
-                disclosure_url = match[0] if match else url
-            if disclosure_url:
-                validate_url_or_raise(disclosure_url, context=f"disclosure_url_{body_id}")
+                if match:
+                    disclosure_url, link_score = match
+                    method = "crawl"
+                    confidence = "high" if link_score >= 70 else "medium"
+                else:
+                    disclosure_url = url
+                    method = "foi_page_fallback"
+                    confidence = "none"
+            validate_url_or_raise(disclosure_url, context=f"disclosure_url_{body_id}")
             writer.append([{
                 "public_body_id": body_id,
                 "name": name,
                 "foi_page_url": url,
                 "disclosure_page_url": disclosure_url,
+                "confidence": confidence,
+                "source_method": method,
             }])
         except Exception as e:
             append_error(step_dir, {

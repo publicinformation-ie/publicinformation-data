@@ -20,7 +20,9 @@
           "name": { "type": "string" },
           "foi_page_url": { "type": "string" },
           "disclosure_page_url": { "type": "string" },
-          "overridden": { "type": "boolean" }
+          "overridden": { "type": "boolean" },
+          "confidence": { "type": "string", "enum": ["high", "medium", "none"] },
+          "source_method": { "type": "string" }
         }
       }
     }

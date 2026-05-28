@@ -130,3 +130,18 @@ def test_gov_ie_falls_back_to_crawl_when_domain_handler_returns_none(requests_mo
     process(INPUT_GOV_IE, tmp_path, writer)
     result = next(r for r in writer.results if r["public_body_id"] == 2001)
     assert "collections/foi-disclosure-log" in result["disclosure_page_url"]
+
+
+def test_records_confidence_and_source_method(requests_mock, tmp_path, make_writer):
+    writer = make_writer(STEP_NAME)
+    html = '<html><body><a href="/foi/foi-disclosure-log/">FOI Disclosure Log</a></body></html>'
+    requests_mock.get("https://dept-a.ie/foi/", text=html)
+    requests_mock.get("https://dept-b.ie/foi/", text=HTML_WITHOUT_DISCLOSURE_LINK)
+    process(INPUT, tmp_path, writer)
+    a = next(r for r in writer.results if r["public_body_id"] == 1001)
+    b = next(r for r in writer.results if r["public_body_id"] == 1002)
+    assert a["confidence"] == "high"
+    assert a["source_method"] == "crawl"
+    assert b["confidence"] == "none"
+    assert b["source_method"] == "foi_page_fallback"
+    assert b["disclosure_page_url"] == "https://dept-b.ie/foi/"
