@@ -10,6 +10,7 @@ from steps.transform_disclosure_files.process import (
     serialise_cell,
     _extract_xlsx,
     _extract_xls,
+    _extract_pdf,          # add this
     process,
     STEP_NAME,
 )
@@ -49,6 +50,53 @@ def _make_xls(rows, sheet_name="Sheet1", extra_sheets=0, extra_sheet_rows=None):
                     extra_ws.write(r_idx, c_idx, val)
     buf = io.BytesIO()
     wb.save(buf)
+    return buf.getvalue()
+
+
+def _make_pdf(tables_per_page):
+    """Return bytes of a PDF with the given tables laid out per page.
+
+    tables_per_page: list[list[list[list[str]]]]
+      outer list  → pages
+      middle list → tables on that page
+      inner list  → rows of that table (each row: list of str)
+
+    Uses reportlab GRID style so pdfplumber can detect tables via line geometry.
+    """
+    import io as _io
+    from reportlab.lib import colors
+    from reportlab.lib.pagesizes import A4
+    from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, PageBreak
+
+    buf = _io.BytesIO()
+    doc = SimpleDocTemplate(buf, pagesize=A4)
+    story = []
+
+    for page_idx, page_tables in enumerate(tables_per_page):
+        if page_idx > 0:
+            story.append(PageBreak())
+        for table_rows in page_tables:
+            t = Table(table_rows)
+            t.setStyle(TableStyle([
+                ("GRID", (0, 0), (-1, -1), 0.5, colors.black),
+            ]))
+            story.append(t)
+
+    doc.build(story)
+    return buf.getvalue()
+
+
+def _make_pdf_no_tables():
+    """Return bytes of a valid PDF containing only text (no tables)."""
+    import io as _io
+    from reportlab.lib.pagesizes import A4
+    from reportlab.lib.styles import getSampleStyleSheet
+    from reportlab.platypus import SimpleDocTemplate, Paragraph
+
+    buf = _io.BytesIO()
+    doc = SimpleDocTemplate(buf, pagesize=A4)
+    styles = getSampleStyleSheet()
+    doc.build([Paragraph("No tables here.", styles["Normal"])])
     return buf.getvalue()
 
 
@@ -204,6 +252,49 @@ def test_extract_xls_empty_cell_is_none():
     xls_bytes = _make_xls([["only-col-a"]])
     _, rows, _, _ = _extract_xls(xls_bytes)
     assert rows[0][0] == "only-col-a"
+
+
+# ── _extract_pdf ──────────────────────────────────────────────────────────────
+
+def test_extract_pdf_single_page_single_table():
+    rows_in = [["Our Reference", "Date"], ["16/002", "2016-01-05"]]
+    pdf_bytes = _make_pdf([[rows_in]])
+    sheet_name, rows, fallback_cells, has_multiple_tables = _extract_pdf(pdf_bytes)
+    assert sheet_name == "page 1"
+    assert rows[0] == ["Our Reference", "Date"]
+    assert rows[1] == ["16/002", "2016-01-05"]
+    assert fallback_cells == []
+    assert has_multiple_tables is False
+
+
+def test_extract_pdf_single_page_two_tables_concatenates_rows():
+    table1 = [["Ref", "Date"], ["001", "2024-01-01"]]
+    table2 = [["002", "2024-01-02"]]
+    pdf_bytes = _make_pdf([[table1, table2]])
+    sheet_name, rows, fallback_cells, has_multiple_tables = _extract_pdf(pdf_bytes)
+    assert sheet_name == "page 1"
+    assert has_multiple_tables is True
+    # All rows from both tables should appear in order
+    assert ["Ref", "Date"] in rows
+    assert ["001", "2024-01-01"] in rows
+    assert ["002", "2024-01-02"] in rows
+
+
+def test_extract_pdf_multi_page_concatenates_rows():
+    page1_rows = [["Ref", "Date"], ["001", "2024-01-01"]]
+    page2_rows = [["002", "2024-01-02"]]
+    pdf_bytes = _make_pdf([[page1_rows], [page2_rows]])
+    sheet_name, rows, fallback_cells, has_multiple_tables = _extract_pdf(pdf_bytes)
+    assert sheet_name == "pages 1-2"
+    assert rows[0] == ["Ref", "Date"]
+    assert rows[1] == ["001", "2024-01-01"]
+    assert rows[2] == ["002", "2024-01-02"]
+
+
+def test_extract_pdf_no_tables_raises_value_error():
+    pdf_bytes = _make_pdf_no_tables()
+    with pytest.raises(ValueError, match="no tables found"):
+        _extract_pdf(pdf_bytes)
 
 
 # ── process() fixtures ────────────────────────────────────────────────────────
