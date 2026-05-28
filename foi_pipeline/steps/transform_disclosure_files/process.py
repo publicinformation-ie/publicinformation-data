@@ -189,7 +189,7 @@ def process(input_data, step_dir, writer, verbose=False):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Download and convert disclosure log files (XLSX/XLS) to JSON arrays"
+        description="Download and convert disclosure log files (XLSX/XLS/PDF) to JSON arrays"
     )
     parser.add_argument("--input", required=True)
     parser.add_argument("--output", required=True)
