@@ -159,6 +159,34 @@ class TestHttpPipeline:
         assert payload["requests"][4]["stmt"]["sql"] == "COMMIT"
 
 
+class TestExecuteScriptRemote:
+    def test_sends_all_ddl_in_one_pipeline_call(self, remote_db):
+        sql = "CREATE TABLE a (id INTEGER);\nCREATE TABLE b (id INTEGER);\n"
+        ok = _ok_result()
+        # BEGIN + 2 stmts + COMMIT = 4 results
+        with patch("scripts.db_client.requests.post", return_value=_pipeline_response([ok] * 4)) as mock_post:
+            remote_db.executescript(sql)
+
+        assert mock_post.call_count == 1
+        payload = mock_post.call_args[1]["json"]
+        sqls = [r["stmt"]["sql"] for r in payload["requests"]]
+        assert sqls[0] == "BEGIN"
+        assert sqls[1] == "CREATE TABLE a (id INTEGER)"
+        assert sqls[2] == "CREATE TABLE b (id INTEGER)"
+        assert sqls[3] == "COMMIT"
+
+    def test_skips_blank_lines_and_comments(self, remote_db):
+        sql = "-- setup\nCREATE TABLE a (id INTEGER);\n\n-- end\n"
+        ok = _ok_result()
+        # BEGIN + 1 stmt + COMMIT = 3 results
+        with patch("scripts.db_client.requests.post", return_value=_pipeline_response([ok] * 3)) as mock_post:
+            remote_db.executescript(sql)
+
+        payload = mock_post.call_args[1]["json"]
+        assert len(payload["requests"]) == 3
+        assert payload["requests"][1]["stmt"]["sql"] == "CREATE TABLE a (id INTEGER)"
+
+
 class TestExecuteManyRemote:
     def test_single_batch_for_few_rows(self, remote_db):
         params_list = [[1], [2], [3]]

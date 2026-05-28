@@ -50,13 +50,15 @@ class DbClient:
         if self._local:
             self._conn.executescript(sql)
         else:
-            stmts = [
-                s.strip()
-                for s in sql.split(";")
-                if s.strip() and not s.strip().startswith("--")
-            ]
-            for stmt in stmts:
-                self._http_execute(stmt)
+            stmts = []
+            for s in sql.split(";"):
+                cleaned = "\n".join(
+                    line for line in s.splitlines()
+                    if line.strip() and not line.strip().startswith("--")
+                ).strip()
+                if cleaned:
+                    stmts.append((cleaned, []))
+            self._http_pipeline(stmts)
 
     def close(self):
         if self._local:
