@@ -9,6 +9,8 @@ class DbClient:
     def __init__(self, url=None, auth_token=None):
         url = url or os.getenv("DATABASE_URL", "local.db")
         auth_token = auth_token or os.getenv("DATABASE_AUTH_TOKEN", "")
+        if url.startswith("libsql://"):
+            url = "https://" + url[len("libsql://"):]
         self._local = not url.startswith("http")
         if self._local:
             path = url.removeprefix("file:") if url.startswith("file:") else url
@@ -58,7 +60,7 @@ class DbClient:
         if self._local:
             self._conn.close()
 
-    def _http_execute(self, sql, params=None):
+    def _build_args(self, params):
         args = []
         for p in (params or []):
             if p is None:
@@ -71,9 +73,11 @@ class DbClient:
                 args.append({"type": "float", "value": str(p)})
             else:
                 args.append({"type": "text", "value": str(p)})
+        return args
 
+    def _http_execute(self, sql, params=None):
         payload = {
-            "requests": [{"type": "execute", "stmt": {"sql": sql, "args": args}}]
+            "requests": [{"type": "execute", "stmt": {"sql": sql, "args": self._build_args(params)}}]
         }
         resp = requests.post(self._remote_url, json=payload, headers=self._headers, timeout=30)
         resp.raise_for_status()
