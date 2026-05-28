@@ -2,6 +2,7 @@
 import argparse
 import re
 import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
@@ -82,49 +83,55 @@ def find_file_links(html, base_url, follow_year_pages=True):
     return files
 
 
-def process(input_data, step_dir, writer, verbose=False):
+def _fetch_one(item):
+    """Fetch disclosure files for one body. Returns (body_id, name, url, items, exc)."""
+    body_id = item["public_body_id"]
+    url = item["disclosure_page_url"]
+    name = item.get("name", "")
+    try:
+        ext = Path(urlparse(url).path).suffix.lower()
+        if ext in FILE_EXTENSIONS:
+            return body_id, name, url, [{
+                "public_body_id": body_id,
+                "name": name,
+                "disclosure_page_url": url,
+                "file_url": url,
+                "file_type": FILE_EXTENSIONS[ext],
+            }], None
+        response = fetch("GET", url, allow_redirects=True)
+        items = [
+            {"public_body_id": body_id, "name": name, "disclosure_page_url": url, **f}
+            for f in find_file_links(response.text, url)
+        ]
+        return body_id, name, url, items, None
+    except Exception as e:
+        return body_id, name, url, [], e
+
+
+def process(input_data, step_dir, writer, verbose=False, max_workers=10):
     errors_path = Path(step_dir) / "errors.json"
     write_json(errors_path, [])
 
-    for item in input_data["results"]:
-        body_id = item["public_body_id"]
-        if writer.is_processed(body_id):
-            continue
-        url = item["disclosure_page_url"]
-        name = item.get("name", "")
-        try:
-            ext = Path(urlparse(url).path).suffix.lower()
-            if ext in FILE_EXTENSIONS:
-                writer.append([{
-                    "public_body_id": body_id,
-                    "name": name,
-                    "disclosure_page_url": url,
-                    "file_url": url,
-                    "file_type": FILE_EXTENSIONS[ext],
-                }])
+    pending = [item for item in input_data["results"]
+               if not writer.is_processed(item["public_body_id"])]
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = {executor.submit(_fetch_one, item): item for item in pending}
+        for future in as_completed(futures):
+            body_id, name, url, items, exc = future.result()
+            if exc is not None:
+                append_error(step_dir, {
+                    "step": STEP_NAME,
+                    "timestamp": datetime.now(timezone.utc).isoformat(),
+                    "error_type": type(exc).__name__,
+                    "error_message": str(exc),
+                    "context": {"url": url, "public_body_id": body_id, "name": name},
+                })
+                writer.append([])
             else:
-                response = fetch("GET", url, allow_redirects=True)
-                new_items = [
-                    {
-                        "public_body_id": body_id,
-                        "name": name,
-                        "disclosure_page_url": url,
-                        **file_info,
-                    }
-                    for file_info in find_file_links(response.text, url)
-                ]
-                writer.append(new_items)
-        except Exception as e:
-            append_error(step_dir, {
-                "step": STEP_NAME,
-                "timestamp": datetime.now(timezone.utc).isoformat(),
-                "error_type": type(e).__name__,
-                "error_message": str(e),
-                "context": {"url": url, "public_body_id": body_id, "name": name},
-            })
-            writer.append([])
-        if verbose:
-            print(".", end="", flush=True)
+                writer.append(items)
+            if verbose:
+                print(".", end="", flush=True)
 
 
 def main():
@@ -133,6 +140,7 @@ def main():
     parser.add_argument("--output", required=True)
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--verbose", action="store_true")
+    parser.add_argument("--workers", type=int, default=10)
     args = parser.parse_args()
 
     step_dir = Path(__file__).parent
@@ -152,7 +160,7 @@ def main():
     if writer.processed_keys:
         print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")
 
-    process(input_data, step_dir, writer, verbose=args.verbose)
+    process(input_data, step_dir, writer, verbose=args.verbose, max_workers=args.workers)
     count = writer.finalize()
     write_status(step_dir, count)
     if args.verbose:
