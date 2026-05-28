@@ -31,6 +31,51 @@ def _tokenize(*strings):
     return tokens
 
 
+# Tokens that, if present, immediately disqualify a link. These are the words
+# that historically caused false positives (publication-scheme, protected
+# disclosures, how-to/make-a-request forms, annual reports, login/logo/blog).
+NEGATIVE_TOKENS = {
+    "protected", "scheme", "form", "login", "logo", "blog",
+    "publication", "publications", "annual", "report", "reports",
+    "how", "make", "apply", "guide", "guidance",
+}
+
+_DISCLOSURE = {"disclosure", "disclosures"}
+_LOG = {"log", "logs"}
+_DECISION = {"decision", "decisions"}
+_REQUEST = {"request", "requests"}
+_PUBLISHED = {"published"}
+
+ACCEPT_THRESHOLD = 40  # links scoring below this are treated as "no match"
+
+
+def _score_link(tokens):
+    """Score a candidate link's combined href+anchor tokens. Higher = more
+    confidently a disclosure log. 0 = reject."""
+    if tokens & NEGATIVE_TOKENS:
+        return 0
+    disclosure = bool(tokens & _DISCLOSURE)
+    log = bool(tokens & _LOG)
+    foi = "foi" in tokens
+    decision = bool(tokens & _DECISION)
+    request = bool(tokens & _REQUEST)
+    published = bool(tokens & _PUBLISHED)
+
+    if disclosure and log:
+        return 100
+    if foi and log:
+        return 90
+    if foi and decision:
+        return 80
+    if published and foi:
+        return 70
+    if disclosure:
+        return 40
+    if foi and request:
+        return 10
+    return 0
+
+
 def find_disclosure_link(html, base_url):
     soup = BeautifulSoup(html, "html.parser")
     for link in soup.find_all("a", href=True):

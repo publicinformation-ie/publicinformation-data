@@ -37,3 +37,50 @@ def test_tokenize_preserves_alphanumeric_runs():
 def test_tokenize_case_insensitive():
     assert _tokenize("DISCLOSURE") == {"disclosure"}
     assert _tokenize("DisclOsureLog") == {"disclosurelog"}
+
+
+from steps.find_disclosure_pages.process import _score_link
+
+
+def test_disclosure_plus_log_is_strongest():
+    assert _score_link({"foi", "disclosure", "log"}) == 100
+
+
+def test_foi_plus_log():
+    assert _score_link({"foi", "logs"}) == 90
+
+
+def test_foi_plus_decisions():
+    assert _score_link({"foi", "decisions"}) == 80
+
+
+def test_published_plus_foi():
+    assert _score_link({"published", "foi", "requests"}) == 70
+
+
+def test_disclosure_alone_is_medium():
+    assert _score_link({"disclosure"}) == 40
+
+
+def test_foi_request_alone_is_weak():
+    assert _score_link({"foi", "request"}) == 10
+
+
+def test_noise_tokens_score_zero():
+    assert _score_link({"login"}) == 0
+    assert _score_link({"blog"}) == 0
+    assert _score_link({"geology"}) == 0
+    assert _score_link({"purple", "flag", "logo", "jpg"}) == 0
+
+
+def test_protected_disclosures_disqualified():
+    assert _score_link({"protected", "disclosures"}) == 0
+
+
+def test_how_to_make_a_request_disqualified():
+    assert _score_link({"how", "to", "make", "an", "foi", "request"}) == 0
+
+
+def test_publication_scheme_disqualified():
+    assert _score_link({"freedom", "information", "publication", "scheme"}) == 0
+    assert _score_link({"model", "publication", "scheme"}) == 0
