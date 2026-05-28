@@ -16,6 +16,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
 from steps.find_disclosure_pages.process import find_disclosure_link
 
+CONFIDENCE_THRESHOLD = 70  # Links scoring >= 70 are "high" confidence (tiers 1–3)
+
 STEP_DIR = Path(__file__).parent.parent
 FIXTURES = Path(__file__).parent / "fixtures"
 OUT = Path(__file__).parent / "matcher_output.json"
@@ -26,17 +28,19 @@ def main():
     foi_by_id = {str(r["public_body_id"]): r for r in output["results"]}
 
     results = []
+    skipped = 0
     for fixture in sorted(FIXTURES.glob("*.html")):
         pid = fixture.stem
         src = foi_by_id.get(pid)
         if src is None:
+            skipped += 1
             continue
         foi_url = src["foi_page_url"]
         html = fixture.read_text(encoding="utf-8")
         match = find_disclosure_link(html, foi_url)
         if match:
             disclosure_url, sc = match
-            confidence = "high" if sc >= 70 else "medium"
+            confidence = "high" if sc >= CONFIDENCE_THRESHOLD else "medium"
             method = "crawl"
         else:
             disclosure_url, confidence, method = foi_url, "none", "foi_page_fallback"
@@ -54,7 +58,10 @@ def main():
                      "completed_at": datetime.now(timezone.utc).isoformat()},
         "results": results,
     }, indent=2))
-    print(f"Wrote {len(results)} matcher results to {OUT}")
+    msg = f"Wrote {len(results)} matcher results to {OUT}"
+    if skipped:
+        msg += f" ({skipped} fixtures skipped — not found in output.json)"
+    print(msg)
 
 
 if __name__ == "__main__":
