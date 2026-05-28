@@ -40,8 +40,10 @@ class DbClient:
             cur.executemany(sql, params_list)
             self._conn.commit()
         else:
-            for params in params_list:
-                self._http_execute(sql, params)
+            chunk_size = 500
+            for i in range(0, len(params_list), chunk_size):
+                chunk = params_list[i : i + chunk_size]
+                self._http_pipeline([(sql, params) for params in chunk])
 
     def executescript(self, sql):
         """Execute multiple semicolon-separated DDL statements (schema init)."""

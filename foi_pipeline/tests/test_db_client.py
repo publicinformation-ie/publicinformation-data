@@ -159,6 +159,45 @@ class TestHttpPipeline:
         assert payload["requests"][4]["stmt"]["sql"] == "COMMIT"
 
 
+class TestExecuteManyRemote:
+    def test_single_batch_for_few_rows(self, remote_db):
+        params_list = [[1], [2], [3]]
+        ok = _ok_result()
+        mock_resp = Mock()
+        mock_resp.raise_for_status = Mock()
+        mock_resp.json.return_value = {"results": [ok] * 5}  # BEGIN + 3 + COMMIT
+
+        with patch("scripts.db_client.requests.post", return_value=mock_resp) as mock_post:
+            remote_db.executemany("INSERT INTO t VALUES (?)", params_list)
+
+        assert mock_post.call_count == 1
+        payload = mock_post.call_args[1]["json"]
+        assert len(payload["requests"]) == 5
+
+    def test_chunks_into_batches_of_500(self, remote_db):
+        params_list = [[i] for i in range(1001)]
+        ok = _ok_result()
+
+        mock_resp = Mock()
+        mock_resp.raise_for_status = Mock()
+        mock_resp.json.side_effect = [
+            {"results": [ok] * 502},  # BEGIN + 500 + COMMIT
+            {"results": [ok] * 502},  # BEGIN + 500 + COMMIT
+            {"results": [ok] * 3},    # BEGIN + 1 + COMMIT
+        ]
+
+        with patch("scripts.db_client.requests.post", return_value=mock_resp) as mock_post:
+            remote_db.executemany("INSERT INTO t VALUES (?)", params_list)
+
+        assert mock_post.call_count == 3
+
+    def test_empty_list_makes_no_http_call(self, remote_db):
+        with patch("scripts.db_client.requests.post") as mock_post:
+            remote_db.executemany("INSERT INTO t VALUES (?)", [])
+
+        mock_post.assert_not_called()
+
+
 class TestLocalUrl:
     def test_memory_url(self):
         db = DbClient(":memory:")
