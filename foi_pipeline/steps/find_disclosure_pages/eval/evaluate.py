@@ -46,19 +46,23 @@ def classify(record, label_row):
 def score(records_by_id, labels):
     counts = {"TP": 0, "FP": 0, "FN": 0, "TN": 0}
     details = {"FP": [], "FN": []}
+    skipped = 0
     for row in labels:
         record = records_by_id.get(str(row["public_body_id"]))
         if record is None:
+            skipped += 1
             continue
         outcome = classify(record, row)
         counts[outcome] += 1
-        if outcome in details:
-            details[outcome].append((str(row["public_body_id"]), record["disclosure_page_url"]))
+        if outcome == "FP":
+            details["FP"].append((str(row["public_body_id"]), record["disclosure_page_url"]))
+        elif outcome == "FN":
+            details["FN"].append((str(row["public_body_id"]), row["expected_url"]))
     tp, fp, fn = counts["TP"], counts["FP"], counts["FN"]
     precision = tp / (tp + fp) if (tp + fp) else 0.0
     recall = tp / (tp + fn) if (tp + fn) else 0.0
     f1 = 2 * precision * recall / (precision + recall) if (precision + recall) else 0.0
-    return counts, precision, recall, f1, details
+    return counts, precision, recall, f1, details, skipped
 
 
 def _load_labels(path):
@@ -79,11 +83,13 @@ def main():
 
     labels = _load_labels(args.labels)
     records = _load_records(args.output)
-    counts, precision, recall, f1, details = score(records, labels)
+    counts, precision, recall, f1, details, skipped = score(records, labels)
 
     print(f"Labelled bodies evaluated: {sum(counts.values())}")
     print(f"  TP={counts['TP']}  FP={counts['FP']}  FN={counts['FN']}  TN={counts['TN']}")
     print(f"  precision={precision:.3f}  recall={recall:.3f}  f1={f1:.3f}")
+    if skipped:
+        print(f"  WARNING: {skipped} labelled bodies had no output record (excluded from metrics)")
     if details["FP"]:
         print("\nFALSE POSITIVES (returned a wrong/spurious distinct page):")
         for pid, url in details["FP"]:

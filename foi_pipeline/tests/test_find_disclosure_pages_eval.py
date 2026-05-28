@@ -57,10 +57,10 @@ def test_score_aggregates_and_computes_precision_recall():
         {"public_body_id": "4", "label": "use_foi_page", "expected_url": ""},
         {"public_body_id": "5", "label": "use_foi_page", "expected_url": ""},
     ]
-    counts, precision, recall, f1, details = score(records, labels)
+    counts, precision, recall, f1, details, skipped = score(records, labels)
     assert counts == {"TP": 1, "FP": 2, "FN": 1, "TN": 1}
     assert precision == 1 / 3
     assert recall == 0.5
     assert abs(f1 - 0.4) < 1e-9
     assert ("2", "https://x.ie/wrong") in details["FP"]
-    assert ("3", "https://x.ie/foi") in details["FN"]
+    assert ("3", "https://x.ie/log") in details["FN"]
