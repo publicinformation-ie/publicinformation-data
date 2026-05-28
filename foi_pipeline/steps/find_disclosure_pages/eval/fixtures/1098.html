@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Google Analytics will be loaded conditionally after cookie consent -->
+    <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    // Function to load Google Analytics after consent
+    function loadGoogleAnalytics() {
+        if (typeof gtag === 'function') {
+            gtag('js', new Date());
+            gtag('config', 'GTM-WRVBSJ5');
+        }
+    }
+
+    // Check if analytics cookies are accepted
+    function checkAnalyticsConsent() {
+        // This will be called by Civic plugin when consent is given
+        if (window.cookieControl && window.cookieControl.getConsentStatus) {
+            const consent = window.cookieControl.getConsentStatus();
+            if (consent && consent.analytics) {
+                loadGoogleAnalytics();
+            }
+        }
+    }
+
+    // Listen for consent changes
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM loaded, checking for Civic plugin...');
+
+        // Function to check and log consent status
+        function checkAndLogConsent() {
+            console.log('Checking consent status...');
+            console.log('cookieControl object:', window.cookieControl);
+
+            if (window.cookieControl) {
+                console.log('Civic plugin found!');
+                console.log('Available methods:', Object.keys(window.cookieControl));
+
+                // Try different ways to get consent status
+                if (typeof window.cookieControl.getConsentStatus === 'function') {
+                    try {
+                        const consent = window.cookieControl.getConsentStatus();
+                        console.log('Consent status via getConsentStatus:', consent);
+                        if (consent && consent.analytics) {
+                            console.log('Analytics consent given, loading GA...');
+                            loadGoogleAnalytics();
+                        }
+                    } catch (e) {
+                        console.log('Error getting consent status:', e);
+                    }
+                }
+
+                if (typeof window.cookieControl.getConsent === 'function') {
+                    try {
+                        const consent = window.cookieControl.getConsent();
+                        console.log('Consent status via getConsent:', consent);
+                        if (consent && consent.analytics) {
+                            console.log('Analytics consent given, loading GA...');
+                            loadGoogleAnalytics();
+                        }
+                    } catch (e) {
+                        console.log('Error getting consent via getConsent:', e);
+                    }
+                }
+
+                // Check if consent is stored in cookies
+                const consentCookie = document.cookie.match(/CookieControl=([^;]+)/);
+                if (consentCookie) {
+                    try {
+                        const consentData = JSON.parse(decodeURIComponent(consentCookie[1]));
+                        console.log('Consent from cookie:', consentData);
+
+                        // Check the optionalCookies structure
+                        if (consentData.optionalCookies && consentData.optionalCookies.analytics ===
+                            'accepted') {
+                            console.log('Analytics consent found in cookie (accepted), loading GA...');
+                            loadGoogleAnalytics();
+                        } else if (consentData.optionalCookies && consentData.optionalCookies.analytics ===
+                            'revoked') {
+                            console.log('Analytics consent found in cookie (revoked), keeping GA blocked');
+                        } else {
+                            console.log('Analytics consent status unclear:', consentData.optionalCookies);
+                        }
+                    } catch (e) {
+                        console.log('Error parsing consent cookie:', e);
+                    }
+                }
+
+                // Also check for any existing Google Analytics cookies
+                const existingGACookies = document.cookie.match(/_ga[^=]*=[^;]+/g);
+                if (existingGACookies) {
+                    console.log('Existing Google Analytics cookies found:', existingGACookies);
+                } else {
+                    console.log('No existing Google Analytics cookies found');
+                }
+            } else {
+                console.log('Civic plugin not found yet, waiting...');
+            }
+        }
+
+        // Check immediately
+        checkAndLogConsent();
+
+        // Listen for Civic plugin events
+        if (window.cookieControl) {
+            console.log('Setting up event listeners...');
+
+            // Try different event names for different Civic plugin versions
+            const events = ['consentChanged', 'consentGiven', 'onConsentChanged', 'onConsentGiven', 'consent'];
+
+            events.forEach(eventName => {
+                console.log('Trying to listen for event:', eventName);
+
+                if (typeof window.cookieControl.on === 'function') {
+                    console.log('Adding event listener for:', eventName);
+                    window.cookieControl.on(eventName, function(consent) {
+                        console.log('Event triggered:', eventName, consent);
+                        if (consent && consent.analytics) {
+                            console.log('Analytics consent given via event, loading GA...');
+                            loadGoogleAnalytics();
+                        }
+                    });
+                }
+
+                // Also try direct function calls
+                if (typeof window.cookieControl[eventName] === 'function') {
+                    console.log('Setting up callback for:', eventName);
+                    window.cookieControl[eventName](function(consent) {
+                        console.log('Callback triggered for:', eventName, consent);
+                        if (consent && consent.analytics) {
+                            console.log('Analytics consent given via callback, loading GA...');
+                            loadGoogleAnalytics();
+                        }
+                    });
+                }
+            });
+
+            // Check for consent status periodically as fallback
+            let checkCount = 0;
+            setTimeout(function checkConsent() {
+                checkCount++;
+                console.log('Periodic consent check #' + checkCount);
+
+                if (window.cookieControl && window.cookieControl.getConsentStatus) {
+                    try {
+                        const consent = window.cookieControl.getConsentStatus();
+                        console.log('Periodic consent check result:', consent);
+                        if (consent && consent.analytics) {
+                            console.log('Analytics consent found in periodic check, loading GA...');
+                            loadGoogleAnalytics();
+                        } else if (checkCount < 10) {
+                            // Check again in 2 seconds, up to 10 times
+                            setTimeout(checkConsent, 2000);
+                        }
+                    } catch (e) {
+                        console.log('Error in periodic consent check:', e);
+                        if (checkCount < 10) {
+                            setTimeout(checkConsent, 2000);
+                        }
+                    }
+                } else if (checkCount < 10) {
+                    // Plugin not ready yet, check again
+                    setTimeout(checkConsent, 2000);
+                }
+            }, 2000);
+        }
+
+        // Also listen for any cookie changes
+        const originalCookieDescriptor = Object.getOwnPropertyDescriptor(Document.prototype, 'cookie');
+        Object.defineProperty(document, 'cookie', {
+            get: function() {
+                return originalCookieDescriptor.get.call(this);
+            },
+            set: function(value) {
+                console.log('Cookie being set:', value);
+
+                // Check if this is a consent-related cookie
+                if (value.includes('CookieControl')) {
+                    console.log('=== CONSENT COOKIE CHANGED ===');
+                    console.log('New cookie value:', value);
+
+                    // Parse and log the new consent data
+                    try {
+                        const cookieValue = value.split('=')[1].split(';')[0];
+                        const consentData = JSON.parse(decodeURIComponent(cookieValue));
+                        console.log('New consent data:', consentData);
+                        console.log('Analytics status:', consentData.optionalCookies?.analytics);
+
+                        // Check if analytics consent changed
+                        if (consentData.optionalCookies && consentData.optionalCookies.analytics ===
+                            'accepted') {
+                            console.log('Analytics consent granted! Loading Google Analytics...');
+                            console.log('Calling loadGoogleAnalytics() in 100ms...');
+                            setTimeout(loadGoogleAnalytics, 100);
+                        } else if (consentData.optionalCookies && consentData.optionalCookies
+                            .analytics === 'revoked') {
+                            console.log('Analytics consent revoked! Blocking Google Analytics...');
+                            setTimeout(blockAnalyticsCookies, 100);
+                        } else {
+                            console.log('Analytics consent status unclear or unchanged:',
+                                consentData.optionalCookies?.analytics);
+                        }
+                    } catch (e) {
+                        console.log('Error parsing new consent cookie:', e);
+                    }
+
+                    console.log('=== END CONSENT CHANGE ===');
+
+                    // Also run the full consent check
+                    setTimeout(checkAndLogConsent, 200);
+                }
+
+                // Check for Google Analytics cookies being set
+                if (value.includes('_ga') || value.includes('_gid') || value.includes('_gat')) {
+                    console.log('Google Analytics cookie being set:', value);
+                    console.log('Current consent status:', getCurrentConsentStatus());
+                }
+
+                return originalCookieDescriptor.set.call(this, value);
+            }
+        });
+
+        // Helper function to get current consent status
+        function getCurrentConsentStatus() {
+            const consentCookie = document.cookie.match(/CookieControl=([^;]+)/);
+            if (consentCookie) {
+                try {
+                    const consentData = JSON.parse(decodeURIComponent(consentCookie[1]));
+                    return consentData.optionalCookies?.analytics || 'unknown';
+                } catch (e) {
+                    return 'error';
+                }
+            }
+            return 'no-cookie';
+        }
+
+        // Add debugging for Civic plugin methods
+        function debugCivicPlugin() {
+            if (window.cookieControl) {
+                console.log('=== CIVIC PLUGIN DEBUG ===');
+                console.log('Available methods:', Object.keys(window.cookieControl));
+
+                // Test different consent methods
+                if (typeof window.cookieControl.getConsentStatus === 'function') {
+                    try {
+                        const status = window.cookieControl.getConsentStatus();
+                        console.log('getConsentStatus result:', status);
+                    } catch (e) {
+                        console.log('getConsentStatus error:', e);
+                    }
+                }
+
+                if (typeof window.cookieControl.getConsent === 'function') {
+                    try {
+                        const consent = window.cookieControl.getConsent();
+                        console.log('getConsent result:', consent);
+                    } catch (e) {
+                        console.log('getConsent error:', e);
+                    }
+                }
+
+                if (typeof window.cookieControl.getCookieConsentStatus === 'function') {
+                    try {
+                        const cookieStatus = window.cookieControl.getCookieConsentStatus();
+                        console.log('getCookieConsentStatus result:', cookieStatus);
+                    } catch (e) {
+                        console.log('getCookieConsentStatus error:', e);
+                    }
+                }
+
+                // Check if there are any other consent-related methods
+                const consentMethods = Object.keys(window.cookieControl).filter(key =>
+                    key.toLowerCase().includes('consent') ||
+                    key.toLowerCase().includes('cookie') ||
+                    key.toLowerCase().includes('status')
+                );
+                console.log('Consent-related methods:', consentMethods);
+
+                console.log('=== END DEBUG ===');
+            }
+        }
+
+        // Run debug after a short delay to ensure plugin is loaded
+        setTimeout(debugCivicPlugin, 2000);
+
+        // Add a manual consent check function for testing
+        window.checkConsentManually = function() {
+            console.log('=== MANUAL CONSENT CHECK ===');
+
+            // Check the CookieControl cookie directly
+            const consentCookie = document.cookie.match(/CookieControl=([^;]+)/);
+            if (consentCookie) {
+                try {
+                    const consentData = JSON.parse(decodeURIComponent(consentCookie[1]));
+                    console.log('Current consent data:', consentData);
+                    console.log('Analytics status:', consentData.optionalCookies?.analytics);
+                    console.log('All optional cookies:', consentData.optionalCookies);
+                } catch (e) {
+                    console.log('Error parsing consent cookie:', e);
+                }
+            } else {
+                console.log('No CookieControl cookie found');
+            }
+
+            // Check if Civic plugin is available
+            if (window.cookieControl) {
+                console.log('Civic plugin methods:', Object.keys(window.cookieControl));
+            } else {
+                console.log('Civic plugin not available');
+            }
+
+            console.log('=== END MANUAL CHECK ===');
+        };
+
+        // Add a function to simulate accepting analytics
+        window.simulateAcceptAnalytics = function() {
+            console.log('Simulating analytics acceptance...');
+
+            // Create a mock consent cookie with analytics accepted
+            const mockConsent = {
+                necessaryCookies: ["wordpress_*", "wordpress_logged_in_*", "CookieControl",
+                    "wp_consent_*", "PHPSESSID", "accessibility"
+                ],
+                optionalCookies: {
+                    analytics: "accepted",
+                    nonfunctional: "accepted",
+                    "Anti-Spam": "accepted"
+                },
+                statement: {
+                    shown: true,
+                    updated: "17/09/2020"
+                },
+                consentDate: Date.now(),
+                consentExpiry: 90,
+                interactedWith: true,
+                user: "8BB95753-8F6D-46D8-93E6-AD88394B0EEF"
+            };
+
+            // Set the cookie
+            document.cookie =
+                `CookieControl=${encodeURIComponent(JSON.stringify(mockConsent))}; path=/; max-age=${90 * 24 * 60 * 60}; SameSite=Strict; Secure`;
+
+            console.log('Mock consent cookie set, checking status...');
+            setTimeout(checkAndLogConsent, 100);
+        };
+
+        // Add a function to test Google Analytics functionality
+        window.testGoogleAnalytics = function() {
+            console.log('=== TESTING GOOGLE ANALYTICS ===');
+
+            // Check current consent status
+            const consentStatus = getCurrentConsentStatus();
+            console.log('Current analytics consent:', consentStatus);
+
+            // Check if gtag function exists
+            if (typeof window.gtag === 'function') {
+                console.log('gtag function exists:', typeof window.gtag);
+
+                // Try to send a test event
+                try {
+                    window.gtag('event', 'test_event', {
+                        event_category: 'testing',
+                        event_label: 'consent_test'
+                    });
+                    console.log('Test event sent successfully');
+                } catch (e) {
+                    console.log('Error sending test event:', e);
+                }
+            } else {
+                console.log('gtag function not available');
+            }
+
+            // Check for existing GA cookies
+            const gaCookies = document.cookie.match(/_ga[^=]*=[^;]+/g);
+            console.log('Existing GA cookies:', gaCookies);
+
+            // Check if GA script is loaded
+            const gaScript = document.querySelector('script[src*="googletagmanager.com"]');
+            console.log('GA script loaded:', !!gaScript);
+
+            console.log('=== END TEST ===');
+        };
+
+        // Add a function to force load Google Analytics for testing
+        window.forceLoadGA = function() {
+            console.log('=== FORCE LOADING GOOGLE ANALYTICS ===');
+            console.log('This will bypass consent checks for testing purposes');
+
+            // Clear any blocked gtag function
+            delete window.gtag;
+
+            // Load Google Analytics
+            loadGoogleAnalytics();
+
+            console.log('=== END FORCE LOAD ===');
+        };
+
+        // Also check for Civic plugin loading after DOM
+        let pluginCheckCount = 0;
+
+        function checkForPlugin() {
+            pluginCheckCount++;
+            console.log('Checking for Civic plugin #' + pluginCheckCount);
+
+            if (window.cookieControl) {
+                console.log('Civic plugin found after DOM load!');
+                checkAndLogConsent();
+
+                // Set up event listeners now that plugin is available
+                if (window.cookieControl) {
+                    console.log('Setting up event listeners after plugin load...');
+
+                    // Try different event names for different Civic plugin versions
+                    const events = ['consentChanged', 'consentGiven', 'onConsentChanged', 'onConsentGiven',
+                        'consent'
+                    ];
+
+                    events.forEach(eventName => {
+                        console.log('Trying to listen for event:', eventName);
+
+                        if (typeof window.cookieControl.on === 'function') {
+                            console.log('Adding event listener for:', eventName);
+                            window.cookieControl.on(eventName, function(consent) {
+                                console.log('Event triggered:', eventName, consent);
+                                if (consent && consent.analytics) {
+                                    console.log(
+                                        'Analytics consent given via event, loading GA...');
+                                    loadGoogleAnalytics();
+                                }
+                            });
+                        }
+
+                        // Also try direct function calls
+                        if (typeof window.cookieControl[eventName] === 'function') {
+                            console.log('Setting up callback for:', eventName);
+                            window.cookieControl[eventName](function(consent) {
+                                console.log('Callback triggered for:', eventName, consent);
+                                if (consent && consent.analytics) {
+                                    console.log(
+                                        'Analytics consent given via callback, loading GA...'
+                                    );
+                                    loadGoogleAnalytics();
+                                }
+                            });
+                        }
+                    });
+                }
+            } else if (pluginCheckCount < 20) {
+                // Check again in 500ms, up to 20 times (10 seconds total)
+                setTimeout(checkForPlugin, 500);
+            } else {
+                console.log('Civic plugin not found after 10 seconds of checking');
+            }
+        }
+
+        // Start checking for plugin
+        setTimeout(checkForPlugin, 500);
+
+        // Also use MutationObserver to detect when Civic plugin elements are added
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'childList') {
+                    mutation.addedNodes.forEach(function(node) {
+                        if (node.nodeType === Node.ELEMENT_NODE) {
+                            // Check if this is a Civic plugin element
+                            if (node.id && node.id.includes('cookie') ||
+                                node.className && node.className.includes('cookie') ||
+                                node.querySelector && node.querySelector(
+                                    '[id*="cookie"], [class*="cookie"]')) {
+                                console.log('Civic plugin element detected:', node);
+                                setTimeout(checkForPlugin, 100);
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+        // Start observing
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
+
+    // Function to load the Google Analytics script
+    function loadGoogleAnalyticsScript() {
+        console.log('Loading Google Analytics script...');
+
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=GTM-WRVBSJ5';
+
+        script.onload = function() {
+            console.log('Google Analytics script loaded successfully');
+            // Wait a moment for the script to initialize
+            setTimeout(loadGoogleAnalytics, 100);
+        };
+
+        script.onerror = function() {
+            console.log('Error loading Google Analytics script');
+        };
+
+        document.head.appendChild(script);
+        console.log('Google Analytics script element added to head');
+    }
+
+    // Update the loadGoogleAnalytics function to load script first
+    function loadGoogleAnalytics() {
+        console.log('=== LOADING GOOGLE ANALYTICS ===');
+
+        // Check if the GA script is already loaded
+        const existingScript = document.querySelector('script[src*="googletagmanager.com"]');
+        if (existingScript) {
+            console.log('GA script already exists, initializing...');
+            try {
+                // Restore the original gtag function
+                window.gtag = function() {
+                    console.log('gtag called with:', arguments);
+                    dataLayer.push(arguments);
+                };
+
+                gtag('js', new Date());
+                gtag('config', 'GTM-WRVBSJ5');
+                console.log('Google Analytics initialized successfully');
+            } catch (e) {
+                console.log('Error initializing GA:', e);
+            }
+        } else {
+            console.log('GA script not found, loading it now...');
+            loadGoogleAnalyticsScript();
+        }
+    }
+
+    // Function to block analytics cookies when consent is not given
+    function blockAnalyticsCookies() {
+        console.log('Blocking analytics cookies by default...');
+
+        // Override gtag function to prevent tracking
+        window.gtag = function() {
+            // Do nothing - analytics are blocked
+            console.log('Analytics blocked - no consent given');
+        };
+
+        // Block Google Analytics cookies
+        const cookiesToBlock = ['_ga', '_gid', '_gat', '_gac_', '_ga_'];
+        cookiesToBlock.forEach(cookieName => {
+            const oldValue = document.cookie.match(new RegExp(cookieName + '=([^;]+)'));
+            if (oldValue) {
+                console.log('Removing existing analytics cookie:', cookieName, '=', oldValue[1]);
+            }
+
+            document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + window
+                .location.hostname;
+            document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + window
+                .location.hostname;
+        });
+
+        console.log('Analytics cookies blocked. Current cookies:', document.cookie);
+    }
+
+    // Block analytics by default
+    blockAnalyticsCookies();
+    </script>
+
+    <script>
+    /*!@shinsenter/defer.js@3.5.0*/ !(function(t, u) {
+        function e(n) {
+            t.addEventListener(n, N)
+        }
+
+        function o(n) {
+            t.removeEventListener(n, N)
+        }
+
+        function s(n, t, e) {
+            k ? I(n, t) : ((e === u ? s.lazy : e) ? L : C).push(n, t)
+        }
+
+        function i(n) {
+            A.head.appendChild(n)
+        }
+
+        function c(n, t) {
+            j.call(n.attributes)[g](function(n) {
+                t(n.name, n.value)
+            })
+        }
+
+        function r(n, t, e, o) {
+            return o = t && A.getElementById(t) || A.createElement(n), t && (o.id = t), e && (o.onload = e), o
+        }
+
+        function f(n, t) {
+            return j.call((t || A).querySelectorAll(n))
+        }
+
+        function a(o, n) {
+            f("source,img", o)[g](a), c(o, function(n, t, e) {
+                (e = /^data-(.+)/.exec(n)) && o[b](e[1], t)
+            }), "string" == typeof n && n && (o.className += " " + n), h in o && o[h]()
+        }
+
+        function n(n, t, e) {
+            s(function(t) {
+                (t = f(n || "script[type=deferjs]"))[g](function(n, e) {
+                    n.src && (e = r(d), c(n, function(n, t) {
+                        n != w && e[b]("src" == n ? "href" : n, t)
+                    }), e.rel = "preload", e.as = p, i(e))
+                }), (function o(n, e) {
+                    (n = t[E]()) && (e = r(p), c(n, function(n, t) {
+                        n != w && e[b](n, t)
+                    }), e.text = n.text, n.parentNode.replaceChild(e, n), e.src && !e.getAttribute(
+                        "async") ? e.onload = e.onerror = o : o())
+                })()
+            }, t, e)
+        }
+        var l = "Defer",
+            d = "link",
+            p = "script",
+            h = "load",
+            m = "pageshow",
+            y = ["touchstart", "keydown", "mousemove", "wheel"],
+            v = "on" + m in t ? m : h,
+            g = "forEach",
+            b = "setAttribute",
+            E = "shift",
+            w = "type",
+            x = t.IntersectionObserver,
+            A = t.document || t,
+            I = t.setTimeout,
+            j = y.slice,
+            k = /p/.test(A.readyState),
+            C = [],
+            L = [],
+            N = function(n, t) {
+                for (t = n.type == v ? (o(v), k = s, y[g](e), C) : (y[g](o), L); t[0];) I(t[E](), t[E]())
+            };
+        n(), s.all = n, s.dom = function(n, t, c, i, r) {
+            s(function(e) {
+                function o(n) {
+                    i && !1 === i(n) || a(n, c)
+                }
+                e = x ? new x(function(n) {
+                    n[g](function(n, t) {
+                        n.isIntersecting && (e.unobserve(t = n.target), o(t))
+                    })
+                }, r) : u, f(n || "[data-src]")[g](function(n) {
+                    n[l] != s && (n[l] = s, e ? e.observe(n) : o(n))
+                })
+            }, t, !1)
+        }, s.css = function(t, e, n, o, c) {
+            s(function(n) {
+                (n = r(d, e, o)).rel = "stylesheet", n.href = t, i(n)
+            }, n, c)
+        }, s.js = function(t, e, n, o, c) {
+            s(function(n) {
+                (n = r(p, e, o)).src = t, i(n)
+            }, n, c)
+        }, s.reveal = a, t[l] = s, k || e(v)
+    })(this);
+    </script>
+    <script>
+    Defer.lazy = true;
+    </script>
+
+    
+    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v27.6 - https://yoast.com/product/yoast-seo-wordpress/ -->
+	<title>Pip Pobal | Healthy Ireland | Childcare grants | Child care subsidy | Ireland</title>
+	<meta name="description" content="Pobal administer and manage Government and EU funding to address disadvantage and support social inclusion throughout Ireland" />
+	<link rel="canonical" href="https://www.pobal.ie/freedom-of-information/" />
+	<meta property="og:locale" content="en_GB" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Pip Pobal | Healthy Ireland | Childcare grants | Child care subsidy | Ireland" />
+	<meta property="og:description" content="Pobal administer and manage Government and EU funding to address disadvantage and support social inclusion throughout Ireland" />
+	<meta property="og:url" content="https://www.pobal.ie/freedom-of-information/" />
+	<meta property="og:site_name" content="Pobal" />
+	<meta property="article:modified_time" content="2026-02-04T16:05:23+00:00" />
+	<meta property="og:image" content="https://www.pobal.ie/wp-content/uploads/2023/06/Pobal-Small-JPEG-1.jpg" />
+	<meta property="og:image:width" content="896" />
+	<meta property="og:image:height" content="358" />
+	<meta property="og:image:type" content="image/jpeg" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@Pobal" />
+	<meta name="twitter:label1" content="Estimated reading time" />
+	<meta name="twitter:data1" content="4 minutes" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https:\/\/schema.org","@graph":[{"@type":"WebPage","@id":"https:\/\/www.pobal.ie\/freedom-of-information\/","url":"https:\/\/www.pobal.ie\/freedom-of-information\/","name":"Pip Pobal | Healthy Ireland | Childcare grants | Child care subsidy | Ireland","isPartOf":{"@id":"https:\/\/www.pobal.ie\/#website"},"datePublished":"2018-05-28T09:01:33+00:00","dateModified":"2026-02-04T16:05:23+00:00","description":"Pobal administer and manage Government and EU funding to address disadvantage and support social inclusion throughout Ireland","breadcrumb":{"@id":"https:\/\/www.pobal.ie\/freedom-of-information\/#breadcrumb"},"inLanguage":"en-GB","potentialAction":[{"@type":"ReadAction","target":["https:\/\/www.pobal.ie\/freedom-of-information\/"]}]},{"@type":"BreadcrumbList","@id":"https:\/\/www.pobal.ie\/freedom-of-information\/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https:\/\/www.pobal.ie\/"},{"@type":"ListItem","position":2,"name":"Freedom of Information"}]},{"@type":"WebSite","@id":"https:\/\/www.pobal.ie\/#website","url":"https:\/\/www.pobal.ie\/","name":"Pobal","description":"Government supporting communities","publisher":{"@id":"https:\/\/www.pobal.ie\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/www.pobal.ie\/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en-GB"},{"@type":"Organization","@id":"https:\/\/www.pobal.ie\/#organization","name":"Pobal","url":"https:\/\/www.pobal.ie\/","logo":{"@type":"ImageObject","inLanguage":"en-GB","@id":"https:\/\/www.pobal.ie\/#\/schema\/logo\/image\/","url":"https:\/\/www.pobal.ie\/wp-content\/uploads\/2018\/06\/cropped-Pobal-IRISH-Medium-JPEG-scaled-1-e1716971261349.jpg","contentUrl":"https:\/\/www.pobal.ie\/wp-content\/uploads\/2018\/06\/cropped-Pobal-IRISH-Medium-JPEG-scaled-1-e1716971261349.jpg","width":139,"height":139,"caption":"Pobal"},"image":{"@id":"https:\/\/www.pobal.ie\/#\/schema\/logo\/image\/"},"sameAs":["https:\/\/x.com\/Pobal","https:\/\/www.linkedin.com\/company\/pobal-teo\/","https:\/\/www.youtube.com\/user\/Pobalireland"]}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//cc.cdn.civiccomputing.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<style id='wp-img-auto-sizes-contain-inline-css' type='text/css'>
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id='wp-block-library-inline-css' type='text/css'>
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}.has-text-align-center{text-align:center}.has-text-align-left{text-align:left}.has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-wrap:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style*=border-top-color]){border-top-style:solid}html :where([style*=border-right-color]){border-right-style:solid}html :where([style*=border-bottom-color]){border-bottom-style:solid}html :where([style*=border-left-color]){border-left-style:solid}html :where([style*=border-width]){border-style:solid}html :where([style*=border-top-width]){border-top-style:solid}html :where([style*=border-right-width]){border-right-style:solid}html :where([style*=border-bottom-width]){border-bottom-style:solid}html :where([style*=border-left-width]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=wp-block-library-inline-css */
+</style>
+<style id='wp-block-heading-inline-css' type='text/css'>
+h1:where(.wp-block-heading).has-background,h2:where(.wp-block-heading).has-background,h3:where(.wp-block-heading).has-background,h4:where(.wp-block-heading).has-background,h5:where(.wp-block-heading).has-background,h6:where(.wp-block-heading).has-background{padding:1.25em 2.375em}h1.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h1.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h2.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h2.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h3.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h3.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h4.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h4.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h5.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h5.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]),h6.has-text-align-left[style*=writing-mode]:where([style*=vertical-lr]),h6.has-text-align-right[style*=writing-mode]:where([style*=vertical-rl]){rotate:180deg}
+/*# sourceURL=https://www.pobal.ie/wp-includes/blocks/heading/style.min.css */
+</style>
+<style id='wp-block-list-inline-css' type='text/css'>
+ol,ul{box-sizing:border-box}:root :where(.wp-block-list.has-background){padding:1.25em 2.375em}
+/*# sourceURL=https://www.pobal.ie/wp-includes/blocks/list/style.min.css */
+</style>
+<style id='wp-block-paragraph-inline-css' type='text/css'>
+.is-small-text{font-size:.875em}.is-regular-text{font-size:1em}.is-large-text{font-size:2.25em}.is-larger-text{font-size:3em}.has-drop-cap:not(:focus):first-letter{float:left;font-size:8.4em;font-style:normal;font-weight:100;line-height:.68;margin:.05em .1em 0 0;text-transform:uppercase}body.rtl .has-drop-cap:not(:focus):first-letter{float:none;margin-left:.1em}p.has-drop-cap.has-background{overflow:hidden}:root :where(p.has-background){padding:1.25em 2.375em}:where(p.has-text-color:not(.has-link-color)) a{color:inherit}p.has-text-align-left[style*="writing-mode:vertical-lr"],p.has-text-align-right[style*="writing-mode:vertical-rl"]{rotate:180deg}
+/*# sourceURL=https://www.pobal.ie/wp-includes/blocks/paragraph/style.min.css */
+</style>
+
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #fff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--lightgrey: #f9f9f9;--wp--preset--color--pink: #9E0044;--wp--preset--color--yellow: #FFD540;--wp--preset--color--lightblue: #B8DCEF;--wp--preset--color--teal: #247D78;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--font-size--xs: 0.75rem;--wp--preset--font-size--sm: 0.875rem;--wp--preset--font-size--base: 1rem;--wp--preset--font-size--h-5: 1rem;--wp--preset--font-size--h-4: 1.375rem;--wp--preset--font-size--h-3: 1.75rem;--wp--preset--font-size--h-2: 2.375rem;--wp--preset--font-size--h-1: 3rem;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link rel='stylesheet' id='font-1-css' href='https://fonts.googleapis.com/css?family=Poppins' type='text/css' media='all' />
+<link rel='stylesheet' id='main-style-css' href='https://www.pobal.ie/wp-content/themes/pobal-tailwind-new/assets/build/frontend.css?time=1773914539&#038;ver=6.9.4' type='text/css' media='all' />
+<script type="text/javascript" src="https://www.pobal.ie/wp-includes/js/jquery/jquery.min.js" id="jquery-core-js"></script>
+<script type="text/javascript" src="https://www.pobal.ie/wp-includes/js/jquery/jquery-migrate.min.js" id="jquery-migrate-js"></script>
+<script type="text/javascript" id="jquery-js-after">
+/* <![CDATA[ */
+const THEME = {"ajaxUrl":"https:\/\/www.pobal.ie\/wp-admin\/admin-ajax.php","assets":"https:\/\/www.pobal.ie\/wp-content\/themes\/pobal-tailwind-new\/assets\/","src":"https:\/\/www.pobal.ie\/wp-content\/themes\/pobal-tailwind-new\/src\/"}
+//# sourceURL=jquery-js-after
+/* ]]> */
+</script>
+<link rel='shortlink' href='https://www.pobal.ie/?p=118' />
+<link rel="icon" href="https://www.pobal.ie/wp-content/uploads/2018/06/cropped-Pobal-IRISH-Medium-JPEG-scaled-1-32x32.jpg" sizes="32x32" />
+<link rel="icon" href="https://www.pobal.ie/wp-content/uploads/2018/06/cropped-Pobal-IRISH-Medium-JPEG-scaled-1-192x192.jpg" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://www.pobal.ie/wp-content/uploads/2018/06/cropped-Pobal-IRISH-Medium-JPEG-scaled-1-180x180.jpg" />
+<meta name="msapplication-TileImage" content="https://www.pobal.ie/wp-content/uploads/2018/06/cropped-Pobal-IRISH-Medium-JPEG-scaled-1-270x270.jpg" />
+		<style type="text/css" id="wp-custom-css">
+			.wp-block-table, table {
+	margin-bottom:0;
+}		</style>
+		
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--    <meta name="theme-color" content="-->    <!--">-->
+
+
+
+
+
+
+<style id='core-block-supports-inline-css' type='text/css'>
+.wp-elements-3bef660c038e1e823632857d877bd154 a:where(:not(.wp-element-button)){color:var(--wp--preset--color--pink);}.wp-elements-e14a374a0ca7e6589b4dfcb95744719e a:where(:not(.wp-element-button)){color:var(--wp--preset--color--pink);}.wp-elements-0cda2fd8752e5752b1664cf7f19c9974 a:where(:not(.wp-element-button)){color:var(--wp--preset--color--pink);}.wp-elements-a06a520528c8689723b38c6630c1316d a:where(:not(.wp-element-button)){color:var(--wp--preset--color--pink);}.wp-elements-159797f7534b9627e6e8f487ac8fdf3a a:where(:not(.wp-element-button)){color:var(--wp--preset--color--pink);}.wp-elements-46984d2b2234e9ac2689ef7dee3ee9f5 a:where(:not(.wp-element-button)){color:var(--wp--preset--color--pink);}.wp-elements-bda88f38c962d448cf5a1eded790a595 a:where(:not(.wp-element-button)){color:var(--wp--preset--color--pink);}.wp-elements-3af837da3d66329ddfeede373a90858f a:where(:not(.wp-element-button)){color:var(--wp--preset--color--pink);}.wp-elements-5ad5d0b6dde7e5298724d9a119969af5 a:where(:not(.wp-element-button)){color:var(--wp--preset--color--pink);}.wp-elements-1571d1e8aaa9f34865b8600103ba6475 a:where(:not(.wp-element-button)){color:var(--wp--preset--color--pink);}
+/*# sourceURL=core-block-supports-inline-css */
+</style>
+
+</head>
+<body class="wp-singular page-template-default page page-id-118 wp-theme-pobal-tailwind-new">
+        <header class="bg-white text-grey relative top-0 w-full">
+        <a href="#skip-main-id" title="skip to content" class="skip">Skip to main content!</a>
+        <style>
+        .skip {
+            position: absolute;
+            transform: translateY(-100%);
+            transition: transform 0.3s;
+            color: #ffffff;
+            height: 30px;
+            padding: 5px;
+        }
+
+        .skip:focus,
+        .skip:hover {
+            transform: translateY(0%);
+            color: #ffffff;
+            border: #ffffff;
+            z-index: 10;
+        }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Include jQuery -->
+        <script>
+        // jQuery to add target="_blank" to links in #menu-utility-menu
+        $(document).ready(function() {
+            $('#menu-utility-menu .menu-item-object-custom a').attr('target', '_blank');
+        });
+        </script>
+        <div class="utility-header bg-pink hidden md:block">
+            <nav class="w-full hidden lg:block relative">
+    <div class="menu-utility-menu-container"><div id="menu-utility-menu" class="w-container px-8 main-menu font-medium flex space-y-0 space-x-6 lg:space-x-8 flex-row justify-end text-white container px-4"><div class=' menu-item menu-item-type-custom menu-item-object-custom'><a class='hover:text-pink text-greyblack py-2 text-lg font-normal inline-flex items-center relative transition-colors duration-300' href='https://maps.pobal.ie/'>Pobal Maps</a></div><div class=' menu-item menu-item-type-post_type menu-item-object-page'><a class='hover:text-pink text-greyblack py-2 text-lg font-normal inline-flex items-center relative transition-colors duration-300' href='https://www.pobal.ie/research-analysis/'>Research &#038; Analysis</a></div><div class=' menu-item menu-item-type-post_type menu-item-object-page'><a class='hover:text-pink text-greyblack py-2 text-lg font-normal inline-flex items-center relative transition-colors duration-300' href='https://www.pobal.ie/data/'>Data Hub</a></div><div class=' menu-item menu-item-type-post_type menu-item-object-page'><a class='hover:text-pink text-greyblack py-2 text-lg font-normal inline-flex items-center relative transition-colors duration-300' href='https://www.pobal.ie/contact-us/'>Contact Us</a></div></div></div></nav>        </div>
+        <div class="w-container bg-white flex py-4 px-8 z-100">
+
+    <div class="md:w-1/4 w-1/2 flex items-center">
+        <a href="https://www.pobal.ie" title="Pobal">
+            <div class="text-black flex items-center">
+                <img src="https://www.pobal.ie/wp-content/themes/pobal-tailwind-new/assets/images/pobal-logo.png" alt="Pobal Logo" class="">
+                <span class="screen-reader-text">Pobal</span>
+
+            </div>
+        </a>
+
+    </div>
+
+    <div class="md:w-3/4 w-1/2 flex item-center justify-end">
+
+        <button class="js-navigation-open lg:hidden my-auto relative z-10 flex flex-col items-center justify-center">
+            <svg width="45" height="41" viewBox="0 0 45 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 2.5H45M45 38.5H0M45 20.5H0" stroke="#9E0044" stroke-width="4"/>
+</svg>
+        </button>
+
+        <nav class="w-full hidden lg:flex justify-end relative">
+            <div class="menu-main-menu-container"><div id="menu-main-menu" class="main-menu font-medium flex items-center space-x-6 lg:space-x-8 flex-row"><div class=' menu-item menu-item-type-post_type menu-item-object-page'><a class='hover:text-pink text-greyblack py-2 text-lg font-normal inline-flex items-center relative transition-colors duration-300' href='https://www.pobal.ie/about-pobal/'>About Pobal</a></div><div class=' menu-item menu-item-type-post_type menu-item-object-page'><a class='hover:text-pink text-greyblack py-2 text-lg font-normal inline-flex items-center relative transition-colors duration-300' href='https://www.pobal.ie/programmes/'>Programmes</a></div><div class=' menu-item menu-item-type-post_type menu-item-object-page'><a class='hover:text-pink text-greyblack py-2 text-lg font-normal inline-flex items-center relative transition-colors duration-300' href='https://www.pobal.ie/portals/'>Portals</a></div><div class=' menu-item menu-item-type-post_type menu-item-object-page'><a class='hover:text-pink text-greyblack py-2 text-lg font-normal inline-flex items-center relative transition-colors duration-300' href='https://www.pobal.ie/resources/'>Resources</a></div><div class=' menu-item menu-item-type-post_type menu-item-object-page'><a class='hover:text-pink text-greyblack py-2 text-lg font-normal inline-flex items-center relative transition-colors duration-300' href='https://www.pobal.ie/careers/'>Careers</a></div></div></div>        </nav>
+
+    </div>
+</div>        <div class="js-mobile-navigation hidden lg:hidden fixed inset-0 w-screen flex z-50">
+
+    <div class="js-navigation-close absolute inset-0 bg-white h-full w-full"></div>
+
+    <div class="js-mobile-translate relative bg-white text-black w-full h-screen overflow-y-auto
+    			translate-x-0 !translate-x-full transition-transform duration-300 ease-in-out">
+        <nav class="w-full relative">
+
+            <div class="container flex items-center justify-between py-2 mb-6">
+                <a href="https://www.pobal.ie" title="Pobal">
+                    <div class="text-black flex items-center">
+                        <div style="width:270px; height:100px;">
+                            <?xml version="1.0" encoding="UTF-8"?><svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 124"><image width="290" height="120" xlink:href="data:image/png;base64,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"/></svg>                            <span class="screen-reader-text">Pobal</span>
+                        </div>
+                    </div>
+                </a>
+
+                <button class="js-navigation-close flex flex-col justify-center items-center">
+                    <svg width="49" height="49" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 2L47 47M47 2L2 47" stroke="#9E0044" stroke-width="4"/>
+</svg>
+                </button>
+
+            </div>
+
+            <div class="hidden md:block bg-lightgrey">
+                <div class="w-container flex py-1.5 px-8 bg-lightgrey justify-between">
+                    <div class="flex items-center justify-start">
+                        <div id='breadcrumbs' class='text-sm text-greyblack font-semibold'><span><span><a href="https://www.pobal.ie/">Home</a></span> <span class="inline-block mx-1 [&_svg]:inline-block"><svg xmlns="http://www.w3.org/2000/svg" width="5.047" height="8.562" viewBox="0 0 5.047 8.562">
+    <path d="M5324.673-822.875l-.767-.767,3.514-3.514-3.514-3.514.767-.767,4.281,4.281Z" transform="translate(-5323.906 831.437)" fill="currentColor"/>
+</svg> </span> <span class="breadcrumb_last" aria-current="page">Freedom of Information</span></span></div>                    </div>
+                </div>
+            </div>
+
+
+            <div class="w-container bg-lightgrey my-2">
+                <div class="container flex py-2 px-8 bg-lightgrey justify-center">
+                    <div class="container flex items-center justify-center">
+                        <form action="https://www.pobal.ie/" method="get" class="ml-4">
+                            <div class="flex items-center">
+                                <div class="flex items-center">
+                                    <div class="flex items-center">
+                                        <div class="flex items-center relative">
+                                            <label for="search" class="sr-only">Search</label>
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="h-5 w-5 text-pink absolute left-3 top-1/2 transform -translate-y-1/2 ml-4"
+                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                            </svg>
+                                            <input type="text" id="search" name="s"
+                                                class="form-input px-4 py-2 bg-white border-2 border-[#949485] text-pink placeholder-pink w-96 pl-8"
+                                                placeholder="Search" style="margin-left: 20px;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-mobile-menu-container"><ul id="menu-mobile-menu" class="main-menu font-medium flex flex-col space-y-4"><li id="menu-item-152" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-152"><a href="https://www.pobal.ie/about-pobal/">About Pobal</a></li>
+<li id="menu-item-151" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-151"><a href="https://www.pobal.ie/programmes/">Programmes</a></li>
+<li id="menu-item-150" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-150"><a href="https://www.pobal.ie/portals/">Portals</a></li>
+<li id="menu-item-5524" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5524"><a href="https://www.pobal.ie/resources/">Resources</a></li>
+<li id="menu-item-10902" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10902"><a href="https://www.pobal.ie/careers/">Careers</a></li>
+<li id="menu-item-156" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-156"><a target="_blank" href="http://maps.pobal.ie/">Pobal Maps</a></li>
+<li id="menu-item-153" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-153"><a href="https://www.pobal.ie/research-analysis/">Research &#038; Analysis</a></li>
+<li id="menu-item-154" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-154"><a href="https://www.pobal.ie/contact-us/">Contact Us</a></li>
+<li id="menu-item-16177" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-16177"><a href="https://www.pobal.ie/childcare/earlylearningandchildcaredata/">Childcare Data</a></li>
+</ul></div>
+        </nav>
+    </div>
+</div>
+        <div class="hidden md:block bg-lightgrey">
+            <div class="w-container flex py-1.5 px-8 bg-lightgrey justify-between">
+                <div class="flex items-center justify-start">
+                    <div id='breadcrumbs' class='text-sm text-greyblack font-semibold'><span><span><a href="https://www.pobal.ie/">Home</a></span> <span class="inline-block mx-1 [&_svg]:inline-block"><svg xmlns="http://www.w3.org/2000/svg" width="5.047" height="8.562" viewBox="0 0 5.047 8.562">
+    <path d="M5324.673-822.875l-.767-.767,3.514-3.514-3.514-3.514.767-.767,4.281,4.281Z" transform="translate(-5323.906 831.437)" fill="currentColor"/>
+</svg> </span> <span class="breadcrumb_last" aria-current="page">Freedom of Information</span></span></div>                </div>
+                <div class="flex items-center justify-end">
+                    <form action="https://www.pobal.ie/" method="get" class="ml-4">
+                        <div class="flex items-center">
+                            <div class="flex items-center">
+                                <div class="flex items-center">
+                                    <div class="flex items-center relative">
+                                        <label for="search" class="sr-only">Search</label>
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-5 w-5 text-pink absolute left-3 top-1/2 transform -translate-y-1/2 ml-4"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                        </svg>
+                                        <input type="text" id="search" name="s"
+                                            class="form-input px-4 py-1 bg-white border-2 border-[#949485] text-pink placeholder-pink w-64 pl-8"
+                                            placeholder="Search" style="margin-left: 20px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+    </header>
+    <main class="min-h-[60vh]">    <div class="hero-wrapper relative bg-black text-white bg-no-repeat bg-cover bg-center "
+    style="background-image:url('https://www.pobal.ie/wp-content/themes/pobal-tailwind-new/assets/images/placeholder-hero.png');">
+    <div class="container">
+        <div class="relative flex justify-center items-center">
+            <div class="w-full md:w-11/12 lg:w-9/12 min-h-[350px]">
+                <div class="inner py-24 text-center">
+                    
+                                        <h1 class="h2 title">
+                        Freedom of Information</h1>
+                    
+                    
+                    
+                                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Tabs -->
+ <div class="tabs-wrapper bg-[#d9d9d7]">
+  <div class="container">
+    <div class="flex flex-wrap">
+      <div class="w-auto flex-1">
+        <ul class="tabs-list flex flex-col md:flex-row flex-wrap">
+                  </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<section id="skip-main-id" class="">
+    <div class="container">
+                        <div class="grid lg:grid-cols-3 gap-8">
+            
+            <div class="lg:col-span-3">
+                <div class="content-wrapper">
+                    
+<h2 class="wp-block-heading has-pink-color has-text-color has-link-color wp-elements-3bef660c038e1e823632857d877bd154">What is FOI</h2>
+
+
+
+<p>The FOI Act 2014 provides that every person has the following legal rights:</p>
+
+
+
+<ul class="wp-block-list">
+<li>The right to access official records held by Government departments and all public bodies that confirm to the provisions of Section 6 of the Act</li>
+
+
+
+<li>The right to have personal information held on them corrected or updated where such information is incomplete, incorrect or misleading; and</li>
+
+
+
+<li>The right to be given reasons for decisions taken by public bodies that affect them</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading has-pink-color has-text-color has-link-color wp-elements-e14a374a0ca7e6589b4dfcb95744719e">How does FOI work?</h2>
+
+
+
+<p>The Act requires public bodies to respond to requests from the public for information they hold. In most cases, public bodies must give their decision on a request within 4 weeks of receiving it. A week is defined in the Act to mean 5 consecutive weekdays excluding Saturdays, Sundays and Public Holidays.</p>
+
+
+
+<p>The request will be considered in accordance with the Act having regard to the exemptions provided for which include:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Personal information (other than information relating to the person making the request)</li>
+
+
+
+<li>Information supplied to Pobal in confidence</li>
+
+
+
+<li>Law enforcement and public safety</li>
+
+
+
+<li>Commercially sensitive information</li>
+
+
+
+<li>Deliberations of public bodies</li>
+
+
+
+<li>Functions and negotiations of public bodies</li>
+
+
+
+<li>Consultation procedures</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading has-pink-color has-text-color has-link-color wp-elements-0cda2fd8752e5752b1664cf7f19c9974">How do I make an FOI request?</h2>
+
+
+
+<p>Requests for information under the Freedom of Information Act must be made in writing or by email to Pobal’s FOI Unit:</p>
+
+
+
+<p>You should send a request either, in writing or by email, to the</p>
+
+
+
+<p>Freedom of Information Unit,</p>
+
+
+
+<p>Pobal Head Office</p>
+
+
+
+<p>Holbrook House,</p>
+
+
+
+<p>Holles Street,</p>
+
+
+
+<p>Dublin 2,</p>
+
+
+
+<p>D02 EY84</p>
+
+
+
+<p>Tel: <a href="tel:+3535117000">+353 (1) 511 7000</a></p>
+
+
+
+<p>Email: <a href="mailto:foi@pobal.ie">foi@pobal.ie</a></p>
+
+
+
+<h2 class="wp-block-heading has-pink-color has-text-color has-link-color wp-elements-a06a520528c8689723b38c6630c1316d">Your request should include the following:</h2>
+
+
+
+<ul class="wp-block-list">
+<li>A statement that the request is being made under the FOI Act</li>
+
+
+
+<li>As much information as possible about the records being sought, e.g. specify the areas of Pobal which you feel would be most relevant to your request</li>
+
+
+
+<li>The time period for which you wish to access records, e.g. records created between June 2013 and December 2013</li>
+
+
+
+<li>Please include a daytime telephone number and email address, if possible, so that you may be contacted quickly if it is necessary to clarify</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading has-pink-color has-text-color has-link-color wp-elements-159797f7534b9627e6e8f487ac8fdf3a">Is there a charge for requesting information under the FOI Act?</h2>
+
+
+
+<p>There is no fee for making a request under Freedom of Information. It is very unlikely that any fees will be charged in respect of personal records, except where a large number of records are involved. In respect of non-personal requests, charges may be applied for the time spent finding records and for any reproduction costs incurred by Pobal in providing you with the material requested where the total costs exceeds €100. Where this minimum threshold (equivalent to five free hours) is exceeded, a rate of €20 per hour will be charged for the full amount of time spent.</p>
+
+
+
+<p>Where the cost of search, retrieval and copying is greater than €700, the request may be refused unless the scope of the request is narrowed. Details of actual charges relating to your request will be notified to you in writing. Payment should be made by way of Electric Funds Transfer. Please contact the FOI Unit for bank details. A list of relevant fees is set out below:</p>
+
+
+
+<h2 class="wp-block-heading has-pink-color has-text-color has-link-color wp-elements-46984d2b2234e9ac2689ef7dee3ee9f5">List of Fees</h2>
+
+
+
+<ul class="wp-block-list">
+<li>Search and retrieval: €20.00 per hour (for requests that exceed the €100 minimum in terms of search, retrieval and copying; subject to the ceilings mentioned above.</li>
+
+
+
+<li>Photocopy per sheet: €0.04</li>
+
+
+
+<li>CD-ROM: €10.00</li>
+
+
+
+<li>Internal review fee €30 (€10 for medical card holders)</li>
+
+
+
+<li>Appeal to the Information Commissioner €50 (€15 for medical card holders)</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading has-pink-color has-text-color has-link-color wp-elements-bda88f38c962d448cf5a1eded790a595">Notes</h2>
+
+
+
+<ol class="wp-block-list">
+<li>There is no charge if the records concerned contain only personal information relating to the applicant, unless there are a significant number of records.</li>
+
+
+
+<li>If you are claiming a reduced application fee, the request must be accompanied by the Medical Card registration number, issuing Health Board name and your consent to the verification of these details with that HSE issuing authority.</li>
+</ol>
+
+
+
+<h2 class="wp-block-heading has-pink-color has-text-color has-link-color wp-elements-3af837da3d66329ddfeede373a90858f">What if I am not satisfied with the decision of my FOI request?</h2>
+
+
+
+<p>You may appeal any FOI decision issued by Pobal by emailing foi@pobal.ie or writing to the Freedom of Information Unit, Pobal Head Office, Holbrook House, Holles Street, Dublin 2, D02 EY84, seeking an internal review of the matter. A fee of €30 (€10 for medical card holders) may apply for such an appeal. There is no fee for internal review applications concerning only personal information relating to oneself or in relation to a decision to impose a fee or deposit.</p>
+
+
+
+<h2 class="wp-block-heading has-pink-color has-text-color has-link-color wp-elements-5ad5d0b6dde7e5298724d9a119969af5">What if I am not satisfied with the decision on internal review?</h2>
+
+
+
+<p>You may appeal the decision within six months by writing to the Office of The Information Commissioner. If you make an appeal the Information Commissioner will fully investigate and consider the matter and issue a fresh decision. All appeals should be addressed to:</p>
+
+
+
+<p>The Information Commissioner,<br>18 Lower Leeson Street,<br>Dublin 2</p>
+
+
+
+<p>Tel: <a href="tel:+3536395689">+353 (1) 6395689</a></p>
+
+
+
+<h2 class="wp-block-heading has-pink-color has-text-color has-link-color wp-elements-1571d1e8aaa9f34865b8600103ba6475">FOI Publication Scheme</h2>
+
+
+
+<p>Section 8 of the Freedom of Information Act 2014 requires FOI bodies to prepare and publish as much information as possible in an open and accessible manner on a routine basis outside of FOI, having regard to the principles of openness, transparency and accountability as set out in Sections 8(5) and 11(3) of the Act.</p>
+
+
+
+<p>You can access our&nbsp;FOI Publication Scheme <a href="https://www.pobal.ie/foi-publication-scheme/">here.</a></p>
+                </div>
+            </div>
+                    </div>
+    </div>
+</section></main>
+
+
+
+
+<footer class="bg-pink text-white py-12">
+    <div class="container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 mb-12">
+            <!-- Contact Section -->
+            <div>
+                <span class="text-2xl font-bold pb-6">Contact</span>
+                <div class="space-y-6 py-4">
+                    <div>
+                        <span class="font-semibold mb-2">Email</span>
+                        <a href="mailto:enquiries@pobal.ie" class="hover:underline block">enquiries@pobal.ie</a>
+                    </div>
+                    <div>
+                        <span class="font-semibold mb-2">Phone</span>
+                        <a href="tel:015117000" class="hover:underline block">01 511 7000</a>
+                    </div>
+                    <div>
+                        <span class="font-semibold mb-2">Fax</span>
+                        <span class="block hover:underline">01 511 7981</span>
+                    </div>
+                    <div>
+                        <span class="font-semibold mb-4">Social</span>
+                        <div class="flex space-x-1">
+                            <a href="https://www.instagram.com/pobal_ireland/"
+                                class="bg-white p-2 rounded-md scale-75 h-10 w-10 hover:opacity-90 flex items-center"
+                                target="_blank">
+                                <span><img
+                                        src="https://www.pobal.ie/wp-content/themes/pobal-tailwind-new/assets/img/layout/icons/pobal_insta_icon.png"
+                                        alt="Instagram Icon"></span>
+                            </a>
+                            <a href="https://www.linkedin.com/company/pobal-teo/"
+                                class="bg-white p-2 rounded-md scale-75 h-10 w-10 hover:opacity-90 flex items-center"
+                                target="_blank">
+                                <span><img
+                                        src="https://www.pobal.ie/wp-content/themes/pobal-tailwind-new/assets/svg/icon/linked.svg"
+                                        alt="LinkedIn Icon"></span>
+                            </a>
+                            <a href="https://www.youtube.com/user/Pobalireland"
+                                class="bg-white p-2 rounded-md scale-75 h-10 w-10 hover:opacity-90 flex items-center"
+                                target="_blank">
+                                <span><img
+                                        src="https://www.pobal.ie/wp-content/themes/pobal-tailwind-new/assets/svg/icon/youtube-logo.svg"
+                                        alt="YouTube Icon"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Links Section -->
+            <div class="space-y-4">
+                                
+<ul class="wp-block-list">
+<li><a href="https://www.pobal.ie/privacy-policy/" data-type="page" data-id="2377">Privacy Policy</a></li>
+
+
+
+<li><a href="https://www.pobal.ie/accessibility/" data-type="page" data-id="116">Accessibility Statement</a></li>
+
+
+
+<li><a href="https://www.pobal.ie/freedom-of-information/" data-type="page" data-id="118">Freedom of Information</a></li>
+
+
+
+<li><a href="https://www.pobal.ie/foi-publication-scheme/" data-type="page" data-id="1463">FOI Publication Scheme</a></li>
+
+
+
+<li><a href="https://www.pobal.ie/copyright/" data-type="page" data-id="120">Copyright</a></li>
+
+
+
+<li><a href="https://www.pobal.ie/gaeilge/" data-type="page" data-id="122">Gaeilge</a></li>
+
+
+
+<li><a href="https://www.pobal.ie/company-registration-office/" data-type="page" data-id="124">CRO</a></li>
+
+
+
+<li><a href="https://www.pobal.ie/about-pobal/corporate-policies/" data-type="page" data-id="1476">Protected Disclosure</a></li>
+
+
+
+<li><a href="https://www.pobal.ie/complaints-and-comments/" data-type="page" data-id="3765">Complaints and Comments</a></li>
+</ul>
+                            </div>
+
+            <!-- Working on behalf of Section -->
+            <div class="px-2 w-2/3 flex flex-col justify-left">
+                <span class="text-2xl font-bold">Working on behalf of</span>
+                <div class="space-y-4 p-2">
+                    <div class="bg-white rounded-lg">
+                        <img src="https://www.pobal.ie/wp-content/themes/pobal-tailwind-new/assets/images/EU-Irish-Govt-White-300x120.png"
+                            alt="Government of Ireland" class="">
+                    </div>
+                    <div class="bg-white rounded-lg p-2">
+                        <img src="https://www.pobal.ie/wp-content/themes/pobal-tailwind-new/assets/images/EU-Funding-White-JPG-1-300x93.png"
+                            alt="European Union" class="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<div id="footer-scripts">
+    <script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/pobal-tailwind-new/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script id="theme-script-js">/**
+ * This file is for development only.
+ * For production, _.js files will be combined and minified */
+
+var time = Date.now();
+
+// Defer.js(THEME.src + "js/_cookie.js" + "?time=" + time);
+Defer.js(THEME.src + "js/_nav.js" + "?time=" + time);
+Defer.js(THEME.src + "js/_location.js" + "?time=" + time);
+Defer.js(THEME.src + "js/_swiper.js" + "?time=" + time);
+Defer.js(THEME.src + "js/_custom.js" + "?time=" + time);</script><script type="text/javascript" src="//cc.cdn.civiccomputing.com/9/cookieControl-9.x.min.js" id="ccc-cookie-control-js"></script>
+            <script type="text/javascript">
+                var config = {
+                    apiKey: '346a50aa51134197c141160acdeb842a44c6180c',
+                    product: 'PRO_MULTISITE',
+                    logConsent: true,
+                    notifyOnce: false,
+                    initialState: 'OPEN',
+                    position: 'LEFT',
+                    theme: 'DARK',
+                    layout: 'SLIDEOUT',
+                    toggleType: 'slider',
+                    acceptBehaviour: 'all',
+                    closeOnGlobalChange: true,
+                    iabCMP: false,
+                                        closeStyle: 'icon',
+                    consentCookieExpiry: 90,
+                    subDomains: true,
+                                        secureCookie: false,
+                    mode: 'gdpr',
+                    rejectButton: true,
+                    settingsStyle: 'button',
+                    encodeCookie: false,
+                    setInnerHTML: true,
+                    wrapInnerHTML: false,
+                    accessibility: {
+                        accessKey: 'C',
+                        highlightFocus: false,
+                        outline: false,
+                        overlay: true,
+                        disableSiteScrolling: false,
+                    },
+                                        text: {
+                        title: 'This site uses cookies',
+                        intro: 'Some of these cookies are necessary, some are third party, while others help us to improve your experience by providing insights into how the site is being used.',
+                        necessaryTitle: 'Necessary Cookies',
+                        necessaryDescription: 'Necessary cookies enable core functionality. The website cannot function properly without these cookies, and can only be disabled by changing your browser preferences.',
+                        thirdPartyTitle: 'Warning: Some cookies require your attention',
+                        thirdPartyDescription: 'Consent for the following cookies could not be automatically revoked. Please follow the link(s) below to opt out manually.<br /><br />Google<br />========<br />The NID cookie is a third party cookie placed by google services.<br />To opt out of this and other google cookies please see https://adssettings.google.co.uk',
+                        on: 'On',
+                        off: 'Off',
+                        accept: 'Accept',
+                        settings: 'Cookie Preferences',
+                        acceptRecommended: 'Accept Recommended Settings',
+                        acceptSettings: 'Accept All',
+                        notifyTitle: 'Your choice regarding cookies on this site',
+                        notifyDescription: 'We use cookies to optimise site functionality and give you the best possible experience.',
+                        closeLabel: 'Close',
+                        cornerButton: 'Set cookie preferences.',
+                        landmark: 'Cookie preferences.',
+                        showVendors: 'Show vendors within this category',
+                        thirdPartyCookies: 'This vendor may set third party cookies.',
+                        readMore: 'Read more',
+                        accessibilityAlert: 'This site uses cookies to store information. Press accesskey C to learn more about your options.',
+                        rejectSettings: 'Reject All',
+                        reject: 'Reject',
+                                            },
+                    
+                        branding: {
+                            fontColor: '#fff',
+                            fontFamily: 'Arial,sans-serif',
+                            fontSizeTitle: '1.4em',
+                            fontSizeHeaders: '1.2em',
+                            fontSize: '1em',
+                            backgroundColor: '#9e0044',
+                            toggleText: '#fff',
+                            toggleColor: '#2f2f5f',
+                            toggleBackground: '#111125',
+                            alertText: '#fff',
+                            alertBackground: '#111125',
+                            acceptText: '#9e0044',
+                            acceptBackground: '#fff4f5',
+                            rejectText: '#9e0044',
+                            rejectBackground: '#fff4f5',
+                            closeText: '#111125',
+                            closeBackground: '#FFF',
+                            notifyFontColor: '#FFF',
+                            notifyBackgroundColor: '#313147',
+                                                            buttonIcon: null,
+                                                        buttonIconWidth: '32px',
+                            buttonIconHeight: '32px',
+                            removeIcon: false,
+                            removeAbout: true                        },
+                                        
+                                                                    
+                    
+                                                                                    
+                                            necessaryCookies: ['wordpress_*','wordpress_logged_in_*','wp_consent_*','PHPSESSID','accessibility'],
+                    
+                                            optionalCookies: [
+                                                             {
+                                        name: 'nonfunctional',
+                                        label: 'Non-Functional',
+                                        description: 'Used for displaying externally hosted PDF documents &amp; PowerBI within the pages of this website.',
+                                                                                cookies: ['_uetsid', '_uetsid_exp', '_uetvid', '_uetvid_exp', 'intercom-nexus', 'WFESessionId', 'intercom-state', 'ARRAffinitySameSite', 'ai_user', 'ai_session', 'AEC', '__Secure-3PAPISID', '__Secure-3PSID', '__Secure-3PSIDCC', '__Secure-3PSIDTS', '__Secure-ENID', '__Secure-OSID', '__Secure-ROLLOUT_TOKEN', '__Secure-YEC', 'APISID', 'ar_debug', 'YSC'],
+                                        onAccept: function() {
+                                             gtag('consent', 'update', {'ad_storage': 'granted'});                                        },
+                                        onRevoke: function() {
+                                             gtag('consent', 'update', {'ad_storage': 'denied'});                                        },
+                                                                                    thirdPartyCookies: [{"name": "Google Ad Services (NID and SID cookies)",  "optOutLink" : "https://adssettings.google.co.uk/"}],
+                                                                                recommendedState: 'off',
+                                        lawfulBasis: 'consent',
+
+                                        
+                                    },
+                                                                                             {
+                                        name: 'analytics',
+                                        label: 'Analytical Cookies',
+                                        description: 'Analytical cookies help us to improve our website by collecting and reporting information on its usage.',
+                                                                                cookies: ['_ga*', '_gali', '_gat', '_gid', 'NID', ' _NID', 'IDE', '1P-JAR', 'ANID', 'CONSENT', 'DV', '_ga_6VGGZHMLM2', '_ga_1DBPD8DW37', '_ga_EE7DEWN48Y', '_ga_7FT9T2CLZK'],
+                                        onAccept: function() {
+                                            gtag('consent', 'update', {'analytics_storage': 'granted'});
+                                        },
+                                        onRevoke: function() {
+                                            gtag('consent', 'update', {'analytics_storage': 'denied'});
+
+
+
+
+
+
+                                        },
+                                                                                recommendedState: 'off',
+                                        lawfulBasis: 'consent',
+
+                                        
+                                    },
+                                                                                    ],
+                                                                statement: {
+                            description: 'For more information, please see our',
+                            name: 'Cookie Notice',
+                            url: 'https://www.pobal.ie/cookie-notice',
+                            updated: '17/09/2020'
+                        },
+                                        sameSiteCookie: true,
+                    sameSiteValue: 'Strict',
+                    notifyDismissButton: true
+                };
+                CookieControl.load(config);
+            </script>
+
+</div>
+<div id="cookies"></div>
+</body></html>

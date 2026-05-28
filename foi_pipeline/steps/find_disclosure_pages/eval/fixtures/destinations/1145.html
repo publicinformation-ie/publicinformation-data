@@ -1,0 +1,434 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+	Internet Server 3.1.1
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="description" content="Adlib Internet Server 3.1.1" />
+<meta name="version" content="Adlib Internet Server 3.1.1" />
+<meta name="keywords" content="museum automation, museumautomatisering, library automation, bibliotheekautomatisering, retroKonversion, collection management, sammlungsmanagement, sammlungsverwaltung, collectiebeheer, archive automation, archiefautomatisering, thesaurus, library systems, bibliotheeksoftware, bibliothekssoftware, museum systems, museumsoftware, museumssoftware, archive systems, archivsoftware, adlib, museum plus, museumplus, museum+, museum standard, basisregistratie, historical societies, historische verenigingen, spectrum, information management, informationsmanagement, catalogue software, catalogus software, cataloguing software, cataloging software, katalogisierungssoftware, opac, windows software, museum documentation, museumdocumentatie, museumsdokumentation, metadata, metadaten, sdi, serials management, tijdschriftenbeheer, abonnementenbeheer, zeitschriftenmanagement, loans management, leihverkehr, online catalogue, webcatalogue, virtual library, virtual museum, digital asset management, library management, museum management, museumsmanagement, archive management, archivmanagement, database management system, image library, digitization, digitisation, digitalisering, digitalisierung, museum portal, library portal, archive portal, cultural heritage software, cultureel erfgoed software" />
+<meta name="author" content="Adlib Information Systems" />
+<meta name="reply-to" content="sales@nl.adlibsoft.com" />
+<meta name="copyright" content="(c) AIS 2009" />
+<link href="css/adlib.css" rel="stylesheet" type="text/css" /></head>
+<body>
+  <form method="post" action="./default.aspx" id="Form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTEyMzg5OTIxMQ9kFgICAw9kFggCAQ9kFgwCAQ9kFgJmDw8WBB4HVG9vbFRpcAUTQ2xpY2sgaGVyZSBmb3IgaGVscB4LTmF2aWdhdGVVcmwFBC4uLyMWBB4Hb25jbGljawX/AWphdmFzY3JpcHQ6dmFyIG15d2luID0gd2luZG93Lm9wZW4oJ2hlbHAuYXNweD9zdWJqZWN0PWNhcHRpb25HZW5lcmFsSGVscGRlZmF1bHQjc2ltcGxlJywgJ0hlbHAnLCAnZnVsbHNjcmVlbj1ubyx0b29sYmFyPW5vLHN0YXR1cz1ubyxtZW51YmFyPW5vLHNjcm9sbGJhcnM9eWVzLHJlc2l6YWJsZT15ZXMsZGlyZWN0b3JpZXM9bm8sbG9jYXRpb249bm8sd2lkdGg9NjQwLGhlaWdodD00ODAsbGVmdD0xMDAsdG9wPTEwMCcpOyBteXdpbi5mb2N1cygpOx4Kb25rZXlwcmVzcwX/AWphdmFzY3JpcHQ6dmFyIG15d2luID0gd2luZG93Lm9wZW4oJ2hlbHAuYXNweD9zdWJqZWN0PWNhcHRpb25HZW5lcmFsSGVscGRlZmF1bHQjc2ltcGxlJywgJ0hlbHAnLCAnZnVsbHNjcmVlbj1ubyx0b29sYmFyPW5vLHN0YXR1cz1ubyxtZW51YmFyPW5vLHNjcm9sbGJhcnM9eWVzLHJlc2l6YWJsZT15ZXMsZGlyZWN0b3JpZXM9bm8sbG9jYXRpb249bm8sd2lkdGg9NjQwLGhlaWdodD00ODAsbGVmdD0xMDAsdG9wPTEwMCcpOyBteXdpbi5mb2N1cygpO2QCAw8PFgIeDUFsdGVybmF0ZVRleHQFGlN3aXRjaCBsYW5ndWFnZSB0byBFbmdsaXNoZGQCBQ8PFgIfBAUYU3dpdGNoIGxhbmd1YWdlIHRvIER1dGNoZGQCBw8PFgIfBAUZU3dpdGNoIGxhbmd1YWdlIHRvIEZyZW5jaGRkAgkPDxYCHwQFGVN3aXRjaCBsYW5ndWFnZSB0byBHZXJtYW5kZAILDw8WAh8EBRlTd2l0Y2ggbGFuZ3VhZ2UgdG8gQXJhYmljZGQCBQ9kFhICAQ8WAh4FY2xhc3MFCWFjdGl2ZXRhYhYCAgEPDxYCHwAFG0dvIHRvIHRoZSBpbnRyb2R1Y3Rpb24gcGFnZWRkAgMPZBYCAgEPDxYCHwAFFUdvIHRvIHRoZSBzZWFyY2ggZm9ybWRkAgUPZBYCAgEPDxYEHwAFFUdvIHRvIHRoZSByZXN1bHQgdmlldx4HRW5hYmxlZGhkZAIHD2QWAgIBDw8WBB8ABRVHbyB0byB0aGUgZGV0YWlsIHZpZXcfBmhkZAIJD2QWAgIBDw8WBB8ABRhHbyB0byB0aGUgc2VsZWN0aW9uIHBhZ2UfBmhkZAILD2QWAgIBDw8WBB8ABR1HbyB0byB0aGUgc2VhcmNoIGhpc3RvcnkgcGFnZR8GaGRkAg0PZBYCAgEPDxYEHwAFHkdvIHRvIHRoZSBib3Jyb3dlciBzdGF0dXMgcGFnZR8GaGRkAg8PFgIeB1Zpc2libGVnFgICAQ8PFgIfAAUZR28gdG8gdGhlIHNkaSBzdGF0dXMgcGFnZWRkAhEPZBYCAgEPDxYEHwBlHgRUZXh0ZWRkAgcPZBYEZg8WAh8HaBYCZg9kFgICAQ8PFgIfCGVkZAICDxYCHwdoZAIJDw8WAh8IBbgJPGEgbmFtZT0iIj48L2E+PGRpdiBpZD0iaGVscF90b3BpYyI+PHN0cm9uZz5XZWxjb21lIHRvIHRoZSBPbmxpbmUgQXJjaGl2ZSBDYXRhbG9ndWUgb2YgTG91dGggQ291bnR5IEFyY2hpdmVzIFNlcnZpY2UuPC9zdHJvbmc+PC9kaXY+PGJyPkxvdXRoIENvdW50eSBBcmNoaXZlcyBTZXJ2aWNlIGlzIHRoZSBvZmZpY2lhbCByZXBvc2l0b3J5IGZvciB0aGUgcHVibGljIGFuZCBwcml2YXRlIA0KCQkgIGFyY2hpdmVzIG9mIENvdW50eSBMb3V0aC4gIFRoZSBwdWJsaWMgYXJjaGl2ZXMgaW5jbHVkZSB0aG9zZSBvZiBsb2NhbCBnb3Zlcm5tZW50IGluIExvdXRoIA0KCQkgIGFuZCBpdHMgcHJlZGVjZXNzb3IgYm9kaWVzLiBXZSBob2xkIGhpc3RvcmljYWwgcmVjb3JkcyBkYXRpbmcgZnJvbSB0aGUgMTd0aCBjZW50dXJ5IHRvIHRoZSANCgkJICAyMHRoIGNlbnR1cnkuIFRoZXNlIHJlY29yZHMgY292ZXIgbWFueSBhc3BlY3RzIG9mIHRoZSBsaXZlcyBvZiB0aGUgcGVvcGxlIG9mIExvdXRoIGFuZCByYW5nZSANCgkJICBmcm9tIHRoZSBhcmNoaXZlcyBvZiBvZmZpY2lhbCBib2RpZXMgdG8gc21hbGwgY29sbGVjdGlvbnMgb2YgZmFtaWx5IHBhcGVycy48YnI+PGJyPlRoZSBPbmxpbmUgQXJjaGl2ZSBDYXRhbG9ndWUgY29udGFpbnMgZGVzY3JpcHRpb25zIG9mIHRoZSBjYXRhbG9ndWVkIHJlY29yZHMgdGhhdCANCgkJICBhcmUgYXZhaWxhYmxlIGZvciBjb25zdWx0YXRpb24gaW4gb3VyIFJlc2VhcmNoIFJvb20uIE1hbnkgb2YgdGhlc2UgaW5jbHVkZSB0aGUgYXJjaGl2ZXMgb2YgDQoJCSAgdGhlIGN1cnJlbnQgbG9jYWwgYXV0aG9yaXRpZXMgaW4gTG91dGggKExvdXRoIENvIENvdW5jaWwsIER1bmRhbGsgVG93biBDb3VuY2lsLCBBcmRlZSBUb3duIA0KCQkgIENvdW5jaWwsIGFuZCBEcm9naGVkYSBCb3JvdWdoIENvdW5jaWwpIGluIGFkZGl0aW9uIHRvIHRoZWlyIHByZWRlY2Vzc29yIGJvZGllcyBzdWNoIGFzIHRoZSBHcmFuZCANCgkJICBKdXJ5LCBCb2FyZCBvZiBHdWFyZGlhbnMsIER1bmRhbGsgVG93biBDb21taXNzaW9uZXJzLCBvciBBcmRlZSBDb3Jwb3JhdGlvbi4gVW5jYXRhbG9ndWVkIA0KCQkgIGNvbGxlY3Rpb25zIGFuZCBuZXcgYWNxdWlzaXRpb25zIHdpbGwgYmUgYWRkZWQgdG8gdGhpcyBvbmxpbmUgY2F0YWxvZ3VlIG9uIGFuIG9uZ29pbmcgYmFzaXMgDQoJCSAgYXMgdGhleSBiZWNvbWUgcHJvY2Vzc2VkLjxicj5kZBgBBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WBQUeTGFuZ3VhZ2VDaG9vc2VyMSRJbWFnZUJ1dHRvbkVuBR5MYW5ndWFnZUNob29zZXIxJEltYWdlQnV0dG9uTmwFHkxhbmd1YWdlQ2hvb3NlcjEkSW1hZ2VCdXR0b25GcgUeTGFuZ3VhZ2VDaG9vc2VyMSRJbWFnZUJ1dHRvbkRlBR5MYW5ndWFnZUNob29zZXIxJEltYWdlQnV0dG9uQXJSb5eb81BhJ032aV2qdbdwDJs9cT+Xzcum2FYbpIh9yw==" />
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="385F1835" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAb9dNp3FFyxblKXkV4Re2zFOraZJftKwVG3Aq+Wf4dAN5TTn8RceTf2L4jm3MKYaa+kX5ZkpG+ea8A7NPZSFLIKo8bD/Zoq76uUasNbUR5dWCBBscUNgxvQpCbs16iZFA17M8MZRlnuSKlyKGS1v8rHniqZ5lUfdP7nxHpMRYUnpQ==" />
+</div>
+  
+<div id="languageFlags">
+  <table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td>
+        <a id="LanguageChooser1_HelpButton1_generalHelpButton" title="Click here for help" onclick="javascript:var mywin = window.open(&#39;help.aspx?subject=captionGeneralHelpdefault#simple&#39;, &#39;Help&#39;, &#39;fullscreen=no,toolbar=no,status=no,menubar=no,scrollbars=yes,resizable=yes,directories=no,location=no,width=640,height=480,left=100,top=100&#39;); mywin.focus();" onkeypress="javascript:var mywin = window.open(&#39;help.aspx?subject=captionGeneralHelpdefault#simple&#39;, &#39;Help&#39;, &#39;fullscreen=no,toolbar=no,status=no,menubar=no,scrollbars=yes,resizable=yes,directories=no,location=no,width=640,height=480,left=100,top=100&#39;); mywin.focus();" href="##"><img title="Click here for help" src="images/help.gif" alt="HyperLink" /></a>
+
+
+      </td>
+      <td>
+        &nbsp;
+      </td>
+      <td id="innerFlags">
+        <input type="image" name="LanguageChooser1$ImageButtonEn" id="LanguageChooser1_ImageButtonEn" class="flag" src="images/flag_great_britain2.jpg" alt="Switch language to English" />&nbsp;
+        <input type="image" name="LanguageChooser1$ImageButtonNl" id="LanguageChooser1_ImageButtonNl" class="flag" src="images/flag_netherlands.gif" alt="Switch language to Dutch" />&nbsp;
+        <input type="image" name="LanguageChooser1$ImageButtonFr" id="LanguageChooser1_ImageButtonFr" class="flag" src="images/flag_france.gif" alt="Switch language to French" />&nbsp;
+        <input type="image" name="LanguageChooser1$ImageButtonDe" id="LanguageChooser1_ImageButtonDe" class="flag" src="images/flag_germany.gif" alt="Switch language to German" />&nbsp;
+        <input type="image" name="LanguageChooser1$ImageButtonAr" id="LanguageChooser1_ImageButtonAr" class="flag" src="images/flag_saudi_arabia.gif" alt="Switch language to Arabic" />
+      </td>
+    </tr>
+  </table>
+</div>
+
+  <table border="0" width="100%" cellpadding="0" cellspacing="0">
+    
+<div id="header">
+  <div id="logo">
+    <IMG src="images/banner.gif" width="654px" height="82px" alt="logo"></div>
+  <div id="text"></div>
+</div>
+
+    <tr class="maintabsLeftSpace">
+      <td class="tabUnderlay">
+        <img src="images/dot.gif" height="1" width="1" alt="empty_dot" />
+      </td>
+      <td valign="bottom">
+        
+
+<div class="tabBackground">
+<div id="MainTabs1_tabIntro" class="activetab">
+  <div class="tabCenter">
+    <a id="MainTabs1_HyperLinkIntro" title="Go to the introduction page" href="default.aspx"><span>Introduction</span></a>
+  </div>
+  <div class="tabEndLeft"></div>
+  <div class="tabEndRight"></div>
+</div>
+<div id="MainTabs1_tabSearch" class="tab">
+  <div class="tabCenter">
+    <a id="MainTabs1_HyperLinkSearch" title="Go to the search form" href="search.aspx"><span>Search</span></a></div>
+  <div class="tabEndLeft"></div>
+  <div class="tabEndRight"></div>
+</div>
+<div id="MainTabs1_tabResults" class="tab">
+  <div class="tabCenter">
+    <a id="MainTabs1_HyperLinkResults" title="Go to the result view" class="aspNetDisabled"><span>Results</span></a></div>
+  <div class="tabEndLeft"></div>
+  <div class="tabEndRight"></div>
+</div>
+<div id="MainTabs1_tabDetails" class="tab">
+  <div class="tabCenter">
+    <a id="MainTabs1_HyperLinkDetails" title="Go to the detail view" class="aspNetDisabled"><span>Details</span></a></div>
+  <div class="tabEndLeft"></div>
+  <div class="tabEndRight"></div>
+</div>
+<div id="MainTabs1_tabSelection" class="tab">
+  <div class="tabCenter">
+    <a id="MainTabs1_HyperLinkSelection" title="Go to the selection page" class="aspNetDisabled"><span>Selection</span></a></div>
+  <div class="tabEndLeft"></div>
+  <div class="tabEndRight"></div>
+</div>
+<div id="MainTabs1_tabHistory" class="tab">
+  <div class="tabCenter">
+    <a id="MainTabs1_HyperLinkHistory" title="Go to the search history page" class="aspNetDisabled"><span>Search History</span></a></div>
+  <div class="tabEndLeft"></div>
+  <div class="tabEndRight"></div>
+</div>
+<!--
+<div id="MainTabs1_tabSdi" class="tab">
+  <div class="tabCenter">
+    <a id="MainTabs1_HyperLinkSdi" title="Go to the sdi status page" href="sdi.aspx"><span>Search profiles</span></a></div>
+  <div class="tabEndLeft"></div>
+  <div class="tabEndRight"></div>
+</div>-->
+
+<div id="tabRightSpacer"></div>
+</div>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" id="LeftMenu">
+        <table width="90%" border="0" cellspacing="0" cellpadding="0">
+          
+
+<tr>
+  <td>
+    &nbsp;
+  </td>
+</tr>
+
+        </table>
+      </td>
+      <td valign="top" id="MainArea">
+        <div class="introArea">
+		<table id="topcrest">            
+              		<td align="left" width="100%">
+          <span id="LabelHelp"><a name=""></a><div id="help_topic"><strong>Welcome to the Online Archive Catalogue of Louth County Archives Service.</strong></div><br>Louth County Archives Service is the official repository for the public and private 
+		  archives of County Louth.  The public archives include those of local government in Louth 
+		  and its predecessor bodies. We hold historical records dating from the 17th century to the 
+		  20th century. These records cover many aspects of the lives of the people of Louth and range 
+		  from the archives of official bodies to small collections of family papers.<br><br>The Online Archive Catalogue contains descriptions of the catalogued records that 
+		  are available for consultation in our Research Room. Many of these include the archives of 
+		  the current local authorities in Louth (Louth Co Council, Dundalk Town Council, Ardee Town 
+		  Council, and Drogheda Borough Council) in addition to their predecessor bodies such as the Grand 
+		  Jury, Board of Guardians, Dundalk Town Commissioners, or Ardee Corporation. Uncatalogued 
+		  collections and new acquisitions will be added to this online catalogue on an ongoing basis 
+		  as they become processed.<br></span> </td>
+	  		<td align="right" valign="top"><img src="images/crest1.gif" /></td>
+	    </div>
+
+
+            <div class="introArea1">
+              <table id="tablecrest">
+            <td align="left" width="100%">              
+              <string>To search for archives, go to our <a href="search.aspx"> search page </a>
+              <br />
+              <br />       
+		      <string>
+		        For help on how to use the Online Archive Catalogue please visit our <a target=_blank href="helppage.aspx"> 
+		        help page </a>
+		      </string>	          
+		      <br />	
+	          <br />
+              <string>For explanations of unusual words you may find in document descriptions, please see the 
+                <a target=_blank href="http://www.netserf.org/Glossary/">Search Glossary.</a>
+              </string>
+              <br />
+              <br />
+              <string>For details about visiting Louth County Archives Service to view or access archive documents or collections, please make 
+                an appointment in advance by telephoning +353 (0)42-9324358 or by emailing <a href="mailto:archive@louthcoco.ie"> archive@louthcoco.ie </a>
+              </string>
+              </td>
+                <td align="right"><img src="images/drogheda.gif" /></td>
+              </table>             
+            </div>
+            <div class="introArea2" >
+			  <strong>Public Collections Available:</strong>
+			  <br /><br />
+              <string>The following collections are available in the Online Archive Catalogue (to find records relating to a particular collection only, type its collection code (listed below) into the 'Reference' field of the 'Advanced search' tab and click 'search'):</string>
+              <br />
+              <string>•	Grand Jury, (1310-) 1815-1899, Collection Code = GJ/</string>
+              <br />
+              <string>•	Board of Guardians (workhouse) for Ardee, Drogheda, and Dundalk, 1839-1924, Collection Code = BG/</string>
+              <br />
+              <string>•	Rural District Councils for Ardee, Drogheda, and Dundalk, 1899-1925, Collection Code = RDC/</string>
+              <br />
+              <string>•	Carlingford Corporation, 1694-1835, Collection Code = CC/</string>
+              <br />
+              <string>•	Dunleer Corporation, 1709-1773, Collection Code = DC/</string>
+              <br />
+              <string>•	Louth County Council, 1899-1970, Collection Code = LCC/</string>
+              <br />
+              <string>•	Ardee Corporation, 1661-1841, Collection Code = AC/</string>
+              <br />
+              <string>•	Ardee Town Commissioners, 1843-1970, Collection Code = ATC/</string>
+              <br />
+              <string>•	Ardee Borough Court, 1746-1963, Collection Code = ABC/</string>
+              <br />
+              <string>•	Dundalk Corporation, 1832-1842, Collection Code = DC/</string>
+              <br />
+              <string>•	Dundalk Municipal Corporation, 1675, 1832 – 1842, Collection Code = DMC/</string>
+              <br />
+              <string>•	Dundalk Town Commissioners, 1842-1899, Collection Code = DTC/</string>
+              <br />
+              <string>•	Dundalk Urban District Council, 1899-1970, Collection Code = DUDC/</string>
+              <br />
+              <string>•	Drogheda Corporation and D. Borough Corporation, (1412-) 1653-1970, Collection Codes = DRC/ and DBC/, contains the following series stored 
+                in the Service (other series will be added in the future):</string>
+              <br />
+              <string><i>--	Housing construction scheme files c1920s-1970 </i></string>
+              <br />
+              <string><i>--	Letter books, c1900s-1950</i></string>
+              <br />
+              <string><i>--	Planning application files, c1920s – 1970</i></string>
+              <br />
+              <string><i>--	Some miscellaneous archives</i></string>
+              <br />
+              <string>•	Dundalk Harbour Commissioners, c1831-1976, Collection Code = DHC/</string>
+              <br />
+              <string>•	Louth County Committee of Agriculture (and Technical Instruction), 1901-1985 minute books, Collection Code = LCCA/</string>
+              <br />
+              <string>•	National Schools, Collection Code = SCH001/, SCH002/, SCH003/, SCH004/</string>
+
+			  <br /><br />
+			  <strong>Private Collections Available:</strong>
+			  <br /><br />
+              <string>•	Private Papers such as estate papers, family papers, committees, or businesses, Collection Code = PP</string>
+              
+			  
+			  
+			  <br />
+              •	Filgate of Lisrenny Papers, 1757 – 1964, Collection Code = PP00001/
+			  <br />
+              •	Dundalk Jail Collection, Collection Code = PP00011/
+			  <br />
+              •	Caraher family papers, 1738 – 1954, Collection Code = PP00012/
+			  <br />
+              •	Emmet Band, Dundalk, 1942 – 1947, Collection Code = PP00015/
+			  <br />
+              •	Hatch family papers, 1731 - 1882, 1959 – 1971, Collection Code = PP00016/
+			  <br />
+              •	Workmen's accounts, 1865-66, Collection Code = PP00017/
+			  <br />
+              •	Anglesey estate, 1810, 1856, 1950, Collection Code = PP00018/
+			  <br />
+              •	Collon estate, 1779 – 1781, Collection Code = PP00019/
+			  <br />
+              •	County Louth Recruiting Committee, 1916, Collection Code = PP00022/
+			  <br />
+              •	Patrick Reilly, Millockstown, Ardee, 1873 – 1900, Collection Code = PP00023/
+			  <br />
+              •	Rahanna House papers, 1855-57, Collection Code = PP00024/
+			  <br />
+              •	Dunleer Corporation, c.1684 – 1833 [1970], Collection Code = PP00025/
+			  <br />
+              •	Major O'Reilly, Knockabbey Papers, 1719 - 1740, 1854 - 1869, 1911 – 1928, Collection Code = PP00026/
+			  <br />
+              •	General Accounts of the Catholic rent and Louth Confraternity, 1822-25, Collection Code = PP00027/
+			  <br />
+              •	Drogheda legal documents, 1628 – 1865, Collection Code = PP00028/
+			  <br />
+              •	Brigid Cassidy, Mullacrew, 1871 – 1931, Collection Code = PP00029/
+			  <br />
+              •	Samuel Lockington and company, 1905 – 1938, Collection Code = PP00035/
+			  <br />
+              •	Kirwan of Castletown Papers, 1909 – 1918, Collection Code = PP00036/
+			  <br />
+              •	Premises at Castle St, Ardee, 1784 – 1901, Collection Code = PP00038/
+			  <br />
+              •	Hinds' Dundalk Estate, 1832-82, Collection Code = PP00043/
+			  <br />
+              •	Dickie Estate, 1840-98, Collection Code = PP00044/
+			  <br />
+              •	Fitzpatrick / Kirkland Papers, 1793 - 1865, 1984, Collection Code = PP00045/
+			  <br />
+              •	Eastwood papers, 1902-45, Collection Code = PP00048/
+			  <br />
+              •	Phillips of Belcotton papers, 1789, 1817, Collection Code = PP00049/
+			  <br />
+              •	Apprenticeship Indentures, 1894, 1944, 1956, Collection Code = PP00050/
+			  <br />
+              •	MacIvor estate, Dunmahon, 1893-97, Collection Code = PP00051/
+			  <br />
+              •	Percy Fitzgerald Estate, Fane Valley, 1824 – 1912, Collection Code = PP00052/
+			  <br />
+              •	Donaldson of Philipstown Papers, 1737 – 1876, Collection Code = PP00053/
+			  <br />
+              •	Johnston of Lisdoo papers, 1799 – 1935, Collection Code = PP00056/
+			  <br />
+              •	Rampart River, Dundalk, 1900 - 1919, 1997, Collection Code = PP00058/
+			  <br />
+              •	Ardee Papers, 1760 – 1925, Collection Code = PP00059/
+			  <br />
+              •	Saint Nicholas Mens Institute, Church Street, Dundalk, 1908 - 1910, 1913 – 1958, Collection Code = PP00060/
+			  <br />
+              •	Dowdall Deeds: calendar, 1960 (mid-13th century - 22 Apr 1691), Collection Code = PP00063/
+			  <br />
+              •	Peppard Deeds: calendar, 1624 – 1770, Collection Code = PP00064/
+			  <br />
+              •	Boyne Estuary Enquiry, 1731 – 1865, 1905, 1999 – 2000, Collection Code = PP00065/
+			  <br />
+              •	Ravensdale Park, 1920, Collection Code = PP00067/
+			  <br />
+              •	The Roden Collection, 1611 – 1986, Collection Code = PP00069/
+			  <br />
+              •	CF MacCabe, 1869-81, Collection Code = PP00071/
+			  <br />
+              •	Louth Papers, 1722 - 1777, 1832 - 1833, 1900, Collection Code = PP00072/
+			  <br />
+              •	Edward O'Callaghan's estate, 1822-25, Collection Code = PP00073/
+			  <br />
+              •	Earl of Carlingford estate, 1696, 1725, Collection Code = PP00074/
+			  <br />
+              •	Presbyterian Church Records, (1655 -), 1831 - 1959, 1991, Collection Code = PP00075/
+			  <br />
+              •	Dundalk & Newry Steam Packet Company, 1917-18, Collection Code = PP00076/
+			  <br />
+              •	Henry Backhouse and Company, 1926-79, Collection Code = PP00078/
+			  <br />
+              •	Clanna O'Hanluain (The O'Hanlons), 1933-34, Collection Code = PP00081/
+			  <br />
+              •	Charles MacMahon Papers, 1827 – 1921, Collection Code = PP00084/
+			  <br />
+              •	Dundalk Show Society, 1891 – 2000, Collection Code = PP00087/
+			  <br />
+              •	Tempests Annuals 1915 – 1976, Collection Code = PP00089/
+			  <br />
+              •	Junior Chamber of Commerce, 1971-74, Collection Code = PP00094/
+			  <br />
+              •	Louth Farming, 1801 – 1912, Collection Code = PP00099/
+			  <br />
+              •	Louth Hall estate papers, 1851 – 1922, Collection Code = PP00103/
+			  <br />
+              •	Craven of Drumcashel papers, 1658 - 1686, 1798, 1819 – 1851, Collection Code = PP00104/
+			  <br />
+              •	Papers of Stannus estate, 1709 – 1848, Collection Code = PP00105/
+			  <br />
+              •	MacNeill Estate, 1900-33, Collection Code = PP00106/
+			  <br />
+              •	Documents relating to Haggardstown Parochial House, 1883 – 1907, Collection Code = PP00115/
+			  <br />
+              •	Canon MacIomhair papers, 1835 – 1913, Collection Code = PP00116/
+			  <br />
+              •	Joseph Dolan papers, 1901-33, Collection Code = PP00118/
+			  <br />
+              •	Dun Dealgan Museum Papers, 1906 – 1965, Collection Code = PP00120/
+			  <br />
+              •	Papers of historian John D'Alton, 1844-64, Collection Code = PP00126/
+			  <br />
+              •	Fortescue family of Stephenstown House: photograph album, 1861-72, Collection Code = PP00136
+			  <br />
+              •	Papers of several Co. Louth priests, 1867 – 1944, Collection Code = PP00138/
+			  <br />
+              •	Dundalk Grammar School, 1856-96, Collection Code = PP00139/
+			  <br />
+              •	Mr Joseph Fitzsimons, Dunbin, Dundalk, 1847 – 1936, Collection Code = PP00140/
+			  <br />
+              •	Canice O'Mahony, 1974 – 2010, Collection Code = PP00184/
+			  <br />
+              •	Drogheda ledgers, 1723 – 1809, Collection Code = PP00186/
+			  <br />
+              •	The Paddy Mallon - Great Northern Railway (Ireland) Collection, 1836 – 1984, Collection Code = PP00206/
+			  <br />
+              •	Bellingham family of Castlebellingham, 1813 – 1905, 1967, Collection Code = PP00224/
+			  <br />
+              •	Moore (of Carlingford) Rentals, 1878 – 1963, Collection Code = PP00237/
+			  <br />
+              •	Macardle Moore and Company collection, 18th century - 20th century, Collection Code = PP00240/
+			  <br />
+              •	Bernard (Bennie) Rice family of Mullaghatina and Chapel Street, Dundalk, c.1900 – 1974, Collection Code = PP00263/
+			  <br />
+              •	Folklore and traditions in the Rathcor area, 1938-60, Collection Code = PP00271/
+			  <br />
+              •	Peadar MacCuarta (Peter McCourt) papers, Collection Code = PP00272/
+			  <br />
+              •	Papers of Mrs Breige McCourt (nee Murphy), c. 1940s-50s, Collection Code = PP00273/
+			  <br />
+              •	Tillage & Fertiliser Schemes, 1945-70, Collection Code = PP00293/
+			  <br />
+              •	Ancient Order of Hibernians, Dundalk Branch, Collection Code = AOH1/
+			  <br />
+              •	Ancient Order of Hibernians, Haggardstown Branch, Collection Code = AOH2/
+			  <br />
+              •	Election Archive Collection, 19th – 20th centuries, Collection Code = E/
+			  <br />
+              •	Oral History Archive Collection, 1980s – 2005, Collection Code = OHA/
+
+			  
+              <br /><br />
+              <string>Uncatalogued collections and new acquisitions will be added to this online catalogue on an ongoing basis as they become 
+			  processed.  </string>
+              <br />
+              <br />
+              <string>Copyright of Louth Local Authorities</string>
+              <br />
+              <br />
+              <br />
+              <string>
+                <i>Disclaimer, Personal Data and Access</i>
+              </string>
+              <br />
+              <string>
+                Please note that Louth Local Authorities makes no representations or warranties as to the accuracy or suitability of the 
+                information contained in the content of the Online Catalogue and therefore does not accept any liability for the consequence 
+                of any error, loss or damage sustained by users of the information contained in the catalogue.
+              </string>
+              <br />
+              <br />
+              <string>
+                The database for the online catalogue may contain some personal data. All reasonable care has been taken by staff to ensure that 
+                we operate within the provisions of data protection legislation. If you think that any of the data within the Online Catalogue 
+                causes or is likely to cause substantial damage or distress to you or any other living individual, please contact us with specific 
+                details by emailing <a href="mailto:archive@louthcoco.ie"> archive@louthcoco.ie </a>
+              </string>
+              <string>
+                or by telephoning +353 (0)42-9324358.
+              </string>
+              <br />
+              <br />    
+              <string>
+                Please note that records may be temporarily unavailable from time to time on the Online Catalogue and that some records may not be 
+                available for viewing in the Research Room due to conservation reasons or due to access restrictions.
+              </string>
+            </div>
+          </td>
+        </tr>       
+      </table>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55390957-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </form>
+</body>
+</html>
