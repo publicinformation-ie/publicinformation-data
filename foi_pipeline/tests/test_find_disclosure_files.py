@@ -109,6 +109,55 @@ def test_duplicate_file_urls_deduplicated(requests_mock, tmp_path, make_writer):
     assert len(results) == 1
 
 
+INPUT_DIRECT_FILE = {
+    "metadata": {"step": "find_disclosure_pages", "completed_at": "2026-05-04T00:00:00+00:00"},
+    "results": [
+        {"public_body_id": 2001, "name": "Direct PDF Body",
+         "foi_page_url": "https://body-a.ie/foi/",
+         "disclosure_page_url": "https://body-a.ie/files/foi-disclosure-log-2025.pdf"},
+        {"public_body_id": 2002, "name": "Direct XLSX Body",
+         "foi_page_url": "https://body-b.ie/foi/",
+         "disclosure_page_url": "https://body-b.ie/files/foi-log.xlsx"},
+        {"public_body_id": 2003, "name": "HTML Page Body",
+         "foi_page_url": "https://body-c.ie/foi/",
+         "disclosure_page_url": "https://body-c.ie/foi/disclosure/"},
+    ],
+}
+
+
+def test_direct_pdf_url_emitted_without_http_request(requests_mock, tmp_path, make_writer):
+    writer = make_writer(STEP_NAME)
+    requests_mock.get("https://body-c.ie/foi/disclosure/", text=HTML_NO_FILES)
+    process(INPUT_DIRECT_FILE, tmp_path, writer)
+    results = [r for r in writer.results if r["public_body_id"] == 2001]
+    assert len(results) == 1
+    assert results[0]["file_url"] == "https://body-a.ie/files/foi-disclosure-log-2025.pdf"
+    assert results[0]["file_type"] == "pdf"
+    assert results[0]["disclosure_page_url"] == "https://body-a.ie/files/foi-disclosure-log-2025.pdf"
+    fetched = [r.url for r in requests_mock.request_history]
+    assert not any("body-a.ie" in u for u in fetched), "direct file URL must not be fetched as HTML"
+
+
+def test_direct_xlsx_url_emitted_without_http_request(requests_mock, tmp_path, make_writer):
+    writer = make_writer(STEP_NAME)
+    requests_mock.get("https://body-c.ie/foi/disclosure/", text=HTML_NO_FILES)
+    process(INPUT_DIRECT_FILE, tmp_path, writer)
+    results = [r for r in writer.results if r["public_body_id"] == 2002]
+    assert len(results) == 1
+    assert results[0]["file_type"] == "xlsx"
+    fetched = [r.url for r in requests_mock.request_history]
+    assert not any("body-b.ie" in u for u in fetched), "direct file URL must not be fetched as HTML"
+
+
+def test_html_disclosure_page_still_crawled(requests_mock, tmp_path, make_writer):
+    writer = make_writer(STEP_NAME)
+    requests_mock.get("https://body-c.ie/foi/disclosure/", text=HTML_WITH_PDF)
+    process(INPUT_DIRECT_FILE, tmp_path, writer)
+    results = [r for r in writer.results if r["public_body_id"] == 2003]
+    assert len(results) == 1
+    assert results[0]["file_url"] == "https://body-c.ie/disclosures/q1-2024.pdf"
+
+
 def test_resume_skips_already_processed_body(requests_mock, tmp_path, make_writer):
     # Writer pre-loaded with body 1001 already done
     from scripts.file_utils import write_json, IncrementalWriter

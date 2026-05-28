@@ -93,17 +93,27 @@ def process(input_data, step_dir, writer, verbose=False):
         url = item["disclosure_page_url"]
         name = item.get("name", "")
         try:
-            response = fetch("GET", url, allow_redirects=True)
-            new_items = [
-                {
+            ext = Path(urlparse(url).path).suffix.lower()
+            if ext in FILE_EXTENSIONS:
+                writer.append([{
                     "public_body_id": body_id,
                     "name": name,
                     "disclosure_page_url": url,
-                    **file_info,
-                }
-                for file_info in find_file_links(response.text, url)
-            ]
-            writer.append(new_items)
+                    "file_url": url,
+                    "file_type": FILE_EXTENSIONS[ext],
+                }])
+            else:
+                response = fetch("GET", url, allow_redirects=True)
+                new_items = [
+                    {
+                        "public_body_id": body_id,
+                        "name": name,
+                        "disclosure_page_url": url,
+                        **file_info,
+                    }
+                    for file_info in find_file_links(response.text, url)
+                ]
+                writer.append(new_items)
         except Exception as e:
             append_error(step_dir, {
                 "step": STEP_NAME,
