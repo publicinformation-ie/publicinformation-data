@@ -66,7 +66,8 @@ def _make_pdf(tables_per_page):
     import io as _io
     from reportlab.lib import colors
     from reportlab.lib.pagesizes import A4
-    from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, PageBreak
+    from reportlab.lib.units import cm
+    from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, PageBreak, Spacer
 
     buf = _io.BytesIO()
     doc = SimpleDocTemplate(buf, pagesize=A4)
@@ -75,7 +76,9 @@ def _make_pdf(tables_per_page):
     for page_idx, page_tables in enumerate(tables_per_page):
         if page_idx > 0:
             story.append(PageBreak())
-        for table_rows in page_tables:
+        for tbl_idx, table_rows in enumerate(page_tables):
+            if tbl_idx > 0:
+                story.append(Spacer(1, 1 * cm))
             t = Table(table_rows)
             t.setStyle(TableStyle([
                 ("GRID", (0, 0), (-1, -1), 0.5, colors.black),

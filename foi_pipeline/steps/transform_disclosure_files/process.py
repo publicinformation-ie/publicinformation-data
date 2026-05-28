@@ -94,6 +94,26 @@ def _extract_xls(file_bytes):
     return sheet_name, rows, fallback_cells, has_multiple_sheets
 
 
+def _extract_pdf(file_bytes):
+    """Parse PDF bytes. Returns (sheet_name, rows, fallback_cells, has_multiple_tables)."""
+    import pdfplumber
+    rows = []
+    total_tables = 0
+    with pdfplumber.open(io.BytesIO(file_bytes)) as pdf:
+        n_pages = len(pdf.pages)
+        for page in pdf.pages:
+            tables = page.extract_tables()
+            total_tables += len(tables)
+            for table in tables:
+                for row in table:
+                    serialised_row = [serialise_cell(cell)[0] for cell in row]
+                    rows.append(serialised_row)
+    if total_tables == 0:
+        raise ValueError("no tables found")
+    sheet_name = "page 1" if n_pages == 1 else f"pages 1-{n_pages}"
+    return sheet_name, rows, [], total_tables > 1
+
+
 def process(input_data, step_dir, writer, verbose=False):
     from datetime import datetime, timezone
     errors_path = Path(step_dir) / "errors.json"
