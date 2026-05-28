@@ -10,7 +10,7 @@ from steps.transform_disclosure_files.process import (
     serialise_cell,
     _extract_xlsx,
     _extract_xls,
-    _extract_pdf,          # add this
+    _extract_pdf,
     process,
     STEP_NAME,
 )
