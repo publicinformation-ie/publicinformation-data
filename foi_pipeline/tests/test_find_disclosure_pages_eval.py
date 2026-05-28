@@ -36,6 +36,12 @@ def test_classify_true_negative_correctly_fell_back():
     assert classify(record, label) == "TN"
 
 
+def test_classify_true_negative_no_log_exists():
+    record = {"disclosure_page_url": "https://x.ie/foi", "foi_page_url": "https://x.ie/foi"}
+    label = {"label": "no_log_exists", "expected_url": ""}
+    assert classify(record, label) == "TN"
+
+
 def test_score_aggregates_and_computes_precision_recall():
     records = {
         "1": {"disclosure_page_url": "https://x.ie/log", "foi_page_url": "https://x.ie/foi"},
@@ -55,5 +61,6 @@ def test_score_aggregates_and_computes_precision_recall():
     assert counts == {"TP": 1, "FP": 2, "FN": 1, "TN": 1}
     assert precision == 1 / 3
     assert recall == 0.5
+    assert abs(f1 - 0.4) < 1e-9
     assert ("2", "https://x.ie/wrong") in details["FP"]
     assert ("3", "https://x.ie/foi") in details["FN"]
