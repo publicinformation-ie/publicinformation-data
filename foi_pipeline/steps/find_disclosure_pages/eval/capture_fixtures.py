@@ -55,13 +55,16 @@ def main():
         pid = r["public_body_id"]
         foi_url = r["foi_page_url"]
         cand_url = r.get("disclosure_page_url", foi_url)
-        if _grab(foi_url, FIXTURES / f"{pid}.html"):
+        foi_result = _grab(foi_url, FIXTURES / f"{pid}.html")
+        if foi_result:
             foi_ok += 1
-        # Only fetch the candidate when it differs from the FOI page.
+        dest_result = None
         if cand_url.rstrip("/") != foi_url.rstrip("/"):
-            if _grab(cand_url, DESTINATIONS / f"{pid}.html"):
+            dest_result = _grab(cand_url, DESTINATIONS / f"{pid}.html")
+            if dest_result:
                 dest_ok += 1
-        print(f"  [{pid}] done")
+        status = "ERROR" if foi_result is False or dest_result is False else "done"
+        print(f"  [{pid}] {status}")
     print(f"\nCaptured {foi_ok} FOI pages, {dest_ok} candidate destinations")
 
 
