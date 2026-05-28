@@ -159,6 +159,34 @@ class TestHttpPipeline:
         assert payload["requests"][4]["stmt"]["sql"] == "COMMIT"
 
 
+class TestClearPipelineTables:
+    def test_uses_execute_batch_with_all_tables_in_order(self):
+        from steps.db_upload.process import clear_pipeline_tables
+
+        db = Mock()
+        clear_pipeline_tables(db)
+
+        db.execute_batch.assert_called_once()
+        stmts = db.execute_batch.call_args[0][0]
+        sqls = [s[0] for s in stmts]
+        assert sqls == [
+            "DELETE FROM topic_disclosures",
+            "DELETE FROM topic_keywords",
+            "DELETE FROM topics",
+            "DELETE FROM foi_disclosures",
+            "DELETE FROM disclosure_files",
+            "DELETE FROM public_bodies",
+        ]
+
+    def test_does_not_call_execute(self):
+        from steps.db_upload.process import clear_pipeline_tables
+
+        db = Mock()
+        clear_pipeline_tables(db)
+
+        db.execute.assert_not_called()
+
+
 class TestExecuteBatch:
     def test_local_executes_all_statements(self, seeded_db):
         seeded_db.execute_batch([

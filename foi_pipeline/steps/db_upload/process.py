@@ -43,9 +43,9 @@ _INSERT_TOPIC_DISCLOSURE = "INSERT INTO topic_disclosures (topic_slug, foi_discl
 
 def clear_pipeline_tables(db):
     """Delete pipeline data in dependency order; leaves corrections/outreach tables untouched."""
-    for table in ["topic_disclosures", "topic_keywords", "topics",
-                  "foi_disclosures", "disclosure_files", "public_bodies"]:
-        db.execute(f"DELETE FROM {table}")
+    tables = ["topic_disclosures", "topic_keywords", "topics",
+              "foi_disclosures", "disclosure_files", "public_bodies"]
+    db.execute_batch([(f"DELETE FROM {table}", []) for table in tables])
 
 
 def upload_public_bodies(db, steps_dir):
