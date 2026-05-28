@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import re
 import sys
 import time
 from datetime import datetime, timezone
@@ -14,6 +15,20 @@ from steps.find_disclosure_pages.domains import find_disclosure_page as domain_f
 
 STEP_NAME = "find_disclosure_pages"
 DISCLOSURE_KEYWORDS = ["disclosure", "log", "request"]
+
+
+def _tokenize(*strings):
+    """Lowercase, split on non-alphanumeric runs, return the set of word tokens.
+
+    Token matching (vs. substring matching) is what stops 'log' from matching
+    login / blog / logo / technology / geology / catalogue.
+    """
+    tokens = set()
+    for s in strings:
+        for tok in re.split(r"[^a-z0-9]+", (s or "").lower()):
+            if tok:
+                tokens.add(tok)
+    return tokens
 
 
 def find_disclosure_link(html, base_url):
