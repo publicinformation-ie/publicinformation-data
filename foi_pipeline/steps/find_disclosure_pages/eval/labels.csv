@@ -4,7 +4,7 @@ public_body_id,name,label,expected_url,verified
 1003,"Department of Climate, Energy and the Environment",distinct_log,https://www.gov.ie/en/department-of-climate-energy-and-the-environment/publications/published-foi-requests/,yes
 1004,"Department of Tourism, Culture, Arts, Gaeltacht, Sport and Media",distinct_log,https://www.gov.ie/en/department-of-culture-communications-and-sport/publications/foi-logs/,yes
 1005,Department of Defence,distinct_log,https://www.gov.ie/en/department-of-defence/collections/foi-disclosure-log/,yes
-1006,Department of Education and Youth,distinct_log,https://www.gov.ie/en/department-of-education/collections/foi-disclosure-logs/,no
+1006,Department of Education and Youth,distinct_log,https://www.gov.ie/en/department-of-education/collections/foi-disclosure-logs/,auto
 1007,"Department of Enterprise, Tourism and Employment",distinct_log,https://www.gov.ie/en/department-of-enterprise-tourism-and-employment/collections/foi-disclosure-log/,yes
 1008,Department of Finance,distinct_log,https://www.gov.ie/en/department-of-finance/collections/foi-decisions/,yes
 1009,Department of Foreign Affairs and Trade,distinct_log,https://www.gov.ie/en/department-of-foreign-affairs/collections/freedom-of-information-requests-2025/,yes
@@ -18,106 +18,106 @@ public_body_id,name,label,expected_url,verified
 1017,Department of the Taoiseach,distinct_log,https://www.gov.ie/en/department-of-the-taoiseach/collections/foi-disclosure-logs/,yes
 1018,Department of Transport,distinct_log,https://www.gov.ie/en/department-of-transport/collections/foi-disclosure-logs/,yes
 1019,An Coimisiún Pleanála,distinct_log,https://www.pleanala.ie/en-ie/freedom-of-information-(foi)/freedom-of-information-(foi)-disclosure-log,yes
-1020,An Garda Síochána,use_foi_page,,no
-1021,An Rialálaí Agraibhia (Agri-Food Regulator),distinct_log,https://www.agrifoodregulator.ie/governance/protecteddisclosures/,no
-1022,Aquaculture Licences Appeals Board,distinct_log,https://www.alab.ie/corporategovernance/protecteddisclosurespolicy/,no
-1023,Bord Bia (Irish Food Board),distinct_log,https://www.bordbia.ie/about/governance/corporate-governance/foi-disclosure-log/,no
-1024,Bord Iascaigh Mhara (BIM),distinct_log,https://bim.ie/wp-content/uploads/2021/03/BIM-FOI-Log-2017-to-2019-Inclusive.pdf,no
-1026,Central Bank of Ireland,distinct_log,https://portal.centralbank.ie/,no
-1027,Central Statistics Office,distinct_log,https://www.cso.ie/en/statistics/technologyandinnovation/,no
-1028,Chief State Solicitor’s Office,distinct_log,http://www.audit.gov.ie/,no
-1031,Civil Service Employee Assistance Service,distinct_log,https://enterprise.gov.ie/en/publications/publication-files/governance-framework.pdf,no
-1033,Commission for Public Service Appointments (CPSA),distinct_log,https://www.cpsa.ie/en/collection/2a201-freedom-of-information-act-2014#how-to-make-a-request,no
-1035,Commission on Taxation and Welfare,distinct_log,https://enterprise.gov.ie/en/publications/publication-files/dete-foi-log-2022.pdf,no
-1036,Commission on the Defence Forces,use_foi_page,,no
-1037,Competition and Consumer Protection Commission (CCPC),distinct_log,https://www.ccpc.ie/consumers/about/governance/freedom-of-information/foi-disclosure-log-2026/,no
-1039,Courts Service,distinct_log,https://www.courts.ie/organisation-information/how-to-make-an-foi-request,no
-1043,Data Protection Commission,distinct_log,http://www.dataprotection.ie/en/about/corporate-governance/freedom-information/freedom-information-disclosure-log,no
-1044,Digital Hub Development Agency,use_foi_page,,no
-1045,Educational Research Centre (ERC),distinct_log,https://www.linkedin.com/uas/login?session_redirect=%2Fcompany%2F100324776%2F,no
-1046,Education Scoping Inquiry,use_foi_page,,no
-1048,Enterprise Ireland,use_foi_page,,no
-1049,Financial Services and Pensions Ombudsman (FSPO),distinct_log,https://www.fspo.ie/documents/FOI-Disclosure-Log-Q1-2026.pdf,no
-1050,Fiosrú – the Office of the Police Ombudsman,distinct_log,https://www.fiosru.ie/complaints/statutory-review/how-to-request-a-review-of-your-inadmissible-complaint/,no
-1051,Forensic Science Ireland,distinct_log,https://forensicscience.ie/chemical-analysis/toxicology-analysis/,no
-1053,Garda Inspectorate,distinct_log,https://www.gsinsp.ie/foi-aie/#42318be1180177c70,no
-1054,Gender Equality,distinct_log,https://enterprise.gov.ie/en/publications/publication-files/dete-annual-report-2023.pdf,no
-1055,gov.ie team,distinct_log,https://www.ogcio.gov.ie/en/corporate-pages/services/digital-services-v2/,no
-1056,Greyhound Racing Ireland (GRI),distinct_log,https://www.grireland.ie/account/login/,no
-1057,Health Research Board (HRB),distinct_log,https://www.hrb.ie/blog,no
-1060,Higher Education Authority (HEA),distinct_log,https://hea.ie/policy/he-reform/technological-universities/,no
-1061,Horse Racing Ireland (HRI),distinct_log,https://www.hri.ie/HRI/media/HRI/Comms/Documents/HRI-FOI-2026-Quarterly-Disclosure-Log-Q1.pdf,no
-1063,Independent Review Group - Defence Forces,use_foi_page,,no
-1064,Insolvency Service of Ireland,distinct_log,https://www.gov.ie/en/insolvency-service-of-ireland/,no
-1066,International Protection Accommodation Services (IPAS),distinct_log,https://www.gov.ie/en/international-protection-accommodation-services-ipas/campaigns/international-protection-accommodation-services-ipas/,no
-1067,Irish Fiscal Advisory Council,distinct_log,https://www.fiscalcouncil.ie/about-the-council/#disclosures,no
-1068,Irish Government Economic and Evaluation Service (IGEES),distinct_log,https://www.gov.ie/en/department-of-public-expenditure-infrastructure-public-service-reform-and-digitalisation/,no
-1070,Irish Prison Service,distinct_log,https://www.irishprisons.ie/prisoner-services/psychology-service/,no
-1072,Legal Practitioners Disciplinary Tribunal,use_foi_page,,no
-1073,Local Government Management Agency (LGMA),distinct_log,https://www.lgma.ie/en/publications/?keyword=protected+disclosure&Categories=-1,no
-1074,Marine Institute,distinct_log,https://www.marine.ie/user/login,no
-1076,National Asset Management Agency (NAMA),distinct_log,https://www.nama.ie/freedom-of-information/making-a-request-for-information,no
-1077,National Milk Agency,distinct_log,https://nationalmilkagency.ie/freedom-of-information/disclosure-log/,no
-1078,National Shared Services Office,distinct_log,https://www.nsso.gov.ie/en/corporate-information/freedom-of-information-publication-scheme/,no
-1079,National Standards Authority of Ireland (NSAI),distinct_log,https://www.nsai.ie/standards/sectors/advanced-manufacturing-technologies-standards/,no
-1080,National Transport Authority (NTA),distinct_log,https://www.nationaltransport.ie/transport-technology/,no
-1081,National Treasury Management Agency (NTMA),distinct_log,https://www.ntma.ie/information-pages/freedom-of-information/how-to-make-a-request,no
-1083,Office of Government Procurement,distinct_log,https://enterprise.gov.ie/en/publications/publication-files/foi-publication-scheme.pdf,no
-1084,Office of Public Works,distinct_log,https://www.gov.ie/en/office-of-public-works/collections/foiaie-disclosure-log-and-other-information/,no
-1085,Office of the Attorney General,distinct_log,https://enterprise.gov.ie/en/news-and-events/department-news/2025/march/20250304.html,no
-1086,Office of the Civil Service Chief Medical Officer,use_foi_page,,no
-1087,Office of the Commissioner for Environmental Information (OCEI),distinct_log,https://www.ocei.ie/en/organisation-information/269a9-foi-publication-scheme/#foi-disclosure-log-and-other-information-to-be-published-routinely,no
-1088,Office of the Comptroller and Auditor General,distinct_log,https://www.audit.gov.ie/en/freedom-of-information/,no
-1090,Office of the Information Commissioner (OIC),distinct_log,https://www.oic.ie/en/collection/0fdbb-make-an-foi-request-to-oic,no
-1091,Office of the Ombudsman,distinct_log,https://www.ombudsman.ie/en/collection/cc783-make-an-foi-request-to-this-office/?,no
-1092,Office of the Planning Regulator,distinct_log,https://www.opr.ie/freedom-of-information-disclosure-log/,no
-1093,Office of the Protected Disclosures Commissioner (OPDC),distinct_log,https://www.opdc.ie/en/collection/d4c19-freedom-of-information#making-a-freedom-of-information-request,no
-1094,Office of the Revenue Commissioners,distinct_log,https://policies.google.com/technologies/types?hl=en,no
-1095,Office of the State Pathologist,distinct_log,https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/publications/office-of-the-state-pathologist/,no
-1096,Parliamentary Budget Office,distinct_log,https://www.oireachtas.ie/en/foi/foi-disclosure-log/,no
-1097,Parole Board,use_foi_page,,no
-1098,Pobal,distinct_log,https://www.pobal.ie/about-pobal/corporate-policies/,no
-1100,Probation Service,distinct_log,http://www.probation.ie/EN/PB/0/6A2C9C0587C23708802586BD0048ABA5/$File/2019 non Personal FOI logs.pdf,no
-1102,Publicjobs,distinct_log,https://publicjobs.tal.net/vx/lang-en-GB/mobile-0/appcentre-1/brand-4/xf-9fb848f89189/candidate/login,no
-1106,Safety on the Water,use_foi_page,,no
-1107,Sea-Fisheries Protection Authority (SFPA),distinct_log,https://www.sfpa.ie/What-We-Do/Seafood-Safety/Microbiological-Criteria,no
-1109,Social Welfare Appeals Office,distinct_log,https://www.gov.ie/en/social-welfare-appeals-office/collections/routinely-available-information/,no
-1110,Special EU Programmes Body,distinct_log,https://www.seupb.eu/contact-us/freedom-information/freedom-information-disclosure-log,no
-1111,Standards in Public Office Commission (SIPO),distinct_log,https://www.sipo.ie/en/collection/e809e-freedom-of-information-foi#how-to-make-a-request,no
-1112,State Examinations Commission (SEC),distinct_log,https://www.examinations.ie?l=en&mc=fo&sc=aie,no
-1114,Strategic Banking Corporation of Ireland,distinct_log,https://www.audit.gov.ie/en/freedom-of-information/foi%20disclosure%20log/foi-disclosure-log-q4-2025.pdf,no
-1115,Study on Familicide and Domestic Homicide Reviews,use_foi_page,,no
-1116,Tailte Éireann,distinct_log,https://tailte.ie/wp-content/uploads/2025/03/tailte-eireann-foi-request-form.docx,no
-1117,Teagasc,distinct_log,https://teagasc.ie/food/food-chemistry-technology/,no
-1118,The Charities Regulator,distinct_log,https://www.charitiesregulator.ie/en/myaccount,no
-1121,The Housing Commission,use_foi_page,,no
-1122,The Ombudsman for Children's Office (OCO),use_foi_page,,no
-1125,Welcome to the website of the External Oversight Body of the Defence Forces (EOBDF),distinct_log,https://www.gov.ie/en/external-oversight-body-of-the-defence-forces/campaigns/external-oversight-body-of-the-defence-forces/,no
-1128,Cavan County Council,distinct_log,http://www.cavancoco.ie/services/information-technology/,no
-1129,Clare County Council,distinct_log,https://www.clarecoco.ie/council/governance-and-compliance/freedom-information/publication-scheme/foi-disclosure-log-and-other-information-be-published-routinely,no
+1020,An Garda Síochána,use_foi_page,,auto
+1021,An Rialálaí Agraibhia (Agri-Food Regulator),no_log_exists,,auto
+1022,Aquaculture Licences Appeals Board,no_log_exists,,auto
+1023,Bord Bia (Irish Food Board),distinct_log,https://www.bordbia.ie/about/governance/corporate-governance/foi-disclosure-log/,auto
+1024,Bord Iascaigh Mhara (BIM),distinct_log,https://bim.ie/wp-content/uploads/2021/03/BIM-FOI-Log-2017-to-2019-Inclusive.pdf,auto
+1026,Central Bank of Ireland,distinct_log,https://www.centralbank.ie/about/freedom-of-information/freedom-of-information-publication-scheme/foi-disclosure-log,auto
+1027,Central Statistics Office,no_log_exists,,auto
+1028,Chief State Solicitor's Office,no_log_exists,,auto
+1031,Civil Service Employee Assistance Service,no_log_exists,,auto
+1033,Commission for Public Service Appointments (CPSA),no_log_exists,,auto
+1035,Commission on Taxation and Welfare,no_log_exists,,auto
+1036,Commission on the Defence Forces,use_foi_page,,auto
+1037,Competition and Consumer Protection Commission (CCPC),distinct_log,https://www.ccpc.ie/consumers/about/governance/freedom-of-information/foi-disclosure-log-2026/,auto
+1039,Courts Service,no_log_exists,,auto
+1043,Data Protection Commission,distinct_log,http://www.dataprotection.ie/en/about/corporate-governance/freedom-information/freedom-information-disclosure-log,auto
+1044,Digital Hub Development Agency,use_foi_page,,auto
+1045,Educational Research Centre (ERC),no_log_exists,,auto
+1046,Education Scoping Inquiry,use_foi_page,,auto
+1048,Enterprise Ireland,use_foi_page,,auto
+1049,Financial Services and Pensions Ombudsman (FSPO),distinct_log,https://www.fspo.ie/documents/FOI-Disclosure-Log-Q1-2026.pdf,auto
+1050,Fiosrú – the Office of the Police Ombudsman,distinct_log,https://www.fiosru.ie/compliance/publication-scheme/foi-disclosure-log-2024/,auto
+1051,Forensic Science Ireland,no_log_exists,,auto
+1053,Garda Inspectorate,no_log_exists,,auto
+1054,Gender Equality,no_log_exists,,auto
+1055,gov.ie team,no_log_exists,,auto
+1056,Greyhound Racing Ireland (GRI),no_log_exists,,auto
+1057,Health Research Board (HRB),no_log_exists,,auto
+1060,Higher Education Authority (HEA),no_log_exists,,auto
+1061,Horse Racing Ireland (HRI),distinct_log,https://www.hri.ie/HRI/media/HRI/Comms/Documents/HRI-FOI-2026-Quarterly-Disclosure-Log-Q1.pdf,auto
+1063,Independent Review Group - Defence Forces,use_foi_page,,auto
+1064,Insolvency Service of Ireland,no_log_exists,,auto
+1066,International Protection Accommodation Services (IPAS),no_log_exists,,auto
+1067,Irish Fiscal Advisory Council,no_log_exists,,auto
+1068,Irish Government Economic and Evaluation Service (IGEES),no_log_exists,,auto
+1070,Irish Prison Service,no_log_exists,,auto
+1072,Legal Practitioners Disciplinary Tribunal,use_foi_page,,auto
+1073,Local Government Management Agency (LGMA),no_log_exists,,auto
+1074,Marine Institute,use_foi_page,,auto
+1076,National Asset Management Agency (NAMA),distinct_log,https://www.nama.ie/freedom-of-information/disclosure-log,auto
+1077,National Milk Agency,distinct_log,https://nationalmilkagency.ie/freedom-of-information/disclosure-log/,auto
+1078,National Shared Services Office,distinct_log,https://www.nsso.gov.ie/en/corporate-information/freedom-of-information-publication-scheme/,auto
+1079,National Standards Authority of Ireland (NSAI),distinct_log,https://www.nsai.ie/images/uploads/general/FOI_Disclosure_Log_2016_-_2025.pdf,auto
+1080,National Transport Authority (NTA),use_foi_page,,auto
+1081,National Treasury Management Agency (NTMA),distinct_log,https://www.ntma.ie/information-pages/freedom-of-information/disclosure-log,auto
+1083,Office of Government Procurement,no_log_exists,,auto
+1084,Office of Public Works,distinct_log,https://www.gov.ie/en/office-of-public-works/collections/foiaie-disclosure-log-and-other-information/,auto
+1085,Office of the Attorney General,no_log_exists,,auto
+1086,Office of the Civil Service Chief Medical Officer,use_foi_page,,auto
+1087,Office of the Commissioner for Environmental Information (OCEI),use_foi_page,,auto
+1088,Office of the Comptroller and Auditor General,distinct_log,https://www.audit.gov.ie/en/freedom-of-information/,auto
+1090,Office of the Information Commissioner (OIC),no_log_exists,,auto
+1091,Office of the Ombudsman,no_log_exists,,auto
+1092,Office of the Planning Regulator,distinct_log,https://www.opr.ie/freedom-of-information-disclosure-log/,auto
+1093,Office of the Protected Disclosures Commissioner (OPDC),use_foi_page,,auto
+1094,Office of the Revenue Commissioners,no_log_exists,,auto
+1095,Office of the State Pathologist,no_log_exists,,auto
+1096,Parliamentary Budget Office,distinct_log,https://www.oireachtas.ie/en/foi/foi-disclosure-log/,auto
+1097,Parole Board,use_foi_page,,auto
+1098,Pobal,no_log_exists,,auto
+1100,Probation Service,distinct_log,http://www.probation.ie/EN/PB/0/6A2C9C0587C23708802586BD0048ABA5/$File/2019 non Personal FOI logs.pdf,auto
+1102,Publicjobs,distinct_log,https://publicjobs.ie/en/foi/disclosure,auto
+1106,Safety on the Water,use_foi_page,,auto
+1107,Sea-Fisheries Protection Authority (SFPA),use_foi_page,,auto
+1109,Social Welfare Appeals Office,distinct_log,https://www.gov.ie/en/social-welfare-appeals-office/collections/routinely-available-information/,auto
+1110,Special EU Programmes Body,distinct_log,https://www.seupb.eu/contact-us/freedom-information/freedom-information-disclosure-log,auto
+1111,Standards in Public Office Commission (SIPO),distinct_log,https://www.sipo.ie/en/collection/b2be9-foi-disclosure-log,auto
+1112,State Examinations Commission (SEC),no_log_exists,,auto
+1114,Strategic Banking Corporation of Ireland,distinct_log,https://www.audit.gov.ie/en/freedom-of-information/foi%20disclosure%20log/foi-disclosure-log-q4-2025.pdf,auto
+1115,Study on Familicide and Domestic Homicide Reviews,use_foi_page,,auto
+1116,Tailte Éireann,no_log_exists,,auto
+1117,Teagasc,use_foi_page,,auto
+1118,The Charities Regulator,distinct_log,https://www.charitiesregulator.ie/en/freedom-of-information/foi-disclosure-log,auto
+1121,The Housing Commission,use_foi_page,,auto
+1122,The Ombudsman for Children's Office (OCO),use_foi_page,,auto
+1125,Welcome to the website of the External Oversight Body of the Defence Forces (EOBDF),no_log_exists,,auto
+1128,Cavan County Council,distinct_log,https://www.cavancoco.ie/services/corporate-governance/freedom-of-information/foi-disclosure-logs.html,auto
+1129,Clare County Council,distinct_log,https://www.clarecoco.ie/council/governance-and-compliance/freedom-information/publication-scheme/foi-disclosure-log-and-other-information-be-published-routinely,auto
 1130,Cork City Council,distinct_log,https://www.corkcity.ie/en/council-services/public-info/model-publication-scheme/,yes
-1131,Cork County Council,distinct_log,https://www.corkcoco.ie/en/resident/housing#RequestaRepairInformation,no
-1132,Donegal County Council,use_foi_page,,no
-1133,Dublin City Council,distinct_log,https://www.dublincity.ie/innovation-and-technology,no
-1135,Fingal County Council,distinct_log,https://www.fingal.ie/community-and-archaeology,no
-1136,Galway City Council,distinct_log,https://files.galwaycity.ie/application-forms/?filter=freedom%20of%20information,no
-1137,Galway County Council,distinct_log,http://www.galway.ie/en/your-council/governance/freedom-information/disclosure-logs,no
-1138,Kerry County Council,distinct_log,http://kerryheritage.ie/,no
-1139,Kildare County Council,distinct_log,https://online.kildarecoco.ie/CBLE/Login.aspx,no
-1140,Kilkenny County Council,distinct_log,https://www.kilkennycoco.ie/eng/your_council/freedom_of_information/freedom-of-information-requests/,no
-1141,Laois County Council,distinct_log,https://www.laois.ie/information-technology,no
-1142,Leitrim County Council,distinct_log,https://www.leitrim.ie/Council/Services/Heritage-and-Conservation/Archaeological-Heritage/,no
-1143,Limerick City and County Council,distinct_log,https://www.limerick.ie/sites/default/files/media/documents/2024-05/foi-request-form-may-2024.pdf,no
-1144,Longford County Council,distinct_log,http://www.longfordcoco.ie/i-want-to-/make-a-protected-disclosure/,no
-1145,Louth County Council,distinct_log,http://www.louthcoco.ie/adlib/,no
-1147,Meath County Council,distinct_log,https://www.meath.ie/council/council-services/heritage-biodiversity-and-architectural-conservation/heritage/natural-heritage/geology,no
-1148,Monaghan County Council,distinct_log,https://monaghan.ie/corporateservices/foi-disclosure-log-and-other-published-information/,no
-1149,Offaly County Council,use_foi_page,,no
-1150,Roscommon County Council,distinct_log,http://www.roscommoncoco.ie/en/Freedom_of_Information/Data Protection/CCTV-Related-Technologies-Policies-and-Procedures/,no
-1151,Sligo County Council,distinct_log,https://www.sligococo.ie/media/SligoCountyCouncil2015/images/Logos/purple_flag_logo.jpg,no
-1152,South Dublin County Council,distinct_log,https://www.sdcc.ie/en/services/tourism/activities/the-hellfire-club/the-hellfire-club-archaeological-dig/,no
-1153,Tipperary County Council,use_foi_page,,no
-1154,Waterford City and County Council,distinct_log,https://waterfordcouncil.ie/openness-transparency/freedom-of-information/#freedom-of-information-requests,no
-1155,Westmeath County Council,distinct_log,http://www.westmeathcoco.ie/en/media/DisclosureLogTemplate2022.pdf,no
-1156,Wexford County Council,distinct_log,https://www.wexfordcoco.ie/council-and-democracy/freedom-of-information-foi-and-data-protection/foi-responses,no
-1157,Wicklow County Council,distinct_log,https://www.wicklow.ie/Living/Services/Libraries/Online-Catalogue,no
+1131,Cork County Council,no_log_exists,,auto
+1132,Donegal County Council,use_foi_page,,auto
+1133,Dublin City Council,use_foi_page,,auto
+1135,Fingal County Council,use_foi_page,,auto
+1136,Galway City Council,use_foi_page,,auto
+1137,Galway County Council,distinct_log,http://www.galway.ie/en/your-council/governance/freedom-information/disclosure-logs,auto
+1138,Kerry County Council,no_log_exists,,auto
+1139,Kildare County Council,no_log_exists,,auto
+1140,Kilkenny County Council,distinct_log,https://www.kilkennycoco.ie/eng/your_council/freedom_of_information/freedom-of-information-requests/freedom-of-information-disclosure-log.html,auto
+1141,Laois County Council,no_log_exists,,auto
+1142,Leitrim County Council,distinct_log,https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Disclosure-Log/,auto
+1143,Limerick City and County Council,no_log_exists,,auto
+1144,Longford County Council,distinct_log,http://www.longfordcoco.ie/your-council/access-to-information/freedom-of-information/disclosure-log/,auto
+1145,Louth County Council,no_log_exists,,auto
+1147,Meath County Council,use_foi_page,,auto
+1148,Monaghan County Council,distinct_log,https://monaghan.ie/corporateservices/foi-disclosure-log-and-other-published-information/,auto
+1149,Offaly County Council,use_foi_page,,auto
+1150,Roscommon County Council,no_log_exists,,auto
+1151,Sligo County Council,no_log_exists,,auto
+1152,South Dublin County Council,use_foi_page,,auto
+1153,Tipperary County Council,use_foi_page,,auto
+1154,Waterford City and County Council,distinct_log,https://waterfordcouncil.ie/openness-transparency/freedom-of-information/foi-disclosure-logs/,auto
+1155,Westmeath County Council,distinct_log,http://www.westmeathcoco.ie/en/media/DisclosureLogTemplate2022.pdf,auto
+1156,Wexford County Council,distinct_log,https://www.wexfordcoco.ie/council-and-democracy/freedom-of-information-foi-and-data-protection/foi-responses,auto
+1157,Wicklow County Council,no_log_exists,,auto
