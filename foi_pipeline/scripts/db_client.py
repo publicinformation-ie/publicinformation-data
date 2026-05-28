@@ -75,6 +75,32 @@ class DbClient:
                 args.append({"type": "text", "value": str(p)})
         return args
 
+    def _http_pipeline(self, stmts):
+        """Send stmts as a single pipeline POST wrapped in BEGIN/COMMIT.
+        stmts: list of (sql, params) tuples.
+        Raises RuntimeError if any result is not 'ok'.
+        """
+        requests_list = [{"type": "execute", "stmt": {"sql": "BEGIN", "args": []}}]
+        for sql, params in stmts:
+            requests_list.append({
+                "type": "execute",
+                "stmt": {"sql": sql, "args": self._build_args(params)},
+            })
+        requests_list.append({"type": "execute", "stmt": {"sql": "COMMIT", "args": []}})
+
+        resp = requests.post(
+            self._remote_url,
+            json={"requests": requests_list},
+            headers=self._headers,
+            timeout=30,
+        )
+        resp.raise_for_status()
+        for result in resp.json()["results"]:
+            if result["type"] != "ok":
+                raise RuntimeError(
+                    f"libSQL error: {result.get('error', {}).get('message', 'unknown')}"
+                )
+
     def _http_execute(self, sql, params=None):
         payload = {
             "requests": [{"type": "execute", "stmt": {"sql": sql, "args": self._build_args(params)}}]

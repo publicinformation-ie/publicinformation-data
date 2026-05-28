@@ -1,5 +1,6 @@
 import pytest
 from pathlib import Path
+from unittest.mock import patch, Mock
 from scripts.db_client import DbClient
 
 REPO_ROOT = Path(__file__).parent.parent.parent
@@ -95,6 +96,67 @@ class TestExecuteScript:
         names = [r["name"] for r in rows]
         assert "public_bodies" in names
         assert "topics" in names
+
+
+def _ok_result():
+    return {"type": "ok", "response": {"type": "execute", "result": {"cols": [], "rows": []}}}
+
+
+def _pipeline_response(results):
+    mock_resp = Mock()
+    mock_resp.raise_for_status = Mock()
+    mock_resp.json.return_value = {"results": results}
+    return mock_resp
+
+
+@pytest.fixture
+def remote_db():
+    return DbClient("https://test.example.com", "test-token")
+
+
+class TestHttpPipeline:
+    def test_wraps_statements_in_begin_commit(self, remote_db):
+        ok = _ok_result()
+        with patch("scripts.db_client.requests.post", return_value=_pipeline_response([ok, ok, ok])) as mock_post:
+            remote_db._http_pipeline([("INSERT INTO t VALUES (?)", [42])])
+
+        payload = mock_post.call_args[1]["json"]
+        sqls = [r["stmt"]["sql"] for r in payload["requests"]]
+        assert sqls == ["BEGIN", "INSERT INTO t VALUES (?)", "COMMIT"]
+
+    def test_passes_args_correctly(self, remote_db):
+        ok = _ok_result()
+        with patch("scripts.db_client.requests.post", return_value=_pipeline_response([ok, ok, ok])) as mock_post:
+            remote_db._http_pipeline([("INSERT INTO t VALUES (?,?)", [1, "hello"])])
+
+        payload = mock_post.call_args[1]["json"]
+        stmt_args = payload["requests"][1]["stmt"]["args"]
+        assert stmt_args == [
+            {"type": "integer", "value": "1"},
+            {"type": "text", "value": "hello"},
+        ]
+
+    def test_raises_on_error_result(self, remote_db):
+        ok = _ok_result()
+        err = {"type": "error", "error": {"message": "UNIQUE constraint failed"}}
+        with patch("scripts.db_client.requests.post", return_value=_pipeline_response([ok, err, ok])):
+            with pytest.raises(RuntimeError, match="UNIQUE constraint failed"):
+                remote_db._http_pipeline([("INSERT INTO t VALUES (?)", [1])])
+
+    def test_sends_multiple_statements(self, remote_db):
+        ok = _ok_result()
+        # BEGIN + 3 stmts + COMMIT = 5 results
+        with patch("scripts.db_client.requests.post", return_value=_pipeline_response([ok] * 5)) as mock_post:
+            remote_db._http_pipeline([
+                ("INSERT INTO a VALUES (?)", [1]),
+                ("INSERT INTO b VALUES (?)", [2]),
+                ("DELETE FROM c", []),
+            ])
+
+        payload = mock_post.call_args[1]["json"]
+        assert len(payload["requests"]) == 5
+        assert payload["requests"][0]["stmt"]["sql"] == "BEGIN"
+        assert payload["requests"][4]["stmt"]["sql"] == "COMMIT"
 
 
 class TestLocalUrl:
