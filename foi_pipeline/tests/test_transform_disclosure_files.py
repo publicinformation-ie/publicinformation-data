@@ -332,25 +332,6 @@ XLS_INPUT = {
 PDF_URL = "https://assets.gov.ie/report.pdf"
 
 
-# ── process() — pass-through ──────────────────────────────────────────────────
-
-def test_process_pdf_passthrough(tmp_path, make_writer):
-    writer = make_writer(STEP_NAME, key_field="file_url")
-    process(PDF_INPUT, tmp_path, writer)
-    assert len(writer.results) == 1
-    r = writer.results[0]
-    assert r["file_url"] == "https://assets.gov.ie/report.pdf"
-    assert r["sheet_name"] is None
-    assert r["rows"] is None
-
-
-def test_process_pdf_no_errors_written(tmp_path, make_writer):
-    writer = make_writer(STEP_NAME, key_field="file_url")
-    process(PDF_INPUT, tmp_path, writer)
-    errors = json.loads((tmp_path / "errors.json").read_text())
-    assert errors == []
-
-
 # ── process() — PDF happy path ────────────────────────────────────────────────
 
 def test_process_pdf_extracts_rows(requests_mock, tmp_path, make_writer):
