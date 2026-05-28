@@ -60,6 +60,18 @@ class DbClient:
                     stmts.append((cleaned, []))
             self._http_pipeline(stmts)
 
+    def execute_batch(self, stmts: list) -> None:
+        """Execute a list of (sql, params) tuples as a single atomic transaction."""
+        if not stmts:
+            return
+        if self._local:
+            cur = self._conn.cursor()
+            for sql, params in stmts:
+                cur.execute(sql, params or [])
+            self._conn.commit()
+        else:
+            self._http_pipeline(stmts)
+
     def close(self):
         if self._local:
             self._conn.close()

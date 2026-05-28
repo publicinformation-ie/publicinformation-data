@@ -159,6 +159,41 @@ class TestHttpPipeline:
         assert payload["requests"][4]["stmt"]["sql"] == "COMMIT"
 
 
+class TestExecuteBatch:
+    def test_local_executes_all_statements(self, seeded_db):
+        seeded_db.execute_batch([
+            ("INSERT INTO topics (slug, label, match_count) VALUES (?,?,?)", ["a", "A", 1]),
+            ("INSERT INTO topics (slug, label, match_count) VALUES (?,?,?)", ["b", "B", 2]),
+        ])
+        rows = seeded_db.execute("SELECT count(*) as n FROM topics")
+        assert rows[0]["n"] == 2
+
+    def test_local_empty_is_noop(self, seeded_db):
+        seeded_db.execute_batch([])
+        rows = seeded_db.execute("SELECT count(*) as n FROM topics")
+        assert rows[0]["n"] == 0
+
+    def test_remote_sends_single_pipeline_call(self, remote_db):
+        ok = _ok_result()
+        # BEGIN + 2 stmts + COMMIT = 4 results
+        with patch("scripts.db_client.requests.post", return_value=_pipeline_response([ok] * 4)) as mock_post:
+            remote_db.execute_batch([
+                ("DELETE FROM t", []),
+                ("INSERT INTO t VALUES (?)", [1]),
+            ])
+
+        assert mock_post.call_count == 1
+        payload = mock_post.call_args[1]["json"]
+        sqls = [r["stmt"]["sql"] for r in payload["requests"]]
+        assert sqls == ["BEGIN", "DELETE FROM t", "INSERT INTO t VALUES (?)", "COMMIT"]
+
+    def test_remote_empty_is_noop(self, remote_db):
+        with patch("scripts.db_client.requests.post") as mock_post:
+            remote_db.execute_batch([])
+
+        mock_post.assert_not_called()
+
+
 class TestExecuteScriptRemote:
     def test_sends_all_ddl_in_one_pipeline_call(self, remote_db):
         sql = "CREATE TABLE a (id INTEGER);\nCREATE TABLE b (id INTEGER);\n"
