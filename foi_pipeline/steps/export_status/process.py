@@ -198,6 +198,11 @@ def merge(steps_dir, pipeline_steps):
         step_data = read_json(output_path)
         merger(body_map, step_data)
 
+    for body in body_map.values():
+        if body.get("exclusion_reason"):
+            for sub in body["status"].values():
+                sub["status"] = "not_applicable"
+
     return list(body_map.values())
 
 
