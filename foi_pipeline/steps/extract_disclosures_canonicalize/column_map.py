@@ -78,6 +78,11 @@ _SYNONYMS: dict[str, list[str]] = {
         'cineál iarratasóra / type of requestor',  # Irish bilingual (Galway)
         'cineál iarratasóra/ type of requestor',   # no-space variant
         'type of request',
+        # Group E — additional body variants
+        'category of applicant',
+        'personal (p)/non- persona (np)',
+        # OCR spacing artefact — each character separated by space
+        'c a t e g o r y o f requester',
     ],
     'decision_status': [
         'decision made', 'decision', 'status', 'decision/cinneadh',
@@ -94,6 +99,8 @@ _SYNONYMS: dict[str, list[str]] = {
         'decisions',
         # pdfplumber mid-word line-wrap artefact
         'decision/cinne adh',   # Decision/Cinne\nadh
+        # Group E — additional PDF variants
+        'decisions made',
     ],
     'review_status': [
         'ir', 'ir/al', 'al',

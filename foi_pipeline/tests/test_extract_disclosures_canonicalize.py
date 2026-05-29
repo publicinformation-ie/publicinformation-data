@@ -310,3 +310,22 @@ def test_canonicalize_long_pdf_concatenated_header():
     assert canonicalize_header(
         "Disclosure Log for 2023 Description of the Request (Categories of Records Sought)"
     ) == "request_description"
+
+
+# ── New synonym tests — decision_status ───────────────────────────────────────
+
+def test_canonicalize_decisions_made():
+    assert canonicalize_header("Decisions Made") == "decision_status"
+
+
+# ── New synonym tests — requester_type ────────────────────────────────────────
+
+def test_canonicalize_category_of_applicant():
+    assert canonicalize_header("Category of Applicant") == "requester_type"
+
+def test_canonicalize_personal_non_personal_ocr():
+    assert canonicalize_header("Personal (P)/Non- Persona (NP)") == "requester_type"
+
+def test_canonicalize_ocr_spaced_category_of_requester():
+    # OCR artefact: each character separated by a space
+    assert canonicalize_header("C a t e g o r y o f requester") == "requester_type"
