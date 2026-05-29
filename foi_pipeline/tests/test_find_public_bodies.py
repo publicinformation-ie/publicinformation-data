@@ -125,6 +125,67 @@ def test_scrape_resets_errors_json(requests_mock, tmp_path):
     assert errors == []
 
 
+EXCLUSION_HTML = """
+<html><body>
+  <section id="agencies">
+    <a href="/en/coillte/">Coillte</a>
+    <a href="/en/hse/">HSE</a>
+  </section>
+</body></html>
+"""
+
+
+def test_excluded_body_has_exclusion_reason_field(requests_mock, tmp_path):
+    (tmp_path / "exclusions.json").write_text(
+        '[{"source_url": "https://www.gov.ie/en/coillte/", '
+        '"name": "Coillte", "exclusion_reason": "not_subject_to_foi", "note": ""}]'
+    )
+    requests_mock.get("https://www.gov.ie/en/departments/", text=EXCLUSION_HTML)
+    bodies = scrape_public_bodies(tmp_path)
+    coillte = next(b for b in bodies if "coillte" in b["official_website_url"])
+    assert coillte["exclusion_reason"] == "not_subject_to_foi"
+
+
+def test_excluded_body_has_no_not_subject_to_foi_field(requests_mock, tmp_path):
+    (tmp_path / "exclusions.json").write_text(
+        '[{"source_url": "https://www.gov.ie/en/coillte/", '
+        '"name": "Coillte", "exclusion_reason": "not_subject_to_foi", "note": ""}]'
+    )
+    requests_mock.get("https://www.gov.ie/en/departments/", text=EXCLUSION_HTML)
+    bodies = scrape_public_bodies(tmp_path)
+    coillte = next(b for b in bodies if "coillte" in b["official_website_url"])
+    assert "not_subject_to_foi" not in coillte
+
+
+def test_non_excluded_body_has_no_exclusion_reason(requests_mock, tmp_path):
+    (tmp_path / "exclusions.json").write_text(
+        '[{"source_url": "https://www.gov.ie/en/coillte/", '
+        '"name": "Coillte", "exclusion_reason": "not_subject_to_foi", "note": ""}]'
+    )
+    requests_mock.get("https://www.gov.ie/en/departments/", text=EXCLUSION_HTML)
+    bodies = scrape_public_bodies(tmp_path)
+    hse = next(b for b in bodies if "hse" in b["official_website_url"])
+    assert "exclusion_reason" not in hse
+
+
+def test_temporary_exclusion_reason_is_preserved(requests_mock, tmp_path):
+    (tmp_path / "exclusions.json").write_text(
+        '[{"source_url": "https://www.gov.ie/en/coillte/", '
+        '"name": "Coillte", "exclusion_reason": "temporary", "note": ""}]'
+    )
+    requests_mock.get("https://www.gov.ie/en/departments/", text=EXCLUSION_HTML)
+    bodies = scrape_public_bodies(tmp_path)
+    coillte = next(b for b in bodies if "coillte" in b["official_website_url"])
+    assert coillte["exclusion_reason"] == "temporary"
+
+
+def test_empty_exclusions_file_leaves_no_exclusion_reason(requests_mock, tmp_path):
+    (tmp_path / "exclusions.json").write_text("[]")
+    requests_mock.get("https://www.gov.ie/en/departments/", text=EXCLUSION_HTML)
+    bodies = scrape_public_bodies(tmp_path)
+    assert all("exclusion_reason" not in b for b in bodies)
+
+
 SEPARATE_WEBSITE_HTML = """
 <html><body>
   <section id="departments">
