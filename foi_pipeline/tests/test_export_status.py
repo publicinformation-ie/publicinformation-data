@@ -901,3 +901,111 @@ def test_find_disclosure_pages_not_overridden_omits_verified():
         "results": [{"public_body_id": 1001, "disclosure_page_url": "https://dept-a.ie/disclosure/"}]
     })
     assert "verified" not in body_map[1001]["status"]["disclosures_page"]
+
+
+# ---------------------------------------------------------------------------
+# exclusion_reason → not_applicable sub-statuses
+# ---------------------------------------------------------------------------
+
+BASE_OUTPUT_WITH_EXCLUDED = {
+    "metadata": {"step": "find_public_bodies", "completed_at": "2026-05-29T00:00:00+00:00"},
+    "public_bodies": [
+        {
+            "public_body_id": 1001,
+            "name": "Dept A",
+            "official_website_url": "https://dept-a.ie/",
+            "category": "government department",
+            "status": {
+                "website_url": {"url": "https://dept-a.ie/", "status": "not_attempted"},
+                "foi_page": {"url": None, "status": "not_attempted"},
+                "foi_email": {"email": None, "status": "not_attempted"},
+                "disclosures_page": {"url": None, "status": "not_attempted"},
+                "disclosure_files": {"total": 0, "valid": 0, "failed": 0, "status": "not_attempted"},
+                "foi_requests": {"valid": 0, "errors": 0, "status": "not_attempted"},
+            },
+        },
+        {
+            "public_body_id": 1099,
+            "name": "Coillte",
+            "official_website_url": "https://www.gov.ie/en/coillte/",
+            "category": "public service body",
+            "exclusion_reason": "not_subject_to_foi",
+            "status": {
+                "website_url": {"url": "https://www.gov.ie/en/coillte/", "status": "not_attempted"},
+                "foi_page": {"url": None, "status": "not_attempted"},
+                "foi_email": {"email": None, "status": "not_attempted"},
+                "disclosures_page": {"url": None, "status": "not_attempted"},
+                "disclosure_files": {"total": 0, "valid": 0, "failed": 0, "status": "not_attempted"},
+                "foi_requests": {"valid": 0, "errors": 0, "status": "not_attempted"},
+            },
+        },
+    ],
+}
+
+
+def test_excluded_body_all_sub_statuses_are_not_applicable(tmp_path):
+    steps_dir = setup_steps_dir(tmp_path, {"find_public_bodies": BASE_OUTPUT_WITH_EXCLUDED})
+    result = merge(steps_dir, PIPELINE_STEPS)
+    by_id = {b["public_body_id"]: b for b in result}
+    excluded = by_id[1099]
+    for sub in excluded["status"].values():
+        assert sub["status"] == "not_applicable", f"expected not_applicable, got {sub['status']}"
+
+
+def test_excluded_body_preserves_exclusion_reason(tmp_path):
+    steps_dir = setup_steps_dir(tmp_path, {"find_public_bodies": BASE_OUTPUT_WITH_EXCLUDED})
+    result = merge(steps_dir, PIPELINE_STEPS)
+    by_id = {b["public_body_id"]: b for b in result}
+    assert by_id[1099]["exclusion_reason"] == "not_subject_to_foi"
+
+
+def test_non_excluded_body_unaffected_by_exclusion_pass(tmp_path):
+    steps_dir = setup_steps_dir(tmp_path, {"find_public_bodies": BASE_OUTPUT_WITH_EXCLUDED})
+    result = merge(steps_dir, PIPELINE_STEPS)
+    by_id = {b["public_body_id"]: b for b in result}
+    dept_a = by_id[1001]
+    assert dept_a["status"]["website_url"]["status"] == "not_attempted"
+    assert "exclusion_reason" not in dept_a
+
+
+def test_excluded_body_not_applicable_survives_mergers(tmp_path):
+    """Merger functions mark absent bodies as 'failed'; not_applicable must win."""
+    steps_dir = setup_steps_dir(tmp_path, {
+        "find_public_bodies": BASE_OUTPUT_WITH_EXCLUDED,
+        "validate_websites": {
+            "metadata": {},
+            "results": [{"public_body_id": 1001, "is_reachable": True}],
+        },
+    })
+    result = merge(steps_dir, PIPELINE_STEPS)
+    by_id = {b["public_body_id"]: b for b in result}
+    excluded = by_id[1099]
+    assert excluded["status"]["website_url"]["status"] == "not_applicable"
+
+
+def test_temporary_exclusion_reason_also_sets_not_applicable(tmp_path):
+    base = {
+        "metadata": {"step": "find_public_bodies", "completed_at": "2026-05-29T00:00:00+00:00"},
+        "public_bodies": [
+            {
+                "public_body_id": 1088,
+                "name": "Victims Charter",
+                "official_website_url": "https://www.gov.ie/en/victims-charter/",
+                "category": "public service body",
+                "exclusion_reason": "temporary",
+                "status": {
+                    "website_url": {"url": "https://www.gov.ie/en/victims-charter/", "status": "not_attempted"},
+                    "foi_page": {"url": None, "status": "not_attempted"},
+                    "foi_email": {"email": None, "status": "not_attempted"},
+                    "disclosures_page": {"url": None, "status": "not_attempted"},
+                    "disclosure_files": {"total": 0, "valid": 0, "failed": 0, "status": "not_attempted"},
+                    "foi_requests": {"valid": 0, "errors": 0, "status": "not_attempted"},
+                },
+            }
+        ],
+    }
+    steps_dir = setup_steps_dir(tmp_path, {"find_public_bodies": base})
+    result = merge(steps_dir, PIPELINE_STEPS)
+    body = result[0]
+    for sub in body["status"].values():
+        assert sub["status"] == "not_applicable"
