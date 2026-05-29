@@ -47,3 +47,53 @@ def _normalize_cell(file_type, value):
         result = new
 
     return result, rules
+
+
+def process(input_data, step_dir, writer, force=False, verbose=False):
+    changes_path = Path(step_dir) / "changes.json"
+
+    if not force and changes_path.exists():
+        try:
+            changes = read_json(changes_path)
+        except Exception:
+            changes = []
+    else:
+        changes = []
+
+    for item in input_data["results"]:
+        file_url = item["file_url"]
+        if writer.is_processed(file_url):
+            continue
+
+        file_type = item.get("file_type", "")
+        rows = item.get("rows")
+
+        if rows is None:
+            writer.append([{**item}])
+            if verbose:
+                print(".", end="", flush=True)
+            continue
+
+        normalized_rows = []
+        for row_idx, row in enumerate(rows):
+            normalized_row = []
+            for col_idx, cell in enumerate(row):
+                normalized, rules = _normalize_cell(file_type, cell)
+                normalized_row.append(normalized)
+                if rules:
+                    changes.append({
+                        "file_url": file_url,
+                        "file_type": file_type,
+                        "row_idx": row_idx,
+                        "col_idx": col_idx,
+                        "rules_applied": rules,
+                        "before": cell,
+                        "after": normalized,
+                    })
+            normalized_rows.append(normalized_row)
+
+        write_json(changes_path, changes)
+        writer.append([{**item, "rows": normalized_rows}])
+
+        if verbose:
+            print(".", end="", flush=True)
