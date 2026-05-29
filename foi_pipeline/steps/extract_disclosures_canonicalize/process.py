@@ -43,13 +43,17 @@ def canonicalize_file(item):
         if canonical and canonical not in canonical_to_col_idx:
             canonical_to_col_idx[canonical] = col_idx
 
-    missing_required = [k for k in REQUIRED_COLUMNS if k not in canonical_to_col_idx]
-    if missing_required:
+    if len(canonical_to_col_idx) < 2:
         return [], [{
-            "error_type": "MissingRequiredColumns",
-            "error_message": f"Missing required columns: {', '.join(sorted(missing_required))}",
-            "context": {"file_url": item["file_url"]},
+            "error_type": "InsufficientColumns",
+            "error_message": f"Only {len(canonical_to_col_idx)} canonical column(s) mapped",
+            "context": {
+                "file_url": item["file_url"],
+                "mapped_columns": list(canonical_to_col_idx.keys()),
+            },
         }]
+
+    missing_required = sorted(k for k in REQUIRED_COLUMNS if k not in canonical_to_col_idx)
 
     results = []
     for row in rows[header_row_idx + 1:]:
@@ -62,6 +66,8 @@ def canonicalize_file(item):
                 record[key] = row[col_idx] if col_idx < len(row) else None
             else:
                 record[key] = None
+        if missing_required:
+            record["missing_columns"] = missing_required
         results.append(record)
 
     return results, []

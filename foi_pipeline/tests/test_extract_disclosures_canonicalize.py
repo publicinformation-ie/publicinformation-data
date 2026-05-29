@@ -139,13 +139,23 @@ def test_canonicalize_file_skips_empty_data_rows():
     assert len(results) == 2
 
 
-def test_canonicalize_file_returns_error_when_required_column_missing():
+def test_canonicalize_file_insufficient_columns_when_only_one_maps():
+    # Only request_description maps — fewer than 2 canonical columns → InsufficientColumns
     rows = [["Request Details"], ["some request"]]
     results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
     assert results == []
     assert len(errors) == 1
-    assert errors[0]["error_type"] == "MissingRequiredColumns"
-    assert "foi_reference_id" in errors[0]["error_message"]
+    assert errors[0]["error_type"] == "InsufficientColumns"
+    assert "foi_reference_id" not in errors[0]["error_message"]  # new error type, no column list in message
+
+
+def test_canonicalize_file_emits_partial_record_when_foi_ref_absent():
+    # request_description + date_received map (≥2), foi_reference_id absent → partial record
+    rows = [["Request Details", "Date Received"], ["some request", "2016-01-01"]]
+    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert results != []
+    assert errors == []
+    assert results[0]["missing_columns"] == ["foi_reference_id"]
 
 
 def test_canonicalize_file_uses_header_row_idx():
@@ -231,6 +241,7 @@ def test_process_skips_pdf_records(tmp_path):
 
 
 def test_process_logs_error_for_missing_required_columns(tmp_path):
+    # 1 column maps → InsufficientColumns error (replaces MissingRequiredColumns)
     item = {
         **BASE_META,
         "sheet_name": "Sheet1",
@@ -241,7 +252,7 @@ def test_process_logs_error_for_missing_required_columns(tmp_path):
     process(_make_canonicalize_input([item]), results, errors_out)
     assert results == []
     assert len(errors_out) == 1
-    assert errors_out[0]["error_type"] == "MissingRequiredColumns"
+    assert errors_out[0]["error_type"] == "InsufficientColumns"
 
 
 def test_process_multiple_files_multiple_records(tmp_path):
@@ -329,3 +340,62 @@ def test_canonicalize_personal_non_personal_ocr():
 def test_canonicalize_ocr_spaced_category_of_requester():
     # OCR artefact: each character separated by a space
     assert canonicalize_header("C a t e g o r y o f requester") == "requester_type"
+
+
+# ── Two-level column gate tests ───────────────────────────────────────────────
+
+def test_insufficient_columns_returns_error_no_records():
+    # Only 1 canonical column maps — hard gate triggers
+    rows = [["Date Received"], ["2016-01-01"]]
+    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert results == []
+    assert len(errors) == 1
+    assert errors[0]["error_type"] == "InsufficientColumns"
+
+
+def test_insufficient_columns_error_has_context():
+    rows = [["Date Received"], ["2016-01-01"]]
+    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert errors[0]["context"]["file_url"] == BASE_META["file_url"]
+    assert "mapped_columns" in errors[0]["context"]
+
+
+def test_partial_record_emitted_when_foi_reference_id_missing():
+    # ≥2 columns map but foi_reference_id absent → partial record, no error
+    rows = [["Request Details", "Date Received"], ["some request", "2016-01-01"]]
+    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert len(results) == 1
+    assert errors == []
+    assert results[0]["missing_columns"] == ["foi_reference_id"]
+
+
+def test_partial_record_emitted_when_request_description_missing():
+    # ≥2 columns map but request_description absent → partial record
+    rows = [["Our Reference", "Date Received"], ["16/001", "2016-01-01"]]
+    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert len(results) == 1
+    assert errors == []
+    assert results[0]["missing_columns"] == ["request_description"]
+
+
+def test_complete_record_has_no_missing_columns_key():
+    # All required columns present → missing_columns key absent entirely
+    rows = [["Our Reference", "Request Details"], ["16/001", "some request"]]
+    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert len(results) == 1
+    assert errors == []
+    assert "missing_columns" not in results[0]
+
+
+def test_process_logs_insufficient_columns_error():
+    item = {
+        **BASE_META,
+        "sheet_name": "Sheet1",
+        "header_row_idx": 0,
+        "rows": [["Date Received"], ["2016-01-01"]],
+    }
+    results, errors_out = [], []
+    process(_make_canonicalize_input([item]), results, errors_out)
+    assert results == []
+    assert len(errors_out) == 1
+    assert errors_out[0]["error_type"] == "InsufficientColumns"
