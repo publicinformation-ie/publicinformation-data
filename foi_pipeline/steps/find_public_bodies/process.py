@@ -9,7 +9,7 @@ import re
 
 from bs4 import BeautifulSoup
 
-from scripts.file_utils import append_error, write_json, write_status
+from scripts.file_utils import append_error, read_json, write_json, write_status
 from scripts.http_utils import fetch
 
 
@@ -45,20 +45,19 @@ SECTION_CATEGORIES = {
 BASE_ID = 1000
 MAX_WORKERS = 10
 
-# These entries appear on the canonical source page but are not subject to FOI.
-# Keyed by gov.ie source URL (before homepage resolution).
-NOT_SUBJECT_TO_FOI_URLS = {
-    "https://www.gov.ie/en/circulars-archive/",         # not a public body
-    "https://www.gov.ie/en/coillte/",                   # AIE only, not FOI
-    "https://www.gov.ie/en/coroner/",                   # not subject to FOI
-    "https://www.gov.ie/en/criminal-assets-bureau/",    # not subject to FOI
-    "https://www.gov.ie/en/criminal-injuries-compensation-scheme/",  # not a public body
-}
+
+def load_exclusions(step_dir):
+    path = Path(step_dir) / "exclusions.json"
+    if not path.exists():
+        return []
+    return read_json(path)
 
 
 def scrape_public_bodies(step_dir, verbose=False):
     errors_path = Path(step_dir) / "errors.json"
     write_json(errors_path, [])
+
+    exclusions = {e["source_url"]: e["exclusion_reason"] for e in load_exclusions(step_dir)}
 
     response = fetch("GET", SOURCE_URL)
     response.raise_for_status()
@@ -116,8 +115,8 @@ def scrape_public_bodies(step_dir, verbose=False):
                     "foi_requests": {"valid": 0, "errors": 0, "status": "not_attempted"},
                 },
             }
-            if source_url in NOT_SUBJECT_TO_FOI_URLS:
-                entry["not_subject_to_foi"] = True
+            if source_url in exclusions:
+                entry["exclusion_reason"] = exclusions[source_url]
             bodies.append(entry)
             body_id += 1
 
