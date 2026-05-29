@@ -37,7 +37,7 @@ def process(input_data, step_dir, writer, verbose=False):
     write_json(errors_path, [])
 
     for body in input_data["public_bodies"]:
-        if body.get("not_subject_to_foi"):
+        if body.get("exclusion_reason"):
             continue
         body_id = body["public_body_id"]
         if writer.is_processed(body_id):

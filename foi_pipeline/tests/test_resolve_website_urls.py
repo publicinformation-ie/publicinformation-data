@@ -86,3 +86,48 @@ def test_resume_skips_already_processed_body(requests_mock, tmp_path):
     process(INPUT, tmp_path, writer)
     hse_calls = [r for r in requests_mock.request_history if "hse" in r.url]
     assert len(hse_calls) == 0
+
+
+def test_body_with_exclusion_reason_is_skipped(requests_mock, tmp_path, make_writer):
+    writer = make_writer(STEP_NAME)
+    excluded_input = {
+        "metadata": {"step": "find_public_bodies", "completed_at": "2026-05-29T00:00:00+00:00"},
+        "public_bodies": [
+            {
+                "public_body_id": 1099,
+                "name": "Coillte",
+                "official_website_url": "https://www.gov.ie/en/coillte/",
+                "exclusion_reason": "not_subject_to_foi",
+                "status": {"website_url": {"url": "https://www.gov.ie/en/coillte/", "status": "not_attempted"}},
+            },
+            {
+                "public_body_id": 1001,
+                "name": "Health Service Executive",
+                "official_website_url": "https://www.gov.ie/en/organisation/hse/",
+                "status": {"website_url": {"url": "https://www.gov.ie/en/organisation/hse/", "status": "not_attempted"}},
+            },
+        ],
+    }
+    requests_mock.get("https://www.gov.ie/en/organisation/hse/", text="<html><body>HSE</body></html>")
+    process(excluded_input, tmp_path, writer)
+    ids = [r["public_body_id"] for r in writer.results]
+    assert 1099 not in ids
+    assert 1001 in ids
+
+
+def test_body_with_temporary_exclusion_reason_is_also_skipped(requests_mock, tmp_path, make_writer):
+    writer = make_writer(STEP_NAME)
+    excluded_input = {
+        "metadata": {"step": "find_public_bodies", "completed_at": "2026-05-29T00:00:00+00:00"},
+        "public_bodies": [
+            {
+                "public_body_id": 1099,
+                "name": "Victims Charter",
+                "official_website_url": "https://www.gov.ie/en/victims-charter/",
+                "exclusion_reason": "temporary",
+                "status": {"website_url": {"url": "https://www.gov.ie/en/victims-charter/", "status": "not_attempted"}},
+            },
+        ],
+    }
+    process(excluded_input, tmp_path, writer)
+    assert len(writer.results) == 0
