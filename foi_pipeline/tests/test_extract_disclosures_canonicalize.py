@@ -9,7 +9,7 @@ from steps.extract_disclosures_canonicalize.column_map import (
 
 def test_canonical_columns_order():
     assert CANONICAL_COLUMNS == [
-        "foi_reference_id", "decision_date", "requester_type",
+        "foi_reference_id", "date_received", "decision_date", "requester_type",
         "decision_status", "review_status", "related_request", "request_description",
     ]
 
@@ -24,7 +24,7 @@ def test_canonicalize_our_reference():
 
 
 def test_canonicalize_date_recd():
-    assert canonicalize_header("Date Rec'd") == "decision_date"
+    assert canonicalize_header("Date Rec'd") == "date_received"
 
 
 def test_canonicalize_request_details():
@@ -57,7 +57,7 @@ def test_canonicalize_headers_maps_list():
     result = canonicalize_headers(["Our Reference", "Date Rec'd", "Request Details"])
     assert result == {
         "Our Reference": "foi_reference_id",
-        "Date Rec'd": "decision_date",
+        "Date Rec'd": "date_received",
         "Request Details": "request_description",
     }
 
@@ -93,7 +93,8 @@ def test_canonicalize_file_maps_known_headers():
     assert len(results) == 1
     assert results[0]["foi_reference_id"] == "16/002"
     assert results[0]["request_description"] == "some request"
-    assert results[0]["decision_date"] == "2016-01-05"
+    assert results[0]["date_received"] == "2016-01-05"
+    assert results[0]["decision_date"] is None
     assert errors == []
 
 
@@ -277,3 +278,35 @@ def test_process_uses_two_list_args(tmp_path):
     results, errors_out = [], []
     process(_make_canonicalize_input([FULL_ITEM]), results, errors_out)
     assert len(results) == 1
+
+
+# ── New synonym tests — foi_reference_id ──────────────────────────────────────
+
+def test_canonicalize_file_ref_dot():
+    assert canonicalize_header("File Ref.") == "foi_reference_id"
+
+def test_canonicalize_file_ref():
+    assert canonicalize_header("File Ref") == "foi_reference_id"
+
+
+# ── New synonym tests — request_description ───────────────────────────────────
+
+def test_canonicalize_foi_request():
+    assert canonicalize_header("FOI Request") == "request_description"
+
+def test_canonicalize_brief_description_of_the_request():
+    assert canonicalize_header("Brief Description of the Request") == "request_description"
+
+def test_canonicalize_summary_of_the_information_records_requested():
+    assert canonicalize_header("Summary of the Information/Records Requested") == "request_description"
+
+def test_canonicalize_records_requested():
+    assert canonicalize_header("Records Requested") == "request_description"
+
+def test_canonicalize_query_re():
+    assert canonicalize_header("Query Re") == "request_description"
+
+def test_canonicalize_long_pdf_concatenated_header():
+    assert canonicalize_header(
+        "Disclosure Log for 2023 Description of the Request (Categories of Records Sought)"
+    ) == "request_description"
