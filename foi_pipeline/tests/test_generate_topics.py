@@ -1,6 +1,6 @@
 import pytest
 import json
-from steps.generate_topics.process import process_topics, sort_disclosures, write_public_topics, STEP_NAME
+from steps.generate_topics.process import process_topics, sort_disclosures, write_public_topics, STEP_NAME, _keyword_matches
 
 
 # ---------------------------------------------------------------------------
@@ -149,9 +149,10 @@ def test_process_topics_keyword_match_case_insensitive():
     assert result[0]["match_count"] == 1
 
 
-def test_process_topics_keyword_substring_match():
+def test_process_topics_keyword_word_boundary_match():
+    # "homeless" as a whole word should match (not substring of "homelessness")
     disclosures = [
-        {**DISCLOSURES[0], "request_description": "homelessness rates in Dublin"},
+        {**DISCLOSURES[0], "request_description": "homeless people in Dublin"},
     ]
     result = process_topics([TOPICS_CONFIG[0]], disclosures)
     assert result[0]["match_count"] == 1
@@ -258,3 +259,172 @@ def test_write_public_topics_overwrites_existing(tmp_path):
     write_public_topics(results, tmp_path)
     data = json.loads((tmp_path / "public" / "topics.json").read_text())
     assert data[0]["slug"] == "housing"
+
+
+# ---------------------------------------------------------------------------
+# _keyword_matches - Word Boundary Matching Tests
+# ---------------------------------------------------------------------------
+
+
+class TestKeywordMatches:
+    """Tests for the _keyword_matches function with word boundary support."""
+
+    # --- IT keyword (case-sensitive) ---
+
+    def test_it_matches_standalone_uppercase(self):
+        """IT should match standalone uppercase IT."""
+        assert _keyword_matches("This is an IT request", "IT") is True
+        assert _keyword_matches("IT department", "IT") is True
+        assert _keyword_matches("The IT team", "IT") is True
+
+    def test_it_does_not_match_lowercase(self):
+        """IT should NOT match lowercase 'it'."""
+        assert _keyword_matches("this is an it request", "IT") is False
+        assert _keyword_matches("The it department", "IT") is False
+
+    def test_it_does_not_match_within_words(self):
+        """IT should NOT match within other words."""
+        assert _keyword_matches("visit the site", "IT") is False
+        assert _keyword_matches("audit report", "IT") is False
+        assert _keyword_matches("REPLIT the data", "IT") is False
+        assert _keyword_matches("ITINERANT worker", "IT") is False
+        assert _keyword_matches("permit required", "IT") is False
+        assert _keyword_matches("split the difference", "IT") is False
+
+    def test_it_matches_with_punctuation(self):
+        """IT should match with surrounding punctuation."""
+        assert _keyword_matches("IT, the department", "IT") is True
+        assert _keyword_matches("The IT. Full stop", "IT") is True
+        assert _keyword_matches("(IT)", "IT") is True
+        assert _keyword_matches("IT:", "IT") is True
+
+    # --- Other keywords (case-insensitive with word boundaries) ---
+
+    def test_housing_matches_case_insensitive(self):
+        """Non-IT keywords should be case-insensitive."""
+        assert _keyword_matches("Housing policy", "housing") is True
+        assert _keyword_matches("HOUSING crisis", "housing") is True
+        assert _keyword_matches("This is about housing", "housing") is True
+
+    def test_housing_does_not_match_within_words(self):
+        """housing should NOT match within other words."""
+        assert _keyword_matches("housings are here", "housing") is False
+        assert _keyword_matches("ahousingb", "housing") is False
+
+    def test_rent_matches_case_insensitive(self):
+        """rent should match case-insensitively."""
+        assert _keyword_matches("Rent prices", "rent") is True
+        assert _keyword_matches("rent", "rent") is True
+
+    def test_software_matches(self):
+        """software should match with word boundaries."""
+        assert _keyword_matches("Software license", "software") is True
+        assert _keyword_matches("the software", "software") is True
+        assert _keyword_matches("SOFTWARE", "software") is True
+
+    def test_software_does_not_match_within_words(self):
+        """software should NOT match within other words."""
+        assert _keyword_matches("softwareengineering", "software") is False
+
+    def test_empty_text_never_matches(self):
+        """Empty or None text should never match."""
+        assert _keyword_matches("", "housing") is False
+        assert _keyword_matches(None, "housing") is False
+
+    def test_special_chars_in_keywords_are_escaped(self):
+        """Keywords with regex special chars should be escaped and not cause errors."""
+        # The important thing is that regex special chars don't cause regex compilation errors
+        # They may or may not match depending on word boundary behavior with non-word chars
+        try:
+            # These should not raise re.error (regex compilation error)
+            _keyword_matches("test + pattern", "test + pattern")
+            _keyword_matches("test * pattern", "test * pattern")
+            _keyword_matches("test ? pattern", "test ? pattern")
+            _keyword_matches("cost is $100", "$100")
+            _keyword_matches("100% complete", "100%")
+        except re.error as e:
+            pytest.fail(f"Regex special characters not properly escaped: {e}")
+
+
+class TestProcessTopicsWordBoundaries:
+    """Integration tests for process_topics with word boundary matching."""
+
+    def test_it_topic_excludes_lowercase_it(self):
+        """IT topic should not match records with lowercase 'it'."""
+        disclosures = [
+            {
+                "public_body_id": 1001,
+                "name": "Dept A",
+                "file_url": "https://x.ie/q1.xlsx",
+                "file_type": "xlsx",
+                "foi_reference_id": "23/001",
+                "decision_date": None,
+                "requester_type": None,
+                "decision_status": None,
+                "review_status": None,
+                "related_request": None,
+                "request_description": "this is an it request",  # lowercase it
+            },
+            {
+                **DISCLOSURES[0],
+                "request_description": "IT department records",  # uppercase IT
+            },
+        ]
+        topics_config = [{"slug": "it-spend", "label": "IT Spending", "keywords": ["IT", "software"]}]
+        result = process_topics(topics_config, disclosures)
+        # Only the uppercase IT should match
+        assert result[0]["match_count"] == 1
+        assert result[0]["disclosures"][0]["request_description"] == "IT department records"
+
+    def test_it_topic_excludes_it_within_words(self):
+        """IT topic should not match 'it' within other words."""
+        disclosures = [
+            {
+                "public_body_id": 1001,
+                "name": "Dept A",
+                "file_url": "https://x.ie/q1.xlsx",
+                "file_type": "xlsx",
+                "foi_reference_id": "23/001",
+                "decision_date": None,
+                "requester_type": None,
+                "decision_status": None,
+                "review_status": None,
+                "related_request": None,
+                "request_description": "visit the website",  # 'it' within 'visit'
+            },
+            {
+                **DISCLOSURES[0],
+                "request_description": "IT software request",
+            },
+        ]
+        topics_config = [{"slug": "it-spend", "label": "IT Spending", "keywords": ["IT", "software"]}]
+        result = process_topics(topics_config, disclosures)
+        # Only the IT software request should match (both IT and software)
+        assert result[0]["match_count"] == 1
+
+    def test_housing_topic_word_boundaries(self):
+        """Housing topic should use word boundary matching."""
+        disclosures = [
+            {
+                "public_body_id": 1001,
+                "name": "Dept A",
+                "file_url": "https://x.ie/q1.xlsx",
+                "file_type": "xlsx",
+                "foi_reference_id": "23/001",
+                "decision_date": None,
+                "requester_type": None,
+                "decision_status": None,
+                "review_status": None,
+                "related_request": None,
+                "request_description": "housings are here",  # should NOT match
+            },
+            {
+                **DISCLOSURES[0],
+                "request_description": "Housing policy documents",  # should match
+            },
+        ]
+        topics_config = [{"slug": "housing", "label": "Housing", "keywords": ["housing"]}]
+        result = process_topics(topics_config, disclosures)
+        # Only Housing policy should match
+        assert result[0]["match_count"] == 1
+        assert result[0]["disclosures"][0]["request_description"] == "Housing policy documents"

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -7,6 +8,32 @@ from pathlib import Path
 from scripts.file_utils import read_json, write_json, write_status
 
 STEP_NAME = "generate_topics"
+
+
+def _keyword_matches(text, keyword):
+    """
+    Check if keyword matches in text with word boundaries.
+    
+    Special case: "IT" is case-sensitive (matches only uppercase "IT")
+    All other keywords: case-insensitive word boundary match
+    
+    Args:
+        text: The text to search in (request_description)
+        keyword: The keyword to match
+        
+    Returns:
+        True if keyword matches as a whole word, False otherwise
+    """
+    if text is None:
+        return False
+    
+    if keyword == "IT":
+        # Case-sensitive: match only standalone uppercase "IT"
+        return bool(re.search(r'\bIT\b', text))
+    else:
+        # Case-insensitive word boundary match for all other keywords
+        escaped = re.escape(keyword)
+        return bool(re.search(rf'\b{escaped}\b', text, re.IGNORECASE))
 
 
 def sort_disclosures(disclosures):
@@ -20,10 +47,12 @@ def sort_disclosures(disclosures):
 def process_topics(topics_config, disclosures):
     results = []
     for topic in topics_config:
-        keywords = [kw.lower() for kw in topic["keywords"]]
         matched = [
             d for d in disclosures
-            if any(kw in (d.get("request_description") or "").lower() for kw in keywords)
+            if any(
+                _keyword_matches(d.get("request_description") or "", kw)
+                for kw in topic["keywords"]
+            )
         ]
         sorted_matched = sort_disclosures(matched)
         results.append({
