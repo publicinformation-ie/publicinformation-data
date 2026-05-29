@@ -1,5 +1,29 @@
 # Steps Directory — Agent Instructions
 
+## Quick Start: Running Steps
+
+**To run all steps via the orchestrator:**
+```bash
+cd ..
+python orchestrator.py --force
+```
+
+**To run from a specific step:**
+```bash
+cd ..
+python orchestrator.py --from <step_name> --force
+```
+
+**To run a single step directly:**
+```bash
+PYTHONPATH=.. python <step_name>/process.py \
+  --input ../<previous_step>/output.json \
+  --output <step_name>/output.json \
+  --force
+```
+
+> **Note:** Use the orchestrator for normal operation. Direct step execution is for testing/debugging only.
+
 ## Keeping documentation in sync
 
 **When you add, remove, or rename a pipeline step, you must update the following files:**

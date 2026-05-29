@@ -10,6 +10,28 @@ The pipeline is a series of Python steps that:
 3. Extract disclosure data
 4. Consolidate all results into a final status output
 
+## Quick Start: Running the Pipeline
+
+**To run the full pipeline:**
+```bash
+python orchestrator.py --force
+```
+
+**To run from a specific step:**
+```bash
+python orchestrator.py --from export_status --force
+```
+
+**To run a single step manually:**
+```bash
+PYTHONPATH=. python steps/export_status/process.py \
+  --input steps/extract_disclosures_canonicalize/output.json \
+  --output steps/export_status/output.json \
+  --force
+```
+
+> **Note:** Always use the orchestrator (`orchestrator.py`) rather than calling individual step scripts directly. This ensures dependencies are respected and prevents redundant execution.
+
 ## Pipeline Architecture
 
 ### Pipeline Steps (in order)
@@ -23,11 +45,12 @@ The pipeline is a series of Python steps that:
 7. **find_disclosure_pages** - Locates disclosure/log pages
 8. **find_disclosure_files** - Finds disclosure documents (PDFs, CSVs, etc.)
 9. **transform_disclosure_files** - Processes disclosure files into structured data
-10. **extract_disclosures_detect_header_row** - Detects header row in spreadsheets
-11. **extract_disclosures_canonicalize** - Maps raw columns to canonical FOI record fields
-12. **export_status** - Fan-in merges all step outputs into a consolidated status report
-13. **generate_topics** - Groups FOI records into keyword-defined topics
-14. **db_upload** - **Final step** - Populates the libSQL database from pipeline output
+10. **normalize_disclosure_cells** - Normalizes string cell values in extracted disclosure log data (removes CID artifacts, normalizes whitespace)
+11. **extract_disclosures_detect_header_row** - Detects header row in spreadsheets
+12. **extract_disclosures_canonicalize** - Maps raw columns to canonical FOI record fields
+13. **export_status** - Fan-in merges all step outputs into a consolidated status report
+14. **generate_topics** - Groups FOI records into keyword-defined topics
+15. **db_upload** - **Final step** - Populates the libSQL database from pipeline output
 
 ### Data Flow
 
@@ -56,7 +79,13 @@ find_disclosure_files/output.json (disclosure file counts)
 transform_disclosure_files/output.json (processed files)
     |
     v
-extract_disclosures/output.json (extracted records)
+normalize_disclosure_cells/output.json (normalized cell values)
+    |
+    v
+extract_disclosures_detect_header_row/output.json (header row detection)
+    |
+    v
+extract_disclosures_canonicalize/output.json (canonicalized records)
     |
     v
 export_status/output.json (CONSOLIDATED STATUS - used by website)
@@ -216,7 +245,7 @@ This skips all steps before `export_status` and starts from there.
 ```bash
 cd foi_pipeline
 PYTHONPATH=. python steps/export_status/process.py \
-  --input steps/extract_disclosures/output.json \
+  --input steps/extract_disclosures_canonicalize/output.json \
   --output steps/export_status/output.json \
   --force
 ```
