@@ -60,6 +60,8 @@ def process(input_data, step_dir, writer, force=False, verbose=False):
     else:
         changes = []
 
+    write_json(changes_path, changes)
+
     for item in input_data["results"]:
         file_url = item["file_url"]
         if writer.is_processed(file_url):

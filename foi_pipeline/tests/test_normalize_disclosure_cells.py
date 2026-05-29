@@ -186,3 +186,22 @@ def test_process_incremental_resume(tmp_path, make_writer):
     assert file_a_url in urls_in_changes           # entry from run 1 preserved
     assert file_b["file_url"] in urls_in_changes   # new entry from run 2 appended
     assert len(writer.results) == 2                # both files in output
+
+
+def test_process_rows_none_passthrough(tmp_path, make_writer):
+    item = {
+        **BASE_FILE,
+        "file_url": "https://assets.gov.ie/log-norows.pdf",
+        "rows": None,
+    }
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    from steps.normalize_disclosure_cells.process import process
+    process(_make_input([item]), tmp_path, writer)
+
+    # Item passed through unchanged
+    assert len(writer.results) == 1
+    assert writer.results[0]["rows"] is None
+
+    # changes.json still exists (as empty list)
+    changes = read_json(tmp_path / "changes.json")
+    assert changes == []
