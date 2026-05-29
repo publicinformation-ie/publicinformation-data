@@ -1,5 +1,6 @@
 import re
 from typing import Optional
+from scripts.text_utils import normalize_header
 
 CANONICAL_COLUMNS: list[str] = [
     'foi_reference_id',
@@ -134,8 +135,8 @@ _SYNONYMS: dict[str, list[str]] = {
 }
 
 def _normalise(header: str) -> str:
-    s = re.sub(r'[\s_]+', ' ', str(header).strip().lower())
-    return re.sub(r'[\s.:]+$', '', s)
+    """Normalize header string for canonical matching."""
+    return normalize_header(header)
 
 
 _LOOKUP: dict[str, str] = {}

@@ -4,14 +4,24 @@ import sys
 from pathlib import Path
 
 from scripts.file_utils import read_json, write_json, write_status, IncrementalWriter
+from scripts.text_utils import normalize_cell
 
 STEP_NAME = "extract_disclosures_detect_header_row"
 
 
 def detect_header_row(rows, max_look_ahead=5):
-    """Return index of the first row with 2+ non-null, non-empty cells."""
+    """Return index of the first row with 2+ non-null, non-empty cells.
+    
+    Normalizes cells (especially PDF cells with newlines) before counting
+    to ensure consistent detection regardless of PDF extraction artefacts.
+    """
     for idx, row in enumerate(rows[:max_look_ahead]):
-        non_empty = [v for v in row if v is not None and v != ""]
+        # Normalize each cell for consistent counting
+        normalized_row = [
+            normalize_cell(v) if v else v
+            for v in row
+        ]
+        non_empty = [v for v in normalized_row if v is not None and v != ""]
         if len(non_empty) >= 2:
             return idx
     return 0

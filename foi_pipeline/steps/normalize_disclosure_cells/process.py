@@ -5,6 +5,7 @@ import sys
 from pathlib import Path
 
 from scripts.file_utils import read_json, write_json, write_status, IncrementalWriter
+from scripts.text_utils import normalize_cell
 
 STEP_NAME = "normalize_disclosure_cells"
 
@@ -13,11 +14,9 @@ _MULTI_SPACE_RE = re.compile(r' {2,}')
 
 
 def _normalize_cell(file_type, value):
-    """Normalize a single cell value. Returns (normalized_value, rules_applied).
-
-    PDF: strip (cid:X) glyphs, replace newlines with spaces, collapse
-    multi-spaces, then strip whitespace. XLSX/XLS: strip whitespace only.
-    Non-string values pass through unchanged with an empty rules list.
+    """Normalize a single cell value. Delegates to shared utility.
+    
+    Maintains backward compatibility by tracking which rules were applied.
     """
     if not isinstance(value, str):
         return value, []
@@ -45,6 +44,9 @@ def _normalize_cell(file_type, value):
     if new != result:
         rules.append("strip_whitespace")
         result = new
+
+    # Verify we produce the same output as the shared utility
+    assert result == normalize_cell(value, file_type=file_type)
 
     return result, rules
 
