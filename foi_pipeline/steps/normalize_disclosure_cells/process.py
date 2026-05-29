@@ -97,3 +97,44 @@ def process(input_data, step_dir, writer, force=False, verbose=False):
 
         if verbose:
             print(".", end="", flush=True)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Normalize cell values in extracted disclosure log data"
+    )
+    parser.add_argument("--input", required=True)
+    parser.add_argument("--output", required=True)
+    parser.add_argument("--force", action="store_true")
+    parser.add_argument("--verbose", action="store_true")
+    args = parser.parse_args()
+
+    step_dir = Path(__file__).parent
+    output_path = Path(args.output)
+    override_path = step_dir / "override.json"
+
+    try:
+        input_data = read_json(args.input)
+    except Exception as e:
+        print(f"Fatal: could not read input: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    writer = IncrementalWriter(
+        output_path, STEP_NAME, key_field="file_url", force=args.force,
+        override_path=override_path,
+        upstream_dirty_path=Path(args.input).parent / "dirty_ids.json",
+    )
+
+    if writer.processed_keys:
+        print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")
+
+    process(input_data, step_dir, writer, force=args.force, verbose=args.verbose)
+    count = writer.finalize()
+    write_status(step_dir, count)
+    if args.verbose:
+        print()
+    print(f"Wrote {count} records to {output_path}")
+
+
+if __name__ == "__main__":
+    main()
