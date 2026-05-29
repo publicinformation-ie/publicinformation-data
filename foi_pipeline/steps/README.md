@@ -15,11 +15,13 @@ The authoritative step order is defined in [`../pipeline.json`](../pipeline.json
 | 7 | [`find_disclosure_pages`](find_disclosure_pages/) | Locates the disclosure log page for each body using domain-specific rules or crawl fallback. |
 | 8 | [`find_disclosure_files`](find_disclosure_files/) | Crawls each disclosure log page and collects links to PDF/XLSX/XLS files. |
 | 9 | [`transform_disclosure_files`](transform_disclosure_files/) | Downloads spreadsheet files and converts them into JSON row arrays; PDFs are passed through unmodified. |
-| 10 | [`extract_disclosures_detect_header_row`](extract_disclosures_detect_header_row/) | Detects which spreadsheet row is the header using a 2-non-empty-cell heuristic. |
-| 11 | [`extract_disclosures_canonicalize`](extract_disclosures_canonicalize/) | Maps raw column headers to canonical field names and emits flat FOI request records. |
-| 12 | [`export_status`](export_status/) | Fan-in step: merges all step outputs into a unified per-body status report and writes the public JSON files consumed by the website. |
-| 13 | [`generate_topics`](generate_topics/) | Matches canonical FOI records to keyword-defined topics and writes `public/topics.json`. |
-| 14 | [`db_upload`](db_upload/) | Clears the six pipeline-data tables in the libSQL database and re-populates them from all upstream step outputs. |
+| 10 | [`normalize_disclosure_cells`](normalize_disclosure_cells/) | Normalizes string cell values in extracted disclosure log data (removes CID artifacts, normalizes whitespace). |
+| 11 | [`extract_disclosures_detect_header_row`](extract_disclosures_detect_header_row/) | Detects which spreadsheet row is the header using a 2-non-empty-cell heuristic. |
+| 12 | [`extract_disclosures_canonicalize`](extract_disclosures_canonicalize/) | Maps raw column headers to canonical field names and emits flat FOI request records. |
+| 13 | [`extract_disclosures_deduplicate`](extract_disclosures_deduplicate/) | Removes duplicate FOI records by treating `foi_reference_id` as a unique identifier per public body. |
+| 14 | [`export_status`](export_status/) | Fan-in step: merges all step outputs into a unified per-body status report and writes the public JSON files consumed by the website. |
+| 15 | [`generate_topics`](generate_topics/) | Matches canonical FOI records to keyword-defined topics and writes `public/topics.json`. |
+| 16 | [`db_upload`](db_upload/) | Clears the six pipeline-data tables in the libSQL database and re-populates them from all upstream step outputs. |
 
 > **Stub:** [`extract_disclosures`](extract_disclosures/) is a placeholder step (not yet implemented) for future PDF extraction. It currently produces no output.
 

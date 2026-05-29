@@ -92,6 +92,7 @@ def steps_dir(tmp_path):
         "export_status": make_export_status([make_body(1)]),
         "find_disclosure_files": make_disclosure_files(public_body_id=1, count=2),
         "extract_disclosures_canonicalize": disclosures,
+        "extract_disclosures_deduplicate": disclosures,
         "generate_topics": make_topics(disclosures),
     }
     for step_name, data in step_data.items():

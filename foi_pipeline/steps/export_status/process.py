@@ -131,6 +131,7 @@ STEP_MERGERS = {
     "find_disclosure_files": merge_find_disclosure_files,
     "transform_disclosure_files": merge_transform_disclosure_files,
     "extract_disclosures_canonicalize": merge_extract_disclosures_canonicalize,
+    "extract_disclosures_deduplicate": merge_extract_disclosures_canonicalize,
 }
 
 
@@ -165,7 +166,7 @@ def write_disclosure_files_output(steps_dir, repo_root):
 
 
 def write_foi_disclosures_output(steps_dir, repo_root):
-    input_path = Path(steps_dir) / "extract_disclosures_canonicalize" / "output.json"
+    input_path = Path(steps_dir) / "extract_disclosures_deduplicate" / "output.json"
     if not input_path.exists():
         return None
     data = read_json(input_path)

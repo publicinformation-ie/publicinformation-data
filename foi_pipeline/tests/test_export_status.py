@@ -752,26 +752,26 @@ def test_write_disclosure_files_output_multiple_bodies(tmp_path):
 # ---------------------------------------------------------------------------
 
 
-def _make_canonicalize_steps_dir(tmp_path, results):
-    """Helper: write extract_disclosures_canonicalize/output.json into a steps dir."""
+def _make_deduplicate_steps_dir(tmp_path, results):
+    """Helper: write extract_disclosures_deduplicate/output.json into a steps dir."""
     steps_dir = tmp_path / "steps"
-    canon_dir = steps_dir / "extract_disclosures_canonicalize"
-    canon_dir.mkdir(parents=True)
-    (canon_dir / "output.json").write_text(json.dumps({
-        "metadata": {"step": "extract_disclosures_canonicalize"},
+    dedup_dir = steps_dir / "extract_disclosures_deduplicate"
+    dedup_dir.mkdir(parents=True)
+    (dedup_dir / "output.json").write_text(json.dumps({
+        "metadata": {"step": "extract_disclosures_deduplicate"},
         "results": results,
     }))
     return steps_dir
 
 
 def test_write_foi_disclosures_output_returns_correct_path(tmp_path):
-    steps_dir = _make_canonicalize_steps_dir(tmp_path, [])
+    steps_dir = _make_deduplicate_steps_dir(tmp_path, [])
     path = write_foi_disclosures_output(steps_dir, tmp_path)
     assert path == tmp_path / "public" / "foi-disclosures.json"
 
 
 def test_write_foi_disclosures_output_creates_file(tmp_path):
-    steps_dir = _make_canonicalize_steps_dir(tmp_path, [])
+    steps_dir = _make_deduplicate_steps_dir(tmp_path, [])
     write_foi_disclosures_output(steps_dir, tmp_path)
     assert (tmp_path / "public" / "foi-disclosures.json").exists()
 
@@ -790,7 +790,7 @@ def test_write_foi_disclosures_output_content(tmp_path):
         "related_request": None,
         "request_description": "Test request",
     }
-    steps_dir = _make_canonicalize_steps_dir(tmp_path, [record])
+    steps_dir = _make_deduplicate_steps_dir(tmp_path, [record])
     write_foi_disclosures_output(steps_dir, tmp_path)
     data = json.loads((tmp_path / "public" / "foi-disclosures.json").read_text())
     assert len(data) == 1
@@ -805,7 +805,7 @@ def test_write_foi_disclosures_output_returns_none_when_no_input(tmp_path):
 
 
 def test_write_foi_disclosures_output_creates_public_dir(tmp_path):
-    steps_dir = _make_canonicalize_steps_dir(tmp_path, [])
+    steps_dir = _make_deduplicate_steps_dir(tmp_path, [])
     write_foi_disclosures_output(steps_dir, tmp_path)
     assert (tmp_path / "public").is_dir()
 
@@ -827,7 +827,7 @@ def test_write_foi_disclosures_output_multiple_bodies(tmp_path):
             "related_request": None, "request_description": "Second",
         },
     ]
-    steps_dir = _make_canonicalize_steps_dir(tmp_path, records)
+    steps_dir = _make_deduplicate_steps_dir(tmp_path, records)
     write_foi_disclosures_output(steps_dir, tmp_path)
     data = json.loads((tmp_path / "public" / "foi-disclosures.json").read_text())
     assert len(data) == 2

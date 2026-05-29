@@ -97,7 +97,7 @@ def upload_disclosure_files(db, steps_dir):
 
 def upload_foi_disclosures(db, steps_dir):
     """Returns (count, {(public_body_id, file_url, foi_reference_id): db_id}) for topic linking."""
-    data = read_json(steps_dir / "extract_disclosures_canonicalize" / "output.json")
+    data = read_json(steps_dir / "extract_disclosures_deduplicate" / "output.json")
     rows = [
         [
             r["public_body_id"], r["name"], r["file_url"], r["file_type"],

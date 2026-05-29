@@ -1,0 +1,105 @@
+#!/usr/bin/env python3
+"""Deduplicate FOI disclosure records by reference ID per public body."""
+
+import argparse
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+from scripts.file_utils import read_json, write_json, write_status
+
+STEP_NAME = "extract_disclosures_deduplicate"
+
+
+def deduplicate_records(records):
+    """Deduplicate records by (public_body_id, foi_reference_id) composite key.
+
+    Args:
+        records: List of canonical FOI record dicts
+
+    Returns:
+        Tuple of (deduplicated_records, duplicate_count, null_id_count)
+    """
+    seen = set()
+    deduplicated = []
+    duplicate_count = 0
+    null_id_count = 0
+
+    for record in records:
+        body_id = record.get("public_body_id")
+        ref_id = record.get("foi_reference_id")
+
+        # Track null/empty IDs - these cannot be deduplicated
+        if ref_id is None or ref_id == "":
+            null_id_count += 1
+            deduplicated.append(record)
+            continue
+
+        # Create composite key: (public_body_id, normalized_foi_reference_id)
+        key = (body_id, str(ref_id).strip())
+
+        if key in seen:
+            duplicate_count += 1
+            continue
+
+        seen.add(key)
+        deduplicated.append(record)
+
+    return deduplicated, duplicate_count, null_id_count
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Deduplicate FOI disclosure records by reference ID"
+    )
+    parser.add_argument("--input", required=True)
+    parser.add_argument("--output", required=True)
+    parser.add_argument("--force", action="store_true")
+    parser.add_argument("--verbose", action="store_true")
+    args = parser.parse_args()
+
+    step_dir = Path(__file__).parent
+    output_path = Path(args.output)
+
+    try:
+        input_data = read_json(args.input)
+    except Exception as e:
+        print(f"Fatal: could not read input: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    # Extract records from input
+    records = input_data.get("results", [])
+    total_before = len(records)
+
+    # Deduplicate
+    deduplicated, duplicates_removed, null_ids = deduplicate_records(records)
+    total_after = len(deduplicated)
+
+    # Write output with enhanced metadata
+    write_json(
+        output_path,
+        {
+            "metadata": {
+                "step": STEP_NAME,
+                "completed_at": datetime.now(timezone.utc).isoformat(),
+                "total_records_before": total_before,
+                "total_records_after": total_after,
+                "duplicate_records_removed": duplicates_removed,
+                "records_with_null_id": null_ids,
+            },
+            "results": deduplicated,
+        },
+    )
+
+    write_status(step_dir, len(deduplicated))
+
+    if args.verbose:
+        print(f"Deduplication complete:")
+        print(f"  Before: {total_before} records")
+        print(f"  After:  {total_after} records")
+        print(f"  Removed: {duplicates_removed} duplicates")
+        print(f"  Null IDs: {null_ids} records (kept)")
+
+
+if __name__ == "__main__":
+    main()
