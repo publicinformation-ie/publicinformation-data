@@ -26,5 +26,13 @@
     "name": "Cork City Council",
     "foi_page_url": "https://www.corkcity.ie/en/council-services/public-info/freedom-of-information/freedom-of-information/",
     "disclosure_page_url": "https://www.corkcity.ie/en/council-services/public-info/model-publication-scheme/"
-  }  
+  },
+  {
+    "public_body_id": 1037,
+    "name": "Competition and Consumer Protection Commission (CCPC)",
+    "foi_page_url": "https://www.ccpc.ie/about-us/corporate-information/governance/freedom-of-information",
+    "disclosure_page_url": "https://www.ccpc.ie/about-us/corporate-information/governance/freedom-of-information",
+    "source_method": "manual",
+    "overridden": true
+  }
 ]
