@@ -1,0 +1,16 @@
+{
+  "step": "extract_disclosures_detect_header_row",
+  "metrics": [
+    {
+      "name": "accuracy",
+      "value": 1.0,
+      "counts": {
+        "correct": 15,
+        "total": 15
+      },
+      "is_primary": true
+    }
+  ],
+  "input_hash": "3e8f6e1b37426b36ead16961861b6a207224d392bc18a8c5afa231509954f3d3",
+  "judge_model": null
+}
