@@ -4,6 +4,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+from scripts.cli_utils import add_common_args, filter_by_public_body, merge_replacing_body
 from scripts.file_utils import read_json, write_json, write_status
 from steps.extract_disclosures_canonicalize.column_map import (
     CANONICAL_COLUMNS,
@@ -88,9 +89,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="Canonicalize disclosure log rows into flat FOI records"
     )
-    parser.add_argument("--input", required=True)
-    parser.add_argument("--output", required=True)
-    parser.add_argument("--verbose", action="store_true")
+    add_common_args(parser)
     args = parser.parse_args()
 
     step_dir = Path(__file__).parent
@@ -101,11 +100,16 @@ def main():
     except Exception as e:
         print(f"Fatal: could not read input: {e}", file=sys.stderr)
         sys.exit(1)
+    input_data = filter_by_public_body(input_data, args.public_body)
 
     results: list = []
     errors: list = []
 
     process(input_data, results, errors, verbose=args.verbose)
+
+    if args.public_body is not None and not args.force and output_path.exists():
+        existing = read_json(output_path).get("results", [])
+        results = merge_replacing_body(existing, results, args.public_body)
 
     write_json(output_path, {
         "metadata": {

@@ -399,3 +399,38 @@ def test_process_logs_insufficient_columns_error():
     assert results == []
     assert len(errors_out) == 1
     assert errors_out[0]["error_type"] == "InsufficientColumns"
+
+
+import sys as _sys
+from scripts.file_utils import read_json as _read_json, write_json as _write_json
+import steps.extract_disclosures_canonicalize.process as _proc
+
+
+def test_public_body_scoped_preserves_other_bodies(tmp_path, monkeypatch):
+    out = tmp_path / "output.json"
+    # Existing output: prior rows for 1001 and 1002.
+    _write_json(out, {"metadata": {"step": "extract_disclosures_canonicalize"}, "results": [
+        {"public_body_id": 1001, "foi_reference_id": "A", "marker": "keep"},
+        {"public_body_id": 1002, "foi_reference_id": "OLD", "marker": "stale"},
+    ]})
+
+    # Input has files for both bodies; only 1002 passes the filter.
+    inp = tmp_path / "input.json"
+    _write_json(inp, {"results": [
+        {"public_body_id": 1001, "name": "A", "file_url": "a.xlsx", "file_type": "xlsx",
+         "header_row_idx": 0, "rows": [["Our Reference", "Request Details"], ["X-001", "req A"]]},
+        {"public_body_id": 1002, "name": "B", "file_url": "b.xlsx", "file_type": "xlsx",
+         "header_row_idx": 0, "rows": [["Our Reference", "Request Details"], ["Y-001", "req B"]]},
+    ]})
+
+    monkeypatch.setattr(_proc, "__file__", str(tmp_path / "process.py"))
+    _sys.argv = ["process.py", "--input", str(inp), "--output", str(out),
+                 "--public-body", "1002"]
+    _proc.main()
+
+    results = _read_json(out)["results"]
+    # 1001's prior row preserved exactly:
+    assert {"public_body_id": 1001, "foi_reference_id": "A", "marker": "keep"} in results
+    # 1002's stale row removed; new rows present:
+    assert not any(r.get("marker") == "stale" for r in results)
+    assert any(r["public_body_id"] == 1002 for r in results)
