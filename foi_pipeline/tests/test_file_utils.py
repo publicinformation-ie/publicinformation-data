@@ -409,3 +409,49 @@ class TestIncrementalWriterDirtyPropagation:
         w = IncrementalWriter(output_path, "test_step",
                               upstream_dirty_path=tmp_path / "nonexistent.json")
         assert 99 in w.processed_keys
+
+
+class TestIncrementalWriterTargetBody:
+    def _output_with(self, tmp_path, records):
+        p = tmp_path / "output.json"
+        write_json(p, {"metadata": {"step": "test_step"}, "results": records})
+        return p
+
+    def test_target_body_evicts_only_that_body(self, tmp_path):
+        records = [{"public_body_id": 1001}, {"public_body_id": 1002}, {"public_body_id": 1003}]
+        output_path = self._output_with(tmp_path, records)
+        w = IncrementalWriter(output_path, "test_step", target_public_body=1002)
+        assert 1002 not in w.processed_keys
+        assert 1001 in w.processed_keys
+        assert 1003 in w.processed_keys
+        assert all(r["public_body_id"] != 1002 for r in w.results)
+
+    def test_target_body_not_processed_so_step_reruns(self, tmp_path):
+        output_path = self._output_with(tmp_path, [{"public_body_id": 1002}])
+        w = IncrementalWriter(output_path, "test_step", target_public_body=1002)
+        assert not w.is_processed(1002)
+
+    def test_target_body_marked_dirty_in_finalize(self, tmp_path):
+        output_path = self._output_with(tmp_path, [{"public_body_id": 1002}])
+        w = IncrementalWriter(output_path, "test_step", target_public_body=1002)
+        w.finalize()
+        assert 1002 in read_json(tmp_path / "dirty_ids.json")
+
+    def test_target_body_none_is_noop(self, tmp_path):
+        output_path = self._output_with(tmp_path, [{"public_body_id": 1001}])
+        w = IncrementalWriter(output_path, "test_step", target_public_body=None)
+        assert 1001 in w.processed_keys
+
+    def test_target_body_evicts_all_file_rows_for_body(self, tmp_path):
+        # key_field is file_url, but eviction is by public_body_id
+        records = [
+            {"public_body_id": 1002, "file_url": "a.pdf"},
+            {"public_body_id": 1002, "file_url": "b.pdf"},
+            {"public_body_id": 1003, "file_url": "c.pdf"},
+        ]
+        output_path = self._output_with(tmp_path, records)
+        w = IncrementalWriter(output_path, "test_step", key_field="file_url",
+                              target_public_body=1002)
+        assert "a.pdf" not in w.processed_keys
+        assert "b.pdf" not in w.processed_keys
+        assert "c.pdf" in w.processed_keys

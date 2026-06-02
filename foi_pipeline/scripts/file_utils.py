@@ -20,7 +20,8 @@ def write_json(path, data):
 
 class IncrementalWriter:
     def __init__(self, output_path, step_name, key_field="public_body_id",
-                 force=False, override_path=None, upstream_dirty_path=None):
+                 force=False, override_path=None, upstream_dirty_path=None,
+                 target_public_body=None):
         self.output_path = Path(output_path)
         self.step_name = step_name
         self.key_field = key_field
@@ -39,6 +40,9 @@ class IncrementalWriter:
 
         if upstream_dirty_path and Path(upstream_dirty_path).exists():
             self._evict_upstream_dirty(Path(upstream_dirty_path))
+
+        if target_public_body is not None:
+            self._evict_keys({target_public_body})
 
         if override_path and Path(override_path).exists():
             self._load_overrides(Path(override_path))
