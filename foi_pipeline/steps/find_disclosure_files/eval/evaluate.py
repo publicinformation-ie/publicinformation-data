@@ -9,6 +9,7 @@ judgments.json; LLM called only on cache miss.
 import argparse
 import json
 import sys
+from collections import Counter
 from pathlib import Path
 
 _HERE = Path(__file__).parent
@@ -28,6 +29,51 @@ def _prompt(item):
         f"file_type: {item.get('file_type')}\n"
         "Answer strictly as: <yes|no> | <one-line rationale>"
     )
+
+
+def _duplicate_metrics(items):
+    """Return (metrics_list, issues_list) for duplicate file_url detection.
+
+    Deterministic — no LLM involved. Three metrics:
+      duplicate_file_url_count       — distinct URLs appearing more than once
+      duplicate_file_url_extra_records — total wasted records from duplicates
+      duplicate_file_url_rate        — fraction of total records that are extras
+    """
+    if not items:
+        return [
+            eval_utils.Metric("duplicate_file_url_count", 0, {}),
+            eval_utils.Metric("duplicate_file_url_extra_records", 0, {}),
+            eval_utils.Metric("duplicate_file_url_rate", 0.0, {}),
+        ], []
+
+    url_counts = Counter(item["file_url"] for item in items)
+    duplicate_urls = {url: count for url, count in url_counts.items() if count > 1}
+    duplicate_count = len(duplicate_urls)
+    extra_records = sum(count - 1 for count in duplicate_urls.values())
+    duplicate_rate = extra_records / len(items)
+
+    metrics = [
+        eval_utils.Metric("duplicate_file_url_count", duplicate_count,
+                          {"distinct_duplicate_urls": duplicate_count}),
+        eval_utils.Metric("duplicate_file_url_extra_records", extra_records,
+                          {"extra_records": extra_records, "total": len(items)}),
+        eval_utils.Metric("duplicate_file_url_rate", duplicate_rate,
+                          {"extra_records": extra_records, "total": len(items)}),
+    ]
+
+    issues = []
+    if duplicate_count > 0:
+        issues.append(eval_utils.Issue(
+            severity="warning",
+            description=f"{duplicate_count} duplicate file URLs found ({extra_records} extra records)",
+            affected_count=extra_records,
+            affected_ids=list(duplicate_urls.keys())[:50],
+            suggested_upstream_step="find_disclosure_files",
+            suggestion_detail="Same file URL discovered multiple times; may indicate redundant crawling or upstream data issues",
+            confidence=1.0,
+        ))
+
+    return metrics, issues
 
 
 def run_eval(items, judgments, input_hash, api_fn=eval_judge.default_api_fn):
@@ -65,6 +111,10 @@ def run_eval(items, judgments, input_hash, api_fn=eval_judge.default_api_fn):
             suggested_upstream_step=None,
             suggestion_detail="add a content-type / filename filter to find_disclosure_files",
             confidence=0.8))
+
+    dup_metrics, dup_issues = _duplicate_metrics(items)
+    metrics.extend(dup_metrics)
+    issues.extend(dup_issues)
 
     results = eval_utils.EvalResults(step=STEP, metrics=metrics,
                                      input_hash=input_hash,
