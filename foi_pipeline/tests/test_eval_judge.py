@@ -43,6 +43,12 @@ def test_parse_response_splits_label_and_rationale():
     assert eval_judge._parse("__none__|cover page") == ("__none__", "cover page")
 
 
+def test_parse_response_with_no_pipe_returns_full_text_as_label():
+    label, rationale = eval_judge._parse("yes")
+    assert label == "yes"
+    assert rationale == ""
+
+
 def test_judge_model_id_defaults_to_anthropic(monkeypatch):
     monkeypatch.delenv("EVAL_JUDGE_PROVIDER", raising=False)
     monkeypatch.delenv("EVAL_JUDGE_MODEL", raising=False)

@@ -49,7 +49,7 @@ def _parse(text: str) -> tuple[str, str]:
 
 def _anthropic_call(prompt: str, model: str) -> str:
     import anthropic  # imported lazily so tests never need any SDK
-    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+    client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY", "not-needed"))
     resp = client.messages.create(
         model=model, max_tokens=200, temperature=JUDGE_TEMPERATURE,
         messages=[{"role": "user", "content": prompt}],
