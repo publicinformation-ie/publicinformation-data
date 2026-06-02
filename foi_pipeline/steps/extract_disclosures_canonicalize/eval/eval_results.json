@@ -1,0 +1,27 @@
+{
+  "step": "extract_disclosures_canonicalize",
+  "metrics": [
+    {
+      "name": "header_mapping_accuracy",
+      "value": 1.0,
+      "counts": {
+        "correct": 79,
+        "total": 79
+      },
+      "is_primary": true
+    },
+    {
+      "name": "field_coverage",
+      "value": 0.488,
+      "counts": {
+        "decision_date": 0.381,
+        "decision_status": 0.466,
+        "foi_reference_id": 0.631,
+        "request_description": 0.474
+      },
+      "is_primary": false
+    }
+  ],
+  "input_hash": "3ac4b16fb72a3291e270bec367dc9b1efefbca4e1465acf02695af060c798334",
+  "judge_model": "anthropic:claude-haiku-4-5-20251001"
+}
