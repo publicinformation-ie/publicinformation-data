@@ -8,7 +8,7 @@ so a baseline score is only trusted when scored against identical input.
 import dataclasses
 import hashlib
 import json
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 
 import jsonschema
