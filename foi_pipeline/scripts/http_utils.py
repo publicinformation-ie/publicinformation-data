@@ -1,6 +1,5 @@
 import ipaddress
 import os
-import re
 import sys
 import threading
 import time
@@ -16,10 +15,6 @@ truststore.inject_into_ssl()
 # Configuration
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; PublicInformation-FOI-Scraper/1.0)"}
 DEFAULT_RATE_LIMIT_DELAY = 0.2  # seconds between requests
-_SERPER_ENDPOINT = "https://google.serper.dev/search"
-
-# API key validation pattern (Serper API keys are typically 32-64 char alphanumeric)
-API_KEY_PATTERN = re.compile(r'^[a-zA-Z0-9_-]{32,64}$')
 
 # Rate limiting state
 _domain_last_request = defaultdict(lambda: datetime.min)
@@ -80,24 +75,6 @@ def get_rate_limit_delay(domain):
     return max(0.0, DEFAULT_RATE_LIMIT_DELAY - elapsed)
 
 
-def validate_api_key(api_key):
-    """
-    Validate that an API key looks reasonable.
-
-    This doesn't verify the key works, just that it has the right format.
-    Serper API keys are typically 32-64 character alphanumeric strings.
-
-    Args:
-        api_key: The API key to validate
-
-    Returns:
-        bool: True if key looks valid, False otherwise
-    """
-    if not api_key or not isinstance(api_key, str):
-        return False
-    return bool(API_KEY_PATTERN.match(api_key))
-
-
 def validate_url_or_raise(url, context=""):
     """
     Validate URL and raise SecurityError if unsafe.
@@ -143,54 +120,3 @@ def fetch(method, url, **kwargs):
         ) from e
 
 
-def search_serper(query, api_key=None):
-    """
-    Search using Serper API.
-
-    Args:
-        query: Search query string
-        api_key: Optional API key (defaults to SERPER_API_KEY env var)
-
-    Returns:
-        list: Organic search results or empty list on error
-    """
-    if api_key is None:
-        api_key = os.environ.get("SERPER_API_KEY")
-    
-    if not api_key:
-        import logging
-        logger = logging.getLogger(__name__)
-        logger.warning("SERPER_API_KEY not set - search will return empty results")
-        return []
-    
-    # Validate key format
-    if not validate_api_key(api_key):
-        import logging
-        logger = logging.getLogger(__name__)
-        logger.warning(
-            f"SERPER_API_KEY has invalid format (length: {len(api_key) if api_key else 0}). "
-            f"Expected 32-64 alphanumeric characters. Search will return empty results."
-        )
-        return []
-    
-    try:
-        response = requests.post(
-            _SERPER_ENDPOINT,
-            headers={"X-API-KEY": api_key, "Content-Type": "application/json"},
-            json={"q": query},
-            timeout=15,
-        )
-        if response.status_code != 200:
-            import logging
-            logger = logging.getLogger(__name__)
-            logger.warning(
-                f"Serper API returned status {response.status_code}. "
-                f"Response: {response.text[:200]}"
-            )
-            return []
-        return response.json().get("organic", [])
-    except requests.RequestException as e:
-        import logging
-        logger = logging.getLogger(__name__)
-        logger.warning(f"Serper API request failed: {e}")
-        return []
