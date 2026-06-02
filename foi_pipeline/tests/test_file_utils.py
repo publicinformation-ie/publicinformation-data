@@ -170,6 +170,20 @@ class TestIncrementalWriter:
         assert w.results == []
         assert w.processed_keys == set()
 
+    def test_force_with_target_public_body_preserves_other_bodies(self, tmp_path):
+        existing = {
+            "metadata": {"step": "test_step"},
+            "results": [{"public_body_id": 1}, {"public_body_id": 2}],
+        }
+        write_json(tmp_path / "output.json", existing)
+        w = IncrementalWriter(tmp_path / "output.json", "test_step", force=True,
+                              target_public_body=2)
+        # body 2 evicted for re-processing; body 1 retained
+        assert len(w.results) == 1
+        assert w.results[0]["public_body_id"] == 1
+        assert 1 in w.processed_keys
+        assert 2 not in w.processed_keys
+
     def test_is_processed_returns_true_for_loaded_key(self, tmp_path):
         existing = {
             "metadata": {"step": "test_step"},
