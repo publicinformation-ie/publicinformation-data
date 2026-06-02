@@ -99,7 +99,7 @@ db_upload → libSQL database (public_bodies, disclosure_files, foi_disclosures,
 
 ## export_status Step (Key Step for Website)
 
-The `export_status` step is the **final aggregator** that merges data from all previous steps into a single, comprehensive output file that the publicinfo-prototype website consumes.
+The `export_status` step is the **final aggregator** that merges data from all previous steps into a single, comprehensive output file that the publicinformation-web website consumes.
 
 ### Input
 - Reads `pipeline.json` to get the list of all steps
@@ -296,7 +296,7 @@ The website uses a prebuild script that copies export_status/output.json. If dat
 
 2. Check which file is being used:
    ```bash
-   python3 -c "import json; data=json.load(open('publicinfo-prototype/src/data/pipeline-status.json')); print('Source step:', data['metadata'].get('step'))"
+   python3 -c "import json; data=json.load(open('../publicinformation-web/src/data/pipeline-status.json')); print('Source step:', data['metadata'].get('step'))"
    ```
 
 3. If showing "find_public_bodies", the export_status step hasn't been run yet.

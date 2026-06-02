@@ -151,8 +151,8 @@ This happens when Vibe CLI tries to execute step scripts directly. To prevent th
 
 Check the fallback chain:
 1. Has `export_status` been run? (creates `steps/export_status/output.json`)
-2. Has the website been rebuilt? (`cd publicinfo-prototype && npm run build`)
-3. Check `publicinfo-prototype/src/data/pipeline-status.json` source
+2. Has the website been rebuilt? (`cd ../publicinformation-web && npm run build`)
+3. Check `../publicinformation-web/src/data/pipeline-status.json` source
 
 See [DATA_FLOW.md - Troubleshooting](DATA_FLOW.md#troubleshooting-decision-tree) for the complete decision tree.
 
@@ -168,7 +168,7 @@ This means only `find_public_bodies` has been run. Run the full pipeline or at m
 | Run from export_status | `cd foi_pipeline && python process.py --from export_status --force` |
 | Run single step | `cd foi_pipeline && PYTHONPATH=. python steps/<step>/process.py --input ... --output ... --force` |
 | Run tests | `cd foi_pipeline && uv run pytest tests/ -q` |
-| Build website | `cd publicinfo-prototype && npm run build` |
+| Build website | `cd ../publicinformation-web && npm run build` |
 | Check export_status output | `ls -lh foi_pipeline/steps/export_status/output.json` |
 | Validate output | `python3 -c "import json; d=json.load(open('foi_pipeline/steps/export_status/output.json')); print(f'Bodies: {len(d[\"public_bodies\"])}')"` |
 
@@ -194,7 +194,7 @@ This means only `find_public_bodies` has been run. Run the full pipeline or at m
 | **Troubleshooting data issues** | [DATA_FLOW.md - Troubleshooting](DATA_FLOW.md#common-issues--fixes) |
 | **Understanding data model** | [foi_pipeline/AGENTS.md - Data Model](foi_pipeline/AGENTS.md#data-model-evolution) |
 | **Using override system** | [foi_pipeline/AGENTS.md - Override System](foi_pipeline/AGENTS.md#override-system) |
-| **Website data consumption** | [publicinfo-prototype/DATA_CONSUMPTION.md](../publicinfo-prototype/DATA_CONSUMPTION.md) |
+| **Website data consumption** | [../publicinformation-web/DATA_CONSUMPTION.md](../publicinformation-web/DATA_CONSUMPTION.md) |
 
 ---
 

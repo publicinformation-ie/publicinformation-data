@@ -87,7 +87,7 @@ Before updating the workflow, test a manual deployment:
 
 ```bash
 # Build locally
-cd publicinfo-prototype
+cd ../publicinformation-web
 npm run build
 
 # Upload files to Edge Storage
@@ -126,8 +126,8 @@ on:
   push:
     branches: [main]
     paths:
-      - 'publicinfo-prototype/src/**'
-      - 'publicinfo-prototype/scripts/csv_to_json.py'
+      - '../publicinformation-web/src/**'
+      - '../publicinformation-web/scripts/csv_to_json.py'
       - '.forgejo/workflows/deploy.yml'
   workflow_dispatch:
 
@@ -148,11 +148,11 @@ jobs:
         run: pip install requests
 
       - name: Generate JSON from CSV
-        working-directory: publicinfo-prototype
+        working-directory: ../publicinformation-web
         run: python scripts/csv_to_json.py
 
       - name: Verify JSON was generated
-        working-directory: publicinfo-prototype
+        working-directory: ../publicinformation-web
         run: |
           if [ ! -f src/data/public_bodies.json ]; then
             echo "ERROR: public_bodies.json was not created" >&2
@@ -166,18 +166,18 @@ jobs:
           node-version: '22'
 
       - name: Install Node dependencies
-        working-directory: publicinfo-prototype
+        working-directory: ../publicinformation-web
         run: npm ci
 
       - name: Build Astro site
-        working-directory: publicinfo-prototype
+        working-directory: ../publicinformation-web
         run: npm run build
 
       - name: Install curl (if not available)
         run: sudo apt-get update -qq && sudo apt-get install -y -qq curl
 
       - name: Upload to Bunny Edge Storage
-        working-directory: publicinfo-prototype
+        working-directory: ../publicinformation-web
         env:
           BUNNY_STORAGE_ZONE_NAME: ${{ secrets.BUNNY_STORAGE_ZONE_NAME }}
           BUNNY_STORAGE_ZONE_PASSWORD: ${{ secrets.BUNNY_STORAGE_ZONE_PASSWORD }}
@@ -198,7 +198,7 @@ jobs:
           done
 
       - name: Purge Pull Zone Cache
-        working-directory: publicinfo-prototype
+        working-directory: ../publicinformation-web
         env:
           BUNNY_API_KEY: ${{ secrets.BUNNY_API_KEY }}
           BUNNY_PULL_ZONE_ID: ${{ secrets.BUNNY_PULL_ZONE_ID }}

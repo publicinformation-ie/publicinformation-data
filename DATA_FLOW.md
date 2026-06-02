@@ -1,13 +1,13 @@
 # Data Flow Documentation - PublicInformation.ie
 
-This document provides an overview of how data flows from the FOI pipeline to the publicinfo-prototype website. For detailed information, see the specialized documentation files.
+This document provides an overview of how data flows from the FOI pipeline to the publicinformation-web website. For detailed information, see the specialized documentation files.
 
 ## Quick Reference
 
 | Document | Purpose | Location |
 |----------|---------|----------|
 | **AGENTS.md** (Pipeline) | How data is produced by the FOI pipeline | `foi_pipeline/AGENTS.md` |
-| **DATA_CONSUMPTION.md** (Website) | How data is consumed by the website | `publicinfo-prototype/DATA_CONSUMPTION.md` |
+| **DATA_CONSUMPTION.md** (Website) | How data is consumed by the website | `../publicinformation-web/DATA_CONSUMPTION.md` |
 | **This File** | Overview of the complete data flow | `DATA_FLOW.md` |
 
 ## End-to-End Data Flow
@@ -137,7 +137,7 @@ PYTHONPATH=. python steps/export_status/process.py \
 
 Then rebuild the website:
 ```bash
-cd publicinfo-prototype
+cd ../publicinformation-web
 npm run build
 ```
 
@@ -163,7 +163,7 @@ cd foi_pipeline
 python process.py --force
 
 # 2. Build the website (automatically copies export_status/output.json)
-cd publicinfo-prototype
+cd ../publicinformation-web
 npm run build
 
 # 3. Check the output
@@ -184,7 +184,7 @@ PYTHONPATH=. python steps/export_status/process.py \
   --force
 
 # 3. Build website
-cd publicinfo-prototype
+cd ../publicinformation-web
 npm run build
 ```
 
@@ -194,8 +194,8 @@ npm run build
 |------|---------|------------|
 | `foi_pipeline/steps/*/output.json` | Step outputs | Yes (by pipeline) |
 | `foi_pipeline/steps/export_status/output.json` | **Final consolidated output** | Yes |
-| `publicinfo-prototype/src/data/pipeline-status.json` | Website data input | Yes (by prebuild) |
-| `publicinfo-prototype/dist/data-status/index.html` | Built page | Yes (by Astro) |
+| `../publicinformation-web/src/data/pipeline-status.json` | Website data input | Yes (by prebuild) |
+| `../publicinformation-web/dist/data-status/index.html` | Built page | Yes (by Astro) |
 
 ## Testing Your Setup
 
@@ -207,11 +207,11 @@ ls -lh foi_pipeline/steps/export_status/output.json
 python3 -c "import json; d=json.load(open('foi_pipeline/steps/export_status/output.json')); print(f\"Bodies: {len(d['public_bodies'])}, Step: {d['metadata']['step']}\")"
 
 # Check website data file
-ls -lh publicinfo-prototype/src/data/pipeline-status.json
-python3 -c "import json; d=json.load(open('publicinfo-prototype/src/data/pipeline-status.json')); print(f\"Bodies: {len(d['public_bodies'])}\")"
+ls -lh ../publicinformation-web/src/data/pipeline-status.json
+python3 -c "import json; d=json.load(open('../publicinformation-web/src/data/pipeline-status.json')); print(f\"Bodies: {len(d['public_bodies'])}\")"
 
 # Check built HTML has data
-grep -c "Department of" publicinfo-prototype/dist/data-status/index.html
+grep -c "Department of" ../publicinformation-web/dist/data-status/index.html
 ```
 
 ## Troubleshooting Decision Tree
@@ -257,7 +257,7 @@ See `foi_pipeline/AGENTS.md` for:
 
 ### For Website Developers
 
-See `publicinfo-prototype/DATA_CONSUMPTION.md` for:
+See `../publicinformation-web/DATA_CONSUMPTION.md` for:
 - Prebuild script behavior
 - Data structure expected by the page
 - Status rendering (colors, characters)

@@ -1,12 +1,17 @@
 .venv/
 __pycache__/
 *.pyc
+# Ignore docs directory except for archive subdirectory
 docs/
+!docs/archive/
 .worktrees/
 
 #claude
 .claude/settings.local.json
 .superpowers/
+
+# serena LSP
+.serena/
 
 # Pipeline output files (at any level)
 **/output.json

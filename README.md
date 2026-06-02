@@ -123,7 +123,7 @@ uv run pytest tests/ -q
 ```bash
 cd foi_pipeline
 python process.py --force
-cd ../publicinfo-prototype
+cd ../publicinformation-web
 npm run build
 ```
 
@@ -439,7 +439,7 @@ For bug fixes and improvements, please:
 
 ## Related Projects
 
-- [PublicInformation.ie Website](https://codeberg.org/gingertechie/publicinfo-prototype) - The frontend website that consumes this data
+- [PublicInformation.ie Website](https://codeberg.org/gingertechie/publicinformation-web) - The frontend website that consumes this data
 - [foi.gov.ie](https://foi.gov.ie) - The official Irish FOI portal (source of public body list)
 
 ## Acknowledgments

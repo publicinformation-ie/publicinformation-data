@@ -1,3 +1,9 @@
+> **NOTE**: This document refers to the old `publicinfo-prototype` subdirectory structure.
+> The website has been moved to the separate `publicinformation-web` repository at
+> /Users/gingertechie/dev/publicinformation/publicinformation-web/
+> 
+> References to `publicinfo-prototype` in this document should be read as `../publicinformation-web`.
+
 # Public Information Static Site Prototype - Handoff Document
 
 ---
