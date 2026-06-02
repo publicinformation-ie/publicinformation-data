@@ -17,8 +17,8 @@ def is_stale(step_out, prev_out):
 
 def main():
     parser = argparse.ArgumentParser(description="FOI pipeline process script")
-    parser.add_argument("pipeline_dir", nargs="?", default="foi_pipeline",
-                        help="Path to foi_pipeline/ directory (defaults to foi_pipeline)")
+    parser.add_argument("pipeline_dir", nargs="?", default=".",
+                        help="Path to foi_pipeline/ directory (defaults to current directory)")
     parser.add_argument("--force", action="store_true", help="Re-run all steps regardless of staleness")
     parser.add_argument("--from", dest="from_step", metavar="STEP", help="Resume from this step; earlier steps are skipped")
     parser.add_argument("--stop-on-error", action="store_true", help="Halt pipeline on first non-zero exit code")
