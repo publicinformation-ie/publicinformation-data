@@ -129,10 +129,21 @@ def main():
     parser.add_argument("--output", default=None, help="Path to write output.json")
     parser.add_argument("--force", action="store_true", help="Overwrite existing output")
     parser.add_argument("--verbose", action="store_true", help="Print a dot per website checked to show progress")
+    parser.add_argument("--public-body", type=int, default=None, dest="public_body",
+                        help="Confirm this body exists; output is left untouched when scoped")
     args = parser.parse_args()
 
     step_dir = Path(__file__).parent
     output_path = Path(args.output) if args.output else step_dir / "output.json"
+
+    if args.public_body is not None and not args.force and output_path.exists():
+        bodies = read_json(output_path).get("public_bodies", [])
+        if not any(b.get("public_body_id") == args.public_body for b in bodies):
+            print(f"Error: public body {args.public_body} not found in {output_path}",
+                  file=sys.stderr)
+            sys.exit(1)
+        print(f"Scoped run: confirmed body {args.public_body}; leaving {output_path} untouched")
+        sys.exit(0)
 
     if not args.force and output_path.exists():
         print(f"Output exists at {output_path}, skipping (use --force to re-run)")

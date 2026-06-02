@@ -272,3 +272,25 @@ def test_process_writes_output_and_status(requests_mock, tmp_path, monkeypatch):
     assert "completed_at" in status
 
 
+
+
+import sys as _sys
+import pytest as _pytest
+from scripts.file_utils import read_json as _read_json, write_json as _write_json
+
+
+def test_scoped_run_leaves_output_untouched(tmp_path, monkeypatch):
+    import steps.find_public_bodies.process as proc
+    step_dir = tmp_path
+    out = step_dir / "output.json"
+    original = {"metadata": {"step": "find_public_bodies"},
+                "public_bodies": [{"public_body_id": 1001}, {"public_body_id": 1002}]}
+    _write_json(out, original)
+
+    monkeypatch.setattr(proc, "__file__", str(step_dir / "process.py"))
+    _sys.argv = ["process.py", "--input", "x", "--output", str(out), "--public-body", "1001"]
+    with _pytest.raises(SystemExit) as exc:
+        proc.main()
+    assert exc.value.code == 0  # clean exit, not an error
+
+    assert _read_json(out) == original  # byte-for-byte unchanged
