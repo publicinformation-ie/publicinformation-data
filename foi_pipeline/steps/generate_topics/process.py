@@ -5,6 +5,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+from scripts.cli_utils import add_common_args, filter_by_public_body
 from scripts.file_utils import read_json, write_json, write_status
 
 STEP_NAME = "generate_topics"
@@ -75,16 +76,13 @@ def write_public_topics(results, repo_root):
 
 def main():
     parser = argparse.ArgumentParser(description="Generate topic-matched FOI disclosure sets")
-    parser.add_argument("--input", required=True)
-    parser.add_argument("--output", required=True)
-    parser.add_argument("--force", action="store_true")
-    parser.add_argument("--verbose", action="store_true")
+    add_common_args(parser)
     args = parser.parse_args()
 
     step_dir = Path(__file__).parent
     output_path = Path(args.output)
 
-    if not args.force and output_path.exists():
+    if not args.force and output_path.exists() and args.public_body is None:
         print(f"Output exists at {output_path}, skipping (use --force to re-run)")
         sys.exit(0)
 
@@ -100,7 +98,7 @@ def main():
         print(f"Fatal: input not found at {canonicalize_path}", file=sys.stderr)
         sys.exit(1)
 
-    input_data = read_json(canonicalize_path)
+    input_data = filter_by_public_body(read_json(canonicalize_path), args.public_body)
     disclosures = input_data["results"]
 
     results = process_topics(topics_config, disclosures)
@@ -118,6 +116,8 @@ def main():
 
     print(f"Wrote {len(results)} topics to {output_path}")
     print(f"Wrote public data to {public_path}")
+    if args.public_body is not None:
+        print("Note: topic output is derived; regenerate fully before publish.", file=sys.stderr)
 
 
 if __name__ == "__main__":

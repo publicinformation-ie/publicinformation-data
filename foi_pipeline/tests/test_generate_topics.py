@@ -428,3 +428,43 @@ class TestProcessTopicsWordBoundaries:
         # Only Housing policy should match
         assert result[0]["match_count"] == 1
         assert result[0]["disclosures"][0]["request_description"] == "Housing policy documents"
+
+
+import sys as _sys
+import json as _json
+from scripts.file_utils import read_json as _read_json, write_json as _write_json
+import steps.generate_topics.process as _proc
+
+
+def test_public_body_scoped_only_generates_topics_for_target(tmp_path, monkeypatch):
+    # Build fake pipeline directory structure
+    step_dir = tmp_path / "steps" / "generate_topics"
+    step_dir.mkdir(parents=True)
+    canonicalize_dir = tmp_path / "steps" / "extract_disclosures_canonicalize"
+    canonicalize_dir.mkdir(parents=True)
+    (tmp_path / "public").mkdir(parents=True)
+
+    # Topics config
+    (step_dir / "topics-config.json").write_text(_json.dumps([
+        {"slug": "housing", "label": "Housing", "keywords": ["housing"]}
+    ]))
+
+    # Canonicalize output: records for bodies 1001 and 1002
+    _write_json(canonicalize_dir / "output.json", {"results": [
+        {"public_body_id": 1001, "request_description": "housing request", "foi_reference_id": "A",
+         "decision_date": "2024-01-01"},
+        {"public_body_id": 1002, "request_description": "housing budget", "foi_reference_id": "B",
+         "decision_date": "2024-02-01"},
+    ]})
+
+    out = tmp_path / "output.json"
+    monkeypatch.setattr(_proc, "__file__", str(step_dir / "process.py"))
+    _sys.argv = ["process.py", "--input", "unused", "--output", str(out),
+                 "--public-body", "1002"]
+    _proc.main()
+
+    results = _read_json(out)["results"]
+    # Only body 1002's record should contribute to topic matching
+    for topic in results:
+        for disc in topic.get("disclosures", []):
+            assert disc["public_body_id"] == 1002, "Only 1002's disclosures should appear"
