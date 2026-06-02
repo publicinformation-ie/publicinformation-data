@@ -171,3 +171,46 @@ def test_process_skips_already_processed(tmp_path, make_writer):
     # No new processing — already done
     assert len(writer.results) == 1
     assert writer.results[0]["header_row_idx"] == 0
+
+
+import sys as _sys
+from scripts.file_utils import read_json as _read_json, write_json as _write_json
+import steps.extract_disclosures_detect_header_row.process as _proc
+
+
+def test_public_body_scoped_leaves_others_untouched(tmp_path, monkeypatch):
+    out = tmp_path / "output.json"
+    seeded = [
+        {"public_body_id": 1001, "file_url": "https://a.ie/f.xlsx", "marker": "keep-1001"},
+        {"public_body_id": 1002, "file_url": "https://b.ie/f1.xlsx", "marker": "old-1002-f1"},
+        {"public_body_id": 1002, "file_url": "https://b.ie/f2.xlsx", "marker": "old-1002-f2"},
+        {"public_body_id": 1003, "file_url": "https://c.ie/f.xlsx", "marker": "keep-1003"},
+    ]
+    _write_json(out, {"metadata": {"step": "extract_disclosures_detect_header_row"}, "results": seeded})
+
+    inp = tmp_path / "input.json"
+    _write_json(inp, {"results": [
+        {"public_body_id": 1001, "file_url": "https://a.ie/f.xlsx", "file_type": "xlsx",
+         "rows": [["Ref", "Date"], ["001", "2024-01-01"]]},
+        {"public_body_id": 1002, "file_url": "https://b.ie/f1.xlsx", "file_type": "xlsx",
+         "rows": [["Ref", "Date"], ["002", "2024-02-01"]]},
+        {"public_body_id": 1002, "file_url": "https://b.ie/f2.xlsx", "file_type": "xlsx",
+         "rows": [["Ref", "Date"], ["003", "2024-03-01"]]},
+        {"public_body_id": 1003, "file_url": "https://c.ie/f.xlsx", "file_type": "xlsx",
+         "rows": [["Ref", "Date"], ["004", "2024-04-01"]]},
+    ]})
+
+    monkeypatch.setattr(_proc, "__file__", str(tmp_path / "process.py"))
+    _sys.argv = ["process.py", "--input", str(inp), "--output", str(out),
+                 "--public-body", "1002"]
+    _proc.main()
+
+    results = _read_json(out)["results"]
+    body_map = {}
+    for r in results:
+        body_map.setdefault(r["public_body_id"], []).append(r)
+
+    assert body_map[1001][0]["marker"] == "keep-1001"
+    assert body_map[1003][0]["marker"] == "keep-1003"
+    assert not any(r.get("marker", "").startswith("old-1002") for r in body_map.get(1002, []))
+    assert _read_json(tmp_path / "dirty_ids.json") == [1002]
