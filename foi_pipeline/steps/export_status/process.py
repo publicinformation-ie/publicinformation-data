@@ -6,6 +6,7 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
+from scripts.cli_utils import add_common_args, filter_by_public_body
 from scripts.file_utils import read_json, write_json, write_status
 
 STEP_NAME = "export_status"
@@ -177,8 +178,9 @@ def write_foi_disclosures_output(steps_dir, repo_root):
     return output_path
 
 
-def merge(steps_dir, pipeline_steps):
+def merge(steps_dir, pipeline_steps, target_public_body=None):
     base_data = read_json(steps_dir / "find_public_bodies" / "output.json")
+    base_data = filter_by_public_body(base_data, target_public_body)
     bodies = copy.deepcopy(base_data["public_bodies"])
     body_map = {b["public_body_id"]: b for b in bodies}
     for body in body_map.values():
@@ -196,7 +198,7 @@ def merge(steps_dir, pipeline_steps):
         output_path = steps_dir / step_name / "output.json"
         if not output_path.exists():
             continue
-        step_data = read_json(output_path)
+        step_data = filter_by_public_body(read_json(output_path), target_public_body)
         merger(body_map, step_data)
 
     for body in body_map.values():
@@ -209,16 +211,13 @@ def merge(steps_dir, pipeline_steps):
 
 def main():
     parser = argparse.ArgumentParser(description="Export merged pipeline status for all public bodies")
-    parser.add_argument("--input", required=True)
-    parser.add_argument("--output", required=True)
-    parser.add_argument("--force", action="store_true")
-    parser.add_argument("--verbose", action="store_true")
+    add_common_args(parser)
     args = parser.parse_args()
 
     step_dir = Path(__file__).parent
     output_path = Path(args.output)
 
-    if not args.force and output_path.exists():
+    if not args.force and output_path.exists() and args.public_body is None:
         print(f"Output exists at {output_path}, skipping (use --force to re-run)")
         sys.exit(0)
 
@@ -226,7 +225,7 @@ def main():
     pipeline_dir = steps_dir.parent
     pipeline_config = read_json(pipeline_dir / "pipeline.json")
 
-    bodies = merge(steps_dir, pipeline_config["steps"])
+    bodies = merge(steps_dir, pipeline_config["steps"], target_public_body=args.public_body)
     output = {
         "metadata": {
             "step": STEP_NAME,
@@ -248,6 +247,9 @@ def main():
         print(f"Wrote disclosure files to {disclosure_path}")
     if foi_disclosures_path:
         print(f"Wrote FOI disclosures to {foi_disclosures_path}")
+    if args.public_body is not None:
+        print("Note: scoped export is derived/best-effort; run a full pipeline before publishing public/ artifacts.",
+              file=sys.stderr)
 
 
 if __name__ == "__main__":

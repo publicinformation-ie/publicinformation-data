@@ -1009,3 +1009,11 @@ def test_temporary_exclusion_reason_also_sets_not_applicable(tmp_path):
     body = result[0]
     for sub in body["status"].values():
         assert sub["status"] == "not_applicable"
+
+
+def test_scoped_export_only_targets_body(tmp_path):
+    steps_dir = setup_steps_dir(tmp_path, {"find_public_bodies": BASE_OUTPUT})
+    result = merge(steps_dir, PIPELINE_STEPS, target_public_body=1002)
+    body_ids = [b["public_body_id"] for b in result]
+    assert body_ids == [1002]
+    assert 1001 not in body_ids
