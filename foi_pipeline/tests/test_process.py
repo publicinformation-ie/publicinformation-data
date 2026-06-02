@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 import pytest
 
-from orchestrator import is_stale, main
+from process import is_stale, main
 
 
 # --- is_stale unit tests ---
@@ -66,8 +66,8 @@ def test_orchestrator_skips_up_to_date_step(tmp_path, capsys):
     output = pipeline_dir / "steps" / "find_public_bodies" / "output.json"
     output.write_text("[]")
 
-    with patch("orchestrator.subprocess.run") as mock_run:
-        sys.argv = ["orchestrator.py", str(pipeline_dir)]
+    with patch("process.subprocess.run") as mock_run:
+        sys.argv = ["process.py", str(pipeline_dir)]
         main()
         mock_run.assert_not_called()
 
@@ -79,9 +79,9 @@ def test_orchestrator_runs_stale_step(tmp_path):
     pipeline_dir = _make_pipeline(tmp_path, ["find_public_bodies"])
     # No output.json → stale
 
-    with patch("orchestrator.subprocess.run") as mock_run:
+    with patch("process.subprocess.run") as mock_run:
         mock_run.return_value.returncode = 0
-        sys.argv = ["orchestrator.py", str(pipeline_dir)]
+        sys.argv = ["process.py", str(pipeline_dir)]
         main()
         mock_run.assert_called_once()
         cmd = mock_run.call_args[0][0]
@@ -94,9 +94,9 @@ def test_orchestrator_force_reruns(tmp_path):
     output = pipeline_dir / "steps" / "find_public_bodies" / "output.json"
     output.write_text("[]")
 
-    with patch("orchestrator.subprocess.run") as mock_run:
+    with patch("process.subprocess.run") as mock_run:
         mock_run.return_value.returncode = 0
-        sys.argv = ["orchestrator.py", str(pipeline_dir), "--force"]
+        sys.argv = ["process.py", str(pipeline_dir), "--force"]
         main()
         mock_run.assert_called_once()
         cmd = mock_run.call_args[0][0]
@@ -106,10 +106,10 @@ def test_orchestrator_force_reruns(tmp_path):
 def test_orchestrator_stop_on_error(tmp_path):
     pipeline_dir = _make_pipeline(tmp_path, ["step_a", "step_b"])
 
-    with patch("orchestrator.subprocess.run") as mock_run:
+    with patch("process.subprocess.run") as mock_run:
         mock_run.return_value.returncode = 1
         with pytest.raises(SystemExit) as exc:
-            sys.argv = ["orchestrator.py", str(pipeline_dir), "--stop-on-error"]
+            sys.argv = ["process.py", str(pipeline_dir), "--stop-on-error"]
             main()
         assert exc.value.code == 1
         assert mock_run.call_count == 1  # halted after step_a
@@ -118,9 +118,9 @@ def test_orchestrator_stop_on_error(tmp_path):
 def test_orchestrator_from_flag_skips_earlier_steps(tmp_path):
     pipeline_dir = _make_pipeline(tmp_path, ["step_a", "step_b"])
 
-    with patch("orchestrator.subprocess.run") as mock_run:
+    with patch("process.subprocess.run") as mock_run:
         mock_run.return_value.returncode = 0
-        sys.argv = ["orchestrator.py", str(pipeline_dir), "--from", "step_b"]
+        sys.argv = ["process.py", str(pipeline_dir), "--from", "step_b"]
         main()
         # Only step_b should run
         assert mock_run.call_count == 1
@@ -131,9 +131,9 @@ def test_orchestrator_from_flag_skips_earlier_steps(tmp_path):
 def test_orchestrator_sets_pythonpath(tmp_path):
     pipeline_dir = _make_pipeline(tmp_path, ["find_public_bodies"])
 
-    with patch("orchestrator.subprocess.run") as mock_run:
+    with patch("process.subprocess.run") as mock_run:
         mock_run.return_value.returncode = 0
-        sys.argv = ["orchestrator.py", str(pipeline_dir)]
+        sys.argv = ["process.py", str(pipeline_dir)]
         main()
         env = mock_run.call_args[1]["env"]
         assert str(pipeline_dir) in env["PYTHONPATH"]

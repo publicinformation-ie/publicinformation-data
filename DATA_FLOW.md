@@ -160,7 +160,7 @@ npm run build
 ```bash
 # 1. Run the full pipeline
 cd foi_pipeline
-python orchestrator.py --force
+python process.py --force
 
 # 2. Build the website (automatically copies export_status/output.json)
 cd publicinfo-prototype

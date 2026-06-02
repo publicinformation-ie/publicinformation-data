@@ -10,7 +10,7 @@ publicinformation-data/
 ├── DATA_FLOW.md                      # End-to-end data flow overview
 ├── foi_pipeline/
 │   ├── AGENTS.md                     # FOI pipeline architecture and operations
-│   ├── orchestrator.py               # Pipeline execution engine
+│   ├── process.py                   # Pipeline execution engine
 │   ├── pipeline.json                 # Authoritative step order configuration
 │   └── steps/
 │       ├── AGENTS.md                 # Steps directory management guidelines
@@ -43,13 +43,13 @@ publicinformation-data/
 **To run the full pipeline:**
 ```bash
 cd foi_pipeline
-python orchestrator.py --force
+python process.py --force
 ```
 
 **To run from a specific step:**
 ```bash
 cd foi_pipeline
-python orchestrator.py --from export_status --force
+python process.py --from export_status --force
 ```
 
 **To run a single step manually:**
@@ -61,7 +61,7 @@ PYTHONPATH=. python steps/export_status/process.py \
   --force
 ```
 
-> **Note:** When Vibe CLI attempts to run pipeline scripts, it may try multiple times. To prevent redundant execution, ensure you're using the orchestrator (`orchestrator.py`) rather than calling individual step scripts directly. The orchestrator handles dependencies and staleness checks.
+> **Note:** When Vibe CLI attempts to run pipeline scripts, it may try multiple times. To prevent redundant execution, ensure you're using the process script (`process.py`) rather than calling individual step scripts directly. The process script handles dependencies and staleness checks.
 
 ### Step Directories
 
@@ -134,17 +134,17 @@ See [foi_pipeline/AGENTS.md - Override System](foi_pipeline/AGENTS.md#override-s
 
 This happens when Vibe CLI tries to execute step scripts directly. To prevent this:
 
-1. **Always use the orchestrator** for pipeline execution:
+1. **Always use the process script** for pipeline execution:
    ```bash
    cd foi_pipeline
-   python orchestrator.py --force
+   python process.py --force
    ```
 
-2. **The orchestrator's staleness checks** prevent re-running steps that are up-to-date. Use `--force` to bypass.
+2. **The process script's staleness checks** prevent re-running steps that are up-to-date. Use `--force` to bypass.
 
-3. **For individual step testing**, use the orchestrator with `--from`:
+3. **For individual step testing**, use the process script with `--from`:
    ```bash
-   python orchestrator.py --from export_status --force
+   python process.py --from export_status --force
    ```
 
 **Problem: Data missing on website**
@@ -164,8 +164,8 @@ This means only `find_public_bodies` has been run. Run the full pipeline or at m
 
 | Task | Command |
 |------|---------|
-| Run full pipeline | `cd foi_pipeline && python orchestrator.py --force` |
-| Run from export_status | `cd foi_pipeline && python orchestrator.py --from export_status --force` |
+| Run full pipeline | `cd foi_pipeline && python process.py --force` |
+| Run from export_status | `cd foi_pipeline && python process.py --from export_status --force` |
 | Run single step | `cd foi_pipeline && PYTHONPATH=. python steps/<step>/process.py --input ... --output ... --force` |
 | Run tests | `cd foi_pipeline && uv run pytest tests/ -q` |
 | Build website | `cd publicinfo-prototype && npm run build` |
@@ -205,7 +205,7 @@ You mentioned that Vibe tries multiple times to run pipeline step scripts. Below
 ### Pros of a Custom Agent
 
 1. **Prevents Redundant Execution**
-   - The orchestrator already handles this via staleness checks (`is_stale()` function)
+   - The process script already handles this via staleness checks (`is_stale()` function)
    - A custom agent could cache results and skip already-completed steps
    - Could track which steps have been run in the current session
 
@@ -247,14 +247,14 @@ You mentioned that Vibe tries multiple times to run pipeline step scripts. Below
    - Learning curve for new contributors
 
 2. **Duplicates Existing Functionality**
-   - The orchestrator already handles step dependencies and staleness
+   - The process script already handles step dependencies and staleness
    - `export_status` already merges all outputs
    - Risk of reimplementing what already exists
 
 3. **Maintenance Burden**
    - Must be kept in sync with pipeline changes
    - Additional code to test and document
-   - Potential for divergence from the main orchestrator
+   - Potential for divergence from the main process script
 
 4. **State Management Complexity**
    - Session state files need to be managed carefully
@@ -273,16 +273,16 @@ You mentioned that Vibe tries multiple times to run pipeline step scripts. Below
 
 ### Recommendation
 
-**Option A: Enhance the Existing Orchestrator (Recommended)**
+**Option A: Enhance the Existing Process Script (Recommended)**
 
-Modify `orchestrator.py` to:
+Modify `process.py` to:
 1. Add a session state file (e.g., `.vibe/pipeline-state.json`)
 2. Track which steps have been run in the current session
 3. Add a `--session-aware` flag that checks the state file
 4. Return exit codes that Vibe can understand to prevent re-execution
 
 ```python
-# In orchestrator.py
+# In process.py
 def main():
     # ... existing code ...
     
@@ -300,7 +300,7 @@ def main():
 Create `run_pipeline.sh` or `vibe_orchestrator.py` that:
 1. Checks if it's being called by Vibe
 2. Maintains a simple session log
-3. Delegates to the main orchestrator
+3. Delegates to the main process script
 4. Sets up the environment correctly
 
 ```bash
@@ -309,13 +309,13 @@ Create `run_pipeline.sh` or `vibe_orchestrator.py` that:
 
 SESSION_LOG=".vibe/pipeline-session.log"
 
-if [ -f "$SESSION_LOG" ] && grep -q "orchestrator.py --force" "$SESSION_LOG"; then
+if [ -f "$SESSION_LOG" ] && grep -q "process.py --force" "$SESSION_LOG"; then
     echo "Pipeline already run in this session"
     exit 0
 fi
 
 cd foi_pipeline
-python orchestrator.py "$@"
+python process.py "$@"
 echo "$(date): $0 $*" >> "$SESSION_LOG"
 ```
 
@@ -336,9 +336,9 @@ A custom agent could encapsulate common workflows like:
 
 For now, the simplest solution is to:
 
-1. **Use the orchestrator with explicit flags:**
+1. **Use the process script with explicit flags:**
    ```bash
-   cd foi_pipeline && python orchestrator.py --force 2>&1 | tee .vibe/pipeline-run.log
+   cd foi_pipeline && python process.py --force 2>&1 | tee .vibe/pipeline-run.log
    ```
 
 2. **Check before running:**
@@ -346,14 +346,14 @@ For now, the simplest solution is to:
    if [ -f foi_pipeline/steps/export_status/output.json ]; then
        echo "export_status already complete"
    else
-       cd foi_pipeline && python orchestrator.py --force
+       cd foi_pipeline && python process.py --force
    fi
    ```
 
 3. **Use environment variable guards:**
    ```bash
    export VIBE_PIPELINE_RUN=1
-   cd foi_pipeline && python orchestrator.py --force
+   cd foi_pipeline && python process.py --force
    ```
    And check for this at the start of scripts.
 
@@ -362,7 +362,7 @@ For now, the simplest solution is to:
 ## Summary
 
 - **Start here** for navigation to all agent documentation
-- **Use the orchestrator** (`orchestrator.py`) for running the pipeline
+- **Use the process script** (`process.py`) for running the pipeline
 - **Check export_status** if website data is missing
-- **Enhancing the orchestrator** is likely better than a separate custom agent
+- **Enhancing the process script** is likely better than a separate custom agent
 - **Session awareness** can be added to prevent Vibe from re-running completed steps

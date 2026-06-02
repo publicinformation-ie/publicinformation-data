@@ -67,7 +67,7 @@ DATABASE_URL=file:./local.db python foi_pipeline/steps/db_upload/process.py \
 Or run the full pipeline from `export_status` onward:
 
 ```bash
-DATABASE_URL=file:./local.db python foi_pipeline/orchestrator.py foi_pipeline/ --from export_status
+DATABASE_URL=file:./local.db python foi_pipeline/process.py --from export_status
 ```
 
 ## Notable files

@@ -90,10 +90,10 @@ PYTHONPATH=. python steps/extract_disclosures_deduplicate/process.py \
   --verbose
 ```
 
-Or run via the orchestrator (recommended):
+Or run via the process script (recommended):
 ```bash
 cd foi_pipeline
-python orchestrator.py --from extract_disclosures_deduplicate --force
+python process.py --from extract_disclosures_deduplicate --force
 ```
 
 ## Performance

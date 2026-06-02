@@ -2,16 +2,16 @@
 
 ## Quick Start: Running Steps
 
-**To run all steps via the orchestrator:**
+**To run all steps via the process script:**
 ```bash
 cd ..
-python orchestrator.py --force
+python process.py --force
 ```
 
 **To run from a specific step:**
 ```bash
 cd ..
-python orchestrator.py --from <step_name> --force
+python process.py --from <step_name> --force
 ```
 
 **To run a single step directly:**
@@ -22,7 +22,7 @@ PYTHONPATH=.. python <step_name>/process.py \
   --force
 ```
 
-> **Note:** Use the orchestrator for normal operation. Direct step execution is for testing/debugging only.
+> **Note:** Use the process script for normal operation. Direct step execution is for testing/debugging only.
 
 ## Keeping documentation in sync
 

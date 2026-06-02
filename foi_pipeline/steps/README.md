@@ -34,7 +34,7 @@ The authoritative step order is defined in [`../pipeline.json`](../pipeline.json
 | `errors.json` | Per-record errors (non-fatal warnings and failures) |
 | `override.json` | Manually curated records that are never overwritten by automation |
 | `dirty_ids.json` | Body IDs whose upstream data changed; signals downstream steps to reprocess those records |
-| `pipeline-status.json` | Execution metadata written by the orchestrator |
+| `pipeline-status.json` | Execution metadata written by the process script |
 | `output_schema.json` | JSON Schema for validating `output.json` and `override.json` |
 
 See the parent [`AGENTS.md`](../AGENTS.md) for how to run the pipeline, the override system, and troubleshooting guidance.

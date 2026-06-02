@@ -14,12 +14,12 @@ The pipeline is a series of Python steps that:
 
 **To run the full pipeline:**
 ```bash
-python orchestrator.py --force
+python process.py --force
 ```
 
 **To run from a specific step:**
 ```bash
-python orchestrator.py --from export_status --force
+python process.py --from export_status --force
 ```
 
 **To run a single step manually:**
@@ -30,7 +30,7 @@ PYTHONPATH=. python steps/export_status/process.py \
   --force
 ```
 
-> **Note:** Always use the orchestrator (`orchestrator.py`) rather than calling individual step scripts directly. This ensures dependencies are respected and prevents redundant execution.
+> **Note:** Always use the process script (`process.py`) rather than calling individual step scripts directly. This ensures dependencies are respected and prevents redundant execution.
 
 ## Pipeline Architecture
 
@@ -205,7 +205,7 @@ The final `db_upload` step writes pipeline data to a libSQL database. The target
 To populate a local SQLite database from existing pipeline output:
 
 ```bash
-DATABASE_URL=file:./local.db python orchestrator.py foi_pipeline/ --from export_status
+DATABASE_URL=file:./local.db python process.py --from export_status
 ```
 
 ## Python Environment
@@ -226,7 +226,7 @@ uv run pytest tests/ -q
 ```bash
 source ../scripts/.venv/bin/activate
 cd foi_pipeline
-python orchestrator.py --force
+python process.py --force
 ```
 
 This runs all steps in order from `pipeline.json`.
@@ -235,7 +235,7 @@ This runs all steps in order from `pipeline.json`.
 
 ```bash
 cd foi_pipeline
-python orchestrator.py --from export_status --force
+python process.py --from export_status --force
 ```
 
 This skips all steps before `export_status` and starts from there.
