@@ -4,6 +4,7 @@
     "resolve_website_urls",
     "validate_websites",
     "find_foi_pages",
+    "find_foi_pages_search",
     "check_foi_pages",
     "get_foi_emails",
     "find_disclosure_pages",

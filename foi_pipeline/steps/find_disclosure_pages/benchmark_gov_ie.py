@@ -5,7 +5,7 @@ Benchmark _find_gov_ie against the 18 known-correct gov.ie disclosure page URLs.
 Usage (from repo root):
     cd foi_pipeline && python steps/find_disclosure_pages/benchmark_gov_ie.py
 
-Requires SERPER_API_KEY to be set in the environment.
+Requires APIFY_TOKEN to be set in the environment.
 """
 import csv
 import json

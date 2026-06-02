@@ -20,7 +20,7 @@
           "name": { "type": "string" },
           "official_website_url": { "type": "string" },
           "foi_page_url": { "type": "string" },
-          "source_method": { "enum": ["crawl", "serper", "manual"] },
+          "source_method": { "enum": ["crawl", "apify", "manual"] },
           "is_reachable": { "type": "boolean" },
           "http_status": { "type": ["integer", "null"] },
           "checked_at": { "type": "string", "format": "date-time" },

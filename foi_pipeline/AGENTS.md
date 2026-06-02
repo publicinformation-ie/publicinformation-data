@@ -4,7 +4,7 @@ This document explains how the FOI pipeline processes public body data for the p
 
 ## Overview
 
-The pipeline is a series of 15 Python steps that discover Irish public bodies, validate and enrich their contact information, extract disclosure data, and consolidate results into a final status output consumed by the website.
+The pipeline is a series of 16 Python steps that discover Irish public bodies, validate and enrich their contact information, extract disclosure data, and consolidate results into a final status output consumed by the website.
 
 ## Quick Start
 
@@ -35,23 +35,24 @@ PYTHONPATH=. python steps/export_status/process.py \
 1. `find_public_bodies` - Scrapes the master list from foi.gov.ie
 2. `resolve_website_urls` - Second-pass resolution of gov.ie stub URLs
 3. `validate_websites` - HTTP-checks website reachability
-4. `find_foi_pages` - Discovers FOI pages on each website
-5. `check_foi_pages` - Validates FOI page accessibility
-6. `get_foi_emails` - Extracts FOI email addresses
-7. `find_disclosure_pages` - Locates disclosure log pages
-8. `find_disclosure_files` - Collects disclosure document links
-9. `transform_disclosure_files` - Processes files into structured data
-10. `normalize_disclosure_cells` - Normalizes string cell values
-11. `extract_disclosures_detect_header_row` - Detects header rows
-12. `extract_disclosures_canonicalize` - Maps columns to canonical fields
-13. `export_status` - Fan-in merge of all step outputs (website data source)
-14. `generate_topics` - Groups FOI records into topics
-15. `db_upload` - Populates the libSQL database
+4. `find_foi_pages` - Crawl-only discovery of FOI pages on each website
+5. `find_foi_pages_search` - Apify batch search for bodies where crawl failed (`APIFY_TOKEN` required)
+6. `check_foi_pages` - Validates FOI page accessibility
+7. `get_foi_emails` - Extracts FOI email addresses
+8. `find_disclosure_pages` - Locates disclosure log pages (`APIFY_TOKEN` required for gov.ie bodies)
+9. `find_disclosure_files` - Collects disclosure document links
+10. `transform_disclosure_files` - Processes files into structured data
+11. `normalize_disclosure_cells` - Normalizes string cell values
+12. `extract_disclosures_detect_header_row` - Detects header rows
+13. `extract_disclosures_canonicalize` - Maps columns to canonical fields
+14. `export_status` - Fan-in merge of all step outputs (website data source)
+15. `generate_topics` - Groups FOI records into topics
+16. `db_upload` - Populates the libSQL database
 
 ### Data Flow
 
 ```
-find_public_bodies -> validate_websites -> find_foi_pages -> check_foi_pages
+find_public_bodies -> validate_websites -> find_foi_pages -> find_foi_pages_search -> check_foi_pages
     -> get_foi_emails -> find_disclosure_pages -> find_disclosure_files
     -> transform_disclosure_files -> normalize_disclosure_cells
     -> extract_disclosures_detect_header_row -> extract_disclosures_canonicalize
@@ -110,6 +111,12 @@ python process.py --from validate_websites --public-body 1001
 ```
 
 > **Note:** `--public-body` never forces. Combining with `--force` reduces output to the single body.
+
+## Environment Variables
+
+| Variable | Required by | Description |
+|----------|------------|-------------|
+| `APIFY_TOKEN` | `find_foi_pages_search`, `find_disclosure_pages` | Apify API token for batch search Actor runs. |
 
 ## Key Concepts
 
