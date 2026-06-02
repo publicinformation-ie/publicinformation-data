@@ -82,3 +82,37 @@ def test_resume_skips_already_processed_body(requests_mock, tmp_path):
     dept_a_calls = [r for r in requests_mock.request_history if "dept-a.ie" in r.url]
     assert len(dept_a_calls) == 0
     assert len(writer.results) == 2
+
+
+import sys as _sys
+from scripts.file_utils import read_json as _read_json, write_json as _write_json
+import steps.check_foi_pages.process as _proc
+
+
+def test_public_body_scoped_leaves_others_untouched(requests_mock, tmp_path, monkeypatch):
+    out = tmp_path / "output.json"
+    seeded = [
+        {"public_body_id": 1001, "marker": "keep-1001"},
+        {"public_body_id": 1002, "marker": "old-1002"},
+        {"public_body_id": 1003, "marker": "keep-1003"},
+    ]
+    _write_json(out, {"metadata": {"step": "check_foi_pages"}, "results": seeded})
+
+    inp = tmp_path / "input.json"
+    _write_json(inp, {"results": [
+        {"public_body_id": 1001, "foi_page_url": "https://a.ie/foi/"},
+        {"public_body_id": 1002, "foi_page_url": "https://b.ie/foi/"},
+        {"public_body_id": 1003, "foi_page_url": "https://c.ie/foi/"},
+    ]})
+    requests_mock.get("https://b.ie/foi/", status_code=200)
+
+    monkeypatch.setattr(_proc, "__file__", str(tmp_path / "process.py"))
+    _sys.argv = ["process.py", "--input", str(inp), "--output", str(out),
+                 "--public-body", "1002"]
+    _proc.main()
+
+    results = {r["public_body_id"]: r for r in _read_json(out)["results"]}
+    assert results[1001]["marker"] == "keep-1001"
+    assert results[1003]["marker"] == "keep-1003"
+    assert "marker" not in results[1002] or results[1002]["marker"] != "old-1002"
+    assert _read_json(tmp_path / "dirty_ids.json") == [1002]
