@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "metric": {
+      "type": "object",
+      "required": ["name", "value", "counts", "is_primary"],
+      "properties": {
+        "name": {"type": "string"},
+        "value": {"type": "number"},
+        "counts": {"type": "object"},
+        "is_primary": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "eval_results": {
+      "type": "object",
+      "required": ["step", "metrics", "input_hash", "judge_model"],
+      "properties": {
+        "step": {"type": "string"},
+        "metrics": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/metric"}
+        },
+        "input_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "judge_model": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "issue": {
+      "type": "object",
+      "required": ["severity", "description", "affected_count",
+                   "affected_ids", "suggested_upstream_step",
+                   "suggestion_detail", "confidence"],
+      "properties": {
+        "severity": {"enum": ["error", "warning", "info"]},
+        "description": {"type": "string"},
+        "affected_count": {"type": "integer", "minimum": 0},
+        "affected_ids": {"type": "array", "items": {"type": "string"}},
+        "suggested_upstream_step": {"type": ["string", "null"]},
+        "suggestion_detail": {"type": ["string", "null"]},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": false
+    },
+    "issues_file": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/issue"}
+    }
+  }
+}
