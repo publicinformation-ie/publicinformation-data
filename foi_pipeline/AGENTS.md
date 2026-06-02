@@ -374,6 +374,35 @@ Example for `find_foi_pages`:
 
 Records in `override.json` are validated against `output_schema.json` at startup. An invalid record causes an immediate `ValueError` identifying the offending `public_body_id`. Fix the record and re-run. Steps without `output_schema.json` (e.g. `extract_disclosures`) skip validation.
 
+## Evaluation (evaluate.py)
+
+`uv run python evaluate.py` runs every step that has `steps/<name>/eval/evaluate.py`,
+recomputing only stale evals (same mtime contract as process.py).
+
+- `--steps <names>`   force just these steps
+- `--force`           recompute all
+- `--verbose`         per-item detail
+- `--headline`        print the north-star metric (valid records, bodies, funnel)
+- `--check`           exit non-zero on a regression vs baseline.json (input-hash gated)
+- `--update-baseline` record current scores as the new baseline
+
+LLM-judged steps (find_disclosure_files, canonicalize header mapping) cache
+human-verified judgments in eval/judgments.json. New items are proposed by the
+LLM (verified='auto') and must be human-verified (yes/no) to count toward the
+headline metric. A skipped eval makes zero API calls.
+
+The judge backend is provider-agnostic — pick one per the cost/quality tradeoff:
+
+    EVAL_JUDGE_PROVIDER  anthropic | openai            (default anthropic)
+    EVAL_JUDGE_MODEL     model id                       (provider default otherwise)
+    EVAL_JUDGE_BASE_URL  OpenAI-compatible URL for a LOCAL model (Ollama/vLLM/LM Studio)
+
+e.g. a local run:  EVAL_JUDGE_PROVIDER=openai EVAL_JUDGE_BASE_URL=http://localhost:11434/v1 \
+                   EVAL_JUDGE_MODEL=qwen2.5:7b uv run python evaluate.py --steps find_disclosure_files
+
+Switching provider/model changes the recorded judge_model id ('<provider>:<model>'),
+which is your cue to re-verify cached judgments before trusting the metric.
+
 ### Uniqueness Pass Interaction (find_foi_pages only)
 
 `find_foi_pages` runs a post-process uniqueness check that removes records sharing a `foi_page_url`. Override records participate in this pass. If an override record shares a `foi_page_url` with an automated result, the automated result is dropped — manual truth wins.
