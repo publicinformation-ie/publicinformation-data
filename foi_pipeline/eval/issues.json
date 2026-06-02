@@ -1,0 +1,18 @@
+{
+  "extract_disclosures_detect_header_row": [
+    {
+      "severity": "info",
+      "description": "Low population for fields: decision_date, decision_status, request_description",
+      "affected_count": 3,
+      "affected_ids": [
+        "decision_date",
+        "decision_status",
+        "request_description"
+      ],
+      "suggested_upstream_step": "extract_disclosures_detect_header_row",
+      "suggestion_detail": "possible wrong header row detected upstream",
+      "confidence": 0.6,
+      "_from": "extract_disclosures_canonicalize"
+    }
+  ]
+}
