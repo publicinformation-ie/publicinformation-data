@@ -71,3 +71,47 @@ def test_add_common_args_public_body_must_be_int():
     add_common_args(parser)
     with pytest.raises(SystemExit):
         parser.parse_args(["--input", "i", "--output", "o", "--public-body", "abc"])
+
+
+from scripts.cli_utils import validate_public_body, merge_replacing_body
+from scripts.file_utils import write_json
+
+
+def _seed_bodies(pipeline_dir, ids):
+    step_dir = pipeline_dir / "steps" / "find_public_bodies"
+    step_dir.mkdir(parents=True)
+    write_json(step_dir / "output.json",
+               {"public_bodies": [{"public_body_id": i} for i in ids]})
+
+
+def test_validate_public_body_present(tmp_path):
+    _seed_bodies(tmp_path, [1001, 1002])
+    assert validate_public_body(tmp_path, 1001) is True
+
+
+def test_validate_public_body_absent(tmp_path):
+    _seed_bodies(tmp_path, [1001])
+    assert validate_public_body(tmp_path, 9999) is False
+
+
+def test_validate_public_body_missing_file(tmp_path):
+    # no find_public_bodies/output.json at all
+    assert validate_public_body(tmp_path, 1001) is False
+
+
+def test_merge_replacing_body_replaces_target():
+    existing = [{"public_body_id": 1001, "v": "old"}, {"public_body_id": 1002, "v": "keep"}]
+    new = [{"public_body_id": 1001, "v": "new"}]
+    out = merge_replacing_body(existing, new, 1001)
+    assert {"public_body_id": 1002, "v": "keep"} in out
+    assert {"public_body_id": 1001, "v": "new"} in out
+    assert {"public_body_id": 1001, "v": "old"} not in out
+
+
+def test_merge_replacing_body_empty_existing():
+    assert merge_replacing_body([], [{"public_body_id": 1001}], 1001) == [{"public_body_id": 1001}]
+
+
+def test_merge_replacing_body_empty_new_removes_target():
+    existing = [{"public_body_id": 1001}, {"public_body_id": 1002}]
+    assert merge_replacing_body(existing, [], 1001) == [{"public_body_id": 1002}]
