@@ -6,6 +6,7 @@ import io
 import sys
 from pathlib import Path
 
+from scripts.cli_utils import add_common_args, filter_by_public_body
 from scripts.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
 from scripts.http_utils import fetch
 
@@ -191,10 +192,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="Download and convert disclosure log files (XLSX/XLS/PDF) to JSON arrays"
     )
-    parser.add_argument("--input", required=True)
-    parser.add_argument("--output", required=True)
-    parser.add_argument("--force", action="store_true")
-    parser.add_argument("--verbose", action="store_true")
+    add_common_args(parser)
     args = parser.parse_args()
 
     step_dir = Path(__file__).parent
@@ -206,11 +204,18 @@ def main():
     except Exception as e:
         print(f"Fatal: could not read input: {e}", file=sys.stderr)
         sys.exit(1)
+    input_data = filter_by_public_body(input_data, args.public_body)
+    if args.public_body is not None and not (
+        input_data.get("results") or input_data.get("public_bodies")
+    ):
+        print(f"No input record for public_body_id={args.public_body}", file=sys.stderr)
+        sys.exit(0)
 
     writer = IncrementalWriter(
         output_path, STEP_NAME, key_field="file_url", force=args.force,
         override_path=override_path,
         upstream_dirty_path=Path(args.input).parent / "dirty_ids.json",
+        target_public_body=args.public_body,
     )
 
     if writer.processed_keys:

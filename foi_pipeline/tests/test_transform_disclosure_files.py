@@ -534,3 +534,50 @@ def test_process_cell_serialization_warning(requests_mock, tmp_path, make_writer
     assert len(errors) == 1
     assert errors[0]["error_type"] == "CellSerializationWarning"
     assert "cells" in errors[0]["context"]
+
+
+import sys as _sys
+from scripts.file_utils import read_json as _read_json, write_json as _write_json
+import steps.transform_disclosure_files.process as _proc
+
+
+def test_public_body_scoped_leaves_others_untouched(requests_mock, tmp_path, monkeypatch):
+    out = tmp_path / "output.json"
+    # Seed file-keyed records (multiple files for body 1002)
+    seeded = [
+        {"public_body_id": 1001, "file_url": "https://a.ie/f.xlsx", "marker": "keep-1001"},
+        {"public_body_id": 1002, "file_url": "https://b.ie/f1.xlsx", "marker": "old-1002-f1"},
+        {"public_body_id": 1002, "file_url": "https://b.ie/f2.xlsx", "marker": "old-1002-f2"},
+        {"public_body_id": 1003, "file_url": "https://c.ie/f.xlsx", "marker": "keep-1003"},
+    ]
+    _write_json(out, {"metadata": {"step": "transform_disclosure_files"}, "results": seeded})
+
+    xlsx_bytes = _make_xlsx([["Ref", "Date"], ["001", "2024-01-01"]])
+    inp = tmp_path / "input.json"
+    _write_json(inp, {"results": [
+        {"public_body_id": 1001, "file_url": "https://a.ie/f.xlsx", "file_type": "xlsx",
+         "disclosure_page_url": "https://a.ie/disc/"},
+        {"public_body_id": 1002, "file_url": "https://b.ie/f1.xlsx", "file_type": "xlsx",
+         "disclosure_page_url": "https://b.ie/disc/"},
+        {"public_body_id": 1002, "file_url": "https://b.ie/f2.xlsx", "file_type": "xlsx",
+         "disclosure_page_url": "https://b.ie/disc/"},
+        {"public_body_id": 1003, "file_url": "https://c.ie/f.xlsx", "file_type": "xlsx",
+         "disclosure_page_url": "https://c.ie/disc/"},
+    ]})
+    requests_mock.get("https://b.ie/f1.xlsx", content=xlsx_bytes)
+    requests_mock.get("https://b.ie/f2.xlsx", content=xlsx_bytes)
+
+    monkeypatch.setattr(_proc, "__file__", str(tmp_path / "process.py"))
+    _sys.argv = ["process.py", "--input", str(inp), "--output", str(out),
+                 "--public-body", "1002"]
+    _proc.main()
+
+    results = _read_json(out)["results"]
+    body_map = {}
+    for r in results:
+        body_map.setdefault(r["public_body_id"], []).append(r)
+
+    assert body_map[1001][0]["marker"] == "keep-1001"
+    assert body_map[1003][0]["marker"] == "keep-1003"
+    assert not any(r.get("marker", "").startswith("old-1002") for r in body_map.get(1002, []))
+    assert _read_json(tmp_path / "dirty_ids.json") == [1002]
