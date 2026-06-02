@@ -40,9 +40,6 @@ def main():
         if not any(b.get("public_body_id") == args.public_body for b in bodies):
             sys.exit(f"Error: public body {args.public_body} not found in "
                      f"find_public_bodies/output.json")
-        if args.force:
-            print("Warning: --public-body with --force reduces each step's output "
-                  "to the single body; other bodies will be removed.", file=sys.stderr)
 
     skip_until = args.from_step
     prev_out = None
