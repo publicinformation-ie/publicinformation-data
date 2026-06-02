@@ -28,5 +28,257 @@
     "name": "Criminal Injuries Compensation Scheme",
     "exclusion_reason": "not_subject_to_foi",
     "note": "Not a public body"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/an-rialalai-agraibhia/",
+    "name": "An Rialálai Agraibhia (Agri-Food Regulator)",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/capital-works-management-framework/",
+    "name": "Capital Works Management Framework",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/civil-justice-review/",
+    "name": "Civil Justice Review",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/civil-service-employee-assistance-service/",
+    "name": "Civil Service Employee Assistance Service",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/commission-on-taxation-and-welfare/",
+    "name": "Commission on Taxation and Welfare",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/criminal-law-codification-advisory-committee/",
+    "name": "Criminal Law Codification Advisory Committee",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/educational-research-centre-erc/",
+    "name": "Educational Research Centre (ERC)",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/education-scoping-inquiry/",
+    "name": "Education Scoping Inquiry",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/egovernment-strategy/",
+    "name": "eGovernment Strategy",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/gambling-regulatory-authority-of-ireland/",
+    "name": "Gambling Regulatory Authority of Ireland",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/gender-equality/",
+    "name": "Gender Equality",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/govie-team/",
+    "name": "gov.ie team",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/healthy-ireland/",
+    "name": "Healthy Ireland",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/higher-education-authority/",
+    "name": "Higher Education Authority (HEA)",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/independent-review-group-defence-forces/",
+    "name": "Independent Review Group - Defence Forces",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/interim-grievance-manager-of-the-defence-forces/",
+    "name": "Interim Grievance Manager of the Defence Forces",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/international-protection-accommodation-services-ipas/",
+    "name": "International Protection Accommodation Services (IPAS)",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/irish-government-economic-and-evaluation-service-igees/",
+    "name": "Irish Government Economic and Evaluation Service (IGEES)",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/irish-treaty-series/",
+    "name": "Irish Treaty Series",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/legal-practitioners-disciplinary-tribunal/",
+    "name": "Legal Practitioners Disciplinary Tribunal",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/messaging-ie/",
+    "name": "MessagingIE",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/national-shared-services-office/",
+    "name": "National Shared Services Office",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/office-of-emergency-planning/",
+    "name": "Office of Emergency Planning",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/office-of-government-procurement/",
+    "name": "Office of Government Procurement",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/office-of-the-director-of-authorised-intervention-tuam/",
+    "name": "Office of the Director of Authorised Intervention, Tuam",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/office-of-the-planning-regulator/",
+    "name": "Office of the Planning Regulator",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/office-of-the-protected-disclosures-commissioner/",
+    "name": "Office of the Protected Disclosures Commissioner (OPDC)",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/parliamentary-budget-office/",
+    "name": "Parliamentary Budget Office",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/presidents-establishment/",
+    "name": "President's Establishment",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/public-consultations/",
+    "name": "Public Consultations",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/public-private-partnership/",
+    "name": "Public Private Partnership",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/public-service-ict-strategy/",
+    "name": "Public Service ICT Strategy",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/public-service-reform-plan/",
+    "name": "Public Service Reform Plan",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/safety-on-the-water/",
+    "name": "Safety on the Water",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/single-public-service-pension-scheme/",
+    "name": "Single Public Service Pension Scheme",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/special-eu-programmes-body/",
+    "name": "Special EU Programmes Body",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/study-on-familicide-and-domestic-homicide-reviews/",
+    "name": "Study on Familicide and Domestic Homicide Reviews",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/the-funds-administration-unit/",
+    "name": "The Funds Administration Unit",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/the-future-of-media-commission/",
+    "name": "The Future of Media Commission",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/the-housing-commission/",
+    "name": "The Housing Commission",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/victims-charter/",
+    "name": "Victims Charter",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
+  },
+  {
+    "source_url": "https://www.gov.ie/en/external-oversight-body-of-the-defence-forces/",
+    "name": "Welcome to the website of the External Oversight Body of the Defence Forces (EOBDF)",
+    "exclusion_reason": "not_subject_to_foi",
+    "note": "Not found on foi.gov.ie"
   }
 ]
