@@ -10,7 +10,7 @@ This repository contains the data processing pipeline for [PublicInformation.ie]
 ## Features
 
 - **Comprehensive Coverage**: Processes data from all Irish public bodies subject to FOI legislation
-- **Multi-step Pipeline**: 15 sequential processing steps from discovery to database upload
+- **Multi-step Pipeline**: Sequential processing steps from discovery to database upload
 - **Automated Extraction**: Scrapes websites for FOI pages, contact information, and disclosure documents
 - **Data Normalization**: Standardizes and cleans extracted data for consistency
 - **Override System**: Manual corrections preserved across automated runs
