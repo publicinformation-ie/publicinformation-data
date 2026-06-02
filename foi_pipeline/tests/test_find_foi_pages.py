@@ -41,27 +41,6 @@ def test_unreachable_body_excluded(requests_mock, tmp_path, make_writer):
     assert all(r["public_body_id"] != 1002 for r in writer.results)
 
 
-def test_serper_fallback_when_crawl_finds_nothing(requests_mock, tmp_path, make_writer, monkeypatch):
-    writer = make_writer(STEP_NAME)
-    requests_mock.get("https://dept-a.ie/", text=HTML_WITHOUT_FOI)
-    monkeypatch.setenv("SERPER_API_KEY", "a" * 32)
-    requests_mock.post("https://google.serper.dev/search", json={"organic": [{"link": "https://dept-a.ie/foi/"}]})
-    process(INPUT, tmp_path, writer)
-    assert len(writer.results) == 1
-    assert writer.results[0]["source_method"] == "serper"
-    assert writer.results[0]["foi_page_url"] == "https://dept-a.ie/foi/"
-    assert "Dept A" in requests_mock.last_request.json()["q"]
-
-
-def test_body_excluded_when_no_foi_link_and_no_serper_key(requests_mock, tmp_path, make_writer, monkeypatch):
-    writer = make_writer(STEP_NAME)
-    requests_mock.get("https://dept-a.ie/", text=HTML_WITHOUT_FOI)
-    monkeypatch.delenv("SERPER_API_KEY", raising=False)
-    process(INPUT, tmp_path, writer)
-    assert len(writer.results) == 0
-    errors = json.loads((tmp_path / "errors.json").read_text())
-    assert len(errors) == 1
-    assert "SERPER_API_KEY not set" in errors[0]["error_message"]
 
 
 def test_connection_error_logs_and_skips_body(requests_mock, tmp_path, make_writer):
@@ -117,38 +96,6 @@ GOV_IE_INPUT = {
 }
 
 
-def test_serper_gov_ie_filters_to_path_prefix(requests_mock, tmp_path, make_writer, monkeypatch):
-    writer = make_writer(STEP_NAME)
-    requests_mock.get("https://www.gov.ie/en/courts-service/", text=HTML_WITHOUT_FOI)
-    monkeypatch.setenv("SERPER_API_KEY", "a" * 32)
-    requests_mock.post("https://google.serper.dev/search", json={"organic": [
-        {"link": "https://www.gov.ie/en/social-welfare-appeals/foi/"},
-        {"link": "https://www.gov.ie/en/courts-service/foi/"},
-    ]})
-    process(GOV_IE_INPUT, tmp_path, writer)
-    assert len(writer.results) == 1
-    assert writer.results[0]["foi_page_url"] == "https://www.gov.ie/en/courts-service/foi/"
-
-
-def test_serper_non_gov_ie_not_filtered(requests_mock, tmp_path, make_writer, monkeypatch):
-    writer = make_writer(STEP_NAME)
-    requests_mock.get("https://dept-a.ie/", text=HTML_WITHOUT_FOI)
-    monkeypatch.setenv("SERPER_API_KEY", "a" * 32)
-    requests_mock.post("https://google.serper.dev/search", json={"organic": [{"link": "https://dept-a.ie/foi/"}]})
-    process(INPUT, tmp_path, writer)
-    assert len(writer.results) == 1
-    assert writer.results[0]["foi_page_url"] == "https://dept-a.ie/foi/"
-
-
-def test_serper_gov_ie_no_matching_prefix_returns_nothing(requests_mock, tmp_path, make_writer, monkeypatch):
-    writer = make_writer(STEP_NAME)
-    requests_mock.get("https://www.gov.ie/en/courts-service/", text=HTML_WITHOUT_FOI)
-    monkeypatch.setenv("SERPER_API_KEY", "a" * 32)
-    requests_mock.post("https://google.serper.dev/search", json={"organic": [
-        {"link": "https://www.gov.ie/en/social-welfare-appeals/foi/"}
-    ]})
-    process(GOV_IE_INPUT, tmp_path, writer)
-    assert len(writer.results) == 0
 
 
 BLOCKLIST_INPUT = {
@@ -166,11 +113,9 @@ BLOCKED_URL_TRAILING_SLASH_HTML = '<html><body><a href="https://www.gov.ie/en/to
 DUPLICATE_FOI_HTML = '<html><body><a href="https://shared-foi.ie/foi/">FOI</a></body></html>'
 
 
-def test_no_foi_found_logs_error(requests_mock, tmp_path, make_writer, monkeypatch):
+def test_no_foi_found_logs_error(requests_mock, tmp_path, make_writer):
     writer = make_writer(STEP_NAME)
     requests_mock.get("https://dept-a.ie/", text=HTML_WITHOUT_FOI)
-    monkeypatch.setenv("SERPER_API_KEY", "a" * 32)
-    requests_mock.post("https://google.serper.dev/search", json={"organic": []})
     process(INPUT, tmp_path, writer)
     assert len(writer.results) == 0
     errors = json.loads((tmp_path / "errors.json").read_text())
@@ -267,10 +212,10 @@ EXISTING_RESULT = {
     "foi_page_url": "https://dept-a.ie/foi/", "source_method": "crawl",
 }
 
-SERPER_ERROR = {
+CRAWL_ERROR = {
     "step": STEP_NAME, "timestamp": "2026-05-06T14:00:00+00:00",
-    "error_type": "ValueError",
-    "error_message": "SERPER_API_KEY not set and FOI page not found via crawl for Dept B",
+    "error_type": "FoiPageNotFound",
+    "error_message": "No FOI page found via crawl for Dept B",
     "context": {"url": "https://dept-b.ie/", "public_body_id": 1002, "name": "Dept B"},
 }
 
@@ -288,7 +233,7 @@ def test_retry_with_no_errors_file_does_not_modify_output(tmp_path):
 def test_retry_processes_only_failed_bodies(requests_mock, tmp_path):
     output_path = tmp_path / "output.json"
     write_json(output_path, {"metadata": {}, "results": [EXISTING_RESULT]})
-    write_json(tmp_path / "errors.json", [SERPER_ERROR])
+    write_json(tmp_path / "errors.json", [CRAWL_ERROR])
     input_path = tmp_path / "input.json"
     write_json(input_path, RETRY_INPUT)
     requests_mock.get("https://dept-b.ie/", text=HTML_WITH_FOI_LINK)

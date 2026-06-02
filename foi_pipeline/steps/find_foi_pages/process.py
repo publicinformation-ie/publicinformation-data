@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import argparse
-import os
 import sys
 from collections import Counter
 from datetime import datetime, timezone
@@ -11,7 +10,7 @@ from bs4 import BeautifulSoup
 
 from scripts.cli_utils import add_common_args, filter_by_public_body
 from scripts.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
-from scripts.http_utils import fetch, is_safe_url, search_serper, validate_url_or_raise
+from scripts.http_utils import fetch, is_safe_url, validate_url_or_raise
 
 STEP_NAME = "find_foi_pages"
 FOI_KEYWORDS = ["foi", "freedom of information", "freedom-of-information", "freedom_of_information"]
@@ -74,32 +73,6 @@ def find_secondary_crawl_url(html, base_url):
     return None
 
 
-def find_foi_via_serper(website_url, name):
-    domain = urlparse(website_url).netloc
-    query = f"site:{domain} {name} freedom of information"
-    results = search_serper(query)
-    if not results:
-        return None
-
-    parsed = urlparse(website_url)
-    if parsed.netloc == "www.gov.ie":
-        path_prefix = parsed.path
-        results = [r for r in results if urlparse(r.get("link", "")).path.startswith(path_prefix)]
-
-    for r in results:
-        link = r.get("link", "")
-        if not link:
-            continue
-        try:
-            validate_url_or_raise(link, context="serper_result")
-        except ValueError:
-            continue
-        path = urlparse(link).path.lower()
-        if any(kw in path for kw in FOI_URL_KEYWORDS):
-            return link
-
-    return None
-
 
 def process(input_data, step_dir, writer, verbose=False):
     errors_path = Path(step_dir) / "errors.json"
@@ -129,20 +102,11 @@ def process(input_data, step_dir, writer, verbose=False):
                         pass
 
             if foi_url is None:
-                if not os.environ.get("SERPER_API_KEY"):
-                    raise ValueError(
-                        f"SERPER_API_KEY not set and FOI page not found via crawl for {name} ({url}). "
-                        "Set SERPER_API_KEY environment variable or fix crawl logic."
-                    )
-                foi_url = find_foi_via_serper(url, name)
-                source_method = "serper"
-
-            if foi_url is None:
                 append_error(step_dir, {
                     "step": STEP_NAME,
                     "timestamp": datetime.now(timezone.utc).isoformat(),
                     "error_type": "FoiPageNotFound",
-                    "error_message": f"No FOI page found via crawl or serper for {name} ({url})",
+                    "error_message": f"No FOI page found via crawl for {name} ({url})",
                     "context": {"url": url, "public_body_id": body_id, "name": name},
                 })
                 writer.append([])
