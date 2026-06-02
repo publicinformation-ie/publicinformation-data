@@ -143,15 +143,21 @@ def main():
 
     labels = _load_labels(args.labels)
     records = _load_records(args.input_path)
-    counts, precision, recall, f1, details, skipped = score(records, labels)
+    results, issues = run_eval(records, labels, Path(args.input_path))
+
+    primary = next(m for m in results.metrics if m.is_primary)
+    counts = primary.counts
+    precision = next(m.value for m in results.metrics if m.name == "precision")
+    recall = next(m.value for m in results.metrics if m.name == "recall")
+    skipped_issues = [i for i in issues if "no output record" in i.description]
+    skipped = skipped_issues[0].affected_count if skipped_issues else 0
 
     print(f"Labelled bodies evaluated: {sum(counts.values())}")
     print(f"  TP={counts['TP']}  FP={counts['FP']}  FN={counts['FN']}  TN={counts['TN']}")
-    print(f"  precision={precision:.3f}  recall={recall:.3f}  f1={f1:.3f}")
+    print(f"  precision={precision:.3f}  recall={recall:.3f}  f1={primary.value:.3f}")
     if skipped:
         print(f"  WARNING: {skipped} labelled bodies had no output record (excluded)")
 
-    results, issues = run_eval(records, labels, Path(args.input_path))
     eval_utils.write_eval_outputs(here, results, issues)
     return 0
 
