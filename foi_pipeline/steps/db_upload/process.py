@@ -5,6 +5,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+from scripts.cli_utils import add_common_args
 from scripts.db_client import DbClient
 from scripts.file_utils import read_json, write_json, write_status
 
@@ -143,14 +144,16 @@ def upload_topics(db, steps_dir, disclosure_id_map):
 
 def main():
     parser = argparse.ArgumentParser(description="Upload pipeline data to libSQL database")
-    parser.add_argument("--input", required=True)
-    parser.add_argument("--output", required=True)
-    parser.add_argument("--force", action="store_true")
-    parser.add_argument("--verbose", action="store_true")
+    add_common_args(parser)
     args = parser.parse_args()
 
     step_dir = Path(__file__).parent
     output_path = Path(args.output)
+
+    if args.public_body is not None:
+        print("--public-body scoped db_upload skipped: upsert is not idempotent; run a full upload.",
+              file=sys.stderr)
+        sys.exit(0)
 
     if not args.force and output_path.exists():
         print(f"Output exists at {output_path}, skipping (use --force to re-run)")

@@ -232,3 +232,19 @@ class TestUploadTopics:
         upload_topics(db, steps_dir, {})  # empty id_map — no topic_disclosures
         tds = db.execute("SELECT * FROM topic_disclosures")
         assert len(tds) == 0
+
+
+import sys as _sys
+import steps.db_upload.process as _proc
+
+
+def test_public_body_scoped_skips_and_exits_clean(tmp_path, monkeypatch):
+    # db_upload inserts are not idempotent -- scoped run must skip
+    out = tmp_path / "output.json"
+    monkeypatch.setattr(_proc, "__file__", str(tmp_path / "process.py"))
+    _sys.argv = ["process.py", "--input", "unused", "--output", str(out),
+                 "--public-body", "1002"]
+    with pytest.raises(SystemExit) as exc:
+        _proc.main()
+    assert exc.value.code == 0  # clean exit (not an error)
+    assert not out.exists()  # no output written
