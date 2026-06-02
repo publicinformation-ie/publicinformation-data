@@ -9,6 +9,7 @@ from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
 
+from scripts.cli_utils import add_common_args, filter_by_public_body
 from scripts.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
 from scripts.http_utils import fetch, is_safe_url, search_serper, validate_url_or_raise
 
@@ -273,12 +274,8 @@ def retry(input_path, output_path, step_dir):
 
 def main():
     parser = argparse.ArgumentParser(description="Find FOI pages for public bodies")
-    parser.add_argument("--input", required=True)
-    parser.add_argument("--output", required=True)
-    group = parser.add_mutually_exclusive_group()
-    group.add_argument("--force", action="store_true")
-    group.add_argument("--retry", action="store_true")
-    parser.add_argument("--verbose", action="store_true")
+    add_common_args(parser)
+    parser.add_argument("--retry", action="store_true")
     args = parser.parse_args()
 
     step_dir = Path(__file__).parent
@@ -294,9 +291,16 @@ def main():
     except Exception as e:
         print(f"Fatal: could not read input: {e}", file=sys.stderr)
         sys.exit(1)
+    input_data = filter_by_public_body(input_data, args.public_body)
+    if args.public_body is not None and not (
+        input_data.get("results") or input_data.get("public_bodies")
+    ):
+        print(f"No input record for public_body_id={args.public_body}", file=sys.stderr)
+        sys.exit(0)
 
     writer = IncrementalWriter(output_path, STEP_NAME, force=args.force,
-                               override_path=override_path)
+                               override_path=override_path,
+                               target_public_body=args.public_body)
 
     if writer.processed_keys:
         print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")

@@ -439,3 +439,38 @@ def test_uniqueness_pass_keeps_override_drops_automated_duplicate(requests_mock,
     body_ids = [r["public_body_id"] for r in writer.results]
     assert 1001 in body_ids   # override survives
     assert 1003 not in body_ids  # automated duplicate dropped
+
+
+import sys as _sys
+from scripts.file_utils import read_json as _read_json, write_json as _write_json
+import steps.find_foi_pages.process as _proc
+
+
+def test_public_body_scoped_leaves_others_untouched(requests_mock, tmp_path, monkeypatch):
+    out = tmp_path / "output.json"
+    # Seed realistic find_foi_pages records (need foi_page_url for uniqueness pass)
+    seeded = [
+        {"public_body_id": 1001, "foi_page_url": "https://a.ie/foi/", "marker": "keep-1001"},
+        {"public_body_id": 1002, "foi_page_url": "https://b.ie/foi/", "marker": "old-1002"},
+        {"public_body_id": 1003, "foi_page_url": "https://c.ie/foi/", "marker": "keep-1003"},
+    ]
+    _write_json(out, {"metadata": {"step": "find_foi_pages"}, "results": seeded})
+
+    inp = tmp_path / "input.json"
+    _write_json(inp, {"results": [
+        {"public_body_id": 1001, "official_website_url": "https://a.ie/", "is_reachable": True},
+        {"public_body_id": 1002, "official_website_url": "https://b.ie/", "is_reachable": True},
+        {"public_body_id": 1003, "official_website_url": "https://c.ie/", "is_reachable": True},
+    ]})
+    requests_mock.get("https://b.ie/", text=HTML_WITH_FOI_LINK)
+
+    monkeypatch.setattr(_proc, "__file__", str(tmp_path / "process.py"))
+    _sys.argv = ["process.py", "--input", str(inp), "--output", str(out),
+                 "--public-body", "1002"]
+    _proc.main()
+
+    results = {r["public_body_id"]: r for r in _read_json(out)["results"]}
+    assert results[1001]["marker"] == "keep-1001"
+    assert results[1003]["marker"] == "keep-1003"
+    assert "marker" not in results[1002] or results[1002]["marker"] != "old-1002"
+    assert _read_json(tmp_path / "dirty_ids.json") == [1002]
