@@ -1,0 +1,46 @@
+{
+  "steps": {
+    "find_disclosure_pages": {
+      "f1": {
+        "value": 0.574,
+        "input_hash": "4da40369fbaf0667c19bf295491d0a71e09532273d754fd3535372834b296264",
+        "recorded_at": "2026-06-02T12:13:30.345439+00:00",
+        "commit": "cddc4cb"
+      }
+    },
+    "find_disclosure_files": {
+      "precision": {
+        "value": 0.975,
+        "input_hash": "cb204a7a192545611b575ad05ebe724d6a830fd32b04f979cac1a9911feb8205",
+        "recorded_at": "2026-06-02T12:13:30.358792+00:00",
+        "commit": "cddc4cb"
+      }
+    },
+    "extract_disclosures_detect_header_row": {
+      "accuracy": {
+        "value": 1.0,
+        "input_hash": "3e8f6e1b37426b36ead16961861b6a207224d392bc18a8c5afa231509954f3d3",
+        "recorded_at": "2026-06-02T12:13:30.369344+00:00",
+        "commit": "cddc4cb"
+      }
+    },
+    "extract_disclosures_canonicalize": {
+      "header_mapping_accuracy": {
+        "value": 1.0,
+        "input_hash": "3ac4b16fb72a3291e270bec367dc9b1efefbca4e1465acf02695af060c798334",
+        "recorded_at": "2026-06-02T12:13:30.378973+00:00",
+        "commit": "cddc4cb"
+      }
+    }
+  },
+  "headline": {
+    "valid_records": 4453,
+    "bodies_with_record": 10
+  },
+  "funnel": {
+    "find_disclosure_files": 642,
+    "transform_disclosure_files": 156,
+    "extract_disclosures_detect_header_row": 614,
+    "extract_disclosures_canonicalize": 69401
+  }
+}
