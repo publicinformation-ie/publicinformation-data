@@ -28,7 +28,7 @@ Reads directly from sibling step directories (not via `--input`):
 - `find_disclosure_files/output.json`
 - `extract_disclosures_canonicalize/output.json`
 - `generate_topics/output.json`
-- `schema.sql` at the repo root
+- `public/schema.sql`
 
 ## Output
 
@@ -74,4 +74,4 @@ DATABASE_URL=file:./local.db python foi_pipeline/orchestrator.py foi_pipeline/ -
 
 - `process.py` — step entry point; also exports `upload_*` and `clear_pipeline_tables` functions used in tests
 - `../../scripts/db_client.py` — sqlite3 / libSQL HTTP abstraction used by this step
-- `../../schema.sql` (repo root) — canonical schema; owned by this repo
+- `../../public/schema.sql` — canonical schema; owned by this repo

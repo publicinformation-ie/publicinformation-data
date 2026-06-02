@@ -104,7 +104,7 @@ def steps_dir(tmp_path):
 
 @pytest.fixture
 def db():
-    schema_sql = (REPO_ROOT / "schema.sql").read_text(encoding="utf-8")
+    schema_sql = (REPO_ROOT / "public" / "schema.sql").read_text(encoding="utf-8")
     client = DbClient(":memory:")
     client.executescript(schema_sql)
     yield client
