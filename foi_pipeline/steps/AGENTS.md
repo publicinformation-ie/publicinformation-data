@@ -1,5 +1,7 @@
 # Steps Directory — Agent Instructions
 
+For the top-level pipeline overview, see the parent [AGENTS.md](../AGENTS.md).
+
 ## Quick Start: Running Steps
 
 **To run all steps via the process script:**
