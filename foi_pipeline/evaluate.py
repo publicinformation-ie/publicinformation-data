@@ -111,12 +111,11 @@ def main(argv=None):
     for step in eval_steps:
         eval_dir = steps_dir / step / "eval"
         results_path = eval_dir / "eval_results.json"
-        forced = args.force or (args.steps and step in args.steps)
+        if args.steps and step not in args.steps:
+            continue
+        forced = args.force or bool(args.steps)
         if not forced and not eval_utils.is_eval_stale(results_path, eval_dependencies(eval_dir)):
             print(f"Skipping {step} eval (up to date)")
-            continue
-        if args.steps and step not in args.steps:
-            print(f"Skipping {step} eval (not requested)")
             continue
         run_step_eval(steps_dir, step, here)
 
