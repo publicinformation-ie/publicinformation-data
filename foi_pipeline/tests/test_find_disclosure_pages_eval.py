@@ -64,3 +64,36 @@ def test_score_aggregates_and_computes_precision_recall():
     assert abs(f1 - 0.4) < 1e-9
     assert ("2", "https://x.ie/wrong") in details["FP"]
     assert ("3", "https://x.ie/log") in details["FN"]
+
+
+from pathlib import Path
+
+import eval_utils
+from steps.find_disclosure_pages.eval import evaluate as fdp_eval
+
+EVAL_DIR = Path(fdp_eval.__file__).parent
+
+
+def test_run_eval_builds_primary_f1_metric_and_promotes_skipped(tmp_path):
+    labels = [
+        {"public_body_id": "1", "label": "distinct_log", "expected_url": "https://x.ie/log"},
+        {"public_body_id": "9", "label": "distinct_log", "expected_url": "https://x.ie/log"},
+    ]
+    records = {
+        "1": {"disclosure_page_url": "https://x.ie/log", "foi_page_url": "https://x.ie/foi"},
+        # id 9 has no record -> skipped -> warning Issue
+    }
+    fixture = tmp_path / "matcher_output.json"
+    fixture.write_text('{"results": []}')
+
+    results, issues = fdp_eval.run_eval(records, labels, fixture)
+
+    primary = [m for m in results.metrics if m.is_primary]
+    assert len(primary) == 1
+    assert primary[0].name == "f1"
+    assert results.input_hash == eval_utils.input_hash(fixture)
+    assert any(i.severity == "warning" and "no output record" in i.description for i in issues)
+
+
+def test_default_fixture_is_committed_matcher_output():
+    assert (EVAL_DIR / "matcher_output.json").exists()

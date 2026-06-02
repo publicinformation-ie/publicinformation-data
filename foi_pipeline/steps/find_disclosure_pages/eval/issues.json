@@ -1,0 +1,321 @@
+[
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1007",
+    "affected_count": 1,
+    "affected_ids": [
+      "1007"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://enterprise.gov.ie/en/who-we-are/corporate-information/freedom-of-information/foi-log/",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1008",
+    "affected_count": 1,
+    "affected_ids": [
+      "1008"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.gov.ie/en/department-of-finance/organisation-information/foi-disclosure-log-and-information-routinely-published-by-the-department-of-finance/",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1012",
+    "affected_count": 1,
+    "affected_ids": [
+      "1012"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.gov.ie/en/department-of-housing-local-government-and-heritage/organisation-information/freedom-of-information-foi/#foi-logs",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1013",
+    "affected_count": 1,
+    "affected_ids": [
+      "1013"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/organisation-information/freedom-of-information-foi/#foi-disclosure-logs",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1015",
+    "affected_count": 1,
+    "affected_ids": [
+      "1015"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.gov.ie/en/department-of-rural-and-community-development-and-the-gaeltacht/organisation-information/freedom-of-informationaccess-to-information-on-the-environment/#aie-disclosure-log",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1037",
+    "affected_count": 1,
+    "affected_ids": [
+      "1037"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.ccpc.ie/about-us/corporate-information/governance/freedom-of-information/foi-disclosure-log-2026-q1",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1053",
+    "affected_count": 1,
+    "affected_ids": [
+      "1053"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.gsinsp.ie/foi-aie/#b3dc6807aac9b7316",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1074",
+    "affected_count": 1,
+    "affected_ids": [
+      "1074"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.marine.ie/sites/default/files/MIFiles/Docs_Comms/FOI Disclosure Log (2016-2018).pdf",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1078",
+    "affected_count": 1,
+    "affected_ids": [
+      "1078"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.nsso.gov.ie/971/NSSO_FOI_Disclosure_Log_including_2025.docx",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1080",
+    "affected_count": 1,
+    "affected_ids": [
+      "1080"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.nationaltransport.ie/wp-content/uploads/2026/04/2025-Q4-FOI-Disclosure-Log.pdf",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1087",
+    "affected_count": 1,
+    "affected_ids": [
+      "1087"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.ocei.ie/en/organisation-information/269a9-foi-publication-scheme/#foi-disclosure-log-and-other-information-to-be-published-routinely",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1088",
+    "affected_count": 1,
+    "affected_ids": [
+      "1088"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned http://www.audgen.gov.ie/en/about-us/our work/governance codes and related disclosures/",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1093",
+    "affected_count": 1,
+    "affected_ids": [
+      "1093"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.opdc.ie/en/collection/d4c19-freedom-of-information#foi-disclosure-log-and-other-information-to-be-published-routinely",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1094",
+    "affected_count": 1,
+    "affected_ids": [
+      "1094"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.revenue.ie/en/corporate/statutory-obligations/freedom-of-information/foi-in-revenue/can-you-appeal-an-foi-decision.aspx",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1097",
+    "affected_count": 1,
+    "affected_ids": [
+      "1097"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.gov.ie/en/parole-board/organisation-information/parole-board-freedom-of-information-publication-scheme/#foi-disclosures-log",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1102",
+    "affected_count": 1,
+    "affected_ids": [
+      "1102"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.publicjobs.ie/en/foi/disclosure",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1107",
+    "affected_count": 1,
+    "affected_ids": [
+      "1107"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.sfpa.ie/LinkClick.aspx?fileticket=Wf_ls8f4nI0%3d&portalid=0",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1116",
+    "affected_count": 1,
+    "affected_ids": [
+      "1116"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://tailte.ie/foi-disclosure-log/",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1117",
+    "affected_count": 1,
+    "affected_ids": [
+      "1117"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://teagasc.ie/wp-content/uploads/2025/05/Teagasc-FOI-Disclosure-Log-2023.pdf",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1128",
+    "affected_count": 1,
+    "affected_ids": [
+      "1128"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned http://www.cavancoco.ie/services/corporate-governance/freedom-of-information/foi-disclosure-logs.html",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1133",
+    "affected_count": 1,
+    "affected_ids": [
+      "1133"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.dublincity.ie/sites/default/files/2026-04/disclosure-log-q1-2026.pdf",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1135",
+    "affected_count": 1,
+    "affected_ids": [
+      "1135"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.fingal.ie/sites/default/files/2026-01/2024-foi-disclosure-log.pdf",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1136",
+    "affected_count": 1,
+    "affected_ids": [
+      "1136"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.galwaycity.ie/sites/default/files/2026-01/Tuairisc%20Nochta%20-%20Disclosure%20Log%202025.pdf",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1140",
+    "affected_count": 1,
+    "affected_ids": [
+      "1140"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.kilkennycoco.ie/eng/your_council/disclosure-of-donations-expenditure/",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1145",
+    "affected_count": 1,
+    "affected_ids": [
+      "1145"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.louthcoco.ie/en/policy-and-redress/freedom-of-information/disclosure-logs/",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1147",
+    "affected_count": 1,
+    "affected_ids": [
+      "1147"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.meath.ie/council/your-council/customer-service-and-communications/freedom-of-information",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1150",
+    "affected_count": 1,
+    "affected_ids": [
+      "1150"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned http://www.roscommoncoco.ie//!DIXNC4",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1152",
+    "affected_count": 1,
+    "affected_ids": [
+      "1152"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.sdcc.ie/en/services/our-council/access-to-information/freedom-of-information/foi-disclosure-log1.xlsx",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1156",
+    "affected_count": 1,
+    "affected_ids": [
+      "1156"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.wexfordcoco.ie/council-and-democracy/freedom-of-information-foi-and-data-protection/disclosure-log-of-foi",
+    "confidence": 0.6
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "step": "find_disclosure_pages",
+  "metrics": [
+    {
+      "name": "f1",
+      "value": 0.574,
+      "counts": {
+        "TP": 29,
+        "FP": 29,
+        "FN": 14,
+        "TN": 50
+      },
+      "is_primary": true
+    },
+    {
+      "name": "precision",
+      "value": 0.5,
+      "counts": {
+        "TP": 29,
+        "FP": 29
+      },
+      "is_primary": false
+    },
+    {
+      "name": "recall",
+      "value": 0.674,
+      "counts": {
+        "TP": 29,
+        "FN": 14
+      },
+      "is_primary": false
+    }
+  ],
+  "input_hash": "4da40369fbaf0667c19bf295491d0a71e09532273d754fd3535372834b296264",
+  "judge_model": null
+}
