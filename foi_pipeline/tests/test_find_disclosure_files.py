@@ -176,3 +176,45 @@ def test_resume_skips_already_processed_body(requests_mock, tmp_path, make_write
                     if "dept-a.ie" in r.url]
     assert len(dept_a_calls) == 0
     assert len([r for r in writer.results if r["public_body_id"] == 1001]) == 1
+
+
+import sys as _sys
+from scripts.file_utils import read_json as _read_json, write_json as _write_json
+import steps.find_disclosure_files.process as _proc
+
+
+def test_public_body_scoped_leaves_others_untouched(requests_mock, tmp_path, monkeypatch):
+    out = tmp_path / "output.json"
+    # Seed file-keyed records (file_url key)
+    seeded = [
+        {"public_body_id": 1001, "file_url": "https://a.ie/f1.pdf", "marker": "keep-1001"},
+        {"public_body_id": 1002, "file_url": "https://b.ie/f1.pdf", "marker": "old-1002-f1"},
+        {"public_body_id": 1002, "file_url": "https://b.ie/f2.pdf", "marker": "old-1002-f2"},
+        {"public_body_id": 1003, "file_url": "https://c.ie/f1.pdf", "marker": "keep-1003"},
+    ]
+    _write_json(out, {"metadata": {"step": "find_disclosure_files"}, "results": seeded})
+
+    inp = tmp_path / "input.json"
+    _write_json(inp, {"results": [
+        {"public_body_id": 1001, "disclosure_page_url": "https://a.ie/disc/"},
+        {"public_body_id": 1002, "disclosure_page_url": "https://b.ie/disc/"},
+        {"public_body_id": 1003, "disclosure_page_url": "https://c.ie/disc/"},
+    ]})
+    requests_mock.get("https://b.ie/disc/", text=HTML_WITH_MULTIPLE)
+
+    monkeypatch.setattr(_proc, "__file__", str(tmp_path / "process.py"))
+    _sys.argv = ["process.py", "--input", str(inp), "--output", str(out),
+                 "--public-body", "1002"]
+    _proc.main()
+
+    results = _read_json(out)["results"]
+    body_map = {}
+    for r in results:
+        body_map.setdefault(r["public_body_id"], []).append(r)
+
+    # 1001 and 1003 records untouched
+    assert body_map[1001][0]["marker"] == "keep-1001"
+    assert body_map[1003][0]["marker"] == "keep-1003"
+    # Old 1002 file records removed, new ones present
+    assert not any(r.get("marker", "").startswith("old-1002") for r in body_map.get(1002, []))
+    assert _read_json(tmp_path / "dirty_ids.json") == [1002]
