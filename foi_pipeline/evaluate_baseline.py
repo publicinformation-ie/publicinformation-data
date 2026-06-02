@@ -30,11 +30,14 @@ def collect_current(pipeline_dir: Path, steps: list[str]) -> dict:
         rp = steps_dir / step / "eval" / "eval_results.json"
         if not rp.exists():
             continue
-        data = json.loads(rp.read_text())
-        primary = next((m for m in data["metrics"] if m.get("is_primary")), None)
-        if primary:
-            current[step] = {"name": primary["name"], "value": primary["value"],
-                             "input_hash": data["input_hash"]}
+        try:
+            data = json.loads(rp.read_text())
+            primary = next((m for m in data["metrics"] if m.get("is_primary")), None)
+            if primary:
+                current[step] = {"name": primary["name"], "value": primary["value"],
+                                 "input_hash": data["input_hash"]}
+        except (KeyError, json.JSONDecodeError) as exc:
+            print(f"Warning: skipping {step} eval results ({exc})")
     return current
 
 
@@ -66,10 +69,9 @@ def handle_baseline(pipeline_dir: Path, steps: list[str], args) -> int:
     baseline_path = pipeline_dir / "baseline.json"
     current = collect_current(pipeline_dir, steps)
 
-    from evaluate_headline import print_headline
-    current_headline, current_funnel = print_headline(pipeline_dir)
-
     if args.update_baseline:
+        from evaluate_headline import print_headline
+        current_headline, current_funnel = print_headline(pipeline_dir)
         baseline = {
             "steps": {s: {c["name"]: {"value": c["value"], "input_hash": c["input_hash"],
                                       "recorded_at": datetime.now(timezone.utc).isoformat(),
@@ -85,8 +87,17 @@ def handle_baseline(pipeline_dir: Path, steps: list[str], args) -> int:
 
     if args.check:
         baseline = json.loads(baseline_path.read_text()) if baseline_path.exists() else {}
+        if not baseline:
+            print("Warning: no baseline.json found — run --update-baseline first")
+            return 0
         regressions = find_regressions(baseline, current)
-        h_reg = headline_regressed(baseline, current_headline)
+        # Try to get current headline for headline regression check
+        try:
+            from evaluate_headline import print_headline
+            current_headline, _ = print_headline(pipeline_dir)
+            h_reg = headline_regressed(baseline, current_headline)
+        except Exception:
+            h_reg = False
         for step, metric, was, now in regressions:
             print(f"REGRESSION {step}.{metric}: {was:.3f} -> {now:.3f}")
         if h_reg:
