@@ -37,4 +37,16 @@ The authoritative step order is defined in [`../pipeline.json`](../pipeline.json
 | `pipeline-status.json` | Execution metadata written by the process script |
 | `output_schema.json` | JSON Schema for validating `output.json` and `override.json` |
 
-See the parent [`AGENTS.md`](../AGENTS.md) for how to run the pipeline, the override system, and troubleshooting guidance.
+See the parent [`AGENTS.md`](../AGENTS.md) for how to run the pipeline, the override system, troubleshooting guidance, and the `--public-body` flag.
+
+## Scoping a step to one public body
+
+Every step accepts `--public-body <ID>` to reprocess only that body while leaving all other bodies byte-for-byte unchanged. Three implementation shapes handle this:
+
+| Shape | Steps | Mechanism |
+|-------|-------|-----------|
+| §a evict | `resolve_website_urls`, `validate_websites`, `find_foi_pages`, `check_foi_pages`, `get_foi_emails`, `find_disclosure_pages`, `find_disclosure_files`, `transform_disclosure_files`, `normalize_disclosure_cells`, `extract_disclosures_detect_header_row` | `IncrementalWriter(target_public_body=ID)` evicts the body on load and marks it dirty so downstream steps cascade automatically. |
+| §b merge-back | `extract_disclosures_canonicalize`, `extract_disclosures_deduplicate` | Filters input to the target body, processes it, then merges the new records back over the existing output (replacing only that body's rows). |
+| §c filter-reads | `export_status`, `generate_topics`, `db_upload` | Aggregator/publisher steps filter every consumed read to the target body. Output is derived/best-effort — run a full pipeline before publishing. |
+
+`find_public_bodies` is confirm-only when scoped: it verifies the body exists and leaves its output untouched.

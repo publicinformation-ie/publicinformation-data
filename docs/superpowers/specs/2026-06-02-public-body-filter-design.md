@@ -1,8 +1,7 @@
 # Public Body Filter Feature Design
 
-**Date:** 2026-06-02  
-**Status:** Draft  
-**Author:** Mistral Vibe  
+**Date:** 2026-06-02
+**Status:** Implemented
 **Spec Location:** `docs/superpowers/specs/2026-06-02-public-body-filter-design.md`
 
 ---
@@ -11,779 +10,560 @@
 
 ### Summary
 
-Add a `--public-body <ID>` command-line flag to the FOI pipeline that filters all processing to a single specified public body. This allows developers to:
+Add a `--public-body <ID>` command-line flag to the FOI pipeline that scopes
+processing to a single public body, **without altering the output for any other
+public body**. The flag works both at the orchestration level (`process.py`)
+and for individual step `process.py` scripts.
 
-- Test and debug individual public body processing without running the full dataset
-- Reprocess a single public body after fixes without affecting others
-- Run individual steps against a specific public body for targeted investigation
+This enables developers to:
+
+- Reprocess a single public body after an override/fix, cascading downstream,
+  while leaving all other bodies' committed output untouched.
+- Test/debug a single step against one body in isolation.
+- Iterate in seconds instead of running ~500 bodies through 16 steps.
 
 ### Goals
 
-1. Add `--public-body <ID>` flag to `process.py` orchestration
-2. Add `--public-body <ID>` flag to all individual step `process.py` scripts
-3. Filter input data at each step to only process the specified public body
-4. Maintain unchanged output file structure (array wrappers preserved)
-5. Extract common CLI argument handling into a reusable library
-6. Support incremental migration (steps updated one at a time)
+1. Add `--public-body <ID>` to `process.py` orchestration and to individual steps.
+2. **Preserve all other bodies' output byte-for-byte** when targeting one body
+   (this is the central requirement — see Architecture).
+3. Reprocess the targeted body even if it was already processed, and cascade
+   that reprocessing downstream — reusing the existing `dirty_ids` mechanism.
+4. Maintain the existing output file structure (`results` / `public_bodies`
+   array wrappers, `metadata`, `errors.json`, `dirty_ids.json`, status files).
+5. Centralize the new CLI/filtering logic in a reusable `scripts/cli_utils.py`.
+6. Support incremental migration (one step at a time, backward compatible).
 
 ### Non-Goals
 
-1. Changing the output file structure or format
-2. Modifying the pipeline step order or dependencies
-3. Adding support for multiple public body IDs in a single run
-4. Adding support for ranges or files of public body IDs
-5. Changing the behavior of existing flags (`--force`, `--from`, `--verbose`, `--stop-on-error`)
+1. Changing output file structure/format.
+2. Changing pipeline step order or dependencies.
+3. Multiple IDs, ranges, or ID files in one run (single integer only).
+4. Changing existing flags (`--force`, `--from`, `--verbose`, `--stop-on-error`).
+5. Replacing or removing `IncrementalWriter`, `override.json`, or the dirty
+   mechanism. The flag is layered **on top of** them.
 
 ---
 
-## Background
+## Background: how the pipeline actually works
 
-### Current State
+This section is the crux. The previous draft of this spec modelled steps as
+stateless (`read input → filter → write output`); they are not. Getting this
+right is what makes "no effect on other bodies" achievable.
 
-The FOI pipeline currently processes all public bodies through 16 sequential steps. Each step:
+### Orchestration (`process.py`)
 
-- Reads JSON input from the previous step's `output.json`
-- Processes all records in that input
-- Writes its own `output.json`
+- Reads `pipeline.json` (`steps` array) and runs each step's `process.py` in
+  order as a subprocess.
+- Passes `--input <prev_output>`, `--output <step_output>`, and (conditionally)
+  `--force` / `--verbose`.
+- Supports `--from STEP` (`dest=from_step`) to resume from a step, and
+  `--stop-on-error`.
+- Staleness: a step is re-run if its `output.json` is missing or older than the
+  previous step's output, unless skipped.
+- **`process.py` has no concept of `dirty_ids` today** — propagation happens
+  purely through files on disk between steps.
 
-When running `python process.py --force`:
-- All steps execute in order from `pipeline.json`
-- Each step processes all public bodies
-- No filtering capability exists
+### Steps and `IncrementalWriter` (`scripts/file_utils.py`)
 
-### Problem Statement
+Most processing steps (e.g. `validate_websites`, `get_foi_emails`,
+`find_disclosure_*`, `transform_disclosure_files`, `normalize_disclosure_cells`,
+`extract_disclosures_*`) use `IncrementalWriter`, which is **merge-based, not
+overwrite-based**:
 
-Debugging or testing a single public body requires:
-- Running the full pipeline (time-consuming)
-- Processing all ~500+ public bodies
-- Manually extracting the single body of interest from output
+- **Without `force`**: loads existing `output.json` into `self.results`, builds
+  `processed_keys` from `public_body_id`. Steps call `writer.is_processed(id)`
+  and skip bodies already done. `finalize()` writes existing + newly-appended
+  results. → Re-running is cheap and non-destructive.
+- **With `force=True`**: starts from an **empty** `results` list and writes only
+  what was processed this run. → On a filtered run this would **delete every
+  other body** from `output.json`. (This is the bug in the previous draft.)
+- **`override.json`**: records injected by `public_body_id`, schema-validated
+  against `output_schema.json`; changed overrides mark the body **dirty**.
+- **Dirty propagation**: `finalize()` writes `dirty_ids.json` next to the output.
+  Downstream steps that pass `upstream_dirty_path = Path(args.input).parent /
+  "dirty_ids.json"` call `_evict_upstream_dirty()`, which **removes just those
+  bodies from their existing output and reprocesses them**, leaving all other
+  bodies intact, then re-emits `dirty_ids.json` to cascade further downstream.
 
-This makes targeted development and troubleshooting inefficient.
+The dirty mechanism is *already* "reprocess a subset, preserve the rest, cascade
+downstream." `--public-body` is essentially a CLI-driven entry point into it.
 
-### Motivation
+### Three step shapes (this is why one template can't work)
 
-A `--public-body` flag enables:
+Verified, the active steps fall into **three** classes, and `--public-body`
+behaves differently in each:
 
-- **Faster iteration**: Test fixes against one body in seconds vs. minutes
-- **Better debugging**: Isolate issues to specific public body processing
-- **Targeted reprocessing**: Update one body after override changes
-- **Step-level testing**: Run individual steps against specific bodies
+1. **IncrementalWriter steps** (10): `resolve_website_urls`, `validate_websites`,
+   `find_foi_pages`, `check_foi_pages`, `get_foi_emails`, `find_disclosure_pages`,
+   `find_disclosure_files`, `transform_disclosure_files`,
+   `normalize_disclosure_cells`, `extract_disclosures_detect_header_row`.
+   Merge-based; "no effect on other bodies" is achieved via targeted eviction.
+
+2. **Stateless full-rewrite transforms** (plain `write_json` of *all* records):
+   `extract_disclosures_canonicalize`, `extract_disclosures_deduplicate`. These
+   read `args.input`, transform every record, and overwrite the whole output in
+   one shot. **Filtering their input to body 1001 would write an output
+   containing only 1001 — wiping the rest.** To honour the no-effect guarantee
+   they need a *merge-back* wrapper (read existing output, replace just the
+   target body's records, write the union). See Step-Level Changes §(b).
+
+3. **Aggregators that ignore `--input`** and read hard-coded sibling outputs:
+   `export_status` (reads `find_public_bodies` + each step's output, also writes
+   `public/` files), `generate_topics` (reads
+   `extract_disclosures_canonicalize/output.json`, writes a *topics* structure),
+   `db_upload` (reads `export_status`, `find_disclosure_files`,
+   `extract_disclosures_deduplicate`, `generate_topics`). And
+   `find_public_bodies` is a custom scraper (its own shape). For these, scoping
+   means filtering the hard-coded reads; output is derived/best-effort. See §(c).
+
+### Top-level key per step (verified)
+
+- `find_public_bodies` → `public_bodies` (custom writer, **not**
+  `IncrementalWriter`).
+- `export_status` → `public_bodies`.
+- All `IncrementalWriter` steps → `results`.
+
+`filter_by_public_body` must therefore handle both keys.
 
 ---
 
 ## Proposed Design
 
-### Architecture Overview
+### Core principle
 
-The filtering happens at **two levels**:
+A `--public-body 1001` run is defined as:
 
-1. **Orchestration level** (`process.py`): Validates the public body exists and passes the flag to all steps
-2. **Step level** (each `steps/*/process.py`): Each step reads its input, filters to the specified public body, processes only that record
+> **Filter the input to body 1001, evict body 1001 (and only 1001) from this
+> step's existing output, reprocess it, merge it back, and mark it dirty so
+> downstream steps do the same.** Never use `--force` to achieve this.
+
+This keeps every other body's output untouched at every step, and propagates the
+single-body reprocessing through the whole chain via the existing `dirty_ids`
+cascade.
+
+### Architecture overview
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                    process.py (Orchestration)                       │
-│  --public-body 1001                                                │
-│       │                                                            │
-│       ▼                                                            │
-│  ┌─────────────────┐                                              │
-│  │ Validate body    │◄─────────────────────────────────────────────┤
-│  │ 1001 exists in   │     No: exit with error                      │
-│  │ find_public_     │                                              │
-│  │ bodies/output    │                                              │
-│  └────────┬────────┘                                              │
-│           │                                                          │
-│           ▼                                                          │
-│  For each step:                                                      │
-│    ┌─────────────────────┐                                          │
-│    │ --public-body 1001  │◄── Passed to all steps                  │
-│    │ --input (filtered)   │                                          │
-│    │ --output output.json│                                          │
-│    └──────────┬───────────┘                                          │
-│                │                                                       │
-│                ▼                                                       │
-│    ┌─────────────────────┐                                          │
-│    │ Step filters input  │                                          │
-│    │ to body 1001        │                                          │
-│    │ Processes only      │                                          │
-│    │ that record        │                                          │
-│    │ Writes output with  │                                          │
-│    │ standard structure  │                                          │
-│    └─────────────────────┘                                          │
-└─────────────────────────────────────────────────────────────────┘
+process.py --public-body 1001
+   │  validate 1001 exists in find_public_bodies/output.json
+   ▼
+ for each step (respecting --from):
+   ├─ pass --public-body 1001  (NOT --force)
+   ▼
+ step process.py
+   ├─ read input
+   ├─ filter_by_public_body(input, 1001)      # only 1001 considered
+   ├─ IncrementalWriter(..., target_public_body=1001)
+   │      → evicts 1001 from existing output (so it WILL be reprocessed)
+   │      → keeps all other bodies in self.results
+   ├─ process() appends reprocessed 1001
+   └─ finalize() writes {others... , 1001}, plus dirty_ids.json=[1001]
 ```
 
-### Common CLI Library
-
-A new module `foi_pipeline/scripts/cli_utils.py` centralizes common command-line argument handling and filtering logic.
-
-#### Functions
+### Common CLI library — `foi_pipeline/scripts/cli_utils.py`
 
 ```python
 def add_common_args(parser: argparse.ArgumentParser) -> None:
-    """
-    Add arguments common to most pipeline steps.
-    
-    Adds: --input, --output, --force, --verbose, --public-body
-    """
-```
+    """Add --input, --output, --force, --verbose, --public-body to a step parser."""
+    parser.add_argument("--input", required=True)
+    parser.add_argument("--output", required=True)
+    parser.add_argument("--force", action="store_true")
+    parser.add_argument("--verbose", action="store_true")
+    parser.add_argument("--public-body", type=int, default=None, dest="public_body",
+                        help="Scope processing to this public body ID only")
 
-```python
+
 def filter_by_public_body(data: dict, public_body_id: int | None) -> dict:
-    """
-    Filter JSON data to only include records matching public_body_id.
-    
-    Handles both top-level 'public_bodies' and 'results' arrays.
-    If public_body_id is None, returns data unchanged.
-    
-    Args:
-        data: The input JSON data (dict with 'public_bodies' or 'results' key)
-        public_body_id: The public body ID to filter for, or None
-        
-    Returns:
-        Filtered data with same structure, containing only matching records
-    """
+    """Return a shallow copy of `data` with its record array filtered to
+    public_body_id. Handles both 'results' and 'public_bodies' keys. If
+    public_body_id is None, returns `data` unchanged. Other top-level keys
+    (e.g. metadata) are preserved."""
+
+
+def validate_public_body(pipeline_dir: Path, public_body_id: int) -> bool:
+    """True if public_body_id is present in find_public_bodies/output.json
+    (under the 'public_bodies' key)."""
+
+
+def merge_replacing_body(existing: list, new: list, public_body_id: int) -> list:
+    """For §(b) stateless transforms: return `existing` with all records for
+    public_body_id removed, then `new` appended. Preserves every other body."""
 ```
+
+Notes:
+- `add_common_args` defines the *full* common set so steps can drop their
+  duplicated `--input/--output/--force/--verbose` blocks. Steps with extra args
+  add them after calling `add_common_args`.
+- `filter_by_public_body` must not mutate its input and must preserve whichever
+  array key is present.
+
+### `IncrementalWriter` change — targeted eviction
+
+Add an optional `target_public_body` (or generalised `evict_keys: set`) argument
+that reuses the existing eviction path:
 
 ```python
-def validate_public_body(pipeline_dir: Path, public_body_id: int) -> bool:
-    """
-    Validate that public_body_id exists in find_public_bodies/output.json.
-    
-    Args:
-        pipeline_dir: Path to the foi_pipeline directory
-        public_body_id: The public body ID to validate
-        
-    Returns:
-        True if the public body exists, False otherwise
-    """
+class IncrementalWriter:
+    def __init__(self, output_path, step_name, key_field="public_body_id",
+                 force=False, override_path=None, upstream_dirty_path=None,
+                 target_public_body=None):   # NEW
+        ...
+        # after loading existing results / processed_keys:
+        if target_public_body is not None:
+            self._evict_keys({target_public_body})   # same logic as _evict_upstream_dirty
 ```
 
-#### Usage in Steps
+`_evict_keys` factors out the body of `_evict_upstream_dirty` (remove from
+`results`, drop from `processed_keys`, add to `dirty_body_ids`). The targeted
+body is thus guaranteed to be reprocessed this run, and `finalize()` already
+writes it into `dirty_ids.json`, so downstream steps cascade for free.
+
+This is preferred over inventing a new "replace filtered keys" path because it
+reuses tested logic and the existing dirty cascade.
+
+### Orchestration changes (`process.py`)
+
+```python
+parser.add_argument("--public-body", type=int, default=None, dest="public_body",
+                    help="Scope all steps to this public body ID only")
+```
+
+**Validation** (always possible because `find_public_bodies/output.json`
+normally exists and contains every body):
+
+```python
+if args.public_body is not None:
+    bodies_path = pipeline_dir / "steps" / "find_public_bodies" / "output.json"
+    if not bodies_path.exists():
+        sys.exit("Error: --public-body requires find_public_bodies/output.json; "
+                 "run find_public_bodies first.")
+    bodies = read_json(bodies_path).get("public_bodies", [])
+    if not any(b.get("public_body_id") == args.public_body for b in bodies):
+        sys.exit(f"Error: public body {args.public_body} not found in "
+                 f"find_public_bodies/output.json")
+```
+
+**Passthrough** — append the flag, and **never force on its behalf**:
+
+```python
+if args.public_body is not None:
+    cmd += ["--public-body", str(args.public_body)]
+```
+
+`--force` is only appended when the user explicitly passes `--force`. Combining
+`--public-body` with `--force` is allowed but documented as destructive (see
+Error Handling): with `force=True` the writer starts empty and the run will
+reduce that step's output to the single body. The flags are orthogonal; we do
+not silently inject `--force`.
+
+### Step-level changes
+
+#### §(a) IncrementalWriter steps (the common case)
+
+Insert filtering between read and process, and pass `target_public_body`:
 
 ```python
 from scripts.cli_utils import add_common_args, filter_by_public_body
 
 def main():
-    parser = argparse.ArgumentParser(description="Step description")
-    add_common_args(parser)
-    # Optionally add step-specific arguments
+    parser = argparse.ArgumentParser(description="...")
+    add_common_args(parser)          # replaces the 4 duplicated add_argument lines
     args = parser.parse_args()
-    
+
     input_data = read_json(args.input)
-    
     if args.public_body is not None:
         input_data = filter_by_public_body(input_data, args.public_body)
-        if not input_data.get("public_bodies", input_data.get("results", [])):
-            print(f"No data for public_body_id={args.public_body} in input",
+        if not (input_data.get("results") or input_data.get("public_bodies")):
+            print(f"No input record for public_body_id={args.public_body}",
                   file=sys.stderr)
             sys.exit(0)
-    
-    # Process filtered data...
+
+    writer = IncrementalWriter(
+        output_path, STEP_NAME,
+        force=args.force,
+        override_path=override_path,
+        upstream_dirty_path=...,                 # unchanged where already present
+        target_public_body=args.public_body,     # NEW
+    )
+    process(input_data, step_dir, writer, verbose=args.verbose)
+    writer.finalize()
+    write_status(step_dir, ...)
 ```
 
-### Orchestration Changes (process.py)
+The diff per step is genuinely small (swap arg block for `add_common_args`, add
+the filter block, add one kwarg) **because we keep `IncrementalWriter`**. We do
+NOT introduce a generic stateless template — that would drop resumability,
+override support, dirty tracking, `errors.json`, and `write_status`.
 
-#### New CLI Argument
+#### §(b) Stateless full-rewrite transforms (`canonicalize`, `deduplicate`)
+
+These have no `IncrementalWriter` and no resumability — they overwrite the whole
+output. To preserve other bodies when scoped, wrap the write with a merge-back:
 
 ```python
-parser.add_argument("--public-body", type=int, default=None,
-                    help="Filter all steps to only process this public body ID")
+results = transform(filter_by_public_body(input_data, args.public_body))  # only 1001
+
+if args.public_body is not None and not args.force and Path(args.output).exists():
+    existing = read_json(args.output).get("results", [])
+    existing = [r for r in existing if r.get("public_body_id") != args.public_body]
+    results = existing + results          # replace just 1001, keep the rest
+write_json(args.output, {"metadata": {...}, "results": results})
 ```
 
-#### Validation Logic
+Add a small helper to `cli_utils.py` (e.g. `merge_replacing_body(existing,
+new, public_body_id)`) so this is identical across both transform steps and
+unit-tested once. Caveat: `deduplicate` may dedupe *across* bodies; if its
+semantics aren't per-body-independent, scoping is unsafe and it should warn +
+require a full run. Confirm during its migration PR.
 
-Validation depends on whether we're starting from `find_public_bodies` or a later step:
+#### `find_public_bodies` (custom writer, source of truth)
 
-```python
-if args.public_body is not None:
-    # If starting from find_public_bodies or before, no validation needed
-    # (the step will handle it, possibly scraping all then filtering)
-    first_step_index = 0
-    try:
-        current_step_index = config["steps"].index(args.from_step) if args.from_step else 0
-    except ValueError:
-        current_step_index = 0
-    
-    # Only validate if we're NOT starting from find_public_bodies
-    if current_step_index > first_step_index:
-        bodies_path = pipeline_dir / "steps" / "find_public_bodies" / "output.json"
-        if not bodies_path.exists():
-            print(f"Error: Cannot validate --public-body {args.public_body}: "
-                  f"{bodies_path} does not exist. Run from find_public_bodies first.",
-                  file=sys.stderr)
-            sys.exit(1)
-        
-        bodies = read_json(bodies_path)
-        if not any(b.get("public_body_id") == args.public_body 
-                   for b in bodies.get("public_bodies", [])):
-            print(f"Error: Public body {args.public_body} not found in "
-                  f"find_public_bodies/output.json",
-                  file=sys.stderr)
-            sys.exit(1)
-```
+It does not use `IncrementalWriter` and emits the `public_bodies` key. Behaviour:
 
-**Note**: When running from `find_public_bodies` (or with no `--from`), validation is skipped because `find_public_bodies` itself will handle the `--public-body` flag by either filtering existing output or scraping all bodies and then filtering.
+- `--public-body 1001` **without** `--force`, output exists → read existing,
+  `filter_by_public_body` to 1001, but **write back the full set with only 1001's
+  record replaced** is unnecessary here (scraped data is static); instead, when
+  scoping, leave `output.json` untouched and simply confirm 1001 exists. The
+  downstream steps do the actual per-body work. (Rationale: rewriting
+  find_public_bodies to a single body would violate Goal 2 for this file.)
+- `--public-body 1001` with `--force` → re-scrape all, keep all, then proceed.
+  We do not reduce the file to one body.
+- If 1001 absent → error, exit 1.
 
-#### Flag Passthrough
+This is a deliberate change from the previous draft, which proposed shrinking
+`find_public_bodies/output.json` to one body — that violated the "no effect on
+other bodies" requirement at the source.
 
-For each step command, append the flag:
+#### §(c) Aggregators: `export_status`, `generate_topics`, `db_upload`
 
-```python
-cmd = [
-    sys.executable,
-    str(step_dir / "process.py"),
-    "--input", str(prev_out) if prev_out is not None else str(step_dir),
-    "--output", str(step_out),
-]
-if args.force:
-    cmd.append("--force")
-if args.verbose:
-    cmd.append("--verbose")
-if args.public_body is not None:
-    cmd.append("--public-body")
-    cmd.append(str(args.public_body))
-```
-
-#### Special Handling for find_public_bodies
-
-No special handling needed at the orchestration level. The `find_public_bodies` step itself handles the `--public-body` flag:
-
-- If `--public-body` is specified: filters existing output or scrapes all and filters
-- The step's own logic (see below) handles both cases
-
-Simply pass the flag through to the step:
-
-```python
-# No special case needed - just pass --public-body through
-# The find_public_bodies step handles it internally
-```
-
-### Step-Level Changes
-
-#### Generic Step Pattern
-
-```python
-#!/usr/bin/env python3
-import argparse
-import sys
-from pathlib import Path
-
-from scripts.cli_utils import add_common_args, filter_by_public_body
-from scripts.file_utils import read_json, write_json
-
-STEP_NAME = "step_name"
-KEY_FIELD = "public_body_id"  # Override if step uses different key
-
-
-def process(input_data, step_dir, verbose=False):
-    # Step-specific processing logic
-    # input_data is already filtered if --public-body was specified
-    results = []
-    for item in input_data.get("results", input_data.get("public_bodies", [])):
-        # Process each item
-        results.append(processed_item)
-    return results
-
-
-def main():
-    parser = argparse.ArgumentParser(description="Step description")
-    add_common_args(parser)
-    args = parser.parse_args()
-
-    step_dir = Path(__file__).parent
-    input_data = read_json(args.input)
-
-    # Filter if public body specified
-    if args.public_body is not None:
-        if KEY_FIELD != "public_body_id":
-            print(f"Info: --public-body flag ignored; this step uses '{KEY_FIELD}' not 'public_body_id'",
-                  file=sys.stderr)
-        else:
-            input_data = filter_by_public_body(input_data, args.public_body)
-            if not input_data.get("public_bodies", input_data.get("results", [])):
-                print(f"No data for public_body_id={args.public_body} in input",
-                      file=sys.stderr)
-                sys.exit(0)
-
-    # Process data
-    results = process(input_data, step_dir, verbose=args.verbose)
-
-    # Write output with standard structure
-    output = {
-        "metadata": {
-            "step": STEP_NAME,
-            "completed_at": datetime.now(timezone.utc).isoformat(),
-        },
-        "results": results  # or "public_bodies" for find_public_bodies
-    }
-    write_json(args.output, output)
-
-
-if __name__ == "__main__":
-    main()
-```
-
-#### find_public_bodies Special Case
-
-`find_public_bodies` has unique behavior since it's the source of public body data:
-
-```python
-def main():
-    parser = argparse.ArgumentParser(description="Scrape Irish public bodies from gov.ie")
-    add_common_args(parser)
-    args = parser.parse_args()
-
-    step_dir = Path(__file__).parent
-    output_path = Path(args.output) if args.output else step_dir / "output.json"
-
-    # If --public-body specified, handle filtering
-    if args.public_body is not None:
-        # If output exists and --force is not set, filter existing
-        if not args.force and output_path.exists():
-            bodies = read_json(output_path)
-            filtered = filter_by_public_body(bodies, args.public_body)
-
-            if not filtered.get("public_bodies", []):
-                print(f"Error: Public body {args.public_body} not found in existing data",
-                      file=sys.stderr)
-                sys.exit(1)
-
-            write_json(output_path, filtered)
-            write_status(step_dir, len(filtered["public_bodies"]))
-            print(f"Filtered to 1 public body: {args.public_body}")
-            sys.exit(0)
-
-        # If output doesn't exist or --force is set, scrape all then filter
-        if not args.force and output_path.exists():
-            print(f"Output exists at {output_path}, skipping (use --force to re-run)")
-            sys.exit(0)
-
-        # Scrape all bodies
-        bodies = scrape_public_bodies(step_dir, verbose=args.verbose)
-        
-        # Filter to specified public body
-        filtered = filter_by_public_body(bodies, args.public_body)
-
-        if not filtered.get("public_bodies", []):
-            print(f"Error: Public body {args.public_body} not found in scraped data",
-                  file=sys.stderr)
-            sys.exit(1)
-
-        write_json(output_path, filtered)
-        write_status(step_dir, len(filtered["public_bodies"]))
-        print(f"Scraped and filtered to 1 public body: {args.public_body}")
-        sys.exit(0)
-
-    # Normal scraping logic for non-filtered runs
-    if not args.force and output_path.exists():
-        print(f"Output exists at {output_path}, skipping (use --force to re-run)")
-        sys.exit(0)
-
-    bodies = scrape_public_bodies(step_dir, verbose=args.verbose)
-    # ... rest of existing logic
-```
-
-**Behavior summary:**
-- `--public-body 1001` without `--force` and output exists: Filter existing output
-- `--public-body 1001` with `--force` or no output: Scrape all, then filter to 1001
-- `--public-body 1001` and body doesn't exist: Error
+- `export_status`: aggregates `find_public_bodies` + each step's output and also
+  writes `public/` files. When scoped, filter each read by `public_body_id`; but
+  because it regenerates published artifacts, treat scoped output as
+  derived/best-effort and document that a full run is needed before publish.
+- `generate_topics`: when `--public-body` is set, filter the hard-coded read of
+  `extract_disclosures_canonicalize/output.json` before computing topics. Output
+  is a topics structure, so "no effect on other bodies" is best-effort; document
+  that topic outputs are derived and should be regenerated fully before publish.
+- `db_upload`: `--public-body` filters each hard-coded read by `public_body_id`
+  so only that body is upserted. Must use idempotent upsert (verify current
+  behaviour); otherwise emit an info message and skip when scoped.
 
 ---
 
 ## Data Model
 
-### Input/Output Structure (Unchanged)
+Output structure is unchanged. Filtering and eviction only change *which*
+records appear, and the targeted body is the only one that changes between runs.
 
-The output file structure remains identical. Filtering only affects the **content** of arrays:
-
-**Before (full data):**
-```json
-{
-  "metadata": {"step": "get_foi_emails", "completed_at": "..."},
-  "results": [
-    {"public_body_id": 1001, "foi_email": "..."},
-    {"public_body_id": 1002, "foi_email": "..."},
-    {"public_body_id": 1003, "foi_email": "..."}
-  ]
-}
+```jsonc
+// before: results = [1001, 1002, 1003]
+// run with --public-body 1002 (no --force):
+//   - 1001, 1003 preserved exactly (untouched)
+//   - 1002 evicted, reprocessed, merged back
+//   - dirty_ids.json = [1002]
+// after:  results = [1001, 1003, 1002]  (order may differ; 1001/1003 unchanged)
 ```
 
-**After (filtered to body 1001):**
-```json
-{
-  "metadata": {"step": "get_foi_emails", "completed_at": "..."},
-  "results": [
-    {"public_body_id": 1001, "foi_email": "..."}
-  ]
-}
-```
-
-### filter_by_public_body() Behavior
+`filter_by_public_body` examples:
 
 ```python
-# Input with 'public_bodies' key
-{
-  "metadata": {...},
-  "public_bodies": [
-    {"public_body_id": 1001, ...},
-    {"public_body_id": 1002, ...}
-  ]
-}
-# Output
-{
-  "metadata": {...},
-  "public_bodies": [
-    {"public_body_id": 1001, ...}
-  ]
-}
+filter_by_public_body({"results": [{"public_body_id":1001},{"public_body_id":1002}]}, 1001)
+# -> {"results": [{"public_body_id":1001}]}   (+ any metadata preserved)
 
-# Input with 'results' key
-{
-  "metadata": {...},
-  "results": [
-    {"public_body_id": 1001, ...},
-    {"public_body_id": 1002, ...}
-  ]
-}
-# Output
-{
-  "metadata": {...},
-  "results": [
-    {"public_body_id": 1001, ...}
-  ]
-}
-
-# If no matching records
-{
-  "metadata": {...},
-  "public_bodies": []  # or "results": []
-}
+filter_by_public_body({"public_bodies": [...]}, 1001)   # same, public_bodies key
+filter_by_public_body(data, None)                       # -> data unchanged
+filter_by_public_body({"results":[{"public_body_id":1001}]}, 9999)  # -> {"results":[]}
 ```
 
 ---
 
 ## Error Handling
 
-| Scenario | Behavior | Exit Code |
-|----------|----------|-----------|
-| `--public-body` with invalid integer | argparse error | 2 |
-| Public body not found in `find_public_bodies/output.json` | Error message to stderr | 1 |
-| `--public-body` but `find_public_bodies/output.json` doesn't exist | Error message to stderr | 1 |
-| `--public-body` with `--from X` where X is after `find_public_bodies` | Error message (can't validate) | 1 |
-| Filtered input has no records for specified body | Info message to stderr, clean exit | 0 |
-| Step doesn't use `public_body_id` key (e.g., db_upload) | Info message to stderr, continue | 0 |
-| `--public-body` with `find_public_bodies` standalone, no `--force`, output exists | Filter existing output | 0 |
-| `--public-body` with `find_public_bodies` standalone, body not in scraped data | Error message to stderr | 1 |
+| Scenario | Behavior | Exit |
+|----------|----------|------|
+| `--public-body` non-integer | argparse error | 2 |
+| Body not in `find_public_bodies/output.json` | stderr error | 1 |
+| `find_public_bodies/output.json` missing | stderr error, ask to run it first | 1 |
+| Filtered input has no record for the body (step level) | stderr info, clean exit | 0 |
+| `generate_topics`/`db_upload` scoped | filter hard-coded reads; info if not filterable | 0 |
+| `--public-body` **with** `--force` | allowed but **reduces that step's output to the single body**; warn on stderr | 0 |
+
+The `--force` + `--public-body` warning is important: the two are orthogonal,
+and the destructive interaction must be surfaced, not hidden.
 
 ---
 
 ## Testing Strategy
 
-### Unit Tests
+### Unit tests — `foi_pipeline/tests/test_cli_utils.py`
 
-Location: `foi_pipeline/tests/test_cli_utils.py`
+- `filter_by_public_body`: results key, public_bodies key, `None` passthrough,
+  no-match empty, metadata preserved, input not mutated.
+- `validate_public_body`: present / absent / missing-file.
+- `merge_replacing_body`: target removed from existing then new appended; other
+  bodies preserved exactly; empty `existing`; empty `new`.
 
-```python
-# test_filter_by_public_body.py
+### Unit tests — `IncrementalWriter` (extend existing writer tests)
 
-def test_filter_by_public_body_with_public_bodies_key():
-    data = {"public_bodies": [
-        {"public_body_id": 1001, "name": "Body 1"},
-        {"public_body_id": 1002, "name": "Body 2"}
-    ], "metadata": {}}
-    result = filter_by_public_body(data, 1001)
-    assert len(result["public_bodies"]) == 1
-    assert result["public_bodies"][0]["public_body_id"] == 1001
+- `target_public_body` evicts only that key from existing results, preserves the
+  rest, adds it to `dirty_body_ids`, and `finalize()` writes it to
+  `dirty_ids.json`.
+- `target_public_body` with `force=True` documents the destructive reduction.
 
+### Integration tests — `foi_pipeline/tests/`
 
-def test_filter_by_public_body_with_results_key():
-    data = {"results": [
-        {"public_body_id": 1001, "email": "a@b.com"},
-        {"public_body_id": 1002, "email": "c@d.com"}
-    ], "metadata": {}}
-    result = filter_by_public_body(data, 1002)
-    assert len(result["results"]) == 1
-    assert result["results"][0]["public_body_id"] == 1002
+- **No-effect guarantee (the key test):** seed a step's `output.json` with three
+  bodies; run the step with `--public-body 1002`; assert bodies 1001 and 1003
+  are byte-for-byte unchanged and only 1002 differs; assert `dirty_ids.json ==
+  [1002]`.
+- **Cascade:** run two consecutive dirty-aware steps with `--public-body 1002`;
+  assert the second step evicts and reprocesses only 1002 via the first step's
+  `dirty_ids.json`.
+- **Orchestration validation failure:** `process.py --public-body 9999` → exit 1.
+- **`--from` + `--public-body`:** only the targeted body flows through remaining
+  steps; earlier outputs untouched.
 
+### Manual checklist
 
-def test_filter_by_public_body_none():
-    data = {"public_bodies": [{"public_body_id": 1001}]}
-    result = filter_by_public_body(data, None)
-    assert result == data  # Unchanged
-
-
-def test_filter_by_public_body_no_match():
-    data = {"public_bodies": [{"public_body_id": 1001}]}
-    result = filter_by_public_body(data, 9999)
-    assert result["public_bodies"] == []
-
-
-def test_validate_public_body():
-    # Setup: create temp find_public_bodies/output.json
-    # Test: validate existing and non-existing bodies
-    pass
-```
-
-### Integration Tests
-
-```python
-# test_process_public_body.py
-
-def test_full_pipeline_with_public_body(tmp_path, monkeypatch):
-    """Test running full pipeline with --public-body flag."""
-    # Setup: existing pipeline output files
-    # Run: process.py --public-body 1001 --force
-    # Assert: each step output contains only body 1001
-    pass
-
-
-def test_individual_step_with_public_body(tmp_path):
-    """Test running a single step with --public-body flag."""
-    # Setup: input.json with multiple bodies
-    # Run: python steps/get_foi_emails/process.py --input input.json --output output.json --public-body 1001
-    # Assert: output.json contains only body 1001
-    pass
-
-
-def test_public_body_with_from_flag(tmp_path):
-    """Test --public-body with --from flag."""
-    # Setup: existing step outputs
-    # Run: process.py --from validate_websites --public-body 1001 --force
-    # Assert: only validate_websites and subsequent steps run, only body 1001 processed
-    pass
-
-
-def test_public_body_validation_failure(capsys):
-    """Test error when public body doesn't exist."""
-    # Run: process.py --public-body 9999
-    # Assert: exit code 1, error message in stderr
-    pass
-```
-
-### Manual Testing Checklist
-
-- [ ] Full pipeline with `--public-body 1001 --force`
-- [ ] Individual step with `--public-body 1001`
-- [ ] Combined with `--from export_status --public-body 1001 --force`
-- [ ] Combined with `--verbose --public-body 1001`
-- [ ] Error: non-existent public body
-- [ ] Error: invalid public body ID (non-integer)
-- [ ] Error: `find_public_bodies/output.json` doesn't exist
-- [ ] `find_public_bodies --public-body 1001 --force` (standalone)
-- [ ] Step without `public_body_id` key (info message)
+- [ ] `process.py --public-body 1001` (no force) — others unchanged, 1001 refreshed
+- [ ] Single step standalone with `--public-body 1001`
+- [ ] `--from validate_websites --public-body 1001`
+- [ ] `--public-body 1001 --force` shows destructive warning
+- [ ] non-existent / non-integer ID errors
+- [ ] `generate_topics` / `db_upload` scoped behaviour
 
 ---
 
 ## Migration Path
 
-### Phase 1: Common Library (PR #1)
+### Phase 1 — Library + writer (PR #1)
+- Create `scripts/cli_utils.py` (`add_common_args`, `filter_by_public_body`,
+  `validate_public_body`).
+- Add `target_public_body` to `IncrementalWriter`, factoring `_evict_keys` out of
+  `_evict_upstream_dirty`.
+- Unit tests for both. Backward compatible (additive).
 
-**Files changed:**
-- `foi_pipeline/scripts/cli_utils.py` - New file
+### Phase 2 — Orchestration (PR #2)
+- Add `--public-body` to `process.py`: validation + passthrough (no auto-force).
+- Integration test for validation + passthrough. Backward compatible.
 
-**Contents:**
-- `add_common_args()`
-- `filter_by_public_body()`
-- `validate_public_body()`
+### Phase 3 — Steps, incrementally (one PR each)
+Recommended order follows `pipeline.json` and the dirty cascade so each migrated
+step can be tested end-to-end against the one above it:
 
-**Tests:**
-- `foi_pipeline/tests/test_cli_utils.py` - Unit tests for new functions
+1. `find_public_bodies` (validation source; confirm-only behaviour)
+2. `resolve_website_urls`
+3. `validate_websites`
+4. `find_foi_pages`
+5. `check_foi_pages`
+6. `get_foi_emails`
+7. `find_disclosure_pages`
+8. `find_disclosure_files`
+9. `transform_disclosure_files`
+10. `normalize_disclosure_cells`
+11. `extract_disclosures_detect_header_row`
+12. `extract_disclosures_canonicalize`
+13. `extract_disclosures_deduplicate`
+14. `export_status`
+15. `generate_topics` (hard-coded read; best-effort)
+16. `db_upload` (hard-coded reads; idempotent upsert or skip)
 
-**Backward compatible:** Yes (new file, no existing code changed)
+Per step: swap the arg block for `add_common_args`, then apply the handling for
+that step's shape — §(a) evict-target, §(b) merge-back, or §(c) filter-reads —
+and add the no-effect integration test. Check the inventory table for which §
+applies before starting each PR.
 
----
+> Note: `steps/extract_disclosures/` exists on disk but is **not** in
+> `pipeline.json` (legacy). Skip it unless reinstated.
 
-### Phase 2: Orchestration Updates (PR #2)
-
-**Files changed:**
-- `foi_pipeline/process.py`
-
-**Changes:**
-- Add `--public-body` argument
-- Add validation logic
-- Add flag passthrough to step commands
-- Add special handling for `find_public_bodies`
-
-**Tests:**
-- Integration test for orchestration with `--public-body`
-
-**Backward compatible:** Yes (new flag is optional)
-
----
-
-### Phase 3: Step Updates (Multiple PRs)
-
-Update steps **incrementally**, one per PR. Start with steps that are most frequently used for debugging.
-
-**Recommended order:**
-
-1. `find_public_bodies` (base step, needed for validation)
-2. `validate_websites`
-3. `find_foi_pages`
-4. `check_foi_pages`
-5. `get_foi_emails`
-6. `find_disclosure_pages`
-7. `find_disclosure_files`
-8. `transform_disclosure_files`
-9. `normalize_disclosure_cells`
-10. `extract_disclosures_detect_header_row`
-11. `extract_disclosures_canonicalize`
-12. `extract_disclosures_deduplicate`
-13. `export_status`
-14. `generate_topics`
-15. `db_upload`
-16. `resolve_website_urls`
-
-**Per-step changes:**
-- Import `add_common_args` from `scripts.cli_utils`
-- Replace duplicate argument definitions with `add_common_args(parser)`
-- Add filtering after reading input
-- Add handling for steps without `public_body_id` (info message)
-
-**Per-step testing:**
-- Test step standalone with `--public-body`
-- Test step in pipeline with `--public-body`
-- Test error cases
-
----
-
-### Phase 4: Documentation (Final PR)
-
-**Files changed:**
-- `foi_pipeline/AGENTS.md` - Update running instructions
-- `foi_pipeline/steps/README.md` - Note about `--public-body` flag
-- Each step's `README.md` - Document flag support
-- This spec document - Mark as implemented
+### Phase 4 — Docs
+- `foi_pipeline/AGENTS.md`, `steps/README.md`, per-step `README.md`.
+- Mark this spec implemented.
 
 ---
 
 ## File Changes Summary
 
-| File | Action | Lines Changed (est.) | Risk |
-|------|--------|---------------------|------|
-| `scripts/cli_utils.py` | Create | ~100 | Low |
-| `process.py` | Modify | ~20 | Low |
-| `steps/find_public_bodies/process.py` | Modify | ~15 | Low |
-| `steps/validate_websites/process.py` | Modify | ~10 | Low |
-| `steps/find_foi_pages/process.py` | Modify | ~10 | Low |
-| `steps/check_foi_pages/process.py` | Modify | ~10 | Low |
-| `steps/get_foi_emails/process.py` | Modify | ~10 | Low |
-| `steps/find_disclosure_pages/process.py` | Modify | ~10 | Low |
-| `steps/find_disclosure_files/process.py` | Modify | ~10 | Low |
-| `steps/transform_disclosure_files/process.py` | Modify | ~10 | Low |
-| `steps/normalize_disclosure_cells/process.py` | Modify | ~10 | Low |
-| `steps/extract_disclosures_detect_header_row/process.py` | Modify | ~10 | Low |
-| `steps/extract_disclosures_canonicalize/process.py` | Modify | ~10 | Low |
-| `steps/extract_disclosures_deduplicate/process.py` | Modify | ~10 | Low |
-| `steps/export_status/process.py` | Modify | ~10 | Low |
-| `steps/generate_topics/process.py` | Modify | ~10 | Low |
-| `steps/db_upload/process.py` | Modify | ~10 | Low |
-| `steps/resolve_website_urls/process.py` | Modify | ~10 | Low |
-| **Total** | | **~255** | **Low** |
+| File | Action | Risk | Notes |
+|------|--------|------|-------|
+| `scripts/cli_utils.py` | Create | Low | pure functions (`add_common_args`, `filter_by_public_body`, `validate_public_body`, `merge_replacing_body`), well unit-tested |
+| `scripts/file_utils.py` | Modify | **Medium** | `IncrementalWriter.target_public_body` + `_evict_keys` refactor; touches shared resumability/dirty code |
+| `process.py` | Modify | Low | additive flag + validation |
+| `steps/find_public_bodies/process.py` | Modify | Low–Med | custom writer; confirm-only when scoped |
+| 10× IncrementalWriter steps (§a) | Modify | Low | mechanical filter + `target_public_body` kwarg each |
+| `extract_disclosures_canonicalize`, `extract_disclosures_deduplicate` (§b) | Modify | **Medium** | merge-back wrapper; dedup may be cross-body |
+| `export_status`, `generate_topics`, `db_upload` (§c) | Modify | Med | filter hard-coded reads; derived/best-effort output |
+
+Risk is **not** uniformly "Low" as the previous draft claimed — the
+`file_utils.py` change is the highest-leverage and highest-risk edit because all
+resumability and dirty propagation flows through it.
 
 ---
 
-## Commands Reference
+## Commands Reference (after implementation)
 
-### After Implementation
-
-Run full pipeline for one public body:
 ```bash
 cd foi_pipeline
-python process.py --public-body 1001 --force
-```
 
-Run from a specific step for one public body:
-```bash
-cd foi_pipeline
-python process.py --from validate_websites --public-body 1001 --force
-```
+# Reprocess one body through the whole pipeline, leaving all others intact:
+python process.py --public-body 1001
 
-Run a single step for one public body:
-```bash
-cd foi_pipeline
+# Resume from a step for one body:
+python process.py --from validate_websites --public-body 1001
+
+# Run a single step against one body, to a scratch output:
 PYTHONPATH=. python steps/get_foi_emails/process.py \
-  --input steps/find_foi_pages/output.json \
+  --input steps/check_foi_pages/output.json \
   --output /tmp/test_output.json \
-  --public-body 1001 \
-  --force
-```
+  --public-body 1001
 
-Filter find_public_bodies to a single body:
-```bash
-cd foi_pipeline
-PYTHONPATH=. python steps/find_public_bodies/process.py \
-  --input . \
-  --output steps/find_public_bodies/output.json \
-  --public-body 1001 \
-  --force
+# Destructive: reduce a step's output to one body (rarely wanted):
+python process.py --public-body 1001 --force   # warns on stderr
 ```
 
 ---
 
-## Appendix A: Current Step Analysis
-
-Before implementation, audit all steps to identify:
-
-1. Which steps use `public_bodies` vs `results` as their top-level key
-2. Which steps use a different key field than `public_body_id`
-3. Which steps have unique argument requirements beyond the common set
-
-| Step | Top-Level Key | Key Field | Unique Args | Filterable? |
-|------|---------------|-----------|-------------|------------|
-| find_public_bodies | public_bodies | public_body_id | None | Yes |
-| resolve_website_urls | results | public_body_id | None | Yes |
-| validate_websites | results | public_body_id | None | Yes |
-| find_foi_pages | results | public_body_id | None | Yes |
-| check_foi_pages | results | public_body_id | None | Yes |
-| get_foi_emails | results | public_body_id | None | Yes |
-| find_disclosure_pages | results | public_body_id | None | Yes |
-| find_disclosure_files | results | public_body_id | None | Yes |
-| transform_disclosure_files | results | public_body_id | None | Yes |
-| normalize_disclosure_cells | results | public_body_id | None | Yes |
-| extract_disclosures_detect_header_row | results | public_body_id | None | Yes |
-| extract_disclosures_canonicalize | results | public_body_id | None | Yes |
-| extract_disclosures_deduplicate | results | public_body_id | None | Yes |
-| export_status | public_bodies | public_body_id | None | Yes |
-| generate_topics | results | public_body_id | None | Partial* |
-| db_upload | N/A | public_body_id | None | No** |
-
-*generate_topics: Uses disclosures from extract_disclosures_canonicalize which contain public_body_id. Can filter input but output structure is different (topics with matched disclosures).
-
-**db_upload: Reads from multiple step outputs directly (not from --input). The --public-body flag would be ignored with an info message, as this step doesn't process input in the same way.
-
-*Note: All steps except db_upload use public_body_id as their key field and can be filtered.*
-
----
-
-## Appendix B: Open Questions (Resolved)
+## Design Decisions
 
 | Question | Resolution |
 |----------|------------|
-| Filter at orchestration or step level? | Step level (Approach B) - allows individual step runs |
-| Works with `--from` flag? | Yes - processes only that body through remaining steps |
-| Works with `--force` flag? | Yes - forces reprocessing of just that body |
-| Output structure changed? | No - array wrappers preserved |
-| Public body ID format? | Single integer |
-| Validation location? | At start, against `find_public_bodies/output.json` |
-| Error if body doesn't exist? | Yes - exit with error |
-| Multiple IDs supported? | No - single ID only |
-| Common library for CLI? | Yes - `scripts/cli_utils.py` |
-| Migration approach? | Incremental (one step at a time) |
-| Steps without public_body_id? | Info message, flag ignored |
-| find_public_bodies standalone? | Yes - filters existing output with `--force` |
+| How to preserve other bodies? | Merge-based `IncrementalWriter` **without** `--force`; never overwrite. |
+| How to *reprocess* the target? | Targeted eviction via `target_public_body`, reusing the dirty/`_evict_upstream_dirty` path. |
+| Cascade downstream? | Yes, automatically via existing `dirty_ids.json` propagation. |
+| Filter at step or orchestration level? | Step level, so single steps are runnable; orchestration validates + passes through. |
+| `--public-body` + `--force`? | Orthogonal; allowed but destructive (reduces to one body); warn, don't auto-inject force. |
+| Steps that ignore `--input` (`generate_topics`, `db_upload`)? | Filter their hard-coded reads; document derived/best-effort output. |
+| `find_public_bodies` when scoped? | Confirm body exists; do **not** shrink its output to one body. |
+| Output structure changed? | No. |
+| Multiple IDs / ranges? | No, single integer. |
+| New CLI library? | Yes — `scripts/cli_utils.py`. |
+| Replace `IncrementalWriter` with a generic template? | **No** — that was the previous draft's core mistake. |
 
 ---
 
-## Approval
+## Appendix: Verified Step Inventory
 
-This design has been reviewed and discussed. Ready for implementation planning.
+| Step | Top-level key | Writer | Reads `--input`? | Dirty-aware? |
+|------|---------------|--------|------------------|--------------|
+| Step | Top-level key | Writer / shape | Reads `--input`? | `--public-body` handling |
+|------|---------------|----------------|------------------|--------------------------|
+| find_public_bodies | public_bodies | custom scraper | n/a | confirm-only (§find_public_bodies) |
+| resolve_website_urls | results | Incremental | yes | evict target (§a) |
+| validate_websites | results | Incremental (override only) | yes | evict target (§a) |
+| find_foi_pages | results | Incremental + dirty | yes | evict target (§a) |
+| check_foi_pages | results | Incremental + dirty | yes | evict target (§a) |
+| get_foi_emails | results | Incremental + dirty | yes | evict target (§a) |
+| find_disclosure_pages | results | Incremental + dirty | yes | evict target (§a) |
+| find_disclosure_files | results | Incremental + dirty | yes | evict target (§a) |
+| transform_disclosure_files | results | Incremental + dirty | yes | evict target (§a) |
+| normalize_disclosure_cells | results | Incremental + dirty | yes | evict target (§a) |
+| extract_disclosures_detect_header_row | results | Incremental + dirty | yes | evict target (§a) |
+| extract_disclosures_canonicalize | results | **plain write_json** | yes | merge-back (§b) |
+| extract_disclosures_deduplicate | results | **plain write_json** | yes | merge-back (§b); verify cross-body dedup |
+| export_status | public_bodies | aggregator (multi-read) + `public/` | partial | filter reads; derived (§c) |
+| generate_topics | results (topics) | plain write | **no** (reads canonicalize) | filter read; derived (§c) |
+| db_upload | n/a | DB upsert (multi-read) | **no** | filter reads; idempotent or skip (§c) |
 
-**Design approved by:** [User name]  
-**Date:** [To be filled]  
-
----
-
-*Generated by Mistral Vibe.  
-Co-Authored-By: Mistral Vibe <vibe@mistral.ai>*
+This three-way split is the reason a single generic step template is impossible
+(and why the previous draft's template was unsafe).

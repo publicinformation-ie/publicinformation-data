@@ -406,3 +406,23 @@ which is your cue to re-verify cached judgments before trusting the metric.
 ### Uniqueness Pass Interaction (find_foi_pages only)
 
 `find_foi_pages` runs a post-process uniqueness check that removes records sharing a `foi_page_url`. Override records participate in this pass. If an override record shares a `foi_page_url` with an automated result, the automated result is dropped — manual truth wins.
+
+---
+
+## Scoping to one public body
+
+Reprocess a single body end-to-end, leaving all others byte-for-byte unchanged:
+
+```bash
+cd foi_pipeline
+python process.py --public-body 1001                                  # whole pipeline, one body
+python process.py --from validate_websites --public-body 1001         # resume, one body
+PYTHONPATH=. python steps/get_foi_emails/process.py \
+  --input steps/check_foi_pages/output.json \
+  --output /tmp/test_output.json --public-body 1001                   # single step, scratch output
+```
+
+`--public-body` never forces. Combining it with `--force` is allowed but
+**reduces that step's output to the single body** (warned on stderr).
+`generate_topics`/`db_upload`/`export_status` outputs are derived/best-effort
+when scoped — run a full pipeline before publishing.
