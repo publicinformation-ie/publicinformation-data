@@ -55,11 +55,12 @@ async function writeOverride(step, records) {
 }
 
 async function fetchPending() {
-  const res = await fetch(`${CORRECTIONS_URL}/pending`, {
+  const res = await fetch(`${CORRECTIONS_URL}/list`, {
     headers: { 'x-api-key': ADMIN_API_KEY },
   });
   if (!res.ok) throw new Error(`Fetch failed: ${res.url} ${res.status} ${res.statusText}`);
-  return res.json();
+  const { corrections } = await res.json();
+  return corrections;
 }
 
 async function apiAccept(correctionId, pendingKarmaRecord) {
