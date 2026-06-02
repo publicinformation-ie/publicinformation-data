@@ -131,3 +131,47 @@ def test_body_with_temporary_exclusion_reason_is_also_skipped(requests_mock, tmp
     }
     process(excluded_input, tmp_path, writer)
     assert len(writer.results) == 0
+
+
+import sys as _sys
+from scripts.file_utils import read_json as _read_json, write_json as _write_json
+import steps.resolve_website_urls.process as _proc
+
+
+def test_public_body_scoped_leaves_others_untouched(requests_mock, tmp_path, monkeypatch):
+    # Seed this step's existing output with three bodies.
+    out = tmp_path / "output.json"
+    seeded = [
+        {"public_body_id": 1001, "marker": "keep-1001"},
+        {"public_body_id": 1002, "marker": "old-1002"},
+        {"public_body_id": 1003, "marker": "keep-1003"},
+    ]
+    _write_json(out, {"metadata": {"step": "resolve_website_urls"}, "results": seeded})
+
+    # Input contains all three; only 1002 will pass through the filter.
+    inp = tmp_path / "input.json"
+    _write_json(inp, {"public_bodies": [
+        {"public_body_id": 1001, "name": "A",
+         "official_website_url": "https://example.com/1001/",
+         "status": {"website_url": {"url": "https://example.com/1001/", "status": "not_attempted"}}},
+        {"public_body_id": 1002, "name": "B",
+         "official_website_url": "https://example.com/1002/",
+         "status": {"website_url": {"url": "https://example.com/1002/", "status": "not_attempted"}}},
+        {"public_body_id": 1003, "name": "C",
+         "official_website_url": "https://example.com/1003/",
+         "status": {"website_url": {"url": "https://example.com/1003/", "status": "not_attempted"}}},
+    ]})
+
+    # Mock only 1002's URL (filter means 1001/1003 are never fetched)
+    requests_mock.get("https://example.com/1002/", text=DEPT_HTML)
+
+    monkeypatch.setattr(_proc, "__file__", str(tmp_path / "process.py"))
+    _sys.argv = ["process.py", "--input", str(inp), "--output", str(out),
+                 "--public-body", "1002"]
+    _proc.main()
+
+    results = {r["public_body_id"]: r for r in _read_json(out)["results"]}
+    assert results[1001]["marker"] == "keep-1001"   # untouched
+    assert results[1003]["marker"] == "keep-1003"   # untouched
+    assert "marker" not in results[1002] or results[1002]["marker"] != "old-1002"  # reprocessed
+    assert _read_json(tmp_path / "dirty_ids.json") == [1002]
