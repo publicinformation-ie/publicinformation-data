@@ -1,9 +1,121 @@
 [
   {
     "public_body_id": 1018,
+    "name": "Department of Transport",
+    "official_website_url": "https://www.gov.ie/en/department-of-transport/",
+    "foi_page_url": "https://www.gov.ie/en/department-of-transport/organisation-information/freedom-of-information-foi/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1020,
     "name": "An Garda Síochána",
     "official_website_url": "https://www.garda.ie/en/",
     "foi_page_url": "https://www.garda.ie/en/information-centre/freedom-of-information/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1044,
+    "name": "Digital Hub Development Agency",
+    "official_website_url": "https://www.thedigitalhub.com/",
+    "foi_page_url": "https://www.thedigitalhub.com",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1131,
+    "name": "Cork County Council",
+    "official_website_url": "https://www.corkcoco.ie",
+    "foi_page_url": "https://www.corkcoco.ie/en/council/data-protection-and-freedom-of-information/freedom-of-information-foi",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1146,
+    "name": "Mayo County Council",
+    "official_website_url": "https://www.mayo.ie",
+    "foi_page_url": "https://www.mayo.ie/en-ie/your-council/governance-and-democracy/freedom-of-information/how-to-make-a-request",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1147,
+    "name": "Meath County Council",
+    "official_website_url": "https://www.meath.ie",
+    "foi_page_url": "https://www.meath.ie/council/your-council/your-data-and-access-to-information/freedom-of-information-publication-scheme",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1149,
+    "name": "Offaly County Council",
+    "official_website_url": "http://www.offaly.ie",
+    "foi_page_url": "https://www.offaly.ie/freedom-of-information-request/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1150,
+    "name": "Roscommon County Council",
+    "official_website_url": "http://www.roscommoncoco.ie",
+    "foi_page_url": "http://www.roscommoncoco.ie/en/Freedom_of_Information/FOI-Disclosure-Log-",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1151,
+    "name": "Sligo County Council",
+    "official_website_url": "http://www.sligococo.ie",
+    "foi_page_url": "https://www.sligococo.ie/Policies/ModelPublicationScheme/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1152,
+    "name": "South Dublin County Council",
+    "official_website_url": "https://www.sdcc.ie",
+    "foi_page_url": "https://www.sdcc.ie/en/services/our-council/access-to-information/freedom-of-information/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1153,
+    "name": "Tipperary County Council",
+    "official_website_url": "https://www.tipperarycoco.ie",
+    "foi_page_url": "https://www.tipperarycoco.ie/governance-and-administration/freedom-information-request",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1154,
+    "name": "Waterford City and County Council",
+    "official_website_url": "http://www.waterfordcouncil.ie",
+    "foi_page_url": "https://www.waterfordcouncil.ie/departments/corporate/communications/foi.htm",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1155,
+    "name": "Westmeath County Council",
+    "official_website_url": "https://www.westmeathcoco.ie",
+    "foi_page_url": "http://www.westmeathcoco.ie/en/ourservices/yourcouncil/datatransparencyfreedomofinformation/freedomofinformation/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1156,
+    "name": "Wexford County Council",
+    "official_website_url": "https://www.wexfordcoco.ie",
+    "foi_page_url": "https://www.wexfordcoco.ie/council-and-democracy/freedom-of-information-foi-and-data-protection/make-a-foi-requestappeal-a",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1157,
+    "name": "Wicklow County Council",
+    "official_website_url": "https://www.wicklow.ie",
+    "foi_page_url": "https://www.wicklow.ie/Living/Your-Council/Governance/Freedom-Of-Information/How-To-Make-An-FOI-Request",
     "source_method": "manual",
     "overridden": true
   }
