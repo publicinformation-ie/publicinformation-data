@@ -44,15 +44,21 @@ class IncrementalWriter:
             self._load_overrides(Path(override_path))
 
     def _evict_upstream_dirty(self, dirty_path):
-        dirty_ids = set(read_json(dirty_path))
-        if not dirty_ids:
+        self._evict_keys(set(read_json(dirty_path)))
+
+    def _evict_keys(self, body_ids: set):
+        """Remove all records whose public_body_id is in body_ids from
+        self.results, drop their keys from processed_keys, and mark them
+        dirty so finalize() cascades them downstream. Shared by upstream
+        dirty propagation and the --public-body target eviction."""
+        if not body_ids:
             return
-        to_evict = [r for r in self.results if r.get("public_body_id") in dirty_ids]
+        to_evict = [r for r in self.results if r.get("public_body_id") in body_ids]
         if not to_evict:
             return
         evicted_body_ids = {r["public_body_id"] for r in to_evict if "public_body_id" in r}
         evicted_keys = {r[self.key_field] for r in to_evict if self.key_field in r}
-        self.results = [r for r in self.results if r.get("public_body_id") not in dirty_ids]
+        self.results = [r for r in self.results if r.get("public_body_id") not in body_ids]
         self.processed_keys -= evicted_keys
         self.dirty_body_ids.update(evicted_body_ids)
         print(
