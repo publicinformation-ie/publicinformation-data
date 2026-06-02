@@ -3,7 +3,7 @@
 **Open data pipeline for Irish Freedom of Information (FOI) public body information**
 
 [![Codeberg](https://codeberg.org/gingertechie/publicinformation-data/badge)](https://codeberg.org/gingertechie/publicinformation-data)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 This repository contains the data processing pipeline for [PublicInformation.ie](https://publicinformation.ie), a project that tracks and publishes Freedom of Information (FOI) data from Irish public bodies. The pipeline extracts, transforms, and loads data about FOI pages, email addresses, disclosure logs, and disclosure files from hundreds of Irish government and public sector websites.
 
@@ -408,7 +408,9 @@ The project uses libSQL (via Bunny) for the production database because:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU Affero General Public License version 3.0 (AGPL-3.0) - see the [LICENSE](LICENSE) file for details.
+
+The AGPL-3.0 license ensures that any modifications to this software that are used over a network (such as a web service) must have their source code made available to users. This ensures the data processing pipeline remains open and accessible to all.
 
 ## Support
 
@@ -449,3 +451,5 @@ For bug fixes and improvements, please:
 ---
 
 *This README was last updated on June 2, 2026. For the most up-to-date information, see the project documentation in [AGENTS.md](AGENTS.md) and [DATA_FLOW.md](DATA_FLOW.md).*
+
+*Licensed under [AGPL-3.0](https://www.gnu.org/licenses/agpl-3.0)*
