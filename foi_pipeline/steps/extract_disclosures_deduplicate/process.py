@@ -6,6 +6,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+from scripts.cli_utils import add_common_args, filter_by_public_body, merge_replacing_body
 from scripts.file_utils import read_json, write_json, write_status
 
 STEP_NAME = "extract_disclosures_deduplicate"
@@ -52,10 +53,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="Deduplicate FOI disclosure records by reference ID"
     )
-    parser.add_argument("--input", required=True)
-    parser.add_argument("--output", required=True)
-    parser.add_argument("--force", action="store_true")
-    parser.add_argument("--verbose", action="store_true")
+    add_common_args(parser)
     args = parser.parse_args()
 
     step_dir = Path(__file__).parent
@@ -66,6 +64,7 @@ def main():
     except Exception as e:
         print(f"Fatal: could not read input: {e}", file=sys.stderr)
         sys.exit(1)
+    input_data = filter_by_public_body(input_data, args.public_body)
 
     # Extract records from input
     records = input_data.get("results", [])
@@ -73,6 +72,11 @@ def main():
 
     # Deduplicate
     deduplicated, duplicates_removed, null_ids = deduplicate_records(records)
+
+    if args.public_body is not None and not args.force and output_path.exists():
+        existing = read_json(output_path).get("results", [])
+        deduplicated = merge_replacing_body(existing, deduplicated, args.public_body)
+
     total_after = len(deduplicated)
 
     # Write output with enhanced metadata
