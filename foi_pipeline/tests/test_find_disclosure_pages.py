@@ -95,9 +95,12 @@ INPUT_GOV_IE = {
 
 
 def test_gov_ie_uses_domain_handler_not_crawl(requests_mock, tmp_path, make_writer, monkeypatch):
+    from steps.find_disclosure_pages.domains import _gov_ie_query
+    name = "Department of Agriculture, Food and the Marine"
+    query = _gov_ie_query(name)
     monkeypatch.setattr(
-        "steps.find_disclosure_pages.domains.search_serper",
-        lambda q: [{"link": DISCLOSURE_URL}],
+        "steps.find_disclosure_pages.process.batch_search",
+        lambda queries: {query: [{"link": DISCLOSURE_URL}]},
     )
     writer = make_writer(STEP_NAME)
     process(INPUT_GOV_IE, tmp_path, writer)
@@ -119,8 +122,8 @@ def test_skips_irish_language_disclosure_links(requests_mock, tmp_path, make_wri
 
 def test_gov_ie_falls_back_to_crawl_when_domain_handler_returns_none(requests_mock, tmp_path, make_writer, monkeypatch):
     monkeypatch.setattr(
-        "steps.find_disclosure_pages.domains.search_serper",
-        lambda q: [],
+        "steps.find_disclosure_pages.process.batch_search",
+        lambda queries: {},
     )
     requests_mock.get(
         "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/",

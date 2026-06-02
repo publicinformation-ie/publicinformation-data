@@ -5,14 +5,15 @@ import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
 
+from scripts.apify_search import batch_search
 from scripts.cli_utils import add_common_args, filter_by_public_body
 from scripts.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
 from scripts.http_utils import fetch, is_safe_url, validate_url_or_raise
-from steps.find_disclosure_pages.domains import find_disclosure_page as domain_find
+from steps.find_disclosure_pages.domains import find_disclosure_page as domain_find, _gov_ie_query
 
 STEP_NAME = "find_disclosure_pages"
 
@@ -108,7 +109,24 @@ def process(input_data, step_dir, writer, verbose=False):
     errors_path = Path(step_dir) / "errors.json"
     write_json(errors_path, [])
 
-    for item in input_data["results"]:
+    items = input_data["results"]
+
+    # Pre-pass: collect queries for gov.ie bodies not yet processed
+    gov_ie_queries = {}
+    for item in items:
+        body_id = item["public_body_id"]
+        if writer.is_processed(body_id):
+            continue
+        url = item["foi_page_url"]
+        if urlparse(url).netloc.endswith("gov.ie"):
+            name = item.get("name", "")
+            gov_ie_queries[body_id] = _gov_ie_query(name)
+
+    batch_results = {}
+    if gov_ie_queries:
+        batch_results = batch_search(list(gov_ie_queries.values()))
+
+    for item in items:
         body_id = item["public_body_id"]
         if writer.is_processed(body_id):
             continue
@@ -120,7 +138,7 @@ def process(input_data, step_dir, writer, verbose=False):
         method = "unknown"
         try:
             validate_url_or_raise(url, context=f"disclosure_page_{body_id}")
-            disclosure_url = domain_find(name, url)
+            disclosure_url = domain_find(name, url, batch_results=batch_results)
             if disclosure_url is not None:
                 method = "domain"
                 confidence = "high"
