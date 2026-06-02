@@ -1,1 +1,202 @@
-{}
+{
+  "https://assets.gov.ie/static/documents/data-privacy-notice-889e7c9c-8853-44f6-99c8-32934f2b81ec.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'data-privacy-notice' \u2014 this is a GDPR privacy notice, not an FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/5d0c2ca0-549d-48cc-adb2-d70abb399fac/FOI-Disclosure-log-2025-Q1.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getattachment/0c25a07b-6742-4fa6-91cd-f06a9d8e8668/FOI-Disclosure-log-2025-Q2-ENG.pdf?lang=en-IE": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/7f1c8fe8-86cd-4059-b72b-33763b5040ba/FOI-Disclosure-log-2024-Q1.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/77023158-c0e0-417d-a105-6602a8db5c37/FOI-Disclosure-log-2024-Q2.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/6aa3cfd7-2ffd-4ec6-9c4e-b95c5fb89707/FOI-Disclosure-log-2024-Q3.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/32cc6057-ed22-4a3c-abdb-4d5926e0075b/FOI-Disclosure-log-2024-Q4.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/cc040a5b-a1a3-4699-aa8e-70d56c49c276/Disclosure-log-2023-Q1.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/173c9e15-2d5d-4a99-901e-1c59ffb8af8d/Disclosure-log-2023-Q2.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/c005d3cb-740f-43ce-8818-daba02c6c99e/Disclosure-log-2023-Q3_1.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/98cbba13-e425-4309-97d9-4f469d4a8820/FOI-Disclosure-log-2023-Q4.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/5440d179-8ff4-4493-92bf-176cd2e93429/Disclosure-log-2022-Q1.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/4b15b428-fde7-4588-b675-be6855578e79/Disclosure-log-2022-Q2.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/2e839d07-59c8-47a5-ad5e-8cb2d74110a0/Disclosure-log-2022-Q3_1.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/4bc564d1-7196-4c7e-ba0e-a06f9f6ec645/Disclosure-log-2022-Q4.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getattachment/efcf5bc7-f125-4d53-a334-29f42285eb89/Disclosure-Log-2021-Q-1.pdf?lang=en-IE": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getattachment/8b3be3e1-7e47-42d4-a2fd-0791a10ba6ab/Disclosure-Log-2021-Q-2.pdf?lang=en-IE": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/2755aeca-b23d-4622-b27d-ba0cff640fe8/Disclosure-Log-2021-Q-3.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/72970e39-0cc8-4fdc-9e1d-41117b2f25ec/Disclosure-Log-2021-Q-4.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getattachment/eb2c0094-d2c1-403c-8303-048ac2634dc5/Disclosure-Log-2020-Q1.pdf?lang=en-IE": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getattachment/8e3b8699-e0a2-4a7c-bd8f-52a4f14538f5/Disclosure-Log-2020-Q2.pdf?lang=en-IE": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getattachment/2f17f6c0-8260-4ee9-842f-241e900500b2/Disclosure-Log-2020-Q3.pdf?lang=en-IE": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getattachment/d37e6437-74f8-4bae-82af-21362dc8a523/Disclosure-Log-2020-Q4.pdf?lang=en-IE": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/1b229844-a64a-4b33-a564-13ea242f396b/2019-Q1.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/dfd9869d-f1fb-4fe8-b2c9-c95663fb862b/2019-Q2.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getattachment/2ee49c50-6772-47e2-a92a-567865172660/Disclosure-Log-2019-Q3.pdf?lang=en-IE": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getattachment/de3b2509-7332-4819-80c5-3d41aabe826c/Disclosure-Log-2019-Q4.pdf?lang=en-IE": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/41b272ba-95ef-4b92-b613-df07f74cf133/2018-Q1.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/82e646bd-d334-4c0e-b5c0-d03499037e59/2018-Q2.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/608adeb0-3a47-4456-bd9a-cd344c16d678/2018-Q3.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/593b6ca9-d70e-4162-ae6f-d7a64b88ce0b/2018-Q4.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/8d0c20fe-b28e-438c-a06f-698e90516d67/2017-Q1.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/7a3b2a02-e518-4711-9664-439815a294cf/2017-Q2.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/04bdb4c3-fa36-4722-bdaf-a09364972507/2017-Q3.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/aac00db7-c49c-46a3-b1c8-c07ac86346b0/2017-Q4.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/d6bfbbf5-425c-4af0-be47-38c2fbd742b4/2016-Q1.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/e3049b15-8e01-4388-836a-5cb53667c531/2016-Q2.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/f4eb6f6e-497c-471a-9b00-9c44d42d30e3/2016-Q3.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/294adf88-7c41-4bc2-aae7-b1e6b24a7da2/2016-Q4.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  },
+  "https://www.pleanala.ie/getmedia/83cfd086-8ad4-415d-944c-6afcb5af6007/2015-Q1.pdf": {
+    "label": "yes",
+    "rationale": "An Bord Plean\u00e1la FOI disclosure log",
+    "verified": "yes"
+  }
+}

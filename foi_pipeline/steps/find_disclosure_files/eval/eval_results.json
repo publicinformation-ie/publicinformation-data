@@ -1,0 +1,25 @@
+{
+  "step": "find_disclosure_files",
+  "metrics": [
+    {
+      "name": "precision",
+      "value": 0.975,
+      "counts": {
+        "foi": 39,
+        "judged": 40
+      },
+      "is_primary": true
+    },
+    {
+      "name": "unverified_coverage",
+      "value": 0,
+      "counts": {
+        "unverified": 0,
+        "total": 40
+      },
+      "is_primary": false
+    }
+  ],
+  "input_hash": "cb204a7a192545611b575ad05ebe724d6a830fd32b04f979cac1a9911feb8205",
+  "judge_model": "anthropic:claude-haiku-4-5-20251001"
+}

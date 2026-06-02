@@ -1,0 +1,13 @@
+[
+  {
+    "severity": "warning",
+    "description": "1 files judged non-FOI",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/data-privacy-notice-889e7c9c-8853-44f6-99c8-32934f2b81ec.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "add a content-type / filename filter to find_disclosure_files",
+    "confidence": 0.8
+  }
+]
