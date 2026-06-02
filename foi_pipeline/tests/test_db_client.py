@@ -8,7 +8,7 @@ REPO_ROOT = Path(__file__).parent.parent.parent
 
 @pytest.fixture
 def schema_sql():
-    return (REPO_ROOT / "schema.sql").read_text(encoding="utf-8")
+    return (REPO_ROOT / "public" / "schema.sql").read_text(encoding="utf-8")
 
 
 @pytest.fixture

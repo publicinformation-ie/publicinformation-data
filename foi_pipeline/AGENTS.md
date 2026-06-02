@@ -200,7 +200,7 @@ The final `db_upload` step writes pipeline data to a libSQL database. The target
 | `DATABASE_URL` | `file:./local.db` | Bunny dashboard connection URL (`https://…`) |
 | `DATABASE_AUTH_TOKEN` | *(leave empty)* | Bunny auth token |
 
-`scripts/db_client.py` abstracts sqlite3 (local) and libSQL HTTP v2 (remote) behind a single `DbClient` interface. The canonical schema lives at `schema.sql` in the repo root.
+`scripts/db_client.py` abstracts sqlite3 (local) and libSQL HTTP v2 (remote) behind a single `DbClient` interface. The canonical schema lives at `public/schema.sql`.
 
 To populate a local SQLite database from existing pipeline output:
 

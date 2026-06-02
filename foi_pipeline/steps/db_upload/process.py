@@ -165,7 +165,7 @@ def main():
 
     db = DbClient(db_url, db_token)
     try:
-        schema_sql = (repo_root / "schema.sql").read_text(encoding="utf-8")
+        schema_sql = (repo_root / "public" / "schema.sql").read_text(encoding="utf-8")
         db.executescript(schema_sql)
         clear_pipeline_tables(db)
 
