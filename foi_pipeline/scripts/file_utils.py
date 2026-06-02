@@ -29,7 +29,7 @@ class IncrementalWriter:
         self.processed_keys = set()
         self.dirty_body_ids = set()
 
-        if not force and self.output_path.exists():
+        if (not force or target_public_body is not None) and self.output_path.exists():
             try:
                 existing = read_json(self.output_path)
                 self.results = existing.get("results", [])
