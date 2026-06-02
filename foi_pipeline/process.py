@@ -23,11 +23,26 @@ def main():
     parser.add_argument("--from", dest="from_step", metavar="STEP", help="Resume from this step; earlier steps are skipped")
     parser.add_argument("--stop-on-error", action="store_true", help="Halt pipeline on first non-zero exit code")
     parser.add_argument("--verbose", action="store_true", help="Pass --verbose to each step for per-item progress dots")
+    parser.add_argument("--public-body", type=int, default=None, dest="public_body",
+                        help="Scope all steps to this public body ID only")
     args = parser.parse_args()
 
     pipeline_dir = Path(args.pipeline_dir)
     config = json.loads((pipeline_dir / "pipeline.json").read_text())
     steps = config["steps"]
+
+    if args.public_body is not None:
+        bodies_path = pipeline_dir / "steps" / "find_public_bodies" / "output.json"
+        if not bodies_path.exists():
+            sys.exit("Error: --public-body requires find_public_bodies/output.json; "
+                     "run find_public_bodies first.")
+        bodies = json.loads(bodies_path.read_text()).get("public_bodies", [])
+        if not any(b.get("public_body_id") == args.public_body for b in bodies):
+            sys.exit(f"Error: public body {args.public_body} not found in "
+                     f"find_public_bodies/output.json")
+        if args.force:
+            print("Warning: --public-body with --force reduces each step's output "
+                  "to the single body; other bodies will be removed.", file=sys.stderr)
 
     skip_until = args.from_step
     prev_out = None
@@ -60,6 +75,8 @@ def main():
             cmd.append("--force")
         if args.verbose:
             cmd.append("--verbose")
+        if args.public_body is not None:
+            cmd += ["--public-body", str(args.public_body)]
 
         env = {**os.environ, "PYTHONPATH": str(pipeline_dir)}
         result = subprocess.run(cmd, env=env)

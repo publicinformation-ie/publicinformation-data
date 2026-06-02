@@ -137,3 +137,51 @@ def test_orchestrator_sets_pythonpath(tmp_path):
         main()
         env = mock_run.call_args[1]["env"]
         assert str(pipeline_dir) in env["PYTHONPATH"]
+
+
+from scripts.file_utils import write_json as _write_json
+
+
+def _seed_bodies(pipeline_dir, ids):
+    fpb = pipeline_dir / "steps" / "find_public_bodies"
+    fpb.mkdir(parents=True, exist_ok=True)
+    _write_json(fpb / "output.json",
+                {"public_bodies": [{"public_body_id": i} for i in ids]})
+
+
+def test_orchestrator_public_body_passthrough(tmp_path):
+    pipeline_dir = _make_pipeline(tmp_path, ["find_public_bodies", "validate_websites"])
+    _seed_bodies(pipeline_dir, [1001])
+
+    with patch("process.subprocess.run") as mock_run:
+        mock_run.return_value.returncode = 0
+        sys.argv = ["process.py", str(pipeline_dir), "--public-body", "1001"]
+        main()
+        # every invoked step must carry the flag, and never --force
+        for call in mock_run.call_args_list:
+            cmd = call[0][0]
+            assert "--public-body" in cmd
+            assert cmd[cmd.index("--public-body") + 1] == "1001"
+            assert "--force" not in cmd
+
+
+def test_orchestrator_public_body_not_found_exits_1(tmp_path):
+    pipeline_dir = _make_pipeline(tmp_path, ["find_public_bodies"])
+    _seed_bodies(pipeline_dir, [1001])
+
+    with patch("process.subprocess.run"):
+        with pytest.raises(SystemExit) as exc:
+            sys.argv = ["process.py", str(pipeline_dir), "--public-body", "9999"]
+            main()
+        assert exc.value.code != 0
+
+
+def test_orchestrator_public_body_missing_bodies_file_exits_1(tmp_path):
+    pipeline_dir = _make_pipeline(tmp_path, ["find_public_bodies"])
+    # no find_public_bodies/output.json seeded
+
+    with patch("process.subprocess.run"):
+        with pytest.raises(SystemExit) as exc:
+            sys.argv = ["process.py", str(pipeline_dir), "--public-body", "1001"]
+            main()
+        assert exc.value.code != 0
