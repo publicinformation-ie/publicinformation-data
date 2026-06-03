@@ -4,7 +4,7 @@ from pathlib import Path
 
 import jsonschema
 
-EVAL_DIR = Path(__file__).parent.parent
+EVAL_DIR = Path(__file__).parent.parent / "eval"
 SCHEMA = json.loads((EVAL_DIR / "eval_schema.json").read_text())
 
 
@@ -51,7 +51,7 @@ def test_schema_accepts_issue():
     )
 
 
-import eval_utils
+from eval import utils as eval_utils
 
 
 def test_input_hash_is_stable_and_content_addressed(tmp_path):

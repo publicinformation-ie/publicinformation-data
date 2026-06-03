@@ -1,4 +1,4 @@
-import evaluate_baseline as bl
+from eval import baseline as bl
 
 
 def test_regression_fires_when_metric_drops_and_hash_matches():

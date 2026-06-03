@@ -68,7 +68,7 @@ def test_score_aggregates_and_computes_precision_recall():
 
 from pathlib import Path
 
-import eval_utils
+from eval import utils as eval_utils
 from steps.find_disclosure_pages.eval import evaluate as fdp_eval
 
 EVAL_DIR = Path(fdp_eval.__file__).parent

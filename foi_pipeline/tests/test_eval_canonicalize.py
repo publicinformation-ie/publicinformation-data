@@ -1,4 +1,4 @@
-import eval_utils
+from eval import utils as eval_utils
 from steps.extract_disclosures_canonicalize.eval import evaluate as canon
 
 

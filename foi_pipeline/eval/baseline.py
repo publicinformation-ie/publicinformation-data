@@ -70,7 +70,7 @@ def handle_baseline(pipeline_dir: Path, steps: list[str], args) -> int:
     current = collect_current(pipeline_dir, steps)
 
     if args.update_baseline:
-        from evaluate_headline import print_headline
+        from eval.headline import print_headline
         current_headline, current_funnel = print_headline(pipeline_dir)
         baseline = {
             "steps": {s: {c["name"]: {"value": c["value"], "input_hash": c["input_hash"],
@@ -93,7 +93,7 @@ def handle_baseline(pipeline_dir: Path, steps: list[str], args) -> int:
         regressions = find_regressions(baseline, current)
         # Try to get current headline for headline regression check
         try:
-            from evaluate_headline import print_headline
+            from eval.headline import print_headline
             current_headline, _ = print_headline(pipeline_dir)
             h_reg = headline_regressed(baseline, current_headline)
         except Exception:

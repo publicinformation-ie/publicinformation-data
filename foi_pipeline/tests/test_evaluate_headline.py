@@ -1,4 +1,4 @@
-import evaluate_headline as headline
+from eval import headline
 
 
 def test_is_valid_record_requires_decision_date_and_summary():

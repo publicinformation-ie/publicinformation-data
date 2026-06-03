@@ -1,6 +1,6 @@
 import pytest
 
-import eval_judge
+from eval import judge as eval_judge
 
 
 def test_judge_uses_cache_and_skips_api():

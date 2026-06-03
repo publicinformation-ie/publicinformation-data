@@ -13,7 +13,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-import eval_utils
+from eval import utils as eval_utils
 
 EVAL_INPUT_NAMES = ["evaluate.py", "labels.csv", "judgments.json", "input.json"]
 
@@ -128,10 +128,10 @@ def main(argv=None):
     (here / "eval" / "issues.json").write_text(json.dumps(grouped, indent=2))
 
     if args.headline:
-        from evaluate_headline import print_headline  # Task 9
+        from eval.headline import print_headline  # Task 9
         print_headline(here)
     if args.check or args.update_baseline:
-        from evaluate_baseline import handle_baseline  # Task 10
+        from eval.baseline import handle_baseline  # Task 10
         return handle_baseline(here, eval_steps, args)
     return 0
 

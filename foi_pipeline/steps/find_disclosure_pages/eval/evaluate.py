@@ -27,7 +27,7 @@ _FOI_PIPELINE_ROOT = _HERE.parents[2]  # steps/find_disclosure_pages/eval -> foi
 if str(_FOI_PIPELINE_ROOT) not in sys.path:
     sys.path.insert(0, str(_FOI_PIPELINE_ROOT))
 
-import eval_utils
+from eval import utils as eval_utils
 
 
 def _norm(url):

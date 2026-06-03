@@ -15,8 +15,8 @@ from pathlib import Path
 _HERE = Path(__file__).parent
 sys.path.insert(0, str(_HERE.parents[2]))  # foi_pipeline/ -> imports eval_utils
 
-import eval_utils
-import eval_judge
+from eval import utils as eval_utils
+from eval import judge as eval_judge
 
 STEP = "find_disclosure_files"
 

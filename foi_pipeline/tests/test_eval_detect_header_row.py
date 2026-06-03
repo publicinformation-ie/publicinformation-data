@@ -1,6 +1,6 @@
 from pathlib import Path
 
-import eval_utils
+from eval import utils as eval_utils
 from steps.extract_disclosures_detect_header_row.eval import evaluate as dhr
 
 
