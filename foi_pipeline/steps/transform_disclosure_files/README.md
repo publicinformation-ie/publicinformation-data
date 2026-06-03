@@ -58,8 +58,9 @@ As of 2025-06, this step uses parallel processing and persistent caching to impr
 ### Parallel Processing
 - Files are processed in parallel using `ThreadPoolExecutor`
 - Default: 4 workers (configurable via `--workers N` CLI argument)
-- CPU-bound PDF parsing with pdfplumber releases the GIL, enabling effective parallelism with threads
-- File I/O also releases the GIL, further improving concurrency
+- Threading parallelises network I/O (file downloads) effectively, since I/O releases the GIL
+- **PDF parsing (pdfplumber) is pure Python and does NOT release the GIL** — CPU-bound PDF work runs serially even with multiple workers; the speedup comes from overlapping downloads with parsing of already-cached files
+- For workloads that are predominantly cached PDFs, increasing `--workers` beyond 1 provides minimal benefit
 
 ### Caching
 - Downloaded files are cached in `cache/` directory (ignored via `.gitignore`)
