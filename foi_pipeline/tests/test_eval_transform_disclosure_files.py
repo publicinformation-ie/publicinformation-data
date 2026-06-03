@@ -234,7 +234,7 @@ def test_load_process_warnings_skips_missing_context(tmp_path):
 
 # ── main() ───────────────────────────────────────────────────────────────────
 
-def test_main_writes_output_files(tmp_path):
+def test_run_eval_pdf_filter_excludes_xlsx(tmp_path):
     items = [
         {"file_url": "u1", "public_body_id": 1, "name": "Body A",
          "file_type": "pdf", "rows": [["h1", "h2", "h3"], ["a", "b", "c"]]},
