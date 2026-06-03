@@ -356,16 +356,18 @@ def process(input_data, step_dir, writer, verbose=False, workers=4):
                   for item in items_to_process]
         results = [f.result() for f in futures]
 
-    # Flatten results and append to writer
+    # Flatten results and append to writer (sequentially to avoid thread-safety issues)
     # Also track all processed file_urls (including failures) to mark them as processed
+    all_results = []
     for i, result_list in enumerate(results):
         file_url = items_to_process[i]["file_url"]
-        writer.append(result_list)
+        all_results.extend(result_list)
         # Mark file as processed even if it failed (matches original behavior)
-        # This is done by the writer.append() for successful results,
-        # but we need to explicitly add it for failures (empty result_list)
         if not result_list:
             writer.processed_keys.add(file_url)
+    
+    # Append all results at once (sequential, thread-safe)
+    writer.append(all_results)
 
     if verbose:
         print(".", end="", flush=True)
