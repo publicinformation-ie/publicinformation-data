@@ -29,44 +29,33 @@ class DisclosureFileCache:
     def __init__(self, cache_dir):
         self.cache_dir = Path(cache_dir)
         self.cache_dir.mkdir(parents=True, exist_ok=True)
-        # Add cache/ to .gitignore if not present
-        gitignore_path = self.cache_dir.parent / ".gitignore"
-        if gitignore_path.exists():
-            content = gitignore_path.read_text()
-            if "cache/" not in content:
-                gitignore_path.write_text(content + "\ncache/\n")
-        else:
-            gitignore_path.write_text("cache/\n")
+
+    def _url_hash(self, file_url):
+        return hashlib.sha256(file_url.encode("utf-8")).hexdigest()
 
     def _get_cache_path(self, file_url):
-        """Return the cache file path for a given URL."""
-        url_hash = hashlib.sha256(file_url.encode("utf-8")).hexdigest()
-        return self.cache_dir / f"{url_hash}.bytes"
+        return self.cache_dir / f"{self._url_hash(file_url)}.bytes"
 
     def _lock_path(self, file_url):
-        """Return the lock file path for a given URL."""
-        url_hash = hashlib.sha256(file_url.encode("utf-8")).hexdigest()
-        return self.cache_dir / f"{url_hash}.lock"
+        return self.cache_dir / f"{self._url_hash(file_url)}.lock"
 
     def _acquire_lock(self, lock_path, timeout=300):
-        """Acquire an exclusive file lock. Returns True if acquired, False if timeout."""
+        """Acquire an exclusive file lock. Returns the open fd holding the lock, or None on timeout."""
         lock_file = open(lock_path, "w")
         start_time = time.time()
         while time.time() - start_time < timeout:
             try:
                 fcntl.flock(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
-                return True
+                return lock_file
             except (IOError, OSError):
-                # Lock is held by another process
                 time.sleep(0.1)
-        # Timeout reached - check if lock file is stale (>5 minutes old)
+        # One final attempt — handles the case where the holder died without releasing
         try:
-            lock_stat = os.stat(lock_path)
-            if time.time() - lock_stat.st_mtime > 300:  # 5 minutes
-                return True  # Treat as stale, proceed anyway
-        except OSError:
-            pass
-        return False
+            fcntl.flock(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            return lock_file
+        except (IOError, OSError):
+            lock_file.close()
+            return None
 
     def _release_lock(self, lock_file):
         """Release a file lock."""
@@ -103,10 +92,10 @@ class DisclosureFileCache:
                 cache_path.unlink(missing_ok=True)
 
         # Need to download - acquire lock
-        lock_file = open(lock_path, "w")
+        lock_file = self._acquire_lock(lock_path)
+        if lock_file is None:
+            raise RuntimeError(f"Could not acquire lock for {file_url} after timeout")
         try:
-            if not self._acquire_lock(lock_path):
-                raise RuntimeError(f"Could not acquire lock for {file_url} after timeout")
 
             # Double-check another process didn't download while we waited
             if cache_path.exists():

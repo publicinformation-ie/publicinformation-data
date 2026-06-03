@@ -677,17 +677,38 @@ def test_cache_directory_creation(tmp_path):
     assert cache_dir.exists()
 
 
-def test_gitignore_creation(cache_dir):
-    """Cache adds entry to .gitignore."""
-    gitignore_path = cache_dir.parent / ".gitignore"
+def test_acquire_lock_returns_fd(cache_dir):
+    """_acquire_lock returns the fd that holds the flock, not a boolean."""
+    import fcntl
+    from steps.transform_disclosure_files.process import DisclosureFileCache
+    cache = DisclosureFileCache(cache_dir)
+    lock_path = cache_dir / "test.lock"
+    lock_file = cache._acquire_lock(lock_path)
+    assert lock_file is not None, "_acquire_lock should return the fd"
+    assert not lock_file.closed, "returned fd should be open"
+    # Confirm the fd actually holds the lock (a second non-blocking attempt should fail)
+    fd2 = open(lock_path, "w")
+    try:
+        fcntl.flock(fd2, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        # If we get here the lock was NOT held — that's the bug
+        assert False, "expected flock to be held by _acquire_lock's fd"
+    except (IOError, OSError):
+        pass  # correct: lock is held
+    finally:
+        fd2.close()
+    cache._release_lock(lock_file)
 
-    # Remove if exists
-    if gitignore_path.exists():
-        gitignore_path.unlink()
 
-    DisclosureFileCache(cache_dir)
-    assert gitignore_path.exists()
-    assert "cache/" in gitignore_path.read_text()
+def test_url_hash_helper_deduplicates_sha256(cache_dir):
+    """_url_hash returns the same value as both _get_cache_path and _lock_path use."""
+    from steps.transform_disclosure_files.process import DisclosureFileCache
+    import hashlib
+    cache = DisclosureFileCache(cache_dir)
+    url = "https://example.com/file.xlsx"
+    expected_hash = hashlib.sha256(url.encode("utf-8")).hexdigest()
+    assert cache._url_hash(url) == expected_hash
+    assert cache._get_cache_path(url) == cache_dir / f"{expected_hash}.bytes"
+    assert cache._lock_path(url) == cache_dir / f"{expected_hash}.lock"
 
 
 # ── Parallel Processing Integration Tests ────────────────────────────────────
