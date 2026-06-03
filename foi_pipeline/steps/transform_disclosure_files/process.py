@@ -316,9 +316,9 @@ def _process_single_file(item, cache, step_dir):
 
 
 def process(input_data, step_dir, writer, verbose=False, workers=4):
-    from datetime import datetime, timezone
     errors_path = Path(step_dir) / "errors.json"
-    write_json(errors_path, [])
+    if not errors_path.exists():
+        write_json(errors_path, [])
 
     # Initialize cache
     cache = DisclosureFileCache(Path(step_dir) / "cache")

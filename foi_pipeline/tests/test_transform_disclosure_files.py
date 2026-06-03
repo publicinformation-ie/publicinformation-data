@@ -481,6 +481,36 @@ def test_process_parse_failure_logs_error(requests_mock, tmp_path, make_writer):
     assert errors[0]["step"] == STEP_NAME
 
 
+def test_errors_persist_across_process_calls(requests_mock, tmp_path, make_writer):
+    """Errors from a prior process() call are not destroyed on re-run."""
+    import requests as req
+
+    # First run: download fails, error logged
+    requests_mock.get("https://assets.gov.ie/log.xlsx",
+                      exc=req.exceptions.ConnectionError("timeout"))
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(XLSX_INPUT, tmp_path, writer)
+
+    errors_after_first = json.loads((tmp_path / "errors.json").read_text())
+    assert len(errors_after_first) == 1
+
+    # Second run with a different file — errors.json must not be wiped
+    second_input = {
+        "metadata": {"step": "find_disclosure_files"},
+        "results": [{**BASE_ITEM, "file_url": "https://assets.gov.ie/other.xlsx", "file_type": "xlsx"}],
+    }
+    requests_mock.get("https://assets.gov.ie/other.xlsx",
+                      exc=req.exceptions.ConnectionError("timeout2"))
+    writer2 = make_writer(STEP_NAME, key_field="file_url")
+    process(second_input, tmp_path, writer2)
+
+    errors_after_second = json.loads((tmp_path / "errors.json").read_text())
+    assert len(errors_after_second) == 2, (
+        f"Expected 2 cumulative errors, got {len(errors_after_second)} — "
+        "first run's errors were wiped"
+    )
+
+
 def test_process_download_failure_does_not_mark_processed(requests_mock, tmp_path, make_writer):
     """After a failure, the file_url is NOT marked processed (allows retry)."""
     import requests as req
