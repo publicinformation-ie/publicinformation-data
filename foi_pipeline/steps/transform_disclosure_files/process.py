@@ -298,11 +298,12 @@ def _process_single_file(item, cache, step_dir):
                 "context": {"file_url": file_url, "cells": fallback_cells},
             })
 
-        return [{**item, "sheet_name": sheet_name, "rows": rows}]
+        return [{**item, "sheet_name": sheet_name, "rows": rows}], True
 
     except DownloadError:
         # Already logged by cache - don't re-log
-        return []
+        return [], False  # not marked processed — allows retry on next run
+
     except Exception as e:
         append_error(step_dir, {
             "step": STEP_NAME,
@@ -311,9 +312,7 @@ def _process_single_file(item, cache, step_dir):
             "error_message": str(e),
             "context": {"file_url": file_url},
         })
-        # Mark as processed for non-download errors (parsing errors, etc.)
-        # Download errors are NOT marked processed to allow retry
-        return []
+        return [], True  # marked processed — parse errors are permanent failures
 
 
 def process(input_data, step_dir, writer, verbose=False, workers=4):
@@ -345,17 +344,13 @@ def process(input_data, step_dir, writer, verbose=False, workers=4):
                   for item in items_to_process]
         results = [f.result() for f in futures]
 
-    # Flatten results and append to writer (sequentially to avoid thread-safety issues)
-    # Also track all processed file_urls (including failures) to mark them as processed
     all_results = []
-    for i, result_list in enumerate(results):
+    for i, (result_list, mark_processed) in enumerate(results):
         file_url = items_to_process[i]["file_url"]
         all_results.extend(result_list)
-        # Mark file as processed even if it failed (matches original behavior)
-        if not result_list:
+        if not result_list and mark_processed:
             writer.processed_keys.add(file_url)
-    
-    # Append all results at once (sequential, thread-safe)
+
     writer.append(all_results)
 
     if verbose:

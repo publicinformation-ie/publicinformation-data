@@ -489,7 +489,7 @@ def test_process_download_failure_does_not_mark_processed(requests_mock, tmp_pat
     writer = make_writer(STEP_NAME, key_field="file_url")
     process(XLSX_INPUT, tmp_path, writer)
     # Error does not mark the file_url as processed — allows retry on next run
-    assert writer.is_processed("https://assets.gov.ie/log.xlsx")
+    assert not writer.is_processed("https://assets.gov.ie/log.xlsx")
 
 
 def test_process_multiple_sheets_writes_record_and_warning(requests_mock, tmp_path, make_writer):
