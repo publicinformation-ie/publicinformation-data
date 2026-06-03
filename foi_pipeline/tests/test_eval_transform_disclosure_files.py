@@ -197,3 +197,71 @@ def test_quality_by_body_multiple_bodies():
     assert 1 in qbb and 2 in qbb
     assert qbb[1]["clean"] == 1
     assert qbb[2]["null_first_row"] == 1
+
+
+import json
+import pytest
+from steps.transform_disclosure_files.eval.evaluate import (
+    _load_process_warning_urls,
+    main,
+)
+
+
+# ── _load_process_warning_urls ───────────────────────────────────────────────
+
+def test_load_process_warnings_missing_file(tmp_path):
+    assert _load_process_warning_urls(tmp_path / "missing.json") == set()
+
+
+def test_load_process_warnings_extracts_urls(tmp_path):
+    errors = [
+        {"error_type": "MultipleTableWarning", "context": {"file_url": "http://a.com/f.pdf"}},
+        {"error_type": "CellSerializationWarning", "context": {"file_url": "http://b.com/f.pdf"}},
+        {"error_type": "DownloadError", "context": {"file_url": "http://c.com/f.pdf"}},
+    ]
+    p = tmp_path / "errors.json"
+    p.write_text(json.dumps(errors))
+    urls = _load_process_warning_urls(p)
+    assert urls == {"http://a.com/f.pdf", "http://b.com/f.pdf"}
+
+
+def test_load_process_warnings_skips_missing_context(tmp_path):
+    errors = [{"error_type": "MultipleTableWarning", "context": {}}]
+    p = tmp_path / "errors.json"
+    p.write_text(json.dumps(errors))
+    assert _load_process_warning_urls(p) == set()
+
+
+# ── main() ───────────────────────────────────────────────────────────────────
+
+def test_main_writes_output_files(tmp_path):
+    items = [
+        {"file_url": "u1", "public_body_id": 1, "name": "Body A",
+         "file_type": "pdf", "rows": [["h1", "h2", "h3"], ["a", "b", "c"]]},
+        {"file_url": "u2", "public_body_id": 1, "name": "Body A",
+         "file_type": "pdf", "rows": [[None, "h2", "h3"], ["a", "b", "c"]]},
+        {"file_url": "u3", "public_body_id": 1, "name": "Body A",
+         "file_type": "xlsx", "rows": [["h1", "h2"], ["a", "b"]]},  # non-PDF, excluded
+    ]
+    # Filter as main() does: pdf only, rows not None
+    pdf_items = [r for r in items if r.get("file_type") == "pdf" and r.get("rows") is not None]
+    results, issues, qbb = run_eval(pdf_items, set(), input_hash="a" * 64)
+    primary = next(m for m in results.metrics if m.is_primary)
+    assert primary.counts["total"] == 2  # xlsx excluded
+    assert primary.counts["clean"] == 1  # u2 has null_first_row
+    assert qbb[1]["null_first_row"] == 1
+
+
+def test_main_refresh_fixture(tmp_path, capsys):
+    live_output = tmp_path / "live_output.json"
+    live_output.write_text(json.dumps({"metadata": {}, "results": []}))
+    fixture_dest = tmp_path / "input.json"
+
+    import steps.transform_disclosure_files.eval.evaluate as ev
+    import sys
+    sys.argv = ["evaluate.py", "--refresh-fixture", str(live_output),
+                "--input-path", str(fixture_dest)]
+    ev._HERE = tmp_path
+    code = main()
+    assert code == 0
+    assert fixture_dest.read_text() == live_output.read_text()

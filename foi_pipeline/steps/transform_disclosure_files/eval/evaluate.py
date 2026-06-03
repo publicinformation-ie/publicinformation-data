@@ -158,3 +158,58 @@ def run_eval(items, process_warning_urls, input_hash):
     quality_by_body = build_quality_by_body(items, process_warning_urls)
     results = eval_utils.EvalResults(step=STEP, metrics=metrics, input_hash=input_hash, judge_model=None)
     return results, issues, quality_by_body
+
+
+def _load_process_warning_urls(errors_path):
+    if not errors_path.exists():
+        return set()
+    errors = json.loads(errors_path.read_text())
+    return {
+        e["context"]["file_url"]
+        for e in errors
+        if e.get("error_type") in ("MultipleTableWarning", "CellSerializationWarning")
+        and "file_url" in e.get("context", {})
+    }
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Evaluate transform_disclosure_files PDF extraction quality"
+    )
+    parser.add_argument("--input-path", dest="input_path", default=str(_HERE / "input.json"))
+    parser.add_argument("--errors-path", dest="errors_path", default=str(_HERE.parent / "errors.json"))
+    parser.add_argument("--refresh-fixture", metavar="LIVE_OUTPUT",
+                        help="Re-capture input.json from a live output file, then exit")
+    args = parser.parse_args()
+
+    if args.refresh_fixture:
+        import shutil
+        shutil.copy(args.refresh_fixture, _HERE / "input.json")
+        print(f"Refreshed fixture from {args.refresh_fixture}")
+        return 0
+
+    data = json.loads(Path(args.input_path).read_text())
+    items = [
+        r for r in data["results"]
+        if r.get("file_type") == "pdf" and r.get("rows") is not None
+    ]
+    process_warning_urls = _load_process_warning_urls(Path(args.errors_path))
+
+    results, issues, quality_by_body = run_eval(
+        items, process_warning_urls, eval_utils.input_hash(Path(args.input_path))
+    )
+
+    eval_utils.write_eval_outputs(_HERE, results, issues)
+    (_HERE / "quality_by_body.json").write_text(json.dumps(quality_by_body, indent=2))
+
+    primary = results.metrics[0]
+    print(
+        f"{STEP}: clean_extraction_rate={primary.value:.3f} "
+        f"({primary.counts['clean']}/{primary.counts['total']} clean PDFs), "
+        f"{len(issues)} issues"
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
