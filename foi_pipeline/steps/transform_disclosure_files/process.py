@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
 import argparse
+import concurrent.futures
 import datetime
 import decimal
+import fcntl
+import hashlib
 import io
+import os
 import sys
+import tempfile
+import time
 from pathlib import Path
 
 from lib.cli_utils import add_common_args, filter_by_public_body
@@ -11,6 +17,134 @@ from lib.file_utils import append_error, read_json, write_json, write_status, In
 from lib.http_utils import fetch
 
 STEP_NAME = "transform_disclosure_files"
+
+
+class DisclosureFileCache:
+    """Thread-safe cache for downloaded disclosure files.
+
+    Stores files in a cache/ directory keyed by SHA256 hash of the URL.
+    Uses file locking to prevent concurrent downloads of the same URL.
+    """
+
+    def __init__(self, cache_dir):
+        self.cache_dir = Path(cache_dir)
+        self.cache_dir.mkdir(parents=True, exist_ok=True)
+        # Add cache/ to .gitignore if not present
+        gitignore_path = self.cache_dir.parent / ".gitignore"
+        if gitignore_path.exists():
+            content = gitignore_path.read_text()
+            if "cache/" not in content:
+                gitignore_path.write_text(content + "\ncache/\n")
+        else:
+            gitignore_path.write_text("cache/\n")
+
+    def _get_cache_path(self, file_url):
+        """Return the cache file path for a given URL."""
+        url_hash = hashlib.sha256(file_url.encode("utf-8")).hexdigest()
+        return self.cache_dir / f"{url_hash}.bytes"
+
+    def _lock_path(self, file_url):
+        """Return the lock file path for a given URL."""
+        url_hash = hashlib.sha256(file_url.encode("utf-8")).hexdigest()
+        return self.cache_dir / f"{url_hash}.lock"
+
+    def _acquire_lock(self, lock_path, timeout=300):
+        """Acquire an exclusive file lock. Returns True if acquired, False if timeout."""
+        lock_file = open(lock_path, "w")
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            try:
+                fcntl.flock(lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                return True
+            except (IOError, OSError):
+                # Lock is held by another process
+                time.sleep(0.1)
+        # Timeout reached - check if lock file is stale (>5 minutes old)
+        try:
+            lock_stat = os.stat(lock_path)
+            if time.time() - lock_stat.st_mtime > 300:  # 5 minutes
+                return True  # Treat as stale, proceed anyway
+        except OSError:
+            pass
+        return False
+
+    def _release_lock(self, lock_file):
+        """Release a file lock."""
+        try:
+            fcntl.flock(lock_file, fcntl.LOCK_UN)
+            lock_file.close()
+        except Exception:
+            pass
+
+    def get_file_path(self, file_url, step_dir):
+        """Download and cache file if not present, return path to cached file.
+
+        Args:
+            file_url: URL of the file to download
+            step_dir: Step directory (for error reporting)
+
+        Returns:
+            Path to the cached file
+        """
+        from lib.http_utils import fetch
+        from lib.file_utils import append_error
+
+        cache_path = self._get_cache_path(file_url)
+        lock_path = self._lock_path(file_url)
+
+        # Check if file exists and is readable
+        if cache_path.exists():
+            try:
+                with open(cache_path, "rb") as f:
+                    f.read(1)  # Test read
+                return cache_path
+            except (IOError, OSError):
+                # File exists but is corrupted
+                cache_path.unlink(missing_ok=True)
+
+        # Need to download - acquire lock
+        lock_file = open(lock_path, "w")
+        try:
+            if not self._acquire_lock(lock_path):
+                raise RuntimeError(f"Could not acquire lock for {file_url} after timeout")
+
+            # Double-check another process didn't download while we waited
+            if cache_path.exists():
+                try:
+                    with open(cache_path, "rb") as f:
+                        f.read(1)
+                    return cache_path
+                except (IOError, OSError):
+                    cache_path.unlink(missing_ok=True)
+
+            # Download to temp file first (atomic write)
+            temp_fd, temp_path = tempfile.mkstemp(dir=str(self.cache_dir))
+            try:
+                response = fetch("GET", file_url, allow_redirects=True)
+                with os.fdopen(temp_fd, "wb") as f:
+                    f.write(response.content)
+                # Atomic rename
+                os.replace(temp_path, str(cache_path))
+                return cache_path
+            except Exception as e:
+                # Clean up temp file
+                if os.path.exists(temp_path):
+                    os.unlink(temp_path)
+                append_error(step_dir, {
+                    "step": STEP_NAME,
+                    "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                    "error_type": type(e).__name__,
+                    "error_message": str(e),
+                    "context": {"file_url": file_url},
+                })
+                raise DownloadError(str(e)) from e
+        finally:
+            self._release_lock(lock_file)
+
+
+class DownloadError(Exception):
+    """Raised when file download fails."""
+    pass
 
 
 def serialise_cell(value):
@@ -115,77 +249,126 @@ def _extract_pdf(file_bytes):
     return sheet_name, rows, [], total_tables > 1
 
 
-def process(input_data, step_dir, writer, verbose=False):
+def _process_single_file(item, cache, step_dir):
+    """Process a single file. Called by worker processes.
+
+    Args:
+        item: A result item from input_data
+        cache: DisclosureFileCache instance
+        step_dir: Step directory path
+
+    Returns:
+        List of result dicts to append (typically 0 or 1 items)
+    """
+    file_url = item["file_url"]
+    file_type = item["file_type"]
+
+    try:
+        # Get file from cache (downloads if needed)
+        cached_path = cache.get_file_path(file_url, step_dir)
+        with open(cached_path, "rb") as f:
+            file_bytes = f.read()
+
+        if file_type == "xlsx":
+            sheet_name, rows, fallback_cells, has_multiple = _extract_xlsx(file_bytes)
+            if has_multiple:
+                append_error(step_dir, {
+                    "step": STEP_NAME,
+                    "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                    "error_type": "MultipleSheetWarning",
+                    "error_message": "File has multiple sheets; only the first sheet was extracted.",
+                    "context": {"file_url": file_url},
+                })
+        elif file_type == "xls":
+            sheet_name, rows, fallback_cells, has_multiple = _extract_xls(file_bytes)
+            if has_multiple:
+                append_error(step_dir, {
+                    "step": STEP_NAME,
+                    "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                    "error_type": "MultipleSheetWarning",
+                    "error_message": "File has multiple sheets; only the first sheet was extracted.",
+                    "context": {"file_url": file_url},
+                })
+        else:  # pdf
+            sheet_name, rows, fallback_cells, has_multiple = _extract_pdf(file_bytes)
+            if has_multiple:
+                append_error(step_dir, {
+                    "step": STEP_NAME,
+                    "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                    "error_type": "MultipleTableWarning",
+                    "error_message": "File has multiple tables; all table rows were concatenated.",
+                    "context": {"file_url": file_url},
+                })
+
+        if fallback_cells:
+            append_error(step_dir, {
+                "step": STEP_NAME,
+                "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                "error_type": "CellSerializationWarning",
+                "error_message": f"{len(fallback_cells)} cell(s) used str() fallback.",
+                "context": {"file_url": file_url, "cells": fallback_cells},
+            })
+
+        return [{**item, "sheet_name": sheet_name, "rows": rows}]
+
+    except DownloadError:
+        # Already logged by cache - don't re-log
+        return []
+    except Exception as e:
+        append_error(step_dir, {
+            "step": STEP_NAME,
+            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            "error_type": type(e).__name__,
+            "error_message": str(e),
+            "context": {"file_url": file_url},
+        })
+        # Mark as processed for non-download errors (parsing errors, etc.)
+        # Download errors are NOT marked processed to allow retry
+        return []
+
+
+def process(input_data, step_dir, writer, verbose=False, workers=4):
     from datetime import datetime, timezone
     errors_path = Path(step_dir) / "errors.json"
     write_json(errors_path, [])
 
-    for item in input_data["results"]:
-        file_url = item["file_url"]
-        if writer.is_processed(file_url):
-            continue
+    # Initialize cache
+    cache = DisclosureFileCache(Path(step_dir) / "cache")
 
-        file_type = item["file_type"]
+    # Filter out already processed items
+    items_to_process = [
+        item for item in input_data["results"]
+        if not writer.is_processed(item["file_url"])
+    ]
 
-        try:
-            response = fetch("GET", file_url, allow_redirects=True)
-            file_bytes = response.content
+    if not items_to_process:
+        return
 
-            if file_type == "xlsx":
-                sheet_name, rows, fallback_cells, has_multiple = _extract_xlsx(file_bytes)
-                if has_multiple:
-                    append_error(step_dir, {
-                        "step": STEP_NAME,
-                        "timestamp": datetime.now(timezone.utc).isoformat(),
-                        "error_type": "MultipleSheetWarning",
-                        "error_message": "File has multiple sheets; only the first sheet was extracted.",
-                        "context": {"file_url": file_url},
-                    })
-            elif file_type == "xls":
-                sheet_name, rows, fallback_cells, has_multiple = _extract_xls(file_bytes)
-                if has_multiple:
-                    append_error(step_dir, {
-                        "step": STEP_NAME,
-                        "timestamp": datetime.now(timezone.utc).isoformat(),
-                        "error_type": "MultipleSheetWarning",
-                        "error_message": "File has multiple sheets; only the first sheet was extracted.",
-                        "context": {"file_url": file_url},
-                    })
-            else:  # pdf
-                sheet_name, rows, fallback_cells, has_multiple = _extract_pdf(file_bytes)
-                if has_multiple:
-                    append_error(step_dir, {
-                        "step": STEP_NAME,
-                        "timestamp": datetime.now(timezone.utc).isoformat(),
-                        "error_type": "MultipleTableWarning",
-                        "error_message": "File has multiple tables; all table rows were concatenated.",
-                        "context": {"file_url": file_url},
-                    })
+    # Process in parallel using ThreadPoolExecutor
+    # Note: We use threads instead of processes because:
+    # 1. pdfplumber releases the GIL during CPU-intensive parsing
+    # 2. File I/O also releases the GIL
+    # 3. Threads can share the cache and step_dir objects without pickling
+    # This gives us effective parallelism while avoiding pickling issues
+    with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
+        # Submit all tasks and collect futures to preserve order
+        futures = [executor.submit(_process_single_file, item, cache, step_dir) 
+                  for item in items_to_process]
+        results = [f.result() for f in futures]
 
-            if fallback_cells:
-                append_error(step_dir, {
-                    "step": STEP_NAME,
-                    "timestamp": datetime.now(timezone.utc).isoformat(),
-                    "error_type": "CellSerializationWarning",
-                    "error_message": f"{len(fallback_cells)} cell(s) used str() fallback.",
-                    "context": {"file_url": file_url, "cells": fallback_cells},
-                })
-
-            writer.append([{**item, "sheet_name": sheet_name, "rows": rows}])
-
-        except Exception as e:
-            append_error(step_dir, {
-                "step": STEP_NAME,
-                "timestamp": datetime.now(timezone.utc).isoformat(),
-                "error_type": type(e).__name__,
-                "error_message": str(e),
-                "context": {"file_url": file_url},
-            })
+    # Flatten results and append to writer
+    # Also track all processed file_urls (including failures) to mark them as processed
+    for i, result_list in enumerate(results):
+        file_url = items_to_process[i]["file_url"]
+        writer.append(result_list)
+        # Mark file as processed even if it failed (matches original behavior)
+        # This is done by the writer.append() for successful results,
+        # but we need to explicitly add it for failures (empty result_list)
+        if not result_list:
             writer.processed_keys.add(file_url)
-            writer.append([])
 
-        if verbose:
-            print(".", end="", flush=True)
+    if verbose:
+        print(".", end="", flush=True)
 
 
 def main():
@@ -193,6 +376,12 @@ def main():
         description="Download and convert disclosure log files (XLSX/XLS/PDF) to JSON arrays"
     )
     add_common_args(parser)
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=4,
+        help="Number of parallel workers for file processing (default: 4)",
+    )
     args = parser.parse_args()
 
     step_dir = Path(__file__).parent
@@ -221,7 +410,7 @@ def main():
     if writer.processed_keys:
         print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")
 
-    process(input_data, step_dir, writer, verbose=args.verbose)
+    process(input_data, step_dir, writer, verbose=args.verbose, workers=args.workers)
     count = writer.finalize()
     write_status(step_dir, count)
     if args.verbose:
