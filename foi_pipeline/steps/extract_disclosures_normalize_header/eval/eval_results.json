@@ -1,0 +1,16 @@
+{
+  "step": "extract_disclosures_normalize_header",
+  "metrics": [
+    {
+      "name": "null_header_column_rate",
+      "value": 0.017,
+      "counts": {
+        "flagged": 12,
+        "total": 721
+      },
+      "is_primary": true
+    }
+  ],
+  "input_hash": "11a22cd28bc248672b51097410a7af3de70f080959e242e03729cba2fecd2b27",
+  "judge_model": null
+}

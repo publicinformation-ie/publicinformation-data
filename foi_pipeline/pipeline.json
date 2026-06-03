@@ -12,6 +12,7 @@
     "transform_disclosure_files",
     "normalize_disclosure_cells",
     "extract_disclosures_detect_header_row",
+    "extract_disclosures_normalize_header",
     "extract_disclosures_canonicalize",
     "extract_disclosures_deduplicate",
     "export_status",

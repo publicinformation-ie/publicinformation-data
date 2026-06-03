@@ -1,0 +1,24 @@
+[
+  {
+    "severity": "info",
+    "description": "12 PDFs still have None in header after normalization (1.7%)",
+    "affected_count": 12,
+    "affected_ids": [
+      "https://bim.ie/wp-content/uploads/2021/03/BIM-FOI-Log-2017-to-2019-Inclusive.pdf",
+      "https://www.centralbank.ie/docs/default-source/publications/financial-stability-review/financial-stability/fsr-2026-i-presentation.pdf",
+      "https://www.centralbank.ie/docs/default-source/publications/financial-stability-review/financial-stability/financial-stability-review-2025-ii.pdf?sfvrsn=7bdb6f1a_7",
+      "https://www.centralbank.ie/docs/default-source/publications/financial-stability-review/financial-stability/fsr-2025-ii-analyst-briefing.pdf",
+      "https://www.centralbank.ie/docs/default-source/publications/financial-stability-review/financial-stability/fsr-2025-i-presentation.pdf",
+      "https://www.centralbank.ie/docs/default-source/publications/financial-stability-review/financial-stability/financial-stability-review-2021-i.pdf?sfvrsn=f9988f1d_8",
+      "https://www.centralbank.ie/docs/default-source/publications/financial-stability-review/financial-stability/financial-stability-review-2021-i---analyst-briefing.pdf",
+      "https://www.centralbank.ie/docs/default-source/publications/quarterly-bulletins/boxes/qb4-2024/box-d-geoeconomic-risks-to-the-outlook.pdf?sfvrsn=d2c5641a_4",
+      "https://www.military.ie/media/5ytfpybq/freedom-of-information-log-non-personal-information-q2.pdf",
+      "https://www.military.ie/media/lklp3230/freedom-of-information-log-non-personal-information-q3.pdf",
+      "https://www.military.ie/media/jywhxm3x/freedom-of-information-log-non-personal-information-q4-2025.pdf",
+      "https://www.corkcity.ie/media/eg4est5c/cork_schools_heritage_project_2026.pdf"
+    ],
+    "suggested_upstream_step": "extract_disclosures_normalize_header",
+    "suggestion_detail": "these may be genuinely non-tabular PDFs",
+    "confidence": 0.7
+  }
+]
