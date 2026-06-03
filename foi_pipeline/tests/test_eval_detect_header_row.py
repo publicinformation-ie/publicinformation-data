@@ -35,3 +35,18 @@ def test_only_verified_labels_count():
     labels = [{"file_url": "a", "expected_header_row_index": "0", "verified": "auto"}]
     results, issues = dhr.run_eval(items, labels, input_hash="a" * 64)
     assert results.metrics[0].counts["total"] == 0
+
+
+def test_run_eval_reports_null_header_column_rate():
+    """null_header_column_rate counts PDFs where detected header has a None cell."""
+    items = [
+        # clean header - detected at row 0
+        {"file_url": "a", "file_type": "pdf", "rows": [["Ref", "Date", "Decision"], ["1", "2", "3"]]},
+        # null in detected header (row 1, skipping title row)
+        {"file_url": "b", "file_type": "pdf", "rows": [["title", None, None], ["Ref", None, "Decision"], ["1", "2", "3"]]},
+    ]
+    labels = []
+    results, issues = dhr.run_eval(items, labels, input_hash="a" * 64)
+    metric = next(m for m in results.metrics if m.name == "null_header_column_rate")
+    assert metric.value == 0.5
+    assert metric.counts == {"flagged": 1, "total": 2}

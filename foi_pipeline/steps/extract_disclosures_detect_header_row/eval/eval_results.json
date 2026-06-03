@@ -9,8 +9,17 @@
         "total": 15
       },
       "is_primary": true
+    },
+    {
+      "name": "null_header_column_rate",
+      "value": 0.118,
+      "counts": {
+        "flagged": 85,
+        "total": 721
+      },
+      "is_primary": false
     }
   ],
-  "input_hash": "3e8f6e1b37426b36ead16961861b6a207224d392bc18a8c5afa231509954f3d3",
+  "input_hash": "a769768423b6d92fa35320e5934a5ecfd1193382f9a0c759c42538b2618c8292",
   "judge_model": null
 }
