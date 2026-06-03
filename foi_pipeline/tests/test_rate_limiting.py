@@ -3,13 +3,13 @@ from datetime import datetime, timedelta
 
 import pytest
 
-from scripts.http_utils import DEFAULT_RATE_LIMIT_DELAY, _domain_last_request, get_rate_limit_delay
+from lib.http_utils import DEFAULT_RATE_LIMIT_DELAY, _domain_last_request, get_rate_limit_delay
 
 
 @pytest.fixture(autouse=True)
 def reset_rate_limit_state(monkeypatch):
     """Reset per-domain state and restore default delay (overrides conftest zero_rate_limit)."""
-    import scripts.http_utils as hu
+    import lib.http_utils as hu
     monkeypatch.setattr(hu, "DEFAULT_RATE_LIMIT_DELAY", 0.2)
     _domain_last_request.clear()
     yield

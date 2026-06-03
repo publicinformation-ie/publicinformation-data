@@ -5,7 +5,7 @@ from unittest.mock import patch
 
 import pytest
 
-from scripts.file_utils import read_json, write_json
+from lib.file_utils import read_json, write_json
 
 
 # ---------------------------------------------------------------------------

@@ -276,7 +276,7 @@ def test_process_writes_output_and_status(requests_mock, tmp_path, monkeypatch):
 
 import sys as _sys
 import pytest as _pytest
-from scripts.file_utils import read_json as _read_json, write_json as _write_json
+from lib.file_utils import read_json as _read_json, write_json as _write_json
 
 
 def test_scoped_run_leaves_output_untouched(tmp_path, monkeypatch):

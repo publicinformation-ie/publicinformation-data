@@ -5,7 +5,7 @@ from steps.normalize_disclosure_cells.process import (
     _normalize_cell,
     STEP_NAME,
 )
-from scripts.file_utils import read_json, write_json, IncrementalWriter
+from lib.file_utils import read_json, write_json, IncrementalWriter
 
 
 # ── _normalize_cell unit tests ────────────────────────────────────────────────
@@ -208,7 +208,7 @@ def test_process_rows_none_passthrough(tmp_path, make_writer):
 
 
 import sys as _sys
-from scripts.file_utils import read_json as _read_json, write_json as _write_json
+from lib.file_utils import read_json as _read_json, write_json as _write_json
 import steps.normalize_disclosure_cells.process as _proc
 
 

@@ -5,9 +5,9 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from scripts.cli_utils import add_common_args
-from scripts.db_client import DbClient
-from scripts.file_utils import read_json, write_json, write_status
+from lib.cli_utils import add_common_args
+from lib.db_client import DbClient
+from lib.file_utils import read_json, write_json, write_status
 
 STEP_NAME = "db_upload"
 

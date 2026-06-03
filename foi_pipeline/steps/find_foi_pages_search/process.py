@@ -5,10 +5,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
 
-from scripts.apify_search import batch_search
-from scripts.cli_utils import add_common_args, filter_by_public_body
-from scripts.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
-from scripts.http_utils import is_safe_url, validate_url_or_raise
+from lib.apify_search import batch_search
+from lib.cli_utils import add_common_args, filter_by_public_body
+from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
+from lib.http_utils import is_safe_url, validate_url_or_raise
 
 STEP_NAME = "find_foi_pages_search"
 FOI_URL_KEYWORDS = [

@@ -1,6 +1,6 @@
 """Security tests for URL validation."""
 import pytest
-from scripts.http_utils import is_safe_url, validate_url_or_raise
+from lib.http_utils import is_safe_url, validate_url_or_raise
 
 
 class TestIsSafeUrl:

@@ -4,7 +4,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from scripts.file_utils import IncrementalWriter, write_status
+from lib.file_utils import IncrementalWriter, write_status
 
 STEP_NAME = "extract_disclosures"
 

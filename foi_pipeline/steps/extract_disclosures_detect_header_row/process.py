@@ -3,9 +3,9 @@ import argparse
 import sys
 from pathlib import Path
 
-from scripts.cli_utils import add_common_args, filter_by_public_body
-from scripts.file_utils import read_json, write_json, write_status, IncrementalWriter
-from scripts.text_utils import normalize_cell
+from lib.cli_utils import add_common_args, filter_by_public_body
+from lib.file_utils import read_json, write_json, write_status, IncrementalWriter
+from lib.text_utils import normalize_cell
 
 STEP_NAME = "extract_disclosures_detect_header_row"
 

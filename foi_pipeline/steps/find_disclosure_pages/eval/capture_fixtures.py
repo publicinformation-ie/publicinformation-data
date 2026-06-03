@@ -17,7 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
-from scripts.http_utils import fetch, is_safe_url
+from lib.http_utils import fetch, is_safe_url
 
 STEP_DIR = Path(__file__).parent.parent
 FIXTURES = Path(__file__).parent / "fixtures"

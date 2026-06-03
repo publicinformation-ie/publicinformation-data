@@ -66,7 +66,7 @@ def test_connection_error_logs_error_and_marks_unreachable(requests_mock, tmp_pa
 
 
 def test_resume_skips_already_processed_body(requests_mock, tmp_path):
-    from scripts.file_utils import write_json, IncrementalWriter
+    from lib.file_utils import write_json, IncrementalWriter
     partial = {
         "metadata": {"step": STEP_NAME},
         "results": [{"public_body_id": 1001, "name": "Dept A",
@@ -85,7 +85,7 @@ def test_resume_skips_already_processed_body(requests_mock, tmp_path):
 
 
 import sys as _sys
-from scripts.file_utils import read_json as _read_json, write_json as _write_json
+from lib.file_utils import read_json as _read_json, write_json as _write_json
 import steps.check_foi_pages.process as _proc
 
 

@@ -1,6 +1,6 @@
 import json
 import pytest
-from scripts.file_utils import write_json, IncrementalWriter
+from lib.file_utils import write_json, IncrementalWriter
 from steps.find_foi_pages.process import process, retry, STEP_NAME, find_foi_link_on_page
 
 INPUT = {
@@ -180,7 +180,7 @@ def test_non_duplicate_urls_not_affected_by_uniqueness_pass(requests_mock, tmp_p
 
 
 def test_resume_skips_already_processed_body(requests_mock, tmp_path):
-    from scripts.file_utils import IncrementalWriter
+    from lib.file_utils import IncrementalWriter
     partial = {
         "metadata": {"step": STEP_NAME},
         "results": [{"public_body_id": 1001, "name": "Dept A",
@@ -387,7 +387,7 @@ def test_uniqueness_pass_keeps_override_drops_automated_duplicate(requests_mock,
 
 
 import sys as _sys
-from scripts.file_utils import read_json as _read_json, write_json as _write_json
+from lib.file_utils import read_json as _read_json, write_json as _write_json
 import steps.find_foi_pages.process as _proc
 
 

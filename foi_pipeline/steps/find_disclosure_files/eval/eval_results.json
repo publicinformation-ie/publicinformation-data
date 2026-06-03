@@ -18,6 +18,32 @@
         "total": 40
       },
       "is_primary": false
+    },
+    {
+      "name": "duplicate_file_url_count",
+      "value": 0,
+      "counts": {
+        "distinct_duplicate_urls": 0
+      },
+      "is_primary": false
+    },
+    {
+      "name": "duplicate_file_url_extra_records",
+      "value": 0,
+      "counts": {
+        "extra_records": 0,
+        "total": 40
+      },
+      "is_primary": false
+    },
+    {
+      "name": "duplicate_file_url_rate",
+      "value": 0.0,
+      "counts": {
+        "extra_records": 0,
+        "total": 40
+      },
+      "is_primary": false
     }
   ],
   "input_hash": "cb204a7a192545611b575ad05ebe724d6a830fd32b04f979cac1a9911feb8205",

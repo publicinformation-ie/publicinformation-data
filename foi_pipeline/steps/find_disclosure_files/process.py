@@ -9,9 +9,9 @@ from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
 
-from scripts.cli_utils import add_common_args, filter_by_public_body
-from scripts.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
-from scripts.http_utils import fetch, is_safe_url
+from lib.cli_utils import add_common_args, filter_by_public_body
+from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
+from lib.http_utils import fetch, is_safe_url
 
 STEP_NAME = "find_disclosure_files"
 FILE_EXTENSIONS = {".pdf": "pdf", ".xlsx": "xlsx", ".xls": "xls"}

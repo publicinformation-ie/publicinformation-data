@@ -1,7 +1,7 @@
 import pytest
 import requests_mock as requests_mock_module
 
-from scripts.http_utils import HEADERS, DEFAULT_RATE_LIMIT_DELAY, fetch
+from lib.http_utils import HEADERS, DEFAULT_RATE_LIMIT_DELAY, fetch
 
 
 def test_fetch_success(requests_mock):
@@ -30,7 +30,7 @@ def test_rate_limit_delay_value():
 
 def test_fetch_sleeps_between_requests(requests_mock, monkeypatch):
     import time
-    import scripts.http_utils as hu
+    import lib.http_utils as hu
 
     monkeypatch.setattr(hu, "DEFAULT_RATE_LIMIT_DELAY", 0.05)
     hu._domain_last_request.clear()

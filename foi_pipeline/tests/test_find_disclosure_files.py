@@ -160,7 +160,7 @@ def test_html_disclosure_page_still_crawled(requests_mock, tmp_path, make_writer
 
 def test_resume_skips_already_processed_body(requests_mock, tmp_path, make_writer):
     # Writer pre-loaded with body 1001 already done
-    from scripts.file_utils import write_json, IncrementalWriter
+    from lib.file_utils import write_json, IncrementalWriter
     partial = {
         "metadata": {"step": STEP_NAME},
         "results": [{"public_body_id": 1001, "name": "Dept A",
@@ -179,7 +179,7 @@ def test_resume_skips_already_processed_body(requests_mock, tmp_path, make_write
 
 
 import sys as _sys
-from scripts.file_utils import read_json as _read_json, write_json as _write_json
+from lib.file_utils import read_json as _read_json, write_json as _write_json
 import steps.find_disclosure_files.process as _proc
 
 

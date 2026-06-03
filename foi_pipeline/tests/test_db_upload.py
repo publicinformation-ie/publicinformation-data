@@ -1,7 +1,7 @@
 import json
 import pytest
 from pathlib import Path
-from scripts.db_client import DbClient
+from lib.db_client import DbClient
 
 REPO_ROOT = Path(__file__).parent.parent.parent
 

@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from scripts.file_utils import (
+from lib.file_utils import (
     append_error,
     read_json,
     sanitize_error_context,
@@ -138,7 +138,7 @@ class TestSanitizeErrorContext:
 
 
 import sys
-from scripts.file_utils import IncrementalWriter
+from lib.file_utils import IncrementalWriter
 
 
 class TestIncrementalWriter:

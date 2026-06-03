@@ -157,7 +157,7 @@ def test_process_no_errors_written_for_clean_input(tmp_path, make_writer):
 
 
 def test_process_skips_already_processed(tmp_path, make_writer):
-    from scripts.file_utils import write_json, IncrementalWriter
+    from lib.file_utils import write_json, IncrementalWriter
     existing_result = {
         **BASE_FILE,
         "rows": [["Ref", "Desc"], ["16/001", "request"]],
@@ -174,7 +174,7 @@ def test_process_skips_already_processed(tmp_path, make_writer):
 
 
 import sys as _sys
-from scripts.file_utils import read_json as _read_json, write_json as _write_json
+from lib.file_utils import read_json as _read_json, write_json as _write_json
 import steps.extract_disclosures_detect_header_row.process as _proc
 
 

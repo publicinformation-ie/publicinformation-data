@@ -1,7 +1,7 @@
 import argparse
 from pathlib import Path
 
-from scripts.file_utils import read_json
+from lib.file_utils import read_json
 
 _ARRAY_KEYS = ("results", "public_bodies")
 

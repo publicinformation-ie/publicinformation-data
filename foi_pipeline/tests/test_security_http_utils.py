@@ -3,7 +3,7 @@ import pytest
 import requests
 import requests_mock
 
-from scripts.http_utils import fetch, is_safe_url
+from lib.http_utils import fetch, is_safe_url
 
 
 class TestIsSafeUrl:

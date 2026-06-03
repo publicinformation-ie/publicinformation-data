@@ -1,5 +1,5 @@
 import pytest
-from scripts.text_utils import normalize_text, normalize_cell, normalize_header
+from lib.text_utils import normalize_text, normalize_cell, normalize_header
 
 class TestNormalizeText:
     def test_non_string_passthrough(self):

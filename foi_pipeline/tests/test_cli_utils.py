@@ -2,7 +2,7 @@ import argparse
 
 import pytest
 
-from scripts.cli_utils import filter_by_public_body
+from lib.cli_utils import filter_by_public_body
 
 
 def test_filter_results_key():
@@ -40,7 +40,7 @@ def test_filter_does_not_mutate_input():
     assert len(data["results"]) == 2
 
 
-from scripts.cli_utils import add_common_args
+from lib.cli_utils import add_common_args
 
 
 def test_add_common_args_parses_all_flags():
@@ -73,8 +73,8 @@ def test_add_common_args_public_body_must_be_int():
         parser.parse_args(["--input", "i", "--output", "o", "--public-body", "abc"])
 
 
-from scripts.cli_utils import validate_public_body, merge_replacing_body
-from scripts.file_utils import write_json
+from lib.cli_utils import validate_public_body, merge_replacing_body
+from lib.file_utils import write_json
 
 
 def _seed_bodies(pipeline_dir, ids):

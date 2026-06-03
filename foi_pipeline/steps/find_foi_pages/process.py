@@ -8,9 +8,9 @@ from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
 
-from scripts.cli_utils import add_common_args, filter_by_public_body
-from scripts.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
-from scripts.http_utils import fetch, is_safe_url, validate_url_or_raise
+from lib.cli_utils import add_common_args, filter_by_public_body
+from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
+from lib.http_utils import fetch, is_safe_url, validate_url_or_raise
 
 STEP_NAME = "find_foi_pages"
 FOI_KEYWORDS = ["foi", "freedom of information", "freedom-of-information", "freedom_of_information"]

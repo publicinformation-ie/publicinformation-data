@@ -437,7 +437,7 @@ def test_process_output_has_required_fields(requests_mock, tmp_path, make_writer
 
 
 def test_process_skips_already_processed(requests_mock, tmp_path, make_writer):
-    from scripts.file_utils import write_json, IncrementalWriter
+    from lib.file_utils import write_json, IncrementalWriter
     partial = {
         "metadata": {"step": STEP_NAME},
         "results": [{
@@ -537,7 +537,7 @@ def test_process_cell_serialization_warning(requests_mock, tmp_path, make_writer
 
 
 import sys as _sys
-from scripts.file_utils import read_json as _read_json, write_json as _write_json
+from lib.file_utils import read_json as _read_json, write_json as _write_json
 import steps.transform_disclosure_files.process as _proc
 
 

@@ -139,7 +139,7 @@ def test_orchestrator_sets_pythonpath(tmp_path):
         assert str(pipeline_dir) in env["PYTHONPATH"]
 
 
-from scripts.file_utils import write_json as _write_json
+from lib.file_utils import write_json as _write_json
 
 
 def _seed_bodies(pipeline_dir, ids):

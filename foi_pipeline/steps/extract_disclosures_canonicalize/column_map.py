@@ -1,6 +1,6 @@
 import re
 from typing import Optional
-from scripts.text_utils import normalize_header
+from lib.text_utils import normalize_header
 
 CANONICAL_COLUMNS: list[str] = [
     'foi_reference_id',

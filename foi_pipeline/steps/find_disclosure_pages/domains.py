@@ -1,6 +1,6 @@
 from urllib.parse import urlparse
 
-from scripts.http_utils import is_safe_url, validate_url_or_raise
+from lib.http_utils import is_safe_url, validate_url_or_raise
 
 
 def _gov_ie_query(name: str) -> str:

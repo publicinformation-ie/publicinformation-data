@@ -4,8 +4,8 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from scripts.cli_utils import add_common_args, filter_by_public_body, merge_replacing_body
-from scripts.file_utils import read_json, write_json, write_status
+from lib.cli_utils import add_common_args, filter_by_public_body, merge_replacing_body
+from lib.file_utils import read_json, write_json, write_status
 from steps.extract_disclosures_canonicalize.column_map import (
     CANONICAL_COLUMNS,
     REQUIRED_COLUMNS,

@@ -66,14 +66,14 @@ def test_output_key_is_results(requests_mock, tmp_path, make_writer):
     requests_mock.get("https://www.gov.ie/en/organisation/hse/", text=DEPT_HTML)
     requests_mock.get("https://www.gov.ie/en/organisation/finance/", text=DEPT_HTML)
     process(INPUT, tmp_path, writer)
-    from scripts.file_utils import read_json
+    from lib.file_utils import read_json
     data = read_json(tmp_path / "output.json")
     assert "results" in data
     assert "public_bodies" not in data
 
 
 def test_resume_skips_already_processed_body(requests_mock, tmp_path):
-    from scripts.file_utils import write_json, IncrementalWriter
+    from lib.file_utils import write_json, IncrementalWriter
     partial = {
         "metadata": {"step": STEP_NAME},
         "results": [{"public_body_id": 1001, "name": "Health Service Executive",
@@ -134,7 +134,7 @@ def test_body_with_temporary_exclusion_reason_is_also_skipped(requests_mock, tmp
 
 
 import sys as _sys
-from scripts.file_utils import read_json as _read_json, write_json as _write_json
+from lib.file_utils import read_json as _read_json, write_json as _write_json
 import steps.resolve_website_urls.process as _proc
 
 

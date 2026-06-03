@@ -1,6 +1,6 @@
 import pytest
 import requests_mock as requests_mock_module
-from scripts.apify_search import batch_search
+from lib.apify_search import batch_search
 
 APIFY_BASE = "https://api.apify.com/v2"
 TOKEN = "test-token-abc"

@@ -9,10 +9,10 @@ from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
 
-from scripts.apify_search import batch_search
-from scripts.cli_utils import add_common_args, filter_by_public_body
-from scripts.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
-from scripts.http_utils import fetch, is_safe_url, validate_url_or_raise
+from lib.apify_search import batch_search
+from lib.cli_utils import add_common_args, filter_by_public_body
+from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
+from lib.http_utils import fetch, is_safe_url, validate_url_or_raise
 from steps.find_disclosure_pages.domains import find_disclosure_page as domain_find, _gov_ie_query
 
 STEP_NAME = "find_disclosure_pages"

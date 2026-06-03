@@ -1,5 +1,5 @@
 import sys as _sys
-from scripts.file_utils import read_json as _read_json, write_json as _write_json
+from lib.file_utils import read_json as _read_json, write_json as _write_json
 import steps.extract_disclosures_deduplicate.process as _proc
 
 

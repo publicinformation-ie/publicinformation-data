@@ -6,12 +6,12 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from scripts.file_utils import IncrementalWriter
+from lib.file_utils import IncrementalWriter
 
 
 @pytest.fixture(autouse=True)
 def zero_rate_limit(monkeypatch):
-    monkeypatch.setattr("scripts.http_utils.DEFAULT_RATE_LIMIT_DELAY", 0)
+    monkeypatch.setattr("lib.http_utils.DEFAULT_RATE_LIMIT_DELAY", 0)
 
 
 @pytest.fixture

@@ -5,7 +5,7 @@ import sys
 
 def verify_ssl_fix():
     """Verify SSL verification is not bypassed."""
-    from scripts.http_utils import fetch
+    from lib.http_utils import fetch
     import inspect
     source = inspect.getsource(fetch)
     assert "verify=False" not in source, "SSL verification bypass still present!"
@@ -14,7 +14,7 @@ def verify_ssl_fix():
 
 def verify_url_validation():
     """Verify URL validation exists."""
-    from scripts.http_utils import is_safe_url, validate_url_or_raise
+    from lib.http_utils import is_safe_url, validate_url_or_raise
     assert is_safe_url("https://www.gov.ie/") is True
     assert is_safe_url("file:///etc/passwd") is False
     print("✓ URL validation fix verified")
@@ -22,7 +22,7 @@ def verify_url_validation():
 
 def verify_rate_limiting():
     """Verify rate limiting exists."""
-    from scripts.http_utils import get_rate_limit_delay
+    from lib.http_utils import get_rate_limit_delay
     delay = get_rate_limit_delay("www.gov.ie")
     assert delay >= 0
     print("✓ Rate limiting fix verified")
@@ -30,7 +30,7 @@ def verify_rate_limiting():
 
 def verify_error_sanitization():
     """Verify error sanitization exists."""
-    from scripts.file_utils import sanitize_url_for_logging, sanitize_error_context
+    from lib.file_utils import sanitize_url_for_logging, sanitize_error_context
     assert sanitize_url_for_logging("https://example.com/secret") == "example.com"
     context = sanitize_error_context({"api_key": "secret123", "url": "https://test.com/path"})
     assert context["api_key"] == "[REDACTED]"
@@ -40,7 +40,7 @@ def verify_error_sanitization():
 
 def verify_api_key_validation():
     """Verify API key validation exists."""
-    from scripts.http_utils import validate_api_key
+    from lib.http_utils import validate_api_key
     assert validate_api_key("a" * 32) is True
     assert validate_api_key("invalid") is False
     print("✓ API key validation fix verified")

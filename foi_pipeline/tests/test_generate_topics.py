@@ -432,7 +432,7 @@ class TestProcessTopicsWordBoundaries:
 
 import sys as _sys
 import json as _json
-from scripts.file_utils import read_json as _read_json, write_json as _write_json
+from lib.file_utils import read_json as _read_json, write_json as _write_json
 import steps.generate_topics.process as _proc
 
 

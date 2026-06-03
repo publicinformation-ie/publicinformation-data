@@ -1,7 +1,7 @@
 import json
 import pytest
 from pathlib import Path
-from scripts.file_utils import write_json, IncrementalWriter
+from lib.file_utils import write_json, IncrementalWriter
 from steps.find_foi_pages_search.process import process, STEP_NAME
 
 STEP = "find_foi_pages_search"

@@ -9,8 +9,8 @@ import re
 
 from bs4 import BeautifulSoup
 
-from scripts.file_utils import append_error, read_json, write_json, write_status
-from scripts.http_utils import fetch
+from lib.file_utils import append_error, read_json, write_json, write_status
+from lib.http_utils import fetch
 
 
 def find_actual_homepage(page_url):

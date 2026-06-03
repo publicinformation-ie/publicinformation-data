@@ -1,7 +1,7 @@
 import pytest
 from pathlib import Path
 from unittest.mock import patch, Mock
-from scripts.db_client import DbClient
+from lib.db_client import DbClient
 
 REPO_ROOT = Path(__file__).parent.parent.parent
 
@@ -117,7 +117,7 @@ def remote_db():
 class TestHttpPipeline:
     def test_wraps_statements_in_begin_commit(self, remote_db):
         ok = _ok_result()
-        with patch("scripts.db_client.requests.post", return_value=_pipeline_response([ok, ok, ok])) as mock_post:
+        with patch("lib.db_client.requests.post", return_value=_pipeline_response([ok, ok, ok])) as mock_post:
             remote_db._http_pipeline([("INSERT INTO t VALUES (?)", [42])])
 
         payload = mock_post.call_args[1]["json"]
@@ -126,7 +126,7 @@ class TestHttpPipeline:
 
     def test_passes_args_correctly(self, remote_db):
         ok = _ok_result()
-        with patch("scripts.db_client.requests.post", return_value=_pipeline_response([ok, ok, ok])) as mock_post:
+        with patch("lib.db_client.requests.post", return_value=_pipeline_response([ok, ok, ok])) as mock_post:
             remote_db._http_pipeline([("INSERT INTO t VALUES (?,?)", [1, "hello"])])
 
         payload = mock_post.call_args[1]["json"]
@@ -139,14 +139,14 @@ class TestHttpPipeline:
     def test_raises_on_error_result(self, remote_db):
         ok = _ok_result()
         err = {"type": "error", "error": {"message": "UNIQUE constraint failed"}}
-        with patch("scripts.db_client.requests.post", return_value=_pipeline_response([ok, err, ok])):
+        with patch("lib.db_client.requests.post", return_value=_pipeline_response([ok, err, ok])):
             with pytest.raises(RuntimeError, match="UNIQUE constraint failed"):
                 remote_db._http_pipeline([("INSERT INTO t VALUES (?)", [1])])
 
     def test_sends_multiple_statements(self, remote_db):
         ok = _ok_result()
         # BEGIN + 3 stmts + COMMIT = 5 results
-        with patch("scripts.db_client.requests.post", return_value=_pipeline_response([ok] * 5)) as mock_post:
+        with patch("lib.db_client.requests.post", return_value=_pipeline_response([ok] * 5)) as mock_post:
             remote_db._http_pipeline([
                 ("INSERT INTO a VALUES (?)", [1]),
                 ("INSERT INTO b VALUES (?)", [2]),
@@ -204,7 +204,7 @@ class TestExecuteBatch:
     def test_remote_sends_single_pipeline_call(self, remote_db):
         ok = _ok_result()
         # BEGIN + 2 stmts + COMMIT = 4 results
-        with patch("scripts.db_client.requests.post", return_value=_pipeline_response([ok] * 4)) as mock_post:
+        with patch("lib.db_client.requests.post", return_value=_pipeline_response([ok] * 4)) as mock_post:
             remote_db.execute_batch([
                 ("DELETE FROM t", []),
                 ("INSERT INTO t VALUES (?)", [1]),
@@ -216,7 +216,7 @@ class TestExecuteBatch:
         assert sqls == ["BEGIN", "DELETE FROM t", "INSERT INTO t VALUES (?)", "COMMIT"]
 
     def test_remote_empty_is_noop(self, remote_db):
-        with patch("scripts.db_client.requests.post") as mock_post:
+        with patch("lib.db_client.requests.post") as mock_post:
             remote_db.execute_batch([])
 
         mock_post.assert_not_called()
@@ -227,7 +227,7 @@ class TestExecuteScriptRemote:
         sql = "CREATE TABLE a (id INTEGER);\nCREATE TABLE b (id INTEGER);\n"
         ok = _ok_result()
         # BEGIN + 2 stmts + COMMIT = 4 results
-        with patch("scripts.db_client.requests.post", return_value=_pipeline_response([ok] * 4)) as mock_post:
+        with patch("lib.db_client.requests.post", return_value=_pipeline_response([ok] * 4)) as mock_post:
             remote_db.executescript(sql)
 
         assert mock_post.call_count == 1
@@ -242,7 +242,7 @@ class TestExecuteScriptRemote:
         sql = "-- setup\nCREATE TABLE a (id INTEGER);\n\n-- end\n"
         ok = _ok_result()
         # BEGIN + 1 stmt + COMMIT = 3 results
-        with patch("scripts.db_client.requests.post", return_value=_pipeline_response([ok] * 3)) as mock_post:
+        with patch("lib.db_client.requests.post", return_value=_pipeline_response([ok] * 3)) as mock_post:
             remote_db.executescript(sql)
 
         payload = mock_post.call_args[1]["json"]
@@ -258,7 +258,7 @@ class TestExecuteManyRemote:
         mock_resp.raise_for_status = Mock()
         mock_resp.json.return_value = {"results": [ok] * 5}  # BEGIN + 3 + COMMIT
 
-        with patch("scripts.db_client.requests.post", return_value=mock_resp) as mock_post:
+        with patch("lib.db_client.requests.post", return_value=mock_resp) as mock_post:
             remote_db.executemany("INSERT INTO t VALUES (?)", params_list)
 
         assert mock_post.call_count == 1
@@ -277,13 +277,13 @@ class TestExecuteManyRemote:
             {"results": [ok] * 3},    # BEGIN + 1 + COMMIT
         ]
 
-        with patch("scripts.db_client.requests.post", return_value=mock_resp) as mock_post:
+        with patch("lib.db_client.requests.post", return_value=mock_resp) as mock_post:
             remote_db.executemany("INSERT INTO t VALUES (?)", params_list)
 
         assert mock_post.call_count == 3
 
     def test_empty_list_makes_no_http_call(self, remote_db):
-        with patch("scripts.db_client.requests.post") as mock_post:
+        with patch("lib.db_client.requests.post") as mock_post:
             remote_db.executemany("INSERT INTO t VALUES (?)", [])
 
         mock_post.assert_not_called()
