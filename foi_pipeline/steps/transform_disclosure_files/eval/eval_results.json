@@ -1,0 +1,43 @@
+{
+  "step": "transform_disclosure_files",
+  "metrics": [
+    {
+      "name": "clean_extraction_rate",
+      "value": 0.35,
+      "counts": {
+        "clean": 252,
+        "total": 721
+      },
+      "is_primary": true
+    },
+    {
+      "name": "null_first_row_rate",
+      "value": 0.415,
+      "counts": {
+        "flagged": 299,
+        "total": 721
+      },
+      "is_primary": false
+    },
+    {
+      "name": "null_column_rate",
+      "value": 0.333,
+      "counts": {
+        "flagged": 240,
+        "total": 721
+      },
+      "is_primary": false
+    },
+    {
+      "name": "newline_split_row_rate",
+      "value": 0.467,
+      "counts": {
+        "flagged": 337,
+        "total": 721
+      },
+      "is_primary": false
+    }
+  ],
+  "input_hash": "469cb1169be6ab6a010845bcdee80dddd5a5d41816d15fa801db61ed96781d6f",
+  "judge_model": null
+}
