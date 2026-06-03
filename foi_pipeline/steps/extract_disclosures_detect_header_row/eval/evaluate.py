@@ -19,7 +19,7 @@ from steps.extract_disclosures_detect_header_row.process import detect_header_ro
 STEP = "extract_disclosures_detect_header_row"
 
 
-def _has_null_header_column(rows):
+def _detected_header_has_null_column(rows):
     """True if the detected header row contains at least one None cell."""
     if not rows:
         return False
@@ -53,7 +53,7 @@ def run_eval(items, labels, input_hash):
     # --- new: null_header_column_rate over all PDF items ---
     pdf_items = [it for it in items if it.get("file_type") == "pdf" and it.get("rows")]
     pdf_total = len(pdf_items)
-    null_header_flagged = [it for it in pdf_items if _has_null_header_column(it["rows"])]
+    null_header_flagged = [it for it in pdf_items if _detected_header_has_null_column(it["rows"])]
     null_header_count = len(null_header_flagged)
     null_header_rate = round(null_header_count / pdf_total, 3) if pdf_total else 0.0
 

@@ -33,7 +33,7 @@ def normalize_header_row(rows, header_row_idx, max_continuation_rows=_MAX_CONTIN
     for i in range(header_row_idx + 1,
                    min(header_row_idx + 1 + max_continuation_rows, len(rows))):
         row = rows[i]
-        if not row:
+        if not row:  # empty list is falsy; not a continuation row, leave it in place
             break
         non_null = sum(1 for c in row if c is not None)
         null_fraction = 1 - (non_null / len(row))

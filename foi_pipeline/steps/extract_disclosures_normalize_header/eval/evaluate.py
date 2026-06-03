@@ -13,7 +13,7 @@ from eval import utils as eval_utils
 STEP = "extract_disclosures_normalize_header"
 
 
-def _has_null_header_column(rows, header_row_idx):
+def _header_has_null_column(rows, header_row_idx):
     if not rows or header_row_idx >= len(rows):
         return False
     return any(c is None for c in rows[header_row_idx])
@@ -29,7 +29,7 @@ def run_eval(items, input_hash):
     total = len(pdf_items)
     flagged = [
         it for it in pdf_items
-        if _has_null_header_column(it["rows"], it["header_row_idx"])
+        if _header_has_null_column(it["rows"], it["header_row_idx"])
     ]
     flagged_count = len(flagged)
     rate = round(flagged_count / total, 3) if total else 0.0
