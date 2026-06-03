@@ -252,16 +252,16 @@ def test_main_writes_output_files(tmp_path):
     assert qbb[1]["null_first_row"] == 1
 
 
-def test_main_refresh_fixture(tmp_path, capsys):
+def test_main_refresh_fixture(tmp_path, monkeypatch, capsys):
     live_output = tmp_path / "live_output.json"
     live_output.write_text(json.dumps({"metadata": {}, "results": []}))
     fixture_dest = tmp_path / "input.json"
 
     import steps.transform_disclosure_files.eval.evaluate as ev
     import sys
-    sys.argv = ["evaluate.py", "--refresh-fixture", str(live_output),
-                "--input-path", str(fixture_dest)]
-    ev._HERE = tmp_path
+    monkeypatch.setattr(sys, "argv", ["evaluate.py", "--refresh-fixture", str(live_output),
+                "--input-path", str(fixture_dest)])
+    monkeypatch.setattr(ev, "_HERE", tmp_path)
     code = main()
     assert code == 0
     assert fixture_dest.read_text() == live_output.read_text()
