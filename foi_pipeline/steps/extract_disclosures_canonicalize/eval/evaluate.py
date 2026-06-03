@@ -53,9 +53,29 @@ def score_field_coverage(records):
     return cov
 
 
-def run_eval(labels, records, input_hash):
+def run_eval(labels, records, errors, input_hash):
+    """
+    labels  — list of dicts from labels.csv (header mapping accuracy)
+    records — list of canonical FOI record dicts from output.json
+    errors  — list of error dicts from errors.json
+    """
     acc, mapping_counts, mismatches = score_header_mapping(labels)
     cov = score_field_coverage(records)
+
+    # --- file-level success / failure rates ---
+    successful_urls = {r["file_url"] for r in records if "file_url" in r}
+    insufficient_urls = {
+        e["context"]["file_url"]
+        for e in errors
+        if e.get("error_type") == "InsufficientColumns"
+        and "file_url" in e.get("context", {})
+    }
+    all_urls = successful_urls | insufficient_urls
+    total_files = len(all_urls)
+    successful_files = len(successful_urls)
+    insufficient_files = len(insufficient_urls)
+    success_rate = round(successful_files / total_files, 3) if total_files else 0.0
+    insufficient_rate = round(insufficient_files / total_files, 3) if total_files else 0.0
 
     metrics = [
         eval_utils.Metric("header_mapping_accuracy", round(acc, 3),
@@ -63,6 +83,10 @@ def run_eval(labels, records, input_hash):
         eval_utils.Metric("field_coverage",
                           round(sum(cov.values()) / len(cov), 3) if cov else 0.0,
                           cov),
+        eval_utils.Metric("file_success_rate", success_rate,
+                          {"successful": successful_files, "total": total_files}),
+        eval_utils.Metric("insufficient_columns_rate", insufficient_rate,
+                          {"failed": insufficient_files, "total": total_files}),
     ]
 
     issues = []
@@ -83,6 +107,15 @@ def run_eval(labels, records, input_hash):
             suggested_upstream_step="extract_disclosures_detect_header_row",
             suggestion_detail="possible wrong header row detected upstream",
             confidence=0.6))
+    if insufficient_files:
+        issues.append(eval_utils.Issue(
+            severity="warning",
+            description=f"{insufficient_files} files failed with InsufficientColumns ({insufficient_rate:.1%})",
+            affected_count=insufficient_files,
+            affected_ids=list(insufficient_urls)[:50],
+            suggested_upstream_step="extract_disclosures_normalize_header",
+            suggestion_detail="null header columns prevent canonical mapping",
+            confidence=0.9))
 
     results = eval_utils.EvalResults(step=STEP, metrics=metrics,
                                      input_hash=input_hash,
@@ -97,20 +130,28 @@ def _load_labels(path):
 
 def main():
     here = Path(__file__).parent
-    step_out = here.parent / "output.json"
+    step_dir = here.parent
     parser = argparse.ArgumentParser(description="Evaluate canonicalization")
     parser.add_argument("--labels", default=str(here / "labels.csv"))
-    parser.add_argument("--input-path", dest="input_path", default=str(step_out))
+    parser.add_argument("--input-path", dest="input_path",
+                        default=str(step_dir / "output.json"))
+    parser.add_argument("--errors-path", dest="errors_path",
+                        default=str(step_dir / "errors.json"))
     args = parser.parse_args()
 
     labels = _load_labels(args.labels)
     records = json.loads(Path(args.input_path).read_text())["results"]
-    results, issues = run_eval(labels, records,
+    errors = json.loads(Path(args.errors_path).read_text()) if Path(args.errors_path).exists() else []
+    results, issues = run_eval(labels, records, errors,
                                eval_utils.input_hash(Path(args.labels)))
     eval_utils.write_eval_outputs(here, results, issues)
     p = results.metrics[0]
+    s = next(m for m in results.metrics if m.name == "file_success_rate")
     print(f"{STEP}: header_mapping_accuracy={p.value:.3f} "
-          f"({p.counts['correct']}/{p.counts['total']}), {len(issues)} issues")
+          f"({p.counts['correct']}/{p.counts['total']}), "
+          f"file_success_rate={s.value:.3f} "
+          f"({s.counts['successful']}/{s.counts['total']}), "
+          f"{len(issues)} issues")
     return 0
 
 

@@ -12,12 +12,30 @@
     },
     {
       "name": "field_coverage",
-      "value": 0.488,
+      "value": 0.532,
       "counts": {
-        "decision_date": 0.381,
-        "decision_status": 0.466,
-        "foi_reference_id": 0.631,
-        "request_description": 0.474
+        "decision_date": 0.416,
+        "decision_status": 0.521,
+        "foi_reference_id": 0.667,
+        "request_description": 0.525
+      },
+      "is_primary": false
+    },
+    {
+      "name": "file_success_rate",
+      "value": 0.721,
+      "counts": {
+        "successful": 584,
+        "total": 810
+      },
+      "is_primary": false
+    },
+    {
+      "name": "insufficient_columns_rate",
+      "value": 0.279,
+      "counts": {
+        "failed": 226,
+        "total": 810
       },
       "is_primary": false
     }
