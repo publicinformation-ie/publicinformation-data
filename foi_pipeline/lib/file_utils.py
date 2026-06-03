@@ -1,8 +1,19 @@
 import json
 import jsonschema
+import threading
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
+
+_append_error_locks: dict[str, threading.Lock] = {}
+_append_error_locks_meta = threading.Lock()
+
+
+def _get_append_error_lock(path: str) -> threading.Lock:
+    with _append_error_locks_meta:
+        if path not in _append_error_locks:
+            _append_error_locks[path] = threading.Lock()
+        return _append_error_locks[path]
 
 
 def read_json(path):
@@ -208,22 +219,21 @@ def sanitize_error_context(context):
 
 def append_error(step_dir, error_dict):
     errors_path = Path(step_dir) / "errors.json"
-    try:
-        errors = read_json(errors_path)
-    except (FileNotFoundError, json.JSONDecodeError):
-        errors = []
-    
-    # Sanitize error dict before appending
-    sanitized_error = {
-        'step': error_dict.get('step', 'unknown'),
-        'timestamp': error_dict.get('timestamp', datetime.now(timezone.utc).isoformat()),
-        'error_type': error_dict.get('error_type', 'UnknownError'),
-        'error_message': error_dict.get('error_message', 'No message'),
-        'context': sanitize_error_context(error_dict.get('context', {}))
-    }
-    
-    errors.append(sanitized_error)
-    write_json(errors_path, errors)
+    lock = _get_append_error_lock(str(errors_path))
+    with lock:
+        try:
+            errors = read_json(errors_path)
+        except (FileNotFoundError, json.JSONDecodeError):
+            errors = []
+        sanitized_error = {
+            'step': error_dict.get('step', 'unknown'),
+            'timestamp': error_dict.get('timestamp', datetime.now(timezone.utc).isoformat()),
+            'error_type': error_dict.get('error_type', 'UnknownError'),
+            'error_message': error_dict.get('error_message', 'No message'),
+            'context': sanitize_error_context(error_dict.get('context', {}))
+        }
+        errors.append(sanitized_error)
+        write_json(errors_path, errors)
 
 
 def write_status(step_dir, record_count):

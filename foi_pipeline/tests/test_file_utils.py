@@ -425,6 +425,34 @@ class TestIncrementalWriterDirtyPropagation:
         assert 99 in w.processed_keys
 
 
+import threading
+
+
+def test_append_error_thread_safe(tmp_path):
+    """Concurrent appends must not lose entries."""
+    from lib.file_utils import append_error, read_json, write_json
+    errors_path = tmp_path / "errors.json"
+    write_json(errors_path, [])
+
+    def add_error(i):
+        append_error(tmp_path, {
+            "step": "step",
+            "timestamp": "2026-01-01T00:00:00+00:00",
+            "error_type": "TestError",
+            "error_message": f"error {i}",
+            "context": {},
+        })
+
+    threads = [threading.Thread(target=add_error, args=(i,)) for i in range(20)]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+
+    errors = read_json(errors_path)
+    assert len(errors) == 20, f"Expected 20 errors, got {len(errors)} — some were lost to race"
+
+
 class TestIncrementalWriterTargetBody:
     def _output_with(self, tmp_path, records):
         p = tmp_path / "output.json"
