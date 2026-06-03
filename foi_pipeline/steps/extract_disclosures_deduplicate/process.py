@@ -11,17 +11,49 @@ from lib.file_utils import read_json, write_json, write_status
 
 STEP_NAME = "extract_disclosures_deduplicate"
 
+# Canonical content fields used to fingerprint null-ref records
+_CONTENT_FIELDS = (
+    "date_received",
+    "decision_date",
+    "requester_type",
+    "decision_status",
+    "review_status",
+    "related_request",
+    "request_description",
+)
+
+
+def _content_key(record):
+    """Composite key for content-based dedup of null-ref records.
+
+    Scoped to (public_body_id, file_url) so the same description appearing in
+    two different disclosure log files is not collapsed (they may be distinct
+    re-publications or corrections).
+    """
+    return (
+        record.get("public_body_id"),
+        record.get("file_url", ""),
+        *tuple(str(record.get(f) or "").strip() for f in _CONTENT_FIELDS),
+    )
+
 
 def deduplicate_records(records):
-    """Deduplicate records by (public_body_id, foi_reference_id) composite key.
+    """Deduplicate records by reference ID, or by content for null-ref records.
+
+    Records with a foi_reference_id are deduplicated by
+    (public_body_id, foi_reference_id).  Records without one are deduplicated
+    by full content within the same file, which removes repeated page-header
+    rows and blank separator rows that PDF extraction produces.
 
     Args:
         records: List of canonical FOI record dicts
 
     Returns:
         Tuple of (deduplicated_records, duplicate_count, null_id_count)
+        where null_id_count counts null-ref records kept (after dedup).
     """
-    seen = set()
+    seen_ref = set()
+    seen_content = set()
     deduplicated = []
     duplicate_count = 0
     null_id_count = 0
@@ -30,8 +62,12 @@ def deduplicate_records(records):
         body_id = record.get("public_body_id")
         ref_id = record.get("foi_reference_id")
 
-        # Track null/empty IDs - these cannot be deduplicated
         if ref_id is None or ref_id == "":
+            key = _content_key(record)
+            if key in seen_content:
+                duplicate_count += 1
+                continue
+            seen_content.add(key)
             null_id_count += 1
             deduplicated.append(record)
             continue
@@ -39,11 +75,11 @@ def deduplicate_records(records):
         # Create composite key: (public_body_id, normalized_foi_reference_id)
         key = (body_id, str(ref_id).strip())
 
-        if key in seen:
+        if key in seen_ref:
             duplicate_count += 1
             continue
 
-        seen.add(key)
+        seen_ref.add(key)
         deduplicated.append(record)
 
     return deduplicated, duplicate_count, null_id_count
@@ -89,7 +125,7 @@ def main():
                 "total_records_before": total_before,
                 "total_records_after": total_after,
                 "duplicate_records_removed": duplicates_removed,
-                "records_with_null_id": null_ids,
+                "records_with_null_id_kept": null_ids,
             },
             "results": deduplicated,
         },

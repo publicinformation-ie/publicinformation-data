@@ -1,0 +1,20 @@
+[
+  {
+    "severity": "info",
+    "description": "8 bodies kept <50% of records after dedup",
+    "affected_count": 8,
+    "affected_ids": [
+      "1008",
+      "1016",
+      "1036",
+      "1087",
+      "1088",
+      "1097",
+      "1128",
+      "1147"
+    ],
+    "suggested_upstream_step": "transform_disclosure_files",
+    "suggestion_detail": "Repeated page-header and blank separator rows in PDFs inflate record counts before dedup. Fix at extraction time.",
+    "confidence": 0.8
+  }
+]

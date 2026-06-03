@@ -1,0 +1,27 @@
+{
+  "step": "extract_disclosures_deduplicate",
+  "metrics": [
+    {
+      "name": "overall_records_kept_ratio",
+      "value": 0.653,
+      "counts": {
+        "total_before": 58797,
+        "total_after": 38384,
+        "removed": 20413
+      },
+      "is_primary": true
+    },
+    {
+      "name": "pct_bodies_low_ratio",
+      "value": 0.167,
+      "counts": {
+        "threshold": 0.5,
+        "low_ratio_count": 8,
+        "total_bodies_with_records": 48
+      },
+      "is_primary": false
+    }
+  ],
+  "input_hash": "258eceb1cebcfdf573dc4a9dd1c17106d610b3a1e4723ccb07fc46f67c80196b",
+  "judge_model": null
+}
