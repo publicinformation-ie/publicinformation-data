@@ -17,28 +17,49 @@ STEP_NAME = "find_disclosure_files"
 FILE_EXTENSIONS = {".pdf": "pdf", ".xlsx": "xlsx", ".xls": "xls"}
 YEAR_PATTERN = re.compile(r"\b(20\d{2})\b")
 
-_FOI_KEYWORDS = ['disclosure', 'log', 'foi-log', 'foi_log', 'published-foi-requests', 'foi-decisions']
+_FOI_KEYWORDS = ['disclosure', 'log', 'foi-log', 'foi_log', 'published-foi-requests', 'foi-decisions', 'foi-request', 'freedom-of-information']
 _NEGATIVE_KEYWORDS = list(set([k.lower() for k in [
     'policy', 'scheme', 'guide', 'minutes', 'report', 'annual', 'agenda',
-    'protected-disclosure', 'annual-report', 'debaterecord', 'governance'
+    'protected-disclosure', 'annual-report', 'debaterecord', 'governance',
     'committee_on', 'strategic-plan', 'climate-action', 'expense',
     'diary', 'mou', 'lrd-opinion', 'planningapplicationsrefused',
     'fiscal', 'committee', 'planning-application', 'code', 'statement', 'plan', 'press', 'elections',
     'strategy', 'leaflet', 'article', 'application form', '-form', '_form', 'assessment', 'tax', 'grants',
-    'template', 'award', 'irishstatute', 'conference', 'training', 'guidance'
+    'template', 'award', 'irishstatute', 'conference', 'training', 'guidance',
+    # Additional negative keywords for common non-FOI documents
+    'media-release', 'transcript', 'video-transcript', 'video',
+    'audit', 'disability', 'complaints', 'procedure', 'customer-charter', 'lobbying',
+    'data-privacy', 'data-protection', 'privacy', 'privacy-notice', 'terms-of-reference',
+    'model-contract', 'written-resolution', 'board-resolution',
+    'circular', 'bill', 'legislation', 'act', 'image', 'exhibit', 'worksheet',
+    'book-list', 'booklist', 'newsletter', 'brochure', 'pamphlet', 'poster',
+    'presentation', 'slides', 'meeting', 'session',
 ]]))
 
 
 def _url_score(url):
+    """Score a URL for whether it's likely an FOI disclosure log.
+    
+    Returns:
+        > 0: URL has positive FOI keywords (accept)
+        = 0: URL has no positive keywords but no negative keywords (accept with caution)
+        < 0: URL has negative keywords and no positive keywords (reject)
+    """
     url_lower = str(url).lower()
+    
+    # Check positive keywords first
+    has_positive = any(k in url_lower for k in _FOI_KEYWORDS)
+    
+    # Check negative keywords
     for k in _NEGATIVE_KEYWORDS:
         if k in url_lower:
-            return -1000
-    score = 0
-    for k in _FOI_KEYWORDS:
-        if k in url_lower:
-            score += 100
-    return score
+            # Only reject if there are no positive keywords
+            # (a URL with both positive and negative keywords is likely FOI)
+            if not has_positive:
+                return -1000
+    
+    # Accept all URLs with positive keywords, or no keywords at all
+    return 1
 
 
 def find_file_links(html, base_url, follow_year_pages=True):
