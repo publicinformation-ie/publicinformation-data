@@ -92,6 +92,9 @@ def main() -> None:
             continue
         records.append((item["file_url"], cache_path.read_bytes()))
     print(f" {len(records)} loaded, {missing} missing from cache")
+    if not records:
+        print("No cached PDFs found. Run the download step first.")
+        sys.exit(1)
 
     configs = _build_configs()
     print(f"Running {len(configs)} configurations × {len(records)} PDFs...")
@@ -156,7 +159,7 @@ def main() -> None:
     print("\n── Ranked results (by clean_extraction_rate desc, regressions asc) ──")
     header = f"{'cfg':>3}  {'snap_y':>6}  {'snap':>4}  {'edge_min':>8}  {'clean_rate':>10}  {'null_1st':>8}  {'null_col':>8}  {'newline':>7}  {'regress':>7}"
     print(header)
-    print("-" * len(header))
+    print("-" * (len(header) + 2))  # +2 for " ★" marker on actionable rows
     for r in ranked:
         actionable = " ★" if r["clean_extraction_rate"] >= 0.40 and r["regressions"] == 0 else ""
         print(
