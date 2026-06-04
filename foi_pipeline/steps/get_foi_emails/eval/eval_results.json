@@ -1,0 +1,43 @@
+{
+  "step": "get_foi_emails",
+  "metrics": [
+    {
+      "name": "accuracy",
+      "value": 0.267,
+      "counts": {
+        "correct": 8,
+        "total": 30
+      },
+      "is_primary": true
+    },
+    {
+      "name": "found_accuracy",
+      "value": 0.7,
+      "counts": {
+        "correct": 7,
+        "total": 10
+      },
+      "is_primary": false
+    },
+    {
+      "name": "multiple_found_accuracy",
+      "value": 0.091,
+      "counts": {
+        "correct": 1,
+        "total": 11
+      },
+      "is_primary": false
+    },
+    {
+      "name": "not_found_accuracy",
+      "value": 0.0,
+      "counts": {
+        "correct": 0,
+        "total": 9
+      },
+      "is_primary": false
+    }
+  ],
+  "input_hash": "e2450b8404d7334fa1e55482c813a6f87f4313f0d27f14a0e8e125b87bfa6eb2",
+  "judge_model": null
+}
