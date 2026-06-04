@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """pdfplumber parameter sweep experiment.
 
-Sweeps 19 configurations (baseline + 18 param combos) across 721 cached PDFs.
+Sweeps 18 configurations (baseline + 17 param combos) across 721 cached PDFs.
 Writes results.json and prints a ranked summary to stdout.
 
 Run from project root:

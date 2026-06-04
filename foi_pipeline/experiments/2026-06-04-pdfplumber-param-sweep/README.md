@@ -2,7 +2,7 @@
 
 **Hypothesis:** Tuning pdfplumber's table-detection parameters can reduce phantom null rows, improving `clean_extraction_rate` beyond the 35% baseline.
 
-**Parameter grid:** 18 configs (snap_y_tolerance ∈ {3,6,10} × snap_tolerance ∈ {3,6} × edge_min_length ∈ {3,10,20}) + baseline (config 0).
+**Parameter grid:** 18 total — baseline (config 0: snap_y=3, snap=3, edge_min=3) + 17 param configs from snap_y_tolerance ∈ {3,6,10} × snap_tolerance ∈ {3,6} × edge_min_length ∈ {3,10,20} (excluding the (3,3,3) baseline).
 
 **PDFs evaluated:** 721 (file_type=pdf, rows not None in eval fixture)
 
