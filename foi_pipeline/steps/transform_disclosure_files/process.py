@@ -218,15 +218,16 @@ def _extract_xls(file_bytes):
     return sheet_name, rows, fallback_cells, has_multiple_sheets
 
 
-def _extract_pdf(file_bytes):
+def _extract_pdf(file_bytes, table_settings=None):
     """Parse PDF bytes. Returns (sheet_name, rows, fallback_cells, has_multiple_tables)."""
     import pdfplumber
     rows = []
     total_tables = 0
+    _ts = table_settings if table_settings is not None else {}
     with pdfplumber.open(io.BytesIO(file_bytes)) as pdf:
         n_pages = len(pdf.pages)
         for page in pdf.pages:
-            tables = page.extract_tables()
+            tables = page.extract_tables(table_settings=_ts)
             total_tables += len(tables)
             for table in tables:
                 for row in table:

@@ -300,6 +300,23 @@ def test_extract_pdf_no_tables_raises_value_error():
         _extract_pdf(pdf_bytes)
 
 
+def test_extract_pdf_default_table_settings_unchanged():
+    rows_in = [["Ref", "Date"], ["001", "2024-01-01"]]
+    pdf_bytes = _make_pdf([[rows_in]])
+    sheet_name, rows, fallback_cells, has_multiple = _extract_pdf(pdf_bytes, table_settings=None)
+    assert rows[0] == ["Ref", "Date"]
+    assert rows[1] == ["001", "2024-01-01"]
+    assert has_multiple is False
+
+
+def test_extract_pdf_custom_table_settings_accepted():
+    rows_in = [["Ref", "Date"], ["001", "2024-01-01"]]
+    pdf_bytes = _make_pdf([[rows_in]])
+    settings = {"snap_y_tolerance": 6, "snap_tolerance": 6, "edge_min_length": 10}
+    sheet_name, rows, fallback_cells, has_multiple = _extract_pdf(pdf_bytes, table_settings=settings)
+    assert rows[0] == ["Ref", "Date"]
+
+
 # ── process() fixtures ────────────────────────────────────────────────────────
 
 BASE_ITEM = {
