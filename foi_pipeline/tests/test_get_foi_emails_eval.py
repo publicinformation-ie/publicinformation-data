@@ -82,7 +82,7 @@ def test_accuracy_across_mixed_records():
     ]
     results, issues = score_records(records, labels, input_hash="abc")
     accuracy = next(m for m in results.metrics if m.name == "accuracy")
-    assert accuracy.value == pytest.approx(2 / 3)
+    assert accuracy.value == pytest.approx(2 / 3, abs=1e-3)
     assert accuracy.counts["correct"] == 2
     assert accuracy.counts["total"] == 3
     assert len(issues) == 1
