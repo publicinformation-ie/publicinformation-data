@@ -1,6 +1,7 @@
 {
   "steps": [
     "find_public_bodies",
+    "find_public_bodies_subject_to_foi",
     "resolve_website_urls",
     "validate_websites",
     "find_foi_pages",

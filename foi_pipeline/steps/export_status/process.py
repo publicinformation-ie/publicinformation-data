@@ -179,7 +179,7 @@ def write_foi_disclosures_output(steps_dir, repo_root):
 
 
 def merge(steps_dir, pipeline_steps, target_public_body=None):
-    base_data = read_json(steps_dir / "find_public_bodies" / "output.json")
+    base_data = read_json(steps_dir / "find_public_bodies_subject_to_foi" / "output.json")
     base_data = filter_by_public_body(base_data, target_public_body)
     bodies = copy.deepcopy(base_data["public_bodies"])
     body_map = {b["public_body_id"]: b for b in bodies}
@@ -200,11 +200,6 @@ def merge(steps_dir, pipeline_steps, target_public_body=None):
             continue
         step_data = filter_by_public_body(read_json(output_path), target_public_body)
         merger(body_map, step_data)
-
-    for body in body_map.values():
-        if body.get("exclusion_reason"):
-            for sub in body["status"].values():
-                sub["status"] = "not_applicable"
 
     return list(body_map.values())
 

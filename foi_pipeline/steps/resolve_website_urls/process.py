@@ -37,16 +37,17 @@ def process(input_data, step_dir, writer, verbose=False):
     errors_path = Path(step_dir) / "errors.json"
     write_json(errors_path, [])
 
+    failed_ids = []
     for body in input_data["public_bodies"]:
-        if body.get("exclusion_reason"):
-            continue
         body_id = body["public_body_id"]
         if writer.is_processed(body_id):
             continue
         url = body["official_website_url"]
         try:
             response = fetch("GET", url, allow_redirects=True)
-            resolved_url = resolve_stub_url(response.text, url)
+            response.raise_for_status()
+            final_url = response.url if is_safe_url(response.url) else url
+            resolved_url = resolve_stub_url(response.text, final_url)
             writer.append([{**body, "official_website_url": resolved_url}])
         except Exception as e:
             append_error(step_dir, {
@@ -57,8 +58,11 @@ def process(input_data, step_dir, writer, verbose=False):
                 "context": {"url": url, "public_body_id": body_id},
             })
             writer.append([body])
+            failed_ids.append(body_id)
         if verbose:
             print(".", end="", flush=True)
+
+    write_json(Path(step_dir) / "failed_ids.json", failed_ids)
 
 
 def main():
@@ -82,9 +86,11 @@ def main():
         print(f"No input record for public_body_id={args.public_body}", file=sys.stderr)
         sys.exit(0)
 
+    failed_ids_path = step_dir / "failed_ids.json"
     writer = IncrementalWriter(output_path, STEP_NAME, force=args.force,
                                override_path=override_path,
-                               target_public_body=args.public_body)
+                               target_public_body=args.public_body,
+                               upstream_dirty_path=failed_ids_path if failed_ids_path.exists() else None)
 
     if writer.processed_keys:
         print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")

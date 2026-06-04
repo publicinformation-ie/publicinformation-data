@@ -218,12 +218,19 @@ def _extract_xls(file_bytes):
     return sheet_name, rows, fallback_cells, has_multiple_sheets
 
 
+_DEFAULT_PDF_TABLE_SETTINGS = {
+    "snap_y_tolerance": 3,
+    "snap_tolerance": 6,
+    "edge_min_length": 10,
+}
+
+
 def _extract_pdf(file_bytes, table_settings=None):
     """Parse PDF bytes. Returns (sheet_name, rows, fallback_cells, has_multiple_tables)."""
     import pdfplumber
     rows = []
     total_tables = 0
-    _ts = table_settings if table_settings is not None else {}
+    _ts = table_settings if table_settings is not None else _DEFAULT_PDF_TABLE_SETTINGS
     with pdfplumber.open(io.BytesIO(file_bytes)) as pdf:
         n_pages = len(pdf.pages)
         for page in pdf.pages:

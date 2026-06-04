@@ -88,49 +88,58 @@ def test_resume_skips_already_processed_body(requests_mock, tmp_path):
     assert len(hse_calls) == 0
 
 
-def test_body_with_exclusion_reason_is_skipped(requests_mock, tmp_path, make_writer):
+
+def test_http_redirect_uses_final_url(monkeypatch, tmp_path, make_writer):
+    """When response.url differs from the original (HTTP redirect), the final URL is used."""
+    from unittest.mock import MagicMock
+    import steps.resolve_website_urls.process as proc
+
     writer = make_writer(STEP_NAME)
-    excluded_input = {
-        "metadata": {"step": "find_public_bodies", "completed_at": "2026-05-29T00:00:00+00:00"},
-        "public_bodies": [
-            {
-                "public_body_id": 1099,
-                "name": "Coillte",
-                "official_website_url": "https://www.gov.ie/en/coillte/",
-                "exclusion_reason": "not_subject_to_foi",
-                "status": {"website_url": {"url": "https://www.gov.ie/en/coillte/", "status": "not_attempted"}},
-            },
-            {
-                "public_body_id": 1001,
-                "name": "Health Service Executive",
-                "official_website_url": "https://www.gov.ie/en/organisation/hse/",
-                "status": {"website_url": {"url": "https://www.gov.ie/en/organisation/hse/", "status": "not_attempted"}},
-            },
-        ],
-    }
-    requests_mock.get("https://www.gov.ie/en/organisation/hse/", text="<html><body>HSE</body></html>")
-    process(excluded_input, tmp_path, writer)
-    ids = [r["public_body_id"] for r in writer.results]
-    assert 1099 not in ids
-    assert 1001 in ids
+
+    def fake_fetch(method, url, **kwargs):
+        resp = MagicMock()
+        resp.url = "https://hse.ie/"   # final URL after redirect
+        resp.text = DEPT_HTML          # no stub marker on landing page
+        return resp
+
+    monkeypatch.setattr(proc, "fetch", fake_fetch)
+    process(INPUT, tmp_path, writer)
+    hse = next(r for r in writer.results if r["public_body_id"] == 1001)
+    assert hse["official_website_url"] == "https://hse.ie/"
 
 
-def test_body_with_temporary_exclusion_reason_is_also_skipped(requests_mock, tmp_path, make_writer):
+def test_http_error_status_is_logged_and_body_kept(requests_mock, tmp_path, make_writer):
+    """A 404 or 500 response should be treated as a failure, logged, and original URL kept."""
     writer = make_writer(STEP_NAME)
-    excluded_input = {
-        "metadata": {"step": "find_public_bodies", "completed_at": "2026-05-29T00:00:00+00:00"},
-        "public_bodies": [
-            {
-                "public_body_id": 1099,
-                "name": "Victims Charter",
-                "official_website_url": "https://www.gov.ie/en/victims-charter/",
-                "exclusion_reason": "temporary",
-                "status": {"website_url": {"url": "https://www.gov.ie/en/victims-charter/", "status": "not_attempted"}},
-            },
-        ],
-    }
-    process(excluded_input, tmp_path, writer)
-    assert len(writer.results) == 0
+    requests_mock.get("https://www.gov.ie/en/organisation/hse/", status_code=404)
+    requests_mock.get("https://www.gov.ie/en/organisation/finance/", text=DEPT_HTML)
+    process(INPUT, tmp_path, writer)
+    hse = next(r for r in writer.results if r["public_body_id"] == 1001)
+    assert hse["official_website_url"] == "https://www.gov.ie/en/organisation/hse/"
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert any(e["public_body_id"] == 1001 for e in [e["context"] for e in errors])
+
+
+def test_failed_ids_written_for_retry(requests_mock, tmp_path, make_writer):
+    """Bodies that fail (network error or HTTP error) should appear in failed_ids.json."""
+    writer = make_writer(STEP_NAME)
+    requests_mock.get("https://www.gov.ie/en/organisation/hse/", status_code=500)
+    requests_mock.get("https://www.gov.ie/en/organisation/finance/",
+                      exc=requests.exceptions.ConnectionError("x"))
+    process(INPUT, tmp_path, writer)
+    failed = json.loads((tmp_path / "failed_ids.json").read_text())
+    assert 1001 in failed
+    assert 1002 in failed
+
+
+def test_successful_bodies_not_in_failed_ids(requests_mock, tmp_path, make_writer):
+    """Successfully fetched bodies must not appear in failed_ids.json."""
+    writer = make_writer(STEP_NAME)
+    requests_mock.get("https://www.gov.ie/en/organisation/hse/", text=DEPT_HTML)
+    requests_mock.get("https://www.gov.ie/en/organisation/finance/", text=DEPT_HTML)
+    process(INPUT, tmp_path, writer)
+    failed = json.loads((tmp_path / "failed_ids.json").read_text())
+    assert failed == []
 
 
 import sys as _sys
