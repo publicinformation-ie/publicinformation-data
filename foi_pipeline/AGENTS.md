@@ -126,6 +126,7 @@ python process.py --from validate_websites --public-body 1001
 | Database | [steps/db_upload/AGENTS.md](steps/db_upload/AGENTS.md) | libSQL database configuration and upload |
 | Evaluation | [evaluation/AGENTS.md](evaluation/AGENTS.md) | Step evaluation framework with LLM judging |
 | Step Management | [steps/AGENTS.md](steps/AGENTS.md) | Adding/removing steps, documentation sync |
+| Experiments | [experiments/README.md](experiments/README.md) | Index of past experiments, learnings, and guidance for running new ones |
 
 ## Troubleshooting
 
