@@ -89,6 +89,11 @@ def judge(key: str, prompt: str, cache: dict, api_fn=default_api_fn) -> tuple[st
 
     On cache miss, calls api_fn(prompt); writes {label, rationale, verified:'auto'}
     back into cache. Raises JudgeUnavailable if a call is needed but api_fn is None.
+
+    Cache entries with verified='mock' are treated as valid cache hits — they are
+    synthetic heuristic labels (not LLM-generated) and are returned as-is without
+    making an API call. The evaluate.py caller is responsible for distinguishing
+    mock from human-verified entries via the 'verified' field.
     """
     if key in cache:
         entry = cache[key]

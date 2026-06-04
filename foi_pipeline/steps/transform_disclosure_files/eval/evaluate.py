@@ -1,11 +1,17 @@
 #!/usr/bin/env python3
-"""Evaluate transform_disclosure_files: PDF extraction quality via heuristic flags.
+"""Evaluate transform_disclosure_files: raw PDF extraction quality via heuristic flags.
+
+Measures the *pre-normalization* state of extracted PDF rows — i.e. what pdfplumber
+produces before normalize_disclosure_cells applies its fixes. Use the normalize eval
+(steps/normalize_disclosure_cells/eval/evaluate.py) to measure post-normalization quality.
 
 Three binary flags per PDF record:
   null_first_row     — any cell in rows[0] is None
   null_column        — at least one column index where every row has None
+                       (addressed downstream by normalize_disclosure_cells._prune_null_columns)
   newline_split_row  — at least one non-header row with exactly 1 non-None cell
                        across >= 3 columns
+                       (addressed downstream by normalize_disclosure_cells._merge_continuation_rows)
 
 Primary metric: clean_extraction_rate (fraction of PDFs with zero flags).
 """

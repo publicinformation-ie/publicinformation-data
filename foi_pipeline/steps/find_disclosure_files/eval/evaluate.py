@@ -5,6 +5,18 @@ Recall is not measurable (no ground-truth list of all files that should exist);
 the funnel + north-star catch large recall losses. Primary metric = precision
 over the verified subset. Determinism: judgments cached by file_url in
 judgments.json; LLM called only on cache miss.
+
+Judgment verified values:
+  "yes" / "no"  — human-verified; highest confidence.
+  "auto"        — LLM-generated, not yet human-reviewed.
+  "mock"        — heuristic label applied without an LLM call (e.g. when
+                  running offline). Mock labels are intentionally stricter
+                  than _url_score: they require a recognisable FOI signal in
+                  the URL, whereas _url_score accepts URLs with no keywords.
+                  Mock-"no" entries therefore measure genuine filter
+                  false-positives (files _url_score passes that a human would
+                  reject). All three verified states count toward the precision
+                  denominator; only "auto" is treated as unverified.
 """
 import argparse
 import json
@@ -81,18 +93,22 @@ def run_eval(items, judgments, input_hash, api_fn=eval_judge.default_api_fn):
     for item in items:
         eval_judge.judge(item["file_url"], _prompt(item), judgments, api_fn=api_fn)
 
-    foi = judged = unverified = 0
+    foi = judged = mock_non_foi = 0
     non_foi_ids = []
     for item in items:
-        entry = judgments[item["file_url"]]
-        if entry.get("verified") in ("yes", "no"):
+        entry = judgments.get(item["file_url"], {})
+        verified = entry.get("verified")
+        # "yes"/"no" = human-verified; "mock" = heuristic label; all count toward precision.
+        # "auto" = LLM-generated but not human-reviewed; treated as unverified.
+        if verified in ("yes", "no", "mock"):
             judged += 1
             if entry["label"] == "yes":
                 foi += 1
             else:
                 non_foi_ids.append(item["file_url"])
-        else:
-            unverified += 1
+                if verified == "mock":
+                    mock_non_foi += 1
+    unverified = len(items) - judged
 
     precision = foi / judged if judged else 0.0
     metrics = [
@@ -100,6 +116,8 @@ def run_eval(items, judgments, input_hash, api_fn=eval_judge.default_api_fn):
                           {"foi": foi, "judged": judged}, is_primary=True),
         eval_utils.Metric("unverified_coverage", unverified,
                           {"unverified": unverified, "total": len(items)}),
+        eval_utils.Metric("mock_judgments", mock_non_foi,
+                          {"mock": mock_non_foi, "total": len(items)}),
     ]
 
     issues = []
@@ -111,6 +129,16 @@ def run_eval(items, judgments, input_hash, api_fn=eval_judge.default_api_fn):
             suggested_upstream_step=None,
             suggestion_detail="add a content-type / filename filter to find_disclosure_files",
             confidence=0.8))
+
+    if judged > 0 and mock_non_foi / judged > 0.3:
+        issues.append(eval_utils.Issue(
+            severity="info",
+            description=f"{mock_non_foi} non-FOI items identified by mock-heuristic — consider promoting to human-verified labels",
+            affected_count=mock_non_foi,
+            affected_ids=[],
+            suggested_upstream_step=None,
+            suggestion_detail="Run evaluate.py with ANTHROPIC_API_KEY set to replace mock labels with LLM judgments, then human-verify",
+            confidence=1.0))
 
     dup_metrics, dup_issues = _duplicate_metrics(items)
     metrics.extend(dup_metrics)

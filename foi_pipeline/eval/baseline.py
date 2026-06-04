@@ -50,6 +50,9 @@ def find_regressions(baseline: dict, current: dict, tolerance=DEFAULT_TOLERANCE)
         if not bstep:
             continue
         if bstep["input_hash"] != cur["input_hash"]:
+            print(f"  note: {step}.{cur['name']} skipped — input_hash changed "
+                  f"({bstep['input_hash'][:8]}… → {cur['input_hash'][:8]}…); "
+                  "re-run --update-baseline to record new baseline")
             continue  # different data -> not comparable
         if bstep["value"] - cur["value"] > tolerance:
             out.append((step, cur["name"], bstep["value"], cur["value"]))

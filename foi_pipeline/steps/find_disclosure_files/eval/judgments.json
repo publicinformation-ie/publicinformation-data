@@ -198,5 +198,785 @@
     "label": "yes",
     "rationale": "An Bord Plean\u00e1la FOI disclosure log",
     "verified": "yes"
+  },
+  "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/FOI-request.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'app/uploads/council/council_services' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/Infromation-about-Offaly-County-Council-March-2019.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'app/uploads/council/council_services' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/Complaints-procedureAug23.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'complaints' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "http://www.westmeathcoco.ie/en/media/Access Audits of Buildings.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'audit' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "http://www.westmeathcoco.ie/en/media/Athlone Addendum March 2006.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "http://www.westmeathcoco.ie/en/media/Athlone Disability Audit.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'audit' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "http://www.westmeathcoco.ie/en/media/Castlepollard Disability Audit.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'audit' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "http://www.westmeathcoco.ie/en/media/Moate Addendum March 2006.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "http://www.westmeathcoco.ie/en/media/Moate Disability Audit.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'audit' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://data.oireachtas.ie/ie/oireachtas/bill/2013/89/eng/memo/b8913d-memo.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'bill' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/non-personal-foi-requests-march-2015.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'foi' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/non-personal-foi-requests-february-2015.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'foi' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.bordbia.ie/contentassets/ae9dcd8ebda3420d9c5182309ca770c8/bord-bia-foi-disclosure-log-2025.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.bordbia.ie/globalassets/bordbia2020/food-and-living/recipes/new-recipes-6.7.20/22.2.21/bord-bia-foi-disclosure-log-2024.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.bordbia.ie/globalassets/bordbia.ie/about/governance/foi-disclosure-log/bord-bia-foi-disclosure-log-2021.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/agricultural-and-food-supply-chain-bill-2022.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'bill' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-3-2019-3fcaa039-4e54-452a-9d80-882784dd1bab.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'freedom-of-information' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-2-2019.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'freedom-of-information' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "http://www.irishprisons.ie/wp-content/uploads/documents_pdf/foi_application.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'foi' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://circulars.gov.ie/pdf/circular/finance/2004/26.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'circular' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.ocei.ie/media/266670/e482e8d6-44ae-4359-9a93-31dfd6498fb4.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://assets.ocei.ie/media/266660/c87ef262-6146-48b4-9880-3f0dca7833b3.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://assets.ocei.ie/media/266659/4147d16c-a719-4034-9c7d-b18299150163.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://www.audit.gov.ie/en/about-us/media/2026/media-release-brexit-physical-infrastructure-delivery-and-use.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'media-release' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.audit.gov.ie/en/about-us/media/2025/media-release-ifi.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'media-release' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.audit.gov.ie/en/about-us/media/2024/media-release-university-of-limerick-property-acquisitions-in-limerick-city.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'media-release' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.intosaipas.org/wp-content/uploads/2023/07/PAS-Terms-of-Reference.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'terms-of-reference' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.intosaipas.org/wp-content/uploads/2026/04/Working-Group-on-Evaluation-of-Public-Policies-and-Programs.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://nationalmilkagency.ie/wp-content/uploads/2020/05/19-Customer-Charter-.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'customer-charter' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://nationalmilkagency.ie/wp-content/uploads/2020/03/Model_contract2009.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://www.wicklow.ie/Portals/0/adam/Documents/tol9SoW59E-azTRq8uljhg/Link/Arts Act Funding 2023_FAQ.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://www.wicklow.ie/Portals/0/Documents/Governance/Access-Disability/The-Disability-Act-2005/Disability Act 2005.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'disability' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.publicjobs.ie/documents/data-protection/Executive Officer 2014 Age and Gender Statistics.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'data-protection' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.publicjobs.ie/documents/data-protection/General Service Grade Assignments to Irish Language Posts 2016-2018.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'data-protection' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.publicjobs.ie/documents/data-protection/Professional and Technical Assignements to Irish Language Posts 2016-2018.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'data-protection' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.publicjobs.ie/documents/data-protection/Hospital Consultant Posts 2015.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'data-protection' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.publicjobs.ie/documents/data-protection/Hospital Consultant Posts 2016.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'data-protection' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.publicjobs.ie/documents/data-protection/Hospital Consultant Recruitment Statistics 2016.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'data-protection' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.publicjobs.ie/documents/data-protection/Hospital Consultant Posts 2017.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'data-protection' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.publicjobs.ie/documents/data-protection/Statistics relating to 2015 Senior Management Opportunities in Local Government competition.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'data-protection' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.publicjobs.ie/documents/data-protection/Statistics relating to 2017 Senior Management Opportunities in Local Government competition.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'data-protection' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.centralbank.ie/docs/default-source/publications/financial-stability-review/transcript-of-the-video-risks-and-outlook-for-the-financial-system-(november-2025).pdf?sfvrsn=69dd6f1a_2": {
+    "label": "no",
+    "rationale": "URL contains 'transcript' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.centralbank.ie/docs/default-source/publications/financial-stability-review/video-transcript-risks-and-outlook-for-the-financial-system-(june-2025).pdf?sfvrsn=513681a_5": {
+    "label": "no",
+    "rationale": "URL contains 'transcript' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.centralbank.ie/docs/default-source/publications/financial-stability-review/transcript-fsr-dec-2024.pdf?sfvrsn=b474641a_4": {
+    "label": "no",
+    "rationale": "URL contains 'transcript' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.centralbank.ie/docs/default-source/publications/financial-stability-review/video-transcript-risks-and-outlook-for-the-financial-system-june-2024.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'transcript' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.centralbank.ie/docs/default-source/publications/financial-stability-notes/the-financial-resilience-of-irish-cre-borrowers.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://www.centralbank.ie/docs/default-source/publications/financial-stability-review/video-transcript-risks-and-outlook-for-the-financial-system.pdf?sfvrsn=90f59d1d_5": {
+    "label": "no",
+    "rationale": "URL contains 'transcript' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.centralbank.ie/docs/default-source/publications/financial-stability-review/video-transcript_fsr.pdf?sfvrsn=4b319e1d_1": {
+    "label": "no",
+    "rationale": "URL contains 'transcript' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.centralbank.ie/docs/default-source/publications/financial-stability-review/financial-stability/fsr-june-2023-analyst-transcript.pdf?sfvrsn=829e1d_1": {
+    "label": "no",
+    "rationale": "URL contains 'transcript' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.centralbank.ie/docs/default-source/publications/financial-stability-review/financial-stability/opening-remarks-by-governor-makhlouf-fsr-2022-i.pdf?sfvrsn=6d6a961d_2": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://www.centralbank.ie/docs/default-source/publications/financial-stability-review/financial-stability/fsr-2022-1---analyst-transcript.pdf?sfvrsn=7558941d_1": {
+    "label": "no",
+    "rationale": "URL contains 'transcript' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.centralbank.ie/docs/default-source/publications/financial-stability-review/financial-stability/fsr-ii-2021-media-transcript.pdf?sfvrsn=2738921d_5": {
+    "label": "no",
+    "rationale": "URL contains 'transcript' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.centralbank.ie/docs/default-source/publications/financial-stability-review/financial-stability/fsr-2021-ii-analyst-transcript.pdf?sfvrsn=f5db921d_4": {
+    "label": "no",
+    "rationale": "URL contains 'transcript' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.centralbank.ie/docs/default-source/publications/financial-stability-review/financial-stability/opening-remarks-by-governor-makhlouf.pdf?sfvrsn=95cb881d_4": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://www.centralbank.ie/docs/default-source/publications/economic-letters/economic-letter-vol-2017-no-1.pdf?sfvrsn=2d37dc1d_6": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://www.centralbank.ie/docs/default-source/publications/quarterly-bulletins/video-transcripts/video-transcript-quarterly-bulletin-3-2025-irish-economic-outlook.pdf?sfvrsn=9e776e1a_1": {
+    "label": "no",
+    "rationale": "URL contains 'transcript' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.centralbank.ie/docs/default-source/publications/quarterly-bulletins/video-transcripts/video-transcript-quarterly-bulletin-4-2025-irish-economic-outlook.pdf?sfvrsn=cdd6c1a_1": {
+    "label": "no",
+    "rationale": "URL contains 'transcript' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.centralbank.ie/docs/default-source/publications/quarterly-bulletins/video-transcripts/transcript-quarterly-bulletin-1-2025-irish-economic-outlook.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'transcript' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Disclosure-Log/Disclosure-Log-Q4-2024.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q1-2024.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q4-2023.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q3-2023.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q2-2023.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q4-2021.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q2-2021.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q1-2021.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.leitrim.ie/Council/Services/Housing/Rent-Review-2026/Signed-DRS-010526.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://sbci.gov.ie/uploads/general/Written-Resolution-Appointment-of-Deirdre-Donaghy-dated-05.05.2023.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'written-resolution' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://sbci.gov.ie/uploads/banners/SBCI-Written-resolution-of-SBCI-Board-of-Directors-appointment-and-resignation-of-Company-Secretary.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'written-resolution' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://sbci.gov.ie/uploads/banners/Written-Resolution-Appointment-of-Ian-Black-dated-23.06.2022.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'written-resolution' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://sbci.gov.ie/uploads/banners/10.-SBCI-Revised-Board-Resolutions-BLS-Covid-WCS-19-03-2021.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'board-resolution' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://sbci.gov.ie/uploads/banners/6.-Written-Resolution-for-Board-approval-CCGS-31-08-2020.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'written-resolution' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://sbci.gov.ie/uploads/banners/4.-Written-Resolution-Extension-of-COSME-Agreement-17-12-2019.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'written-resolution' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://sbci.gov.ie/uploads/banners/2.-Written-Resolution-Amendment-to-Finance-Ireland-Credit-Proposal-28-09-2018.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'written-resolution' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://sbci.gov.ie/uploads/banners/1.-SBCI-Board-Resolution-in-Writing-Reappointment-of-Conor-OKelly-07-03-2018.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'board-resolution' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://sbci.gov.ie/uploads/general/Written-Resolution-Merrion-Prepayment-14.07.2017-3.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'written-resolution' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://sbci.gov.ie/uploads/general/Written-Resolution-Consent-to-First-Citizen-Reorganisation-14.06.2017-2.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'written-resolution' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://sbci.gov.ie/uploads/general/Written-Resolution-Counter-Indemnity-13.12.2016-3.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'written-resolution' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.corkcity.ie/media/mtxfbw2l/cork-city-council-customer-charter.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'customer-charter' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.corkcity.ie/media/ncpntp0p/adopted-tap-2019-2024.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://www.corkcity.ie/media/wxglcfup/lobbying.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'lobbying' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.corkcity.ie/media/cqoptjgm/part-iii-designated-casual-trading-areas.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://www.corkcity.ie/media/dohdhq5m/results-north-east.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://www.corkcity.ie/media/rp1n0cju/results-north-west.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://www.corkcity.ie/media/ygydbxui/results-north-west2.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://www.corkcity.ie/media/33hgguy0/results-south-central.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://www.corkcity.ie/media/ltcb4dht/results-south-west.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://www.corkcity.ie/media/ye0ki1zw/results-south-west2.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://www.corkcity.ie/media/1xcn1aos/results-south-east.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://www.corkcity.ie/media/2qfjrqgf/to-learn-more-book-list-5th-draft.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'book-list' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.corkcity.ie/media/44edpato/exhibit_children-s_worksheet.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'exhibit' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.louthcoco.ie/en/services/archives/conservation-of-archives/drogheda-merchant-ledgers-2021/images-of-ledgers-conservation.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'image' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.louthcoco.ie/ga/comhairle-chontae-lu/an-nuacht-is-deanai/lecp-high-level-goals-and-objectives.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://www.louthcoco.ie/ga/comhairle-chontae-lu/an-nuacht-is-deanai/treoirlinte.pdf": {
+    "label": "no",
+    "rationale": "No clear FOI indicators",
+    "verified": "mock"
+  },
+  "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q1-2023.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.corkcity.ie/media/50bauhc0/disclosure-log-2019.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.charitiesregulator.ie/media/kx3n0htl/foi-disclosure-log-2024.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/5._Non-personal_FOI_requests_answered_in_May_2025.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'foi' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://kildarecoco.ie/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/Copy of Disclosure log 2022 web version.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://sbci.gov.ie/uploads/general/SBCI-Q2-2018-Disclosure-Log.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.audit.gov.ie/en/freedom-of-information/foi%20disclosure log/foi-disclosure-log-q1-2026.pdf": {
+    "label": "no",
+    "rationale": "URL contains 'audit' - not an FOI disclosure log",
+    "verified": "mock"
+  },
+  "http://www.cavancoco.ie/services/corporate-governance/freedom-of-information/disclosure-log-2025.xlsx": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.military.ie/media/4hhj3kub/freedom-of-information-log-non-personal-information-q4-2022.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'freedom-of-information' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.ntma.ie/uploads/general/Disclosure-Log-Q2-2019-NTMA.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/Department_of_Justice_FOI_Disclosure_Log__July_to_December_2024.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.corkcity.ie/media/dj5gkpjx/foi-disclosure-log-2018.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.mayo.ie/getmedia/25fd167c-a70c-4a45-930e-3ddb56e8cbea/FOI-Disclosure-Log-Q3-2024.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/non-personal-foi-requests-june-2015.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'foi' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.meath.ie/system/files/media/file-uploads/2020-03/Disclosure%20Log%202019%20-%20July%20to%20December%20-%20for%20website_0.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/e8b01d5d/20251212_FOI_Disclosure_Log_2025_Q1.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.military.ie/media/tirkxzmk/freedom-of-information-log-non-personal-information-q3-2024.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'freedom-of-information' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/fa387294/20260514_FOI_Disclosure_Log_Q1_2026_3.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosure-log-2015.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://sbci.gov.ie/uploads/banners/Q3-2025-SBCI-Disclosure-Log-Updated.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.military.ie/media/3z0ejybp/freedom-of-information-log-non-personal-information-q1-2025.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'freedom-of-information' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/disclosure-log-2023-q2.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.military.ie/media/agok0wlr/freedom-of-information-log-non-personal-information-q1-2023.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'freedom-of-information' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "http://www.longfordcoco.ie/your-council/access-to-information/freedom-of-information/disclosure-log/foi-disclosure-log-2021.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q4-2022.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.galway.ie/sites/default/files/2025-06/FOI%20Disclosure%20Log%202020.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Disclosure-Log/Disclosure-Log-Q3-2024.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.ntma.ie/uploads/general/Q1-Disclosure-log-2024.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "http://www.galway.ie/sites/default/files/2025-06/FOI%20Disclosure%20log%202016.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/foi-decisions-q2-2017.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'foi' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/disclosure-log-2020-q4.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.ntma.ie/uploads/general/Disclosure-Log-Q2-2017.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosure-log-q1-2024-dd702dd9-51cc-4553-8211-897c383e5f97.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/c66a6091/20260109_Disclosure_Log_July_-_September_2025.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.military.ie/media/24hgbbza/freedom-of-information-log-non-personal-information-q3-2019.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'freedom-of-information' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.corkcity.ie/media/3awirkjw/2024-disclosure-log.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://kildarecoco.ie/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/FOI Disclosure Log 2nd half 2019.xlsx": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/foi-requests-january-march-2018.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'foi' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/dcediy-foi-requests-january-march-2022.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'foi' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/q3-2016-foi-disclosure-log.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/5ada74be/FOIs_OpenData_Log.xlsx": {
+    "label": "yes",
+    "rationale": "URL contains 'foi' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://monaghan.ie/corporateservices/wp-content/uploads/sites/9/2025/01/disclosure-log-2021.xlsx": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/9867bd95/20251230_FOI_Disclosure_Log_2025_Q2.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosure-log-2021-q2-070071c3-f436-4a05-a953-b8ad293e1245.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/033aa2c5/2025_DCEE_FOI_Disclosure_Log.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosure-log-q2-2022-0eae6f83-1dbd-47b4-8d2a-92dc0055b765.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.galway.ie/sites/default/files/2025-06/FOI%20Disclosure%20log%202018.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/f99830ff-foi-summary-of-non-personal-requests-submitted-to-the-department-of-education.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'foi' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/disclosure-log-de-quarter-3-2022.xlsx": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/dfheris-foi-logs-january-to-march-2024.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'foi' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/20250530_-_2024_Q4_Disclosure_Log.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.ntma.ie/uploads/general/Disclosures-Log-Q1-2020.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosure-log-q3-2020-12087c67-28e3-4c82-aa09-76a5d26a5235.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://kildarecoco.ie/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/Disclosure Log First Half 2023.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosure-log-2021.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://kildarecoco.ie/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/Disclosure log 2nd half of 2021.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://sbci.gov.ie/uploads/general/Q3-2020-SBCI-Disclosure-Log.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosure-log-q3-2023-a1400ec8-2459-4938-821f-9cc130820186.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/disclosure-log-de-quarter-4-2022.xlsx": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.ntma.ie/uploads/general/Disclosure-Log-Q2-2022.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosure-log-2023-q1.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
+  },
+  "https://www.mayo.ie/getmedia/a21786a6-0bff-41b9-976d-aef7f15d150c/FOI-Disclosure-Log-Q2-2021.pdf": {
+    "label": "yes",
+    "rationale": "URL contains 'disclosure' - FOI disclosure log",
+    "verified": "mock"
   }
 }
