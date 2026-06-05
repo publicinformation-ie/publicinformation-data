@@ -68,18 +68,41 @@ def _issue_count(steps_dir: Path, step: str) -> int:
     return len(json.loads(p.read_text())) if p.exists() else 0
 
 
+def _oldest_result_age(steps_dir: Path, evaluated: list[str]) -> str | None:
+    """Return a human-readable age string for the stalest cached eval result."""
+    import time
+    mtimes = []
+    for step in evaluated:
+        p = Path(steps_dir) / step / "eval" / "eval_results.json"
+        if p.exists():
+            mtimes.append(p.stat().st_mtime)
+    if not mtimes:
+        return None
+    oldest = min(mtimes)
+    age_secs = time.time() - oldest
+    if age_secs < 60:
+        return "just now"
+    if age_secs < 3600:
+        return f"{int(age_secs // 60)}m ago"
+    if age_secs < 86400:
+        return f"{int(age_secs // 3600)}h ago"
+    return f"{int(age_secs // 86400)}d ago"
+
+
 def render_table(steps_dir: Path, all_steps: list[str], evaluated: list[str]):
-    print("Pipeline Evaluation  " + "─" * 40)
-    print(f"{'Step':<40}{'Metric':<10}{'Score':>7}{'Issues':>8}")
+    age = _oldest_result_age(steps_dir, evaluated)
+    age_str = f"  (results as of: {age})" if age else ""
+    print("Pipeline Evaluation  " + "─" * 40 + age_str)
+    print(f"{'Step':<40}{'Score':>7}{'Issues':>8}  {'Metric'}")
     for step in all_steps:
         eval_dir = Path(steps_dir) / step / "eval"
         if step not in evaluated:
-            print(f"{step:<40}{'—':<10}{'—':>7}{'—':>8}")
+            print(f"{step:<40}{'—':>7}{'—':>8}  —")
             continue
         name, value = load_primary_metric(eval_dir)
         n_issues = _issue_count(steps_dir, step)
         score = f"{value:.3f}" if value is not None else "—"
-        print(f"{step:<40}{name or '—':<10}{score:>7}{n_issues:>8}")
+        print(f"{step:<40}{score:>7}{n_issues:>8}  {name or '—'}")
 
 
 def render_upstream(grouped: dict):
