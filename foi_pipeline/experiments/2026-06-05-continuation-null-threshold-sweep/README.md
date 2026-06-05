@@ -1,7 +1,7 @@
 # Experiment: `_CONTINUATION_NULL_THRESHOLD` Sweep
 
 **Date:** 2026-06-05
-**Status:** In progress
+**Status:** Complete
 
 ## Hypothesis
 
@@ -32,26 +32,26 @@ uv run python run.py
 
 | Class | Count | % of total |
 |-------|-------|------------|
-| null_header | — | — |
-| vocab_gap | — | — |
-| not_in_fixture | — | — |
+| null_header | 58 | 22.5% |
+| vocab_gap | 200 | 77.5% |
+| not_in_fixture | 0 | 0.0% |
 
 ## Sweep results
 
 | threshold | null_header_column_rate | insufficient_columns_count | improvements | regressions | net_change |
 |-----------|------------------------|---------------------------|--------------|-------------|------------|
-| 0.2 | — | — | — | — | — |
-| 0.3 | — | — | — | — | — |
-| 0.4 | — | — | — | — | — |
-| **0.5 (baseline)** | — | — | — | — | — |
-| 0.6 | — | — | — | — | — |
-| 0.7 | — | — | — | — | — |
-| 0.8 | — | — | — | — | — |
+| 0.2 | 0.086 | 271 | 0 | 39 | -39 |
+| 0.3 | 0.086 | 241 | 0 | 9 | -9 |
+| 0.4 | 0.089 | 233 | 0 | 1 | -1 |
+| **0.5 (baseline)** | 0.090 | 232 | 0 | 0 | 0 |
+| 0.6 | 0.090 | 232 | 0 | 0 | 0 |
+| 0.7 | 0.092 | 232 | 0 | 0 | 0 |
+| 0.8 | 0.094 | 234 | 0 | 2 | -2 |
 
 ## Conclusion
 
-*(fill after running)*
+22.5% of failures are due to null headers; 77.5% are vocabulary gaps. Threshold tuning shows no benefit across any threshold sweep value.
 
 - [ ] Threshold tuning is effective — adopt `_CONTINUATION_NULL_THRESHOLD = X`
 - [ ] Threshold tuning is ineffective — root cause is vocabulary gaps; redirect to synonym expansion
-- [ ] Mixed result — threshold helps a subset; consider combining with synonym work
+- [x] Mixed result — threshold helps a subset; consider combining with synonym work
