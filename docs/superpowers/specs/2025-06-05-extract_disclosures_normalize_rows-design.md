@@ -31,15 +31,15 @@ Add a new pipeline step `extract_disclosures_normalize_rows` that:
 
 ## Step Placement
 
-**Location in pipeline.json:** Between `extract_disclosures_normalize_header` and `extract_disclosures_canonicalize`
+**Location in pipeline.json:** Between `extract_disclosures_canonicalize` and `extract_disclosures_canonicalize_rows`
 
 ```json
 {
   "steps": [
     ...
-    "extract_disclosures_normalize_header",
-    "extract_disclosures_normalize_rows",  // NEW
     "extract_disclosures_canonicalize",
+    "extract_disclosures_normalize_rows",  // NEW
+    "extract_disclosures_canonicalize_rows",
     ...
   ]
 }
