@@ -3,34 +3,34 @@
   "metrics": [
     {
       "name": "f1",
-      "value": 0.574,
+      "value": 0.559,
       "counts": {
-        "TP": 29,
-        "FP": 29,
+        "TP": 26,
+        "FP": 27,
         "FN": 14,
-        "TN": 50
+        "TN": 35
       },
       "is_primary": true
     },
     {
       "name": "precision",
-      "value": 0.5,
+      "value": 0.491,
       "counts": {
-        "TP": 29,
-        "FP": 29
+        "TP": 26,
+        "FP": 27
       },
       "is_primary": false
     },
     {
       "name": "recall",
-      "value": 0.674,
+      "value": 0.65,
       "counts": {
-        "TP": 29,
+        "TP": 26,
         "FN": 14
       },
       "is_primary": false
     }
   ],
-  "input_hash": "4da40369fbaf0667c19bf295491d0a71e09532273d754fd3535372834b296264",
+  "input_hash": "cd9f92a39fdf89e13dabdb2e859de846ca62dcb57b5eb17dfc00a74b33a1c9b3",
   "judge_model": null
 }

@@ -84,18 +84,7 @@
       "1074"
     ],
     "suggested_upstream_step": null,
-    "suggestion_detail": "returned https://www.marine.ie/sites/default/files/MIFiles/Docs_Comms/FOI Disclosure Log (2016-2018).pdf",
-    "confidence": 0.6
-  },
-  {
-    "severity": "info",
-    "description": "Spurious distinct disclosure page returned for body 1078",
-    "affected_count": 1,
-    "affected_ids": [
-      "1078"
-    ],
-    "suggested_upstream_step": null,
-    "suggestion_detail": "returned https://www.nsso.gov.ie/971/NSSO_FOI_Disclosure_Log_including_2025.docx",
+    "suggestion_detail": "returned https://marine.ie/sites/default/files/MIFiles/Docs_Comms/FOI Disclosure Log (2016-2018).pdf",
     "confidence": 0.6
   },
   {
@@ -249,7 +238,7 @@
       "1136"
     ],
     "suggested_upstream_step": null,
-    "suggestion_detail": "returned https://www.galwaycity.ie/sites/default/files/2026-01/Tuairisc%20Nochta%20-%20Disclosure%20Log%202025.pdf",
+    "suggestion_detail": "returned https://www.galway.ie/sites/default/files/2026-01/Tuairisc%20Nochta%20-%20Disclosure%20Log%202025.pdf",
     "confidence": 0.6
   },
   {
@@ -287,17 +276,6 @@
   },
   {
     "severity": "info",
-    "description": "Spurious distinct disclosure page returned for body 1150",
-    "affected_count": 1,
-    "affected_ids": [
-      "1150"
-    ],
-    "suggested_upstream_step": null,
-    "suggestion_detail": "returned http://www.roscommoncoco.ie//!DIXNC4",
-    "confidence": 0.6
-  },
-  {
-    "severity": "info",
     "description": "Spurious distinct disclosure page returned for body 1152",
     "affected_count": 1,
     "affected_ids": [
@@ -317,5 +295,14 @@
     "suggested_upstream_step": null,
     "suggestion_detail": "returned https://www.wexfordcoco.ie/council-and-democracy/freedom-of-information-foi-and-data-protection/disclosure-log-of-foi",
     "confidence": 0.6
+  },
+  {
+    "severity": "warning",
+    "description": "20 labelled bodies had no output record (excluded from metrics \u2014 label rot)",
+    "affected_count": 20,
+    "affected_ids": [],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "re-check labels.csv against current bodies",
+    "confidence": 1.0
   }
 ]
