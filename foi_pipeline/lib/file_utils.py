@@ -217,6 +217,16 @@ def sanitize_error_context(context):
     return sanitized
 
 
+def _sanitize_error(error_dict):
+    return {
+        'step': error_dict.get('step', 'unknown'),
+        'timestamp': error_dict.get('timestamp', datetime.now(timezone.utc).isoformat()),
+        'error_type': error_dict.get('error_type', 'UnknownError'),
+        'error_message': error_dict.get('error_message', 'No message'),
+        'context': sanitize_error_context(error_dict.get('context', {}))
+    }
+
+
 def append_error(step_dir, error_dict):
     errors_path = Path(step_dir) / "errors.json"
     lock = _get_append_error_lock(str(errors_path))
@@ -225,14 +235,22 @@ def append_error(step_dir, error_dict):
             errors = read_json(errors_path)
         except (FileNotFoundError, json.JSONDecodeError):
             errors = []
-        sanitized_error = {
-            'step': error_dict.get('step', 'unknown'),
-            'timestamp': error_dict.get('timestamp', datetime.now(timezone.utc).isoformat()),
-            'error_type': error_dict.get('error_type', 'UnknownError'),
-            'error_message': error_dict.get('error_message', 'No message'),
-            'context': sanitize_error_context(error_dict.get('context', {}))
-        }
-        errors.append(sanitized_error)
+        errors.append(_sanitize_error(error_dict))
+        write_json(errors_path, errors)
+
+
+def append_errors(step_dir, error_list):
+    """Batch-append multiple errors in a single read/write cycle."""
+    if not error_list:
+        return
+    errors_path = Path(step_dir) / "errors.json"
+    lock = _get_append_error_lock(str(errors_path))
+    with lock:
+        try:
+            errors = read_json(errors_path)
+        except (FileNotFoundError, json.JSONDecodeError):
+            errors = []
+        errors.extend(_sanitize_error(e) for e in error_list)
         write_json(errors_path, errors)
 
 
