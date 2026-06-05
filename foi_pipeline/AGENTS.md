@@ -4,7 +4,7 @@ This document explains how the FOI pipeline processes public body data for the p
 
 ## Overview
 
-The pipeline is a series of 16 Python steps that discover Irish public bodies, validate and enrich their contact information, extract disclosure data, and consolidate results into a final status output consumed by the website.
+The pipeline is a series of 18 Python steps that discover Irish public bodies, validate and enrich their contact information, extract disclosure data, and consolidate results into a final status output consumed by the website.
 
 ## Quick Start
 
@@ -45,9 +45,11 @@ PYTHONPATH=. python steps/export_status/process.py \
 11. `normalize_disclosure_cells` - Normalizes string cell values
 12. `extract_disclosures_detect_header_row` - Detects header rows
 13. `extract_disclosures_canonicalize` - Maps columns to canonical fields
-14. `export_status` - Fan-in merge of all step outputs (website data source)
-15. `generate_topics` - Groups FOI records into topics
-16. `db_upload` - Populates the libSQL database
+14. `extract_disclosures_canonicalize_rows` - Normalizes decision_status field values to canonical statuses
+15. `extract_disclosures_deduplicate` - Removes duplicate FOI records
+16. `export_status` - Fan-in merge of all step outputs (website data source)
+17. `generate_topics` - Groups FOI records into topics
+18. `db_upload` - Populates the libSQL database
 
 ### Data Flow
 
