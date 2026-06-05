@@ -118,3 +118,26 @@ def test_find_link_skips_irish_language_ga_path():
 def test_find_link_rejects_how_to_request_form():
     html = '<html><body><a href="/how-to-make-an-foi-request/">How to make an FOI request</a></body></html>'
     assert find_disclosure_link(html, "https://x.ie/foi/") is None
+
+
+def test_find_link_skips_fragment_anchor_same_page():
+    # #foi-logs is a same-page anchor — the crawl must skip it and find the real collections link
+    html = """<html><body>
+        <a href="#foi-logs">FOI Logs</a>
+        <a href="/collections/foi-logs/">FOI Disclosure Logs</a>
+    </body></html>"""
+    base = "https://www.gov.ie/en/department-of-housing-local-government-and-heritage/organisation-information/freedom-of-information-foi/"
+    result = find_disclosure_link(html, base)
+    assert result is not None
+    url, _ = result
+    assert "#foi-logs" not in url
+    assert "collections/foi-logs" in url
+
+
+def test_find_link_fragment_only_returns_none():
+    # If the only matching link is a same-page anchor, return None (no genuine disclosure page found)
+    html = """<html><body>
+        <a href="#foi-logs">FOI Logs</a>
+    </body></html>"""
+    base = "https://www.gov.ie/en/organisation/foi/"
+    assert find_disclosure_link(html, base) is None

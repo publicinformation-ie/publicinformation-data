@@ -5,7 +5,7 @@ import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urldefrag, urlparse
 
 from bs4 import BeautifulSoup
 
@@ -99,6 +99,8 @@ def find_disclosure_link(html, base_url):
         full_url = urljoin(base_url, href)
         if not is_safe_url(full_url):
             continue
+        if urldefrag(full_url)[0] == urldefrag(base_url)[0]:
+            continue  # same-page anchor only
         best, best_score = full_url, sc
     if best is not None and best_score >= ACCEPT_THRESHOLD:
         return best, best_score
