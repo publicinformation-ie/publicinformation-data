@@ -19,11 +19,12 @@ The authoritative step order is defined in [`../pipeline.json`](../pipeline.json
 | 11 | [`normalize_disclosure_cells`](normalize_disclosure_cells/) | Normalizes string cell values in extracted disclosure log data (removes CID artifacts, normalizes whitespace). |
 | 12 | [`extract_disclosures_detect_header_row`](extract_disclosures_detect_header_row/) | Detects which spreadsheet row is the header using a 2-non-empty-cell heuristic. |
 | 13 | [`extract_disclosures_canonicalize`](extract_disclosures_canonicalize/) | Maps raw column headers to canonical field names and emits flat FOI request records. |
-| 14 | [`extract_disclosures_canonicalize_rows`](extract_disclosures_canonicalize_rows/) | Normalizes decision_status field values to a canonical set of seven status values. |
-| 15 | [`extract_disclosures_deduplicate`](extract_disclosures_deduplicate/) | Removes duplicate FOI records by treating `foi_reference_id` as a unique identifier per public body. |
-| 16 | [`export_status`](export_status/) | Fan-in step: merges all step outputs into a unified per-body status report and writes the public JSON files consumed by the website. |
-| 17 | [`generate_topics`](generate_topics/) | Matches canonical FOI records to keyword-defined topics and writes `public/topics.json`. |
-| 18 | [`db_upload`](db_upload/) | Clears the six pipeline-data tables in the libSQL database and re-populates them from all upstream step outputs. |
+| 14 | [`extract_disclosures_normalize_rows`](extract_disclosures_normalize_rows/) | Normalizes all date values in disclosure rows to ISO 8601 format (YYYY-MM-DD), replacing unparseable values with null. |
+| 15 | [`extract_disclosures_canonicalize_rows`](extract_disclosures_canonicalize_rows/) | Normalizes decision_status field values to a canonical set of seven status values. |
+| 16 | [`extract_disclosures_deduplicate`](extract_disclosures_deduplicate/) | Removes duplicate FOI records by treating `foi_reference_id` as a unique identifier per public body. |
+| 17 | [`export_status`](export_status/) | Fan-in step: merges all step outputs into a unified per-body status report and writes the public JSON files consumed by the website. |
+| 18 | [`generate_topics`](generate_topics/) | Matches canonical FOI records to keyword-defined topics and writes `public/topics.json`. |
+| 19 | [`db_upload`](db_upload/) | Clears the six pipeline-data tables in the libSQL database and re-populates them from all upstream step outputs. |
 
 > **Stub:** [`extract_disclosures`](extract_disclosures/) is a placeholder step (not yet implemented) for future PDF extraction. It currently produces no output.
 
@@ -48,7 +49,7 @@ Every step accepts `--public-body <ID>` to reprocess only that body while leavin
 | Shape | Steps | Mechanism |
 |-------|-------|-----------|
 | §a evict | `resolve_website_urls`, `validate_websites`, `find_foi_pages`, `find_foi_pages_search`, `check_foi_pages`, `get_foi_emails`, `find_disclosure_pages`, `find_disclosure_files`, `transform_disclosure_files`, `normalize_disclosure_cells`, `extract_disclosures_detect_header_row` | `IncrementalWriter(target_public_body=ID)` evicts the body on load and marks it dirty so downstream steps cascade automatically. |
-| §b merge-back | `extract_disclosures_canonicalize`, `extract_disclosures_canonicalize_rows`, `extract_disclosures_deduplicate` | Filters input to the target body, processes it, then merges the new records back over the existing output (replacing only that body's rows). |
+| §b merge-back | `extract_disclosures_canonicalize`, `extract_disclosures_normalize_rows`, `extract_disclosures_canonicalize_rows`, `extract_disclosures_deduplicate` | Filters input to the target body, processes it, then merges the new records back over the existing output (replacing only that body's rows). |
 | §c filter-reads | `export_status`, `generate_topics`, `db_upload` | Aggregator/publisher steps filter every consumed read to the target body. Output is derived/best-effort — run a full pipeline before publishing. |
 
 `find_public_bodies` is confirm-only when scoped: it verifies the body exists and leaves its output untouched.
