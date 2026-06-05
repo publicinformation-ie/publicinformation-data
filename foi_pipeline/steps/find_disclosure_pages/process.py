@@ -132,27 +132,38 @@ def process(input_data, step_dir, writer, verbose=False):
             continue
         url = item["foi_page_url"]
         name = item.get("name", "")
+        is_gov_ie = urlparse(url).netloc.endswith("gov.ie")
         if verbose:
             print(f"  {name} ({url}) ...", end=" ", flush=True)
         t_start = time.perf_counter()
         method = "unknown"
         try:
             validate_url_or_raise(url, context=f"disclosure_page_{body_id}")
-            disclosure_url = domain_find(name, url, batch_results=batch_results)
-            if disclosure_url is not None:
-                method = "domain"
-                confidence = "high"
-            else:
-                response = fetch("GET", url, allow_redirects=True)
-                match = find_disclosure_link(response.text, url)
-                if match:
-                    disclosure_url, link_score = match
-                    method = "crawl"
-                    confidence = "high" if link_score >= 70 else "medium"
+
+            # 1. Crawl first for all bodies
+            response = fetch("GET", url, allow_redirects=True)
+            match = find_disclosure_link(response.text, url)
+            if match:
+                disclosure_url, link_score = match
+                method = "crawl"
+                confidence = "high" if link_score >= 70 else "medium"
+            elif is_gov_ie:
+                # 2. Apify fallback for gov.ie only — score the result and reject below threshold
+                apify_url = domain_find(name, url, batch_results=batch_results)
+                if apify_url is not None and _score_link(_tokenize(apify_url)) >= ACCEPT_THRESHOLD:
+                    disclosure_url = apify_url
+                    method = "domain"
+                    confidence = "high"
                 else:
                     disclosure_url = url
                     method = "foi_page_fallback"
                     confidence = "none"
+            else:
+                # 3. FOI page fallback for non-gov.ie bodies
+                disclosure_url = url
+                method = "foi_page_fallback"
+                confidence = "none"
+
             validate_url_or_raise(disclosure_url, context=f"disclosure_url_{body_id}")
             writer.append([{
                 "public_body_id": body_id,

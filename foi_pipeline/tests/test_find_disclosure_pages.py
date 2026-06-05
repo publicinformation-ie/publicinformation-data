@@ -98,6 +98,12 @@ def test_gov_ie_uses_domain_handler_not_crawl(requests_mock, tmp_path, make_writ
     from steps.find_disclosure_pages.domains import _gov_ie_query
     name = "Department of Agriculture, Food and the Marine"
     query = _gov_ie_query(name)
+    # Mock the crawl request to return HTML with no disclosure link
+    # (this forces fallback to Apify)
+    requests_mock.get(
+        "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/",
+        text=HTML_WITHOUT_DISCLOSURE_LINK,
+    )
     monkeypatch.setattr(
         "steps.find_disclosure_pages.process.batch_search",
         lambda queries: {query: [{"link": DISCLOSURE_URL}]},
@@ -106,8 +112,7 @@ def test_gov_ie_uses_domain_handler_not_crawl(requests_mock, tmp_path, make_writ
     process(INPUT_GOV_IE, tmp_path, writer)
     result = next(r for r in writer.results if r["public_body_id"] == 2001)
     assert result["disclosure_page_url"] == DISCLOSURE_URL
-    gov_ie_crawl_calls = [r for r in requests_mock.request_history if "gov.ie" in r.url]
-    assert gov_ie_crawl_calls == [], "gov.ie FOI page must not be crawled when domain handler returns a result"
+    assert result["source_method"] == "domain"
 
 
 def test_skips_irish_language_disclosure_links(requests_mock, tmp_path, make_writer):
