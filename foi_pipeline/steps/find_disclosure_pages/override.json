@@ -50,5 +50,13 @@
     "disclosure_page_url": "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/collections/foi-disclosure-logs/",
     "source_method": "manual",
     "overridden": true
+  },
+  {
+    "public_body_id": 1014,
+    "name": "Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation",
+    "foi_page_url": "https://www.gov.ie/en/department-of-public-expenditure-infrastructure-public-service-reform-and-digitalisation/organisation-information/freedom-of-information-requests/",
+    "disclosure_page_url": "https://www.gov.ie/en/department-of-public-expenditure-infrastructure-public-service-reform-and-digitalisation/collections/foi-disclosure-log/",
+    "source_method": "manual",
+    "overridden": true
   }
 ]
