@@ -42,6 +42,20 @@ _INSERT_KEYWORD = "INSERT INTO topic_keywords (topic_slug, keyword) VALUES (?,?)
 _INSERT_TOPIC_DISCLOSURE = "INSERT INTO topic_disclosures (topic_slug, foi_disclosure_id) VALUES (?,?)"
 
 
+def apply_schema_migrations(db):
+    """Apply incremental schema changes that CREATE TABLE IF NOT EXISTS cannot handle."""
+    migrations = [
+        "ALTER TABLE foi_disclosures ADD COLUMN date_received TEXT",
+    ]
+    for sql in migrations:
+        try:
+            db.execute(sql)
+        except Exception as e:
+            msg = str(e).lower()
+            if "duplicate column" not in msg and "already exists" not in msg:
+                raise
+
+
 def clear_pipeline_tables(db):
     """Delete pipeline data in dependency order; leaves corrections/outreach tables untouched."""
     tables = ["topic_disclosures", "topic_keywords", "topics",
@@ -170,6 +184,7 @@ def main():
     try:
         schema_sql = (repo_root / "public" / "schema.sql").read_text(encoding="utf-8")
         db.executescript(schema_sql)
+        apply_schema_migrations(db)
         clear_pipeline_tables(db)
 
         n_bodies = upload_public_bodies(db, steps_dir)
