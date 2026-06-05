@@ -129,7 +129,7 @@ def test_find_link_skips_fragment_anchor_same_page():
     base = "https://www.gov.ie/en/department-of-housing-local-government-and-heritage/organisation-information/freedom-of-information-foi/"
     result = find_disclosure_link(html, base)
     assert result is not None
-    url, score = result
+    url, _ = result
     assert "#foi-logs" not in url
     assert "collections/foi-logs" in url
 
