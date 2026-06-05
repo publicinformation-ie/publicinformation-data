@@ -1,0 +1,41 @@
+{
+  "step": "extract_disclosures_canonicalize_rows",
+  "metrics": [
+    {
+      "name": "canonicalization_rate",
+      "value": 0.836,
+      "counts": {
+        "canonical": 554,
+        "total": 663,
+        "Granted": 154,
+        "Refused": 163,
+        "Part-Granted": 202,
+        "Withdrawn": 21,
+        "Handled outside of FOI": 1,
+        "Transferred": 8,
+        "Deemed Refused": 5
+      },
+      "is_primary": true
+    },
+    {
+      "name": "unrecognized_status_rate",
+      "value": 0.023,
+      "counts": {
+        "unrecognized": 15,
+        "total": 663
+      },
+      "is_primary": false
+    },
+    {
+      "name": "non_canonical_passthrough_rate",
+      "value": 0.023,
+      "counts": {
+        "non_canonical": 15,
+        "total": 663
+      },
+      "is_primary": false
+    }
+  ],
+  "input_hash": "6763e2b5a7eeeaf43f0237b63ddc214215d2f870fe5d300701ad7b992421e4ef",
+  "judge_model": null
+}

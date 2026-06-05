@@ -1,0 +1,46 @@
+[
+  {
+    "severity": "warning",
+    "description": "15 records have unrecognized decision_status values",
+    "affected_count": 15,
+    "affected_ids": [
+      "Minutes of Department of Education management board meetings held from 01/03/2020 up to the date of processing this request Minutes of Minister and Management Board meetings held since 01/03/2020 up to the date of processing this request;",
+      "Correspondence (letter and email) between the Department of Education and the following - the Royal College of Surgeons in Ireland (RCSI), Department of Health and Higher Education Authority - in regard to the RCSI's University status.",
+      "Date",
+      "N/A",
+      "on Request",
+      "Journalist",
+      "1. Any records, files or reports held by the Department of Finance on the Central Credit Register data breach reported in the Central Bank\u2019s public statement of August 21st, 2023; 2. Any reports to the Minister for Finance on the Central Credit Register data breach; 3. Any correspondence on the Central Credit Register data breach between the Minister for Finance or his department and the Governor of the Central Bank or the Central Bank; any associated notes, records or reports; and the minutes of any meetings on the topic between the Department and the Central Bank.",
+      "\u2022 Minutes or notes taken at a meeting attended by Jennifer Carroll MacNeill with Allianz to discuss the company's position in terms of the ongoing insurance reform programme \u2022 Any briefings or memos prepared for the Minister in advance of this meeting \u2022 Any correspondence sent by Allianz to the junior Minister's office arising from this meeting (either before or afterwards) For reference, my request relates to this entry on the Lobbying register.",
+      "\u201cAny such documents and records relating to the ownership and creation of National Asset Management Agency (NAMA) and National Asset Loan Management (NALM) and communications relative to its ownership and restricting the timeframe of this request to April 1, 2009 - June 30, 2010 AND April 1, 2011 - Sept 30, 2012\u201d",
+      "I would like all budget submissions from senior cabinet ministers dealing with issues outside the remit of their departments which were sent to the finance minister\u2019s office from 01/06/2018.",
+      "All records held by the Department or Minister\u2019s Office relating to the issue of flat rate expenses including correspondence with the Department of An Taoiseach and the Revenue Commissioners between the dates of 1st November and 20th November 2018",
+      "All briefing notes relating to the vacant site levy - All correspondence or external submissions (excluding from members of the general public) received by the department in relation to the vacant site levy - and the department's responses The timeframe should cover the period January 1, 2017 to October 10, 2017."
+    ],
+    "suggested_upstream_step": "extract_disclosures_canonicalize_rows",
+    "suggestion_detail": "Add mappings for top unrecognized: 'on Request' (3), 'Date' (2), 'Minutes of Department of Education management board meetings held from 01/03/2020 up to the date of processing this request Minutes of Minister and Management Board meetings held since 01/03/2020 up to the date of processing this request;' (1), 'Correspondence (letter and email) between the Department of Education and the following - the Royal College of Surgeons in Ireland (RCSI), Department of Health and Higher Education Authority - in regard to the RCSI's University status.' (1), 'N/A' (1)",
+    "confidence": 0.9
+  },
+  {
+    "severity": "info",
+    "description": "15 records have non-canonical but recognized statuses (passthrough)",
+    "affected_count": 15,
+    "affected_ids": [
+      "Minutes of Department of Education management board meetings held from 01/03/2020 up to the date of processing this request Minutes of Minister and Management Board meetings held since 01/03/2020 up to the date of processing this request;",
+      "Correspondence (letter and email) between the Department of Education and the following - the Royal College of Surgeons in Ireland (RCSI), Department of Health and Higher Education Authority - in regard to the RCSI's University status.",
+      "Date",
+      "N/A",
+      "on Request",
+      "Journalist",
+      "1. Any records, files or reports held by the Department of Finance on the Central Credit Register data breach reported in the Central Bank\u2019s public statement of August 21st, 2023; 2. Any reports to the Minister for Finance on the Central Credit Register data breach; 3. Any correspondence on the Central Credit Register data breach between the Minister for Finance or his department and the Governor of the Central Bank or the Central Bank; any associated notes, records or reports; and the minutes of any meetings on the topic between the Department and the Central Bank.",
+      "\u2022 Minutes or notes taken at a meeting attended by Jennifer Carroll MacNeill with Allianz to discuss the company's position in terms of the ongoing insurance reform programme \u2022 Any briefings or memos prepared for the Minister in advance of this meeting \u2022 Any correspondence sent by Allianz to the junior Minister's office arising from this meeting (either before or afterwards) For reference, my request relates to this entry on the Lobbying register.",
+      "\u201cAny such documents and records relating to the ownership and creation of National Asset Management Agency (NAMA) and National Asset Loan Management (NALM) and communications relative to its ownership and restricting the timeframe of this request to April 1, 2009 - June 30, 2010 AND April 1, 2011 - Sept 30, 2012\u201d",
+      "I would like all budget submissions from senior cabinet ministers dealing with issues outside the remit of their departments which were sent to the finance minister\u2019s office from 01/06/2018.",
+      "All records held by the Department or Minister\u2019s Office relating to the issue of flat rate expenses including correspondence with the Department of An Taoiseach and the Revenue Commissioners between the dates of 1st November and 20th November 2018",
+      "All briefing notes relating to the vacant site levy - All correspondence or external submissions (excluding from members of the general public) received by the department in relation to the vacant site levy - and the department's responses The timeframe should cover the period January 1, 2017 to October 10, 2017."
+    ],
+    "suggested_upstream_step": "extract_disclosures_canonicalize_rows",
+    "suggestion_detail": "Consider adding to canonical mapping: 'on Request' (3), 'Date' (2), 'Minutes of Department of Education management board meetings held from 01/03/2020 up to the date of processing this request Minutes of Minister and Management Board meetings held since 01/03/2020 up to the date of processing this request;' (1), 'Correspondence (letter and email) between the Department of Education and the following - the Royal College of Surgeons in Ireland (RCSI), Department of Health and Higher Education Authority - in regard to the RCSI's University status.' (1), 'N/A' (1)",
+    "confidence": 0.7
+  }
+]
