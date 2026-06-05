@@ -94,7 +94,8 @@ INPUT_GOV_IE = {
 }
 
 
-def test_gov_ie_uses_domain_handler_not_crawl(requests_mock, tmp_path, make_writer, monkeypatch):
+def test_gov_ie_apify_used_as_fallback_when_crawl_empty(requests_mock, tmp_path, make_writer, monkeypatch):
+    # Gov.ie is crawled first. When crawl finds nothing, Apify is used if its URL scores >= ACCEPT_THRESHOLD.
     from steps.find_disclosure_pages.domains import _gov_ie_query
     name = "Department of Agriculture, Food and the Marine"
     query = _gov_ie_query(name)
@@ -102,12 +103,15 @@ def test_gov_ie_uses_domain_handler_not_crawl(requests_mock, tmp_path, make_writ
         "steps.find_disclosure_pages.process.batch_search",
         lambda queries: {query: [{"link": DISCLOSURE_URL}]},
     )
+    requests_mock.get(
+        "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/",
+        text="<html><body><p>No disclosure links here</p></body></html>",
+    )
     writer = make_writer(STEP_NAME)
     process(INPUT_GOV_IE, tmp_path, writer)
     result = next(r for r in writer.results if r["public_body_id"] == 2001)
     assert result["disclosure_page_url"] == DISCLOSURE_URL
-    gov_ie_crawl_calls = [r for r in requests_mock.request_history if "gov.ie" in r.url]
-    assert gov_ie_crawl_calls == [], "gov.ie FOI page must not be crawled when domain handler returns a result"
+    assert result["source_method"] == "domain"
 
 
 def test_skips_irish_language_disclosure_links(requests_mock, tmp_path, make_writer):
@@ -182,3 +186,65 @@ def test_public_body_scoped_leaves_others_untouched(requests_mock, tmp_path, mon
     assert results[1003]["marker"] == "keep-1003"
     assert "marker" not in results[1002] or results[1002]["marker"] != "old-1002"
     assert _read_json(tmp_path / "dirty_ids.json") == [1002]
+
+
+def test_gov_ie_crawl_result_wins_over_apify(requests_mock, tmp_path, make_writer, monkeypatch):
+    # When crawl finds a disclosure page, the Apify result must not override it even if present.
+    from steps.find_disclosure_pages.domains import _gov_ie_query
+    name = "Department of Agriculture, Food and the Marine"
+    query = _gov_ie_query(name)
+    monkeypatch.setattr(
+        "steps.find_disclosure_pages.process.batch_search",
+        # Apify would return a publication-scheme URL (wrong) — crawl should win instead
+        lambda queries: {query: [{"link": "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/foi-publication-scheme/"}]},
+    )
+    requests_mock.get(
+        "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/",
+        text='<html><body><a href="/collections/foi-disclosure-log/">Disclosure Log</a></body></html>',
+    )
+    writer = make_writer(STEP_NAME)
+    process(INPUT_GOV_IE, tmp_path, writer)
+    result = next(r for r in writer.results if r["public_body_id"] == 2001)
+    assert "collections/foi-disclosure-log" in result["disclosure_page_url"]
+    assert result["source_method"] == "crawl"
+
+
+def test_gov_ie_apify_low_score_rejected_falls_back_to_foi_page(requests_mock, tmp_path, make_writer, monkeypatch):
+    # When crawl finds nothing and Apify returns a URL scoring below ACCEPT_THRESHOLD (40),
+    # the result must be the FOI page URL (fallback), not the bad Apify URL.
+    # "publication" and "scheme" are NEGATIVE_TOKENS → score 0.
+    from steps.find_disclosure_pages.domains import _gov_ie_query
+    name = "Department of Agriculture, Food and the Marine"
+    query = _gov_ie_query(name)
+    foi_url = INPUT_GOV_IE["results"][0]["foi_page_url"]
+    monkeypatch.setattr(
+        "steps.find_disclosure_pages.process.batch_search",
+        lambda queries: {query: [{"link": "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/foi-publication-scheme/"}]},
+    )
+    requests_mock.get(foi_url, text="<html><body><p>No disclosure links here</p></body></html>")
+    writer = make_writer(STEP_NAME)
+    process(INPUT_GOV_IE, tmp_path, writer)
+    result = next(r for r in writer.results if r["public_body_id"] == 2001)
+    assert result["disclosure_page_url"] == foi_url
+    assert result["source_method"] == "foi_page_fallback"
+    assert result["confidence"] == "none"
+
+
+def test_gov_ie_apify_high_score_accepted_as_fallback(requests_mock, tmp_path, make_writer, monkeypatch):
+    # When crawl finds nothing and Apify returns a URL scoring >= ACCEPT_THRESHOLD (40),
+    # the Apify URL is used. "foi-log" tokens → score 90.
+    from steps.find_disclosure_pages.domains import _gov_ie_query
+    name = "Department of Agriculture, Food and the Marine"
+    query = _gov_ie_query(name)
+    good_apify_url = "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/collections/foi-disclosure-log/"
+    foi_url = INPUT_GOV_IE["results"][0]["foi_page_url"]
+    monkeypatch.setattr(
+        "steps.find_disclosure_pages.process.batch_search",
+        lambda queries: {query: [{"link": good_apify_url}]},
+    )
+    requests_mock.get(foi_url, text="<html><body><p>No disclosure links here</p></body></html>")
+    writer = make_writer(STEP_NAME)
+    process(INPUT_GOV_IE, tmp_path, writer)
+    result = next(r for r in writer.results if r["public_body_id"] == 2001)
+    assert result["disclosure_page_url"] == good_apify_url
+    assert result["source_method"] == "domain"
