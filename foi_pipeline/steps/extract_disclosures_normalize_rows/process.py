@@ -10,7 +10,7 @@ from typing import Optional
 from dateutil.parser import parse as dateutil_parse
 
 from lib.cli_utils import add_common_args, filter_by_public_body
-from lib.file_utils import read_json, write_json, write_status, IncrementalWriter, append_error
+from lib.file_utils import read_json, write_json, write_status, IncrementalWriter, append_errors
 from steps.extract_disclosures_canonicalize.column_map import canonicalize_header
 
 STEP_NAME = "extract_disclosures_normalize_rows"
@@ -51,6 +51,15 @@ _MONTH_MAP = {
     'jul': 7, 'aug': 8, 'sep': 9, 'oct': 10, 'nov': 11, 'dec': 12
 }
 
+# Values in date columns that are intentionally non-dates (headers, status words, etc.)
+_SKIP_VALUES = frozenset({
+    'n/a', 'na', 'null', 'none', '', '-', '---',
+    'date received', 'date', 'received', 'decision date',
+    'decision', 'date issued', 'date of request',
+    'part granted', 'granted', 'refused', 'full granted',
+    'pending', 'withdrawn', 'transferred',
+})
+
 
 def _parse_month(month_str: str) -> int:
     """Convert month string to integer (1-12)."""
@@ -86,16 +95,7 @@ def normalize_date_value(raw_value: Optional[str]) -> Optional[str]:
     if not value:
         return None
     
-    # Skip non-date values that appear in date columns
-    # These are header-like values that weren't properly detected
-    skip_values = {
-        'n/a', 'na', 'null', 'none', '', '-', '---',
-        'date received', 'date', 'received', 'decision date',
-        'decision', 'date issued', 'date of request',
-        'part granted', 'granted', 'refused', 'full granted',
-        'pending', 'withdrawn', 'transferred',
-    }
-    if value.lower() in skip_values:
+    if value.lower() in _SKIP_VALUES:
         return None
     
     # Try regex patterns first
@@ -105,34 +105,30 @@ def normalize_date_value(raw_value: Optional[str]) -> Optional[str]:
             try:
                 groups = match.groups()
                 if is_iso_order:
-                    # ISO order: YYYY-MM-DD or already has year first
-                    if len(groups) == 3:
-                        if pattern == _DATE_PATTERNS[0][0]:
-                            # ISO format: YYYY-MM-DD
-                            year, month, day = int(groups[0]), int(groups[1]), int(groups[2])
-                        elif pattern == _DATE_PATTERNS[1][0]:
-                            # DD-Mon-YY or DD-Mon-YYYY
-                            day = int(groups[0])
-                            month = _parse_month(groups[1])
-                            year_str = groups[2]
-                            year = int(year_str) if len(year_str) == 4 else _two_digit_year(year_str)
-                        elif pattern == _DATE_PATTERNS[6][0]:
-                            # Month DD, YYYY
-                            month = _parse_month(groups[0])
-                            day = int(groups[1])
-                            year = int(groups[2])
-                        elif pattern == _DATE_PATTERNS[7][0]:
-                            # DD Month YYYY
-                            day = int(groups[0])
-                            month = _parse_month(groups[1])
-                            year = int(groups[2])
-                        elif pattern == _DATE_PATTERNS[8][0]:
-                            # Ordinal: DDth Month YYYY
-                            day = int(groups[0])
-                            month = _parse_month(groups[2])
-                            year = int(groups[3])
-                        else:
-                            continue
+                    if pattern == _DATE_PATTERNS[0][0]:
+                        # ISO format: YYYY-MM-DD
+                        year, month, day = int(groups[0]), int(groups[1]), int(groups[2])
+                    elif pattern == _DATE_PATTERNS[1][0]:
+                        # DD-Mon-YY or DD-Mon-YYYY
+                        day = int(groups[0])
+                        month = _parse_month(groups[1])
+                        year_str = groups[2]
+                        year = int(year_str) if len(year_str) == 4 else _two_digit_year(year_str)
+                    elif pattern == _DATE_PATTERNS[5][0]:
+                        # Month DD, YYYY: groups = (month_name, day, year)
+                        month = _parse_month(groups[0])
+                        day = int(groups[1])
+                        year = int(groups[2])
+                    elif pattern == _DATE_PATTERNS[6][0]:
+                        # DD Month YYYY: groups = (day, month_name, year)
+                        day = int(groups[0])
+                        month = _parse_month(groups[1])
+                        year = int(groups[2])
+                    elif pattern == _DATE_PATTERNS[7][0]:
+                        # Ordinal DDth Month YYYY: groups = (day, suffix, month_name, year)
+                        day = int(groups[0])
+                        month = _parse_month(groups[2])
+                        year = int(groups[3])
                     else:
                         continue
                 else:
@@ -192,21 +188,13 @@ def _two_digit_year(year_str: str) -> int:
 
 
 def _is_valid_date(year: int, month: int, day: int) -> bool:
-    """Validate that the date components form a valid date."""
     if year < 1900 or year > 2100:
         return False
-    if month < 1 or month > 12:
+    try:
+        datetime(year, month, day)
+        return True
+    except ValueError:
         return False
-    if day < 1:
-        return False
-    # Check max days in month
-    if month in {4, 6, 9, 11} and day > 30:
-        return False
-    if month == 2:
-        if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
-            return day <= 29
-        return day <= 28
-    return day <= 31
 
 
 def is_date_column(header: Optional[str]) -> bool:
@@ -278,7 +266,8 @@ def process_file(item: dict, step_dir: Path, verbose: bool = False) -> tuple[dic
                 
                 normalized = normalize_date_value(cell_value)
                 
-                if normalized is None and cell_value is not None and str(cell_value).strip():
+                cell_str = str(cell_value).strip() if cell_value is not None else ""
+                if normalized is None and cell_str and cell_str.lower() not in _SKIP_VALUES:
                     # Log error for unparseable date
                     error_context = {
                         "file_url": file_url,
@@ -319,8 +308,8 @@ def process(input_data: dict, step_dir: Path, writer: IncrementalWriter, verbose
         verbose: If True, print progress information.
     """
     errors_path = step_dir / "errors.json"
-    # Initialize empty errors file
-    write_json(errors_path, [])
+    if not errors_path.exists():
+        write_json(errors_path, [])
     
     for item in input_data.get("results", []):
         file_url = item.get("file_url")
@@ -336,9 +325,8 @@ def process(input_data: dict, step_dir: Path, writer: IncrementalWriter, verbose
         # Append to writer
         writer.append([updated_item])
         
-        # Append errors to errors.json
-        for error in file_errors:
-            append_error(step_dir, error)
+        # Append errors to errors.json (one read/write per file)
+        append_errors(step_dir, file_errors)
         
         if verbose:
             print(".", end="", flush=True)
