@@ -1,0 +1,58 @@
+[
+  {
+    "threshold": 0.2,
+    "null_header_column_rate": 0.086,
+    "insufficient_columns_count": 271,
+    "improvements": 0,
+    "regressions": 39,
+    "net_change": -39
+  },
+  {
+    "threshold": 0.3,
+    "null_header_column_rate": 0.086,
+    "insufficient_columns_count": 241,
+    "improvements": 0,
+    "regressions": 9,
+    "net_change": -9
+  },
+  {
+    "threshold": 0.4,
+    "null_header_column_rate": 0.089,
+    "insufficient_columns_count": 233,
+    "improvements": 0,
+    "regressions": 1,
+    "net_change": -1
+  },
+  {
+    "threshold": 0.5,
+    "null_header_column_rate": 0.09,
+    "insufficient_columns_count": 232,
+    "improvements": 0,
+    "regressions": 0,
+    "net_change": 0
+  },
+  {
+    "threshold": 0.6,
+    "null_header_column_rate": 0.09,
+    "insufficient_columns_count": 232,
+    "improvements": 0,
+    "regressions": 0,
+    "net_change": 0
+  },
+  {
+    "threshold": 0.7,
+    "null_header_column_rate": 0.092,
+    "insufficient_columns_count": 232,
+    "improvements": 0,
+    "regressions": 0,
+    "net_change": 0
+  },
+  {
+    "threshold": 0.8,
+    "null_header_column_rate": 0.094,
+    "insufficient_columns_count": 234,
+    "improvements": 0,
+    "regressions": 2,
+    "net_change": -2
+  }
+]
