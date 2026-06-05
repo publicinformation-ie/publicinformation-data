@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS foi_disclosures (
   file_type           TEXT    NOT NULL,
   foi_reference_id    TEXT,
   decision_date       TEXT,
+  date_received       TEXT,
   requester_type      TEXT,
   decision_status     TEXT,
   review_status       TEXT,

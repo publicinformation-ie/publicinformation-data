@@ -32,9 +32,9 @@ VALUES (?,?,?,?,?)
 _INSERT_FOI_DISCLOSURE = """
 INSERT INTO foi_disclosures (
   public_body_id, name, file_url, file_type,
-  foi_reference_id, decision_date, requester_type,
+  foi_reference_id, decision_date, date_received, requester_type,
   decision_status, review_status, related_request, request_description
-) VALUES (?,?,?,?,?,?,?,?,?,?,?)
+) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
 """
 
 _INSERT_TOPIC = "INSERT INTO topics (slug, label, match_count) VALUES (?,?,?)"
@@ -102,9 +102,9 @@ def upload_foi_disclosures(db, steps_dir):
     rows = [
         [
             r["public_body_id"], r["name"], r["file_url"], r["file_type"],
-            r.get("foi_reference_id"), r.get("decision_date"), r.get("requester_type"),
-            r.get("decision_status"), r.get("review_status"), r.get("related_request"),
-            r.get("request_description"),
+            r.get("foi_reference_id"), r.get("decision_date"), r.get("date_received"),
+            r.get("requester_type"), r.get("decision_status"), r.get("review_status"),
+            r.get("related_request"), r.get("request_description"),
         ]
         for r in data["results"]
     ]
