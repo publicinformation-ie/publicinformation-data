@@ -9,7 +9,7 @@ from pathlib import Path
 
 from lib.cli_utils import add_common_args, filter_by_public_body, merge_replacing_body
 from lib.file_utils import read_json, write_json, write_status
-from steps.extract_disclosures_canonicalize_rows.status_map import (
+from lib.status_map import (
     CANONICAL_STATUSES,
     canonicalize_status,
 )

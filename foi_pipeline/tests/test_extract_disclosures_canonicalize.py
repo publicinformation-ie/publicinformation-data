@@ -1,5 +1,5 @@
 import pytest
-from steps.extract_disclosures_canonicalize.column_map import (
+from lib.column_map import (
     canonicalize_header,
     canonicalize_headers,
     CANONICAL_COLUMNS,
@@ -65,6 +65,19 @@ def test_canonicalize_headers_maps_list():
 def test_strip_year_suffix():
     # Archive strips trailing 4-digit year from headers like "Decision Date 2016"
     assert canonicalize_header("Decision Date 2016") == "decision_date"
+
+
+def test_strip_iso_datetime_suffix():
+    # Monaghan/Cavan PDFs embed an ISO datetime in the "Date of Decision" column header
+    assert canonicalize_header("Date of Decision 2024-01-31T00:00:00") == "decision_date"
+    assert canonicalize_header("Date of Decision 2023-02-13T00:00:00") == "decision_date"
+    assert canonicalize_header("Date of Decision Letter 2023-01-17T00:00:00") == "decision_date"
+
+
+def test_strip_iso_datetime_does_not_affect_plain_headers():
+    # Ensure ISO stripping doesn't break headers without a datetime suffix
+    assert canonicalize_header("Date of Decision") == "decision_date"
+    assert canonicalize_header("Decision Date") == "decision_date"
 
 
 # ── canonicalize_file and process() tests ─────────────────────────────────────
