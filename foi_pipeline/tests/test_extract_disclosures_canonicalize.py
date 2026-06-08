@@ -494,3 +494,102 @@ def test_canonicalize_file_supports_multiple_swap_pairs():
     assert results[0]["request_description"] == "Records about X"
     assert results[0]["date_received"] == "2023-01-01"
     assert results[0]["decision_date"] == "2023-01-15"
+
+
+# ── Header-row detection tests ────────────────────────────────────────────────
+
+from steps.extract_disclosures_canonicalize.process import is_header_row
+
+
+def test_is_header_row_true_when_two_fields_match_column_headers():
+    row = {
+        "foi_reference_id": "Our Ref",        # matches → foi_reference_id
+        "request_description": "Request",     # matches → request_description
+        "decision_status": "Granted",
+        "date_received": None,
+        "decision_date": None,
+        "requester_type": None,
+        "review_status": None,
+        "related_request": None,
+    }
+    assert is_header_row(row) is True
+
+
+def test_is_header_row_false_when_only_one_field_matches():
+    row = {
+        "foi_reference_id": "Reference",      # matches → 1 match only
+        "request_description": "Records about planning",
+        "decision_status": "Granted",
+        "date_received": None,
+        "decision_date": None,
+        "requester_type": None,
+        "review_status": None,
+        "related_request": None,
+    }
+    assert is_header_row(row) is False
+
+
+def test_is_header_row_false_for_normal_data_row():
+    row = {
+        "foi_reference_id": "16/001",
+        "request_description": "Records about planning approval",
+        "decision_status": "Granted",
+        "date_received": "2016-01-05",
+        "decision_date": "2016-03-01",
+        "requester_type": "Journalist",
+        "review_status": None,
+        "related_request": None,
+    }
+    assert is_header_row(row) is False
+
+
+def test_canonicalize_file_drops_header_rows():
+    rows = [
+        ["Our Reference", "Request Details", "Status"],
+        ["16/001", "first request", "Granted"],
+        ["Our Ref", "Request", "Decision"],     # re-printed header: 2 matches → dropped
+        ["16/002", "second request", "Refused"],
+    ]
+    results, errors, dropped = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert len(results) == 2
+    assert dropped == 1
+    assert results[0]["foi_reference_id"] == "16/001"
+    assert results[1]["foi_reference_id"] == "16/002"
+    assert errors == []
+
+
+def test_header_row_not_written_to_errors():
+    rows = [
+        ["Our Reference", "Request Details"],
+        ["Our Ref", "Request"],   # 2 matches → dropped silently
+        ["16/001", "first request"],
+    ]
+    results, errors, dropped = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert dropped == 1
+    assert errors == []
+
+
+def test_single_matching_field_value_not_dropped():
+    rows = [
+        ["Our Reference", "Request Details"],
+        ["Reference", "actual description of the request"],  # only 1 match
+    ]
+    results, errors, dropped = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert dropped == 0
+    assert len(results) == 1
+
+
+def test_process_returns_total_header_rows_dropped():
+    item_with_header_row = {
+        **BASE_META,
+        "header_row_idx": 0,
+        "rows": [
+            ["Our Reference", "Request Details"],
+            ["Our Ref", "Request"],   # header row → dropped
+            ["16/001", "real request"],
+        ],
+    }
+    results, errors_out = [], []
+    dropped = process(_make_canonicalize_input([item_with_header_row]), results, errors_out)
+    assert dropped == 1
+    assert len(results) == 1

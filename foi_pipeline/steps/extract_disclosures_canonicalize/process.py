@@ -9,6 +9,7 @@ from lib.file_utils import read_json, write_json, write_status
 from lib.column_map import (
     CANONICAL_COLUMNS,
     REQUIRED_COLUMNS,
+    canonicalize_header,
     canonicalize_headers,
 )
 
@@ -22,6 +23,15 @@ def load_column_swaps(step_dir: Path) -> dict[str, list[tuple[str, str]]]:
         return {}
     raw = read_json(swaps_path)
     return {url: [tuple(pair) for pair in pairs] for url, pairs in raw.items()}
+
+
+def is_header_row(row: dict, threshold: int = 2) -> bool:
+    """Return True if 2+ field values in the row match known column header synonyms."""
+    matches = sum(
+        1 for key in CANONICAL_COLUMNS
+        if canonicalize_header(str(row.get(key) or "")) is not None
+    )
+    return matches >= threshold
 
 
 def canonicalize_file(item, column_swaps=None):
@@ -67,6 +77,7 @@ def canonicalize_file(item, column_swaps=None):
     file_swaps = column_swaps.get(item["file_url"], []) if column_swaps else []
 
     results = []
+    header_rows_dropped = 0
     for row in rows[header_row_idx + 1:]:
         if not row:
             continue
@@ -79,22 +90,28 @@ def canonicalize_file(item, column_swaps=None):
                 record[key] = None
         for col_a, col_b in file_swaps:
             record[col_a], record[col_b] = record.get(col_b), record.get(col_a)
+        if is_header_row(record):
+            header_rows_dropped += 1
+            continue
         if missing_required:
             record["missing_columns"] = missing_required
         results.append(record)
 
-    return results, [], 0
+    return results, [], header_rows_dropped
 
 
 def process(input_data, results_out, errors_out, column_swaps=None, verbose=False):
+    total_dropped = 0
     for item in input_data["results"]:
         if item.get("rows") is None:
             continue
-        file_records, file_errors, _ = canonicalize_file(item, column_swaps)
+        file_records, file_errors, dropped = canonicalize_file(item, column_swaps)
         results_out.extend(file_records)
         errors_out.extend(file_errors)
+        total_dropped += dropped
         if verbose:
             print(".", end="", flush=True)
+    return total_dropped
 
 
 def main():
@@ -118,7 +135,7 @@ def main():
     errors: list = []
 
     column_swaps = load_column_swaps(step_dir)
-    process(input_data, results, errors, column_swaps=column_swaps, verbose=args.verbose)
+    header_rows_dropped = process(input_data, results, errors, column_swaps=column_swaps, verbose=args.verbose)
 
     if args.public_body is not None and not args.force and output_path.exists():
         existing = read_json(output_path).get("results", [])
@@ -128,6 +145,7 @@ def main():
         "metadata": {
             "step": STEP_NAME,
             "completed_at": datetime.now(timezone.utc).isoformat(),
+            "header_rows_dropped": header_rows_dropped,
         },
         "results": results,
     })
