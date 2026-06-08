@@ -9,6 +9,7 @@ from pathlib import Path
 
 from lib.cli_utils import add_common_args, filter_by_public_body, merge_replacing_body
 from lib.file_utils import read_json, write_json, write_status
+from lib.review_status_map import canonicalize_review_status
 from lib.status_map import (
     CANONICAL_STATUSES,
     canonicalize_status,
@@ -45,19 +46,26 @@ def process_records(input_data, results_out, errors_out, verbose=False):
             normalized_record["decision_status"] = canonical
             results_out.append(normalized_record)
         else:
-            # Unrecognized status - write to errors
-            errors_out.append({
-                "error_type": "UnrecognizedDecisionStatus",
-                "error_message": f"Status '{raw_status}' not in canonical status mapping",
-                "context": {
-                    "public_body_id": record.get("public_body_id"),
-                    "file_url": record.get("file_url"),
-                    "foi_reference_id": record.get("foi_reference_id"),
-                    "raw_status": raw_status,
-                }
-            })
-            # Still pass through the record with original status
-            results_out.append(record)
+            review_canonical = canonicalize_review_status(raw_status)
+            if review_canonical is not None and not record.get("review_status"):
+                reclassified = dict(record)
+                reclassified["decision_status"] = None
+                reclassified["review_status"] = review_canonical
+                results_out.append(reclassified)
+            else:
+                # Unrecognized status - write to errors
+                errors_out.append({
+                    "error_type": "UnrecognizedDecisionStatus",
+                    "error_message": f"Status '{raw_status}' not in canonical status mapping",
+                    "context": {
+                        "public_body_id": record.get("public_body_id"),
+                        "file_url": record.get("file_url"),
+                        "foi_reference_id": record.get("foi_reference_id"),
+                        "raw_status": raw_status,
+                    }
+                })
+                # Still pass through the record with original status
+                results_out.append(record)
         
         if verbose:
             print(".", end="", flush=True)
