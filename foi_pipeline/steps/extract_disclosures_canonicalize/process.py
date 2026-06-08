@@ -77,6 +77,8 @@ def canonicalize_file(item, column_swaps=None):
                 record[key] = row[col_idx] if col_idx < len(row) else None
             else:
                 record[key] = None
+        for col_a, col_b in file_swaps:
+            record[col_a], record[col_b] = record.get(col_b), record.get(col_a)
         if missing_required:
             record["missing_columns"] = missing_required
         results.append(record)

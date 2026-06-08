@@ -460,8 +460,8 @@ def test_canonicalize_file_applies_column_swap():
     ]
     item = {**BASE_META, "rows": rows, "header_row_idx": 0}
     results, errors, _ = canonicalize_file(item, column_swaps=swaps)
-    assert results[0]["decision_status"] == "Records about planning"
-    assert results[0]["request_description"] == "Granted"
+    assert results[0]["decision_status"] == "Granted"
+    assert results[0]["request_description"] == "Records about planning"
     assert errors == []
 
 
@@ -490,7 +490,7 @@ def test_canonicalize_file_supports_multiple_swap_pairs():
     ]
     item = {**BASE_META, "rows": rows, "header_row_idx": 0}
     results, errors, _ = canonicalize_file(item, column_swaps=swaps)
-    assert results[0]["decision_status"] == "Records about X"
-    assert results[0]["request_description"] == "Granted"
-    assert results[0]["date_received"] == "2023-01-15"
-    assert results[0]["decision_date"] == "2023-01-01"
+    assert results[0]["decision_status"] == "Granted"
+    assert results[0]["request_description"] == "Records about X"
+    assert results[0]["date_received"] == "2023-01-01"
+    assert results[0]["decision_date"] == "2023-01-15"
