@@ -1,630 +1,22 @@
 {
   "metadata": {
-    "step": "find_disclosure_pages_matcher_eval",
-    "completed_at": "2026-06-05T10:49:00.068527+00:00"
+    "step": "find_disclosure_pages",
+    "completed_at": "2026-06-05T18:32:00.179953+00:00"
   },
   "results": [
-    {
-      "public_body_id": 1001,
-      "name": "Department of Agriculture, Food and the Marine",
-      "foi_page_url": "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/organisation-information/freedom-of-information-foi/",
-      "disclosure_page_url": "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/organisation-information/freedom-of-information-foi/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1002,
-      "name": "Department of Children, Disability and Equality",
-      "foi_page_url": "https://www.gov.ie/en/department-of-children-disability-and-equality/organisation-information/freedom-of-information-foi/",
-      "disclosure_page_url": "https://www.gov.ie/en/department-of-children-disability-and-equality/collections/quarterly-foi-log/",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1003,
-      "name": "Department of Climate, Energy and the Environment",
-      "foi_page_url": "https://www.gov.ie/en/department-of-climate-energy-and-the-environment/organisation-information/freedom-of-information-foi/",
-      "disclosure_page_url": "https://www.gov.ie/en/department-of-climate-energy-and-the-environment/organisation-information/freedom-of-information-foi/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1004,
-      "name": "Department of Culture, Communications and Sport",
-      "foi_page_url": "https://www.gov.ie/en/department-of-culture-communications-and-sport/organisation-information/freedom-of-information-foi/",
-      "disclosure_page_url": "https://www.gov.ie/en/department-of-culture-communications-and-sport/organisation-information/freedom-of-information-foi/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1005,
-      "name": "Department of Defence",
-      "foi_page_url": "https://www.gov.ie/en/department-of-defence/organisation-information/freedom-of-information-foi/",
-      "disclosure_page_url": "https://www.gov.ie/en/department-of-defence/collections/foi-disclosure-log/",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1006,
-      "name": "Department of Education and Youth",
-      "foi_page_url": "https://www.gov.ie/en/department-of-education/organisation-information/freedom-of-information-foi/",
-      "disclosure_page_url": "https://www.gov.ie/en/department-of-education/organisation-information/freedom-of-information-foi/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1007,
-      "name": "Department of Enterprise, Tourism and Employment",
-      "foi_page_url": "https://enterprise.gov.ie/en/contact-us/make-an-foi-request/",
-      "disclosure_page_url": "https://enterprise.gov.ie/en/who-we-are/corporate-information/freedom-of-information/foi-log/",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1008,
-      "name": "Department of Finance",
-      "foi_page_url": "https://www.gov.ie/en/department-of-finance/organisation-information/freedom-of-information-foi/",
-      "disclosure_page_url": "https://www.gov.ie/en/department-of-finance/organisation-information/foi-disclosure-log-and-information-routinely-published-by-the-department-of-finance/",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1009,
-      "name": "Department of Foreign Affairs and Trade",
-      "foi_page_url": "https://www.gov.ie/en/department-of-foreign-affairs/organisation-information/foi-publication-scheme/",
-      "disclosure_page_url": "https://www.gov.ie/en/department-of-foreign-affairs/organisation-information/foi-publication-scheme/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1010,
-      "name": "Department of Further and Higher Education, Research, Innovation and Science",
-      "foi_page_url": "https://www.gov.ie/en/department-of-further-and-higher-education-research-innovation-and-science/organisation-information/make-a-freedom-of-information-foi-request/",
-      "disclosure_page_url": "https://www.gov.ie/en/department-of-further-and-higher-education-research-innovation-and-science/organisation-information/freedom-of-information-disclosure-logs/",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1011,
-      "name": "Department of Health",
-      "foi_page_url": "https://www.gov.ie/en/department-of-health/organisation-information/freedom-of-information-foi/",
-      "disclosure_page_url": "https://www.gov.ie/en/department-of-health/collections/foi-disclosure-logs/",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1012,
-      "name": "Department of Housing, Local Government and Heritage",
-      "foi_page_url": "https://www.gov.ie/en/department-of-housing-local-government-and-heritage/organisation-information/freedom-of-information-foi/",
-      "disclosure_page_url": "https://www.gov.ie/en/department-of-housing-local-government-and-heritage/organisation-information/freedom-of-information-foi/#foi-logs",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1013,
-      "name": "Department of Justice, Home Affairs and Migration",
-      "foi_page_url": "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/organisation-information/freedom-of-information-foi/",
-      "disclosure_page_url": "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/organisation-information/freedom-of-information-foi/#foi-disclosure-logs",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1014,
-      "name": "Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation",
-      "foi_page_url": "https://www.gov.ie/en/department-of-public-expenditure-infrastructure-public-service-reform-and-digitalisation/organisation-information/freedom-of-information-requests/",
-      "disclosure_page_url": "https://www.gov.ie/en/department-of-public-expenditure-infrastructure-public-service-reform-and-digitalisation/collections/foi-disclosure-log/",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1015,
-      "name": "Department of Rural and Community Development and the Gaeltacht",
-      "foi_page_url": "https://www.gov.ie/en/department-of-rural-and-community-development-and-the-gaeltacht/organisation-information/freedom-of-informationaccess-to-information-on-the-environment/",
-      "disclosure_page_url": "https://www.gov.ie/en/department-of-rural-and-community-development-and-the-gaeltacht/organisation-information/freedom-of-informationaccess-to-information-on-the-environment/#aie-disclosure-log",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1016,
-      "name": "Department of Social Protection",
-      "foi_page_url": "https://www.gov.ie/en/department-of-social-protection/organisation-information/foi-publication-scheme/",
-      "disclosure_page_url": "https://www.gov.ie/en/department-of-social-protection/collections/foi-disclosure-log/",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1017,
-      "name": "Department of the Taoiseach",
-      "foi_page_url": "https://www.gov.ie/en/department-of-the-taoiseach/organisation-information/freedom-of-information-foi/",
-      "disclosure_page_url": "https://www.gov.ie/en/department-of-the-taoiseach/collections/foi-disclosure-logs/",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
     {
       "public_body_id": 1018,
       "name": "Department of Transport",
       "foi_page_url": "https://www.gov.ie/en/department-of-transport/organisation-information/freedom-of-information-foi/",
-      "disclosure_page_url": "https://www.gov.ie/en/department-of-transport/organisation-information/freedom-of-information-foi/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1019,
-      "name": "An Coimisi\u00fan Plean\u00e1la",
-      "foi_page_url": "https://www.pleanala.ie/en-ie/freedom-of-information-(foi)",
-      "disclosure_page_url": "https://www.pleanala.ie/en-ie/freedom-of-information-(foi)/freedom-of-information-(foi)-disclosure-log",
+      "disclosure_page_url": "https://www.gov.ie/en/department-of-transport/collections/foi-disclosure-logs/",
       "confidence": "high",
-      "source_method": "crawl"
+      "source_method": "domain"
     },
     {
       "public_body_id": 1020,
-      "name": "An Garda S\u00edoch\u00e1na",
+      "name": "An Garda Síochána",
       "foi_page_url": "https://www.garda.ie/en/information-centre/freedom-of-information/",
       "disclosure_page_url": "https://www.garda.ie/en/information-centre/freedom-of-information/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1021,
-      "name": "An Rial\u00e1la\u00ed Agraibhia (Agri-Food Regulator)",
-      "foi_page_url": "https://www.agrifoodregulator.ie/footer/foi/",
-      "disclosure_page_url": "https://www.agrifoodregulator.ie/footer/foi/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1022,
-      "name": "Aquaculture Licences Appeals Board",
-      "foi_page_url": "https://www.alab.ie/informationrequests/instructionsonfoiaierequests/",
-      "disclosure_page_url": "https://www.alab.ie/informationrequests/instructionsonfoiaierequests/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1023,
-      "name": "Bord Bia (Irish Food Board)",
-      "foi_page_url": "https://www.bordbia.ie/about/governance/corporate-governance/foi-info/",
-      "disclosure_page_url": "https://www.bordbia.ie/about/governance/corporate-governance/foi-disclosure-log/",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1024,
-      "name": "Bord Iascaigh Mhara (BIM)",
-      "foi_page_url": "https://bim.ie/about/corporate-governance/freedom-of-information/",
-      "disclosure_page_url": "https://bim.ie/wp-content/uploads/2021/03/BIM-FOI-Log-2017-to-2019-Inclusive.pdf",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1026,
-      "name": "Central Bank of Ireland",
-      "foi_page_url": "https://www.centralbank.ie/fns/freedom-of-information",
-      "disclosure_page_url": "https://www.centralbank.ie/fns/freedom-of-information",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1027,
-      "name": "Central Statistics Office",
-      "foi_page_url": "https://www.cso.ie/en/freedomofinformation/",
-      "disclosure_page_url": "https://www.cso.ie/en/freedomofinformation/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1028,
-      "name": "Chief State Solicitor\u2019s Office",
-      "foi_page_url": "https://www.gov.ie/en/chief-state-solicitors-office/organisation-information/freedom-of-information/",
-      "disclosure_page_url": "https://www.gov.ie/en/chief-state-solicitors-office/organisation-information/freedom-of-information/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1033,
-      "name": "Commission for Public Service Appointments (CPSA)",
-      "foi_page_url": "https://www.cpsa.ie/en/collection/2a201-freedom-of-information-act-2014",
-      "disclosure_page_url": "https://www.cpsa.ie/en/collection/2a201-freedom-of-information-act-2014",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1036,
-      "name": "Commission on the Defence Forces",
-      "foi_page_url": "https://www.military.ie/en/public-information/freedom-of-information/",
-      "disclosure_page_url": "https://www.military.ie/en/public-information/freedom-of-information/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1037,
-      "name": "Competition and Consumer Protection Commission (CCPC)",
-      "foi_page_url": "https://www.ccpc.ie/about-us/corporate-information/governance/freedom-of-information",
-      "disclosure_page_url": "https://www.ccpc.ie/about-us/corporate-information/governance/freedom-of-information/foi-disclosure-log-2026-q1",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1039,
-      "name": "Courts Service",
-      "foi_page_url": "https://www.courts.ie/organisation-information/freedom-of-information-requests",
-      "disclosure_page_url": "https://www.courts.ie/organisation-information/freedom-of-information-requests",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1043,
-      "name": "Data Protection Commission",
-      "foi_page_url": "http://www.dataprotection.ie/en/who-we-are/corporate-governance/freedom-information",
-      "disclosure_page_url": "http://www.dataprotection.ie/en/about/corporate-governance/freedom-information/freedom-information-disclosure-log",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1044,
-      "name": "Digital Hub Development Agency",
-      "foi_page_url": "https://www.thedigitalhub.com",
-      "disclosure_page_url": "https://www.thedigitalhub.com",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1048,
-      "name": "Enterprise Ireland",
-      "foi_page_url": "https://www.enterprise-ireland.com/en/legal/foi-aie-and-publication",
-      "disclosure_page_url": "https://www.enterprise-ireland.com/en/legal/foi-aie-and-publication",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1049,
-      "name": "Financial Services and Pensions Ombudsman (FSPO)",
-      "foi_page_url": "https://www.fspo.ie/governance/freedom-of-information.asp",
-      "disclosure_page_url": "https://www.fspo.ie/documents/FOI-Disclosure-Log-Q1-2026.pdf",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1050,
-      "name": "Fiosr\u00fa \u2013 the Office of the Police Ombudsman",
-      "foi_page_url": "https://www.fiosru.ie/compliance/freedom-of-information/",
-      "disclosure_page_url": "https://www.fiosru.ie/compliance/freedom-of-information/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1051,
-      "name": "Forensic Science Ireland",
-      "foi_page_url": "https://forensicscience.ie/corporate-services/freedom-of-information/",
-      "disclosure_page_url": "https://forensicscience.ie/corporate-services/freedom-of-information/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1053,
-      "name": "Garda Inspectorate",
-      "foi_page_url": "https://www.gsinsp.ie/foi-aie/",
-      "disclosure_page_url": "https://www.gsinsp.ie/foi-aie/#b3dc6807aac9b7316",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1056,
-      "name": "Greyhound Racing Ireland (GRI)",
-      "foi_page_url": "https://www.grireland.ie/About-GRI/freedom-of-information/",
-      "disclosure_page_url": "https://www.grireland.ie/About-GRI/freedom-of-information/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1057,
-      "name": "Health Research Board (HRB)",
-      "foi_page_url": "https://www.hrb.ie/freedom-of-information/",
-      "disclosure_page_url": "https://www.hrb.ie/freedom-of-information/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1060,
-      "name": "Higher Education Authority (HEA)",
-      "foi_page_url": "https://hea.ie/freedom-of-information/",
-      "disclosure_page_url": "https://hea.ie/freedom-of-information/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1061,
-      "name": "Horse Racing Ireland (HRI)",
-      "foi_page_url": "https://www.hri.ie/corporate/about-us/our-responsibilities/freedom-of-information",
-      "disclosure_page_url": "https://www.hri.ie/HRI/media/HRI/Comms/Documents/HRI-FOI-2026-Quarterly-Disclosure-Log-Q1.pdf",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1064,
-      "name": "Insolvency Service of Ireland",
-      "foi_page_url": "https://www.gov.ie/en/insolvency-service-of-ireland/organisation-information/freedom-of-information/",
-      "disclosure_page_url": "https://www.gov.ie/en/insolvency-service-of-ireland/organisation-information/freedom-of-information/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1067,
-      "name": "Irish Fiscal Advisory Council",
-      "foi_page_url": "https://www.fiscalcouncil.ie/?p=1920",
-      "disclosure_page_url": "https://www.fiscalcouncil.ie/?p=1920",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1070,
-      "name": "Irish Prison Service",
-      "foi_page_url": "https://www.irishprisons.ie/information-centre/foi/",
-      "disclosure_page_url": "https://www.irishprisons.ie/information-centre/foi/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1073,
-      "name": "Local Government Management Agency (LGMA)",
-      "foi_page_url": "https://www.lgma.ca/freedom-of-information-fundamentals-on-demand-course",
-      "disclosure_page_url": "https://www.lgma.ca/freedom-of-information-fundamentals-on-demand-course",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1074,
-      "name": "Marine Institute",
-      "foi_page_url": "https://marine.ie/site-area/online-policies/freedom-information",
-      "disclosure_page_url": "https://marine.ie/sites/default/files/MIFiles/Docs_Comms/FOI Disclosure Log (2016-2018).pdf",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1076,
-      "name": "National Asset Management Agency (NAMA)",
-      "foi_page_url": "https://www.nama.ie/freedom-of-information",
-      "disclosure_page_url": "https://www.nama.ie/freedom-of-information/disclosure-log",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1077,
-      "name": "National Milk Agency",
-      "foi_page_url": "https://nationalmilkagency.ie/freedom-of-information/information-about-the-foi-body/",
-      "disclosure_page_url": "https://nationalmilkagency.ie/freedom-of-information/disclosure-log/",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1079,
-      "name": "National Standards Authority of Ireland (NSAI)",
-      "foi_page_url": "https://www.nsai.ie/about/access-to-information/",
-      "disclosure_page_url": "https://www.nsai.ie/images/uploads/general/FOI_Disclosure_Log_2016_-_2025.pdf",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1080,
-      "name": "National Transport Authority (NTA)",
-      "foi_page_url": "https://www.nationaltransport.ie/further-information/freedom-of-information/",
-      "disclosure_page_url": "https://www.nationaltransport.ie/wp-content/uploads/2026/04/2025-Q4-FOI-Disclosure-Log.pdf",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1081,
-      "name": "National Treasury Management Agency (NTMA)",
-      "foi_page_url": "https://www.ntma.ie/information-pages/freedom-of-information/how-to-make-a-request",
-      "disclosure_page_url": "https://www.ntma.ie/information-pages/freedom-of-information/disclosure-log",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1084,
-      "name": "Office of Public Works",
-      "foi_page_url": "https://www.gov.ie/en/office-of-public-works/organisation-information/freedom-of-information-foi/",
-      "disclosure_page_url": "https://www.gov.ie/en/office-of-public-works/organisation-information/freedom-of-information-foi/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1085,
-      "name": "Office of the Attorney General",
-      "foi_page_url": "https://www.gov.ie/en/office-of-the-attorney-general/organisation-information/foiaiegdpr/",
-      "disclosure_page_url": "https://www.gov.ie/en/office-of-the-attorney-general/organisation-information/foiaiegdpr/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1086,
-      "name": "Office of the Civil Service Chief Medical Officer",
-      "foi_page_url": "https://dha.mil/FOIA",
-      "disclosure_page_url": "https://dha.mil/FOIA",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1087,
-      "name": "Office of the Commissioner for Environmental Information (OCEI)",
-      "foi_page_url": "https://www.ocei.ie/en/organisation-information/269a9-foi-publication-scheme/",
-      "disclosure_page_url": "https://www.ocei.ie/en/organisation-information/269a9-foi-publication-scheme/#foi-disclosure-log-and-other-information-to-be-published-routinely",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1088,
-      "name": "Office of the Comptroller and Auditor General",
-      "foi_page_url": "http://www.audgen.gov.ie/en/freedom-of-information/",
-      "disclosure_page_url": "http://www.audgen.gov.ie/en/about-us/our work/governance codes and related disclosures/",
-      "confidence": "medium",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1090,
-      "name": "Office of the Information Commissioner (OIC)",
-      "foi_page_url": "https://www.oic.ie/en/collection/0fdbb-make-an-foi-request-to-oic",
-      "disclosure_page_url": "https://www.oic.ie/en/collection/0fdbb-make-an-foi-request-to-oic",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1091,
-      "name": "Office of the Ombudsman",
-      "foi_page_url": "https://www.ombudsman.ie/en/collection/cc783-make-an-foi-request-to-this-office",
-      "disclosure_page_url": "https://www.ombudsman.ie/en/collection/cc783-make-an-foi-request-to-this-office",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1093,
-      "name": "Office of the Protected Disclosures Commissioner (OPDC)",
-      "foi_page_url": "https://www.opdc.ie/en/collection/d4c19-freedom-of-information",
-      "disclosure_page_url": "https://www.opdc.ie/en/collection/d4c19-freedom-of-information#foi-disclosure-log-and-other-information-to-be-published-routinely",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1094,
-      "name": "Office of the Revenue Commissioners",
-      "foi_page_url": "https://www.revenue.ie/en/corporate/statutory-obligations/freedom-of-information/foi-in-revenue/index.aspx",
-      "disclosure_page_url": "https://www.revenue.ie/en/corporate/statutory-obligations/freedom-of-information/foi-in-revenue/can-you-appeal-an-foi-decision.aspx",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1095,
-      "name": "Office of the State Pathologist",
-      "foi_page_url": "https://www.cookcountystatesattorney.org/contact-us/freedom-information-act-information",
-      "disclosure_page_url": "https://www.cookcountystatesattorney.org/contact-us/freedom-information-act-information",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1097,
-      "name": "Parole Board",
-      "foi_page_url": "https://www.gov.ie/en/parole-board/organisation-information/parole-board-freedom-of-information-publication-scheme/",
-      "disclosure_page_url": "https://www.gov.ie/en/parole-board/organisation-information/parole-board-freedom-of-information-publication-scheme/#foi-disclosures-log",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1098,
-      "name": "Pobal",
-      "foi_page_url": "https://www.pobal.ie/freedom-of-information/",
-      "disclosure_page_url": "https://www.pobal.ie/freedom-of-information/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1100,
-      "name": "Probation Service",
-      "foi_page_url": "https://www.probation.ie/en/PB/Pages/WP15000010",
-      "disclosure_page_url": "http://www.probation.ie/EN/PB/0/6A2C9C0587C23708802586BD0048ABA5/$File/2019 non Personal FOI logs.pdf",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1102,
-      "name": "Publicjobs",
-      "foi_page_url": "https://www.publicjobs.ie/en/foi",
-      "disclosure_page_url": "https://www.publicjobs.ie/en/foi/disclosure",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1107,
-      "name": "Sea-Fisheries Protection Authority (SFPA)",
-      "foi_page_url": "https://www.sfpa.ie/What-We-Do/Corporate-Affairs/Customer-Service/Freedom-of-Information",
-      "disclosure_page_url": "https://www.sfpa.ie/LinkClick.aspx?fileticket=Wf_ls8f4nI0%3d&portalid=0",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1109,
-      "name": "Social Welfare Appeals Office",
-      "foi_page_url": "https://www.gov.ie/en/social-welfare-appeals-office/publications/freedom-of-information-foi/",
-      "disclosure_page_url": "https://www.gov.ie/en/social-welfare-appeals-office/publications/freedom-of-information-foi/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1111,
-      "name": "Standards in Public Office Commission (SIPO)",
-      "foi_page_url": "https://www.sipo.ie/en/collection/e809e-freedom-of-information-foi",
-      "disclosure_page_url": "https://www.sipo.ie/en/collection/b2be9-foi-disclosure-log",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1112,
-      "name": "State Examinations Commission (SEC)",
-      "foi_page_url": "https://www.examinations.ie?l=en&mc=fo&sc=fi",
-      "disclosure_page_url": "https://www.examinations.ie?l=en&mc=fo&sc=fi",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1114,
-      "name": "Strategic Banking Corporation of Ireland",
-      "foi_page_url": "https://sbci.gov.ie/information-access/freedom-of-information",
-      "disclosure_page_url": "https://sbci.gov.ie/information-access/freedom-of-information",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1116,
-      "name": "Tailte \u00c9ireann",
-      "foi_page_url": "https://tailte.ie/freedom-of-information/",
-      "disclosure_page_url": "https://tailte.ie/foi-disclosure-log/",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1117,
-      "name": "Teagasc",
-      "foi_page_url": "https://teagasc.ie/about/corporate-responsibility/freedom-of-information/",
-      "disclosure_page_url": "https://teagasc.ie/wp-content/uploads/2025/05/Teagasc-FOI-Disclosure-Log-2023.pdf",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1118,
-      "name": "The Charities Regulator",
-      "foi_page_url": "https://www.charitiesregulator.ie/en/freedom-of-information",
-      "disclosure_page_url": "https://www.charitiesregulator.ie/en/freedom-of-information/foi-disclosure-log",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1122,
-      "name": "The Ombudsman for Children's Office (OCO)",
-      "foi_page_url": "https://www.oco.ie/library/oco-freedom-of-information-publication-scheme/",
-      "disclosure_page_url": "https://www.oco.ie/library/oco-freedom-of-information-publication-scheme/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1128,
-      "name": "Cavan County Council",
-      "foi_page_url": "http://www.cavancoco.ie/services/corporate-governance/freedom-of-information/",
-      "disclosure_page_url": "http://www.cavancoco.ie/services/corporate-governance/freedom-of-information/foi-disclosure-logs.html",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1129,
-      "name": "Clare County Council",
-      "foi_page_url": "https://www.clarecoco.ie/council/governance-and-compliance/freedom-information/freedom-information",
-      "disclosure_page_url": "https://www.clarecoco.ie/council/governance-and-compliance/freedom-information/freedom-information",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1130,
-      "name": "Cork City Council",
-      "foi_page_url": "https://www.corkcity.ie/en/council-services/public-info/freedom-of-information/freedom-of-information/",
-      "disclosure_page_url": "https://www.corkcity.ie/en/council-services/public-info/freedom-of-information/freedom-of-information/",
       "confidence": "none",
       "source_method": "foi_page_fallback"
     },
@@ -632,111 +24,15 @@
       "public_body_id": 1131,
       "name": "Cork County Council",
       "foi_page_url": "https://www.corkcoco.ie/en/council/data-protection-and-freedom-of-information/freedom-of-information-foi",
-      "disclosure_page_url": "https://www.corkcoco.ie/en/council/data-protection-and-freedom-of-information/freedom-of-information-foi",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1132,
-      "name": "Donegal County Council",
-      "foi_page_url": "https://eur04.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.donegalcoco.ie%2Fen%2Fservices%2Froads%2Freport-it%2Fpublic-lighting%2F%23&data=05%7C02%7Cpearley%40donegalcoco.ie%7C60080161b77b4005645a08dd1443dae5%7C0f6dd92f401a42d4acd99578b5b96c42%7C0%7C0%7C638689003859112106%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=T6Oo6q0NXxU0dp2VmgZgYSlsXFemNjhRsdR8PtTEDmQ%3D&reserved=0",
-      "disclosure_page_url": "https://eur04.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.donegalcoco.ie%2Fen%2Fservices%2Froads%2Freport-it%2Fpublic-lighting%2F%23&data=05%7C02%7Cpearley%40donegalcoco.ie%7C60080161b77b4005645a08dd1443dae5%7C0f6dd92f401a42d4acd99578b5b96c42%7C0%7C0%7C638689003859112106%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=T6Oo6q0NXxU0dp2VmgZgYSlsXFemNjhRsdR8PtTEDmQ%3D&reserved=0",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1133,
-      "name": "Dublin City Council",
-      "foi_page_url": "https://www.dublincity.ie/your-city-council/governance-within-council/engaging-public-and-being-accountable/freedom-information",
-      "disclosure_page_url": "https://www.dublincity.ie/sites/default/files/2026-04/disclosure-log-q1-2026.pdf",
+      "disclosure_page_url": "https://www.corkcoco.ie/sites/default/files/2026-03/freedom-of-information-disclosure-log-2025-pdf.pdf",
       "confidence": "high",
       "source_method": "crawl"
     },
     {
-      "public_body_id": 1135,
-      "name": "Fingal County Council",
-      "foi_page_url": "https://www.fingal.ie/council/service/freedom-information",
-      "disclosure_page_url": "https://www.fingal.ie/sites/default/files/2026-01/2024-foi-disclosure-log.pdf",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1136,
-      "name": "Galway City Council",
-      "foi_page_url": "https://www.galway.ie/en/governance-administration/governance/freedom-information",
-      "disclosure_page_url": "https://www.galway.ie/sites/default/files/2026-01/Tuairisc%20Nochta%20-%20Disclosure%20Log%202025.pdf",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1137,
-      "name": "Galway County Council",
-      "foi_page_url": "http://www.galway.ie/en/governance-administration/governance/freedom-information",
-      "disclosure_page_url": "http://www.galway.ie/en/your-council/governance/freedom-information/disclosure-logs",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1138,
-      "name": "Kerry County Council",
-      "foi_page_url": "https://www.kerrycoco.ie/home3/freedom-of-information/",
-      "disclosure_page_url": "https://www.kerrycoco.ie/home3/freedom-of-information/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1139,
-      "name": "Kildare County Council",
-      "foi_page_url": "https://kildarecoco.ie/YourCouncil/GovernanceandCompliance/FreedomofInformation/",
-      "disclosure_page_url": "https://kildarecoco.ie/YourCouncil/GovernanceandCompliance/FreedomofInformation/",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1140,
-      "name": "Kilkenny County Council",
-      "foi_page_url": "https://www.kilkennycoco.ie/eng/your_council/freedom_of_information/",
-      "disclosure_page_url": "https://www.kilkennycoco.ie/eng/your_council/disclosure-of-donations-expenditure/",
-      "confidence": "medium",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1141,
-      "name": "Laois County Council",
-      "foi_page_url": "https://laois.ie/governance-and-administration/statutory-access-to-information/freedom-of-information-request",
-      "disclosure_page_url": "https://laois.ie/governance-and-administration/statutory-access-to-information/freedom-of-information-request",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1142,
-      "name": "Leitrim County Council",
-      "foi_page_url": "https://www.leitrim.ie//!FJH44U",
-      "disclosure_page_url": "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Disclosure-Log/",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1143,
-      "name": "Limerick City and County Council",
-      "foi_page_url": "https://www.limerick.ie/freedom-information",
-      "disclosure_page_url": "https://www.limerick.ie/freedom-information",
-      "confidence": "none",
-      "source_method": "foi_page_fallback"
-    },
-    {
-      "public_body_id": 1144,
-      "name": "Longford County Council",
-      "foi_page_url": "http://www.longfordcoco.ie/your-council/access-to-information/freedom-of-information/",
-      "disclosure_page_url": "http://www.longfordcoco.ie/your-council/access-to-information/freedom-of-information/disclosure-log/",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1145,
-      "name": "Louth County Council",
-      "foi_page_url": "https://www.louthcoco.ie/en/policy-and-redress/freedom-of-information/",
-      "disclosure_page_url": "https://www.louthcoco.ie/en/policy-and-redress/freedom-of-information/disclosure-logs/",
+      "public_body_id": 1146,
+      "name": "Mayo County Council",
+      "foi_page_url": "https://www.mayo.ie/en-ie/your-council/governance-and-democracy/freedom-of-information/how-to-make-a-request",
+      "disclosure_page_url": "https://www.mayo.ie/foidisclosurelogs",
       "confidence": "high",
       "source_method": "crawl"
     },
@@ -745,14 +41,6 @@
       "name": "Meath County Council",
       "foi_page_url": "https://www.meath.ie/council/your-council/your-data-and-access-to-information/freedom-of-information-publication-scheme",
       "disclosure_page_url": "https://www.meath.ie/council/your-council/customer-service-and-communications/freedom-of-information",
-      "confidence": "high",
-      "source_method": "crawl"
-    },
-    {
-      "public_body_id": 1148,
-      "name": "Monaghan County Council",
-      "foi_page_url": "https://monaghan.ie/corporateservices/freedom-of-information/",
-      "disclosure_page_url": "https://monaghan.ie/corporateservices/foi-disclosure-log-and-other-published-information/",
       "confidence": "high",
       "source_method": "crawl"
     },
@@ -800,17 +88,17 @@
       "public_body_id": 1155,
       "name": "Westmeath County Council",
       "foi_page_url": "http://www.westmeathcoco.ie/en/ourservices/yourcouncil/datatransparencyfreedomofinformation/freedomofinformation/",
-      "disclosure_page_url": "http://www.westmeathcoco.ie/en/media/DisclosureLogTemplate2022.pdf",
-      "confidence": "high",
-      "source_method": "crawl"
+      "disclosure_page_url": "http://www.westmeathcoco.ie/en/ourservices/yourcouncil/datatransparencyfreedomofinformation/freedomofinformation/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
     },
     {
       "public_body_id": 1156,
       "name": "Wexford County Council",
       "foi_page_url": "https://www.wexfordcoco.ie/council-and-democracy/freedom-of-information-foi-and-data-protection/make-a-foi-requestappeal-a",
-      "disclosure_page_url": "https://www.wexfordcoco.ie/council-and-democracy/freedom-of-information-foi-and-data-protection/disclosure-log-of-foi",
-      "confidence": "high",
-      "source_method": "crawl"
+      "disclosure_page_url": "https://www.wexfordcoco.ie/council-and-democracy/freedom-of-information-foi-and-data-protection/make-a-foi-requestappeal-a",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
     },
     {
       "public_body_id": 1157,
@@ -819,6 +107,746 @@
       "disclosure_page_url": "https://www.wicklow.ie/Living/Your-Council/Governance/Freedom-Of-Information/How-To-Make-An-FOI-Request",
       "confidence": "none",
       "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1001,
+      "name": "Department of Agriculture, Food and the Marine",
+      "foi_page_url": "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/organisation-information/freedom-of-information-foi/",
+      "disclosure_page_url": "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/collections/freedom-of-information-disclosure-logs/",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1004,
+      "name": "Department of Culture, Communications and Sport",
+      "foi_page_url": "https://www.gov.ie/en/department-of-culture-communications-and-sport/organisation-information/freedom-of-information-foi/",
+      "disclosure_page_url": "https://www.gov.ie/en/department-of-culture-communications-and-sport/organisation-information/freedom-of-information-foi/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1005,
+      "name": "Department of Defence",
+      "foi_page_url": "https://www.gov.ie/en/department-of-defence/organisation-information/freedom-of-information-foi/",
+      "disclosure_page_url": "https://www.gov.ie/en/department-of-defence/collections/foi-disclosure-log/",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1006,
+      "name": "Department of Education and Youth",
+      "foi_page_url": "https://www.gov.ie/en/department-of-education/organisation-information/freedom-of-information-foi/",
+      "disclosure_page_url": "https://www.gov.ie/en/department-of-education/collections/foi-disclosure-logs/",
+      "confidence": "high",
+      "source_method": "domain"
+    },
+    {
+      "public_body_id": 1007,
+      "name": "Department of Enterprise, Tourism and Employment",
+      "foi_page_url": "https://enterprise.gov.ie/en/contact-us/make-an-foi-request/",
+      "disclosure_page_url": "https://enterprise.gov.ie/en/who-we-are/corporate-information/freedom-of-information/foi-log/",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1009,
+      "name": "Department of Foreign Affairs and Trade",
+      "foi_page_url": "https://www.gov.ie/en/department-of-foreign-affairs/organisation-information/foi-publication-scheme/",
+      "disclosure_page_url": "https://www.gov.ie/en/department-of-foreign-affairs/organisation-information/foi-publication-scheme/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1010,
+      "name": "Department of Further and Higher Education, Research, Innovation and Science",
+      "foi_page_url": "https://www.gov.ie/en/department-of-further-and-higher-education-research-innovation-and-science/organisation-information/make-a-freedom-of-information-foi-request/",
+      "disclosure_page_url": "https://www.gov.ie/en/department-of-further-and-higher-education-research-innovation-and-science/organisation-information/freedom-of-information-disclosure-logs/",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1011,
+      "name": "Department of Health",
+      "foi_page_url": "https://www.gov.ie/en/department-of-health/organisation-information/freedom-of-information-foi/",
+      "disclosure_page_url": "https://www.gov.ie/en/department-of-health/collections/foi-disclosure-logs/",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1012,
+      "name": "Department of Housing, Local Government and Heritage",
+      "foi_page_url": "https://www.gov.ie/en/department-of-housing-local-government-and-heritage/organisation-information/freedom-of-information-foi/",
+      "disclosure_page_url": "https://www.gov.ie/en/department-of-housing-local-government-and-heritage/collections/foi-logs/",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1015,
+      "name": "Department of Rural and Community Development and the Gaeltacht",
+      "foi_page_url": "https://www.gov.ie/en/department-of-rural-and-community-development-and-the-gaeltacht/organisation-information/freedom-of-informationaccess-to-information-on-the-environment/",
+      "disclosure_page_url": "https://www.gov.ie/en/department-of-rural-and-community-development-and-the-gaeltacht/organisation-information/freedom-of-informationaccess-to-information-on-the-environment/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1016,
+      "name": "Department of Social Protection",
+      "foi_page_url": "https://www.gov.ie/en/department-of-social-protection/organisation-information/foi-publication-scheme/",
+      "disclosure_page_url": "https://www.gov.ie/en/department-of-social-protection/collections/foi-disclosure-log/",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1017,
+      "name": "Department of the Taoiseach",
+      "foi_page_url": "https://www.gov.ie/en/department-of-the-taoiseach/organisation-information/freedom-of-information-foi/",
+      "disclosure_page_url": "https://www.gov.ie/en/department-of-the-taoiseach/collections/foi-disclosure-logs/",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1021,
+      "name": "An Rialálaí Agraibhia (Agri-Food Regulator)",
+      "foi_page_url": "https://www.agrifoodregulator.ie/footer/foi/",
+      "disclosure_page_url": "https://www.agrifoodregulator.ie/footer/foi/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1022,
+      "name": "Aquaculture Licences Appeals Board",
+      "foi_page_url": "https://www.alab.ie/informationrequests/instructionsonfoiaierequests/",
+      "disclosure_page_url": "https://www.alab.ie/informationrequests/instructionsonfoiaierequests/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1023,
+      "name": "Bord Bia (Irish Food Board)",
+      "foi_page_url": "https://www.bordbia.ie/about/governance/corporate-governance/foi-info/",
+      "disclosure_page_url": "https://www.bordbia.ie/about/governance/corporate-governance/foi-disclosure-log/",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1024,
+      "name": "Bord Iascaigh Mhara (BIM)",
+      "foi_page_url": "https://bim.ie/about/corporate-governance/freedom-of-information/",
+      "disclosure_page_url": "https://bim.ie/wp-content/uploads/2021/03/BIM-FOI-Log-2017-to-2019-Inclusive.pdf",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1027,
+      "name": "Central Statistics Office",
+      "foi_page_url": "https://www.cso.ie/en/freedomofinformation/",
+      "disclosure_page_url": "https://www.cso.ie/en/freedomofinformation/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1028,
+      "name": "Chief State Solicitor’s Office",
+      "foi_page_url": "https://www.gov.ie/en/chief-state-solicitors-office/organisation-information/freedom-of-information/",
+      "disclosure_page_url": "https://www.gov.ie/en/chief-state-solicitors-office/organisation-information/freedom-of-information/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1033,
+      "name": "Commission for Public Service Appointments (CPSA)",
+      "foi_page_url": "https://www.cpsa.ie/en/collection/2a201-freedom-of-information-act-2014",
+      "disclosure_page_url": "https://www.cpsa.ie/en/collection/2a201-freedom-of-information-act-2014",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1049,
+      "name": "Financial Services and Pensions Ombudsman (FSPO)",
+      "foi_page_url": "https://www.fspo.ie/governance/freedom-of-information.asp",
+      "disclosure_page_url": "https://www.fspo.ie/documents/FOI-Disclosure-Log-Q1-2026.pdf",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1051,
+      "name": "Forensic Science Ireland",
+      "foi_page_url": "https://forensicscience.ie/corporate-services/freedom-of-information/",
+      "disclosure_page_url": "https://forensicscience.ie/corporate-services/freedom-of-information/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1053,
+      "name": "Garda Inspectorate",
+      "foi_page_url": "https://www.gsinsp.ie/foi-aie/",
+      "disclosure_page_url": "https://www.gsinsp.ie/foi-aie/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1057,
+      "name": "Health Research Board (HRB)",
+      "foi_page_url": "https://www.hrb.ie/freedom-of-information/",
+      "disclosure_page_url": "https://www.hrb.ie/freedom-of-information/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1060,
+      "name": "Higher Education Authority (HEA)",
+      "foi_page_url": "https://hea.ie/freedom-of-information/",
+      "disclosure_page_url": "https://hea.ie/assets/uploads/2022/01/2019-Disclosure-Log-1.xlsx",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1064,
+      "name": "Insolvency Service of Ireland",
+      "foi_page_url": "https://www.gov.ie/en/insolvency-service-of-ireland/organisation-information/freedom-of-information/",
+      "disclosure_page_url": "https://www.gov.ie/en/insolvency-service-of-ireland/organisation-information/freedom-of-information/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1067,
+      "name": "Irish Fiscal Advisory Council",
+      "foi_page_url": "https://www.fiscalcouncil.ie/?p=1920",
+      "disclosure_page_url": "https://www.fiscalcouncil.ie/wp-content/uploads/2026/01/2025-FOI-Disclosure-Log-01-Jan-30-Sep-2025.pdf",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1070,
+      "name": "Irish Prison Service",
+      "foi_page_url": "https://www.irishprisons.ie/information-centre/foi/",
+      "disclosure_page_url": "https://www.irishprisons.ie/information-centre/foi/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1076,
+      "name": "National Asset Management Agency (NAMA)",
+      "foi_page_url": "https://www.nama.ie/freedom-of-information",
+      "disclosure_page_url": "https://www.nama.ie/freedom-of-information/disclosure-log",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1077,
+      "name": "National Milk Agency",
+      "foi_page_url": "https://nationalmilkagency.ie/freedom-of-information/information-about-the-foi-body/",
+      "disclosure_page_url": "https://nationalmilkagency.ie/freedom-of-information/disclosure-log/",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1080,
+      "name": "National Transport Authority (NTA)",
+      "foi_page_url": "https://www.nationaltransport.ie/further-information/freedom-of-information/",
+      "disclosure_page_url": "https://www.nationaltransport.ie/wp-content/uploads/2026/04/2025-Q4-FOI-Disclosure-Log.pdf",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1084,
+      "name": "Office of Public Works",
+      "foi_page_url": "https://www.gov.ie/en/office-of-public-works/organisation-information/freedom-of-information-foi/",
+      "disclosure_page_url": "https://www.gov.ie/en/office-of-public-works/collections/foiaie-disclosure-log-and-other-information/",
+      "confidence": "high",
+      "source_method": "domain"
+    },
+    {
+      "public_body_id": 1085,
+      "name": "Office of the Attorney General",
+      "foi_page_url": "https://www.gov.ie/en/office-of-the-attorney-general/organisation-information/foiaiegdpr/",
+      "disclosure_page_url": "https://www.gov.ie/en/office-of-the-attorney-general/organisation-information/foiaiegdpr/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1087,
+      "name": "Office of the Commissioner for Environmental Information (OCEI)",
+      "foi_page_url": "https://www.ocei.ie/en/organisation-information/269a9-foi-publication-scheme/",
+      "disclosure_page_url": "https://www.ocei.ie/en/organisation-information/269a9-foi-publication-scheme/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1088,
+      "name": "Office of the Comptroller and Auditor General",
+      "foi_page_url": "https://www.audit.gov.ie/en/freedom-of-information/",
+      "disclosure_page_url": "https://www.audit.gov.ie/en/freedom-of-information/foi disclosure log/",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1090,
+      "name": "Office of the Information Commissioner (OIC)",
+      "foi_page_url": "https://www.oic.ie/en/collection/0fdbb-make-an-foi-request-to-oic",
+      "disclosure_page_url": "https://www.oic.ie/en/collection/0fdbb-make-an-foi-request-to-oic",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1091,
+      "name": "Office of the Ombudsman",
+      "foi_page_url": "https://www.ombudsman.ie/en/collection/cc783-make-an-foi-request-to-this-office",
+      "disclosure_page_url": "https://www.ombudsman.ie/en/collection/cc783-make-an-foi-request-to-this-office",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1093,
+      "name": "Office of the Protected Disclosures Commissioner (OPDC)",
+      "foi_page_url": "https://www.opdc.ie/en/collection/d4c19-freedom-of-information",
+      "disclosure_page_url": "https://www.opdc.ie/en/collection/d4c19-freedom-of-information",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1097,
+      "name": "Parole Board",
+      "foi_page_url": "https://www.gov.ie/en/parole-board/organisation-information/parole-board-freedom-of-information-publication-scheme/",
+      "disclosure_page_url": "https://assets.gov.ie/static/documents/foi-disclosures-log.pdf",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1098,
+      "name": "Pobal",
+      "foi_page_url": "https://www.pobal.ie/freedom-of-information/",
+      "disclosure_page_url": "https://www.pobal.ie/freedom-of-information/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1100,
+      "name": "Probation Service",
+      "foi_page_url": "https://www.probation.ie/en/PB/Pages/WP15000010",
+      "disclosure_page_url": "http://www.probation.ie/EN/PB/0/6A2C9C0587C23708802586BD0048ABA5/$File/2019 non Personal FOI logs.pdf",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1102,
+      "name": "Publicjobs",
+      "foi_page_url": "https://www.publicjobs.ie/en/foi",
+      "disclosure_page_url": "https://www.publicjobs.ie/en/foi/disclosure",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1107,
+      "name": "Sea-Fisheries Protection Authority (SFPA)",
+      "foi_page_url": "https://www.sfpa.ie/What-We-Do/Corporate-Affairs/Customer-Service/Freedom-of-Information",
+      "disclosure_page_url": "https://www.sfpa.ie/LinkClick.aspx?fileticket=Wf_ls8f4nI0%3d&portalid=0",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1111,
+      "name": "Standards in Public Office Commission (SIPO)",
+      "foi_page_url": "https://www.sipo.ie/en/collection/e809e-freedom-of-information-foi",
+      "disclosure_page_url": "https://www.sipo.ie/en/collection/b2be9-foi-disclosure-log",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1112,
+      "name": "State Examinations Commission (SEC)",
+      "foi_page_url": "https://www.examinations.ie?l=en&mc=fo&sc=fi",
+      "disclosure_page_url": "https://www.examinations.ie?l=en&mc=fo&sc=fi",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1116,
+      "name": "Tailte Éireann",
+      "foi_page_url": "https://tailte.ie/freedom-of-information/",
+      "disclosure_page_url": "https://tailte.ie/foi-disclosure-log/",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1117,
+      "name": "Teagasc",
+      "foi_page_url": "https://teagasc.ie/about/corporate-responsibility/freedom-of-information/",
+      "disclosure_page_url": "https://teagasc.ie/wp-content/uploads/2025/05/Teagasc-FOI-Disclosure-Log-2023.pdf",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1118,
+      "name": "The Charities Regulator",
+      "foi_page_url": "https://www.charitiesregulator.ie/en/freedom-of-information",
+      "disclosure_page_url": "https://www.charitiesregulator.ie/en/freedom-of-information/foi-disclosure-log",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1122,
+      "name": "The Ombudsman for Children's Office (OCO)",
+      "foi_page_url": "https://www.oco.ie/library/oco-freedom-of-information-publication-scheme/",
+      "disclosure_page_url": "https://www.oco.ie/library/oco-freedom-of-information-publication-scheme/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1128,
+      "name": "Cavan County Council",
+      "foi_page_url": "https://www.cavancoco.ie/services/corporate-governance/freedom-of-information/",
+      "disclosure_page_url": "https://www.cavancoco.ie/services/corporate-governance/freedom-of-information/foi-disclosure-logs.html",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1133,
+      "name": "Dublin City Council",
+      "foi_page_url": "https://www.dublincity.ie/your-city-council/governance-within-council/engaging-public-and-being-accountable/freedom-information",
+      "disclosure_page_url": "https://www.dublincity.ie/sites/default/files/2026-04/disclosure-log-q1-2026.pdf",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1137,
+      "name": "Galway County Council",
+      "foi_page_url": "https://www.galway.ie/en/governance-administration/governance/freedom-information",
+      "disclosure_page_url": "https://www.galway.ie/en/your-council/governance/freedom-information/disclosure-logs",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1138,
+      "name": "Kerry County Council",
+      "foi_page_url": "https://www.kerrycoco.ie/home3/freedom-of-information/",
+      "disclosure_page_url": "https://www.kerrycoco.ie/home3/freedom-of-information/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1139,
+      "name": "Kildare County Council",
+      "foi_page_url": "https://kildarecoco.ie/YourCouncil/GovernanceandCompliance/FreedomofInformation/",
+      "disclosure_page_url": "https://kildarecoco.ie/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1140,
+      "name": "Kilkenny County Council",
+      "foi_page_url": "https://www.kilkennycoco.ie/eng/your_council/freedom_of_information/",
+      "disclosure_page_url": "https://www.kilkennycoco.ie/eng/your_council/disclosure-of-donations-expenditure/",
+      "confidence": "medium",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1142,
+      "name": "Leitrim County Council",
+      "foi_page_url": "https://www.leitrim.ie//!FJH44U",
+      "disclosure_page_url": "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Disclosure-Log/",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1143,
+      "name": "Limerick City and County Council",
+      "foi_page_url": "https://www.limerick.ie/freedom-information",
+      "disclosure_page_url": "https://www.limerick.ie/freedom-information",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1144,
+      "name": "Longford County Council",
+      "foi_page_url": "https://www.longfordcoco.ie/your-council/access-to-information/freedom-of-information/",
+      "disclosure_page_url": "https://www.longfordcoco.ie/your-council/access-to-information/freedom-of-information/disclosure-log/",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1145,
+      "name": "Louth County Council",
+      "foi_page_url": "https://www.louthcoco.ie/en/policy-and-redress/freedom-of-information/",
+      "disclosure_page_url": "https://www.louthcoco.ie/en/policy-and-redress/freedom-of-information/disclosure-logs/",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1036,
+      "name": "Commission on the Defence Forces",
+      "foi_page_url": "https://www.military.ie/en/public-information/freedom-of-information/",
+      "disclosure_page_url": "https://www.military.ie/en/public-information/freedom-of-information/freedom-of-information-non-personal-disclosure-log/",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1058,
+      "name": "Health Service Executive",
+      "foi_page_url": "https://about.hse.ie/publications/foi-disclosure-q3-2025/",
+      "disclosure_page_url": "https://about.hse.ie/publications/foi-disclosure-q3-2025/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1061,
+      "name": "Horse Racing Ireland (HRI)",
+      "foi_page_url": "https://www.hri.ie/corporate/about-us/our-responsibilities/freedom-of-information",
+      "disclosure_page_url": "https://www.hri.ie/HRI/media/HRI/Comms/Documents/HRI-FOI-2026-Quarterly-Disclosure-Log-Q1.pdf",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1073,
+      "name": "Local Government Management Agency (LGMA)",
+      "foi_page_url": "https://www.lgma.ca/freedom-of-information-fundamentals-on-demand-course",
+      "disclosure_page_url": "https://www.lgma.ca/freedom-of-information-fundamentals-on-demand-course",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1074,
+      "name": "Marine Institute",
+      "foi_page_url": "https://marine.ie/site-area/online-policies/freedom-information",
+      "disclosure_page_url": "https://marine.ie/sites/default/files/MIFiles/Docs_Comms/FOI Disclosure Log (2016-2018).pdf",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1079,
+      "name": "National Standards Authority of Ireland (NSAI)",
+      "foi_page_url": "https://www.nsai.ie/about/access-to-information/",
+      "disclosure_page_url": "https://www.nsai.ie/images/uploads/general/FOI_Disclosure_Log_2016_-_2025.pdf",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1081,
+      "name": "National Treasury Management Agency (NTMA)",
+      "foi_page_url": "https://www.ntma.ie/information-pages/freedom-of-information/how-to-make-a-request",
+      "disclosure_page_url": "https://www.ntma.ie/information-pages/freedom-of-information/disclosure-log",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1094,
+      "name": "Office of the Revenue Commissioners",
+      "foi_page_url": "https://www.revenue.ie/en/corporate/statutory-obligations/freedom-of-information/foi-in-revenue/index.aspx",
+      "disclosure_page_url": "https://www.revenue.ie/en/corporate/statutory-obligations/freedom-of-information/foi-in-revenue/can-you-appeal-an-foi-decision.aspx",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1095,
+      "name": "Office of the State Pathologist",
+      "foi_page_url": "https://www.cookcountystatesattorney.org/contact-us/freedom-information-act-information",
+      "disclosure_page_url": "https://www.cookcountystatesattorney.org/contact-us/freedom-information-act-information",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1109,
+      "name": "Social Welfare Appeals Office",
+      "foi_page_url": "https://www.gov.ie/en/social-welfare-appeals-office/publications/freedom-of-information-foi/",
+      "disclosure_page_url": "https://www.gov.ie/en/social-welfare-appeals-office/publications/freedom-of-information-foi/",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1113,
+      "name": "State Laboratory",
+      "foi_page_url": "https://www.dol.gov/general/foia",
+      "disclosure_page_url": "https://www.dol.gov/general/foia",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1114,
+      "name": "Strategic Banking Corporation of Ireland",
+      "foi_page_url": "https://sbci.gov.ie/information-access/freedom-of-information",
+      "disclosure_page_url": "https://sbci.gov.ie/information-access/freedom-of-information",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1126,
+      "name": "Western Development Commission (WDC)",
+      "foi_page_url": "https://westerndevelopment.ie/wp-content/uploads/2026/01/FOI-2025.pdf",
+      "disclosure_page_url": "https://westerndevelopment.ie/wp-content/uploads/2026/01/FOI-2025.pdf",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1135,
+      "name": "Fingal County Council",
+      "foi_page_url": "https://www.fingal.ie/council/service/freedom-information",
+      "disclosure_page_url": "https://www.fingal.ie/sites/default/files/2026-01/2024-foi-disclosure-log.pdf",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1136,
+      "name": "Galway City Council",
+      "foi_page_url": "https://www.galway.ie/en/governance-administration/governance/freedom-information",
+      "disclosure_page_url": "https://www.galway.ie/en/your-council/governance/freedom-information/disclosure-logs",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1141,
+      "name": "Laois County Council",
+      "foi_page_url": "https://laois.ie/governance-and-administration/statutory-access-to-information/freedom-of-information-request",
+      "disclosure_page_url": "https://laois.ie/governance-and-administration/statutory-access-to-information/freedom-of-information-request",
+      "confidence": "none",
+      "source_method": "foi_page_fallback"
+    },
+    {
+      "public_body_id": 1148,
+      "name": "Monaghan County Council",
+      "foi_page_url": "https://monaghan.ie/corporateservices/freedom-of-information/",
+      "disclosure_page_url": "https://monaghan.ie/corporateservices/foi-disclosure-log-and-other-published-information/",
+      "confidence": "high",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1002,
+      "name": "Department of Children, Disability and Equality",
+      "foi_page_url": "https://www.gov.ie/en/department-of-children-disability-and-equality/organisation-information/freedom-of-information-foi/",
+      "disclosure_page_url": "https://www.gov.ie/en/department-of-children-disability-and-equality/collections/quarterly-foi-log/",
+      "source_method": "manual",
+      "overridden": true
+    },
+    {
+      "public_body_id": 1008,
+      "name": "Department of Finance",
+      "foi_page_url": "https://www.gov.ie/en/department-of-finance/organisation-information/freedom-of-information-foi/",
+      "disclosure_page_url": "https://www.gov.ie/en/department-of-finance/collections/foi-decisions/",
+      "source_method": "manual",
+      "overridden": true
+    },
+    {
+      "public_body_id": 1019,
+      "name": "An Coimisiún Pleanála",
+      "foi_page_url": "https://www.pleanala.ie/en-ie/freedom-of-information-(foi)",
+      "disclosure_page_url": "https://www.pleanala.ie/en-ie/freedom-of-information-(foi)/freedom-of-information-(foi)-disclosure-log"
+    },
+    {
+      "public_body_id": 1130,
+      "name": "Cork City Council",
+      "foi_page_url": "https://www.corkcity.ie/en/council-services/public-info/freedom-of-information/freedom-of-information/",
+      "disclosure_page_url": "https://www.corkcity.ie/en/council-services/public-info/model-publication-scheme/"
+    },
+    {
+      "public_body_id": 1037,
+      "name": "Competition and Consumer Protection Commission (CCPC)",
+      "foi_page_url": "https://www.ccpc.ie/about-us/corporate-information/governance/freedom-of-information",
+      "disclosure_page_url": "https://www.ccpc.ie/about-us/corporate-information/governance/freedom-of-information",
+      "source_method": "manual",
+      "overridden": true
+    },
+    {
+      "public_body_id": 1003,
+      "name": "Department of Climate, Energy and the Environment",
+      "foi_page_url": "https://www.gov.ie/en/department-of-climate-energy-and-the-environment/organisation-information/freedom-of-information-foi/",
+      "disclosure_page_url": "https://www.gov.ie/en/department-of-climate-energy-and-the-environment/publications/published-foi-requests/",
+      "source_method": "manual",
+      "overridden": true
+    },
+    {
+      "public_body_id": 1013,
+      "name": "Department of Justice, Home Affairs and Migration",
+      "foi_page_url": "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/organisation-information/freedom-of-information-foi/",
+      "disclosure_page_url": "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/collections/foi-disclosure-logs/",
+      "source_method": "manual",
+      "overridden": true
+    },
+    {
+      "public_body_id": 1014,
+      "name": "Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation",
+      "foi_page_url": "https://www.gov.ie/en/department-of-public-expenditure-infrastructure-public-service-reform-and-digitalisation/organisation-information/freedom-of-information-requests/",
+      "disclosure_page_url": "https://www.gov.ie/en/department-of-public-expenditure-infrastructure-public-service-reform-and-digitalisation/collections/foi-disclosure-log/",
+      "source_method": "manual",
+      "overridden": true
+    },
+    {
+      "public_body_id": 1026,
+      "name": "Central Bank of Ireland",
+      "foi_page_url": "https://www.centralbank.ie/fns/freedom-of-information",
+      "disclosure_page_url": "https://www.centralbank.ie/about/freedom-of-information/freedom-of-information-publication-scheme/foi-disclosure-log",
+      "source_method": "manual",
+      "overridden": true
+    },
+    {
+      "public_body_id": 1129,
+      "name": "Clare County Council",
+      "foi_page_url": "https://www.clarecoco.ie/council/governance-and-compliance/freedom-information/freedom-information",
+      "disclosure_page_url": "https://www.clarecoco.ie/council/governance-and-compliance/freedom-information/publication-scheme/foi-disclosure-log-and-other-information-be-published-routinely",
+      "source_method": "manual",
+      "overridden": true
+    },
+    {
+      "public_body_id": 1039,
+      "name": "Courts Service",
+      "foi_page_url": "https://www.courts.ie/organisation-information/freedom-of-information-requests",
+      "disclosure_page_url": "https://www.courts.ie/organisation-information/foi-disclosure-log",
+      "source_method": "manual",
+      "overridden": true
+    },
+    {
+      "public_body_id": 1043,
+      "name": "Data Protection Commission",
+      "foi_page_url": "http://www.dataprotection.ie/en/who-we-are/corporate-governance/freedom-information",
+      "disclosure_page_url": "https://www.dataprotection.ie/en/about/corporate-governance/freedom-information/freedom-information-disclosure-log",
+      "source_method": "manual",
+      "overridden": true
+    },
+    {
+      "public_body_id": 1044,
+      "name": "Digital Hub Development Agency",
+      "foi_page_url": "https://www.thedigitalhub.com",
+      "disclosure_page_url": "https://thedigitalhub.com/publications/",
+      "source_method": "manual",
+      "overridden": true
+    },
+    {
+      "public_body_id": 1132,
+      "name": "Donegal County Council",
+      "foi_page_url": "https://www.donegalcoco.ie/en/services/corporate/freedom-of-information/",
+      "disclosure_page_url": "https://www.donegalcoco.ie/en/services/corporate/freedom-of-information/",
+      "source_method": "manual",
+      "overridden": true
+    },
+    {
+      "public_body_id": 1134,
+      "name": "Dún Laoghaire-Rathdown County Council",
+      "foi_page_url": "https://www.dlrcoco.ie/council-democracy/governance/freedom-information-1",
+      "disclosure_page_url": "https://www.dlrcoco.ie/council-democracy/governance/freedom-information-1",
+      "source_method": "manual",
+      "overridden": true
+    },
+    {
+      "public_body_id": 1048,
+      "name": "Enterprise Ireland",
+      "foi_page_url": "https://www.enterprise-ireland.com/en/legal/foi-aie-and-publication",
+      "disclosure_page_url": "https://www.enterprise-ireland.com/en/legal/foi-aie-and-publication/publications-scheme",
+      "source_method": "manual",
+      "overridden": true
+    },
+    {
+      "public_body_id": 1050,
+      "name": "Fiosrú - the Office of the Police Ombudsman",
+      "foi_page_url": "https://www.fiosru.ie/compliance/freedom-of-information/",
+      "disclosure_page_url": "https://www.fiosru.ie/compliance/publication-scheme/",
+      "source_method": "manual",
+      "overridden": true
+    },
+    {
+      "public_body_id": 1056,
+      "name": "Greyhound Racing Ireland (GRI)",
+      "foi_page_url": "https://www.grireland.ie/About-GRI/freedom-of-information/",
+      "disclosure_page_url": "https://www.grireland.ie/About-GRI/freedom-of-information-publication-scheme/",
+      "source_method": "manual",
+      "overridden": true
     }
   ]
 }

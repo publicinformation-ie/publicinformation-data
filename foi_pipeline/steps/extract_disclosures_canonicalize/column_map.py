@@ -62,6 +62,7 @@ _SYNONYMS: dict[str, list[str]] = {
         'date of release', 'reply date', 'date of reply', 'date',
         # additional synonyms derived from columns.csv profiling
         'date decision letter issued',
+        'date of decision letter',
         'response date',
         'date of of release',            # typo in source data
         'cinneadh eisithe / decision issued',
@@ -145,6 +146,10 @@ for _canonical, _synonyms in _SYNONYMS.items():
         _LOOKUP.setdefault(_normalise(_synonym), _canonical)
 
 
+_ISO_DATETIME_SUFFIX = re.compile(r'\s+\d{4}-\d{2}-\d{2}t\d{2}:\d{2}:\d{2}$')
+_YEAR_SUFFIX = re.compile(r'\s+\d{4}\.?$')
+
+
 def canonicalize_header(header: str | None) -> Optional[str]:
     """Return the canonical key for a header string, or None if unrecognised."""
     if not header or not str(header).strip():
@@ -152,8 +157,13 @@ def canonicalize_header(header: str | None) -> Optional[str]:
     norm = _normalise(str(header))
     if norm in _LOOKUP:
         return _LOOKUP[norm]
-    # Strip trailing year suffix (e.g. 'Our Ref. 2019') and re-normalise
-    year_stripped = _normalise(re.sub(r'\s+\d{4}\.?$', '', norm))
+    # Strip trailing ISO datetime suffix (e.g. 'Date of Decision 2024-01-31T00:00:00')
+    iso_stripped = _ISO_DATETIME_SUFFIX.sub('', norm)
+    if iso_stripped != norm:
+        return _LOOKUP.get(iso_stripped)
+    # Strip trailing year suffix (e.g. 'Our Ref. 2019') — re-normalise in case stripping
+    # exposes punctuation that normalize_header would remove (e.g. trailing period)
+    year_stripped = _normalise(_YEAR_SUFFIX.sub('', norm))
     if year_stripped != norm:
         return _LOOKUP.get(year_stripped)
     return None

@@ -58,5 +58,85 @@
     "disclosure_page_url": "https://www.gov.ie/en/department-of-public-expenditure-infrastructure-public-service-reform-and-digitalisation/collections/foi-disclosure-log/",
     "source_method": "manual",
     "overridden": true
+  },
+  {
+    "public_body_id": 1026,
+    "name": "Central Bank of Ireland",
+    "foi_page_url": "https://www.centralbank.ie/fns/freedom-of-information",
+    "disclosure_page_url": "https://www.centralbank.ie/about/freedom-of-information/freedom-of-information-publication-scheme/foi-disclosure-log",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1129,
+    "name": "Clare County Council",
+    "foi_page_url": "https://www.clarecoco.ie/council/governance-and-compliance/freedom-information/freedom-information",
+    "disclosure_page_url": "https://www.clarecoco.ie/council/governance-and-compliance/freedom-information/publication-scheme/foi-disclosure-log-and-other-information-be-published-routinely",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1039,
+    "name": "Courts Service",
+    "foi_page_url": "https://www.courts.ie/organisation-information/freedom-of-information-requests",
+    "disclosure_page_url": "https://www.courts.ie/organisation-information/foi-disclosure-log",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1043,
+    "name": "Data Protection Commission",
+    "foi_page_url": "http://www.dataprotection.ie/en/who-we-are/corporate-governance/freedom-information",
+    "disclosure_page_url": "https://www.dataprotection.ie/en/about/corporate-governance/freedom-information/freedom-information-disclosure-log",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1044,
+    "name": "Digital Hub Development Agency",
+    "foi_page_url": "https://www.thedigitalhub.com",
+    "disclosure_page_url": "https://thedigitalhub.com/publications/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1132,
+    "name": "Donegal County Council",
+    "foi_page_url": "https://www.donegalcoco.ie/en/services/corporate/freedom-of-information/",
+    "disclosure_page_url": "https://www.donegalcoco.ie/en/services/corporate/freedom-of-information/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1134,
+    "name": "Dún Laoghaire-Rathdown County Council",
+    "foi_page_url": "https://www.dlrcoco.ie/council-democracy/governance/freedom-information-1",
+    "disclosure_page_url": "https://www.dlrcoco.ie/council-democracy/governance/freedom-information-1",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1048,
+    "name": "Enterprise Ireland",
+    "foi_page_url": "https://www.enterprise-ireland.com/en/legal/foi-aie-and-publication",
+    "disclosure_page_url": "https://www.enterprise-ireland.com/en/legal/foi-aie-and-publication/publications-scheme",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1050,
+    "name": "Fiosrú - the Office of the Police Ombudsman",
+    "foi_page_url": "https://www.fiosru.ie/compliance/freedom-of-information/",
+    "disclosure_page_url": "https://www.fiosru.ie/compliance/publication-scheme/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1056,
+    "name": "Greyhound Racing Ireland (GRI)",
+    "foi_page_url": "https://www.grireland.ie/About-GRI/freedom-of-information/",
+    "disclosure_page_url": "https://www.grireland.ie/About-GRI/freedom-of-information-publication-scheme/",
+    "source_method": "manual",
+    "overridden": true
   }
 ]

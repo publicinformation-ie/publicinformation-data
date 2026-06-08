@@ -3,10 +3,10 @@
   "metrics": [
     {
       "name": "canonicalization_rate",
-      "value": 0.836,
+      "value": 0.834,
       "counts": {
         "canonical": 554,
-        "total": 663,
+        "total": 664,
         "Granted": 154,
         "Refused": 163,
         "Part-Granted": 202,
@@ -22,7 +22,7 @@
       "value": 0.023,
       "counts": {
         "unrecognized": 15,
-        "total": 663
+        "total": 664
       },
       "is_primary": false
     },
@@ -31,11 +31,11 @@
       "value": 0.023,
       "counts": {
         "non_canonical": 15,
-        "total": 663
+        "total": 664
       },
       "is_primary": false
     }
   ],
-  "input_hash": "6763e2b5a7eeeaf43f0237b63ddc214215d2f870fe5d300701ad7b992421e4ef",
+  "input_hash": "0ced51399d05955dea0a6500636c2f90a9ef9a0db346a9abfd08d50bbab20df3",
   "judge_model": null
 }
