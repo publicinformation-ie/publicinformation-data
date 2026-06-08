@@ -15,18 +15,27 @@ from lib.column_map import (
 STEP_NAME = "extract_disclosures_canonicalize"
 
 
-def canonicalize_file(item):
+def load_column_swaps(step_dir: Path) -> dict[str, list[tuple[str, str]]]:
+    """Load column swap overrides from column_swaps.json."""
+    swaps_path = step_dir / "column_swaps.json"
+    if not swaps_path.exists():
+        return {}
+    raw = read_json(swaps_path)
+    return {url: [tuple(pair) for pair in pairs] for url, pairs in raw.items()}
+
+
+def canonicalize_file(item, column_swaps=None):
     """Convert one file record into a list of canonical FOI row dicts.
 
-    Returns (results, errors) — errors are dicts ready for errors.json.
+    Returns (results, errors, header_rows_dropped).
     """
     rows = item.get("rows")
     header_row_idx = item.get("header_row_idx")
     if rows is None:
-        return [], []
+        return [], [], 0
 
     if header_row_idx is None or header_row_idx >= len(rows):
-        return [], []
+        return [], [], 0
 
     meta = {
         "public_body_id": item["public_body_id"],
@@ -52,9 +61,10 @@ def canonicalize_file(item):
                 "file_url": item["file_url"],
                 "mapped_columns": list(canonical_to_col_idx.keys()),
             },
-        }]
+        }], 0
 
     missing_required = sorted(k for k in REQUIRED_COLUMNS if k not in canonical_to_col_idx)
+    file_swaps = column_swaps.get(item["file_url"], []) if column_swaps else []
 
     results = []
     for row in rows[header_row_idx + 1:]:
@@ -71,14 +81,14 @@ def canonicalize_file(item):
             record["missing_columns"] = missing_required
         results.append(record)
 
-    return results, []
+    return results, [], 0
 
 
-def process(input_data, results_out, errors_out, verbose=False):
+def process(input_data, results_out, errors_out, column_swaps=None, verbose=False):
     for item in input_data["results"]:
         if item.get("rows") is None:
             continue
-        file_records, file_errors = canonicalize_file(item)
+        file_records, file_errors, _ = canonicalize_file(item, column_swaps)
         results_out.extend(file_records)
         errors_out.extend(file_errors)
         if verbose:
@@ -105,7 +115,8 @@ def main():
     results: list = []
     errors: list = []
 
-    process(input_data, results, errors, verbose=args.verbose)
+    column_swaps = load_column_swaps(step_dir)
+    process(input_data, results, errors, column_swaps=column_swaps, verbose=args.verbose)
 
     if args.public_body is not None and not args.force and output_path.exists():
         existing = read_json(output_path).get("results", [])

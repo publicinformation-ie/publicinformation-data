@@ -102,7 +102,7 @@ def test_canonicalize_file_maps_known_headers():
         ["Our Reference", "Date Rec'd", "Request Details"],
         ["16/002", "2016-01-05", "some request"],
     ]
-    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
     assert len(results) == 1
     assert results[0]["foi_reference_id"] == "16/002"
     assert results[0]["request_description"] == "some request"
@@ -113,7 +113,7 @@ def test_canonicalize_file_maps_known_headers():
 
 def test_canonicalize_file_includes_metadata_fields():
     rows = [["Our Reference", "Request Details"], ["16/003", "a request"]]
-    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
     assert results[0]["public_body_id"] == 1001
     assert results[0]["name"] == "Dept A"
     assert results[0]["file_url"] == BASE_META["file_url"]
@@ -122,7 +122,7 @@ def test_canonicalize_file_includes_metadata_fields():
 
 def test_canonicalize_file_fills_none_for_optional_missing_columns():
     rows = [["Our Reference", "Request Details"], ["16/004", "some request"]]
-    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
     assert results[0]["decision_date"] is None
     assert results[0]["requester_type"] is None
     assert results[0]["decision_status"] is None
@@ -135,7 +135,7 @@ def test_canonicalize_file_drops_unrecognised_columns():
         ["Our Reference", "Date Rec'd", "Request Details", "Outcome", "Refusal under Section"],
         ["16/005", "2016-01-10", "some request", "Transferred", None],
     ]
-    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
     assert len(results) == 1
     assert "Outcome" not in results[0]
     assert "Refusal under Section" not in results[0]
@@ -148,14 +148,14 @@ def test_canonicalize_file_skips_empty_data_rows():
         [],
         ["16/002", "second request"],
     ]
-    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
     assert len(results) == 2
 
 
 def test_canonicalize_file_insufficient_columns_when_only_one_maps():
     # Only request_description maps — fewer than 2 canonical columns → InsufficientColumns
     rows = [["Request Details"], ["some request"]]
-    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
     assert results == []
     assert len(errors) == 1
     assert errors[0]["error_type"] == "InsufficientColumns"
@@ -165,7 +165,7 @@ def test_canonicalize_file_insufficient_columns_when_only_one_maps():
 def test_canonicalize_file_emits_partial_record_when_foi_ref_absent():
     # request_description + date_received map (≥2), foi_reference_id absent → partial record
     rows = [["Request Details", "Date Received"], ["some request", "2016-01-01"]]
-    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
     assert results != []
     assert errors == []
     assert results[0]["missing_columns"] == ["foi_reference_id"]
@@ -177,14 +177,14 @@ def test_canonicalize_file_uses_header_row_idx():
         ["FOI Reference", "Date", "Request Description"],
         ["11/001", "2011-01-15", "some request"],
     ]
-    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 1})
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 1})
     assert len(results) == 1
     assert results[0]["foi_reference_id"] == "11/001"
     assert results[0]["request_description"] == "some request"
 
 
 def test_canonicalize_file_returns_empty_for_null_rows():
-    results, errors = canonicalize_file({**BASE_META, "rows": None, "header_row_idx": None})
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": None, "header_row_idx": None})
     assert results == []
     assert errors == []
 
@@ -196,7 +196,7 @@ def test_canonicalize_file_multiple_data_rows():
         ["16/003", "2016-01-11", "second request"],
         ["16/004", "2016-01-12", "third request"],
     ]
-    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
     assert len(results) == 3
     assert results[1]["foi_reference_id"] == "16/003"
 
@@ -206,7 +206,7 @@ def test_canonicalize_file_row_shorter_than_headers_gets_none():
         ["Our Reference", "Date Rec'd", "Request Details"],
         ["16/002"],  # only 1 cell
     ]
-    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
     assert len(results) == 1
     assert results[0]["foi_reference_id"] == "16/002"
     assert results[0]["decision_date"] is None
@@ -285,14 +285,14 @@ def test_process_multiple_files_multiple_records(tmp_path):
 
 
 def test_canonicalize_file_empty_rows_returns_empty():
-    results, errors = canonicalize_file({**BASE_META, "rows": [], "header_row_idx": 0})
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": [], "header_row_idx": 0})
     assert results == []
     assert errors == []
 
 
 def test_canonicalize_file_none_header_row_idx_with_rows_returns_empty():
     rows = [["Our Reference", "Request Details"], ["16/001", "a request"]]
-    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": None})
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": None})
     assert results == []
     assert errors == []
 
@@ -360,7 +360,7 @@ def test_canonicalize_ocr_spaced_category_of_requester():
 def test_insufficient_columns_returns_error_no_records():
     # Only 1 canonical column maps — hard gate triggers
     rows = [["Date Received"], ["2016-01-01"]]
-    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
     assert results == []
     assert len(errors) == 1
     assert errors[0]["error_type"] == "InsufficientColumns"
@@ -368,7 +368,7 @@ def test_insufficient_columns_returns_error_no_records():
 
 def test_insufficient_columns_error_has_context():
     rows = [["Date Received"], ["2016-01-01"]]
-    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
     assert errors[0]["context"]["file_url"] == BASE_META["file_url"]
     assert "mapped_columns" in errors[0]["context"]
 
@@ -376,7 +376,7 @@ def test_insufficient_columns_error_has_context():
 def test_partial_record_emitted_when_foi_reference_id_missing():
     # ≥2 columns map but foi_reference_id absent → partial record, no error
     rows = [["Request Details", "Date Received"], ["some request", "2016-01-01"]]
-    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
     assert len(results) == 1
     assert errors == []
     assert results[0]["missing_columns"] == ["foi_reference_id"]
@@ -385,7 +385,7 @@ def test_partial_record_emitted_when_foi_reference_id_missing():
 def test_partial_record_emitted_when_request_description_missing():
     # ≥2 columns map but request_description absent → partial record
     rows = [["Our Reference", "Date Received"], ["16/001", "2016-01-01"]]
-    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
     assert len(results) == 1
     assert errors == []
     assert results[0]["missing_columns"] == ["request_description"]
@@ -394,7 +394,7 @@ def test_partial_record_emitted_when_request_description_missing():
 def test_complete_record_has_no_missing_columns_key():
     # All required columns present → missing_columns key absent entirely
     rows = [["Our Reference", "Request Details"], ["16/001", "some request"]]
-    results, errors = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
     assert len(results) == 1
     assert errors == []
     assert "missing_columns" not in results[0]
@@ -447,3 +447,50 @@ def test_public_body_scoped_preserves_other_bodies(tmp_path, monkeypatch):
     # 1002's stale row removed; new rows present:
     assert not any(r.get("marker") == "stale" for r in results)
     assert any(r["public_body_id"] == 1002 for r in results)
+
+
+# ── Column swap override tests ────────────────────────────────────────────────
+
+def test_canonicalize_file_applies_column_swap():
+    """Swapping decision_status ↔ request_description corrects transposed columns."""
+    swaps = {BASE_META["file_url"]: [("decision_status", "request_description")]}
+    rows = [
+        ["Our Reference", "Request Details", "Status"],
+        ["16/001", "Granted", "Records about planning"],
+    ]
+    item = {**BASE_META, "rows": rows, "header_row_idx": 0}
+    results, errors, _ = canonicalize_file(item, column_swaps=swaps)
+    assert results[0]["decision_status"] == "Records about planning"
+    assert results[0]["request_description"] == "Granted"
+    assert errors == []
+
+
+def test_canonicalize_file_no_swap_when_url_not_in_config():
+    """Rows whose file_url is not in swaps config are unaffected."""
+    swaps = {"https://other-url.example/file.xlsx": [("decision_status", "request_description")]}
+    rows = [
+        ["Our Reference", "Request Details", "Status"],
+        ["16/001", "actual description", "Granted"],
+    ]
+    item = {**BASE_META, "rows": rows, "header_row_idx": 0}
+    results, errors, _ = canonicalize_file(item, column_swaps=swaps)
+    assert results[0]["decision_status"] == "Granted"
+    assert results[0]["request_description"] == "actual description"
+
+
+def test_canonicalize_file_supports_multiple_swap_pairs():
+    """Multiple swap pairs are all applied."""
+    swaps = {BASE_META["file_url"]: [
+        ("decision_status", "request_description"),
+        ("date_received", "decision_date"),
+    ]}
+    rows = [
+        ["Our Reference", "Request Details", "Status", "Date Received", "Decision Date"],
+        ["16/001", "Granted", "Records about X", "2023-01-15", "2023-01-01"],
+    ]
+    item = {**BASE_META, "rows": rows, "header_row_idx": 0}
+    results, errors, _ = canonicalize_file(item, column_swaps=swaps)
+    assert results[0]["decision_status"] == "Records about X"
+    assert results[0]["request_description"] == "Granted"
+    assert results[0]["date_received"] == "2023-01-15"
+    assert results[0]["decision_date"] == "2023-01-01"
