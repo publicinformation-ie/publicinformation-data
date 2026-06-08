@@ -2,12 +2,14 @@
 """Normalize decision_status field values to canonical status values."""
 
 import argparse
+import re
 import sys
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
 from lib.cli_utils import add_common_args, filter_by_public_body, merge_replacing_body
+from lib.column_map import canonicalize_header
 from lib.file_utils import read_json, write_json, write_status
 from lib.review_status_map import canonicalize_review_status
 from lib.status_map import (
@@ -16,6 +18,20 @@ from lib.status_map import (
 )
 
 STEP_NAME = "extract_disclosures_canonicalize_rows"
+
+_DATE_PATTERN = re.compile(r'\d{1,2}[/\-\.]\d{1,2}[/\-\.]\d{2,4}')
+
+
+def _classify_unrecognized(raw_status: str) -> str:
+    """Return the most specific error type for an unrecognised decision_status value."""
+    header_match = canonicalize_header(raw_status)
+    if header_match == 'requester_type':
+        return 'StatusValueIsRequesterType'
+    if header_match is not None:
+        return 'StatusValueIsColumnHeader'
+    if _DATE_PATTERN.search(raw_status):
+        return 'StatusValueIsDate'
+    return 'UnrecognizedDecisionStatus'
 
 
 def process_records(input_data, results_out, errors_out, verbose=False):
@@ -53,9 +69,10 @@ def process_records(input_data, results_out, errors_out, verbose=False):
                 reclassified["review_status"] = review_canonical
                 results_out.append(reclassified)
             else:
-                # Unrecognized status - write to errors
+                # Unrecognized status - classify and write to errors
+                error_type = _classify_unrecognized(raw_status)
                 errors_out.append({
-                    "error_type": "UnrecognizedDecisionStatus",
+                    "error_type": error_type,
                     "error_message": f"Status '{raw_status}' not in canonical status mapping",
                     "context": {
                         "public_body_id": record.get("public_body_id"),

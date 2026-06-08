@@ -147,3 +147,82 @@ def test_normal_canonical_status_unaffected_by_reclassification():
     assert results[0]["decision_status"] == "Granted"
     assert results[0]["review_status"] is None
     assert errors == []
+
+
+# ── Error subtype enrichment tests ───────────────────────────────────────────
+
+
+def test_status_value_is_requester_type_emitted_for_category():
+    record = _make_record(decision_status="Category", review_status=None)
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert errors[0]["error_type"] == "StatusValueIsRequesterType"
+
+
+def test_status_value_is_requester_type_emitted_for_requester():
+    record = _make_record(decision_status="Requester Type", review_status=None)
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert errors[0]["error_type"] == "StatusValueIsRequesterType"
+
+
+def test_status_value_is_column_header_emitted_for_date_received():
+    record = _make_record(decision_status="Date Received", review_status=None)
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert errors[0]["error_type"] == "StatusValueIsColumnHeader"
+
+
+def test_status_value_is_column_header_emitted_for_our_ref():
+    record = _make_record(decision_status="Our Ref", review_status=None)
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert errors[0]["error_type"] == "StatusValueIsColumnHeader"
+
+
+def test_status_value_is_date_emitted_for_dd_mm_yyyy():
+    record = _make_record(decision_status="15/01/2023", review_status=None)
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert errors[0]["error_type"] == "StatusValueIsDate"
+
+
+def test_status_value_is_date_emitted_for_dd_dash_mm_yyyy():
+    record = _make_record(decision_status="15-01-2023", review_status=None)
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert errors[0]["error_type"] == "StatusValueIsDate"
+
+
+def test_unrecognized_stays_unrecognized_for_arbitrary_value():
+    record = _make_record(decision_status="Some Completely Unknown Value XYZ", review_status=None)
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert errors[0]["error_type"] == "UnrecognizedDecisionStatus"
+
+
+def test_error_context_fields_all_present():
+    record = _make_record(decision_status="15/01/2023", review_status=None)
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    ctx = errors[0]["context"]
+    assert ctx["public_body_id"] == 1006
+    assert ctx["file_url"] == "https://assets.gov.ie/log.pdf"
+    assert ctx["foi_reference_id"] == "16/001"
+    assert ctx["raw_status"] == "15/01/2023"
+
+
+def test_requester_type_check_takes_priority_over_date():
+    record = _make_record(decision_status="Category", review_status=None)
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert errors[0]["error_type"] == "StatusValueIsRequesterType"
+
+
+def test_record_still_passes_through_on_subtyped_error():
+    """Record is still included in results even when an error is emitted."""
+    record = _make_record(decision_status="15/01/2023", review_status=None)
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert len(results) == 1
+    assert len(errors) == 1
