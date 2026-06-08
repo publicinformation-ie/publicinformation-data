@@ -53,8 +53,15 @@ def _url_score(url):
     url_lower = str(url).lower()
     url_path = urlparse(url_lower).path
 
-    # Protected Disclosures is NOT FOI - filter it out even if it has positive keywords
+    # Always reject regardless of positive keywords
+    # - Protected Disclosures: whistleblowing, a different legal framework from FOI
+    # - irishstatutebook.ie: legislation publisher, never an FOI disclosure log
+    # - application forms: FOI request forms share positive keywords but are not logs
     if 'protected' in url_lower and 'disclosure' in url_lower:
+        return -1000
+    if 'irishstatutebook' in url_lower:
+        return -1000
+    if 'application-form' in url_lower or 'application_form' in url_lower:
         return -1000
 
     has_positive = any(k in url_lower for k in _FOI_KEYWORDS)
