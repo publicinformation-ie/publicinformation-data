@@ -33,6 +33,8 @@ _NEGATIVE_KEYWORDS = [
     'circular', 'bill', 'legislation', 'act', 'image', 'exhibit', 'worksheet',
     'book-list', 'booklist', 'newsletter', 'brochure', 'pamphlet', 'poster',
     'presentation', 'slides', 'meeting', 'session',
+    'financial-stability-review', 'financial-stability-notes', 'quarterly-bulletin',
+    'economic-letter',
 ]
 
 
@@ -42,11 +44,18 @@ def _url_score(url):
     Returns 1 (accept) or -1000 (reject). Negative keywords are matched
     against the URL path only — not the domain — so bodies whose domain
     contains a negative word (e.g. audit.gov.ie) are not incorrectly
-    filtered. A URL with positive FOI keywords is never rejected by a
-    negative keyword match.
+    filtered.
+    
+    Protected Disclosures (whistleblowing) is a different legal framework
+    from FOI and must be explicitly filtered even though it contains
+    the word "disclosure".
     """
     url_lower = str(url).lower()
     url_path = urlparse(url_lower).path
+
+    # Protected Disclosures is NOT FOI - filter it out even if it has positive keywords
+    if 'protected' in url_lower and 'disclosure' in url_lower:
+        return -1000
 
     has_positive = any(k in url_lower for k in _FOI_KEYWORDS)
 
