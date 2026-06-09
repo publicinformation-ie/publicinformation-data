@@ -29,6 +29,7 @@ Supports **incremental resumption** and propagates upstream `dirty_ids`.
 | `disclosure_page_url` | Page the file was found on |
 | `file_url` | Direct URL to the disclosure log file |
 | `file_type` | `pdf`, `xlsx`, or `xls` |
+| `link_text` | Anchor text of the link pointing to this file (empty string for direct-file URLs) |
 
 ## Notable files
 
