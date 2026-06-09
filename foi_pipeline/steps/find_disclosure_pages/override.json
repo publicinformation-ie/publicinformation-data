@@ -103,7 +103,15 @@
     "public_body_id": 1132,
     "name": "Donegal County Council",
     "foi_page_url": "https://www.donegalcoco.ie/en/services/corporate/freedom-of-information/",
-    "disclosure_page_url": "https://www.donegalcoco.ie/en/services/corporate/freedom-of-information/",
+    "disclosure_page_url": "https://www.donegalcoco.ie/en/services/corporate/freedom-of-information",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1133,
+    "name": "Dublin City Council",
+    "foi_page_url": "https://www.dublincity.ie/your-city-council/governance-within-council/engaging-public-and-being-accountable/freedom-information",
+    "disclosure_page_url": "https://www.dublincity.ie/your-city-council/governance-within-council/engaging-public-and-being-accountable/freedom-information",
     "source_method": "manual",
     "overridden": true
   },
@@ -112,6 +120,14 @@
     "name": "Dún Laoghaire-Rathdown County Council",
     "foi_page_url": "https://www.dlrcoco.ie/council-democracy/governance/freedom-information-1",
     "disclosure_page_url": "https://www.dlrcoco.ie/council-democracy/governance/freedom-information-1",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1135,
+    "name": "Fingal County Council",
+    "foi_page_url": "https://www.fingal.ie/council/service/freedom-information",
+    "disclosure_page_url": "https://www.fingal.ie/council/service/freedom-information",
     "source_method": "manual",
     "overridden": true
   },
@@ -136,6 +152,70 @@
     "name": "Greyhound Racing Ireland (GRI)",
     "foi_page_url": "https://www.grireland.ie/About-GRI/freedom-of-information/",
     "disclosure_page_url": "https://www.grireland.ie/About-GRI/freedom-of-information-publication-scheme/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1141,
+    "name": "Laois County Council",
+    "foi_page_url": "https://laois.ie/governance-and-administration/statutory-access-to-information/freedom-of-information-request",
+    "disclosure_page_url": "https://laois.ie/governance-and-administration/statutory-access-to-information/freedom-of-information-disclosure-log-publication",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1143,
+    "name": "Limerick City and County Council",
+    "foi_page_url": "https://www.limerick.ie/freedom-information",
+    "disclosure_page_url": "https://www.limerick.ie/council/services/your-council/freedom-of-information/miscellaneous-information-foi-publication",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1145,
+    "name": "Louth County Council",
+    "foi_page_url": "https://www.louthcoco.ie/en/policy-and-redress/freedom-of-information/",
+    "disclosure_page_url": "https://www.louthcoco.ie/en/policy-and-redress/freedom-of-information/disclosure-logs/foi-disclosure-logs/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1149,
+    "name": "Offaly County Council",
+    "foi_page_url": "https://www.offaly.ie/freedom-of-information-request/",
+    "disclosure_page_url": "https://www.offaly.ie/freedom-of-information-disclosure-log-publication/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1153,
+    "name": "Tipperary County Council",
+    "foi_page_url": "https://www.tipperarycoco.ie/governance-and-administration/freedom-information-request",
+    "disclosure_page_url": "https://www.tipperarycoco.ie/governance-and-administration/freedom-information-disclosure-log-publication",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1155,
+    "name": "Westmeath County Council",
+    "foi_page_url": "http://www.westmeathcoco.ie/en/ourservices/yourcouncil/datatransparencyfreedomofinformation/freedomofinformation/",
+    "disclosure_page_url": "http://www.westmeathcoco.ie/en/ourservices/yourcouncil/datatransparencyfreedomofinformation/freedomofinformationfoiresponses/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1156,
+    "name": "Wexford County Council",
+    "foi_page_url": "https://www.wexfordcoco.ie/council-and-democracy/freedom-of-information-foi-and-data-protection/make-a-foi-requestappeal-a",
+    "disclosure_page_url": "https://www.wexfordcoco.ie/council-and-democracy/freedom-of-information-foi-and-data-protection/disclosure-log-of-foi",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1157,
+    "name": "Wicklow County Council",
+    "foi_page_url": "https://www.wicklow.ie/Living/Your-Council/Governance/Freedom-Of-Information/How-To-Make-An-FOI-Request",
+    "disclosure_page_url": "https://www.wicklow.ie/Living/Your-Council/Governance/About-Freedom-of-Information",
     "source_method": "manual",
     "overridden": true
   }
