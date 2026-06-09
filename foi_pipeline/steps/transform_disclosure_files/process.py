@@ -345,7 +345,12 @@ def _extract_with_camelot_stream(file_bytes: bytes) -> list[list] | None:
 
 
 def _extract_pdf(file_bytes, table_settings=None):
-    """Parse PDF bytes. Returns (sheet_name, rows, fallback_cells, has_multiple_tables, merge_stats)."""
+    """Parse PDF bytes. Returns (sheet_name, rows, fallback_cells, has_multiple_tables, merge_stats, pdf_extractor, camelot_info).
+
+    pdf_extractor is "pdfplumber" or "camelot_stream".
+    camelot_info is None when no fallback was attempted; otherwise a dict with
+    pdfplumber_n_mapped, camelot_n_mapped, and used keys.
+    """
     import pdfplumber
     pages_rows = []
     total_tables = 0
@@ -364,7 +369,18 @@ def _extract_pdf(file_bytes, table_settings=None):
         raise ValueError("no tables found")
     rows, merge_stats = _merge_page_splits(pages_rows)
     sheet_name = "page 1" if n_pages == 1 else f"pages 1-{n_pages}"
-    return sheet_name, rows, [], total_tables > 1, merge_stats
+
+    n_mapped = _score_rows(rows)
+    if n_mapped < 2:
+        camelot_rows = _extract_with_camelot_stream(file_bytes)
+        camelot_n_mapped = _score_rows(camelot_rows) if camelot_rows is not None else 0
+        if camelot_rows is not None and camelot_n_mapped >= n_mapped:
+            camelot_info = {"pdfplumber_n_mapped": n_mapped, "camelot_n_mapped": camelot_n_mapped, "used": "camelot_stream"}
+            return sheet_name, camelot_rows, [], False, {}, "camelot_stream", camelot_info
+        camelot_info = {"pdfplumber_n_mapped": n_mapped, "camelot_n_mapped": camelot_n_mapped, "used": "pdfplumber"}
+        return sheet_name, rows, [], total_tables > 1, merge_stats, "pdfplumber", camelot_info
+
+    return sheet_name, rows, [], total_tables > 1, merge_stats, "pdfplumber", None
 
 
 def _process_single_file(item, cache, step_dir):
@@ -409,7 +425,20 @@ def _process_single_file(item, cache, step_dir):
                     "context": {"file_url": file_url},
                 })
         else:  # pdf
-            sheet_name, rows, fallback_cells, has_multiple, merge_stats = _extract_pdf(file_bytes)
+            sheet_name, rows, fallback_cells, has_multiple, merge_stats, pdf_extractor, camelot_info = _extract_pdf(file_bytes)
+            if camelot_info is not None:
+                append_error(step_dir, {
+                    "step": STEP_NAME,
+                    "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                    "error_type": "CamelotFallbackAttempted",
+                    "error_message": f"pdfplumber scored n_mapped={camelot_info['pdfplumber_n_mapped']}; camelot_stream scored {camelot_info['camelot_n_mapped']}",
+                    "context": {
+                        "file_url": file_url,
+                        "pdfplumber_n_mapped": camelot_info["pdfplumber_n_mapped"],
+                        "camelot_n_mapped": camelot_info["camelot_n_mapped"],
+                        "used": camelot_info["used"],
+                    },
+                })
             if has_multiple:
                 append_error(step_dir, {
                     "step": STEP_NAME,
@@ -429,7 +458,7 @@ def _process_single_file(item, cache, step_dir):
             })
 
         if file_type == "pdf":
-            result_record = {**item, "sheet_name": sheet_name, "rows": rows, "pdf_merge_stats": merge_stats}
+            result_record = {**item, "sheet_name": sheet_name, "rows": rows, "pdf_merge_stats": merge_stats, "pdf_extractor": pdf_extractor}
         else:
             result_record = {**item, "sheet_name": sheet_name, "rows": rows}
         return [result_record], True

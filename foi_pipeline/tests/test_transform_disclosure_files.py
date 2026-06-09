@@ -264,7 +264,7 @@ def test_extract_xls_empty_cell_is_none():
 def test_extract_pdf_single_page_single_table():
     rows_in = [["Our Reference", "Date"], ["16/002", "2016-01-05"]]
     pdf_bytes = _make_pdf([[rows_in]])
-    sheet_name, rows, fallback_cells, has_multiple_tables, merge_stats = _extract_pdf(pdf_bytes)
+    sheet_name, rows, fallback_cells, has_multiple_tables, merge_stats, pdf_extractor, camelot_info = _extract_pdf(pdf_bytes)
     assert sheet_name == "page 1"
     assert rows[0] == ["Our Reference", "Date"]
     assert rows[1] == ["16/002", "2016-01-05"]
@@ -276,7 +276,7 @@ def test_extract_pdf_single_page_two_tables_concatenates_rows():
     table1 = [["Ref", "Date"], ["001", "2024-01-01"]]
     table2 = [["002", "2024-01-02"]]
     pdf_bytes = _make_pdf([[table1, table2]])
-    sheet_name, rows, fallback_cells, has_multiple_tables, merge_stats = _extract_pdf(pdf_bytes)
+    sheet_name, rows, fallback_cells, has_multiple_tables, merge_stats, pdf_extractor, camelot_info = _extract_pdf(pdf_bytes)
     assert sheet_name == "page 1"
     assert has_multiple_tables is True
     # All rows from both tables should appear in order
@@ -289,7 +289,7 @@ def test_extract_pdf_multi_page_concatenates_rows():
     page1_rows = [["Ref", "Date"], ["001", "2024-01-01"]]
     page2_rows = [["002", "2024-01-02"]]
     pdf_bytes = _make_pdf([[page1_rows], [page2_rows]])
-    sheet_name, rows, fallback_cells, has_multiple_tables, merge_stats = _extract_pdf(pdf_bytes)
+    sheet_name, rows, fallback_cells, has_multiple_tables, merge_stats, pdf_extractor, camelot_info = _extract_pdf(pdf_bytes)
     assert sheet_name == "pages 1-2"
     assert rows[0] == ["Ref", "Date"]
     assert rows[1] == ["001", "2024-01-01"]
@@ -305,7 +305,7 @@ def test_extract_pdf_no_tables_raises_value_error():
 def test_extract_pdf_default_table_settings_unchanged():
     rows_in = [["Ref", "Date"], ["001", "2024-01-01"]]
     pdf_bytes = _make_pdf([[rows_in]])
-    sheet_name, rows, fallback_cells, has_multiple, merge_stats = _extract_pdf(pdf_bytes, table_settings=None)
+    sheet_name, rows, fallback_cells, has_multiple, merge_stats, pdf_extractor, camelot_info = _extract_pdf(pdf_bytes, table_settings=None)
     assert rows[0] == ["Ref", "Date"]
     assert rows[1] == ["001", "2024-01-01"]
     assert has_multiple is False
@@ -315,8 +315,124 @@ def test_extract_pdf_custom_table_settings_accepted():
     rows_in = [["Ref", "Date"], ["001", "2024-01-01"]]
     pdf_bytes = _make_pdf([[rows_in]])
     settings = {"snap_y_tolerance": 6, "snap_tolerance": 6, "edge_min_length": 10}
-    sheet_name, rows, fallback_cells, has_multiple, merge_stats = _extract_pdf(pdf_bytes, table_settings=settings)
+    sheet_name, rows, fallback_cells, has_multiple, merge_stats, pdf_extractor, camelot_info = _extract_pdf(pdf_bytes, table_settings=settings)
     assert rows[0] == ["Ref", "Date"]
+
+
+# ── _extract_pdf fallback signature ──────────────────────────────────────────
+
+def test_extract_pdf_returns_seven_tuple():
+    rows = [["Our Ref", "Date Received", "Description"],
+            ["1", "2024-01-01", "a request"]]
+    pdf_bytes = _make_pdf([[rows]])
+    result = _extract_pdf(pdf_bytes)
+    assert len(result) == 7, f"expected 7-tuple, got {len(result)}-tuple"
+
+
+def test_extract_pdf_pdfplumber_extractor_when_score_ge_2():
+    rows = [["Our Ref", "Date Received", "Description"],
+            ["1", "2024-01-01", "a request"]]
+    pdf_bytes = _make_pdf([[rows]])
+    _sheet, _rows, _fb, _multi, _stats, pdf_extractor, camelot_info = _extract_pdf(pdf_bytes)
+    assert pdf_extractor == "pdfplumber"
+    assert camelot_info is None
+
+
+def test_extract_pdf_camelot_info_set_when_fallback_attempted():
+    import unittest.mock
+    # PDF where pdfplumber produces only one mappable column
+    rows = [["Blob1", "Blob2", "Blob3"], ["1", "2", "3"]]
+    pdf_bytes = _make_pdf([[rows]])
+    # Make camelot unavailable so we can test the attempt path without real camelot
+    with unittest.mock.patch(
+        "steps.transform_disclosure_files.process._extract_with_camelot_stream",
+        return_value=None,
+    ):
+        _sheet, _rows, _fb, _multi, _stats, pdf_extractor, camelot_info = _extract_pdf(pdf_bytes)
+    # camelot_info is set because fallback was attempted (n_mapped < 2)
+    # extractor stays pdfplumber since camelot returned None
+    assert pdf_extractor == "pdfplumber"
+    assert camelot_info is not None
+    assert "pdfplumber_n_mapped" in camelot_info
+    assert camelot_info["used"] == "pdfplumber"
+
+
+def test_extract_pdf_uses_camelot_when_scores_better():
+    import unittest.mock
+    rows = [["Blob1", "Blob2", "Blob3"], ["1", "2", "3"]]
+    pdf_bytes = _make_pdf([[rows]])
+    camelot_rows = [["Our Ref", "Date Received", "Description"], ["1", "2024-01-01", "req"]]
+    with unittest.mock.patch(
+        "steps.transform_disclosure_files.process._extract_with_camelot_stream",
+        return_value=camelot_rows,
+    ):
+        _sheet, result_rows, _fb, _multi, _stats, pdf_extractor, camelot_info = _extract_pdf(pdf_bytes)
+    assert pdf_extractor == "camelot_stream"
+    assert result_rows == camelot_rows
+    assert camelot_info["used"] == "camelot_stream"
+
+
+# ── _process_single_file result record ───────────────────────────────────────
+
+def test_process_single_file_includes_pdf_extractor(tmp_path):
+    import json
+    from lib.file_utils import IncrementalWriter
+    from steps.transform_disclosure_files.process import process
+
+    rows = [["Our Ref", "Date Received", "Description"], ["1", "2024-01-01", "req"]]
+    pdf_bytes = _make_pdf([[rows]])
+
+    cache_dir = tmp_path / "cache"
+    cache_dir.mkdir()
+    import hashlib
+    key = hashlib.sha256(b"http://example.com/test.pdf").hexdigest()
+    (cache_dir / f"{key}.bytes").write_bytes(pdf_bytes)
+
+    input_data = {"results": [{"file_url": "http://example.com/test.pdf", "file_type": "pdf", "public_body_id": 1}]}
+    output_path = tmp_path / "output.json"
+    writer = IncrementalWriter(output_path, "transform_disclosure_files", key_field="file_url", force=True)
+    from unittest.mock import patch
+    with patch("steps.transform_disclosure_files.process.DisclosureFileCache.get_file_path", return_value=cache_dir / f"{key}.bytes"):
+        process(input_data, tmp_path, writer)
+    writer.finalize()
+
+    result = json.loads(output_path.read_text())
+    assert result["results"][0].get("pdf_extractor") in ("pdfplumber", "camelot_stream")
+
+
+def test_process_single_file_logs_camelot_fallback_attempted(tmp_path):
+    import json
+    import unittest.mock
+    from lib.file_utils import IncrementalWriter
+    from steps.transform_disclosure_files.process import process
+
+    rows = [["Blob1", "Blob2", "Blob3"], ["1", "2", "3"]]
+    pdf_bytes = _make_pdf([[rows]])
+
+    cache_dir = tmp_path / "cache"
+    cache_dir.mkdir()
+    import hashlib
+    key = hashlib.sha256(b"http://example.com/test.pdf").hexdigest()
+    (cache_dir / f"{key}.bytes").write_bytes(pdf_bytes)
+
+    input_data = {"results": [{"file_url": "http://example.com/test.pdf", "file_type": "pdf", "public_body_id": 1}]}
+    output_path = tmp_path / "output.json"
+    writer = IncrementalWriter(output_path, "transform_disclosure_files", key_field="file_url", force=True)
+    with unittest.mock.patch("steps.transform_disclosure_files.process.DisclosureFileCache.get_file_path",
+                              return_value=cache_dir / f"{key}.bytes"), \
+         unittest.mock.patch("steps.transform_disclosure_files.process._extract_with_camelot_stream",
+                              return_value=None):
+        process(input_data, tmp_path, writer)
+    writer.finalize()
+
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    camelot_errors = [e for e in errors if e.get("error_type") == "CamelotFallbackAttempted"]
+    assert len(camelot_errors) == 1
+    ctx = camelot_errors[0]["context"]
+    assert ctx["file_url"] == "http://example.com/test.pdf"
+    assert "pdfplumber_n_mapped" in ctx
+    assert "camelot_n_mapped" in ctx
+    assert "used" in ctx
 
 
 # ── _score_rows ───────────────────────────────────────────────────────────────
@@ -421,7 +537,8 @@ def test_process_pdf_extracts_rows(requests_mock, tmp_path, make_writer):
 
 
 def test_process_pdf_no_errors_on_clean_file(requests_mock, tmp_path, make_writer):
-    pdf_bytes = _make_pdf([[[ ["Col A", "Col B"], ["v1", "v2"] ]]])
+    # Use headers that map to >= 2 known canonical columns to avoid CamelotFallbackAttempted
+    pdf_bytes = _make_pdf([[[ ["Our Ref", "Date Received", "Description"], ["001", "2024-01-01", "req"] ]]])
     requests_mock.get(PDF_URL, content=pdf_bytes)
     writer = make_writer(STEP_NAME, key_field="file_url")
     process(PDF_INPUT, tmp_path, writer)
