@@ -31,19 +31,19 @@ public_body_id,name,label,expected_url,verified
 1035,Commission on Taxation and Welfare,no_log_exists,,yes
 1036,Commission on the Defence Forces,use_foi_page,,auto
 1037,Competition and Consumer Protection Commission (CCPC),distinct_log,https://www.ccpc.ie/consumers/about/governance/freedom-of-information/foi-disclosure-log-2026/,yes
-1039,Courts Service,no_log_exists,,yes
-1043,Data Protection Commission,distinct_log,http://www.dataprotection.ie/en/about/corporate-governance/freedom-information/freedom-information-disclosure-log,auto
-1044,Digital Hub Development Agency,use_foi_page,,auto
+1039,Courts Service,distinct_log,https://www.courts.ie/organisation-information/foi-disclosure-log,manual
+1043,Data Protection Commission,distinct_log,https://www.dataprotection.ie/en/about/corporate-governance/freedom-information/freedom-information-disclosure-log,manual
+1044,Digital Hub Development Agency,distinct_log,https://thedigitalhub.com/publications/,manual
 1045,Educational Research Centre (ERC),no_log_exists,,yes
 1046,Education Scoping Inquiry,use_foi_page,,auto
-1048,Enterprise Ireland,use_foi_page,,auto
+1048,Enterprise Ireland,distinct_log,https://www.enterprise-ireland.com/en/legal/foi-aie-and-publication/publications-scheme,manual
 1049,Financial Services and Pensions Ombudsman (FSPO),distinct_log,https://www.fspo.ie/documents/FOI-Disclosure-Log-Q1-2026.pdf,auto
-1050,Fiosrú – the Office of the Police Ombudsman,distinct_log,https://www.fiosru.ie/compliance/publication-scheme/foi-disclosure-log-2024/,auto
+1050,Fiosrú - the Office of the Police Ombudsman,distinct_log,https://www.fiosru.ie/compliance/publication-scheme/,manual
 1051,Forensic Science Ireland,no_log_exists,,auto
 1053,Garda Inspectorate,no_log_exists,,auto
 1054,Gender Equality,no_log_exists,,auto
 1055,gov.ie team,no_log_exists,,auto
-1056,Greyhound Racing Ireland (GRI),no_log_exists,,auto
+1056,Greyhound Racing Ireland (GRI),distinct_log,https://www.grireland.ie/About-GRI/freedom-of-information-publication-scheme/,manual
 1057,Health Research Board (HRB),no_log_exists,,auto
 1060,Higher Education Authority (HEA),no_log_exists,,yes
 1061,Horse Racing Ireland (HRI),distinct_log,https://www.hri.ie/HRI/media/HRI/Comms/Documents/HRI-FOI-2026-Quarterly-Disclosure-Log-Q1.pdf,auto
@@ -94,30 +94,31 @@ public_body_id,name,label,expected_url,verified
 1122,The Ombudsman for Children's Office (OCO),use_foi_page,,auto
 1125,Welcome to the website of the External Oversight Body of the Defence Forces (EOBDF),no_log_exists,,yes
 1128,Cavan County Council,distinct_log,https://www.cavancoco.ie/services/corporate-governance/freedom-of-information/foi-disclosure-logs.html,auto
-1129,Clare County Council,distinct_log,https://www.clarecoco.ie/council/governance-and-compliance/freedom-information/publication-scheme/foi-disclosure-log-and-other-information-be-published-routinely,auto
+1129,Clare County Council,distinct_log,https://www.clarecoco.ie/council/governance-and-compliance/freedom-information/publication-scheme/foi-disclosure-log-and-other-information-be-published-routinely,yes
 1130,Cork City Council,distinct_log,https://www.corkcity.ie/en/council-services/public-info/model-publication-scheme/,yes
 1131,Cork County Council,no_log_exists,,auto
-1132,Donegal County Council,use_foi_page,,auto
-1133,Dublin City Council,use_foi_page,,auto
-1135,Fingal County Council,use_foi_page,,yes
+1132,Donegal County Council,distinct_log,https://www.donegalcoco.ie/en/services/corporate/freedom-of-information,yes
+1133,Dublin City Council,distinct_log,https://www.dublincity.ie/your-city-council/governance-within-council/engaging-public-and-being-accountable/freedom-information,yes
+1134,"Dún Laoghaire-Rathdown County Council",distinct_log,https://www.dlrcoco.ie/council-democracy/governance/freedom-information-1,yes
+1135,Fingal County Council,distinct_log,https://www.fingal.ie/council/service/freedom-information,yes
 1136,Galway City Council,use_foi_page,,auto
 1137,Galway County Council,distinct_log,http://www.galway.ie/en/your-council/governance/freedom-information/disclosure-logs,auto
 1138,Kerry County Council,no_log_exists,,auto
 1139,Kildare County Council,no_log_exists,,auto
 1140,Kilkenny County Council,distinct_log,https://www.kilkennycoco.ie/eng/your_council/freedom_of_information/freedom-of-information-requests/freedom-of-information-disclosure-log.html,yes
-1141,Laois County Council,no_log_exists,,auto
+1141,Laois County Council,distinct_log,https://laois.ie/governance-and-administration/statutory-access-to-information/freedom-of-information-disclosure-log-publication,yes
 1142,Leitrim County Council,distinct_log,https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Disclosure-Log/,auto
-1143,Limerick City and County Council,no_log_exists,,auto
+1143,Limerick City and County Council,distinct_log,https://www.limerick.ie/council/services/your-council/freedom-of-information/miscellaneous-information-foi-publication,yes
 1144,Longford County Council,distinct_log,http://www.longfordcoco.ie/your-council/access-to-information/freedom-of-information/disclosure-log/,auto
-1145,Louth County Council,no_log_exists,,auto
+1145,Louth County Council,distinct_log,https://www.louthcoco.ie/en/policy-and-redress/freedom-of-information/disclosure-logs/foi-disclosure-logs/,yes
 1147,Meath County Council,use_foi_page,,auto
 1148,Monaghan County Council,distinct_log,https://monaghan.ie/corporateservices/foi-disclosure-log-and-other-published-information/,auto
-1149,Offaly County Council,no_log_exists,,yes
+1149,Offaly County Council,distinct_log,https://www.offaly.ie/freedom-of-information-disclosure-log-publication/,yes
 1150,Roscommon County Council,no_log_exists,,auto
 1151,Sligo County Council,no_log_exists,,auto
 1152,South Dublin County Council,use_foi_page,,auto
-1153,Tipperary County Council,use_foi_page,,auto
+1153,Tipperary County Council,distinct_log,https://www.tipperarycoco.ie/governance-and-administration/freedom-information-disclosure-log-publication,yes
 1154,Waterford City and County Council,distinct_log,https://waterfordcouncil.ie/openness-transparency/freedom-of-information/foi-disclosure-logs/,auto
-1155,Westmeath County Council,distinct_log,http://www.westmeathcoco.ie/en/media/DisclosureLogTemplate2022.pdf,auto
-1156,Wexford County Council,distinct_log,https://www.wexfordcoco.ie/council-and-democracy/freedom-of-information-foi-and-data-protection/foi-responses,auto
-1157,Wicklow County Council,no_log_exists,,auto
+1155,Westmeath County Council,distinct_log,http://www.westmeathcoco.ie/en/ourservices/yourcouncil/datatransparencyfreedomofinformation/freedomofinformationfoiresponses/,yes
+1156,Wexford County Council,distinct_log,https://www.wexfordcoco.ie/council-and-democracy/freedom-of-information-foi-and-data-protection/disclosure-log-of-foi,yes
+1157,Wicklow County Council,distinct_log,https://www.wicklow.ie/Living/Your-Council/Governance/About-Freedom-of-Information,yes
