@@ -303,9 +303,9 @@ _DEFAULT_PDF_TABLE_SETTINGS = {
 
 
 def _extract_pdf(file_bytes, table_settings=None):
-    """Parse PDF bytes. Returns (sheet_name, rows, fallback_cells, has_multiple_tables)."""
+    """Parse PDF bytes. Returns (sheet_name, rows, fallback_cells, has_multiple_tables, merge_stats)."""
     import pdfplumber
-    rows = []
+    pages_rows = []
     total_tables = 0
     _ts = table_settings if table_settings is not None else _DEFAULT_PDF_TABLE_SETTINGS
     with pdfplumber.open(io.BytesIO(file_bytes)) as pdf:
@@ -313,14 +313,16 @@ def _extract_pdf(file_bytes, table_settings=None):
         for page in pdf.pages:
             tables = page.extract_tables(table_settings=_ts)
             total_tables += len(tables)
+            page_rows = []
             for table in tables:
                 for row in table:
-                    serialised_row = [serialise_cell(cell)[0] for cell in row]
-                    rows.append(serialised_row)
+                    page_rows.append([serialise_cell(cell)[0] for cell in row])
+            pages_rows.append(page_rows)
     if total_tables == 0:
         raise ValueError("no tables found")
+    rows, merge_stats = _merge_page_splits(pages_rows)
     sheet_name = "page 1" if n_pages == 1 else f"pages 1-{n_pages}"
-    return sheet_name, rows, [], total_tables > 1
+    return sheet_name, rows, [], total_tables > 1, merge_stats
 
 
 def _process_single_file(item, cache, step_dir):
@@ -364,7 +366,7 @@ def _process_single_file(item, cache, step_dir):
                     "context": {"file_url": file_url},
                 })
         else:  # pdf
-            sheet_name, rows, fallback_cells, has_multiple = _extract_pdf(file_bytes)
+            sheet_name, rows, fallback_cells, has_multiple, merge_stats = _extract_pdf(file_bytes)
             if has_multiple:
                 append_error(step_dir, {
                     "step": STEP_NAME,
@@ -383,7 +385,11 @@ def _process_single_file(item, cache, step_dir):
                 "context": {"file_url": file_url, "cells": fallback_cells},
             })
 
-        return [{**item, "sheet_name": sheet_name, "rows": rows}], True
+        if file_type == "pdf":
+            result_record = {**item, "sheet_name": sheet_name, "rows": rows, "pdf_merge_stats": merge_stats}
+        else:
+            result_record = {**item, "sheet_name": sheet_name, "rows": rows}
+        return [result_record], True
 
     except DownloadError:
         # Already logged by cache - don't re-log
