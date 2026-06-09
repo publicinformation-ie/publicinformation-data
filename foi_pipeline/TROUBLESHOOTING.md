@@ -84,7 +84,7 @@ camelot-py requires the `ghostscript` system package. If you see errors like
 
 ```bash
 brew install ghostscript   # macOS
-apt-get install ghostscript  # Debian/Ubuntu
+apt-get install ghostscript python3-tk  # Debian/Ubuntu
 ```
 
 The pipeline degrades gracefully if ghostscript is absent — `_extract_with_camelot_stream`
