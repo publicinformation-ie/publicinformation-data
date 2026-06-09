@@ -55,7 +55,8 @@ def _build_configs() -> list[dict]:
 def _score_bytes(file_bytes: bytes, table_settings: dict) -> dict:
     """Extract and score a single PDF. Returns flags dict. All flags True on extraction failure."""
     try:
-        _, rows, _, _ = _extract_pdf(file_bytes, table_settings=table_settings)
+        result = _extract_pdf(file_bytes, table_settings=table_settings)
+        rows = result[1]
     except Exception:
         return {"null_first_row": True, "null_column": True, "newline_split_row": True}
     return {

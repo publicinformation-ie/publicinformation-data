@@ -403,6 +403,7 @@ def _process_single_file(item, cache, step_dir):
         with open(cached_path, "rb") as f:
             file_bytes = f.read()
 
+        pdf_extractor = "pdfplumber"
         merge_stats = {}
         if file_type == "xlsx":
             sheet_name, rows, fallback_cells, has_multiple = _extract_xlsx(file_bytes)
