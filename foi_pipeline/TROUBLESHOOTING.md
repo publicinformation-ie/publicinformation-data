@@ -76,3 +76,16 @@ cd foi_pipeline && python process.py --force
 # Avoid: Direct step execution (triggers Vibe re-runs)
 cd foi_pipeline && python steps/export_status/process.py --force
 ```
+
+## camelot-py: ghostscript not found
+
+camelot-py requires the `ghostscript` system package. If you see errors like
+`ghostscript not installed` or `FileNotFoundError: gs`, install it:
+
+```bash
+brew install ghostscript   # macOS
+apt-get install ghostscript  # Debian/Ubuntu
+```
+
+The pipeline degrades gracefully if ghostscript is absent — `_extract_with_camelot_stream`
+returns `None` and pdfplumber output is used as-is.
