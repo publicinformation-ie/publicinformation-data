@@ -3,12 +3,12 @@
   "metrics": [
     {
       "name": "f1",
-      "value": 0.708,
+      "value": 0.667,
       "counts": {
         "TP": 40,
         "FP": 24,
-        "FN": 9,
-        "TN": 29
+        "FN": 16,
+        "TN": 22
       },
       "is_primary": true
     },
@@ -23,10 +23,10 @@
     },
     {
       "name": "recall",
-      "value": 0.816,
+      "value": 0.714,
       "counts": {
         "TP": 40,
-        "FN": 9
+        "FN": 16
       },
       "is_primary": false
     }
