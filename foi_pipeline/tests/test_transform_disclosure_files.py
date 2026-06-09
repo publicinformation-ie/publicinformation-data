@@ -11,6 +11,8 @@ from steps.transform_disclosure_files.process import (
     _extract_xlsx,
     _extract_xls,
     _extract_pdf,
+    _score_rows,
+    _extract_with_camelot_stream,
     process,
     STEP_NAME,
 )
@@ -315,6 +317,60 @@ def test_extract_pdf_custom_table_settings_accepted():
     settings = {"snap_y_tolerance": 6, "snap_tolerance": 6, "edge_min_length": 10}
     sheet_name, rows, fallback_cells, has_multiple, merge_stats = _extract_pdf(pdf_bytes, table_settings=settings)
     assert rows[0] == ["Ref", "Date"]
+
+
+# ── _score_rows ───────────────────────────────────────────────────────────────
+
+def test_score_rows_known_headers():
+    # "Our Ref" → foi_reference_id, "Date Received" → date_received, "Description" → request_description
+    rows = [["Our Ref", "Date Received", "Description"]]
+    assert _score_rows(rows) >= 2
+
+
+def test_score_rows_empty_returns_zero():
+    assert _score_rows([]) == 0
+
+
+def test_score_rows_all_none_header():
+    rows = [[None, None, None]]
+    assert _score_rows(rows) == 0
+
+
+def test_score_rows_one_known_column():
+    rows = [["Our Ref", "Blob1", "Blob2"]]
+    assert _score_rows(rows) == 1
+
+
+# ── _extract_with_camelot_stream ─────────────────────────────────────────────
+
+def test_extract_with_camelot_stream_returns_none_on_import_error():
+    import sys
+    import unittest.mock
+    with unittest.mock.patch.dict(sys.modules, {"camelot": None}):
+        result = _extract_with_camelot_stream(b"not a pdf")
+    assert result is None
+
+
+def test_extract_with_camelot_stream_returns_none_on_exception():
+    import unittest.mock
+    mock_camelot = unittest.mock.MagicMock()
+    mock_camelot.read_pdf.side_effect = Exception("camelot error")
+    with unittest.mock.patch.dict("sys.modules", {"camelot": mock_camelot}):
+        # Force reimport inside the function
+        result = _extract_with_camelot_stream(b"%PDF fake")
+    assert result is None
+
+
+def test_extract_with_camelot_stream_normalizes_empty_string_to_none():
+    import unittest.mock
+    import pandas as pd
+    mock_table = unittest.mock.MagicMock()
+    mock_table.df = pd.DataFrame([["val", ""], ["", "other"]])
+    mock_camelot = unittest.mock.MagicMock()
+    mock_camelot.read_pdf.return_value = [mock_table]
+    with unittest.mock.patch.dict("sys.modules", {"camelot": mock_camelot}):
+        result = _extract_with_camelot_stream(b"%PDF fake")
+    assert result == [["val", None], [None, "other"]]
 
 
 # ── process() fixtures ────────────────────────────────────────────────────────

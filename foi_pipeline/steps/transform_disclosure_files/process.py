@@ -302,6 +302,43 @@ _DEFAULT_PDF_TABLE_SETTINGS = {
 }
 
 
+def _score_rows(rows: list[list]) -> int:
+    """Return count of distinct non-None canonical columns mapped from the header row."""
+    from lib.table_utils import detect_header_row
+    from lib.column_map import canonicalize_headers
+    if not rows:
+        return 0
+    header_idx = detect_header_row(rows)
+    header = [str(c) if c is not None else "" for c in rows[header_idx]]
+    col_map = canonicalize_headers(header)
+    return len({v for v in col_map.values() if v is not None})
+
+
+def _extract_with_camelot_stream(file_bytes: bytes) -> list[list] | None:
+    """Try camelot stream extraction. Returns rows or None on any failure."""
+    try:
+        import camelot  # type: ignore[import-untyped]
+    except ImportError:
+        return None
+    tmp_fd, tmp_path = tempfile.mkstemp(suffix=".pdf")
+    try:
+        with os.fdopen(tmp_fd, "wb") as f:
+            f.write(file_bytes)
+        tables = camelot.read_pdf(tmp_path, flavor="stream", pages="all")
+        rows = []
+        for table in tables:
+            for _, row in table.df.iterrows():
+                rows.append([cell if cell != "" else None for cell in row.tolist()])
+        return rows if rows else None
+    except Exception:
+        return None
+    finally:
+        try:
+            os.unlink(tmp_path)
+        except OSError:
+            pass
+
+
 def _extract_pdf(file_bytes, table_settings=None):
     """Parse PDF bytes. Returns (sheet_name, rows, fallback_cells, has_multiple_tables, merge_stats)."""
     import pdfplumber
