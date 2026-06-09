@@ -5,27 +5,9 @@ from pathlib import Path
 
 from lib.cli_utils import add_common_args, filter_by_public_body
 from lib.file_utils import read_json, write_json, write_status, IncrementalWriter
-from lib.text_utils import normalize_cell
+from lib.table_utils import detect_header_row  # noqa: F401 — re-exported for callers
 
 STEP_NAME = "extract_disclosures_detect_header_row"
-
-
-def detect_header_row(rows, max_look_ahead=5):
-    """Return index of the first row with 2+ non-null, non-empty cells.
-    
-    Normalizes cells (especially PDF cells with newlines) before counting
-    to ensure consistent detection regardless of PDF extraction artefacts.
-    """
-    for idx, row in enumerate(rows[:max_look_ahead]):
-        # Normalize each cell for consistent counting
-        normalized_row = [
-            normalize_cell(v) if v else v
-            for v in row
-        ]
-        non_empty = [v for v in normalized_row if v is not None and v != ""]
-        if len(non_empty) >= 2:
-            return idx
-    return 0
 
 
 def process(input_data, step_dir, writer, verbose=False):

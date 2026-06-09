@@ -7,6 +7,11 @@ from steps.extract_disclosures_detect_header_row.process import (
 )
 
 
+def test_detect_header_row_importable_from_table_utils():
+    from lib.table_utils import detect_header_row
+    assert callable(detect_header_row)
+
+
 # ── detect_header_row unit tests ──────────────────────────────────────────────
 
 def test_first_row_is_header_when_two_non_null_cells():
