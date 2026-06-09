@@ -322,7 +322,12 @@ def _extract_with_camelot_stream(file_bytes: bytes) -> list[list] | None:
         return None
     tmp_fd, tmp_path = tempfile.mkstemp(suffix=".pdf")
     try:
-        with os.fdopen(tmp_fd, "wb") as f:
+        try:
+            f = os.fdopen(tmp_fd, "wb")
+        except Exception:
+            os.close(tmp_fd)
+            raise
+        with f:
             f.write(file_bytes)
         tables = camelot.read_pdf(tmp_path, flavor="stream", pages="all")
         rows = []
