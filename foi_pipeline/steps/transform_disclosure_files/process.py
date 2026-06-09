@@ -153,6 +153,84 @@ def serialise_cell(value):
     return str(value), True
 
 
+def _normalise_cell(cell):
+    """Normalise a cell for header fingerprint comparison."""
+    if cell is None:
+        return ""
+    return " ".join(str(cell).strip().split()).lower()
+
+
+def _merge_page_splits(
+    pages_rows: list[list[list]],
+    header_k: int = 6,
+    null_threshold: float = 0.5,
+) -> tuple[list[list], dict]:
+    """Merge rows split across page boundaries in a pdfplumber extraction.
+
+    Returns (flat_rows, stats) where stats contains page_split_merges
+    and header_rows_stripped counts.
+    """
+    if not pages_rows:
+        return [], {"page_split_merges": 0, "header_rows_stripped": 0}
+
+    page_split_merges = 0
+    header_rows_stripped = 0
+
+    # Build header fingerprint from first page (up to K rows)
+    page1 = pages_rows[0]
+    k = min(header_k, len(page1))
+    fingerprint = [tuple(_normalise_cell(c) for c in row) for row in page1[:k]]
+
+    accumulated = list(page1)
+
+    for page_rows in pages_rows[1:]:
+        remaining = list(page_rows)
+
+        # Strip rows from the top of this page that sequentially match the fingerprint
+        fp_idx = 0
+        while remaining and fp_idx < len(fingerprint):
+            candidate = tuple(_normalise_cell(c) for c in remaining[0])
+            if candidate == fingerprint[fp_idx]:
+                remaining.pop(0)
+                header_rows_stripped += 1
+                fp_idx += 1
+            else:
+                break
+
+        # Merge continuation row: first remaining row is a continuation if
+        # it has at least null_threshold fraction of None cells AND the previous
+        # row also has at least null_threshold fraction of None cells
+        if remaining and accumulated:
+            row = remaining[0]
+            last = accumulated[-1]
+            n_cells = len(row)
+            n_last_cells = len(last)
+            row_null_frac = sum(1 for c in row if c is None) / n_cells if n_cells > 0 else 0
+            last_null_frac = sum(1 for c in last if c is None) / n_last_cells if n_last_cells > 0 else 0
+            if row_null_frac >= null_threshold and last_null_frac >= null_threshold:
+                merged = []
+                for a, b in zip(last, row):
+                    if a is not None and b is not None:
+                        merged.append(f"{a} {b}")
+                    elif a is not None:
+                        merged.append(a)
+                    else:
+                        merged.append(b)
+                # Preserve any extra cells if row widths differ
+                if len(row) > len(last):
+                    merged.extend(row[len(last):])
+                accumulated[-1] = merged
+                remaining.pop(0)
+                page_split_merges += 1
+
+        accumulated.extend(remaining)
+
+    return accumulated, {
+        "page_split_merges": page_split_merges,
+        "header_rows_stripped": header_rows_stripped,
+    }
+
+
 def _extract_xlsx(file_bytes):
     """Parse XLSX bytes. Returns (sheet_name, rows, fallback_cells, has_multiple_sheets)."""
     import openpyxl
