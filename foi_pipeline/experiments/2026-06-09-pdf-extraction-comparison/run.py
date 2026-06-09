@@ -93,3 +93,46 @@ def score_extractor(ground_truth, extracted):
         "actual_rows": len(extracted),
         "exact_matches": exact_matches,
     }
+
+
+# ---------------------------------------------------------------------------
+# Extractors
+# ---------------------------------------------------------------------------
+
+def extract_with_pdfplumber(file_bytes):
+    """Extract rows using pdfplumber with pipeline's default settings."""
+    import pdfplumber
+    rows = []
+    with pdfplumber.open(io.BytesIO(file_bytes)) as pdf:
+        for page in pdf.pages:
+            for table in page.extract_tables(table_settings=_DEFAULT_PDF_TABLE_SETTINGS):
+                for row in table:
+                    rows.append([serialise_cell(cell)[0] for cell in row])
+    return rows
+
+
+def extract_with_camelot(file_bytes, flavor):
+    """Extract rows using camelot. Returns None if camelot is unavailable or fails."""
+    try:
+        import camelot
+    except ImportError:
+        print(f"WARNING: camelot not installed (brew install ghostscript && uv add camelot-py[cv])",
+              file=sys.stderr)
+        return None
+
+    with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as f:
+        f.write(file_bytes)
+        tmp_path = f.name
+
+    try:
+        tables = camelot.read_pdf(tmp_path, flavor=flavor, pages="all")
+        rows = []
+        for table in tables:
+            for _, row in table.df.iterrows():
+                rows.append([cell if cell != "" else None for cell in row.tolist()])
+        return rows
+    except Exception as e:
+        print(f"WARNING: camelot {flavor} failed: {e}", file=sys.stderr)
+        return None
+    finally:
+        os.unlink(tmp_path)
