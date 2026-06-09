@@ -163,7 +163,7 @@ def _normalise_cell(cell):
 def _merge_page_splits(
     pages_rows: list[list[list]],
     header_k: int = 6,
-    null_threshold: float = 0.4,
+    null_threshold: float = 0.5,
 ) -> tuple[list[list], dict]:
     """Merge rows split across page boundaries in a pdfplumber extraction.
 
@@ -197,17 +197,16 @@ def _merge_page_splits(
             else:
                 break
 
-        # Merge continuation row: first remaining row is a continuation if
-        # it has more than null_threshold fraction of None cells AND the previous
-        # row also has more than null_threshold fraction of None cells
+        # Merge continuation row: both the continuation row and the preceding row
+        # must meet null_threshold — the preceding row being partial confirms a split
         if remaining and accumulated:
             row = remaining[0]
             last = accumulated[-1]
             n_cells = len(row)
-            n_last_cells = len(last)
-            row_null_frac = sum(1 for c in row if c is None) / n_cells if n_cells > 0 else 0
-            last_null_frac = sum(1 for c in last if c is None) / n_last_cells if n_last_cells > 0 else 0
-            if row_null_frac > null_threshold and last_null_frac > null_threshold:
+            n_last = len(last)
+            row_null = sum(1 for c in row if c is None) / n_cells if n_cells > 0 else 0
+            last_null = sum(1 for c in last if c is None) / n_last if n_last > 0 else 0
+            if row_null >= null_threshold and last_null >= null_threshold:
                 merged = []
                 for a, b in zip(last, row):
                     if a is not None and b is not None:
