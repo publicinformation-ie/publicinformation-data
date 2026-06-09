@@ -76,7 +76,13 @@ def _score_link(url, link_text):
     if any(domain == d or domain.endswith('.' + d) for d in _NON_IRISH_DOMAINS):
         return -1000
 
-    # Tier 2 — Link text signals (added in Task 2)
+    # Tier 2 — Link text signals
+    text_lower = link_text.lower().strip()
+    if text_lower not in _GENERIC_LINK_TEXTS:
+        if any(pos in text_lower for pos in _POSITIVE_LINK_TEXTS):
+            return 1
+        if any(neg in text_lower for neg in _NEGATIVE_LINK_TEXTS):
+            return -1000
 
     # Tier 3 — URL keyword scoring
     has_positive = any(k in url_lower for k in _FOI_KEYWORDS)

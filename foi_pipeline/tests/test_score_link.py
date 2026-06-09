@@ -44,3 +44,73 @@ class TestTier1HardRejects:
         # We verify only that it doesn't raise and returns a valid score
         result = _score_link("https://dept.ie/registration-form.pdf", "")
         assert result in (1, -1000)
+
+
+class TestTier2LinkText:
+    def test_positive_link_text_accepts_opaque_url(self):
+        # No FOI signal in URL — positive link text must override and accept
+        result = _score_link(
+            "https://assets.cpsa.ie/media/266670/e482e8d6-44ae-4359-9a93-31dfd6498fb4.pdf",
+            "Disclosure Log",
+        )
+        assert result > 0
+
+    def test_positive_link_text_case_insensitive(self):
+        assert _score_link("https://assets.example.ie/file.pdf", "FOI Log 2024") > 0
+
+    def test_positive_link_text_foi_disclosure(self):
+        assert _score_link("https://assets.example.ie/abc123.pdf", "FOI Disclosure") > 0
+
+    def test_positive_link_text_published_requests(self):
+        assert _score_link("https://assets.example.ie/abc123.pdf", "Published Requests") > 0
+
+    def test_negative_link_text_election_results(self):
+        assert _score_link(
+            "https://www.corkcity.ie/media/rp1n0cju/results-north-west.pdf",
+            "Election Results North-West 2024",
+        ) < 0
+
+    def test_negative_link_text_visitor_numbers(self):
+        assert _score_link(
+            "https://assets.gov.ie/static/documents/beded0fc/Q1.pdf",
+            "Visitor Numbers Q1",
+        ) < 0
+
+    def test_negative_link_text_financial_stability(self):
+        assert _score_link(
+            "https://www.centralbank.ie/docs/fsr.pdf",
+            "Financial Stability Review 2022",
+        ) < 0
+
+    def test_negative_link_text_economic_letter(self):
+        assert _score_link(
+            "https://www.centralbank.ie/docs/letter.pdf",
+            "Economic Letter Vol 2017 No 1",
+        ) < 0
+
+    def test_negative_link_text_quarterly_bulletin(self):
+        assert _score_link("https://www.centralbank.ie/docs/qb.pdf", "Quarterly Bulletin") < 0
+
+    def test_negative_link_text_heritage_services(self):
+        assert _score_link("https://assets.gov.ie/static/heritage.pdf", "Heritage Services Visitor Numbers") < 0
+
+    def test_negative_link_text_emergency_number(self):
+        assert _score_link("http://docstore.kerrycoco.ie/KCCWebsite/emergencynumbersnew.pdf", "Emergency Numbers") < 0
+
+    def test_generic_link_text_falls_through_to_url_accept(self):
+        # Generic text → Tier 3 fires; FOI keyword in URL → accepted
+        assert _score_link("https://dept.ie/foi-log.pdf", "Download") > 0
+
+    def test_generic_link_text_falls_through_to_url_reject(self):
+        # Generic text → Tier 3 fires; negative URL keyword with no FOI keyword → rejected
+        assert _score_link("https://dept.ie/policy.pdf", "Download") < 0
+
+    def test_empty_link_text_falls_through_to_url(self):
+        assert _score_link("https://dept.ie/foi-log.pdf", "") > 0
+
+    def test_tier1_still_fires_with_positive_link_text(self):
+        # Tier 1 fires unconditionally — positive link text must NOT override it
+        assert _score_link(
+            "https://www.irishstatutebook.ie/pdf/2007/en.si.2007.0133.pdf",
+            "Disclosure Log",
+        ) < 0
