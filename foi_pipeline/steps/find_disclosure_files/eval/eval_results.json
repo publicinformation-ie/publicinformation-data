@@ -3,58 +3,58 @@
   "metrics": [
     {
       "name": "precision",
-      "value": 0.957,
+      "value": 0.985,
       "counts": {
-        "foi": 799,
-        "judged": 835
+        "foi": 954,
+        "judged": 969
       },
       "is_primary": true
     },
     {
       "name": "unverified_coverage",
-      "value": 205,
+      "value": 113,
       "counts": {
-        "unverified": 205,
-        "total": 1040
+        "unverified": 113,
+        "total": 1082
       },
       "is_primary": false
     },
     {
       "name": "mock_judgments",
-      "value": 20,
+      "value": 7,
       "counts": {
-        "mock": 20,
-        "total": 1040
+        "mock": 7,
+        "total": 1082
       },
       "is_primary": false
     },
     {
       "name": "duplicate_file_url_count",
-      "value": 14,
+      "value": 11,
       "counts": {
-        "distinct_duplicate_urls": 14
+        "distinct_duplicate_urls": 11
       },
       "is_primary": false
     },
     {
       "name": "duplicate_file_url_extra_records",
-      "value": 16,
+      "value": 11,
       "counts": {
-        "extra_records": 16,
-        "total": 1040
+        "extra_records": 11,
+        "total": 1082
       },
       "is_primary": false
     },
     {
       "name": "duplicate_file_url_rate",
-      "value": 0.015384615384615385,
+      "value": 0.010166358595194085,
       "counts": {
-        "extra_records": 16,
-        "total": 1040
+        "extra_records": 11,
+        "total": 1082
       },
       "is_primary": false
     }
   ],
-  "input_hash": "daa0ec72d1fa2d3e4727982bed4aecda15308a557e4d907d2696ea4719ea1aba",
+  "input_hash": "7ce13991becd8f468702dcce6f4daed408d29e935a428a29d61adca928d32634",
   "judge_model": "anthropic:claude-haiku-4-5-20251001"
 }
