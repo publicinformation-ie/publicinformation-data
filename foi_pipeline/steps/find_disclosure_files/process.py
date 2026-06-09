@@ -150,6 +150,7 @@ def _fetch_one(item):
                 "disclosure_page_url": url,
                 "file_url": url,
                 "file_type": FILE_EXTENSIONS[ext],
+                "link_text": "",
             }], None
         response = fetch("GET", url, allow_redirects=True)
         items = [

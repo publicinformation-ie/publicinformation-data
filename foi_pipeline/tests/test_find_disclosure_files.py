@@ -85,7 +85,7 @@ def test_output_has_required_fields(requests_mock, tmp_path, make_writer):
     requests_mock.get("https://dept-b.ie/foi/disclosure/", text=HTML_NO_FILES)
     process(INPUT, tmp_path, writer)
     r = writer.results[0]
-    assert {"public_body_id", "disclosure_page_url", "file_url", "file_type"} <= r.keys()
+    assert {"public_body_id", "disclosure_page_url", "file_url", "file_type", "link_text"} <= r.keys()
 
 
 def test_connection_error_logs_and_skips(requests_mock, tmp_path, make_writer):
@@ -155,6 +155,7 @@ def test_direct_pdf_url_emitted_without_http_request(requests_mock, tmp_path, ma
     assert results[0]["file_url"] == "https://body-a.ie/files/foi-disclosure-log-2025.pdf"
     assert results[0]["file_type"] == "pdf"
     assert results[0]["disclosure_page_url"] == "https://body-a.ie/files/foi-disclosure-log-2025.pdf"
+    assert results[0]["link_text"] == ""
     fetched = [r.url for r in requests_mock.request_history]
     assert not any("body-a.ie" in u for u in fetched), "direct file URL must not be fetched as HTML"
 
@@ -166,6 +167,7 @@ def test_direct_xlsx_url_emitted_without_http_request(requests_mock, tmp_path, m
     results = [r for r in writer.results if r["public_body_id"] == 2002]
     assert len(results) == 1
     assert results[0]["file_type"] == "xlsx"
+    assert results[0]["link_text"] == ""
     fetched = [r.url for r in requests_mock.request_history]
     assert not any("body-b.ie" in u for u in fetched), "direct file URL must not be fetched as HTML"
 
