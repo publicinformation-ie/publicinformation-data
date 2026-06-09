@@ -262,6 +262,76 @@ def print_table(summary):
 
 
 # ---------------------------------------------------------------------------
+# Corpus-wide proxy scoring
+# ---------------------------------------------------------------------------
+
+def _count_null_heavy(rows):
+    """Count rows where >50% of cells are None."""
+    count = 0
+    for row in rows:
+        if not row:
+            continue
+        null_fraction = sum(1 for c in row if c is None) / len(row)
+        if null_fraction > 0.5:
+            count += 1
+    return count
+
+
+def _run_all_pdfs(flavor):
+    """Proxy comparison: run camelot on all 1035 cached PDFs, report null-heavy reduction."""
+    print(f"Loading transform output…")
+    output_data = json.loads(_OUTPUT_JSON.read_text()).get("results", [])
+    pdfs = [r for r in output_data if r.get("file_type") == "pdf"]
+
+    null_heavy_baseline = 0
+    null_heavy_challenger = 0
+    total = 0
+    skipped_cache = 0
+    challenger_failures = 0
+
+    for item in pdfs:
+        key = hashlib.sha256(item["file_url"].encode()).hexdigest()
+        cache_path = _CACHE_DIR / f"{key}.bytes"
+        if not cache_path.exists():
+            skipped_cache += 1
+            continue
+
+        file_bytes = cache_path.read_bytes()
+        baseline = extract_with_pdfplumber(file_bytes)
+        challenger = extract_with_camelot(file_bytes, flavor)
+
+        total += 1
+        null_heavy_baseline += _count_null_heavy(baseline)
+        if challenger is None:
+            challenger_failures += 1
+            null_heavy_challenger += _count_null_heavy(baseline)
+        else:
+            null_heavy_challenger += _count_null_heavy(challenger)
+
+        if total % 50 == 0:
+            print(f"  {total}/{len(pdfs) - skipped_cache} files processed…")
+
+    reduction = null_heavy_baseline - null_heavy_challenger
+    proxy = {
+        "flavor": flavor,
+        "total_pdfs": total,
+        "skipped_no_cache": skipped_cache,
+        "challenger_failures": challenger_failures,
+        "null_heavy_rows_pdfplumber": null_heavy_baseline,
+        f"null_heavy_rows_camelot_{flavor}": null_heavy_challenger,
+        "null_heavy_reduction": reduction,
+        "reduction_pct": round(100 * reduction / null_heavy_baseline, 1) if null_heavy_baseline else 0,
+    }
+
+    proxy_path = _HERE / f"proxy_results_{flavor}.json"
+    proxy_path.write_text(json.dumps(proxy, indent=2))
+    print(f"\nWrote {proxy_path}")
+    print(f"Null-heavy rows: pdfplumber={null_heavy_baseline}, "
+          f"camelot-{flavor}={null_heavy_challenger}, "
+          f"reduction={reduction} ({proxy['reduction_pct']}%)")
+
+
+# ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
 
