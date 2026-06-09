@@ -114,7 +114,7 @@ def extract_with_pdfplumber(file_bytes):
 def extract_with_camelot(file_bytes, flavor):
     """Extract rows using camelot. Returns None if camelot is unavailable or fails."""
     try:
-        import camelot
+        import camelot  # type: ignore[import-untyped]
     except ImportError:
         print(f"WARNING: camelot not installed (brew install ghostscript && uv add camelot-py[cv])",
               file=sys.stderr)
@@ -136,3 +136,185 @@ def extract_with_camelot(file_bytes, flavor):
         return None
     finally:
         os.unlink(tmp_path)
+
+
+# ---------------------------------------------------------------------------
+# Comparison loop
+# ---------------------------------------------------------------------------
+
+_EXTRACTORS = [
+    ("pdfplumber", lambda b: extract_with_pdfplumber(b)),
+    ("camelot_lattice", lambda b: extract_with_camelot(b, "lattice")),
+    ("camelot_stream", lambda b: extract_with_camelot(b, "stream")),
+]
+
+
+def _cache_bytes(file_url):
+    """Return bytes from cache, or None if not cached."""
+    key = hashlib.sha256(file_url.encode()).hexdigest()
+    path = _CACHE_DIR / f"{key}.bytes"
+    return path.read_bytes() if path.exists() else None
+
+
+def run_comparison(labels_path):
+    """Load labels.jsonl, run all extractors, return per_file results list."""
+    labels = [
+        json.loads(line)
+        for line in labels_path.read_text().splitlines()
+        if line.strip()
+    ]
+
+    per_file = []
+    for item in labels:
+        file_url = item["file_url"]
+        file_bytes = _cache_bytes(file_url)
+        if file_bytes is None:
+            print(f"WARNING: cache miss — skipping {file_url}", file=sys.stderr)
+            continue
+
+        baseline_rows = extract_with_pdfplumber(file_bytes)
+        ground_truth = apply_merge_groups(baseline_rows, item.get("merge_groups", []))
+
+        record = {
+            "file_url": file_url,
+            "public_body_id": item["public_body_id"],
+            "tier": item["tier"],
+            "ground_truth_rows": len(ground_truth),
+        }
+
+        for name, extractor_fn in _EXTRACTORS:
+            extracted = extractor_fn(file_bytes)
+            record[name] = (
+                {"error": "extraction_failed"}
+                if extracted is None
+                else score_extractor(ground_truth, extracted)
+            )
+
+        per_file.append(record)
+        print(f"  [{item['tier']}] {file_url[-60:]}: gt={len(ground_truth)}")
+
+    return per_file
+
+
+def aggregate_results(per_file):
+    """Aggregate per-file scores into a summary dict keyed by extractor name."""
+    extractor_names = [name for name, _ in _EXTRACTORS]
+    summary = {
+        ext: {
+            "row_count_match": 0, "exact_row_match": 0, "total": 0,
+            "tier_1": {"row_count_match": 0, "exact_row_match": 0, "total": 0},
+            "tier_2": {"row_count_match": 0, "exact_row_match": 0, "total": 0},
+            "tier_3": {"row_count_match": 0, "exact_row_match": 0, "total": 0},
+        }
+        for ext in extractor_names
+    }
+
+    for r in per_file:
+        tier_key = f"tier_{r['tier']}"
+        for ext in extractor_names:
+            data = r.get(ext, {})
+            if "error" in data:
+                continue
+            summary[ext]["total"] += 1
+            summary[ext][tier_key]["total"] += 1
+            if data.get("row_count_match"):
+                summary[ext]["row_count_match"] += 1
+                summary[ext][tier_key]["row_count_match"] += 1
+            if data.get("exact_row_match"):
+                summary[ext]["exact_row_match"] += 1
+                summary[ext][tier_key]["exact_row_match"] += 1
+
+    return summary
+
+
+def print_table(summary):
+    """Print a formatted comparison table to stdout."""
+    cols = ["pdfplumber", "camelot_lattice", "camelot_stream"]
+    headers = ["pdfplumber", "camelot-lattice", "camelot-stream"]
+
+    def fmt(val, total):
+        return f"{val}/{total}"
+
+    rows = [
+        ("Row count match (all 30)", [
+            fmt(summary[c]["row_count_match"], summary[c]["total"]) for c in cols
+        ]),
+        ("Exact row match (all 30)", [
+            fmt(summary[c]["exact_row_match"], summary[c]["total"]) for c in cols
+        ]),
+        ("Tier 1 — row count match", [
+            fmt(summary[c]["tier_1"]["row_count_match"], summary[c]["tier_1"]["total"]) for c in cols
+        ]),
+        ("Tier 2 — row count match", [
+            fmt(summary[c]["tier_2"]["row_count_match"], summary[c]["tier_2"]["total"]) for c in cols
+        ]),
+        ("Tier 3 — row count match", [
+            fmt(summary[c]["tier_3"]["row_count_match"], summary[c]["tier_3"]["total"]) for c in cols
+        ]),
+    ]
+
+    col_w = 18
+    print(f"\n{'Metric':<38}" + "".join(h.rjust(col_w) for h in headers))
+    print("-" * (38 + col_w * 3))
+    for label, vals in rows:
+        print(f"{label:<38}" + "".join(v.rjust(col_w) for v in vals))
+    print()
+
+
+# ---------------------------------------------------------------------------
+# Entry point
+# ---------------------------------------------------------------------------
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Compare pdfplumber vs camelot on labeled PDF ground truth"
+    )
+    parser.add_argument(
+        "--all-pdfs",
+        metavar="FLAVOR",
+        choices=["lattice", "stream"],
+        help="Run proxy comparison on all 1035 PDFs (lattice or stream)",
+    )
+    args = parser.parse_args()
+
+    if args.all_pdfs:
+        _run_all_pdfs(args.all_pdfs)
+        return
+
+    if not _LABELS_PATH.exists():
+        print(
+            f"ERROR: {_LABELS_PATH} not found.\n"
+            "Run sample.py first, fill in merge_groups, then copy to labels.jsonl.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    print("Running comparison…")
+    per_file = run_comparison(_LABELS_PATH)
+    summary = aggregate_results(per_file)
+
+    results = {"per_file": per_file, "summary": summary}
+    _RESULTS_PATH.write_text(json.dumps(results, indent=2))
+    print(f"\nWrote {_RESULTS_PATH}")
+
+    print_table(summary)
+
+    # Decision guidance
+    lattice_delta = (
+        summary["camelot_lattice"]["row_count_match"]
+        - summary["pdfplumber"]["row_count_match"]
+    )
+    tier3_pdfplumber = summary["pdfplumber"]["tier_3"]["row_count_match"]
+    tier3_lattice = summary["camelot_lattice"]["tier_3"]["row_count_match"]
+
+    print("Decision guidance:")
+    if lattice_delta >= 5 and tier3_lattice >= tier3_pdfplumber:
+        print(f"  ADOPT camelot-lattice (delta={lattice_delta:+d}, tier3 no regression)")
+    elif lattice_delta >= 5:
+        print(f"  MIXED: lattice wins overall (+{lattice_delta}) but regresses on tier 3 — use hybrid detection")
+    else:
+        print(f"  INCONCLUSIVE: delta={lattice_delta:+d} < 5 — implement downstream reassembly instead")
+
+
+if __name__ == "__main__":
+    main()
