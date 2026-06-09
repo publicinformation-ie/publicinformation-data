@@ -2,6 +2,8 @@ from steps.transform_disclosure_files.eval.evaluate import (
     has_null_first_row,
     has_null_column,
     has_newline_split_row,
+    run_eval,
+    build_quality_by_body,
 )
 
 
@@ -70,12 +72,6 @@ def test_newline_split_all_null_no_trigger():
 def test_newline_split_in_later_row():
     rows = [["h1", "h2", "h3"], ["a", "b", "c"], ["desc", None, None]]
     assert has_newline_split_row(rows) is True
-
-
-from steps.transform_disclosure_files.eval.evaluate import (
-    run_eval,
-    build_quality_by_body,
-)
 
 
 def _item(file_url, public_body_id, name, rows, file_type="pdf"):
@@ -204,6 +200,7 @@ import pytest
 from steps.transform_disclosure_files.eval.evaluate import (
     _load_process_warning_urls,
     main,
+    _load_camelot_fallback_urls,
 )
 
 
@@ -265,3 +262,69 @@ def test_main_refresh_fixture(tmp_path, monkeypatch, capsys):
     code = main()
     assert code == 0
     assert fixture_dest.read_text() == live_output.read_text()
+
+
+# ── camelot_fallback_rate ─────────────────────────────────────────────────────
+
+def test_camelot_fallback_rate_zero_when_no_errors():
+    items = [
+        {"file_url": "http://a.com/1.pdf", "public_body_id": 1, "rows": [["Our Ref", "Date"], ["1", "2"]]}
+    ]
+    results, issues, _ = run_eval(items, set(), "hash", camelot_fallback_urls=set())
+    metric = {m.name: m for m in results.metrics}
+    assert metric["camelot_fallback_rate"].value == 0.0
+
+
+def test_camelot_fallback_rate_counts_attempted():
+    items = [
+        {"file_url": "http://a.com/1.pdf", "public_body_id": 1, "rows": [["Our Ref", "Date"], ["1", "2"]]},
+        {"file_url": "http://a.com/2.pdf", "public_body_id": 1, "rows": [["Our Ref", "Date"], ["1", "2"]]},
+    ]
+    # One of the two PDFs had a fallback attempt
+    results, issues, _ = run_eval(items, set(), "hash", camelot_fallback_urls={"http://a.com/1.pdf"})
+    metric = {m.name: m for m in results.metrics}
+    assert metric["camelot_fallback_rate"].value == 0.5
+
+
+# ── camelot_win_rate ──────────────────────────────────────────────────────────
+
+def test_camelot_win_rate_zero_when_all_pdfplumber():
+    items = [
+        {"file_url": "http://a.com/1.pdf", "public_body_id": 1, "rows": [["R", "D"], ["1", "2"]], "pdf_extractor": "pdfplumber"},
+    ]
+    results, _, _ = run_eval(items, set(), "hash", camelot_fallback_urls=set())
+    metric = {m.name: m for m in results.metrics}
+    assert metric["camelot_win_rate"].value == 0.0
+
+
+def test_camelot_win_rate_counts_camelot_stream():
+    items = [
+        {"file_url": "http://a.com/1.pdf", "public_body_id": 1, "rows": [["R", "D"], ["1", "2"]], "pdf_extractor": "camelot_stream"},
+        {"file_url": "http://a.com/2.pdf", "public_body_id": 1, "rows": [["R", "D"], ["1", "2"]], "pdf_extractor": "pdfplumber"},
+    ]
+    results, _, _ = run_eval(items, set(), "hash", camelot_fallback_urls=set())
+    metric = {m.name: m for m in results.metrics}
+    assert metric["camelot_win_rate"].value == 0.5
+
+
+# ── flagged_samples pdf_extractor field ──────────────────────────────────────
+
+def test_flagged_samples_include_pdf_extractor():
+    items = [
+        {"file_url": "http://a.com/1.pdf", "public_body_id": 1,
+         "rows": [[None, "Date", "Desc"], ["1", "2024-01-01", "req"]],
+         "pdf_extractor": "camelot_stream"},
+    ]
+    quality = build_quality_by_body(items, set())
+    sample = quality[1]["flagged_samples"][0]
+    assert sample["pdf_extractor"] == "camelot_stream"
+
+
+def test_flagged_samples_pdf_extractor_defaults_to_pdfplumber():
+    items = [
+        {"file_url": "http://a.com/1.pdf", "public_body_id": 1,
+         "rows": [[None, "Date", "Desc"], ["1", "2024-01-01", "req"]]},
+    ]
+    quality = build_quality_by_body(items, set())
+    sample = quality[1]["flagged_samples"][0]
+    assert sample["pdf_extractor"] == "pdfplumber"

@@ -102,18 +102,24 @@ def build_quality_by_body(items, process_warning_urls):
             "total_rows": len(rows),
             "flagged_rows": _flagged_row_count(rows) if flags["newline_split_row"] else 1,
             "has_process_warning": item["file_url"] in process_warning_urls,
+            "pdf_extractor": item.get("pdf_extractor", "pdfplumber"),
             "first_rows": rows[:3],
         })
     return by_body
 
 
-def run_eval(items, process_warning_urls, input_hash):
+def run_eval(items, process_warning_urls, input_hash, camelot_fallback_urls=None):
+    if camelot_fallback_urls is None:
+        camelot_fallback_urls = set()
+
     if not items:
         metrics = [
             eval_utils.Metric("clean_extraction_rate", 0.0, {"clean": 0, "total": 0}, is_primary=True),
             eval_utils.Metric("null_first_row_rate", 0.0, {"flagged": 0, "total": 0}),
             eval_utils.Metric("null_column_rate", 0.0, {"flagged": 0, "total": 0}),
             eval_utils.Metric("newline_split_row_rate", 0.0, {"flagged": 0, "total": 0}),
+            eval_utils.Metric("camelot_fallback_rate", 0.0, {"attempted": 0, "total": 0}),
+            eval_utils.Metric("camelot_win_rate", 0.0, {"wins": 0, "total": 0}),
         ]
         results = eval_utils.EvalResults(step=STEP, metrics=metrics, input_hash=input_hash, judge_model=None)
         return results, [], {}
@@ -133,6 +139,9 @@ def run_eval(items, process_warning_urls, input_hash):
             newline_split_ids.append(item["file_url"])
 
     total = len(items)
+    camelot_fallback_count = sum(1 for item in items if item["file_url"] in camelot_fallback_urls)
+    camelot_win_count = sum(1 for item in items if item.get("pdf_extractor") == "camelot_stream")
+
     metrics = [
         eval_utils.Metric("clean_extraction_rate", round(clean / total, 3),
                           {"clean": clean, "total": total}, is_primary=True),
@@ -142,6 +151,10 @@ def run_eval(items, process_warning_urls, input_hash):
                           {"flagged": len(null_col_ids), "total": total}),
         eval_utils.Metric("newline_split_row_rate", round(len(newline_split_ids) / total, 3),
                           {"flagged": len(newline_split_ids), "total": total}),
+        eval_utils.Metric("camelot_fallback_rate", round(camelot_fallback_count / total, 3),
+                          {"attempted": camelot_fallback_count, "total": total}),
+        eval_utils.Metric("camelot_win_rate", round(camelot_win_count / total, 3),
+                          {"wins": camelot_win_count, "total": total}),
     ]
 
     issues = []
@@ -178,6 +191,18 @@ def _load_process_warning_urls(errors_path):
     }
 
 
+def _load_camelot_fallback_urls(errors_path):
+    if not errors_path.exists():
+        return set()
+    errors = json.loads(errors_path.read_text())
+    return {
+        e["context"]["file_url"]
+        for e in errors
+        if e.get("error_type") == "CamelotFallbackAttempted"
+        and "file_url" in e.get("context", {})
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Evaluate transform_disclosure_files PDF extraction quality"
@@ -200,9 +225,11 @@ def main():
         if r.get("file_type") == "pdf" and r.get("rows") is not None
     ]
     process_warning_urls = _load_process_warning_urls(Path(args.errors_path))
+    camelot_fallback_urls = _load_camelot_fallback_urls(Path(args.errors_path))
 
     results, issues, quality_by_body = run_eval(
-        items, process_warning_urls, eval_utils.input_hash(Path(args.input_path))
+        items, process_warning_urls, eval_utils.input_hash(Path(args.input_path)),
+        camelot_fallback_urls=camelot_fallback_urls,
     )
 
     eval_utils.write_eval_outputs(_HERE, results, issues)
