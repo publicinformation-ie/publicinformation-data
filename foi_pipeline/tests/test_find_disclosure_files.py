@@ -109,6 +109,27 @@ def test_duplicate_file_urls_deduplicated(requests_mock, tmp_path, make_writer):
     assert len(results) == 1
 
 
+def test_find_file_links_returns_link_text():
+    html = '<html><body><a href="/disclosures/foi-log-2024.pdf">FOI Disclosure Log 2024</a></body></html>'
+    files = find_file_links(html, "https://dept.ie/foi/")
+    assert len(files) == 1
+    assert files[0]["link_text"] == "FOI Disclosure Log 2024"
+
+
+def test_find_file_links_negative_link_text_rejected():
+    html = '<html><body><a href="/disclosures/q1.pdf">Election Results 2024</a></body></html>'
+    files = find_file_links(html, "https://dept.ie/foi/")
+    assert len(files) == 0
+
+
+def test_find_file_links_positive_link_text_accepts_opaque_url():
+    # No FOI keyword in the path — link text alone should accept
+    html = '<html><body><a href="/media/e482e8d6-44ae-4359-hash.pdf">Disclosure Log</a></body></html>'
+    files = find_file_links(html, "https://assets.cpsa.ie/")
+    assert len(files) == 1
+    assert files[0]["link_text"] == "Disclosure Log"
+
+
 INPUT_DIRECT_FILE = {
     "metadata": {"step": "find_disclosure_pages", "completed_at": "2026-05-04T00:00:00+00:00"},
     "results": [

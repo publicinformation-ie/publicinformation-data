@@ -108,7 +108,7 @@ def find_file_links(html, base_url, follow_year_pages=True):
             continue
 
         link_text = link.get_text(strip=True)
-        if _score_link(full_url, "") < 0:
+        if _score_link(full_url, link_text) < 0:
             continue
 
         ext = Path(urlparse(href).path).suffix.lower()
@@ -116,7 +116,7 @@ def find_file_links(html, base_url, follow_year_pages=True):
         if ext in FILE_EXTENSIONS:
             if full_url not in seen_urls:
                 seen_urls.add(full_url)
-                files.append({"file_url": full_url, "file_type": FILE_EXTENSIONS[ext]})
+                files.append({"file_url": full_url, "file_type": FILE_EXTENSIONS[ext], "link_text": link_text})
         elif follow_year_pages and YEAR_PATTERN.search(link_text):
             if full_url not in seen_urls:
                 seen_urls.add(full_url)
