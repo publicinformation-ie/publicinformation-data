@@ -37,40 +37,59 @@ _NEGATIVE_KEYWORDS = [
     'economic-letter',
 ]
 
+_NON_IRISH_DOMAINS = {"cookcountystatesattorney.org"}
+_GENERIC_LINK_TEXTS = {"download", "pdf", "here", "click here", "view", "open", ""}
+_POSITIVE_LINK_TEXTS = [
+    "disclosure log", "foi log", "foi disclosure", "foi record",
+    "disclosure record", "published requests", "foi request log",
+]
+_NEGATIVE_LINK_TEXTS = [
+    "election result", "visitor number", "financial stability",
+    "economic letter", "quarterly bulletin", "heritage services", "emergency number",
+]
 
-def _url_score(url):
-    """Score a URL for whether it's likely an FOI disclosure log.
 
-    Returns 1 (accept) or -1000 (reject). Negative keywords are matched
-    against the URL path only — not the domain — so bodies whose domain
-    contains a negative word (e.g. audit.gov.ie) are not incorrectly
-    filtered.
-    
-    Protected Disclosures (whistleblowing) is a different legal framework
-    from FOI and must be explicitly filtered even though it contains
-    the word "disclosure".
+def _score_link(url, link_text):
+    """Score a URL + anchor text for whether it's likely an FOI disclosure file.
+
+    Returns 1 (accept) or -1000 (reject). Three tiers:
+      Tier 1 — hard URL rejects (fire unconditionally)
+      Tier 2 — anchor text signals (accept or reject; fires when text is non-generic)
+      Tier 3 — URL keyword scoring (fallback when tiers 1-2 are silent)
     """
     url_lower = str(url).lower()
     url_path = urlparse(url_lower).path
+    filename = Path(url_path).name
 
-    # Always reject regardless of positive keywords
-    # - Protected Disclosures: whistleblowing, a different legal framework from FOI
-    # - irishstatutebook.ie: legislation publisher, never an FOI disclosure log
-    # - application forms: FOI request forms share positive keywords but are not logs
+    # Tier 1 — Hard URL rejects
     if 'protected' in url_lower and 'disclosure' in url_lower:
         return -1000
     if 'irishstatutebook' in url_lower:
         return -1000
     if 'application-form' in url_lower or 'application_form' in url_lower:
         return -1000
+    if ('-form' in filename or '_form' in filename) and any(k in url_lower for k in _FOI_KEYWORDS):
+        return -1000
+    if filename in ('foi-request.pdf', 'foi-application.pdf'):
+        return -1000
+    domain = urlparse(url_lower).netloc
+    if any(domain == d or domain.endswith('.' + d) for d in _NON_IRISH_DOMAINS):
+        return -1000
 
+    # Tier 2 — Link text signals
+    text_lower = link_text.lower().strip()
+    if text_lower not in _GENERIC_LINK_TEXTS:
+        if any(pos in text_lower for pos in _POSITIVE_LINK_TEXTS):
+            return 1
+        if any(neg in text_lower for neg in _NEGATIVE_LINK_TEXTS):
+            return -1000
+
+    # Tier 3 — URL keyword scoring
     has_positive = any(k in url_lower for k in _FOI_KEYWORDS)
-
     if not has_positive:
         for k in _NEGATIVE_KEYWORDS:
             if k in url_path:
                 return -1000
-
     return 1
 
 
@@ -88,16 +107,16 @@ def find_file_links(html, base_url, follow_year_pages=True):
         if not is_safe_url(full_url):
             continue
 
-        if _url_score(full_url) < 0:
+        link_text = link.get_text(strip=True)
+        if _score_link(full_url, link_text) < 0:
             continue
 
-        link_text = link.get_text(strip=True)
         ext = Path(urlparse(href).path).suffix.lower()
 
         if ext in FILE_EXTENSIONS:
             if full_url not in seen_urls:
                 seen_urls.add(full_url)
-                files.append({"file_url": full_url, "file_type": FILE_EXTENSIONS[ext]})
+                files.append({"file_url": full_url, "file_type": FILE_EXTENSIONS[ext], "link_text": link_text})
         elif follow_year_pages and YEAR_PATTERN.search(link_text):
             if full_url not in seen_urls:
                 seen_urls.add(full_url)
@@ -131,6 +150,7 @@ def _fetch_one(item):
                 "disclosure_page_url": url,
                 "file_url": url,
                 "file_type": FILE_EXTENSIONS[ext],
+                "link_text": "",
             }], None
         response = fetch("GET", url, allow_redirects=True)
         items = [

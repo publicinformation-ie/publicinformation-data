@@ -5473,5 +5473,850 @@
     "label": "no",
     "rationale": "URL is external economic paper, not FOI disclosure",
     "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/2625e929/DFHERIS_FOI_Logs_-_January_to_March_2026_-_For_Publication.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.dublincity.ie/sites/default/files/2026-02/disclosure-log-2025.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.dublincity.ie/sites/default/files/2025-07/disclosure-log-2025-q1_q2.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://laois.ie/sites/default/files/2024-06/FOI-Disclosure-Log-2023.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://laois.ie/sites/default/files/2024-06/FOI-Disclosure-Log-2022.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.limerick.ie/sites/default/files/media/documents/2026-02/disclosure-log-jan-to-dec-2025_redacted.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.limerick.ie/sites/default/files/media/documents/2025-02/disclosure-log-jan-to-dec-2024.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.limerick.ie/sites/default/files/media/documents/2024-07/disclosure-log-jan-to-june-2024_redacted.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.limerick.ie/sites/default/files/media/documents/2024-07/disclosure-log-jan-dec-2023.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.limerick.ie/sites/default/files/media/documents/2023-06/Disclosure-Log-January-December-2022.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.limerick.ie/sites/default/files/media/documents/2022-07/Disclosure%20Log%20Jan-Jun%202022_0.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.limerick.ie/sites/default/files/media/documents/2022-05/Disclosure-Log-January-December-2021.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.limerick.ie/sites/default/files/media/documents/2022-04/disclosure-log-jan-dec-2020.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.limerick.ie/sites/default/files/media/documents/2021-02/disclosure-log-foi-2019.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.limerick.ie/sites/default/files/media/documents/2022-04/disclosure-log-at-31-12-2018.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.limerick.ie/sites/default/files/media/documents/2022-04/disclosure-log-2016-2017.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/FOI-Disclosure-Log-2019-Sept-.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/Freedom-of-Information-Disclosure-Log-2018.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/Freedom-of-Information-Disclosure-Log-2017-Full-Year-.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/Freedom-of-Information-Disclosure-Log-2016.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "http://www.westmeathcoco.ie/en/media/DisclosureLogTemplate2022.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "http://www.westmeathcoco.ie/en/media/DisclosureLogTemplate2021.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "http://www.westmeathcoco.ie/en/media/FOI Disclosure Log 2020.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "http://www.westmeathcoco.ie/en/media/FOI Disclosure Log 2019.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "http://www.westmeathcoco.ie/en/media/FOIDisclosureLog2018.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "http://www.westmeathcoco.ie/en/media/FOI Disclosure Log 2016.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.wexfordcoco.ie/sites/default/files/content/Disclosure%20Log%2001.01.2025%20to%2030.08.2025.xlsx": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.wexfordcoco.ie/sites/default/files/content/Disclosure_Log_01.01.2024_to_31.12.2024.xlsx": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.wexfordcoco.ie/sites/default/files/content/01.01.23-to-30.09.23.xlsx": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.wexfordcoco.ie/sites/default/files/content/GDPR/01.01.22-to-31.12.22.xlsx": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.wexfordcoco.ie/sites/default/files/content/1st-2nd-3rd-4th-Quarters-2021.xlsx": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.wexfordcoco.ie/sites/default/files/content/01.01.2020-to-31.12.2020_1.xlsx": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.fingal.ie/sites/default/files/2024-07/foi-disclosure-log-2023.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.fingal.ie/sites/default/files/2023-02/2022%20FOI%20Disclosure%20Log.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.fingal.ie/sites/default/files/2022-01/foi-2021-disclosure-log.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.fingal.ie/sites/default/files/2021-01/foi-2020-disclosure-log.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.fingal.ie/sites/default/files/2021-01/foi-2019-disclosure-log_.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.fingal.ie/sites/default/files/2019-03/FOI%20Disclosure%20Log%20January%20to%20end%20of%20March%202018%20%281%29.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.fingal.ie/sites/default/files/2019-10/disclosure_log_april_to_end_of_june.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.fingal.ie/sites/default/files/2019-03/FOI%20Disclosure%20Log%202016.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2026-02/January.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2026-03/February.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2026-04/March.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2026-05/April.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2025-02/Janaury%202025.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2025-03/February%202025.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2025-10/March%202025.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2025-10/April%202025.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2025-10/May%202025.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2025-10/June%202025.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2025-10/July%202025.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2025-10/August%202025.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2025-10/September%202025.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2025-11/October%202025.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2025-12/November%202025.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2026-01/December%202025_0.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2024-02/January%20Disclosure%20Log%202024.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2024-04/February%20Disclosure%20Log%202024_0.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2024-06/March%20Disclosure%20Log%202024.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2024-05/April%20Disclosure%20Log%202024.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2024-06/May%20Disclosure%20Log%202024.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2024-07/June%20Disclosure%20Log%202024.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2024-08/July%20Disclosure%20Log%202024.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2024-09/August%20Disclosure%20Log%202024.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2024-10/September%20Disclosure%20Log%202024.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2024-11/October%20Disclosure%20Log%202024.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2024-12/November%20Disclosure%20Log%202024.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2025-01/December%20Disclosure%20Log%202024.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2023-02/FOI%20Disclosure%20Log%20January%202023.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2023-03/FOI%20Disclosure%20Log%20February%202023.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2023-04/FOI%20Disclosure%20Log%20March%202023_0.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2023-05/FOI%20Disclosure%20Log%20April%202023.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2023-06/FOI%20DIsclosure%20Log%20May%202023.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2023-07/FOI%20Disclosure%20Log%20June%202023.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2023-09/FOI%20Disclosure%20Log%20July%202023.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2023-09/FOI%20Disclosure%20Log%20August%202023.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2023-10/FOI%20Disclosure%20Log%20September%202023.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2023-11/FOI%20Disclosure%20Log%20October%202023.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2023-12/FOI%20Disclosure%20Log%20November%202023.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2024-01/FOI%20Disclosure%20Log%20December%202023.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2023-02/FOI%20Disclosure%20Log%20December%202022.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-12/FOI%20Disclosure%20Log%20November%202022.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-12/FOI%20Disclosure%20Log%20October%202022.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-12/FOI%20Disclosure%20Log%20September%202022.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-12/FOI%20Disclosure%20Log%20August%202022.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-12/FOI%20Disclosure%20Log%20July%202022.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-12/FOI%20Disclosure%20Log%20June%202022.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20May%202022.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20April%202022.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20March%202022.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20February%202022.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20January%202022.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20December%202021.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20November%202021.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20October%202021.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20September%202021.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20August%202021.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20July%202021.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20June%202021.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20May%202021.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20April%202021.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20March%202021.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20February%202021.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20January%202021.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20December%202020.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20November%202020.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20October%202020.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20September%202020.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20August%202020.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20July%202020.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20June%202020.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20May%202020.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20April%202020.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20March%202020.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20February%202020.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20January%202020.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20December%202019.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20November%202019.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20October%202019.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20September%202019.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20August%202019.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20July%202019.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20June%202019.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20May%202019.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20March%202019.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20February%202019.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20January%202019.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20September%202018.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20December%202018.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20November%202018.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20October%202018.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20August%202018.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20July%202018.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20June%202018.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20May%202018.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20April%202018.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20March%202018.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20February%202018.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20January%202018.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20December%202017.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20November%202017.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20October%202017.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20September%202017.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20August%202017.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20July%202017.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20June%202017.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20May%202017.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20April%202017.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20March%202017.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20February%202017.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20January%202017.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20December%202016.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20November%202016.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20October%202016.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20September%202016.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20August%202016.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20July%202016.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20June%202016.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20April%202019.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.corkcity.ie/media/nzgf1ok0/cork_carnival_of_science_2025_opt.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.louthcoco.ie/en/policy-and-redress/freedom-of-information/disclosure-logs/foi-disclosure-logs/foi-disclosure-log-2024.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.louthcoco.ie/en/policy-and-redress/freedom-of-information/disclosure-logs/foi-disclosure-logs/foi-disclosure-log-2023.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.louthcoco.ie/en/policy-and-redress/freedom-of-information/disclosure-logs/foi-disclosure-logs/foi-disclosure-log-2022.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.louthcoco.ie/en/policy-and-redress/freedom-of-information/disclosure-logs/foi-disclosure-logs/foi-disclosure-log-2021.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.louthcoco.ie/en/policy-and-redress/freedom-of-information/disclosure-logs/foi-disclosure-logs/foi disclosures log 2020.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.louthcoco.ie/en/policy-and-redress/freedom-of-information/disclosure-logs/foi-disclosure-logs/foi-disclosures-log-2019.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.louthcoco.ie/en/policy-and-redress/freedom-of-information/disclosure-logs/foi-disclosure-logs/foi-disclosure-log-2018.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.louthcoco.ie/en/policy-and-redress/freedom-of-information/disclosure-logs/foi-disclosure-logs/foi-disclosure-log-april-2017.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
+  },
+  "https://www.louthcoco.ie/en/policy-and-redress/freedom-of-information/disclosure-logs/foi-disclosure-logs/foi-disclosure-log-april-2016.pdf": {
+    "label": "yes",
+    "rationale": "heuristic scoring based on URL patterns",
+    "verified": "mock"
   }
 }
