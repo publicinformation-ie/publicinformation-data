@@ -143,3 +143,17 @@ See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for common issues including:
 - Data not appearing on website
 - short_name missing
 - Pipeline output locations
+
+## Data quality tasks
+
+After completing any data quality task, run the pipeline before marking the task complete:
+
+```bash
+cd foi_pipeline && python status.py --assert-fresh
+```
+
+If stale, run the pipeline first:
+
+```bash
+cd foi_pipeline && python process.py
+```
