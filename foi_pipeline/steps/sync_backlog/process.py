@@ -43,7 +43,7 @@ def main():
     print(f"Done: created={stats['created']} updated={stats['updated']} resolved={stats['resolved']} unchanged={stats['unchanged']}")
 
     write_json(output_path, result)
-    write_status(step_dir, stats["created"] + stats["updated"] + stats["resolved"] + stats["unchanged"])
+    write_status(step_dir, len(updated_issues))
 
 
 if __name__ == "__main__":

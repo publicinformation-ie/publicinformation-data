@@ -75,7 +75,11 @@ def collect_issues(pipeline_dir: Path) -> tuple:
             })
 
     tiered = assign_priority_tiers(raw)
-    scored_dict = {item["key"]: item for item in tiered}
+    scored_dict = {}
+    for item in tiered:
+        if item["key"] in scored_dict:
+            print(f"Warning: key collision in collect_issues: {item['key']} (step {item['step_name']})")
+        scored_dict[item["key"]] = item
     return scored_dict, steps_with_eval
 
 
