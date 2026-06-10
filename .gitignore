@@ -20,3 +20,10 @@ docs/
 **/dirty_ids.json
 .env.admin
 local.db
+
+# Temp/scratch files
+**/tmp.txt
+**/temp_*.txt
+
+# Raw data files
+foi_pipeline/data/*.csv
