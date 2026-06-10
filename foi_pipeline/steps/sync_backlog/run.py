@@ -61,3 +61,35 @@ def assign_priority_tiers(scored_items: list) -> list:
             tier = "high"
         result.append({**item, "priority": tier})
     return result
+
+
+def collect_issues(pipeline_dir: Path) -> tuple:
+    """Returns (scored_dict, steps_with_eval).
+
+    scored_dict: {pipeline-key: {key, step_name, issue, score, priority}}
+    steps_with_eval: set of step names that had an issues.json file
+    """
+    config = json.loads((pipeline_dir / "pipeline.json").read_text())
+    steps = config["steps"]
+
+    raw = []
+    steps_with_eval = set()
+
+    for step_name in steps:
+        issues_path = pipeline_dir / "steps" / step_name / "eval" / "issues.json"
+        if not issues_path.exists():
+            continue
+        steps_with_eval.add(step_name)
+        issues = json.loads(issues_path.read_text())
+        for issue in issues:
+            key = make_key(step_name, issue)
+            raw.append({
+                "key": key,
+                "step_name": step_name,
+                "issue": issue,
+                "score": score_issue(step_name, issue, steps),
+            })
+
+    tiered = assign_priority_tiers(raw)
+    scored_dict = {item["key"]: item for item in tiered}
+    return scored_dict, steps_with_eval

@@ -123,3 +123,75 @@ class TestAssignPriorityTiers:
         items = [{"key": "x", "score": 5.0, "step_name": "foo"}]
         result = assign_priority_tiers(items)
         assert result[0]["step_name"] == "foo"
+
+
+import json
+import pytest
+from steps.sync_backlog.run import collect_issues
+
+
+class TestCollectIssues:
+    def _write_pipeline(self, tmp_path, steps):
+        (tmp_path / "pipeline.json").write_text(json.dumps({"steps": steps}))
+
+    def _write_issues(self, tmp_path, step_name, issues):
+        step_eval = tmp_path / "steps" / step_name / "eval"
+        step_eval.mkdir(parents=True, exist_ok=True)
+        (step_eval / "issues.json").write_text(json.dumps(issues))
+
+    def test_returns_scored_dict_and_steps_with_eval(self, tmp_path):
+        self._write_pipeline(tmp_path, ["step_a", "step_b"])
+        self._write_issues(tmp_path, "step_a", [
+            {"severity": "error", "description": "bad records", "affected_count": 5}
+        ])
+        scored, steps_with_eval = collect_issues(tmp_path)
+        assert len(scored) == 1
+        assert "step_a" in steps_with_eval
+        assert "step_b" not in steps_with_eval
+
+    def test_key_format(self, tmp_path):
+        self._write_pipeline(tmp_path, ["step_a"])
+        self._write_issues(tmp_path, "step_a", [
+            {"description": "some problem", "affected_count": 1, "severity": "warning"}
+        ])
+        scored, _ = collect_issues(tmp_path)
+        assert "step_a:some_problem" in scored
+
+    def test_scored_item_has_required_fields(self, tmp_path):
+        self._write_pipeline(tmp_path, ["step_a"])
+        self._write_issues(tmp_path, "step_a", [
+            {"description": "foo", "affected_count": 10, "severity": "error"}
+        ])
+        scored, _ = collect_issues(tmp_path)
+        item = list(scored.values())[0]
+        assert "key" in item
+        assert "step_name" in item
+        assert "issue" in item
+        assert "score" in item
+        assert "priority" in item
+
+    def test_missing_issues_json_skipped(self, tmp_path):
+        self._write_pipeline(tmp_path, ["step_a", "step_b"])
+        self._write_issues(tmp_path, "step_a", [
+            {"description": "x", "affected_count": 1, "severity": "info"}
+        ])
+        # step_b has no eval/issues.json
+        scored, steps_with_eval = collect_issues(tmp_path)
+        assert len(scored) == 1
+        assert "step_b" not in steps_with_eval
+
+    def test_multiple_issues_from_same_step(self, tmp_path):
+        self._write_pipeline(tmp_path, ["step_a"])
+        self._write_issues(tmp_path, "step_a", [
+            {"description": "problem one", "affected_count": 5, "severity": "error"},
+            {"description": "problem two", "affected_count": 3, "severity": "warning"},
+        ])
+        scored, _ = collect_issues(tmp_path)
+        assert len(scored) == 2
+
+    def test_empty_issues_json_yields_nothing(self, tmp_path):
+        self._write_pipeline(tmp_path, ["step_a"])
+        self._write_issues(tmp_path, "step_a", [])
+        scored, steps_with_eval = collect_issues(tmp_path)
+        assert len(scored) == 0
+        assert "step_a" in steps_with_eval
