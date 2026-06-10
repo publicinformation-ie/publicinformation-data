@@ -9,7 +9,7 @@ import sys
 import tempfile
 import time
 from collections import Counter
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from lib.cli_utils import add_common_args, filter_by_public_body
@@ -46,10 +46,10 @@ class DisclosureFileCache:
     def _url_hash(self, file_url):
         return hashlib.sha256(file_url.encode("utf-8")).hexdigest()
 
-    def _cache_path(self, file_url):
+    def _get_cache_path(self, file_url):
         return self.cache_dir / f"{self._url_hash(file_url)}.bytes"
 
-    def _lock_path(self, file_url):
+    def _get_lock_path(self, file_url):
         return self.cache_dir / f"{self._url_hash(file_url)}.lock"
 
     def _acquire_lock(self, lock_path, timeout=300):
@@ -77,7 +77,7 @@ class DisclosureFileCache:
 
     def get_file_path(self, file_url, step_dir):
         """Return path to cached file, downloading if not present."""
-        cache_path = self._cache_path(file_url)
+        cache_path = self._get_cache_path(file_url)
 
         if cache_path.exists():
             try:
@@ -87,7 +87,7 @@ class DisclosureFileCache:
             except (IOError, OSError):
                 cache_path.unlink(missing_ok=True)
 
-        lock_file = self._acquire_lock(self._lock_path(file_url))
+        lock_file = self._acquire_lock(self._get_lock_path(file_url))
         if lock_file is None:
             raise RuntimeError(f"Could not acquire lock for {file_url} after timeout")
         try:
@@ -202,35 +202,39 @@ def _score_text(text):
 
 
 def _verify_one(item, cache, step_dir):
-    """Download and verify a single file. Always returns a result record."""
+    """Download and verify a single file. Returns None on download failure, result record on success."""
     file_url = item["file_url"]
     file_type = item["file_type"]
 
     try:
         cached_path = cache.get_file_path(file_url, step_dir)
         file_bytes = cached_path.read_bytes()
-    except (DownloadError, Exception) as e:
-        if not isinstance(e, DownloadError):
-            append_error(step_dir, {
-                "step": STEP_NAME,
-                "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-                "error_type": type(e).__name__,
-                "error_message": str(e),
-                "context": {"file_url": file_url},
-            })
+    except DownloadError:
+        # Download failures are not marked as processed; they will be retried
+        return None
+
+    try:
+        if file_type == "pdf":
+            text = _extract_text_pdf(file_bytes)
+        elif file_type == "xlsx":
+            text = _extract_text_xlsx(file_bytes)
+        elif file_type == "xls":
+            text = _extract_text_xls(file_bytes)
+        else:
+            text = None
+
+        status, signal = _score_text(text)
+        return {**item, "verification_status": status, "verification_signal": signal}
+    except Exception as e:
+        append_error(step_dir, {
+            "step": STEP_NAME,
+            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            "error_type": type(e).__name__,
+            "error_message": str(e),
+            "context": {"file_url": file_url},
+        })
+        # Extraction errors return unverified record (we know file exists, just can't read it)
         return {**item, "verification_status": "unverified", "verification_signal": None}
-
-    if file_type == "pdf":
-        text = _extract_text_pdf(file_bytes)
-    elif file_type == "xlsx":
-        text = _extract_text_xlsx(file_bytes)
-    elif file_type == "xls":
-        text = _extract_text_xls(file_bytes)
-    else:
-        text = None
-
-    status, signal = _score_text(text)
-    return {**item, "verification_status": status, "verification_signal": signal}
 
 
 def process(input_data, step_dir, writer, verbose=False, max_workers=4):
@@ -248,11 +252,14 @@ def process(input_data, step_dir, writer, verbose=False, max_workers=4):
     if not pending:
         return
 
+    results = []
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = [executor.submit(_verify_one, item, cache, step_dir) for item in pending]
-        results = [f.result() for f in futures]
-
-    writer.append(results)
+        futures = {executor.submit(_verify_one, item, cache, step_dir): item for item in pending}
+        for future in as_completed(futures):
+            result = future.result()
+            if result is not None:
+                writer.append([result])
+                results.append(result)
 
     if verbose:
         status_counts = Counter(r["verification_status"] for r in results)
