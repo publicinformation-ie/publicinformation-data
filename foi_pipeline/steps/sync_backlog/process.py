@@ -5,7 +5,6 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-import requests
 from lib.cli_utils import add_common_args
 from lib.file_utils import write_json, write_status
 from steps.sync_backlog.run import (
@@ -16,6 +15,7 @@ from steps.sync_backlog.run import (
     ensure_labels,
     fetch_open_issues,
     get_rate_limit_summary,
+    logger,
     reconcile,
 )
 
@@ -64,8 +64,6 @@ def main():
     result = reconcile(session, repo_api_url, scored_dict, open_issues, steps_with_eval, label_ids, run_at)
     result["sync_enabled"] = True
     
-    # Log rate limit summary
-    from steps.sync_backlog.run import logger
     rate_summary = get_rate_limit_summary()
     logger.info(f"Rate limit summary: {rate_summary}")
     
@@ -73,7 +71,7 @@ def main():
     print(f"Total API requests made: {rate_summary['total_requests']}")
 
     write_json(output_path, result)
-    write_status(output_path.parent, result["created"] + result["updated"] + result["closed"] + result["skipped"])
+    write_status(output_path.parent, result["created"] + result["updated"])
 
 
 if __name__ == "__main__":

@@ -5,7 +5,6 @@ import os
 import re
 import sys
 import time
-from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -13,7 +12,7 @@ import requests
 
 STEP_NAME = "sync_backlog"
 CODEBERG_API = "https://codeberg.org/api/v1"
-CODEBERG_REPO = os.getenv("CODEBERG_REPO", "publicinformation/publicinformation-data")
+CODEBERG_REPO = os.getenv("CODEBERG_REPO", "gingertechie/publicinformation-data")
 
 # Configure logging for rate limit debugging
 logger = logging.getLogger("sync_backlog.rate_limit")
@@ -36,7 +35,7 @@ class RateLimitedSession:
 
     def __init__(self, base_delay=None, max_retries=3):
         self.session = requests.Session()
-        self.base_delay = base_delay or float(os.getenv("CODEBERG_RATE_LIMIT_DELAY", "1.0"))
+        self.base_delay = base_delay if base_delay is not None else float(os.getenv("CODEBERG_RATE_LIMIT_DELAY", "30.0"))
         self.max_retries = max_retries
         self.request_count = 0
         
@@ -47,8 +46,9 @@ class RateLimitedSession:
         from lib.http_utils import get_rate_limit_delay
 
         if "codeberg.org" in domain:
-            delay = max(self.base_delay, get_rate_limit_delay(domain))
-            logger.debug(f"Domain {domain}: delay={delay:.3f}s (base={self.base_delay}s, http_utils={get_rate_limit_delay(domain):.3f}s)")
+            http_delay = get_rate_limit_delay(domain)
+            delay = max(self.base_delay, http_delay)
+            logger.debug(f"Domain {domain}: delay={delay:.3f}s (base={self.base_delay}s, http_utils={http_delay:.3f}s)")
             return delay
         return get_rate_limit_delay(domain)
 
@@ -59,7 +59,7 @@ class RateLimitedSession:
         self.request_count += 1
         logger.info(f"[{_request_counter}] Attempt {attempt + 1}/{self.max_retries + 1} - {method} {url} (delay_before={delay_applied:.3f}s)")
 
-    def _log_response(self, method, url, attempt, resp, elapsed):
+    def _log_response(self, method, url, resp, elapsed):
         """Log response details including rate limit headers."""
         # Extract rate limit info from response headers
         rate_limit = resp.headers.get("X-RateLimit-Limit")
@@ -82,7 +82,7 @@ class RateLimitedSession:
             
         logger.info(f"[{_request_counter}] Response - {method} {url} | {" | ".join(parts)}")
 
-    def request(self, method, url, **kwargs):
+    def request(self, method, url, **kwargs) -> requests.Response:
         """Make a rate-limited request with retry on 429 and detailed logging."""
         domain = urlparse(url).netloc
         start_time = time.time()
@@ -98,11 +98,11 @@ class RateLimitedSession:
             try:
                 resp = self.session.request(method, url, **kwargs)
                 elapsed = time.time() - start_time
-                self._log_response(method, url, attempt, resp, elapsed)
+                self._log_response(method, url, resp, elapsed)
 
                 # Check for rate limiting
                 if resp.status_code == 429:
-                    retry_after = int(resp.headers.get("Retry-After", 5))
+                    retry_after = int(resp.headers.get("Retry-After", 60))
                     logger.warning(f"[{_request_counter}] Rate limited! Retry-After={retry_after}s, attempt={attempt + 1}/{self.max_retries + 1}")
                     if attempt < self.max_retries:
                         logger.info(f"[{_request_counter}] Sleeping for {retry_after}s before retry...")
@@ -125,7 +125,7 @@ class RateLimitedSession:
                     continue
                 raise
 
-        return resp
+        raise RuntimeError("unreachable: all retry paths return or raise")
 
     def get(self, url, **kwargs):
         return self.request("GET", url, **kwargs)
@@ -223,7 +223,11 @@ def collect_issues(pipeline_dir: Path) -> tuple:
             })
 
     tiered = assign_priority_tiers(raw)
-    scored_dict = {item["key"]: item for item in tiered}
+    scored_dict = {}
+    for item in tiered:
+        if item["key"] in scored_dict:
+            print(f"Warning: key collision in collect_issues: {item['key']} (step {item['step_name']})")
+        scored_dict[item["key"]] = item
     return scored_dict, steps_with_eval
 
 
@@ -247,7 +251,7 @@ def parse_pipeline_key(body: str) -> "str | None":
     return m.group(1) if m else None
 
 
-def ensure_labels(session: requests.Session, repo_api_url: str, steps_with_eval: set) -> dict:
+def ensure_labels(session: RateLimitedSession, repo_api_url: str, steps_with_eval: set) -> dict:
     """Return name→id dict for all required labels, creating any that are missing."""
     resp = session.get(f"{repo_api_url}/labels", params={"limit": 200})
     resp.raise_for_status()
@@ -270,7 +274,7 @@ def ensure_labels(session: requests.Session, repo_api_url: str, steps_with_eval:
     return label_ids
 
 
-def fetch_open_issues(session: requests.Session, repo_api_url: str) -> list:
+def fetch_open_issues(session: RateLimitedSession, repo_api_url: str) -> list:
     """Fetch all open issues labelled pipeline-issue, handling pagination."""
     issues = []
     page = 1
@@ -322,7 +326,7 @@ def _body_without_timestamp(body: str) -> str:
 
 
 def reconcile(
-    session: requests.Session,
+    session: RateLimitedSession,
     repo_api_url: str,
     scored_dict: dict,
     open_issues: list,
