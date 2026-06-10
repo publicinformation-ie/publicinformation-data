@@ -79,3 +79,47 @@ class TestScoreIssue:
         issue = {"severity": "error", "affected_count": 1}
         score = score_issue("find_public_bodies", issue, ["find_public_bodies"])
         assert score == 3 * 1 * 2.0
+
+
+from steps.sync_backlog.run import assign_priority_tiers
+
+
+class TestAssignPriorityTiers:
+    def _make_items(self, scores):
+        return [{"key": f"k{i}", "score": s} for i, s in enumerate(scores)]
+
+    def test_empty_returns_empty(self):
+        assert assign_priority_tiers([]) == []
+
+    def test_single_item_gets_high(self):
+        result = assign_priority_tiers(self._make_items([5.0]))
+        assert result[0]["priority"] == "high"
+
+    def test_three_items_one_each(self):
+        items = self._make_items([1.0, 2.0, 3.0])
+        result = assign_priority_tiers(items)
+        priorities = {r["key"]: r["priority"] for r in result}
+        assert priorities["k0"] == "low"
+        assert priorities["k1"] == "medium"
+        assert priorities["k2"] == "high"
+
+    def test_nine_items_three_each(self):
+        items = self._make_items(list(range(1, 10)))
+        result = assign_priority_tiers(items)
+        by_priority = {"low": 0, "medium": 0, "high": 0}
+        for r in result:
+            by_priority[r["priority"]] += 1
+        assert by_priority["low"] == 3
+        assert by_priority["medium"] == 3
+        assert by_priority["high"] == 3
+
+    def test_preserves_all_keys(self):
+        items = self._make_items([10.0, 20.0, 30.0, 40.0, 50.0])
+        result = assign_priority_tiers(items)
+        keys = {r["key"] for r in result}
+        assert keys == {"k0", "k1", "k2", "k3", "k4"}
+
+    def test_original_fields_preserved(self):
+        items = [{"key": "x", "score": 5.0, "step_name": "foo"}]
+        result = assign_priority_tiers(items)
+        assert result[0]["step_name"] == "foo"

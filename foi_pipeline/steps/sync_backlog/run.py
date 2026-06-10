@@ -44,3 +44,20 @@ def score_issue(step_name: str, issue: dict, pipeline_steps: list) -> float:
     affected = issue.get("affected_count") or 0
     pw = _step_weight(step_name, pipeline_steps)
     return sw * affected * pw
+
+
+def assign_priority_tiers(scored_items: list) -> list:
+    if not scored_items:
+        return []
+    sorted_items = sorted(scored_items, key=lambda i: i["score"])
+    n = len(sorted_items)
+    result = []
+    for idx, item in enumerate(sorted_items):
+        if idx < n // 3:
+            tier = "low"
+        elif idx < (2 * n) // 3:
+            tier = "medium"
+        else:
+            tier = "high"
+        result.append({**item, "priority": tier})
+    return result
