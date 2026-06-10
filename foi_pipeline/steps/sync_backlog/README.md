@@ -2,57 +2,49 @@
 
 ## What this step does
 
-Syncs evaluation issues from pipeline steps to Codeberg Issues as a backlog tracking mechanism.
+Collects pipeline evaluation issues from all step `eval/issues.json` files, scores and prioritises them, then writes the result to `backlog.yml` in this directory. The file is committed to git so the backlog is versioned alongside the code.
 
 This step:
-1. Collects and scores issues from all step `eval/issues.json` files
-2. Ensures required labels exist on the Codeberg repository
-3. Fetches existing open pipeline issues from Codeberg
-4. Reconciles: creates new issues, updates changed ones, closes resolved ones
+1. Reads `eval/issues.json` from each step directory
+2. Scores issues by severity, affected count, and pipeline position
+3. Assigns priority tiers (low / medium / high) relative to all current issues
+4. Merges with the existing `backlog.yml`, tracking `first_seen` / `last_seen` / `resolved_at`
+5. Writes updated `backlog.yml` and `output.json` stats
 
 ## Input
 
-- Reads `eval/issues.json` from each step directory in the pipeline
-- Uses `pipeline.json` to determine step order for scoring
+- `eval/issues.json` from each step directory in the pipeline
+- `pipeline.json` for step order (used in scoring)
+- `steps/sync_backlog/backlog.yml` (existing backlog; treated as empty if absent)
 
 ## Output
 
-- `output.json`: Statistics on sync operations (created, updated, closed, skipped counts)
-- Writes to Codeberg Issues API (if `CODEBERG_SYNC_ENABLED=true`)
+- `steps/sync_backlog/backlog.yml`: Full issue backlog with status, dates, priority
+- `output.json`: Operation statistics (created, updated, resolved, unchanged counts)
+
+## backlog.yml schema
+
+Each entry in `backlog.yml` has these fields:
+
+| Field | Description |
+|-------|-------------|
+| `key` | Unique identifier: `step_name:slug` |
+| `step_name` | Pipeline step that produced the issue |
+| `description` | Human-readable description from the eval |
+| `severity` | `error`, `warning`, or `info` |
+| `priority` | `high`, `medium`, or `low` (assigned relative to all open issues) |
+| `affected_count` | Number of records affected |
+| `suggestion_detail` | Recommended fix from the eval |
+| `status` | `open` or `resolved` |
+| `first_seen` | ISO timestamp when first detected |
+| `last_seen` | ISO timestamp of most recent detection |
+| `resolved_at` | ISO timestamp when resolved (only present on resolved issues) |
 
 ## Notable files
 
-- `run.py`: Core logic (issue collection, scoring, label management, reconciliation)
+- `run.py`: Core logic — scoring, YAML load/save, reconcile
 - `process.py`: CLI entry point
 
-## Rate Limiting
+## Environment variables
 
-This step uses a rate-limited session wrapper to avoid 429 errors from Codeberg API.
-
-### Configuration
-
-- `CODEBERG_RATE_LIMIT_DELAY`: Minimum delay in seconds between Codeberg API requests (default: 1.0)
-  - This is on top of the global per-domain rate limiting from `lib/http_utils.py` (default: 0.2s)
-  - Combined minimum delay: max(1.0, 0.2) = 1.0s for Codeberg
-  - Ensures ~60 requests/minute maximum, well below Codeberg's 2000/5min limit
-  - **Increased from 0.5s to 1.0s** to provide more headroom and reduce 429 errors
-
-- `CODEBERG_SYNC_ENABLED`: Set to `false` to disable syncing (default: `true`)
-- `CODEBERG_TOKEN`: Required for authentication to Codeberg API
-- `CODEBERG_REPO`: Repository to sync to (default: `publicinformation/publicinformation-data`)
-
-### Retry Behavior
-
-- On 429 (Too Many Requests), respects `Retry-After` header (defaults to 5 seconds)
-- Retries up to 3 times before failing
-- On connection errors, uses exponential backoff (1s, 2s, 4s)
-
-## Environment Variables
-
-| Variable | Required | Default | Description |
-|----------|----------|---------|-------------|
-| `CODEBERG_TOKEN` | Yes | - | Codeberg API token for authentication |
-| `CODEBERG_REPO` | No | `publicinformation/publicinformation-data` | Target repository |
-| `CODEBERG_SYNC_ENABLED` | No | `true` | Set to `false` to skip syncing |
-| `CODEBERG_RATE_LIMIT_DELAY` | No | `1.0` | Minimum seconds between Codeberg API requests |
-| `PYTHONPATH` | No | - | Set to `.` when running from foi_pipeline directory |
+None required. This step has no external dependencies.
