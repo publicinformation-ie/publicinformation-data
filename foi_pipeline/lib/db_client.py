@@ -40,7 +40,7 @@ class DbClient:
             cur.executemany(sql, params_list)
             self._conn.commit()
         else:
-            chunk_size = 500
+            chunk_size = 100
             for i in range(0, len(params_list), chunk_size):
                 chunk = params_list[i : i + chunk_size]
                 self._http_pipeline([(sql, params) for params in chunk])
@@ -108,7 +108,7 @@ class DbClient:
             self._remote_url,
             json={"requests": requests_list},
             headers=self._headers,
-            timeout=30,
+            timeout=90,
         )
         resp.raise_for_status()
         for result in resp.json()["results"]:
