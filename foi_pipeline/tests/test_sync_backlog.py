@@ -308,6 +308,7 @@ class TestReconcile:
         assert stats["updated"] == 0
         assert issues[0]["last_seen"] == RUN_AT
         assert issues[0]["first_seen"] == "2026-06-09T10:00:00+00:00"  # preserved
+        assert issues[0] == {**existing[0], "last_seen": RUN_AT}
 
     def test_changed_affected_count_counts_as_update(self):
         key = "step_a:foo"
@@ -345,11 +346,15 @@ class TestReconcile:
 
     def test_does_not_re_resolve_already_resolved_issue(self):
         key = "step_a:old"
-        existing = [_make_existing_entry(key, "step_a", status="resolved")]
+        existing = [{
+            **_make_existing_entry(key, "step_a", status="resolved"),
+            "resolved_at": "2026-06-01T00:00:00+00:00",
+        }]
         scored = {}
         issues, stats = reconcile(scored, existing, {"step_a"}, RUN_AT)
         assert stats["resolved"] == 0
         assert issues[0]["status"] == "resolved"
+        assert issues[0].get("resolved_at") == "2026-06-01T00:00:00+00:00"
 
     def test_reopens_resolved_issue_if_it_reappears(self):
         key = "step_a:regressed"
