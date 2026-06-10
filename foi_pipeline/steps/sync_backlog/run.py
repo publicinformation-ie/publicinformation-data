@@ -156,3 +156,99 @@ def fetch_open_issues(session: requests.Session, repo_api_url: str) -> list:
             break
         page += 1
     return issues
+
+
+def _label_ids_for_item(item: dict, label_ids: dict) -> list:
+    ids = [label_ids["pipeline-issue"]]
+    severity_key = f"severity:{item['issue'].get('severity', 'info')}"
+    if severity_key in label_ids:
+        ids.append(label_ids[severity_key])
+    priority_key = f"priority:{item['priority']}"
+    if priority_key in label_ids:
+        ids.append(label_ids[priority_key])
+    step_key = f"step:{item['step_name']}"
+    if step_key in label_ids:
+        ids.append(label_ids[step_key])
+    return ids
+
+
+def _issue_needs_update(cb_issue: dict, item: dict, new_body: str) -> bool:
+    existing_labels = {l["name"] for l in cb_issue.get("labels", [])}
+    expected_labels = {
+        "pipeline-issue",
+        f"severity:{item['issue'].get('severity', 'info')}",
+        f"priority:{item['priority']}",
+        f"step:{item['step_name']}",
+    }
+    body_changed = _body_without_timestamp(cb_issue.get("body", "")) != _body_without_timestamp(new_body)
+    labels_changed = existing_labels != expected_labels
+    return body_changed or labels_changed
+
+
+def _body_without_timestamp(body: str) -> str:
+    return re.sub(r"Last updated: [^\n]+\.", "Last updated: <REDACTED>.", body or "")
+
+
+def reconcile(
+    session: requests.Session,
+    repo_api_url: str,
+    scored_dict: dict,
+    open_issues: list,
+    steps_with_eval: set,
+    label_ids: dict,
+    run_at: str,
+) -> dict:
+    result = {"created": 0, "updated": 0, "closed": 0, "skipped": 0, "run_at": run_at}
+
+    codeberg_by_key = {}
+    for issue in open_issues:
+        key = parse_pipeline_key(issue.get("body", ""))
+        if key:
+            codeberg_by_key[key] = issue
+
+    # CREATE issues that exist in eval but not in Codeberg
+    for key, item in scored_dict.items():
+        if key not in codeberg_by_key:
+            title = f"[{item['step_name']}] {item['issue'].get('description', key)}"
+            body = build_body(item["step_name"], item["issue"], run_at)
+            ids = _label_ids_for_item(item, label_ids)
+            resp = session.post(
+                f"{repo_api_url}/issues",
+                json={"title": title, "body": body, "labels": ids},
+            )
+            resp.raise_for_status()
+            result["created"] += 1
+
+    # UPDATE, SKIP, or CLOSE issues that exist in Codeberg
+    for key, cb_issue in codeberg_by_key.items():
+        if key in scored_dict:
+            item = scored_dict[key]
+            new_body = build_body(item["step_name"], item["issue"], run_at)
+            if _issue_needs_update(cb_issue, item, new_body):
+                ids = _label_ids_for_item(item, label_ids)
+                resp = session.patch(
+                    f"{repo_api_url}/issues/{cb_issue['number']}",
+                    json={"body": new_body, "labels": ids},
+                )
+                resp.raise_for_status()
+                result["updated"] += 1
+            else:
+                result["skipped"] += 1
+        else:
+            issue_step = key.split(":")[0]
+            if issue_step in steps_with_eval:
+                resp = session.patch(
+                    f"{repo_api_url}/issues/{cb_issue['number']}",
+                    json={"state": "closed"},
+                )
+                resp.raise_for_status()
+                comment = session.post(
+                    f"{repo_api_url}/issues/{cb_issue['number']}/comments",
+                    json={"body": "Resolved: no longer detected by eval"},
+                )
+                comment.raise_for_status()
+                result["closed"] += 1
+            else:
+                result["skipped"] += 1
+
+    return result
