@@ -7,24 +7,26 @@ The authoritative step order is defined in [`../pipeline.json`](../pipeline.json
 | # | Step | What it does |
 |---|---|---|
 | 1 | [`find_public_bodies`](find_public_bodies/) | Scrapes gov.ie to build the master list of Irish public bodies, resolving stub portal URLs to real homepages. |
-| 2 | [`resolve_website_urls`](resolve_website_urls/) | Second-pass resolution of any remaining gov.ie stub pages that weren't resolved in step 1. |
-| 3 | [`validate_websites`](validate_websites/) | HTTP-checks each public body's website and records reachability and HTTP status. |
-| 4 | [`find_foi_pages`](find_foi_pages/) | Crawls each reachable website to locate its FOI page using homepage crawl → secondary crawl. |
-| 5 | [`find_foi_pages_search`](find_foi_pages_search/) | Searches for FOI pages for bodies where crawl failed, using a single batched Apify run (`APIFY_TOKEN` required). |
-| 6 | [`check_foi_pages`](check_foi_pages/) | HTTP-checks each discovered FOI page URL to confirm it is still reachable. |
-| 7 | [`get_foi_emails`](get_foi_emails/) | Scrapes each FOI page and extracts the FOI contact email address. |
-| 8 | [`find_disclosure_pages`](find_disclosure_pages/) | Locates the disclosure log page for each body using domain-specific rules or crawl fallback. |
-| 9 | [`find_disclosure_files`](find_disclosure_files/) | Crawls each disclosure log page and collects links to PDF/XLSX/XLS files. |
-| 10 | [`transform_disclosure_files`](transform_disclosure_files/) | Downloads spreadsheet files and converts them into JSON row arrays; PDFs are passed through unmodified. |
-| 11 | [`normalize_disclosure_cells`](normalize_disclosure_cells/) | Normalizes string cell values in extracted disclosure log data (removes CID artifacts, normalizes whitespace). |
-| 12 | [`extract_disclosures_detect_header_row`](extract_disclosures_detect_header_row/) | Detects which spreadsheet row is the header using a 2-non-empty-cell heuristic. |
-| 13 | [`extract_disclosures_canonicalize`](extract_disclosures_canonicalize/) | Maps raw column headers to canonical field names and emits flat FOI request records. |
-| 14 | [`extract_disclosures_normalize_rows`](extract_disclosures_normalize_rows/) | Normalizes all date values in disclosure rows to ISO 8601 format (YYYY-MM-DD), replacing unparseable values with null. |
-| 15 | [`extract_disclosures_canonicalize_rows`](extract_disclosures_canonicalize_rows/) | Normalizes decision_status field values to a canonical set of seven status values. |
-| 16 | [`extract_disclosures_deduplicate`](extract_disclosures_deduplicate/) | Removes duplicate FOI records by treating `foi_reference_id` as a unique identifier per public body. |
-| 17 | [`export_status`](export_status/) | Fan-in step: merges all step outputs into a unified per-body status report and writes the public JSON files consumed by the website. |
-| 18 | [`generate_topics`](generate_topics/) | Matches canonical FOI records to keyword-defined topics and writes `public/topics.json`. |
-| 19 | [`db_upload`](db_upload/) | Clears the six pipeline-data tables in the libSQL database and re-populates them from all upstream step outputs. |
+| 2 | [`find_public_bodies_subject_to_foi`](find_public_bodies_subject_to_foi/) | Filters the master list to bodies without an `exclusion_reason` — i.e., those actually subject to FOI legislation. |
+| 3 | [`resolve_website_urls`](resolve_website_urls/) | Second-pass resolution of any remaining gov.ie stub pages that weren't resolved in step 1. |
+| 4 | [`validate_websites`](validate_websites/) | HTTP-checks each public body's website and records reachability and HTTP status. |
+| 5 | [`find_foi_pages`](find_foi_pages/) | Crawls each reachable website to locate its FOI page using homepage crawl → secondary crawl. |
+| 6 | [`find_foi_pages_search`](find_foi_pages_search/) | Searches for FOI pages for bodies where crawl failed, using a single batched Apify run (`APIFY_TOKEN` required). |
+| 7 | [`check_foi_pages`](check_foi_pages/) | HTTP-checks each discovered FOI page URL to confirm it is still reachable. |
+| 8 | [`get_foi_emails`](get_foi_emails/) | Scrapes each FOI page and extracts the FOI contact email address. |
+| 9 | [`find_disclosure_pages`](find_disclosure_pages/) | Locates the disclosure log page for each body using domain-specific rules or crawl fallback. |
+| 10 | [`find_disclosure_files`](find_disclosure_files/) | Crawls each disclosure log page and collects links to PDF/XLSX/XLS files. |
+| 11 | [`transform_disclosure_files`](transform_disclosure_files/) | Downloads spreadsheet files and converts them into JSON row arrays; PDFs are passed through unmodified. |
+| 12 | [`normalize_disclosure_cells`](normalize_disclosure_cells/) | Normalizes string cell values in extracted disclosure log data (removes CID artifacts, normalizes whitespace). |
+| 13 | [`extract_disclosures_detect_header_row`](extract_disclosures_detect_header_row/) | Detects which spreadsheet row is the header using a 2-non-empty-cell heuristic. |
+| 14 | [`extract_disclosures_normalize_header`](extract_disclosures_normalize_header/) | Repairs null cells in the detected header row by merging continuation rows and forward-filling merged-cell spans. |
+| 15 | [`extract_disclosures_normalize_rows`](extract_disclosures_normalize_rows/) | Normalizes all date values in disclosure rows to ISO 8601 format (YYYY-MM-DD), replacing unparseable values with null. |
+| 16 | [`extract_disclosures_canonicalize`](extract_disclosures_canonicalize/) | Maps raw column headers to canonical field names and emits flat FOI request records. |
+| 17 | [`extract_disclosures_canonicalize_rows`](extract_disclosures_canonicalize_rows/) | Normalizes decision_status field values to a canonical set of seven status values. |
+| 18 | [`extract_disclosures_deduplicate`](extract_disclosures_deduplicate/) | Removes duplicate FOI records by treating `foi_reference_id` as a unique identifier per public body. |
+| 19 | [`export_status`](export_status/) | Fan-in step: merges all step outputs into a unified per-body status report and writes the public JSON files consumed by the website. |
+| 20 | [`generate_topics`](generate_topics/) | Matches canonical FOI records to keyword-defined topics and writes `public/topics.json`. |
+| 21 | [`db_upload`](db_upload/) | Clears the six pipeline-data tables in the libSQL database and re-populates them from all upstream step outputs. |
 
 > **Stub:** [`extract_disclosures`](extract_disclosures/) is a placeholder step (not yet implemented) for future PDF extraction. It currently produces no output.
 
@@ -48,8 +50,8 @@ Every step accepts `--public-body <ID>` to reprocess only that body while leavin
 
 | Shape | Steps | Mechanism |
 |-------|-------|-----------|
-| §a evict | `resolve_website_urls`, `validate_websites`, `find_foi_pages`, `find_foi_pages_search`, `check_foi_pages`, `get_foi_emails`, `find_disclosure_pages`, `find_disclosure_files`, `transform_disclosure_files`, `normalize_disclosure_cells`, `extract_disclosures_detect_header_row` | `IncrementalWriter(target_public_body=ID)` evicts the body on load and marks it dirty so downstream steps cascade automatically. |
-| §b merge-back | `extract_disclosures_canonicalize`, `extract_disclosures_normalize_rows`, `extract_disclosures_canonicalize_rows`, `extract_disclosures_deduplicate` | Filters input to the target body, processes it, then merges the new records back over the existing output (replacing only that body's rows). |
+| §a evict | `resolve_website_urls`, `validate_websites`, `find_foi_pages`, `find_foi_pages_search`, `check_foi_pages`, `get_foi_emails`, `find_disclosure_pages`, `find_disclosure_files`, `transform_disclosure_files`, `normalize_disclosure_cells`, `extract_disclosures_detect_header_row`, `extract_disclosures_normalize_header` | `IncrementalWriter(target_public_body=ID)` evicts the body on load and marks it dirty so downstream steps cascade automatically. |
+| §b merge-back | `extract_disclosures_normalize_rows`, `extract_disclosures_canonicalize`, `extract_disclosures_canonicalize_rows`, `extract_disclosures_deduplicate` | Filters input to the target body, processes it, then merges the new records back over the existing output (replacing only that body's rows). |
 | §c filter-reads | `export_status`, `generate_topics`, `db_upload` | Aggregator/publisher steps filter every consumed read to the target body. Output is derived/best-effort — run a full pipeline before publishing. |
 
 `find_public_bodies` is confirm-only when scoped: it verifies the body exists and leaves its output untouched.

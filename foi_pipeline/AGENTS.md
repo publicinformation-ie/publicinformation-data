@@ -4,7 +4,7 @@ This document explains how the FOI pipeline processes public body data for the p
 
 ## Overview
 
-The pipeline is a series of 18 Python steps that discover Irish public bodies, validate and enrich their contact information, extract disclosure data, and consolidate results into a final status output consumed by the website.
+The pipeline is a series of Python steps (defined in [`pipeline.json`](pipeline.json)) that discover Irish public bodies, validate and enrich their contact information, extract disclosure data, and consolidate results into a final status output consumed by the website.
 
 ## Quick Start
 
@@ -33,31 +33,37 @@ PYTHONPATH=. python steps/export_status/process.py \
 ### Steps (in order)
 
 1. `find_public_bodies` - Scrapes the master list from foi.gov.ie
-2. `resolve_website_urls` - Second-pass resolution of gov.ie stub URLs
-3. `validate_websites` - HTTP-checks website reachability
-4. `find_foi_pages` - Crawl-only discovery of FOI pages on each website
-5. `find_foi_pages_search` - Apify batch search for bodies where crawl failed (`APIFY_TOKEN` required)
-6. `check_foi_pages` - Validates FOI page accessibility
-7. `get_foi_emails` - Extracts FOI email addresses
-8. `find_disclosure_pages` - Locates disclosure log pages (`APIFY_TOKEN` required for gov.ie bodies)
-9. `find_disclosure_files` - Collects disclosure document links
-10. `transform_disclosure_files` - Processes files into structured data
-11. `normalize_disclosure_cells` - Normalizes string cell values
-12. `extract_disclosures_detect_header_row` - Detects header rows
-13. `extract_disclosures_canonicalize` - Maps columns to canonical fields
-14. `extract_disclosures_canonicalize_rows` - Normalizes decision_status field values to canonical statuses
-15. `extract_disclosures_deduplicate` - Removes duplicate FOI records
-16. `export_status` - Fan-in merge of all step outputs (website data source)
-17. `generate_topics` - Groups FOI records into topics
-18. `db_upload` - Populates the libSQL database
+2. `find_public_bodies_subject_to_foi` - Filters to bodies actually subject to FOI (removes exclusions)
+3. `resolve_website_urls` - Second-pass resolution of gov.ie stub URLs
+4. `validate_websites` - HTTP-checks website reachability
+5. `find_foi_pages` - Crawl-only discovery of FOI pages on each website
+6. `find_foi_pages_search` - Apify batch search for bodies where crawl failed (`APIFY_TOKEN` required)
+7. `check_foi_pages` - Validates FOI page accessibility
+8. `get_foi_emails` - Extracts FOI email addresses
+9. `find_disclosure_pages` - Locates disclosure log pages (`APIFY_TOKEN` required for gov.ie bodies)
+10. `find_disclosure_files` - Collects disclosure document links
+11. `transform_disclosure_files` - Processes files into structured data
+12. `normalize_disclosure_cells` - Normalizes string cell values
+13. `extract_disclosures_detect_header_row` - Detects header rows
+14. `extract_disclosures_normalize_header` - Repairs null cells in detected header rows (continuation merge + forward-fill)
+15. `extract_disclosures_normalize_rows` - Normalizes date values to ISO 8601 format
+16. `extract_disclosures_canonicalize` - Maps columns to canonical fields
+17. `extract_disclosures_canonicalize_rows` - Normalizes decision_status field values to canonical statuses
+18. `extract_disclosures_deduplicate` - Removes duplicate FOI records
+19. `export_status` - Fan-in merge of all step outputs (website data source)
+20. `generate_topics` - Groups FOI records into topics
+21. `db_upload` - Populates the libSQL database
 
 ### Data Flow
 
 ```
-find_public_bodies -> validate_websites -> find_foi_pages -> find_foi_pages_search -> check_foi_pages
+find_public_bodies -> find_public_bodies_subject_to_foi -> resolve_website_urls -> validate_websites
+    -> find_foi_pages -> find_foi_pages_search -> check_foi_pages
     -> get_foi_emails -> find_disclosure_pages -> find_disclosure_files
     -> transform_disclosure_files -> normalize_disclosure_cells
-    -> extract_disclosures_detect_header_row -> extract_disclosures_canonicalize
+    -> extract_disclosures_detect_header_row -> extract_disclosures_normalize_header
+    -> extract_disclosures_normalize_rows -> extract_disclosures_canonicalize
+    -> extract_disclosures_canonicalize_rows -> extract_disclosures_deduplicate
     -> export_status -> generate_topics -> db_upload -> libSQL database
 ```
 

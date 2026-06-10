@@ -1,6 +1,6 @@
 # extract_disclosures_normalize_rows
 
-**Step Number:** 16 (after `extract_disclosures_canonicalize`, before `extract_disclosures_canonicalize_rows`)
+**Step Number:** 15 (after `extract_disclosures_normalize_header`, before `extract_disclosures_canonicalize`)
 
 ## What This Step Does
 
@@ -14,6 +14,8 @@ Normalizes all date values in disclosure log rows to ISO 8601 format (`YYYY-MM-D
 ## Input
 
 **File:** `steps/extract_disclosures_normalize_header/output.json`
+
+> Input comes from `extract_disclosures_normalize_header` (step 14), which repairs null cells in the header row before this step processes the row values.
 
 **Structure:**
 ```json

@@ -62,22 +62,29 @@ This document provides an overview of how data flows from the FOI pipeline to th
 
 ### Pipeline Steps
 
-The FOI pipeline consists of 14 sequential steps that process public body data:
+The step sequence is defined in [`foi_pipeline/pipeline.json`](foi_pipeline/pipeline.json) (authoritative). Current steps:
 
 1. **find_public_bodies** - Base data (scrapes foi.gov.ie)
-2. **resolve_website_urls** - Second-pass URL resolution
-3. **validate_websites** - Checks website reachability
-4. **find_foi_pages** - Discovers FOI pages
-5. **check_foi_pages** - Validates FOI pages
-6. **get_foi_emails** - Extracts FOI email addresses
-7. **find_disclosure_pages** - Locates disclosure pages
-8. **find_disclosure_files** - Finds disclosure documents
-9. **transform_disclosure_files** - Processes files
-10. **extract_disclosures_detect_header_row** - Detects header row
-11. **extract_disclosures_canonicalize** - Extracts canonical FOI records
-12. **export_status** - Fan-in merge (status consolidator for the website)
-13. **generate_topics** - Groups records into keyword topics
-14. **db_upload** - Populates the libSQL database
+2. **find_public_bodies_subject_to_foi** - Filters to bodies subject to FOI legislation
+3. **resolve_website_urls** - Second-pass URL resolution
+4. **validate_websites** - Checks website reachability
+5. **find_foi_pages** - Discovers FOI pages
+6. **find_foi_pages_search** - Apify batch search for bodies where crawl failed
+7. **check_foi_pages** - Validates FOI pages
+8. **get_foi_emails** - Extracts FOI email addresses
+9. **find_disclosure_pages** - Locates disclosure pages
+10. **find_disclosure_files** - Finds disclosure documents
+11. **transform_disclosure_files** - Processes files
+12. **normalize_disclosure_cells** - Normalizes string cell values
+13. **extract_disclosures_detect_header_row** - Detects header row
+14. **extract_disclosures_normalize_header** - Repairs null cells in header rows
+15. **extract_disclosures_normalize_rows** - Normalizes date values to ISO 8601
+16. **extract_disclosures_canonicalize** - Extracts canonical FOI records
+17. **extract_disclosures_canonicalize_rows** - Normalizes decision_status values
+18. **extract_disclosures_deduplicate** - Removes duplicate FOI records
+19. **export_status** - Fan-in merge (status consolidator for the website)
+20. **generate_topics** - Groups records into keyword topics
+21. **db_upload** - Populates the libSQL database
 
 Each step reads from the previous step's output and adds its own data.
 

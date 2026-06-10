@@ -44,7 +44,7 @@ cd foi_pipeline
 python process.py --force
 ```
 
-This will process all 15 steps and generate output files in `foi_pipeline/steps/<step_name>/output.json`.
+This will process all steps (defined in `foi_pipeline/pipeline.json`) and generate output files in `foi_pipeline/steps/<step_name>/output.json`.
 
 The consolidated output appears in `foi_pipeline/steps/export_status/output.json` and is copied to `public/pipeline-data.json`.
 
@@ -188,25 +188,31 @@ publicinformation-data/
 
 ## Pipeline Steps
 
-The FOI pipeline consists of 15 sequential steps:
+The step sequence is defined in [`foi_pipeline/pipeline.json`](foi_pipeline/pipeline.json). Steps run in order; each writes to `steps/<step>/output.json` for the next step to consume.
 
 | # | Step | Description |
 |---|------|-------------|
 | 1 | `find_public_bodies` | Scrapes the master list from foi.gov.ie |
-| 2 | `resolve_website_urls` | Resolves gov.ie stub URLs to actual websites |
-| 3 | `validate_websites` | Checks website reachability |
-| 4 | `find_foi_pages` | Discovers FOI-specific pages on each website |
-| 5 | `check_foi_pages` | Validates FOI page accessibility |
-| 6 | `get_foi_emails` | Extracts FOI email addresses |
-| 7 | `find_disclosure_pages` | Locates disclosure log pages |
-| 8 | `find_disclosure_files` | Collects disclosure document links (PDFs, CSVs, etc.) |
-| 9 | `transform_disclosure_files` | Processes files into structured data |
-| 10 | `normalize_disclosure_cells` | Normalizes string cell values |
-| 11 | `extract_disclosures_detect_header_row` | Detects header rows in spreadsheets |
-| 12 | `extract_disclosures_canonicalize` | Maps raw columns to canonical FOI fields |
-| 13 | `export_status` | **Critical**: Fan-in merge of all outputs (used by website) |
-| 14 | `generate_topics` | Groups FOI records into keyword-defined topics |
-| 15 | `db_upload` | Populates the libSQL database |
+| 2 | `find_public_bodies_subject_to_foi` | Filters to bodies subject to FOI legislation |
+| 3 | `resolve_website_urls` | Resolves gov.ie stub URLs to actual websites |
+| 4 | `validate_websites` | Checks website reachability |
+| 5 | `find_foi_pages` | Discovers FOI-specific pages on each website |
+| 6 | `find_foi_pages_search` | Apify batch search for bodies where crawl failed |
+| 7 | `check_foi_pages` | Validates FOI page accessibility |
+| 8 | `get_foi_emails` | Extracts FOI email addresses |
+| 9 | `find_disclosure_pages` | Locates disclosure log pages |
+| 10 | `find_disclosure_files` | Collects disclosure document links (PDFs, CSVs, etc.) |
+| 11 | `transform_disclosure_files` | Processes files into structured data |
+| 12 | `normalize_disclosure_cells` | Normalizes string cell values |
+| 13 | `extract_disclosures_detect_header_row` | Detects header rows in spreadsheets |
+| 14 | `extract_disclosures_normalize_header` | Repairs null cells in header rows (continuation merge + forward-fill) |
+| 15 | `extract_disclosures_normalize_rows` | Normalizes date values to ISO 8601 format |
+| 16 | `extract_disclosures_canonicalize` | Maps raw columns to canonical FOI fields |
+| 17 | `extract_disclosures_canonicalize_rows` | Normalizes decision_status values to canonical set |
+| 18 | `extract_disclosures_deduplicate` | Removes duplicate FOI records |
+| 19 | `export_status` | **Critical**: Fan-in merge of all outputs (used by website) |
+| 20 | `generate_topics` | Groups FOI records into keyword-defined topics |
+| 21 | `db_upload` | Populates the libSQL database |
 
 ## Data Model
 
