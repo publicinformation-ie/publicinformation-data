@@ -85,7 +85,7 @@ def find_disclosure_link(html, base_url):
     best = None
     best_score = 0
     for link in soup.find_all("a", href=True):
-        href = link["href"]
+        href = str(link["href"])
         if "/ga/" in href:
             continue
         tokens = _tokenize(href, link.get_text(strip=True))

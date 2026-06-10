@@ -287,11 +287,11 @@ def _run_approach_ac2(fixtures: list[Path], foi_by_id: dict, api_token: str | No
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 _APPROACH_RUNNERS = {
-    "baseline": lambda f, fbi, **kw: _run_baseline(f, fbi),
-    "a":        lambda f, fbi, **kw: _run_approach_a(f, fbi),
-    "c1":       lambda f, fbi, **kw: _run_approach_c1(f, fbi),
+    "baseline": lambda f, fbi, **_: _run_baseline(f, fbi),
+    "a":        lambda f, fbi, **_: _run_approach_a(f, fbi),
+    "c1":       lambda f, fbi, **_: _run_approach_c1(f, fbi),
     "c2":       lambda f, fbi, **kw: _run_approach_c2(f, fbi, kw.get("api_token")),
-    "ac1":      lambda f, fbi, **kw: _run_approach_ac1(f, fbi),
+    "ac1":      lambda f, fbi, **_: _run_approach_ac1(f, fbi),
     "ac2":      lambda f, fbi, **kw: _run_approach_ac2(f, fbi, kw.get("api_token")),
 }
 

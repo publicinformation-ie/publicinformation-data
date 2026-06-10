@@ -20,13 +20,13 @@ def _latest(approach: str) -> dict | None:
     return json.loads(files[0].read_text())
 
 
-def _row(approach: str, data: dict | None, baseline_metrics: dict | None, slice_key: str) -> str:
+def _row(approach: str, data: dict | None, baseline_data: dict | None, slice_key: str) -> str:
     if data is None:
         return f"  {approach:<10}  {'(no results)':>55}"
     m = data["metrics"][slice_key]
     delta = ""
-    if baseline_metrics:
-        bm = baseline_metrics[slice_key]
+    if baseline_data:
+        bm = baseline_data["metrics"][slice_key]
         df1 = m["f1"] - bm["f1"]
         delta = f"  Δf1={df1:+.3f}"
     c = m["counts"]
