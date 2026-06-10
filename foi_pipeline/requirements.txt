@@ -11,6 +11,7 @@ pdfplumber==0.11.4
 camelot-py[cv]==0.11.0
 reportlab==4.2.5  # test-only
 python-dateutil==2.9.0
+pyyaml==6.0.2
 
 # LLM judge backends (optional) — install whichever EVAL_JUDGE_PROVIDER you use:
 #   anthropic   (EVAL_JUDGE_PROVIDER=anthropic)
