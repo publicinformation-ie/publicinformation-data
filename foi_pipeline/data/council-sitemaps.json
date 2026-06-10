@@ -1,0 +1,407 @@
+[
+  {
+    "websiteUrl": "https://www.corkcoco.ie",
+    "sitemapUrl": "https://www.corkcoco.ie/sitemap.xml",
+    "sitemapType": "index",
+    "urlCount": 3,
+    "lastModified": "2026-06-01T00:51:54+01:00",
+    "isValid": true,
+    "source": "common-location"
+  },
+  {
+    "websiteUrl": "https://www.corkcoco.ie",
+    "sitemapUrl": "https://www.corkcoco.ie/sitemap.xml?page=1",
+    "sitemapType": "urlset",
+    "urlCount": 2000,
+    "lastModified": "2026-05-29T10:25:19+01:00",
+    "isValid": true,
+    "source": "index:https://www.corkcoco.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "https://www.corkcoco.ie",
+    "sitemapUrl": "https://www.corkcoco.ie/sitemap.xml?page=2",
+    "sitemapType": "urlset",
+    "urlCount": 2000,
+    "lastModified": "2026-05-29T10:29:07+01:00",
+    "isValid": true,
+    "source": "index:https://www.corkcoco.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "https://www.corkcoco.ie",
+    "sitemapUrl": "https://www.corkcoco.ie/sitemap.xml?page=3",
+    "sitemapType": "urlset",
+    "urlCount": 53,
+    "lastModified": "2026-05-22T15:15:12+01:00",
+    "isValid": true,
+    "source": "index:https://www.corkcoco.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.roscommoncoco.ie",
+    "sitemapUrl": "http://www.roscommoncoco.ie/sitemap.xml",
+    "sitemapType": "urlset",
+    "urlCount": 4029,
+    "lastModified": "2017-07-13",
+    "isValid": true,
+    "source": "common-location"
+  },
+  {
+    "websiteUrl": "http://www.sligococo.ie",
+    "sitemapUrl": null,
+    "sitemapType": null,
+    "urlCount": null,
+    "lastModified": null,
+    "isValid": false,
+    "source": "none"
+  },
+  {
+    "websiteUrl": "http://www.mayococo.ie",
+    "sitemapUrl": "https://www.mayo.ie/en-ie/googlesitemap.xml",
+    "sitemapType": "urlset",
+    "urlCount": 1408,
+    "lastModified": "2026-06-02T00:00:00",
+    "isValid": true,
+    "source": "robots.txt"
+  },
+  {
+    "websiteUrl": "https://www.sdcc.ie/en/",
+    "sitemapUrl": "https://www.sdcc.ie/sitemap.xml",
+    "sitemapType": "urlset",
+    "urlCount": 10732,
+    "lastModified": "2026-06-02",
+    "isValid": true,
+    "source": "common-location"
+  },
+  {
+    "websiteUrl": "https://www.tipperarycoco.ie",
+    "sitemapUrl": "https://www.tipperarycoco.ie/sitemap.xml",
+    "sitemapType": "index",
+    "urlCount": 2,
+    "lastModified": "2026-06-02T15:29:02+01:00",
+    "isValid": true,
+    "source": "common-location"
+  },
+  {
+    "websiteUrl": "https://www.tipperarycoco.ie",
+    "sitemapUrl": "https://www.tipperarycoco.ie/sitemap.xml?page=1",
+    "sitemapType": "urlset",
+    "urlCount": 2000,
+    "lastModified": "2026-04-30T12:36:54+01:00",
+    "isValid": true,
+    "source": "index:https://www.tipperarycoco.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "https://www.tipperarycoco.ie",
+    "sitemapUrl": "https://www.tipperarycoco.ie/sitemap.xml?page=2",
+    "sitemapType": "urlset",
+    "urlCount": 443,
+    "lastModified": "2026-01-26T12:46:04+00:00",
+    "isValid": true,
+    "source": "index:https://www.tipperarycoco.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "https://www.westmeathcoco.ie",
+    "sitemapUrl": "https://www.westmeathcoco.ie/sitemap.xml",
+    "sitemapType": "urlset",
+    "urlCount": 386,
+    "lastModified": "2017-08-10T10:40:07+00:00",
+    "isValid": true,
+    "source": "common-location"
+  },
+  {
+    "websiteUrl": "https://www.meath.ie",
+    "sitemapUrl": null,
+    "sitemapType": null,
+    "urlCount": null,
+    "lastModified": null,
+    "isValid": false,
+    "source": "none"
+  },
+  {
+    "websiteUrl": "https://www.wexfordcoco.ie",
+    "sitemapUrl": "https://www.wexfordcoco.ie/sitemap.xml",
+    "sitemapType": "urlset",
+    "urlCount": 1247,
+    "lastModified": "2026-06-02T11:16Z",
+    "isValid": true,
+    "source": "common-location"
+  },
+  {
+    "websiteUrl": "http://www.offaly.ie",
+    "sitemapUrl": "http://www.offaly.ie/sitemap.xml",
+    "sitemapType": "index",
+    "urlCount": 11,
+    "lastModified": "2026-06-02T14:32:21+00:00",
+    "isValid": true,
+    "source": "common-location"
+  },
+  {
+    "websiteUrl": "http://www.offaly.ie",
+    "sitemapUrl": "https://www.offaly.ie/post-sitemap.xml",
+    "sitemapType": "urlset",
+    "urlCount": 23,
+    "lastModified": "2026-04-09T14:41:24+00:00",
+    "isValid": true,
+    "source": "index:http://www.offaly.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.offaly.ie",
+    "sitemapUrl": "https://www.offaly.ie/page-sitemap.xml",
+    "sitemapType": "urlset",
+    "urlCount": 810,
+    "lastModified": "2026-06-02T14:32:21+00:00",
+    "isValid": true,
+    "source": "index:http://www.offaly.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.offaly.ie",
+    "sitemapUrl": "https://www.offaly.ie/occ_news-sitemap.xml",
+    "sitemapType": "urlset",
+    "urlCount": 371,
+    "lastModified": "2026-05-27T15:17:34+00:00",
+    "isValid": true,
+    "source": "index:http://www.offaly.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.offaly.ie",
+    "sitemapUrl": "https://www.offaly.ie/occ_notices-sitemap.xml",
+    "sitemapType": "urlset",
+    "urlCount": 26,
+    "lastModified": "2026-05-29T15:47:43+00:00",
+    "isValid": true,
+    "source": "index:http://www.offaly.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.offaly.ie",
+    "sitemapUrl": "https://www.offaly.ie/occ_events-sitemap.xml",
+    "sitemapType": "urlset",
+    "urlCount": 216,
+    "lastModified": "2026-05-19T10:41:28+00:00",
+    "isValid": true,
+    "source": "index:http://www.offaly.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.offaly.ie",
+    "sitemapUrl": "https://www.offaly.ie/category-sitemap.xml",
+    "sitemapType": "urlset",
+    "urlCount": 7,
+    "lastModified": "2026-04-09T14:41:24+00:00",
+    "isValid": true,
+    "source": "index:http://www.offaly.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.offaly.ie",
+    "sitemapUrl": "https://www.offaly.ie/post_tag-sitemap.xml",
+    "sitemapType": "urlset",
+    "urlCount": 16,
+    "lastModified": "2026-04-09T14:41:24+00:00",
+    "isValid": true,
+    "source": "index:http://www.offaly.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.offaly.ie",
+    "sitemapUrl": "https://www.offaly.ie/occ_news-categories-sitemap.xml",
+    "sitemapType": "urlset",
+    "urlCount": 54,
+    "lastModified": "2026-05-19T13:43:14+00:00",
+    "isValid": true,
+    "source": "index:http://www.offaly.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.offaly.ie",
+    "sitemapUrl": "https://www.offaly.ie/occ_notices-categories-sitemap.xml",
+    "sitemapType": "urlset",
+    "urlCount": 2,
+    "lastModified": "2026-05-29T15:47:43+00:00",
+    "isValid": true,
+    "source": "index:http://www.offaly.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.offaly.ie",
+    "sitemapUrl": "https://www.offaly.ie/occ_events-categories-sitemap.xml",
+    "sitemapType": "urlset",
+    "urlCount": 41,
+    "lastModified": "2026-05-19T10:41:28+00:00",
+    "isValid": true,
+    "source": "index:http://www.offaly.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.offaly.ie",
+    "sitemapUrl": "https://www.offaly.ie/page-categories-sitemap.xml",
+    "sitemapType": "urlset",
+    "urlCount": 205,
+    "lastModified": "2026-06-02T14:32:21+00:00",
+    "isValid": true,
+    "source": "index:http://www.offaly.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.offaly.ie",
+    "sitemapUrl": "http://www.offaly.ie/sitemap_index.xml",
+    "sitemapType": "index",
+    "urlCount": 11,
+    "lastModified": "2026-06-02T14:32:21+00:00",
+    "isValid": true,
+    "source": "common-location"
+  },
+  {
+    "websiteUrl": "http://www.offaly.ie",
+    "sitemapUrl": "http://www.offaly.ie/wp-sitemap.xml",
+    "sitemapType": "index",
+    "urlCount": 11,
+    "lastModified": "2026-06-02T14:32:21+00:00",
+    "isValid": true,
+    "source": "common-location"
+  },
+  {
+    "websiteUrl": "http://www.offaly.ie",
+    "sitemapUrl": "http://www.offaly.ie/post-sitemap.xml",
+    "sitemapType": "urlset",
+    "urlCount": 23,
+    "lastModified": "2026-04-09T14:41:24+00:00",
+    "isValid": true,
+    "source": "common-location"
+  },
+  {
+    "websiteUrl": "http://www.offaly.ie",
+    "sitemapUrl": "http://www.offaly.ie/page-sitemap.xml",
+    "sitemapType": "urlset",
+    "urlCount": 810,
+    "lastModified": "2026-06-02T14:32:21+00:00",
+    "isValid": true,
+    "source": "common-location"
+  },
+  {
+    "websiteUrl": "https://www.wicklow.ie",
+    "sitemapUrl": "https://www.wicklow.ie/SiteMap.aspx",
+    "sitemapType": "urlset",
+    "urlCount": 1684,
+    "lastModified": "2026-05-29",
+    "isValid": true,
+    "source": "robots.txt"
+  },
+  {
+    "websiteUrl": "http://www.waterfordcouncil.ie",
+    "sitemapUrl": "http://www.waterfordcouncil.ie/sitemap.xml",
+    "sitemapType": "index",
+    "urlCount": 11,
+    "lastModified": null,
+    "isValid": true,
+    "source": "common-location"
+  },
+  {
+    "websiteUrl": "http://www.waterfordcouncil.ie",
+    "sitemapUrl": "https://waterfordcouncil.ie/wp-sitemap-posts-post-1.xml",
+    "sitemapType": "urlset",
+    "urlCount": 2000,
+    "lastModified": "2025-09-15T16:12:31+01:00",
+    "isValid": true,
+    "source": "index:http://www.waterfordcouncil.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.waterfordcouncil.ie",
+    "sitemapUrl": "https://waterfordcouncil.ie/wp-sitemap-posts-post-2.xml",
+    "sitemapType": "urlset",
+    "urlCount": 1806,
+    "lastModified": "2026-06-02T13:15:10+01:00",
+    "isValid": true,
+    "source": "index:http://www.waterfordcouncil.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.waterfordcouncil.ie",
+    "sitemapUrl": "https://waterfordcouncil.ie/wp-sitemap-posts-page-1.xml",
+    "sitemapType": "urlset",
+    "urlCount": 144,
+    "lastModified": "2026-05-29T11:50:33+01:00",
+    "isValid": true,
+    "source": "index:http://www.waterfordcouncil.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.waterfordcouncil.ie",
+    "sitemapUrl": "https://waterfordcouncil.ie/wp-sitemap-posts-services-1.xml",
+    "sitemapType": "urlset",
+    "urlCount": 269,
+    "lastModified": "2026-05-29T17:09:36+01:00",
+    "isValid": true,
+    "source": "index:http://www.waterfordcouncil.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.waterfordcouncil.ie",
+    "sitemapUrl": "https://waterfordcouncil.ie/wp-sitemap-posts-plenary-council-1.xml",
+    "sitemapType": "urlset",
+    "urlCount": 32,
+    "lastModified": "2025-12-10T09:31:48+00:00",
+    "isValid": true,
+    "source": "index:http://www.waterfordcouncil.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.waterfordcouncil.ie",
+    "sitemapUrl": "https://waterfordcouncil.ie/wp-sitemap-taxonomies-category-1.xml",
+    "sitemapType": "urlset",
+    "urlCount": 88,
+    "lastModified": null,
+    "isValid": true,
+    "source": "index:http://www.waterfordcouncil.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.waterfordcouncil.ie",
+    "sitemapUrl": "https://waterfordcouncil.ie/wp-sitemap-taxonomies-post_tag-1.xml",
+    "sitemapType": "urlset",
+    "urlCount": 43,
+    "lastModified": null,
+    "isValid": true,
+    "source": "index:http://www.waterfordcouncil.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.waterfordcouncil.ie",
+    "sitemapUrl": "https://waterfordcouncil.ie/wp-sitemap-taxonomies-post_format-1.xml",
+    "sitemapType": "urlset",
+    "urlCount": 2,
+    "lastModified": null,
+    "isValid": true,
+    "source": "index:http://www.waterfordcouncil.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.waterfordcouncil.ie",
+    "sitemapUrl": "https://waterfordcouncil.ie/wp-sitemap-taxonomies-political-party-1.xml",
+    "sitemapType": "urlset",
+    "urlCount": 6,
+    "lastModified": null,
+    "isValid": true,
+    "source": "index:http://www.waterfordcouncil.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.waterfordcouncil.ie",
+    "sitemapUrl": "https://waterfordcouncil.ie/wp-sitemap-taxonomies-electoral-district-1.xml",
+    "sitemapType": "urlset",
+    "urlCount": 5,
+    "lastModified": null,
+    "isValid": true,
+    "source": "index:http://www.waterfordcouncil.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.waterfordcouncil.ie",
+    "sitemapUrl": "https://waterfordcouncil.ie/wp-sitemap-users-1.xml",
+    "sitemapType": "urlset",
+    "urlCount": 7,
+    "lastModified": null,
+    "isValid": true,
+    "source": "index:http://www.waterfordcouncil.ie/sitemap.xml"
+  },
+  {
+    "websiteUrl": "http://www.waterfordcouncil.ie",
+    "sitemapUrl": "http://www.waterfordcouncil.ie/sitemap.xml.gz",
+    "sitemapType": "index",
+    "urlCount": 11,
+    "lastModified": null,
+    "isValid": true,
+    "source": "common-location"
+  },
+  {
+    "websiteUrl": "http://www.waterfordcouncil.ie",
+    "sitemapUrl": "http://www.waterfordcouncil.ie/wp-sitemap.xml",
+    "sitemapType": "index",
+    "urlCount": 11,
+    "lastModified": null,
+    "isValid": true,
+    "source": "common-location"
+  }
+]
