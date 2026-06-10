@@ -20,6 +20,7 @@
     "extract_disclosures_deduplicate",
     "export_status",
     "generate_topics",
-    "db_upload"
+    "db_upload",
+    "sync_backlog"
   ]
 }
