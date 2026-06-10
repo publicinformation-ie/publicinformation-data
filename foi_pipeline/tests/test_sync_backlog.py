@@ -2,13 +2,11 @@ import pytest
 import sys
 import json
 import yaml
-import tempfile
-import os
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from steps.sync_backlog.run import make_key, score_issue, SEVERITY_WEIGHT
+from steps.sync_backlog.run import make_key, score_issue
 from steps.sync_backlog.run import assign_priority_tiers
 from steps.sync_backlog.run import collect_issues
 from steps.sync_backlog.run import load_backlog, save_backlog, reconcile
