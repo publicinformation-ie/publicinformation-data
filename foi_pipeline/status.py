@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Pipeline status report — shows completion times, record counts, staleness, and errors."""
+import argparse
 import json
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -18,8 +20,56 @@ def fmt_size(n: int) -> str:
     return str(n)
 
 
+def assert_fresh(pipeline_dir: Path) -> None:
+    export_out = pipeline_dir / "steps" / "export_status" / "output.json"
+    if not export_out.exists():
+        print("Pipeline output not found: steps/export_status/output.json is missing. Run the pipeline first.")
+        sys.exit(1)
+
+    out_mtime = export_out.stat().st_mtime
+
+    source_files = list((pipeline_dir / "lib").glob("*.py")) if (pipeline_dir / "lib").exists() else []
+    req = pipeline_dir / "requirements.txt"
+    if req.exists():
+        source_files.append(req)
+    steps_dir = pipeline_dir / "steps"
+    if steps_dir.exists():
+        for step_dir in steps_dir.iterdir():
+            run_py = step_dir / "run.py"
+            if run_py.exists():
+                source_files.append(run_py)
+
+    stale_files = [f for f in source_files if f.stat().st_mtime > out_mtime]
+
+    if stale_files:
+        print("Pipeline output is stale. Modified since last run:")
+        for f in stale_files:
+            try:
+                rel = f.relative_to(pipeline_dir)
+            except ValueError:
+                rel = f
+            print(f"  {rel}")
+        sys.exit(1)
+
+    print("Pipeline output is fresh.")
+    sys.exit(0)
+
+
 def main():
+    parser = argparse.ArgumentParser(description="FOI pipeline status report")
+    parser.add_argument(
+        "--assert-fresh",
+        action="store_true",
+        help="Exit 0 if pipeline output is fresh, non-zero if source files have changed since last run",
+    )
+    args = parser.parse_args()
+
     pipeline_dir = Path(__file__).parent
+
+    if args.assert_fresh:
+        assert_fresh(pipeline_dir)
+        return  # assert_fresh calls sys.exit; this line is unreachable
+
     pipeline_json = pipeline_dir / "pipeline.json"
     steps = json.loads(pipeline_json.read_text())["steps"]
 
@@ -65,7 +115,6 @@ def main():
         if out_mtime is not None:
             prev_out_mtime = out_mtime
 
-    # Header
     name_w = max(len(r["name"]) for r in rows)
     print(f"\n{'STEP':<{name_w}}  {'COMPLETED':<16}  {'RECORDS':>9}  {'STALE':>5}  {'ERRORS':>6}")
     print("-" * (name_w + 2 + 16 + 2 + 9 + 2 + 5 + 2 + 6))
