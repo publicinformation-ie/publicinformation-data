@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import argparse
 import os
 import sys
 from datetime import datetime, timezone
@@ -21,7 +22,6 @@ STEP_NAME = "sync_backlog"
 
 
 def main():
-    import argparse
     parser = argparse.ArgumentParser(description="Sync eval issues to Codeberg Issues")
     add_common_args(parser)
     args = parser.parse_args()
