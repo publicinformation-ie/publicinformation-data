@@ -1,160 +1,12 @@
 #!/usr/bin/env python3
 import json
-import logging
-import os
-import re
-import sys
-import time
-from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urlparse
 
-import requests
+import yaml
 
 STEP_NAME = "sync_backlog"
-CODEBERG_API = "https://codeberg.org/api/v1"
-CODEBERG_REPO = os.getenv("CODEBERG_REPO", "publicinformation/publicinformation-data")
-
-# Configure logging for rate limit debugging
-logger = logging.getLogger("sync_backlog.rate_limit")
-logger.setLevel(logging.INFO)
-if not logger.handlers:
-    handler = logging.StreamHandler(sys.stdout)
-    handler.setFormatter(logging.Formatter('%(asctime)s.%(msecs)03d [%(name)s] %(levelname)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S'))
-    logger.addHandler(handler)
-
-# Global request counter for visibility
-_request_counter = 0
-
-
-class RateLimitedSession:
-    """Session wrapper that applies per-domain rate limiting with retry on 429.
-    
-    This session ensures that Codeberg API requests are properly rate-limited
-    and provides detailed logging for debugging rate limit issues.
-    """
-
-    def __init__(self, base_delay=None, max_retries=3):
-        self.session = requests.Session()
-        self.base_delay = base_delay or float(os.getenv("CODEBERG_RATE_LIMIT_DELAY", "1.0"))
-        self.max_retries = max_retries
-        self.request_count = 0
-        
-        logger.info(f"RateLimitedSession initialized with base_delay={self.base_delay}s, max_retries={max_retries}")
-
-    def _get_delay(self, domain):
-        """Get rate limit delay for domain, with Codeberg-specific override."""
-        from lib.http_utils import get_rate_limit_delay
-
-        if "codeberg.org" in domain:
-            delay = max(self.base_delay, get_rate_limit_delay(domain))
-            logger.debug(f"Domain {domain}: delay={delay:.3f}s (base={self.base_delay}s, http_utils={get_rate_limit_delay(domain):.3f}s)")
-            return delay
-        return get_rate_limit_delay(domain)
-
-    def _log_request(self, method, url, attempt, delay_applied):
-        """Log request details with timestamp."""
-        global _request_counter
-        _request_counter += 1
-        self.request_count += 1
-        logger.info(f"[{_request_counter}] Attempt {attempt + 1}/{self.max_retries + 1} - {method} {url} (delay_before={delay_applied:.3f}s)")
-
-    def _log_response(self, method, url, attempt, resp, elapsed):
-        """Log response details including rate limit headers."""
-        # Extract rate limit info from response headers
-        rate_limit = resp.headers.get("X-RateLimit-Limit")
-        rate_remaining = resp.headers.get("X-RateLimit-Remaining")
-        rate_reset = resp.headers.get("X-RateLimit-Reset")
-        retry_after = resp.headers.get("Retry-After")
-        
-        parts = [
-            f"Status={resp.status_code}",
-            f"Time={elapsed:.3f}s",
-        ]
-        if rate_limit:
-            parts.append(f"RateLimit={rate_limit}")
-        if rate_remaining:
-            parts.append(f"Remaining={rate_remaining}")
-        if rate_reset:
-            parts.append(f"Reset={rate_reset}")
-        if retry_after:
-            parts.append(f"RetryAfter={retry_after}")
-            
-        logger.info(f"[{_request_counter}] Response - {method} {url} | {" | ".join(parts)}")
-
-    def request(self, method, url, **kwargs):
-        """Make a rate-limited request with retry on 429 and detailed logging."""
-        domain = urlparse(url).netloc
-        start_time = time.time()
-
-        for attempt in range(self.max_retries + 1):
-            delay = self._get_delay(domain)
-            if delay > 0:
-                logger.debug(f"Sleeping for {delay:.3f}s before request to {domain}")
-                time.sleep(delay)
-            
-            self._log_request(method, url, attempt, delay)
-
-            try:
-                resp = self.session.request(method, url, **kwargs)
-                elapsed = time.time() - start_time
-                self._log_response(method, url, attempt, resp, elapsed)
-
-                # Check for rate limiting
-                if resp.status_code == 429:
-                    retry_after = int(resp.headers.get("Retry-After", 5))
-                    logger.warning(f"[{_request_counter}] Rate limited! Retry-After={retry_after}s, attempt={attempt + 1}/{self.max_retries + 1}")
-                    if attempt < self.max_retries:
-                        logger.info(f"[{_request_counter}] Sleeping for {retry_after}s before retry...")
-                        time.sleep(retry_after)
-                        start_time = time.time()  # Reset timer for next attempt
-                        continue
-                    else:
-                        logger.error(f"[{_request_counter}] Max retries exceeded for {method} {url}")
-                    resp.raise_for_status()
-
-                return resp
-            except requests.exceptions.ConnectionError as e:
-                elapsed = time.time() - start_time
-                logger.error(f"[{_request_counter}] Connection error on attempt {attempt + 1}: {e}")
-                if attempt < self.max_retries:
-                    backoff = 2 ** attempt
-                    logger.info(f"[{_request_counter}] Exponential backoff: sleeping {backoff}s before retry...")
-                    time.sleep(backoff)
-                    start_time = time.time()
-                    continue
-                raise
-
-        return resp
-
-    def get(self, url, **kwargs):
-        return self.request("GET", url, **kwargs)
-
-    def post(self, url, **kwargs):
-        return self.request("POST", url, **kwargs)
-
-    def patch(self, url, **kwargs):
-        return self.request("PATCH", url, **kwargs)
-
-
-def get_rate_limit_summary():
-    """Return a summary of rate limiting status."""
-    return {
-        "total_requests": _request_counter,
-        "note": "Check logs for detailed request/response timing and rate limit headers"
-    }
 
 SEVERITY_WEIGHT = {"error": 3, "warning": 2, "info": 1}
-
-REQUIRED_LABELS = [
-    {"name": "pipeline-issue", "color": "#0075ca"},
-    {"name": "severity:error", "color": "#d73a4a"},
-    {"name": "severity:warning", "color": "#e4e669"},
-    {"name": "severity:info", "color": "#cfd3d7"},
-    {"name": "priority:high", "color": "#b60205"},
-    {"name": "priority:medium", "color": "#fbca04"},
-    {"name": "priority:low", "color": "#0075ca"},
-]
 
 
 def make_key(step_name: str, issue: dict) -> str:
@@ -227,161 +79,92 @@ def collect_issues(pipeline_dir: Path) -> tuple:
     return scored_dict, steps_with_eval
 
 
-def build_body(step_name: str, issue: dict, run_at: str) -> str:
-    key = make_key(step_name, issue)
-    affected = issue.get("affected_count", 0) or 0
-    suggestion = issue.get("suggestion_detail", "") or ""
-    return (
-        f"**Affected:** {affected} records\n"
-        f"**Step:** {step_name}\n"
-        f"**Suggestion:** {suggestion}\n\n"
-        f"_Auto-generated by sync_backlog. Last updated: {run_at}._\n\n"
-        f"<!-- pipeline-key: {key} -->"
-    )
+def load_backlog(path: Path) -> list:
+    """Load existing backlog.yml, returning list of issue dicts. Returns [] if file absent."""
+    if not path.exists():
+        return []
+    data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    if not data or "issues" not in data:
+        return []
+    return data["issues"]
 
 
-def parse_pipeline_key(body: str) -> "str | None":
-    if not body:
-        return None
-    m = re.search(r"<!-- pipeline-key: ([^\s>]+) -->", body)
-    return m.group(1) if m else None
-
-
-def ensure_labels(session: requests.Session, repo_api_url: str, steps_with_eval: set) -> dict:
-    """Return name→id dict for all required labels, creating any that are missing."""
-    resp = session.get(f"{repo_api_url}/labels", params={"limit": 200})
-    resp.raise_for_status()
-    existing = {l["name"]: l["id"] for l in resp.json()}
-
-    step_labels = [
-        {"name": f"step:{s}", "color": "#c5def5"}
-        for s in steps_with_eval
-    ]
-    all_labels = REQUIRED_LABELS + step_labels
-    label_ids = {}
-    for label in all_labels:
-        name = label["name"]
-        if name in existing:
-            label_ids[name] = existing[name]
-        else:
-            r = session.post(f"{repo_api_url}/labels", json=label)
-            r.raise_for_status()
-            label_ids[name] = r.json()["id"]
-    return label_ids
-
-
-def fetch_open_issues(session: requests.Session, repo_api_url: str) -> list:
-    """Fetch all open issues labelled pipeline-issue, handling pagination."""
-    issues = []
-    page = 1
-    while True:
-        resp = session.get(
-            f"{repo_api_url}/issues",
-            params={"type": "issues", "state": "open", "labels": "pipeline-issue", "limit": 50, "page": page},
-        )
-        resp.raise_for_status()
-        batch = resp.json()
-        if not batch:
-            break
-        issues.extend(batch)
-        if len(batch) < 50:
-            break
-        page += 1
-    return issues
-
-
-def _label_ids_for_item(item: dict, label_ids: dict) -> list:
-    ids = [label_ids["pipeline-issue"]]
-    severity_key = f"severity:{item['issue'].get('severity', 'info')}"
-    if severity_key in label_ids:
-        ids.append(label_ids[severity_key])
-    priority_key = f"priority:{item['priority']}"
-    if priority_key in label_ids:
-        ids.append(label_ids[priority_key])
-    step_key = f"step:{item['step_name']}"
-    if step_key in label_ids:
-        ids.append(label_ids[step_key])
-    return ids
-
-
-def _issue_needs_update(cb_issue: dict, item: dict, new_body: str) -> bool:
-    existing_labels = {l["name"] for l in cb_issue.get("labels", [])}
-    expected_labels = {
-        "pipeline-issue",
-        f"severity:{item['issue'].get('severity', 'info')}",
-        f"priority:{item['priority']}",
-        f"step:{item['step_name']}",
+def save_backlog(path: Path, issues: list, run_at: str) -> None:
+    """Write issues list to backlog.yml with a last_updated header."""
+    data = {
+        "last_updated": run_at,
+        "issues": issues,
     }
-    body_changed = _body_without_timestamp(cb_issue.get("body", "")) != _body_without_timestamp(new_body)
-    labels_changed = existing_labels != expected_labels
-    return body_changed or labels_changed
-
-
-def _body_without_timestamp(body: str) -> str:
-    return re.sub(r"Last updated: [^\n]+\.", "Last updated: <REDACTED>.", body or "")
+    header = "# Pipeline issue backlog — auto-generated by sync_backlog. Do not edit manually.\n"
+    path.write_text(header + yaml.dump(data, default_flow_style=False, allow_unicode=True, sort_keys=False), encoding="utf-8")
 
 
 def reconcile(
-    session: requests.Session,
-    repo_api_url: str,
     scored_dict: dict,
-    open_issues: list,
+    existing_issues: list,
     steps_with_eval: set,
-    label_ids: dict,
     run_at: str,
-) -> dict:
-    result = {"created": 0, "updated": 0, "closed": 0, "skipped": 0, "run_at": run_at}
+) -> tuple:
+    """Merge current scored issues with existing backlog.
 
-    codeberg_by_key = {}
-    for issue in open_issues:
-        key = parse_pipeline_key(issue.get("body", ""))
-        if key:
-            codeberg_by_key[key] = issue
+    Returns (updated_issues, stats) where stats = {created, updated, resolved, unchanged}.
+    """
+    existing_by_key = {entry["key"]: entry for entry in existing_issues}
+    stats = {"created": 0, "updated": 0, "resolved": 0, "unchanged": 0}
+    result = []
 
-    # CREATE issues that exist in eval but not in Codeberg
+    # Process current issues — create or update
     for key, item in scored_dict.items():
-        if key not in codeberg_by_key:
-            title = f"[{item['step_name']}] {item['issue'].get('description', key)}"
-            body = build_body(item["step_name"], item["issue"], run_at)
-            ids = _label_ids_for_item(item, label_ids)
-            resp = session.post(
-                f"{repo_api_url}/issues",
-                json={"title": title, "body": body, "labels": ids},
+        issue = item["issue"]
+        if key in existing_by_key:
+            old = existing_by_key[key]
+            changed = (
+                old.get("affected_count") != (issue.get("affected_count") or 0)
+                or old.get("priority") != item["priority"]
+                or old.get("severity") != issue.get("severity", "info")
+                or old.get("status") == "resolved"
             )
-            resp.raise_for_status()
-            result["created"] += 1
-
-    # UPDATE, SKIP, or CLOSE issues that exist in Codeberg
-    for key, cb_issue in codeberg_by_key.items():
-        if key in scored_dict:
-            item = scored_dict[key]
-            new_body = build_body(item["step_name"], item["issue"], run_at)
-            if _issue_needs_update(cb_issue, item, new_body):
-                title = f"[{item['step_name']}] {item['issue'].get('description', key)}"
-                ids = _label_ids_for_item(item, label_ids)
-                resp = session.patch(
-                    f"{repo_api_url}/issues/{cb_issue['number']}",
-                    json={"title": title, "body": new_body, "labels": ids},
-                )
-                resp.raise_for_status()
-                result["updated"] += 1
+            if changed:
+                result.append({
+                    **old,
+                    "description": issue.get("description", key),
+                    "severity": issue.get("severity", "info"),
+                    "priority": item["priority"],
+                    "affected_count": issue.get("affected_count") or 0,
+                    "suggestion_detail": issue.get("suggestion_detail", ""),
+                    "status": "open",
+                    "last_seen": run_at,
+                })
+                stats["updated"] += 1
             else:
-                result["skipped"] += 1
+                result.append({**old, "last_seen": run_at})
+                stats["unchanged"] += 1
         else:
-            issue_step = key.split(":")[0]
-            if issue_step in steps_with_eval:
-                resp = session.patch(
-                    f"{repo_api_url}/issues/{cb_issue['number']}",
-                    json={"state": "closed"},
-                )
-                resp.raise_for_status()
-                comment = session.post(
-                    f"{repo_api_url}/issues/{cb_issue['number']}/comments",
-                    json={"body": "Resolved: no longer detected by eval"},
-                )
-                comment.raise_for_status()
-                result["closed"] += 1
-            else:
-                result["skipped"] += 1
+            result.append({
+                "key": key,
+                "step_name": item["step_name"],
+                "description": issue.get("description", key),
+                "severity": issue.get("severity", "info"),
+                "priority": item["priority"],
+                "affected_count": issue.get("affected_count") or 0,
+                "suggestion_detail": issue.get("suggestion_detail", ""),
+                "status": "open",
+                "first_seen": run_at,
+                "last_seen": run_at,
+            })
+            stats["created"] += 1
 
-    return result
+    # Carry forward issues not in current run
+    for key, old in existing_by_key.items():
+        if key in scored_dict:
+            continue  # already handled above
+        step_name = key.split(":")[0]
+        if step_name not in steps_with_eval:
+            result.append(old)
+        elif old.get("status") == "resolved":
+            result.append(old)
+        else:
+            result.append({**old, "status": "resolved", "resolved_at": run_at})
+            stats["resolved"] += 1
+
+    return result, stats
