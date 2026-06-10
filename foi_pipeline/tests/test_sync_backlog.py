@@ -195,3 +195,58 @@ class TestCollectIssues:
         scored, steps_with_eval = collect_issues(tmp_path)
         assert len(scored) == 0
         assert "step_a" in steps_with_eval
+
+
+from steps.sync_backlog.run import build_body, parse_pipeline_key
+
+
+class TestBuildBody:
+    def test_contains_affected_count(self):
+        issue = {"affected_count": 42, "suggestion_detail": "fix it"}
+        body = build_body("step_a", issue, "2026-06-10T12:00:00Z")
+        assert "42" in body
+
+    def test_contains_step_name(self):
+        issue = {"affected_count": 1, "suggestion_detail": "ok"}
+        body = build_body("step_a", issue, "2026-06-10T12:00:00Z")
+        assert "step_a" in body
+
+    def test_contains_suggestion(self):
+        issue = {"affected_count": 1, "suggestion_detail": "add to column_map"}
+        body = build_body("step_a", issue, "2026-06-10T12:00:00Z")
+        assert "add to column_map" in body
+
+    def test_contains_run_at_timestamp(self):
+        issue = {"affected_count": 1, "suggestion_detail": ""}
+        body = build_body("step_a", issue, "2026-06-10T12:00:00Z")
+        assert "2026-06-10T12:00:00Z" in body
+
+    def test_contains_pipeline_key_comment(self):
+        issue = {"description": "bad rows", "affected_count": 1, "suggestion_detail": ""}
+        body = build_body("step_a", issue, "2026-06-10T12:00:00Z")
+        assert "<!-- pipeline-key: step_a:bad_rows -->" in body
+
+    def test_uses_error_type_for_key_when_present(self):
+        issue = {"error_type": "NullField", "description": "ignored", "affected_count": 1, "suggestion_detail": ""}
+        body = build_body("step_a", issue, "2026-06-10T12:00:00Z")
+        assert "<!-- pipeline-key: step_a:nullfield -->" in body
+
+
+class TestParsePipelineKey:
+    def test_extracts_key(self):
+        body = "some text\n<!-- pipeline-key: step_a:bad_rows -->\nmore text"
+        assert parse_pipeline_key(body) == "step_a:bad_rows"
+
+    def test_returns_none_when_absent(self):
+        assert parse_pipeline_key("no key here") is None
+
+    def test_returns_none_for_empty_body(self):
+        assert parse_pipeline_key("") is None
+
+    def test_returns_none_for_none(self):
+        assert parse_pipeline_key(None) is None
+
+    def test_key_with_colons_and_underscores(self):
+        body = "<!-- pipeline-key: extract_disclosures_canonicalize:1183_records_have_unrecognize -->"
+        result = parse_pipeline_key(body)
+        assert result == "extract_disclosures_canonicalize:1183_records_have_unrecognize"
