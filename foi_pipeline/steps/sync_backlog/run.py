@@ -3,14 +3,70 @@ import json
 import os
 import re
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlparse
 
 import requests
 
 STEP_NAME = "sync_backlog"
 CODEBERG_API = "https://codeberg.org/api/v1"
 CODEBERG_REPO = os.getenv("CODEBERG_REPO", "publicinformation/publicinformation-data")
+
+
+class RateLimitedSession:
+    """Session wrapper that applies per-domain rate limiting with retry on 429."""
+
+    def __init__(self, base_delay=None, max_retries=3):
+        self.session = requests.Session()
+        self.base_delay = base_delay or float(os.getenv("CODEBERG_RATE_LIMIT_DELAY", "0.5"))
+        self.max_retries = max_retries
+
+    def _get_delay(self, domain):
+        """Get rate limit delay for domain, with Codeberg-specific override."""
+        from lib.http_utils import get_rate_limit_delay
+
+        if "codeberg.org" in domain:
+            return max(self.base_delay, get_rate_limit_delay(domain))
+        return get_rate_limit_delay(domain)
+
+    def request(self, method, url, **kwargs):
+        """Make a rate-limited request with retry on 429."""
+        domain = urlparse(url).netloc
+
+        for attempt in range(self.max_retries + 1):
+            delay = self._get_delay(domain)
+            if delay > 0:
+                time.sleep(delay)
+
+            try:
+                resp = self.session.request(method, url, **kwargs)
+
+                if resp.status_code == 429:
+                    retry_after = int(resp.headers.get("Retry-After", 5))
+                    if attempt < self.max_retries:
+                        time.sleep(retry_after)
+                        continue
+                    resp.raise_for_status()
+
+                return resp
+            except requests.exceptions.ConnectionError:
+                if attempt < self.max_retries:
+                    time.sleep(2 ** attempt)
+                    continue
+                raise
+
+        return resp
+
+    def get(self, url, **kwargs):
+        return self.request("GET", url, **kwargs)
+
+    def post(self, url, **kwargs):
+        return self.request("POST", url, **kwargs)
+
+    def patch(self, url, **kwargs):
+        return self.request("PATCH", url, **kwargs)
 
 SEVERITY_WEIGHT = {"error": 3, "warning": 2, "info": 1}
 

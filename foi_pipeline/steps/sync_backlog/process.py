@@ -6,12 +6,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
-
-from lib.cli_utils import add_common_args
 from lib.file_utils import write_json, write_status
 from steps.sync_backlog.run import (
     CODEBERG_API,
     CODEBERG_REPO,
+    RateLimitedSession,
     collect_issues,
     ensure_labels,
     fetch_open_issues,
@@ -44,8 +43,8 @@ def main():
         sys.exit(1)
 
     repo_api_url = f"{CODEBERG_API}/repos/{CODEBERG_REPO}"
-    session = requests.Session()
-    session.headers.update({"Authorization": f"token {token}", "Content-Type": "application/json"})
+    session = RateLimitedSession()
+    session.session.headers.update({"Authorization": f"token {token}", "Content-Type": "application/json"})
 
     run_at = datetime.now(timezone.utc).isoformat()
     print("Collecting issues from eval outputs...")
