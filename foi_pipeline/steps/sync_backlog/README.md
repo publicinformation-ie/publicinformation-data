@@ -31,10 +31,11 @@ This step uses a rate-limited session wrapper to avoid 429 errors from Codeberg 
 
 ### Configuration
 
-- `CODEBERG_RATE_LIMIT_DELAY`: Minimum delay in seconds between Codeberg API requests (default: 0.5)
+- `CODEBERG_RATE_LIMIT_DELAY`: Minimum delay in seconds between Codeberg API requests (default: 1.0)
   - This is on top of the global per-domain rate limiting from `lib/http_utils.py` (default: 0.2s)
-  - Combined minimum delay: max(0.5, 0.2) = 0.5s for Codeberg
-  - Ensures ~120 requests/minute maximum, well below Codeberg's 2000/5min limit
+  - Combined minimum delay: max(1.0, 0.2) = 1.0s for Codeberg
+  - Ensures ~60 requests/minute maximum, well below Codeberg's 2000/5min limit
+  - **Increased from 0.5s to 1.0s** to provide more headroom and reduce 429 errors
 
 - `CODEBERG_SYNC_ENABLED`: Set to `false` to disable syncing (default: `true`)
 - `CODEBERG_TOKEN`: Required for authentication to Codeberg API
@@ -53,4 +54,5 @@ This step uses a rate-limited session wrapper to avoid 429 errors from Codeberg 
 | `CODEBERG_TOKEN` | Yes | - | Codeberg API token for authentication |
 | `CODEBERG_REPO` | No | `publicinformation/publicinformation-data` | Target repository |
 | `CODEBERG_SYNC_ENABLED` | No | `true` | Set to `false` to skip syncing |
-| `CODEBERG_RATE_LIMIT_DELAY` | No | `0.5` | Minimum seconds between requests |
+| `CODEBERG_RATE_LIMIT_DELAY` | No | `1.0` | Minimum seconds between Codeberg API requests |
+| `PYTHONPATH` | No | - | Set to `.` when running from foi_pipeline directory |

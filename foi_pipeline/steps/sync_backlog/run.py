@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json
+import logging
 import os
 import re
 import sys
@@ -14,46 +15,113 @@ STEP_NAME = "sync_backlog"
 CODEBERG_API = "https://codeberg.org/api/v1"
 CODEBERG_REPO = os.getenv("CODEBERG_REPO", "publicinformation/publicinformation-data")
 
+# Configure logging for rate limit debugging
+logger = logging.getLogger("sync_backlog.rate_limit")
+logger.setLevel(logging.INFO)
+if not logger.handlers:
+    handler = logging.StreamHandler(sys.stdout)
+    handler.setFormatter(logging.Formatter('%(asctime)s.%(msecs)03d [%(name)s] %(levelname)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S'))
+    logger.addHandler(handler)
+
+# Global request counter for visibility
+_request_counter = 0
+
 
 class RateLimitedSession:
-    """Session wrapper that applies per-domain rate limiting with retry on 429."""
+    """Session wrapper that applies per-domain rate limiting with retry on 429.
+    
+    This session ensures that Codeberg API requests are properly rate-limited
+    and provides detailed logging for debugging rate limit issues.
+    """
 
     def __init__(self, base_delay=None, max_retries=3):
         self.session = requests.Session()
-        self.base_delay = base_delay or float(os.getenv("CODEBERG_RATE_LIMIT_DELAY", "0.5"))
+        self.base_delay = base_delay or float(os.getenv("CODEBERG_RATE_LIMIT_DELAY", "1.0"))
         self.max_retries = max_retries
+        self.request_count = 0
+        
+        logger.info(f"RateLimitedSession initialized with base_delay={self.base_delay}s, max_retries={max_retries}")
 
     def _get_delay(self, domain):
         """Get rate limit delay for domain, with Codeberg-specific override."""
         from lib.http_utils import get_rate_limit_delay
 
         if "codeberg.org" in domain:
-            return max(self.base_delay, get_rate_limit_delay(domain))
+            delay = max(self.base_delay, get_rate_limit_delay(domain))
+            logger.debug(f"Domain {domain}: delay={delay:.3f}s (base={self.base_delay}s, http_utils={get_rate_limit_delay(domain):.3f}s)")
+            return delay
         return get_rate_limit_delay(domain)
 
+    def _log_request(self, method, url, attempt, delay_applied):
+        """Log request details with timestamp."""
+        global _request_counter
+        _request_counter += 1
+        self.request_count += 1
+        logger.info(f"[{_request_counter}] Attempt {attempt + 1}/{self.max_retries + 1} - {method} {url} (delay_before={delay_applied:.3f}s)")
+
+    def _log_response(self, method, url, attempt, resp, elapsed):
+        """Log response details including rate limit headers."""
+        # Extract rate limit info from response headers
+        rate_limit = resp.headers.get("X-RateLimit-Limit")
+        rate_remaining = resp.headers.get("X-RateLimit-Remaining")
+        rate_reset = resp.headers.get("X-RateLimit-Reset")
+        retry_after = resp.headers.get("Retry-After")
+        
+        parts = [
+            f"Status={resp.status_code}",
+            f"Time={elapsed:.3f}s",
+        ]
+        if rate_limit:
+            parts.append(f"RateLimit={rate_limit}")
+        if rate_remaining:
+            parts.append(f"Remaining={rate_remaining}")
+        if rate_reset:
+            parts.append(f"Reset={rate_reset}")
+        if retry_after:
+            parts.append(f"RetryAfter={retry_after}")
+            
+        logger.info(f"[{_request_counter}] Response - {method} {url} | {" | ".join(parts)}")
+
     def request(self, method, url, **kwargs):
-        """Make a rate-limited request with retry on 429."""
+        """Make a rate-limited request with retry on 429 and detailed logging."""
         domain = urlparse(url).netloc
+        start_time = time.time()
 
         for attempt in range(self.max_retries + 1):
             delay = self._get_delay(domain)
             if delay > 0:
+                logger.debug(f"Sleeping for {delay:.3f}s before request to {domain}")
                 time.sleep(delay)
+            
+            self._log_request(method, url, attempt, delay)
 
             try:
                 resp = self.session.request(method, url, **kwargs)
+                elapsed = time.time() - start_time
+                self._log_response(method, url, attempt, resp, elapsed)
 
+                # Check for rate limiting
                 if resp.status_code == 429:
                     retry_after = int(resp.headers.get("Retry-After", 5))
+                    logger.warning(f"[{_request_counter}] Rate limited! Retry-After={retry_after}s, attempt={attempt + 1}/{self.max_retries + 1}")
                     if attempt < self.max_retries:
+                        logger.info(f"[{_request_counter}] Sleeping for {retry_after}s before retry...")
                         time.sleep(retry_after)
+                        start_time = time.time()  # Reset timer for next attempt
                         continue
+                    else:
+                        logger.error(f"[{_request_counter}] Max retries exceeded for {method} {url}")
                     resp.raise_for_status()
 
                 return resp
-            except requests.exceptions.ConnectionError:
+            except requests.exceptions.ConnectionError as e:
+                elapsed = time.time() - start_time
+                logger.error(f"[{_request_counter}] Connection error on attempt {attempt + 1}: {e}")
                 if attempt < self.max_retries:
-                    time.sleep(2 ** attempt)
+                    backoff = 2 ** attempt
+                    logger.info(f"[{_request_counter}] Exponential backoff: sleeping {backoff}s before retry...")
+                    time.sleep(backoff)
+                    start_time = time.time()
                     continue
                 raise
 
@@ -67,6 +135,14 @@ class RateLimitedSession:
 
     def patch(self, url, **kwargs):
         return self.request("PATCH", url, **kwargs)
+
+
+def get_rate_limit_summary():
+    """Return a summary of rate limiting status."""
+    return {
+        "total_requests": _request_counter,
+        "note": "Check logs for detailed request/response timing and rate limit headers"
+    }
 
 SEVERITY_WEIGHT = {"error": 3, "warning": 2, "info": 1}
 
