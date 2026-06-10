@@ -250,3 +250,68 @@ class TestParsePipelineKey:
         body = "<!-- pipeline-key: extract_disclosures_canonicalize:1183_records_have_unrecognize -->"
         result = parse_pipeline_key(body)
         assert result == "extract_disclosures_canonicalize:1183_records_have_unrecognize"
+
+
+import requests
+import unittest.mock as mock
+from steps.sync_backlog.run import ensure_labels, REQUIRED_LABELS
+
+
+class TestEnsureLabels:
+    def _make_session(self, token="tok"):
+        session = requests.Session()
+        session.headers["Authorization"] = f"token {token}"
+        return session
+
+    def test_creates_missing_labels(self):
+        repo_api_url = "https://codeberg.org/api/v1/repos/owner/repo"
+        session = mock.MagicMock()
+        # GET /labels returns empty list
+        session.get.return_value.json.return_value = []
+        session.get.return_value.raise_for_status = mock.MagicMock()
+        # POST /labels returns created label
+        created_ids = iter(range(1, 100))
+        def post_side_effect(url, **kwargs):
+            resp = mock.MagicMock()
+            resp.json.return_value = {"id": next(created_ids), "name": kwargs["json"]["name"]}
+            resp.raise_for_status = mock.MagicMock()
+            return resp
+        session.post.side_effect = post_side_effect
+
+        result = ensure_labels(session, repo_api_url, set())
+        assert "pipeline-issue" in result
+        assert "severity:error" in result
+        assert "priority:high" in result
+
+    def test_skips_existing_labels(self):
+        repo_api_url = "https://codeberg.org/api/v1/repos/owner/repo"
+        session = mock.MagicMock()
+        existing = [{"id": 10, "name": "pipeline-issue"}]
+        session.get.return_value.json.return_value = existing
+        session.get.return_value.raise_for_status = mock.MagicMock()
+        created_ids = iter(range(100, 200))
+        def post_side_effect(url, **kwargs):
+            resp = mock.MagicMock()
+            resp.json.return_value = {"id": next(created_ids), "name": kwargs["json"]["name"]}
+            resp.raise_for_status = mock.MagicMock()
+            return resp
+        session.post.side_effect = post_side_effect
+
+        result = ensure_labels(session, repo_api_url, set())
+        assert result["pipeline-issue"] == 10
+
+    def test_creates_step_labels_for_steps_with_eval(self):
+        repo_api_url = "https://codeberg.org/api/v1/repos/owner/repo"
+        session = mock.MagicMock()
+        session.get.return_value.json.return_value = []
+        session.get.return_value.raise_for_status = mock.MagicMock()
+        created_ids = iter(range(1, 200))
+        def post_side_effect(url, **kwargs):
+            resp = mock.MagicMock()
+            resp.json.return_value = {"id": next(created_ids), "name": kwargs["json"]["name"]}
+            resp.raise_for_status = mock.MagicMock()
+            return resp
+        session.post.side_effect = post_side_effect
+
+        result = ensure_labels(session, repo_api_url, {"find_public_bodies"})
+        assert "step:find_public_bodies" in result

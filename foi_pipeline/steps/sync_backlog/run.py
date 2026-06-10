@@ -113,3 +113,26 @@ def parse_pipeline_key(body: str) -> "str | None":
         return None
     m = re.search(r"<!-- pipeline-key: ([^\s>]+) -->", body)
     return m.group(1) if m else None
+
+
+def ensure_labels(session: requests.Session, repo_api_url: str, steps_with_eval: set) -> dict:
+    """Return name→id dict for all required labels, creating any that are missing."""
+    resp = session.get(f"{repo_api_url}/labels", params={"limit": 200})
+    resp.raise_for_status()
+    existing = {l["name"]: l["id"] for l in resp.json()}
+
+    step_labels = [
+        {"name": f"step:{s}", "color": "#c5def5"}
+        for s in steps_with_eval
+    ]
+    all_labels = REQUIRED_LABELS + step_labels
+    label_ids = {}
+    for label in all_labels:
+        name = label["name"]
+        if name in existing:
+            label_ids[name] = existing[name]
+        else:
+            r = session.post(f"{repo_api_url}/labels", json=label)
+            r.raise_for_status()
+            label_ids[name] = r.json()["id"]
+    return label_ids
