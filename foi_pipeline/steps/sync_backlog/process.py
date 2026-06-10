@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
+from lib.cli_utils import add_common_args
 from lib.file_utils import write_json, write_status
 from steps.sync_backlog.run import (
     CODEBERG_API,
