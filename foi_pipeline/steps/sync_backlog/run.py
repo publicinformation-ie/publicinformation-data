@@ -225,10 +225,11 @@ def reconcile(
             item = scored_dict[key]
             new_body = build_body(item["step_name"], item["issue"], run_at)
             if _issue_needs_update(cb_issue, item, new_body):
+                title = f"[{item['step_name']}] {item['issue'].get('description', key)}"
                 ids = _label_ids_for_item(item, label_ids)
                 resp = session.patch(
                     f"{repo_api_url}/issues/{cb_issue['number']}",
-                    json={"body": new_body, "labels": ids},
+                    json={"title": title, "body": new_body, "labels": ids},
                 )
                 resp.raise_for_status()
                 result["updated"] += 1

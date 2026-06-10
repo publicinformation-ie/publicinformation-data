@@ -35,9 +35,10 @@ def assert_fresh(pipeline_dir: Path) -> None:
     steps_dir = pipeline_dir / "steps"
     if steps_dir.exists():
         for step_dir in steps_dir.iterdir():
-            run_py = step_dir / "run.py"
-            if run_py.exists():
-                source_files.append(run_py)
+            for fname in ("run.py", "process.py"):
+                f = step_dir / fname
+                if f.exists():
+                    source_files.append(f)
 
     stale_files = [f for f in source_files if f.stat().st_mtime > out_mtime]
 

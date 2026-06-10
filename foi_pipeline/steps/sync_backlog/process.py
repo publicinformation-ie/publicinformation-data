@@ -65,7 +65,7 @@ def main():
     print(f"Done: created={result['created']} updated={result['updated']} closed={result['closed']} skipped={result['skipped']}")
 
     write_json(output_path, result)
-    write_status(output_path.parent, result["created"] + result["updated"] + result["skipped"])
+    write_status(output_path.parent, result["created"] + result["updated"] + result["closed"] + result["skipped"])
 
 
 if __name__ == "__main__":
