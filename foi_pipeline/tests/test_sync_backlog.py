@@ -1,10 +1,17 @@
 import pytest
 import sys
+import json
+import yaml
+import tempfile
+import os
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from steps.sync_backlog.run import make_key, score_issue, SEVERITY_WEIGHT
+from steps.sync_backlog.run import assign_priority_tiers
+from steps.sync_backlog.run import collect_issues
+from steps.sync_backlog.run import load_backlog, save_backlog, reconcile
 
 
 PIPELINE_STEPS = ["find_public_bodies", "find_disclosure_pages", "db_upload"]
@@ -81,9 +88,6 @@ class TestScoreIssue:
         assert score == 3 * 1 * 2.0
 
 
-from steps.sync_backlog.run import assign_priority_tiers
-
-
 class TestAssignPriorityTiers:
     def _make_items(self, scores):
         return [{"key": f"k{i}", "score": s} for i, s in enumerate(scores)]
@@ -123,11 +127,6 @@ class TestAssignPriorityTiers:
         items = [{"key": "x", "score": 5.0, "step_name": "foo"}]
         result = assign_priority_tiers(items)
         assert result[0]["step_name"] == "foo"
-
-
-import json
-import pytest
-from steps.sync_backlog.run import collect_issues
 
 
 class TestCollectIssues:
@@ -197,242 +196,187 @@ class TestCollectIssues:
         assert "step_a" in steps_with_eval
 
 
-from steps.sync_backlog.run import build_body, parse_pipeline_key
+class TestLoadBacklog:
+    def test_returns_empty_list_when_file_missing(self, tmp_path):
+        result = load_backlog(tmp_path / "backlog.yml")
+        assert result == []
 
+    def test_returns_empty_list_for_empty_file(self, tmp_path):
+        p = tmp_path / "backlog.yml"
+        p.write_text("")
+        result = load_backlog(p)
+        assert result == []
 
-class TestBuildBody:
-    def test_contains_affected_count(self):
-        issue = {"affected_count": 42, "suggestion_detail": "fix it"}
-        body = build_body("step_a", issue, "2026-06-10T12:00:00Z")
-        assert "42" in body
-
-    def test_contains_step_name(self):
-        issue = {"affected_count": 1, "suggestion_detail": "ok"}
-        body = build_body("step_a", issue, "2026-06-10T12:00:00Z")
-        assert "step_a" in body
-
-    def test_contains_suggestion(self):
-        issue = {"affected_count": 1, "suggestion_detail": "add to column_map"}
-        body = build_body("step_a", issue, "2026-06-10T12:00:00Z")
-        assert "add to column_map" in body
-
-    def test_contains_run_at_timestamp(self):
-        issue = {"affected_count": 1, "suggestion_detail": ""}
-        body = build_body("step_a", issue, "2026-06-10T12:00:00Z")
-        assert "2026-06-10T12:00:00Z" in body
-
-    def test_contains_pipeline_key_comment(self):
-        issue = {"description": "bad rows", "affected_count": 1, "suggestion_detail": ""}
-        body = build_body("step_a", issue, "2026-06-10T12:00:00Z")
-        assert "<!-- pipeline-key: step_a:bad_rows -->" in body
-
-    def test_uses_error_type_for_key_when_present(self):
-        issue = {"error_type": "NullField", "description": "ignored", "affected_count": 1, "suggestion_detail": ""}
-        body = build_body("step_a", issue, "2026-06-10T12:00:00Z")
-        assert "<!-- pipeline-key: step_a:nullfield -->" in body
-
-
-class TestParsePipelineKey:
-    def test_extracts_key(self):
-        body = "some text\n<!-- pipeline-key: step_a:bad_rows -->\nmore text"
-        assert parse_pipeline_key(body) == "step_a:bad_rows"
-
-    def test_returns_none_when_absent(self):
-        assert parse_pipeline_key("no key here") is None
-
-    def test_returns_none_for_empty_body(self):
-        assert parse_pipeline_key("") is None
-
-    def test_returns_none_for_none(self):
-        assert parse_pipeline_key(None) is None
-
-    def test_key_with_colons_and_underscores(self):
-        body = "<!-- pipeline-key: extract_disclosures_canonicalize:1183_records_have_unrecognize -->"
-        result = parse_pipeline_key(body)
-        assert result == "extract_disclosures_canonicalize:1183_records_have_unrecognize"
-
-
-import requests
-import unittest.mock as mock
-from steps.sync_backlog.run import ensure_labels, REQUIRED_LABELS
-
-
-class TestEnsureLabels:
-    def _make_session(self, token="tok"):
-        session = requests.Session()
-        session.headers["Authorization"] = f"token {token}"
-        return session
-
-    def test_creates_missing_labels(self):
-        repo_api_url = "https://codeberg.org/api/v1/repos/owner/repo"
-        session = mock.MagicMock()
-        # GET /labels returns empty list
-        session.get.return_value.json.return_value = []
-        session.get.return_value.raise_for_status = mock.MagicMock()
-        # POST /labels returns created label
-        created_ids = iter(range(1, 100))
-        def post_side_effect(url, **kwargs):
-            resp = mock.MagicMock()
-            resp.json.return_value = {"id": next(created_ids), "name": kwargs["json"]["name"]}
-            resp.raise_for_status = mock.MagicMock()
-            return resp
-        session.post.side_effect = post_side_effect
-
-        result = ensure_labels(session, repo_api_url, set())
-        assert "pipeline-issue" in result
-        assert "severity:error" in result
-        assert "priority:high" in result
-
-    def test_skips_existing_labels(self):
-        repo_api_url = "https://codeberg.org/api/v1/repos/owner/repo"
-        session = mock.MagicMock()
-        existing = [{"id": 10, "name": "pipeline-issue"}]
-        session.get.return_value.json.return_value = existing
-        session.get.return_value.raise_for_status = mock.MagicMock()
-        created_ids = iter(range(100, 200))
-        def post_side_effect(url, **kwargs):
-            resp = mock.MagicMock()
-            resp.json.return_value = {"id": next(created_ids), "name": kwargs["json"]["name"]}
-            resp.raise_for_status = mock.MagicMock()
-            return resp
-        session.post.side_effect = post_side_effect
-
-        result = ensure_labels(session, repo_api_url, set())
-        assert result["pipeline-issue"] == 10
-
-    def test_creates_step_labels_for_steps_with_eval(self):
-        repo_api_url = "https://codeberg.org/api/v1/repos/owner/repo"
-        session = mock.MagicMock()
-        session.get.return_value.json.return_value = []
-        session.get.return_value.raise_for_status = mock.MagicMock()
-        created_ids = iter(range(1, 200))
-        def post_side_effect(url, **kwargs):
-            resp = mock.MagicMock()
-            resp.json.return_value = {"id": next(created_ids), "name": kwargs["json"]["name"]}
-            resp.raise_for_status = mock.MagicMock()
-            return resp
-        session.post.side_effect = post_side_effect
-
-        result = ensure_labels(session, repo_api_url, {"find_public_bodies"})
-        assert "step:find_public_bodies" in result
-
-
-from steps.sync_backlog.run import fetch_open_issues
-
-
-class TestFetchOpenIssues:
-    def test_returns_single_page(self):
-        session = mock.MagicMock()
-        page1 = [{"number": 1, "body": "<!-- pipeline-key: step:foo -->"}]
-        session.get.return_value.json.return_value = page1
-        session.get.return_value.raise_for_status = mock.MagicMock()
-
-        result = fetch_open_issues(session, "https://codeberg.org/api/v1/repos/owner/repo")
+    def test_loads_issues_list(self, tmp_path):
+        p = tmp_path / "backlog.yml"
+        p.write_text(yaml.dump({
+            "last_updated": "2026-06-10T12:00:00+00:00",
+            "issues": [
+                {"key": "step_a:foo", "status": "open", "step_name": "step_a"}
+            ]
+        }))
+        result = load_backlog(p)
         assert len(result) == 1
-        assert result[0]["number"] == 1
+        assert result[0]["key"] == "step_a:foo"
 
-    def test_paginates_when_full_page(self):
-        session = mock.MagicMock()
-        page1 = [{"number": i, "body": f"<!-- pipeline-key: step:item{i} -->"} for i in range(50)]
-        page2 = [{"number": 50, "body": "<!-- pipeline-key: step:item50 -->"}]
-        session.get.return_value.raise_for_status = mock.MagicMock()
-        session.get.return_value.json.side_effect = [page1, page2, []]
-
-        result = fetch_open_issues(session, "https://codeberg.org/api/v1/repos/owner/repo")
-        assert len(result) == 51
-
-    def test_returns_empty_when_no_issues(self):
-        session = mock.MagicMock()
-        session.get.return_value.json.return_value = []
-        session.get.return_value.raise_for_status = mock.MagicMock()
-
-        result = fetch_open_issues(session, "https://codeberg.org/api/v1/repos/owner/repo")
+    def test_returns_empty_when_no_issues_key(self, tmp_path):
+        p = tmp_path / "backlog.yml"
+        p.write_text(yaml.dump({"last_updated": "2026-06-10T12:00:00+00:00"}))
+        result = load_backlog(p)
         assert result == []
 
 
-from steps.sync_backlog.run import reconcile
+class TestSaveBacklog:
+    def test_creates_file(self, tmp_path):
+        p = tmp_path / "backlog.yml"
+        save_backlog(p, [], "2026-06-10T12:00:00+00:00")
+        assert p.exists()
+
+    def test_roundtrip(self, tmp_path):
+        p = tmp_path / "backlog.yml"
+        issues = [{"key": "step_a:bar", "status": "open", "step_name": "step_a"}]
+        save_backlog(p, issues, "2026-06-10T12:00:00+00:00")
+        loaded = load_backlog(p)
+        assert len(loaded) == 1
+        assert loaded[0]["key"] == "step_a:bar"
+
+    def test_file_contains_header_comment(self, tmp_path):
+        p = tmp_path / "backlog.yml"
+        save_backlog(p, [], "2026-06-10T12:00:00+00:00")
+        content = p.read_text()
+        assert "auto-generated" in content
 
 
 def _make_scored_item(key, step_name, affected=5, severity="warning", priority="medium", suggestion="fix it"):
     return {
         "key": key,
         "step_name": step_name,
-        "issue": {"affected_count": affected, "severity": severity, "suggestion_detail": suggestion},
+        "issue": {
+            "affected_count": affected,
+            "severity": severity,
+            "suggestion_detail": suggestion,
+            "description": key.split(":", 1)[1].replace("_", " "),
+        },
         "score": 10.0,
         "priority": priority,
     }
 
 
-def _make_cb_issue(number, key, body_extra=""):
+def _make_existing_entry(key, step_name, status="open", first_seen="2026-06-09T10:00:00+00:00"):
     return {
-        "number": number,
-        "title": f"[step] some issue",
-        "body": f"**Affected:** 5 records\n**Step:** step\n**Suggestion:** fix it\n\n_Auto-generated by sync_backlog. Last updated: 2026-01-01T00:00:00Z._\n\n<!-- pipeline-key: {key} -->{body_extra}",
-        "labels": [],
+        "key": key,
+        "step_name": step_name,
+        "description": "some problem",
+        "severity": "warning",
+        "priority": "medium",
+        "affected_count": 5,
+        "suggestion_detail": "fix it",
+        "status": status,
+        "first_seen": first_seen,
+        "last_seen": first_seen,
     }
 
 
+RUN_AT = "2026-06-10T12:00:00+00:00"
+
+
 class TestReconcile:
-    def _make_session(self):
-        session = mock.MagicMock()
-        session.post.return_value.raise_for_status = mock.MagicMock()
-        session.post.return_value.json.return_value = {"number": 99}
-        session.patch.return_value.raise_for_status = mock.MagicMock()
-        session.get.return_value.raise_for_status = mock.MagicMock()
-        session.get.return_value.json.return_value = []
-        return session
-
-    def test_creates_new_issue(self):
-        session = self._make_session()
+    def test_creates_new_issue_when_not_in_existing(self):
         scored = {"step_a:foo": _make_scored_item("step_a:foo", "step_a")}
-        result = reconcile(session, "https://codeberg.org/api/v1/repos/owner/repo", scored, [], {"step_a"}, {"pipeline-issue": 1}, "2026-06-10T12:00:00Z")
-        assert result["created"] == 1
-        assert result["updated"] == 0
-        assert result["closed"] == 0
-        session.post.assert_called()
+        issues, stats = reconcile(scored, [], {"step_a"}, RUN_AT)
+        assert stats["created"] == 1
+        assert stats["updated"] == 0
+        assert stats["resolved"] == 0
+        assert len(issues) == 1
+        assert issues[0]["key"] == "step_a:foo"
 
-    def test_skips_unchanged_issue(self):
-        session = self._make_session()
-        key = "step_a:foo"
-        scored = {key: _make_scored_item(key, "step_a")}
-        cb_issues = [_make_cb_issue(1, key)]
-        # Body matches exactly — should skip (labels also need to match; mock label check)
-        with mock.patch("steps.sync_backlog.run._issue_needs_update", return_value=False):
-            result = reconcile(session, "https://codeberg.org/api/v1/repos/owner/repo", scored, cb_issues, {"step_a"}, {"pipeline-issue": 1}, "2026-06-10T12:00:00Z")
-        assert result["skipped"] == 1
-        assert result["updated"] == 0
+    def test_new_issue_has_first_seen_and_last_seen(self):
+        scored = {"step_a:foo": _make_scored_item("step_a:foo", "step_a")}
+        issues, _ = reconcile(scored, [], {"step_a"}, RUN_AT)
+        assert issues[0]["first_seen"] == RUN_AT
+        assert issues[0]["last_seen"] == RUN_AT
 
-    def test_updates_changed_issue(self):
-        session = self._make_session()
+    def test_new_issue_has_open_status(self):
+        scored = {"step_a:foo": _make_scored_item("step_a:foo", "step_a")}
+        issues, _ = reconcile(scored, [], {"step_a"}, RUN_AT)
+        assert issues[0]["status"] == "open"
+
+    def test_unchanged_issue_updates_last_seen_only(self):
         key = "step_a:foo"
+        existing = [_make_existing_entry(key, "step_a")]
+        scored = {key: _make_scored_item(key, "step_a")}  # same affected/priority/severity
+        issues, stats = reconcile(scored, existing, {"step_a"}, RUN_AT)
+        assert stats["unchanged"] == 1
+        assert stats["updated"] == 0
+        assert issues[0]["last_seen"] == RUN_AT
+        assert issues[0]["first_seen"] == "2026-06-09T10:00:00+00:00"  # preserved
+
+    def test_changed_affected_count_counts_as_update(self):
+        key = "step_a:foo"
+        existing = [_make_existing_entry(key, "step_a")]  # affected_count=5
         scored = {key: _make_scored_item(key, "step_a", affected=999)}
-        cb_issues = [_make_cb_issue(1, key)]
-        with mock.patch("steps.sync_backlog.run._issue_needs_update", return_value=True):
-            result = reconcile(session, "https://codeberg.org/api/v1/repos/owner/repo", scored, cb_issues, {"step_a"}, {"pipeline-issue": 1}, "2026-06-10T12:00:00Z")
-        assert result["updated"] == 1
-        session.patch.assert_called()
+        issues, stats = reconcile(scored, existing, {"step_a"}, RUN_AT)
+        assert stats["updated"] == 1
+        assert issues[0]["affected_count"] == 999
 
-    def test_closes_resolved_issue(self):
-        session = self._make_session()
+    def test_changed_priority_counts_as_update(self):
+        key = "step_a:foo"
+        existing = [_make_existing_entry(key, "step_a")]  # priority=medium
+        scored = {key: _make_scored_item(key, "step_a", priority="high")}
+        issues, stats = reconcile(scored, existing, {"step_a"}, RUN_AT)
+        assert stats["updated"] == 1
+        assert issues[0]["priority"] == "high"
+
+    def test_resolves_issue_no_longer_in_eval(self):
         key = "step_a:gone"
-        # key is in Codeberg but NOT in scored (issue was resolved)
-        scored = {}
-        cb_issues = [_make_cb_issue(5, key)]
-        result = reconcile(session, "https://codeberg.org/api/v1/repos/owner/repo", scored, cb_issues, {"step_a"}, {"pipeline-issue": 1}, "2026-06-10T12:00:00Z")
-        assert result["closed"] == 1
-        session.patch.assert_called()
+        existing = [_make_existing_entry(key, "step_a")]
+        scored = {}  # issue gone from eval
+        issues, stats = reconcile(scored, existing, {"step_a"}, RUN_AT)
+        assert stats["resolved"] == 1
+        assert issues[0]["status"] == "resolved"
+        assert issues[0]["resolved_at"] == RUN_AT
 
-    def test_does_not_close_when_step_eval_missing(self):
-        session = self._make_session()
+    def test_does_not_resolve_when_step_has_no_eval(self):
         key = "step_a:gone"
+        existing = [_make_existing_entry(key, "step_a")]
         scored = {}
-        cb_issues = [_make_cb_issue(5, key)]
-        # step_a is NOT in steps_with_eval — eval hasn't run for this step
-        result = reconcile(session, "https://codeberg.org/api/v1/repos/owner/repo", scored, cb_issues, set(), {"pipeline-issue": 1}, "2026-06-10T12:00:00Z")
-        assert result["closed"] == 0
-        assert result["skipped"] == 1
+        # step_a not in steps_with_eval — eval hasn't run, don't resolve
+        issues, stats = reconcile(scored, existing, set(), RUN_AT)
+        assert stats["resolved"] == 0
+        assert issues[0]["status"] == "open"
 
-    def test_result_has_run_at(self):
-        session = self._make_session()
-        result = reconcile(session, "https://...", {}, [], set(), {}, "2026-06-10T12:00:00Z")
-        assert result["run_at"] == "2026-06-10T12:00:00Z"
+    def test_does_not_re_resolve_already_resolved_issue(self):
+        key = "step_a:old"
+        existing = [_make_existing_entry(key, "step_a", status="resolved")]
+        scored = {}
+        issues, stats = reconcile(scored, existing, {"step_a"}, RUN_AT)
+        assert stats["resolved"] == 0
+        assert issues[0]["status"] == "resolved"
+
+    def test_reopens_resolved_issue_if_it_reappears(self):
+        key = "step_a:regressed"
+        existing = [_make_existing_entry(key, "step_a", status="resolved")]
+        scored = {key: _make_scored_item(key, "step_a")}
+        issues, stats = reconcile(scored, existing, {"step_a"}, RUN_AT)
+        assert stats["updated"] == 1
+        assert issues[0]["status"] == "open"
+
+    def test_preserves_first_seen_on_update(self):
+        key = "step_a:foo"
+        original_first_seen = "2026-06-01T00:00:00+00:00"
+        existing = [_make_existing_entry(key, "step_a", first_seen=original_first_seen)]
+        scored = {key: _make_scored_item(key, "step_a", affected=999)}
+        issues, _ = reconcile(scored, existing, {"step_a"}, RUN_AT)
+        assert issues[0]["first_seen"] == original_first_seen
+
+    def test_result_has_run_at_stats(self):
+        _, stats = reconcile({}, [], set(), RUN_AT)
+        assert "created" in stats
+        assert "updated" in stats
+        assert "resolved" in stats
+        assert "unchanged" in stats
+
+    def test_empty_run_with_empty_existing(self):
+        issues, stats = reconcile({}, [], set(), RUN_AT)
+        assert issues == []
+        assert stats["created"] == 0
