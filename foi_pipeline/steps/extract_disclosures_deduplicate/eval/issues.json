@@ -1,14 +1,13 @@
 [
   {
     "severity": "info",
-    "description": "8 bodies kept <50% of records after dedup",
-    "affected_count": 8,
+    "description": "7 bodies kept <50% of records after dedup",
+    "affected_count": 7,
     "affected_ids": [
-      "1008",
       "1016",
       "1036",
+      "1044",
       "1087",
-      "1088",
       "1097",
       "1128",
       "1147"

@@ -3,39 +3,39 @@
   "metrics": [
     {
       "name": "header_mapping_accuracy",
-      "value": 1.0,
+      "value": 0.987,
       "counts": {
-        "correct": 79,
+        "correct": 78,
         "total": 79
       },
       "is_primary": true
     },
     {
       "name": "field_coverage",
-      "value": 0.649,
+      "value": 0.654,
       "counts": {
-        "decision_date": 0.508,
-        "decision_status": 0.638,
-        "foi_reference_id": 0.795,
-        "request_description": 0.654
+        "decision_date": 0.502,
+        "decision_status": 0.648,
+        "foi_reference_id": 0.792,
+        "request_description": 0.674
       },
       "is_primary": false
     },
     {
       "name": "file_success_rate",
-      "value": 0.72,
+      "value": 0.767,
       "counts": {
-        "successful": 663,
-        "total": 921
+        "successful": 867,
+        "total": 1131
       },
       "is_primary": false
     },
     {
       "name": "insufficient_columns_rate",
-      "value": 0.28,
+      "value": 0.233,
       "counts": {
-        "failed": 258,
-        "total": 921
+        "failed": 264,
+        "total": 1131
       },
       "is_primary": false
     }
