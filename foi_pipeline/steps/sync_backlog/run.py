@@ -136,3 +136,23 @@ def ensure_labels(session: requests.Session, repo_api_url: str, steps_with_eval:
             r.raise_for_status()
             label_ids[name] = r.json()["id"]
     return label_ids
+
+
+def fetch_open_issues(session: requests.Session, repo_api_url: str) -> list:
+    """Fetch all open issues labelled pipeline-issue, handling pagination."""
+    issues = []
+    page = 1
+    while True:
+        resp = session.get(
+            f"{repo_api_url}/issues",
+            params={"type": "issues", "state": "open", "labels": "pipeline-issue", "limit": 50, "page": page},
+        )
+        resp.raise_for_status()
+        batch = resp.json()
+        if not batch:
+            break
+        issues.extend(batch)
+        if len(batch) < 50:
+            break
+        page += 1
+    return issues

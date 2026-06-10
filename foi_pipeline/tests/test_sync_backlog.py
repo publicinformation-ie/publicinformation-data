@@ -315,3 +315,36 @@ class TestEnsureLabels:
 
         result = ensure_labels(session, repo_api_url, {"find_public_bodies"})
         assert "step:find_public_bodies" in result
+
+
+from steps.sync_backlog.run import fetch_open_issues
+
+
+class TestFetchOpenIssues:
+    def test_returns_single_page(self):
+        session = mock.MagicMock()
+        page1 = [{"number": 1, "body": "<!-- pipeline-key: step:foo -->"}]
+        session.get.return_value.json.return_value = page1
+        session.get.return_value.raise_for_status = mock.MagicMock()
+
+        result = fetch_open_issues(session, "https://codeberg.org/api/v1/repos/owner/repo")
+        assert len(result) == 1
+        assert result[0]["number"] == 1
+
+    def test_paginates_when_full_page(self):
+        session = mock.MagicMock()
+        page1 = [{"number": i, "body": f"<!-- pipeline-key: step:item{i} -->"} for i in range(50)]
+        page2 = [{"number": 50, "body": "<!-- pipeline-key: step:item50 -->"}]
+        session.get.return_value.raise_for_status = mock.MagicMock()
+        session.get.return_value.json.side_effect = [page1, page2, []]
+
+        result = fetch_open_issues(session, "https://codeberg.org/api/v1/repos/owner/repo")
+        assert len(result) == 51
+
+    def test_returns_empty_when_no_issues(self):
+        session = mock.MagicMock()
+        session.get.return_value.json.return_value = []
+        session.get.return_value.raise_for_status = mock.MagicMock()
+
+        result = fetch_open_issues(session, "https://codeberg.org/api/v1/repos/owner/repo")
+        assert result == []
