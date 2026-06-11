@@ -66,6 +66,8 @@ _STATUS_SYNONYMS: dict[str, list[str]] = {
         'Part Released',
         'Part Release',
         'Partial Release',
+        'PART-GRAN',
+        'Part',
     ],
     'Withdrawn': [
         'Withdrawn',
@@ -113,6 +115,7 @@ _STATUS_SYNONYMS: dict[str, list[str]] = {
         'n/a',
         'NA',
         'Unknown',
+        'Queried',
     ],
 }
 

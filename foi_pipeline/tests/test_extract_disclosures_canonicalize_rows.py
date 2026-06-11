@@ -195,7 +195,7 @@ def test_status_value_is_date_emitted_for_dd_dash_mm_yyyy():
 
 
 def test_unrecognized_stays_unrecognized_for_arbitrary_value():
-    record = _make_record(decision_status="Some Completely Unknown Value XYZ", review_status=None)
+    record = _make_record(decision_status="Frobulated Zymurgical Request Blob", review_status=None)
     results, errors = [], []
     process_records({"results": [record]}, results, errors)
     assert errors[0]["error_type"] == "UnrecognizedDecisionStatus"
@@ -226,3 +226,33 @@ def test_record_still_passes_through_on_subtyped_error():
     process_records({"results": [record]}, results, errors)
     assert len(results) == 1
     assert len(errors) == 1
+
+
+# ── Synonym gap fixes (root cause 1 from backlog investigation) ───────────────
+
+
+def test_part_gran_maps_to_part_granted():
+    """Limerick CC abbreviation PART-GRAN should canonicalize to Part-Granted."""
+    record = _make_record(decision_status="PART-GRAN", review_status=None)
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert results[0]["decision_status"] == "Part-Granted"
+    assert errors == []
+
+
+def test_part_alone_maps_to_part_granted():
+    """Dept of Social Protection uses bare 'Part' to mean Part-Granted."""
+    record = _make_record(decision_status="Part", review_status=None)
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert results[0]["decision_status"] == "Part-Granted"
+    assert errors == []
+
+
+def test_queried_maps_to_unknown():
+    """DCEDIY uses 'Queried' for requests where clarification was sought — outcome unknown."""
+    record = _make_record(decision_status="Queried", review_status=None)
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert results[0]["decision_status"] == "Unknown"
+    assert errors == []

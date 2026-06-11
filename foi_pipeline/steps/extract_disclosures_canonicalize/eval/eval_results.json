@@ -12,12 +12,12 @@
     },
     {
       "name": "field_coverage",
-      "value": 0.735,
+      "value": 0.726,
       "counts": {
-        "decision_date": 0.607,
-        "decision_status": 0.772,
-        "foi_reference_id": 0.743,
-        "request_description": 0.817
+        "decision_date": 0.577,
+        "decision_status": 0.771,
+        "foi_reference_id": 0.742,
+        "request_description": 0.816
       },
       "is_primary": false
     },
