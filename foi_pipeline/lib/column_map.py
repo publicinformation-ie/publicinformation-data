@@ -116,7 +116,7 @@ _SYNONYMS: dict[str, list[str]] = {
         'decisions made',
         # Irish-language and reversed variants (Fingal, DLR, Tipperary PDFs)
         'cinneadh',
-        'date decision',
+        'date decision',    # Tipperary PDFs: "Date Decision" is their decision outcome column, not a date
         'decision type',
     ],
     'review_status': [
