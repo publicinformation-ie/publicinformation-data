@@ -102,6 +102,8 @@ class DisclosureFileCache:
             temp_fd, temp_path = tempfile.mkstemp(dir=str(self.cache_dir))
             try:
                 response = fetch("GET", file_url, allow_redirects=True)
+                if not response.ok:
+                    raise DownloadError(f"HTTP {response.status_code} for {file_url}")
                 with os.fdopen(temp_fd, "wb") as f:
                     f.write(response.content)
                 os.replace(temp_path, str(cache_path))
@@ -211,9 +213,9 @@ def _normalize_url_text(file_url, link_text):
     parsed = urllib.parse.urlparse(file_url)
     path = parsed.path
     # Replace common separators with spaces
-    for ch in ["-", "_", ".", "%20"]:
-        path = path.replace(ch, " ")
     path = urllib.parse.unquote(path)
+    for ch in ["-", "_", "."]:
+        path = path.replace(ch, " ")
     combined = f"{path} {link_text or ''}".strip()
     return combined
 
