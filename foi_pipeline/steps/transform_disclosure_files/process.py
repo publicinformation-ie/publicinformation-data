@@ -485,7 +485,16 @@ def process(input_data, step_dir, writer, verbose=False, workers=4):
         write_json(errors_path, [])
 
     # Initialize cache
-    cache = DisclosureFileCache(Path(step_dir) / "cache")
+    cache = DisclosureFileCache(Path(step_dir).parent / "verify_disclosure_files" / "cache")
+
+    status_counts = {}
+    for item in input_data["results"]:
+        s = item.get("verification_status", "unknown")
+        status_counts[s] = status_counts.get(s, 0) + 1
+    rejected = status_counts.get("rejected", 0)
+    unverified = status_counts.get("unverified", 0)
+    if rejected or unverified:
+        print(f"Verification status: {status_counts}")
 
     # Filter out already processed items
     items_to_process = [

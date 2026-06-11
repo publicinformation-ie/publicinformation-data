@@ -1,6 +1,8 @@
 import sys
 import time
 from pathlib import Path
+import shutil
+import tempfile
 
 import pytest
 
@@ -12,6 +14,22 @@ from lib.file_utils import IncrementalWriter
 @pytest.fixture(autouse=True)
 def zero_rate_limit(monkeypatch):
     monkeypatch.setattr("lib.http_utils.DEFAULT_RATE_LIMIT_DELAY", 0)
+
+
+@pytest.fixture(autouse=True)
+def clean_shared_cache(tmp_path):
+    """Clean up shared cache directory before each test to ensure test isolation.
+
+    Since transform_disclosure_files now points its cache at verify_disclosure_files/cache,
+    which is outside the tmp_path isolation, we need to clean it before each test.
+    """
+    cache_dir = tmp_path.parent / "verify_disclosure_files" / "cache"
+    if cache_dir.exists():
+        shutil.rmtree(cache_dir)
+    yield
+    # Optional: clean up after test as well
+    if cache_dir.exists():
+        shutil.rmtree(cache_dir)
 
 
 @pytest.fixture
