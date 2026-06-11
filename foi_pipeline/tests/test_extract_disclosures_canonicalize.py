@@ -618,3 +618,37 @@ def test_canonicalize_bilingual_irish_english_slash():
 def test_canonicalize_bilingual_slash_does_not_match_ambiguous_parts():
     # 'Grant/Refuse' — neither part is a known synonym, should return None
     assert canonicalize_header("Grant/Refuse") is None
+
+
+def test_canonicalize_irish_reference_synonyms():
+    assert canonicalize_header("Uimhir thagartha") == "foi_reference_id"
+    assert canonicalize_header("Uimhir") == "foi_reference_id"
+
+
+def test_canonicalize_irish_decision_synonyms():
+    assert canonicalize_header("Cinneadh") == "decision_status"
+    assert canonicalize_header("Decision Type") == "decision_status"
+    assert canonicalize_header("Date decision") == "decision_status"
+
+
+def test_canonicalize_irish_requester_synonyms():
+    assert canonicalize_header("Catagóir") == "requester_type"
+    assert canonicalize_header("iarrthóra") == "requester_type"
+
+
+def test_canonicalize_irish_description_synonyms():
+    assert canonicalize_header("Tuairisc ar") == "request_description"
+    assert canonicalize_header("Tuairisc ar Iarrataís / Description of") == "request_description"
+    assert canonicalize_header("Title (summary description)") == "request_description"
+    assert canonicalize_header("Request Detail") == "request_description"
+
+
+def test_canonicalize_irish_date_synonyms():
+    assert canonicalize_header("Dáta Eisiúna") == "decision_date"
+    assert canonicalize_header("Date of Receipt") == "date_received"
+    assert canonicalize_header("Date When") == "date_received"
+    assert canonicalize_header("Date Outcome") == "decision_date"
+
+
+def test_canonicalize_irish_review_synonyms():
+    assert canonicalize_header("Athbhreithniú") == "review_status"

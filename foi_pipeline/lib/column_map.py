@@ -42,6 +42,8 @@ _SYNONYMS: dict[str, list[str]] = {
         'reco rd no',             # OCR artefact for 'Record No'
         # Group E — PDF variants from disclosure logs
         'file ref.', 'file ref',
+        # Irish-language synonyms (Fingal, DLR PDFs)
+        'uimhir thagartha', 'uimhir',
     ],
     'date_received': [
         'date received', "date rec'd", "date rcv'd",
@@ -54,6 +56,9 @@ _SYNONYMS: dict[str, list[str]] = {
         'date request received',
         'dáta faighte / date received',  # Irish-first bilingual header
         'dáta faighte/ date received',   # no-space variant
+        # Meath PDFs
+        'date of receipt',
+        'date when',
     ],
     'decision_date': [
         'decision date', 'due date', 'date issued', 'date released',
@@ -69,6 +74,9 @@ _SYNONYMS: dict[str, list[str]] = {
         'cinneadh eisithe / date decision issued',
         'cinneadh eisithe/ decision issued',
         'decision due',
+        # Leitrim and Fingal/DLR variants
+        'date outcome',
+        'dáta eisiúna',
     ],
     'requester_type': [
         'requester type', 'category', 'category of requester', 'requester',
@@ -85,6 +93,9 @@ _SYNONYMS: dict[str, list[str]] = {
         'personal (p)/non- persona (np)',
         # OCR spacing artefact — each character separated by space
         'c a t e g o r y o f requester',
+        # Irish-language synonyms (Fingal, DLR PDFs)
+        'catagóir',
+        'iarrthóra',
     ],
     'decision_status': [
         'decision made', 'decision', 'status', 'decision/cinneadh',
@@ -103,9 +114,15 @@ _SYNONYMS: dict[str, list[str]] = {
         'decision/cinne adh',   # Decision/Cinne\nadh
         # Group E — additional PDF variants
         'decisions made',
+        # Irish-language and reversed variants (Fingal, DLR, Tipperary PDFs)
+        'cinneadh',
+        'date decision',
+        'decision type',
     ],
     'review_status': [
         'ir', 'ir/al', 'al',
+        # Irish-language synonym (Fingal, DLR PDFs)
+        'athbhreithniú',
     ],
     'related_request': [
         'related file', 'related file/uimhir cháis',
@@ -132,6 +149,11 @@ _SYNONYMS: dict[str, list[str]] = {
         'records requested',
         'query re',
         'disclosure log for 2023 description of the request (categories of records sought)',
+        # Irish-language and variant headers (Fingal, DLR, Leitrim, Tipperary PDFs)
+        'tuairisc ar',
+        'tuairisc ar iarrataís / description of',
+        'title (summary description)',
+        'request detail',
     ],
 }
 
