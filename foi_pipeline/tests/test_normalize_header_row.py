@@ -112,3 +112,40 @@ def test_header_idx_out_of_range_returns_unchanged():
     result_rows, idx = normalize_header_row(rows, header_row_idx=5)
     assert result_rows == rows
     assert idx == 5
+
+
+# ── scan-ahead rescue for sparse multi-row PDF headers ────────────────────────
+
+def test_forward_fill_sparse_header_with_good_next_row():
+    """When forward-fill produces a degenerate header but the next row has good canonical coverage,
+    the next row should be promoted to header."""
+    rows = [
+        ['Reference', None, None, None, 'Date When', None],  # idx 0: sparse, will forward-fill badly
+        ['Number', 'Date Received', 'Description', 'Category', 'Received', 'Decision'],  # idx 1: good
+        ['001', '01/01/2018', 'Some request', 'Journalist', '05/01/2018', 'Granted'],
+    ]
+    new_rows, new_idx = normalize_header_row(rows, header_row_idx=0)
+    # Should use row 1 (the good row) as the header
+    assert new_idx == 1
+    assert new_rows[1] == ['Number', 'Date Received', 'Description', 'Category', 'Received', 'Decision']
+
+
+def test_forward_fill_sparse_header_no_rescue_needed():
+    """When forward-fill produces a good header (>= 2 canonical matches), no scan-ahead occurs."""
+    rows = [
+        ['Request', None, 'Decision', None],  # 'Request' ~ request_description, 'Decision' ~ decision_status
+        ['details', 'category', 'made', 'date'],
+    ]
+    new_rows, new_idx = normalize_header_row(rows, header_row_idx=0)
+    # header_row_idx unchanged — original result was fine
+    assert new_idx == 0
+
+
+def test_forward_fill_does_not_rescue_when_next_row_is_data():
+    """Scan-ahead should not promote a row where the cells look like data, not headers."""
+    rows = [
+        ['Our Ref', None, 'Status', None],  # maps 2 columns — no rescue needed
+        ['FOI-001', '01/01/2018', 'Granted', 'Journalist'],
+    ]
+    new_rows, new_idx = normalize_header_row(rows, header_row_idx=0)
+    assert new_idx == 0
