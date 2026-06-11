@@ -69,13 +69,12 @@ def normalize_header_row(rows, header_row_idx, max_continuation_rows=_MAX_CONTIN
 
     new_rows = list(rows[:header_row_idx]) + [header] + list(rows[continuation_end:])
 
-    # Scan-ahead rescue: if forward-fill produced a degenerate header (canonical coverage ratio
-    # < 40% of columns, meaning too few distinct canonical columns for the row width), check if
-    # the immediately following row maps >= 3 canonical columns and promote it instead.
+    # Scan-ahead rescue: if forward-fill produced a degenerate header (too few distinct
+    # canonical columns), check if the immediately following row maps >= 3 canonical columns
+    # and promote it instead.
     current_header = new_rows[header_row_idx]
-    ncols_filled = len(current_header) if current_header else 1
     canonical_unique = _count_canonical_columns(current_header)
-    if canonical_unique < 2 or (canonical_unique / ncols_filled) < 0.4:
+    if canonical_unique < 2:
         next_idx = header_row_idx + 1
         if next_idx < len(new_rows) and _count_canonical_columns(new_rows[next_idx]) >= 3:
             return new_rows, next_idx

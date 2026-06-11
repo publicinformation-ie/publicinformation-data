@@ -117,11 +117,10 @@ def test_header_idx_out_of_range_returns_unchanged():
 # ── scan-ahead rescue for sparse multi-row PDF headers ────────────────────────
 
 def test_forward_fill_sparse_header_with_good_next_row():
-    """When forward-fill produces a degenerate header but the next row has good canonical coverage,
-    the next row should be promoted to header."""
+    """When forward-fill produces a header with < 2 canonical columns, the next row should be promoted if it has >= 3."""
     rows = [
-        ['Reference', None, None, None, 'Date When', None],  # idx 0: sparse, will forward-fill badly
-        ['Number', 'Date Received', 'Description', 'Category', 'Received', 'Decision'],  # idx 1: good
+        ['Unnamed', None, None, None, None, None],  # idx 0: forward-fill yields only 1 canonical (< 2), should rescue
+        ['Number', 'Date Received', 'Description', 'Category', 'Received', 'Decision'],  # idx 1: good (5+ canonical)
         ['001', '01/01/2018', 'Some request', 'Journalist', '05/01/2018', 'Granted'],
     ]
     new_rows, new_idx = normalize_header_row(rows, header_row_idx=0)
