@@ -593,3 +593,15 @@ def test_process_returns_total_header_rows_dropped():
     dropped = process(_make_canonicalize_input([item_with_header_row]), results, errors_out)
     assert dropped == 1
     assert len(results) == 1
+
+
+def test_canonicalize_header_trailing_slash_stripped():
+    # Fingal PDFs produce 'Decision/' when pdfplumber splits a bilingual header
+    assert canonicalize_header("Decision/") == "decision_status"
+
+
+def test_normalize_header_strips_trailing_slash():
+    from lib.text_utils import normalize_header
+    assert normalize_header("Decision/") == "decision"
+    assert normalize_header("Dáta Eisiúna /") == "dáta eisiúna"
+    assert normalize_header("iarrthóra /") == "iarrthóra"

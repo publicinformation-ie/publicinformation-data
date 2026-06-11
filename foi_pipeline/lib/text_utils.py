@@ -49,7 +49,7 @@ def normalize_cell(value, file_type=""):
 
 def normalize_header(value):
     """Normalize a header string for canonical column matching.
-    
+
     This is the normalization used by extract_disclosures_canonicalize step.
     Handles newlines, underscores, and whitespace; lowercases for matching.
     """
@@ -58,4 +58,4 @@ def normalize_header(value):
     # Normalize all whitespace (including newlines, underscores) to single spaces
     result = re.sub(r'[\s_]+', ' ', value.strip())
     # Lowercase and remove trailing punctuation
-    return re.sub(r'[\s.:]+$', '', result.lower())
+    return re.sub(r'[\s.:/]+$', '', result.lower())
