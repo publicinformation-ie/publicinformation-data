@@ -60,6 +60,11 @@ def process_records(input_data, results_out, errors_out, verbose=False):
             # Normalized successfully - create a copy to avoid mutating input
             normalized_record = dict(record)
             normalized_record["decision_status"] = canonical
+            if canonical == 'Personal':
+                if normalized_record.get("request_description") == raw_status:
+                    normalized_record["request_description"] = "Redacted: Personal request"
+                if normalized_record.get("requester_type") == raw_status:
+                    normalized_record["requester_type"] = "Other"
             results_out.append(normalized_record)
         else:
             review_canonical = canonicalize_review_status(raw_status)
