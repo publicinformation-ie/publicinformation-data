@@ -76,11 +76,25 @@ def canonicalize_file(item, column_swaps=None):
     missing_required = sorted(k for k in REQUIRED_COLUMNS if k not in canonical_to_col_idx)
     file_swaps = column_swaps.get(item["file_url"], []) if column_swaps else []
 
+    # Root Cause A: index of the first header with no canonical mapping; used to re-pad
+    # rows that are one cell short because pdfplumber dropped the blank/spacer column.
+    none_header_idx = next(
+        (i for i, h in enumerate(headers) if mapping.get(h) is None),
+        None,
+    )
+
     results = []
     header_rows_dropped = 0
     for row in rows[header_row_idx + 1:]:
         if not row:
             continue
+
+        # Root Cause A: when a row is shorter than the header by exactly one cell,
+        # restore the dropped spacer column so that all subsequent values align.
+        if none_header_idx is not None and len(row) == len(headers) - 1:
+            row = list(row)
+            row.insert(none_header_idx, None)
+
         record = {**meta}
         for key in CANONICAL_COLUMNS:
             if key in canonical_to_col_idx:
@@ -93,6 +107,13 @@ def canonicalize_file(item, column_swaps=None):
         if is_header_row(record):
             header_rows_dropped += 1
             continue
+
+        # Root Cause B: drop rows where pdfplumber split a multi-word description
+        # ("Request For Personal Information") across columns — every cell holds one word.
+        req_desc = record.get("request_description")
+        if req_desc and isinstance(req_desc, str) and req_desc.strip().lower() == "request":
+            continue
+
         if missing_required:
             record["missing_columns"] = missing_required
         results.append(record)
