@@ -1,317 +1,1191 @@
-
-
 <!DOCTYPE html>
-
 <html lang="en">
-<head id="Head1"><title>
-	Choice Based Letting Login
-</title>
-    
- <!-- mobile responsive meta -->
- <meta name="viewport" content="width=device-width, initial-scale=1" /><link rel="stylesheet" href="css/style.css" /><link rel="stylesheet" href="css/responsive.css" />
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="Scripts/jquery-ui.min.js" type="text/javascript"></script>
-    
+  <head>
+    <meta charset="UTF-8" />
+    <title>Disclosure Log - Kildare County Council</title> 
 
-</head>
-<body onload="DisableBack();">
+    <meta
+      name="keywords"
+      content="Kildare County Council, County Kildare, Co Kildare, Council's, Council, County Council, Local Government, Kildare, KCC,  Councillors, Council, Homepage, Home, All Services, Business, Your Council, Planning, Environment, Housing, Motor Tax, Recruitment, Online Services, Online Payments, Online Planning Enquiries, Alerts, Emergency News, Fire Services, Heritage, Conservation, Water Services, Forms, FAQs, Publications"
+    />
+    <meta
+      name="Description"
+      content="Kildare County Council providing information and online services 24 hours seven days a week for the citizens of County Kildare"
+    />
+    <meta name="author" content="Kildare County Council" />
+    <meta
+      name="copyright"
+      content="Kildare County Council. All rights reserved."
+    />
+
+    <meta name="revisit-after" content="7 days" />
+    <meta name="robots" content="all" />
+    <meta name="robots" content="noarchive" />
+    <meta name="rating" content="general" />
+    <meta name="language" content="English" />
+
+    <!-- mobile responsive meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="https://kildarecoco.ie/css/navbarstyle.css" />
+    <link rel="stylesheet" href="https://kildarecoco.ie/css/responsive.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://kildarecoco.ie/images/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://kildarecoco.ie/images/favicon/favicon-32x32.png"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://kildarecoco.ie/images/favicon/favicon-16x16.png"
+      sizes="16x16"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://kildarecoco.ie/images/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://kildarecoco.ie/images/favicon/favicon-32x32.png"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://kildarecoco.ie/images/favicon/favicon-16x16.png"
+      sizes="16x16"
+    />
+
+    <script
+      id="Cookiebot"
+      src="https://consent.cookiebot.com/uc.js"
+      data-cbid="3c0449dd-7674-40be-8fa3-7d23064ec97f"
+      data-blockingmode="auto"
+    ></script>
+
+    <script type="text/javascript">
+      /***********************************************
+       * Ajax Includes script- Â© Dynamic Drive DHTML code library (www.dynamicdrive.com)
+       * This notice MUST stay intact for legal use
+       * Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+       ***********************************************/
+
+      //To include a page, invoke ajaxinclude("afile.htm") in the BODY of page
+      //Included file MUST be from the same domain as the page displaying it.
+
+      var rootdomain = "http://" + window.location.hostname;
+
+      function ajaxinclude(url) {
+        var page_request = false;
+        if (window.XMLHttpRequest)
+          // if Mozilla, Safari etc
+          page_request = new XMLHttpRequest();
+        else if (window.ActiveXObject) {
+          // if IE
+          try {
+            page_request = new ActiveXObject("Msxml2.XMLHTTP");
+          } catch (e) {
+            try {
+              page_request = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {}
+          }
+        } else return false;
+        page_request.open("GET", url, false); //get page synchronously
+        page_request.send(null);
+        writecontent(page_request);
+      }
+
+      function writecontent(page_request) {
+        if (
+          window.location.href.indexOf("http") == -1 ||
+          page_request.status == 200
+        )
+          document.write(page_request.responseText);
+      }
+    </script>
+    <script type="text/javascript">
+      function clearThis(target) {
+        target.value = "";
+      }
+    </script>
+    <!--Google Analytics-->
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-9VDNDD58R0"
+    ></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-9VDNDD58R0");
+    </script>
+
+    <script>
+      (function () {
+        var cx = "33d5b27d1ded1432d";
+        var gcse = document.createElement("script");
+        gcse.type = "text/javascript";
+        gcse.async = true;
+        gcse.src = "https://cse.google.com/cse.js?cx=" + cx;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "nbbb1jther");
+</script>
+
+  </head>
+
+  <body>
+    <div class="boxed_wrapper">
+      <div id="skiptocontent">
+        <a href="#main-content">skip to main content</a>
+      </div>
+
+      <!--top bar-->
+      <header class="top-bar">
+        <div class="container">
+          <div class="clearfix">
+            <ul class="top-bar-text float_left">
+              <li>
+                <i class="icon-technology-1"></i>
+                <a href="tel:0035345980200" class="tel">045 980200</a>
+              </li>
+              <li>
+                <i class="icon-world"></i><strong>Head Office:</strong> Ãras
+                Chill Dara Devoy Park Naas Co Kildare W91 X77F
+              </li>
+            </ul>
+            <ul class="social float_right">
+              <li>
+                <a
+                  href="https://www.facebook.com/KildareCountyCouncil"
+                  target="_blank"
+                  ><img
+                    src="https://kildarecoco.ie/images/SocialMedia/Facebook-Logo.png"
+                    class="socialmediacurve"
+                    alt="Facebook Icon - this will open the Kildare County Council Facebook page in a new tab" /></a
+                >&nbsp;
+                <a href="https://twitter.com/KildareCoCo" target="_blank"
+                  ><img
+                    src="https://kildarecoco.ie/images/SocialMedia/Twitter-Logo.png"
+                    class="socialmediacurve"
+                    alt="Twitter Icon - this will open the Kildare County Council Twitter account in a new tab" /></a
+                >&nbsp;
+                <a
+                  href="https://www.instagram.com/kildarecountycouncil/"
+                  target="_blank"
+                  ><img
+                    src="https://kildarecoco.ie/images/SocialMedia/Instagram-logo.png"
+                    class="socialmediacurve"
+                    alt="Instagram Icon - this will open the Kildare County Council Instagram account in a new tab" /></a
+                >&nbsp;
+                <a
+                  href="https://www.youtube.com/user/cocowebteam"
+                  target="_blank"
+                  ><img
+                    src="https://kildarecoco.ie/images/SocialMedia/YouTube-Logo.png"
+                    class="socialmediacurve"
+                    alt="Youtube Icon - this will open the Kildare County Council YouTube account in a new tab" /></a
+                >&nbsp;
+                <a
+                  href="https://ie.linkedin.com/company/kildare-county-council"
+                  target="_blank"
+                  ><img
+                    src="https://kildarecoco.ie/images/SocialMedia/Linkedin-Logo.png"
+                    class="socialmediacurve"
+                    alt="Linkedin Icon - this will open the Kildare County Council LinkedIn account in a new tab" /></a
+                >&nbsp;
+                <a href="https://vimeo.com/user46646317" target="_blank"
+                  ><img
+                    src="https://kildarecoco.ie/images/SocialMedia/Vimeo-Logo.png"
+                    class="socialmediacurve"
+                    alt="Vimeo Icon - this will open the Kildare County Council Vimeo account in a new tab"
+                /></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!--navigation bar -->
+      <nav
+        class="navbar navbar-expand-lg navbar-light bg-white"
+        data-bs-theme="light"
+      >
+        <div class="container-fluid">
+          <a class="navbar-brand" href="https://kildarecoco.ie/">
+            <img
+              src="https://kildarecoco.ie/images/logo/KildareCountyCouncilCrest.png"
+              alt="Kildare County Council Logo"
+            />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <!--Home-->
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  id="homeText"
+                  aria-current="page"
+                  href="https://kildarecoco.ie/index.html"
+                  ><strong>Home</strong></a
+                >
+              </li>
+              <!--Business-->
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="https://kildarecoco.ie/Business/"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <strong>Business</strong>
+                </a>
+                <ul class="dropdown-menu">
+                  <li
+                    class="view-all"
+                    style="padding-left: 1.5rem; padding-right: 1rem"
+                  >
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/Business/"
+                      ><strong>View All 'Business'</strong></a
+                    >
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/Business/SupportingBusinessinCountyKildare/"
+                      >Supporting Business</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/Business/LocalEnterpriseOffice/"
+                      >Local Enterprise Office</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/YourCouncil/Finance/CommercialRates/"
+                      >Commercial Rates</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/Business/CasualTrading/"
+                      >Casual Trading</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <!--services-->
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="https://kildarecoco.ie/AllServices/"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <strong>Services</strong>
+                </a>
+                <ul class="dropdown-menu">
+                  <li
+                    class="view-all"
+                    style="padding-left: 1.5rem; padding-right: 1rem"
+                  >
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/"
+                      ><strong>View All 'Services'</strong></a
+                    >
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/CareerOpportunities/"
+                      >Career Opportunities</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/CivilDefence/"
+                      >Civil Defence</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/ClimateAction/"
+                      >Climate Action</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/Community/"
+                      >Community</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/Conservation/"
+                      >Conservation</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/CountyCoroner/"
+                      >County Coroner</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/DisabilityAccessForAll/"
+                      >Disability Access For All</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/ElectionsandVoting/"
+                      >Elections and Voting</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/Environment/"
+                      >Environment</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/FireService/"
+                      >Fire Service</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/Heritage/"
+                      >Heritage</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/Housing/"
+                      >Housing</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/KerdiffstownPark/"
+                      >Kerdiffstown Park</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/ArtsService/"
+                      >Kildare Arts Service</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/Library/"
+                      >Kildare Library Service</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/kildaresp/"
+                      >Kildare Sports Partnership</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/MotorTax/"
+                      >Motor Tax</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/NationalRoadsOffice/"
+                      >National Roads Office</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/OnlineServices/"
+                      >Online Services</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/ParksandOpenSpaces/"
+                      >Parks and Open Spaces</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/Planning"
+                      >Planning</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/PublicRealm/"
+                      >Strategic Projects and Public Realm</a
+                    >
+                  </li>
+                  
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/Transport/"
+                      >Transport</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/VeterinaryServices/"
+                      >Veterinary Services</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/AllServices/WaterServices/"
+                      >Water Services</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <!--your council-->
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="https://kildarecoco.ie/YourCouncil/"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <strong>Your Council</strong>
+                </a>
+                <ul class="dropdown-menu">
+                  <li
+                    class="view-all"
+                    style="padding-left: 1.5rem; padding-right: 1rem"
+                  >
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/YourCouncil/"
+                      ><strong>View All 'Your Council'</strong></a
+                    >
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/YourCouncil/CustomerService/"
+                      >Customer Services</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/YourCouncil/YourElectedCouncil/"
+                      >Your Elected Council</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/YourCouncil/ManagementTeam/"
+                      >Management Team</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/YourCouncil/GovernanceandCompliance/"
+                      >Governance and Compliance</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/YourCouncil/Publications/"
+                      >Publications</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/YourCouncil/Finance/"
+                      >Finance</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <!--CÃºrsaÃ­ Gaeilge-->
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="https://kildarecoco.ie/ga/"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <strong>CÃºrsaÃ­ Gaeilge</strong>
+                </a>
+                <ul class="dropdown-menu">
+                  <li
+                    class="view-all"
+                    style="padding-left: 1.5rem; padding-right: 1rem"
+                  >
+                    <a class="dropdown-item" href="https://kildarecoco.ie/ga/"
+                      ><strong>CÃºrsaÃ­ Gaeilge</strong></a
+                    >
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="https://kildarecoco.ie/ga/"
+                      >CÃºrsaÃ­ Gaeilge</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/ga/Foirmeacha/"
+                      >Foirmeacha</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <!--contact us-->
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="https://kildarecoco.ie/YourCouncil/CustomerService/ContactUs/"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <strong>Contact Us</strong>
+                </a>
+                <ul class="dropdown-menu">
+                  <li
+                    class="view-all"
+                    style="padding-left: 1.5rem; padding-right: 1rem"
+                  >
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/YourCouncil/CustomerService/ContactUs/"
+                      ><strong>Contact Us</strong></a
+                    >
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="https://kildarecoco.ie/YourCouncil/CustomerService/ContactUs/"
+                      ><i class="fa fa-book"></i> Contact Details</a
+                    >
+                  </li>
+                  <li class="dropdown-item">
+                    <p>
+                      <i class="fa fa-phone"></i> Telephone:
+                      <a href="tel:0035345980200" class="tel">045 980 200</a>
+                    </p>
+                  </li>
+                  <li class="dropdown-item">
+                    <p>
+                      <i class="fa fa-clock-o"></i> Out of Hours Contact No:
+                      <a href="tel:1800500400" class="tel"> 1800 500 444 </a>
+                    </p>
+                  </li>
+                  <li class="dropdown-item">
+                    <p>
+                      <i class="fa fa-globe"></i>
+                      <strong> Head Office - Ãras Chill Dara,</strong> Devoy
+                      Park,<br />
+                      Naas, Co Kidare, W91 X77
+                    </p>
+                  </li>
+                  <li class="dropdown-item">
+                    <p>
+                      <i class="fa fa-map-o"></i> Directions
+                      <a
+                        href="https://kildarecoco.ie/YourCouncil/CustomerService/directions/"
+                      ></a>
+                    </p>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <!--google search bar-->
+            <form class="d-flex my-2 my-lg-0 googleSearchBar" role="search">
+              <gcse:searchbox-only
+                resultsUrl="https://kildarecoco.ie/search/index.html"
+                role="search"
+              ></gcse:searchbox-only>
+            </form>
+          </div>
+        </div>
+      </nav>
 
 
-<!--banner-->
-<div class="inner-banner has-base-color-overlay text-center" style="background: url(images/background/1.jpg);">
+  
+<div class="inner-banner has-base-color-overlay text-center" style="background: url(https://kildarecoco.ie/images/background/FreedomofInformation.jpg); background-size: 100% 100%; min-height: 336px;">
     <div class="container">
         <div class="box">
-            <h3><br />Choice Based Letting Housing System<br />
-           <span lang="ga-IE">Córas Scéime Rogha Tithíochta</span></h3>
+            <h1><span>Freedom of Information</span></h1>
         </div><!-- /.box -->
     </div><!-- /.container -->
 </div>
 
-  
-<form method="post" action="./Login.aspx" id="form1">
-<div class="aspNetHidden">
-<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
-<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTQ3OTY1NDQ1Mw9kFgICAQ9kFgICAw9kFgICHw8PFgIeC05hdmlnYXRlVXJsBTlodHRwczovL09ubGluZS5raWxkYXJlY29jby5pZS9DQkxFL0NCTC1Vc2VyR3VpZGVsaW5lcy5wZGZkZGQcSftyC9T+rY+5qpPBSlRmR6IhOl8EzhcWK9l2y5CtwQ==" />
-</div>
-
-<script type="text/javascript">
-//<![CDATA[
-var theForm = document.forms['form1'];
-if (!theForm) {
-    theForm = document.form1;
-}
-function __doPostBack(eventTarget, eventArgument) {
-    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
-        theForm.__EVENTTARGET.value = eventTarget;
-        theForm.__EVENTARGUMENT.value = eventArgument;
-        theForm.submit();
-    }
-}
-//]]>
-</script>
-
-
-<div class="aspNetHidden">
-
-	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="70858D8D" />
-	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdADMeVE5BgzQ0AhRsYsxuVD7mZauxs/wQx6OkC51hPN8zqC6iEzImNKnNWih/B639S5SzgGIJDfNjzSrjqEXbHgy+Hbku3xW7gNlIcAIDo1mNe/nuSvN2ujDLViqJoMSOWQeO9xS1O8Fp4wemZYDX9eseHi4EJx0jqbINEg/Lr7Ik5ZBQ752VUmDzdL06JrwIicBnvd8o9S7lyrYbTDVVJynq/BxtpRmMWa+8qabgWqbiRuNzonqS48+FZtnXYICA3hQCZEvSs8K/YCJ3tgYhZ7mbSGFLrSUqsaRlT6IUZkksHaq7mMsqlO2gFGsyePgMue0Mq3Xi44VMGisB9KRxkcJ56CeCrqtLOPu59yj+6kLkD+bWy2rl19VTL24Yn9LcVUmjZhAqj8MNCohTwZGD1Uj6o+jiLfEicUVkbihqBpcMf46534Q1KAR2kC+8U6JmC7IZPaXLv4o1q0Qlv1XWd60QWU5zs4szwGpPwijBdpvnMzOjXxIWxAGoLpPZHb7zFdKG30nSOoSmXCzWbwgU//BF1ZnT5XMCYLk4Pbu70uuXPasLvKdw+Kn4+Bt6V7nR7Xoi9BwoeAD1tQD2uuxKG3DURFqTiNvQAYXq37eUG97e3pr91KHRhwTO8H+SmlaSOqFO/9ll49ypUVvWn7Ek2h+q189UtRSCeJvR2VkeM4TDK3fQK6xyCxMWedMlF/6riUkuDjLsSujVM6jt4DXJy1pPoU6KNa8vnWAh58mwwqruu9kd3gj/8f4E2g+SU5CbQJbeaI9LoaJvnXmU015R3kzNujRcFZVBLlNN4MR7QFMOd0b1N/8W7sRNBxgZM2A4NtjbAMlKnI+2/o5rGD685SmzWlvInsFdBride/mQ4dMNqm6AQWtN5M9EbLVYzo5yCMHtFu5YL/eGZy1RvDUN7avB4JDULW1xxvOeskLrrc7qGt37utsy+sj9Z00zeGSD6ULnlDSNfZGGuSqhCN1Bx1GkrOa2caxoAgEMqJLA7FGpvlMttp5jwjANQBGDqMwfao8aP78qQvl8EwSaMoYm4QQUSOj83gyQmUOdQVpO8rAPmjzmltaUM7aEAN+g9cP/m13Ho4xhOrPSIne+h2s7VPDZe9hJO+D+wuHWLAM6yaY8Xw==" />
-</div>
-<div id="divOffLine" style="display:none"> 
-  <span id="lblOffline1" class="intro-text">Iarrtar pardún. Tá an suíomh as líne idir Déardaoin meán lae go Dé hAoine ag a 9am le haghaidh gnáth oibre, mar sin beidh sé i bhfeidhm arís ag a 9 Dé hAoine</span> 
-  <br />
- <span id="lblOffline2" class="intro-text">Sorry, the site is offline between Thursdays at 12 noon to Fridays at 9 am for routine maintenance, the site will be back again after 9am Friday.</span> 
-
-</div>
 <div class="breadcumb-wrapper">
     <div class="container">
-      &nbsp;
+        <div class="pull-left">
+            <ul class="list-inline link-list">
+                <li>
+            <a href="https://kildarecoco.ie/index.html" aria-label="this is a link to the homepage of the Kildare County Council website"><span class="fa fa-home">&nbsp;</span></a>&nbsp;<a href="/YourCouncil/">Your Council</a>&nbsp;<a href="/YourCouncil/GovernanceandCompliance/">Governance and Compliance</a>&nbsp;<a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/">Freedom of Information</a>&nbsp;<a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/">Disclosure Log</a>
+                </li>
+             
+            </ul><!-- /.list-line -->
+        </div><!-- /.pull-left -->
 
-</div><!-- /.container -->
+    </div><!-- /.container -->
 </div>
-
-<section class="consultation sec-padd">
-    <div class="teamcontainer">
+  <main id="main-content">
+  <section class="service-single sec-padd">
+    <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
-         
-                <div class="default-form-area">
-
-    <div id="divLogIn">
-   <table role="presentation">
-   <tr><td class="style2" style="text-align: center;">&nbsp;</td>
-       <td><input type="submit" name="buttonGael" value="Dein as Gaolainn / Access through Irish" id="buttonGael" aria-label="Dein as Gaolainn / Access through Irish" class="button-Irish" style="font-style:italic;" />
-           <br /></td></tr>
-   <tr>
-   <td colspan="2" style="text-align: center;">
-      <h4> <span id="Titlelabel">Fill in your PPS number, write your date of birth in form day/month/year eg 20/06/1979, phone number and then hit the SUBMIT button</span>
-           <input type="hidden" name="hiddenLanguage" id="hiddenLanguage" value="english" /></h4>
-       </td>
-   </tr>
-   <tr>
-   <td style="text-align: center;" class="style2">&nbsp;</td><td style="text-align: center;" class="style1"> </td>
-   </tr>
-   <tr>
-   <td style="text-align: center;" class="style2">
-       <span id="lblPPS" class="labels">PPS Number</span></td>
-       <td class="style1"  style="text-align: center;"><input name="txtPPS" type="text" id="txtPPS" aria-label="txtPPS" autocomplete="off" class="form-control" style="width:200px;" />
-        <br /></td>
-   </tr>
-   <tr>
-   <td style="text-align: center;" class="style2">
-      </td>
-       <td class="style1" style="text-align: center; vertical-align: middle;">       
-       </td>
-   </tr>
-   <tr>
-   <td style="text-align: center;" class="style2">
-       <span id="lblCalender" class="labels">Date of birth</span>
-       </td>
-       <td class="style1" style="text-align: center; vertical-align: middle;">
-           <input name="txtDOB" type="text" id="txtDOB" aria-label="txtDOB" autocomplete="off" class="form-control" style="width:200px;" />
-        </td>
-   </tr>
- <tr>
-   <td style="text-align: center;" class="style2">&nbsp;</td><td style="text-align: center;" class="style1"> </td>
-   </tr>
-   <tr>
-   <td style="text-align: center;" class="style2">
-       <span id="lblPhone" class="labels">Phone No.</span>
-       </td>
-       <td class="style1" style="text-align: center; vertical-align: middle;">
-           <input name="txtPhone" type="text" id="txtPhone" aria-label="txtPhone" autocomplete="off" class="form-control" style="width:200px;" />
-        </td>
-   </tr>
-        <tr>
-   <td style="text-align: center;" class="style2">&nbsp;</td><td style="text-align: center;" class="style1"> </td>
-   </tr>
-   <tr>
-   <td style="text-align: center;" class="style2">
-       &nbsp;</td><td class="style1" style="text-align: center;">
-         <!--  <table id="Calendar1" cellspacing="0" cellpadding="2" title="Calendar" style="border-width:1px;border-style:solid;border-collapse:collapse;">
-	<tr><td colspan="7" style="background-color:Silver;"><table cellspacing="0" style="width:100%;border-collapse:collapse;">
-		<tr><td style="width:15%;"><a href="javascript:__doPostBack('Calendar1','V9587')" style="color:Black" title="Go to the previous month">&lt;</a></td><td align="center" style="width:70%;">May 2026</td><td align="right" style="width:15%;"><a href="javascript:__doPostBack('Calendar1','V9648')" style="color:Black" title="Go to the next month">&gt;</a></td></tr>
-	</table></td></tr><tr><th align="center" abbr="Sunday" scope="col">Sun</th><th align="center" abbr="Monday" scope="col">Mon</th><th align="center" abbr="Tuesday" scope="col">Tue</th><th align="center" abbr="Wednesday" scope="col">Wed</th><th align="center" abbr="Thursday" scope="col">Thu</th><th align="center" abbr="Friday" scope="col">Fri</th><th align="center" abbr="Saturday" scope="col">Sat</th></tr><tr><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9612')" style="color:Black" title="26 April">26</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9613')" style="color:Black" title="27 April">27</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9614')" style="color:Black" title="28 April">28</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9615')" style="color:Black" title="29 April">29</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9616')" style="color:Black" title="30 April">30</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9617')" style="color:Black" title="1 May">1</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9618')" style="color:Black" title="2 May">2</a></td></tr><tr><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9619')" style="color:Black" title="3 May">3</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9620')" style="color:Black" title="4 May">4</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9621')" style="color:Black" title="5 May">5</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9622')" style="color:Black" title="6 May">6</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9623')" style="color:Black" title="7 May">7</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9624')" style="color:Black" title="8 May">8</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9625')" style="color:Black" title="9 May">9</a></td></tr><tr><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9626')" style="color:Black" title="10 May">10</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9627')" style="color:Black" title="11 May">11</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9628')" style="color:Black" title="12 May">12</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9629')" style="color:Black" title="13 May">13</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9630')" style="color:Black" title="14 May">14</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9631')" style="color:Black" title="15 May">15</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9632')" style="color:Black" title="16 May">16</a></td></tr><tr><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9633')" style="color:Black" title="17 May">17</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9634')" style="color:Black" title="18 May">18</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9635')" style="color:Black" title="19 May">19</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9636')" style="color:Black" title="20 May">20</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9637')" style="color:Black" title="21 May">21</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9638')" style="color:Black" title="22 May">22</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9639')" style="color:Black" title="23 May">23</a></td></tr><tr><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9640')" style="color:Black" title="24 May">24</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9641')" style="color:Black" title="25 May">25</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9642')" style="color:Black" title="26 May">26</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9643')" style="color:Black" title="27 May">27</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9644')" style="color:Black" title="28 May">28</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9645')" style="color:Black" title="29 May">29</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9646')" style="color:Black" title="30 May">30</a></td></tr><tr><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9647')" style="color:Black" title="31 May">31</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9648')" style="color:Black" title="1 June">1</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9649')" style="color:Black" title="2 June">2</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9650')" style="color:Black" title="3 June">3</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9651')" style="color:Black" title="4 June">4</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9652')" style="color:Black" title="5 June">5</a></td><td align="center" style="width:14%;"><a href="javascript:__doPostBack('Calendar1','9653')" style="color:Black" title="6 June">6</a></td></tr>
-</table> -->
-           <span id="lblDateMessage" style="color:Maroon;font-family:Tahoma;font-weight:bold;font-style:italic;"></span>
-       </td>
-   </tr>
- 
-   <tr>
-   <td style="text-align: center;" class="style2">&nbsp;</td><td class="style1">&nbsp;</td>
-   </tr>
- 
-   <tr>
-   <td style="text-align: center;"class="style2">&nbsp;</td><td class="style1" style="text-align: center;">
-       <input type="submit" name="btnSubmit" value="Submit!" id="btnSubmit" class="btn btn-default" />
-       </td>
-   </tr>
-
-   <tr>
-   <td colspan="2">  <hr /><br /></td>
-   </tr>
-   <tr>
-   <td class="style2"></td>
-     <td><span id="lblMessage" class="messages" maximunsize="100px" autosize="true"></span></td>
-   </tr>
-      <tr>
-     <td class="style2">&nbsp;</td>
-     <td><span id="lblMessage2" class="messages" maximunsize="100px" autosize="true"></span></td>
-   </tr>
- 
-  <tr>
-    <td class="style2" style="text-align: center;">&nbsp;</td>
-    <td>       
-        <h4><a id="HyperLink2" title="Report an issue logging in - this will open the form in a new page" href="https://kildarecoco.ie/AllServices/Housing/ChoiceBasedLettings/CBLform/">Report problem with logging in!</a></h4>
-       <!--<h4> Report problem with logging in!</h4>-->
-      </td>
-  </tr>
-
- 
-     <tr>
-        <td class="style2" style="text-align: center;">&nbsp;</td>
-        <td>            
-            <h4><a id="HyperLink1" title="link to the user guide - this will open a new page" href="https://Online.kildarecoco.ie/CBLE/CBL-UserGuidelines.pdf" target="_blank">Click here for a user guide</a></h4>
-          <!--<h4>  Click here for a user guide</h4>-->
-      </td>
-       </tr>
-   </table>
-    </div>
-    </form>
-
-   
-
-      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script language="JavaScript" type="text/javascript" >
-          function DisableBack() {
-              window.history.forward(1);
-          }
-      </script>
-
-    
-      <script type="text/javascript">
-
-          $(document).ready(function () {
-
-              !function (a) { "function" == typeof define && define.amd ? define(["jquery"], a) : a("object" == typeof exports ? require("jquery") : jQuery) }(function (a) { var b, c = navigator.userAgent, d = /iphone/i.test(c), e = /chrome/i.test(c), f = /android/i.test(c); a.mask = { definitions: { 9: "[0-9]", a: "[A-Za-z]", "*": "[A-Za-z0-9]" }, autoclear: !0, dataName: "rawMaskFn", placeholder: "_" }, a.fn.extend({ caret: function (a, b) { var c; if (0 !== this.length && !this.is(":hidden")) return "number" == typeof a ? (b = "number" == typeof b ? b : a, this.each(function () { this.setSelectionRange ? this.setSelectionRange(a, b) : this.createTextRange && (c = this.createTextRange(), c.collapse(!0), c.moveEnd("character", b), c.moveStart("character", a), c.select()) })) : (this[0].setSelectionRange ? (a = this[0].selectionStart, b = this[0].selectionEnd) : document.selection && document.selection.createRange && (c = document.selection.createRange(), a = 0 - c.duplicate().moveStart("character", -1e5), b = a + c.text.length), { begin: a, end: b }) }, unmask: function () { return this.trigger("unmask") }, mask: function (c, g) { var h, i, j, k, l, m, n, o; if (!c && this.length > 0) { h = a(this[0]); var p = h.data(a.mask.dataName); return p ? p() : void 0 } return g = a.extend({ autoclear: a.mask.autoclear, placeholder: a.mask.placeholder, completed: null }, g), i = a.mask.definitions, j = [], k = n = c.length, l = null, a.each(c.split(""), function (a, b) { "?" == b ? (n--, k = a) : i[b] ? (j.push(new RegExp(i[b])), null === l && (l = j.length - 1), k > a && (m = j.length - 1)) : j.push(null) }), this.trigger("unmask").each(function () { function h() { if (g.completed) { for (var a = l; m >= a; a++) if (j[a] && C[a] === p(a)) return; g.completed.call(B) } } function p(a) { return g.placeholder.charAt(a < g.placeholder.length ? a : 0) } function q(a) { for (; ++a < n && !j[a];); return a } function r(a) { for (; --a >= 0 && !j[a];); return a } function s(a, b) { var c, d; if (!(0 > a)) { for (c = a, d = q(b); n > c; c++) if (j[c]) { if (!(n > d && j[c].test(C[d]))) break; C[c] = C[d], C[d] = p(d), d = q(d) } z(), B.caret(Math.max(l, a)) } } function t(a) { var b, c, d, e; for (b = a, c = p(a); n > b; b++) if (j[b]) { if (d = q(b), e = C[b], C[b] = c, !(n > d && j[d].test(e))) break; c = e } } function u() { var a = B.val(), b = B.caret(); if (o && o.length && o.length > a.length) { for (A(!0); b.begin > 0 && !j[b.begin - 1];) b.begin--; if (0 === b.begin) for (; b.begin < l && !j[b.begin];) b.begin++; B.caret(b.begin, b.begin) } else { for (A(!0); b.begin < n && !j[b.begin];) b.begin++; B.caret(b.begin, b.begin) } h() } function v() { A(), B.val() != E && B.change() } function w(a) { if (!B.prop("readonly")) { var b, c, e, f = a.which || a.keyCode; o = B.val(), 8 === f || 46 === f || d && 127 === f ? (b = B.caret(), c = b.begin, e = b.end, e - c === 0 && (c = 46 !== f ? r(c) : e = q(c - 1), e = 46 === f ? q(e) : e), y(c, e), s(c, e - 1), a.preventDefault()) : 13 === f ? v.call(this, a) : 27 === f && (B.val(E), B.caret(0, A()), a.preventDefault()) } } function x(b) { if (!B.prop("readonly")) { var c, d, e, g = b.which || b.keyCode, i = B.caret(); if (!(b.ctrlKey || b.altKey || b.metaKey || 32 > g) && g && 13 !== g) { if (i.end - i.begin !== 0 && (y(i.begin, i.end), s(i.begin, i.end - 1)), c = q(i.begin - 1), n > c && (d = String.fromCharCode(g), j[c].test(d))) { if (t(c), C[c] = d, z(), e = q(c), f) { var k = function () { a.proxy(a.fn.caret, B, e)() }; setTimeout(k, 0) } else B.caret(e); i.begin <= m && h() } b.preventDefault() } } } function y(a, b) { var c; for (c = a; b > c && n > c; c++) j[c] && (C[c] = p(c)) } function z() { B.val(C.join("")) } function A(a) { var b, c, d, e = B.val(), f = -1; for (b = 0, d = 0; n > b; b++) if (j[b]) { for (C[b] = p(b); d++ < e.length;) if (c = e.charAt(d - 1), j[b].test(c)) { C[b] = c, f = b; break } if (d > e.length) { y(b + 1, n); break } } else C[b] === e.charAt(d) && d++, k > b && (f = b); return a ? z() : k > f + 1 ? g.autoclear || C.join("") === D ? (B.val() && B.val(""), y(0, n)) : z() : (z(), B.val(B.val().substring(0, f + 1))), k ? b : l } var B = a(this), C = a.map(c.split(""), function (a, b) { return "?" != a ? i[a] ? p(b) : a : void 0 }), D = C.join(""), E = B.val(); B.data(a.mask.dataName, function () { return a.map(C, function (a, b) { return j[b] && a != p(b) ? a : null }).join("") }), B.one("unmask", function () { B.off(".mask").removeData(a.mask.dataName) }).on("focus.mask", function () { if (!B.prop("readonly")) { clearTimeout(b); var a; E = B.val(), a = A(), b = setTimeout(function () { B.get(0) === document.activeElement && (z(), a == c.replace("?", "").length ? B.caret(0, a) : B.caret(a)) }, 10) } }).on("blur.mask", v).on("keydown.mask", w).on("keypress.mask", x).on("input.mask paste.mask", function () { B.prop("readonly") || setTimeout(function () { var a = A(!0); B.caret(a), h() }, 0) }), e && f && B.off("input.mask").on("input.mask", u), A() }) } }) });
-
-              $('#txtDOB').mask("99/99/9999", { placeholder: 'dd/mm/yyyy' }); $(function () {
-                  $('#txtDOB').on("change", function () {
-                      $('#lblDateMessage').text(''); var date_regex = /(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)/; var Lang = $('#hiddenLanguage').val(); if (Lang == "gael") { if (!(date_regex.test($(this).val()))) { $('#lblDateMessage').text('Ní raibh an dáta sa bhfoirm cheart agat!'); $('#txtDOB').val(''); } }
-                      else { if (!(date_regex.test($(this).val()))) { $('#lblDateMessage').text('Incorrect date format! Must be day, month, year!'); $('#txtDOB').val(''); } }
-                  });
-              });
-          });
-
-
-
-      </script>
-	<br /><br /><br /> 
-  </div>
-</div>   
-    </div>
-</section>
-
-
- 
-
-
-<footer class="main-footer">
-    
-    <!--Widgets Section-->
-    <div class="widgets-section">
-        <div class="container">
-            <div class="row">
-                <!--Big Column-->
-                <div class="big-column col-md-6 col-sm-12 col-xs-12">
-                    <div class="row clearfix">
-                        
-                        <!--Footer Column-->
-                        <div class="footer-column col-md-6 col-sm-6 col-xs-12">
-                        
-                        <!--Footer Column Arrow - do not delete -->                   
-                    </div>
-                </div>
-                
-                <!--Big Column-->
-                <div class="big-column col-md-6 col-sm-12 col-xs-12">
-                    <div class="row clearfix">
-                        
-                      
-                        
-                        <!--Footer Column-->
-                        <div class="footer-column col-md-6 col-sm-6 col-xs-12">
-                            <div class="footer-widget contact-widget">
-                               
-                         
+                  <div class="col-md-3">
+                <div class="service-sidebar">
+                    <ul class="service-catergory">
+                      <li class="active"><a href="https://kildarecoco.ie/YourCouncil/">View Your Council</a> <span class="view-all-icon fa fa-cog"></span></li>   
+                      <li><a href="https://kildarecoco.ie/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/">Disclosure Log</a></li>
+                      <li><a href="https://kildarecoco.ie/FAQs/FreedomofInformationFOI/">FAQs</a></li>
+                      <li><a href="https://kildarecoco.ie/Forms/FreedomofInformation/">Forms</a></li>
+                      <li><a href="https://kildarecoco.ie/YourCouncil/GovernanceandCompliance/FreedomofInformation/PublicationScheme/">Publication Scheme</a></li>
+                      <li><a href="https://kildarecoco.ie/YourCouncil/GovernanceandCompliance/FreedomofInformation/Re-useofPublicSectorInformationPSI/">Re-use of Public Sector Information (PSI)</a></li>
+                      <li><a href="https://kildarecoco.ie/YourCouncil/GovernanceandCompliance/FreedomofInformation/SummaryofFees/">Summary of Fees</a></li>
+                      <li><a href="https://kildarecoco.ie/YourCouncil/GovernanceandCompliance/FreedomofInformation/TimeLimits/">Time Limits</a></li>
+                     </ul>
+            	 		<div class="author-details2 style-2">
+                        <div class="item">
+                            <h2>Freedom of Information Contacts:</h2>
+						               <div class="content">
+                                <p><i class="fa fa-phone"></i><a href="tel:0035345980953" class="tel">045980953</a></p>  
+																<p><i class="fa fa-envelope"></i><a href="mailto:foi@kildarecoco.ie">foi@kildarecoco.ie</a></p>
+							          </div>
                         </div>
-                        
-                        
                     </div>
                 </div>
-                
-             </div>
-         </div>
-     </div>
-     
-     <!--Footer Bottom-->
-     <section class="footer-bottom">
-        <div class="container">
-            <div class="pull-left copy-text">
-                <div>All Rights Reserved © Kildare County Council</div>
-                
-            </div><!-- /.pull-right -->
-       
-        </div><!-- /.container -->
-    </section>   
+            </div>
+            <div class="col-md-9">
+                  <div class="outer-box">
+                        <div class="upload">
+<h2><a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/disclosure log 2nd half of 2025.pdf" aria-label="Go to Disclosure Log Second Half 2025">Disclosure Log Second Half 2025 (Acrobat pdf, 330KB)</a></h2>
 
+</div> 
+<div class="upload">
+<h2><a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/Disclosure Log 1st half of 2025.pdf" aria-label="Go to Disclosure Log First Half 2025">Disclosure Log First Half 2025 (Acrobat pdf, 187KB)</a></h2>
 
+</div> 
+<div class="upload">
+<h2><a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/FOI Disclosure Log second  half of 2024.pdf" aria-label="Go to FOI Disclosure Log Second  half of 2024">FOI Disclosure Log Second  half of 2024 (Acrobat pdf, 162KB)</a></h2>
 
-<!-- Scroll Top Button -->
-	<button class="scroll-top tran3s color2_bg">
-		<span class="fa fa-angle-up"></span>
-	</button>
-	<!-- pre loader  -->
-	<div class="preloader"></div>
-
-
-	<!-- jQuery js -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<!-- bootstrap js -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- jQuery ui js -->
-	<script src="js/jquery-ui.js"></script>
-	<!-- owl carousel js -->
-	<script src="js/owl.carousel.min.js"></script>
-	<!-- jQuery validation -->
-	<script src="js/jquery.validate.min.js"></script>
-	<!-- google map 
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRvBPo3-t31YFk588DpMYS6EqKf-oGBSI"></script> 
-	<script src="js/gmap.js"></script>-->
-	<!-- mixit up -->
-	<script src="js/wow.js"></script>
-	<script src="js/jquery.mixitup.min.js"></script>
-	<script src="js/jquery.fitvids.js"></script>
-    <script src="js/bootstrap-select.min.js"></script>
-	<script src="js/menuzord.js"></script>
-
-
-
-	<!-- fancy box -->
-	<script src="js/jquery.fancybox.pack.js"></script>
-	<script src="js/jquery.polyglot.language.switcher.js"></script>
-	<script src="js/nouislider.js"></script>
-	<script src="js/jquery.bootstrap-touchspin.js"></script>
-	<script src="js/SmoothScroll.js"></script>
-	<script src="js/jquery.appear.js"></script>
-	<script src="js/jquery.countTo.js"></script>
-	<script src="js/jquery.flexslider.js"></script>
-	<script src="js/imagezoom.js"></script>	
-	<script id="map-script" src="js/default-map.js"></script>
-	<script src="js/custom.js"></script>
-
+</div> 
+<div class="upload">
+<h2><a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/Kildare County Council FOI Disclosure Log JanuaryJune 2024.pdf" aria-label="Go to FOI Disclosure Log first half of 2024 ">FOI Disclosure Log first half of 2024  (Acrobat pdf, 215KB)</a></h2>
 </div>
-	
-</body>
-</html>
 
+<div class="upload">
+<h2><a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/Disclosure Log second half of 2023.pdf" aria-label="Go to FOI Disclosure Log - Second Half 2023">FOI Disclosure Log - Second Half 2023 (Acrobat pdf, 134KB)</a></h2>
+
+</div> 
+<div class="upload">
+<h2><a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/Disclosure Log First Half 2023.pdf" aria-label="Go to Disclosure Log- First Half 2023">Disclosure Log- First Half 2023 (Acrobat pdf, 176KB)</a></h2>
+
+</div> 
+<div class="upload">
+<h2><a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/Copy of Disclosure log 2022 web version.pdf" aria-label="Go to Disclosure Log 2022">Disclosure Log 2022 (Acrobat pdf, 199KB)</a></h2>
+
+</div> 
+<div class="upload">
+<h2><a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/Disclosure log 2nd half of 2021.pdf" aria-label="Go to Disclosure log 2nd half of 2021">Disclosure log 2nd half of 2021 (Acrobat pdf, 146KB)</a></h2>
+
+</div> 
+<div class="upload">
+<h2><a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/Disclosure log 1st half of 2021.pdf" aria-label="Go to Disclosure log 1st half of 2021">Disclosure log 1st half of 2021 (Acrobat pdf, 103KB)</a></h2>
+
+</div> 
+<div class="upload">
+<h2><a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/FOI disclosure log  2nd half 2020.pdf" aria-label="Go to FOI disclosure log - 2nd half 2020">FOI disclosure log - 2nd half 2020 (Acrobat pdf, 98KB)</a></h2>
+
+</div> 
+<div class="upload">
+<h2><a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/FOI disclosure log  1st half 2020.pdf" aria-label="Go to FOI disclosure log - 1st half 2020">FOI disclosure log - 1st half 2020 (Acrobat pdf, 92KB)</a></h2>
+
+</div> 
+<div class="upload">
+<h2><a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/FOI Disclosure Log 2nd half 2019.xlsx" aria-label="Go to FOI Disclosure Log - 2nd half 2019">FOI Disclosure Log - 2nd half 2019 (MS Excel, 16KB)</a></h2>
+
+</div> 
+<div class="upload">
+<h2><a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/FOI Disclosure Log   July  Dec 2018.xlsx" aria-label="Go to FOI Disclosure Log - 2nd half 2018">FOI Disclosure Log - 2nd half 2018 (MS Excel, 15KB)</a></h2>
+
+</div> 
+<div class="upload">
+<h2><a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/DISCLOSURE LOG SECOND HALF OF 2016.pdf" aria-label="Go to FOI Disclosure Log - 2nd half 2016">FOI Disclosure Log - 2nd half 2016 (MS Excel, 58KB)</a></h2>
+
+</div> 
+<div class="upload">
+<h2><a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/FOI Disclosure 2017  final version  uploaded 13.12.18.xlsx" aria-label="Go to FOI Disclosure Log - 2017">FOI Disclosure Log - 2017 (MS Excel, 25KB)</a></h2>
+
+</div> 
+<div class="upload">
+<h2><a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/FOI Disclosure Log  1st half 2019.xlsx" aria-label="Go to FOI Disclosure Log - 1st half 2019">FOI Disclosure Log - 1st half 2019 (MS Excel, 17KB)</a></h2>
+
+</div> 
+<div class="upload">
+<h2><a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/FOI Disclosure Log   Jan  June  2018.xlsx" aria-label="Go to FOI Disclosure Log - 1st half 2018">FOI Disclosure Log - 1st half 2018 (MS Excel, 15KB)</a></h2>
+
+</div> 
+<div class="upload">
+<h2><a href="/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/Disclosure Log 1st half 2016.pdf" aria-label="Go to FOI Disclosure Log - 1st half 2016">FOI Disclosure Log - 1st half 2016 (MS Excel, 60KB)</a></h2>
+
+</div> 
+</div>
+</div>
+</div>
+</div>
+</section>	
+<!--start of footer-->
+<!-- Footer -->
+<footer class="main-footer text-center text-lg-start text-white" style="background-color: #242526;">
+
+    <!-- Online services - services section -->
+          <section class="service">
+              <div class="container-fluid" style="background-color: #000000;">
+                  <div class="row"><!--column 1:Online Services-->
+                      <div class="col-md-6 col-sm-12">
+                          <div class="about-info sec-padd">
+                              <div class="section-title center">
+                                  <h2 class="centered-title">Online Services</h2>
+                              </div>
+
+                              <div class="text1 center">
+                                  <p>Kildare County Council provides a huge range of 'Online Services'</p>
+                              </div>
+                              <div class="link center onlineServices"><a
+                                      href="https://kildarecoco.ie/AllServices/OnlineServices/"
+                                      class=" default_link">Online Services <i class="fa fa-angle-right"></i></a>
+                              </div>
+                          </div>
+                      </div><!-- column 2: Pay -->
+                      <div class="no-padd item col-md-2 col-sm-4 pay-column">
+                          <div class="center">
+                              <div class="icon_box"><span class="icon-arrows-1"></span>
+                                  <h3>Pay!</h3>
+                              </div>
+                          </div>
+                          <div class="overlay-box center">
+                              <div class="icon_box "><span class="icon-arrows-1"></span>
+                                  <h3>Pay Online</h3>
+                              </div>
+                              <div class="text">
+                                  <p><a href="https://kildarecoco.ie/YourCouncil/Finance/LocalAuthorityCustomerPortal/"
+                                          class="payLinks">Customer
+                                          Portal</a>
+                                      <br>
+                                      <a href="https://kccpermit.apcoa.ie/applicant" class="payLinks"
+                                          title="This will open an external page on an external website"
+                                          target="_blank">Apply
+                                          For Parking Permit</a><br>
+                                      <a href="https://kildarecoco.ie/AllServices/OnlineServices/OnlinePayments/TrafficFines/"
+                                          class="payLinks">Traffic
+                                          Fines</a><br><a
+                                          href="https://kildarecoco.ie/AllServices/OnlineServices/OnlinePayments/FireServiceCharges/"
+                                          class="payLinks">Fire
+                                          Service Charges </a><br>
+                                      <a href="https://kildarecoco.ie/AllServices/OnlineServices/OnlinePayments/DogLicences/"
+                                          class="payLinks">Dog
+                                          Licences</a><br>
+                                      <a href="https://www.revenue.ie/en/property/local-property-tax/index.aspx"
+                                          class="payLinks"
+                                          title="Pay Your Local Property Tax - link is an external website"
+                                          target="_blank">Local Property Tax</a>
+                                  </p>
+                              </div>
+                              <div class="link onlinePayments"><a
+                                      href="https://kildarecoco.ie/AllServices/OnlineServices/OnlinePayments/"
+                                      class="default_link">Online Payments <i class="fa fa-angle-right"></i></a></div>
+                          </div>
+                      </div>
+                      <!--column 3: View-->
+                      <div class="no-padd item col-md-2 col-sm-4 view-column">
+                          <div class="center">
+                              <div class="icon_box"><span class="icon-book"></span>
+                                  <h3>View!</h3>
+                              </div>
+                          </div>
+                          <div class="overlay-box center">
+                              <div class="icon_box"><span class="icon-book"></span>
+                                  <h4>View Online</h4>
+                              </div>
+                              <div class="text">
+                                  <p><a href="https://kildarecoco.ie/AllServices/OnlineServices/OnlinePlanningEnquiries/"
+                                          class="viewLinks">Online
+                                          Planning Enquiries</a><br>
+                                      <a href="https://kildarecoco.ie/AllServices/Planning/PlanningWeeklyLists/"
+                                          class="viewLinks">Planning
+                                          Weekly lists</a><br>
+                                      <a href="https://consult.kildarecoco.ie/en" class="viewLinks" target="_blank"
+                                          title="Consultation Portal - this will open an external link"
+                                          onclick="ga('send', {'hitType': 'event', 'eventCategory': 'ConsultationPortal', 'eventAction': 'Clicked link to Consultation Portal' });">Consultation
+                                          Portal</a><br>
+                                      <a href="https://online.kildarecoco.ie/CBLE/Login.aspx" class="viewLinks"
+                                          title="Choice Based Letting - this will open an external link"
+                                          target="_blank">Choice Based Letting</a><br>
+                                      <a href="https://www.checktheregister.ie/" class="viewLinks"
+                                          title="Check if you can vote - this will open an external link"
+                                          target="_blank">Check if you can vote!</a><br>
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                      <!--column 4: Download-->
+                      <div class="no-padd item col-md-2 col-sm-4 view-column">
+                          <div class="center">
+                              <div class="icon_box"><span class="icon-computer"></span>
+                                  <h3>Download!</h3>
+                              </div>
+                          </div>
+                          <div class="overlay-box center">
+                              <div class="icon_box"><span class="icon-computer"></span>
+                                  <h4>Download</h4>
+                              </div>
+                              <div class="text">
+                                  <p><a href="https://kildarecoco.ie/forms/" class="viewLinks">Forms </a><br>
+                                      <a href="https://kildarecoco.ie/AllServices/CareerOpportunities/"
+                                          class="viewLinks">Career
+                                          Opportunities</a><br>
+                                      <a href="https://kildarecoco.ie/YourCouncil/Publications/"
+                                          class="viewLinks">Publications </a><br>
+                                      <a href="https://kildarecoco.ie/YourCouncil/YourElectedCouncil/"
+                                          class="viewLinks">Minutes/Agendas</a><br>
+                                      <a href="https://kildarecoco.ie/AllServices/Planning/DevelopmentPlans/"
+                                          class="viewLinks">Development
+                                          Plans</a>
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </section><!--end online services section-->
+
+      <!--widget section-->
+      <div class="widgets-section">
+          <div class="container">
+              <div class="row">
+                  <!--Big Column-->
+                  <!--Footer Column-->
+                  <div class="col-md-3">
+                      <div class="footer-widget about-widget">
+                          <div class="section-title">
+                              <h3>Quick Links</h3>
+                          </div>
+                          <div class="widget-content">
+                              <p class="contact-info quick-links-footer">
+                                  <a href="https://kildarecoco.ie/AccessibilityStatement/">Accessibility
+                                      Statement</a><br>
+                                  <a href="https://kildarecoco.ie/AtoZ/" target="_blank"
+                                      title="Kildare County Council A-Z - this will open a new page">A to Z</a><br>
+                                  <a href="https://kildarecoco.ie/Sitemap/" target="_blank"
+                                      title="Kildare County Council Sitemap - this will open a new page">Sitemap</a><br>
+                                  <a href="https://kildarecoco.ie/forms/" target="_blank"
+                                      title="Kildare County Council Forms - this will open a new page">Forms</a><br>
+                                  <a href="https://kildarecoco.ie/FAQs/" target="_blank"
+                                      title="Kildare County Council FAQs - this will open a new page">FAQs</a><br>
+                                  <a href="https://kildarecoco.ie/YourCouncil/Publications/" target="_blank"
+                                      title="Kildare County Council Publications - this will open a new page">Publications</a><br>
+                                  <a href="https://kildare.mapalerter.com/latest?view=form" target="_blank"
+                                      title="Kildare County Council Map Alerter - this will open an new website and a new page">Kildare
+                                      Map Alerter</a>
+                                
+                              </p>
+                          </div><br>
+
+                      </div>
+                  </div>
+
+                  <!--Footer Column-->
+                  <div class="col-md-5">
+                      <div class="footer-widget links-widget">
+                          <div class="section-title">
+                              <h3>Contact Us</h3>
+                          </div>
+                          <div class="widget-content">
+                              <ul class="contact-info">
+                                  <li><span class="icon fa fa-globe" style="font-size:20px"></span>
+                                      <strong>Online</strong> using
+                                      the <a href="https://kildaremembers.powerappsportals.com/en-US/report-it-frm/"
+                                          target="_blank"
+                                          title="This will open new page on our Customer Contact Portal website">Customer
+                                          Contact
+                                          Portal</a>
+                                  </li>
+
+                                  <li><span class="icon fa fa-phone" style="font-size:20px"></span> <strong>By
+                                          phone:</strong> <a href="tel:0035345980200" class="tel">045 980200</a>
+                                      during the hours:<br>
+                                      9:00 â 17:00 Monday, Tuesday, Thursday and Friday<br>
+                                      9:30 â 17:00 Wednesday<br>
+                                      (Closed bank holidays and Good Friday)</li>
+                                  <li> <span class="icon fa fa-phone" style="font-size:20px"></span> Out of Hours:
+                                      1800 500 444</li>
+                                  <li><span class="icon fa fa-envelope" style="font-size:20px"></span><strong>By
+                                          Post:</strong> Head
+                                      Office Ãras Chill Dara <br>Devoy Park, Naas<br> Co Kildare W91 X77F</li>
+
+                              </ul>
+                          </div>
+
+                          <br><br>
+                      </div>
+                  </div>
+                  <!--Footer Column-->
+                  <div class="col-md-4">
+                      <div class="footer-widget posts-widget">
+                          <div class="section-title">
+                              <h3>Make an appointment</h3>
+                          </div>
+                          <div class="widget-content">
+                              <p class="contact-info">Between the hours 09:00 â 16:00 with the exception of Motor Tax
+                                  which
+                                  operates between 09:00 â 15:15. You can book an appointment on-line using the
+                                  Council's <a href="https://kildarecoco.ie/OnlineBookingSystem/">On-line Booking
+                                      System </a></p>
+
+                              <h4>Housing Department</h4><br>
+
+                              <p class="contact-info">
+                                  <a href="https://kildarecoco.ie/AllServices/Housing/">For Housing services and
+                                      contact
+                                      information</a>. If you require an appointment, it will be made for you by a
+                                  staff member during
+                                  your phone consultation.
+                              </p>
+
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+      <!--social media-->
+      <div id="socialMediaFooter" class="center" style="background-color: #242526;" >
+          <!-- Facebook -->
+          <a class="btn btn-floating m-0.5" href="https://www.facebook.com/KildareCountyCouncil" target="_blank"
+              role="button"><img src="https://kildarecoco.ie/images/SocialMedia/Facebook-Logo.png"
+                  class="socialmediacurve"
+                  alt="Facebook Icon - this will open the Kildare County Council Facebook page in a new tab">
+          </a>
+          <!-- Twitter -->
+          <a class="btn btn-floating  m-0.5" href="https://twitter.com/KildareCoCo" role="button"><img
+                  src="https://kildarecoco.ie/images/SocialMedia/Twitter-Logo.png" class="socialmediacurve"
+                  alt="Twitter Icon - this will open the Kildare County Council Twitter account in a new tab"></a>
+          <!-- Instagram -->
+          <a class="btn btn-floating m-0.5" href="https://www.instagram.com/kildarecountycouncil/" role="button">
+              <img src="https://kildarecoco.ie/images/SocialMedia/Instagram-logo.png" class="socialmediacurve"
+                  alt="Instagram Icon - this will open the Kildare County Council Instagram account in a new tab">
+          </a>
+          <!-- Youtube -->
+          <a class="btn btn-floating m-0.5" href="https://www.youtube.com/user/cocowebteam" role="button"><img
+                  src="https://kildarecoco.ie/images/SocialMedia/YouTube-Logo.png" class="socialmediacurve"
+                  alt="Youtube Icon - this will open the Kildare County Council YouTube account in a new tab"></a>
+          <!-- Linkedin -->
+          <a class="btn btn-floating m-0.5" href="https://ie.linkedin.com/company/kildare-county-council"
+              role="button"><img src="https://kildarecoco.ie/images/SocialMedia/Linkedin-Logo.png"
+                  class="socialmediacurve"
+                  alt="Linkedin Icon - this will open the Kildare County Council LinkedIn account in a new tab"></a>
+          <!-- vimeo -->
+          <a class="btn btn-floating m-0.5" href="https://vimeo.com/user46646317" role="button"><img
+                  src="https://kildarecoco.ie/images/SocialMedia/Vimeo-Logo.png" class="socialmediacurve"
+                  alt="Vimeo Icon - this will open the Kildare County Council Vimeo account in a new tab"></a>
+
+
+      </div><!--end social media-->
+
+
+      <div id="informationFooter" class="center" style="background-color: #242526;">
+          <ul>
+              <li><a
+                      href="https://kildarecoco.ie/YourCouncil/GovernanceandCompliance/PrivacyStatement/WebsiteandCookiePrivacyStatement/">Website
+                      and Cookie Policy</a></li>
+              <li><a href="https://kildarecoco.ie/YourCouncil/GovernanceandCompliance/DataProtection/">Data
+                      Protection</a></li>
+              <li><a href="https://kildarecoco.ie/DisclaimerandCopyright/">Disclaimer and Copyright</a></li>
+              <li><a href="https://kildarecoco.ie/YourCouncil/GovernanceandCompliance/PrivacyStatement/">Privacy
+                      Statement</a></li>
+              <li><a href="https://kildarecoco.ie/YourCouncil/GovernanceandCompliance/FreedomofInformation/">Freedom
+                      of
+                      Information</a></li>
+          </ul>
+      </div>
+
+      <!-- Copyright -->
+      <div class="text-center p-3" id="copyrightFooter" style="background-color: #242526;">All Rights Reserved Â© Kildare County Council
+      </div>
+      <!-- End Copyright -->
+  </footer>
+
+  
+<!-- Scroll to Top Button -->
+<button onclick="topFunction()" id="myBtn" title="Go back to the top of the page"><i class="fas fa-arrow-up"></i></button>
+ 
+
+
+  <!-- Bootstrap CSS -->
+  <!-- popper -->
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"></script>
+
+
+  <!--jQuery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!-- Include jQuery UI 1.14 -->
+  <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js" integrity="sha256-9zljDKpE/mQxmaR4V2cGVaQ7arF3CcXxarvgr7Sj8Uc=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+
+  <script src="https://kildarecoco.ie/js/owl.carousel.min.js"></script>
+  <!-- jQuery validation -->
+  <script src="https://kildarecoco.ie/js/jquery.validate.min.js"></script>
+
+  <!-- mixit up -->
+  <script src="https://kildarecoco.ie/js/wow.js"></script>
+  <script src="https://kildarecoco.ie/js/jquery.mixitup.min.js"></script>
+  <script src="https://kildarecoco.ie/js/jquery.fitvids.js"></script>
+  <script src="https://kildarecoco.ie/js/bootstrap-select.min.js"></script>
+  
+
+  <!-- revolution slider js -->
+  <script src="https://kildarecoco.ie/assets/revolution/js/jquery.themepunch.tools.min.js"></script>
+  <script src="https://kildarecoco.ie/assets/revolution/js/jquery.themepunch.revolution.min.js"></script>
+
+  <script src="https://kildarecoco.ie/assets/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+  <script
+      src="https://kildarecoco.ie/assets/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+  <script src="https://kildarecoco.ie/assets/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+  <script
+      src="https://kildarecoco.ie/assets/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+  <script src="https://kildarecoco.ie/assets/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+  <script
+      src="https://kildarecoco.ie/assets/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+  <script src="https://kildarecoco.ie/assets/revolution/js/extensions/revolution.extension.video.min.js"></script>
+
+  <!-- fancy box -->
+  <script src="https://kildarecoco.ie/js/jquery.fancybox.pack.js"></script>
+  <script src="https://kildarecoco.ie/js/jquery.polyglot.language.switcher.js"></script>
+  <script src="https://kildarecoco.ie/js/nouislider.js"></script>
+  <script src="https://kildarecoco.ie/js/jquery.bootstrap-touchspin.js"></script>
+  <script src="https://kildarecoco.ie/js/SmoothScroll.js"></script>
+  <script src="https://kildarecoco.ie/js/jquery.appear.js"></script>
+  <script src="https://kildarecoco.ie/js/jquery.countTo.js"></script>
+  <script src="https://kildarecoco.ie/js/jquery.flexslider.js"></script>
+  <script src="https://kildarecoco.ie/js/imagezoom.js"></script>
+  <script src="https://kildarecoco.ie/js/navigation.js"></script>
+
+</body>
+
+</html>

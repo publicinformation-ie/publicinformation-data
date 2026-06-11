@@ -12,6 +12,17 @@
   },
   {
     "severity": "info",
+    "description": "Spurious distinct disclosure page returned for body 1008",
+    "affected_count": 1,
+    "affected_ids": [
+      "1008"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "returned https://www.gov.ie/en/department-of-finance/organisation-information/foi-disclosure-log-and-information-routinely-published-by-the-department-of-finance/",
+    "confidence": 0.6
+  },
+  {
+    "severity": "info",
     "description": "Spurious distinct disclosure page returned for body 1036",
     "affected_count": 1,
     "affected_ids": [
@@ -23,46 +34,24 @@
   },
   {
     "severity": "info",
-    "description": "Spurious distinct disclosure page returned for body 1060",
+    "description": "Spurious distinct disclosure page returned for body 1037",
     "affected_count": 1,
     "affected_ids": [
-      "1060"
+      "1037"
     ],
     "suggested_upstream_step": null,
-    "suggestion_detail": "returned https://hea.ie/assets/uploads/2022/01/2019-Disclosure-Log-1.xlsx",
+    "suggestion_detail": "returned https://www.ccpc.ie/about-us/corporate-information/governance/freedom-of-information/foi-disclosure-log-2026-q1",
     "confidence": 0.6
   },
   {
     "severity": "info",
-    "description": "Spurious distinct disclosure page returned for body 1067",
+    "description": "Spurious distinct disclosure page returned for body 1043",
     "affected_count": 1,
     "affected_ids": [
-      "1067"
+      "1043"
     ],
     "suggested_upstream_step": null,
-    "suggestion_detail": "returned https://www.fiscalcouncil.ie/wp-content/uploads/2026/01/2025-FOI-Disclosure-Log-01-Jan-30-Sep-2025.pdf",
-    "confidence": 0.6
-  },
-  {
-    "severity": "info",
-    "description": "Spurious distinct disclosure page returned for body 1074",
-    "affected_count": 1,
-    "affected_ids": [
-      "1074"
-    ],
-    "suggested_upstream_step": null,
-    "suggestion_detail": "returned https://marine.ie/sites/default/files/MIFiles/Docs_Comms/FOI Disclosure Log (2016-2018).pdf",
-    "confidence": 0.6
-  },
-  {
-    "severity": "info",
-    "description": "Spurious distinct disclosure page returned for body 1080",
-    "affected_count": 1,
-    "affected_ids": [
-      "1080"
-    ],
-    "suggested_upstream_step": null,
-    "suggestion_detail": "returned https://www.nationaltransport.ie/wp-content/uploads/2026/04/2025-Q4-FOI-Disclosure-Log.pdf",
+    "suggestion_detail": "returned http://www.dataprotection.ie/en/about/corporate-governance/freedom-information/freedom-information-disclosure-log",
     "confidence": 0.6
   },
   {
@@ -73,7 +62,7 @@
       "1088"
     ],
     "suggested_upstream_step": null,
-    "suggestion_detail": "returned https://www.audit.gov.ie/en/freedom-of-information/foi disclosure log/",
+    "suggestion_detail": "returned https://www.audit.gov.ie/en/freedom-of-information/foi-disclosure-log/",
     "confidence": 0.6
   },
   {
@@ -85,17 +74,6 @@
     ],
     "suggested_upstream_step": null,
     "suggestion_detail": "returned https://www.revenue.ie/en/corporate/statutory-obligations/freedom-of-information/foi-in-revenue/can-you-appeal-an-foi-decision.aspx",
-    "confidence": 0.6
-  },
-  {
-    "severity": "info",
-    "description": "Spurious distinct disclosure page returned for body 1097",
-    "affected_count": 1,
-    "affected_ids": [
-      "1097"
-    ],
-    "suggested_upstream_step": null,
-    "suggestion_detail": "returned https://assets.gov.ie/static/documents/foi-disclosures-log.pdf",
     "confidence": 0.6
   },
   {
@@ -129,50 +107,6 @@
     ],
     "suggested_upstream_step": null,
     "suggestion_detail": "returned https://tailte.ie/foi-disclosure-log/",
-    "confidence": 0.6
-  },
-  {
-    "severity": "info",
-    "description": "Spurious distinct disclosure page returned for body 1117",
-    "affected_count": 1,
-    "affected_ids": [
-      "1117"
-    ],
-    "suggested_upstream_step": null,
-    "suggestion_detail": "returned https://teagasc.ie/wp-content/uploads/2025/05/Teagasc-FOI-Disclosure-Log-2023.pdf",
-    "confidence": 0.6
-  },
-  {
-    "severity": "info",
-    "description": "Spurious distinct disclosure page returned for body 1131",
-    "affected_count": 1,
-    "affected_ids": [
-      "1131"
-    ],
-    "suggested_upstream_step": null,
-    "suggestion_detail": "returned https://www.corkcoco.ie/sites/default/files/2026-03/freedom-of-information-disclosure-log-2025-pdf.pdf",
-    "confidence": 0.6
-  },
-  {
-    "severity": "info",
-    "description": "Spurious distinct disclosure page returned for body 1133",
-    "affected_count": 1,
-    "affected_ids": [
-      "1133"
-    ],
-    "suggested_upstream_step": null,
-    "suggestion_detail": "returned https://www.dublincity.ie/sites/default/files/2026-04/disclosure-log-q1-2026.pdf",
-    "confidence": 0.6
-  },
-  {
-    "severity": "info",
-    "description": "Spurious distinct disclosure page returned for body 1135",
-    "affected_count": 1,
-    "affected_ids": [
-      "1135"
-    ],
-    "suggested_upstream_step": null,
-    "suggestion_detail": "returned https://www.fingal.ie/sites/default/files/2026-01/2024-foi-disclosure-log.pdf",
     "confidence": 0.6
   },
   {
@@ -250,17 +184,6 @@
     ],
     "suggested_upstream_step": null,
     "suggestion_detail": "returned https://www.meath.ie/council/your-council/customer-service-and-communications/freedom-of-information",
-    "confidence": 0.6
-  },
-  {
-    "severity": "info",
-    "description": "Spurious distinct disclosure page returned for body 1152",
-    "affected_count": 1,
-    "affected_ids": [
-      "1152"
-    ],
-    "suggested_upstream_step": null,
-    "suggestion_detail": "returned https://www.sdcc.ie/en/services/our-council/access-to-information/freedom-of-information/foi-disclosure-log1.xlsx",
     "confidence": 0.6
   },
   {

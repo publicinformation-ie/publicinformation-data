@@ -102,8 +102,8 @@
                 <div class="col col-xxl-auto">
                         <a class="global-header-logo" href="/">
                             <picture>
-                                <source media="(max-width: 1199px)" srcset="/media/sk3l1iy3/logo-mobile.png" />
-                                <img src="/media/ofydvrff/logo-header.png" alt="Fisor&#xFA; logo" />
+                                <source media="(max-width: 1199px)" srcset="/media/w20b5dqt/fiosru-celadon-pride-logo-mobile.png" />
+                                <img src="/media/ptepsvrz/untitled-design-1.svg" alt="Untitled Design (1) (1)" />
                             </picture>
 
                         </a>
@@ -175,7 +175,7 @@
         <div class="offcanvas-header d-block">
             <div class="d-flex align-items-center justify-content-between">
                     <a class="global-header-logo" href="/">
-                        <img src="/media/sk3l1iy3/logo-mobile.png" alt="Logo Mobile" />
+                        <img src="/media/w20b5dqt/fiosru-celadon-pride-logo-mobile.png" alt="Fiosru Celadon Pride Logo Mobile" />
                     </a>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"><span class="visually-hidden">Close</span></button>
             </div>
@@ -218,12 +218,6 @@
                 </li>
                         </ul>
                 </li>
-                <li class=" ">
-                    <a href="/about-us/police-ombudsman/">Police Ombudsman</a>
-                </li>
-                <li class=" ">
-                    <a href="/about-us/management-team/">Management Team</a>
-                </li>
                 <li class="has-children ">
                     <a href="/about-us/regulations-and-policy/">Regulations and Policy</a>
                         <ul class="level-3">
@@ -241,9 +235,6 @@
                 </li>
                         </ul>
                 </li>
-                <li class=" ">
-                    <a href="/about-us/oireachtas-members-queries/">Oireachtas Members Queries</a>
-                </li>
                 <li class="has-children ">
                     <a href="/about-us/governance/">Governance</a>
                         <ul class="level-3">
@@ -257,12 +248,24 @@
                     <a href="/about-us/governance/audit-and-risk-committee/">Audit and Risk Committee</a>
                 </li>
                 <li class=" ">
+                    <a href="/about-us/governance/code-of-ethics/">Code of Ethics</a>
+                </li>
+                <li class=" ">
                     <a href="/about-us/governance/governance-framework/">Governance Framework</a>
                 </li>
                 <li class=" ">
                     <a href="/about-us/governance/internal-protected-disclosures/">Internal Protected Disclosures</a>
                 </li>
                         </ul>
+                </li>
+                <li class=" ">
+                    <a href="/about-us/senior-leadership-team/">Senior Leadership Team</a>
+                </li>
+                <li class=" ">
+                    <a href="/about-us/police-ombudsman/">Police Ombudsman</a>
+                </li>
+                <li class=" ">
+                    <a href="/about-us/oireachtas-members-queries/">Oireachtas Members Queries</a>
                 </li>
                 <li class=" ">
                     <a href="/about-us/fiosru-faqs/">Fiosr&#xFA; FAQs</a>
@@ -448,6 +451,12 @@
                 </li>
                 <li>
                     <a href="/news-and-publications/latest-news/">Latest News overview</a>
+                </li>
+                <li class=" ">
+                    <a href="/news-and-publications/latest-news/fiosru-statement-following-receipt-of-s203-referral-6-june-2026/">Fiosr&#xFA; statement following receipt of S.203 referral 6 June 2026</a>
+                </li>
+                <li class=" ">
+                    <a href="/news-and-publications/latest-news/police-ombudsman-s-irish-times-op-ed-addresses-dsgbv-and-policing-oversight/">Police Ombudsman&#x2019;s Irish Times op&#x2011;ed addresses DSGBV and policing oversight</a>
                 </li>
                 <li class=" ">
                     <a href="/news-and-publications/latest-news/fiosru-launches-2025-annual-report-a-year-of-transformation-new-powers-and-momentum/">Fiosr&#xFA; launches 2025 Annual Report: A year of transformation, new powers and momentum</a>
@@ -663,6 +672,49 @@
     </div>
 </header>
 
+<script>
+    (function () {
+
+        var doc = document.documentElement;
+        var w = window;
+
+        var lastScrollTop = 0;
+        var delta = 5;
+        var navbarHeight = document.querySelector('.global-header').clientHeight;
+        var mobileLogo = '/media/w20b5dqt/fiosru-celadon-pride-logo-mobile.png';
+        var desktopLogo = '/media/ptepsvrz/untitled-design-1.svg';
+        var hasScrolled = function () {
+            var st = w.scrollY || doc.scrollTop;
+            // Make sure they scroll more than delta
+            if (Math.abs(lastScrollTop - st) <= delta)
+                return;
+
+            // If they scrolled down and are past the navbar, add class .nav-up.
+            // This is necessary so you never see what is "behind" the navbar.
+            if (st > lastScrollTop && st > navbarHeight) {
+                // Scroll Down
+                document.querySelector('.global-header').classList.add('down');
+                document.querySelector('.global-header').classList.remove('up');
+            } else {
+                // Scroll Up
+                if (st + window.innerHeight < document.body.scrollHeight) {
+                    document.querySelector('.global-header').classList.add('up');
+                    document.querySelector('.global-header').classList.remove('down');
+                    document.querySelector('.global-header-logo img').src = mobileLogo;
+                }
+            }
+            if (st <= navbarHeight) {
+                document.querySelector('.global-header').classList.remove('down');
+                document.querySelector('.global-header').classList.remove('up');
+                document.querySelector('.global-header-logo img').src = desktopLogo;
+            }
+
+            lastScrollTop = st;
+        }
+
+        window.addEventListener('scroll', hasScrolled);
+    })();
+</script>
     
 
 
@@ -932,7 +984,7 @@ Freedom of Information</h1>
                             <picture>
                                 <source media="(max-width: 1199px)" srcset="/media/d5sefrle/logo-footer-mobile.png" />
                                 <source media="(min-width: 1200px)" srcset="/media/141bfrtf/logo-footer.png" />
-                                <img src="/media/sk3l1iy3/logo-mobile.png" alt="Fisor&#xFA; logo" />
+                                <img src="/media/w20b5dqt/fiosru-celadon-pride-logo-mobile.png" alt="Untitled Design (1) (1)" />
                             </picture>
                         </a>
                         <ul class="social-media-links">
