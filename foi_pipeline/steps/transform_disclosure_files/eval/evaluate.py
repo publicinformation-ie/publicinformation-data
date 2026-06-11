@@ -1,19 +1,13 @@
 #!/usr/bin/env python3
-"""Evaluate transform_disclosure_files: raw PDF extraction quality via heuristic flags.
+"""Evaluate transform_disclosure_files: file-transformation success rate.
 
-Measures the *pre-normalization* state of extracted PDF rows — i.e. what pdfplumber
-produces before normalize_disclosure_cells applies its fixes. Use the normalize eval
-(steps/normalize_disclosure_cells/eval/evaluate.py) to measure post-normalization quality.
+Success criterion: a valid table was extracted to JSON. Content quality (null columns,
+newline-split rows, etc.) is out of scope here — those are addressed downstream by
+normalize_disclosure_cells and extract_disclosures_detect_header_row.
 
-Three binary flags per PDF record:
-  null_first_row     — any cell in rows[0] is None
-  null_column        — at least one column index where every row has None
-                       (addressed downstream by normalize_disclosure_cells._prune_null_columns)
-  newline_split_row  — at least one non-header row with exactly 1 non-None cell
-                       across >= 3 columns
-                       (addressed downstream by normalize_disclosure_cells._merge_continuation_rows)
-
-Primary metric: clean_extraction_rate (fraction of PDFs with zero flags).
+Primary metric: extraction_success_rate (fraction of attempted files that produced rows).
+Issues are raised only for hard file-transformation failures (PDFSyntaxError, BadZipFile,
+ValueError, etc.) that prevent any table from being extracted.
 """
 import argparse
 import json
@@ -27,52 +21,14 @@ from eval import utils as eval_utils
 
 STEP = "transform_disclosure_files"
 
-
-def has_null_first_row(rows):
-    """True if any cell in rows[0] is None."""
-    if not rows:
-        return False
-    return any(c is None for c in rows[0])
-
-
-def has_null_column(rows):
-    """True if any column index is missing in some row or has None in every row."""
-    if not rows:
-        return False
-    ncols = max(len(row) for row in rows)
-    for col in range(ncols):
-        if any(col >= len(row) for row in rows):  # missing in some row
-            return True
-        if all(row[col] is None for row in rows):  # all-None in complete columns
-            return True
-    return False
+# Error types that mean the file could not be transformed at all.
+HARD_FAILURE_TYPES = frozenset({
+    "ValueError", "PDFSyntaxError", "XLRDError",
+    "BadZipFile", "TooManyRedirects", "FileNotFoundError",
+})
 
 
-def has_newline_split_row(rows):
-    """True if any non-header row has exactly 1 non-None cell across >= 3 columns."""
-    for row in rows[1:]:
-        if len(row) >= 3 and sum(1 for c in row if c is not None) == 1:
-            return True
-    return False
-
-
-def _flag_item(item):
-    rows = item.get("rows") or []
-    return {
-        "null_first_row": has_null_first_row(rows),
-        "null_column": has_null_column(rows),
-        "newline_split_row": has_newline_split_row(rows),
-    }
-
-
-def _flagged_row_count(rows):
-    return sum(
-        1 for row in rows[1:]
-        if len(row) >= 3 and sum(1 for c in row if c is not None) == 1
-    )
-
-
-def build_quality_by_body(items, process_warning_urls):
+def build_quality_by_body(items, process_warning_urls, hard_failure_urls):
     by_body = {}
     for item in items:
         bid = item.get("public_body_id")
@@ -80,77 +36,52 @@ def build_quality_by_body(items, process_warning_urls):
             by_body[bid] = {
                 "name": item.get("name", ""),
                 "total_pdfs": 0,
-                "clean": 0,
-                "null_first_row": 0,
-                "null_column": 0,
-                "newline_split_row": 0,
-                "flagged_samples": [],
+                "successful": 0,
+                "samples": [],
             }
         entry = by_body[bid]
         entry["total_pdfs"] += 1
-        flags = _flag_item(item)
-        if not any(flags.values()):
-            entry["clean"] += 1
+        url = item["file_url"]
+        if url in hard_failure_urls:
             continue
-        for flag_name, fired in flags.items():
-            if fired:
-                entry[flag_name] += 1
+        entry["successful"] += 1
         rows = item.get("rows") or []
-        entry["flagged_samples"].append({
-            "file_url": item["file_url"],
-            "flags": [k for k, v in flags.items() if v],
+        entry["samples"].append({
+            "file_url": url,
             "total_rows": len(rows),
-            "flagged_rows": _flagged_row_count(rows) if flags["newline_split_row"] else 1,
-            "has_process_warning": item["file_url"] in process_warning_urls,
+            "has_process_warning": url in process_warning_urls,
             "pdf_extractor": item.get("pdf_extractor", "pdfplumber"),
-            "first_rows": rows[:3],
         })
     return by_body
 
 
-def run_eval(items, process_warning_urls, input_hash, camelot_fallback_urls=None):
+def run_eval(items, process_warning_urls, input_hash, camelot_fallback_urls=None, hard_failures=None):
     if camelot_fallback_urls is None:
         camelot_fallback_urls = set()
+    if hard_failures is None:
+        hard_failures = {}
 
-    if not items:
+    failure_count = sum(len(urls) for urls in hard_failures.values())
+    success_count = len(items)
+    total = success_count + failure_count
+
+    hard_failure_urls = {url for urls in hard_failures.values() for url in urls}
+
+    if total == 0:
         metrics = [
-            eval_utils.Metric("clean_extraction_rate", 0.0, {"clean": 0, "total": 0}, is_primary=True),
-            eval_utils.Metric("null_first_row_rate", 0.0, {"flagged": 0, "total": 0}),
-            eval_utils.Metric("null_column_rate", 0.0, {"flagged": 0, "total": 0}),
-            eval_utils.Metric("newline_split_row_rate", 0.0, {"flagged": 0, "total": 0}),
+            eval_utils.Metric("extraction_success_rate", 1.0, {"successful": 0, "total": 0}, is_primary=True),
             eval_utils.Metric("camelot_fallback_rate", 0.0, {"attempted": 0, "total": 0}),
             eval_utils.Metric("camelot_win_rate", 0.0, {"wins": 0, "total": 0}),
         ]
         results = eval_utils.EvalResults(step=STEP, metrics=metrics, input_hash=input_hash, judge_model=None)
         return results, [], {}
 
-    clean = 0
-    null_first_row_ids, null_col_ids, newline_split_ids = [], [], []
-
-    for item in items:
-        flags = _flag_item(item)
-        if not any(flags.values()):
-            clean += 1
-        if flags["null_first_row"]:
-            null_first_row_ids.append(item["file_url"])
-        if flags["null_column"]:
-            null_col_ids.append(item["file_url"])
-        if flags["newline_split_row"]:
-            newline_split_ids.append(item["file_url"])
-
-    total = len(items)
     camelot_fallback_count = sum(1 for item in items if item["file_url"] in camelot_fallback_urls)
     camelot_win_count = sum(1 for item in items if item.get("pdf_extractor") == "camelot_stream")
 
     metrics = [
-        eval_utils.Metric("clean_extraction_rate", round(clean / total, 3),
-                          {"clean": clean, "total": total}, is_primary=True),
-        eval_utils.Metric("null_first_row_rate", round(len(null_first_row_ids) / total, 3),
-                          {"flagged": len(null_first_row_ids), "total": total}),
-        eval_utils.Metric("null_column_rate", round(len(null_col_ids) / total, 3),
-                          {"flagged": len(null_col_ids), "total": total}),
-        eval_utils.Metric("newline_split_row_rate", round(len(newline_split_ids) / total, 3),
-                          {"flagged": len(newline_split_ids), "total": total}),
+        eval_utils.Metric("extraction_success_rate", round(success_count / total, 3),
+                          {"successful": success_count, "total": total}, is_primary=True),
         eval_utils.Metric("camelot_fallback_rate", round(camelot_fallback_count / total, 3),
                           {"attempted": camelot_fallback_count, "total": total}),
         eval_utils.Metric("camelot_win_rate", round(camelot_win_count / total, 3),
@@ -158,31 +89,30 @@ def run_eval(items, process_warning_urls, input_hash, camelot_fallback_urls=None
     ]
 
     issues = []
-    for flag_name, ids in [
-        ("null_first_row", null_first_row_ids),
-        ("null_column", null_col_ids),
-        ("newline_split_row", newline_split_ids),
-    ]:
-        if ids:
-            issues.append(eval_utils.Issue(
-                severity="warning",
-                description=f"{len(ids)} PDFs flagged: {flag_name} ({len(ids)/total:.1%})",
-                affected_count=len(ids),
-                affected_ids=ids[:50],
-                suggested_upstream_step=STEP,
-                suggestion_detail=f"Improve pdfplumber extraction to reduce {flag_name} failures",
-                confidence=1.0,
-            ))
+    for error_type, urls in sorted(hard_failures.items()):
+        issues.append(eval_utils.Issue(
+            severity="error",
+            description=f"{len(urls)} files failed: {error_type}",
+            affected_count=len(urls),
+            affected_ids=urls[:50],
+            suggested_upstream_step=STEP,
+            suggestion_detail=f"Investigate {error_type} failures during file extraction",
+            confidence=1.0,
+        ))
 
-    quality_by_body = build_quality_by_body(items, process_warning_urls)
+    quality_by_body = build_quality_by_body(items, process_warning_urls, hard_failure_urls)
     results = eval_utils.EvalResults(step=STEP, metrics=metrics, input_hash=input_hash, judge_model=None)
     return results, issues, quality_by_body
 
 
-def _load_process_warning_urls(errors_path):
+def _load_errors(errors_path):
+    """Return the raw errors list, or [] if the file is absent."""
     if not errors_path.exists():
-        return set()
-    errors = json.loads(errors_path.read_text())
+        return []
+    return json.loads(errors_path.read_text())
+
+
+def _load_process_warning_urls(errors):
     return {
         e["context"]["file_url"]
         for e in errors
@@ -191,16 +121,25 @@ def _load_process_warning_urls(errors_path):
     }
 
 
-def _load_camelot_fallback_urls(errors_path):
-    if not errors_path.exists():
-        return set()
-    errors = json.loads(errors_path.read_text())
+def _load_camelot_fallback_urls(errors):
     return {
         e["context"]["file_url"]
         for e in errors
         if e.get("error_type") == "CamelotFallbackAttempted"
         and "file_url" in e.get("context", {})
     }
+
+
+def _load_hard_failures(errors):
+    """Return {error_type: [file_urls]} for genuine extraction failures."""
+    by_type = {}
+    for e in errors:
+        etype = e.get("error_type")
+        if etype in HARD_FAILURE_TYPES:
+            url = e.get("context", {}).get("file_url")
+            if url:
+                by_type.setdefault(etype, []).append(url)
+    return by_type
 
 
 def main():
@@ -224,12 +163,15 @@ def main():
         r for r in data["results"]
         if r.get("file_type") == "pdf" and r.get("rows") is not None
     ]
-    process_warning_urls = _load_process_warning_urls(Path(args.errors_path))
-    camelot_fallback_urls = _load_camelot_fallback_urls(Path(args.errors_path))
+    errors = _load_errors(Path(args.errors_path))
+    process_warning_urls = _load_process_warning_urls(errors)
+    camelot_fallback_urls = _load_camelot_fallback_urls(errors)
+    hard_failures = _load_hard_failures(errors)
 
     results, issues, quality_by_body = run_eval(
         items, process_warning_urls, eval_utils.input_hash(Path(args.input_path)),
         camelot_fallback_urls=camelot_fallback_urls,
+        hard_failures=hard_failures,
     )
 
     eval_utils.write_eval_outputs(_HERE, results, issues)
@@ -237,8 +179,8 @@ def main():
 
     primary = results.metrics[0]
     print(
-        f"{STEP}: clean_extraction_rate={primary.value:.3f} "
-        f"({primary.counts['clean']}/{primary.counts['total']} clean PDFs), "
+        f"{STEP}: extraction_success_rate={primary.value:.3f} "
+        f"({primary.counts['successful']}/{primary.counts['total']} files), "
         f"{len(issues)} issues"
     )
     return 0

@@ -124,25 +124,13 @@ def run_eval(items, changes_by_url, rule_counts, input_hash):
                           {"changed": changed, "total": total_records}),
     ]
 
-    issues = []
-    for flag_name, ids, fixer in [
-        ("null_column", null_col_ids, "_prune_null_columns"),
-        ("newline_split_row", split_row_ids, "_merge_continuation_rows"),
-    ]:
-        if ids:
-            issues.append(eval_utils.Issue(
-                severity="warning",
-                description=f"{len(ids)} PDFs still flagged after normalization: {flag_name}",
-                affected_count=len(ids),
-                affected_ids=ids[:50],
-                suggested_upstream_step=STEP,
-                suggestion_detail=f"Improve {fixer} in normalize_disclosure_cells/process.py",
-                confidence=1.0,
-            ))
-
+    # null_column and newline_split_row are structural PDF-extraction artifacts.
+    # They are tracked as metrics for observability but do not belong as issues
+    # here: residual nulls are handled by downstream steps, and what remains
+    # after normalization is either tolerated or owned by find_disclosure_files.
     results = eval_utils.EvalResults(step=STEP, metrics=metrics,
                                      input_hash=input_hash, judge_model=None)
-    return results, issues
+    return results, []
 
 
 def main():

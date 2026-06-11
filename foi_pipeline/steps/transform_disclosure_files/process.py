@@ -428,35 +428,44 @@ def _process_single_file(item, cache, step_dir):
         else:  # pdf
             sheet_name, rows, fallback_cells, has_multiple, merge_stats, pdf_extractor, camelot_info = _extract_pdf(file_bytes)
             if camelot_info is not None:
-                append_error(step_dir, {
-                    "step": STEP_NAME,
-                    "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-                    "error_type": "CamelotFallbackAttempted",
-                    "error_message": f"pdfplumber scored n_mapped={camelot_info['pdfplumber_n_mapped']}; camelot_stream scored {camelot_info['camelot_n_mapped']}",
-                    "context": {
-                        "file_url": file_url,
-                        "pdfplumber_n_mapped": camelot_info["pdfplumber_n_mapped"],
-                        "camelot_n_mapped": camelot_info["camelot_n_mapped"],
-                        "used": camelot_info["used"],
-                    },
-                })
+                try:
+                    append_error(step_dir, {
+                        "step": STEP_NAME,
+                        "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                        "error_type": "CamelotFallbackAttempted",
+                        "error_message": f"pdfplumber scored n_mapped={camelot_info['pdfplumber_n_mapped']}; camelot_stream scored {camelot_info['camelot_n_mapped']}",
+                        "context": {
+                            "file_url": file_url,
+                            "pdfplumber_n_mapped": camelot_info["pdfplumber_n_mapped"],
+                            "camelot_n_mapped": camelot_info["camelot_n_mapped"],
+                            "used": camelot_info["used"],
+                        },
+                    })
+                except Exception:
+                    pass
             if has_multiple:
-                append_error(step_dir, {
-                    "step": STEP_NAME,
-                    "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-                    "error_type": "MultipleTableWarning",
-                    "error_message": "File has multiple tables; all table rows were concatenated.",
-                    "context": {"file_url": file_url},
-                })
+                try:
+                    append_error(step_dir, {
+                        "step": STEP_NAME,
+                        "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                        "error_type": "MultipleTableWarning",
+                        "error_message": "File has multiple tables; all table rows were concatenated.",
+                        "context": {"file_url": file_url},
+                    })
+                except Exception:
+                    pass
 
         if fallback_cells:
-            append_error(step_dir, {
-                "step": STEP_NAME,
-                "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-                "error_type": "CellSerializationWarning",
-                "error_message": f"{len(fallback_cells)} cell(s) used str() fallback.",
-                "context": {"file_url": file_url, "cells": fallback_cells},
-            })
+            try:
+                append_error(step_dir, {
+                    "step": STEP_NAME,
+                    "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                    "error_type": "CellSerializationWarning",
+                    "error_message": f"{len(fallback_cells)} cell(s) used str() fallback.",
+                    "context": {"file_url": file_url, "cells": fallback_cells},
+                })
+            except Exception:
+                pass
 
         if file_type == "pdf":
             result_record = {**item, "sheet_name": sheet_name, "rows": rows, "pdf_merge_stats": merge_stats, "pdf_extractor": pdf_extractor}
@@ -469,13 +478,16 @@ def _process_single_file(item, cache, step_dir):
         return [], False  # not marked processed — allows retry on next run
 
     except Exception as e:
-        append_error(step_dir, {
-            "step": STEP_NAME,
-            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-            "error_type": type(e).__name__,
-            "error_message": str(e),
-            "context": {"file_url": file_url},
-        })
+        try:
+            append_error(step_dir, {
+                "step": STEP_NAME,
+                "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "context": {"file_url": file_url},
+            })
+        except Exception:
+            pass
         return [], True  # marked processed — parse errors are permanent failures
 
 
@@ -496,9 +508,16 @@ def process(input_data, step_dir, writer, verbose=False, workers=4):
     if rejected or unverified:
         print(f"Verification status: {status_counts}")
 
+    eligible = [
+        item for item in input_data["results"]
+        if item.get("verification_status") != "rejected"
+    ]
+    if rejected:
+        print(f"Skipping {rejected} rejected item(s)")
+
     # Filter out already processed items
     items_to_process = [
-        item for item in input_data["results"]
+        item for item in eligible
         if not writer.is_processed(item["file_url"])
     ]
 
@@ -538,8 +557,8 @@ def main():
     parser.add_argument(
         "--workers",
         type=int,
-        default=4,
-        help="Number of parallel workers for file processing (default: 4)",
+        default=8,
+        help="Number of parallel workers for file processing (default: 8)",
     )
     args = parser.parse_args()
 

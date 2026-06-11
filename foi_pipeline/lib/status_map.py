@@ -4,7 +4,7 @@ from typing import Optional
 
 from lib.text_utils import normalize_header
 
-# The seven canonical status values
+# The canonical status values
 CANONICAL_STATUSES: list[str] = [
     'Granted',
     'Refused',
@@ -13,6 +13,8 @@ CANONICAL_STATUSES: list[str] = [
     'Handled outside of FOI',
     'Transferred',
     'Deemed Refused',
+    'Personal',
+    'Unknown',
 ]
 
 # Minimal initial mapping - will be expanded based on error review
@@ -46,6 +48,7 @@ _STATUS_SYNONYMS: dict[str, list[str]] = {
         'Refused under',
         'R e f u s e d',
         'Refused under the provisions of Schedule 1, Part 1(d)',
+        'INVALID',
     ],
     'Part-Granted': [
         'Part-Granted',
@@ -100,6 +103,16 @@ _STATUS_SYNONYMS: dict[str, list[str]] = {
         'Deemed Refused No records found',
         'Deemed to be refused as reply not sent within timeframes',
         'lapsed - S & R fee not received',
+    ],
+    'Personal': [
+        'PERSONAL',
+        'Personal',
+    ],
+    'Unknown': [
+        'N/A',
+        'n/a',
+        'NA',
+        'Unknown',
     ],
 }
 

@@ -1,5 +1,7 @@
 import json
 import jsonschema
+import os
+import tempfile
 import threading
 from datetime import datetime, timezone
 from pathlib import Path
@@ -23,10 +25,17 @@ def read_json(path):
 
 def write_json(path, data):
     path = Path(path)
-    tmp = path.with_suffix(".tmp")
-    with open(tmp, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
-    tmp.replace(path)
+    fd, tmp_path = tempfile.mkstemp(dir=str(path.parent), suffix=".tmp")
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+        os.replace(tmp_path, str(path))
+    except Exception:
+        try:
+            os.unlink(tmp_path)
+        except OSError:
+            pass
+        raise
 
 
 class IncrementalWriter:
