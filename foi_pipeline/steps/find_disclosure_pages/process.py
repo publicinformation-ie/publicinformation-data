@@ -37,7 +37,7 @@ def _tokenize(*strings):
 # disclosures, how-to/make-a-request forms, annual reports, login/logo/blog).
 NEGATIVE_TOKENS = {
     "protected", "scheme", "form", "login", "logo", "blog",
-    "publication", "publications", "annual", "report", "reports",
+    "annual", "report", "reports",
     "how", "make", "apply", "guide", "guidance",
 }
 
@@ -88,9 +88,12 @@ def find_disclosure_link(html, base_url):
     soup = BeautifulSoup(html, "html.parser")
     best = None
     best_score = 0
+    _DOC_EXTS = (".pdf", ".docx", ".xlsx", ".xls", ".odt", ".doc")
     for link in soup.find_all("a", href=True):
-        href = link["href"]
+        href = str(link["href"])
         if "/ga/" in href:  # Irish-language mirror pages
+            continue
+        if href.lower().split("?")[0].endswith(_DOC_EXTS):
             continue
         tokens = _tokenize(href, link.get_text(strip=True))
         sc = _score_link(tokens)
