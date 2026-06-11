@@ -1,0 +1,36 @@
+{
+  "step": "verify_disclosure_files",
+  "metrics": [
+    {
+      "name": "true_rejection_rate",
+      "value": 0.5,
+      "counts": {
+        "rejected": 6,
+        "not_rejected": 6,
+        "total_judged_no": 12
+      },
+      "is_primary": true
+    },
+    {
+      "name": "false_rejection_rate",
+      "value": 0.0027434842249657062,
+      "counts": {
+        "false_rejections": 2,
+        "total_judged_yes": 729
+      },
+      "is_primary": false
+    },
+    {
+      "name": "status_distribution",
+      "value": 0.7373612823674476,
+      "counts": {
+        "verified": 598,
+        "rejected": 15,
+        "unverified": 198
+      },
+      "is_primary": false
+    }
+  ],
+  "input_hash": "78b3b629d22e14570c43d5414460955e25ba303c510c8928ed38569928393c2d",
+  "judge_model": null
+}
