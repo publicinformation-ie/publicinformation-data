@@ -201,6 +201,23 @@ def _score_text(text):
     return "rejected", None
 
 
+def _normalize_url_text(file_url, link_text):
+    """Normalize URL path + link_text for keyword scanning.
+
+    Replaces URL separators with spaces so "foi-disclosure-log" → "foi disclosure log",
+    making it easier to match against keyword lists.
+    """
+    import urllib.parse
+    parsed = urllib.parse.urlparse(file_url)
+    path = parsed.path
+    # Replace common separators with spaces
+    for ch in ["-", "_", ".", "%20"]:
+        path = path.replace(ch, " ")
+    path = urllib.parse.unquote(path)
+    combined = f"{path} {link_text or ''}".strip()
+    return combined
+
+
 def _verify_one(item, cache, step_dir):
     """Download and verify a single file. Returns None on download failure, result record on success."""
     file_url = item["file_url"]
@@ -224,6 +241,14 @@ def _verify_one(item, cache, step_dir):
             text = None
 
         status, signal = _score_text(text)
+
+        # If content scoring is rejected or unverified, try URL/link_text as fallback
+        if status in ("rejected", "unverified"):
+            url_text = _normalize_url_text(file_url, item.get("link_text", ""))
+            url_status, url_signal = _score_text(url_text)
+            if url_status == "verified":
+                status, signal = url_status, f"url:{url_signal}"
+
         return {**item, "verification_status": status, "verification_signal": signal}
     except Exception as e:
         append_error(step_dir, {
