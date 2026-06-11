@@ -26,7 +26,7 @@ _SYNONYMS: dict[str, list[str]] = {
         'query number/uimhir cháis', 'case number', 'reference no.',
         'reference number', 'foi no.', 'foi ref', 'ref. no. foi–',
         'reference', 'ref', 'date received reference no', 'request reference',
-        'no', 'id', 'aie no.', 'request no.', 'index',
+        'no', 'number', 'id', 'aie no.', 'request no.', 'index',
         'our reference',
         # additional synonyms derived from columns.csv profiling
         'foi req no', 'aie req no', 'foi no',
@@ -42,6 +42,7 @@ _SYNONYMS: dict[str, list[str]] = {
         'reco rd no',             # OCR artefact for 'Record No'
         # Group E — PDF variants from disclosure logs
         'file ref.', 'file ref',
+        'foi file no',
         # Irish-language synonyms (Fingal, DLR PDFs)
         'uimhir thagartha', 'uimhir',
     ],
@@ -69,6 +70,7 @@ _SYNONYMS: dict[str, list[str]] = {
         'date decision letter issued',
         'date of decision letter',
         'response date',
+        'response sent date',
         'date of of release',            # typo in source data
         'cinneadh eisithe / decision issued',
         'cinneadh eisithe / date decision issued',
@@ -114,6 +116,7 @@ _SYNONYMS: dict[str, list[str]] = {
         'decision/cinne adh',   # Decision/Cinne\nadh
         # Group E — additional PDF variants
         'decisions made',
+        'request outcome',
         # Irish-language and reversed variants (Fingal, DLR, Tipperary PDFs)
         'cinneadh',
         'date decision',    # Tipperary PDFs: "Date Decision" is their decision outcome column, not a date

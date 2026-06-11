@@ -312,6 +312,12 @@ def test_canonicalize_file_ref_dot():
 def test_canonicalize_file_ref():
     assert canonicalize_header("File Ref") == "foi_reference_id"
 
+def test_canonicalize_number():
+    assert canonicalize_header("Number") == "foi_reference_id"
+
+def test_canonicalize_foi_file_no():
+    assert canonicalize_header("FOI File No") == "foi_reference_id"
+
 
 # ── New synonym tests — request_description ───────────────────────────────────
 
@@ -340,6 +346,9 @@ def test_canonicalize_long_pdf_concatenated_header():
 
 def test_canonicalize_decisions_made():
     assert canonicalize_header("Decisions Made") == "decision_status"
+
+def test_canonicalize_request_outcome():
+    assert canonicalize_header("Request Outcome") == "decision_status"
 
 
 # ── New synonym tests — requester_type ────────────────────────────────────────
@@ -648,6 +657,9 @@ def test_canonicalize_irish_date_synonyms():
     assert canonicalize_header("Date of Receipt") == "date_received"
     assert canonicalize_header("Date When") == "date_received"
     assert canonicalize_header("Date Outcome") == "decision_date"
+
+def test_canonicalize_response_sent_date():
+    assert canonicalize_header("Response Sent Date") == "decision_date"
 
 
 def test_canonicalize_irish_review_synonyms():
