@@ -3,23 +3,23 @@
   "metrics": [
     {
       "name": "accuracy",
-      "value": 1.0,
+      "value": 0.0,
       "counts": {
-        "correct": 15,
-        "total": 15
+        "correct": 0,
+        "total": 0
       },
       "is_primary": true
     },
     {
       "name": "null_header_column_rate",
-      "value": 0.118,
+      "value": 0.08,
       "counts": {
-        "flagged": 85,
-        "total": 721
+        "flagged": 35,
+        "total": 437
       },
       "is_primary": false
     }
   ],
-  "input_hash": "a769768423b6d92fa35320e5934a5ecfd1193382f9a0c759c42538b2618c8292",
+  "input_hash": "79aa00711da42a3d6694daca15d7201a7fe615839cd031ac9e01b62ae40fd3cd",
   "judge_model": null
 }
