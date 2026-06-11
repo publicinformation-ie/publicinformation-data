@@ -3,41 +3,41 @@
   "metrics": [
     {
       "name": "post_normalization_clean_rate",
-      "value": 0.796,
+      "value": 0.819,
       "counts": {
-        "clean": 339,
-        "total": 426
+        "clean": 770,
+        "total": 940
       },
       "is_primary": true
     },
     {
       "name": "null_column_rate",
-      "value": 0.164,
+      "value": 0.156,
       "counts": {
-        "flagged": 70,
-        "total": 426
+        "flagged": 147,
+        "total": 940
       },
       "is_primary": false
     },
     {
       "name": "newline_split_row_rate",
-      "value": 0.12,
+      "value": 0.08,
       "counts": {
-        "flagged": 51,
-        "total": 426
+        "flagged": 75,
+        "total": 940
       },
       "is_primary": false
     },
     {
       "name": "cells_changed_rate",
-      "value": 0.984,
+      "value": 0.98,
       "counts": {
-        "changed": 432,
-        "total": 439
+        "changed": 983,
+        "total": 1003
       },
       "is_primary": false
     }
   ],
-  "input_hash": "0f2457b5c4bb0fb45543414bfd4e73eaccbb6a15895848295ae47ad112d2f7cb",
+  "input_hash": "e813b14ee2f881a5480a5fed3a9dd5a1b3c9eddf9d93642c51befe8b5f7703ae",
   "judge_model": null
 }

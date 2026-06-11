@@ -20,5 +20,71 @@
     "suggested_upstream_step": null,
     "suggestion_detail": "Opaque GUID URL with no non-FOI signal, lean yes",
     "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://thedigitalhub.com/wp-content/uploads/2026/01/FOI-Request-Log-2025-Q4.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://thedigitalhub.com/wp-content/uploads/2026/01/FOI-Request-Log-2025-Q4.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://thedigitalhub.com/wp-content/uploads/2025/11/FOI-Request-Log-2025-Q3.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://thedigitalhub.com/wp-content/uploads/2025/11/FOI-Request-Log-2025-Q3.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://thedigitalhub.com/wp-content/uploads/2025/11/FOI-Request-Log-2025-Q2.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://thedigitalhub.com/wp-content/uploads/2025/11/FOI-Request-Log-2025-Q2.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://thedigitalhub.com/wp-content/uploads/2025/11/FOI-Request-Log-2025-Q1.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://thedigitalhub.com/wp-content/uploads/2025/11/FOI-Request-Log-2025-Q1.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://www.wexfordcoco.ie/sites/default/files/content/01.01.23-to-30.09.23.xlsx",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://www.wexfordcoco.ie/sites/default/files/content/01.01.23-to-30.09.23.xlsx"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "heuristic scoring based on URL patterns",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://www.wexfordcoco.ie/sites/default/files/content/01.01.2020-to-31.12.2020_1.xlsx",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://www.wexfordcoco.ie/sites/default/files/content/01.01.2020-to-31.12.2020_1.xlsx"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "heuristic scoring based on URL patterns",
+    "confidence": 1.0
   }
 ]

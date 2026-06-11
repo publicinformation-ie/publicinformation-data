@@ -1,15 +1,18 @@
 [
   {
     "severity": "info",
-    "description": "7 bodies kept <50% of records after dedup",
-    "affected_count": 7,
+    "description": "10 bodies kept <50% of records after dedup",
+    "affected_count": 10,
     "affected_ids": [
-      "1016",
-      "1036",
-      "1044",
+      "1026",
       "1087",
       "1097",
       "1128",
+      "1132",
+      "1133",
+      "1134",
+      "1135",
+      "1142",
       "1147"
     ],
     "suggested_upstream_step": "transform_disclosure_files",
