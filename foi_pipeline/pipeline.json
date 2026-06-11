@@ -10,6 +10,7 @@
     "get_foi_emails",
     "find_disclosure_pages",
     "find_disclosure_files",
+    "verify_disclosure_files",
     "transform_disclosure_files",
     "normalize_disclosure_cells",
     "extract_disclosures_detect_header_row",
