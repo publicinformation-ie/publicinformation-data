@@ -1,0 +1,24 @@
+[
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.ocei.ie/media/266658/1e71f169-15c2-4940-947d-19abbf174f86.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.ocei.ie/media/266658/1e71f169-15c2-4940-947d-19abbf174f86.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "Opaque GUID URL with no non-FOI signal, lean yes",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.ocei.ie/media/266685/bb4847f7-5a40-4ca7-8321-e02a4b15fb21.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.ocei.ie/media/266685/bb4847f7-5a40-4ca7-8321-e02a4b15fb21.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "Opaque GUID URL with no non-FOI signal, lean yes",
+    "confidence": 1.0
+  }
+]

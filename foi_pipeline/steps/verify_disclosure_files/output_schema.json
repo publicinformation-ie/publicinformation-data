@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "required": ["metadata", "results"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["step", "completed_at"],
+      "properties": {
+        "step": { "type": "string" },
+        "completed_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "public_body_id", "name", "disclosure_page_url",
+          "file_url", "file_type", "link_text", "verification_status"
+        ],
+        "properties": {
+          "public_body_id": { "type": "integer" },
+          "name": { "type": "string" },
+          "disclosure_page_url": { "type": "string" },
+          "file_url": { "type": "string" },
+          "file_type": { "enum": ["pdf", "xlsx", "xls"] },
+          "link_text": { "type": "string" },
+          "verification_status": { "enum": ["verified", "rejected", "unverified"] },
+          "verification_signal": { "type": ["string", "null"] },
+          "overridden": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}
