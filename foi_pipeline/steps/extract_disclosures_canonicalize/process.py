@@ -76,12 +76,24 @@ def canonicalize_file(item, column_swaps=None):
     missing_required = sorted(k for k in REQUIRED_COLUMNS if k not in canonical_to_col_idx)
     file_swaps = column_swaps.get(item["file_url"], []) if column_swaps else []
 
-    # Root Cause A: index of the first header with no canonical mapping; used to re-pad
-    # rows that are one cell short because pdfplumber dropped the blank/spacer column.
-    none_header_idx = next(
-        (i for i, h in enumerate(headers) if mapping.get(h) is None),
-        None,
-    )
+    # Compute the "spacer column" position for row-length correction (Root Cause A / B).
+    # Priority 1: an actual None/blank header — a physical blank spacer column in the PDF.
+    # Priority 2: the first header that duplicates a canonical key already seen
+    #             (e.g. two "Request Description" columns → the second is a spacer).
+    # Unmapped string headers (e.g. an untranslated Irish column name) are NOT spacers;
+    # skipping them prevents padding at the wrong position (body 1135 regression).
+    _seen_for_dup: set[str] = set()
+    none_header_idx: int | None = None
+    for _i, _h in enumerate(headers):
+        if not _h or not str(_h).strip():  # actual blank/None header (Priority 1)
+            none_header_idx = _i
+            break
+        _c = mapping.get(_h)
+        if _c is not None:
+            if _c in _seen_for_dup:  # duplicate canonical key (Priority 2)
+                none_header_idx = _i
+                break
+            _seen_for_dup.add(_c)
 
     results = []
     header_rows_dropped = 0
@@ -94,6 +106,15 @@ def canonicalize_file(item, column_swaps=None):
         if none_header_idx is not None and len(row) == len(headers) - 1:
             row = list(row)
             row.insert(none_header_idx, None)
+        # Root Cause B (symmetric): when a row is longer than the header by exactly one
+        # cell, pdfplumber added an extra blank column on this PDF page. Remove the first
+        # None to restore alignment.
+        elif len(row) == len(headers) + 1:
+            for _extra_idx, _cell in enumerate(row):
+                if _cell is None:
+                    row = list(row)
+                    del row[_extra_idx]
+                    break
 
         record = {**meta}
         for key in CANONICAL_COLUMNS:

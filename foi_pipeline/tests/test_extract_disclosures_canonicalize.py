@@ -652,3 +652,56 @@ def test_canonicalize_irish_date_synonyms():
 
 def test_canonicalize_irish_review_synonyms():
     assert canonicalize_header("Athbhreithniú") == "review_status"
+
+
+# ── Row-length correction tests (Root Cause A / B) ────────────────────────────
+
+def test_duplicate_header_column_pads_short_rows():
+    # Body 1012 pattern: header has duplicate 'Request Details' at positions 1 and 2.
+    # Short rows (missing the duplicate) should be padded at the duplicate position,
+    # not left unpadded (which would shift requester_type into decision_status).
+    rows = [
+        ["Our Reference", "Request Details", "Request Details", "Decision Made", "Category"],
+        # 4-col row — missing the duplicate at position 2:
+        ["16/001", "some request", "Granted", "Journalist"],
+    ]
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert len(results) == 1
+    assert results[0]["request_description"] == "some request"
+    assert results[0]["decision_status"] == "Granted"
+    assert results[0]["requester_type"] == "Journalist"
+    assert errors == []
+
+
+def test_unmapped_string_header_not_used_for_padding():
+    # Body 1135 pattern: header has an unmapped string column at pos 1 (Irish/partial text
+    # with no synonym) AND an actual None spacer at pos 5. Short rows (missing the trailing
+    # spacer) must be padded at pos 5, not pos 1 — otherwise every value shifts right by
+    # one and requester_type gets the description text instead of 'Journalist'.
+    rows = [
+        ["Our Reference", "partial text col", "Category", "Decision Made", "Date", None],
+        # 5-col row — missing the trailing None at position 5.
+        # pos 1 holds the unmapped description value; pos 2 holds the requester type.
+        ["16/001", "some description", "Journalist", "Granted", "01/01/2016"],
+    ]
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert len(results) == 1
+    assert results[0]["requester_type"] == "Journalist"
+    assert results[0]["decision_status"] == "Granted"
+    assert errors == []
+
+
+def test_long_row_with_extra_none_removes_blank_column():
+    # Body 1143 pattern: some PDF pages produce a 6-col row against a 5-col header
+    # because pdfplumber picks up an extra blank column. Remove the first None to
+    # restore alignment so decision_status gets 'Granted' not 'Journalist'.
+    rows = [
+        ["Our Reference", "Request Details", "Category", "Decision Made", "Date"],
+        # 6-col row — extra None at position 2:
+        ["16/001", "some request", None, "Journalist", "Granted", "01/01/2016"],
+    ]
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert len(results) == 1
+    assert results[0]["requester_type"] == "Journalist"
+    assert results[0]["decision_status"] == "Granted"
+    assert errors == []
