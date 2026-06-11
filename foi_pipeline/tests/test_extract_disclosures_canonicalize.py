@@ -605,3 +605,16 @@ def test_normalize_header_strips_trailing_slash():
     assert normalize_header("Decision/") == "decision"
     assert normalize_header("Dáta Eisiúna /") == "dáta eisiúna"
     assert normalize_header("iarrthóra /") == "iarrthóra"
+
+
+def test_canonicalize_bilingual_irish_english_slash():
+    # Fingal Jan-Mar 2018 PDF: full Irish/English bilingual headers
+    assert canonicalize_header("Uimhir thagartha/Reference Number") == "foi_reference_id"
+    assert canonicalize_header("Dáta an Iarratais/Date of Request") == "date_received"
+    assert canonicalize_header("Tuairisc ar Iarratais/Description of Request") == "request_description"
+    assert canonicalize_header("Catagóir on iarrathóa/Requester Category") == "requester_type"
+    assert canonicalize_header("Dáta Eisiúna/ Date of Release") == "decision_date"
+
+def test_canonicalize_bilingual_slash_does_not_match_ambiguous_parts():
+    # 'Grant/Refuse' — neither part is a known synonym, should return None
+    assert canonicalize_header("Grant/Refuse") is None

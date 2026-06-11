@@ -166,6 +166,14 @@ def canonicalize_header(header: str | None) -> Optional[str]:
     year_stripped = _normalise(_YEAR_SUFFIX.sub('', norm))
     if year_stripped != norm:
         return _LOOKUP.get(year_stripped)
+    # Bilingual fallback: 'Irish/English Name' — try each part after splitting on '/'.
+    # This handles Fingal/DLR PDFs where pdfplumber preserves 'Uimhir/Reference Number'.
+    # Only applied after all other lookups fail to avoid false positives.
+    if '/' in norm:
+        for part in norm.split('/'):
+            part = part.strip()
+            if part and part in _LOOKUP:
+                return _LOOKUP[part]
     return None
 
 
