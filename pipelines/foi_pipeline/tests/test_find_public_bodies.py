@@ -1,296 +1,214 @@
 import json
-import os
-import subprocess
 import sys
-from pathlib import Path
 
-from steps.find_public_bodies.process import scrape_public_bodies, BASE_ID
+import pytest
 
-SAMPLE_HTML = """
-<!DOCTYPE html>
-<html><body>
-  <nav><a href="/en/some-nav-link/">Nav Link</a></nav>
-  <section id="departments">
-    <a href="/en/department-of-finance/">Department of Finance</a>
-    <a href="/en/department-of-health/">Department of Health</a>
-  </section>
-  <section id="agencies">
-    <a href="/en/central-bank-of-ireland/">Central Bank of Ireland</a>
-  </section>
-  <section id="local-authorities">
-    <a href="/en/carlow-county-council/">Carlow County Council</a>
-  </section>
-  <footer><a href="/en/privacy-policy/">Privacy Policy</a></footer>
-</body></html>
-"""
-
-DUPLICATE_HTML = """
-<html><body>
-  <section id="departments">
-    <a href="/en/dept-finance/">Dept Finance</a>
-    <a href="/en/dept-finance/">Dept Finance (again)</a>
-  </section>
-</body></html>
-"""
-
-NAMELESS_LINK_HTML = """
-<html><body>
-  <section id="agencies">
-    <a href="/en/dept-finance/">  </a>
-    <a href="/en/dept-health/">Health</a>
-  </section>
-</body></html>
-"""
+import steps.find_public_bodies.process as proc
+from steps.find_public_bodies.process import ingest_bodies, derive_category, main, STEP_NAME
 
 
-def test_scrape_extracts_organisation_links(requests_mock, tmp_path):
-    requests_mock.get("https://www.gov.ie/en/departments/", text=SAMPLE_HTML)
-    bodies = scrape_public_bodies(tmp_path)
-    urls = [b["official_website_url"] for b in bodies]
-    assert "https://www.gov.ie/en/department-of-finance/" in urls
-    assert "https://www.gov.ie/en/department-of-health/" in urls
-    assert "https://www.gov.ie/en/central-bank-of-ireland/" in urls
-    assert "https://www.gov.ie/en/carlow-county-council/" in urls
+# --- helpers ---
+
+def _hub_record(**kwargs):
+    defaults = {
+        "public_body_id": 1000,
+        "name": "An Post",
+        "sector": "S11001",
+        "legal_status": "Commercial State Body",
+        "government_department": "",
+        "nace_code": "H5310",
+        "cro": "98788",
+        "data_vintage": 2025,
+        "official_website_url": "https://anpost.ie/",
+        "parent_name": None,
+        "parent_id": None,
+    }
+    defaults.update(kwargs)
+    return defaults
 
 
-def test_scrape_excludes_non_organisation_links(requests_mock, tmp_path):
-    requests_mock.get("https://www.gov.ie/en/departments/", text=SAMPLE_HTML)
-    bodies = scrape_public_bodies(tmp_path)
-    urls = [b["official_website_url"] for b in bodies]
-    assert not any("some-nav-link" in u for u in urls)
-    assert not any("privacy-policy" in u for u in urls)
+def _hub_output(records):
+    return {
+        "metadata": {"step": "resolve_website_urls", "completed_at": "2026-06-12T00:00:00+00:00"},
+        "public_bodies": records,
+    }
 
 
-def test_scrape_deduplicates_urls(requests_mock, tmp_path):
-    requests_mock.get("https://www.gov.ie/en/departments/", text=DUPLICATE_HTML)
-    bodies = scrape_public_bodies(tmp_path)
-    assert len(bodies) == 1
+def write_hub_input(path, records):
+    path.write_text(json.dumps(_hub_output(records)))
 
 
-def test_scrape_skips_nameless_links(requests_mock, tmp_path):
-    requests_mock.get("https://www.gov.ie/en/departments/", text=NAMELESS_LINK_HTML)
-    bodies = scrape_public_bodies(tmp_path)
-    assert len(bodies) == 1
-    assert bodies[0]["name"] == "Health"
+def run_main(tmp_path, monkeypatch, argv):
+    monkeypatch.setattr(proc, "__file__", str(tmp_path / "process.py"))
+    sys.argv = argv
+    main()
 
 
-def test_scrape_includes_category_field(requests_mock, tmp_path):
-    requests_mock.get("https://www.gov.ie/en/departments/", text=SAMPLE_HTML)
-    bodies = scrape_public_bodies(tmp_path)
-    assert all("category" in b for b in bodies)
+# --- derive_category ---
+
+def test_category_s1311_is_government_department():
+    assert derive_category(_hub_record(sector="S1311")) == "government department"
 
 
-def test_scrape_departments_have_government_department_category(requests_mock, tmp_path):
-    requests_mock.get("https://www.gov.ie/en/departments/", text=SAMPLE_HTML)
-    bodies = scrape_public_bodies(tmp_path)
-    dept = next(b for b in bodies if "department-of-finance" in b["official_website_url"])
-    assert dept["category"] == "government department"
+def test_category_s1311_sub_code_is_government_department():
+    assert derive_category(_hub_record(sector="S13110")) == "government department"
 
 
-def test_scrape_agencies_have_public_service_body_category(requests_mock, tmp_path):
-    requests_mock.get("https://www.gov.ie/en/departments/", text=SAMPLE_HTML)
-    bodies = scrape_public_bodies(tmp_path)
-    agency = next(b for b in bodies if "central-bank" in b["official_website_url"])
-    assert agency["category"] == "public service body"
+def test_category_s1313_is_local_authority():
+    assert derive_category(_hub_record(sector="S1313")) == "local authority"
 
 
-def test_scrape_local_authorities_have_local_authority_category(requests_mock, tmp_path):
-    requests_mock.get("https://www.gov.ie/en/departments/", text=SAMPLE_HTML)
-    bodies = scrape_public_bodies(tmp_path)
-    council = next(b for b in bodies if "carlow" in b["official_website_url"])
-    assert council["category"] == "local authority"
+def test_category_s1313_sub_code_is_local_authority():
+    assert derive_category(_hub_record(sector="S13130")) == "local authority"
 
 
-def test_scrape_ids_start_at_1001(requests_mock, tmp_path):
-    requests_mock.get("https://www.gov.ie/en/departments/", text=SAMPLE_HTML)
-    bodies = scrape_public_bodies(tmp_path)
-    assert bodies[0]["public_body_id"] == BASE_ID + 1
-    assert bodies[1]["public_body_id"] == BASE_ID + 2
+def test_category_county_council_in_govt_dept_is_local_authority():
+    assert derive_category(
+        _hub_record(sector="S11", government_department="Cork County Council")
+    ) == "local authority"
 
 
-def test_scrape_ids_are_sequential(requests_mock, tmp_path):
-    requests_mock.get("https://www.gov.ie/en/departments/", text=SAMPLE_HTML)
-    bodies = scrape_public_bodies(tmp_path)
-    ids = [b["public_body_id"] for b in bodies]
-    assert ids == list(range(BASE_ID + 1, BASE_ID + 1 + len(ids)))
+def test_category_city_council_in_govt_dept_is_local_authority():
+    assert derive_category(
+        _hub_record(sector="S11", government_department="Dublin City Council")
+    ) == "local authority"
 
 
-def test_scrape_resets_errors_json(requests_mock, tmp_path):
-    # Pre-existing stale errors should be cleared at the start of each run
-    errors_path = tmp_path / "errors.json"
-    errors_path.write_text('[{"step": "old", "error_type": "OldError"}]')
-    requests_mock.get("https://www.gov.ie/en/departments/", text=SAMPLE_HTML)
-    scrape_public_bodies(tmp_path)
-    errors = json.loads(errors_path.read_text())
-    assert errors == []
+def test_category_default_is_public_service_body():
+    assert derive_category(_hub_record(sector="S11", government_department="")) == "public service body"
 
 
-EXCLUSION_HTML = """
-<html><body>
-  <section id="agencies">
-    <a href="/en/coillte/">Coillte</a>
-    <a href="/en/hse/">HSE</a>
-  </section>
-</body></html>
-"""
+def test_category_s14_is_public_service_body():
+    assert derive_category(_hub_record(sector="S14", government_department="")) == "public service body"
 
 
-def test_excluded_body_has_exclusion_reason_field(requests_mock, tmp_path):
-    (tmp_path / "exclusions.json").write_text(
-        '[{"source_url": "https://www.gov.ie/en/coillte/", '
-        '"name": "Coillte", "exclusion_reason": "not_subject_to_foi", "note": ""}]'
-    )
-    requests_mock.get("https://www.gov.ie/en/departments/", text=EXCLUSION_HTML)
-    bodies = scrape_public_bodies(tmp_path)
-    coillte = next(b for b in bodies if "coillte" in b["official_website_url"])
-    assert coillte["exclusion_reason"] == "not_subject_to_foi"
+# --- ingest_bodies ---
+
+def test_ingest_maps_public_body_id():
+    result = ingest_bodies([_hub_record(public_body_id=1042)])
+    assert result[0]["public_body_id"] == 1042
 
 
-def test_excluded_body_has_no_not_subject_to_foi_field(requests_mock, tmp_path):
-    (tmp_path / "exclusions.json").write_text(
-        '[{"source_url": "https://www.gov.ie/en/coillte/", '
-        '"name": "Coillte", "exclusion_reason": "not_subject_to_foi", "note": ""}]'
-    )
-    requests_mock.get("https://www.gov.ie/en/departments/", text=EXCLUSION_HTML)
-    bodies = scrape_public_bodies(tmp_path)
-    coillte = next(b for b in bodies if "coillte" in b["official_website_url"])
-    assert "not_subject_to_foi" not in coillte
+def test_ingest_maps_name():
+    result = ingest_bodies([_hub_record(name="An Post")])
+    assert result[0]["name"] == "An Post"
 
 
-def test_non_excluded_body_has_no_exclusion_reason(requests_mock, tmp_path):
-    (tmp_path / "exclusions.json").write_text(
-        '[{"source_url": "https://www.gov.ie/en/coillte/", '
-        '"name": "Coillte", "exclusion_reason": "not_subject_to_foi", "note": ""}]'
-    )
-    requests_mock.get("https://www.gov.ie/en/departments/", text=EXCLUSION_HTML)
-    bodies = scrape_public_bodies(tmp_path)
-    hse = next(b for b in bodies if "hse" in b["official_website_url"])
-    assert "exclusion_reason" not in hse
+def test_ingest_maps_official_website_url():
+    result = ingest_bodies([_hub_record(official_website_url="https://anpost.ie/")])
+    assert result[0]["official_website_url"] == "https://anpost.ie/"
 
 
-def test_temporary_exclusion_reason_is_preserved(requests_mock, tmp_path):
-    (tmp_path / "exclusions.json").write_text(
-        '[{"source_url": "https://www.gov.ie/en/coillte/", '
-        '"name": "Coillte", "exclusion_reason": "temporary", "note": ""}]'
-    )
-    requests_mock.get("https://www.gov.ie/en/departments/", text=EXCLUSION_HTML)
-    bodies = scrape_public_bodies(tmp_path)
-    coillte = next(b for b in bodies if "coillte" in b["official_website_url"])
-    assert coillte["exclusion_reason"] == "temporary"
+def test_ingest_derives_category():
+    result = ingest_bodies([_hub_record(sector="S1311")])
+    assert result[0]["category"] == "government department"
 
 
-def test_empty_exclusions_file_leaves_no_exclusion_reason(requests_mock, tmp_path):
-    (tmp_path / "exclusions.json").write_text("[]")
-    requests_mock.get("https://www.gov.ie/en/departments/", text=EXCLUSION_HTML)
-    bodies = scrape_public_bodies(tmp_path)
-    assert all("exclusion_reason" not in b for b in bodies)
+def test_ingest_initialises_all_status_fields_to_not_attempted():
+    result = ingest_bodies([_hub_record()])
+    s = result[0]["status"]
+    assert s["website_url"]["status"] == "not_attempted"
+    assert s["foi_page"]["status"] == "not_attempted"
+    assert s["foi_email"]["status"] == "not_attempted"
+    assert s["disclosures_page"]["status"] == "not_attempted"
+    assert s["disclosure_files"]["status"] == "not_attempted"
+    assert s["foi_requests"]["status"] == "not_attempted"
 
 
-SEPARATE_WEBSITE_HTML = """
-<html><body>
-  <section id="departments">
-    <a href="/en/dept-a/">Dept A</a>
-    <a href="/en/dept-b/">Dept B</a>
-  </section>
-</body></html>
-"""
-
-DEPT_A_PAGE = """
-<html><body>
-  <p>there is a separate website for <a href="https://dept-a.ie/">Dept A</a></p>
-</body></html>
-"""
-
-DEPT_B_PAGE = """
-<html><body>
-  <p>No separate website here.</p>
-</body></html>
-"""
+def test_ingest_status_website_url_matches_official_website_url():
+    result = ingest_bodies([_hub_record(official_website_url="https://example.ie/")])
+    assert result[0]["status"]["website_url"]["url"] == "https://example.ie/"
 
 
-def test_parallel_resolution_follows_separate_website_links(requests_mock, tmp_path):
-    """Dept A redirects to dept-a.ie; Dept B stays on gov.ie. Order must be preserved."""
-    requests_mock.get("https://www.gov.ie/en/departments/", text=SEPARATE_WEBSITE_HTML)
-    requests_mock.get("https://www.gov.ie/en/dept-a/", text=DEPT_A_PAGE)
-    requests_mock.get("https://www.gov.ie/en/dept-b/", text=DEPT_B_PAGE)
-
-    bodies = scrape_public_bodies(tmp_path)
-
-    assert len(bodies) == 2
-    dept_a = next(b for b in bodies if b["name"] == "Dept A")
-    dept_b = next(b for b in bodies if b["name"] == "Dept B")
-    assert dept_a["official_website_url"] == "https://dept-a.ie/"
-    assert dept_b["official_website_url"] == "https://www.gov.ie/en/dept-b/"
+def test_ingest_status_foi_page_url_is_none():
+    result = ingest_bodies([_hub_record()])
+    assert result[0]["status"]["foi_page"]["url"] is None
 
 
-def test_parallel_resolution_preserves_insertion_order(requests_mock, tmp_path):
-    """Bodies must appear in the same order as in the source HTML after parallel resolution."""
-    requests_mock.get("https://www.gov.ie/en/departments/", text=SEPARATE_WEBSITE_HTML)
-    requests_mock.get("https://www.gov.ie/en/dept-a/", text=DEPT_A_PAGE)
-    requests_mock.get("https://www.gov.ie/en/dept-b/", text=DEPT_B_PAGE)
-
-    bodies = scrape_public_bodies(tmp_path)
-
-    assert bodies[0]["name"] == "Dept A"
-    assert bodies[1]["name"] == "Dept B"
+def test_ingest_status_disclosure_files_counts_are_zero():
+    result = ingest_bodies([_hub_record()])
+    df = result[0]["status"]["disclosure_files"]
+    assert df["total"] == 0
+    assert df["valid"] == 0
+    assert df["failed"] == 0
 
 
-def test_process_writes_output_and_status(requests_mock, tmp_path, monkeypatch):
-    requests_mock.get("https://www.gov.ie/en/departments/", text=SAMPLE_HTML)
-    monkeypatch.chdir(tmp_path)
-
-    pipeline_dir = Path(__file__).parent.parent
-    # pipelines/foi_pipeline/tests/../../.. = repo root; lib lives in src/
-    repo_root = Path(__file__).parents[3]
-    process_script = pipeline_dir / "steps" / "find_public_bodies" / "process.py"
-    output_path = tmp_path / "output.json"
-
-    result = subprocess.run(
-        [sys.executable, str(process_script), "--input", str(tmp_path), "--output", str(output_path)],
-        env={**os.environ, "PYTHONPATH": str(repo_root / "src")},
-        capture_output=True,
-    )
-    assert result.returncode == 0, result.stderr.decode()
-    assert output_path.exists()
-    output = json.loads(output_path.read_text())
-    assert isinstance(output, dict)
-    assert "metadata" in output
-    assert "public_bodies" in output
-    bodies = output["public_bodies"]
-    assert isinstance(bodies, list)
-    assert len(bodies) > 0
-    # Verify fields exist on first body
-    first_body = bodies[0]
-    assert "status" in first_body, "status field missing"
-    assert isinstance(first_body["status"], dict), "status should be a dict"
-    # Verify all required status subfields exist
-    required_status_fields = ["website_url", "foi_page", "foi_email", "disclosures_page", "disclosure_files", "foi_requests"]
-    for field in required_status_fields:
-        assert field in first_body["status"], f"status.{field} field missing"
-    status = json.loads((pipeline_dir / "steps" / "find_public_bodies" / "pipeline-status.json").read_text())
-    assert status["record_count"] == len(bodies)
-    assert "completed_at" in status
+def test_ingest_null_website_url_propagates():
+    result = ingest_bodies([_hub_record(official_website_url=None)])
+    assert result[0]["official_website_url"] is None
+    assert result[0]["status"]["website_url"]["url"] is None
 
 
+def test_ingest_preserves_all_records():
+    records = [_hub_record(public_body_id=i) for i in range(1000, 1005)]
+    result = ingest_bodies(records)
+    assert len(result) == 5
 
 
-import sys as _sys
-import pytest as _pytest
-from lib.file_utils import read_json as _read_json, write_json as _write_json
+def test_ingest_result_has_no_cso_only_fields():
+    result = ingest_bodies([_hub_record()])
+    for key in ("sector", "legal_status", "nace_code", "cro", "data_vintage", "parent_name", "parent_id"):
+        assert key not in result[0], f"CSO-only field '{key}' should not appear in FOI output"
 
 
-def test_scoped_run_leaves_output_untouched(tmp_path, monkeypatch):
-    import steps.find_public_bodies.process as proc
-    step_dir = tmp_path
-    out = step_dir / "output.json"
-    original = {"metadata": {"step": "find_public_bodies"},
-                "public_bodies": [{"public_body_id": 1001}, {"public_body_id": 1002}]}
-    _write_json(out, original)
+# --- main() integration ---
 
-    monkeypatch.setattr(proc, "__file__", str(step_dir / "process.py"))
-    _sys.argv = ["process.py", "--input", "x", "--output", str(out), "--public-body", "1001"]
-    with _pytest.raises(SystemExit) as exc:
-        proc.main()
-    assert exc.value.code == 0  # clean exit, not an error
+def test_main_writes_output_from_hub_json(tmp_path, monkeypatch):
+    inp = tmp_path / "input.json"
+    out = tmp_path / "output.json"
+    write_hub_input(inp, [_hub_record(public_body_id=1042, name="An Post")])
+    run_main(tmp_path, monkeypatch, ["process.py", "--input", str(inp), "--output", str(out), "--force"])
+    result = json.loads(out.read_text())
+    assert len(result["public_bodies"]) == 1
+    assert result["public_bodies"][0]["name"] == "An Post"
+    assert result["metadata"]["step"] == STEP_NAME
 
-    assert _read_json(out) == original  # byte-for-byte unchanged
+
+def test_main_skips_if_output_exists_without_force(tmp_path, monkeypatch):
+    inp = tmp_path / "input.json"
+    out = tmp_path / "output.json"
+    write_hub_input(inp, [_hub_record()])
+    out.write_text(json.dumps({"metadata": {}, "public_bodies": [{"sentinel": True}]}))
+    monkeypatch.setattr(proc, "__file__", str(tmp_path / "process.py"))
+    sys.argv = ["process.py", "--input", str(inp), "--output", str(out)]
+    try:
+        main()
+    except SystemExit as e:
+        assert e.code == 0
+    result = json.loads(out.read_text())
+    assert result["public_bodies"][0].get("sentinel") is True
+
+
+def test_main_public_body_scoping_confirms_existing(tmp_path, monkeypatch):
+    inp = tmp_path / "input.json"
+    out = tmp_path / "output.json"
+    write_hub_input(inp, [_hub_record(public_body_id=1042)])
+    out.write_text(json.dumps({
+        "metadata": {"step": STEP_NAME},
+        "public_bodies": [_hub_record(public_body_id=1042)],
+    }))
+    monkeypatch.setattr(proc, "__file__", str(tmp_path / "process.py"))
+    sys.argv = ["process.py", "--input", str(inp), "--output", str(out), "--public-body", "1042"]
+    try:
+        main()
+    except SystemExit as e:
+        assert e.code == 0
+    result = json.loads(out.read_text())
+    assert result["public_bodies"][0]["public_body_id"] == 1042
+
+
+def test_main_public_body_scoping_errors_if_not_found(tmp_path, monkeypatch):
+    inp = tmp_path / "input.json"
+    out = tmp_path / "output.json"
+    write_hub_input(inp, [_hub_record(public_body_id=1042)])
+    out.write_text(json.dumps({
+        "metadata": {"step": STEP_NAME},
+        "public_bodies": [_hub_record(public_body_id=1042)],
+    }))
+    monkeypatch.setattr(proc, "__file__", str(tmp_path / "process.py"))
+    sys.argv = ["process.py", "--input", str(inp), "--output", str(out), "--public-body", "9999"]
+    try:
+        main()
+        assert False, "Expected SystemExit"
+    except SystemExit as e:
+        assert e.code != 0
