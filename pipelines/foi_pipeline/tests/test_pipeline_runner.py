@@ -174,3 +174,101 @@ def test_orchestrator_public_body_missing_bodies_file_exits(tmp_path):
             sys.argv = ["process.py", str(pipeline_dir), "--public-body", "1001"]
             main()
         assert exc.value.code != 0
+
+
+# --- absolute-path step tests ---
+
+def _make_pipeline_with_abs(tmp_path, steps):
+    """Build a minimal pipeline dir where absolute-path steps are external dirs."""
+    pipeline_dir = tmp_path / "pipelines" / "foi_pipeline"
+    pipeline_dir.mkdir(parents=True)
+    (pipeline_dir / "pipeline.json").write_text(json.dumps({"steps": steps}))
+    for step in steps:
+        if not step.startswith("/"):
+            (pipeline_dir / "steps" / step).mkdir(parents=True)
+    return pipeline_dir
+
+
+def _seed_upstream(tmp_path, step_path, content=None):
+    """Create an upstream step output.json under tmp_path (acting as repo root)."""
+    out = tmp_path / step_path.lstrip("/") / "output.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(content or json.dumps({"public_bodies": [{"public_body_id": 1000}]}))
+    return out
+
+
+def test_absolute_step_sets_prev_out_and_skips_subprocess(tmp_path):
+    pipeline_dir = _make_pipeline_with_abs(
+        tmp_path, ["/pipelines/cso_pipeline/resolve_website_urls", "find_public_bodies"]
+    )
+    _seed_upstream(tmp_path, "/pipelines/cso_pipeline/resolve_website_urls")
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        mock_run.return_value.returncode = 0
+        sys.argv = ["process.py", str(pipeline_dir)]
+        main()
+        # subprocess called once for find_public_bodies, never for the absolute-path step
+        assert mock_run.call_count == 1
+        cmd = mock_run.call_args[0][0]
+        assert "find_public_bodies" in cmd[1]
+
+
+def test_absolute_step_passes_its_output_as_input_to_next_step(tmp_path):
+    pipeline_dir = _make_pipeline_with_abs(
+        tmp_path, ["/pipelines/cso_pipeline/resolve_website_urls", "find_public_bodies"]
+    )
+    upstream_out = _seed_upstream(tmp_path, "/pipelines/cso_pipeline/resolve_website_urls")
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        mock_run.return_value.returncode = 0
+        sys.argv = ["process.py", str(pipeline_dir)]
+        main()
+        cmd = mock_run.call_args[0][0]
+        assert str(upstream_out) in cmd
+
+
+def test_absolute_step_missing_output_exits_with_error(tmp_path):
+    pipeline_dir = _make_pipeline_with_abs(
+        tmp_path, ["/pipelines/cso_pipeline/resolve_website_urls", "find_public_bodies"]
+    )
+    # upstream output NOT seeded -> should exit with message naming the pipeline
+
+    with patch("lib.pipeline_runner.subprocess.run"):
+        with pytest.raises(SystemExit) as exc:
+            sys.argv = ["process.py", str(pipeline_dir)]
+            main()
+        # sys.exit("message") sets exc.value.code to the message string
+        assert "cso_pipeline" in str(exc.value.code)
+
+
+def test_absolute_step_empty_output_exits_with_error(tmp_path):
+    pipeline_dir = _make_pipeline_with_abs(
+        tmp_path, ["/pipelines/cso_pipeline/resolve_website_urls", "find_public_bodies"]
+    )
+    upstream = tmp_path / "pipelines" / "cso_pipeline" / "resolve_website_urls" / "output.json"
+    upstream.parent.mkdir(parents=True)
+    upstream.write_text("")  # empty file
+
+    with patch("lib.pipeline_runner.subprocess.run"):
+        with pytest.raises(SystemExit) as exc:
+            sys.argv = ["process.py", str(pipeline_dir)]
+            main()
+        assert exc.value.code != 0
+
+
+def test_from_flag_skips_absolute_step_but_sets_prev_out(tmp_path):
+    pipeline_dir = _make_pipeline_with_abs(
+        tmp_path,
+        ["/pipelines/cso_pipeline/resolve_website_urls", "find_public_bodies", "validate_websites"],
+    )
+    upstream_out = _seed_upstream(tmp_path, "/pipelines/cso_pipeline/resolve_website_urls")
+    (pipeline_dir / "steps" / "validate_websites").mkdir(parents=True, exist_ok=True)
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        mock_run.return_value.returncode = 0
+        sys.argv = ["process.py", str(pipeline_dir), "--from", "validate_websites"]
+        main()
+        # only validate_websites runs
+        assert mock_run.call_count == 1
+        cmd = mock_run.call_args[0][0]
+        assert "validate_websites" in cmd[1]
