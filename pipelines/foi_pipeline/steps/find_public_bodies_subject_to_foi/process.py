@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
+import argparse
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 from lib.cli_utils import add_common_args, filter_by_public_body
 from lib.file_utils import read_json, write_json, write_status
-
-import argparse
 
 STEP_NAME = "find_public_bodies_subject_to_foi"
 
@@ -18,6 +17,8 @@ def main():
 
     step_dir = Path(__file__).parent
     output_path = Path(args.output)
+
+    inclusions = set(read_json(step_dir / "inclusions.json"))
 
     if args.public_body is not None and not args.force and output_path.exists():
         bodies = read_json(output_path).get("public_bodies", [])
@@ -39,7 +40,7 @@ def main():
     input_data = read_json(args.input)
     input_data = filter_by_public_body(input_data, args.public_body)
 
-    bodies = [b for b in input_data["public_bodies"] if not b.get("exclusion_reason")]
+    bodies = [b for b in input_data["public_bodies"] if b["public_body_id"] in inclusions]
 
     output = {
         "metadata": {
