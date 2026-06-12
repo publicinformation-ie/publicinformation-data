@@ -26,7 +26,7 @@ def main():
                         help="Scope all steps to this public body ID only")
     args = parser.parse_args()
 
-    pipeline_dir = Path(args.pipeline_dir)
+    pipeline_dir = Path(args.pipeline_dir).resolve()
     config = json.loads((pipeline_dir / "pipeline.json").read_text())
     steps = config["steps"]
 
