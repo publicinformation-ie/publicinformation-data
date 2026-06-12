@@ -1,9 +1,6 @@
 import json
 import sys
-from pathlib import Path
 from unittest.mock import patch
-
-import pytest
 
 from lib.file_utils import read_json, write_json
 
