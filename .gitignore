@@ -25,4 +25,5 @@ local.db
 **/temp_*.txt
 
 # Raw data files
-foi_pipeline/data/*.csv
+pipelines/foi_pipeline/data/*.csv
+pipelines/cso_pipeline/data/*.csv
