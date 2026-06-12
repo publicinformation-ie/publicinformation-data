@@ -8,17 +8,18 @@ This is the top-level entry point for agent documentation in the publicinformati
 publicinformation-data/
 ├── AGENTS.md                          # This file - top-level index
 ├── DATA_FLOW.md                      # End-to-end data flow overview
-├── foi_pipeline/
-│   ├── AGENTS.md                     # FOI pipeline architecture and operations
-│   ├── process.py                   # Pipeline execution engine
-│   ├── pipeline.json                 # Authoritative step order configuration
-│   └── steps/
-│       ├── AGENTS.md                 # Steps directory management guidelines
-│       ├── README.md                 # Complete step sequence and descriptions
-│       └── <step_name>/
-│           ├── README.md             # Step-specific documentation
-│           ├── process.py            # Step entry point
-│           └── AGENTS.md             # (Some steps may have their own)
+├── pipelines/
+│   └── foi_pipeline/
+│       ├── AGENTS.md                 # FOI pipeline architecture and operations
+│       ├── process.py                # Pipeline execution engine
+│       ├── pipeline.json              # Authoritative step order configuration
+│       └── steps/
+│           ├── AGENTS.md              # Steps directory management guidelines
+│           ├── README.md              # Complete step sequence and descriptions
+│           └── <step_name>/
+│               ├── README.md          # Step-specific documentation
+│               ├── process.py         # Step entry point
+│               └── AGENTS.md          # (Some steps may have their own)
 ├── scripts/
 │   └── README.md                     # Helper scripts documentation
 └── public/
@@ -33,28 +34,32 @@ publicinformation-data/
 |------|---------|----------|
 | **[AGENTS.md](AGENTS.md)** | This top-level index | All agents |
 | **[DATA_FLOW.md](DATA_FLOW.md)** | End-to-end data flow from pipeline to website | Pipeline & Website |
-| **[foi_pipeline/AGENTS.md](foi_pipeline/AGENTS.md)** | Pipeline architecture, running steps, troubleshooting | Pipeline agents |
-| **[foi_pipeline/steps/AGENTS.md](foi_pipeline/steps/AGENTS.md)** | Step directory management, adding new steps | Pipeline developers |
-| **[foi_pipeline/steps/README.md](foi_pipeline/steps/README.md)** | Complete step sequence with descriptions | Pipeline users |
+| **[pipelines/foi_pipeline/AGENTS.md](pipelines/foi_pipeline/AGENTS.md)** | Pipeline architecture, running steps, troubleshooting | Pipeline agents |
+| **[pipelines/foi_pipeline/steps/AGENTS.md](pipelines/foi_pipeline/steps/AGENTS.md)** | Step directory management, adding new steps | Pipeline developers |
+| **[pipelines/foi_pipeline/steps/README.md](pipelines/foi_pipeline/steps/README.md)** | Complete step sequence with descriptions | Pipeline users |
 | **[scripts/README.md](scripts/README.md)** | Helper and admin scripts | Maintainers |
+
+## Tool Use
+### For Python Files
+1. **Do not use your native tools** (`grep_search`, `file_search`, `read_file`, `replace_string_in_file`) for inspecting, exploring, or navigating Python code unless Serena explicitly fails.
+2. For all Python-related symbol discovery, dependency tracking, and outline reading, you **MUST use Serena's tools** (e.g., `find_symbol`, `symbol_overview`, `find_referencing_symbols`).
+3. For editing Python files, prioritize Serena's structural editing tools (`replace_symbol_body`, `insert_after_symbol`, etc.) over broad string replacements.
 
 ### Quick Start: Running the Pipeline
 
 **To run the full pipeline:**
 ```bash
-cd foi_pipeline
-python process.py --force
+python pipelines/foi_pipeline/process.py --force
 ```
 
 **To run from a specific step:**
 ```bash
-cd foi_pipeline
-python process.py --from export_status --force
+python pipelines/foi_pipeline/process.py --from export_status --force
 ```
 
 **To run a single step manually:**
 ```bash
-cd foi_pipeline
+cd pipelines/foi_pipeline
 PYTHONPATH=. python steps/export_status/process.py \
   --input steps/find_public_bodies/output.json \
   --output steps/export_status/output.json \
@@ -65,7 +70,7 @@ PYTHONPATH=. python steps/export_status/process.py \
 
 ### Step Directories
 
-Each pipeline step has its own directory under `foi_pipeline/steps/` with the following structure:
+Each pipeline step has its own directory under `pipelines/foi_pipeline/steps/` with the following structure:
 
 ```
 steps/<step_name>/
@@ -84,12 +89,12 @@ steps/<step_name>/
 - Output format and files
 - Notable files in the directory
 
-See [foi_pipeline/steps/README.md](foi_pipeline/steps/README.md) for the complete list of steps in order.
+See [pipelines/foi_pipeline/steps/README.md](pipelines/foi_pipeline/steps/README.md) for the complete list of steps in order.
 
 ### Key Concepts
 
 #### Pipeline Steps
-The step sequence is defined in [`foi_pipeline/pipeline.json`](foi_pipeline/pipeline.json) (authoritative). Current steps:
+The step sequence is defined in [`pipelines/foi_pipeline/pipeline.json`](pipelines/foi_pipeline/pipeline.json) (authoritative). Current steps:
 
 1. **find_public_bodies** - Scrapes gov.ie for the master list
 2. **find_public_bodies_subject_to_foi** - Filters to bodies subject to FOI legislation
@@ -132,7 +137,7 @@ Each step directory may contain an `override.json` file with manually-curated re
 - Bypass normal processing (no HTTP calls made for overridden bodies)
 - Are committed to git as the source of truth
 
-See [foi_pipeline/AGENTS.md - Override System](foi_pipeline/AGENTS.md#override-system) for details.
+See [pipelines/foi_pipeline/AGENTS.md - Override System](pipelines/foi_pipeline/AGENTS.md#override-system) for details.
 
 ### Troubleshooting Guide
 
@@ -142,15 +147,14 @@ This happens when Vibe CLI tries to execute step scripts directly. To prevent th
 
 1. **Always use the process script** for pipeline execution:
    ```bash
-   cd foi_pipeline
-   python process.py --force
+   python pipelines/foi_pipeline/process.py --force
    ```
 
 2. **The process script's staleness checks** prevent re-running steps that are up-to-date. Use `--force` to bypass.
 
 3. **For individual step testing**, use the process script with `--from`:
    ```bash
-   python process.py --from export_status --force
+   python pipelines/foi_pipeline/process.py --from export_status --force
    ```
 
 **Problem: Data missing on website**
@@ -170,21 +174,21 @@ This means only `find_public_bodies` has been run. Run the full pipeline or at m
 
 | Task | Command |
 |------|---------|
-| Run full pipeline | `cd foi_pipeline && python process.py --force` |
-| Run from export_status | `cd foi_pipeline && python process.py --from export_status --force` |
-| Run single step | `cd foi_pipeline && PYTHONPATH=. python steps/<step>/process.py --input ... --output ... --force` |
-| Run tests | `cd foi_pipeline && uv run pytest tests/ -q` |
+| Run full pipeline | `python pipelines/foi_pipeline/process.py --force` |
+| Run from export_status | `python pipelines/foi_pipeline/process.py --from export_status --force` |
+| Run single step | `cd pipelines/foi_pipeline && PYTHONPATH=. python steps/<step>/process.py --input ... --output ... --force` |
+| Run tests | `cd pipelines/foi_pipeline && uv run pytest tests/ -q` |
 | Build website | `cd ../publicinformation-web && npm run build` |
-| Check export_status output | `ls -lh foi_pipeline/steps/export_status/output.json` |
-| Validate output | `python3 -c "import json; d=json.load(open('foi_pipeline/steps/export_status/output.json')); print(f'Bodies: {len(d[\"public_bodies\"])}')"` |
+| Check export_status output | `ls -lh pipelines/foi_pipeline/steps/export_status/output.json` |
+| Validate output | `python3 -c "import json; d=json.load(open('pipelines/foi_pipeline/steps/export_status/output.json')); print(f'Bodies: {len(d[\"public_bodies\"])}')"` |
 
 ### File Locations Reference
 
 | File | Purpose | Generated |
 |------|---------|-----------|
-| `foi_pipeline/pipeline.json` | Step order configuration | No |
-| `foi_pipeline/steps/*/output.json` | Individual step outputs | Yes |
-| `foi_pipeline/steps/export_status/output.json` | **Consolidated output for website** | Yes |
+| `pipelines/foi_pipeline/pipeline.json` | Step order configuration | No |
+| `pipelines/foi_pipeline/steps/*/output.json` | Individual step outputs | Yes |
+| `pipelines/foi_pipeline/steps/export_status/output.json` | **Consolidated output for website** | Yes |
 | `public/pipeline-data.json` | Public-facing consolidated data | Yes |
 | `public/disclosure-files.json` | All disclosure file URLs | Yes |
 | `public/foi-disclosures.json` | All FOI request records | Yes |
@@ -195,10 +199,10 @@ This means only `find_public_bodies` has been run. Run the full pipeline or at m
 | Scenario | Start Here |
 |----------|------------|
 | **New to the project** | This file (AGENTS.md) → DATA_FLOW.md |
-| **Need to run the pipeline** | [foi_pipeline/AGENTS.md - Running the Pipeline](foi_pipeline/AGENTS.md#running-the-pipeline) |
-| **Adding a new step** | [foi_pipeline/steps/AGENTS.md](foi_pipeline/steps/AGENTS.md) |
+| **Need to run the pipeline** | [pipelines/foi_pipeline/AGENTS.md - Running the Pipeline](pipelines/foi_pipeline/AGENTS.md#running-the-pipeline) |
+| **Adding a new step** | [pipelines/foi_pipeline/steps/AGENTS.md](pipelines/foi_pipeline/steps/AGENTS.md) |
 | **Troubleshooting data issues** | [DATA_FLOW.md - Troubleshooting](DATA_FLOW.md#common-issues--fixes) |
-| **Understanding data model** | [foi_pipeline/AGENTS.md - Data Model](foi_pipeline/AGENTS.md#data-model-evolution) |
-| **Using override system** | [foi_pipeline/AGENTS.md - Override System](foi_pipeline/AGENTS.md#override-system) |
+| **Understanding data model** | [pipelines/foi_pipeline/AGENTS.md - Data Model](pipelines/foi_pipeline/AGENTS.md#data-model-evolution) |
+| **Using override system** | [pipelines/foi_pipeline/AGENTS.md - Override System](pipelines/foi_pipeline/AGENTS.md#override-system) |
 | **Website data consumption** | [../publicinformation-web/DATA_CONSUMPTION.md](../publicinformation-web/DATA_CONSUMPTION.md) |
 

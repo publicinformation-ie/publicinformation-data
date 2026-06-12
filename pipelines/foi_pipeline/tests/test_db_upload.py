@@ -3,7 +3,16 @@ import pytest
 from pathlib import Path
 from lib.db_client import DbClient
 
-REPO_ROOT = Path(__file__).parent.parent.parent
+# Find repo root (location-independent — works before and after directory move)
+_HERE = Path(__file__).parent
+_REPO_ROOT = _HERE
+_prev = None
+while not (_REPO_ROOT / ".git").exists():
+    if _prev == _REPO_ROOT:
+        raise RuntimeError(f"Could not find .git root starting from {_HERE}")
+    _prev = _REPO_ROOT
+    _REPO_ROOT = _REPO_ROOT.parent
+REPO_ROOT = _REPO_ROOT
 
 # --- helpers ---
 

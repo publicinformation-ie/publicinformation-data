@@ -6,7 +6,7 @@ This document provides an overview of how data flows from the FOI pipeline to th
 
 | Document | Purpose | Location |
 |----------|---------|----------|
-| **AGENTS.md** (Pipeline) | How data is produced by the FOI pipeline | `foi_pipeline/AGENTS.md` |
+| **AGENTS.md** (Pipeline) | How data is produced by the FOI pipeline | `pipelines/foi_pipeline/AGENTS.md` |
 | **DATA_CONSUMPTION.md** (Website) | How data is consumed by the website | `../publicinformation-web/DATA_CONSUMPTION.md` |
 | **This File** | Overview of the complete data flow | `DATA_FLOW.md` |
 
@@ -62,7 +62,7 @@ This document provides an overview of how data flows from the FOI pipeline to th
 
 ### Pipeline Steps
 
-The step sequence is defined in [`foi_pipeline/pipeline.json`](foi_pipeline/pipeline.json) (authoritative). Current steps:
+The step sequence is defined in [`pipelines/foi_pipeline/pipeline.json`](pipelines/foi_pipeline/pipeline.json) (authoritative). Current steps:
 
 1. **find_public_bodies** - Base data (scrapes foi.gov.ie)
 2. **find_public_bodies_subject_to_foi** - Filters to bodies subject to FOI legislation
@@ -135,7 +135,7 @@ The final `export_status/output.json` contains:
 
 **Fix**:
 ```bash
-cd foi_pipeline
+cd pipelines/foi_pipeline
 PYTHONPATH=. python steps/export_status/process.py \
   --input steps/find_public_bodies/output.json \
   --output steps/export_status/output.json \
@@ -166,8 +166,7 @@ npm run build
 
 ```bash
 # 1. Run the full pipeline
-cd foi_pipeline
-python process.py --force
+python pipelines/foi_pipeline/process.py --force
 
 # 2. Build the website (automatically copies export_status/output.json)
 cd ../publicinformation-web
@@ -181,7 +180,7 @@ open dist/data-status/index.html
 
 ```bash
 # 1. Ensure at least find_public_bodies has run
-cd foi_pipeline
+cd pipelines/foi_pipeline
 python steps/find_public_bodies/process.py --input . --output steps/find_public_bodies/output.json --force
 
 # 2. Run export_status to merge and add short_name
@@ -191,7 +190,7 @@ PYTHONPATH=. python steps/export_status/process.py \
   --force
 
 # 3. Build website
-cd ../publicinformation-web
+cd ../../publicinformation-web
 npm run build
 ```
 
@@ -199,8 +198,8 @@ npm run build
 
 | File | Purpose | Generated? |
 |------|---------|------------|
-| `foi_pipeline/steps/*/output.json` | Step outputs | Yes (by pipeline) |
-| `foi_pipeline/steps/export_status/output.json` | **Final consolidated output** | Yes |
+| `pipelines/foi_pipeline/steps/*/output.json` | Step outputs | Yes (by pipeline) |
+| `pipelines/foi_pipeline/steps/export_status/output.json` | **Final consolidated output** | Yes |
 | `../publicinformation-web/src/data/pipeline-status.json` | Website data input | Yes (by prebuild) |
 | `../publicinformation-web/dist/data-status/index.html` | Built page | Yes (by Astro) |
 
@@ -210,8 +209,8 @@ Verify the data flow is working:
 
 ```bash
 # Check export_status output exists and has data
-ls -lh foi_pipeline/steps/export_status/output.json
-python3 -c "import json; d=json.load(open('foi_pipeline/steps/export_status/output.json')); print(f\"Bodies: {len(d['public_bodies'])}, Step: {d['metadata']['step']}\")"
+ls -lh pipelines/foi_pipeline/steps/export_status/output.json
+python3 -c "import json; d=json.load(open('pipelines/foi_pipeline/steps/export_status/output.json')); print(f\"Bodies: {len(d['public_bodies'])}, Step: {d['metadata']['step']}\")"
 
 # Check website data file
 ls -lh ../publicinformation-web/src/data/pipeline-status.json
@@ -255,7 +254,7 @@ Is data-status page empty?
 
 ### For Pipeline Developers
 
-See `foi_pipeline/AGENTS.md` for:
+See `pipelines/foi_pipeline/AGENTS.md` for:
 - Detailed step-by-step pipeline architecture
 - Merging logic in export_status
 - Running individual steps

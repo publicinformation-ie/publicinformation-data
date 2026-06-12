@@ -36,7 +36,7 @@ const FIELD_STEP_MAP = {
   disclosures_page: 'find_disclosure_pages',
 };
 
-const STEPS_DIR = resolve(REPO_ROOT, 'foi_pipeline', 'steps');
+const STEPS_DIR = resolve(REPO_ROOT, 'pipelines', 'foi_pipeline', 'steps');
 
 async function readStepOutput(stepName) {
   const p = resolve(STEPS_DIR, stepName, 'output.json');

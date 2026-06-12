@@ -1,10 +1,10 @@
 import json
+import os
+import subprocess
 import sys
 from pathlib import Path
 
-import pytest
-
-from steps.find_public_bodies.process import scrape_public_bodies, STEP_NAME, BASE_ID
+from steps.find_public_bodies.process import scrape_public_bodies, BASE_ID
 
 SAMPLE_HTML = """
 <!DOCTYPE html>
@@ -239,15 +239,15 @@ def test_process_writes_output_and_status(requests_mock, tmp_path, monkeypatch):
     requests_mock.get("https://www.gov.ie/en/departments/", text=SAMPLE_HTML)
     monkeypatch.chdir(tmp_path)
 
-    # Wire the PYTHONPATH so subprocess can import scripts
-    import subprocess, os
     pipeline_dir = Path(__file__).parent.parent
+    # pipelines/foi_pipeline/tests/../../.. = repo root; lib lives in src/
+    repo_root = Path(__file__).parents[3]
     process_script = pipeline_dir / "steps" / "find_public_bodies" / "process.py"
     output_path = tmp_path / "output.json"
 
     result = subprocess.run(
         [sys.executable, str(process_script), "--input", str(tmp_path), "--output", str(output_path)],
-        env={**os.environ, "PYTHONPATH": str(pipeline_dir)},
+        env={**os.environ, "PYTHONPATH": str(repo_root / "src")},
         capture_output=True,
     )
     assert result.returncode == 0, result.stderr.decode()
