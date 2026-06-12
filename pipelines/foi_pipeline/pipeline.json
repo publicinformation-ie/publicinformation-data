@@ -1,6 +1,6 @@
 {
   "steps": [
-    "/pipelines/cso_pipeline/resolve_website_urls",
+    "/pipelines/cso_pipeline/steps/resolve_website_urls",
     "find_public_bodies",
     "find_public_bodies_subject_to_foi",
     "validate_websites",

@@ -21,7 +21,8 @@ def main():
     inclusions = set(read_json(step_dir / "inclusions.json"))
 
     if args.public_body is not None and not args.force and output_path.exists():
-        bodies = read_json(output_path).get("public_bodies", [])
+        saved = read_json(output_path)
+        bodies = saved.get("public_bodies") or saved.get("results", [])
         match = next((b for b in bodies if b.get("public_body_id") == args.public_body), None)
         if match is None:
             print(
@@ -48,6 +49,7 @@ def main():
             "completed_at": datetime.now(timezone.utc).isoformat(),
         },
         "public_bodies": bodies,
+        "results": bodies,
     }
     write_json(output_path, output)
     write_status(step_dir, len(bodies))
