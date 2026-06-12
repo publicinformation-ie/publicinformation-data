@@ -48,8 +48,11 @@ def main():
     prev_out = None
 
     for step_name in steps:
-        step_dir = pipeline_dir / "steps" / step_name
-        step_out = step_dir / "output.json"
+        # Resolve output path first — needed for both skip_until and execution paths
+        if step_name.startswith("/"):
+            step_out = repo_root / step_name.lstrip("/") / "output.json"
+        else:
+            step_out = pipeline_dir / "steps" / step_name / "output.json"
 
         if skip_until:
             if step_name == skip_until:
@@ -59,7 +62,20 @@ def main():
                 prev_out = step_out
                 continue
 
-        is_from_step = (args.from_step is not None and step_name == args.from_step)
+        # Absolute-path step: validate upstream output, set prev_out, no subprocess
+        if step_name.startswith("/"):
+            if not step_out.exists() or step_out.stat().st_size == 0:
+                parts = Path(step_name).parts
+                pipeline_name = parts[2] if len(parts) >= 3 else step_name
+                sys.exit(
+                    f"upstream step {step_name} has no output — run {pipeline_name} first"
+                )
+            print(f"Using upstream output from {step_name}")
+            prev_out = step_out
+            continue
+
+        step_dir = pipeline_dir / "steps" / step_name
+        is_from_step = args.from_step is not None and step_name == args.from_step
         if not args.force and not is_from_step and not is_stale(step_out, prev_out):
             print(f"Skipping {step_name} (up to date)")
             prev_out = step_out
