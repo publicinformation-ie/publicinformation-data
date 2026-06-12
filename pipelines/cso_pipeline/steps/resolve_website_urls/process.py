@@ -37,12 +37,16 @@ def process(input_data, step_dir, writer, verbose=False):
     errors_path = Path(step_dir) / "errors.json"
     write_json(errors_path, [])
 
+    bodies = input_data.get("public_bodies") or input_data.get("results", [])
     failed_ids = []
-    for body in input_data["public_bodies"]:
+    for body in bodies:
         body_id = body["public_body_id"]
         if writer.is_processed(body_id):
             continue
         url = body["official_website_url"]
+        if url is None:
+            writer.append([body])
+            continue
         try:
             response = fetch("GET", url, allow_redirects=True)
             response.raise_for_status()
