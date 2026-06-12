@@ -366,7 +366,15 @@ def _extract_pdf(file_bytes, table_settings=None):
                     page_rows.append([serialise_cell(cell)[0] for cell in row])
             pages_rows.append(page_rows)
     if total_tables == 0:
-        raise ValueError("no tables found")
+        # pdfplumber found no tables - try camelot as fallback
+        camelot_rows = _extract_with_camelot_stream(file_bytes)
+        if camelot_rows is not None:
+            camelot_n_mapped = _score_rows(camelot_rows)
+            camelot_info = {"pdfplumber_n_mapped": 0, "camelot_n_mapped": camelot_n_mapped, "used": "camelot_stream"}
+            sheet_name = "page 1" if n_pages == 1 else f"pages 1-{n_pages}"
+            return sheet_name, camelot_rows, [], False, {}, "camelot_stream", camelot_info
+        else:
+            raise ValueError("no tables found")
     rows, merge_stats = _merge_page_splits(pages_rows)
     sheet_name = "page 1" if n_pages == 1 else f"pages 1-{n_pages}"
 
