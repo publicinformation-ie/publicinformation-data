@@ -66,7 +66,7 @@ def main():
         sys.exit(0)
 
     hub_data = read_json(args.input)
-    hub_records = hub_data.get("public_bodies", [])
+    hub_records = hub_data.get("results") or hub_data.get("public_bodies", [])
 
     if args.public_body is not None:
         hub_records = [r for r in hub_records if r.get("public_body_id") == args.public_body]
