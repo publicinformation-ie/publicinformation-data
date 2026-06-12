@@ -265,15 +265,15 @@ class TestExecuteManyRemote:
         payload = mock_post.call_args[1]["json"]
         assert len(payload["requests"]) == 5
 
-    def test_chunks_into_batches_of_500(self, remote_db):
-        params_list = [[i] for i in range(1001)]
+    def test_chunks_into_batches_of_100(self, remote_db):
+        params_list = [[i] for i in range(201)]
         ok = _ok_result()
 
         mock_resp = Mock()
         mock_resp.raise_for_status = Mock()
         mock_resp.json.side_effect = [
-            {"results": [ok] * 502},  # BEGIN + 500 + COMMIT
-            {"results": [ok] * 502},  # BEGIN + 500 + COMMIT
+            {"results": [ok] * 102},  # BEGIN + 100 + COMMIT
+            {"results": [ok] * 102},  # BEGIN + 100 + COMMIT
             {"results": [ok] * 3},    # BEGIN + 1 + COMMIT
         ]
 

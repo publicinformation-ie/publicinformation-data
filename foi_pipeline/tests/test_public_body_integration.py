@@ -146,7 +146,7 @@ def test_from_plus_public_body_passthrough(tmp_path):
 
     from process import main as orchestrator_main
 
-    with patch("process.subprocess.run") as mock_run:
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
         mock_run.return_value.returncode = 0
         sys.argv = [
             "process.py", str(pipeline_dir),

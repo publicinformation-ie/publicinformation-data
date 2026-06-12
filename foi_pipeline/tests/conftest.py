@@ -1,12 +1,20 @@
 import sys
-import time
 from pathlib import Path
 import shutil
-import tempfile
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).parent.parent))
+# Find repo root (location-independent — works before and after directory move)
+_HERE = Path(__file__).parent
+_REPO_ROOT = _HERE
+_prev = None
+while not (_REPO_ROOT / ".git").exists():
+    if _prev == _REPO_ROOT:
+        raise RuntimeError(f"Could not find .git root starting from {_HERE}")
+    _prev = _REPO_ROOT
+    _REPO_ROOT = _REPO_ROOT.parent
+sys.path.insert(0, str(_HERE.parent))  # pipeline dir, for step module imports
+sys.path.insert(0, str(_REPO_ROOT / "src"))  # src/lib/ takes precedence over pipeline lib/
 
 from lib.file_utils import IncrementalWriter
 
@@ -27,7 +35,6 @@ def clean_shared_cache(tmp_path):
     if cache_dir.exists():
         shutil.rmtree(cache_dir)
     yield
-    # Optional: clean up after test as well
     if cache_dir.exists():
         shutil.rmtree(cache_dir)
 

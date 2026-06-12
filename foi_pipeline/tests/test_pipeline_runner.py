@@ -1,8 +1,6 @@
 import json
-import subprocess
 import sys
 import time
-from pathlib import Path
 from unittest.mock import patch
 
 import pytest
@@ -12,18 +10,17 @@ from lib.pipeline_runner import is_stale, main
 
 # --- is_stale unit tests ---
 
-def test_is_stale_no_output_no_prev(tmp_path):
-    step_out = tmp_path / "output.json"
-    assert is_stale(step_out, prev_out=None) is True
+def test_is_stale_no_output(tmp_path):
+    assert is_stale(tmp_path / "output.json", prev_out=None) is True
 
 
 def test_is_stale_output_exists_no_prev(tmp_path):
-    step_out = tmp_path / "output.json"
-    step_out.write_text("{}")
-    assert is_stale(step_out, prev_out=None) is False
+    out = tmp_path / "output.json"
+    out.write_text("{}")
+    assert is_stale(out, prev_out=None) is False
 
 
-def test_is_stale_prev_newer_than_step(tmp_path):
+def test_is_stale_prev_newer(tmp_path):
     step_out = tmp_path / "step.json"
     step_out.write_text("{}")
     time.sleep(0.05)
@@ -32,7 +29,7 @@ def test_is_stale_prev_newer_than_step(tmp_path):
     assert is_stale(step_out, prev_out=prev_out) is True
 
 
-def test_is_stale_step_newer_than_prev(tmp_path):
+def test_is_stale_step_newer(tmp_path):
     prev_out = tmp_path / "prev.json"
     prev_out.write_text("{}")
     time.sleep(0.05)
@@ -44,14 +41,14 @@ def test_is_stale_step_newer_than_prev(tmp_path):
 def test_is_stale_prev_missing(tmp_path):
     step_out = tmp_path / "step.json"
     step_out.write_text("{}")
-    prev_out = tmp_path / "prev.json"  # does not exist
+    prev_out = tmp_path / "missing.json"
     assert is_stale(step_out, prev_out=prev_out) is False
 
 
 # --- orchestrator integration tests ---
 
 def _make_pipeline(tmp_path, steps):
-    """Build a minimal pipeline at pipelines/<name>/ depth (matches prod layout)."""
+    """Build a minimal pipeline dir at the expected pipelines/<name>/ depth."""
     pipeline_dir = tmp_path / "pipelines" / "foi_pipeline"
     pipeline_dir.mkdir(parents=True)
     (pipeline_dir / "pipeline.json").write_text(json.dumps({"steps": steps}))
@@ -62,16 +59,14 @@ def _make_pipeline(tmp_path, steps):
 
 def test_orchestrator_skips_up_to_date_step(tmp_path, capsys):
     pipeline_dir = _make_pipeline(tmp_path, ["find_public_bodies"])
-    output = pipeline_dir / "steps" / "find_public_bodies" / "output.json"
-    output.write_text("[]")
+    (pipeline_dir / "steps" / "find_public_bodies" / "output.json").write_text("[]")
 
     with patch("lib.pipeline_runner.subprocess.run") as mock_run:
         sys.argv = ["process.py", str(pipeline_dir)]
         main()
         mock_run.assert_not_called()
 
-    captured = capsys.readouterr()
-    assert "up to date" in captured.out
+    assert "up to date" in capsys.readouterr().out
 
 
 def test_orchestrator_runs_stale_step(tmp_path):
@@ -89,16 +84,14 @@ def test_orchestrator_runs_stale_step(tmp_path):
 
 def test_orchestrator_force_reruns(tmp_path):
     pipeline_dir = _make_pipeline(tmp_path, ["find_public_bodies"])
-    output = pipeline_dir / "steps" / "find_public_bodies" / "output.json"
-    output.write_text("[]")
+    (pipeline_dir / "steps" / "find_public_bodies" / "output.json").write_text("[]")
 
     with patch("lib.pipeline_runner.subprocess.run") as mock_run:
         mock_run.return_value.returncode = 0
         sys.argv = ["process.py", str(pipeline_dir), "--force"]
         main()
         mock_run.assert_called_once()
-        cmd = mock_run.call_args[0][0]
-        assert "--force" in cmd
+        assert "--force" in mock_run.call_args[0][0]
 
 
 def test_orchestrator_stop_on_error(tmp_path):
@@ -110,7 +103,7 @@ def test_orchestrator_stop_on_error(tmp_path):
             sys.argv = ["process.py", str(pipeline_dir), "--stop-on-error"]
             main()
         assert exc.value.code == 1
-        assert mock_run.call_count == 1  # halted after step_a
+        assert mock_run.call_count == 1
 
 
 def test_orchestrator_from_flag_skips_earlier_steps(tmp_path):
@@ -121,12 +114,11 @@ def test_orchestrator_from_flag_skips_earlier_steps(tmp_path):
         sys.argv = ["process.py", str(pipeline_dir), "--from", "step_b"]
         main()
         assert mock_run.call_count == 1
-        cmd = mock_run.call_args[0][0]
-        assert "step_b" in cmd[1]
+        assert "step_b" in mock_run.call_args[0][0][1]
 
 
-def test_orchestrator_sets_pythonpath(tmp_path):
-    """Step subprocesses must receive <repo_root>/src as PYTHONPATH."""
+def test_orchestrator_sets_pythonpath_to_src(tmp_path):
+    """PYTHONPATH passed to step subprocesses must be <repo_root>/src."""
     pipeline_dir = _make_pipeline(tmp_path, ["find_public_bodies"])
 
     with patch("lib.pipeline_runner.subprocess.run") as mock_run:
@@ -163,7 +155,7 @@ def test_orchestrator_public_body_passthrough(tmp_path):
             assert "--force" not in cmd
 
 
-def test_orchestrator_public_body_not_found_exits_1(tmp_path):
+def test_orchestrator_public_body_not_found_exits(tmp_path):
     pipeline_dir = _make_pipeline(tmp_path, ["find_public_bodies"])
     _seed_bodies(pipeline_dir, [1001])
 
@@ -174,7 +166,7 @@ def test_orchestrator_public_body_not_found_exits_1(tmp_path):
         assert exc.value.code != 0
 
 
-def test_orchestrator_public_body_missing_bodies_file_exits_1(tmp_path):
+def test_orchestrator_public_body_missing_bodies_file_exits(tmp_path):
     pipeline_dir = _make_pipeline(tmp_path, ["find_public_bodies"])
 
     with patch("lib.pipeline_runner.subprocess.run"):
