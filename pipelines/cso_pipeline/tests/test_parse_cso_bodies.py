@@ -1,8 +1,6 @@
 import csv
 import json
 import sys
-from pathlib import Path
-from unittest import mock
 
 import pytest
 

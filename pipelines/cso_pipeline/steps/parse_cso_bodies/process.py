@@ -127,8 +127,7 @@ def main():
     }
     write_json(output_path, output)
     write_status(step_dir, len(records))
-    if args.verbose:
-        print(f"Wrote {len(records)} public bodies to {output_path}")
+    print(f"Wrote {len(records)} public bodies to {output_path}")
 
 
 if __name__ == "__main__":
