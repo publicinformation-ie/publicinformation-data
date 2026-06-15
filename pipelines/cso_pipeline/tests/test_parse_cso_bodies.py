@@ -117,6 +117,32 @@ def test_parent_id_null_when_parent_field_empty():
     assert records[0]["parent_id"] is None
 
 
+def test_government_department_id_resolved_when_dept_in_dataset():
+    rows = _rows(
+        {"entity_name": "Department of Finance", "parent": ""},
+        {"entity_name": "Finance Agency", "govt_dept": "Department of Finance"},
+    )
+    records, _ = parse_rows(rows, {})
+    dept = next(r for r in records if r["name"] == "Department of Finance")
+    agency = next(r for r in records if r["name"] == "Finance Agency")
+    assert agency["government_department"] == "Department of Finance"
+    assert agency["government_department_id"] == dept["public_body_id"]
+
+
+def test_government_department_id_null_when_dept_not_in_dataset():
+    rows = _rows({"entity_name": "Agency X", "govt_dept": "Unknown Department"})
+    records, _ = parse_rows(rows, {})
+    assert records[0]["government_department"] == "Unknown Department"
+    assert records[0]["government_department_id"] is None
+
+
+def test_government_department_id_null_when_no_dept():
+    rows = _rows({"entity_name": "Agency X", "govt_dept": ""})
+    records, _ = parse_rows(rows, {})
+    assert records[0]["government_department"] is None
+    assert records[0]["government_department_id"] is None
+
+
 # --- parse_rows: output shape ---
 
 def test_output_record_has_all_required_fields():

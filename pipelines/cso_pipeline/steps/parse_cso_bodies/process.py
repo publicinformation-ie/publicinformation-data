@@ -42,6 +42,8 @@ def parse_rows(rows: list, id_map: dict) -> tuple:
         raw_parent = row.get("parent", "").strip()
         parent_name = raw_parent if raw_parent else None
         parent_id = updated_map.get(normalize(parent_name)) if parent_name else None
+        govt_dept = row.get("government_department_or_local_authority", "").strip() or None
+        govt_dept_id = updated_map.get(normalize(govt_dept)) if govt_dept else None
 
         records.append({
             "public_body_id": updated_map[norm],
@@ -50,9 +52,8 @@ def parse_rows(rows: list, id_map: dict) -> tuple:
             "parent_id": parent_id,
             "sector": row.get("sector", "").strip() or None,
             "legal_status": row.get("legal_status", "").strip() or None,
-            "government_department": row.get(
-                "government_department_or_local_authority", ""
-            ).strip() or None,
+            "government_department": govt_dept,
+            "government_department_id": govt_dept_id,
             "nace_code": row.get("nace_code", "").strip() or None,
             "cro": row.get("cro", "").strip() or None,
             "data_vintage": int(row["data_vintage"]) if row.get("data_vintage", "").strip() else None,
