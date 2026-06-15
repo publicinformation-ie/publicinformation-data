@@ -117,6 +117,34 @@ def make_cso_output(bodies=None):
     }
 
 
+def make_cso_body_normalized(public_body_id=2001):
+    return {
+        "public_body_id": public_body_id,
+        "name": f"CSO Body {public_body_id}",
+        "parent_name": None,
+        "parent_id": None,
+        "sector": "S11",
+        "legal_status": "Commercial Financial Corporation under the aegis of Department",
+        "government_department": None,
+        "government_department_id": None,
+        "nace_code": "F4110",
+        "cro": None,
+        "data_vintage": 2025,
+        "official_website_url": None,
+        # normalized fields
+        "is_commercial": True,
+        "is_financial": True,
+        "aegis": "Department",
+        "legal_entity_type": "Corporation",
+        "nace_section": "F",
+        "nace_division": "41",
+        "nace_group": "411",
+        "nace_class": "4110",
+        "nace_section_name": "Construction",
+        "nace_class_name": "Development of building projects",
+    }
+
+
 @pytest.fixture
 def steps_dir(tmp_path):
     """Create a minimal fake steps directory tree."""
@@ -137,9 +165,11 @@ def steps_dir(tmp_path):
 
 @pytest.fixture
 def db():
+    from steps.db_upload.process import apply_schema_migrations
     schema_sql = (REPO_ROOT / "public" / "schema.sql").read_text(encoding="utf-8")
     client = DbClient(":memory:")
     client.executescript(schema_sql)
+    apply_schema_migrations(client)
     yield client
     client.close()
 
@@ -152,6 +182,74 @@ from steps.db_upload.process import (
     upload_topics,
     clear_pipeline_tables,
 )
+
+
+def test_upload_cso_bodies_writes_normalized_fields(tmp_path):
+    db_path = tmp_path / "test.db"
+    schema_sql = (REPO_ROOT / "public" / "schema.sql").read_text(encoding="utf-8")
+    db = DbClient(str(db_path), "")
+    try:
+        db.executescript(schema_sql)
+        from steps.db_upload.process import apply_schema_migrations, upload_cso_bodies
+        apply_schema_migrations(db)
+
+        cso_path = tmp_path / "cso_output.json"
+        cso_path.write_text(json.dumps({
+            "results": [make_cso_body_normalized(2001)]
+        }))
+
+        n = upload_cso_bodies(db, cso_path)
+        assert n == 1
+
+        rows = db.execute("SELECT * FROM public_bodies WHERE public_body_id = 2001")
+        assert len(rows) == 1
+        row = rows[0]
+        assert row["is_commercial"] == 1
+        assert row["is_financial"] == 1
+        assert row["aegis"] == "Department"
+        assert row["legal_entity_type"] == "Corporation"
+        assert row["nace_section"] == "F"
+        assert row["nace_division"] == "41"
+        assert row["nace_group"] == "411"
+        assert row["nace_class"] == "4110"
+        assert row["nace_section_name"] == "Construction"
+        assert row["nace_class_name"] == "Development of building projects"
+    finally:
+        db.close()
+
+
+def test_upload_public_bodies_writes_normalized_fields_from_cso_lookup(tmp_path):
+    db_path = tmp_path / "test.db"
+    schema_sql = (REPO_ROOT / "public" / "schema.sql").read_text(encoding="utf-8")
+    db = DbClient(str(db_path), "")
+    try:
+        db.executescript(schema_sql)
+        from steps.db_upload.process import apply_schema_migrations, upload_public_bodies
+        apply_schema_migrations(db)
+
+        # FOI body whose CSO entry has normalized fields
+        foi_body = make_body(public_body_id=1)
+        export_data = make_export_status([foi_body])
+        steps_dir = tmp_path / "steps"
+        (steps_dir / "export_status").mkdir(parents=True)
+        (steps_dir / "export_status" / "output.json").write_text(json.dumps(export_data))
+
+        # CSO lookup with normalized fields for body 1
+        cso_lookup = {
+            1: {
+                **make_cso_body_normalized(public_body_id=1),
+            }
+        }
+        n = upload_public_bodies(db, steps_dir, cso_lookup)
+        assert n == 1
+
+        rows = db.execute("SELECT * FROM public_bodies WHERE public_body_id = 1")
+        row = rows[0]
+        assert row["is_commercial"] == 1
+        assert row["nace_section"] == "F"
+        assert row["nace_class_name"] == "Development of building projects"
+    finally:
+        db.close()
 
 
 class TestApplySchemaMigrations:

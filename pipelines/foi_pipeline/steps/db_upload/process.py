@@ -23,8 +23,11 @@ INSERT OR REPLACE INTO public_bodies (
   pipeline_step, pipeline_completed_at,
   parent_id, parent_name, sector, legal_status,
   government_department, government_department_id,
-  nace_code, cro, data_vintage
-) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+  nace_code, cro, data_vintage,
+  is_commercial, is_financial, aegis, legal_entity_type,
+  nace_section, nace_division, nace_group, nace_class,
+  nace_section_name, nace_class_name
+) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
 """
 
 _INSERT_CSO_BODY = """
@@ -39,8 +42,11 @@ INSERT INTO public_bodies (
   pipeline_step, pipeline_completed_at,
   parent_id, parent_name, sector, legal_status,
   government_department, government_department_id,
-  nace_code, cro, data_vintage
-) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+  nace_code, cro, data_vintage,
+  is_commercial, is_financial, aegis, legal_entity_type,
+  nace_section, nace_division, nace_group, nace_class,
+  nace_section_name, nace_class_name
+) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
 """
 
 _INSERT_DISCLOSURE_FILE = """
@@ -143,6 +149,16 @@ def upload_public_bodies(db, steps_dir, cso_lookup):
             cso.get("nace_code"),
             cso.get("cro"),
             cso.get("data_vintage"),
+            1 if cso.get("is_commercial") is True else (0 if cso.get("is_commercial") is False else None),
+            1 if cso.get("is_financial") is True else (0 if cso.get("is_financial") is False else None),
+            cso.get("aegis"),
+            cso.get("legal_entity_type"),
+            cso.get("nace_section"),
+            cso.get("nace_division"),
+            cso.get("nace_group"),
+            cso.get("nace_class"),
+            cso.get("nace_section_name"),
+            cso.get("nace_class_name"),
         ])
     db.executemany(_INSERT_PUBLIC_BODY, rows)
     return len(rows)
@@ -175,6 +191,16 @@ def upload_cso_bodies(db, cso_path):
             body.get("nace_code"),
             body.get("cro"),
             body.get("data_vintage"),
+            1 if body.get("is_commercial") is True else (0 if body.get("is_commercial") is False else None),
+            1 if body.get("is_financial") is True else (0 if body.get("is_financial") is False else None),
+            body.get("aegis"),
+            body.get("legal_entity_type"),
+            body.get("nace_section"),
+            body.get("nace_division"),
+            body.get("nace_group"),
+            body.get("nace_class"),
+            body.get("nace_section_name"),
+            body.get("nace_class_name"),
         ])
     db.executemany(_INSERT_CSO_BODY, rows)
     return len(rows)
