@@ -254,7 +254,7 @@ def test_upload_public_bodies_writes_normalized_fields_from_cso_lookup(tmp_path)
 
 class TestApplySchemaMigrations:
     def test_cso_columns_added_by_migration(self):
-        """Verify migrations add the 9 CSO columns to a database with the old schema."""
+        """Verify migrations add the original CSO columns to a database with the old schema."""
         from lib.db_client import DbClient
         from steps.db_upload.process import apply_schema_migrations
 
