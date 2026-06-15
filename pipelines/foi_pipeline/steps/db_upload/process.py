@@ -46,6 +46,15 @@ def apply_schema_migrations(db):
     """Apply incremental schema changes that CREATE TABLE IF NOT EXISTS cannot handle."""
     migrations = [
         "ALTER TABLE foi_disclosures ADD COLUMN date_received TEXT",
+        "ALTER TABLE public_bodies ADD COLUMN parent_id INTEGER",
+        "ALTER TABLE public_bodies ADD COLUMN parent_name TEXT",
+        "ALTER TABLE public_bodies ADD COLUMN sector TEXT",
+        "ALTER TABLE public_bodies ADD COLUMN legal_status TEXT",
+        "ALTER TABLE public_bodies ADD COLUMN government_department TEXT",
+        "ALTER TABLE public_bodies ADD COLUMN government_department_id INTEGER",
+        "ALTER TABLE public_bodies ADD COLUMN nace_code TEXT",
+        "ALTER TABLE public_bodies ADD COLUMN cro TEXT",
+        "ALTER TABLE public_bodies ADD COLUMN data_vintage INTEGER",
     ]
     for sql in migrations:
         try:

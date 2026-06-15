@@ -243,6 +243,48 @@ class TestUploadTopics:
         assert len(tds) == 0
 
 
+class TestApplySchemaMigrations:
+    def test_cso_columns_added_by_migration(self):
+        """Verify migrations add the 9 CSO columns to a database with the old schema."""
+        from lib.db_client import DbClient
+        from steps.db_upload.process import apply_schema_migrations
+
+        old_schema = """
+        CREATE TABLE IF NOT EXISTS public_bodies (
+          public_body_id INTEGER PRIMARY KEY,
+          public_body_name TEXT NOT NULL,
+          public_body_url TEXT NOT NULL,
+          public_body_category TEXT NOT NULL,
+          pipeline_step TEXT,
+          pipeline_completed_at TEXT
+        );
+        CREATE TABLE IF NOT EXISTS foi_disclosures (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          public_body_id INTEGER NOT NULL,
+          name TEXT NOT NULL,
+          file_url TEXT NOT NULL,
+          file_type TEXT NOT NULL
+        );
+        """
+        db = DbClient(":memory:")
+        db.executescript(old_schema)
+        apply_schema_migrations(db)
+
+        rows = db.execute("PRAGMA table_info(public_bodies)")
+        cols = {r["name"] for r in rows}
+        for col in ["parent_id", "parent_name", "sector", "legal_status",
+                    "government_department", "government_department_id",
+                    "nace_code", "cro", "data_vintage"]:
+            assert col in cols, f"Missing column: {col}"
+        db.close()
+
+    def test_migrations_idempotent(self, db):
+        """Running migrations twice must not raise."""
+        from steps.db_upload.process import apply_schema_migrations
+        apply_schema_migrations(db)  # first call (columns already in schema.sql)
+        apply_schema_migrations(db)  # second call — must silently no-op
+
+
 import sys as _sys
 import steps.db_upload.process as _proc
 

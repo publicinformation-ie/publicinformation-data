@@ -47,7 +47,16 @@ CREATE TABLE IF NOT EXISTS public_bodies (
   foi_requests_errors       INTEGER DEFAULT 0,
   foi_requests_status       TEXT,
   pipeline_step             TEXT,
-  pipeline_completed_at     TEXT
+  pipeline_completed_at     TEXT,
+  parent_id                 INTEGER,
+  parent_name               TEXT,
+  sector                    TEXT,
+  legal_status              TEXT,
+  government_department     TEXT,
+  government_department_id  INTEGER,
+  nace_code                 TEXT,
+  cro                       TEXT,
+  data_vintage              INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS disclosure_files (
