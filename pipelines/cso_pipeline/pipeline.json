@@ -1,6 +1,7 @@
 {
   "steps": [
     "parse_cso_bodies",
+    "normalize_cso_fields",
     "match_gov_urls",
     "resolve_website_urls"
   ]
