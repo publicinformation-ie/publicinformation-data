@@ -1,8 +1,4 @@
-import json
 import sys
-from pathlib import Path
-
-import pytest
 
 from steps.normalize_cso_fields.process import (
     parse_legal_status,
