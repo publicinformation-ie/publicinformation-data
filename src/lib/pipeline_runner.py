@@ -94,7 +94,7 @@ def main():
         if args.public_body is not None:
             cmd += ["--public-body", str(args.public_body)]
 
-        env = {**os.environ, "PYTHONPATH": str(src_path)}
+        env = {**os.environ, "PYTHONPATH": f"{pipeline_dir}{os.pathsep}{src_path}"}
         result = subprocess.run(cmd, env=env)
 
         if result.returncode != 0:

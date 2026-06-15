@@ -38,7 +38,6 @@ def process(input_data, step_dir, writer, verbose=False):
     write_json(errors_path, [])
 
     bodies = input_data.get("public_bodies") or input_data.get("results", [])
-    failed_ids = []
     for body in bodies:
         body_id = body["public_body_id"]
         if writer.is_processed(body_id):
@@ -62,11 +61,8 @@ def process(input_data, step_dir, writer, verbose=False):
                 "context": {"url": url, "public_body_id": body_id},
             })
             writer.append([body])
-            failed_ids.append(body_id)
         if verbose:
             print(".", end="", flush=True)
-
-    write_json(Path(step_dir) / "failed_ids.json", failed_ids)
 
 
 def main():
@@ -90,11 +86,20 @@ def main():
         print(f"No input record for public_body_id={args.public_body}", file=sys.stderr)
         sys.exit(0)
 
-    failed_ids_path = step_dir / "failed_ids.json"
     writer = IncrementalWriter(output_path, STEP_NAME, force=args.force,
                                override_path=override_path,
-                               target_public_body=args.public_body,
-                               upstream_dirty_path=failed_ids_path if failed_ids_path.exists() else None)
+                               target_public_body=args.public_body)
+
+    errors_path = step_dir / "errors.json"
+    if errors_path.exists():
+        prior_errors = read_json(errors_path)
+        failed_ids = {
+            e["context"]["public_body_id"]
+            for e in prior_errors
+            if isinstance(e, dict) and "context" in e and "public_body_id" in e["context"]
+        }
+        if failed_ids:
+            writer._evict_keys(failed_ids)
 
     if writer.processed_keys:
         print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")

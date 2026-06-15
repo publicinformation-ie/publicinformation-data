@@ -31,16 +31,28 @@ def test_null_url_passes_through_without_fetch(tmp_path):
     assert results[0]["official_website_url"] is None
 
 
-def test_null_url_not_in_failed_ids(tmp_path):
-    """A body with null URL must not appear in failed_ids.json."""
+def test_no_failed_ids_file_created(tmp_path):
+    """process() must not create failed_ids.json; failures are tracked via errors.json."""
     output_path = tmp_path / "output.json"
     writer = IncrementalWriter(output_path, "resolve_website_urls", force=True)
 
     with patch("steps.resolve_website_urls.process.fetch"):
         process({"public_bodies": [_make_body(42, "Ghost Body")]}, tmp_path, writer)
 
-    failed = json.loads((tmp_path / "failed_ids.json").read_text())
-    assert 42 not in failed
+    assert not (tmp_path / "failed_ids.json").exists()
+
+
+def test_fetch_failure_id_appears_in_errors(tmp_path):
+    """When a fetch fails, the body's ID must appear in errors.json context."""
+    output_path = tmp_path / "output.json"
+    writer = IncrementalWriter(output_path, "resolve_website_urls", force=True)
+
+    with patch("steps.resolve_website_urls.process.fetch", side_effect=Exception("timeout")):
+        process({"public_bodies": [_make_body(99, "Failing Body", url="http://example.com")]}, tmp_path, writer)
+
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert len(errors) == 1
+    assert errors[0]["context"]["public_body_id"] == 99
 
 
 def test_results_key_accepted_as_input(tmp_path):

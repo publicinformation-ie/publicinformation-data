@@ -198,7 +198,7 @@ class TestApplySchemaMigrations:
 
 class TestClearPipelineTables:
     def test_deletes_all_pipeline_rows(self, db, steps_dir):
-        upload_public_bodies(db, steps_dir)
+        upload_public_bodies(db, steps_dir, {})
         upload_disclosure_files(db, steps_dir)
         _, id_map = upload_foi_disclosures(db, steps_dir)
         upload_topics(db, steps_dir, id_map)
@@ -221,7 +221,7 @@ class TestClearPipelineTables:
 
 class TestUploadPublicBodies:
     def test_inserts_bodies(self, db, steps_dir):
-        n = upload_public_bodies(db, steps_dir)
+        n = upload_public_bodies(db, steps_dir, {})
         assert n == 1
         rows = db.execute("SELECT * FROM public_bodies WHERE public_body_id = 1")
         assert len(rows) == 1
@@ -237,8 +237,18 @@ class TestUploadPublicBodies:
         data = make_export_status([make_body(1), make_body(2)])
         (tmp_path / "export_status").mkdir()
         (tmp_path / "export_status" / "output.json").write_text(json.dumps(data))
-        n = upload_public_bodies(db, tmp_path)
+        n = upload_public_bodies(db, tmp_path, {})
         assert n == 2
+
+    def test_null_public_body_url_coerced_to_empty_string(self, db, tmp_path):
+        body = make_body(1)
+        body["public_body_url"] = None
+        data = make_export_status([body])
+        (tmp_path / "export_status").mkdir()
+        (tmp_path / "export_status" / "output.json").write_text(json.dumps(data))
+        upload_public_bodies(db, tmp_path, {})
+        rows = db.execute("SELECT public_body_url FROM public_bodies WHERE public_body_id = 1")
+        assert rows[0]["public_body_url"] == ""
 
 
 class TestUploadDisclosureFiles:
@@ -370,7 +380,7 @@ class TestUploadCsoBodies:
         (tmp_path / "export_status" / "output.json").write_text(
             json.dumps(make_export_status([make_body(1)]))
         )
-        upload_public_bodies(db, tmp_path)
+        upload_public_bodies(db, tmp_path, {})
 
         # FOI data must overwrite; still only 1 row (not 2)
         all_rows = db.execute("SELECT * FROM public_bodies")
@@ -395,7 +405,7 @@ class TestUploadCsoBodies:
         (tmp_path / "export_status" / "output.json").write_text(
             json.dumps(make_export_status([make_body(999)]))
         )
-        upload_public_bodies(db, tmp_path)
+        upload_public_bodies(db, tmp_path, {})
 
         rows = db.execute("SELECT COUNT(*) as c FROM public_bodies")
         assert rows[0]["c"] == 3  # 2 CSO-only + 1 FOI

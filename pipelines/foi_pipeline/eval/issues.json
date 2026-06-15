@@ -298,8 +298,8 @@
   "extract_disclosures_canonicalize_rows": [
     {
       "severity": "warning",
-      "description": "844 records have unrecognized decision_status values",
-      "affected_count": 844,
+      "description": "762 records have unrecognized decision_status values",
+      "affected_count": 762,
       "affected_ids": [
         "Dealt with outside of FOI",
         "D",
@@ -312,7 +312,6 @@
         "Summary of 2017 FOI Requests",
         "Correspondence between Department of Transport and the Department relating to whether contracted agents could be",
         "considered as a specified body with the power to require applicants for driver licences to produce a Public Services",
-        "Card. Any legal advice on same received by the Department The note for information/background to decision provided for the Minister as part of the Budget process leading to the decision to make the payment of Maternity Benefit taxable from July 2013, as part of Budget 2013.",
         "This note should have set out the reasons why the decision to make Maternity Benefit treatable as income for income",
         "tax purposes was taken.",
         "All correspondence between the Department and the Office of the Data Protection Commissioner in relation to the",
@@ -344,23 +343,24 @@
         "of medical certificates for social welfare applications in 2024. 2. A list of the top 100 earners (identifying the practice and practitioner) and the cumulative amount paid to them in each year.",
         "In his presentation to the Joint Oireachtas Committee on Automatic Enrolment in February 2023 the official of the",
         "1. the most recent information on the auto-enrolment scheme as shared with the proposed third party administrator",
-        "on: a. Projected numbers of workers joining the scheme for each of the scheme\u2019s first five years. b. Projected numbers of workers ceasing contributions for each of the first five years. c. Projected numbers of active contributors at each year-end for the first five years. d. Projected numbers of \u201cpaid-up\u201d members, i.e., workers who have ceased contributions but remain in the scheme, at each year-end for the first five years. e. Projected contribution income for each of the first five years (combined total for employees, employers and state). f. Projected assets under management at each year end for the scheme\u2019s first five years. 2. The following information (latest estimates): (i) Projected charges against members\u2019 accounts for each of the first five years, split between (a) charges on assets under management; (b) charges on contributions; (c) charges on membership (i.e. independent of contribution amount), including the basis for calculating each of those charges (e.g. x% of assets under management, y% of contributions; \u20acz per member). (ii) Projected costs of administering the scheme for the first five years, split between fees to third party administrator and other costs of administering the scheme. (iii) Projected interest cost each year on the cumulative excess of administration costs (subheading (ii) above) over charges against members\u2019 accounts (subheading (i) above) and the assumed basis on which that interest charge will be calculated. 3. If available, projections on how many years it will take before projected charges against members\u2019 accounts first exceed projected costs of administering the scheme and what the projected cumulative deficit (including the interest cost per 2(iii) above) will be at that time. 4. If available, projections for how many years it will take before accumulated charges against members\u2019 accounts exceed cumulative costs of running the scheme, inclusive of interest charges. (I\u2019m assuming that the financial arrangements with the Exchequer will be similar to NEST\u2019s in the UK, which is charged interest each year by the Exchequer on the cumulative negative balance, which then becomes part of the cumulative deficit). Ideally, I would",
         "Blackrock Asset Management lobbying return",
         "Access to all records - notes, memos, emails etc - related to this lobbying return - https://www.lobbying.ie/return/100280/blackrock-asset-management-ireland-limited",
         "Made",
-        "Part",
         "In Progress",
-        "Details of the drivers allocated to all ministers in the department; their"
+        "Details of the drivers allocated to all ministers in the department; their",
+        "relation if any to the ministers; their working rosters for the past 6 months; as well as their renumeration. All correspondence, minutes of meetings and briefing notes related to the",
+        "number of craft apprentices currently waiting for the off the job training",
+        "and those who have dropped out of their course."
       ],
       "suggested_upstream_step": "extract_disclosures_canonicalize_rows",
-      "suggestion_detail": "Add mappings for top unrecognized: 'Journalist' (67), 'Other' (37), 'PART-GRAN' (36), 'D' (27), 'Type' (25)",
+      "suggestion_detail": "Add mappings for top unrecognized: 'Journalist' (67), 'Other' (37), 'D' (27), 'Type' (25), 'Cine\u00e1l' (24)",
       "confidence": 0.9,
       "_from": "extract_disclosures_canonicalize_rows"
     },
     {
       "severity": "info",
-      "description": "2110 records have non-canonical but recognized statuses (passthrough)",
-      "affected_count": 2110,
+      "description": "2028 records have non-canonical but recognized statuses (passthrough)",
+      "affected_count": 2028,
       "affected_ids": [
         "Dealt with outside of FOI",
         "D",
@@ -375,7 +375,6 @@
         "Summary of 2017 FOI Requests",
         "Correspondence between Department of Transport and the Department relating to whether contracted agents could be",
         "considered as a specified body with the power to require applicants for driver licences to produce a Public Services",
-        "Card. Any legal advice on same received by the Department The note for information/background to decision provided for the Minister as part of the Budget process leading to the decision to make the payment of Maternity Benefit taxable from July 2013, as part of Budget 2013.",
         "This note should have set out the reasons why the decision to make Maternity Benefit treatable as income for income",
         "tax purposes was taken.",
         "All correspondence between the Department and the Office of the Data Protection Commissioner in relation to the",
@@ -411,10 +410,11 @@
         "16.05.20",
         "25.05.20",
         "27.05.20",
-        "03.06.20"
+        "03.06.20",
+        "19.06.20"
       ],
       "suggested_upstream_step": "extract_disclosures_canonicalize_rows",
-      "suggestion_detail": "Consider adding to canonical mapping: 'Journalist' (67), 'Other' (37), 'PART-GRAN' (36), 'D' (27), 'Type' (25)",
+      "suggestion_detail": "Consider adding to canonical mapping: 'Journalist' (67), 'Other' (37), 'D' (27), 'Type' (25), 'Cine\u00e1l' (24)",
       "confidence": 0.7,
       "_from": "extract_disclosures_canonicalize_rows"
     }

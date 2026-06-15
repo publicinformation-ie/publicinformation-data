@@ -20,8 +20,11 @@ INSERT OR REPLACE INTO public_bodies (
   disclosures_page_url, disclosures_page_status, disclosures_page_verified,
   disclosure_files_total, disclosure_files_valid, disclosure_files_failed, disclosure_files_status,
   foi_requests_valid, foi_requests_errors, foi_requests_status,
-  pipeline_step, pipeline_completed_at
-) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+  pipeline_step, pipeline_completed_at,
+  parent_id, parent_name, sector, legal_status,
+  government_department, government_department_id,
+  nace_code, cro, data_vintage
+) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
 """
 
 _INSERT_CSO_BODY = """
@@ -88,16 +91,17 @@ def clear_pipeline_tables(db):
     db.execute_batch([(f"DELETE FROM {table}", []) for table in tables])
 
 
-def upload_public_bodies(db, steps_dir):
+def upload_public_bodies(db, steps_dir, cso_lookup):
     data = read_json(steps_dir / "export_status" / "output.json")
     meta = data["metadata"]
     rows = []
     for body in data["public_bodies"]:
         s = body["status"]
+        cso = cso_lookup.get(body["public_body_id"], {})
         rows.append([
             body["public_body_id"],
             body["public_body_name"],
-            body["public_body_url"],
+            body.get("public_body_url") or "",
             body["public_body_category"],
             s["website_url"].get("url"),
             s["website_url"].get("status"),
@@ -120,6 +124,15 @@ def upload_public_bodies(db, steps_dir):
             s["foi_requests"].get("status"),
             meta.get("step"),
             meta.get("completed_at"),
+            cso.get("parent_id"),
+            cso.get("parent_name"),
+            cso.get("sector"),
+            cso.get("legal_status"),
+            cso.get("government_department"),
+            cso.get("government_department_id"),
+            cso.get("nace_code"),
+            cso.get("cro"),
+            cso.get("data_vintage"),
         ])
     db.executemany(_INSERT_PUBLIC_BODY, rows)
     return len(rows)
@@ -255,7 +268,9 @@ def main():
         clear_pipeline_tables(db)
 
         n_cso = upload_cso_bodies(db, cso_path)
-        n_bodies = upload_public_bodies(db, steps_dir)
+        cso_data = read_json(cso_path)
+        cso_lookup = {b["public_body_id"]: b for b in (cso_data.get("results") or cso_data.get("public_bodies", []))}
+        n_bodies = upload_public_bodies(db, steps_dir, cso_lookup)
         n_files = upload_disclosure_files(db, steps_dir)
         n_disclosures, disclosure_id_map = upload_foi_disclosures(db, steps_dir)
         n_topics = upload_topics(db, steps_dir, disclosure_id_map)
