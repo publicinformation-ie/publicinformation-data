@@ -133,8 +133,8 @@ def upload_cso_bodies(db, cso_path):
         rows.append([
             body["public_body_id"],
             body["name"],
-            "",    # public_body_url — not in CSO data; required column gets empty string
-            "",    # public_body_category — not in CSO data
+            "",
+            "",
             body.get("official_website_url"),
             "not_attempted", 0,
             None, "not_attempted", 0,
@@ -236,12 +236,13 @@ def main():
 
     steps_dir = step_dir.parent
     pipeline_dir = steps_dir.parent
-    repo_root = pipeline_dir.parent
+    pipelines_dir = pipeline_dir.parent
+    repo_root = pipelines_dir.parent
 
     if args.cso_input:
         cso_path = Path(args.cso_input)
     else:
-        cso_path = repo_root / "pipelines" / "cso_pipeline" / "steps" / "resolve_website_urls" / "output.json"
+        cso_path = pipelines_dir / "cso_pipeline" / "steps" / "resolve_website_urls" / "output.json"
 
     db_url = os.getenv("DATABASE_URL", str(repo_root / "local.db"))
     db_token = os.getenv("DATABASE_AUTH_TOKEN", "")
