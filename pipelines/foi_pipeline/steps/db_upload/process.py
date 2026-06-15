@@ -74,6 +74,16 @@ def apply_schema_migrations(db):
         "ALTER TABLE public_bodies ADD COLUMN nace_code TEXT",
         "ALTER TABLE public_bodies ADD COLUMN cro TEXT",
         "ALTER TABLE public_bodies ADD COLUMN data_vintage INTEGER",
+        "ALTER TABLE public_bodies ADD COLUMN is_commercial     INTEGER",
+        "ALTER TABLE public_bodies ADD COLUMN is_financial      INTEGER",
+        "ALTER TABLE public_bodies ADD COLUMN aegis             TEXT",
+        "ALTER TABLE public_bodies ADD COLUMN legal_entity_type TEXT",
+        "ALTER TABLE public_bodies ADD COLUMN nace_section      TEXT",
+        "ALTER TABLE public_bodies ADD COLUMN nace_division     TEXT",
+        "ALTER TABLE public_bodies ADD COLUMN nace_group        TEXT",
+        "ALTER TABLE public_bodies ADD COLUMN nace_class        TEXT",
+        "ALTER TABLE public_bodies ADD COLUMN nace_section_name TEXT",
+        "ALTER TABLE public_bodies ADD COLUMN nace_class_name   TEXT",
     ]
     for sql in migrations:
         try:

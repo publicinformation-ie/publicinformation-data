@@ -195,6 +195,32 @@ class TestApplySchemaMigrations:
         apply_schema_migrations(db)  # first call (columns already in schema.sql)
         apply_schema_migrations(db)  # second call — must silently no-op
 
+    def test_apply_schema_migrations_adds_cso_normalized_columns(self):
+        """The 10 new normalized CSO columns must be added by apply_schema_migrations."""
+        from pathlib import Path
+        import tempfile
+        from lib.db_client import DbClient
+        from steps.db_upload.process import apply_schema_migrations
+
+        with tempfile.TemporaryDirectory() as tmp_path_str:
+            tmp_path = Path(tmp_path_str)
+            db_path = tmp_path / "test.db"
+            schema_sql = (REPO_ROOT / "public" / "schema.sql").read_text(encoding="utf-8")
+            db = DbClient(str(db_path), "")
+            try:
+                db.executescript(schema_sql)
+                apply_schema_migrations(db)
+                # Verify each new column exists by querying table_info
+                cols = {row["name"] for row in db.execute("PRAGMA table_info(public_bodies)")}
+                for col in [
+                    "is_commercial", "is_financial", "aegis", "legal_entity_type",
+                    "nace_section", "nace_division", "nace_group", "nace_class",
+                    "nace_section_name", "nace_class_name",
+                ]:
+                    assert col in cols, f"Missing column: {col}"
+            finally:
+                db.close()
+
 
 class TestClearPipelineTables:
     def test_deletes_all_pipeline_rows(self, db, steps_dir):
