@@ -93,6 +93,30 @@ def make_topics(disclosures_data):
     }
 
 
+def make_cso_body(public_body_id=1001):
+    return {
+        "public_body_id": public_body_id,
+        "name": f"CSO Body {public_body_id}",
+        "parent_name": None,
+        "parent_id": None,
+        "sector": "S13",
+        "legal_status": "Non-Commercial State Body",
+        "government_department": "Department of Finance",
+        "government_department_id": None,
+        "nace_code": "84.11",
+        "cro": None,
+        "data_vintage": 2025,
+        "official_website_url": None,
+    }
+
+
+def make_cso_output(bodies=None):
+    return {
+        "metadata": {"step": "resolve_website_urls", "completed_at": "2026-06-15T10:00:00+00:00"},
+        "results": bodies if bodies is not None else [make_cso_body()],
+    }
+
+
 @pytest.fixture
 def steps_dir(tmp_path):
     """Create a minimal fake steps directory tree."""
@@ -283,6 +307,98 @@ class TestUploadTopics:
         upload_topics(db, steps_dir, {})  # empty id_map — no topic_disclosures
         tds = db.execute("SELECT * FROM topic_disclosures")
         assert len(tds) == 0
+
+
+class TestUploadCsoBodies:
+    def test_inserts_cso_bodies(self, db, tmp_path):
+        from steps.db_upload.process import upload_cso_bodies
+        cso_path = tmp_path / "cso_output.json"
+        cso_path.write_text(json.dumps(make_cso_output([make_cso_body(1001)])))
+
+        n = upload_cso_bodies(db, cso_path)
+
+        assert n == 1
+        rows = db.execute("SELECT * FROM public_bodies WHERE public_body_id = 1001")
+        assert len(rows) == 1
+        row = rows[0]
+        assert row["public_body_name"] == "CSO Body 1001"
+        assert row["sector"] == "S13"
+        assert row["legal_status"] == "Non-Commercial State Body"
+        assert row["nace_code"] == "84.11"
+        assert row["data_vintage"] == 2025
+        assert row["foi_requests_status"] == "not_attempted"
+        assert row["foi_requests_valid"] == 0
+        assert row["website_url"] is None
+
+    def test_cso_body_with_website_url(self, db, tmp_path):
+        from steps.db_upload.process import upload_cso_bodies
+        body = make_cso_body(1002)
+        body["official_website_url"] = "https://example.ie"
+        cso_path = tmp_path / "cso_output.json"
+        cso_path.write_text(json.dumps(make_cso_output([body])))
+
+        upload_cso_bodies(db, cso_path)
+
+        rows = db.execute("SELECT website_url FROM public_bodies WHERE public_body_id = 1002")
+        assert rows[0]["website_url"] == "https://example.ie"
+
+    def test_multiple_cso_bodies(self, db, tmp_path):
+        from steps.db_upload.process import upload_cso_bodies
+        bodies = [make_cso_body(1001), make_cso_body(1002), make_cso_body(1003)]
+        cso_path = tmp_path / "cso_output.json"
+        cso_path.write_text(json.dumps(make_cso_output(bodies)))
+
+        n = upload_cso_bodies(db, cso_path)
+
+        assert n == 3
+        rows = db.execute("SELECT COUNT(*) as c FROM public_bodies")
+        assert rows[0]["c"] == 3
+
+    def test_two_phase_foi_overlays_cso(self, db, tmp_path):
+        """Phase 2 INSERT OR REPLACE overwrites Phase 1 for overlapping IDs."""
+        from steps.db_upload.process import upload_cso_bodies, upload_public_bodies
+
+        # Phase 1: insert CSO body with id=1
+        cso_path = tmp_path / "cso_output.json"
+        cso_path.write_text(json.dumps(make_cso_output([make_cso_body(1)])))
+        upload_cso_bodies(db, cso_path)
+        phase1_row = db.execute("SELECT * FROM public_bodies WHERE public_body_id = 1")[0]
+        assert phase1_row["foi_page_status"] == "not_attempted"
+
+        # Phase 2: FOI overlay with same id=1
+        (tmp_path / "export_status").mkdir()
+        (tmp_path / "export_status" / "output.json").write_text(
+            json.dumps(make_export_status([make_body(1)]))
+        )
+        upload_public_bodies(db, tmp_path)
+
+        # FOI data must overwrite; still only 1 row (not 2)
+        all_rows = db.execute("SELECT * FROM public_bodies")
+        assert len(all_rows) == 1
+        row = all_rows[0]
+        assert row["foi_page_status"] == "success"
+        assert row["website_url_status"] == "success"
+        assert row["foi_page_verified"] == 1
+
+    def test_two_phase_non_overlapping_bodies_preserved(self, db, tmp_path):
+        """CSO-only bodies (not in FOI) survive after Phase 2."""
+        from steps.db_upload.process import upload_cso_bodies, upload_public_bodies
+
+        # Phase 1: two CSO bodies, ids 1001 and 1002
+        bodies = [make_cso_body(1001), make_cso_body(1002)]
+        cso_path = tmp_path / "cso_output.json"
+        cso_path.write_text(json.dumps(make_cso_output(bodies)))
+        upload_cso_bodies(db, cso_path)
+
+        # Phase 2: FOI body with id=999 (different from CSO bodies)
+        (tmp_path / "export_status").mkdir()
+        (tmp_path / "export_status" / "output.json").write_text(
+            json.dumps(make_export_status([make_body(999)]))
+        )
+        upload_public_bodies(db, tmp_path)
+
+        rows = db.execute("SELECT COUNT(*) as c FROM public_bodies")
+        assert rows[0]["c"] == 3  # 2 CSO-only + 1 FOI
 
 
 import sys as _sys

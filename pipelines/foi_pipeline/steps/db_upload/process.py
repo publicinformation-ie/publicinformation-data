@@ -12,7 +12,7 @@ from lib.file_utils import read_json, write_json, write_status
 STEP_NAME = "db_upload"
 
 _INSERT_PUBLIC_BODY = """
-INSERT INTO public_bodies (
+INSERT OR REPLACE INTO public_bodies (
   public_body_id, public_body_name, public_body_url, public_body_category,
   website_url, website_url_status, website_url_verified,
   foi_page_url, foi_page_status, foi_page_verified,
@@ -22,6 +22,22 @@ INSERT INTO public_bodies (
   foi_requests_valid, foi_requests_errors, foi_requests_status,
   pipeline_step, pipeline_completed_at
 ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+"""
+
+_INSERT_CSO_BODY = """
+INSERT INTO public_bodies (
+  public_body_id, public_body_name, public_body_url, public_body_category,
+  website_url, website_url_status, website_url_verified,
+  foi_page_url, foi_page_status, foi_page_verified,
+  foi_email, foi_email_status, foi_email_verified,
+  disclosures_page_url, disclosures_page_status, disclosures_page_verified,
+  disclosure_files_total, disclosure_files_valid, disclosure_files_failed, disclosure_files_status,
+  foi_requests_valid, foi_requests_errors, foi_requests_status,
+  pipeline_step, pipeline_completed_at,
+  parent_id, parent_name, sector, legal_status,
+  government_department, government_department_id,
+  nace_code, cro, data_vintage
+) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
 """
 
 _INSERT_DISCLOSURE_FILE = """
@@ -109,6 +125,38 @@ def upload_public_bodies(db, steps_dir):
     return len(rows)
 
 
+def upload_cso_bodies(db, cso_path):
+    data = read_json(cso_path)
+    bodies = data.get("results") or data.get("public_bodies", [])
+    rows = []
+    for body in bodies:
+        rows.append([
+            body["public_body_id"],
+            body["name"],
+            "",    # public_body_url — not in CSO data; required column gets empty string
+            "",    # public_body_category — not in CSO data
+            body.get("official_website_url"),
+            "not_attempted", 0,
+            None, "not_attempted", 0,
+            None, "not_attempted", 0,
+            None, "not_attempted", 0,
+            0, 0, 0, "not_attempted",
+            0, 0, "not_attempted",
+            None, None,
+            body.get("parent_id"),
+            body.get("parent_name"),
+            body.get("sector"),
+            body.get("legal_status"),
+            body.get("government_department"),
+            body.get("government_department_id"),
+            body.get("nace_code"),
+            body.get("cro"),
+            body.get("data_vintage"),
+        ])
+    db.executemany(_INSERT_CSO_BODY, rows)
+    return len(rows)
+
+
 def upload_disclosure_files(db, steps_dir):
     data = read_json(steps_dir / "find_disclosure_files" / "output.json")
     rows = [
@@ -168,6 +216,10 @@ def upload_topics(db, steps_dir, disclosure_id_map):
 def main():
     parser = argparse.ArgumentParser(description="Upload pipeline data to libSQL database")
     add_common_args(parser)
+    parser.add_argument(
+        "--cso-input", dest="cso_input", default=None,
+        help="Path to CSO resolve_website_urls/output.json (defaults to repo-relative path)",
+    )
     args = parser.parse_args()
 
     step_dir = Path(__file__).parent
@@ -186,6 +238,11 @@ def main():
     pipeline_dir = steps_dir.parent
     repo_root = pipeline_dir.parent
 
+    if args.cso_input:
+        cso_path = Path(args.cso_input)
+    else:
+        cso_path = repo_root / "pipelines" / "cso_pipeline" / "steps" / "resolve_website_urls" / "output.json"
+
     db_url = os.getenv("DATABASE_URL", str(repo_root / "local.db"))
     db_token = os.getenv("DATABASE_AUTH_TOKEN", "")
 
@@ -196,6 +253,7 @@ def main():
         apply_schema_migrations(db)
         clear_pipeline_tables(db)
 
+        n_cso = upload_cso_bodies(db, cso_path)
         n_bodies = upload_public_bodies(db, steps_dir)
         n_files = upload_disclosure_files(db, steps_dir)
         n_disclosures, disclosure_id_map = upload_foi_disclosures(db, steps_dir)
@@ -204,7 +262,8 @@ def main():
         db.close()
 
     counts = {
-        "public_bodies": n_bodies,
+        "cso_bodies": n_cso,
+        "foi_bodies": n_bodies,
         "disclosure_files": n_files,
         "foi_disclosures": n_disclosures,
         "topics": n_topics,
@@ -216,7 +275,7 @@ def main():
         },
         "counts": counts,
     })
-    write_status(step_dir, n_bodies)
+    write_status(step_dir, n_cso)
 
     print(f"Uploaded to {db_url}:")
     for k, v in counts.items():
