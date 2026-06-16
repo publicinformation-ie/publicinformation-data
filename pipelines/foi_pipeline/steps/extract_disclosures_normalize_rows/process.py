@@ -97,7 +97,11 @@ def normalize_date_value(raw_value: Optional[str]) -> Optional[str]:
     
     if value.lower() in _SKIP_VALUES:
         return None
-    
+
+    # Values with no digits cannot be dates (catches header leaks, descriptive text)
+    if not re.search(r'\d', value):
+        return None
+
     # Try regex patterns first
     for pattern, is_iso_order in _DATE_PATTERNS:
         match = pattern.match(value)

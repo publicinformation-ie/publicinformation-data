@@ -278,6 +278,41 @@ class TestProcessFile:
         assert result["sheet_name"] == "Sheet1"
 
 
+class TestNoDigitsHeuristic:
+    """Values with no digits in a date column should return None, not an error."""
+
+    def test_bilingual_header_returns_none(self):
+        assert normalize_date_value("Date Received/Dáta a Fuarthas") is None
+
+    def test_english_header_returns_none(self):
+        assert normalize_date_value("Request Date") is None
+
+    def test_full_foi_header_returns_none(self):
+        assert normalize_date_value("FOI Request Date Received") is None
+
+    def test_applicant_returns_none(self):
+        assert normalize_date_value("Applicant") is None
+
+    def test_journalist_returns_none(self):
+        assert normalize_date_value("Journalist") is None
+
+    def test_summary_header_returns_none(self):
+        assert normalize_date_value("Summary of the Information/Records Requested") is None
+
+    def test_part_granted_with_hyphen_returns_none(self):
+        assert normalize_date_value("Part-Granted") is None
+
+    def test_other_returns_none(self):
+        assert normalize_date_value("Other") is None
+
+    def test_date_with_digits_still_parses(self):
+        assert normalize_date_value("01 February 2023") == "2023-02-01"
+
+    def test_existing_skip_values_unaffected(self):
+        assert normalize_date_value("N/A") is None
+        assert normalize_date_value("pending") is None
+
+
 class TestHelperFunctions:
     """Tests for helper functions."""
 
