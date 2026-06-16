@@ -42,8 +42,11 @@ _DATE_PATTERNS = [
     # DD Month YYYY (e.g., "01 February 2023" or "1 Feb 2023")
     (re.compile(r'^(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d{4})$', re.IGNORECASE), True),
     
-    # Ordinal formats: "14th July 2016", "1st January 2020"
-    (re.compile(r'^(\d{1,2})(st|nd|rd|th)?\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d{4})$', re.IGNORECASE), True),
+    # Ordinal formats: "14th July 2016", "1st January 2020", "21stSeptember 2016" (no space)
+    (re.compile(r'^(\d{1,2})(st|nd|rd|th)?\s*(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d{4})$', re.IGNORECASE), True),
+
+    # DD.MM.'YY (apostrophe-abbreviated year, e.g. "23.02.'18")
+    (re.compile(r"^(\d{1,2})\.(\d{2})\.'(\d{2})$"), False),
 ]
 
 # Matches a date at the start of a string that has trailing non-date content.
@@ -168,6 +171,9 @@ def normalize_date_value(raw_value: Optional[str]) -> Optional[str]:
                             day, month, year_str = int(groups[0]), int(groups[1]), groups[2]
                             if month > 12 and day <= 12:
                                 day, month = month, day
+                        elif pattern == _DATE_PATTERNS[8][0]:
+                            # DD.MM.'YY (apostrophe abbreviated year)
+                            day, month, year_str = int(groups[0]), int(groups[1]), groups[2]
                         else:
                             continue
                         year = int(year_str) if len(year_str) == 4 else _two_digit_year(year_str)

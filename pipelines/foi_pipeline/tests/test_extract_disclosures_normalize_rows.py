@@ -461,6 +461,35 @@ class TestUSDateFormat:
         assert normalize_date_value("03/05/2025") == "2025-05-03"
 
 
+class TestMinorDateFormats:
+    """DD.MM.'YY abbreviated year and ordinal-no-space formats."""
+
+    def test_dot_month_apostrophe_year(self):
+        assert normalize_date_value("23.02.'18") == "2018-02-23"
+
+    def test_dot_month_apostrophe_year_2(self):
+        assert normalize_date_value("27.02.'18") == "2018-02-27"
+
+    def test_dot_month_apostrophe_year_21st_century(self):
+        assert normalize_date_value("15.06.'22") == "2022-06-15"
+
+    def test_dot_month_apostrophe_year_20th_century(self):
+        assert normalize_date_value("15.06.'88") == "1988-06-15"
+
+    def test_ordinal_nospace_21st(self):
+        assert normalize_date_value("21stSeptember 2016") == "2016-09-21"
+
+    def test_ordinal_nospace_14th(self):
+        assert normalize_date_value("14thDecember 2016") == "2016-12-14"
+
+    def test_ordinal_nospace_1st(self):
+        assert normalize_date_value("1stFebruary 2017") == "2017-02-01"
+
+    def test_ordinal_with_space_regression(self):
+        assert normalize_date_value("14th July 2016") == "2016-07-14"
+        assert normalize_date_value("1st January 2020") == "2020-01-01"
+
+
 class TestMainFunction:
     """Integration tests for the main() function."""
 
