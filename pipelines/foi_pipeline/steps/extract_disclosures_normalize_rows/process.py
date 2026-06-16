@@ -46,6 +46,19 @@ _DATE_PATTERNS = [
     (re.compile(r'^(\d{1,2})(st|nd|rd|th)?\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d{4})$', re.IGNORECASE), True),
 ]
 
+# Matches a date at the start of a string that has trailing non-date content.
+# Ordered longest-match first. The pattern intentionally has no $ anchor.
+_LEADING_DATE_RE = re.compile(
+    r'^('
+    r'\d{4}-\d{1,2}-\d{1,2}'                                                            # ISO YYYY-MM-DD
+    r'|\d{1,2}(?:st|nd|rd|th)?\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*\s+\d{4}'  # DD[ord] Month YYYY
+    r'|\d{1,2}/\d{1,2}/\d{2,4}'                                                         # DD/MM/YYYY
+    r'|\d{1,2}-\d{1,2}-\d{2,4}'                                                         # DD-MM-YYYY
+    r'|\d{1,2}\.\d{1,2}\.\d{2,4}'                                                       # DD.MM.YYYY
+    r')\s+\S',                                                                           # followed by space + more content
+    re.IGNORECASE,
+)
+
 _MONTH_MAP = {
     'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4, 'may': 5, 'jun': 6,
     'jul': 7, 'aug': 8, 'sep': 9, 'oct': 10, 'nov': 11, 'dec': 12
@@ -101,6 +114,12 @@ def normalize_date_value(raw_value: Optional[str]) -> Optional[str]:
     # Values with no digits cannot be dates (catches header leaks, descriptive text)
     if not re.search(r'\d', value):
         return None
+
+    # If the value starts with a recognisable date prefix followed by extra content,
+    # extract just the leading date and parse that.
+    m = _LEADING_DATE_RE.match(value)
+    if m:
+        value = m.group(1).strip()
 
     # Try regex patterns first
     for pattern, is_iso_order in _DATE_PATTERNS:

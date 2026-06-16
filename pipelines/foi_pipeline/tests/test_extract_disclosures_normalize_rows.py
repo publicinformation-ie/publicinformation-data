@@ -346,6 +346,46 @@ class TestHelperFunctions:
         assert _is_valid_date(2023, 2, 29) is False  # 2023 is not a leap year
 
 
+class TestLeadingDateExtraction:
+    """Values with a valid date prefix followed by trailing garbage should parse."""
+
+    # DSP pattern: DD/MM/YYYY followed by a reference number
+    def test_slash_date_trailing_digits(self):
+        assert normalize_date_value("13/04/2021 17092") == "2021-04-13"
+
+    def test_slash_date_trailing_digits_2(self):
+        assert normalize_date_value("19/04/2021 17122") == "2021-04-19"
+
+    # DCCAE pattern: DD Month YYYY followed by request description
+    def test_named_month_trailing_description(self):
+        assert normalize_date_value("11 April 2023 Any emails, notes, memos") == "2023-04-11"
+
+    def test_named_month_trailing_description_2(self):
+        assert normalize_date_value("31 January 2022 List of members of the committee") == "2022-01-31"
+
+    def test_named_month_trailing_bullet(self):
+        assert normalize_date_value("10 September 2025 • Any emails, letters") == "2025-09-10"
+
+    # ISO prefix
+    def test_iso_date_trailing_content(self):
+        assert normalize_date_value("2023-04-13 extra content here") == "2023-04-13"
+
+    # DD-MM-YYYY prefix
+    def test_dash_date_trailing_content(self):
+        assert normalize_date_value("13-04-2021 extra") == "2021-04-13"
+
+    # DD.MM.YYYY prefix
+    def test_dot_date_trailing_content(self):
+        assert normalize_date_value("13.04.2021 extra") == "2021-04-13"
+
+    # Ensure clean values still parse correctly (no regression)
+    def test_clean_slash_date_unaffected(self):
+        assert normalize_date_value("13/04/2021") == "2021-04-13"
+
+    def test_clean_named_month_unaffected(self):
+        assert normalize_date_value("11 April 2023") == "2023-04-11"
+
+
 class TestProcessFunction:
     """Tests for the main process() function."""
 
