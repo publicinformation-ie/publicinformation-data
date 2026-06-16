@@ -35,6 +35,9 @@ _NEGATIVE_KEYWORDS = [
     'presentation', 'slides', 'meeting', 'session',
     'financial-stability-review', 'financial-stability-notes', 'quarterly-bulletin',
     'economic-letter',
+    'visitor-numbers', 'heritage',
+    'calendar',
+    '_january_-_march', '_april_-_june', '_july_-_september', '_october_-_december',
 ]
 
 _NON_IRISH_DOMAINS = {"cookcountystatesattorney.org"}

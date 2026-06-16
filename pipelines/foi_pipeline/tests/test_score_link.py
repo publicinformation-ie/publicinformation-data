@@ -97,6 +97,60 @@ class TestTier2LinkText:
     def test_negative_link_text_emergency_number(self):
         assert _score_link("http://docstore.kerrycoco.ie/KCCWebsite/emergencynumbersnew.pdf", "Emergency Numbers") < 0
 
+
+class TestTier3UrlNegativeKeywords:
+    def test_rejects_heritage_visitor_numbers_empty_link_text(self):
+        assert _score_link(
+            "https://assets.gov.ie/static/documents/heritage-services-visitor-numbers-2018-2019-2020.pdf", ""
+        ) < 0
+
+    def test_rejects_heritage_visitor_numbers_2021(self):
+        assert _score_link(
+            "https://assets.gov.ie/static/documents/heritage-services-visitor-numbers-2021-2022-2023.pdf", ""
+        ) < 0
+
+    def test_rejects_cork_schools_heritage_project(self):
+        assert _score_link(
+            "https://www.corkcity.ie/media/eg4est5c/cork_schools_heritage_project_2026.pdf", ""
+        ) < 0
+
+    def test_rejects_minister_calendar(self):
+        assert _score_link(
+            "https://assets.gov.ie/static/documents/Minister_Morans_Calendar_-_Q1_2025.pdf", ""
+        ) < 0
+
+    def test_rejects_quarter_range_january_march(self):
+        assert _score_link(
+            "https://assets.gov.ie/static/documents/beded0fc/Q1_January_-_March.pdf", ""
+        ) < 0
+
+    def test_rejects_quarter_range_april_june(self):
+        assert _score_link(
+            "https://assets.gov.ie/static/documents/0850f8ab/Q2_April_-_June.pdf", ""
+        ) < 0
+
+    def test_rejects_quarter_range_july_september(self):
+        assert _score_link(
+            "https://assets.gov.ie/static/documents/e3e16689/Q3_July_-_September.pdf", ""
+        ) < 0
+
+    def test_rejects_quarter_range_october_december(self):
+        assert _score_link(
+            "https://assets.gov.ie/static/documents/5a616961/Q4_October_-_December.pdf", ""
+        ) < 0
+
+    def test_heritage_with_foi_keyword_still_accepted(self):
+        # Heritage body's actual FOI log — 'disclosure' in URL → has_positive=True → heritage keyword doesn't fire
+        assert _score_link(
+            "https://www.heritagecouncil.ie/uploads/foi-disclosure-log-2024.pdf", ""
+        ) > 0
+
+    def test_visitor_numbers_with_foi_keyword_still_accepted(self):
+        # Unlikely in practice, but if URL also has 'foi-log' it should be accepted
+        assert _score_link(
+            "https://body.ie/foi-log/visitor-numbers-query-response.pdf", ""
+        ) > 0
+
     def test_generic_link_text_falls_through_to_url_accept(self):
         # Generic text → Tier 3 fires; FOI keyword in URL → accepted
         assert _score_link("https://dept.ie/foi-log.pdf", "Download") > 0
