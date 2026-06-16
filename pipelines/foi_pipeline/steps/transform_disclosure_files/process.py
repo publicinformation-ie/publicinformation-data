@@ -518,10 +518,12 @@ def process(input_data, step_dir, writer, verbose=False, workers=4):
 
     eligible = [
         item for item in input_data["results"]
-        if item.get("verification_status") != "rejected"
+        if item.get("verification_status") not in ("rejected", "unverified")
     ]
     if rejected:
         print(f"Skipping {rejected} rejected item(s)")
+    if unverified:
+        print(f"Skipping {unverified} unverified item(s)")
 
     # Filter out already processed items
     items_to_process = [

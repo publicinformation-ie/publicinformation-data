@@ -973,3 +973,32 @@ def test_parallel_processing_preserves_order(requests_mock, tmp_path, make_write
 # threading issues with IncrementalWriter in test environment
 # def test_parallel_error_handling(requests_mock, tmp_path, make_writer):
 #     ...
+
+
+# ── process() — verification status filtering ────────────────────────────────
+
+def test_process_skips_unverified_item_silently(requests_mock, tmp_path, make_writer):
+    """Unverified items are skipped: no download, no output record, no error entry."""
+    xlsx_bytes = _make_xlsx([["Ref", "Date"], ["001", "2024-01-01"]])
+    url = "https://assets.gov.ie/log.xlsx"
+    requests_mock.get(url, content=xlsx_bytes)
+
+    unverified_input = {
+        "metadata": {"step": "find_disclosure_files"},
+        "results": [
+            {
+                **BASE_ITEM,
+                "file_url": url,
+                "file_type": "xlsx",
+                "verification_status": "unverified",
+            }
+        ],
+    }
+
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(unverified_input, tmp_path, writer)
+
+    assert requests_mock.call_count == 0, "unverified item must not trigger a download"
+    assert writer.results == []
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert errors == []
