@@ -164,8 +164,10 @@ def normalize_date_value(raw_value: Optional[str]) -> Optional[str]:
                             # DD-MM-YYYY
                             day, month, year_str = int(groups[0]), int(groups[1]), groups[2]
                         elif pattern == _DATE_PATTERNS[4][0]:
-                            # DD/MM/YYYY
+                            # DD/MM/YYYY; if month > 12 and day ≤ 12, assume MM/DD/YYYY (US)
                             day, month, year_str = int(groups[0]), int(groups[1]), groups[2]
+                            if month > 12 and day <= 12:
+                                day, month = month, day
                         else:
                             continue
                         year = int(year_str) if len(year_str) == 4 else _two_digit_year(year_str)

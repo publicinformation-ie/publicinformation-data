@@ -437,6 +437,30 @@ class TestProcessFunction:
             assert writer.results[0]["rows"][1][0] == "2023-02-01"
 
 
+class TestUSDateFormat:
+    """MM/DD/YYYY inputs where the month field > 12 (Galway CC style)."""
+
+    def test_us_format_month_3_day_20(self):
+        assert normalize_date_value("3/20/2025") == "2025-03-20"
+
+    def test_us_format_month_3_day_25(self):
+        assert normalize_date_value("3/25/2025") == "2025-03-25"
+
+    def test_us_format_month_1_day_15(self):
+        assert normalize_date_value("1/15/2024") == "2024-01-15"
+
+    def test_us_format_month_12_day_31(self):
+        assert normalize_date_value("12/31/2024") == "2024-12-31"
+
+    def test_irish_format_unambiguous_still_works(self):
+        # DD/MM/YYYY where day > 12 — remains DD/MM
+        assert normalize_date_value("20/03/2025") == "2025-03-20"
+
+    def test_ambiguous_format_defaults_to_dd_mm(self):
+        # Both day ≤ 12 and month ≤ 12: keep DD/MM/YYYY (Irish convention)
+        assert normalize_date_value("03/05/2025") == "2025-05-03"
+
+
 class TestMainFunction:
     """Integration tests for the main() function."""
 
