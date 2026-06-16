@@ -89,9 +89,14 @@ def _duplicate_metrics(items):
 
 
 def run_eval(items, judgments, input_hash, api_fn=eval_judge.default_api_fn):
-    # Fill cache misses (judge writes verified='auto').
-    for item in items:
-        eval_judge.judge(item["file_url"], _prompt(item), judgments, api_fn=api_fn)
+    # Mistral: submit all cache misses as one batch job (50% cost saving vs serial calls).
+    if eval_judge.judge_provider() == "mistral":
+        pairs = [(item["file_url"], _prompt(item)) for item in items]
+        eval_judge.batch_judge(pairs, judgments)
+    else:
+        # Fill cache misses one at a time (judge writes verified='auto').
+        for item in items:
+            eval_judge.judge(item["file_url"], _prompt(item), judgments, api_fn=api_fn)
 
     foi = judged = mock_non_foi = 0
     non_foi_ids = []
@@ -137,7 +142,7 @@ def run_eval(items, judgments, input_hash, api_fn=eval_judge.default_api_fn):
             affected_count=mock_non_foi,
             affected_ids=[],
             suggested_upstream_step=None,
-            suggestion_detail="Run evaluate.py with ANTHROPIC_API_KEY set to replace mock labels with LLM judgments, then human-verify",
+            suggestion_detail="Run evaluate.py with MISTRAL_API_KEY + EVAL_JUDGE_PROVIDER=mistral (batch, 50% cheaper) or ANTHROPIC_API_KEY to replace mock labels with LLM judgments, then human-verify",
             confidence=1.0))
 
     dup_metrics, dup_issues = _duplicate_metrics(items)

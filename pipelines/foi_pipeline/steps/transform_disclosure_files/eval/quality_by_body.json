@@ -1651,139 +1651,139 @@
       {
         "file_url": "https://assets.gov.ie/static/documents/fa387294/20260514_FOI_Disclosure_Log_Q1_2026_3.pdf",
         "total_rows": 95,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/FOI_Disclosure_Log_Q1_2025.pdf",
         "total_rows": 91,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/cda97d7f/20250930_Disclosure_Log_April-_June.pdf",
         "total_rows": 107,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/c66a6091/20260109_Disclosure_Log_July_-_September_2025.pdf",
         "total_rows": 73,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/711dfe41/20260507_Disclosure_Log_October_-_December_2025_1.pdf",
         "total_rows": 49,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/foi-disclosures-log-q1-2024.pdf",
         "total_rows": 75,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/foi-disclosures-log-q2-2024.pdf",
         "total_rows": 46,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/foi-disclosures-log-q3-2024.pdf",
         "total_rows": 44,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/foi-disclosures-log-q4-2024.pdf",
         "total_rows": 42,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q1-2023-ab7f1b10-05a1-494f-af45-e031f0bef9d2.pdf",
         "total_rows": 37,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q2-2023-08ec8eae-b28f-4f95-839b-e5312f70ec89.pdf",
         "total_rows": 49,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q3-2023-b51e4bc9-b47a-4896-82dc-a61c07e432e1.pdf",
         "total_rows": 72,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q4-2023-4e3cffe2-d8ce-4e6e-875a-d560003a84e9.pdf",
         "total_rows": 61,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q1-2022-a514db9f-4890-408d-95f2-46a6152b0efd.pdf",
         "total_rows": 51,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q2-2022-0eae6f83-1dbd-47b4-8d2a-92dc0055b765.pdf",
         "total_rows": 31,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q3-2022-59b7ff93-d79d-4905-9959-0d6d6caa2968.pdf",
         "total_rows": 29,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q4-2022-fecc89b8-2474-411a-a979-fe5f0d4a3a1a.pdf",
         "total_rows": 25,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/2021-foi-requests-jan-mar.pdf",
         "total_rows": 41,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/2021-foi-requests-apr-jun-7f2f2a9a-b5cc-4d00-9a65-4628690cbc1a.pdf",
         "total_rows": 33,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/2021-foi-requests-jul-sept-c0738f3f-8de5-43ee-a6e4-deba86ea6928.pdf",
         "total_rows": 50,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/2021-foi-requests-oct-dec.pdf",
         "total_rows": 28,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/2020-foi-requests-jan-jun.pdf",
         "total_rows": 73,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {
         "file_url": "https://assets.gov.ie/static/documents/2020-foi-requests-jul-dec.pdf",
         "total_rows": 96,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       }
     ]
@@ -3123,7 +3123,7 @@
       {
         "file_url": "https://tailte.ie/wp-content/uploads/2026/03/FOI-Disclosure-Log-2023.pdf",
         "total_rows": 20,
-        "has_process_warning": false,
+        "has_process_warning": true,
         "pdf_extractor": "pdfplumber"
       },
       {

@@ -1,3 +1,4 @@
+import pytest
 from lib.status_map import canonicalize_status, CANONICAL_STATUSES
 from lib.review_status_map import canonicalize_review_status, CANONICAL_REVIEW_STATUSES
 
@@ -256,3 +257,19 @@ def test_queried_maps_to_unknown():
     process_records({"results": [record]}, results, errors)
     assert results[0]["decision_status"] == "Unknown"
     assert errors == []
+
+
+# ── Session 1: easy synonym additions ─────────────────────────────────────────
+
+
+@pytest.mark.parametrize("raw,expected", [
+    ("outside of FOI", "Handled outside of FOI"),
+    ("OUTSIDE OF FOI", "Handled outside of FOI"),
+    ("outside of FOI Act", "Handled outside of FOI"),
+    ("WITHDRA WN/OUT", "Withdrawn"),
+    ("Not Valid", "Refused"),
+    ("Request not Valid", "Refused"),
+    ("Invalid Request", "Refused"),
+])
+def test_new_synonym_mappings(raw, expected):
+    assert canonicalize_status(raw) == expected

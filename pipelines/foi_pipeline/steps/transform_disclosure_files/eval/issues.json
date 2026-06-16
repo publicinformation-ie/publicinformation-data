@@ -1,9 +1,13 @@
 [
   {
     "severity": "error",
-    "description": "1 files failed: BadZipFile",
-    "affected_count": 1,
+    "description": "5 files failed: BadZipFile",
+    "affected_count": 5,
     "affected_ids": [
+      "https://monaghan.ie/corporateservices/wp-content/uploads/sites/9/2026/03/Copy-of-Copy-of-disclosure-log-2025.xlsx",
+      "https://monaghan.ie/corporateservices/wp-content/uploads/sites/9/2026/03/Copy-of-Copy-of-disclosure-log-2025.xlsx",
+      "https://monaghan.ie/corporateservices/wp-content/uploads/sites/9/2026/03/Copy-of-Copy-of-disclosure-log-2025.xlsx",
+      "https://monaghan.ie/corporateservices/wp-content/uploads/sites/9/2026/03/Copy-of-Copy-of-disclosure-log-2025.xlsx",
       "https://monaghan.ie/corporateservices/wp-content/uploads/sites/9/2026/03/Copy-of-Copy-of-disclosure-log-2025.xlsx"
     ],
     "suggested_upstream_step": "transform_disclosure_files",
@@ -25,15 +29,29 @@
   },
   {
     "severity": "error",
-    "description": "6 files failed: PDFSyntaxError",
-    "affected_count": 6,
+    "description": "20 files failed: PDFSyntaxError",
+    "affected_count": 20,
     "affected_ids": [
       "https://www.enterprise-ireland.com/en/FOI/Freedom-of-information-Overview/Publications-Scheme/Miscellaneous-information-sought-routinely/Employment-by-County.pdf",
       "https://www.enterprise-ireland.com/en/FOI/Freedom-of-information-Overview/Publications-Scheme/FOI-Disclosure-Log.pdf",
       "http://per.gov.ie/wp-content/uploads/Fees-Order-No-2-as-published.pdf",
       "https://www.opdc.ie/freedom-of-information/SEAI-Scorecard-2020.pdf",
       "https://www.enterprise-ireland.com/en/FOI/Freedom-of-information-Overview/Publications-Scheme/Miscellaneous-information-sought-routinely/Employment-by-County.pdf",
-      "https://www.enterprise-ireland.com/en/FOI/Freedom-of-information-Overview/Publications-Scheme/FOI-Disclosure-Log.pdf"
+      "https://www.enterprise-ireland.com/en/FOI/Freedom-of-information-Overview/Publications-Scheme/FOI-Disclosure-Log.pdf",
+      "http://per.gov.ie/wp-content/uploads/Fees-Order-No-2-as-published.pdf",
+      "https://www.opdc.ie/freedom-of-information/SEAI-Scorecard-2020.pdf",
+      "https://www.enterprise-ireland.com/en/FOI/Freedom-of-information-Overview/Publications-Scheme/Miscellaneous-information-sought-routinely/Employment-by-County.pdf",
+      "https://www.enterprise-ireland.com/en/FOI/Freedom-of-information-Overview/Publications-Scheme/FOI-Disclosure-Log.pdf",
+      "http://per.gov.ie/wp-content/uploads/Fees-Order-No-2-as-published.pdf",
+      "https://www.opdc.ie/freedom-of-information/SEAI-Scorecard-2020.pdf",
+      "https://www.enterprise-ireland.com/en/FOI/Freedom-of-information-Overview/Publications-Scheme/Miscellaneous-information-sought-routinely/Employment-by-County.pdf",
+      "https://www.enterprise-ireland.com/en/FOI/Freedom-of-information-Overview/Publications-Scheme/FOI-Disclosure-Log.pdf",
+      "https://www.opdc.ie/freedom-of-information/SEAI-Scorecard-2020.pdf",
+      "http://per.gov.ie/wp-content/uploads/Fees-Order-No-2-as-published.pdf",
+      "https://www.enterprise-ireland.com/en/FOI/Freedom-of-information-Overview/Publications-Scheme/FOI-Disclosure-Log.pdf",
+      "https://www.enterprise-ireland.com/en/FOI/Freedom-of-information-Overview/Publications-Scheme/Miscellaneous-information-sought-routinely/Employment-by-County.pdf",
+      "https://www.enterprise-ireland.com/en/FOI/Freedom-of-information-Overview/Publications-Scheme/FOI-Disclosure-Log.pdf",
+      "https://www.enterprise-ireland.com/en/FOI/Freedom-of-information-Overview/Publications-Scheme/Miscellaneous-information-sought-routinely/Employment-by-County.pdf"
     ],
     "suggested_upstream_step": "transform_disclosure_files",
     "suggestion_detail": "Investigate PDFSyntaxError failures during file extraction",
@@ -41,8 +59,8 @@
   },
   {
     "severity": "error",
-    "description": "29 files failed: ValueError",
-    "affected_count": 29,
+    "description": "81 files failed: ValueError",
+    "affected_count": 81,
     "affected_ids": [
       "https://assets.gov.ie/static/documents/foi-disclosure-log-2017-efec4c68-3b79-4410-9af4-bc13c05f3d86.pdf",
       "https://www.bordbia.ie/contentassets/ae9dcd8ebda3420d9c5182309ca770c8/bord-bia-foi-disclosure-log-2025.pdf",
@@ -72,10 +90,56 @@
       "https://www.corkcity.ie/media/ye0ki1zw/results-south-west2.pdf",
       "https://www.corkcity.ie/media/1xcn1aos/results-south-east.pdf",
       "https://www.corkcity.ie/media/nzgf1ok0/cork_carnival_of_science_2025_opt.pdf",
-      "https://laois.ie/sites/default/files/2024-06/FOI-Disclosure-Log-2023.pdf"
+      "https://laois.ie/sites/default/files/2024-06/FOI-Disclosure-Log-2023.pdf",
+      "https://assets.gov.ie/static/documents/foi-disclosure-log-2017-efec4c68-3b79-4410-9af4-bc13c05f3d86.pdf",
+      "https://assets.gov.ie/static/documents/foi-disclosure-log-2017-efec4c68-3b79-4410-9af4-bc13c05f3d86.pdf",
+      "https://assets.gov.ie/static/documents/foi-disclosure-log-2017-efec4c68-3b79-4410-9af4-bc13c05f3d86.pdf",
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-2-2019.pdf",
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-3-2019-3fcaa039-4e54-452a-9d80-882784dd1bab.pdf",
+      "https://assets.gov.ie/static/documents/non-personal-foi-requests-february-2015.pdf",
+      "https://www.corkcity.ie/media/ygydbxui/results-north-west2.pdf",
+      "https://assets.gov.ie/static/documents/non-personal-foi-requests-march-2015.pdf",
+      "https://www.corkcity.ie/media/dohdhq5m/results-north-east.pdf",
+      "https://www.corkcity.ie/media/33hgguy0/results-south-central.pdf",
+      "https://www.corkcity.ie/media/rp1n0cju/results-north-west.pdf",
+      "https://www.corkcity.ie/media/ltcb4dht/results-south-west.pdf",
+      "https://www.corkcity.ie/media/ye0ki1zw/results-south-west2.pdf",
+      "https://www.corkcity.ie/media/1xcn1aos/results-south-east.pdf",
+      "https://laois.ie/sites/default/files/2024-06/FOI-Disclosure-Log-2023.pdf",
+      "https://www.corkcity.ie/media/nzgf1ok0/cork_carnival_of_science_2025_opt.pdf",
+      "https://www.leitrim.ie/Council/Services/Housing/Rent-Review-2026/Signed-DRS-010526.pdf",
+      "https://www.corkcity.ie/media/ncpntp0p/adopted-tap-2019-2024.pdf",
+      "https://assets.gov.ie/static/documents/non-personal-foi-requests-february-2015.pdf",
+      "https://www.corkcity.ie/media/ygydbxui/results-north-west2.pdf",
+      "https://www.corkcity.ie/media/dohdhq5m/results-north-east.pdf"
     ],
     "suggested_upstream_step": "transform_disclosure_files",
     "suggestion_detail": "Investigate ValueError failures during file extraction",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "15 files failed: XLRDError",
+    "affected_count": 15,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/2019-foi-requests-jan-mar.xls",
+      "https://assets.gov.ie/static/documents/2018-foi-requests-jan-jun.xls",
+      "https://assets.gov.ie/static/documents/2018-foi-requests-jul-dec.xls",
+      "https://assets.gov.ie/static/documents/2017-foi-requests.xls",
+      "https://assets.gov.ie/static/documents/2016-foi-requests.xls",
+      "https://assets.gov.ie/static/documents/2019-foi-requests-jan-mar.xls",
+      "https://assets.gov.ie/static/documents/2018-foi-requests-jan-jun.xls",
+      "https://assets.gov.ie/static/documents/2018-foi-requests-jul-dec.xls",
+      "https://assets.gov.ie/static/documents/2017-foi-requests.xls",
+      "https://assets.gov.ie/static/documents/2016-foi-requests.xls",
+      "https://assets.gov.ie/static/documents/2019-foi-requests-jan-mar.xls",
+      "https://assets.gov.ie/static/documents/2018-foi-requests-jan-jun.xls",
+      "https://assets.gov.ie/static/documents/2018-foi-requests-jul-dec.xls",
+      "https://assets.gov.ie/static/documents/2017-foi-requests.xls",
+      "https://assets.gov.ie/static/documents/2016-foi-requests.xls"
+    ],
+    "suggested_upstream_step": "transform_disclosure_files",
+    "suggestion_detail": "Investigate XLRDError failures during file extraction",
     "confidence": 1.0
   }
 ]

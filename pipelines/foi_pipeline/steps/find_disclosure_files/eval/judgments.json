@@ -6318,5 +6318,145 @@
     "label": "yes",
     "rationale": "heuristic scoring based on URL patterns",
     "verified": "mock"
+  },
+  "https://www.audit.gov.ie/media/ukgbibfo/foi-disclosure-log-q1-2026.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/FOI_Disclosure_Log_Q1_2025.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/cda97d7f/20250930_Disclosure_Log_April-_June.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/711dfe41/20260507_Disclosure_Log_October_-_December_2025_1.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosures-log-q1-2024.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosures-log-q2-2024.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosures-log-q3-2024.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosures-log-q4-2024.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosure-log-q1-2023-ab7f1b10-05a1-494f-af45-e031f0bef9d2.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosure-log-q2-2023-08ec8eae-b28f-4f95-839b-e5312f70ec89.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosure-log-q3-2023-b51e4bc9-b47a-4896-82dc-a61c07e432e1.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosure-log-q4-2023-4e3cffe2-d8ce-4e6e-875a-d560003a84e9.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosure-log-q1-2022-a514db9f-4890-408d-95f2-46a6152b0efd.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosure-log-q3-2022-59b7ff93-d79d-4905-9959-0d6d6caa2968.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosure-log-q4-2022-fecc89b8-2474-411a-a979-fe5f0d4a3a1a.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/2021-foi-requests-jan-mar.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/2021-foi-requests-apr-jun-7f2f2a9a-b5cc-4d00-9a65-4628690cbc1a.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/2021-foi-requests-jul-sept-c0738f3f-8de5-43ee-a6e4-deba86ea6928.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/2021-foi-requests-oct-dec.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/2020-foi-requests-jan-jun.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/2020-foi-requests-jul-dec.pdf": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/2019-foi-requests-jan-mar.xls": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/2019-foi-requests-mar-sep.xlsx": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/2019-foi-requests-sep-dec.xlsx": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/2018-foi-requests-jan-jun.xls": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/2018-foi-requests-jul-dec.xls": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/2017-foi-requests.xls": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
+  },
+  "https://assets.gov.ie/static/documents/2016-foi-requests.xls": {
+    "label": "",
+    "rationale": "",
+    "verified": "auto"
   }
 }

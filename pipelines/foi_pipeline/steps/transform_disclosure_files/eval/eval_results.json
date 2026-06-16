@@ -3,19 +3,19 @@
   "metrics": [
     {
       "name": "extraction_success_rate",
-      "value": 0.949,
+      "value": 0.853,
       "counts": {
         "successful": 721,
-        "total": 760
+        "total": 845
       },
       "is_primary": true
     },
     {
       "name": "camelot_fallback_rate",
-      "value": 0.104,
+      "value": 0.095,
       "counts": {
-        "attempted": 79,
-        "total": 760
+        "attempted": 80,
+        "total": 845
       },
       "is_primary": false
     },
@@ -24,7 +24,7 @@
       "value": 0.0,
       "counts": {
         "wins": 0,
-        "total": 760
+        "total": 845
       },
       "is_primary": false
     }

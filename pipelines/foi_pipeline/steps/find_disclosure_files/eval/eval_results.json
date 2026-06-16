@@ -3,28 +3,28 @@
   "metrics": [
     {
       "name": "precision",
-      "value": 0.985,
+      "value": 0.984,
       "counts": {
-        "foi": 954,
-        "judged": 969
+        "foi": 970,
+        "judged": 986
       },
       "is_primary": true
     },
     {
       "name": "unverified_coverage",
-      "value": 113,
+      "value": 137,
       "counts": {
-        "unverified": 113,
-        "total": 1082
+        "unverified": 137,
+        "total": 1123
       },
       "is_primary": false
     },
     {
       "name": "mock_judgments",
-      "value": 7,
+      "value": 14,
       "counts": {
-        "mock": 7,
-        "total": 1082
+        "mock": 14,
+        "total": 1123
       },
       "is_primary": false
     },
@@ -41,20 +41,20 @@
       "value": 11,
       "counts": {
         "extra_records": 11,
-        "total": 1082
+        "total": 1123
       },
       "is_primary": false
     },
     {
       "name": "duplicate_file_url_rate",
-      "value": 0.010166358595194085,
+      "value": 0.009795191451469279,
       "counts": {
         "extra_records": 11,
-        "total": 1082
+        "total": 1123
       },
       "is_primary": false
     }
   ],
-  "input_hash": "7ce13991becd8f468702dcce6f4daed408d29e935a428a29d61adca928d32634",
+  "input_hash": "c8cf3a071640c8d12f3cf4e205dba4170bdef1e622f527d91e0d956ccc9223da",
   "judge_model": "anthropic:claude-haiku-4-5-20251001"
 }

@@ -23,6 +23,380 @@
   },
   {
     "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-2-2021.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-2-2021.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-1-2021.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-1-2021.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-4-2020.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-4-2020.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-2-2020.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-2-2020.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-1-2020.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-1-2020.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-4-2019.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-4-2019.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-4-2018-8b9c497b-c3f7-402b-9769-147710658929.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-4-2018-8b9c497b-c3f7-402b-9769-147710658929.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-1-2019.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-1-2019.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-3-2018-02f1fb34-e44c-45f4-b5d3-74e1554d1786.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-3-2018-02f1fb34-e44c-45f4-b5d3-74e1554d1786.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-1-2018-76426b19-5fd3-42a1-b006-5905f67fbceb.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-1-2018-76426b19-5fd3-42a1-b006-5905f67fbceb.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-2-2018-717ff739-1449-43a2-8d7a-0d4c61bce8b4.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-2-2018-717ff739-1449-43a2-8d7a-0d4c61bce8b4.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-4-2017-31d266b5-1b6a-4baa-a2ef-388c600703ee.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-4-2017-31d266b5-1b6a-4baa-a2ef-388c600703ee.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-3-2017-66b13a67-d806-4e79-8bd8-8e250fa2c846.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-3-2017-66b13a67-d806-4e79-8bd8-8e250fa2c846.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-1-2017-d8e14dc1-6d88-475d-ad68-da1af5ffe9d7.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-1-2017-d8e14dc1-6d88-475d-ad68-da1af5ffe9d7.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-4-2016-1e73d305-215c-4bb1-aa7b-bda494c332bf.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-4-2016-1e73d305-215c-4bb1-aa7b-bda494c332bf.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-2-2017-ebca6a70-d9cb-4eff-a82c-fdbfbcf00bf6.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-2-2017-ebca6a70-d9cb-4eff-a82c-fdbfbcf00bf6.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-3-2016-216fdebf-b4b8-46f6-aa05-79d55ffd88db.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-3-2016-216fdebf-b4b8-46f6-aa05-79d55ffd88db.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-2-2016-0a0d345a-2840-41fa-8b80-e3951b0129e0.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-2-2016-0a0d345a-2840-41fa-8b80-e3951b0129e0.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-1-2016.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-1-2016.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/1a0d34bb/AIE_Requests_2025.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/1a0d34bb/AIE_Requests_2025.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/aie-requests-2023.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/aie-requests-2023.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/aie-requests-2022.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/aie-requests-2022.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/aie-requests-2020.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/aie-requests-2020.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/aie-requests-2019.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/aie-requests-2019.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/foi-requests-log-november-to-december-2011.xls",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/foi-requests-log-november-to-december-2011.xls"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/foi-requests-log-february-to-september-2011.xls",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/foi-requests-log-february-to-september-2011.xls"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/foi-requests-log-october-2011.xls",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/foi-requests-log-october-2011.xls"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/non-personal-foi-requests-december-2015.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/non-personal-foi-requests-december-2015.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/non-personal-foi-requests-november-2015.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/non-personal-foi-requests-november-2015.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/non-personal-foi-requests-october-2015.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/non-personal-foi-requests-october-2015.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/non-personal-foi-requests-september-2015.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/non-personal-foi-requests-september-2015.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/non-personal-foi-requests-june-2015.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/non-personal-foi-requests-june-2015.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "URL contains 'foi' - FOI disclosure log",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/non-personal-foi-requests-april-2015.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/non-personal-foi-requests-april-2015.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
+    "description": "Judged-yes file incorrectly rejected: https://assets.gov.ie/static/documents/non-personal-foi-requests-may-2015.pdf",
+    "affected_count": 1,
+    "affected_ids": [
+      "https://assets.gov.ie/static/documents/non-personal-foi-requests-may-2015.pdf"
+    ],
+    "suggested_upstream_step": null,
+    "suggestion_detail": "file produced valid rows in extract_disclosures_canonicalize_rows",
+    "confidence": 1.0
+  },
+  {
+    "severity": "error",
     "description": "Judged-yes file incorrectly rejected: https://thedigitalhub.com/wp-content/uploads/2026/01/FOI-Request-Log-2025-Q4.pdf",
     "affected_count": 1,
     "affected_ids": [

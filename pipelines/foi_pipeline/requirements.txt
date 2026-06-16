@@ -15,5 +15,7 @@ pyyaml==6.0.2
 
 # LLM judge backends (optional) — install whichever EVAL_JUDGE_PROVIDER you use:
 #   anthropic   (EVAL_JUDGE_PROVIDER=anthropic)
-#   openai      (EVAL_JUDGE_PROVIDER=openai, incl. local OpenAI-compatible servers)
-# e.g.  uv pip install anthropic   OR   uv pip install openai
+#   openai      (EVAL_JUDGE_PROVIDER=openai, incl. local OpenAI-compatible servers via EVAL_JUDGE_BASE_URL)
+#   mistral     (EVAL_JUDGE_PROVIDER=mistral, uses batch API for find_disclosure_files)
+# e.g.  uv pip install anthropic   OR   uv pip install openai   OR   uv pip install mistralai
+# Ollama example: EVAL_JUDGE_PROVIDER=openai EVAL_JUDGE_MODEL=gemma4:12b EVAL_JUDGE_BASE_URL=http://localhost:11434/v1

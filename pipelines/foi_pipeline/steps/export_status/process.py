@@ -12,6 +12,15 @@ from lib.file_utils import read_json, write_json, write_status
 STEP_NAME = "export_status"
 
 
+def merge_resolve_website_urls(body_map, step_data):
+    for r in step_data["results"]:
+        bid = r["public_body_id"]
+        if bid in body_map:
+            url = r.get("status", {}).get("website_url", {}).get("url")
+            if url:
+                body_map[bid]["status"]["website_url"]["url"] = url
+
+
 def merge_validate_websites(body_map, step_data):
     present = {r["public_body_id"] for r in step_data["results"]}
     for r in step_data["results"]:
@@ -218,6 +227,7 @@ def main():
 
     steps_dir = step_dir.parent
     pipeline_dir = steps_dir.parent
+    pipelines_dir = pipeline_dir.parent
     pipeline_config = read_json(pipeline_dir / "pipeline.json")
 
     bodies = merge(steps_dir, pipeline_config["steps"], target_public_body=args.public_body)
@@ -231,7 +241,7 @@ def main():
     write_json(output_path, output)
     write_status(step_dir, len(bodies))
 
-    repo_root = pipeline_dir.parent
+    repo_root = pipelines_dir.parent
     public_path = write_public_output(output, repo_root)
     disclosure_path = write_disclosure_files_output(steps_dir, repo_root)
     foi_disclosures_path = write_foi_disclosures_output(steps_dir, repo_root)

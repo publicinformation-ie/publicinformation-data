@@ -49,6 +49,9 @@ _STATUS_SYNONYMS: dict[str, list[str]] = {
         'R e f u s e d',
         'Refused under the provisions of Schedule 1, Part 1(d)',
         'INVALID',
+        'Not Valid',
+        'Request not Valid',
+        'Invalid Request',
     ],
     'Part-Granted': [
         'Part-Granted',
@@ -79,6 +82,7 @@ _STATUS_SYNONYMS: dict[str, list[str]] = {
         'Withdrawn and Handled Outside of FOI',
         'Withdrawn/ ha',
         'Case Closed',
+        'WITHDRA WN/OUT',
     ],
     'Handled outside of FOI': [
         'Handled outside of FOI',
@@ -90,6 +94,9 @@ _STATUS_SYNONYMS: dict[str, list[str]] = {
         'Non FOI',
         'Outside FOI',
         'Dealt with outside FOI',
+        'outside of FOI',
+        'outside of FOI Act',
+        'Outside of FOI',
     ],
     'Transferred': [
         'Transferred',

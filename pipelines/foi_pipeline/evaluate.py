@@ -59,7 +59,9 @@ def aggregate_issues(steps_dir: Path, steps: list[str]) -> dict:
 def run_step_eval(steps_dir: Path, step: str, pipeline_dir: Path) -> int:
     """Invoke a step's eval/evaluate.py as a subprocess (like process.py)."""
     script = Path(steps_dir) / step / "eval" / "evaluate.py"
-    env = {**os.environ, "PYTHONPATH": str(pipeline_dir)}
+    src_dir = pipeline_dir.parent.parent / "src"
+    pythonpath = os.pathsep.join([str(pipeline_dir), str(src_dir)])
+    env = {**os.environ, "PYTHONPATH": pythonpath}
     return subprocess.run([sys.executable, str(script)], env=env).returncode
 
 
