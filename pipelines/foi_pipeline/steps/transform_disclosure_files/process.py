@@ -272,10 +272,34 @@ def _xlrd_cell_to_python(cell, datemode):
     return cell.value  # XL_CELL_ERROR — hits str() fallback in serialise_cell
 
 
+def _extract_xls_csv_fallback(file_bytes):
+    """Parse CSV-as-XLS bytes (government sites often export CSV with .xls extension).
+
+    Returns (sheet_name, rows, fallback_cells, has_multiple_sheets).
+    """
+    import csv
+    text = file_bytes.decode("utf-8", errors="replace")
+    reader = csv.reader(io.StringIO(text))
+    rows = [[cell if cell != "" else None for cell in row] for row in reader]
+    # Drop trailing all-None rows that csv.reader may produce from trailing newlines
+    while rows and all(c is None for c in rows[-1]):
+        rows.pop()
+    return "Sheet1", rows, [], False
+
+
 def _extract_xls(file_bytes):
-    """Parse XLS bytes. Returns (sheet_name, rows, fallback_cells, has_multiple_sheets)."""
+    """Parse XLS bytes. Returns (sheet_name, rows, fallback_cells, has_multiple_sheets).
+
+    Falls back to CSV parsing when the file has a .xls extension but is actually
+    a CSV (a common pattern on Irish government websites).
+    """
     import xlrd
-    wb = xlrd.open_workbook(file_contents=file_bytes)
+    try:
+        wb = xlrd.open_workbook(file_contents=file_bytes)
+    except xlrd.XLRDError as e:
+        if "Expected BOF record" in str(e):
+            return _extract_xls_csv_fallback(file_bytes)
+        raise
     has_multiple_sheets = any(ws.nrows > 0 for ws in wb.sheets()[1:])
     ws = wb.sheets()[0]
     sheet_name = ws.name

@@ -259,6 +259,30 @@ def test_extract_xls_empty_cell_is_none():
     assert rows[0][0] == "only-col-a"
 
 
+def test_extract_xls_csv_fallback_simple():
+    # Government sites often publish CSV with a .xls extension.
+    # xlrd raises XLRDError("Expected BOF record; found b'...'") on these.
+    csv_bytes = b"Request Number,Date Received,Decision Made\r\nFOI-001,2019-01-15,Granted\r\n"
+    sheet_name, rows, fallback_cells, has_multiple_sheets = _extract_xls(csv_bytes)
+    assert sheet_name == "Sheet1"
+    assert rows[0] == ["Request Number", "Date Received", "Decision Made"]
+    assert rows[1] == ["FOI-001", "2019-01-15", "Granted"]
+    assert fallback_cells == []
+    assert has_multiple_sheets is False
+
+
+def test_extract_xls_csv_fallback_empty_cells_become_none():
+    csv_bytes = b"Ref,Date,Summary\r\nFOI-001,,some summary\r\n"
+    _, rows, _, _ = _extract_xls(csv_bytes)
+    assert rows[1][1] is None
+
+
+def test_extract_xls_csv_fallback_trailing_newline_stripped():
+    csv_bytes = b"Ref,Date\r\nFOI-001,2019-01-01\r\n\r\n"
+    _, rows, _, _ = _extract_xls(csv_bytes)
+    assert len(rows) == 2  # no trailing empty row
+
+
 # ── _extract_pdf ──────────────────────────────────────────────────────────────
 
 def test_extract_pdf_single_page_single_table():
