@@ -51,6 +51,35 @@ To add a new file format or error case: add a `_make_<format>` helper if needed,
 
 `_make_pdf(tables_per_page)` builds minimal in-memory PDF bytes using `reportlab`. `tables_per_page` is a list of pages; each page is a list of tables; each table is a list of rows. The helper renders tables as bordered grids so pdfplumber can detect them reliably. Single-page single-table PDFs are the common case: `_make_pdf([[table_rows]])`.
 
+## Evaluation (`eval/`)
+
+`eval/evaluate.py` measures **extraction quality** of successfully-converted PDF files. It does not re-evaluate extraction success (that's implicit — only PDFs where `rows is not None` are included).
+
+### Primary metric: `clean_extraction_rate`
+
+Fraction of PDFs with no detected quality issues. Supplementary metrics track each issue type:
+
+| Metric | What it detects |
+|---|---|
+| `null_first_row_rate` | First row contains one or more null cells (may indicate a header detection problem upstream) |
+| `null_column_rate` | An entire column is null across all data rows (structural extraction alignment issue) |
+| `newline_split_row_rate` | A data row has exactly 1 non-null value in a 3+-column table (PDF cell with embedded newline split across rows) |
+| `camelot_fallback_rate` | pdfplumber scored < 2 mappable columns and camelot stream was tried |
+| `camelot_win_rate` | camelot stream extraction was used in the final output |
+
+### Predicates
+
+`has_null_column` skips newline-split rows before checking for always-null columns, preventing false positives where a split row's structural nulls would flag a column as always-null.
+
+### Running
+
+```bash
+cd pipelines/foi_pipeline
+uv run python steps/transform_disclosure_files/eval/evaluate.py
+```
+
+Output: `eval/eval_results.json`, `eval/issues.json`, `eval/quality_by_body.json`.
+
 ## Parallel Processing and Caching
 
 As of 2025-06, this step uses parallel processing and persistent caching to improve performance:
