@@ -34,6 +34,10 @@ _STATUS_SYNONYMS: dict[str, list[str]] = {
         'Final',
         'Released',
         'Fully Released',
+        'Issued',           # "document issued" = released/granted
+        'G r a n t e d',   # OCR spaced-letter artefact
+        'GGrraanntteedd',   # OCR double-print artefact
+        'Gtant',            # typo for "Grant"
     ],
     'Refused': [
         'Refused',
@@ -52,6 +56,7 @@ _STATUS_SYNONYMS: dict[str, list[str]] = {
         'Not Valid',
         'Request not Valid',
         'Invalid Request',
+        '37(1)',            # Courts Service — refused under s.37(1) FOI Act
     ],
     'Part-Granted': [
         'Part-Granted',
@@ -83,6 +88,8 @@ _STATUS_SYNONYMS: dict[str, list[str]] = {
         'Withdrawn/ ha',
         'Case Closed',
         'WITHDRA WN/OUT',
+        'Not Progressed',     # request abandoned without formal withdrawal
+        'sought refinement',  # requester sought refinement then abandoned
     ],
     'Handled outside of FOI': [
         'Handled outside of FOI',
@@ -97,12 +104,19 @@ _STATUS_SYNONYMS: dict[str, list[str]] = {
         'outside of FOI',
         'outside of FOI Act',
         'Outside of FOI',
+        'Information provided outside of the FOI Act.',  # literal statement
+        'Outside AIE',                                   # Access to Info on the Environment
+        'Directed to NMI website',                       # info available on NMI website
+        'dealt with outside of F',                       # truncated "dealt with outside of FOI"
     ],
     'Transferred': [
         'Transferred',
         'Transfer',
         'Transferred to another body',
         'Transferred to DoD',
+        'RETURNED',      # request returned/redirected to responsible body
+        'Redirected',    # redirected to another body
+        'Transfered',    # typo (one 'r')
     ],
     'Deemed Refused': [
         'Deemed Refused',
@@ -123,6 +137,10 @@ _STATUS_SYNONYMS: dict[str, list[str]] = {
         'NA',
         'Unknown',
         'Queried',
+        'In Progress',        # still in progress at log publication time
+        'Awaiting decision',  # outcome not recorded
+        'Active',             # same — in-progress indicator
+        'Blank Error',        # extraction artefact for blank status cell
     ],
 }
 

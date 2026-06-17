@@ -273,3 +273,37 @@ def test_queried_maps_to_unknown():
 ])
 def test_new_synonym_mappings(raw, expected):
     assert canonicalize_status(raw) == expected
+
+
+# ── Task 1: genuine status synonym additions ────────────────────────────────
+
+@pytest.mark.parametrize("raw,expected", [
+    # Granted variants
+    ("Issued", "Granted"),
+    ("issued", "Granted"),
+    ("G r a n t e d", "Granted"),
+    ("GGrraanntteedd", "Granted"),
+    ("Gtant", "Granted"),
+    # Withdrawn variants
+    ("Not Progressed", "Withdrawn"),
+    ("sought refinement", "Withdrawn"),
+    # Transferred variants
+    ("RETURNED", "Transferred"),
+    ("Redirected", "Transferred"),
+    ("Transfered", "Transferred"),
+    # Handled outside of FOI variants
+    ("Information provided outside of the FOI Act.", "Handled outside of FOI"),
+    ("Outside AIE", "Handled outside of FOI"),
+    ("Directed to NMI website", "Handled outside of FOI"),
+    ("dealt with outside of F", "Handled outside of FOI"),
+    # Unknown variants
+    ("In Progress", "Unknown"),
+    ("Awaiting decision", "Unknown"),
+    ("Active", "Unknown"),
+    ("Blank Error", "Unknown"),
+    # Refused variants
+    ("37(1)", "Refused"),
+])
+def test_task1_genuine_status_synonyms(raw, expected):
+    """New synonym entries: real FOI outcomes not yet in the mapping."""
+    assert canonicalize_status(raw) == expected, f"Expected {raw!r} → {expected!r}"
