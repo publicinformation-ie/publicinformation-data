@@ -80,6 +80,8 @@ _SYNONYMS: dict[str, list[str]] = {
         # Leitrim and Fingal/DLR variants
         'date outcome',
         'dáta eisiúna',
+        # Task 2: header-leakage values (multi-row PDF headers bleeding into data)
+        'dáta',               # Irish for "Date" (standalone column header)
     ],
     'requester_type': [
         'requester type', 'category', 'category of requester', 'requester',
@@ -100,6 +102,13 @@ _SYNONYMS: dict[str, list[str]] = {
         # Irish-language synonyms (Fingal, DLR PDFs)
         'catagóir',
         'iarrthóra',
+        # Task 2: header-leakage values (multi-row PDF headers bleeding into data)
+        'type',               # standalone "Type" column header (requester type)
+        'cineál',             # Irish for "Type" — standalone (not compound form)
+        'non pers',           # "Non-Personal" requester category abbreviation
+        'member of the',      # fragment of "Member of the Oireachtas/Public Representatives"
+        'category of',        # fragment of "Category of Requester"
+        'catagóir on',        # Irish fragment "Category of"
     ],
     'decision_status': [
         'decision made', 'decision', 'status', 'decision/cinneadh',
@@ -124,6 +133,8 @@ _SYNONYMS: dict[str, list[str]] = {
         'cinneadh',
         'date decision',    # Tipperary PDFs: "Date Decision" is their decision outcome column, not a date
         'decision type',
+        # Task 2: header-leakage values (multi-row PDF headers bleeding into data)
+        'made',               # 2nd line of split "Decision / Made" header (body 1211)
     ],
     'review_status': [
         'ir', 'ir/al', 'al',

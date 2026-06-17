@@ -307,3 +307,28 @@ def test_new_synonym_mappings(raw, expected):
 def test_task1_genuine_status_synonyms(raw, expected):
     """New synonym entries: real FOI outcomes not yet in the mapping."""
     assert canonicalize_status(raw) == expected, f"Expected {raw!r} → {expected!r}"
+
+
+# ── Task 2: column-header leakage reclassification ─────────────────────────
+
+@pytest.mark.parametrize("raw,expected_error_type", [
+    # requester_type headers — should become StatusValueIsRequesterType
+    ("Type", "StatusValueIsRequesterType"),
+    ("Cineál", "StatusValueIsRequesterType"),
+    ("NON PERS", "StatusValueIsRequesterType"),
+    ("Member of the", "StatusValueIsRequesterType"),
+    ("Category of", "StatusValueIsRequesterType"),
+    ("Catagóir on", "StatusValueIsRequesterType"),
+    # decision_status / date headers — should become StatusValueIsColumnHeader
+    ("Made", "StatusValueIsColumnHeader"),
+    ("Dáta", "StatusValueIsColumnHeader"),
+])
+def test_task2_header_leakage_reclassification(raw, expected_error_type):
+    """Column-header values leaked into decision_status should be classified correctly."""
+    record = _make_record(decision_status=raw, review_status=None)
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert len(errors) == 1, f"Expected exactly 1 error for {raw!r}"
+    assert errors[0]["error_type"] == expected_error_type, (
+        f"Expected {raw!r} → {expected_error_type!r}, got {errors[0]['error_type']!r}"
+    )
