@@ -2,33 +2,60 @@
   "step": "transform_disclosure_files",
   "metrics": [
     {
-      "name": "extraction_success_rate",
-      "value": 0.853,
+      "name": "clean_extraction_rate",
+      "value": 0.552,
       "counts": {
-        "successful": 721,
-        "total": 845
+        "clean": 771,
+        "total": 1397
       },
       "is_primary": true
     },
     {
-      "name": "camelot_fallback_rate",
-      "value": 0.095,
+      "name": "null_first_row_rate",
+      "value": 0.305,
       "counts": {
-        "attempted": 80,
-        "total": 845
+        "count": 426,
+        "total": 1397
+      },
+      "is_primary": false
+    },
+    {
+      "name": "null_column_rate",
+      "value": 0.008,
+      "counts": {
+        "count": 11,
+        "total": 1397
+      },
+      "is_primary": false
+    },
+    {
+      "name": "newline_split_row_rate",
+      "value": 0.296,
+      "counts": {
+        "count": 414,
+        "total": 1397
+      },
+      "is_primary": false
+    },
+    {
+      "name": "camelot_fallback_rate",
+      "value": 0.127,
+      "counts": {
+        "attempted": 178,
+        "total": 1397
       },
       "is_primary": false
     },
     {
       "name": "camelot_win_rate",
-      "value": 0.0,
+      "value": 0.105,
       "counts": {
-        "wins": 0,
-        "total": 845
+        "wins": 147,
+        "total": 1397
       },
       "is_primary": false
     }
   ],
-  "input_hash": "469cb1169be6ab6a010845bcdee80dddd5a5d41816d15fa801db61ed96781d6f",
+  "input_hash": "68579465bc624b2606de628a6e5e79523cc57b5853e777bfa38068fd3768423b",
   "judge_model": null
 }

@@ -85,7 +85,7 @@ def test_does_not_merge_data_row_with_mostly_populated_cells():
 # ── header_row_idx != 0 ───────────────────────────────────────────────────────
 
 def test_handles_header_not_on_row_zero():
-    """Works correctly when header is on row 1 (preamble row above it)."""
+    """Preamble rows before the header are stripped; header lands at idx 0."""
     rows = [
         ["FOI Disclosure Log 2024", None, None],  # row 0: preamble
         ["Ref", None, "Decision"],                # row 1: header
@@ -93,10 +93,10 @@ def test_handles_header_not_on_row_zero():
         ["1", "x", "Granted"],                    # row 3: data
     ]
     result_rows, idx = normalize_header_row(rows, header_row_idx=1)
-    assert idx == 1
-    assert result_rows[1][1] == "Ref"   # forward-filled
-    assert result_rows[1][2] == "Decision Received"  # merged continuation
-    assert len(result_rows) == 3   # preamble + header + data
+    assert idx == 0
+    assert result_rows[0][1] == "Ref"             # forward-filled
+    assert result_rows[0][2] == "Decision Received"  # merged continuation
+    assert len(result_rows) == 2                  # preamble stripped; header + data
 
 
 # ── edge cases ────────────────────────────────────────────────────────────────

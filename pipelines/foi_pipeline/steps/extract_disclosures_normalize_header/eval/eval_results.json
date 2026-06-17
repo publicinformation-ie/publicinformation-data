@@ -9,8 +9,17 @@
         "total": 721
       },
       "is_primary": true
+    },
+    {
+      "name": "null_first_row_rate",
+      "value": 0.017,
+      "counts": {
+        "count": 12,
+        "total": 721
+      },
+      "is_primary": false
     }
   ],
-  "input_hash": "11a22cd28bc248672b51097410a7af3de70f080959e242e03729cba2fecd2b27",
+  "input_hash": "019a3050675d35aa105fa093f81f9de7d6beaa8ff4e72a5e95e50297fd42b4dd",
   "judge_model": null
 }

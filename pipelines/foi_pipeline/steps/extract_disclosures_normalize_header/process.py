@@ -26,13 +26,15 @@ def _count_canonical_columns(row) -> int:
 def normalize_header_row(rows, header_row_idx, max_continuation_rows=_MAX_CONTINUATION_ROWS):
     """Repair null cells in the detected header row.
 
-    Two repairs are applied in order:
-    1. Continuation-row merge: high-null rows immediately after the header are
+    Three repairs are applied in order:
+    1. Pre-header strip: rows before header_row_idx are dropped (document title rows
+       with ≤1 non-null cell), and header_row_idx is reset to 0.
+    2. Continuation-row merge: high-null rows immediately after the header are
        merged into it (column values joined with a space), then removed from rows.
-    2. Forward-fill: remaining None cells in the header are replaced with the
+    3. Forward-fill: remaining None cells in the header are replaced with the
        nearest preceding non-None value (repairing PDF merged-cell spans).
 
-    Returns (new_rows, header_row_idx) — header_row_idx is always unchanged.
+    Returns (new_rows, header_row_idx) — header_row_idx is 0 after repair.
     """
     if not rows or header_row_idx >= len(rows):
         return rows, header_row_idx
@@ -67,19 +69,18 @@ def normalize_header_row(rows, header_row_idx, max_continuation_rows=_MAX_CONTIN
         elif last_val is not None:
             header[i] = last_val
 
-    new_rows = list(rows[:header_row_idx]) + [header] + list(rows[continuation_end:])
+    # Strip pre-header title rows; header is always rows[0] after this point.
+    new_rows = [header] + list(rows[continuation_end:])
 
     # Scan-ahead rescue: if forward-fill produced a degenerate header (too few distinct
     # canonical columns), check if the immediately following row maps >= 3 canonical columns
     # and promote it instead.
-    current_header = new_rows[header_row_idx]
-    canonical_unique = _count_canonical_columns(current_header)
+    canonical_unique = _count_canonical_columns(new_rows[0])
     if canonical_unique < 2:
-        next_idx = header_row_idx + 1
-        if next_idx < len(new_rows) and _count_canonical_columns(new_rows[next_idx]) >= 3:
-            return new_rows, next_idx
+        if len(new_rows) > 1 and _count_canonical_columns(new_rows[1]) >= 3:
+            return new_rows, 1
 
-    return new_rows, header_row_idx
+    return new_rows, 0
 
 
 def process(input_data, step_dir, writer, verbose=False):
