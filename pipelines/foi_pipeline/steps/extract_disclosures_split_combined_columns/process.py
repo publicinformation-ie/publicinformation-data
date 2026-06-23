@@ -10,11 +10,10 @@ the description is not destroyed by date normalisation.
 import argparse
 import re
 import sys
-from datetime import datetime, timezone
 from pathlib import Path
 
 from lib.cli_utils import add_common_args, filter_by_public_body
-from lib.file_utils import read_json, write_json, write_status, IncrementalWriter
+from lib.file_utils import read_json, write_status, IncrementalWriter
 from lib.column_map import COMBINED_DATE_HEADERS
 from lib.text_utils import normalize_header
 
@@ -93,7 +92,7 @@ def split_file(item: dict) -> tuple:
             date_text, desc_text = split_cell(cell)
             if col_idx < len(row):
                 row[col_idx] = date_text
-            row.insert(col_idx + 1, desc_text)
+                row.insert(col_idx + 1, desc_text)
 
     return {**item, "rows": new_rows}, []
 
