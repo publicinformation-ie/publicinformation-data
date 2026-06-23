@@ -1,7 +1,7 @@
 import sqlite3
 import pytest
 from lib.db_client import DbClient
-from scripts.audit_disclosures import Check, CHECKS, get_check, run_checks
+from scripts.audit_disclosures import Check, CHECKS, get_check, run_checks, aggregate
 
 
 def test_check_dataclass_fields():
@@ -103,3 +103,40 @@ def test_run_checks_empty_db():
     db = _make_db_with_disclosures([])
     result = run_checks(db, CHECKS)
     assert result == {}
+
+
+def test_aggregate_sorts_descending():
+    raw = {
+        "https://a.ie/1.pdf": {"blank_request_description": 5, "invalid_decision_date": 3},
+        "https://b.ie/2.pdf": {"blank_request_description": 1},
+        "https://c.ie/3.pdf": {"decision_status_is_date": 10},
+    }
+    result = aggregate(raw)
+    assert result[0][0] == "https://c.ie/3.pdf"
+    assert result[0][1] == 10
+    assert result[1][0] == "https://a.ie/1.pdf"
+    assert result[1][1] == 8
+    assert result[2][0] == "https://b.ie/2.pdf"
+    assert result[2][1] == 1
+
+
+def test_aggregate_min_errors_filter():
+    raw = {
+        "https://a.ie/1.pdf": {"blank_request_description": 1},
+        "https://b.ie/2.pdf": {"blank_request_description": 5},
+    }
+    result = aggregate(raw, min_errors=3)
+    assert len(result) == 1
+    assert result[0][0] == "https://b.ie/2.pdf"
+
+
+def test_aggregate_preserves_per_check_counts():
+    raw = {
+        "https://a.ie/1.pdf": {"blank_request_description": 7, "invalid_date_received": 2},
+    }
+    result = aggregate(raw)
+    assert result[0][2] == {"blank_request_description": 7, "invalid_date_received": 2}
+
+
+def test_aggregate_empty():
+    assert aggregate({}) == []

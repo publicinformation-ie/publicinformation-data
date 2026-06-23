@@ -64,3 +64,16 @@ def run_checks(db: DbClient, checks: list[Check]) -> dict[str, dict[str, int]]:
                 results[url] = {}
             results[url][check.name] = row["n"]
     return results
+
+
+def aggregate(
+    raw: dict[str, dict[str, int]], min_errors: int = 1
+) -> list[tuple[str, int, dict[str, int]]]:
+    """Sum per-check counts; return list of (file_url, total, per_check) sorted desc."""
+    rows = []
+    for url, per_check in raw.items():
+        total = sum(per_check.values())
+        if total >= min_errors:
+            rows.append((url, total, per_check))
+    rows.sort(key=lambda x: x[1], reverse=True)
+    return rows
