@@ -144,6 +144,29 @@ STEP_MERGERS = {
     "extract_disclosures_deduplicate": merge_extract_disclosures_canonicalize,
 }
 
+# Disclosure step outputs carry a public_body_id that MUST exist in the
+# canonical body map. These are the steps that historically suffered the
+# FOI/CSO public_body_id namespace collision (records attributed to the wrong
+# body, or silently dropped). The orphan guard in merge() checks their ids.
+DISCLOSURE_STEPS = {
+    "find_disclosure_files",
+    "transform_disclosure_files",
+    "extract_disclosures_canonicalize",
+    "extract_disclosures_deduplicate",
+}
+
+
+def collect_disclosure_ids(step_data):
+    """Return the set of public_body_ids referenced by a disclosure step's
+    output. Mirrors how the mergers locate ids: each record under "results"
+    carries a "public_body_id". Records missing the key are ignored here (the
+    mergers would skip them too)."""
+    return {
+        r["public_body_id"]
+        for r in step_data.get("results", [])
+        if "public_body_id" in r
+    }
+
 
 def write_public_output(output, repo_root):
     public_dir = repo_root / "public"
@@ -198,6 +221,7 @@ def merge(steps_dir, pipeline_steps, target_public_body=None):
         body["public_body_category"] = body.pop("category")
         body.pop("short_name", None)
 
+    orphans_by_step = {}
     for step_name in pipeline_steps:
         if step_name in ("find_public_bodies", STEP_NAME):
             continue
@@ -209,6 +233,20 @@ def merge(steps_dir, pipeline_steps, target_public_body=None):
             continue
         step_data = filter_by_public_body(read_json(output_path), target_public_body)
         merger(body_map, step_data)
+        if step_name in DISCLOSURE_STEPS:
+            orphans = collect_disclosure_ids(step_data) - set(body_map)
+            if orphans:
+                orphans_by_step[step_name] = sorted(orphans)
+
+    if orphans_by_step:
+        all_ids = sorted({oid for ids in orphans_by_step.values() for oid in ids})
+        details = "; ".join(
+            f"{step}: {ids}" for step, ids in sorted(orphans_by_step.items())
+        )
+        raise ValueError(
+            f"export_status: {len(all_ids)} disclosure public_body_id(s) "
+            f"not in the canonical body map: {all_ids} (from steps: {details})"
+        )
 
     return list(body_map.values())
 
