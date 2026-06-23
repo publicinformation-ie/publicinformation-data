@@ -3,6 +3,8 @@
     "parse_cso_bodies",
     "normalize_cso_fields",
     "match_gov_urls",
+    "search_websites_llm",
+    "search_websites_apify",
     "resolve_website_urls"
   ]
 }
