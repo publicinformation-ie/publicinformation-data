@@ -82,6 +82,19 @@ _SYNONYMS: dict[str, list[str]] = {
         'dáta eisiúna',
         # Task 2: header-leakage values (multi-row PDF headers bleeding into data)
         'dáta',               # Irish for "Date" (standalone column header)
+        # Galway City Council OCR artefacts: "Cinneadh Eisithe" = "Decision Issued" (a date column,
+        # not the decision type). OCR adds spaces within the Irish word, breaking the exact-match
+        # on the clean synonym above and letting the bilingual fallback pick up "decision made"
+        # → decision_status instead. These explicit entries win before the fallback fires.
+        'C i nneadh Eisithe/\nDecision Made',    # 2022–2024 PDFs
+        'C i n n e adh Eisithe/\nDecision Made', # 2025 PDF variant
+        # Fingal County Council: "Decision/Response Sent" is the date the decision was sent,
+        # not the decision type. Without these entries the bilingual fallback splits on "/" and
+        # picks up "decision" → decision_status, overriding the correct Cineál Cinneadh column.
+        'Decision/Response\nSent',               # 2021–2022 PDFs
+        'Decision/Respons\ne Sent',              # pdfplumber line-wrap artefact
+        'Decision/\nResponse\nSent',             # another line-wrap variant
+        'Decision/Response \nBreith ar',         # 2023–2024 PDFs ("breith ar" = IR review)
     ],
     'requester_type': [
         'requester type', 'category', 'category of requester', 'requester',
@@ -116,7 +129,9 @@ _SYNONYMS: dict[str, list[str]] = {
         'foi decision',
         # additional synonyms derived from columns.csv profiling
         'foi result', 'foi outcome',
-        'catagóir cinnidh / decision category',    # Irish bilingual (Galway)
+        'catagóir cinnidh / decision category',    # Irish bilingual (Galway) — space-padded /
+        'Catagóir Cinnidh/\nDecision Category',    # Galway PDFs: \n collapses to space, drops the padding
+        'C atagóir Cinnidh/ Decision\nCategory',   # Galway 2025 PDF — OCR splits "Catagóir"
         'catagóir cinnidh/decision category',      # Donegal compiled PDF (no spaces around /)
         'decision grant part grant refuse',
         'decision granted/part granted/refused',
@@ -133,6 +148,7 @@ _SYNONYMS: dict[str, list[str]] = {
         'cinneadh',
         'date decision',    # Tipperary PDFs: "Date Decision" is their decision outcome column, not a date
         'decision type',
+        'Cineál\nCinneadh/Decisio\nn Type',  # Fingal 2022 PDF: pdfplumber splits "Decision" across lines
         # Task 2: header-leakage values (multi-row PDF headers bleeding into data)
         'made',               # 2nd line of split "Decision / Made" header (body 1211)
     ],
@@ -171,6 +187,13 @@ _SYNONYMS: dict[str, list[str]] = {
         'tuairisc ar iarrataís / description of',
         'title (summary description)',
         'request detail',
+        # Cork CoCo variants
+        'subject matter',
+        'subject matter of request',
+        'subject matter of request (non-personal only)',
+        'subject matter of request (non- personal only)',
+        # Department of Justice
+        'personal records',
     ],
 }
 

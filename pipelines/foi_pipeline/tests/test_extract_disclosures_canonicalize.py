@@ -652,6 +652,27 @@ def test_canonicalize_irish_description_synonyms():
     assert canonicalize_header("Request Detail") == "request_description"
 
 
+def test_canonicalize_subject_matter():
+    assert canonicalize_header("Subject matter") == "request_description"
+
+
+def test_canonicalize_subject_matter_of_request():
+    assert canonicalize_header("Subject Matter of Request") == "request_description"
+
+
+def test_canonicalize_subject_matter_nonpersonal():
+    assert canonicalize_header("Subject matter of request (non-personal only)") == "request_description"
+
+
+def test_canonicalize_subject_matter_nonpersonal_nospace():
+    # Cork CoCo 2022 variant with non- hyphen and space
+    assert canonicalize_header("Subject matter of request (non- personal only)") == "request_description"
+
+
+def test_canonicalize_personal_records():
+    assert canonicalize_header("Personal records") == "request_description"
+
+
 def test_canonicalize_irish_date_synonyms():
     assert canonicalize_header("Dáta Eisiúna") == "decision_date"
     assert canonicalize_header("Date of Receipt") == "date_received"
