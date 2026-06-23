@@ -1,7 +1,7 @@
 import sqlite3
 import pytest
 from lib.db_client import DbClient
-from scripts.audit_disclosures import Check, CHECKS, get_check, run_checks, aggregate, format_report
+from scripts.audit_disclosures import Check, CHECKS, get_check, run_checks, aggregate, format_report, parse_args, main
 
 
 def test_check_dataclass_fields():
@@ -189,3 +189,41 @@ def test_format_report_header():
 def test_format_report_no_errors():
     report = format_report(CHECKS, {}, [], top=20, run_date="2026-06-23")
     assert "No issues found." in report
+
+
+def test_parse_args_defaults():
+    args = parse_args([])
+    assert args.top == 20
+    assert args.check is None
+    assert args.min_errors == 1
+
+
+def test_parse_args_top():
+    args = parse_args(["--top", "5"])
+    assert args.top == 5
+
+
+def test_parse_args_check():
+    args = parse_args(["--check", "invalid_decision_date"])
+    assert args.check == "invalid_decision_date"
+
+
+def test_parse_args_min_errors():
+    args = parse_args(["--min-errors", "3"])
+    assert args.min_errors == 3
+
+
+def test_main_unknown_check(capsys):
+    code = main(["--check", "nonexistent_check"])
+    assert code == 1
+    captured = capsys.readouterr()
+    assert "unknown check" in captured.err
+    assert "nonexistent_check" in captured.err
+
+
+def test_main_missing_database(capsys, monkeypatch, tmp_path):
+    monkeypatch.setenv("DATABASE_URL", str(tmp_path / "missing.db"))
+    code = main([])
+    assert code == 1
+    captured = capsys.readouterr()
+    assert "database not found" in captured.err

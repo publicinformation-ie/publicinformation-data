@@ -115,3 +115,54 @@ def format_report(
         lines.append("")
 
     return "\n".join(lines)
+
+
+def parse_args(argv=None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Audit foi_disclosures for data-quality errors, ranked by source file."
+    )
+    parser.add_argument("--top", type=int, default=20, help="Limit file ranking to top N files")
+    parser.add_argument("--check", default=None, help="Run only the named check")
+    parser.add_argument("--min-errors", type=int, default=1, dest="min_errors",
+                        help="Exclude files with fewer than N total errors")
+    return parser.parse_args(argv)
+
+
+def main(argv=None) -> int:
+    import datetime
+    import os
+    from pathlib import Path
+
+    args = parse_args(argv)
+
+    if args.check is not None:
+        if get_check(args.check) is None:
+            names = ", ".join(c.name for c in CHECKS)
+            print(f"Error: unknown check '{args.check}'. Available: {names}", file=sys.stderr)
+            return 1
+        checks = [get_check(args.check)]
+    else:
+        checks = CHECKS
+
+    db_url = os.getenv("DATABASE_URL", "local.db")
+    if not db_url.startswith("http") and not db_url.startswith("libsql://"):
+        path = db_url.removeprefix("file:") if db_url.startswith("file:") else db_url
+        if not Path(path).exists():
+            print(f"Error: database not found: {path}", file=sys.stderr)
+            return 1
+
+    db = DbClient()
+    try:
+        raw = run_checks(db, checks)
+        ranked = aggregate(raw, min_errors=args.min_errors)
+        run_date = datetime.date.today().isoformat()
+        report = format_report(checks, raw, ranked, top=args.top, run_date=run_date)
+        print(report)
+    finally:
+        db.close()
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
