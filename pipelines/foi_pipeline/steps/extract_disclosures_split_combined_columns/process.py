@@ -77,11 +77,14 @@ def split_file(item: dict) -> tuple:
         return item, []
 
     new_rows = [list(r) if r is not None else r for r in rows]
+    header_row = new_rows[header_row_idx]
+    if header_row is None:
+        return item, []
 
     for col_idx in reversed(combined_indices):
         # Replace combined header with two separate headers
-        new_rows[header_row_idx][col_idx] = _DATE_HEADER
-        new_rows[header_row_idx].insert(col_idx + 1, _DESC_HEADER)
+        header_row[col_idx] = _DATE_HEADER
+        header_row.insert(col_idx + 1, _DESC_HEADER)
 
         # Split each data row
         for row_idx in range(header_row_idx + 1, len(new_rows)):
