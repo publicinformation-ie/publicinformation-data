@@ -1,7 +1,7 @@
 import sqlite3
 import pytest
 from lib.db_client import DbClient
-from scripts.audit_disclosures import Check, CHECKS, get_check, run_checks, aggregate
+from scripts.audit_disclosures import Check, CHECKS, get_check, run_checks, aggregate, format_report
 
 
 def test_check_dataclass_fields():
@@ -140,3 +140,52 @@ def test_aggregate_preserves_per_check_counts():
 
 def test_aggregate_empty():
     assert aggregate({}) == []
+
+
+def test_format_report_check_summary_line():
+    checks = [c for c in CHECKS if c.name == "blank_request_description"]
+    raw = {
+        "https://a.ie/1.pdf": {"blank_request_description": 10},
+        "https://b.ie/2.pdf": {"blank_request_description": 5},
+    }
+    ranked = [
+        ("https://a.ie/1.pdf", 10, {"blank_request_description": 10}),
+        ("https://b.ie/2.pdf", 5, {"blank_request_description": 5}),
+    ]
+    report = format_report(checks, raw, ranked, top=20, run_date="2026-06-23")
+    assert "CHECK SUMMARY" in report
+    assert "blank_request_description" in report
+    assert "15 rows in  2 files" in report
+
+
+def test_format_report_file_ranking():
+    checks = [c for c in CHECKS if c.name == "blank_request_description"]
+    raw = {"https://a.ie/1.pdf": {"blank_request_description": 7}}
+    ranked = [("https://a.ie/1.pdf", 7, {"blank_request_description": 7})]
+    report = format_report(checks, raw, ranked, top=20, run_date="2026-06-23")
+    assert "TOP 20 FILES BY ERROR COUNT" in report
+    assert "1. https://a.ie/1.pdf" in report
+    assert "(7 errors)" in report
+    assert "blank_request_description: 7" in report
+
+
+def test_format_report_top_limits_files():
+    checks = [c for c in CHECKS if c.name == "blank_request_description"]
+    raw = {f"https://a.ie/{i}.pdf": {"blank_request_description": i} for i in range(1, 6)}
+    ranked = [(f"https://a.ie/{i}.pdf", i, {"blank_request_description": i}) for i in range(5, 0, -1)]
+    report = format_report(checks, raw, ranked, top=3, run_date="2026-06-23")
+    assert "TOP 3 FILES BY ERROR COUNT" in report
+    assert "1. https://a.ie/5.pdf" in report
+    assert "https://a.ie/1.pdf" not in report
+
+
+def test_format_report_header():
+    report = format_report(CHECKS, {}, [], top=20, run_date="2026-06-23")
+    assert "FOI Disclosures Quality Report" in report
+    assert "4 checks" in report
+    assert "2026-06-23" in report
+
+
+def test_format_report_no_errors():
+    report = format_report(CHECKS, {}, [], top=20, run_date="2026-06-23")
+    assert "No issues found." in report

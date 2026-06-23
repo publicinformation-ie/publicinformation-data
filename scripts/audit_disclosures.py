@@ -77,3 +77,41 @@ def aggregate(
             rows.append((url, total, per_check))
     rows.sort(key=lambda x: x[1], reverse=True)
     return rows
+
+
+def format_report(
+    checks: list[Check],
+    raw: dict[str, dict[str, int]],
+    ranked: list[tuple[str, int, dict[str, int]]],
+    top: int,
+    run_date: str,
+) -> str:
+    n = len(checks)
+    separator = "=" * 54
+    lines = [
+        f"FOI Disclosures Quality Report — {n} checks, {run_date}",
+        separator,
+        "",
+    ]
+
+    if not ranked:
+        lines.append("No issues found.")
+        return "\n".join(lines)
+
+    lines.append("CHECK SUMMARY")
+    for check in checks:
+        total_rows = sum(
+            per_check.get(check.name, 0) for per_check in raw.values()
+        )
+        n_files = sum(1 for per_check in raw.values() if check.name in per_check)
+        lines.append(f"  {check.name:<30} {total_rows:>4} rows in {n_files:>2} files")
+
+    lines.append("")
+    lines.append(f"TOP {top} FILES BY ERROR COUNT")
+    for rank, (url, total, per_check) in enumerate(ranked[:top], start=1):
+        lines.append(f"  {rank}. {url}  ({total} errors)")
+        for check_name, count in sorted(per_check.items(), key=lambda x: -x[1]):
+            lines.append(f"       {check_name}: {count}")
+        lines.append("")
+
+    return "\n".join(lines)
