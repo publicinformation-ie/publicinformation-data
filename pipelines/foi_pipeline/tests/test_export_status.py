@@ -3,6 +3,8 @@ import json
 import pytest
 from steps.export_status.process import (
     STEP_NAME,
+    DISCLOSURE_STEPS,
+    collect_disclosure_ids,
     merge,
     merge_validate_websites,
     merge_find_foi_pages,
@@ -910,3 +912,97 @@ def test_scoped_export_only_targets_body(tmp_path):
     body_ids = [b["public_body_id"] for b in result]
     assert body_ids == [1002]
     assert 1001 not in body_ids
+
+
+# ---------------------------------------------------------------------------
+# Orphan guard: disclosure ids must exist in the canonical body map
+# ---------------------------------------------------------------------------
+
+def test_collect_disclosure_ids_extracts_ids_from_results():
+    step_data = {"results": [{"public_body_id": 1001}, {"public_body_id": 1002}]}
+    assert collect_disclosure_ids(step_data) == {1001, 1002}
+
+
+def test_collect_disclosure_ids_empty_results():
+    assert collect_disclosure_ids({"results": []}) == set()
+
+
+def test_merge_raises_on_orphan_disclosure_id(tmp_path):
+    """A disclosure record referencing a public_body_id absent from the
+    canonical body map must raise loudly, naming the offending id and step."""
+    steps_dir = setup_steps_dir(tmp_path, {
+        "find_public_bodies_subject_to_foi": BASE_OUTPUT,
+        "extract_disclosures_canonicalize": {
+            "metadata": {},
+            "results": [
+                {"public_body_id": 1001},
+                {"public_body_id": 9999},  # orphan: not in BASE_OUTPUT (1001, 1002)
+            ],
+        },
+    })
+    with pytest.raises(ValueError) as exc:
+        merge(steps_dir, PIPELINE_STEPS)
+    msg = str(exc.value)
+    assert "9999" in msg
+    assert "extract_disclosures_canonicalize" in msg
+    assert "1001" not in msg  # valid ids must not be reported
+
+
+def test_merge_raises_on_orphan_in_find_disclosure_files(tmp_path):
+    steps_dir = setup_steps_dir(tmp_path, {
+        "find_public_bodies_subject_to_foi": BASE_OUTPUT,
+        "find_disclosure_files": {
+            "metadata": {},
+            "results": [
+                {"public_body_id": 8888, "file_url": "x", "file_type": "xlsx"},
+            ],
+        },
+    })
+    with pytest.raises(ValueError) as exc:
+        merge(steps_dir, PIPELINE_STEPS)
+    assert "8888" in str(exc.value)
+    assert "find_disclosure_files" in str(exc.value)
+
+
+def test_merge_does_not_raise_when_all_disclosure_ids_valid(tmp_path):
+    steps_dir = setup_steps_dir(tmp_path, {
+        "find_public_bodies_subject_to_foi": BASE_OUTPUT,
+        "find_disclosure_files": {
+            "metadata": {},
+            "results": [
+                {"public_body_id": 1001, "file_url": "x", "file_type": "xlsx"},
+                {"public_body_id": 1002, "file_url": "y", "file_type": "pdf"},
+            ],
+        },
+        "extract_disclosures_canonicalize": {
+            "metadata": {},
+            "results": [{"public_body_id": 1001}, {"public_body_id": 1002}],
+        },
+    })
+    result = merge(steps_dir, PIPELINE_STEPS)  # must not raise
+    assert {b["public_body_id"] for b in result} == {1001, 1002}
+
+
+def test_scoped_export_does_not_false_positive_on_other_bodies_ids(tmp_path):
+    """A single-body run must only see the targeted body's disclosure records,
+    so another body's id present in the raw output must not trip the guard."""
+    steps_dir = setup_steps_dir(tmp_path, {
+        "find_public_bodies_subject_to_foi": BASE_OUTPUT,
+        "extract_disclosures_canonicalize": {
+            "metadata": {},
+            "results": [
+                {"public_body_id": 1001},
+                {"public_body_id": 9999},  # filtered out when scoping to 1002
+            ],
+        },
+    })
+    # Scope to 1002: the 9999 record is filtered out before the guard sees it.
+    result = merge(steps_dir, PIPELINE_STEPS, target_public_body=1002)
+    assert [b["public_body_id"] for b in result] == [1002]
+
+
+def test_disclosure_steps_are_registered_mergers():
+    """Every guarded disclosure step must also have a real merger."""
+    from steps.export_status.process import STEP_MERGERS
+    for step in DISCLOSURE_STEPS:
+        assert step in STEP_MERGERS
