@@ -15,6 +15,12 @@ CANONICAL_COLUMNS: list[str] = [
 
 REQUIRED_COLUMNS: frozenset[str] = frozenset({'foi_reference_id', 'request_description'})
 
+# Normalised headers of columns that contain both a date AND request description in the same cell.
+# These are split by extract_disclosures_split_combined_columns before date normalisation.
+COMBINED_DATE_HEADERS: frozenset[str] = frozenset({
+    'date and details of request received',
+    'date and details of request',
+})
 
 
 _SYNONYMS: dict[str, list[str]] = {

@@ -4,7 +4,15 @@ from lib.column_map import (
     canonicalize_headers,
     CANONICAL_COLUMNS,
     REQUIRED_COLUMNS,
+    COMBINED_DATE_HEADERS,
 )
+
+
+def test_combined_date_headers_contains_date_and_details():
+    assert 'date and details of request received' in COMBINED_DATE_HEADERS
+
+def test_combined_date_headers_contains_short_form():
+    assert 'date and details of request' in COMBINED_DATE_HEADERS
 
 
 def test_canonical_columns_order():
