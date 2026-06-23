@@ -1,5 +1,25 @@
 # Scripts
 
+## migrate_foi_ids_to_cso.py
+
+One-time, idempotent migration that remaps all FOI/disclosure data onto the canonical CSO `public_body_id` namespace.
+
+The FOI pipeline originally numbered public bodies by gov.ie scrape order; CSO later became the canonical body register (numbered alphabetically). Both ID ranges are 1000–1882, so old FOI IDs silently collided with different canonical CSO bodies. This script rebuilds the link by **folded name**: for every disclosure step output (and the hand-maintained `override.json` files) it rewrites each record's `public_body_id` and `name` to the canonical CSO body, then dedups the crawl artifacts.
+
+It is **idempotent and safe to re-run**: a record that is already canonical maps to itself, and a second full run reports 0 remaps and 0 dedup removals. If any record name fails to resolve to a canonical CSO body, the script aborts with a non-zero exit and names the offending value — it never attaches records to the wrong body silently.
+
+### Usage
+
+```bash
+# Preview the per-file plan without writing anything:
+PYTHONPATH=src python scripts/migrate_foi_ids_to_cso.py --dry-run
+
+# Apply the migration in place:
+PYTHONPATH=src python scripts/migrate_foi_ids_to_cso.py
+```
+
+`PYTHONPATH=src` is required so the script can import `lib.file_utils` (shared `read_json`/`write_json`).
+
 ## admin-corrections.mjs
 
 Interactive CLI for reviewing and actioning pending user-submitted corrections from the public API.
