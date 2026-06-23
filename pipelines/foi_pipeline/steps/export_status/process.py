@@ -142,12 +142,14 @@ STEP_MERGERS = {
     "transform_disclosure_files": merge_transform_disclosure_files,
     "extract_disclosures_canonicalize": merge_extract_disclosures_canonicalize,
     "extract_disclosures_deduplicate": merge_extract_disclosures_canonicalize,
-}
+}  # NOTE: disclosure-counting mergers must also be listed in DISCLOSURE_STEPS
 
-# Disclosure step outputs carry a public_body_id that MUST exist in the
-# canonical body map. These are the steps that historically suffered the
-# FOI/CSO public_body_id namespace collision (records attributed to the wrong
-# body, or silently dropped). The orphan guard in merge() checks their ids.
+# Steps whose output records MUST resolve to a canonical body. The orphan
+# guard in merge() raises if any of these reference a public_body_id not in
+# body_map. NON-disclosure mergers are deliberately EXEMPT: they may
+# legitimately reference bodies outside the subject-to-FOI subset and skip
+# them via `if bid in body_map`, so guarding them would false-positive.
+# If you add a new merger that COUNTS disclosure records per body, add it here.
 DISCLOSURE_STEPS = {
     "find_disclosure_files",
     "transform_disclosure_files",
