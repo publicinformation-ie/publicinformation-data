@@ -33,8 +33,7 @@ def score_confidence(domain: str, body_name: str) -> str:
     return "low"
 
 
-def process(input_data, step_dir, writer, api_token=None, verbose=False):
-    write_json(Path(step_dir) / "errors.json", [])
+def process(input_data, step_dir, writer, verbose=False):
     bodies = input_data.get("public_bodies") or input_data.get("results", [])
 
     to_search = []
@@ -55,7 +54,7 @@ def process(input_data, step_dir, writer, api_token=None, verbose=False):
 
     queries = [build_query(b) for b in to_search]
     try:
-        results = batch_search(queries, api_token=api_token)
+        results = batch_search(queries)
     except Exception as e:
         append_error(step_dir, {
             "step": STEP_NAME, "error_type": "ApifyError",
@@ -103,6 +102,8 @@ def main():
                                override_path=step_dir / "override.json")
     if writer.processed_keys:
         print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")
+    if args.force:
+        write_json(step_dir / "errors.json", [])
     process(input_data, step_dir, writer, verbose=args.verbose)
     count = writer.finalize()
     write_status(step_dir, count)
