@@ -45,3 +45,22 @@ def get_check(name: str) -> "Check | None":
         if c.name == name:
             return c
     return None
+
+
+def run_checks(db: DbClient, checks: list[Check]) -> dict[str, dict[str, int]]:
+    """Run each check query; return {file_url: {check_name: count}}."""
+    results: dict[str, dict[str, int]] = {}
+    for check in checks:
+        sql = (
+            f"SELECT file_url, COUNT(*) AS n "
+            f"FROM foi_disclosures "
+            f"WHERE {check.where_clause} "
+            f"GROUP BY file_url"
+        )
+        rows = db.execute(sql)
+        for row in rows:
+            url = row["file_url"]
+            if url not in results:
+                results[url] = {}
+            results[url][check.name] = row["n"]
+    return results
