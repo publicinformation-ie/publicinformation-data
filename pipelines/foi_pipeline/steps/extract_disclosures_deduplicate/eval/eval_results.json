@@ -3,25 +3,25 @@
   "metrics": [
     {
       "name": "overall_records_kept_ratio",
-      "value": 0.844,
+      "value": 0.861,
       "counts": {
-        "total_before": 64014,
-        "total_after": 54044,
-        "removed": 9970
+        "total_before": 66155,
+        "total_after": 56942,
+        "removed": 9213
       },
       "is_primary": true
     },
     {
       "name": "pct_bodies_low_ratio",
-      "value": 0.074,
+      "value": 0.085,
       "counts": {
         "threshold": 0.5,
-        "low_ratio_count": 5,
-        "total_bodies_with_records": 68
+        "low_ratio_count": 6,
+        "total_bodies_with_records": 71
       },
       "is_primary": false
     }
   ],
-  "input_hash": "c9740ba30c147735f58deef14c0f55f92b8a6053ee1b8cbc4cb916ed063be550",
+  "input_hash": "ebcd2c1d1765317ef153e619a4b290ce70e422b78bb77709f2a598b55d7b4103",
   "judge_model": null
 }

@@ -39,9 +39,9 @@
     },
     {
       "name": "camelot_fallback_rate",
-      "value": 0.127,
+      "value": 0.105,
       "counts": {
-        "attempted": 178,
+        "attempted": 147,
         "total": 1397
       },
       "is_primary": false
