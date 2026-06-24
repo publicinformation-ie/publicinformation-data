@@ -4,24 +4,11 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+from lib.body_utils import derive_category
 from lib.cli_utils import add_common_args
 from lib.file_utils import read_json, write_json, write_status
 
 STEP_NAME = "find_public_bodies"
-_LOCAL_AUTHORITY_PATTERNS = ("County Council", "City Council", "City and County Council")
-
-
-def derive_category(body):
-    sector = body.get("sector") or ""
-    govt_dept = body.get("government_department") or ""
-    if sector.startswith("S1313"):
-        return "local authority"
-    if sector.startswith("S1311"):
-        return "government department"
-    for pat in _LOCAL_AUTHORITY_PATTERNS:
-        if pat in govt_dept:
-            return "local authority"
-    return "public service body"
 
 
 def ingest_bodies(hub_records):
