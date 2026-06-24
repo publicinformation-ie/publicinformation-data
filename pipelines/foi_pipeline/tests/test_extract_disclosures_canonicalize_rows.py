@@ -309,6 +309,20 @@ def test_task1_genuine_status_synonyms(raw, expected):
     assert canonicalize_status(raw) == expected, f"Expected {raw!r} → {expected!r}"
 
 
+# ── RC5: missing status synonyms ──────────────────────────────────────────────
+
+@pytest.mark.parametrize("raw,expected", [
+    ("Gtrant", "Granted"),
+    ("S & R", "Deemed Refused"),
+    ("S & R Exceed", "Deemed Refused"),
+    ("Dealt with out", "Handled outside of FOI"),
+    ("Ext of time", "Unknown"),
+])
+def test_rc5_missing_status_synonyms(raw, expected):
+    """RC5: status values present in real PDFs but missing from status_map."""
+    assert canonicalize_status(raw) == expected, f"Expected {raw!r} → {expected!r}"
+
+
 # ── Task 2: column-header leakage reclassification ─────────────────────────
 
 @pytest.mark.parametrize("raw,expected_error_type", [
