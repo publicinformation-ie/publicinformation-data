@@ -12,13 +12,6 @@ def fmt_time(iso: str) -> str:
     return dt.strftime("%Y-%m-%d %H:%M")
 
 
-def fmt_size(n: int) -> str:
-    if n >= 1_000_000:
-        return f"{n / 1_000_000:.1f}M"
-    if n >= 1_000:
-        return f"{n / 1_000:.0f}K"
-    return str(n)
-
 
 def assert_fresh(pipeline_dir: Path) -> None:
     export_out = pipeline_dir / "steps" / "export_status" / "output.json"
@@ -127,7 +120,7 @@ def main():
     for r in rows:
         name = r["name"]
         completed = fmt_time(r["completed"]) if r["completed"] else "—"
-        records = fmt_size(r["records"]) if r["records"] is not None else "—"
+        records = str(r["records"]) if r["records"] is not None else "—"
         stale_marker = " !!!" if r["stale"] else ""
         missing_marker = " (no output)" if not r["has_output"] else ""
         errors = str(r["errors"]) if r["errors"] else ""
