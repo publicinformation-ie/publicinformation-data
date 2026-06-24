@@ -82,6 +82,34 @@ def test_does_not_merge_data_row_with_mostly_populated_cells():
     assert result_rows[0] == ["Ref", "Date", "Decision"]
 
 
+def test_merges_continuation_row_at_exact_50_percent_null_boundary():
+    """A row with exactly 50% null cells IS treated as a continuation (Meath 2016 pattern).
+
+    Old threshold was null_fraction <= 0.5 which broke here; new threshold is < 0.5.
+    """
+    # Exact 50% null (2 null out of 4): should merge under the new < threshold
+    rows = [
+        ["Ref", None, "Date", None],               # header row
+        [None, "Received", None, "Decision"],       # continuation: 2/4 null = 50% — boundary case
+        ["1", "2020-01-01", "x", "Granted"],        # data
+    ]
+    result_rows, idx = normalize_header_row(rows, header_row_idx=0)
+    assert result_rows[0][1] == "Received"          # merged from continuation
+    assert result_rows[0][3] == "Decision"          # merged from continuation
+    assert len(result_rows) == 2
+
+
+def test_does_not_merge_row_with_majority_populated_cells():
+    """A row with more than 50% populated cells (< 50% null) is NOT a continuation."""
+    rows = [
+        ["Ref", "Date", "Decision", None],
+        ["FOI-001", "2020-01-01", "Granted", None],  # 3/4 non-null = 75% populated → real data
+        ["FOI-002", "2020-02-01", "Refused", None],
+    ]
+    result_rows, idx = normalize_header_row(rows, header_row_idx=0)
+    assert len(result_rows) == 3  # nothing removed
+
+
 # ── header_row_idx != 0 ───────────────────────────────────────────────────────
 
 def test_handles_header_not_on_row_zero():
@@ -148,3 +176,52 @@ def test_forward_fill_does_not_rescue_when_next_row_is_data():
     ]
     new_rows, new_idx = normalize_header_row(rows, header_row_idx=0)
     assert new_idx == 0
+
+
+# ── targeted fill (Fix 2): fully-populated second header row ──────────────────
+
+def test_targeted_fill_fully_populated_continuation_row():
+    """Tipperary July 2021 pattern: a fully-populated row with ≥2 canonical matches is
+    detected as a missed continuation row and its value is used to fill None at position 0."""
+    rows = [
+        [None, 'Date', 'Requester', 'Requester', 'Date decision', 'Date decision'],
+        ['FOI File No', 'Received', 'Category', 'Brief Description of Request', 'issued', 'Decision'],
+        ['TCC/37/20', None, 'Member of public', 'Some accommodation request', None, '02/07/2021 Refused'],
+    ]
+    result, idx = normalize_header_row(rows, header_row_idx=0)
+    assert result[0][0] == 'FOI File No'       # None at position 0 was filled
+    assert idx == 0
+    assert len(result) == 2                     # continuation row removed from data
+    assert result[1][0] == 'TCC/37/20'         # first actual data row
+
+
+def test_targeted_fill_does_not_merge_data_row_without_canonical_matches():
+    """BIM pattern: a data row with 0 canonical matches is NOT treated as a continuation,
+    so the structural None at position 0 is left in place."""
+    rows = [
+        [None, 'Date of Request', 'Request Type', 'Description', 'Decision', 'Date of Response'],
+        [None, '11 January 2017', 'Business/Interest Groups', 'Some request text', 'Granted', '01 March 2017'],
+    ]
+    result, idx = normalize_header_row(rows, header_row_idx=0)
+    assert result[0][0] is None    # structural blank at position 0 — not filled
+    assert len(result) == 2        # data row NOT removed
+
+
+def test_targeted_fill_does_not_touch_non_none_header_positions():
+    """Targeted fill only writes to positions that are currently None after forward-fill;
+    non-None header cells are never overwritten with values from the candidate row.
+    Note: forward-fill already handles trailing/mid Nones; targeted fill only reaches
+    leading Nones (before any non-None value) that forward-fill cannot propagate into."""
+    rows = [
+        [None, 'Date Received', 'Decision', 'Description'],
+        ['Ref No', 'Date', 'Outcome', 'Summary'],   # candidate: ≥2 canonical matches
+        ['001', '2020-01-01', 'Granted', 'Some request'],
+    ]
+    result, idx = normalize_header_row(rows, header_row_idx=0)
+    # Position 0 (leading None) is filled from the candidate row
+    assert result[0][0] == 'Ref No'
+    # Non-None positions are NOT overwritten by the candidate row's values
+    assert result[0][1] == 'Date Received'
+    assert result[0][2] == 'Decision'
+    assert result[0][3] == 'Description'
+    assert len(result) == 2   # candidate row consumed

@@ -51,7 +51,7 @@ def normalize_header_row(rows, header_row_idx, max_continuation_rows=_MAX_CONTIN
             break
         non_null = sum(1 for c in row if c is not None)
         null_fraction = 1 - (non_null / len(row))
-        if null_fraction <= _CONTINUATION_NULL_THRESHOLD:
+        if null_fraction < _CONTINUATION_NULL_THRESHOLD:
             break  # too many populated cells — this is real data
         for col_idx, cell in enumerate(row):
             if cell is not None and col_idx < ncols:
@@ -68,6 +68,21 @@ def normalize_header_row(rows, header_row_idx, max_continuation_rows=_MAX_CONTIN
             last_val = cell
         elif last_val is not None:
             header[i] = last_val
+
+    # Step 3: targeted fill — if Nones remain after forward-fill, check whether the
+    # first non-merged row is actually a missed second header line. We detect this by
+    # counting how many of its cells canonicalize as known header labels; ≥2 distinct
+    # canonical hits strongly indicates a split header rather than a data row. When
+    # triggered, only None positions in the header are filled (non-None positions are
+    # never overwritten), and the candidate row is consumed (removed from data).
+    none_positions = [i for i, c in enumerate(header) if c is None]
+    if none_positions and continuation_end < len(rows):
+        candidate = rows[continuation_end]
+        if _count_canonical_columns(candidate) >= 2:
+            for pos in none_positions:
+                if pos < len(candidate) and candidate[pos] is not None:
+                    header[pos] = str(candidate[pos])
+            continuation_end += 1
 
     # Strip pre-header title rows; header is always rows[0] after this point.
     new_rows = [header] + list(rows[continuation_end:])
