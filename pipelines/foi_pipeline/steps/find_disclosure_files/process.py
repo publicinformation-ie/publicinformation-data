@@ -37,6 +37,7 @@ _NEGATIVE_KEYWORDS = [
     'economic-letter',
     'visitor-numbers', 'heritage',
     'calendar',
+    'rent-review', 'carnival',
     '_january_-_march', '_april_-_june', '_july_-_september', '_october_-_december',
 ]
 
@@ -49,6 +50,7 @@ _POSITIVE_LINK_TEXTS = [
 _NEGATIVE_LINK_TEXTS = [
     "election result", "visitor number", "financial stability",
     "economic letter", "quarterly bulletin", "heritage services", "emergency number",
+    "traveller accommodation", "carnival", "rent scheme",
 ]
 
 
