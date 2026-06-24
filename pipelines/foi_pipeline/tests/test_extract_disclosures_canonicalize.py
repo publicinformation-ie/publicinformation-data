@@ -832,3 +832,50 @@ def test_long_row_with_extra_none_removes_blank_column():
     assert results[0]["requester_type"] == "Journalist"
     assert results[0]["decision_status"] == "Granted"
     assert errors == []
+
+
+# ── Row-length +2 mismatch tests (RC4 — DEASP 2017 8-col shift) ──────────────
+
+def test_row_two_longer_than_header_is_dropped_not_emitted():
+    """Rows 2 cells longer than the header cannot be reliably realigned;
+    they must be skipped rather than emitting a record with garbage values."""
+    rows = [
+        [None, "Date of Request", "Category of Requester", "Summary", "Decision Made", "Date of Reply"],
+        # Normal 6-col row — must still be processed:
+        [None, "01/02/2017", "Journalist", "Records about planning", "Granted", "01/04/2017"],
+        # 8-col row (2 extra) — must be skipped:
+        [None, "28/03/2017", None, None, "Member of the", "Notes, minutes and records", None, None],
+    ]
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    # Only the normal 6-col row produces a record
+    assert len(results) == 1
+    assert results[0]["date_received"] == "01/02/2017"
+    assert results[0]["decision_status"] == "Granted"
+
+
+def test_row_two_longer_emits_error():
+    """Dropped ±2 rows must be logged so they're auditable."""
+    rows = [
+        [None, "Date of Request", "Category of Requester", "Summary", "Decision Made", "Date of Reply"],
+        [None, "28/03/2017", None, None, "Member of the", "Notes, minutes", None, None],
+    ]
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert results == []
+    assert len(errors) == 1
+    assert errors[0]["error_type"] == "RowLengthMismatch"
+    assert errors[0]["context"]["expected_cols"] == 6
+    assert errors[0]["context"]["actual_cols"] == 8
+
+
+def test_row_one_longer_still_corrected_not_dropped():
+    """The existing ±1 correction must NOT be affected by the new ±2 drop logic.
+    A row 1 cell longer than the header must still be corrected via None removal."""
+    rows = [
+        ["Our Reference", "Request Details", "Category", "Decision Made", "Date"],
+        # 6-col row against 5-col header (1 extra None) — existing Root Cause B logic:
+        ["16/001", "some request", None, "Journalist", "Granted", "01/01/2016"],
+    ]
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert len(results) == 1
+    assert results[0]["decision_status"] == "Granted"
+    assert errors == []
