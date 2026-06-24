@@ -75,11 +75,17 @@ def process(input_data, step_dir, writer, verbose=False):
             enriched = {**body, "apify_website_url": None, "apify_confidence": "not_found"}
         else:
             url = organic[0].get("link") or organic[0].get("url", "")
-            domain = urlparse(url).netloc
+            parsed = urlparse(url)
+            domain = parsed.netloc
+            confidence = score_confidence(domain, body.get("name", ""))
+            if confidence == "high":
+                normalised_url = f"{parsed.scheme}://{domain}/"
+            else:
+                normalised_url = None
             enriched = {
                 **body,
-                "apify_website_url": url,
-                "apify_confidence": score_confidence(domain, body.get("name", "")),
+                "apify_website_url": normalised_url,
+                "apify_confidence": confidence if normalised_url else "low_discarded",
             }
         writer.append([enriched])
         if verbose:

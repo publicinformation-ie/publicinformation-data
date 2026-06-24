@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import json
+import os
 import re
 import sys
 import time
@@ -12,16 +13,16 @@ from lib.cli_utils import add_common_args, filter_by_public_body
 from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
 
 STEP_NAME = "search_websites_llm"
-OLLAMA_URL = "http://localhost:11434/api/generate"
-OLLAMA_MODEL = "gemma4:12b"
-OLLAMA_TIMEOUT = 120
+MISTRAL_API_URL = "https://api.mistral.ai/v1/chat/completions"
+MISTRAL_MODEL = "mistral-small"
+MISTRAL_TIMEOUT = 60
 
 _SYSTEM_PROMPT = "You are a research assistant. Return ONLY valid JSON, no prose."
 _FENCE_RE = re.compile(r"```(?:json)?\s*(.*?)\s*```", re.DOTALL)
 _NULL_FIELDS = {"llm_website_url": None, "llm_url_type": None, "llm_confidence": None, "llm_notes": None}
 
 
-def build_prompt(body: dict) -> str:
+def build_user_prompt(body: dict) -> str:
     return (
         "Find the official website for this Irish public body.\n\n"
         f"Name: {body.get('name', '')}\n"
@@ -63,25 +64,37 @@ def parse_llm_response(text: str) -> dict:
     raise ValueError(f"Could not parse JSON from LLM response: {text[:200]!r}")
 
 
-def call_ollama(user_prompt: str) -> dict:
-    """Call Ollama and return parsed result dict. Raises on any error."""
+def call_mistral(user_prompt: str, api_key: str) -> dict:
+    """Call Mistral chat completions and return parsed result dict. Raises on any error."""
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    }
+    payload = {
+        "model": MISTRAL_MODEL,
+        "messages": [
+            {"role": "system", "content": _SYSTEM_PROMPT},
+            {"role": "user", "content": user_prompt},
+        ],
+        "temperature": 0.0,
+        "max_tokens": 300,
+        "response_format": {"type": "json_object"},
+    }
     try:
-        resp = requests.post(
-            OLLAMA_URL,
-            json={"model": OLLAMA_MODEL, "prompt": user_prompt, "system": _SYSTEM_PROMPT, "stream": False},
-            timeout=OLLAMA_TIMEOUT,
-        )
-    except requests.exceptions.ConnectionError as e:
-        raise ConnectionError(f"Ollama not running: {e}") from e
+        resp = requests.post(MISTRAL_API_URL, headers=headers, json=payload, timeout=MISTRAL_TIMEOUT)
     except requests.exceptions.Timeout as e:
-        raise TimeoutError("Ollama request timed out") from e
+        raise TimeoutError("Mistral request timed out") from e
+    except requests.exceptions.RequestException as e:
+        raise RuntimeError(f"Request error: {e}") from e
+    if resp.status_code in (401, 403):
+        raise PermissionError(f"Mistral auth failed (HTTP {resp.status_code}): check MISTRAL_API_KEY")
     if not resp.ok:
         raise RuntimeError(f"HTTP {resp.status_code}: {resp.text[:200]}")
-    raw = resp.json().get("response", "")
+    raw = resp.json()["choices"][0]["message"]["content"]
     return parse_llm_response(raw)
 
 
-def process(input_data, step_dir, writer, delay=30, verbose=False):
+def process(input_data, step_dir, writer, api_key: str, delay=1.0, verbose=False):
     write_json(Path(step_dir) / "errors.json", [])
     bodies = input_data.get("public_bodies") or input_data.get("results", [])
     first = True
@@ -93,7 +106,7 @@ def process(input_data, step_dir, writer, delay=30, verbose=False):
             time.sleep(delay)
         first = False
         try:
-            result = call_ollama(build_prompt(body))
+            result = call_mistral(build_user_prompt(body), api_key)
             enriched = {
                 **body,
                 "llm_website_url": result.get("url"),
@@ -101,7 +114,7 @@ def process(input_data, step_dir, writer, delay=30, verbose=False):
                 "llm_confidence": result.get("confidence"),
                 "llm_notes": result.get("notes"),
             }
-        except ConnectionError as e:
+        except PermissionError as e:
             print(f"Fatal: {e}", file=sys.stderr)
             sys.exit(1)
         except TimeoutError as e:
@@ -128,11 +141,17 @@ def process(input_data, step_dir, writer, delay=30, verbose=False):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="LLM website search for CSO public bodies")
+    parser = argparse.ArgumentParser(description="LLM website search for CSO public bodies via Mistral")
     add_common_args(parser)
-    parser.add_argument("--delay", type=float, default=30.0,
-                        help="Seconds to pause between Ollama calls (default: 30)")
+    parser.add_argument("--delay", type=float, default=1.0,
+                        help="Seconds to pause between Mistral calls (default: 1)")
     args = parser.parse_args()
+
+    api_key = os.getenv("MISTRAL_API_KEY")
+    if not api_key:
+        print("Fatal: MISTRAL_API_KEY environment variable not set", file=sys.stderr)
+        sys.exit(1)
+
     step_dir = Path(__file__).parent
     output_path = Path(args.output)
     try:
@@ -145,7 +164,7 @@ def main():
                                override_path=step_dir / "override.json")
     if writer.processed_keys:
         print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")
-    process(input_data, step_dir, writer, delay=args.delay, verbose=args.verbose)
+    process(input_data, step_dir, writer, api_key=api_key, delay=args.delay, verbose=args.verbose)
     count = writer.finalize()
     write_status(step_dir, count)
     if args.verbose:

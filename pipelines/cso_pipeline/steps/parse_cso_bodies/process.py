@@ -57,6 +57,7 @@ def parse_rows(rows: list, id_map: dict) -> tuple:
             "nace_code": row.get("nace_code", "").strip() or None,
             "cro": row.get("cro", "").strip() or None,
             "data_vintage": int(row["data_vintage"]) if row.get("data_vintage", "").strip() else None,
+            "description_for_sub_sector": row.get("description_for_sub_sector", "").strip() or None,
             "official_website_url": None,
         })
 
