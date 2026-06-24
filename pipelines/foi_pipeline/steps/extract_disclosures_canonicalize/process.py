@@ -96,6 +96,7 @@ def canonicalize_file(item, column_swaps=None):
             _seen_for_dup.add(_c)
 
     results = []
+    errors = []
     header_rows_dropped = 0
     for row in rows[header_row_idx + 1:]:
         if not row:
@@ -115,6 +116,25 @@ def canonicalize_file(item, column_swaps=None):
                     row = list(row)
                     del row[_extra_idx]
                     break
+        # Root Cause C: rows more than one cell longer than the header cannot be
+        # reliably realigned (e.g. DEASP 2017 8-col sub-table pages vs 6-col header).
+        # Drop and log rather than emit a record with misaligned field values.
+        elif len(row) > len(headers) + 1:
+            errors.append({
+                "error_type": "RowLengthMismatch",
+                "error_message": (
+                    f"Row has {len(row)} cells but header has {len(headers)}; "
+                    "cannot reliably realign — row skipped"
+                ),
+                "context": {
+                    "file_url": meta["file_url"],
+                    "public_body_id": meta["public_body_id"],
+                    "expected_cols": len(headers),
+                    "actual_cols": len(row),
+                    "row_preview": list(row[:8]),
+                },
+            })
+            continue
 
         record = {**meta}
         for key in CANONICAL_COLUMNS:
@@ -139,7 +159,7 @@ def canonicalize_file(item, column_swaps=None):
             record["missing_columns"] = missing_required
         results.append(record)
 
-    return results, [], header_rows_dropped
+    return results, errors, header_rows_dropped
 
 
 def process(input_data, results_out, errors_out, column_swaps=None, verbose=False):
