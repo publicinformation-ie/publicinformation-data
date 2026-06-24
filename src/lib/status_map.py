@@ -38,6 +38,7 @@ _STATUS_SYNONYMS: dict[str, list[str]] = {
         'G r a n t e d',   # OCR spaced-letter artefact
         'GGrraanntteedd',   # OCR double-print artefact
         'Gtant',            # typo for "Grant"
+        'Gtrant',           # typo for "Grant"
     ],
     'Refused': [
         'Refused',
@@ -108,6 +109,7 @@ _STATUS_SYNONYMS: dict[str, list[str]] = {
         'Outside AIE',                                   # Access to Info on the Environment
         'Directed to NMI website',                       # info available on NMI website
         'dealt with outside of F',                       # truncated "dealt with outside of FOI"
+        'Dealt with out',                                # truncated "Dealt with outside FOI"
     ],
     'Transferred': [
         'Transferred',
@@ -126,6 +128,8 @@ _STATUS_SYNONYMS: dict[str, list[str]] = {
         'Deemed Refused No records found',
         'Deemed to be refused as reply not sent within timeframes',
         'lapsed - S & R fee not received',
+        'S & R',            # Search & Retrieve fee not paid → lapsed
+        'S & R Exceed',     # S&R fee exceeded threshold → lapsed
     ],
     'Personal': [
         'PERSONAL',
@@ -141,6 +145,7 @@ _STATUS_SYNONYMS: dict[str, list[str]] = {
         'Awaiting decision',  # outcome not recorded
         'Active',             # same — in-progress indicator
         'Blank Error',        # extraction artefact for blank status cell
+        'Ext of time',        # extension granted; final outcome not yet recorded
     ],
 }
 

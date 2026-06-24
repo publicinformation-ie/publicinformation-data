@@ -468,6 +468,24 @@ def test_public_body_scoped_preserves_other_bodies(tmp_path, monkeypatch):
 
 # ── Column swap override tests ────────────────────────────────────────────────
 
+def test_education_from_qua_url_in_column_swaps_config():
+    """The from-qua Education PDF URL must be in column_swaps.json with the correct swap pair."""
+    import json
+    from pathlib import Path
+    swaps_path = (
+        Path(__file__).parents[1]
+        / "steps/extract_disclosures_canonicalize/column_swaps.json"
+    )
+    swaps = json.loads(swaps_path.read_text())
+    url = (
+        "https://assets.gov.ie/static/documents/"
+        "foi-summary-of-non-personal-requests-submitted-to-the-"
+        "department-of-education-from-qua.pdf"
+    )
+    assert url in swaps, f"URL not found in column_swaps.json: {url}"
+    assert ["decision_status", "request_description"] in swaps[url]
+
+
 def test_canonicalize_file_applies_column_swap():
     """Swapping decision_status ↔ request_description corrects transposed columns."""
     swaps = {BASE_META["file_url"]: [("decision_status", "request_description")]}
@@ -515,7 +533,7 @@ def test_canonicalize_file_supports_multiple_swap_pairs():
 
 # ── Header-row detection tests ────────────────────────────────────────────────
 
-from steps.extract_disclosures_canonicalize.process import is_header_row
+from steps.extract_disclosures_canonicalize.process import is_header_row, _is_column_letter_row
 
 
 def test_is_header_row_true_when_two_fields_match_column_headers():
@@ -691,8 +709,59 @@ def test_canonicalize_response_sent_date():
     assert canonicalize_header("Response Sent Date") == "decision_date"
 
 
+def test_galway_city_2024_ocr_header_maps_to_decision_date():
+    # 2024 PDF: space before "Decision" (not \n), different inner OCR spacing.
+    # Without this synonym, the bilingual fallback splits on "/" and picks up
+    # "decision" → decision_status, putting dates in the status column.
+    assert canonicalize_header('C i n n eadh Eisithe/ Decision Made') == 'decision_date'
+
+
 def test_canonicalize_irish_review_synonyms():
     assert canonicalize_header("Athbhreithniú") == "review_status"
+
+
+# ── Column-letter separator row tests (RC3) ──────────────────────────────────
+
+def test_is_column_letter_row_true_for_abc_pattern():
+    # DEASP 2017 separator: [None, 'A', 'B', 'C', 'D', 'E']
+    assert _is_column_letter_row([None, 'A', 'B', 'C', 'D', 'E']) is True
+
+
+def test_is_column_letter_row_true_for_all_none_plus_letters():
+    assert _is_column_letter_row(['A', 'B', 'C']) is True
+
+
+def test_is_column_letter_row_false_for_multi_char_cell():
+    # 'BC' is two characters — not a single letter
+    assert _is_column_letter_row(['A', 'BC', 'D']) is False
+
+
+def test_is_column_letter_row_false_for_all_none():
+    assert _is_column_letter_row([None, None, None]) is False
+
+
+def test_is_column_letter_row_false_for_data_row():
+    assert _is_column_letter_row(['16/001', None, 'some request', None]) is False
+
+
+def test_is_column_letter_row_false_for_lowercase():
+    assert _is_column_letter_row(['a', 'b', 'c']) is False
+
+
+def test_canonicalize_file_drops_column_letter_separator_rows():
+    """DEASP 2017 pattern: [None, 'A', 'B', 'C', 'D', 'E'] rows should be silently dropped."""
+    rows = [
+        ["Our Reference", "Date Received", "Category", "Summary", "Decision Made", "Date of Reply"],
+        [None, 'A', 'B', 'C', 'D', 'E'],    # separator — must be dropped
+        ['1', '2017-01-10', 'Business', 'Records re planning', 'Granted', '2017-03-10'],
+        [None, 'F', 'G', 'H', 'I', 'J'],    # another separator — must be dropped
+        ['2', '2017-02-05', 'Media', 'Records re finance', 'Refused', '2017-04-05'],
+    ]
+    results, errors, dropped = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert len(results) == 2
+    assert results[0]['decision_status'] == 'Granted'
+    assert results[1]['decision_status'] == 'Refused'
+    assert errors == []
 
 
 # ── Row-length correction tests (Root Cause A / B) ────────────────────────────

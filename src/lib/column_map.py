@@ -96,6 +96,7 @@ _SYNONYMS: dict[str, list[str]] = {
         # → decision_status instead. These explicit entries win before the fallback fires.
         'C i nneadh Eisithe/\nDecision Made',    # 2022–2024 PDFs
         'C i n n e adh Eisithe/\nDecision Made', # 2025 PDF variant
+        'C i n n eadh Eisithe/ Decision Made',   # Galway City 2024 (space not \n, different OCR spacing)
         # Fingal County Council: "Decision/Response Sent" is the date the decision was sent,
         # not the decision type. Without these entries the bilingual fallback splits on "/" and
         # picks up "decision" → decision_status, overriding the correct Cineál Cinneadh column.

@@ -34,6 +34,15 @@ def is_header_row(row: dict, threshold: int = 2) -> bool:
     return matches >= threshold
 
 
+def _is_column_letter_row(row: list) -> bool:
+    non_none = [cell for cell in row if cell is not None]
+    return bool(non_none) and all(
+        isinstance(cell, str) and len(cell.strip()) == 1
+        and cell.strip().isupper() and cell.strip().isalpha()
+        for cell in non_none
+    )
+
+
 def canonicalize_file(item, column_swaps=None):
     """Convert one file record into a list of canonical FOI row dicts.
 
@@ -99,6 +108,8 @@ def canonicalize_file(item, column_swaps=None):
     header_rows_dropped = 0
     for row in rows[header_row_idx + 1:]:
         if not row:
+            continue
+        if _is_column_letter_row(row):
             continue
 
         # Root Cause A: when a row is shorter than the header by exactly one cell,
