@@ -732,6 +732,23 @@ def test_unmapped_string_header_not_used_for_padding():
     assert errors == []
 
 
+def test_none_header_at_col_zero_is_silently_ignored():
+    """None at column 0 (structural row-number spacer) does not break canonicalization.
+
+    The None column is excluded from canonical_to_col_idx; data in subsequent columns
+    maps normally. This is the graceful-handling guarantee for Pattern A leading-None PDFs.
+    """
+    rows = [
+        [None, "Our Reference", "Request Details"],  # None spacer at col 0
+        [1, "16/001", "some request"],
+    ]
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert len(results) == 1
+    assert results[0]["foi_reference_id"] == "16/001"
+    assert results[0]["request_description"] == "some request"
+    assert errors == []
+
+
 def test_long_row_with_extra_none_removes_blank_column():
     # Body 1143 pattern: some PDF pages produce a 6-col row against a 5-col header
     # because pdfplumber picks up an extra blank column. Remove the first None to

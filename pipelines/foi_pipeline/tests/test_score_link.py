@@ -97,6 +97,24 @@ class TestTier2LinkText:
     def test_negative_link_text_emergency_number(self):
         assert _score_link("http://docstore.kerrycoco.ie/KCCWebsite/emergencynumbersnew.pdf", "Emergency Numbers") < 0
 
+    def test_negative_link_text_traveller_accommodation(self):
+        assert _score_link(
+            "https://www.corkcity.ie/media/ncpntp0p/adopted-tap-2019-2024.pdf",
+            "Traveller Accommodation",
+        ) < 0
+
+    def test_negative_link_text_carnival(self):
+        assert _score_link(
+            "https://www.corkcity.ie/media/nzgf1ok0/cork_carnival_of_science_2025_opt.pdf",
+            "2025 Cork Carnival of Science Programme",
+        ) < 0
+
+    def test_negative_link_text_rent_scheme(self):
+        assert _score_link(
+            "https://www.leitrim.ie/Council/Services/Housing/Rent-Review-2026/Signed-DRS-010526.pdf",
+            "Leitrim County Council Differential Rent Scheme 2026",
+        ) < 0
+
 
 class TestTier3UrlNegativeKeywords:
     def test_rejects_heritage_visitor_numbers_empty_link_text(self):
@@ -161,6 +179,16 @@ class TestTier3UrlNegativeKeywords:
 
     def test_empty_link_text_falls_through_to_url(self):
         assert _score_link("https://dept.ie/foi-log.pdf", "") > 0
+
+    def test_rejects_rent_review_url_path(self):
+        assert _score_link(
+            "https://www.leitrim.ie/Council/Services/Housing/Rent-Review-2026/Signed-DRS-010526.pdf", ""
+        ) < 0
+
+    def test_rejects_carnival_url_path(self):
+        assert _score_link(
+            "https://www.corkcity.ie/media/nzgf1ok0/cork_carnival_of_science_2025_opt.pdf", ""
+        ) < 0
 
     def test_tier1_still_fires_with_positive_link_text(self):
         # Tier 1 fires unconditionally — positive link text must NOT override it

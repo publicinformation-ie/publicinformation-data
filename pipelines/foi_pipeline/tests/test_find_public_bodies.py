@@ -22,6 +22,7 @@ def _hub_record(**kwargs):
         "official_website_url": "https://anpost.ie/",
         "parent_name": None,
         "parent_id": None,
+        "description_for_sub_sector": None,
     }
     defaults.update(kwargs)
     return defaults
@@ -46,40 +47,16 @@ def run_main(tmp_path, monkeypatch, argv):
 
 # --- derive_category ---
 
-def test_category_s1311_is_government_department():
-    assert derive_category(_hub_record(sector="S1311")) == "government department"
+def test_category_local_authorities_subsector_is_local_authority():
+    assert derive_category(_hub_record(description_for_sub_sector="Local Authorities")) == "local authority"
 
 
-def test_category_s1311_sub_code_is_government_department():
-    assert derive_category(_hub_record(sector="S13110")) == "government department"
+def test_category_default_is_public_body():
+    assert derive_category(_hub_record()) == "public body"
 
 
-def test_category_s1313_is_local_authority():
-    assert derive_category(_hub_record(sector="S1313")) == "local authority"
-
-
-def test_category_s1313_sub_code_is_local_authority():
-    assert derive_category(_hub_record(sector="S13130")) == "local authority"
-
-
-def test_category_county_council_in_govt_dept_is_local_authority():
-    assert derive_category(
-        _hub_record(sector="S11", government_department="Cork County Council")
-    ) == "local authority"
-
-
-def test_category_city_council_in_govt_dept_is_local_authority():
-    assert derive_category(
-        _hub_record(sector="S11", government_department="Dublin City Council")
-    ) == "local authority"
-
-
-def test_category_default_is_public_service_body():
-    assert derive_category(_hub_record(sector="S11", government_department="")) == "public service body"
-
-
-def test_category_s14_is_public_service_body():
-    assert derive_category(_hub_record(sector="S14", government_department="")) == "public service body"
+def test_category_other_subsector_is_public_body():
+    assert derive_category(_hub_record(description_for_sub_sector="Vote")) == "public body"
 
 
 # --- ingest_bodies ---
@@ -100,8 +77,8 @@ def test_ingest_maps_official_website_url():
 
 
 def test_ingest_derives_category():
-    result = ingest_bodies([_hub_record(sector="S1311")])
-    assert result[0]["category"] == "government department"
+    result = ingest_bodies([_hub_record(description_for_sub_sector="Local Authorities")])
+    assert result[0]["category"] == "local authority"
 
 
 def test_ingest_initialises_all_status_fields_to_not_attempted():

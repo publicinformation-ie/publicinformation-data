@@ -76,3 +76,42 @@ git push
 ```
 
 Override files take effect when the pipeline is re-run — accepted corrections bypass the normal pipeline logic for that body/field combination.
+
+## trace_file.py
+
+Trace a single disclosure file URL through the FOI pipeline.
+
+### Usage
+
+```bash
+python scripts/trace_file.py --url "https://example.gov.ie/disclosures.xlsx"
+```
+
+### Description
+
+Traces a file through 8 pipeline steps from `transform_disclosure_files` to `extract_disclosures_deduplicate`.
+
+For each step, outputs:
+- Step name (35 chars, left-aligned)
+- Percentage (4 chars, right-aligned)
+- Status: SUCCESS (100%), PARTIAL (0% < p < 100%), or FAILED (0%)
+
+### Exit Codes
+
+- `0`: Success (file traced through all steps)
+- `1`: File URL not found in first step output
+- `2`: Invalid arguments
+
+### Example
+
+```bash
+$ python scripts/trace_file.py --url "https://health.gov.ie/foi-disclosures-2024.xlsx"
+transform_disclosure_files             100% SUCCESS
+normalize_disclosure_cells              100% SUCCESS
+extract_disclosures_detect_header_row  100% SUCCESS
+extract_disclosures_normalize_header   100% SUCCESS
+extract_disclosures_normalize_rows      100% SUCCESS
+extract_disclosures_canonicalize       100% SUCCESS
+extract_disclosures_canonicalize_rows   100% SUCCESS
+extract_disclosures_deduplicate        100% SUCCESS
+```

@@ -66,6 +66,8 @@ _SYNONYMS: dict[str, list[str]] = {
         # Meath PDFs
         'date of receipt',
         'date when',
+        # Charities Regulator — reversed word order
+        'received date',
     ],
     'decision_date': [
         'decision date', 'due date', 'date issued', 'date released',
