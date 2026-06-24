@@ -33,6 +33,23 @@ def resolve_stub_url(html, original_url):
     return original_url
 
 
+def pick_best_url(body: dict) -> str | None:
+    """Return the best available URL source to fetch and validate.
+
+    Priority: apify > llm (direct+high) > official (gov.ie stub) > llm (related).
+    url_type=parent is excluded: it points to a different legal entity, not this body.
+    """
+    if url := body.get("apify_website_url"):
+        return url
+    if (url := body.get("llm_website_url")) and body.get("llm_url_type") == "direct" and body.get("llm_confidence") == "high":
+        return url
+    if url := body.get("official_website_url"):
+        return url
+    if (url := body.get("llm_website_url")) and body.get("llm_url_type") != "parent":
+        return url
+    return None
+
+
 def process(input_data, step_dir, writer, verbose=False):
     errors_path = Path(step_dir) / "errors.json"
     write_json(errors_path, [])
@@ -42,7 +59,7 @@ def process(input_data, step_dir, writer, verbose=False):
         body_id = body["public_body_id"]
         if writer.is_processed(body_id):
             continue
-        url = body["official_website_url"]
+        url = pick_best_url(body)
         if url is None:
             writer.append([body])
             continue
@@ -60,7 +77,7 @@ def process(input_data, step_dir, writer, verbose=False):
                 "error_message": str(e),
                 "context": {"url": url, "public_body_id": body_id},
             })
-            writer.append([body])
+            writer.append([{**body, "official_website_url": None}])
         if verbose:
             print(".", end="", flush=True)
 

@@ -16,7 +16,7 @@ from lib.http_utils import fetch
 STEP_NAME = "match_gov_urls"
 SOURCE_URL = "https://www.gov.ie/en/departments/"
 SECTION_IDS = ["departments", "agencies", "local-authorities"]
-MATCH_THRESHOLD = 0.6
+MATCH_THRESHOLD = 0.90
 
 _SUFFIX_RE = re.compile(
     r"\s*\b(clg|ltd|limited|dac|plc|teo|teoranta|cpt|uc)\b\.?\s*$",
