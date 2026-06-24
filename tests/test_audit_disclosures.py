@@ -11,8 +11,8 @@ def test_check_dataclass_fields():
     assert c.where_clause == "foo IS NULL"
 
 
-def test_checks_registry_has_four_entries():
-    assert len(CHECKS) == 4
+def test_checks_registry_has_seven_entries():
+    assert len(CHECKS) == 7
 
 
 def test_checks_registry_names():
@@ -21,6 +21,9 @@ def test_checks_registry_names():
     assert "invalid_decision_date" in names
     assert "invalid_date_received" in names
     assert "decision_status_is_date" in names
+    assert "decision_status_is_slashdate" in names
+    assert "decision_status_nonstandard" in names
+    assert "requester_type_nonstandard" in names
 
 
 def test_get_check_found():
@@ -182,7 +185,7 @@ def test_format_report_top_limits_files():
 def test_format_report_header():
     report = format_report(CHECKS, {}, [], top=20, run_date="2026-06-23")
     assert "FOI Disclosures Quality Report" in report
-    assert "4 checks" in report
+    assert "7 checks" in report
     assert "2026-06-23" in report
 
 
