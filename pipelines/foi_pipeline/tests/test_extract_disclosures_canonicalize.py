@@ -691,6 +691,13 @@ def test_canonicalize_response_sent_date():
     assert canonicalize_header("Response Sent Date") == "decision_date"
 
 
+def test_galway_city_2024_ocr_header_maps_to_decision_date():
+    # 2024 PDF: space before "Decision" (not \n), different inner OCR spacing.
+    # Without this synonym, the bilingual fallback splits on "/" and picks up
+    # "decision" → decision_status, putting dates in the status column.
+    assert canonicalize_header('C i n n eadh Eisithe/ Decision Made') == 'decision_date'
+
+
 def test_canonicalize_irish_review_synonyms():
     assert canonicalize_header("Athbhreithniú") == "review_status"
 
