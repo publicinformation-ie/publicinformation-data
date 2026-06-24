@@ -468,6 +468,24 @@ def test_public_body_scoped_preserves_other_bodies(tmp_path, monkeypatch):
 
 # ── Column swap override tests ────────────────────────────────────────────────
 
+def test_education_from_qua_url_in_column_swaps_config():
+    """The from-qua Education PDF URL must be in column_swaps.json with the correct swap pair."""
+    import json
+    from pathlib import Path
+    swaps_path = (
+        Path(__file__).parents[1]
+        / "steps/extract_disclosures_canonicalize/column_swaps.json"
+    )
+    swaps = json.loads(swaps_path.read_text())
+    url = (
+        "https://assets.gov.ie/static/documents/"
+        "foi-summary-of-non-personal-requests-submitted-to-the-"
+        "department-of-education-from-qua.pdf"
+    )
+    assert url in swaps, f"URL not found in column_swaps.json: {url}"
+    assert ["decision_status", "request_description"] in swaps[url]
+
+
 def test_canonicalize_file_applies_column_swap():
     """Swapping decision_status ↔ request_description corrects transposed columns."""
     swaps = {BASE_META["file_url"]: [("decision_status", "request_description")]}
