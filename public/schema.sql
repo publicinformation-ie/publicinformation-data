@@ -56,7 +56,8 @@ CREATE TABLE IF NOT EXISTS public_bodies (
   government_department_id  INTEGER,
   nace_code                 TEXT,
   cro                       TEXT,
-  data_vintage              INTEGER
+  data_vintage              INTEGER,
+  subject_to_foi            INTEGER DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS disclosure_files (

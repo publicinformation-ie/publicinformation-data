@@ -5,6 +5,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+from lib.body_utils import derive_category
 from lib.cli_utils import add_common_args
 from lib.db_client import DbClient
 from lib.file_utils import read_json, write_json, write_status
@@ -26,8 +27,9 @@ INSERT OR REPLACE INTO public_bodies (
   nace_code, cro, data_vintage,
   is_commercial, is_financial, aegis, legal_entity_type,
   nace_section, nace_division, nace_group, nace_class,
-  nace_section_name, nace_class_name
-) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+  nace_section_name, nace_class_name,
+  subject_to_foi
+) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
 """
 
 _INSERT_CSO_BODY = """
@@ -45,8 +47,9 @@ INSERT INTO public_bodies (
   nace_code, cro, data_vintage,
   is_commercial, is_financial, aegis, legal_entity_type,
   nace_section, nace_division, nace_group, nace_class,
-  nace_section_name, nace_class_name
-) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+  nace_section_name, nace_class_name,
+  subject_to_foi
+) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
 """
 
 _INSERT_DISCLOSURE_FILE = """
@@ -90,6 +93,7 @@ def apply_schema_migrations(db):
         "ALTER TABLE public_bodies ADD COLUMN nace_class        TEXT",
         "ALTER TABLE public_bodies ADD COLUMN nace_section_name TEXT",
         "ALTER TABLE public_bodies ADD COLUMN nace_class_name   TEXT",
+        "ALTER TABLE public_bodies ADD COLUMN subject_to_foi    INTEGER DEFAULT 0",
     ]
     for sql in migrations:
         try:
@@ -159,6 +163,7 @@ def upload_public_bodies(db, steps_dir, cso_lookup):
             cso.get("nace_class"),
             cso.get("nace_section_name"),
             cso.get("nace_class_name"),
+            1,
         ])
     db.executemany(_INSERT_PUBLIC_BODY, rows)
     return len(rows)
@@ -173,7 +178,7 @@ def upload_cso_bodies(db, cso_path):
             body["public_body_id"],
             body["name"],
             "",
-            "",
+            derive_category(body),
             body.get("official_website_url"),
             "not_attempted", 0,
             None, "not_attempted", 0,
@@ -201,6 +206,7 @@ def upload_cso_bodies(db, cso_path):
             body.get("nace_class"),
             body.get("nace_section_name"),
             body.get("nace_class_name"),
+            0,
         ])
     db.executemany(_INSERT_CSO_BODY, rows)
     return len(rows)
