@@ -35,25 +35,6 @@ def _classify_unrecognized(raw_status: str) -> str:
     return 'UnrecognizedDecisionStatus'
 
 
-_SLASH_DATE_RE = re.compile(r'^(\d{1,2})/(\d{1,2})/(\d{2,4})$')
-
-
-def _try_parse_slash_date(value: str) -> str | None:
-    """Convert dd/mm/yyyy or dd/mm/yy to ISO yyyy-mm-dd, or return None."""
-    from datetime import date as _date
-    m = _SLASH_DATE_RE.match(value.strip())
-    if not m:
-        return None
-    day, month, year = m.group(1), m.group(2), m.group(3)
-    if len(year) == 2:
-        year = "20" + year
-    try:
-        _date(int(year), int(month), int(day))  # validate
-        return f"{year}-{month.zfill(2)}-{day.zfill(2)}"
-    except ValueError:
-        return None
-
-
 def process_records(input_data, results_out, errors_out, verbose=False):
     """Process input records, normalizing decision_status values.
     
@@ -126,13 +107,7 @@ def process_records(input_data, results_out, errors_out, verbose=False):
                         "raw_status": raw_status,
                     }
                 })
-                # For confirmed contamination types, NULL out rather than pass through bad data
-                if error_type in ("StatusValueIsDate", "StatusValueIsRequesterType", "StatusValueIsColumnHeader"):
-                    record["decision_status"] = None
-                    if error_type == "StatusValueIsDate" and not record.get("decision_date"):
-                        rescued = _try_parse_slash_date(raw_status)
-                        if rescued:
-                            record["decision_date"] = rescued
+                # Still pass through the record with original status
                 results_out.append(record)
         
         if verbose:
