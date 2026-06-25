@@ -164,14 +164,14 @@ def split_file(item: dict) -> tuple:
     # header. The PDF extractor collapses these into one column, producing cells like
     # "7190 19/01/2017", "7191" (pure refID), "19447" (pure refID), or "06/07/2022 19447".
     refid_indices = [
-        i for i, h in enumerate(new_rows[header_row_idx])
+        i for i, h in enumerate(header_row)
         if h and canonicalize_header(str(h)) in _DATE_CANONICALS
         and _column_has_embedded_refids(new_rows, i, header_row_idx)
     ]
 
     for col_idx in reversed(refid_indices):
         # Insert new FOI Reference Number header after the date column
-        new_rows[header_row_idx].insert(col_idx + 1, _REFID_HEADER)
+        header_row.insert(col_idx + 1, _REFID_HEADER)
 
         for row_idx in range(header_row_idx + 1, len(new_rows)):
             row = new_rows[row_idx]
