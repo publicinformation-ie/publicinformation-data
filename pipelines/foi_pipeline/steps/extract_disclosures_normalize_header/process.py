@@ -52,7 +52,10 @@ def normalize_header_row(rows, header_row_idx, max_continuation_rows=_MAX_CONTIN
         non_null = sum(1 for c in row if c is not None)
         null_fraction = 1 - (non_null / len(row))
         if null_fraction < _CONTINUATION_NULL_THRESHOLD:
-            break  # too many populated cells — this is real data
+            already_merging = continuation_end > header_row_idx + 1
+            if not already_merging or _count_canonical_columns(row) < 1:
+                break  # too many populated cells and not a header fragment — this is real data
+            # else: dense row mid-sequence with ≥1 canonical hit — looks like a header fragment, keep merging
         for col_idx, cell in enumerate(row):
             if cell is not None and col_idx < ncols:
                 if header[col_idx] is not None:

@@ -256,3 +256,53 @@ def test_merges_up_to_six_continuation_rows():
     assert len(result_rows) == 2   # all 6 continuation rows consumed
     assert result_rows[1][0] == 'FOI 77/18'
     assert idx == 0
+
+
+# ── Meath 2016/2017: dense continuation rows with canonical hits ─────────────────
+
+def test_merges_dense_continuation_rows_with_canonical_column_hits():
+    """Meath 2016/2017 pattern: dense rows (>50% non-null) that contain ≥2 canonical
+    column labels are still consumed as continuations, not treated as data.
+
+    Without the fix the loop breaks at cont row 2 ('Assigned by', 'Receipt of',
+    'Category of', None, 'Decision', 'Summary of') — 5/6 non-null = 17% null,
+    which is below _CONTINUATION_NULL_THRESHOLD=0.5.  With the fix, that row's
+    _count_canonical_columns == 2 ('Category of'→requester_type, 'Decision'→
+    decision_status) so merging continues.
+    """
+    rows = [
+        ['Reference', None, None, None, 'Date When', None],              # header
+        ['Number', 'Date of', None, None, 'the', None],                  # cont 1 sparse
+        ['Assigned by', 'Receipt of', 'Category of', None, 'Decision', 'Summary of'],  # cont 2 DENSE but canonical
+        [None, None, None, 'Summary of the Info/Records', None, None],   # cont 3 sparse
+        ['the', 'Request in', 'Applicant', None, 'Issued to', 'Decision'],  # cont 4 DENSE but canonical
+        ['Department', 'Department', None, None, 'the Applicant', None], # cont 5 sparse
+        ['FOI 01/16', '09/01/2016', 'Individual', 'some request', '12/01/2016', 'Part Granted'],  # data
+    ]
+    result_rows, idx = normalize_header_row(rows, header_row_idx=0, max_continuation_rows=6)
+    # All 5 continuation rows consumed — first non-header row is real data
+    assert result_rows[1][0] == 'FOI 01/16'
+    assert len(result_rows) == 2
+    assert idx == 0
+    # Spot-check merged header cells
+    assert result_rows[0][0] == 'Reference Number Assigned by the Department'
+    assert result_rows[0][1] == 'Date of Receipt of Request in Department'
+
+
+def test_dense_row_without_canonical_hits_still_breaks_loop():
+    """A dense row with 0 canonical column hits is real data and MUST break the loop.
+
+    This verifies Fix 2 does not over-merge: a normal data row (FOI ref, date,
+    category value) has no canonical label hits, so the null-fraction check alone
+    breaks the loop correctly.
+    """
+    rows = [
+        ['Ref', None, 'Date', None, 'Decision', None],        # header (2 canonical)
+        [None, None, 'Received', None, None, None],            # cont 1 sparse — merged
+        ['FOI-001', '2020-01-01', 'Individual', 'request text', 'Granted', None],  # dense data
+        ['FOI-002', '2020-01-02', 'Business', 'another request', 'Refused', None],
+    ]
+    result_rows, idx = normalize_header_row(rows, header_row_idx=0)
+    # Data row not consumed — 3 rows remain after stripping 1 continuation
+    assert len(result_rows) == 3
+    assert result_rows[1][0] == 'FOI-001'
