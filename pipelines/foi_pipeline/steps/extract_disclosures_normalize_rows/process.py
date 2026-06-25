@@ -79,10 +79,10 @@ _SKIP_VALUES = frozenset({
     'a', 'b', 'c', 'd', 'e',
     # DSP 2023-q4 page-break header
     'category of requester date received',
-    # DSP 2017 col-1 structural text (page-break rows with different alignment)
+    # DSP 2017 col-1 fragments from page-break rows with non-standard column alignment
+    # ('Category of Requester', 'Member of the Public' split across cells)
     'category of', 'requester', 'member of the', 'public',
-    # DSP 2017 col-6 section header rows
-    'foi disclosure log 2017 department of employment affairs and social protection (deasp)',
+    # DSP 2017 col-6 section-header rows (long strings caught by length guard too)
     'summary of 2017 foi requests',
     # Decision-status labels that appear in date columns in DSP files
     'decision made',

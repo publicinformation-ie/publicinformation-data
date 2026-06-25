@@ -342,16 +342,10 @@ class TestProcessFileSkipValues:
 
     def test_column_letter_does_not_produce_error(self, tmp_path):
         item = self._make_item(
-            ["Date Received", "B", "C", "D", "E"],
-            [[None, "A", "B", "C", "D", "E"]],
-        )
-        # col 0 is Date Received — value is None (not an error)
-        # This tests the case when col letters appear in the date column
-        item2 = self._make_item(
             ["Date Received", "Category"],
             [["A", "B"]],
         )
-        _, errors = process_file(item2, tmp_path)
+        _, errors = process_file(item, tmp_path)
         assert errors == []
 
 
