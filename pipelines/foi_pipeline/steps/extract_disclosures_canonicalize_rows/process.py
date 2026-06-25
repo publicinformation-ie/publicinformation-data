@@ -107,7 +107,10 @@ def process_records(input_data, results_out, errors_out, verbose=False):
                         "raw_status": raw_status,
                     }
                 })
-                # Still pass through the record with original status
+                # Confirmed contamination: drop the record entirely
+                if error_type in ("StatusValueIsDate", "StatusValueIsRequesterType", "StatusValueIsColumnHeader"):
+                    continue
+                # Merely unrecognized: pass through with original status
                 results_out.append(record)
         
         if verbose:

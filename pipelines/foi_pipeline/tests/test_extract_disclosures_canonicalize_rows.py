@@ -220,13 +220,65 @@ def test_requester_type_check_takes_priority_over_date():
     assert errors[0]["error_type"] == "StatusValueIsRequesterType"
 
 
-def test_record_still_passes_through_on_subtyped_error():
-    """Record is still included in results even when an error is emitted."""
+def test_record_dropped_on_subtyped_error():
+    """Records with confirmed contamination (StatusValueIsDate etc.) are dropped, not passed through."""
     record = _make_record(decision_status="15/01/2023", review_status=None)
     results, errors = [], []
     process_records({"results": [record]}, results, errors)
-    assert len(results) == 1
+    assert len(results) == 0
     assert len(errors) == 1
+
+
+# ── RC6: confirmed-contamination records are skipped, not passed through ──────
+
+
+def test_slash_date_in_decision_status_skips_record():
+    record = _make_record(decision_status="28/11/2022")
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert results == []
+    assert len(errors) == 1
+    assert errors[0]["error_type"] == "StatusValueIsDate"
+
+
+def test_two_digit_year_slash_date_skips_record():
+    record = _make_record(decision_status="20/09/22")
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert results == []
+    assert len(errors) == 1
+    assert errors[0]["error_type"] == "StatusValueIsDate"
+
+
+def test_requester_type_value_in_decision_status_skips_record():
+    # "Category" triggers StatusValueIsRequesterType (column-shift artefact)
+    record = _make_record(decision_status="Category")
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert results == []
+    assert len(errors) == 1
+    assert errors[0]["error_type"] == "StatusValueIsRequesterType"
+
+
+def test_column_header_in_decision_status_skips_record():
+    # "Decision" triggers StatusValueIsColumnHeader
+    record = _make_record(decision_status="Decision")
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert results == []
+    assert len(errors) == 1
+    assert errors[0]["error_type"] == "StatusValueIsColumnHeader"
+
+
+def test_unrecognised_decision_status_still_passes_through():
+    # Values that are merely unrecognised (not confirmed contamination) still pass through
+    record = _make_record(decision_status="UnknownStatus")
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert len(results) == 1
+    assert results[0]["decision_status"] == "UnknownStatus"
+    assert len(errors) == 1
+    assert errors[0]["error_type"] == "UnrecognizedDecisionStatus"
 
 
 # ── Synonym gap fixes (root cause 1 from backlog investigation) ───────────────
