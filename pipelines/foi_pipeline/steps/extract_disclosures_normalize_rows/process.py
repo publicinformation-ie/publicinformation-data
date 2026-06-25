@@ -77,6 +77,15 @@ _SKIP_VALUES = frozenset({
     # Repeating page-header values from DSP multi-page PDFs
     'date of reply', 'reference no', 'reference no.',
     'a', 'b', 'c', 'd', 'e',
+    # DSP 2023-q4 page-break header
+    'category of requester date received',
+    # DSP 2017 col-1 structural text (page-break rows with different alignment)
+    'category of', 'requester', 'member of the', 'public',
+    # DSP 2017 col-6 section header rows
+    'foi disclosure log 2017 department of employment affairs and social protection (deasp)',
+    'summary of 2017 foi requests',
+    # Decision-status labels that appear in date columns in DSP files
+    'decision made',
 })
 
 
@@ -121,6 +130,10 @@ def normalize_date_value(raw_value: Optional[str]) -> Optional[str]:
             return None
 
     if value.lower() in _SKIP_VALUES:
+        return None
+
+    # Values longer than 60 characters cannot be dates — skip silently
+    if len(value) > 60:
         return None
 
     # Values with no digits cannot be dates (catches header leaks, descriptive text)
@@ -307,7 +320,8 @@ def process_file(item: dict, step_dir: Path, verbose: bool = False) -> tuple[dic
                 normalized = normalize_date_value(cell_value)
                 
                 cell_str = str(cell_value).strip() if cell_value is not None else ""
-                if normalized is None and cell_str and cell_str.lower() not in _SKIP_VALUES:
+                if normalized is None and cell_str and cell_str.lower() not in _SKIP_VALUES \
+                        and len(cell_str) <= 60:
                     # Log error for unparseable date
                     error_context = {
                         "file_url": file_url,

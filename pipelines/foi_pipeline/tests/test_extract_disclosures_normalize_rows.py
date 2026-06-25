@@ -148,6 +148,16 @@ class TestNormalizeDateValue:
     def test_asterisk_prefixed_pure_date_parses(self):
         assert normalize_date_value("*15/03/2021") == "2021-03-15"
 
+    def test_long_string_returns_none(self):
+        # >60 char strings can never be dates
+        assert normalize_date_value("FOI DISCLOSURE LOG 2017 DEPARTMENT OF EMPLOYMENT AFFAIRS AND SOCIAL PROTECTION (DEASP)") is None
+
+    def test_category_of_requester_date_received_skipped(self):
+        assert normalize_date_value("Category of Requester Date Received") is None
+
+    def test_decision_made_skipped(self):
+        assert normalize_date_value("Decision Made") is None
+
 
 class TestIsDateColumn:
     """Tests for is_date_column() function."""
