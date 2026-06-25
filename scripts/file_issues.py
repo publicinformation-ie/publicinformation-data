@@ -133,6 +133,14 @@ def format_issues(
         # Keep only issues whose name contains the step name
         issue_map = {k: v for k, v in issue_map.items() if filter_step in k}
 
+    if filter_step and not issue_map:
+        print(
+            f"Note: no issues match --step '{filter_step}' "
+            "(--step only matches DroppedAt_<step> issue types; "
+            "error-type issues are not named by step)",
+            file=sys.stderr,
+        )
+
     # Sort issues by total file count descending
     sorted_issues = sorted(
         issue_map.items(),

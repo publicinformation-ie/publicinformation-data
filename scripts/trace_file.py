@@ -3,7 +3,6 @@
 
 import argparse
 import sys
-from pathlib import Path
 
 from src.lib.pipeline_steps import (
     STEP_NAMES,

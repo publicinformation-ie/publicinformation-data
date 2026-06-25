@@ -57,3 +57,40 @@ def test_missing_step_output_skipped():
         load_errors_fn=lambda step_name: None,
     )
     assert result == {}
+
+
+def test_collect_all_issues_detects_dropped_files():
+    body_lookup = {
+        "https://a.com/1.pdf": "Body A",
+        "https://a.com/2.pdf": "Body A",
+    }
+    step_names = ["step_a", "step_b"]
+    step_config = {
+        "step_a": ("results", False, False),
+        "step_b": ("results", False, False),
+    }
+
+    def load_output(step_name):
+        if step_name == "step_a":
+            return {"results": [
+                {"file_url": "https://a.com/1.pdf"},
+                {"file_url": "https://a.com/2.pdf"},
+            ]}
+        if step_name == "step_b":
+            return {"results": [
+                {"file_url": "https://a.com/1.pdf"},
+                # https://a.com/2.pdf dropped
+            ]}
+        return None
+
+    result = collect_all_issues(
+        body_lookup=body_lookup,
+        step_names=step_names,
+        step_config=step_config,
+        load_output_fn=load_output,
+        load_errors_fn=lambda step_name: None,
+    )
+
+    assert "DroppedAt_step_b" in result
+    assert "Body A" in result["DroppedAt_step_b"]
+    assert "https://a.com/2.pdf" in result["DroppedAt_step_b"]["Body A"]
