@@ -28,7 +28,6 @@ _LOOKUP: dict[str, Optional[str]] = {
     # Member of the Public
     'member of the public': 'Member of the Public',
     'member of public': 'Member of the Public',
-    'member of the public ': 'Member of the Public',
     'a member of the public': 'Member of the Public',
     'mop': 'Member of the Public',
     # Non-Personal
