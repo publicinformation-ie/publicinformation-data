@@ -11,6 +11,7 @@ from pathlib import Path
 from lib.cli_utils import add_common_args, filter_by_public_body, merge_replacing_body
 from lib.column_map import canonicalize_header
 from lib.file_utils import read_json, write_json, write_status
+from lib.requester_type_map import canonicalize_requester_type
 from lib.review_status_map import canonicalize_review_status
 from lib.status_map import (
     CANONICAL_STATUSES,
@@ -44,35 +45,55 @@ def process_records(input_data, results_out, errors_out, verbose=False):
         verbose: If True, print progress indicators
     """
     for record in input_data.get("results", []):
+        # Copy once at top of loop to avoid mutating input
+        record = dict(record)
+
+        # Normalise requester_type
+        raw_requester_type = record.get("requester_type")
+        if raw_requester_type and isinstance(raw_requester_type, str) and raw_requester_type.strip():
+            canonical_rt = canonicalize_requester_type(raw_requester_type)
+            if canonical_rt is not None:
+                record["requester_type"] = canonical_rt
+            else:
+                errors_out.append({
+                    "error_type": "UnrecognizedRequesterType",
+                    "error_message": f"requester_type '{raw_requester_type}' not in canonical mapping",
+                    "context": {
+                        "public_body_id": record.get("public_body_id"),
+                        "file_url": record.get("file_url"),
+                        "foi_reference_id": record.get("foi_reference_id"),
+                        "raw_requester_type": raw_requester_type,
+                    },
+                })
+                # Leave record["requester_type"] unchanged
+
         raw_status = record.get("decision_status")
-        
+
         # If status is None or empty, pass through unchanged
         if raw_status is None or not isinstance(raw_status, str) or not raw_status.strip():
             results_out.append(record)
             if verbose:
                 print(".", end="", flush=True)
             continue
-        
+
         # Try to canonicalize
         canonical = canonicalize_status(raw_status)
-        
+
         if canonical is not None:
-            # Normalized successfully - create a copy to avoid mutating input
-            normalized_record = dict(record)
-            normalized_record["decision_status"] = canonical
+            # Normalized successfully
+            record["decision_status"] = canonical
             if canonical == 'Personal':
-                if normalized_record.get("request_description") == raw_status:
-                    normalized_record["request_description"] = "Redacted: Personal request"
-                if normalized_record.get("requester_type") == raw_status:
-                    normalized_record["requester_type"] = "Other"
-            results_out.append(normalized_record)
+                if record.get("request_description") == raw_status:
+                    record["request_description"] = "Redacted: Personal request"
+                if record.get("requester_type") == raw_status:
+                    record["requester_type"] = "Other"
+            results_out.append(record)
         else:
             review_canonical = canonicalize_review_status(raw_status)
             if review_canonical is not None and not record.get("review_status"):
-                reclassified = dict(record)
-                reclassified["decision_status"] = None
-                reclassified["review_status"] = review_canonical
-                results_out.append(reclassified)
+                record["decision_status"] = None
+                record["review_status"] = review_canonical
+                results_out.append(record)
             else:
                 # Unrecognized status - classify and write to errors
                 error_type = _classify_unrecognized(raw_status)

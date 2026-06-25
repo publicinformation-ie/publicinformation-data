@@ -346,3 +346,74 @@ def test_task2_header_leakage_reclassification(raw, expected_error_type):
     assert errors[0]["error_type"] == expected_error_type, (
         f"Expected {raw!r} → {expected_error_type!r}, got {errors[0]['error_type']!r}"
     )
+
+
+# ── Task 3: requester_type normalisation ──────────────────────────────────────
+
+
+def _make_rt_record(**kwargs):
+    defaults = {
+        "file_url": "https://test.ie/file.pdf",
+        "public_body_id": "test-body",
+        "foi_reference_id": "REF-001",
+        "decision_status": "Granted",
+        "requester_type": None,
+        "review_status": None,
+        "request_description": "A request",
+        "decision_date": None,
+        "date_received": None,
+    }
+    return {**defaults, **kwargs}
+
+
+def test_process_records_normalises_requester_type_case():
+    record = _make_rt_record(requester_type="JOURNALIST")
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert results[0]["requester_type"] == "Journalist"
+    assert errors == []
+
+
+def test_process_records_normalises_requester_type_others():
+    record = _make_rt_record(requester_type="Others")
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert results[0]["requester_type"] == "Other"
+    assert errors == []
+
+
+def test_process_records_normalises_non_pers():
+    record = _make_rt_record(requester_type="NON PERS")
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert results[0]["requester_type"] == "Non-Personal"
+    assert errors == []
+
+
+def test_process_records_none_requester_type_passes_through():
+    record = _make_rt_record(requester_type=None)
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert results[0]["requester_type"] is None
+    assert errors == []
+
+
+def test_process_records_unknown_requester_type_logged_as_error():
+    # "SU" is confirmed junk (None in map) — should produce an error
+    record = _make_rt_record(requester_type="SU")
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert results[0]["requester_type"] == "SU"  # original passes through
+    assert len(errors) == 1
+    assert errors[0]["error_type"] == "UnrecognizedRequesterType"
+    assert "SU" in errors[0]["error_message"]
+
+
+def test_process_records_junk_requester_type_logged_as_error():
+    # "Category" is explicit junk (None in map)
+    record = _make_rt_record(requester_type="Category")
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert results[0]["requester_type"] == "Category"  # original passes through
+    assert len(errors) == 1
+    assert errors[0]["error_type"] == "UnrecognizedRequesterType"
