@@ -2,6 +2,10 @@
 
 For the top-level pipeline overview, see the parent [AGENTS.md](../AGENTS.md).
 
+## Data-handling principle
+
+When a step transforms or canonicalizes record data: **if a value cannot be reasonably and deterministically reconstructed, write an error to the step's `errors.json` and let a human reviewer handle it.** Do not reconstruct with fragile heuristics, and never silently null or rewrite a field to make it fit — a false positive or a silent loss of information is worse than an explicit, reviewable error. See the [Core Data-Handling Principle](../../../AGENTS.md#core-data-handling-principle) in the top-level AGENTS.md.
+
 ## Quick Start: Running Steps
 
 **To run all steps via the process script:**

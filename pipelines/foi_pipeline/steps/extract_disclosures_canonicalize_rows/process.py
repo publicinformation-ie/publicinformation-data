@@ -12,7 +12,6 @@ from lib.cli_utils import add_common_args, filter_by_public_body, merge_replacin
 from lib.column_map import canonicalize_header
 from lib.file_utils import read_json, write_json, write_status
 from lib.requester_type_map import canonicalize_requester_type
-from lib.review_status_map import canonicalize_review_status
 from lib.status_map import (
     CANONICAL_STATUSES,
     canonicalize_status,
@@ -89,31 +88,26 @@ def process_records(input_data, results_out, errors_out, verbose=False):
                     record["requester_type"] = "Other"
             results_out.append(record)
         else:
-            review_canonical = canonicalize_review_status(raw_status)
-            if review_canonical is not None and not record.get("review_status"):
-                record["decision_status"] = None
-                record["review_status"] = review_canonical
-                results_out.append(record)
-            else:
-                # Unrecognized status - classify and write to errors
-                error_type = _classify_unrecognized(raw_status)
-                errors_out.append({
-                    "error_type": error_type,
-                    "error_message": f"Status '{raw_status}' not in canonical status mapping",
-                    "context": {
-                        "public_body_id": record.get("public_body_id"),
-                        "file_url": record.get("file_url"),
-                        "foi_reference_id": record.get("foi_reference_id"),
-                        "raw_status": raw_status,
-                    }
-                })
-                # Confirmed contamination: drop the record entirely
-                if error_type in ("StatusValueIsDate", "StatusValueIsRequesterType", "StatusValueIsColumnHeader"):
-                    if verbose:
-                        print("X", end="", flush=True)
-                    continue
-                # Merely unrecognized: pass through with original status
-                results_out.append(record)
+            # Unrecognised status: never reconstructed or silently nulled.
+            # Classify for the reviewer, write an error, and let a human decide.
+            error_type = _classify_unrecognized(raw_status)
+            errors_out.append({
+                "error_type": error_type,
+                "error_message": f"Status '{raw_status}' not in canonical status mapping",
+                "context": {
+                    "public_body_id": record.get("public_body_id"),
+                    "file_url": record.get("file_url"),
+                    "foi_reference_id": record.get("foi_reference_id"),
+                    "raw_status": raw_status,
+                }
+            })
+            # Confirmed contamination: drop the record entirely
+            if error_type in ("StatusValueIsDate", "StatusValueIsRequesterType", "StatusValueIsColumnHeader"):
+                if verbose:
+                    print("X", end="", flush=True)
+                continue
+            # Merely unrecognized: pass through with original status
+            results_out.append(record)
         
         if verbose:
             print(".", end="", flush=True)

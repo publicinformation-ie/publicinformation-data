@@ -2,6 +2,16 @@
 
 This is the top-level entry point for agent documentation in the publicinformation.ie repository. Use this file to navigate to all agent-relevant documentation.
 
+## Core Data-Handling Principle
+
+**If a record cannot be reasonably and deterministically reconstructed, write an error and let a human reviewer handle it.** Forcing a manual review is always preferable to risking a false positive or silently losing information.
+
+Concretely, in the transform and canonicalization steps (`transform_disclosure_files`, `normalize_*`, `extract_disclosures_*`):
+
+- **Don't guess.** Don't reconstruct malformed values with elaborate or fragile heuristics/regexes. If you can't map a value confidently, classify the problem, write an error to the step's `errors.json`, and move on.
+- **Never silently null or rewrite a field** to make it "fit". A confidently-wrong value (false positive) or a quietly-dropped field is worse than an explicit, reviewable error.
+- **Confirmed contamination** (e.g. a date or a column header sitting in `decision_status`) may be dropped from output — but always with an error logged so a human can find it. It is fine to declare a record or file "too malformed to reconstruct".
+
 ## Repository Structure
 
 ```
