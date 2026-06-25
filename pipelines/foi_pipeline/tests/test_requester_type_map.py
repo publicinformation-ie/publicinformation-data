@@ -1,0 +1,246 @@
+import pytest
+from lib.requester_type_map import canonicalize_requester_type, CANONICAL_REQUESTER_TYPES
+
+
+def test_canonical_types_list():
+    assert "Journalist" in CANONICAL_REQUESTER_TYPES
+    assert "Member of the Public" in CANONICAL_REQUESTER_TYPES
+    assert "Business/Interest Group" in CANONICAL_REQUESTER_TYPES
+
+
+def test_none_returns_none():
+    assert canonicalize_requester_type(None) is None
+
+
+def test_empty_returns_none():
+    assert canonicalize_requester_type("") is None
+    assert canonicalize_requester_type("   ") is None
+
+
+# ── Journalist ──────────────────────────────────────────────
+def test_journalist_canonical():
+    assert canonicalize_requester_type("Journalist") == "Journalist"
+
+def test_journalists_plural():
+    assert canonicalize_requester_type("Journalists") == "Journalist"
+
+def test_journalist_uppercase():
+    assert canonicalize_requester_type("JOURNALIST") == "Journalist"
+
+def test_journalist_lowercase():
+    assert canonicalize_requester_type("journalist") == "Journalist"
+
+def test_journalist_trailing_space():
+    assert canonicalize_requester_type("Journalist ") == "Journalist"
+
+
+# ── Other ──────────────────────────────────────────────────
+def test_other_canonical():
+    assert canonicalize_requester_type("Other") == "Other"
+
+def test_others_maps_to_other():
+    assert canonicalize_requester_type("Others") == "Other"
+
+def test_other_uppercase():
+    assert canonicalize_requester_type("OTHER") == "Other"
+
+def test_other_trailing_space():
+    assert canonicalize_requester_type("Other ") == "Other"
+
+
+# ── Member of the Public ────────────────────────────────────
+def test_member_of_the_public_canonical():
+    assert canonicalize_requester_type("Member of the Public") == "Member of the Public"
+
+def test_member_of_public_variant():
+    assert canonicalize_requester_type("Member of public") == "Member of the Public"
+
+def test_member_of_public_titlecase():
+    assert canonicalize_requester_type("Member of Public") == "Member of the Public"
+
+def test_member_of_public_lowercase():
+    assert canonicalize_requester_type("member of public") == "Member of the Public"
+
+def test_mop_abbreviation():
+    assert canonicalize_requester_type("MOP") == "Member of the Public"
+
+def test_a_member_of_the_public():
+    assert canonicalize_requester_type("A Member of the Public") == "Member of the Public"
+
+
+# ── Non-Personal ────────────────────────────────────────────
+def test_non_personal_hyphen():
+    assert canonicalize_requester_type("Non-Personal") == "Non-Personal"
+
+def test_non_personal_space():
+    assert canonicalize_requester_type("Non Personal") == "Non-Personal"
+
+def test_non_pers_abbreviation():
+    assert canonicalize_requester_type("NON PERS") == "Non-Personal"
+
+def test_non_personal_rogue_space():
+    # "Non- personal" — rogue space after hyphen (98 rows in analysis)
+    assert canonicalize_requester_type("Non- personal") == "Non-Personal"
+
+def test_non_personal_lowercase():
+    assert canonicalize_requester_type("Non personal") == "Non-Personal"
+
+
+# ── Client ──────────────────────────────────────────────────
+def test_client_canonical():
+    assert canonicalize_requester_type("Client") == "Client"
+
+def test_clients_plural():
+    assert canonicalize_requester_type("Clients") == "Client"
+
+def test_client_uppercase():
+    assert canonicalize_requester_type("CLIENT") == "Client"
+
+def test_client_lowercase():
+    assert canonicalize_requester_type("client") == "Client"
+
+
+# ── Business/Interest Group ─────────────────────────────────
+def test_business_interest_group_canonical():
+    assert canonicalize_requester_type("Business/Interest Group") == "Business/Interest Group"
+
+def test_business_interest_group_spaces_around_slash():
+    assert canonicalize_requester_type("Business / Interest Group") == "Business/Interest Group"
+
+def test_business_interest_group_space_after_slash():
+    assert canonicalize_requester_type("Business/ Interest Group") == "Business/Interest Group"
+
+def test_business_interest_groups_plural():
+    assert canonicalize_requester_type("Business/Interest Groups") == "Business/Interest Group"
+
+def test_business_interest_group_no_slash():
+    assert canonicalize_requester_type("Business Interest Group") == "Business/Interest Group"
+
+def test_business_interest_group_leading_space():
+    assert canonicalize_requester_type(" Business/Interest Groups") == "Business/Interest Group"
+
+def test_business_interest_group_lowercase():
+    assert canonicalize_requester_type("business/interest group") == "Business/Interest Group"
+
+def test_business_interest_ocr_wrap():
+    # "Business/Inte rest Group" — OCR word-wrap artefact (36 rows in analysis)
+    assert canonicalize_requester_type("Business/Inte rest Group") == "Business/Interest Group"
+
+
+# ── Oireachtas ──────────────────────────────────────────────
+def test_oireachtas_canonical():
+    assert canonicalize_requester_type("Oireachtas") == "Oireachtas"
+
+def test_oireachtas_uppercase():
+    assert canonicalize_requester_type("OIREACHTAS") == "Oireachtas"
+
+def test_oireachtas_public_representatives():
+    assert canonicalize_requester_type("Oireachtas/Public Representatives") == "Oireachtas"
+
+def test_oireachtas_public_representative_singular():
+    assert canonicalize_requester_type("Oireachtas/Public Representative") == "Oireachtas"
+
+def test_oireachtas_with_spaces_around_slash():
+    assert canonicalize_requester_type("Oireachtas / Public Representative") == "Oireachtas"
+
+def test_oireachtas_member_councillor():
+    assert canonicalize_requester_type("Oireachtas Member/Councillor") == "Oireachtas"
+
+def test_oireachtas_elected_representative():
+    assert canonicalize_requester_type("Oireachtas/Elected Representative") == "Oireachtas"
+
+def test_oireachtas_typo_oireactas():
+    # Typo: "Oireactas / Public Reps" (17 rows in analysis)
+    assert canonicalize_requester_type("Oireactas / Public Reps") == "Oireachtas"
+
+def test_member_of_oireachtas():
+    assert canonicalize_requester_type("Member of Oireachtas") == "Oireachtas"
+
+def test_member_of_the_oireachtas():
+    assert canonicalize_requester_type("Member of the Oireachtas") == "Oireachtas"
+
+def test_oireachtas_member():
+    assert canonicalize_requester_type("Oireachtas Member") == "Oireachtas"
+
+def test_oireachtas_public_reps():
+    assert canonicalize_requester_type("Oireachtas / Public Reps") == "Oireachtas"
+
+
+# ── Media ───────────────────────────────────────────────────
+def test_media_canonical():
+    assert canonicalize_requester_type("Media") == "Media"
+
+def test_press_maps_to_media():
+    assert canonicalize_requester_type("Press") == "Media"
+
+def test_reporter_maps_to_media():
+    assert canonicalize_requester_type("Reporter") == "Media"
+
+def test_media_lowercase():
+    assert canonicalize_requester_type("media") == "Media"
+
+
+# ── Individual ──────────────────────────────────────────────
+def test_individual_canonical():
+    assert canonicalize_requester_type("Individual") == "Individual"
+
+def test_individual_lowercase():
+    assert canonicalize_requester_type("individual") == "Individual"
+
+
+# ── Personal ────────────────────────────────────────────────
+def test_personal_canonical():
+    assert canonicalize_requester_type("Personal") == "Personal"
+
+def test_personal_uppercase():
+    assert canonicalize_requester_type("PERSONAL") == "Personal"
+
+
+# ── Staff ───────────────────────────────────────────────────
+def test_staff_canonical():
+    assert canonicalize_requester_type("Staff") == "Staff"
+
+def test_staff_uppercase():
+    assert canonicalize_requester_type("STAFF") == "Staff"
+
+
+# ── Public ──────────────────────────────────────────────────
+def test_public_canonical():
+    assert canonicalize_requester_type("Public") == "Public"
+
+def test_public_lowercase():
+    assert canonicalize_requester_type("public") == "Public"
+
+
+# ── Solicitor ───────────────────────────────────────────────
+def test_solicitor_canonical():
+    assert canonicalize_requester_type("Solicitor") == "Solicitor"
+
+def test_solicitors_plural():
+    assert canonicalize_requester_type("Solicitors") == "Solicitor"
+
+
+# ── Junk / unclassifiable → None ────────────────────────────
+def test_category_header_returns_none():
+    # "Category" — column header leaking in (14 rows in analysis)
+    assert canonicalize_requester_type("Category") is None
+
+def test_type_header_returns_none():
+    # "Type" — column header leaking in (9 rows in analysis)
+    assert canonicalize_requester_type("Type") is None
+
+def test_su_abbreviation_returns_none():
+    # "SU" — unknown abbreviation (15 rows)
+    assert canonicalize_requester_type("SU") is None
+
+def test_member_of_truncated_returns_none():
+    # "Member of" — truncated value (91 rows), not enough context to classify
+    assert canonicalize_requester_type("Member of") is None
+
+def test_erest_group_split_token_returns_none():
+    # "erest group" — second half of OCR-split "Business/Interest Group" (13 rows)
+    assert canonicalize_requester_type("erest group") is None
+
+def test_the_public_split_token_returns_none():
+    # "the Public" — second half of OCR-split "Member of the Public" (28 rows)
+    assert canonicalize_requester_type("the Public") is None
