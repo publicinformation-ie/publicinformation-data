@@ -49,6 +49,10 @@ _LOOKUP: dict[str, Optional[str]] = {
     'business interest': 'Business/Interest Group',
     'business/interest': 'Business/Interest Group',
     'business/inte rest group': 'Business/Interest Group',  # OCR word-wrap artefact
+    'interest groups': 'Business/Interest Group',
+    'commercial': 'Business/Interest Group',
+    'organisation': 'Business/Interest Group',
+    'business group': 'Business/Interest Group',
     # Oireachtas — all compound forms collapse to Oireachtas
     'oireachtas': 'Oireachtas',
     'oireachtas/public representatives': 'Oireachtas',
@@ -82,6 +86,7 @@ _LOOKUP: dict[str, Optional[str]] = {
     # Solicitor
     'solicitor': 'Solicitor',
     'solicitors': 'Solicitor',
+    'legal firm': 'Solicitor',
     # Confirmed junk — explicit None so we know we've seen them
     'category': None,    # column header leaking in
     'type': None,        # column header leaking in
