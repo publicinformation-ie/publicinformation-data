@@ -879,3 +879,31 @@ def test_row_one_longer_still_corrected_not_dropped():
     assert len(results) == 1
     assert results[0]["decision_status"] == "Granted"
     assert errors == []
+
+
+# ── Meath County Council merged-header synonyms ───────────────────────────────
+
+class TestMeathSynonyms:
+    """Column names assembled by normalize_header from Meath 2016–2019 7-row PDF headers."""
+
+    def test_meath_foi_reference_id_2018(self):
+        assert canonicalize_header('Number Assigned by the Department') == 'foi_reference_id'
+
+    def test_meath_foi_reference_id_2016(self):
+        assert canonicalize_header('Reference Number Assigned by the Department') == 'foi_reference_id'
+
+    def test_meath_date_received(self):
+        assert canonicalize_header('Date of Receipt of Request in Department') == 'date_received'
+
+    def test_meath_decision_date_2018(self):
+        assert canonicalize_header('the Decision Issued to the Applicant') == 'decision_date'
+
+    def test_meath_decision_date_2016(self):
+        assert canonicalize_header('Date When the Decision Issued to the Applicant') == 'decision_date'
+
+    def test_meath_decision_status(self):
+        assert canonicalize_header('Summary of Decision') == 'decision_status'
+
+    def test_synonyms_are_case_insensitive(self):
+        assert canonicalize_header('date of receipt of request in department') == 'date_received'
+        assert canonicalize_header('THE DECISION ISSUED TO THE APPLICANT') == 'decision_date'

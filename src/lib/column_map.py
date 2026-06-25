@@ -51,6 +51,9 @@ _SYNONYMS: dict[str, list[str]] = {
         'foi file no',
         # Irish-language synonyms (Fingal, DLR PDFs)
         'uimhir thagartha', 'uimhir',
+        # Meath County Council 2016–2019 PDFs (7-row multi-row header, assembled by normalize_header)
+        'number assigned by the department',             # Meath 2018/2019
+        'reference number assigned by the department',   # Meath 2016/2017
     ],
     'date_received': [
         'date received', "date rec'd", "date rcv'd",
@@ -68,6 +71,8 @@ _SYNONYMS: dict[str, list[str]] = {
         'date when',
         # Charities Regulator — reversed word order
         'received date',
+        # Meath County Council 2016–2019 PDFs (7-row multi-row header, assembled by normalize_header)
+        'date of receipt of request in department',      # Meath 2018/2019 and 2016/2017 (same assembled form)
     ],
     'decision_date': [
         'decision date', 'due date', 'date issued', 'date released',
@@ -104,6 +109,9 @@ _SYNONYMS: dict[str, list[str]] = {
         'Decision/Respons\ne Sent',              # pdfplumber line-wrap artefact
         'Decision/\nResponse\nSent',             # another line-wrap variant
         'Decision/Response \nBreith ar',         # 2023–2024 PDFs ("breith ar" = IR review)
+        # Meath County Council 2016–2019 PDFs (7-row multi-row header, assembled by normalize_header)
+        'the decision issued to the applicant',           # Meath 2018/2019 col 4
+        'date when the decision issued to the applicant', # Meath 2016/2017 col 4
     ],
     'requester_type': [
         'requester type', 'category', 'category of requester', 'requester',
@@ -160,6 +168,8 @@ _SYNONYMS: dict[str, list[str]] = {
         'Cineál\nCinneadh/Decisio\nn Type',  # Fingal 2022 PDF: pdfplumber splits "Decision" across lines
         # Task 2: header-leakage values (multi-row PDF headers bleeding into data)
         'made',               # 2nd line of split "Decision / Made" header (body 1211)
+        # Meath County Council 2016–2019 PDFs (col 5 assembled from 7-row header)
+        'summary of decision',                           # Meath 2016–2019 col 5
     ],
     'review_status': [
         'ir', 'ir/al', 'al',
