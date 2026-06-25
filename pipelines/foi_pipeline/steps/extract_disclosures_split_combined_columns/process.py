@@ -37,6 +37,19 @@ _SPLIT_RE = re.compile(
     re.IGNORECASE | re.DOTALL,
 )
 
+# Matches: <asterisk?><date> <refID>   e.g. "06/07/2022 19447" or "*02/01/2018 9559"
+_DATE_REFID_RE = re.compile(
+    r'^\*?(\d{1,2}[/.-]\d{1,2}[/.-]\d{2,4})\s+(\d{4,6})$'
+)
+
+# Matches: <refID> <date>   e.g. "7190 19/01/2017"
+_REFID_DATE_RE = re.compile(
+    r'^(\d{4,6})\s+(\d{1,2}[/.-]\d{1,2}[/.-]\d{2,4})$'
+)
+
+# Matches a pure FOI reference ID (4–6 digits, optional leading asterisk)
+_PURE_REFID_RE = re.compile(r'^\*?(\d{4,6})$')
+
 
 def split_cell(cell) -> tuple:
     """Split a combined date+description cell into (date_text, description_text).
@@ -51,6 +64,39 @@ def split_cell(cell) -> tuple:
     if m:
         return (m.group(1).strip(), m.group(2).strip() or None)
     return (cell, None)
+
+
+def split_refid_date_cell(cell) -> tuple:
+    """Split a cell that mixes a FOI reference ID with a date.
+
+    Returns (refid, date_str). Either element may be None.
+
+    Handles the patterns found in DSP multi-sub-column date headers:
+      - pure date:         "18/01/2017"         → (None,    "18/01/2017")
+      - pure refID:        "7191"                → ("7191",  None)
+      - refID then date:   "7190 19/01/2017"     → ("7190",  "19/01/2017")
+      - date then refID:   "06/07/2022 19447"    → ("19447", "06/07/2022")
+      - asterisk-prefixed: "*02/01/2018 9559"    → ("9559",  "02/01/2018")
+      - asterisk+refID:    "*9557"               → ("9557",  None)
+    """
+    if not isinstance(cell, str) or not cell.strip():
+        return (None, None)
+    value = cell.strip()
+
+    m = _DATE_REFID_RE.match(value)
+    if m:
+        return (m.group(2), m.group(1))
+
+    m = _REFID_DATE_RE.match(value)
+    if m:
+        return (m.group(1), m.group(2))
+
+    m = _PURE_REFID_RE.match(value)
+    if m:
+        return (m.group(1), None)
+
+    # Pure date or unrecognised — leave unchanged
+    return (None, value)
 
 
 def split_file(item: dict) -> tuple:

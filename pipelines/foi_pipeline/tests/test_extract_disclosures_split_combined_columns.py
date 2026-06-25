@@ -3,6 +3,7 @@ import pytest
 from steps.extract_disclosures_split_combined_columns.process import (
     split_cell,
     split_file,
+    split_refid_date_cell,
 )
 
 
@@ -148,3 +149,51 @@ class TestSplitFile:
         assert result["rows"][1][0] == "Date Received"
         assert result["rows"][2][0] == "29 December 2022"
         assert result["rows"][2][1] == "Some request"
+
+
+class TestSplitRefidDateCell:
+    """Tests for the new refID+date combined cell splitter."""
+
+    def test_none_returns_none_none(self):
+        assert split_refid_date_cell(None) == (None, None)
+
+    def test_non_string_returns_none_none(self):
+        assert split_refid_date_cell(42) == (None, None)
+
+    def test_pure_date_returns_none_date(self):
+        # A clean date — no refID present
+        assert split_refid_date_cell("18/01/2017") == (None, "18/01/2017")
+
+    def test_pure_refid_returns_refid_none(self):
+        # Just a 5-digit FOI reference number
+        assert split_refid_date_cell("7191") == ("7191", None)
+
+    def test_pure_refid_4digit(self):
+        assert split_refid_date_cell("9557") == ("9557", None)
+
+    def test_refid_then_date(self):
+        # 2017 file pattern: refID space date
+        assert split_refid_date_cell("7190 19/01/2017") == ("7190", "19/01/2017")
+
+    def test_refid_then_date_hyphen_format(self):
+        assert split_refid_date_cell("7190 19-01-2017") == ("7190", "19-01-2017")
+
+    def test_date_then_refid(self):
+        # 2022-q3 / 2022-q2 pattern: date space refID
+        assert split_refid_date_cell("06/07/2022 19447") == ("19447", "06/07/2022")
+
+    def test_date_then_refid_dot_format(self):
+        assert split_refid_date_cell("06.07.2022 19447") == ("19447", "06.07.2022")
+
+    def test_asterisk_prefix_stripped(self):
+        # 2018 file pattern: asterisk then date then refID
+        assert split_refid_date_cell("*02/01/2018 9559") == ("9559", "02/01/2018")
+
+    def test_asterisk_pure_refid(self):
+        assert split_refid_date_cell("*9557") == ("9557", None)
+
+    def test_pure_date_no_refid_dd_mm_yyyy(self):
+        assert split_refid_date_cell("02/10/2023") == (None, "02/10/2023")
+
+    def test_empty_string_returns_none_none(self):
+        assert split_refid_date_cell("") == (None, None)
