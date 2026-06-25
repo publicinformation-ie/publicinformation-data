@@ -74,6 +74,9 @@ _SKIP_VALUES = frozenset({
     'decision', 'date issued', 'date of request',
     'part granted', 'granted', 'refused', 'full granted',
     'pending', 'withdrawn', 'transferred',
+    # Repeating page-header values from DSP multi-page PDFs
+    'date of reply', 'reference no', 'reference no.',
+    'a', 'b', 'c', 'd', 'e',
 })
 
 
@@ -103,14 +106,20 @@ def normalize_date_value(raw_value: Optional[str]) -> Optional[str]:
     
     if not isinstance(raw_value, str):
         raw_value = str(raw_value)
-    
+
     # Strip whitespace
     value = raw_value.strip()
-    
+
     # Return None for empty strings
     if not value:
         return None
-    
+
+    # Strip leading footnote/asterisk markers (e.g. "*02/01/2018 9557")
+    if value.startswith('*'):
+        value = value.lstrip('*').strip()
+        if not value:
+            return None
+
     if value.lower() in _SKIP_VALUES:
         return None
 
