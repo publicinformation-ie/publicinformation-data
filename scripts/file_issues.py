@@ -4,7 +4,6 @@
 import argparse
 import sys
 from collections import defaultdict
-from pathlib import Path
 
 from src.lib.pipeline_steps import (
     STEP_NAMES,
