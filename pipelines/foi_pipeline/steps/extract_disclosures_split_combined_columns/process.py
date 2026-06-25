@@ -169,6 +169,9 @@ def split_file(item: dict) -> tuple:
         and _column_has_embedded_refids(new_rows, i, header_row_idx)
     ]
 
+    if not combined_indices and not refid_indices:
+        return item, []
+
     for col_idx in reversed(refid_indices):
         # Insert new FOI Reference Number header after the date column
         header_row.insert(col_idx + 1, _REFID_HEADER)
