@@ -225,3 +225,34 @@ def test_targeted_fill_does_not_touch_non_none_header_positions():
     assert result[0][2] == 'Decision'
     assert result[0][3] == 'Description'
     assert len(result) == 2   # candidate row consumed
+
+
+
+# ── Meath 2018/2019: 6-row continuation depth ─────────────────────────────────
+
+def test_merges_up_to_six_continuation_rows():
+    """Meath 2018/2019 pattern: 6 sparse continuation rows must all be merged.
+
+    The old limit of 3 left rows 4-6 (here indices 4-6) in the data as phantom
+    header fragments.  After raising _MAX_CONTINUATION_ROWS to 6, all 6 are
+    consumed and the assembled header matches the Meath column names that Fix 3
+    will add to column_map.py.
+    """
+    rows = [
+        ['Number', 'Date of Receipt', None, None, None, None],                      # header
+        [None, None, 'Category of', None, 'the Decision', 'Summary of'],             # cont 1
+        ['Assigned by', 'of Request in', None, 'Summary of the Info', None, None],   # cont 2
+        [None, None, 'Applicant', None, 'Issued to the', 'Decision'],                # cont 3
+        ['the', 'Department', None, None, None, None],                               # cont 4
+        [None, None, None, None, 'Applicant', None],                                 # cont 5
+        ['Department', None, None, None, None, None],                                # cont 6
+        ['FOI 77/18', '10/07/2018', 'Individual', 'sign erected', '07/08/2018', 'Section'],  # data
+    ]
+    result_rows, idx = normalize_header_row(rows, header_row_idx=0)
+    assert result_rows[0][0] == 'Number Assigned by the Department'
+    assert result_rows[0][1] == 'Date of Receipt of Request in Department'
+    assert result_rows[0][2] == 'Category of Applicant'
+    assert result_rows[0][4] == 'the Decision Issued to the Applicant'
+    assert len(result_rows) == 2   # all 6 continuation rows consumed
+    assert result_rows[1][0] == 'FOI 77/18'
+    assert idx == 0

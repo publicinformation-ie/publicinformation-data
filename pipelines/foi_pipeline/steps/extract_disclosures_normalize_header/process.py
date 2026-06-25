@@ -8,7 +8,7 @@ from lib.file_utils import read_json, write_json, write_status, IncrementalWrite
 
 STEP_NAME = "extract_disclosures_normalize_header"
 _CONTINUATION_NULL_THRESHOLD = 0.5  # row is a continuation if > 50% of cells are None
-_MAX_CONTINUATION_ROWS = 3
+_MAX_CONTINUATION_ROWS = 6
 
 
 def _count_canonical_columns(row) -> int:
