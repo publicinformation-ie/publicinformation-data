@@ -106,8 +106,8 @@ def test_trace_file_success():
             "results": [{"file_url": "https://test.com/file.xlsx", "rows": [["a"]]}]
         }))
         
-        # Mock STEPS_DIR
-        with patch("scripts.trace_file.STEPS_DIR", steps_dir):
+        # Mock STEPS_DIR in the shared module
+        with patch("src.lib.pipeline_steps.STEPS_DIR", steps_dir):
             from scripts.trace_file import trace_file
             from io import StringIO
             import sys
@@ -138,16 +138,16 @@ def test_trace_file_not_found():
         step_dir.mkdir(parents=True)
         (step_dir / "output.json").write_text(json.dumps({"results": []}))
         
-        with patch("scripts.trace_file.STEPS_DIR", steps_dir):
+        with patch("src.lib.pipeline_steps.STEPS_DIR", steps_dir):
             from scripts.trace_file import trace_file
             from io import StringIO
             import sys
-            
+
             old_stdout = sys.stdout
             old_stderr = sys.stderr
             sys.stdout = StringIO()
             sys.stderr = StringIO()
-            
+
             try:
                 exit_code = trace_file("https://test.com/missing.xlsx")
                 assert exit_code == 1
@@ -172,8 +172,8 @@ def test_trace_file_missing_step_output():
         }))
         
         # Other step directories don't exist
-        
-        with patch("scripts.trace_file.STEPS_DIR", steps_dir):
+
+        with patch("src.lib.pipeline_steps.STEPS_DIR", steps_dir):
             from scripts.trace_file import trace_file
             from io import StringIO
             import sys
@@ -219,8 +219,8 @@ def test_trace_file_partial_normalize_rows():
                 (step_dir / "errors.json").write_text(json.dumps(data["errors"]))
             else:
                 (step_dir / "output.json").write_text(json.dumps(data))
-        
-        with patch("scripts.trace_file.STEPS_DIR", steps_dir):
+
+        with patch("src.lib.pipeline_steps.STEPS_DIR", steps_dir):
             from scripts.trace_file import trace_file
             from io import StringIO
             import sys
@@ -252,8 +252,8 @@ def test_trace_file_pdf_null_rows():
         (step_dir / "output.json").write_text(json.dumps({
             "results": [{"file_url": "https://test.com/file.pdf", "rows": None}]
         }))
-        
-        with patch("scripts.trace_file.STEPS_DIR", steps_dir):
+
+        with patch("src.lib.pipeline_steps.STEPS_DIR", steps_dir):
             from scripts.trace_file import trace_file
             from io import StringIO
             import sys
