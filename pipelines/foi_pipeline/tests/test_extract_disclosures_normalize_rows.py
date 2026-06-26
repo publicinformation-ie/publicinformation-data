@@ -125,6 +125,39 @@ class TestNormalizeDateValue:
     def test_two_digit_year_20th_century(self):
         assert normalize_date_value("01/02/99") == "1999-02-01"
 
+    def test_date_of_reply_header_skipped(self):
+        # Repeating page header value — must be silently None, not an error
+        assert normalize_date_value("Date of Reply") is None
+
+    def test_reference_no_header_skipped(self):
+        assert normalize_date_value("Reference No") is None
+
+    def test_reference_no_dot_skipped(self):
+        assert normalize_date_value("Reference No.") is None
+
+    def test_column_letter_a_skipped(self):
+        assert normalize_date_value("A") is None
+
+    def test_column_letter_e_skipped(self):
+        assert normalize_date_value("E") is None
+
+    def test_asterisk_prefixed_date_refid_parses_date(self):
+        # 2018 file: "*02/01/2018 9559" → leading date extracted after stripping asterisk
+        assert normalize_date_value("*02/01/2018 9559") == "2018-01-02"
+
+    def test_asterisk_prefixed_pure_date_parses(self):
+        assert normalize_date_value("*15/03/2021") == "2021-03-15"
+
+    def test_long_string_returns_none(self):
+        # >60 char strings can never be dates
+        assert normalize_date_value("FOI DISCLOSURE LOG 2017 DEPARTMENT OF EMPLOYMENT AFFAIRS AND SOCIAL PROTECTION (DEASP)") is None
+
+    def test_category_of_requester_date_received_skipped(self):
+        assert normalize_date_value("Category of Requester Date Received") is None
+
+    def test_decision_made_skipped(self):
+        assert normalize_date_value("Decision Made") is None
+
 
 class TestIsDateColumn:
     """Tests for is_date_column() function."""
@@ -276,6 +309,44 @@ class TestProcessFile:
         assert result["file_url"] == "https://assets.gov.ie/log.xlsx"
         assert result["file_type"] == "xlsx"
         assert result["sheet_name"] == "Sheet1"
+
+
+class TestProcessFileSkipValues:
+    """Verify process_file does not log errors for known header-repeat values."""
+
+    def _make_item(self, headers, data_rows, header_row_idx=0):
+        return {
+            "public_body_id": 1211,
+            "name": "Department of Social Protection",
+            "file_url": "https://assets.gov.ie/test.pdf",
+            "file_type": "pdf",
+            "header_row_idx": header_row_idx,
+            "rows": [headers] + data_rows,
+        }
+
+    def test_date_of_reply_does_not_produce_error(self, tmp_path):
+        item = self._make_item(
+            ["Date of Request", "Decision"],
+            [["Date of Reply", "Decision"]],
+        )
+        _, errors = process_file(item, tmp_path)
+        assert errors == [], f"Expected no errors, got: {errors}"
+
+    def test_reference_no_does_not_produce_error(self, tmp_path):
+        item = self._make_item(
+            ["Date Received", "Category"],
+            [["Reference No", "Requester"]],
+        )
+        _, errors = process_file(item, tmp_path)
+        assert errors == []
+
+    def test_column_letter_does_not_produce_error(self, tmp_path):
+        item = self._make_item(
+            ["Date Received", "Category"],
+            [["A", "B"]],
+        )
+        _, errors = process_file(item, tmp_path)
+        assert errors == []
 
 
 class TestNoDigitsHeuristic:

@@ -74,6 +74,18 @@ _SKIP_VALUES = frozenset({
     'decision', 'date issued', 'date of request',
     'part granted', 'granted', 'refused', 'full granted',
     'pending', 'withdrawn', 'transferred',
+    # Repeating page-header values from DSP multi-page PDFs
+    'date of reply', 'reference no', 'reference no.',
+    'a', 'b', 'c', 'd', 'e',
+    # DSP 2023-q4 page-break header
+    'category of requester date received',
+    # DSP 2017 col-1 fragments from page-break rows with non-standard column alignment
+    # ('Category of Requester', 'Member of the Public' split across cells)
+    'category of', 'requester', 'member of the', 'public',
+    # DSP 2017 col-6 section-header rows (long strings caught by length guard too)
+    'summary of 2017 foi requests',
+    # Decision-status labels that appear in date columns in DSP files
+    'decision made',
 })
 
 
@@ -103,15 +115,25 @@ def normalize_date_value(raw_value: Optional[str]) -> Optional[str]:
     
     if not isinstance(raw_value, str):
         raw_value = str(raw_value)
-    
+
     # Strip whitespace
     value = raw_value.strip()
-    
+
     # Return None for empty strings
     if not value:
         return None
-    
+
+    # Strip leading footnote/asterisk markers (e.g. "*02/01/2018 9557")
+    if value.startswith('*'):
+        value = value.lstrip('*').strip()
+        if not value:
+            return None
+
     if value.lower() in _SKIP_VALUES:
+        return None
+
+    # Values longer than 60 characters cannot be dates — skip silently
+    if len(value) > 60:
         return None
 
     # Values with no digits cannot be dates (catches header leaks, descriptive text)
@@ -298,7 +320,8 @@ def process_file(item: dict, step_dir: Path, verbose: bool = False) -> tuple[dic
                 normalized = normalize_date_value(cell_value)
                 
                 cell_str = str(cell_value).strip() if cell_value is not None else ""
-                if normalized is None and cell_str and cell_str.lower() not in _SKIP_VALUES:
+                if normalized is None and cell_str and cell_str.lower() not in _SKIP_VALUES \
+                        and len(cell_str) <= 60:
                     # Log error for unparseable date
                     error_context = {
                         "file_url": file_url,
