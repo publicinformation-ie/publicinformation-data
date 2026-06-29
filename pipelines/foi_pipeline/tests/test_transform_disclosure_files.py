@@ -424,7 +424,7 @@ def test_process_single_file_includes_pdf_extractor(tmp_path):
     assert result["results"][0].get("pdf_extractor") in ("pdfplumber", "camelot_stream")
 
 
-def test_process_single_file_logs_camelot_fallback_attempted(tmp_path):
+def test_process_single_file_camelot_attempted_sets_flag_in_output(tmp_path):
     import json
     import unittest.mock
     from lib.file_utils import IncrementalWriter
@@ -449,14 +449,10 @@ def test_process_single_file_logs_camelot_fallback_attempted(tmp_path):
         process(input_data, tmp_path, writer)
     writer.finalize()
 
+    result = json.loads(output_path.read_text())
+    assert result["results"][0].get("pdf_camelot_attempted") is True
     errors = json.loads((tmp_path / "errors.json").read_text())
-    camelot_errors = [e for e in errors if e.get("error_type") == "CamelotFallbackAttempted"]
-    assert len(camelot_errors) == 1
-    ctx = camelot_errors[0]["context"]
-    assert ctx["file_url"] == "http://example.com/test.pdf"
-    assert "pdfplumber_n_mapped" in ctx
-    assert "camelot_n_mapped" in ctx
-    assert "used" in ctx
+    assert not any(e.get("error_type") == "CamelotFallbackAttempted" for e in errors)
 
 
 # ── _score_rows ───────────────────────────────────────────────────────────────
@@ -561,7 +557,6 @@ def test_process_pdf_extracts_rows(requests_mock, tmp_path, make_writer):
 
 
 def test_process_pdf_no_errors_on_clean_file(requests_mock, tmp_path, make_writer):
-    # Use headers that map to >= 2 known canonical columns to avoid CamelotFallbackAttempted
     pdf_bytes = _make_pdf([[[ ["Our Ref", "Date Received", "Description"], ["001", "2024-01-01", "req"] ]]])
     requests_mock.get(PDF_URL, content=pdf_bytes)
     writer = make_writer(STEP_NAME, key_field="file_url")
@@ -570,7 +565,7 @@ def test_process_pdf_no_errors_on_clean_file(requests_mock, tmp_path, make_write
     assert errors == []
 
 
-def test_process_pdf_multiple_tables_writes_record_and_warning(requests_mock, tmp_path, make_writer):
+def test_process_pdf_multiple_tables_sets_flag_in_output(requests_mock, tmp_path, make_writer):
     table1 = [["Ref", "Date"], ["001", "2024-01-01"]]
     table2 = [["002", "2024-01-02"]]
     pdf_bytes = _make_pdf([[table1, table2]])
@@ -578,9 +573,19 @@ def test_process_pdf_multiple_tables_writes_record_and_warning(requests_mock, tm
     writer = make_writer(STEP_NAME, key_field="file_url")
     process(PDF_INPUT, tmp_path, writer)
     assert len(writer.results) == 1  # record still written
+    assert writer.results[0].get("pdf_multiple_tables") is True
     errors = json.loads((tmp_path / "errors.json").read_text())
-    assert len(errors) == 1
-    assert errors[0]["error_type"] == "MultipleTableWarning"
+    assert not any(e.get("error_type") == "MultipleTableWarning" for e in errors)
+
+
+def test_process_pdf_single_table_has_no_multiple_tables_flag(requests_mock, tmp_path, make_writer):
+    rows = [["Our Ref", "Date Received", "Description"], ["1", "2024-01-01", "req"]]
+    pdf_bytes = _make_pdf([[rows]])
+    requests_mock.get(PDF_URL, content=pdf_bytes)
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(PDF_INPUT, tmp_path, writer)
+    assert len(writer.results) == 1
+    assert not writer.results[0].get("pdf_multiple_tables")
 
 
 def test_process_pdf_no_tables_logs_error_and_skips_record(requests_mock, tmp_path, make_writer):
@@ -736,22 +741,33 @@ def test_process_download_failure_does_not_mark_processed(requests_mock, tmp_pat
     assert not writer.is_processed("https://assets.gov.ie/log.xlsx")
 
 
-def test_process_multiple_sheets_writes_record_and_warning(requests_mock, tmp_path, make_writer):
+def test_process_xlsx_multiple_sheets_sets_flag_in_output(requests_mock, tmp_path, make_writer):
     xlsx_bytes = _make_xlsx([["Col A"]], extra_sheets=2, extra_sheet_rows=[["Col B"]])
     requests_mock.get("https://assets.gov.ie/log.xlsx", content=xlsx_bytes)
     writer = make_writer(STEP_NAME, key_field="file_url")
     process(XLSX_INPUT, tmp_path, writer)
     assert len(writer.results) == 1  # record still written
     assert writer.results[0]["rows"][0] == ["Col A"]
+    assert writer.results[0].get("multiple_sheets") is True
     errors = json.loads((tmp_path / "errors.json").read_text())
-    assert len(errors) == 1
-    assert errors[0]["error_type"] == "MultipleSheetWarning"
+    assert not any(e.get("error_type") == "MultipleSheetWarning" for e in errors)
+
+
+def test_process_xls_multiple_sheets_sets_flag_in_output(requests_mock, tmp_path, make_writer):
+    xls_bytes = _make_xls([["Col A"]], extra_sheets=2, extra_sheet_rows=[["Col B"]])
+    requests_mock.get("https://assets.gov.ie/log.xls", content=xls_bytes)
+    writer = make_writer(STEP_NAME, key_field="file_url")
+    process(XLS_INPUT, tmp_path, writer)
+    assert len(writer.results) == 1
+    assert writer.results[0].get("multiple_sheets") is True
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert not any(e.get("error_type") == "MultipleSheetWarning" for e in errors)
 
 
 # ── process() — CellSerializationWarning ─────────────────────────────────────
 
-def test_process_cell_serialization_warning(requests_mock, tmp_path, make_writer, monkeypatch):
-    """Verify that fallback cells trigger a CellSerializationWarning in errors.json."""
+def test_process_cell_serialization_warning_not_logged_to_errors(requests_mock, tmp_path, make_writer, monkeypatch):
+    """Verify that fallback cells do NOT write to errors.json; record is still written."""
     import steps.transform_disclosure_files.process as proc_mod
 
     original_serialise = proc_mod.serialise_cell
@@ -760,7 +776,6 @@ def test_process_cell_serialization_warning(requests_mock, tmp_path, make_writer
     def patched_serialise(value):
         call_count["n"] += 1
         if call_count["n"] == 1:
-            # Force the first cell to hit the fallback
             return str(value) + "_fallback", True
         return original_serialise(value)
 
@@ -771,13 +786,9 @@ def test_process_cell_serialization_warning(requests_mock, tmp_path, make_writer
     writer = make_writer(STEP_NAME, key_field="file_url")
     process(XLSX_INPUT, tmp_path, writer)
 
-    # Record is still written despite the fallback
     assert len(writer.results) == 1
-
     errors = json.loads((tmp_path / "errors.json").read_text())
-    assert len(errors) == 1
-    assert errors[0]["error_type"] == "CellSerializationWarning"
-    assert "cells" in errors[0]["context"]
+    assert not any(e.get("error_type") == "CellSerializationWarning" for e in errors)
 
 
 import sys as _sys

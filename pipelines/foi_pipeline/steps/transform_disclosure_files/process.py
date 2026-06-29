@@ -438,71 +438,28 @@ def _process_single_file(item, cache, step_dir):
         pdf_extractor = "pdfplumber"
         merge_stats = {}
         if file_type == "xlsx":
-            sheet_name, rows, fallback_cells, has_multiple = _extract_xlsx(file_bytes)
-            if has_multiple:
-                append_error(step_dir, {
-                    "step": STEP_NAME,
-                    "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-                    "error_type": "MultipleSheetWarning",
-                    "error_message": "File has multiple sheets; only the first sheet was extracted.",
-                    "context": {"file_url": file_url},
-                })
+            sheet_name, rows, _, has_multiple = _extract_xlsx(file_bytes)
         elif file_type == "xls":
-            sheet_name, rows, fallback_cells, has_multiple = _extract_xls(file_bytes)
-            if has_multiple:
-                append_error(step_dir, {
-                    "step": STEP_NAME,
-                    "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-                    "error_type": "MultipleSheetWarning",
-                    "error_message": "File has multiple sheets; only the first sheet was extracted.",
-                    "context": {"file_url": file_url},
-                })
+            sheet_name, rows, _, has_multiple = _extract_xls(file_bytes)
         else:  # pdf
-            sheet_name, rows, fallback_cells, has_multiple, merge_stats, pdf_extractor, camelot_info = _extract_pdf(file_bytes)
-            if camelot_info is not None:
-                try:
-                    append_error(step_dir, {
-                        "step": STEP_NAME,
-                        "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-                        "error_type": "CamelotFallbackAttempted",
-                        "error_message": f"pdfplumber scored n_mapped={camelot_info['pdfplumber_n_mapped']}; camelot_stream scored {camelot_info['camelot_n_mapped']}",
-                        "context": {
-                            "file_url": file_url,
-                            "pdfplumber_n_mapped": camelot_info["pdfplumber_n_mapped"],
-                            "camelot_n_mapped": camelot_info["camelot_n_mapped"],
-                            "used": camelot_info["used"],
-                        },
-                    })
-                except Exception:
-                    pass
-            if has_multiple:
-                try:
-                    append_error(step_dir, {
-                        "step": STEP_NAME,
-                        "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-                        "error_type": "MultipleTableWarning",
-                        "error_message": "File has multiple tables; all table rows were concatenated.",
-                        "context": {"file_url": file_url},
-                    })
-                except Exception:
-                    pass
-
-        if fallback_cells:
-            try:
-                append_error(step_dir, {
-                    "step": STEP_NAME,
-                    "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-                    "error_type": "CellSerializationWarning",
-                    "error_message": f"{len(fallback_cells)} cell(s) used str() fallback.",
-                    "context": {"file_url": file_url, "cells": fallback_cells},
-                })
-            except Exception:
-                pass
+            sheet_name, rows, _, has_multiple, merge_stats, pdf_extractor, camelot_info = _extract_pdf(file_bytes)
 
         if file_type == "pdf":
-            result_record = {**item, "sheet_name": sheet_name, "rows": rows, "pdf_merge_stats": merge_stats, "pdf_extractor": pdf_extractor}
+            result_record = {
+                **item,
+                "sheet_name": sheet_name,
+                "rows": rows,
+                "pdf_merge_stats": merge_stats,
+                "pdf_extractor": pdf_extractor,
+            }
+            if camelot_info is not None:
+                result_record["pdf_camelot_attempted"] = True
+            if has_multiple:
+                result_record["pdf_multiple_tables"] = True
         else:
             result_record = {**item, "sheet_name": sheet_name, "rows": rows}
+            if has_multiple:
+                result_record["multiple_sheets"] = True
         return [result_record], True
 
     except DownloadError:

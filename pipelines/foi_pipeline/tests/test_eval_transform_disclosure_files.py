@@ -206,27 +206,39 @@ from steps.transform_disclosure_files.eval.evaluate import (
 
 # ── _load_process_warning_urls ───────────────────────────────────────────────
 
-def test_load_process_warnings_missing_file(tmp_path):
-    assert _load_process_warning_urls(tmp_path / "missing.json") == set()
+def test_load_process_warnings_empty_items():
+    assert _load_process_warning_urls([]) == set()
 
 
-def test_load_process_warnings_extracts_urls(tmp_path):
-    errors = [
-        {"error_type": "MultipleTableWarning", "context": {"file_url": "http://a.com/f.pdf"}},
-        {"error_type": "CellSerializationWarning", "context": {"file_url": "http://b.com/f.pdf"}},
-        {"error_type": "DownloadError", "context": {"file_url": "http://c.com/f.pdf"}},
+def test_load_process_warnings_extracts_urls_from_items():
+    items = [
+        {"file_url": "http://a.com/f.pdf", "pdf_multiple_tables": True},
+        {"file_url": "http://b.com/f.pdf", "pdf_multiple_tables": False},
+        {"file_url": "http://c.com/f.pdf"},  # field absent
     ]
-    p = tmp_path / "errors.json"
-    p.write_text(json.dumps(errors))
-    urls = _load_process_warning_urls(p)
-    assert urls == {"http://a.com/f.pdf", "http://b.com/f.pdf"}
+    urls = _load_process_warning_urls(items)
+    assert urls == {"http://a.com/f.pdf"}
 
 
-def test_load_process_warnings_skips_missing_context(tmp_path):
-    errors = [{"error_type": "MultipleTableWarning", "context": {}}]
-    p = tmp_path / "errors.json"
-    p.write_text(json.dumps(errors))
-    assert _load_process_warning_urls(p) == set()
+def test_load_process_warnings_ignores_items_without_url():
+    items = [{"pdf_multiple_tables": True}]  # no file_url
+    assert _load_process_warning_urls(items) == set()
+
+
+# ── _load_camelot_fallback_urls ──────────────────────────────────────────────
+
+def test_load_camelot_fallback_urls_empty_items():
+    assert _load_camelot_fallback_urls([]) == set()
+
+
+def test_load_camelot_fallback_urls_extracts_urls_from_items():
+    items = [
+        {"file_url": "http://a.com/1.pdf", "pdf_camelot_attempted": True},
+        {"file_url": "http://a.com/2.pdf", "pdf_camelot_attempted": False},
+        {"file_url": "http://a.com/3.pdf"},  # field absent
+    ]
+    urls = _load_camelot_fallback_urls(items)
+    assert urls == {"http://a.com/1.pdf"}
 
 
 # ── main() ───────────────────────────────────────────────────────────────────

@@ -197,29 +197,19 @@ def run_eval(items, process_warning_urls, input_hash, camelot_fallback_urls=None
     return results, issues, quality_by_body
 
 
-def _load_errors(errors_path: Path) -> list:
-    if not errors_path.exists():
-        return []
-    return json.loads(errors_path.read_text())
-
-
-def _load_process_warning_urls(errors_path: Path) -> set:
-    errors = _load_errors(errors_path)
+def _load_process_warning_urls(items: list) -> set:
     return {
-        e["context"]["file_url"]
-        for e in errors
-        if e.get("error_type") in ("MultipleTableWarning", "CellSerializationWarning")
-        and "file_url" in e.get("context", {})
+        item["file_url"]
+        for item in items
+        if item.get("pdf_multiple_tables") and item.get("file_url")
     }
 
 
-def _load_camelot_fallback_urls(errors_path: Path) -> set:
-    errors = _load_errors(errors_path)
+def _load_camelot_fallback_urls(items: list) -> set:
     return {
-        e["context"]["file_url"]
-        for e in errors
-        if e.get("error_type") == "CamelotFallbackAttempted"
-        and "file_url" in e.get("context", {})
+        item["file_url"]
+        for item in items
+        if item.get("pdf_camelot_attempted") and item.get("file_url")
     }
 
 
@@ -228,7 +218,6 @@ def main():
         description="Evaluate transform_disclosure_files PDF extraction quality"
     )
     parser.add_argument("--input-path", dest="input_path", default=str(_HERE / "input.json"))
-    parser.add_argument("--errors-path", dest="errors_path", default=str(_HERE.parent / "errors.json"))
     parser.add_argument("--refresh-fixture", metavar="LIVE_OUTPUT",
                         help="Re-capture input.json from a live output file, then exit")
     args = parser.parse_args()
@@ -244,9 +233,8 @@ def main():
         r for r in data["results"]
         if r.get("file_type") == "pdf" and r.get("rows") is not None
     ]
-    errors_path = Path(args.errors_path)
-    process_warning_urls = _load_process_warning_urls(errors_path)
-    camelot_fallback_urls = _load_camelot_fallback_urls(errors_path)
+    process_warning_urls = _load_process_warning_urls(items)
+    camelot_fallback_urls = _load_camelot_fallback_urls(items)
 
     results, issues, quality_by_body = run_eval(
         items, process_warning_urls, eval_utils.input_hash(Path(args.input_path)),
