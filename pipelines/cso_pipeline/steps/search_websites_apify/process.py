@@ -16,10 +16,7 @@ _TOKEN_RE = re.compile(r"[a-z]+")
 
 def build_query(body: dict) -> str:
     name = body.get("name", "")
-    gov_dept = body.get("government_department")
-    if gov_dept:
-        return f'"{name}" {gov_dept} Ireland official website'
-    return f'"{name}" Ireland public body'
+    return f'"{name}" Ireland official website'
 
 
 def score_confidence(domain: str, body_name: str) -> str:
