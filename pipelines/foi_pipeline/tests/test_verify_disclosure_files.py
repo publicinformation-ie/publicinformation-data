@@ -1,5 +1,8 @@
 import pytest
-from steps.verify_disclosure_files.process import _score_text, _is_non_foi_document
+import tempfile
+import unittest.mock
+from pathlib import Path
+from steps.verify_disclosure_files.process import _score_text, _is_non_foi_document, _verify_one, DisclosureFileCache
 
 
 class TestScoreTextUnverified:
@@ -175,3 +178,26 @@ class TestIsNonFoiDocument:
             "https://www.fiosru.ie/some-doc.pdf",
             None, text
         ) is False
+
+
+class TestVerifyOneNonFoiRejection:
+    def test_calendar_url_returns_rejected(self, tmp_path):
+        """_verify_one must return rejected/non_foi_pattern for a calendar URL."""
+        # Create a temp file with empty bytes to represent the "downloaded" file
+        fake_file = tmp_path / "fake.pdf"
+        fake_file.write_bytes(b"")
+
+        item = {
+            "file_url": "https://www.gov.ie/Minister_Calendar_Q1.pdf",
+            "file_type": "pdf",
+            "link_text": None,
+        }
+
+        cache = unittest.mock.MagicMock(spec=DisclosureFileCache)
+        cache.get_file_path.return_value = fake_file
+
+        result = _verify_one(item, cache, str(tmp_path))
+
+        assert result is not None
+        assert result["verification_status"] == "rejected"
+        assert result["verification_signal"] == "non_foi_pattern"

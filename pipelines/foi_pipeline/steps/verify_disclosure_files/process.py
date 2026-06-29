@@ -38,7 +38,6 @@ TIER_B = [
 NON_FOI_URL_PATTERNS: list[str] = [
     "calendar",
     "visitor number",
-    "visitor numbers",
     "faq",
     "frequently asked questions",
 ]
