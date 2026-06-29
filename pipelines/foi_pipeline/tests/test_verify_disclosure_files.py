@@ -1,7 +1,5 @@
 import pytest
-import tempfile
 import unittest.mock
-from pathlib import Path
 from steps.verify_disclosure_files.process import _score_text, _is_non_foi_document, _verify_one, DisclosureFileCache
 
 
