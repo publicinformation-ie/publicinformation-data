@@ -1,5 +1,5 @@
 import pytest
-from steps.verify_disclosure_files.process import _score_text
+from steps.verify_disclosure_files.process import _score_text, _is_non_foi_document
 
 
 class TestScoreTextUnverified:
@@ -98,3 +98,80 @@ class TestScoreTextRejected:
         )
         assert status == "rejected"
         assert signal is None
+
+
+class TestIsNonFoiDocument:
+    def test_calendar_in_filename(self):
+        assert _is_non_foi_document(
+            "https://assets.gov.ie/Minister_Morans_Calendar_Q1_2025.pdf",
+            None, None
+        ) is True
+
+    def test_calendar_hyphenated_in_filename(self):
+        assert _is_non_foi_document(
+            "https://www.louthcoco.ie/community-connect-calendar-2025.pdf",
+            None, None
+        ) is True
+
+    def test_visitor_numbers_hyphenated_in_filename(self):
+        assert _is_non_foi_document(
+            "https://www.heritagecouncil.ie/heritage-services-visitor-numbers-2021.pdf",
+            None, None
+        ) is True
+
+    def test_faq_in_filename(self):
+        assert _is_non_foi_document(
+            "https://www.irishprisons.ie/wp-content/uploads/foi_faq2.pdf",
+            None, None
+        ) is True
+
+    def test_individual_decision_letter_by_content(self):
+        text = (
+            "Page No  Description of Document  Deletions  "
+            "Relevant Sections of FOI Acts  "
+            "Reason for Decision  Decision maker's decision"
+        )
+        assert _is_non_foi_document(
+            "https://www.fiosru.ie/foi-004-24.pdf",
+            None, text
+        ) is True
+
+    def test_genuine_disclosure_log_not_rejected(self):
+        assert _is_non_foi_document(
+            "https://www.gov.ie/non-personal-foi-disclosure-log-2024.pdf",
+            "FOI Disclosure Log", None
+        ) is False
+
+    def test_disclosure_log_with_foi_in_url_not_rejected(self):
+        assert _is_non_foi_document(
+            "https://www.gov.ie/foi-requests-q1-2025.pdf",
+            None, None
+        ) is False
+
+    def test_none_text_calendar_still_rejected(self):
+        # URL pattern check does not require content
+        assert _is_non_foi_document(
+            "https://www.gov.ie/Q1_January_-_March.pdf",
+            None, None
+        ) is False  # "january" alone is not a rejection pattern
+
+    def test_calendar_in_link_text(self):
+        # "calendar" appearing only in link_text (not URL path) should also reject
+        assert _is_non_foi_document(
+            "https://www.gov.ie/documents/Q1_2025.pdf",
+            "Ministerial Calendar Q1 2025", None
+        ) is True
+
+    def test_visitor_number_in_link_text(self):
+        assert _is_non_foi_document(
+            "https://www.gov.ie/report.pdf",
+            "Heritage Visitor Numbers 2021", None
+        ) is True
+
+    def test_content_check_requires_all_three_phrases(self):
+        # Only two of the three decision-letter phrases present — should not reject
+        text = "Relevant Sections of FOI Acts  Reason for Decision  some other content"
+        assert _is_non_foi_document(
+            "https://www.fiosru.ie/some-doc.pdf",
+            None, text
+        ) is False

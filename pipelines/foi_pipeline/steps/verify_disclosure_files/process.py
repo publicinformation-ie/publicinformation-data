@@ -35,6 +35,37 @@ TIER_B = [
     "foi",
 ]
 
+NON_FOI_URL_PATTERNS: list[str] = [
+    "calendar",
+    "visitor number",
+    "visitor numbers",
+    "faq",
+    "frequently asked questions",
+]
+
+# Each tuple: ALL phrases must appear in content (lowercased) to trigger rejection.
+# Used for document types that can't be reliably identified by URL alone.
+NON_FOI_CONTENT_PATTERNS: list[tuple[str, ...]] = [
+    ("relevant sections of foi acts", "reason for decision", "decision maker"),
+]
+
+
+def _is_non_foi_document(file_url: str, link_text: str | None, text: str | None) -> bool:
+    """Return True if URL/filename or content patterns indicate a non-FOI disclosure document.
+
+    Checked before _score_text so that non-FOI files cannot be rescued by the URL fallback.
+    """
+    url_text = _normalize_url_text(file_url, link_text or "").lower()
+    for pattern in NON_FOI_URL_PATTERNS:
+        if pattern in url_text:
+            return True
+    if text:
+        text_lower = text.lower()
+        for required_phrases in NON_FOI_CONTENT_PATTERNS:
+            if all(phrase in text_lower for phrase in required_phrases):
+                return True
+    return False
+
 
 class DisclosureFileCache:
     """Thread-safe download cache keyed by SHA256(url), shared with transform_disclosure_files."""
@@ -241,6 +272,9 @@ def _verify_one(item, cache, step_dir):
             text = _extract_text_xls(file_bytes)
         else:
             text = None
+
+        if _is_non_foi_document(file_url, item.get("link_text"), text):
+            return {**item, "verification_status": "rejected", "verification_signal": "non_foi_pattern"}
 
         status, signal = _score_text(text)
 
