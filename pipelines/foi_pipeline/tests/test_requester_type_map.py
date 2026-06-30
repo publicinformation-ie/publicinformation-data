@@ -6,6 +6,10 @@ def test_canonical_types_list():
     assert "Journalist" in CANONICAL_REQUESTER_TYPES
     assert "Member of the Public" in CANONICAL_REQUESTER_TYPES
     assert "Business/Interest Group" in CANONICAL_REQUESTER_TYPES
+    assert "Elected-Oireachtas" in CANONICAL_REQUESTER_TYPES
+    assert "Elected-Councillor" in CANONICAL_REQUESTER_TYPES
+    assert "Elected-Unknown" in CANONICAL_REQUESTER_TYPES
+    assert "Oireachtas" not in CANONICAL_REQUESTER_TYPES
 
 
 def test_none_returns_none():
@@ -127,43 +131,61 @@ def test_business_interest_ocr_wrap():
     assert canonicalize_requester_type("Business/Inte rest Group") == "Business/Interest Group"
 
 
-# ── Oireachtas ──────────────────────────────────────────────
+# ── Elected-Oireachtas ──────────────────────────────────────
 def test_oireachtas_canonical():
-    assert canonicalize_requester_type("Oireachtas") == "Oireachtas"
+    assert canonicalize_requester_type("Oireachtas") == "Elected-Oireachtas"
 
 def test_oireachtas_uppercase():
-    assert canonicalize_requester_type("OIREACHTAS") == "Oireachtas"
+    assert canonicalize_requester_type("OIREACHTAS") == "Elected-Oireachtas"
 
 def test_oireachtas_public_representatives():
-    assert canonicalize_requester_type("Oireachtas/Public Representatives") == "Oireachtas"
+    assert canonicalize_requester_type("Oireachtas/Public Representatives") == "Elected-Oireachtas"
 
 def test_oireachtas_public_representative_singular():
-    assert canonicalize_requester_type("Oireachtas/Public Representative") == "Oireachtas"
+    assert canonicalize_requester_type("Oireachtas/Public Representative") == "Elected-Oireachtas"
 
 def test_oireachtas_with_spaces_around_slash():
-    assert canonicalize_requester_type("Oireachtas / Public Representative") == "Oireachtas"
+    assert canonicalize_requester_type("Oireachtas / Public Representative") == "Elected-Oireachtas"
 
 def test_oireachtas_member_councillor():
-    assert canonicalize_requester_type("Oireachtas Member/Councillor") == "Oireachtas"
+    assert canonicalize_requester_type("Oireachtas Member/Councillor") == "Elected-Oireachtas"
 
 def test_oireachtas_elected_representative():
-    assert canonicalize_requester_type("Oireachtas/Elected Representative") == "Oireachtas"
+    assert canonicalize_requester_type("Oireachtas/Elected Representative") == "Elected-Oireachtas"
 
 def test_oireachtas_typo_oireactas():
-    # Typo: "Oireactas / Public Reps" (17 rows in analysis)
-    assert canonicalize_requester_type("Oireactas / Public Reps") == "Oireachtas"
+    assert canonicalize_requester_type("Oireactas / Public Reps") == "Elected-Oireachtas"
 
 def test_member_of_oireachtas():
-    assert canonicalize_requester_type("Member of Oireachtas") == "Oireachtas"
+    assert canonicalize_requester_type("Member of Oireachtas") == "Elected-Oireachtas"
 
 def test_member_of_the_oireachtas():
-    assert canonicalize_requester_type("Member of the Oireachtas") == "Oireachtas"
+    assert canonicalize_requester_type("Member of the Oireachtas") == "Elected-Oireachtas"
 
 def test_oireachtas_member():
-    assert canonicalize_requester_type("Oireachtas Member") == "Oireachtas"
+    assert canonicalize_requester_type("Oireachtas Member") == "Elected-Oireachtas"
 
 def test_oireachtas_public_reps():
-    assert canonicalize_requester_type("Oireachtas / Public Reps") == "Oireachtas"
+    assert canonicalize_requester_type("Oireachtas / Public Reps") == "Elected-Oireachtas"
+
+
+# ── Elected-Councillor ──────────────────────────────────────
+def test_councillor_maps_to_elected_councillor():
+    assert canonicalize_requester_type("Councillor") == "Elected-Councillor"
+
+def test_member_of_local_authority_maps_to_elected_councillor():
+    assert canonicalize_requester_type("Member of Local Authority") == "Elected-Councillor"
+
+
+# ── Elected-Unknown ─────────────────────────────────────────
+def test_public_representative_maps_to_elected_unknown():
+    assert canonicalize_requester_type("Public Representative") == "Elected-Unknown"
+
+def test_politician_maps_to_elected_unknown():
+    assert canonicalize_requester_type("Politician") == "Elected-Unknown"
+
+def test_elected_member_maps_to_elected_unknown():
+    assert canonicalize_requester_type("Elected Member") == "Elected-Unknown"
 
 
 # ── Media ───────────────────────────────────────────────────
