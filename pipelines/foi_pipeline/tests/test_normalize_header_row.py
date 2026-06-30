@@ -306,3 +306,54 @@ def test_dense_row_without_canonical_hits_still_breaks_loop():
     # Data row not consumed — 3 rows remain after stripping 1 continuation
     assert len(result_rows) == 3
     assert result_rows[1][0] == 'FOI-001'
+
+
+def test_drops_long_prose_preamble_row_after_header():
+    """A sparse row containing a long prose sentence (preamble text) after the
+    header must be silently dropped — not merged into the header, not left as data.
+
+    DOT Q1 2020 pattern: pdfplumber places boilerplate paragraphs as phantom rows
+    aligned with 'Description', between the header and the first real data row.
+    With the _merge_continuation_rows fix (Task 1), these arrive here as orphaned rows.
+    Without this fix, normalize_header_row absorbs them into the header.
+    """
+    rows = [
+        ['FOI Reference', 'Category', 'Description', 'Decision', 'Decision Date'],
+        # orphaned preamble row (long prose sentence, null_fraction = 4/5 = 0.8)
+        [None, None,
+         'Under the FOI Act the Department of Transport is obliged to publish a '
+         'disclosure log within 10 working days of the release of information.',
+         None, None],
+        # first real data row
+        ['TRA-FOI-2020-0001', 'Business', 'report as delivered by consultants', 'Refused', '17/01/2020'],
+    ]
+    result_rows, idx = normalize_header_row(rows, header_row_idx=0)
+
+    # Header 'Description' cell must be unchanged — no prose appended
+    assert result_rows[0][2] == 'Description'
+    # Preamble row must be dropped — only header + data remain
+    assert len(result_rows) == 2
+    assert result_rows[1][0] == 'TRA-FOI-2020-0001'
+    assert idx == 0
+
+
+def test_short_fragment_still_merges_despite_zero_canonical_hits():
+    """A short sparse fragment like 'Received' must still be merged into the header
+    even though it has 0 canonical column hits on its own.
+
+    This guards against over-eager dropping: the discriminator is cell LENGTH,
+    not canonical matching. 'Received' is 8 chars — well under _MAX_PROSE_CELL_LEN.
+    """
+    rows = [
+        ['Ref. No', None, 'Date', None, 'Category', 'Description'],
+        [None, None, 'Received', None, None, None],     # 8 chars — short, must merge
+        ['FOI-001', '02-Apr-25', None, None, 'Other', 'Some request'],
+    ]
+    result_rows, idx = normalize_header_row(rows, header_row_idx=0)
+
+    # 'Date' + ' ' + 'Received' must be merged
+    assert result_rows[0][2] == 'Date Received'
+    # Continuation row consumed — only header + data remain
+    assert len(result_rows) == 2
+    assert result_rows[1][0] == 'FOI-001'
+    assert idx == 0

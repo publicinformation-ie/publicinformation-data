@@ -9,6 +9,7 @@ from lib.file_utils import read_json, write_json, write_status, IncrementalWrite
 STEP_NAME = "extract_disclosures_normalize_header"
 _CONTINUATION_NULL_THRESHOLD = 0.5  # row is a continuation if > 50% of cells are None
 _MAX_CONTINUATION_ROWS = 6
+_MAX_PROSE_CELL_LEN = 50  # sparse rows with any non-null cell longer than this are preamble, not header fragments
 
 
 def _count_canonical_columns(row) -> int:
@@ -56,6 +57,14 @@ def normalize_header_row(rows, header_row_idx, max_continuation_rows=_MAX_CONTIN
             if not already_merging or _count_canonical_columns(row) < 1:
                 break  # too many populated cells and not a header fragment — this is real data
             # else: dense row mid-sequence with ≥1 canonical hit — looks like a header fragment, keep merging
+        # Drop sparse rows whose non-null content looks like prose (preamble text),
+        # not a column header fragment. Header fragments are short phrases; prose sentences
+        # are long. Dropping keeps the row out of both the header and the data output.
+        if null_fraction >= _CONTINUATION_NULL_THRESHOLD:
+            non_null_vals = [str(c) for c in row if c is not None]
+            if any(len(v) > _MAX_PROSE_CELL_LEN for v in non_null_vals):
+                continuation_end = i + 1  # consume the row (don't emit it as data)
+                continue
         for col_idx, cell in enumerate(row):
             if cell is not None and col_idx < ncols:
                 if header[col_idx] is not None:
