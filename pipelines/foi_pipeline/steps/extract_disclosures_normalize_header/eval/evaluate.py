@@ -12,6 +12,8 @@ from eval import utils as eval_utils
 
 STEP = "extract_disclosures_normalize_header"
 
+_PREAMBLE_CELL_LEN = 60  # header column labels are short; prose merged from preamble is long
+
 
 def _header_has_null_column(rows, header_row_idx):
     if not rows or header_row_idx >= len(rows):
@@ -23,6 +25,20 @@ def _has_null_first_row(rows):
     if not rows:
         return False
     return any(c is None for c in rows[0])
+
+
+def _header_has_preamble(rows, header_row_idx):
+    """True if any cell in the header row is a string longer than _PREAMBLE_CELL_LEN.
+
+    Column labels are short phrases; prose text (preamble sentences) merged
+    into a header cell by the continuation-row merge loop is always much longer.
+    """
+    if not rows or header_row_idx >= len(rows):
+        return False
+    return any(
+        isinstance(c, str) and len(c) > _PREAMBLE_CELL_LEN
+        for c in rows[header_row_idx]
+    )
 
 
 def run_eval(items, input_hash):
@@ -44,12 +60,21 @@ def run_eval(items, input_hash):
     nfr_count = len(flagged_nfr)
     nfr_rate = round(nfr_count / total, 3) if total else 0.0
 
+    flagged_preamble = [
+        it for it in pdf_items
+        if _header_has_preamble(it["rows"], it["header_row_idx"])
+    ]
+    preamble_count = len(flagged_preamble)
+    preamble_rate = round(preamble_count / total, 3) if total else 0.0
+
     metrics = [
         eval_utils.Metric("null_header_column_rate", null_header_rate,
                           {"flagged": null_header_count, "total": total},
                           is_primary=True),
         eval_utils.Metric("null_first_row_rate", nfr_rate,
                           {"count": nfr_count, "total": total}),
+        eval_utils.Metric("preamble_in_header_rate", preamble_rate,
+                          {"flagged": preamble_count, "total": total}),
     ]
     issues = []
     if flagged_null_header:
@@ -100,10 +125,13 @@ def main():
     eval_utils.write_eval_outputs(_HERE, results, issues)
     primary = results.metrics[0]
     nfr = results.metrics[1]
+    preamble = results.metrics[2]
     print(f"{STEP}: null_header_column_rate={primary.value:.3f} "
           f"({primary.counts['flagged']}/{primary.counts['total']}), "
           f"null_first_row_rate={nfr.value:.3f} "
           f"({nfr.counts['count']}/{nfr.counts['total']}), "
+          f"preamble_in_header_rate={preamble.value:.3f} "
+          f"({preamble.counts['flagged']}/{preamble.counts['total']}), "
           f"{len(issues)} issues")
     return 0
 

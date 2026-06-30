@@ -27,6 +27,8 @@ from eval import utils as eval_utils
 
 STEP = "normalize_disclosure_cells"
 
+_PREAMBLE_CELL_LEN = 60  # header cells longer than this contain prose, not column labels
+
 
 def has_null_column(rows):
     """True if any column is missing in some row or all-None in every row."""
@@ -49,11 +51,24 @@ def has_newline_split_row(rows):
     return False
 
 
+def has_preamble_in_header(rows):
+    """True if any cell in rows[0] is a string longer than _PREAMBLE_CELL_LEN.
+
+    Header column labels are short phrases; prose text merged from preamble
+    continuation rows is always much longer. A hit here indicates that
+    _merge_continuation_rows absorbed a preamble row into the header.
+    """
+    if not rows:
+        return False
+    return any(isinstance(c, str) and len(c) > _PREAMBLE_CELL_LEN for c in rows[0])
+
+
 def _flag_item(item):
     rows = item.get("rows") or []
     return {
         "null_column": has_null_column(rows),
         "newline_split_row": has_newline_split_row(rows),
+        "preamble_in_header": has_preamble_in_header(rows),
     }
 
 
@@ -98,6 +113,7 @@ def run_eval(items, changes_by_url, rule_counts, input_hash):
     clean = 0
     null_col_ids = []
     split_row_ids = []
+    preamble_header_ids = []
 
     for item in pdf_items:
         flags = _flag_item(item)
@@ -107,6 +123,8 @@ def run_eval(items, changes_by_url, rule_counts, input_hash):
             null_col_ids.append(item["file_url"])
         if flags["newline_split_row"]:
             split_row_ids.append(item["file_url"])
+        if flags["preamble_in_header"]:
+            preamble_header_ids.append(item["file_url"])
 
     total_pdfs = len(pdf_items)
     metrics = [
@@ -119,6 +137,9 @@ def run_eval(items, changes_by_url, rule_counts, input_hash):
         eval_utils.Metric("newline_split_row_rate",
                           round(len(split_row_ids) / total_pdfs, 3),
                           {"flagged": len(split_row_ids), "total": total_pdfs}),
+        eval_utils.Metric("preamble_in_header_rate",
+                          round(len(preamble_header_ids) / total_pdfs, 3),
+                          {"flagged": len(preamble_header_ids), "total": total_pdfs}),
         eval_utils.Metric("cells_changed_rate",
                           cells_changed_rate,
                           {"changed": changed, "total": total_records}),
@@ -155,11 +176,14 @@ def main():
 
     primary = results.metrics[0]
     changed_metric = next(m for m in results.metrics if m.name == "cells_changed_rate")
+    preamble_metric = next(m for m in results.metrics if m.name == "preamble_in_header_rate")
     top_rules = rule_counts.most_common(3)
     rule_str = ", ".join(f"{r}={n}" for r, n in top_rules) if top_rules else "none"
     print(
         f"{STEP}: clean_rate={primary.value:.3f} "
         f"({primary.counts['clean']}/{primary.counts['total']} clean PDFs), "
+        f"preamble_in_header_rate={preamble_metric.value:.3f} "
+        f"({preamble_metric.counts['flagged']}/{preamble_metric.counts['total']}), "
         f"cells_changed_rate={changed_metric.value:.3f} "
         f"[{rule_str}], "
         f"{len(issues)} issues"
