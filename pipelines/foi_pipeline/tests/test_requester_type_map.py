@@ -266,3 +266,54 @@ def test_erest_group_split_token_returns_none():
 def test_the_public_split_token_returns_none():
     # "the Public" — second half of OCR-split "Member of the Public" (28 rows)
     assert canonicalize_requester_type("the Public") is None
+
+
+# ── Task 2: high-volume synonym additions ───────────────────
+
+@pytest.mark.parametrize("raw,expected", [
+    # business — singular bare word (911 errors 'Business', 54 'BUSINESS')
+    ("Business", "Business/Interest Group"),
+    ("business", "Business/Interest Group"),
+    ("BUSINESS", "Business/Interest Group"),
+    # association variants (116 errors)
+    ("Association", "Business/Interest Group"),
+    ("Residents Association", "Business/Interest Group"),
+    ("Housing Association", "Business/Interest Group"),
+    ("Campaign Organisation", "Business/Interest Group"),
+    ("App.Housing Body", "Business/Interest Group"),
+    # member of business/interest group (122 errors)
+    ("Member of Business/Interest group", "Business/Interest Group"),
+    ("Member of Business/Interest Group", "Business/Interest Group"),
+    # industry / business-industry compound (43 + 39 errors)
+    ("Industry", "Business/Interest Group"),
+    ("Business / Industry", "Business/Interest Group"),
+    # group variants (98 + 26 + 11 + 8 + 5 errors)
+    ("Group", "Business/Interest Group"),
+    ("Groups", "Business/Interest Group"),
+    ("Interested Group", "Business/Interest Group"),
+    ("Interest Group", "Business/Interest Group"),
+    ("Business/ Interest Groups", "Business/Interest Group"),
+    ("Group Business/Interest", "Business/Interest Group"),
+    # company / ngo / charitable (23 + 7 + 6 errors)
+    ("Company", "Business/Interest Group"),
+    ("NGO", "Business/Interest Group"),
+    ("Charitable Organisation", "Business/Interest Group"),
+    # OCR word-wrap variant (5 errors)
+    ("Business/In terest Group", "Business/Interest Group"),
+    # Non-Personal compound variants (196 + 145 + 9 errors)
+    ("Individual (Non-Personal)", "Non-Personal"),
+    ("Individual (Non- Personal)", "Non-Personal"),
+    ("non -personal", "Non-Personal"),
+    # Individual (personal) compound (39 errors)
+    ("Individual (Personal)", "Personal"),
+    # Private individual (29 + 28 errors)
+    ("Private individual", "Individual"),
+    ("Private Individual", "Individual"),
+    # Applicant (76 errors)
+    ("Applicant", "Other"),
+    # Business/Interest sub-variants already in lookup but tested for confidence
+    ("Business/ Interest", "Business/Interest Group"),
+])
+def test_task2_high_volume_synonyms(raw, expected):
+    """High-volume missing synonyms from full error-set analysis."""
+    assert canonicalize_requester_type(raw) == expected, f"Expected {raw!r} → {expected!r}"

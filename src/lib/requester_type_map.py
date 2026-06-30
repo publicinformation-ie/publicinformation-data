@@ -27,6 +27,7 @@ _LOOKUP: dict[str, Optional[str]] = {
     # Other
     'other': 'Other',
     'others': 'Other',
+    'applicant': 'Other',
     # Member of the Public
     'member of the public': 'Member of the Public',
     'member of public': 'Member of the Public',
@@ -37,6 +38,9 @@ _LOOKUP: dict[str, Optional[str]] = {
     'non personal': 'Non-Personal',
     'non pers': 'Non-Personal',
     'non- personal': 'Non-Personal',
+    'non -personal': 'Non-Personal',
+    'individual (non-personal)': 'Non-Personal',
+    'individual (non- personal)': 'Non-Personal',
     # Client
     'client': 'Client',
     'clients': 'Client',
@@ -55,6 +59,27 @@ _LOOKUP: dict[str, Optional[str]] = {
     'commercial': 'Business/Interest Group',
     'organisation': 'Business/Interest Group',
     'business group': 'Business/Interest Group',
+    'business': 'Business/Interest Group',
+    'association': 'Business/Interest Group',
+    'residents association': 'Business/Interest Group',
+    'housing association': 'Business/Interest Group',
+    'campaign organisation': 'Business/Interest Group',
+    'campaign organization': 'Business/Interest Group',
+    'app.housing body': 'Business/Interest Group',
+    'member of business/interest group': 'Business/Interest Group',
+    'industry': 'Business/Interest Group',
+    'business / industry': 'Business/Interest Group',
+    'group': 'Business/Interest Group',
+    'groups': 'Business/Interest Group',
+    'interested group': 'Business/Interest Group',
+    'interest group': 'Business/Interest Group',
+    'business/ interest groups': 'Business/Interest Group',
+    'business/ interest': 'Business/Interest Group',
+    'group business/interest': 'Business/Interest Group',
+    'company': 'Business/Interest Group',
+    'ngo': 'Business/Interest Group',
+    'charitable organisation': 'Business/Interest Group',
+    'business/in terest group': 'Business/Interest Group',  # OCR word-wrap artefact
     # Elected-Oireachtas — national parliament elected members
     'oireachtas': 'Elected-Oireachtas',
     'oireachtas/public representatives': 'Elected-Oireachtas',
@@ -86,8 +111,10 @@ _LOOKUP: dict[str, Optional[str]] = {
     'reporter': 'Media',
     # Individual
     'individual': 'Individual',
+    'private individual': 'Individual',
     # Personal
     'personal': 'Personal',
+    'individual (personal)': 'Personal',
     # Staff
     'staff': 'Staff',
     # Public
