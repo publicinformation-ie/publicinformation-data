@@ -155,3 +155,59 @@ def test_metadata_counts():
     assert stats["header_rows_stripped"] == 2
     # Verify rows too, to ensure counts reflect actual merges
     assert rows == [["H1", "H2"], ["A", "B"], ["C", "D"], ["E", "F"]]
+
+
+def test_fingerprint_skips_leading_title_rows_on_page1():
+    """Meath case: page 1 has 2 title rows before the repeating header block;
+    page 2 starts directly with the header (no titles). A naive
+    first-K-rows-of-page-1 fingerprint never matches anything because
+    page2's row 0 is page1's row 2. The fingerprint must be located by
+    aligning page 2's start against page 1, not assumed to start at row 0."""
+    title1 = [None, None, "Summary of Non-Personal Requests Submitted", None]
+    title2 = [None, None, None, "Freedom of Information Requests (non-personal)"]
+    header = ["Reference", "Date", "Category", "Summary"]
+    page1 = [title1, title2, header, ["FOI/1", "01/01/2020", "Individual", "desc"]]
+    page2 = [header, ["FOI/2", "02/01/2020", "Individual", "desc2"]]
+    rows, stats = _merge_page_splits([page1, page2])
+    assert rows == [
+        title1,
+        title2,
+        header,
+        ["FOI/1", "01/01/2020", "Individual", "desc"],
+        ["FOI/2", "02/01/2020", "Individual", "desc2"],
+    ]
+    assert stats["header_rows_stripped"] == 1
+    assert stats["page_split_merges"] == 0
+
+
+def test_fingerprint_skips_leading_title_rows_multi_row_header():
+    """Same as above but the repeating block is multiple rows (closer to
+    Meath's real 6-row staggered header) — all of them must be located and
+    stripped, not just the first row of the block."""
+    title = [None, None, "Some Title Row", None]
+    h1 = ["Reference", None, None, None]
+    h2 = [None, "Date of", None, None]
+    h3 = [None, "Receipt", "Category", "Summary"]
+    page1 = [title, h1, h2, h3, ["FOI/1", "01/01/2020", "Individual", "desc"]]
+    page2 = [h1, h2, h3, ["FOI/2", "02/01/2020", "Individual", "desc2"]]
+    rows, stats = _merge_page_splits([page1, page2])
+    assert rows == [
+        title,
+        h1,
+        h2,
+        h3,
+        ["FOI/1", "01/01/2020", "Individual", "desc"],
+        ["FOI/2", "02/01/2020", "Individual", "desc2"],
+    ]
+    assert stats["header_rows_stripped"] == 3
+
+
+def test_fingerprint_no_overlap_falls_back_to_page1_prefix():
+    """If page 2's first row never appears anywhere in page 1's prefix,
+    preserve today's behavior: fingerprint defaults to the raw first-K
+    rows of page 1 (so existing non-Meath-shaped docs are unaffected)."""
+    page1 = [["H1", "H2"], ["A", "B"]]
+    page2 = [["X", "Y"], ["C", "D"]]
+    rows, stats = _merge_page_splits([page1, page2])
+    assert rows == [["H1", "H2"], ["A", "B"], ["X", "Y"], ["C", "D"]]
+    assert stats["header_rows_stripped"] == 0

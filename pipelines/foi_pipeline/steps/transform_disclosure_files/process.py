@@ -160,6 +160,31 @@ def _normalise_cell(cell):
     return " ".join(str(cell).strip().split()).lower()
 
 
+def _build_fingerprint(
+    page1_prefix: list[tuple], page2_prefix: list[tuple]
+) -> list[tuple]:
+    """Locate the repeating header block by aligning page 2's start against page 1.
+
+    Page 1 often has title rows before the header that never repeat at page
+    breaks (e.g. Meath's PDFs). Find where page 2's first row occurs within
+    page 1's prefix, then compare forward from that offset — this finds the
+    actual repeating block instead of assuming it starts at row 0 of page 1.
+    """
+    if not page2_prefix:
+        return page1_prefix
+    try:
+        start = page1_prefix.index(page2_prefix[0])
+    except ValueError:
+        return page1_prefix
+    fingerprint = []
+    for r1, r2 in zip(page1_prefix[start:], page2_prefix):
+        if r1 == r2:
+            fingerprint.append(r1)
+        else:
+            break
+    return fingerprint if fingerprint else page1_prefix
+
+
 def _merge_page_splits(
     pages_rows: list[list[list]],
     header_k: int = 6,
@@ -176,10 +201,20 @@ def _merge_page_splits(
     page_split_merges = 0
     header_rows_stripped = 0
 
-    # Build header fingerprint from first page (up to K rows)
+    # Build header fingerprint by locating the block that repeats between
+    # page 1 and page 2 — handles page 1 having leading title rows that
+    # don't repeat at page breaks.
     page1 = pages_rows[0]
     k = min(header_k, len(page1))
-    fingerprint = [tuple(_normalise_cell(c) for c in row) for row in page1[:k]]
+    page1_prefix = [tuple(_normalise_cell(c) for c in row) for row in page1[:k]]
+
+    page2_prefix: list[tuple] = []
+    if len(pages_rows) > 1:
+        page2 = pages_rows[1]
+        k2 = min(header_k, len(page2))
+        page2_prefix = [tuple(_normalise_cell(c) for c in row) for row in page2[:k2]]
+
+    fingerprint = _build_fingerprint(page1_prefix, page2_prefix)
 
     accumulated = list(page1)
 
