@@ -51,3 +51,31 @@ def test_no_duplicate_top_level_urls():
         # each top-level key should appear exactly once as a JSON key (": {" follows it)
         needle = json.dumps(url)
         assert raw.count(needle) == 1, f"key {url!r} appears more than once in the file"
+
+
+import pytest
+
+MEATH_URLS = [
+    "https://www.meath.ie/system/files/media/file-uploads/2019-05/FOI%20Disclosure%20Log%202018%20%28Jul%20to%20Dec%29.pdf",
+    "https://www.meath.ie/system/files/media/file-uploads/2019-05/FOI%20Disclosure%20Log%202018%20%28Jan%20to%20Jun%29.pdf",
+    "https://www.meath.ie/system/files/media/file-uploads/2020-03/Disclosure%20Log%202019%20-%20July%20to%20December%20-%20for%20website_0.pdf",
+    "https://www.meath.ie/system/files/media/file-uploads/2019-09/Disclosure%20Log%202019%20-%20January%20-%20June%20-%20for%20website%20-%20Updated%20Sept.pdf",
+]
+
+MEATH_COLUMN_MAPPING = {
+    "0": "foi_reference_id",
+    "1": "date_received",
+    "2": "requester_type",
+    "3": "request_description",
+    "4": "decision_date",
+    "5": "decision_status",
+}
+
+
+@pytest.mark.parametrize("url", MEATH_URLS)
+def test_meath_entries_present_with_expected_mapping(url):
+    data = _load()
+    assert url in data, f"missing column_mappings entry for {url!r}"
+    assert data[url]["column_mapping"] == MEATH_COLUMN_MAPPING
+    assert data[url]["source_method"] == "manual"
+    assert data[url]["overridden"] is True

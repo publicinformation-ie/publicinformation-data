@@ -102,5 +102,53 @@
       "3": "decision_status",
       "4": "decision_date"
     }
+  },
+  "https://www.meath.ie/system/files/media/file-uploads/2019-05/FOI%20Disclosure%20Log%202018%20%28Jul%20to%20Dec%29.pdf": {
+    "source_method": "manual",
+    "overridden": true,
+    "column_mapping": {
+      "0": "foi_reference_id",
+      "1": "date_received",
+      "2": "requester_type",
+      "3": "request_description",
+      "4": "decision_date",
+      "5": "decision_status"
+    }
+  },
+  "https://www.meath.ie/system/files/media/file-uploads/2019-05/FOI%20Disclosure%20Log%202018%20%28Jan%20to%20Jun%29.pdf": {
+    "source_method": "manual",
+    "overridden": true,
+    "column_mapping": {
+      "0": "foi_reference_id",
+      "1": "date_received",
+      "2": "requester_type",
+      "3": "request_description",
+      "4": "decision_date",
+      "5": "decision_status"
+    }
+  },
+  "https://www.meath.ie/system/files/media/file-uploads/2020-03/Disclosure%20Log%202019%20-%20July%20to%20December%20-%20for%20website_0.pdf": {
+    "source_method": "manual",
+    "overridden": true,
+    "column_mapping": {
+      "0": "foi_reference_id",
+      "1": "date_received",
+      "2": "requester_type",
+      "3": "request_description",
+      "4": "decision_date",
+      "5": "decision_status"
+    }
+  },
+  "https://www.meath.ie/system/files/media/file-uploads/2019-09/Disclosure%20Log%202019%20-%20January%20-%20June%20-%20for%20website%20-%20Updated%20Sept.pdf": {
+    "source_method": "manual",
+    "overridden": true,
+    "column_mapping": {
+      "0": "foi_reference_id",
+      "1": "date_received",
+      "2": "requester_type",
+      "3": "request_description",
+      "4": "decision_date",
+      "5": "decision_status"
+    }
   }
 }
