@@ -24,8 +24,9 @@ _DATE_PATTERNS = [
     # ISO 8601: YYYY-MM-DD
     (re.compile(r'^(\d{4})-(\d{1,2})-(\d{1,2})$'), True),
     
-    # Short year formats: DD-Mon-YY or DD-Mon-YYYY
-    (re.compile(r'^(\d{1,2})-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-(\d{2,4})$', re.IGNORECASE), True),
+    # Short year formats: DD-Mon-YY, DD-Mon-YYYY, or DD-Mon- YY (stray space before year,
+    # seen in Louth/Limerick PDF extraction)
+    (re.compile(r'^(\d{1,2})-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[-\s]+(\d{2,4})$', re.IGNORECASE), True),
     
     # DD.MM.YYYY or D.M.YYYY
     (re.compile(r'^(\d{1,2})\.(\d{1,2})\.(\d{2,4})$'), False),

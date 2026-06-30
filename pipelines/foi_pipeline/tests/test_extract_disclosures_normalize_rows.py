@@ -114,6 +114,13 @@ class TestNormalizeDateValue:
     def test_short_year_dd_mmm_yy_21st_century(self):
         assert normalize_date_value("01-Jan-05") == "2005-01-01"
 
+    def test_short_year_dd_mmm_space_yy(self):
+        # Louth/Limerick PDF extraction artifact: stray space before the year
+        assert normalize_date_value("25-Nov- 20") == "2020-11-25"
+
+    def test_short_year_dd_mmm_space_yyyy(self):
+        assert normalize_date_value("25-Nov- 2020") == "2020-11-25"
+
     # ISO 8601 format (pass-through)
     def test_iso_8601_passthrough(self):
         assert normalize_date_value("2023-02-01") == "2023-02-01"
