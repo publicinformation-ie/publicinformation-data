@@ -330,9 +330,9 @@ def test_merge_continuation_rows_does_not_corrupt_header():
     # Header must be completely unchanged
     assert result[0] == ['FOI Reference', 'Category', 'Description', 'Decision', 'Decision Date']
 
-    # The two preamble rows are left as separate rows (they won't merge into each other
-    # because after the first preamble row is appended, the second one can merge into it)
-    # What matters: the data row's continuation IS still merged
+    # Preamble row 1 is appended (len(out)==1 prevents it from merging into header).
+    # Preamble row 2 then merges into preamble row 1 (len(out)==2 at that point),
+    # forming a single orphaned chimera row. The data row's continuation still merges correctly.
     data_row = next(r for r in result if r[0] == 'TRA-FOI-2020-0001')
     assert 'additional detail about the report' in data_row[2]
 
