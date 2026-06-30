@@ -242,29 +242,29 @@ def test_solicitors_plural():
     assert canonicalize_requester_type("Solicitors") == "Solicitor"
 
 
-# ── Junk / unclassifiable → None ────────────────────────────
+# ── Unrecognised values → None (via fallback, not explicit lookup) ───────────────
 def test_category_header_returns_none():
-    # "Category" — column header leaking in (14 rows in analysis)
+    # "Category" — column header leaking in; not in lookup, fallback returns None
     assert canonicalize_requester_type("Category") is None
 
 def test_type_header_returns_none():
-    # "Type" — column header leaking in (9 rows in analysis)
+    # "Type" — column header leaking in; not in lookup
     assert canonicalize_requester_type("Type") is None
 
 def test_su_abbreviation_returns_none():
-    # "SU" — unknown abbreviation (15 rows)
+    # "SU" — unknown abbreviation; not in lookup
     assert canonicalize_requester_type("SU") is None
 
 def test_member_of_truncated_returns_none():
-    # "Member of" — truncated value (91 rows), not enough context to classify
+    # "Member of" — truncated, not enough context; not in lookup
     assert canonicalize_requester_type("Member of") is None
 
 def test_erest_group_split_token_returns_none():
-    # "erest group" — second half of OCR-split "Business/Interest Group" (13 rows)
+    # "erest group" — OCR-split fragment; not in lookup
     assert canonicalize_requester_type("erest group") is None
 
 def test_the_public_split_token_returns_none():
-    # "the Public" — second half of OCR-split "Member of the Public" (28 rows)
+    # "the Public" — OCR-split fragment; not in lookup
     assert canonicalize_requester_type("the Public") is None
 
 

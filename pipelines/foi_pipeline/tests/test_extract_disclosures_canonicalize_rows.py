@@ -381,7 +381,7 @@ def test_process_records_none_requester_type_passes_through():
 
 
 def test_process_records_unknown_requester_type_logged_as_error():
-    # "SU" is confirmed junk (None in map) — treated same as unrecognised
+    # "SU" is not in lookup — treated as unrecognised, original value passes through
     record = _make_record(decision_status="Granted",requester_type="SU")
     results, errors = [], []
     process_records({"results": [record]}, results, errors)
@@ -392,7 +392,7 @@ def test_process_records_unknown_requester_type_logged_as_error():
 
 
 def test_process_records_junk_requester_type_logged_as_error():
-    # "Category" is explicit junk (None in map)
+    # "Category" is not in lookup — original value passes through with error
     record = _make_record(decision_status="Granted",requester_type="Category")
     results, errors = [], []
     process_records({"results": [record]}, results, errors)

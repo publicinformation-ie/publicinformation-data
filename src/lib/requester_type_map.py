@@ -19,8 +19,8 @@ CANONICAL_REQUESTER_TYPES: list[str] = [
     'Solicitor',
 ]
 
-# Maps value.strip().lower() → canonical string, or None for confirmed junk.
-_LOOKUP: dict[str, Optional[str]] = {
+# Maps value.strip().lower() → canonical string.
+_LOOKUP: dict[str, str] = {
     # Journalist
     'journalist': 'Journalist',
     'journalists': 'Journalist',
@@ -128,14 +128,6 @@ _LOOKUP: dict[str, Optional[str]] = {
     'solicitor': 'Solicitor',
     'solicitors': 'Solicitor',
     'legal firm': 'Solicitor',
-    # Confirmed junk — explicit None so we know we've seen them
-    'category': None,    # column header leaking in
-    'type': None,        # column header leaking in
-    'su': None,          # unknown abbreviation
-    'member of': None,   # truncated — not enough context to classify
-    'the public': None,  # second half of OCR-split "Member of the Public"
-    'erest group': None, # second half of OCR-split "Business/Interest Group"
-    'business/int': None,# first half of OCR-split
 }
 
 
