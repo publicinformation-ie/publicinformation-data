@@ -46,7 +46,8 @@ _DATE_PATTERNS = [
     (re.compile(r'^(\d{1,2})(st|nd|rd|th)?\s*(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(\d{4})$', re.IGNORECASE), True),
 
     # DD.MM.'YY (apostrophe-abbreviated year, e.g. "23.02.'18")
-    (re.compile(r"^(\d{1,2})\.(\d{2})\.'(\d{2})$"), False),
+    # Accepts ASCII apostrophe (U+0027) or Unicode right single quotation mark (U+2019, common PDF/OCR artifact)
+    (re.compile(r"^(\d{1,2})\.(\d{2})\.['’](\d{2})$"), False),
 ]
 
 # Matches a date at the start of a string that has trailing non-date content.

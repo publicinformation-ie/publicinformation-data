@@ -560,6 +560,16 @@ class TestMinorDateFormats:
         assert normalize_date_value("14th July 2016") == "2016-07-14"
         assert normalize_date_value("1st January 2020") == "2020-01-01"
 
+    # Unicode right single quotation mark (U+2019) — PDF/OCR artifact from DoT files
+    def test_dot_month_unicode_right_quote_year(self):
+        assert normalize_date_value("23.02.’18") == "2018-02-23"
+
+    def test_dot_month_unicode_right_quote_year_2(self):
+        assert normalize_date_value("27.02.’18") == "2018-02-27"
+
+    def test_dot_month_unicode_right_quote_year_21st_century(self):
+        assert normalize_date_value("15.06.’22") == "2022-06-15"
+
 
 class TestMainFunction:
     """Integration tests for the main() function."""
