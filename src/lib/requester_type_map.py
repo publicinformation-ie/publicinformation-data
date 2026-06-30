@@ -98,6 +98,11 @@ _LOOKUP: dict[str, Optional[str]] = {
     'member of the oireachtas': 'Elected-Oireachtas',
     'member of the oireachtas/elected representative': 'Elected-Oireachtas',
     'oireactas / public reps': 'Elected-Oireachtas',  # typo (missing 'h')
+    'oireachtas members': 'Elected-Oireachtas',
+    'oireactas': 'Elected-Oireachtas',          # standalone typo (missing 'h')
+    'oireachtas/public': 'Elected-Oireachtas',
+    'td / senator': 'Elected-Oireachtas',
+    'public rep': 'Elected-Oireachtas',
     # Elected-Councillor — local authority elected members
     'councillor': 'Elected-Councillor',
     'member of local authority': 'Elected-Councillor',

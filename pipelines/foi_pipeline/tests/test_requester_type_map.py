@@ -317,3 +317,24 @@ def test_the_public_split_token_returns_none():
 def test_task2_high_volume_synonyms(raw, expected):
     """High-volume missing synonyms from full error-set analysis."""
     assert canonicalize_requester_type(raw) == expected, f"Expected {raw!r} → {expected!r}"
+
+
+# ── Task 3: elected-representative synonym variants ─────────
+
+@pytest.mark.parametrize("raw,expected", [
+    # Oireachtas plural form (9 errors)
+    ("Oireachtas Members", "Elected-Oireachtas"),
+    # Standalone Oireactas typo — missing 'h' (not already covered by compound form)
+    ("Oireactas", "Elected-Oireachtas"),
+    # Oireachtas/Public shorthand (5 errors)
+    ("Oireachtas/Public", "Elected-Oireachtas"),
+    # TD / Senator — explicit national parliament members (10 errors)
+    ("TD / Senator", "Elected-Oireachtas"),
+    ("td / senator", "Elected-Oireachtas"),
+    # Public Rep — common Irish abbreviation for TD/Senator (9 errors)
+    ("Public Rep", "Elected-Oireachtas"),
+    ("public rep", "Elected-Oireachtas"),
+])
+def test_task3_elected_representative_variants(raw, expected):
+    """Additional elected-representative synonym forms."""
+    assert canonicalize_requester_type(raw) == expected, f"Expected {raw!r} → {expected!r}"
