@@ -308,6 +308,35 @@ def test_merge_continuation_rows_single_row():
     assert _merge_continuation_rows(rows) == rows
 
 
+def test_merge_continuation_rows_does_not_corrupt_header():
+    """Preamble phantom rows immediately after the header must never be merged into it.
+
+    DOT pattern: pdfplumber extracts a boilerplate sentence as a single-cell row
+    aligned with the 'Description' column, between the header and the first data row.
+    The fix: only merge when out already contains more than the header alone (len(out) > 1).
+    """
+    rows = [
+        ['FOI Reference', 'Category', 'Description', 'Decision', 'Decision Date'],
+        # preamble rows — long prose, appear before first real data row
+        [None, None, 'Under the FOI Act the Department is obliged to publish this log.', None, None],
+        [None, None, 'A disclosure log must be published within 10 working days.', None, None],
+        # first real data row
+        ['TRA-FOI-2020-0001', 'Business', 'report as delivered by consultants', 'Refused', '17/01/2020'],
+        # legitimate continuation of the data row's Description cell
+        [None, None, 'additional detail about the report', None, None],
+    ]
+    result = _merge_continuation_rows(rows)
+
+    # Header must be completely unchanged
+    assert result[0] == ['FOI Reference', 'Category', 'Description', 'Decision', 'Decision Date']
+
+    # The two preamble rows are left as separate rows (they won't merge into each other
+    # because after the first preamble row is appended, the second one can merge into it)
+    # What matters: the data row's continuation IS still merged
+    data_row = next(r for r in result if r[0] == 'TRA-FOI-2020-0001')
+    assert 'additional detail about the report' in data_row[2]
+
+
 # ── _prune_null_columns ───────────────────────────────────────────────────────
 
 def test_prune_null_columns_basic():

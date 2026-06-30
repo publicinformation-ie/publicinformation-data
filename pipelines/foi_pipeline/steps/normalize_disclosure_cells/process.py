@@ -31,7 +31,7 @@ def _merge_continuation_rows(rows):
         if len(row) >= 3 and len(non_none) == 1:
             col_idx, val = non_none[0]
             prev = out[-1]
-            if col_idx < len(prev) and isinstance(prev[col_idx], str) and isinstance(val, str):
+            if len(out) > 1 and col_idx < len(prev) and isinstance(prev[col_idx], str) and isinstance(val, str):
                 prev[col_idx] = prev[col_idx] + " " + val
                 continue
         out.append(list(row))
