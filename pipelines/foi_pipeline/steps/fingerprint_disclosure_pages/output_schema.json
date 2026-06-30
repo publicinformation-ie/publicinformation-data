@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "required": ["metadata", "results"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["step", "completed_at"],
+      "properties": {
+        "step": { "type": "string" },
+        "completed_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["public_body_id", "name", "disclosure_page_url", "page_hash", "file_count"],
+        "properties": {
+          "public_body_id": { "type": "integer" },
+          "name": { "type": "string" },
+          "disclosure_page_url": { "type": "string" },
+          "page_hash": { "type": "string", "pattern": "^sha256-[0-9a-f]{64}$" },
+          "file_count": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}
