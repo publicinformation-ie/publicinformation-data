@@ -6,6 +6,7 @@ import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlparse
 
 from lib.cli_utils import add_common_args, filter_by_public_body
 from lib.disclosure_link_utils import FILE_EXTENSIONS, find_file_links
@@ -26,7 +27,7 @@ def _fetch_one(item):
     url = item["disclosure_page_url"]
     name = item.get("name", "")
     try:
-        ext = Path(url.split("?")[0]).suffix.lower()
+        ext = Path(urlparse(url).path).suffix.lower()
         if ext in FILE_EXTENSIONS:
             # Disclosure page IS a direct file — treat it as a single link
             links = [{"file_url": url, "file_type": FILE_EXTENSIONS[ext], "link_text": ""}]
@@ -38,12 +39,15 @@ def _fetch_one(item):
         return body_id, name, url, [], e
 
 
-def process(input_data, step_dir, previous_hashes, force=False, max_workers=10):
+def process(input_data, step_dir, previous_hashes, preserved_hashes=None, force=False, max_workers=10):
     """Fetch all disclosure pages and compare file-link hashes to previous_hashes.
 
     Returns (results, dirty_ids) where:
       results  — list of output records (one per body)
       dirty_ids — set of public_body_ids whose hash changed or are new
+
+    preserved_hashes: hashes loaded from previous output, used on fetch error to avoid
+    losing the last known hash even when force=True clears effective_hashes for dirty-detection.
     """
     errors_path = Path(step_dir) / "errors.json"
     write_json(errors_path, [])
@@ -70,7 +74,7 @@ def process(input_data, step_dir, previous_hashes, force=False, max_workers=10):
                     "public_body_id": body_id,
                     "name": name,
                     "disclosure_page_url": url,
-                    "page_hash": effective_hashes.get(body_id, _hash_links([])),
+                    "page_hash": (preserved_hashes or effective_hashes).get(body_id, _hash_links([])),
                     "file_count": 0,
                 }
             else:
@@ -110,18 +114,23 @@ def main():
         print(f"No input record for public_body_id={args.public_body}", file=sys.stderr)
         sys.exit(0)
 
-    previous_hashes = {}
-    if not args.force and output_path.exists():
+    # Always load for error-preservation, even on force runs
+    preserved_hashes = {}
+    if output_path.exists():
         try:
             prev = read_json(output_path)
             for r in prev.get("results", []):
                 if "public_body_id" in r and "page_hash" in r:
-                    previous_hashes[r["public_body_id"]] = r["page_hash"]
+                    preserved_hashes[r["public_body_id"]] = r["page_hash"]
         except (json.JSONDecodeError, KeyError):
             pass  # First run or corrupt file — treat as empty
 
+    # previous_hashes for dirty-detection (empty on force)
+    previous_hashes = {} if args.force else preserved_hashes
+
     results, dirty_ids = process(
         input_data, step_dir, previous_hashes,
+        preserved_hashes=preserved_hashes,
         force=args.force, max_workers=args.workers
     )
 

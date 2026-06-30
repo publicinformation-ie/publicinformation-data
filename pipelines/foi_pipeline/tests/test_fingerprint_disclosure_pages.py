@@ -104,6 +104,18 @@ def test_force_clears_hashes_all_dirty(requests_mock, tmp_path):
     previous_hashes = {1001: current_hash, 1002: _hash([])}
     results, dirty_ids = process(INPUT, tmp_path, previous_hashes, force=True)
     assert 1001 in dirty_ids
+    assert 1002 in dirty_ids
+
+
+def test_force_with_fetch_error_preserves_previous_hash(requests_mock, tmp_path):
+    requests_mock.get("https://dept-a.ie/disc/", exc=req.exceptions.ConnectionError("timeout"))
+    requests_mock.get("https://dept-b.ie/disc/", text=HTML_NO_FILES)
+    old_hash = _hash(["https://dept-a.ie/disclosures/foi-log-2024.pdf"])
+    preserved = {1001: old_hash}
+    results, dirty_ids = process(INPUT, tmp_path, previous_hashes={}, preserved_hashes=preserved, force=True)
+    result_1001 = next(r for r in results if r["public_body_id"] == 1001)
+    assert result_1001["page_hash"] == old_hash
+    assert 1001 not in dirty_ids
 
 
 def test_page_with_no_files_hash_is_stable(requests_mock, tmp_path):

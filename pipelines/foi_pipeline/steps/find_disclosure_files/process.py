@@ -7,9 +7,9 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 from lib.cli_utils import add_common_args, filter_by_public_body
-from lib.disclosure_link_utils import FILE_EXTENSIONS, YEAR_PATTERN, find_file_links
+from lib.disclosure_link_utils import FILE_EXTENSIONS, find_file_links
 from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
-from lib.http_utils import fetch, is_safe_url
+from lib.http_utils import fetch
 
 STEP_NAME = "find_disclosure_files"
 

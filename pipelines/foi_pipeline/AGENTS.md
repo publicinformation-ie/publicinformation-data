@@ -41,25 +41,26 @@ PYTHONPATH=. python steps/export_status/process.py \
 7. `check_foi_pages` - Validates FOI page accessibility
 8. `get_foi_emails` - Extracts FOI email addresses
 9. `find_disclosure_pages` - Locates disclosure log pages (`APIFY_TOKEN` required for gov.ie bodies)
-10. `find_disclosure_files` - Collects disclosure document links
-11. `transform_disclosure_files` - Processes files into structured data
-12. `normalize_disclosure_cells` - Normalizes string cell values
-13. `extract_disclosures_detect_header_row` - Detects header rows
-14. `extract_disclosures_normalize_header` - Repairs null cells in detected header rows (continuation merge + forward-fill)
-15. `extract_disclosures_normalize_rows` - Normalizes date values to ISO 8601 format
-16. `extract_disclosures_canonicalize` - Maps columns to canonical fields
-17. `extract_disclosures_canonicalize_rows` - Normalizes decision_status field values to canonical statuses
-18. `extract_disclosures_deduplicate` - Removes duplicate FOI records
-19. `export_status` - Fan-in merge of all step outputs (website data source)
-20. `generate_topics` - Groups FOI records into topics
-21. `db_upload` - Populates the libSQL database
+10. `fingerprint_disclosure_pages` - Hashes disclosure page file links to detect changes between runs
+11. `find_disclosure_files` - Collects disclosure document links
+12. `transform_disclosure_files` - Processes files into structured data
+13. `normalize_disclosure_cells` - Normalizes string cell values
+14. `extract_disclosures_detect_header_row` - Detects header rows
+15. `extract_disclosures_normalize_header` - Repairs null cells in detected header rows (continuation merge + forward-fill)
+16. `extract_disclosures_normalize_rows` - Normalizes date values to ISO 8601 format
+17. `extract_disclosures_canonicalize` - Maps columns to canonical fields
+18. `extract_disclosures_canonicalize_rows` - Normalizes decision_status field values to canonical statuses
+19. `extract_disclosures_deduplicate` - Removes duplicate FOI records
+20. `export_status` - Fan-in merge of all step outputs (website data source)
+21. `generate_topics` - Groups FOI records into topics
+22. `db_upload` - Populates the libSQL database
 
 ### Data Flow
 
 ```
 find_public_bodies -> find_public_bodies_subject_to_foi -> resolve_website_urls -> validate_websites
     -> find_foi_pages -> find_foi_pages_search -> check_foi_pages
-    -> get_foi_emails -> find_disclosure_pages -> find_disclosure_files
+    -> get_foi_emails -> find_disclosure_pages -> fingerprint_disclosure_pages -> find_disclosure_files
     -> transform_disclosure_files -> normalize_disclosure_cells
     -> extract_disclosures_detect_header_row -> extract_disclosures_normalize_header
     -> extract_disclosures_normalize_rows -> extract_disclosures_canonicalize
