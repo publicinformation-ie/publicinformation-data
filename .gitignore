@@ -24,6 +24,7 @@ local.db
 # Temp/scratch files
 **/tmp.txt
 **/temp_*.txt
+.vibe/tmp/
 
 # Raw data files
 pipelines/foi_pipeline/data/*.csv
