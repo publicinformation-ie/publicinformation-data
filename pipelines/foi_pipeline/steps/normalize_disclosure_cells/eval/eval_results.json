@@ -3,41 +3,50 @@
   "metrics": [
     {
       "name": "post_normalization_clean_rate",
-      "value": 0.849,
+      "value": 0.625,
       "counts": {
-        "clean": 898,
-        "total": 1058
+        "clean": 603,
+        "total": 965
       },
       "is_primary": true
     },
     {
       "name": "null_column_rate",
-      "value": 0.123,
+      "value": 0.105,
       "counts": {
-        "flagged": 130,
-        "total": 1058
+        "flagged": 101,
+        "total": 965
       },
       "is_primary": false
     },
     {
       "name": "newline_split_row_rate",
-      "value": 0.067,
+      "value": 0.158,
       "counts": {
-        "flagged": 71,
-        "total": 1058
+        "flagged": 152,
+        "total": 965
+      },
+      "is_primary": false
+    },
+    {
+      "name": "preamble_in_header_rate",
+      "value": 0.184,
+      "counts": {
+        "flagged": 178,
+        "total": 965
       },
       "is_primary": false
     },
     {
       "name": "cells_changed_rate",
-      "value": 0.972,
+      "value": 0.97,
       "counts": {
-        "changed": 1100,
-        "total": 1132
+        "changed": 1008,
+        "total": 1039
       },
       "is_primary": false
     }
   ],
-  "input_hash": "b0c8d2868c3af17bec29246335b9ff2f602845a18442c5ad3b20ad782c6ca13e",
+  "input_hash": "53b9b61920d068f721c9b3087326b997fb8d8f80f627550b52528170928e4601",
   "judge_model": null
 }

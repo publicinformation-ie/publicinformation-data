@@ -218,5 +218,21 @@
     "disclosure_page_url": "https://www.wicklow.ie/Living/Your-Council/Governance/About-Freedom-of-Information",
     "source_method": "manual",
     "overridden": true
+  },
+  {
+    "public_body_id": 1204,
+    "name": "Department of Foreign Affairs and Trade",
+    "foi_page_url": "https://www.gov.ie/en/department-of-foreign-affairs/organisation-information/foi-publication-scheme",
+    "disclosure_page_url": "https://www.gov.ie/en/department-of-foreign-affairs/collections/freedom-of-information-requests/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1388,
+    "name": "Health and Safety Authority",
+    "foi_page_url": "https://www.hsa.ie/freedom_of_information/",
+    "disclosure_page_url": "https://www.hsa.ie/freedom_of_information/freedom_of_information_publication_scheme/foi_disclosure_log_and_other_information_to_be_published_routinely/",
+    "source_method": "manual",
+    "overridden": true
   }
 ]
