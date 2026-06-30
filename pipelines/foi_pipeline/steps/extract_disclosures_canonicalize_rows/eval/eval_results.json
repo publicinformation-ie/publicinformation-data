@@ -3,41 +3,41 @@
   "metrics": [
     {
       "name": "canonicalization_rate",
-      "value": 0.783,
+      "value": 0.799,
       "counts": {
-        "canonical": 52079,
-        "total": 66539,
-        "Granted": 14161,
-        "Refused": 14712,
-        "Part-Granted": 18718,
-        "Withdrawn": 2176,
-        "Handled outside of FOI": 1162,
-        "Transferred": 565,
-        "Deemed Refused": 134,
-        "Personal": 140,
-        "Unknown": 311
+        "canonical": 55721,
+        "total": 69715,
+        "Granted": 14983,
+        "Refused": 15883,
+        "Part-Granted": 19820,
+        "Withdrawn": 2512,
+        "Handled outside of FOI": 1327,
+        "Transferred": 602,
+        "Deemed Refused": 133,
+        "Personal": 142,
+        "Unknown": 319
       },
       "is_primary": true
     },
     {
       "name": "unrecognized_status_rate",
-      "value": 0.004,
+      "value": 0.008,
       "counts": {
-        "unrecognized": 267,
-        "total": 66539
+        "unrecognized": 544,
+        "total": 69715
       },
       "is_primary": false
     },
     {
       "name": "non_canonical_passthrough_rate",
-      "value": 0.004,
+      "value": 0.008,
       "counts": {
-        "non_canonical": 267,
-        "total": 66539
+        "non_canonical": 544,
+        "total": 69715
       },
       "is_primary": false
     }
   ],
-  "input_hash": "3d32a88440db0687ec1369398253101c3e241152d1414c766f269d6f94343cb3",
+  "input_hash": "4cd6e68139c843f38e261609ba3007cf79b20f516f60e3e630f2673fbb789109",
   "judge_model": null
 }
