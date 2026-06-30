@@ -8,6 +8,7 @@ docs/
 #claude
 .claude/settings.local.json
 .superpowers/
+.claude/projects/
 
 # serena LSP
 .serena/
@@ -29,3 +30,4 @@ local.db
 # Raw data files
 pipelines/foi_pipeline/data/*.csv
 pipelines/cso_pipeline/data/*.csv
+
