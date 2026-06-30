@@ -5,23 +5,23 @@
       "name": "overall_records_kept_ratio",
       "value": 0.861,
       "counts": {
-        "total_before": 66155,
-        "total_after": 56942,
-        "removed": 9213
+        "total_before": 66811,
+        "total_after": 57493,
+        "removed": 9318
       },
       "is_primary": true
     },
     {
       "name": "pct_bodies_low_ratio",
-      "value": 0.085,
+      "value": 0.081,
       "counts": {
         "threshold": 0.5,
         "low_ratio_count": 6,
-        "total_bodies_with_records": 71
+        "total_bodies_with_records": 74
       },
       "is_primary": false
     }
   ],
-  "input_hash": "ebcd2c1d1765317ef153e619a4b290ce70e422b78bb77709f2a598b55d7b4103",
+  "input_hash": "368d16d0ba40da7f0410efd2292088bea6e62eb9f97e16cdefe15e306fb3f957",
   "judge_model": null
 }

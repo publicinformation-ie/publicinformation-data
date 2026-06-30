@@ -1,10 +1,9 @@
 import ipaddress
 import os
-import sys
 import threading
 import time
 from collections import defaultdict
-from datetime import datetime, timedelta
+from datetime import datetime
 from urllib.parse import urlparse
 
 import requests
@@ -14,7 +13,11 @@ truststore.inject_into_ssl()
 
 # Configuration
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; PublicInformation-FOI-Scraper/1.0)"}
-DEFAULT_RATE_LIMIT_DELAY = 0.2  # seconds between requests
+DEFAULT_RATE_LIMIT_DELAY = float(os.environ.get("FOI_RATE_LIMIT_DELAY", "0.4"))  # seconds between requests
+
+
+class BotChallengeError(RuntimeError):
+    """Raised when a WAF or bot-protection challenge page is detected."""
 
 # Rate limiting state
 _domain_last_request = defaultdict(lambda: datetime.min)
@@ -98,25 +101,79 @@ def validate_url_or_raise(url, context=""):
     return url
 
 
+_BOT_BODY_MARKERS = [
+    ("Just a moment...", "Cloudflare browser integrity check"),
+    ("cf-browser-verification", "Cloudflare browser verification"),
+    ("Checking if the site connection is secure", "Cloudflare security check"),
+    ("Enable JavaScript and cookies to continue", "Cloudflare JS challenge"),
+    ("_Incapsula_Resource", "Imperva/Incapsula WAF"),
+    ("Please complete the security check to access", "CAPTCHA security check"),
+    ("DDoS protection by", "DDoS protection page"),
+    ("This site is protected by", "bot-protection page"),
+]
+
+
+def _detect_bot_challenge(response):
+    """Return a description string if the response looks like a WAF/bot challenge, else None."""
+    status = response.status_code
+
+    if status == 429:
+        retry_after = response.headers.get("Retry-After", "")
+        suffix = f" (Retry-After: {retry_after})" if retry_after else ""
+        return f"HTTP 429 Too Many Requests{suffix}"
+
+    ct = response.headers.get("Content-Type", "").lower()
+    is_html = "html" in ct
+    is_error_status = status in (403, 503)
+
+    if not (is_html or is_error_status):
+        return None
+
+    # Header-only signals (no body needed)
+    if "CF-RAY" in response.headers and is_error_status:
+        ray = response.headers["CF-RAY"]
+        return f"Cloudflare WAF block (CF-RAY: {ray}, HTTP {status})"
+
+    if not is_html:
+        return None
+
+    try:
+        body = response.text
+    except Exception:
+        return None
+
+    for marker, label in _BOT_BODY_MARKERS:
+        if marker in body:
+            cf_ray = response.headers.get("CF-RAY", "")
+            suffix = f" (CF-RAY: {cf_ray})" if cf_ray else f" (HTTP {status})"
+            return f"{label}{suffix}"
+
+    return None
+
+
 def fetch(method, url, **kwargs):
     from urllib.parse import urlparse
-    
+
     # Validate URL for security (prevent SSRF)
     validate_url_or_raise(url, context="fetch")
-    
+
     # Extract domain for rate limiting
     domain = urlparse(url).netloc
     delay = get_rate_limit_delay(domain)
     time.sleep(delay)
-    
+
     merged_headers = {**HEADERS, **kwargs.pop("headers", {})}
     kwargs.setdefault("timeout", 30)
     try:
-        return requests.request(method, url, headers=merged_headers, **kwargs)
+        response = requests.request(method, url, headers=merged_headers, **kwargs)
     except requests.exceptions.SSLError as e:
         raise RuntimeError(
             f"SSL verification failed for {url}. "
             f"This is a security error. Do not disable verification. Error: {e}"
         ) from e
 
+    challenge = _detect_bot_challenge(response)
+    if challenge:
+        raise BotChallengeError(f"{challenge} at {url}")
 
+    return response

@@ -37,6 +37,73 @@ CHECKS: list[Check] = [
         description="decision_status_is_date",
         where_clause="decision_status IS NOT NULL AND date(decision_status) IS NOT NULL",
     ),
+    # dd/mm/yyyy dates in decision_status — not caught by date() which only parses ISO format.
+    # 1,135 rows across 37 files identified 2026-06-24. Typically a column-shift artefact.
+    Check(
+        name="decision_status_is_slashdate",
+        description="decision_status contains dd/mm/yyyy date (column-shift artefact)",
+        where_clause="decision_status IS NOT NULL AND decision_status GLOB '[0-9][0-9]/[0-9][0-9]/[0-9][0-9]*'",
+    ),
+    # decision_status holds a value that isn't one of the ~8 canonical outcomes and isn't a date.
+    # Catches wrong-column contamination (requester_type values), junk, OCR garbles.
+    Check(
+        name="decision_status_nonstandard",
+        description="decision_status is not a recognised outcome value",
+        where_clause="""decision_status IS NOT NULL
+            AND decision_status != ''
+            AND date(decision_status) IS NULL
+            AND decision_status NOT GLOB '[0-9][0-9]/[0-9][0-9]/[0-9][0-9]*'
+            AND TRIM(decision_status) NOT IN (
+                'Part-Granted','Refused','Granted','Withdrawn',
+                'Handled outside of FOI','Transferred','Unknown','Deemed Refused'
+            )""",
+    ),
+    # requester_type has 783 distinct values (2026-06-24 audit); should be ~8-10 canonical ones.
+    # Flags case variants, abbreviations, abbreviations, split PDF tokens, column-header leakage.
+    # See docs/analysis/2026-06-24-foi-disclosures-enum-cleanup.md for the full canonical mapping.
+    Check(
+        name="requester_type_nonstandard",
+        description="requester_type is not a recognised canonical value",
+        where_clause="""requester_type IS NOT NULL
+            AND requester_type != ''
+            AND TRIM(LOWER(requester_type)) NOT IN (
+                'journalist','journalists','media','press','reporter',
+                'other','others',
+                'client','clients',
+                'member of the public','member of public','mop',
+                'non personal','non-personal','non pers','non- personal',
+                'business/interest group','business/interest groups',
+                'business interest group','business interest',
+                'oireachtas',
+                'oireachtas/public representatives','oireachtas/public representative',
+                'oireachtas / public representative','oireachtas / public reps',
+                'oireachtas/ public reps','oireactas / public reps',
+                'oireachtas member/ councillor','oireachtas member/councillor',
+                'oireachtas/elected representative','oireachtas member',
+                'member of oireachtas','member of the oireachtas',
+                'member of the oireachtas/elected representative',
+                'individual',
+                'personal',
+                'staff',
+                'public',
+                'public representative',
+                'councillor',
+                'solicitor','solicitors',
+                'solicitor on behalf of member of the public',
+                'association','organisation','company','industry',
+                'general','commercial','customer',
+                'student/lecturer','residents association',
+                'non-personal (business/interest group)',
+                'individual (non-personal)','individual (non- personal)',
+                'individual (personal)',
+                'member of business/interest group','member of business/interest groups',
+                'business / interest group','business/ interest group',
+                'business/interest','business / interest groups',
+                'oireachtas/public reps','oireachtas / public representatives',
+                'member of local authority','member of the oireachtas/elected representative',
+                'public service','n/a'
+            )""",
+    ),
 ]
 
 

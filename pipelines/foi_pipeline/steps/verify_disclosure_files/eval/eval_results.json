@@ -3,34 +3,34 @@
   "metrics": [
     {
       "name": "true_rejection_rate",
-      "value": 1.0,
+      "value": 0.6923076923076923,
       "counts": {
         "rejected": 9,
-        "not_rejected": 0,
-        "total_judged_no": 9
+        "not_rejected": 4,
+        "total_judged_no": 13
       },
       "is_primary": true
     },
     {
       "name": "false_rejection_rate",
-      "value": 0.032388663967611336,
+      "value": 0.03739061256961018,
       "counts": {
-        "false_rejections": 40,
-        "total_judged_yes": 1235
+        "false_rejections": 47,
+        "total_judged_yes": 1257
       },
       "is_primary": false
     },
     {
       "name": "status_distribution",
-      "value": 0.8442153493699885,
+      "value": 0.8363128491620112,
       "counts": {
-        "verified": 1474,
-        "rejected": 219,
-        "unverified": 53
+        "verified": 1497,
+        "rejected": 232,
+        "unverified": 61
       },
       "is_primary": false
     }
   ],
-  "input_hash": "bdb843d19b1813a25ae2fac7431466d7c1f94c7bcc37748138820fdd575c1d93",
+  "input_hash": "27fc9d8774cda4561bbb7a616aa6b013fdba75ed3e1f4af8257242457943a8fa",
   "judge_model": null
 }
