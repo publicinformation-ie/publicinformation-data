@@ -50,6 +50,17 @@ Normalizes all date values in disclosure log rows to ISO 8601 format (`YYYY-MM-D
 **Errors File:** `steps/extract_disclosures_normalize_rows/errors.json`
 
 Contains error records for unparseable date values with full context for debugging.
+Each error is logged under one of two `error_type` values, so the two failure
+modes can be triaged separately:
+
+- `UnparseableDate` — the value contains at least one digit and looks
+  date-shaped, but didn't match any known format (a genuine parse failure).
+- `TextInDateColumn` — the value contains no digits at all (e.g. header
+  leaks like `"Date Received"` re-appearing mid-column, or descriptive text).
+  This can never be a date, so it's contamination rather than a parsing gap.
+
+Both branches still log an error and null the cell — no value is silently
+suppressed; only the label differs.
 
 ## Notable Files
 
@@ -91,7 +102,9 @@ The step recognizes and normalizes the following date formats:
 - `D Month YYYY` (e.g., `1 February 2023`) -> `2023-02-01`
 - `Month DD, YYYY` (e.g., `February 01, 2023`) -> `2023-02-01`
 - Ordinal formats (e.g., `14th July 2016`) -> `2016-07-14`
-- Short year formats (e.g., `30-Jul-25`) -> `2025-07-30`
+- Short year formats (e.g., `30-Jul-25`) -> `2025-07-30`, including a stray
+  space before the year (e.g., `25-Nov- 20`) -> `2020-11-25` — a PDF-extraction
+  artifact seen in Louth/Limerick data
 - `YYYY-MM-DD` (ISO 8601) -> pass through validated
 
 Non-date values (e.g., `N/A`, `Decision Date`, `Part Granted`) are replaced with `null`.
