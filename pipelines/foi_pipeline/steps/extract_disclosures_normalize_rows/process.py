@@ -87,6 +87,27 @@ _SKIP_VALUES = frozenset({
     'summary of 2017 foi requests',
     # Decision-status labels that appear in date columns in DSP files
     'decision made',
+    # Irish-language and bilingual column header values that leak into date cells
+    # via repeated page-header rows in multi-page PDFs (Fingal, DLR, CRU, etc.)
+    'dáta',                                    # Irish "Date" (standalone)
+    'dáta fála',                               # Irish "Date Received"
+    'dáta athbhreithniú',                      # Irish "Date of Review"
+    'dáta eisiúna litir an chinnidh',          # Irish "Date of Issue of Decision Letter"
+    'dáta a fuarthas/date received',           # bilingual date-received header
+    'dáta a fuarthas/ date received',          # no-space variant
+    'dáta a fuarthas /date receive d',         # OCR line-break artefact
+    'eisiúna/date',                            # bilingual decision-date header fragment
+    'eisiúna/date inmheánach/internal',        # combined bilingual header fragment
+    'inmheánach/internal',                     # bilingual "Internal" (IR column)
+    'inmheánach/ir decision',                  # bilingual IR decision header
+    'athbhreithniú',                           # Irish "Review" (review_status header)
+    'athbhreithniú sent',
+    'sent athbhreithniú',
+    'cineál',                                  # Irish "Type" (requester_type header)
+    'cinneadh',                                # Irish "Decision" (decision_status header)
+    'cinneadh/decision',                       # bilingual decision header
+    'cinneadh eisithe/decision made',          # bilingual decision-date header
+    'cinneadh eisithe/dec ision made',         # OCR line-break artefact
 })
 
 
