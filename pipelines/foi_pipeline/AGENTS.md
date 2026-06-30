@@ -108,6 +108,8 @@ uv run pytest tests/ -q
 
 Steps can include manually-curated records in `override.json` that are never overwritten by automation. Records must have `"source_method": "manual"` and `"overridden": true`. When `IncrementalWriter` is constructed, it pre-loads override records and skips processing for those bodies.
 
+The `extract_disclosures_canonicalize` step additionally supports **file-level column mapping overrides** via `steps/extract_disclosures_canonicalize/column_mappings.json`. Each entry maps a `file_url` to a manual column mapping that bypasses automated header detection. Keys are string column indices (`"0"`, `"1"`, …); values are a canonical field name (string), an array of field names (splits cell by whitespace), or `null` (skip column). Add an entry when a file's headers cannot be resolved automatically (e.g. bilingual Irish PDFs). See `steps/extract_disclosures_canonicalize/README.md` for full details.
+
 For the full documentation sync workflow, see [steps/AGENTS.md](steps/AGENTS.md).
 
 ## Scoping to One Public Body

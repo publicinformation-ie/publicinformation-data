@@ -71,6 +71,7 @@ def _apply_manual_mapping(item: dict, mapping: dict) -> tuple[list, list, int]:
         }], 0
 
     results = []
+    header_rows_dropped = 0
     # Process data rows (skip header)
     for row in rows[header_row_idx + 1:]:
         if not row:
@@ -80,7 +81,14 @@ def _apply_manual_mapping(item: dict, mapping: dict) -> tuple[list, list, int]:
         for key in CANONICAL_COLUMNS:
             record[key] = None
         for col_str, target in column_mapping.items():
-            col_idx = int(col_str)
+            try:
+                col_idx = int(col_str)
+            except ValueError:
+                return [], [{
+                    "error_type": "InvalidColumnMapping",
+                    "error_message": f"column_mapping key {col_str!r} is not a valid integer column index",
+                    "context": {"file_url": item["file_url"]},
+                }], 0
             if col_idx >= len(row):
                 continue
             cell_value = row[col_idx]
@@ -95,9 +103,12 @@ def _apply_manual_mapping(item: dict, mapping: dict) -> tuple[list, list, int]:
                     if field is None:
                         continue
                     record[field] = parts[i] if i < len(parts) else None
+        if is_header_row(record):
+            header_rows_dropped += 1
+            continue
         results.append(record)
 
-    return results, [], 0
+    return results, [], header_rows_dropped
 
 
 def is_header_row(row: dict, threshold: int = 2) -> bool:

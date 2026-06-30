@@ -95,6 +95,7 @@ from steps.extract_disclosures_canonicalize.process import (
     process,
     STEP_NAME,
     _apply_manual_mapping,
+    _load_column_mappings,
 )
 
 
@@ -1100,3 +1101,51 @@ def test_process_passes_column_mappings_to_canonicalize_file():
     assert len(results) == 1
     assert results[0]["foi_reference_id"] == "FOI/2016/0001"
     assert results[0]["source_method"] == "manual"
+
+
+def test_apply_manual_mapping_row_shorter_than_mapping():
+    """A data row shorter than the highest column index: missing fields stay None, no IndexError."""
+    mapping = {
+        "source_method": "manual",
+        "overridden": True,
+        "column_mapping": {
+            "0": "foi_reference_id",
+            "1": "request_description",
+            "2": "decision_status",
+        },
+    }
+    item = {
+        **MANUAL_META,
+        "header_row_idx": 0,
+        "rows": [
+            ["Ref", "Description", "Status"],
+            ["FOI/2016/0001", "Records about planning"],  # only 2 cells — col 2 missing
+        ],
+    }
+    results, errors, dropped = _apply_manual_mapping(item, mapping)
+    assert errors == []
+    assert len(results) == 1
+    assert results[0]["foi_reference_id"] == "FOI/2016/0001"
+    assert results[0]["request_description"] == "Records about planning"
+    assert results[0]["decision_status"] is None
+
+
+def test_load_column_mappings_returns_empty_when_file_missing(tmp_path):
+    """When column_mappings.json does not exist, returns an empty dict."""
+    result = _load_column_mappings(tmp_path)
+    assert result == {}
+
+
+def test_load_column_mappings_reads_file_when_present(tmp_path):
+    """When column_mappings.json exists, its contents are returned."""
+    import json
+    data = {
+        "https://example.ie/file.pdf": {
+            "source_method": "manual",
+            "overridden": True,
+            "column_mapping": {"0": "foi_reference_id", "1": "request_description"},
+        }
+    }
+    (tmp_path / "column_mappings.json").write_text(json.dumps(data))
+    result = _load_column_mappings(tmp_path)
+    assert result == data
