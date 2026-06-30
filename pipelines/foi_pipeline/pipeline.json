@@ -9,6 +9,7 @@
     "check_foi_pages",
     "get_foi_emails",
     "find_disclosure_pages",
+    "fingerprint_disclosure_pages",
     "find_disclosure_files",
     "verify_disclosure_files",
     "transform_disclosure_files",
