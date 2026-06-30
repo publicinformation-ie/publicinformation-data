@@ -3,15 +3,12 @@
     "source_method": "manual",
     "overridden": true,
     "column_mapping": {
-      "0": [
-        "date_received",
-        "foi_reference_id"
-      ],
-      "1": "request_description",
-      "2": "requester_type",
-      "3": "decision_status",
-      "4": "decision_date",
-      "5": null
+      "0": "date_received",
+      "1": "foi_reference_id",
+      "2": "request_description",
+      "3": "requester_type",
+      "4": "decision_status",
+      "5": "decision_date"
     }
   },
   "https://www.dlrcoco.ie/sites/dlrcoco/files/2024-03/2023%20Freedom%20of%20Information%20Disclosure%20Log_1.pdf": {
@@ -72,30 +69,6 @@
       "5": "decision_status"
     }
   },
-  "https://www.meath.ie/system/files/media/file-uploads/2019-05/FOI Disclosure Log 2018 (Jul to Dec).pdf": {
-    "source_method": "manual",
-    "overridden": true,
-    "column_mapping": {
-      "0": "foi_reference_id",
-      "1": "date_received",
-      "2": "requester_type",
-      "3": "request_description",
-      "4": "decision_date",
-      "5": "decision_status"
-    }
-  },
-  "https://www.meath.ie/system/files/media/file-uploads/2020-03/Disclosure Log 2019 - July to December - for website_0.pdf": {
-    "source_method": "manual",
-    "overridden": true,
-    "column_mapping": {
-      "0": "foi_reference_id",
-      "1": "date_received",
-      "2": "requester_type",
-      "3": "request_description",
-      "4": "decision_date",
-      "5": "decision_status"
-    }
-  },
   "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-1-2024.pdf": {
     "source_method": "manual",
     "overridden": true,
@@ -105,18 +78,6 @@
       "2": "decision_date",
       "3": "decision_status",
       "4": "request_description"
-    }
-  },
-  "https://www.fingal.ie/sites/default/files/2019-03/FOI%20Disclosure%20Log%202016.pdf": {
-    "source_method": "manual",
-    "overridden": true,
-    "column_mapping": {
-      "0": "date_received",
-      "1": "foi_reference_id",
-      "2": "request_description",
-      "3": "requester_type",
-      "4": "decision_status",
-      "5": "decision_date"
     }
   },
   "https://www.fingal.ie/sites/default/files/2023-02/2022%20FOI%20Disclosure%20Log.pdf": {
@@ -129,52 +90,17 @@
       "3": "request_description",
       "4": "decision_status",
       "5": "decision_date"
-    },
-    "https://www.centralbank.ie/docs/default-source/tns/about---tns/freedom-of-information/disclosure-logs/freedom-of-information-disclosure-log-2025-(non-personal-requests).pdf?sfvrsn=7bc26d1a_2": {
-      "source_method": "manual",
-      "overridden": true,
-      "column_mapping": {
-        "0": "foi_reference_id",
-        "1": "date_received",
-        "2": "request_description",
-        "3": "requester_type",
-        "4": "decision_status",
-        "5": "decision_date"
-      }
-    },
-    "https://www.audgen.gov.ie/media/ukgbibfo/foi-disclosure-log-q1-2026.pdf": {
-      "source_method": "manual",
-      "overridden": true,
-      "column_mapping": {
-        "0": "date_received",
-        "1": "request_description",
-        "2": "decision_status",
-        "3": "foi_reference_id",
-        "4": "decision_date"
-      }
-    },
-    "https://assets.gov.ie/static/documents/foi-disclosure-log-2020-cc0ddded-c4aa-4714-bc1f-bcd8e8daf7eb.pdf": {
-      "source_method": "manual",
-      "overridden": true,
-      "column_mapping": {
-        "0": "date_received",
-        "1": "requester_type",
-        "2": "request_description",        
-        "3": "decision_status",
-        "4": "decision_date"
-      }
-    },
-    "https://www.dlrcoco.ie/sites/dlrcoco/files/2024-03/2023%20Freedom%20of%20Information%20Disclosure%20Log_1.pdf": {
-      "source_method": "manual",
-      "overridden": true,
-      "column_mapping": {
-        "0": "foi_reference_id",
-        "1": "requester_type",
-        "2": "request_description",        
-        "3": "decision_status",
-        "4": "date_received",
-        "5": "decision_date"
-      }
-    }    
+    }
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosure-log-2020-cc0ddded-c4aa-4714-bc1f-bcd8e8daf7eb.pdf": {
+    "source_method": "manual",
+    "overridden": true,
+    "column_mapping": {
+      "0": "date_received",
+      "1": "requester_type",
+      "2": "request_description",
+      "3": "decision_status",
+      "4": "decision_date"
+    }
   }
 }
