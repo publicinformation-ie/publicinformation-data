@@ -1,5 +1,5 @@
 import pytest
-from steps.find_disclosure_files.process import _score_link
+from lib.disclosure_link_utils import _score_link
 
 
 class TestTier1HardRejects:
