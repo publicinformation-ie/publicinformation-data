@@ -254,7 +254,8 @@ class TestProcessFile:
         assert result["rows"][1][2] == "some request"  # non-date column unchanged
         assert errors == []
 
-    def test_process_file_unparseable_date(self):
+    def test_process_file_text_in_date_column(self):
+        # "Not a date" has no digits -> classified as TextInDateColumn, not UnparseableDate
         item = {
             **self.BASE_META,
             "rows": [
@@ -266,9 +267,25 @@ class TestProcessFile:
         result, errors = process_file(item, Path("/tmp"))
         assert result["rows"][1][1] is None
         assert len(errors) == 1
-        assert errors[0]["error_type"] == "UnparseableDate"
+        assert errors[0]["error_type"] == "TextInDateColumn"
         assert errors[0]["context"]["original_value"] == "Not a date"
         assert errors[0]["context"]["canonical_column"] == "date_received"
+
+    def test_process_file_unparseable_date_with_digits(self):
+        # "32/13/2023" has digits and is date-shaped but invalid -> stays UnparseableDate
+        item = {
+            **self.BASE_META,
+            "rows": [
+                ["Our Reference", "Date Received"],
+                ["16/001", "32/13/2023"],
+            ],
+            "header_row_idx": 0,
+        }
+        result, errors = process_file(item, Path("/tmp"))
+        assert result["rows"][1][1] is None
+        assert len(errors) == 1
+        assert errors[0]["error_type"] == "UnparseableDate"
+        assert errors[0]["context"]["original_value"] == "32/13/2023"
 
     def test_process_file_multiple_date_columns(self):
         item = {

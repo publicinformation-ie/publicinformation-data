@@ -344,7 +344,16 @@ def process_file(item: dict, step_dir: Path, verbose: bool = False) -> tuple[dic
                 cell_str = str(cell_value).strip() if cell_value is not None else ""
                 if normalized is None and cell_str and cell_str.lower() not in _SKIP_VALUES \
                         and len(cell_str) <= 60:
-                    # Log error for unparseable date
+                    # Values with no digits can never be dates — this is contamination
+                    # (header leaks, descriptive text) rather than a genuine date-parse
+                    # failure, so it gets its own error type for separate triage.
+                    if re.search(r'\d', cell_str):
+                        error_type = "UnparseableDate"
+                        error_message = f"Could not parse date value: {cell_value}"
+                    else:
+                        error_type = "TextInDateColumn"
+                        error_message = f"Non-date text found in date column: {cell_value}"
+
                     error_context = {
                         "file_url": file_url,
                         "public_body_id": public_body_id,
@@ -356,15 +365,15 @@ def process_file(item: dict, step_dir: Path, verbose: bool = False) -> tuple[dic
                         "column_index": col_idx,
                     }
                     error = {
-                        "error_type": "UnparseableDate",
-                        "error_message": f"Could not parse date value: {cell_value}",
+                        "error_type": error_type,
+                        "error_message": error_message,
                         "context": error_context,
                         "step": STEP_NAME,
                         "timestamp": datetime.now(timezone.utc).isoformat(),
                     }
                     errors.append(error)
                     if verbose:
-                        print(f"  WARNING: Unparseable date at row {row_idx}, col {col_idx}: {cell_value}")
+                        print(f"  WARNING: {error_type} at row {row_idx}, col {col_idx}: {cell_value}")
                 
                 # Replace cell value with normalized date (or None)
                 row[col_idx] = normalized
