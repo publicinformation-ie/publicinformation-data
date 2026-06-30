@@ -10,5 +10,18 @@
       "4": "decision_date",
       "5": null
     }
+  },
+  "https://www.dlrcoco.ie/sites/dlrcoco/files/2024-03/2023%20Freedom%20of%20Information%20Disclosure%20Log_1.pdf": {
+    "source_method": "manual",
+    "overridden": true,
+    "column_mapping": {
+      "0": "foi_reference_id",
+      "1": "requester_type",
+      "2": "request_description",
+      "3": "decision_status",
+      "4": "date_received",
+      "5": "decision_date",
+      "6": "review_status"
+    }
   }
 }
