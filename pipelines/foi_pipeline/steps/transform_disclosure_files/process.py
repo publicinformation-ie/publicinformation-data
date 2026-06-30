@@ -6,6 +6,7 @@ import decimal
 import fcntl
 import hashlib
 import io
+import json
 import os
 import sys
 import tempfile
@@ -403,12 +404,31 @@ def _extract_with_camelot_stream(file_bytes: bytes) -> list[list] | None:
             pass
 
 
-def _extract_pdf(file_bytes, table_settings=None):
+def _load_manual_override_urls(step_dir: Path) -> set[str]:
+    """Return the set of file_urls with a manual column_mapping override in
+    the sibling extract_disclosures_canonicalize step's column_mappings.json.
+
+    Files with a manual override don't need automatic header canonicalization
+    to succeed, so they should stay on the pdfplumber + _merge_page_splits
+    path rather than falling back to camelot (which never runs
+    _merge_page_splits and would let page-break header rows leak into data).
+    """
+    mappings_path = Path(step_dir).parent / "extract_disclosures_canonicalize" / "column_mappings.json"
+    if not mappings_path.exists():
+        return set()
+    return set(json.loads(mappings_path.read_text()))
+
+
+def _extract_pdf(file_bytes, table_settings=None, skip_canonicalization_check=False):
     """Parse PDF bytes. Returns (sheet_name, rows, fallback_cells, has_multiple_tables, merge_stats, pdf_extractor, camelot_info).
 
     pdf_extractor is "pdfplumber" or "camelot_stream".
     camelot_info is None when no fallback was attempted; otherwise a dict with
     pdfplumber_n_mapped, camelot_n_mapped, and used keys.
+    When skip_canonicalization_check is True, the pdfplumber result is
+    returned immediately (no camelot fallback) once a table was found, even
+    if it scores low on automatic header canonicalization — used for files
+    with a manual column_mapping override that doesn't need canonicalization.
     """
     import pdfplumber
     pages_rows = []
@@ -437,6 +457,9 @@ def _extract_pdf(file_bytes, table_settings=None):
     rows, merge_stats = _merge_page_splits(pages_rows)
     sheet_name = "page 1" if n_pages == 1 else f"pages 1-{n_pages}"
 
+    if skip_canonicalization_check:
+        return sheet_name, rows, [], total_tables > 1, merge_stats, "pdfplumber", None
+
     n_mapped = _score_rows(rows)
     if n_mapped < 2:
         camelot_rows = _extract_with_camelot_stream(file_bytes)
@@ -450,13 +473,16 @@ def _extract_pdf(file_bytes, table_settings=None):
     return sheet_name, rows, [], total_tables > 1, merge_stats, "pdfplumber", None
 
 
-def _process_single_file(item, cache, step_dir):
+def _process_single_file(item, cache, step_dir, manual_override_urls=frozenset()):
     """Process a single file. Called by worker processes.
 
     Args:
         item: A result item from input_data
         cache: DisclosureFileCache instance
         step_dir: Step directory path
+        manual_override_urls: Set of file_urls with a manual column_mapping
+            override (from extract_disclosures_canonicalize); these skip the
+            camelot canonicalization fallback in _extract_pdf
 
     Returns:
         List of result dicts to append (typically 0 or 1 items)
@@ -477,7 +503,9 @@ def _process_single_file(item, cache, step_dir):
         elif file_type == "xls":
             sheet_name, rows, _, has_multiple = _extract_xls(file_bytes)
         else:  # pdf
-            sheet_name, rows, _, has_multiple, merge_stats, pdf_extractor, camelot_info = _extract_pdf(file_bytes)
+            sheet_name, rows, _, has_multiple, merge_stats, pdf_extractor, camelot_info = _extract_pdf(
+                file_bytes, skip_canonicalization_check=file_url in manual_override_urls
+            )
 
         if file_type == "pdf":
             result_record = {
@@ -522,6 +550,7 @@ def process(input_data, step_dir, writer, verbose=False, workers=4):
 
     # Initialize cache
     cache = DisclosureFileCache(Path(step_dir).parent / "verify_disclosure_files" / "cache")
+    manual_override_urls = _load_manual_override_urls(step_dir)
 
     status_counts = {}
     for item in input_data["results"]:
@@ -558,7 +587,7 @@ def process(input_data, step_dir, writer, verbose=False, workers=4):
     # This gives us effective parallelism while avoiding pickling issues
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
         # Submit all tasks and collect futures to preserve order
-        futures = [executor.submit(_process_single_file, item, cache, step_dir) 
+        futures = [executor.submit(_process_single_file, item, cache, step_dir, manual_override_urls)
                   for item in items_to_process]
         results = [f.result() for f in futures]
 
