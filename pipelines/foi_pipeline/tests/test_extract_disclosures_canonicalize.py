@@ -94,6 +94,7 @@ from steps.extract_disclosures_canonicalize.process import (
     canonicalize_file,
     process,
     STEP_NAME,
+    _apply_manual_mapping,
 )
 
 
@@ -907,3 +908,195 @@ class TestMeathSynonyms:
     def test_synonyms_are_case_insensitive(self):
         assert canonicalize_header('date of receipt of request in department') == 'date_received'
         assert canonicalize_header('THE DECISION ISSUED TO THE APPLICANT') == 'decision_date'
+
+
+# ── Column mapping override tests ────────────────────────────────────────────
+
+MANUAL_META = {
+    "public_body_id": 2001,
+    "name": "Fingal",
+    "file_url": "https://www.fingal.ie/sites/default/files/2019-03/FOI%20Disclosure%20Log%202016.pdf",
+    "file_type": "pdf",
+}
+
+
+def test_apply_manual_mapping_basic():
+    """A simple 3-column manual mapping maps cells to canonical fields."""
+    mapping = {
+        "source_method": "manual",
+        "overridden": True,
+        "column_mapping": {
+            "0": "foi_reference_id",
+            "1": "request_description",
+            "2": "decision_status",
+        },
+    }
+    item = {
+        **MANUAL_META,
+        "header_row_idx": 0,
+        "rows": [
+            ["Ref", "Description", "Status"],
+            ["FOI/2016/0001", "Records about planning", "Granted"],
+        ],
+    }
+    results, errors, dropped = _apply_manual_mapping(item, mapping)
+    assert errors == []
+    assert len(results) == 1
+    assert results[0]["foi_reference_id"] == "FOI/2016/0001"
+    assert results[0]["request_description"] == "Records about planning"
+    assert results[0]["decision_status"] == "Granted"
+    assert results[0]["public_body_id"] == 2001
+    assert results[0]["source_method"] == "manual"
+    assert results[0]["overridden"] is True
+
+
+def test_apply_manual_mapping_null_column_ignored():
+    """A null target column is skipped; the field stays None in the record."""
+    mapping = {
+        "source_method": "manual",
+        "overridden": True,
+        "column_mapping": {
+            "0": "foi_reference_id",
+            "1": "request_description",
+            "2": None,
+        },
+    }
+    item = {
+        **MANUAL_META,
+        "header_row_idx": 0,
+        "rows": [
+            ["Ref", "Description", "Ignore"],
+            ["FOI/2016/0001", "Records about planning", "should be skipped"],
+        ],
+    }
+    results, errors, dropped = _apply_manual_mapping(item, mapping)
+    assert errors == []
+    assert len(results) == 1
+    assert results[0]["foi_reference_id"] == "FOI/2016/0001"
+    assert results[0]["request_description"] == "Records about planning"
+    # col 2 mapped to None → the cell value is not assigned anywhere
+    assert results[0]["decision_status"] is None
+
+
+def test_apply_manual_mapping_array_target_splits_cell():
+    """Array target splits cell by whitespace into multiple canonical fields."""
+    mapping = {
+        "source_method": "manual",
+        "overridden": True,
+        "column_mapping": {
+            "0": ["date_received", "foi_reference_id"],
+            "1": "request_description",
+        },
+    }
+    item = {
+        **MANUAL_META,
+        "header_row_idx": 0,
+        "rows": [
+            ["DateRef", "Description"],
+            ["05/01/2016 FOI/2016/0001", "Records about planning"],
+        ],
+    }
+    results, errors, dropped = _apply_manual_mapping(item, mapping)
+    assert errors == []
+    assert len(results) == 1
+    assert results[0]["date_received"] == "05/01/2016"
+    assert results[0]["foi_reference_id"] == "FOI/2016/0001"
+    assert results[0]["request_description"] == "Records about planning"
+
+
+def test_apply_manual_mapping_missing_required_columns_returns_error():
+    """Mapping that omits request_description returns a MissingRequiredColumns error."""
+    mapping = {
+        "source_method": "manual",
+        "overridden": True,
+        "column_mapping": {
+            "0": "foi_reference_id",
+            "1": "date_received",
+        },
+    }
+    item = {
+        **MANUAL_META,
+        "header_row_idx": 0,
+        "rows": [
+            ["Ref", "Date"],
+            ["FOI/2016/0001", "05/01/2016"],
+        ],
+    }
+    results, errors, dropped = _apply_manual_mapping(item, mapping)
+    assert results == []
+    assert len(errors) == 1
+    assert errors[0]["error_type"] == "MissingRequiredColumns"
+    assert "request_description" in errors[0]["error_message"]
+
+
+def test_canonicalize_file_uses_manual_mapping_when_present():
+    """canonicalize_file() delegates to _apply_manual_mapping when file_url is in column_mappings."""
+    column_mappings = {
+        MANUAL_META["file_url"]: {
+            "source_method": "manual",
+            "overridden": True,
+            "column_mapping": {
+                "0": "foi_reference_id",
+                "1": "request_description",
+            },
+        }
+    }
+    item = {
+        **MANUAL_META,
+        "header_row_idx": 0,
+        "rows": [
+            ["Ref", "Description"],
+            ["FOI/2016/0001", "Records about planning"],
+        ],
+    }
+    results, errors, dropped = canonicalize_file(item, column_mappings=column_mappings)
+    assert errors == []
+    assert len(results) == 1
+    assert results[0]["foi_reference_id"] == "FOI/2016/0001"
+    assert results[0]["source_method"] == "manual"
+    assert results[0]["overridden"] is True
+
+
+def test_canonicalize_file_falls_back_to_auto_when_no_mapping():
+    """file_url not in column_mappings → automated header-detection path is used."""
+    column_mappings = {"https://other-url.ie/other.pdf": {}}
+    rows = [
+        ["Our Reference", "Request Details"],
+        ["16/001", "some request"],
+    ]
+    item = {**BASE_META, "rows": rows, "header_row_idx": 0}
+    results, errors, dropped = canonicalize_file(item, column_mappings=column_mappings)
+    assert errors == []
+    assert len(results) == 1
+    assert results[0]["foi_reference_id"] == "16/001"
+    assert results[0]["request_description"] == "some request"
+    # Auto path does not set overridden
+    assert "overridden" not in results[0]
+
+
+def test_process_passes_column_mappings_to_canonicalize_file():
+    """process() with a column_mappings dict applies the manual override for matching URLs."""
+    column_mappings = {
+        MANUAL_META["file_url"]: {
+            "source_method": "manual",
+            "overridden": True,
+            "column_mapping": {
+                "0": "foi_reference_id",
+                "1": "request_description",
+            },
+        }
+    }
+    item = {
+        **MANUAL_META,
+        "header_row_idx": 0,
+        "rows": [
+            ["Ref", "Description"],
+            ["FOI/2016/0001", "Records about planning"],
+        ],
+    }
+    results, errors_out = [], []
+    process(_make_canonicalize_input([item]), results, errors_out, column_mappings=column_mappings)
+    assert errors_out == []
+    assert len(results) == 1
+    assert results[0]["foi_reference_id"] == "FOI/2016/0001"
+    assert results[0]["source_method"] == "manual"

@@ -25,6 +25,81 @@ def load_column_swaps(step_dir: Path) -> dict[str, list[tuple[str, str]]]:
     return {url: [tuple(pair) for pair in pairs] for url, pairs in raw.items()}
 
 
+def _load_column_mappings(step_dir: Path) -> dict:
+    """Load column_mappings.json if it exists."""
+    mappings_path = step_dir / "column_mappings.json"
+    if not mappings_path.exists():
+        return {}
+    return read_json(mappings_path)
+
+
+def _apply_manual_mapping(item: dict, mapping: dict) -> tuple[list, list, int]:
+    """Apply manual column mapping to a file's rows.
+
+    Returns (results, errors, header_rows_dropped) matching canonicalize_file signature.
+    """
+    rows = item.get("rows", [])
+    header_row_idx = item.get("header_row_idx", 0)
+
+    if not rows or header_row_idx is None or header_row_idx >= len(rows):
+        return [], [], 0
+
+    column_mapping = mapping.get("column_mapping", {})
+    meta = {
+        "public_body_id": item["public_body_id"],
+        "name": item["name"],
+        "file_url": item["file_url"],
+        "file_type": item["file_type"],
+        "source_method": mapping.get("source_method", "manual"),
+        "overridden": mapping.get("overridden", True),
+    }
+
+    # Validate mapping covers required columns
+    mapped_canonical: set[str] = set()
+    for target in column_mapping.values():
+        if isinstance(target, str):
+            mapped_canonical.add(target)
+        elif isinstance(target, list):
+            mapped_canonical.update(t for t in target if t is not None)
+
+    missing_required = REQUIRED_COLUMNS - mapped_canonical
+    if missing_required:
+        return [], [{
+            "error_type": "MissingRequiredColumns",
+            "error_message": f"Manual mapping missing required columns: {sorted(missing_required)}",
+            "context": {"file_url": item["file_url"]},
+        }], 0
+
+    results = []
+    # Process data rows (skip header)
+    for row in rows[header_row_idx + 1:]:
+        if not row:
+            continue
+        record = {**meta}
+        # Initialize all canonical columns to None
+        for key in CANONICAL_COLUMNS:
+            record[key] = None
+        for col_str, target in column_mapping.items():
+            col_idx = int(col_str)
+            if col_idx >= len(row):
+                continue
+            cell_value = row[col_idx]
+            if target is None:
+                continue
+            elif isinstance(target, str):
+                record[target] = cell_value
+            elif isinstance(target, list):
+                # Split combined column (e.g. '05/01/2016 FOI/2016/0001')
+                parts = str(cell_value or "").split() if cell_value else []
+                for i, field in enumerate(target):
+                    if field is None:
+                        continue
+                    record[field] = parts[i] if i < len(parts) else None
+        results.append(record)
+
+    return results, [], 0
+
+
 def is_header_row(row: dict, threshold: int = 2) -> bool:
     """Return True if 2+ field values in the row match known column header synonyms."""
     matches = sum(
@@ -43,11 +118,16 @@ def _is_column_letter_row(row: list) -> bool:
     )
 
 
-def canonicalize_file(item, column_swaps=None):
+def canonicalize_file(item, column_swaps=None, column_mappings=None):
     """Convert one file record into a list of canonical FOI row dicts.
 
     Returns (results, errors, header_rows_dropped).
     """
+    # Check for manual column mapping override
+    file_url = item.get("file_url")
+    if column_mappings and file_url in column_mappings:
+        return _apply_manual_mapping(item, column_mappings[file_url])
+
     rows = item.get("rows")
     header_row_idx = item.get("header_row_idx")
     if rows is None:
@@ -173,12 +253,12 @@ def canonicalize_file(item, column_swaps=None):
     return results, errors, header_rows_dropped
 
 
-def process(input_data, results_out, errors_out, column_swaps=None, verbose=False):
+def process(input_data, results_out, errors_out, column_swaps=None, column_mappings=None, verbose=False):
     total_dropped = 0
     for item in input_data["results"]:
         if item.get("rows") is None:
             continue
-        file_records, file_errors, dropped = canonicalize_file(item, column_swaps)
+        file_records, file_errors, dropped = canonicalize_file(item, column_swaps, column_mappings)
         results_out.extend(file_records)
         errors_out.extend(file_errors)
         total_dropped += dropped
@@ -208,7 +288,8 @@ def main():
     errors: list = []
 
     column_swaps = load_column_swaps(step_dir)
-    header_rows_dropped = process(input_data, results, errors, column_swaps=column_swaps, verbose=args.verbose)
+    column_mappings = _load_column_mappings(step_dir)
+    header_rows_dropped = process(input_data, results, errors, column_swaps=column_swaps, column_mappings=column_mappings, verbose=args.verbose)
 
     if args.public_body is not None and not args.force and output_path.exists():
         existing = read_json(output_path).get("results", [])

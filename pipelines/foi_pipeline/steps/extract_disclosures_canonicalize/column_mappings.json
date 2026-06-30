@@ -1,0 +1,14 @@
+{
+  "https://www.fingal.ie/sites/default/files/2019-03/FOI%20Disclosure%20Log%202016.pdf": {
+    "source_method": "manual",
+    "overridden": true,
+    "column_mapping": {
+      "0": ["date_received", "foi_reference_id"],
+      "1": "request_description",
+      "2": "requester_type",
+      "3": "decision_status",
+      "4": "decision_date",
+      "5": null
+    }
+  }
+}
