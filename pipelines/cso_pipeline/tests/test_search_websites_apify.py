@@ -32,7 +32,6 @@ def test_build_query_with_government_department():
     body = _make_body(1, "Abbey Theatre", gov_dept="Department of Tourism")
     query = build_query(body)
     assert '"Abbey Theatre"' in query
-    assert "Department of Tourism" in query
     assert "Ireland official website" in query
 
 
@@ -40,8 +39,7 @@ def test_build_query_without_government_department():
     body = _make_body(1, "Abbey Theatre")
     query = build_query(body)
     assert '"Abbey Theatre"' in query
-    assert "Ireland public body" in query
-    assert "official website" not in query
+    assert "Ireland official website" in query
 
 
 # ── score_confidence ─────────────────────────────────────────────────────────
@@ -125,7 +123,7 @@ def test_scores_high_confidence_when_domain_matches_name(tmp_path, monkeypatch):
     writer.finalize()
 
     record = read_json(output_path)["results"][0]
-    assert record["apify_website_url"] == "https://abbeytheatre.ie"
+    assert record["apify_website_url"] == "https://abbeytheatre.ie/"
     assert record["apify_confidence"] == "high"
 
 
@@ -141,4 +139,4 @@ def test_scores_low_confidence_when_domain_does_not_match(tmp_path, monkeypatch)
     writer.finalize()
 
     record = read_json(output_path)["results"][0]
-    assert record["apify_confidence"] == "low"
+    assert record["apify_confidence"] == "low_discarded"

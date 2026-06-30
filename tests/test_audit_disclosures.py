@@ -45,18 +45,20 @@ def _make_db_with_disclosures(rows: list[dict]) -> DbClient:
             request_description TEXT,
             decision_date TEXT,
             date_received TEXT,
-            decision_status TEXT
+            decision_status TEXT,
+            requester_type TEXT
         )
     """)
     for row in rows:
         conn.execute(
-            "INSERT INTO foi_disclosures VALUES (?, ?, ?, ?, ?)",
+            "INSERT INTO foi_disclosures VALUES (?, ?, ?, ?, ?, ?)",
             (
                 row.get("file_url"),
                 row.get("request_description"),
                 row.get("decision_date"),
                 row.get("date_received"),
                 row.get("decision_status"),
+                row.get("requester_type"),
             ),
         )
     conn.commit()

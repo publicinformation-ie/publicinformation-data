@@ -320,7 +320,9 @@ def test_extract_pdf_multi_page_concatenates_rows():
     assert rows[2] == ["002", "2024-01-02"]
 
 
-def test_extract_pdf_no_tables_raises_value_error():
+def test_extract_pdf_no_tables_raises_value_error(monkeypatch):
+    import steps.transform_disclosure_files.process as proc
+    monkeypatch.setattr(proc, "_extract_with_camelot_stream", lambda b: None)
     pdf_bytes = _make_pdf_no_tables()
     with pytest.raises(ValueError, match="no tables found"):
         _extract_pdf(pdf_bytes)
@@ -588,7 +590,9 @@ def test_process_pdf_single_table_has_no_multiple_tables_flag(requests_mock, tmp
     assert not writer.results[0].get("pdf_multiple_tables")
 
 
-def test_process_pdf_no_tables_logs_error_and_skips_record(requests_mock, tmp_path, make_writer):
+def test_process_pdf_no_tables_logs_error_and_skips_record(requests_mock, tmp_path, make_writer, monkeypatch):
+    import steps.transform_disclosure_files.process as proc
+    monkeypatch.setattr(proc, "_extract_with_camelot_stream", lambda b: None)
     pdf_bytes = _make_pdf_no_tables()
     requests_mock.get(PDF_URL, content=pdf_bytes)
     writer = make_writer(STEP_NAME, key_field="file_url")

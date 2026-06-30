@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 
 import pytest
 
+import lib.http_utils as hu
 from lib.http_utils import DEFAULT_RATE_LIMIT_DELAY, _domain_last_request, get_rate_limit_delay
 
 
@@ -26,7 +27,7 @@ class TestRateLimiting:
         """A second call immediately after the first should return the full default delay."""
         _domain_last_request["www.gov.ie"] = datetime.now()
         delay = get_rate_limit_delay("www.gov.ie")
-        assert abs(delay - DEFAULT_RATE_LIMIT_DELAY) < 0.01
+        assert abs(delay - hu.DEFAULT_RATE_LIMIT_DELAY) < 0.01
 
     def test_request_after_sufficient_gap_needs_no_delay(self):
         """If enough time has already elapsed, no additional sleep is needed."""

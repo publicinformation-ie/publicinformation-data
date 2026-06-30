@@ -4,7 +4,7 @@ from pathlib import Path
 import pytest
 
 from steps.search_websites_llm.process import (
-    build_prompt,
+    build_user_prompt,
     parse_llm_response,
     process,
     STEP_NAME,
@@ -28,22 +28,22 @@ def _input_data(*bodies):
     return {"public_bodies": list(bodies)}
 
 
-# ── build_prompt ──────────────────────────────────────────────────────────────
+# ── build_user_prompt ─────────────────────────────────────────────────────────
 
 def test_build_prompt_includes_name():
-    prompt = build_prompt(_make_body(1, "Abbey Theatre"))
+    prompt = build_user_prompt(_make_body(1, "Abbey Theatre"))
     assert "Abbey Theatre" in prompt
 
 
 def test_build_prompt_includes_parent_and_department():
     body = _make_body(1, "Some Agency", parent_name="Dept of Health", gov_dept="Department of Health")
-    prompt = build_prompt(body)
+    prompt = build_user_prompt(body)
     assert "Dept of Health" in prompt
     assert "Department of Health" in prompt
 
 
 def test_build_prompt_shows_none_when_no_parent():
-    prompt = build_prompt(_make_body(1, "Some Agency"))
+    prompt = build_user_prompt(_make_body(1, "Some Agency"))
     assert "none" in prompt.lower()
 
 
@@ -76,13 +76,13 @@ _LOW = {"url": "https://artscouncil.ie", "url_type": "parent", "confidence": "lo
 
 def test_process_enriches_body_with_llm_fields(tmp_path, monkeypatch):
     monkeypatch.setattr(
-        "steps.search_websites_llm.process.call_ollama",
-        lambda prompt: _HIGH,
+        "steps.search_websites_llm.process.call_mistral",
+        lambda prompt, api_key: _HIGH,
     )
     output_path = tmp_path / "output.json"
     writer = IncrementalWriter(output_path, STEP_NAME, force=True)
 
-    process(_input_data(_make_body(1, "Abbey Theatre")), tmp_path, writer, delay=0)
+    process(_input_data(_make_body(1, "Abbey Theatre")), tmp_path, writer, api_key="test", delay=0)
     writer.finalize()
 
     record = read_json(output_path)["results"][0]
@@ -94,13 +94,13 @@ def test_process_enriches_body_with_llm_fields(tmp_path, monkeypatch):
 
 def test_process_logs_parse_error_and_writes_null_confidence(tmp_path, monkeypatch):
     monkeypatch.setattr(
-        "steps.search_websites_llm.process.call_ollama",
-        lambda prompt: (_ for _ in ()).throw(ValueError("bad json")),
+        "steps.search_websites_llm.process.call_mistral",
+        lambda prompt, api_key: (_ for _ in ()).throw(ValueError("bad json")),
     )
     output_path = tmp_path / "output.json"
     writer = IncrementalWriter(output_path, STEP_NAME, force=True)
 
-    process(_input_data(_make_body(1, "Some Body")), tmp_path, writer, delay=0)
+    process(_input_data(_make_body(1, "Some Body")), tmp_path, writer, api_key="test", delay=0)
     writer.finalize()
 
     record = read_json(output_path)["results"][0]
@@ -116,16 +116,16 @@ def test_process_passes_through_high_and_low_confidence(tmp_path, monkeypatch):
     responses = [_HIGH, _LOW]
     call_count = [0]
 
-    def _rotating(prompt):
+    def _rotating(prompt, api_key):
         r = responses[call_count[0] % 2]
         call_count[0] += 1
         return r
 
-    monkeypatch.setattr("steps.search_websites_llm.process.call_ollama", _rotating)
+    monkeypatch.setattr("steps.search_websites_llm.process.call_mistral", _rotating)
     output_path = tmp_path / "output.json"
     writer = IncrementalWriter(output_path, STEP_NAME, force=True)
 
-    process(_input_data(_make_body(1, "Abbey Theatre"), _make_body(2, "Arts Council")), tmp_path, writer, delay=0)
+    process(_input_data(_make_body(1, "Abbey Theatre"), _make_body(2, "Arts Council")), tmp_path, writer, api_key="test", delay=0)
     writer.finalize()
 
     results = read_json(output_path)["results"]

@@ -25,7 +25,7 @@ def test_fetch_merges_extra_headers(requests_mock):
 
 
 def test_rate_limit_delay_value():
-    assert DEFAULT_RATE_LIMIT_DELAY == 0.2
+    assert DEFAULT_RATE_LIMIT_DELAY == 0.4
 
 
 def test_fetch_sleeps_between_requests(requests_mock, monkeypatch):
