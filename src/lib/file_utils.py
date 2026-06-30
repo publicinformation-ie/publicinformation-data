@@ -105,13 +105,25 @@ class IncrementalWriter:
                     break
 
         pre_override_keys = set(self.processed_keys)
+        # Track which keys' existing results have been evicted so we don't
+        # remove records that a previous override entry already added.
+        evicted_keys: set = set()
+        # Deduplicate by record content so exact duplicates in override.json
+        # are skipped, while different records with the same key_field value
+        # (e.g. multiple files for one body) are all loaded.
+        seen_records: set = set()
         loaded_ids = []
         for record in overrides:
             key = record.get(self.key_field)
             if key is None:
                 continue
-            if key in self.processed_keys and key not in pre_override_keys:
-                continue  # duplicate in override file — first entry wins
+            try:
+                fingerprint = frozenset(record.items())
+            except TypeError:
+                fingerprint = id(record)
+            if fingerprint in seen_records:
+                continue  # exact duplicate in override file — skip
+            seen_records.add(fingerprint)
             if item_schema is not None:
                 try:
                     jsonschema.validate(record, item_schema)
@@ -119,13 +131,16 @@ class IncrementalWriter:
                     raise ValueError(
                         f"Override record {self.key_field}={key} failed schema validation: {e.message}"
                     ) from e
-            if key in pre_override_keys:
+            if key in pre_override_keys and key not in evicted_keys:
+                # First override record for this key: remove all existing results
+                # and mark dirty if anything changed.
                 existing = next((r for r in self.results if r.get(self.key_field) == key), None)
                 self.results = [r for r in self.results if r.get(self.key_field) != key]
                 if existing != record:
                     body_id = record.get("public_body_id")
                     if body_id is not None:
                         self.dirty_body_ids.add(body_id)
+                evicted_keys.add(key)
             self.results.append(record)
             self.processed_keys.add(key)
             loaded_ids.append(key)

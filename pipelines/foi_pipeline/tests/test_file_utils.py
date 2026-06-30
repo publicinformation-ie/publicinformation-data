@@ -277,15 +277,23 @@ class TestIncrementalWriterOverride:
         assert len(w.results) == 1
         assert w.results[0]["public_body_id"] == 99
 
-    def test_override_duplicate_first_wins(self, tmp_path):
+    def test_override_exact_duplicates_skipped(self, tmp_path):
+        # Exact duplicate records in override.json are de-duped; distinct
+        # records for the same body (e.g. multiple files) are all loaded.
         override_path = tmp_path / "override.json"
-        write_json(override_path, [
-            {"public_body_id": 99, "name": "First", "overridden": True},
-            {"public_body_id": 99, "name": "Second", "overridden": True},
-        ])
+        record = {"public_body_id": 99, "name": "Only One", "overridden": True}
+        write_json(override_path, [record, record])  # exact duplicate
         w = IncrementalWriter(tmp_path / "output.json", "test_step", override_path=override_path)
         assert len([r for r in w.results if r["public_body_id"] == 99]) == 1
-        assert w.results[0]["name"] == "First"
+
+    def test_override_multiple_records_same_body_all_loaded(self, tmp_path):
+        override_path = tmp_path / "override.json"
+        write_json(override_path, [
+            {"public_body_id": 99, "file_url": "http://example.com/a.pdf", "overridden": True},
+            {"public_body_id": 99, "file_url": "http://example.com/b.pdf", "overridden": True},
+        ])
+        w = IncrementalWriter(tmp_path / "output.json", "test_step", override_path=override_path)
+        assert len([r for r in w.results if r["public_body_id"] == 99]) == 2
 
     def test_override_prints_notice(self, tmp_path, capsys):
         override_path = tmp_path / "override.json"
