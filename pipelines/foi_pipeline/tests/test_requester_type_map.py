@@ -338,3 +338,14 @@ def test_task2_high_volume_synonyms(raw, expected):
 def test_task3_elected_representative_variants(raw, expected):
     """Additional elected-representative synonym forms."""
     assert canonicalize_requester_type(raw) == expected, f"Expected {raw!r} → {expected!r}"
+
+
+# ── Task 5: unicode normalisation ───────────────────────────
+
+def test_accented_o_other_maps_to_other():
+    # U+00D2 Ò (precomposed) instead of U+004F O — seen in Donegal PDF
+    assert canonicalize_requester_type("Òther") == "Other"
+
+def test_accented_lowercase_o_other_maps_to_other():
+    # U+00F2 ò (precomposed lowercase) after .lower()
+    assert canonicalize_requester_type("òther") == "Other"

@@ -1,4 +1,5 @@
 """Requester type normalisation mapping for FOI disclosure records."""
+import unicodedata
 from typing import Optional
 
 CANONICAL_REQUESTER_TYPES: list[str] = [
@@ -132,10 +133,11 @@ _LOOKUP: dict[str, str] = {
 
 
 def canonicalize_requester_type(value: str | None) -> Optional[str]:
-    """Return canonical requester type for a value, or None if unrecognised or junk."""
+    """Return canonical requester type for a value, or None if unrecognised."""
     if not value or not isinstance(value, str) or not value.strip():
         return None
-    key = value.strip().lower()
+    decomposed = unicodedata.normalize('NFKD', value.strip().lower())
+    key = ''.join(c for c in decomposed if unicodedata.category(c) != 'Mn')
     if key in _LOOKUP:
         return _LOOKUP[key]
     return None
