@@ -53,6 +53,30 @@ def score_field_coverage(records):
     return cov
 
 
+def score_row_length_mismatch(records, errors):
+    """File-level rate of files with at least one residual RowLengthMismatch
+    error, plus the raw error count and affected file URLs.
+
+    Only counts rows that fell through to the final "unrecoverable" branch in
+    canonicalize_file() — repeated headers and wrap-fragment rows are dropped
+    without an error and so never appear here.
+    """
+    successful_urls = {r["file_url"] for r in records if "file_url" in r}
+    mismatch_errors = [e for e in errors if e.get("error_type") == "RowLengthMismatch"]
+    mismatch_urls = {
+        e["context"]["file_url"] for e in mismatch_errors if "file_url" in e.get("context", {})
+    }
+    all_urls = successful_urls | mismatch_urls
+    total_files = len(all_urls)
+    affected_files = len(mismatch_urls)
+    rate = round(affected_files / total_files, 3) if total_files else 0.0
+    return rate, {
+        "affected_files": affected_files,
+        "total_files": total_files,
+        "error_count": len(mismatch_errors),
+    }, mismatch_urls
+
+
 def run_eval(labels, records, errors, input_hash):
     """
     labels  — list of dicts from labels.csv (header mapping accuracy)
@@ -61,6 +85,7 @@ def run_eval(labels, records, errors, input_hash):
     """
     acc, mapping_counts, mismatches = score_header_mapping(labels)
     cov = score_field_coverage(records)
+    rlm_rate, rlm_counts, rlm_urls = score_row_length_mismatch(records, errors)
 
     # --- file-level success / failure rates ---
     successful_urls = {r["file_url"] for r in records if "file_url" in r}
@@ -87,6 +112,7 @@ def run_eval(labels, records, errors, input_hash):
                           {"successful": successful_files, "total": total_files}),
         eval_utils.Metric("insufficient_columns_rate", insufficient_rate,
                           {"failed": insufficient_files, "total": total_files}),
+        eval_utils.Metric("row_length_mismatch_rate", rlm_rate, rlm_counts),
     ]
 
     issues = []
@@ -116,6 +142,21 @@ def run_eval(labels, records, errors, input_hash):
             suggested_upstream_step="extract_disclosures_normalize_header",
             suggestion_detail="null header columns prevent canonical mapping",
             confidence=0.9))
+    if rlm_counts["error_count"]:
+        issues.append(eval_utils.Issue(
+            severity="info",
+            description=(
+                f"{rlm_counts['error_count']} rows skipped with RowLengthMismatch "
+                f"across {rlm_counts['affected_files']} files"
+            ),
+            affected_count=rlm_counts["error_count"],
+            affected_ids=list(rlm_urls)[:50],
+            suggested_upstream_step=None,
+            suggestion_detail=(
+                "rows >1 cell longer than the header with neither a clean "
+                "blank-collapse nor an obvious wrap-fragment shape"
+            ),
+            confidence=0.6))
 
     results = eval_utils.EvalResults(step=STEP, metrics=metrics,
                                      input_hash=input_hash,
