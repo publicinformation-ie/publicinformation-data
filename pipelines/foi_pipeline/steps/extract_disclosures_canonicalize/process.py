@@ -120,6 +120,26 @@ def is_header_row(row: dict, threshold: int = 2) -> bool:
     return matches >= threshold
 
 
+def _is_repeated_header_row(row: list, threshold: int = 2) -> bool:
+    """Return True if 2+ raw cells in an extracted row match known column header
+    synonyms.
+
+    Mirrors is_header_row(), but operates on the raw row list before any
+    canonical-field mapping or length-based realignment runs. Repeated header
+    rows from page breaks in multi-page PDF tables can be hit by the same
+    multi-line text-wrap artifact that produces RowLengthMismatch overflow —
+    that can also land a repeated header at exactly len(headers)-1 or
+    len(headers)+1, where Root Cause A/B would otherwise silently "correct" it
+    into a fabricated data record instead of dropping it. Must run before any
+    length-based branch in canonicalize_file()'s row loop.
+    """
+    matches = sum(
+        1 for cell in row
+        if cell and canonicalize_header(str(cell)) is not None
+    )
+    return matches >= threshold
+
+
 def _is_column_letter_row(row: list) -> bool:
     non_none = [cell for cell in row if cell is not None]
     return bool(non_none) and all(
@@ -202,6 +222,9 @@ def canonicalize_file(item, column_swaps=None, column_mappings=None):
         if not row:
             continue
         if _is_column_letter_row(row):
+            continue
+        if _is_repeated_header_row(row):
+            header_rows_dropped += 1
             continue
 
         # Root Cause A: when a row is shorter than the header by exactly one cell,

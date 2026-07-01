@@ -606,6 +606,77 @@ def test_header_row_not_written_to_errors():
     assert errors == []
 
 
+from steps.extract_disclosures_canonicalize.process import _is_repeated_header_row
+
+
+def test_is_repeated_header_row_true_for_two_header_synonyms():
+    row = [None, "Our reference", "Brief Description of Request", None, None,
+           "Decision Granted/part granted/refused", "Date decision letter issued"]
+    assert _is_repeated_header_row(row) is True
+
+
+def test_is_repeated_header_row_false_for_normal_data_row():
+    row = ["16/001", "some request about planning", "Granted", "2016-01-05"]
+    assert _is_repeated_header_row(row) is False
+
+
+def test_is_repeated_header_row_false_for_single_synonym_match():
+    # Only one cell matches a known header synonym — must not false-positive.
+    row = ["Our Reference", "a normal description value", "Granted"]
+    assert _is_repeated_header_row(row) is False
+
+
+def test_repeated_header_row_at_overflow_length_dropped_before_rlm_error():
+    # Westmeath pattern: a repeated header row, corrupted by the same wrap
+    # artifact that produces RowLengthMismatch, lands 4 cells longer than the
+    # header. It must be dropped as a header repeat, not logged as an error.
+    rows = [
+        ["Date received", "Our reference", "Brief Description of Request",
+         "Requester category", "Decision Granted/part granted/refused",
+         "Date decision letter issued"],
+        ["2024-01-05", "16/001", "some request", "Journalist", "Granted", "2024-02-01"],
+        # Repeated header, corrupted to 10 cells against a 6-col header:
+        [None, "Our reference", "Brief Description of Request ", None, None, None, None,
+         "Requester category", "Decision Granted/part granted/refused",
+         "Date decision letter issued"],
+    ]
+    results, errors, dropped = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert len(results) == 1
+    assert results[0]["foi_reference_id"] == "16/001"
+    assert errors == []
+    assert dropped == 1
+
+
+def test_repeated_header_row_at_minus_one_length_not_realigned_into_garbage():
+    # Without the fix, this 5-col repeated-header row (header is 6 cols) would
+    # hit Root Cause A and get silently spacer-inserted into a fabricated record.
+    rows = [
+        [None, "Our Reference", "Request Details", "Category", "Decision Made", "Date"],
+        [None, "16/001", "some request", "Journalist", "Granted", "2024-02-01"],
+        # Repeated header, one cell short of the 6-col header:
+        ["Our Reference", "Request Details", "Category", "Decision Made", "Date"],
+    ]
+    results, errors, dropped = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert len(results) == 1
+    assert results[0]["foi_reference_id"] == "16/001"
+    assert dropped == 1
+
+
+def test_repeated_header_row_at_plus_one_length_not_realigned_into_garbage():
+    # Without the fix, this 7-col repeated-header row (header is 6 cols) would
+    # hit Root Cause B and get silently None-stripped into a fabricated record.
+    rows = [
+        ["Our Reference", "Request Details", "Category", "Decision Made", "Date", "Status"],
+        ["16/001", "some request", "Journalist", "Granted", "2024-02-01", "Closed"],
+        # Repeated header, one cell longer than the 6-col header:
+        ["Our Reference", "Request Details", None, "Category", "Decision Made", "Date", "Status"],
+    ]
+    results, errors, dropped = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert len(results) == 1
+    assert results[0]["foi_reference_id"] == "16/001"
+    assert dropped == 1
+
+
 def test_single_matching_field_value_not_dropped():
     rows = [
         ["Our Reference", "Request Details"],
