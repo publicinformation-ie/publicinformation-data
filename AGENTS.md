@@ -31,6 +31,7 @@ publicinformation-data/
 │               ├── process.py         # Step entry point
 │               └── AGENTS.md          # (Some steps may have their own)
 ├── scripts/
+│   ├── AGENTS.md                      # Which helper script to use, and when
 │   └── README.md                     # Helper scripts documentation
 └── public/
     └── *.json                        # Public-facing output files
@@ -47,7 +48,8 @@ publicinformation-data/
 | **[pipelines/foi_pipeline/AGENTS.md](pipelines/foi_pipeline/AGENTS.md)** | Pipeline architecture, running steps, troubleshooting | Pipeline agents |
 | **[pipelines/foi_pipeline/steps/AGENTS.md](pipelines/foi_pipeline/steps/AGENTS.md)** | Step directory management, adding new steps | Pipeline developers |
 | **[pipelines/foi_pipeline/steps/README.md](pipelines/foi_pipeline/steps/README.md)** | Complete step sequence with descriptions | Pipeline users |
-| **[scripts/README.md](scripts/README.md)** | Helper and admin scripts | Maintainers |
+| **[scripts/AGENTS.md](scripts/AGENTS.md)** | Which helper script answers a given question (data-quality triage, tracing a file, migrations) | All agents |
+| **[scripts/README.md](scripts/README.md)** | Helper and admin scripts — full usage | Maintainers |
 
 ## Tool Use
 ### For Python Files
@@ -212,6 +214,7 @@ This means only `find_public_bodies` has been run. Run the full pipeline or at m
 | **Need to run the pipeline** | [pipelines/foi_pipeline/AGENTS.md - Running the Pipeline](pipelines/foi_pipeline/AGENTS.md#running-the-pipeline) |
 | **Adding a new step** | [pipelines/foi_pipeline/steps/AGENTS.md](pipelines/foi_pipeline/steps/AGENTS.md) |
 | **Troubleshooting data issues** | [DATA_FLOW.md - Troubleshooting](DATA_FLOW.md#common-issues--fixes) |
+| **Finding which files/bodies contribute the most errors, tracing a file, or running a one-off migration** | [scripts/AGENTS.md](scripts/AGENTS.md) — check before writing a new one-off script |
 | **Understanding data model** | [pipelines/foi_pipeline/AGENTS.md - Data Model](pipelines/foi_pipeline/AGENTS.md#data-model-evolution) |
 | **Using override system** | [pipelines/foi_pipeline/AGENTS.md - Override System](pipelines/foi_pipeline/AGENTS.md#override-system) |
 | **Website data consumption** | [../publicinformation-web/DATA_CONSUMPTION.md](../publicinformation-web/DATA_CONSUMPTION.md) |
