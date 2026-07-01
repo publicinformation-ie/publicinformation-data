@@ -12,6 +12,31 @@ For each file record with row data:
 3. Checks that the two required columns (`foi_reference_id`, `request_description`) are present. Records missing either are logged to `errors.json` and skipped.
 4. Emits one flat record per data row (rows after the header), with all canonical column values extracted.
 
+### Row-length realignment
+
+PDF table extraction (pdfplumber) sometimes splits a row into a different
+number of cells than the header row has, most often because a wrapped
+multi-line text cell (usually the description field) gets fragmented into
+extra spurious columns. `canonicalize_file()` handles five shapes, in this
+order:
+
+1. **Repeated header row** (any length) — a page-break header reprint,
+   detected by 2+ cells matching known header synonyms. Dropped before any
+   length-based realignment runs (counted in `header_rows_dropped`).
+2. **One cell short** (`len(row) == len(headers) - 1`) — a dropped spacer
+   column is reinserted at its known position.
+3. **One cell long** (`len(row) == len(headers) + 1`) — the first blank cell
+   is removed.
+4. **More than one cell long, blank-collapse recoverable** — if stripping all
+   blank cells leaves exactly `len(headers)` non-blank values, the blanks are
+   collapsed and the row is processed normally. Every real value is intact
+   and in original order; only spurious blanks were injected.
+5. **More than one cell long, unrecoverable** — anything else. Rows with ≤2
+   non-blank cells are a stray continuation fragment of a wrapped line from a
+   neighbouring row and are dropped silently. Everything else is logged to
+   `errors.json` as `RowLengthMismatch` and dropped, since the field values
+   cannot be reliably realigned.
+
 Files with `rows: null` (PDFs) are silently skipped.
 
 ## Canonical columns
