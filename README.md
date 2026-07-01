@@ -2,7 +2,7 @@
 
 **Open data pipeline for Irish Freedom of Information (FOI) public body information**
 
-[![Codeberg](https://codeberg.org/gingertechie/publicinformation-data/badge)](https://codeberg.org/gingertechie/publicinformation-data)
+[![Codeberg](https://codeberg.org/publicinformation-ie/publicinformation-data/badge)](https://codeberg.org/publicinformation-ie/publicinformation-data)
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 This repository contains the data processing pipeline for [PublicInformation.ie](https://publicinformation.ie), a project that tracks and publishes Freedom of Information (FOI) data from Irish public bodies. The pipeline extracts, transforms, and loads data about FOI pages, email addresses, disclosure logs, and disclosure files from hundreds of Irish government and public sector websites.
@@ -36,7 +36,7 @@ These files are regenerated automatically when the pipeline runs and are safe to
 
 ```bash
 # Clone the repository
-git clone https://codeberg.org/gingertechie/publicinformation-data.git
+git clone https://codeberg.org/publicinformation-ie/publicinformation-data.git
 cd publicinformation-data
 
 # Run the full pipeline
@@ -424,8 +424,8 @@ The AGPL-3.0 license ensures that any modifications to this software that are us
 
 Please report issues on the Codeberg repository:
 
-- [Issues](https://codeberg.org/gingertechie/publicinformation-data/issues)
-- [Discussions](https://codeberg.org/gingertechie/publicinformation-data/discussions)
+- [Issues](https://codeberg.org/publicinformation-ie/publicinformation-data/issues)
+- [Discussions](https://codeberg.org/publicinformation-ie/publicinformation-data/discussions)
 
 Include as much detail as possible:
 - Pipeline step that failed

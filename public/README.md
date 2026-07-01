@@ -6,7 +6,7 @@ A comprehensive list of all public bodies in Ireland, including their Freedom of
 
 This dataset contains **229 public bodies** that are subject to FOI legislation in Ireland. It is published as both JSON-LD and CSV formats, following W3C Data on the Web Best Practices.
 
-**Base URI:** `https://codeberg.org/gingertechie/publicinformation-data/`
+**Base URI:** `https://codeberg.org/publicinformation-ie/publicinformation-data/`
 
 ## Dataset Information
 
@@ -76,13 +76,13 @@ This dataset is derived from:
 
 ```json
 {
-  "@id": "https://codeberg.org/gingertechie/publicinformation-data/body/an-coimisium-pleanala",
+  "@id": "https://codeberg.org/publicinformation-ie/publicinformation-data/body/an-coimisium-pleanala",
   "@type": "foi:PublicBody",
   "name": "An Coimisiun Pleanalala",
   "type": "public_body",
   "website": "https://www.pleanala.ie/",
   "foi_subject": true,
-  "foi_scope": "https://codeberg.org/gingertechie/publicinformation-data/ns/foi#FullScope",
+  "foi_scope": "https://codeberg.org/publicinformation-ie/publicinformation-data/ns/foi#FullScope",
   "geographic_coverage": "IE",
   "contact_email": "foi@pleanala.ie"
 }
@@ -91,8 +91,8 @@ This dataset is derived from:
 ### Accessing Data
 
 ```bash
-curl -L https://codeberg.org/gingertechie/publicinformation-data/public/public-bodies.jsonld
-curl -L https://codeberg.org/gingertechie/publicinformation-data/public/public-bodies.csv
+curl -L https://codeberg.org/publicinformation-ie/publicinformation-data/public/public-bodies.jsonld
+curl -L https://codeberg.org/publicinformation-ie/publicinformation-data/public/public-bodies.csv
 ```
 
 ## Conformance
@@ -114,7 +114,7 @@ This dataset is licensed under **Creative Commons Attribution 4.0 International 
 
 ## Feedback
 
-Issues and contributions are welcome via the [Codeberg repository](https://codeberg.org/gingertechie/publicinformation-data).
+Issues and contributions are welcome via the [Codeberg repository](https://codeberg.org/publicinformation-ie/publicinformation-data).
 
 ## References
 

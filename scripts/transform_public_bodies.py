@@ -8,7 +8,7 @@ import csv
 import re
 from datetime import datetime
 
-BASE_URI = "https://codeberg.org/gingertechie/publicinformation-data"
+BASE_URI = "https://codeberg.org/publicinformation-ie/publicinformation-data"
 CONTACT_EMAIL = "dave@publicinformation.ie"
 
 def slugify(text):
