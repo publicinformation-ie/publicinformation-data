@@ -439,8 +439,8 @@ def test_extract_pdf_skip_canonicalization_check_false_still_falls_back():
 
 def test_load_manual_override_urls_reads_column_mappings(tmp_path):
     """_load_manual_override_urls reads the sibling
-    extract_disclosures_canonicalize/column_mappings.json and returns its
-    top-level keys as a set."""
+    extract_disclosures_canonicalize/column_mappings.json and returns only
+    the URLs whose entry opts into skip_camelot_fallback."""
     from steps.transform_disclosure_files.process import _load_manual_override_urls
     import json
 
@@ -449,12 +449,12 @@ def test_load_manual_override_urls_reads_column_mappings(tmp_path):
     canon_dir = tmp_path / "extract_disclosures_canonicalize"
     canon_dir.mkdir()
     (canon_dir / "column_mappings.json").write_text(json.dumps({
-        "https://example.com/a.pdf": {"source_method": "manual", "overridden": True, "column_mapping": {}},
+        "https://example.com/a.pdf": {"source_method": "manual", "overridden": True, "skip_camelot_fallback": True, "column_mapping": {}},
         "https://example.com/b.pdf": {"source_method": "manual", "overridden": True, "column_mapping": {}},
     }))
 
     result = _load_manual_override_urls(step_dir)
-    assert result == {"https://example.com/a.pdf", "https://example.com/b.pdf"}
+    assert result == {"https://example.com/a.pdf"}
 
 
 def test_load_manual_override_urls_missing_file_returns_empty_set(tmp_path):
@@ -489,7 +489,7 @@ def test_process_respects_manual_override_skip(tmp_path):
     canon_dir.mkdir()
     file_url = "http://example.com/override.pdf"
     (canon_dir / "column_mappings.json").write_text(json.dumps({
-        file_url: {"source_method": "manual", "overridden": True, "column_mapping": {}},
+        file_url: {"source_method": "manual", "overridden": True, "skip_camelot_fallback": True, "column_mapping": {}},
     }))
 
     cache_dir = step_dir / "cache_data"
@@ -512,6 +512,55 @@ def test_process_respects_manual_override_skip(tmp_path):
 
     result = json.loads(output_path.read_text())
     assert result["results"][0]["pdf_extractor"] == "pdfplumber"
+
+
+def test_process_without_skip_flag_still_falls_back_to_camelot(tmp_path):
+    """A manual override WITHOUT skip_camelot_fallback must still use
+    camelot when pdfplumber scores low — this is the case for the 3
+    non-Meath overrides (centralbank, gov.ie) whose column_mapping was
+    calibrated against camelot's row structure. Regression guard for the
+    bug found in final review: skip_canonicalization_check must not apply
+    to every override, only ones that opt in."""
+    import json
+    import hashlib
+    import unittest.mock
+    from lib.file_utils import IncrementalWriter
+    from steps.transform_disclosure_files.process import process
+
+    rows = [["Blob1", "Blob2", "Blob3"], ["1", "2", "3"]]
+    pdf_bytes = _make_pdf([[rows]])
+    camelot_rows = [["Our Ref", "Date Received", "Description"], ["1", "2024-01-01", "req"]]
+
+    step_dir = tmp_path / "transform_disclosure_files"
+    step_dir.mkdir()
+    canon_dir = tmp_path / "extract_disclosures_canonicalize"
+    canon_dir.mkdir()
+    file_url = "http://example.com/no-flag-override.pdf"
+    (canon_dir / "column_mappings.json").write_text(json.dumps({
+        file_url: {"source_method": "manual", "overridden": True, "column_mapping": {}},
+    }))
+
+    cache_dir = step_dir / "cache_data"
+    cache_dir.mkdir()
+    key = hashlib.sha256(file_url.encode()).hexdigest()
+    (cache_dir / f"{key}.bytes").write_bytes(pdf_bytes)
+
+    input_data = {"results": [{"file_url": file_url, "file_type": "pdf", "public_body_id": 1}]}
+    output_path = step_dir / "output.json"
+    writer = IncrementalWriter(output_path, "transform_disclosure_files", key_field="file_url", force=True)
+    with unittest.mock.patch(
+        "steps.transform_disclosure_files.process.DisclosureFileCache.get_file_path",
+        return_value=cache_dir / f"{key}.bytes",
+    ), unittest.mock.patch(
+        "steps.transform_disclosure_files.process._extract_with_camelot_stream",
+        return_value=camelot_rows,
+    ) as mock_camelot:
+        process(input_data, step_dir, writer)
+    writer.finalize()
+    mock_camelot.assert_called_once()
+
+    result = json.loads(output_path.read_text())
+    assert result["results"][0]["pdf_extractor"] == "camelot_stream"
 
 
 # ── _process_single_file result record ───────────────────────────────────────

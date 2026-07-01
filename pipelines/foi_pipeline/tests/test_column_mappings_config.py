@@ -23,7 +23,7 @@ def test_column_mappings_is_flat_dict_of_overrides():
     for url, entry in data.items():
         assert url.startswith("http"), f"key {url!r} is not a URL"
         assert isinstance(entry, dict)
-        assert set(entry.keys()) <= {"source_method", "overridden", "column_mapping"}, (
+        assert set(entry.keys()) <= {"source_method", "overridden", "column_mapping", "skip_camelot_fallback"}, (
             f"entry for {url!r} has unexpected keys: {sorted(entry.keys())} "
             "— likely another entry nested inside this one"
         )
@@ -79,3 +79,15 @@ def test_meath_entries_present_with_expected_mapping(url):
     assert data[url]["column_mapping"] == MEATH_COLUMN_MAPPING
     assert data[url]["source_method"] == "manual"
     assert data[url]["overridden"] is True
+    assert data[url]["skip_camelot_fallback"] is True
+
+
+def test_non_meath_entries_do_not_have_skip_camelot_fallback():
+    """Only the 4 Meath entries should opt into skip_camelot_fallback — the
+    other 9 overrides rely on camelot's extraction and must not be affected."""
+    data = _load()
+    for url, entry in data.items():
+        if "meath.ie" not in url:
+            assert "skip_camelot_fallback" not in entry, (
+                f"non-Meath entry {url!r} unexpectedly has skip_camelot_fallback"
+            )

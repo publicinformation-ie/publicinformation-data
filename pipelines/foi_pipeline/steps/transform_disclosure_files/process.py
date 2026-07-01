@@ -405,18 +405,22 @@ def _extract_with_camelot_stream(file_bytes: bytes) -> list[list] | None:
 
 
 def _load_manual_override_urls(step_dir: Path) -> set[str]:
-    """Return the set of file_urls with a manual column_mapping override in
-    the sibling extract_disclosures_canonicalize step's column_mappings.json.
+    """Return the set of file_urls whose manual column_mapping override in
+    the sibling extract_disclosures_canonicalize step's column_mappings.json
+    opts into skip_camelot_fallback.
 
-    Files with a manual override don't need automatic header canonicalization
-    to succeed, so they should stay on the pdfplumber + _merge_page_splits
-    path rather than falling back to camelot (which never runs
-    _merge_page_splits and would let page-break header rows leak into data).
+    Most manual overrides rely on camelot's extraction (their column_mapping
+    was calibrated against camelot's row structure) and must keep using it.
+    Only files that explicitly set skip_camelot_fallback: true — because
+    their camelot output is worse than pdfplumber's, or because they need
+    _merge_page_splits()'s page-break header stripping, which camelot never
+    runs — should skip the camelot fallback.
     """
     mappings_path = Path(step_dir).parent / "extract_disclosures_canonicalize" / "column_mappings.json"
     if not mappings_path.exists():
         return set()
-    return set(json.loads(mappings_path.read_text()))
+    mappings = json.loads(mappings_path.read_text())
+    return {url for url, entry in mappings.items() if entry.get("skip_camelot_fallback")}
 
 
 def _extract_pdf(file_bytes, table_settings=None, skip_canonicalization_check=False):
