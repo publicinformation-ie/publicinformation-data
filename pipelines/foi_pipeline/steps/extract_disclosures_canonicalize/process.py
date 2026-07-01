@@ -241,25 +241,43 @@ def canonicalize_file(item, column_swaps=None, column_mappings=None):
                     row = list(row)
                     del row[_extra_idx]
                     break
-        # Root Cause C: rows more than one cell longer than the header cannot be
-        # reliably realigned (e.g. DEASP 2017 8-col sub-table pages vs 6-col header).
-        # Drop and log rather than emit a record with misaligned field values.
         elif len(row) > len(headers) + 1:
-            errors.append({
-                "error_type": "RowLengthMismatch",
-                "error_message": (
-                    f"Row has {len(row)} cells but header has {len(headers)}; "
-                    "cannot reliably realign — row skipped"
-                ),
-                "context": {
-                    "file_url": meta["file_url"],
-                    "public_body_id": meta["public_body_id"],
-                    "expected_cols": len(headers),
-                    "actual_cols": len(row),
-                    "row_preview": list(row[:8]),
-                },
-            })
-            continue
+            non_blank = [cell for cell in row if cell not in (None, "")]
+            if len(non_blank) == len(headers):
+                # Root Cause D: a wrapped multi-line text cell (commonly the
+                # description field) caused pdfplumber to inject extra blank
+                # columns into this row, but every real value is still present,
+                # blank-free, and in original column order. Collapse the blanks
+                # instead of dropping a recoverable record.
+                row = non_blank
+            elif len(non_blank) <= 2:
+                # Root Cause E: a stray continuation fragment of a wrapped line
+                # bleeding into its own pseudo-row (e.g. "...vacan" / "t" split
+                # off the previous row's description). Not a standalone record —
+                # drop silently rather than logging a misleading
+                # RowLengthMismatch error.
+                header_rows_dropped += 1
+                continue
+            else:
+                # Rows that are neither a clean blank-collapse nor an obvious
+                # fragment cannot be reliably realigned (e.g. DEASP 2017 8-col
+                # sub-table pages vs 6-col header). Drop and log rather than
+                # emit a record with misaligned field values.
+                errors.append({
+                    "error_type": "RowLengthMismatch",
+                    "error_message": (
+                        f"Row has {len(row)} cells but header has {len(headers)}; "
+                        "cannot reliably realign — row skipped"
+                    ),
+                    "context": {
+                        "file_url": meta["file_url"],
+                        "public_body_id": meta["public_body_id"],
+                        "expected_cols": len(headers),
+                        "actual_cols": len(row),
+                        "row_preview": list(row[:8]),
+                    },
+                })
+                continue
 
         record = {**meta}
         for key in CANONICAL_COLUMNS:

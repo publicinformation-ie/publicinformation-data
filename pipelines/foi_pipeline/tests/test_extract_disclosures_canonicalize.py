@@ -954,6 +954,64 @@ def test_row_one_longer_still_corrected_not_dropped():
     assert errors == []
 
 
+def test_overflow_row_with_clean_blank_collapse_recovers_record():
+    # Dept. Housing 2025 Q3 pattern: a wrapped description cell injects 6 extra
+    # blank columns into a 6-col header row, but all 6 real values are present
+    # and in original order. Collapsing blanks must recover the record exactly.
+    rows = [
+        ["FOI Reference Number", "FOI Request Date Received", "Request Description",
+         "Decision Date", "Decision Made", "Requester Category"],
+        ["FOI-0311-2025", "2025-06-09", "a long wrapped description of the request",
+         None, None, None, None, None, None, "2025-07-02", "Granted", "Journalist"],
+    ]
+    results, errors, dropped = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert len(results) == 1
+    assert results[0]["foi_reference_id"] == "FOI-0311-2025"
+    assert results[0]["date_received"] == "2025-06-09"
+    assert results[0]["request_description"] == "a long wrapped description of the request"
+    assert results[0]["decision_date"] == "2025-07-02"
+    assert results[0]["decision_status"] == "Granted"
+    assert results[0]["requester_type"] == "Journalist"
+    assert errors == []
+    assert dropped == 0
+
+
+def test_overflow_row_with_text_fragment_dropped_silently():
+    # Westmeath pattern: a stray continuation of a wrapped line emitted as its
+    # own pseudo-row, e.g. "...vacan" / "t" split off a neighbouring row's
+    # description. Only 2 non-blank cells against a 6-col header — must be
+    # dropped without emitting a misleading RowLengthMismatch error.
+    rows = [
+        ["Date received", "Our reference", "Brief Description of Request",
+         "Requester category", "Decision Granted/part granted/refused",
+         "Date decision letter issued"],
+        ["2024-01-05", "16/001", "some request", "Journalist", "Granted", "2024-02-01"],
+        [None, None, "currently vacan", None, None, "t", None, None, None],
+    ]
+    results, errors, dropped = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert len(results) == 1
+    assert results[0]["foi_reference_id"] == "16/001"
+    assert errors == []
+    assert dropped == 1
+
+
+def test_overflow_row_that_is_genuinely_ambiguous_still_errors():
+    # Neither a clean blank-collapse (3 non-blank cells != 6-col header) nor an
+    # obvious fragment (3 > 2 non-blank cells) — must keep the existing
+    # log-and-drop behavior rather than guessing at alignment.
+    rows = [
+        [None, "Date of Request", "Category of Requester", "Summary", "Decision Made", "Date of Reply"],
+        [None, "01/02/2017", "Journalist", "Records about planning", "Granted", "01/04/2017"],
+        [None, "28/03/2017", None, None, "Member of the", "Notes, minutes and records", None, None],
+    ]
+    results, errors, dropped = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert len(results) == 1  # only the normal row
+    assert len(errors) == 1
+    assert errors[0]["error_type"] == "RowLengthMismatch"
+    assert errors[0]["context"]["expected_cols"] == 6
+    assert errors[0]["context"]["actual_cols"] == 8
+
+
 # ── Meath County Council merged-header synonyms ───────────────────────────────
 
 class TestMeathSynonyms:
