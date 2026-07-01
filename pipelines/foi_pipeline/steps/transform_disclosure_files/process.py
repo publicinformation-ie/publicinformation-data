@@ -6,6 +6,7 @@ import decimal
 import fcntl
 import hashlib
 import io
+import json
 import os
 import sys
 import tempfile
@@ -160,6 +161,31 @@ def _normalise_cell(cell):
     return " ".join(str(cell).strip().split()).lower()
 
 
+def _build_fingerprint(
+    page1_prefix: list[tuple], page2_prefix: list[tuple]
+) -> list[tuple]:
+    """Locate the repeating header block by aligning page 2's start against page 1.
+
+    Page 1 often has title rows before the header that never repeat at page
+    breaks (e.g. Meath's PDFs). Find where page 2's first row occurs within
+    page 1's prefix, then compare forward from that offset — this finds the
+    actual repeating block instead of assuming it starts at row 0 of page 1.
+    """
+    if not page2_prefix:
+        return page1_prefix
+    try:
+        start = page1_prefix.index(page2_prefix[0])
+    except ValueError:
+        return page1_prefix
+    fingerprint = []
+    for r1, r2 in zip(page1_prefix[start:], page2_prefix):
+        if r1 == r2:
+            fingerprint.append(r1)
+        else:
+            break
+    return fingerprint if fingerprint else page1_prefix
+
+
 def _merge_page_splits(
     pages_rows: list[list[list]],
     header_k: int = 6,
@@ -176,10 +202,20 @@ def _merge_page_splits(
     page_split_merges = 0
     header_rows_stripped = 0
 
-    # Build header fingerprint from first page (up to K rows)
+    # Build header fingerprint by locating the block that repeats between
+    # page 1 and page 2 — handles page 1 having leading title rows that
+    # don't repeat at page breaks.
     page1 = pages_rows[0]
     k = min(header_k, len(page1))
-    fingerprint = [tuple(_normalise_cell(c) for c in row) for row in page1[:k]]
+    page1_prefix = [tuple(_normalise_cell(c) for c in row) for row in page1[:k]]
+
+    page2_prefix: list[tuple] = []
+    if len(pages_rows) > 1:
+        page2 = pages_rows[1]
+        k2 = min(header_k, len(page2))
+        page2_prefix = [tuple(_normalise_cell(c) for c in row) for row in page2[:k2]]
+
+    fingerprint = _build_fingerprint(page1_prefix, page2_prefix)
 
     accumulated = list(page1)
 
@@ -368,12 +404,35 @@ def _extract_with_camelot_stream(file_bytes: bytes) -> list[list] | None:
             pass
 
 
-def _extract_pdf(file_bytes, table_settings=None):
+def _load_manual_override_urls(step_dir: Path) -> set[str]:
+    """Return the set of file_urls whose manual column_mapping override in
+    the sibling extract_disclosures_canonicalize step's column_mappings.json
+    opts into skip_camelot_fallback.
+
+    Most manual overrides rely on camelot's extraction (their column_mapping
+    was calibrated against camelot's row structure) and must keep using it.
+    Only files that explicitly set skip_camelot_fallback: true — because
+    their camelot output is worse than pdfplumber's, or because they need
+    _merge_page_splits()'s page-break header stripping, which camelot never
+    runs — should skip the camelot fallback.
+    """
+    mappings_path = Path(step_dir).parent / "extract_disclosures_canonicalize" / "column_mappings.json"
+    if not mappings_path.exists():
+        return set()
+    mappings = json.loads(mappings_path.read_text())
+    return {url for url, entry in mappings.items() if entry.get("skip_camelot_fallback")}
+
+
+def _extract_pdf(file_bytes, table_settings=None, skip_canonicalization_check=False):
     """Parse PDF bytes. Returns (sheet_name, rows, fallback_cells, has_multiple_tables, merge_stats, pdf_extractor, camelot_info).
 
     pdf_extractor is "pdfplumber" or "camelot_stream".
     camelot_info is None when no fallback was attempted; otherwise a dict with
     pdfplumber_n_mapped, camelot_n_mapped, and used keys.
+    When skip_canonicalization_check is True, the pdfplumber result is
+    returned immediately (no camelot fallback) once a table was found, even
+    if it scores low on automatic header canonicalization — used for files
+    with a manual column_mapping override that doesn't need canonicalization.
     """
     import pdfplumber
     pages_rows = []
@@ -402,6 +461,9 @@ def _extract_pdf(file_bytes, table_settings=None):
     rows, merge_stats = _merge_page_splits(pages_rows)
     sheet_name = "page 1" if n_pages == 1 else f"pages 1-{n_pages}"
 
+    if skip_canonicalization_check:
+        return sheet_name, rows, [], total_tables > 1, merge_stats, "pdfplumber", None
+
     n_mapped = _score_rows(rows)
     if n_mapped < 2:
         camelot_rows = _extract_with_camelot_stream(file_bytes)
@@ -415,13 +477,16 @@ def _extract_pdf(file_bytes, table_settings=None):
     return sheet_name, rows, [], total_tables > 1, merge_stats, "pdfplumber", None
 
 
-def _process_single_file(item, cache, step_dir):
+def _process_single_file(item, cache, step_dir, manual_override_urls=frozenset()):
     """Process a single file. Called by worker processes.
 
     Args:
         item: A result item from input_data
         cache: DisclosureFileCache instance
         step_dir: Step directory path
+        manual_override_urls: Set of file_urls with a manual column_mapping
+            override (from extract_disclosures_canonicalize); these skip the
+            camelot canonicalization fallback in _extract_pdf
 
     Returns:
         List of result dicts to append (typically 0 or 1 items)
@@ -442,7 +507,9 @@ def _process_single_file(item, cache, step_dir):
         elif file_type == "xls":
             sheet_name, rows, _, has_multiple = _extract_xls(file_bytes)
         else:  # pdf
-            sheet_name, rows, _, has_multiple, merge_stats, pdf_extractor, camelot_info = _extract_pdf(file_bytes)
+            sheet_name, rows, _, has_multiple, merge_stats, pdf_extractor, camelot_info = _extract_pdf(
+                file_bytes, skip_canonicalization_check=file_url in manual_override_urls
+            )
 
         if file_type == "pdf":
             result_record = {
@@ -487,6 +554,7 @@ def process(input_data, step_dir, writer, verbose=False, workers=4):
 
     # Initialize cache
     cache = DisclosureFileCache(Path(step_dir).parent / "verify_disclosure_files" / "cache")
+    manual_override_urls = _load_manual_override_urls(step_dir)
 
     status_counts = {}
     for item in input_data["results"]:
@@ -523,7 +591,7 @@ def process(input_data, step_dir, writer, verbose=False, workers=4):
     # This gives us effective parallelism while avoiding pickling issues
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
         # Submit all tasks and collect futures to preserve order
-        futures = [executor.submit(_process_single_file, item, cache, step_dir) 
+        futures = [executor.submit(_process_single_file, item, cache, step_dir, manual_override_urls)
                   for item in items_to_process]
         results = [f.result() for f in futures]
 
