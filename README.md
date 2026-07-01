@@ -29,8 +29,10 @@ The latest processed data is available in the `public/` directory:
 | [`public/foi-disclosures.json`](public/foi-disclosures.json) | All extracted FOI request records | ~38 MB |
 | [`public/disclosure-files.json`](public/disclosure-files.json) | All discovered disclosure document URLs | ~200 KB |
 | [`public/topics.json`](public/topics.json) | Topic groupings for FOI records | ~2.5 MB |
+| [`public/public-bodies.jsonld`](public/public-bodies.jsonld) | Public bodies in JSON-LD format (Slice 1) | ~180 KB |
+| [`public/public-bodies.csv`](public/public-bodies.csv) | Public bodies in CSV format (Slice 1) | ~75 KB |
 
-These files are regenerated automatically when the pipeline runs and are safe to use directly.
+These files are regenerated automatically when the pipeline runs and are safe to use directly. See [`public/README.md`](public/README.md) for full documentation of the Slice 1 Linked Data dataset.
 
 ### Run the Pipeline Locally
 
@@ -40,13 +42,13 @@ git clone https://codeberg.org/publicinformation-ie/publicinformation-data.git
 cd publicinformation-data
 
 # Run the full pipeline
-cd foi_pipeline
+cd pipelines/foi_pipeline
 python process.py --force
 ```
 
-This will process all steps (defined in `foi_pipeline/pipeline.json`) and generate output files in `foi_pipeline/steps/<step_name>/output.json`.
+This will process all steps (defined in `pipelines/foi_pipeline/pipeline.json`) and generate output files in `pipelines/foi_pipeline/steps/<step_name>/output.json`.
 
-The consolidated output appears in `foi_pipeline/steps/export_status/output.json` and is copied to `public/pipeline-data.json`.
+The consolidated output appears in `pipelines/foi_pipeline/steps/export_status/output.json` and is copied to `public/pipeline-data.json`.
 
 ## Installation
 
@@ -64,7 +66,7 @@ python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
 # Install dependencies (using uv)
-uv pip install -r foi_pipeline/requirements.txt
+uv pip install -r pipelines/foi_pipeline/requirements.txt
 ```
 
 Or using pip directly:
@@ -94,16 +96,16 @@ For local development, the default SQLite database (`local.db`) is used.
 
 | Command | Description |
 |---------|-------------|
-| `python process.py --force` | Run the complete pipeline from scratch |
-| `python process.py --from export_status --force` | Run from a specific step |
-| `python process.py --from generate_topics` | Run from a step without forcing |
+| `python pipelines/foi_pipeline/process.py --force` | Run the complete pipeline from scratch |
+| `python pipelines/foi_pipeline/process.py --from export_status --force` | Run from a specific step |
+| `python pipelines/foi_pipeline/process.py --from generate_topics` | Run from a step without forcing |
 
 ### Individual Step Execution
 
 Each step can be run independently:
 
 ```bash
-cd foi_pipeline
+cd pipelines/foi_pipeline
 PYTHONPATH=. python steps/export_status/process.py \
   --input steps/find_public_bodies/output.json \
   --output steps/export_status/output.json \
@@ -113,7 +115,7 @@ PYTHONPATH=. python steps/export_status/process.py \
 ### Running Tests
 
 ```bash
-cd foi_pipeline
+cd pipelines/foi_pipeline
 uv run pytest tests/ -q
 ```
 
@@ -121,7 +123,7 @@ uv run pytest tests/ -q
 
 **Update all data and rebuild website:**
 ```bash
-cd foi_pipeline
+cd pipelines/foi_pipeline
 python process.py --force
 cd ../publicinformation-web
 npm run build
@@ -129,14 +131,14 @@ npm run build
 
 **Quick data refresh (from export_status):**
 ```bash
-cd foi_pipeline
+cd pipelines/foi_pipeline
 python process.py --from export_status --force
 ```
 
 **Check data status:**
 ```bash
 # Count public bodies
-python3 -c "import json; d=json.load(open('foi_pipeline/steps/export_status/output.json')); print(f'Public bodies: {len(d[\"public_bodies\"])}')"
+python3 -c "import json; d=json.load(open('pipelines/foi_pipeline/steps/export_status/output.json')); print(f'Public bodies: {len(d[\"public_bodies\"])}')"
 
 # Validate output structure
 python3 -c "import json; d=json.load(open('public/pipeline-data.json')); print('Metadata:', d.get('metadata')); print('Sample body:', d['public_bodies'][0] if d['public_bodies'] else 'None')"
@@ -157,24 +159,26 @@ publicinformation-data/
 │   ├── deployment-migration-bunny.md
 │   └── <date>-<description>.md    # Design documents and meeting notes
 │
-├── foi_pipeline/                  # Main pipeline directory
-│   ├── AGENTS.md                  # Pipeline architecture and operations
-│   ├── process.py                 # Pipeline orchestration engine
-│   ├── pipeline.json              # Authoritative step order configuration
-│   ├── requirements.txt           # Python dependencies
-│   └── steps/                     # Pipeline step implementations
-│       ├── AGENTS.md              # Step directory management guidelines
-│       ├── README.md              # Complete step sequence documentation
-│       └── <step_name>/           # Individual pipeline steps
-│           ├── README.md          # Step-specific documentation
-│           ├── process.py         # Step entry point
-│           ├── output.json        # Step output data
-│           ├── output_schema.json # JSON schema for validation
-│           ├── override.json       # Manual override records
-│           ├── errors.json        # Per-record errors and warnings
-│           └── dirty_ids.json      # IDs with changed upstream data
+├── pipelines/                     # Main pipelines directory
+│   └── foi_pipeline/              # FOI pipeline
+│       ├── AGENTS.md              # Pipeline architecture and operations
+│       ├── process.py             # Pipeline orchestration engine
+│       ├── pipeline.json          # Authoritative step order configuration
+│       ├── requirements.txt       # Python dependencies
+│       └── steps/                 # Pipeline step implementations
+│           ├── AGENTS.md          # Step directory management guidelines
+│           ├── README.md          # Complete step sequence documentation
+│           └── <step_name>/       # Individual pipeline steps
+│               ├── README.md      # Step-specific documentation
+│               ├── process.py     # Step entry point
+│               ├── output.json    # Step output data
+│               ├── output_schema.json # JSON schema for validation
+│               ├── override.json   # Manual override records
+│               ├── errors.json    # Per-record errors and warnings
+│               └── dirty_ids.json  # IDs with changed upstream data
 │
 ├── scripts/                       # Helper and admin scripts
+│   ├── AGENTS.md                  # Which helper script to use, and when
 │   ├── README.md                  # Script documentation
 │   ├── db_client.py               # Database client abstraction
 │   └── admin-corrections.mjs      # Interactive correction review CLI
@@ -183,12 +187,24 @@ publicinformation-data/
     ├── pipeline-data.json         # Consolidated public body status
     ├── foi-disclosures.json       # All FOI request records
     ├── disclosure-files.json      # All disclosure document URLs
-    └── topics.json                # Topic groupings
+    ├── topics.json                # Topic groupings
+    ├── public-bodies.jsonld       # Public bodies in JSON-LD format (Slice 1)
+    ├── public-bodies.csv          # Public bodies in CSV format (Slice 1)
+    ├── public-bodies.schema.json  # JSON Schema for public bodies (Slice 1)
+    ├── dataset-public-bodies.ttl   # DCAT-AP metadata (Slice 1)
+    ├── schema.sql                 # Database schema
+    ├── LICENSE                    # CC-BY 4.0 license for public data
+    ├── CHANGELOG.md               # Changelog for public bodies dataset
+    └── vocabularies/              # Controlled vocabularies (Slice 1)
+        ├── body-type.csv
+        ├── foi-scope.csv
+        ├── sector.csv
+        └── geographic-coverage.csv
 ```
 
 ## Pipeline Steps
 
-The step sequence is defined in [`foi_pipeline/pipeline.json`](foi_pipeline/pipeline.json). Steps run in order; each writes to `steps/<step>/output.json` for the next step to consume.
+The step sequence is defined in [`pipelines/foi_pipeline/pipeline.json`](pipelines/foi_pipeline/pipeline.json). Steps run in order; each writes to `steps/<step>/output.json` for the next step to consume.
 
 | # | Step | Description |
 |---|------|-------------|
@@ -259,12 +275,12 @@ Some automated results may be incorrect due to website changes or scraping limit
 
 ### How to Add an Override
 
-1. Navigate to the step directory: `foi_pipeline/steps/<step_name>/`
+1. Navigate to the step directory: `pipelines/foi_pipeline/steps/<step_name>/`
 2. Edit or create `override.json`
 3. Add a complete record with `"source_method": "manual"` and `"overridden": true`
 4. Commit the file to git
 
-Example (`foi_pipeline/steps/find_foi_pages/override.json`):
+Example (`pipelines/foi_pipeline/steps/find_foi_pages/override.json`):
 
 ```json
 [
@@ -290,6 +306,20 @@ All files in the `public/` directory are safe for direct use:
 - **`disclosure-files.json`**: All discovered disclosure document URLs
 - **`topics.json`**: Topic groupings with matched FOI records
 
+### Slice 1: Public Bodies Dataset (Linked Data)
+
+The following files are part of Slice 1, implementing 3-4 star Linked Data best practices:
+
+- **`public-bodies.jsonld`**: Public bodies in JSON-LD format with full Linked Data context
+- **`public-bodies.csv`**: Tabular CSV export of public bodies
+- **`public-bodies.schema.json`**: JSON Schema for validation
+- **`dataset-public-bodies.ttl`**: DCAT-AP 3.0 compliant dataset metadata (RDF/Turtle)
+- **`LICENSE`**: CC-BY 4.0 license for the public dataset
+- **`CHANGELOG.md`**: Version history for the public bodies dataset
+- **`vocabularies/`**: Controlled vocabularies (body-type, foi-scope, sector, geographic-coverage)
+
+See [`public/README.md`](public/README.md) for complete documentation of the Slice 1 dataset.
+
 ### Database Schema
 
 The pipeline populates a libSQL database with the following tables:
@@ -312,7 +342,7 @@ Contributions are welcome! Please follow these guidelines:
 2. Clone your fork locally
 3. Create a feature branch: `git checkout -b feat/my-feature`
 4. Make your changes
-5. Run tests: `cd foi_pipeline && uv run pytest tests/ -q`
+5. Run tests: `cd pipelines/foi_pipeline && uv run pytest tests/ -q`
 6. Commit your changes with descriptive messages
 7. Push to your fork and submit a pull request
 
@@ -339,13 +369,13 @@ Contributions are welcome! Please follow these guidelines:
 
 When adding a new step:
 
-1. Create a directory under `foi_pipeline/steps/<step_name>/`
+1. Create a directory under `pipelines/foi_pipeline/steps/<step_name>/`
 2. Add a `process.py` entry point
 3. Define an `output_schema.json` for validation
 4. Create a `README.md` documenting the step
-5. Add the step to `pipeline.json`
+5. Add the step to `pipelines/foi_pipeline/pipeline.json`
 6. Implement a merger function if the step contributes to `export_status`
-7. Update `foi_pipeline/steps/README.md`
+7. Update `pipelines/foi_pipeline/steps/README.md`
 
 ## Troubleshooting
 
@@ -369,16 +399,16 @@ When adding a new step:
 
 ```bash
 # Check which steps have output
-ls -la foi_pipeline/steps/*/output.json
+ls -la pipelines/foi_pipeline/steps/*/output.json
 
 # View pipeline status
-cat foi_pipeline/steps/export_status/status.json
+cat pipelines/foi_pipeline/steps/export_status/status.json
 
 # Check for errors in a specific step
-cat foi_pipeline/steps/<step_name>/errors.json | python -m json.tool
+cat pipelines/foi_pipeline/steps/<step_name>/errors.json | python -m json.tool
 
 # Validate output JSON
-python3 -c "import json; json.load(open('foi_pipeline/steps/<step>/output.json'))" && echo "Valid JSON"
+python3 -c "import json; json.load(open('pipelines/foi_pipeline/steps/<step>/output.json'))" && echo "Valid JSON"
 ```
 
 ## Architecture Decisions
@@ -445,7 +475,7 @@ For bug fixes and improvements, please:
 
 ## Related Projects
 
-- [PublicInformation.ie Website](https://codeberg.org/gingertechie/publicinformation-web) - The frontend website that consumes this data
+- [PublicInformation.ie Website](https://codeberg.org/publicinformation-ie/publicinformation-web) - The frontend website that consumes this data
 - [foi.gov.ie](https://foi.gov.ie) - The official Irish FOI portal (source of public body list)
 
 ## Acknowledgments
@@ -456,6 +486,6 @@ For bug fixes and improvements, please:
 
 ---
 
-*This README was last updated on June 2, 2026. For the most up-to-date information, see the project documentation in [AGENTS.md](AGENTS.md) and [DATA_FLOW.md](DATA_FLOW.md).*
+*This README was last updated on July 1, 2026. For the most up-to-date information, see the project documentation in [AGENTS.md](AGENTS.md) and [DATA_FLOW.md](DATA_FLOW.md).*
 
 *Licensed under [AGPL-3.0](https://www.gnu.org/licenses/agpl-3.0)*
