@@ -1,5 +1,11 @@
 import pytest
-from scripts.transform_foi_request_files import hash_document_id, build_body_slug_lookup, build_record
+from scripts.transform_foi_request_files import (
+    hash_document_id,
+    build_body_slug_lookup,
+    build_record,
+    transform_to_jsonld,
+    transform_to_csv_rows,
+)
 from scripts.transform_public_bodies import BASE_URI
 
 
@@ -59,3 +65,38 @@ def test_build_record_unknown_public_body_id_raises():
     }
     with pytest.raises(ValueError, match="Unknown public_body_id"):
         build_record(file_record, body_slug_lookup={})
+
+
+SAMPLE_RECORDS = [
+    {
+        "@id": f"{BASE_URI}/foi-request-file/aaaaaaaaaaaa",
+        "@type": "foi:FoiRequestFile",
+        "public_body": f"{BASE_URI}/body/central-bank-of-ireland",
+        "document_url": "https://www.centralbank.ie/foi-2026.pdf",
+        "source_page_url": "https://www.centralbank.ie/foi-log",
+        "file_type": "pdf",
+    },
+    {
+        "@id": f"{BASE_URI}/foi-request-file/bbbbbbbbbbbb",
+        "@type": "foi:FoiRequestFile",
+        "public_body": f"{BASE_URI}/body/ability-west",
+        "document_url": "https://www.abilitywest.ie/foi-2025.xlsx",
+        "source_page_url": "https://www.abilitywest.ie/foi-log",
+        "file_type": "xlsx",
+    },
+]
+
+
+def test_transform_to_jsonld_single_context_and_graph():
+    doc = transform_to_jsonld(SAMPLE_RECORDS)
+    assert "@context" in doc
+    assert doc["@graph"] == SAMPLE_RECORDS
+    assert all("@context" not in r for r in doc["@graph"])
+
+
+def test_transform_to_csv_rows_columns_and_values():
+    fieldnames, rows = transform_to_csv_rows(SAMPLE_RECORDS)
+    assert fieldnames == ["id", "public_body", "document_url", "source_page_url", "file_type"]
+    assert rows[0]["id"] == SAMPLE_RECORDS[0]["@id"]
+    assert rows[0]["public_body"] == SAMPLE_RECORDS[0]["public_body"]
+    assert rows[1]["file_type"] == "xlsx"

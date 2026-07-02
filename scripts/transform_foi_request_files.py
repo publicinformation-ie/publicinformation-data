@@ -58,3 +58,31 @@ def build_record(file_record, body_slug_lookup):
         "source_page_url": file_record["source_page_url"],
         "file_type": file_record["file_type"],
     }
+
+
+def transform_to_jsonld(records):
+    """Wrap records in a single top-level @context + @graph document."""
+    return {
+        "@context": {
+            "@vocab": "https://schema.org/",
+            "foi": f"{BASE_URI}/ns/foi#",
+            "dct": "http://purl.org/dc/terms/",
+            "public_body": {"@id": "foi:publicBody", "@type": "@id"},
+        },
+        "@graph": records,
+    }
+
+
+def transform_to_csv_rows(records):
+    """Flatten records into CSV rows."""
+    fieldnames = ["id", "public_body", "document_url", "source_page_url", "file_type"]
+    rows = []
+    for r in records:
+        rows.append({
+            "id": r["@id"],
+            "public_body": r["public_body"],
+            "document_url": r["document_url"],
+            "source_page_url": r["source_page_url"],
+            "file_type": r["file_type"],
+        })
+    return fieldnames, rows
