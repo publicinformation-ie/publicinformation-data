@@ -86,3 +86,42 @@ def transform_to_csv_rows(records):
             "file_type": r["file_type"],
         })
     return fieldnames, rows
+
+
+def copy_to_latest():
+    """Copy the versioned output directory to latest/ as a build-time snapshot.
+
+    Not a symlink: Codeberg Pages and various git checkout paths don't
+    reliably serve/preserve symlinks.
+    """
+    shutil.copytree(OUTPUT_DIR, LATEST_DIR, dirs_exist_ok=True)
+
+
+def main():
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+    with open(DISCLOSURE_FILES_PATH) as f:
+        file_records = json.load(f)
+    with open(PIPELINE_DATA_PATH) as f:
+        pipeline_bodies = json.load(f)["public_bodies"]
+
+    body_slug_lookup = build_body_slug_lookup(pipeline_bodies)
+    records = [build_record(fr, body_slug_lookup) for fr in file_records]
+
+    jsonld_data = transform_to_jsonld(records)
+    with open(JSONLD_OUTPUT_PATH, "w") as f:
+        json.dump(jsonld_data, f, indent=2, ensure_ascii=False)
+
+    fieldnames, rows = transform_to_csv_rows(records)
+    with open(CSV_OUTPUT_PATH, "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+
+    copy_to_latest()
+
+    print(f"Transformed {len(records)} FOI request files to JSON-LD and CSV")
+
+
+if __name__ == "__main__":
+    main()
