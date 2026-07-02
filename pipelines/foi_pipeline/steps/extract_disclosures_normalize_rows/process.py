@@ -328,9 +328,10 @@ def process_file(item: dict, step_dir: Path, verbose: bool = False) -> tuple[dic
     
     if verbose:
         print(f"  Found {len(date_col_indices)} date column(s) in {file_url}")
-    
+
     # Process each data row (rows after header_row_idx)
     new_rows = list(rows)
+    date_known_issues: dict[str, list[dict]] = {}
     for row_idx in range(header_row_idx + 1, len(rows)):
         row = list(rows[row_idx])
         for col_idx in date_col_indices:
@@ -373,14 +374,21 @@ def process_file(item: dict, step_dir: Path, verbose: bool = False) -> tuple[dic
                         "timestamp": datetime.now(timezone.utc).isoformat(),
                     }
                     errors.append(error)
+                    date_known_issues.setdefault(str(row_idx), []).append({
+                        "field": canonical_col,
+                        "issue_type": error_type,
+                        "raw_value": str(cell_value),
+                    })
                     if verbose:
                         print(f"  WARNING: {error_type} at row {row_idx}, col {col_idx}: {cell_value}")
                 
                 # Replace cell value with normalized date (or None)
                 row[col_idx] = normalized
         new_rows[row_idx] = row
-    
+
     updated_item = {**item, "rows": new_rows}
+    if date_known_issues:
+        updated_item["date_known_issues"] = date_known_issues
     return updated_item, errors
 
 

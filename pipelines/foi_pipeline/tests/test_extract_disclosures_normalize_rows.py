@@ -294,6 +294,62 @@ class TestProcessFile:
         assert errors[0]["error_type"] == "UnparseableDate"
         assert errors[0]["context"]["original_value"] == "32/13/2023"
 
+    def test_process_file_unparseable_date_records_known_issue(self):
+        item = {
+            **self.BASE_META,
+            "rows": [
+                ["Our Reference", "Date Received"],
+                ["16/001", "32/13/2023"],
+            ],
+            "header_row_idx": 0,
+        }
+        result, errors = process_file(item, Path("/tmp"))
+        assert result["date_known_issues"] == {
+            "1": [{"field": "date_received", "issue_type": "UnparseableDate", "raw_value": "32/13/2023"}]
+        }
+
+    def test_process_file_text_in_date_column_records_known_issue(self):
+        item = {
+            **self.BASE_META,
+            "rows": [
+                ["Our Reference", "Date Received"],
+                ["16/001", "Not a date"],
+            ],
+            "header_row_idx": 0,
+        }
+        result, errors = process_file(item, Path("/tmp"))
+        assert result["date_known_issues"] == {
+            "1": [{"field": "date_received", "issue_type": "TextInDateColumn", "raw_value": "Not a date"}]
+        }
+
+    def test_process_file_no_date_error_omits_date_known_issues_key(self):
+        item = {
+            **self.BASE_META,
+            "rows": [
+                ["Our Reference", "Date Received"],
+                ["16/001", "01/02/2023"],
+            ],
+            "header_row_idx": 0,
+        }
+        result, errors = process_file(item, Path("/tmp"))
+        assert "date_known_issues" not in result
+
+    def test_process_file_multiple_rows_key_by_absolute_row_index(self):
+        item = {
+            **self.BASE_META,
+            "rows": [
+                ["Our Reference", "Date Received"],
+                ["16/001", "01/02/2023"],
+                ["16/002", "not a date at all"],
+            ],
+            "header_row_idx": 0,
+        }
+        result, errors = process_file(item, Path("/tmp"))
+        # row 1 (index 1) parses fine and contributes no issue; row 2 (index 2) fails
+        assert result["date_known_issues"] == {
+            "2": [{"field": "date_received", "issue_type": "TextInDateColumn", "raw_value": "not a date at all"}]
+        }
+
     def test_process_file_multiple_date_columns(self):
         item = {
             **self.BASE_META,
