@@ -76,3 +76,32 @@ def build_record(body, foi_subject_ids, contact_email_lookup):
     if email:
         record["contact_email"] = email
     return record
+
+
+def transform_to_jsonld(records):
+    """Wrap records in a single top-level @context + @graph document."""
+    return {
+        "@context": {
+            "@vocab": "https://schema.org/",
+            "foi": f"{BASE_URI}/ns/foi#",
+            "dct": "http://purl.org/dc/terms/",
+        },
+        "@graph": records,
+    }
+
+
+def transform_to_csv_rows(records):
+    """Flatten records into CSV rows. Booleans use lowercase xsd:boolean lexical form."""
+    fieldnames = ["id", "name", "type", "website", "foi_subject", "foi_scope", "contact_email"]
+    rows = []
+    for r in records:
+        rows.append({
+            "id": r["@id"],
+            "name": r["name"],
+            "type": r["type"],
+            "website": r.get("website", ""),
+            "foi_subject": "true" if r["foi_subject"] else "false",
+            "foi_scope": r["foi_scope"],
+            "contact_email": r.get("contact_email", ""),
+        })
+    return fieldnames, rows

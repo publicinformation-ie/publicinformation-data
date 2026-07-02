@@ -81,3 +81,37 @@ def test_build_record_missing_website_is_omitted_not_null():
     }
     record = build_record(body, foi_subject_ids=set(), contact_email_lookup={})
     assert "website" not in record
+
+
+from scripts.transform_public_bodies import transform_to_jsonld, transform_to_csv_rows
+
+
+def test_transform_to_jsonld_single_context_and_graph():
+    records = [
+        {"@id": f"{BASE_URI}/body/a", "@type": "foi:PublicBody", "name": "A",
+         "type": "public_body", "foi_subject": True, "foi_scope": f"{BASE_URI}/ns/foi#FullScope"},
+        {"@id": f"{BASE_URI}/body/b", "@type": "foi:PublicBody", "name": "B",
+         "type": "department", "foi_subject": False, "foi_scope": f"{BASE_URI}/ns/foi#NoScope"},
+    ]
+    doc = transform_to_jsonld(records)
+    assert "@context" in doc
+    assert "@graph" in doc
+    assert doc["@graph"] == records
+    # no per-record @context duplication
+    assert all("@context" not in r for r in doc["@graph"])
+
+
+def test_transform_to_csv_rows_columns_and_boolean_lexical_form():
+    records = [
+        {"@id": f"{BASE_URI}/body/a", "@type": "foi:PublicBody", "name": "A",
+         "type": "public_body", "website": "https://a.example/", "foi_subject": True,
+         "foi_scope": f"{BASE_URI}/ns/foi#FullScope", "contact_email": "foi@a.example"},
+        {"@id": f"{BASE_URI}/body/b", "@type": "foi:PublicBody", "name": "B",
+         "type": "department", "foi_subject": False, "foi_scope": f"{BASE_URI}/ns/foi#NoScope"},
+    ]
+    fieldnames, rows = transform_to_csv_rows(records)
+    assert fieldnames == ["id", "name", "type", "website", "foi_subject", "foi_scope", "contact_email"]
+    assert rows[0]["foi_subject"] == "true"
+    assert rows[1]["foi_subject"] == "false"
+    assert rows[1]["website"] == ""
+    assert rows[1]["contact_email"] == ""
