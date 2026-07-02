@@ -26,3 +26,13 @@ def hash_document_id(document_url):
     and never null (verified: 1593/1593 unique in current data).
     """
     return hashlib.sha1(document_url.encode("utf-8")).hexdigest()[:12]
+
+
+def build_body_slug_lookup(pipeline_bodies):
+    """Map public_body_id -> slug, using the same slugify() as public-bodies.
+
+    Reusing slugify() here (rather than re-deriving it) is what guarantees
+    the public_body URI below matches an @id already published in the
+    public-bodies dataset.
+    """
+    return {b["public_body_id"]: slugify(b["public_body_name"]) for b in pipeline_bodies}
