@@ -1,0 +1,83 @@
+import pytest
+from scripts.transform_public_bodies import (
+    slugify,
+    map_body_type,
+    build_contact_email_lookup,
+    build_record,
+    BASE_URI,
+)
+
+
+def test_slugify_basic():
+    assert slugify("An Coimisiún Pleanála") == "an-coimisiún-pleanála"
+
+
+def test_slugify_strips_punctuation():
+    assert slugify("Abbey Theatre (Amharclann Na Mainistreach)") == "abbey-theatre-amharclann-na-mainistreach"
+
+
+def test_slugify_empty():
+    assert slugify("") == "unknown"
+
+
+def test_map_body_type_known_categories():
+    assert map_body_type("government department") == "department"
+    assert map_body_type("local authority") == "local_authority"
+    assert map_body_type("public body") == "public_body"
+
+
+def test_map_body_type_unknown_category_raises():
+    with pytest.raises(ValueError, match="Unrecognized public body category"):
+        map_body_type("quango")
+
+
+def test_build_contact_email_lookup_only_includes_successful_crawls():
+    pipeline_bodies = [
+        {"public_body_id": 1010, "status": {"foi_email": {"email": "foi@pleanala.ie", "status": "success"}}},
+        {"public_body_id": 1002, "status": {"foi_email": {"email": None, "status": "failed"}}},
+        {"public_body_id": 1014, "status": {"foi_email": {"email": "foi@garda.ieif", "status": "success"}}},
+    ]
+    lookup = build_contact_email_lookup(pipeline_bodies)
+    assert lookup == {1010: "foi@pleanala.ie", 1014: "foi@garda.ieif"}
+
+
+def test_build_record_foi_subject_body():
+    body = {
+        "public_body_id": 1010,
+        "name": "An Coimisiún Pleanála",
+        "official_website_url": "https://www.pleanala.ie/",
+        "category": "public body",
+    }
+    record = build_record(body, foi_subject_ids={1010}, contact_email_lookup={1010: "foi@pleanala.ie"})
+    assert record["@id"] == f"{BASE_URI}/body/an-coimisiún-pleanála"
+    assert record["@type"] == "foi:PublicBody"
+    assert record["name"] == "An Coimisiún Pleanála"
+    assert record["type"] == "public_body"
+    assert record["website"] == "https://www.pleanala.ie/"
+    assert record["foi_subject"] is True
+    assert record["foi_scope"] == f"{BASE_URI}/ns/foi#FullScope"
+    assert record["contact_email"] == "foi@pleanala.ie"
+
+
+def test_build_record_non_foi_subject_body_omits_contact_email():
+    body = {
+        "public_body_id": 1001,
+        "name": "Abbey Theatre",
+        "official_website_url": "https://www.abbeytheatre.ie/",
+        "category": "public body",
+    }
+    record = build_record(body, foi_subject_ids=set(), contact_email_lookup={})
+    assert record["foi_subject"] is False
+    assert record["foi_scope"] == f"{BASE_URI}/ns/foi#NoScope"
+    assert "contact_email" not in record
+
+
+def test_build_record_missing_website_is_omitted_not_null():
+    body = {
+        "public_body_id": 1099,
+        "name": "No Website Body",
+        "official_website_url": None,
+        "category": "government department",
+    }
+    record = build_record(body, foi_subject_ids=set(), contact_email_lookup={})
+    assert "website" not in record

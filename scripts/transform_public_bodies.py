@@ -1,18 +1,28 @@
 #!/usr/bin/env python3
-"""
-Transform public/pipeline-data.json to JSON-LD and CSV for Slice 1.
+"""Transform FOI pipeline data to JSON-LD and CSV for Slice 1 (Public Bodies).
 Usage: python scripts/transform_public_bodies.py
 """
 import json
 import csv
 import re
-from datetime import datetime
 
-BASE_URI = "https://codeberg.org/publicinformation-ie/publicinformation-data"
-CONTACT_EMAIL = "dave@publicinformation.ie"
+BASE_URI = "https://publicinformation-ie.codeberg.page/publicinformation-data"
+
+BODY_TYPE_MAP = {
+    "government department": "department",
+    "local authority": "local_authority",
+    "public body": "public_body",
+}
+
+FIND_PUBLIC_BODIES_PATH = "pipelines/foi_pipeline/steps/find_public_bodies/output.json"
+INCLUSIONS_PATH = "pipelines/foi_pipeline/steps/find_public_bodies_subject_to_foi/inclusions.json"
+PIPELINE_DATA_PATH = "public/pipeline-data.json"
+JSONLD_OUTPUT_PATH = "public/public-bodies.jsonld"
+CSV_OUTPUT_PATH = "public/public-bodies.csv"
+
 
 def slugify(text):
-    """Convert text to URL slug."""
+    """Convert text to a URL slug."""
     if not text:
         return "unknown"
     slug = text.lower()
@@ -20,95 +30,49 @@ def slugify(text):
     slug = re.sub(r'\s+', '-', slug)
     return slug.strip('-')
 
-def get_foi_scope(status_dict):
-    """Determine FOI scope from pipeline status."""
-    foi_page = status_dict.get("foi_page", {})
-    if foi_page.get("url"):
-        return f"{BASE_URI}/ns/foi#FullScope"
-    return f"{BASE_URI}/ns/foi#NoScope"
 
-def get_body_uri(body):
-    """Generate Cool URI for a public body."""
-    name = body.get("public_body_name", "unknown")
-    return f"{BASE_URI}/body/{slugify(name)}"
+def map_body_type(category):
+    """Map a raw pipeline category to a body-type vocabulary notation.
 
-def transform_to_jsonld(bodies):
-    """Transform pipeline bodies to JSON-LD format."""
-    jsonld_context = {
-        "@vocab": "https://schema.org/",
-        "foi": f"{BASE_URI}/ns/foi#",
-        "dct": "http://purl.org/dc/terms/",
-        "prov": "http://www.w3.org/ns/prov#"
+    Raises ValueError for unrecognized categories rather than guessing —
+    an unbacked type would be a fabricated value.
+    """
+    try:
+        return BODY_TYPE_MAP[category]
+    except KeyError:
+        raise ValueError(f"Unrecognized public body category: {category!r}")
+
+
+def build_contact_email_lookup(pipeline_data_bodies):
+    """Map public_body_id -> email for bodies with a successfully crawled FOI email.
+
+    find_public_bodies/output.json never has real crawl results (always
+    "not_attempted"); only pipeline-data.json's 229 crawled records do.
+    """
+    lookup = {}
+    for body in pipeline_data_bodies:
+        foi_email = body.get("status", {}).get("foi_email", {})
+        if foi_email.get("status") == "success" and foi_email.get("email"):
+            lookup[body["public_body_id"]] = foi_email["email"]
+    return lookup
+
+
+def build_record(body, foi_subject_ids, contact_email_lookup):
+    """Build one public body record in the corrected Slice 1 data model."""
+    body_id = body["public_body_id"]
+    slug = slugify(body["name"])
+    foi_subject = body_id in foi_subject_ids
+    record = {
+        "@id": f"{BASE_URI}/body/{slug}",
+        "@type": "foi:PublicBody",
+        "name": body["name"],
+        "type": map_body_type(body["category"]),
+        "foi_subject": foi_subject,
+        "foi_scope": f"{BASE_URI}/ns/foi#FullScope" if foi_subject else f"{BASE_URI}/ns/foi#NoScope",
     }
-    items = []
-    for body in bodies:
-        status = body.get("status", {})
-        foi_page = status.get("foi_page", {})
-        foi_email = status.get("foi_email", {})
-        item = {
-            "@context": jsonld_context,
-            "@id": get_body_uri(body),
-            "@type": "foi:PublicBody",
-            "name": body.get("public_body_name"),
-            "short_name": body.get("public_body_name"),
-            "type": body.get("public_body_category"),
-            "website": body.get("public_body_url"),
-            "foi_subject": foi_page.get("url") is not None,
-            "foi_scope": get_foi_scope(status),
-            "sector": "Government",
-            "parent_body": None,
-            "governing_legislation": None,
-            "geographic_coverage": "IE",
-            "contact_email": foi_email.get("email"),
-            "contact_phone": None,
-            "source_public_body_id": body.get("public_body_id")
-        }
-        items.append({k: v for k, v in item.items() if v is not None})
-    return items
-
-def transform_to_csv(bodies):
-    """Transform pipeline bodies to CSV format."""
-    fieldnames = [
-        "id", "name", "short_name", "description", "type", "website",
-        "foi_subject", "foi_scope", "sector", "parent_body",
-        "governing_legislation", "geographic_coverage", "contact_email", "contact_phone"
-    ]
-    rows = []
-    for body in bodies:
-        status = body.get("status", {})
-        foi_page = status.get("foi_page", {})
-        foi_email = status.get("foi_email", {})
-        rows.append({
-            "id": get_body_uri(body),
-            "name": body.get("public_body_name"),
-            "short_name": body.get("public_body_name"),
-            "description": None,
-            "type": body.get("public_body_category"),
-            "website": body.get("public_body_url"),
-            "foi_subject": str(foi_page.get("url") is not None).lower(),
-            "foi_scope": get_foi_scope(status),
-            "sector": "Government",
-            "parent_body": None,
-            "governing_legislation": None,
-            "geographic_coverage": "IE",
-            "contact_email": foi_email.get("email"),
-            "contact_phone": None
-        })
-    return fieldnames, rows
-
-def main():
-    with open("public/pipeline-data.json", "r") as f:
-        source_data = json.load(f)
-    bodies = source_data.get("public_bodies", [])
-    jsonld_data = transform_to_jsonld(bodies)
-    with open("public/public-bodies.jsonld", "w") as f:
-        json.dump(jsonld_data, f, indent=2)
-    fieldnames, rows = transform_to_csv(bodies)
-    with open("public/public-bodies.csv", "w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
-        writer.writeheader()
-        writer.writerows(rows)
-    print(f"Transformed {len(bodies)} public bodies to JSON-LD and CSV")
-
-if __name__ == "__main__":
-    main()
+    if body.get("official_website_url"):
+        record["website"] = body["official_website_url"]
+    email = contact_email_lookup.get(body_id)
+    if email:
+        record["contact_email"] = email
+    return record
