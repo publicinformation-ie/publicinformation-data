@@ -1,4 +1,6 @@
-from scripts.transform_foi_request_files import hash_document_id, build_body_slug_lookup
+import pytest
+from scripts.transform_foi_request_files import hash_document_id, build_body_slug_lookup, build_record
+from scripts.transform_public_bodies import BASE_URI
 
 
 def test_hash_document_id_deterministic():
@@ -28,3 +30,32 @@ def test_build_body_slug_lookup_maps_id_to_slug():
         1104: "central-bank-of-ireland",
         1002: "ability-west",
     }
+
+
+def test_build_record_happy_path():
+    file_record = {
+        "public_body_id": 1104,
+        "document_url": "https://www.centralbank.ie/docs/foi-disclosure-log-q1-2026.pdf",
+        "source_page_url": "https://www.centralbank.ie/about/freedom-of-information/foi-disclosure-log",
+        "file_type": "pdf",
+    }
+    body_slug_lookup = {1104: "central-bank-of-ireland"}
+    record = build_record(file_record, body_slug_lookup)
+    assert record["@id"] == f"{BASE_URI}/foi-request-file/" + record["@id"].rsplit("/", 1)[1]
+    assert len(record["@id"].rsplit("/", 1)[1]) == 12
+    assert record["@type"] == "foi:FoiRequestFile"
+    assert record["public_body"] == f"{BASE_URI}/body/central-bank-of-ireland"
+    assert record["document_url"] == file_record["document_url"]
+    assert record["source_page_url"] == file_record["source_page_url"]
+    assert record["file_type"] == "pdf"
+
+
+def test_build_record_unknown_public_body_id_raises():
+    file_record = {
+        "public_body_id": 9999,
+        "document_url": "https://example.ie/foi.pdf",
+        "source_page_url": "https://example.ie/foi-log",
+        "file_type": "pdf",
+    }
+    with pytest.raises(ValueError, match="Unknown public_body_id"):
+        build_record(file_record, body_slug_lookup={})

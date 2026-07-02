@@ -36,3 +36,25 @@ def build_body_slug_lookup(pipeline_bodies):
     public-bodies dataset.
     """
     return {b["public_body_id"]: slugify(b["public_body_name"]) for b in pipeline_bodies}
+
+
+def build_record(file_record, body_slug_lookup):
+    """Build one FOI request file record.
+
+    Raises for an unresolvable public_body_id rather than guessing or
+    dropping the relationship silently — a broken public_body URI would
+    be a fabricated link, worse than a loud failure.
+    """
+    body_id = file_record["public_body_id"]
+    try:
+        slug = body_slug_lookup[body_id]
+    except KeyError:
+        raise ValueError(f"Unknown public_body_id in disclosure-files.json: {body_id!r}")
+    return {
+        "@id": f"{BASE_URI}/foi-request-file/{hash_document_id(file_record['document_url'])}",
+        "@type": "foi:FoiRequestFile",
+        "public_body": f"{BASE_URI}/body/{slug}",
+        "document_url": file_record["document_url"],
+        "source_page_url": file_record["source_page_url"],
+        "file_type": file_record["file_type"],
+    }
