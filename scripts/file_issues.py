@@ -53,6 +53,22 @@ def detect_dropped(prev_urls: set, next_urls: set) -> set:
     return prev_urls - next_urls
 
 
+def transpose_by_file(issue_map: dict) -> dict:
+    """
+    Re-key an issue map from issue_type-first to body/file-first, so files
+    that accumulate errors across many issue types surface as outliers.
+
+    issue_map: {issue_type: {body: {file_url: count}}}
+    Returns:   {body: {file_url: {issue_type: count}}}
+    """
+    result = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
+    for issue_type, bodies in issue_map.items():
+        for body, urls in bodies.items():
+            for url, count in urls.items():
+                result[body][url][issue_type] += count
+    return dict(result)
+
+
 def collect_all_issues(
     body_lookup: dict,
     step_names: list,
@@ -176,6 +192,61 @@ def format_issues(
     return "\n".join(lines)
 
 
+def format_by_file(
+    issue_map: dict,
+    filter_step: str | None = None,
+    filter_issue: str | None = None,
+    min_errors: int = 1,
+) -> str:
+    """
+    Render public body -> file -> (issue count, issue type), sorted so the
+    files contributing the most issues appear first within each body.
+    """
+    lines = []
+
+    if filter_issue:
+        issue_map = {k: v for k, v in issue_map.items() if k == filter_issue}
+
+    if filter_step:
+        issue_map = {k: v for k, v in issue_map.items() if filter_step in k}
+
+    if filter_step and not issue_map:
+        print(
+            f"Note: no issues match --step '{filter_step}' "
+            "(--step only matches DroppedAt_<step> issue types; "
+            "error-type issues are not named by step)",
+            file=sys.stderr,
+        )
+
+    by_file = transpose_by_file(issue_map)
+
+    def body_total(files: dict) -> int:
+        return sum(sum(types.values()) for types in files.values())
+
+    sorted_bodies = sorted(by_file.items(), key=lambda kv: body_total(kv[1]), reverse=True)
+
+    for body, files in sorted_bodies:
+        sorted_files = sorted(
+            files.items(),
+            key=lambda kv: (-sum(kv[1].values()), kv[0]),
+        )
+        visible_files = [
+            (url, types) for url, types in sorted_files if sum(types.values()) >= min_errors
+        ]
+        if not visible_files:
+            continue
+
+        lines.append(f"{body}  ({body_total(files)} issues across {len(files)} files)")
+        for url, types in visible_files:
+            file_total = sum(types.values())
+            lines.append(f"  {url}  ({file_total} issues)")
+            for issue_type, count in sorted(types.items(), key=lambda x: (-x[1], x[0])):
+                lines.append(f"    {count:5d}  {issue_type}")
+        lines.append("")
+
+    return "\n".join(lines)
+
+
 # ---------------------------------------------------------------------------
 # Data loading
 # ---------------------------------------------------------------------------
@@ -208,6 +279,9 @@ def parse_args():
     parser.add_argument("--issue",      metavar="ISSUE_TYPE", help="Limit to one issue type")
     parser.add_argument("--min-errors", metavar="N", type=int, default=1,
                         help="Hide file entries below this error count (default: 1)")
+    parser.add_argument("--by-file", action="store_true",
+                        help="Group by public body -> file instead of by issue type, "
+                             "to surface the files contributing the most issues")
     return parser.parse_args()
 
 
@@ -226,7 +300,8 @@ def main():
     body_lookup = build_body_lookup(find_data.get("results", []))
     issue_map = load_all_issues(STEP_NAMES, STEP_CONFIG, body_lookup)
 
-    output = format_issues(
+    formatter = format_by_file if args.by_file else format_issues
+    output = formatter(
         issue_map,
         filter_step=args.step,
         filter_issue=args.issue,

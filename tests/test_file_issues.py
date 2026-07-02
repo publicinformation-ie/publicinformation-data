@@ -1,5 +1,11 @@
 import pytest
-from scripts.file_issues import group_errors, detect_dropped, collect_all_issues
+from scripts.file_issues import (
+    group_errors,
+    detect_dropped,
+    collect_all_issues,
+    transpose_by_file,
+    format_by_file,
+)
 
 
 def test_group_errors_by_type():
@@ -94,3 +100,41 @@ def test_collect_all_issues_detects_dropped_files():
     assert "DroppedAt_step_b" in result
     assert "Body A" in result["DroppedAt_step_b"]
     assert "https://a.com/2.pdf" in result["DroppedAt_step_b"]["Body A"]
+
+
+def test_transpose_by_file_combines_issue_types_per_file():
+    issue_map = {
+        "UnrecognizedRequesterType": {"Body A": {"https://a.com/1.pdf": 2}},
+        "InsufficientColumns": {"Body A": {"https://a.com/1.pdf": 3, "https://a.com/2.pdf": 1}},
+    }
+    result = transpose_by_file(issue_map)
+
+    assert result["Body A"]["https://a.com/1.pdf"] == {
+        "UnrecognizedRequesterType": 2,
+        "InsufficientColumns": 3,
+    }
+    assert result["Body A"]["https://a.com/2.pdf"] == {"InsufficientColumns": 1}
+
+
+def test_format_by_file_sorts_outlier_files_first():
+    issue_map = {
+        "TypeA": {"Body A": {"https://a.com/quiet.pdf": 1, "https://a.com/noisy.pdf": 10}},
+        "TypeB": {"Body A": {"https://a.com/noisy.pdf": 5}},
+    }
+    output = format_by_file(issue_map)
+
+    noisy_pos = output.index("noisy.pdf")
+    quiet_pos = output.index("quiet.pdf")
+    assert noisy_pos < quiet_pos
+    assert "(15 issues)" in output
+    assert "(16 issues across 2 files)" in output
+
+
+def test_format_by_file_min_errors_filters_files():
+    issue_map = {
+        "TypeA": {"Body A": {"https://a.com/quiet.pdf": 1, "https://a.com/noisy.pdf": 10}},
+    }
+    output = format_by_file(issue_map, min_errors=5)
+
+    assert "noisy.pdf" in output
+    assert "quiet.pdf" not in output

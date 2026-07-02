@@ -1,5 +1,42 @@
 # Scripts
 
+For guidance on *which* script to reach for, see [AGENTS.md](AGENTS.md).
+
+## file_issues.py
+
+Triage view of all FOI disclosure pipeline files, grouped by issue type (errors + dropped-file detection), sourced from each step's `output.json`/`errors.json`. Runs entirely against local pipeline artifacts — no database needed.
+
+### Usage
+
+```bash
+# Default: group by issue type -> public body -> file
+uv run python -m scripts.file_issues
+
+# Group by public body -> file, to surface the files contributing the most issues
+uv run python -m scripts.file_issues --by-file
+
+# Filters (apply in both modes)
+uv run python -m scripts.file_issues --step verify_disclosure_files
+uv run python -m scripts.file_issues --issue UnrecognizedDecisionStatus
+uv run python -m scripts.file_issues --min-errors 5
+```
+
+`--by-file` is the one to use when hunting for outliers: a file with many small issue types spread across steps can rank low in the default (issue-type-first) view but still be the single biggest contributor overall.
+
+## audit_disclosures.py
+
+SQL-based data-quality audit of the **exported** `foi_disclosures` table (i.e. after `export_status` has run and data has landed in the DB), ranking source files by total error count across a fixed set of checks (blank descriptions, unparseable dates, decision_status containing a date, etc).
+
+### Usage
+
+```bash
+PYTHONPATH=src python scripts/audit_disclosures.py --top 20
+python scripts/audit_disclosures.py --check invalid_decision_date
+python scripts/audit_disclosures.py --min-errors 5
+```
+
+Use this instead of `file_issues.py` when you want to check the DB as actually exported/deployed, rather than the pipeline's intermediate step artifacts.
+
 ## migrate_foi_ids_to_cso.py
 
 One-time, idempotent migration that remaps all FOI/disclosure data onto the canonical CSO `public_body_id` namespace.
