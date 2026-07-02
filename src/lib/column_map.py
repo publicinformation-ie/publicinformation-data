@@ -1,3 +1,4 @@
+import hashlib
 import re
 from typing import Optional
 from lib.text_utils import normalize_header
@@ -261,3 +262,15 @@ def canonicalize_header(header: str | None) -> Optional[str]:
 def canonicalize_headers(headers: list[str]) -> dict[str, Optional[str]]:
     """Map a list of header strings to canonical keys."""
     return {h: canonicalize_header(h) for h in headers}
+
+
+def compute_row_id(file_url: str, row_index: int) -> str:
+    """Deterministic 12-hex-char id for one data row within one disclosure file.
+
+    row_index is the row's absolute position in the file's original `rows`
+    list (the same index extract_disclosures_normalize_rows already logs as
+    context["row_index"]) — not a post-filtering sequential counter, so a
+    row dropped during realignment simply never gets an id rather than
+    shifting the ids of every row after it.
+    """
+    return hashlib.sha1(f"{file_url}:{row_index}".encode("utf-8")).hexdigest()[:12]

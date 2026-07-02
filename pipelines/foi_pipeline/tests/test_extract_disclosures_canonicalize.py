@@ -5,6 +5,7 @@ from lib.column_map import (
     CANONICAL_COLUMNS,
     REQUIRED_COLUMNS,
     COMBINED_DATE_HEADERS,
+    compute_row_id,
 )
 
 
@@ -25,6 +26,26 @@ def test_canonical_columns_order():
 def test_required_columns():
     assert "foi_reference_id" in REQUIRED_COLUMNS
     assert "request_description" in REQUIRED_COLUMNS
+
+
+def test_compute_row_id_deterministic():
+    url = "https://example.ie/foi.pdf"
+    assert compute_row_id(url, 5) == compute_row_id(url, 5)
+
+
+def test_compute_row_id_is_12_hex_chars():
+    result = compute_row_id("https://example.ie/foi.pdf", 0)
+    assert len(result) == 12
+    assert all(c in "0123456789abcdef" for c in result)
+
+
+def test_compute_row_id_differs_by_row_index():
+    url = "https://example.ie/foi.pdf"
+    assert compute_row_id(url, 1) != compute_row_id(url, 2)
+
+
+def test_compute_row_id_differs_by_file_url():
+    assert compute_row_id("https://example.ie/a.pdf", 1) != compute_row_id("https://example.ie/b.pdf", 1)
 
 
 def test_canonicalize_our_reference():
