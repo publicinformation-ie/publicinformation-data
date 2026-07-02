@@ -105,3 +105,31 @@ def transform_to_csv_rows(records):
             "contact_email": r.get("contact_email", ""),
         })
     return fieldnames, rows
+
+
+def main():
+    with open(FIND_PUBLIC_BODIES_PATH) as f:
+        bodies = json.load(f)["public_bodies"]
+    with open(INCLUSIONS_PATH) as f:
+        foi_subject_ids = set(json.load(f))
+    with open(PIPELINE_DATA_PATH) as f:
+        pipeline_bodies = json.load(f)["public_bodies"]
+    contact_email_lookup = build_contact_email_lookup(pipeline_bodies)
+
+    records = [build_record(b, foi_subject_ids, contact_email_lookup) for b in bodies]
+
+    jsonld_data = transform_to_jsonld(records)
+    with open(JSONLD_OUTPUT_PATH, "w") as f:
+        json.dump(jsonld_data, f, indent=2, ensure_ascii=False)
+
+    fieldnames, rows = transform_to_csv_rows(records)
+    with open(CSV_OUTPUT_PATH, "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+
+    print(f"Transformed {len(records)} public bodies to JSON-LD and CSV")
+
+
+if __name__ == "__main__":
+    main()
