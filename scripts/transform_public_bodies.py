@@ -5,6 +5,8 @@ Usage: python scripts/transform_public_bodies.py
 import json
 import csv
 import re
+import os
+import shutil
 
 BASE_URI = "https://publicinformation-ie.codeberg.page/publicinformation-data"
 
@@ -17,8 +19,10 @@ BODY_TYPE_MAP = {
 FIND_PUBLIC_BODIES_PATH = "pipelines/foi_pipeline/steps/find_public_bodies/output.json"
 INCLUSIONS_PATH = "pipelines/foi_pipeline/steps/find_public_bodies_subject_to_foi/inclusions.json"
 PIPELINE_DATA_PATH = "public/pipeline-data.json"
-JSONLD_OUTPUT_PATH = "public/public-bodies.jsonld"
-CSV_OUTPUT_PATH = "public/public-bodies.csv"
+OUTPUT_DIR = "public/v1.0.0/public-bodies"
+LATEST_DIR = "public/latest/public-bodies"
+JSONLD_OUTPUT_PATH = f"{OUTPUT_DIR}/public-bodies.jsonld"
+CSV_OUTPUT_PATH = f"{OUTPUT_DIR}/public-bodies.csv"
 
 
 def slugify(text):
@@ -107,7 +111,18 @@ def transform_to_csv_rows(records):
     return fieldnames, rows
 
 
+def copy_to_latest():
+    """Copy the versioned output directory to latest/ as a build-time snapshot.
+
+    Not a symlink: Codeberg Pages and various git checkout paths don't
+    reliably serve/preserve symlinks.
+    """
+    shutil.copytree(OUTPUT_DIR, LATEST_DIR, dirs_exist_ok=True)
+
+
 def main():
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+
     with open(FIND_PUBLIC_BODIES_PATH) as f:
         bodies = json.load(f)["public_bodies"]
     with open(INCLUSIONS_PATH) as f:
@@ -127,6 +142,8 @@ def main():
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
+
+    copy_to_latest()
 
     print(f"Transformed {len(records)} public bodies to JSON-LD and CSV")
 
