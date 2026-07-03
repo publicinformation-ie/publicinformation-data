@@ -6,6 +6,7 @@ Experiments live in dated subdirectories (`YYYY-MM-DD-<slug>/`). Each has its ow
 
 | Date | Experiment | Outcome |
 |------|-----------|---------|
+| 2025-01-03 | [mistral-ocr-comparison](2025-01-03-mistral-ocr-comparison/) | TBD |
 | 2026-06-04 | [pdfplumber-param-sweep](2026-06-04-pdfplumber-param-sweep/) | `snap_tolerance=6` adds +6.7pp clean rate; adopted as config 4 |
 
 ## Before running an experiment
