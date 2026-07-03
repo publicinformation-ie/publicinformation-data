@@ -70,11 +70,11 @@ def extract_with_pdfplumber(pdf_bytes):
         return None
 
 
-def extract_with_mistral_ocr(pdf_bytes, max_retries=3):
+def extract_with_mistral_ocr(pdf_url, max_retries=3):
     """Extract tables from PDF using Mistral OCR API.
     
     Args:
-        pdf_bytes: Raw PDF bytes
+        pdf_url: URL of the PDF file (can be http or the ngrok cache URL)
         max_retries: Maximum number of API retry attempts
         
     Returns:
@@ -89,38 +89,19 @@ def extract_with_mistral_ocr(pdf_bytes, max_retries=3):
     
     for attempt in range(max_retries):
         try:
-            # Use the Mistral client
+            # Use the Mistral client - exactly as in pdf2json.py
             client = Mistral(api_key=MISTRAL_API_KEY)
             
-            # Save bytes to temp file and use DocumentURLChunk with file:// URL
-            import tempfile
-            import os
-            with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp_file:
-                tmp_file.write(pdf_bytes)
-                tmp_path = tmp_file.name
-            
-            try:
-                from mistralai.client.models import DocumentURLChunk
-                
-                # Use file:// URL for local file
-                document_chunk = DocumentURLChunk(
-                    type="document_url",
-                    document_url=f"file://{tmp_path}"
-                )
-                
-                ocr_response = client.ocr.process(
-                    model=MISTRAL_OCR_MODEL,
-                    document=document_chunk,
-                    table_format="markdown",
-                    extract_header=True,
-                    confidence_scores_granularity="page",
-                )
-            finally:
-                # Clean up temp file
-                try:
-                    os.unlink(tmp_path)
-                except:
-                    pass
+            ocr_response = client.ocr.process(
+                model=MISTRAL_OCR_MODEL,
+                document={
+                    "type": "document_url",
+                    "document_url": pdf_url,
+                },
+                table_format="markdown",
+                extract_header=True,
+                confidence_scores_granularity="page",
+            )
             
             # Extract markdown from tables
             markdown_parts = []
@@ -170,8 +151,17 @@ def extract_file(file_entry, results_dir):
     
     print(f"Extracting {file_id[:8]}... from {file_url}")
     
-    # Download PDF
-    pdf_bytes = download_pdf(file_url)
+    # Use the ngrok server for cached PDFs
+    # The cache uses SHA256 hash of the URL as filename
+    NGROK_BASE = "https://cf48-84-203-39-41.ngrok-free.app"
+    pdf_url = f"{NGROK_BASE}/{file_id}"
+    
+    # Download PDF from ngrok server
+    pdf_bytes = download_pdf(pdf_url)
+    if not pdf_bytes:
+        # Fallback to original URL
+        pdf_bytes = download_pdf(file_url)
+    
     if not pdf_bytes:
         return {
             "file_id": file_id,
@@ -184,8 +174,8 @@ def extract_file(file_entry, results_dir):
     # Extract with pdfplumber
     pdfplumber_rows = extract_with_pdfplumber(pdf_bytes)
     
-    # Extract with Mistral OCR
-    mistral_markdown = extract_with_mistral_ocr(pdf_bytes)
+    # Extract with Mistral OCR using the ngrok URL
+    mistral_markdown = extract_with_mistral_ocr(pdf_url)
     
     # Convert Mistral markdown to rows
     # Import here to avoid circular imports
