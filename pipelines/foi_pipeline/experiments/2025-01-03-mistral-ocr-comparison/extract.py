@@ -104,19 +104,24 @@ def extract_with_mistral_ocr(pdf_url, max_retries=3):
             )
             
             # Extract markdown from tables
+            # Following pdf2json.py: check both markdown and content attributes
             markdown_parts = []
-            if hasattr(ocr_response, 'tables') and ocr_response.tables:
-                for table in ocr_response.tables:
-                    if hasattr(table, 'markdown'):
-                        markdown_parts.append(table.markdown)
-            
-            # Also check pages for tables
             if hasattr(ocr_response, 'pages'):
                 for page in ocr_response.pages:
                     if hasattr(page, 'tables') and page.tables:
                         for table in page.tables:
-                            if hasattr(table, 'markdown'):
+                            if hasattr(table, 'markdown') and table.markdown:
                                 markdown_parts.append(table.markdown)
+                            elif hasattr(table, 'content') and table.content:
+                                markdown_parts.append(table.content)
+            
+            # Also check top-level tables if present
+            if hasattr(ocr_response, 'tables') and ocr_response.tables:
+                for table in ocr_response.tables:
+                    if hasattr(table, 'markdown') and table.markdown:
+                        markdown_parts.append(table.markdown)
+                    elif hasattr(table, 'content') and table.content:
+                        markdown_parts.append(table.content)
             
             if markdown_parts:
                 return "\n\n".join(markdown_parts)
@@ -154,7 +159,7 @@ def extract_file(file_entry, results_dir):
     # Use the ngrok server for cached PDFs
     # The cache uses SHA256 hash of the URL as filename
     NGROK_BASE = "https://cf48-84-203-39-41.ngrok-free.app"
-    pdf_url = f"{NGROK_BASE}/{file_id}"
+    pdf_url = f"{NGROK_BASE}/{file_id}.bytes"
     
     # Download PDF from ngrok server
     pdf_bytes = download_pdf(pdf_url)
