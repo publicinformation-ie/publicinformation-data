@@ -48,6 +48,12 @@ def test_compute_row_id_differs_by_file_url():
     assert compute_row_id("https://example.ie/a.pdf", 1) != compute_row_id("https://example.ie/b.pdf", 1)
 
 
+def test_compute_row_id_matches_golden_value():
+    # Pins the exact sha1-based formula so a future refactor can't silently
+    # change row_id's format while still satisfying the property tests above.
+    assert compute_row_id("https://example.ie/foi.pdf", 5) == "397a0921ddc1"
+
+
 def test_canonicalize_our_reference():
     assert canonicalize_header("Our Reference") == "foi_reference_id"
 
