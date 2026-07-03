@@ -129,6 +129,7 @@ def run_eval(items, process_warning_urls, input_hash, camelot_fallback_urls=None
             eval_utils.Metric("newline_split_row_rate", 0.0, {"count": 0, "total": 0}),
             eval_utils.Metric("camelot_fallback_rate", 0.0, {"attempted": 0, "total": 0}),
             eval_utils.Metric("camelot_win_rate", 0.0, {"wins": 0, "total": 0}),
+            eval_utils.Metric("mistral_ocr_rate", 0.0, {"used": 0, "total": 0}),
         ]
         results = eval_utils.EvalResults(step=STEP, metrics=metrics, input_hash=input_hash, judge_model=None)
         return results, [], {}
@@ -141,6 +142,7 @@ def run_eval(items, process_warning_urls, input_hash, camelot_fallback_urls=None
     newline_split_count = sum(1 for f in flags_by_item if "newline_split_row" in f)
     camelot_fallback_count = sum(1 for item in items if item.get("file_url") in camelot_fallback_urls)
     camelot_win_count = sum(1 for item in items if item.get("pdf_extractor") == "camelot_stream")
+    mistral_ocr_count = sum(1 for item in items if item.get("pdf_extractor") == "mistral_ocr")
 
     metrics = [
         eval_utils.Metric("clean_extraction_rate", round(clean_count / total, 3),
@@ -155,6 +157,8 @@ def run_eval(items, process_warning_urls, input_hash, camelot_fallback_urls=None
                           {"attempted": camelot_fallback_count, "total": total}),
         eval_utils.Metric("camelot_win_rate", round(camelot_win_count / total, 3),
                           {"wins": camelot_win_count, "total": total}),
+        eval_utils.Metric("mistral_ocr_rate", round(mistral_ocr_count / total, 3),
+                          {"used": mistral_ocr_count, "total": total}),
     ]
 
     issues = []

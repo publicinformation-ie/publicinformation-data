@@ -340,3 +340,25 @@ def test_flagged_samples_pdf_extractor_defaults_to_pdfplumber():
     quality = build_quality_by_body(items, set())
     sample = quality[1]["flagged_samples"][0]
     assert sample["pdf_extractor"] == "pdfplumber"
+
+
+# ── mistral_ocr_rate ──────────────────────────────────────────────────────────
+
+def test_run_eval_reports_mistral_ocr_rate():
+    items = [
+        {"file_url": "https://a.pdf", "public_body_id": 1, "name": "Body", "pdf_extractor": "mistral_ocr", "rows": [["Ref"], ["1"]]},
+        {"file_url": "https://b.pdf", "public_body_id": 1, "name": "Body", "pdf_extractor": "pdfplumber", "rows": [["Ref"], ["1"]]},
+        {"file_url": "https://c.pdf", "public_body_id": 1, "name": "Body", "pdf_extractor": "camelot_stream", "rows": [["Ref"], ["1"]]},
+        {"file_url": "https://d.pdf", "public_body_id": 1, "name": "Body", "pdf_extractor": "mistral_ocr", "rows": [["Ref"], ["1"]]},
+    ]
+    results, _issues, _by_body = run_eval(items, set(), input_hash="abc123")
+    mistral_metric = next(m for m in results.metrics if m.name == "mistral_ocr_rate")
+    assert mistral_metric.value == 0.5
+    assert mistral_metric.counts == {"used": 2, "total": 4}
+
+
+def test_run_eval_zero_items_reports_zero_mistral_ocr_rate():
+    results, _issues, _by_body = run_eval([], set(), input_hash="abc123")
+    mistral_metric = next(m for m in results.metrics if m.name == "mistral_ocr_rate")
+    assert mistral_metric.value == 0.0
+    assert mistral_metric.counts == {"used": 0, "total": 0}
