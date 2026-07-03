@@ -41,3 +41,55 @@ def test_markdown_to_rows_empty_input_returns_empty_list():
     assert markdown_to_rows("") == []
     assert markdown_to_rows(None) == []
     assert markdown_to_rows("   ") == []
+
+
+from steps.transform_disclosure_files.mistral_ocr import _strip_duplicate_headers
+
+
+def test_strip_duplicate_headers_exact_repeat_removed():
+    rows = [
+        ["Ref", "Date"],
+        ["A", "1"],
+        ["Ref", "Date"],
+        ["B", "2"],
+    ]
+    deduped, count = _strip_duplicate_headers(rows)
+    assert deduped == [["Ref", "Date"], ["A", "1"], ["B", "2"]]
+    assert count == 1
+
+
+def test_strip_duplicate_headers_normalizes_whitespace_and_case():
+    rows = [
+        ["Ref", "Date"],
+        ["A", "1"],
+        ["  ref  ", "DATE"],
+        ["B", "2"],
+    ]
+    deduped, count = _strip_duplicate_headers(rows)
+    assert deduped == [["Ref", "Date"], ["A", "1"], ["B", "2"]]
+    assert count == 1
+
+
+def test_strip_duplicate_headers_near_match_not_removed():
+    rows = [
+        ["Ref", "Date"],
+        ["A", "1"],
+        ["Ref", "Date Received"],
+        ["B", "2"],
+    ]
+    deduped, count = _strip_duplicate_headers(rows)
+    assert deduped == rows
+    assert count == 0
+
+
+def test_strip_duplicate_headers_single_page_is_noop():
+    rows = [["Ref", "Date"], ["A", "1"], ["B", "2"]]
+    deduped, count = _strip_duplicate_headers(rows)
+    assert deduped == rows
+    assert count == 0
+
+
+def test_strip_duplicate_headers_empty_input():
+    deduped, count = _strip_duplicate_headers([])
+    assert deduped == []
+    assert count == 0

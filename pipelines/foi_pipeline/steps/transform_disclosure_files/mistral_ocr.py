@@ -103,3 +103,33 @@ def markdown_to_rows(markdown):
             all_rows.extend(processed_rows)
 
     return all_rows
+
+
+def _normalise_cell(cell):
+    """Normalise a cell for header comparison. Duplicated from process.py's
+    identically-named function to avoid a circular import between the two
+    peer modules; keep both in sync if the normalisation rule changes."""
+    if cell is None:
+        return ""
+    return " ".join(str(cell).strip().split()).lower()
+
+
+def _strip_duplicate_headers(rows):
+    """Drop rows that exactly match row 0's normalised header.
+
+    Mistral's extract_header=True guarantees each page-table starts with a
+    complete header row — there's no partial/split header to align (unlike
+    process.py's _merge_page_splits fingerprint alignment), just an exact
+    repeat to remove. Returns (deduped_rows, count_stripped).
+    """
+    if not rows:
+        return rows, 0
+    header = tuple(_normalise_cell(c) for c in rows[0])
+    deduped = [rows[0]]
+    count = 0
+    for row in rows[1:]:
+        if tuple(_normalise_cell(c) for c in row) == header:
+            count += 1
+        else:
+            deduped.append(row)
+    return deduped, count
