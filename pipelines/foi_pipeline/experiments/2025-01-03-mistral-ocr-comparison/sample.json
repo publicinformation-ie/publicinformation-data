@@ -1,0 +1,87 @@
+{
+  "sample_date": "2025-01-03",
+  "sample_size": 10,
+  "seed": 42,
+  "files": [
+    {
+      "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20November%202019.pdf",
+      "body_id": 1817,
+      "body_name": "Tipperary County Council",
+      "source_url": "https://www.tipperarycoco.ie/governance-and-administration/freedom-information-disclosure-log-publication",
+      "file_type": "pdf",
+      "sha256": "cd6189e46133275b2d3da623d091ce739faf68b252fd720f2cfb9d9ac5c4e351"
+    },
+    {
+      "file_url": "https://www.pleanala.ie/getmedia/77023158-c0e0-417d-a105-6602a8db5c37/FOI-Disclosure-log-2024-Q2.pdf",
+      "body_id": 1010,
+      "body_name": "An Coimisi\u00fan Plean\u00e1la",
+      "source_url": "https://www.pleanala.ie/en-ie/freedom-of-information-(foi)/freedom-of-information-(foi)-disclosure-log",
+      "file_type": "pdf",
+      "sha256": "72b8569146d5fa8508c28f7d3e712ec8dbbc0f16769f108a52eef823086295a4"
+    },
+    {
+      "file_url": "https://teagasc.ie/wp-content/uploads/2025/05/Teagasc-FOI-Disclosure-Log-2023.pdf",
+      "body_id": 1774,
+      "body_name": "Teagasc (The Agriculture and Food Development Authority of Ireland)",
+      "source_url": "https://teagasc.ie/about/corporate-responsibility/freedom-of-information/",
+      "file_type": "pdf",
+      "sha256": "594ca9084db1335704ee8ee9114514777ceec9ceec396e09b170bd590dfc64eb"
+    },
+    {
+      "file_url": "https://assets.gov.ie/static/documents/270560ed-foi-summary-of-non-personal-requests-submitted-to-the-department-of-education.pdf",
+      "body_id": 1201,
+      "body_name": "Department of Education and Youth",
+      "source_url": "https://www.gov.ie/en/department-of-education/collections/foi-disclosure-logs/",
+      "file_type": "pdf",
+      "sha256": "dd1063ffdcb3b11fee64147bbfecb81f60e3a8396f82453e3eb14d3b88b3afc7"
+    },
+    {
+      "file_url": "http://www.longfordcoco.ie/your-council/access-to-information/freedom-of-information/disclosure-log/foi-disclosure-log-2021.pdf",
+      "body_id": 1497,
+      "body_name": "Longford County Council",
+      "source_url": "http://www.longfordcoco.ie/your-council/access-to-information/freedom-of-information/disclosure-log/",
+      "file_type": "pdf",
+      "sha256": "3583414229cbbb2ca8b42c4f415fe3e4e14a5a5124e90fff714a37591d5e942b"
+    },
+    {
+      "file_url": "https://www.wicklow.ie/Portals/0/Documents/Governance/About-Freedom-of-Information/Disclosure log 2017.pdf",
+      "body_id": 1876,
+      "body_name": "Wicklow County Council",
+      "source_url": "https://www.wicklow.ie/Living/Your-Council/Governance/About-Freedom-of-Information",
+      "file_type": "pdf",
+      "sha256": "d038dd4c9760400084a63df1ea5b1348bc6faf839661a1e66564e59fe485dd4d"
+    },
+    {
+      "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20April%202021.pdf",
+      "body_id": 1817,
+      "body_name": "Tipperary County Council",
+      "source_url": "https://www.tipperarycoco.ie/governance-and-administration/freedom-information-disclosure-log-publication",
+      "file_type": "pdf",
+      "sha256": "69d65528d4d9dfbad4a67cb1ee18d5fbde91d3acd66dc2246df784aad356b0e8"
+    },
+    {
+      "file_url": "https://assets.gov.ie/static/documents/q1-2016-foi-disclosure-log.pdf",
+      "body_id": 1213,
+      "body_name": "Department of Transport",
+      "source_url": "https://www.gov.ie/en/department-of-transport/collections/foi-disclosure-logs/",
+      "file_type": "pdf",
+      "sha256": "7ee0c0513234d4cece3e2e48c02e4ad2b0979c9c03026ac182c02e632ae965aa"
+    },
+    {
+      "file_url": "https://www.tipperarycoco.ie/sites/default/files/2024-12/November%20Disclosure%20Log%202024.pdf",
+      "body_id": 1817,
+      "body_name": "Tipperary County Council",
+      "source_url": "https://www.tipperarycoco.ie/governance-and-administration/freedom-information-disclosure-log-publication",
+      "file_type": "pdf",
+      "sha256": "44564b3af8c9c610b7b6bac1918773c92e7cb1bcf9d60b3874bfd6227d6a3a5e"
+    },
+    {
+      "file_url": "https://assets.nama.ie/uploads/documents/FOI-Disclosure-Log-2021.pdf",
+      "body_id": 1544,
+      "body_name": "National Asset Management Agency Group",
+      "source_url": "https://www.nama.ie/freedom-of-information/disclosure-log",
+      "file_type": "pdf",
+      "sha256": "781f2fe3a8f00dbe498a190ac035c6f3452ff2215c7884d8d0f2026bd69cd286"
+    }
+  ]
+}
