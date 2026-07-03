@@ -778,6 +778,43 @@ def test_process_skip_mistral_override_does_not_call_mistral(tmp_path, monkeypat
     assert result["results"][0]["pdf_extractor"] == "pdfplumber"
 
 
+def test_process_api_key_without_base_url_falls_back_to_pdfplumber(tmp_path, monkeypatch, capsys):
+    """MISTRAL_API_KEY set but MISTRAL_OCR_PDF_BASE_URL unset must not enable
+    the Mistral branch, and must not crash — the file should still be
+    processed via pdfplumber with rows present rather than a permanent
+    zero-row failure (regression test for the base_url None.rstrip() bug)."""
+    import unittest.mock
+    from lib.file_utils import IncrementalWriter
+    from steps.transform_disclosure_files.process import process
+
+    step_dir, cache_dir, key, file_url = _make_mistral_process_fixture(tmp_path)
+    monkeypatch.setenv("MISTRAL_API_KEY", "fake-key")
+    monkeypatch.delenv("MISTRAL_OCR_PDF_BASE_URL", raising=False)
+
+    input_data = {"results": [{"file_url": file_url, "file_type": "pdf", "public_body_id": 1}]}
+    output_path = step_dir / "output.json"
+    writer = IncrementalWriter(output_path, "transform_disclosure_files", key_field="file_url", force=True)
+    with unittest.mock.patch(
+        "steps.transform_disclosure_files.process.DisclosureFileCache.get_file_path",
+        return_value=cache_dir / f"{key}.bytes",
+    ):
+        process(input_data, step_dir, writer)
+    writer.finalize()
+
+    result = json.loads(output_path.read_text())
+    record = result["results"][0]
+    assert record["pdf_extractor"] == "pdfplumber"
+    assert record["rows"] == [["Ref", "Date"], ["1", "2024-01-01"]]
+
+    # mistral_enabled is False when base_url is missing, so the Mistral
+    # branch (and its warning logging) is never entered — no errors at all.
+    errors = json.loads((step_dir / "errors.json").read_text())
+    assert errors == []
+
+    captured = capsys.readouterr()
+    assert "MISTRAL_OCR_PDF_BASE_URL" in captured.out
+
+
 def test_process_no_api_key_disables_mistral_for_whole_run(tmp_path, monkeypatch, capsys):
     import unittest.mock
     from lib.file_utils import IncrementalWriter

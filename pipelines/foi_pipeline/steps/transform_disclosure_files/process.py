@@ -541,10 +541,18 @@ def _process_single_file(
             pdf_extractor = None
             use_mistral = mistral_enabled and file_url not in skip_mistral_urls
             if use_mistral:
-                markdown = call_mistral_ocr(
-                    file_url, ocr_cache_dir, mistral_base_url, mistral_api_key,
-                    semaphore=mistral_semaphore,
-                )
+                try:
+                    markdown = call_mistral_ocr(
+                        file_url, ocr_cache_dir, mistral_base_url, mistral_api_key,
+                        semaphore=mistral_semaphore,
+                    )
+                except Exception:
+                    # Any exception from call_mistral_ocr (e.g. misconfigured
+                    # base_url, corrupt cache entry) is treated identically to
+                    # a None return — fall through to pdfplumber/camelot below
+                    # rather than letting it escape to the file-level handler
+                    # and mark this file as a permanent zero-row failure.
+                    markdown = None
                 if markdown is None:
                     append_error(step_dir, {
                         "step": STEP_NAME,
@@ -611,7 +619,7 @@ def _process_single_file(
         return [], True  # marked processed — parse errors are permanent failures
 
 
-def process(input_data, step_dir, writer, verbose=False, workers=4, mistral_workers=2):
+def process(input_data, step_dir, writer, verbose=False, workers=8, mistral_workers=2):
     errors_path = Path(step_dir) / "errors.json"
     if not errors_path.exists():
         write_json(errors_path, [])
@@ -623,9 +631,14 @@ def process(input_data, step_dir, writer, verbose=False, workers=4, mistral_work
 
     mistral_api_key = os.environ.get("MISTRAL_API_KEY")
     mistral_base_url = os.environ.get("MISTRAL_OCR_PDF_BASE_URL")
-    mistral_enabled = bool(mistral_api_key)
+    mistral_enabled = bool(mistral_api_key and mistral_base_url)
     if not mistral_enabled:
-        print("MISTRAL_API_KEY not set — all PDFs will use pdfplumber/camelot")
+        missing = []
+        if not mistral_api_key:
+            missing.append("MISTRAL_API_KEY")
+        if not mistral_base_url:
+            missing.append("MISTRAL_OCR_PDF_BASE_URL")
+        print(f"{' and '.join(missing)} not set — all PDFs will use pdfplumber/camelot")
     ocr_cache_dir = Path(step_dir) / "ocr_cache"
     mistral_semaphore = threading.Semaphore(mistral_workers) if mistral_enabled else None
 
