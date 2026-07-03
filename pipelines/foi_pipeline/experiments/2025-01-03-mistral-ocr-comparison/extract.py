@@ -92,17 +92,35 @@ def extract_with_mistral_ocr(pdf_bytes, max_retries=3):
             # Use the Mistral client
             client = Mistral(api_key=MISTRAL_API_KEY)
             
-            # Process the PDF bytes as a document
-            ocr_response = client.ocr.process(
-                model=MISTRAL_OCR_MODEL,
-                document={
-                    "type": "document_bytes",
-                    "document_bytes": pdf_bytes,
-                },
-                table_format="markdown",
-                extract_header=True,
-                confidence_scores_granularity="page",
-            )
+            # Save bytes to temp file and use DocumentURLChunk with file:// URL
+            import tempfile
+            import os
+            with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp_file:
+                tmp_file.write(pdf_bytes)
+                tmp_path = tmp_file.name
+            
+            try:
+                from mistralai.client.models import DocumentURLChunk
+                
+                # Use file:// URL for local file
+                document_chunk = DocumentURLChunk(
+                    type="document_url",
+                    document_url=f"file://{tmp_path}"
+                )
+                
+                ocr_response = client.ocr.process(
+                    model=MISTRAL_OCR_MODEL,
+                    document=document_chunk,
+                    table_format="markdown",
+                    extract_header=True,
+                    confidence_scores_granularity="page",
+                )
+            finally:
+                # Clean up temp file
+                try:
+                    os.unlink(tmp_path)
+                except:
+                    pass
             
             # Extract markdown from tables
             markdown_parts = []
