@@ -4,7 +4,16 @@
 Ported markdown parsing from
 experiments/2025-01-03-mistral-ocr-comparison/convert.py.
 """
+import datetime
+import hashlib
+import json
 import re
+import time
+from pathlib import Path
+
+from mistralai.client import Mistral
+
+MISTRAL_OCR_MODEL = "mistral-ocr-latest"
 
 
 def parse_markdown_table(table_text):
@@ -133,3 +142,71 @@ def _strip_duplicate_headers(rows):
         else:
             deduped.append(row)
     return deduped, count
+
+
+def call_mistral_ocr(file_url, cache_dir, base_url, api_key, semaphore=None, max_retries=3):
+    """Return raw Mistral OCR markdown for file_url, checking ocr_cache/ first.
+
+    On a cache miss, calls the Mistral client with document_url pointing at
+    {base_url}/{sha256}.bytes, retrying with exponential backoff on failure.
+    Writes a successful response (including an empty-tables "" result) to
+    ocr_cache/{sha256}.json before returning. Returns None only after
+    max_retries API failures — a cache write never happens in that case, so
+    the next run retries rather than caching a permanent-looking failure.
+    """
+    cache_dir = Path(cache_dir)
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    sha256 = hashlib.sha256(file_url.encode("utf-8")).hexdigest()
+    cache_path = cache_dir / f"{sha256}.json"
+
+    if cache_path.exists():
+        cached = json.loads(cache_path.read_text())
+        return cached["markdown"]
+
+    document_url = f"{base_url.rstrip('/')}/{sha256}.bytes"
+
+    def _do_call():
+        client = Mistral(api_key=api_key)
+        ocr_response = client.ocr.process(
+            model=MISTRAL_OCR_MODEL,
+            document={"type": "document_url", "document_url": document_url},
+            table_format="markdown",
+            extract_header=True,
+            confidence_scores_granularity="page",
+        )
+        markdown_parts = []
+        if hasattr(ocr_response, "pages"):
+            for page in ocr_response.pages:
+                if hasattr(page, "tables") and page.tables:
+                    for table in page.tables:
+                        if hasattr(table, "markdown") and table.markdown:
+                            markdown_parts.append(table.markdown)
+                        elif hasattr(table, "content") and table.content:
+                            markdown_parts.append(table.content)
+        if hasattr(ocr_response, "tables") and ocr_response.tables:
+            for table in ocr_response.tables:
+                if hasattr(table, "markdown") and table.markdown:
+                    markdown_parts.append(table.markdown)
+                elif hasattr(table, "content") and table.content:
+                    markdown_parts.append(table.content)
+        return "\n\n".join(markdown_parts)
+
+    for attempt in range(max_retries):
+        try:
+            if semaphore is not None:
+                with semaphore:
+                    markdown = _do_call()
+            else:
+                markdown = _do_call()
+            cache_path.write_text(json.dumps({
+                "file_url": file_url,
+                "markdown": markdown,
+                "cached_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            }))
+            return markdown
+        except Exception:
+            if attempt < max_retries - 1:
+                time.sleep((2 ** attempt) * 1)
+            else:
+                return None
+    return None
