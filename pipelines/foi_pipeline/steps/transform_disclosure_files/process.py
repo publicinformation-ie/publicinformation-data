@@ -10,12 +10,14 @@ import json
 import os
 import sys
 import tempfile
+import threading
 import time
 from pathlib import Path
 
 from lib.cli_utils import add_common_args, filter_by_public_body
 from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
 from lib.http_utils import fetch
+from steps.transform_disclosure_files.mistral_ocr import call_mistral_ocr, markdown_to_rows, _strip_duplicate_headers
 
 STEP_NAME = "transform_disclosure_files"
 
@@ -495,7 +497,12 @@ def _extract_pdf(file_bytes, table_settings=None, skip_canonicalization_check=Fa
     return sheet_name, rows, [], total_tables > 1, merge_stats, "pdfplumber", None
 
 
-def _process_single_file(item, cache, step_dir, manual_override_urls=frozenset()):
+def _process_single_file(
+    item, cache, step_dir, manual_override_urls=frozenset(),
+    skip_mistral_urls=frozenset(), mistral_enabled=False,
+    ocr_cache_dir=None, mistral_base_url=None, mistral_api_key=None,
+    mistral_semaphore=None,
+):
     """Process a single file. Called by worker processes.
 
     Args:
@@ -505,6 +512,11 @@ def _process_single_file(item, cache, step_dir, manual_override_urls=frozenset()
         manual_override_urls: Set of file_urls with a manual column_mapping
             override (from extract_disclosures_canonicalize); these skip the
             camelot canonicalization fallback in _extract_pdf
+        skip_mistral_urls: Set of file_urls with skip_mistral: true in their
+            manual override; these go straight to the pdfplumber/camelot path
+        mistral_enabled: Whether MISTRAL_API_KEY was set at process() startup
+        ocr_cache_dir, mistral_base_url, mistral_api_key, mistral_semaphore:
+            Passed through to call_mistral_ocr when the Mistral branch is used
 
     Returns:
         List of result dicts to append (typically 0 or 1 items)
@@ -520,14 +532,48 @@ def _process_single_file(item, cache, step_dir, manual_override_urls=frozenset()
 
         pdf_extractor = "pdfplumber"
         merge_stats = {}
+        camelot_info = None
         if file_type == "xlsx":
             sheet_name, rows, _, has_multiple = _extract_xlsx(file_bytes)
         elif file_type == "xls":
             sheet_name, rows, _, has_multiple = _extract_xls(file_bytes)
         else:  # pdf
-            sheet_name, rows, _, has_multiple, merge_stats, pdf_extractor, camelot_info = _extract_pdf(
-                file_bytes, skip_canonicalization_check=file_url in manual_override_urls
-            )
+            pdf_extractor = None
+            use_mistral = mistral_enabled and file_url not in skip_mistral_urls
+            if use_mistral:
+                markdown = call_mistral_ocr(
+                    file_url, ocr_cache_dir, mistral_base_url, mistral_api_key,
+                    semaphore=mistral_semaphore,
+                )
+                if markdown is None:
+                    append_error(step_dir, {
+                        "step": STEP_NAME,
+                        "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                        "error_type": "MistralOCRWarning",
+                        "error_message": "Mistral OCR failed after retries",
+                        "context": {"file_url": file_url},
+                    })
+                else:
+                    rows_candidate = markdown_to_rows(markdown)
+                    if rows_candidate:
+                        deduped_rows, stripped = _strip_duplicate_headers(rows_candidate)
+                        sheet_name = "page 1"
+                        rows = deduped_rows
+                        has_multiple = False
+                        merge_stats = {"duplicate_headers_stripped": stripped}
+                        pdf_extractor = "mistral_ocr"
+                    else:
+                        append_error(step_dir, {
+                            "step": STEP_NAME,
+                            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                            "error_type": "MistralOCREmptyWarning",
+                            "error_message": "Mistral OCR returned no tables",
+                            "context": {"file_url": file_url},
+                        })
+            if pdf_extractor is None:
+                sheet_name, rows, _, has_multiple, merge_stats, pdf_extractor, camelot_info = _extract_pdf(
+                    file_bytes, skip_canonicalization_check=file_url in manual_override_urls
+                )
 
         if file_type == "pdf":
             result_record = {
@@ -565,7 +611,7 @@ def _process_single_file(item, cache, step_dir, manual_override_urls=frozenset()
         return [], True  # marked processed — parse errors are permanent failures
 
 
-def process(input_data, step_dir, writer, verbose=False, workers=4):
+def process(input_data, step_dir, writer, verbose=False, workers=4, mistral_workers=2):
     errors_path = Path(step_dir) / "errors.json"
     if not errors_path.exists():
         write_json(errors_path, [])
@@ -573,6 +619,15 @@ def process(input_data, step_dir, writer, verbose=False, workers=4):
     # Initialize cache
     cache = DisclosureFileCache(Path(step_dir).parent / "verify_disclosure_files" / "cache")
     manual_override_urls = _load_manual_override_urls(step_dir)
+    skip_mistral_urls = _load_skip_mistral_urls(step_dir)
+
+    mistral_api_key = os.environ.get("MISTRAL_API_KEY")
+    mistral_base_url = os.environ.get("MISTRAL_OCR_PDF_BASE_URL")
+    mistral_enabled = bool(mistral_api_key)
+    if not mistral_enabled:
+        print("MISTRAL_API_KEY not set — all PDFs will use pdfplumber/camelot")
+    ocr_cache_dir = Path(step_dir) / "ocr_cache"
+    mistral_semaphore = threading.Semaphore(mistral_workers) if mistral_enabled else None
 
     status_counts = {}
     for item in input_data["results"]:
@@ -609,8 +664,14 @@ def process(input_data, step_dir, writer, verbose=False, workers=4):
     # This gives us effective parallelism while avoiding pickling issues
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
         # Submit all tasks and collect futures to preserve order
-        futures = [executor.submit(_process_single_file, item, cache, step_dir, manual_override_urls)
-                  for item in items_to_process]
+        futures = [
+            executor.submit(
+                _process_single_file, item, cache, step_dir, manual_override_urls,
+                skip_mistral_urls, mistral_enabled, ocr_cache_dir, mistral_base_url,
+                mistral_api_key, mistral_semaphore,
+            )
+            for item in items_to_process
+        ]
         results = [f.result() for f in futures]
 
     all_results = []
@@ -636,6 +697,12 @@ def main():
         type=int,
         default=8,
         help="Number of parallel workers for file processing (default: 8)",
+    )
+    parser.add_argument(
+        "--mistral-workers",
+        type=int,
+        default=2,
+        help="Number of concurrent Mistral OCR API calls, independent of --workers (default: 2)",
     )
     args = parser.parse_args()
 
@@ -665,7 +732,7 @@ def main():
     if writer.processed_keys:
         print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")
 
-    process(input_data, step_dir, writer, verbose=args.verbose, workers=args.workers)
+    process(input_data, step_dir, writer, verbose=args.verbose, workers=args.workers, mistral_workers=args.mistral_workers)
     count = writer.finalize()
     write_status(step_dir, count)
     if args.verbose:
