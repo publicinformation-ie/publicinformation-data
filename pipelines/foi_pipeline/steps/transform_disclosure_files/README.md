@@ -7,7 +7,7 @@ Downloads each disclosure log file and converts spreadsheet and PDF data into JS
 For each file record:
 - **XLSX** — parsed with `openpyxl` (first sheet only). Cell values are serialised to JSON-safe types (dates to ISO strings, decimals to floats, other types to strings with a warning).
 - **XLS** — parsed with `xlrd` (first sheet only). Same serialisation logic.
-- **PDF** — parsed with `pdfplumber`. All tables from all pages are concatenated into a single flat `rows` list. `sheet_name` is set to `"page 1"` for single-page PDFs, or `"pages 1-N"` for multi-page PDFs.
+- **PDF** — parsed with Mistral OCR (`table_format="markdown"`, `extract_header=True`) as the primary extractor, falling back to `pdfplumber` (then `camelot` stream) on Mistral failure, empty result, `MISTRAL_API_KEY` being unset, or a `skip_mistral` manual override. `sheet_name` is set to `"page 1"` for single-page PDFs, or `"pages 1-N"` for multi-page pdfplumber/camelot extractions.
 
 Warnings are appended to `errors.json` (not fatal) when:
 - A file has multiple non-empty sheets (only the first is used). (`MultipleSheetWarning`)
@@ -28,6 +28,8 @@ Supports **incremental resumption** keyed on `file_url` and propagates upstream 
 |---|---|
 | `sheet_name` | Name of the extracted sheet, page range (e.g. `"page 1"`, `"pages 1-3"`), or `null` on error |
 | `rows` | 2D array of cell values (list of rows, each row a list of cells), or `null` on error |
+| `pdf_extractor` | PDF only. One of `"mistral_ocr"`, `"pdfplumber"`, `"camelot_stream"` |
+| `pdf_merge_stats` | PDF only. Shape depends on `pdf_extractor` — `"mistral_ocr"`: `{"duplicate_headers_stripped": N}`; `"pdfplumber"`: `{"page_split_merges": N, "header_rows_stripped": N}`; `"camelot_stream"`: `{}`. Downstream consumers must key off `pdf_extractor` before reading fields, not assume a uniform shape. |
 
 ## Notable files
 
@@ -66,6 +68,7 @@ Fraction of PDFs with no detected quality issues. Supplementary metrics track ea
 | `newline_split_row_rate` | A data row has exactly 1 non-null value in a 3+-column table (PDF cell with embedded newline split across rows) |
 | `camelot_fallback_rate` | pdfplumber scored < 2 mappable columns and camelot stream was tried |
 | `camelot_win_rate` | camelot stream extraction was used in the final output |
+| `mistral_ocr_rate` | Fraction of PDFs extracted via the Mistral OCR path |
 
 ### Predicates
 
@@ -104,8 +107,48 @@ As of 2025-06, this step uses parallel processing and persistent caching to impr
 - 900 files: reduced from 5+ minutes to ~75-90 seconds
 
 ### CLI Options
-- `--workers N`: Number of parallel workers (default: 4)
+- `--workers N`: Number of parallel workers (default: 8)
+- `--mistral-workers N`: Number of concurrent Mistral OCR API calls, independent of `--workers` (default: 2)
 
 ### Thread Safety
 - `ThreadPoolExecutor` is used instead of `ProcessPoolExecutor` to avoid pickling issues
 - Results are collected and appended sequentially to maintain thread safety with `IncrementalWriter`
+
+## Mistral OCR
+
+As of 2026-07, PDF extraction tries Mistral OCR first, falling back to the
+existing pdfplumber/camelot path on failure.
+
+### Configuration
+
+| Setting | Type | Behavior |
+|---|---|---|
+| `MISTRAL_API_KEY` | env var | Required for the Mistral path. If unset, a one-time startup warning is printed and every PDF routes to pdfplumber/camelot for the whole run. |
+| `MISTRAL_OCR_PDF_BASE_URL` | env var | Base URL the cached PDF bytes are served from (e.g. `https://<host>`); Mistral fetches `{MISTRAL_OCR_PDF_BASE_URL}/{sha256}.bytes`. Providing this URL (ngrok, a file server, etc.) is an infrastructure concern outside this step. |
+| `--mistral-workers N` | CLI flag | Bounds concurrent Mistral API calls, independent of `--workers` (default: 2, conservative given Mistral's rate limits). |
+
+### Caching
+
+Raw Mistral markdown responses are cached in `ocr_cache/` (gitignored), keyed
+by SHA256 of `file_url`: `ocr_cache/{sha256}.json` =
+`{"file_url": ..., "markdown": ..., "cached_at": <iso8601>}`. This cache is
+checked before every Mistral API call, independent of the incremental
+writer's processed-keys skip — `--force` reruns don't re-incur OCR cost for
+files already OCR'd. No expiry: delete the specific `ocr_cache/{sha256}.json`
+file to force a re-OCR.
+
+### Manual overrides
+
+`extract_disclosures_canonicalize/column_mappings.json` entries support a
+`skip_mistral: true` flag (independent of, and can coexist with,
+`skip_camelot_fallback`). Files with this flag go straight to the
+pdfplumber/camelot path — protects manual `column_mapping`s calibrated
+against pdfplumber's row structure from silently breaking under Mistral's
+different row structure.
+
+### Errors
+
+| Condition | error_type |
+|---|---|
+| Mistral API fails after 3 retries | `MistralOCRWarning` (non-fatal, falls back) |
+| Mistral returns no tables | `MistralOCREmptyWarning` (non-fatal, falls back) |
