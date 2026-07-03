@@ -718,6 +718,39 @@ def test_process_mistral_api_failure_falls_back_to_pdfplumber(tmp_path, monkeypa
     assert any(e["error_type"] == "MistralOCRWarning" for e in errors)
 
 
+def test_process_mistral_exception_falls_back_to_pdfplumber(tmp_path, monkeypatch):
+    """Test that exceptions raised by call_mistral_ocr (e.g. corrupt cache file)
+    are caught and fall back to pdfplumber, not causing permanent zero-row failure."""
+    import unittest.mock
+    from lib.file_utils import IncrementalWriter
+    from steps.transform_disclosure_files.process import process
+
+    step_dir, cache_dir, key, file_url = _make_mistral_process_fixture(tmp_path)
+    monkeypatch.setenv("MISTRAL_API_KEY", "fake-key")
+    monkeypatch.setenv("MISTRAL_OCR_PDF_BASE_URL", "https://base.example.com")
+
+    input_data = {"results": [{"file_url": file_url, "file_type": "pdf", "public_body_id": 1}]}
+    output_path = step_dir / "output.json"
+    writer = IncrementalWriter(output_path, "transform_disclosure_files", key_field="file_url", force=True)
+    with unittest.mock.patch(
+        "steps.transform_disclosure_files.process.DisclosureFileCache.get_file_path",
+        return_value=cache_dir / f"{key}.bytes",
+    ), unittest.mock.patch(
+        "steps.transform_disclosure_files.process.call_mistral_ocr",
+        side_effect=Exception("simulated failure, e.g. corrupt cache"),
+    ):
+        process(input_data, step_dir, writer)
+    writer.finalize()
+
+    result = json.loads(output_path.read_text())
+    record = result["results"][0]
+    assert record["pdf_extractor"] == "pdfplumber"
+    assert record["rows"] == [["Ref", "Date"], ["1", "2024-01-01"]]
+
+    errors = json.loads((step_dir / "errors.json").read_text())
+    assert any(e["error_type"] == "MistralOCRWarning" for e in errors)
+
+
 def test_process_mistral_empty_result_falls_back_to_pdfplumber(tmp_path, monkeypatch):
     import unittest.mock
     from lib.file_utils import IncrementalWriter
