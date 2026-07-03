@@ -23,7 +23,7 @@ def test_column_mappings_is_flat_dict_of_overrides():
     for url, entry in data.items():
         assert url.startswith("http"), f"key {url!r} is not a URL"
         assert isinstance(entry, dict)
-        assert set(entry.keys()) <= {"source_method", "overridden", "column_mapping", "skip_camelot_fallback"}, (
+        assert set(entry.keys()) <= {"source_method", "overridden", "column_mapping", "skip_camelot_fallback", "skip_mistral"}, (
             f"entry for {url!r} has unexpected keys: {sorted(entry.keys())} "
             "— likely another entry nested inside this one"
         )

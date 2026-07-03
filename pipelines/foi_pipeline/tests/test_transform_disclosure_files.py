@@ -470,6 +470,71 @@ def test_load_manual_override_urls_missing_file_returns_empty_set(tmp_path):
     assert result == set()
 
 
+def test_load_skip_mistral_urls_reads_column_mappings(tmp_path):
+    """_load_skip_mistral_urls reads the sibling
+    extract_disclosures_canonicalize/column_mappings.json and returns only
+    the URLs whose entry opts into skip_mistral."""
+    from steps.transform_disclosure_files.process import _load_skip_mistral_urls
+    import json
+
+    step_dir = tmp_path / "transform_disclosure_files"
+    step_dir.mkdir()
+    canon_dir = tmp_path / "extract_disclosures_canonicalize"
+    canon_dir.mkdir()
+    (canon_dir / "column_mappings.json").write_text(json.dumps({
+        "https://example.com/a.pdf": {"source_method": "manual", "overridden": True, "skip_mistral": True, "column_mapping": {}},
+        "https://example.com/b.pdf": {"source_method": "manual", "overridden": True, "column_mapping": {}},
+    }))
+
+    result = _load_skip_mistral_urls(step_dir)
+    assert result == {"https://example.com/a.pdf"}
+
+
+def test_load_skip_mistral_urls_missing_file_returns_empty_set(tmp_path):
+    from steps.transform_disclosure_files.process import _load_skip_mistral_urls
+
+    step_dir = tmp_path / "transform_disclosure_files"
+    step_dir.mkdir()
+    (tmp_path / "extract_disclosures_canonicalize").mkdir()
+
+    result = _load_skip_mistral_urls(step_dir)
+    assert result == set()
+
+
+def test_load_skip_mistral_urls_independent_of_skip_camelot_fallback(tmp_path):
+    """skip_mistral and skip_camelot_fallback are independent flags that can
+    coexist on the same entry — this test guards against one loader
+    accidentally reading the other's key."""
+    from steps.transform_disclosure_files.process import (
+        _load_skip_mistral_urls, _load_manual_override_urls,
+    )
+    import json
+
+    step_dir = tmp_path / "transform_disclosure_files"
+    step_dir.mkdir()
+    canon_dir = tmp_path / "extract_disclosures_canonicalize"
+    canon_dir.mkdir()
+    (canon_dir / "column_mappings.json").write_text(json.dumps({
+        "https://example.com/both.pdf": {
+            "source_method": "manual", "overridden": True,
+            "skip_mistral": True, "skip_camelot_fallback": True, "column_mapping": {},
+        },
+        "https://example.com/mistral-only.pdf": {
+            "source_method": "manual", "overridden": True,
+            "skip_mistral": True, "column_mapping": {},
+        },
+        "https://example.com/camelot-only.pdf": {
+            "source_method": "manual", "overridden": True,
+            "skip_camelot_fallback": True, "column_mapping": {},
+        },
+    }))
+
+    skip_mistral = _load_skip_mistral_urls(step_dir)
+    skip_camelot = _load_manual_override_urls(step_dir)
+    assert skip_mistral == {"https://example.com/both.pdf", "https://example.com/mistral-only.pdf"}
+    assert skip_camelot == {"https://example.com/both.pdf", "https://example.com/camelot-only.pdf"}
+
+
 def test_process_respects_manual_override_skip(tmp_path):
     """End-to-end: when a file's URL is in column_mappings.json, process()
     must keep it on the pdfplumber path (no camelot attempted) even when the

@@ -423,6 +423,24 @@ def _load_manual_override_urls(step_dir: Path) -> set[str]:
     return {url for url, entry in mappings.items() if entry.get("skip_camelot_fallback")}
 
 
+def _load_skip_mistral_urls(step_dir: Path) -> set[str]:
+    """Return the set of file_urls whose manual column_mapping override in
+    the sibling extract_disclosures_canonicalize step's column_mappings.json
+    opts into skip_mistral.
+
+    These are files whose column_mapping was calibrated against
+    pdfplumber's row structure; routing them through Mistral OCR (a
+    different row structure) would silently break the mapping. This flag
+    is independent of skip_camelot_fallback and the two can coexist on the
+    same entry.
+    """
+    mappings_path = Path(step_dir).parent / "extract_disclosures_canonicalize" / "column_mappings.json"
+    if not mappings_path.exists():
+        return set()
+    mappings = json.loads(mappings_path.read_text())
+    return {url for url, entry in mappings.items() if entry.get("skip_mistral")}
+
+
 def _extract_pdf(file_bytes, table_settings=None, skip_canonicalization_check=False):
     """Parse PDF bytes. Returns (sheet_name, rows, fallback_cells, has_multiple_tables, merge_stats, pdf_extractor, camelot_info).
 
