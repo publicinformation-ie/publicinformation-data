@@ -173,12 +173,12 @@ _SYNONYMS: dict[str, list[str]] = {
         'summary of decision',                           # Meath 2016–2019 col 5
     ],
     'review_status': [
-        'ir', 'ir/al', 'al',
+        'ir', 'ir/al', 'al', 'review status',
         # Irish-language synonym (Fingal, DLR PDFs)
         'athbhreithniú',
     ],
     'related_request': [
-        'related file', 'related file/uimhir cháis',
+        'related file', 'related file/uimhir cháis', 'related request',
     ],
     'request_description': [
         'description', 'request details', 'request', 'summary',

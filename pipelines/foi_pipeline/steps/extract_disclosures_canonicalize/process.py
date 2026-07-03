@@ -11,6 +11,7 @@ from lib.column_map import (
     REQUIRED_COLUMNS,
     canonicalize_header,
     canonicalize_headers,
+    compute_row_id,
 )
 
 STEP_NAME = "extract_disclosures_canonicalize"
@@ -72,8 +73,9 @@ def _apply_manual_mapping(item: dict, mapping: dict) -> tuple[list, list, int]:
 
     results = []
     header_rows_dropped = 0
+    date_known_issues = item.get("date_known_issues") or {}
     # Process data rows (skip header)
-    for row in rows[header_row_idx + 1:]:
+    for original_row_index, row in enumerate(rows[header_row_idx + 1:], start=header_row_idx + 1):
         if not row:
             continue
         record = {**meta}
@@ -106,6 +108,8 @@ def _apply_manual_mapping(item: dict, mapping: dict) -> tuple[list, list, int]:
         if is_header_row(record):
             header_rows_dropped += 1
             continue
+        record["row_id"] = compute_row_id(item["file_url"], original_row_index)
+        record["known_issues"] = list(date_known_issues.get(str(original_row_index), []))
         results.append(record)
 
     return results, [], header_rows_dropped
@@ -193,7 +197,8 @@ def canonicalize_file(item, column_swaps=None, column_mappings=None):
             },
         }], 0
 
-    missing_required = sorted(k for k in REQUIRED_COLUMNS if k not in canonical_to_col_idx)
+    missing_columns = sorted(k for k in CANONICAL_COLUMNS if k not in canonical_to_col_idx)
+    date_known_issues = item.get("date_known_issues") or {}
     file_swaps = column_swaps.get(item["file_url"], []) if column_swaps else []
 
     # Compute the "spacer column" position for row-length correction (Root Cause A / B).
@@ -218,7 +223,7 @@ def canonicalize_file(item, column_swaps=None, column_mappings=None):
     results = []
     errors = []
     header_rows_dropped = 0
-    for row in rows[header_row_idx + 1:]:
+    for original_row_index, row in enumerate(rows[header_row_idx + 1:], start=header_row_idx + 1):
         if not row:
             continue
         if _is_column_letter_row(row):
@@ -298,8 +303,10 @@ def canonicalize_file(item, column_swaps=None, column_mappings=None):
         if req_desc and isinstance(req_desc, str) and req_desc.strip().lower() == "request":
             continue
 
-        if missing_required:
-            record["missing_columns"] = missing_required
+        record["row_id"] = compute_row_id(item["file_url"], original_row_index)
+        record["known_issues"] = list(date_known_issues.get(str(original_row_index), []))
+        if missing_columns:
+            record["missing_columns"] = missing_columns
         results.append(record)
 
     return results, errors, header_rows_dropped
