@@ -29,17 +29,21 @@ TBD - Will be updated after running the full experiment with Mistral OCR API acc
 
 To run the full experiment:
 
-1. Ensure you have a Mistral OCR API key
-2. Set the environment variable: `export MISTRAL_API_KEY=your_key_here`
-3. Run the experiment:
+1. Install the Mistral client library:
+   ```bash
+   uv pip install mistralai
+   ```
+2. Ensure you have a Mistral OCR API key
+3. Set the environment variable: `export MISTRAL_API_KEY=your_key_here`
+4. Run the experiment:
    ```bash
    cd pipelines/foi_pipeline/experiments/2025-01-03-mistral-ocr-comparison
    python sample.py  # Already run, sample.json is committed
    MISTRAL_API_KEY=your_key_here python run.py
    ```
 
-4. Results will be saved in the `results/` directory
-5. Update this README with the actual results from `comparison.json`
+5. Results will be saved in the `results/` directory
+6. Update this README with the actual results from `comparison.json`
 
 ## Reproduction
 

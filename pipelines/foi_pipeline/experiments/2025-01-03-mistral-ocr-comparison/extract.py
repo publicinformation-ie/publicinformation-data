@@ -9,8 +9,16 @@ import pdfplumber
 import requests
 
 # Mistral OCR API configuration
-MISTRAL_OCR_API_URL = "https://ocr.mistral.ai/api/v1/extract"
 MISTRAL_API_KEY = os.environ.get("MISTRAL_API_KEY")
+MISTRAL_OCR_MODEL = "mistral-ocr-latest"
+
+# Try to import mistralai client
+try:
+    from mistralai.client import Mistral
+    MISTRAL_CLIENT_AVAILABLE = True
+except ImportError:
+    MISTRAL_CLIENT_AVAILABLE = False
+    Mistral = None
 
 # Paths
 SAMPLE_PATH = Path(__file__).resolve().parent / "sample.json"
@@ -72,28 +80,52 @@ def extract_with_mistral_ocr(pdf_bytes, max_retries=3):
     Returns:
         Raw markdown string from Mistral OCR, or None on failure
     """
+    if not MISTRAL_CLIENT_AVAILABLE:
+        print("mistralai client library not installed. Install with: uv pip install mistralai")
+        return None
     if not MISTRAL_API_KEY:
         print("MISTRAL_API_KEY environment variable not set")
         return None
     
     for attempt in range(max_retries):
         try:
-            response = requests.post(
-                MISTRAL_OCR_API_URL,
-                headers={
-                    "Authorization": f"Bearer {MISTRAL_API_KEY}",
-                    "Content-Type": "application/pdf"
+            # Use the Mistral client
+            client = Mistral(api_key=MISTRAL_API_KEY)
+            
+            # Process the PDF bytes as a document
+            ocr_response = client.ocr.process(
+                model=MISTRAL_OCR_MODEL,
+                document={
+                    "type": "document_bytes",
+                    "document_bytes": pdf_bytes,
                 },
-                data=pdf_bytes,
-                params={
-                    "table_format": "markdown",
-                    "extract_header": "true"
-                },
-                timeout=60
+                table_format="markdown",
+                extract_header=True,
+                confidence_scores_granularity="page",
             )
-            response.raise_for_status()
-            return response.json().get("markdown", "")
-        except requests.exceptions.RequestException as e:
+            
+            # Extract markdown from tables
+            markdown_parts = []
+            if hasattr(ocr_response, 'tables') and ocr_response.tables:
+                for table in ocr_response.tables:
+                    if hasattr(table, 'markdown'):
+                        markdown_parts.append(table.markdown)
+            
+            # Also check pages for tables
+            if hasattr(ocr_response, 'pages'):
+                for page in ocr_response.pages:
+                    if hasattr(page, 'tables') and page.tables:
+                        for table in page.tables:
+                            if hasattr(table, 'markdown'):
+                                markdown_parts.append(table.markdown)
+            
+            if markdown_parts:
+                return "\n\n".join(markdown_parts)
+            else:
+                print("No tables found in OCR response")
+                return ""
+                
+        except Exception as e:
             if attempt < max_retries - 1:
                 backoff = (2 ** attempt) * 1  # Exponential backoff
                 print(f"Mistral OCR attempt {attempt + 1} failed, retrying in {backoff}s: {e}")
