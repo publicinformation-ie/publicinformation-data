@@ -20,11 +20,15 @@ _BASE_RECORD = {
     "decision_date": None,
     "requester_type": None,
     "related_request": None,
+    "known_issues": [],
 }
 
 
 def _make_record(**kwargs):
-    return {**_BASE_RECORD, **kwargs}
+    record = {**_BASE_RECORD, **kwargs}
+    # Create a new list to avoid sharing mutable state across tests
+    record["known_issues"] = list(record["known_issues"])
+    return record
 
 
 # ── review_status values are NOT reinterpreted: error only, no silent null ────
@@ -399,3 +403,57 @@ def test_process_records_junk_requester_type_logged_as_error():
     assert results[0]["requester_type"] == "Category"  # original passes through
     assert len(errors) == 1
     assert errors[0]["error_type"] == "UnrecognizedRequesterType"
+
+
+# ── Task 4: append value-rejection issues to known_issues ───────────────────────
+
+
+def test_unrecognized_requester_type_appends_to_known_issues():
+    record = _make_record(requester_type="Alien")
+    results = []
+    errors = []
+    process_records({"results": [record]}, results, errors)
+    assert results[0]["known_issues"] == [
+        {"field": "requester_type", "issue_type": "UnrecognizedRequesterType", "raw_value": "Alien"}
+    ]
+
+
+def test_unrecognized_decision_status_appends_to_known_issues():
+    record = _make_record(decision_status="Request")
+    results = []
+    errors = []
+    process_records({"results": [record]}, results, errors)
+    # "Request" is dropped entirely (StatusValueIsColumnHeader), so it lands in
+    # errors_out but the record itself never reaches results_out — assert via errors.
+    assert errors[0]["error_type"] == "StatusValueIsColumnHeader"
+
+
+def test_unrecognized_but_kept_decision_status_appends_to_known_issues():
+    # A genuinely unrecognised (not confirmed-contaminated) status is kept,
+    # and its known_issues entry travels with it.
+    record = _make_record(decision_status="Some Novel Status Text")
+    results = []
+    errors = []
+    process_records({"results": [record]}, results, errors)
+    assert len(results) == 1
+    assert results[0]["known_issues"] == [
+        {
+            "field": "decision_status",
+            "issue_type": "UnrecognizedDecisionStatus",
+            "raw_value": "Some Novel Status Text",
+        }
+    ]
+
+
+def test_known_issues_from_prior_step_are_preserved_alongside_new_ones():
+    record = _make_record(
+        requester_type="Alien",
+        known_issues=[{"field": "date_received", "issue_type": "UnparseableDate", "raw_value": "32/13/2023"}],
+    )
+    results = []
+    errors = []
+    process_records({"results": [record]}, results, errors)
+    assert results[0]["known_issues"] == [
+        {"field": "date_received", "issue_type": "UnparseableDate", "raw_value": "32/13/2023"},
+        {"field": "requester_type", "issue_type": "UnrecognizedRequesterType", "raw_value": "Alien"},
+    ]

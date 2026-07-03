@@ -64,6 +64,11 @@ def process_records(input_data, results_out, errors_out, verbose=False):
                         "raw_requester_type": raw_requester_type,
                     },
                 })
+                record.setdefault("known_issues", []).append({
+                    "field": "requester_type",
+                    "issue_type": "UnrecognizedRequesterType",
+                    "raw_value": raw_requester_type,
+                })
                 # Leave record["requester_type"] unchanged
 
         raw_status = record.get("decision_status")
@@ -100,6 +105,11 @@ def process_records(input_data, results_out, errors_out, verbose=False):
                     "foi_reference_id": record.get("foi_reference_id"),
                     "raw_status": raw_status,
                 }
+            })
+            record.setdefault("known_issues", []).append({
+                "field": "decision_status",
+                "issue_type": error_type,
+                "raw_value": raw_status,
             })
             # Confirmed contamination: drop the record entirely
             if error_type in ("StatusValueIsDate", "StatusValueIsRequesterType", "StatusValueIsColumnHeader"):

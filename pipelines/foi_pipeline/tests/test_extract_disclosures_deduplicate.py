@@ -85,3 +85,19 @@ def test_public_body_scoped_preserves_other_bodies(tmp_path, monkeypatch):
     assert not any(r.get("marker") == "stale" for r in results)
     # the within-1002 duplicate is collapsed to one row
     assert sum(1 for r in results if r["public_body_id"] == 1002) == 1
+
+
+
+def test_deduplicate_preserves_row_id_and_known_issues():
+    record = _rec(body_id=1, ref_id="16/001")
+    record["row_id"] = "abc123def456"
+    record["known_issues"] = [
+        {"field": "requester_type", "issue_type": "UnrecognizedRequesterType", "raw_value": "Alien"}
+    ]
+    record["missing_columns"] = ["review_status"]
+    result, removed, kept = _proc.deduplicate_records([record])
+    assert result[0]["row_id"] == "abc123def456"
+    assert result[0]["known_issues"] == [
+        {"field": "requester_type", "issue_type": "UnrecognizedRequesterType", "raw_value": "Alien"}
+    ]
+    assert result[0]["missing_columns"] == ["review_status"]

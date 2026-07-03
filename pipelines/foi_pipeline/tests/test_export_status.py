@@ -750,6 +750,34 @@ def test_write_disclosure_files_output_multiple_bodies(tmp_path):
     assert ids == {1001, 1002}
 
 
+def test_write_foi_disclosures_output_preserves_row_id_known_issues_missing_columns(tmp_path):
+    record = {
+        "public_body_id": 1001,
+        "name": "Dept A",
+        "file_url": "https://assets.gov.ie/log.xlsx",
+        "file_type": "xlsx",
+        "foi_reference_id": "16/001",
+        "date_received": None,
+        "decision_date": "2016-02-01",
+        "requester_type": None,
+        "decision_status": "Granted",
+        "review_status": None,
+        "related_request": None,
+        "request_description": "some request",
+        "row_id": "abc123def456",
+        "known_issues": [
+            {"field": "date_received", "issue_type": "UnparseableDate", "raw_value": "32/13/2023"},
+        ],
+        "missing_columns": ["date_received", "requester_type", "review_status", "related_request"],
+    }
+    steps_dir = _make_deduplicate_steps_dir(tmp_path, [record])
+    write_foi_disclosures_output(steps_dir, tmp_path)
+    data = json.loads((tmp_path / "public" / "foi-disclosures.json").read_text())
+    assert data[0]["row_id"] == "abc123def456"
+    assert data[0]["known_issues"] == record["known_issues"]
+    assert data[0]["missing_columns"] == record["missing_columns"]
+
+
 # ---------------------------------------------------------------------------
 # write_foi_disclosures_output
 # ---------------------------------------------------------------------------
