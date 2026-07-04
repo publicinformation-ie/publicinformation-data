@@ -18,15 +18,17 @@ python process.py --force
 python process.py --from export_status --force
 ```
 
-**To run a single step manually:**
+> **Always use `process.py` rather than calling individual step scripts directly.** This ensures dependencies are respected and prevents redundant execution. `process.py --from <step> --force` (see above) covers running "just one step forward" — reach for direct step invocation only for isolated debugging.
+
+**To run a single step manually (debugging only):**
 ```bash
-PYTHONPATH=. python steps/export_status/process.py \
+cd pipelines/foi_pipeline
+PYTHONPATH=".:../../src" python steps/export_status/process.py \
   --input steps/extract_disclosures_canonicalize/output.json \
   --output steps/export_status/output.json \
   --force
 ```
-
-> **Note:** Always use `process.py` rather than calling individual step scripts directly. This ensures dependencies are respected and prevents redundant execution.
+`PYTHONPATH` needs **both** the pipeline dir (`.`, for `steps.*` imports) **and** `../../src` (for `lib.*` imports) — `PYTHONPATH=.` alone fails with `ModuleNotFoundError: No module named 'lib'`.
 
 ## Pipeline Architecture
 
@@ -85,11 +87,11 @@ python process.py --from export_status --force
 python process.py --public-body 1001
 ```
 
-### Single step execution
+### Single step execution (debugging only — prefer `process.py --from <step>` above)
 
 ```bash
-cd foi_pipeline
-PYTHONPATH=. python steps/<step>/process.py \
+cd pipelines/foi_pipeline
+PYTHONPATH=".:../../src" python steps/<step>/process.py \
   --input steps/<previous>/output.json \
   --output steps/<step>/output.json \
   --force
@@ -152,11 +154,11 @@ See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for common issues including:
 After completing any data quality task, run the pipeline before marking the task complete:
 
 ```bash
-cd foi_pipeline && python status.py --assert-fresh
+cd pipelines/foi_pipeline && python status.py --assert-fresh
 ```
 
 If stale, run the pipeline first:
 
 ```bash
-cd foi_pipeline && python process.py
+cd pipelines/foi_pipeline && python process.py
 ```

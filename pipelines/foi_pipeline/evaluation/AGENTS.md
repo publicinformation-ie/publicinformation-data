@@ -65,6 +65,22 @@ EVAL_JUDGE_PROVIDER=openai \
 
 > **Note:** Switching provider/model changes the recorded `judge_model` id (`<provider>:<model>`). This is your cue to re-verify cached judgments before trusting the metric.
 
+## Local Eval Fixtures
+
+Some steps' `eval/evaluate.py` read from a captured snapshot at `eval/input.json` rather than the live `steps/<name>/output.json` — this pins the eval to reproducible bytes so scores don't silently drift when `output.json` changes underneath you. `input.json` is **gitignored** (see the step's `eval/.gitignore`), so it will be **missing on a fresh checkout or after cloning to a new machine**.
+
+Symptom: `evaluate.py --force` crashes with `FileNotFoundError: ... eval/input.json`.
+
+Fix — regenerate the fixture from the live output, then re-run:
+
+```bash
+cd pipelines/foi_pipeline/steps/<step>/eval
+python evaluate.py --refresh-fixture ../output.json
+cd ../../.. && uv run python evaluate.py --force --steps <step>
+```
+
+Only do this when you actually intend to move the eval's frozen baseline forward (e.g. after a real upstream improvement) — not as a reflexive fix for every missing-file error.
+
 ## Baseline Comparison
 
 Evaluations are compared against `baseline.json` (input-hash gated) to detect regressions. Use `--check` to fail on regression, `--update-baseline` to save current scores.
