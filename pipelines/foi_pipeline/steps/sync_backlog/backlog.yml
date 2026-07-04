@@ -69,6 +69,25 @@ issues:
   status: open
   first_seen: '2026-07-04T07:09:35.411289+00:00'
   last_seen: '2026-07-04T08:38:47.455603+00:00'
+  investigation_notes: 'This metric only counts rows >1 cell longer than the header
+    (unrecoverable shape). A related, UNTRACKED case: rows exactly 1 cell longer
+    than the header where the extra cell is a non-blank leading numeric index (e.g.
+    ''1'', ''2'', ...) rather than a blank spacer. Root Cause B (process.py:256-261)
+    assumes the extra cell is None and deletes the first None it finds; when the
+    extra cell is a real index number, no None exists, so nothing is deleted and
+    every column silently shifts left by one — producing no RowLengthMismatch error
+    but corrupting requester_type/decision_status/decision_date downstream (see
+    extract_disclosures_canonicalize_rows:745_records_have_unrecognized_decision_s).
+    Confirmed on 4 files (328 rows, 229 error records, ~3.6% of pipeline total errors),
+    concentrated in 2 Dept. of Social Protection files sharing one 5-column template
+    (20251212_FOI_Disclosure_Log_2025_Q1.pdf, 20251230_FOI_Disclosure_Log_2025_Q2.pdf,
+    body 1211; ~220 of 229 errors). No existing code detects this shape — column_map.py
+    only recognizes a *named* index header (''No.''/''#''/''Index''), not an unlabeled
+    leading numeric cell. Fix: extend the Root Cause B branch in process.py:256-261
+    to also strip a non-None leading cell when it is purely numeric. Low priority
+    given small scale (3.6% of errors, 2 files dominate) — worth a small scoped fix,
+    not urgent. [upstream_structural]'
+  triaged_at: '2026-07-04T00:00:00.000000+00:00'
 - key: extract_disclosures_deduplicate:9_bodies_kept_<50%_of_records_after_dedu
   step_name: extract_disclosures_deduplicate
   description: 9 bodies kept <50% of records after dedup
@@ -245,6 +264,18 @@ issues:
   status: open
   first_seen: '2026-07-04T07:09:35.411289+00:00'
   last_seen: '2026-07-04T08:38:47.455603+00:00'
+  investigation_notes: 'A subset of this bucket (~101 of 745, 2 files: 20251212_FOI_Disclosure_Log_2025_Q1.pdf
+    64 + 20251230_FOI_Disclosure_Log_2025_Q2.pdf 47, both Dept. of Social Protection
+    body 1211) is column-shift caused by an unlabeled leading numeric index column
+    in the source PDF — not a genuine missing vocabulary mapping. Raw values confirm
+    it: raw_requester_type ''02/01/2025 25894'' (date+ref concatenated), decision_status
+    receiving the description text, true decision date falling off the row entirely.
+    Root cause + fix location cross-referenced at extract_disclosures_canonicalize:7_rows_skipped_with_rowlengthmismatch_ac
+    (process.py:256-261, Root Cause B needs a branch for non-None leading numeric
+    cells). Adding vocabulary mappings will NOT fix these ~101 records — they need
+    the upstream column-alignment fix. Remaining ~644 records in this bucket (OTHERS/JOURNALISTS/BUSINESS/etc.)
+    are genuine vocabulary gaps, unaffected by this. [upstream_structural]'
+  triaged_at: '2026-07-04T00:00:00.000000+00:00'
 - key: extract_disclosures_deduplicate:6_bodies_kept_<50%_of_records_after_dedu
   step_name: extract_disclosures_deduplicate
   description: 6 bodies kept <50% of records after dedup
