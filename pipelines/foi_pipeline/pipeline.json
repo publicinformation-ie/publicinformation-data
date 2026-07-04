@@ -14,6 +14,7 @@
     "verify_disclosure_files",
     "transform_disclosure_files",
     "normalize_disclosure_cells",
+    "filter_phantom_rows",
     "extract_disclosures_detect_header_row",
     "extract_disclosures_normalize_header",
     "extract_disclosures_split_combined_columns",
