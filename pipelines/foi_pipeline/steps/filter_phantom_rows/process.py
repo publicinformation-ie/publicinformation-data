@@ -38,6 +38,24 @@ def _merge_continuation_rows(rows):
     """
     if not rows or max(len(r) for r in rows) < 3:
         return rows, 0
+
+    # Sparse-layout guard: if >50% of data rows are single-value rows AND there
+    # are no rows with 2+ non-None cells, this is the file's shape (not fragmentation).
+    # Merging would collapse distinct records. Files with continuation rows will have
+    # rows with 2+ non-None cells mixed in.
+    data_rows = rows[1:]
+    if data_rows:
+        single = sum(
+            1 for r in data_rows
+            if len(r) >= 3 and sum(1 for c in r if c is not None) == 1
+        )
+        multi = sum(
+            1 for r in data_rows
+            if len(r) >= 3 and sum(1 for c in r if c is not None) >= 2
+        )
+        if single / len(data_rows) > 0.5 and multi == 0:
+            return rows, 0  # sparse layout is this file's shape, not fragmentation
+
     merged = 0
     out = [list(rows[0])]
     for row in rows[1:]:
@@ -45,10 +63,15 @@ def _merge_continuation_rows(rows):
         if len(row) >= 3 and len(non_none) == 1:
             col_idx, val = non_none[0]
             prev = out[-1]
-            if len(out) > 1 and col_idx < len(prev) and isinstance(prev[col_idx], str) and isinstance(val, str):
-                prev[col_idx] = prev[col_idx] + " " + val
-                merged += 1
-                continue
+            if len(out) > 1 and col_idx < len(prev) and isinstance(val, str):
+                if isinstance(prev[col_idx], str):
+                    prev[col_idx] = prev[col_idx] + " " + val
+                    merged += 1
+                    continue
+                if prev[col_idx] is None:
+                    prev[col_idx] = val
+                    merged += 1
+                    continue
         out.append(list(row))
     return out, merged
 

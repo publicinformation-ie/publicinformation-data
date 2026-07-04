@@ -154,6 +154,28 @@ def test_merge_returns_merge_count():
     assert out == [["h1", "h2", "h3"], ["a", "long text continued", "c"]]
 
 
+def test_merge_places_fragment_into_none_parent_cell():
+    rows = [["h1", "h2", "h3"],
+            ["a", None, "c"],
+            [None, "orphan fragment", None]]
+    out, merged = _merge_continuation_rows(rows)
+    assert merged == 1
+    assert out == [["h1", "h2", "h3"], ["a", "orphan fragment", "c"]]
+
+
+def test_merge_skips_sparse_layout_files():
+    # >50% of data rows are single-value rows: this is the file's shape,
+    # not fragmentation — merging would collapse distinct records.
+    rows = [["h1", "h2", "h3"],
+            ["desc one", None, None],
+            [None, None, "x1"],
+            ["desc two", None, None],
+            ["desc three", None, None]]
+    out, merged = _merge_continuation_rows(rows)
+    assert merged == 0
+    assert out == rows
+
+
 # ── _prune_null_columns ───────────────────────────────────────────────────────
 
 def test_prune_null_columns_basic():
