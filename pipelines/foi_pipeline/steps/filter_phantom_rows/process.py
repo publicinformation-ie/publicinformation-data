@@ -28,6 +28,45 @@ def _drop_blank_rows(rows):
     return kept, dropped
 
 
+def _merge_continuation_rows(rows):
+    """Merge PDF continuation rows into their preceding row.
+
+    pdfplumber sometimes splits a single table row across two physical rows when
+    cell text wraps. A continuation row has exactly 1 non-None cell across >= 3
+    columns; its string value is appended (with a space) to the same column in
+    the preceding row. Returns (rows, n_merged).
+    """
+    if not rows or max(len(r) for r in rows) < 3:
+        return rows, 0
+    merged = 0
+    out = [list(rows[0])]
+    for row in rows[1:]:
+        non_none = [(i, v) for i, v in enumerate(row) if v is not None]
+        if len(row) >= 3 and len(non_none) == 1:
+            col_idx, val = non_none[0]
+            prev = out[-1]
+            if len(out) > 1 and col_idx < len(prev) and isinstance(prev[col_idx], str) and isinstance(val, str):
+                prev[col_idx] = prev[col_idx] + " " + val
+                merged += 1
+                continue
+        out.append(list(row))
+    return out, merged
+
+
+def _prune_null_columns(rows):
+    """Remove all-None columns from extracted PDF rows. Returns (rows, n_pruned)."""
+    if not rows:
+        return rows, 0
+    ncols = max(len(r) for r in rows)
+    to_drop = {
+        col for col in range(ncols)
+        if all(col < len(row) and row[col] is None for row in rows)
+    }
+    if not to_drop:
+        return rows, 0
+    return [[v for i, v in enumerate(row) if i not in to_drop] for row in rows], len(to_drop)
+
+
 def process(input_data, writer, verbose=False):
     for item in input_data["results"]:
         file_url = item["file_url"]
@@ -42,9 +81,17 @@ def process(input_data, writer, verbose=False):
             continue
 
         stats = {}
+        if item.get("file_type") == "pdf":
+            rows, merged = _merge_continuation_rows(rows)
+            if merged:
+                stats["fragments_merged"] = merged
         rows, dropped = _drop_blank_rows(rows)
         if dropped:
             stats["blank_rows_dropped"] = len(dropped)
+        if item.get("file_type") == "pdf":
+            rows, pruned = _prune_null_columns(rows)
+            if pruned:
+                stats["null_columns_pruned"] = pruned
 
         out = {**item, "rows": rows}
         if stats:

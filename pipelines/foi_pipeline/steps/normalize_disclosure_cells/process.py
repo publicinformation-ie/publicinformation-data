@@ -14,48 +14,6 @@ _CID_RE = re.compile(r'\(cid:\d+\)')
 _MULTI_SPACE_RE = re.compile(r' {2,}')
 
 
-def _merge_continuation_rows(rows):
-    """Merge PDF continuation rows into their preceding row.
-
-    pdfplumber sometimes splits a single table row across two physical rows when
-    cell text wraps. A continuation row has exactly 1 non-None cell across >= 3
-    columns; its string value is appended (with a space) to the same column in
-    the preceding row. Non-string values in the continuation position are kept
-    as separate rows.
-    """
-    if not rows or max(len(r) for r in rows) < 3:
-        return rows
-    out = [list(rows[0])]
-    for row in rows[1:]:
-        non_none = [(i, v) for i, v in enumerate(row) if v is not None]
-        if len(row) >= 3 and len(non_none) == 1:
-            col_idx, val = non_none[0]
-            prev = out[-1]
-            if len(out) > 1 and col_idx < len(prev) and isinstance(prev[col_idx], str) and isinstance(val, str):
-                prev[col_idx] = prev[col_idx] + " " + val
-                continue
-        out.append(list(row))
-    return out
-
-
-def _prune_null_columns(rows):
-    """Remove all-None columns from extracted PDF rows.
-
-    Drops any column index where every row has None at that position (and the
-    column is present in all rows). Jagged rows are left untouched.
-    """
-    if not rows:
-        return rows
-    ncols = max(len(r) for r in rows)
-    to_drop = {
-        col for col in range(ncols)
-        if all(col < len(row) and row[col] is None for row in rows)
-    }
-    if not to_drop:
-        return rows
-    return [[v for i, v in enumerate(row) if i not in to_drop] for row in rows]
-
-
 def _normalize_cell(file_type, value):
     """Normalize a single cell value. Delegates to shared utility.
     
@@ -138,10 +96,6 @@ def process(input_data, step_dir, writer, force=False, verbose=False):
                         "after": normalized,
                     })
             normalized_rows.append(normalized_row)
-
-        if file_type == "pdf":
-            normalized_rows = _merge_continuation_rows(normalized_rows)
-            normalized_rows = _prune_null_columns(normalized_rows)
 
         write_json(changes_path, changes)
         writer.append([{**item, "rows": normalized_rows}])
