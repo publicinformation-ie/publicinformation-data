@@ -176,6 +176,24 @@ def test_merge_skips_sparse_layout_files():
     assert out == rows
 
 
+def test_merge_skips_sparse_layout_with_one_incidental_multi_row():
+    # Regression test for reviewer-identified bug: an exact `multi == 0` guard
+    # would be fully disabled by a single incidental multi-value row in an
+    # otherwise sparse (genuinely single-value-per-record) file, causing the
+    # merge loop to chain-collapse many distinct records into one. Here 19 of
+    # 20 data rows are single-value (95%) and exactly 1 is multi-value (5%) —
+    # the guard must still fire (ratio-based threshold, not exact-zero check).
+    header = ["h1", "h2", "h3"]
+    single_rows = [[f"desc {i}", None, None] for i in range(19)]
+    incidental_multi_row = ["extra", "info", None]
+    rows = [header] + single_rows + [incidental_multi_row]
+
+    out, merged = _merge_continuation_rows(rows)
+
+    assert merged == 0
+    assert out == rows
+
+
 # ── _prune_null_columns ───────────────────────────────────────────────────────
 
 def test_prune_null_columns_basic():

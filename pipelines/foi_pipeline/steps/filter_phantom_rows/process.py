@@ -39,10 +39,10 @@ def _merge_continuation_rows(rows):
     if not rows or max(len(r) for r in rows) < 3:
         return rows, 0
 
-    # Sparse-layout guard: if >50% of data rows are single-value rows AND there
-    # are no rows with 2+ non-None cells, this is the file's shape (not fragmentation).
-    # Merging would collapse distinct records. Files with continuation rows will have
-    # rows with 2+ non-None cells mixed in.
+    # Sparse-layout guard: if >50% of data rows are single-value rows AND
+    # multi-value rows are rare (not just "none"), this is the file's shape
+    # (not fragmentation). Merging would collapse distinct records. Files with
+    # continuation rows will have a substantial fraction of rows with 2+ non-None cells.
     data_rows = rows[1:]
     if data_rows:
         single = sum(
@@ -53,7 +53,17 @@ def _merge_continuation_rows(rows):
             1 for r in data_rows
             if len(r) >= 3 and sum(1 for c in r if c is not None) >= 2
         )
-        if single / len(data_rows) > 0.5 and multi == 0:
+        # Ratio-based (not exact-zero) multi-row check: an exact `multi == 0` guard is
+        # too brittle — a single incidental multi-value row in an otherwise sparse file
+        # (e.g. 19 single-value rows + 1 multi-value row) would fully disable the guard
+        # and chain-collapse the whole file. Constraining ratios from the test suite:
+        #   test_merge_continuation_rows_consecutive:            multi/len = 1/3  = 0.333 (guard must NOT fire)
+        #   test_merge_continuation_rows_does_not_corrupt_header: multi/len = 1/4  = 0.25  (guard must NOT fire)
+        #   test_merge_skips_sparse_layout_files:                 multi/len = 0/4  = 0.0   (guard must fire)
+        #   test_merge_skips_sparse_layout_with_one_incidental_multi_row: multi/len = 1/20 = 0.05 (guard must fire)
+        # A threshold of 0.1 satisfies 0.05 < 0.1 <= 0.25, keeping all four cases correct.
+        MULTI_ROW_TOLERANCE = 0.1
+        if single / len(data_rows) > 0.5 and multi / len(data_rows) < MULTI_ROW_TOLERANCE:
             return rows, 0  # sparse layout is this file's shape, not fragmentation
 
     merged = 0
