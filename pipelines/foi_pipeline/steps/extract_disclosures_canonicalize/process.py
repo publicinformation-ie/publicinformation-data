@@ -72,6 +72,7 @@ def _apply_manual_mapping(item: dict, mapping: dict) -> tuple[list, list, int]:
         }], 0
 
     results = []
+    errors = []
     header_rows_dropped = 0
     date_known_issues = item.get("date_known_issues") or {}
     # Process data rows (skip header)
@@ -108,11 +109,23 @@ def _apply_manual_mapping(item: dict, mapping: dict) -> tuple[list, list, int]:
         if is_header_row(record):
             header_rows_dropped += 1
             continue
+        if all(record.get(k) in (None, "") for k in CANONICAL_COLUMNS):
+            errors.append({
+                "error_type": "PhantomRecord",
+                "error_message": "Record has no populated canonical fields; skipped",
+                "context": {
+                    "file_url": meta["file_url"],
+                    "public_body_id": meta["public_body_id"],
+                    "original_row_index": original_row_index,
+                    "row_preview": list(row[:8]),
+                },
+            })
+            continue
         record["row_id"] = compute_row_id(item["file_url"], original_row_index)
         record["known_issues"] = list(date_known_issues.get(str(original_row_index), []))
         results.append(record)
 
-    return results, [], header_rows_dropped
+    return results, errors, header_rows_dropped
 
 
 def is_header_row(row: dict, threshold: int = 2) -> bool:
@@ -295,6 +308,19 @@ def canonicalize_file(item, column_swaps=None, column_mappings=None):
             record[col_a], record[col_b] = record.get(col_b), record.get(col_a)
         if is_header_row(record):
             header_rows_dropped += 1
+            continue
+
+        if all(record.get(k) in (None, "") for k in CANONICAL_COLUMNS):
+            errors.append({
+                "error_type": "PhantomRecord",
+                "error_message": "Record has no populated canonical fields; skipped",
+                "context": {
+                    "file_url": meta["file_url"],
+                    "public_body_id": meta["public_body_id"],
+                    "original_row_index": original_row_index,
+                    "row_preview": list(row[:8]),
+                },
+            })
             continue
 
         # Root Cause B: drop rows where pdfplumber split a multi-word description

@@ -47,15 +47,16 @@ PYTHONPATH=".:../../src" python steps/export_status/process.py \
 11. `find_disclosure_files` - Collects disclosure document links
 12. `transform_disclosure_files` - Processes files into structured data
 13. `normalize_disclosure_cells` - Normalizes string cell values
-14. `extract_disclosures_detect_header_row` - Detects header rows
-15. `extract_disclosures_normalize_header` - Repairs null cells in detected header rows (continuation merge + forward-fill)
-16. `extract_disclosures_normalize_rows` - Normalizes date values to ISO 8601 format
-17. `extract_disclosures_canonicalize` - Maps columns to canonical fields
-18. `extract_disclosures_canonicalize_rows` - Normalizes decision_status field values to canonical statuses
-19. `extract_disclosures_deduplicate` - Removes duplicate FOI records
-20. `export_status` - Fan-in merge of all step outputs (website data source)
-21. `generate_topics` - Groups FOI records into topics
-22. `db_upload` - Populates the libSQL database
+14. `filter_phantom_rows` - Drops blank rows (all file types) and merges wrapped-cell PDF fragments into their parent rows; single authoritative row-structure repair layer
+15. `extract_disclosures_detect_header_row` - Detects header rows
+16. `extract_disclosures_normalize_header` - Repairs null cells in detected header rows (continuation merge + forward-fill)
+17. `extract_disclosures_normalize_rows` - Normalizes date values to ISO 8601 format
+18. `extract_disclosures_canonicalize` - Maps columns to canonical fields
+19. `extract_disclosures_canonicalize_rows` - Normalizes decision_status field values to canonical statuses
+20. `extract_disclosures_deduplicate` - Removes duplicate FOI records
+21. `export_status` - Fan-in merge of all step outputs (website data source)
+22. `generate_topics` - Groups FOI records into topics
+23. `db_upload` - Populates the libSQL database
 
 ### Data Flow
 
@@ -63,7 +64,7 @@ PYTHONPATH=".:../../src" python steps/export_status/process.py \
 find_public_bodies -> find_public_bodies_subject_to_foi -> resolve_website_urls -> validate_websites
     -> find_foi_pages -> find_foi_pages_search -> check_foi_pages
     -> get_foi_emails -> find_disclosure_pages -> fingerprint_disclosure_pages -> find_disclosure_files
-    -> transform_disclosure_files -> normalize_disclosure_cells
+    -> transform_disclosure_files -> normalize_disclosure_cells -> filter_phantom_rows
     -> extract_disclosures_detect_header_row -> extract_disclosures_normalize_header
     -> extract_disclosures_normalize_rows -> extract_disclosures_canonicalize
     -> extract_disclosures_canonicalize_rows -> extract_disclosures_deduplicate

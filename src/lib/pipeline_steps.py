@@ -7,8 +7,10 @@ STEPS_DIR = REPO_ROOT / "pipelines" / "foi_pipeline" / "steps"
 STEP_NAMES = [
     "transform_disclosure_files",
     "normalize_disclosure_cells",
+    "filter_phantom_rows",
     "extract_disclosures_detect_header_row",
     "extract_disclosures_normalize_header",
+    "extract_disclosures_split_combined_columns",
     "extract_disclosures_normalize_rows",
     "extract_disclosures_canonicalize",
     "extract_disclosures_canonicalize_rows",
@@ -20,8 +22,11 @@ STEP_NAMES = [
 STEP_CONFIG = {
     "transform_disclosure_files":               ("results", True,  False),
     "normalize_disclosure_cells":               ("results", False, False),
+    # has_errors_json=True is reserved for future error emission; the step doesn't emit any today
+    "filter_phantom_rows":                        ("results", True,  False),
     "extract_disclosures_detect_header_row":    ("results", True,  False),
     "extract_disclosures_normalize_header":     ("results", True,  False),
+    "extract_disclosures_split_combined_columns": ("results", False, False),
     "extract_disclosures_normalize_rows":       ("results", True,  False),
     "extract_disclosures_canonicalize":         ("results", True,  True),
     "extract_disclosures_canonicalize_rows":    ("results", True,  True),
