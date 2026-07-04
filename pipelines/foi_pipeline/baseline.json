@@ -4,99 +4,107 @@
       "accuracy": {
         "value": 0.267,
         "input_hash": "e2450b8404d7334fa1e55482c813a6f87f4313f0d27f14a0e8e125b87bfa6eb2",
-        "recorded_at": "2026-06-30T17:58:39.244727+00:00",
-        "commit": "edc4d55"
+        "recorded_at": "2026-07-04T08:16:57.860299+00:00",
+        "commit": "299afd8"
       }
     },
     "find_disclosure_pages": {
       "f1": {
         "value": 0.5,
         "input_hash": "056a38a4e311c41c0ed6e919daeb98a6c08c3cf8a75eee64a731338f03533f57",
-        "recorded_at": "2026-06-30T17:58:39.256968+00:00",
-        "commit": "edc4d55"
+        "recorded_at": "2026-07-04T08:16:57.873122+00:00",
+        "commit": "299afd8"
       }
     },
     "find_disclosure_files": {
       "precision": {
         "value": 0.984,
         "input_hash": "c8cf3a071640c8d12f3cf4e205dba4170bdef1e622f527d91e0d956ccc9223da",
-        "recorded_at": "2026-06-30T17:58:39.267669+00:00",
-        "commit": "edc4d55"
+        "recorded_at": "2026-07-04T08:16:57.883432+00:00",
+        "commit": "299afd8"
       }
     },
     "verify_disclosure_files": {
       "true_rejection_rate": {
-        "value": 0.875,
-        "input_hash": "2e18b627cdf2736c046c34a4370a5850fc0561b5ddc5b6b317e25b1c3d4949a5",
-        "recorded_at": "2026-06-30T17:58:39.278761+00:00",
-        "commit": "edc4d55"
+        "value": 0.7777777777777778,
+        "input_hash": "34d097afdf0a3b76b8054cf0cea6df303a9ad818d6f9d98679683d4ac0402fe6",
+        "recorded_at": "2026-07-04T08:16:57.893333+00:00",
+        "commit": "299afd8"
       }
     },
     "transform_disclosure_files": {
       "clean_extraction_rate": {
-        "value": 0.552,
-        "input_hash": "68579465bc624b2606de628a6e5e79523cc57b5853e777bfa38068fd3768423b",
-        "recorded_at": "2026-06-30T17:58:39.289359+00:00",
-        "commit": "edc4d55"
+        "value": 0.728,
+        "input_hash": "04ed72731cc09508fe5a1b8e305aa75b8fb4363ec228e439e199888029a2b50c",
+        "recorded_at": "2026-07-04T08:16:57.902706+00:00",
+        "commit": "299afd8"
       }
     },
     "normalize_disclosure_cells": {
-      "post_normalization_clean_rate": {
-        "value": 0.615,
-        "input_hash": "1435f36b31f84a119c0e6407dc709a340b8b81a1e9a458231f807c804632c6ea",
-        "recorded_at": "2026-06-30T17:58:39.300267+00:00",
-        "commit": "edc4d55"
+      "cells_changed_rate": {
+        "value": 0.901,
+        "input_hash": "5a4c0f2d4636afe4fd0d8e6e7c661108d4a2da70653c64c9c74b17766c663217",
+        "recorded_at": "2026-07-04T08:16:57.911869+00:00",
+        "commit": "299afd8"
+      }
+    },
+    "filter_phantom_rows": {
+      "post_filter_clean_rate": {
+        "value": 1.0,
+        "input_hash": "b0c66b0b9db11f995073779f08bd3dadf05ef40bc9468ca54e8c315e87e0e810",
+        "recorded_at": "2026-07-04T08:16:57.921058+00:00",
+        "commit": "299afd8"
       }
     },
     "extract_disclosures_detect_header_row": {
       "accuracy": {
         "value": 1.0,
         "input_hash": "a769768423b6d92fa35320e5934a5ecfd1193382f9a0c759c42538b2618c8292",
-        "recorded_at": "2026-06-30T17:58:39.311833+00:00",
-        "commit": "edc4d55"
+        "recorded_at": "2026-07-04T08:16:57.930441+00:00",
+        "commit": "299afd8"
       }
     },
     "extract_disclosures_normalize_header": {
       "null_header_column_rate": {
         "value": 0.01,
         "input_hash": "1d14a7fd706c9144677e0719e380595f1c3fcf8390f2ed54ed5d57cf6e358c2e",
-        "recorded_at": "2026-06-30T17:58:39.321767+00:00",
-        "commit": "edc4d55"
+        "recorded_at": "2026-07-04T08:16:57.939492+00:00",
+        "commit": "299afd8"
       }
     },
     "extract_disclosures_canonicalize": {
       "header_mapping_accuracy": {
         "value": 0.975,
         "input_hash": "3ac4b16fb72a3291e270bec367dc9b1efefbca4e1465acf02695af060c798334",
-        "recorded_at": "2026-06-30T17:58:39.331313+00:00",
-        "commit": "edc4d55"
+        "recorded_at": "2026-07-04T08:16:57.948064+00:00",
+        "commit": "299afd8"
       }
     },
     "extract_disclosures_canonicalize_rows": {
       "canonicalization_rate": {
-        "value": 0.799,
-        "input_hash": "4cd6e68139c843f38e261609ba3007cf79b20f516f60e3e630f2673fbb789109",
-        "recorded_at": "2026-06-30T17:58:39.340978+00:00",
-        "commit": "edc4d55"
+        "value": 0.882,
+        "input_hash": "51f94e86bdfde4fb112567a33d7d96d303d3ec7af8edd49927f357ce04cbead2",
+        "recorded_at": "2026-07-04T08:16:57.956767+00:00",
+        "commit": "299afd8"
       }
     },
     "extract_disclosures_deduplicate": {
       "overall_records_kept_ratio": {
-        "value": 0.86,
-        "input_hash": "7d6133d476d37531460dbf4a7edbc68a2e3bdd8e8aaf1f0013dd24463dd44413",
-        "recorded_at": "2026-06-30T17:58:39.350460+00:00",
-        "commit": "edc4d55"
+        "value": 0.886,
+        "input_hash": "68b38cf265e492546b100d1ba699140a7ef3681e6c99ebb53c2d162a7f0d0192",
+        "recorded_at": "2026-07-04T08:16:57.965337+00:00",
+        "commit": "299afd8"
       }
     }
   },
   "headline": {
-    "valid_records": 41203,
-    "bodies_with_record": 66
+    "valid_records": 44622,
+    "bodies_with_record": 72
   },
   "funnel": {
-    "find_disclosure_files": 1599,
-    "transform_disclosure_files": 1263,
-    "extract_disclosures_detect_header_row": 1263,
-    "extract_disclosures_canonicalize": 70167
+    "find_disclosure_files": 1097,
+    "transform_disclosure_files": 1349,
+    "extract_disclosures_detect_header_row": 1349,
+    "extract_disclosures_canonicalize": 69946
   }
 }
