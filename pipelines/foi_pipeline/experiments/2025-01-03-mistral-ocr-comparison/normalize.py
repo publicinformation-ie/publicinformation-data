@@ -24,9 +24,15 @@ assert spec is not None and spec.loader is not None
 norm_process = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(norm_process)
 
-# Get the helper functions
-_merge_continuation_rows = norm_process._merge_continuation_rows
-_prune_null_columns = norm_process._prune_null_columns
+_FILTER_STEP_PATH = _REPO_ROOT / "pipelines/foi_pipeline/steps/filter_phantom_rows/process.py"
+filter_spec = importlib.util.spec_from_file_location("filter_process", _FILTER_STEP_PATH)
+assert filter_spec is not None and filter_spec.loader is not None
+filter_process = importlib.util.module_from_spec(filter_spec)
+filter_spec.loader.exec_module(filter_process)
+
+# Get the helper functions (row-structure repair now lives in filter_phantom_rows)
+_merge_continuation_rows = filter_process._merge_continuation_rows
+_prune_null_columns = filter_process._prune_null_columns
 _normalize_cell = norm_process._normalize_cell
 
 
@@ -81,8 +87,8 @@ def normalize_extracted_rows(rows, file_id, file_type="pdf"):
         
         # Apply PDF-specific normalization
         if file_type == "pdf":
-            normalized_rows = _merge_continuation_rows(normalized_rows)
-            normalized_rows = _prune_null_columns(normalized_rows)
+            normalized_rows, _ = _merge_continuation_rows(normalized_rows)
+            normalized_rows, _ = _prune_null_columns(normalized_rows)
         
         return {
             "normalized_rows": normalized_rows,
