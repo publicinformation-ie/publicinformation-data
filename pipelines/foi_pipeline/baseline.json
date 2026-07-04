@@ -4,88 +4,96 @@
       "accuracy": {
         "value": 0.267,
         "input_hash": "e2450b8404d7334fa1e55482c813a6f87f4313f0d27f14a0e8e125b87bfa6eb2",
-        "recorded_at": "2026-07-04T07:02:45.225314+00:00",
-        "commit": "da9529c"
+        "recorded_at": "2026-07-04T08:38:59.182781+00:00",
+        "commit": "8719ea4"
       }
     },
     "find_disclosure_pages": {
       "f1": {
         "value": 0.5,
         "input_hash": "056a38a4e311c41c0ed6e919daeb98a6c08c3cf8a75eee64a731338f03533f57",
-        "recorded_at": "2026-07-04T07:02:45.237679+00:00",
-        "commit": "da9529c"
+        "recorded_at": "2026-07-04T08:38:59.202494+00:00",
+        "commit": "8719ea4"
       }
     },
     "find_disclosure_files": {
       "precision": {
         "value": 0.984,
         "input_hash": "c8cf3a071640c8d12f3cf4e205dba4170bdef1e622f527d91e0d956ccc9223da",
-        "recorded_at": "2026-07-04T07:02:45.247036+00:00",
-        "commit": "da9529c"
+        "recorded_at": "2026-07-04T08:38:59.213130+00:00",
+        "commit": "8719ea4"
       }
     },
     "verify_disclosure_files": {
       "true_rejection_rate": {
         "value": 0.875,
         "input_hash": "dcb347001ec078172b122ce32086fd57af451f663d1daef45c9abc2f7820ea96",
-        "recorded_at": "2026-07-04T07:02:45.256164+00:00",
-        "commit": "da9529c"
+        "recorded_at": "2026-07-04T08:38:59.223583+00:00",
+        "commit": "8719ea4"
       }
     },
     "transform_disclosure_files": {
       "clean_extraction_rate": {
         "value": 0.728,
         "input_hash": "04ed72731cc09508fe5a1b8e305aa75b8fb4363ec228e439e199888029a2b50c",
-        "recorded_at": "2026-07-04T07:02:45.264834+00:00",
-        "commit": "da9529c"
+        "recorded_at": "2026-07-04T08:38:59.234673+00:00",
+        "commit": "8719ea4"
       }
     },
     "normalize_disclosure_cells": {
       "post_normalization_clean_rate": {
         "value": 0.525,
         "input_hash": "5a4c0f2d4636afe4fd0d8e6e7c661108d4a2da70653c64c9c74b17766c663217",
-        "recorded_at": "2026-07-04T07:02:45.273836+00:00",
-        "commit": "da9529c"
+        "recorded_at": "2026-07-04T08:38:59.244871+00:00",
+        "commit": "8719ea4"
+      }
+    },
+    "filter_phantom_rows": {
+      "post_filter_clean_rate": {
+        "value": 1.0,
+        "input_hash": "092a367f5bde4e139237b4bb8266a5388a88ccd3d60da84bb0cc761d2ca86f68",
+        "recorded_at": "2026-07-04T08:38:59.255400+00:00",
+        "commit": "8719ea4"
       }
     },
     "extract_disclosures_detect_header_row": {
       "accuracy": {
         "value": 1.0,
         "input_hash": "a769768423b6d92fa35320e5934a5ecfd1193382f9a0c759c42538b2618c8292",
-        "recorded_at": "2026-07-04T07:02:45.282841+00:00",
-        "commit": "da9529c"
+        "recorded_at": "2026-07-04T08:38:59.266583+00:00",
+        "commit": "8719ea4"
       }
     },
     "extract_disclosures_normalize_header": {
       "null_header_column_rate": {
         "value": 0.01,
         "input_hash": "1d14a7fd706c9144677e0719e380595f1c3fcf8390f2ed54ed5d57cf6e358c2e",
-        "recorded_at": "2026-07-04T07:02:45.291940+00:00",
-        "commit": "da9529c"
+        "recorded_at": "2026-07-04T08:38:59.277086+00:00",
+        "commit": "8719ea4"
       }
     },
     "extract_disclosures_canonicalize": {
       "header_mapping_accuracy": {
         "value": 0.975,
         "input_hash": "3ac4b16fb72a3291e270bec367dc9b1efefbca4e1465acf02695af060c798334",
-        "recorded_at": "2026-07-04T07:02:45.300784+00:00",
-        "commit": "da9529c"
+        "recorded_at": "2026-07-04T08:38:59.288258+00:00",
+        "commit": "8719ea4"
       }
     },
     "extract_disclosures_canonicalize_rows": {
       "canonicalization_rate": {
         "value": 0.835,
         "input_hash": "478b428a5e44137c165a3b7cdbbce0119459267a3e67a1724a23f9428853ccc9",
-        "recorded_at": "2026-07-04T07:02:45.309805+00:00",
-        "commit": "da9529c"
+        "recorded_at": "2026-07-04T08:38:59.298755+00:00",
+        "commit": "8719ea4"
       }
     },
     "extract_disclosures_deduplicate": {
       "overall_records_kept_ratio": {
         "value": 0.841,
         "input_hash": "41d3954f4a598bb330c202a0b5c1d91911c59ec5a7a9ab7345833a707f7bbbb0",
-        "recorded_at": "2026-07-04T07:02:45.319201+00:00",
-        "commit": "da9529c"
+        "recorded_at": "2026-07-04T08:38:59.308884+00:00",
+        "commit": "8719ea4"
       }
     }
   },
@@ -97,6 +105,6 @@
     "find_disclosure_files": 1097,
     "transform_disclosure_files": 1349,
     "extract_disclosures_detect_header_row": 1349,
-    "extract_disclosures_canonicalize": 73812
+    "extract_disclosures_canonicalize": 69946
   }
 }
