@@ -1415,3 +1415,21 @@ def test_load_column_mappings_reads_file_when_present(tmp_path):
     (tmp_path / "column_mappings.json").write_text(json.dumps(data))
     result = _load_column_mappings(tmp_path)
     assert result == data
+
+
+def test_zero_content_record_skipped_and_logged_as_phantom():
+    item = {
+        "public_body_id": 1, "name": "Body", "file_url": "u", "file_type": "pdf",
+        "header_row_idx": 0,
+        "rows": [
+            ["Reference", "Decision"],          # maps 2 canonical columns
+            ["FOI-1", "Granted"],               # real record
+            [None, None],                        # zero-content in mapped columns
+        ],
+    }
+    results, errors, dropped = canonicalize_file(item)
+    assert len(results) == 1
+    assert results[0]["foi_reference_id"] == "FOI-1"
+    phantoms = [e for e in errors if e["error_type"] == "PhantomRecord"]
+    assert len(phantoms) == 1
+    assert phantoms[0]["context"]["file_url"] == "u"
