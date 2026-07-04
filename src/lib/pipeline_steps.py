@@ -22,6 +22,7 @@ STEP_NAMES = [
 STEP_CONFIG = {
     "transform_disclosure_files":               ("results", True,  False),
     "normalize_disclosure_cells":               ("results", False, False),
+    # has_errors_json=True is reserved for future error emission; the step doesn't emit any today
     "filter_phantom_rows":                        ("results", True,  False),
     "extract_disclosures_detect_header_row":    ("results", True,  False),
     "extract_disclosures_normalize_header":     ("results", True,  False),

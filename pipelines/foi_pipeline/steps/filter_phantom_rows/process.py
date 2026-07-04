@@ -4,9 +4,15 @@ import sys
 from pathlib import Path
 
 from lib.cli_utils import add_common_args, filter_by_public_body
-from lib.file_utils import read_json, write_json, write_status, IncrementalWriter
+from lib.file_utils import read_json, write_status, IncrementalWriter
 
 STEP_NAME = "filter_phantom_rows"
+
+# Ratio of multi-value data rows below which a file is treated as having a
+# "sparse layout" (its shape, not fragmentation) rather than leaked splits.
+# See the guard in _merge_continuation_rows for the derivation. Shared with
+# eval/evaluate.py so the eval's leak detection matches the step's own guard.
+MULTI_ROW_TOLERANCE = 0.1
 
 
 def _is_blank_cell(cell) -> bool:
@@ -62,7 +68,6 @@ def _merge_continuation_rows(rows):
         #   test_merge_skips_sparse_layout_files:                 multi/len = 0/4  = 0.0   (guard must fire)
         #   test_merge_skips_sparse_layout_with_one_incidental_multi_row: multi/len = 1/20 = 0.05 (guard must fire)
         # A threshold of 0.1 satisfies 0.05 < 0.1 <= 0.25, keeping all four cases correct.
-        MULTI_ROW_TOLERANCE = 0.1
         if single / len(data_rows) > 0.5 and multi / len(data_rows) < MULTI_ROW_TOLERANCE:
             return rows, 0  # sparse layout is this file's shape, not fragmentation
 

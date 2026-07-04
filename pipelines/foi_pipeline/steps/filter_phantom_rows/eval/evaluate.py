@@ -16,6 +16,7 @@ _STEP_DIR = _HERE.parent
 sys.path.insert(0, str(_HERE.parents[2]))  # steps/filter_phantom_rows/eval -> foi_pipeline
 
 from eval import utils as eval_utils
+from steps.filter_phantom_rows.process import MULTI_ROW_TOLERANCE
 
 STEP = "filter_phantom_rows"
 
@@ -23,14 +24,17 @@ STEP = "filter_phantom_rows"
 def has_leaked_split_row(rows):
     """True if any non-header row still has exactly 1 non-None cell across >= 3 columns.
 
-    Sparse-layout files (guarded in the step: >50% single-value data rows) are
-    excluded — their single-value rows are the file's shape, not leaks.
+    Sparse-layout files are excluded, mirroring the two-part guard in the step's
+    _merge_continuation_rows: >50% single-value data rows AND multi-value rows
+    below MULTI_ROW_TOLERANCE. Matching only the first half of that guard would
+    misclassify files the step itself treats as "sparse, not a leak".
     """
     data = rows[1:]
     if not data:
         return False
     singles = [r for r in data if len(r) >= 3 and sum(1 for c in r if c is not None) == 1]
-    if len(singles) / len(data) > 0.5:
+    multi = [r for r in data if len(r) >= 3 and sum(1 for c in r if c is not None) >= 2]
+    if len(singles) / len(data) > 0.5 and len(multi) / len(data) < MULTI_ROW_TOLERANCE:
         return False
     return bool(singles)
 
