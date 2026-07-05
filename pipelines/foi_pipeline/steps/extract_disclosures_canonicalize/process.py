@@ -166,6 +166,22 @@ def _is_column_letter_row(row: list) -> bool:
     )
 
 
+def _column_cardinality(rows: list, header_row_idx: int, col_idx: int) -> int:
+    """Count distinct non-blank values in one column across the data rows.
+
+    Used to break header→canonical collisions (analysis §4 M1a): a constant
+    generic column (e.g. "General" in every row) has cardinality 1 and loses
+    to the real column that holds varied requester/decision values.
+    """
+    seen: set[str] = set()
+    for row in rows[header_row_idx + 1:]:
+        if col_idx < len(row):
+            value = row[col_idx]
+            if value is not None and str(value).strip():
+                seen.add(str(value).strip().lower())
+    return len(seen)
+
+
 def canonicalize_file(item, column_swaps=None, column_mappings=None):
     """Convert one file record into a list of canonical FOI row dicts.
 
@@ -197,7 +213,16 @@ def canonicalize_file(item, column_swaps=None, column_mappings=None):
     canonical_to_col_idx: dict[str, int] = {}
     for col_idx, header in enumerate(headers):
         canonical = mapping.get(header)
-        if canonical and canonical not in canonical_to_col_idx:
+        if not canonical:
+            continue
+        existing = canonical_to_col_idx.get(canonical)
+        if existing is None:
+            canonical_to_col_idx[canonical] = col_idx
+        elif _column_cardinality(rows, header_row_idx, col_idx) > \
+                _column_cardinality(rows, header_row_idx, existing):
+            # Collision (M1a): two headers claim the same canonical field. Keep the
+            # column with more distinct values; discard the constant/generic one.
+            # Ties keep the first-by-index column (stable, prior behaviour).
             canonical_to_col_idx[canonical] = col_idx
 
     if len(canonical_to_col_idx) < 2:

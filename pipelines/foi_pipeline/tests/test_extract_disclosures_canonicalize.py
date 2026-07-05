@@ -134,6 +134,11 @@ BASE_META = {
 }
 
 
+def _canon_item(rows: list, header_row_idx: int = 0) -> dict:
+    """Wrap a list of rows in a canonical item structure for testing."""
+    return {**BASE_META, "rows": rows, "header_row_idx": header_row_idx}
+
+
 def test_canonicalize_file_maps_known_headers():
     rows = [
         ["Our Reference", "Date Rec'd", "Request Details"],
@@ -1433,3 +1438,32 @@ def test_zero_content_record_skipped_and_logged_as_phantom():
     phantoms = [e for e in errors if e["error_type"] == "PhantomRecord"]
     assert len(phantoms) == 1
     assert phantoms[0]["context"]["file_url"] == "u"
+
+
+# ── Duplicate-header collision tests (M1a: column cardinality) ─────────────────
+
+def test_duplicate_requester_header_binds_to_higher_cardinality_column():
+    # 'Type Request' and 'Category Of Request' both map to requester_type.
+    # 'Type Request' is a constant "General" (cardinality 1); the real values live
+    # in 'Category Of Request'. Binding must prefer the informative column.
+    headers = ["Ref", "Type Request", "Category Of Request", "Description", "Decision"]
+    rows = [
+        headers,
+        ["16/001", "General", "Journalist", "req a", "Granted"],
+        ["16/002", "General", "Others", "req b", "Refused"],
+    ]
+    results, _, _ = canonicalize_file(_canon_item(rows))
+    assert [r["requester_type"] for r in results] == ["Journalist", "Others"]
+
+
+def test_duplicate_header_tie_keeps_first_column():
+    # Equal cardinality -> keep the first-by-index column (stable, unchanged behaviour).
+    headers = ["Ref", "Type Request", "Category Of Request", "Description", "Decision"]
+    rows = [
+        headers,
+        ["16/001", "Journalist", "Others", "req a", "Granted"],
+        ["16/002", "Others", "Journalist", "req b", "Refused"],
+    ]
+    results, _, _ = canonicalize_file(_canon_item(rows))
+    # col 1 (Type Request) wins the tie -> its raw values flow through
+    assert [r["requester_type"] for r in results] == ["Journalist", "Others"]
