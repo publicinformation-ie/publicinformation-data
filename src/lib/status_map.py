@@ -110,6 +110,7 @@ _STATUS_SYNONYMS: dict[str, list[str]] = {
         'Directed to NMI website',                       # info available on NMI website
         'dealt with outside of F',                       # truncated "dealt with outside of FOI"
         'Dealt with out',                                # truncated "Dealt with outside FOI"
+        'Dealt with outside of the FOI Act',
     ],
     'Transferred': [
         'Transferred',
@@ -146,6 +147,7 @@ _STATUS_SYNONYMS: dict[str, list[str]] = {
         'Active',             # same — in-progress indicator
         'Blank Error',        # extraction artefact for blank status cell
         'Ext of time',        # extension granted; final outcome not yet recorded
+        'On Hold',
     ],
 }
 

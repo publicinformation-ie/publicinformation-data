@@ -366,3 +366,22 @@ def test_is_no_data_sentinel_false_for_real_and_empty():
     assert is_no_data_sentinel("Journalist") is False
     assert is_no_data_sentinel(None) is False
     assert is_no_data_sentinel("") is False
+
+
+# ── Task 5: bilingual splitter + vocab additions ────────────
+
+def test_bilingual_requester_splits_to_english_half():
+    assert canonicalize_requester_type("Journalist / Iriseoir") == "Journalist"
+    assert canonicalize_requester_type("Other / Eile") == "Other"
+
+
+def test_new_requester_vocab_additions():
+    assert canonicalize_requester_type("Client request") == "Client"
+    assert canonicalize_requester_type("Solicitor on behalf of member of the public") == "Solicitor"
+    assert canonicalize_requester_type("Interested party") == "Business/Interest Group"
+
+
+def test_splitter_does_not_invent_from_decision_contamination():
+    # A misplaced decision value must NOT be coerced into a requester type.
+    assert canonicalize_requester_type("Granted") is None
+    assert canonicalize_requester_type("Ceadaithe/Granted") is None

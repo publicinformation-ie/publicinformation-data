@@ -129,6 +129,11 @@ _LOOKUP: dict[str, str] = {
     'solicitor': 'Solicitor',
     'solicitors': 'Solicitor',
     'legal firm': 'Solicitor',
+    'solicitor on behalf of member of the public': 'Solicitor',
+    # Client
+    'client request': 'Client',
+    # Business/Interest Group
+    'interested party': 'Business/Interest Group',
 }
 
 # Values that mean "no requester data was recorded" — not a category and not a
@@ -154,4 +159,12 @@ def canonicalize_requester_type(value: str | None) -> Optional[str]:
     key = ''.join(c for c in decomposed if unicodedata.category(c) != 'Mn')
     if key in _LOOKUP:
         return _LOOKUP[key]
+    # Bilingual 'English / Irish' (or reverse) forms: try each half after the
+    # whole-value lookup fails. Only exact per-half matches count, so a misplaced
+    # decision value like 'Ceadaithe/Granted' still returns None (analysis §4 M3).
+    if '/' in key:
+        for part in key.split('/'):
+            part = part.strip()
+            if part in _LOOKUP:
+                return _LOOKUP[part]
     return None

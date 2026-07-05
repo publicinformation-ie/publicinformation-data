@@ -483,3 +483,8 @@ def test_unknown_requester_type_still_errors():
     process_records({"results": [record]}, results, errors)
     assert len(results) == 1
     assert any(e["error_type"] == "UnrecognizedRequesterType" for e in errors)
+
+
+def test_new_status_vocab_additions():
+    assert canonicalize_status("On Hold") == "Unknown"
+    assert canonicalize_status("Dealt with outside of the FOI Act") == "Handled outside of FOI"
