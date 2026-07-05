@@ -780,3 +780,26 @@ class TestMainFunction:
         output_data = json.loads(output_file.read_text())
         # Should have the same results as before (not reprocessed)
         assert len(output_data["results"]) == 1
+
+
+def test_superscript_ordinal_date_parses():
+    assert normalize_date_value("6^{th} June 2023") == "2023-06-06"
+
+
+def test_label_prefixed_date_extracted():
+    assert normalize_date_value("Ext to 13/06/2018") == "2018-06-13"
+    assert normalize_date_value("Sent 29/09/2023") == "2023-09-29"
+
+
+def test_multipart_date_takes_first():
+    assert normalize_date_value("(a) 01 April 2026 (b) 02 April 2026") == "2026-04-01"
+
+
+def test_contamination_still_unparseable():
+    # M1 contamination in a date column must NOT be coerced into a date.
+    assert normalize_date_value("45441 Journalist") is None
+
+
+def test_calendar_invalid_date_still_none():
+    # Structurally date-shaped but impossible -> None (error logged upstream).
+    assert normalize_date_value("30/02/2016") is None

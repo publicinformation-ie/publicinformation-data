@@ -64,6 +64,23 @@ _LEADING_DATE_RE = re.compile(
     re.IGNORECASE,
 )
 
+# Strip LaTeX-style superscript ordinal markup: '6^{th} June 2023' -> '6th June 2023'
+_SUPERSCRIPT_ORDINAL_RE = re.compile(r'\^\{(st|nd|rd|th)\}', re.IGNORECASE)
+
+# Matches a date anywhere in a string (same alternation as _LEADING_DATE_RE but with
+# no required trailing content). Used to pull the first date out of a labelled or
+# multi-part value ('Ext to 13/06/2018', '(a) 01 April 2026 (b) 02 April 2026').
+_EMBEDDED_DATE_RE = re.compile(
+    r'('
+    r'\d{4}-\d{1,2}-\d{1,2}'                                                            # ISO YYYY-MM-DD
+    r'|\d{1,2}(?:st|nd|rd|th)?\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*\s+\d{4}'  # DD[ord] Month YYYY
+    r'|\d{1,2}/\d{1,2}/\d{2,4}'                                                         # DD/MM/YYYY
+    r'|\d{1,2}-\d{1,2}-\d{2,4}'                                                         # DD-MM-YYYY
+    r'|\d{1,2}\.\d{1,2}\.\d{2,4}'                                                       # DD.MM.YYYY
+    r')',
+    re.IGNORECASE,
+)
+
 _MONTH_MAP = {
     'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4, 'may': 5, 'jun': 6,
     'jul': 7, 'aug': 8, 'sep': 9, 'oct': 10, 'nov': 11, 'dec': 12
@@ -163,11 +180,21 @@ def normalize_date_value(raw_value: Optional[str]) -> Optional[str]:
     if not re.search(r'\d', value):
         return None
 
+    # Strip LaTeX-style superscript ordinal markup so '6^{th} June 2023' reaches the
+    # ordinal date pattern as '6th June 2023'.
+    value = _SUPERSCRIPT_ORDINAL_RE.sub(r'\1', value)
+
     # If the value starts with a recognisable date prefix followed by extra content,
-    # extract just the leading date and parse that.
+    # extract just the leading date. Otherwise fall back to the first date embedded
+    # anywhere in the string (labelled dates like 'Ext to 13/06/2018' and multi-part
+    # values like '(a) 01 April 2026 (b) 02 April 2026').
     m = _LEADING_DATE_RE.match(value)
     if m:
         value = m.group(1).strip()
+    else:
+        em = _EMBEDDED_DATE_RE.search(value)
+        if em:
+            value = em.group(1).strip()
 
     # Try regex patterns first
     for pattern, is_iso_order in _DATE_PATTERNS:
