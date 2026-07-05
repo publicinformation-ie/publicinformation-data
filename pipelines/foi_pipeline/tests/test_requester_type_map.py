@@ -349,3 +349,20 @@ def test_accented_o_other_maps_to_other():
 def test_accented_lowercase_o_other_maps_to_other():
     # U+00F2 ò (precomposed lowercase) after .lower()
     assert canonicalize_requester_type("òther") == "Other"
+
+
+# ── Task 4: no-data sentinel predicate ──────────────────────
+
+from lib.requester_type_map import is_no_data_sentinel
+
+
+def test_is_no_data_sentinel_true_for_na_and_blank_error():
+    assert is_no_data_sentinel("N/A") is True
+    assert is_no_data_sentinel("n/a") is True
+    assert is_no_data_sentinel("Blank Error") is True
+
+
+def test_is_no_data_sentinel_false_for_real_and_empty():
+    assert is_no_data_sentinel("Journalist") is False
+    assert is_no_data_sentinel(None) is False
+    assert is_no_data_sentinel("") is False

@@ -11,7 +11,7 @@ from pathlib import Path
 from lib.cli_utils import add_common_args, filter_by_public_body, merge_replacing_body
 from lib.column_map import canonicalize_header
 from lib.file_utils import read_json, write_json, write_status
-from lib.requester_type_map import canonicalize_requester_type
+from lib.requester_type_map import canonicalize_requester_type, is_no_data_sentinel
 from lib.status_map import (
     CANONICAL_STATUSES,
     canonicalize_status,
@@ -50,26 +50,31 @@ def process_records(input_data, results_out, errors_out, verbose=False):
         # Normalise requester_type
         raw_requester_type = record.get("requester_type")
         if raw_requester_type and isinstance(raw_requester_type, str) and raw_requester_type.strip():
-            canonical_rt = canonicalize_requester_type(raw_requester_type)
-            if canonical_rt is not None:
-                record["requester_type"] = canonical_rt
+            if is_no_data_sentinel(raw_requester_type):
+                # No-data placeholder (N/A, Blank Error): skip the field, keep the
+                # record, log no error (2026-07-05 policy; analysis §4 M4).
+                record["requester_type"] = None
             else:
-                errors_out.append({
-                    "error_type": "UnrecognizedRequesterType",
-                    "error_message": f"requester_type '{raw_requester_type}' not in canonical mapping",
-                    "context": {
-                        "public_body_id": record.get("public_body_id"),
-                        "file_url": record.get("file_url"),
-                        "foi_reference_id": record.get("foi_reference_id"),
-                        "raw_requester_type": raw_requester_type,
-                    },
-                })
-                record.setdefault("known_issues", []).append({
-                    "field": "requester_type",
-                    "issue_type": "UnrecognizedRequesterType",
-                    "raw_value": raw_requester_type,
-                })
-                # Leave record["requester_type"] unchanged
+                canonical_rt = canonicalize_requester_type(raw_requester_type)
+                if canonical_rt is not None:
+                    record["requester_type"] = canonical_rt
+                else:
+                    errors_out.append({
+                        "error_type": "UnrecognizedRequesterType",
+                        "error_message": f"requester_type '{raw_requester_type}' not in canonical mapping",
+                        "context": {
+                            "public_body_id": record.get("public_body_id"),
+                            "file_url": record.get("file_url"),
+                            "foi_reference_id": record.get("foi_reference_id"),
+                            "raw_requester_type": raw_requester_type,
+                        },
+                    })
+                    record.setdefault("known_issues", []).append({
+                        "field": "requester_type",
+                        "issue_type": "UnrecognizedRequesterType",
+                        "raw_value": raw_requester_type,
+                    })
+                    # Leave record["requester_type"] unchanged
 
         raw_status = record.get("decision_status")
 

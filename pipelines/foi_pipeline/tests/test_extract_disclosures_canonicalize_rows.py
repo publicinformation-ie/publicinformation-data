@@ -457,3 +457,29 @@ def test_known_issues_from_prior_step_are_preserved_alongside_new_ones():
         {"field": "date_received", "issue_type": "UnparseableDate", "raw_value": "32/13/2023"},
         {"field": "requester_type", "issue_type": "UnrecognizedRequesterType", "raw_value": "Alien"},
     ]
+
+
+def test_na_requester_type_cleared_no_error():
+    record = _make_record(requester_type="N/A")
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert len(results) == 1
+    assert results[0]["requester_type"] is None
+    assert not any(e["error_type"] == "UnrecognizedRequesterType" for e in errors)
+
+
+def test_blank_error_requester_type_cleared_no_error():
+    record = _make_record(requester_type="Blank Error")
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert len(results) == 1
+    assert results[0]["requester_type"] is None
+    assert errors == []
+
+
+def test_unknown_requester_type_still_errors():
+    record = _make_record(requester_type="Wizard")
+    results, errors = [], []
+    process_records({"results": [record]}, results, errors)
+    assert len(results) == 1
+    assert any(e["error_type"] == "UnrecognizedRequesterType" for e in errors)

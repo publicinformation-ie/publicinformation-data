@@ -131,6 +131,20 @@ _LOOKUP: dict[str, str] = {
     'legal firm': 'Solicitor',
 }
 
+# Values that mean "no requester data was recorded" — not a category and not a
+# vocabulary gap. Per the project's skip-not-null rule these clear the field and
+# keep the record, without logging an UnrecognizedRequesterType error (analysis §4 M4).
+REQUESTER_NO_DATA_SENTINELS: frozenset[str] = frozenset({
+    'n/a', 'na', 'n/a.', 'blank error', 'none', 'null', 'nil', '-', '--', '---',
+})
+
+
+def is_no_data_sentinel(value: str | None) -> bool:
+    """True if value is a no-data placeholder (N/A, Blank Error, …)."""
+    if not value or not isinstance(value, str):
+        return False
+    return value.strip().lower() in REQUESTER_NO_DATA_SENTINELS
+
 
 def canonicalize_requester_type(value: str | None) -> Optional[str]:
     """Return canonical requester type for a value, or None if unrecognised."""
