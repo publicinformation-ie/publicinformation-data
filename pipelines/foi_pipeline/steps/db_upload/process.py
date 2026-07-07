@@ -5,7 +5,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from lib.body_utils import derive_category
+from lib.body_utils import derive_category, resolve_slug
 from lib.cli_utils import add_common_args
 from lib.db_client import DbClient
 from lib.file_utils import read_json, write_json, write_status
@@ -14,7 +14,7 @@ STEP_NAME = "db_upload"
 
 _INSERT_PUBLIC_BODY = """
 INSERT OR REPLACE INTO public_bodies (
-  public_body_id, public_body_name, public_body_url, public_body_category,
+  public_body_id, public_body_name, public_body_url, public_body_category, slug,
   website_url, website_url_status, website_url_verified,
   foi_page_url, foi_page_status, foi_page_verified,
   foi_email, foi_email_status, foi_email_verified,
@@ -29,12 +29,12 @@ INSERT OR REPLACE INTO public_bodies (
   nace_section, nace_division, nace_group, nace_class,
   nace_section_name, nace_class_name,
   subject_to_foi
-) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
 """
 
 _INSERT_CSO_BODY = """
 INSERT INTO public_bodies (
-  public_body_id, public_body_name, public_body_url, public_body_category,
+  public_body_id, public_body_name, public_body_url, public_body_category, slug,
   website_url, website_url_status, website_url_verified,
   foi_page_url, foi_page_status, foi_page_verified,
   foi_email, foi_email_status, foi_email_verified,
@@ -49,7 +49,7 @@ INSERT INTO public_bodies (
   nace_section, nace_division, nace_group, nace_class,
   nace_section_name, nace_class_name,
   subject_to_foi
-) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
 """
 
 _INSERT_DISCLOSURE_FILE = """
@@ -94,6 +94,7 @@ def apply_schema_migrations(db):
         "ALTER TABLE public_bodies ADD COLUMN nace_section_name TEXT",
         "ALTER TABLE public_bodies ADD COLUMN nace_class_name   TEXT",
         "ALTER TABLE public_bodies ADD COLUMN subject_to_foi    INTEGER DEFAULT 0",
+        "ALTER TABLE public_bodies ADD COLUMN slug               TEXT",
     ]
     for sql in migrations:
         try:
@@ -111,7 +112,7 @@ def clear_pipeline_tables(db):
     db.execute_batch([(f"DELETE FROM {table}", []) for table in tables])
 
 
-def upload_public_bodies(db, steps_dir, cso_lookup):
+def upload_public_bodies(db, steps_dir, cso_lookup, slug_seed):
     data = read_json(steps_dir / "export_status" / "output.json")
     meta = data["metadata"]
     rows = []
@@ -123,6 +124,7 @@ def upload_public_bodies(db, steps_dir, cso_lookup):
             body["public_body_name"],
             body.get("public_body_url") or "",
             body["public_body_category"],
+            resolve_slug(body["public_body_id"], body["public_body_name"], slug_seed),
             s["website_url"].get("url"),
             s["website_url"].get("status"),
             1 if s["website_url"].get("verified") else 0,
@@ -169,7 +171,7 @@ def upload_public_bodies(db, steps_dir, cso_lookup):
     return len(rows)
 
 
-def upload_cso_bodies(db, cso_path):
+def upload_cso_bodies(db, cso_path, slug_seed):
     data = read_json(cso_path)
     bodies = data.get("results") or data.get("public_bodies", [])
     rows = []
@@ -179,6 +181,7 @@ def upload_cso_bodies(db, cso_path):
             body["name"],
             "",
             derive_category(body),
+            resolve_slug(body["public_body_id"], body["name"], slug_seed),
             body.get("official_website_url"),
             "not_attempted", 0,
             None, "not_attempted", 0,
@@ -309,10 +312,14 @@ def main():
         apply_schema_migrations(db)
         clear_pipeline_tables(db)
 
-        n_cso = upload_cso_bodies(db, cso_path)
+        slug_seed_path = step_dir / "slug_seed.json"
+        raw_slug_seed = read_json(slug_seed_path) if slug_seed_path.exists() else {}
+        slug_seed = {int(k): v for k, v in raw_slug_seed.items()}
+
+        n_cso = upload_cso_bodies(db, cso_path, slug_seed)
         cso_data = read_json(cso_path)
         cso_lookup = {b["public_body_id"]: b for b in (cso_data.get("results") or cso_data.get("public_bodies", []))}
-        n_bodies = upload_public_bodies(db, steps_dir, cso_lookup)
+        n_bodies = upload_public_bodies(db, steps_dir, cso_lookup, slug_seed)
         n_files = upload_disclosure_files(db, steps_dir)
         n_disclosures, disclosure_id_map = upload_foi_disclosures(db, steps_dir)
         n_topics = upload_topics(db, steps_dir, disclosure_id_map)

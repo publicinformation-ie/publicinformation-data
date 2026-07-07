@@ -198,7 +198,7 @@ def test_upload_cso_bodies_writes_normalized_fields(tmp_path):
             "results": [make_cso_body_normalized(2001)]
         }))
 
-        n = upload_cso_bodies(db, cso_path)
+        n = upload_cso_bodies(db, cso_path, {})
         assert n == 1
 
         rows = db.execute("SELECT * FROM public_bodies WHERE public_body_id = 2001")
@@ -240,7 +240,7 @@ def test_upload_public_bodies_writes_normalized_fields_from_cso_lookup(tmp_path)
                 **make_cso_body_normalized(public_body_id=1),
             }
         }
-        n = upload_public_bodies(db, steps_dir, cso_lookup)
+        n = upload_public_bodies(db, steps_dir, cso_lookup, {})
         assert n == 1
 
         rows = db.execute("SELECT * FROM public_bodies WHERE public_body_id = 1")
@@ -319,10 +319,29 @@ class TestApplySchemaMigrations:
             finally:
                 db.close()
 
+    def test_slug_column_added_by_migration(self):
+        from pathlib import Path
+        import tempfile
+        from lib.db_client import DbClient
+        from steps.db_upload.process import apply_schema_migrations
+
+        with tempfile.TemporaryDirectory() as tmp_path_str:
+            tmp_path = Path(tmp_path_str)
+            db_path = tmp_path / "test.db"
+            schema_sql = (REPO_ROOT / "public" / "schema.sql").read_text(encoding="utf-8")
+            db = DbClient(str(db_path), "")
+            try:
+                db.executescript(schema_sql)
+                apply_schema_migrations(db)
+                cols = {row["name"] for row in db.execute("PRAGMA table_info(public_bodies)")}
+                assert "slug" in cols
+            finally:
+                db.close()
+
 
 class TestClearPipelineTables:
     def test_deletes_all_pipeline_rows(self, db, steps_dir):
-        upload_public_bodies(db, steps_dir, {})
+        upload_public_bodies(db, steps_dir, {}, {})
         upload_disclosure_files(db, steps_dir)
         _, id_map = upload_foi_disclosures(db, steps_dir)
         upload_topics(db, steps_dir, id_map)
@@ -345,7 +364,7 @@ class TestClearPipelineTables:
 
 class TestUploadPublicBodies:
     def test_inserts_bodies(self, db, steps_dir):
-        n = upload_public_bodies(db, steps_dir, {})
+        n = upload_public_bodies(db, steps_dir, {}, {})
         assert n == 1
         rows = db.execute("SELECT * FROM public_bodies WHERE public_body_id = 1")
         assert len(rows) == 1
@@ -361,7 +380,7 @@ class TestUploadPublicBodies:
         data = make_export_status([make_body(1), make_body(2)])
         (tmp_path / "export_status").mkdir()
         (tmp_path / "export_status" / "output.json").write_text(json.dumps(data))
-        n = upload_public_bodies(db, tmp_path, {})
+        n = upload_public_bodies(db, tmp_path, {}, {})
         assert n == 2
 
     def test_null_public_body_url_coerced_to_empty_string(self, db, tmp_path):
@@ -370,7 +389,7 @@ class TestUploadPublicBodies:
         data = make_export_status([body])
         (tmp_path / "export_status").mkdir()
         (tmp_path / "export_status" / "output.json").write_text(json.dumps(data))
-        upload_public_bodies(db, tmp_path, {})
+        upload_public_bodies(db, tmp_path, {}, {})
         rows = db.execute("SELECT public_body_url FROM public_bodies WHERE public_body_id = 1")
         assert rows[0]["public_body_url"] == ""
 
@@ -449,7 +468,7 @@ class TestUploadCsoBodies:
         cso_path = tmp_path / "cso_output.json"
         cso_path.write_text(json.dumps(make_cso_output([make_cso_body(1001)])))
 
-        n = upload_cso_bodies(db, cso_path)
+        n = upload_cso_bodies(db, cso_path, {})
 
         assert n == 1
         rows = db.execute("SELECT * FROM public_bodies WHERE public_body_id = 1001")
@@ -471,7 +490,7 @@ class TestUploadCsoBodies:
         cso_path = tmp_path / "cso_output.json"
         cso_path.write_text(json.dumps(make_cso_output([body])))
 
-        upload_cso_bodies(db, cso_path)
+        upload_cso_bodies(db, cso_path, {})
 
         rows = db.execute("SELECT website_url FROM public_bodies WHERE public_body_id = 1002")
         assert rows[0]["website_url"] == "https://example.ie"
@@ -482,29 +501,33 @@ class TestUploadCsoBodies:
         cso_path = tmp_path / "cso_output.json"
         cso_path.write_text(json.dumps(make_cso_output(bodies)))
 
-        n = upload_cso_bodies(db, cso_path)
+        n = upload_cso_bodies(db, cso_path, {})
 
         assert n == 3
         rows = db.execute("SELECT COUNT(*) as c FROM public_bodies")
         assert rows[0]["c"] == 3
 
     def test_two_phase_foi_overlays_cso(self, db, tmp_path):
-        """Phase 2 INSERT OR REPLACE overwrites Phase 1 for overlapping IDs."""
+        """Phase 2 INSERT OR REPLACE overwrites Phase 1 for overlapping IDs,
+        and must not drop the seeded slug in the process."""
         from steps.db_upload.process import upload_cso_bodies, upload_public_bodies
+
+        slug_seed = {1: "permanent-body-one"}
 
         # Phase 1: insert CSO body with id=1
         cso_path = tmp_path / "cso_output.json"
         cso_path.write_text(json.dumps(make_cso_output([make_cso_body(1)])))
-        upload_cso_bodies(db, cso_path)
+        upload_cso_bodies(db, cso_path, slug_seed)
         phase1_row = db.execute("SELECT * FROM public_bodies WHERE public_body_id = 1")[0]
         assert phase1_row["foi_page_status"] == "not_attempted"
+        assert phase1_row["slug"] == "permanent-body-one"
 
         # Phase 2: FOI overlay with same id=1
         (tmp_path / "export_status").mkdir()
         (tmp_path / "export_status" / "output.json").write_text(
             json.dumps(make_export_status([make_body(1)]))
         )
-        upload_public_bodies(db, tmp_path, {})
+        upload_public_bodies(db, tmp_path, {}, slug_seed)
 
         # FOI data must overwrite; still only 1 row (not 2)
         all_rows = db.execute("SELECT * FROM public_bodies")
@@ -513,6 +536,7 @@ class TestUploadCsoBodies:
         assert row["foi_page_status"] == "success"
         assert row["website_url_status"] == "success"
         assert row["foi_page_verified"] == 1
+        assert row["slug"] == "permanent-body-one"  # REPLACE must not null the seeded slug
 
     def test_two_phase_non_overlapping_bodies_preserved(self, db, tmp_path):
         """CSO-only bodies (not in FOI) survive after Phase 2."""
@@ -522,17 +546,55 @@ class TestUploadCsoBodies:
         bodies = [make_cso_body(1001), make_cso_body(1002)]
         cso_path = tmp_path / "cso_output.json"
         cso_path.write_text(json.dumps(make_cso_output(bodies)))
-        upload_cso_bodies(db, cso_path)
+        upload_cso_bodies(db, cso_path, {})
 
         # Phase 2: FOI body with id=999 (different from CSO bodies)
         (tmp_path / "export_status").mkdir()
         (tmp_path / "export_status" / "output.json").write_text(
             json.dumps(make_export_status([make_body(999)]))
         )
-        upload_public_bodies(db, tmp_path, {})
+        upload_public_bodies(db, tmp_path, {}, {})
 
         rows = db.execute("SELECT COUNT(*) as c FROM public_bodies")
         assert rows[0]["c"] == 3  # 2 CSO-only + 1 FOI
+
+
+class TestSlugColumn:
+    def test_seeded_id_gets_exact_seed_slug(self, db, tmp_path):
+        from steps.db_upload.process import upload_cso_bodies
+        cso_path = tmp_path / "cso_output.json"
+        body = make_cso_body(1001)
+        body["name"] = "A Completely Different Name Now"
+        cso_path.write_text(json.dumps(make_cso_output([body])))
+
+        upload_cso_bodies(db, cso_path, {1001: "original-permanent-slug"})
+
+        row = db.execute("SELECT slug FROM public_bodies WHERE public_body_id = 1001")[0]
+        assert row["slug"] == "original-permanent-slug"
+
+    def test_unseeded_id_gets_generated_slug(self, db, tmp_path):
+        from steps.db_upload.process import upload_cso_bodies
+        cso_path = tmp_path / "cso_output.json"
+        body = make_cso_body(1001)
+        body["name"] = "New Body Ltd"
+        cso_path.write_text(json.dumps(make_cso_output([body])))
+
+        upload_cso_bodies(db, cso_path, {})
+
+        row = db.execute("SELECT slug FROM public_bodies WHERE public_body_id = 1001")[0]
+        assert row["slug"] == "new-body-ltd"
+
+    def test_foi_body_slug_uses_seed(self, db, steps_dir):
+        from steps.db_upload.process import upload_public_bodies
+        upload_public_bodies(db, steps_dir, {}, {1: "seeded-foi-body"})
+        row = db.execute("SELECT slug FROM public_bodies WHERE public_body_id = 1")[0]
+        assert row["slug"] == "seeded-foi-body"
+
+    def test_no_row_ends_up_with_null_or_empty_slug(self, db, steps_dir):
+        from steps.db_upload.process import upload_public_bodies
+        upload_public_bodies(db, steps_dir, {}, {})
+        rows = db.execute("SELECT slug FROM public_bodies")
+        assert all(r["slug"] for r in rows)
 
 
 import sys as _sys
