@@ -182,6 +182,33 @@ See [DATA_FLOW.md - Troubleshooting](DATA_FLOW.md#troubleshooting-decision-tree)
 
 This means only `find_public_bodies` has been run. Run the full pipeline or at minimum through `export_status`.
 
+### Codeberg Pages Publishing
+
+`data.publicinformation.ie` is served from the `pages` branch by Codeberg
+Pages. The `pages` branch is never edited by hand — it is fully rebuilt from
+`public/` (plus a generated `index.html` and the `.domains` custom-domain
+file) by `scripts/publish_pages.sh` every time a commit on `main` touches
+`public/`.
+
+**One-time setup per clone** (git does not auto-install hooks from a
+committed directory):
+
+```bash
+git config core.hooksPath .githooks
+```
+
+Without this, commits to `public/` on `main` will not trigger a Pages
+rebuild, and `scripts/publish_pages.sh` must be run manually instead.
+
+- `scripts/generate_pages_index.py <dir>` — writes a plain directory-listing
+  `index.html` into `<dir>`. Only ever run against the `pages` build
+  snapshot, never against `public/` on `main`.
+- `scripts/publish_pages.sh` — rebuilds and pushes the `pages` branch from
+  scratch. No force-push; fails loudly (no retry) if the push is rejected —
+  re-run it manually once any conflict on `pages` is resolved.
+- `.githooks/post-commit` — no-ops unless the commit is on `main` and
+  touched `public/`; otherwise runs `publish_pages.sh`.
+
 ### Common Commands Reference
 
 | Task | Command |
@@ -191,6 +218,8 @@ This means only `find_public_bodies` has been run. Run the full pipeline or at m
 | Run single step | `cd pipelines/foi_pipeline && PYTHONPATH=. python steps/<step>/process.py --input ... --output ... --force` |
 | Run tests | `cd pipelines/foi_pipeline && uv run pytest tests/ -q` |
 | Build website | `cd ../publicinformation-web && npm run build` |
+| One-time hook setup (Pages publishing) | `git config core.hooksPath .githooks` |
+| Manually rebuild + publish `pages` branch | `scripts/publish_pages.sh` |
 | Check export_status output | `ls -lh pipelines/foi_pipeline/steps/export_status/output.json` |
 | Validate output | `python3 -c "import json; d=json.load(open('pipelines/foi_pipeline/steps/export_status/output.json')); print(f'Bodies: {len(d[\"public_bodies\"])}')"` |
 

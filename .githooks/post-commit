@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Rebuilds and publishes the `pages` branch whenever a commit on `main`
+# touches public/. No-op on any other branch or commit.
+#
+# One-time setup per clone: git config core.hooksPath .githooks
+
+set -euo pipefail
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+BRANCH="$(git branch --show-current)"
+
+if [ "$BRANCH" != "main" ]; then
+  exit 0
+fi
+
+if ! git diff-tree --no-commit-id --name-only -r HEAD | grep -q '^public/'; then
+  exit 0
+fi
+
+"$REPO_ROOT/scripts/publish_pages.sh"
