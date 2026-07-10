@@ -31,3 +31,8 @@ local.db
 pipelines/foi_pipeline/data/*.csv
 pipelines/cso_pipeline/data/*.csv
 
+# Experiment results
+pipelines/foi_pipeline/experiments/**/results/
+
+# Graphify
+graphify_out/
