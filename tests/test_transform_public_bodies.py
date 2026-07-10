@@ -48,8 +48,14 @@ def test_build_record_foi_subject_body():
         "official_website_url": "https://www.pleanala.ie/",
         "category": "public body",
     }
-    record = build_record(body, foi_subject_ids={1010}, contact_email_lookup={1010: "foi@pleanala.ie"})
-    assert record["@id"] == f"{BASE_URI}/body/an-coimisiún-pleanála"
+    slug_lookup = {1010: "an-coimisiun-pleanala"}
+    record = build_record(
+        body,
+        foi_subject_ids={1010},
+        contact_email_lookup={1010: "foi@pleanala.ie"},
+        slug_lookup=slug_lookup,
+    )
+    assert record["@id"] == f"{BASE_URI}/body/an-coimisiun-pleanala"
     assert record["@type"] == "foi:PublicBody"
     assert record["name"] == "An Coimisiún Pleanála"
     assert record["type"] == "public_body"
@@ -66,7 +72,8 @@ def test_build_record_non_foi_subject_body_omits_contact_email():
         "official_website_url": "https://www.abbeytheatre.ie/",
         "category": "public body",
     }
-    record = build_record(body, foi_subject_ids=set(), contact_email_lookup={})
+    slug_lookup = {1001: "abbey-theatre"}
+    record = build_record(body, foi_subject_ids=set(), contact_email_lookup={}, slug_lookup=slug_lookup)
     assert record["foi_subject"] is False
     assert record["foi_scope"] == f"{BASE_URI}/ns/foi#NoScope"
     assert "contact_email" not in record
@@ -79,7 +86,8 @@ def test_build_record_missing_website_is_omitted_not_null():
         "official_website_url": None,
         "category": "government department",
     }
-    record = build_record(body, foi_subject_ids=set(), contact_email_lookup={})
+    slug_lookup = {1099: "no-website-body"}
+    record = build_record(body, foi_subject_ids=set(), contact_email_lookup={}, slug_lookup=slug_lookup)
     assert "website" not in record
 
 

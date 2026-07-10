@@ -8,6 +8,8 @@ import re
 import os
 import shutil
 
+from scripts.lib.body_refs import build_body_slug_lookup, body_uri
+
 BASE_URI = "https://publicinformation-ie.codeberg.page/publicinformation-data"
 
 BODY_TYPE_MAP = {
@@ -19,7 +21,8 @@ BODY_TYPE_MAP = {
 FIND_PUBLIC_BODIES_PATH = "pipelines/foi_pipeline/steps/find_public_bodies/output.json"
 INCLUSIONS_PATH = "pipelines/foi_pipeline/steps/find_public_bodies_subject_to_foi/inclusions.json"
 PIPELINE_DATA_PATH = "public/pipeline-data.json"
-OUTPUT_DIR = "public/v1.0.0/public-bodies"
+SLUG_SEED_PATH = "pipelines/foi_pipeline/steps/db_upload/slug_seed.json"
+OUTPUT_DIR = "public/v2.0.0/public-bodies"
 LATEST_DIR = "public/latest/public-bodies"
 JSONLD_OUTPUT_PATH = f"{OUTPUT_DIR}/public-bodies.jsonld"
 CSV_OUTPUT_PATH = f"{OUTPUT_DIR}/public-bodies.csv"
@@ -61,13 +64,13 @@ def build_contact_email_lookup(pipeline_data_bodies):
     return lookup
 
 
-def build_record(body, foi_subject_ids, contact_email_lookup):
+def build_record(body, foi_subject_ids, contact_email_lookup, slug_lookup):
     """Build one public body record in the corrected Slice 1 data model."""
     body_id = body["public_body_id"]
-    slug = slugify(body["name"])
+    slug = slug_lookup[body_id]
     foi_subject = body_id in foi_subject_ids
     record = {
-        "@id": f"{BASE_URI}/body/{slug}",
+        "@id": body_uri(slug),
         "@type": "foi:PublicBody",
         "name": body["name"],
         "type": map_body_type(body["category"]),
@@ -122,29 +125,27 @@ def copy_to_latest():
 
 def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-
     with open(FIND_PUBLIC_BODIES_PATH) as f:
         bodies = json.load(f)["public_bodies"]
     with open(INCLUSIONS_PATH) as f:
         foi_subject_ids = set(json.load(f))
     with open(PIPELINE_DATA_PATH) as f:
         pipeline_bodies = json.load(f)["public_bodies"]
+    with open(SLUG_SEED_PATH) as f:
+        raw_slug_seed = json.load(f)
+    slug_seed = {int(k): v for k, v in raw_slug_seed.items()}
+    slug_lookup = build_body_slug_lookup(bodies, slug_seed)
     contact_email_lookup = build_contact_email_lookup(pipeline_bodies)
-
-    records = [build_record(b, foi_subject_ids, contact_email_lookup) for b in bodies]
-
+    records = [build_record(b, foi_subject_ids, contact_email_lookup, slug_lookup) for b in bodies]
     jsonld_data = transform_to_jsonld(records)
     with open(JSONLD_OUTPUT_PATH, "w") as f:
         json.dump(jsonld_data, f, indent=2, ensure_ascii=False)
-
     fieldnames, rows = transform_to_csv_rows(records)
     with open(CSV_OUTPUT_PATH, "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
-
     copy_to_latest()
-
     print(f"Transformed {len(records)} public bodies to JSON-LD and CSV")
 
 
