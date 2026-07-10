@@ -85,6 +85,61 @@ def build_cso_lookup(cso_records):
     return lookup
 
 
+def build_crawl_status_lookup(pipeline_bodies):
+    """public_body_id -> raw status dict, for the 229 of 883 bodies present
+    in pipeline_bodies. Bodies absent from pipeline_bodies simply have no
+    key here -- callers must treat a missing key as "no crawl data at all",
+    not as empty/default crawl-status objects."""
+    lookup = {}
+    for body in pipeline_bodies:
+        lookup[body["public_body_id"]] = body.get("status", {})
+    return lookup
+
+
+def build_status_object(raw, value_field):
+    """Build a {value_field, status[, verified]} object from a raw crawl
+    status dict, e.g. {"url": ..., "status": ..., "verified": ...} for
+    website_url/foi_page/disclosures_page, or {"email": ..., "status": ...}
+    for foi_email. Returns None if raw itself is missing (body was never
+    crawled at all). Omits value_field if its value is null (crawl attempted
+    but found nothing); omits "verified" unless the source actually has it
+    (never fabricates verified: false)."""
+    if raw is None:
+        return None
+    obj = {}
+    value = raw.get(value_field)
+    if value is not None:
+        obj[value_field] = value
+    obj["status"] = raw.get("status")
+    if "verified" in raw:
+        obj["verified"] = raw["verified"]
+    return obj
+
+
+def build_disclosure_files_object(raw):
+    """total/valid/failed are always present ints when raw is present (no
+    per-leaf null-omission needed), only the whole object is omitted when
+    raw itself is missing."""
+    if raw is None:
+        return None
+    return {
+        "total": raw.get("total"),
+        "valid": raw.get("valid"),
+        "failed": raw.get("failed"),
+        "status": raw.get("status"),
+    }
+
+
+def build_foi_requests_object(raw):
+    if raw is None:
+        return None
+    return {
+        "valid": raw.get("valid"),
+        "errors": raw.get("errors"),
+        "status": raw.get("status"),
+    }
+
+
 def build_record(body, foi_subject_ids, contact_email_lookup, slug_lookup):
     """Build one public body record in the corrected Slice 1 data model."""
     body_id = body["public_body_id"]

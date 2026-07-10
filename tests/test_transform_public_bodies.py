@@ -186,3 +186,76 @@ def test_build_cso_lookup_only_includes_whitelisted_fields():
             "legal_entity_type": "Agency",
         }
     }
+
+
+from scripts.transform_public_bodies import (
+    build_crawl_status_lookup,
+    build_status_object,
+    build_disclosure_files_object,
+    build_foi_requests_object,
+)
+
+
+def test_build_crawl_status_lookup_keys_by_public_body_id():
+    pipeline_bodies = [
+        {
+            "public_body_id": 1002,
+            "status": {
+                "website_url": {"url": "https://www.abilitywest.ie/", "status": "success"},
+                "foi_page": {"url": None, "status": "success"},
+                "foi_email": {"email": None, "status": "failed"},
+                "disclosures_page": {"url": "https://www.factchecking.ie/toolkit/foi-how-to", "status": "success"},
+                "disclosure_files": {"total": 0, "valid": 0, "failed": 0, "status": "failed"},
+                "foi_requests": {"valid": 0, "errors": 0, "status": "failed"},
+            },
+            "public_body_name": "Ability West",
+        },
+    ]
+    lookup = build_crawl_status_lookup(pipeline_bodies)
+    assert lookup[1002]["website_url"] == {"url": "https://www.abilitywest.ie/", "status": "success"}
+    assert 1099 not in lookup  # body not present in pipeline_bodies -> no key at all
+
+
+def test_build_status_object_omits_null_value_field():
+    raw = {"url": None, "status": "success"}
+    obj = build_status_object(raw, "url")
+    assert obj == {"status": "success"}
+    assert "url" not in obj
+
+
+def test_build_status_object_includes_value_when_present():
+    raw = {"url": "https://www.abilitywest.ie/", "status": "success"}
+    obj = build_status_object(raw, "url")
+    assert obj == {"url": "https://www.abilitywest.ie/", "status": "success"}
+
+
+def test_build_status_object_passes_through_verified_only_when_present():
+    raw_with_verified = {"url": "https://www.pleanala.ie/", "status": "success", "verified": True}
+    obj = build_status_object(raw_with_verified, "url")
+    assert obj["verified"] is True
+
+    raw_without_verified = {"url": "https://www.abilitywest.ie/", "status": "success"}
+    obj = build_status_object(raw_without_verified, "url")
+    assert "verified" not in obj
+
+
+def test_build_status_object_returns_none_for_missing_raw():
+    assert build_status_object(None, "url") is None
+
+
+def test_build_status_object_email_field():
+    raw = {"email": "foi@abilitywest.ie", "status": "success"}
+    obj = build_status_object(raw, "email")
+    assert obj == {"email": "foi@abilitywest.ie", "status": "success"}
+
+
+def test_build_disclosure_files_object():
+    raw = {"total": 5, "valid": 3, "failed": 2, "status": "success"}
+    assert build_disclosure_files_object(raw) == {"total": 5, "valid": 3, "failed": 2, "status": "success"}
+    assert build_disclosure_files_object(None) is None
+
+
+def test_build_foi_requests_object():
+    raw = {"valid": 0, "errors": 0, "status": "failed"}
+    assert build_foi_requests_object(raw) == {"valid": 0, "errors": 0, "status": "failed"}
+    assert build_foi_requests_object(None) is None
