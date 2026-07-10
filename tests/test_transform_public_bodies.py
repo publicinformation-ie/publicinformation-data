@@ -418,7 +418,8 @@ def test_transform_to_csv_rows_includes_new_flat_columns():
     fieldnames, rows = transform_to_csv_rows(records)
     assert fieldnames == [
         "id", "name", "type", "website", "foi_subject", "foi_scope", "contact_email",
-        "slug", "parent_name", "sector", "legal_status", "government_department",
+        "slug", "parent_id", "parent_name", "government_department_id", "government_department",
+        "sector", "legal_status",
         "nace_code", "nace_section", "nace_section_name", "nace_division", "nace_group",
         "nace_class", "nace_class_name", "cro", "data_vintage", "is_commercial",
         "is_financial", "aegis", "legal_entity_type",
@@ -456,3 +457,149 @@ def test_transform_to_csv_rows_includes_new_flat_columns():
     assert row_b["website_url_verified"] == ""
     assert row_b["disclosure_files_total"] == ""
     assert row_b["foi_requests_valid"] == ""
+
+
+def test_build_record_resolves_parent_id_and_government_department_id_to_uris():
+    body = {
+        "public_body_id": 1001,
+        "name": "Abbey Theatre Amharclann Na Mainistreach",
+        "official_website_url": "https://www.abbeytheatre.ie/",
+        "category": "public body",
+    }
+    slug_lookup = {
+        1001: "abbey-theatre-amharclann-na-mainistreach",
+        1199: "department-of-culture-communications-and-sport",
+    }
+    cso_lookup = {
+        1001: {
+            "parent_id": None,
+            "parent_name": None,
+            "sector": "S13",
+            "legal_status": "Non-Commercial Agency under the aegis of Department",
+            "government_department_id": 1199,
+            "government_department": "Department of Culture, Communications and Sport",
+            "nace_code": "R9001", "nace_section": "R", "nace_section_name": "Arts",
+            "nace_division": "90", "nace_group": "900", "nace_class": "9001",
+            "nace_class_name": "Performing arts", "cro": "414400", "data_vintage": 2025,
+            "is_commercial": False, "is_financial": None,
+            "aegis": "Department", "legal_entity_type": "Agency",
+        }
+    }
+    warnings = []
+    record = build_record(
+        body, foi_subject_ids=set(), contact_email_lookup={},
+        slug_lookup=slug_lookup, cso_lookup=cso_lookup, crawl_status_lookup={},
+        warnings=warnings,
+    )
+    assert record["government_department_id"] == f"{BASE_URI}/body/department-of-culture-communications-and-sport"
+    assert "parent_id" not in record  # source value was null -> omitted, no warning
+    assert warnings == []
+
+
+def test_build_record_resolves_parent_id_when_present():
+    body = {
+        "public_body_id": 1500,
+        "name": "Child Body",
+        "official_website_url": None,
+        "category": "public body",
+    }
+    slug_lookup = {1500: "child-body", 1001: "parent-body"}
+    cso_lookup = {
+        1500: {
+            "parent_id": 1001, "parent_name": "Parent Body",
+            "sector": None, "legal_status": None,
+            "government_department_id": None, "government_department": None,
+            "nace_code": None, "nace_section": None, "nace_section_name": None,
+            "nace_division": None, "nace_group": None, "nace_class": None,
+            "nace_class_name": None, "cro": None, "data_vintage": None,
+            "is_commercial": None, "is_financial": None,
+            "aegis": None, "legal_entity_type": None,
+        }
+    }
+    warnings = []
+    record = build_record(
+        body, foi_subject_ids=set(), contact_email_lookup={},
+        slug_lookup=slug_lookup, cso_lookup=cso_lookup, crawl_status_lookup={},
+        warnings=warnings,
+    )
+    assert record["parent_id"] == f"{BASE_URI}/body/parent-body"
+    assert record["parent_name"] == "Parent Body"
+    assert "government_department_id" not in record
+    assert warnings == []
+
+
+def test_build_record_omits_unmatched_government_department_id_and_warns():
+    body = {
+        "public_body_id": 1001,
+        "name": "Orphaned Ref Body",
+        "official_website_url": None,
+        "category": "public body",
+    }
+    # 8888 is deliberately absent from slug_lookup -- simulates a
+    # government_department_id that has no corresponding public_body_id in
+    # the 883-body list.
+    slug_lookup = {1001: "orphaned-ref-body"}
+    cso_lookup = {
+        1001: {
+            "parent_id": None, "parent_name": None,
+            "sector": None, "legal_status": None,
+            "government_department_id": 8888, "government_department": "Ghost Department",
+            "nace_code": None, "nace_section": None, "nace_section_name": None,
+            "nace_division": None, "nace_group": None, "nace_class": None,
+            "nace_class_name": None, "cro": None, "data_vintage": None,
+            "is_commercial": None, "is_financial": None,
+            "aegis": None, "legal_entity_type": None,
+        }
+    }
+    warnings = []
+    record = build_record(
+        body, foi_subject_ids=set(), contact_email_lookup={},
+        slug_lookup=slug_lookup, cso_lookup=cso_lookup, crawl_status_lookup={},
+        warnings=warnings,
+    )
+    assert "government_department_id" not in record
+    assert record["government_department"] == "Ghost Department"  # string field still published
+    assert warnings == [(1001, "government_department_id", 8888)]
+
+
+def test_build_record_warnings_defaults_to_none_is_safe():
+    # main() always passes a warnings list, but build_record must not crash
+    # if a caller (e.g. a future test) omits it.
+    body = {
+        "public_body_id": 1001, "name": "No Warnings List Body",
+        "official_website_url": None, "category": "public body",
+    }
+    slug_lookup = {1001: "no-warnings-list-body"}
+    record = build_record(
+        body, foi_subject_ids=set(), contact_email_lookup={},
+        slug_lookup=slug_lookup, cso_lookup={}, crawl_status_lookup={},
+    )
+    assert "parent_id" not in record
+
+
+def test_transform_to_csv_rows_includes_uri_reference_columns():
+    records = [
+        {
+            "@id": f"{BASE_URI}/body/a", "@type": "foi:PublicBody", "name": "A",
+            "type": "public_body", "foi_subject": True, "foi_scope": f"{BASE_URI}/ns/foi#FullScope",
+            "slug": "a",
+            "parent_id": f"{BASE_URI}/body/parent-a", "parent_name": "Parent A",
+            "government_department_id": f"{BASE_URI}/body/dept-a", "government_department": "Dept A",
+        },
+        {
+            "@id": f"{BASE_URI}/body/b", "@type": "foi:PublicBody", "name": "B",
+            "type": "department", "foi_subject": False, "foi_scope": f"{BASE_URI}/ns/foi#NoScope",
+            "slug": "b",
+        },
+    ]
+    fieldnames, rows = transform_to_csv_rows(records)
+    assert "parent_id" in fieldnames
+    assert "government_department_id" in fieldnames
+    assert fieldnames.index("parent_id") == fieldnames.index("slug") + 1
+    assert fieldnames.index("parent_name") == fieldnames.index("parent_id") + 1
+    assert fieldnames.index("government_department_id") == fieldnames.index("parent_name") + 1
+    assert fieldnames.index("government_department") == fieldnames.index("government_department_id") + 1
+    assert rows[0]["parent_id"] == f"{BASE_URI}/body/parent-a"
+    assert rows[0]["government_department_id"] == f"{BASE_URI}/body/dept-a"
+    assert rows[1]["parent_id"] == ""
+    assert rows[1]["government_department_id"] == ""

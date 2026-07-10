@@ -149,8 +149,10 @@ CSO_SCALAR_FIELDS = [
 ]
 
 
-def build_record(body, foi_subject_ids, contact_email_lookup, slug_lookup, cso_lookup, crawl_status_lookup):
+def build_record(body, foi_subject_ids, contact_email_lookup, slug_lookup, cso_lookup, crawl_status_lookup, warnings=None):
     """Build one public body record in the corrected Slice 1 data model."""
+    if warnings is None:
+        warnings = []
     body_id = body["public_body_id"]
     slug = slug_lookup[body_id]
     foi_subject = body_id in foi_subject_ids
@@ -174,6 +176,15 @@ def build_record(body, foi_subject_ids, contact_email_lookup, slug_lookup, cso_l
         value = cso.get(field)
         if value is not None:
             record[field] = value
+
+    for ref_field in ("parent_id", "government_department_id"):
+        ref_id = cso.get(ref_field)
+        if ref_id is not None:
+            ref_slug = slug_lookup.get(ref_id)
+            if ref_slug is not None:
+                record[ref_field] = body_uri(ref_slug)
+            else:
+                warnings.append((body_id, ref_field, ref_id))
 
     crawl_status = crawl_status_lookup.get(body_id, {})
     website_url_obj = build_status_object(crawl_status.get("website_url"), "url")
@@ -212,7 +223,8 @@ def transform_to_jsonld(records):
 
 CSV_FIELDNAMES = [
     "id", "name", "type", "website", "foi_subject", "foi_scope", "contact_email",
-    "slug", "parent_name", "sector", "legal_status", "government_department",
+    "slug", "parent_id", "parent_name", "government_department_id", "government_department",
+    "sector", "legal_status",
     "nace_code", "nace_section", "nace_section_name", "nace_division", "nace_group",
     "nace_class", "nace_class_name", "cro", "data_vintage", "is_commercial",
     "is_financial", "aegis", "legal_entity_type",
@@ -260,10 +272,12 @@ def transform_to_csv_rows(records):
             "foi_scope": r["foi_scope"],
             "contact_email": r.get("contact_email", ""),
             "slug": r["slug"],
+            "parent_id": r.get("parent_id", ""),
             "parent_name": _csv_scalar(r.get("parent_name")),
+            "government_department_id": r.get("government_department_id", ""),
+            "government_department": _csv_scalar(r.get("government_department")),
             "sector": _csv_scalar(r.get("sector")),
             "legal_status": _csv_scalar(r.get("legal_status")),
-            "government_department": _csv_scalar(r.get("government_department")),
             "nace_code": _csv_scalar(r.get("nace_code")),
             "nace_section": _csv_scalar(r.get("nace_section")),
             "nace_section_name": _csv_scalar(r.get("nace_section_name")),
@@ -321,8 +335,9 @@ def main():
         cso_records = json.load(f)["results"]
     cso_lookup = build_cso_lookup(cso_records)
     crawl_status_lookup = build_crawl_status_lookup(pipeline_bodies)
+    warnings = []
     records = [
-        build_record(b, foi_subject_ids, contact_email_lookup, slug_lookup, cso_lookup, crawl_status_lookup)
+        build_record(b, foi_subject_ids, contact_email_lookup, slug_lookup, cso_lookup, crawl_status_lookup, warnings)
         for b in bodies
     ]
     jsonld_data = transform_to_jsonld(records)
@@ -335,6 +350,12 @@ def main():
         writer.writerows(rows)
     copy_to_latest()
     print(f"Transformed {len(records)} public bodies to JSON-LD and CSV")
+    if warnings:
+        print(f"WARNING: {len(warnings)} unmatched URI-reference field(s) omitted:")
+        for body_id, ref_field, ref_id in warnings:
+            print(f"  public_body_id {body_id}: {ref_field}={ref_id} has no matching body")
+    else:
+        print("No unmatched parent_id/government_department_id references.")
 
 
 if __name__ == "__main__":
