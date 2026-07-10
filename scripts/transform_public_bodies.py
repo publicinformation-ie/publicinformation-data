@@ -8,6 +8,8 @@ import re
 import os
 import shutil
 
+from scripts.lib.body_refs import build_body_slug_lookup, body_uri
+
 BASE_URI = "https://publicinformation-ie.codeberg.page/publicinformation-data"
 
 BODY_TYPE_MAP = {
@@ -19,7 +21,9 @@ BODY_TYPE_MAP = {
 FIND_PUBLIC_BODIES_PATH = "pipelines/foi_pipeline/steps/find_public_bodies/output.json"
 INCLUSIONS_PATH = "pipelines/foi_pipeline/steps/find_public_bodies_subject_to_foi/inclusions.json"
 PIPELINE_DATA_PATH = "public/pipeline-data.json"
-OUTPUT_DIR = "public/v1.0.0/public-bodies"
+SLUG_SEED_PATH = "pipelines/foi_pipeline/steps/db_upload/slug_seed.json"
+CSO_PATH = "pipelines/cso_pipeline/steps/resolve_website_urls/output.json"
+OUTPUT_DIR = "public/v2.0.0/public-bodies"
 LATEST_DIR = "public/latest/public-bodies"
 JSONLD_OUTPUT_PATH = f"{OUTPUT_DIR}/public-bodies.jsonld"
 CSV_OUTPUT_PATH = f"{OUTPUT_DIR}/public-bodies.csv"
@@ -61,24 +65,136 @@ def build_contact_email_lookup(pipeline_data_bodies):
     return lookup
 
 
-def build_record(body, foi_subject_ids, contact_email_lookup):
+CSO_FIELDS = [
+    "parent_id", "parent_name", "sector", "legal_status",
+    "government_department_id", "government_department",
+    "nace_code", "nace_section", "nace_section_name", "nace_division",
+    "nace_group", "nace_class", "nace_class_name",
+    "cro", "data_vintage", "is_commercial", "is_financial",
+    "aegis", "legal_entity_type",
+]
+
+
+def build_cso_lookup(cso_records):
+    """public_body_id -> dict of whitelisted CSO fields only. Deliberately
+    excludes internal CSO-pipeline fields (llm_*, apify_*,
+    description_for_sub_sector, official_website_url) that are not part of
+    the published catalog schema."""
+    lookup = {}
+    for r in cso_records:
+        lookup[r["public_body_id"]] = {field: r.get(field) for field in CSO_FIELDS}
+    return lookup
+
+
+def build_crawl_status_lookup(pipeline_bodies):
+    """public_body_id -> raw status dict, for the 229 of 883 bodies present
+    in pipeline_bodies. Bodies absent from pipeline_bodies simply have no
+    key here -- callers must treat a missing key as "no crawl data at all",
+    not as empty/default crawl-status objects."""
+    lookup = {}
+    for body in pipeline_bodies:
+        lookup[body["public_body_id"]] = body.get("status", {})
+    return lookup
+
+
+def build_status_object(raw, value_field):
+    """Build a {value_field, status[, verified]} object from a raw crawl
+    status dict, e.g. {"url": ..., "status": ..., "verified": ...} for
+    website_url/foi_page/disclosures_page, or {"email": ..., "status": ...}
+    for foi_email. Returns None if raw itself is missing (body was never
+    crawled at all). Omits value_field if its value is null (crawl attempted
+    but found nothing); omits "verified" unless the source actually has it
+    (never fabricates verified: false)."""
+    if raw is None:
+        return None
+    obj = {}
+    value = raw.get(value_field)
+    if value is not None:
+        obj[value_field] = value
+    obj["status"] = raw.get("status")
+    if "verified" in raw:
+        obj["verified"] = raw["verified"]
+    return obj
+
+
+def build_disclosure_files_object(raw):
+    """total/valid/failed are always present ints when raw is present (no
+    per-leaf null-omission needed), only the whole object is omitted when
+    raw itself is missing."""
+    if raw is None:
+        return None
+    return {
+        "total": raw.get("total"),
+        "valid": raw.get("valid"),
+        "failed": raw.get("failed"),
+        "status": raw.get("status"),
+    }
+
+
+def build_foi_requests_object(raw):
+    if raw is None:
+        return None
+    return {
+        "valid": raw.get("valid"),
+        "errors": raw.get("errors"),
+        "status": raw.get("status"),
+    }
+
+
+CSO_SCALAR_FIELDS = [
+    "parent_name", "sector", "legal_status", "government_department",
+    "nace_code", "nace_section", "nace_section_name", "nace_division",
+    "nace_group", "nace_class", "nace_class_name", "cro", "data_vintage",
+    "is_commercial", "is_financial", "aegis", "legal_entity_type",
+]
+
+
+def build_record(body, foi_subject_ids, contact_email_lookup, slug_lookup, cso_lookup, crawl_status_lookup):
     """Build one public body record in the corrected Slice 1 data model."""
     body_id = body["public_body_id"]
-    slug = slugify(body["name"])
+    slug = slug_lookup[body_id]
     foi_subject = body_id in foi_subject_ids
     record = {
-        "@id": f"{BASE_URI}/body/{slug}",
+        "@id": body_uri(slug),
         "@type": "foi:PublicBody",
         "name": body["name"],
         "type": map_body_type(body["category"]),
         "foi_subject": foi_subject,
         "foi_scope": f"{BASE_URI}/ns/foi#FullScope" if foi_subject else f"{BASE_URI}/ns/foi#NoScope",
+        "slug": slug,
     }
     if body.get("official_website_url"):
         record["website"] = body["official_website_url"]
     email = contact_email_lookup.get(body_id)
     if email:
         record["contact_email"] = email
+
+    cso = cso_lookup.get(body_id, {})
+    for field in CSO_SCALAR_FIELDS:
+        value = cso.get(field)
+        if value is not None:
+            record[field] = value
+
+    crawl_status = crawl_status_lookup.get(body_id, {})
+    website_url_obj = build_status_object(crawl_status.get("website_url"), "url")
+    if website_url_obj is not None:
+        record["website_url"] = website_url_obj
+    foi_page_obj = build_status_object(crawl_status.get("foi_page"), "url")
+    if foi_page_obj is not None:
+        record["foi_page"] = foi_page_obj
+    foi_email_obj = build_status_object(crawl_status.get("foi_email"), "email")
+    if foi_email_obj is not None:
+        record["foi_email"] = foi_email_obj
+    disclosures_page_obj = build_status_object(crawl_status.get("disclosures_page"), "url")
+    if disclosures_page_obj is not None:
+        record["disclosures_page"] = disclosures_page_obj
+    disclosure_files_obj = build_disclosure_files_object(crawl_status.get("disclosure_files"))
+    if disclosure_files_obj is not None:
+        record["disclosure_files"] = disclosure_files_obj
+    foi_requests_obj = build_foi_requests_object(crawl_status.get("foi_requests"))
+    if foi_requests_obj is not None:
+        record["foi_requests"] = foi_requests_obj
+
     return record
 
 
@@ -94,12 +210,48 @@ def transform_to_jsonld(records):
     }
 
 
+CSV_FIELDNAMES = [
+    "id", "name", "type", "website", "foi_subject", "foi_scope", "contact_email",
+    "slug", "parent_name", "sector", "legal_status", "government_department",
+    "nace_code", "nace_section", "nace_section_name", "nace_division", "nace_group",
+    "nace_class", "nace_class_name", "cro", "data_vintage", "is_commercial",
+    "is_financial", "aegis", "legal_entity_type",
+    "website_url_url", "website_url_status", "website_url_verified",
+    "foi_page_url", "foi_page_status", "foi_page_verified",
+    "foi_email_email", "foi_email_status", "foi_email_verified",
+    "disclosures_page_url", "disclosures_page_status", "disclosures_page_verified",
+    "disclosure_files_total", "disclosure_files_valid", "disclosure_files_failed", "disclosure_files_status",
+    "foi_requests_valid", "foi_requests_errors", "foi_requests_status",
+]
+
+
+def _csv_bool(value):
+    if value is None:
+        return ""
+    return "true" if value else "false"
+
+
+def _csv_scalar(value):
+    if value is None:
+        return ""
+    return str(value)
+
+
+def _csv_status_field(record, obj_key, value_field):
+    obj = record.get(obj_key, {})
+    return {
+        f"{obj_key}_{value_field}": _csv_scalar(obj.get(value_field)),
+        f"{obj_key}_status": _csv_scalar(obj.get("status")),
+        f"{obj_key}_verified": _csv_bool(obj.get("verified")) if "verified" in obj else "",
+    }
+
+
 def transform_to_csv_rows(records):
     """Flatten records into CSV rows. Booleans use lowercase xsd:boolean lexical form."""
-    fieldnames = ["id", "name", "type", "website", "foi_subject", "foi_scope", "contact_email"]
+    fieldnames = CSV_FIELDNAMES
     rows = []
     for r in records:
-        rows.append({
+        row = {
             "id": r["@id"],
             "name": r["name"],
             "type": r["type"],
@@ -107,7 +259,39 @@ def transform_to_csv_rows(records):
             "foi_subject": "true" if r["foi_subject"] else "false",
             "foi_scope": r["foi_scope"],
             "contact_email": r.get("contact_email", ""),
-        })
+            "slug": r["slug"],
+            "parent_name": _csv_scalar(r.get("parent_name")),
+            "sector": _csv_scalar(r.get("sector")),
+            "legal_status": _csv_scalar(r.get("legal_status")),
+            "government_department": _csv_scalar(r.get("government_department")),
+            "nace_code": _csv_scalar(r.get("nace_code")),
+            "nace_section": _csv_scalar(r.get("nace_section")),
+            "nace_section_name": _csv_scalar(r.get("nace_section_name")),
+            "nace_division": _csv_scalar(r.get("nace_division")),
+            "nace_group": _csv_scalar(r.get("nace_group")),
+            "nace_class": _csv_scalar(r.get("nace_class")),
+            "nace_class_name": _csv_scalar(r.get("nace_class_name")),
+            "cro": _csv_scalar(r.get("cro")),
+            "data_vintage": _csv_scalar(r.get("data_vintage")),
+            "is_commercial": _csv_bool(r.get("is_commercial")) if "is_commercial" in r else "",
+            "is_financial": _csv_bool(r.get("is_financial")) if "is_financial" in r else "",
+            "aegis": _csv_scalar(r.get("aegis")),
+            "legal_entity_type": _csv_scalar(r.get("legal_entity_type")),
+        }
+        row.update(_csv_status_field(r, "website_url", "url"))
+        row.update(_csv_status_field(r, "foi_page", "url"))
+        row.update(_csv_status_field(r, "foi_email", "email"))
+        row.update(_csv_status_field(r, "disclosures_page", "url"))
+        disclosure_files = r.get("disclosure_files", {})
+        row["disclosure_files_total"] = _csv_scalar(disclosure_files.get("total"))
+        row["disclosure_files_valid"] = _csv_scalar(disclosure_files.get("valid"))
+        row["disclosure_files_failed"] = _csv_scalar(disclosure_files.get("failed"))
+        row["disclosure_files_status"] = _csv_scalar(disclosure_files.get("status"))
+        foi_requests = r.get("foi_requests", {})
+        row["foi_requests_valid"] = _csv_scalar(foi_requests.get("valid"))
+        row["foi_requests_errors"] = _csv_scalar(foi_requests.get("errors"))
+        row["foi_requests_status"] = _csv_scalar(foi_requests.get("status"))
+        rows.append(row)
     return fieldnames, rows
 
 
@@ -122,29 +306,34 @@ def copy_to_latest():
 
 def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-
     with open(FIND_PUBLIC_BODIES_PATH) as f:
         bodies = json.load(f)["public_bodies"]
     with open(INCLUSIONS_PATH) as f:
         foi_subject_ids = set(json.load(f))
     with open(PIPELINE_DATA_PATH) as f:
         pipeline_bodies = json.load(f)["public_bodies"]
+    with open(SLUG_SEED_PATH) as f:
+        raw_slug_seed = json.load(f)
+    slug_seed = {int(k): v for k, v in raw_slug_seed.items()}
+    slug_lookup = build_body_slug_lookup(bodies, slug_seed)
     contact_email_lookup = build_contact_email_lookup(pipeline_bodies)
-
-    records = [build_record(b, foi_subject_ids, contact_email_lookup) for b in bodies]
-
+    with open(CSO_PATH) as f:
+        cso_records = json.load(f)["results"]
+    cso_lookup = build_cso_lookup(cso_records)
+    crawl_status_lookup = build_crawl_status_lookup(pipeline_bodies)
+    records = [
+        build_record(b, foi_subject_ids, contact_email_lookup, slug_lookup, cso_lookup, crawl_status_lookup)
+        for b in bodies
+    ]
     jsonld_data = transform_to_jsonld(records)
     with open(JSONLD_OUTPUT_PATH, "w") as f:
         json.dump(jsonld_data, f, indent=2, ensure_ascii=False)
-
     fieldnames, rows = transform_to_csv_rows(records)
     with open(CSV_OUTPUT_PATH, "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
-
     copy_to_latest()
-
     print(f"Transformed {len(records)} public bodies to JSON-LD and CSV")
 
 
