@@ -223,7 +223,8 @@ def transform_to_jsonld(records):
 
 CSV_FIELDNAMES = [
     "id", "name", "type", "website", "foi_subject", "foi_scope", "contact_email",
-    "slug", "parent_name", "sector", "legal_status", "government_department",
+    "slug", "parent_id", "parent_name", "government_department_id", "government_department",
+    "sector", "legal_status",
     "nace_code", "nace_section", "nace_section_name", "nace_division", "nace_group",
     "nace_class", "nace_class_name", "cro", "data_vintage", "is_commercial",
     "is_financial", "aegis", "legal_entity_type",
@@ -271,10 +272,12 @@ def transform_to_csv_rows(records):
             "foi_scope": r["foi_scope"],
             "contact_email": r.get("contact_email", ""),
             "slug": r["slug"],
+            "parent_id": r.get("parent_id", ""),
             "parent_name": _csv_scalar(r.get("parent_name")),
+            "government_department_id": r.get("government_department_id", ""),
+            "government_department": _csv_scalar(r.get("government_department")),
             "sector": _csv_scalar(r.get("sector")),
             "legal_status": _csv_scalar(r.get("legal_status")),
-            "government_department": _csv_scalar(r.get("government_department")),
             "nace_code": _csv_scalar(r.get("nace_code")),
             "nace_section": _csv_scalar(r.get("nace_section")),
             "nace_section_name": _csv_scalar(r.get("nace_section_name")),

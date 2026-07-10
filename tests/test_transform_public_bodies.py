@@ -418,7 +418,8 @@ def test_transform_to_csv_rows_includes_new_flat_columns():
     fieldnames, rows = transform_to_csv_rows(records)
     assert fieldnames == [
         "id", "name", "type", "website", "foi_subject", "foi_scope", "contact_email",
-        "slug", "parent_name", "sector", "legal_status", "government_department",
+        "slug", "parent_id", "parent_name", "government_department_id", "government_department",
+        "sector", "legal_status",
         "nace_code", "nace_section", "nace_section_name", "nace_division", "nace_group",
         "nace_class", "nace_class_name", "cro", "data_vintage", "is_commercial",
         "is_financial", "aegis", "legal_entity_type",
@@ -574,3 +575,31 @@ def test_build_record_warnings_defaults_to_none_is_safe():
         slug_lookup=slug_lookup, cso_lookup={}, crawl_status_lookup={},
     )
     assert "parent_id" not in record
+
+
+def test_transform_to_csv_rows_includes_uri_reference_columns():
+    records = [
+        {
+            "@id": f"{BASE_URI}/body/a", "@type": "foi:PublicBody", "name": "A",
+            "type": "public_body", "foi_subject": True, "foi_scope": f"{BASE_URI}/ns/foi#FullScope",
+            "slug": "a",
+            "parent_id": f"{BASE_URI}/body/parent-a", "parent_name": "Parent A",
+            "government_department_id": f"{BASE_URI}/body/dept-a", "government_department": "Dept A",
+        },
+        {
+            "@id": f"{BASE_URI}/body/b", "@type": "foi:PublicBody", "name": "B",
+            "type": "department", "foi_subject": False, "foi_scope": f"{BASE_URI}/ns/foi#NoScope",
+            "slug": "b",
+        },
+    ]
+    fieldnames, rows = transform_to_csv_rows(records)
+    assert "parent_id" in fieldnames
+    assert "government_department_id" in fieldnames
+    assert fieldnames.index("parent_id") == fieldnames.index("slug") + 1
+    assert fieldnames.index("parent_name") == fieldnames.index("parent_id") + 1
+    assert fieldnames.index("government_department_id") == fieldnames.index("parent_name") + 1
+    assert fieldnames.index("government_department") == fieldnames.index("government_department_id") + 1
+    assert rows[0]["parent_id"] == f"{BASE_URI}/body/parent-a"
+    assert rows[0]["government_department_id"] == f"{BASE_URI}/body/dept-a"
+    assert rows[1]["parent_id"] == ""
+    assert rows[1]["government_department_id"] == ""
