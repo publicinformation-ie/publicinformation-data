@@ -64,6 +64,27 @@ def build_contact_email_lookup(pipeline_data_bodies):
     return lookup
 
 
+CSO_FIELDS = [
+    "parent_id", "parent_name", "sector", "legal_status",
+    "government_department_id", "government_department",
+    "nace_code", "nace_section", "nace_section_name", "nace_division",
+    "nace_group", "nace_class", "nace_class_name",
+    "cro", "data_vintage", "is_commercial", "is_financial",
+    "aegis", "legal_entity_type",
+]
+
+
+def build_cso_lookup(cso_records):
+    """public_body_id -> dict of whitelisted CSO fields only. Deliberately
+    excludes internal CSO-pipeline fields (llm_*, apify_*,
+    description_for_sub_sector, official_website_url) that are not part of
+    the published catalog schema."""
+    lookup = {}
+    for r in cso_records:
+        lookup[r["public_body_id"]] = {field: r.get(field) for field in CSO_FIELDS}
+    return lookup
+
+
 def build_record(body, foi_subject_ids, contact_email_lookup, slug_lookup):
     """Build one public body record in the corrected Slice 1 data model."""
     body_id = body["public_body_id"]

@@ -123,3 +123,66 @@ def test_transform_to_csv_rows_columns_and_boolean_lexical_form():
     assert rows[1]["foi_subject"] == "false"
     assert rows[1]["website"] == ""
     assert rows[1]["contact_email"] == ""
+
+
+from scripts.transform_public_bodies import build_cso_lookup
+
+
+def test_build_cso_lookup_only_includes_whitelisted_fields():
+    cso_records = [
+        {
+            "public_body_id": 1001,
+            "name": "Abbey Theatre Amharclann Na Mainistreach",
+            "parent_name": None,
+            "parent_id": None,
+            "sector": "S13",
+            "legal_status": "Non-Commercial Agency under the aegis of Department",
+            "government_department": "Department of Culture, Communications and Sport",
+            "government_department_id": 1199,
+            "nace_code": "R9001",
+            "cro": "414400",
+            "data_vintage": 2025,
+            "description_for_sub_sector": "Non-Commercial Agencies",
+            "official_website_url": "https://www.abbeytheatre.ie/",
+            "is_commercial": False,
+            "is_financial": None,
+            "aegis": "Department",
+            "legal_entity_type": "Agency",
+            "nace_section": "R",
+            "nace_division": "90",
+            "nace_group": "900",
+            "nace_class": "9001",
+            "nace_section_name": "Arts, entertainment and recreation",
+            "nace_class_name": "Performing arts",
+            "llm_website_url": "https://www.abbeytheatre.ie",
+            "llm_url_type": "direct",
+            "llm_confidence": "high",
+            "llm_notes": "Official website of the Abbey Theatre Amharclann Na Mainistreach.",
+            "apify_website_url": None,
+            "apify_confidence": None,
+        },
+    ]
+    lookup = build_cso_lookup(cso_records)
+    assert lookup == {
+        1001: {
+            "parent_id": None,
+            "parent_name": None,
+            "sector": "S13",
+            "legal_status": "Non-Commercial Agency under the aegis of Department",
+            "government_department_id": 1199,
+            "government_department": "Department of Culture, Communications and Sport",
+            "nace_code": "R9001",
+            "nace_section": "R",
+            "nace_section_name": "Arts, entertainment and recreation",
+            "nace_division": "90",
+            "nace_group": "900",
+            "nace_class": "9001",
+            "nace_class_name": "Performing arts",
+            "cro": "414400",
+            "data_vintage": 2025,
+            "is_commercial": False,
+            "is_financial": None,
+            "aegis": "Department",
+            "legal_entity_type": "Agency",
+        }
+    }
