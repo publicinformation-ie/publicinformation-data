@@ -27,7 +27,7 @@ Each public body record contains:
 | `@type` | String | Entity type (`foi:PublicBody`) | Yes |
 | `name` | String | Official name of the public body | Yes |
 | `type` | String | Type of public body, from the [body-type vocabulary](#vocabularies) | Yes |
-| `website` | URI | Official website URL | No — present for 385 of 883 bodies |
+| `website` | URI | Official website URL | No — present for 376 of 883 bodies |
 | `foi_subject` | Boolean | Whether the body is subject to FOI legislation | Yes |
 | `foi_scope` | URI | FOI scope, from the [foi-scope vocabulary](#vocabularies) | Yes |
 | `contact_email` | String | FOI contact email, only present where successfully crawled | No |
