@@ -6,6 +6,8 @@ Usage: python scripts/transform_foi_disclosures.py
 import json
 import csv
 import os
+import hashlib
+from collections import defaultdict
 
 from scripts.lib.body_refs import BASE_URI, build_body_slug_lookup, body_uri
 
@@ -44,7 +46,19 @@ def load_slug_seed(path=SLUG_SEED_PATH):
     return {int(k): v for k, v in raw.items()}
 
 
-def build_record(disclosure, body_slug_lookup):
+def compute_disclosure_id(file_url, index_within_file):
+    """Deterministic id derived from (file_url, index_within_file).
+
+    file_url alone is not unique per record — one source disclosure log
+    file yields many individual FOI request rows — so the record's
+    position within its file's row list (in the order it appears in
+    foi-disclosures.json) disambiguates it. Stable across reruns as long
+    as a given file's extraction order doesn't change.
+    """
+    return hashlib.sha1(f"{file_url}#{index_within_file}".encode("utf-8")).hexdigest()[:12]
+
+
+def build_record(disclosure, body_slug_lookup, row_index):
     """Build one FOI disclosure record.
 
     Raises for an unresolvable public_body_id rather than guessing or
@@ -57,8 +71,9 @@ def build_record(disclosure, body_slug_lookup):
     except KeyError:
         raise ValueError(f"Unknown public_body_id in foi-disclosures.json: {body_id!r}")
 
+    disclosure_id = compute_disclosure_id(disclosure["file_url"], row_index)
     record = {
-        "@id": f"{BASE_URI}/foi-disclosure/{disclosure['row_id']}",
+        "@id": f"{BASE_URI}/foi-disclosure/{disclosure_id}",
         "@type": "foi:FoiDisclosure",
         "public_body": body_uri(slug),
         "name": disclosure["name"],
@@ -129,7 +144,12 @@ def main():
     slug_seed = load_slug_seed()
 
     body_slug_lookup = build_body_slug_lookup(pipeline_bodies, slug_seed)
-    records = [build_record(d, body_slug_lookup) for d in disclosures]
+    file_row_counters = defaultdict(int)
+    records = []
+    for d in disclosures:
+        row_index = file_row_counters[d["file_url"]]
+        file_row_counters[d["file_url"]] += 1
+        records.append(build_record(d, body_slug_lookup, row_index))
 
     jsonld_data = transform_to_jsonld(records)
     with open(JSONLD_OUTPUT_PATH, "w") as f:
