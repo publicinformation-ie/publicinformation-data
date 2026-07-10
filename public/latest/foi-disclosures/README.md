@@ -18,7 +18,7 @@ Each FOI disclosure record contains:
 
 | Property | Type | Description | Required |
 |----------|------|--------------|----------|
-| `@id` | URI | Persistent URI for the disclosure record, derived from `row_id` | Yes |
+| `@id` | URI | Persistent URI for the disclosure record, derived from a hash of `file_url` and the record's position within that file | Yes |
 | `@type` | String | Entity type (`foi:FoiDisclosure`) | Yes |
 | `public_body` | URI | The `@id` of the public body this disclosure belongs to, from the [Public Bodies dataset](../public-bodies/public-bodies.jsonld) | Yes |
 | `name` | String | Public body name as it appears in the source disclosure log | Yes |

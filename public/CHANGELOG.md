@@ -29,7 +29,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [foi-disclosures 1.0.0] - 2026-07-10
 
 ### Added
-- FOI Disclosures dataset with all 61,962 known individual FOI request records extracted from disclosure log files
+- FOI Disclosures dataset with all 60,177 known individual FOI request records extracted from disclosure log files
 - JSON-LD (single `@context` + `@graph`, with a root-level `version` field) and CSV formats for FOI Disclosures
 - CSVW metadata for the FOI Disclosures CSV, including `|`-delimited array column documentation
 - JSON Schema for FOI Disclosures
