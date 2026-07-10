@@ -26,6 +26,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Versioned (`v1.0.0/`) and `latest/` directory structure, versioned independently of Public Bodies
 - Each record's `public_body` field links to the same `@id` published in the Public Bodies dataset
 
+## [foi-disclosures 1.0.0] - 2026-07-10
+
+### Added
+- FOI Disclosures dataset with all 60,177 known individual FOI request records extracted from disclosure log files
+- JSON-LD (single `@context` + `@graph`, with a root-level `version` field) and CSV formats for FOI Disclosures
+- CSVW metadata for the FOI Disclosures CSV, including `|`-delimited array column documentation
+- JSON Schema for FOI Disclosures
+- DCAT-AP metadata for the FOI Disclosures dataset, related to the Public Bodies dataset via `dct:relation`
+- `latest/`-only directory structure (no permanent `v1.0.0/` copy) — this dataset does not guarantee old versions' exact bytes remain fetchable, unlike the rest of the catalog; see the dataset README's Versioning section
+- Each record's `public_body` field links to the same `@id` published in the Public Bodies dataset
+- `known_issues`/`missing_columns` published per record as data-transparency confidence signals
+
 ## Template
 
 For future entries, use this template:

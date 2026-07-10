@@ -1,0 +1,60 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+<https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/foi-disclosures>
+    a dcat:Dataset ;
+    dct:title "FOI Disclosures in Ireland"@en ;
+    dct:description "Individual Freedom of Information request records extracted from disclosure log files published by Irish public bodies, each linked to exactly one public body in the Public Bodies dataset."@en ;
+    dct:publisher <https://www.publicinformation.ie/> ;
+    dct:creator <https://www.publicinformation.ie/> ;
+    dct:issued "2026-07-10"^^xsd:date ;
+    dct:modified "2026-07-10"^^xsd:date ;
+    owl:versionInfo "1.0.0" ;
+    dct:language <http://publications.europa.eu/resource/authority/language/ENG> ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcat:keyword "FOI", "disclosure log", "Ireland", "government", "open data"@en ;
+    dcat:theme <http://data.europa.eu/m8g/GOVERNMENT> ;
+    dcat:contactPoint [
+        a vcard:Organization ;
+        vcard:fn "PublicInformation.ie" ;
+        vcard:hasEmail <mailto:dave@publicinformation.ie> ;
+    ] ;
+    dct:relation <https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/public-bodies> ;
+
+    dcat:distribution [
+        a dcat:Distribution ;
+        dct:title "FOI Disclosures (JSON-LD, latest)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
+        dcat:accessURL <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/foi-disclosures/foi-disclosures.jsonld> ;
+        dcat:downloadURL <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/foi-disclosures/foi-disclosures.jsonld> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "application/ld+json" ;
+        dct:conformsTo <https://publicinformation-ie.codeberg.page/publicinformation-data/schemas/foi-disclosures.schema.json> ;
+    ] , [
+        a dcat:Distribution ;
+        dct:title "FOI Disclosures (CSV, latest)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+        dcat:accessURL <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/foi-disclosures/foi-disclosures.csv> ;
+        dcat:downloadURL <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/foi-disclosures/foi-disclosures.csv> ;
+        dct:conformsTo <http://www.w3.org/ns/csvw> ;
+        dct:conformsTo <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/foi-disclosures/foi-disclosures.csv-metadata.json> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "text/csv" ;
+    ] .
+
+<https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/foi-disclosures>
+    prov:wasGeneratedBy [
+        a prov:Activity ;
+        prov:startedAtTime "2026-07-10T00:00:00Z"^^xsd:dateTime ;
+        prov:wasAssociatedWith [
+            a prov:Agent ;
+            prov:actedOnBehalfOf <https://www.publicinformation.ie/> ;
+            foaf:name "PublicInformation.ie Pipeline" ;
+            foaf:homepage <https://codeberg.org/publicinformation-ie/publicinformation-data> ;
+        ] ;
+    ] .

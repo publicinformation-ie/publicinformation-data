@@ -3,7 +3,11 @@
 # directory, plus a freshly generated index.html and the Codeberg Pages
 # custom-domain file.
 #
-# Never force-pushes. Fails loudly on any error; no retry, no fallback.
+# Always force-pushes a fresh orphan commit: `pages` is a pure build
+# artifact fully regenerated every run, so keeping its history serves no
+# purpose and would let every past revision of every large published file
+# (e.g. foi-disclosures) accumulate against Codeberg's shared org-wide git
+# storage quota forever. Fails loudly on any error; no retry, no fallback.
 
 set -euo pipefail
 
@@ -43,7 +47,12 @@ if git diff --cached --quiet; then
   exit 0
 fi
 
+echo "Creating fresh orphan commit (no parent history) for pages branch..."
+git checkout --orphan pages-rebuild
+git add -A
 git commit -m "chore: rebuild pages branch from public/"
-echo "Pushing to origin/pages..."
-git push origin pages
+git branch -M pages-rebuild pages
+
+echo "Force-pushing squashed 'pages' branch to origin..."
+git push --force origin pages
 echo "Published."
