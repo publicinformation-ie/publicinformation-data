@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Developer Quickstart — PublicInformation.ie</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+         max-width: 42rem; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; line-height: 1.6; }
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.1rem; margin-top: 2rem; }
+  a { color: #0645ad; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { background: #f2f2f2; padding: 0.1em 0.35em; border-radius: 3px; }
+  pre { background: #f2f2f2; padding: 0.75rem 1rem; overflow-x: auto; border-radius: 4px; }
+  .note { background: #fff8e1; border: 1px solid #f0e0a0; border-radius: 4px; padding: 0.75rem 1rem; margin: 1rem 0; }
+  .back { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid #ddd; font-size: 0.9em; color: #555; }
+</style>
+</head>
+<body>
+<h1>Developer Quickstart</h1>
+<p>The smallest, most stable dataset — Public Bodies — is the easiest place to start.</p>
+
+<h2>curl + jq</h2>
+<pre><code>curl -s https://publicinformation-ie.codeberg.page/publicinformation-data/latest/public-bodies/public-bodies.jsonld \
+  | jq -r '.["@graph"][0].name'</code></pre>
+
+<h2>JavaScript fetch</h2>
+<pre><code>const res = await fetch(
+  "https://publicinformation-ie.codeberg.page/publicinformation-data/latest/public-bodies/public-bodies.jsonld"
+);
+const data = await res.json();
+console.log(data["@graph"][0].name);</code></pre>
+
+<div class="note">
+  This is JSON-LD — treat it as regular JSON unless you need <code>@context</code>.
+</div>
+
+<h2><code>latest/</code> vs a versioned path</h2>
+<p>
+  <code>latest/public-bodies/</code> always points at the newest release — use
+  it for a stable URL that never breaks. A versioned path like
+  <code>v2.0.0/public-bodies/</code> is an immutable, pinned reference — use it
+  when you need to guarantee you're always reading exactly the same bytes,
+  regardless of future releases.
+</p>
+
+<div class="back">
+  <p>Full field-by-field reference and vocabularies: <a href="latest/public-bodies/README.md">Public Bodies</a>, <a href="latest/foi-disclosures/README.md">FOI Disclosures</a>, <a href="latest/foi-request-files/README.md">FOI Request Files</a>, <a href="latest/who-does-what/README.md">Who Does What</a>.</p>
+  <p>Before trusting a field in production, check <a href="data-quality.html">Data quality &amp; contributing</a> for the machine-readable status/confidence signals.</p>
+</div>
+</body>
+</html>
