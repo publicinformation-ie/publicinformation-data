@@ -200,9 +200,6 @@ git config core.hooksPath .githooks
 Without this, commits to `public/` on `main` will not trigger a Pages
 rebuild, and `scripts/publish_pages.sh` must be run manually instead.
 
-- `scripts/generate_pages_index.py <dir>` — writes a plain directory-listing
-  `index.html` into `<dir>`. Only ever run against the `pages` build
-  snapshot, never against `public/` on `main`.
 - `scripts/publish_pages.sh` — rebuilds and pushes the `pages` branch from
   scratch. No force-push; fails loudly (no retry) if the push is rejected —
   re-run it manually once any conflict on `pages` is resolved.

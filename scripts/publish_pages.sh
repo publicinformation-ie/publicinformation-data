@@ -36,9 +36,6 @@ cp -R "$REPO_ROOT/public/." "$WORKTREE_DIR/"
 echo "Writing custom domain file..."
 printf '%s\n' "$CUSTOM_DOMAIN" > "$WORKTREE_DIR/.domains"
 
-echo "Generating index.html..."
-python3 "$REPO_ROOT/scripts/generate_pages_index.py" "$WORKTREE_DIR"
-
 cd "$WORKTREE_DIR"
 git add -A
 
