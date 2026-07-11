@@ -55,13 +55,14 @@ These are regenerated automatically when the pipeline runs and are safe to use d
 
 ### Run the Pipeline Locally
 
-There are three pipelines under `pipelines/`, each with its own `pipeline.json` step order. `process.py` takes the pipeline directory as its first (mandatory) argument:
+There are four pipelines under `pipelines/`, each with its own `pipeline.json` step order. `process.py` takes the pipeline directory as its first (mandatory) argument:
 
 | Pipeline | What it does |
 |----------|---------------|
 | `foi_pipeline` | The main pipeline — discovers public bodies, FOI pages, disclosure logs and files, and extracts FOI request records |
 | `cso_pipeline` | Ingests Ireland's [CSO Register of Public Sector Bodies](https://www.cso.ie/) as a more authoritative source of body/website/sector data; also supplies the `resolve_website_urls` step reused by `foi_pipeline` |
 | `wdw_pipeline` | Builds the "Who Does What" dataset — links from public bodies to their plain-English gov.ie description |
+| `datagovie_pipeline` | Links public bodies to their organisation page on [data.gov.ie](https://data.gov.ie/), Ireland's open data portal |
 
 ```bash
 # Clone the repository
@@ -72,7 +73,7 @@ cd publicinformation-data
 python pipelines/foi_pipeline/process.py pipelines/foi_pipeline --force
 ```
 
-This processes all steps (defined in `<pipeline>/pipeline.json`) and generates output files in `<pipeline>/steps/<step_name>/output.json`. Swap `pipelines/foi_pipeline` for `pipelines/cso_pipeline` or `pipelines/wdw_pipeline` to run those instead.
+This processes all steps (defined in `<pipeline>/pipeline.json`) and generates output files in `<pipeline>/steps/<step_name>/output.json`. Swap `pipelines/foi_pipeline` for `pipelines/cso_pipeline`, `pipelines/wdw_pipeline`, or `pipelines/datagovie_pipeline` to run those instead.
 
 The consolidated output appears in `pipelines/foi_pipeline/steps/export_status/output.json` and is copied to `public/pipeline-data.json`.
 
@@ -190,13 +191,14 @@ publicinformation-data/
 ├── .env.admin.example             # Environment configuration template
 ├── local.db                       # Local SQLite database (gitignored)
 │
-├── pipelines/                     # Three independent pipelines, each with process.py + pipeline.json
+├── pipelines/                     # Four independent pipelines, each with process.py + pipeline.json
 │   ├── foi_pipeline/               # Main pipeline — see pipelines/foi_pipeline/AGENTS.md
 │   │   ├── steps/                  # Step implementations — see steps/README.md
 │   │   ├── experiments/            # Ad-hoc extraction-quality investigations — see experiments/README.md
 │   │   └── evaluation/             # Quality scoring framework — see evaluation/AGENTS.md
 │   ├── cso_pipeline/               # CSO Register ingestion
-│   └── wdw_pipeline/               # "Who Does What" link builder
+│   ├── wdw_pipeline/               # "Who Does What" link builder
+│   └── datagovie_pipeline/         # data.gov.ie organisation-link builder
 │
 ├── scripts/                       # Helper and admin scripts — see scripts/README.md
 │
