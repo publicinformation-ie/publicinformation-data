@@ -1,53 +1,14 @@
 #!/usr/bin/env python3
 import argparse
-import re
 import sys
-from difflib import SequenceMatcher
 from pathlib import Path
 
 from lib.cli_utils import add_common_args
 from lib.file_utils import read_json, write_json, write_status, IncrementalWriter
+from lib.body_matching import normalise, best_match, load_candidates, MATCH_THRESHOLD
 
 STEP_NAME = "match_public_bodies"
-MATCH_THRESHOLD = 0.90
 CANDIDATES_PATH = "pipelines/cso_pipeline/steps/resolve_website_urls/output.json"
-
-_SUFFIX_RE = re.compile(
-    r"\s*\b(clg|ltd|limited|dac|plc|teo|teoranta|cpt|uc)\b\.?\s*$",
-    re.IGNORECASE,
-)
-_PAREN_RE = re.compile(r"\s*\(.*?\)\s*")
-_WS_RE = re.compile(r"\s+")
-
-
-def normalise(name: str) -> str:
-    name = _PAREN_RE.sub(" ", name)
-    name = _SUFFIX_RE.sub("", name)
-    return _WS_RE.sub(" ", name).strip().lower()
-
-
-def best_match(query_norm: str, candidates: list) -> tuple:
-    """Return (public_body_id, score) for the best match at or above
-    MATCH_THRESHOLD, else (None, best_score).
-
-    candidates: list of (public_body_id, name, normalised_name)
-    """
-    best_score = 0.0
-    best_id = None
-    for public_body_id, _, norm in candidates:
-        score = SequenceMatcher(None, query_norm, norm).ratio()
-        if score > best_score:
-            best_score = score
-            best_id = public_body_id
-    if best_score >= MATCH_THRESHOLD:
-        return best_id, best_score
-    return None, best_score
-
-
-def load_candidates(candidates_path: Path) -> list:
-    data = read_json(candidates_path)
-    bodies = data.get("results") or data.get("public_bodies", [])
-    return [(b["public_body_id"], b["name"], normalise(b["name"])) for b in bodies]
 
 
 def process(input_data, candidates, writer, verbose=False):
