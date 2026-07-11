@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Get the Data — PublicInformation.ie</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+         max-width: 42rem; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; line-height: 1.6; }
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.1rem; margin-top: 2rem; }
+  a { color: #0645ad; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  table { border-collapse: collapse; margin: 1rem 0; width: 100%; }
+  th, td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid #ddd; font-size: 0.95em; }
+  th { color: #555; font-weight: 600; }
+  code { background: #f2f2f2; padding: 0.1em 0.35em; border-radius: 3px; }
+  ol { padding-left: 1.4rem; }
+  .back { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid #ddd; font-size: 0.9em; color: #555; }
+</style>
+</head>
+<body>
+<h1>Get the Data</h1>
+<p>
+  Four downloadable spreadsheet files, one per topic. Every file is a plain
+  CSV you can open in Excel, Google Sheets, or Numbers — no software beyond a
+  spreadsheet program is needed.
+</p>
+
+<h2><a href="latest/public-bodies/public-bodies.csv">Public bodies</a></h2>
+<p>Every public body in Ireland: its name, whether it handles Freedom of Information (FOI) requests, and its FOI contact email.</p>
+<table>
+  <tr><th>Column</th><th>What it means</th></tr>
+  <tr><td><code>name</code></td><td>The public body's name</td></tr>
+  <tr><td><code>foi_subject</code></td><td>Whether this body handles FOI requests</td></tr>
+  <tr><td><code>foi_email_email</code></td><td>Their FOI contact email address</td></tr>
+</table>
+
+<h2><a href="latest/foi-disclosures/foi-disclosures.csv">FOI disclosures</a></h2>
+<p>Records of information already released under FOI: what was asked, who asked (e.g. journalist, member of the public), when, and the outcome.</p>
+
+<h2><a href="latest/foi-request-files/foi-request-files.csv">FOI request files</a></h2>
+<p>The original source documents each disclosure record came from.</p>
+
+<h2><a href="latest/who-does-what/who-does-what.csv">Who does what</a></h2>
+<p>Links from each public body to its page on the Government's "Who Does What" directory.</p>
+
+<h2>Worked example: find a body's FOI contact email</h2>
+<ol>
+  <li>Open <a href="latest/public-bodies/public-bodies.csv">public-bodies.csv</a> in a spreadsheet program.</li>
+  <li>Search or filter the <code>name</code> column for the body you're interested in.</li>
+  <li>Read the <code>foi_email_email</code> column on that row — that's their FOI contact address.</li>
+</ol>
+
+<div class="back">
+  <p>Want the full technical details behind each file (every column, how the data was collected, what to watch out for)? See the <a href="latest/public-bodies/README.md">Public Bodies</a>, <a href="latest/foi-disclosures/README.md">FOI Disclosures</a>, <a href="latest/foi-request-files/README.md">FOI Request Files</a>, and <a href="latest/who-does-what/README.md">Who Does What</a> reference pages.</p>
+  <p>Wondering how complete this data is, or found something that looks wrong? See <a href="data-quality.html">Data quality &amp; reporting a problem</a>.</p>
+</div>
+</body>
+</html>
