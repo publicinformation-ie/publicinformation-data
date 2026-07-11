@@ -21,32 +21,58 @@ This repository contains the data processing pipeline for [PublicInformation.ie]
 
 ### Get the Data
 
-The latest processed data is available in the `public/` directory:
+Start at [`public/index.html`](public/index.html) — a landing page with three entry points depending on what you need:
 
-| File | Description | Size (approx.) |
-|------|-------------|---------------|
-| [`public/pipeline-data.json`](public/pipeline-data.json) | Consolidated status of all public bodies | ~150 KB |
-| [`public/foi-disclosures.json`](public/foi-disclosures.json) | All extracted FOI request records | ~38 MB |
-| [`public/disclosure-files.json`](public/disclosure-files.json) | All discovered disclosure document URLs | ~200 KB |
-| [`public/topics.json`](public/topics.json) | Topic groupings for FOI records | ~2.5 MB |
-| [`public/public-bodies.jsonld`](public/public-bodies.jsonld) | Public bodies in JSON-LD format (Slice 1) | ~180 KB |
-| [`public/public-bodies.csv`](public/public-bodies.csv) | Public bodies in CSV format (Slice 1) | ~75 KB |
+- [`public/get-the-data.html`](public/get-the-data.html) — plain CSV downloads, no technical background needed
+- [`public/quickstart.html`](public/quickstart.html) — a runnable code example for fetching and using the JSON-LD data programmatically
+- [`public/data-quality.html`](public/data-quality.html) — how extraction quality is tracked, and how to report or fix a problem
 
-These files are regenerated automatically when the pipeline runs and are safe to use directly. See [`public/README.md`](public/README.md) for full documentation of the Slice 1 Linked Data dataset.
+#### Curated Linked Data datasets
+
+Four datasets are published as versioned Linked Data under `public/latest/<dataset>/` (always the newest release) and `public/vX.Y.Z/<dataset>/` (immutable per-version snapshots), each with its own JSON-LD, CSV, and CSV metadata, plus a dataset-specific `README.md`:
+
+| Dataset | Version | Records | Docs |
+|---------|---------|---------|------|
+| Public Bodies | v2.0.0 | 883 | [`public/latest/public-bodies/README.md`](public/latest/public-bodies/README.md) |
+| FOI Disclosures | v1.0.0 | 60,177 | [`public/latest/foi-disclosures/README.md`](public/latest/foi-disclosures/README.md) |
+| FOI Request Files | v1.0.0 | 1,593 | [`public/latest/foi-request-files/README.md`](public/latest/foi-request-files/README.md) |
+| Who Does What | v1.0.0 | 27 | [`public/latest/who-does-what/README.md`](public/latest/who-does-what/README.md) |
+
+Supporting technical-reference files: [`public/catalog/`](public/catalog/) (one DCAT-AP `.ttl` per dataset) and [`public/schemas/`](public/schemas/) (one JSON Schema per dataset).
+
+#### Raw pipeline outputs
+
+Separate from the curated datasets above, the pipeline also writes unversioned raw outputs directly to `public/` on every run:
+
+| File | Description |
+|------|-------------|
+| [`public/pipeline-data.json`](public/pipeline-data.json) | Consolidated status of all public bodies |
+| [`public/foi-disclosures.json`](public/foi-disclosures.json) | All extracted FOI request records (pre-Linked-Data raw export) |
+| [`public/disclosure-files.json`](public/disclosure-files.json) | All discovered disclosure document URLs |
+| [`public/topics.json`](public/topics.json) | Topic groupings for FOI records |
+
+These are regenerated automatically when the pipeline runs and are safe to use directly, but carry no versioning or schema guarantees — prefer the curated datasets above for stable programmatic use.
 
 ### Run the Pipeline Locally
+
+There are three pipelines under `pipelines/`, each with its own `pipeline.json` step order. `process.py` takes the pipeline directory as its first (mandatory) argument:
+
+| Pipeline | What it does |
+|----------|---------------|
+| `foi_pipeline` | The main pipeline — discovers public bodies, FOI pages, disclosure logs and files, and extracts FOI request records |
+| `cso_pipeline` | Ingests Ireland's [CSO Register of Public Sector Bodies](https://www.cso.ie/) as a more authoritative source of body/website/sector data; also supplies the `resolve_website_urls` step reused by `foi_pipeline` |
+| `wdw_pipeline` | Builds the "Who Does What" dataset — links from public bodies to their plain-English gov.ie description |
 
 ```bash
 # Clone the repository
 git clone https://codeberg.org/publicinformation-ie/publicinformation-data.git
 cd publicinformation-data
 
-# Run the full pipeline
-cd pipelines/foi_pipeline
-python process.py --force
+# Run a pipeline (pass its directory explicitly)
+python pipelines/foi_pipeline/process.py pipelines/foi_pipeline --force
 ```
 
-This will process all steps (defined in `pipelines/foi_pipeline/pipeline.json`) and generate output files in `pipelines/foi_pipeline/steps/<step_name>/output.json`.
+This processes all steps (defined in `<pipeline>/pipeline.json`) and generates output files in `<pipeline>/steps/<step_name>/output.json`. Swap `pipelines/foi_pipeline` for `pipelines/cso_pipeline` or `pipelines/wdw_pipeline` to run those instead.
 
 The consolidated output appears in `pipelines/foi_pipeline/steps/export_status/output.json` and is copied to `public/pipeline-data.json`.
 
@@ -72,8 +98,10 @@ uv pip install -r pipelines/foi_pipeline/requirements.txt
 Or using pip directly:
 
 ```bash
-pip install requests beautifulsoup4 lxml tablib sqlparse python-dotenv
+pip install -r pipelines/foi_pipeline/requirements.txt
 ```
+
+Some steps use an LLM as a judge and support pluggable backends via `EVAL_JUDGE_PROVIDER` (`anthropic`, `openai`, or `mistral`) — install the matching SDK (e.g. `uv pip install anthropic`) if you use one. See the comments in `pipelines/foi_pipeline/requirements.txt` for details.
 
 ### Environment Configuration
 
@@ -88,6 +116,10 @@ Required variables for production database upload:
 - `DATABASE_URL`: libSQL database connection URL
 - `DATABASE_AUTH_TOKEN`: Bunny/CDN authentication token
 
+Optional variables for LLM-judge-backed steps:
+- `EVAL_JUDGE_PROVIDER`: `anthropic`, `openai`, or `mistral`
+- `EVAL_JUDGE_MODEL`, `EVAL_JUDGE_BASE_URL`: model name and (for local/OpenAI-compatible servers) base URL
+
 For local development, the default SQLite database (`local.db`) is used.
 
 ## Usage
@@ -96,9 +128,9 @@ For local development, the default SQLite database (`local.db`) is used.
 
 | Command | Description |
 |---------|-------------|
-| `python pipelines/foi_pipeline/process.py --force` | Run the complete pipeline from scratch |
-| `python pipelines/foi_pipeline/process.py --from export_status --force` | Run from a specific step |
-| `python pipelines/foi_pipeline/process.py --from generate_topics` | Run from a step without forcing |
+| `python pipelines/foi_pipeline/process.py pipelines/foi_pipeline --force` | Run the complete pipeline from scratch |
+| `python pipelines/foi_pipeline/process.py pipelines/foi_pipeline --from export_status --force` | Run from a specific step |
+| `python pipelines/foi_pipeline/process.py pipelines/foi_pipeline --from generate_topics` | Run from a step without forcing |
 
 ### Individual Step Execution
 
@@ -119,20 +151,25 @@ cd pipelines/foi_pipeline
 uv run pytest tests/ -q
 ```
 
+### Experiments & Evaluation
+
+Two related but distinct tools live alongside `foi_pipeline`:
+
+- **Experiments** (`pipelines/foi_pipeline/experiments/`) — dated, one-off investigations into extraction-quality questions (e.g. a pdfplumber parameter sweep). See [`experiments/README.md`](pipelines/foi_pipeline/experiments/README.md) for how to run and add one.
+- **Evaluation** (`pipelines/foi_pipeline/evaluate.py`) — the ongoing quality-scoring framework that runs per-step `eval/evaluate.py` scripts, checks for regressions against a baseline, and prints a north-star metric. See [`evaluation/AGENTS.md`](pipelines/foi_pipeline/evaluation/AGENTS.md) for usage and LLM-judge configuration.
+
 ### Common Workflows
 
 **Update all data and rebuild website:**
 ```bash
-cd pipelines/foi_pipeline
-python process.py --force
+python pipelines/foi_pipeline/process.py pipelines/foi_pipeline --force
 cd ../publicinformation-web
 npm run build
 ```
 
 **Quick data refresh (from export_status):**
 ```bash
-cd pipelines/foi_pipeline
-python process.py --from export_status --force
+python pipelines/foi_pipeline/process.py pipelines/foi_pipeline --from export_status --force
 ```
 
 **Check data status:**
@@ -149,86 +186,56 @@ python3 -c "import json; d=json.load(open('public/pipeline-data.json')); print('
 ```
 publicinformation-data/
 ├── README.md                      # This file - project overview
-├── AGENTS.md                      # Agent/automation documentation index
-├── DATA_FLOW.md                   # End-to-end data flow documentation
+├── AGENTS.md                      # Agent/automation documentation index — start here for full detail
 ├── .env.admin.example             # Environment configuration template
 ├── local.db                       # Local SQLite database (gitignored)
 │
-├── docs/                          # Project documentation and plans
-│   ├── style-guide.md             # Code and documentation style guide
-│   ├── deployment-migration-bunny.md
-│   └── <date>-<description>.md    # Design documents and meeting notes
+├── pipelines/                     # Three independent pipelines, each with process.py + pipeline.json
+│   ├── foi_pipeline/               # Main pipeline — see pipelines/foi_pipeline/AGENTS.md
+│   │   ├── steps/                  # Step implementations — see steps/README.md
+│   │   ├── experiments/            # Ad-hoc extraction-quality investigations — see experiments/README.md
+│   │   └── evaluation/             # Quality scoring framework — see evaluation/AGENTS.md
+│   ├── cso_pipeline/               # CSO Register ingestion
+│   └── wdw_pipeline/               # "Who Does What" link builder
 │
-├── pipelines/                     # Main pipelines directory
-│   └── foi_pipeline/              # FOI pipeline
-│       ├── AGENTS.md              # Pipeline architecture and operations
-│       ├── process.py             # Pipeline orchestration engine
-│       ├── pipeline.json          # Authoritative step order configuration
-│       ├── requirements.txt       # Python dependencies
-│       └── steps/                 # Pipeline step implementations
-│           ├── AGENTS.md          # Step directory management guidelines
-│           ├── README.md          # Complete step sequence documentation
-│           └── <step_name>/       # Individual pipeline steps
-│               ├── README.md      # Step-specific documentation
-│               ├── process.py     # Step entry point
-│               ├── output.json    # Step output data
-│               ├── output_schema.json # JSON schema for validation
-│               ├── override.json   # Manual override records
-│               ├── errors.json    # Per-record errors and warnings
-│               └── dirty_ids.json  # IDs with changed upstream data
+├── scripts/                       # Helper and admin scripts — see scripts/README.md
 │
-├── scripts/                       # Helper and admin scripts
-│   ├── AGENTS.md                  # Which helper script to use, and when
-│   ├── README.md                  # Script documentation
-│   ├── db_client.py               # Database client abstraction
-│   └── admin-corrections.mjs      # Interactive correction review CLI
-│
-└── public/                        # Public-facing output files
-    ├── pipeline-data.json         # Consolidated public body status
-    ├── foi-disclosures.json       # All FOI request records
-    ├── disclosure-files.json      # All disclosure document URLs
-    ├── topics.json                # Topic groupings
-    ├── public-bodies.jsonld       # Public bodies in JSON-LD format (Slice 1)
-    ├── public-bodies.csv          # Public bodies in CSV format (Slice 1)
-    ├── public-bodies.schema.json  # JSON Schema for public bodies (Slice 1)
-    ├── dataset-public-bodies.ttl   # DCAT-AP metadata (Slice 1)
+└── public/                        # Public-facing output files, served via Codeberg Pages
+    ├── index.html                 # Landing page
+    ├── get-the-data.html          # Non-technical CSV download guide
+    ├── quickstart.html            # Developer quickstart with runnable example
+    ├── data-quality.html          # Data quality & contributing guide
+    ├── pipeline-data.json         # Raw: consolidated public body status
+    ├── foi-disclosures.json       # Raw: all FOI request records
+    ├── disclosure-files.json      # Raw: all disclosure document URLs
+    ├── topics.json                # Raw: topic groupings
     ├── schema.sql                 # Database schema
     ├── LICENSE                    # CC-BY 4.0 license for public data
     ├── CHANGELOG.md               # Changelog for public bodies dataset
-    └── vocabularies/              # Controlled vocabularies (Slice 1)
-        ├── body-type.csv
-        ├── foi-scope.csv
-        ├── sector.csv
-        └── geographic-coverage.csv
+    ├── catalog/                   # DCAT-AP metadata, one .ttl per dataset
+    ├── schemas/                   # JSON Schema, one per dataset
+    ├── vocabularies/              # Controlled vocabularies
+    │   ├── body-type.csv
+    │   └── foi-scope.csv
+    ├── latest/                    # Curated Linked Data datasets (mirrors newest version)
+    │   ├── public-bodies/
+    │   ├── foi-disclosures/
+    │   ├── foi-request-files/
+    │   └── who-does-what/
+    └── vX.Y.Z/                    # Immutable versioned dataset releases
 ```
 
 ## Pipeline Steps
 
-The step sequence is defined in [`pipelines/foi_pipeline/pipeline.json`](pipelines/foi_pipeline/pipeline.json). Steps run in order; each writes to `steps/<step>/output.json` for the next step to consume.
+The step sequence is defined in [`pipelines/foi_pipeline/pipeline.json`](pipelines/foi_pipeline/pipeline.json) — that file and [`pipelines/foi_pipeline/steps/README.md`](pipelines/foi_pipeline/steps/README.md) are the authoritative, up-to-date references (the pipeline currently runs 25+ steps and changes as data-quality issues are found and fixed). At a high level, each pipeline run moves through these phases:
 
-| # | Step | Description |
-|---|------|-------------|
-| 1 | `find_public_bodies` | Scrapes the master list from foi.gov.ie |
-| 2 | `find_public_bodies_subject_to_foi` | Filters to bodies subject to FOI legislation |
-| 3 | `resolve_website_urls` | Resolves gov.ie stub URLs to actual websites |
-| 4 | `validate_websites` | Checks website reachability |
-| 5 | `find_foi_pages` | Discovers FOI-specific pages on each website |
-| 6 | `find_foi_pages_search` | Apify batch search for bodies where crawl failed |
-| 7 | `check_foi_pages` | Validates FOI page accessibility |
-| 8 | `get_foi_emails` | Extracts FOI email addresses |
-| 9 | `find_disclosure_pages` | Locates disclosure log pages |
-| 10 | `find_disclosure_files` | Collects disclosure document links (PDFs, CSVs, etc.) |
-| 11 | `transform_disclosure_files` | Processes files into structured data |
-| 12 | `normalize_disclosure_cells` | Normalizes string cell values |
-| 13 | `extract_disclosures_detect_header_row` | Detects header rows in spreadsheets |
-| 14 | `extract_disclosures_normalize_header` | Repairs null cells in header rows (continuation merge + forward-fill) |
-| 15 | `extract_disclosures_normalize_rows` | Normalizes date values to ISO 8601 format |
-| 16 | `extract_disclosures_canonicalize` | Maps raw columns to canonical FOI fields |
-| 17 | `extract_disclosures_canonicalize_rows` | Normalizes decision_status values to canonical set |
-| 18 | `extract_disclosures_deduplicate` | Removes duplicate FOI records |
-| 19 | `export_status` | **Critical**: Fan-in merge of all outputs (used by website) |
-| 20 | `generate_topics` | Groups FOI records into keyword-defined topics |
-| 21 | `db_upload` | Populates the libSQL database |
+1. **Discovery** — find public bodies, their websites, FOI pages, FOI contact emails, and disclosure log pages
+2. **Collection** — find and download disclosure files (PDFs, spreadsheets) linked from disclosure log pages
+3. **Extraction & normalization** — convert files to structured rows, detect/repair header rows, normalize cell values and dates
+4. **Canonicalization** — map raw columns to canonical FOI fields, normalize status values, deduplicate records
+5. **Export** — `export_status` fans in every step's output into the consolidated status report and public JSON files; `generate_topics` and `db_upload` run last
+
+`export_status` is the critical fan-in step: if data is missing on the website, check whether it has been run.
 
 ## Data Model
 
@@ -271,54 +278,30 @@ The main output (`export_status/output.json` and `public/pipeline-data.json`) co
 
 ## Override System
 
-Some automated results may be incorrect due to website changes or scraping limitations. The override system allows manual corrections that are **never overwritten** by automated runs.
-
-### How to Add an Override
-
-1. Navigate to the step directory: `pipelines/foi_pipeline/steps/<step_name>/`
-2. Edit or create `override.json`
-3. Add a complete record with `"source_method": "manual"` and `"overridden": true`
-4. Commit the file to git
-
-Example (`pipelines/foi_pipeline/steps/find_foi_pages/override.json`):
-
-```json
-[
-  {
-    "public_body_id": 1025,
-    "name": "Capital Works Management Framework",
-    "official_website_url": "https://constructionprocurement.gov.ie/",
-    "foi_page_url": "https://constructionprocurement.gov.ie/freedom-of-information/",
-    "source_method": "manual",
-    "overridden": true
-  }
-]
-```
+Manual corrections in a step's `override.json` (marked `"source_method": "manual", "overridden": true`) are **never overwritten** by automated runs. Add or edit a record, commit it to git, and the pipeline will skip re-processing that body for that step. See [`pipelines/foi_pipeline/AGENTS.md#override-system`](pipelines/foi_pipeline/AGENTS.md#override-system) for the full mechanism, including per-file column-mapping overrides.
 
 ## Data Outputs
 
-### Public JSON Files
+All files in the `public/` directory are safe for direct use. There are two tiers:
 
-All files in the `public/` directory are safe for direct use:
+### Curated Linked Data datasets
+
+Four datasets — Public Bodies, FOI Disclosures, FOI Request Files, and Who Does What — implement 3-4 star Linked Data best practices and are published as JSON-LD + CSV under `public/latest/<dataset>/` (always the newest release) and `public/vX.Y.Z/<dataset>/` (immutable per-version snapshots). Each dataset has its own `README.md` documenting its data model, versioning, and provenance — see the table in [Get the Data](#get-the-data) above. Shared technical-reference files:
+
+- **`public/catalog/`**: DCAT-AP 3.0 compliant dataset metadata (RDF/Turtle), one `.ttl` per dataset
+- **`public/schemas/`**: JSON Schema for validation, one per dataset
+- **`public/vocabularies/`**: Controlled vocabularies (`body-type.csv`, `foi-scope.csv`)
+- **`public/LICENSE`**: CC-BY 4.0 license for the public data
+- **`public/CHANGELOG.md`**: Version history
+
+### Raw pipeline outputs
+
+Unversioned files written directly to `public/` on every pipeline run:
 
 - **`pipeline-data.json`**: Consolidated status of all public bodies (updated on each pipeline run)
 - **`foi-disclosures.json`**: All extracted FOI request records with full details
 - **`disclosure-files.json`**: All discovered disclosure document URLs
 - **`topics.json`**: Topic groupings with matched FOI records
-
-### Slice 1: Public Bodies Dataset (Linked Data)
-
-The following files are part of Slice 1, implementing 3-4 star Linked Data best practices:
-
-- **`public-bodies.jsonld`**: Public bodies in JSON-LD format with full Linked Data context
-- **`public-bodies.csv`**: Tabular CSV export of public bodies
-- **`public-bodies.schema.json`**: JSON Schema for validation
-- **`dataset-public-bodies.ttl`**: DCAT-AP 3.0 compliant dataset metadata (RDF/Turtle)
-- **`LICENSE`**: CC-BY 4.0 license for the public dataset
-- **`CHANGELOG.md`**: Version history for the public bodies dataset
-- **`vocabularies/`**: Controlled vocabularies (body-type, foi-scope, sector, geographic-coverage)
-
-See [`public/README.md`](public/README.md) for complete documentation of the Slice 1 dataset.
 
 ### Database Schema
 
@@ -331,6 +314,10 @@ The pipeline populates a libSQL database with the following tables:
 - `disclosure_topic_matches` - Links between disclosures and topics
 
 The canonical schema is defined in [`public/schema.sql`](public/schema.sql).
+
+## Publishing
+
+`data.publicinformation.ie` is served from a `pages` branch on Codeberg Pages, which is fully rebuilt from `public/` by `scripts/publish_pages.sh`. A `.githooks/post-commit` hook auto-triggers this rebuild whenever a commit on `main` touches `public/`. Run `git config core.hooksPath .githooks` once per clone to enable it — otherwise run `scripts/publish_pages.sh` manually after changes to `public/`. See [`AGENTS.md`](AGENTS.md#codeberg-pages-publishing) for details.
 
 ## Contributing
 
@@ -348,10 +335,10 @@ Contributions are welcome! Please follow these guidelines:
 
 ### Code Style
 
-- Follow the existing code style (see [`docs/style-guide.md`](docs/style-guide.md))
+- Follow the existing code style in the surrounding files
 - Use type hints where appropriate
-- Include docstrings for functions and modules
 - Keep functions focused and single-purpose
+- For pipeline transform/canonicalization steps, see the core data-handling principle in [`AGENTS.md`](AGENTS.md): don't guess at malformed values, don't silently null or rewrite a field to make it fit — write an error and let a human reviewer handle it
 
 ### Documentation
 
@@ -379,68 +366,23 @@ When adding a new step:
 
 ## Troubleshooting
 
-### Common Issues
+**Data missing on website**: check whether `export_status` has been run and `public/pipeline-data.json` has data.
 
-**Data missing on website**:
-- Ensure `export_status` has been run
-- Check `public/pipeline-data.json` exists and has data
-- Verify the website has been rebuilt
-
-**All statuses show as "not_attempted"**:
-- Only `find_public_bodies` has been run
-- Run the full pipeline or at minimum through `export_status`
-
-**Pipeline step fails**:
-- Check the step's `errors.json` for specific errors
-- Run the step manually with `--force` to retry
-- Check network connectivity for scraping steps
-
-### Debugging Commands
+**Pipeline step fails**: check the step's `errors.json`, then re-run it manually with `--force`.
 
 ```bash
 # Check which steps have output
 ls -la pipelines/foi_pipeline/steps/*/output.json
 
-# View pipeline status
-cat pipelines/foi_pipeline/steps/export_status/status.json
-
 # Check for errors in a specific step
 cat pipelines/foi_pipeline/steps/<step_name>/errors.json | python -m json.tool
-
-# Validate output JSON
-python3 -c "import json; json.load(open('pipelines/foi_pipeline/steps/<step>/output.json'))" && echo "Valid JSON"
 ```
+
+See [`AGENTS.md`](AGENTS.md#troubleshooting-guide) for the full troubleshooting guide and decision tree.
 
 ## Architecture Decisions
 
-### Why a Multi-step Pipeline?
-
-The pipeline is broken into small, focused steps because:
-
-1. **Isolation**: Each step can be developed, tested, and debugged independently
-2. **Resumability**: Steps can be re-run from any point without reprocessing everything
-3. **Incremental Updates**: Only stale steps are re-run by default
-4. **Override Preservation**: Manual corrections in earlier steps propagate through later steps
-5. **Error Containment**: A failure in one step doesn't cascade to unrelated data
-
-### Why JSON Output?
-
-JSON is used for intermediate and final outputs because:
-
-- Human-readable and easy to inspect
-- Widely supported across programming languages
-- Schema-validation available via `output_schema.json`
-- Easy to version control and diff
-- Works well with the website's JavaScript/TypeScript consumption
-
-### Why libSQL?
-
-The project uses libSQL (via Bunny) for the production database because:
-
-- HTTP-based access suitable for serverless/edge environments
-- SQL-compatible with SQLite familiar syntax
-- Scalable and managed hosting available
-- Works well with static site generators
+The pipeline is broken into small, resumable, isolated steps (each independently testable, re-runnable, and override-preserving) that read/write plain JSON (human-readable, diffable, schema-validated via `output_schema.json`) and feed a libSQL database (HTTP-based, SQLite-compatible, suited to static-site/serverless hosting).
 
 ## License
 
@@ -486,6 +428,6 @@ For bug fixes and improvements, please:
 
 ---
 
-*This README was last updated on July 1, 2026. For the most up-to-date information, see the project documentation in [AGENTS.md](AGENTS.md) and [DATA_FLOW.md](DATA_FLOW.md).*
+*For the most up-to-date technical information, see [AGENTS.md](AGENTS.md).*
 
 *Licensed under [AGPL-3.0](https://www.gnu.org/licenses/agpl-3.0)*
