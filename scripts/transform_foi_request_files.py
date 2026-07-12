@@ -9,11 +9,13 @@ import os
 import shutil
 import hashlib
 
-from scripts.transform_public_bodies import BASE_URI, slugify
+from scripts.lib.body_refs import build_body_slug_lookup, body_uri
+from scripts.transform_public_bodies import BASE_URI
 
 DISCLOSURE_FILES_PATH = "public/disclosure-files.json"
 PIPELINE_DATA_PATH = "public/pipeline-data.json"
-OUTPUT_DIR = "public/v1.0.0/foi-request-files"
+SLUG_SEED_PATH = "pipelines/foi_pipeline/steps/db_upload/slug_seed.json"
+OUTPUT_DIR = "public/v1.1.0/foi-request-files"
 LATEST_DIR = "public/latest/foi-request-files"
 JSONLD_OUTPUT_PATH = f"{OUTPUT_DIR}/foi-request-files.jsonld"
 CSV_OUTPUT_PATH = f"{OUTPUT_DIR}/foi-request-files.csv"
@@ -26,16 +28,6 @@ def hash_document_id(document_url):
     and never null (verified: 1593/1593 unique in current data).
     """
     return hashlib.sha1(document_url.encode("utf-8")).hexdigest()[:12]
-
-
-def build_body_slug_lookup(pipeline_bodies):
-    """Map public_body_id -> slug, using the same slugify() as public-bodies.
-
-    Reusing slugify() here (rather than re-deriving it) is what guarantees
-    the public_body URI below matches an @id already published in the
-    public-bodies dataset.
-    """
-    return {b["public_body_id"]: slugify(b["public_body_name"]) for b in pipeline_bodies}
 
 
 def build_record(file_record, body_slug_lookup):
@@ -53,7 +45,7 @@ def build_record(file_record, body_slug_lookup):
     return {
         "@id": f"{BASE_URI}/foi-request-file/{hash_document_id(file_record['document_url'])}",
         "@type": "foi:FoiRequestFile",
-        "public_body": f"{BASE_URI}/body/{slug}",
+        "public_body": body_uri(slug),
         "document_url": file_record["document_url"],
         "source_page_url": file_record["source_page_url"],
         "file_type": file_record["file_type"],
@@ -99,27 +91,24 @@ def copy_to_latest():
 
 def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-
     with open(DISCLOSURE_FILES_PATH) as f:
         file_records = json.load(f)
     with open(PIPELINE_DATA_PATH) as f:
         pipeline_bodies = json.load(f)["public_bodies"]
-
-    body_slug_lookup = build_body_slug_lookup(pipeline_bodies)
+    with open(SLUG_SEED_PATH) as f:
+        raw_slug_seed = json.load(f)
+    slug_seed = {int(k): v for k, v in raw_slug_seed.items()}
+    body_slug_lookup = build_body_slug_lookup(pipeline_bodies, slug_seed)
     records = [build_record(fr, body_slug_lookup) for fr in file_records]
-
     jsonld_data = transform_to_jsonld(records)
     with open(JSONLD_OUTPUT_PATH, "w") as f:
         json.dump(jsonld_data, f, indent=2, ensure_ascii=False)
-
     fieldnames, rows = transform_to_csv_rows(records)
     with open(CSV_OUTPUT_PATH, "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
-
     copy_to_latest()
-
     print(f"Transformed {len(records)} FOI request files to JSON-LD and CSV")
 
 

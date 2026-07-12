@@ -1,12 +1,12 @@
 import pytest
 from scripts.transform_foi_request_files import (
     hash_document_id,
-    build_body_slug_lookup,
     build_record,
     transform_to_jsonld,
     transform_to_csv_rows,
 )
 from scripts.transform_public_bodies import BASE_URI
+from scripts.lib.body_refs import body_uri
 
 
 def test_hash_document_id_deterministic():
@@ -26,18 +26,6 @@ def test_hash_document_id_differs_for_different_urls():
     assert a != b
 
 
-def test_build_body_slug_lookup_maps_id_to_slug():
-    pipeline_bodies = [
-        {"public_body_id": 1104, "public_body_name": "Central Bank of Ireland"},
-        {"public_body_id": 1002, "public_body_name": "Ability West"},
-    ]
-    lookup = build_body_slug_lookup(pipeline_bodies)
-    assert lookup == {
-        1104: "central-bank-of-ireland",
-        1002: "ability-west",
-    }
-
-
 def test_build_record_happy_path():
     file_record = {
         "public_body_id": 1104,
@@ -54,6 +42,19 @@ def test_build_record_happy_path():
     assert record["document_url"] == file_record["document_url"]
     assert record["source_page_url"] == file_record["source_page_url"]
     assert record["file_type"] == "pdf"
+
+
+def test_build_record_public_body_matches_shared_body_uri():
+    file_record = {
+        "public_body_id": 1104,
+        "document_url": "https://www.centralbank.ie/docs/foi-disclosure-log-q1-2026.pdf",
+        "source_page_url": "https://www.centralbank.ie/about/freedom-of-information/foi-disclosure-log",
+        "file_type": "pdf",
+    }
+    slug = "central-bank-of-ireland"
+    body_slug_lookup = {1104: slug}
+    record = build_record(file_record, body_slug_lookup)
+    assert record["public_body"] == body_uri(slug)
 
 
 def test_build_record_unknown_public_body_id_raises():
