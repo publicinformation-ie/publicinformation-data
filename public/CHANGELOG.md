@@ -38,6 +38,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Each record's `public_body` field links to the same `@id` published in the Public Bodies dataset
 - `known_issues`/`missing_columns` published per record as data-transparency confidence signals
 
+## [data-gov-ie-links 1.0.0] - 2026-07-11
+
+### Added
+- data.gov.ie Links dataset linking public bodies to their organisation page on Ireland's open data portal (data.gov.ie)
+- JSON-LD (single `@context` + `@graph`) and CSV formats for data.gov.ie Links
+- CSVW metadata for the data.gov.ie Links CSV
+- JSON Schema for data.gov.ie Links
+- DCAT-AP metadata for the data.gov.ie Links dataset, related to the Public Bodies dataset via `dct:relation`
+- Versioned (`v1.0.0/`) and `latest/` directory structure, versioned independently of Public Bodies
+- Each record's `public_body` field links to the same `@id` published in the Public Bodies dataset
+- Source fetched live from data.gov.ie's CKAN REST API on every pipeline run, matched against Public Bodies by fuzzy name matching (threshold 0.90) via the shared `src/lib/body_matching.py` helper
+
 ## Template
 
 For future entries, use this template:
