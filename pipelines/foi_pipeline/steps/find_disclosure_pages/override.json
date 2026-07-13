@@ -234,5 +234,37 @@
     "disclosure_page_url": "https://www.hsa.ie/freedom_of_information/freedom_of_information_publication_scheme/foi_disclosure_log_and_other_information_to_be_published_routinely/",
     "source_method": "manual",
     "overridden": true
+  },
+  {
+    "public_body_id": 1003,
+    "name": "Department of Climate, Energy and the Environment",
+    "foi_page_url": "https://www.gov.ie/en/department-of-climate-energy-and-the-environment/organisation-information/freedom-of-information-foi/",
+    "disclosure_page_url": "https://www.gov.ie/en/department-of-climate-energy-and-the-environment/publications/published-foi-requests/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1013,
+    "name": "Department of Justice, Home Affairs and Migration",
+    "foi_page_url": "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/organisation-information/freedom-of-information-foi/",
+    "disclosure_page_url": "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/collections/foi-disclosure-logs/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1015,
+    "name": "Department of Rural and Community Development and the Gaeltacht",
+    "foi_page_url": "https://www.gov.ie/en/department-of-rural-and-community-development-and-the-gaeltacht/organisation-information/freedom-of-informationaccess-to-information-on-the-environment/",
+    "disclosure_page_url": "https://www.gov.ie/en/department-of-rural-and-community-development-and-the-gaeltacht/collections/foi-disclosure-logs/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1449,
+    "name": "Kerry County Council",
+    "foi_page_url": "https://www.kerrycoco.ie/home3/freedom-of-information/",
+    "disclosure_page_url": "https://www.kerrycoco.ie/freedom-of-information-disclosure/",
+    "source_method": "manual",
+    "overridden": true
   }
 ]
