@@ -1,12 +1,16 @@
 import pytest
+from pathlib import Path
+
 from scripts.transform_foi_request_files import (
     hash_document_id,
     build_record,
     transform_to_jsonld,
     transform_to_csv_rows,
+    publish,
 )
 from scripts.transform_public_bodies import BASE_URI
 from scripts.lib.body_refs import body_uri
+from src.lib.dataset_publish import render_jsonld, render_csv
 
 
 def test_hash_document_id_deterministic():
@@ -101,3 +105,54 @@ def test_transform_to_csv_rows_columns_and_values():
     assert rows[0]["id"] == SAMPLE_RECORDS[0]["@id"]
     assert rows[0]["public_body"] == SAMPLE_RECORDS[0]["public_body"]
     assert rows[1]["file_type"] == "xlsx"
+
+
+def _ttl_text(modified_date):
+    return (
+        "@prefix dct: <http://purl.org/dc/terms/> .\n"
+        "@prefix owl: <http://www.w3.org/2002/07/owl#> .\n"
+        "@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n"
+        "<https://example.ie/dataset/foi-request-files>\n"
+        "    a dcat:Dataset ;\n"
+        f'    dct:modified "{modified_date}"^^xsd:date ;\n'
+        '    owl:versionInfo "1.1.0" ;\n'
+        "    .\n"
+    )
+
+
+def test_publish_writes_files_and_stamps_ttl_when_content_changed(tmp_path):
+    jsonld_path = tmp_path / "foi-request-files.jsonld"
+    csv_path = tmp_path / "foi-request-files.csv"
+    ttl_path = tmp_path / "dataset-foi-request-files.ttl"
+    ttl_path.write_text(_ttl_text("2020-01-01"))
+    jsonld_data = {"@graph": [{"document_url": "old"}]}
+    fieldnames, rows = ["id", "document_url"], [{"id": "1", "document_url": "old"}]
+
+    changed = publish(
+        jsonld_data, fieldnames, rows,
+        jsonld_path=jsonld_path, csv_path=csv_path, ttl_path=ttl_path,
+    )
+
+    assert changed is True
+    assert jsonld_path.read_bytes() == render_jsonld(jsonld_data)
+    assert csv_path.read_bytes() == render_csv(fieldnames, rows)
+    assert '"2020-01-01"' not in ttl_path.read_text()
+
+
+def test_publish_is_noop_when_content_identical(tmp_path):
+    jsonld_path = tmp_path / "foi-request-files.jsonld"
+    csv_path = tmp_path / "foi-request-files.csv"
+    ttl_path = tmp_path / "dataset-foi-request-files.ttl"
+    ttl_path.write_text(_ttl_text("2020-01-01"))
+    jsonld_data = {"@graph": [{"document_url": "same"}]}
+    fieldnames, rows = ["id", "document_url"], [{"id": "1", "document_url": "same"}]
+    jsonld_path.write_bytes(render_jsonld(jsonld_data))
+    csv_path.write_bytes(render_csv(fieldnames, rows))
+
+    changed = publish(
+        jsonld_data, fieldnames, rows,
+        jsonld_path=jsonld_path, csv_path=csv_path, ttl_path=ttl_path,
+    )
+
+    assert changed is False
+    assert '"2020-01-01"' in ttl_path.read_text()

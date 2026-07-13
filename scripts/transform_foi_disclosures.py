@@ -4,12 +4,13 @@ FOI Disclosures dataset.
 Usage: python scripts/transform_foi_disclosures.py
 """
 import json
-import csv
 import os
 import hashlib
 from collections import defaultdict
+from pathlib import Path
 
 from scripts.lib.body_refs import BASE_URI, build_body_slug_lookup, body_uri
+from src.lib.dataset_publish import render_csv, render_jsonld, stamp_if_changed
 
 FOI_DISCLOSURES_PATH = "public/foi-disclosures.json"
 PIPELINE_DATA_PATH = "public/pipeline-data.json"
@@ -18,6 +19,7 @@ LATEST_DIR = "public/latest/foi-disclosures"
 JSONLD_OUTPUT_PATH = f"{LATEST_DIR}/foi-disclosures.jsonld"
 CSV_OUTPUT_PATH = f"{LATEST_DIR}/foi-disclosures.csv"
 DATASET_VERSION = "1.0.0"
+TTL_PATH = "public/catalog/dataset-foi-disclosures.ttl"
 
 # Present (possibly null) on every disclosure record; None is omitted from
 # JSON-LD, empty string in CSV.
@@ -134,6 +136,18 @@ def transform_to_csv_rows(records):
     return CSV_FIELDNAMES, rows
 
 
+def publish(
+    jsonld_data, fieldnames, rows,
+    jsonld_path=Path(JSONLD_OUTPUT_PATH), csv_path=Path(CSV_OUTPUT_PATH), ttl_path=Path(TTL_PATH),
+):
+    """Write jsonld/csv and stamp dct:modified only if content changed. Returns True if written."""
+    generated = {
+        jsonld_path: render_jsonld(jsonld_data),
+        csv_path: render_csv(fieldnames, rows),
+    }
+    return stamp_if_changed(ttl_path, [jsonld_path, csv_path], generated)
+
+
 def main():
     os.makedirs(LATEST_DIR, exist_ok=True)
 
@@ -152,16 +166,12 @@ def main():
         records.append(build_record(d, body_slug_lookup, row_index))
 
     jsonld_data = transform_to_jsonld(records)
-    with open(JSONLD_OUTPUT_PATH, "w") as f:
-        json.dump(jsonld_data, f, indent=2, ensure_ascii=False)
-
     fieldnames, rows = transform_to_csv_rows(records)
-    with open(CSV_OUTPUT_PATH, "w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(rows)
-
-    print(f"Transformed {len(records)} FOI disclosures to JSON-LD and CSV")
+    changed = publish(jsonld_data, fieldnames, rows)
+    if changed:
+        print(f"Transformed {len(records)} FOI disclosures to JSON-LD and CSV (content changed, dct:modified updated)")
+    else:
+        print(f"Transformed {len(records)} FOI disclosures to JSON-LD and CSV (no content change, dct:modified untouched)")
 
 
 if __name__ == "__main__":

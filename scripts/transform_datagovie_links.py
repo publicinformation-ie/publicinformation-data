@@ -4,11 +4,12 @@ for the data-gov-ie-links dataset.
 Usage: python scripts/transform_datagovie_links.py
 """
 import json
-import csv
 import os
 import shutil
+from pathlib import Path
 
 from scripts.transform_public_bodies import BASE_URI, slugify
+from src.lib.dataset_publish import render_csv, render_jsonld, stamp_if_changed
 
 APPLY_OVERRIDES_OUTPUT_PATH = "pipelines/datagovie_pipeline/steps/apply_overrides/output.json"
 FIND_PUBLIC_BODIES_PATH = "pipelines/foi_pipeline/steps/find_public_bodies/output.json"
@@ -16,6 +17,7 @@ OUTPUT_DIR = "public/v1.0.0/data-gov-ie-links"
 LATEST_DIR = "public/latest/data-gov-ie-links"
 JSONLD_OUTPUT_PATH = f"{OUTPUT_DIR}/data-gov-ie-links.jsonld"
 CSV_OUTPUT_PATH = f"{OUTPUT_DIR}/data-gov-ie-links.csv"
+TTL_PATH = "public/catalog/dataset-data-gov-ie-links.ttl"
 
 
 def build_body_slug_lookup(public_bodies):
@@ -88,6 +90,18 @@ def copy_to_latest():
     shutil.copytree(OUTPUT_DIR, LATEST_DIR, dirs_exist_ok=True)
 
 
+def publish(
+    jsonld_data, fieldnames, rows,
+    jsonld_path=Path(JSONLD_OUTPUT_PATH), csv_path=Path(CSV_OUTPUT_PATH), ttl_path=Path(TTL_PATH),
+):
+    """Write jsonld/csv and stamp dct:modified only if content changed. Returns True if written."""
+    generated = {
+        jsonld_path: render_jsonld(jsonld_data),
+        csv_path: render_csv(fieldnames, rows),
+    }
+    return stamp_if_changed(ttl_path, [jsonld_path, csv_path], generated)
+
+
 def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
@@ -100,18 +114,13 @@ def main():
     records = [build_record(r, body_slug_lookup) for r in dgi_records]
 
     jsonld_data = transform_to_jsonld(records)
-    with open(JSONLD_OUTPUT_PATH, "w") as f:
-        json.dump(jsonld_data, f, indent=2, ensure_ascii=False)
-
     fieldnames, rows = transform_to_csv_rows(records)
-    with open(CSV_OUTPUT_PATH, "w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(rows)
-
-    copy_to_latest()
-
-    print(f"Transformed {len(records)} data.gov.ie links to JSON-LD and CSV")
+    changed = publish(jsonld_data, fieldnames, rows)
+    if changed:
+        copy_to_latest()
+        print(f"Transformed {len(records)} data.gov.ie links to JSON-LD and CSV (content changed, dct:modified updated)")
+    else:
+        print(f"Transformed {len(records)} data.gov.ie links to JSON-LD and CSV (no content change, dct:modified untouched)")
 
 
 if __name__ == "__main__":

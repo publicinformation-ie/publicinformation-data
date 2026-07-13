@@ -603,3 +603,60 @@ def test_transform_to_csv_rows_includes_uri_reference_columns():
     assert rows[0]["government_department_id"] == f"{BASE_URI}/body/dept-a"
     assert rows[1]["parent_id"] == ""
     assert rows[1]["government_department_id"] == ""
+
+
+from pathlib import Path
+
+from scripts.transform_public_bodies import publish
+from src.lib.dataset_publish import render_jsonld, render_csv
+
+
+def _ttl_text(modified_date):
+    return (
+        "@prefix dct: <http://purl.org/dc/terms/> .\n"
+        "@prefix owl: <http://www.w3.org/2002/07/owl#> .\n"
+        "@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n"
+        "<https://example.ie/dataset/public-bodies>\n"
+        "    a dcat:Dataset ;\n"
+        f'    dct:modified "{modified_date}"^^xsd:date ;\n'
+        '    owl:versionInfo "2.0.0" ;\n'
+        "    .\n"
+    )
+
+
+def test_publish_writes_files_and_stamps_ttl_when_content_changed(tmp_path):
+    jsonld_path = tmp_path / "public-bodies.jsonld"
+    csv_path = tmp_path / "public-bodies.csv"
+    ttl_path = tmp_path / "dataset-public-bodies.ttl"
+    ttl_path.write_text(_ttl_text("2020-01-01"))
+    jsonld_data = {"@graph": [{"name": "old"}]}
+    fieldnames, rows = ["id", "name"], [{"id": "1", "name": "old"}]
+
+    changed = publish(
+        jsonld_data, fieldnames, rows,
+        jsonld_path=jsonld_path, csv_path=csv_path, ttl_path=ttl_path,
+    )
+
+    assert changed is True
+    assert jsonld_path.read_bytes() == render_jsonld(jsonld_data)
+    assert csv_path.read_bytes() == render_csv(fieldnames, rows)
+    assert '"2020-01-01"' not in ttl_path.read_text()
+
+
+def test_publish_is_noop_when_content_identical(tmp_path):
+    jsonld_path = tmp_path / "public-bodies.jsonld"
+    csv_path = tmp_path / "public-bodies.csv"
+    ttl_path = tmp_path / "dataset-public-bodies.ttl"
+    ttl_path.write_text(_ttl_text("2020-01-01"))
+    jsonld_data = {"@graph": [{"name": "same"}]}
+    fieldnames, rows = ["id", "name"], [{"id": "1", "name": "same"}]
+    jsonld_path.write_bytes(render_jsonld(jsonld_data))
+    csv_path.write_bytes(render_csv(fieldnames, rows))
+
+    changed = publish(
+        jsonld_data, fieldnames, rows,
+        jsonld_path=jsonld_path, csv_path=csv_path, ttl_path=ttl_path,
+    )
+
+    assert changed is False
+    assert '"2020-01-01"' in ttl_path.read_text()
