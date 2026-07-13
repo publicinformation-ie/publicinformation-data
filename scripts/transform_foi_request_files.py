@@ -4,13 +4,14 @@ FOI Request Files dataset.
 Usage: python scripts/transform_foi_request_files.py
 """
 import json
-import csv
 import os
 import shutil
 import hashlib
+from pathlib import Path
 
 from scripts.lib.body_refs import build_body_slug_lookup, body_uri
 from scripts.transform_public_bodies import BASE_URI
+from src.lib.dataset_publish import render_csv, render_jsonld, stamp_if_changed
 
 DISCLOSURE_FILES_PATH = "public/disclosure-files.json"
 PIPELINE_DATA_PATH = "public/pipeline-data.json"
@@ -19,6 +20,7 @@ OUTPUT_DIR = "public/v1.1.0/foi-request-files"
 LATEST_DIR = "public/latest/foi-request-files"
 JSONLD_OUTPUT_PATH = f"{OUTPUT_DIR}/foi-request-files.jsonld"
 CSV_OUTPUT_PATH = f"{OUTPUT_DIR}/foi-request-files.csv"
+TTL_PATH = "public/catalog/dataset-foi-request-files.ttl"
 
 
 def hash_document_id(document_url):
@@ -89,6 +91,18 @@ def copy_to_latest():
     shutil.copytree(OUTPUT_DIR, LATEST_DIR, dirs_exist_ok=True)
 
 
+def publish(
+    jsonld_data, fieldnames, rows,
+    jsonld_path=Path(JSONLD_OUTPUT_PATH), csv_path=Path(CSV_OUTPUT_PATH), ttl_path=Path(TTL_PATH),
+):
+    """Write jsonld/csv and stamp dct:modified only if content changed. Returns True if written."""
+    generated = {
+        jsonld_path: render_jsonld(jsonld_data),
+        csv_path: render_csv(fieldnames, rows),
+    }
+    return stamp_if_changed(ttl_path, [jsonld_path, csv_path], generated)
+
+
 def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     with open(DISCLOSURE_FILES_PATH) as f:
@@ -101,15 +115,13 @@ def main():
     body_slug_lookup = build_body_slug_lookup(pipeline_bodies, slug_seed)
     records = [build_record(fr, body_slug_lookup) for fr in file_records]
     jsonld_data = transform_to_jsonld(records)
-    with open(JSONLD_OUTPUT_PATH, "w") as f:
-        json.dump(jsonld_data, f, indent=2, ensure_ascii=False)
     fieldnames, rows = transform_to_csv_rows(records)
-    with open(CSV_OUTPUT_PATH, "w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(rows)
-    copy_to_latest()
-    print(f"Transformed {len(records)} FOI request files to JSON-LD and CSV")
+    changed = publish(jsonld_data, fieldnames, rows)
+    if changed:
+        copy_to_latest()
+        print(f"Transformed {len(records)} FOI request files to JSON-LD and CSV (content changed, dct:modified updated)")
+    else:
+        print(f"Transformed {len(records)} FOI request files to JSON-LD and CSV (no content change, dct:modified untouched)")
 
 
 if __name__ == "__main__":
