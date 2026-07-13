@@ -206,6 +206,32 @@ rebuild, and `scripts/publish_pages.sh` must be run manually instead.
 - `.githooks/post-commit` — no-ops unless the commit is on `main` and
   touched `public/`; otherwise runs `publish_pages.sh`.
 
+### Dataset Version Bumps
+
+Each catalogued dataset (`public-bodies`, `foi-request-files`, `foi-disclosures`,
+`data-gov-ie-links`, `who-does-what`) carries two independent versioning signals in its
+`public/catalog/dataset-*.ttl`: `owl:versionInfo` (SemVer schema/shape contract) and
+`dct:modified` (content freshness date). `dct:modified` is stamped automatically by
+`src/lib/dataset_publish.py`'s `stamp_if_changed` on every `transform_*.py` run, but only
+when the dataset's output content actually changed — no code decides on its own whether a
+change counts as a schema break.
+
+Bump `owl:versionInfo` by hand only for a breaking or additive change to field names,
+types, or controlled vocabularies:
+
+1. Decide MAJOR (breaking: renamed/removed/retyped field, removed vocabulary term) vs MINOR
+   (additive: new optional field, new vocabulary term) per SemVer.
+2. Edit the `OUTPUT_DIR` constant in the dataset's `transform_*.py` to the new `vX.Y.Z/`.
+   (`foi-disclosures` is the one exception — it has no `OUTPUT_DIR`; it publishes
+   `latest/`-only and bumps only `DATASET_VERSION` and `owl:versionInfo`.)
+3. Edit `owl:versionInfo` in the dataset's `.ttl` to match.
+4. Add a `public/CHANGELOG.md` entry under the existing template.
+5. Run the script once to materialize the new versioned directory (this run will also trigger
+   `stamp_if_changed`, since the new `OUTPUT_DIR` has no prior content to compare against).
+
+Fixing bad data in an existing field is a content refresh only — run the transform script,
+let `stamp_if_changed` update `dct:modified` if the output actually differs, and stop there.
+
 ### Common Commands Reference
 
 | Task | Command |
