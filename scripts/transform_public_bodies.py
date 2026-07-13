@@ -7,8 +7,10 @@ import csv
 import re
 import os
 import shutil
+from pathlib import Path
 
 from scripts.lib.body_refs import build_body_slug_lookup, body_uri
+from src.lib.dataset_publish import render_csv, render_jsonld, stamp_if_changed
 
 BASE_URI = "https://publicinformation-ie.codeberg.page/publicinformation-data"
 
@@ -27,6 +29,7 @@ OUTPUT_DIR = "public/v2.0.0/public-bodies"
 LATEST_DIR = "public/latest/public-bodies"
 JSONLD_OUTPUT_PATH = f"{OUTPUT_DIR}/public-bodies.jsonld"
 CSV_OUTPUT_PATH = f"{OUTPUT_DIR}/public-bodies.csv"
+TTL_PATH = "public/catalog/dataset-public-bodies.ttl"
 
 
 def slugify(text):
@@ -318,6 +321,18 @@ def copy_to_latest():
     shutil.copytree(OUTPUT_DIR, LATEST_DIR, dirs_exist_ok=True)
 
 
+def publish(
+    jsonld_data, fieldnames, rows,
+    jsonld_path=Path(JSONLD_OUTPUT_PATH), csv_path=Path(CSV_OUTPUT_PATH), ttl_path=Path(TTL_PATH),
+):
+    """Write jsonld/csv and stamp dct:modified only if content changed. Returns True if written."""
+    generated = {
+        jsonld_path: render_jsonld(jsonld_data),
+        csv_path: render_csv(fieldnames, rows),
+    }
+    return stamp_if_changed(ttl_path, [jsonld_path, csv_path], generated)
+
+
 def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     with open(FIND_PUBLIC_BODIES_PATH) as f:
@@ -341,15 +356,13 @@ def main():
         for b in bodies
     ]
     jsonld_data = transform_to_jsonld(records)
-    with open(JSONLD_OUTPUT_PATH, "w") as f:
-        json.dump(jsonld_data, f, indent=2, ensure_ascii=False)
     fieldnames, rows = transform_to_csv_rows(records)
-    with open(CSV_OUTPUT_PATH, "w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(rows)
-    copy_to_latest()
-    print(f"Transformed {len(records)} public bodies to JSON-LD and CSV")
+    changed = publish(jsonld_data, fieldnames, rows)
+    if changed:
+        copy_to_latest()
+        print(f"Transformed {len(records)} public bodies to JSON-LD and CSV (content changed, dct:modified updated)")
+    else:
+        print(f"Transformed {len(records)} public bodies to JSON-LD and CSV (no content change, dct:modified untouched)")
     if warnings:
         print(f"WARNING: {len(warnings)} unmatched URI-reference field(s) omitted:")
         for body_id, ref_field, ref_id in warnings:
