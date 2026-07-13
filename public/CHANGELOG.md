@@ -50,6 +50,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Each record's `public_body` field links to the same `@id` published in the Public Bodies dataset
 - Source fetched live from data.gov.ie's CKAN REST API on every pipeline run, matched against Public Bodies by fuzzy name matching (threshold 0.90) via the shared `src/lib/body_matching.py` helper
 
+## [lobbying-ie-links 1.0.0] - 2026-07-13
+
+### Added
+- lobbying.ie Links dataset linking public bodies to their page on Ireland's Register of Lobbying (lobbying.ie), with a point-in-time count of lobbying returns filed against each body
+- JSON-LD (single `@context` + `@graph`) and CSV formats for lobbying.ie Links
+- CSVW metadata for the lobbying.ie Links CSV
+- JSON Schema for lobbying.ie Links
+- DCAT-AP metadata for the lobbying.ie Links dataset, related to the Public Bodies dataset via `dct:relation`
+- Versioned (`v1.0.0/`) and `latest/` directory structure, versioned independently of Public Bodies
+- Each record's `public_body` field links to the same `@id` published in the Public Bodies dataset
+- Source fetched live from lobbying.ie's public JSON API on every pipeline run, matched against Public Bodies by fuzzy name matching (threshold 0.90) via the shared `src/lib/body_matching.py` helper
+
 ## Template
 
 For future entries, use this template:
