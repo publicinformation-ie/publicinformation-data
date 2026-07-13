@@ -3,7 +3,6 @@
 Usage: python scripts/transform_public_bodies.py
 """
 import json
-import csv
 import re
 import os
 import shutil
