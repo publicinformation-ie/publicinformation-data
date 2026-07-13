@@ -12,7 +12,7 @@ seed file.
 """
 from src.lib.body_utils import resolve_slug
 
-BASE_URI = "https://publicinformation-ie.codeberg.page/publicinformation-data"
+BASE_URI = "https://data.publicinformation.ie"
 
 
 def build_body_slug_lookup(pipeline_bodies, slug_seed):

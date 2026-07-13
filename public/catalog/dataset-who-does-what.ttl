@@ -13,7 +13,7 @@
     dct:publisher <https://www.publicinformation.ie/> ;
     dct:creator <https://www.publicinformation.ie/> ;
     dct:issued "2026-07-08"^^xsd:date ;
-    dct:modified "2026-07-08"^^xsd:date ;
+    dct:modified "2026-07-13"^^xsd:date ;
     owl:versionInfo "1.0.0" ;
     dct:language <http://publications.europa.eu/resource/authority/language/ENG> ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;

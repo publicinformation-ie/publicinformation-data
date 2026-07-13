@@ -11,7 +11,7 @@ from pathlib import Path
 from scripts.lib.body_refs import build_body_slug_lookup, body_uri
 from src.lib.dataset_publish import render_csv, render_jsonld, stamp_if_changed
 
-BASE_URI = "https://publicinformation-ie.codeberg.page/publicinformation-data"
+BASE_URI = "https://data.publicinformation.ie"
 
 BODY_TYPE_MAP = {
     "government department": "department",

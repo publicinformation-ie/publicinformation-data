@@ -21,12 +21,12 @@
 <p>The smallest, most stable dataset — Public Bodies — is the easiest place to start.</p>
 
 <h2>curl + jq</h2>
-<pre><code>curl -s https://publicinformation-ie.codeberg.page/publicinformation-data/latest/public-bodies/public-bodies.jsonld \
+<pre><code>curl -s https://data.publicinformation.ie/latest/public-bodies/public-bodies.jsonld \
   | jq -r '.["@graph"][0].name'</code></pre>
 
 <h2>JavaScript fetch</h2>
 <pre><code>const res = await fetch(
-  "https://publicinformation-ie.codeberg.page/publicinformation-data/latest/public-bodies/public-bodies.jsonld"
+  "https://data.publicinformation.ie/latest/public-bodies/public-bodies.jsonld"
 );
 const data = await res.json();
 console.log(data["@graph"][0].name);</code></pre>

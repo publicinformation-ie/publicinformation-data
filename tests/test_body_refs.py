@@ -12,7 +12,7 @@ def test_base_uri_matches_existing_transform_scripts():
     # transform_foi_request_files.py, transform_who_does_what.py) hard-codes
     # this exact literal. body_refs.BASE_URI must match it so a future
     # switch-over doesn't change any published @id.
-    assert BASE_URI == "https://publicinformation-ie.codeberg.page/publicinformation-data"
+    assert BASE_URI == "https://data.publicinformation.ie"
 
 
 def test_build_body_slug_lookup_uses_seeded_slug_over_generated_one():
