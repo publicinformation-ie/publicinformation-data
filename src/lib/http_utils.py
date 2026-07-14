@@ -110,6 +110,8 @@ _BOT_BODY_MARKERS = [
     ("Please complete the security check to access", "CAPTCHA security check"),
     ("DDoS protection by", "DDoS protection page"),
     ("This site is protected by", "bot-protection page"),
+    ("awsWafCookieDomainList", "AWS WAF challenge"),
+    ("captcha.awswaf.com", "AWS WAF captcha"),
 ]
 
 
@@ -122,9 +124,13 @@ def _detect_bot_challenge(response):
         suffix = f" (Retry-After: {retry_after})" if retry_after else ""
         return f"HTTP 429 Too Many Requests{suffix}"
 
+    if "x-amzn-waf-action" in response.headers:
+        action = response.headers["x-amzn-waf-action"]
+        return f"AWS WAF challenge (x-amzn-waf-action: {action}, HTTP {status})"
+
     ct = response.headers.get("Content-Type", "").lower()
     is_html = "html" in ct
-    is_error_status = status in (403, 503)
+    is_error_status = status in (403, 405, 503)
 
     if not (is_html or is_error_status):
         return None

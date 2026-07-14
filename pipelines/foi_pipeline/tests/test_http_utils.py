@@ -1,7 +1,7 @@
 import pytest
 import requests_mock as requests_mock_module
 
-from lib.http_utils import HEADERS, DEFAULT_RATE_LIMIT_DELAY, fetch
+from lib.http_utils import HEADERS, DEFAULT_RATE_LIMIT_DELAY, fetch, BotChallengeError
 
 
 def test_fetch_success(requests_mock):
@@ -50,3 +50,31 @@ def test_fetch_sleeps_between_requests(requests_mock, monkeypatch):
     assert len(calls) == 1
     assert calls[0] > 0
     assert calls[0] <= 0.05
+
+
+def test_fetch_raises_on_aws_waf_captcha_header(requests_mock):
+    requests_mock.get(
+        "https://www.gov.ie/en/department-of-defence/",
+        status_code=405,
+        headers={"x-amzn-waf-action": "captcha", "Content-Type": "text/html; charset=UTF-8"},
+        text="<html><head><title>Human Verification</title></head><body></body></html>",
+    )
+    with pytest.raises(BotChallengeError, match="AWS WAF"):
+        fetch("GET", "https://www.gov.ie/en/department-of-defence/")
+
+
+def test_fetch_raises_on_aws_waf_captcha_body_marker(requests_mock):
+    # Same challenge page but without the header, to exercise the body-marker fallback.
+    requests_mock.get(
+        "https://www.gov.ie/en/department-of-defence/",
+        status_code=405,
+        headers={"Content-Type": "text/html; charset=UTF-8"},
+        text=(
+            "<html><head><title>Human Verification</title>"
+            "<script>window.awsWafCookieDomainList = [];</script>"
+            "<script src='https://x.token.awswaf.com/x/challenge.js'></script>"
+            "</head><body></body></html>"
+        ),
+    )
+    with pytest.raises(BotChallengeError, match="AWS WAF"):
+        fetch("GET", "https://www.gov.ie/en/department-of-defence/")
