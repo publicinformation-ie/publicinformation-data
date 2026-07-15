@@ -126,3 +126,31 @@ def test_whitespace_collapsed_equality():
     arm_b = [_entry(request_description="a b c")]
     scores = fidelity_scores(arm_b, gt)
     assert scores["value_fidelity_violations"] == 0
+
+
+cost_aggregate = _compare.cost_aggregate
+
+
+def test_cost_aggregate_and_extrapolation():
+    records = [
+        {"file_url": "u1", "tokens": {"prompt": 1000, "completion": 500, "total": 1500},
+         "cost_usd": 0.005, "ocr_made": True},
+        {"file_url": "u2", "tokens": {"prompt": 3000, "completion": 500, "total": 3500},
+         "cost_usd": 0.009, "ocr_made": True},
+        {"file_url": "u3", "tokens": None, "cost_usd": None, "ocr_made": False,
+         "error": "boom"},  # failure -> excluded from cost
+    ]
+    agg = cost_aggregate(records)
+    assert agg["files_costed"] == 2
+    assert agg["total_tokens"]["total"] == 5000
+    assert agg["total_cost_usd"] == 0.014
+    assert agg["mean_cost_per_file_usd"] == 0.007
+    assert agg["full_tail_files"] == _compare.FULL_TAIL_FILES
+    assert agg["extrapolated_full_tail_usd"] == round(0.007 * _compare.FULL_TAIL_FILES, 2)
+
+
+def test_cost_aggregate_empty():
+    agg = cost_aggregate([{"file_url": "u", "tokens": None, "cost_usd": None}])
+    assert agg["files_costed"] == 0
+    assert agg["total_cost_usd"] == 0.0
+    assert agg["extrapolated_full_tail_usd"] == 0.0

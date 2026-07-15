@@ -198,3 +198,26 @@ def fidelity_scores(arm_b: list, gt: list) -> dict:
         "invented_rows": invented,
         "dropped_rows": dropped,
     }
+
+
+def cost_aggregate(records: list) -> dict:
+    costed = [r for r in records if r.get("tokens") and r.get("cost_usd") is not None]
+    n = len(costed)
+    totals = {"prompt": 0, "completion": 0, "total": 0}
+    total_cost = 0.0
+    for r in costed:
+        for k in totals:
+            totals[k] += r["tokens"][k]
+        total_cost += r["cost_usd"]
+    total_cost = round(total_cost, 6)
+    mean_cost = round(total_cost / n, 6) if n else 0.0
+    mean_tokens = {k: round(totals[k] / n, 1) if n else 0.0 for k in totals}
+    return {
+        "files_costed": n,
+        "total_tokens": totals,
+        "mean_tokens_per_file": mean_tokens,
+        "total_cost_usd": total_cost,
+        "mean_cost_per_file_usd": mean_cost,
+        "full_tail_files": FULL_TAIL_FILES,
+        "extrapolated_full_tail_usd": round(mean_cost * FULL_TAIL_FILES, 2),
+    }
