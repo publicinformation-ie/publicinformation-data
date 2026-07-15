@@ -92,3 +92,109 @@ def repair_stats(records: list) -> dict:
         "regressions": regressions,
         "per_predicate": per_pred,
     }
+
+
+def norm_value(v) -> str:
+    if v is None:
+        return ""
+    return " ".join(str(v).split())
+
+
+def _ref_key(entry: dict) -> str:
+    return norm_value(entry.get("foi_reference_id")).lower()
+
+
+def _fallback_key(entry: dict) -> tuple:
+    return (
+        norm_value(entry.get("date_received")).lower(),
+        norm_value(entry.get("request_description")).lower()[:40],
+    )
+
+
+def match_rows(arm_b: list, gt: list) -> list:
+    """Deterministically align arm-B rows to ground-truth rows."""
+    unmatched_b = set(range(len(arm_b)))
+    pairs = []
+    matched_gt = set()
+
+    # Pass 1: exact non-empty reference id.
+    for gi, g in enumerate(gt):
+        gk = _ref_key(g)
+        if not gk:
+            continue
+        for bi in sorted(unmatched_b):
+            if _ref_key(arm_b[bi]) == gk:
+                pairs.append((bi, gi))
+                unmatched_b.discard(bi)
+                matched_gt.add(gi)
+                break
+
+    # Pass 2: (date, description-prefix) fallback for still-unmatched GT.
+    for gi, g in enumerate(gt):
+        if gi in matched_gt:
+            continue
+        gk = _fallback_key(g)
+        if gk == ("", ""):
+            continue
+        for bi in sorted(unmatched_b):
+            if _fallback_key(arm_b[bi]) == gk:
+                pairs.append((bi, gi))
+                unmatched_b.discard(bi)
+                matched_gt.add(gi)
+                break
+
+    for gi in range(len(gt)):
+        if gi not in matched_gt:
+            pairs.append((None, gi))
+    for bi in sorted(unmatched_b):
+        pairs.append((bi, None))
+    return pairs
+
+
+def fidelity_scores(arm_b: list, gt: list) -> dict:
+    per_field = {
+        f: {"tp": 0, "fp": 0, "fn": 0} for f in CANONICAL_FIELDS
+    }
+    violations = 0
+    invented = 0
+    dropped = 0
+
+    for bi, gi in match_rows(arm_b, gt):
+        if bi is None:  # dropped GT row: every non-empty GT field is a miss.
+            dropped += 1
+            for f in CANONICAL_FIELDS:
+                if norm_value(gt[gi].get(f)):
+                    per_field[f]["fn"] += 1
+            continue
+        if gi is None:  # invented arm-B row: every non-empty field is a false +.
+            invented += 1
+            for f in CANONICAL_FIELDS:
+                if norm_value(arm_b[bi].get(f)):
+                    per_field[f]["fp"] += 1
+            continue
+        for f in CANONICAL_FIELDS:
+            gv = norm_value(gt[gi].get(f))
+            bv = norm_value(arm_b[bi].get(f))
+            if gv and bv and gv == bv:
+                per_field[f]["tp"] += 1
+            else:
+                if gv:
+                    per_field[f]["fn"] += 1
+                if bv:
+                    per_field[f]["fp"] += 1
+                if gv and bv:  # both present but differ -> altered value
+                    violations += 1
+
+    for f in CANONICAL_FIELDS:
+        c = per_field[f]
+        denom_p = c["tp"] + c["fp"]
+        denom_r = c["tp"] + c["fn"]
+        c["precision"] = round(c["tp"] / denom_p, 3) if denom_p else 0.0
+        c["recall"] = round(c["tp"] / denom_r, 3) if denom_r else 0.0
+
+    return {
+        "per_field": per_field,
+        "value_fidelity_violations": violations,
+        "invented_rows": invented,
+        "dropped_rows": dropped,
+    }

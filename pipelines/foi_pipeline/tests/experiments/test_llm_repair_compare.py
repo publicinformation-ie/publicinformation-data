@@ -69,3 +69,60 @@ def test_regression_detected():
     }]
     stats = repair_stats(records)
     assert "u3" in stats["regressions"]
+
+
+match_rows = _compare.match_rows
+fidelity_scores = _compare.fidelity_scores
+
+
+def _entry(**kw):
+    base = {f: None for f in _compare.CANONICAL_FIELDS}
+    base.update(kw)
+    return base
+
+
+def test_match_by_reference_then_fallback():
+    gt = [_entry(foi_reference_id="FOI-1"), _entry(date_received="2024-03-03",
+                                                   request_description="roads")]
+    arm_b = [_entry(date_received="2024-03-03", request_description="roads"),
+             _entry(foi_reference_id="FOI-1")]
+    pairs = match_rows(arm_b, gt)
+    # GT row 0 (ref FOI-1) matches arm_b idx 1; GT row 1 matches arm_b idx 0.
+    assert (1, 0) in pairs
+    assert (0, 1) in pairs
+
+
+def test_perfect_fidelity():
+    row = _entry(foi_reference_id="FOI-1", date_received="2024-01-02",
+                 request_description="docs")
+    scores = fidelity_scores([dict(row)], [dict(row)])
+    assert scores["value_fidelity_violations"] == 0
+    assert scores["invented_rows"] == 0
+    assert scores["dropped_rows"] == 0
+    assert scores["per_field"]["foi_reference_id"]["precision"] == 1.0
+    assert scores["per_field"]["foi_reference_id"]["recall"] == 1.0
+
+
+def test_altered_value_is_violation_and_hurts_precision_recall():
+    gt = [_entry(foi_reference_id="FOI-1", request_description="roads budget")]
+    arm_b = [_entry(foi_reference_id="FOI-1", request_description="ROADS money")]
+    scores = fidelity_scores(arm_b, gt)
+    assert scores["value_fidelity_violations"] == 1
+    fld = scores["per_field"]["request_description"]
+    assert fld["fn"] == 1 and fld["fp"] == 1
+    assert fld["precision"] == 0.0 and fld["recall"] == 0.0
+
+
+def test_invented_and_dropped_rows_counted():
+    gt = [_entry(foi_reference_id="FOI-1"), _entry(foi_reference_id="FOI-2")]
+    arm_b = [_entry(foi_reference_id="FOI-1"), _entry(foi_reference_id="FOI-9")]
+    scores = fidelity_scores(arm_b, gt)
+    assert scores["invented_rows"] == 1   # FOI-9 unmatched
+    assert scores["dropped_rows"] == 1    # FOI-2 unmatched
+
+
+def test_whitespace_collapsed_equality():
+    gt = [_entry(request_description="a  b\tc")]
+    arm_b = [_entry(request_description="a b c")]
+    scores = fidelity_scores(arm_b, gt)
+    assert scores["value_fidelity_violations"] == 0
