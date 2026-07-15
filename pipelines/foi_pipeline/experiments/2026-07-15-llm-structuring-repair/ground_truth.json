@@ -1,0 +1,15 @@
+{
+  "protocol": "Hand-key the TRUE rows for each file by reading the PDF directly (NOT arm B's output), so the labels stay independent of the model under test. Copy printed values verbatim; use null for blank cells; do not add or merge rows. Fields: foi_reference_id, date_received, request_description, requester_type, decision_status, decision_date.",
+  "files": {
+    "https://www.fingal.ie/sites/default/files/2024-07/foi-disclosure-log-2023.pdf": [],
+    "https://assets.gov.ie/static/documents/foi-disclosure-log-2022.pdf": [],
+    "https://assets.gov.ie/static/documents/2023-q1-q2-q3-q4-decc-foi-disclosure-log-91af33f9-e100-4aed-8560-bdb9b4ea834c.pdf": [],
+    "https://assets.gov.ie/static/documents/foi-disclosure-log-q3-2021-4be00b7c-5f24-4e63-8c58-af0ddda13a47.pdf": [],
+    "https://assets.gov.ie/static/documents/foi-disclosure-log-q2-2022-8727d4b2-7100-4649-9a9b-c92751d0a05b.pdf": [],
+    "https://assets.gov.ie/static/documents/foi-disclosure-log-q2-2021-4d3440ee-1a2c-44a2-8478-33656d437981.pdf": [],
+    "https://www.bordbia.ie/globalassets/bordbia.ie/about/governance/foi-disclosure-log/bord-bia-foi-disclosure-log-2021.pdf": [],
+    "https://assets.gov.ie/static/documents/foi-disclosure-log-q3-2024.pdf": [],
+    "https://www.fiosru.ie/media/oukaayqx/foi-004-24.pdf": [],
+    "https://assets.gov.ie/static/documents/033aa2c5/2025_DCEE_FOI_Disclosure_Log.pdf": []
+  }
+}
