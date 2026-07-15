@@ -17,7 +17,7 @@ XLS/other files are out of scope. No production code changes.
 ## Method
 
 1. `sample.py` → frozen seeded stratified draw of 30 broken PDFs (`sample.json`): 22 `newline_split_row`, 6 `null_column`, 2 `null_first_row`.
-2. `extract.py` → arm B with two-layer caching (OCR markdown + parsed JSON, keyed by `sha256(file_url)`); captures arm A; records tokens + cost → `arms.json`. Requires a byte server over `ocr_cache/` at `MISTRAL_OCR_PDF_BASE_URL`.
+2. `extract.py` → arm B with two-layer caching (OCR markdown + parsed JSON, keyed by `sha256(file_url)`); captures arm A; records tokens + cost → `arms.json`. Requires a byte server at `MISTRAL_OCR_PDF_BASE_URL` that serves raw PDF bytes as `{MISTRAL_OCR_PDF_BASE_URL}/{sha256(file_url)}.bytes` — this is a separate source PDF store, not `ocr_cache/` (which holds already-computed `{sha}.json` OCR results, not PDF bytes).
 3. Hand-label ~8–10 files spanning all three defects into `ground_truth.json` (label from the PDF, not from arm B).
 4. `compare.py` → `results.json`:
    - **Structural** (all 30, automated): repair-rate + regression-flags via the reused `has_newline_split_row` / `has_null_column` / `has_null_first_row` predicates.
@@ -29,7 +29,8 @@ XLS/other files are out of scope. No production code changes.
 ```bash
 # from pipelines/foi_pipeline/
 uv run python experiments/2026-07-15-llm-structuring-repair/sample.py
-# start byte server over ocr_cache/ dir; export MISTRAL_API_KEY + MISTRAL_OCR_PDF_BASE_URL
+# start a byte server serving raw PDF bytes as {sha256(file_url)}.bytes (NOT ocr_cache/,
+# which holds OCR results, not PDF bytes); export MISTRAL_API_KEY + MISTRAL_OCR_PDF_BASE_URL
 uv run python experiments/2026-07-15-llm-structuring-repair/extract.py
 # hand-label ground_truth.json, then:
 uv run python experiments/2026-07-15-llm-structuring-repair/compare.py

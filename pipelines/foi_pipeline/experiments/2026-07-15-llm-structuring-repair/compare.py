@@ -69,7 +69,7 @@ def repair_stats(records: list) -> dict:
     for rec in records:
         a_flags = flags_for_rows(rec.get("arm_a_rows"))
         b_entries = rec.get("arm_b_entries")
-        is_failure = b_entries is None
+        is_failure = not b_entries
         b_rows = entries_to_rows(b_entries or [])
         b_flags = flags_for_rows(b_rows)
 

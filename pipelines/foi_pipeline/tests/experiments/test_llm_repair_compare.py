@@ -54,6 +54,20 @@ def test_failure_record_counts_broken_not_repaired():
     assert stats["repair_rate"] == 0.0
 
 
+def test_empty_list_failure_counts_broken_not_repaired():
+    # chat.parse ran but extracted zero entries -> arm_b_entries is [] (not
+    # None). This must be scored as a failure like the None case, not as a
+    # trivial "repair" via empty flags_for_rows([]).
+    records = [{
+        "file_url": "u2b", "stratum": "newline_split_row",
+        "arm_a_rows": _SPLIT_ARM_A,
+        "arm_b_entries": [], "error": "empty_structured_output",
+    }]
+    stats = repair_stats(records)
+    assert stats["repaired"] == 0
+    assert stats["broken"] == 1
+
+
 def test_regression_detected():
     # Arm A clean (no split); arm B introduces a split row -> regression.
     clean_arm_a = [
