@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
-"""Build the 30-file stratified sample for the local OCR comparison experiment.
+"""Build the 15-file stratified sample for the local OCR comparison experiment.
 
-15 currently-clean + 15 currently-flagged PDFs, drawn from the frozen eval
+7 currently-clean + 8 currently-flagged PDFs, drawn from the frozen eval
 fixture (never the live step output). "Flagged" reuses the exact eval flag
 functions so the strata match production's definition of clean/flagged.
+
+Shrunk from an original 30-file (15+15) sample on 2026-07-15 after a
+single-file qwen2.5vl:7b diagnostic showed acceptable quality but the full
+30-file run was still too slow (~5.3h estimated); see
+.superpowers/sdd/HANDOFF-local-ocr-comparison-2026-07-15.md.
 
 Run from foi_pipeline/:
     uv run python experiments/2026-07-15-local-ocr-comparison/sample.py
@@ -27,7 +32,8 @@ from steps.transform_disclosure_files.eval.evaluate import (
 _EVAL_INPUT = _FOI_PIPELINE / "steps/transform_disclosure_files/eval/input.json"
 _SAMPLE_OUT = _HERE / "sample.json"
 _SEED = 42
-_N_PER_STRATUM = 15
+_N_CLEAN = 7
+_N_FLAGGED = 8
 
 
 def _sha256(file_url: str) -> str:
@@ -61,8 +67,8 @@ def main() -> int:
     print(f"Pool: {len(clean_pool)} clean, {len(flagged_pool)} flagged (of {len(items)} PDFs)")
 
     random.seed(_SEED)
-    clean_sample = random.sample(clean_pool, min(_N_PER_STRATUM, len(clean_pool)))
-    flagged_sample = random.sample(flagged_pool, min(_N_PER_STRATUM, len(flagged_pool)))
+    clean_sample = random.sample(clean_pool, min(_N_CLEAN, len(clean_pool)))
+    flagged_sample = random.sample(flagged_pool, min(_N_FLAGGED, len(flagged_pool)))
 
     entries = []
     for item, flags in clean_sample + flagged_sample:

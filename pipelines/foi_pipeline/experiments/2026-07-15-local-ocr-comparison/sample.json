@@ -1,8 +1,8 @@
 {
   "sample_date": "2026-07-15",
   "seed": 42,
-  "n_clean": 15,
-  "n_flagged": 15,
+  "n_clean": 7,
+  "n_flagged": 8,
   "files": [
     {
       "file_url": "https://assets.ntma.ie/general/DisclosureLogQ12016.pdf",
@@ -61,68 +61,54 @@
       "is_flagged": false
     },
     {
-      "file_url": "https://www.tipperarycoco.ie/sites/default/files/2025-03/February%202025.pdf",
-      "sha256": "29bc43d0beaee30a1bde94abb228d86313b747e325270e723f99554ca4785c62",
+      "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20June%202019.pdf",
+      "sha256": "758a515cb6be2f8afef0a424d9fbb1d5453c9d7a5dc1dc9685a7f55bebf31110",
       "public_body_id": 1817,
       "name": "Tipperary County Council",
-      "baseline_flags": [],
-      "is_flagged": false
+      "baseline_flags": [
+        "newline_split_row"
+      ],
+      "is_flagged": true
     },
     {
-      "file_url": "https://assets.gov.ie/static/documents/dcediy-foi-requests-april-june-2022.pdf",
-      "sha256": "74d6bd68bfc2bdc2f28a470fd3894363560fef484b87eb88b1f0df8f52fb49ee",
-      "public_body_id": 1197,
-      "name": "Department of Children, Disability and Equality",
-      "baseline_flags": [],
-      "is_flagged": false
+      "file_url": "https://www.grireland.ie/globalassets/rescource-centre/documents/foi-publication-scheme/disclosure-log-2023.pdf",
+      "sha256": "392a4a2d1383ef07cf9995fff62cdf0fd29b80f90eb29fb391048635450eb0e9",
+      "public_body_id": 1679,
+      "name": "R\u00e1sa\u00edocht Con \u00c9ireann",
+      "baseline_flags": [
+        "newline_split_row"
+      ],
+      "is_flagged": true
     },
     {
-      "file_url": "https://www.pleanala.ie/getattachment/d37e6437-74f8-4bae-82af-21362dc8a523/Disclosure-Log-2020-Q4.pdf?lang=en-IE",
-      "sha256": "33ffc8a14c07d6ec1edee978143851af2e64e842b2314bbe0fd7b236dcf9e001",
-      "public_body_id": 1010,
-      "name": "An Coimisi\u00fan Plean\u00e1la",
-      "baseline_flags": [],
-      "is_flagged": false
+      "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q3-2019-574bdb2b-b302-4f2e-8c04-afb9b415e9ea.pdf",
+      "sha256": "85779a7475a682fcd2b2c8c8e2d73c2c9c1ead986a177d714ea505395bff0ffc",
+      "public_body_id": 1209,
+      "name": "Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation",
+      "baseline_flags": [
+        "newline_split_row"
+      ],
+      "is_flagged": true
     },
     {
-      "file_url": "https://www.hiqa.ie/sites/default/files/2018-01/FOI-Disclosure-Log-2016.pdf",
-      "sha256": "9ad3699657cf791bd910f3de6918a1966a32fda20ac4973d222cb7d5a8b4f2a9",
-      "public_body_id": 1390,
-      "name": "Health Information and Quality Authority (HIQA)",
-      "baseline_flags": [],
-      "is_flagged": false
+      "file_url": "https://www.fingal.ie/sites/default/files/2026-01/2024-foi-disclosure-log.pdf",
+      "sha256": "b88ef6fc732f3cc683184ab5fefc2f0e161308302d6570c92bd6181b4a4ff860",
+      "public_body_id": 1295,
+      "name": "Fingal County Council",
+      "baseline_flags": [
+        "null_column"
+      ],
+      "is_flagged": true
     },
     {
-      "file_url": "https://assets.gov.ie/static/documents/dcediy-foi-requests-july-september-2020.pdf",
-      "sha256": "83912af88d7bf3e3731a1f25fc7bdaa36bf4efaf1f5898d5a0113f335d34586e",
-      "public_body_id": 1197,
-      "name": "Department of Children, Disability and Equality",
-      "baseline_flags": [],
-      "is_flagged": false
-    },
-    {
-      "file_url": "https://www.galwaycity.ie/sites/default/files/2025-04/Tuairisc%20Nochta%20-%20Disclosure%20Log%202022.pdf",
-      "sha256": "c33d5d13f2ade4dc0d2034565a74d09e046de5eff3dccf3b0b158aa371f1261b",
-      "public_body_id": 1340,
-      "name": "Galway City Council",
-      "baseline_flags": [],
-      "is_flagged": false
-    },
-    {
-      "file_url": "https://www.pleanala.ie/getmedia/c005d3cb-740f-43ce-8818-daba02c6c99e/Disclosure-log-2023-Q3_1.pdf",
-      "sha256": "71918a4d473bac8ca1067d7f3643814f476f2fcb09fbeba389658e74c416ff6c",
-      "public_body_id": 1010,
-      "name": "An Coimisi\u00fan Plean\u00e1la",
-      "baseline_flags": [],
-      "is_flagged": false
-    },
-    {
-      "file_url": "https://monaghan.ie/corporateservices/wp-content/uploads/sites/9/2016/12/FOI-Disclosure-Log-2017.pdf",
-      "sha256": "2999af4d2b246a76a61632d7b4f8c62ecc1912cfdab7ae2a27cad81d3f21fb35",
-      "public_body_id": 1525,
-      "name": "Monaghan County Council",
-      "baseline_flags": [],
-      "is_flagged": false
+      "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-quarter-2-2020-6a951772-053c-4f93-b920-ff8107761122.pdf",
+      "sha256": "fba2a950d6c6aa1e2b2fb6e0c78adefe0dc60fb5cf79f430d63954974ff6736d",
+      "public_body_id": 1209,
+      "name": "Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation",
+      "baseline_flags": [
+        "newline_split_row"
+      ],
+      "is_flagged": true
     },
     {
       "file_url": "https://assets.gov.ie/static/documents/department-of-justice-non-personal-foi-requests-disclosure-log-2017.pdf",
@@ -149,126 +135,6 @@
       "sha256": "0125b21797146ba5d286f6e7a156c1b796347f146b0b93843a651358c25f6469",
       "public_body_id": 1570,
       "name": "National Transport Authority (NTA)",
-      "baseline_flags": [
-        "newline_split_row"
-      ],
-      "is_flagged": true
-    },
-    {
-      "file_url": "https://www.fingal.ie/sites/default/files/2019-10/disclosure_log_april_to_end_of_june.pdf",
-      "sha256": "ee790376dff146c1c2338b31bd8759d7a8e623057e5b4ac071403ec1cc9c92cb",
-      "public_body_id": 1295,
-      "name": "Fingal County Council",
-      "baseline_flags": [
-        "newline_split_row"
-      ],
-      "is_flagged": true
-    },
-    {
-      "file_url": "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-1-2024.pdf",
-      "sha256": "521d258efe1b7d6d4b2e4dab54669079fd994f4f70012623c24161c69b9f70fe",
-      "public_body_id": 1206,
-      "name": "Department of Health",
-      "baseline_flags": [
-        "newline_split_row"
-      ],
-      "is_flagged": true
-    },
-    {
-      "file_url": "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-3-2020.pdf",
-      "sha256": "06799851b29cf9a4d60e5f721ef6dd8d91a1ef57be7bbd923a04cb46a584d53a",
-      "public_body_id": 1206,
-      "name": "Department of Health",
-      "baseline_flags": [
-        "newline_split_row"
-      ],
-      "is_flagged": true
-    },
-    {
-      "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q1-2022-9424a789-a45d-4e8e-b0e4-d00c5ca7a0b9.pdf",
-      "sha256": "8f11e4cc86f9e5117ca60571ef3ca7c209fb256b8c958e780d8210d1c061515d",
-      "public_body_id": 1209,
-      "name": "Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation",
-      "baseline_flags": [
-        "newline_split_row"
-      ],
-      "is_flagged": true
-    },
-    {
-      "file_url": "https://assets.gov.ie/static/documents/q1-2016-foi-disclosure-log.pdf",
-      "sha256": "7ee0c0513234d4cece3e2e48c02e4ad2b0979c9c03026ac182c02e632ae965aa",
-      "public_body_id": 1213,
-      "name": "Department of Transport",
-      "baseline_flags": [
-        "newline_split_row"
-      ],
-      "is_flagged": true
-    },
-    {
-      "file_url": "https://www.nationaltransport.ie/wp-content/uploads/2023/09/2023-Q2-FOI-Disclosure-Log.pdf",
-      "sha256": "8b9923203adfe0e93d35bd54521be32450284529291797b049ec57fbe569c1f1",
-      "public_body_id": 1570,
-      "name": "National Transport Authority (NTA)",
-      "baseline_flags": [
-        "newline_split_row"
-      ],
-      "is_flagged": true
-    },
-    {
-      "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q3-2023-a1400ec8-2459-4938-821f-9cc130820186.pdf",
-      "sha256": "cfe9b0feb12106ab44f92b292985c5c96ce2e4a9e0b78b1bfecaabfd5bd758ef",
-      "public_body_id": 1203,
-      "name": "Department of Finance",
-      "baseline_flags": [
-        "newline_split_row"
-      ],
-      "is_flagged": true
-    },
-    {
-      "file_url": "https://kildarecoco.ie/YourCouncil/GovernanceandCompliance/FreedomofInformation/DisclosureLog/Kildare County Council FOI Disclosure Log JanuaryJune 2024.pdf",
-      "sha256": "b4c9e94256d7938dfc9f98bcbf3ecd6ac9434698693a15992dbdce78300454c1",
-      "public_body_id": 1456,
-      "name": "Kildare County Council",
-      "baseline_flags": [
-        "newline_split_row"
-      ],
-      "is_flagged": true
-    },
-    {
-      "file_url": "https://www.tcd.ie/media/tcd/infocompliance/pdfs/FOI-Disclosure-Log-2023.pdf",
-      "sha256": "37dfcb4638e9ff3832646b6bc4fafd56dcbaf8ac747f79c917e7ea5b8c7926f9",
-      "public_body_id": 1834,
-      "name": "Trinity College Dublin",
-      "baseline_flags": [
-        "newline_split_row"
-      ],
-      "is_flagged": true
-    },
-    {
-      "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q3-2019-574bdb2b-b302-4f2e-8c04-afb9b415e9ea.pdf",
-      "sha256": "85779a7475a682fcd2b2c8c8e2d73c2c9c1ead986a177d714ea505395bff0ffc",
-      "public_body_id": 1209,
-      "name": "Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation",
-      "baseline_flags": [
-        "newline_split_row"
-      ],
-      "is_flagged": true
-    },
-    {
-      "file_url": "https://assets.gov.ie/static/documents/dcediy-foi-requests-january-march-2021.pdf",
-      "sha256": "1accd08caedae183e3b73e08dd3d3efac443262da8148ec58e4d17d3c3b2f43a",
-      "public_body_id": 1197,
-      "name": "Department of Children, Disability and Equality",
-      "baseline_flags": [
-        "newline_split_row"
-      ],
-      "is_flagged": true
-    },
-    {
-      "file_url": "https://assets.gov.ie/static/documents/freedom-of-information-requests-quarter-3-2024.pdf",
-      "sha256": "60285c76a9dd8fcdf866aa3a624af1681c224eadcad9444d62692c760fecd6da",
-      "public_body_id": 1206,
-      "name": "Department of Health",
       "baseline_flags": [
         "newline_split_row"
       ],

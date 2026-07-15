@@ -1,3 +1,5 @@
 ocr_cache/
 results.json
 __pycache__/
+pipeline_eval_scratch/
+run_ollama_full_batch.log

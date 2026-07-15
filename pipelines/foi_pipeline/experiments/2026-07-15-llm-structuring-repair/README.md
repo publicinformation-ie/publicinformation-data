@@ -38,22 +38,27 @@ uv run python experiments/2026-07-15-llm-structuring-repair/compare.py
 
 ## Results
 
-_Filled from `results.json` after the run._
-
-- Structural repair-rate: **TBD (fill from results.json)** (repaired / broken)
-- Regressions introduced: **TBD**
-- Fidelity — altered values: **TBD**; invented rows: **TBD**; dropped rows: **TBD**
-- Per-field precision/recall: **TBD**
-- Measured cost: **$TBD** over the sample; extrapolated full-tail (323 files): **$TBD**
+**Never run.** `extract.py` requires a byte server exposing raw PDF bytes at
+`MISTRAL_OCR_PDF_BASE_URL` (a piece of throwaway test infrastructure this
+experiment depends on but never stands up itself) — that server was never
+started, so `extract.py` never produced `arms.json`, `ground_truth.json`
+was never hand-labelled (still all-empty placeholders), and `compare.py`
+was never run. No structural, fidelity, or cost data exists for this
+experiment.
 
 ## Go / No-Go Recommendation
 
-_Adopt-signal (all must hold): strong-majority structural repair, no new
-`null_column`/`null_first_row` regressions, and — on the labelled subset — high
-per-field precision/recall with **zero invented rows and zero altered values**.
-Cleaning structure while altering values is an explicit **reject**._
+**No-go — closed without a result.** Not rejected on quality grounds; the
+experiment simply stalled before producing data. Revisiting would mean
+standing up the byte server, running `extract.py` end-to-end, hand-labelling
+`ground_truth.json`, then running `compare.py` — effectively starting the
+measurement phase from scratch. See the parallel
+`2026-07-15-local-ocr-comparison` experiment's README for the sibling
+PDF-extraction screening effort, also closed without adoption; the current
+pdfplumber/Mistral OCR baseline remains in production unchanged.
 
-**Recommendation: TBD (fill after run).**
-
-Any invented row or altered value on the labelled subset is a red flag and is
-called out here explicitly.
+_Original adopt-signal (unchanged, for whoever resumes this): strong-majority
+structural repair, no new `null_column`/`null_first_row` regressions, and —
+on the labelled subset — high per-field precision/recall with **zero
+invented rows and zero altered values**. Cleaning structure while altering
+values is an explicit reject._
