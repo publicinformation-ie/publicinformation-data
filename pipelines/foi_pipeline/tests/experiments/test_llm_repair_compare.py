@@ -154,3 +154,26 @@ def test_cost_aggregate_empty():
     assert agg["files_costed"] == 0
     assert agg["total_cost_usd"] == 0.0
     assert agg["extrapolated_full_tail_usd"] == 0.0
+
+
+build_results = _compare.build_results
+
+
+def test_build_results_shape_and_fidelity_subset():
+    records = [
+        {"file_url": "u1", "stratum": "newline_split_row",
+         "arm_a_rows": _SPLIT_ARM_A, "arm_b_entries": [_CLEAN_ENTRY],
+         "tokens": {"prompt": 10, "completion": 5, "total": 15},
+         "cost_usd": 0.001, "ocr_made": True, "error": None},
+        {"file_url": "u2", "stratum": "null_column",
+         "arm_a_rows": _SPLIT_ARM_A, "arm_b_entries": None,
+         "tokens": None, "cost_usd": None, "ocr_made": False,
+         "error": "empty_structured_output"},
+    ]
+    ground_truth = {"u1": [_CLEAN_ENTRY]}  # only u1 hand-labelled
+    results = build_results(records, ground_truth)
+    assert results["structural"]["broken"] == 2
+    assert results["cost"]["files_costed"] == 1
+    assert [f["file_url"] for f in results["fidelity"]["files"]] == ["u1"]
+    assert results["fidelity"]["totals"]["value_fidelity_violations"] == 0
+    assert results["failures"] == [{"file_url": "u2", "error": "empty_structured_output"}]

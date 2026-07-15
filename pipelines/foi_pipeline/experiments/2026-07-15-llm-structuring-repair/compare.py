@@ -221,3 +221,58 @@ def cost_aggregate(records: list) -> dict:
         "full_tail_files": FULL_TAIL_FILES,
         "extrapolated_full_tail_usd": round(mean_cost * FULL_TAIL_FILES, 2),
     }
+
+
+def build_results(records: list, ground_truth: dict) -> dict:
+    by_url = {r["file_url"]: r for r in records}
+
+    fidelity_files = []
+    totals = {"value_fidelity_violations": 0, "invented_rows": 0, "dropped_rows": 0}
+    for file_url, gt_entries in ground_truth.items():
+        rec = by_url.get(file_url)
+        arm_b = (rec.get("arm_b_entries") if rec else None) or []
+        scores = fidelity_scores(arm_b, gt_entries)
+        fidelity_files.append({"file_url": file_url, "scores": scores})
+        for k in totals:
+            totals[k] += scores[k]
+
+    failures = [
+        {"file_url": r["file_url"], "error": r["error"]}
+        for r in records if r.get("error")
+    ]
+
+    return {
+        "structural": repair_stats(records),
+        "cost": cost_aggregate(records),
+        "fidelity": {"files": fidelity_files, "totals": totals},
+        "failures": failures,
+    }
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Score the llm-repair experiment")
+    parser.add_argument("--arms", default=str(_ARMS))
+    parser.add_argument("--ground-truth", default=str(_GROUND_TRUTH))
+    args = parser.parse_args()
+
+    records = json.loads(Path(args.arms).read_text())["records"]
+    gt_raw = json.loads(Path(args.ground_truth).read_text())
+    ground_truth = gt_raw.get("files", gt_raw) if isinstance(gt_raw, dict) else {}
+
+    results = build_results(records, ground_truth)
+    _RESULTS.write_text(json.dumps(results, indent=2))
+
+    s = results["structural"]
+    c = results["cost"]
+    t = results["fidelity"]["totals"]
+    print(f"Structural: {s['repaired']}/{s['broken']} repaired "
+          f"(rate={s['repair_rate']}), {len(s['regressions'])} regressions")
+    print(f"Cost: ${c['total_cost_usd']} over {c['files_costed']} files; "
+          f"full-tail extrapolation ${c['extrapolated_full_tail_usd']}")
+    print(f"Fidelity: {t['value_fidelity_violations']} altered values, "
+          f"{t['invented_rows']} invented, {t['dropped_rows']} dropped rows")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
