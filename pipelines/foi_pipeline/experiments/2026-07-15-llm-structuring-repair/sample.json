@@ -1,0 +1,161 @@
+{
+  "sample_date": "2026-07-15",
+  "seed": 42,
+  "targets": {
+    "newline_split_row": 22,
+    "null_column": 6,
+    "null_first_row": 2
+  },
+  "files": [
+    {
+      "file_url": "https://www.fingal.ie/sites/default/files/2024-07/foi-disclosure-log-2023.pdf",
+      "sha256": "8ef158e4bef70a8ce2da0c6c18ce4f459e6926101f83a75a9ac549e169e289f6",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-2022.pdf",
+      "sha256": "7eaf84809d2fb22c95e0413e60baf1667b7b033fc9ae1afc96a1b09c2a633c61",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://assets.gov.ie/static/documents/2023-q1-q2-q3-q4-decc-foi-disclosure-log-91af33f9-e100-4aed-8560-bdb9b4ea834c.pdf",
+      "sha256": "fd1df596354b0847cb23592576ca5b1e126c1c4049671b28e878d36946f252ef",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q3-2021-4be00b7c-5f24-4e63-8c58-af0ddda13a47.pdf",
+      "sha256": "3b531a0f5bb8a933ad09256f30c7a75cff3d56dfcadd914b43990556f1503c9d",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q2-2022-8727d4b2-7100-4649-9a9b-c92751d0a05b.pdf",
+      "sha256": "6ea4d5097c7e5abfd294db4067a4ce86b2e911948ae15329bf5fed040ca2402b",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q2-2021-4d3440ee-1a2c-44a2-8478-33656d437981.pdf",
+      "sha256": "cae9bff3d7e204bc99c95ca0c2eac7981b442e5279a2c781b9c14f020bddf5a8",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-2024.pdf",
+      "sha256": "d1342c003bf35a09cb3132ce14e2c954201af87768b528bc8acaf1decb33661d",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-2021.pdf",
+      "sha256": "e2afdbeb1130331566b7eeca50fdb43bed31bc1867058b32f6af88fd2d82d2c9",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://www.dlrcoco.ie/sites/dlrcoco/files/2024-02/Freedom%20of%20Information%20Application%20Form.pdf",
+      "sha256": "242d9a20276579d5db2ec89e91b23b43f9ee8b572f3d4bed237d349f1a50a0d5",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://assets.gov.ie/static/documents/department-of-justice-non-personal-foi-requests-disclosure-log-2023.pdf",
+      "sha256": "c8b58ba1d5348798b6ec82df36965931d2c9afa107092214088359d29e0f6879",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://www.dublincity.ie/sites/default/files/2026-04/disclosure-log-q1-2026.pdf",
+      "sha256": "c5baca6a063fa7e6f00283860594345afb0882e0e2f5e9b2fb29982e89ab6c89",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://www.centralbank.ie/docs/default-source/tns/about---tns/freedom-of-information/disclosure-logs/freedom-of-information-disclosure-log---2022.pdf?sfvrsn=4d6f991d_5",
+      "sha256": "27d6206454a2b3f6aaf83aa2be81e6ebf7d7d92f107d8077bcf5dee3bfdfeb64",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://assets.gov.ie/static/documents/5b6cb345/2026_Q1_DCEE_FOI_Disclosure_Log.pdf",
+      "sha256": "109a1d29152ce3ba9370f3c198dd3e796fc7f7a914ce2e61244c1dbf60abba9f",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://www.limerick.ie/sites/default/files/media/documents/2025-02/disclosure-log-jan-to-dec-2024.pdf",
+      "sha256": "0aab6b910108d17f0b9336fb458c4b4f7d807dd5870c6622f68499393f25171f",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://www.pleanala.ie/getattachment/d37e6437-74f8-4bae-82af-21362dc8a523/Disclosure-Log-2020-Q4.pdf?lang=en-IE",
+      "sha256": "33ffc8a14c07d6ec1edee978143851af2e64e842b2314bbe0fd7b236dcf9e001",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q2-2019-c2f4d5b0-bc19-4368-8cb2-6705d1acd26f.pdf",
+      "sha256": "cc91408a73818fe38aa5751857f5298e836f617fae41a00f9792bb949ebea9f7",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://www.limerick.ie/sites/default/files/media/documents/2022-07/Disclosure%20Log%20Jan-Jun%202022_0.pdf",
+      "sha256": "4cf672fee85f8841c10daff7f42204afa3001a0d23247d42d568636d57a70f91",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://www.clarecoco.ie/sites/default/files/2025-01/foi-disclosure-log-january-to-december-2020-43533.pdf",
+      "sha256": "bc65a5180ad3b66899abbe9cb89382c330fa827f7891e690e6371d02f1806b39",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://www.dublincity.ie/sites/default/files/2026-02/disclosure-log-2025.pdf",
+      "sha256": "6bdf0f5f186661304580c7b22eca19b8b11cd4ab55b0dc485817fc5ddf9353f1",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://www.limerick.ie/sites/default/files/media/documents/2024-07/disclosure-log-jan-dec-2023.pdf",
+      "sha256": "d899dfcd21ca9f16128af581b5b5480cd35baa9771d887632112db3c7019de01",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://www.grireland.ie/globalassets/rescource-centre/documents/foi-publication-scheme/disclosure-log-2019.pdf",
+      "sha256": "5a1881904d0d39434b579814b06f773693f32cc9446b50bb2de08095d2285d5c",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-quarter-3-2020.pdf",
+      "sha256": "4f61ac75373281e27eb474bb6cf3351e31d667a14700a4915ae97bc4c4d1d01f",
+      "stratum": "newline_split_row"
+    },
+    {
+      "file_url": "https://www.bordbia.ie/globalassets/bordbia.ie/about/governance/foi-disclosure-log/bord-bia-foi-disclosure-log-2021.pdf",
+      "sha256": "68d04dc5473aeada5ae00e48c46d355f46cd2d7bcbc6db27aa9eb826e75c3677",
+      "stratum": "null_column"
+    },
+    {
+      "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q3-2024.pdf",
+      "sha256": "391115728b624bce49797446de5eba6b10bbd967e8bb4b7e793bd476bec8d1f4",
+      "stratum": "null_column"
+    },
+    {
+      "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q2-2023-97ad1182-ca86-4ed0-8807-ab9dd82fa3a0.pdf",
+      "sha256": "02df88eb3cfa318b4f6782e0918aadca15ee676ae037a2fcded487669ec3ccb2",
+      "stratum": "null_column"
+    },
+    {
+      "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q1-2022-564d115c-6d2c-4813-ae19-1964b5a38ac8.pdf",
+      "sha256": "3a1e3ab2910d8bebd51c8e89ab59ca0f1d1374d73198b72be928711f4e233cca",
+      "stratum": "null_column"
+    },
+    {
+      "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q2-2024-55a2f11d-ed75-4d92-847f-8847dca41e9a.pdf",
+      "sha256": "9ddd617795dd5e14625b650908289d4da3e32f046439ad7b1dfe3b0591d10f2a",
+      "stratum": "null_column"
+    },
+    {
+      "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q1-2023-9113efbe-e696-4795-85cb-0e13ac1126ab.pdf",
+      "sha256": "2dc023de8b37877464fc25576b403e2f2687c90fced2e22e28e710e7afb1243f",
+      "stratum": "null_column"
+    },
+    {
+      "file_url": "https://www.fiosru.ie/media/oukaayqx/foi-004-24.pdf",
+      "sha256": "983a8eb62cc0c2d6e6cc8f4f63f2b1e42c237d93b90e200e41f0857d1f9cc031",
+      "stratum": "null_first_row"
+    },
+    {
+      "file_url": "https://assets.gov.ie/static/documents/033aa2c5/2025_DCEE_FOI_Disclosure_Log.pdf",
+      "sha256": "91d773d634b27c8b4dc895c503df1cdf4adb7d0d199fd36fac7541b2602c213b",
+      "stratum": "null_first_row"
+    }
+  ]
+}
