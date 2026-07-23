@@ -658,13 +658,18 @@ def _make_mistral_process_fixture(tmp_path, file_url="http://example.com/mistral
 def test_process_mistral_success_sets_extractor_and_merge_stats(tmp_path, monkeypatch):
     import unittest.mock
     from lib.file_utils import IncrementalWriter
+    from steps.transform_disclosure_files.mistral_ocr import _PAGE_BREAK_MARKER
     from steps.transform_disclosure_files.process import process
 
     step_dir, cache_dir, key, file_url = _make_mistral_process_fixture(tmp_path)
     monkeypatch.setenv("MISTRAL_API_KEY", "fake-key")
     monkeypatch.setenv("MISTRAL_OCR_PDF_BASE_URL", "https://base.example.com")
 
-    markdown = "| Ref | Date |\n|---|---|\n| 1 | 2024-01-01 |\n| Ref | Date |\n| 2 | 2024-01-02 |"
+    markdown = (
+        "| Ref | Date |\n|---|---|\n| 1 | 2024-01-01 |"
+        + _PAGE_BREAK_MARKER
+        + "| Ref | Date |\n|---|---|\n| 2 | 2024-01-02 |"
+    )
 
     input_data = {"results": [{"file_url": file_url, "file_type": "pdf", "public_body_id": 1}]}
     output_path = step_dir / "output.json"
@@ -683,8 +688,62 @@ def test_process_mistral_success_sets_extractor_and_merge_stats(tmp_path, monkey
     result = json.loads(output_path.read_text())
     record = result["results"][0]
     assert record["pdf_extractor"] == "mistral_ocr"
-    assert record["pdf_merge_stats"] == {"duplicate_headers_stripped": 1}
+    assert record["pdf_merge_stats"] == {"page_split_merges": 0, "header_rows_stripped": 1}
     assert record["rows"] == [["Ref", "Date"], ["1", "2024-01-01"], ["2", "2024-01-02"]]
+
+
+def test_process_mistral_strips_header_repeated_after_title_preamble(tmp_path, monkeypatch):
+    """Reproduces the National Transport Authority bug: page 1 opens with a
+    title and subtitle row before the real header; page 2 repeats only the
+    header (no title). The old rows[0]-based dedup never matched because
+    rows[0] was the title, not the header — asserts the fix strips it."""
+    import unittest.mock
+    from lib.file_utils import IncrementalWriter
+    from steps.transform_disclosure_files.mistral_ocr import _PAGE_BREAK_MARKER
+    from steps.transform_disclosure_files.process import process
+
+    step_dir, cache_dir, key, file_url = _make_mistral_process_fixture(tmp_path)
+    monkeypatch.setenv("MISTRAL_API_KEY", "fake-key")
+    monkeypatch.setenv("MISTRAL_OCR_PDF_BASE_URL", "https://base.example.com")
+
+    page1 = (
+        "| National Transport Authority - FOI Disclosure Log (Non-Personal Requests) |\n"
+        "| Quarter 2 2024 (1 April 2024 - 30 June 2024) |\n"
+        "| FOI Reference | Date Received | Decision | Date Decision letter issued |\n"
+        "|---|---|---|---|\n"
+        "| 2024-0028 | 08/04/2024 | Part-Granted | 19/04/2024 |"
+    )
+    page2 = (
+        "| FOI Reference | Date Received | Decision | Date Decision letter issued |\n"
+        "|---|---|---|---|\n"
+        "| 2024-0042 | 09/04/2024 | Part-Granted | 14/05/2024 |"
+    )
+    markdown = page1 + _PAGE_BREAK_MARKER + page2
+
+    input_data = {"results": [{"file_url": file_url, "file_type": "pdf", "public_body_id": 1}]}
+    output_path = step_dir / "output.json"
+    writer = IncrementalWriter(output_path, "transform_disclosure_files", key_field="file_url", force=True)
+    with unittest.mock.patch(
+        "steps.transform_disclosure_files.process.DisclosureFileCache.get_file_path",
+        return_value=cache_dir / f"{key}.bytes",
+    ), unittest.mock.patch(
+        "steps.transform_disclosure_files.process.call_mistral_ocr",
+        return_value=markdown,
+    ):
+        process(input_data, step_dir, writer)
+    writer.finalize()
+
+    result = json.loads(output_path.read_text())
+    record = result["results"][0]
+    assert record["pdf_extractor"] == "mistral_ocr"
+    assert record["rows"] == [
+        ["National Transport Authority - FOI Disclosure Log (Non-Personal Requests)"],
+        ["Quarter 2 2024 (1 April 2024 - 30 June 2024)"],
+        ["FOI Reference", "Date Received", "Decision", "Date Decision letter issued"],
+        ["2024-0028", "08/04/2024", "Part-Granted", "19/04/2024"],
+        ["2024-0042", "09/04/2024", "Part-Granted", "14/05/2024"],
+    ]
+    assert record["pdf_merge_stats"]["header_rows_stripped"] == 1
 
 
 def test_process_mistral_api_failure_falls_back_to_pdfplumber(tmp_path, monkeypatch):

@@ -29,7 +29,7 @@ Supports **incremental resumption** keyed on `file_url` and propagates upstream 
 | `sheet_name` | Name of the extracted sheet, page range (e.g. `"page 1"`, `"pages 1-3"`), or `null` on error |
 | `rows` | 2D array of cell values (list of rows, each row a list of cells), or `null` on error |
 | `pdf_extractor` | PDF only. One of `"mistral_ocr"`, `"pdfplumber"`, `"camelot_stream"` |
-| `pdf_merge_stats` | PDF only. Shape depends on `pdf_extractor` — `"mistral_ocr"`: `{"duplicate_headers_stripped": N}`; `"pdfplumber"`: `{"page_split_merges": N, "header_rows_stripped": N}`; `"camelot_stream"`: `{}`. Downstream consumers must key off `pdf_extractor` before reading fields, not assume a uniform shape. |
+| `pdf_merge_stats` | PDF only. `{"page_split_merges": N, "header_rows_stripped": N}` for `"mistral_ocr"` and `"pdfplumber"` (both go through `_merge_page_splits`); `{}` for `"camelot_stream"` (camelot never runs page-split merging). |
 
 ## Notable files
 

@@ -17,7 +17,7 @@ from pathlib import Path
 from lib.cli_utils import add_common_args, filter_by_public_body
 from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
 from lib.http_utils import fetch
-from steps.transform_disclosure_files.mistral_ocr import call_mistral_ocr, markdown_to_rows, _strip_duplicate_headers
+from steps.transform_disclosure_files.mistral_ocr import call_mistral_ocr, markdown_to_pages
 
 STEP_NAME = "transform_disclosure_files"
 
@@ -562,13 +562,11 @@ def _process_single_file(
                         "context": {"file_url": file_url},
                     })
                 else:
-                    rows_candidate = markdown_to_rows(markdown)
-                    if rows_candidate:
-                        deduped_rows, stripped = _strip_duplicate_headers(rows_candidate)
+                    pages_candidate = markdown_to_pages(markdown)
+                    if pages_candidate:
+                        rows, merge_stats = _merge_page_splits(pages_candidate)
                         sheet_name = "page 1"
-                        rows = deduped_rows
                         has_multiple = False
-                        merge_stats = {"duplicate_headers_stripped": stripped}
                         pdf_extractor = "mistral_ocr"
                     else:
                         append_error(step_dir, {
