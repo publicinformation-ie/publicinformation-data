@@ -15,6 +15,8 @@ from mistralai.client import Mistral
 
 MISTRAL_OCR_MODEL = "mistral-ocr-latest"
 
+_PAGE_BREAK_MARKER = "\n\n<<<MISTRAL_PAGE_BREAK>>>\n\n"
+
 
 def parse_markdown_table(table_text):
     """Parse a single markdown table into rows.
@@ -189,7 +191,7 @@ def call_mistral_ocr(file_url, cache_dir, base_url, api_key, semaphore=None, max
                     markdown_parts.append(table.markdown)
                 elif hasattr(table, "content") and table.content:
                     markdown_parts.append(table.content)
-        return "\n\n".join(markdown_parts)
+        return _PAGE_BREAK_MARKER.join(markdown_parts)
 
     for attempt in range(max_retries):
         try:

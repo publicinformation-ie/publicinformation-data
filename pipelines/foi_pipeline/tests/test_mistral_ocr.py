@@ -223,6 +223,42 @@ def test_call_mistral_ocr_uses_content_attribute_when_markdown_absent(tmp_path):
     assert result == "| Ref |\n|---|\n| A |"
 
 
+def test_call_mistral_ocr_joins_multiple_pages_with_page_break_marker(tmp_path):
+    from steps.transform_disclosure_files.mistral_ocr import _PAGE_BREAK_MARKER
+
+    cache_dir = tmp_path / "ocr_cache"
+    file_url = "https://example.com/two-pages.pdf"
+
+    table1 = unittest.mock.MagicMock()
+    table1.markdown = "| Ref | Date |\n|---|---|\n| A | 1 |"
+    table1.content = None
+    page1 = unittest.mock.MagicMock()
+    page1.tables = [table1]
+
+    table2 = unittest.mock.MagicMock()
+    table2.markdown = "| Ref | Date |\n|---|---|\n| B | 2 |"
+    table2.content = None
+    page2 = unittest.mock.MagicMock()
+    page2.tables = [table2]
+
+    response = unittest.mock.MagicMock()
+    response.pages = [page1, page2]
+    response.tables = []
+
+    mock_client = unittest.mock.MagicMock()
+    mock_client.ocr.process.return_value = response
+    with unittest.mock.patch(
+        "steps.transform_disclosure_files.mistral_ocr.Mistral", return_value=mock_client
+    ):
+        result = call_mistral_ocr(file_url, cache_dir, "https://base.example.com", "fake-key")
+
+    assert result == (
+        "| Ref | Date |\n|---|---|\n| A | 1 |"
+        + _PAGE_BREAK_MARKER
+        + "| Ref | Date |\n|---|---|\n| B | 2 |"
+    )
+
+
 def test_call_mistral_ocr_semaphore_bounds_concurrent_calls(tmp_path, monkeypatch):
     """Two calls sharing a Semaphore(1) must not run their API call
     concurrently — the second blocks until the first releases."""
