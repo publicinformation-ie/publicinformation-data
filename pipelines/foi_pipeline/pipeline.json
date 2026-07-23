@@ -26,5 +26,6 @@
     "generate_topics",
     "db_upload",
     "sync_backlog"
-  ]
+  ],
+  "always_run": ["fingerprint_disclosure_pages"]
 }
