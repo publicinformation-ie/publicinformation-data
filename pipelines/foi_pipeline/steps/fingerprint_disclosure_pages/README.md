@@ -12,6 +12,8 @@ For each body:
 5. If changed (or new body): adds the body ID to the dirty set.
 6. On fetch error: preserves the previous hash and does **not** mark the body dirty.
 
+Fetch errors here are frequently `BotChallengeError` (WAF/bot-protection challenge, see `src/lib/http_utils.py`) rather than real network failures. A body stuck behind a WAF is invisible to this step forever — it will never produce a hash change, so `find_disclosure_files` will never be told to re-crawl it. For bodies in that state, see `find_disclosure_files/override.json`, which supplies a manually curated file list instead.
+
 ## Input
 
 `find_disclosure_pages/output.json`
