@@ -266,5 +266,21 @@
     "disclosure_page_url": "https://www.kerrycoco.ie/freedom-of-information-disclosure/",
     "source_method": "manual",
     "overridden": true
+  },
+  {
+    "public_body_id": 1602,
+    "name": "Office of the Information Commissioner",
+    "foi_page_url": "https://www.oic.ie/en/collection/0fdbb-make-an-foi-request-to-oic",
+    "disclosure_page_url": "https://www.oic.ie/en/collection/8275b-foi-publication-scheme/#foi-disclosure-log-and-other-information-to-be-published-routinely",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1196,
+    "name": "Department of Agriculture, Food and the Marine",
+    "foi_page_url": "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/organisation-information/freedom-of-information-foi/",
+    "disclosure_page_url": "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/collections/freedom-of-information-disclosure-logs/",
+    "source_method": "manual",
+    "overridden": true
   }
 ]
