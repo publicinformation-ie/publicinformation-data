@@ -116,6 +116,42 @@ def markdown_to_rows(markdown):
     return all_rows
 
 
+def markdown_to_pages(markdown):
+    """Convert Mistral OCR markdown output to per-page pipeline rows.
+
+    Splits on the literal _PAGE_BREAK_MARKER inserted by call_mistral_ocr,
+    parsing each page's markdown independently. Returning rows grouped by
+    page (rather than one flattened list) lets process._merge_page_splits
+    align repeated header rows across page boundaries — it already handles
+    a title/subtitle preamble on page 1 that never repeats on later pages,
+    which a flat list discards the information needed to detect.
+    Returns [] if no tables were found on any page.
+    """
+    if not markdown or not markdown.strip():
+        return []
+
+    pages = []
+    for section in markdown.split(_PAGE_BREAK_MARKER):
+        if not section.strip():
+            continue
+
+        section = section.replace('\r\n', '\n')
+        table_rows = parse_markdown_table(section)
+
+        if table_rows:
+            processed_rows = []
+            for row in table_rows:
+                processed_row = []
+                for cell in row:
+                    cell = cell.replace('\n', ' ')
+                    cell = strip_markdown_formatting(cell)
+                    processed_row.append(cell)
+                processed_rows.append(processed_row)
+            pages.append(processed_rows)
+
+    return pages
+
+
 def _normalise_cell(cell):
     """Normalise a cell for header comparison. Duplicated from process.py's
     identically-named function to avoid a circular import between the two

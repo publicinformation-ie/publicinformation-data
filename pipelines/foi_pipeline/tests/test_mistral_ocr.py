@@ -43,6 +43,77 @@ def test_markdown_to_rows_empty_input_returns_empty_list():
     assert markdown_to_rows("   ") == []
 
 
+from steps.transform_disclosure_files.mistral_ocr import markdown_to_pages, _PAGE_BREAK_MARKER
+
+
+def test_markdown_to_pages_single_page():
+    markdown = "| Ref | Date |\n|---|---|\n| 16/002 | 2016-01-05 |"
+    pages = markdown_to_pages(markdown)
+    assert pages == [[["Ref", "Date"], ["16/002", "2016-01-05"]]]
+
+
+def test_markdown_to_pages_multiple_pages_split_on_marker():
+    markdown = (
+        "| Ref | Date |\n|---|---|\n| A | 1 |"
+        + _PAGE_BREAK_MARKER
+        + "| Ref | Date |\n|---|---|\n| B | 2 |"
+    )
+    pages = markdown_to_pages(markdown)
+    assert pages == [
+        [["Ref", "Date"], ["A", "1"]],
+        [["Ref", "Date"], ["B", "2"]],
+    ]
+
+
+def test_markdown_to_pages_title_rows_before_header_on_first_page_only():
+    """Mirrors the National Transport Authority PDFs: page 1 opens with a
+    document title and a subtitle row before the real column header; page 2
+    starts directly with the header. This is the exact shape that made the
+    old rows[0]-based _strip_duplicate_headers silently strip nothing."""
+    page1_markdown = (
+        "| National Transport Authority - FOI Disclosure Log (Non-Personal Requests) |\n"
+        "| Quarter 2 2024 (1 April 2024 - 30 June 2024) |\n"
+        "| FOI Reference | Date Received | Decision | Date Decision letter issued |\n"
+        "|---|---|---|---|\n"
+        "| 2024-0028 | 08/04/2024 | Part-Granted | 19/04/2024 |"
+    )
+    page2_markdown = (
+        "| FOI Reference | Date Received | Decision | Date Decision letter issued |\n"
+        "|---|---|---|---|\n"
+        "| 2024-0042 | 09/04/2024 | Part-Granted | 14/05/2024 |"
+    )
+    markdown = page1_markdown + _PAGE_BREAK_MARKER + page2_markdown
+    pages = markdown_to_pages(markdown)
+    assert pages == [
+        [
+            ["National Transport Authority - FOI Disclosure Log (Non-Personal Requests)"],
+            ["Quarter 2 2024 (1 April 2024 - 30 June 2024)"],
+            ["FOI Reference", "Date Received", "Decision", "Date Decision letter issued"],
+            ["2024-0028", "08/04/2024", "Part-Granted", "19/04/2024"],
+        ],
+        [
+            ["FOI Reference", "Date Received", "Decision", "Date Decision letter issued"],
+            ["2024-0042", "09/04/2024", "Part-Granted", "14/05/2024"],
+        ],
+    ]
+
+
+def test_markdown_to_pages_strips_formatting_and_joins_multiline_cells():
+    markdown = (
+        "| Ref | Description |\n"
+        "|---|---|\n"
+        "| **16/002** | Request for\ninformation `about` roads |"
+    )
+    pages = markdown_to_pages(markdown)
+    assert pages == [[["Ref", "Description"], ["16/002", "Request for information about roads"]]]
+
+
+def test_markdown_to_pages_empty_input_returns_empty_list():
+    assert markdown_to_pages("") == []
+    assert markdown_to_pages(None) == []
+    assert markdown_to_pages("   ") == []
+
+
 from steps.transform_disclosure_files.mistral_ocr import _strip_duplicate_headers
 
 
