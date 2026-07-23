@@ -47,11 +47,14 @@ def test_is_stale_prev_missing(tmp_path):
 
 # --- orchestrator integration tests ---
 
-def _make_pipeline(tmp_path, steps):
+def _make_pipeline(tmp_path, steps, always_run=None):
     """Build a minimal pipeline dir at the expected pipelines/<name>/ depth."""
     pipeline_dir = tmp_path / "pipelines" / "foi_pipeline"
     pipeline_dir.mkdir(parents=True)
-    (pipeline_dir / "pipeline.json").write_text(json.dumps({"steps": steps}))
+    config = {"steps": steps}
+    if always_run is not None:
+        config["always_run"] = always_run
+    (pipeline_dir / "pipeline.json").write_text(json.dumps(config))
     for step in steps:
         (pipeline_dir / "steps" / step).mkdir(parents=True)
     return pipeline_dir
@@ -92,6 +95,84 @@ def test_orchestrator_force_reruns(tmp_path):
         main()
         mock_run.assert_called_once()
         assert "--force" in mock_run.call_args[0][0]
+
+
+def test_orchestrator_always_run_step_runs_despite_fresh_output(tmp_path):
+    """A step listed in always_run must run even though its output.json
+    already exists (i.e. is_stale() alone would report 'not stale', exactly
+    as in test_orchestrator_skips_up_to_date_step above)."""
+    pipeline_dir = _make_pipeline(
+        tmp_path, ["fingerprint_disclosure_pages"],
+        always_run=["fingerprint_disclosure_pages"],
+    )
+    (pipeline_dir / "steps" / "fingerprint_disclosure_pages" / "output.json").write_text("{}")
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        mock_run.return_value.returncode = 0
+        sys.argv = ["process.py", str(pipeline_dir)]
+        main()
+        mock_run.assert_called_once()
+        cmd = mock_run.call_args[0][0]
+        assert "fingerprint_disclosure_pages" in cmd[1]
+        assert "--force" not in cmd
+
+
+def test_orchestrator_non_always_run_step_still_skipped_when_fresh(tmp_path, capsys):
+    """With one step in always_run, a later step NOT in always_run is still
+    skipped when its output.json is already newer than prev_out — always_run
+    exempts only the named step(s), not the whole pipeline."""
+    pipeline_dir = _make_pipeline(
+        tmp_path,
+        ["fingerprint_disclosure_pages", "verify_disclosure_files"],
+        always_run=["fingerprint_disclosure_pages"],
+    )
+    fingerprint_out = pipeline_dir / "steps" / "fingerprint_disclosure_pages" / "output.json"
+    fingerprint_out.write_text("{}")
+    time.sleep(0.05)
+    # verify_disclosure_files's output.json is newer than prev_out
+    # (fingerprint_disclosure_pages's output.json) -> is_stale() says False
+    verify_out = pipeline_dir / "steps" / "verify_disclosure_files" / "output.json"
+    verify_out.write_text("{}")
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        mock_run.return_value.returncode = 0
+        sys.argv = ["process.py", str(pipeline_dir)]
+        main()
+        # only fingerprint_disclosure_pages runs (forced by always_run);
+        # verify_disclosure_files is skipped (fresh, not in always_run)
+        mock_run.assert_called_once()
+        cmd = mock_run.call_args[0][0]
+        assert "fingerprint_disclosure_pages" in cmd[1]
+        assert "Skipping verify_disclosure_files (up to date)" in capsys.readouterr().out
+
+
+def test_orchestrator_always_run_with_force_still_passes_force(tmp_path):
+    """--force plus always_run: --force must still be passed through, and
+    always_run must not double-force or otherwise change subprocess args."""
+    pipeline_dir = _make_pipeline(
+        tmp_path, ["fingerprint_disclosure_pages"],
+        always_run=["fingerprint_disclosure_pages"],
+    )
+    (pipeline_dir / "steps" / "fingerprint_disclosure_pages" / "output.json").write_text("{}")
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        mock_run.return_value.returncode = 0
+        sys.argv = ["process.py", str(pipeline_dir), "--force"]
+        main()
+        assert mock_run.call_count == 1
+        assert "--force" in mock_run.call_args[0][0]
+
+
+def test_orchestrator_missing_always_run_key_defaults_to_empty(tmp_path):
+    """pipeline.json without an always_run key behaves exactly as before:
+    no step is exempted from the staleness gate."""
+    pipeline_dir = _make_pipeline(tmp_path, ["find_public_bodies"])  # no always_run kwarg
+    (pipeline_dir / "steps" / "find_public_bodies" / "output.json").write_text("[]")
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        sys.argv = ["process.py", str(pipeline_dir)]
+        main()
+        mock_run.assert_not_called()
 
 
 def test_orchestrator_stop_on_error(tmp_path):

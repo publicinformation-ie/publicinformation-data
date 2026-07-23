@@ -29,6 +29,7 @@ def main():
     pipeline_dir = Path(args.pipeline_dir).resolve()
     config = json.loads((pipeline_dir / "pipeline.json").read_text())
     steps = config["steps"]
+    always_run = set(config.get("always_run", []))
 
     if args.public_body is not None:
         bodies_path = pipeline_dir / "steps" / "find_public_bodies" / "output.json"
@@ -76,7 +77,8 @@ def main():
 
         step_dir = pipeline_dir / "steps" / step_name
         is_from_step = args.from_step is not None and step_name == args.from_step
-        if not args.force and not is_from_step and not is_stale(step_out, prev_out):
+        if (not args.force and not is_from_step and step_name not in always_run
+                and not is_stale(step_out, prev_out)):
             print(f"Skipping {step_name} (up to date)")
             prev_out = step_out
             continue
