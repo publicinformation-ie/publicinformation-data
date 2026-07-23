@@ -81,41 +81,6 @@ def strip_markdown_formatting(text):
     return text
 
 
-def markdown_to_rows(markdown):
-    """Convert Mistral OCR markdown output to pipeline rows format.
-
-    Handles multiple tables separated by --- (page breaks), multi-line
-    cells (joined with space), and markdown formatting (stripped).
-    Returns [] if no tables found.
-    """
-    if not markdown or not markdown.strip():
-        return []
-
-    all_rows = []
-    sections = re.split(r'\n---\n', markdown)
-
-    for section in sections:
-        if not section.strip():
-            continue
-
-        section = section.replace('\r\n', '\n')
-        table_rows = parse_markdown_table(section)
-
-        if table_rows:
-            processed_rows = []
-            for row in table_rows:
-                processed_row = []
-                for cell in row:
-                    cell = cell.replace('\n', ' ')
-                    cell = strip_markdown_formatting(cell)
-                    processed_row.append(cell)
-                processed_rows.append(processed_row)
-
-            all_rows.extend(processed_rows)
-
-    return all_rows
-
-
 def markdown_to_pages(markdown):
     """Convert Mistral OCR markdown output to per-page pipeline rows.
 
@@ -150,36 +115,6 @@ def markdown_to_pages(markdown):
             pages.append(processed_rows)
 
     return pages
-
-
-def _normalise_cell(cell):
-    """Normalise a cell for header comparison. Duplicated from process.py's
-    identically-named function to avoid a circular import between the two
-    peer modules; keep both in sync if the normalisation rule changes."""
-    if cell is None:
-        return ""
-    return " ".join(str(cell).strip().split()).lower()
-
-
-def _strip_duplicate_headers(rows):
-    """Drop rows that exactly match row 0's normalised header.
-
-    Mistral's extract_header=True guarantees each page-table starts with a
-    complete header row — there's no partial/split header to align (unlike
-    process.py's _merge_page_splits fingerprint alignment), just an exact
-    repeat to remove. Returns (deduped_rows, count_stripped).
-    """
-    if not rows:
-        return rows, 0
-    header = tuple(_normalise_cell(c) for c in rows[0])
-    deduped = [rows[0]]
-    count = 0
-    for row in rows[1:]:
-        if tuple(_normalise_cell(c) for c in row) == header:
-            count += 1
-        else:
-            deduped.append(row)
-    return deduped, count
 
 
 def call_mistral_ocr(file_url, cache_dir, base_url, api_key, semaphore=None, max_retries=3):
