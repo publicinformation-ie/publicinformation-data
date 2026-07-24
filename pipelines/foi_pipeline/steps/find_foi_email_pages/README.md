@@ -59,5 +59,5 @@ Iteration loop:
 
     edit process.py -> run_matcher.py -> evaluate.py -> compare to last run -> keep or revert
 
-Baseline (scored matcher, 2026-07-24): precision=0.500 recall=0.636 f1=0.560
-(TP=7 FP=7 FN=4 TN=29, 47 labelled bodies evaluated)
+Baseline (scored matcher, 2026-07-24): precision=0.571 recall=0.800 f1=0.667
+(TP=8 FP=6 FN=2 TN=31, 47 labelled bodies evaluated)

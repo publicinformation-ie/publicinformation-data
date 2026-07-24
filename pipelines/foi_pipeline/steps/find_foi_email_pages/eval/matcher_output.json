@@ -1,7 +1,7 @@
 {
   "metadata": {
     "step": "find_foi_email_pages_matcher_eval",
-    "completed_at": "2026-07-24T17:42:27.436387+00:00"
+    "completed_at": "2026-07-24T17:49:50.821163+00:00"
   },
   "results": [
     {
@@ -1094,7 +1094,7 @@
       "public_body_id": 1736,
       "name": "South Infirmary Victoria University Hospital",
       "foi_page_url": "https://www.sivuh.ie/Departments/FreedomofInformation/FOIHomepage.html",
-      "foi_email": "foi.officer@sivuh.ie",
+      "foi_email": "foi@sivuh.ie",
       "email_status": "found",
       "confidence": "none",
       "source_page_url": "https://www.sivuh.ie/aboutus/contactinformation.html"

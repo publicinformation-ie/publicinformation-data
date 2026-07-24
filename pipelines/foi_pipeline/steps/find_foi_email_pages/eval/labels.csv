@@ -28,12 +28,12 @@ public_body_id,name,label,expected_url,verified
 1559,National Library of Ireland,no_email_exists,,yes
 1573,National University of Ireland,no_email_exists,,yes
 1574,National University of Ireland Galway,no_email_exists,,yes
-1575,National University of Ireland Maynooth,should_have_found,foi@mu.ie,yes
+1575,National University of Ireland Maynooth,no_email_exists,,yes
 1590,Offaly County Council,wrong_match,,yes
 1603,Office of the Inspector of Prisons,no_email_exists,,yes
 1608,Office of the Revenue Commissioners,no_email_exists,,yes
 1611,Ombudsman for Childrens Office,no_email_exists,,yes
-1650,Property Services Regulatory Authority,should_have_found,info@psr.ie,yes
+1650,Property Services Regulatory Authority,no_email_exists,,yes
 1651,Public Appointments Service,found,info@publicjobs.ie,yes
 1653,Quality and Qualifications Ireland,wrong_match,,yes
 1661,Residential Institutions Redress Board (RIRB),no_email_exists,,yes
@@ -45,4 +45,4 @@ public_body_id,name,label,expected_url,verified
 1798,The Pensions Authority,no_email_exists,,yes
 1817,Tipperary County Council,no_email_exists,,yes
 1868,Western Development Commission (WDC),found,info@wdc.ie,yes
-1873,Wexford County Council,should_have_found,foi@wexfordcoco.ie,yes
+1873,Wexford County Council,wrong_match,,yes
