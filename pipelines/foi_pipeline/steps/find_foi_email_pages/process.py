@@ -60,3 +60,30 @@ def _score_link(tokens):
     if officer or staff:
         return 40
     return 0
+
+
+def find_candidate_links(html, base_url):
+    """Return up to MAX_CANDIDATES (url, score) pairs for the highest-scoring
+    contact/FOI-officer links on the page, highest score first."""
+    soup = BeautifulSoup(html, "html.parser")
+    scored = []
+    seen_urls = set()
+    for link in soup.find_all("a", href=True):
+        href = str(link["href"])
+        if href.lower().split("?")[0].endswith(_DOC_EXTS):
+            continue
+        tokens = _tokenize(href, link.get_text(strip=True))
+        sc = _score_link(tokens)
+        if sc <= 0:
+            continue
+        full_url = urljoin(base_url, href)
+        if not is_safe_url(full_url):
+            continue
+        if urldefrag(full_url)[0] == urldefrag(base_url)[0]:
+            continue  # same-page anchor only
+        if full_url in seen_urls:
+            continue
+        seen_urls.add(full_url)
+        scored.append((full_url, sc))
+    scored.sort(key=lambda pair: pair[1], reverse=True)
+    return scored[:MAX_CANDIDATES]
