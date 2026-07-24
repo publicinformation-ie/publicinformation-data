@@ -97,3 +97,81 @@ def _confidence(link_score, email):
         return "none"
     email_is_foi = any(kw in (email or "").lower() for kw in FOI_EMAIL_KEYWORDS)
     return "high" if email_is_foi else "medium"
+
+
+def _is_binary_response(response):
+    content_type = response.headers.get("Content-Type", "").lower()
+    return any(ct in content_type for ct in _BINARY_CONTENT_TYPES)
+
+
+def _try_candidate(candidate_url):
+    """Fetch a candidate page and return (email, found) or (None, False) on
+    any failure/non-HTML/no-email outcome. Never raises."""
+    try:
+        response = fetch("GET", candidate_url, allow_redirects=True)
+    except Exception:
+        return None, False
+    if _is_binary_response(response):
+        return None, False
+    emails = extract_emails(response.text)
+    email, email_status = pick_foi_email(emails)
+    return email, email_status == "found"
+
+
+def process(input_data, step_dir, writer, verbose=False):
+    errors_path = Path(step_dir) / "errors.json"
+    write_json(errors_path, [])
+
+    items = input_data["results"]
+
+    for item in items:
+        body_id = item["public_body_id"]
+        if writer.is_processed(body_id):
+            continue
+
+        if item.get("email_status") != "not_found":
+            writer.append([item])
+            if verbose:
+                print(".", end="", flush=True)
+            continue
+
+        url = item["foi_page_url"]
+        name = item.get("name", "")
+        if verbose:
+            print(f"  {name} ({url}) ...", end=" ", flush=True)
+        try:
+            response = fetch("GET", url, allow_redirects=True)
+            if _is_binary_response(response):
+                writer.append([item])
+                if verbose:
+                    print("[binary foi page]", flush=True)
+                continue
+
+            candidates = find_candidate_links(response.text, url)
+            upgraded = None
+            for candidate_url, link_score in candidates:
+                email, found = _try_candidate(candidate_url)
+                if found:
+                    upgraded = {
+                        **item,
+                        "foi_email": email,
+                        "email_status": "found",
+                        "confidence": _confidence(link_score, email),
+                        "source_page_url": candidate_url,
+                    }
+                    break
+
+            writer.append([upgraded if upgraded is not None else item])
+            if verbose:
+                print(f"[{'upgraded' if upgraded else 'no match'}]", flush=True)
+        except Exception as e:
+            append_error(step_dir, {
+                "step": STEP_NAME,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "context": {"url": url, "public_body_id": body_id, "name": name},
+            })
+            writer.append([])
+            if verbose:
+                print("[error]", flush=True)
