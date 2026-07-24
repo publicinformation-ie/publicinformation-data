@@ -66,12 +66,16 @@ def main():
 
     pipeline_json = pipeline_dir / "pipeline.json"
     steps = json.loads(pipeline_json.read_text())["steps"]
+    repo_root = pipeline_dir.parent.parent
 
     rows = []
     prev_out_mtime = None
 
     for step_name in steps:
-        step_dir = pipeline_dir / "steps" / step_name
+        if step_name.startswith("/"):
+            step_dir = repo_root / step_name.lstrip("/")
+        else:
+            step_dir = pipeline_dir / "steps" / step_name
         out = step_dir / "output.json"
         ps_path = step_dir / "pipeline-status.json"
         err_path = step_dir / "errors.json"
