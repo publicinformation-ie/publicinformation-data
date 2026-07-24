@@ -163,6 +163,53 @@ def test_merge_places_fragment_into_none_parent_cell():
     assert out == [["h1", "h2", "h3"], ["a", "orphan fragment", "c"]]
 
 
+def test_merge_continuation_row_with_empty_string_blanks():
+    """pdfplumber emits '' as well as None for empty cells; both mean 'blank'.
+
+    AudGen q1-2026 pattern: the continuation row's unused cells come back as ''
+    rather than None, so a None-only non-blank count sees 3 values instead of 1
+    and the row escapes the merge, surviving as an orphan fragment.
+    """
+    rows = [
+        ["Date", "Records Requested", "Decision"],
+        ["06 January 2026", "Any records relating", "Refused under"],
+        ["", "to the expenditure", ""],
+    ]
+    out, merged = _merge_continuation_rows(rows)
+    assert merged == 1
+    assert out == [
+        ["Date", "Records Requested", "Decision"],
+        ["06 January 2026", "Any records relating to the expenditure", "Refused under"],
+    ]
+
+
+def test_merge_continuation_row_with_mixed_none_and_empty_blanks():
+    # Same file mixes both sentinels across rows — whitespace-only counts as blank too
+    rows = [
+        ["Date", "Subject", "Decision"],
+        ["06 January 2026", "First part", "Refused under"],
+        [None, "second part", "  "],
+        ["", "third part", None],
+    ]
+    out, merged = _merge_continuation_rows(rows)
+    assert merged == 2
+    assert out[1][1] == "First part second part third part"
+
+
+def test_merge_does_not_consume_fully_blank_row_as_fragment():
+    """A row whose only non-None cell is '' carries no content.
+
+    Merging it appends a trailing space and consumes the row for no gain; it must
+    fall through to _drop_blank_rows instead.
+    """
+    rows = [["h1", "h2", "h3"],
+            ["a", "text", "c"],
+            [None, "", None]]
+    out, merged = _merge_continuation_rows(rows)
+    assert merged == 0
+    assert out[1] == ["a", "text", "c"]
+
+
 def test_merge_skips_sparse_layout_files():
     # >50% of data rows are single-value rows: this is the file's shape,
     # not fragmentation — merging would collapse distinct records.
