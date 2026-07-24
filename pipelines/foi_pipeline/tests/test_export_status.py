@@ -4,6 +4,7 @@ import pytest
 from steps.export_status.process import (
     STEP_NAME,
     DISCLOSURE_STEPS,
+    PER_BODY_STEPS,
     collect_disclosure_ids,
     merge,
     merge_validate_websites,
@@ -1034,3 +1035,78 @@ def test_disclosure_steps_are_registered_mergers():
     from steps.export_status.process import STEP_MERGERS
     for step in DISCLOSURE_STEPS:
         assert step in STEP_MERGERS
+
+
+# ---------------------------------------------------------------------------
+# coverage computation
+# ---------------------------------------------------------------------------
+
+def test_per_body_steps_constant():
+    assert PER_BODY_STEPS == {
+        "validate_websites",
+        "find_foi_pages",
+        "check_foi_pages",
+        "get_foi_emails",
+        "find_disclosure_pages",
+    }
+
+
+def test_merge_coverage_reports_missing_body(tmp_path):
+    steps_dir = setup_steps_dir(tmp_path, {
+        "find_public_bodies_subject_to_foi": BASE_OUTPUT,
+        "get_foi_emails": {
+            "metadata": {},
+            "results": [
+                {"public_body_id": 1001, "foi_email": "foi@dept-a.ie", "email_status": "found"}
+            ],
+        },
+    })
+    coverage = {}
+    merge(steps_dir, PIPELINE_STEPS, coverage=coverage)
+    assert coverage["get_foi_emails"]["covered"] == 1
+    assert coverage["get_foi_emails"]["missing"] == [1002]
+
+
+def test_merge_coverage_full_when_all_present(tmp_path):
+    steps_dir = setup_steps_dir(tmp_path, {
+        "find_public_bodies_subject_to_foi": BASE_OUTPUT,
+        "validate_websites": {
+            "metadata": {},
+            "results": [
+                {"public_body_id": 1001, "is_reachable": True},
+                {"public_body_id": 1002, "is_reachable": False},
+            ],
+        },
+    })
+    coverage = {}
+    merge(steps_dir, PIPELINE_STEPS, coverage=coverage)
+    assert coverage["validate_websites"] == {"covered": 2, "missing": []}
+
+
+def test_merge_coverage_omits_steps_with_no_output(tmp_path):
+    steps_dir = setup_steps_dir(tmp_path, {"find_public_bodies_subject_to_foi": BASE_OUTPUT})
+    coverage = {}
+    merge(steps_dir, PIPELINE_STEPS, coverage=coverage)
+    assert "validate_websites" not in coverage
+
+
+def test_merge_coverage_ignores_non_per_body_steps(tmp_path):
+    steps_dir = setup_steps_dir(tmp_path, {
+        "find_public_bodies_subject_to_foi": BASE_OUTPUT,
+        "find_disclosure_files": {
+            "metadata": {},
+            "results": [
+                {"public_body_id": 1001, "file_url": "https://dept-a.ie/q1.xlsx",
+                 "disclosure_page_url": "https://dept-a.ie/d/", "file_type": "xlsx"},
+            ],
+        },
+    })
+    coverage = {}
+    merge(steps_dir, PIPELINE_STEPS, coverage=coverage)
+    assert "find_disclosure_files" not in coverage
+
+
+def test_merge_without_coverage_arg_still_returns_list(tmp_path):
+    steps_dir = setup_steps_dir(tmp_path, {"find_public_bodies_subject_to_foi": BASE_OUTPUT})
+    result = merge(steps_dir, PIPELINE_STEPS)
+    assert {b["public_body_id"] for b in result} == {1001, 1002}

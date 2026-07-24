@@ -137,6 +137,18 @@ DISCLOSURE_STEPS = {
     "extract_disclosures_deduplicate",
 }
 
+# Per-body steps that resolve exactly one status field per canonical body via a
+# `present` set. Coverage is measured for these: a canonical id absent from the
+# step's output is a gap (now 'not_attempted', see merge_* funcs). Disclosure-
+# counting steps are excluded — they legitimately produce zero records per body.
+PER_BODY_STEPS = {
+    "validate_websites",
+    "find_foi_pages",
+    "check_foi_pages",
+    "get_foi_emails",
+    "find_disclosure_pages",
+}
+
 
 def collect_disclosure_ids(step_data):
     """Return the set of public_body_ids referenced by a disclosure step's
@@ -192,7 +204,7 @@ def write_foi_disclosures_output(steps_dir, repo_root):
     return output_path
 
 
-def merge(steps_dir, pipeline_steps, target_public_body=None):
+def merge(steps_dir, pipeline_steps, target_public_body=None, coverage=None):
     base_data = read_json(steps_dir / "find_public_bodies_subject_to_foi" / "output.json")
     base_data = filter_by_public_body(base_data, target_public_body)
     bodies = copy.deepcopy(base_data["public_bodies"])
@@ -215,6 +227,14 @@ def merge(steps_dir, pipeline_steps, target_public_body=None):
             continue
         step_data = filter_by_public_body(read_json(output_path), target_public_body)
         merger(body_map, step_data)
+        if coverage is not None and step_name in PER_BODY_STEPS:
+            covered_ids = {
+                r["public_body_id"] for r in step_data["results"]
+            } & set(body_map)
+            coverage[step_name] = {
+                "covered": len(covered_ids),
+                "missing": sorted(set(body_map) - covered_ids),
+            }
         if step_name in DISCLOSURE_STEPS:
             orphans = collect_disclosure_ids(step_data) - set(body_map)
             if orphans:
