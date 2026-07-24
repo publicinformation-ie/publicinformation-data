@@ -253,6 +253,19 @@ def merge(steps_dir, pipeline_steps, target_public_body=None, coverage=None):
     return list(body_map.values())
 
 
+def format_coverage_summary(coverage, canonical_count):
+    lines = [f"Coverage report (canonical bodies: {canonical_count}):"]
+    for step_name in sorted(coverage):
+        info = coverage[step_name]
+        covered = info["covered"]
+        missing = info["missing"]
+        line = f"  {step_name}: {covered}/{canonical_count} covered"
+        if missing:
+            line += f" — MISSING {len(missing)}: {missing}"
+        lines.append(line)
+    return "\n".join(lines)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Export merged pipeline status for all public bodies")
     add_common_args(parser)
@@ -270,7 +283,8 @@ def main():
     pipelines_dir = pipeline_dir.parent
     pipeline_config = read_json(pipeline_dir / "pipeline.json")
 
-    bodies = merge(steps_dir, pipeline_config["steps"], target_public_body=args.public_body)
+    coverage = {}
+    bodies = merge(steps_dir, pipeline_config["steps"], target_public_body=args.public_body, coverage=coverage)
     output = {
         "metadata": {
             "step": STEP_NAME,
@@ -280,6 +294,15 @@ def main():
     }
     write_json(output_path, output)
     write_status(step_dir, len(bodies))
+
+    if args.public_body is None:
+        coverage_report = {
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "canonical_body_count": len(bodies),
+            "steps": coverage,
+        }
+        write_json(step_dir / "coverage.json", coverage_report)
+        print(format_coverage_summary(coverage, len(bodies)))
 
     repo_root = pipelines_dir.parent
     public_path = write_public_output(output, repo_root)

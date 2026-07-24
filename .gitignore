@@ -17,6 +17,7 @@ docs/
 **/output.json
 **/errors.json
 **/pipeline-status.json
+**/coverage.json
 **/dirty_ids.json
 **/failed_ids.json
 .env.admin

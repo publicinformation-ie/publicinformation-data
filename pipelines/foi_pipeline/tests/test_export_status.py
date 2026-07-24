@@ -6,6 +6,7 @@ from steps.export_status.process import (
     DISCLOSURE_STEPS,
     PER_BODY_STEPS,
     collect_disclosure_ids,
+    format_coverage_summary,
     merge,
     merge_validate_websites,
     merge_find_foi_pages,
@@ -1110,3 +1111,40 @@ def test_merge_without_coverage_arg_still_returns_list(tmp_path):
     steps_dir = setup_steps_dir(tmp_path, {"find_public_bodies_subject_to_foi": BASE_OUTPUT})
     result = merge(steps_dir, PIPELINE_STEPS)
     assert {b["public_body_id"] for b in result} == {1001, 1002}
+
+
+# ---------------------------------------------------------------------------
+# format_coverage_summary
+# ---------------------------------------------------------------------------
+
+def test_format_coverage_summary_header():
+    out = format_coverage_summary({}, 229)
+    assert out == "Coverage report (canonical bodies: 229):"
+
+
+def test_format_coverage_summary_full_step_has_no_missing_marker():
+    out = format_coverage_summary(
+        {"validate_websites": {"covered": 229, "missing": []}}, 229
+    )
+    assert "  validate_websites: 229/229 covered" in out
+    assert "MISSING" not in out
+
+
+def test_format_coverage_summary_flags_missing():
+    out = format_coverage_summary(
+        {"get_foi_emails": {"covered": 225, "missing": [1200, 1203, 1206, 1210]}}, 229
+    )
+    assert "  get_foi_emails: 225/229 covered — MISSING 4: [1200, 1203, 1206, 1210]" in out
+
+
+def test_format_coverage_summary_sorts_steps():
+    out = format_coverage_summary(
+        {
+            "get_foi_emails": {"covered": 1, "missing": [2]},
+            "validate_websites": {"covered": 2, "missing": []},
+        },
+        2,
+    )
+    lines = out.splitlines()
+    assert lines[1].strip().startswith("get_foi_emails")
+    assert lines[2].strip().startswith("validate_websites")
