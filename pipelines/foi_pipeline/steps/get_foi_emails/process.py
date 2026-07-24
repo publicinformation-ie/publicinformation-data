@@ -14,6 +14,11 @@ from lib.http_utils import fetch
 STEP_NAME = "get_foi_emails"
 EMAIL_PATTERN = re.compile(r"[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}")
 FOI_EMAIL_KEYWORDS = ["foi", "freedom"]
+# Non-HTML content types a foi_page_url can resolve to (e.g. a link straight to a
+# disclosure-log PDF instead of a contact page). BeautifulSoup/html.parser can
+# throw confusing low-level errors (e.g. ValueError from mis-decoded binary bytes)
+# if handed one of these, so they're skipped before parsing.
+_BINARY_CONTENT_TYPES = ("application/pdf", "application/octet-stream", "image/")
 
 
 def extract_emails(html):
@@ -58,6 +63,18 @@ def process(input_data, step_dir, writer, verbose=False):
         name = item.get("name", "")
         try:
             response = fetch("GET", url, allow_redirects=True)
+            content_type = response.headers.get("Content-Type", "").lower()
+            if any(ct in content_type for ct in _BINARY_CONTENT_TYPES):
+                writer.append([{
+                    "public_body_id": body_id,
+                    "name": name,
+                    "foi_page_url": url,
+                    "foi_email": None,
+                    "email_status": "not_found",
+                }])
+                if verbose:
+                    print(".", end="", flush=True)
+                continue
             emails = extract_emails(response.text)
             foi_email, email_status = pick_foi_email(emails)
             writer.append([{

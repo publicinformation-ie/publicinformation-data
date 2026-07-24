@@ -50,6 +50,18 @@ def test_picks_foi_keyword_email_over_others(requests_mock, tmp_path, make_write
     assert a["foi_email"] == "foi@dept-a.ie"
 
 
+def test_pdf_response_skipped_without_crashing(requests_mock, tmp_path, make_writer):
+    writer = make_writer(STEP_NAME)
+    requests_mock.get("https://dept-a.ie/foi/", content=b"%PDF-1.5\n%garbage",
+                       headers={"Content-Type": "application/pdf"})
+    process(INPUT, tmp_path, writer)
+    a = next(r for r in writer.results if r["public_body_id"] == 1001)
+    assert a["foi_email"] is None
+    assert a["email_status"] == "not_found"
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert errors == []
+
+
 def test_connection_error_logs_and_skips(requests_mock, tmp_path, make_writer):
     import requests as req
     writer = make_writer(STEP_NAME)
