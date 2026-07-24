@@ -8,6 +8,7 @@
     "find_foi_pages_search",
     "check_foi_pages",
     "get_foi_emails",
+    "find_foi_email_pages",
     "find_disclosure_pages",
     "fingerprint_disclosure_pages",
     "find_disclosure_files",

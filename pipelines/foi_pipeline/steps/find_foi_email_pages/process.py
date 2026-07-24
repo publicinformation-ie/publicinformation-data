@@ -175,3 +175,43 @@ def process(input_data, step_dir, writer, verbose=False):
             writer.append([])
             if verbose:
                 print("[error]", flush=True)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Find contact/FOI-officer pages and extract emails for bodies get_foi_emails missed")
+    add_common_args(parser)
+    args = parser.parse_args()
+
+    step_dir = Path(__file__).parent
+    output_path = Path(args.output)
+    override_path = step_dir / "override.json"
+
+    try:
+        input_data = read_json(args.input)
+    except Exception as e:
+        print(f"Fatal: could not read input: {e}", file=sys.stderr)
+        sys.exit(1)
+    input_data = filter_by_public_body(input_data, args.public_body)
+    if args.public_body is not None and not (
+        input_data.get("results") or input_data.get("public_bodies")
+    ):
+        print(f"No input record for public_body_id={args.public_body}", file=sys.stderr)
+        sys.exit(0)
+
+    writer = IncrementalWriter(output_path, STEP_NAME, force=args.force,
+                               override_path=override_path,
+                               upstream_dirty_path=Path(args.input).parent / "dirty_ids.json",
+                               target_public_body=args.public_body)
+
+    if writer.processed_keys:
+        print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")
+
+    process(input_data, step_dir, writer, verbose=args.verbose)
+    count = writer.finalize()
+    write_status(step_dir, count)
+    print(f"Wrote {count} records to {output_path}")
+
+
+if __name__ == "__main__":
+    main()
