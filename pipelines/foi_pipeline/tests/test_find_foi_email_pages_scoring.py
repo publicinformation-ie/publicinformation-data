@@ -104,3 +104,21 @@ def test_deduplicates_same_resolved_url():
     </body></html>"""
     candidates = find_candidate_links(html, "https://x.ie/foi/")
     assert len(candidates) == 1
+
+
+from steps.find_foi_email_pages.process import _confidence
+
+
+def test_high_confidence_needs_foi_link_and_foi_email():
+    assert _confidence(100, "foi@courts.ie") == "high"
+    assert _confidence(100, "freedom@example.ie") == "high"
+
+
+def test_medium_confidence_foi_link_generic_email():
+    assert _confidence(100, "info@example.ie") == "medium"
+
+
+def test_none_confidence_generic_link_regardless_of_email():
+    assert _confidence(80, "foi@example.ie") == "none"
+    assert _confidence(50, "info@example.ie") == "none"
+    assert _confidence(40, "foi@example.ie") == "none"

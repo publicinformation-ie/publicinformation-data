@@ -87,3 +87,13 @@ def find_candidate_links(html, base_url):
         scored.append((full_url, sc))
     scored.sort(key=lambda pair: pair[1], reverse=True)
     return scored[:MAX_CANDIDATES]
+
+
+def _confidence(link_score, email):
+    """high: winning link scored on foi/freedom tokens (100) AND the email
+    itself contains foi/freedom. medium: same link tier, generic email.
+    none: link only matched generic contact/officer tokens (40-80)."""
+    if link_score < 100:
+        return "none"
+    email_is_foi = any(kw in (email or "").lower() for kw in FOI_EMAIL_KEYWORDS)
+    return "high" if email_is_foi else "medium"
