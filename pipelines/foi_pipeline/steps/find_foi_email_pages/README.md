@@ -58,3 +58,6 @@ Supports incremental resumption and propagates upstream `dirty_ids` to invalidat
 Iteration loop:
 
     edit process.py -> run_matcher.py -> evaluate.py -> compare to last run -> keep or revert
+
+Baseline (scored matcher, 2026-07-24): precision=0.500 recall=0.636 f1=0.560
+(TP=7 FP=7 FN=4 TN=29, 47 labelled bodies evaluated)

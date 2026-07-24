@@ -1,0 +1,48 @@
+public_body_id,name,label,expected_url,verified
+1009,An Chomhairle um Oideachas Gaeltachta agus Gaelscolaíochta (COGG),no_email_exists,,yes
+1053,Bord Iascaigh Mhara,wrong_match,,yes
+1078,Camphill Communities of Ireland,found,info@camphill.ie,yes
+1104,Central Bank of Ireland,found,foi@centralbank.ie,yes
+1107,Charities Regulator,no_email_exists,,yes
+1110,Chester Beatty Library,no_email_exists,,yes
+1152,Commission for Railway Regulation,no_email_exists,,yes
+1162,Cork City Council,wrong_match,,yes
+1176,Courts Service,found,foi@courts.ie,yes
+1177,Crawford Art Gallery,no_email_exists,,yes
+1194,Dental Council,no_email_exists,,yes
+1235,Dublin City Council,no_email_exists,,yes
+1238,Dublin City University,found,foi@dcu.ie,yes
+1245,Dundalk Institute of Technology (DkIT),no_email_exists,,yes
+1262,Enterprise Ireland,no_email_exists,,yes
+1295,Fingal County Council,no_email_exists,,yes
+1335,Fáilte Ireland,no_email_exists,,yes
+1392,Health Products Regulatory Authority (HPRA),no_email_exists,,yes
+1404,Horse Racing Ireland,no_email_exists,,yes
+1422,Institute of Public Administration,no_email_exists,,yes
+1440,Irish Museum of Modern Art,no_email_exists,,yes
+1501,Louth County Council,wrong_match,,yes
+1544,National Asset Management Agency Group,found,foi@nama.ie,yes
+1551,National Concert Hall,no_email_exists,,yes
+1552,National Council for Curriculum and Assessment (NCCA),no_email_exists,,yes
+1557,National Gallery of Ireland,should_have_found,info@ngi.ie,yes
+1559,National Library of Ireland,no_email_exists,,yes
+1573,National University of Ireland,no_email_exists,,yes
+1574,National University of Ireland Galway,no_email_exists,,yes
+1575,National University of Ireland Maynooth,should_have_found,foi@mu.ie,yes
+1590,Offaly County Council,wrong_match,,yes
+1603,Office of the Inspector of Prisons,no_email_exists,,yes
+1608,Office of the Revenue Commissioners,no_email_exists,,yes
+1611,Ombudsman for Childrens Office,no_email_exists,,yes
+1650,Property Services Regulatory Authority,should_have_found,info@psr.ie,yes
+1651,Public Appointments Service,found,info@publicjobs.ie,yes
+1653,Quality and Qualifications Ireland,wrong_match,,yes
+1661,Residential Institutions Redress Board (RIRB),no_email_exists,,yes
+1675,Royal Victoria Eye and Ear Hospital,no_email_exists,,yes
+1736,South Infirmary Victoria University Hospital,found,foi@sivuh.ie,yes
+1747,"St. Jamess Hospital , Dublin",no_email_exists,,yes
+1754,State Examinations Commission (SEC),should_have_found,info@examinations.ie,yes
+1773,Tax Appeals Commission,no_email_exists,,yes
+1798,The Pensions Authority,no_email_exists,,yes
+1817,Tipperary County Council,no_email_exists,,yes
+1868,Western Development Commission (WDC),found,info@wdc.ie,yes
+1873,Wexford County Council,should_have_found,foi@wexfordcoco.ie,yes

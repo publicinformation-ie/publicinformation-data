@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<script>
+var gform;gform||(document.addEventListener("gform_main_scripts_loaded",function(){gform.scriptsLoaded=!0}),document.addEventListener("gform/theme/scripts_loaded",function(){gform.themeScriptsLoaded=!0}),window.addEventListener("DOMContentLoaded",function(){gform.domLoaded=!0}),gform={domLoaded:!1,scriptsLoaded:!1,themeScriptsLoaded:!1,isFormEditor:()=>"function"==typeof InitializeEditor,callIfLoaded:function(o){return!(!gform.domLoaded||!gform.scriptsLoaded||!gform.themeScriptsLoaded&&!gform.isFormEditor()||(gform.isFormEditor()&&console.warn("The use of gform.initializeOnLoaded() is deprecated in the form editor context and will be removed in Gravity Forms 3.1."),o(),0))},initializeOnLoaded:function(o){gform.callIfLoaded(o)||(document.addEventListener("gform_main_scripts_loaded",()=>{gform.scriptsLoaded=!0,gform.callIfLoaded(o)}),document.addEventListener("gform/theme/scripts_loaded",()=>{gform.themeScriptsLoaded=!0,gform.callIfLoaded(o)}),window.addEventListener("DOMContentLoaded",()=>{gform.domLoaded=!0,gform.callIfLoaded(o)}))},hooks:{action:{},filter:{}},addAction:function(o,r,e,t){gform.addHook("action",o,r,e,t)},addFilter:function(o,r,e,t){gform.addHook("filter",o,r,e,t)},doAction:function(o){gform.doHook("action",o,arguments)},applyFilters:function(o){return gform.doHook("filter",o,arguments)},removeAction:function(o,r){gform.removeHook("action",o,r)},removeFilter:function(o,r,e){gform.removeHook("filter",o,r,e)},addHook:function(o,r,e,t,n){null==gform.hooks[o][r]&&(gform.hooks[o][r]=[]);var d=gform.hooks[o][r];null==n&&(n=r+"_"+d.length),gform.hooks[o][r].push({tag:n,callable:e,priority:t=null==t?10:t})},doHook:function(r,o,e){var t;if(e=Array.prototype.slice.call(e,1),null!=gform.hooks[r][o]&&((o=gform.hooks[r][o]).sort(function(o,r){return o.priority-r.priority}),o.forEach(function(o){"function"!=typeof(t=o.callable)&&(t=window[t]),"action"==r?t.apply(null,e):e[0]=t.apply(null,e)})),"filter"==r)return e[0]},removeHook:function(o,r,t,n){var e;null!=gform.hooks[o][r]&&(e=(e=gform.hooks[o][r]).filter(function(o,r,e){return!!(null!=n&&n!=o.tag||null!=t&&t!=o.priority)}),gform.hooks[o][r]=e)}});
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11"> 
+	<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5J7LZD5');</script>
+<!-- End Google Tag Manager --><link rel="preload" href="https://www.muiriosa.ie/wp-content/astra-local-fonts/cinzel/8vIU7ww63mVu7gtR-kwKxNvkNOjw-tbnfY3lDQ.woff2" as="font" type="font/woff2" crossorigin><meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v28.1 - https://yoast.com/product/yoast-seo-wordpress/ -->
+	<title>Freedom of Information - Muiriosa Foundation</title>
+	<link rel="canonical" href="https://www.muiriosa.ie/freedom-of-information/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Freedom of Information - Muiriosa Foundation" />
+	<meta property="og:description" content="about us Muiriosa Foundation is scheduled under the Freedom of Information (FOI) Act 2014 as a public body/body receiving significant public funds and our records are subject to the legislation. Its primary purpose is to promote transparency and accountability and it encompasses records of living and deceased individuals. The right to access official records held [&hellip;]" />
+	<meta property="og:url" content="https://www.muiriosa.ie/freedom-of-information/" />
+	<meta property="og:site_name" content="Muiriosa Foundation" />
+	<meta property="article:modified_time" content="2021-03-22T10:53:00+00:00" />
+	<meta property="og:image" content="https://www.muiriosa.ie/wp-content/uploads/info.jpg" />
+	<meta property="og:image:width" content="1800" />
+	<meta property="og:image:height" content="1200" />
+	<meta property="og:image:type" content="image/jpeg" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:label1" content="Est. reading time" />
+	<meta name="twitter:data1" content="1 minute" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https:\/\/schema.org","@graph":[{"@type":"WebPage","@id":"https:\/\/www.muiriosa.ie\/freedom-of-information\/","url":"https:\/\/www.muiriosa.ie\/freedom-of-information\/","name":"Freedom of Information - Muiriosa Foundation","isPartOf":{"@id":"https:\/\/www.muiriosa.ie\/#website"},"primaryImageOfPage":{"@id":"https:\/\/www.muiriosa.ie\/freedom-of-information\/#primaryimage"},"image":{"@id":"https:\/\/www.muiriosa.ie\/freedom-of-information\/#primaryimage"},"thumbnailUrl":"https:\/\/www.muiriosa.ie\/wp-content\/uploads\/info.jpg","datePublished":"2021-01-14T17:31:55+00:00","dateModified":"2021-03-22T10:53:00+00:00","breadcrumb":{"@id":"https:\/\/www.muiriosa.ie\/freedom-of-information\/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https:\/\/www.muiriosa.ie\/freedom-of-information\/"]}]},{"@type":"ImageObject","inLanguage":"en-US","@id":"https:\/\/www.muiriosa.ie\/freedom-of-information\/#primaryimage","url":"https:\/\/www.muiriosa.ie\/wp-content\/uploads\/info.jpg","contentUrl":"https:\/\/www.muiriosa.ie\/wp-content\/uploads\/info.jpg","width":1800,"height":1200},{"@type":"BreadcrumbList","@id":"https:\/\/www.muiriosa.ie\/freedom-of-information\/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https:\/\/www.muiriosa.ie\/"},{"@type":"ListItem","position":2,"name":"Freedom of Information"}]},{"@type":"WebSite","@id":"https:\/\/www.muiriosa.ie\/#website","url":"https:\/\/www.muiriosa.ie\/","name":"Muiriosa Foundation","description":"Ireland","publisher":{"@id":"https:\/\/www.muiriosa.ie\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/www.muiriosa.ie\/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en-US"},{"@type":"Organization","@id":"https:\/\/www.muiriosa.ie\/#organization","name":"Muiriosa Foundation","url":"https:\/\/www.muiriosa.ie\/","logo":{"@type":"ImageObject","inLanguage":"en-US","@id":"https:\/\/www.muiriosa.ie\/#\/schema\/logo\/image\/","url":"https:\/\/www.muiriosa.ie\/wp-content\/uploads\/logo-small.png","contentUrl":"https:\/\/www.muiriosa.ie\/wp-content\/uploads\/logo-small.png","width":500,"height":134,"caption":"Muiriosa Foundation"},"image":{"@id":"https:\/\/www.muiriosa.ie\/#\/schema\/logo\/image\/"}}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//cdnjs.cloudflare.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="Muiriosa Foundation &raquo; Feed" href="https://www.muiriosa.ie/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Muiriosa Foundation &raquo; Comments Feed" href="https://www.muiriosa.ie/comments/feed/" />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://www.muiriosa.ie/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.muiriosa.ie%2Ffreedom-of-information%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://www.muiriosa.ie/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.muiriosa.ie%2Ffreedom-of-information%2F&#038;format=xml" />
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.woff" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://www.muiriosa.ie/wp-content/plugins/bb-plugin/fonts/fontawesome/5.15.4/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://www.muiriosa.ie/wp-content/plugins/bb-plugin/fonts/fontawesome/5.15.4/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="wp-block-library-inline-css">
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}:root .has-text-align-center{text-align:center}:root .has-text-align-left{text-align:left}:root .has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{word-wrap:normal!important;border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style*=border-color]){border-style:solid}html :where([style*=border-top-color]){border-top-style:solid}html :where([style*=border-right-color]){border-right-style:solid}html :where([style*=border-bottom-color]){border-bottom-style:solid}html :where([style*=border-left-color]){border-left-style:solid}html :where([style*=border-width]){border-style:solid}html :where([style*=border-top-width]){border-top-style:solid}html :where([style*=border-right-width]){border-right-style:solid}html :where([style*=border-bottom-width]){border-bottom-style:solid}html :where([style*=border-left-width]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=/wp-includes/css/dist/block-library/common.min.css */
+</style>
+<link rel='stylesheet' id='astra-theme-css-css' href='https://www.muiriosa.ie/wp-content/themes/astra/assets/css/minified/frontend.min.css?ver=4.13.6' media='all' />
+<link rel='stylesheet' id='astra-theme-dynamic-css' href='https://www.muiriosa.ie/wp-content/uploads/astra/astra-theme-dynamic-css-post-246.css?ver=1769107565' media='all' />
+<link rel='stylesheet' id='astra-bb-builder-css' href='https://www.muiriosa.ie/wp-content/themes/astra/assets/css/minified/compatibility/page-builder/bb-plugin.min.css?ver=4.13.6' media='all' />
+<link rel='stylesheet' id='astra-google-fonts-css' href='https://www.muiriosa.ie/wp-content/astra-local-fonts/astra-local-fonts.css?ver=4.13.6' media='all' />
+<style id="wp-emoji-styles-inline-css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--ast-global-color-0: var(--ast-global-color-0);--wp--preset--color--ast-global-color-1: var(--ast-global-color-1);--wp--preset--color--ast-global-color-2: var(--ast-global-color-2);--wp--preset--color--ast-global-color-3: var(--ast-global-color-3);--wp--preset--color--ast-global-color-4: var(--ast-global-color-4);--wp--preset--color--ast-global-color-5: var(--ast-global-color-5);--wp--preset--color--ast-global-color-6: var(--ast-global-color-6);--wp--preset--color--ast-global-color-7: var(--ast-global-color-7);--wp--preset--color--ast-global-color-8: var(--ast-global-color-8);--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:root { --wp--style--global--content-size: var(--wp--custom--ast-content-width-size);--wp--style--global--wide-size: var(--wp--custom--ast-wide-width-size); }:where(body) { margin: 0; }.wp-site-blocks > .alignleft { float: left; margin-right: 2em; }.wp-site-blocks > .alignright { float: right; margin-left: 2em; }.wp-site-blocks > .aligncenter { justify-content: center; margin-left: auto; margin-right: auto; }:where(.wp-site-blocks) > * { margin-block-start: 24px; margin-block-end: 0; }:where(.wp-site-blocks) > :first-child { margin-block-start: 0; }:where(.wp-site-blocks) > :last-child { margin-block-end: 0; }:root { --wp--style--block-gap: 24px; }:root :where(.is-layout-flow) > :first-child{margin-block-start: 0;}:root :where(.is-layout-flow) > :last-child{margin-block-end: 0;}:root :where(.is-layout-flow) > *{margin-block-start: 24px;margin-block-end: 0;}:root :where(.is-layout-constrained) > :first-child{margin-block-start: 0;}:root :where(.is-layout-constrained) > :last-child{margin-block-end: 0;}:root :where(.is-layout-constrained) > *{margin-block-start: 24px;margin-block-end: 0;}:root :where(.is-layout-flex){gap: 24px;}:root :where(.is-layout-grid){gap: 24px;}.is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}a:where(:not(.wp-element-button)){text-decoration: none;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-ast-global-color-0-color{color: var(--wp--preset--color--ast-global-color-0) !important;}.has-ast-global-color-1-color{color: var(--wp--preset--color--ast-global-color-1) !important;}.has-ast-global-color-2-color{color: var(--wp--preset--color--ast-global-color-2) !important;}.has-ast-global-color-3-color{color: var(--wp--preset--color--ast-global-color-3) !important;}.has-ast-global-color-4-color{color: var(--wp--preset--color--ast-global-color-4) !important;}.has-ast-global-color-5-color{color: var(--wp--preset--color--ast-global-color-5) !important;}.has-ast-global-color-6-color{color: var(--wp--preset--color--ast-global-color-6) !important;}.has-ast-global-color-7-color{color: var(--wp--preset--color--ast-global-color-7) !important;}.has-ast-global-color-8-color{color: var(--wp--preset--color--ast-global-color-8) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-ast-global-color-0-background-color{background-color: var(--wp--preset--color--ast-global-color-0) !important;}.has-ast-global-color-1-background-color{background-color: var(--wp--preset--color--ast-global-color-1) !important;}.has-ast-global-color-2-background-color{background-color: var(--wp--preset--color--ast-global-color-2) !important;}.has-ast-global-color-3-background-color{background-color: var(--wp--preset--color--ast-global-color-3) !important;}.has-ast-global-color-4-background-color{background-color: var(--wp--preset--color--ast-global-color-4) !important;}.has-ast-global-color-5-background-color{background-color: var(--wp--preset--color--ast-global-color-5) !important;}.has-ast-global-color-6-background-color{background-color: var(--wp--preset--color--ast-global-color-6) !important;}.has-ast-global-color-7-background-color{background-color: var(--wp--preset--color--ast-global-color-7) !important;}.has-ast-global-color-8-background-color{background-color: var(--wp--preset--color--ast-global-color-8) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-ast-global-color-0-border-color{border-color: var(--wp--preset--color--ast-global-color-0) !important;}.has-ast-global-color-1-border-color{border-color: var(--wp--preset--color--ast-global-color-1) !important;}.has-ast-global-color-2-border-color{border-color: var(--wp--preset--color--ast-global-color-2) !important;}.has-ast-global-color-3-border-color{border-color: var(--wp--preset--color--ast-global-color-3) !important;}.has-ast-global-color-4-border-color{border-color: var(--wp--preset--color--ast-global-color-4) !important;}.has-ast-global-color-5-border-color{border-color: var(--wp--preset--color--ast-global-color-5) !important;}.has-ast-global-color-6-border-color{border-color: var(--wp--preset--color--ast-global-color-6) !important;}.has-ast-global-color-7-border-color{border-color: var(--wp--preset--color--ast-global-color-7) !important;}.has-ast-global-color-8-border-color{border-color: var(--wp--preset--color--ast-global-color-8) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link rel='stylesheet' id='dashicons-css' href='https://www.muiriosa.ie/wp-includes/css/dashicons.min.css?ver=7.0.2' media='all' />
+<link rel='stylesheet' id='font-awesome-5-css' href='https://www.muiriosa.ie/wp-content/plugins/bb-plugin/fonts/fontawesome/5.15.4/css/all.min.css?ver=2.10.3.1' media='all' />
+<link rel='stylesheet' id='ultimate-icons-css' href='https://www.muiriosa.ie/wp-content/uploads/bb-plugin/icons/ultimate-icons/style.css?ver=2.10.3.1' media='all' />
+<link rel='stylesheet' id='foundation-icons-css' href='https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css?ver=2.10.3.1' media='all' />
+<link rel='stylesheet' id='fl-builder-layout-246-css' href='https://www.muiriosa.ie/wp-content/uploads/bb-plugin/cache/246-layout.css?ver=2795418837c5872990a97a1bb0d8a51d' media='all' />
+<link rel='stylesheet' id='cmplz-general-css' href='https://www.muiriosa.ie/wp-content/plugins/complianz-gdpr/assets/css/cookieblocker.min.css?ver=1784911565' media='all' />
+<link rel='stylesheet' id='fl-builder-layout-bundle-6b9cdbdd5c98d5b92cc1fcbf2a5116da-css' href='https://www.muiriosa.ie/wp-content/uploads/bb-plugin/cache/6b9cdbdd5c98d5b92cc1fcbf2a5116da-layout-bundle.css?ver=2.10.3.1-1.5.3.2' media='all' />
+<link rel='stylesheet' id='pojo-a11y-css' href='https://www.muiriosa.ie/wp-content/plugins/pojo-accessibility/modules/legacy/assets/css/style.min.css?ver=1.0.0' media='all' />
+<link rel='stylesheet' id='astra-addon-css-css' href='https://www.muiriosa.ie/wp-content/uploads/astra-addon/astra-addon-6a43f2e9717b48-86202667.css?ver=4.13.5' media='all' />
+<link rel='stylesheet' id='astra-addon-dynamic-css' href='https://www.muiriosa.ie/wp-content/uploads/astra-addon/astra-addon-dynamic-css-post-246.css?ver=1769107565' media='all' />
+<link rel='stylesheet' id='martec-theme-css-css' href='https://www.muiriosa.ie/wp-content/themes/martec/style.css?ver=1.0.0' media='all' />
+<link rel='stylesheet' id='pp-animate-css' href='https://www.muiriosa.ie/wp-content/plugins/bbpowerpack/assets/css/animate.min.css?ver=3.5.1' media='all' />
+<link rel='stylesheet' id='cmplz-banner-1-optin-css' href='https://www.muiriosa.ie/wp-content/uploads/complianz/css/banner-1-optin.css?ver=1784911569' media='all' />
+<link rel='stylesheet' id='fl-builder-google-fonts-64a57924a88235c690a08f9b964c26af-css' href='//fonts.googleapis.com/css?family=Lora:700&#038;ver=7.0.2' media='all' />
+<script id="jquery-core-js" src="https://www.muiriosa.ie/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"></script>
+<script id="jquery-migrate-js" src="https://www.muiriosa.ie/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1"></script>
+<link rel="https://api.w.org/" href="https://www.muiriosa.ie/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://www.muiriosa.ie/wp-json/wp/v2/pages/246" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.muiriosa.ie/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 7.0.2" />
+<link rel='shortlink' href='https://www.muiriosa.ie/?p=246' />
+		<script>
+			var bb_powerpack = {
+				version: '2.42.3',
+				getAjaxUrl: function() { return atob( 'aHR0cHM6Ly93d3cubXVpcmlvc2EuaWUvd3AtYWRtaW4vYWRtaW4tYWpheC5waHA=' ); },
+				callback: function() {},
+				mapMarkerData: {},
+				post_id: '246',
+				search_term: '',
+				current_page: 'https://www.muiriosa.ie/freedom-of-information/',
+				conditionals: {
+					is_front_page: false,
+					is_home: false,
+					is_archive: false,
+					current_post_type: '',
+					is_tax: false,
+										is_author: false,
+					current_author: false,
+					is_search: false,
+									}
+			};
+					</script>
+					<style>.cmplz-hidden {
+					display: none !important;
+				}</style>
+				<style type="text/css">
+#pojo-a11y-toolbar .pojo-a11y-toolbar-toggle a{ background-color: #f0b310;	color: #ffffff;}
+#pojo-a11y-toolbar .pojo-a11y-toolbar-overlay, #pojo-a11y-toolbar .pojo-a11y-toolbar-overlay ul.pojo-a11y-toolbar-items.pojo-a11y-links{ border-color: #f0b310;}
+body.pojo-a11y-focusable a:focus{ outline-style: solid !important;	outline-width: 1px !important;	outline-color: #f0b310 !important;}
+#pojo-a11y-toolbar{ top: 100px !important;}
+#pojo-a11y-toolbar .pojo-a11y-toolbar-overlay{ background-color: #ffffff;}
+#pojo-a11y-toolbar .pojo-a11y-toolbar-overlay ul.pojo-a11y-toolbar-items li.pojo-a11y-toolbar-item a, #pojo-a11y-toolbar .pojo-a11y-toolbar-overlay p.pojo-a11y-toolbar-title{ color: #333333;}
+#pojo-a11y-toolbar .pojo-a11y-toolbar-overlay ul.pojo-a11y-toolbar-items li.pojo-a11y-toolbar-item a.active{ background-color: #dd3333;	color: #ffffff;}
+@media (max-width: 767px) { #pojo-a11y-toolbar { top: 50px !important; } }</style><link rel="icon" href="https://www.muiriosa.ie/wp-content/uploads/cropped-favicon-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://www.muiriosa.ie/wp-content/uploads/cropped-favicon-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://www.muiriosa.ie/wp-content/uploads/cropped-favicon-180x180.png" />
+<meta name="msapplication-TileImage" content="https://www.muiriosa.ie/wp-content/uploads/cropped-favicon-270x270.png" />
+<style id="wp-custom-css">
+body:not(.home) footer.site-footer{ padding-top:60px;}
+.dl-item .fl-icon-wrap:hover p,.dl-item .fl-icon-wrap:hover .fi-page-pdf:before{color:#a8398b!important}
+.modal h3{ color:#000; font-weight:bold;}
+@media screen and (max-width:768px){
+	body:not(.home) #content{ margin:20px;}
+	body:not(.home) #content .fl-row{ margin-bottom:20px;}
+	body:not(.home) footer.site-footer{ padding-top:10px;}
+	.dl-item{ border-bottom:1px solid #000;}
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" /></head>
+
+<body data-cmplz=1 itemtype='https://schema.org/WebPage' itemscope='itemscope' class="wp-singular page-template-default page page-id-246 wp-custom-logo wp-embed-responsive wp-theme-astra wp-child-theme-martec fl-builder fl-builder-2-10-3-1 fl-themer-1-5-3-2 fl-no-js fl-theme-builder-header fl-theme-builder-header-header fl-theme-builder-footer fl-theme-builder-footer-footer fl-theme-builder-part fl-theme-builder-part-page-header ally-default ast-desktop ast-page-builder-template ast-no-sidebar astra-4.13.6 group-blog ast-single-post ast-replace-site-logo-transparent ast-inherit-site-logo-transparent ast-hfb-header ast-full-width-layout ast-sticky-main-shrink ast-sticky-header-shrink ast-inherit-site-logo-sticky ast-sticky-custom-logo ast-primary-sticky-enabled astra-addon-4.13.5">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5J7LZD5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->			<script>
+			(function(){if(window.matchMedia('(max-width:768.99px)').matches){document.body.classList.add('ast-header-break-point');document.body.classList.remove('ast-desktop');}})();
+			</script>
+			
+<a
+	class="skip-link screen-reader-text"
+	href="#content">
+		Skip to content</a>
+
+<div
+class="hfeed site" id="page">
+	<header class="fl-builder-content fl-builder-content-19 fl-builder-global-templates-locked" data-post-id="19" data-type="header" data-sticky="0" data-sticky-on="" data-sticky-breakpoint="medium" data-shrink="0" data-overlay="0" data-overlay-bg="transparent" data-shrink-image-height="50px" role="banner" itemscope="itemscope" itemtype="http://schema.org/WPHeader"><div class="fl-row fl-row-full-width fl-row-bg-color fl-node-5a145dfa3e13c fl-row-default-height fl-row-align-center" data-node="5a145dfa3e13c">
+	<div class="fl-row-content-wrap">
+		<div class="uabb-row-separator uabb-top-row-separator" >
+</div>
+						<div class="fl-row-content fl-row-fixed-width fl-node-content">
+		
+<div class="fl-col-group fl-node-5a145dfa3e17a fl-col-group-equal-height fl-col-group-align-center fl-col-group-custom-width" data-node="5a145dfa3e17a">
+			<div class="fl-col fl-node-5a145dfa3e1b3 fl-col-bg-color fl-col-small fl-col-small-custom-width" data-node="5a145dfa3e1b3">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-photo fl-node-603f7cf727617" data-node="603f7cf727617">
+	<div class="fl-module-content fl-node-content">
+		<div role="figure" class="fl-photo fl-photo-align-left" itemscope itemtype="https://schema.org/ImageObject">
+	<div class="fl-photo-content fl-photo-img-png">
+				<a href="https://www.muiriosa.ie/" target="_self" itemprop="url">
+				<img loading="lazy" decoding="async" class="fl-photo-img wp-image-186 size-full" src="https://www.muiriosa.ie/wp-content/uploads/logo-small.png" alt="logo-small" height="134" width="500" title="logo-small"  data-no-lazy="1" itemprop="image" srcset="https://www.muiriosa.ie/wp-content/uploads/logo-small.png 500w, https://www.muiriosa.ie/wp-content/uploads/logo-small-150x40.png 150w" sizes="auto, (max-width: 500px) 100vw, 500px" />
+				</a>
+					</div>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+			<div class="fl-col fl-node-5a145dfa3e1ec fl-col-bg-color fl-col-small fl-col-small-custom-width" data-node="5a145dfa3e1ec">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-button fl-node-603f7fdca61bf" data-node="603f7fdca61bf">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-button-wrap fl-button-width-custom fl-button-right">
+			<a href="https://www.muiriosa.ie/contact-us/"  target="_self"  class="fl-button"  >
+							<span class="fl-button-text">Contact Us</span>
+					</a>
+</div>
+	</div>
+</div>
+</div>
+</div>
+			<div class="fl-col fl-node-603f7f93b5e1f fl-col-bg-color fl-col-small fl-col-small-custom-width" data-node="603f7f93b5e1f">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-button fl-node-603f7f8aa3b51" data-node="603f7f8aa3b51">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-button-wrap fl-button-width-custom fl-button-right">
+			<a href="https://www.muiriosa.ie/news/"  target="_self"  class="fl-button"  >
+							<span class="fl-button-text">News</span>
+					</a>
+</div>
+	</div>
+</div>
+</div>
+</div>
+	</div>
+		</div>
+	</div>
+</div>
+<div class="fl-row fl-row-full-width fl-row-bg-color fl-node-603f7d4923646 fl-row-default-height fl-row-align-center" data-node="603f7d4923646">
+	<div class="fl-row-content-wrap">
+		<div class="uabb-row-separator uabb-top-row-separator" >
+</div>
+						<div class="fl-row-content fl-row-fixed-width fl-node-content">
+		
+<div class="fl-col-group fl-node-603f7d4931c2b" data-node="603f7d4931c2b">
+			<div class="fl-col fl-node-603f7d4931e6e fl-col-bg-color" data-node="603f7d4931e6e">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-pp-advanced-menu fl-node-5d84b989ef5d4" data-node="5d84b989ef5d4">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-advanced-menu pp-advanced-menu-accordion-collapse pp-menu-default pp-menu-align-left pp-menu-position-below">
+   				<div class="pp-advanced-menu-mobile">
+			<button class="pp-advanced-menu-mobile-toggle hamburger-label" tabindex="0" aria-label="Menu" aria-expanded="false">
+				<div class="pp-hamburger"><div class="pp-hamburger-box"><div class="pp-hamburger-inner"></div></div></div><span class="pp-advanced-menu-mobile-toggle-label">Menu</span>			</button>
+			</div>
+			   	<div class="pp-clear"></div>
+	<nav class="pp-menu-nav" aria-label="Menu" itemscope="itemscope" itemtype="https://schema.org/SiteNavigationElement">
+		<ul id="menu-main" class="menu pp-advanced-menu-horizontal pp-toggle-arrows"><li id="menu-item-262" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home"><a href="https://www.muiriosa.ie/" class="menu-link"><span class="menu-item-text">Home</span></a></li><li id="menu-item-263" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children pp-has-submenu"><div class="pp-has-submenu-container"><a aria-expanded="false" href="https://www.muiriosa.ie/about-us/" class="menu-link"><span class="menu-item-text">About Us</span></a><button type="button" class="pp-menu-toggle" aria-label="Toggle submenu for About Us" aria-haspopup="true" aria-expanded="false" aria-controls="sub-menu-263"></button></div><ul id="sub-menu-263" class="sub-menu">	<li id="menu-item-683" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/our-executive-team/" class="menu-link"><span class="menu-item-text">Meet Our Team</span></a></li>	<li id="menu-item-268" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/vision-and-mission/" class="menu-link"><span class="menu-item-text">Vision and Mission</span></a></li>	<li id="menu-item-1241" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/governance-and-transparency/" class="menu-link"><span class="menu-item-text">Governance and Transparency</span></a></li>	<li id="menu-item-269" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/data-protection/" class="menu-link"><span class="menu-item-text">Data Protection</span></a></li>	<li id="menu-item-264" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/publications/" class="menu-link"><span class="menu-item-text">Publications</span></a></li>	<li id="menu-item-270" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-246 current_page_item"><a href="https://www.muiriosa.ie/freedom-of-information/" aria-current="page" class="menu-link"><span class="menu-item-text">Freedom of Information</span></a></li></ul></li><li id="menu-item-738" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children pp-has-submenu"><div class="pp-has-submenu-container"><a aria-expanded="false" href="#" class="menu-link"><span class="menu-item-text">Careers</span></a><button type="button" class="pp-menu-toggle" aria-label="Toggle submenu for Careers" aria-haspopup="true" aria-expanded="false" aria-controls="sub-menu-738"></button></div><ul id="sub-menu-738" class="sub-menu">	<li id="menu-item-692" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/recruitment/" class="menu-link"><span class="menu-item-text">Recruitment</span></a></li>	<li id="menu-item-265" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/employment/" class="menu-link"><span class="menu-item-text">Current Vacancies</span></a></li>	<li id="menu-item-942" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/ce-scheme/" class="menu-link"><span class="menu-item-text">CE Scheme</span></a></li></ul></li><li id="menu-item-266" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/muiriosa-staff/" class="menu-link"><span class="menu-item-text">Muiriosa Staff</span></a></li><li id="menu-item-576" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children pp-has-submenu"><div class="pp-has-submenu-container"><a aria-expanded="false" href="https://www.muiriosa.ie/services/" class="menu-link"><span class="menu-item-text">Services</span></a><button type="button" class="pp-menu-toggle" aria-label="Toggle submenu for Services" aria-haspopup="true" aria-expanded="false" aria-controls="sub-menu-576"></button></div><ul id="sub-menu-576" class="sub-menu">	<li id="menu-item-581" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/services/residential/" class="menu-link"><span class="menu-item-text">Residential</span></a></li>	<li id="menu-item-580" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/services/day-services/" class="menu-link"><span class="menu-item-text">Day Services</span></a></li>	<li id="menu-item-732" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/services/person-centred-wing/" class="menu-link"><span class="menu-item-text">Person Centred Wing</span></a></li>	<li id="menu-item-577" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/services/respite/" class="menu-link"><span class="menu-item-text">Respite</span></a></li>	<li id="menu-item-578" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/services/pre-schools/" class="menu-link"><span class="menu-item-text">Pre Schools</span></a></li>	<li id="menu-item-716" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/services/home-sharing/" class="menu-link"><span class="menu-item-text">Home Sharing</span></a></li>	<li id="menu-item-1390" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/services/social-work/" class="menu-link"><span class="menu-item-text">Social Work</span></a></li>	<li id="menu-item-1078" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/services/clinical-services/" class="menu-link"><span class="menu-item-text">Clinical Services</span></a></li>	<li id="menu-item-909" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/services/centre-for-education/" class="menu-link"><span class="menu-item-text">Learning and Development</span></a></li>	<li id="menu-item-579" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/services/professional-services/" class="menu-link"><span class="menu-item-text">Support Departments</span></a></li></ul></li><li id="menu-item-1110" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/testimonials/" class="menu-link"><span class="menu-item-text">Testimonials</span></a></li><li id="menu-item-1259" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/strategic-plan/" class="menu-link"><span class="menu-item-text">Strategic Plan</span></a></li><li id="menu-item-1321" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children pp-has-submenu"><div class="pp-has-submenu-container"><a aria-expanded="false" href="#" class="menu-link"><span class="menu-item-text">Staff Links</span></a><button type="button" class="pp-menu-toggle" aria-label="Toggle submenu for Staff Links" aria-haspopup="true" aria-expanded="false" aria-controls="sub-menu-1321"></button></div><ul id="sub-menu-1321" class="sub-menu">	<li id="menu-item-1322" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://www.muiriosa.ie/ict/" class="menu-link"><span class="menu-item-text">ICT Department</span></a></li></ul></li></ul>	</nav>
+</div>
+	</div>
+</div>
+</div>
+</div>
+	</div>
+		</div>
+	</div>
+</div>
+</header><div class="uabb-js-breakpoint" style="display: none;"></div><div class="fl-builder-content fl-builder-content-282 fl-builder-global-templates-locked" data-post-id="282" data-type="part"><div class="fl-row fl-row-fixed-width fl-row-bg-photo fl-node-6040dbaef0b4c fl-row-default-height fl-row-align-center" data-node="6040dbaef0b4c">
+	<div class="fl-row-content-wrap">
+		<div class="uabb-row-separator uabb-top-row-separator" >
+</div>
+						<div class="fl-row-content fl-row-fixed-width fl-node-content">
+		
+<div class="fl-col-group fl-node-6040dc5c0122f" data-node="6040dc5c0122f">
+			<div class="fl-col fl-node-6040dc5c0145a fl-col-bg-color fl-col-small" data-node="6040dc5c0145a">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-heading fl-node-6040dc868f9a3" data-node="6040dc868f9a3">
+	<div class="fl-module-content fl-node-content">
+		<h1 class="fl-heading">
+		<span class="fl-heading-text">Freedom of Information</span>
+	</h1>
+	</div>
+</div>
+<div class="fl-module fl-module-pp-breadcrumbs fl-node-6040dcc26b65f" data-node="6040dcc26b65f">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-breadcrumbs pp-breadcrumbs-yoast">
+	<nav id="breadcrumbs" class="breadcrumbs" aria-label="Breadcrumbs"><span><span><a href="https://www.muiriosa.ie/">Home</a></span> &raquo; <span class="breadcrumb_last" aria-current="page">Freedom of Information</span></span></nav></div>	</div>
+</div>
+</div>
+</div>
+			<div class="fl-col fl-node-6040dc5c01465 fl-col-bg-color" data-node="6040dc5c01465">
+	<div class="fl-col-content fl-node-content"></div>
+</div>
+	</div>
+		</div>
+	</div>
+</div>
+</div><div class="uabb-js-breakpoint" style="display: none;"></div>	<div id="content" class="site-content">
+		<div class="ast-container">
+		
+
+	<div id="primary" class="content-area primary">
+
+		
+					<main id="main" class="site-main">
+				<article
+class="post-246 page type-page status-publish has-post-thumbnail ast-article-single" id="post-246" itemtype="https://schema.org/CreativeWork" itemscope="itemscope">
+	
+				<header class="entry-header ast-no-title ast-header-without-markup">
+							</header> <!-- .entry-header -->
+		
+<div class="entry-content clear"
+	itemprop="text">
+
+	
+	<div class="fl-builder-content fl-builder-content-246 fl-builder-content-primary fl-builder-global-templates-locked" data-post-id="246"><div class="fl-row fl-row-fixed-width fl-row-bg-none fl-node-6040f07351db2 fl-row-default-height fl-row-align-center" data-node="6040f07351db2">
+	<div class="fl-row-content-wrap">
+		<div class="uabb-row-separator uabb-top-row-separator" >
+</div>
+						<div class="fl-row-content fl-row-fixed-width fl-node-content">
+		
+<div class="fl-col-group fl-node-6040f07351d64" data-node="6040f07351d64">
+			<div class="fl-col fl-node-6040f07351d72 fl-col-bg-color fl-col-small" data-node="6040f07351d72">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-heading fl-node-6040f07351d79" data-node="6040f07351d79">
+	<div class="fl-module-content fl-node-content">
+		<h3 class="fl-heading">
+		<a
+		href="https://www.muiriosa.ie/about-us/"
+		title="about us"
+		target="_self"
+			>
+		<span class="fl-heading-text">about us</span>
+		</a>
+	</h3>
+	</div>
+</div>
+<div class="fl-module fl-module-menu fl-node-6040f07351d7c" data-node="6040f07351d7c">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-menu">
+		<div class="fl-clear"></div>
+	<nav aria-label="Navigation Menu" itemscope="itemscope" itemtype="https://schema.org/SiteNavigationElement"><ul id="menu-about" class="menu fl-menu-vertical fl-toggle-none"><li id="menu-item-1081" class="menu-item menu-item-type-post_type menu-item-object-page"><a  href="https://www.muiriosa.ie/services/centre-for-education/meet-our-team/">Meet our Team</a></li><li id="menu-item-354" class="menu-item menu-item-type-post_type menu-item-object-page"><a  href="https://www.muiriosa.ie/vision-and-mission/">Vision and Mission</a></li><li id="menu-item-1238" class="menu-item menu-item-type-post_type menu-item-object-page"><a  href="https://www.muiriosa.ie/governance-and-transparency/">Governance and Transparency</a></li><li id="menu-item-355" class="menu-item menu-item-type-post_type menu-item-object-page"><a  href="https://www.muiriosa.ie/data-protection/">Data Protection</a></li><li id="menu-item-356" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-246 current_page_item"><a  href="https://www.muiriosa.ie/freedom-of-information/" aria-current="page">Freedom of Information</a></li><li id="menu-item-1080" class="menu-item menu-item-type-post_type menu-item-object-page"><a  href="https://www.muiriosa.ie/publications/">Publications</a></li></ul></nav></div>
+	</div>
+</div>
+</div>
+</div>
+			<div class="fl-col fl-node-6040f07351d76 fl-col-bg-color" data-node="6040f07351d76">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-rich-text fl-node-6040f07351d82" data-node="6040f07351d82">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-rich-text">
+	<p>Muiriosa Foundation is scheduled under the Freedom of Information (FOI) Act 2014 as a public body/body receiving significant public funds and our records are subject to the legislation. Its primary purpose is to promote transparency and accountability and it encompasses records of living and deceased individuals. </p>
+</div>
+	</div>
+</div>
+<div class="fl-module fl-module-rich-text fl-node-6040f07351d89" data-node="6040f07351d89">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-rich-text">
+	<p><strong>The Act provides that every person has the following legal rights:</strong></p>
+<ul>
+<li>The right to access official records held by all bodies who are subject to the Act</li>
+<li>The right to have personal information held on them corrected or updated where such information is incomplete, incorrect or misleading</li>
+<li>The right to be given reasons for decisions taken by public bodies that affect them.<br />
+These rights mean that people can seek access to personal information held on them.</li>
+</ul>
+<p><strong>Records which come within the scope of the Act include:</strong></p>
+<ul>
+<li>Records relating to personal information irrespective of when they were created</li>
+<li>All other records created from the commencement of the FOI Act (21 April 1998)</li>
+<li>Any records necessary to the understanding of a current record even if created prior to 21 April 1998.</li>
+</ul>
+<p>It is not always necessary to use the Freedom of Information Act to request information.<br />
+A large amount of information is already available to the public. Section 8 of the Act requires that we prepare and publish information in an open and accessible manner on a routine basis outside of FOI, provided that it is not prohibited by law. This is known as the Model Publication Scheme, and there is a link to the Scheme below.<br />
+You may also seek information through a normal Administrative Access request or call to the Service.</p>
+</div>
+	</div>
+</div>
+</div>
+</div>
+	</div>
+
+<div class="fl-col-group fl-node-6040f07351d6f" data-node="6040f07351d6f">
+			<div class="fl-col fl-node-6040f07351dac fl-col-bg-color" data-node="6040f07351dac">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-pp-spacer fl-node-6040f07351daf" data-node="6040f07351daf">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-spacer-module"></div>
+	</div>
+</div>
+</div>
+</div>
+	</div>
+
+<div class="fl-col-group fl-node-6040f07351d6c" data-node="6040f07351d6c">
+			<div class="fl-col fl-node-6040f07351d8c fl-col-bg-color fl-col-small" data-node="6040f07351d8c">
+	<div class="fl-col-content fl-node-content"></div>
+</div>
+			<div class="fl-col fl-node-6040f07351da2 fl-col-bg-color" data-node="6040f07351da2">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-icon fl-node-6040f16282839" data-node="6040f16282839">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-icon-wrap">
+	<span class="fl-icon">
+				<i class="dashicons dashicons-before dashicons-admin-users" aria-hidden="true"></i>
+					</span>
+			<div id="fl-icon-text-6040f16282839" class="fl-icon-text fl-icon-text-wrap">
+						<p><strong>Contact:</strong> Deborah Gleeson, Information Officer (FOI Officer)</p>					</div>
+	</div>
+	</div>
+</div>
+<div class="fl-module fl-module-icon fl-node-6040f1c77efa0" data-node="6040f1c77efa0">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-icon-wrap">
+	<span class="fl-icon">
+				<i class="ua-icon ua-icon-icon-6-mail-envelope-closed2" aria-hidden="true"></i>
+					</span>
+			<div id="fl-icon-text-6040f1c77efa0" class="fl-icon-text fl-icon-text-wrap">
+						<p><strong>Email:</strong> Deborah.Gleeson@muiriosa.ie   </p>
+					</div>
+	</div>
+	</div>
+</div>
+<div class="fl-module fl-module-icon fl-node-6040f1f083f49" data-node="6040f1f083f49">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-icon-wrap">
+	<span class="fl-icon">
+				<i class="fi-telephone" aria-hidden="true"></i>
+					</span>
+			<div id="fl-icon-text-6040f1f083f49" class="fl-icon-text fl-icon-text-wrap">
+						<p><strong>Telephone:</strong> 045 – 532222  or  087 – 9126622</p>
+					</div>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+	</div>
+
+<div class="fl-col-group fl-node-60422b6146d35" data-node="60422b6146d35">
+			<div class="fl-col fl-node-60422b6146fd6 fl-col-bg-color" data-node="60422b6146fd6">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-pp-spacer fl-node-60422b4b3011d" data-node="60422b4b3011d">
+	<div class="fl-module-content fl-node-content">
+		<div class="pp-spacer-module"></div>
+	</div>
+</div>
+</div>
+</div>
+	</div>
+
+<div class="fl-col-group fl-node-60422bb9dbe0f fl-col-group-equal-height fl-col-group-align-top" data-node="60422bb9dbe0f">
+			<div class="fl-col fl-node-60422bb9dc0db fl-col-bg-color fl-col-small" data-node="60422bb9dc0db">
+	<div class="fl-col-content fl-node-content"></div>
+</div>
+			<div class="fl-col fl-node-604231c240d34 fl-col-bg-color fl-col-small" data-node="604231c240d34">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-photo fl-node-604231c240d27" data-node="604231c240d27">
+	<div class="fl-module-content fl-node-content">
+		<div role="figure" class="fl-photo fl-photo-align-center" itemscope itemtype="https://schema.org/ImageObject">
+	<div class="fl-photo-content fl-photo-img-jpg">
+				<img fetchpriority="high" decoding="async" class="fl-photo-img wp-image-368 size-full" src="https://www.muiriosa.ie/wp-content/uploads/f1.jpg" alt="f1" height="533" width="800" title="f1"  itemprop="image" srcset="https://www.muiriosa.ie/wp-content/uploads/f1.jpg 800w, https://www.muiriosa.ie/wp-content/uploads/f1-768x512.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" />
+					</div>
+	</div>
+	</div>
+</div>
+<div class="fl-module fl-module-button fl-node-604231c240d30" data-node="604231c240d30">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-button-wrap fl-button-width-auto fl-button-center">
+			<a href="https://www.muiriosa.ie/making-an-foi-request/"  target="_self"  class="fl-button"  >
+							<span class="fl-button-text">making an FOI request</span>
+					</a>
+</div>
+	</div>
+</div>
+</div>
+</div>
+			<div class="fl-col fl-node-604231de345d0 fl-col-bg-color fl-col-small" data-node="604231de345d0">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-photo fl-node-604231de3473a" data-node="604231de3473a">
+	<div class="fl-module-content fl-node-content">
+		<div role="figure" class="fl-photo fl-photo-align-center" itemscope itemtype="https://schema.org/ImageObject">
+	<div class="fl-photo-content fl-photo-img-jpg">
+				<img loading="lazy" decoding="async" class="fl-photo-img wp-image-369 size-full" src="https://www.muiriosa.ie/wp-content/uploads/f2.jpg" alt="f2" height="533" width="800" title="f2"  itemprop="image" srcset="https://www.muiriosa.ie/wp-content/uploads/f2.jpg 800w, https://www.muiriosa.ie/wp-content/uploads/f2-768x512.jpg 768w" sizes="auto, (max-width: 800px) 100vw, 800px" />
+					</div>
+	</div>
+	</div>
+</div>
+<div class="fl-module fl-module-button fl-node-604231de34740" data-node="604231de34740">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-button-wrap fl-button-width-auto fl-button-center">
+			<a href="https://www.muiriosa.ie/model-publication-scheme/"  target="_self"  class="fl-button"  >
+							<span class="fl-button-text">model publication scheme</span>
+					</a>
+</div>
+	</div>
+</div>
+</div>
+</div>
+			<div class="fl-col fl-node-604232cf6c91e fl-col-bg-color fl-col-small" data-node="604232cf6c91e">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-photo fl-node-604232cf6cb10" data-node="604232cf6cb10">
+	<div class="fl-module-content fl-node-content">
+		<div role="figure" class="fl-photo fl-photo-align-center" itemscope itemtype="https://schema.org/ImageObject">
+	<div class="fl-photo-content fl-photo-img-jpg">
+				<img loading="lazy" decoding="async" class="fl-photo-img wp-image-367 size-full" src="https://www.muiriosa.ie/wp-content/uploads/f3.jpg" alt="f3" height="533" width="800" title="f3"  itemprop="image" srcset="https://www.muiriosa.ie/wp-content/uploads/f3.jpg 800w, https://www.muiriosa.ie/wp-content/uploads/f3-768x512.jpg 768w" sizes="auto, (max-width: 800px) 100vw, 800px" />
+					</div>
+	</div>
+	</div>
+</div>
+<div class="fl-module fl-module-button fl-node-604232cf6cb1a" data-node="604232cf6cb1a">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-button-wrap fl-button-width-auto fl-button-center">
+			<a href="https://www.muiriosa.ie/useful-links/"  target="_self"  class="fl-button"  >
+							<span class="fl-button-text">useful links</span>
+					</a>
+</div>
+	</div>
+</div>
+</div>
+</div>
+	</div>
+		</div>
+	</div>
+</div>
+</div><div class="uabb-js-breakpoint" style="display: none;"></div>
+	
+	
+</div><!-- .entry-content .clear -->
+
+	
+	
+</article><!-- #post-## -->
+
+			</main><!-- #main -->
+			
+		
+	</div><!-- #primary -->
+
+
+	</div> <!-- ast-container -->
+	</div><!-- #content -->
+<footer class="fl-builder-content fl-builder-content-35 fl-builder-global-templates-locked" data-post-id="35" data-type="footer" itemscope="itemscope" itemtype="http://schema.org/WPFooter"><div class="fl-row fl-row-full-width fl-row-bg-color fl-node-603f905c31c28 fl-row-default-height fl-row-align-center" data-node="603f905c31c28">
+	<div class="fl-row-content-wrap">
+		<div class="uabb-row-separator uabb-top-row-separator" >
+</div>
+						<div class="fl-row-content fl-row-fixed-width fl-node-content">
+		
+<div class="fl-col-group fl-node-603f905c38b23" data-node="603f905c38b23">
+			<div class="fl-col fl-node-603f905c38da1 fl-col-bg-color" data-node="603f905c38da1">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-heading fl-node-603f907e45adb" data-node="603f907e45adb">
+	<div class="fl-module-content fl-node-content">
+		<h2 class="fl-heading">
+		<span class="fl-heading-text">work with us...</span>
+	</h2>
+	</div>
+</div>
+<div class="fl-module fl-module-rich-text fl-node-603f90b6ab5f1" data-node="603f90b6ab5f1">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-rich-text">
+	<p>Valuing life, helping people build meaningful lifestyles.<br />
+In provision of services we employ staff across a range of professional disciplines. Please <a href="https://www.muiriosa.ie/employment/">click here </a> for details of current vacancies.</p>
+</div>
+	</div>
+</div>
+</div>
+</div>
+	</div>
+		</div>
+	</div>
+</div>
+<div class="fl-row fl-row-full-width fl-row-bg-none fl-node-603f91bc36d37 fl-row-default-height fl-row-align-center" data-node="603f91bc36d37">
+	<div class="fl-row-content-wrap">
+		<div class="uabb-row-separator uabb-top-row-separator" >
+</div>
+						<div class="fl-row-content fl-row-full-width fl-node-content">
+		
+<div class="fl-col-group fl-node-603f91bc45d92 fl-col-group-equal-height fl-col-group-align-center" data-node="603f91bc45d92">
+			<div class="fl-col fl-node-603f91bc45ffc fl-col-bg-color fl-col-small" data-node="603f91bc45ffc">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-icon fl-node-603f91f306bd9" data-node="603f91f306bd9">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-icon-wrap">
+	<span class="fl-icon">
+								<a href="https://www.facebook.com/MuiriosaF" target="_blank"  tabindex="-1" aria-hidden="true" aria-labelledby="fl-icon-text-603f91f306bd9" rel="noopener" >
+							<i class="ua-icon ua-icon-facebook22" aria-hidden="true"></i>
+						</a>
+			</span>
+			<div id="fl-icon-text-603f91f306bd9" class="fl-icon-text">
+						<a href="https://www.facebook.com/MuiriosaF" target="_blank"  class="fl-icon-text-link fl-icon-text-wrap" rel="noopener" >
+						<p>Follow Us On Facebook</p>						</a>
+					</div>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+			<div class="fl-col fl-node-603f927e6a92a fl-col-bg-color fl-col-small" data-node="603f927e6a92a">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-icon fl-node-603f927e6aa28" data-node="603f927e6aa28">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-icon-wrap">
+	<span class="fl-icon">
+								<a href="https://www.instagram.com/muiriosafoundation/" target="_blank"  tabindex="-1" aria-hidden="true" aria-labelledby="fl-icon-text-603f927e6aa28" rel="noopener" >
+							<i class="ua-icon ua-icon-instagram" aria-hidden="true"></i>
+						</a>
+			</span>
+			<div id="fl-icon-text-603f927e6aa28" class="fl-icon-text">
+						<a href="https://www.instagram.com/muiriosafoundation/" target="_blank"  class="fl-icon-text-link fl-icon-text-wrap" rel="noopener" >
+						<p>Follow Us On Instagram</p>						</a>
+					</div>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+			<div class="fl-col fl-node-603f9305b0e46 fl-col-bg-color fl-col-small" data-node="603f9305b0e46">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-icon fl-node-603f9305b0f72" data-node="603f9305b0f72">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-icon-wrap">
+	<span class="fl-icon">
+								<a href="https://www.linkedin.com/company/muiriosa-foundation-ltd/" target="_blank"  tabindex="-1" aria-hidden="true" aria-labelledby="fl-icon-text-603f9305b0f72" rel="noopener" >
+							<i class="ua-icon ua-icon-linkedin2" aria-hidden="true"></i>
+						</a>
+			</span>
+			<div id="fl-icon-text-603f9305b0f72" class="fl-icon-text">
+						<a href="https://www.linkedin.com/company/muiriosa-foundation-ltd/" target="_blank"  class="fl-icon-text-link fl-icon-text-wrap" rel="noopener" >
+						<p>Follow Us On LinkedIn</p>						</a>
+					</div>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+	</div>
+		</div>
+	</div>
+</div>
+<div class="fl-row fl-row-full-width fl-row-bg-color fl-node-5faecba4788c9 fl-row-default-height fl-row-align-center" data-node="5faecba4788c9">
+	<div class="fl-row-content-wrap">
+		<div class="uabb-row-separator uabb-top-row-separator" >
+</div>
+						<div class="fl-row-content fl-row-fixed-width fl-node-content">
+		
+<div class="fl-col-group fl-node-5faecba4788bc fl-col-group-equal-height fl-col-group-align-center fl-col-group-align-top" data-node="5faecba4788bc">
+			<div class="fl-col fl-node-5faecba4788c2 fl-col-bg-color fl-col-small" data-node="5faecba4788c2">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-menu fl-node-5faecba4788c8" data-node="5faecba4788c8">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-menu">
+		<div class="fl-clear"></div>
+	<nav aria-label="Navigation Menu" itemscope="itemscope" itemtype="https://schema.org/SiteNavigationElement"><ul id="menu-footer-menu" class="menu fl-menu-vertical fl-toggle-none"><li id="menu-item-147" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy"><a  href="https://www.muiriosa.ie/privacy-policy/">Privacy Policy</a></li><li id="menu-item-172" class="menu-item menu-item-type-post_type menu-item-object-page"><a  href="https://www.muiriosa.ie/cookie-policy-eu/">Cookie Policy</a></li><li id="menu-item-250" class="menu-item menu-item-type-post_type menu-item-object-page"><a  href="https://www.muiriosa.ie/terms-conditions/">Terms &#038; Conditions</a></li><li id="menu-item-251" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-246 current_page_item"><a  href="https://www.muiriosa.ie/freedom-of-information/" aria-current="page">Freedom of Information</a></li><li id="menu-item-252" class="menu-item menu-item-type-post_type menu-item-object-page"><a  href="https://www.muiriosa.ie/data-protection/">Data Protection</a></li><li id="menu-item-261" class="menu-item menu-item-type-post_type menu-item-object-page"><a  href="https://www.muiriosa.ie/complaints/">Complaints</a></li></ul></nav></div>
+	</div>
+</div>
+<div class="fl-module fl-module-rich-text fl-node-5faecba4788c6" data-node="5faecba4788c6">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-rich-text">
+	<p>© 2026 Muiriosa Foundation - Ireland</p>
+</div>
+	</div>
+</div>
+</div>
+</div>
+			<div class="fl-col fl-node-603913fa83b0a fl-col-bg-color fl-col-small" data-node="603913fa83b0a">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-rich-text fl-node-6000794e297ec" data-node="6000794e297ec">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-rich-text">
+	<p>Muiriosa Foundation is a<br />
+Company Limited by Guarantee<br />
+Registered in Dublin, Ireland</p>
+<p>Company Registration No: 353975</p>
+<p>Registered Charity Number (RCN): 20046453</p>
+<p>Registered Office Address:<br />
+Moore Abbey, Monasterevin,<br />
+Co Kildare W34 E433.</p>
+</div>
+	</div>
+</div>
+</div>
+</div>
+			<div class="fl-col fl-node-5faecba4788c4 fl-col-bg-color fl-col-small" data-node="5faecba4788c4">
+	<div class="fl-col-content fl-node-content"><div class="fl-module fl-module-rich-text fl-node-93wzxaricenq" data-node="93wzxaricenq">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-rich-text">
+	<p>Central Administration Office<br />
+Axis Business Park, Tullamore,<br />
+Co. Offaly, R35 WK83</p>
+<p><span class="footerhighlight"><strong>E-mail:</strong> </span><a href="mailto:enquiries@muiriosa.ie">enquiries@muiriosa.ie</a></p>
+<p><strong>Recruitment Enquiries:<br />
+</strong> <a role="link" href="mailto:recruitment@muiriosa.ie">recruitment@muiriosa.ie</a></p>
+</div>
+	</div>
+</div>
+<div class="fl-module fl-module-rich-text fl-node-5faecba4788c7" data-node="5faecba4788c7">
+	<div class="fl-module-content fl-node-content">
+		<div class="fl-rich-text">
+	<p><a title="Website Design Galway" href="http://www.martec.ie/service/web-design/" target="_blank" rel="noopener">Website Design Ireland</a> by <a href="http://www.martec.ie" target="_blank" rel="noopener">Martec</a></p>
+</div>
+	</div>
+</div>
+</div>
+</div>
+	</div>
+		</div>
+	</div>
+</div>
+</footer><div class="uabb-js-breakpoint" style="display: none;"></div>	</div><!-- #page -->
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/martec/*","/wp-content/themes/astra/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+
+<!-- Consent Management powered by Complianz | GDPR/CCPA Cookie Consent https://wordpress.org/plugins/complianz-gdpr -->
+<div id="cmplz-cookiebanner-container"><div id="cmplz-cookiebanner-1-optin" class="cmplz-cookiebanner cmplz-hidden banner-1 bottom-right-minimal optin cmplz-bottom-right cmplz-categories-type-view-preferences" aria-modal="true" data-nosnippet="true" role="dialog" aria-live="polite" aria-labelledby="cmplz-header-1-optin" aria-describedby="cmplz-message-1-optin">
+	<div class="cmplz-header">
+		<div class="cmplz-logo"></div>
+		<div class="cmplz-title" id="cmplz-header-1-optin">Manage Cookie Consent</div>
+		<div class="cmplz-close" tabindex="0" role="button" aria-label="Close dialog">
+			<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
+		</div>
+	</div>
+
+	<div class="cmplz-divider cmplz-divider-header"></div>
+	<div class="cmplz-body">
+		<div class="cmplz-message" id="cmplz-message-1-optin">We use cookies to optimize our website and our service.</div>
+		<!-- categories start -->
+		<div class="cmplz-categories">
+			<div class="cmplz-category cmplz-functional">
+				<div class="cmplz-category-header">
+					<span class="cmplz-category-title" id="cmplz-title-functional-1-optin">Functional</span>
+					<span class='cmplz-always-active'>
+						<span class="cmplz-banner-checkbox">
+							<input type="checkbox"
+									id="cmplz-functional-optin"
+									data-category="cmplz_functional"
+									class="cmplz-consent-checkbox cmplz-functional"
+									size="40"
+									value="1"/>
+							<label class="cmplz-label" for="cmplz-functional-optin"><span class="screen-reader-text">Functional</span></label>
+						</span>
+						Always active					</span>
+					<button class="cmplz-category-toggle"
+							aria-expanded="false"
+							aria-controls="cmplz-desc-functional-1-optin"
+							aria-labelledby="cmplz-title-functional-1-optin">
+						<span class="cmplz-icon cmplz-open">
+							<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="18"><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+						</span>
+					</button>
+				</div>
+				<div class="cmplz-description" id="cmplz-desc-functional-1-optin" hidden>
+					<span class="cmplz-description-functional">The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.</span>
+				</div>
+			</div>
+
+			<div class="cmplz-category cmplz-preferences">
+				<div class="cmplz-category-header">
+					<span class="cmplz-category-title" id="cmplz-title-preferences-1-optin">Preferences</span>
+					<span class="cmplz-banner-checkbox">
+						<input type="checkbox"
+								id="cmplz-preferences-optin"
+								data-category="cmplz_preferences"
+								class="cmplz-consent-checkbox cmplz-preferences"
+								size="40"
+								value="1"/>
+						<label class="cmplz-label" for="cmplz-preferences-optin"><span class="screen-reader-text">Preferences</span></label>
+					</span>
+					<button class="cmplz-category-toggle"
+							aria-expanded="false"
+							aria-controls="cmplz-desc-preferences-1-optin"
+							aria-labelledby="cmplz-title-preferences-1-optin">
+						<span class="cmplz-icon cmplz-open">
+							<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="18"><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+						</span>
+					</button>
+				</div>
+				<div class="cmplz-description" id="cmplz-desc-preferences-1-optin" hidden>
+					<span class="cmplz-description-preferences">The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.</span>
+				</div>
+			</div>
+
+			<div class="cmplz-category cmplz-statistics">
+				<div class="cmplz-category-header">
+					<span class="cmplz-category-title" id="cmplz-title-statistics-1-optin">Statistics</span>
+					<span class="cmplz-banner-checkbox">
+						<input type="checkbox"
+								id="cmplz-statistics-optin"
+								data-category="cmplz_statistics"
+								class="cmplz-consent-checkbox cmplz-statistics"
+								size="40"
+								value="1"/>
+						<label class="cmplz-label" for="cmplz-statistics-optin"><span class="screen-reader-text">Statistics</span></label>
+					</span>
+					<button class="cmplz-category-toggle"
+							aria-expanded="false"
+							aria-controls="cmplz-desc-statistics-1-optin"
+							aria-labelledby="cmplz-title-statistics-1-optin">
+						<span class="cmplz-icon cmplz-open">
+							<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="18"><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+						</span>
+					</button>
+				</div>
+				<div class="cmplz-description" id="cmplz-desc-statistics-1-optin" hidden>
+					<span class="cmplz-description-statistics">The technical storage or access that is used exclusively for statistical purposes.</span>
+					<span class="cmplz-description-statistics-anonymous">The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.</span>
+				</div>
+			</div>
+
+			<div class="cmplz-category cmplz-marketing">
+				<div class="cmplz-category-header">
+					<span class="cmplz-category-title" id="cmplz-title-marketing-1-optin">Marketing</span>
+					<span class="cmplz-banner-checkbox">
+						<input type="checkbox"
+								id="cmplz-marketing-optin"
+								data-category="cmplz_marketing"
+								class="cmplz-consent-checkbox cmplz-marketing"
+								size="40"
+								value="1"/>
+						<label class="cmplz-label" for="cmplz-marketing-optin"><span class="screen-reader-text">Marketing</span></label>
+					</span>
+					<button class="cmplz-category-toggle"
+							aria-expanded="false"
+							aria-controls="cmplz-desc-marketing-1-optin"
+							aria-labelledby="cmplz-title-marketing-1-optin">
+						<span class="cmplz-icon cmplz-open">
+							<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="18"><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+						</span>
+					</button>
+				</div>
+				<div class="cmplz-description" id="cmplz-desc-marketing-1-optin" hidden>
+					<span class="cmplz-description-marketing">The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.</span>
+				</div>
+			</div>
+		</div><!-- categories end -->
+			</div>
+
+	<div class="cmplz-links cmplz-information">
+		<ul>
+			<li><a class="cmplz-link cmplz-manage-options cookie-statement" href="#" data-relative_url="#cmplz-manage-consent-container">Manage options</a></li>
+			<li><a class="cmplz-link cmplz-manage-third-parties cookie-statement" href="#" data-relative_url="#cmplz-cookies-overview">Manage services</a></li>
+			<li><a class="cmplz-link cmplz-manage-vendors tcf cookie-statement" href="#" data-relative_url="#cmplz-tcf-wrapper">Manage {vendor_count} vendors</a></li>
+			<li><a class="cmplz-link cmplz-external cmplz-read-more-purposes tcf" target="_blank" rel="noopener noreferrer nofollow" href="https://cookiedatabase.org/tcf/purposes/" aria-label="Read more about TCF purposes on Cookie Database">Read more about these purposes</a></li>
+		</ul>
+			</div>
+
+	<div class="cmplz-divider cmplz-footer"></div>
+
+	<div class="cmplz-buttons">
+		<button class="cmplz-btn cmplz-accept">Accept cookies</button>
+		<button class="cmplz-btn cmplz-deny">Deny</button>
+		<button class="cmplz-btn cmplz-view-preferences">View preferences</button>
+		<button class="cmplz-btn cmplz-save-preferences">Save preferences</button>
+		<a class="cmplz-btn cmplz-manage-options tcf cookie-statement" href="#" data-relative_url="#cmplz-manage-consent-container">View preferences</a>
+			</div>
+
+
+	<div class="cmplz-documents cmplz-links">
+		<ul>
+			<li><a class="cmplz-link cookie-statement" href="#" data-relative_url="">{title}</a></li>
+			<li><a class="cmplz-link privacy-statement" href="#" data-relative_url="">{title}</a></li>
+			<li><a class="cmplz-link impressum" href="#" data-relative_url="">{title}</a></li>
+		</ul>
+			</div>
+</div>
+</div>
+					<div id="cmplz-manage-consent" data-nosnippet="true"><button class="cmplz-btn cmplz-hidden cmplz-manage-consent manage-consent-1" aria-haspopup="dialog" aria-controls="cmplz-cookiebanner-1-optin">Manage consent</button>
+
+</div>
+<div id="ast-scroll-top" tabindex="0" class="ast-scroll-top-icon ast-scroll-to-top-right" data-on-devices="both">
+		<span class="screen-reader-text">Scroll to Top</span>
+</div>
+			<script>
+			/(trident|msie)/i.test(navigator.userAgent)&&document.getElementById&&window.addEventListener&&window.addEventListener("hashchange",function(){var t,e=location.hash.substring(1);/^[A-z0-9_-]+$/.test(e)&&(t=document.getElementById(e))&&(/^(?:a|select|input|button|textarea)$/i.test(t.tagName)||(t.tabIndex=-1),t.focus())},!1);
+			</script>
+			<script id="astra-theme-js-js-extra">
+var astra = {"break_point":"768","isRtl":"","is_scroll_to_id":"","is_scroll_to_top":"1","is_header_footer_builder_active":"1","responsive_cart_click":"flyout","is_dark_palette":"","revealEffectEnable":"","edit_post_url":"https://www.muiriosa.ie/wp-admin/post.php?post={{id}}&action=edit","ajax_url":"https://www.muiriosa.ie/wp-admin/admin-ajax.php","infinite_count":"2","infinite_total":"0","pagination":"number","infinite_scroll_event":"scroll","no_more_post_message":"No more posts to show.","grid_layout":{"desktop":1,"tablet":1,"mobile":1},"site_url":"https://www.muiriosa.ie","blogArchiveTitleLayout":"","blogArchiveTitleOn":"","show_comments":"Show Comments","enableHistoryPushState":"1","masonryEnabled":"","blogMasonryBreakPoint":"0"};
+//# sourceURL=astra-theme-js-js-extra
+</script>
+<script id="astra-theme-js-js" src="https://www.muiriosa.ie/wp-content/themes/astra/assets/js/minified/frontend.min.js?ver=4.13.6"></script>
+<script id="fl-builder-layout-246-js" src="https://www.muiriosa.ie/wp-content/uploads/bb-plugin/cache/246-layout.js?ver=3dc14394199d8a4052dcce4fc94784f2"></script>
+<script id="imagesloaded-js" src="https://www.muiriosa.ie/wp-content/plugins/bb-plugin/js/libs/jquery.imagesloaded.min.js?ver=2.10.3.1"></script>
+<script id="jquery-throttle-js" src="https://www.muiriosa.ie/wp-content/plugins/bb-plugin/js/libs/jquery.ba-throttle-debounce.min.js?ver=2.10.3.1"></script>
+<script id="fl-builder-layout-bundle-5de756c6f251e6941642c765565d281f-js" src="https://www.muiriosa.ie/wp-content/uploads/bb-plugin/cache/5de756c6f251e6941642c765565d281f-layout-bundle.js?ver=2.10.3.1-1.5.3.2"></script>
+<script id="pojo-a11y-js-extra">
+var PojoA11yOptions = {"focusable":"","remove_link_target":"","add_role_links":"1","enable_save":"1","save_expiration":"12"};
+//# sourceURL=pojo-a11y-js-extra
+</script>
+<script id="pojo-a11y-js" src="https://www.muiriosa.ie/wp-content/plugins/pojo-accessibility/modules/legacy/assets/js/app.min.js?ver=1.0.0"></script>
+<script id="astra-addon-js-js-extra">
+var astraAddon = {"is_elementor_active":"","sticky_active":"1","svgIconClose":"\u003Cspan class=\"ast-icon icon-close\"\u003E\u003C/span\u003E","hf_account_show_menu_on":"hover","hf_account_action_type":"link","hf_account_logout_action":"link","header_main_stick":"1","header_above_stick":"0","header_below_stick":"0","stick_header_meta":"","header_main_stick_meta":"","header_above_stick_meta":"","header_below_stick_meta":"","sticky_header_on_devices":"desktop","sticky_header_style":"none","sticky_hide_on_scroll":"0","break_point":"768","tablet_break_point":"768","mobile_break_point":"544","header_main_shrink":"1","header_animation_effect":"none","header_logo_width":"392","responsive_header_logo_width":{"desktop":"188","tablet":"","mobile":""},"stick_origin_position":"","site_layout":"ast-full-width-layout","site_content_width":"1240","site_layout_padded_width":"1200","site_layout_box_width":"1200","header_builder_active":"1","component_limit":"10","is_header_builder_active":"1"};
+//# sourceURL=astra-addon-js-js-extra
+</script>
+<script id="astra-addon-js-js" src="https://www.muiriosa.ie/wp-content/uploads/astra-addon/astra-addon-6a43f2e971bbc6-38709542.js?ver=4.13.5"></script>
+<script id="astra-dom-purify-js" src="https://www.muiriosa.ie/wp-content/plugins/astra-addon/assets/js/minified/purify.min.js?ver=4.13.5"></script>
+<script id="cmplz-cookiebanner-js-extra">
+var complianz = {"prefix":"cmplz_","debug":"","user_banner_id":"1","set_cookies":[],"block_ajax_content":"","banner_version":"27","version":"7.5.1","store_consent":"","do_not_track_enabled":"","consenttype":"optin","region":"eu","geoip":"","dismiss_timeout":"","disable_cookiebanner":"","soft_cookiewall":"","dismiss_on_scroll":"","cookie_expiry":"365","url":"https://www.muiriosa.ie/wp-json/complianz/v1/","locale":"lang=en&locale=en_US","set_cookies_on_root":"","cookie_domain":"","current_policy_id":"18","cookie_path":"/","categories":{"statistics":"statistics","marketing":"marketing"},"tcf_active":"","placeholdertext":"Click to accept {category} cookies and enable this content","css_file":"https://www.muiriosa.ie/wp-content/uploads/complianz/css/banner-{banner_id}-{type}.css?v=27","page_links":{"eu":{"cookie-statement":{"title":"Cookie Policy ","url":"https://www.muiriosa.ie/cookie-policy-eu/"},"privacy-statement":{"title":"Privacy Policy","url":"https://www.muiriosa.ie/privacy-policy/"}}},"tm_categories":"","forceEnableStats":"","preview":"","clean_cookies":"","aria_label":"Click to accept {category} cookies and enable this content","iapi_nav":"fallback"};
+//# sourceURL=cmplz-cookiebanner-js-extra
+</script>
+<script defer id="cmplz-cookiebanner-js" src="https://www.muiriosa.ie/wp-content/plugins/complianz-gdpr/cookiebanner/js/complianz.min.js?ver=1784911566"></script>
+<script id="cmplz-cookiebanner-js-after">
+	                      setInterval(function () {
+                  cmplz_set_blocked_content_container();
+              }, 2000);
+
+              function cmplz_bb_add_event(event, selector, callback ) {
+                  document.addEventListener(event, e => {
+                      if ( e.target.closest(selector) ) {
+                          callback(e);
+                      }
+                  });
+               }
+  	          			cmplz_bb_add_event('click', '.fancybox-container .cmplz-accept-category, .fancybox-container .cmplz-accept-service',
+                  function(e){
+                      document.querySelector('.pp-video-play-icon').click();
+                  }
+              )
+          
+          
+//# sourceURL=cmplz-cookiebanner-js-after
+</script>
+<script id="wp-emoji-settings" type="application/json">
+{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://www.muiriosa.ie/wp-includes/js/wp-emoji-release.min.js?ver=7.0.2"}}
+</script>
+<script type="module">
+/*! This file is auto-generated */
+const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(window._wpemojiSettings=a,"wpEmojiSettingsSupports"),s=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const a=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===a[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,a){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!a(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,a){let r;const o=(r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),s=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(e=>{s[e]=t(o,e,n,a)}),s}function r(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}a.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),c.toString(),p.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"});const r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=e=>{i(n=e.data),r.terminate(),t(n)})}catch(e){}i(n=f(s,u,c,p))}t(n)}).then(e=>{for(const n in e)a.supports[n]=e[n],a.supports.everything=a.supports.everything&&a.supports[n],"flag"!==n&&(a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&a.supports[n]);var t;a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&!a.supports.flag,a.supports.everything||((t=a.source||{}).concatemoji?r(t.concatemoji):t.wpemoji&&t.twemoji&&(r(t.twemoji),r(t.wpemoji)))});
+//# sourceURL=https://www.muiriosa.ie/wp-includes/js/wp-emoji-loader.min.js
+</script>
+		<a id="pojo-a11y-skip-content" class="pojo-skip-link pojo-skip-content" tabindex="1" accesskey="s" href="#content">Skip to content</a>
+				<nav id="pojo-a11y-toolbar" class="pojo-a11y-toolbar-left" aria-label="Accessibility Toolbar">
+			<div class="pojo-a11y-toolbar-toggle">
+				<a class="pojo-a11y-toolbar-link pojo-a11y-toolbar-toggle-link" href="javascript:void(0);" title="Accessibility Tools" role="button">
+					<span class="pojo-sr-only sr-only">Open toolbar</span>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor" width="1em">
+						<title>Accessibility Tools</title>
+						<g><path d="M60.4,78.9c-2.2,4.1-5.3,7.4-9.2,9.8c-4,2.4-8.3,3.6-13,3.6c-6.9,0-12.8-2.4-17.7-7.3c-4.9-4.9-7.3-10.8-7.3-17.7c0-5,1.4-9.5,4.1-13.7c2.7-4.2,6.4-7.2,10.9-9.2l-0.9-7.3c-6.3,2.3-11.4,6.2-15.3,11.8C7.9,54.4,6,60.6,6,67.3c0,5.8,1.4,11.2,4.3,16.1s6.8,8.8,11.7,11.7c4.9,2.9,10.3,4.3,16.1,4.3c7,0,13.3-2.1,18.9-6.2c5.7-4.1,9.6-9.5,11.7-16.2l-5.7-11.4C63.5,70.4,62.5,74.8,60.4,78.9z"/><path d="M93.8,71.3l-11.1,5.5L70,51.4c-0.6-1.3-1.7-2-3.2-2H41.3l-0.9-7.2h22.7v-7.2H39.6L37.5,19c2.5,0.3,4.8-0.5,6.7-2.3c1.9-1.8,2.9-4,2.9-6.6c0-2.5-0.9-4.6-2.6-6.3c-1.8-1.8-3.9-2.6-6.3-2.6c-2,0-3.8,0.6-5.4,1.8c-1.6,1.2-2.7,2.7-3.2,4.6c-0.3,1-0.4,1.8-0.3,2.3l5.4,43.5c0.1,0.9,0.5,1.6,1.2,2.3c0.7,0.6,1.5,0.9,2.4,0.9h26.4l13.4,26.7c0.6,1.3,1.7,2,3.2,2c0.6,0,1.1-0.1,1.6-0.4L97,77.7L93.8,71.3z"/></g>					</svg>
+				</a>
+			</div>
+			<div class="pojo-a11y-toolbar-overlay">
+				<div class="pojo-a11y-toolbar-inner">
+					<p class="pojo-a11y-toolbar-title">Accessibility Tools</p>
+
+					<ul class="pojo-a11y-toolbar-items pojo-a11y-tools">
+																			<li class="pojo-a11y-toolbar-item">
+								<a href="#" class="pojo-a11y-toolbar-link pojo-a11y-btn-resize-font pojo-a11y-btn-resize-plus" data-action="resize-plus" data-action-group="resize" tabindex="-1" role="button">
+									<span class="pojo-a11y-toolbar-icon"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 448 448"><title>Increase Text</title><path fill="currentColor" d="M256 200v16c0 4.25-3.75 8-8 8h-56v56c0 4.25-3.75 8-8 8h-16c-4.25 0-8-3.75-8-8v-56h-56c-4.25 0-8-3.75-8-8v-16c0-4.25 3.75-8 8-8h56v-56c0-4.25 3.75-8 8-8h16c4.25 0 8 3.75 8 8v56h56c4.25 0 8 3.75 8 8zM288 208c0-61.75-50.25-112-112-112s-112 50.25-112 112 50.25 112 112 112 112-50.25 112-112zM416 416c0 17.75-14.25 32-32 32-8.5 0-16.75-3.5-22.5-9.5l-85.75-85.5c-29.25 20.25-64.25 31-99.75 31-97.25 0-176-78.75-176-176s78.75-176 176-176 176 78.75 176 176c0 35.5-10.75 70.5-31 99.75l85.75 85.75c5.75 5.75 9.25 14 9.25 22.5z"></path></svg></span><span class="pojo-a11y-toolbar-text">Increase Text</span>								</a>
+							</li>
+
+							<li class="pojo-a11y-toolbar-item">
+								<a href="#" class="pojo-a11y-toolbar-link pojo-a11y-btn-resize-font pojo-a11y-btn-resize-minus" data-action="resize-minus" data-action-group="resize" tabindex="-1" role="button">
+									<span class="pojo-a11y-toolbar-icon"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 448 448"><title>Decrease Text</title><path fill="currentColor" d="M256 200v16c0 4.25-3.75 8-8 8h-144c-4.25 0-8-3.75-8-8v-16c0-4.25 3.75-8 8-8h144c4.25 0 8 3.75 8 8zM288 208c0-61.75-50.25-112-112-112s-112 50.25-112 112 50.25 112 112 112 112-50.25 112-112zM416 416c0 17.75-14.25 32-32 32-8.5 0-16.75-3.5-22.5-9.5l-85.75-85.5c-29.25 20.25-64.25 31-99.75 31-97.25 0-176-78.75-176-176s78.75-176 176-176 176 78.75 176 176c0 35.5-10.75 70.5-31 99.75l85.75 85.75c5.75 5.75 9.25 14 9.25 22.5z"></path></svg></span><span class="pojo-a11y-toolbar-text">Decrease Text</span>								</a>
+							</li>
+						
+													<li class="pojo-a11y-toolbar-item">
+								<a href="#" class="pojo-a11y-toolbar-link pojo-a11y-btn-background-group pojo-a11y-btn-grayscale" data-action="grayscale" data-action-group="schema" tabindex="-1" role="button">
+									<span class="pojo-a11y-toolbar-icon"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 448 448"><title>Grayscale</title><path fill="currentColor" d="M15.75 384h-15.75v-352h15.75v352zM31.5 383.75h-8v-351.75h8v351.75zM55 383.75h-7.75v-351.75h7.75v351.75zM94.25 383.75h-7.75v-351.75h7.75v351.75zM133.5 383.75h-15.5v-351.75h15.5v351.75zM165 383.75h-7.75v-351.75h7.75v351.75zM180.75 383.75h-7.75v-351.75h7.75v351.75zM196.5 383.75h-7.75v-351.75h7.75v351.75zM235.75 383.75h-15.75v-351.75h15.75v351.75zM275 383.75h-15.75v-351.75h15.75v351.75zM306.5 383.75h-15.75v-351.75h15.75v351.75zM338 383.75h-15.75v-351.75h15.75v351.75zM361.5 383.75h-15.75v-351.75h15.75v351.75zM408.75 383.75h-23.5v-351.75h23.5v351.75zM424.5 383.75h-8v-351.75h8v351.75zM448 384h-15.75v-352h15.75v352z"></path></svg></span><span class="pojo-a11y-toolbar-text">Grayscale</span>								</a>
+							</li>
+						
+													<li class="pojo-a11y-toolbar-item">
+								<a href="#" class="pojo-a11y-toolbar-link pojo-a11y-btn-background-group pojo-a11y-btn-high-contrast" data-action="high-contrast" data-action-group="schema" tabindex="-1" role="button">
+									<span class="pojo-a11y-toolbar-icon"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 448 448"><title>High Contrast</title><path fill="currentColor" d="M192 360v-272c-75 0-136 61-136 136s61 136 136 136zM384 224c0 106-86 192-192 192s-192-86-192-192 86-192 192-192 192 86 192 192z"></path></svg></span><span class="pojo-a11y-toolbar-text">High Contrast</span>								</a>
+							</li>
+						
+													<li class="pojo-a11y-toolbar-item">
+								<a href="#" class="pojo-a11y-toolbar-link pojo-a11y-btn-background-group pojo-a11y-btn-negative-contrast" data-action="negative-contrast" data-action-group="schema" tabindex="-1" role="button">
+
+									<span class="pojo-a11y-toolbar-icon"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 448 448"><title>Negative Contrast</title><path fill="currentColor" d="M416 240c-23.75-36.75-56.25-68.25-95.25-88.25 10 17 15.25 36.5 15.25 56.25 0 61.75-50.25 112-112 112s-112-50.25-112-112c0-19.75 5.25-39.25 15.25-56.25-39 20-71.5 51.5-95.25 88.25 42.75 66 111.75 112 192 112s149.25-46 192-112zM236 144c0-6.5-5.5-12-12-12-41.75 0-76 34.25-76 76 0 6.5 5.5 12 12 12s12-5.5 12-12c0-28.5 23.5-52 52-52 6.5 0 12-5.5 12-12zM448 240c0 6.25-2 12-5 17.25-46 75.75-130.25 126.75-219 126.75s-173-51.25-219-126.75c-3-5.25-5-11-5-17.25s2-12 5-17.25c46-75.5 130.25-126.75 219-126.75s173 51.25 219 126.75c3 5.25 5 11 5 17.25z"></path></svg></span><span class="pojo-a11y-toolbar-text">Negative Contrast</span>								</a>
+							</li>
+						
+													<li class="pojo-a11y-toolbar-item">
+								<a href="#" class="pojo-a11y-toolbar-link pojo-a11y-btn-background-group pojo-a11y-btn-light-background" data-action="light-background" data-action-group="schema" tabindex="-1" role="button">
+									<span class="pojo-a11y-toolbar-icon"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 448 448"><title>Light Background</title><path fill="currentColor" d="M184 144c0 4.25-3.75 8-8 8s-8-3.75-8-8c0-17.25-26.75-24-40-24-4.25 0-8-3.75-8-8s3.75-8 8-8c23.25 0 56 12.25 56 40zM224 144c0-50-50.75-80-96-80s-96 30-96 80c0 16 6.5 32.75 17 45 4.75 5.5 10.25 10.75 15.25 16.5 17.75 21.25 32.75 46.25 35.25 74.5h57c2.5-28.25 17.5-53.25 35.25-74.5 5-5.75 10.5-11 15.25-16.5 10.5-12.25 17-29 17-45zM256 144c0 25.75-8.5 48-25.75 67s-40 45.75-42 72.5c7.25 4.25 11.75 12.25 11.75 20.5 0 6-2.25 11.75-6.25 16 4 4.25 6.25 10 6.25 16 0 8.25-4.25 15.75-11.25 20.25 2 3.5 3.25 7.75 3.25 11.75 0 16.25-12.75 24-27.25 24-6.5 14.5-21 24-36.75 24s-30.25-9.5-36.75-24c-14.5 0-27.25-7.75-27.25-24 0-4 1.25-8.25 3.25-11.75-7-4.5-11.25-12-11.25-20.25 0-6 2.25-11.75 6.25-16-4-4.25-6.25-10-6.25-16 0-8.25 4.5-16.25 11.75-20.5-2-26.75-24.75-53.5-42-72.5s-25.75-41.25-25.75-67c0-68 64.75-112 128-112s128 44 128 112z"></path></svg></span><span class="pojo-a11y-toolbar-text">Light Background</span>								</a>
+							</li>
+						
+													<li class="pojo-a11y-toolbar-item">
+								<a href="#" class="pojo-a11y-toolbar-link pojo-a11y-btn-links-underline" data-action="links-underline" data-action-group="toggle" tabindex="-1" role="button">
+									<span class="pojo-a11y-toolbar-icon"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 448 448"><title>Links Underline</title><path fill="currentColor" d="M364 304c0-6.5-2.5-12.5-7-17l-52-52c-4.5-4.5-10.75-7-17-7-7.25 0-13 2.75-18 8 8.25 8.25 18 15.25 18 28 0 13.25-10.75 24-24 24-12.75 0-19.75-9.75-28-18-5.25 5-8.25 10.75-8.25 18.25 0 6.25 2.5 12.5 7 17l51.5 51.75c4.5 4.5 10.75 6.75 17 6.75s12.5-2.25 17-6.5l36.75-36.5c4.5-4.5 7-10.5 7-16.75zM188.25 127.75c0-6.25-2.5-12.5-7-17l-51.5-51.75c-4.5-4.5-10.75-7-17-7s-12.5 2.5-17 6.75l-36.75 36.5c-4.5 4.5-7 10.5-7 16.75 0 6.5 2.5 12.5 7 17l52 52c4.5 4.5 10.75 6.75 17 6.75 7.25 0 13-2.5 18-7.75-8.25-8.25-18-15.25-18-28 0-13.25 10.75-24 24-24 12.75 0 19.75 9.75 28 18 5.25-5 8.25-10.75 8.25-18.25zM412 304c0 19-7.75 37.5-21.25 50.75l-36.75 36.5c-13.5 13.5-31.75 20.75-50.75 20.75-19.25 0-37.5-7.5-51-21.25l-51.5-51.75c-13.5-13.5-20.75-31.75-20.75-50.75 0-19.75 8-38.5 22-52.25l-22-22c-13.75 14-32.25 22-52 22-19 0-37.5-7.5-51-21l-52-52c-13.75-13.75-21-31.75-21-51 0-19 7.75-37.5 21.25-50.75l36.75-36.5c13.5-13.5 31.75-20.75 50.75-20.75 19.25 0 37.5 7.5 51 21.25l51.5 51.75c13.5 13.5 20.75 31.75 20.75 50.75 0 19.75-8 38.5-22 52.25l22 22c13.75-14 32.25-22 52-22 19 0 37.5 7.5 51 21l52 52c13.75 13.75 21 31.75 21 51z"></path></svg></span><span class="pojo-a11y-toolbar-text">Links Underline</span>								</a>
+							</li>
+						
+													<li class="pojo-a11y-toolbar-item">
+								<a href="#" class="pojo-a11y-toolbar-link pojo-a11y-btn-readable-font" data-action="readable-font" data-action-group="toggle" tabindex="-1" role="button">
+									<span class="pojo-a11y-toolbar-icon"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 448 448"><title>Readable Font</title><path fill="currentColor" d="M181.25 139.75l-42.5 112.5c24.75 0.25 49.5 1 74.25 1 4.75 0 9.5-0.25 14.25-0.5-13-38-28.25-76.75-46-113zM0 416l0.5-19.75c23.5-7.25 49-2.25 59.5-29.25l59.25-154 70-181h32c1 1.75 2 3.5 2.75 5.25l51.25 120c18.75 44.25 36 89 55 133 11.25 26 20 52.75 32.5 78.25 1.75 4 5.25 11.5 8.75 14.25 8.25 6.5 31.25 8 43 12.5 0.75 4.75 1.5 9.5 1.5 14.25 0 2.25-0.25 4.25-0.25 6.5-31.75 0-63.5-4-95.25-4-32.75 0-65.5 2.75-98.25 3.75 0-6.5 0.25-13 1-19.5l32.75-7c6.75-1.5 20-3.25 20-12.5 0-9-32.25-83.25-36.25-93.5l-112.5-0.5c-6.5 14.5-31.75 80-31.75 89.5 0 19.25 36.75 20 51 22 0.25 4.75 0.25 9.5 0.25 14.5 0 2.25-0.25 4.5-0.5 6.75-29 0-58.25-5-87.25-5-3.5 0-8.5 1.5-12 2-15.75 2.75-31.25 3.5-47 3.5z"></path></svg></span><span class="pojo-a11y-toolbar-text">Readable Font</span>								</a>
+							</li>
+																		<li class="pojo-a11y-toolbar-item">
+							<a href="#" class="pojo-a11y-toolbar-link pojo-a11y-btn-reset" data-action="reset" tabindex="-1" role="button">
+								<span class="pojo-a11y-toolbar-icon"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" viewBox="0 0 448 448"><title>Reset</title><path fill="currentColor" d="M384 224c0 105.75-86.25 192-192 192-57.25 0-111.25-25.25-147.75-69.25-2.5-3.25-2.25-8 0.5-10.75l34.25-34.5c1.75-1.5 4-2.25 6.25-2.25 2.25 0.25 4.5 1.25 5.75 3 24.5 31.75 61.25 49.75 101 49.75 70.5 0 128-57.5 128-128s-57.5-128-128-128c-32.75 0-63.75 12.5-87 34.25l34.25 34.5c4.75 4.5 6 11.5 3.5 17.25-2.5 6-8.25 10-14.75 10h-112c-8.75 0-16-7.25-16-16v-112c0-6.5 4-12.25 10-14.75 5.75-2.5 12.75-1.25 17.25 3.5l32.5 32.25c35.25-33.25 83-53 132.25-53 105.75 0 192 86.25 192 192z"></path></svg></span>
+								<span class="pojo-a11y-toolbar-text">Reset</span>
+							</a>
+						</li>
+					</ul>
+									</div>
+			</div>
+		</nav>
+			</body>
+</html>
