@@ -38,9 +38,12 @@ def _merge_continuation_rows(rows):
     """Merge PDF continuation rows into their preceding row.
 
     pdfplumber sometimes splits a single table row across two physical rows when
-    cell text wraps. A continuation row has exactly 1 non-None cell across >= 3
+    cell text wraps. A continuation row has exactly 1 non-blank cell across >= 3
     columns; its string value is appended (with a space) to the same column in
     the preceding row. Returns (rows, n_merged).
+
+    Blank means None *or* an empty/whitespace string — pdfplumber uses both
+    sentinels interchangeably, often within one file (see _is_blank_cell).
     """
     if not rows or max(len(r) for r in rows) < 3:
         return rows, 0
@@ -68,22 +71,33 @@ def _merge_continuation_rows(rows):
         #   test_merge_skips_sparse_layout_files:                 multi/len = 0/4  = 0.0   (guard must fire)
         #   test_merge_skips_sparse_layout_with_one_incidental_multi_row: multi/len = 1/20 = 0.05 (guard must fire)
         # A threshold of 0.1 satisfies 0.05 < 0.1 <= 0.25, keeping all four cases correct.
+        #
+        # NOTE: this guard deliberately counts `is not None` while the merge loop below
+        # is blank-aware. The 0.1 threshold was calibrated against None-only ratios;
+        # switching the guard to _is_blank_cell shifts every ratio and re-fires the
+        # guard on files that do need merging (measured: +9 files fully skipped,
+        # orphan fragments 5,006 -> 7,088 across the PDF corpus). Retuning the
+        # threshold is a separate, evidence-backed change — do not "tidy" this to
+        # match the loop without re-deriving the constant.
         if single / len(data_rows) > 0.5 and multi / len(data_rows) < MULTI_ROW_TOLERANCE:
             return rows, 0  # sparse layout is this file's shape, not fragmentation
 
     merged = 0
     out = [list(rows[0])]
     for row in rows[1:]:
-        non_none = [(i, v) for i, v in enumerate(row) if v is not None]
-        if len(row) >= 3 and len(non_none) == 1:
-            col_idx, val = non_none[0]
+        # Blank-aware: pdfplumber emits a mix of None and '' for empty cells within
+        # the same file, so a None-only count reads a continuation row as multi-value
+        # and lets it survive as an orphan fragment.
+        non_blank = [(i, v) for i, v in enumerate(row) if not _is_blank_cell(v)]
+        if len(row) >= 3 and len(non_blank) == 1:
+            col_idx, val = non_blank[0]
             prev = out[-1]
             if len(out) > 1 and col_idx < len(prev) and isinstance(val, str):
-                if isinstance(prev[col_idx], str):
+                if isinstance(prev[col_idx], str) and prev[col_idx].strip():
                     prev[col_idx] = prev[col_idx] + " " + val
                     merged += 1
                     continue
-                if prev[col_idx] is None:
+                if _is_blank_cell(prev[col_idx]):
                     prev[col_idx] = val
                     merged += 1
                     continue
