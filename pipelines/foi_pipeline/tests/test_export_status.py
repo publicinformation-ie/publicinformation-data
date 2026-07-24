@@ -128,10 +128,10 @@ def test_validate_websites_unreachable_sets_failed():
     assert body_map[1001]["status"]["website_url"]["status"] == "failed"
 
 
-def test_validate_websites_absent_body_sets_failed():
+def test_validate_websites_absent_body_stays_not_attempted():
     body_map = make_body_map(1001, 1002)
     merge_validate_websites(body_map, {"results": [{"public_body_id": 1001, "is_reachable": True}]})
-    assert body_map[1002]["status"]["website_url"]["status"] == "failed"
+    assert body_map[1002]["status"]["website_url"]["status"] == "not_attempted"
 
 
 def test_validate_websites_does_not_touch_other_fields():
@@ -153,12 +153,12 @@ def test_find_foi_pages_sets_url_and_success():
     assert body_map[1001]["status"]["foi_page"]["status"] == "success"
 
 
-def test_find_foi_pages_absent_body_sets_failed():
+def test_find_foi_pages_absent_body_stays_not_attempted():
     body_map = make_body_map(1001, 1002)
     merge_find_foi_pages(body_map, {
         "results": [{"public_body_id": 1001, "foi_page_url": "https://dept-a.ie/foi/"}]
     })
-    assert body_map[1002]["status"]["foi_page"]["status"] == "failed"
+    assert body_map[1002]["status"]["foi_page"]["status"] == "not_attempted"
 
 
 # ---------------------------------------------------------------------------
@@ -183,12 +183,12 @@ def test_check_foi_pages_unreachable_sets_failed():
     assert body_map[1001]["status"]["foi_page"]["status"] == "failed"
 
 
-def test_check_foi_pages_absent_body_sets_failed():
+def test_check_foi_pages_absent_body_stays_not_attempted():
     body_map = make_body_map(1001, 1002)
     merge_check_foi_pages(body_map, {
         "results": [{"public_body_id": 1001, "is_reachable": True}]
     })
-    assert body_map[1002]["status"]["foi_page"]["status"] == "failed"
+    assert body_map[1002]["status"]["foi_page"]["status"] == "not_attempted"
 
 
 def test_check_foi_pages_does_not_touch_url():
@@ -229,12 +229,12 @@ def test_get_foi_emails_multiple_found_sets_failed():
     assert body_map[1001]["status"]["foi_email"]["status"] == "failed"
 
 
-def test_get_foi_emails_absent_body_sets_failed():
+def test_get_foi_emails_absent_body_stays_not_attempted():
     body_map = make_body_map(1001, 1002)
     merge_get_foi_emails(body_map, {
         "results": [{"public_body_id": 1001, "foi_email": "foi@dept-a.ie", "email_status": "found"}]
     })
-    assert body_map[1002]["status"]["foi_email"]["status"] == "failed"
+    assert body_map[1002]["status"]["foi_email"]["status"] == "not_attempted"
 
 
 # ---------------------------------------------------------------------------
@@ -250,12 +250,12 @@ def test_find_disclosure_pages_sets_url_and_success():
     assert body_map[1001]["status"]["disclosures_page"]["status"] == "success"
 
 
-def test_find_disclosure_pages_absent_body_sets_failed():
+def test_find_disclosure_pages_absent_body_stays_not_attempted():
     body_map = make_body_map(1001, 1002)
     merge_find_disclosure_pages(body_map, {
         "results": [{"public_body_id": 1001, "disclosure_page_url": "https://dept-a.ie/disclosure/"}]
     })
-    assert body_map[1002]["status"]["disclosures_page"]["status"] == "failed"
+    assert body_map[1002]["status"]["disclosures_page"]["status"] == "not_attempted"
 
 
 # ---------------------------------------------------------------------------
@@ -597,9 +597,9 @@ def test_merge_full_pipeline(tmp_path):
 
     b = by_id[1002]
     assert b["status"]["website_url"]["status"] == "success"
-    assert b["status"]["foi_page"]["status"] == "failed"
-    assert b["status"]["foi_email"]["status"] == "failed"
-    assert b["status"]["disclosures_page"]["status"] == "failed"
+    assert b["status"]["foi_page"]["status"] == "not_attempted"
+    assert b["status"]["foi_email"]["status"] == "not_attempted"
+    assert b["status"]["disclosures_page"]["status"] == "not_attempted"
     assert b["status"]["disclosure_files"]["status"] == "failed"
 
 
