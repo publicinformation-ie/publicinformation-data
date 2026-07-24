@@ -1,16 +1,15 @@
 [
   {
     "severity": "info",
-    "description": "7 bodies kept <50% of records after dedup",
-    "affected_count": 7,
+    "description": "6 bodies kept <50% of records after dedup",
+    "affected_count": 6,
     "affected_ids": [
-      "1094",
       "1151",
-      "1235",
+      "1340",
+      "1501",
+      "1505",
       "1552",
-      "1562",
-      "1597",
-      "1622"
+      "1562"
     ],
     "suggested_upstream_step": "transform_disclosure_files",
     "suggestion_detail": "Repeated page-header and blank separator rows in PDFs inflate record counts before dedup. Fix at extraction time.",

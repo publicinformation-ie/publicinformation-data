@@ -3,59 +3,68 @@
   "metrics": [
     {
       "name": "clean_extraction_rate",
-      "value": 0.552,
+      "value": 0.728,
       "counts": {
-        "clean": 771,
-        "total": 1397
+        "clean": 912,
+        "total": 1252
       },
       "is_primary": true
     },
     {
       "name": "null_first_row_rate",
-      "value": 0.305,
+      "value": 0.002,
       "counts": {
-        "count": 426,
-        "total": 1397
+        "count": 2,
+        "total": 1252
       },
       "is_primary": false
     },
     {
       "name": "null_column_rate",
-      "value": 0.008,
+      "value": 0.014,
       "counts": {
-        "count": 11,
-        "total": 1397
+        "count": 17,
+        "total": 1252
       },
       "is_primary": false
     },
     {
       "name": "newline_split_row_rate",
-      "value": 0.296,
+      "value": 0.258,
       "counts": {
-        "count": 414,
-        "total": 1397
+        "count": 323,
+        "total": 1252
       },
       "is_primary": false
     },
     {
       "name": "camelot_fallback_rate",
-      "value": 0.0,
+      "value": 0.002,
       "counts": {
-        "attempted": 0,
-        "total": 1397
+        "attempted": 2,
+        "total": 1252
       },
       "is_primary": false
     },
     {
       "name": "camelot_win_rate",
-      "value": 0.105,
+      "value": 0.0,
       "counts": {
-        "wins": 147,
-        "total": 1397
+        "wins": 0,
+        "total": 1252
+      },
+      "is_primary": false
+    },
+    {
+      "name": "mistral_ocr_rate",
+      "value": 0.998,
+      "counts": {
+        "used": 1250,
+        "total": 1252
       },
       "is_primary": false
     }
   ],
-  "input_hash": "68579465bc624b2606de628a6e5e79523cc57b5853e777bfa38068fd3768423b",
+  "input_hash": "04ed72731cc09508fe5a1b8e305aa75b8fb4363ec228e439e199888029a2b50c",
   "judge_model": null
 }

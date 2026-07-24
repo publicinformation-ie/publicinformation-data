@@ -1,0 +1,40 @@
+{
+  "step": "filter_phantom_rows",
+  "metrics": [
+    {
+      "name": "post_filter_clean_rate",
+      "value": 1.0,
+      "counts": {
+        "clean": 1252,
+        "total": 1252
+      },
+      "is_primary": true
+    },
+    {
+      "name": "blank_rows_dropped_total",
+      "value": 4617.0,
+      "counts": {
+        "total_files": 1349
+      },
+      "is_primary": false
+    },
+    {
+      "name": "fragments_merged_total",
+      "value": 0.0,
+      "counts": {
+        "total_files": 1349
+      },
+      "is_primary": false
+    },
+    {
+      "name": "null_columns_pruned_total",
+      "value": 0.0,
+      "counts": {
+        "total_files": 1349
+      },
+      "is_primary": false
+    }
+  ],
+  "input_hash": "009d4a3b31bf4836f38cf246e54cf2c3476cbd7bfeefac97b78273342c9cdcf9",
+  "judge_model": null
+}

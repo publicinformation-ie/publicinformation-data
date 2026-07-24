@@ -12,40 +12,40 @@
     },
     {
       "name": "field_coverage",
-      "value": 0.749,
+      "value": 0.834,
       "counts": {
-        "decision_date": 0.617,
-        "decision_status": 0.796,
-        "foi_reference_id": 0.725,
-        "request_description": 0.857
+        "decision_date": 0.662,
+        "decision_status": 0.895,
+        "foi_reference_id": 0.838,
+        "request_description": 0.942
       },
       "is_primary": false
     },
     {
       "name": "file_success_rate",
-      "value": 0.974,
+      "value": 0.987,
       "counts": {
-        "successful": 1146,
-        "total": 1177
+        "successful": 1325,
+        "total": 1343
       },
       "is_primary": false
     },
     {
       "name": "insufficient_columns_rate",
-      "value": 0.026,
+      "value": 0.013,
       "counts": {
-        "failed": 31,
-        "total": 1177
+        "failed": 18,
+        "total": 1343
       },
       "is_primary": false
     },
     {
       "name": "row_length_mismatch_rate",
-      "value": 0.013,
+      "value": 0.004,
       "counts": {
-        "affected_files": 15,
-        "total_files": 1146,
-        "error_count": 82
+        "affected_files": 5,
+        "total_files": 1325,
+        "error_count": 7
       },
       "is_primary": false
     }

@@ -25,6 +25,9 @@ local.db
 # Temp/scratch files
 **/tmp.txt
 **/temp_*.txt
+**/tmp*.tmp
+**/*_run.log
+**/match_log.json
 .vibe/tmp/
 
 # Raw data files
