@@ -59,5 +59,13 @@ Iteration loop:
 
     edit process.py -> run_matcher.py -> evaluate.py -> compare to last run -> keep or revert
 
-Baseline (scored matcher, 2026-07-24): precision=0.571 recall=0.800 f1=0.667
-(TP=8 FP=6 FN=2 TN=31, 47 labelled bodies evaluated)
+Baseline (scored matcher, 2026-07-24): precision=0.500 recall=0.778 f1=0.609
+(TP=7 FP=7 FN=2 TN=31, 47 labelled bodies evaluated)
+
+Note: `get_foi_emails.process.pick_foi_email()` picks the first FOI-keyword-matching
+email from a Python `set()`, whose iteration order depends on per-process hash
+randomization. When a candidate page has multiple FOI-keyword emails (e.g. body 1736,
+which has both `foi@sivuh.ie` and `foi.officer@sivuh.ie`), `matcher_output.json` can
+drift by a body or two on re-runs with no code changes. This is a pre-existing issue in
+`get_foi_emails` (reused as-is here), out of scope for this plan — candidate for a
+future fix-issue pass.
