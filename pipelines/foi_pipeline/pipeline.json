@@ -2,6 +2,7 @@
   "steps": [
     "/pipelines/cso_pipeline/steps/resolve_website_urls",
     "find_public_bodies",
+    "/pipelines/foigovie_pipeline/steps/apply_overrides",
     "find_public_bodies_subject_to_foi",
     "validate_websites",
     "find_foi_pages",

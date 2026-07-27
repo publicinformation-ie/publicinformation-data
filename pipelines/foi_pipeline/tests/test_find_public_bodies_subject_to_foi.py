@@ -29,7 +29,17 @@ def write_inclusions(step_dir, ids):
     (step_dir / "inclusions.json").write_text(json.dumps(ids))
 
 
+def _mock_load_inclusions(tmp_path):
+    """Helper to create a mock load_inclusions function for tests."""
+    from lib.file_utils import read_json
+    def mock(path):
+        return set(read_json(tmp_path / "inclusions.json"))
+    return mock
+
+
 def run_main(tmp_path, monkeypatch, argv):
+    # Mock load_inclusions to read from test inclusions.json instead of foigovie output
+    monkeypatch.setattr(proc, "load_inclusions", _mock_load_inclusions(tmp_path))
     monkeypatch.setattr(proc, "__file__", str(tmp_path / "process.py"))
     sys.argv = argv
     main()
@@ -101,6 +111,7 @@ def test_skips_if_output_exists_without_force(tmp_path, monkeypatch):
     write_input(inp, [make_body(1001)])
     write_inclusions(tmp_path, [1001])
     out.write_text(json.dumps({"metadata": {}, "public_bodies": [{"sentinel": True}]}))
+    monkeypatch.setattr(proc, "load_inclusions", _mock_load_inclusions(tmp_path))
     monkeypatch.setattr(proc, "__file__", str(tmp_path / "process.py"))
     sys.argv = ["process.py", "--input", str(inp), "--output", str(out)]
     try:
@@ -120,6 +131,7 @@ def test_scoped_run_confirms_foi_subject_body(tmp_path, monkeypatch):
         "metadata": {"step": STEP_NAME},
         "public_bodies": [make_body(1001)],
     }))
+    monkeypatch.setattr(proc, "load_inclusions", _mock_load_inclusions(tmp_path))
     monkeypatch.setattr(proc, "__file__", str(tmp_path / "process.py"))
     sys.argv = ["process.py", "--input", str(inp), "--output", str(out), "--public-body", "1001"]
     try:
@@ -146,3 +158,45 @@ def test_scoped_run_errors_for_non_included_body(tmp_path, monkeypatch):
         assert False, "Expected SystemExit"
     except SystemExit as e:
         assert e.code != 0
+
+
+import pytest
+
+from steps.find_public_bodies_subject_to_foi.process import load_inclusions
+
+
+def test_load_inclusions_returns_the_matched_body_ids(tmp_path):
+    from lib.file_utils import write_json
+    path = tmp_path / "output.json"
+    write_json(path, {"metadata": {}, "results": [
+        {"foigovie_slug": "a", "public_body_id": 1014},
+        {"foigovie_slug": "b", "public_body_id": 1104},
+    ]})
+    assert load_inclusions(path) == {1014, 1104}
+
+
+def test_load_inclusions_deduplicates_bodies_listed_twice_by_foi_gov_ie(tmp_path):
+    """foi.gov.ie lists several HSE regions that all resolve to one canonical
+    body; the inclusion set must collapse them."""
+    from lib.file_utils import write_json
+    path = tmp_path / "output.json"
+    write_json(path, {"metadata": {}, "results": [
+        {"foigovie_slug": "hse-west", "public_body_id": 1500},
+        {"foigovie_slug": "hse-east", "public_body_id": 1500},
+    ]})
+    assert load_inclusions(path) == {1500}
+
+
+def test_load_inclusions_fatal_exits_when_the_upstream_output_is_missing(tmp_path):
+    with pytest.raises(SystemExit) as exc:
+        load_inclusions(tmp_path / "does-not-exist.json")
+    assert exc.value.code != 0
+
+
+def test_load_inclusions_fatal_exits_on_an_empty_inclusion_set(tmp_path):
+    """An empty set would silently drop every body from the FOI pipeline."""
+    from lib.file_utils import write_json
+    path = tmp_path / "output.json"
+    write_json(path, {"metadata": {}, "results": []})
+    with pytest.raises(SystemExit):
+        load_inclusions(path)
