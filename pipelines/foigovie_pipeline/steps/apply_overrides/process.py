@@ -27,9 +27,18 @@ def apply_overrides(records: list, overrides: dict) -> list:
     return resolved
 
 
-def find_unresolved(records: list) -> list:
-    """Return the foigovie_slugs still lacking a public_body_id."""
-    return [r["foigovie_slug"] for r in records if r.get("public_body_id") is None]
+def find_unresolved(records: list, overrides: dict) -> list:
+    """Return the foigovie_slugs still lacking a public_body_id AND absent from override.json.
+
+    A slug explicitly present in override.json — even mapped to null — has been
+    deliberately reviewed and marked as having no canonical counterpart; that is a
+    resolved state, not a failure. Only a slug missing from override.json entirely
+    (never reviewed) is unresolved.
+    """
+    return [
+        r["foigovie_slug"] for r in records
+        if r.get("public_body_id") is None and r["foigovie_slug"] not in overrides
+    ]
 
 
 def count_via_override(records: list, overrides: dict) -> int:
@@ -73,7 +82,7 @@ def main():
     # fatal here: every foi.gov.ie entry IS an FOI body, so a gap means a
     # new/renamed body or a matching failure. Dropping it would silently
     # shrink foi_pipeline's inclusion set.
-    unresolved = find_unresolved(resolved)
+    unresolved = find_unresolved(resolved, overrides)
     if unresolved:
         print(
             f"Fatal: {len(unresolved)} unresolved public_body_id for foigovie_slug(s): "

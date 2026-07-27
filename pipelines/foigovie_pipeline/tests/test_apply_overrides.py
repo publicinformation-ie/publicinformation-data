@@ -42,16 +42,31 @@ def test_apply_overrides_does_not_mutate_the_input_records():
 
 # ── find_unresolved ──────────────────────────────────────────────────────
 
-def test_find_unresolved_lists_null_slugs():
+def test_find_unresolved_lists_null_slugs_absent_from_overrides():
     records = [
         {"foigovie_slug": "matched", "public_body_id": 1},
         {"foigovie_slug": "unmatched", "public_body_id": None},
     ]
-    assert find_unresolved(records) == ["unmatched"]
+    assert find_unresolved(records, {}) == ["unmatched"]
 
 
 def test_find_unresolved_is_empty_when_all_resolve():
-    assert find_unresolved([{"foigovie_slug": "matched", "public_body_id": 1}]) == []
+    assert find_unresolved([{"foigovie_slug": "matched", "public_body_id": 1}], {}) == []
+
+
+def test_find_unresolved_excludes_a_slug_explicitly_nulled_in_overrides():
+    """A slug present in override.json with an explicit null has been deliberately
+    reviewed and marked as having no canonical counterpart -- that's resolved, not
+    a failure, even though public_body_id is still None."""
+    records = [{"foigovie_slug": "no-counterpart", "public_body_id": None}]
+    assert find_unresolved(records, {"no-counterpart": None}) == []
+
+
+def test_find_unresolved_still_flags_a_null_slug_missing_from_overrides():
+    """A slug that was never reviewed at all (absent from override.json) must
+    still fatal -- only an explicit null entry counts as reviewed."""
+    records = [{"foigovie_slug": "never-reviewed", "public_body_id": None}]
+    assert find_unresolved(records, {"some-other-slug": None}) == ["never-reviewed"]
 
 
 # ── count_via_override ───────────────────────────────────────────────────
