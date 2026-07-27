@@ -151,6 +151,7 @@ def test_scoped_run_errors_for_non_included_body(tmp_path, monkeypatch):
         "metadata": {"step": STEP_NAME},
         "public_bodies": [make_body(1001)],
     }))
+    monkeypatch.setattr(proc, "load_inclusions", _mock_load_inclusions(tmp_path))
     monkeypatch.setattr(proc, "__file__", str(tmp_path / "process.py"))
     sys.argv = ["process.py", "--input", str(inp), "--output", str(out), "--public-body", "9999"]
     try:
