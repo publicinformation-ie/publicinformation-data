@@ -18,6 +18,8 @@ For each document in `fetch_pdfs/output.json`:
 
 Every coordinate (bbox values, table cells, drawing/image rects) is rounded to 2 decimal places on write, so `pages/*.json` diffs stay small and hand-readable — later tasks treat these files as an intermediate representation meant to be inspected, not just consumed.
 
+Nothing here is process-fatal except a malformed `documents.yml` (caught upstream, in `documents.py`). A PDF can pass `fetch_pdfs`'s shallow open()-and-inspect check yet have a content stream malformed enough that `pymupdf` raises deep inside `get_text`, `get_drawings`, `get_images`, or `find_tables`; that failure is caught per document (opening the PDF is inside the same guarded block, and it is still closed in the `finally` if it was opened), logged to `errors.json` as `PageExtractionFailed`, and the document is skipped — one bad PDF can't abort the rest of the batch.
+
 Supports **incremental resumption** via `IncrementalWriter` (`key_field="doc_slug"`) and `--doc` scoping (`add_doc_arg`); scoping is also available by calling `process(..., doc_slug=...)` directly.
 
 ## Input
@@ -50,7 +52,12 @@ Also produces `pages/<doc_slug>/NNN.json` for each page of each successfully-ext
 
 ## Notable files
 
-- `errors.json` — one `NoTextLayer` entry per skipped (scanned) document. Truncated to `[]` at the start of every run.
+- `errors.json` — one entry per skipped document. Truncated to `[]` at the start of every run.
+
+  | `error_type` | Cause |
+  |---|---|
+  | `NoTextLayer` | Every page's extracted text is empty/whitespace — the document appears to be scanned |
+  | `PageExtractionFailed` | `pymupdf` raised while opening the PDF or extracting a page's spans/drawings/images/outline |
 - `pages/<doc_slug>/` — one `NNN.json` per page, for every successfully-extracted document.
 
 ## Flags

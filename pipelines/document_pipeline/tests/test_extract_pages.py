@@ -65,3 +65,28 @@ def test_a_document_with_no_text_layer_is_skipped_with_an_error(tmp_path, make_w
     (error,) = json.loads((tmp_path / "errors.json").read_text())
     assert error["error_type"] == "NoTextLayer"
     assert "scanned" in error["error_message"]
+
+
+def test_one_malformed_document_does_not_prevent_the_others(tmp_path, make_writer):
+    corrupt = tmp_path / "corrupt.pdf"
+    corrupt.write_bytes(b"%PDF-1.4\nnot really a pdf, just garbage bytes\n%%EOF")
+
+    upstream = [
+        {"doc_slug": "bad-doc", "title": "Corrupt Document",
+         "url": "https://example.org/bad.pdf", "page_count": 1,
+         "pdf_path": str(corrupt)},
+        {"doc_slug": "fixture-doc", "title": "Fixture Transport Strategy",
+         "url": "https://example.org/fixture.pdf", "page_count": 4,
+         "pdf_path": str(FIXTURE_PDF)},
+    ]
+    writer = make_writer("extract_pages")
+    process(upstream, tmp_path, tmp_path, writer)
+    writer.finalize()
+
+    results = json.loads((tmp_path / "output.json").read_text())["results"]
+    assert [r["doc_slug"] for r in results] == ["fixture-doc"]
+    assert len(results[0]["pages"]) == 4
+
+    (error,) = json.loads((tmp_path / "errors.json").read_text())
+    assert error["error_type"] == "PageExtractionFailed"
+    assert error["context"]["doc_slug"] == "bad-doc"

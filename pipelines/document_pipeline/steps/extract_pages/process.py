@@ -17,6 +17,13 @@ scanned document with no text layer) is not a per-page problem: it is logged
 as one `NoTextLayer` error and the whole document is skipped, with no partial
 record written to output.json. OCR is out of scope for this pipeline.
 
+Nothing here is process-fatal except a malformed documents.yml (caught
+upstream). A PDF can pass fetch_pdfs's shallow open()-and-inspect check yet
+have a content stream malformed enough that pymupdf raises deep inside
+get_text, get_drawings, get_images, or find_tables; that failure is caught
+per document, logged to errors.json as `PageExtractionFailed`, and the
+document is skipped so one bad PDF can't abort the rest of the batch.
+
 Ported from pdf2site's plan (source plan Task 6, lines 1592-1973): the span,
 drawing, image, and table extraction, and the find_tables() handling. Adapted
 to write per-document `pages/<doc_slug>/` directories instead of a flat
@@ -166,13 +173,33 @@ def process(upstream_records, pdf_base_dir, step_dir, writer, doc_slug=None, ver
             print(f"  {doc['title']} ...", end=" ", flush=True)
 
         pdf_path = pdf_base_dir / doc["pdf_path"]
-        pdf_doc = pymupdf.open(str(pdf_path))
+        pdf_doc = None
         try:
-            page_count = pdf_doc.page_count
-            page_records = [extract_page(pdf_doc[i], i + 1) for i in range(page_count)]
-            outline = extract_outline(pdf_doc)
-        finally:
-            pdf_doc.close()
+            try:
+                pdf_doc = pymupdf.open(str(pdf_path))
+                page_count = pdf_doc.page_count
+                page_records = [extract_page(pdf_doc[i], i + 1) for i in range(page_count)]
+                outline = extract_outline(pdf_doc)
+            finally:
+                if pdf_doc is not None:
+                    pdf_doc.close()
+        except Exception as e:
+            # A PDF can pass fetch_pdfs's shallow open()-and-inspect check yet have a
+            # content stream malformed enough that pymupdf raises deep inside get_text,
+            # get_drawings, get_images, or find_tables. One bad document must not abort
+            # a twenty-document run — log it and move on, same as every other per-document
+            # failure mode in this pipeline.
+            append_error(step_dir, {
+                "step": STEP_NAME,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "error_type": "PageExtractionFailed",
+                "error_message": str(e),
+                "context": {"doc_slug": slug, "url": doc.get("url")},
+            })
+            writer.append([])
+            if verbose:
+                print("[error]", flush=True)
+            continue
 
         total_spans = sum(len(record["spans"]) for record in page_records)
         if total_spans == 0:
