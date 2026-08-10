@@ -1,0 +1,47 @@
+[
+  {
+    "number": 1,
+    "width": 595.0,
+    "height": 842.0,
+    "rotation": 0,
+    "spans": [
+      {"text": "Walking is the most universally available mode of transport, and improving",
+       "font": "Helvetica", "size": 10.0,
+       "bbox": [72.0, 100.0, 500.0, 110.0], "block": 0, "line": 0, "span": 0},
+      {"text": "the pedestrian environment therefore improves access for every other mode.",
+       "font": "Helvetica", "size": 10.0,
+       "bbox": [72.0, 114.0, 500.0, 124.0], "block": 0, "line": 1, "span": 0}
+    ],
+    "drawings": [], "images": [], "tables": []
+  },
+  {
+    "number": 2,
+    "width": 595.0,
+    "height": 842.0,
+    "rotation": 0,
+    "spans": [
+      {"text": "Household travel surveys were combined with automatic counter data",
+       "font": "Helvetica", "size": 10.0,
+       "bbox": [72.0, 100.0, 480.0, 110.0], "block": 0, "line": 0, "span": 0},
+      {"text": "collected at thirty locations across the study area over two years.",
+       "font": "Helvetica", "size": 10.0,
+       "bbox": [72.0, 114.0, 470.0, 124.0], "block": 0, "line": 1, "span": 0}
+    ],
+    "drawings": [], "images": [], "tables": []
+  },
+  {
+    "number": 3,
+    "width": 595.0,
+    "height": 842.0,
+    "rotation": 0,
+    "spans": [
+      {"text": "The pedestrian environment remains the single largest determinant of",
+       "font": "Helvetica", "size": 10.0,
+       "bbox": [72.0, 100.0, 490.0, 110.0], "block": 0, "line": 0, "span": 0},
+      {"text": "whether a short trip is made on foot rather than by private car.",
+       "font": "Helvetica", "size": 10.0,
+       "bbox": [72.0, 114.0, 460.0, 124.0], "block": 0, "line": 1, "span": 0}
+    ],
+    "drawings": [], "images": [], "tables": []
+  }
+]

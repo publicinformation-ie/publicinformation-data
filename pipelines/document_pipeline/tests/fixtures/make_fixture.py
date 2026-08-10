@@ -77,7 +77,13 @@ def _page_two(c: Canvas) -> None:
 
 def _page_three(c: Canvas) -> None:
     _furniture(c, 3)
-    _text(c, LEFT, 90.0, "1.2 Figures", H2_SIZE, SANS_BOLD)
+    # Deliberately unnumbered: the plan's fixture spec is four numbered
+    # headings (1, 1.1, 2, 2.1), giving two chapters with one section each.
+    # A numbered "1.2 Figures" here would make chapter 1 two sections deep and
+    # detach page 3's figures from section 1.1, which every later task's
+    # golden output is written against. It still exercises the font-hierarchy
+    # strategy, which does not require numbering.
+    _text(c, LEFT, 90.0, "Figures", H2_SIZE, SANS_BOLD)
 
     # Rect(LEFT, 130.0, 320.0, 300.0) in top-down (x0, y0, x1, y1) form.
     c.setStrokeColorRGB(0.2, 0.2, 0.2)

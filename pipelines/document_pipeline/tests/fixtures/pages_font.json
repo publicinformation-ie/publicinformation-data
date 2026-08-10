@@ -1,0 +1,49 @@
+[
+  {
+    "number": 1,
+    "width": 595.0,
+    "height": 842.0,
+    "rotation": 0,
+    "spans": [
+      {"text": "Introduction", "font": "Helvetica-Bold", "size": 18.0,
+       "bbox": [72.0, 76.0, 200.0, 94.0], "block": 0, "line": 0, "span": 0},
+      {"text": "Walking is the most universally available mode of transport, and improving",
+       "font": "Helvetica", "size": 10.0,
+       "bbox": [72.0, 120.0, 500.0, 130.0], "block": 1, "line": 0, "span": 0},
+      {"text": "the pedestrian environment therefore improves access for every other mode.",
+       "font": "Helvetica", "size": 10.0,
+       "bbox": [72.0, 134.0, 500.0, 144.0], "block": 1, "line": 1, "span": 0},
+      {"text": "Methodology", "font": "Helvetica-Bold", "size": 18.0,
+       "bbox": [72.0, 200.0, 220.0, 218.0], "block": 2, "line": 0, "span": 0},
+      {"text": "Household travel surveys were combined with automatic counter data",
+       "font": "Helvetica", "size": 10.0,
+       "bbox": [72.0, 244.0, 480.0, 254.0], "block": 3, "line": 0, "span": 0},
+      {"text": "collected at thirty locations across the study area over two years.",
+       "font": "Helvetica", "size": 10.0,
+       "bbox": [72.0, 258.0, 470.0, 268.0], "block": 3, "line": 1, "span": 0},
+      {"text": "A sub point", "font": "Helvetica-Bold", "size": 14.0,
+       "bbox": [72.0, 320.0, 180.0, 334.0], "block": 4, "line": 0, "span": 0},
+      {"text": "Counter data was weighted by day of week before aggregation.",
+       "font": "Helvetica", "size": 10.0,
+       "bbox": [72.0, 356.0, 440.0, 366.0], "block": 5, "line": 0, "span": 0}
+    ],
+    "drawings": [], "images": [], "tables": []
+  },
+  {
+    "number": 2,
+    "width": 595.0,
+    "height": 842.0,
+    "rotation": 0,
+    "spans": [
+      {"text": "Conclusions", "font": "Helvetica-Bold", "size": 18.0,
+       "bbox": [72.0, 76.0, 210.0, 94.0], "block": 0, "line": 0, "span": 0},
+      {"text": "The pedestrian environment remains the single largest determinant of",
+       "font": "Helvetica", "size": 10.0,
+       "bbox": [72.0, 120.0, 490.0, 130.0], "block": 1, "line": 0, "span": 0},
+      {"text": "whether a short trip is made on foot rather than by private car.",
+       "font": "Helvetica", "size": 10.0,
+       "bbox": [72.0, 134.0, 460.0, 144.0], "block": 1, "line": 1, "span": 0}
+    ],
+    "drawings": [], "images": [], "tables": []
+  }
+]

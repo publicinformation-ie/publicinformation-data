@@ -1,0 +1,69 @@
+[
+  {
+    "number": 1,
+    "width": 595.0,
+    "height": 842.0,
+    "rotation": 0,
+    "spans": [
+      {"text": "Fixture Transport Strategy", "font": "Helvetica-Bold", "size": 24.0,
+       "bbox": [72.0, 96.0, 340.0, 120.0], "block": 0, "line": 0, "span": 0},
+      {"text": "A deterministic test document", "font": "Helvetica", "size": 12.0,
+       "bbox": [72.0, 148.0, 260.0, 160.0], "block": 1, "line": 0, "span": 0}
+    ],
+    "drawings": [], "images": [], "tables": []
+  },
+  {
+    "number": 2,
+    "width": 595.0,
+    "height": 842.0,
+    "rotation": 0,
+    "spans": [
+      {"text": "1 First Chapter", "font": "Helvetica-Bold", "size": 18.0,
+       "bbox": [72.0, 76.0, 240.0, 94.0], "block": 0, "line": 0, "span": 0},
+      {"text": "1.1 ", "font": "Helvetica-Bold", "size": 14.0,
+       "bbox": [72.0, 118.0, 100.0, 132.0], "block": 1, "line": 0, "span": 0},
+      {"text": "Introduction", "font": "Helvetica-Bold", "size": 14.0,
+       "bbox": [100.0, 118.0, 200.0, 132.0], "block": 1, "line": 0, "span": 1},
+      {"text": "Walking is the most universally available mode of transport.",
+       "font": "Helvetica", "size": 10.0,
+       "bbox": [72.0, 160.0, 430.0, 170.0], "block": 2, "line": 0, "span": 0},
+      {"text": "10.5% of trips are made on foot in the city centre.",
+       "font": "Helvetica", "size": 10.0,
+       "bbox": [72.0, 180.0, 400.0, 190.0], "block": 3, "line": 0, "span": 0},
+      {"text": "2.4 million trips are made each day.",
+       "font": "Helvetica", "size": 10.0,
+       "bbox": [72.0, 200.0, 380.0, 210.0], "block": 4, "line": 0, "span": 0}
+    ],
+    "drawings": [], "images": [], "tables": []
+  },
+  {
+    "number": 3,
+    "width": 595.0,
+    "height": 842.0,
+    "rotation": 0,
+    "spans": [
+      {"text": "1.2 Figures", "font": "Helvetica-Bold", "size": 14.0,
+       "bbox": [72.0, 76.0, 160.0, 90.0], "block": 0, "line": 0, "span": 0},
+      {"text": "A figure follows this line of body text.",
+       "font": "Helvetica", "size": 10.0,
+       "bbox": [72.0, 118.0, 340.0, 128.0], "block": 1, "line": 0, "span": 0}
+    ],
+    "drawings": [], "images": [], "tables": []
+  },
+  {
+    "number": 4,
+    "width": 595.0,
+    "height": 842.0,
+    "rotation": 0,
+    "spans": [
+      {"text": "2 Second Chapter", "font": "Helvetica-Bold", "size": 18.0,
+       "bbox": [72.0, 76.0, 250.0, 94.0], "block": 0, "line": 0, "span": 0},
+      {"text": "2.1 Methods", "font": "Helvetica-Bold", "size": 14.0,
+       "bbox": [72.0, 118.0, 190.0, 132.0], "block": 1, "line": 0, "span": 0},
+      {"text": "A table of mode share follows this line of body text.",
+       "font": "Helvetica", "size": 10.0,
+       "bbox": [72.0, 160.0, 400.0, 170.0], "block": 2, "line": 0, "span": 0}
+    ],
+    "drawings": [], "images": [], "tables": []
+  }
+]
