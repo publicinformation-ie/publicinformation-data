@@ -24,6 +24,9 @@ def main():
     parser.add_argument("--verbose", action="store_true", help="Pass --verbose to each step")
     parser.add_argument("--public-body", type=int, default=None, dest="public_body",
                         help="Scope all steps to this public body ID only")
+    parser.add_argument("--doc", default=None, dest="doc",
+                        help="Scope all steps to this document slug only "
+                             "(document_pipeline)")
     args = parser.parse_args()
 
     pipeline_dir = Path(args.pipeline_dir).resolve()
@@ -95,6 +98,8 @@ def main():
             cmd.append("--verbose")
         if args.public_body is not None:
             cmd += ["--public-body", str(args.public_body)]
+        if args.doc is not None:
+            cmd += ["--doc", args.doc]
 
         env = {**os.environ, "PYTHONPATH": f"{pipeline_dir}{os.pathsep}{src_path}"}
         result = subprocess.run(cmd, env=env)

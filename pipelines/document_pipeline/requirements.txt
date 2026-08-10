@@ -1,0 +1,8 @@
+# Incremental to pipelines/foi_pipeline/requirements.txt, which the shared
+# root .venv is built from. Install with:
+#   uv pip install -r pipelines/document_pipeline/requirements.txt
+#
+# pymupdf is already present in the repo venv (1.28.0, MuPDF 1.29.0) and works
+# on Python 3.14 — pinned here so a fresh clone gets a known-good version.
+pymupdf==1.28.0
+pillow==11.0.0

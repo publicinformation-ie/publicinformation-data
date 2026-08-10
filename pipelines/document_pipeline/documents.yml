@@ -1,0 +1,10 @@
+# Curated source PDFs. doc_slug is a permanent public identifier: once a
+# document has been published, never change its slug — the web repo's URLs
+# and any external links are built from it.
+documents:
+  - doc_slug: gda-transport-strategy-2022-2042
+    title: "Greater Dublin Area Transport Strategy 2022–2042"
+    url: "https://www.nationaltransport.ie/wp-content/uploads/2022/01/GDA-Transport-Strategy-2022-2042.pdf"
+    publisher: "National Transport Authority"
+    public_body_id: 1570
+    published_date: "2023-01-19"

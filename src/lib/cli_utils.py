@@ -48,3 +48,22 @@ def merge_replacing_body(existing: list, new: list, public_body_id: int) -> list
     stateless transforms to honour the no-effect guarantee."""
     kept = [r for r in existing if r.get("public_body_id") != public_body_id]
     return kept + new
+
+
+def add_doc_arg(parser: argparse.ArgumentParser) -> None:
+    """Add --doc to a document_pipeline step parser. Kept separate from
+    add_common_args so foi_pipeline steps' interfaces are untouched."""
+    parser.add_argument("--doc", default=None, dest="doc",
+                        help="Scope processing to this document slug only")
+
+
+def filter_by_doc(data: dict, doc_slug):
+    """Return a shallow copy of `data` with 'results' filtered to doc_slug.
+    If doc_slug is None, returns `data` unchanged (same object). Other
+    top-level keys are preserved. Does not mutate `data`."""
+    if doc_slug is None:
+        return data
+    out = dict(data)
+    if "results" in out:
+        out["results"] = [r for r in out["results"] if r.get("doc_slug") == doc_slug]
+    return out

@@ -1,0 +1,11 @@
+{
+  "steps": [
+    "fetch_pdfs",
+    "extract_pages",
+    "detect_structure",
+    "extract_figures",
+    "clean_text",
+    "assemble_sections",
+    "publish_bundles"
+  ]
+}

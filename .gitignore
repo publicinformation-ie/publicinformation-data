@@ -40,3 +40,11 @@ pipelines/foi_pipeline/experiments/**/results/
 
 # Graphify
 graphify_out/
+
+# document_pipeline generated artefacts
+pipelines/document_pipeline/steps/*/pdfs/
+pipelines/document_pipeline/steps/*/pages/
+pipelines/document_pipeline/steps/*/assets/
+pipelines/document_pipeline/steps/*/sections/
+pipelines/document_pipeline/steps/*/contact-sheets/
+public/documents/

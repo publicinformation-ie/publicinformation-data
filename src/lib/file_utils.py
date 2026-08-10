@@ -41,7 +41,7 @@ def write_json(path, data):
 class IncrementalWriter:
     def __init__(self, output_path, step_name, key_field="public_body_id",
                  force=False, override_path=None, upstream_dirty_path=None,
-                 target_public_body=None):
+                 target_public_body=None, target_key=None):
         self.output_path = Path(output_path)
         self.step_name = step_name
         self.key_field = key_field
@@ -49,7 +49,8 @@ class IncrementalWriter:
         self.processed_keys = set()
         self.dirty_body_ids = set()
 
-        if (not force or target_public_body is not None) and self.output_path.exists():
+        if ((not force or target_public_body is not None or target_key is not None)
+                and self.output_path.exists()):
             try:
                 existing = read_json(self.output_path)
                 self.results = existing.get("results", [])
@@ -63,6 +64,20 @@ class IncrementalWriter:
 
         if target_public_body is not None:
             self._evict_keys({target_public_body})
+
+        if target_key is not None:
+            # Scoped re-run of one key_field value (e.g. --doc): drop that
+            # record so it is recomputed, and keep every other record intact.
+            # Mirrors _evict_keys but keys on key_field rather than
+            # public_body_id, because document_pipeline records have no
+            # public_body_id of their own.
+            before = len(self.results)
+            self.results = [r for r in self.results
+                            if r.get(self.key_field) != target_key]
+            self.processed_keys.discard(target_key)
+            if before != len(self.results):
+                print(f"Scoped: evicted {before - len(self.results)} record(s) "
+                      f"for {self.key_field}={target_key}")
 
         if override_path and Path(override_path).exists():
             self._load_overrides(Path(override_path))
