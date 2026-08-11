@@ -75,7 +75,7 @@ print([b for b in bodies if b['name'] == '<publisher name>'])
 
 Don't use `public/latest/public-bodies/public-bodies.csv` for this lookup — its `id` column is a slug URL (`https://data.publicinformation.ie/body/...`), not the integer `documents.py` validates against, so a value copied from there will fail validation. A wrong id here has caused real data-integrity bugs elsewhere in this repo (`orphan` errors in `export_status`) — the same care applies here even though `document_pipeline` doesn't share that guard.
 
-Then run the pipeline scoped to the new doc. `process.py`'s pipeline directory defaults to the *current working directory*, not the script's location, so running it as `uv run python pipelines/document_pipeline/process.py --force --doc <slug>` from the repo root fails with `FileNotFoundError: pipeline.json`. Either `cd pipelines/document_pipeline` first, or pass the directory explicitly:
+Then run the pipeline scoped to the new doc, from inside `pipelines/document_pipeline/` (see "Running it" above for why cwd matters here):
 
 ```bash
 uv run python pipelines/document_pipeline/process.py pipelines/document_pipeline --force --doc <the-new-slug>

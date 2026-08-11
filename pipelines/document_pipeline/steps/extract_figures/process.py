@@ -66,6 +66,7 @@ MIN_AREA_FRACTION = 0.04   # of page area; below this it is an icon or a bullet
 MIN_DIMENSION = 40.0       # points; a figure is not 12pt tall
 RULE_THICKNESS = 3.0       # points; thinner than this is a rule, not a graphic
 FULL_PAGE_FRACTION = 0.9   # of page area; above this it is a background panel
+OFF_PAGE_FRACTION = 0.5    # min on-page area share to count as a figure, not bleed
 PROSE_RATIO = 0.6          # share of characters at body size that makes a region text
 PROSE_MIN_LINES = 4        # fewer lines than this is a label, not a paragraph
 CAPTION_BAND = 90.0        # points above or below the cluster to search for a caption
@@ -125,6 +126,15 @@ def intersects(a, b) -> bool:
     return not (a[2] < b[0] or b[2] < a[0] or a[3] < b[1] or b[3] < a[1])
 
 
+def clip(box, bounds) -> "tuple | None":
+    """The overlap of `box` with `bounds`, or `None` when they don't overlap."""
+    x0, y0 = max(box[0], bounds[0]), max(box[1], bounds[1])
+    x1, y1 = min(box[2], bounds[2]), min(box[3], bounds[3])
+    if x1 <= x0 or y1 <= y0:
+        return None
+    return (x0, y0, x1, y1)
+
+
 def near(a, b, gap: float = CLUSTER_GAP) -> bool:
     return intersects(inflate(a, gap / 2.0), inflate(b, gap / 2.0))
 
@@ -142,11 +152,25 @@ def horizontally_overlaps(a, b) -> bool:
 # Which regions are figures
 # --------------------------------------------------------------------------
 
+def onpage_fraction(box, page_w: float, page_h: float) -> float:
+    """The fraction of `box`'s area that lies within the visible page canvas."""
+    onpage = clip(box, (0.0, 0.0, page_w, page_h))
+    return area(onpage) / area(box) if onpage is not None else 0.0
+
+
 def is_page_furniture(box, page_w: float, page_h: float, table_boxes) -> bool:
     """True for the things a page draws that are not figures: full-page
-    background panels, hairline rules and borders, and anything already claimed
-    by a detected table (tables get their own record; counting them twice would
+    background panels, hairline rules and borders, bleed art that sits mostly
+    or wholly off the visible canvas, and anything already claimed by a
+    detected table (tables get their own record; counting them twice would
     put the same region in the document as both a figure and a table)."""
+    if onpage_fraction(box, page_w, page_h) < OFF_PAGE_FRACTION:
+        # A drawing positioned past the page edge — print bleed, a facing-page
+        # artifact leaking into this page's raw image list — never renders as
+        # visible content here, so it must not be counted as a figure: a
+        # bogus (page, y) from a box sitting outside [0, page_h] corrupts the
+        # section-ownership ordering downstream in assemble_sections.
+        return True
     if area(box) >= FULL_PAGE_FRACTION * page_w * page_h:
         return True
     if height(box) < RULE_THICKNESS or width(box) < RULE_THICKNESS:
@@ -244,8 +268,11 @@ def candidate_boxes(page: dict) -> list:
     return boxes
 
 
-def page_figure_boxes(page: dict, body: float) -> list:
-    """The figure regions of one page, in reading order.
+def page_figure_boxes(page: dict, body: float) -> "tuple[list, list]":
+    """The figure regions of one page, in reading order, plus any candidate
+    boxes rejected as off-page bleed that were still partly on the canvas
+    (as opposed to wholly outside it) — worth a caller's attention since a
+    genuine bleed figure and a mis-detected one look the same at this point.
 
     Furniture first (cheapest, and it must happen before clustering or a
     full-page border would swallow the whole page into one cluster), then
@@ -255,13 +282,16 @@ def page_figure_boxes(page: dict, body: float) -> list:
     page_w, page_h = page["width"], page["height"]
     table_boxes = [tuple(table["bbox"]) for table in page.get("tables", [])]
     lines = page_lines(page)
+    candidates = candidate_boxes(page)
 
-    kept = [box for box in candidate_boxes(page)
+    partly_off_page = [box for box in candidates
+                        if 0.0 < onpage_fraction(box, page_w, page_h) < OFF_PAGE_FRACTION]
+    kept = [box for box in candidates
             if not is_page_furniture(box, page_w, page_h, table_boxes)]
     clusters = filter_clusters(cluster_boxes(kept), page_w, page_h)
     clusters = [box for box in clusters if not is_prose(box, lines, body)]
     clusters.sort(key=lambda box: (box[1], box[0]))
-    return clusters
+    return clusters, partly_off_page
 
 
 # --------------------------------------------------------------------------
@@ -338,8 +368,17 @@ def document_figures(pages: list, pdf, step_dir: Path, slug: str) -> list:
         lines = page_lines(page)
         pdf_page = pdf[number - 1]
 
+        figure_boxes, partly_off_page = page_figure_boxes(page, body)
+        for box in partly_off_page:
+            _error(step_dir, "FigurePartlyOffPage",
+                   "Region is mostly outside the visible page canvas and was "
+                   "treated as bleed/furniture rather than a figure; confirm "
+                   "this isn't a legitimate figure straddling the page edge.",
+                   {"doc_slug": slug, "page": number,
+                    "bbox": [round(v, 2) for v in box]})
+
         items = [("figure", index, box)
-                 for index, box in enumerate(page_figure_boxes(page, body), start=1)]
+                 for index, box in enumerate(figure_boxes, start=1)]
         items += [("table", index, tuple(table["bbox"]))
                   for index, table in enumerate(page.get("tables", []), start=1)]
 

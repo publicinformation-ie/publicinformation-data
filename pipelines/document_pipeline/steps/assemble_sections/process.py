@@ -368,6 +368,13 @@ def build(structure: dict, figures: dict, clean: dict, doc_slug: str, doc_title:
     page_count = int(structure.get("page_count") or len(clean.get("pages") or []))
     errors: list = []
 
+    for page in sorted(p for p in (intentional_empty_pages or []) if not (1 <= p <= page_count)):
+        errors.append(_error_dict(
+            "OverridePageOutOfRange",
+            f"override.json lists page {page} but this document has only "
+            f"{page_count} pages; the entry cannot apply to this build.",
+            {"doc_slug": doc_slug, "page": page, "page_count": page_count}))
+
     items = []
     for page in clean.get("pages") or []:
         for block in page.get("blocks") or []:
@@ -379,7 +386,21 @@ def build(structure: dict, figures: dict, clean: dict, doc_slug: str, doc_title:
             # `table` figures are the demotion target for a complex table, not
             # standalone illustrations; they are placed by the table block.
             continue
-        items.append({"page": int(figure["page"]), "y": float(figure["y"]),
+        figure_page, figure_y = int(figure["page"]), float(figure["y"])
+        if not (1 <= figure_page <= page_count) or figure_y < 0:
+            # A bogus (page, y) — wherever it came from — must not silently
+            # corrupt reading order here; extract_figures already filters
+            # these, but this is the one place that consumes the coordinates,
+            # so it gets its own check rather than trusting the producer.
+            errors.append(_error_dict(
+                "FigureOutOfBounds",
+                "Figure page/y falls outside the document's page range; "
+                "excluded from section ordering instead of risking a "
+                "misplaced insertion.",
+                {"doc_slug": doc_slug, "figure": figure.get("id"),
+                 "page": figure_page, "y": figure_y, "page_count": page_count}))
+            continue
+        items.append({"page": figure_page, "y": figure_y,
                       "kind": "figure", "block": figure})
     items.sort(key=lambda item: (item["page"], item["y"]))
     figures_by_id = {f["id"]: f for f in all_figures}

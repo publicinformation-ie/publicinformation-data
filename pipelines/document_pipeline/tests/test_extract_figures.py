@@ -14,6 +14,7 @@ from steps.extract_figures.process import (
     find_caption,
     is_page_furniture,
     is_prose,
+    onpage_fraction,
     process,
 )
 from steps.extract_pages.process import process as extract_pages_process
@@ -93,6 +94,33 @@ def test_a_drawing_inside_a_detected_table_is_furniture():
     table = (72.0, 160.0, 400.0, 280.0)
     assert is_page_furniture((80.0, 170.0, 390.0, 200.0), PAGE_W, PAGE_H, [table])
     assert not is_page_furniture((80.0, 400.0, 390.0, 600.0), PAGE_W, PAGE_H, [table])
+
+
+def test_a_box_mostly_off_the_page_edge_is_furniture():
+    """Bleed art or a facing-page artifact positioned past the canvas: only a
+    sliver of it overlaps this page, so it must not become a figure with a
+    bogus (page, y) that corrupts section ownership downstream."""
+    assert is_page_furniture((PAGE_W, -8.0, PAGE_W + 600.0, 260.0), PAGE_W, PAGE_H, [])
+
+
+def test_a_box_entirely_off_the_page_is_furniture():
+    assert is_page_furniture((-500.0, -500.0, -100.0, -100.0), PAGE_W, PAGE_H, [])
+
+
+def test_a_box_straddling_the_page_edge_with_minority_onpage_is_furniture():
+    """36% of the box sits on the visible canvas — under the 50% threshold —
+    so it is treated as bleed even though it is not wholly off the page."""
+    box = (PAGE_W - 18.0, 100.0, PAGE_W + 32.0, 200.0)
+    assert onpage_fraction(box, PAGE_W, PAGE_H) < 0.5
+    assert is_page_furniture(box, PAGE_W, PAGE_H, [])
+
+
+def test_a_box_straddling_the_page_edge_with_majority_onpage_is_kept():
+    """60% of the box sits on the visible canvas — over the 50% threshold —
+    so a real figure that merely bleeds past the edge is not dropped."""
+    box = (PAGE_W - 30.0, 100.0, PAGE_W + 20.0, 200.0)
+    assert onpage_fraction(box, PAGE_W, PAGE_H) > 0.5
+    assert not is_page_furniture(box, PAGE_W, PAGE_H, [])
 
 
 def test_a_cluster_below_the_area_floor_is_dropped():
