@@ -57,6 +57,22 @@ publicinformation-data/
 | **[scripts/AGENTS.md](scripts/AGENTS.md)** | Which helper script answers a given question (data-quality triage, tracing a file, migrations) | All agents |
 | **[scripts/README.md](scripts/README.md)** | Helper and admin scripts — full usage | Maintainers |
 
+## Subagent Dispatch Policy (model + effort)
+
+Every `Agent` tool dispatch in this project must pass an explicit `model`. Do not let it default, and do not assume a rule set in one session's memory applies to a sibling session already running — this must hold regardless of which session or worktree is dispatching.
+
+**Model** (capability ceiling / $-per-token) and **effort** (how hard the model works within that ceiling) are separate levers and compound with fan-out: a rule that's fine for one dispatch becomes expensive when applied to all N of a parallel fan-out. Default to the cheapest tier that can do the task; escalate deliberately, not by default.
+
+| Role | Model | Effort | When |
+|---|---|---|---|
+| Search / locate / triage / log summarizing | haiku | low | Mechanical fan-out work — being wrong just means re-asking |
+| Implementation, debugging, per-round review | sonnet | medium | Default for actual coding and reasoning work |
+| End-of-branch final review (once per branch) | opus | high | Trial per 2026-08-11 — single pass, not fanned out, so the cost is bounded even at the top tier |
+
+Named agent types encoding these defaults live in `.claude/agents/`: `explorer` (haiku/low), `implementer` (sonnet/medium), `reviewer` (sonnet/medium), `final-reviewer` (opus/high, once per branch only). Prefer dispatching via these named types over generic `general-purpose` so the model/effort choice doesn't have to be re-decided — and re-forgotten — every time.
+
+**This is enforced, not just documented.** A `PreToolUse` hook on the `Agent` tool (`.claude/settings.json` → `.claude/hooks/enforce_subagent_model_policy.sh`) auto-downgrades any `model: opus` dispatch to `sonnet` unless `subagent_type` is `final-reviewer`. It runs at the harness level regardless of which session or worktree issues the dispatch — this is what closed the gap where a same-day "sonnet only" instruction given in one session didn't stop a sibling worktree session from still dispatching opus subagents two hours later (see `docs`-local incident notes if present, or ask — root cause of the 2026-08-11 usage spike).
+
 ## Tool Use
 ### For Python Files
 1. **Do not use your native tools** (`grep_search`, `file_search`, `read_file`, `replace_string_in_file`) for inspecting, exploring, or navigating Python code unless Serena explicitly fails.
