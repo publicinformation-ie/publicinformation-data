@@ -199,6 +199,82 @@ def test_not_publishable_document_is_omitted_and_listed_as_failed(
     assert not (public_root / "broken-doc").exists()
 
 
+def test_regression_to_not_publishable_removes_the_stale_published_dir(
+        record, not_publishable_record, figures_record, fetch_record,
+        assemble_dir, figures_dir, tmp_path):
+    """A doc_slug that published successfully on run 1 and then fails
+    assemble_sections' coverage check on a rerun (--force) must not leave its
+    old bundle.tar.gz/meta.json/full.md/llms.txt live under public_root —
+    contract §3: 'a document that disappears from index.json should
+    disappear from the site'."""
+    same_slug_broken = json.loads(json.dumps(record))
+    same_slug_broken["coverage"]["gaps"] = [3]
+    same_slug_broken["publishable"] = False
+
+    step_dir = tmp_path / "publish_bundles"
+    step_dir.mkdir(parents=True, exist_ok=True)
+    public_root = tmp_path / "public" / "documents"
+
+    # Run 1: publishes successfully.
+    writer1 = IncrementalWriter(step_dir / "output.json", "publish_bundles",
+                                key_field="doc_slug", force=True)
+    process([record], {DOC: figures_record}, {DOC: fetch_record},
+           assemble_dir, figures_dir, step_dir, public_root, writer1)
+    writer1.finalize()
+    assert (public_root / DOC / "bundle.tar.gz").exists()
+    index1 = json.loads((public_root / "index.json").read_text())
+    assert [d["doc_slug"] for d in index1["documents"]] == [DOC]
+
+    # Run 2: same doc_slug now fails coverage, --force reprocesses it.
+    writer2 = IncrementalWriter(step_dir / "output.json", "publish_bundles",
+                                key_field="doc_slug", force=True)
+    process([same_slug_broken], {DOC: figures_record}, {DOC: fetch_record},
+           assemble_dir, figures_dir, step_dir, public_root, writer2)
+    writer2.finalize()
+
+    assert not (public_root / DOC).exists()
+    index2 = json.loads((public_root / "index.json").read_text())
+    assert index2["documents"] == []
+    assert [d["doc_slug"] for d in index2["failed"]] == [DOC]
+
+
+def test_doc_slug_removed_from_current_run_prunes_its_stale_dir(
+        record, figures_record, fetch_record, assemble_dir, figures_dir, tmp_path):
+    """A doc_slug published on run 1 but absent from run 2's input entirely
+    (e.g. deleted or renamed in documents.yml) must have its stale directory
+    pruned, even though it was never marked failed."""
+    step_dir = tmp_path / "publish_bundles"
+    step_dir.mkdir(parents=True, exist_ok=True)
+    public_root = tmp_path / "public" / "documents"
+
+    writer1 = IncrementalWriter(step_dir / "output.json", "publish_bundles",
+                                key_field="doc_slug", force=True)
+    process([record], {DOC: figures_record}, {DOC: fetch_record},
+           assemble_dir, figures_dir, step_dir, public_root, writer1)
+    writer1.finalize()
+    assert (public_root / DOC / "bundle.tar.gz").exists()
+
+    # A stray directory not backed by any known doc_slug at all (e.g. a
+    # manual leftover) must be pruned too.
+    stray = public_root / "totally-unknown-doc"
+    stray.mkdir(parents=True)
+    (stray / "bundle.tar.gz").write_bytes(b"stale")
+
+    # Run 2: the input no longer includes DOC at all (evicted upstream), and
+    # writer2 is freshly force-initialized with no accumulated results, so
+    # DOC never appears in writer2.results/index.json either.
+    writer2 = IncrementalWriter(step_dir / "output.json", "publish_bundles",
+                                key_field="doc_slug", force=True)
+    process([], {}, {}, assemble_dir, figures_dir, step_dir, public_root, writer2)
+    writer2.finalize()
+
+    assert not (public_root / DOC).exists()
+    assert not stray.exists()
+    index2 = json.loads((public_root / "index.json").read_text())
+    assert index2["documents"] == []
+    assert index2["failed"] == []
+
+
 # --- bundle interior ------------------------------------------------------
 
 def _read_bundle(public_root, doc_slug=DOC):

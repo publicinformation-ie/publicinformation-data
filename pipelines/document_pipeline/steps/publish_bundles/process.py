@@ -40,6 +40,7 @@ import hashlib
 import io
 import json
 import re
+import shutil
 import tarfile
 from datetime import datetime, timezone
 from pathlib import Path
@@ -292,6 +293,50 @@ def _write_document(record: dict, fetch_record: dict, figures_record: dict,
                        bundle_sha256=bundle_sha256, bundle_bytes=len(bundle))
 
 
+def _safe_doc_root(public_root: Path, doc_slug: str) -> Path:
+    """Resolve `public_root/<doc_slug>`, raising if the slug isn't a plain,
+    direct child name — same posture as the doc_slug/arcname safety checks
+    above (`_write_document`, `_assert_safe_arcname`), applied here so a
+    directory-removal path can never be tricked outside `public_root`."""
+    if re.search(r"(^\.\.$|/|\\)", doc_slug) or doc_slug in (".", ".."):
+        raise ValueError(f"unsafe doc_slug: {doc_slug!r}")
+    doc_root = public_root / doc_slug
+    if doc_root.resolve().parent != public_root.resolve():
+        raise ValueError(f"computed document path escapes public_root: {doc_root}")
+    return doc_root
+
+
+def _remove_stale_doc_dir(public_root: Path, doc_slug: str) -> None:
+    """Remove a document's published directory, if any. Called whenever a
+    doc_slug is no longer among the current run's successfully-published or
+    -failed set, so `bundle.tar.gz`/`meta.json`/`full.md`/`llms.txt` from a
+    stale prior run never outlive their `index.json` entry (contract §3: "a
+    document that disappears from index.json should disappear from the
+    site")."""
+    doc_root = _safe_doc_root(public_root, doc_slug)
+    if doc_root.is_dir():
+        shutil.rmtree(doc_root)
+
+
+def _prune_orphaned_doc_dirs(public_root: Path, valid_slugs: set, step_dir: Path) -> None:
+    """Remove any `public_root` subdirectory whose name isn't a slug present
+    in this run's `index.json` (`documents[]` or `failed[]`). Covers a
+    doc_slug being deleted from `documents.yml` entirely or renamed — not
+    just the not-publishable regression handled inline in `process()` —
+    without ever half-publishing (per-directory failures are logged and
+    skipped, not fatal to the batch)."""
+    if not public_root.is_dir():
+        return
+    for child in sorted(public_root.iterdir()):
+        if not child.is_dir() or child.name in valid_slugs:
+            continue
+        try:
+            _remove_stale_doc_dir(public_root, child.name)
+        except Exception as e:
+            append_error(step_dir, _error_dict(
+                "PublishBundlesStaleDirRemovalFailed", str(e), {"doc_slug": child.name}))
+
+
 def process(records, figures_by_doc, fetched_by_doc, assemble_dir, figures_dir,
            step_dir, public_root, writer, doc_slug=None, verbose=False):
     """Pack every publishable document into a bundle and (re)write
@@ -320,6 +365,14 @@ def process(records, figures_by_doc, fetched_by_doc, assemble_dir, figures_dir,
                 "message": f"assemble_sections marked this document not publishable "
                           f"(gaps={coverage['gaps']}, overlaps={coverage['overlaps']})",
             }])
+            # A document that published successfully on a prior run and now
+            # regresses to not-publishable must not leave its old bundle
+            # live at its old URL — see module docstring / contract §3.
+            try:
+                _remove_stale_doc_dir(public_root, slug)
+            except Exception as e:
+                append_error(step_dir, _error_dict(
+                    "PublishBundlesStaleDirRemovalFailed", str(e), {"doc_slug": slug}))
             if verbose:
                 print("[not publishable]", flush=True)
             continue
@@ -355,6 +408,14 @@ def process(records, figures_by_doc, fetched_by_doc, assemble_dir, figures_dir,
             print("published", flush=True)
 
     _write_index_json(writer.results, public_root)
+
+    # General orphan-prune (contract §3, "never half-published"): remove any
+    # public_root subdirectory that isn't a slug in the index we just wrote —
+    # catches a doc_slug dropped from documents.yml entirely or renamed, on
+    # top of the not-publishable regression handled above.
+    valid_slugs = {r["doc_slug"] for r in writer.results
+                  if r.get("status") in ("published", "failed")}
+    _prune_orphaned_doc_dirs(public_root, valid_slugs, step_dir)
 
 
 def _write_index_json(results: list, public_root: Path) -> None:

@@ -452,6 +452,12 @@ def main():
     parser = argparse.ArgumentParser(
         description="Cluster each document's page geometry into figures, render them to "
                     "WebP, and write a contact sheet per document")
+    # Note: because --input drives the shared runner's staleness check, this
+    # step reruns whenever detect_structure/output.json changes at all — even
+    # on a change with no effect on figures — while the real dependency,
+    # extract_pages, doesn't drive staleness at all. Don't "fix" this back to
+    # reading --input directly; see the Fan-in comment below for why that's
+    # wrong.
     parser.add_argument("--input", required=True,
                         help="Unused (kept for the shared runner's CLI contract and staleness "
                              "check) — extract_pages/output.json is always read by sibling path, "

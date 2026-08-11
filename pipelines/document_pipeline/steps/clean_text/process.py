@@ -372,6 +372,12 @@ def main():
     parser = argparse.ArgumentParser(
         description="Reflow each document's extracted spans into readable blocks: "
                      "headings, paragraphs, lists and tables")
+    # Note: because --input drives the shared runner's staleness check, this
+    # step reruns whenever extract_figures/output.json changes at all — even
+    # on a change with no effect on cleaned text — while the real dependency,
+    # extract_pages, doesn't drive staleness at all. Don't "fix" this back to
+    # reading --input directly; see the Fan-in comment below for why that's
+    # wrong.
     parser.add_argument("--input", required=True,
                         help="Unused (kept for the shared runner's CLI contract and staleness "
                              "check) — extract_pages/output.json is always read by sibling path, "
