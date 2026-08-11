@@ -13,14 +13,14 @@ Because ownership is otherwise total and exclusive, the coverage check that foll
 - a page that contributed to **no** section is content that went nowhere — what a structure-detection miss looks like from downstream;
 - a page claimed by **two** sections means the boundary set or the reading order is wrong.
 
-Content sitting **before the first boundary** (a title page, a table of contents) is owned by nothing. It is deliberately **not** absorbed into a synthetic `front-matter` section: the pages it sits on surface as a `coverage.gaps` entry instead, because inventing a section to swallow them is exactly the papering-over the coverage assertion exists to prevent.
+Content sitting **before the first boundary** (a title page, a table of contents — every real PDF has some) has no boundary to own it, so it is assembled into a synthetic `front-matter` chapter and section (both slugged `front-matter`, `order: 0`) instead of surfacing as a `coverage.gaps` entry. This is real content, attributed to its real pages, so it is a legitimate section under the contract §5 slug rules rather than a paper-over — and it is the only way a real PDF, which always has a cover page, is ever publishable. A pre-boundary page that still ends up in `gaps` means it had no extractable blocks or figures at all (a genuinely blank page), not that it precedes the first heading.
 
 ## What it does
 
 For each document in `clean_text/output.json`:
 
 1. Flattens every page's blocks and every `kind: "figure"` figure into one list ordered by `(page, y)`. `kind: "table"` figures are held back — they are the demotion target for a complex table, not standalone illustrations, and are placed by the table block itself.
-2. Assigns each item to its owning boundary. A level-1 node that owns content directly (a chapter preamble, before its first section heading) becomes that chapter's `overview` section.
+2. Assigns each item to its owning boundary. A level-1 node that owns content directly (a chapter preamble, before its first section heading) becomes that chapter's `overview` section. Items before the *first* boundary (nothing owns them) become the synthetic `front-matter` chapter and section, `order: 0` — omitted entirely when there is no such content.
 3. Renders each section's items, in order, into the contract's Markdown subset: ATX `##`–`####` headings, paragraphs, `-` and `1.` lists, GFM pipe tables, and images each followed by an italic caption line. No raw HTML, no blockquotes, no code fences, and **no H1 repeating the section's own title**.
 4. Demotes a table it cannot honestly render — merged cells arrive here as ragged rows — to the rasterised `kind: "table"` image `extract_figures` made of the same region, joined on `table_figure_id(page, index)` (`p004-t01`), plus its caption.
 5. Drops a paragraph that duplicates a caption already emitted under its image on the same page. `clean_text` has no knowledge of figures, so a caption line reaches this step as ordinary prose as well; this is the first place both facts are known, so it is where the duplicate is removed.

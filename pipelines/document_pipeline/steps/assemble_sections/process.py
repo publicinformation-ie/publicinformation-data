@@ -6,7 +6,13 @@ assert that no content vanished on the way.
 it: every text block and every figure belongs to the **last section boundary
 at or before its `(page, y)`**. A boundary's own heading block is excluded —
 it is the boundary, not content underneath it, and it lives in the section's
-frontmatter `title` rather than being repeated as a body heading. Because
+frontmatter `title` rather than being repeated as a body heading. Content that
+sits before the *first* boundary — a title page, a table of contents, any
+front cover material every real PDF has — has no boundary to own it, so it is
+assembled into a synthetic `front-matter` chapter and section (both slugged
+`front-matter`, `order: 0`) rather than left uncovered. It is real content,
+attributed to its real pages, so this is a legitimate section under the
+contract §5 slug rules, not content manufactured from nothing. Because
 ownership is otherwise total and exclusive, the coverage check that follows
 is meaningful: a page that contributed nothing to any section is content that
 went nowhere, which is exactly what a structure-detection miss looks like from
@@ -46,6 +52,10 @@ and the coverage assertion. Adapted to:
   * report `empty_sections` for section-level nodes only — a chapter with no
     preamble between its heading and its first section is normal, whereas a
     section heading that owns nothing is a real signal;
+  * add the synthetic `front-matter` section the source plan calls for
+    (line 4025) for content before the first detected boundary, matching the
+    document-pipeline plan's own Data Contracts worked example, which shows
+    page 1 as covered;
   * replace an in-cell newline with a space rather than the source plan's
     `<br>`: the contract's Markdown subset forbids raw HTML;
   * treat a per-document failure as an `AssembleSectionsFailed` errors.json
@@ -81,6 +91,8 @@ FRONTMATTER_KEYS = ("title", "doc", "doc_title", "chapter", "chapter_title",
 _ALWAYS_QUOTED = frozenset({"title", "doc_title", "chapter_title", "source_url"})
 
 OVERVIEW = "overview"       # slug for a chapter's own preamble content
+FRONT_MATTER = "front-matter"       # slug for content before the first boundary
+FRONT_MATTER_TITLE = "Front Matter"
 MAX_TABLE_COLUMNS = 12      # wider than this is a layout grid, not a table
 MIN_HEADING_LEVEL = 2       # contract: ATX `##`-`####` only
 MAX_HEADING_LEVEL = 4
@@ -369,12 +381,14 @@ def build(structure: dict, figures: dict, clean: dict, doc_slug: str, doc_title:
         keys.append((key, node, chapter, slug))
         owned[key] = []
 
+    front_matter_items = []
     for item in items:
         index = owner_index(item["page"], item["y"], boundaries)
         if index < 0:
-            # Before the first boundary: no section owns it. Deliberately not
-            # absorbed into a synthetic front-matter section — the pages it
-            # sits on surface as a coverage gap instead.
+            # Before the first boundary: no section boundary owns it, so it
+            # is assembled into the synthetic front-matter section below
+            # rather than surfacing as a coverage gap.
+            front_matter_items.append(item)
             continue
         owned[keys[index][0]].append(item)
 
@@ -415,6 +429,34 @@ def build(structure: dict, figures: dict, clean: dict, doc_slug: str, doc_title:
             assets=assets, markdown=f"{head}\n\n{body}\n"))
         pages_by_section[f"{chapter['slug']}/{slug}"] = pages
 
+    if front_matter_items:
+        # Content before the first detected boundary — a title page, a table
+        # of contents — has no heading of its own to draw a title from, so it
+        # gets a fixed one. `order: 0` sorts it ahead of every real chapter.
+        pages = sorted({item["page"] for item in front_matter_items})
+        source_pages = [pages[0], pages[-1]]
+        body, assets = _render(front_matter_items, figures_by_id, errors, doc_slug)
+        head = frontmatter({
+            "title": FRONT_MATTER_TITLE,
+            "doc": doc_slug,
+            "doc_title": doc_title,
+            "chapter": FRONT_MATTER,
+            "chapter_title": FRONT_MATTER_TITLE,
+            "section": FRONT_MATTER,
+            "order": 0,
+            "source_pages": source_pages,
+            "source_url": source_url,
+            "public_body_id": public_body_id,
+            "assets": assets,
+        })
+        sections.append(Section(
+            slug=FRONT_MATTER, chapter=FRONT_MATTER, chapter_title=FRONT_MATTER_TITLE,
+            title=FRONT_MATTER_TITLE, order=0,
+            file=f"sections/{doc_slug}/{FRONT_MATTER}/{FRONT_MATTER}.md",
+            source_pages=source_pages, word_count=len(body.split()),
+            assets=assets, markdown=f"{head}\n\n{body}\n"))
+        pages_by_section[f"{FRONT_MATTER}/{FRONT_MATTER}"] = pages
+
     sections.sort(key=lambda s: (s.order, s.slug))
 
     chapters = []
@@ -440,8 +482,11 @@ def build(structure: dict, figures: dict, clean: dict, doc_slug: str, doc_title:
             "CoverageGap",
             f"Page {page} contributed no content to any section. Content that "
             "reached no section is content that vanished — usually a "
-            "structure-detection miss, or pages sitting before the first "
-            "detected heading. The document is not publishable.",
+            "structure-detection miss, or a page with no extractable content "
+            "(pages before the first detected heading are covered by the "
+            "synthetic front-matter section instead, so a gap there means the "
+            "page had no blocks or figures at all). The document is not "
+            "publishable.",
             {"doc_slug": doc_slug, "page": page, "gaps": report["gaps"]}))
     for page in report["overlaps"]:
         claimants = sorted(key for key, pages in pages_by_section.items() if page in pages)

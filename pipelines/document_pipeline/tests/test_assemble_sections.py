@@ -15,6 +15,7 @@ import pytest
 
 from lib.file_utils import IncrementalWriter
 from steps.assemble_sections.process import (
+    FRONT_MATTER,
     FRONTMATTER_KEYS,
     build,
     process,
@@ -393,12 +394,13 @@ def test_a_rerun_removes_a_stale_section_file(structure, figures, clean, tmp_pat
             / "1-1-introduction.md").exists()
 
 
-def test_the_fixture_documents_page_one_front_matter_is_reported_as_a_gap(
+def test_the_fixture_documents_page_one_is_covered_by_a_front_matter_section(
         structure, figures, clean, tmp_path):
     """The real fixture PDF's page 1 is a title page that sits before the
-    first detected heading, so no section owns it. That is a coverage gap and
-    the document is not publishable — the check is deliberately not papered
-    over with a synthetic front-matter section."""
+    first detected heading. It is assembled into a synthetic front-matter
+    section rather than left as a coverage gap — matching the plan's own
+    Data Contracts worked example, which shows page 1 as covered and the
+    document as publishable."""
     structure = copy.deepcopy(structure)
     for candidate in structure["nodes"]:
         candidate["start_page"] += 1
@@ -411,5 +413,56 @@ def test_the_fixture_documents_page_one_front_matter_is_reported_as_a_gap(
     structure["page_count"] = 5
 
     result = assemble(structure, figures, clean)
-    assert result.coverage["gaps"] == [1]
-    assert result.publishable is False
+    assert result.coverage["gaps"] == []
+    assert 1 in result.coverage["covered"]
+    assert result.publishable is True
+
+    front_matter = section_by_slug(result, FRONT_MATTER)
+    assert front_matter.chapter == FRONT_MATTER
+    assert front_matter.order == 0
+    assert front_matter.source_pages == [1, 1]
+    assert "Fixture Transport Strategy" in body_of(front_matter)
+    assert f"chapter: {FRONT_MATTER}" in frontmatter_block(front_matter)
+    assert f"section: {FRONT_MATTER}" in frontmatter_block(front_matter)
+    assert "order: 0" in frontmatter_block(front_matter)
+
+
+def test_front_matter_section_is_excluded_when_nothing_precedes_the_first_boundary(
+        structure, figures, clean):
+    """The unmodified fixture's first boundary starts at page 1, y=70 — the
+    very first block — so there is nothing before it and no front-matter
+    section should be manufactured."""
+    result = assemble(structure, figures, clean)
+    assert not any(s.slug == FRONT_MATTER for s in result.sections)
+    assert not any(c["slug"] == FRONT_MATTER for c in result.chapters)
+
+
+def test_front_matter_section_only_covers_its_own_pre_boundary_pages(
+        structure, figures, clean):
+    """Front matter spanning several pages reports source_pages as
+    [first, last] inclusive, same as any other section, and does not swallow
+    pages that belong to a real section."""
+    structure = copy.deepcopy(structure)
+    for candidate in structure["nodes"]:
+        candidate["start_page"] += 2
+        candidate["end_page"] += 2
+    clean = copy.deepcopy(clean)
+    for page in clean["pages"]:
+        page["number"] += 2
+    clean["pages"][0:0] = [
+        {"number": 1, "blocks": [
+            {"type": "paragraph", "text": "Cover page.", "y": 120.0}]},
+        {"number": 2, "blocks": [
+            {"type": "paragraph", "text": "Table of contents.", "y": 120.0}]},
+    ]
+    structure["page_count"] = 6
+
+    result = assemble(structure, figures, clean)
+    front_matter = section_by_slug(result, FRONT_MATTER)
+    assert front_matter.source_pages == [1, 2]
+    assert "Cover page." in body_of(front_matter)
+    assert "Table of contents." in body_of(front_matter)
+    introduction = section_by_slug(result, "1-1-introduction")
+    assert "Cover page." not in body_of(introduction)
+    assert result.coverage["gaps"] == []
+    assert result.publishable is True
