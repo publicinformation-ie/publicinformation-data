@@ -15,3 +15,10 @@ documents:
     publisher: "Department of Transport"
     public_body_id: 1213
     published_date: "2025-07-16"
+
+  - doc_slug: sustainable-mobility-policy-action-plan-2026-2030
+    title: "Sustainable Mobility Policy Action Plan 2026-2030"
+    url: "https://assets.gov.ie/static/documents/7da21a41/Sustainable_Mobility_Policy_Action_Plan_2026-2030.pdf"
+    publisher: "Department of Transport"
+    public_body_id: 1213
+    published_date: "2026-02-26"
