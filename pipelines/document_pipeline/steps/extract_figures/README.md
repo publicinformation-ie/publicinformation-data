@@ -70,13 +70,16 @@ Each figure:
 
 - `contact-sheets/<doc_slug>.html` — every rendered region of one document with its id, kind, page, bbox and pixel size, and the threshold values the run used. This is the tuning affordance: threshold tuning is a visual task, and a number whose effect you can see is worth more than a number you can justify. Generated and gitignored; open it after any change to the constants above.
 
-- `errors.json` — truncated to `[]` at the start of every run. Nothing here is fatal to a document or to the run.
+- `errors.json` — truncated to `[]` at the start of every run. Nothing here is process-fatal: failures are isolated per figure and per document, so one bad region cannot cost a document its other figures and one bad document cannot abort the batch.
 
-  | `error_type` | Cause |
-  |---|---|
-  | `MissingCaption` | No caption line near the region. The figure is still emitted, titled `Figure from page N` — a missing caption is a presentation problem, not a reason to drop a figure out of the document |
-  | `FigureRenderFailed` | The region would not rasterise. That one region is skipped; the document's other figures are unaffected |
-  | `SourcePdfMissing` | No `fetch_pdfs` record (or no downloaded file) for this document. The document is skipped; run `fetch_pdfs` first |
+  | `error_type` | Scope | Cause |
+  |---|---|---|
+  | `MissingCaption` | figure | No caption line near the region. The figure is still emitted, titled `Figure from page N` — a missing caption is a presentation problem, not a reason to drop a figure out of the document |
+  | `FigureRenderFailed` | figure | The region would not rasterise. That one region is skipped; the document's other figures are unaffected |
+  | `SourcePdfMissing` | document | No `fetch_pdfs` record (or no downloaded file) for this document. Run `fetch_pdfs` first |
+  | `DocumentFigureExtractionFailed` | document | The PDF would not open, a page sidecar is missing, or `extract_pages` recorded a page the PDF does not have (cross-step staleness). The document is skipped and the rest of the batch still runs — the same isolation `extract_pages` applies with `PageExtractionFailed` |
+
+  A document skipped by either document-level error is **not** marked processed, so a later run retries it without `--force`.
 
 ## Flags
 

@@ -19,12 +19,17 @@ and a number whose effect you can see is worth more than a number you can
 justify. One document's contact sheet is `contact-sheets/<doc_slug>.html`;
 open it and look before touching a constant.
 
-Nothing here is fatal to a document or to the run. A cluster that will not
-rasterise is one `FigureRenderFailed` entry in errors.json and the rest of the
-document still publishes; a figure with no caption near it is one
-`MissingCaption` entry and still gets a record, with `Figure from page N` as
-its title. A missing caption is a presentation problem, not a reason to drop a
-figure out of the document.
+Nothing here is process-fatal. Failures are isolated at two levels. Per figure:
+a cluster that will not rasterise is one `FigureRenderFailed` entry in
+errors.json and the document's other figures are unaffected; a figure with no
+caption near it is one `MissingCaption` entry and still gets a record, with
+`Figure from page N` as its title, because a missing caption is a presentation
+problem and not a reason to drop a figure out of the document. Per document: a
+PDF that will not open, a missing page sidecar, or a page index that no longer
+exists in the PDF (cross-step staleness) is one `DocumentFigureExtractionFailed`
+entry, and the rest of the batch still runs — the same isolation extract_pages
+applies with `PageExtractionFailed`. A skipped document is not marked
+processed, so a later run retries it.
 
 Ported from pdf2site's plan (source plan Tasks 9 and 10, lines 2846-3505): the
 geometry, the heuristics, the WebP rendering and the contact sheet. Adapted to
@@ -410,15 +415,32 @@ def process(upstream_records, pages_base_dir, pdf_paths, step_dir, writer,
             continue
 
         clear_assets(step_dir / "assets" / slug)
-        pages = load_pages(pages_base_dir, record)
 
         pdf = None
         try:
-            pdf = pymupdf.open(str(pdf_path))
-            figures = document_figures(pages, pdf, step_dir, slug)
-        finally:
-            if pdf is not None:
-                pdf.close()
+            try:
+                pages = load_pages(pages_base_dir, record)
+                pdf = pymupdf.open(str(pdf_path))
+                figures = document_figures(pages, pdf, step_dir, slug)
+            finally:
+                if pdf is not None:
+                    pdf.close()
+        except Exception as e:
+            # Whole-document failure, distinct from the per-figure
+            # FigureRenderFailed above: the PDF will not open at all, a page
+            # sidecar is missing, or extract_pages recorded more pages than the
+            # PDF actually has (cross-step staleness, a recurring failure mode
+            # in this repo) so `pdf[number - 1]` is out of range. One bad
+            # document must not abort a twenty-document run — log it, skip it,
+            # and carry on, exactly as extract_pages does with
+            # PageExtractionFailed. The document is not marked processed, so a
+            # later run retries it.
+            _error(step_dir, "DocumentFigureExtractionFailed", str(e),
+                   {"doc_slug": slug, "pdf_path": str(pdf_path)})
+            writer.append([])
+            if verbose:
+                print("[error]", flush=True)
+            continue
 
         write_contact_sheet(step_dir / "contact-sheets" / f"{slug}.html", slug, figures)
         writer.append([{"doc_slug": slug, "figures": figures}])

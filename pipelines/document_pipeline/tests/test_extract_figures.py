@@ -3,6 +3,7 @@ from pathlib import Path
 
 from lib.file_utils import IncrementalWriter
 from steps.detect_structure.process import Line
+from steps.extract_figures import process as extract_figures_process
 from steps.extract_figures.process import (
     CAPTION_RE,
     CLUSTER_GAP,
@@ -164,6 +165,83 @@ def test_no_caption_yields_a_fallback_title_and_a_missing_caption_error(tmp_path
     errors = json.loads((step_dir / "errors.json").read_text())
     assert [e["error_type"] for e in errors] == ["MissingCaption"]
     assert errors[0]["context"]["figure_id"] == figure["id"]
+
+
+# --- failures are isolated, per figure and per document --------------------
+
+def test_one_unrenderable_figure_does_not_prevent_the_others(tmp_path, monkeypatch):
+    """A cluster that will not rasterise costs its own record and nothing else."""
+    upstream, records = write_upstream(tmp_path, [page(
+        number=3,
+        spans=[{"text": "Figure 1.1 A vector diagram", "font": "Helvetica", "size": 9.0,
+                "bbox": [72.0, 305.0, 183.0, 317.0], "block": 0, "line": 0, "span": 0}],
+        drawings=[{"bbox": [72.0, 130.0, 320.0, 300.0]},
+                  {"bbox": [72.0, 350.0, 300.0, 480.0]}])])
+    step_dir = tmp_path / "extract_figures"
+    step_dir.mkdir()
+    writer = writer_for(step_dir / "output.json")
+
+    real_render = extract_figures_process.render
+
+    def selective(pdf_page, box, target):
+        if target.name == "p003-f02.webp":
+            raise RuntimeError("cannot rasterise")
+        return real_render(pdf_page, box, target)
+
+    monkeypatch.setattr(extract_figures_process, "render", selective)
+    process(records, upstream, {"fixture-doc": FIXTURE_PDF}, step_dir, writer)
+    writer.finalize()
+
+    (record,) = json.loads((step_dir / "output.json").read_text())["results"]
+    assert [f["id"] for f in record["figures"]] == ["p003-f01"]
+    assert (step_dir / "assets" / "fixture-doc" / "p003-f01.webp").exists()
+
+    errors = json.loads((step_dir / "errors.json").read_text())
+    assert [e["error_type"] for e in errors] == ["FigureRenderFailed"]
+    assert errors[0]["context"]["figure_id"] == "p003-f02"
+
+
+def test_one_failing_document_does_not_prevent_the_others(tmp_path):
+    """An unopenable PDF is one document's problem, not the whole run's."""
+    upstream, records = write_upstream(
+        tmp_path, [page(number=3, drawings=[{"bbox": [72.0, 130.0, 320.0, 300.0]}])])
+    broken = tmp_path / "broken.pdf"
+    broken.write_bytes(b"not a pdf at all")
+    records = [{**records[0], "doc_slug": "broken-doc"}, records[0]]
+
+    step_dir = tmp_path / "extract_figures"
+    step_dir.mkdir()
+    writer = writer_for(step_dir / "output.json")
+
+    process(records, upstream, {"broken-doc": broken, "fixture-doc": FIXTURE_PDF},
+            step_dir, writer)
+    writer.finalize()
+
+    results = json.loads((step_dir / "output.json").read_text())["results"]
+    assert [r["doc_slug"] for r in results] == ["fixture-doc"]
+
+    errors = json.loads((step_dir / "errors.json").read_text())
+    failures = [e for e in errors if e["error_type"] == "DocumentFigureExtractionFailed"]
+    assert [e["context"]["doc_slug"] for e in failures] == ["broken-doc"]
+    # Not marked processed, so a later run retries it.
+    assert "broken-doc" not in writer.processed_keys
+
+
+def test_a_page_missing_from_the_pdf_is_a_document_error_not_a_crash(tmp_path):
+    """extract_pages recorded more pages than the PDF has — the recurring
+    cross-step staleness failure. It must not abort the run."""
+    upstream, records = write_upstream(
+        tmp_path, [page(number=99, drawings=[{"bbox": [72.0, 130.0, 320.0, 300.0]}])])
+    step_dir = tmp_path / "extract_figures"
+    step_dir.mkdir()
+    writer = writer_for(step_dir / "output.json")
+
+    process(records, upstream, {"fixture-doc": FIXTURE_PDF}, step_dir, writer)
+    writer.finalize()
+
+    assert json.loads((step_dir / "output.json").read_text())["results"] == []
+    errors = json.loads((step_dir / "errors.json").read_text())
+    assert [e["error_type"] for e in errors] == ["DocumentFigureExtractionFailed"]
 
 
 # --- integration against the real fixture PDF ------------------------------
