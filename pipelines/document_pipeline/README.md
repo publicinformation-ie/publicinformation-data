@@ -20,12 +20,16 @@ Three of these steps — `detect_structure`, `extract_figures` and `clean_text` 
 
 ## Running it
 
+Run these from inside `pipelines/document_pipeline/` — the runner's pipeline directory defaults to the current working directory, not the script's location, so invoking `process.py` by its repo-root-relative path while `cwd` is the repo root fails with `FileNotFoundError: pipeline.json`. (If you must run from the repo root, pass the directory explicitly: `uv run python pipelines/document_pipeline/process.py pipelines/document_pipeline --force ...`.)
+
 ```bash
+cd pipelines/document_pipeline
+
 # Full pipeline
-uv run python pipelines/document_pipeline/process.py --force
+uv run python process.py --force
 
 # One document only (documents.yml's doc_slug)
-uv run python pipelines/document_pipeline/process.py --force --doc gda-transport-strategy-2022-2042
+uv run python process.py --force --doc gda-transport-strategy-2022-2042
 ```
 
 `--doc` pairs with `--force` in practice: the shared runner's mtime-based staleness check does not know about per-document freshness, so a scoped run without `--force` may decide the whole pipeline is already up to date and skip everything.
@@ -48,15 +52,36 @@ documents:
 
 `doc_slug` must match `^[a-z0-9]+(-[a-z0-9]+)*$` and is a permanent public identifier — once a document is published, the web repo's URLs and any external links are built from it, so it is never changed. `documents.yml` is the pipeline's only hand-authored input and is validated strictly: a malformed entry is the one condition in this pipeline that is process-fatal (see `documents.py`), because every downstream step is keyed on `doc_slug`.
 
-**`public_body_id`, if set, must be a real id from the Public Bodies dataset.** Look it up — don't type it from memory. The fastest way:
+**`title`, if not confirmed from the source, must be read off the actual PDF — not guessed from the URL filename.** `assets.gov.ie`-style filenames (e.g. `20250716_RSS_Phase_2_Action_Plan.pdf`) are abbreviations, not titles, and the filename date is an upload date, not necessarily the `published_date`. `WebFetch` cannot read PDF text (it only sees the raw binary and reports failure) but it does save the fetched file locally, so extract the cover page directly:
 
 ```bash
-grep -i "<publisher name>" public/latest/public-bodies/public-bodies.csv
+uv run python3 -c "
+import fitz
+doc = fitz.open('<path to the WebFetch-saved .pdf>')
+print(doc.metadata)          # creationDate is a decent published_date fallback
+print(doc[0].get_text())     # cover page usually has the real title + publisher
+"
 ```
 
-or cross-reference `pipelines/foi_pipeline/steps/export_status/output.json`'s `public_bodies` array. A wrong id here has caused real data-integrity bugs elsewhere in this repo (`orphan` errors in `export_status`) — the same care applies here even though `document_pipeline` doesn't share that guard.
+**`public_body_id`, if set, must be a real id from the Public Bodies dataset.** Look it up — don't type it from memory. Use `pipelines/foi_pipeline/steps/find_public_bodies/output.json` (`public_bodies` array, 883 entries) — it has the small integer id (e.g. `1213`) that `documents.yml` requires:
 
-Then run `uv run python pipelines/document_pipeline/process.py --force --doc <the-new-slug>`.
+```bash
+python3 -c "
+import json
+bodies = json.load(open('pipelines/foi_pipeline/steps/find_public_bodies/output.json'))['public_bodies']
+print([b for b in bodies if b['name'] == '<publisher name>'])
+"
+```
+
+Don't use `public/latest/public-bodies/public-bodies.csv` for this lookup — its `id` column is a slug URL (`https://data.publicinformation.ie/body/...`), not the integer `documents.py` validates against, so a value copied from there will fail validation. A wrong id here has caused real data-integrity bugs elsewhere in this repo (`orphan` errors in `export_status`) — the same care applies here even though `document_pipeline` doesn't share that guard.
+
+Then run the pipeline scoped to the new doc. `process.py`'s pipeline directory defaults to the *current working directory*, not the script's location, so running it as `uv run python pipelines/document_pipeline/process.py --force --doc <slug>` from the repo root fails with `FileNotFoundError: pipeline.json`. Either `cd pipelines/document_pipeline` first, or pass the directory explicitly:
+
+```bash
+uv run python pipelines/document_pipeline/process.py pipelines/document_pipeline --force --doc <the-new-slug>
+```
+
+After it finishes, check `steps/*/errors.json` for entries tagged with the new `doc_slug` and confirm the doc appears in `public/documents/index.json` with an empty `failed` list — see the `errors.json` triage table below for which error types are informational versus which mean the document was skipped.
 
 ## Correcting a misread document
 

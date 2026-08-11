@@ -8,3 +8,10 @@ documents:
     publisher: "National Transport Authority"
     public_body_id: 1570
     published_date: "2023-01-19"
+
+  - doc_slug: road-safety-strategy-phase-2-action-plan-2025-2027
+    title: "Road Safety Strategy 2021–2030: Phase 2 Action Plan 2025–2027"
+    url: "https://assets.gov.ie/static/documents/20250716_RSS_Phase_2_Action_Plan.pdf"
+    publisher: "Department of Transport"
+    public_body_id: 1213
+    published_date: "2025-07-16"
