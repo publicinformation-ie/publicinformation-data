@@ -320,21 +320,34 @@ def _render(items: list, figures_by_id: dict, errors: list, doc_slug: str):
     return body, assets
 
 
-def coverage(pages_by_section: dict, page_count: int, empty_sections: list) -> dict:
+def coverage(pages_by_section: dict, page_count: int, empty_sections: list,
+             raw_content_pages=(), intentional_empty_pages=()) -> dict:
     """The publication gate. `covered` is every page that contributed content
     to some section; a `gap` is a page that contributed to none (content that
     vanished); an `overlap` is a page claimed by two or more sections, which
     the contract, §7 forbids — every page must be covered by exactly one
-    section."""
+    section.
+
+    A gap page is `furniture` instead of a blocking gap only when BOTH the
+    override names it AND it produced zero raw blocks/figures
+    (`raw_content_pages`) — a page that failed the override's second half is
+    left as a real gap, fail-safe against a stale override hiding actual
+    content loss. See docs/superpowers/plans — assemble_sections/override.json,
+    and pipelines/document_pipeline/steps/assemble_sections/README.md."""
     covered = sorted({page for pages in pages_by_section.values() for page in pages})
-    gaps = [n for n in range(1, int(page_count) + 1) if n not in covered]
+    all_gaps = [n for n in range(1, int(page_count) + 1) if n not in covered]
+    furniture_pages = sorted(
+        page for page in all_gaps
+        if page in intentional_empty_pages and page not in raw_content_pages)
+    gaps = [page for page in all_gaps if page not in furniture_pages]
     claims: dict = {}
     for pages in pages_by_section.values():
         for page in pages:
             claims[page] = claims.get(page, 0) + 1
     overlaps = sorted(page for page, count in claims.items() if count > 1)
     return {"page_count": int(page_count), "covered": covered, "gaps": gaps,
-            "overlaps": overlaps, "empty_sections": sorted(empty_sections)}
+            "overlaps": overlaps, "empty_sections": sorted(empty_sections),
+            "furniture_pages": furniture_pages}
 
 
 def _error_dict(error_type: str, message: str, context: dict) -> dict:
@@ -346,7 +359,8 @@ def _error_dict(error_type: str, message: str, context: dict) -> dict:
 
 
 def build(structure: dict, figures: dict, clean: dict, doc_slug: str, doc_title: str,
-          source_url: str, public_body_id=None) -> AssembleResult:
+          source_url: str, public_body_id=None,
+          intentional_empty_pages: "list | None" = None) -> AssembleResult:
     """Cut one document's cleaned blocks into sections and render them."""
     nodes = list(structure.get("nodes") or [])
     by_slug = {n["slug"]: n for n in nodes}
@@ -369,6 +383,8 @@ def build(structure: dict, figures: dict, clean: dict, doc_slug: str, doc_title:
                       "kind": "figure", "block": figure})
     items.sort(key=lambda item: (item["page"], item["y"]))
     figures_by_id = {f["id"]: f for f in all_figures}
+    raw_content_pages = {item["page"] for item in items}
+    override_pages = set(intentional_empty_pages or [])
 
     # One candidate section per boundary. A level-1 node that owns content
     # directly (a chapter preamble) becomes that chapter's `overview` section.
@@ -476,7 +492,18 @@ def build(structure: dict, figures: dict, clean: dict, doc_slug: str, doc_title:
         })
     chapters.sort(key=lambda c: c["order"])
 
-    report = coverage(pages_by_section, page_count, empty_sections)
+    report = coverage(pages_by_section, page_count, empty_sections,
+                      raw_content_pages=raw_content_pages,
+                      intentional_empty_pages=override_pages)
+    for page in sorted(override_pages - set(report["furniture_pages"])):
+        errors.append(_error_dict(
+            "StaleFurnitureOverride",
+            "This page is listed in override.json as an intentionally-empty "
+            "furniture page, but is not a furniture-only gap for this build "
+            "— either it now has content, or it was never actually a gap. "
+            "Informational: does not block publication, but the override "
+            "entry should be re-verified and removed if it no longer applies.",
+            {"doc_slug": doc_slug, "page": page}))
     for page in report["gaps"]:
         errors.append(_error_dict(
             "CoverageGap",
@@ -520,11 +547,24 @@ def _index_by_doc(path: Path) -> dict:
             if "doc_slug" in record}
 
 
+def _load_overrides(step_dir: Path) -> dict:
+    """`{doc_slug: [page, ...]}` — pages a human has verified produce zero raw
+    blocks/figures by design (a chapter-divider art page, not a
+    structure-detection miss). See `coverage()` for the fail-safe: an entry
+    here only suppresses a gap when the page is *also* actually raw-content-
+    empty for this build."""
+    path = Path(step_dir) / "override.json"
+    if not path.exists():
+        return {}
+    return read_json(path)
+
+
 def process(clean_records, structures, figures, meta, step_dir, writer,
             doc_slug=None, verbose=False):
     """Assemble every document's sections and write one Markdown file each."""
     step_dir = Path(step_dir)
     write_json(step_dir / "errors.json", [])
+    overrides = _load_overrides(step_dir)
 
     documents = clean_records
     if doc_slug is not None:
@@ -549,7 +589,8 @@ def process(clean_records, structures, figures, meta, step_dir, writer,
                 doc_slug=slug,
                 doc_title=document.get("doc_title") or slug,
                 source_url=document.get("source_url") or "",
-                public_body_id=document.get("public_body_id"))
+                public_body_id=document.get("public_body_id"),
+                intentional_empty_pages=overrides.get(slug))
 
             doc_dir = step_dir / "sections" / slug
             if doc_dir.exists():

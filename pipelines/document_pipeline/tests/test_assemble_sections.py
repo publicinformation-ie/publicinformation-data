@@ -18,6 +18,7 @@ from steps.assemble_sections.process import (
     FRONT_MATTER,
     FRONTMATTER_KEYS,
     build,
+    coverage,
     process,
     render_table,
     table_figure_id,
@@ -97,9 +98,10 @@ def figures():
     ]}
 
 
-def assemble(structure, figures, clean):
+def assemble(structure, figures, clean, intentional_empty_pages=None):
     return build(structure, figures, clean, doc_slug=DOC, doc_title=DOC_TITLE,
-                 source_url=SOURCE_URL, public_body_id=PUBLIC_BODY_ID)
+                 source_url=SOURCE_URL, public_body_id=PUBLIC_BODY_ID,
+                 intentional_empty_pages=intentional_empty_pages)
 
 
 def section_by_slug(result, slug):
@@ -260,7 +262,7 @@ def test_image_paths_are_bundle_relative_and_listed_in_the_assets_frontmatter(
 def test_full_coverage_of_pages_one_to_n_is_publishable(structure, figures, clean):
     result = assemble(structure, figures, clean)
     assert result.coverage == {"page_count": 4, "covered": [1, 2, 3, 4], "gaps": [],
-                               "overlaps": [], "empty_sections": []}
+                               "overlaps": [], "empty_sections": [], "furniture_pages": []}
     assert result.publishable is True
 
 
@@ -304,6 +306,41 @@ def test_two_sections_claiming_the_same_page_is_a_coverage_overlap(
     assert [e["context"]["page"] for e in overlaps] == [2]
 
 
+def test_override_marks_a_verified_furniture_page_as_covered_by_design(
+        structure, figures, clean, tmp_path):
+    """A page with zero raw blocks and zero figures — a chapter-divider design
+    page, not a structure-detection miss — is content that was never there to
+    begin with. `override.json` lets a human record that once, per doc_slug,
+    instead of it permanently blocking publication."""
+    clean = copy.deepcopy(clean)
+    clean["pages"][2]["blocks"] = []            # page 3 has nothing left
+    figures = {"doc_slug": DOC, "figures": []}
+
+    result = assemble(structure, figures, clean, intentional_empty_pages=[3])
+    assert result.coverage["gaps"] == []
+    assert result.coverage["furniture_pages"] == [3]
+    assert result.publishable is True
+
+    record, errors = run_process(tmp_path, structure, figures, clean,
+                                 overrides={DOC: [3]})
+    assert record["publishable"] is True
+    assert record["coverage"]["furniture_pages"] == [3]
+    assert not [e for e in errors if e["error_type"] == "CoverageGap"]
+
+
+def test_coverage_does_not_treat_a_gap_page_with_raw_content_as_furniture():
+    """A stale override — the page was empty when someone verified it, but
+    upstream extraction now finds content there — must not silently hide a
+    real coverage gap. Fail safe: only a page with zero raw blocks/figures
+    (`raw_content_pages`) is ever treated as furniture, regardless of what
+    the override claims."""
+    pages_by_section = {"a/a": [1, 2], "b/b": [4]}   # page 3 is a gap
+    report = coverage(pages_by_section, page_count=4, empty_sections=[],
+                      raw_content_pages={3}, intentional_empty_pages={3})
+    assert report["gaps"] == [3]
+    assert report["furniture_pages"] == []
+
+
 def test_an_empty_section_is_listed_but_does_not_block_publication(
         structure, figures, clean):
     """A heading that owns no prose is worth reporting, but it is not content
@@ -323,10 +360,12 @@ def test_an_empty_section_is_listed_but_does_not_block_publication(
 # --- step -------------------------------------------------------------------
 
 def run_process(tmp_path, structure, figures, clean, extra_clean=None,
-                structures=None, meta=None):
+                structures=None, meta=None, overrides=None):
     """Run the step's process() over one document and return (record, errors)."""
     step_dir = tmp_path / "assemble_sections"
     step_dir.mkdir(exist_ok=True)
+    if overrides is not None:
+        (step_dir / "override.json").write_text(json.dumps(overrides))
     writer = IncrementalWriter(step_dir / "output.json", "assemble_sections",
                                key_field="doc_slug", force=True)
     clean_records = [clean] + list(extra_clean or [])

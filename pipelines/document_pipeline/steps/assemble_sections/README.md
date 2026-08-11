@@ -15,6 +15,12 @@ Because ownership is otherwise total and exclusive, the coverage check that foll
 
 Content sitting **before the first boundary** (a title page, a table of contents — every real PDF has some) has no boundary to own it, so it is assembled into a synthetic `front-matter` chapter and section (both slugged `front-matter`, `order: 0`) instead of surfacing as a `coverage.gaps` entry. This is real content, attributed to its real pages, so it is a legitimate section under the contract §5 slug rules rather than a paper-over — and it is the only way a real PDF, which always has a cover page, is ever publishable. A pre-boundary page that still ends up in `gaps` means it had no extractable blocks or figures at all (a genuinely blank page), not that it precedes the first heading.
 
+### Furniture pages: `override.json`
+
+A gap page with **zero raw blocks and zero figures** is indistinguishable, from inside this step, between two very different causes: a structure-detection miss (real content that vanished) and a chapter-divider design page (a page-number, a running header, a full-bleed background image already correctly rejected as furniture upstream) that never had extractable content to begin with. Coverage can't tell those apart automatically — that's why this is a human-verified override, not a heuristic.
+
+`override.json` — `{doc_slug: [page, ...]}`, hand-maintained — names pages a human has confirmed are furniture-only for a given document. A page only moves from `gaps` to `coverage.furniture_pages` (and stops blocking `publishable`) when it satisfies **both**: listed in the override, *and* still produces zero raw blocks/figures for this build. If the override is stale — the page now has content — the gap is left in place (fail-safe) and a `StaleFurnitureOverride` error names it so the override can be re-verified.
+
 ## What it does
 
 For each document in `clean_text/output.json`:
@@ -38,6 +44,7 @@ A document that fails the check still gets its Markdown and its output record �
 | `gaps` | Pages `1..page_count` that contributed to none — content that vanished |
 | `overlaps` | Pages claimed by two or more sections; the contract requires exactly one |
 | `empty_sections` | Section headings that own no text or figures. **Informational** — an empty section does not by itself block publication |
+| `furniture_pages` | Gap pages named in `override.json` and verified (zero raw blocks/figures) as design-only. **Informational** — removed from `gaps`, does not block publication |
 
 `publishable` is `false` iff `gaps` or `overlaps` is non-empty.
 
