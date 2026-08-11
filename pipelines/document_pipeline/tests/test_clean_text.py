@@ -7,6 +7,7 @@ from steps.clean_text.process import (
     body_size,
     classify_list,
     dehyphenate,
+    is_dingbat_marker,
     is_furniture,
     is_marginalia,
     join_lines,
@@ -97,6 +98,47 @@ def test_a_span_far_outside_the_main_column_is_dropped_as_marginalia():
     column = text_column(body_lines)
     assert not is_marginalia(body_lines[0], column)
     assert is_marginalia(line("Side note", x0=20.0, y0=200.0), column)
+
+
+# --- dingbat bullet markers -----------------------------------------------
+
+def test_a_short_wingdings2_line_is_a_dingbat_marker():
+    assert is_dingbat_marker(line("y", font="Wingdings2", size=11.0))
+
+
+def test_a_short_webdings_or_symbol_line_is_also_a_dingbat_marker():
+    assert is_dingbat_marker(line("a", font="Webdings", size=11.0))
+    assert is_dingbat_marker(line("F", font="Symbol", size=11.0))
+
+
+def test_a_long_line_in_a_dingbat_font_is_not_treated_as_a_marker():
+    # A whole paragraph is never actually set in a dingbat font in practice,
+    # but the length guard keeps this narrow rather than trusting font name
+    # alone to decide a multi-word line is a stray glyph.
+    assert not is_dingbat_marker(line("Some unexpectedly long run of text", font="Wingdings2"))
+
+
+def test_an_ordinary_font_is_never_a_dingbat_marker():
+    assert not is_dingbat_marker(line("y", font="Gotham-Book"))
+
+
+def test_a_wingdings2_bullet_glyph_is_dropped_rather_than_joined_into_the_paragraph():
+    """Regression test for the real GDA Transport Strategy PDF: a Wingdings2
+    bullet glyph decodes to the literal letter 'y' via PyMuPDF's raw text
+    extraction (not a Unicode bullet character), and without this filter it
+    reads as a real word and gets joined straight into the item's prose —
+    silent content corruption, not a missing bullet."""
+    spans = [
+        span("Public transport services operate on a spectrum.", y0=100.0, block=0, line=0),
+        span("y", font="Wingdings2", y0=130.0, block=1, line=0),
+        span("Standard Bus Service ", y0=130.0, block=1, line=1),
+        span("carrying less than 400 passengers per hour.", y0=145.0, block=1, line=2),
+    ]
+    blocks, _suspect = blocks_for_page(page(spans), body=10.0, repeated=set(), levels={})
+    joined_text = " ".join(b["text"] for b in blocks if b["type"] == "paragraph")
+    assert "y Standard Bus Service" not in joined_text
+    assert " y " not in f" {joined_text} "
+    assert "Standard Bus Service carrying less than 400 passengers per hour." in joined_text
 
 
 # --- list detection ------------------------------------------------------

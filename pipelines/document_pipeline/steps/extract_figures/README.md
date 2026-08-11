@@ -37,9 +37,9 @@ Every threshold is a module-level constant at the top of `process.py`, because t
 
 ## Input
 
-`extract_pages/output.json`, via `--input` (required). Page sidecars are resolved relative to that file's parent using each record's `pages[].file`.
+`extract_pages/output.json`, always resolved by a fixed sibling path (`steps/extract_pages/output.json`), **not** from `--input`. The shared runner only ever chains `--input` to the *immediately preceding* step in `pipeline.json`, and `detect_structure` sits between `extract_pages` and `extract_figures` there (it too consumes `extract_pages` directly) — so trusting `--input`'s literal target would silently read `detect_structure`'s structure-node records instead, which carry no page geometry, producing a cascading zero-figure result with no error. `--input` is still a required flag (the shared runner's CLI contract, and its path still drives the runner's staleness check), it just is not read here. Page sidecars are resolved relative to `extract_pages/`'s own directory, using each record's `pages[].file`.
 
-This step is a **fan-in**: the geometry comes from `--input`, and the source PDFs from the sibling `fetch_pdfs` step, resolved as `steps/fetch_pdfs/output.json` (`extract_pages` deliberately records no PDF path, because nothing downstream of it is supposed to need one). The shared runner passes a single `--input`, so the second upstream is resolved by path — the same technique `foi_pipeline`'s `export_status` uses. Called as a function, `process()` takes an explicit `pdf_paths` mapping instead.
+This step is also a **fan-in** on a second upstream: the source PDFs come from the sibling `fetch_pdfs` step, resolved the same way as `steps/fetch_pdfs/output.json` (`extract_pages` deliberately records no PDF path, because nothing downstream of it is supposed to need one) — the same technique `foi_pipeline`'s `export_status` uses. Called as a function, `process()` takes an explicit `pdf_paths` mapping instead.
 
 ## Output
 

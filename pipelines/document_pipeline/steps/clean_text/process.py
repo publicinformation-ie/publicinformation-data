@@ -75,6 +75,32 @@ ORDERED_RE = re.compile(r"^\s*\(?(\d{1,2}|[a-z])[.)]\s+(.+)$")
 PAGE_NUMBER_RE = re.compile(r"^\s*[\-–—|]?\s*\d{1,4}\s*[\-–—|]?\s*$")
 _DIGITS = re.compile(r"\d")
 
+# Word/InDesign-style bullet lists sometimes set their bullet glyph in a
+# dingbat font (Wingdings, Wingdings2/3, Webdings, Symbol) on its own
+# PyMuPDF line, separate from the item's text line. PyMuPDF decodes that
+# glyph via the font's own cmap, which for a dingbat font is not Unicode —
+# a Wingdings2 bullet character routinely decodes to an ordinary ASCII
+# letter (`y` is the one this pipeline has actually seen, on a real 244-page
+# government strategy PDF: 486 occurrences, one per bullet). None of the
+# regexes above can recognise that as a bullet marker; left alone, it reads
+# as a real word and is joined straight into the surrounding prose —
+# `"single route every 15 minutes y carrying less than 400..."` — silent
+# content corruption, not a missing bullet glyph. `is_dingbat_marker` drops
+# these lines the same way furniture is dropped, so the corruption doesn't
+# reach a paragraph. It does not attempt to reconstruct a real `list` block
+# from them: the glyph line and its item text arrive as separate PyMuPDF
+# lines (sometimes even reordered by `blocks_for_page`'s y-then-x sort,
+# since a dingbat glyph's baseline metrics differ from the surrounding
+# font), and stitching that back into `ordered`/`items` correctly is a
+# bigger, separate piece of work. A clean paragraph with no bullet
+# character is a smaller data-quality problem than a stray letter injected
+# mid-sentence, so this is the deliberately narrow fix.
+_DINGBAT_FONT_RE = re.compile(r"wingdings|webdings|symbol", re.IGNORECASE)
+
+
+def is_dingbat_marker(line: Line) -> bool:
+    return bool(_DINGBAT_FONT_RE.search(line.font or "")) and len(line.text.strip()) <= 3
+
 
 def _key(line: Line) -> tuple:
     return (_DIGITS.sub("#", line.text.strip().lower()), int(line.y0 // Y_BAND))
@@ -210,6 +236,7 @@ def blocks_for_page(page: dict, body: float, repeated: set, levels: dict):
     suspect = _suspect_reading_order(all_lines)
 
     kept = [line for line in all_lines if not is_furniture(line, page_h, repeated)]
+    kept = [line for line in kept if not is_dingbat_marker(line)]
     column = text_column([line for line in kept if abs(line.size - body) <= 0.6] or kept)
     kept = [line for line in kept if not is_marginalia(line, column)]
     kept = [line for line in kept
@@ -345,7 +372,10 @@ def main():
     parser = argparse.ArgumentParser(
         description="Reflow each document's extracted spans into readable blocks: "
                      "headings, paragraphs, lists and tables")
-    parser.add_argument("--input", required=True, help="Path to extract_pages/output.json")
+    parser.add_argument("--input", required=True,
+                        help="Unused (kept for the shared runner's CLI contract and staleness "
+                             "check) — extract_pages/output.json is always read by sibling path, "
+                             "see the Fan-in comment below")
     parser.add_argument("--output", default=None, help="Path to write output.json")
     parser.add_argument("--force", action="store_true", help="Re-clean every document")
     parser.add_argument("--verbose", action="store_true", help="Print progress")
@@ -355,9 +385,19 @@ def main():
     step_dir = Path(__file__).parent
     output_path = Path(args.output) if args.output else step_dir / "output.json"
 
-    input_path = Path(args.input)
-    upstream_records = read_json(input_path).get("results", [])
-    pages_base_dir = input_path.parent
+    # Fan-in: this step's true upstream is extract_pages's page geometry, but
+    # pipeline.json does not place extract_pages immediately before
+    # clean_text (detect_structure and extract_figures both sit between
+    # them, since they too consume extract_pages directly) — the shared
+    # runner only ever chains --input to the *immediately preceding* step's
+    # own output.json, so trusting --input's literal target here would
+    # silently read extract_figures's figure records instead of page
+    # geometry (no error, just doc_slug -> [] pages, i.e. cascading
+    # zero-block output). Resolved by a fixed sibling path instead, the same
+    # pattern extract_figures uses for its own copy of this same fan-in.
+    extract_pages_dir = step_dir.parent / "extract_pages"
+    upstream_records = read_json(extract_pages_dir / "output.json").get("results", [])
+    pages_base_dir = extract_pages_dir
 
     writer = IncrementalWriter(output_path, STEP_NAME, key_field="doc_slug",
                                force=args.force, target_key=args.doc)

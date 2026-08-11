@@ -62,6 +62,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Each record's `public_body` field links to the same `@id` published in the Public Bodies dataset
 - Source fetched live from lobbying.ie's public JSON API on every pipeline run, matched against Public Bodies by fuzzy name matching (threshold 0.90) via the shared `src/lib/body_matching.py` helper
 
+## [documents 1.0.0] - 2026-08-11
+
+### Added
+- Documents dataset: large public-interest PDFs (transport strategies, statutory reviews, policy reports) split into per-section Markdown plus extracted figures, one reproducible `bundle.tar.gz` per document
+- `public/documents/index.json` library manifest — one record per published document with page/chapter/section/figure counts, `bundle_sha256` and `source_sha256` for provenance and skip-if-unchanged caching
+- Bundle interior fixed by `docs/superpowers/specs/2026-08-10-document-bundle-contract.md`: `meta.json` (navigation tree), `llms.txt`, `full.md`, `sections/<chapter-slug>/<section-slug>.md`, `assets/<figure-id>.webp` — `llms.txt` and `full.md` also published loose alongside the bundle
+- DCAT-AP metadata for the Documents dataset, related to the Public Bodies dataset via `dct:relation`
+- Each document's `public_body_id` field, where set, is a real id from the Public Bodies dataset
+- Curated via a hand-authored `documents.yml`; first document is the National Transport Authority's Greater Dublin Area Transport Strategy 2022–2042
+- A document that fails to build (e.g. a coverage gap) is omitted from `index.json`'s `documents` array and listed under `failed`, never half-published
+
 ## Template
 
 For future entries, use this template:

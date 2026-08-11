@@ -25,7 +25,7 @@ Supports **incremental resumption** via `IncrementalWriter` (`key_field="doc_slu
 
 ## Input
 
-`extract_pages/output.json`, via `--input` (required). Page sidecars are resolved relative to that file's parent directory using each record's `pages[].file`.
+`extract_pages/output.json`, always resolved by a fixed sibling path (`steps/extract_pages/output.json`), **not** from `--input`. The shared runner only ever chains `--input` to the *immediately preceding* step in `pipeline.json`, and `detect_structure` and `extract_figures` both sit between `extract_pages` and `clean_text` there (they too consume `extract_pages` directly) — so trusting `--input`'s literal target would silently read one of their outputs instead, which carry no page geometry, producing a cascading zero-block result with no error. `--input` is still a required flag (the shared runner's CLI contract, and its path still drives the runner's staleness check), it just is not read here. Page sidecars are resolved relative to `extract_pages/`'s own directory, using each record's `pages[].file`.
 
 ## Output
 

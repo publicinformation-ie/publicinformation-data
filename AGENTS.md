@@ -19,17 +19,23 @@ publicinformation-data/
 ├── AGENTS.md                          # This file - top-level index
 ├── DATA_FLOW.md                      # End-to-end data flow overview
 ├── pipelines/
-│   └── foi_pipeline/
-│       ├── AGENTS.md                 # FOI pipeline architecture and operations
-│       ├── process.py                # Pipeline execution engine
+│   ├── foi_pipeline/
+│   │   ├── AGENTS.md                 # FOI pipeline architecture and operations
+│   │   ├── process.py                # Pipeline execution engine
+│   │   ├── pipeline.json              # Authoritative step order configuration
+│   │   └── steps/
+│   │       ├── AGENTS.md              # Steps directory management guidelines
+│   │       ├── README.md              # Complete step sequence and descriptions
+│   │       └── <step_name>/
+│   │           ├── README.md          # Step-specific documentation
+│   │           ├── process.py         # Step entry point
+│   │           └── AGENTS.md          # (Some steps may have their own)
+│   └── document_pipeline/
+│       ├── README.md                 # Step sequence, adding a document, override/contact-sheet/errors.json triage
+│       ├── process.py                # Pipeline execution engine (shared lib.pipeline_runner)
 │       ├── pipeline.json              # Authoritative step order configuration
-│       └── steps/
-│           ├── AGENTS.md              # Steps directory management guidelines
-│           ├── README.md              # Complete step sequence and descriptions
-│           └── <step_name>/
-│               ├── README.md          # Step-specific documentation
-│               ├── process.py         # Step entry point
-│               └── AGENTS.md          # (Some steps may have their own)
+│       ├── documents.yml              # Hand-authored source PDF list — only hand-authored input
+│       └── steps/<step_name>/         # fetch_pdfs, extract_pages, detect_structure, extract_figures, clean_text, assemble_sections, publish_bundles
 ├── scripts/
 │   ├── AGENTS.md                      # Which helper script to use, and when
 │   └── README.md                     # Helper scripts documentation
@@ -141,6 +147,8 @@ find_public_bodies → validate_websites → find_foi_pages → check_foi_pages 
 
 See [DATA_FLOW.md](DATA_FLOW.md) for the complete end-to-end flow including website integration.
 
+**`document_pipeline`'s branch:** `fetch_pdfs → extract_pages → {detect_structure, extract_figures, clean_text} → assemble_sections → publish_bundles → public/documents/`. Unlike the `foi_pipeline` chain above, three steps (`detect_structure`, `extract_figures`, `clean_text`) all consume `extract_pages`'s output directly rather than each other's — see [`pipelines/document_pipeline/README.md`](pipelines/document_pipeline/README.md) for why that matters to how the shared runner chains `--input`. `public/documents/` is published through the same `public/` → `pages` branch → Codeberg Pages route as every other dataset here, reaching `publicinformation-web`'s seed pipeline the same way `foi-disclosures` does. The full producer/consumer contract — bundle layout, frontmatter keys, `index.json` shape — is pinned in [`docs/superpowers/specs/2026-08-10-document-bundle-contract.md`](docs/superpowers/specs/2026-08-10-document-bundle-contract.md), the single authoritative reference both this repo and the web repo plan against.
+
 #### Override System
 
 Each step directory may contain an `override.json` file with manually-curated records. These records:
@@ -240,6 +248,8 @@ let `stamp_if_changed` update `dct:modified` if the output actually differs, and
 | Run from export_status | `python pipelines/foi_pipeline/process.py --from export_status --force` |
 | Run single step | `cd pipelines/foi_pipeline && PYTHONPATH=. python steps/<step>/process.py --input ... --output ... --force` |
 | Run tests | `cd pipelines/foi_pipeline && uv run pytest tests/ -q` |
+| Run document_pipeline (full) | `uv run python pipelines/document_pipeline/process.py --force` |
+| Run document_pipeline (one document) | `uv run python pipelines/document_pipeline/process.py --force --doc <doc_slug>` |
 | Build website | `cd ../publicinformation-web && npm run build` |
 | One-time hook setup (Pages publishing) | `git config core.hooksPath .githooks` |
 | Manually rebuild + publish `pages` branch | `scripts/publish_pages.sh` |
