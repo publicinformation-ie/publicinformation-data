@@ -65,6 +65,11 @@ FURNITURE_BAND = 0.12       # top/bottom share of the page where furniture lives
 FURNITURE_MIN_PAGES = 3     # never call something furniture from one sighting
 FURNITURE_RATIO = 0.5       # must repeat on at least half the pages
 MARGIN_TOLERANCE = 20.0     # points outside the text column before it is marginalia
+COLUMN_GAP = 60.0           # points; a horizontal gap this wide between consecutive
+                             # body-sized lines (sorted by left edge) starts a new column
+COLUMN_MIN_LINES = 2        # a cluster needs at least this many lines to count as its
+                             # own column; smaller clusters fold away as marginalia
+                             # rather than becoming a phantom one-line "column"
 Y_BAND = 10.0                # points; furniture must recur at a consistent height
 READING_ORDER_TOLERANCE = 50.0  # points; a backward y jump within one block this
                                  # large is a suspected PyMuPDF reading-order failure
@@ -162,16 +167,37 @@ def is_furniture(line: Line, page_h: float, repeated: set) -> bool:
     return _key(line) in repeated
 
 
-def text_column(lines: list) -> tuple:
+def text_columns(lines: list) -> list:
+    """Cluster body-sized lines into one or more column spans.
+
+    A single page-wide median column (the original approach) is correct for
+    single-column pages but silently treats an entire secondary column — a
+    highlighted call-out sidebar, for example — as marginalia on a two-column
+    page, discarding real content rather than a stray caption. Clustering by
+    horizontal gap lets both cases coexist: pages that are genuinely one
+    column still collapse to a single cluster.
+    """
     if not lines:
-        return (0.0, 0.0)
-    return (statistics.median([line.bbox[0] for line in lines]),
-            statistics.median([line.bbox[2] for line in lines]))
+        return [(0.0, 0.0)]
+    ordered = sorted(lines, key=lambda ln: ln.bbox[0])
+    clusters = [[ordered[0]]]
+    for ln in ordered[1:]:
+        if ln.bbox[0] - clusters[-1][-1].bbox[0] > COLUMN_GAP:
+            clusters.append([ln])
+        else:
+            clusters[-1].append(ln)
+    kept = [c for c in clusters if len(c) >= COLUMN_MIN_LINES]
+    if not kept:
+        kept = [max(clusters, key=len)]
+    return [(statistics.median([ln.bbox[0] for ln in c]),
+             statistics.median([ln.bbox[2] for ln in c])) for c in kept]
 
 
-def is_marginalia(line: Line, column: tuple, tolerance: float = MARGIN_TOLERANCE) -> bool:
-    left, right = column
-    return line.bbox[2] < left - tolerance or line.bbox[0] > right + tolerance
+def is_marginalia(line: Line, columns: list, tolerance: float = MARGIN_TOLERANCE) -> bool:
+    for left, right in columns:
+        if line.bbox[2] >= left - tolerance and line.bbox[0] <= right + tolerance:
+            return False
+    return True
 
 
 def dehyphenate(first: str, second: str) -> str:
@@ -237,8 +263,8 @@ def blocks_for_page(page: dict, body: float, repeated: set, levels: dict):
 
     kept = [line for line in all_lines if not is_furniture(line, page_h, repeated)]
     kept = [line for line in kept if not is_dingbat_marker(line)]
-    column = text_column([line for line in kept if abs(line.size - body) <= 0.6] or kept)
-    kept = [line for line in kept if not is_marginalia(line, column)]
+    columns = text_columns([line for line in kept if abs(line.size - body) <= 0.6] or kept)
+    kept = [line for line in kept if not is_marginalia(line, columns)]
     kept = [line for line in kept
             if not any(_intersects(box, line.bbox) for box in table_boxes)]
 

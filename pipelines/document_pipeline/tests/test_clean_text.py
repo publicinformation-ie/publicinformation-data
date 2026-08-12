@@ -13,7 +13,7 @@ from steps.clean_text.process import (
     join_lines,
     process,
     repeated_keys,
-    text_column,
+    text_columns,
 )
 from steps.detect_structure.process import Line
 
@@ -95,9 +95,33 @@ def test_a_page_number_footer_is_stripped():
 def test_a_span_far_outside_the_main_column_is_dropped_as_marginalia():
     body_lines = [line("Body text of the main column.", x0=150.0, y0=100.0 + i * 14.0)
                   for i in range(6)]
-    column = text_column(body_lines)
-    assert not is_marginalia(body_lines[0], column)
-    assert is_marginalia(line("Side note", x0=20.0, y0=200.0), column)
+    columns = text_columns(body_lines)
+    assert not is_marginalia(body_lines[0], columns)
+    assert is_marginalia(line("Side note", x0=20.0, y0=200.0), columns)
+
+
+def test_a_second_column_with_several_lines_is_kept_as_its_own_column():
+    """Regression test for the real GDA Transport Strategy PDF (p.110): a
+    highlighted 'Measure' call-out sidebar sits in a genuine second column,
+    ~390pt to the right of the main prose column. A page-wide median column
+    used to treat the whole sidebar as marginalia and drop it outright."""
+    main_column = [line("Prose line in the main column.", x0=59.78, y0=94.0 + i * 14.0)
+                   for i in range(6)]
+    sidebar = [line("Sidebar call-out body text here.", x0=449.29, y0=108.0 + i * 14.0)
+               for i in range(4)]
+    columns = text_columns(main_column + sidebar)
+    assert len(columns) == 2
+    assert not is_marginalia(main_column[0], columns)
+    assert not is_marginalia(sidebar[0], columns)
+
+
+def test_a_single_stray_line_far_from_the_main_column_does_not_become_its_own_column():
+    main_column = [line("Prose line in the main column.", x0=59.78, y0=94.0 + i * 14.0)
+                   for i in range(6)]
+    stray = line("A single stray caption.", x0=449.29, y0=108.0)
+    columns = text_columns(main_column + [stray])
+    assert len(columns) == 1
+    assert is_marginalia(stray, columns)
 
 
 # --- dingbat bullet markers -----------------------------------------------
