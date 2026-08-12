@@ -250,8 +250,21 @@ def _intersects(a, b) -> bool:
     return not (a[2] < b[0] or b[2] < a[0] or a[3] < b[1] or b[3] < a[1])
 
 
+def _column_index(x: float, columns: list) -> int:
+    """Index of the column span whose left edge `x` falls into, or is closest to."""
+    for index, (left, right) in enumerate(columns):
+        if left <= x <= right:
+            return index
+    return min(range(len(columns)), key=lambda i: abs(x - columns[i][0]))
+
+
 def blocks_for_page(page: dict, body: float, repeated: set, levels: dict):
     """Reflow one page's lines into typed blocks, ordered by ascending y.
+
+    On multi-column pages, blocks sort column-major (all of one column's
+    blocks, top-to-bottom, before the next column's) rather than purely by
+    `y`, which would otherwise interleave left- and right-column blocks that
+    happen to share a vertical band.
 
     Returns `(blocks, reading_order_suspect)`.
     """
@@ -277,27 +290,36 @@ def blocks_for_page(page: dict, body: float, repeated: set, levels: dict):
         block_lines = sorted(block_lines, key=lambda line: (line.y0, line.bbox[0]))
         texts = [line.text for line in block_lines]
         top = round(min(line.y0 for line in block_lines), 2)
+        left = min(line.bbox[0] for line in block_lines)
 
         listed = classify_list(texts)
         if listed is not None:
             ordered, items = listed
-            blocks.append({"type": "list", "ordered": ordered, "items": items, "y": top})
+            blocks.append({"type": "list", "ordered": ordered, "items": items,
+                           "y": top, "x": left})
             continue
 
         joined = join_lines(texts)
         level = levels.get(block_lines[0].size)
         if level is not None and len(joined) <= 120:
-            blocks.append({"type": "heading", "level": level, "text": joined, "y": top})
+            blocks.append({"type": "heading", "level": level, "text": joined,
+                           "y": top, "x": left})
             continue
 
         if joined:
-            blocks.append({"type": "paragraph", "text": joined, "y": top})
+            blocks.append({"type": "paragraph", "text": joined, "y": top, "x": left})
 
     for index, table in enumerate(page.get("tables", [])):
         blocks.append({"type": "table", "index": index, "text": table["text"],
-                       "y": round(float(table["bbox"][1]), 2)})
+                       "y": round(float(table["bbox"][1]), 2),
+                       "x": float(table["bbox"][0])})
 
-    blocks.sort(key=lambda block: block["y"])
+    if len(columns) > 1:
+        blocks.sort(key=lambda block: (_column_index(block["x"], columns), block["y"]))
+    else:
+        blocks.sort(key=lambda block: block["y"])
+    for block in blocks:
+        block.pop("x", None)
     return blocks, suspect
 
 

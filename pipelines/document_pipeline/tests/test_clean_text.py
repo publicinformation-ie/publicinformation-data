@@ -367,6 +367,39 @@ def test_a_two_column_page_keeps_both_the_prose_and_the_sidebar_callout():
     assert "It is the intention of the NTA" in dump
 
 
+def test_a_two_column_page_orders_blocks_column_major_not_by_absolute_y():
+    """Same GDA p.110 fixture as above, but checking reading order rather
+    than just presence: the right-hand 'Measure' sidebar starts higher up
+    the page (smaller y0) than the left-column prose, so a plain sort by y
+    alone would emit the sidebar first and interleave it with the prose
+    mid-sentence. Blocks must instead be grouped column by column."""
+    p = page([
+        span("All of these factors contribute to the manner in which cycle",
+             x0=59.78, y0=203.61, block=1, line=0),
+        span("infrastructure is provided.", x0=59.78, y0=217.61, block=1, line=1),
+        span("Measure CYC2 - Cycle Infrastructure Design", x0=449.29, y0=108.53,
+             size=13.0, font="Gotham-Bold", block=4, line=0),
+        span("It is the intention of the NTA to ensure that cycle",
+             x0=449.29, y0=133.32, block=5, line=0),
+        span("infrastructure in the GDA provides an appropriate quality",
+             x0=449.29, y0=147.32, block=5, line=1),
+        span("of service to all users, through the implementation of the",
+             x0=449.29, y0=161.32, block=5, line=2),
+    ], number=110)
+    blocks, _ = blocks_for_page(p, body=11.0, repeated=set(), levels={13.0: 3})
+    texts = [b.get("text", "") for b in blocks]
+    left_index = next(i for i, t in enumerate(texts) if "cycle infrastructure is provided" in t)
+    right_index = next(i for i, t in enumerate(texts) if "Measure CYC2" in t)
+    assert left_index < right_index
+    # All left-column blocks precede all right-column blocks.
+    assert [i for i, t in enumerate(texts) if "cycle infrastructure is provided" in t
+            or t.startswith("All of these")] == [0]
+    assert texts.index("Measure CYC2 - Cycle Infrastructure Design") == 1
+    assert texts.index("It is the intention of the NTA to ensure that cycle "
+                        "infrastructure in the GDA provides an appropriate quality "
+                        "of service to all users, through the implementation of the") == 2
+
+
 # --- failure isolation: one bad document must not abort the run --------------
 
 def test_one_malformed_document_does_not_prevent_the_others(tmp_path):
