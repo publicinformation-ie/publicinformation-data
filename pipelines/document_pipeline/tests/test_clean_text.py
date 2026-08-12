@@ -343,6 +343,30 @@ def test_process_strips_running_header_and_page_number_end_to_end(tmp_path):
     assert heading["text"] == "1.1 Introduction"
 
 
+def test_a_two_column_page_keeps_both_the_prose_and_the_sidebar_callout():
+    """Regression test for the real GDA Transport Strategy PDF, p.110: a
+    highlighted 'Measure' call-out box sits in a right-hand sidebar column
+    while ordinary prose continues in the left column. Both must survive."""
+    p = page([
+        span("All of these factors contribute to the manner in which cycle",
+             x0=59.78, y0=203.61, block=1, line=0),
+        span("infrastructure is provided.", x0=59.78, y0=217.61, block=1, line=1),
+        span("Measure CYC2 - Cycle Infrastructure Design", x0=449.29, y0=108.53,
+             size=13.0, font="Gotham-Bold", block=4, line=0),
+        span("It is the intention of the NTA to ensure that cycle",
+             x0=449.29, y0=133.32, block=5, line=0),
+        span("infrastructure in the GDA provides an appropriate quality",
+             x0=449.29, y0=147.32, block=5, line=1),
+        span("of service to all users, through the implementation of the",
+             x0=449.29, y0=161.32, block=5, line=2),
+    ], number=110)
+    blocks, _ = blocks_for_page(p, body=11.0, repeated=set(), levels={13.0: 3})
+    dump = " ".join(b.get("text", "") for b in blocks)
+    assert "cycle infrastructure is provided" in dump
+    assert "Measure CYC2" in dump
+    assert "It is the intention of the NTA" in dump
+
+
 # --- failure isolation: one bad document must not abort the run --------------
 
 def test_one_malformed_document_does_not_prevent_the_others(tmp_path):
