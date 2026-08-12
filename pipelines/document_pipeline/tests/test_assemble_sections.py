@@ -262,7 +262,8 @@ def test_image_paths_are_bundle_relative_and_listed_in_the_assets_frontmatter(
 def test_full_coverage_of_pages_one_to_n_is_publishable(structure, figures, clean):
     result = assemble(structure, figures, clean)
     assert result.coverage == {"page_count": 4, "covered": [1, 2, 3, 4], "gaps": [],
-                               "overlaps": [], "empty_sections": [], "furniture_pages": []}
+                               "overlaps": [], "empty_sections": [], "furniture_pages": [],
+                               "title_only_pages": []}
     assert result.publishable is True
 
 
@@ -339,6 +340,78 @@ def test_coverage_does_not_treat_a_gap_page_with_raw_content_as_furniture():
                       raw_content_pages={3}, intentional_empty_pages={3})
     assert report["gaps"] == [3]
     assert report["furniture_pages"] == []
+
+
+def test_a_chapter_divider_page_with_only_its_own_heading_is_title_only_not_a_gap(
+        structure, figures, clean):
+    """A dedicated chapter-divider page — nothing on it but the chapter's own
+    boundary heading, no preamble before it and no section content after it
+    on that page — is exactly what `gda-transport-strategy-2022-2042` pages
+    120 and 212 look like. The heading is legitimately excluded as the
+    boundary (it becomes the section's `title`), so `content` is empty and
+    the old code silently dropped the page from `pages_by_section` entirely.
+    It must instead show up as `title_only_pages`, not a blocking gap."""
+    structure = copy.deepcopy(structure)
+    structure["page_count"] = 5
+    structure["nodes"].append(
+        node("3-third-chapter", 1, "3", "Third Chapter", 5, 70.0, 300))
+    clean = copy.deepcopy(clean)
+    clean["pages"].append({"number": 5, "blocks": [
+        {"type": "heading", "level": 1, "text": "3 Third Chapter", "y": 70.0}]})
+
+    result = assemble(structure, figures, clean)
+    assert result.coverage["gaps"] == []
+    assert result.coverage["title_only_pages"] == [5]
+    assert result.coverage["covered"] == [1, 2, 3, 4]  # page 5 is title-only, not "covered"
+    assert result.publishable is True
+    assert not any(s.chapter == "3-third-chapter" for s in result.sections)
+
+
+def test_a_divider_page_with_real_content_besides_its_heading_is_not_title_only(
+        structure, figures, clean):
+    """The title-only exclusion is narrow on purpose: it applies only when
+    *every* raw item on the page is an excluded own-heading. The moment the
+    page also carries a non-excluded item — a stray paragraph misattributed
+    to the boundary, simulating a real structure-detection miss — that item
+    is real content like any other, so it is assembled into the chapter's
+    own `overview` section and the page is covered by it, not silently
+    waved through as `title_only_pages`."""
+    structure = copy.deepcopy(structure)
+    structure["page_count"] = 5
+    structure["nodes"].append(
+        node("3-third-chapter", 1, "3", "Third Chapter", 5, 70.0, 300))
+    clean = copy.deepcopy(clean)
+    clean["pages"].append({"number": 5, "blocks": [
+        {"type": "heading", "level": 1, "text": "3 Third Chapter", "y": 70.0},
+        {"type": "paragraph", "text": "A misattributed stray paragraph.", "y": 90.0}]})
+
+    result = assemble(structure, figures, clean)
+    assert result.coverage["gaps"] == []
+    assert result.coverage["title_only_pages"] == []
+    assert 5 in result.coverage["covered"]
+    third_chapter_overview = next(s for s in result.sections
+                                  if s.chapter == "3-third-chapter")
+    assert "A misattributed stray paragraph." in body_of(third_chapter_overview)
+    assert result.publishable is True
+
+
+def test_coverage_only_excludes_pages_named_title_only_from_gaps(
+        structure, figures, clean):
+    """Unit-level mirror of the furniture fail-safe test: `coverage()` trusts
+    its `title_only_pages` argument to already be the narrow set build()
+    computed (every raw item on the page an excluded own-heading); a page
+    left out of that set — because it had other content — stays a real,
+    blocking gap."""
+    pages_by_section = {"a/a": [1, 2], "b/b": [4]}   # page 3 is a gap
+    without_title_only = coverage(pages_by_section, page_count=4, empty_sections=[],
+                                  raw_content_pages={3}, title_only_pages=set())
+    assert without_title_only["gaps"] == [3]
+    assert without_title_only["title_only_pages"] == []
+
+    with_title_only = coverage(pages_by_section, page_count=4, empty_sections=[],
+                               raw_content_pages={3}, title_only_pages={3})
+    assert with_title_only["gaps"] == []
+    assert with_title_only["title_only_pages"] == [3]
 
 
 def test_an_empty_section_is_listed_but_does_not_block_publication(

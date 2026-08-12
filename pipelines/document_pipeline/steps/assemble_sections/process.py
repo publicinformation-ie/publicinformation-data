@@ -19,6 +19,15 @@ went nowhere, which is exactly what a structure-detection miss looks like from
 downstream, and a page claimed by two sections means the reading order or the
 boundary set is wrong.
 
+A dedicated chapter-divider page — nothing on it but the chapter's own
+boundary heading, with no preceding or following content to claim it — would
+otherwise be exactly this "contributed nothing" case even though its one
+item was legitimately excluded as the heading, not lost. `coverage()`
+recognises this narrowly: a page counts as `title_only` (not a blocking gap)
+only when *every* raw item on it is an excluded own-heading; a page that also
+has so much as one non-excluded item — a stray paragraph misattributed to a
+boundary, say — still surfaces as a real gap.
+
 **Coverage sets `publishable`; it never aborts.** A document that fails the
 check still gets its Markdown and its output record, marked
 `publishable: false` with a `CoverageGap` / `CoverageOverlap` error naming the
@@ -321,7 +330,8 @@ def _render(items: list, figures_by_id: dict, errors: list, doc_slug: str):
 
 
 def coverage(pages_by_section: dict, page_count: int, empty_sections: list,
-             raw_content_pages=(), intentional_empty_pages=()) -> dict:
+             raw_content_pages=(), intentional_empty_pages=(),
+             title_only_pages=()) -> dict:
     """The publication gate. `covered` is every page that contributed content
     to some section; a `gap` is a page that contributed to none (content that
     vanished); an `overlap` is a page claimed by two or more sections, which
@@ -333,13 +343,27 @@ def coverage(pages_by_section: dict, page_count: int, empty_sections: list,
     (`raw_content_pages`) — a page that failed the override's second half is
     left as a real gap, fail-safe against a stale override hiding actual
     content loss. See docs/superpowers/plans — assemble_sections/override.json,
-    and pipelines/document_pipeline/steps/assemble_sections/README.md."""
+    and pipelines/document_pipeline/steps/assemble_sections/README.md.
+
+    A gap page is `title_only` instead of a blocking gap when every raw item
+    on it is a boundary's own heading, excluded from that boundary's content
+    because it became the section's `title` rather than body text (see the
+    module docstring's "ownership rule") — typically a dedicated
+    chapter-divider page with no preceding or following content to claim it.
+    Reported separately from `furniture_pages` since the two have different
+    causes: one is an override-verified empty page, the other is
+    structurally-a-divider, computed straight from ownership with no
+    override involved."""
     covered = sorted({page for pages in pages_by_section.values() for page in pages})
     all_gaps = [n for n in range(1, int(page_count) + 1) if n not in covered]
     furniture_pages = sorted(
         page for page in all_gaps
         if page in intentional_empty_pages and page not in raw_content_pages)
-    gaps = [page for page in all_gaps if page not in furniture_pages]
+    title_only = sorted(
+        page for page in all_gaps
+        if page in title_only_pages and page not in furniture_pages)
+    gaps = [page for page in all_gaps
+            if page not in furniture_pages and page not in title_only]
     claims: dict = {}
     for pages in pages_by_section.values():
         for page in pages:
@@ -347,7 +371,7 @@ def coverage(pages_by_section: dict, page_count: int, empty_sections: list,
     overlaps = sorted(page for page, count in claims.items() if count > 1)
     return {"page_count": int(page_count), "covered": covered, "gaps": gaps,
             "overlaps": overlaps, "empty_sections": sorted(empty_sections),
-            "furniture_pages": furniture_pages}
+            "furniture_pages": furniture_pages, "title_only_pages": title_only}
 
 
 def _error_dict(error_type: str, message: str, context: dict) -> dict:
@@ -430,8 +454,10 @@ def build(structure: dict, figures: dict, clean: dict, doc_slug: str, doc_title:
         owned[keys[index][0]].append(item)
 
     sections, pages_by_section, empty_sections = [], {}, []
+    non_title_only_pages = {item["page"] for item in front_matter_items}
     for key, node, chapter, slug in keys:
         content = [item for item in owned[key] if not _is_own_heading(item, node)]
+        non_title_only_pages.update(item["page"] for item in content)
         if not content:
             # A chapter with no preamble between its heading and its first
             # section is normal; a section heading that owns nothing is not.
@@ -496,6 +522,14 @@ def build(structure: dict, figures: dict, clean: dict, doc_slug: str, doc_title:
 
     sections.sort(key=lambda s: (s.order, s.slug))
 
+    # A page whose *only* raw items are boundary headings excluded from their
+    # own section's content (typically a chapter-divider page: nothing but
+    # the chapter-number heading) is legitimately covered by that heading —
+    # it became the section's `title`, not lost content. Narrow on purpose:
+    # any page that also has even one non-excluded item is left out here, so
+    # a stray paragraph misattributed to a boundary still surfaces as a gap.
+    title_only_pages = sorted(raw_content_pages - non_title_only_pages)
+
     chapters = []
     for chapter_slug in dict.fromkeys(s.chapter for s in sections):
         members = [s for s in sections if s.chapter == chapter_slug]
@@ -515,7 +549,8 @@ def build(structure: dict, figures: dict, clean: dict, doc_slug: str, doc_title:
 
     report = coverage(pages_by_section, page_count, empty_sections,
                       raw_content_pages=raw_content_pages,
-                      intentional_empty_pages=override_pages)
+                      intentional_empty_pages=override_pages,
+                      title_only_pages=title_only_pages)
     for page in sorted(override_pages - set(report["furniture_pages"])):
         errors.append(_error_dict(
             "StaleFurnitureOverride",

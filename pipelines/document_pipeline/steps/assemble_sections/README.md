@@ -21,6 +21,10 @@ A gap page with **zero raw blocks and zero figures** is indistinguishable, from 
 
 `override.json` — `{doc_slug: [page, ...]}`, hand-maintained — names pages a human has confirmed are furniture-only for a given document. A page only moves from `gaps` to `coverage.furniture_pages` (and stops blocking `publishable`) when it satisfies **both**: listed in the override, *and* still produces zero raw blocks/figures for this build. If the override is stale — the page now has content — the gap is left in place (fail-safe) and a `StaleFurnitureOverride` error names it so the override can be re-verified.
 
+### Chapter-divider pages: `title_only_pages`
+
+A different gap shape needs no override at all: a dedicated chapter-divider page whose only raw item is the chapter's own boundary heading (`_is_own_heading`) — no preamble before it, no section content following it on that page. That heading is deliberately excluded from the section's body content because it becomes the section's frontmatter `title`, so the page has one raw block yet zero "content" by the ownership rule, and would otherwise fall straight into `gaps` with nothing to explain why. `coverage()` recognises this directly from ownership — no human-maintained list required — and reports the page under `coverage.title_only_pages` instead. The condition is narrow on purpose: a page counts only when **every** raw item on it is an excluded own-heading, so a page that also lost real content (a stray paragraph misattributed to the boundary, say) still surfaces as a real `gaps` entry. Reported separately from `furniture_pages` since the two causes are different — one is override-verified empty, the other is structurally-a-divider.
+
 ## What it does
 
 For each document in `clean_text/output.json`:
@@ -45,6 +49,7 @@ A document that fails the check still gets its Markdown and its output record �
 | `overlaps` | Pages claimed by two or more sections; the contract requires exactly one |
 | `empty_sections` | Section headings that own no text or figures. **Informational** — an empty section does not by itself block publication |
 | `furniture_pages` | Gap pages named in `override.json` and verified (zero raw blocks/figures) as design-only. **Informational** — removed from `gaps`, does not block publication |
+| `title_only_pages` | Gap pages whose only raw item is a boundary's own excluded heading (a chapter-divider page). **Informational** — removed from `gaps`, does not block publication |
 
 `publishable` is `false` iff `gaps` or `overlaps` is non-empty.
 
@@ -72,7 +77,7 @@ The shared runner passes exactly one `--input`, so further upstreams are resolve
 | `page_count`, `detection_method` | Carried from `detect_structure` |
 | `sections_dir` | `sections/<doc_slug>`, relative to this step directory |
 | `chapters` | `[{slug, title, order, source_pages, sections: [{slug, title, order, file, source_pages, word_count, assets}]}]` |
-| `coverage` | `{page_count, covered, gaps, overlaps, empty_sections}` |
+| `coverage` | `{page_count, covered, gaps, overlaps, empty_sections, furniture_pages, title_only_pages}` |
 | `publishable` | `false` when `gaps` or `overlaps` is non-empty |
 
 `file` paths are relative to **this step directory** (`sections/<doc_slug>/<chapter-slug>/<section-slug>.md`) and so carry a `<doc_slug>` segment the contract's `meta.json` does not — a bundle is per-document, so `publish_bundles` strips it when it writes `meta.json`.
