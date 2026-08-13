@@ -70,3 +70,68 @@ def _pick_pdf_url(results: list):
             continue
         return link
     return None
+
+
+def process(plans, existing_slugs, step_dir, writer, verbose=False):
+    """Resolve each plan to a gov.ie PDF URL via batched Apify search,
+    appending one record per success and one errors.json entry per skipped
+    plan. Never raises for a single unresolved plan — see module docstring.
+    """
+    step_dir = Path(step_dir)
+    write_json(step_dir / "errors.json", [])
+
+    seen_slugs = set()
+    query_map = {}  # query string -> (plan, doc_slug)
+
+    for plan in plans:
+        dept_slug = _slugify(plan["department"])
+        title_slug = _slugify(plan["title"])
+        doc_slug = f"{dept_slug}-{title_slug}"
+
+        if doc_slug in existing_slugs:
+            continue  # documents.yml wins; not emitted here
+        if writer.is_processed(doc_slug):
+            continue  # already have a result (prior run or override)
+        if doc_slug in seen_slugs:
+            append_error(step_dir, {
+                "step": STEP_NAME,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "error_type": "DuplicateDocSlug",
+                "error_message": f"doc_slug {doc_slug!r} already generated for another "
+                                 f"plan; skipping {plan['title']!r}",
+                "context": {"doc_slug": doc_slug, "title": plan["title"],
+                            "department": plan["department"]},
+            })
+            continue
+        seen_slugs.add(doc_slug)
+        query_map[_build_query(plan["title"])] = (plan, doc_slug)
+
+    if not query_map:
+        return
+
+    search_results = batch_search(list(query_map.keys()))
+
+    for query, (plan, doc_slug) in query_map.items():
+        url = _pick_pdf_url(search_results.get(query, []))
+
+        if url is None:
+            append_error(step_dir, {
+                "step": STEP_NAME,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "error_type": "PlanPdfNotFound",
+                "error_message": f"No gov.ie PDF result found for {plan['title']!r}",
+                "context": {"doc_slug": doc_slug, "title": plan["title"],
+                            "department": plan["department"]},
+            })
+            continue
+
+        writer.append([{
+            "doc_slug": doc_slug,
+            "title": plan["title"],
+            "department": plan["department"],
+            "url": url,
+            "publisher": None,
+            "public_body_id": None,
+            "published_date": None,
+            "source_method": "apify",
+        }])
