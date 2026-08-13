@@ -35,7 +35,8 @@ publicinformation-data/
 │       ├── process.py                # Pipeline execution engine (shared lib.pipeline_runner)
 │       ├── pipeline.json              # Authoritative step order configuration
 │       ├── documents.yml              # Hand-authored source PDF list — only hand-authored input
-│       └── steps/<step_name>/         # fetch_pdfs, extract_pages, detect_structure, extract_figures, clean_text, assemble_sections, publish_bundles
+│       ├── input_plans.md             # Hand-authored department plan/strategy list, consumed by find_plan_pdfs
+│       └── steps/<step_name>/         # find_plan_pdfs, fetch_pdfs, extract_pages, detect_structure, extract_figures, clean_text, assemble_sections, publish_bundles
 ├── scripts/
 │   ├── AGENTS.md                      # Which helper script to use, and when
 │   └── README.md                     # Helper scripts documentation
@@ -163,7 +164,7 @@ find_public_bodies → validate_websites → find_foi_pages → check_foi_pages 
 
 See [DATA_FLOW.md](DATA_FLOW.md) for the complete end-to-end flow including website integration.
 
-**`document_pipeline`'s branch:** `fetch_pdfs → extract_pages → {detect_structure, extract_figures, clean_text} → assemble_sections → publish_bundles → public/documents/`. Unlike the `foi_pipeline` chain above, three steps (`detect_structure`, `extract_figures`, `clean_text`) all consume `extract_pages`'s output directly rather than each other's — see [`pipelines/document_pipeline/README.md`](pipelines/document_pipeline/README.md) for why that matters to how the shared runner chains `--input`. `public/documents/` is published through the same `public/` → `pages` branch → Codeberg Pages route as every other dataset here, reaching `publicinformation-web`'s seed pipeline the same way `foi-disclosures` does. The full producer/consumer contract — bundle layout, frontmatter keys, `index.json` shape — is pinned in [`docs/superpowers/specs/2026-08-10-document-bundle-contract.md`](docs/superpowers/specs/2026-08-10-document-bundle-contract.md), the single authoritative reference both this repo and the web repo plan against.
+**`document_pipeline`'s branch:** `find_plan_pdfs → fetch_pdfs → extract_pages → {detect_structure, extract_figures, clean_text} → assemble_sections → publish_bundles → public/documents/`. Unlike the `foi_pipeline` chain above, three steps (`detect_structure`, `extract_figures`, `clean_text`) all consume `extract_pages`'s output directly rather than each other's — see [`pipelines/document_pipeline/README.md`](pipelines/document_pipeline/README.md) for why that matters to how the shared runner chains `--input`. `public/documents/` is published through the same `public/` → `pages` branch → Codeberg Pages route as every other dataset here, reaching `publicinformation-web`'s seed pipeline the same way `foi-disclosures` does. The full producer/consumer contract — bundle layout, frontmatter keys, `index.json` shape — is pinned in [`docs/superpowers/specs/2026-08-10-document-bundle-contract.md`](docs/superpowers/specs/2026-08-10-document-bundle-contract.md), the single authoritative reference both this repo and the web repo plan against.
 
 #### Override System
 

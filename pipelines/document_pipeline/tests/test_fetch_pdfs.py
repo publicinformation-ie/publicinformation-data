@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from steps.fetch_pdfs.process import process
+from steps.fetch_pdfs.process import _load_discovered, _merge_documents, process
 
 FIXTURE_PDF = Path(__file__).parent / "fixtures" / "fixture.pdf"
 
@@ -76,3 +76,61 @@ def test_one_failing_document_does_not_prevent_the_others(tmp_path, make_writer,
     results = json.loads((tmp_path / "output.json").read_text())["results"]
     assert [r["doc_slug"] for r in results] == ["fixture-doc"]
     assert len(json.loads((tmp_path / "errors.json").read_text())) == 1
+
+
+def test_merge_documents_yml_wins_on_doc_slug_collision():
+    documents = [{"doc_slug": "a", "title": "Curated", "url": "https://e.org/a.pdf",
+                  "publisher": "Real Body", "public_body_id": 1, "published_date": None}]
+    discovered = [{"doc_slug": "a", "title": "Discovered", "url": "https://e.org/discovered.pdf",
+                   "department": "Dept X", "publisher": None, "public_body_id": None,
+                   "published_date": None, "source_method": "apify"}]
+
+    assert _merge_documents(documents, discovered) == documents
+
+
+def test_merge_documents_appends_a_find_plan_pdfs_only_record_unchanged():
+    documents = [{"doc_slug": "a", "title": "Curated", "url": "https://e.org/a.pdf",
+                  "publisher": None, "public_body_id": None, "published_date": None}]
+    discovered = [{"doc_slug": "b", "title": "Discovered Plan",
+                   "url": "https://e.org/discovered.pdf", "department": "Dept X",
+                   "publisher": None, "public_body_id": None, "published_date": None,
+                   "source_method": "apify"}]
+
+    assert _merge_documents(documents, discovered) == documents + discovered
+
+
+def test_a_merged_discovered_record_reaches_process_unchanged(tmp_path, make_writer, monkeypatch):
+    monkeypatch.setattr("steps.fetch_pdfs.process.download",
+                        lambda url, dest: dest.write_bytes(FIXTURE_PDF.read_bytes()))
+    writer = make_writer("fetch_pdfs")
+    discovered_doc = {"doc_slug": "discovered-doc", "title": "Discovered Plan",
+                       "url": "https://example.org/fixture.pdf", "department": "Dept X",
+                       "publisher": None, "public_body_id": None, "published_date": None,
+                       "source_method": "apify"}
+
+    process(_merge_documents([], [discovered_doc]), tmp_path, writer)
+    writer.finalize()
+
+    (record,) = json.loads((tmp_path / "output.json").read_text())["results"]
+    assert record["doc_slug"] == "discovered-doc"
+    assert record["public_body_id"] is None
+
+
+def test_load_discovered_returns_empty_list_when_input_file_is_missing(tmp_path):
+    assert _load_discovered(tmp_path / "does-not-exist.json") == []
+
+
+def test_load_discovered_returns_empty_list_on_malformed_json(tmp_path):
+    input_path = tmp_path / "output.json"
+    input_path.write_text("not valid json")
+
+    assert _load_discovered(input_path) == []
+
+
+def test_missing_find_plan_pdfs_output_degrades_to_documents_yml_only(tmp_path):
+    documents = [{"doc_slug": "a", "title": "Curated", "url": "https://e.org/a.pdf",
+                  "publisher": None, "public_body_id": None, "published_date": None}]
+    discovered = _load_discovered(tmp_path / "does-not-exist.json")
+
+    assert discovered == []
+    assert _merge_documents(documents, discovered) == documents

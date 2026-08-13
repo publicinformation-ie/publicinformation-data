@@ -148,6 +148,26 @@ def _load_prior_records(output_path: Path) -> dict:
         return {}
 
 
+def _load_discovered(input_path) -> list:
+    """Read find_plan_pdfs/output.json's results list. Not fatal: if the
+    file is missing or unreadable (e.g. find_plan_pdfs never ran, or failed
+    before writing output — missing APIFY_TOKEN, a failed Apify run), this
+    step should still be able to proceed on documents.yml alone."""
+    try:
+        return read_json(input_path).get("results", [])
+    except (OSError, ValueError):
+        return []
+
+
+def _merge_documents(documents: list, discovered: list) -> list:
+    """documents.yml wins on doc_slug collision; a find_plan_pdfs record
+    whose doc_slug is not already curated in documents.yml is appended
+    unchanged, so process() sees it as an ordinary document (its optional
+    fields are already None, same shape documents.py itself produces)."""
+    existing_slugs = {d["doc_slug"] for d in documents}
+    return documents + [d for d in discovered if d["doc_slug"] not in existing_slugs]
+
+
 def process(documents, step_dir, writer, verbose=False):
     """Fetch (or reuse) each document's PDF, appending one record per
     success and one errors.json entry per skipped document. Never raises for
@@ -240,7 +260,8 @@ def main():
     parser = argparse.ArgumentParser(
         description="Fetch (or reuse a cached copy of) each document's source PDF")
     parser.add_argument("--input", required=True,
-                        help="Previous step output (unused — first step in pipeline)")
+                        help="find_plan_pdfs/output.json — discovered plans merged with "
+                             "documents.yml (documents.yml wins on doc_slug collision)")
     parser.add_argument("--output", default=None, help="Path to write output.json")
     parser.add_argument("--force", action="store_true", help="Re-download every document")
     parser.add_argument("--verbose", action="store_true", help="Print progress")
@@ -255,6 +276,8 @@ def main():
     output_path = Path(args.output) if args.output else step_dir / "output.json"
 
     documents = load_documents()
+    discovered = _load_discovered(args.input)
+    documents = _merge_documents(documents, discovered)
     if args.doc is not None:
         documents = [d for d in documents if d["doc_slug"] == args.doc]
 

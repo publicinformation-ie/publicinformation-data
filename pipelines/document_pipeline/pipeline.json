@@ -1,5 +1,6 @@
 {
   "steps": [
+    "find_plan_pdfs",
     "fetch_pdfs",
     "extract_pages",
     "detect_structure",
