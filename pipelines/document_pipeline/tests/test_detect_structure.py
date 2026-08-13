@@ -170,6 +170,37 @@ def test_merge_overrides_replaces_a_title_and_leaves_other_nodes_alone():
             assert indexed[slug].title == title
 
 
+def test_merge_overrides_can_flatten_a_staircase_outline():
+    """Some PDFs' own bookmark outlines have a 'staircase' bug: each heading
+    nested one level deeper than the last, never returning to level 1, even
+    though the headings are all the same visual level in the document. The
+    override.json escape hatch fixes this by patching `level`, which must
+    recompute `parent` for every affected node, not just the patched one."""
+    outline = [{"level": 1, "title": "Foreword", "page": 1, "y": 0.0},
+               {"level": 2, "title": "Introduction", "page": 2, "y": 0.0},
+               {"level": 3, "title": "Safe System Approach", "page": 3, "y": 0.0},
+               {"level": 4, "title": "Vision Zero", "page": 4, "y": 0.0},
+               {"level": 4, "title": "Abbreviations", "page": 5, "y": 0.0}]
+    nodes, method = detect_structure([], outline, 5)
+    assert method == "outline"
+
+    merged, errors = merge_overrides(
+        nodes,
+        [{"slug": slug, "level": 1} for slug in
+         ("introduction", "safe-system-approach", "vision-zero", "abbreviations")],
+        5)
+
+    assert errors == []
+    indexed = by_slug(merged)
+    assert all(indexed[slug].level == 1 for slug in
+               ("foreword", "introduction", "safe-system-approach", "vision-zero",
+                "abbreviations"))
+    assert all(indexed[slug].parent is None for slug in
+               ("foreword", "introduction", "safe-system-approach", "vision-zero",
+                "abbreviations"))
+    assert [n.order for n in merged] == sorted(n.order for n in merged)
+
+
 def test_merge_overrides_reports_a_slug_that_no_longer_exists():
     nodes, _ = detect_structure(load_pages("pages_numbered.json"), [], 4)
 
