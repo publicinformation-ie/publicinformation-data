@@ -43,8 +43,8 @@ def _slugify(text: str) -> str:
     return slug or "plan"
 
 
-def _build_query(title: str) -> str:
-    return f'site:gov.ie "{title}" filetype:pdf'
+def _build_query(department: str, title: str) -> str:
+    return f'site:gov.ie "{department}" "{title}" filetype:pdf'
 
 
 def _is_gov_ie(netloc: str) -> bool:
@@ -64,7 +64,7 @@ def _pick_pdf_url(results: list):
         except ValueError:
             continue
         parsed = urlparse(link)
-        if not _is_gov_ie(parsed.netloc):
+        if not _is_gov_ie(parsed.hostname or ""):
             continue
         if not parsed.path.lower().endswith(".pdf"):
             continue
@@ -104,7 +104,7 @@ def process(plans, existing_slugs, step_dir, writer, verbose=False):
             })
             continue
         seen_slugs.add(doc_slug)
-        query_map[_build_query(plan["title"])] = (plan, doc_slug)
+        query_map[_build_query(plan["department"], plan["title"])] = (plan, doc_slug)
 
     if not query_map:
         return

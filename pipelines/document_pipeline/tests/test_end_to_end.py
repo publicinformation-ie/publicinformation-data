@@ -1,4 +1,4 @@
-"""End-to-end test: runs all seven document_pipeline steps as real
+"""End-to-end test: runs all eight document_pipeline steps as real
 subprocesses against a `tmp_path` copy of the pipeline, using
 `--local-pdf` to substitute the committed fixture PDF for a network
 fetch, and asserts the published bundle matches
@@ -75,7 +75,7 @@ def _clean_step_dir(step_dir: Path) -> None:
 def fixture_run(tmp_path_factory):
     """Copy pipelines/document_pipeline/ into a session-scoped tmp dir, point
     it at a one-document documents.yml keyed to the fixture PDF, and run all
-    seven steps as subprocesses with --force --local-pdf.
+    eight steps as subprocesses with --force --local-pdf.
 
     Returns the *assemble_sections* step directory (a Path), so callers that
     only need the produced Markdown — the golden-file test — can do
@@ -142,7 +142,7 @@ def _read_bundle(public_root: Path, doc_slug: str = DOC_SLUG) -> dict[str, bytes
 
 # --- the real end-to-end assertions --------------------------------------
 
-def test_all_seven_steps_exit_zero(fixture_run):
+def test_all_eight_steps_exit_zero(fixture_run):
     # fixture_run's construction already asserts each step's exit code is 0
     # (see the fixture body); reaching this point is the proof.
     assert fixture_run.exists()

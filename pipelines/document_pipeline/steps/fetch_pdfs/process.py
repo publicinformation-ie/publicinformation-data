@@ -148,6 +148,17 @@ def _load_prior_records(output_path: Path) -> dict:
         return {}
 
 
+def _load_discovered(input_path) -> list:
+    """Read find_plan_pdfs/output.json's results list. Not fatal: if the
+    file is missing or unreadable (e.g. find_plan_pdfs never ran, or failed
+    before writing output — missing APIFY_TOKEN, a failed Apify run), this
+    step should still be able to proceed on documents.yml alone."""
+    try:
+        return read_json(input_path).get("results", [])
+    except (OSError, ValueError):
+        return []
+
+
 def _merge_documents(documents: list, discovered: list) -> list:
     """documents.yml wins on doc_slug collision; a find_plan_pdfs record
     whose doc_slug is not already curated in documents.yml is appended
@@ -265,7 +276,7 @@ def main():
     output_path = Path(args.output) if args.output else step_dir / "output.json"
 
     documents = load_documents()
-    discovered = read_json(args.input).get("results", [])
+    discovered = _load_discovered(args.input)
     documents = _merge_documents(documents, discovered)
     if args.doc is not None:
         documents = [d for d in documents if d["doc_slug"] == args.doc]

@@ -6,7 +6,7 @@ Searches for each plan/strategy listed in `input_plans.md` and resolves it to a 
 
 1. **Parse** — reads `input_plans.md` via `plans.load_plans()`: one record per `(department, title)` table row.
 2. **doc_slug generation** — `f"{slugify(department)}-{slugify(title)}"`. A plan whose `doc_slug` already exists in `documents.yml` is skipped (not emitted) — `documents.yml` always wins. A second plan that lands on an already-generated `doc_slug` is logged as `DuplicateDocSlug` and skipped.
-3. **Batch search** — for each remaining plan, builds the query `site:gov.ie "<title>" filetype:pdf` and submits all queries in a single Apify `google-search-scraper` Actor run.
+3. **Batch search** — for each remaining plan, builds the query `site:gov.ie "<department>" "<title>" filetype:pdf` and submits all queries in a single Apify `google-search-scraper` Actor run.
 4. **URL filtering** — picks the first search result whose URL is a safe URL, on a gov.ie (sub)domain, and ends in `.pdf` (case-insensitive). No match → `errors.json` entry (`PlanPdfNotFound`).
 
 Supports **incremental resumption**, **`--force`**, and **`--doc`** (scoped re-run of one generated `doc_slug`).

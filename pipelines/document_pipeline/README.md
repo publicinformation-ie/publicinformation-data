@@ -8,13 +8,14 @@ The authoritative step order is defined in [`pipeline.json`](pipeline.json). Ste
 
 | # | Step | What it does |
 |---|---|---|
-| 1 | [`fetch_pdfs`](steps/fetch_pdfs/) | Downloads (or reuses a cached copy of) each document's source PDF from `documents.yml`. |
-| 2 | [`extract_pages`](steps/extract_pages/) | Extracts page-level text spans, drawings, images and tables from each PDF. |
-| 3 | [`detect_structure`](steps/detect_structure/) | Detects each document's chapter/section tree — outline, numbering, font-hierarchy or flat fallback. |
-| 4 | [`extract_figures`](steps/extract_figures/) | Clusters page geometry into figures, renders them to WebP, writes a contact sheet per document. |
-| 5 | [`clean_text`](steps/clean_text/) | Reflows raw positioned spans into headings, paragraphs, lists and tables. |
-| 6 | [`assemble_sections`](steps/assemble_sections/) | Cuts cleaned blocks into per-section Markdown, interleaves figures, asserts page coverage. |
-| 7 | [`publish_bundles`](steps/publish_bundles/) | Packs each publishable document into a `bundle.tar.gz` and writes `public/documents/index.json`. |
+| 1 | [`find_plan_pdfs`](steps/find_plan_pdfs/) | Searches for each plan/strategy listed in `input_plans.md` and resolves it to a gov.ie source PDF URL via batched Apify search. |
+| 2 | [`fetch_pdfs`](steps/fetch_pdfs/) | Downloads (or reuses a cached copy of) each document's source PDF from `documents.yml` merged with `find_plan_pdfs`'s discoveries. |
+| 3 | [`extract_pages`](steps/extract_pages/) | Extracts page-level text spans, drawings, images and tables from each PDF. |
+| 4 | [`detect_structure`](steps/detect_structure/) | Detects each document's chapter/section tree — outline, numbering, font-hierarchy or flat fallback. |
+| 5 | [`extract_figures`](steps/extract_figures/) | Clusters page geometry into figures, renders them to WebP, writes a contact sheet per document. |
+| 6 | [`clean_text`](steps/clean_text/) | Reflows raw positioned spans into headings, paragraphs, lists and tables. |
+| 7 | [`assemble_sections`](steps/assemble_sections/) | Cuts cleaned blocks into per-section Markdown, interleaves figures, asserts page coverage. |
+| 8 | [`publish_bundles`](steps/publish_bundles/) | Packs each publishable document into a `bundle.tar.gz` and writes `public/documents/index.json`. |
 
 Three of these steps — `detect_structure`, `extract_figures` and `clean_text` — all consume `extract_pages/output.json` directly, not whichever step immediately precedes them in the table above. The shared runner (`src/lib/pipeline_runner.py`) only ever chains `--input` to the *immediately preceding* step's own output, so `extract_figures` and `clean_text` resolve `extract_pages/output.json` by a fixed sibling path instead of trusting `--input` (see the "Fan-in" comment in each `process.py`). `detect_structure` happens to sit directly after `extract_pages` in the table, so it does not need the same treatment — but that is a property of the current step order, not a guarantee; if the order in `pipeline.json` ever changes, check this first.
 

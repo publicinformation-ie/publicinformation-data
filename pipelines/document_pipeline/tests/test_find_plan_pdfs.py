@@ -21,8 +21,8 @@ def test_slugify_falls_back_to_ascii_on_unicode_punctuation():
 
 
 def test_build_query_matches_the_gov_ie_pdf_pattern():
-    assert _build_query("Statement of Strategy") == \
-        'site:gov.ie "Statement of Strategy" filetype:pdf'
+    assert _build_query("Department of Transport", "Statement of Strategy") == \
+        'site:gov.ie "Department of Transport" "Statement of Strategy" filetype:pdf'
 
 
 def test_pick_pdf_url_returns_the_first_gov_ie_pdf_result():
@@ -57,7 +57,7 @@ def test_pick_pdf_url_returns_none_when_no_result_is_a_gov_ie_pdf():
 
 def test_process_writes_a_record_from_the_first_matching_search_result(tmp_path, monkeypatch):
     def fake_batch_search(queries, api_token=None):
-        return {_build_query("Statement of Strategy"):
+        return {_build_query("Department of Transport", "Statement of Strategy"):
                 [{"link": "https://www.gov.ie/en/publications/dot-strategy.pdf"}]}
     monkeypatch.setattr("steps.find_plan_pdfs.process.batch_search", fake_batch_search)
     writer = IncrementalWriter(tmp_path / "output.json", STEP_NAME, key_field="doc_slug")
@@ -102,7 +102,7 @@ def test_process_skips_a_plan_whose_doc_slug_is_already_in_documents_yml(tmp_pat
 
 def test_process_logs_duplicate_doc_slug_and_keeps_the_first_plan(tmp_path, monkeypatch):
     def fake_batch_search(queries, api_token=None):
-        return {_build_query("Statement of Strategy"):
+        return {_build_query("Department of Transport", "Statement of Strategy"):
                 [{"link": "https://www.gov.ie/en/publications/dept-a-strategy.pdf"}]}
     monkeypatch.setattr("steps.find_plan_pdfs.process.batch_search", fake_batch_search)
     writer = IncrementalWriter(tmp_path / "output.json", STEP_NAME, key_field="doc_slug")

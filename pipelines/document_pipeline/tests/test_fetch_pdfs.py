@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from steps.fetch_pdfs.process import _merge_documents, process
+from steps.fetch_pdfs.process import _load_discovered, _merge_documents, process
 
 FIXTURE_PDF = Path(__file__).parent / "fixtures" / "fixture.pdf"
 
@@ -114,3 +114,23 @@ def test_a_merged_discovered_record_reaches_process_unchanged(tmp_path, make_wri
     (record,) = json.loads((tmp_path / "output.json").read_text())["results"]
     assert record["doc_slug"] == "discovered-doc"
     assert record["public_body_id"] is None
+
+
+def test_load_discovered_returns_empty_list_when_input_file_is_missing(tmp_path):
+    assert _load_discovered(tmp_path / "does-not-exist.json") == []
+
+
+def test_load_discovered_returns_empty_list_on_malformed_json(tmp_path):
+    input_path = tmp_path / "output.json"
+    input_path.write_text("not valid json")
+
+    assert _load_discovered(input_path) == []
+
+
+def test_missing_find_plan_pdfs_output_degrades_to_documents_yml_only(tmp_path):
+    documents = [{"doc_slug": "a", "title": "Curated", "url": "https://e.org/a.pdf",
+                  "publisher": None, "public_body_id": None, "published_date": None}]
+    discovered = _load_discovered(tmp_path / "does-not-exist.json")
+
+    assert discovered == []
+    assert _merge_documents(documents, discovered) == documents
