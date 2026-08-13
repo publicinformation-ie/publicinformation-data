@@ -1,6 +1,6 @@
 # fetch_pdfs
 
-Downloads (or reuses a cached copy of) each document's source PDF and writes one metadata record per document. First step in `document_pipeline`.
+Downloads (or reuses a cached copy of) each document's source PDF and writes one metadata record per document.
 
 ## What it does
 
@@ -23,7 +23,8 @@ Supports **incremental resumption** via `IncrementalWriter` (`key_field="doc_slu
 
 ## Input
 
-`documents.yml`, via `documents.load_documents()` (this pipeline's only hand-authored input — no upstream step).
+`documents.yml`, via `documents.load_documents()` — this pipeline's hand-curated source list.
+`find_plan_pdfs/output.json`, via `--input` — discovered plans merged in via `_merge_documents()`; a `documents.yml` entry always wins on `doc_slug` collision.
 
 ## Output
 
