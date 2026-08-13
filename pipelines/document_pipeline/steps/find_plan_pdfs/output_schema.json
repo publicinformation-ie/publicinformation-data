@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "required": ["metadata", "results"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["step", "completed_at"],
+      "properties": {
+        "step": { "type": "string" },
+        "completed_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["doc_slug", "title", "department", "url", "source_method"],
+        "properties": {
+          "doc_slug": { "type": "string" },
+          "title": { "type": "string" },
+          "department": { "type": "string" },
+          "url": { "type": "string" },
+          "publisher": { "type": ["string", "null"] },
+          "public_body_id": { "type": ["integer", "null"] },
+          "published_date": { "type": ["string", "null"] },
+          "source_method": { "enum": ["apify", "manual"] }
+        }
+      }
+    }
+  }
+}

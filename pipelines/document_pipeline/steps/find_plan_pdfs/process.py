@@ -135,3 +135,37 @@ def process(plans, existing_slugs, step_dir, writer, verbose=False):
             "published_date": None,
             "source_method": "apify",
         }])
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Search for plan/strategy source PDFs using Apify batch search")
+    parser.add_argument("--input", required=True,
+                        help="Previous step output (unused — first step in pipeline)")
+    parser.add_argument("--output", default=None, help="Path to write output.json")
+    parser.add_argument("--force", action="store_true")
+    parser.add_argument("--verbose", action="store_true")
+    add_doc_arg(parser)
+    args = parser.parse_args()
+
+    step_dir = Path(__file__).parent
+    output_path = Path(args.output) if args.output else step_dir / "output.json"
+    override_path = step_dir / "override.json"
+
+    plans = load_plans()
+    existing_slugs = {d["doc_slug"] for d in load_documents()}
+
+    writer = IncrementalWriter(output_path, STEP_NAME, key_field="doc_slug",
+                               force=args.force, override_path=override_path,
+                               target_key=args.doc)
+    if writer.processed_keys:
+        print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")
+
+    process(plans, existing_slugs, step_dir, writer, verbose=args.verbose)
+    count = writer.finalize()
+    write_status(step_dir, count)
+    print(f"Wrote {count} record(s) to {output_path}")
+
+
+if __name__ == "__main__":
+    main()
