@@ -50,8 +50,10 @@ def calculate_metric(step_name: str, record: dict, errors_data: dict | None) -> 
     if record is None:
         return 0
     
-    if step_name == "normalize_disclosure_cells":
-        # Always 100% - no errors.json, only changes.json audit log
+    if step_name in ("normalize_disclosure_cells", "filter_phantom_rows",
+                     "extract_disclosures_split_combined_columns"):
+        # These intermediary steps preserve the file record; their detailed
+        # changes are audited separately from the trace percentage.
         return 100
     
     if step_name == "transform_disclosure_files":

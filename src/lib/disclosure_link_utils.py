@@ -92,6 +92,8 @@ def find_file_links(html, base_url, follow_year_pages=True):
 
     for link in soup.find_all("a", href=True):
         href = link["href"]
+        if not isinstance(href, str):
+            continue
         full_url = urljoin(base_url, href)
 
         if not is_safe_url(full_url):

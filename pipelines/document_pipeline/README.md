@@ -17,7 +17,7 @@ The authoritative step order is defined in [`pipeline.json`](pipeline.json). Ste
 | 7 | [`assemble_sections`](steps/assemble_sections/) | Cuts cleaned blocks into per-section Markdown, interleaves figures, asserts page coverage. |
 | 8 | [`publish_bundles`](steps/publish_bundles/) | Packs each publishable document into a `bundle.tar.gz` and writes `public/documents/index.json`. |
 
-Three of these steps — `detect_structure`, `extract_figures` and `clean_text` — all consume `extract_pages/output.json` directly, not whichever step immediately precedes them in the table above. The shared runner (`src/lib/pipeline_runner.py`) only ever chains `--input` to the *immediately preceding* step's own output, so `extract_figures` and `clean_text` resolve `extract_pages/output.json` by a fixed sibling path instead of trusting `--input` (see the "Fan-in" comment in each `process.py`). `detect_structure` happens to sit directly after `extract_pages` in the table, so it does not need the same treatment — but that is a property of the current step order, not a guarantee; if the order in `pipeline.json` ever changes, check this first.
+`detect_structure`, `extract_figures` and `clean_text` all consume `extract_pages/output.json`. Their explicit fan-in dependencies are recorded in `pipeline.json` under `input_steps`; the shared runner uses those paths both for staleness checks and for the `--input` argument. Keep that mapping in sync when changing the pipeline order.
 
 ## Running it
 
@@ -27,10 +27,10 @@ Run these from inside `pipelines/document_pipeline/` — the runner's pipeline d
 cd pipelines/document_pipeline
 
 # Full pipeline
-uv run python process.py --force
+uv run python process.py --force --stop-on-error
 
 # One document only (documents.yml's doc_slug)
-uv run python process.py --force --doc gda-transport-strategy-2022-2042
+uv run python process.py --force --stop-on-error --doc gda-transport-strategy-2022-2042
 ```
 
 `--doc` pairs with `--force` in practice: the shared runner's mtime-based staleness check does not know about per-document freshness, so a scoped run without `--force` may decide the whole pipeline is already up to date and skip everything.
@@ -79,7 +79,7 @@ Don't use `public/latest/public-bodies/public-bodies.csv` for this lookup — it
 Then run the pipeline scoped to the new doc, from inside `pipelines/document_pipeline/` (see "Running it" above for why cwd matters here):
 
 ```bash
-uv run python pipelines/document_pipeline/process.py pipelines/document_pipeline --force --doc <the-new-slug>
+uv run python pipelines/document_pipeline/process.py pipelines/document_pipeline --force --stop-on-error --doc <the-new-slug>
 ```
 
 After it finishes, check `steps/*/errors.json` for entries tagged with the new `doc_slug` and confirm the doc appears in `public/documents/index.json` with an empty `failed` list — see the `errors.json` triage table below for which error types are informational versus which mean the document was skipped.

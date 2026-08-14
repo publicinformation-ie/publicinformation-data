@@ -21,3 +21,5 @@ Before writing a new one-off analysis snippet, check whether one of these alread
 ## Keeping this in sync
 
 When you add a new script to `scripts/`, add a full usage section to `README.md` and a one-row pointer to the table above.
+
+`generate_pipeline_docs.py` maintains generated sections in the repository's `AGENTS.md` from each pipeline's `pipeline.json`. Run it after changing pipeline configuration, or use `--check` to verify that documentation is current.

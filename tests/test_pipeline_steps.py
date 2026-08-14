@@ -9,7 +9,7 @@ from src.lib.pipeline_steps import (
 def test_step_names_ordered():
     assert STEP_NAMES[0] == "transform_disclosure_files"
     assert STEP_NAMES[-1] == "extract_disclosures_deduplicate"
-    assert len(STEP_NAMES) == 8
+    assert len(STEP_NAMES) == 10
 
 
 def test_step_config_keys_match_step_names():

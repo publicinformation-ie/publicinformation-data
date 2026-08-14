@@ -491,16 +491,8 @@ def main():
     parser = argparse.ArgumentParser(
         description="Cluster each document's page geometry into figures, render them to "
                     "WebP, and write a contact sheet per document")
-    # Note: because --input drives the shared runner's staleness check, this
-    # step reruns whenever detect_structure/output.json changes at all — even
-    # on a change with no effect on figures — while the real dependency,
-    # extract_pages, doesn't drive staleness at all. Don't "fix" this back to
-    # reading --input directly; see the Fan-in comment below for why that's
-    # wrong.
     parser.add_argument("--input", required=True,
-                        help="Unused (kept for the shared runner's CLI contract and staleness "
-                             "check) — extract_pages/output.json is always read by sibling path, "
-                             "see the Fan-in comment below")
+                        help="Path to extract_pages/output.json")
     parser.add_argument("--output", default=None, help="Path to write output.json")
     parser.add_argument("--force", action="store_true", help="Re-extract every document")
     parser.add_argument("--verbose", action="store_true", help="Print progress")
@@ -510,19 +502,9 @@ def main():
     step_dir = Path(__file__).parent
     output_path = Path(args.output) if args.output else step_dir / "output.json"
 
-    # Fan-in: this step's true upstream is extract_pages's page geometry, but
-    # pipeline.json does not place extract_pages immediately before
-    # extract_figures (detect_structure sits between them, since it too
-    # consumes extract_pages directly) — the shared runner only ever chains
-    # --input to the *immediately preceding* step's own output.json, so
-    # trusting --input's literal target here would silently read
-    # detect_structure's structure-node records instead of page geometry
-    # (no error, just doc_slug -> [] pages, i.e. cascading zero-figure output).
-    # Resolved by a fixed sibling path instead, the same way the PDF fan-in
-    # just below it already is.
-    extract_pages_dir = step_dir.parent / "extract_pages"
-    upstream_records = read_json(extract_pages_dir / "output.json").get("results", [])
-    pages_base_dir = extract_pages_dir
+    input_path = Path(args.input)
+    upstream_records = read_json(input_path).get("results", [])
+    pages_base_dir = input_path.parent
 
     fetch_dir = step_dir.parent / "fetch_pdfs"
     fetch_output = fetch_dir / "output.json"

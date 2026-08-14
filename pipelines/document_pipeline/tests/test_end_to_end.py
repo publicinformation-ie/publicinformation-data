@@ -102,11 +102,14 @@ def fixture_run(tmp_path_factory):
            "PYTHONPATH": f"{pipeline_copy}{os.pathsep}{REPO_ROOT / 'src'}"}
 
     prev_out = None
+    input_steps = {"extract_figures": "extract_pages", "clean_text": "extract_pages"}
     for step in STEPS:
         step_dir = steps_dir / step
         out = step_dir / "output.json"
+        input_step = input_steps.get(step)
+        input_out = (steps_dir / input_step / "output.json") if input_step else prev_out
         cmd = [sys.executable, str(step_dir / "process.py"),
-               "--input", str(prev_out) if prev_out is not None else str(step_dir),
+               "--input", str(input_out) if input_out is not None else str(step_dir),
                "--output", str(out), "--force"]
         if step == "fetch_pdfs":
             cmd += ["--local-pdf", f"{DOC_SLUG}={FIXTURE_PDF}"]

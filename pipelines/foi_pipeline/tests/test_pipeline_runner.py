@@ -211,6 +211,24 @@ def test_orchestrator_sets_pythonpath_to_src(tmp_path):
         assert expected in env["PYTHONPATH"]
 
 
+def test_orchestrator_uses_configured_input_step(tmp_path):
+    pipeline_dir = _make_pipeline(tmp_path, ["extract_pages", "extract_figures"])
+    config_path = pipeline_dir / "pipeline.json"
+    config = json.loads(config_path.read_text())
+    config["input_steps"] = {"extract_figures": "extract_pages"}
+    config_path.write_text(json.dumps(config))
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        mock_run.return_value.returncode = 0
+        sys.argv = ["process.py", str(pipeline_dir), "--force"]
+        main()
+
+    assert mock_run.call_count == 2
+    figure_cmd = mock_run.call_args_list[1].args[0]
+    input_index = figure_cmd.index("--input") + 1
+    assert figure_cmd[input_index].endswith("steps/extract_pages/output.json")
+
+
 from lib.file_utils import write_json as _write_json
 
 

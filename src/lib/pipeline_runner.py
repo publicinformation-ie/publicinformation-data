@@ -33,6 +33,7 @@ def main():
     config = json.loads((pipeline_dir / "pipeline.json").read_text())
     steps = config["steps"]
     always_run = set(config.get("always_run", []))
+    input_steps = config.get("input_steps", {})
 
     if args.public_body is not None:
         bodies_path = pipeline_dir / "steps" / "find_public_bodies" / "output.json"
@@ -79,9 +80,16 @@ def main():
             continue
 
         step_dir = pipeline_dir / "steps" / step_name
+        input_step = input_steps.get(step_name)
+        if input_step is None:
+            input_out = prev_out
+        elif input_step.startswith("/"):
+            input_out = repo_root / input_step.lstrip("/") / "output.json"
+        else:
+            input_out = pipeline_dir / "steps" / input_step / "output.json"
         is_from_step = args.from_step is not None and step_name == args.from_step
         if (not args.force and not is_from_step and step_name not in always_run
-                and not is_stale(step_out, prev_out)):
+                and not is_stale(step_out, input_out)):
             print(f"Skipping {step_name} (up to date)")
             prev_out = step_out
             continue
@@ -89,7 +97,7 @@ def main():
         cmd = [
             sys.executable,
             str(step_dir / "process.py"),
-            "--input", str(prev_out) if prev_out is not None else str(step_dir),
+            "--input", str(input_out) if input_out is not None else str(step_dir),
             "--output", str(step_out),
         ]
         if args.force:

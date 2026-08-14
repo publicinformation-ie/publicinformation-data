@@ -203,8 +203,10 @@ def test_trace_file_partial_normalize_rows():
         step_configs = {
             "transform_disclosure_files": {"results": [{"file_url": "https://test.com/file.xlsx", "rows": [["a"]]}]},
             "normalize_disclosure_cells": {"results": [{"file_url": "https://test.com/file.xlsx"}]},
+            "filter_phantom_rows": {"results": [{"file_url": "https://test.com/file.xlsx"}]},
             "extract_disclosures_detect_header_row": {"results": [{"file_url": "https://test.com/file.xlsx", "header_row_idx": 0}]},
             "extract_disclosures_normalize_header": {"results": [{"file_url": "https://test.com/file.xlsx"}]},
+            "extract_disclosures_split_combined_columns": {"results": [{"file_url": "https://test.com/file.xlsx"}]},
             "extract_disclosures_normalize_rows": {
                 "output": {"results": [{"file_url": "https://test.com/file.xlsx", "total_rows": 10}]},
                 "errors": {"results": [{"file_url": "https://test.com/file.xlsx", "errors": ["e1", "e2"]}]}

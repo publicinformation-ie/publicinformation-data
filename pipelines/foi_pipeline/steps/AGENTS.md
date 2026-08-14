@@ -11,13 +11,13 @@ When a step transforms or canonicalizes record data: **if a value cannot be reas
 **To run all steps via the process script:**
 ```bash
 cd ..
-python process.py --force
+uv run python process.py --force --stop-on-error
 ```
 
 **To run from a specific step:**
 ```bash
 cd ..
-python process.py --from <step_name> --force
+uv run python process.py --from <step_name> --force --stop-on-error
 ```
 
 **To run a single step directly:**
@@ -37,6 +37,7 @@ PYTHONPATH=.. python <step_name>/process.py \
 1. **`../pipeline.json`** — the authoritative step order. Add, remove, or reorder the step name in the `"steps"` array.
 2. **`README.md`** (this directory) — update the step sequence table to match `pipeline.json` exactly. Each row should have the correct step number, a link to the step subdirectory, and a one-sentence description.
 3. **`<step>/README.md`** — create a README in the new step's directory following the same format as the existing step READMEs (what it does, input, output, notable files).
+4. **Run `uv run python scripts/generate_pipeline_docs.py` from the repository root** to refresh generated pipeline summaries in the top-level `AGENTS.md`.
 
 **When you change what a step does** (its inputs, outputs, key behaviour, or notable files), update that step's `README.md` to reflect the change.
 

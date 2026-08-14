@@ -8,5 +8,9 @@
     "clean_text",
     "assemble_sections",
     "publish_bundles"
-  ]
+  ],
+  "input_steps": {
+    "extract_figures": "extract_pages",
+    "clean_text": "extract_pages"
+  }
 }

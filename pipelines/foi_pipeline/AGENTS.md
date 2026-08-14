@@ -10,12 +10,12 @@ The pipeline is a series of Python steps (defined in [`pipeline.json`](pipeline.
 
 **To run the full pipeline:**
 ```bash
-python process.py --force
+uv run python process.py --force --stop-on-error
 ```
 
 **To run from a specific step:**
 ```bash
-python process.py --from export_status --force
+uv run python process.py --from export_status --force --stop-on-error
 ```
 
 > **Always use `process.py` rather than calling individual step scripts directly.** This ensures dependencies are respected and prevents redundant execution. `process.py --from <step> --force` (see above) covers running "just one step forward" — reach for direct step invocation only for isolated debugging.
@@ -79,13 +79,13 @@ The `process.py` script runs steps in order from `pipeline.json`, skipping stale
 
 ```bash
 # Full pipeline from first step
-python process.py --force
+uv run python process.py --force --stop-on-error
 
 # Resume from a specific step
-python process.py --from export_status --force
+uv run python process.py --from export_status --force --stop-on-error
 
 # Scope to one public body
-python process.py --public-body 1001
+uv run python process.py --public-body 1001 --stop-on-error
 ```
 
 ### Single step execution (debugging only — prefer `process.py --from <step>` above)
@@ -122,8 +122,8 @@ For the full documentation sync workflow, see [steps/AGENTS.md](steps/AGENTS.md)
 The `--public-body <ID>` flag reprocesses only that body end-to-end, leaving others unchanged:
 
 ```bash
-python process.py --public-body 1001
-python process.py --from validate_websites --public-body 1001
+uv run python process.py --public-body 1001 --stop-on-error
+uv run python process.py --from validate_websites --public-body 1001 --stop-on-error
 ```
 
 > **Note:** `--public-body` never forces. Combining with `--force` reduces output to the single body.
@@ -157,11 +157,11 @@ See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for common issues including:
 After completing any data quality task, run the pipeline before marking the task complete:
 
 ```bash
-cd pipelines/foi_pipeline && python status.py --assert-fresh
+cd pipelines/foi_pipeline && uv run python status.py --assert-fresh
 ```
 
 If stale, run the pipeline first:
 
 ```bash
-cd pipelines/foi_pipeline && python process.py
+cd pipelines/foi_pipeline && uv run python process.py --stop-on-error
 ```
