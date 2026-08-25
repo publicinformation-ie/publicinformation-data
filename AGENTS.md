@@ -118,6 +118,15 @@ Always-run steps: `fingerprint_disclosure_pages`.
 | 1 | `fetch_lobbying_bodies` |
 | 2 | `match_public_bodies` |
 | 3 | `apply_overrides` |
+
+### `statespend_pipeline` (3 steps)
+
+| # | Step |
+|---:|---|
+| 1 | `fetch_statespend_bodies` |
+| 2 | `match_public_bodies` |
+| 3 | `apply_overrides` |
+
 ### `wdw_pipeline` (3 steps)
 
 | # | Step |
