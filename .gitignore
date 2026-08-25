@@ -29,6 +29,7 @@ local.db
 **/tmp*.tmp
 **/*_run.log
 **/match_log.json
+**/dropped.json
 .vibe/tmp/
 
 # Raw data files
