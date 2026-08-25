@@ -22,7 +22,7 @@ analysis and quantified mapping tiers this pipeline implements.
    **`str(statespend_id)`** (JSON keys are strings; record ids are ints — see the docstring in
    `process.py`). Drops still-unresolved records (Tier D: NTMA internal fund accounts, DPER
    pseudo-offices, bodies with no canonical counterpart) but logs every drop with its reason to
-   `dropped.json` per the fail-closed rule in AGENTS.md. Non-null override ids are verified to
+   `errors.json` per the fail-closed rule in AGENTS.md. Non-null override ids are verified to
    exist in the canonical register at runtime; a miss fatal-exits.
 
 ## Override authoring rules

@@ -102,6 +102,6 @@ def test_main_writes_output_and_dropped_log(tmp_path, monkeypatch):
     assert len(output["results"]) == 1
     assert output["results"][0]["statespend_id"] == 52
 
-    dropped = json.loads((tmp_path / "dropped.json").read_text())
-    assert [d["statespend_id"] for d in dropped["dropped"]] == [86]
-    assert "explicit null override" in dropped["dropped"][0]["reason"]
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert [e["statespend_id"] for e in errors["errors"]] == [86]
+    assert "explicit null override" in errors["errors"][0]["reason"]

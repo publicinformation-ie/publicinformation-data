@@ -82,7 +82,7 @@ def count_via_override(records: list, overrides: dict) -> int:
 def main():
     parser = argparse.ArgumentParser(
         description="Apply manual public_body_id overrides to statespend matches, "
-                     "dropping any record still unresolved (logged to dropped.json)"
+                     "dropping any record still unresolved (logged to errors.json)"
     )
     add_common_args(parser)
     parser.add_argument("--candidates", default=None,
@@ -130,17 +130,17 @@ def main():
         "results": resolved,
     }
     write_json(output_path, output)
-    write_json(output_path.parent / "dropped.json", {
+    write_json(output_path.parent / "errors.json", {
         "metadata": {
             "step": "apply_overrides",
             "completed_at": datetime.now(timezone.utc).isoformat(),
         },
-        "dropped": dropped,
+        "errors": dropped,
     })
     write_status(step_dir, len(resolved))
     print(
         f"Matched {len(resolved)}/{len(records)} ({override_count} via override), "
-        f"dropped {len(dropped)} unmatched (see dropped.json)"
+        f"dropped {len(dropped)} unmatched (see errors.json)"
     )
 
 
