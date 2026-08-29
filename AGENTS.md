@@ -36,6 +36,14 @@ cd pipelines/foi_pipeline && uv run python process.py --force --stop-on-error
 
 <!-- BEGIN GENERATED: pipeline-overviews -->
 
+### `actions_pipeline` (3 steps)
+
+| # | Step |
+|---:|---|
+| 1 | `/pipelines/document_pipeline/steps/extract_actions` |
+| 2 | `resolve_action_identity` |
+| 3 | `extract_relationships` |
+
 ### `cso_pipeline` (6 steps)
 
 | # | Step |
@@ -179,6 +187,7 @@ Claude Code sessions additionally have named agents in `.claude/agents/` (`explo
 pipelines/
   foi_pipeline/        # Main FOI pipeline (27 steps) — deep-dive in pipelines/foi_pipeline/AGENTS.md
   document_pipeline/   # PDF → per-section markdown + figures → public/documents/
+  actions_pipeline/    # Cross-document action identity + relationships → public-body-actions
   cso_pipeline/        # CSO Register ingestion; resolve_website_urls reused by foi_pipeline
   wdw_pipeline/        # "Who Does What" plain-English descriptions
   datagovie_pipeline/  # data.gov.ie organisation links
