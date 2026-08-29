@@ -44,7 +44,6 @@ they are null and a `DateParseError` (informational) is logged. Nothing is
 silently dropped or rewritten to "fit".
 """
 import argparse
-import re
 from datetime import datetime, timezone
 from pathlib import Path
 
