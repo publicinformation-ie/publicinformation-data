@@ -50,3 +50,53 @@ def test_each_vocabulary_has_a_matching_csvw_descriptor():
         declared = [c["name"] for c in descriptor["tableSchema"]["columns"]]
         with (VOCAB_DIR / name).open(newline="", encoding="utf-8") as f:
             assert next(csv.reader(f)) == declared
+
+
+CSVW_PATH = REPO_ROOT / "public" / "v1.0.0" / "public-body-actions" / "public-body-actions.csv-metadata.json"
+SCHEMA_PATH = REPO_ROOT / "public" / "schemas" / "public-body-actions.schema.json"
+TTL_PATH = REPO_ROOT / "public" / "catalog" / "dataset-public-body-actions.ttl"
+
+
+def csvw():
+    return json.loads(CSVW_PATH.read_text())
+
+
+def test_the_csvw_is_one_tablegroup_covering_three_tables():
+    assert [t["url"] for t in csvw()["tables"]] == [
+        "actions.csv", "action-status-observations.csv", "action-relationships.csv"]
+
+
+def test_the_csvw_declares_the_foreign_keys_to_actions():
+    tables = {t["url"]: t for t in csvw()["tables"]}
+    for url, column in (("action-status-observations.csv", "action_id"),
+                        ("action-relationships.csv", "from_action_id")):
+        keys = tables[url]["tableSchema"]["foreignKeys"]
+        assert any(k["columnReference"] == column
+                   and k["reference"] == {"resource": "actions.csv",
+                                          "columnReference": "action_id"}
+                   for k in keys), url
+
+
+def test_the_observation_primary_key_is_the_action_and_report_pair():
+    tables = {t["url"]: t for t in csvw()["tables"]}
+    assert tables["action-status-observations.csv"]["tableSchema"]["primaryKey"] == [
+        "action_id", "report_slug"]
+
+
+def test_the_schema_status_enum_matches_the_status_vocabulary():
+    schema = json.loads(SCHEMA_PATH.read_text())
+    enum = schema["$defs"]["ActionStatusObservation"]["properties"]["status"]["enum"]
+    assert set(enum) == {r["notation"] for r in read_vocabulary("action-status.csv")}
+
+
+def test_the_schema_relationship_enum_matches_the_relationship_vocabulary():
+    schema = json.loads(SCHEMA_PATH.read_text())
+    enum = schema["$defs"]["ActionRelationship"]["properties"]["relationship"]["enum"]
+    assert set(enum) == {r["notation"] for r in read_vocabulary("action-relationship.csv")}
+
+
+def test_the_ttl_declares_version_1_0_0_and_a_stampable_dct_modified():
+    import re
+    text = TTL_PATH.read_text()
+    assert 'owl:versionInfo "1.0.0"' in text
+    assert len(re.findall(r'(dct:modified\s+")[^"]*("\^\^xsd:date\s*;)', text)) == 1

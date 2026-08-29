@@ -73,6 +73,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Curated via a hand-authored `documents.yml`; first document is the National Transport Authority's Greater Dublin Area Transport Strategy 2022–2042
 - A document that fails to build (e.g. a coverage gap) is omitted from `index.json`'s `documents` array and listed under `failed`, never half-published
 
+## [public-body-actions 1.0.0] - 2026-08-29
+
+### Added
+- Public Body Actions dataset: three tables — `actions.csv`, `action-status-observations.csv`, `action-relationships.csv` — covering the Department of Transport's Sustainable Mobility Policy corpus (the 2022-2025 plan, its four progress reports, and the 2026-2030 plan)
+- One CSVW `TableGroup` covering all three tables, declaring the foreign keys between them
+- JSON-LD (single `@context` + `@graph`) and a JSON Schema with a `$defs` entry per table
+- Controlled vocabularies: `action-status` (5 terms, with `first_seen_in` recording when each term entered the series) and `action-relationship` (7 terms, with `family`)
+- DCAT-AP metadata for the dataset
+
 ## Template
 
 For future entries, use this template:
