@@ -1,0 +1,22 @@
+# Hand-curated relationships between published actions.
+#
+# This file is the ONLY way a lineage edge (renumbered_as, supersedes,
+# split_into, merged_into, carried_forward_to) can enter the dataset: no
+# document in the corpus states a renumbering machine-readably, and an
+# automated guess at continuity would silently splice two unrelated
+# commitments into one timeline.
+#
+# Validated strictly (see relationships.py) — a malformed entry is
+# process-fatal, exactly like documents.yml.
+#
+# Each entry:
+#   from:              action_id that must resolve to a published action
+#   to:                action_id that must resolve, OR omit and set external
+#   external: true     the target plan is outside the corpus; then set
+#                      to_plan_hint (required) and to_action_number
+#   relationship:      a term from relationships.VOCABULARY
+#   evidence:          verbatim source text, or the reviewed basis for the claim
+#
+# Ships empty: the carried_forward_to edges from 2022-2025 to 2026-2030 need
+# their narrative claims reviewed first (spec §15).
+relationships: []
