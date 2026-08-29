@@ -487,6 +487,17 @@ def process(clean_records, meta, step_dir, writer, doc_slug=None, verbose=False)
 
     for record in documents:
         slug = record["doc_slug"]
+        # Progress reports' annex tables carry an `Action` column and so
+        # *qualify* under the header test below — extracting them would
+        # duplicate every plan action once per report with nothing to signal
+        # it had gone wrong. Actions are declared by plans; reports observe
+        # them (extract_action_status). Not marked processed: the skip is
+        # re-decided every run, so flipping a document's role in
+        # documents.yml takes effect without --force.
+        if (meta.get(slug) or {}).get("role", "plan") != "plan":
+            if verbose:
+                print(f"  {slug} ... [skipped: not a plan]", flush=True)
+            continue
         if writer.is_processed(slug):
             continue
         if verbose:
@@ -555,7 +566,8 @@ def main():
                    "source_url": record.get("url") or "",
                    "publisher": record.get("publisher"),
                    "published_date": record.get("published_date"),
-                   "public_body_id": record.get("public_body_id")}
+                   "public_body_id": record.get("public_body_id"),
+                   "role": record.get("role") or "plan"}
             for slug, record in fetched.items()}
 
     writer = IncrementalWriter(output_path, STEP_NAME, key_field="doc_slug",

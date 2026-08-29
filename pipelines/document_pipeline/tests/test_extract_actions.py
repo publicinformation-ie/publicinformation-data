@@ -387,3 +387,42 @@ def test_process_writes_a_record_and_isolates_a_malformed_document(tmp_path):
     assert [e["context"]["doc_slug"] for e in failed] == ["bad-doc"]
     # Not marked processed, so a later run retries it.
     assert "bad-doc" not in writer.processed_keys
+
+
+def report_meta(slug):
+    return {slug: {"doc_title": slug, "source_url": "", "publisher": None,
+                   "published_date": None, "public_body_id": 1213,
+                   "role": "report"}}
+
+
+def plan_meta(slug):
+    meta = report_meta(slug)
+    meta[slug]["role"] = "plan"
+    return meta
+
+
+def test_a_report_document_yields_no_actions(tmp_path, make_writer):
+    writer = make_writer("extract_actions")
+    records = [clean_record([table_block(dated_rows())], doc_slug="a-report")]
+    process(records, report_meta("a-report"), tmp_path, writer)
+    writer.finalize()
+    assert json.loads((tmp_path / "output.json").read_text())["results"] == []
+
+
+def test_a_document_with_no_role_is_still_treated_as_a_plan(tmp_path, make_writer):
+    writer = make_writer("extract_actions")
+    records = [clean_record([table_block(dated_rows())], doc_slug="legacy-doc")]
+    process(records, {"legacy-doc": {}}, tmp_path, writer)
+    writer.finalize()
+    results = json.loads((tmp_path / "output.json").read_text())["results"]
+    assert len(results) == 1
+    assert results[0]["action_count"] > 0
+
+
+def test_an_explicit_plan_document_still_yields_actions(tmp_path, make_writer):
+    writer = make_writer("extract_actions")
+    records = [clean_record([table_block(dated_rows())], doc_slug="a-plan")]
+    process(records, plan_meta("a-plan"), tmp_path, writer)
+    writer.finalize()
+    results = json.loads((tmp_path / "output.json").read_text())["results"]
+    assert len(results) == 1
