@@ -239,10 +239,12 @@ def extract_table(rows, page_number, table_index, verdict, doc_slug, errors) -> 
             # A qualified table guarantees this is non-empty; guard anyway so
             # a ragged row can never produce an empty action.
             continue
-        if _normalize_header(action) in ACTION_KEYWORDS:
+        if cells == header:
             # A repeated header row (e.g. a second "ACTION" row following a
             # mid-table title) mid-way through the same table block: not a
-            # data row either.
+            # data row either. Matched whole-row, not just the action cell,
+            # so a genuine action whose text happens to equal a keyword
+            # (e.g. "Measures") is never mistaken for a repeated header.
             continue
         row_number += 1
 

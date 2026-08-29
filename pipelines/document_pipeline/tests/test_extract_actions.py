@@ -285,6 +285,22 @@ def test_extract_table_skips_a_mid_table_title_and_repeated_header_row():
     assert [a["action_id"] for a in actions] == ["p001-t01-r01", "p001-t01-r02"]
 
 
+def test_a_genuine_action_row_matching_a_keyword_text_is_kept():
+    """The repeated-header skip must match the whole row against the
+    header, not just the action cell against ACTION_KEYWORDS — a genuine
+    action row whose action-column text happens to equal a keyword (e.g.
+    "Measures") is not a repeated header row as long as its other cells
+    differ from the header's, and must not be silently dropped."""
+    rows = [
+        ["ACTION", "OWNER", "SUPPORT", "TIMELINE & OUTPUT"],
+        ["Measures", "DoT", "NTA", "2028"],
+    ]
+    verdict = classify_table(rows)
+    actions = extract_table(rows, 1, 0, verdict, "fixture-doc", [])
+    assert len(actions) == 1
+    assert actions[0]["action"] == "Measures"
+
+
 def test_an_undated_table_emits_actions_with_empty_dates():
     rows = [
         ["Action", "Lead"],
