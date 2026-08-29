@@ -22,3 +22,54 @@ documents:
     publisher: "Department of Transport"
     public_body_id: 1213
     published_date: "2026-02-26"
+
+  - doc_slug: sustainable-mobility-policy-action-plan-2022-2025
+    title: "Sustainable Mobility Policy Action Plan 2022-2025"
+    url: "https://assets.gov.ie/static/documents/sustainable-mobility-policy-action-plan-2022-2025.pdf"
+    publisher: "Department of Transport"
+    public_body_id: 1213
+    published_date: "2022-04-07"
+    # 91 action rows, each numbered by a leading ordinal in the ACTION cell.
+    expected_action_count: 91
+
+  - doc_slug: sustainable-mobility-policy-year-one-progress-report
+    title: "National Sustainable Mobility Policy Year One Progress Report"
+    url: "https://assets.gov.ie/static/documents/national-sustainable-mobility-policy-year-one-progress-report.pdf"
+    publisher: "Department of Transport"
+    public_body_id: 1213
+    published_date: "2023-10-20"
+    role: report
+    reports_on: sustainable-mobility-policy-action-plan-2022-2025
+
+  - doc_slug: sustainable-mobility-policy-year-two-progress-report
+    title: "National Sustainable Mobility Policy Year Two Progress Report"
+    url: "https://assets.gov.ie/static/documents/national-sustainable-mobility-policy-year-two-progress-report.pdf"
+    publisher: "Department of Transport"
+    public_body_id: 1213
+    published_date: "2024-08-27"
+    role: report
+    reports_on: sustainable-mobility-policy-action-plan-2022-2025
+
+  - doc_slug: sustainable-mobility-policy-year-three-progress-report
+    title: "National Sustainable Mobility Policy Year Three Progress Report"
+    url: "https://assets.gov.ie/static/documents/076637ab/Year_3_Progress_Report_-_FINAL_DRAFT_-_AMENDED_Clean.pdf"
+    publisher: "Department of Transport"
+    public_body_id: 1213
+    published_date: "2025-10-03"
+    role: report
+    reports_on: sustainable-mobility-policy-action-plan-2022-2025
+
+  - doc_slug: sustainable-mobility-policy-action-plan-2022-2025-final-progress-report
+    title: "National Sustainable Mobility Policy Action Plan 2022-2025 Final Progress Report"
+    url: "https://assets.gov.ie/static/documents/87a674c0/National_Sustainable_Mobility_Policy_Action_Plan_2022_-_2025_Final_Progress_Report.pdf"
+    publisher: "Department of Transport"
+    public_body_id: 1213
+    published_date: "2026-08-26"
+    role: report
+    reports_on: sustainable-mobility-policy-action-plan-2022-2025
+    # The split the report publishes for itself on page 7:
+    # 63.7% Complete / 30.8% Delayed / 5.5% Modified of 91 actions.
+    expected_status_counts:
+      Complete: 58
+      Delayed: 28
+      Modified: 5

@@ -199,3 +199,18 @@ def test_non_integer_expected_status_count_value_is_rejected(tmp_path):
 """)
     with pytest.raises(ValueError):
         load_documents(path)
+
+
+def test_the_real_documents_yml_declares_the_smp_corpus():
+    """The corpus is the dataset's whole input; a slug typo here is a silent
+    empty dataset rather than a failure, so assert the shape directly."""
+    records = {r["doc_slug"]: r for r in load_documents()}
+    plan = records["sustainable-mobility-policy-action-plan-2022-2025"]
+    assert plan["role"] == "plan"
+    assert plan["expected_action_count"] == 91
+    reports = [r for r in records.values() if r["role"] == "report"]
+    assert len(reports) == 4
+    assert all(r["reports_on"] == plan["doc_slug"] for r in reports)
+    assert all(r["public_body_id"] == 1213 for r in reports)
+    final = records["sustainable-mobility-policy-action-plan-2022-2025-final-progress-report"]
+    assert final["expected_status_counts"] == {"Complete": 58, "Delayed": 28, "Modified": 5}
