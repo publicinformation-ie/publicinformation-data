@@ -3,7 +3,7 @@ from pathlib import Path
 from scripts.transform_lobbying_links import (
     build_body_slug_lookup, build_record, transform_to_jsonld, transform_to_csv_rows, publish,
 )
-from scripts.transform_public_bodies import BASE_URI
+from src.lib.body_refs import BASE_URI
 from src.lib.dataset_publish import render_jsonld, render_csv
 
 

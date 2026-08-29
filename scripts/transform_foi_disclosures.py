@@ -9,7 +9,7 @@ import hashlib
 from collections import defaultdict
 from pathlib import Path
 
-from scripts.lib.body_refs import BASE_URI, build_body_slug_lookup, body_uri
+from src.lib.body_refs import BASE_URI, build_body_slug_lookup, body_uri
 from src.lib.dataset_publish import render_csv, render_jsonld, stamp_if_changed
 
 FOI_DISCLOSURES_PATH = "public/foi-disclosures.json"

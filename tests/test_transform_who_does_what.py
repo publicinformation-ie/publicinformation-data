@@ -1,7 +1,7 @@
 from scripts.transform_who_does_what import (
     build_body_slug_lookup, build_record, transform_to_jsonld, transform_to_csv_rows,
 )
-from scripts.transform_public_bodies import BASE_URI
+from src.lib.body_refs import BASE_URI
 
 
 def test_build_body_slug_lookup_maps_id_to_slug():

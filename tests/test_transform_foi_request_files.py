@@ -8,8 +8,7 @@ from scripts.transform_foi_request_files import (
     transform_to_csv_rows,
     publish,
 )
-from scripts.transform_public_bodies import BASE_URI
-from scripts.lib.body_refs import body_uri
+from src.lib.body_refs import BASE_URI, body_uri
 from src.lib.dataset_publish import render_jsonld, render_csv
 
 

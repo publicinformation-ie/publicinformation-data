@@ -22,6 +22,7 @@ from steps.publish_bundles.process import (
     CONTRACT_VERSION,
     build_bundle_bytes,
     build_full_md,
+    build_index_html,
     build_llms_txt,
     bundle_entries,
     contract_meta,
@@ -273,6 +274,92 @@ def test_doc_slug_removed_from_current_run_prunes_its_stale_dir(
     index2 = json.loads((public_root / "index.json").read_text())
     assert index2["documents"] == []
     assert index2["failed"] == []
+
+
+# --- index.html ------------------------------------------------------------
+
+def _index_entry(**overrides):
+    """A single published index entry (the shape build_index_html consumes),
+    with the fields the HTML page surfaces."""
+    entry = {
+        "doc_slug": DOC,
+        "title": DOC_TITLE,
+        "publisher": "Test Authority",
+        "source_url": SOURCE_URL,
+        "bundle": f"{DOC}/bundle.tar.gz",
+    }
+    entry.update(overrides)
+    return entry
+
+
+def test_build_index_html_lists_public_body_name_title_and_pdf_link():
+    html = build_index_html([_index_entry()])
+    assert "Test Authority" in html
+    assert DOC_TITLE in html
+    assert f'href="{SOURCE_URL}"' in html
+    assert ">PDF</a>" in html
+
+
+def test_build_index_html_links_llms_txt_and_bundle():
+    html = build_index_html([_index_entry()])
+    assert f'href="{DOC}/llms.txt"' in html
+    assert ">LLMS.txt</a>" in html
+    assert f'href="{DOC}/bundle.tar.gz"' in html
+    assert ">gzip file</a>" in html
+
+
+def test_build_index_html_uses_unknown_publisher_when_null():
+    html = build_index_html([_index_entry(publisher=None)])
+    assert "Unknown publisher" in html
+
+
+def test_build_index_html_escapes_html():
+    html = build_index_html([_index_entry(
+        title="A & B < C",
+        source_url="https://example.org/a?x=1&y=2",
+    )])
+    assert "A &amp; B &lt; C" in html
+    assert "x=1&amp;y=2" in html
+    assert "< C" not in html
+
+
+def test_build_index_html_orders_by_doc_slug():
+    entries = [
+        _index_entry(doc_slug="zzz-doc", title="Z Doc"),
+        _index_entry(doc_slug="aaa-doc", title="A Doc"),
+    ]
+    html = build_index_html(entries)
+    assert html.index("A Doc") < html.index("Z Doc")
+
+
+def test_index_html_is_written_next_to_index_json(
+        record, figures_record, fetch_record, assemble_dir, figures_dir, tmp_path):
+    _step_dir, public_root = run_process(
+        tmp_path, [record], {DOC: figures_record}, {DOC: fetch_record},
+        assemble_dir, figures_dir)
+
+    html = (public_root / "index.html").read_text(encoding="utf-8")
+    assert DOC_TITLE in html
+    assert f'href="{SOURCE_URL}"' in html
+    assert f'href="{DOC}/bundle.tar.gz"' in html
+    assert ">gzip file</a>" in html
+    assert f'href="{DOC}/llms.txt"' in html
+    assert ">LLMS.txt</a>" in html
+
+
+def test_index_html_omits_failed_documents(
+        record, not_publishable_record, figures_record, fetch_record,
+        assemble_dir, figures_dir, tmp_path):
+    broken_fetch = dict(fetch_record, doc_slug="broken-doc")
+    _step_dir, public_root = run_process(
+        tmp_path, [record, not_publishable_record],
+        {DOC: figures_record, "broken-doc": figures_record},
+        {DOC: fetch_record, "broken-doc": broken_fetch},
+        assemble_dir, figures_dir)
+
+    html = (public_root / "index.html").read_text(encoding="utf-8")
+    assert DOC_TITLE in html
+    assert "broken-doc" not in html
 
 
 # --- bundle interior ------------------------------------------------------

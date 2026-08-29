@@ -6,11 +6,13 @@
     "detect_structure",
     "extract_figures",
     "clean_text",
+    "extract_actions",
     "assemble_sections",
     "publish_bundles"
   ],
   "input_steps": {
     "extract_figures": "extract_pages",
-    "clean_text": "extract_pages"
+    "clean_text": "extract_pages",
+    "assemble_sections": "clean_text"
   }
 }

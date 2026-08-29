@@ -1,10 +1,9 @@
 import pytest
-from scripts.transform_public_bodies import (
-    slugify,
+from lib.body_refs import BASE_URI, slugify
+from lib.publish_public_bodies import (
     map_body_type,
     build_contact_email_lookup,
     build_record,
-    BASE_URI,
 )
 
 
@@ -99,7 +98,7 @@ def test_build_record_missing_website_is_omitted_not_null():
     assert "website" not in record
 
 
-from scripts.transform_public_bodies import transform_to_jsonld, transform_to_csv_rows
+from lib.publish_public_bodies import transform_to_jsonld, transform_to_csv_rows
 
 
 def test_transform_to_jsonld_single_context_and_graph():
@@ -135,7 +134,7 @@ def test_transform_to_csv_rows_columns_and_boolean_lexical_form():
     assert rows[1]["contact_email"] == ""
 
 
-from scripts.transform_public_bodies import build_cso_lookup
+from lib.publish_public_bodies import build_cso_lookup
 
 
 def test_build_cso_lookup_only_includes_whitelisted_fields():
@@ -198,7 +197,7 @@ def test_build_cso_lookup_only_includes_whitelisted_fields():
     }
 
 
-from scripts.transform_public_bodies import (
+from lib.publish_public_bodies import (
     build_crawl_status_lookup,
     build_status_object,
     build_disclosure_files_object,
@@ -607,8 +606,8 @@ def test_transform_to_csv_rows_includes_uri_reference_columns():
 
 from pathlib import Path
 
-from scripts.transform_public_bodies import publish
-from src.lib.dataset_publish import render_jsonld, render_csv
+from lib.dataset_publish import render_jsonld, render_csv
+from lib.publish_public_bodies import publish
 
 
 def _ttl_text(modified_date):

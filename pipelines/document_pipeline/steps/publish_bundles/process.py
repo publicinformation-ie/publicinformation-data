@@ -38,6 +38,7 @@ import argparse
 import gzip
 import hashlib
 import io
+from html import escape
 import json
 import re
 import shutil
@@ -183,6 +184,62 @@ def build_llms_txt(meta: dict) -> str:
             lines.append(f"  - [{section['title']}]({section['file']}) "
                          f"— pages {spages[0]}–{spages[1]}")
     return "\n".join(lines) + "\n"
+
+
+def build_index_html(documents: list[dict]) -> str:
+    """The `public/documents/index.html` page: one row per published document
+    with its public body name, title, its resources (LLMS.txt and bundle
+    download) and its source PDF — so a scraper starting at the homepage can
+    reach every document's machine-readable index. `documents` is the same
+    shape as `index.json`'s `documents[]`."""
+    rows = []
+    for doc in sorted(documents, key=lambda d: d["doc_slug"]):
+        publisher = escape(doc.get("publisher") or "Unknown publisher")
+        title = escape(doc["title"])
+        source_url = escape(doc["source_url"])
+        bundle_rel = escape(doc["bundle"])
+        llms_rel = escape(f"{doc['doc_slug']}/llms.txt")
+        rows.append(
+            "  <tr>\n"
+            f"    <td>{publisher}</td>\n"
+            f"    <td>{title}</td>\n"
+            f'    <td><a href="{llms_rel}">LLMS.txt</a><br>'
+            f'<a href="{bundle_rel}">gzip file</a></td>\n'
+            f'    <td><a href="{source_url}">PDF</a></td>\n'
+            "  </tr>"
+        )
+    body_rows = "\n".join(rows)
+    return (
+        "<!DOCTYPE html>\n"
+        '<html lang="en">\n'
+        "<head>\n"
+        '<meta charset="utf-8">\n'
+        "<title>Strategies and Plans — PublicInformation.ie</title>\n"
+        "<style>\n"
+        '  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;\n'
+        "         max-width: 64rem; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; line-height: 1.6; }\n"
+        "  h1 { font-size: 1.6rem; }\n"
+        "  p.lead { font-size: 1.05rem; color: #333; }\n"
+        "  a { color: #0645ad; text-decoration: none; }\n"
+        "  a:hover { text-decoration: underline; }\n"
+        "  table { border-collapse: collapse; margin: 1rem 0; width: 100%; }\n"
+        "  th, td { text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid #ddd; font-size: 0.95em; vertical-align: top; }\n"
+        "  th { color: #555; font-weight: 600; }\n"
+        "  code { background: #f2f2f2; padding: 0.1em 0.35em; border-radius: 3px; }\n"
+        "</style>\n"
+        "</head>\n"
+        "<body>\n"
+        "<h1>Strategies and Plans</h1>\n"
+        '<p class="lead">Large public-interest strategy and plan documents from Irish public '
+        "bodies, split into per-section Markdown with extracted figures. Download a document as a "
+        "reproducible bundle, or read its machine-readable LLMS.txt index.</p>\n"
+        "<table>\n"
+        "  <tr><th>Public Body Name</th><th>Document Title</th><th>Resources</th><th>Source PDF</th></tr>\n"
+        f"{body_rows}\n"
+        "</table>\n"
+        "</body>\n"
+        "</html>\n"
+    )
 
 
 def bundle_entries(meta: dict, section_bodies: dict[str, str], asset_bytes: dict[str, bytes],
@@ -431,6 +488,8 @@ def _write_index_json(results: list, public_root: Path) -> None:
     }
     public_root.mkdir(parents=True, exist_ok=True)
     write_json(public_root / "index.json", index)
+    (public_root / "index.html").write_text(
+        build_index_html(index["documents"]), encoding="utf-8")
 
 
 def main():

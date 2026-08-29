@@ -6,7 +6,7 @@ from scripts.transform_foi_disclosures import (
     transform_to_csv_rows,
     DATASET_VERSION,
 )
-from scripts.lib.body_refs import BASE_URI
+from src.lib.body_refs import BASE_URI
 
 
 # Real pipeline records have no row_id field, and file_url is not unique

@@ -1,4 +1,4 @@
-"""End-to-end test: runs all eight document_pipeline steps as real
+"""End-to-end test: runs all nine document_pipeline steps as real
 subprocesses against a `tmp_path` copy of the pipeline, using
 `--local-pdf` to substitute the committed fixture PDF for a network
 fetch, and asserts the published bundle matches
@@ -40,7 +40,7 @@ PIPELINE_SRC = REPO_ROOT / "pipelines" / "document_pipeline"
 FIXTURE_PDF = PIPELINE_SRC / "tests" / "fixtures" / "fixture.pdf"
 
 STEPS = ("find_plan_pdfs", "fetch_pdfs", "extract_pages", "detect_structure", "extract_figures",
-         "clean_text", "assemble_sections", "publish_bundles")
+         "clean_text", "extract_actions", "assemble_sections", "publish_bundles")
 
 DOC_SLUG = "fixture-doc"
 
@@ -75,7 +75,7 @@ def _clean_step_dir(step_dir: Path) -> None:
 def fixture_run(tmp_path_factory):
     """Copy pipelines/document_pipeline/ into a session-scoped tmp dir, point
     it at a one-document documents.yml keyed to the fixture PDF, and run all
-    eight steps as subprocesses with --force --local-pdf.
+    nine steps as subprocesses with --force --local-pdf.
 
     Returns the *assemble_sections* step directory (a Path), so callers that
     only need the produced Markdown — the golden-file test — can do
@@ -102,7 +102,8 @@ def fixture_run(tmp_path_factory):
            "PYTHONPATH": f"{pipeline_copy}{os.pathsep}{REPO_ROOT / 'src'}"}
 
     prev_out = None
-    input_steps = {"extract_figures": "extract_pages", "clean_text": "extract_pages"}
+    input_steps = {"extract_figures": "extract_pages", "clean_text": "extract_pages",
+                   "assemble_sections": "clean_text"}
     for step in STEPS:
         step_dir = steps_dir / step
         out = step_dir / "output.json"
@@ -113,7 +114,7 @@ def fixture_run(tmp_path_factory):
                "--output", str(out), "--force"]
         if step == "fetch_pdfs":
             cmd += ["--local-pdf", f"{DOC_SLUG}={FIXTURE_PDF}"]
-        if step == "publish_bundles":
+        if step in ("extract_actions", "publish_bundles"):
             cmd += ["--public-root", str(public_root)]
 
         result = subprocess.run(cmd, env=env, capture_output=True, text=True)
@@ -145,10 +146,18 @@ def _read_bundle(public_root: Path, doc_slug: str = DOC_SLUG) -> dict[str, bytes
 
 # --- the real end-to-end assertions --------------------------------------
 
-def test_all_eight_steps_exit_zero(fixture_run):
+def test_all_nine_steps_exit_zero(fixture_run):
     # fixture_run's construction already asserts each step's exit code is 0
     # (see the fixture body); reaching this point is the proof.
     assert fixture_run.exists()
+
+
+def test_extract_actions_writes_the_library_actions_json(fixture_run):
+    public_root = _public_root(fixture_run)
+    actions = json.loads((public_root / "actions.json").read_text(encoding="utf-8"))
+    # The fixture PDF's only table is a Mode/Share data table, so there is no
+    # action to extract — but the side artifact must still be written.
+    assert actions == []
 
 
 def test_index_json_lists_the_fixture_document_with_its_page_count(fixture_run):

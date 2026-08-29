@@ -8,7 +8,7 @@ import os
 import shutil
 from pathlib import Path
 
-from scripts.transform_public_bodies import BASE_URI, slugify
+from src.lib.body_refs import BASE_URI, slugify
 from src.lib.dataset_publish import render_csv, render_jsonld, stamp_if_changed
 
 APPLY_OVERRIDES_OUTPUT_PATH = "pipelines/datagovie_pipeline/steps/apply_overrides/output.json"

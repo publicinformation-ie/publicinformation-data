@@ -1,4 +1,4 @@
-from scripts.lib.body_refs import build_body_slug_lookup, body_uri, BASE_URI
+from src.lib.body_refs import build_body_slug_lookup, body_uri, BASE_URI
 
 
 def test_body_uri_builds_expected_url():
@@ -8,10 +8,10 @@ def test_body_uri_builds_expected_url():
 
 
 def test_base_uri_matches_existing_transform_scripts():
-    # Every existing transform script (transform_public_bodies.py,
-    # transform_foi_request_files.py, transform_who_does_what.py) hard-codes
-    # this exact literal. body_refs.BASE_URI must match it so a future
-    # switch-over doesn't change any published @id.
+    # Every transform script (transform_foi_request_files.py,
+    # transform_who_does_what.py, transform_datagovie_links.py,
+    # transform_lobbying_links.py) imports this exact literal from body_refs.
+    # It must match so a future switch-over doesn't change any published @id.
     assert BASE_URI == "https://data.publicinformation.ie"
 
 

@@ -1,18 +1,31 @@
-"""Shared helpers for resolving public_body_id -> permanent slug -> @id URI.
+"""Shared helpers for resolving public_body_id -> permanent slug -> @id URI,
+plus the generic slugify() used by link-dataset transforms.
 
-Every catalog transform script (transform_public_bodies.py,
-transform_foi_request_files.py, transform_who_does_what.py, and future
-transform_foi_disclosures.py) should import build_body_slug_lookup() and
-body_uri() from here instead of independently re-slugifying names. The
-permanent slug source of truth is resolve_slug() in src/lib/body_utils.py
-(already used by db_upload) plus slug_seed.json
-(pipelines/foi_pipeline/steps/db_upload/slug_seed.json, frozen once
-assigned) -- this module never recomputes a slug for an id present in that
-seed file.
+Every catalog transform script (transform_foi_request_files.py,
+transform_who_does_what.py, transform_datagovie_links.py,
+transform_lobbying_links.py, and transform_foi_disclosures.py) should import
+build_body_slug_lookup(), body_uri(), and slugify() from here instead of
+independently re-slugifying names. The permanent slug source of truth is
+resolve_slug() in src/lib/body_utils.py (already used by db_upload) plus
+slug_seed.json (pipelines/foi_pipeline/steps/db_upload/slug_seed.json, frozen
+once assigned) -- this module never recomputes a slug for an id present in
+that seed file.
 """
-from src.lib.body_utils import resolve_slug
+import re
+
+from .body_utils import resolve_slug
 
 BASE_URI = "https://data.publicinformation.ie"
+
+
+def slugify(text):
+    """Convert text to a URL slug."""
+    if not text:
+        return "unknown"
+    slug = text.lower()
+    slug = re.sub(r'[^\w\s-]', '', slug)
+    slug = re.sub(r'\s+', '-', slug)
+    return slug.strip('-')
 
 
 def build_body_slug_lookup(pipeline_bodies, slug_seed):

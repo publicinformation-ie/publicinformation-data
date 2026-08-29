@@ -9,8 +9,7 @@ import shutil
 import hashlib
 from pathlib import Path
 
-from scripts.lib.body_refs import build_body_slug_lookup, body_uri
-from scripts.transform_public_bodies import BASE_URI
+from src.lib.body_refs import BASE_URI, build_body_slug_lookup, body_uri
 from src.lib.dataset_publish import render_csv, render_jsonld, stamp_if_changed
 
 DISCLOSURE_FILES_PATH = "public/disclosure-files.json"

@@ -168,6 +168,22 @@ def _merge_documents(documents: list, discovered: list) -> list:
     return documents + [d for d in discovered if d["doc_slug"] not in existing_slugs]
 
 
+def _doc_metadata(doc: dict) -> dict:
+    """The record fields derived from the curated `doc` (documents.yml or a
+    find_plan_pdfs result) rather than from the downloaded PDF. These can
+    change between runs without the PDF changing, so a cache hit must still
+    recompute them — only the download-derived facts (sha256, page_count,
+    fetched_at, ...) stay pinned to the original fetch."""
+    return {
+        "doc_slug": doc["doc_slug"],
+        "title": doc["title"],
+        "url": doc["url"],
+        "publisher": doc.get("publisher") or doc.get("department"),
+        "public_body_id": doc.get("public_body_id"),
+        "published_date": doc.get("published_date"),
+    }
+
+
 def process(documents, step_dir, writer, verbose=False):
     """Fetch (or reuse) each document's PDF, appending one record per
     success and one errors.json entry per skipped document. Never raises for
@@ -191,7 +207,9 @@ def process(documents, step_dir, writer, verbose=False):
 
         try:
             if _cache_hit(doc, dest, prior):
-                writer.append([dict(prior)])
+                record = dict(prior)
+                record.update(_doc_metadata(doc))
+                writer.append([record])
                 if verbose:
                     print("[cached]", flush=True)
                 continue
@@ -214,20 +232,15 @@ def process(documents, step_dir, writer, verbose=False):
             if encrypted:
                 raise _FetchPdfsError("EncryptedPdf", f"{doc['url']} is password-protected")
 
-            record = {
-                "doc_slug": slug,
-                "title": doc["title"],
-                "url": doc["url"],
-                "publisher": doc.get("publisher"),
-                "public_body_id": doc.get("public_body_id"),
-                "published_date": doc.get("published_date"),
+            record = _doc_metadata(doc)
+            record.update({
                 "pdf_path": str(dest.relative_to(step_dir)),
                 "source_sha256": hashlib.sha256(payload).hexdigest(),
                 "bytes": len(payload),
                 "page_count": page_count,
                 "encrypted": encrypted,
                 "fetched_at": datetime.now(timezone.utc).isoformat(),
-            }
+            })
             writer.append([record])
             if verbose:
                 print("[ok]", flush=True)
