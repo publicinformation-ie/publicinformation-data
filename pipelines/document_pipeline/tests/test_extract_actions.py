@@ -96,6 +96,34 @@ def test_headers_match_case_insensitively_and_across_normalized_whitespace():
     assert verdict.is_action_table and verdict.dated
 
 
+def test_a_title_only_row_above_the_real_header_is_skipped():
+    """A section-title row (e.g. "CORE ACTIONS") merged in above the real
+    ACTION/OWNER/... header — as seen in the SMP 2022-2025 action plan PDF
+    — must not be mistaken for the header itself."""
+    rows = [
+        ["CORE ACTIONS", "", "", ""],
+        ["ACTION", "OWNER", "SUPPORT", "TIMELINE & OUTPUT"],
+        ["Build the road", "DoT", "NTA, TII", "2027"],
+    ]
+    verdict = classify_table(rows)
+    assert verdict.is_action_table
+    assert verdict.header_index == 1
+    assert verdict.action_col == 0
+
+
+def test_a_table_of_only_title_shaped_rows_falls_back_to_the_first_row():
+    """If every row looks title-shaped (single populated cell, not a known
+    keyword), there is no real header to land on — fall back to the first
+    non-empty row rather than raising or returning no verdict."""
+    rows = [
+        ["Notes"],
+        ["See appendix for detail"],
+    ]
+    verdict = classify_table(rows)
+    assert verdict.header_index == 0
+    assert not verdict.is_action_table
+
+
 # --- fail-closed error paths -----------------------------------------------
 
 def test_a_table_with_an_action_column_but_an_empty_data_action_cell_is_unclassified():
@@ -235,6 +263,26 @@ def test_extract_table_skips_empty_rows_and_numbers_only_data_rows():
     actions = extract_table(rows, 1, 0, verdict, "fixture-doc", [])
     assert [a["action_id"] for a in actions] == ["p001-t01-r01", "p001-t01-r02"]
     assert [a["action"] for a in actions] == ["First", "Second"]
+
+
+def test_extract_table_skips_a_mid_table_title_and_repeated_header_row():
+    """A table block that clean_text didn't split at a subsection boundary
+    can contain a second title row and a second, repeated header row
+    partway through — as seen in the SMP 2022-2025 action plan PDF (e.g.
+    "COMPLEMENTARY ACTION IN HOUSING FOR ALL" followed by a second
+    ACTION/OWNER/... header). Neither should be extracted as a data row."""
+    rows = [
+        ["ACTION", "OWNER", "SUPPORT", "TIMELINE & OUTPUT"],
+        ["1. Build the road", "DoT", "NTA, TII", "2027"],
+        ["COMPLEMENTARY ACTION IN HOUSING FOR ALL", "", "", ""],
+        ["ACTION", "OWNER", "SUPPORT", "TIMELINE & OUTPUT"],
+        ["2. Ship the buses", "NTA", "DoT", "2030"],
+    ]
+    verdict = classify_table(rows)
+    actions = extract_table(rows, 1, 0, verdict, "fixture-doc", [])
+    assert len(actions) == 2
+    assert [a["action"] for a in actions] == ["1. Build the road", "2. Ship the buses"]
+    assert [a["action_id"] for a in actions] == ["p001-t01-r01", "p001-t01-r02"]
 
 
 def test_an_undated_table_emits_actions_with_empty_dates():

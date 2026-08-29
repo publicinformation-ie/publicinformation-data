@@ -91,12 +91,48 @@ def _cell_at(cells, index):
     return cells[index]
 
 
+def _is_title_only_row(row) -> bool:
+    """True for a row that is a section title merged above the real header:
+    a row with more than one cell overall but exactly one non-empty cell,
+    where that cell doesn't look like a header keyword (e.g. "CORE ACTIONS"
+    spanning what pdfplumber read as one cell of an otherwise-empty row).
+
+    A row with only one cell to begin with (a genuinely single-column
+    table) can't be distinguished this way — every row of such a table
+    trivially has "exactly one non-empty cell" — so those are never
+    considered title-only here.
+    """
+    if len(row) <= 1:
+        return False
+    cells = [_normalize_cell(c) for c in row]
+    non_empty = [c for c in cells if c]
+    if len(non_empty) != 1:
+        return False
+    header_cell = _normalize_header(non_empty[0])
+    return header_cell not in ACTION_KEYWORDS and header_cell not in DATE_KEYWORDS
+
+
 def _header_index(rows):
-    """Index of the first non-empty row, or None if every row is empty."""
+    """Index of the header row, or None if every row is empty.
+
+    Normally this is the first non-empty row. But a table can carry a
+    section-title row (e.g. "CORE ACTIONS") merged in above its real
+    `ACTION/OWNER/...` header row — skip any leading title-only rows and
+    land on the first row that either has more than one populated cell or
+    whose lone cell matches a known header keyword. If every non-empty row
+    looks title-shaped, fall back to the first non-empty row rather than
+    giving up (a table that is genuinely just a lone label still needs a
+    header index, not None).
+    """
+    first_non_empty = None
     for index, row in enumerate(rows):
-        if _has_content(row):
+        if not _has_content(row):
+            continue
+        if first_non_empty is None:
+            first_non_empty = index
+        if not _is_title_only_row(row):
             return index
-    return None
+    return first_non_empty
 
 
 # --------------------------------------------------------------------------
@@ -192,11 +228,21 @@ def extract_table(rows, page_number, table_index, verdict, doc_slug, errors) -> 
     for row in rows[verdict.header_index + 1:]:
         if not _has_content(row):
             continue
+        if _is_title_only_row(row):
+            # A mid-table section title (e.g. "COMPLEMENTARY ACTION IN
+            # HOUSING FOR ALL") that clean_text didn't split into its own
+            # table block: not a data row.
+            continue
         cells = [_normalize_cell(c) for c in row]
         action = _cell_at(cells, verdict.action_col)
         if not action:
             # A qualified table guarantees this is non-empty; guard anyway so
             # a ragged row can never produce an empty action.
+            continue
+        if _normalize_header(action) in ACTION_KEYWORDS:
+            # A repeated header row (e.g. a second "ACTION" row following a
+            # mid-table title) mid-way through the same table block: not a
+            # data row either.
             continue
         row_number += 1
 
