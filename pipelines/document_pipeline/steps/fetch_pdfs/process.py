@@ -181,6 +181,16 @@ def _doc_metadata(doc: dict) -> dict:
         "publisher": doc.get("publisher") or doc.get("department"),
         "public_body_id": doc.get("public_body_id"),
         "published_date": doc.get("published_date"),
+        # role/reports_on travel with the document because every consumer of a
+        # fetched record — extract_actions' plan scoping, extract_action_status'
+        # report scoping, and the publisher's count invariants — needs them, and
+        # fetch_pdfs' record is the pipeline's provenance of record. A
+        # find_plan_pdfs discovery carries none of them, so a discovered
+        # document defaults to a plan with no expectations.
+        "role": doc.get("role") or "plan",
+        "reports_on": doc.get("reports_on"),
+        "expected_action_count": doc.get("expected_action_count"),
+        "expected_status_counts": doc.get("expected_status_counts"),
     }
 
 

@@ -16,7 +16,20 @@ SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 _REQUIRED = ("doc_slug", "title", "url")
-_OPTIONAL = ("publisher", "public_body_id", "published_date")
+_OPTIONAL = ("publisher", "public_body_id", "published_date", "role",
+             "reports_on", "expected_action_count", "expected_status_counts")
+
+VALID_ROLES = ("plan", "report")
+
+
+class InvalidDocumentRole(ValueError):
+    """A `role`/`reports_on` combination that cannot be resolved.
+
+    Process-fatal, like every other documents.yml violation: `reports_on` is
+    what joins a progress report's observations to the plan that declares the
+    actions, so a bad link would silently mis-attribute every observation in
+    the document rather than losing one field.
+    """
 
 
 def load_documents(path=DOCUMENTS_PATH) -> list:
@@ -63,9 +76,54 @@ def load_documents(path=DOCUMENTS_PATH) -> list:
         if body_id is not None and not isinstance(body_id, int):
             raise ValueError(f"{where} has non-integer public_body_id {body_id!r}")
 
+        role = entry.get("role") or "plan"
+        if role not in VALID_ROLES:
+            raise InvalidDocumentRole(
+                f"{where} has role {role!r}; must be one of {VALID_ROLES}")
+
+        reports_on = entry.get("reports_on")
+        if role == "report" and not reports_on:
+            raise InvalidDocumentRole(
+                f"{where} has role 'report' but no 'reports_on'; a report must "
+                f"name the plan whose actions it reports on")
+        if role != "report" and reports_on:
+            raise InvalidDocumentRole(
+                f"{where} sets 'reports_on' but its role is {role!r}; "
+                f"reports_on is only meaningful on a report")
+
+        expected_actions = entry.get("expected_action_count")
+        if expected_actions is not None and (isinstance(expected_actions, bool)
+                                             or not isinstance(expected_actions, int)
+                                             or expected_actions < 0):
+            raise ValueError(
+                f"{where} has expected_action_count {expected_actions!r}; "
+                f"must be a non-negative integer")
+
+        expected_statuses = entry.get("expected_status_counts")
+        if expected_statuses is not None:
+            if not isinstance(expected_statuses, dict) or not expected_statuses:
+                raise ValueError(
+                    f"{where} has expected_status_counts {expected_statuses!r}; "
+                    f"must be a non-empty mapping of status -> count")
+            for status, count in expected_statuses.items():
+                if (not isinstance(status, str) or isinstance(count, bool)
+                        or not isinstance(count, int) or count < 0):
+                    raise ValueError(
+                        f"{where} has expected_status_counts entry "
+                        f"{status!r}: {count!r}; must be str -> non-negative int")
+
         record = {field: entry[field] for field in _REQUIRED}
         record.update({field: entry.get(field) for field in _OPTIONAL})
         record["published_date"] = None if published is None else str(published)
+        record["role"] = role
         records.append(record)
+
+    slugs = {record["doc_slug"] for record in records}
+    for record in records:
+        target = record["reports_on"]
+        if target is not None and target not in slugs:
+            raise InvalidDocumentRole(
+                f"{path} entry {record['doc_slug']!r} has reports_on {target!r}, "
+                f"which is not a doc_slug in this file")
 
     return records

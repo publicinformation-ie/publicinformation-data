@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from steps.fetch_pdfs.process import _load_discovered, _merge_documents, process
+from steps.fetch_pdfs.process import _doc_metadata, _load_discovered, _merge_documents, process
 
 FIXTURE_PDF = Path(__file__).parent / "fixtures" / "fixture.pdf"
 
@@ -97,6 +97,26 @@ def test_merge_documents_appends_a_find_plan_pdfs_only_record_unchanged():
                    "source_method": "apify"}]
 
     assert _merge_documents(documents, discovered) == documents + discovered
+
+
+def test_doc_metadata_carries_role_and_report_fields():
+    meta = _doc_metadata({
+        "doc_slug": "a-report", "title": "A Report", "url": "https://example.ie/b.pdf",
+        "role": "report", "reports_on": "a-plan",
+        "expected_status_counts": {"Complete": 58},
+    })
+    assert meta["role"] == "report"
+    assert meta["reports_on"] == "a-plan"
+    assert meta["expected_status_counts"] == {"Complete": 58}
+    assert meta["expected_action_count"] is None
+
+
+def test_doc_metadata_defaults_role_to_plan_for_a_discovered_document():
+    meta = _doc_metadata({
+        "doc_slug": "discovered", "title": "Discovered", "url": "https://example.ie/c.pdf",
+    })
+    assert meta["role"] == "plan"
+    assert meta["reports_on"] is None
 
 
 def test_a_merged_discovered_record_reaches_process_unchanged(tmp_path, make_writer, monkeypatch):
