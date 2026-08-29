@@ -15,10 +15,11 @@ The authoritative step order is defined in [`pipeline.json`](pipeline.json). Ste
 | 5 | [`extract_figures`](steps/extract_figures/) | Clusters page geometry into figures, renders them to WebP, writes a contact sheet per document. |
 | 6 | [`clean_text`](steps/clean_text/) | Reflows raw positioned spans into headings, paragraphs, lists and tables. |
 | 7 | [`extract_actions`](steps/extract_actions/) | Classifies each document's action tables and extracts each action row plus its target date into reviewable metadata. |
-| 8 | [`assemble_sections`](steps/assemble_sections/) | Cuts cleaned blocks into per-section Markdown, interleaves figures, asserts page coverage. |
-| 9 | [`publish_bundles`](steps/publish_bundles/) | Packs each publishable document into a `bundle.tar.gz` and writes `public/documents/index.json`. |
+| 8 | [`extract_action_status`](steps/extract_action_status/) | For each `role: report` document, reads its annex tables and turns every action row into one dated status observation (status, reported deadline, progress narrative). |
+| 9 | [`assemble_sections`](steps/assemble_sections/) | Cuts cleaned blocks into per-section Markdown, interleaves figures, asserts page coverage. |
+| 10 | [`publish_bundles`](steps/publish_bundles/) | Packs each publishable document into a `bundle.tar.gz` and writes `public/documents/index.json`. |
 
-`detect_structure`, `extract_figures` and `clean_text` all consume `extract_pages/output.json`, and `assemble_sections` consumes `clean_text/output.json`. Their explicit fan-in dependencies are recorded in `pipeline.json` under `input_steps`; the shared runner uses those paths both for staleness checks and for the `--input` argument. Keep that mapping in sync when changing the pipeline order.
+`detect_structure`, `extract_figures` and `clean_text` all consume `extract_pages/output.json`; `extract_action_status` and `assemble_sections` both consume `clean_text/output.json`. Their explicit fan-in dependencies are recorded in `pipeline.json` under `input_steps`; the shared runner uses those paths both for staleness checks and for the `--input` argument. Keep that mapping in sync when changing the pipeline order.
 
 ## Running it
 
@@ -76,6 +77,13 @@ print([b for b in bodies if b['name'] == '<publisher name>'])
 ```
 
 Don't use `public/latest/public-bodies/public-bodies.csv` for this lookup — its `id` column is a slug URL (`https://data.publicinformation.ie/body/...`), not the integer `documents.py` validates against, so a value copied from there will fail validation. A wrong id here has caused real data-integrity bugs elsewhere in this repo (`orphan` errors in `export_status`) — the same care applies here even though `document_pipeline` doesn't share that guard.
+
+**`role`, `reports_on`, `expected_action_count` and `expected_status_counts`** distinguish a plan from a progress report and pin down what its extraction should produce, so a regression in `extract_actions` or `extract_action_status` fails loudly instead of silently shipping a smaller number:
+
+- `role` — `"plan"` (the default when omitted) or `"report"`. `extract_actions` only scopes to `plan` documents; `extract_action_status` only processes `report` documents.
+- `reports_on` — required when `role: report`, forbidden otherwise (process-fatal violation either way, see `documents.py`). The `doc_slug` of the plan this report is reporting progress against. It must resolve to a real entry in `documents.yml` with `role: plan` — an unresolvable `reports_on` is process-fatal too.
+- `expected_action_count` — optional, plan documents only. The number of action rows `extract_actions` should find; used as an invariant check, not a target to extract towards.
+- `expected_status_counts` — optional, report documents only. A `{status: count}` mapping (`Complete`, `OnSchedule`, `Delayed`, `Ongoing`, `Modified`) that `extract_action_status`'s tally is expected to match exactly.
 
 Then run the pipeline scoped to the new doc, from inside `pipelines/document_pipeline/` (see "Running it" above for why cwd matters here):
 

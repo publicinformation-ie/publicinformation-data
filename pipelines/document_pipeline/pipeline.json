@@ -7,12 +7,14 @@
     "extract_figures",
     "clean_text",
     "extract_actions",
+    "extract_action_status",
     "assemble_sections",
     "publish_bundles"
   ],
   "input_steps": {
     "extract_figures": "extract_pages",
     "clean_text": "extract_pages",
+    "extract_action_status": "clean_text",
     "assemble_sections": "clean_text"
   }
 }
