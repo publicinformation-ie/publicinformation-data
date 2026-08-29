@@ -63,3 +63,11 @@ uv run python steps/extract_action_status/process.py --input steps/clean_text/ou
 ```
 
 Supports incremental resumption via `IncrementalWriter` (`key_field="doc_slug"`) and `--doc` scoping (`add_doc_arg`); scoping is also available by calling `process(..., doc_slug=...)` directly. `--force` re-extracts every report, including ones that previously failed with `UnknownReportFormat`.
+
+## Known limitations
+
+Against the real SMP corpus, only the Year One progress report currently produces observations. Year Two, Year Three, and the Final report all fail `UnknownReportFormat`.
+
+Root cause: their annex table header rows have no PDF fill-rectangle tying them to the table's PyMuPDF-detected grid. Year One's header sits inside a colored background band that is contiguous with the body's fill rectangle, so `page.find_tables()` merges them into one grid with the header as row 0; the other three reports' headers float on plain white background immediately above the body's fill, so `find_tables()` never includes them in the table. This is a property of `extract_pages.extract_tables()` — a single, shared, pipeline-wide table-detection call used by every document this pipeline processes — not a bug in this step's own detection or extraction logic.
+
+A real fix would need new header-reconciliation logic in `extract_pages` and has a broad blast radius: it would touch every document processed by this pipeline, including the already-published `gda-transport-strategy-2022-2042`. It is deliberately deferred rather than attempted here. This step's fail-closed design means the gap surfaces as a loud `UnknownReportFormat` error per affected document, never a silent data loss.
