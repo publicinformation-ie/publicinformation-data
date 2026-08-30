@@ -85,6 +85,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Removed
 - `public/documents/actions.json` — the flat, document-centric action list published by `extract_actions`. Superseded by the `public-body-actions` dataset, which carries `public_body_id`, stable `action_id`s, original-vs-reported deadlines and a status history per action. This is a breaking change to a published path.
 
+### Known limitations
+- `action-status-observations.csv` includes observations only from the Year One progress report. Year Two, Year Three and the Final progress report use a table format the shared `extract_pages` table-header detection does not yet parse (`UnknownReportFormat`), so their observations are correctly skipped rather than fabricated. Tracked as a follow-up.
+
 ## Template
 
 For future entries, use this template:
