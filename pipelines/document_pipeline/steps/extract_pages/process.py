@@ -95,20 +95,99 @@ def extract_images(page: pymupdf.Page) -> list:
     return images
 
 
+# A table's true header sometimes sits just above PyMuPDF's detected grid: the
+# header text has no fill-rectangle tying it to the body, so find_tables()
+# never includes it as row 0 and it leaks into the ordinary text stream
+# instead (see extract_action_status's "Known limitations" — this is that
+# root cause, fixed at its source). Reconstructed from column-aligned text
+# spans directly above the grid, never from content further away, so a
+# caption or narrative paragraph above a table isn't mistaken for its header.
+_HEADER_GAP_MAX = 50.0   # max distance (pt) from a candidate span to the grid top
+_HEADER_TOUCH_MAX = 10.0  # max gap (pt) between the candidate block and the grid — contiguity
+_HEADER_CELL_MAX_LEN = 40  # a genuine header cell is a short label, not a sentence
+
+
+def _column_ranges(cells) -> list:
+    xs = sorted({(round(c[0], 2), round(c[2], 2)) for c in cells if c})
+    return xs
+
+
+def _reconstruct_header_row(page: pymupdf.Page, table, other_bboxes) -> "tuple | None":
+    """(header_row, top_y) reconstructed from text floating above `table`'s
+    grid, or None if no plausible header is found there."""
+    columns = _column_ranges(table.cells)
+    min_columns = max(2, (len(columns) + 1) // 2)
+    x0_tbl, y0_tbl, x1_tbl = table.bbox[0], table.bbox[1], table.bbox[2]
+
+    candidates = []
+    text_dict: dict = page.get_text("dict")  # type: ignore[assignment]
+    for block in text_dict.get("blocks", []):
+        for line in block.get("lines", []):
+            for span in line.get("spans", []):
+                text = span["text"].strip()
+                if not text:
+                    continue
+                sx0, sy0, sx1, sy1 = span["bbox"]
+                if sy1 > y0_tbl or y0_tbl - sy0 > _HEADER_GAP_MAX:
+                    continue
+                if sx1 < x0_tbl - 1 or sx0 > x1_tbl + 1:
+                    continue
+                if any(bx0 <= sx0 <= bx1 and by0 <= sy0 <= by1
+                       for bx0, by0, bx1, by1 in other_bboxes):
+                    continue  # belongs to a different table on the page
+                candidates.append((sy0, sy1, sx0, sx1, text))
+    if not candidates:
+        return None
+
+    nearest_bottom = max(c[1] for c in candidates)
+    if y0_tbl - nearest_bottom > _HEADER_TOUCH_MAX:
+        return None
+
+    by_column = {}
+    for sy0, sy1, sx0, sx1, text in candidates:
+        mid = (sx0 + sx1) / 2
+        col = next((i for i, (cx0, cx1) in enumerate(columns) if cx0 - 1 <= mid <= cx1 + 1), None)
+        if col is not None:
+            by_column.setdefault(col, []).append((sy0, text))
+    if len(by_column) < min_columns:
+        return None
+
+    row = [" ".join(text for _, text in sorted(by_column.get(i, [])))
+           for i in range(len(columns))]
+    if not any(row):
+        return None
+    if any(len(cell) > _HEADER_CELL_MAX_LEN for cell in row):
+        return None  # a caption sentence, not a header label
+    return row, min(c[0] for c in candidates)
+
+
 def extract_tables(page: pymupdf.Page) -> list:
     tables = []
     try:
         found = page.find_tables()
     except Exception:  # pragma: no cover - pymupdf can bail on odd pages
         return tables
+    all_bboxes = [t.bbox for t in found.tables]
     for table in found.tables:
+        bbox = _round_seq(table.bbox)
+        rows = int(table.row_count)
+        text = [[("" if cell is None else str(cell)) for cell in row]
+                for row in table.extract()]
+
+        other_bboxes = [b for b in all_bboxes if b != table.bbox]
+        reconstructed = _reconstruct_header_row(page, table, other_bboxes)
+        if reconstructed is not None:
+            header_row, top_y = reconstructed
+            text = [header_row] + text
+            rows += 1
+            bbox[1] = round(min(bbox[1], top_y), 2)
+
         tables.append({
-            "bbox": _round_seq(table.bbox),
-            "rows": int(table.row_count),
+            "bbox": bbox,
+            "rows": rows,
             "cols": int(table.col_count),
             "cells": [_round_seq(cell) for cell in table.cells if cell],
-            "text": [[("" if cell is None else str(cell)) for cell in row]
-                     for row in table.extract()],
+            "text": text,
         })
     return tables
 

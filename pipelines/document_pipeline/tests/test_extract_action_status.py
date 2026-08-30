@@ -20,19 +20,21 @@ def table_block(rows, index=0, page=9):
             "blocks": [{"type": "table", "index": index, "text": rows, "y": 100.0}]}
 
 
+def status_page(label, page):
+    """A page whose only content is a standalone Complete/Modified/Delayed
+    label — the real corpus shape a Format B table's status is read from."""
+    return {"number": page,
+            "blocks": [{"type": "paragraph", "text": label, "y": 50.0}]}
+
+
+def blank_page(page):
+    """A page with no relevant content — every real document has one page
+    record per page number, whether or not this step cares about its blocks."""
+    return {"number": page, "blocks": []}
+
+
 def clean_record(pages, doc_slug="a-report"):
     return {"doc_slug": doc_slug, "body_size": 10.0, "pages": pages}
-
-
-def structure(nodes, doc_slug="a-report"):
-    return {"doc_slug": doc_slug, "detection_method": "outline",
-            "page_count": 40, "nodes": nodes}
-
-
-def node(title, start_page, end_page):
-    return {"title": title, "start_page": start_page, "end_page": end_page,
-            "level": 1, "slug": title.lower().replace(" ", "-"), "order": 100,
-            "parent": None, "number": None, "start_y": 0.0, "confidence": 1.0}
 
 
 def report(slug="a-report", **overrides):
@@ -67,7 +69,7 @@ def test_an_unrecognised_header_makes_the_document_unknown_format():
     errors = []
     record = extract_document(
         clean_record([table_block([["Action", "Owner"], ["Do a thing", "DoT"]])]),
-        structure([]), report(), errors)
+        report(), errors)
     assert record is None
     assert [e["error_type"] for e in errors] == ["UnknownReportFormat"]
 
@@ -81,7 +83,7 @@ def test_a_format_a_table_is_not_silently_emptied_by_the_format_b_path():
         clean_record([table_block([FORMAT_A_HEADER,
                                    ["01", "Do a thing", "A thing", "Q4 2024",
                                     "Complete", "Done", "Improve"]])]),
-        structure([]), report(), errors)
+        report(), errors)
     assert record["report_format"] == "A"
     assert record["observation_count"] == 1
     assert not [e for e in errors if e["error_type"] == "UnknownStatusSection"]
@@ -116,12 +118,15 @@ def test_a_zero_padded_action_number_becomes_an_integer():
 
 # --- format B ---------------------------------------------------------------
 
-def test_status_sections_map_pages_to_the_enclosing_status_heading():
-    mapping = status_sections(structure([
-        node("Annex 1: Complete Actions", 10, 19),
-        node("Annex 1: Delayed Actions", 20, 29),
-        node("Annex 1: Modified Actions", 30, 32),
-        node("Introduction", 1, 9),
+def test_status_sections_map_pages_to_the_last_seen_status_label():
+    mapping = status_sections(clean_record([
+        blank_page(5),
+        status_page("Complete", 10),
+        blank_page(19),
+        status_page("Delayed", 20),
+        blank_page(25),
+        status_page("Modified", 30),
+        blank_page(31),
     ]))
     assert mapping[10] == "Complete"
     assert mapping[19] == "Complete"
@@ -130,20 +135,18 @@ def test_status_sections_map_pages_to_the_enclosing_status_heading():
     assert 5 not in mapping
 
 
-def test_a_heading_naming_two_statuses_is_not_mapped():
-    """Ambiguity is not resolved by precedence — it is refused, so the tables
-    underneath surface as UnknownStatusSection rather than taking a guess."""
-    assert status_sections(structure([
-        node("Complete and Delayed Actions", 10, 19)])) == {}
+def test_a_page_before_any_status_label_is_not_mapped():
+    mapping = status_sections(clean_record([status_page("Complete", 10)]))
+    assert 5 not in mapping
 
 
-def test_format_b_derives_status_from_the_enclosing_heading():
+def test_format_b_derives_status_from_the_preceding_label():
     errors = []
     record = extract_document(
-        clean_record([table_block(
+        clean_record([status_page("Complete", 10),
+                      table_block(
             [FORMAT_B_HEADER,
              ["01", "Do a thing", "A thing", "Q4 2024", "Done"]], page=12)]),
-        structure([node("Annex 1: Complete Actions", 10, 19)]),
         report(), errors)
     assert record["report_format"] == "B"
     assert record["observations"][0]["status"] == "Complete"
@@ -151,13 +154,13 @@ def test_format_b_derives_status_from_the_enclosing_heading():
     assert errors == []
 
 
-def test_a_format_b_table_under_no_status_heading_is_skipped_and_logged():
+def test_a_format_b_table_before_any_status_label_is_skipped_and_logged():
     errors = []
     record = extract_document(
         clean_record([table_block(
             [FORMAT_B_HEADER,
              ["01", "Do a thing", "A thing", "Q4 2024", "Done"]], page=12)]),
-        structure([node("Introduction", 1, 9)]), report(), errors)
+        report(), errors)
     assert record["observation_count"] == 0
     assert [e["error_type"] for e in errors] == ["UnknownStatusSection"]
 
@@ -257,7 +260,7 @@ def test_as_of_is_the_reports_published_date_not_document_content():
         clean_record([table_block(
             [FORMAT_A_HEADER,
              ["01", "A", "A", "2024", "Complete", "Completed in 2019", "Improve"]])]),
-        structure([]), report(published_date="2024-08-27"), [])
+        report(published_date="2024-08-27"), [])
     assert record["as_of"] == "2024-08-27"
     assert record["reports_on"] == "a-plan"
 
@@ -269,7 +272,7 @@ def test_status_counts_tally_the_observations():
              ["01", "A", "A", "2024", "Complete", "p", "Improve"],
              ["02", "B", "B", "2025", "Delayed", "q", "Shift"],
              ["03", "C", "C", "2025", "Complete", "r", "Avoid"]])]),
-        structure([]), report(), [])
+        report(), [])
     assert record["status_counts"] == {"Complete": 2, "Delayed": 1}
     assert record["observation_count"] == 3
 
@@ -277,7 +280,6 @@ def test_status_counts_tally_the_observations():
 def test_a_plan_document_is_skipped_without_error(tmp_path, make_writer):
     writer = make_writer("extract_action_status")
     process([clean_record([table_block([FORMAT_A_HEADER])], doc_slug="a-plan")],
-            {"a-plan": structure([], doc_slug="a-plan")},
             {"a-plan": report("a-plan", role="plan", reports_on=None)},
             tmp_path, writer)
     writer.finalize()
@@ -290,8 +292,7 @@ def test_an_unknown_format_document_is_not_marked_processed(tmp_path, make_write
     the layout — without needing --force."""
     writer = make_writer("extract_action_status")
     process([clean_record([table_block([["Action", "Owner"]])])],
-            {"a-report": structure([])}, {"a-report": report()},
-            tmp_path, writer)
+            {"a-report": report()}, tmp_path, writer)
     writer.finalize()
     assert json.loads((tmp_path / "output.json").read_text())["results"] == []
     assert not writer.is_processed("a-report")

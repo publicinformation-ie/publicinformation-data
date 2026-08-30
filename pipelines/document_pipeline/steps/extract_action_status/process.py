@@ -115,30 +115,44 @@ def _header_index(rows):
 
 
 # --------------------------------------------------------------------------
-# Format B: page -> status, from the section tree
+# Format B: page -> status
 # --------------------------------------------------------------------------
 
 
-def status_sections(structure_record) -> dict:
-    """Map page number -> status notation for every page under a recognised
-    annex status heading.
+def status_sections(clean_record) -> dict:
+    """Map page number -> status notation, read from standalone
+    Complete/Modified/Delayed paragraphs in clean_text.
 
-    A heading naming two statuses is refused rather than resolved by
-    precedence: the tables underneath then surface as `UnknownStatusSection`
-    for a human, which is the correct outcome for a document whose structure we
-    have not understood.
+    detect_structure's node tree is not a reliable source for this: across
+    the real corpus, the annex's own PDF outline bookmark is sometimes one
+    entry for the whole thing (Year Three) and sometimes several oddly-scoped
+    ones that don't reach the sections they should (the Final report bookmarks
+    "Complete"/"Modified"/"Delayed" but only for their first page each, while
+    the annex tables they govern run for another thirty pages). The label
+    itself is more reliable: it is always its own one-word paragraph block
+    immediately before the table(s) it governs, and the status it implies
+    carries forward page to page until the next such label — a document-wide
+    scan, not restricted to any detected section, because a table this step
+    already recognises as one of the two known annex layouts (Format A or B)
+    is never confused with an unrelated same-shaped table elsewhere; any
+    earlier, unrelated appearance of the same one-word label is harmless
+    because there is nothing recognised to attach it to yet. A page with two
+    labels (rare — a status changes mid-page) keeps only the last, which is
+    the correct forward-carried state by the time the page ends.
     """
     mapping = {}
-    for node in (structure_record or {}).get("nodes") or []:
-        title = _normalize_header(node.get("title") or "")
-        matched = [notation for word, notation in _SECTION_KEYWORDS.items()
-                   if word in title]
-        if len(matched) != 1:
-            continue
-        start = int(node.get("start_page") or 0)
-        end = int(node.get("end_page") or start)
-        for page in range(start, end + 1):
-            mapping[page] = matched[0]
+    current = None
+    pages = sorted(clean_record.get("pages") or [], key=lambda p: int(p.get("number", 0)))
+    for page in pages:
+        page_number = int(page.get("number", 0))
+        for block in page.get("blocks") or []:
+            if block.get("type") != "paragraph":
+                continue
+            text = _normalize_header(block.get("text") or "")
+            if text in _SECTION_KEYWORDS:
+                current = _SECTION_KEYWORDS[text]
+        if current is not None:
+            mapping[page_number] = current
     return mapping
 
 
@@ -288,7 +302,7 @@ def _tables(clean_record):
             yield page_number, int(block.get("index", 0)), block.get("text") or []
 
 
-def extract_document(clean_record, structure_record, document, errors):
+def extract_document(clean_record, document, errors):
     """One report's record, or None when the layout is unrecognised.
 
     The format is decided once, from the first table whose header matches
@@ -316,7 +330,7 @@ def extract_document(clean_record, structure_record, document, errors):
             {"doc_slug": doc_slug}))
         return None
 
-    sections = status_sections(structure_record) if fmt == "B" else {}
+    sections = status_sections(clean_record) if fmt == "B" else {}
     observations = []
 
     for page_number, table_index, rows in tables:
@@ -384,7 +398,7 @@ def _index_by_doc(path: Path) -> dict:
             if "doc_slug" in record}
 
 
-def process(clean_records, structures, meta, step_dir, writer, doc_slug=None,
+def process(clean_records, meta, step_dir, writer, doc_slug=None,
             verbose=False):
     """Extract observations from every `role: report` document. Plans are
     skipped without error — they declare actions, they do not observe them."""
@@ -407,7 +421,7 @@ def process(clean_records, structures, meta, step_dir, writer, doc_slug=None,
 
         errors = []
         try:
-            result = extract_document(record, structures.get(slug), document, errors)
+            result = extract_document(record, document, errors)
         except Exception as e:
             # A corrupt upstream record must not abort the batch — the same
             # isolation clean_text and assemble_sections apply.
@@ -447,11 +461,9 @@ def main():
     input_path = Path(args.input)
     clean_records = read_json(input_path).get("results", [])
 
-    # Fan-in: blocks from --input (clean_text); the section tree and the
-    # document's role/provenance from sibling step directories, the same
-    # pattern assemble_sections uses.
+    # Fan-in: blocks from --input (clean_text); the document's role/provenance
+    # from fetch_pdfs, the same pattern assemble_sections uses.
     steps_dir = input_path.resolve().parents[1]
-    structures = _index_by_doc(steps_dir / "detect_structure" / "output.json")
     fetched = _index_by_doc(steps_dir / "fetch_pdfs" / "output.json")
     meta = {slug: {"doc_title": record.get("title") or slug,
                    "source_url": record.get("url") or "",
@@ -466,7 +478,7 @@ def main():
     if writer.processed_keys:
         print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")
 
-    process(clean_records, structures, meta, step_dir, writer, doc_slug=args.doc,
+    process(clean_records, meta, step_dir, writer, doc_slug=args.doc,
             verbose=args.verbose)
 
     count = writer.finalize()
