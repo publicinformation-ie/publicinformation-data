@@ -17,7 +17,7 @@ uv run python process.py --force --stop-on-error
 
 1. [`extract_actions`](../document_pipeline/steps/extract_actions/) *(document_pipeline)* — plan-declared actions, one record per plan document.
 2. [`resolve_action_identity`](steps/resolve_action_identity/) — mints a stable `{plan_slug}#{action_number}` identity for every plan action, resolves each action's original deadline from the plan that declares it (never from a report), and joins every report observation (`document_pipeline/steps/extract_action_status`) onto its action via the report's explicit `reports_on`.
-3. `extract_relationships` — not yet implemented (a later task); resolves cross-plan continuity between editions of the same action.
+3. [`extract_relationships`](steps/extract_relationships/) — builds the link table between actions: mechanical `complements`/`references` edges extracted from parenthetical cross-references and section groupings, published directly; narrative continuity phrases logged as `RelationshipCandidate` for human review; and lineage edges (`renumbered_as`, `supersedes`, …) sourced only from the curated `action_relationships.yml`.
 
 ## Running it
 
@@ -39,5 +39,6 @@ Every step writes `errors.json` (truncated to `[]` at the start of each run), ta
 | `UnresolvedActionNumber` | A plan action cell has no leading ordinal, or a report observation's action number matches no plan action |
 | `DateParseError` | A plan action's timeline cell is non-empty but yields no confident deadline |
 | `DeadlineDivergedAtFirstReport` | Informational — the earliest report's deadline for an action already differs from the plan's original deadline |
+| `RelationshipCandidate` | Informational, any count — a narrative continuity phrase detected in report prose; logged for a human to review and promote into `action_relationships.yml`, never auto-published (see [`extract_relationships`'s README](steps/extract_relationships/README.md)) |
 
 See the parent [`AGENTS.md`](../../AGENTS.md) for repository-wide conventions and where `actions_pipeline` fits alongside the other pipelines in this repo.

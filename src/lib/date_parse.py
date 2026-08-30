@@ -31,6 +31,7 @@ _DASH = r"[–—\-]"
 _QUARTER_RANGE_RE = re.compile(
     rf"^q([1-4])\s+(\d{{4}})\s*{_DASH}\s*q([1-4])\s+(\d{{4}})$", re.IGNORECASE)
 _QUARTER_SINGLE_RE = re.compile(r"^q([1-4])\s+(\d{4})$", re.IGNORECASE)
+_QUARTER_SINGLE_YEAR_FIRST_RE = re.compile(r"^(\d{4})\s+q([1-4])$", re.IGNORECASE)
 _YEAR_RANGE_RE = re.compile(rf"^(\d{{4}})\s*{_DASH}\s*(\d{{4}})$")
 _YEAR_RE = re.compile(r"^(\d{4})$")
 _ISO_RE = re.compile(r"^(\d{4})-(\d{2})-(\d{2})$")
@@ -81,6 +82,13 @@ def parse_date(raw):
     match = _QUARTER_SINGLE_RE.match(text)
     if match:
         quarter, year = int(match[1]), int(match[2])
+        start, end = _quarter_bounds(year, quarter)
+        return _structured("quarter", year=year, quarter=quarter,
+                           start=start, end=end)
+
+    match = _QUARTER_SINGLE_YEAR_FIRST_RE.match(text)
+    if match:
+        year, quarter = int(match[1]), int(match[2])
         start, end = _quarter_bounds(year, quarter)
         return _structured("quarter", year=year, quarter=quarter,
                            start=start, end=end)

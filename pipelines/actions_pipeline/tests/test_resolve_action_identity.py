@@ -143,6 +143,19 @@ def test_the_raw_timeline_cell_is_preserved_in_every_case():
         assert actions[0]["original_timeline_raw"] == cell
 
 
+def test_bel_artifacts_are_stripped_from_the_published_timeline_raw():
+    """`original_deadline_raw`/`original_timeline_raw` are published verbatim
+    to consumers, so the `\\x07` bullet artifact that pollutes plan cells must
+    not leak into the CSV alongside the action text it's already stripped
+    from."""
+    actions, _ = build_actions(
+        [plan_record([plan_action("1. Do a thing",
+                                  columns={"TIMELINE & OUTPUT": "\x07Q4 2024"})])], {})
+    assert "\x07" not in actions[0]["original_deadline_raw"]
+    assert "\x07" not in actions[0]["original_timeline_raw"]
+    assert actions[0]["original_timeline_raw"] == "Q4 2024"
+
+
 def test_an_unparseable_timeline_logs_a_date_parse_error():
     _, errors = build_actions(
         [plan_record([plan_action("1. Do a thing",

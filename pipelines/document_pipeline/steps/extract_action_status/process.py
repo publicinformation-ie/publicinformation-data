@@ -322,6 +322,17 @@ def extract_document(clean_record, structure_record, document, errors):
     for page_number, table_index, rows in tables:
         header_index = _header_index(rows)
         if header_index is None or detect_format(rows[header_index]) != fmt:
+            first_cell = ""
+            if rows:
+                first_cell = next((_normalize_cell(c) for row in rows
+                                   for c in row if _normalize_cell(c)), "")
+            errors.append(_error_dict(
+                "UnrecognisedAnnexTable",
+                "Table's header does not match this document's detected "
+                f"format ({fmt}); table skipped and its rows are not "
+                "represented in the published observations.",
+                {"doc_slug": doc_slug, "page": page_number,
+                 "table": table_index, "first_cell": first_cell}))
             continue
 
         section_status = None

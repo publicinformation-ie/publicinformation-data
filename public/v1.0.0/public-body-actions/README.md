@@ -85,6 +85,10 @@ A null `to_action_id` means the target plan is not in the corpus. A null `to_act
 
 `action-status-observations.csv` includes status observations only from the Year One progress report. The Year Two, Year Three and Final progress reports use a table format that the shared PDF table-header detection (`extract_pages`) does not yet parse, so `extract_action_status` correctly skips them (`UnknownReportFormat`) rather than fabricating observations. This is tracked as a follow-up; a fix to `extract_pages`'s table-header detection will let a future release add their observations without any change to this dataset's shape.
 
+Even within Year One's own annex, coverage is partial: the report's annex is split across 24 separate PDF tables, of which only 5 carry a header this step recognizes, yielding 15 observations from a total of roughly 67 annex data rows across all 24 tables. The other 19 tables use a header the step doesn't yet recognize (logged individually as `UnrecognisedAnnexTable` in `errors.json`, with page/table context, so the gap is auditable rather than silent) and their rows are not represented here. This is the same underlying class of gap as the Year Two/Three/Final skip above, just partial rather than total for this one document, and is tracked alongside it as a follow-up.
+
+A small number of Year One observations (2, at the time of writing) use a status term, "At Risk of Delay", that is not yet in the published `action-status` vocabulary. These rows are correctly omitted (`UnknownStatusValue`) pending a decision on whether to add the term, rather than being coerced to a nearest existing value.
+
 ## Text quality (spec §16.1)
 
 The source PDFs contain ligature-reordering artifacts introduced by PDF text extraction — real examples from this corpus are `"staf.f"` (for "staff") and `"Please ofef r me a seat"` (for "Please offer me a seat"). `action_text` and `progress_text` are published as extracted, with no attempt to silently repair this class of error. This is disclosed rather than implying a cleanliness the data does not have.

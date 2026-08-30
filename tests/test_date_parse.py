@@ -13,6 +13,12 @@ def test_quarter():
     assert (parsed["start"], parsed["end"]) == ("2024-10-01", "2024-12-31")
 
 
+def test_quarter_year_first_form():
+    """The progress reports write the quarter as `2022 Q4`, not `Q4 2022` —
+    both forms must parse to the same structured date."""
+    assert parse_date("2022 Q4") == parse_date("Q4 2022")
+
+
 def test_quarter_range_has_no_single_year_or_quarter():
     parsed = parse_date("Q1 2024 - Q3 2025")
     assert parsed["precision"] == "range"

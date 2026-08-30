@@ -87,6 +87,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Known limitations
 - `action-status-observations.csv` includes observations only from the Year One progress report. Year Two, Year Three and the Final progress report use a table format the shared `extract_pages` table-header detection does not yet parse (`UnknownReportFormat`), so their observations are correctly skipped rather than fabricated. Tracked as a follow-up.
+- Within Year One's own annex, only 5 of 24 annex tables carry a header this step recognizes, yielding 15 observations from roughly 67 total annex data rows; the other 19 tables are logged individually as `UnrecognisedAnnexTable` (page/table context in `errors.json`) so the gap is auditable rather than silent. Same underlying class of gap as above, tracked alongside it.
+- A small number of Year One observations use a status term ("At Risk of Delay") not yet in the published `action-status` vocabulary; correctly omitted (`UnknownStatusValue`) pending a vocabulary decision.
 
 ## Template
 

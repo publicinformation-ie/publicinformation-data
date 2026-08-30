@@ -187,7 +187,8 @@ def build_actions(plan_records, plan_meta):
 
             columns = raw.get("columns") or {}
             timeline_raw = (column_value(columns, TIMELINE_ALIASES)
-                            or raw.get("raw_date") or "")
+                            or raw.get("raw_date") or "").replace(_BEL, " ")
+            timeline_raw = " ".join(timeline_raw.split())
             parsed, confidence = resolve_original_deadline(
                 raw.get("raw_date"), timeline_raw)
             if timeline_raw and parsed is None:
