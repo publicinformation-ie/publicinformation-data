@@ -1,5 +1,6 @@
 import csv
 import json
+from collections import Counter
 from pathlib import Path
 
 import pytest
@@ -34,23 +35,27 @@ def test_the_2026_2030_plan_publishes_95_actions_and_no_observations(resolved):
                 if o["action_id"].startswith(f"{slug}#")]
 
 
-# test_the_final_report_reproduces_its_own_published_split was removed: it
-# asserted the Final report's self-published Complete/Delayed/Modified split,
-# but that report currently fails UnknownReportFormat and contributes zero
-# observations in v1.0.0 (see extract_action_status/README.md's "Known
-# limitations" section). documents.yml no longer declares
-# expected_status_counts for it, so the promise this test encoded no longer
-# holds; it will be reinstated alongside the extract_pages fix.
-
-
-def test_only_year_one_currently_contributes_observations(resolved):
-    """Year Two, Year Three and the Final report all fail UnknownReportFormat
-    (extract_action_status's table-header-detection limitation — see
-    extract_action_status/README.md's "Known limitations" section) and are
-    tracked as a follow-up. Only the Year One report contributes status
-    observations in v1.0.0."""
+def test_all_four_reports_contribute_observations(resolved):
+    """The extract_pages table-header-reconciliation fix (2026-08-30) recovered
+    Year Two, Year Three, and the Final report from UnknownReportFormat —
+    all four reports on the 2022-2025 plan now contribute."""
     slugs = {o["report_slug"] for o in resolved["observations"]}
-    assert slugs == {"sustainable-mobility-policy-year-one-progress-report"}
+    assert slugs == {
+        "sustainable-mobility-policy-year-one-progress-report",
+        "sustainable-mobility-policy-year-two-progress-report",
+        "sustainable-mobility-policy-year-three-progress-report",
+        "sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+    }
+
+
+def test_the_final_report_reproduces_its_own_published_split(resolved):
+    """Free validation invariant: the Final report publishes its own
+    Complete/Delayed/Modified split on page 7 — 63.7%/30.8%/5.5% = 58/28/5 of
+    91 actions."""
+    observations = [o for o in resolved["observations"] if o["report_slug"] == FINAL]
+    assert len(observations) == 91
+    counts = Counter(o["status"] for o in observations)
+    assert counts == {"Complete": 58, "Delayed": 28, "Modified": 5}
 
 
 def test_the_published_csvs_are_consistent_with_the_pipeline(resolved):

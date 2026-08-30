@@ -67,3 +67,9 @@ documents:
     published_date: "2026-08-26"
     role: report
     reports_on: sustainable-mobility-policy-action-plan-2022-2025
+    # Page 7 of this report publishes its own split: 63.7%/30.8%/5.5% of 91
+    # actions.
+    expected_status_counts:
+      Complete: 58
+      Delayed: 28
+      Modified: 5

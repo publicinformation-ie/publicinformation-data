@@ -213,9 +213,6 @@ def test_the_real_documents_yml_declares_the_smp_corpus():
     assert all(r["reports_on"] == plan["doc_slug"] for r in reports)
     assert all(r["public_body_id"] == 1213 for r in reports)
     final = records["sustainable-mobility-policy-action-plan-2022-2025-final-progress-report"]
-    # No expected_status_counts: this report's status observations are not
-    # yet extractable (UnknownReportFormat — see
-    # extract_action_status/README.md's "Known limitations" section), so it
-    # is intentionally unchecked for v1.0.0 pending a follow-up fix to
-    # extract_pages's table-header detection.
-    assert final["expected_status_counts"] is None
+    # Page 7 of this report publishes its own split: 63.7%/30.8%/5.5% of 91
+    # actions.
+    assert final["expected_status_counts"] == {"Complete": 58, "Delayed": 28, "Modified": 5}
