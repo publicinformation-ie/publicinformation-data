@@ -13,6 +13,7 @@ Before writing a new one-off analysis snippet, check whether one of these alread
 | Why did one specific file drop out of the pipeline, or at which step did it start failing? | `trace_file.py --url <file_url>` — walks one file through every step and reports SUCCESS/PARTIAL/FAILED per step. |
 | One-time, idempotent bulk remapping of pipeline data (e.g. an ID namespace migration) | `migrate_foi_ids_to_cso.py` as a reference implementation — idempotent, dry-run first, aborts loudly on unresolved records rather than guessing. |
 | Reviewing/accepting user-submitted corrections from the public API | `admin-corrections.mjs` |
+| Publish the public-body-actions dataset (3 tables) from actions_pipeline output | `transform_public_body_actions.py` — asserts the §12 validation invariants before writing. |
 
 ## Prefer extending over duplicating
 
