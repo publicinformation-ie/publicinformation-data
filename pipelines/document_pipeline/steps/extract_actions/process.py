@@ -10,9 +10,11 @@ rendered prose. This step walks `clean_text`'s table blocks and, per
 document, (1) classifies it into one of three buckets by whether it contains
 action tables and whether those tables carry a target date, (2) extracts each
 action row and its target date, and (3) emits the categorisation record (a
-human reviews it) plus a library-wide `public/documents/actions.json` — the
-input a future calendar/ICS exporter would consume. Exporting a calendar is
-out of scope: this stops at metadata.
+human reviews it) plus the action rows themselves. The categorisation record
+lets a human review table classifications; the action rows are consumed by
+`actions_pipeline`'s `resolve_action_identity` step and published as the
+`public-body-actions` dataset (with public_body_id, stable identities, and
+status history).
 
 All of this is deterministic and pure JSON in / JSON out — no PDF is opened,
 no LLM or vision model is consulted (the document-bundle contract excludes
@@ -343,47 +345,6 @@ def extract_document(clean_record, doc_slug):
 
 
 # --------------------------------------------------------------------------
-# Published side artifact: public/documents/actions.json
-# --------------------------------------------------------------------------
-
-
-def flatten_actions(records) -> list:
-    """The library-wide flat list: one entry per action, with its document
-    provenance, ready to feed a future calendar/ICS exporter."""
-    flat = []
-    for record in records:
-        for action in record.get("actions") or []:
-            flat.append({
-                "doc_slug": record["doc_slug"],
-                "doc_title": record.get("doc_title"),
-                "source_url": record.get("source_url"),
-                "action_id": action["action_id"],
-                "action": action["action"],
-                "raw_date": action.get("raw_date"),
-                "year": action.get("year"),
-                "quarter": action.get("quarter"),
-                "month": action.get("month"),
-                "day": action.get("day"),
-                "precision": action.get("precision"),
-                "start": action.get("start"),
-                "end": action.get("end"),
-                "source_page": action.get("source_page"),
-                "source_table": action.get("source_table"),
-            })
-    return flat
-
-
-def write_public_actions(records, public_root) -> Path:
-    """Write `actions.json` into `public_root`, returning its path. Mirrors
-    generate_topics's `write_public_topics` — a side artifact alongside
-    `public/documents/`, not a bundle-contract change."""
-    public_root = Path(public_root)
-    public_root.mkdir(parents=True, exist_ok=True)
-    public_path = public_root / "actions.json"
-    write_json(public_path, flatten_actions(records))
-    return public_path
-
-
 # --------------------------------------------------------------------------
 # Step
 # --------------------------------------------------------------------------
@@ -468,8 +429,6 @@ def main():
     parser.add_argument("--output", default=None, help="Path to write output.json")
     parser.add_argument("--force", action="store_true", help="Re-extract every document")
     parser.add_argument("--verbose", action="store_true", help="Print progress")
-    parser.add_argument("--public-root", type=Path, default=None,
-                        help="Override public/documents/ (defaults to the repo root's)")
     add_doc_arg(parser)
     args = parser.parse_args()
 
@@ -503,13 +462,8 @@ def main():
     count = writer.finalize()
     write_status(step_dir, count)
 
-    public_root = args.public_root or (step_dir.parents[3] / "public" / "documents")
-    public_path = write_public_actions(read_json(output_path).get("results", []),
-                                       public_root)
-
     print(f"Wrote {count} of {len(clean_records)} document action record(s) "
           f"to {output_path}")
-    print(f"Wrote public data to {public_path}")
 
 
 if __name__ == "__main__":

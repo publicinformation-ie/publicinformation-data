@@ -2,7 +2,7 @@
 
 Finds the commitments inside a document's tables and turns each action row into clean, reviewable metadata. Seventh step in `document_pipeline` (between `clean_text` and `assemble_sections`). Reads only `clean_text`'s JSON — it never opens a PDF, which is what lets every function here be pure and tested against hand-written table fixtures in milliseconds.
 
-Action plans such as the Sustainable Mobility Policy Action Plan 2026-2030 are mostly tables of actions, each with a target date, lead organisation and output. `clean_text` preserves those tables, but nothing downstream extracts the rows. This step is what makes them queryable: it classifies each document by whether it contains action tables, extracts each action row and its target date, and emits a reviewable categorisation record plus a library-wide `public/documents/actions.json` — the input a future calendar/ICS exporter would consume. Exporting a calendar is out of scope; this stops at metadata.
+Action plans such as the Sustainable Mobility Policy Action Plan 2026-2030 are mostly tables of actions, each with a target date, lead organisation and output. `clean_text` preserves those tables, but nothing downstream extracts the rows. This step is what makes them queryable: it classifies each document by whether it contains action tables, extracts each action row and its target date, and emits a reviewable categorisation record plus action rows themselves.
 
 ## What it does
 
@@ -15,7 +15,8 @@ For each document in `clean_text/output.json`:
 2. Buckets the document: `dated-actions` (≥1 action table with a recognizable date column) > `undated-actions` (≥1 action table, none dated) > `no-action-tables`. The record carries `dated_table_count` and `undated_table_count` so a mixed document stays visible.
 3. Extracts each action row: the action column's cell is the action; the date column's cell (when the table is dated) is the target date; a stable `action_id` (`p010-t01-r01` — page, table index, row) is generated for the calendar to dedupe/reference. Optional columns (`LEAD`, `SUPPORT`, `OUTPUT`, …) are captured opportunistically as `{header: raw_text}` — raw text only, no interpretation.
 4. Parses each target date raw-plus-structured: `raw_date` is always emitted; `year`/`quarter`/`month`/`day`/`precision`/`start`/`end` are filled only when a pattern matches confidently, otherwise null with a `DateParseError` logged. Nothing is silently dropped.
-5. Writes `public/documents/actions.json` — a flat, library-wide list of `{doc_slug, doc_title, source_url, action_id, action, raw_date, year, quarter, month, day, precision, start, end, source_page, source_table}`.
+
+The action rows in `output.json` are consumed by `actions_pipeline`'s `resolve_action_identity` step and published as the `public-body-actions` dataset (which carries `public_body_id`, stable `action_id`s, and status history).
 
 Supports incremental resumption via `IncrementalWriter` (`key_field="doc_slug"`) and `--doc` scoping (`add_doc_arg`); scoping is also available by calling `process(..., doc_slug=...)` directly.
 
@@ -69,7 +70,6 @@ Each action's `action_id` is `p<page>-t<table>-r<row>` (page zero-padded to 3, t
 - `--doc SLUG` — scope processing to one document.
 - `--force` — re-extract every document instead of skipping already-processed ones.
 - `--verbose` — print each document's category and action count.
-- `--public-root PATH` — override `public/documents/` (defaults to the repo root's).
 
 ## Decisions locked
 

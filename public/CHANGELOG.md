@@ -82,6 +82,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Controlled vocabularies: `action-status` (5 terms, with `first_seen_in` recording when each term entered the series) and `action-relationship` (7 terms, with `family`)
 - DCAT-AP metadata for the dataset
 
+### Removed
+- `public/documents/actions.json` — the flat, document-centric action list published by `extract_actions`. Superseded by the `public-body-actions` dataset, which carries `public_body_id`, stable `action_id`s, original-vs-reported deadlines and a status history per action. This is a breaking change to a published path.
+
 ## Template
 
 For future entries, use this template:

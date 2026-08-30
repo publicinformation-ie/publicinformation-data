@@ -8,10 +8,8 @@ from steps.extract_actions.process import (
     classify_table,
     extract_document,
     extract_table,
-    flatten_actions,
     parse_date,
     process,
-    write_public_actions,
 )
 
 
@@ -388,36 +386,15 @@ def test_unclassified_tables_are_reported_but_not_extracted():
     assert [e["error_type"] for e in errors] == ["UnclassifiedTable"]
 
 
-# --- published side artifact -------------------------------------------------
+# --- published side artifact removal ----------------------------------------
 
-def _action_record():
-    return {
-        "doc_slug": "doc-a", "doc_title": "Title A", "source_url": "https://x",
-        "actions": [{
-            "action_id": "p001-t01-r01", "action": "Build", "raw_date": "2030",
-            "year": 2030, "quarter": None, "month": None, "day": None,
-            "precision": "year", "start": "2030-01-01", "end": "2030-12-31",
-            "source_page": 1, "source_table": 0, "columns": {"LEAD": "DoT"},
-        }],
-    }
-
-
-def test_flatten_actions_produces_the_library_wide_list():
-    (entry,) = flatten_actions([_action_record()])
-    assert entry["doc_slug"] == "doc-a"
-    assert entry["doc_title"] == "Title A"
-    assert entry["action_id"] == "p001-t01-r01"
-    assert entry["precision"] == "year"
-    assert "columns" not in entry
-
-
-def test_write_public_actions_writes_actions_json(tmp_path):
-    public_root = tmp_path / "public" / "documents"
-    path = write_public_actions([_action_record()], public_root)
-    assert path == public_root / "actions.json"
-    data = json.loads(path.read_text(encoding="utf-8"))
-    assert len(data) == 1
-    assert data[0]["action_id"] == "p001-t01-r01"
+def test_the_step_no_longer_publishes_a_flat_actions_file(tmp_path, make_writer):
+    """public/documents/actions.json is superseded by the public-body-actions
+    dataset, which carries public_body_id, stable identities and status
+    history that the flat file never had."""
+    from steps.extract_actions import process as module
+    assert not hasattr(module, "write_public_actions")
+    assert not hasattr(module, "flatten_actions")
 
 
 # --- end-to-end step behaviour ----------------------------------------------

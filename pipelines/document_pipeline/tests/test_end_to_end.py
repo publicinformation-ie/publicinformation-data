@@ -114,7 +114,7 @@ def fixture_run(tmp_path_factory):
                "--output", str(out), "--force"]
         if step == "fetch_pdfs":
             cmd += ["--local-pdf", f"{DOC_SLUG}={FIXTURE_PDF}"]
-        if step in ("extract_actions", "publish_bundles"):
+        if step == "publish_bundles":
             cmd += ["--public-root", str(public_root)]
 
         result = subprocess.run(cmd, env=env, capture_output=True, text=True)
@@ -150,14 +150,6 @@ def test_all_nine_steps_exit_zero(fixture_run):
     # fixture_run's construction already asserts each step's exit code is 0
     # (see the fixture body); reaching this point is the proof.
     assert fixture_run.exists()
-
-
-def test_extract_actions_writes_the_library_actions_json(fixture_run):
-    public_root = _public_root(fixture_run)
-    actions = json.loads((public_root / "actions.json").read_text(encoding="utf-8"))
-    # The fixture PDF's only table is a Mode/Share data table, so there is no
-    # action to extract — but the side artifact must still be written.
-    assert actions == []
 
 
 def test_index_json_lists_the_fixture_document_with_its_page_count(fixture_run):
