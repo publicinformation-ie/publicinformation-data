@@ -21,8 +21,8 @@
 <body>
 <h1>Get the Data</h1>
 <p>
-  Five downloadable spreadsheet files, one per topic. Every file is a plain
-  CSV you can open in Excel, Google Sheets, or Numbers — no software beyond a
+  Downloadable spreadsheet files, one per dataset. Every file is a plain CSV
+  you can open in Excel, Google Sheets, or Numbers — no software beyond a
   spreadsheet program is needed.
 </p>
 
@@ -50,6 +50,17 @@
 <h2><a href="latest/lobbying-ie-links/lobbying-ie-links.csv">lobbying.ie links</a></h2>
 <p>Links from each public body to its page on lobbying.ie, Ireland's Register of Lobbying, with a point-in-time count of lobbying returns filed against it.</p>
 
+<h2><a href="latest/public-body-actions/actions.csv">Public body actions</a></h2>
+<p>The published commitments ("actions") of public bodies, taken from their strategy and action-plan documents, together with how each action's reported status changed in later progress reports.</p>
+<table>
+  <tr><th>Column</th><th>What it means</th></tr>
+  <tr><td><code>action_text</code></td><td>The action as published</td></tr>
+  <tr><td><code>plan_title</code></td><td>The plan that declared the action</td></tr>
+  <tr><td><code>original_deadline_start</code></td><td>The plan's deadline, as a normalised date</td></tr>
+  <tr><td><code>lead</code></td><td>The organisation leading the action</td></tr>
+</table>
+<p>This dataset has three tables: <a href="latest/public-body-actions/actions.csv">actions</a> (one row per published action), <a href="latest/public-body-actions/action-status-observations.csv">status observations</a> (one row per progress report's update on an action), and <a href="latest/public-body-actions/action-relationships.csv">relationships</a> (how actions relate to one another).</p>
+
 <h2>Worked example: find a body's FOI contact email</h2>
 <ol>
   <li>Open <a href="latest/public-bodies/public-bodies.csv">public-bodies.csv</a> in a spreadsheet program.</li>
@@ -58,7 +69,7 @@
 </ol>
 
 <div class="back">
-  <p>Want the full technical details behind each file (every column, how the data was collected, what to watch out for)? See the <a href="latest/public-bodies/README.md">Public Bodies</a>, <a href="latest/foi-disclosures/README.md">FOI Disclosures</a>, <a href="latest/foi-request-files/README.md">FOI Request Files</a>, <a href="latest/who-does-what/README.md">Who Does What</a>, <a href="latest/data-gov-ie-links/README.md">data.gov.ie Links</a>, and <a href="latest/lobbying-ie-links/README.md">lobbying.ie Links</a> reference pages.</p>
+  <p>Want the full technical details behind each file (every column, how the data was collected, what to watch out for)? See the <a href="latest/public-bodies/README.md">Public Bodies</a>, <a href="latest/foi-disclosures/README.md">FOI Disclosures</a>, <a href="latest/foi-request-files/README.md">FOI Request Files</a>, <a href="latest/who-does-what/README.md">Who Does What</a>, <a href="latest/data-gov-ie-links/README.md">data.gov.ie Links</a>, <a href="latest/lobbying-ie-links/README.md">lobbying.ie Links</a>, and <a href="latest/public-body-actions/README.md">Public Body Actions</a> reference pages.</p>
   <p>Wondering how complete this data is, or found something that looks wrong? See <a href="data-quality.html">Data quality &amp; reporting a problem</a>.</p>
 </div>
 </body>

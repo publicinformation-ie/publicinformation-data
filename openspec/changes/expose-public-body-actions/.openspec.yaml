@@ -1,0 +1,4 @@
+schema: spec-driven
+created: 2026-08-30
+goal: Actions extracted by actions_pipeline are discoverable as open data and
+  reused by the sibling web repo
