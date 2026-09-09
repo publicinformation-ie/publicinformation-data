@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import hashlib
 import io
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -59,15 +60,26 @@ def extract_text(pdf_bytes: bytes):
     return "", "pdfplumber"
 
 
-def _download(url):
+def _cache_path(cache_dir, url):
+    digest = hashlib.sha1(url.encode("utf-8")).hexdigest()[:16]
+    return Path(cache_dir) / f"{digest}.pdf"
+
+
+def _download(url, cache_dir):
+    """Fetch a PDF, persisting it to the pdf_cache so re-runs don't re-fetch."""
+    path = _cache_path(cache_dir, url)
+    if path.exists():
+        return path.read_bytes()
     response = fetch("GET", url, allow_redirects=True)
-    return response.content
+    data = response.content
+    path.write_bytes(data)
+    return data
 
 
 def _process_one(item, cache_dir):
     url = item["file_url"]
     try:
-        pdf_bytes = _download(url)
+        pdf_bytes = _download(url, cache_dir)
         text, extractor = extract_text(pdf_bytes)
         return item["file_url"], {**item, "text": text, "extractor": extractor}, None
     except Exception as e:

@@ -6,6 +6,8 @@ import pytest
 
 from steps.transform_minutes_files.process import (
     STEP_NAME,
+    _download,
+    _cache_path,
     extract_text,
     process,
 )
@@ -31,3 +33,26 @@ def test_extract_text_uses_marker_when_it_succeeds():
             text, extractor = extract_text(pdf_bytes)
     assert text == "Marker text"
     assert extractor == "marker_pdf"
+
+
+def test_download_caches_pdf_to_disk(tmp_path):
+    url = "https://x.ie/meeting-2024-07-08.pdf"
+    with mock.patch("steps.transform_minutes_files.process.fetch") as m:
+        class R:
+            content = b"%PDF-1.4 cached"
+        m.return_value = R()
+        first = _download(url, tmp_path)
+    assert first == b"%PDF-1.4 cached"
+    path = _cache_path(tmp_path, url)
+    assert path.exists()
+    assert path.read_bytes() == b"%PDF-1.4 cached"
+
+
+def test_download_reuses_cache_without_fetching(tmp_path):
+    url = "https://x.ie/meeting-2024-07-08.pdf"
+    path = _cache_path(tmp_path, url)
+    path.write_bytes(b"%PDF-1.4 cached")
+    with mock.patch("steps.transform_minutes_files.process.fetch") as m:
+        data = _download(url, tmp_path)
+    m.assert_not_called()
+    assert data == b"%PDF-1.4 cached"
