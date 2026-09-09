@@ -1,0 +1,194 @@
+#!/usr/bin/env python3
+import argparse
+import re
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+from urllib.parse import urljoin, urldefrag, urlparse
+
+from bs4 import BeautifulSoup
+
+from lib.cli_utils import add_common_args, filter_by_public_body
+from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
+from lib.http_utils import fetch, is_safe_url, validate_url_or_raise
+
+STEP_NAME = "find_meeting_minutes_pages"
+
+ACCEPT_THRESHOLD = 60
+
+NEGATIVE_TOKENS = {
+    "login", "logo", "blog", "annual", "report", "reports", "archive",
+    "agenda", "agendas", "publication", "publications", "scheme",
+}
+_MINUTES = {"minutes", "minute"}
+_MEETING = {"meeting", "meetings"}
+_MUNICIPAL = {"municipal"}
+_DISTRICT = {"district", "districts"}
+
+
+def _tokenize(*strings):
+    tokens = set()
+    for s in strings:
+        for tok in re.split(r"[^a-z0-9]+", (s or "").lower()):
+            if tok:
+                tokens.add(tok)
+    return tokens
+
+
+def _score_link(tokens):
+    """Higher = more confidently a minutes page. 0 = reject.
+
+    An explicit 'minutes' link (e.g. "Council Minutes") scores at least 70 and
+    is always accepted; a bare 'meeting' page (e.g. "Meeting stuff") scores
+    below ACCEPT_THRESHOLD and is rejected. Municipal-district meeting pages
+    keep a meeting+municipal tier above the threshold.
+    """
+    if tokens & NEGATIVE_TOKENS:
+        return 0
+    minutes = bool(tokens & _MINUTES)
+    meeting = bool(tokens & _MEETING)
+    municipal = bool(tokens & _MUNICIPAL)
+    district = bool(tokens & _DISTRICT)
+    if minutes and meeting:
+        return 100
+    if minutes and district:
+        return 90
+    if meeting and municipal:
+        return 70
+    if minutes:
+        return 80
+    if meeting:
+        return 50
+    return 0
+
+
+def find_minutes_link(html, base_url):
+    """Return (best_url, score) for the highest-scoring minutes-page link, or None."""
+    soup = BeautifulSoup(html, "html.parser")
+    best = None
+    best_score = 0
+    for link in soup.find_all("a", href=True):
+        href = str(link["href"])
+        if "/ga/" in href:
+            continue
+        tokens = _tokenize(href, link.get_text(strip=True))
+        sc = _score_link(tokens)
+        if sc <= best_score:
+            continue
+        full_url = urljoin(base_url, href)
+        if not is_safe_url(full_url):
+            continue
+        if urldefrag(full_url)[0] == urldefrag(base_url)[0]:
+            continue
+        best, best_score = full_url, sc
+    if best is not None and best_score >= ACCEPT_THRESHOLD:
+        return best, best_score
+    return None
+
+
+def override_sources(authorities, overrides):
+    """Map override.json entries to minutes_source records for the given authorities."""
+    records = []
+    for rec in overrides:
+        bid = rec.get("public_body_id")
+        if bid is None:
+            continue
+        records.append({
+            "public_body_id": bid,
+            "municipal_district": rec.get("municipal_district"),
+            "minutes_page_url": rec["minutes_page_url"],
+            "source_method": "override",
+            "overridden": True,
+        })
+    return records
+
+
+def process(input_data, step_dir, writer, verbose=False):
+    errors_path = Path(step_dir) / "errors.json"
+    write_json(errors_path, [])
+
+    authorities = input_data["results"]
+    override_path = step_dir / "override.json"
+    overrides = read_json(override_path) if override_path.exists() else []
+
+    records = override_sources(authorities, overrides)
+
+    # For bodies/districts NOT covered by an override, crawl the homepage.
+    covered = {(r["public_body_id"], r["municipal_district"]) for r in records}
+    pending = []
+    for auth in authorities:
+        bid = auth["public_body_id"]
+        for district in [None] + list(auth.get("municipal_districts", [])):
+            if (bid, district) not in covered:
+                pending.append((auth, district))
+
+    for auth, district in pending:
+        bid = auth["public_body_id"]
+        try:
+            url = auth.get("official_website_url")
+            validate_url_or_raise(url, context=f"minutes_page_{bid}")
+            response = fetch("GET", url, allow_redirects=True)
+            match = find_minutes_link(response.text, url)
+            if match:
+                minutes_url, score = match
+                source_method = "crawl"
+            else:
+                raise ValueError("no minutes page link above threshold on homepage")
+            records.append({
+                "public_body_id": bid,
+                "municipal_district": district,
+                "minutes_page_url": minutes_url,
+                "source_method": source_method,
+            })
+        except Exception as e:
+            append_error(step_dir, {
+                "step": STEP_NAME,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "context": {"url": auth.get("official_website_url"),
+                            "public_body_id": bid, "municipal_district": district},
+            })
+        if verbose:
+            print(".", end="", flush=True)
+
+    writer.append(records)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Locate the page(s) publishing meeting minutes for each authority"
+    )
+    add_common_args(parser)
+    args = parser.parse_args()
+
+    step_dir = Path(__file__).parent
+    output_path = Path(args.output)
+    override_path = step_dir / "override.json"
+
+    try:
+        input_data = read_json(args.input)
+    except Exception as e:
+        print(f"Fatal: could not read input: {e}", file=sys.stderr)
+        sys.exit(1)
+    input_data = filter_by_public_body(input_data, args.public_body)
+    if args.public_body is not None and not (input_data.get("results")):
+        print(f"No input record for public_body_id={args.public_body}", file=sys.stderr)
+        sys.exit(0)
+
+    writer = IncrementalWriter(output_path, STEP_NAME, force=args.force,
+                               override_path=override_path,
+                               upstream_dirty_path=Path(args.input).parent / "dirty_ids.json",
+                               target_public_body=args.public_body)
+
+    if writer.processed_keys:
+        print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")
+
+    process(input_data, step_dir, writer, verbose=args.verbose)
+    count = writer.finalize()
+    write_status(step_dir, count)
+    print(f"Wrote {count} records to {output_path}")
+
+
+if __name__ == "__main__":
+    main()
