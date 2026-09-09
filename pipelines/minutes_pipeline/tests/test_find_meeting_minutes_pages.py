@@ -10,7 +10,7 @@ from steps.find_meeting_minutes_pages.process import (
     override_sources,
     process,
 )
-from lib.file_utils import read_json
+from lib.file_utils import read_json, IncrementalWriter
 
 
 def _authority(bid=1511, name="Meath County Council", slug="meath",
@@ -59,3 +59,24 @@ def test_override_sources_produces_district_and_council_records():
     assert council["minutes_page_url"] == "https://www.meath.ie/council/minutes"
     assert council["source_method"] == "override"
     assert council["overridden"] is True
+
+
+def test_process_override_plus_writer_does_not_duplicate(tmp_path, make_writer):
+    """The step's committed override.json uses source_method 'manual' (repo
+    convention), while output records normalize it to 'override'. The writer
+    must not validate override.json against the output schema (its enum is
+    override/crawl) nor double-emit records: process() is the single source
+    of truth and the writer only persists."""
+    overrides = [
+        {"public_body_id": 1511, "municipal_district": None,
+         "minutes_page_url": "https://www.meath.ie/council/minutes",
+         "source_method": "manual", "overridden": True},
+    ]
+    (tmp_path / "override.json").write_text(json.dumps(overrides))
+    writer = make_writer(STEP_NAME)
+    process({"results": [_authority()]}, tmp_path, writer)
+    writer.finalize()
+    out = read_json(tmp_path / "output.json")
+    assert len(out["results"]) == 1
+    assert out["results"][0]["source_method"] == "override"
+    assert out["results"][0]["overridden"] is True

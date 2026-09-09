@@ -152,7 +152,8 @@ def process(input_data, step_dir, writer, verbose=False):
         if verbose:
             print(".", end="", flush=True)
 
-    writer.append(records)
+    # Never re-emit records the writer already holds (resume / scoped runs).
+    writer.append([r for r in records if not writer.is_processed(r["public_body_id"])])
 
 
 def main():
@@ -177,7 +178,6 @@ def main():
         sys.exit(0)
 
     writer = IncrementalWriter(output_path, STEP_NAME, force=args.force,
-                               override_path=override_path,
                                upstream_dirty_path=Path(args.input).parent / "dirty_ids.json",
                                target_public_body=args.public_body)
 
