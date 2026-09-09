@@ -48,3 +48,4 @@ pipelines/document_pipeline/steps/*/assets/
 pipelines/document_pipeline/steps/*/sections/
 pipelines/document_pipeline/steps/*/contact-sheets/
 public/documents/
+pipelines/minutes_pipeline/steps/*/pdf_cache/
