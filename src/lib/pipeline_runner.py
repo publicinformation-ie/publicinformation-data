@@ -36,14 +36,20 @@ def main():
     input_steps = config.get("input_steps", {})
 
     if args.public_body is not None:
-        bodies_path = pipeline_dir / "steps" / "find_public_bodies" / "output.json"
+        body_list_step = config.get("body_list_step", "find_public_bodies")
+        bodies_path = pipeline_dir / "steps" / body_list_step / "output.json"
         if not bodies_path.exists():
-            sys.exit("Error: --public-body requires find_public_bodies/output.json; "
-                     "run find_public_bodies first.")
-        bodies = json.loads(bodies_path.read_text()).get("public_bodies", [])
+            sys.exit(f"Error: --public-body requires {body_list_step}/output.json; "
+                     f"run {body_list_step} first.")
+        bodies_data = json.loads(bodies_path.read_text())
+        # body_list_step outputs use an IncrementalWriter "results" key, while
+        # the default find_public_bodies output uses "public_bodies".
+        bodies = bodies_data.get("results")
+        if bodies is None:
+            bodies = bodies_data.get("public_bodies", [])
         if not any(b.get("public_body_id") == args.public_body for b in bodies):
             sys.exit(f"Error: public body {args.public_body} not found in "
-                     f"find_public_bodies/output.json")
+                     f"{body_list_step}/output.json")
 
     # Pipelines live at <repo_root>/pipelines/<name>/, so repo_root is two levels up
     repo_root = pipeline_dir.parent.parent

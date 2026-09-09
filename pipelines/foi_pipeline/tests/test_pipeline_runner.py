@@ -275,6 +275,46 @@ def test_orchestrator_public_body_missing_bodies_file_exits(tmp_path):
         assert exc.value.code != 0
 
 
+def _seed_body_list(pipeline_dir, step_name, ids):
+    step = pipeline_dir / "steps" / step_name
+    step.mkdir(parents=True, exist_ok=True)
+    _write_json(step / "output.json", {"results": [{"public_body_id": i} for i in ids]})
+
+
+def test_orchestrator_public_body_body_list_step_validates_against_it(tmp_path):
+    """--public-body with body_list_step configured validates against that
+    step's output (results key), not find_public_bodies."""
+    pipeline_dir = _make_pipeline(tmp_path, ["find_local_authorities", "validate_websites"])
+    config_path = pipeline_dir / "pipeline.json"
+    config = json.loads(config_path.read_text())
+    config["body_list_step"] = "find_local_authorities"
+    config_path.write_text(json.dumps(config))
+    _seed_body_list(pipeline_dir, "find_local_authorities", [1511])
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        mock_run.return_value.returncode = 0
+        sys.argv = ["process.py", str(pipeline_dir), "--public-body", "1511"]
+        main()
+        mock_run.assert_called_once()
+
+
+def test_orchestrator_public_body_body_list_step_not_found_exits(tmp_path):
+    """A --public-body value absent from the configured body_list_step's
+    results exits non-zero, even though find_public_bodies doesn't exist."""
+    pipeline_dir = _make_pipeline(tmp_path, ["find_local_authorities"])
+    config_path = pipeline_dir / "pipeline.json"
+    config = json.loads(config_path.read_text())
+    config["body_list_step"] = "find_local_authorities"
+    config_path.write_text(json.dumps(config))
+    _seed_body_list(pipeline_dir, "find_local_authorities", [1511])
+
+    with patch("lib.pipeline_runner.subprocess.run"):
+        with pytest.raises(SystemExit) as exc:
+            sys.argv = ["process.py", str(pipeline_dir), "--public-body", "9999"]
+            main()
+        assert exc.value.code != 0
+
+
 # --- absolute-path step tests ---
 
 def _make_pipeline_with_abs(tmp_path, steps):
