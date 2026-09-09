@@ -72,7 +72,7 @@ def main():
     write_status(step_dir, len(motions))
 
     # Write public output (reviewed before scripts/publish_pages.sh).
-    repo_root = step_dir.parent.parent.parent
+    repo_root = step_dir.parent.parent.parent.parent
     public_motions = repo_root / "public" / "motions"
     written = write_per_authority(grouped, public_motions)
     write_json(public_motions / "index.json", build_index(grouped))
