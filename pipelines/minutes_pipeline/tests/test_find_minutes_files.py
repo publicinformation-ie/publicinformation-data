@@ -10,6 +10,7 @@ from steps.find_minutes_files.process import (
     _looks_like_minutes,
     collect_minutes_links,
     parse_meeting_date,
+    pending_sources,
     process,
 )
 from lib.file_utils import read_json
@@ -102,3 +103,15 @@ def test_looks_like_minutes_rejects_public_notices():
     assert _looks_like_minutes(
         "Minutes - Navan Municipal District Meeting December 2024",
         "https://x.ie/12-2024%20Minutes.pdf") is True
+
+
+def test_pending_sources_skips_already_collected_pages(make_writer):
+    writer = make_writer(STEP_NAME)
+    writer.results = [
+        {"public_body_id": 1511, "minutes_page_url": "https://x.ie/navan"},
+    ]
+    items = [
+        {"public_body_id": 1511, "minutes_page_url": "https://x.ie/navan"},
+        {"public_body_id": 1511, "minutes_page_url": "https://x.ie/trim"},
+    ]
+    assert pending_sources(writer, items) == [items[1]]

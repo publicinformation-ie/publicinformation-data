@@ -144,12 +144,22 @@ def _fetch_one(item):
         return item["public_body_id"], url, [], e
 
 
+def pending_sources(writer, items):
+    """Source pages not yet collected: an item is pending unless a record
+    carrying its `minutes_page_url` is already held by the writer. Keying on
+    `minutes_page_url` (one per district/council page) instead of
+    `public_body_id` prevents a resumed run from skipping the remaining
+    district pages of a body after one page has been collected."""
+    processed = {r.get("minutes_page_url") for r in writer.results
+                 if r.get("minutes_page_url")}
+    return [item for item in items if item.get("minutes_page_url") not in processed]
+
+
 def process(input_data, step_dir, writer, verbose=False, max_workers=6):
     errors_path = Path(step_dir) / "errors.json"
     write_json(errors_path, [])
 
-    pending = [item for item in input_data["results"]
-               if not writer.is_processed(item["public_body_id"])]
+    pending = pending_sources(writer, input_data["results"])
 
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = {executor.submit(_fetch_one, item): item for item in pending}
