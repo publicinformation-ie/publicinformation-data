@@ -13,6 +13,10 @@ Extracts the motions from each minutes document via LLM structured extraction, u
 
 A failed or unparseable LLM response produces `motions: null` **and** a per-document `errors.json` entry (`MotionExtractionError`). The whole document is treated as no-motions rather than guessing a partial record.
 
+**Resume behaviour:** a document that yields `motions: null` is still marked
+processed (keyed on `file_url`), so a resumed run does *not* retry it. To
+re-attempt failed documents, re-run the step with `--force`.
+
 ## Input
 
 - `transform_minutes_files/output.json` (generated upstream)
