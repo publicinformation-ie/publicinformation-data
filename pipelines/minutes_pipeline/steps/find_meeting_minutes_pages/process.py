@@ -103,6 +103,16 @@ def override_sources(authorities, overrides):
     return records
 
 
+def unemitted_sources(writer, records):
+    """Records not yet persisted: a record is unemitted unless its
+    `minutes_page_url` is already held by the writer. Keying on
+    `minutes_page_url` (unique per district/council page) instead of
+    `public_body_id` lets a resumed run keep every district page of a body."""
+    processed = {r.get("minutes_page_url") for r in writer.results
+                 if r.get("minutes_page_url")}
+    return [r for r in records if r.get("minutes_page_url") not in processed]
+
+
 def process(input_data, step_dir, writer, verbose=False):
     errors_path = Path(step_dir) / "errors.json"
     write_json(errors_path, [])
@@ -153,7 +163,7 @@ def process(input_data, step_dir, writer, verbose=False):
             print(".", end="", flush=True)
 
     # Never re-emit records the writer already holds (resume / scoped runs).
-    writer.append([r for r in records if not writer.is_processed(r["public_body_id"])])
+    writer.append(unemitted_sources(writer, records))
 
 
 def main():

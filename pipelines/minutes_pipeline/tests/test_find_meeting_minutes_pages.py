@@ -9,6 +9,7 @@ from steps.find_meeting_minutes_pages.process import (
     find_minutes_link,
     override_sources,
     process,
+    unemitted_sources,
 )
 from lib.file_utils import read_json, IncrementalWriter
 
@@ -80,3 +81,18 @@ def test_process_override_plus_writer_does_not_duplicate(tmp_path, make_writer):
     assert len(out["results"]) == 1
     assert out["results"][0]["source_method"] == "override"
     assert out["results"][0]["overridden"] is True
+
+
+def test_unemitted_sources_skips_already_present_pages(make_writer):
+    writer = make_writer(STEP_NAME)
+    writer.results = [
+        {"public_body_id": 1511, "municipal_district": "Navan",
+         "minutes_page_url": "https://x.ie/navan"},
+    ]
+    records = [
+        {"public_body_id": 1511, "municipal_district": "Navan",
+         "minutes_page_url": "https://x.ie/navan"},
+        {"public_body_id": 1511, "municipal_district": "Trim",
+         "minutes_page_url": "https://x.ie/trim"},
+    ]
+    assert unemitted_sources(writer, records) == [records[1]]
