@@ -24,7 +24,34 @@ _MONTHS = {
     "jan": 1, "feb": 2, "mar": 3, "apr": 4, "jun": 6, "jul": 7, "aug": 8,
     "sep": 9, "sept": 9, "oct": 10, "nov": 11, "dec": 12,
 }
-_YEAR_LINK_RE = re.compile(r"^(19|20)\d{2}$")
+_YEAR_LEAD_RE = re.compile(r"^(19|20)\d{2}\b")
+_LISTING_TOKENS = {
+    "meeting", "meetings", "minutes", "minute", "council", "municipal",
+    "district", "districts",
+}
+_NOT_MINUTES_TOKENS = {
+    "agenda", "agendas", "report", "reports", "scheme", "annual",
+    "published", "minutes-of-agenda", "notice", "notices", "publication",
+    "publications",
+}
+
+
+def _tokens(*strings):
+    toks = set()
+    for s in strings:
+        for t in re.split(r"[^a-z0-9]+", (s or "").lower()):
+            if t:
+                toks.add(t)
+    return toks
+
+
+def _is_year_listing(text, href):
+    """True for an anchor that links to a year's meeting listing: link text
+    starts with a 4-digit year and the text/URL indicates a meeting listing
+    (e.g. '2024', '2024 Council Meetings', '/minutes/2024')."""
+    if not _YEAR_LEAD_RE.match((text or "").strip()):
+        return False
+    return bool(_tokens(text, href) & _LISTING_TOKENS)
 
 
 def _extract_date(text: str):
@@ -62,10 +89,10 @@ def parse_meeting_date(link_text, file_url):
 
 
 def _looks_like_minutes(link_text, href):
-    """Filter agendas/reports out where distinguishable; keep minutes PDFs."""
-    tokens = set(re.split(r"[^a-z0-9]+", f"{link_text} {href}".lower()))
-    if tokens & {"agenda", "agendas", "report", "reports", "scheme",
-                 "annual", "published", "minutes-of-agenda"}:
+    """Filter agendas/reports/public notices out where distinguishable; keep
+    minutes PDFs."""
+    tokens = _tokens(link_text, href)
+    if tokens & _NOT_MINUTES_TOKENS:
         return False
     if tokens & {"minutes", "meeting", "minute"}:
         return True
@@ -76,8 +103,12 @@ def collect_minutes_links(source, base_url):
     """Collect minutes PDF links from a minutes page, following year-looking
     anchor links one level deep. Returns a list of record dicts."""
     records = []
+    visited = set()
 
     def _walk(url, depth):
+        if url in visited:
+            return
+        visited.add(url)
         response = fetch("GET", url, allow_redirects=True)
         soup = BeautifulSoup(response.text, "html.parser")
         for link in soup.find_all("a", href=True):
@@ -97,7 +128,7 @@ def collect_minutes_links(source, base_url):
                         "meeting_date": parse_meeting_date(text, full),
                         "link_text": text,
                     })
-            elif depth == 0 and _YEAR_LINK_RE.match(text.strip()):
+            elif depth == 0 and _is_year_listing(text, href):
                 _walk(full, depth=1)
 
     _walk(base_url, depth=0)
