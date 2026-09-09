@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from lib.cli_utils import add_common_args, filter_by_public_body
+from lib.date_parse import parse_date
 from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
 from lib.llm_extract import extract_json
 
@@ -14,8 +15,11 @@ STEP_NAME = "extract_motions"
 _SYSTEM_PROMPT = (
     "You extract the motions from Irish local-authority council meeting "
     "minutes. A motion is a formal proposal put to a vote (often starting "
-    "'That the council…' or 'Proposed by…'). Return a JSON object with one key "
-    "'motions': a list of objects, each with string fields: motion_text "
+    "'That the council…' or 'Proposed by…'). Return a JSON object with two "
+    "keys: 'meeting_date' and 'motions'. 'meeting_date' is the ISO date "
+    "(YYYY-MM-DD) of the meeting when it is stated in the document (a full "
+    "calendar date, e.g. '8 July 2024' or '2024-07-08'), otherwise null. "
+    "'motions' is a list of objects, each with string fields: motion_text "
     "(verbatim motion text), proposer (councillor or null), seconder "
     "(councillor or null), status_label (one of: carried, "
     "carried_as_amended, not_carried, withdrawn, deferred, not_recorded). "
@@ -32,6 +36,23 @@ def build_user_prompt(record) -> str:
     )
 
 
+def resolve_meeting_date(link_date, content_date) -> str | None:
+    """Deterministic meeting date for the record.
+
+    A link-derived date (parsed from URL/link text) is trusted as-is — it is
+    deterministic, not LLM output. A content date from the LLM is accepted
+    only when it parses to a full calendar day (ISO or day-month-year);
+    month-only values do not give a stable meeting day and are rejected.
+    Returns None when neither resolves — canonicalize then fails closed.
+    """
+    if link_date:
+        return link_date
+    parsed = parse_date(content_date) if content_date else None
+    if parsed and parsed.get("precision") == "day":
+        return parsed["start"]
+    return None
+
+
 def extract_one(record, api_fn=None):
     """Return the record with a 'motions' list, or motions=None on failure."""
     result = extract_json(_SYSTEM_PROMPT, build_user_prompt(record), api_fn=api_fn)
@@ -40,7 +61,9 @@ def extract_one(record, api_fn=None):
     motions = result.get("motions")
     if not isinstance(motions, list):
         return {**record, "motions": None}
-    return {**record, "motions": motions}
+    meeting_date = resolve_meeting_date(record.get("meeting_date"),
+                                        result.get("meeting_date"))
+    return {**record, "meeting_date": meeting_date, "motions": motions}
 
 
 def _process_one(item, api_fn=None):

@@ -5,8 +5,9 @@ Extracts the motions from each minutes document via LLM structured extraction, u
 ## What it does
 
 1. For each transformed record (with `text`) from `transform_minutes_files`, sends one LLM request with a fixed system prompt (motion definition + JSON contract + closed-set `status_label`) and a user prompt built from the record's district/date and full text.
-2. Parses the returned JSON `{"motions": [{motion_text, proposer, seconder, status_label}, …]}`.
-3. Emits one record per document: all input fields plus a `motions` list — or `motions: null` when the LLM response is unparseable/empty.
+2. Parses the returned JSON `{"meeting_date": <ISO date|null>, "motions": [{motion_text, proposer, seconder, status_label}, …]}`.
+3. **Resolves the meeting date**: a link-derived `meeting_date` is trusted as-is; otherwise the LLM's `meeting_date` is accepted only when it parses to a full calendar day (ISO or day-month-year). Month-only values are rejected — the date stays `null` and `canonicalize_motions` fails closed.
+4. Emits one record per document: all input fields plus a `motions` list — or `motions: null` when the LLM response is unparseable/empty.
 
 ## Fail-closed policy
 
