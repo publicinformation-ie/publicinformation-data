@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "required": ["metadata", "results"],
+  "properties": {
+    "metadata": { "type": "object" },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["public_body_id", "minutes_page_url", "file_url", "link_text"],
+        "properties": {
+          "public_body_id": { "type": "integer" },
+          "municipal_district": { "type": ["string", "null"] },
+          "minutes_page_url": { "type": "string", "format": "uri" },
+          "file_url": { "type": "string", "format": "uri" },
+          "meeting_date": { "type": ["string", "null"] },
+          "link_text": { "type": "string" }
+        }
+      }
+    }
+  }
+}
