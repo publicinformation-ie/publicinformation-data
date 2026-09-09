@@ -128,6 +128,18 @@ Always-run steps: `fingerprint_disclosure_pages`.
 | 2 | `match_public_bodies` |
 | 3 | `apply_overrides` |
 
+### `minutes_pipeline` (7 steps)
+
+| # | Step |
+|---:|---|
+| 1 | `find_local_authorities` |
+| 2 | `find_meeting_minutes_pages` |
+| 3 | `find_minutes_files` |
+| 4 | `transform_minutes_files` |
+| 5 | `extract_motions` |
+| 6 | `canonicalize_motions` |
+| 7 | `export_motions` |
+
 ### `statespend_pipeline` (3 steps)
 
 | # | Step |
