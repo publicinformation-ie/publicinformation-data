@@ -56,3 +56,21 @@ def test_download_reuses_cache_without_fetching(tmp_path):
         data = _download(url, tmp_path)
     m.assert_not_called()
     assert data == b"%PDF-1.4 cached"
+
+
+def test_process_logs_error_when_text_extraction_is_empty(tmp_path, make_writer):
+    item = {
+        "public_body_id": 1511, "municipal_district": "Navan",
+        "file_url": "https://x.ie/m.pdf", "meeting_date": "2024-07-08",
+    }
+    with mock.patch("steps.transform_minutes_files.process._download",
+                    return_value=b"%PDF-1.4 empty"):
+        with mock.patch("steps.transform_minutes_files.process.extract_text",
+                        return_value=("", "pdfplumber")):
+            writer = make_writer(STEP_NAME, key_field="file_url")
+            process({"results": [item]}, tmp_path, writer)
+            writer.finalize()
+    errors = read_json(tmp_path / "errors.json")
+    assert any(e["error_type"] == "EmptyTextExtraction" for e in errors)
+    out = read_json(tmp_path / "output.json")
+    assert out["results"][0]["text"] == ""

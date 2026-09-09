@@ -112,6 +112,15 @@ def process(input_data, step_dir, writer, verbose=False, max_workers=4):
                 })
                 writer.append([])
             else:
+                if not (record.get("text") or "").strip():
+                    append_error(step_dir, {
+                        "step": STEP_NAME,
+                        "timestamp": datetime.now(timezone.utc).isoformat(),
+                        "error_type": "EmptyTextExtraction",
+                        "error_message": "marker-pdf and pdfplumber both returned empty text",
+                        "context": {"url": file_url,
+                                    "public_body_id": record.get("public_body_id")},
+                    })
                 writer.append([record])
             if verbose:
                 print(".", end="", flush=True)
