@@ -74,3 +74,27 @@ def test_process_logs_error_when_text_extraction_is_empty(tmp_path, make_writer)
     assert any(e["error_type"] == "EmptyTextExtraction" for e in errors)
     out = read_json(tmp_path / "output.json")
     assert out["results"][0]["text"] == ""
+
+
+def test_download_rejects_non_pdf_response(tmp_path):
+    url = "https://x.ie/meeting-2024-07-08.pdf"
+    with mock.patch("steps.transform_minutes_files.process.fetch") as m:
+        class R:
+            content = b"<html>not a pdf</html>"
+        m.return_value = R()
+        with pytest.raises(ValueError):
+            _download(url, tmp_path)
+    assert not _cache_path(tmp_path, url).exists()
+
+
+def test_download_writes_atomically_without_tmp_leftover(tmp_path):
+    url = "https://x.ie/meeting-2024-07-08.pdf"
+    with mock.patch("steps.transform_minutes_files.process.fetch") as m:
+        class R:
+            content = b"%PDF-1.4 ok"
+        m.return_value = R()
+        data = _download(url, tmp_path)
+    path = _cache_path(tmp_path, url)
+    assert data == b"%PDF-1.4 ok"
+    assert path.read_bytes() == b"%PDF-1.4 ok"
+    assert not path.with_suffix(".tmp").exists()

@@ -65,14 +65,25 @@ def _cache_path(cache_dir, url):
     return Path(cache_dir) / f"{digest}.pdf"
 
 
+_PDF_MAGIC = b"%PDF-"
+
+
 def _download(url, cache_dir):
-    """Fetch a PDF, persisting it to the pdf_cache so re-runs don't re-fetch."""
+    """Fetch a PDF, persisting it to the pdf_cache so re-runs don't re-fetch.
+
+    Fails closed on a non-PDF body (e.g. an HTML error page served with a
+    200) and writes via a temp file + rename so an interrupted download can
+    never leave a truncated file as a valid cache entry."""
     path = _cache_path(cache_dir, url)
     if path.exists():
         return path.read_bytes()
     response = fetch("GET", url, allow_redirects=True)
     data = response.content
-    path.write_bytes(data)
+    if not data.strip().startswith(_PDF_MAGIC):
+        raise ValueError(f"response from {url} is not a PDF (missing %PDF- magic bytes)")
+    tmp_path = path.with_suffix(".tmp")
+    tmp_path.write_bytes(data)
+    tmp_path.replace(path)
     return data
 
 
