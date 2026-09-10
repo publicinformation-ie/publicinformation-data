@@ -117,7 +117,7 @@ def process(input_data, step_dir, writer, verbose=False, max_workers=4):
                     "timestamp": datetime.now(timezone.utc).isoformat(),
                     "error_type": type(exc).__name__,
                     "error_message": str(exc),
-                    "context": {"url": file_url,
+                    "context": {"file_url": file_url,
                                 "public_body_id": record["public_body_id"]
                                 if record else None},
                 })
@@ -129,7 +129,7 @@ def process(input_data, step_dir, writer, verbose=False, max_workers=4):
                         "timestamp": datetime.now(timezone.utc).isoformat(),
                         "error_type": "EmptyTextExtraction",
                         "error_message": "marker-pdf and pdfplumber both returned empty text",
-                        "context": {"url": file_url,
+                        "context": {"file_url": file_url,
                                     "public_body_id": record.get("public_body_id")},
                     })
                 writer.append([record])
