@@ -6,7 +6,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from lib.cli_utils import add_common_args, filter_by_public_body
-from lib.date_parse import parse_date
 from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
 from lib.llm_extract import extract_json
 
@@ -36,34 +35,18 @@ def build_user_prompt(record) -> str:
     )
 
 
-def resolve_meeting_date(link_date, content_date) -> str | None:
-    """Deterministic meeting date for the record.
-
-    A link-derived date (parsed from URL/link text) is trusted as-is — it is
-    deterministic, not LLM output. A content date from the LLM is accepted
-    only when it parses to a full calendar day (ISO or day-month-year);
-    month-only values do not give a stable meeting day and are rejected.
-    Returns None when neither resolves — canonicalize then fails closed.
-    """
-    if link_date:
-        return link_date
-    parsed = parse_date(content_date) if content_date else None
-    if parsed and parsed.get("precision") == "day":
-        return parsed["start"]
-    return None
-
-
 def extract_one(record, api_fn=None):
-    """Return the record with a 'motions' list, or motions=None on failure."""
+    """Return the record with a 'motions' list (or None on failure) and a
+    raw 'stated_date' passthrough of whatever date the LLM reported. Date
+    *resolution* is the resolve_meeting_date step's job, not this one."""
     result = extract_json(_SYSTEM_PROMPT, build_user_prompt(record), api_fn=api_fn)
     if not isinstance(result, dict):
-        return {**record, "motions": None}
+        return {**record, "stated_date": None, "motions": None}
+    stated_date = result.get("meeting_date")
     motions = result.get("motions")
     if not isinstance(motions, list):
-        return {**record, "motions": None}
-    meeting_date = resolve_meeting_date(record.get("meeting_date"),
-                                        result.get("meeting_date"))
-    return {**record, "meeting_date": meeting_date, "motions": motions}
+        return {**record, "stated_date": stated_date, "motions": None}
+    return {**record, "stated_date": stated_date, "motions": motions}
 
 
 def _process_one(item, api_fn=None):

@@ -9,7 +9,6 @@ from steps.extract_motions.process import (
     build_user_prompt,
     extract_one,
     process,
-    resolve_meeting_date,
 )
 from lib.file_utils import read_json
 
@@ -43,43 +42,33 @@ def test_extract_one_none_on_bad_json():
     assert record["motions"] is None
 
 
-def test_resolve_meeting_date_keeps_link_derived_when_present():
-    assert resolve_meeting_date("2024-07-08", None) == "2024-07-08"
-
-
-def test_resolve_meeting_date_falls_back_to_content_when_link_missing():
-    assert resolve_meeting_date(None, "2025-06-10") == "2025-06-10"
-
-
-def test_resolve_meeting_date_parses_day_month_year_content():
-    assert resolve_meeting_date(None, "10 June 2025") == "2025-06-10"
-
-
-def test_resolve_meeting_date_null_when_undeterminable():
-    assert resolve_meeting_date(None, None) is None
-    # Month-only content does not give a stable meeting day.
-    assert resolve_meeting_date(None, "June 2025") is None
-    # Link date wins over a conflicting content date (deterministic > LLM).
-    assert resolve_meeting_date("2024-07-08", "2025-06-10") == "2024-07-08"
-
-
-def test_extract_one_resolves_meeting_date_from_content():
-    payload = {"meeting_date": "2025-06-10", "motions": [
+def test_extract_one_passes_llm_date_through_as_stated_date():
+    payload = {"meeting_date": "10th October", "motions": [
         {"motion_text": "That the council…", "proposer": "Cllr A",
          "seconder": "Cllr B", "status_label": "carried"}
     ]}
     doc = _doc()
-    doc["meeting_date"] = None
+    doc["meeting_date"] = None            # nothing deterministic upstream
     with mock.patch("steps.extract_motions.process.extract_json",
                     return_value=payload):
         record = extract_one(doc)
-    assert record["meeting_date"] == "2025-06-10"
+    assert record["stated_date"] == "10th October"   # raw, unvalidated
+    assert record["meeting_date"] is None             # untouched, not resolved
     assert record["motions"] == payload["motions"]
 
 
-def test_extract_one_keeps_link_date_even_when_content_conflicts():
-    payload = {"meeting_date": "2025-06-10", "motions": []}
+def test_extract_one_stated_date_none_when_llm_omits_it():
+    payload = {"motions": []}
     with mock.patch("steps.extract_motions.process.extract_json",
                     return_value=payload):
-        record = extract_one(_doc())  # link date 2024-07-08
-    assert record["meeting_date"] == "2024-07-08"
+        record = extract_one(_doc())
+    assert record["stated_date"] is None
+    assert record["motions"] == []
+
+
+def test_extract_one_bad_json_still_sets_stated_date_key():
+    with mock.patch("steps.extract_motions.process.extract_json",
+                    return_value=None):
+        record = extract_one(_doc())
+    assert record["motions"] is None
+    assert record["stated_date"] is None
