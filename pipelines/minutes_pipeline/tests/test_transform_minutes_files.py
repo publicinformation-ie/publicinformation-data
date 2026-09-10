@@ -59,9 +59,13 @@ def test_download_reuses_cache_without_fetching(tmp_path):
 
 
 def test_process_logs_error_when_text_extraction_is_empty(tmp_path, make_writer):
+    # Deep path + query string: a regression that collapses the URL to its
+    # domain (www.meath.ie) would be unambiguous.
+    full_url = ("https://www.meath.ie/system/files/media/file-uploads/2026-05/"
+                "05-2026%20Minutes%20Navan%20MD.pdf?ver=2")
     item = {
         "public_body_id": 1511, "municipal_district": "Navan",
-        "file_url": "https://x.ie/m.pdf", "meeting_date": "2024-07-08",
+        "file_url": full_url, "meeting_date": "2024-07-08",
     }
     with mock.patch("steps.transform_minutes_files.process._download",
                     return_value=b"%PDF-1.4 empty"):
@@ -71,7 +75,11 @@ def test_process_logs_error_when_text_extraction_is_empty(tmp_path, make_writer)
             process({"results": [item]}, tmp_path, writer)
             writer.finalize()
     errors = read_json(tmp_path / "errors.json")
-    assert any(e["error_type"] == "EmptyTextExtraction" for e in errors)
+    empty = [e for e in errors if e["error_type"] == "EmptyTextExtraction"]
+    assert len(empty) == 1
+    ctx = empty[0]["context"]
+    assert ctx["file_url"] == full_url    # full URL preserved, not collapsed to a domain
+    assert "url" not in ctx               # the sanitiser-collapsed key is gone
     out = read_json(tmp_path / "output.json")
     assert out["results"][0]["text"] == ""
 

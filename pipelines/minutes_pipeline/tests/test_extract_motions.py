@@ -42,6 +42,25 @@ def test_extract_one_none_on_bad_json():
     assert record["motions"] is None
 
 
+def test_process_logs_error_with_full_file_url(tmp_path, make_writer):
+    # Deep path + query string so a regression (collapse to the bare domain)
+    # is unambiguous.
+    full_url = ("https://www.meath.ie/system/files/media/file-uploads/2026-05/"
+                "05-2026%20Minutes%20Navan%20MD.pdf?ver=2")
+    item = _doc()
+    item["file_url"] = full_url
+    with mock.patch("steps.extract_motions.process.extract_json", return_value=None):
+        writer = make_writer(STEP_NAME, key_field="file_url")
+        process({"results": [item]}, tmp_path, writer)
+        writer.finalize()
+    errors = read_json(tmp_path / "errors.json")
+    assert len(errors) == 1
+    assert errors[0]["error_type"] == "MotionExtractionError"
+    ctx = errors[0]["context"]
+    assert ctx["file_url"] == full_url    # full URL preserved, not collapsed to a domain
+    assert "url" not in ctx
+
+
 def test_extract_one_passes_llm_date_through_as_stated_date():
     payload = {"meeting_date": "10th October", "motions": [
         {"motion_text": "That the council…", "proposer": "Cllr A",

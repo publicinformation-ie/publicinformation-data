@@ -77,7 +77,7 @@ def process(input_data, step_dir, writer, verbose=False, max_workers=2, api_fn=N
                     "error_type": (type(exc).__name__ if exc else "MotionExtractionError"),
                     "error_message": (str(exc) if exc else
                                       "LLM returned unparseable/empty motions JSON"),
-                    "context": {"url": file_url, "public_body_id": record["public_body_id"]
+                    "context": {"file_url": file_url, "public_body_id": record["public_body_id"]
                                 if record else None},
                 })
                 if record is not None:
