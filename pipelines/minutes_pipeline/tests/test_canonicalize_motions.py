@@ -63,6 +63,16 @@ def test_canonicalize_missing_date_excludes_and_errors():
     assert any(e["error_type"] == "MissingMeetingDate" for e in errors)
 
 
+def test_canonicalize_empty_motions_list_is_no_motions_not_missing_date():
+    authorities = {"1511": {"slug": "meath", "name": "Meath County Council"}}
+    rec = _motion_record(meeting_date=None)
+    rec["motions"] = []                       # empty list, not None
+    canonical, errors = canonicalize_records([rec], authorities, "1511")
+    assert canonical == []
+    assert [e["error_type"] for e in errors] == ["NoMotionsExtracted"]
+    assert not any(e["error_type"] == "MissingMeetingDate" for e in errors)
+
+
 def test_canonicalize_deduplicates_adjacent_duplicate_text():
     authorities = {"1511": {"slug": "meath", "name": "Meath County Council"}}
     records = [

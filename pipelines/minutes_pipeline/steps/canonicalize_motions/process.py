@@ -70,7 +70,7 @@ def canonicalize_records(input_records, authorities, body_id=None, errors_out=No
             })
             continue
         motions = record.get("motions")
-        if motions is None:
+        if not motions:            # None (failed LLM) or [] (empty document)
             errors.append({
                 "error_type": "NoMotionsExtracted",
                 "error_message": "document produced no motions",
