@@ -130,3 +130,44 @@ def test_resolve_impossible_date_fails_closed():
     iso, err = resolve(rec)
     assert iso is None
     assert err["error_type"] == "UnresolvedMeetingDate"
+
+
+import json
+from steps.resolve_meeting_date.process import run
+
+
+def test_run_resolves_and_collects_errors(tmp_path):
+    records = [
+        {  # recovered via header day/month + link-text year
+            "public_body_id": 1511, "file_url": "https://meath.ie/a.pdf",
+            "municipal_district": "Laytown-Bettystown", "meeting_date": None,
+            "stated_date": None,
+            "link_text": "Minutes - Ordinary Meeting October 2024",
+            "text": "Ordinary Meeting\n10.00a.m, 10th October, Duleek\n",
+            "motions": [{"motion_text": "x"}],
+        },
+        {  # unresolved, has motions -> error row
+            "public_body_id": 1511, "file_url": "https://meath.ie/b.pdf",
+            "municipal_district": "Trim", "meeting_date": None,
+            "stated_date": None, "link_text": "Minutes", "text": "",
+            "motions": [{"motion_text": "y"}],
+        },
+        {  # empty doc, no motions -> passes through, no error
+            "public_body_id": 1511, "file_url": "https://meath.ie/c.pdf",
+            "municipal_district": "Navan", "meeting_date": None,
+            "stated_date": None, "link_text": "Minutes", "text": "",
+            "motions": [],
+        },
+    ]
+    in_path = tmp_path / "in.json"
+    in_path.write_text(json.dumps({"results": records}))
+    out_path = tmp_path / "out.json"
+
+    run(str(in_path), str(out_path), tmp_path, public_body=None, force=True)
+
+    out = json.loads(out_path.read_text())["results"]
+    assert [r["meeting_date"] for r in out] == ["2024-10-10", None, None]
+    assert all("stated_date" not in r for r in out)
+    errs = json.loads((tmp_path / "errors.json").read_text())
+    assert [e["error_type"] for e in errs] == ["UnresolvedMeetingDate"]
+    assert errs[0]["context"]["file_url"] == "https://meath.ie/b.pdf"

@@ -5,6 +5,7 @@
     "find_minutes_files",
     "transform_minutes_files",
     "extract_motions",
+    "resolve_meeting_date",
     "canonicalize_motions",
     "export_motions"
   ],
