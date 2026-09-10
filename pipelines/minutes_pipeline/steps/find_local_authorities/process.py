@@ -42,12 +42,19 @@ def join_with_cso(authorities, cso_output):
     return records, unmatched
 
 
-def process(input_data, authorities_path, writer, step_dir, verbose=False):
+def process(input_data, authorities_path, writer, step_dir, verbose=False,
+            public_body=None):
     errors_path = Path(step_dir) / "errors.json"
     write_json(errors_path, [])
 
     authorities = load_committed_authorities(authorities_path)
     records, unmatched = join_with_cso(authorities, input_data)
+
+    # Scoped runs: emit only the target body. The writer has already evicted
+    # that body's existing record, so appending the full list here would add
+    # duplicates of every other authority on each scoped re-run.
+    if public_body is not None:
+        records = [r for r in records if r["public_body_id"] == public_body]
 
     for name in unmatched:
         append_error(step_dir, {
@@ -92,7 +99,7 @@ def main():
                                target_public_body=args.public_body)
 
     process(cso_out, step_dir / "local_authorities.json", writer, step_dir=step_dir,
-            verbose=args.verbose)
+            verbose=args.verbose, public_body=args.public_body)
     count = writer.finalize()
     write_status(step_dir, count)
     print(f"Wrote {count} authorities to {output_path}")

@@ -100,3 +100,48 @@ def test_process_writes_all_authorities(tmp_path, make_writer):
     results = read_json(tmp_path / "output.json")["results"]
     assert len(results) == 2
     assert {r["public_body_id"] for r in results} == {1511, 1002}
+
+
+def test_process_scoped_to_public_body_writes_only_that_authority(tmp_path, make_writer):
+    authorities = [
+        {"name": "Meath County Council", "slug": "meath", "municipal_districts": ["Navan"]},
+        {"name": "Carlow County Council", "slug": "carlow", "municipal_districts": []},
+    ]
+    auth_path = tmp_path / "local_authorities.json"
+    auth_path.write_text(json.dumps(authorities))
+    cso = _cso_output([
+        _cso_record(1511, "Meath County Council", "https://www.meath.ie/"),
+        _cso_record(1002, "Carlow County Council", "https://www.carlow.ie/"),
+    ])
+    writer = make_writer(STEP_NAME)
+    process(cso, auth_path, writer, step_dir=tmp_path, public_body=1511)
+    writer.finalize()
+    results = read_json(tmp_path / "output.json")["results"]
+    assert [r["public_body_id"] for r in results] == [1511]
+
+
+def test_scoped_rerun_does_not_duplicate_authorities(tmp_path):
+    from lib.file_utils import IncrementalWriter
+
+    authorities = [
+        {"name": "Meath County Council", "slug": "meath", "municipal_districts": ["Navan"]},
+        {"name": "Carlow County Council", "slug": "carlow", "municipal_districts": []},
+    ]
+    auth_path = tmp_path / "local_authorities.json"
+    auth_path.write_text(json.dumps(authorities))
+    cso = _cso_output([
+        _cso_record(1511, "Meath County Council", "https://www.meath.ie/"),
+        _cso_record(1002, "Carlow County Council", "https://www.carlow.ie/"),
+    ])
+    out_path = tmp_path / "output.json"
+
+    full = IncrementalWriter(out_path, STEP_NAME, force=True)
+    process(cso, auth_path, full, step_dir=tmp_path)
+    full.finalize()
+
+    scoped = IncrementalWriter(out_path, STEP_NAME, force=True, target_public_body=1511)
+    process(cso, auth_path, scoped, step_dir=tmp_path, public_body=1511)
+    scoped.finalize()
+
+    results = read_json(out_path)["results"]
+    assert sorted(r["public_body_id"] for r in results) == [1002, 1511]
