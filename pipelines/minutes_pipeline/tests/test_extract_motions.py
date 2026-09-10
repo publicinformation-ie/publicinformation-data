@@ -72,3 +72,18 @@ def test_extract_one_bad_json_still_sets_stated_date_key():
         record = extract_one(_doc())
     assert record["motions"] is None
     assert record["stated_date"] is None
+
+
+def test_extract_one_preserves_nonnull_upstream_meeting_date():
+    payload = {"meeting_date": "2024-09-09", "motions": [
+        {"motion_text": "That the council…", "proposer": "Cllr A",
+         "seconder": "Cllr B", "status_label": "carried"}
+    ]}
+    doc = _doc()
+    doc["meeting_date"] = "2024-01-02"    # non-null deterministic upstream date
+    with mock.patch("steps.extract_motions.process.extract_json",
+                    return_value=payload):
+        record = extract_one(doc)
+    assert record["meeting_date"] == "2024-01-02"     # upstream preserved, untouched
+    assert record["stated_date"] == "2024-09-09"      # LLM value carried through raw
+    assert record["motions"] == payload["motions"]
