@@ -14,27 +14,6 @@ from lib.http_utils import fetch
 STEP_NAME = "transform_minutes_files"
 
 
-def _extract_marker(pdf_bytes: bytes) -> str:
-    """Primary extractor (no API key). Returns '' on any failure/empty."""
-    try:
-        from marker.converters.pdf import PdfConverter
-        from marker.models import create_model_dict
-        from marker.output.text import TextOutput
-        from marker.config.parser import ConfigParser
-        config = ConfigParser({})
-        converter = PdfConverter(
-            config=config.get_general_config(),
-            artifact_dict=create_model_dict(),
-            processor_list=config.get_processors(),
-            renderer=config.get_renderer(),
-        )
-        rendered = converter(io.BytesIO(pdf_bytes))
-        text = rendered.markdown
-        return text if isinstance(text, str) else ""
-    except Exception:
-        return ""
-
-
 def _extract_pdfplumber(pdf_bytes: bytes) -> str:
     """Fallback extractor. Returns '' on failure/empty."""
     try:
@@ -49,11 +28,7 @@ def _extract_pdfplumber(pdf_bytes: bytes) -> str:
 
 
 def extract_text(pdf_bytes: bytes):
-    """Return (text, extractor). marker-pdf first, pdfplumber fallback on
-    failure or empty result."""
-    text = _extract_marker(pdf_bytes)
-    if text and text.strip():
-        return text, "marker_pdf"
+    """Return (text, extractor). pdfplumber is the sole extractor."""
     text = _extract_pdfplumber(pdf_bytes)
     if text and text.strip():
         return text, "pdfplumber"
@@ -128,7 +103,7 @@ def process(input_data, step_dir, writer, verbose=False, max_workers=4):
                         "step": STEP_NAME,
                         "timestamp": datetime.now(timezone.utc).isoformat(),
                         "error_type": "EmptyTextExtraction",
-                        "error_message": "marker-pdf and pdfplumber both returned empty text",
+                        "error_message": "pdfplumber returned empty text",
                         "context": {"file_url": file_url,
                                     "public_body_id": record.get("public_body_id")},
                     })

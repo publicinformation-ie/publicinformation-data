@@ -4,6 +4,7 @@
     "find_meeting_minutes_pages",
     "find_minutes_files",
     "transform_minutes_files",
+    "ocr_minutes_files",
     "extract_motions",
     "resolve_meeting_date",
     "canonicalize_motions",

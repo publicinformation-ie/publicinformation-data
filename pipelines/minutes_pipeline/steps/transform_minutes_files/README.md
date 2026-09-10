@@ -5,8 +5,8 @@ Downloads each minutes PDF and extracts prose text for LLM motion extraction, mi
 ## What it does
 
 1. For each `file_url` from `find_minutes_files`, downloads the PDF.
-2. Extracts text with **marker-pdf first**, falling back to **pdfplumber** on any failure or empty result.
-3. Emits one record per PDF: all input fields plus `text` (the extracted prose) and `extractor` (`"marker_pdf"` or `"pdfplumber"`).
+2. Extracts text with **pdfplumber** (image-only scans yield empty text — they are OCR'd downstream in `ocr_minutes_files`).
+3. Emits one record per PDF: all input fields plus `text` (the extracted prose) and `extractor` (`"pdfplumber"`).
 
 The `key_field` is `file_url` so each PDF is processed exactly once across resumable runs.
 
@@ -21,7 +21,7 @@ The `key_field` is `file_url` so each PDF is processed exactly once across resum
 | Field | Description |
 |---|---|
 | `text` | Extracted prose text from the PDF |
-| `extractor` | `"marker_pdf"` when marker-pdf produced text, else `"pdfplumber"` |
+| `extractor` | `"pdfplumber"` |
 
 ## Notable files
 

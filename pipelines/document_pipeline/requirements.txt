@@ -6,3 +6,4 @@
 # on Python 3.14 — pinned here so a fresh clone gets a known-good version.
 pymupdf==1.28.0
 pillow==11.0.0
+pytesseract==0.3.13

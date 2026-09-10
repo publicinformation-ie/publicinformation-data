@@ -128,7 +128,7 @@ Always-run steps: `fingerprint_disclosure_pages`.
 | 2 | `match_public_bodies` |
 | 3 | `apply_overrides` |
 
-### `minutes_pipeline` (8 steps)
+### `minutes_pipeline` (9 steps)
 
 | # | Step |
 |---:|---|
@@ -136,10 +136,11 @@ Always-run steps: `fingerprint_disclosure_pages`.
 | 2 | `find_meeting_minutes_pages` |
 | 3 | `find_minutes_files` |
 | 4 | `transform_minutes_files` |
-| 5 | `extract_motions` |
-| 6 | `resolve_meeting_date` |
-| 7 | `canonicalize_motions` |
-| 8 | `export_motions` |
+| 5 | `ocr_minutes_files` |
+| 6 | `extract_motions` |
+| 7 | `resolve_meeting_date` |
+| 8 | `canonicalize_motions` |
+| 9 | `export_motions` |
 
 ### `statespend_pipeline` (3 steps)
 

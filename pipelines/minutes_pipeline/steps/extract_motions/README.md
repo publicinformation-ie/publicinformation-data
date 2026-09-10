@@ -19,7 +19,7 @@ re-attempt failed documents, re-run the step with `--force`.
 
 ## Input
 
-- `transform_minutes_files/output.json` (generated upstream)
+- `ocr_minutes_files/output.json` (generated upstream)
 
 ## Output
 
