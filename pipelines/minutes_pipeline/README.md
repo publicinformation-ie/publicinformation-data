@@ -12,9 +12,10 @@ The authoritative step order is defined in [`pipeline.json`](pipeline.json). Ste
 | 2 | [`find_meeting_minutes_pages`](steps/find_meeting_minutes_pages/) | Resolves the minutes-publishing page per body/district: committed `override.json` URLs first (no HTTP), crawl-scoring fallback over the homepage otherwise. |
 | 3 | [`find_minutes_files`](steps/find_minutes_files/) | Crawls each minutes page (following year links one level deep), collecting links to minutes PDFs with a deterministic `meeting_date` where derivable. |
 | 4 | [`transform_minutes_files`](steps/transform_minutes_files/) | Downloads each PDF and extracts prose text — marker-pdf first, pdfplumber fallback. |
-| 5 | [`extract_motions`](steps/extract_motions/) | One LLM request per document (via the shared `src/lib/llm_extract.py`) returning `{"motions": [{motion_text, proposer, seconder, status_label}, …]}`; `motions: null` on a failed response. |
-| 6 | [`canonicalize_motions`](steps/canonicalize_motions/) | Deterministic fan-in: maps status to the closed set, resolves the composite id `<slug>/<meeting_date>/m<NNN>`, dedupes, classifies meeting type. |
-| 7 | [`export_motions`](steps/export_motions/) | Groups by authority and writes `public/motions/<slug>.json` plus `public/motions/index.json`. |
+| 5 | [`extract_motions`](steps/extract_motions/) | One LLM request per document (via the shared `src/lib/llm_extract.py`) returning `{"motions": [{motion_text, proposer, seconder, status_label}, …], "meeting_date": <LLM guess or null>}`; the LLM's date is carried forward untouched as `stated_date`. |
+| 6 | [`resolve_meeting_date`](steps/resolve_meeting_date/) | Deterministic per-document date resolution: a full date from `find_minutes_files`, else an LLM `stated_date` that parses to a full day, else a `<day> <Month>` from the document header combined with the `<Month> <YYYY>` in the link text (month cross-checked; the URL folder is never a year source). Unresolvable + has motions → `UnresolvedMeetingDate`. |
+| 7 | [`canonicalize_motions`](steps/canonicalize_motions/) | Deterministic fan-in: maps status to the closed set, resolves the composite id `<slug>/<meeting_date>/m<NNN>`, dedupes, classifies meeting type. |
+| 8 | [`export_motions`](steps/export_motions/) | Groups by authority and writes `public/motions/<slug>.json` plus `public/motions/index.json`. |
 
 ## Committed inputs (source of truth)
 
@@ -44,7 +45,8 @@ uv run python pipelines/minutes_pipeline/process.py pipelines/minutes_pipeline -
 Aligns with the repo-wide data-handling principle — never guess, silently null, or silently drop:
 
 - Unmappable `status_label` → `not_recorded` **plus** an `errors.json` entry.
-- Unresolvable `meeting_date` → motion excluded (no stable id) **plus** an error entry.
+- Unresolvable `meeting_date` on a document that carried motions → `UnresolvedMeetingDate` in `resolve_meeting_date/errors.json` (motion still excluded downstream — no stable id).
+- A document that produced no motions → `NoMotionsExtracted` in `canonicalize_motions/errors.json` (no `MissingMeetingDate` noise for motion-less scans).
 - Failed/unparseable LLM response → whole document gets `motions: null` **plus** a per-document error (no partial guess).
 - A committed authority name missing from the CSO output → **fatal**, not a silent drop.
 
