@@ -114,6 +114,18 @@ git push
 
 Override files take effect when the pipeline is re-run — accepted corrections bypass the normal pipeline logic for that body/field combination.
 
+## transform_motions.py
+
+Publishes the Motions dataset from the minutes pipeline's canonical output.
+
+Reads `pipelines/minutes_pipeline/steps/export_motions/output.json` and the authoritative Public Bodies data, then writes `motions.jsonld` + `motions.csv` (with the committed CSVW metadata and README) to `public/v1.0.0/motions/` and mirrors the directory to `public/latest/motions/` only when the payload content changes. Each motion's `public_body` URI is resolved through the same permanent slug machinery as the public-bodies dataset (`src/lib/body_refs.build_body_slug_lookup` + `slug_seed.json`) — never the motion's own `public_body_slug` — and an unresolvable `public_body_id` aborts publication.
+
+### Usage
+
+```bash
+uv run python scripts/transform_motions.py
+```
+
 ## trace_file.py
 
 Trace a single disclosure file URL through the FOI pipeline.

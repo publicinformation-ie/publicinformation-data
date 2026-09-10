@@ -90,6 +90,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Within Year One's own annex, only 5 of 24 annex tables carry a header this step recognizes, yielding 15 observations from roughly 67 total annex data rows; the other 19 tables are logged individually as `UnrecognisedAnnexTable` (page/table context in `errors.json`) so the gap is auditable rather than silent. Same underlying class of gap as above, tracked alongside it.
 - A small number of Year One observations use a status term ("At Risk of Delay") not yet in the published `action-status` vocabulary; correctly omitted (`UnknownStatusValue`) pending a vocabulary decision.
 
+## [motions 1.0.0] - 2026-09-10
+
+### Added
+- Motions dataset with all 3,959 motions recorded in the ingested meeting minutes of Irish local authorities (Meath County Council to date)
+- JSON-LD (single `@context` + `@graph`) and CSV formats for Motions
+- CSVW metadata for the Motions CSV
+- JSON Schema with `status` and `meeting_type` enums
+- Controlled vocabulary: `motion-status` (6 terms)
+- DCAT-AP metadata for the Motions dataset, related to the Public Bodies dataset via `dct:relation`
+- Versioned (`v1.0.0/`) and `latest/` directory structure, versioned independently of Public Bodies
+- Each record's `public_body` field links to the same `@id` published in the Public Bodies dataset, resolved through the permanent slug machinery rather than the minutes pipeline's own body slug
+
 ## Template
 
 For future entries, use this template:

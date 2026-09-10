@@ -14,6 +14,7 @@ Before writing a new one-off analysis snippet, check whether one of these alread
 | One-time, idempotent bulk remapping of pipeline data (e.g. an ID namespace migration) | `migrate_foi_ids_to_cso.py` as a reference implementation — idempotent, dry-run first, aborts loudly on unresolved records rather than guessing. |
 | Reviewing/accepting user-submitted corrections from the public API | `admin-corrections.mjs` |
 | Publish the public-body-actions dataset (3 tables) from actions_pipeline output | `transform_public_body_actions.py` — asserts the §12 validation invariants before writing. |
+| Publish the motions dataset (JSON-LD + CSV) from minutes_pipeline output | `transform_motions.py` — resolves `public_body_id` through the permanent slug machinery (never the motion's own slug) and raises on an unresolvable id. |
 
 ## Prefer extending over duplicating
 
