@@ -45,7 +45,7 @@ uv run python pipelines/minutes_pipeline/process.py pipelines/minutes_pipeline -
 Aligns with the repo-wide data-handling principle — never guess, silently null, or silently drop:
 
 - Unmappable `status_label` → `not_recorded` **plus** an `errors.json` entry.
-- Unresolvable `meeting_date` on a document that carried motions → `UnresolvedMeetingDate` in `resolve_meeting_date/errors.json` (motion still excluded downstream — no stable id).
+- Unresolvable `meeting_date` on a document that carried motions → `UnresolvedMeetingDate` in `resolve_meeting_date/errors.json` (motion still excluded downstream — no stable id). Such a document's `file_url` also appears in `canonicalize_motions/errors.json` as `MissingMeetingDate` (a defensive second guard), so the same URL is recorded in two steps' error files.
 - A document that produced no motions → `NoMotionsExtracted` in `canonicalize_motions/errors.json` (no `MissingMeetingDate` noise for motion-less scans).
 - Failed/unparseable LLM response → whole document gets `motions: null` **plus** a per-document error (no partial guess).
 - A committed authority name missing from the CSO output → **fatal**, not a silent drop.
