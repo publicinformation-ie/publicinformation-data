@@ -216,6 +216,7 @@ def collect_all(pipeline_dir: Path):
 SHORT_LABELS = {
     "find_local_authorities": "auth",
     "find_meeting_minutes_pages": "pages",
+    "find_meeting_minutes_pages_search": "search",
     "find_minutes_files": "files",
     "transform_minutes_files": "text",
     "ocr_minutes_files": "ocr",

@@ -27,7 +27,7 @@ cd pipelines/foi_pipeline && uv run python process.py --force --stop-on-error
 ```
 
 - Always run through `process.py`, never a step's own `process.py` — it resolves dependencies, staleness, and `--from`. Invoke individual steps only for isolated debugging.
-- `--force` bypasses the mtime-based staleness check; `--from <step>` resumes from that step on; `--stop-on-error` halts on the first failing step.
+- `--force` bypasses the mtime-based staleness check; `--from <step>` resumes from that step on; `--to <step>` stops after that step (inclusive); `--from <a> --to <b>` runs only the inclusive window; `--stop-on-error` halts on the first failing step.
 - Include `--stop-on-error` in normal and production runs. Without it, the runner continues after a failed step and may produce misleading downstream artifacts.
 - `--public-body <id>` scopes a run to one body; `--doc <slug>` scopes the document pipeline to one document.
 - **document_pipeline: `--doc` must be paired with `--force`** — the staleness check is mtime-based and doesn't know about per-document freshness, so a scoped run without `--force` may skip everything as "up to date".
@@ -128,19 +128,20 @@ Always-run steps: `fingerprint_disclosure_pages`.
 | 2 | `match_public_bodies` |
 | 3 | `apply_overrides` |
 
-### `minutes_pipeline` (9 steps)
+### `minutes_pipeline` (10 steps)
 
 | # | Step |
 |---:|---|
 | 1 | `find_local_authorities` |
 | 2 | `find_meeting_minutes_pages` |
-| 3 | `find_minutes_files` |
-| 4 | `transform_minutes_files` |
-| 5 | `ocr_minutes_files` |
-| 6 | `extract_motions` |
-| 7 | `resolve_meeting_date` |
-| 8 | `canonicalize_motions` |
-| 9 | `export_motions` |
+| 3 | `find_meeting_minutes_pages_search` |
+| 4 | `find_minutes_files` |
+| 5 | `transform_minutes_files` |
+| 6 | `ocr_minutes_files` |
+| 7 | `extract_motions` |
+| 8 | `resolve_meeting_date` |
+| 9 | `canonicalize_motions` |
+| 10 | `export_motions` |
 
 ### `statespend_pipeline` (3 steps)
 
@@ -172,6 +173,17 @@ Three separate suites, all via `uv run pytest`:
 | Type checking | `uv run pyright` (shared `src/` library) |
 
 CI currently enforces the three test suites, `pyright`, and generated-document consistency. No formatter or linter is enforced.
+
+## Pipeline Status Scripts
+
+Every pipeline ships a `status.py` next to its `process.py`. Run it before digging into step `output.json`/`errors.json` — it is the triage entry point for "where did this body/document run dry":
+
+| Pipeline | Command | View |
+|---|---|---|
+| `foi_pipeline` | `cd pipelines/foi_pipeline && uv run python status.py` | per-step completion, record counts, staleness, errors |
+| `minutes_pipeline` | `uv run python pipelines/minutes_pipeline/status.py --public-body <id\|slug>` | per-body funnel: record counts per step, body errors, dry-step verdict |
+
+When adding a new pipeline, add a `status.py` with the same contract (read step outputs in `pipeline.json` order, report counts + errors, zero new dependencies) and document its specifics in that pipeline's `README.md`.
 
 ## Instruction Scope
 
@@ -241,6 +253,7 @@ Bump `owl:versionInfo` by hand only for a breaking (MAJOR) or additive (MINOR) c
 |---|---|
 | Run foi_pipeline (full) | `uv run python pipelines/foi_pipeline/process.py pipelines/foi_pipeline --force --stop-on-error` |
 | Resume from a step | `uv run python pipelines/foi_pipeline/process.py pipelines/foi_pipeline --from export_status --force --stop-on-error` |
+| Run a window of steps | `uv run python pipelines/foi_pipeline/process.py pipelines/foi_pipeline --from find_foi_pages --to get_foi_emails --force --stop-on-error` |
 | Run document_pipeline (full) | `cd pipelines/document_pipeline && uv run python process.py --force --stop-on-error` |
 | Run document_pipeline (one doc) | `cd pipelines/document_pipeline && uv run python process.py --force --stop-on-error --doc <doc_slug>` |
 | FOI pipeline tests | `cd pipelines/foi_pipeline && uv run pytest tests/ -q` |
