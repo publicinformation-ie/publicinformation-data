@@ -7,6 +7,7 @@ import pytest
 
 from steps.find_minutes_files.process import (
     STEP_NAME,
+    _exclusion_reason,
     _looks_like_minutes,
     collect_minutes_links,
     parse_meeting_date,
@@ -96,6 +97,42 @@ def test_collect_minutes_links_follows_descriptive_year_links():
     assert records[0]["file_url"] == "https://www.meath.ie/files/06-2024 Minutes Navan MD.pdf"
 
 
+def test_collect_minutes_links_follows_year_suffix_descriptive_links():
+    """Some councils (e.g. Kildare) link year listings with the year after the
+    descriptor ('Minutes 2021'), not leading ('2024 Navan Municipal District
+    Meetings'). These must be followed one level deep too."""
+    page = (
+        '<html><body>'
+        '<a href="/minutes/2021">Minutes 2021</a>'
+        '<a href="/agenda.pdf">Agenda</a>'
+        '</body></html>'
+    )
+    year_page = (
+        '<html><body>'
+        '<a href="/files/2021-12-20-minutes.pdf">Minutes for Kildare County Council '
+        'Meeting held on 20 December 2021</a>'
+        '</body></html>'
+    )
+    html_by_url = {
+        "https://www.kildarecoco.ie/minutes": page,
+        "https://www.kildarecoco.ie/minutes/2021": year_page,
+    }
+
+    def fake_fetch(method, url, allow_redirects=True):
+        return SimpleNamespace(text=html_by_url[url], url=url)
+
+    with mock.patch("steps.find_minutes_files.process.fetch", side_effect=fake_fetch):
+        records = collect_minutes_links(
+            {"public_body_id": 1456, "municipal_district": None,
+             "minutes_page_url": "https://www.kildarecoco.ie/minutes"},
+            "https://www.kildarecoco.ie/minutes",
+        )
+    assert len(records) == 1
+    assert records[0]["file_url"] == "https://www.kildarecoco.ie/files/2021-12-20-minutes.pdf"
+    assert records[0]["meeting_date"] == "2021-12-20"
+    assert records[0]["public_body_id"] == 1456
+
+
 def test_looks_like_minutes_rejects_public_notices():
     assert _looks_like_minutes(
         "Public Notice - Navan Municipal District Meeting December 2024",
@@ -115,3 +152,96 @@ def test_pending_sources_skips_already_collected_pages(make_writer):
         {"public_body_id": 1511, "minutes_page_url": "https://x.ie/trim"},
     ]
     assert pending_sources(writer, items) == [items[1]]
+
+
+ARCHIVE_URL = ("https://www.wicklow.ie/Portals/0/Documents/Arts Heritage & Archives/Archives/"
+               "Collections/Digitised Collections/Arklow-Town-Commissioners-Urban-District-"
+               "Council-Minute-Books-1878-1947/1889 - 1894.pdf")
+
+
+def test_exclusion_reason_archive_path():
+    kind, _ = _exclusion_reason("1889 - 1894File type .pdf", ARCHIVE_URL)
+    assert kind == "ArchivedDocument"
+
+
+def test_exclusion_reason_historical_year():
+    kind, _ = _exclusion_reason("1878 - 1889File type .pdf",
+                                "https://www.x.ie/files/1878-1889-minutes.pdf")
+    assert kind == "HistoricalDocument"
+
+
+def test_exclusion_reason_year_rule_fails_open():
+    """DDMM-YYYY ('1909-2021' = 19 Sep 2021) and filesize fragments
+    ('1016KB' next to 2019) contain old-looking numbers alongside a modern
+    year — a modern year anywhere keeps the link."""
+    assert _exclusion_reason("council meeting",
+                             "https://x.ie/media/xx/cork-city-lcdc-minutes-of-meeting-1909-2021.pdf") is None
+    assert _exclusion_reason("Minutes_LCDC_Meeting_December_2019.pdf(PDF,1016.89KB)",
+                             "https://x.ie/files/2023-06/Minutes_LCDC_Meeting_December_2019.pdf") is None
+
+
+def test_exclusion_reason_keeps_modern_minutes():
+    assert _exclusion_reason("Minutes - June 2024",
+                             "https://x.ie/files/06-2024 Minutes.pdf") is None
+    assert _exclusion_reason("Ordinary Meeting", "https://x.ie/minutes.pdf") is None
+
+
+def test_exclusion_reason_keeps_archived_meetings_folders():
+    """Kildare/Longford file current minutes under 'ArchivedMeetings' /
+    'meetings archive' folders — 'archiv*' alone must not exclude them."""
+    assert _exclusion_reason(
+        "Minutes December Monthly Meeting Full Council",
+        "https://kildarecoco.ie/YourCouncil/FullCouncil/ArchivedMeetings/2025/Minutes/15122025 Minutes.pdf",
+    ) is None
+    assert _exclusion_reason(
+        "Minutes December meeting",
+        "https://www.longfordcoco.ie/your-council/council-meetings/council%20meetings%20archive/2025/minutes-december-meeting.pdf",
+    ) is None
+
+
+def test_collect_minutes_links_excludes_archive_and_historical():
+    page = (
+        '<html><body>'
+        '<a href="/files/06-2024 Minutes.pdf">Minutes - June 2024</a>'
+        f'<a href="{ARCHIVE_URL}">1889 - 1894File type .pdf</a>'
+        '<a href="/files/1878-1889-minutes.pdf">1878 - 1889File type .pdf</a>'
+        '</body></html>'
+    )
+
+    def fake_fetch(method, url, allow_redirects=True):
+        return SimpleNamespace(text=page, url=url)
+
+    excluded = []
+    with mock.patch("steps.find_minutes_files.process.fetch", side_effect=fake_fetch):
+        records = collect_minutes_links(
+            {"public_body_id": 1876, "municipal_district": None,
+             "minutes_page_url": "https://www.wicklow.ie/minutes"},
+            "https://www.wicklow.ie/minutes",
+            excluded_out=excluded,
+        )
+    assert [r["file_url"] for r in records] == ["https://www.wicklow.ie/files/06-2024 Minutes.pdf"]
+    assert sorted(e["error_type"] for e in excluded) == ["ArchivedDocument", "HistoricalDocument"]
+    assert all(e["context"]["public_body_id"] == 1876 for e in excluded)
+
+
+def test_process_logs_exclusions_to_errors_json(tmp_path, make_writer):
+    page = (
+        '<html><body>'
+        f'<a href="{ARCHIVE_URL}">1889 - 1894File type .pdf</a>'
+        '</body></html>'
+    )
+
+    def fake_fetch(method, url, allow_redirects=True):
+        return SimpleNamespace(text=page, url=url)
+
+    with mock.patch("steps.find_minutes_files.process.fetch", side_effect=fake_fetch):
+        writer = make_writer(STEP_NAME)
+        process({"results": [{
+            "public_body_id": 1876, "municipal_district": None,
+            "minutes_page_url": "https://www.wicklow.ie/minutes",
+            "source_method": "crawl"}]}, tmp_path, writer)
+    assert writer.results == []
+    errors = json.loads((tmp_path / "errors.json").read_text())
+    assert len(errors) == 1
+    assert errors[0]["error_type"] == "ArchivedDocument"
+    assert errors[0]["context"]["file_url"] == ARCHIVE_URL

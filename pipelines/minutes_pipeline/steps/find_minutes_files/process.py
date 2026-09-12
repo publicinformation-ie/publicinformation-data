@@ -24,7 +24,7 @@ _MONTHS = {
     "jan": 1, "feb": 2, "mar": 3, "apr": 4, "jun": 6, "jul": 7, "aug": 8,
     "sep": 9, "sept": 9, "oct": 10, "nov": 11, "dec": 12,
 }
-_YEAR_LEAD_RE = re.compile(r"^(19|20)\d{2}\b")
+_YEAR_ANYWHERE_RE = re.compile(r"(19|20)\d{2}\b")
 _LISTING_TOKENS = {
     "meeting", "meetings", "minutes", "minute", "council", "municipal",
     "district", "districts",
@@ -34,6 +34,17 @@ _NOT_MINUTES_TOKENS = {
     "published", "minutes-of-agenda", "notice", "notices", "publication",
     "publications",
 }
+
+# Digitised archive collections (e.g. Wicklow's 1800s minute books) match the
+# minutes keywords but are out of scope for a current-motions dataset.
+# Deliberately NOT matching archiv*/archive*: councils file current minutes
+# under "ArchivedMeetings"/"meetings archive" folders (Kildare, Longford) —
+# those are real minutes. Heritage/collections/museum/library/digitised
+# paths denote heritage collections instead.
+_ARCHIVE_PATH_RE = re.compile(
+    r"heritage|collections?|museums?|librar|digitised|digitized", re.IGNORECASE)
+_YEAR_RE = re.compile(r"\b(1\d{3}|20\d{2})\b")
+_HISTORICAL_CUTOFF_YEAR = 1990
 
 
 def _tokens(*strings):
@@ -47,9 +58,9 @@ def _tokens(*strings):
 
 def _is_year_listing(text, href):
     """True for an anchor that links to a year's meeting listing: link text
-    starts with a 4-digit year and the text/URL indicates a meeting listing
-    (e.g. '2024', '2024 Council Meetings', '/minutes/2024')."""
-    if not _YEAR_LEAD_RE.match((text or "").strip()):
+    contains a 4-digit year and the text/URL indicates a meeting listing
+    (e.g. '2024', '2024 Council Meetings', 'Minutes 2021', '/minutes/2024')."""
+    if not _YEAR_ANYWHERE_RE.search((text or "").strip()):
         return False
     return bool(_tokens(text, href) & _LISTING_TOKENS)
 
@@ -99,9 +110,30 @@ def _looks_like_minutes(link_text, href):
     return False
 
 
-def collect_minutes_links(source, base_url):
+def _exclusion_reason(link_text, file_url):
+    """Return (error_type, message) when a would-be-kept minutes link is
+    out of scope, else None. Fail-open: links with no archive/year signal
+    are kept — only positive archive-path or pre-cutoff-year evidence
+    excludes. Every exclusion is logged to errors.json by the caller."""
+    if _ARCHIVE_PATH_RE.search(file_url or ""):
+        return ("ArchivedDocument",
+                f"minutes link under an archive/heritage path: {file_url}")
+    years = [int(y) for y in _YEAR_RE.findall(f"{link_text or ''} {file_url or ''}")]
+    # Exclude only when EVERY year found predates the cutoff: a modern year
+    # anywhere (meeting date, DDMM-YYYY like 1909-2021, filesize fragments
+    # like 1016KB next to 2019) fails open to keep. No year at all also keeps.
+    if years and all(y < _HISTORICAL_CUTOFF_YEAR for y in years):
+        return ("HistoricalDocument",
+                f"minutes link predates {_HISTORICAL_CUTOFF_YEAR}: "
+                f"{link_text!r} {file_url}")
+    return None
+
+
+def collect_minutes_links(source, base_url, excluded_out=None):
     """Collect minutes PDF links from a minutes page, following year-looking
-    anchor links one level deep. Returns a list of record dicts."""
+    anchor links one level deep. Returns a list of record dicts. Links
+    excluded as archival/historical are appended to `excluded_out` (when
+    given) as error dicts for the caller to log — never silently dropped."""
     records = []
     visited = set()
 
@@ -120,14 +152,33 @@ def collect_minutes_links(source, base_url):
             path = urlparse(full).path.lower()
             if path.endswith(_PDF_EXT):
                 if _looks_like_minutes(text, href):
-                    records.append({
-                        "public_body_id": source["public_body_id"],
-                        "municipal_district": source.get("municipal_district"),
-                        "minutes_page_url": source["minutes_page_url"],
-                        "file_url": full,
-                        "meeting_date": parse_meeting_date(text, full),
-                        "link_text": text,
-                    })
+                    reason = _exclusion_reason(text, full)
+                    if reason is None or excluded_out is None:
+                        # No out-list means no log sink: fail open and keep
+                        # the record rather than silently dropping it.
+                        records.append({
+                            "public_body_id": source["public_body_id"],
+                            "municipal_district": source.get("municipal_district"),
+                            "minutes_page_url": source["minutes_page_url"],
+                            "file_url": full,
+                            "meeting_date": parse_meeting_date(text, full),
+                            "link_text": text,
+                        })
+                    else:
+                        error_type, message = reason
+                        excluded_out.append({
+                            "step": STEP_NAME,
+                            "timestamp": datetime.now(timezone.utc).isoformat(),
+                            "error_type": error_type,
+                            "error_message": message,
+                            "context": {
+                                "file_url": full,
+                                "link_text": text,
+                                "minutes_page_url": source["minutes_page_url"],
+                                "public_body_id": source["public_body_id"],
+                                "municipal_district": source.get("municipal_district"),
+                            },
+                        })
             elif depth == 0 and _is_year_listing(text, href):
                 _walk(full, depth=1)
 
@@ -138,10 +189,11 @@ def collect_minutes_links(source, base_url):
 def _fetch_one(item):
     url = item["minutes_page_url"]
     try:
-        items = collect_minutes_links(item, url)
-        return item["public_body_id"], url, items, None
+        excluded = []
+        items = collect_minutes_links(item, url, excluded_out=excluded)
+        return item["public_body_id"], url, items, excluded, None
     except Exception as e:
-        return item["public_body_id"], url, [], e
+        return item["public_body_id"], url, [], [], e
 
 
 def pending_sources(writer, items):
@@ -164,7 +216,7 @@ def process(input_data, step_dir, writer, verbose=False, max_workers=6):
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = {executor.submit(_fetch_one, item): item for item in pending}
         for future in as_completed(futures):
-            body_id, url, items, exc = future.result()
+            body_id, url, items, excluded, exc = future.result()
             if exc is not None:
                 append_error(step_dir, {
                     "step": STEP_NAME,
@@ -175,6 +227,8 @@ def process(input_data, step_dir, writer, verbose=False, max_workers=6):
                 })
                 writer.append([])
             else:
+                for entry in excluded:
+                    append_error(step_dir, entry)
                 writer.append(items)
             if verbose:
                 print(".", end="", flush=True)
