@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+import argparse
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
 from urllib.parse import urlparse
 
 from steps.find_meeting_minutes_pages.process import (
@@ -7,6 +11,9 @@ from steps.find_meeting_minutes_pages.process import (
     _tokenize,
 )
 
+from lib.apify_search import batch_search
+from lib.cli_utils import add_common_args, filter_by_public_body
+from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
 from lib.http_utils import is_safe_url, validate_url_or_raise
 
 STEP_NAME = "find_meeting_minutes_pages_search"
@@ -47,3 +54,84 @@ def _pick_minutes_url(results: list) -> str | None:
     if best is not None and best_score >= ACCEPT_THRESHOLD:
         return best
     return None
+
+
+def _error(step_dir, error_type, message, url, body_id, name):
+    append_error(step_dir, {
+        "step": STEP_NAME,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "error_type": error_type,
+        "error_message": message,
+        "context": {"url": url, "public_body_id": body_id, "name": name,
+                    "municipal_district": None},
+    })
+
+
+def process(input_data, step_dir, writer, crawl_errors=None,
+            authorities_by_id=None, verbose=False):
+    if crawl_errors is None:
+        crawl_errors = []
+    if authorities_by_id is None:
+        authorities_by_id = {}
+
+    errors_path = Path(step_dir) / "errors.json"
+    write_json(errors_path, [])
+
+    for rec in input_data.get("results", []):
+        if writer.is_processed(rec["minutes_page_url"]):
+            continue
+        writer.append([rec])
+
+    # Per-body-only granularity (approved): one search per failed body.
+    # Bodies already holding any page record are left untouched — partial
+    # (body, district) coverage is NOT backfilled by this step.
+    present_body_ids = {r["public_body_id"] for r in writer.results
+                        if "public_body_id" in r}
+    seen = set()
+    need_search = []
+    for e in crawl_errors:
+        bid = e.get("context", {}).get("public_body_id")
+        if bid is None or bid in present_body_ids or bid in seen:
+            continue
+        seen.add(bid)
+        need_search.append(e)
+    if not need_search:
+        return
+
+    query_map = {}
+    for e in need_search:
+        ctx = e["context"]
+        bid = ctx["public_body_id"]
+        auth = authorities_by_id.get(bid, {})
+        name = auth.get("name") or ctx.get("name") or f"body {bid}"
+        site_url = auth.get("official_website_url") or ctx.get("url")
+        if not site_url:
+            _error(step_dir, "MissingWebsiteUrl",
+                   f"No website to search for minutes page: {name} ({bid})",
+                   site_url, bid, name)
+            continue
+        try:
+            validate_url_or_raise(site_url, context=f"search_{bid}")
+        except ValueError as exc:
+            _error(step_dir, "MissingWebsiteUrl", str(exc), site_url, bid, name)
+            continue
+        query_map[_build_query(site_url, name)] = (bid, name, site_url)
+
+    if not query_map:
+        return
+
+    search_results = batch_search(list(query_map.keys()))
+
+    for query, (bid, name, site_url) in query_map.items():
+        minutes_url = _pick_minutes_url(search_results.get(query, []))
+        if minutes_url is None:
+            _error(step_dir, "MinutesPageNotFound",
+                   f"No minutes page found via Apify search for {name} ({site_url})",
+                   site_url, bid, name)
+            continue
+        writer.append([{
+            "public_body_id": bid,
+            "municipal_district": None,
+            "minutes_page_url": minutes_url,
+            "source_method": "apify",
+        }])
