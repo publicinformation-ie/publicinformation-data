@@ -135,3 +135,56 @@ def process(input_data, step_dir, writer, crawl_errors=None,
             "minutes_page_url": minutes_url,
             "source_method": "apify",
         }])
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Search for meeting minutes pages using Apify batch search")
+    add_common_args(parser)
+    args = parser.parse_args()
+
+    step_dir = Path(__file__).parent
+    output_path = Path(args.output)
+    override_path = step_dir / "override.json"
+
+    try:
+        input_data = read_json(args.input)
+    except Exception as e:
+        print(f"Fatal: could not read input: {e}", file=sys.stderr)
+        sys.exit(1)
+    input_data = filter_by_public_body(input_data, args.public_body)
+
+    errors_src = step_dir.parent / "find_meeting_minutes_pages" / "errors.json"
+    crawl_errors = read_json(errors_src) if errors_src.exists() else []
+    authorities_src = step_dir.parent / "find_local_authorities" / "output.json"
+    authorities_by_id = {}
+    if authorities_src.exists():
+        for a in read_json(authorities_src).get("results", []):
+            if a.get("public_body_id") is not None:
+                authorities_by_id[a["public_body_id"]] = a
+    if args.public_body is not None:
+        crawl_errors = [
+            e for e in crawl_errors
+            if e.get("context", {}).get("public_body_id") == args.public_body
+        ]
+
+    writer = IncrementalWriter(
+        output_path, STEP_NAME,
+        key_field="minutes_page_url",
+        force=args.force,
+        override_path=override_path,
+        target_public_body=args.public_body,
+    )
+
+    if writer.processed_keys:
+        print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")
+
+    process(input_data, step_dir, writer, crawl_errors=crawl_errors,
+            authorities_by_id=authorities_by_id, verbose=args.verbose)
+    count = writer.finalize()
+    write_status(step_dir, count)
+    print(f"Wrote {count} records to {output_path}")
+
+
+if __name__ == "__main__":
+    main()
