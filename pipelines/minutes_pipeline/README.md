@@ -37,6 +37,24 @@ uv run python pipelines/minutes_pipeline/process.py pipelines/minutes_pipeline -
 
 `find_meeting_minutes_pages`, `find_minutes_files`, `transform_minutes_files` and `extract_motions` make live HTTP / LLM calls; `extract_motions` requires the `MOTIONS_LLM_*` env config (see `src/lib/llm_extract.py`). Run the test suite with `uv run pytest pipelines/minutes_pipeline/tests -q`.
 
+## Status script
+
+Per the repo norm (see root `AGENTS.md`), triage via [`status.py`](status.py) before digging into step outputs. It walks one authority through every step — record counts per stage, that body's errors per step, and a verdict naming where the pipeline runs dry:
+
+```bash
+# By id or slug
+uv run python pipelines/minutes_pipeline/status.py --public-body 1456
+uv run python pipelines/minutes_pipeline/status.py --public-body carlow
+
+# Bodies x steps matrix (rollout overview); --csv for spreadsheets
+uv run python pipelines/minutes_pipeline/status.py --all
+uv run python pipelines/minutes_pipeline/status.py --all --csv
+```
+
+Columns: per-step body record count, step completion time, body error count, plus stage signals (`website=MISSING`, `empty_text=`, `motions_null=`/`motions_extracted=`, `date_unresolved=`). Errors are attributed via `errors.json → context.public_body_id`, grouped by type with an example `file_url` each.
+
+Exit codes: `0` = flows end to end (≥1 motion exported), `1` = runs dry (first zero-record step is named — fix there first), `2` = unknown body or missing authority output. Drop-offs between consecutive stages (e.g. files found but none transformed) are flagged as warnings. `--all` always exits `0` on success (`2` on data error); its `DRY_AT` column carries the per-body verdict (`flowing` or the short step label).
+
 ## Motion status closed set
 
 `carried`, `carried_as_amended`, `not_carried`, `withdrawn`, `deferred`, `not_recorded`.
