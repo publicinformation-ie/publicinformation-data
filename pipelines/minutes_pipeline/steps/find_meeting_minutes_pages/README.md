@@ -14,9 +14,10 @@ Locates the page(s) that publish meeting minutes for each authority — one per 
    | `minutes` (e.g. "Council Minutes") | 80 |
    | `meeting` + `municipal` | 70 |
    | `meeting` (bare, e.g. "Meeting stuff") | 50 |
-   | any `NEGATIVE_TOKENS` (login, annual, report, agenda, …) | 0 (disqualify) |
+   | any `NEGATIVE_TOKENS` except `agenda(s)` (login, annual, report, …) | 0 (disqualify) |
+   | `agenda(s)` without a `minutes` token | 0 (disqualify) |
 
-   The highest-scoring link wins only if it reaches `ACCEPT_THRESHOLD = 60`. An explicit minutes link always clears it; a bare generic meeting page (50) is rejected — a `municipal`-district meeting page (70) is kept. No qualifying link → an error entry is written (never a silent skip).
+   The highest-scoring link wins only if it reaches `ACCEPT_THRESHOLD = 60`. An explicit minutes link always clears it — including combined "Minutes & Agendas" listings (`agenda` disqualifies only agenda-only pages); a bare generic meeting page (50) is rejected — a `municipal`-district meeting page (70) is kept. No qualifying link → an error entry is written (never a silent skip).
 
 ## Input
 

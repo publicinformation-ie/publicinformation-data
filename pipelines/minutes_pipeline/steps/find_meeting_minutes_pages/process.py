@@ -41,9 +41,14 @@ def _score_link(tokens):
     An explicit 'minutes' link (e.g. "Council Minutes") scores at least 70 and
     is always accepted; a bare 'meeting' page (e.g. "Meeting stuff") scores
     below ACCEPT_THRESHOLD and is rejected. Municipal-district meeting pages
-    keep a meeting+municipal tier above the threshold.
+    keep a meeting+municipal tier above the threshold. Combined
+    "Minutes & Agendas" listings are valid minutes sources, so agenda tokens
+    disqualify only when no minutes token is present; every other negative
+    token still disqualifies outright.
     """
-    if tokens & NEGATIVE_TOKENS:
+    if tokens & (NEGATIVE_TOKENS - {"agenda", "agendas"}):
+        return 0
+    if (tokens & {"agenda", "agendas"}) and not (tokens & _MINUTES):
         return 0
     minutes = bool(tokens & _MINUTES)
     meeting = bool(tokens & _MEETING)

@@ -6,6 +6,8 @@ import pytest
 
 from steps.find_meeting_minutes_pages.process import (
     STEP_NAME,
+    _score_link,
+    _tokenize,
     find_minutes_link,
     override_sources,
     process,
@@ -42,6 +44,31 @@ def test_find_minutes_link_rejects_negative_tokens():
 def test_find_minutes_link_threshold():
     html = '<a href="/meeting">Meeting stuff</a>'  # below threshold
     assert find_minutes_link(html, "https://www.meath.ie/") is None
+
+
+def test_score_link_accepts_minutes_and_agendas_combined():
+    """Combined 'Minutes & Agendas' listings are valid minutes sources
+    (Wicklow's minutes page was invisible until this carve-out)."""
+    assert _score_link(_tokenize("/Minutes-Agendas", "Minutes & Agendas")) >= 60
+
+
+def test_score_link_still_rejects_agenda_without_minutes():
+    assert _score_link(_tokenize("/agendas", "Agendas")) == 0
+    assert _score_link(_tokenize("/meeting-agendas", "Meeting Agendas")) < 60
+
+
+def test_score_link_other_negatives_still_win_over_minutes():
+    assert _score_link(_tokenize("/minutes-annual-report", "Minutes Annual Report")) == 0
+
+
+def test_find_minutes_link_prefers_minutes_agendas_page():
+    html = (
+        '<a href="/Council-Meetings">Council Meetings</a>'
+        '<a href="/Minutes-Agendas">Minutes & Agendas</a>'
+    )
+    best, score = find_minutes_link(html, "https://www.wicklow.ie/")
+    assert best == "https://www.wicklow.ie/Minutes-Agendas"
+    assert score >= 60
 
 
 def test_override_sources_produces_district_and_council_records():
