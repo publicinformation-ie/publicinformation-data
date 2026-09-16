@@ -4,7 +4,6 @@
 
 | Plan / Strategy Title | Time Horizon | Key Focus / Scope | Status |
 | --- | --- | --- | --- |
-| **Statement of Strategy** | **2025–2028** | Core departmental goals: EU/international affairs, economic resilience, social progress, and Cabinet oversight. | **Active** |
 | **Shared Island Initiative Strategy** | **2026–Ongoing** | Cross-border cooperation, infrastructure investment, and civic alignment across the island of Ireland. | **Active** |
 | **Harnessing Digital – The National Digital Strategy** | **2022–2030** | Strategic framework driving digital transformation across enterprise, public services, and infrastructure. | **Active** |
 | **National Risk Assessment Framework** | **Annual / Open-ended** | Strategic identification and management of national systemic, environmental, and geopolitical risks. | **Active** |
@@ -15,7 +14,6 @@
 
 | Plan / Strategy Title | Time Horizon | Key Focus / Scope | Status |
 | --- | --- | --- | --- |
-| **Statement of Strategy** | **2025–2028** | Sustainable agri-food sector growth, food safety, animal welfare, and rural economy support. | **Active** |
 | **Food Vision 2030** | **2021–2030** | Flagship strategy targeting climate-smart agri-food, economic viability for farmers, and food safety. | **Active** |
 | **CAP Strategic Plan (Ireland)** | **2023–2027** | EU Common Agricultural Policy implementation including eco-schemes, ACRES, and direct farmer supports. | **Active** |
 | **National Forestry Strategy & Action Plan** | **2023–2030** | Afforestation targets, sustainable forest management, and biodiversity restoration in forestry. | **Active** |
@@ -28,7 +26,6 @@
 
 | Plan / Strategy Title | Time Horizon | Key Focus / Scope | Status |
 | --- | --- | --- | --- |
-| **Statement of Strategy** | **2025–2028** | Children’s rights, early learning delivery, equality framework, disability reform, and integration. | **Active** |
 | **National Disability Strategy Framework** | **2024–2030** | Rights-based inclusion, community living, accessible services, and mainstreaming disability support. | **Active** |
 | **First 5: Whole-of-Government Strategy for Babies, Young Children and Families** | **2019–2028** | Early childhood care, parental leave policies, and early education quality reform. | **Active** |
 | **National Strategy on Gender-Based Violence (Safe, Equally Safe)** | **2022–2028** | Zero tolerance strategy targeting domestic, sexual, and gender-based violence prevention and refuge expansion. | **Active** |
@@ -41,7 +38,6 @@
 
 | Plan / Strategy Title | Time Horizon | Key Focus / Scope | Status |
 | --- | --- | --- | --- |
-| **Statement of Strategy** | **2025–2028** | National security policy, civil defence coordination, overseas deployments, and military force management. | **Active** |
 | **Detailed Implementation Plan for the Commission on the Defence Forces (CoDF)** | **2023–2028** | Structural overhaul of the Irish Defence Forces, capability building, command structures, and cultural reform. | **Active** |
 | **National Cyber Security Strategy** | **2026–2030** | Protecting critical national infrastructure, military cyber defence capabilities, and international cooperation. | **Active** |
 | **White Paper on Defence Update Implementation Plan** | **Open-ended / Phased** | Long-term capital capability development for Naval Service, Air Corps, and Army units. | **Active** |
@@ -52,7 +48,6 @@
 
 | Plan / Strategy Title | Time Horizon | Key Focus / Scope | Status |
 | --- | --- | --- | --- |
-| **Statement of Strategy** | **2025–2028** | Early years, primary, and post-primary educational policy, curriculum development, and inclusion. | **Active** |
 | **Cineáltas: Action Plan on Bullying** | **2023–2027** | Whole-school framework preventing bullying, cyberbullying, and promoting mental health resilience. | **Active** |
 | **Digital Strategy for Schools 2030** | **2022–2030** | Integrating AI, cloud infrastructure, digital literacy, and technology-enhanced teaching into school curricula. | **Active** |
 | **STEM Education Implementation Plan** | **2026–2030** | Promoting science, technology, engineering, and maths engagement, with emphasis on closing gender gaps. | **Active** |
@@ -64,7 +59,6 @@
 
 | Plan / Strategy Title | Time Horizon | Key Focus / Scope | Status |
 | --- | --- | --- | --- |
-| **Statement of Strategy** | **2025–2028** | Enterprise resilience, trade diversification, worker rights enforcement, and industrial policy. | **Active** |
 | **White Paper on Enterprise** | **2022–2030** | Long-term roadmap for high-value export growth, decarbonising industry, and driving regional job creation. | **Active** |
 | **National AI Strategy (AI - Here for Good)** | **2021–2030** | Ethical AI adoption, enterprise AI innovation, governance, and workforce upskilling. | **Active** |
 | **National Trade and Investment Strategy** | **2022–2028** | Export market diversification, post-Brexit trade links, and attracting global direct investment. | **Active** |
@@ -76,7 +70,6 @@
 
 | Plan / Strategy Title | Time Horizon | Key Focus / Scope | Status |
 | --- | --- | --- | --- |
-| **Statement of Strategy** | **2025–2028** | Achieving legally binding carbon targets, renewable energy transition, and digital connectivity. | **Active** |
 | **Climate Action Plan** | **2026–2030** | Sectoral emissions ceilings, offshore wind expansion, grid grid upgrades, and retrofitting. | **Active** |
 | **National Retrofit Plan** | **2021–2030** | Target to upgrade 500,000 homes to B2 BER standards and install 400,000 heat pumps by 2030. | **Active** |
 | **National Waste Action Plan for a Circular Economy** | **2026–2030** | Moving from waste management to circular design, reduction, reuse, and strict single-use plastics phase-out. | **Active** |
@@ -89,7 +82,6 @@
 
 | Plan / Strategy Title | Time Horizon | Key Focus / Scope | Status |
 | --- | --- | --- | --- |
-| **Statement of Strategy** | **2025–2028** | Macroeconomic stability, fiscal policy, taxation framework, and financial sector regulation. | **Active** |
 | **Ireland’s Future Ireland Fund & Infrastructure, Climate and Nature Fund Policy Framework** | **2024–2035** | Sovereign wealth management strategies for windfall corporate tax revenues to meet future demographic and transition costs. | **Active** |
 | **Retail Banking Strategy** | **2023–2030** | Consumer access to cash, fintech integration, competition, and credit availability for SMEs. | **Active** |
 | **Financial Services Sector Strategy (IFS 2025/2030)** | **2026–2030** | Position Ireland as a international hub for green finance, fintech, and asset management. | **Active** |
@@ -100,7 +92,6 @@
 
 | Plan / Strategy Title | Time Horizon | Key Focus / Scope | Status |
 | --- | --- | --- | --- |
-| **Statement of Strategy** | **2025–2028** | International relations, EU policy, diaspora support, global development, and diplomatic footprint expansion. | **Active** |
 | **Global Ireland 2028 Strategy** | **2018–2028** | Doubling Ireland’s global footprint, opening new embassies/consulates, and expanding diplomatic reach. | **Active** |
 | **A Better World: Ireland’s Policy for International Development** | **Open-ended / Phased** | Overseas development assistance (ODA) focusing on climate action, gender equality, and humanitarian relief. | **Active** |
 | **Diaspora Strategy** | **2026–2030** | Expanding support for Irish emigrants, culture outreach, and global Irish community networks. | **Active** |
@@ -112,7 +103,6 @@
 
 | Plan / Strategy Title | Time Horizon | Key Focus / Scope | Status |
 | --- | --- | --- | --- |
-| **Statement of Strategy** | **2025–2028** | Third-level education reform, research policy, apprenticeship growth, and lifelong learning. | **Active** |
 | **Impact 2030: Ireland’s Research and Innovation Strategy** | **2022–2030** | Aligning national research infrastructure with societal challenges, green transition, and economic competitiveness. | **Active** |
 | **Action Plan for Apprenticeship** | **2021–2025 (Extended to 2026)** | Target of 10,000 new registered apprentices annually across traditional and non-traditional sectors. | **Active** |
 | **National Access Plan for Higher Education** | **2022–2028** | Increasing participation in higher education among socio-economically disadvantaged groups and students with disabilities. | **Active** |
@@ -124,7 +114,6 @@
 
 | Plan / Strategy Title | Time Horizon | Key Focus / Scope | Status |
 | --- | --- | --- | --- |
-| **Statement of Strategy** | **2025–2028** | Healthcare reform, universal healthcare access, public health resilience, and health system sustainability. | **Active** |
 | **Sláintecare Implementation Plan** | **2024–2028** | Delivering universal healthcare free at the point of delivery, expanding primary care centres, and reducing waiting lists. | **Active** |
 | **Digital Health Strategic Framework** | **2024–2030** | Rolling out electronic health records (EHR), virtual care, and integrated digital health infrastructure across the HSE. | **Active** |
 | **Healthy Ireland Strategic Action Plan** | **2026–2030** | Health promotion, chronic disease prevention, mental health awareness, and physical activity initiatives. | **Active** |
@@ -137,7 +126,6 @@
 
 | Plan / Strategy Title | Time Horizon | Key Focus / Scope | Status |
 | --- | --- | --- | --- |
-| **Statement of Strategy** | **2025–2028** | Housing supply delivery, local government reform, water infrastructure, and heritage conservation. | **Active** |
 | **Housing for All – Plan for Ireland to 2030** | **2021–2030** | Comprehensive national target framework to deliver 50,000+ homes annually across social, affordable, and private sectors. | **Active** |
 | **National Planning Framework (NPF) Revised Update** | **2024–2040** | Spatial planning strategy guiding population growth, urban development, regional balance, and land use. | **Active** |
 | **National Heritage Plan (Heritage Ireland 2030)** | **2022–2030** | Conservation of built, natural, and archaeological heritage, funding for local monuments, and biodiversity protection. | **Active** |
@@ -149,7 +137,6 @@
 
 | Plan / Strategy Title | Time Horizon | Key Focus / Scope | Status |
 | --- | --- | --- | --- |
-| **Statement of Strategy** | **2025–2028** | Public safety, court reform, immigration system modernization, and community policing. | **Active** |
 | **Youth Justice Strategy** | **2021–2027** | Diversion programs, youth crime prevention, community justice, and supporting at-risk youth. | **Active** |
 | **Zero Tolerance: National Strategy on Domestic, Sexual and Gender-Based Violence** | **2022–2028** | Joint execution with CEDIY focusing on legal reform, court protections, and specialized policing units. | **Active** |
 | **Modernised Immigration & Asylum System Roadmap** | **2024–2028** | Fast-tracking international protection processing, digital visa management, and border security tech. | **Active** |
@@ -161,7 +148,6 @@
 
 | Plan / Strategy Title | Time Horizon | Key Focus / Scope | Status |
 | --- | --- | --- | --- |
-| **Statement of Strategy** | **2025–2028** | Public spending management, National Development Plan delivery, and public service transformation. | **Active** |
 | **National Development Plan (NDP)** | **2021–2030** | €165 billion+ capital investment plan for transport, housing, health, education, and climate infrastructure. | **Active** |
 | **Better Public Services – Public Service Transformation Strategy** | **2023–2030** | Digital public service delivery, evidence-based policymaking, workforce agility, and user-centric public design. | **Active** |
 | **Commercial Public Private Partnership (PPP) Framework** | **Open-ended / Phased** | Procurement frameworks and capital co-funding rules for major state infrastructure projects. | **Active** |
@@ -173,7 +159,6 @@
 
 | Plan / Strategy Title | Time Horizon | Key Focus / Scope | Status |
 | --- | --- | --- | --- |
-| **Statement of Strategy** | **2025–2028** | Rural regeneration, community empowerment, island development, and the volunteer sector. | **Active** |
 | **Our Rural Future: Rural Development Policy** | **2021–2025 (Transitioning to 2026–2030 Framework)** | Remote working hub expansion (ConnectedHubs), rural town revitalization, and economic diversification. | **Active** |
 | **Embracing Ireland's Outdoors: National Outdoor Recreation Strategy** | **2023–2027** | Development of greenways, trails, water sports facilities, and rural adventure tourism infrastructure. | **Active** |
 | **Living Islands Policy (Our Living Islands)** | **2023–2033** | Infrastructure, population retention, housing, and digital connectivity for offshore inhabited islands. | **Active** |
@@ -185,7 +170,6 @@
 
 | Plan / Strategy Title | Time Horizon | Key Focus / Scope | Status |
 | --- | --- | --- | --- |
-| **Statement of Strategy** | **2025–2028** | Social welfare system administration, poverty reduction, active labour market policies, and pensions. | **Active** |
 | **Pathways to Work Strategy** | **2021–2025 (Next Phase 2026–2030)** | Employment services strategy, Intreo expansion, work placement incentives, and youth employment supports. | **Active** |
 | **Roadmap for Social Inclusion** | **2020–2025 (Extended framework to 2027)** | Targeted measures to reduce consistent poverty to under 2% and improve living standards for low-income households. | **Active** |
 | **Automatic Enrolment Retirement Savings System (My Future Fund) Implementation Plan** | **2024–2028** | Phase-in rollout and operation of the national workplace automatic-enrolment pension system. | **Active** |
@@ -196,7 +180,6 @@
 
 | Plan / Strategy Title | Time Horizon | Key Focus / Scope | Status |
 | --- | --- | --- | --- |
-| **Statement of Strategy** | **2025–2028** | Cultural infrastructure, tourism growth, Irish language preservation, media reform, and sport participation. | **Active** |
 | **National Tourism Policy Framework** | **2024–2030** | Sustainable tourism development, regional distribution of visitors, and reducing environmental footprints. | **Active** |
 | **National Sports Policy** | **2018–2027** | Target to double adult physical activity, increase sports capital funding, and achieve gender balance in sports governance. | **Active** |
 | **20-Year Strategy for the Irish Language** | **2010–2030** | Increasing daily Irish speakers, Gaeltacht socio-economic supports, and language planning execution. | **Active** |
@@ -209,7 +192,6 @@
 
 | Plan / Strategy Title | Time Horizon | Key Focus / Scope | Status |
 | --- | --- | --- | --- |
-| **Statement of Strategy** | **2025–2028** | Connectivity, safety, sustainability, regulatory oversight, and major infrastructure delivery. | **Active** |
 | **Sustainable Mobility Policy (SMP) Action Plan** | **2026–2030** | 95 specific actions targeting active travel, public transport expansion, MetroLink, BusConnects, and DART+. | **Active** |
 | **Sectoral Investment Plan for Transport** | **2026–2030** | Capital allocation framework covering public transit, roads, regional aviation, and maritime assets. | **Active** |
 | **National EV Infrastructure Strategy** | **2026–2030** | Public charging network expansion, destination charging hubs, and fleet electrification incentives. | **Active** |
