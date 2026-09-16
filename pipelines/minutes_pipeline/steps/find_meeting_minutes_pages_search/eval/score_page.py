@@ -9,7 +9,11 @@ Agendas co-located with minutes are expected co-content on minutes hubs
 ("Minutes & Agendas" listings are valid minutes sources), so agenda-only
 PDFs are excluded from the purity denominator; every other non-minutes
 PDF (budgets, plans, annual reports, ...) still dilutes purity.
+Agenda-like links are excluded from the numerator too, so the
+minutes_like <= total invariant holds structurally (a ratio > 1 is
+impossible) regardless of how the underlying helpers evolve.
 Missing/empty HTML is unscorable (fail-closed): zero counts, not an error.
+A zero denominator always yields positive=False, never an exception.
 """
 import sys
 from pathlib import Path
@@ -76,10 +80,15 @@ def collect_yield(
             if url not in seen:
                 seen.add(url)
                 links.append((text, url))
-    minutes_like = sum(1 for text, href in links if _looks_like_minutes(text, href))
+    minutes_like = sum(
+        1
+        for text, href in links
+        if _looks_like_minutes(text, href) and not _is_agenda_like(text, href)
+    )
     total = sum(1 for text, href in links if not _is_agenda_like(text, href))
     positive = (
-        minutes_like >= MINUTES_LIKE_MIN_PDFS
+        total > 0
+        and minutes_like >= MINUTES_LIKE_MIN_PDFS
         and (minutes_like / total) >= PURITY_THRESHOLD
     )
     return {"minutes_like": minutes_like, "total": total, "positive": positive}
