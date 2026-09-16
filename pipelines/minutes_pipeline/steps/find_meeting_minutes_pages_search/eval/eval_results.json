@@ -1,0 +1,37 @@
+{
+  "step": "find_meeting_minutes_pages_search",
+  "metrics": [
+    {
+      "name": "f1",
+      "value": 0.444,
+      "counts": {
+        "TP": 8,
+        "FP": 0,
+        "FN": 20,
+        "TN": 0,
+        "url_matches": 13
+      },
+      "is_primary": true
+    },
+    {
+      "name": "precision",
+      "value": 1.0,
+      "counts": {
+        "TP": 8,
+        "FP": 0
+      },
+      "is_primary": false
+    },
+    {
+      "name": "recall",
+      "value": 0.286,
+      "counts": {
+        "TP": 8,
+        "FN": 20
+      },
+      "is_primary": false
+    }
+  ],
+  "input_hash": "dc091dc8b5261765e3df96d81e8a2f68ef6356b53e90dc1a4d9d9a7389c75b4a",
+  "judge_model": null
+}
