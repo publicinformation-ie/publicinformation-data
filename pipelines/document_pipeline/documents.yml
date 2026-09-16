@@ -73,3 +73,10 @@ documents:
       Complete: 58
       Delayed: 28
       Modified: 5
+
+  - doc_slug: regional-and-local-ev-charging-network-plan-2025-2030
+    title: "Regional and Local EV Charging Network Plan 2025-2030"
+    url: "https://www.zevi.ie/sites/default/files/2025-04/3_Regional-and-Local-EV-Charging-Network-Plan-V2_R2_FINAL.pdf"
+    publisher: "Department of Transport"
+    public_body_id: 1213
+    published_date: "2025-04-29"
