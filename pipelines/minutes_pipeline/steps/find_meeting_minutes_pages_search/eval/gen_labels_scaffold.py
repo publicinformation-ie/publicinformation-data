@@ -62,7 +62,7 @@ def main():
         w = csv.DictWriter(f, fieldnames=HEADER)
         w.writeheader()
         w.writerows(rows)
-    print(f"Wrote {len(rows)} skeleton rows to {LABELS_CSV}")
+    print(f"Wrote labels.csv ({len(rows)} rows) to {LABELS_CSV}")
 
 
 if __name__ == "__main__":

@@ -131,10 +131,12 @@ def main():
         for hub_url in _top_hub_links(home_html, home_url):
             if hub_url not in hub_index:
                 fname = f"hub_{hub_counter}.html"
-                if _grab(hub_url, HUBS / fname):
+                grabbed = _grab(hub_url, HUBS / fname)
+                if grabbed is True:
                     time.sleep(0.5)
-                hub_index[hub_url] = fname
-                hub_counter += 1
+                if (HUBS / fname).exists():
+                    hub_index[hub_url] = fname
+                    hub_counter += 1
         print(f"  [{key}] done")
     hub_index_path.write_text(json.dumps(hub_index, indent=2))
     print(f"\nFixture capture complete ({len(hub_index)} hub URLs indexed)")

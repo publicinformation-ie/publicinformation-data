@@ -24,7 +24,6 @@ sys.path.insert(0, str(_REPO_ROOT / "src"))
 _EVAL_DIR = _MINUTES_PIPELINE / "steps" / "find_meeting_minutes_pages_search" / "eval"
 sys.path.insert(0, str(_EVAL_DIR))
 
-from lib.http_utils import fetch  # noqa: E402
 from evaluate import classify  # noqa: E402
 from score_page import collect_yield  # noqa: E402
 from capture_fixtures import fixture_key  # noqa: E402
