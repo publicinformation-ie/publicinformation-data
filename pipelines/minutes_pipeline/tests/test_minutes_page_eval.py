@@ -157,3 +157,15 @@ def test_missing_record_is_skipped_not_tn():
     counts, _p, _r, _f1, _d, skipped, _u = score({}, labels, {})
     assert skipped == 1
     assert sum(counts.values()) == 0
+
+
+def test_apify_rerank_prefers_minutes_yield_over_first_hit():
+    import apify_rerank
+    minutes_html = MINUTES_HUB_HTML
+    agenda_html = AGENDA_ONLY_HTML
+    ranked = apify_rerank.rerank(
+        ["https://www.x.ie/agendas", "https://www.x.ie/minutes"],
+        {"https://www.x.ie/agendas": agenda_html,
+         "https://www.x.ie/minutes": minutes_html},
+    )
+    assert ranked[0] == "https://www.x.ie/minutes"
