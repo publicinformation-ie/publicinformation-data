@@ -47,7 +47,7 @@ def _key(row):
 
 def score(records_by_key, labels, yields_by_key):
     counts = {"TP": 0, "FP": 0, "FN": 0, "TN": 0}
-    details = {"FP": [], "FN": []}
+    details = {"FP": [], "FN": [], "skipped": []}
     url_matches = 0
     skipped = 0
     for row in labels:
@@ -55,6 +55,7 @@ def score(records_by_key, labels, yields_by_key):
         record = records_by_key.get(key)
         if record is None or key not in yields_by_key:
             skipped += 1
+            details["skipped"].append(key)
             continue
         positive = yields_by_key[key]
         outcome = classify(record, row, positive)
@@ -106,8 +107,8 @@ def run_eval(records_by_key, labels, yields_by_key, fixture_path):
         issues.append(eval_utils.Issue(
             severity="warning",
             description=f"{skipped} labelled keys had no record or no pages "
-                        f"fixture (excluded from metrics — label rot/unscorable)",
-            affected_count=skipped, affected_ids=[],
+                         f"fixture (excluded from metrics — label rot/unscorable)",
+            affected_count=skipped, affected_ids=[str(k) for k in details["skipped"]],
             suggested_upstream_step=None,
             suggestion_detail="re-capture fixtures / re-check labels.csv",
             confidence=1.0))

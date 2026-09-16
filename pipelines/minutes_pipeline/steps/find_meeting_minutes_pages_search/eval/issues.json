@@ -223,7 +223,17 @@
     "severity": "warning",
     "description": "9 labelled keys had no record or no pages fixture (excluded from metrics \u2014 label rot/unscorable)",
     "affected_count": 9,
-    "affected_ids": [],
+    "affected_ids": [
+      "1511__ashbourne",
+      "1511__kells",
+      "1511__laytown-bettystown",
+      "1511__navan",
+      "1511__ratoath",
+      "1511__trim",
+      "1244",
+      "1475",
+      "1732"
+    ],
     "suggested_upstream_step": null,
     "suggestion_detail": "re-capture fixtures / re-check labels.csv",
     "confidence": 1.0

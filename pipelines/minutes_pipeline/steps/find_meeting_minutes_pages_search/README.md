@@ -60,3 +60,5 @@ uv run python experiments/2026-09-15-minutes-page-discovery/report.py
 ```
 
 Unscorable keys (no record/fixture) are excluded fail-closed via `issues.json`, never counted as TN.
+
+`evaluate.py` skips recompute when `eval_results.json` is fresh vs `evaluate.py`/`labels.csv`/`matcher_output.json` (`is_eval_stale`) — pass `--force` after changing fixtures or matcher output. Experiment result JSONs under `experiments/2026-09-15-minutes-page-discovery/results/` are timestamped and untracked. Promoting a verified URL is manual: add it to this step's `override.json` (curated source of truth, never auto-promoted).
