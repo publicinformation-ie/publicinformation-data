@@ -119,3 +119,41 @@ def test_build_records_crawl_hit_and_search_fallback():
     assert by_id[1094]["source_method"] == "crawl"
     assert by_id[9999]["minutes_page_url"] == "https://www.nope.ie/found-minutes"
     assert by_id[9999]["source_method"] == "apify"
+
+
+def test_classify_and_score_matrix():
+    from evaluate import classify, score
+    labels = [
+        {"public_body_id": "1", "municipal_district": "", "has_log": "yes",
+         "expected_url": "https://a.ie/minutes"},
+        {"public_body_id": "2", "municipal_district": "", "has_log": "yes",
+         "expected_url": "https://b.ie/minutes"},
+        {"public_body_id": "3", "municipal_district": "", "has_log": "no",
+         "expected_url": ""},
+        {"public_body_id": "4", "municipal_district": "", "has_log": "no",
+         "expected_url": ""},
+    ]
+    records = {
+        "1": {"minutes_page_url": "https://a.ie/minutes"},
+        "2": {"minutes_page_url": "https://b.ie/other"},
+        "3": {"minutes_page_url": "https://c.ie/agendas"},
+        "4": {"minutes_page_url": "https://d.ie/nothing"},
+    }
+    yields = {"1": True, "2": False, "3": True, "4": False}
+    assert classify(records["1"], labels[0], True) == "TP"
+    assert classify(records["2"], labels[1], False) == "FN"
+    assert classify(records["3"], labels[2], True) == "FP"
+    assert classify(records["4"], labels[3], False) == "TN"
+    counts, p, r, f1, details, skipped, _url_matches = score(records, labels, yields)
+    assert counts == {"TP": 1, "FP": 1, "FN": 1, "TN": 1}
+    assert (p, r, f1) == (0.5, 0.5, 0.5)
+    assert skipped == 0
+
+
+def test_missing_record_is_skipped_not_tn():
+    from evaluate import score
+    labels = [{"public_body_id": "9", "municipal_district": "", "has_log": "no",
+               "expected_url": ""}]
+    counts, _p, _r, _f1, _d, skipped, _u = score({}, labels, {})
+    assert skipped == 1
+    assert sum(counts.values()) == 0
