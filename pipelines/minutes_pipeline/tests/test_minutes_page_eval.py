@@ -100,3 +100,22 @@ def test_year_hub_follows_dest():
     assert without["positive"] is False
     with_dest = collect_yield(YEAR_HUB_HTML, "https://www.x.ie/minutes", DEST_HTML)
     assert (with_dest["minutes_like"], with_dest["total"], with_dest["positive"]) == (1, 2, True)
+
+
+def test_build_records_crawl_hit_and_search_fallback():
+    from run_matcher import build_records
+    home = {
+        "1094": '<html><body><a href="/council-minutes/">Council Meeting Minutes</a></body></html>',
+        "9999": '<html><body><a href="/about/">About us</a></body></html>',
+    }
+    authorities = {
+        1094: {"name": "Cavan County Council", "official_website_url": "https://www.cavancoco.ie/"},
+        9999: {"name": "Nope Council", "official_website_url": "https://www.nope.ie/"},
+    }
+    live = {(9999, ""): "https://www.nope.ie/found-minutes"}
+    records = build_records(home, authorities, live)
+    by_id = {r["public_body_id"]: r for r in records}
+    assert by_id[1094]["minutes_page_url"] == "https://www.cavancoco.ie/council-minutes/"
+    assert by_id[1094]["source_method"] == "crawl"
+    assert by_id[9999]["minutes_page_url"] == "https://www.nope.ie/found-minutes"
+    assert by_id[9999]["source_method"] == "apify"
