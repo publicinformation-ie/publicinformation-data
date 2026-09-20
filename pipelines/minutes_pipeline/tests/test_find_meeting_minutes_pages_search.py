@@ -47,6 +47,44 @@ def test_pick_rejects_everything():
 
 STEP = "find_meeting_minutes_pages_search"
 
+YIELD_POSITIVE_HTML = ('<a href="/files/minutes-jan.pdf">Council Minutes January</a>')
+YIELD_EMPTY_HTML = '<p>No documents here</p>'
+
+
+def _resp_for(url):
+    m = mock.Mock()
+    m.text = ('<p>No documents here</p>' if "recent-minutes" in url
+              else '<a href="/files/minutes-jan.pdf">Council Minutes January</a>')
+    return m
+
+
+def test_rerank_picks_yield_over_first_hit(monkeypatch):
+    from steps.find_meeting_minutes_pages_search.process import _pick_minutes_url_yield
+    monkeypatch.setattr(
+        "steps.find_meeting_minutes_pages_search.process.fetch",
+        lambda method, url, **kw: _resp_for(url))
+    results = [
+        {"url": "https://www.x.ie/recent-minutes/", "link": "https://www.x.ie/recent-minutes/",
+         "title": "Council Meeting Minutes"},
+        {"url": "https://www.x.ie/minutes/", "link": "https://www.x.ie/minutes/",
+         "title": "Council Minutes"},
+    ]
+    assert _pick_minutes_url_yield(results) == "https://www.x.ie/minutes/"
+
+
+def test_rerank_all_fetch_fail_returns_none(monkeypatch):
+    from steps.find_meeting_minutes_pages_search.process import _pick_minutes_url_yield
+    def _boom(method, url, **kw):
+        raise ConnectionError("down")
+    monkeypatch.setattr(
+        "steps.find_meeting_minutes_pages_search.process.fetch", _boom)
+    results = [
+        {"url": "https://www.x.ie/minutes/", "link": "https://www.x.ie/minutes/",
+         "title": "Council Minutes"},
+    ]
+    assert _pick_minutes_url_yield(results) is None
+
+
 CRAWL_OUTPUT = {
     "metadata": {"step": "find_meeting_minutes_pages", "completed_at": "2026-06-01T00:00:00+00:00"},
     "results": [
@@ -99,6 +137,9 @@ def test_search_finds_minutes_url_for_failed_body(tmp_path, make_writer, monkeyp
              "link": "https://www.dlrcoco.ie/council-minutes/", "title": "Council Minutes"},
         ]},
     )
+    monkeypatch.setattr(
+        "steps.find_meeting_minutes_pages_search.process.fetch",
+        lambda method, url, **kw: _resp_for(url))
     writer = make_writer(STEP, key_field="minutes_page_url")
     process({"metadata": CRAWL_OUTPUT["metadata"], "results": []}, tmp_path, writer,
             crawl_errors=CRAWL_ERRORS, authorities_by_id=AUTHORITIES)
@@ -116,6 +157,10 @@ def test_body_already_in_output_is_not_searched(tmp_path, make_writer, monkeypat
         return {}
     monkeypatch.setattr(
         "steps.find_meeting_minutes_pages_search.process.batch_search", _boom)
+    def _no_fetch(method, url, **kw):
+        raise AssertionError("fetch must not be called")
+    monkeypatch.setattr(
+        "steps.find_meeting_minutes_pages_search.process.fetch", _no_fetch)
     writer = make_writer(STEP, key_field="minutes_page_url")
     writer.results = [{"public_body_id": 1244, "municipal_district": None,
                        "minutes_page_url": "https://www.dlrcoco.ie/known/",

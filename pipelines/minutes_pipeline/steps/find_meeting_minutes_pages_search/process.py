@@ -14,7 +14,8 @@ from steps.find_meeting_minutes_pages.process import (
 from lib.apify_search import batch_search
 from lib.cli_utils import add_common_args, filter_by_public_body
 from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
-from lib.http_utils import is_safe_url, validate_url_or_raise
+from lib.http_utils import fetch, is_safe_url, validate_url_or_raise
+from steps.minutes_scoring import collect_yield  # noqa: E402
 
 STEP_NAME = "find_meeting_minutes_pages_search"
 
@@ -53,6 +54,75 @@ def _pick_minutes_url(results: list) -> str | None:
             best, best_score = link, score
     if best is not None and best_score >= ACCEPT_THRESHOLD:
         return best
+    return None
+
+
+def _fetch_html(url):
+    try:
+        return fetch("GET", url, allow_redirects=True).text
+    except Exception:
+        return None
+
+
+def _rerank_by_yield(candidates, step_dir=None, bid=None, name=None, site_url=None):
+    """candidates: [(url, link_score)] pre-filtered, score-desc. Fetch each
+    (fetch failures logged as CandidateFetchFailed when step_dir is given,
+    then skipped), order by (minutes_like, purity) desc. Returns
+    [(url, positive)]. At most 5 fetches."""
+    ranked = []
+    for _s, url in candidates[:5]:
+        html = _fetch_html(url)
+        if html is None:
+            if step_dir is not None:
+                append_error(step_dir, {
+                    "step": STEP_NAME,
+                    "timestamp": datetime.now(timezone.utc).isoformat(),
+                    "error_type": "CandidateFetchFailed",
+                    "error_message": f"could not fetch search candidate {url}",
+                    "context": {"url": url, "public_body_id": bid,
+                                "name": name, "municipal_district": None,
+                                "site_url": site_url},
+                })
+            continue
+        y = collect_yield(html, url)
+        total = y["total"] or 1
+        ranked.append((y["minutes_like"], y["minutes_like"] / total,
+                       y["positive"], url))
+    ranked.sort(reverse=True)
+    return [(url, positive) for _, _, positive, url in ranked]
+
+
+def _pick_minutes_url_yield(results, step_dir=None, bid=None, name=None, site_url=None):
+    """Top-5 search candidates by _score_link, reranked by live PDF-yield.
+    Returns the top URL iff it is yield-positive, else None (fail-closed).
+
+    Deliberately filters candidates at `sc > 0`, NOT `>= ACCEPT_THRESHOLD`
+    (the old `_pick_minutes_url` gate): the PDF-yield gate replaces the
+    threshold's role, matching the experiment (which scored no filter at
+    all). A score-50 "meetings" page that really links minutes PDFs is now
+    a valid find; `_pick_minutes_url` keeps its `>= 60` semantics for its
+    own unit tests."""
+    scored = []
+    for r in results or []:
+        link = r.get("link", "")
+        if not link:
+            continue
+        if "/ga/" in urlparse(link).path:
+            continue
+        try:
+            validate_url_or_raise(link, context="apify_result")
+        except ValueError:
+            continue
+        if not is_safe_url(link):
+            continue
+        sc = _score_link(_tokenize(link, r.get("title", "")))
+        if sc <= 0:
+            continue
+        scored.append((sc, link))
+    scored.sort(reverse=True)
+    ranked = _rerank_by_yield(scored, step_dir, bid, name, site_url)
+    if ranked and ranked[0][1]:
+        return ranked[0][0]
     return None
 
 
@@ -123,7 +193,8 @@ def process(input_data, step_dir, writer, crawl_errors=None,
     search_results = batch_search(list(query_map.keys()))
 
     for query, (bid, name, site_url) in query_map.items():
-        minutes_url = _pick_minutes_url(search_results.get(query, []))
+        minutes_url = _pick_minutes_url_yield(search_results.get(query, []),
+                                              step_dir, bid, name, site_url)
         if minutes_url is None:
             _error(step_dir, "MinutesPageNotFound",
                    f"No minutes page found via Apify search for {name} ({site_url})",
