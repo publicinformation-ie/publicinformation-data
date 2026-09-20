@@ -47,5 +47,26 @@
     "minutes_page_url": "https://www.meath.ie/council/your-council/your-elected-council/municipal-district-meetings/trim-municipal-district-meetings",
     "source_method": "manual",
     "overridden": true
+  },
+  {
+    "public_body_id": 1456,
+    "municipal_district": null,
+    "minutes_page_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1876,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.wicklow.ie/Living/Your-Council/Council-Meetings/Minutes-Agendas",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1163,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.corkcoco.ie/en/council/elected-members-meetings-agendas-and-minutes/meetings-agendas-and-minutes/full-council-meetings",
+    "source_method": "manual",
+    "overridden": true
   }
 ]
