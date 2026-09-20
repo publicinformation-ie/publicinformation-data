@@ -46,3 +46,19 @@ Supports **incremental resumption**, **`--force`**, and **`--public-body`**.
 ## Limitation
 
 Per-body granularity: if a body holds some district pages but is missing others, this step does not backfill the missing districts (the body is treated as resolved). Upgrade to per-(body, district) queries if district-level gaps appear.
+
+## Eval (`eval/`)
+
+Offline PDF-yield eval for page discovery. A predicted page is positive iff it (or its year-listing hub target) links >= 1 minutes-like PDFs with purity >= 0.5 (`_looks_like_minutes` reused by import). Labels: `eval/labels.csv` (`has_log` yes/no per body/district). Workflow from `minutes_pipeline/`:
+
+```bash
+uv run python steps/find_meeting_minutes_pages_search/eval/capture_fixtures.py  # live, run rarely
+uv run python steps/find_meeting_minutes_pages_search/eval/run_matcher.py       # offline
+uv run python steps/find_meeting_minutes_pages_search/eval/evaluate.py          # offline, writes eval_results.json + issues.json
+uv run python experiments/2026-09-15-minutes-page-discovery/run_experiment.py --approach all
+uv run python experiments/2026-09-15-minutes-page-discovery/report.py
+```
+
+Unscorable keys (no record/fixture) are excluded fail-closed via `issues.json`, never counted as TN.
+
+`evaluate.py` skips recompute when `eval_results.json` is fresh vs `evaluate.py`/`labels.csv`/`matcher_output.json` (`is_eval_stale`) — pass `--force` after changing fixtures or matcher output. Experiment result JSONs under `experiments/2026-09-15-minutes-page-discovery/results/` are timestamped and untracked. Promoting a verified URL is manual: add it to this step's `override.json` (curated source of truth, never auto-promoted).

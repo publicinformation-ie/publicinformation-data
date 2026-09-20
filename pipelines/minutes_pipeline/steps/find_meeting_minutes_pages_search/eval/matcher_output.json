@@ -1,0 +1,211 @@
+{
+  "metadata": {
+    "step": "find_meeting_minutes_pages_search_matcher_eval",
+    "completed_at": "2026-09-16T07:36:06.931129+00:00"
+  },
+  "results": [
+    {
+      "public_body_id": 1511,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.meath.ie/council/your-council/your-elected-council/council-meetings",
+      "source_method": "apify",
+      "name": "Meath County Council"
+    },
+    {
+      "public_body_id": 1456,
+      "municipal_district": null,
+      "minutes_page_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/",
+      "source_method": "crawl",
+      "name": "Kildare County Council"
+    },
+    {
+      "public_body_id": 1094,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.cavancoco.ie/your-council/about-the-council/minutes-and-agendas/minutes-of-council-meetings/",
+      "source_method": "crawl",
+      "name": "Cavan County Council"
+    },
+    {
+      "public_body_id": 1162,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.corkcity.ie/en/council-services/services/community/statutory-committees/local-community-development-committee/minutes-of-lcdc-meetings/",
+      "source_method": "crawl",
+      "name": "Cork City Council"
+    },
+    {
+      "public_body_id": 1227,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.donegalcoco.ie/media/jmxjyk4y/minutes-special-meeting-130526.pdf",
+      "source_method": "apify",
+      "name": "Donegal County Council"
+    },
+    {
+      "public_body_id": 1235,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.dublincity.ie/housing/find-out-about-accommodation-traveller-community/local-traveller-accommodation-consultative-committee-ltacc/ltacc-meeting-minutes",
+      "source_method": "apify",
+      "name": "Dublin City Council"
+    },
+    {
+      "public_body_id": 1295,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.fingal.ie/sites/default/files/2019-03/Signed%20Minutes%20JPC%2016Feb18.pdf",
+      "source_method": "apify",
+      "name": "Fingal County Council"
+    },
+    {
+      "public_body_id": 1340,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.galwaycity.ie/sites/default/files/2026-06/LTACC%20Meeting%20Minutes%2026th%20March%202026.pdf",
+      "source_method": "apify",
+      "name": "Galway City Council"
+    },
+    {
+      "public_body_id": 1449,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.kerrycoco.ie/meeting-minutes/",
+      "source_method": "apify",
+      "name": "Kerry County Council"
+    },
+    {
+      "public_body_id": 1461,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.kilkennycoco.ie/eng/your_council/lcdc/lcdc-kilkenny-meetings/",
+      "source_method": "crawl",
+      "name": "Kilkenny County Council"
+    },
+    {
+      "public_body_id": 1475,
+      "municipal_district": null,
+      "minutes_page_url": "https://leitrim.moderngov.co.uk/mgListCommittees.aspx?bcr=1",
+      "source_method": "crawl",
+      "name": "Leitrim County Council"
+    },
+    {
+      "public_body_id": 1486,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.limerick.ie/sites/default/files/media/documents/2018-07/01%20%28a%29%20Minutes%20May%20Council%20Meeting%20280518.pdf",
+      "source_method": "apify",
+      "name": "Limerick City and County Council"
+    },
+    {
+      "public_body_id": 1497,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.longfordcoco.ie/your-council/council-meetings/council%20meetings%20archive/2025-council-meetings/minutes/",
+      "source_method": "apify",
+      "name": "Longford County Council"
+    },
+    {
+      "public_body_id": 1501,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.louthcoco.ie/louth_county_council/minutes_of_statutory_meetings/",
+      "source_method": "crawl",
+      "name": "Louth County Council"
+    },
+    {
+      "public_body_id": 1508,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.mayo.ie/news/minute-books-restored",
+      "source_method": "apify",
+      "name": "Mayo County Council"
+    },
+    {
+      "public_body_id": 1670,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.roscommoncoco.ie/coco/en/about_us/business-units/corporateservices/council_meeting_minutes/",
+      "source_method": "crawl",
+      "name": "Roscommon County Council"
+    },
+    {
+      "public_body_id": 1716,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.sligococo.ie/Events/Borough,District,of,Sligo,Municipal,District,Meeting.php",
+      "source_method": "crawl",
+      "name": "Sligo County Council"
+    },
+    {
+      "public_body_id": 1817,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.tipperarycoco.ie/community/local-community-development-committee-support/minutes-monthly-lcdc-meetings",
+      "source_method": "apify",
+      "name": "Tipperary County Council"
+    },
+    {
+      "public_body_id": 1864,
+      "municipal_district": null,
+      "minutes_page_url": "https://waterfordcouncil.ie/app/uploads/2026/05/1a-Minutes-Plenary-Meeting-09-10-2025-1.pdf",
+      "source_method": "apify",
+      "name": "Waterford City and County Council"
+    },
+    {
+      "public_body_id": 1870,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.westmeathcoco.ie/en/ourservices/yourcouncil/meetingsminutesagendasandreports/",
+      "source_method": "crawl",
+      "name": "Westmeath County Council"
+    },
+    {
+      "public_body_id": 1873,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.wexfordcoco.ie/sites/default/files/content/Adopted%20Minutes%20of%20Ordinary%20Meeting%20of%20Wexford%20Borough%20District%20-%20December%202023.pdf",
+      "source_method": "apify",
+      "name": "Wexford County Council"
+    },
+    {
+      "public_body_id": 1876,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.wicklow.ie/living/Your-Council/Council-Meetings/Minutes-Agendas",
+      "source_method": "crawl",
+      "name": "Wicklow County Council"
+    },
+    {
+      "public_body_id": 1129,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.clarecoco.ie/council/meetings/minutes",
+      "source_method": "apify",
+      "name": "Clare County Council"
+    },
+    {
+      "public_body_id": 1163,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.corkcoco.ie/en/council/elected-members-meetings-agendas-and-minutes",
+      "source_method": "crawl",
+      "name": "Cork County Council"
+    },
+    {
+      "public_body_id": 1085,
+      "municipal_district": null,
+      "minutes_page_url": "https://carlow.ie/sites/default/files/2024-12/Minutes%20Municipal%20District%20of%20Carlow%20April%202024.pdf",
+      "source_method": "apify",
+      "name": "Carlow County Council"
+    },
+    {
+      "public_body_id": 1342,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.galway.ie/sites/default/files/2026-04/Miontuairisci%20Buiseid%20-%20Minutes%20Budget%2014.11.25.pdf",
+      "source_method": "apify",
+      "name": "Galway County Council"
+    },
+    {
+      "public_body_id": 1470,
+      "municipal_district": null,
+      "minutes_page_url": "https://laois.ie/sites/default/files/2024-06/Portlaoise%20MD%20Minutes%20March%202023.pdf",
+      "source_method": "apify",
+      "name": "Laois County Council"
+    },
+    {
+      "public_body_id": 1525,
+      "municipal_district": null,
+      "minutes_page_url": "https://monaghan.ie/minutes-of-meetings/",
+      "source_method": "apify",
+      "name": "Monaghan County Council"
+    },
+    {
+      "public_body_id": 1590,
+      "municipal_district": null,
+      "minutes_page_url": "https://www.offaly.ie/edenderry-district-meetings-minutes/",
+      "source_method": "apify",
+      "name": "Offaly County Council"
+    }
+  ]
+}
