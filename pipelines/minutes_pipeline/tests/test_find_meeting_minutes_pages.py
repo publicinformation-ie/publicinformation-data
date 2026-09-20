@@ -123,3 +123,48 @@ def test_unemitted_sources_skips_already_present_pages(make_writer):
          "minutes_page_url": "https://x.ie/trim"},
     ]
     assert unemitted_sources(writer, records) == [records[1]]
+
+
+def _resp(html):
+    m = mock.Mock()
+    m.text = html
+    return m
+
+
+def test_one_hop_follows_best_hub_on_homepage_miss(monkeypatch):
+    home = '<a href="/meetings">Meetings</a>'  # scores 50: below 60, above 0
+    hub = ('<a href="/council-minutes">Council Minutes</a>'
+           '<a href="/files/minutes-jan.pdf">Council Minutes January</a>')
+    pages = {"https://www.meath.ie/": home,
+             "https://www.meath.ie/meetings": hub}
+    monkeypatch.setattr(
+        "steps.find_meeting_minutes_pages.process.fetch",
+        lambda method, url, **kw: _resp(pages[url]))
+    from steps.find_meeting_minutes_pages.process import _try_one_hop
+    url, method = _try_one_hop(home, "https://www.meath.ie/", 1511, None, None)
+    assert url == "https://www.meath.ie/council-minutes"
+    assert method == "crawl"
+
+
+def test_one_hop_rejects_yield_negative_hub(monkeypatch):
+    home = '<a href="/meetings">Meetings</a>'
+    hub = '<a href="/council-minutes">Council Minutes</a><a href="/files/agenda-jan.pdf">Council Agenda January</a>'
+    pages = {"https://www.meath.ie/": home,
+             "https://www.meath.ie/meetings": hub}
+    monkeypatch.setattr(
+        "steps.find_meeting_minutes_pages.process.fetch",
+        lambda method, url, **kw: _resp(pages[url]))
+    from steps.find_meeting_minutes_pages.process import _try_one_hop
+    url, _ = _try_one_hop(home, "https://www.meath.ie/", 1511, None, None)
+    assert url is None
+
+
+def test_one_hop_hub_fetch_failure_returns_none(monkeypatch):
+    def _boom(method, url, **kw):
+        raise ConnectionError("down")
+    monkeypatch.setattr(
+        "steps.find_meeting_minutes_pages.process.fetch", _boom)
+    from steps.find_meeting_minutes_pages.process import _try_one_hop
+    url, _ = _try_one_hop('<a href="/meetings">Meetings</a>',
+                          "https://www.meath.ie/", 1511, None, None)
+    assert url is None

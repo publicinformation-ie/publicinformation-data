@@ -11,6 +11,7 @@ from bs4 import BeautifulSoup
 from lib.cli_utils import add_common_args, filter_by_public_body
 from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
 from lib.http_utils import fetch, is_safe_url, validate_url_or_raise
+from steps.minutes_scoring import collect_yield  # noqa: E402
 
 STEP_NAME = "find_meeting_minutes_pages"
 
@@ -91,6 +92,57 @@ def find_minutes_link(html, base_url):
     return None
 
 
+def _best_hub_link(html, base_url):
+    """Highest-scoring sub-threshold hub link (score > 0), same skips as find_minutes_link."""
+    soup = BeautifulSoup(html or "", "html.parser")
+    best = None
+    best_score = 0
+    for link in soup.find_all("a", href=True):
+        href = str(link["href"])
+        if "/ga/" in href:
+            continue
+        sc = _score_link(_tokenize(href, link.get_text(strip=True)))
+        if sc <= best_score:
+            continue
+        full_url = urljoin(base_url, href)
+        if not is_safe_url(full_url):
+            continue
+        if urldefrag(full_url)[0] == urldefrag(base_url)[0]:
+            continue
+        best, best_score = full_url, sc
+    return best
+
+
+def _try_one_hop(home_html, home_url, bid, district, step_dir):
+    """Follow the single best hub link once; accept its minutes hit iff the
+    hub page is PDF-yield positive. Returns (url or None, "crawl").
+    Fetch failures are fail-closed (error logged, None). step_dir may be
+    None in tests (error logging skipped)."""
+    hub_url = _best_hub_link(home_html or "", home_url)
+    if not hub_url:
+        return None, "crawl"
+    try:
+        hub_html = fetch("GET", hub_url, allow_redirects=True).text
+    except Exception as e:
+        if step_dir is not None:
+            append_error(step_dir, {
+                "step": STEP_NAME,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "error_type": "HubFetchFailed",
+                "error_message": str(e),
+                "context": {"url": hub_url, "public_body_id": bid,
+                            "municipal_district": district},
+            })
+        return None, "crawl"
+    hit = find_minutes_link(hub_html, hub_url)
+    if not hit:
+        return None, "crawl"
+    dest_url, _score = hit
+    if not collect_yield(hub_html, hub_url)["positive"]:
+        return None, "crawl"
+    return dest_url, "crawl"
+
+
 def override_sources(authorities, overrides):
     """Map override.json entries to minutes_source records for the given authorities."""
     records = []
@@ -148,7 +200,10 @@ def process(input_data, step_dir, writer, verbose=False):
                 minutes_url, score = match
                 source_method = "crawl"
             else:
-                raise ValueError("no minutes page link above threshold on homepage")
+                minutes_url, source_method = _try_one_hop(
+                    response.text, url, bid, district, step_dir)
+                if minutes_url is None:
+                    raise ValueError("no minutes page link above threshold on homepage")
             records.append({
                 "public_body_id": bid,
                 "municipal_district": district,
