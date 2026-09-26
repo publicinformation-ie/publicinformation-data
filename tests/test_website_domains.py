@@ -1,5 +1,5 @@
 from lib.website_domains import (
-    registrable_domain, root_url, listing_kind, has_dissolution_marker,
+    registrable_domain, root_url, listing_kind, has_dissolution_marker, site_key,
 )
 
 
@@ -30,6 +30,19 @@ def test_listing_kind_directory_and_social():
     assert listing_kind("https://ie.linkedin.com/company/x") == "social"
     assert listing_kind("https://en.wikipedia.org/wiki/ESB") == "social"
     assert listing_kind("https://www.esb.ie/") is None
+
+
+def test_site_key_distinguishes_gov_ie_organisations():
+    # gov.ie hosts hundreds of unrelated bodies; registrable_domain alone collapses
+    # every org page to "gov.ie", which corrupts dedup/matching across the pipeline.
+    a = site_key("https://www.gov.ie/en/organisation/department-a/")
+    b = site_key("https://www.gov.ie/en/organisation/department-b/")
+    assert a != b
+    assert site_key("https://www.gov.ie/en/organisation/department-a/about") == a
+
+
+def test_site_key_is_plain_domain_for_non_gov_ie():
+    assert site_key("https://www.hsa.ie/eng/About_Us/") == "hsa.ie"
 
 
 def test_dissolution_markers():

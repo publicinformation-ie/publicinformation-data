@@ -1,6 +1,7 @@
 from datetime import datetime, timezone
 
 from lib.website_decide import decide, canonical_official_url
+from lib.website_verify import verify_candidates
 
 NOW = datetime(2026, 9, 26, tzinfo=timezone.utc)
 CHILD = {"public_body_id": 9, "name": "Orliven Ltd", "parent_id": 5, "parent_name": "ESB"}
@@ -37,6 +38,34 @@ def test_blocked_needs_two_independent_origins():
                  tiers_exhausted=["seed"], now=NOW)
     assert two["website_status"] == "own_site_blocked"
     assert two["official_website_url"] == "https://w.ie/"
+
+
+def test_blocked_grouping_does_not_conflate_distinct_gov_ie_organisations():
+    # regression: grouping blocked candidates by registrable_domain would treat two
+    # unrelated gov.ie org pages as "the same blocked site" and wrongly need only
+    # one origin each to together satisfy the >=2-independent-origins rule.
+    r = decide(LONE, [v("https://www.gov.ie/en/organisation/dept-a/", "gov_ie", probe="blocked"),
+                      v("https://www.gov.ie/en/organisation/dept-b/", "haiku_search", probe="blocked")],
+               tiers_exhausted=["seed", "haiku_search"], now=NOW)
+    assert r["website_status"] == "not_found"
+
+
+def test_verify_then_decide_reaches_own_site_blocked():
+    # Integration: verify_candidates must itself produce the >=2-origin evidence
+    # decide() needs, not just a hand-built `verified` list (regression for the bug
+    # where verify_candidates silently dropped a domain's second sighting).
+    def probe(url):
+        return {"url": url, "final_url": url, "outcome": "blocked", "evidence": None}
+
+    def judge(body, url, evidence):
+        raise AssertionError("blocked probes must never reach the judge")
+
+    verified = verify_candidates(LONE, [{"url": "https://w.ie/", "origin": "gov_ie"},
+                                        {"url": "https://www.w.ie/", "origin": "haiku_search"}],
+                                 probe_fn=probe, judge_fn=judge)
+    r = decide(LONE, verified, tiers_exhausted=["seed", "haiku_search"], now=NOW)
+    assert r["website_status"] == "own_site_blocked"
+    assert r["official_website_url"] == "https://w.ie/"
 
 
 def test_defunct_from_directory_snippet():

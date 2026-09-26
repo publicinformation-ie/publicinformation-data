@@ -4,7 +4,7 @@ from collections import Counter
 from pathlib import Path
 
 from lib.website_decide import OWN_STATUSES
-from lib.website_domains import registrable_domain
+from lib.website_domains import site_key
 
 GOLD_STATUSES = {"own_site", "no_own_site", "defunct", "unknown"}
 
@@ -35,7 +35,7 @@ def score(rows: list[dict]) -> dict:
 
     def correct(r):
         return (r["gold_status"] == "own_site" and r["website_status"] in OWN_STATUSES
-                and registrable_domain(r["official_website_url"] or "") == registrable_domain(r["gold_url"]))
+                and site_key(r["official_website_url"] or "") == site_key(r["gold_url"]))
 
     hits = sum(1 for r in rows if correct(r))
     gold_no = [r for r in rows if r["gold_status"] == "no_own_site"]

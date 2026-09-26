@@ -42,3 +42,29 @@ def test_same_domain_probed_once_and_listing_skipped():
                             probe_fn=probe, judge_fn=judge_map({}))
     assert calls == ["https://a.ie/"]
     assert out[-1]["probe"] == "skipped" and out[-1]["judge_label"] == "directory"
+
+
+def test_distinct_gov_ie_organisations_are_not_deduped_as_one_domain():
+    # regression: registrable_domain("gov.ie") alone would treat every gov.ie
+    # organisation page as "the same domain" and drop the second one entirely.
+    probe, calls = probe_map({"https://www.gov.ie/en/organisation/dept-a/": "ok",
+                              "https://www.gov.ie/en/organisation/dept-b/": "ok"})
+    out = verify_candidates(BODY, [{"url": "https://www.gov.ie/en/organisation/dept-a/", "origin": "seed"},
+                                   {"url": "https://www.gov.ie/en/organisation/dept-b/", "origin": "haiku_search"}],
+                            probe_fn=probe, judge_fn=judge_map({}))
+    assert calls == ["https://www.gov.ie/en/organisation/dept-a/",
+                     "https://www.gov.ie/en/organisation/dept-b/"]
+    assert len(out) == 2
+
+
+def test_blocked_domain_seen_twice_carries_both_origins_without_reprobing():
+    # spec §6.4: own_site_blocked needs >=2 independent origins on the SAME domain.
+    # verify_candidates must not silently drop the second sighting of an already-probed
+    # domain, or decide() can never see the second origin and own_site_blocked can never fire.
+    probe, calls = probe_map({"https://w.ie/": "blocked"})
+    out = verify_candidates(BODY, [{"url": "https://w.ie/", "origin": "gov_ie"},
+                                   {"url": "https://www.w.ie/", "origin": "haiku_search"}],
+                            probe_fn=probe, judge_fn=judge_map({}))
+    assert calls == ["https://w.ie/"]  # no re-probe of the same domain
+    assert [c["origin"] for c in out] == ["gov_ie", "haiku_search"]
+    assert all(c["probe"] == "blocked" for c in out)

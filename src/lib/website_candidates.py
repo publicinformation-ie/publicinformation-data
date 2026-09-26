@@ -6,7 +6,7 @@ with better logic later at no cost.
 import json
 import re
 
-from lib.website_domains import listing_kind, registrable_domain
+from lib.website_domains import listing_kind, registrable_domain, site_key
 
 
 def candidates_from_apify_item(item, origin: str = "apify_search"):
@@ -21,9 +21,10 @@ def candidates_from_apify_item(item, origin: str = "apify_search"):
             hits.append({"domain": domain, "url": url, "title": r.get("title", ""),
                          "snippet": r.get("description", ""), "kind": kind})
             continue
-        if not domain or domain in seen:
+        key = site_key(url)
+        if not key or key in seen:
             continue
-        seen.add(domain)
+        seen.add(key)
         candidates.append({"url": url, "origin": origin, "rank": r.get("position"),
                            "title": r.get("title", ""), "snippet": r.get("description", "")})
     return candidates, hits

@@ -2,7 +2,7 @@
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 
-from lib.website_domains import has_dissolution_marker, registrable_domain, root_url
+from lib.website_domains import has_dissolution_marker, registrable_domain, root_url, site_key
 
 OWN_STATUSES = {"own_site", "own_site_blocked"}
 _RECHECK_DAYS = {"own_site": 90, "own_site_blocked": 180, "no_own_site": 180,
@@ -27,7 +27,7 @@ def decide(body, verified, *, signals=None, directory_hits=None, parent_site_url
     blocked_first = {}
     for c in verified:
         if c.get("probe") == "blocked":
-            d = registrable_domain(c["url"])
+            d = site_key(c["url"])
             blocked_origins[d].add(c["origin"])
             blocked_first.setdefault(d, c)
     blocked = next((blocked_first[d] for d, o in blocked_origins.items() if len(o) >= 2), None)

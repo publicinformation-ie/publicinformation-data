@@ -4,10 +4,12 @@ The full raw API response (all turns, including web_search_tool_result blocks)
 is cached before interpretation, so a search is never paid for twice.
 Interpretation lives in lib.website_candidates.interpret_haiku.
 """
+from typing import Any
+
 from lib.response_cache import ResponseCache
 
 HAIKU_MODEL = "claude-haiku-4-5"
-WEB_SEARCH_TOOL = {
+WEB_SEARCH_TOOL: dict[str, Any] = {
     "type": "web_search_20250305",
     "name": "web_search",
     "max_uses": 3,
@@ -46,11 +48,12 @@ def fetch_raw(body: dict, cache: ResponseCache, *, client=None, refresh: bool = 
     if client is None:
         import anthropic
         client = anthropic.Anthropic()
-    messages = [{"role": "user", "content": prompt}]
+    messages: list[Any] = [{"role": "user", "content": prompt}]
+    tools: list[Any] = [WEB_SEARCH_TOOL]
     dumps = []
     for _ in range(max_continuations + 1):
         msg = client.messages.create(model=HAIKU_MODEL, max_tokens=2000,
-                                     tools=[WEB_SEARCH_TOOL], messages=messages)
+                                     tools=tools, messages=messages)
         dumps.append(msg.model_dump(mode="json"))
         if msg.stop_reason != "pause_turn":
             break

@@ -74,3 +74,13 @@ def test_score():
     assert s["false_not_found_rate"] == pytest.approx(1 / 3)
     assert s["no_own_recall"] == 1.0 and s["no_own_precision"] == pytest.approx(1 / 2)
     assert s["defunct_recall"] == 0.0
+
+
+def test_score_does_not_conflate_distinct_gov_ie_organisations():
+    # regression: registrable_domain alone would call any gov.ie prediction a hit
+    # for any gov.ie gold URL, inflating own_coverage/own_precision.
+    rows = [{"gold_status": "own_site", "gold_url": "https://www.gov.ie/en/organisation/dept-a/",
+            "website_status": "own_site",
+            "official_website_url": "https://www.gov.ie/en/organisation/dept-b/"}]
+    s = score(rows)
+    assert s["own_coverage"] == 0.0 and s["own_precision"] == 0.0

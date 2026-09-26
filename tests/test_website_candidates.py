@@ -20,3 +20,17 @@ def test_apify_item_splits_candidates_and_directory_hits():
 
 def test_apify_none_item():
     assert candidates_from_apify_item(None) == ([], [])
+
+
+def test_distinct_gov_ie_organisation_pages_both_kept():
+    # regression: registrable_domain alone collapses every gov.ie org page to "gov.ie",
+    # so a press release ranked first would silently hide the body's own gov.ie page.
+    item = {"organicResults": [
+        {"url": "https://www.gov.ie/en/press-release/x/", "title": "Press release",
+         "description": "", "position": 1},
+        {"url": "https://www.gov.ie/en/organisation/dept-a/", "title": "Dept A",
+         "description": "", "position": 2},
+    ]}
+    cands, _ = candidates_from_apify_item(item)
+    assert [c["url"] for c in cands] == ["https://www.gov.ie/en/press-release/x/",
+                                         "https://www.gov.ie/en/organisation/dept-a/"]

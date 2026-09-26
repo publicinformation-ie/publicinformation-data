@@ -26,10 +26,10 @@ def resolve_stub_url(html, original_url):
     if STUB_MARKER not in html:
         return original_url
     soup = BeautifulSoup(html, "html.parser")
-    for text_node in soup.find_all(string=lambda t: t and STUB_MARKER in t):
+    for text_node in soup.find_all(string=lambda t: bool(t) and STUB_MARKER in t):
         next_a = text_node.find_next("a", href=True)
         if next_a:
-            resolved = urljoin(original_url, next_a["href"])
+            resolved = urljoin(original_url, str(next_a["href"]))
             if is_safe_url(resolved):
                 return resolved
     return original_url
@@ -47,10 +47,10 @@ def extract_evidence(html: str) -> dict:
         ev["title"] = soup.title.get_text(strip=True)
     desc = soup.find("meta", attrs={"name": "description"})
     if desc and desc.get("content"):
-        ev["meta_description"] = desc["content"].strip()
+        ev["meta_description"] = str(desc["content"]).strip()
     site = soup.find("meta", attrs={"property": "og:site_name"})
     if site and site.get("content"):
-        ev["site_name"] = site["content"].strip()
+        ev["site_name"] = str(site["content"]).strip()
     h1 = soup.find("h1")
     if h1:
         ev["h1"] = h1.get_text(" ", strip=True)
@@ -79,6 +79,8 @@ def _probe(url: str, resolver, depth: int = 0) -> dict:
         return _result(url, "dead", error="unsafe_url")
     parsed = urlparse(url)
     host = parsed.hostname
+    if not host:
+        return _result(url, "dead", error="unsafe_url")
     fetch_url = url
     if not _resolves(host, resolver):
         alt = None if host.startswith("www.") else f"www.{host}"
