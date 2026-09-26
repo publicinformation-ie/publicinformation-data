@@ -50,3 +50,7 @@ pipelines/document_pipeline/steps/*/sections/
 pipelines/document_pipeline/steps/*/contact-sheets/
 public/documents/
 pipelines/minutes_pipeline/steps/*/pdf_cache/
+
+# CSO website-resolution caches and experiment results (local, regenerable, paid-for — never commit)
+pipelines/cso_pipeline/cache/
+pipelines/cso_pipeline/experiments/**/results/
