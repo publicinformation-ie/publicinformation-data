@@ -179,12 +179,25 @@
     "municipal_district": null,
     "minutes_page_url": "https://www.limerick.ie/council/your-council/meetings",
     "source_method": "manual",
-    "overridden": true
+    "overridden": true,
+    "walk": {
+      "detail_url": "/council/whats-on/",
+      "detail_text": "^(?!PRIVATE).*Meeting of Limerick City and County Council",
+      "paginate": "prev",
+      "max_listing_pages": 36
+    }
   },
   {
     "public_body_id": 1497,
     "municipal_district": null,
     "minutes_page_url": "https://www.longfordcoco.ie/your-council/council-meetings/council%20meetings%20archive/2025-council-meetings/minutes/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1497,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.longfordcoco.ie/your-council/council-meetings/2026-meeting-agendas-and-minutes/2026-council-meetings/",
     "source_method": "manual",
     "overridden": true
   },
@@ -221,7 +234,13 @@
     "municipal_district": null,
     "minutes_page_url": "https://www.tipperarycoco.ie/your-council/category-minutes-meetings",
     "source_method": "manual",
-    "overridden": true
+    "overridden": true,
+    "walk": {
+      "detail_url": "/council-meeting-minutes-publication/",
+      "detail_text": "^(TCC\\b|[A-Za-z]+ Council Meeting\\b)",
+      "paginate": "next",
+      "max_listing_pages": 60
+    }
   },
   {
     "public_body_id": 1864,

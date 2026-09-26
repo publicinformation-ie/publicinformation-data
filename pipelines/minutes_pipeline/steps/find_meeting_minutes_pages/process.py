@@ -155,13 +155,17 @@ def override_sources(authorities, overrides):
         bid = rec.get("public_body_id")
         if bid is None:
             continue
-        records.append({
+        record = {
             "public_body_id": bid,
             "municipal_district": rec.get("municipal_district"),
             "minutes_page_url": rec["minutes_page_url"],
             "source_method": "override",
             "overridden": True,
-        })
+        }
+        # Optional per-source listing-walk config for find_minutes_files.
+        if rec.get("walk"):
+            record["walk"] = rec["walk"]
+        records.append(record)
     return records
 
 

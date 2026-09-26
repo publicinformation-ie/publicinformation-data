@@ -35,6 +35,7 @@ Locates the page(s) that publish meeting minutes for each authority — one per 
 | `minutes_page_url` | URL of the minutes page |
 | `source_method` | `"override"` or `"crawl"` |
 | `overridden` | `true` only on override records |
+| `walk` | Optional, override records only: listing-walk config passed through to `find_minutes_files` (`detail_url`, `detail_text`, `paginate`, `max_listing_pages`) |
 
 ## Notable files
 

@@ -142,6 +142,28 @@ def test_looks_like_minutes_rejects_public_notices():
         "https://x.ie/12-2024%20Minutes.pdf") is True
 
 
+def test_looks_like_minutes_ignores_folder_names_for_exclusion():
+    # Longford files 2026 minutes under ".../2026-meeting-agendas-and-minutes/":
+    # a folder name describes the folder, not the file.
+    folder = "/council-meetings/2026-meeting-agendas-and-minutes/2026-council-meetings/"
+    assert _looks_like_minutes("Minutes June Meeting of Longford County Council",
+                               folder + "minutes-june-meeting.pdf")
+    assert not _looks_like_minutes("Agenda June Meeting of Longford County Council",
+                                   folder + "agenda-june-meeting.pdf")
+    assert not _looks_like_minutes("June meeting", "/minutes/2026/agenda-june.pdf")
+    # Inside such a folder a neutral name (Wicklow files agendas and
+    # transcripts as "Ordinary Meeting 11 January 2021") must say minutes itself.
+    assert not _looks_like_minutes("Ordinary Meeting 11 January 2021",
+                                   "/Minutes-Agendas/2021/Ordinary Meeting 11 January 2021.pdf")
+
+
+def test_looks_like_minutes_rejects_transcripts():
+    # Wicklow publishes verbatim transcripts beside the minutes of the same
+    # meetings; keeping both would double-count every motion downstream.
+    assert not _looks_like_minutes("Transcript Ordinary meeting 1st March 2021",
+                                   "/Minutes-Agendas/2021/Transcript Ordinary meeting 1st March 2021.pdf")
+
+
 def test_pending_sources_skips_already_collected_pages(make_writer):
     writer = make_writer(STEP_NAME)
     writer.results = [
@@ -317,3 +339,104 @@ def test_collect_minutes_links_pdf_name_in_plain_query_param():
         )
     assert len(records) == 1
     assert records[0]["meeting_date"] == "2025-05-12"
+
+
+# --- opt-in listing walk (override "walk" config) ---------------------------
+
+_LISTING = "https://www.limerick.ie/council/meetings"
+_WALK = {
+    "detail_url": r"/whats-on/",
+    "detail_text": r"^(?!PRIVATE).*Meeting of Limerick City and County Council",
+    "paginate": "prev",
+    "max_listing_pages": 10,
+}
+
+
+def _html(*anchors):
+    return "<html><body>" + "".join(anchors) + "</body></html>"
+
+
+def _walk_source(walk=_WALK):
+    return {"public_body_id": 1486, "municipal_district": None,
+            "minutes_page_url": _LISTING, "walk": walk}
+
+
+def _run_walk(html_by_url, source):
+    fetched = []
+
+    def fake_fetch(method, url, allow_redirects=True):
+        fetched.append(url)
+        return SimpleNamespace(text=html_by_url[url], url=url, headers={})
+
+    with mock.patch("steps.find_minutes_files.process.fetch", side_effect=fake_fetch):
+        records = collect_minutes_links(source, source["minutes_page_url"],
+                                        excluded_out=[])
+    return records, fetched
+
+
+def test_walk_collects_minutes_from_matching_detail_pages_only():
+    # The MD detail page is absent from the map: fetching it would KeyError.
+    html = {
+        _LISTING: _html(
+            '<a href="/whats-on/full-meeting-1">Full Meeting of Limerick City and County Council</a>',
+            '<a href="/whats-on/md-meeting-1">Monthly Meeting of Municipal District of Adare</a>',
+            '<a href="/whats-on/private-1">PRIVATE: Briefing for the Elected Members of Limerick City and County Council</a>',
+            '<a href="/about/meeting-of-limerick-city-and-county-council">Meeting of Limerick City and County Council</a>',
+        ),
+        "https://www.limerick.ie/whats-on/full-meeting-1": _html(
+            '<a href="/files/draft-minutes-full.pdf">Draft Minutes - Ordinary Meeting of Limerick City and County Council - 12 May 2026</a>',
+            '<a href="/files/replies.pdf">Replies to Questions - Full Meeting of Limerick City and County Council</a>',
+            '<a href="/files/agenda.pdf">Agenda - Full Meeting</a>',
+        ),
+    }
+    records, fetched = _run_walk(html, _walk_source())
+    assert [r["file_url"] for r in records] == [
+        "https://www.limerick.ie/files/draft-minutes-full.pdf"]
+    assert records[0]["meeting_date"] == "2026-05-12"
+    assert records[0]["minutes_page_url"] == _LISTING
+    assert fetched == [_LISTING, "https://www.limerick.ie/whats-on/full-meeting-1"]
+
+
+def test_walk_follows_pagination_in_configured_direction_only():
+    # "next" leads into future months (absent from the map); only "prev" is followed.
+    html = {
+        _LISTING: _html('<a rel="prev" href="/council/meetings/202605">Previous</a>',
+                        '<a rel="next" href="/council/meetings/202607">Next</a>'),
+        "https://www.limerick.ie/council/meetings/202605": _html(
+            '<a href="/whats-on/full-meeting-may">Meeting of Limerick City and County Council</a>'),
+        "https://www.limerick.ie/whats-on/full-meeting-may": _html(
+            '<a href="/files/minutes-may.pdf">Minutes - Meeting of Limerick City and County Council</a>'),
+    }
+    records, _ = _run_walk(html, _walk_source())
+    assert [r["file_url"] for r in records] == ["https://www.limerick.ie/files/minutes-may.pdf"]
+
+
+def test_walk_stops_after_max_listing_pages():
+    class EndlessListings(dict):
+        def __missing__(self, url):
+            n = int(url.rsplit("/", 1)[1])
+            return _html(f'<a rel="prev" href="/council/meetings/{n + 1}">Previous</a>')
+
+    html = EndlessListings({_LISTING: _html('<a rel="prev" href="/council/meetings/1">Previous</a>')})
+    _, fetched = _run_walk(html, _walk_source({**_WALK, "max_listing_pages": 3}))
+    assert len(fetched) == 3
+
+
+def test_walk_ignores_detail_links_on_other_hosts():
+    html = {_LISTING: _html(
+        '<a href="https://evil.example.com/whats-on/x">Meeting of Limerick City and County Council</a>')}
+    records, fetched = _run_walk(html, _walk_source())
+    assert records == [] and fetched == [_LISTING]
+
+
+def test_walk_dedupes_file_urls_across_detail_pages():
+    minutes = '<a href="/files/minutes-jan.pdf">Minutes - Meeting of Limerick City and County Council</a>'
+    html = {
+        _LISTING: _html(
+            '<a href="/whats-on/a">Meeting of Limerick City and County Council</a>',
+            '<a href="/whats-on/b">Special Meeting of Limerick City and County Council</a>'),
+        "https://www.limerick.ie/whats-on/a": _html(minutes),
+        "https://www.limerick.ie/whats-on/b": _html(minutes),
+    }
+    records, _ = _run_walk(html, _walk_source())
+    assert len(records) == 1
