@@ -27,6 +27,7 @@ def test_root_url():
 def test_listing_kind_directory_and_social():
     assert listing_kind("https://www.solocheck.ie/Irish-Company/Orliven-Limited-123") == "directory"
     assert listing_kind("https://www.vision-net.ie/Company-Info/X") == "directory"
+    assert listing_kind("https://publicinformation.ie/bodies/orliven-ltd/") == "directory"
     assert listing_kind("https://ie.linkedin.com/company/x") == "social"
     assert listing_kind("https://en.wikipedia.org/wiki/ESB") == "social"
     assert listing_kind("https://www.esb.ie/") is None

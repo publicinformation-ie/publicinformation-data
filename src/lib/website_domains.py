@@ -15,7 +15,7 @@ DIRECTORY_DOMAINS = frozenset({
     "globaldatabase.com", "dnb.com", "northdata.com", "zoominfo.com",
     "crunchbase.com", "bloomberg.com", "rocketreach.co", "companieshouse.id",
     "irishcompanies.ie", "companyhub.ie", "infobel.com", "cylex.ie",
-    "goldenpages.ie",
+    "goldenpages.ie", "publicinformation.ie", "constructiondirectory.ie",
 })
 
 SOCIAL_DOMAINS = frozenset({
