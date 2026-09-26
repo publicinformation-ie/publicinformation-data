@@ -5,6 +5,7 @@ Run from the repo root:
     uv run python pipelines/cso_pipeline/experiments/2026-09-26-website-resolution/run_experiment.py --approach seed_only
     uv run python .../run_experiment.py --approach all --judge ollama:gemma4:latest
 Paid approaches (haiku, apify, haiku_then_apify) need ANTHROPIC_API_KEY / APIFY_TOKEN.
+--haiku-source cc swaps the Haiku API tier for Claude Code subagent answers (see haiku_cc_bridge.py).
 Raw responses are cached under pipelines/cso_pipeline/cache/ and never re-bought.
 """
 import argparse
@@ -36,6 +37,8 @@ GOV_IE = _CSO / "steps" / "match_gov_urls" / "output.json"
 RESOLVED = _CSO / "steps" / "resolve_website_urls" / "output.json"
 FOIGOVIE = _REPO / "pipelines" / "foigovie_pipeline" / "steps" / "apply_overrides" / "output.json"
 APPROACHES = ["seed_only", "haiku", "apify", "haiku_then_apify"]
+EXCHANGE = CACHE_DIR / "haiku_cc_exchange"
+CC_JUDGE = "haiku-cc"  # judge backend label for subagent verdicts; never calls an API
 _SETTLED = OWN_STATUSES | {"no_own_site", "defunct"}
 
 
@@ -46,11 +49,46 @@ def load_approach(name):
     return mod
 
 
-def make_ctx(cache_dir, *, gov_ie, foigovie, prior, refresh):
+def make_ctx(cache_dir, *, gov_ie, foigovie, prior, refresh, haiku_source="api"):
     return {"cache_dir": Path(cache_dir), "gov_ie": gov_ie, "foigovie": foigovie, "prior": prior,
-            "refresh": refresh,
+            "refresh": refresh, "haiku_source": haiku_source,
             "spend": {"apify_paid_queries": 0, "haiku_paid_calls": 0, "haiku_searches": 0,
                       "haiku_input_tokens": 0, "haiku_output_tokens": 0}}
+
+
+def export_search_prompts(bodies, out_dir):
+    cc = load_approach("haiku_cc")
+    out_dir = Path(out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    for b in bodies:
+        spec = {"public_body_id": b["public_body_id"], "name": b.get("name"),
+                "key": cc.search_key(b), "prompt": cc.build_search_prompt(b)}
+        (out_dir / f"{b['public_body_id']}.json").write_text(
+            json.dumps(spec, ensure_ascii=False, indent=1), encoding="utf-8")
+    return len(bodies)
+
+
+def make_judge_recorder(out_dir, backend):
+    """A judge api_fn that saves each uncached prompt for a subagent, then fails closed.
+
+    judge() doesn't cache a verdict when api_fn raises, so the recorder's
+    'unsure' never reaches the judge cache.
+    """
+    out_dir = Path(out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    recorded: list[str] = []
+
+    def record(prompt):
+        key = ResponseCache.key("judge", backend, prompt)
+        if key not in recorded:
+            recorded.append(key)
+            (out_dir / f"{key}.json").write_text(
+                json.dumps({"key": key, "backend": backend, "prompt": prompt}, ensure_ascii=False, indent=1),
+                encoding="utf-8")
+        raise RuntimeError("judge prompt recorded for a Claude Code subagent")
+
+    record.recorded = recorded
+    return record
 
 
 def _merge(parts):
@@ -78,7 +116,8 @@ def _row(body, decision):
 
 
 def evaluate(bodies, approach_names, ctx, probe_fn, judge_fn, parent_lookup):
-    mods = {n: load_approach(n) for n in ("seed_only", "haiku", "apify")}
+    mods = {n: load_approach(n) for n in ("seed_only", "apify")}
+    mods["haiku"] = load_approach("haiku_cc" if ctx.get("haiku_source") == "cc" else "haiku")
     results = {}
     for name in approach_names:
         if name == "haiku_then_apify":
@@ -126,6 +165,12 @@ def main():
     ap.add_argument("--no-fallback", action="store_true", help="disable Haiku escalation of unsure")
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--refresh-search", action="store_true")
+    ap.add_argument("--haiku-source", choices=["api", "cc"], default="api",
+                    help="cc = Haiku search answers from Claude Code subagents (haiku_cc_bridge.py)")
+    ap.add_argument("--export-haiku-prompts", action="store_true",
+                    help="write the gold bodies' Haiku search prompts to the cc exchange dir, then exit")
+    ap.add_argument("--record-judge-prompts", action="store_true",
+                    help=f"with --judge {CC_JUDGE}: save uncached judge prompts for subagents; writes no results")
     args = ap.parse_args()
 
     gold = {r["public_body_id"]: r for r in load_gold(GOLD) if r["gold_status"] != "unknown"}
@@ -144,26 +189,40 @@ def main():
     foigovie = {r["public_body_id"]: r["foigovie_website"] for r in _load(FOIGOVIE)
                 if r.get("public_body_id") and r.get("foigovie_website")}
     # gold bodies must not see their own existing URL as "prior", or the resolved-sample precision check is circular
-    ctx = make_ctx(CACHE_DIR, gov_ie=gov_ie, foigovie=foigovie, prior=prior, refresh=args.refresh_search)
+    ctx = make_ctx(CACHE_DIR, gov_ie=gov_ie, foigovie=foigovie, prior=prior, refresh=args.refresh_search,
+                   haiku_source=args.haiku_source)
+    if args.export_haiku_prompts:
+        n = export_search_prompts(bodies, EXCHANGE / "search_prompts")
+        print(f"wrote {n} search prompts to {EXCHANGE / 'search_prompts'}")
+        return
 
     probe_fn = partial(probe_url, cache=ResponseCache(CACHE_DIR / "probe"))
     judge_cache = ResponseCache(CACHE_DIR / "judge")
-    judge_fn = partial(judge_cascade, primary=args.judge,
-                       fallback=None if args.no_fallback or args.judge == "haiku" else "haiku",
-                       cache=judge_cache)
+    primary_fn = None
+    if args.record_judge_prompts:
+        if args.judge != CC_JUDGE:
+            ap.error(f"--record-judge-prompts needs --judge {CC_JUDGE}")
+        primary_fn = make_judge_recorder(EXCHANGE / "judge_prompts", CC_JUDGE)
+    fallback = None if args.no_fallback or args.judge in ("haiku", CC_JUDGE) else "haiku"
+    judge_fn = partial(judge_cascade, primary=args.judge, fallback=fallback,
+                       primary_fn=primary_fn, cache=judge_cache)
 
     names = APPROACHES if args.approach == "all" else [args.approach]
     out = evaluate(bodies, names, ctx, probe_fn, judge_fn, parent_lookup)
+    if primary_fn is not None:
+        print(f"recorded {len(primary_fn.recorded)} new judge prompts in {EXCHANGE / 'judge_prompts'}")
+        return
     RESULTS.mkdir(exist_ok=True)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S")
     slug = args.judge.replace(":", "-").replace("/", "-")
     for name, rows in out.items():
+        label = name.replace("haiku", "haiku_cc") if args.haiku_source == "cc" else name
         summary = score(rows)
-        path = RESULTS / f"{name}__{slug}__{stamp}.json"
-        path.write_text(json.dumps({"approach": name, "judge": args.judge, "summary": summary,
+        path = RESULTS / f"{label}__{slug}__{stamp}.json"
+        path.write_text(json.dumps({"approach": label, "judge": args.judge, "summary": summary,
                                     "spend": ctx["spend"], "rows": rows},
                                    ensure_ascii=False, indent=1), encoding="utf-8")
-        print(f"{name}: {json.dumps(summary)}  -> {path.name}")
+        print(f"{label}: {json.dumps(summary)}  -> {path.name}")
     print(f"spend (cumulative this run): {json.dumps(ctx['spend'])}")
 
 

@@ -45,3 +45,80 @@ def test_foigovie_bare_host_is_normalised(tmp_path):
     seed = runner.load_approach("seed_only")
     got = seed.gather({"public_body_id": 1, "name": "HSA Test"}, ctx)
     assert got["candidates"][0] == {"url": "https://www.hsa.ie/", "origin": "foigovie"}
+
+
+import json as _json
+
+from lib.response_cache import ResponseCache
+from lib.website_judge import judge_cascade
+
+_bspec = importlib.util.spec_from_file_location("wr_haiku_cc_bridge_t", _EXP / "haiku_cc_bridge.py")
+bridge = importlib.util.module_from_spec(_bspec)
+_bspec.loader.exec_module(bridge)
+
+_HSA = {"public_body_id": 1, "name": "Health and Safety Authority", "parent_id": None,
+        "parent_name": None, "gold_status": "own_site", "gold_url": "https://www.hsa.ie/"}
+_FINAL = ('{"own_site": "https://www.hsa.ie/", "own_site_evidence_url": null, "parent_site": null, '
+          '"has_own_site": "yes", "defunct": "no", "defunct_source": null, "notes": "n"}')
+
+
+def _probe(url):
+    ok = "hsa.ie" in url
+    return {"url": url, "final_url": url, "outcome": "ok" if ok else "nxdomain",
+            "evidence": {"title": "HSA"} if ok else None}
+
+
+def _judge(body, url, evidence):
+    return {"label": "own_site", "rationale": "", "judge": "fake"}
+
+
+def _seed_cc_cache(tmp_path, body, queries=("hsa ireland",)):
+    cc = runner.load_approach("haiku_cc")
+    answer = {"public_body_id": body["public_body_id"], "queries": list(queries),
+              "results_seen": [{"url": "https://www.hsa.ie/eng/", "title": "HSA"}], "final_text": _FINAL}
+    ResponseCache(tmp_path / "haiku_cc").put(cc.search_key(body), bridge.answer_to_raw("p", answer))
+
+
+def test_haiku_cc_source_uses_ingested_answer(tmp_path):
+    _seed_cc_cache(tmp_path, _HSA)
+    ctx = runner.make_ctx(tmp_path, gov_ie={}, foigovie={}, prior={}, refresh=False, haiku_source="cc")
+    out = runner.evaluate([_HSA], ["haiku"], ctx, _probe, _judge, parent_lookup={})
+    row = out["haiku"][0]
+    assert row["website_status"] == "own_site"
+    assert "hsa.ie" in row["official_website_url"]
+
+
+def test_haiku_cc_missing_answer_is_pending_not_not_found(tmp_path):
+    ctx = runner.make_ctx(tmp_path, gov_ie={}, foigovie={}, prior={}, refresh=False, haiku_source="cc")
+    def dead(url):  # seed domain guesses must not resolve, or the body settles without Haiku
+        return {"url": url, "final_url": url, "outcome": "nxdomain", "evidence": None}
+
+    out = runner.evaluate([_HSA], ["haiku"], ctx, dead, _judge, parent_lookup={})
+    assert out["haiku"][0]["website_status"] == "pending"
+
+
+def test_haiku_cc_searches_counted_once_across_approaches(tmp_path):
+    _seed_cc_cache(tmp_path, _HSA, queries=("a", "b"))
+    ctx = runner.make_ctx(tmp_path, gov_ie={}, foigovie={}, prior={}, refresh=False, haiku_source="cc")
+    runner.evaluate([_HSA], ["haiku", "haiku_then_apify"], ctx, _probe, _judge, parent_lookup={})
+    assert ctx["spend"]["haiku_searches"] == 2 and ctx["spend"]["haiku_paid_calls"] == 0
+
+
+def test_export_search_prompts_keys_match_approach(tmp_path):
+    assert runner.export_search_prompts([_HSA], tmp_path) == 1
+    spec = _json.loads((tmp_path / "1.json").read_text(encoding="utf-8"))
+    assert spec["key"] == runner.load_approach("haiku_cc").search_key(_HSA)
+    assert "Health and Safety Authority" in spec["prompt"]
+
+
+def test_judge_recorder_writes_prompt_and_does_not_poison_cache(tmp_path):
+    rec = runner.make_judge_recorder(tmp_path / "jp", runner.CC_JUDGE)
+    cache = ResponseCache(tmp_path / "judge")
+    r = judge_cascade({"name": "HSA"}, "https://www.hsa.ie/", {"title": "HSA"},
+                      primary=runner.CC_JUDGE, fallback=None, primary_fn=rec, cache=cache)
+    assert r["label"] == "unsure"
+    assert len(rec.recorded) == 1
+    spec = _json.loads((tmp_path / "jp" / f"{rec.recorded[0]}.json").read_text(encoding="utf-8"))
+    assert spec["backend"] == "haiku-cc"
+    assert spec["key"] == ResponseCache.key("judge", "haiku-cc", spec["prompt"])
+    assert cache.get(spec["key"]) is None
