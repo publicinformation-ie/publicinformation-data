@@ -2,8 +2,8 @@
 
 Given an Irish public body's name and a candidate website URL, asks an LLM whether
 the URL is actually that body's official website (not a similarly-named different
-entity and not an unrelated organisation). Used by `resolve_website_urls` to reject
-false-positive URLs before they are written to `official_website_url`.
+entity and not an unrelated organisation). Name+URL-only verifier; the CSO website
+pipeline uses the evidence-based `lib.website_judge` instead.
 
 Dependency-light: the default backend is the Opencode OpenAI-compatible gateway via
 plain ``requests`` (no ``openai`` SDK required), mirroring ``eval/judge.py``. It is
