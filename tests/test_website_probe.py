@@ -70,6 +70,14 @@ def test_404_is_dead(requests_mock):
     assert r["outcome"] == "dead" and r["status_code"] == 404
 
 
+def test_non_html_response_is_dead_without_parsing(requests_mock):
+    requests_mock.get("https://pdf.ie/brochure.pdf", content=b"%PDF-1.4\n&#8d<\xff\xfe binary",
+                      headers={"Content-Type": "application/pdf"})
+    r = probe_url("https://pdf.ie/brochure.pdf", resolver=resolver_for("pdf.ie"))
+    assert r["outcome"] == "dead" and r["evidence"] is None
+    assert r["error"] == "non_html: application/pdf"
+
+
 def test_connection_error_is_dead(requests_mock):
     import requests
     requests_mock.get("https://c.ie/", exc=requests.exceptions.ConnectionError("refused"))
