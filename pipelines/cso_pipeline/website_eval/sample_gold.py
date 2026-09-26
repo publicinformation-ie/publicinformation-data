@@ -76,11 +76,13 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--out", default=str(DEFAULT_OUT))
     ap.add_argument("--overwrite", action="store_true")
+    ap.add_argument("--n-unresolved", type=int, default=80)
+    ap.add_argument("--n-resolved", type=int, default=20)
     args = ap.parse_args()
     bodies = _load(RESOLVE_OUTPUT)
     foigovie = {r["public_body_id"]: r["foigovie_website"] for r in _load(FOIGOVIE_OUTPUT)
                 if r.get("public_body_id") and r.get("foigovie_website")}
-    rows = sample(bodies, foigovie)
+    rows = sample(bodies, foigovie, n_unresolved=args.n_unresolved, n_resolved=args.n_resolved)
     write_csv(rows, args.out, args.overwrite)
     print(f"Wrote {len(rows)} rows to {args.out}")
 
