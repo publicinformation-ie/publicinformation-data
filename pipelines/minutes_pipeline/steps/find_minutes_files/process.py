@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 import argparse
+import base64
+import binascii
 import re
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urljoin, urlparse
+from urllib.parse import parse_qs, urljoin, urlparse
 
 from bs4 import BeautifulSoup
 
@@ -110,6 +112,38 @@ def _looks_like_minutes(link_text, href):
     return False
 
 
+def _decode_b64(value):
+    """`value` base64-decoded to text, or None when it isn't base64 text."""
+    try:
+        return base64.b64decode(value + "=" * (-len(value) % 4),
+                                validate=True).decode("utf-8")
+    except (binascii.Error, UnicodeDecodeError):
+        return None
+
+
+def _pdf_name(url):
+    """The PDF file name `url` points at, or None. Usually the path suffix,
+    but file-manager download links carry the file name in a query param,
+    plain (?file=Minutes.pdf) or base64-encoded (Galway City's
+    ?r=/download&path=<base64>), under a path with no .pdf suffix."""
+    parsed = urlparse(url)
+    if parsed.path.lower().endswith(_PDF_EXT):
+        return parsed.path
+    for values in parse_qs(parsed.query).values():
+        for value in values:
+            for candidate in (value, _decode_b64(value)):
+                if candidate and candidate.lower().endswith(_PDF_EXT):
+                    return candidate
+    return None
+
+
+def _is_html(response):
+    """False when the server says the body is not HTML (a PDF or other file
+    behind a year-looking link). A missing Content-Type is treated as HTML."""
+    content_type = response.headers.get("Content-Type", "")
+    return not content_type or "html" in content_type.lower()
+
+
 def _exclusion_reason(link_text, file_url):
     """Return (error_type, message) when a would-be-kept minutes link is
     out of scope, else None. Fail-open: links with no archive/year signal
@@ -142,6 +176,8 @@ def collect_minutes_links(source, base_url, excluded_out=None):
             return
         visited.add(url)
         response = fetch("GET", url, allow_redirects=True)
+        if not _is_html(response):
+            return
         soup = BeautifulSoup(response.text, "html.parser")
         for link in soup.find_all("a", href=True):
             href = str(link["href"])
@@ -149,10 +185,16 @@ def collect_minutes_links(source, base_url, excluded_out=None):
             if not is_safe_url(full):
                 continue
             text = link.get_text(strip=True)
-            path = urlparse(full).path.lower()
-            if path.endswith(_PDF_EXT):
+            pdf_name = _pdf_name(full)
+            if pdf_name:
+                # A name recovered from the query string is the only readable
+                # signal (the href itself may be base64); a suffix-path link
+                # keeps classifying on the raw href/URL as before.
+                named_url = full
+                if not urlparse(full).path.lower().endswith(_PDF_EXT):
+                    href = named_url = pdf_name
                 if _looks_like_minutes(text, href):
-                    reason = _exclusion_reason(text, full)
+                    reason = _exclusion_reason(text, named_url)
                     if reason is None or excluded_out is None:
                         # No out-list means no log sink: fail open and keep
                         # the record rather than silently dropping it.
@@ -161,7 +203,7 @@ def collect_minutes_links(source, base_url, excluded_out=None):
                             "municipal_district": source.get("municipal_district"),
                             "minutes_page_url": source["minutes_page_url"],
                             "file_url": full,
-                            "meeting_date": parse_meeting_date(text, full),
+                            "meeting_date": parse_meeting_date(text, named_url),
                             "link_text": text,
                         })
                     else:

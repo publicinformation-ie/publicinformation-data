@@ -48,7 +48,7 @@ def test_collect_minutes_links_collects_pdfs_and_follows_year_links():
     }
 
     def fake_fetch(method, url, allow_redirects=True):
-        return SimpleNamespace(text=html_by_url[url], url=url)
+        return SimpleNamespace(text=html_by_url[url], url=url, headers={})
 
     with mock.patch("steps.find_minutes_files.process.fetch", side_effect=fake_fetch):
         records = collect_minutes_links(
@@ -84,7 +84,7 @@ def test_collect_minutes_links_follows_descriptive_year_links():
     }
 
     def fake_fetch(method, url, allow_redirects=True):
-        return SimpleNamespace(text=html_by_url[url], url=url)
+        return SimpleNamespace(text=html_by_url[url], url=url, headers={})
 
     with mock.patch("steps.find_minutes_files.process.fetch", side_effect=fake_fetch):
         records = collect_minutes_links(
@@ -119,7 +119,7 @@ def test_collect_minutes_links_follows_year_suffix_descriptive_links():
     }
 
     def fake_fetch(method, url, allow_redirects=True):
-        return SimpleNamespace(text=html_by_url[url], url=url)
+        return SimpleNamespace(text=html_by_url[url], url=url, headers={})
 
     with mock.patch("steps.find_minutes_files.process.fetch", side_effect=fake_fetch):
         records = collect_minutes_links(
@@ -209,7 +209,7 @@ def test_collect_minutes_links_excludes_archive_and_historical():
     )
 
     def fake_fetch(method, url, allow_redirects=True):
-        return SimpleNamespace(text=page, url=url)
+        return SimpleNamespace(text=page, url=url, headers={})
 
     excluded = []
     with mock.patch("steps.find_minutes_files.process.fetch", side_effect=fake_fetch):
@@ -232,7 +232,7 @@ def test_process_logs_exclusions_to_errors_json(tmp_path, make_writer):
     )
 
     def fake_fetch(method, url, allow_redirects=True):
-        return SimpleNamespace(text=page, url=url)
+        return SimpleNamespace(text=page, url=url, headers={})
 
     with mock.patch("steps.find_minutes_files.process.fetch", side_effect=fake_fetch):
         writer = make_writer(STEP_NAME)
@@ -245,3 +245,75 @@ def test_process_logs_exclusions_to_errors_json(tmp_path, make_writer):
     assert len(errors) == 1
     assert errors[0]["error_type"] == "ArchivedDocument"
     assert errors[0]["context"]["file_url"] == ARCHIVE_URL
+
+def _b64(s):
+    import base64
+    return base64.b64encode(s.encode()).decode()
+
+
+def test_collect_minutes_links_skips_non_html_responses():
+    # A year-looking link that serves a binary file (no .pdf suffix) must not
+    # be parsed as HTML — html.parser raises ValueError on binary charrefs.
+    page = ('<html><body>'
+            '<a href="/download?id=7">Council Meetings 2024</a>'
+            '</body></html>')
+    responses = {
+        "https://www.example.ie/minutes": SimpleNamespace(
+            text=page, url="https://www.example.ie/minutes",
+            headers={"Content-Type": "text/html; charset=utf-8"}),
+        "https://www.example.ie/download?id=7": SimpleNamespace(
+            text="&#0C\x00\xff binary", url="https://www.example.ie/download?id=7",
+            headers={"Content-Type": "application/pdf"}),
+    }
+
+    def fake_fetch(method, url, allow_redirects=True):
+        return responses[url]
+
+    with mock.patch("steps.find_minutes_files.process.fetch", side_effect=fake_fetch):
+        records = collect_minutes_links(
+            {"public_body_id": 1, "minutes_page_url": "https://www.example.ie/minutes"},
+            "https://www.example.ie/minutes",
+        )
+    assert records == []
+
+
+def test_collect_minutes_links_pdf_name_in_base64_query_param():
+    # Galway City's file manager: ?r=/download&path=<base64 of the file path>.
+    # The URL path has no .pdf suffix; the filename lives in the query.
+    minutes = _b64("/2025/6. June/Adopted Minutes June Plenary Meeting 9 June 2025.pdf")
+    agenda = _b64("/2025/6. June/Agenda June Plenary Meeting 9th June 2025.pdf")
+    base = "https://files.example.ie/gccfiles/?r=/download&path="
+    page = ('<html><body>'
+            f'<a href="{base}{minutes}">09-06-2025 Adopted Minutes June Meeting</a>'
+            f'<a href="{base}{agenda}">09-06-2025 Agenda - Plenary Meeting June Meeting</a>'
+            '</body></html>')
+
+    def fake_fetch(method, url, allow_redirects=True):
+        assert url == "https://www.example.ie/minutes", f"should not fetch {url}"
+        return SimpleNamespace(text=page, url=url, headers={})
+
+    with mock.patch("steps.find_minutes_files.process.fetch", side_effect=fake_fetch):
+        records = collect_minutes_links(
+            {"public_body_id": 1340, "minutes_page_url": "https://www.example.ie/minutes"},
+            "https://www.example.ie/minutes",
+        )
+    assert [r["file_url"] for r in records] == [base + minutes]
+    assert records[0]["meeting_date"] == "2025-06-09"
+
+
+def test_collect_minutes_links_pdf_name_in_plain_query_param():
+    page = ('<html><body>'
+            '<a href="/getfile.aspx?file=Minutes%20of%20Meeting%2012%20May%202025.pdf">'
+            'May meeting</a>'
+            '</body></html>')
+
+    def fake_fetch(method, url, allow_redirects=True):
+        return SimpleNamespace(text=page, url=url, headers={})
+
+    with mock.patch("steps.find_minutes_files.process.fetch", side_effect=fake_fetch):
+        records = collect_minutes_links(
+            {"public_body_id": 1, "minutes_page_url": "https://www.example.ie/minutes"},
+            "https://www.example.ie/minutes",
+        )
+    assert len(records) == 1
+    assert records[0]["meeting_date"] == "2025-05-12"
