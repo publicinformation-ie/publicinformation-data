@@ -3,34 +3,13 @@ import argparse
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urljoin
-
-from bs4 import BeautifulSoup
 
 from lib.cli_utils import add_common_args, filter_by_public_body
 from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
-from lib.http_utils import fetch, is_safe_url, validate_url_or_raise
+from lib.http_utils import fetch, is_safe_url
+from lib.website_probe import STUB_MARKER, resolve_stub_url  # noqa: F401  (re-exported for tests)
 
 STEP_NAME = "resolve_website_urls"
-STUB_MARKER = "There is a separate website for"
-
-
-def resolve_stub_url(html, original_url):
-    """Return external URL if page is a gov.ie stub portal, else original_url."""
-    # Validate original URL
-    validate_url_or_raise(original_url, context="resolve_stub_url")
-
-    if STUB_MARKER not in html:
-        return original_url
-    soup = BeautifulSoup(html, "html.parser")
-    for text_node in soup.find_all(string=lambda t: t and STUB_MARKER in t):
-        next_a = text_node.find_next("a", href=True)
-        if next_a:
-            resolved = urljoin(original_url, next_a["href"])
-            # Validate resolved URL
-            if is_safe_url(resolved):
-                return resolved
-    return original_url
 
 
 def pick_best_url(body: dict) -> str | None:
