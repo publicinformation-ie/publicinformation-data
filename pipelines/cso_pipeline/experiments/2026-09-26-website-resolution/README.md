@@ -90,6 +90,18 @@ non-HTML bodies were parsed as HTML and crashed the run. Fixed in `lib/website_p
     local-model wait.
   - no_own_site recall stays ≤ 0.14 for every approach (1 of 7). No cascade identifies
     "has no website" reliably; Plan 2 must not rely on it for that.
-  - Before Plan 2 depends on either Haiku result, confirm it with a ≤5-body real-API spot check
-    (`--haiku-source api --limit 5`), because of caveats 1, 2 and 4.
   The verify/decide/judge stack in `lib/` is validated end-to-end on live data.
+
+### Final decision (2026-09-27) — supersedes the apify | deepseek decision above
+- **No Anthropic API, ever.** Haiku runs only as Claude Code `haiku-oracle` subagents through
+  the exchange-file bridge. The subagent path is therefore the production path, not a proxy,
+  so no real-API spot check is needed; caveats 1, 2 and 4 describe the production system itself.
+- **Cascade: `haiku_then_apify`.** Seed → Haiku search (subagents) → Apify on the residue.
+  Haiku `no_own_site` / not_found residue goes on to Apify.
+- **Judge: `deepseek-r1:8b` first, `haiku-cc` only on `unsure`.** deepseek runs locally and
+  unattended, and routing only its `unsure` verdicts to subagents keeps plan-quota use to a
+  small share of all judge prompts. The all-haiku-cc judge row (0.61 / 0.78 / 0.09) is the reference
+  this hybrid is compared against on the gold set.
+- **Targets reset to the measured baseline.** No cascade meets spec §9 (≥ 90% coverage /
+  ≥ 97% precision). Plan 2's gold-set acceptance is "no regression against the best measured
+  row", plus the spec's structural criteria. Improving precision is a follow-up.
