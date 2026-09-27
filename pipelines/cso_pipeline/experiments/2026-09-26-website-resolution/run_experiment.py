@@ -4,8 +4,8 @@
 Run from the repo root:
     uv run python pipelines/cso_pipeline/experiments/2026-09-26-website-resolution/run_experiment.py --approach seed_only
     uv run python .../run_experiment.py --approach all --judge ollama:gemma4:latest
-Paid approaches (haiku, apify, haiku_then_apify) need ANTHROPIC_API_KEY / APIFY_TOKEN.
---haiku-source cc swaps the Haiku API tier for Claude Code subagent answers (see pipelines/cso_pipeline/haiku_cc.py).
+Paid approaches (apify, haiku_then_apify) need APIFY_TOKEN.
+Haiku answers come only from Claude Code subagents via pipelines/cso_pipeline/haiku_cc.py.
 Raw responses are cached under pipelines/cso_pipeline/cache/ and never re-bought.
 """
 import argparse
@@ -49,9 +49,9 @@ def load_approach(name):
     return mod
 
 
-def make_ctx(cache_dir, *, gov_ie, foigovie, prior, refresh, haiku_source="api"):
+def make_ctx(cache_dir, *, gov_ie, foigovie, prior, refresh):
     return {"cache_dir": Path(cache_dir), "gov_ie": gov_ie, "foigovie": foigovie, "prior": prior,
-            "refresh": refresh, "haiku_source": haiku_source,
+            "refresh": refresh,
             "spend": {"apify_paid_queries": 0, "haiku_paid_calls": 0, "haiku_searches": 0,
                       "haiku_input_tokens": 0, "haiku_output_tokens": 0}}
 
@@ -88,7 +88,7 @@ def _row(body, decision):
 
 def evaluate(bodies, approach_names, ctx, probe_fn, judge_fn, parent_lookup):
     mods = {n: load_approach(n) for n in ("seed_only", "apify")}
-    mods["haiku"] = load_approach("haiku_cc" if ctx.get("haiku_source") == "cc" else "haiku")
+    mods["haiku"] = load_approach("haiku_cc")
     results = {}
     for name in approach_names:
         if name == "haiku_then_apify":
@@ -133,11 +133,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--approach", choices=APPROACHES + ["all"], required=True)
     ap.add_argument("--judge", default="ollama:gemma4:latest")
-    ap.add_argument("--no-fallback", action="store_true", help="disable Haiku escalation of unsure")
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--refresh-search", action="store_true")
-    ap.add_argument("--haiku-source", choices=["api", "cc"], default="api",
-                    help="cc = Haiku search answers from Claude Code subagents (haiku_cc_bridge.py)")
     ap.add_argument("--export-haiku-prompts", action="store_true",
                     help="write the gold bodies' Haiku search prompts to the cc exchange dir, then exit")
     ap.add_argument("--record-judge-prompts", action="store_true",
@@ -160,8 +157,7 @@ def main():
     foigovie = {r["public_body_id"]: r["foigovie_website"] for r in _load(FOIGOVIE)
                 if r.get("public_body_id") and r.get("foigovie_website")}
     # gold bodies must not see their own existing URL as "prior", or the resolved-sample precision check is circular
-    ctx = make_ctx(CACHE_DIR, gov_ie=gov_ie, foigovie=foigovie, prior=prior, refresh=args.refresh_search,
-                   haiku_source=args.haiku_source)
+    ctx = make_ctx(CACHE_DIR, gov_ie=gov_ie, foigovie=foigovie, prior=prior, refresh=args.refresh_search)
     if args.export_haiku_prompts:
         n = export_search_prompts(bodies, EXCHANGE / "search_prompts")
         print(f"wrote {n} search prompts to {EXCHANGE / 'search_prompts'}")
@@ -174,7 +170,7 @@ def main():
         if args.judge != CC_JUDGE:
             ap.error(f"--record-judge-prompts needs --judge {CC_JUDGE}")
         primary_fn = JudgePromptRecorder(EXCHANGE / "judge_prompts", CC_JUDGE)
-    fallback = None if args.no_fallback or args.judge in ("haiku", CC_JUDGE) else "haiku"
+    fallback = None
     judge_fn = partial(judge_cascade, primary=args.judge, fallback=fallback,
                        primary_fn=primary_fn, cache=judge_cache)
 
@@ -187,7 +183,7 @@ def main():
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S")
     slug = args.judge.replace(":", "-").replace("/", "-")
     for name, rows in out.items():
-        label = name.replace("haiku", "haiku_cc") if args.haiku_source == "cc" else name
+        label = name.replace("haiku", "haiku_cc")
         summary = score(rows)
         path = RESULTS / f"{label}__{slug}__{stamp}.json"
         path.write_text(json.dumps({"approach": label, "judge": args.judge, "summary": summary,

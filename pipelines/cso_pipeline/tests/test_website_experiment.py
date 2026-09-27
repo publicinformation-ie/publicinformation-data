@@ -79,7 +79,7 @@ def _seed_cc_cache(tmp_path, body, queries=("hsa ireland",)):
 
 def test_haiku_cc_source_uses_ingested_answer(tmp_path):
     _seed_cc_cache(tmp_path, _HSA)
-    ctx = runner.make_ctx(tmp_path, gov_ie={}, foigovie={}, prior={}, refresh=False, haiku_source="cc")
+    ctx = runner.make_ctx(tmp_path, gov_ie={}, foigovie={}, prior={}, refresh=False)
     out = runner.evaluate([_HSA], ["haiku"], ctx, _probe, _judge, parent_lookup={})
     row = out["haiku"][0]
     assert row["website_status"] == "own_site"
@@ -87,7 +87,7 @@ def test_haiku_cc_source_uses_ingested_answer(tmp_path):
 
 
 def test_haiku_cc_missing_answer_is_pending_not_not_found(tmp_path):
-    ctx = runner.make_ctx(tmp_path, gov_ie={}, foigovie={}, prior={}, refresh=False, haiku_source="cc")
+    ctx = runner.make_ctx(tmp_path, gov_ie={}, foigovie={}, prior={}, refresh=False)
     def dead(url):  # seed domain guesses must not resolve, or the body settles without Haiku
         return {"url": url, "final_url": url, "outcome": "nxdomain", "evidence": None}
 
@@ -97,7 +97,7 @@ def test_haiku_cc_missing_answer_is_pending_not_not_found(tmp_path):
 
 def test_haiku_cc_searches_counted_once_across_approaches(tmp_path):
     _seed_cc_cache(tmp_path, _HSA, queries=("a", "b"))
-    ctx = runner.make_ctx(tmp_path, gov_ie={}, foigovie={}, prior={}, refresh=False, haiku_source="cc")
+    ctx = runner.make_ctx(tmp_path, gov_ie={}, foigovie={}, prior={}, refresh=False)
     runner.evaluate([_HSA], ["haiku", "haiku_then_apify"], ctx, _probe, _judge, parent_lookup={})
     assert ctx["spend"]["haiku_searches"] == 2 and ctx["spend"]["haiku_paid_calls"] == 0
 

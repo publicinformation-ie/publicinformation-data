@@ -16,7 +16,6 @@ from lib.website_domains import listing_kind
 JUDGE_LABELS = {"own_site", "parent_site", "other_entity", "directory", "unsure"}
 DEFAULT_PRIMARY = "ollama:" + os.environ.get("WEBSITE_JUDGE_MODEL", "gemma4:latest")
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
-HAIKU_MODEL = "claude-haiku-4-5"
 _JSON_RE = re.compile(r"\{.*\}", re.DOTALL)
 
 
@@ -78,20 +77,10 @@ def _call_ollama(model: str, prompt: str) -> str:
     return resp.json()["message"]["content"]
 
 
-def _call_haiku(prompt: str) -> str:
-    import anthropic
-    client = anthropic.Anthropic()
-    msg = client.messages.create(model=HAIKU_MODEL, max_tokens=300, temperature=0,
-                                 messages=[{"role": "user", "content": prompt}])
-    return "".join(getattr(b, "text", "") for b in msg.content)
-
-
 def _call_backend(backend: str, prompt: str) -> str:
     if backend.startswith("ollama:"):
         return _call_ollama(backend.split(":", 1)[1], prompt)
-    if backend == "haiku":
-        return _call_haiku(prompt)
-    raise ValueError(f"unknown judge backend {backend!r}")
+    raise ValueError(f"backend {backend!r} has no built-in caller; pass api_fn")
 
 
 def judge(body, url, evidence, backend: str = DEFAULT_PRIMARY, *, api_fn=None,
@@ -120,7 +109,7 @@ def judge(body, url, evidence, backend: str = DEFAULT_PRIMARY, *, api_fn=None,
 
 
 def judge_cascade(body, url, evidence, *, primary: str = DEFAULT_PRIMARY,
-                  fallback: str | None = "haiku", primary_fn=None, fallback_fn=None,
+                  fallback: str | None = None, primary_fn=None, fallback_fn=None,
                   cache: ResponseCache | None = None) -> dict:
     first = judge(body, url, evidence, primary, api_fn=primary_fn, cache=cache)
     if first["label"] != "unsure" or not fallback or first["judge"] in ("rule", "none"):

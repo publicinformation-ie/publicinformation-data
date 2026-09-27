@@ -1,5 +1,4 @@
-from lib.haiku_search import fetch_raw, build_search_prompt
-from lib.response_cache import ResponseCache
+from lib.haiku_search import build_search_prompt
 from lib.website_candidates import interpret_haiku
 
 BODY = {"public_body_id": 1, "name": "Health and Safety Authority", "legal_status": "Agency",
@@ -63,39 +62,3 @@ def test_empty_raw():
     assert out["candidates"] == [] and out["search_count"] == 0
 
 
-class FakeMsg:
-    def __init__(self, payload):
-        self.payload = payload
-        self.stop_reason = payload["stop_reason"]
-        self.content = payload["content"]
-
-    def model_dump(self, mode="json"):
-        return self.payload
-
-
-class FakeClient:
-    def __init__(self, payloads):
-        self.payloads = list(payloads)
-        self.calls = 0
-        self.messages = self
-
-    def create(self, **kwargs):
-        self.calls += 1
-        assert kwargs["tools"][0]["type"] == "web_search_20250305"
-        return FakeMsg(self.payloads.pop(0))
-
-
-def test_fetch_raw_caches(tmp_path):
-    cache = ResponseCache(tmp_path)
-    client = FakeClient([response(GOOD_TEXT, [("https://www.hsa.ie/", "HSA")])])
-    raw, paid = fetch_raw(BODY, cache, client=client)
-    raw2, paid2 = fetch_raw(BODY, cache, client=client)
-    assert paid and not paid2 and client.calls == 1
-    assert raw2["responses"] == raw["responses"]
-
-
-def test_fetch_raw_continues_pause_turn(tmp_path):
-    client = FakeClient([response("", stop="pause_turn"), response(GOOD_TEXT, [("https://www.hsa.ie/", "HSA")])])
-    raw, _ = fetch_raw(BODY, ResponseCache(tmp_path), client=client)
-    assert client.calls == 2 and len(raw["responses"]) == 2
-    assert interpret_haiku(raw)["candidates"][0]["url"] == "https://hsa.ie"
