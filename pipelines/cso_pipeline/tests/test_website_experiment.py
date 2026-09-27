@@ -52,9 +52,7 @@ import json as _json
 from lib.response_cache import ResponseCache
 from lib.website_judge import judge_cascade
 
-_bspec = importlib.util.spec_from_file_location("wr_haiku_cc_bridge_t", _EXP / "haiku_cc_bridge.py")
-bridge = importlib.util.module_from_spec(_bspec)
-_bspec.loader.exec_module(bridge)
+import lib.haiku_cc_exchange as bridge
 
 _HSA = {"public_body_id": 1, "name": "Health and Safety Authority", "parent_id": None,
         "parent_name": None, "gold_status": "own_site", "gold_url": "https://www.hsa.ie/"}
@@ -112,7 +110,7 @@ def test_export_search_prompts_keys_match_approach(tmp_path):
 
 
 def test_judge_recorder_writes_prompt_and_does_not_poison_cache(tmp_path):
-    rec = runner.make_judge_recorder(tmp_path / "jp", runner.CC_JUDGE)
+    rec = runner.JudgePromptRecorder(tmp_path / "jp", runner.CC_JUDGE)
     cache = ResponseCache(tmp_path / "judge")
     r = judge_cascade({"name": "HSA"}, "https://www.hsa.ie/", {"title": "HSA"},
                       primary=runner.CC_JUDGE, fallback=None, primary_fn=rec, cache=cache)

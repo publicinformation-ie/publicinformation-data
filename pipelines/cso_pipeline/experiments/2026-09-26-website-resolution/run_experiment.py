@@ -5,7 +5,7 @@ Run from the repo root:
     uv run python pipelines/cso_pipeline/experiments/2026-09-26-website-resolution/run_experiment.py --approach seed_only
     uv run python .../run_experiment.py --approach all --judge ollama:gemma4:latest
 Paid approaches (haiku, apify, haiku_then_apify) need ANTHROPIC_API_KEY / APIFY_TOKEN.
---haiku-source cc swaps the Haiku API tier for Claude Code subagent answers (see haiku_cc_bridge.py).
+--haiku-source cc swaps the Haiku API tier for Claude Code subagent answers (see pipelines/cso_pipeline/haiku_cc.py).
 Raw responses are cached under pipelines/cso_pipeline/cache/ and never re-bought.
 """
 import argparse
@@ -23,6 +23,7 @@ sys.path.insert(0, str(_REPO / "src"))
 sys.path.insert(0, str(_CSO))
 
 from website_eval.website_metrics import load_gold, score  # noqa: E402
+from lib.haiku_cc_exchange import CC_JUDGE, JudgePromptRecorder, write_search_prompt  # noqa: E402
 from lib.response_cache import ResponseCache  # noqa: E402
 from lib.website_decide import OWN_STATUSES, decide  # noqa: E402
 from lib.website_judge import judge_cascade  # noqa: E402
@@ -38,7 +39,6 @@ RESOLVED = _CSO / "steps" / "resolve_website_urls" / "output.json"
 FOIGOVIE = _REPO / "pipelines" / "foigovie_pipeline" / "steps" / "apply_overrides" / "output.json"
 APPROACHES = ["seed_only", "haiku", "apify", "haiku_then_apify"]
 EXCHANGE = CACHE_DIR / "haiku_cc_exchange"
-CC_JUDGE = "haiku-cc"  # judge backend label for subagent verdicts; never calls an API
 _SETTLED = OWN_STATUSES | {"no_own_site", "defunct"}
 
 
@@ -57,38 +57,9 @@ def make_ctx(cache_dir, *, gov_ie, foigovie, prior, refresh, haiku_source="api")
 
 
 def export_search_prompts(bodies, out_dir):
-    cc = load_approach("haiku_cc")
-    out_dir = Path(out_dir)
-    out_dir.mkdir(parents=True, exist_ok=True)
     for b in bodies:
-        spec = {"public_body_id": b["public_body_id"], "name": b.get("name"),
-                "key": cc.search_key(b), "prompt": cc.build_search_prompt(b)}
-        (out_dir / f"{b['public_body_id']}.json").write_text(
-            json.dumps(spec, ensure_ascii=False, indent=1), encoding="utf-8")
+        write_search_prompt(b, out_dir)
     return len(bodies)
-
-
-def make_judge_recorder(out_dir, backend):
-    """A judge api_fn that saves each uncached prompt for a subagent, then fails closed.
-
-    judge() doesn't cache a verdict when api_fn raises, so the recorder's
-    'unsure' never reaches the judge cache.
-    """
-    out_dir = Path(out_dir)
-    out_dir.mkdir(parents=True, exist_ok=True)
-    recorded: list[str] = []
-
-    def record(prompt):
-        key = ResponseCache.key("judge", backend, prompt)
-        if key not in recorded:
-            recorded.append(key)
-            (out_dir / f"{key}.json").write_text(
-                json.dumps({"key": key, "backend": backend, "prompt": prompt}, ensure_ascii=False, indent=1),
-                encoding="utf-8")
-        raise RuntimeError("judge prompt recorded for a Claude Code subagent")
-
-    record.recorded = recorded
-    return record
 
 
 def _merge(parts):
@@ -202,7 +173,7 @@ def main():
     if args.record_judge_prompts:
         if args.judge != CC_JUDGE:
             ap.error(f"--record-judge-prompts needs --judge {CC_JUDGE}")
-        primary_fn = make_judge_recorder(EXCHANGE / "judge_prompts", CC_JUDGE)
+        primary_fn = JudgePromptRecorder(EXCHANGE / "judge_prompts", CC_JUDGE)
     fallback = None if args.no_fallback or args.judge in ("haiku", CC_JUDGE) else "haiku"
     judge_fn = partial(judge_cascade, primary=args.judge, fallback=fallback,
                        primary_fn=primary_fn, cache=judge_cache)
