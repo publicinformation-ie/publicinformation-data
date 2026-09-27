@@ -29,6 +29,6 @@ def gather(body, ctx):
     got = ctx.get("_haiku", {}).get(body["public_body_id"])
     if not got or "error" in got:
         return {"candidates": [], "directory_hits": [], "signals": {}, "tiers": [],
-                "pending_reason": "haiku_error"}
+                "pending_reason": "haiku_pending"}
     return {"candidates": got["candidates"], "directory_hits": got["directory_hits"],
             "signals": got["signals"], "tiers": list(TIERS), "pending_reason": None}

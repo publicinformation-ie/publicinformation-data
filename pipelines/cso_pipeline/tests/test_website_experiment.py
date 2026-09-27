@@ -110,7 +110,7 @@ def test_export_search_prompts_keys_match_approach(tmp_path):
 
 
 def test_judge_recorder_writes_prompt_and_does_not_poison_cache(tmp_path):
-    rec = runner.JudgePromptRecorder(tmp_path / "jp", runner.CC_JUDGE)
+    rec = bridge.JudgePromptRecorder(tmp_path / "jp", runner.CC_JUDGE)
     cache = ResponseCache(tmp_path / "judge")
     r = judge_cascade({"name": "HSA"}, "https://www.hsa.ie/", {"title": "HSA"},
                       primary=runner.CC_JUDGE, fallback=None, primary_fn=rec, cache=cache)
