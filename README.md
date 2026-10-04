@@ -325,7 +325,7 @@ The canonical schema is defined in [`public/schema.sql`](public/schema.sql).
 
 ## Publishing
 
-`data.publicinformation.ie` is served from a `pages` branch on Codeberg Pages, which is fully rebuilt from `public/` by `scripts/publish_pages.sh`. A `.githooks/post-commit` hook auto-triggers this rebuild whenever a commit on `main` touches `public/`. Run `git config core.hooksPath .githooks` once per clone to enable it — otherwise run `scripts/publish_pages.sh` manually after changes to `public/`. See [`AGENTS.md`](AGENTS.md#codeberg-pages-publishing) for details.
+`data.publicinformation.ie` was historically served from a `pages` branch on Codeberg Pages, rebuilt from `public/` by `scripts/publish_pages.sh`. That pipeline is **legacy/inactive** on the current host. Large data files under `public/`, FOI pipeline state, and eval inputs are stored via **Git LFS**: run `git lfs install` once per clone, and use `GIT_LFS_SKIP_SMUDGE=1` for code-only clones. Run `git lfs pull` before running tests that read `pipelines/**/eval/input.json`.
 
 ## Contributing
 
@@ -333,7 +333,7 @@ Contributions are welcome! Please follow these guidelines:
 
 ### Getting Started
 
-1. Fork the repository on Codeberg
+1. Fork the repository on GitHub (`https://github.com/publicinformation-ie/publicinformation-data`)
 2. Clone your fork locally
 3. Create a feature branch: `git checkout -b feat/my-feature`
 4. Make your changes

@@ -1,0 +1,9 @@
+public/**/*.json filter=lfs diff=lfs merge=lfs -text
+public/**/*.jsonld filter=lfs diff=lfs merge=lfs -text
+public/**/*.csv filter=lfs diff=lfs merge=lfs -text
+public/**/*.xlsx filter=lfs diff=lfs merge=lfs -text
+pipelines/foi_pipeline/steps/verify_disclosure_files/cache/*.bytes filter=lfs diff=lfs merge=lfs -text
+pipelines/foi_pipeline/steps/transform_disclosure_files/ocr_cache/*.json filter=lfs diff=lfs merge=lfs -text
+pipelines/foi_pipeline/steps/transform_disclosure_files/output.json filter=lfs diff=lfs merge=lfs -text
+pipelines/foi_pipeline/steps/generate_topics/output.json filter=lfs diff=lfs merge=lfs -text
+pipelines/**/eval/input.json filter=lfs diff=lfs merge=lfs -text

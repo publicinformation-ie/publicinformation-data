@@ -231,15 +231,17 @@ Each step lives in `<pipeline>/steps/<step>/` with `README.md` and `process.py`;
 
 A step's `override.json` holds manually-curated records marked `"source_method": "manual"` and `"overridden": true`. They are **never overwritten** by automated re-runs, bypass normal processing (no HTTP calls), and are committed to git as source of truth. `document_pipeline` uses a different, node-level override in `steps/detect_structure/override.json` keyed by `doc_slug` — see [`pipelines/document_pipeline/README.md`](pipelines/document_pipeline/README.md).
 
-## Codeberg Pages Publishing
+## Codeberg Pages Publishing (legacy/inactive)
 
-`data.publicinformation.ie` is served from the `pages` branch, rebuilt from scratch from `public/` by `scripts/publish_pages.sh` every time a commit on `main` touches `public/` (via `.githooks/post-commit`). The hook is not auto-installed — run once per clone:
+`data.publicinformation.ie` was historically served from the `pages` branch, rebuilt from `public/` by `scripts/publish_pages.sh` on every `main` commit touching `public/` (via `.githooks/post-commit`). That pipeline is **legacy** — the repo now lives on GitHub (`https://github.com/publicinformation-ie/publicinformation-data`) and large data files are stored with **Git LFS** instead. `scripts/publish_pages.sh` and `.githooks/post-commit` are unmodified but dormant; `core.hooksPath` is not set in new clones.
+
+Run once per clone:
 
 ```bash
-git config core.hooksPath .githooks
+git lfs install
 ```
 
-Without it, `scripts/publish_pages.sh` must be run manually after `public/` changes. The script never force-pushes; if the push is rejected, resolve the conflict on `pages` and re-run.
+Code-only clones use `GIT_LFS_SKIP_SMUDGE=1`; run `git lfs pull` before running tests that read `pipelines/**/eval/input.json` (those tests fail with a JSON decode error on a pointer file). The script never force-pushes; if it is ever resurrected, run `git lfs pull` first or it would publish pointer files.
 
 ## Dataset Version Bumps
 
@@ -260,7 +262,7 @@ Bump `owl:versionInfo` by hand only for a breaking (MAJOR) or additive (MINOR) c
 | Document pipeline tests | `uv run pytest pipelines/document_pipeline/tests -q` |
 | Root (transform) tests | `uv run pytest tests/ -q` |
 | Manually publish `pages` branch | `scripts/publish_pages.sh` |
-| One-time hook setup | `git config core.hooksPath .githooks` |
+| One-time LFS setup | `git lfs install` |
 | Inspect consolidated output | `python3 -c "import json; d=json.load(open('pipelines/foi_pipeline/steps/export_status/output.json')); print(f'Bodies: {len(d[\"public_bodies\"])}')"` |
 
 ## Environment / Secrets

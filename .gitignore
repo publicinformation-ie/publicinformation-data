@@ -15,6 +15,10 @@ docs/
 
 # Pipeline output files (at any level)
 **/output.json
+!pipelines/foi_pipeline/steps/*/output.json
+pipelines/foi_pipeline/steps/extract_disclosures*/output.json
+pipelines/foi_pipeline/steps/filter_phantom_rows/output.json
+pipelines/foi_pipeline/steps/normalize_disclosure_cells/output.json
 **/errors.json
 **/pipeline-status.json
 **/changes.json

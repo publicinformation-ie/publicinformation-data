@@ -1,0 +1,2233 @@
+{
+  "metadata": {
+    "step": "validate_websites",
+    "completed_at": "2026-08-25T11:21:55.867262+00:00"
+  },
+  "results": [
+    {
+      "public_body_id": 1002,
+      "name": "Ability West",
+      "official_website_url": "https://www.abilitywest.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:19.286002+00:00"
+    },
+    {
+      "public_body_id": 1004,
+      "name": "Adoption Authority of Ireland (AAI)",
+      "official_website_url": "https://aai.gov.ie/en",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:19.604676+00:00"
+    },
+    {
+      "public_body_id": 1009,
+      "name": "An Chomhairle um Oideachas Gaeltachta agus Gaelscolaíochta (COGG)",
+      "official_website_url": "https://cogg.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:21.718036+00:00"
+    },
+    {
+      "public_body_id": 1010,
+      "name": "An Coimisiún Pleanála",
+      "official_website_url": "https://www.pleanala.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:21.834162+00:00"
+    },
+    {
+      "public_body_id": 1014,
+      "name": "An Garda Síochána",
+      "official_website_url": "https://www.garda.ie/en/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:21.917715+00:00"
+    },
+    {
+      "public_body_id": 1019,
+      "name": "An Rialálaí Agraibhia (The Agri Food Regulator)",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:53:21.918574+00:00"
+    },
+    {
+      "public_body_id": 1023,
+      "name": "Approved Housing Bodies Regulatory Authority (AHBRA)",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:53:21.919093+00:00"
+    },
+    {
+      "public_body_id": 1047,
+      "name": "Beaumont Hospital",
+      "official_website_url": "https://www.beaumont.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:23.009441+00:00"
+    },
+    {
+      "public_body_id": 1052,
+      "name": "Bord Bia",
+      "official_website_url": "https://www.bordbia.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:23.197023+00:00"
+    },
+    {
+      "public_body_id": 1053,
+      "name": "Bord Iascaigh Mhara",
+      "official_website_url": "https://bim.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:23.557144+00:00"
+    },
+    {
+      "public_body_id": 1078,
+      "name": "Camphill Communities of Ireland",
+      "official_website_url": "https://employment.camphill.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:24.427002+00:00"
+    },
+    {
+      "public_body_id": 1085,
+      "name": "Carlow County Council",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:53:24.429067+00:00"
+    },
+    {
+      "public_body_id": 1094,
+      "name": "Cavan County Council",
+      "official_website_url": "https://www.cavancoco.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:33.619285+00:00"
+    },
+    {
+      "public_body_id": 1104,
+      "name": "Central Bank of Ireland",
+      "official_website_url": "https://www.centralbank.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:33.668576+00:00"
+    },
+    {
+      "public_body_id": 1105,
+      "name": "Central Remedial Clinic",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:53:33.669666+00:00"
+    },
+    {
+      "public_body_id": 1106,
+      "name": "Central Statistics Office",
+      "official_website_url": "https://www.cso.ie/en/index.html",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:33.753620+00:00"
+    },
+    {
+      "public_body_id": 1107,
+      "name": "Charities Regulator",
+      "official_website_url": "https://www.charitiesregulator.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:33.876683+00:00"
+    },
+    {
+      "public_body_id": 1108,
+      "name": "Cheeverstown House CLG",
+      "official_website_url": "https://www.cheeverstown.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:34.077597+00:00"
+    },
+    {
+      "public_body_id": 1110,
+      "name": "Chester Beatty Library",
+      "official_website_url": "https://chesterbeatty.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:36.479846+00:00"
+    },
+    {
+      "public_body_id": 1111,
+      "name": "Chief State Solicitor's Office",
+      "official_website_url": "https://www.gov.ie/en/chief-state-solicitors-office/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:36.540634+00:00"
+    },
+    {
+      "public_body_id": 1129,
+      "name": "Clare County Council",
+      "official_website_url": "https://www.clarecoco.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:36.638623+00:00"
+    },
+    {
+      "public_body_id": 1151,
+      "name": "Commission for Communications Regulation",
+      "official_website_url": "https://www.comreg.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:38.698567+00:00"
+    },
+    {
+      "public_body_id": 1152,
+      "name": "Commission for Railway Regulation",
+      "official_website_url": "https://www.crr.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:38.894077+00:00"
+    },
+    {
+      "public_body_id": 1153,
+      "name": "Commission for Regulation of Utilities (CRU)",
+      "official_website_url": "https://www.cru.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:38.970568+00:00"
+    },
+    {
+      "public_body_id": 1154,
+      "name": "Commission to Inquire into Child Abuse (CICA)",
+      "official_website_url": "https://www.childabusecommission.com/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:39.230910+00:00"
+    },
+    {
+      "public_body_id": 1156,
+      "name": "Competition and Consumer Protection Commission",
+      "official_website_url": "https://www.ccpc.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:39.337483+00:00"
+    },
+    {
+      "public_body_id": 1157,
+      "name": "Comptroller and Auditor General",
+      "official_website_url": "https://www.cao.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:39.379616+00:00"
+    },
+    {
+      "public_body_id": 1159,
+      "name": "Coombe Women and Infants University Hospital",
+      "official_website_url": "https://www.coombe.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:39.521998+00:00"
+    },
+    {
+      "public_body_id": 1162,
+      "name": "Cork City Council",
+      "official_website_url": "https://www.corkcity.ie/en/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:39.636666+00:00"
+    },
+    {
+      "public_body_id": 1163,
+      "name": "Cork County Council",
+      "official_website_url": "https://www.corkcoco.ie/en",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:39.927075+00:00"
+    },
+    {
+      "public_body_id": 1169,
+      "name": "Corporate Enforcement Authority (CEA)",
+      "official_website_url": "https://cea.gov.ie/en-ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:40.137762+00:00"
+    },
+    {
+      "public_body_id": 1176,
+      "name": "Courts Service",
+      "official_website_url": "https://www.courts.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:40.224550+00:00"
+    },
+    {
+      "public_body_id": 1177,
+      "name": "Crawford Art Gallery",
+      "official_website_url": "https://crawfordartgallery.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:40.299772+00:00"
+    },
+    {
+      "public_body_id": 1181,
+      "name": "Criminal Injuries Compensation Tribunal",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:53:40.301566+00:00"
+    },
+    {
+      "public_body_id": 1194,
+      "name": "Dental Council",
+      "official_website_url": "https://www.dentalcouncil.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:40.830020+00:00"
+    },
+    {
+      "public_body_id": 1195,
+      "name": "Dental Health Foundation",
+      "official_website_url": "https://www.dentalhealth.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:41.065093+00:00"
+    },
+    {
+      "public_body_id": 1196,
+      "name": "Department of Agriculture, Food and the Marine",
+      "official_website_url": "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:41.117117+00:00"
+    },
+    {
+      "public_body_id": 1197,
+      "name": "Department of Children, Disability and Equality",
+      "official_website_url": "https://www.gov.ie/en/department-of-children-disability-and-equality/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:41.523503+00:00"
+    },
+    {
+      "public_body_id": 1198,
+      "name": "Department of Climate, Energy and the Environment",
+      "official_website_url": "https://www.gov.ie/en/department-of-climate-energy-and-the-environment/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:41.571507+00:00"
+    },
+    {
+      "public_body_id": 1199,
+      "name": "Department of Culture, Communications and Sport",
+      "official_website_url": "https://www.gov.ie/en/department-of-culture-communications-and-sport/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:41.992698+00:00"
+    },
+    {
+      "public_body_id": 1200,
+      "name": "Department of Defence",
+      "official_website_url": "https://www.gov.ie/en/department-of-defence/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:42.045660+00:00"
+    },
+    {
+      "public_body_id": 1201,
+      "name": "Department of Education and Youth",
+      "official_website_url": "https://www.gov.ie/en/department-of-education/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:42.445271+00:00"
+    },
+    {
+      "public_body_id": 1202,
+      "name": "Department of Enterprise, Tourism and Employment",
+      "official_website_url": "https://enterprise.gov.ie/en/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:42.599604+00:00"
+    },
+    {
+      "public_body_id": 1203,
+      "name": "Department of Finance",
+      "official_website_url": "https://www.gov.ie/en/department-of-finance/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:42.651166+00:00"
+    },
+    {
+      "public_body_id": 1204,
+      "name": "Department of Foreign Affairs and Trade",
+      "official_website_url": "https://www.dfa.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:42.702029+00:00"
+    },
+    {
+      "public_body_id": 1205,
+      "name": "Department of Further and Higher Education, Research, Innovation and Science",
+      "official_website_url": "https://www.gov.ie/en/department-of-further-and-higher-education-research-innovation-and-science/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:43.614748+00:00"
+    },
+    {
+      "public_body_id": 1206,
+      "name": "Department of Health",
+      "official_website_url": "https://www.gov.ie/en/department-of-health/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:43.664036+00:00"
+    },
+    {
+      "public_body_id": 1207,
+      "name": "Department of Housing, Local Government and Heritage",
+      "official_website_url": "https://www.gov.ie/en/department-of-housing-local-government-and-heritage/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:44.082356+00:00"
+    },
+    {
+      "public_body_id": 1208,
+      "name": "Department of Justice, Home Affairs and Migration",
+      "official_website_url": "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:44.130116+00:00"
+    },
+    {
+      "public_body_id": 1209,
+      "name": "Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation",
+      "official_website_url": "https://www.gov.ie/en/department-of-public-expenditure-infrastructure-public-service-reform-and-digitalisation/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:44.874004+00:00"
+    },
+    {
+      "public_body_id": 1211,
+      "name": "Department of Social Protection",
+      "official_website_url": "https://www.gov.ie/en/department-of-social-protection/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:44.925831+00:00"
+    },
+    {
+      "public_body_id": 1212,
+      "name": "Department of the Taoiseach",
+      "official_website_url": "https://www.gov.ie/en/department-of-the-taoiseach/?referer=https://www.taoiseach.gov.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:45.336886+00:00"
+    },
+    {
+      "public_body_id": 1213,
+      "name": "Department of Transport",
+      "official_website_url": "https://www.gov.ie/en/department-of-transport/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:45.392055+00:00"
+    },
+    {
+      "public_body_id": 1220,
+      "name": "Digital Hub Development Agency",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:53:45.393371+00:00"
+    },
+    {
+      "public_body_id": 1227,
+      "name": "Donegal County Council",
+      "official_website_url": "https://www.donegalcoco.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:45.456935+00:00"
+    },
+    {
+      "public_body_id": 1235,
+      "name": "Dublin City Council",
+      "official_website_url": "https://www.dublincity.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:45.536923+00:00"
+    },
+    {
+      "public_body_id": 1238,
+      "name": "Dublin City University",
+      "official_website_url": "https://www.dcu.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:45.584034+00:00"
+    },
+    {
+      "public_body_id": 1240,
+      "name": "Dublin Institute for Advanced Studies (DIAS)",
+      "official_website_url": "https://www.dias.ie/videur-challenge?original_address=%252f",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:45.643936+00:00"
+    },
+    {
+      "public_body_id": 1244,
+      "name": "Dun Laoghaire Rathdown County Council",
+      "official_website_url": "https://www.dlrcoco.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:45.748158+00:00"
+    },
+    {
+      "public_body_id": 1245,
+      "name": "Dundalk Institute of Technology (DkIT)",
+      "official_website_url": "https://www.dkit.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:45.814287+00:00"
+    },
+    {
+      "public_body_id": 1252,
+      "name": "Educational Research Centre (ERC)",
+      "official_website_url": "https://www.erc.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:47.611920+00:00"
+    },
+    {
+      "public_body_id": 1255,
+      "name": "EirGrid PLC",
+      "official_website_url": "https://www.eirgrid.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:47.746759+00:00"
+    },
+    {
+      "public_body_id": 1259,
+      "name": "Enable Ireland",
+      "official_website_url": "https://enableireland.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:48.046294+00:00"
+    },
+    {
+      "public_body_id": 1262,
+      "name": "Enterprise Ireland",
+      "official_website_url": "https://www.enterprise-ireland.com/en/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:48.699376+00:00"
+    },
+    {
+      "public_body_id": 1263,
+      "name": "Environmental Protection Agency  (EPA)",
+      "official_website_url": "https://www.epa.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:48.773823+00:00"
+    },
+    {
+      "public_body_id": 1275,
+      "name": "ESB Networks DAC",
+      "official_website_url": "https://www.esbnetworks.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:48.937186+00:00"
+    },
+    {
+      "public_body_id": 1335,
+      "name": "Fáilte Ireland",
+      "official_website_url": "https://www.failteireland.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:49.007695+00:00"
+    },
+    {
+      "public_body_id": 1293,
+      "name": "Financial Services and Pensions Ombudsman (FSPO)",
+      "official_website_url": "https://www.fspo.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:49.056284+00:00"
+    },
+    {
+      "public_body_id": 1295,
+      "name": "Fingal County Council",
+      "official_website_url": "https://www.fingal.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:49.130326+00:00"
+    },
+    {
+      "public_body_id": 1298,
+      "name": "Fiosrú - Oifig an Ombudsman Póilíneachta.",
+      "official_website_url": "https://www.fiosru.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:49.193538+00:00"
+    },
+    {
+      "public_body_id": 1307,
+      "name": "Food Safety Authority of Ireland (FSAI)",
+      "official_website_url": "https://www.fsai.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:49.284505+00:00"
+    },
+    {
+      "public_body_id": 1309,
+      "name": "Forensic Science Ireland",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:53:49.286158+00:00"
+    },
+    {
+      "public_body_id": 1340,
+      "name": "Galway City Council",
+      "official_website_url": "https://www.galwaycity.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:49.564310+00:00"
+    },
+    {
+      "public_body_id": 1342,
+      "name": "Galway County Council",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:53:49.567293+00:00"
+    },
+    {
+      "public_body_id": 1349,
+      "name": "Gas Networks Ireland",
+      "official_website_url": "https://www.gasnetworks.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:49.634878+00:00"
+    },
+    {
+      "public_body_id": 1361,
+      "name": "Grangegorman Development Agency",
+      "official_website_url": "https://www.ggda.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:49.682377+00:00"
+    },
+    {
+      "public_body_id": 1388,
+      "name": "Health and Safety Authority",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:53:49.683418+00:00"
+    },
+    {
+      "public_body_id": 1390,
+      "name": "Health Information and Quality Authority (HIQA)",
+      "official_website_url": "https://www.hiqa.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:49.733668+00:00"
+    },
+    {
+      "public_body_id": 1391,
+      "name": "Health Insurance Authority",
+      "official_website_url": "https://www.hia.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:49.833453+00:00"
+    },
+    {
+      "public_body_id": 1392,
+      "name": "Health Products Regulatory Authority (HPRA)",
+      "official_website_url": "https://www.hpra.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:49.965612+00:00"
+    },
+    {
+      "public_body_id": 1393,
+      "name": "Health Research Board (HRB)",
+      "official_website_url": "https://www.hrb.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:50.514875+00:00"
+    },
+    {
+      "public_body_id": 1394,
+      "name": "Health Service Executive",
+      "official_website_url": "https://www.hse.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:50.575490+00:00"
+    },
+    {
+      "public_body_id": 1397,
+      "name": "Heritage Council",
+      "official_website_url": "https://www.heritagecouncil.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:50.888145+00:00"
+    },
+    {
+      "public_body_id": 1400,
+      "name": "Higher Education Authority (HEA)",
+      "official_website_url": "https://hea.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:51.403437+00:00"
+    },
+    {
+      "public_body_id": 1402,
+      "name": "Home Building Finance Ireland",
+      "official_website_url": "https://www.hbfi.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:51.819352+00:00"
+    },
+    {
+      "public_body_id": 1404,
+      "name": "Horse Racing Ireland",
+      "official_website_url": "https://www.hri.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:52.206422+00:00"
+    },
+    {
+      "public_body_id": 1407,
+      "name": "Housing Finance Agency",
+      "official_website_url": "https://hfa.ie/hfa/Live/Release/WebSite/HomePage/index.html",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:52.257807+00:00"
+    },
+    {
+      "public_body_id": 1412,
+      "name": "IDA Ireland",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:53:52.259605+00:00"
+    },
+    {
+      "public_body_id": 1417,
+      "name": "Inland Fisheries Ireland",
+      "official_website_url": "https://fishinginireland.info/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:52.495126+00:00"
+    },
+    {
+      "public_body_id": 1420,
+      "name": "Insolvency Service Ireland",
+      "official_website_url": "https://www.gov.ie/en/insolvency-service-of-ireland/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:52.546920+00:00"
+    },
+    {
+      "public_body_id": 1422,
+      "name": "Institute of Public Administration",
+      "official_website_url": "https://www.ipa.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:52.611792+00:00"
+    },
+    {
+      "public_body_id": 1423,
+      "name": "Intellectual Property Office of Ireland (IPOI)",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:53:52.613714+00:00"
+    },
+    {
+      "public_body_id": 1425,
+      "name": "International Protection Appeals Tribunal",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:53:52.614982+00:00"
+    },
+    {
+      "public_body_id": 1433,
+      "name": "Irish Blood Transfusion Service (IBTS)",
+      "official_website_url": "https://www.giveblood.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:52.736736+00:00"
+    },
+    {
+      "public_body_id": 1435,
+      "name": "Irish Film Classification Office",
+      "official_website_url": "https://www.ifco.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:52.807642+00:00"
+    },
+    {
+      "public_body_id": 1436,
+      "name": "Irish Financial Services Appeals Tribunal",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:53:52.809064+00:00"
+    },
+    {
+      "public_body_id": 1437,
+      "name": "Irish Fiscal Advisory Council",
+      "official_website_url": "https://www.fiscalcouncil.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:53.042271+00:00"
+    },
+    {
+      "public_body_id": 1438,
+      "name": "Irish Human Rights and Equality Commission",
+      "official_website_url": "https://www.ihrec.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:53.193140+00:00"
+    },
+    {
+      "public_body_id": 1439,
+      "name": "Irish Manuscripts Commission",
+      "official_website_url": "https://www.irishmanuscripts.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:53.290671+00:00"
+    },
+    {
+      "public_body_id": 1440,
+      "name": "Irish Museum of Modern Art",
+      "official_website_url": "https://imma.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:53.397832+00:00"
+    },
+    {
+      "public_body_id": 1442,
+      "name": "Irish Prison Service",
+      "official_website_url": "https://www.irishprisons.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:53.619267+00:00"
+    },
+    {
+      "public_body_id": 1445,
+      "name": "Irish Wheelchair Association",
+      "official_website_url": "https://www.iwa.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:53.932544+00:00"
+    },
+    {
+      "public_body_id": 1449,
+      "name": "Kerry County Council",
+      "official_website_url": "https://www.kerrycoco.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:53.995814+00:00"
+    },
+    {
+      "public_body_id": 1456,
+      "name": "Kildare County Council",
+      "official_website_url": "https://www.kildarecoco.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:54.053632+00:00"
+    },
+    {
+      "public_body_id": 1461,
+      "name": "Kilkenny County Council",
+      "official_website_url": "https://www.kilkennycoco.ie/eng/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:54.099231+00:00"
+    },
+    {
+      "public_body_id": 1470,
+      "name": "Laois County Council",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:53:54.100588+00:00"
+    },
+    {
+      "public_body_id": 1471,
+      "name": "Law Reform Commission",
+      "official_website_url": "https://www.lawreform.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:54.132600+00:00"
+    },
+    {
+      "public_body_id": 1502,
+      "name": "Léargas - The Exchange Bureau",
+      "official_website_url": "https://www.leargas.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:54.178372+00:00"
+    },
+    {
+      "public_body_id": 1472,
+      "name": "Legal Aid Board",
+      "official_website_url": "https://www.legalaidboard.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:54.269010+00:00"
+    },
+    {
+      "public_body_id": 1475,
+      "name": "Leitrim County Council",
+      "official_website_url": "https://www.leitrim.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:55.199945+00:00"
+    },
+    {
+      "public_body_id": 1486,
+      "name": "Limerick City and County Council",
+      "official_website_url": "https://www.limerick.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:53:55.445202+00:00"
+    },
+    {
+      "public_body_id": 1493,
+      "name": "Local Government Management Agency (LGMA)",
+      "official_website_url": "https://www.lgma.ie/en/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:05.103100+00:00"
+    },
+    {
+      "public_body_id": 1497,
+      "name": "Longford County Council",
+      "official_website_url": "https://www.longfordcoco.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:05.213440+00:00"
+    },
+    {
+      "public_body_id": 1501,
+      "name": "Louth County Council",
+      "official_website_url": "https://www.louthcoco.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:05.312121+00:00"
+    },
+    {
+      "public_body_id": 1505,
+      "name": "Marine Institute - Foras na Mara",
+      "official_website_url": "https://www.marine.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:05.427932+00:00"
+    },
+    {
+      "public_body_id": 1507,
+      "name": "Mater Misericordiae University Hospital",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:05.429768+00:00"
+    },
+    {
+      "public_body_id": 1508,
+      "name": "Mayo County Council",
+      "official_website_url": "https://www.mayo.ie/en-ie/home",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:06.055691+00:00"
+    },
+    {
+      "public_body_id": 1511,
+      "name": "Meath County Council",
+      "official_website_url": "https://www.meath.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:06.118652+00:00"
+    },
+    {
+      "public_body_id": 1515,
+      "name": "Medical Bureau of Road Safety",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:06.120535+00:00"
+    },
+    {
+      "public_body_id": 1516,
+      "name": "Medical Council",
+      "official_website_url": "https://www.medicalcouncil.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:06.562852+00:00"
+    },
+    {
+      "public_body_id": 1519,
+      "name": "Mental Health Commission",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:06.566420+00:00"
+    },
+    {
+      "public_body_id": 1520,
+      "name": "Mercy University Hospital, Cork",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:06.568242+00:00"
+    },
+    {
+      "public_body_id": 1525,
+      "name": "Monaghan County Council",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:06.569981+00:00"
+    },
+    {
+      "public_body_id": 1541,
+      "name": "Munster Technological University",
+      "official_website_url": "https://www.mtu.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:06.707365+00:00"
+    },
+    {
+      "public_body_id": 1544,
+      "name": "National Asset Management Agency Group",
+      "official_website_url": "https://www.nama.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:06.857913+00:00"
+    },
+    {
+      "public_body_id": 1550,
+      "name": "National College Art and Design",
+      "official_website_url": "https://www.ncad.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:07.180112+00:00"
+    },
+    {
+      "public_body_id": 1551,
+      "name": "National Concert Hall",
+      "official_website_url": "https://www.nch.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:07.230894+00:00"
+    },
+    {
+      "public_body_id": 1552,
+      "name": "National Council for Curriculum and Assessment (NCCA)",
+      "official_website_url": "https://ncca.ie/en/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:07.283407+00:00"
+    },
+    {
+      "public_body_id": 1553,
+      "name": "National Council for Special Education (NCSE)",
+      "official_website_url": "https://www.ncse.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:07.552725+00:00"
+    },
+    {
+      "public_body_id": 1555,
+      "name": "National Disability Authority",
+      "official_website_url": "https://nda.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:08.075141+00:00"
+    },
+    {
+      "public_body_id": 1557,
+      "name": "National Gallery of Ireland",
+      "official_website_url": "https://www.nationalgallery.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:08.134278+00:00"
+    },
+    {
+      "public_body_id": 1559,
+      "name": "National Library of Ireland",
+      "official_website_url": "https://www.nli.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:08.430888+00:00"
+    },
+    {
+      "public_body_id": 1560,
+      "name": "National Maternity Hospital, Holles St, Dublin",
+      "official_website_url": "https://nmh.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:08.538922+00:00"
+    },
+    {
+      "public_body_id": 1562,
+      "name": "National Museum of Ireland",
+      "official_website_url": "https://www.museum.ie/en-ie/home",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:08.623708+00:00"
+    },
+    {
+      "public_body_id": 1566,
+      "name": "National Rehabilitation Hospital, Dun Laoghaire",
+      "official_website_url": "https://www.nrh.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:08.669937+00:00"
+    },
+    {
+      "public_body_id": 1568,
+      "name": "National Standards Authority of Ireland (NSAI)",
+      "official_website_url": "https://www.nsai.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:10.206728+00:00"
+    },
+    {
+      "public_body_id": 1570,
+      "name": "National Transport Authority (NTA)",
+      "official_website_url": "https://www.nationaltransport.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:11.066505+00:00"
+    },
+    {
+      "public_body_id": 1571,
+      "name": "National Treasury Management Agency (NTMA)",
+      "official_website_url": "https://www.ntma.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:11.231895+00:00"
+    },
+    {
+      "public_body_id": 1572,
+      "name": "National Treatment Purchase Fund",
+      "official_website_url": "https://www.ntpf.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:11.288998+00:00"
+    },
+    {
+      "public_body_id": 1573,
+      "name": "National University of Ireland",
+      "official_website_url": "https://www.nui.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:11.408618+00:00"
+    },
+    {
+      "public_body_id": 1574,
+      "name": "National University of Ireland Galway",
+      "official_website_url": "https://www.universityofgalway.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:11.463712+00:00"
+    },
+    {
+      "public_body_id": 1575,
+      "name": "National University of Ireland Maynooth",
+      "official_website_url": "https://www.maynoothuniversity.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:11.524831+00:00"
+    },
+    {
+      "public_body_id": 1586,
+      "name": "Northern and Western Regional Assembly",
+      "official_website_url": "https://www.nwra.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:11.622137+00:00"
+    },
+    {
+      "public_body_id": 1590,
+      "name": "Offaly County Council",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:11.624704+00:00"
+    },
+    {
+      "public_body_id": 1594,
+      "name": "Office of Public Works",
+      "official_website_url": "https://www.gov.ie/en/office-of-public-works/?referer=https://www.opw.ie/",
+      "is_reachable": false,
+      "http_status": 405,
+      "checked_at": "2026-07-03T09:54:11.660899+00:00"
+    },
+    {
+      "public_body_id": 1595,
+      "name": "Office of the Attorney General",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:11.663410+00:00"
+    },
+    {
+      "public_body_id": 1596,
+      "name": "Office of the Commission for Public Service Appointments",
+      "official_website_url": "https://www.cpsa.ie/en/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:12.194133+00:00"
+    },
+    {
+      "public_body_id": 1597,
+      "name": "Office of the Commissioner for Environmental Information",
+      "official_website_url": "https://www.ocei.ie/en/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:12.629850+00:00"
+    },
+    {
+      "public_body_id": 1599,
+      "name": "Office of the Director of Public Prosecutions (DPP)",
+      "official_website_url": "https://www.dppireland.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:12.679213+00:00"
+    },
+    {
+      "public_body_id": 1602,
+      "name": "Office of the Information Commissioner",
+      "official_website_url": "https://www.oic.ie/en/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:13.113101+00:00"
+    },
+    {
+      "public_body_id": 1603,
+      "name": "Office of the Inspector of Prisons",
+      "official_website_url": "https://www.oip.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:13.214804+00:00"
+    },
+    {
+      "public_body_id": 1604,
+      "name": "Office of the Ombudsman",
+      "official_website_url": "https://ombudsman.ie/en/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:13.535995+00:00"
+    },
+    {
+      "public_body_id": 1608,
+      "name": "Office of the Revenue Commissioners",
+      "official_website_url": "https://www.revenue.ie:443/en/home.aspx",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:13.599943+00:00"
+    },
+    {
+      "public_body_id": 1611,
+      "name": "Ombudsman for Childrens Office",
+      "official_website_url": "https://www.oco.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:13.663265+00:00"
+    },
+    {
+      "public_body_id": 1615,
+      "name": "Our Lady's Hospice",
+      "official_website_url": "https://olh.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:13.836920+00:00"
+    },
+    {
+      "public_body_id": 1630,
+      "name": "Pobal",
+      "official_website_url": "https://www.pobal.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:14.059905+00:00"
+    },
+    {
+      "public_body_id": 1643,
+      "name": "Pre-Hospital Emergency Care Council (PHECC)",
+      "official_website_url": "https://phecc.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:16.337155+00:00"
+    },
+    {
+      "public_body_id": 1647,
+      "name": "Probation Service",
+      "official_website_url": "https://www.probation.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:16.552636+00:00"
+    },
+    {
+      "public_body_id": 1650,
+      "name": "Property Services Regulatory Authority",
+      "official_website_url": "https://www.psr.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:16.733422+00:00"
+    },
+    {
+      "public_body_id": 1651,
+      "name": "Public Appointments Service",
+      "official_website_url": "https://publicjobs.ie/en/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:16.999588+00:00"
+    },
+    {
+      "public_body_id": 1653,
+      "name": "Quality and Qualifications Ireland",
+      "official_website_url": "https://www.qqi.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:17.272825+00:00"
+    },
+    {
+      "public_body_id": 1679,
+      "name": "Rásaíocht Con Éireann",
+      "official_website_url": "https://equigeek.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:18.165701+00:00"
+    },
+    {
+      "public_body_id": 1658,
+      "name": "Regulator of the National Lottery",
+      "official_website_url": "https://www.rnl.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:18.803070+00:00"
+    },
+    {
+      "public_body_id": 1661,
+      "name": "Residential Institutions Redress Board (RIRB)",
+      "official_website_url": "https://www.rirb.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:18.876697+00:00"
+    },
+    {
+      "public_body_id": 1662,
+      "name": "Residential Tenancies Board (RTB)",
+      "official_website_url": "https://rtb.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:18.956839+00:00"
+    },
+    {
+      "public_body_id": 1667,
+      "name": "Road Safety Authority",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:18.958627+00:00"
+    },
+    {
+      "public_body_id": 1670,
+      "name": "Roscommon County Council",
+      "official_website_url": "https://www.roscommoncoco.ie/en/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:19.027721+00:00"
+    },
+    {
+      "public_body_id": 1674,
+      "name": "Royal Irish Academy",
+      "official_website_url": "https://www.ria.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:19.109193+00:00"
+    },
+    {
+      "public_body_id": 1675,
+      "name": "Royal Victoria Eye and Ear Hospital",
+      "official_website_url": "https://www.rveeh.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:19.237347+00:00"
+    },
+    {
+      "public_body_id": 1683,
+      "name": "Saint Michael's House",
+      "official_website_url": "https://www.smh.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:19.485790+00:00"
+    },
+    {
+      "public_body_id": 1688,
+      "name": "Sea-Fisheries Protection Authority (SFPA)",
+      "official_website_url": "https://www.sfpa.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:19.674246+00:00"
+    },
+    {
+      "public_body_id": 1711,
+      "name": "Skillnet Ireland",
+      "official_website_url": "https://www.skillnetireland.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:19.836297+00:00"
+    },
+    {
+      "public_body_id": 1716,
+      "name": "Sligo County Council",
+      "official_website_url": "https://www.sligococo.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:19.915234+00:00"
+    },
+    {
+      "public_body_id": 1732,
+      "name": "South Dublin County Council",
+      "official_website_url": "https://www.southdublin.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:19.965772+00:00"
+    },
+    {
+      "public_body_id": 1735,
+      "name": "South East Technological University",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:19.968147+00:00"
+    },
+    {
+      "public_body_id": 1736,
+      "name": "South Infirmary Victoria University Hospital",
+      "official_website_url": "https://www.sivuh.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:20.012834+00:00"
+    },
+    {
+      "public_body_id": 1741,
+      "name": "Sport Ireland",
+      "official_website_url": "https://www.sportireland.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:20.072557+00:00"
+    },
+    {
+      "public_body_id": 1747,
+      "name": "St. Jamess Hospital , Dublin",
+      "official_website_url": "https://www.stjames.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:20.140641+00:00"
+    },
+    {
+      "public_body_id": 1748,
+      "name": "St. Johns Hospital, Limerick",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:20.142280+00:00"
+    },
+    {
+      "public_body_id": 1752,
+      "name": "St. Vincents University Hospital",
+      "official_website_url": "https://www.stvincents.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:20.439712+00:00"
+    },
+    {
+      "public_body_id": 1753,
+      "name": "Standards in Public Office Commission",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:20.441493+00:00"
+    },
+    {
+      "public_body_id": 1754,
+      "name": "State Examinations Commission (SEC)",
+      "official_website_url": "https://www.examinations.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:20.513218+00:00"
+    },
+    {
+      "public_body_id": 1755,
+      "name": "State Laboratory",
+      "official_website_url": "https://www.statelab.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:20.547630+00:00"
+    },
+    {
+      "public_body_id": 1758,
+      "name": "Stewarts Care Limited",
+      "official_website_url": "https://www.stewartscare.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:20.596236+00:00"
+    },
+    {
+      "public_body_id": 1760,
+      "name": "Strategic Banking Corporation of Ireland",
+      "official_website_url": "https://www.sbci.gov.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:20.759236+00:00"
+    },
+    {
+      "public_body_id": 1762,
+      "name": "Sunbeam House Services CLG",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:20.761645+00:00"
+    },
+    {
+      "public_body_id": 1767,
+      "name": "Sustainable Energy Authority of Ireland (SEAI)",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:20.763493+00:00"
+    },
+    {
+      "public_body_id": 1771,
+      "name": "Tailte Éireann",
+      "official_website_url": "https://tailte.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:20.894068+00:00"
+    },
+    {
+      "public_body_id": 1772,
+      "name": "Tallaght University Hospital",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:20.897076+00:00"
+    },
+    {
+      "public_body_id": 1773,
+      "name": "Tax Appeals Commission",
+      "official_website_url": "https://www.taxappeals.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:20.977607+00:00"
+    },
+    {
+      "public_body_id": 1774,
+      "name": "Teagasc (The Agriculture and Food Development Authority of Ireland)",
+      "official_website_url": "https://teagasc.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:21.142850+00:00"
+    },
+    {
+      "public_body_id": 1775,
+      "name": "Technological University Dublin",
+      "official_website_url": "https://www.tudublin.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:21.191014+00:00"
+    },
+    {
+      "public_body_id": 1776,
+      "name": "Technological University of the Shannon",
+      "official_website_url": "https://tus.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:21.233637+00:00"
+    },
+    {
+      "public_body_id": 1782,
+      "name": "The Data Protection Commission (DPC)",
+      "official_website_url": "https://www.dataprotection.ie/en",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:21.324769+00:00"
+    },
+    {
+      "public_body_id": 1789,
+      "name": "The Irish National Stud DAC",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:21.326799+00:00"
+    },
+    {
+      "public_body_id": 1798,
+      "name": "The Pensions Authority",
+      "official_website_url": "https://pensionsauthority.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:21.418389+00:00"
+    },
+    {
+      "public_body_id": 1809,
+      "name": "The Teaching Council",
+      "official_website_url": "https://www.teachingcouncil.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:21.481122+00:00"
+    },
+    {
+      "public_body_id": 1817,
+      "name": "Tipperary County Council",
+      "official_website_url": "https://www.tipperarycoco.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:21.575664+00:00"
+    },
+    {
+      "public_body_id": 1827,
+      "name": "Transport Infrastructure Ireland",
+      "official_website_url": "https://www.tii.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:21.635173+00:00"
+    },
+    {
+      "public_body_id": 1834,
+      "name": "Trinity College Dublin",
+      "official_website_url": "https://www.tcd.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:21.692876+00:00"
+    },
+    {
+      "public_body_id": 1882,
+      "name": "Údarás na Gaeltachta",
+      "official_website_url": "https://udaras.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:21.733933+00:00"
+    },
+    {
+      "public_body_id": 1841,
+      "name": "Uisce Éireann",
+      "official_website_url": "https://www.water.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:21.795621+00:00"
+    },
+    {
+      "public_body_id": 1843,
+      "name": "University College Cork",
+      "official_website_url": "https://www.ucc.ie/en/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:21.860972+00:00"
+    },
+    {
+      "public_body_id": 1844,
+      "name": "University College Dublin",
+      "official_website_url": "https://www.ucd.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:21.909636+00:00"
+    },
+    {
+      "public_body_id": 1845,
+      "name": "University of Limerick",
+      "official_website_url": "https://www.ul.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:21.969332+00:00"
+    },
+    {
+      "public_body_id": 1847,
+      "name": "Veterinary Council of Ireland",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:21.971464+00:00"
+    },
+    {
+      "public_body_id": 1861,
+      "name": "Water Safety Ireland",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:21.973064+00:00"
+    },
+    {
+      "public_body_id": 1864,
+      "name": "Waterford City and County Council",
+      "official_website_url": "https://waterfordcouncil.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:24.529388+00:00"
+    },
+    {
+      "public_body_id": 1867,
+      "name": "Western Care Association",
+      "official_website_url": "https://westerncare.com/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:28.440088+00:00"
+    },
+    {
+      "public_body_id": 1868,
+      "name": "Western Development Commission (WDC)",
+      "official_website_url": "https://westerndevelopment.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:29.013672+00:00"
+    },
+    {
+      "public_body_id": 1870,
+      "name": "Westmeath County Council",
+      "official_website_url": "https://www.westmeathcoco.ie/en/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:29.070784+00:00"
+    },
+    {
+      "public_body_id": 1873,
+      "name": "Wexford County Council",
+      "official_website_url": "https://www.wexfordcoco.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:29.116825+00:00"
+    },
+    {
+      "public_body_id": 1876,
+      "name": "Wicklow County Council",
+      "official_website_url": "https://www.wicklow.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:30.355658+00:00"
+    },
+    {
+      "public_body_id": 1880,
+      "name": "Workplace Relations Commission (WRC)",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:30.359507+00:00"
+    },
+    {
+      "public_body_id": 1024,
+      "name": "Aquaculture Licences Appeals Board",
+      "official_website_url": "https://www.alab.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:30.418993+00:00"
+    },
+    {
+      "public_body_id": 1149,
+      "name": "Comhlacht Formhaoirsithe Seachtrach Óglaigh na hÉireann (the External Oversight Body)",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:30.420980+00:00"
+    },
+    {
+      "public_body_id": 1415,
+      "name": "Incorporated Orthopaedic Hospital",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:30.422638+00:00"
+    },
+    {
+      "public_body_id": 1480,
+      "name": "Leopardstown Park Hospital",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:30.424264+00:00"
+    },
+    {
+      "public_body_id": 1518,
+      "name": "Mental Health (Criminal Law) Review Board",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:30.425913+00:00"
+    },
+    {
+      "public_body_id": 1538,
+      "name": "Muiriosa Foundation",
+      "official_website_url": "https://www.muiriosa.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:31.450606+00:00"
+    },
+    {
+      "public_body_id": 1556,
+      "name": "National Economic and Social Development Office (NESDO)",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:31.455719+00:00"
+    },
+    {
+      "public_body_id": 1561,
+      "name": "National Milk Agency",
+      "official_website_url": "https://nationalmilkagency.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:33.541188+00:00"
+    },
+    {
+      "public_body_id": 1565,
+      "name": "National Paediatric Hospital Development Board (NPHDB)",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:33.545173+00:00"
+    },
+    {
+      "public_body_id": 1607,
+      "name": "Office of the Protected Disclosures Commissioner",
+      "official_website_url": "https://www.opdc.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:34.044926+00:00"
+    },
+    {
+      "public_body_id": 1609,
+      "name": "Office of the State Pathologist",
+      "official_website_url": "https://www.gov.ie/en/department-of-justice-home-affairs-and-migration/publications/office-of-the-state-pathologist/",
+      "is_reachable": false,
+      "http_status": 405,
+      "checked_at": "2026-07-03T09:54:34.086687+00:00"
+    },
+    {
+      "public_body_id": 1622,
+      "name": "Parole Board",
+      "official_website_url": "https://www.gov.ie/en/parole-board/",
+      "is_reachable": false,
+      "http_status": 405,
+      "checked_at": "2026-07-03T09:54:34.496996+00:00"
+    },
+    {
+      "public_body_id": 1770,
+      "name": "Taighde Éireann (Research Ireland)",
+      "official_website_url": "https://research.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-03T09:54:34.535270+00:00"
+    },
+    {
+      "public_body_id": 1807,
+      "name": "The Royal Hospital Donnybrook",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-07-03T09:54:34.537761+00:00"
+    },
+    {
+      "public_body_id": 1210,
+      "name": "Department of Rural and Community Development and the Gaeltacht",
+      "official_website_url": "https://www.gov.ie/en/department-of-rural-and-community-development-and-the-gaeltacht/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-24T06:59:29.018103+00:00",
+      "overridden": true
+    },
+    {
+      "public_body_id": 1038,
+      "name": "Atlantic Technological University",
+      "official_website_url": "https://www.atu.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:37.836843+00:00"
+    },
+    {
+      "public_body_id": 1039,
+      "name": "Avista CLG (Daughters of Charity Disability Support Services CLG)",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-08-25T11:21:37.838871+00:00"
+    },
+    {
+      "public_body_id": 1068,
+      "name": "Brothers of Charity Services Ireland",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-08-25T11:21:37.840118+00:00"
+    },
+    {
+      "public_body_id": 1093,
+      "name": "Cavan and Monaghan Education and Training Board",
+      "official_website_url": "https://www.cmetb.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:44.252337+00:00"
+    },
+    {
+      "public_body_id": 1112,
+      "name": "Child and Family Agency (Tusla)",
+      "official_website_url": "https://www.tusla.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:44.478077+00:00"
+    },
+    {
+      "public_body_id": 1114,
+      "name": "Children's Health Ireland at Crumlin",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-08-25T11:21:44.482369+00:00"
+    },
+    {
+      "public_body_id": 1116,
+      "name": "Children's Health Ireland at Temple Street",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-08-25T11:21:44.486138+00:00"
+    },
+    {
+      "public_body_id": 1148,
+      "name": "Coimisiún na Meán",
+      "official_website_url": "https://www.cnam.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:44.648785+00:00"
+    },
+    {
+      "public_body_id": 1160,
+      "name": "Cope Foundation",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-08-25T11:21:44.652859+00:00"
+    },
+    {
+      "public_body_id": 1164,
+      "name": "Cork Education and Training Board",
+      "official_website_url": "https://www.corketb.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:44.733360+00:00"
+    },
+    {
+      "public_body_id": 1229,
+      "name": "Donegal Education and Training Board",
+      "official_website_url": "https://www.donegaletb.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:45.301831+00:00"
+    },
+    {
+      "public_body_id": 1234,
+      "name": "Dublin and Dun Laoghaire Education and Training Board",
+      "official_website_url": "https://www.ddletb.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:45.378209+00:00"
+    },
+    {
+      "public_body_id": 1239,
+      "name": "Dublin Dental Hospital",
+      "official_website_url": "https://www.dentalhospital.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:45.768812+00:00"
+    },
+    {
+      "public_body_id": 1336,
+      "name": "Fís Éireann/Screen Ireland",
+      "official_website_url": "https://www.screenireland.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:46.858617+00:00"
+    },
+    {
+      "public_body_id": 1339,
+      "name": "Galway and Roscommon Education and Training Board",
+      "official_website_url": "https://gretb.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:46.958497+00:00"
+    },
+    {
+      "public_body_id": 1389,
+      "name": "Health and Social Care Professionals Council (CORU)",
+      "official_website_url": "https://www.coru.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:47.017708+00:00"
+    },
+    {
+      "public_body_id": 1421,
+      "name": "Institute of Art, Design and Technology (IADT) Dun Laoghaire",
+      "official_website_url": "https://iadt.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:47.133686+00:00"
+    },
+    {
+      "public_body_id": 1443,
+      "name": "Irish Rail (Iarnród Éireann)",
+      "official_website_url": "https://www.irishrail.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:47.191466+00:00"
+    },
+    {
+      "public_body_id": 1447,
+      "name": "Kare, Promoting Inclusion for People with Intellectual Disability",
+      "official_website_url": "https://www.kare.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:47.341407+00:00"
+    },
+    {
+      "public_body_id": 1450,
+      "name": "Kerry Education and Training Board",
+      "official_website_url": "https://www.kerryetb.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:47.480132+00:00"
+    },
+    {
+      "public_body_id": 1455,
+      "name": "Kildare and Wicklow Education and Training Board",
+      "official_website_url": "https://kwetb.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:47.622371+00:00"
+    },
+    {
+      "public_body_id": 1460,
+      "name": "Kilkenny and Carlow Education and Training Board",
+      "official_website_url": "https://kcetb.ie/en/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:47.699336+00:00"
+    },
+    {
+      "public_body_id": 1469,
+      "name": "Laois and Offaly Education and Training Board",
+      "official_website_url": "https://loetb.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:49.067723+00:00"
+    },
+    {
+      "public_body_id": 1484,
+      "name": "Limerick and Clare Education and Training Board",
+      "official_website_url": "https://lcetb.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:49.189331+00:00"
+    },
+    {
+      "public_body_id": 1496,
+      "name": "Longford and Westmeath Education and Training Board",
+      "official_website_url": "https://www.lwetb.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:49.360170+00:00"
+    },
+    {
+      "public_body_id": 1500,
+      "name": "Louth and Meath Education and Training Board",
+      "official_website_url": "https://www.lmetb.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:49.571647+00:00"
+    },
+    {
+      "public_body_id": 1509,
+      "name": "Mayo, Sligo and Leitrim Education and Training Board",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-08-25T11:21:49.577101+00:00"
+    },
+    {
+      "public_body_id": 1587,
+      "name": "Nursing and Midwifery Board of Ireland (NMBI)",
+      "official_website_url": "https://www.nmbi.ie/Home",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:49.836784+00:00"
+    },
+    {
+      "public_body_id": 1610,
+      "name": "Oifig Choimisinéir na dTeangacha Oifigúla",
+      "official_website_url": "https://www.coimisineir.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:49.987808+00:00"
+    },
+    {
+      "public_body_id": 1624,
+      "name": "Peamount Hospital",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-08-25T11:21:49.993472+00:00"
+    },
+    {
+      "public_body_id": 1629,
+      "name": "Pharmaceutical Society of Ireland",
+      "official_website_url": "https://www.psi.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:50.127652+00:00"
+    },
+    {
+      "public_body_id": 1655,
+      "name": "Raidió Teilifís Éireann - RTÉ",
+      "official_website_url": "https://www.rte.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:50.188065+00:00"
+    },
+    {
+      "public_body_id": 1726,
+      "name": "SOLAS An tSeirbhís Oideachais Leanúnaigh agus Scileanna",
+      "official_website_url": "https://www.solas.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:50.288741+00:00"
+    },
+    {
+      "public_body_id": 1750,
+      "name": "St. Luke's Hospital, Rathgar",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-08-25T11:21:50.291803+00:00"
+    },
+    {
+      "public_body_id": 1777,
+      "name": "Teilifís na Gaeilge - TG4",
+      "official_website_url": "https://www.tg4.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:50.409794+00:00"
+    },
+    {
+      "public_body_id": 1779,
+      "name": "The Arts Council (An Chomhairle Ealaíon)",
+      "official_website_url": "https://artscouncil.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:51.064368+00:00"
+    },
+    {
+      "public_body_id": 1786,
+      "name": "The Housing Agency (Housing & Sustainable Communities Agency)",
+      "official_website_url": "https://www.housingagency.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:51.165817+00:00"
+    },
+    {
+      "public_body_id": 1797,
+      "name": "The National Orthopaedic Hospital Cappagh DAC",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-08-25T11:21:51.169022+00:00"
+    },
+    {
+      "public_body_id": 1806,
+      "name": "The Rotunda Hospital, Dublin",
+      "official_website_url": "https://rotunda.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:51.282809+00:00"
+    },
+    {
+      "public_body_id": 1818,
+      "name": "Tipperary Education and Training Board",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-08-25T11:21:51.286604+00:00"
+    },
+    {
+      "public_body_id": 1846,
+      "name": "Valuation Tribunal",
+      "official_website_url": "https://www.valuationtribunal.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:51.937704+00:00"
+    },
+    {
+      "public_body_id": 1863,
+      "name": "Waterford and Wexford Education and Training Board",
+      "official_website_url": "https://www.wwetb.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:53.305296+00:00"
+    },
+    {
+      "public_body_id": 1089,
+      "name": "Carriglea Cairde Services",
+      "official_website_url": "http://carrigleaservices.com/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:53.371524+00:00"
+    },
+    {
+      "public_body_id": 1109,
+      "name": "Cheshire Foundation",
+      "official_website_url": "https://www.cheshirefai.org/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:54.324891+00:00"
+    },
+    {
+      "public_body_id": 1684,
+      "name": "Saint Patrick's Centre (Kilkenny) T/A Aurora Enriching Lives Enriching Communities",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-08-25T11:21:54.329560+00:00"
+    },
+    {
+      "public_body_id": 1751,
+      "name": "St. Michaels Hospital, Dun Laoghaire",
+      "official_website_url": null,
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-08-25T11:21:54.333739+00:00"
+    },
+    {
+      "public_body_id": 1121,
+      "name": "Citizens Information Board",
+      "official_website_url": "https://www.citizensinformationboard.ie",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:54.457354+00:00"
+    },
+    {
+      "public_body_id": 1122,
+      "name": "City of Dublin Education and Training Board",
+      "official_website_url": "https://www.cityofdublinetb.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:54.547241+00:00"
+    },
+    {
+      "public_body_id": 1746,
+      "name": "St Vincents Hospital Fairview",
+      "official_website_url": "https://svhf.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-08-25T11:21:55.861545+00:00"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "step": "db_upload",
+    "completed_at": "2026-08-26T12:03:32.225624+00:00"
+  },
+  "counts": {
+    "cso_bodies": 883,
+    "foi_bodies": 229,
+    "disclosure_files": 1905,
+    "foi_disclosures": 62899,
+    "topics": 3
+  }
+}
