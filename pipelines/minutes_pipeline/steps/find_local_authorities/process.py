@@ -71,7 +71,17 @@ def process(input_data, authorities_path, writer, step_dir, verbose=False,
     if unmatched:
         sys.exit(1)
 
-    writer.append(records)
+    # Replace-if-changed: a re-run (e.g. after CSO website fixes) must update
+    # records whose join result moved (new official_website_url) without
+    # duplicating the unchanged ones. Eviction marks changed bodies dirty so
+    # downstream steps re-crawl exactly those bodies via dirty_ids.json.
+    existing_by_id = {r["public_body_id"]: r for r in writer.results
+                      if "public_body_id" in r}
+    changed = [r for r in records
+               if existing_by_id.get(r["public_body_id"]) != r]
+    if changed:
+        writer._evict_keys({r["public_body_id"] for r in changed})
+        writer.append(changed)
 
 
 def main():

@@ -22,6 +22,7 @@ docs/
 **/dirty_ids.json
 **/failed_ids.json
 .env.admin
+.env.github
 local.db
 
 # Temp/scratch files

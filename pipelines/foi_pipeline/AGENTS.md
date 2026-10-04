@@ -18,6 +18,16 @@ uv run python process.py --force --stop-on-error
 uv run python process.py --from export_status --force --stop-on-error
 ```
 
+**To run only up to a specific step (inclusive):**
+```bash
+uv run python process.py --to export_status --force --stop-on-error
+```
+
+**To run an inclusive window of steps:**
+```bash
+uv run python process.py --from find_foi_pages --to get_foi_emails --force --stop-on-error
+```
+
 > **Always use `process.py` rather than calling individual step scripts directly.** This ensures dependencies are respected and prevents redundant execution. `process.py --from <step> --force` (see above) covers running "just one step forward" — reach for direct step invocation only for isolated debugging.
 
 **To run a single step manually (debugging only):**
@@ -83,6 +93,12 @@ uv run python process.py --force --stop-on-error
 
 # Resume from a specific step
 uv run python process.py --from export_status --force --stop-on-error
+
+# Run only up to a specific step (inclusive)
+uv run python process.py --to export_status --force --stop-on-error
+
+# Run an inclusive window of steps
+uv run python process.py --from find_foi_pages --to get_foi_emails --force --stop-on-error
 
 # Scope to one public body
 uv run python process.py --public-body 1001 --stop-on-error

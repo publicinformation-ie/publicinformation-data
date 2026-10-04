@@ -20,6 +20,7 @@ def main():
                         help="Path to the pipeline directory")
     parser.add_argument("--force", action="store_true", help="Re-run all steps regardless of staleness")
     parser.add_argument("--from", dest="from_step", metavar="STEP", help="Resume from this step")
+    parser.add_argument("--to", dest="to_step", metavar="STEP", help="Stop after this step (inclusive)")
     parser.add_argument("--stop-on-error", action="store_true", help="Halt pipeline on first non-zero exit code")
     parser.add_argument("--verbose", action="store_true", help="Pass --verbose to each step")
     parser.add_argument("--public-body", type=int, default=None, dest="public_body",
@@ -34,6 +35,16 @@ def main():
     steps = config["steps"]
     always_run = set(config.get("always_run", []))
     input_steps = config.get("input_steps", {})
+
+    if args.from_step is not None and args.from_step not in steps:
+        sys.exit(f"Error: --from step '{args.from_step}' not found in pipeline steps")
+    if args.to_step is not None and args.to_step not in steps:
+        sys.exit(f"Error: --to step '{args.to_step}' not found in pipeline steps")
+
+    start_index = steps.index(args.from_step) if args.from_step is not None else 0
+    end_index = steps.index(args.to_step) if args.to_step is not None else len(steps) - 1
+    if end_index < start_index:
+        sys.exit(f"Error: --to step '{args.to_step}' precedes --from step '{args.from_step}'")
 
     if args.public_body is not None:
         body_list_step = config.get("body_list_step", "find_public_bodies")
@@ -55,23 +66,22 @@ def main():
     repo_root = pipeline_dir.parent.parent
     src_path = repo_root / "src"
 
-    skip_until = args.from_step
     prev_out = None
 
-    for step_name in steps:
-        # Resolve output path first — needed for both skip_until and execution paths
+    for index, step_name in enumerate(steps):
+        if index > end_index:
+            break
+
+        # Resolve output path first — needed for both skip and execution paths
         if step_name.startswith("/"):
             step_out = repo_root / step_name.lstrip("/") / "output.json"
         else:
             step_out = pipeline_dir / "steps" / step_name / "output.json"
 
-        if skip_until:
-            if step_name == skip_until:
-                skip_until = None
-            else:
-                print(f"Skipping {step_name} (before --from {args.from_step})")
-                prev_out = step_out
-                continue
+        if index < start_index:
+            print(f"Skipping {step_name} (before --from {args.from_step})")
+            prev_out = step_out
+            continue
 
         # Absolute-path step: validate upstream output, set prev_out, no subprocess
         if step_name.startswith("/"):

@@ -1,7 +1,7 @@
 import json
 import sys
 import time
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 import pytest
 
@@ -411,3 +411,161 @@ def test_from_flag_skips_absolute_step_but_sets_prev_out(tmp_path):
         assert mock_run.call_count == 1
         cmd = mock_run.call_args[0][0]
         assert "validate_websites" in cmd[1]
+
+
+# --- --to / window tests ---
+
+def test_to_flag_stops_after_step(tmp_path):
+    """--to <step> processes only steps up to and including that step."""
+    pipeline_dir = _make_pipeline(tmp_path, ["step_a", "step_b", "step_c"])
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        mock_run.return_value.returncode = 0
+        sys.argv = ["process.py", str(pipeline_dir), "--to", "step_b", "--force"]
+        main()
+        assert mock_run.call_count == 2
+        run_steps = [call.args[0][1] for call in mock_run.call_args_list]
+        assert any("step_a" in p for p in run_steps)
+        assert any("step_b" in p for p in run_steps)
+        assert not any("step_c" in p for p in run_steps)
+
+
+def test_to_with_from_runs_only_inclusive_window(tmp_path):
+    pipeline_dir = _make_pipeline(tmp_path, ["step_a", "step_b", "step_c", "step_d"])
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        mock_run.return_value.returncode = 0
+        sys.argv = ["process.py", str(pipeline_dir), "--from", "step_b", "--to", "step_c", "--force"]
+        main()
+        assert mock_run.call_count == 2
+        run_steps = [call.args[0][1] for call in mock_run.call_args_list]
+        assert any("step_b" in p for p in run_steps)
+        assert any("step_c" in p for p in run_steps)
+        assert not any("step_a" in p for p in run_steps)
+        assert not any("step_d" in p for p in run_steps)
+
+
+def test_from_and_to_same_step_runs_single_step(tmp_path):
+    pipeline_dir = _make_pipeline(tmp_path, ["step_a", "step_b", "step_c"])
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        mock_run.return_value.returncode = 0
+        sys.argv = ["process.py", str(pipeline_dir), "--from", "step_b", "--to", "step_b", "--force"]
+        main()
+        assert mock_run.call_count == 1
+        assert "step_b" in mock_run.call_args[0][0][1]
+
+
+def test_unknown_to_step_exits_with_name(tmp_path):
+    pipeline_dir = _make_pipeline(tmp_path, ["step_a", "step_b"])
+
+    with patch("lib.pipeline_runner.subprocess.run"):
+        with pytest.raises(SystemExit) as exc:
+            sys.argv = ["process.py", str(pipeline_dir), "--to", "nope"]
+            main()
+        assert "nope" in str(exc.value.code)
+
+
+def test_unknown_from_step_exits_with_name(tmp_path):
+    pipeline_dir = _make_pipeline(tmp_path, ["step_a", "step_b"])
+
+    with patch("lib.pipeline_runner.subprocess.run"):
+        with pytest.raises(SystemExit) as exc:
+            sys.argv = ["process.py", str(pipeline_dir), "--from", "nope"]
+            main()
+        assert "nope" in str(exc.value.code)
+
+
+def test_inverted_range_exits_nonzero(tmp_path):
+    pipeline_dir = _make_pipeline(tmp_path, ["step_a", "step_b"])
+
+    with patch("lib.pipeline_runner.subprocess.run"):
+        with pytest.raises(SystemExit) as exc:
+            sys.argv = ["process.py", str(pipeline_dir), "--from", "step_b", "--to", "step_a"]
+            main()
+        assert exc.value.code != 0
+
+
+def test_to_on_last_step_behaves_like_full_run(tmp_path):
+    pipeline_dir = _make_pipeline(tmp_path, ["step_a", "step_b"])
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        mock_run.return_value.returncode = 0
+        sys.argv = ["process.py", str(pipeline_dir), "--force"]
+        main()
+        full_count = mock_run.call_count
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        mock_run.return_value.returncode = 0
+        sys.argv = ["process.py", str(pipeline_dir), "--to", "step_b", "--force"]
+        main()
+        assert mock_run.call_count == full_count
+
+
+def test_window_start_receives_prior_output_as_input(tmp_path):
+    """The first step in a window receives the prior step's output as its
+    --input, preserving the input chain and staleness baseline."""
+    pipeline_dir = _make_pipeline(tmp_path, ["step_a", "step_b", "step_c"])
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        mock_run.return_value.returncode = 0
+        sys.argv = ["process.py", str(pipeline_dir), "--from", "step_b", "--to", "step_c", "--force"]
+        main()
+        assert mock_run.call_count == 2
+        cmd = mock_run.call_args_list[0].args[0]
+        input_index = cmd.index("--input") + 1
+        assert cmd[input_index].endswith("steps/step_a/output.json")
+
+
+def test_to_with_stop_on_error_halts_within_window(tmp_path):
+    pipeline_dir = _make_pipeline(tmp_path, ["step_a", "step_b", "step_c"])
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        mock_run.side_effect = [Mock(returncode=0), Mock(returncode=1)]
+        with pytest.raises(SystemExit) as exc:
+            sys.argv = ["process.py", str(pipeline_dir), "--to", "step_c", "--stop-on-error", "--force"]
+            main()
+        assert exc.value.code == 1
+        assert mock_run.call_count == 2
+
+
+def test_to_with_force_runs_every_window_step(tmp_path):
+    pipeline_dir = _make_pipeline(tmp_path, ["step_a", "step_b", "step_c"])
+    for step in ["step_a", "step_b"]:
+        (pipeline_dir / "steps" / step / "output.json").write_text("{}")
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        mock_run.return_value.returncode = 0
+        sys.argv = ["process.py", str(pipeline_dir), "--from", "step_a", "--to", "step_b", "--force"]
+        main()
+        assert mock_run.call_count == 2
+
+
+def test_to_includes_absolute_upstream_step_inside_window(tmp_path):
+    pipeline_dir = _make_pipeline_with_abs(
+        tmp_path,
+        ["/pipelines/cso_pipeline/resolve_website_urls", "find_public_bodies", "validate_websites"],
+    )
+    upstream_out = _seed_upstream(tmp_path, "/pipelines/cso_pipeline/resolve_website_urls")
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        mock_run.return_value.returncode = 0
+        sys.argv = ["process.py", str(pipeline_dir), "--to", "find_public_bodies"]
+        main()
+        # absolute-path step validates upstream output, sets prev_out, runs no subprocess
+        assert mock_run.call_count == 1
+        cmd = mock_run.call_args[0][0]
+        assert "find_public_bodies" in cmd[1]
+        assert str(upstream_out) in cmd
+
+
+def test_to_includes_always_run_step_in_window(tmp_path):
+    pipeline_dir = _make_pipeline(tmp_path, ["step_a", "step_b"], always_run=["step_a"])
+    (pipeline_dir / "steps" / "step_a" / "output.json").write_text("{}")
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        mock_run.return_value.returncode = 0
+        sys.argv = ["process.py", str(pipeline_dir), "--to", "step_a"]
+        main()
+        assert mock_run.call_count == 1
+        assert "step_a" in mock_run.call_args[0][0][1]

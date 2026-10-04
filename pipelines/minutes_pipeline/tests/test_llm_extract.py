@@ -73,3 +73,44 @@ def test_opencode_sends_session_header_on_request(monkeypatch):
     result = mod.extract_json("sys", "user")
     assert result == {"motions": []}
     assert captured["headers"]["x-opencode-session"] == "session-abc"
+
+
+def test_opencode_responses_path_for_zen_v1_base(monkeypatch):
+    """With MOTIONS_LLM_BASE_URL=https://opencode.ai/zen/v1 the client must
+    use the Responses API (instructions/input payload, output_text parsing)
+    and still send x-opencode-session (required for the free tier)."""
+    captured = {}
+
+    class FakeResp:
+        ok = True
+        status_code = 200
+        text = "{}"
+
+        def json(self):
+            return {"status": "completed",
+                    "output": [{"type": "message",
+                                "content": [{"type": "output_text",
+                                             "text": '{"motions": []}'},
+                                            {"type": "reasoning",
+                                             "text": "ignored"}]}]}
+
+    import lib.llm_extract as mod
+
+    def fake_post(url, headers=None, json=None, timeout=None):
+        captured["url"] = url
+        captured["headers"] = headers
+        captured["payload"] = json
+        return FakeResp()
+
+    monkeypatch.setenv("MOTIONS_LLM_BASE_URL", "https://opencode.ai/zen/v1")
+    monkeypatch.setenv("MOTIONS_LLM_SESSION_ID", "session-abc")
+    monkeypatch.setattr(mod, "motions_provider", lambda: "opencode")
+    monkeypatch.setattr(mod, "_opencode_api_key", lambda: "test-key")
+    monkeypatch.setattr("requests.post", fake_post)
+
+    result = mod.extract_json("sys", "user")
+    assert result == {"motions": []}
+    assert captured["url"] == "https://opencode.ai/zen/v1/responses"
+    assert captured["headers"]["x-opencode-session"] == "session-abc"
+    assert captured["payload"]["instructions"] == "sys"
+    assert captured["payload"]["input"] == "user"

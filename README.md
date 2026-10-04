@@ -136,6 +136,8 @@ For local development, the default SQLite database (`local.db`) is used.
 | `python pipelines/foi_pipeline/process.py pipelines/foi_pipeline --force` | Run the complete pipeline from scratch |
 | `python pipelines/foi_pipeline/process.py pipelines/foi_pipeline --from export_status --force` | Run from a specific step |
 | `python pipelines/foi_pipeline/process.py pipelines/foi_pipeline --from generate_topics` | Run from a step without forcing |
+| `python pipelines/foi_pipeline/process.py pipelines/foi_pipeline --to export_status --force` | Run only up to and including a step |
+| `python pipelines/foi_pipeline/process.py pipelines/foi_pipeline --from find_foi_pages --to get_foi_emails --force` | Run an inclusive window of steps |
 
 ### Individual Step Execution
 

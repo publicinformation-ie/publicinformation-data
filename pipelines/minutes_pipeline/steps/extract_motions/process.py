@@ -12,17 +12,16 @@ from lib.llm_extract import extract_json
 STEP_NAME = "extract_motions"
 
 _SYSTEM_PROMPT = (
-    "You extract the motions from Irish local-authority council meeting "
-    "minutes. A motion is a formal proposal put to a vote (often starting "
-    "'That the council…' or 'Proposed by…'). Return a JSON object with two "
-    "keys: 'meeting_date' and 'motions'. 'meeting_date' is the ISO date "
-    "(YYYY-MM-DD) of the meeting when it is stated in the document (a full "
-    "calendar date, e.g. '8 July 2024' or '2024-07-08'), otherwise null. "
-    "'motions' is a list of objects, each with string fields: motion_text "
-    "(verbatim motion text), proposer (councillor or null), seconder "
-    "(councillor or null), status_label (one of: carried, "
-    "carried_as_amended, not_carried, withdrawn, deferred, not_recorded). "
-    "Return no text outside the JSON object."
+    "Return ONLY valid JSON. No markdown, no extra text, no code fences.\n"
+    "Schema: {\"meeting_date\": \"YYYY-MM-DD\" or null, "
+    "\"motions\": [{\"motion_text\": \"string\", \"proposer\": \"string or null\", "
+    "\"seconder\": \"string or null\", \"status_label\": "
+    "\"carried|carried_as_amended|not_carried|withdrawn|deferred|not_recorded\"}]}"
+    "\nExtract motions from Irish local-authority council meeting minutes. "
+    "A motion is a formal proposal put to a vote (often starting "
+    "'That the council…' or 'Proposed by…'). "
+    "'meeting_date' is the ISO date (YYYY-MM-DD) when stated in the document "
+    "(full calendar date only), otherwise null."
 )
 
 

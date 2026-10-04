@@ -13,7 +13,9 @@ document to ``errors.json`` — never guess a partial record.
 Configuration (env):
     MOTIONS_LLM_PROVIDER    "opencode" (default) | "openai" | "anthropic" | "mistral"
     MOTIONS_LLM_MODEL       model id (default "deepseek-v4-flash" for opencode)
-    MOTIONS_LLM_BASE_URL    OpenAI-compatible base URL (default "https://opencode.ai/zen/go/v1")
+    MOTIONS_LLM_BASE_URL    OpenAI-compatible base URL (default "https://opencode.ai/zen/go/v1").
+                            Point it at "https://opencode.ai/zen/v1" for models that only
+                            speak the Responses API (e.g. "muse-spark-1.3-contributor-free").
     MOTIONS_LLM_API_KEY     API key (default: read from ~/.local/share/opencode/auth.json -> opencode-go)
     MOTIONS_LLM_SESSION_ID  stable session id (default: uuid4 generated once per process)
 """
@@ -73,12 +75,52 @@ def _opencode_api_key() -> str | None:
     return None
 
 
+def _call_opencode_responses(base: str, key: str, system: str, user: str, model: str) -> str:
+    """Call the Zen Responses API (https://opencode.ai/zen/v1/responses).
+
+    Used for models that don't speak chat/completions (e.g.
+    "muse-spark-1.3-contributor-free"). The free tier requires the
+    x-opencode-session header; without it the gateway returns
+    MissingSessionID.
+    """
+    import requests  # lazy import
+    resp = requests.post(
+        f"{base}/responses",
+        headers={
+            "Authorization": f"Bearer {key}",
+            "Content-Type": "application/json",
+            "x-opencode-session": motions_session_id(),
+        },
+        json={
+            "model": model,
+            "instructions": system,
+            "input": user,
+        },
+        timeout=180,
+    )
+    if not resp.ok:
+        raise RuntimeError(f"Opencode HTTP {resp.status_code}: {resp.text[:200]}")
+    data = resp.json()
+    if data.get("status") not in (None, "completed"):
+        raise RuntimeError(f"Opencode response status: {data.get('status')}")
+    texts = [
+        chunk.get("text", "")
+        for item in data.get("output", [])
+        if item.get("type") == "message"
+        for chunk in item.get("content", [])
+        if chunk.get("type") == "output_text"
+    ]
+    return "".join(texts)
+
+
 def _call_opencode(system: str, user: str, model: str) -> str:
     import requests  # lazy import
     base = os.environ.get("MOTIONS_LLM_BASE_URL", _OPENCODE_DEFAULT_BASE).rstrip("/")
     key = _opencode_api_key()
     if not key:
         raise RuntimeError("no Opencode API key found")
+    if base.endswith("/zen/v1"):
+        return _call_opencode_responses(base, key, system, user, model)
     resp = requests.post(
         f"{base}/chat/completions",
         headers={
@@ -111,10 +153,16 @@ def _call_backend(system: str, user: str, model: str) -> str:
             api_key=os.environ.get("MOTIONS_LLM_API_KEY", "not-needed"),
             base_url=os.environ.get("MOTIONS_LLM_BASE_URL"),
         )
+        # Ollama-specific: pass num_ctx via extra_body to limit context window
+        extra_body = {}
+        if os.environ.get("MOTIONS_LLM_NUM_CTX"):
+            extra_body["num_ctx"] = int(os.environ["MOTIONS_LLM_NUM_CTX"])
         resp = client.chat.completions.create(
-            model=model, temperature=MOTIONS_TEMPERATURE,
+            model=model,
+            temperature=MOTIONS_TEMPERATURE,
             messages=[{"role": "system", "content": system},
                       {"role": "user", "content": user}],
+            extra_body=extra_body if extra_body else None,
         )
         content = resp.choices[0].message.content
         return content if isinstance(content, str) else ""
