@@ -2,7 +2,7 @@
 
 **Open data pipeline for Irish Freedom of Information (FOI) public body information**
 
-[![Codeberg](https://codeberg.org/publicinformation-ie/publicinformation-data/badge)](https://codeberg.org/publicinformation-ie/publicinformation-data)
+[![GitHub](https://img.shields.io/badge/repo-GitHub-181717?logo=github)](https://github.com/publicinformation-ie/publicinformation-data)
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 This repository contains the data processing pipeline for [PublicInformation.ie](https://publicinformation.ie), a project that tracks and publishes Freedom of Information (FOI) data from Irish public bodies. The pipeline extracts, transforms, and loads data about FOI pages, email addresses, disclosure logs, and disclosure files from hundreds of Irish government and public sector websites.
@@ -70,7 +70,7 @@ There are four pipelines under `pipelines/`, each with its own `pipeline.json` s
 
 ```bash
 # Clone the repository
-git clone https://codeberg.org/publicinformation-ie/publicinformation-data.git
+git clone https://github.com/publicinformation-ie/publicinformation-data.git
 cd publicinformation-data
 
 # Run a pipeline (pass its directory explicitly)
@@ -208,7 +208,7 @@ publicinformation-data/
 │
 ├── scripts/                       # Helper and admin scripts — see scripts/README.md
 │
-└── public/                        # Public-facing output files, served via Codeberg Pages
+└── public/                        # Public-facing output files, published to data.publicinformation.ie
     ├── index.html                 # Landing page
     ├── get-the-data.html          # Non-technical CSV download guide
     ├── quickstart.html            # Developer quickstart with runnable example
@@ -402,10 +402,10 @@ The AGPL-3.0 license ensures that any modifications to this software that are us
 
 ### Reporting Issues
 
-Please report issues on the Codeberg repository:
+Please report issues on the GitHub repository:
 
-- [Issues](https://codeberg.org/publicinformation-ie/publicinformation-data/issues)
-- [Discussions](https://codeberg.org/publicinformation-ie/publicinformation-data/discussions)
+- [Issues](https://github.com/publicinformation-ie/publicinformation-data/issues)
+- [Discussions](https://github.com/publicinformation-ie/publicinformation-data/discussions)
 
 Include as much detail as possible:
 - Pipeline step that failed
