@@ -6,7 +6,7 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 
-<https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/lobbying-ie-links>
+<https://data.publicinformation.ie/dataset/lobbying-ie-links>
     a dcat:Dataset ;
     dct:title "lobbying.ie Links for Irish Public Bodies"@en ;
     dct:description "Links from Irish public bodies to their page on lobbying.ie, Ireland's Register of Lobbying, plus a point-in-time count of lobbying returns filed against each body. Covers only the subset of lobbying.ie's listed public bodies that fuzzy-match a canonical public body by name."@en ;
@@ -24,30 +24,30 @@
         vcard:fn "PublicInformation.ie" ;
         vcard:hasEmail <mailto:dave@publicinformation.ie> ;
     ] ;
-    dct:relation <https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/public-bodies> ;
+    dct:relation <https://data.publicinformation.ie/dataset/public-bodies> ;
 
     dcat:distribution [
         a dcat:Distribution ;
         dct:title "lobbying.ie Links (JSON-LD, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
-        dcat:accessURL <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/lobbying-ie-links/lobbying-ie-links.jsonld> ;
-        dcat:downloadURL <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/lobbying-ie-links/lobbying-ie-links.jsonld> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/lobbying-ie-links/lobbying-ie-links.jsonld> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/lobbying-ie-links/lobbying-ie-links.jsonld> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "application/ld+json" ;
-        dct:conformsTo <https://publicinformation-ie.codeberg.page/publicinformation-data/schemas/lobbying-ie-links.schema.json> ;
+        dct:conformsTo <https://data.publicinformation.ie/schemas/lobbying-ie-links.schema.json> ;
     ] , [
         a dcat:Distribution ;
         dct:title "lobbying.ie Links (CSV, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
-        dcat:accessURL <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/lobbying-ie-links/lobbying-ie-links.csv> ;
-        dcat:downloadURL <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/lobbying-ie-links/lobbying-ie-links.csv> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/lobbying-ie-links/lobbying-ie-links.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/lobbying-ie-links/lobbying-ie-links.csv> ;
         dct:conformsTo <http://www.w3.org/ns/csvw> ;
-        dct:conformsTo <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/lobbying-ie-links/lobbying-ie-links.csv-metadata.json> ;
+        dct:conformsTo <https://data.publicinformation.ie/v1.0.0/lobbying-ie-links/lobbying-ie-links.csv-metadata.json> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "text/csv" ;
     ] .
 
-<https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/lobbying-ie-links>
+<https://data.publicinformation.ie/dataset/lobbying-ie-links>
     prov:wasGeneratedBy [
         a prov:Activity ;
         prov:startedAtTime "2026-07-13T00:00:00Z"^^xsd:dateTime ;
@@ -55,6 +55,6 @@
             a prov:Agent ;
             prov:actedOnBehalfOf <https://www.publicinformation.ie/> ;
             foaf:name "PublicInformation.ie Pipeline" ;
-            foaf:homepage <https://codeberg.org/publicinformation-ie/publicinformation-data> ;
+            foaf:homepage <https://github.com/publicinformation-ie/publicinformation-data> ;
         ] ;
     ] .

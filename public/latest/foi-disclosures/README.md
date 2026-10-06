@@ -1,10 +1,10 @@
 # FOI Disclosures Dataset
 
-**Dataset URI:** `https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/foi-disclosures`
+**Dataset URI:** `https://data.publicinformation.ie/dataset/foi-disclosures`
 
 Individual Freedom of Information request records extracted from disclosure log files published by Irish public bodies. Each record is linked to exactly one public body via the [Public Bodies dataset](../public-bodies/README.md). Part of the PublicInformation.ie Open Data Publishing initiative.
 
-**Base URI:** `https://publicinformation-ie.codeberg.page/publicinformation-data/`
+**Base URI:** `https://data.publicinformation.ie/`
 
 ## Versioning
 
@@ -59,9 +59,9 @@ Disclosure log files are discovered via the [FOI Request Files dataset](../foi-r
 
 ```json
 {
-  "@id": "https://publicinformation-ie.codeberg.page/publicinformation-data/foi-disclosure/f292642e7af3",
+  "@id": "https://data.publicinformation.ie/foi-disclosure/f292642e7af3",
   "@type": "foi:FoiDisclosure",
-  "public_body": "https://publicinformation-ie.codeberg.page/publicinformation-data/body/bord-bia",
+  "public_body": "https://data.publicinformation.ie/body/bord-bia",
   "name": "Bord Bia",
   "file_url": "https://www.bordbia.ie/globalassets/bordbia.ie/about/governance/foi-disclosure-log/foi-disclosure-log-2019.pdf",
   "file_type": "pdf",
@@ -78,8 +78,8 @@ Disclosure log files are discovered via the [FOI Request Files dataset](../foi-r
 ### Accessing Data
 
 ```bash
-curl -L https://publicinformation-ie.codeberg.page/publicinformation-data/latest/foi-disclosures/foi-disclosures.jsonld
-curl -L https://publicinformation-ie.codeberg.page/publicinformation-data/latest/foi-disclosures/foi-disclosures.csv
+curl -L https://data.publicinformation.ie/latest/foi-disclosures/foi-disclosures.jsonld
+curl -L https://data.publicinformation.ie/latest/foi-disclosures/foi-disclosures.csv
 ```
 
 No `git-lfs` client is needed for either command — both files are ordinary git-tracked content, served directly as static files.
@@ -105,4 +105,4 @@ Creative Commons Attribution 4.0 International (CC-BY 4.0). See [LICENSE](../../
 
 **Publisher:** [PublicInformation.ie](https://www.publicinformation.ie/)
 **Email:** dave@publicinformation.ie
-**Repository:** https://codeberg.org/publicinformation-ie/publicinformation-data
+**Repository:** https://github.com/publicinformation-ie/publicinformation-data

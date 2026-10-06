@@ -6,7 +6,7 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 
-<https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/documents>
+<https://data.publicinformation.ie/dataset/documents>
     a dcat:Dataset ;
     dct:title "Public-Interest Documents from Irish Public Bodies"@en ;
     dct:description "Large public-interest PDFs (transport strategies, statutory reviews, policy reports) published by Irish public bodies, split into per-section Markdown plus extracted figures and packaged as one reproducible bundle per document. Each document optionally links to the public body that published it in the Public Bodies dataset. See docs/superpowers/specs/2026-08-10-document-bundle-contract.md in the source repository for the full bundle and index.json shape this dataset guarantees."@en ;
@@ -24,15 +24,15 @@
         vcard:fn "PublicInformation.ie" ;
         vcard:hasEmail <mailto:dave@publicinformation.ie> ;
     ] ;
-    dct:relation <https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/public-bodies> ;
+    dct:relation <https://data.publicinformation.ie/dataset/public-bodies> ;
 
     dcat:distribution [
         a dcat:Distribution ;
         dct:title "Documents Library Index (JSON)"@en ;
         dct:description "One record per published document: title, publisher, page/chapter/section/figure counts, the relative path and sha256 of its bundle.tar.gz, and its source PDF's sha256 for provenance. A document that fails to build is listed under `failed`, never half-published under `documents`."@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
-        dcat:accessURL <https://publicinformation-ie.codeberg.page/publicinformation-data/documents/index.json> ;
-        dcat:downloadURL <https://publicinformation-ie.codeberg.page/publicinformation-data/documents/index.json> ;
+        dcat:accessURL <https://data.publicinformation.ie/documents/index.json> ;
+        dcat:downloadURL <https://data.publicinformation.ie/documents/index.json> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "application/json" ;
     ] , [
@@ -44,7 +44,7 @@
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     ] .
 
-<https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/documents>
+<https://data.publicinformation.ie/dataset/documents>
     prov:wasGeneratedBy [
         a prov:Activity ;
         prov:startedAtTime "2026-08-11T00:00:00Z"^^xsd:dateTime ;
@@ -52,6 +52,6 @@
             a prov:Agent ;
             prov:actedOnBehalfOf <https://www.publicinformation.ie/> ;
             foaf:name "PublicInformation.ie Pipeline" ;
-            foaf:homepage <https://codeberg.org/publicinformation-ie/publicinformation-data> ;
+            foaf:homepage <https://github.com/publicinformation-ie/publicinformation-data> ;
         ] ;
     ] .

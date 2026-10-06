@@ -1,10 +1,10 @@
 # data.gov.ie Links Dataset
 
-**Dataset URI:** `https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/data-gov-ie-links`
+**Dataset URI:** `https://data.publicinformation.ie/dataset/data-gov-ie-links`
 
 Links from Irish public bodies to their organisation page on [data.gov.ie](https://data.gov.ie/), Ireland's open data portal. Each link is joined to exactly one public body via the [Public Bodies dataset](../public-bodies/README.md). Part of the PublicInformation.ie Open Data Publishing initiative.
 
-**Base URI:** `https://publicinformation-ie.codeberg.page/publicinformation-data/`
+**Base URI:** `https://data.publicinformation.ie/`
 
 ## Versioning
 
@@ -45,9 +45,9 @@ Source: data.gov.ie's CKAN REST API (`https://data.gov.ie/api/3/action/organizat
 
 ```json
 {
-  "@id": "https://publicinformation-ie.codeberg.page/publicinformation-data/data-gov-ie-links/an-garda-siochana",
+  "@id": "https://data.publicinformation.ie/data-gov-ie-links/an-garda-siochana",
   "@type": "dgi:DataGovIeLink",
-  "public_body": "https://publicinformation-ie.codeberg.page/publicinformation-data/body/an-garda-siochana",
+  "public_body": "https://data.publicinformation.ie/body/an-garda-siochana",
   "datagovie_slug": "an-garda-siochana",
   "datagovie_url": "https://data.gov.ie/organization/an-garda-siochana",
   "datagovie_package_count": 0
@@ -57,8 +57,8 @@ Source: data.gov.ie's CKAN REST API (`https://data.gov.ie/api/3/action/organizat
 ### Accessing Data
 
 ```bash
-curl -L https://publicinformation-ie.codeberg.page/publicinformation-data/latest/data-gov-ie-links/data-gov-ie-links.jsonld
-curl -L https://publicinformation-ie.codeberg.page/publicinformation-data/latest/data-gov-ie-links/data-gov-ie-links.csv
+curl -L https://data.publicinformation.ie/latest/data-gov-ie-links/data-gov-ie-links.jsonld
+curl -L https://data.publicinformation.ie/latest/data-gov-ie-links/data-gov-ie-links.csv
 ```
 
 ## Known Limitations
@@ -83,4 +83,4 @@ Creative Commons Attribution 4.0 International (CC-BY 4.0). See [LICENSE](../../
 
 **Publisher:** [PublicInformation.ie](https://www.publicinformation.ie/)
 **Email:** dave@publicinformation.ie
-**Repository:** https://codeberg.org/publicinformation-ie/publicinformation-data
+**Repository:** https://github.com/publicinformation-ie/publicinformation-data

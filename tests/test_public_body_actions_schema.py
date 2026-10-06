@@ -4,7 +4,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).parents[1]
 VOCAB_DIR = REPO_ROOT / "public" / "vocabularies"
-NS = "https://publicinformation-ie.codeberg.page/publicinformation-data/ns/action#"
+NS = "https://data.publicinformation.ie/ns/action#"
 
 
 def read_vocabulary(name):

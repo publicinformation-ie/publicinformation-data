@@ -6,7 +6,7 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 
-<https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/motions>
+<https://data.publicinformation.ie/dataset/motions>
     a dcat:Dataset ;
     dct:title "Motions at Irish Local Authority Meetings"@en ;
     dct:description "Motions moved at meetings of Irish local authorities, extracted from the authorities' published meeting minutes. Each motion records who proposed and seconded it, the meeting date and type, and its outcome."@en ;
@@ -24,30 +24,30 @@
         vcard:fn "PublicInformation.ie" ;
         vcard:hasEmail <mailto:dave@publicinformation.ie> ;
     ] ;
-    dct:relation <https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/public-bodies> ;
+    dct:relation <https://data.publicinformation.ie/dataset/public-bodies> ;
 
     dcat:distribution [
         a dcat:Distribution ;
         dct:title "Motions (JSON-LD, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
-        dcat:accessURL <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/motions/motions.jsonld> ;
-        dcat:downloadURL <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/motions/motions.jsonld> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/motions/motions.jsonld> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/motions/motions.jsonld> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "application/ld+json" ;
-        dct:conformsTo <https://publicinformation-ie.codeberg.page/publicinformation-data/schemas/motions.schema.json> ;
+        dct:conformsTo <https://data.publicinformation.ie/schemas/motions.schema.json> ;
     ] , [
         a dcat:Distribution ;
         dct:title "Motions (CSV, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
-        dcat:accessURL <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/motions/motions.csv> ;
-        dcat:downloadURL <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/motions/motions.csv> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/motions/motions.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/motions/motions.csv> ;
         dct:conformsTo <http://www.w3.org/ns/csvw> ;
-        dct:conformsTo <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/motions/motions.csv-metadata.json> ;
+        dct:conformsTo <https://data.publicinformation.ie/v1.0.0/motions/motions.csv-metadata.json> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "text/csv" ;
     ] .
 
-<https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/motions>
+<https://data.publicinformation.ie/dataset/motions>
     prov:wasGeneratedBy [
         a prov:Activity ;
         prov:startedAtTime "2026-09-10T00:00:00Z"^^xsd:dateTime ;
@@ -55,6 +55,6 @@
             a prov:Agent ;
             prov:actedOnBehalfOf <https://www.publicinformation.ie/> ;
             foaf:name "PublicInformation.ie Pipeline" ;
-            foaf:homepage <https://codeberg.org/publicinformation-ie/publicinformation-data> ;
+            foaf:homepage <https://github.com/publicinformation-ie/publicinformation-data> ;
         ] ;
     ] .

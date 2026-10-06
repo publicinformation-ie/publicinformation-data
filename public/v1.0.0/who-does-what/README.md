@@ -1,10 +1,10 @@
 # Who Does What Dataset
 
-**Dataset URI:** `https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/who-does-what`
+**Dataset URI:** `https://data.publicinformation.ie/dataset/who-does-what`
 
 Links from Irish public bodies to their page on gov.ie's "Who Does What" campaign — a plain-English description of what each body does. Each link is joined to exactly one public body via the [Public Bodies dataset](../public-bodies/README.md). Part of the PublicInformation.ie Open Data Publishing initiative.
 
-**Base URI:** `https://publicinformation-ie.codeberg.page/publicinformation-data/`
+**Base URI:** `https://data.publicinformation.ie/`
 
 ## Versioning
 
@@ -44,9 +44,9 @@ Source: the gov.ie "Who Does What" campaign page (`https://www.gov.ie/en/govie-t
 
 ```json
 {
-  "@id": "https://publicinformation-ie.codeberg.page/publicinformation-data/who-does-what/office-of-the-revenue-commissioners",
+  "@id": "https://data.publicinformation.ie/who-does-what/office-of-the-revenue-commissioners",
   "@type": "wdw:WhoDoesWhatLink",
-  "public_body": "https://publicinformation-ie.codeberg.page/publicinformation-data/body/office-of-the-revenue-commissioners",
+  "public_body": "https://data.publicinformation.ie/body/office-of-the-revenue-commissioners",
   "wdw_slug": "office-of-the-revenue-commissioners",
   "wdw_url": "https://www.gov.ie/en/office-of-the-revenue-commissioners/organisation-information/revenue-commissioners-who-does-what/"
 }
@@ -55,8 +55,8 @@ Source: the gov.ie "Who Does What" campaign page (`https://www.gov.ie/en/govie-t
 ### Accessing Data
 
 ```bash
-curl -L https://publicinformation-ie.codeberg.page/publicinformation-data/latest/who-does-what/who-does-what.jsonld
-curl -L https://publicinformation-ie.codeberg.page/publicinformation-data/latest/who-does-what/who-does-what.csv
+curl -L https://data.publicinformation.ie/latest/who-does-what/who-does-what.jsonld
+curl -L https://data.publicinformation.ie/latest/who-does-what/who-does-what.csv
 ```
 
 ## Known Limitations
@@ -81,4 +81,4 @@ Creative Commons Attribution 4.0 International (CC-BY 4.0). See [LICENSE](../../
 
 **Publisher:** [PublicInformation.ie](https://www.publicinformation.ie/)
 **Email:** dave@publicinformation.ie
-**Repository:** https://codeberg.org/publicinformation-ie/publicinformation-data
+**Repository:** https://github.com/publicinformation-ie/publicinformation-data
