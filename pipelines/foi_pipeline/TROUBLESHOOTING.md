@@ -1,6 +1,6 @@
 # Troubleshooting Guide
 
-This document contains troubleshooting information for common FOI pipeline issues. See also [DATA_FLOW.md](../DATA_FLOW.md) for the end-to-end data flow overview.
+This document contains troubleshooting information for common FOI pipeline issues. See also [pipelines/foi_pipeline/AGENTS.md](AGENTS.md) for the pipeline architecture and data flow overview.
 
 ## export_status/output.json not generated
 
@@ -60,44 +60,6 @@ Each step writes its output to:
 - `<step_directory>/pipeline-status.json` - Copy of output (for debugging)
 
 ## Common Issues
-
-### API 429 Rate Limit Errors in sync_backlog
-
-If you see `429 Too Many Requests` errors from the repository host API:
-
-1. **Check the rate limit configuration:**
-   - Default delay is 1.0 second between requests (60 requests/minute)
-   - The host API limit is 2000 requests per 5 minutes (check the current host's docs)
-   - The default should be well within limits
-
-2. **Enable detailed logging:**
-   The sync_backlog step now logs every request with timestamps:
-   ```
-   2026-06-10 12:34:56.789 [sync_backlog.rate_limit] INFO: [1] Attempt 1/4 - GET https://api.example.org/repos/.../labels (delay_before=1.000s)
-   2026-06-10 12:34:57.890 [sync_backlog.rate_limit] INFO: [1] Response - GET https://api.example.org/repos/.../labels | Status=200 | Time=1.101s | RateLimit=2000 | Remaining=1999
-   ```
-   
-   To see these logs, run with Python logging enabled:
-   ```bash
-   cd foi_pipeline
-   PYTHONPATH=. python steps/sync_backlog/process.py --output steps/sync_backlog/output.json --force
-   ```
-
-3. **Adjust the rate limit delay:**
-   Increase `API_RATE_LIMIT_DELAY` if needed:
-   ```bash
-   export API_RATE_LIMIT_DELAY=2.0  # 2 seconds between requests
-   ```
-
-4. **Check for burst requests:**
-   The most common cause is multiple sync_backlog processes running concurrently, or a bug causing requests to burst. The logging will reveal this.
-
-5. **Verify Retry-After header handling:**
-   When a 429 is received, the code respects the `Retry-After` header. The logs will show:
-   ```
-   WARNING: [N] Rate limited! Retry-After=5s, attempt=1/4
-   INFO: [N] Sleeping for 5s before retry...
-   ```
 
 ### All status show as "not_attempted"
 

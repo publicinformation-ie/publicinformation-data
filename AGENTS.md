@@ -1,6 +1,6 @@
 # PublicInformation.ie - Agent Documentation
 
-Top-level instruction file for agents working in this repository. It points to the docs that matter and flags the things most likely to trip up a new session. For human-facing context start at [README.md](README.md); for the end-to-end data flow see [DATA_FLOW.md](DATA_FLOW.md).
+Top-level instruction file for agents working in this repository. It points to the docs that matter and flags the things most likely to trip up a new session. For human-facing context start at [README.md](README.md); for the end-to-end data flow see [pipelines/foi_pipeline/AGENTS.md](pipelines/foi_pipeline/AGENTS.md).
 
 ## Core Data-Handling Principle
 
@@ -199,7 +199,7 @@ Before running a live pipeline:
 4. Prefer a scoped run and include `--stop-on-error`.
 5. Review generated diffs and error counts before committing or publishing.
 
-Full pipeline runs can modify many generated artifacts. They may also consume API quota and update the local or remote database. Do not run `scripts/publish_pages.sh` until the generated public-data diff has been reviewed.
+Full pipeline runs can modify many generated artifacts. They may also consume API quota and update the local or remote database. Do not merge a `public/` change to `main` until the generated public-data diff has been reviewed — merging is what publishes (see `## Pages publishing` below).
 
 ## Subagent Dispatch (cost control)
 
@@ -212,7 +212,7 @@ Claude Code sessions additionally have named agents in `.claude/agents/` (`explo
 ```
 pipelines/
   foi_pipeline/        # Main FOI pipeline (27 steps) — deep-dive in pipelines/foi_pipeline/AGENTS.md
-  document_pipeline/   # PDF → per-section markdown + figures → public/documents/
+  document_pipeline/   # PDF → per-section markdown + figures → local bundle output (not published)
   actions_pipeline/    # Cross-document action identity + relationships → public-body-actions
   cso_pipeline/        # CSO Register ingestion; resolve_website_urls reused by foi_pipeline
   wdw_pipeline/        # "Who Does What" plain-English descriptions
@@ -222,7 +222,7 @@ pipelines/
 scripts/               # Helper/admin tools — which script for which question: scripts/AGENTS.md
 src/lib/               # Shared library: pipeline_runner.py, dataset_publish.py, apify_search.py, ...
 tests/                 # Root tests for scripts/ transform_*.py
-public/                # Published output, served from the `pages` branch
+public/                # Published output, deployed to GitHub Pages from `public/` by `deploy-pages.yml`
 ```
 
 Each step lives in `<pipeline>/steps/<step>/` with `README.md` and `process.py`; generated outputs such as `output.json`, `errors.json`, and status files are usually gitignored. Some steps define `output_schema.json`; where present, it is the validation contract. Outputs are human-readable JSON and should be reviewed rather than hand-edited.
@@ -231,23 +231,27 @@ Each step lives in `<pipeline>/steps/<step>/` with `README.md` and `process.py`;
 
 A step's `override.json` holds manually-curated records marked `"source_method": "manual"` and `"overridden": true`. They are **never overwritten** by automated re-runs, bypass normal processing (no HTTP calls), and are committed to git as source of truth. `document_pipeline` uses a different, node-level override in `steps/detect_structure/override.json` keyed by `doc_slug` — see [`pipelines/document_pipeline/README.md`](pipelines/document_pipeline/README.md).
 
-## Pages Publishing (legacy/inactive)
+## Hosting & service providers
 
-`data.publicinformation.ie` was historically served from the `pages` branch, rebuilt from `public/` by `scripts/publish_pages.sh` on every `main` commit touching `public/` (via `.githooks/post-commit`). That pipeline is **legacy** — the repo now lives on GitHub (`https://github.com/publicinformation-ie/publicinformation-data`) and large data files are stored with **Git LFS** instead. `scripts/publish_pages.sh` and `.githooks/post-commit` are unmodified but dormant; `core.hooksPath` is not set in new clones.
+> **Project principle: prefer EU-based service providers.** GitHub (US-based) is a
+> deliberate, temporary interim host for source control, CI and Pages while an
+> acceptable EU alternative is evaluated. Any replacement must keep
+> `https://data.publicinformation.ie` as the canonical base URI, so published dataset
+> identifiers do not change again.
 
-Run once per clone:
+UptimeRobot monitors the domain (an HTTP(s) keyword monitor on a real dataset artifact plus an SSL monitor) — see the spec's monitoring section; the hosting itself stays temporary pending an EU alternative.
 
-```bash
-git lfs install
-```
+## Pages publishing
 
-Code-only clones use `GIT_LFS_SKIP_SMUDGE=1`; run `git lfs pull` before running tests that read `pipelines/**/eval/input.json` (those tests fail with a JSON decode error on a pointer file). The script never force-pushes; if it is ever resurrected, run `git lfs pull` first or it would publish pointer files.
+`data.publicinformation.ie` is served by GitHub Pages from a `public/` artifact published by `.github/workflows/deploy-pages.yml`: pushes to `main` touching `public/**` deploy automatically, and `workflow_dispatch` deploys on demand. Repo Settings → Pages must use source "GitHub Actions" with custom domain `data.publicinformation.ie`, which requires the repository to be public.
+
+Large data files are stored with Git LFS: run `git lfs install` once per clone (`GIT_LFS_SKIP_SMUDGE=1` for code-only clones), and `git lfs pull` before running tests that read `pipelines/**/eval/input.json` (those tests fail with a JSON decode error on a pointer file). CI and deploy checkouts use `lfs: true` so the Pages artifact contains materialized bytes, not pointers.
 
 ## Dataset Version Bumps
 
 Each catalogued dataset (one `public/catalog/dataset-*.ttl` per dataset) carries two independent signals: `owl:versionInfo` (SemVer schema contract, bumped by hand) and `dct:modified` (content freshness, stamped automatically by `src/lib/dataset_publish.py`'s `stamp_if_changed`).
 
-Bump `owl:versionInfo` by hand only for a breaking (MAJOR) or additive (MINOR) change to field names/types/vocabularies: edit the `OUTPUT_DIR` constant in the dataset's `transform_*.py` (`foi-disclosures` is the exception — `latest/`-only, bump `DATASET_VERSION` instead; `public-bodies` lives in `src/lib/publish_public_bodies.py`, not a `scripts/transform_*.py`, and is regenerated by the FOI pipeline's `export_status` step), edit the `.ttl` to match, add a `public/CHANGELOG.md` entry, then run the script once. Fixing bad data in an existing field is just a content refresh — run the transform and let `stamp_if_changed` update `dct:modified`.
+Bump `owl:versionInfo` by hand only for a breaking (MAJOR) or additive (MINOR) change to field names/types/vocabularies: edit the `OUTPUT_DIR` constant in the dataset's `transform_*.py` (`foi-disclosures` is the exception — `latest/`-only, bump `DATASET_VERSION` instead; `public-bodies` lives in `src/lib/publish_public_bodies.py`, not a `scripts/transform_*.py`, and is regenerated by the FOI pipeline's `export_status` step), edit the `.ttl` to match, add a `public/CHANGELOG.md` entry, then run the script once. Fixing bad data in an existing field is just a content refresh — run the transform and let `stamp_if_changed` update `dct:modified`. The one-time host migration (2026-10-06) was a content change recorded in `public/CHANGELOG.md` with no `owl:versionInfo` bump; the versioned snapshots were rewritten once for the host move.
 
 ## Common Commands
 
@@ -261,7 +265,7 @@ Bump `owl:versionInfo` by hand only for a breaking (MAJOR) or additive (MINOR) c
 | FOI pipeline tests | `cd pipelines/foi_pipeline && uv run pytest tests/ -q` |
 | Document pipeline tests | `uv run pytest pipelines/document_pipeline/tests -q` |
 | Root (transform) tests | `uv run pytest tests/ -q` |
-| Manually publish `pages` branch | `scripts/publish_pages.sh` |
+| Trigger Pages deploy (workflow_dispatch) | `gh workflow run deploy-pages.yml` (or the Actions tab → Deploy Pages → Run workflow) |
 | One-time LFS setup | `git lfs install` |
 | Inspect consolidated output | `python3 -c "import json; d=json.load(open('pipelines/foi_pipeline/steps/export_status/output.json')); print(f'Bodies: {len(d[\"public_bodies\"])}')"` |
 
@@ -279,7 +283,7 @@ Bump `owl:versionInfo` by hand only for a breaking (MAJOR) or additive (MINOR) c
 | FOI database upload | `.env.admin` for remote libSQL; otherwise local `local.db` fallback |
 | FOI evaluation | Optional provider credentials and model settings; may incur LLM cost |
 | Document discovery/fetch | Network access and Apify for PDF discovery; cached PDFs are reused where possible |
-| Pages publishing | Pushes a rebuilt `pages` branch; run only after reviewing `public/` changes |
+| Pages publishing | Publishes a `public/` artifact via the deploy workflow; merge to `main` only after reviewing `public/` changes |
 
 ## Data Quality and Artifacts
 
@@ -297,10 +301,10 @@ Documentation owner: repository maintainers. Last reviewed: 2026-08-14. Re-run `
 
 | Scenario | Start Here |
 |---|---|
-| New to the project | This file → DATA_FLOW.md |
+| New to the project | This file → [pipelines/foi_pipeline/AGENTS.md](pipelines/foi_pipeline/AGENTS.md) |
 | Deep-dive on FOI pipeline architecture | [pipelines/foi_pipeline/AGENTS.md](pipelines/foi_pipeline/AGENTS.md) |
 | Adding a new step | [pipelines/foi_pipeline/steps/AGENTS.md](pipelines/foi_pipeline/steps/AGENTS.md) |
 | Running / triaging document_pipeline | [pipelines/document_pipeline/README.md](pipelines/document_pipeline/README.md) |
 | Which script answers a data-quality question | [scripts/AGENTS.md](scripts/AGENTS.md) — check before writing a new one-off script |
 | Data model evolution | [pipelines/foi_pipeline/AGENTS.md#key-concepts](pipelines/foi_pipeline/AGENTS.md#key-concepts) |
-| Troubleshooting data issues | [DATA_FLOW.md](DATA_FLOW.md) |
+| Troubleshooting data issues | [pipelines/foi_pipeline/AGENTS.md#troubleshooting](pipelines/foi_pipeline/AGENTS.md#troubleshooting) |

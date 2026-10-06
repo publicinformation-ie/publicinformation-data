@@ -4,6 +4,13 @@ All notable changes to the Public Bodies dataset will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased] - 2026-10-06
+
+### Changed (breaking)
+
+- Host migration: every published identifier under the retired legacy hosts now resolves under the canonical base URI `https://data.publicinformation.ie` (dataset `@id`s, `Base URI`s, curl/fetch examples, schema `$id`s, vocabulary term URIs, catalog URLs, and repository links now point at GitHub). The same entity keeps the same path — only the host prefix changed — but consumers matching on the old host strings must update. The previously immutable `v1.0.0/` and `v2.0.0/` snapshots were rewritten once for this move; their record content is untouched.
+- The strategies-and-plans documents bundle is retired: it is no longer published and its catalog entry is removed. The document pipeline still writes its bundle locally; it is simply not a published dataset.
+
 ## [public-bodies 1.0.0] - 2026-07-02
 
 ### Added
@@ -12,7 +19,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - CSVW metadata for the Public Bodies CSV
 - JSON Schema with `enum` constraints tied to the `body-type` and `foi-scope` vocabularies
 - Controlled vocabularies: `body-type` (3 terms), `foi-scope` (2 terms) — trimmed to terms actually backed by pipeline data
-- DCAT-AP metadata for the Public Bodies dataset, with corrected primary source and dereferenceable canonical URIs
+- DCAT-AP metadata for the Public Bodies dataset, with corrected primary source and dereferenceable base URIs
 - Versioned (`v1.0.0/`) and `latest/` directory structure
 
 ## [foi-request-files 1.0.0] - 2026-07-02
