@@ -61,20 +61,20 @@ Each step writes its output to:
 
 ## Common Issues
 
-### Codeberg 429 Rate Limit Errors in sync_backlog
+### API 429 Rate Limit Errors in sync_backlog
 
-If you see `429 Too Many Requests` errors from Codeberg API:
+If you see `429 Too Many Requests` errors from the repository host API:
 
 1. **Check the rate limit configuration:**
    - Default delay is 1.0 second between requests (60 requests/minute)
-   - Codeberg's limit is 2000 requests per 5 minutes
+   - The host API limit is 2000 requests per 5 minutes (check the current host's docs)
    - The default should be well within limits
 
 2. **Enable detailed logging:**
    The sync_backlog step now logs every request with timestamps:
    ```
-   2026-06-10 12:34:56.789 [sync_backlog.rate_limit] INFO: [1] Attempt 1/4 - GET https://codeberg.org/api/v1/repos/.../labels (delay_before=1.000s)
-   2026-06-10 12:34:57.890 [sync_backlog.rate_limit] INFO: [1] Response - GET https://codeberg.org/api/v1/repos/.../labels | Status=200 | Time=1.101s | RateLimit=2000 | Remaining=1999
+   2026-06-10 12:34:56.789 [sync_backlog.rate_limit] INFO: [1] Attempt 1/4 - GET https://api.example.org/repos/.../labels (delay_before=1.000s)
+   2026-06-10 12:34:57.890 [sync_backlog.rate_limit] INFO: [1] Response - GET https://api.example.org/repos/.../labels | Status=200 | Time=1.101s | RateLimit=2000 | Remaining=1999
    ```
    
    To see these logs, run with Python logging enabled:
@@ -84,9 +84,9 @@ If you see `429 Too Many Requests` errors from Codeberg API:
    ```
 
 3. **Adjust the rate limit delay:**
-   Increase `CODEBERG_RATE_LIMIT_DELAY` if needed:
+   Increase `API_RATE_LIMIT_DELAY` if needed:
    ```bash
-   export CODEBERG_RATE_LIMIT_DELAY=2.0  # 2 seconds between requests
+   export API_RATE_LIMIT_DELAY=2.0  # 2 seconds between requests
    ```
 
 4. **Check for burst requests:**

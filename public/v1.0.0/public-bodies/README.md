@@ -8,7 +8,7 @@ A list of all 883 public sector bodies in Ireland known to PublicInformation.ie,
 
 ## Versioning
 
-This directory (`v1.0.0/`) is an immutable, versioned release. `../../latest/public-bodies/` always mirrors the newest version and is what most consumers should link to; use a versioned path like this one when you need a stable, unchanging reference. Releases are also tagged in git (`public-bodies-v1.0.0`) for source-repo provenance — the versioned directory is what provides a stable **download URL**, since Codeberg Pages serves the tip of a branch, not arbitrary git tags.
+This directory (`v1.0.0/`) is an immutable, versioned release. `../../latest/public-bodies/` always mirrors the newest version and is what most consumers should link to; use a versioned path like this one when you need a stable, unchanging reference. Releases are also tagged in git (`public-bodies-v1.0.0`) for source-repo provenance — the versioned directory is what provides a stable **download URL**, since static hosts serve the tip of a branch, not arbitrary git tags.
 
 ## Data Model
 

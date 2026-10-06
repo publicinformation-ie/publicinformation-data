@@ -325,7 +325,7 @@ The canonical schema is defined in [`public/schema.sql`](public/schema.sql).
 
 ## Publishing
 
-`data.publicinformation.ie` was historically served from a `pages` branch on Codeberg Pages, rebuilt from `public/` by `scripts/publish_pages.sh`. That pipeline is **legacy/inactive** on the current host. Large data files under `public/`, FOI pipeline state, and eval inputs are stored via **Git LFS**: run `git lfs install` once per clone, and use `GIT_LFS_SKIP_SMUDGE=1` for code-only clones. Run `git lfs pull` before running tests that read `pipelines/**/eval/input.json`.
+`data.publicinformation.ie` was historically served from a `pages` branch, rebuilt from `public/` by `scripts/publish_pages.sh`. That pipeline is **legacy/inactive** on the current host. Large data files under `public/`, FOI pipeline state, and eval inputs are stored via **Git LFS**: run `git lfs install` once per clone, and use `GIT_LFS_SKIP_SMUDGE=1` for code-only clones. Run `git lfs pull` before running tests that read `pipelines/**/eval/input.json`.
 
 ## Contributing
 
@@ -425,7 +425,7 @@ For bug fixes and improvements, please:
 
 ## Related Projects
 
-- [PublicInformation.ie Website](https://codeberg.org/publicinformation-ie/publicinformation-web) - The frontend website that consumes this data
+- [PublicInformation.ie Website](https://www.publicinformation.ie) - The frontend website that consumes this data
 - [foi.gov.ie](https://foi.gov.ie) - The official Irish FOI portal (source of public body list)
 
 ## Acknowledgments

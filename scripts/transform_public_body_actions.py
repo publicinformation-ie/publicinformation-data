@@ -280,7 +280,7 @@ def transform_to_jsonld(actions, observations, relationships,
 def copy_to_latest():
     """Copy the versioned directory to latest/ as a build-time snapshot.
 
-    Not a symlink: Codeberg Pages and various git checkout paths don't
+    Not a symlink: Static hosts and various git checkout paths don't
     reliably serve or preserve them. This also sweeps the committed
     csv-metadata.json and README.md into latest/ alongside the payloads.
     """

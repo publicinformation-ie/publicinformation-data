@@ -231,7 +231,7 @@ Each step lives in `<pipeline>/steps/<step>/` with `README.md` and `process.py`;
 
 A step's `override.json` holds manually-curated records marked `"source_method": "manual"` and `"overridden": true`. They are **never overwritten** by automated re-runs, bypass normal processing (no HTTP calls), and are committed to git as source of truth. `document_pipeline` uses a different, node-level override in `steps/detect_structure/override.json` keyed by `doc_slug` — see [`pipelines/document_pipeline/README.md`](pipelines/document_pipeline/README.md).
 
-## Codeberg Pages Publishing (legacy/inactive)
+## Pages Publishing (legacy/inactive)
 
 `data.publicinformation.ie` was historically served from the `pages` branch, rebuilt from `public/` by `scripts/publish_pages.sh` on every `main` commit touching `public/` (via `.githooks/post-commit`). That pipeline is **legacy** — the repo now lives on GitHub (`https://github.com/publicinformation-ie/publicinformation-data`) and large data files are stored with **Git LFS** instead. `scripts/publish_pages.sh` and `.githooks/post-commit` are unmodified but dormant; `core.hooksPath` is not set in new clones.
 
