@@ -6,7 +6,7 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 
-<https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/public-body-actions>
+<https://data.publicinformation.ie/dataset/public-body-actions>
     a dcat:Dataset ;
     dct:title "Published Actions of Irish Public Bodies"@en ;
     dct:description "The published commitments of Irish public bodies and how their reported status changed over time. Three tables: every action a plan declares, with the deadline the plan stated for it; one status observation per progress report that mentions an action, with the deadline that report restated; and a link table of relationships between actions, including references to plans outside this corpus. Covers the Department of Transport's Sustainable Mobility Policy corpus — the 2022-2025 action plan, its four progress reports, and the 2026-2030 plan — with status observations currently limited to the Year One progress report. Records what was published, not an assessment of whether a commitment was met."@en ;
@@ -24,60 +24,59 @@
         vcard:fn "PublicInformation.ie" ;
         vcard:hasEmail <mailto:dave@publicinformation.ie> ;
     ] ;
-    dct:relation <https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/public-bodies> ;
-    dct:relation <https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/documents> ;
+    dct:relation <https://data.publicinformation.ie/dataset/public-bodies> ;
 
     dcat:distribution [
         a dcat:Distribution ;
         dct:title "Public Body Actions (CSV, actions, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
-        dcat:accessURL <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/public-body-actions/actions.csv> ;
-        dcat:downloadURL <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/public-body-actions/actions.csv> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/public-body-actions/actions.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/public-body-actions/actions.csv> ;
         dct:conformsTo <http://www.w3.org/ns/csvw> ;
-        dct:conformsTo <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/public-body-actions/public-body-actions.csv-metadata.json> ;
+        dct:conformsTo <https://data.publicinformation.ie/v1.0.0/public-body-actions/public-body-actions.csv-metadata.json> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "text/csv" ;
     ] , [
         a dcat:Distribution ;
         dct:title "Public Body Actions (CSV, action status observations, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
-        dcat:accessURL <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/public-body-actions/action-status-observations.csv> ;
-        dcat:downloadURL <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/public-body-actions/action-status-observations.csv> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/public-body-actions/action-status-observations.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/public-body-actions/action-status-observations.csv> ;
         dct:conformsTo <http://www.w3.org/ns/csvw> ;
-        dct:conformsTo <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/public-body-actions/public-body-actions.csv-metadata.json> ;
+        dct:conformsTo <https://data.publicinformation.ie/v1.0.0/public-body-actions/public-body-actions.csv-metadata.json> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "text/csv" ;
     ] , [
         a dcat:Distribution ;
         dct:title "Public Body Actions (CSV, action relationships, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
-        dcat:accessURL <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/public-body-actions/action-relationships.csv> ;
-        dcat:downloadURL <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/public-body-actions/action-relationships.csv> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/public-body-actions/action-relationships.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/public-body-actions/action-relationships.csv> ;
         dct:conformsTo <http://www.w3.org/ns/csvw> ;
-        dct:conformsTo <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/public-body-actions/public-body-actions.csv-metadata.json> ;
+        dct:conformsTo <https://data.publicinformation.ie/v1.0.0/public-body-actions/public-body-actions.csv-metadata.json> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "text/csv" ;
     ] , [
         a dcat:Distribution ;
         dct:title "Public Body Actions (JSON-LD, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
-        dcat:accessURL <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/public-body-actions/public-body-actions.jsonld> ;
-        dcat:downloadURL <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/public-body-actions/public-body-actions.jsonld> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/public-body-actions/public-body-actions.jsonld> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/public-body-actions/public-body-actions.jsonld> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "application/ld+json" ;
-        dct:conformsTo <https://publicinformation-ie.codeberg.page/publicinformation-data/schemas/public-body-actions.schema.json> ;
+        dct:conformsTo <https://data.publicinformation.ie/schemas/public-body-actions.schema.json> ;
     ] , [
         a dcat:Distribution ;
         dct:title "Public Body Actions (CSVW TableGroup metadata, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
-        dcat:accessURL <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/public-body-actions/public-body-actions.csv-metadata.json> ;
-        dcat:downloadURL <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/public-body-actions/public-body-actions.csv-metadata.json> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/public-body-actions/public-body-actions.csv-metadata.json> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/public-body-actions/public-body-actions.csv-metadata.json> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "application/csvm+json" ;
         dct:conformsTo <http://www.w3.org/ns/csvw> ;
     ] .
 
-<https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/public-body-actions>
+<https://data.publicinformation.ie/dataset/public-body-actions>
     prov:wasGeneratedBy [
         a prov:Activity ;
         prov:startedAtTime "2026-08-29T00:00:00Z"^^xsd:dateTime ;
@@ -85,6 +84,6 @@
             a prov:Agent ;
             prov:actedOnBehalfOf <https://www.publicinformation.ie/> ;
             foaf:name "PublicInformation.ie Pipeline" ;
-            foaf:homepage <https://codeberg.org/publicinformation-ie/publicinformation-data> ;
+            foaf:homepage <https://github.com/publicinformation-ie/publicinformation-data> ;
         ] ;
     ] .

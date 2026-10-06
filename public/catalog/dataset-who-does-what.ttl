@@ -6,7 +6,7 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 
-<https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/who-does-what>
+<https://data.publicinformation.ie/dataset/who-does-what>
     a dcat:Dataset ;
     dct:title "Who Does What Links for Irish Public Bodies"@en ;
     dct:description "Links from Irish public bodies to their page on gov.ie's 'Who Does What' campaign, a plain-English description of each body's functions. Covers the 27 bodies in the campaign's own scope, not all public bodies."@en ;
@@ -24,30 +24,30 @@
         vcard:fn "PublicInformation.ie" ;
         vcard:hasEmail <mailto:dave@publicinformation.ie> ;
     ] ;
-    dct:relation <https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/public-bodies> ;
+    dct:relation <https://data.publicinformation.ie/dataset/public-bodies> ;
 
     dcat:distribution [
         a dcat:Distribution ;
         dct:title "Who Does What Links (JSON-LD, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
-        dcat:accessURL <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/who-does-what/who-does-what.jsonld> ;
-        dcat:downloadURL <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/who-does-what/who-does-what.jsonld> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/who-does-what/who-does-what.jsonld> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/who-does-what/who-does-what.jsonld> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "application/ld+json" ;
-        dct:conformsTo <https://publicinformation-ie.codeberg.page/publicinformation-data/schemas/who-does-what.schema.json> ;
+        dct:conformsTo <https://data.publicinformation.ie/schemas/who-does-what.schema.json> ;
     ] , [
         a dcat:Distribution ;
         dct:title "Who Does What Links (CSV, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
-        dcat:accessURL <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/who-does-what/who-does-what.csv> ;
-        dcat:downloadURL <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/who-does-what/who-does-what.csv> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/who-does-what/who-does-what.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/who-does-what/who-does-what.csv> ;
         dct:conformsTo <http://www.w3.org/ns/csvw> ;
-        dct:conformsTo <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/who-does-what/who-does-what.csv-metadata.json> ;
+        dct:conformsTo <https://data.publicinformation.ie/v1.0.0/who-does-what/who-does-what.csv-metadata.json> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "text/csv" ;
     ] .
 
-<https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/who-does-what>
+<https://data.publicinformation.ie/dataset/who-does-what>
     prov:wasGeneratedBy [
         a prov:Activity ;
         prov:startedAtTime "2026-07-08T00:00:00Z"^^xsd:dateTime ;
@@ -55,6 +55,6 @@
             a prov:Agent ;
             prov:actedOnBehalfOf <https://www.publicinformation.ie/> ;
             foaf:name "PublicInformation.ie Pipeline" ;
-            foaf:homepage <https://codeberg.org/publicinformation-ie/publicinformation-data> ;
+            foaf:homepage <https://github.com/publicinformation-ie/publicinformation-data> ;
         ] ;
     ] .

@@ -1,10 +1,10 @@
 # Public Body Actions Dataset
 
-**Dataset URI:** `https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/public-body-actions`
+**Dataset URI:** `https://data.publicinformation.ie/dataset/public-body-actions`
 
 The published commitments of Irish public bodies and how their reported status changed over time. Covers the Department of Transport's Sustainable Mobility Policy (SMP) corpus — the 2022-2025 action plan, its four progress reports, and the 2026-2030 plan. Part of the PublicInformation.ie Open Data Publishing initiative.
 
-**Base URI:** `https://publicinformation-ie.codeberg.page/publicinformation-data/`
+**Base URI:** `https://data.publicinformation.ie/`
 
 ## What this dataset is and is not
 
@@ -112,10 +112,10 @@ This directory (`v1.0.0/`) is an immutable, versioned release. `../../latest/pub
 ## Accessing Data
 
 ```bash
-curl -L https://publicinformation-ie.codeberg.page/publicinformation-data/latest/public-body-actions/actions.csv
-curl -L https://publicinformation-ie.codeberg.page/publicinformation-data/latest/public-body-actions/action-status-observations.csv
-curl -L https://publicinformation-ie.codeberg.page/publicinformation-data/latest/public-body-actions/action-relationships.csv
-curl -L https://publicinformation-ie.codeberg.page/publicinformation-data/latest/public-body-actions/public-body-actions.jsonld
+curl -L https://data.publicinformation.ie/latest/public-body-actions/actions.csv
+curl -L https://data.publicinformation.ie/latest/public-body-actions/action-status-observations.csv
+curl -L https://data.publicinformation.ie/latest/public-body-actions/action-relationships.csv
+curl -L https://data.publicinformation.ie/latest/public-body-actions/public-body-actions.jsonld
 ```
 
 ## Conformance
@@ -135,4 +135,4 @@ Creative Commons Attribution 4.0 International (CC-BY 4.0). See [LICENSE](../../
 
 **Publisher:** [PublicInformation.ie](https://www.publicinformation.ie/)
 **Email:** dave@publicinformation.ie
-**Repository:** https://codeberg.org/publicinformation-ie/publicinformation-data
+**Repository:** https://github.com/publicinformation-ie/publicinformation-data

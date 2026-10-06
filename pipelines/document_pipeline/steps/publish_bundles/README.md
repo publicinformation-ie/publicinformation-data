@@ -71,7 +71,7 @@ assets/<figure-id>.webp
   |---|---|---|
   | `PublishBundlesFailed` | document | Missing `fetch_pdfs` record, missing referenced asset, or any other per-document build failure. The document is skipped and the rest of the batch still runs; not marked processed, so a later run retries it |
 
-- `public/documents/` — generated, gitignored, published by `scripts/publish_pages.sh` on the next `public/` commit like every other dataset's `public/*.json`.
+- `public/documents/` — generated, gitignored, local-only (not published).
 
 ## Flags
 

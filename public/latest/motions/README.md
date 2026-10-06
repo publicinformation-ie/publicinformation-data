@@ -1,10 +1,10 @@
 # Motions at Irish Local Authority Meetings
 
-**Dataset URI:** `https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/motions`
+**Dataset URI:** `https://data.publicinformation.ie/dataset/motions`
 
 Motions moved at meetings of Irish local authorities, extracted from the authorities' published meeting minutes. Each motion records who proposed and seconded it, the meeting date and type, and its outcome. Part of the PublicInformation.ie Open Data Publishing initiative.
 
-**Base URI:** `https://publicinformation-ie.codeberg.page/publicinformation-data/`
+**Base URI:** `https://data.publicinformation.ie/`
 
 ## Versioning
 
@@ -87,8 +87,8 @@ Source: the `minutes_pipeline` (`pipelines/minutes_pipeline/`), which discovers 
 ### Accessing Data
 
 ```bash
-curl -L https://publicinformation-ie.codeberg.page/publicinformation-data/latest/motions/motions.jsonld
-curl -L https://publicinformation-ie.codeberg.page/publicinformation-data/latest/motions/motions.csv
+curl -L https://data.publicinformation.ie/latest/motions/motions.jsonld
+curl -L https://data.publicinformation.ie/latest/motions/motions.csv
 ```
 
 ## Known Limitations
@@ -114,4 +114,4 @@ Creative Commons Attribution 4.0 International (CC-BY 4.0). See [LICENSE](../../
 
 **Publisher:** [PublicInformation.ie](https://www.publicinformation.ie/)
 **Email:** dave@publicinformation.ie
-**Repository:** https://codeberg.org/publicinformation-ie/publicinformation-data
+**Repository:** https://github.com/publicinformation-ie/publicinformation-data

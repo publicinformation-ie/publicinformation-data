@@ -84,7 +84,7 @@ def transform_to_csv_rows(records):
 def copy_to_latest():
     """Copy the versioned output directory to latest/ as a build-time snapshot.
 
-    Not a symlink: Codeberg Pages and various git checkout paths don't
+    Not a symlink: Static hosts and various git checkout paths don't
     reliably serve/preserve symlinks.
     """
     shutil.copytree(OUTPUT_DIR, LATEST_DIR, dirs_exist_ok=True)

@@ -1,14 +1,14 @@
 # Public Bodies Dataset (Slice 1)
 
-**Dataset URI:** `https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/public-bodies`
+**Dataset URI:** `https://data.publicinformation.ie/dataset/public-bodies`
 
 A list of all 883 public sector bodies in Ireland known to PublicInformation.ie, with their Freedom of Information (FOI) status, CSO sector/NACE classification, and parent/department relationships. Part of the PublicInformation.ie Open Data Publishing initiative.
 
-**Base URI:** `https://publicinformation-ie.codeberg.page/publicinformation-data/`
+**Base URI:** `https://data.publicinformation.ie/`
 
 ## Versioning
 
-This directory (`v2.0.0/`) is an immutable, versioned release. `../../latest/public-bodies/` always mirrors the newest version and is what most consumers should link to; use a versioned path like this one when you need a stable, unchanging reference. Releases are also tagged in git (`public-bodies-v2.0.0`) for source-repo provenance — the versioned directory is what provides a stable **download URL**, since Codeberg Pages serves the tip of a branch, not arbitrary git tags.
+This directory (`v2.0.0/`) is an immutable, versioned release. `../../latest/public-bodies/` always mirrors the newest version and is what most consumers should link to; use a versioned path like this one when you need a stable, unchanging reference. Releases are also tagged in git (`public-bodies-v2.0.0`) for source-repo provenance — the versioned directory is what provides a stable **download URL**, since static hosts serve the tip of a branch, not arbitrary git tags.
 
 ### Previous Versions
 
@@ -109,12 +109,12 @@ delivered via the CSO join.)
 
 ```json
 {
-  "@id": "https://publicinformation-ie.codeberg.page/publicinformation-data/body/ability-west",
+  "@id": "https://data.publicinformation.ie/body/ability-west",
   "@type": "foi:PublicBody",
   "name": "Ability West",
   "type": "public_body",
   "foi_subject": true,
-  "foi_scope": "https://publicinformation-ie.codeberg.page/publicinformation-data/ns/foi#FullScope",
+  "foi_scope": "https://data.publicinformation.ie/ns/foi#FullScope",
   "slug": "ability-west",
   "website": "https://www.abilitywest.ie/",
   "sector": "S13",
@@ -131,7 +131,7 @@ delivered via the CSO join.)
   "is_commercial": false,
   "aegis": "Department",
   "legal_entity_type": "Agency",
-  "government_department_id": "https://publicinformation-ie.codeberg.page/publicinformation-data/body/department-of-children-disability-and-equality",
+  "government_department_id": "https://data.publicinformation.ie/body/department-of-children-disability-and-equality",
   "website_url": {
     "url": "https://www.abilitywest.ie/",
     "status": "success"
@@ -162,8 +162,8 @@ delivered via the CSO join.)
 ### Accessing Data
 
 ```bash
-curl -L https://publicinformation-ie.codeberg.page/publicinformation-data/latest/public-bodies/public-bodies.jsonld
-curl -L https://publicinformation-ie.codeberg.page/publicinformation-data/latest/public-bodies/public-bodies.csv
+curl -L https://data.publicinformation.ie/latest/public-bodies/public-bodies.jsonld
+curl -L https://data.publicinformation.ie/latest/public-bodies/public-bodies.csv
 ```
 
 ## Known Limitations
@@ -205,4 +205,4 @@ Creative Commons Attribution 4.0 International (CC-BY 4.0). See [LICENSE](../../
 
 **Publisher:** [PublicInformation.ie](https://www.publicinformation.ie/)
 **Email:** dave@publicinformation.ie
-**Repository:** https://codeberg.org/publicinformation-ie/publicinformation-data
+**Repository:** https://github.com/publicinformation-ie/publicinformation-data

@@ -6,7 +6,7 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 
-<https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/public-bodies>
+<https://data.publicinformation.ie/dataset/public-bodies>
     a dcat:Dataset ;
     dct:title "Public Bodies in Ireland"@en ;
     dct:description "All 883 public sector bodies in Ireland known to PublicInformation.ie, with their Freedom of Information (FOI) status, CSO sector/NACE classification, and parent/department relationships. Contact email addresses and crawl-status detail are included where successfully crawled from each body's published FOI page."@en ;
@@ -31,24 +31,24 @@
         a dcat:Distribution ;
         dct:title "Public Bodies (JSON-LD, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
-        dcat:accessURL <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/public-bodies/public-bodies.jsonld> ;
-        dcat:downloadURL <https://publicinformation-ie.codeberg.page/publicinformation-data/v2.0.0/public-bodies/public-bodies.jsonld> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/public-bodies/public-bodies.jsonld> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v2.0.0/public-bodies/public-bodies.jsonld> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "application/ld+json" ;
-        dct:conformsTo <https://publicinformation-ie.codeberg.page/publicinformation-data/schemas/public-bodies.schema.json> ;
+        dct:conformsTo <https://data.publicinformation.ie/schemas/public-bodies.schema.json> ;
     ] , [
         a dcat:Distribution ;
         dct:title "Public Bodies (CSV, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
-        dcat:accessURL <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/public-bodies/public-bodies.csv> ;
-        dcat:downloadURL <https://publicinformation-ie.codeberg.page/publicinformation-data/v2.0.0/public-bodies/public-bodies.csv> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/public-bodies/public-bodies.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v2.0.0/public-bodies/public-bodies.csv> ;
         dct:conformsTo <http://www.w3.org/ns/csvw> ;
-        dct:conformsTo <https://publicinformation-ie.codeberg.page/publicinformation-data/v2.0.0/public-bodies/public-bodies.csv-metadata.json> ;
+        dct:conformsTo <https://data.publicinformation.ie/v2.0.0/public-bodies/public-bodies.csv-metadata.json> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "text/csv" ;
     ] .
 
-<https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/public-bodies>
+<https://data.publicinformation.ie/dataset/public-bodies>
     prov:wasGeneratedBy [
         a prov:Activity ;
         prov:startedAtTime "2026-07-10T00:00:00Z"^^xsd:dateTime ;
@@ -56,6 +56,6 @@
             a prov:Agent ;
             prov:actedOnBehalfOf <https://www.publicinformation.ie/> ;
             foaf:name "PublicInformation.ie Pipeline" ;
-            foaf:homepage <https://codeberg.org/publicinformation-ie/publicinformation-data> ;
+            foaf:homepage <https://github.com/publicinformation-ie/publicinformation-data> ;
         ] ;
     ] .

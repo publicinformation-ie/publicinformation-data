@@ -70,4 +70,4 @@ Aligns with the repo-wide data-handling principle — never guess, silently null
 - Failed/unparseable LLM response → whole document gets `motions: null` **plus** a per-document error (no partial guess).
 - A committed authority name missing from the CSO output → **fatal**, not a silent drop.
 
-A run with unresolved reconstruction errors requires human review before publication. The MVP public output under `public/motions/` must be reviewed before running `scripts/publish_pages.sh`.
+A run with unresolved reconstruction errors requires human review before publication. The MVP public output under `public/motions/` must be reviewed before merging to `main` (merging is what publishes).

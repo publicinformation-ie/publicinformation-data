@@ -6,7 +6,7 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 
-<https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/foi-request-files>
+<https://data.publicinformation.ie/dataset/foi-request-files>
     a dcat:Dataset ;
     dct:title "FOI Request Files in Ireland"@en ;
     dct:description "Source disclosure log files (PDF and Excel) published by Irish public bodies under Freedom of Information legislation, each linked to exactly one public body in the Public Bodies dataset."@en ;
@@ -24,30 +24,30 @@
         vcard:fn "PublicInformation.ie" ;
         vcard:hasEmail <mailto:dave@publicinformation.ie> ;
     ] ;
-    dct:relation <https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/public-bodies> ;
+    dct:relation <https://data.publicinformation.ie/dataset/public-bodies> ;
 
     dcat:distribution [
         a dcat:Distribution ;
         dct:title "FOI Request Files (JSON-LD, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
-        dcat:accessURL <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/foi-request-files/foi-request-files.jsonld> ;
-        dcat:downloadURL <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/foi-request-files/foi-request-files.jsonld> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/foi-request-files/foi-request-files.jsonld> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/foi-request-files/foi-request-files.jsonld> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "application/ld+json" ;
-        dct:conformsTo <https://publicinformation-ie.codeberg.page/publicinformation-data/schemas/foi-request-files.schema.json> ;
+        dct:conformsTo <https://data.publicinformation.ie/schemas/foi-request-files.schema.json> ;
     ] , [
         a dcat:Distribution ;
         dct:title "FOI Request Files (CSV, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
-        dcat:accessURL <https://publicinformation-ie.codeberg.page/publicinformation-data/latest/foi-request-files/foi-request-files.csv> ;
-        dcat:downloadURL <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/foi-request-files/foi-request-files.csv> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/foi-request-files/foi-request-files.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/foi-request-files/foi-request-files.csv> ;
         dct:conformsTo <http://www.w3.org/ns/csvw> ;
-        dct:conformsTo <https://publicinformation-ie.codeberg.page/publicinformation-data/v1.0.0/foi-request-files/foi-request-files.csv-metadata.json> ;
+        dct:conformsTo <https://data.publicinformation.ie/v1.0.0/foi-request-files/foi-request-files.csv-metadata.json> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "text/csv" ;
     ] .
 
-<https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/foi-request-files>
+<https://data.publicinformation.ie/dataset/foi-request-files>
     prov:wasGeneratedBy [
         a prov:Activity ;
         prov:startedAtTime "2026-07-02T00:00:00Z"^^xsd:dateTime ;
@@ -55,6 +55,6 @@
             a prov:Agent ;
             prov:actedOnBehalfOf <https://www.publicinformation.ie/> ;
             foaf:name "PublicInformation.ie Pipeline" ;
-            foaf:homepage <https://codeberg.org/publicinformation-ie/publicinformation-data> ;
+            foaf:homepage <https://github.com/publicinformation-ie/publicinformation-data> ;
         ] ;
     ] .

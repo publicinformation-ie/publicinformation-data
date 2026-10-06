@@ -1,14 +1,14 @@
 # FOI Disclosures Dataset
 
-**Dataset URI:** `https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/foi-disclosures`
+**Dataset URI:** `https://data.publicinformation.ie/dataset/foi-disclosures`
 
 Individual Freedom of Information request records extracted from disclosure log files published by Irish public bodies. Each record is linked to exactly one public body via the [Public Bodies dataset](../public-bodies/README.md). Part of the PublicInformation.ie Open Data Publishing initiative.
 
-**Base URI:** `https://publicinformation-ie.codeberg.page/publicinformation-data/`
+**Base URI:** `https://data.publicinformation.ie/`
 
 ## Versioning
 
-**This dataset does not keep a permanent versioned directory the way `public-bodies` and `foi-request-files` do.** Only `foi-disclosures.jsonld`/`foi-disclosures.csv` in this `latest/` directory ever exist in git — there is no `v1.0.0/foi-disclosures/` counterpart, and superseded versions' exact byte content is **not** guaranteed to remain fetchable once a new version overwrites this directory. This is a deliberate divergence, made because this dataset's files are an order of magnitude larger than the rest of the catalog (tens of megabytes), and Codeberg's git storage quota is shared across every repository in the `publicinformation-ie` organization.
+**This dataset does not keep a permanent versioned directory the way `public-bodies` and `foi-request-files` do.** Only `foi-disclosures.jsonld`/`foi-disclosures.csv` in this `latest/` directory ever exist in git — there is no `v1.0.0/foi-disclosures/` counterpart, and superseded versions' exact byte content is **not** guaranteed to remain fetchable once a new version overwrites this directory. This is a deliberate divergence, made because this dataset's files are an order of magnitude larger than the rest of the catalog (tens of megabytes), and the git storage quota is shared across every repository in the `publicinformation-ie` organization.
 
 The version number is still real and citable without needing the bytes: releases are tagged in git (`foi-disclosures-v1.0.0`), the JSON-LD document's root `"version"` field states which version `latest/` currently holds, and `../../CHANGELOG.md` records what changed and when. If you need an old version's exact content, request it — it may still exist in git history at the time you ask, but that is not a promise this dataset makes going forward.
 
@@ -59,9 +59,9 @@ Disclosure log files are discovered via the [FOI Request Files dataset](../foi-r
 
 ```json
 {
-  "@id": "https://publicinformation-ie.codeberg.page/publicinformation-data/foi-disclosure/f292642e7af3",
+  "@id": "https://data.publicinformation.ie/foi-disclosure/f292642e7af3",
   "@type": "foi:FoiDisclosure",
-  "public_body": "https://publicinformation-ie.codeberg.page/publicinformation-data/body/bord-bia",
+  "public_body": "https://data.publicinformation.ie/body/bord-bia",
   "name": "Bord Bia",
   "file_url": "https://www.bordbia.ie/globalassets/bordbia.ie/about/governance/foi-disclosure-log/foi-disclosure-log-2019.pdf",
   "file_type": "pdf",
@@ -78,11 +78,11 @@ Disclosure log files are discovered via the [FOI Request Files dataset](../foi-r
 ### Accessing Data
 
 ```bash
-curl -L https://publicinformation-ie.codeberg.page/publicinformation-data/latest/foi-disclosures/foi-disclosures.jsonld
-curl -L https://publicinformation-ie.codeberg.page/publicinformation-data/latest/foi-disclosures/foi-disclosures.csv
+curl -L https://data.publicinformation.ie/latest/foi-disclosures/foi-disclosures.jsonld
+curl -L https://data.publicinformation.ie/latest/foi-disclosures/foi-disclosures.csv
 ```
 
-No `git-lfs` client is needed for either command — both files are ordinary git-tracked content, served directly by Codeberg Pages.
+No `git-lfs` client is needed for either command — both files are ordinary git-tracked content, served directly as static files.
 
 ## Known Limitations
 
@@ -105,4 +105,4 @@ Creative Commons Attribution 4.0 International (CC-BY 4.0). See [LICENSE](../../
 
 **Publisher:** [PublicInformation.ie](https://www.publicinformation.ie/)
 **Email:** dave@publicinformation.ie
-**Repository:** https://codeberg.org/publicinformation-ie/publicinformation-data
+**Repository:** https://github.com/publicinformation-ie/publicinformation-data

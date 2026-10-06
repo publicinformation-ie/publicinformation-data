@@ -2,7 +2,7 @@
 
 **Open data pipeline for Irish Freedom of Information (FOI) public body information**
 
-[![GitHub](https://img.shields.io/badge/repo-GitHub-181717?logo=github)](https://github.com/publicinformation-ie/publicinformation-data)
+[![CI](https://github.com/publicinformation-ie/publicinformation-data/actions/workflows/ci.yml/badge.svg)](https://github.com/publicinformation-ie/publicinformation-data/actions/workflows/ci.yml)
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 This repository contains the data processing pipeline for [PublicInformation.ie](https://publicinformation.ie), a project that tracks and publishes Freedom of Information (FOI) data from Irish public bodies. The pipeline extracts, transforms, and loads data about FOI pages, email addresses, disclosure logs, and disclosure files from hundreds of Irish government and public sector websites.
@@ -21,15 +21,15 @@ This repository contains the data processing pipeline for [PublicInformation.ie]
 
 ### Get the Data
 
-Start at [`public/index.html`](public/index.html) — a landing page with three entry points depending on what you need:
+Start at [`public/README.md`](public/README.md) — the data hub, with one entry point per need:
 
-- [`public/get-the-data.html`](public/get-the-data.html) — plain CSV downloads, no technical background needed
-- [`public/quickstart.html`](public/quickstart.html) — a runnable code example for fetching and using the JSON-LD data programmatically
-- [`public/data-quality.html`](public/data-quality.html) — how extraction quality is tracked, and how to report or fix a problem
+- [`public/GET_THE_DATA.md`](public/GET_THE_DATA.md) — plain CSV downloads, no technical background needed
+- [`public/QUICKSTART.md`](public/QUICKSTART.md) — a runnable code example for fetching and using the JSON-LD data programmatically
+- [`public/DATA_QUALITY.md`](public/DATA_QUALITY.md) — how extraction quality is tracked, and how to report or fix a problem
 
 #### Curated Linked Data datasets
 
-Six datasets are published as versioned Linked Data under `public/latest/<dataset>/` (always the newest release) and `public/vX.Y.Z/<dataset>/` (immutable per-version snapshots), each with its own JSON-LD, CSV, and CSV metadata, plus a dataset-specific `README.md`:
+Eight datasets are published as versioned Linked Data under `public/latest/<dataset>/` (always the newest release) and `public/vX.Y.Z/<dataset>/` (immutable per-version snapshots), each with its own JSON-LD, CSV, and CSV metadata, plus a dataset-specific `README.md`:
 
 | Dataset | Version | Records | Docs |
 |---------|---------|---------|------|
@@ -37,7 +37,9 @@ Six datasets are published as versioned Linked Data under `public/latest/<datase
 | FOI Disclosures | v1.0.0 | 60,177 | [`public/latest/foi-disclosures/README.md`](public/latest/foi-disclosures/README.md) |
 | FOI Request Files | v1.0.0 | 1,593 | [`public/latest/foi-request-files/README.md`](public/latest/foi-request-files/README.md) |
 | Who Does What | v1.0.0 | 27 | [`public/latest/who-does-what/README.md`](public/latest/who-does-what/README.md) |
-| Public Body Actions | v1.0.0 | 186 | [`public/latest/public-body-actions/README.md`](public/latest/public-body-actions/README.md) |
+| data.gov.ie Links | v1.0.0 | 137 | [`public/latest/data-gov-ie-links/README.md`](public/latest/data-gov-ie-links/README.md) |
+| lobbying.ie Links | v1.0.0 | 121 | [`public/latest/lobbying-ie-links/README.md`](public/latest/lobbying-ie-links/README.md) |
+| Public Body Actions | v1.0.0 | 198 | [`public/latest/public-body-actions/README.md`](public/latest/public-body-actions/README.md) |
 | Motions | v1.0.0 | 3,959 | [`public/latest/motions/README.md`](public/latest/motions/README.md) |
 
 `public-bodies` is regenerated automatically by the FOI pipeline's `export_status` step on every full run (logic in `src/lib/publish_public_bodies.py`), so it always stays in lockstep with `pipeline-data.json`; the other datasets are produced by standalone `scripts/transform_*.py` — seven such scripts as of this writing (`ls scripts/transform_*.py`).
@@ -208,11 +210,11 @@ publicinformation-data/
 │
 ├── scripts/                       # Helper and admin scripts — see scripts/README.md
 │
-└── public/                        # Public-facing output files, published to data.publicinformation.ie
-    ├── index.html                 # Landing page
-    ├── get-the-data.html          # Non-technical CSV download guide
-    ├── quickstart.html            # Developer quickstart with runnable example
-    ├── data-quality.html          # Data quality & contributing guide
+└── public/                        # Public-facing output files, served via GitHub Pages
+    ├── README.md                    # Data hub (browsable entry point)
+    ├── GET_THE_DATA.md              # Non-technical CSV download guide
+    ├── QUICKSTART.md                # Developer quickstart with runnable example
+    ├── DATA_QUALITY.md              # Data quality & contributing guide
     ├── pipeline-data.json         # Raw: consolidated public body status
     ├── foi-disclosures.json       # Raw: all FOI request records
     ├── disclosure-files.json      # Raw: all disclosure document URLs
@@ -325,7 +327,9 @@ The canonical schema is defined in [`public/schema.sql`](public/schema.sql).
 
 ## Publishing
 
-`data.publicinformation.ie` was historically served from a `pages` branch on Codeberg Pages, rebuilt from `public/` by `scripts/publish_pages.sh`. That pipeline is **legacy/inactive** on the current host. Large data files under `public/`, FOI pipeline state, and eval inputs are stored via **Git LFS**: run `git lfs install` once per clone, and use `GIT_LFS_SKIP_SMUDGE=1` for code-only clones. Run `git lfs pull` before running tests that read `pipelines/**/eval/input.json`.
+`data.publicinformation.ie` is served by GitHub Pages from the `public/` directory, deployed by the `deploy-pages.yml` workflow: every push to `main` that touches `public/**` uploads `public/` as a Pages artifact and deploys it (a manual `workflow_dispatch` run deploys on demand). The custom domain is set in the repo's Settings → Pages (source "GitHub Actions"), which requires the repository to be public. Review the generated public-data diff before merging to `main`, since merging is what publishes. See [`AGENTS.md`](AGENTS.md#pages-publishing) for details.
+
+Hosting policy: this project prefers EU-based service providers — GitHub is a deliberate, temporary interim host. See [`AGENTS.md`](AGENTS.md#hosting--service-providers) for the full policy.
 
 ## Contributing
 
@@ -333,7 +337,7 @@ Contributions are welcome! Please follow these guidelines:
 
 ### Getting Started
 
-1. Fork the repository on GitHub (`https://github.com/publicinformation-ie/publicinformation-data`)
+1. Fork the repository on GitHub
 2. Clone your fork locally
 3. Create a feature branch: `git checkout -b feat/my-feature`
 4. Make your changes
@@ -405,7 +409,6 @@ The AGPL-3.0 license ensures that any modifications to this software that are us
 Please report issues on the GitHub repository:
 
 - [Issues](https://github.com/publicinformation-ie/publicinformation-data/issues)
-- [Discussions](https://github.com/publicinformation-ie/publicinformation-data/discussions)
 
 Include as much detail as possible:
 - Pipeline step that failed
@@ -425,7 +428,7 @@ For bug fixes and improvements, please:
 
 ## Related Projects
 
-- [PublicInformation.ie Website](https://codeberg.org/publicinformation-ie/publicinformation-web) - The frontend website that consumes this data
+- [PublicInformation.ie Website](https://www.publicinformation.ie) - The frontend website that consumes this data
 - [foi.gov.ie](https://foi.gov.ie) - The official Irish FOI portal (source of public body list)
 
 ## Acknowledgments
