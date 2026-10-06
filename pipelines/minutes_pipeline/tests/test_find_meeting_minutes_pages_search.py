@@ -72,6 +72,37 @@ def test_rerank_picks_yield_over_first_hit(monkeypatch):
     assert _pick_minutes_url_yield(results) == "https://www.x.ie/minutes/"
 
 
+def test_rerank_never_picks_a_pdf(monkeypatch):
+    # A single minutes PDF is a document, not the page listing them — even
+    # when its fetch happens to parse as yield-positive.
+    from steps.find_meeting_minutes_pages_search.process import _pick_minutes_url_yield
+    monkeypatch.setattr(
+        "steps.find_meeting_minutes_pages_search.process.fetch",
+        lambda method, url, **kw: _resp_for(url))
+    results = [
+        {"url": "https://www.x.ie/files/Minutes%20May%20Council%20Meeting.pdf",
+         "link": "https://www.x.ie/files/Minutes%20May%20Council%20Meeting.pdf",
+         "title": "Minutes May Council Meeting"},
+    ]
+    assert _pick_minutes_url_yield(results) is None
+
+
+@pytest.mark.parametrize("url", [
+    "https://www.x.ie/statutory-committees/local-community-development-committee/minutes-of-lcdc-meetings/",
+    "https://www.x.ie/local-community-safety-partnership/lcsp-minutes/",
+    "https://www.x.ie/traveller-community/ltacc/ltacc-meeting-minutes",
+    "https://www.x.ie/files/Signed%20Minutes%20JPC%2016Feb18",
+])
+def test_rerank_rejects_committee_minutes_pages(monkeypatch, url):
+    # LCDC/LCSP/LTACC/JPC pages are yield-rich but are not council minutes.
+    from steps.find_meeting_minutes_pages_search.process import _pick_minutes_url_yield
+    monkeypatch.setattr(
+        "steps.find_meeting_minutes_pages_search.process.fetch",
+        lambda method, url, **kw: _resp_for(url))
+    results = [{"url": url, "link": url, "title": "Meeting Minutes"}]
+    assert _pick_minutes_url_yield(results) is None
+
+
 def test_rerank_all_fetch_fail_returns_none(monkeypatch):
     from steps.find_meeting_minutes_pages_search.process import _pick_minutes_url_yield
     def _boom(method, url, **kw):

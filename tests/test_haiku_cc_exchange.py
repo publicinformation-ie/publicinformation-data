@@ -1,14 +1,8 @@
-import importlib.util
 import json
-from pathlib import Path
 
+import lib.haiku_cc_exchange as bridge
 from lib.response_cache import ResponseCache
 from lib.website_candidates import interpret_haiku
-
-_EXP = Path(__file__).resolve().parents[1] / "experiments" / "2026-09-26-website-resolution"
-_spec = importlib.util.spec_from_file_location("wr_haiku_cc_bridge", _EXP / "haiku_cc_bridge.py")
-bridge = importlib.util.module_from_spec(_spec)
-_spec.loader.exec_module(bridge)
 
 FINAL = ('Found it.\n{"own_site": "https://www.hsa.ie/", "own_site_evidence_url": "https://www.hsa.ie/", '
          '"parent_site": null, "has_own_site": "yes", "defunct": "no", "defunct_source": null, "notes": "HSA site"}')
@@ -79,3 +73,25 @@ def test_pending_lists_prompts_without_answers(tmp_path):
         _write(prompts / f"{pid}.json", {"public_body_id": pid})
     _write(answers / "1.json", {})
     assert [p.name for p in bridge.pending(prompts, answers)] == ["2.json"]
+
+
+def test_recorder_counts_every_miss_but_writes_each_prompt_once(tmp_path):
+    rec = bridge.JudgePromptRecorder(tmp_path / "jp")
+    for _ in range(2):
+        try:
+            rec("same prompt")
+        except RuntimeError:
+            pass
+    assert rec.misses == 2
+    assert len(rec.recorded) == 1
+    spec = json.loads((tmp_path / "jp" / f"{rec.recorded[0]}.json").read_text())
+    assert spec == {"key": rec.recorded[0], "backend": "haiku-cc", "prompt": "same prompt"}
+
+
+def test_write_search_prompt_uses_search_key(tmp_path):
+    body = {"public_body_id": 7, "name": "Health and Safety Authority"}
+    path = bridge.write_search_prompt(body, tmp_path)
+    spec = json.loads(path.read_text())
+    assert path.name == "7.json"
+    assert spec["key"] == bridge.search_key(body)
+    assert spec["public_body_id"] == 7 and "Health and Safety Authority" in spec["prompt"]

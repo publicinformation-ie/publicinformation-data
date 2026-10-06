@@ -103,6 +103,10 @@ def _probe(url: str, resolver, depth: int = 0) -> dict:
         return _result(url, "blocked", final_url=final, status_code=resp.status_code)
     if resp.status_code >= 400:
         return _result(url, "dead", final_url=final, status_code=resp.status_code)
+    content_type = (resp.headers.get("Content-Type") or "").split(";")[0].strip().lower()
+    if content_type and "html" not in content_type:
+        return _result(url, "dead", final_url=final, status_code=resp.status_code,
+                       error=f"non_html: {content_type}")
     html = resp.text or ""
     if any(m in html.lower() for m in _PARKED_MARKERS):
         return _result(url, "parked", final_url=final, status_code=resp.status_code)

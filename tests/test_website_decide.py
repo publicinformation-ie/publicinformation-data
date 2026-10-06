@@ -103,3 +103,18 @@ def test_pending_until_required_tiers_exhausted():
     assert r["website_status"] == "pending"
     assert r["website_resolution"]["pending_reason"] == "apify_budget"
     assert r["website_resolution"]["recheck_after"] is None
+
+
+def test_hold_reason_keeps_body_pending_despite_parent_evidence():
+    body = {"public_body_id": 1, "name": "X DAC", "parent_name": "P plc"}
+    d = decide(body, [], signals={"has_own_site": "no"}, tiers_exhausted=["seed"],
+               hold_reason="judge_pending")
+    assert d["website_status"] == "pending"
+    assert d["website_resolution"]["pending_reason"] == "judge_pending"
+
+
+def test_hold_reason_does_not_block_a_verified_own_site():
+    body = {"public_body_id": 1, "name": "X"}
+    own = [{"url": "https://x.ie/", "origin": "domain_guess", "probe": "ok",
+            "final_url": "https://x.ie/", "judge_label": "own_site", "judge": "ollama:m"}]
+    assert decide(body, own, hold_reason="judge_pending")["website_status"] == "own_site"

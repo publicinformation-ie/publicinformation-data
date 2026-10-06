@@ -3,20 +3,14 @@
 Reads records ingested by haiku_cc_bridge.py from cache/haiku_cc/. Never calls
 an API: a body without an ingested answer is reported as haiku_error (pending).
 """
-from lib.haiku_search import HAIKU_MODEL, build_search_prompt
-from lib.response_cache import ResponseCache
+from lib.haiku_cc_exchange import search_cache, search_key  # noqa: F401  (search_key re-exported for tests)
 from lib.website_candidates import interpret_haiku
 
 TIERS = ("haiku_search",)
-NAMESPACE = "haiku_cc"
-
-
-def search_key(body) -> str:
-    return ResponseCache.key(NAMESPACE, HAIKU_MODEL, build_search_prompt(body))
 
 
 def prefetch(bodies, ctx):
-    cache = ResponseCache(ctx["cache_dir"] / NAMESPACE)
+    cache = search_cache(ctx["cache_dir"])
     store = ctx.setdefault("_haiku", {})
     for body in bodies:
         pid = body["public_body_id"]
@@ -35,6 +29,6 @@ def gather(body, ctx):
     got = ctx.get("_haiku", {}).get(body["public_body_id"])
     if not got or "error" in got:
         return {"candidates": [], "directory_hits": [], "signals": {}, "tiers": [],
-                "pending_reason": "haiku_error"}
+                "pending_reason": "haiku_pending"}
     return {"candidates": got["candidates"], "directory_hits": got["directory_hits"],
             "signals": got["signals"], "tiers": list(TIERS), "pending_reason": None}

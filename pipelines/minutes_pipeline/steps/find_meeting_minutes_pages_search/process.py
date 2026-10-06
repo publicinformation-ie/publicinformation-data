@@ -115,6 +115,9 @@ def _pick_minutes_url_yield(results, step_dir=None, bid=None, name=None, site_ur
             continue
         if not is_safe_url(link):
             continue
+        # A minutes PDF is one document, never the page listing them.
+        if urlparse(link).path.lower().endswith(".pdf"):
+            continue
         sc = _score_link(_tokenize(link, r.get("title", "")))
         if sc <= 0:
             continue

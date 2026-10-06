@@ -14,7 +14,8 @@ def canonical_official_url(url: str) -> str:
 
 
 def decide(body, verified, *, signals=None, directory_hits=None, parent_site_url=None,
-           tiers_exhausted=(), required_tiers=("seed",), pending_reason=None, now=None) -> dict:
+           tiers_exhausted=(), required_tiers=("seed",), pending_reason=None, hold_reason=None,
+           now=None) -> dict:
     signals = signals or {}
     directory_hits = directory_hits or []
     now = now or datetime.now(timezone.utc)
@@ -47,6 +48,8 @@ def decide(body, verified, *, signals=None, directory_hits=None, parent_site_url
         status, method, judge = "own_site_blocked", blocked["origin"], "none"
         official = effective = canonical_official_url(blocked["url"])
         kind = "own"
+    elif hold_reason:
+        status, pending_reason = "pending", hold_reason
     elif defunct:
         status = "defunct"
     elif has_parent and parent_evidence:

@@ -56,7 +56,7 @@ def test_backend_error_fails_closed():
 
 
 def test_cascade_escalates_unsure_to_fallback():
-    r = judge_cascade(BODY, "https://orliven.ie/", EV,
+    r = judge_cascade(BODY, "https://orliven.ie/", EV, fallback="haiku",
                       primary_fn=fn_returning('{"label":"unsure","rationale":"?"}'),
                       fallback_fn=fn_returning('{"label":"own_site","rationale":"ok"}'))
     assert r["label"] == "own_site" and r["judge"] == "haiku"
@@ -77,3 +77,24 @@ def test_cache_prevents_second_call(tmp_path):
     judge(BODY, "https://orliven.ie/", EV, api_fn=fn, cache=cache)
     judge(BODY, "https://orliven.ie/", EV, api_fn=fn, cache=cache)
     assert len(calls) == 1
+
+
+import re
+from pathlib import Path
+
+_REPO = Path(__file__).resolve().parents[1]
+
+
+def test_no_anthropic_api_in_website_resolution_code():
+    paths = [*(_REPO / "src" / "lib").glob("website_*.py"), *(_REPO / "src" / "lib").glob("haiku_*.py"),
+             *(_REPO / "pipelines" / "cso_pipeline").rglob("*.py")]
+    offenders = [str(p.relative_to(_REPO)) for p in paths
+                 if re.search(r"import anthropic|ANTHROPIC_API_KEY|anthropic\.Anthropic",
+                              p.read_text(encoding="utf-8"))]
+    assert offenders == []
+
+
+def test_cascade_has_no_default_fallback():
+    import inspect
+    from lib.website_judge import judge_cascade
+    assert inspect.signature(judge_cascade).parameters["fallback"].default is None

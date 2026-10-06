@@ -8,14 +8,14 @@ public_body_id,municipal_district,name,has_log,expected_url,verified
 1511,Trim,Meath County Council (Trim),yes,https://www.meath.ie/council/your-council/your-elected-council/municipal-district-meetings/trim-municipal-district-meetings,yes
 1456,,Kildare County Council,yes,https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/,yes
 1094,,Cavan County Council,yes,https://www.cavancoco.ie/your-council/about-the-council/minutes-and-agendas/minutes-of-council-meetings/,yes
-1162,,Cork City Council,yes,https://www.corkcity.ie/en/council-services/services/community/statutory-committees/local-community-development-committee/minutes-of-lcdc-meetings/,yes
+1162,,Cork City Council,yes,https://www.corkcity.ie/en/council-services/councillors-and-democracy/meetings-of-the-city-council/full-council-meetings/full-council-meetings-minutes/,yes
 1227,,Donegal County Council,yes,https://www.donegalcoco.ie/en/services/corporate/council-meetings,yes
-1235,,Dublin City Council,yes,https://www.dublincity.ie/housing/find-out-about-accommodation-traveller-community/local-traveller-accommodation-consultative-committee-ltacc/ltacc-meeting-minutes,yes
+1235,,Dublin City Council,yes,https://councilmeetings.dublincity.ie/ieListMeetings.aspx?CommitteeId=142,yes
 1244,,Dun Laoghaire Rathdown County Council,yes,https://www.dlrcoco.ie/council-democracy/council-meetings,yes
 1295,,Fingal County Council,yes,https://www.fingal.ie/council-meetings,yes
 1340,,Galway City Council,yes,https://www.galwaycity.ie/services/your-council/your-council-services/council-meeting-archive,yes
-1449,,Kerry County Council,yes,https://www.kerrycoco.ie/meeting-minutes/,yes
-1461,,Kilkenny County Council,yes,https://www.kilkennycoco.ie/eng/your_council/lcdc/lcdc-kilkenny-meetings/,yes
+1449,,Kerry County Council,yes,https://www.kerrycoco.ie/meetings-2026/,yes
+1461,,Kilkenny County Council,yes,https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/,yes
 1475,,Leitrim County Council,yes,https://leitrim.moderngov.co.uk/mgListCommittees.aspx?bcr=1,yes
 1486,,Limerick City and County Council,yes,https://www.limerick.ie/council/your-council/meetings,yes
 1497,,Longford County Council,yes,https://www.longfordcoco.ie/your-council/council-meetings/council%20meetings%20archive/2025-council-meetings/minutes/,yes
@@ -24,7 +24,7 @@ public_body_id,municipal_district,name,has_log,expected_url,verified
 1670,,Roscommon County Council,yes,https://meetings.roscommoncoco.ie/,yes
 1716,,Sligo County Council,yes,https://www.sligococo.ie/YourCouncil/CountyCouncil/Minutes/,yes
 1732,,South Dublin County Council,yes,https://www.sdcc.ie/en/services/our-council/council-meetings/,yes
-1817,,Tipperary County Council,yes,https://www.tipperarycoco.ie/community/local-community-development-committee-support/minutes-monthly-lcdc-meetings,yes
+1817,,Tipperary County Council,yes,https://www.tipperarycoco.ie/your-council/category-minutes-meetings,yes
 1864,,Waterford City and County Council,yes,https://waterfordcouncil.ie/documents/plenary-meeting-documents/,yes
 1870,,Westmeath County Council,yes,https://www.westmeathcoco.ie/en/ourservices/yourcouncil/meetingsminutesagendasandreports/,yes
 1873,,Wexford County Council,yes,https://www.wexfordcoco.ie/council-and-democracy/council-plans-publications-reports-and-minutes/county-council-meetings-agendas-and-minutes,yes

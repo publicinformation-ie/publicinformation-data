@@ -1,7 +1,7 @@
 {
   "metadata": {
     "step": "find_meeting_minutes_pages_search_matcher_eval",
-    "completed_at": "2026-09-16T07:36:06.931129+00:00"
+    "completed_at": "2026-09-26T12:17:01.394476+00:00"
   },
   "results": [
     {
@@ -28,7 +28,7 @@
     {
       "public_body_id": 1162,
       "municipal_district": null,
-      "minutes_page_url": "https://www.corkcity.ie/en/council-services/services/community/statutory-committees/local-community-development-committee/minutes-of-lcdc-meetings/",
+      "minutes_page_url": "https://www.corkcity.ie/en/council-services/services/community/statutory-committees/community-safety/meeting-minutes-of-local-community-safety-partnership/",
       "source_method": "crawl",
       "name": "Cork City Council"
     },
@@ -70,7 +70,7 @@
     {
       "public_body_id": 1461,
       "municipal_district": null,
-      "minutes_page_url": "https://www.kilkennycoco.ie/eng/your_council/lcdc/lcdc-kilkenny-meetings/",
+      "minutes_page_url": "https://www.kilkennycoco.ie/eng/your_council/council_meetings/municipal-districts/",
       "source_method": "crawl",
       "name": "Kilkenny County Council"
     },

@@ -52,9 +52,7 @@ import json as _json
 from lib.response_cache import ResponseCache
 from lib.website_judge import judge_cascade
 
-_bspec = importlib.util.spec_from_file_location("wr_haiku_cc_bridge_t", _EXP / "haiku_cc_bridge.py")
-bridge = importlib.util.module_from_spec(_bspec)
-_bspec.loader.exec_module(bridge)
+import lib.haiku_cc_exchange as bridge
 
 _HSA = {"public_body_id": 1, "name": "Health and Safety Authority", "parent_id": None,
         "parent_name": None, "gold_status": "own_site", "gold_url": "https://www.hsa.ie/"}
@@ -81,7 +79,7 @@ def _seed_cc_cache(tmp_path, body, queries=("hsa ireland",)):
 
 def test_haiku_cc_source_uses_ingested_answer(tmp_path):
     _seed_cc_cache(tmp_path, _HSA)
-    ctx = runner.make_ctx(tmp_path, gov_ie={}, foigovie={}, prior={}, refresh=False, haiku_source="cc")
+    ctx = runner.make_ctx(tmp_path, gov_ie={}, foigovie={}, prior={}, refresh=False)
     out = runner.evaluate([_HSA], ["haiku"], ctx, _probe, _judge, parent_lookup={})
     row = out["haiku"][0]
     assert row["website_status"] == "own_site"
@@ -89,7 +87,7 @@ def test_haiku_cc_source_uses_ingested_answer(tmp_path):
 
 
 def test_haiku_cc_missing_answer_is_pending_not_not_found(tmp_path):
-    ctx = runner.make_ctx(tmp_path, gov_ie={}, foigovie={}, prior={}, refresh=False, haiku_source="cc")
+    ctx = runner.make_ctx(tmp_path, gov_ie={}, foigovie={}, prior={}, refresh=False)
     def dead(url):  # seed domain guesses must not resolve, or the body settles without Haiku
         return {"url": url, "final_url": url, "outcome": "nxdomain", "evidence": None}
 
@@ -99,7 +97,7 @@ def test_haiku_cc_missing_answer_is_pending_not_not_found(tmp_path):
 
 def test_haiku_cc_searches_counted_once_across_approaches(tmp_path):
     _seed_cc_cache(tmp_path, _HSA, queries=("a", "b"))
-    ctx = runner.make_ctx(tmp_path, gov_ie={}, foigovie={}, prior={}, refresh=False, haiku_source="cc")
+    ctx = runner.make_ctx(tmp_path, gov_ie={}, foigovie={}, prior={}, refresh=False)
     runner.evaluate([_HSA], ["haiku", "haiku_then_apify"], ctx, _probe, _judge, parent_lookup={})
     assert ctx["spend"]["haiku_searches"] == 2 and ctx["spend"]["haiku_paid_calls"] == 0
 
@@ -112,7 +110,7 @@ def test_export_search_prompts_keys_match_approach(tmp_path):
 
 
 def test_judge_recorder_writes_prompt_and_does_not_poison_cache(tmp_path):
-    rec = runner.make_judge_recorder(tmp_path / "jp", runner.CC_JUDGE)
+    rec = bridge.JudgePromptRecorder(tmp_path / "jp", runner.CC_JUDGE)
     cache = ResponseCache(tmp_path / "judge")
     r = judge_cascade({"name": "HSA"}, "https://www.hsa.ie/", {"title": "HSA"},
                       primary=runner.CC_JUDGE, fallback=None, primary_fn=rec, cache=cache)

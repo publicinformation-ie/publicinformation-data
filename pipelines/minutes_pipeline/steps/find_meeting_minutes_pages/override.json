@@ -68,5 +68,241 @@
     "minutes_page_url": "https://www.corkcoco.ie/en/council/elected-members-meetings-agendas-and-minutes/meetings-agendas-and-minutes/full-council-meetings",
     "source_method": "manual",
     "overridden": true
+  },
+  {
+    "public_body_id": 1244,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.dlrcoco.ie/council-democracy/council-meetings",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1475,
+    "municipal_district": null,
+    "minutes_page_url": "https://leitrim.moderngov.co.uk/mgListCommittees.aspx?bcr=1",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1732,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.sdcc.ie/en/services/our-council/council-meetings/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1094,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.cavancoco.ie/your-council/about-the-council/minutes-and-agendas/minutes-of-council-meetings/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1162,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.corkcity.ie/en/council-services/councillors-and-democracy/meetings-of-the-city-council/full-council-meetings/full-council-meetings-minutes/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1227,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.donegalcoco.ie/en/services/corporate/council-meetings",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1235,
+    "municipal_district": null,
+    "minutes_page_url": "https://councilmeetings.dublincity.ie/ieListMeetings.aspx?CommitteeId=142",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1295,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.fingal.ie/council-meetings",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1340,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.galwaycity.ie/services/your-council/your-council-services/council-meeting-archive",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1449,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.kerrycoco.ie/meetings-2022/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1449,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.kerrycoco.ie/meetings-2023/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1449,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.kerrycoco.ie/meetings-2024/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1449,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.kerrycoco.ie/meetings-2025/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1449,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.kerrycoco.ie/meetings-2026/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1461,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1486,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.limerick.ie/council/your-council/meetings",
+    "source_method": "manual",
+    "overridden": true,
+    "walk": {
+      "detail_url": "/council/whats-on/",
+      "detail_text": "^(?!PRIVATE).*Meeting of Limerick City and County Council",
+      "paginate": "prev",
+      "max_listing_pages": 36
+    }
+  },
+  {
+    "public_body_id": 1497,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.longfordcoco.ie/your-council/council-meetings/council%20meetings%20archive/2025-council-meetings/minutes/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1497,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.longfordcoco.ie/your-council/council-meetings/2026-meeting-agendas-and-minutes/2026-council-meetings/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1501,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.louthcoco.ie/louth_county_council/minutes_of_statutory_meetings/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1508,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.mayo.ie/en-ie/your-council/governance-and-democracy/meetings-agendas",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1670,
+    "municipal_district": null,
+    "minutes_page_url": "https://meetings.roscommoncoco.ie/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1716,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.sligococo.ie/YourCouncil/CountyCouncil/Minutes/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1817,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.tipperarycoco.ie/your-council/category-minutes-meetings",
+    "source_method": "manual",
+    "overridden": true,
+    "walk": {
+      "detail_url": "/council-meeting-minutes-publication/",
+      "detail_text": "^(TCC\\b|[A-Za-z]+ Council Meeting\\b)",
+      "paginate": "next",
+      "max_listing_pages": 60
+    }
+  },
+  {
+    "public_body_id": 1864,
+    "municipal_district": null,
+    "minutes_page_url": "https://waterfordcouncil.ie/documents/plenary-meeting-documents/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1870,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.westmeathcoco.ie/en/ourservices/yourcouncil/meetingsminutesagendasandreports/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1873,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.wexfordcoco.ie/council-and-democracy/council-plans-publications-reports-and-minutes/county-council-meetings-agendas-and-minutes",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1129,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.clarecoco.ie/council/meetings/minutes",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1085,
+    "municipal_district": null,
+    "minutes_page_url": "https://carlow.ie/council-meetings",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1342,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.galway.ie/en/council-meetings",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1470,
+    "municipal_district": null,
+    "minutes_page_url": "https://laois.ie/meetings",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1525,
+    "municipal_district": null,
+    "minutes_page_url": "https://monaghan.ie/minutes-of-meetings/",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1590,
+    "municipal_district": null,
+    "minutes_page_url": "https://www.offaly.ie/council-meetings-minutes-publication/",
+    "source_method": "manual",
+    "overridden": true
   }
 ]

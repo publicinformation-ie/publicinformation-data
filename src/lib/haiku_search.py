@@ -1,20 +1,6 @@
-"""Cached Claude Haiku web search for a public body's website.
-
-The full raw API response (all turns, including web_search_tool_result blocks)
-is cached before interpretation, so a search is never paid for twice.
-Interpretation lives in lib.website_candidates.interpret_haiku.
-"""
-from typing import Any
-
-from lib.response_cache import ResponseCache
+"""Haiku web-search prompt shared by the Claude Code exchange (no API calls; spec §11)."""
 
 HAIKU_MODEL = "claude-haiku-4-5"
-WEB_SEARCH_TOOL: dict[str, Any] = {
-    "type": "web_search_20250305",
-    "name": "web_search",
-    "max_uses": 3,
-    "user_location": {"type": "approximate", "country": "IE"},
-}
 
 
 def build_search_prompt(body: dict) -> str:
@@ -36,27 +22,3 @@ def build_search_prompt(body: dict) -> str:
         '"parent_site": "url or null", "has_own_site": "yes|no|unknown", '
         '"defunct": "yes|no|unknown", "defunct_source": "url or null", "notes": "one sentence"}'
     )
-
-
-def fetch_raw(body: dict, cache: ResponseCache, *, client=None, refresh: bool = False,
-              max_continuations: int = 2) -> tuple[dict, bool]:
-    prompt = build_search_prompt(body)
-    key = ResponseCache.key("haiku", HAIKU_MODEL, WEB_SEARCH_TOOL, prompt)
-    if not refresh and (hit := cache.get(key)) is not None:
-        return hit, False
-
-    if client is None:
-        import anthropic
-        client = anthropic.Anthropic()
-    messages: list[Any] = [{"role": "user", "content": prompt}]
-    tools: list[Any] = [WEB_SEARCH_TOOL]
-    dumps = []
-    for _ in range(max_continuations + 1):
-        msg = client.messages.create(model=HAIKU_MODEL, max_tokens=2000,
-                                     tools=tools, messages=messages)
-        dumps.append(msg.model_dump(mode="json"))
-        if msg.stop_reason != "pause_turn":
-            break
-        messages = messages + [{"role": "assistant", "content": msg.content}]
-    record = cache.put(key, {"model": HAIKU_MODEL, "prompt": prompt, "responses": dumps})
-    return record, True

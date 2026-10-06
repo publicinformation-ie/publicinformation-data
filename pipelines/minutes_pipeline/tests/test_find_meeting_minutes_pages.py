@@ -89,6 +89,22 @@ def test_override_sources_produces_district_and_council_records():
     assert council["overridden"] is True
 
 
+def test_override_sources_passes_walk_config_through():
+    walk = {"detail_url": "/whats-on/", "detail_text": "Meeting of",
+            "paginate": "prev", "max_listing_pages": 36}
+    overrides = [
+        {"public_body_id": 1486, "municipal_district": None,
+         "minutes_page_url": "https://www.limerick.ie/council/your-council/meetings",
+         "source_method": "manual", "overridden": True, "walk": walk},
+        {"public_body_id": 1511, "municipal_district": None,
+         "minutes_page_url": "https://www.meath.ie/council/minutes",
+         "source_method": "manual", "overridden": True},
+    ]
+    limerick, meath = override_sources([], overrides)
+    assert limerick["walk"] == walk
+    assert "walk" not in meath
+
+
 def test_process_override_plus_writer_does_not_duplicate(tmp_path, make_writer):
     """The step's committed override.json uses source_method 'manual' (repo
     convention), while output records normalize it to 'override'. The writer

@@ -4,7 +4,7 @@ import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urljoin, urldefrag, urlparse
+from urllib.parse import unquote, urljoin, urldefrag, urlparse
 
 from bs4 import BeautifulSoup
 
@@ -20,6 +20,10 @@ ACCEPT_THRESHOLD = 60
 NEGATIVE_TOKENS = {
     "login", "logo", "blog", "annual", "report", "reports", "archive",
     "agenda", "agendas", "publication", "publications", "scheme",
+    # Committees that publish yield-rich minutes pages but are not the
+    # council: LCDC, Local Community Safety Partnership, Local Traveller
+    # Accommodation Consultative Committee, Joint Policing Committee.
+    "lcdc", "lcsp", "ltacc", "jpc",
 }
 _MINUTES = {"minutes", "minute"}
 _MEETING = {"meeting", "meetings"}
@@ -30,7 +34,8 @@ _DISTRICT = {"district", "districts"}
 def _tokenize(*strings):
     tokens = set()
     for s in strings:
-        for tok in re.split(r"[^a-z0-9]+", (s or "").lower()):
+        # Decode first: "Minutes%20JPC" must yield "jpc", not "20jpc".
+        for tok in re.split(r"[^a-z0-9]+", unquote(s or "").lower()):
             if tok:
                 tokens.add(tok)
     return tokens
@@ -150,13 +155,17 @@ def override_sources(authorities, overrides):
         bid = rec.get("public_body_id")
         if bid is None:
             continue
-        records.append({
+        record = {
             "public_body_id": bid,
             "municipal_district": rec.get("municipal_district"),
             "minutes_page_url": rec["minutes_page_url"],
             "source_method": "override",
             "overridden": True,
-        })
+        }
+        # Optional per-source listing-walk config for find_minutes_files.
+        if rec.get("walk"):
+            record["walk"] = rec["walk"]
+        records.append(record)
     return records
 
 

@@ -13,7 +13,17 @@
           "municipal_district": { "type": ["string", "null"] },
           "minutes_page_url": { "type": "string", "format": "uri" },
           "source_method": { "enum": ["override", "crawl"] },
-          "overridden": { "type": "boolean" }
+          "overridden": { "type": "boolean" },
+          "walk": {
+            "type": "object",
+            "required": ["detail_url", "detail_text", "paginate", "max_listing_pages"],
+            "properties": {
+              "detail_url": { "type": "string" },
+              "detail_text": { "type": "string" },
+              "paginate": { "enum": ["next", "prev"] },
+              "max_listing_pages": { "type": "integer", "minimum": 1 }
+            }
+          }
         }
       }
     }

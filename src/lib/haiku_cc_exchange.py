@@ -1,36 +1,74 @@
-#!/usr/bin/env python3
-"""Bridge between Claude Code Haiku subagents and the experiment caches.
+"""Exchange files between pipeline code and Claude Code Haiku subagents (spec §11).
 
-The API path (lib.haiku_search / lib.website_judge) needs ANTHROPIC_API_KEY. This
-bridge lets Claude Code Haiku subagents answer the *same* prompts instead:
-run_experiment.py exports prompt files, subagents write answer files, and this
-script ingests them into caches shaped like the API path's, so interpret_haiku,
-verify, decide and score run unchanged. Invalid answers are never cached, so
-they surface as pending and get re-dispatched.
+No Anthropic API is ever called. Pipeline code writes prompt files, the main Claude
+Code session dispatches `haiku-oracle` subagents that write answer files, and
+ingest_* validates the answers into the caches that pipeline steps read. Invalid
+answers are never cached, so their bodies stay pending and get re-dispatched.
 
-Run from the repo root:
-    uv run python pipelines/cso_pipeline/experiments/2026-09-26-website-resolution/haiku_cc_bridge.py pending search --batch 5
-    uv run python .../haiku_cc_bridge.py ingest search
+Layout under <cache_dir>/haiku_cc_exchange/: search_prompts/, search_answers/,
+judge_prompts/, judge_answers/. An answer has the same filename as its prompt.
 """
-import argparse
 import json
-import sys
 from pathlib import Path
 
-_HERE = Path(__file__).resolve().parent
-_CSO = _HERE.parents[1]
-_REPO = _CSO.parents[1]
-sys.path.insert(0, str(_REPO / "src"))
-
-from lib.haiku_search import HAIKU_MODEL  # noqa: E402
-from lib.response_cache import ResponseCache  # noqa: E402
-from lib.website_judge import parse_judge_response  # noqa: E402
+from lib.haiku_search import HAIKU_MODEL, build_search_prompt
+from lib.response_cache import ResponseCache
+from lib.website_judge import parse_judge_response
 
 SOURCE = "claude_code_subagent"
-CACHE_DIR = _CSO / "cache"
-EXCHANGE = CACHE_DIR / "haiku_cc_exchange"
-MAX_SEARCHES = 3  # mirrors lib.haiku_search.WEB_SEARCH_TOOL["max_uses"]
+CC_JUDGE = "haiku-cc"  # judge backend label for subagent verdicts
+SEARCH_NAMESPACE = "haiku_cc"
+MAX_SEARCHES = 3  # per body; enforced by the dispatch instruction, flagged at ingest
 _UNPARSED = ("unparsable response", "invalid json")
+
+
+def exchange_dir(cache_dir) -> Path:
+    return Path(cache_dir) / "haiku_cc_exchange"
+
+
+def search_key(body) -> str:
+    return ResponseCache.key(SEARCH_NAMESPACE, HAIKU_MODEL, build_search_prompt(body))
+
+
+def search_cache(cache_dir) -> ResponseCache:
+    return ResponseCache(Path(cache_dir) / SEARCH_NAMESPACE)
+
+
+def write_search_prompt(body, prompts_dir) -> Path:
+    prompts_dir = Path(prompts_dir)
+    prompts_dir.mkdir(parents=True, exist_ok=True)
+    path = prompts_dir / f"{body['public_body_id']}.json"
+    spec = {"public_body_id": body["public_body_id"], "name": body.get("name"),
+            "key": search_key(body), "prompt": build_search_prompt(body)}
+    path.write_text(json.dumps(spec, ensure_ascii=False, indent=1), encoding="utf-8")
+    return path
+
+
+class JudgePromptRecorder:
+    """A judge api_fn for the haiku-cc backend.
+
+    Saves each uncached prompt as an exchange file, then raises. judge() fails
+    closed without caching, so the verdict stays 'unsure' until a subagent answer
+    is ingested. `misses` counts every call, so a caller can detect a pending
+    verdict even for a prompt already recorded earlier in the run.
+    """
+
+    def __init__(self, prompts_dir, backend: str = CC_JUDGE):
+        self.prompts_dir = Path(prompts_dir)
+        self.backend = backend
+        self.recorded: list[str] = []
+        self.misses = 0
+
+    def __call__(self, prompt: str) -> str:
+        self.misses += 1
+        key = ResponseCache.key("judge", self.backend, prompt)
+        if key not in self.recorded:
+            self.recorded.append(key)
+            self.prompts_dir.mkdir(parents=True, exist_ok=True)
+            (self.prompts_dir / f"{key}.json").write_text(
+                json.dumps({"key": key, "backend": self.backend, "prompt": prompt},
+                           ensure_ascii=False, indent=1), encoding="utf-8")
+        raise RuntimeError("judge prompt recorded for a Claude Code subagent")
 
 
 def _read(path: Path):
@@ -59,12 +97,12 @@ def answer_to_raw(prompt: str, answer: dict) -> dict:
                                      "server_tool_use": {"web_search_requests": len(queries)}}}]}
 
 
-def pending(prompts_dir: Path, answers_dir: Path) -> list[Path]:
+def pending(prompts_dir, answers_dir) -> list[Path]:
     return [p for p in sorted(Path(prompts_dir).glob("*.json"))
             if not (Path(answers_dir) / p.name).exists()]
 
 
-def ingest_search(prompts_dir: Path, answers_dir: Path, cache: ResponseCache) -> dict:
+def ingest_search(prompts_dir, answers_dir, cache: ResponseCache) -> dict:
     out = {"ingested": 0, "missing": [], "invalid": [], "over_budget": []}
     for p in sorted(Path(prompts_dir).glob("*.json")):
         spec = _read_spec(p)
@@ -84,7 +122,7 @@ def ingest_search(prompts_dir: Path, answers_dir: Path, cache: ResponseCache) ->
     return out
 
 
-def ingest_judge(prompts_dir: Path, answers_dir: Path, cache: ResponseCache) -> dict:
+def ingest_judge(prompts_dir, answers_dir, cache: ResponseCache) -> dict:
     out = {"ingested": 0, "missing": [], "invalid": []}
     for p in sorted(Path(prompts_dir).glob("*.json")):
         spec = _read_spec(p)
@@ -106,30 +144,3 @@ def ingest_judge(prompts_dir: Path, answers_dir: Path, cache: ResponseCache) -> 
                         "source": SOURCE, "raw_text": text})
         out["ingested"] += 1
     return out
-
-
-_DIRS = {"search": ("search_prompts", "search_answers", CACHE_DIR / "haiku_cc"),
-         "judge": ("judge_prompts", "judge_answers", CACHE_DIR / "judge")}
-
-
-def main():
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("command", choices=["pending", "ingest"])
-    ap.add_argument("kind", choices=["search", "judge"])
-    ap.add_argument("--batch", type=int, default=5, help="pending: prompt files per printed line")
-    args = ap.parse_args()
-    p_name, a_name, cache_dir = _DIRS[args.kind]
-    prompts, answers = EXCHANGE / p_name, EXCHANGE / a_name
-    if args.command == "pending":
-        todo = pending(prompts, answers)
-        print(f"# {len(todo)} pending; answers go in {answers}")
-        for i in range(0, len(todo), args.batch):
-            print(" ".join(str(p) for p in todo[i:i + args.batch]))
-        return
-    answers.mkdir(parents=True, exist_ok=True)
-    fn = ingest_search if args.kind == "search" else ingest_judge
-    print(json.dumps(fn(prompts, answers, ResponseCache(cache_dir))))
-
-
-if __name__ == "__main__":
-    main()
