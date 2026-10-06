@@ -25,7 +25,6 @@
         vcard:hasEmail <mailto:dave@publicinformation.ie> ;
     ] ;
     dct:relation <https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/public-bodies> ;
-    dct:relation <https://publicinformation-ie.codeberg.page/publicinformation-data/dataset/documents> ;
 
     dcat:distribution [
         a dcat:Distribution ;
