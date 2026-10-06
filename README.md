@@ -34,13 +34,13 @@ Eight datasets are published as versioned Linked Data under `public/latest/<data
 | Dataset | Version | Records | Docs |
 |---------|---------|---------|------|
 | Public Bodies | v2.0.0 | 883 | [`public/latest/public-bodies/README.md`](public/latest/public-bodies/README.md) |
-| FOI Disclosures | v1.0.0 | 62,288 | [`public/latest/foi-disclosures/README.md`](public/latest/foi-disclosures/README.md) |
+| FOI Disclosures | v1.0.0 | 60,177 | [`public/latest/foi-disclosures/README.md`](public/latest/foi-disclosures/README.md) |
 | FOI Request Files | v1.0.0 | 1,593 | [`public/latest/foi-request-files/README.md`](public/latest/foi-request-files/README.md) |
 | Who Does What | v1.0.0 | 27 | [`public/latest/who-does-what/README.md`](public/latest/who-does-what/README.md) |
 | data.gov.ie Links | v1.0.0 | 137 | [`public/latest/data-gov-ie-links/README.md`](public/latest/data-gov-ie-links/README.md) |
 | lobbying.ie Links | v1.0.0 | 121 | [`public/latest/lobbying-ie-links/README.md`](public/latest/lobbying-ie-links/README.md) |
-| Public Body Actions | v1.0.0 | 50 | [`public/latest/public-body-actions/README.md`](public/latest/public-body-actions/README.md) |
-| Motions | v1.0.0 | 4,158 | [`public/latest/motions/README.md`](public/latest/motions/README.md) |
+| Public Body Actions | v1.0.0 | 198 | [`public/latest/public-body-actions/README.md`](public/latest/public-body-actions/README.md) |
+| Motions | v1.0.0 | 3,959 | [`public/latest/motions/README.md`](public/latest/motions/README.md) |
 
 `public-bodies` is regenerated automatically by the FOI pipeline's `export_status` step on every full run (logic in `src/lib/publish_public_bodies.py`), so it always stays in lockstep with `pipeline-data.json`; the other datasets are produced by standalone `scripts/transform_*.py` — seven such scripts as of this writing (`ls scripts/transform_*.py`).
 
