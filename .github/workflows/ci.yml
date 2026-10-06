@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+      - name: Create environment
+        run: uv venv --python 3.14
+      - name: Install dependencies
+        run: |
+          uv pip install --python .venv/bin/python \
+            -r pipelines/foi_pipeline/requirements.txt \
+            -r pipelines/document_pipeline/requirements.txt \
+            pyright
+      - name: Check generated documentation
+        run: uv run python scripts/generate_pipeline_docs.py --check
+      - name: FOI pipeline tests
+        run: uv run pytest pipelines/foi_pipeline/tests -q
+      - name: Document pipeline tests
+        run: uv run pytest pipelines/document_pipeline/tests -q
+      - name: Root tests
+        run: uv run pytest tests -q
+      - name: Type check
+        run: uv run pyright
