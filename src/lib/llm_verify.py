@@ -84,7 +84,7 @@ def _call_backend(prompt: str, model: str) -> str:
     if provider == "opencode":
         return _call_opencode(prompt, model)
     if provider == "openai":
-        import openai
+        import openai  # pyright: ignore[reportMissingImports]  # optional EVAL_JUDGE_PROVIDER backend
         client = openai.OpenAI(
             api_key=os.environ.get("VERIFY_API_KEY", "not-needed"),
             base_url=os.environ.get("VERIFY_BASE_URL"),

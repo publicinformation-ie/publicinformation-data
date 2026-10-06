@@ -148,7 +148,7 @@ def _call_backend(system: str, user: str, model: str) -> str:
     if provider == "opencode":
         return _call_opencode(system, user, model)
     if provider == "openai":
-        import openai
+        import openai  # pyright: ignore[reportMissingImports]  # optional EVAL_JUDGE_PROVIDER backend
         client = openai.OpenAI(
             api_key=os.environ.get("MOTIONS_LLM_API_KEY", "not-needed"),
             base_url=os.environ.get("MOTIONS_LLM_BASE_URL"),
