@@ -71,7 +71,7 @@ def main():
     })
     write_status(step_dir, len(motions))
 
-    # Write public output (reviewed before scripts/publish_pages.sh).
+    # Write public output (reviewed before merging to main, which publishes).
     repo_root = step_dir.parent.parent.parent.parent
     public_motions = repo_root / "public" / "motions"
     written = write_per_authority(grouped, public_motions)
@@ -79,7 +79,7 @@ def main():
 
     print(f"Wrote {len(motions)} motions across {len(written)} authorities to "
           f"{public_motions}")
-    print("Note: review public/motions/ before running scripts/publish_pages.sh",
+    print("Note: review public/motions/ before merging to main (merging is what publishes)",
           file=sys.stderr)
 
 

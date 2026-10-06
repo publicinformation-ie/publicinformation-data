@@ -9,7 +9,7 @@ Final fan-in that exports the canonical motion records grouped by authority, wri
 3. Writes **`public/motions/<slug>.json`** for each authority — `{public_body_slug, public_body_name, public_body_id, motions: [...]}`.
 4. Writes **`public/motions/index.json`** — `{authorities: [<slug>, …]}`.
 
-The public files are the MVP motion dataset; review `public/motions/` before running `scripts/publish_pages.sh`.
+The public files are the MVP motion dataset; review `public/motions/` before merging to `main`.
 
 ## Input
 
