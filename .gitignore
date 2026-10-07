@@ -25,6 +25,7 @@ pipelines/foi_pipeline/steps/normalize_disclosure_cells/output.json
 **/coverage.json
 **/dirty_ids.json
 **/failed_ids.json
+**/quarantined_ids.json
 .env.admin
 .env.github
 local.db
