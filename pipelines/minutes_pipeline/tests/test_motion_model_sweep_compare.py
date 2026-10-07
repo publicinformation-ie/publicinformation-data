@@ -113,3 +113,64 @@ def test_field_accuracy_counts_each_field():
 def test_missing_cost_raises():
     with pytest.raises(ValueError):
         score_combo([_f(pred=[_MOTION_A], gold=[_MOTION_A], cost_usd=None)])
+
+
+_REPORT_PY = (Path(__file__).parent.parent / "experiments"
+              / "2026-10-07-motion-model-sweep" / "report.py")
+
+
+def _load_report_module():
+    spec = importlib.util.spec_from_file_location("motion_sweep_report", _REPORT_PY)
+    assert spec is not None and spec.loader is not None, f"Cannot load {_REPORT_PY}"
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+_report_mod = _load_report_module()
+report = _report_mod.report
+
+_FIXTURE_RESULTS_WITH_ALL_ROWS = {
+    "combos": {
+        "opencode-go/deepseek-v4.1-flash@default": {
+            "text_f1": 0.9,
+            "count_mae": 0.1,
+            "field_acc": 0.8,
+            "failure_rate": 0.0,
+            "mean_cost": 0.0001,
+            "extrapolated_2026": 0.2,
+        },
+        # Null field_acc (zero pairs matched) + 15% failures: high F1 but
+        # DISQUALIFIED regardless of F1 (spec section 8).
+        "opencode-go/qwen3.5-flash@none": {
+            "text_f1": 0.95,
+            "count_mae": 0.0,
+            "field_acc": None,
+            "failure_rate": 0.15,
+            "mean_cost": 0.00005,
+            "extrapolated_2026": 0.1,
+        },
+        "baseline": {
+            "text_f1": 0.85,
+            "count_mae": 0.2,
+            "field_acc": 0.7,
+            "failure_rate": 0.05,
+            "mean_cost": None,
+            "extrapolated_2026": None,
+        },
+    }
+}
+
+
+def test_report_carries_gradient_caveat(capsys):
+    report(_FIXTURE_RESULTS_WITH_ALL_ROWS)
+    out = capsys.readouterr().out
+    assert "gradient" in out and "not testable" in out
+
+
+def test_report_null_field_acc_disqualified_and_delta(capsys):
+    report(_FIXTURE_RESULTS_WITH_ALL_ROWS)
+    out = capsys.readouterr().out
+    assert "n/a" in out  # null field_acc (and null baseline costs)
+    assert "DISQUALIFIED" in out  # 15% failures despite F1 0.95
+    assert "+0.0500" in out  # 0.90 - 0.85 baseline ΔF1
