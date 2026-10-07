@@ -57,8 +57,10 @@ _extract = _load_extract()
 estimate_tokens = _extract.estimate_tokens
 cost_for = _extract.cost_for
 COST_PER_M_USD = _extract.COST_PER_M_USD
-MODELS = _extract.MODELS
 GOLD_MODEL = _extract.GOLD_MODEL
+#: Candidates plus the gold reference: gold is needed to score each prompt
+#: against a same-prompt reference, so it is part of the probe's model set.
+MODELS = tuple(_extract.MODELS) + (GOLD_MODEL,)
 
 _SAMPLE_JSON = _HERE / "sample.json"
 _OUT_JSONL = _HERE / "prompt_ab.jsonl"

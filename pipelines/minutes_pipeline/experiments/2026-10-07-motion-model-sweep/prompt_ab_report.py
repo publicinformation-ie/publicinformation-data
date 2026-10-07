@@ -60,45 +60,79 @@ def load_records(path) -> list:
     return records
 
 
+def _score_cell(gold_by_url: dict, preds: dict, urls: list):
+    """Score one (prompt, model) cell over `urls` where both gold and a pred
+    record exist; None if nothing is scorable."""
+    entries = []
+    for url in urls:
+        g = gold_by_url.get(url)
+        pred = preds.get(url)
+        if isinstance(g, list) and isinstance(pred, dict):
+            entries.append({"pred": pred, "gold": g})
+    if not entries:
+        return None
+    metrics = _compare.score_combo(entries)
+    metrics["n"] = len(entries)
+    return metrics
+
+
 def build_table(sample: dict, records_path) -> dict:
-    """{prompt: {model: metrics-with-n}} for each candidate vs same-prompt gold,
-    plus {"delta": {model: {"text_f1": modified - production, ...}}}."""
+    """Per-prompt tables plus a *paired* modified-minus-production delta.
+
+    Each prompt is scored against gold under the same prompt. Gold failures
+    (timeouts) differ per prompt, so the two prompts can cover different file
+    sets; the paired delta is therefore restricted to files with gold under
+    BOTH prompts, making the prompt the only variable.
+    """
     order = [f["file_url"] for f in sample.get("files", [])]
     records = load_records(records_path)
     prompts = sorted({r["prompt"] for r in records})
+    gold_by_prompt = {p: {r["file_url"]: r.get("motions") for r in records
+                          if r["prompt"] == p and r["model"] == GOLD_MODEL}
+                      for p in prompts}
+    preds_by: dict = {}
+    for r in records:
+        if r["model"] != GOLD_MODEL:
+            preds_by.setdefault((r["prompt"], r["model"]), {})[r["file_url"]] = r
+    models = sorted({m for (_p, m) in preds_by})
+
     table: dict = {}
     for prompt in prompts:
-        gold = {r["file_url"]: r.get("motions") for r in records
-                if r["prompt"] == prompt and r["model"] == GOLD_MODEL}
-        models = sorted({r["model"] for r in records
-                         if r["prompt"] == prompt and r["model"] != GOLD_MODEL})
         table[prompt] = {}
         for model in models:
-            preds = {r["file_url"]: r for r in records
-                     if r["prompt"] == prompt and r["model"] == model}
-            entries = []
-            for url in order:
-                g = gold.get(url)
-                pred = preds.get(url)
-                if isinstance(g, list) and isinstance(pred, dict):
-                    entries.append({"pred": pred, "gold": g})
-            if entries:
-                metrics = _compare.score_combo(entries)
-                metrics["n"] = len(entries)
-                table[prompt][model] = metrics
+            cell = _score_cell(gold_by_prompt[prompt],
+                               preds_by.get((prompt, model), {}), order)
+            if cell:
+                table[prompt][model] = cell
 
-    prod = table.get("production", {})
-    modified = table.get("exclude_procedural", {})
-    delta = {}
-    for model in sorted(set(prod) & set(modified)):
-        p, m = prod[model], modified[model]
-        f1 = (round(m["text_f1"] - p["text_f1"], 4)
-              if m["text_f1"] is not None and p["text_f1"] is not None else None)
-        fa = (round(m["field_acc"] - p["field_acc"], 4)
-              if m["field_acc"] is not None and p["field_acc"] is not None else None)
-        delta[model] = {"text_f1": f1, "field_acc": fa}
-    table["delta"] = delta
+    common = [url for url in order
+              if all(isinstance(gold_by_prompt[p].get(url), list)
+                     for p in prompts)]
+    paired: dict = {"n": len(common), "production": {}, "modified": {},
+                    "delta": {}}
+    for model in models:
+        prod_cell = _score_cell(gold_by_prompt.get("production", {}),
+                                preds_by.get(("production", model), {}), common)
+        mod_cell = _score_cell(gold_by_prompt.get("exclude_procedural", {}),
+                               preds_by.get(("exclude_procedural", model), {}),
+                               common)
+        if prod_cell and mod_cell:
+            paired["production"][model] = prod_cell
+            paired["modified"][model] = mod_cell
+            paired["delta"][model] = {
+                "text_f1": round(mod_cell["text_f1"] - prod_cell["text_f1"], 4),
+                "field_acc": _delta(mod_cell.get("field_acc"),
+                                    prod_cell.get("field_acc")),
+                "count_mae": _delta(mod_cell.get("count_mae"),
+                                    prod_cell.get("count_mae")),
+            }
+    table["paired"] = paired
+    table["delta"] = paired["delta"]
     return table
+
+
+def _delta(a, b):
+    return None if a is None or b is None else round(a - b, 4)
 
 
 def _fmt(v, places=4):
@@ -120,18 +154,30 @@ def _print_prompt(prompt: str, rows: dict):
 
 
 def report(table: dict) -> None:
-    for prompt in sorted(k for k in table if k != "delta"):
+    for prompt in sorted(k for k in table if k not in ("delta", "paired")):
         _print_prompt(prompt, table[prompt])
-    delta = table.get("delta") or {}
+    paired = table.get("paired") or {}
+    delta = paired.get("delta") or {}
     if delta:
-        print("\n== modified (exclude_procedural) - production ==")
-        print(f"{'model':<44}{'Δtext-F1':>10}{'Δfield-acc':>12}")
-        print("-" * 66)
+        n = paired.get("n", 0)
+        print(f"\n== Paired: modified - production, same {n} files "
+              f"(gold under each prompt) ==")
+        header = (f"{'model':<44}{'prod-F1':>9}{'mod-F1':>9}{'ΔF1':>9}"
+                  f"{'prod-acc':>10}{'mod-acc':>10}{'Δacc':>9}{'Δmae':>9}")
+        print(header)
+        print("-" * len(header))
         for model, d in sorted(delta.items()):
-            print(f"{model:<44}{_fmt(d.get('text_f1')):>10}"
-                  f"{_fmt(d.get('field_acc')):>12}")
-    print("\nCaveat: n is the number of files scored for that cell; gold is the "
-          "reference under the same prompt (not a human ground truth).")
+            p = paired["production"][model]
+            m = paired["modified"][model]
+            print(f"{model:<44}{_fmt(p.get('text_f1')):>9}"
+                  f"{_fmt(m.get('text_f1')):>9}{_fmt(d.get('text_f1')):>9}"
+                  f"{_fmt(p.get('field_acc')):>10}"
+                  f"{_fmt(m.get('field_acc')):>10}{_fmt(d.get('field_acc')):>9}"
+                  f"{_fmt(d.get('count_mae')):>9}")
+    print("\nCaveat: gold is a model reference under the same prompt, not human "
+          "ground truth; the paired delta restricts to files with gold under "
+          "BOTH prompts. ΔF1 < 0 means the exclusion clause lowered agreement "
+          "with that prompt's own gold.")
 
 
 def main() -> int:
