@@ -56,6 +56,11 @@ def _motion_bucket(count: int) -> str:
 
 
 def _count_of(value) -> int:
+    """Motion count for an old_counts entry.
+
+    Int-form entries are legacy/tolerant-only: the count is kept but there
+    are no motions, so _motions_of returns [] for them.
+    """
     if isinstance(value, dict):
         return int(value.get("count", 0))
     return int(value or 0)
@@ -69,9 +74,10 @@ def _motions_of(value) -> list:
 
 
 def _usable_url(file_url) -> bool:
-    return (isinstance(file_url, str) and file_url.strip()
-            and file_url.strip().lower() != "unknown"
-            and file_url.startswith("http"))
+    if not isinstance(file_url, str):
+        return False
+    url = file_url.strip()
+    return bool(url) and url.lower() != "unknown" and url.startswith("http")
 
 
 def build_motion_index(extract_records) -> dict:
@@ -142,7 +148,9 @@ def _enforce_guarantees(picks: list, eligible: list, rng: random.Random) -> list
 
     for missing in sorted(set(EXTRACTORS) - {p["extractor"] for p in picks}):
         cand = replacements(lambda e, m=missing: e["extractor"] == m)
-        if cand and not swap_in(cand[0]):
+        for new in cand:
+            if swap_in(new):
+                break
             # No motion-bearing victim available: take any non-inserted file
             # of the other extractor, unless it would break the zero minimum.
             for idx in range(len(picks) - 1, -1, -1):
@@ -152,9 +160,12 @@ def _enforce_guarantees(picks: list, eligible: list, rng: random.Random) -> list
                 if (victim["old_motion_count"] == 0
                         and sum(1 for p in picks if p["old_motion_count"] == 0) <= 2):
                     continue
-                picks[idx] = cand[0]
-                inserted.add(cand[0]["file_url"])
+                picks[idx] = new
+                inserted.add(new["file_url"])
                 break
+            else:
+                continue
+            break
     return picks
 
 
@@ -191,6 +202,8 @@ def draw_sample(records, old_counts: dict, seed: int = SEED) -> list:
                 progressed = True
         if not progressed:
             break
+    if len(picks) < SAMPLE_SIZE:
+        raise RuntimeError(f"Only {len(picks)} eligible files; need {SAMPLE_SIZE}")
     return _enforce_guarantees(picks, eligible, rng)
 
 

@@ -142,7 +142,7 @@ _FIXTURE_RESULTS_WITH_ALL_ROWS = {
         },
         # Null field_acc (zero pairs matched) + 15% failures: high F1 but
         # DISQUALIFIED regardless of F1 (spec section 8).
-        "opencode-go/qwen3.5-flash@none": {
+        "opencode-go/qwen3.8-flash": {
             "text_f1": 0.95,
             "count_mae": 0.0,
             "field_acc": None,

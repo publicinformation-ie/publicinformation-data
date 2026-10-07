@@ -61,6 +61,8 @@ def report(results: dict) -> None:
             "report: results.json has no 'baseline' combo (need it for ΔF1)")
     baseline = combos["baseline"]
     baseline_f1 = baseline["text_f1"]
+    if baseline_f1 is None:
+        raise ValueError("report: baseline combo has null text_f1 (need it for ΔF1)")
 
     rows = [(key, combos[key]) for key in combos if key != "baseline"]
     # Cost ranking, cheapest first. A null-cost candidate (should not happen -
@@ -76,11 +78,12 @@ def report(results: dict) -> None:
         fail = m["failure_rate"]
         status = ("DISQUALIFIED" if fail is not None
                   and fail > FAILURE_DISQUALIFY_RATE else "OK")
-        delta = m["text_f1"] - baseline_f1
+        delta = (f"{m['text_f1'] - baseline_f1:+.4f}"
+                 if m["text_f1"] is not None else "n/a")
         print(f"{key:<46}{_fmt_cost(m.get('mean_cost')):>12}"
               f"{_fmt_extrapolated(m.get('extrapolated_2026')):>10}"
               f"{_fmt(m.get('text_f1')):>9}{_fmt(m.get('field_acc')):>10}"
-              f"{_fmt(fail):>7}{delta:+.4f}  {status}")
+              f"{_fmt(fail):>7}{delta}  {status}")
     delta0 = "—"
     bfail = baseline["failure_rate"]
     bstatus = ("DISQUALIFIED" if bfail is not None

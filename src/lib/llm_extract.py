@@ -242,15 +242,20 @@ def extract_json(system: str, user: str, api_fn=None, model: str | None = None,
     """
     if effort is not None and effort != "none":
         raise ValueError(f"untransmittable effort={effort!r}: only None or 'none' are supported")
-    try:
-        if api_fn is None:
+    if api_fn is None:
+        try:
             text = _call_backend_with_effort(system, user, model if model is not None else motions_model(), effort)
-        else:
+        except ValueError:
+            raise
+        except Exception:
+            return None
+    else:
+        # Injected stubs are test-only and bypass effort honouring: any stub
+        # failure, including ValueError, degrades to None like any other.
+        try:
             text = api_fn(system, user, motions_session_id())
-    except ValueError:
-        raise
-    except Exception:
-        return None
+        except Exception:
+            return None
     if not text:
         return None
     try:
