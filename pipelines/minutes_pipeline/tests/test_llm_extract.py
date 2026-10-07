@@ -133,3 +133,46 @@ def test_extract_json_rejects_untransmittable_effort():
     import lib.llm_extract as mod
     with pytest.raises(ValueError):
         mod.extract_json("s", "u", model="m", effort="low")
+
+
+def _capture_chat_post(monkeypatch, model):
+    """Run extract_json against a mocked chat/completions POST; return the
+    (url, payload) the client sent for the given model id."""
+    import lib.llm_extract as mod
+    captured = {}
+
+    class FakeResp:
+        ok = True
+
+        def json(self):
+            return {"choices": [{"message": {"content": '{"motions": []}'}}]}
+
+    def fake_post(url, headers=None, json=None, timeout=None):
+        captured["url"] = url
+        captured["payload"] = json
+        return FakeResp()
+
+    monkeypatch.delenv("MOTIONS_LLM_BASE_URL", raising=False)
+    monkeypatch.setattr(mod, "motions_provider", lambda: "opencode")
+    monkeypatch.setattr(mod, "_opencode_api_key", lambda: "test-key")
+    monkeypatch.setattr("requests.post", fake_post)
+    assert mod.extract_json("s", "u", model=model) == {"motions": []}
+    return captured
+
+
+def test_opencode_go_strips_provider_prefix_on_wire(monkeypatch):
+    """Provider-qualified opencode-go/<id> must go on the wire as the bare
+    id: the /zen/go/v1 gateway rejects the prefixed form with 400
+    'Model is unavailable' (observed 2026-10-07)."""
+    captured = _capture_chat_post(monkeypatch, "opencode-go/deepseek-v4.1-flash")
+    assert captured["url"].endswith("/chat/completions")
+    assert captured["payload"]["model"] == "deepseek-v4.1-flash"
+
+
+def test_opencode_go_bare_and_foreign_ids_pass_through(monkeypatch):
+    """Bare ids are sent unchanged; unknown prefixes are NOT rewritten
+    (the gateway rejects them and the caller fails closed downstream)."""
+    captured = _capture_chat_post(monkeypatch, "deepseek-v4.1-flash")
+    assert captured["payload"]["model"] == "deepseek-v4.1-flash"
+    captured = _capture_chat_post(monkeypatch, "other-provider/some-model")
+    assert captured["payload"]["model"] == "other-provider/some-model"

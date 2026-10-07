@@ -139,6 +139,14 @@ def _call_opencode(system: str, user: str, model: str, effort: str | None = None
         raise RuntimeError("no Opencode API key found")
     if base.endswith("/zen/v1"):
         return _call_opencode_responses(base, key, system, user, model, effort)
+    if model.startswith("opencode-go/"):
+        # The /zen/go/v1 gateway addresses models by bare id (as listed by
+        # GET /models); the provider-qualified form is rejected with
+        # 400 "Model is unavailable" (observed 2026-10-07: prefixed ids that
+        # returned 200 earlier the same day started 400ing). Strip the
+        # routing prefix client-side; anything else passes through untouched
+        # and fails closed downstream if the gateway rejects it.
+        model = model.removeprefix("opencode-go/")
     body = {
         "model": model,
         "temperature": MOTIONS_TEMPERATURE,
