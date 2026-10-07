@@ -34,11 +34,12 @@ def build_user_prompt(record) -> str:
     )
 
 
-def extract_one(record, api_fn=None):
+def extract_one(record, api_fn=None, model=None, effort=None):
     """Return the record with a 'motions' list (or None on failure) and a
     raw 'stated_date' passthrough of whatever date the LLM reported. Date
     *resolution* is the resolve_meeting_date step's job, not this one."""
-    result = extract_json(_SYSTEM_PROMPT, build_user_prompt(record), api_fn=api_fn)
+    result = extract_json(_SYSTEM_PROMPT, build_user_prompt(record), api_fn=api_fn,
+                          model=model, effort=effort)
     if not isinstance(result, dict):
         return {**record, "stated_date": None, "motions": None}
     stated_date = result.get("meeting_date")

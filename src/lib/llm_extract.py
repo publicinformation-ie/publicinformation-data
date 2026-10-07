@@ -1,3 +1,15 @@
+# Effort plumbing (Task 1 probes rounds 1-2 + 1b, 2026-10-07, 9 live calls on
+# opencode-go/deepseek-v4.1-flash via POST /zen/go/v1/chat/completions):
+# - Gradient DEAD: suffix `model:low` -> 400; top-level `effort`, header
+#   `x-opencode-effort`, and documented top-level `reasoning_effort`
+#   (low vs max, trivial + hard prompts) all 200 with no effort effect.
+#   Cause: DeepSeek P6 forces max when the agent profile (tools + session
+#   headers, completed by the Go proxy even for minimal payloads) is
+#   present; upstream valid values are low/high/max only.
+# - Toggle LIVE (1b, 1 call): top-level `thinking: {"type": "disabled"}`
+#   (SDK extra_body) -> reasoning_tokens 0 vs baseline 82, answer still
+#   correct. ONLY the "none" level is implementable. Task 3: model axis +
+#   binary thinking on/off; do NOT add reasoning_effort levels (ignored).
 """LLM structured JSON extraction for prose documents.
 
 Given a system prompt and a user prompt, asks an LLM to return a JSON object
@@ -75,14 +87,20 @@ def _opencode_api_key() -> str | None:
     return None
 
 
-def _call_opencode_responses(base: str, key: str, system: str, user: str, model: str) -> str:
+def _call_opencode_responses(base: str, key: str, system: str, user: str, model: str,
+                             effort: str | None = None) -> str:
     """Call the Zen Responses API (https://opencode.ai/zen/v1/responses).
 
     Used for models that don't speak chat/completions (e.g.
     "muse-spark-1.3-contributor-free"). The free tier requires the
     x-opencode-session header; without it the gateway returns
     MissingSessionID.
+
+    The thinking on/off toggle is unverified on this path, so any
+    non-None effort fails closed with ValueError.
     """
+    if effort is not None:
+        raise ValueError(f"effort={effort!r} is unverified on the Responses API path")
     import requests  # lazy import
     resp = requests.post(
         f"{base}/responses",
@@ -113,14 +131,28 @@ def _call_opencode_responses(base: str, key: str, system: str, user: str, model:
     return "".join(texts)
 
 
-def _call_opencode(system: str, user: str, model: str) -> str:
+def _call_opencode(system: str, user: str, model: str, effort: str | None = None) -> str:
     import requests  # lazy import
     base = os.environ.get("MOTIONS_LLM_BASE_URL", _OPENCODE_DEFAULT_BASE).rstrip("/")
     key = _opencode_api_key()
     if not key:
         raise RuntimeError("no Opencode API key found")
     if base.endswith("/zen/v1"):
-        return _call_opencode_responses(base, key, system, user, model)
+        return _call_opencode_responses(base, key, system, user, model, effort)
+    body = {
+        "model": model,
+        "temperature": MOTIONS_TEMPERATURE,
+        "messages": [
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
+    }
+    if effort is None:
+        pass
+    elif effort == "none":
+        body["thinking"] = {"type": "disabled"}
+    else:
+        raise ValueError(f"untransmittable effort={effort!r}: only None or 'none' are supported")
     resp = requests.post(
         f"{base}/chat/completions",
         headers={
@@ -128,14 +160,7 @@ def _call_opencode(system: str, user: str, model: str) -> str:
             "Content-Type": "application/json",
             "x-opencode-session": motions_session_id(),
         },
-        json={
-            "model": model,
-            "temperature": MOTIONS_TEMPERATURE,
-            "messages": [
-                {"role": "system", "content": system},
-                {"role": "user", "content": user},
-            ],
-        },
+        json=body,
         timeout=180,
     )
     if not resp.ok:
@@ -144,9 +169,18 @@ def _call_opencode(system: str, user: str, model: str) -> str:
 
 
 def _call_backend(system: str, user: str, model: str) -> str:
+    return _call_backend_with_effort(system, user, model)
+
+
+def _call_backend_with_effort(system: str, user: str, model: str,
+                              effort: str | None = None) -> str:
+    if effort is not None and effort != "none":
+        raise ValueError(f"untransmittable effort={effort!r}: only None or 'none' are supported")
     provider = motions_provider()
     if provider == "opencode":
-        return _call_opencode(system, user, model)
+        return _call_opencode(system, user, model, effort)
+    if effort is not None:
+        raise ValueError(f"effort={effort!r} is unverified on provider {provider!r}")
     if provider == "openai":
         import openai  # pyright: ignore[reportMissingImports]  # optional EVAL_JUDGE_PROVIDER backend
         client = openai.OpenAI(
@@ -191,21 +225,37 @@ def _call_backend(system: str, user: str, model: str) -> str:
     raise RuntimeError(f"unknown MOTIONS_LLM_PROVIDER: {provider!r}")
 
 
-def extract_json(system: str, user: str, api_fn=None) -> dict | None:
+def extract_json(system: str, user: str, api_fn=None, model: str | None = None,
+               effort: str | None = None) -> dict | None:
     """Ask the configured LLM for a JSON object; return it parsed, or None.
 
-    Never raises: any failure (no key, network, bad provider, unparseable
-    JSON) degrades to None so the caller fails closed. ``api_fn`` is injectable
-    for tests (signature ``(system, user, session_id) -> str``); when omitted
-    the configured backend is used.
+    Never raises, with one exception: an untransmittable ``effort`` value
+    (anything other than None or "none") raises ValueError fail-closed
+    instead of being silently ignored. ``model`` defaults to
+    ``motions_model()``; ``effort=None`` preserves the current request body
+    exactly, while ``effort="none"`` disables thinking on the
+    chat/completions path. ``api_fn`` is injectable for tests (signature
+    ``(system, user, session_id) -> str``); when omitted the configured
+    backend is used. Injected stubs bypass effort honouring (test-only) —
+    any other failure (no key, network, bad provider, unparseable JSON)
+    degrades to None so the caller fails closed.
     """
-    try:
-        if api_fn is None:
-            text = _call_backend(system, user, motions_model())
-        else:
+    if effort is not None and effort != "none":
+        raise ValueError(f"untransmittable effort={effort!r}: only None or 'none' are supported")
+    if api_fn is None:
+        try:
+            text = _call_backend_with_effort(system, user, model if model is not None else motions_model(), effort)
+        except ValueError:
+            raise
+        except Exception:
+            return None
+    else:
+        # Injected stubs are test-only and bypass effort honouring: any stub
+        # failure, including ValueError, degrades to None like any other.
+        try:
             text = api_fn(system, user, motions_session_id())
-    except Exception:
-        return None
+        except Exception:
+            return None
     if not text:
         return None
     try:

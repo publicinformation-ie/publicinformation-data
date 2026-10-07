@@ -114,3 +114,22 @@ def test_opencode_responses_path_for_zen_v1_base(monkeypatch):
     assert captured["headers"]["x-opencode-session"] == "session-abc"
     assert captured["payload"]["instructions"] == "sys"
     assert captured["payload"]["input"] == "user"
+
+
+def test_extract_json_forwards_model_effort_to_backend(monkeypatch):
+    import lib.llm_extract as mod
+    captured = {}
+
+    def fake_backend(system, user, model, effort=None):
+        captured.update(model=model, effort=effort)
+        return '{"motions": []}'
+
+    monkeypatch.setattr(mod, "_call_backend_with_effort", fake_backend)
+    assert mod.extract_json("s", "u", model="m", effort="none") == {"motions": []}
+    assert (captured["model"], captured["effort"]) == ("m", "none")
+
+
+def test_extract_json_rejects_untransmittable_effort():
+    import lib.llm_extract as mod
+    with pytest.raises(ValueError):
+        mod.extract_json("s", "u", model="m", effort="low")

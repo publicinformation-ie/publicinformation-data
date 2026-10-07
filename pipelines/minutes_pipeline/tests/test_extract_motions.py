@@ -93,6 +93,13 @@ def test_extract_one_bad_json_still_sets_stated_date_key():
     assert record["stated_date"] is None
 
 
+def test_extract_one_defaults_preserve_current_call():
+    with mock.patch("steps.extract_motions.process.extract_json", return_value={"motions": []}) as m:
+        extract_one(_doc())
+        assert m.call_args.kwargs.get("model") is None
+        assert m.call_args.kwargs.get("effort") is None
+
+
 def test_extract_one_preserves_nonnull_upstream_meeting_date():
     payload = {"meeting_date": "2024-09-09", "motions": [
         {"motion_text": "That the council…", "proposer": "Cllr A",
