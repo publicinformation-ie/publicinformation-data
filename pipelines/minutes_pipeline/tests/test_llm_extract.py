@@ -176,3 +176,55 @@ def test_opencode_go_bare_and_foreign_ids_pass_through(monkeypatch):
     assert captured["payload"]["model"] == "deepseek-v4.1-flash"
     captured = _capture_chat_post(monkeypatch, "other-provider/some-model")
     assert captured["payload"]["model"] == "other-provider/some-model"
+
+
+def _capture_responses_post(monkeypatch, model, effort=None):
+    """Run extract_json against a mocked Responses POST; return the captured
+    (url, payload) for the given model id."""
+    import lib.llm_extract as mod
+    captured = {}
+
+    class FakeResp:
+        ok = True
+        status_code = 200
+        text = "{}"
+
+        def json(self):
+            return {"status": "completed",
+                    "output": [{"type": "message",
+                                "content": [{"type": "output_text",
+                                             "text": '{"motions": []}'}]}]}
+
+    def fake_post(url, headers=None, json=None, timeout=None):
+        captured["url"] = url
+        captured["payload"] = json
+        return FakeResp()
+
+    monkeypatch.delenv("MOTIONS_LLM_BASE_URL", raising=False)
+    monkeypatch.setattr(mod, "motions_provider", lambda: "opencode")
+    monkeypatch.setattr(mod, "_opencode_api_key", lambda: "test-key")
+    monkeypatch.setattr("requests.post", fake_post)
+    assert mod.extract_json("s", "u", model=model, effort=effort) == {"motions": []}
+    return captured
+
+
+def test_opencode_go_responses_only_model_routes_to_responses(monkeypatch):
+    """gpt-6-luna rejects chat/completions (400 ModelProtocolUnsupported) but
+    answers on /zen/go/v1/responses: route it there with the bare id and no
+    reasoning param at default effort (observed 2026-10-07)."""
+    captured = _capture_responses_post(monkeypatch, "opencode-go/gpt-6-luna")
+    assert captured["url"] == "https://opencode.ai/zen/go/v1/responses"
+    assert captured["payload"]["model"] == "gpt-6-luna"
+    assert captured["payload"]["instructions"] == "s"
+    assert captured["payload"]["input"] == "u"
+    assert "reasoning" not in captured["payload"]
+
+
+def test_opencode_go_responses_effort_none_maps_to_reasoning(monkeypatch):
+    """Thinking-disabled on the Responses path is reasoning.effort='none';
+    the chat/completions 'thinking' param is not accepted there."""
+    captured = _capture_responses_post(monkeypatch, "opencode-go/muse-spark-1.3-contributor",
+                                       effort="none")
+    assert captured["url"] == "https://opencode.ai/zen/go/v1/responses"
+    assert captured["payload"]["reasoning"] == {"effort": "none"}
+    assert "thinking" not in captured["payload"]
