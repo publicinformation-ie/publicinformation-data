@@ -79,7 +79,7 @@
   {
     "public_body_id": 1475,
     "municipal_district": null,
-    "minutes_page_url": "https://leitrim.moderngov.co.uk/mgListCommittees.aspx?bcr=1",
+    "minutes_page_url": "https://leitrim.moderngov.co.uk/ieListMeetings.aspx?CommitteeId=136",
     "source_method": "manual",
     "overridden": true
   },
@@ -218,9 +218,15 @@
   {
     "public_body_id": 1670,
     "municipal_district": null,
-    "minutes_page_url": "https://meetings.roscommoncoco.ie/",
+    "minutes_page_url": "https://meetings.roscommoncoco.ie/ieListMeetings.aspx?CId=140&Year=0",
     "source_method": "manual",
-    "overridden": true
+    "overridden": true,
+    "walk": {
+      "detail_url": "ieListDocuments\\.aspx",
+      "detail_text": ".",
+      "paginate": "next",
+      "max_listing_pages": 1
+    }
   },
   {
     "public_body_id": 1716,
@@ -259,9 +265,16 @@
   {
     "public_body_id": 1870,
     "municipal_district": null,
-    "minutes_page_url": "https://www.westmeathcoco.ie/en/ourservices/yourcouncil/meetingsminutesagendasandreports/",
+    "minutes_page_url": "https://www.westmeathcoco.ie/en/ourservices/yourcouncil/meetingsminutesagendasandreports/westmeathcountycouncil/",
     "source_method": "manual",
-    "overridden": true
+    "overridden": true,
+    "walk": {
+      "detail_url": "/westmeathcountycouncil/\\d{4}/",
+      "detail_text": "(?s)^(?!.*(Committee|CPG|SPC|Strategic|Audit)).*(Monthly|Annual|Budget|Special|Statutory|Adjourned)",
+      "file_text": "(?s)^(?!.*\\b(CPG|MDAM|MKMD|MDMK|MMD|AMD|SPC|Draft)\\b).*monthly\\s*meeting",
+      "paginate": "next",
+      "max_listing_pages": 1
+    }
   },
   {
     "public_body_id": 1873,
