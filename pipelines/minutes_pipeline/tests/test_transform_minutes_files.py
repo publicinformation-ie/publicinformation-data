@@ -116,6 +116,15 @@ def test_extract_html_text_returns_selected_text():
     assert "Menu" not in text
 
 
+def test_extract_html_text_keeps_inline_tags_on_one_line():
+    html = ("<div class='b'><p>Held on Monday 9<sup>th</sup> <strong>February</strong>\n"
+            "2026 in the <span>Chamber</span></p><p>Present: Cllr A.</p>"
+            "<p>Line one<br>Line two</p></div>")
+    lines = extract_html_text(html, ".b").split("\n")
+    assert lines == ["Held on Monday 9th February 2026 in the Chamber",
+                     "Present: Cllr A.", "Line one", "Line two"]
+
+
 def test_extract_html_text_fails_closed_when_selector_matches_nothing():
     with pytest.raises(ValueError, match="matched nothing"):
         extract_html_text("<html><body><p>x</p></body></html>", ".field--name-body")

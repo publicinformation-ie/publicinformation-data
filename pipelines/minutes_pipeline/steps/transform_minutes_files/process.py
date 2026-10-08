@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import io
+import re
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
@@ -64,6 +65,11 @@ def _download(url, cache_dir):
     return data
 
 
+_BLOCK_TAGS = ["p", "div", "li", "ul", "ol", "tr", "table", "h1", "h2", "h3",
+               "h4", "h5", "h6", "section", "article", "header", "footer",
+               "blockquote", "pre", "dt", "dd"]
+
+
 def extract_html_text(html: str, selector: str) -> str:
     """Return the text of the first element matching `selector`.
 
@@ -72,7 +78,18 @@ def extract_html_text(html: str, selector: str) -> str:
     node = BeautifulSoup(html, "html.parser").select_one(selector)
     if node is None:
         raise ValueError(f"selector {selector!r} matched nothing")
-    text = node.get_text("\n", strip=True)
+    # Newlines only at block boundaries: inline tags (<sup>, <strong>, ...)
+    # must not split a sentence ("9<sup>th</sup>" -> "9th").
+    for t in node.find_all(string=True):
+        t.replace_with(re.sub(r"\s+", " ", str(t)))  # source wrapping is not a line break
+    for br in node.find_all("br"):
+        br.replace_with("\n")
+    for blk in node.find_all(_BLOCK_TAGS):
+        blk.insert_before("\n")
+        blk.insert_after("\n")
+    raw = node.get_text("")
+    lines = (re.sub(r"[ \t\r\f\v\xa0]+", " ", ln).strip() for ln in raw.split("\n"))
+    text = "\n".join(ln for ln in lines if ln)
     if not text:
         raise ValueError(f"selector {selector!r} produced empty text")
     return text
