@@ -270,11 +270,11 @@
     "source_method": "manual",
     "overridden": true,
     "walk": {
-      "detail_url": "/(council/meetings/(minutes/)?)?minutes-(?!of-)",
+      "detail_url": "/minutes-(?!of-)[^/.]*$",
       "detail_text": "(?s)^(?!.*(Committee|Strategic|Audit)).*",
       "paginate": "next",
       "max_listing_pages": 1,
-      "html_selector": ".field--name-body"
+      "html_selector": ".lgd-region__inner--content"
     }
   },
   {
