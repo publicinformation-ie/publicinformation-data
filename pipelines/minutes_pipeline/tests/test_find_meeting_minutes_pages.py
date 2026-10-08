@@ -4,10 +4,13 @@ from unittest import mock
 
 import pytest
 
+import steps.find_meeting_minutes_pages.process as process_mod
 from steps.find_meeting_minutes_pages.process import (
     STEP_NAME,
     _score_link,
     _tokenize,
+    child_page_urls,
+    expand_child_pages,
     find_minutes_link,
     override_sources,
     process,
@@ -184,3 +187,55 @@ def test_one_hop_hub_fetch_failure_returns_none(monkeypatch):
     url, _ = _try_one_hop('<a href="/meetings">Meetings</a>',
                           "https://www.meath.ie/", 1511, None, None)
     assert url is None
+
+
+def test_child_page_urls_keeps_year_pages_and_skips_parent():
+    parent = "https://www.sligococo.ie/YourCouncil/CountyCouncil/Minutes/"
+    html = (
+        '<a href="/YourCouncil/CountyCouncil/Minutes/">Minutes</a>'
+        '<a href="/YourCouncil/CountyCouncil/Minutes/Minutes2026/">2026</a>'
+        '<a href="/YourCouncil/CountyCouncil/Minutes/Minutes2025/">2025</a>'
+        '<a href="/YourCouncil/CountyCouncil/Minutes/Minutes2025/">2025 again</a>'
+        '<a href="/YourCouncil/CountyCouncil/Minutes/Minutes2025/MeetingMainBody,1,en.html">detail</a>'
+    )
+    assert child_page_urls(html, parent, r"/Minutes/Minutes\d{4}/$") == [
+        "https://www.sligococo.ie/YourCouncil/CountyCouncil/Minutes/Minutes2026/",
+        "https://www.sligococo.ie/YourCouncil/CountyCouncil/Minutes/Minutes2025/",
+    ]
+
+
+def test_expand_child_pages_emits_one_override_per_child(tmp_path, monkeypatch):
+    parent = "https://www.sligococo.ie/YourCouncil/CountyCouncil/Minutes/"
+    html = (
+        '<a href="/YourCouncil/CountyCouncil/Minutes/Minutes2025/">2025</a>'
+        '<a href="/YourCouncil/CountyCouncil/Minutes/Minutes2026/">2026</a>'
+    )
+    monkeypatch.setattr(process_mod, "fetch", lambda *a, **k: mock.Mock(text=html))
+    overrides = [{
+        "public_body_id": 1716, "municipal_district": None,
+        "minutes_page_url": parent, "child_pages": r"/Minutes/Minutes\d{4}/$",
+        "source_method": "manual", "overridden": True,
+        "walk": {"detail_url": r"/Minutes\d{4}/MeetingMainBody,\d+,en\.html",
+                 "detail_text": ".", "paginate": "next", "max_listing_pages": 1},
+    }]
+    expanded = expand_child_pages(overrides, tmp_path)
+    assert [r["minutes_page_url"] for r in expanded] == [
+        "https://www.sligococo.ie/YourCouncil/CountyCouncil/Minutes/Minutes2025/",
+        "https://www.sligococo.ie/YourCouncil/CountyCouncil/Minutes/Minutes2026/",
+    ]
+    assert all("child_pages" not in r for r in expanded)
+    assert all(r["walk"] == overrides[0]["walk"] for r in expanded)
+
+
+def test_expand_child_pages_fetch_failure_logs_error_and_emits_nothing(tmp_path, monkeypatch):
+    def boom(*a, **k):
+        raise ConnectionError("down")
+    monkeypatch.setattr(process_mod, "fetch", boom)
+    overrides = [{
+        "public_body_id": 1716, "municipal_district": None,
+        "minutes_page_url": "https://www.sligococo.ie/YourCouncil/CountyCouncil/Minutes/",
+        "child_pages": r"/Minutes/Minutes\d{4}/$",
+    }]
+    assert expand_child_pages(overrides, tmp_path) == []
+    errors = read_json(tmp_path / "errors.json")
+    assert errors[0]["error_type"] == "ConnectionError"

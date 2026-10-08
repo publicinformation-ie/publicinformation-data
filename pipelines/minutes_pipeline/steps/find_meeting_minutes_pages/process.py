@@ -179,6 +179,58 @@ def unemitted_sources(writer, records):
     return [r for r in records if r.get("minutes_page_url") not in processed]
 
 
+def child_page_urls(html, base_url, pattern):
+    """URLs of links whose href matches the `pattern` regex, de-duplicated in
+    page order. Skips the parent itself and anything unsafe."""
+    rx = re.compile(pattern)
+    soup = BeautifulSoup(html or "", "html.parser")
+    base = urldefrag(base_url)[0]
+    urls = []
+    for link in soup.find_all("a", href=True):
+        href = str(link["href"])
+        if not rx.search(href):
+            continue
+        full = urldefrag(urljoin(base_url, href))[0]
+        if full == base or full in urls or not is_safe_url(full):
+            continue
+        urls.append(full)
+    return urls
+
+
+def expand_child_pages(overrides, step_dir):
+    """Replace each override carrying `child_pages` (a regex matched against
+    link hrefs on its parent page) with one override per child page, so a
+    parent index like Sligo's /Minutes/ yields every year's minutes page.
+    A failed or empty parent fetch is logged and yields no records (fail-closed)."""
+    expanded = []
+    for rec in overrides:
+        pattern = rec.get("child_pages")
+        if not pattern:
+            expanded.append(rec)
+            continue
+        parent = rec["minutes_page_url"]
+        try:
+            html = fetch("GET", parent, allow_redirects=True).text
+            children = child_page_urls(html, parent, pattern)
+            if not children:
+                raise ValueError(f"no child pages matching {pattern!r}")
+        except Exception as e:
+            append_error(step_dir, {
+                "step": STEP_NAME,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "context": {"url": parent, "public_body_id": rec.get("public_body_id"),
+                            "municipal_district": rec.get("municipal_district")},
+            })
+            continue
+        for child in children:
+            child_rec = {k: v for k, v in rec.items() if k != "child_pages"}
+            child_rec["minutes_page_url"] = child
+            expanded.append(child_rec)
+    return expanded
+
+
 def process(input_data, step_dir, writer, verbose=False):
     errors_path = Path(step_dir) / "errors.json"
     authorities = input_data["results"]
@@ -190,6 +242,7 @@ def process(input_data, step_dir, writer, verbose=False):
     overrides = read_json(override_path) if override_path.exists() else []
     # Scoped runs must not fetch or emit other bodies' overrides.
     overrides = [o for o in overrides if o.get("public_body_id") in scoped_ids]
+    overrides = expand_child_pages(overrides, step_dir)
 
     records = override_sources(authorities, overrides)
 

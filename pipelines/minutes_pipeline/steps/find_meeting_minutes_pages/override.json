@@ -231,11 +231,12 @@
   {
     "public_body_id": 1716,
     "municipal_district": null,
-    "minutes_page_url": "https://www.sligococo.ie/YourCouncil/CountyCouncil/Minutes/Minutes2026/",
+    "minutes_page_url": "https://www.sligococo.ie/YourCouncil/CountyCouncil/Minutes/",
+    "child_pages": "/Minutes/Minutes\\d{4}/$",
     "source_method": "manual",
     "overridden": true,
     "walk": {
-      "detail_url": "/Minutes2026/MeetingMainBody,\\d+,en\\.html",
+      "detail_url": "/Minutes\\d{4}/MeetingMainBody,\\d+,en\\.html",
       "detail_text": ".",
       "paginate": "next",
       "max_listing_pages": 1,
