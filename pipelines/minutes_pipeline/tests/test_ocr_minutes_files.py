@@ -190,3 +190,22 @@ def test_html_record_with_usable_text_passes_through_untouched(tmp_path):
     url, record, failure = _process_one(item, tmp_path)
     assert failure is None
     assert record == item
+
+
+@pytest.mark.parametrize("text, error_type", [
+    ("", "EmptyTextExtraction"),
+    ("Short", "NearEmptyText"),
+])
+def test_thin_docx_record_is_quarantined_without_download_or_ocr(
+        tmp_path, make_writer, text, error_type):
+    item = _item(file_url="https://x.ie/Home/ViewReply/1", text=text, extractor="docx")
+    with mock.patch("steps.ocr_minutes_files.process._pdf_bytes_for") as fetch_pdf:
+        writer = make_writer(STEP_NAME, key_field="file_url")
+        quarantined = process({"results": [item]}, tmp_path, writer)
+        writer.finalize()
+    fetch_pdf.assert_not_called()
+    assert read_json(tmp_path / "output.json")["results"] == []
+    assert quarantined == {item["file_url"]}
+    errors = read_json(tmp_path / "errors.json")
+    assert [e["error_type"] for e in errors] == [error_type]
+    assert "Word document" in errors[0]["error_message"]

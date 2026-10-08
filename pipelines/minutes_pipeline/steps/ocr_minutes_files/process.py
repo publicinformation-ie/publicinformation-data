@@ -103,6 +103,12 @@ def _process_one(item, step_dir):
     if _usable_text(item.get("text")):
         return file_url, dict(item), None
     input_chars = len((item.get("text") or "").strip())
+    if item.get("extractor") == "docx":
+        # A Word document has no page images; the cached bytes aren't a PDF.
+        return file_url, None, {"reason": "quarantine",
+                                "input_chars": input_chars,
+                                "ocr_chars": 0,
+                                "ocr_skipped": True}
     try:
         pdf_bytes = _pdf_bytes_for(file_url, step_dir)
         ocr_text = ocr_pdf_bytes(pdf_bytes)
@@ -126,7 +132,12 @@ def _quarantine_error(file_url, public_body_id, failure):
             "context": {"file_url": file_url,
                         "public_body_id": public_body_id},
         }
-    if failure["input_chars"] == 0 and failure["ocr_chars"] == 0:
+    if failure.get("ocr_skipped"):
+        error_type = ("EmptyTextExtraction" if failure["input_chars"] == 0
+                      else "NearEmptyText")
+        message = (f"Word document text unusable; OCR does not apply "
+                   f"(chars={failure['input_chars']}, minimum={MIN_TEXT_CHARS})")
+    elif failure["input_chars"] == 0 and failure["ocr_chars"] == 0:
         message = "pdfplumber text was empty and tesseract OCR returned empty text"
         error_type = "EmptyTextExtraction"
     else:

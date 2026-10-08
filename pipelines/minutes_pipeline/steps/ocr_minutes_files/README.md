@@ -6,6 +6,7 @@ OCRs image-only minutes PDFs (scanned documents with no text layer) so motions c
 
 1. Reads each record from `transform_minutes_files/output.json`.
 2. Passes through records whose stripped `text` is at least `MIN_TEXT_CHARS` (200) unchanged (preserving `text` and `extractor` — no OCR performed).
+   Records with `extractor: docx` are never OCR'd; if their text is unusable they are quarantined directly.
 3. For blank or near-empty texts, renders each page to an image with `pymupdf` (~300 dpi), runs `pytesseract.image_to_string` per page, and joins page texts in page order. Blank pages contribute nothing. A near-empty text layer can sit beside recoverable scanned pages, so these get an OCR attempt too.
 4. Emits one merged record per input file (keyed on `file_url` via `IncrementalWriter`): successfully OCR'd records carry `extractor: "tesseract"`. Records still below the threshold after OCR are quarantined (see below) and never emitted.
 5. Evicts pre-existing output records that fail the threshold (emitted by older runs before the gate existed), logging a quarantine error for each.
