@@ -131,6 +131,7 @@ def test_process_one_html_item_uses_selector_and_marks_extractor(tmp_path):
             "file_kind": "html", "text_selector": ".b", "link_text": "March"}
 
     class R:
+        status_code = 200
         text = "<div class='b'>Minutes body</div>"
         content = text.encode()
 
@@ -147,6 +148,7 @@ def test_process_one_html_item_error_for_missing_selector(tmp_path):
             "file_kind": "html", "text_selector": ".nope"}
 
     class R:
+        status_code = 200
         text = "<div class='b'>Minutes body</div>"
         content = text.encode()
 
@@ -160,6 +162,7 @@ def test_process_one_html_cache_does_not_collide_with_pdf_cache(tmp_path):
             "file_kind": "html", "text_selector": ".b"}
 
     class R:
+        status_code = 200
         text = "<div class='b'>Body</div>"
         content = text.encode()
 
@@ -167,3 +170,34 @@ def test_process_one_html_cache_does_not_collide_with_pdf_cache(tmp_path):
         _process_one(item, tmp_path)
     assert not _cache_path(tmp_path, item["file_url"]).exists()
     assert list(tmp_path.glob("*.html"))
+
+
+def test_process_one_html_http_error_raises_and_is_not_cached(tmp_path):
+    item = {"public_body_id": 1129, "file_url": "https://x.ie/minutes-march",
+            "file_kind": "html", "text_selector": ".b"}
+
+    class R:
+        status_code = 500
+        text = "<div class='b'>Server error page</div>"
+        content = text.encode()
+
+    with mock.patch("steps.transform_minutes_files.process.fetch", return_value=R()):
+        url, record, exc = _process_one(item, tmp_path)
+    assert record is None and isinstance(exc, RuntimeError)
+    assert "500" in str(exc) and item["file_url"] in str(exc)
+    assert not list(tmp_path.iterdir())
+
+
+def test_process_one_html_selector_miss_is_not_cached(tmp_path):
+    item = {"public_body_id": 1129, "file_url": "https://x.ie/minutes-march",
+            "file_kind": "html", "text_selector": ".nope"}
+
+    class R:
+        status_code = 200
+        text = "<div class='b'>Body</div>"
+        content = text.encode()
+
+    with mock.patch("steps.transform_minutes_files.process.fetch", return_value=R()):
+        url, record, exc = _process_one(item, tmp_path)
+    assert record is None and isinstance(exc, ValueError)
+    assert not list(tmp_path.iterdir())

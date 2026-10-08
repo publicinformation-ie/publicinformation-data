@@ -78,24 +78,31 @@ def extract_html_text(html: str, selector: str) -> str:
     return text
 
 
-def _download_html(url, cache_dir):
-    """Fetch an HTML minutes page, caching the raw body as `<digest>.html`
-    (distinct from the `.pdf` cache entries) via temp file + rename."""
+def _html_text(url, cache_dir, selector):
+    """Return extracted text for an HTML minutes page.
+
+    The raw body is cached as `<digest>.html` only after the HTTP status and
+    selector extraction have been validated, so error pages are never cached.
+    A cache hit is re-extracted."""
     path = _cache_path(cache_dir, url).with_suffix(".html")
     if path.exists():
-        return path.read_text(encoding="utf-8")
-    html = fetch("GET", url, allow_redirects=True).text
+        return extract_html_text(path.read_text(encoding="utf-8"), selector)
+    resp = fetch("GET", url, allow_redirects=True)
+    if resp.status_code >= 400:
+        raise RuntimeError(f"HTTP {resp.status_code} fetching {url}")
+    html = resp.text
+    text = extract_html_text(html, selector)
     tmp_path = path.with_suffix(".tmp")
     tmp_path.write_text(html, encoding="utf-8")
     tmp_path.replace(path)
-    return html
+    return text
 
 
 def _process_one(item, cache_dir):
     url = item["file_url"]
     try:
         if item.get("file_kind") == "html":
-            text = extract_html_text(_download_html(url, cache_dir), item["text_selector"])
+            text = _html_text(url, cache_dir, item["text_selector"])
             return url, {**item, "text": text, "extractor": "html"}, None
         pdf_bytes = _download(url, cache_dir)
         text, extractor = extract_text(pdf_bytes)
