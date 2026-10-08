@@ -75,3 +75,16 @@ uv run python experiments/2026-10-07-motion-model-sweep/report.py
 - **Status:** live grid not yet run — no `arms.json`/`results.json` on disk
   (both untracked when generated). `report.py` is covered by a fixture test
   until real results exist.
+- **2026-10-07 wire-id incident:** the first live grid attempt failed all 220
+  calls with HTTP 400 `Model is unavailable`. Cause: the `/zen/go/v1`
+  gateway addresses models by bare id (per `GET /models`); the
+  provider-qualified `opencode-go/<id>` form used by this harness returned
+  200 during the morning probe but started 400ing the same day. The
+  400s surfaced as the generic `LLM returned unparseable/empty motions
+  JSON` message (the live path swallows transport errors inside
+  `extract_json` — arm-level systematics can masquerade as quality
+  failures; check raw HTTP before reading quality into errors). Fix:
+  `_call_opencode` strips the `opencode-go/` prefix client-side
+  (`src/lib/llm_extract.py`, PR #5); the poisoned run is quarantined at
+  `arms.json.poisoned-400s` and excluded from the cache. Failed 400 calls
+  return no completion and incur no usage.
