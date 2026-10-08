@@ -6,6 +6,7 @@ import re
 import sys
 import zipfile
 import xml.etree.ElementTree as ET
+from xml.parsers import expat as pyexpat
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
@@ -52,18 +53,35 @@ _DOC_SUFFIXES = {"pdf": ".pdf", "docx": ".docx"}
 _W_NS = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 
 
+_MAX_DOCX_XML_BYTES = 50 * 1024 * 1024
+
+
+def _refuse_dtd(xml_bytes: bytes) -> None:
+    """Raise if the XML declares a DOCTYPE or entity. Checked by the expat
+    parser itself, not by searching bytes: a UTF-16 document has no
+    b"<!DOCTYPE" sequence to find, but expat still reads its declarations."""
+    def refuse(*_):
+        raise ValueError("Word document XML declares a DOCTYPE; refusing to parse")
+    parser = pyexpat.ParserCreate()
+    parser.StartDoctypeDeclHandler = refuse
+    parser.EntityDeclHandler = refuse
+    parser.Parse(xml_bytes, True)
+
+
 def extract_docx_text(docx_bytes: bytes) -> str:
     """Prose text of a Word document: one line per paragraph, tabs as spaces,
     line breaks kept. Reads word/document.xml only; table cells are included
-    because their paragraphs are ordinary <w:p> elements."""
+    because their paragraphs are ordinary <w:p> elements. Refuses a
+    word/document.xml that inflates past _MAX_DOCX_XML_BYTES (zip bomb)."""
     try:
         with zipfile.ZipFile(io.BytesIO(docx_bytes)) as archive:
-            xml_bytes = archive.read("word/document.xml")
+            with archive.open("word/document.xml") as member:
+                xml_bytes = member.read(_MAX_DOCX_XML_BYTES + 1)
     except (zipfile.BadZipFile, KeyError) as e:
         raise ValueError("file is not a Word document (no word/document.xml)") from e
-    # Word never writes a DTD; refusing one keeps entity expansion out of the parser.
-    if b"<!DOCTYPE" in xml_bytes:
-        raise ValueError("Word document XML declares a DOCTYPE; refusing to parse")
+    if len(xml_bytes) > _MAX_DOCX_XML_BYTES:
+        raise ValueError("Word document XML is too large to extract")
+    _refuse_dtd(xml_bytes)
     lines = []
     for para in ET.fromstring(xml_bytes).iter(_W_NS + "p"):
         parts = []

@@ -239,7 +239,7 @@ def test_process_one_html_selector_miss_is_not_cached(tmp_path):
 import io as _io
 import zipfile as _zipfile
 
-from steps.transform_minutes_files.process import extract_document_text
+from steps.transform_minutes_files.process import extract_document_text, extract_docx_text
 
 _W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 
@@ -346,3 +346,25 @@ def test_download_still_rejects_html_as_not_a_document(tmp_path):
         m.return_value = R()
         with pytest.raises(ValueError, match="neither a PDF nor a DOCX"):
             _download(url, tmp_path)
+
+
+def test_extract_docx_rejects_utf16_doctype_that_bypasses_byte_guard():
+    # UTF-16 bytes contain no b"<!DOCTYPE" sequence, so only a parser-level
+    # check catches the entity declaration.
+    xml = ('<?xml version="1.0" encoding="UTF-16"?>'
+           '<!DOCTYPE w:document [<!ENTITY e "pwned">]>'
+           f'<w:document xmlns:w="{_W_NS}"><w:body><w:p><w:r><w:t>&e;</w:t></w:r></w:p>'
+           '</w:body></w:document>').encode("utf-16")
+    buf = _io.BytesIO()
+    with _zipfile.ZipFile(buf, "w") as z:
+        z.writestr("word/document.xml", xml)
+    with pytest.raises(ValueError, match="DOCTYPE"):
+        extract_docx_text(buf.getvalue())
+
+
+def test_extract_docx_rejects_oversized_document_xml(monkeypatch):
+    import steps.transform_minutes_files.process as proc
+    monkeypatch.setattr(proc, "_MAX_DOCX_XML_BYTES", 1024)
+    big = _docx_bytes(_para(_run("x" * 5000)))
+    with pytest.raises(ValueError, match="too large"):
+        extract_docx_text(big)
