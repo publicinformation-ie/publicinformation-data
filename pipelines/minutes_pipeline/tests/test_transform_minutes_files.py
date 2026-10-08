@@ -125,6 +125,17 @@ def test_extract_html_text_keeps_inline_tags_on_one_line():
                      "Present: Cllr A.", "Line one", "Line two"]
 
 
+def test_extract_html_text_excludes_script_style_and_comments():
+    html = ("<div class='b'><script>var leak1=1;</script><style>.leak2{}</style>"
+            "<!-- leak3 --><p>Real text</p></div>")
+    assert extract_html_text(html, ".b") == "Real text"
+
+
+def test_extract_html_text_script_only_body_is_empty():
+    with pytest.raises(ValueError, match="empty"):
+        extract_html_text("<div class='b'><script>x=1</script><!-- c --></div>", ".b")
+
+
 def test_extract_html_text_fails_closed_when_selector_matches_nothing():
     with pytest.raises(ValueError, match="matched nothing"):
         extract_html_text("<html><body><p>x</p></body></html>", ".field--name-body")

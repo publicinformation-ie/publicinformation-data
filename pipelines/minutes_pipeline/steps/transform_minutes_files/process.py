@@ -8,7 +8,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Comment
 
 from lib.cli_utils import add_common_args, filter_by_public_body
 from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
@@ -80,6 +80,10 @@ def extract_html_text(html: str, selector: str) -> str:
         raise ValueError(f"selector {selector!r} matched nothing")
     # Newlines only at block boundaries: inline tags (<sup>, <strong>, ...)
     # must not split a sentence ("9<sup>th</sup>" -> "9th").
+    for tag in node.find_all(["script", "style", "noscript", "template"]):
+        tag.decompose()
+    for c in node.find_all(string=lambda x: isinstance(x, Comment)):
+        c.extract()
     for t in node.find_all(string=True):
         t.replace_with(re.sub(r"\s+", " ", str(t)))  # source wrapping is not a line break
     for br in node.find_all("br"):
