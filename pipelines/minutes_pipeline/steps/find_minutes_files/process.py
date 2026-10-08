@@ -7,7 +7,7 @@ import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import parse_qs, urljoin, urlparse
+from urllib.parse import parse_qs, urldefrag, urljoin, urlparse
 
 from bs4 import BeautifulSoup
 
@@ -268,6 +268,8 @@ def _collect_walk(source, base_url, walk, excluded_out):
     detail_text = re.compile(walk["detail_text"], re.IGNORECASE)
     file_text = re.compile(walk["file_text"], re.IGNORECASE) if walk.get("file_text") else None
     document_url = re.compile(walk["document_url"], re.IGNORECASE) if walk.get("document_url") else None
+    pager = (re.compile(walk["paginate_text"], re.IGNORECASE)
+             if walk.get("paginate_text") else None)
     host = urlparse(base_url).hostname
     records, seen, details = [], set(), {}
     url, listing_pages, visited = base_url, 0, set()
@@ -287,11 +289,10 @@ def _collect_walk(source, base_url, walk, excluded_out):
         nxt = None
         if walk.get("paginate"):
             nxt = soup.find("a", rel=walk["paginate"], href=True)
-        if nxt is None and walk.get("paginate_text"):
-            pager = re.compile(walk["paginate_text"])
+        if nxt is None and pager:
             nxt = next((a for a in soup.find_all("a", href=True)
                         if pager.search(a.get_text(" ", strip=True))), None)
-        url = urljoin(url, str(nxt["href"])) if nxt else None
+        url = urldefrag(urljoin(url, str(nxt["href"])))[0] if nxt else None
         if url and (not is_safe_url(url) or urlparse(url).hostname != host
                     or url in visited):
             url = None

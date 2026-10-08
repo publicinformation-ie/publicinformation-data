@@ -577,3 +577,18 @@ def test_walk_stops_when_pager_points_back_at_a_visited_page():
     }
     _, fetched = _run_walk(html, _walk_source(_SDCC_WALK) | {"minutes_page_url": _SDCC})
     assert fetched == [_SDCC]
+
+
+def test_walk_paginate_text_is_case_insensitive():
+    html = {
+        _SDCC: _html('<a href="/?p=2">next</a>'),
+        "https://meetings.southdublin.ie/?p=2": _html(),
+    }
+    _, fetched = _run_walk(html, _walk_source(_SDCC_WALK) | {"minutes_page_url": _SDCC})
+    assert fetched == [_SDCC, "https://meetings.southdublin.ie/?p=2"]
+
+
+def test_walk_stops_when_pager_points_at_visited_page_with_fragment():
+    html = {_SDCC: _html('<a href="/#top">Next</a>')}
+    _, fetched = _run_walk(html, _walk_source(_SDCC_WALK) | {"minutes_page_url": _SDCC})
+    assert fetched == [_SDCC]
