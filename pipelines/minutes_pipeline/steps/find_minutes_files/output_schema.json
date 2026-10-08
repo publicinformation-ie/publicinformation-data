@@ -14,7 +14,9 @@
           "minutes_page_url": { "type": "string", "format": "uri" },
           "file_url": { "type": "string", "format": "uri" },
           "meeting_date": { "type": ["string", "null"] },
-          "link_text": { "type": "string" }
+          "link_text": { "type": "string" },
+          "file_kind": { "type": "string", "enum": ["html"] },
+          "text_selector": { "type": "string" }
         }
       }
     }

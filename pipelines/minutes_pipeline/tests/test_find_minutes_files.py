@@ -440,3 +440,62 @@ def test_walk_dedupes_file_urls_across_detail_pages():
     }
     records, _ = _run_walk(html, _walk_source())
     assert len(records) == 1
+
+
+def test_walk_file_text_keeps_only_matching_pdf_links():
+    html = {
+        _LISTING: _html(
+            '<a href="/whats-on/a">Meeting of Limerick City and County Council</a>'),
+        "https://www.limerick.ie/whats-on/a": _html(
+            '<a href="/files/council.pdf">Signed Minutes of May Monthly Meeting</a>',
+            '<a href="/files/district.pdf">Signed Minutes MDAM Monthly Meeting May 2026</a>',
+            '<a href="/files/cpg.pdf">Signed Minutes of CPG Meeting May 2026</a>'),
+    }
+    walk = {**_WALK, "file_text": r"^(?!.*\bMDAM\b).*monthly meeting"}
+    records, _ = _run_walk(html, _walk_source(walk))
+    assert [r["file_url"] for r in records] == [
+        "https://www.limerick.ie/files/council.pdf"]
+
+
+_HTML_WALK = {
+    "detail_url": r"/council/meetings/minutes/minutes-",
+    "detail_text": r".",
+    "paginate": "next",
+    "max_listing_pages": 1,
+    "html_selector": ".field--name-body",
+}
+
+
+def test_walk_html_selector_emits_one_html_record_per_detail_page():
+    html = {
+        _LISTING: _html(
+            '<a href="/council/meetings/minutes/minutes-march-2026-monthly-meeting-clare-county-council">'
+            'Minutes of March 2026 Monthly Meeting</a>',
+            '<a href="/council/meetings/minutes/minutes-march-2026-monthly-meeting-clare-county-council">'
+            'Minutes of March 2026 Monthly Meeting</a>',
+            '<a href="/about">About</a>'),
+    }
+    # The detail page is absent from the map: with html_selector the crawler
+    # must NOT fetch it (transform does that) and must NOT look for PDFs.
+    records, fetched = _run_walk(html, _walk_source(_HTML_WALK))
+    assert records == [{
+        "public_body_id": 1486,
+        "municipal_district": None,
+        "minutes_page_url": _LISTING,
+        "file_url": "https://www.limerick.ie/council/meetings/minutes/minutes-march-2026-monthly-meeting-clare-county-council",
+        "meeting_date": None,
+        "link_text": "Minutes of March 2026 Monthly Meeting",
+        "file_kind": "html",
+        "text_selector": ".field--name-body",
+    }]
+    assert fetched == [_LISTING]
+
+
+def test_walk_without_html_selector_still_emits_pdf_records_only():
+    html = {
+        _LISTING: _html('<a href="/whats-on/a">Meeting of Limerick City and County Council</a>'),
+        "https://www.limerick.ie/whats-on/a": _html(
+            '<a href="/files/m.pdf">Minutes - Meeting of Limerick City and County Council</a>'),
+    }
+    records, _ = _run_walk(html, _walk_source())
+    assert records and all("file_kind" not in r for r in records)

@@ -244,13 +244,16 @@ def _collect_walk(source, base_url, walk, excluded_out):
     matching `detail_url` and link text matching `detail_text`, both regexes)
     plus one pagination direction (`paginate`: the rel="next"/"prev" link
     that leads back in time), for at most `max_listing_pages` listing pages.
-    Detail pages yield minutes PDFs, deduplicated by file URL. Matching the
+    Detail pages yield minutes PDFs, deduplicated by file URL; an optional
+    `file_text` regex further restricts them by link text (for detail pages
+    that bundle other bodies' minutes). Matching the
     listing's link text is what filters mixed plenary/district calendars to
     plenary meetings without fetching the other detail pages."""
     detail_url = re.compile(walk["detail_url"], re.IGNORECASE)
     detail_text = re.compile(walk["detail_text"], re.IGNORECASE)
+    file_text = re.compile(walk["file_text"], re.IGNORECASE) if walk.get("file_text") else None
     host = urlparse(base_url).hostname
-    records, seen, details = [], set(), []
+    records, seen, details = [], set(), {}
     url, listing_pages = base_url, 0
     while url and listing_pages < walk["max_listing_pages"]:
         listing_pages += 1
@@ -263,18 +266,32 @@ def _collect_walk(source, base_url, walk, excluded_out):
                     and detail_url.search(full)
                     and detail_text.search(link.get_text(" ", strip=True))
                     and full not in details):
-                details.append(full)
+                details[full] = link.get_text(" ", strip=True)
         nxt = soup.find("a", rel=walk["paginate"], href=True)
         url = urljoin(url, str(nxt["href"])) if nxt else None
         if url and (not is_safe_url(url) or urlparse(url).hostname != host):
             url = None
+    selector = walk.get("html_selector")
+    if selector:
+        return [{
+            "public_body_id": source["public_body_id"],
+            "municipal_district": source.get("municipal_district"),
+            "minutes_page_url": source["minutes_page_url"],
+            "file_url": detail,
+            "meeting_date": parse_meeting_date(text, detail),
+            "link_text": text,
+            "file_kind": "html",
+            "text_selector": selector,
+        } for detail, text in details.items()]
     for detail in details:
         soup = _fetch_soup(detail)
         if soup is None:
             continue
         for link in soup.find_all("a", href=True):
             full = urljoin(detail, str(link["href"]))
-            if is_safe_url(full):
+            if is_safe_url(full) and (
+                    file_text is None
+                    or file_text.search(link.get_text(" ", strip=True))):
                 _collect_pdf_link(link, full, source, records, excluded_out,
                                   seen=seen, minutes_token_required=True)
     return records
