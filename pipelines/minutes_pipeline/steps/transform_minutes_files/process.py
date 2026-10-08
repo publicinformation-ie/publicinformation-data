@@ -68,6 +68,39 @@ def _refuse_dtd(xml_bytes: bytes) -> None:
     parser.Parse(xml_bytes, True)
 
 
+_MC_NS = "{http://schemas.openxmlformats.org/markup-compatibility/2006}"
+
+
+def _own_paragraphs(root):
+    """Every <w:p> in document order, except those under <mc:Fallback>, which
+    repeats the sibling <mc:Choice>. Iterative: nested text boxes can be deep."""
+    stack = [root]
+    while stack:
+        node = stack.pop()
+        if node.tag == _W_NS + "p":
+            yield node
+        stack.extend(reversed([c for c in node if c.tag != _MC_NS + "Fallback"]))
+
+
+def _paragraph_text(para) -> str:
+    """Text of one paragraph. Nested <w:p> (text boxes) are skipped here
+    because `_own_paragraphs` yields them as paragraphs of their own."""
+    parts = []
+    stack = list(reversed(list(para)))
+    while stack:
+        node = stack.pop()
+        if node.tag in (_W_NS + "p", _MC_NS + "Fallback"):
+            continue
+        if node.tag == _W_NS + "t":
+            parts.append(node.text or "")
+        elif node.tag == _W_NS + "tab":
+            parts.append(" ")
+        elif node.tag in (_W_NS + "br", _W_NS + "cr"):
+            parts.append("\n")
+        stack.extend(reversed(list(node)))
+    return "".join(parts)
+
+
 def extract_docx_text(docx_bytes: bytes) -> str:
     """Prose text of a Word document: one line per paragraph, tabs as spaces,
     line breaks kept. Reads word/document.xml only; table cells are included
@@ -83,16 +116,8 @@ def extract_docx_text(docx_bytes: bytes) -> str:
         raise ValueError("Word document XML is too large to extract")
     _refuse_dtd(xml_bytes)
     lines = []
-    for para in ET.fromstring(xml_bytes).iter(_W_NS + "p"):
-        parts = []
-        for node in para.iter():
-            if node.tag == _W_NS + "t":
-                parts.append(node.text or "")
-            elif node.tag == _W_NS + "tab":
-                parts.append(" ")
-            elif node.tag in (_W_NS + "br", _W_NS + "cr"):
-                parts.append("\n")
-        lines.extend(ln.strip() for ln in "".join(parts).split("\n") if ln.strip())
+    for para in _own_paragraphs(ET.fromstring(xml_bytes)):
+        lines.extend(ln.strip() for ln in _paragraph_text(para).split("\n") if ln.strip())
     return "\n".join(lines)
 
 

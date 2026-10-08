@@ -368,3 +368,32 @@ def test_extract_docx_rejects_oversized_document_xml(monkeypatch):
     big = _docx_bytes(_para(_run("x" * 5000)))
     with pytest.raises(ValueError, match="too large"):
         extract_docx_text(big)
+
+
+def test_extract_docx_text_reads_text_box_paragraphs_once():
+    box = "<w:r><w:txbxContent>" + _para(_run("Boxed note")) + "</w:txbxContent></w:r>"
+    data = _docx_bytes("<w:p>" + _run("Intro") + box + "</w:p>")
+    text, extractor = extract_document_text(data)
+    assert extractor == "docx"
+    assert text == "Intro\nBoxed note"
+
+
+def test_extract_docx_text_ignores_alternate_content_fallback():
+    mc = "http://schemas.openxmlformats.org/markup-compatibility/2006"
+    alt = (f'<mc:AlternateContent xmlns:mc="{mc}">'
+           f'<mc:Choice Requires="wps">{_para(_run("Shared text"))}</mc:Choice>'
+           f'<mc:Fallback>{_para(_run("Shared text"))}</mc:Fallback>'
+           f'</mc:AlternateContent>')
+    text, _ = extract_document_text(_docx_bytes(_para(_run("Intro")) + alt))
+    assert text == "Intro\nShared text"
+
+
+def test_extract_docx_text_survives_deeply_nested_text_boxes():
+    depth = 1000
+    body = (_run("deep")
+            + "<w:r><w:txbxContent><w:p>" * depth
+            + _run("bottom")
+            + "</w:p></w:txbxContent></w:r>" * depth)
+    text, _ = extract_document_text(_docx_bytes("<w:p>" + body + "</w:p>"))
+    assert text.splitlines()[0] == "deep"
+    assert text.splitlines()[-1] == "bottom"
