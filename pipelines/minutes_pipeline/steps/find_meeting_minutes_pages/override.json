@@ -86,9 +86,18 @@
   {
     "public_body_id": 1732,
     "municipal_district": null,
-    "minutes_page_url": "https://www.sdcc.ie/en/services/our-council/council-meetings/",
+    "minutes_page_url": "https://meetings.southdublin.ie/",
     "source_method": "manual",
-    "overridden": true
+    "overridden": true,
+    "walk": {
+      "detail_url": "/Home/Agenda/\\d+",
+      "detail_text": "\\bCounty Council\\b",
+      "detail_row": true,
+      "paginate_text": "^Next$",
+      "max_listing_pages": 81,
+      "document_url": "/Home/ViewReply/\\d+",
+      "file_text": "^(?!.*\\b(Committee|SPC)\\b)(?=.*\\bMinutes\\b)(?=.*\\b(Council|Annual Meeting)\\b)"
+    }
   },
   {
     "public_body_id": 1094,

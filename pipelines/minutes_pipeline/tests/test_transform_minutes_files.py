@@ -232,3 +232,117 @@ def test_process_one_html_selector_miss_is_not_cached(tmp_path):
         url, record, exc = _process_one(item, tmp_path)
     assert record is None and isinstance(exc, ValueError)
     assert not list(tmp_path.iterdir())
+
+
+# --- Word (.docx) minutes -----------------------------------------------------
+
+import io as _io
+import zipfile as _zipfile
+
+from steps.transform_minutes_files.process import extract_document_text
+
+_W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+
+
+def _docx_bytes(body_xml):
+    buf = _io.BytesIO()
+    with _zipfile.ZipFile(buf, "w") as z:
+        z.writestr("[Content_Types].xml", "<Types/>")
+        z.writestr("word/document.xml",
+                   f'<?xml version="1.0" encoding="UTF-8"?>'
+                   f'<w:document xmlns:w="{_W_NS}"><w:body>{body_xml}</w:body></w:document>')
+    return buf.getvalue()
+
+
+def _para(*runs):
+    return "<w:p>" + "".join(runs) + "</w:p>"
+
+
+def _run(text):
+    return f'<w:r><w:t xml:space="preserve">{text}</w:t></w:r>'
+
+
+def test_extract_document_text_reads_docx_paragraphs_tabs_and_breaks():
+    data = _docx_bytes(
+        _para(_run("Minutes of the Council Meeting")) +
+        _para(_run("Item 1"), "<w:r><w:tab/></w:r>", _run("Adopted")) +
+        _para(_run("Line one"), "<w:r><w:br/></w:r>", _run("line two")) +
+        "<w:tbl><w:tr><w:tc>" + _para(_run("Cell text")) + "</w:tc></w:tr></w:tbl>"
+    )
+    text, extractor = extract_document_text(data)
+    assert extractor == "docx"
+    assert text == ("Minutes of the Council Meeting\n"
+                    "Item 1 Adopted\n"
+                    "Line one\nline two\n"
+                    "Cell text")
+
+
+def test_extract_document_text_empty_docx_returns_empty_text():
+    text, extractor = extract_document_text(_docx_bytes(_para()))
+    assert text == "" and extractor == "docx"
+
+
+def test_extract_document_text_rejects_docx_with_doctype():
+    xml = ('<?xml version="1.0"?><!DOCTYPE w [<!ENTITY a "x">]>'
+           f'<w:document xmlns:w="{_W_NS}"><w:body>&a;</w:body></w:document>')
+    buf = _io.BytesIO()
+    with _zipfile.ZipFile(buf, "w") as z:
+        z.writestr("word/document.xml", xml)
+    with pytest.raises(ValueError, match="DOCTYPE"):
+        extract_document_text(buf.getvalue())
+
+
+def test_extract_document_text_pdf_still_uses_pdfplumber():
+    with mock.patch("steps.transform_minutes_files.process._extract_pdfplumber",
+                    return_value="pdf words"):
+        assert extract_document_text(b"%PDF-1.4 x") == ("pdf words", "pdfplumber")
+
+
+def test_extract_document_text_rejects_unknown_bytes():
+    with pytest.raises(ValueError, match="neither a PDF nor a DOCX"):
+        extract_document_text(b"<html>error</html>")
+
+
+def test_download_accepts_docx_and_caches_it_as_docx(tmp_path):
+    url = "https://meetings.southdublin.ie/Home/ViewReply/87222"
+    data = _docx_bytes(_para(_run("May 2025 Council Minutes")))
+    with mock.patch("steps.transform_minutes_files.process.fetch") as m:
+        class R:
+            content = data
+        m.return_value = R()
+        assert _download(url, tmp_path) == data
+    assert _cache_path(tmp_path, url, ".docx").read_bytes() == data
+    assert not _cache_path(tmp_path, url).exists()
+
+
+def test_download_reuses_docx_cache_without_fetching(tmp_path):
+    url = "https://meetings.southdublin.ie/Home/ViewReply/87222"
+    data = _docx_bytes(_para(_run("cached")))
+    _cache_path(tmp_path, url, ".docx").write_bytes(data)
+    with mock.patch("steps.transform_minutes_files.process.fetch") as m:
+        assert _download(url, tmp_path) == data
+    m.assert_not_called()
+
+
+def test_process_one_docx_item_extracts_text_with_docx_extractor(tmp_path):
+    url = "https://meetings.southdublin.ie/Home/ViewReply/86452"
+    item = {"public_body_id": 1732, "municipal_district": None, "file_url": url}
+    data = _docx_bytes(_para(_run("May 2025 Council Minutes")))
+    with mock.patch("steps.transform_minutes_files.process.fetch") as m:
+        class R:
+            content = data
+        m.return_value = R()
+        _, record, exc = _process_one(item, tmp_path)
+    assert exc is None
+    assert record["text"] == "May 2025 Council Minutes"
+    assert record["extractor"] == "docx"
+
+
+def test_download_still_rejects_html_as_not_a_document(tmp_path):
+    url = "https://meetings.southdublin.ie/Home/ViewReply/1"
+    with mock.patch("steps.transform_minutes_files.process.fetch") as m:
+        class R:
+            content = b"<html>error</html>"
+        m.return_value = R()
+        with pytest.raises(ValueError, match="neither a PDF nor a DOCX"):
+            _download(url, tmp_path)

@@ -173,17 +173,21 @@ def _exclusion_reason(link_text, file_url):
 
 
 def _collect_pdf_link(link, full, source, records, excluded_out,
-                      seen=None, minutes_token_required=False):
+                      seen=None, minutes_token_required=False, document_url=None):
     """Classify one anchor `link` (resolved to `full`). Returns False when it
     isn't a PDF link; otherwise records it as minutes, logs it to
     `excluded_out` as archival/historical, or drops it as a non-minutes PDF,
     and returns True. `seen` (a set of file URLs) dedupes when given.
     `minutes_token_required` rejects links naming no minute(s): on a
     per-meeting detail page every link says "meeting", so that token is no
-    signal there ("Replies to Questions - Full Meeting of ...")."""
+    signal there ("Replies to Questions - Full Meeting of ...").
+    `document_url` (a compiled regex) marks document links with no .pdf
+    suffix, such as South Dublin's /Home/ViewReply/<id>, as PDFs."""
     href = str(link["href"])
     text = link.get_text(strip=True)
     pdf_name = _pdf_name(full)
+    if not pdf_name and document_url is not None and document_url.search(full):
+        pdf_name = full
     if not pdf_name:
         return False
     # A name recovered from the query string is the only readable signal
@@ -238,25 +242,38 @@ def _fetch_soup(url):
     return BeautifulSoup(response.text, "html.parser")
 
 
+def _detail_label(link, walk):
+    """Text `detail_text` is matched against: the anchor's own text, or with
+    `detail_row` its whole table row. South Dublin's listing anchors say only
+    "View"; the meeting name and type sit in the row's other cells."""
+    row = link.find_parent("tr") if walk.get("detail_row") else None
+    return (row or link).get_text(" ", strip=True)
+
+
 def _collect_walk(source, base_url, walk, excluded_out):
     """Opt-in listing walk, configured per source by the override's `walk`:
     listing pages yield only per-meeting detail links (same host, URL
-    matching `detail_url` and link text matching `detail_text`, both regexes)
-    plus one pagination direction (`paginate`: the rel="next"/"prev" link
-    that leads back in time), for at most `max_listing_pages` listing pages.
-    Detail pages yield minutes PDFs, deduplicated by file URL; an optional
-    `file_text` regex further restricts them by link text (for detail pages
-    that bundle other bodies' minutes). Matching the
-    listing's link text is what filters mixed plenary/district calendars to
-    plenary meetings without fetching the other detail pages."""
+    matching `detail_url` and the label matching `detail_text`, both regexes;
+    see `_detail_label`), plus one pagination direction: `paginate` is the
+    rel="next"/"prev" link that leads back in time, and `paginate_text` a
+    regex matched against the anchor text for pagers with no rel (South
+    Dublin's "Next"). At most `max_listing_pages` listing pages are read.
+    Detail pages yield minutes PDFs, deduplicated by file URL; `document_url`
+    marks suffix-less document links as PDFs, and an optional `file_text`
+    regex further restricts them by link text (for detail pages that bundle
+    other bodies' minutes). Matching the listing's link text is what filters
+    mixed plenary/district calendars to plenary meetings without fetching the
+    other detail pages."""
     detail_url = re.compile(walk["detail_url"], re.IGNORECASE)
     detail_text = re.compile(walk["detail_text"], re.IGNORECASE)
     file_text = re.compile(walk["file_text"], re.IGNORECASE) if walk.get("file_text") else None
+    document_url = re.compile(walk["document_url"], re.IGNORECASE) if walk.get("document_url") else None
     host = urlparse(base_url).hostname
     records, seen, details = [], set(), {}
-    url, listing_pages = base_url, 0
+    url, listing_pages, visited = base_url, 0, set()
     while url and listing_pages < walk["max_listing_pages"]:
         listing_pages += 1
+        visited.add(url)
         soup = _fetch_soup(url)
         if soup is None:
             break
@@ -264,12 +281,19 @@ def _collect_walk(source, base_url, walk, excluded_out):
             full = urljoin(url, str(link["href"]))
             if (is_safe_url(full) and urlparse(full).hostname == host
                     and detail_url.search(full)
-                    and detail_text.search(link.get_text(" ", strip=True))
+                    and detail_text.search(_detail_label(link, walk))
                     and full not in details):
                 details[full] = link.get_text(" ", strip=True)
-        nxt = soup.find("a", rel=walk["paginate"], href=True)
+        nxt = None
+        if walk.get("paginate"):
+            nxt = soup.find("a", rel=walk["paginate"], href=True)
+        if nxt is None and walk.get("paginate_text"):
+            pager = re.compile(walk["paginate_text"])
+            nxt = next((a for a in soup.find_all("a", href=True)
+                        if pager.search(a.get_text(" ", strip=True))), None)
         url = urljoin(url, str(nxt["href"])) if nxt else None
-        if url and (not is_safe_url(url) or urlparse(url).hostname != host):
+        if url and (not is_safe_url(url) or urlparse(url).hostname != host
+                    or url in visited):
             url = None
     selector = walk.get("html_selector")
     if selector:
@@ -293,7 +317,8 @@ def _collect_walk(source, base_url, walk, excluded_out):
                     file_text is None
                     or file_text.search(link.get_text(" ", strip=True))):
                 _collect_pdf_link(link, full, source, records, excluded_out,
-                                  seen=seen, minutes_token_required=True)
+                                  seen=seen, minutes_token_required=True,
+                                  document_url=document_url)
     return records
 
 

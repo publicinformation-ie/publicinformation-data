@@ -499,3 +499,81 @@ def test_walk_without_html_selector_still_emits_pdf_records_only():
     }
     records, _ = _run_walk(html, _walk_source())
     assert records and all("file_kind" not in r for r in records)
+
+
+# --- South Dublin: rel-less pager, row-matched agendas, suffix-less documents --
+
+_SDCC = "https://meetings.southdublin.ie/"
+_SDCC_WALK = {
+    "detail_url": r"/Home/Agenda/\d+",
+    "detail_text": r"\bCounty Council\b",
+    "detail_row": True,
+    "paginate_text": r"^Next$",
+    "max_listing_pages": 5,
+    "document_url": r"/Home/ViewReply/\d+",
+    "file_text": r"^(?!.*\b(Committee|SPC)\b)(?=.*\bMinutes\b)(?=.*\b(Council|Annual Meeting)\b)",
+}
+
+
+def _sdcc_row(name, meeting_type, agenda_id):
+    return (f'<tr><td headers="MeetingName">{name}</td>'
+            f'<td headers="MeetingType">{meeting_type}</td>'
+            f'<td headers="AgendaLink"><a href="/Home/Agenda/{agenda_id}">View</a></td></tr>')
+
+
+def test_walk_south_dublin_listing_collects_council_minutes_only():
+    html = {
+        _SDCC: _html(
+            '<table>' + _sdcc_row("Clondalkin Area Committee Meeting 16th September 2026",
+                                  "Clondalkin, Newcastle Area Committee", 2793)
+            + _sdcc_row("September 2026 County Council Meeting", "County Council", 2802)
+            + '</table>',
+            '<a href="/?p=2">Next</a>'),
+        "https://meetings.southdublin.ie/?p=2": _html(
+            '<a href="/?p=1">Previous</a>'),
+        "https://meetings.southdublin.ie/Home/Agenda/2802": _html(
+            '<a href="/Home/ViewReply/91068">H-I (1) Minutes of South Dublin County Council '
+            'Clondalkin Area Committee Meeting Wed, 17 June 2026</a>',
+            '<a href="/Home/ViewReply/90985">Q1 Knockmitten Sep-2026</a>',
+            '<a href="/Home/ViewReply/89912">HI 5 (a)(ii) Approved Minutes from Social, Community, '
+            'Equality &amp; Integration SPC February 2026</a>',
+            '<a href="/Home/ViewReply/91050">Minutes of South Dublin County Council Meeting '
+            'Wed, 15 July 2026</a>'),
+    }
+    records, fetched = _run_walk(html, _walk_source(_SDCC_WALK) | {"minutes_page_url": _SDCC})
+    assert [r["file_url"] for r in records] == [
+        "https://meetings.southdublin.ie/Home/ViewReply/91050"]
+    assert records[0]["meeting_date"] == "2026-07-15"
+    # Both listing pages are read via the text-matched "Next"; the Area
+    # Committee agenda (2793) never matches detail_text, so it isn't fetched.
+    assert fetched == [_SDCC, "https://meetings.southdublin.ie/?p=2",
+                       "https://meetings.southdublin.ie/Home/Agenda/2802"]
+
+
+def test_walk_suffixless_document_links_need_document_url():
+    html = {
+        _SDCC: _html('<table>' + _sdcc_row("County Council Meeting", "County Council", 2802)
+                     + '</table>'),
+        "https://meetings.southdublin.ie/Home/Agenda/2802": _html(
+            '<a href="/Home/ViewReply/91050">Minutes of South Dublin County Council Meeting</a>'),
+    }
+    walk = {k: v for k, v in _SDCC_WALK.items() if k != "document_url"}
+    records, _ = _run_walk(html, _walk_source(walk) | {"minutes_page_url": _SDCC})
+    assert records == []
+
+
+def test_walk_paginate_text_matches_nested_and_padded_pager_anchor():
+    html = {
+        _SDCC: _html('<a href="/?p=2"> <span class="icon"></span> Next </a>'),
+        "https://meetings.southdublin.ie/?p=2": _html(),
+    }
+    _, fetched = _run_walk(html, _walk_source(_SDCC_WALK) | {"minutes_page_url": _SDCC})
+    assert fetched == [_SDCC, "https://meetings.southdublin.ie/?p=2"]
+
+
+def test_walk_stops_when_pager_points_back_at_a_visited_page():
+    html = {
+        _SDCC: _html('<a href="/">Next</a>'),
+    }
+    _, fetched = _run_walk(html, _walk_source(_SDCC_WALK) | {"minutes_page_url": _SDCC})
+    assert fetched == [_SDCC]

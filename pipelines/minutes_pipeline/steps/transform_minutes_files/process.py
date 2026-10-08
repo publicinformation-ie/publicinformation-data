@@ -4,6 +4,8 @@ import hashlib
 import io
 import re
 import sys
+import zipfile
+import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
@@ -38,27 +40,77 @@ def extract_text(pdf_bytes: bytes):
     return "", "pdfplumber"
 
 
-def _cache_path(cache_dir, url):
+def _cache_path(cache_dir, url, suffix=".pdf"):
     digest = hashlib.sha1(url.encode("utf-8")).hexdigest()[:16]
-    return Path(cache_dir) / f"{digest}.pdf"
+    return Path(cache_dir) / f"{digest}{suffix}"
 
 
 _PDF_MAGIC = b"%PDF-"
+# A .docx is a zip archive; the PK\x03\x04 local-file header opens it.
+_ZIP_MAGIC = b"PK\x03\x04"
+_DOC_SUFFIXES = {"pdf": ".pdf", "docx": ".docx"}
+_W_NS = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
+
+
+def extract_docx_text(docx_bytes: bytes) -> str:
+    """Prose text of a Word document: one line per paragraph, tabs as spaces,
+    line breaks kept. Reads word/document.xml only; table cells are included
+    because their paragraphs are ordinary <w:p> elements."""
+    try:
+        with zipfile.ZipFile(io.BytesIO(docx_bytes)) as archive:
+            xml_bytes = archive.read("word/document.xml")
+    except (zipfile.BadZipFile, KeyError) as e:
+        raise ValueError("file is not a Word document (no word/document.xml)") from e
+    # Word never writes a DTD; refusing one keeps entity expansion out of the parser.
+    if b"<!DOCTYPE" in xml_bytes:
+        raise ValueError("Word document XML declares a DOCTYPE; refusing to parse")
+    lines = []
+    for para in ET.fromstring(xml_bytes).iter(_W_NS + "p"):
+        parts = []
+        for node in para.iter():
+            if node.tag == _W_NS + "t":
+                parts.append(node.text or "")
+            elif node.tag == _W_NS + "tab":
+                parts.append(" ")
+            elif node.tag in (_W_NS + "br", _W_NS + "cr"):
+                parts.append("\n")
+        lines.extend(ln.strip() for ln in "".join(parts).split("\n") if ln.strip())
+    return "\n".join(lines)
+
+
+def extract_document_text(data: bytes):
+    """Return (text, extractor) for a PDF or Word document, chosen by magic bytes."""
+    head = data.strip()
+    if head.startswith(_PDF_MAGIC):
+        return extract_text(data)
+    if head.startswith(_ZIP_MAGIC):
+        return extract_docx_text(data), "docx"
+    raise ValueError("document is neither a PDF nor a DOCX "
+                     "(missing %PDF- or PK zip magic bytes)")
 
 
 def _download(url, cache_dir):
-    """Fetch a PDF, persisting it to the pdf_cache so re-runs don't re-fetch.
+    """Fetch a PDF or DOCX minutes file, persisting it to the cache so re-runs
+    don't re-fetch. The cache entry keeps the document's own suffix.
 
-    Fails closed on a non-PDF body (e.g. an HTML error page served with a
+    Fails closed on any other body (e.g. an HTML error page served with a
     200) and writes via a temp file + rename so an interrupted download can
     never leave a truncated file as a valid cache entry."""
-    path = _cache_path(cache_dir, url)
-    if path.exists():
-        return path.read_bytes()
+    for suffix in _DOC_SUFFIXES.values():
+        path = _cache_path(cache_dir, url, suffix)
+        if path.exists():
+            return path.read_bytes()
     response = fetch("GET", url, allow_redirects=True)
     data = response.content
-    if not data.strip().startswith(_PDF_MAGIC):
-        raise ValueError(f"response from {url} is not a PDF (missing %PDF- magic bytes)")
+    head = data.strip()
+    if head.startswith(_PDF_MAGIC):
+        suffix = _DOC_SUFFIXES["pdf"]
+    elif head.startswith(_ZIP_MAGIC):
+        suffix = _DOC_SUFFIXES["docx"]
+    else:
+        raise ValueError(f"response from {url} is neither a PDF nor a DOCX "
+                         "(missing %PDF- or PK zip magic bytes)")
+    path = _cache_path(cache_dir, url, suffix)
     tmp_path = path.with_suffix(".tmp")
     tmp_path.write_bytes(data)
     tmp_path.replace(path)
@@ -128,8 +180,8 @@ def _process_one(item, cache_dir):
         if item.get("file_kind") == "html":
             text = _html_text(url, cache_dir, item["text_selector"])
             return url, {**item, "text": text, "extractor": "html"}, None
-        pdf_bytes = _download(url, cache_dir)
-        text, extractor = extract_text(pdf_bytes)
+        document = _download(url, cache_dir)
+        text, extractor = extract_document_text(document)
         return item["file_url"], {**item, "text": text, "extractor": extractor}, None
     except Exception as e:
         return item["file_url"], None, e
