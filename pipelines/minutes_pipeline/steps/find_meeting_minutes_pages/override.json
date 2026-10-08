@@ -266,9 +266,16 @@
   {
     "public_body_id": 1129,
     "municipal_district": null,
-    "minutes_page_url": "https://www.clarecoco.ie/council/meetings/minutes",
+    "minutes_page_url": "https://www.clarecoco.ie/council/meetings/minutes/clare-county-council-meeting-minutes",
     "source_method": "manual",
-    "overridden": true
+    "overridden": true,
+    "walk": {
+      "detail_url": "/(council/meetings/(minutes/)?)?minutes-(?!of-)",
+      "detail_text": "(?s)^(?!.*(Committee|Strategic|Audit)).*",
+      "paginate": "next",
+      "max_listing_pages": 1,
+      "html_selector": ".field--name-body"
+    }
   },
   {
     "public_body_id": 1085,
