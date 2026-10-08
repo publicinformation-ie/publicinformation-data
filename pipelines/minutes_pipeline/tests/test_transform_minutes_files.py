@@ -8,6 +8,8 @@ from steps.transform_minutes_files.process import (
     STEP_NAME,
     _download,
     _cache_path,
+    _process_one,
+    extract_html_text,
     extract_text,
     process,
 )
@@ -103,3 +105,65 @@ def test_download_writes_atomically_without_tmp_leftover(tmp_path):
     assert data == b"%PDF-1.4 ok"
     assert path.read_bytes() == b"%PDF-1.4 ok"
     assert not path.with_suffix(".tmp").exists()
+
+
+def test_extract_html_text_returns_selected_text():
+    html = ("<html><body><nav>Menu</nav>"
+            "<div class='field--name-body'><h1>Minutes</h1><p>Present: Cllr A.</p></div>"
+            "</body></html>")
+    text = extract_html_text(html, ".field--name-body")
+    assert "Minutes" in text and "Present: Cllr A." in text
+    assert "Menu" not in text
+
+
+def test_extract_html_text_fails_closed_when_selector_matches_nothing():
+    with pytest.raises(ValueError, match="matched nothing"):
+        extract_html_text("<html><body><p>x</p></body></html>", ".field--name-body")
+
+
+def test_extract_html_text_fails_closed_on_whitespace_only_text():
+    with pytest.raises(ValueError, match="empty"):
+        extract_html_text("<div class='b'>   </div>", ".b")
+
+
+def test_process_one_html_item_uses_selector_and_marks_extractor(tmp_path):
+    item = {"public_body_id": 1129, "file_url": "https://x.ie/minutes-march",
+            "file_kind": "html", "text_selector": ".b", "link_text": "March"}
+
+    class R:
+        text = "<div class='b'>Minutes body</div>"
+        content = text.encode()
+
+    with mock.patch("steps.transform_minutes_files.process.fetch", return_value=R()):
+        url, record, exc = _process_one(item, tmp_path)
+    assert exc is None
+    assert record["text"] == "Minutes body"
+    assert record["extractor"] == "html"
+    assert record["file_kind"] == "html"
+
+
+def test_process_one_html_item_error_for_missing_selector(tmp_path):
+    item = {"public_body_id": 1129, "file_url": "https://x.ie/minutes-march",
+            "file_kind": "html", "text_selector": ".nope"}
+
+    class R:
+        text = "<div class='b'>Minutes body</div>"
+        content = text.encode()
+
+    with mock.patch("steps.transform_minutes_files.process.fetch", return_value=R()):
+        url, record, exc = _process_one(item, tmp_path)
+    assert record is None and isinstance(exc, ValueError)
+
+
+def test_process_one_html_cache_does_not_collide_with_pdf_cache(tmp_path):
+    item = {"public_body_id": 1129, "file_url": "https://x.ie/minutes-march",
+            "file_kind": "html", "text_selector": ".b"}
+
+    class R:
+        text = "<div class='b'>Body</div>"
+        content = text.encode()
+
+    with mock.patch("steps.transform_minutes_files.process.fetch", return_value=R()):
+        _process_one(item, tmp_path)
+    assert not _cache_path(tmp_path, item["file_url"]).exists()
+    assert list(tmp_path.glob("*.html"))

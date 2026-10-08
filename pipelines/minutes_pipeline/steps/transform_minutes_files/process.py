@@ -7,6 +7,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 
+from bs4 import BeautifulSoup
+
 from lib.cli_utils import add_common_args, filter_by_public_body
 from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
 from lib.http_utils import fetch
@@ -62,9 +64,39 @@ def _download(url, cache_dir):
     return data
 
 
+def extract_html_text(html: str, selector: str) -> str:
+    """Return the text of the first element matching `selector`.
+
+    Fails closed: a selector that matches nothing (site redesign) or yields
+    only whitespace raises, so no empty record flows downstream."""
+    node = BeautifulSoup(html, "html.parser").select_one(selector)
+    if node is None:
+        raise ValueError(f"selector {selector!r} matched nothing")
+    text = node.get_text("\n", strip=True)
+    if not text:
+        raise ValueError(f"selector {selector!r} produced empty text")
+    return text
+
+
+def _download_html(url, cache_dir):
+    """Fetch an HTML minutes page, caching the raw body as `<digest>.html`
+    (distinct from the `.pdf` cache entries) via temp file + rename."""
+    path = _cache_path(cache_dir, url).with_suffix(".html")
+    if path.exists():
+        return path.read_text(encoding="utf-8")
+    html = fetch("GET", url, allow_redirects=True).text
+    tmp_path = path.with_suffix(".tmp")
+    tmp_path.write_text(html, encoding="utf-8")
+    tmp_path.replace(path)
+    return html
+
+
 def _process_one(item, cache_dir):
     url = item["file_url"]
     try:
+        if item.get("file_kind") == "html":
+            text = extract_html_text(_download_html(url, cache_dir), item["text_selector"])
+            return url, {**item, "text": text, "extractor": "html"}, None
         pdf_bytes = _download(url, cache_dir)
         text, extractor = extract_text(pdf_bytes)
         return item["file_url"], {**item, "text": text, "extractor": extractor}, None
