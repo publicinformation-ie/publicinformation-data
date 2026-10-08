@@ -270,7 +270,7 @@
     "source_method": "manual",
     "overridden": true,
     "walk": {
-      "detail_url": "/minutes-(?!of-)[^/.]*$",
+      "detail_url": "/minutes-(?!of-)[^/.]*/?$",
       "detail_text": "(?s)^(?!.*(Committee|Strategic|Audit)).*",
       "paginate": "next",
       "max_listing_pages": 1,
