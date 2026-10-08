@@ -6,6 +6,7 @@ from steps.ocr_minutes_files.process import (
     MIN_TEXT_CHARS,
     STEP_NAME,
     _evict_thin_output_records,
+    _process_one,
     ocr_pdf_bytes,
     process,
 )
@@ -176,3 +177,16 @@ def test_ocr_joins_per_page_text_in_order():
             with mock.patch("pytesseract.image_to_string", side_effect=page_texts):
                 result = ocr_pdf_bytes(b"%PDF-1.4 fake")
     assert result == "Page one\nPage three"
+
+
+def test_html_record_with_usable_text_passes_through_untouched(tmp_path):
+    item = _item(
+        file_url="https://x.ie/minutes-march",
+        file_kind="html",
+        link_text="March",
+        text="Minutes of the meeting. " * 40,
+        extractor="html",
+    )
+    url, record, failure = _process_one(item, tmp_path)
+    assert failure is None
+    assert record == item

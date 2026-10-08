@@ -16,7 +16,7 @@
           "meeting_date": { "type": ["string", "null"] },
           "link_text": { "type": "string" },
           "text": { "type": "string" },
-          "extractor": { "type": "string", "enum": ["pdfplumber", "tesseract"] }
+          "extractor": { "type": "string", "enum": ["pdfplumber", "tesseract", "html"] }
         }
       }
     }
