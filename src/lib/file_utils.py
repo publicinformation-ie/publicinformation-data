@@ -293,6 +293,25 @@ def append_errors(step_dir, error_list):
         write_json(errors_path, errors)
 
 
+def errors_outside_bodies(errors_path, body_ids):
+    """Entries of errors.json whose context.public_body_id is not in body_ids.
+    A scoped (--public-body) run keeps these and replaces only its own bodies'
+    errors. Entries without a public_body_id are dropped; a missing or
+    unreadable file yields []."""
+    try:
+        prior = read_json(errors_path)
+    except (OSError, ValueError):
+        return []
+    if not isinstance(prior, list):
+        return []
+    kept = []
+    for e in prior:
+        bid = (e.get("context") or {}).get("public_body_id") if isinstance(e, dict) else None
+        if bid is not None and bid not in body_ids:
+            kept.append(e)
+    return kept
+
+
 def write_status(step_dir, record_count):
     write_json(
         Path(step_dir) / "pipeline-status.json",

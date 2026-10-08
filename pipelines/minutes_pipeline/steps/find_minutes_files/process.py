@@ -12,7 +12,7 @@ from urllib.parse import parse_qs, urljoin, urlparse
 from bs4 import BeautifulSoup
 
 from lib.cli_utils import add_common_args, filter_by_public_body
-from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
+from lib.file_utils import append_error, errors_outside_bodies, read_json, write_json, write_status, IncrementalWriter
 from lib.http_utils import fetch, is_safe_url
 from lib.date_parse import parse_date
 
@@ -353,7 +353,9 @@ def pending_sources(writer, items):
 
 def process(input_data, step_dir, writer, verbose=False, max_workers=6):
     errors_path = Path(step_dir) / "errors.json"
-    write_json(errors_path, [])
+    # A --public-body run replaces only its own bodies' errors.
+    scoped_ids = {r["public_body_id"] for r in input_data["results"]}
+    write_json(errors_path, errors_outside_bodies(errors_path, scoped_ids))
 
     pending = pending_sources(writer, input_data["results"])
 

@@ -9,7 +9,7 @@ from urllib.parse import unquote, urljoin, urldefrag, urlparse
 from bs4 import BeautifulSoup
 
 from lib.cli_utils import add_common_args, filter_by_public_body
-from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
+from lib.file_utils import append_error, errors_outside_bodies, read_json, write_json, write_status, IncrementalWriter
 from lib.http_utils import fetch, is_safe_url, validate_url_or_raise
 from steps.minutes_scoring import collect_yield  # noqa: E402
 
@@ -181,11 +181,15 @@ def unemitted_sources(writer, records):
 
 def process(input_data, step_dir, writer, verbose=False):
     errors_path = Path(step_dir) / "errors.json"
-    write_json(errors_path, [])
-
     authorities = input_data["results"]
+    scoped_ids = {a["public_body_id"] for a in authorities}
+    # A --public-body run replaces only its own bodies' errors.
+    write_json(errors_path, errors_outside_bodies(errors_path, scoped_ids))
+
     override_path = step_dir / "override.json"
     overrides = read_json(override_path) if override_path.exists() else []
+    # Scoped runs must not fetch or emit other bodies' overrides.
+    overrides = [o for o in overrides if o.get("public_body_id") in scoped_ids]
 
     records = override_sources(authorities, overrides)
 
