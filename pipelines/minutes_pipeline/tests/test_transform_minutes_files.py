@@ -125,6 +125,17 @@ def test_extract_html_text_keeps_inline_tags_on_one_line():
                      "Present: Cllr A.", "Line one", "Line two"]
 
 
+def test_extract_html_text_keeps_content_after_self_closing_br():
+    # Sligo: an unclosed <br> earlier in the page makes html.parser nest
+    # everything after a later <br/> inside it; replacing the <br> must not
+    # discard those children.
+    html = ("<p>Opening Hours<br> </p>"
+            "<div class='b'><h3>Minutes</h3><br/>"
+            "<h3>PRESENT</h3><ul><li>Cllr A</li></ul><p>Decision made.</p></div>")
+    lines = extract_html_text(html, ".b").split("\n")
+    assert lines == ["Minutes", "PRESENT", "Cllr A", "Decision made."]
+
+
 def test_extract_html_text_excludes_script_style_and_comments():
     html = ("<div class='b'><script>var leak1=1;</script><style>.leak2{}</style>"
             "<!-- leak3 --><p>Real text</p></div>")

@@ -87,7 +87,10 @@ def extract_html_text(html: str, selector: str) -> str:
     for t in node.find_all(string=True):
         t.replace_with(re.sub(r"\s+", " ", str(t)))  # source wrapping is not a line break
     for br in node.find_all("br"):
-        br.replace_with("\n")
+        # html.parser can nest following content inside a <br> (after an
+        # earlier unclosed <br>); unwrap so those children are kept.
+        br.insert_before("\n")
+        br.unwrap()
     for blk in node.find_all(_BLOCK_TAGS):
         blk.insert_before("\n")
         blk.insert_after("\n")
