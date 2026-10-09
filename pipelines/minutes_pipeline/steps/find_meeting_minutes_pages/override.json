@@ -229,7 +229,7 @@
       "type_select": "ddlSelectCouncilType",
       "type_value": "Monthly",
       "max_meetings": 400,
-      "file_text": "^(?!.*\\b(Municipal|District|MD|Area|SPC|Committee)\\b)(?=.*\\bMinutes\\b)"
+      "file_text": "^(?!.*\\b(Municipal|District|MD|[A-Z]{1,2}MD|CMD|Area|SPC|Committee|Westport|Belmullet|Ballina|Castlebar|Claremorris|Swinford)\\b)(?=.*\\bMinutes\\b)"
     }
   },
   {
