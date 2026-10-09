@@ -78,3 +78,29 @@ def test_fetch_raises_on_aws_waf_captcha_body_marker(requests_mock):
     )
     with pytest.raises(BotChallengeError, match="AWS WAF"):
         fetch("GET", "https://www.gov.ie/en/department-of-defence/")
+
+
+def test_fetch_raises_on_sucuri_js_challenge(requests_mock):
+    # Wicklow's Sucuri proxy answers 307 with a JS-challenge page, not the content.
+    requests_mock.get(
+        "https://www.wicklow.ie/Minutes",
+        status_code=307,
+        headers={"Content-Type": "text/html"},
+        text=("<html><title>You are being redirected...</title>"
+              "<script>var sucuri_cloudproxy_js='';</script></html>"),
+    )
+    with pytest.raises(BotChallengeError, match="Sucuri"):
+        fetch("GET", "https://www.wicklow.ie/Minutes")
+
+
+def test_fetch_raises_on_azure_waf_js_challenge(requests_mock):
+    # Dublin City's councilmeetings site answers 403 with an Azure WAF JS-challenge page.
+    requests_mock.get(
+        "https://councilmeetings.dublincity.ie/",
+        status_code=403,
+        headers={"Content-Type": "text/html"},
+        text=('<html><head><meta name="description" content="Azure WAF JS Challenge"/>'
+              "<title>Azure WAF</title></head></html>"),
+    )
+    with pytest.raises(BotChallengeError, match="Azure WAF"):
+        fetch("GET", "https://councilmeetings.dublincity.ie/")

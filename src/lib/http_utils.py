@@ -120,6 +120,8 @@ _BOT_BODY_MARKERS = [
     ("This site is protected by", "bot-protection page"),
     ("awsWafCookieDomainList", "AWS WAF challenge"),
     ("captcha.awswaf.com", "AWS WAF captcha"),
+    ("sucuri_cloudproxy_js", "Sucuri JS challenge"),
+    ("Azure WAF JS Challenge", "Azure WAF JS challenge"),
 ]
 
 
