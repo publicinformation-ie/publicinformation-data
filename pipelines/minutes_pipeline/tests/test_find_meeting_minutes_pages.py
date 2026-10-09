@@ -108,6 +108,17 @@ def test_override_sources_passes_walk_config_through():
     assert "walk" not in meath
 
 
+def test_override_sources_passes_postback_config_through():
+    postback = {"entry_button": "btn", "date_select": "ddl"}
+    overrides = [
+        {"public_body_id": 1508, "municipal_district": None,
+         "minutes_page_url": "https://eagenda.mayo.ie/",
+         "source_method": "manual", "overridden": True, "postback": postback},
+    ]
+    (mayo,) = override_sources([], overrides)
+    assert mayo["postback"] == postback
+
+
 def test_process_override_plus_writer_does_not_duplicate(tmp_path, make_writer):
     """The step's committed override.json uses source_method 'manual' (repo
     convention), while output records normalize it to 'override'. The writer
