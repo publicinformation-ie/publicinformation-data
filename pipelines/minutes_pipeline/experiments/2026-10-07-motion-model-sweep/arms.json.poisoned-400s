@@ -1,0 +1,2886 @@
+{
+  "gold": {
+    "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf": {
+      "file_url": "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf",
+      "cache_key": "afb64d0b0968667e3bb7734be34d1a6b40c435f0dee557551b80bd13f6d6eef3",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 7923,
+        "completion": 0,
+        "total": 7923
+      },
+      "cost_usd": 0.00522918,
+      "error": "LLM returned unparseable/empty motions JSON"
+    },
+    "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf": {
+      "file_url": "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf",
+      "cache_key": "9e155e97260cbbc00171b384e8a6cfdaac2b4c492757d81cfb3b10885effe814",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 14005,
+        "completion": 0,
+        "total": 14005
+      },
+      "cost_usd": 0.009243300000000001,
+      "error": "LLM returned unparseable/empty motions JSON"
+    },
+    "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf": {
+      "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf",
+      "cache_key": "d383afbb2c681f17b9fe8481835fde660ab6de09ba870410548f54afdd547684",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 9017,
+        "completion": 0,
+        "total": 9017
+      },
+      "cost_usd": 0.005951220000000001,
+      "error": "LLM returned unparseable/empty motions JSON"
+    },
+    "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf": {
+      "file_url": "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf",
+      "cache_key": "21a6a3c165fdd1e0ca56005608fcb32436a4319c9d1c0429b1ab3879d2b5a26d",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 16580,
+        "completion": 0,
+        "total": 16580
+      },
+      "cost_usd": 0.0109428,
+      "error": "LLM returned unparseable/empty motions JSON"
+    },
+    "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf": {
+      "file_url": "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf",
+      "cache_key": "561d9b9ffe9d4b976e0a8d5d0375d902fcd8fbd0b495634ce94ceacc477e1419",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 26762,
+        "completion": 0,
+        "total": 26762
+      },
+      "cost_usd": 0.017662920000000002,
+      "error": "LLM returned unparseable/empty motions JSON"
+    },
+    "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf": {
+      "file_url": "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf",
+      "cache_key": "96cfdcf0919510158a261c4f85770eef823a09e894fd5f1700cb1a482d631c62",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 5930,
+        "completion": 0,
+        "total": 5930
+      },
+      "cost_usd": 0.0039138,
+      "error": "LLM returned unparseable/empty motions JSON"
+    },
+    "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf": {
+      "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf",
+      "cache_key": "9f6a59e63b894c96ad2706127ed3e398f8da1f483e24dc6af0e91936d50bcf1d",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 3822,
+        "completion": 0,
+        "total": 3822
+      },
+      "cost_usd": 0.00252252,
+      "error": "LLM returned unparseable/empty motions JSON"
+    },
+    "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf": {
+      "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf",
+      "cache_key": "1a8030762e24c93052d467f4ae52bbb08a732a5c482587d1eaff81035661e2b0",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 3224,
+        "completion": 0,
+        "total": 3224
+      },
+      "cost_usd": 0.00212784,
+      "error": "LLM returned unparseable/empty motions JSON"
+    },
+    "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf": {
+      "file_url": "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf",
+      "cache_key": "8e05f7ac07d8d5dacc5a61e22efacf9d00bf535f13f646ec15943a277bec8555",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 4731,
+        "completion": 0,
+        "total": 4731
+      },
+      "cost_usd": 0.00312246,
+      "error": "LLM returned unparseable/empty motions JSON"
+    },
+    "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf": {
+      "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf",
+      "cache_key": "fb3094e5849ad063b1accad534029cd9f15693d64917087020920a267d6a79f8",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 4697,
+        "completion": 0,
+        "total": 4697
+      },
+      "cost_usd": 0.00310002,
+      "error": "LLM returned unparseable/empty motions JSON"
+    },
+    "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf": {
+      "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf",
+      "cache_key": "f5ce3adbb5988db6a0964e1a5be0442af652d0dbeb47bff559323ac650026b53",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 3845,
+        "completion": 0,
+        "total": 3845
+      },
+      "cost_usd": 0.0025377,
+      "error": "LLM returned unparseable/empty motions JSON"
+    },
+    "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D": {
+      "file_url": "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D",
+      "cache_key": "936118ec0635c6a42fcdc745b3c5e02f15fe3ec1add3be64d58eae48a6acd7e3",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 638,
+        "completion": 0,
+        "total": 638
+      },
+      "cost_usd": 0.00042108,
+      "error": "LLM returned unparseable/empty motions JSON"
+    },
+    "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf": {
+      "file_url": "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf",
+      "cache_key": "98d210c6440f6eebb6a59b82b42f1f22593bd5726379ae638a9b48b8923a8593",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 2042,
+        "completion": 0,
+        "total": 2042
+      },
+      "cost_usd": 0.00134772,
+      "error": "LLM returned unparseable/empty motions JSON"
+    },
+    "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf": {
+      "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf",
+      "cache_key": "a7e546dbefbdf529029f8280ecf2898c708c62a0808ceb48a23845e60604d188",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 1759,
+        "completion": 0,
+        "total": 1759
+      },
+      "cost_usd": 0.00116094,
+      "error": "LLM returned unparseable/empty motions JSON"
+    },
+    "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf": {
+      "file_url": "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf",
+      "cache_key": "b6636cadf293be8621013f1715bc0df63a75095e819af43b03c5a1db8ca13a6f",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 2483,
+        "completion": 0,
+        "total": 2483
+      },
+      "cost_usd": 0.00163878,
+      "error": "LLM returned unparseable/empty motions JSON"
+    },
+    "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf": {
+      "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf",
+      "cache_key": "072e0359dd0db3d93e4ac3a15481d09848acb61f5dabee232d8dbc26e78797ae",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 1804,
+        "completion": 0,
+        "total": 1804
+      },
+      "cost_usd": 0.0011906400000000002,
+      "error": "LLM returned unparseable/empty motions JSON"
+    },
+    "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf": {
+      "file_url": "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf",
+      "cache_key": "2ad9b62a234ada2578711fa617ef56baba4569769c83d8906259bdd7a69f2b0e",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 1730,
+        "completion": 0,
+        "total": 1730
+      },
+      "cost_usd": 0.0011418,
+      "error": "LLM returned unparseable/empty motions JSON"
+    },
+    "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf": {
+      "file_url": "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf",
+      "cache_key": "cd22f454632e28bf10581c4fe860beab509ef56687e2cef7ca930c77f8feded2",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 20822,
+        "completion": 0,
+        "total": 20822
+      },
+      "cost_usd": 0.013742520000000001,
+      "error": "LLM returned unparseable/empty motions JSON"
+    },
+    "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf": {
+      "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf",
+      "cache_key": "745faa67d4bb7947f1a91517ea4b3f47ded7f7dca52ac7b05c73cf967282188a",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 8321,
+        "completion": 0,
+        "total": 8321
+      },
+      "cost_usd": 0.00549186,
+      "error": "LLM returned unparseable/empty motions JSON"
+    },
+    "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf": {
+      "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf",
+      "cache_key": "c4644e0ff9caa6eddfee968a0cd3cbcdaff308811b205edb31e579e99b37ac61",
+      "motions": null,
+      "stated_date": null,
+      "tokens": {
+        "prompt": 13358,
+        "completion": 0,
+        "total": 13358
+      },
+      "cost_usd": 0.008816280000000001,
+      "error": "LLM returned unparseable/empty motions JSON"
+    }
+  },
+  "combos": {
+    "opencode-go/gpt-6-luna@default": {
+      "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf": {
+        "file_url": "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf",
+        "cache_key": "4eb0974150ffb9627c6a0b9ed2be342f32c33fb900ebee3c1e90161e4f268cb2",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 7923,
+          "completion": 0,
+          "total": 7923
+        },
+        "cost_usd": 0.0007923,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf": {
+        "file_url": "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf",
+        "cache_key": "d516ae4183fed0859e579dbaad91a59f4b1c706568e1150b66efd53f33992eaa",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 14005,
+          "completion": 0,
+          "total": 14005
+        },
+        "cost_usd": 0.0014005,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf",
+        "cache_key": "5cb3987bc3b4103835a7e669bb214271a7ae2f8d3fb1add03b73eba4c6df9f21",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 9017,
+          "completion": 0,
+          "total": 9017
+        },
+        "cost_usd": 0.0009017000000000001,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf": {
+        "file_url": "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf",
+        "cache_key": "6050603189470266397019798c7179420642bb0e3ac6976981221aa1b2874657",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 16580,
+          "completion": 0,
+          "total": 16580
+        },
+        "cost_usd": 0.0016580000000000002,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf": {
+        "file_url": "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf",
+        "cache_key": "f13ce089f4d3b38b93fcd66cd6ff048e8ace628b163c5261db3814b370734e6d",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 26762,
+          "completion": 0,
+          "total": 26762
+        },
+        "cost_usd": 0.0026762,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf",
+        "cache_key": "367068a8bda228e40f4f79ff4b27bb058677bd15b415e1f8b1457e15a86c184a",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 5930,
+          "completion": 0,
+          "total": 5930
+        },
+        "cost_usd": 0.0005930000000000001,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf",
+        "cache_key": "c3bd5e34e08de7391c21bd9e562891d4095d17549b9941fbf498a6d21b3cc518",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3822,
+          "completion": 0,
+          "total": 3822
+        },
+        "cost_usd": 0.0003822,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf",
+        "cache_key": "dc2ec37037d50b91e196fda1b64e519bb90a584f3f754f191356a6f92654b5b1",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3224,
+          "completion": 0,
+          "total": 3224
+        },
+        "cost_usd": 0.00032240000000000003,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf",
+        "cache_key": "80026722b015a56bbdd8600c529265410298190979c84f968de24e00e3c84170",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4731,
+          "completion": 0,
+          "total": 4731
+        },
+        "cost_usd": 0.0004731,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf",
+        "cache_key": "12ce6597ef3c6b485f9760899fcabbadb8da942b5971d18771ad56be29307985",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4697,
+          "completion": 0,
+          "total": 4697
+        },
+        "cost_usd": 0.0004697,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf",
+        "cache_key": "31a84de8c7ceebcd42e4682a565cf24d1890f3f43f6dcb5b0743248eb33eb6cc",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3845,
+          "completion": 0,
+          "total": 3845
+        },
+        "cost_usd": 0.0003845,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D": {
+        "file_url": "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D",
+        "cache_key": "f8252af5532974a4b7930b27d3c4e62db5914f3f4332923a30e6a406e3befa6f",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 638,
+          "completion": 0,
+          "total": 638
+        },
+        "cost_usd": 6.38e-05,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf",
+        "cache_key": "9ef1cf9dc614efd1eba1c04fafa6eda8705810c3a77ff3f7efaa1a5e59b0db76",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2042,
+          "completion": 0,
+          "total": 2042
+        },
+        "cost_usd": 0.0002042,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf",
+        "cache_key": "97501af9cc6c37d864955625396dbdd0a9bc751f1db80501b61adb9c51c0730d",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1759,
+          "completion": 0,
+          "total": 1759
+        },
+        "cost_usd": 0.0001759,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf": {
+        "file_url": "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf",
+        "cache_key": "b03ffeeb015527dbb3897d60570f211038de9c73a4286dac0435513aa284f4cf",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2483,
+          "completion": 0,
+          "total": 2483
+        },
+        "cost_usd": 0.0002483,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf",
+        "cache_key": "86d64da666d01c3a9c24a105c4b339b75e7a2f910e3f9a7274c528f2d5c7653f",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1804,
+          "completion": 0,
+          "total": 1804
+        },
+        "cost_usd": 0.00018040000000000002,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf",
+        "cache_key": "93a605256e96ff234c0498b72a4232cbb125b4e304a9845d8182d26ef40b4516",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1730,
+          "completion": 0,
+          "total": 1730
+        },
+        "cost_usd": 0.000173,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf": {
+        "file_url": "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf",
+        "cache_key": "d4ed59f6bece4799bf31ac58159c479f652afa85a5a6f2531e701d90df3e32c6",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 20822,
+          "completion": 0,
+          "total": 20822
+        },
+        "cost_usd": 0.0020822,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf",
+        "cache_key": "904c55cb84d0d5fd0426dba674973ead26d7d92c045bfabadc90f8cf847197c3",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 8321,
+          "completion": 0,
+          "total": 8321
+        },
+        "cost_usd": 0.0008321000000000001,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf",
+        "cache_key": "4445683e2d3362e19ce9810439f601e31554b02a9cf3211f7bc389c2f96846b0",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 13358,
+          "completion": 0,
+          "total": 13358
+        },
+        "cost_usd": 0.0013358,
+        "error": "LLM returned unparseable/empty motions JSON"
+      }
+    },
+    "opencode-go/gpt-6-luna@none": {
+      "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf": {
+        "file_url": "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf",
+        "cache_key": "188d1015139c30ca3ace75bb4e4236ce068f789dc13ae8b524b3f0009dc8cfe1",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 7923,
+          "completion": 0,
+          "total": 7923
+        },
+        "cost_usd": 0.0007923,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf": {
+        "file_url": "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf",
+        "cache_key": "a462028cacc2388d016ba51217f2b872097d8e1f06325b329ce6a3f28aedc2e9",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 14005,
+          "completion": 0,
+          "total": 14005
+        },
+        "cost_usd": 0.0014005,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf",
+        "cache_key": "d7b39196dae418063dabd4719d2ac0870b092326c7491f50d76cf4b583aa8d91",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 9017,
+          "completion": 0,
+          "total": 9017
+        },
+        "cost_usd": 0.0009017000000000001,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf": {
+        "file_url": "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf",
+        "cache_key": "d0902f3c140c17d31f2bdeda8e1c94cf8c16b762a97c6066120b9c0eace358ca",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 16580,
+          "completion": 0,
+          "total": 16580
+        },
+        "cost_usd": 0.0016580000000000002,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf": {
+        "file_url": "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf",
+        "cache_key": "cb04bac0d0cecdc44bcbed0b23b8a5c1a2dd35d018f17e28fa1d0e738f59e191",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 26762,
+          "completion": 0,
+          "total": 26762
+        },
+        "cost_usd": 0.0026762,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf",
+        "cache_key": "6e0ff0edca24dbee87631d6f5a9e0d0ce3e6690d22e4546e71c1a00415332e3c",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 5930,
+          "completion": 0,
+          "total": 5930
+        },
+        "cost_usd": 0.0005930000000000001,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf",
+        "cache_key": "90e50852820e1b99e7bdd8a813b761426469dcf3480ea31b35d803ee34e806cb",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3822,
+          "completion": 0,
+          "total": 3822
+        },
+        "cost_usd": 0.0003822,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf",
+        "cache_key": "4f7c8fb5e4752f62cb12ae55925ef3dc99a378eb752827be47e15c5375237dd3",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3224,
+          "completion": 0,
+          "total": 3224
+        },
+        "cost_usd": 0.00032240000000000003,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf",
+        "cache_key": "149a0d4616efe975c27a6adffc6457e5c6b6bef117917233594d9a36cb702ddb",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4731,
+          "completion": 0,
+          "total": 4731
+        },
+        "cost_usd": 0.0004731,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf",
+        "cache_key": "eaafa22c770cc077bb5062cb86675fe938e02220b930d8e059b2bea4dc971839",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4697,
+          "completion": 0,
+          "total": 4697
+        },
+        "cost_usd": 0.0004697,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf",
+        "cache_key": "4c96f41da9d12e2e061758783f0d16c02792ee168cfa72c07068b6c362d8acf1",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3845,
+          "completion": 0,
+          "total": 3845
+        },
+        "cost_usd": 0.0003845,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D": {
+        "file_url": "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D",
+        "cache_key": "d4ce5fc6e4f6c14796d906c4905c34a14f47c0c064d1ffcf866ee3af878ea16d",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 638,
+          "completion": 0,
+          "total": 638
+        },
+        "cost_usd": 6.38e-05,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf",
+        "cache_key": "fb42465ee46815d0b9d8be28475dfa4055bc55b42ae4e34f7691696cb3434bdb",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2042,
+          "completion": 0,
+          "total": 2042
+        },
+        "cost_usd": 0.0002042,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf",
+        "cache_key": "6d0e20a2df147917a7b44d7aeec11c7ac8832f50869fa119c742654d9d0c9042",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1759,
+          "completion": 0,
+          "total": 1759
+        },
+        "cost_usd": 0.0001759,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf": {
+        "file_url": "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf",
+        "cache_key": "94f80ae58827301236393eb2ba661d6a8a75f911a373a175cb0bd94753db6e57",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2483,
+          "completion": 0,
+          "total": 2483
+        },
+        "cost_usd": 0.0002483,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf",
+        "cache_key": "976d53b678e8f017f19f58207b049f49837d97bb91675aac56b07a868bd4ed95",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1804,
+          "completion": 0,
+          "total": 1804
+        },
+        "cost_usd": 0.00018040000000000002,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf",
+        "cache_key": "1fde84e3a23d103b5ccfbbec289dd59053a6ad356f610c8407f8248749695330",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1730,
+          "completion": 0,
+          "total": 1730
+        },
+        "cost_usd": 0.000173,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf": {
+        "file_url": "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf",
+        "cache_key": "2322beb4e1bcdedb54aba6961c1bf73177f4dadaf98632ea647f15367847ff43",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 20822,
+          "completion": 0,
+          "total": 20822
+        },
+        "cost_usd": 0.0020822,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf",
+        "cache_key": "339b2399ae31594b10b054c6758b9178d9dd23d1d54550fb5ab3b33da0bb0a4e",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 8321,
+          "completion": 0,
+          "total": 8321
+        },
+        "cost_usd": 0.0008321000000000001,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf",
+        "cache_key": "5a94a003c537c9aa9602f2a02dc1af66071a4deb02cde7f376731f39c3837b2e",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 13358,
+          "completion": 0,
+          "total": 13358
+        },
+        "cost_usd": 0.0013358,
+        "error": "LLM returned unparseable/empty motions JSON"
+      }
+    },
+    "opencode-go/muse-spark-1.3-contributor@default": {
+      "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf": {
+        "file_url": "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf",
+        "cache_key": "6348f8f82697acb0259e26f3ef7163689d064768478a26a7ffaecc51c5c829fb",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 7923,
+          "completion": 0,
+          "total": 7923
+        },
+        "cost_usd": 0.0007923,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf": {
+        "file_url": "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf",
+        "cache_key": "5177e700992a5204e7fe4a1c0c246c6bcf5d93de5dd1ef7c09071e4c52f2d5e6",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 14005,
+          "completion": 0,
+          "total": 14005
+        },
+        "cost_usd": 0.0014005,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf",
+        "cache_key": "b6877b867342aac20ff3a2a6848f01ba3ea8bb68b773ea095dcd7d57545620a2",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 9017,
+          "completion": 0,
+          "total": 9017
+        },
+        "cost_usd": 0.0009017000000000001,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf": {
+        "file_url": "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf",
+        "cache_key": "25cf1543595f0e457800c92398b3ea9338f54ebb6d82531a2dd20f41a14186f3",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 16580,
+          "completion": 0,
+          "total": 16580
+        },
+        "cost_usd": 0.0016580000000000002,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf": {
+        "file_url": "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf",
+        "cache_key": "6dc15a0c98d6274c0279020044af38b9b95db43c3d50afc0c4700a8ff21bad6c",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 26762,
+          "completion": 0,
+          "total": 26762
+        },
+        "cost_usd": 0.0026762,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf",
+        "cache_key": "2b5cddda11949a982eb91532f22facc931dbc0091d7ce84e445a7432a3e47fac",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 5930,
+          "completion": 0,
+          "total": 5930
+        },
+        "cost_usd": 0.0005930000000000001,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf",
+        "cache_key": "9a4d2bf97c49456b6221eeca9383f6e4b4812e9a4d517362c73cb5b214b952d3",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3822,
+          "completion": 0,
+          "total": 3822
+        },
+        "cost_usd": 0.0003822,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf",
+        "cache_key": "897922b5a43456760dc2dea42ebae1da08428f74878be2a2d38a9affd7b46a56",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3224,
+          "completion": 0,
+          "total": 3224
+        },
+        "cost_usd": 0.00032240000000000003,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf",
+        "cache_key": "d7c87e4ef4658ad894e646903a8d6f51f9c9ca95e093086166bfe0afe0a9cdb4",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4731,
+          "completion": 0,
+          "total": 4731
+        },
+        "cost_usd": 0.0004731,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf",
+        "cache_key": "0acb23447a5d9422c3228b919271d362bc752ce8c12f9bfe6b75b5d0db0c3d8c",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4697,
+          "completion": 0,
+          "total": 4697
+        },
+        "cost_usd": 0.0004697,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf",
+        "cache_key": "1d54f3e87673b8a50ab6e3ff65b6d8e19b54f3f98f440e181bc2292be9559507",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3845,
+          "completion": 0,
+          "total": 3845
+        },
+        "cost_usd": 0.0003845,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D": {
+        "file_url": "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D",
+        "cache_key": "e4dda4e3bdd53d87f8297addd0470f3017eb48904fbd2d40bba9fd36dbd0382b",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 638,
+          "completion": 0,
+          "total": 638
+        },
+        "cost_usd": 6.38e-05,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf",
+        "cache_key": "f15acbea5b5a331246384f31b1b16edffa6aa9435c799b0b648d9bf028dbdd3c",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2042,
+          "completion": 0,
+          "total": 2042
+        },
+        "cost_usd": 0.0002042,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf",
+        "cache_key": "d4083a19a6e7295242785400315005d24809d42ad7dcf4514e0ac5b4512f4426",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1759,
+          "completion": 0,
+          "total": 1759
+        },
+        "cost_usd": 0.0001759,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf": {
+        "file_url": "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf",
+        "cache_key": "165b28f7ef16419b609145110d9b4cab0cd1fa8bce7536fa59dc74b64aa4dc25",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2483,
+          "completion": 0,
+          "total": 2483
+        },
+        "cost_usd": 0.0002483,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf",
+        "cache_key": "5bfe82a1b982a12490206fb4b4ff3da8ca75f4da144cac4714944143bb776e32",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1804,
+          "completion": 0,
+          "total": 1804
+        },
+        "cost_usd": 0.00018040000000000002,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf",
+        "cache_key": "dbeedaeb4d11f5d0cf312275b9e70310e0edb16e26b499b8f7eb7450130bc056",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1730,
+          "completion": 0,
+          "total": 1730
+        },
+        "cost_usd": 0.000173,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf": {
+        "file_url": "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf",
+        "cache_key": "6b9d393c874d1da5dfb9babdc0b0282dd7b9878f506c8560449b3d116d334d09",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 20822,
+          "completion": 0,
+          "total": 20822
+        },
+        "cost_usd": 0.0020822,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf",
+        "cache_key": "9751c2d61beaa55eeb03a0ee6bcd5e4722775b3dcbcb8cc7b9e069ac0611c78b",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 8321,
+          "completion": 0,
+          "total": 8321
+        },
+        "cost_usd": 0.0008321000000000001,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf",
+        "cache_key": "fd88e46b59ae9033d4787ef1b2402aed7a37626cc2233b253a24aadd914f80b3",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 13358,
+          "completion": 0,
+          "total": 13358
+        },
+        "cost_usd": 0.0013358,
+        "error": "LLM returned unparseable/empty motions JSON"
+      }
+    },
+    "opencode-go/muse-spark-1.3-contributor@none": {
+      "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf": {
+        "file_url": "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf",
+        "cache_key": "252981ffbb5c6ac108784131f164f80fca45ac97d8c6a7d80a90799e77bff6a8",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 7923,
+          "completion": 0,
+          "total": 7923
+        },
+        "cost_usd": 0.0007923,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf": {
+        "file_url": "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf",
+        "cache_key": "f6928de847d356ce03edc554f2ef7245d66c72a48411751f6a1a58de1ef901a8",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 14005,
+          "completion": 0,
+          "total": 14005
+        },
+        "cost_usd": 0.0014005,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf",
+        "cache_key": "ab91a44d6ca1e9e541e07bf1c8435d762cac01ecbb727c5ace2b5162f9033db7",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 9017,
+          "completion": 0,
+          "total": 9017
+        },
+        "cost_usd": 0.0009017000000000001,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf": {
+        "file_url": "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf",
+        "cache_key": "653e2353ddaa65b511a5f19e3a7c08d5ffd8768b7507e4d1708be94f4c78e2d4",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 16580,
+          "completion": 0,
+          "total": 16580
+        },
+        "cost_usd": 0.0016580000000000002,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf": {
+        "file_url": "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf",
+        "cache_key": "eed60bd6a6a25c1787f4654bf51028d62707257340f180d12d3a2c4624dc5935",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 26762,
+          "completion": 0,
+          "total": 26762
+        },
+        "cost_usd": 0.0026762,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf",
+        "cache_key": "d5ba310a1c8fa9e259b92dba0ab4a3d1707b8e3460cf8d979f3544ec2fa6d9d1",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 5930,
+          "completion": 0,
+          "total": 5930
+        },
+        "cost_usd": 0.0005930000000000001,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf",
+        "cache_key": "6729bee7d5e8fbc920d6beafc6db8f5d93ddbe14595103eeb13dbb4da3c45a64",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3822,
+          "completion": 0,
+          "total": 3822
+        },
+        "cost_usd": 0.0003822,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf",
+        "cache_key": "aa6c57e5dd8e90a3210a9cefd9a69f2c92c3a41ddcc283d3ac49942bad15311e",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3224,
+          "completion": 0,
+          "total": 3224
+        },
+        "cost_usd": 0.00032240000000000003,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf",
+        "cache_key": "7df17ab18021ae72d32652e751be6462ee9c5a068eccbaeaa4ee009d1a0aa4b3",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4731,
+          "completion": 0,
+          "total": 4731
+        },
+        "cost_usd": 0.0004731,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf",
+        "cache_key": "e6fc9cb9e83a1126d63bce829e4f45916d4337bd37bc91877431587eb7eaf946",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4697,
+          "completion": 0,
+          "total": 4697
+        },
+        "cost_usd": 0.0004697,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf",
+        "cache_key": "abd8bb313be6005b81fd537940f0657017367d7a248c4a65eaf4c2e810cb8246",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3845,
+          "completion": 0,
+          "total": 3845
+        },
+        "cost_usd": 0.0003845,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D": {
+        "file_url": "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D",
+        "cache_key": "98e4171c2933b5be6a6f5aadec99bcd4fccae72b7e52ac4251c05daea57ec8a9",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 638,
+          "completion": 0,
+          "total": 638
+        },
+        "cost_usd": 6.38e-05,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf",
+        "cache_key": "4e3000152d650976fe35fa153a78bc0c0440ac81abb0d1e84d05246f2bcddb15",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2042,
+          "completion": 0,
+          "total": 2042
+        },
+        "cost_usd": 0.0002042,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf",
+        "cache_key": "063e4e64c4bf494b0eccf0587a9aeeccf8fc4ff24ac2f768a2cbac13c12d4cf4",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1759,
+          "completion": 0,
+          "total": 1759
+        },
+        "cost_usd": 0.0001759,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf": {
+        "file_url": "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf",
+        "cache_key": "1c8f6b2efcad8c3ee61a5b54f2954628ac2331b5a0eb2febc5db0da6d400bc59",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2483,
+          "completion": 0,
+          "total": 2483
+        },
+        "cost_usd": 0.0002483,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf",
+        "cache_key": "0ee208a8c5bad747418f9f53c2c42bddfec20069207291f7798ca5772038f370",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1804,
+          "completion": 0,
+          "total": 1804
+        },
+        "cost_usd": 0.00018040000000000002,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf",
+        "cache_key": "7249b1a19fe750d582a35ec71130d901ff214314bae0ec76121491bf21cab098",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1730,
+          "completion": 0,
+          "total": 1730
+        },
+        "cost_usd": 0.000173,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf": {
+        "file_url": "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf",
+        "cache_key": "ccbb4ba6e9f8eaebbd52fbcf60780eaaf0cfbefba26665e9f6f6f2d08c260601",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 20822,
+          "completion": 0,
+          "total": 20822
+        },
+        "cost_usd": 0.0020822,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf",
+        "cache_key": "518d2ece9589b91f322cb5e521ccba05b1049d3fde63eaa42b6148eec73ecae0",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 8321,
+          "completion": 0,
+          "total": 8321
+        },
+        "cost_usd": 0.0008321000000000001,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf",
+        "cache_key": "711c3792a7b8786510af0c86eab91df3407ba3fd945bc0b681d39b27d49b4a57",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 13358,
+          "completion": 0,
+          "total": 13358
+        },
+        "cost_usd": 0.0013358,
+        "error": "LLM returned unparseable/empty motions JSON"
+      }
+    },
+    "opencode-go/deepseek-v4.1-flash@default": {
+      "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf": {
+        "file_url": "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf",
+        "cache_key": "3fad510c50929424fbfa9754e4dad489fbbe798664896db026ab94de547346f8",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 7923,
+          "completion": 0,
+          "total": 7923
+        },
+        "cost_usd": 0.00118845,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf": {
+        "file_url": "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf",
+        "cache_key": "3614228739f6a97d2b83a1bb550263b6dc135f4b6f3d3b11c80b3195e88cf4bf",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 14005,
+          "completion": 0,
+          "total": 14005
+        },
+        "cost_usd": 0.0021007499999999998,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf",
+        "cache_key": "0c43a4f6a0c05335c45ccf055f69faa0cf38e205364bb11d69e452e2986f60cd",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 9017,
+          "completion": 0,
+          "total": 9017
+        },
+        "cost_usd": 0.00135255,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf": {
+        "file_url": "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf",
+        "cache_key": "058aa28c9a494eef8baa64c09c1ad6b11837715b141400d22d9314042076ab54",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 16580,
+          "completion": 0,
+          "total": 16580
+        },
+        "cost_usd": 0.002487,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf": {
+        "file_url": "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf",
+        "cache_key": "af30633ea8fb5e02ca725327f059db3095f1bf44eb79fe354904107de4638c06",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 26762,
+          "completion": 0,
+          "total": 26762
+        },
+        "cost_usd": 0.0040143,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf",
+        "cache_key": "29b0a40274ffde395507ac7ed6aae0c2ad974d2f5891bc8ca65483a1c5325356",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 5930,
+          "completion": 0,
+          "total": 5930
+        },
+        "cost_usd": 0.0008895,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf",
+        "cache_key": "be730c64475638ef2f56974688b6408fbf1dc5d15e4dc31adf8311d419f06561",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3822,
+          "completion": 0,
+          "total": 3822
+        },
+        "cost_usd": 0.0005733,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf",
+        "cache_key": "1cfb65fa47de713b60c3fb3aed4dd6a10c4c582d95292f20e815c820e9b825cb",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3224,
+          "completion": 0,
+          "total": 3224
+        },
+        "cost_usd": 0.00048359999999999994,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf",
+        "cache_key": "18c3fa262f8ae3890ee335ceb257f1b2382ff3fae6ce7928faf1d7a594cad35b",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4731,
+          "completion": 0,
+          "total": 4731
+        },
+        "cost_usd": 0.0007096499999999999,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf",
+        "cache_key": "2bd2358f7ab388608168cb09f48c13d8a297d786b50ca6b4a81fac37eaa54c4c",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4697,
+          "completion": 0,
+          "total": 4697
+        },
+        "cost_usd": 0.00070455,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf",
+        "cache_key": "87ff62da1582cbd96a48be2633a33533fc4d6c17ca67e1da91ec604737508b0f",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3845,
+          "completion": 0,
+          "total": 3845
+        },
+        "cost_usd": 0.00057675,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D": {
+        "file_url": "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D",
+        "cache_key": "82e25d438fc0f6a9af95999521a6801f46bf3c9c13107d5b43254a2b5f203b50",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 638,
+          "completion": 0,
+          "total": 638
+        },
+        "cost_usd": 9.57e-05,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf",
+        "cache_key": "d1d693b1b14bc65ae230e1d079d379d3a46eb0abb8715d29b0b55516a7164fc6",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2042,
+          "completion": 0,
+          "total": 2042
+        },
+        "cost_usd": 0.00030629999999999996,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf",
+        "cache_key": "18ad88a70031c7a8e01fe8863cb37c11a2bea096cd4af3799bffaec13862be31",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1759,
+          "completion": 0,
+          "total": 1759
+        },
+        "cost_usd": 0.00026385,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf": {
+        "file_url": "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf",
+        "cache_key": "ad340ed496062d9e94e4dfb91c800011c7de84b3a6aa6a2d3f2da4fa1a29fed0",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2483,
+          "completion": 0,
+          "total": 2483
+        },
+        "cost_usd": 0.00037245,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf",
+        "cache_key": "e4493316e3c2276a969ceb59fa4500888aa88da95ce2a44c5aa6550117c994a2",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1804,
+          "completion": 0,
+          "total": 1804
+        },
+        "cost_usd": 0.0002706,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf",
+        "cache_key": "46656bbb14b7fad0729ab947a630506f15d689e74a599797501d002d175186aa",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1730,
+          "completion": 0,
+          "total": 1730
+        },
+        "cost_usd": 0.00025949999999999997,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf": {
+        "file_url": "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf",
+        "cache_key": "edc0599d348b47a5b2dede91f8cd882405ba8e26260115e2be7c852f7f35c31e",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 20822,
+          "completion": 0,
+          "total": 20822
+        },
+        "cost_usd": 0.0031233,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf",
+        "cache_key": "39fa154c257c91b4ae1d26dafb38054276bf98f1562c62451cfd39a441553dee",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 8321,
+          "completion": 0,
+          "total": 8321
+        },
+        "cost_usd": 0.00124815,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf",
+        "cache_key": "64eaaf940d90e4c0a43a5ad0e6a83514a603944559062c51b601432fa575c3c8",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 13358,
+          "completion": 0,
+          "total": 13358
+        },
+        "cost_usd": 0.0020036999999999998,
+        "error": "LLM returned unparseable/empty motions JSON"
+      }
+    },
+    "opencode-go/deepseek-v4.1-flash@none": {
+      "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf": {
+        "file_url": "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf",
+        "cache_key": "b743f395679e9ea162adf641b9d6efb362aa61e4b39a6b385fa94bd2ed1e6166",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 7923,
+          "completion": 0,
+          "total": 7923
+        },
+        "cost_usd": 0.00118845,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf": {
+        "file_url": "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf",
+        "cache_key": "2ecee045a440fc10b061a6fc04f1d9a694bdc12e725dce3465c326d184df11f3",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 14005,
+          "completion": 0,
+          "total": 14005
+        },
+        "cost_usd": 0.0021007499999999998,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf",
+        "cache_key": "896077cad46903c3f9fd16128ac29770409f47061ceaaa5aedd987976af6bbfb",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 9017,
+          "completion": 0,
+          "total": 9017
+        },
+        "cost_usd": 0.00135255,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf": {
+        "file_url": "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf",
+        "cache_key": "30d273c5f7ddf1ab7859c9a6ae06891bbacd1c12348369351910e58fc595010d",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 16580,
+          "completion": 0,
+          "total": 16580
+        },
+        "cost_usd": 0.002487,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf": {
+        "file_url": "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf",
+        "cache_key": "c3c039dd48470ab61eb2e4756ed9e8e9f2731302c1287a3f8572ee1a57d8238b",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 26762,
+          "completion": 0,
+          "total": 26762
+        },
+        "cost_usd": 0.0040143,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf",
+        "cache_key": "3f30fa3f0ac316aa18f0d866007879a627fe67abef793a9d4f4593868b4c9e8e",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 5930,
+          "completion": 0,
+          "total": 5930
+        },
+        "cost_usd": 0.0008895,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf",
+        "cache_key": "b7572c01b5d57671509f1fca89263eed5019d847ca8079324660e9e6cc443bb3",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3822,
+          "completion": 0,
+          "total": 3822
+        },
+        "cost_usd": 0.0005733,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf",
+        "cache_key": "3ab9fcee57c7f638c0f2d0dd391be8ee5de204336f46a37ee5388a04803cc1df",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3224,
+          "completion": 0,
+          "total": 3224
+        },
+        "cost_usd": 0.00048359999999999994,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf",
+        "cache_key": "76db09499783c652c8555e62011d7eb632efde31dae96dcef2d627120ea62314",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4731,
+          "completion": 0,
+          "total": 4731
+        },
+        "cost_usd": 0.0007096499999999999,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf",
+        "cache_key": "384b7b518006d9f09f3e597b0c60d0ef2bda38a6fa48e4d1c67195848e28371f",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4697,
+          "completion": 0,
+          "total": 4697
+        },
+        "cost_usd": 0.00070455,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf",
+        "cache_key": "70890341cc2f7530db5049dda7b95e19507bfe0a9a61cd03ed81c7349d1237b7",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3845,
+          "completion": 0,
+          "total": 3845
+        },
+        "cost_usd": 0.00057675,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D": {
+        "file_url": "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D",
+        "cache_key": "03eba0628d15f791a730aa7c394e35a8f708a940a6fc440c46b7665ebd4da961",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 638,
+          "completion": 0,
+          "total": 638
+        },
+        "cost_usd": 9.57e-05,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf",
+        "cache_key": "c411744c0af41610e7cc3a9f360669e8cb9e1125c837a4cf9429c397b6871fe2",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2042,
+          "completion": 0,
+          "total": 2042
+        },
+        "cost_usd": 0.00030629999999999996,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf",
+        "cache_key": "3a812371ba8e8c13970ba39c4588ffdb8ac256f7da67623af404429638cc9f79",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1759,
+          "completion": 0,
+          "total": 1759
+        },
+        "cost_usd": 0.00026385,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf": {
+        "file_url": "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf",
+        "cache_key": "a79f6ad47c5d5d2bacbd8b4592b3b791a1856ce0236df6e723315c51882c2a6a",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2483,
+          "completion": 0,
+          "total": 2483
+        },
+        "cost_usd": 0.00037245,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf",
+        "cache_key": "246bc5ceb0b15bcf77e49b531b2c61c675e2667aff454842106d417d338c83cf",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1804,
+          "completion": 0,
+          "total": 1804
+        },
+        "cost_usd": 0.0002706,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf",
+        "cache_key": "f80d84039d51ecba3395d6095538f78e0e45380768d849a0d895e668a2d4c70a",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1730,
+          "completion": 0,
+          "total": 1730
+        },
+        "cost_usd": 0.00025949999999999997,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf": {
+        "file_url": "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf",
+        "cache_key": "a742a0af1c5c6514686eb4a97abef82639e966823ec8300d64fb103a9842571a",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 20822,
+          "completion": 0,
+          "total": 20822
+        },
+        "cost_usd": 0.0031233,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf",
+        "cache_key": "8f792ee858527f1d13181d6c59b06e244750095e4d326f6048ef5c24eea71ebf",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 8321,
+          "completion": 0,
+          "total": 8321
+        },
+        "cost_usd": 0.00124815,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf",
+        "cache_key": "adac0f981d36316c7fc1e20e46e42584873103e891976b07eca7dcfbf6a8082a",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 13358,
+          "completion": 0,
+          "total": 13358
+        },
+        "cost_usd": 0.0020036999999999998,
+        "error": "LLM returned unparseable/empty motions JSON"
+      }
+    },
+    "opencode-go/glm-5.3-flash@default": {
+      "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf": {
+        "file_url": "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf",
+        "cache_key": "91cb06920dac57c547704eeaa4edc9593ca6aaec2f8a2510e1db185d66356236",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 7923,
+          "completion": 0,
+          "total": 7923
+        },
+        "cost_usd": 0.00118845,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf": {
+        "file_url": "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf",
+        "cache_key": "d55da4872b449f53ef90802a48f5d7520f63d7c7fbd4787f4e896a702c040252",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 14005,
+          "completion": 0,
+          "total": 14005
+        },
+        "cost_usd": 0.0021007499999999998,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf",
+        "cache_key": "da10115c6416fd79c2d4739651f8c845a5cabc30232e61f453bc00f1ca59633b",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 9017,
+          "completion": 0,
+          "total": 9017
+        },
+        "cost_usd": 0.00135255,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf": {
+        "file_url": "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf",
+        "cache_key": "8422067bf39120d61724fde5260ffdce58c03c8df46f1572cf7fc801da336dfa",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 16580,
+          "completion": 0,
+          "total": 16580
+        },
+        "cost_usd": 0.002487,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf": {
+        "file_url": "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf",
+        "cache_key": "8483cfeade825c1d64775979280a2ad876f743b577e1b2e58ab625f3a3bc6313",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 26762,
+          "completion": 0,
+          "total": 26762
+        },
+        "cost_usd": 0.0040143,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf",
+        "cache_key": "451aca26e8bc45830b93529477ad6465687f9f55606bd97c51b513fa1933c79b",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 5930,
+          "completion": 0,
+          "total": 5930
+        },
+        "cost_usd": 0.0008895,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf",
+        "cache_key": "1a4a23832b97ffb732b022f4511e7f5d585605220b7ffc72d54f7743aa66ea1c",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3822,
+          "completion": 0,
+          "total": 3822
+        },
+        "cost_usd": 0.0005733,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf",
+        "cache_key": "ddf7b565455619c8758c2dc410e5d928ed66a68200136cf75d807bb0a3dc345b",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3224,
+          "completion": 0,
+          "total": 3224
+        },
+        "cost_usd": 0.00048359999999999994,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf",
+        "cache_key": "ee175b5ab7a68a059215277e3a01fd559074a02c8f3cead66e92696e3aae5425",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4731,
+          "completion": 0,
+          "total": 4731
+        },
+        "cost_usd": 0.0007096499999999999,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf",
+        "cache_key": "124a72217f7c3329c13e431b2b31eaffb115ff93d2e2e7891965b5d15f15de6e",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4697,
+          "completion": 0,
+          "total": 4697
+        },
+        "cost_usd": 0.00070455,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf",
+        "cache_key": "426481db7eeb104788da7f7e2f6ecb20cf504864e3b35f40396769178ea0e7d5",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3845,
+          "completion": 0,
+          "total": 3845
+        },
+        "cost_usd": 0.00057675,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D": {
+        "file_url": "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D",
+        "cache_key": "2e9b83d1a157bba4b777515c29d0fd6158cc3c2981c31ec29f8614cf42d13536",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 638,
+          "completion": 0,
+          "total": 638
+        },
+        "cost_usd": 9.57e-05,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf",
+        "cache_key": "cde4c94dedef6c7894749601eee746daffb3142532977f2b05581f42a706e46b",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2042,
+          "completion": 0,
+          "total": 2042
+        },
+        "cost_usd": 0.00030629999999999996,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf",
+        "cache_key": "353bfff2cc21d0ef545bc7a57a321ff821234343566b2a5c9b3f5226674b9bec",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1759,
+          "completion": 0,
+          "total": 1759
+        },
+        "cost_usd": 0.00026385,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf": {
+        "file_url": "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf",
+        "cache_key": "e30ad815c0536d16d7a82ca957f8024f086e892df2c1099774f8bf2c2dcb5d1f",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2483,
+          "completion": 0,
+          "total": 2483
+        },
+        "cost_usd": 0.00037245,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf",
+        "cache_key": "bd4aef7b164076ccdf652ecf7df64aaca2e778bd9ce0b3cb354df7fa98624ec6",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1804,
+          "completion": 0,
+          "total": 1804
+        },
+        "cost_usd": 0.0002706,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf",
+        "cache_key": "ba2473d52b862575103dad093eabb5de64dfcd127d19dfb2c3fd9c2cd2eb2005",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1730,
+          "completion": 0,
+          "total": 1730
+        },
+        "cost_usd": 0.00025949999999999997,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf": {
+        "file_url": "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf",
+        "cache_key": "9ad7057e0d44e7b690df729b124bb6cfce80a446c5710ee1cf2ff6912a73b74a",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 20822,
+          "completion": 0,
+          "total": 20822
+        },
+        "cost_usd": 0.0031233,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf",
+        "cache_key": "a841d055b362bf5f1a99370d7b44529bba1cb201f8d13057c9370f00d3f9370b",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 8321,
+          "completion": 0,
+          "total": 8321
+        },
+        "cost_usd": 0.00124815,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf",
+        "cache_key": "c7a52eb81b2c430101ef419c70314a9374c4ead59181f00e4f53b5e70cb04526",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 13358,
+          "completion": 0,
+          "total": 13358
+        },
+        "cost_usd": 0.0020036999999999998,
+        "error": "LLM returned unparseable/empty motions JSON"
+      }
+    },
+    "opencode-go/glm-5.3-flash@none": {
+      "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf": {
+        "file_url": "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf",
+        "cache_key": "cfbb269565a176219937dff8c88a4b632cd962da2e579654b0730452192a89a4",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 7923,
+          "completion": 0,
+          "total": 7923
+        },
+        "cost_usd": 0.00118845,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf": {
+        "file_url": "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf",
+        "cache_key": "747c0ad14e3c7516b8ad3d1e2a2db7aa1720933057d4c9cc605275e122df867a",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 14005,
+          "completion": 0,
+          "total": 14005
+        },
+        "cost_usd": 0.0021007499999999998,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf",
+        "cache_key": "8235e9ffaede66c0d4218423aed04999eb49aeb277397ca31ddd19244863856a",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 9017,
+          "completion": 0,
+          "total": 9017
+        },
+        "cost_usd": 0.00135255,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf": {
+        "file_url": "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf",
+        "cache_key": "19c6348f170743bb3d6d22f1da8734112ae20215c8ab96206550068f48d2ce3c",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 16580,
+          "completion": 0,
+          "total": 16580
+        },
+        "cost_usd": 0.002487,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf": {
+        "file_url": "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf",
+        "cache_key": "1a9413b94f65e7a87e756f02ad3f0ae700421c4c6271b5861fdf5df49644ddae",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 26762,
+          "completion": 0,
+          "total": 26762
+        },
+        "cost_usd": 0.0040143,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf",
+        "cache_key": "d4432fa11052f002af9ef247257fd76b95eca425dba3549800a321a86127319c",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 5930,
+          "completion": 0,
+          "total": 5930
+        },
+        "cost_usd": 0.0008895,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf",
+        "cache_key": "bf00dc3755976f15540a820ab0be5142214fe86c1bf108929b89c1c8936baf11",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3822,
+          "completion": 0,
+          "total": 3822
+        },
+        "cost_usd": 0.0005733,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf",
+        "cache_key": "4d30d8e3553bc5e061027a7623d1db19b3c818c65267f30d78e7d4f98c3ab997",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3224,
+          "completion": 0,
+          "total": 3224
+        },
+        "cost_usd": 0.00048359999999999994,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf",
+        "cache_key": "3e2a89dd5e414299f558004b1192e6251419e7150edf70d88e680e9c77ea7a11",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4731,
+          "completion": 0,
+          "total": 4731
+        },
+        "cost_usd": 0.0007096499999999999,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf",
+        "cache_key": "54424abd74107d6beb6b015be3e469a3f8926d9d361e088b3bb85b6e886915a2",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4697,
+          "completion": 0,
+          "total": 4697
+        },
+        "cost_usd": 0.00070455,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf",
+        "cache_key": "030d1269eff6947904050609e842d20e924709f4f3e2a07dc4ff54c3dbc8c409",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3845,
+          "completion": 0,
+          "total": 3845
+        },
+        "cost_usd": 0.00057675,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D": {
+        "file_url": "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D",
+        "cache_key": "d6ac90fb89567eb6df8dfb52fbc2ed0976728b8025a28c10f150b97ee964bd82",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 638,
+          "completion": 0,
+          "total": 638
+        },
+        "cost_usd": 9.57e-05,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf",
+        "cache_key": "66a31a02201967e5060e6f735362c1aefeea4da065c95eb9d5441314debcdb36",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2042,
+          "completion": 0,
+          "total": 2042
+        },
+        "cost_usd": 0.00030629999999999996,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf",
+        "cache_key": "066a04e2276d768195580bc518325f0874a010bf2b6cceb344a0d2cb62156e0b",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1759,
+          "completion": 0,
+          "total": 1759
+        },
+        "cost_usd": 0.00026385,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf": {
+        "file_url": "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf",
+        "cache_key": "1a946c802de737d46e727138183d1197c35fb85893d9fab1fe22c7f39c4ccc41",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2483,
+          "completion": 0,
+          "total": 2483
+        },
+        "cost_usd": 0.00037245,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf",
+        "cache_key": "f5a6cc98f0b4b2e4fcfc944842be9eefb118facbb97a4fd0a30781828d33cafb",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1804,
+          "completion": 0,
+          "total": 1804
+        },
+        "cost_usd": 0.0002706,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf",
+        "cache_key": "d38a9be2b9ac46a04976444c167d8b7186259844808028d8517120c6bed3fb9f",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1730,
+          "completion": 0,
+          "total": 1730
+        },
+        "cost_usd": 0.00025949999999999997,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf": {
+        "file_url": "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf",
+        "cache_key": "510dd79c385901a71e46d242e687a68375c03c622012beeb7169a2c0fd512fd6",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 20822,
+          "completion": 0,
+          "total": 20822
+        },
+        "cost_usd": 0.0031233,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf",
+        "cache_key": "1aaf04e861ea451005735401ed8388d71be9d91b7cf2d9a3cda0e90d433eed49",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 8321,
+          "completion": 0,
+          "total": 8321
+        },
+        "cost_usd": 0.00124815,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf",
+        "cache_key": "16e9034e6dfde11283bc8b3f4d633c0a08aa86d9e376ab4a653cf92cb4fce6d8",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 13358,
+          "completion": 0,
+          "total": 13358
+        },
+        "cost_usd": 0.0020036999999999998,
+        "error": "LLM returned unparseable/empty motions JSON"
+      }
+    },
+    "opencode-go/qwen3.8-flash@default": {
+      "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf": {
+        "file_url": "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf",
+        "cache_key": "e6de1036e2af368c4887189ae9e86aefb1ea065939a9b72f83ca8dd1c5a64a2d",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 7923,
+          "completion": 0,
+          "total": 7923
+        },
+        "cost_usd": 0.00118845,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf": {
+        "file_url": "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf",
+        "cache_key": "41ca0aeff6354214b3101edaeacd2598d1c99492e1df930ad171acc7c483d5cf",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 14005,
+          "completion": 0,
+          "total": 14005
+        },
+        "cost_usd": 0.0021007499999999998,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf",
+        "cache_key": "cf3112b3f27f88873b9810e5c9cbe4b205d06ae21d3af4338e150de86c255f9c",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 9017,
+          "completion": 0,
+          "total": 9017
+        },
+        "cost_usd": 0.00135255,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf": {
+        "file_url": "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf",
+        "cache_key": "756f8670230f94072d6661113ded2cbf043455135fc149fb6bcca13ee938df85",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 16580,
+          "completion": 0,
+          "total": 16580
+        },
+        "cost_usd": 0.002487,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf": {
+        "file_url": "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf",
+        "cache_key": "c9c25a8903d2b96d0a7d4a8f3c5fbc1a40dc6eb70efb18b660da3dc080ebdb62",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 26762,
+          "completion": 0,
+          "total": 26762
+        },
+        "cost_usd": 0.0040143,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf",
+        "cache_key": "5a7f3fdf0e5221ff3456da14c9bbb720092e842ac293f93cf047df39271af250",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 5930,
+          "completion": 0,
+          "total": 5930
+        },
+        "cost_usd": 0.0008895,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf",
+        "cache_key": "4932b080120ad2725ecd030fd7174ee181c0cc2af1ae0b2c7441b8d2595c2cc3",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3822,
+          "completion": 0,
+          "total": 3822
+        },
+        "cost_usd": 0.0005733,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf",
+        "cache_key": "bc2bac1b5a2822cdb224dcd93aa870c290f9dd1806fbd935c58f5f0543456350",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3224,
+          "completion": 0,
+          "total": 3224
+        },
+        "cost_usd": 0.00048359999999999994,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf",
+        "cache_key": "70e11b68a4a1803b60567ce33e7c4dedd14f3aaa26a491f48e651b77fec076e1",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4731,
+          "completion": 0,
+          "total": 4731
+        },
+        "cost_usd": 0.0007096499999999999,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf",
+        "cache_key": "2b6620dc5ce35639c01836ed6497a00f2908e82b6caeb42903fa5b8ad005c365",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4697,
+          "completion": 0,
+          "total": 4697
+        },
+        "cost_usd": 0.00070455,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf",
+        "cache_key": "ca29cb0a7833ce781071c5716c22eb73fa60f76d7adf1086b089ee284e3d4493",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3845,
+          "completion": 0,
+          "total": 3845
+        },
+        "cost_usd": 0.00057675,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D": {
+        "file_url": "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D",
+        "cache_key": "c3a8bbad997d57d3c8a65ddbec265cc51a11d1ae1b4b73eaa7a3a7f2c3878631",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 638,
+          "completion": 0,
+          "total": 638
+        },
+        "cost_usd": 9.57e-05,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf",
+        "cache_key": "e8627ab0f47ce1bc60527f143733081dcb9312d8a9d720492d61eec050e65526",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2042,
+          "completion": 0,
+          "total": 2042
+        },
+        "cost_usd": 0.00030629999999999996,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf",
+        "cache_key": "6476180ccb4f83eaf3a69d70dd098bf4c5129823abd3854887ec5deb4b545695",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1759,
+          "completion": 0,
+          "total": 1759
+        },
+        "cost_usd": 0.00026385,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf": {
+        "file_url": "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf",
+        "cache_key": "dcd19f6cef21c4a43b6f1c5c907771a01090addfd1baa178a51e8c7ce93b3df1",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2483,
+          "completion": 0,
+          "total": 2483
+        },
+        "cost_usd": 0.00037245,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf",
+        "cache_key": "e457370058141df337f48d52186144b0c4980a808e912765639592c13fb52e82",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1804,
+          "completion": 0,
+          "total": 1804
+        },
+        "cost_usd": 0.0002706,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf",
+        "cache_key": "2b91c0ec96b283631c879d2c976e33f5164f194e6d81b5458c379098229135df",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1730,
+          "completion": 0,
+          "total": 1730
+        },
+        "cost_usd": 0.00025949999999999997,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf": {
+        "file_url": "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf",
+        "cache_key": "5b374b3055e9eb38bbe4c20446b5385dc404c1c9bdc5d4e0896cbec33fddc34e",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 20822,
+          "completion": 0,
+          "total": 20822
+        },
+        "cost_usd": 0.0031233,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf",
+        "cache_key": "fd79b086e55f6603300ea51b3a56df8f72aa83c2435a8e5ebe0bc4032db5d6a9",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 8321,
+          "completion": 0,
+          "total": 8321
+        },
+        "cost_usd": 0.00124815,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf",
+        "cache_key": "5a90cdb07a186211a124819920bc98400a7b542a98219c6cde6c2423e6987c09",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 13358,
+          "completion": 0,
+          "total": 13358
+        },
+        "cost_usd": 0.0020036999999999998,
+        "error": "LLM returned unparseable/empty motions JSON"
+      }
+    },
+    "opencode-go/qwen3.8-flash@none": {
+      "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf": {
+        "file_url": "https://www.kilkennycoco.ie/eng/your_council/council_meetings/kilkenny_county_council_ordinary_meetings/2026-council-meetings/3-minutes-july-plenary-meeting-20-07-2027.pdf",
+        "cache_key": "7f28f02b50dafb7165fd07cafdabd03a17704026267d1297d77a6ced00227267",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 7923,
+          "completion": 0,
+          "total": 7923
+        },
+        "cost_usd": 0.00118845,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf": {
+        "file_url": "https://monaghan.ie/wp-content/uploads/2026/09/Special-Council-Mtg-Minutes-20-July-2026.pdf",
+        "cache_key": "0d7b6b89033992396926ee9388d5507cdafb52734fc4d40f0f30f8b2fd687d8a",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 14005,
+          "completion": 0,
+          "total": 14005
+        },
+        "cost_usd": 0.0021007499999999998,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2022/Minutes/250422 MINS Full Council.pdf",
+        "cache_key": "67a503aa04249e82eb276e4f14ba7f6c8ef42e48efef7057db10b06475e3dc4f",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 9017,
+          "completion": 0,
+          "total": 9017
+        },
+        "cost_usd": 0.00135255,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf": {
+        "file_url": "https://files.galwaycity.ie/uploads/downloads/council_meetings/110319_01_Minutes.pdf",
+        "cache_key": "bf997323f2e461f126413638b4e029e15e86525d57df3b48f4e94dfde4c461c0",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 16580,
+          "completion": 0,
+          "total": 16580
+        },
+        "cost_usd": 0.002487,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf": {
+        "file_url": "https://www.wicklow.ie/Portals/0/adam/Documents/Vcvk_QtIzkqYFjGiRwkYUQ/Link/Minutes Ordinary 13th April 2026s.pdf",
+        "cache_key": "bb1f33d672a4c6e011834a095f99a97cc2f37918ad0a9661832e313c9d316533",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 26762,
+          "completion": 0,
+          "total": 26762
+        },
+        "cost_usd": 0.0040143,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/April-2020-Minutes.pdf",
+        "cache_key": "852d24c064ae216f6a21063671916681cf12ed28ee1c47046225e81598286fc9",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 5930,
+          "completion": 0,
+          "total": 5930
+        },
+        "cost_usd": 0.0008895,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/12-2014%20-%20December%20Laytown-Bettystown%20Municipal%20District%20Minutes.pdf",
+        "cache_key": "3f97abbb35eeed182d33eddc8c899c97b9f4344ac9ffb25d8a40d9e4fc480956",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3822,
+          "completion": 0,
+          "total": 3822
+        },
+        "cost_usd": 0.0005733,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-06/03-2016%20Minutes%20March%20Navan%20Municipal%20District.pdf",
+        "cache_key": "64d5ab284505eaaebea3422dcad7cccc1b7cf8b07227189271d4527cc6f5f209",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3224,
+          "completion": 0,
+          "total": 3224
+        },
+        "cost_usd": 0.00048359999999999994,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/26_03_23_SIGNED-Minutes-of-Special-In-committee-Meeting-of-Offaly-County-Council.pdf",
+        "cache_key": "f3af2b1d0908b0265288f43f66b99bacc09851160840134ce544ec0b36916339",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4731,
+          "completion": 0,
+          "total": 4731
+        },
+        "cost_usd": 0.0007096499999999999,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-01/11-2022%20Signed%20Minutes%20November%20Kells%20MD.pdf",
+        "cache_key": "88988be46b99f07e6fc4584a90aa4ff2462771efd6ee3def992e6a138e12c1d7",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 4697,
+          "completion": 0,
+          "total": 4697
+        },
+        "cost_usd": 0.00070455,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-10/09-2022%20Signed%20Minutes%20September%20Ratoath%20MD.pdf",
+        "cache_key": "5c9a228e05edf2a8c35d1ba95aa06dd6a648f9e6cb2d6d10df2a402c9b5d3b24",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 3845,
+          "completion": 0,
+          "total": 3845
+        },
+        "cost_usd": 0.00057675,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D": {
+        "file_url": "https://files.galwaycity.ie/gcccouncilmeetings/?r=/download&path=LzAxLiBDb3VuY2lsIE1lZXRpbmdzLzIwMjYvMDUuIE1heS8hQWRvcHRlZCBNaW51dGVzIE1heSBQbGVuYXJ5IE1lZXRpbmcgMTEuMDUuMjAyNi5wZGY%3D",
+        "cache_key": "cdc89be72479211d680914cd52970fad26e409a1fbe12b3897a21ff5eb355dce",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 638,
+          "completion": 0,
+          "total": 638
+        },
+        "cost_usd": 9.57e-05,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2021-04/03-2021%20Minutes%20March%20Kells%20Municipal%20District.pdf",
+        "cache_key": "b7b12e5369d75811f888d974961cededc2b2af20b008cbe75906471f70da6b61",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2042,
+          "completion": 0,
+          "total": 2042
+        },
+        "cost_usd": 0.00030629999999999996,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2023-11/10-2023%20Minutes%20October%20Ratoath%20Municipal%20District.pdf",
+        "cache_key": "495c1d38cb25033f0402c9fb92b90ac6f5dacec298a9c3f58a995688a215d3f8",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1759,
+          "completion": 0,
+          "total": 1759
+        },
+        "cost_usd": 0.00026385,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf": {
+        "file_url": "https://www.tipperarycoco.ie/sites/default/files/2023-06/MInutes_LCDC_Meeting_MAR_2016.pdf",
+        "cache_key": "8628f1fe50085a5b3165734372fdf2806e613f122710ad578e02f19f04d1fb43",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 2483,
+          "completion": 0,
+          "total": 2483
+        },
+        "cost_usd": 0.00037245,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2022-02/01-2022%20Minutes%20January%20Trim%20MD%20Signed.pdf",
+        "cache_key": "4726b5c2819ad18eb6a954ce74768fb06a9bf085c8970939be32ecb3d26edbe9",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1804,
+          "completion": 0,
+          "total": 1804
+        },
+        "cost_usd": 0.0002706,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf": {
+        "file_url": "https://www.offaly.ie/app/uploads/Council/Edenderry-Municipal-District/January-2026-EMD-main-meeting-minutes.pdf",
+        "cache_key": "452d7865cfb47f808ebfcf0faaa784ed2036bb6f49c154f8f51281d4119b54f4",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 1730,
+          "completion": 0,
+          "total": 1730
+        },
+        "cost_usd": 0.00025949999999999997,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf": {
+        "file_url": "https://www.corkcity.ie/media/fs3pnmsa/minutes-council-meeting-160614.pdf",
+        "cache_key": "f3f3fd02d8f8e9fd7184b522fea1c9a5303ea40be388d6cfbee2c0a06f9c17e8",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 20822,
+          "completion": 0,
+          "total": 20822
+        },
+        "cost_usd": 0.0031233,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf": {
+        "file_url": "https://www.meath.ie/system/files/media/file-uploads/2019-07/September%202011%20Special%20Planning%20Meeting%20Minutes.pdf",
+        "cache_key": "17557d0fc82f3bd66401d1c99509e2d7b1a85abb3f1345ba8457d0893f1c70e0",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 8321,
+          "completion": 0,
+          "total": 8321
+        },
+        "cost_usd": 0.00124815,
+        "error": "LLM returned unparseable/empty motions JSON"
+      },
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf": {
+        "file_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/FullCouncil/ArchivedMeetings/2023/Minutes/250923 Mins Full Council.pdf",
+        "cache_key": "4d5847368c143d71d3bcf1c02680889a61874e16f439754e84b7564db3339120",
+        "motions": null,
+        "stated_date": null,
+        "tokens": {
+          "prompt": 13358,
+          "completion": 0,
+          "total": 13358
+        },
+        "cost_usd": 0.0020036999999999998,
+        "error": "LLM returned unparseable/empty motions JSON"
+      }
+    }
+  }
+}

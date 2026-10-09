@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import parse_qs, urldefrag, urljoin, urlparse
 
+import requests
 from bs4 import BeautifulSoup
 
 from lib.cli_utils import add_common_args, filter_by_public_body
@@ -83,7 +84,7 @@ def _extract_date(text: str):
         except ValueError:
             return None
     # D Month YYYY  or  D MonthName YYYY
-    m = re.search(r"(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})", text)
+    m = re.search(r"(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]+)\s+(\d{4})", text)
     if m:
         day, month_name, year = m.group(1), m.group(2).lower(), m.group(3)
         month = _MONTHS.get(month_name)
@@ -91,6 +92,13 @@ def _extract_date(text: str):
             return None
         try:
             return datetime(int(year), month, int(day)).date().isoformat()
+        except ValueError:
+            return None
+    # DDMMYYYY run, e.g. Mayo's Item01_Minutes_Monthly_11052026.pdf
+    m = re.search(r"(?<!\d)(\d{2})(\d{2})((?:19|20)\d{2})(?!\d)", text)
+    if m:
+        try:
+            return datetime(int(m.group(3)), int(m.group(2)), int(m.group(1))).date().isoformat()
         except ValueError:
             return None
     return None
@@ -323,6 +331,69 @@ def _collect_walk(source, base_url, walk, excluded_out):
     return records
 
 
+def _hidden_fields(soup):
+    return {str(i["name"]): str(i.get("value", ""))
+            for i in soup.find_all("input", type="hidden") if i.get("name")}
+
+
+def _post_form(url, soup, **fields):
+    """POST `fields` over the hidden form state (__VIEWSTATE and friends)
+    carried by `soup`; returns the parsed response, or None if not HTML."""
+    response = fetch("POST", url, data={**_hidden_fields(soup), **fields},
+                     allow_redirects=True)
+    if not _is_html(response):
+        return None
+    return BeautifulSoup(response.text, "html.parser")
+
+
+def _collect_postback(source, base_url, postback, excluded_out):
+    """Opt-in ASP.NET WebForms driver, configured per source by the override's
+    `postback` (Mayo's eagenda has no per-meeting URLs). Click
+    `entry_button` once, then for each option of the `date_select` dropdown
+    (newest first, at most `max_meetings`) POST the date and then the
+    `type_select` = `type_value`, each time echoing the previous page's
+    hidden form state. Links on the final page whose text matches the
+    `file_text` regex are classified like any other minutes link; a meeting
+    that fails is logged to `excluded_out` and skipped."""
+    file_text = re.compile(postback["file_text"], re.IGNORECASE)
+    date_select, type_select = postback["date_select"], postback["type_select"]
+    landing = _fetch_soup(base_url)
+    if landing is None:
+        return []
+    county = _post_form(base_url, landing, **{postback["entry_button"]: "x"})
+    select = county.find("select", attrs={"name": date_select}) if county else None
+    if select is None:
+        return []
+    dates = [str(o["value"]) for o in select.find_all("option", value=True)
+             if _YEAR_ANYWHERE_RE.search(str(o["value"]))]
+    records, seen = [], set()
+    for date in dates[:postback["max_meetings"]]:
+        try:
+            chosen = _post_form(base_url, county, __EVENTTARGET=date_select,
+                                **{date_select: date})
+            final = chosen and _post_form(
+                base_url, chosen, __EVENTTARGET=type_select,
+                **{date_select: date, type_select: postback["type_value"]})
+        except (requests.RequestException, RuntimeError) as exc:
+            if excluded_out is not None:
+                excluded_out.append({
+                    "step": STEP_NAME,
+                    "timestamp": datetime.now(timezone.utc).isoformat(),
+                    "error_type": "PostbackMeetingFailed",
+                    "error_message": f"{date}: {exc}",
+                    "context": {"minutes_page_url": base_url,
+                                "public_body_id": source["public_body_id"]},
+                })
+            continue
+        if final is None:
+            continue
+        for link in final.find_all("a", href=True):
+            full = urljoin(base_url, str(link["href"]))
+            if is_safe_url(full) and file_text.search(link.get_text(" ", strip=True)):
+                _collect_pdf_link(link, full, source, records, excluded_out, seen=seen)
+    return records
+
+
 def collect_minutes_links(source, base_url, excluded_out=None):
     """Collect minutes PDF links from a minutes page, following year-looking
     anchor links one level deep — or, when the source carries a `walk`
@@ -330,6 +401,8 @@ def collect_minutes_links(source, base_url, excluded_out=None):
     (see `_collect_walk`). Returns a list of record dicts. Links
     excluded as archival/historical are appended to `excluded_out` (when
     given) as error dicts for the caller to log — never silently dropped."""
+    if source.get("postback"):
+        return _collect_postback(source, base_url, source["postback"], excluded_out)
     if source.get("walk"):
         return _collect_walk(source, base_url, source["walk"], excluded_out)
     records = []

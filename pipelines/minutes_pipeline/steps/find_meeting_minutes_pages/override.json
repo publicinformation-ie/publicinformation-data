@@ -220,9 +220,17 @@
   {
     "public_body_id": 1508,
     "municipal_district": null,
-    "minutes_page_url": "https://www.mayo.ie/en-ie/your-council/governance-and-democracy/meetings-agendas",
+    "minutes_page_url": "https://eagenda.mayo.ie/",
     "source_method": "manual",
-    "overridden": true
+    "overridden": true,
+    "postback": {
+      "entry_button": "btn_County_Council",
+      "date_select": "ddlSelectCouncilDate",
+      "type_select": "ddlSelectCouncilType",
+      "type_value": "Monthly",
+      "max_meetings": 400,
+      "file_text": "^(?!.*\\b(Municipal|District|MD|Area|SPC|Committee)\\b)(?=.*\\bMinutes\\b)"
+    }
   },
   {
     "public_body_id": 1670,
