@@ -308,8 +308,8 @@
     "source_method": "manual",
     "overridden": true,
     "walk": {
-      "detail_url": "/minutes-(?!of-)[^/.]*/?$",
-      "detail_text": "(?s)^(?!.*(Committee|Strategic|Audit)).*",
+      "detail_url": "(/minutes-(?!of-)[^/.]*/?$|/node/\\d+$)",
+      "detail_text": "(?s)^(?=.*\\bMinutes of\\b)(?!.*(Committee|Strategic|Audit)).*",
       "paginate": "next",
       "max_listing_pages": 1,
       "html_selector": ".lgd-region__inner--content"
