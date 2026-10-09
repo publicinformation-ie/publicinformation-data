@@ -84,7 +84,7 @@ def _extract_date(text: str):
         except ValueError:
             return None
     # D Month YYYY  or  D MonthName YYYY
-    m = re.search(r"(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]+)\s+(\d{4})", text)
+    m = re.search(r"(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]+),?\s+(\d{4})", text)
     if m:
         day, month_name, year = m.group(1), m.group(2).lower(), m.group(3)
         month = _MONTHS.get(month_name)
@@ -350,12 +350,16 @@ def _collect_postback(source, base_url, postback, excluded_out):
     """Opt-in ASP.NET WebForms driver, configured per source by the override's
     `postback` (Mayo's eagenda has no per-meeting URLs). Click
     `entry_button` once, then for each option of the `date_select` dropdown
-    (newest first, at most `max_meetings`) POST the date and then the
-    `type_select` = `type_value`, each time echoing the previous page's
-    hidden form state. Links on the final page whose text matches the
-    `file_text` regex are classified like any other minutes link; a meeting
+    (newest first, at most `max_meetings`) POST the date, then each agenda
+    type the meeting offers in `type_select` (Monthly, Budget, Special, ...;
+    the "Select ..." placeholder is skipped), each time echoing the previous
+    page's hidden form state. Links on a type's page whose text matches the
+    `file_text` regex are classified like any other minutes link, with the
+    optional `document_url` regex admitting non-PDF links (.docx). A meeting
     that fails is logged to `excluded_out` and skipped."""
     file_text = re.compile(postback["file_text"], re.IGNORECASE)
+    document_url = (re.compile(postback["document_url"], re.IGNORECASE)
+                    if postback.get("document_url") else None)
     date_select, type_select = postback["date_select"], postback["type_select"]
     landing = _fetch_soup(base_url)
     if landing is None:
@@ -371,9 +375,13 @@ def _collect_postback(source, base_url, postback, excluded_out):
         try:
             chosen = _post_form(base_url, county, __EVENTTARGET=date_select,
                                 **{date_select: date})
-            final = chosen and _post_form(
-                base_url, chosen, __EVENTTARGET=type_select,
-                **{date_select: date, type_select: postback["type_value"]})
+            type_box = (chosen.find("select", attrs={"name": type_select})
+                        if chosen else None)
+            types = [str(o["value"]) for o in type_box.find_all("option", value=True)
+                     if not str(o["value"]).lower().startswith("select")] if type_box else []
+            pages = [_post_form(base_url, chosen, __EVENTTARGET=type_select,
+                                **{date_select: date, type_select: kind})
+                     for kind in types]
         except (requests.RequestException, RuntimeError) as exc:
             if excluded_out is not None:
                 excluded_out.append({
@@ -385,12 +393,12 @@ def _collect_postback(source, base_url, postback, excluded_out):
                                 "public_body_id": source["public_body_id"]},
                 })
             continue
-        if final is None:
-            continue
-        for link in final.find_all("a", href=True):
-            full = urljoin(base_url, str(link["href"]))
-            if is_safe_url(full) and file_text.search(link.get_text(" ", strip=True)):
-                _collect_pdf_link(link, full, source, records, excluded_out, seen=seen)
+        for final in filter(None, pages):
+            for link in final.find_all("a", href=True):
+                full = urljoin(base_url, str(link["href"]))
+                if is_safe_url(full) and file_text.search(link.get_text(" ", strip=True)):
+                    _collect_pdf_link(link, full, source, records, excluded_out,
+                                      seen=seen, document_url=document_url)
     return records
 
 

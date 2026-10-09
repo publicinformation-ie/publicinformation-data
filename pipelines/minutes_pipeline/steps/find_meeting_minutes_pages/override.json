@@ -227,7 +227,7 @@
       "entry_button": "btn_County_Council",
       "date_select": "ddlSelectCouncilDate",
       "type_select": "ddlSelectCouncilType",
-      "type_value": "Monthly",
+      "document_url": "\\.docx$",
       "max_meetings": 400,
       "file_text": "^(?!.*\\b(Municipal|District|MD|[A-Z]{1,2}MD|CMD|Area|SPC|Committee|Westport|Belmullet|Ballina|Castlebar|Claremorris|Swinford)\\b)(?=.*\\bMinutes\\b)"
     }

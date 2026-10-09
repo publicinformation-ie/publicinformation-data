@@ -601,7 +601,7 @@ _POSTBACK = {
     "entry_button": "btn_County_Council",
     "date_select": "ddlSelectCouncilDate",
     "type_select": "ddlSelectCouncilType",
-    "type_value": "Monthly",
+    "document_url": r"\.docx$",
     "file_text": r"^(?!.*\b(Municipal|District|MD|Area|SPC)\b)(?=.*\bMinutes\b)",
     "max_meetings": 50,
 }
@@ -630,7 +630,9 @@ class _FakeEagenda:
     the page it follows (token `landing` -> `county` -> `date:<d>`)."""
 
     def __init__(self, meetings, fail_dates=()):
-        self.meetings = meetings  # date -> html of links
+        # date -> html of links (agenda type "Monthly") or {type: html}
+        self.meetings = {d: v if isinstance(v, dict) else {"Monthly": v}
+                         for d, v in meetings.items()}
         self.fail_dates = set(fail_dates)
         self.posts = []
 
@@ -648,13 +650,15 @@ class _FakeEagenda:
             date = data["ddlSelectCouncilDate"]
             if date in self.fail_dates:
                 raise RuntimeError("boom")
-            body = _eagenda_page(f"date:{date}", dates=self.meetings)
+            types = "".join(f'<option value="{t}">{t}</option>' for t in
+                            ("Select an Agenda Type", *self.meetings[date]))
+            body = _eagenda_page(f"date:{date}", dates=self.meetings).replace(
+                "</form>", f'<select name="ddlSelectCouncilType">{types}</select></form>')
         else:
             date = data["ddlSelectCouncilDate"]
             assert prev == f"date:{date}", prev
-            assert data["ddlSelectCouncilType"] == "Monthly"
             body = _eagenda_page("final", dates=self.meetings,
-                                 meeting_links=self.meetings[date])
+                                 meeting_links=self.meetings[date][data["ddlSelectCouncilType"]])
         return SimpleNamespace(text=body, url=url, headers={"content-type": "text/html"})
 
 
@@ -714,3 +718,23 @@ def test_parse_meeting_date_reads_ordinals_and_ddmmyyyy_filenames():
     assert parse_meeting_date("Minutes 14th September 2026", "x.pdf") == "2026-09-14"
     assert parse_meeting_date("Minutes", "F/2026641520Item01_Minutes_Monthly_11052026.pdf") == "2026-05-11"
     assert parse_meeting_date("Minutes", "F/2026641520Item01_Minutes.pdf") is None
+
+
+def test_postback_reads_every_agenda_type_of_a_meeting():
+    fake = _FakeEagenda({_DATES[0]: {
+        "Monthly": _link("F/a_Minutes_Monthly_14092026.pdf", "Minutes of Mayo County Council 14th September 2026"),
+        "Budget": _link("F/b_Minutes_Budget_01122025.pdf", "Minutes Budget Meeting 1st December 2025"),
+    }, _DATES[1]: ""})
+    names = sorted(r["file_url"].rsplit("/", 1)[-1] for r in _run_postback(fake))
+    assert names == ["a_Minutes_Monthly_14092026.pdf", "b_Minutes_Budget_01122025.pdf"]
+
+
+def test_postback_document_url_admits_docx_minutes_but_not_legacy_doc():
+    fake = _FakeEagenda({_DATES[0]: (
+        _link("F/0Minutes%2014th%20January%2C%202019%20(Monthly).docx", "Minutes 14th January, 2019 (Monthly)")
+        + _link("F/0Minutes%20-%2014th%20May%2C%202007.doc", "Minutes - 14th May, 2007")
+        + _link("F/0Report.docx", "Report on Rent Scheme")), _DATES[1]: ""})
+    records = _run_postback(fake)
+    assert [r["file_url"].rsplit("/", 1)[-1] for r in records] == [
+        "0Minutes%2014th%20January%2C%202019%20(Monthly).docx"]
+    assert records[0]["meeting_date"] == "2019-01-14"
