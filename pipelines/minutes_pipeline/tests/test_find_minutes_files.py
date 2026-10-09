@@ -592,3 +592,149 @@ def test_walk_stops_when_pager_points_at_visited_page_with_fragment():
     html = {_SDCC: _html('<a href="/#top">Next</a>')}
     _, fetched = _run_walk(html, _walk_source(_SDCC_WALK) | {"minutes_page_url": _SDCC})
     assert fetched == [_SDCC]
+
+
+# --- opt-in ASP.NET postback driver (override "postback" config) ------------
+
+_EAGENDA = "https://eagenda.mayo.ie/"
+_POSTBACK = {
+    "entry_button": "btn_County_Council",
+    "date_select": "ddlSelectCouncilDate",
+    "type_select": "ddlSelectCouncilType",
+    "document_url": r"\.docx$",
+    "file_text": r"^(?!.*\b(Municipal|District|MD|Area|SPC)\b)(?=.*\bMinutes\b)",
+    "max_meetings": 50,
+}
+_DATES = ["10/12/2026 12:00:00 AM", "9/14/2026 12:00:00 AM"]
+
+
+def _hidden(token):
+    return "".join(f'<input type="hidden" name="{n}" value="{n}-{token}"/>'
+                   for n in ("__VIEWSTATE", "__EVENTVALIDATION"))
+
+
+def _eagenda_page(token, dates=(), meeting_links=""):
+    options = "".join(f'<option value="{d}">{d}</option>' for d in dates)
+    select = (f'<select name="ddlSelectCouncilDate">'
+              f'<option value="Select">Select</option>{options}</select>' if dates else "")
+    return (f"<html><body><form>{_hidden(token)}{select}{meeting_links}"
+            f"</form></body></html>")
+
+
+def _link(href, text):
+    return f'<a href="{href}">{text}</a>'
+
+
+class _FakeEagenda:
+    """Stateless WebForms stand-in: each POST must echo the hidden fields of
+    the page it follows (token `landing` -> `county` -> `date:<d>`)."""
+
+    def __init__(self, meetings, fail_dates=()):
+        # date -> html of links (agenda type "Monthly") or {type: html}
+        self.meetings = {d: v if isinstance(v, dict) else {"Monthly": v}
+                         for d, v in meetings.items()}
+        self.fail_dates = set(fail_dates)
+        self.posts = []
+
+    def __call__(self, method, url, allow_redirects=True, data=None, **kw):
+        if method == "GET":
+            return SimpleNamespace(text=_eagenda_page("landing"), url=url,
+                                   headers={"content-type": "text/html"})
+        self.posts.append(dict(data))
+        prev = data["__VIEWSTATE"].split("-", 1)[1]
+        if "btn_County_Council" in data:
+            assert prev == "landing"
+            body = _eagenda_page("county", dates=self.meetings)
+        elif data.get("__EVENTTARGET") == "ddlSelectCouncilDate":
+            assert prev == "county", prev
+            date = data["ddlSelectCouncilDate"]
+            if date in self.fail_dates:
+                raise RuntimeError("boom")
+            types = "".join(f'<option value="{t}">{t}</option>' for t in
+                            ("Select an Agenda Type", *self.meetings[date]))
+            body = _eagenda_page(f"date:{date}", dates=self.meetings).replace(
+                "</form>", f'<select name="ddlSelectCouncilType">{types}</select></form>')
+        else:
+            date = data["ddlSelectCouncilDate"]
+            assert prev == f"date:{date}", prev
+            body = _eagenda_page("final", dates=self.meetings,
+                                 meeting_links=self.meetings[date][data["ddlSelectCouncilType"]])
+        return SimpleNamespace(text=body, url=url, headers={"content-type": "text/html"})
+
+
+def _postback_source(postback=_POSTBACK):
+    return {"public_body_id": 1508, "municipal_district": None,
+            "minutes_page_url": _EAGENDA, "postback": postback}
+
+
+def _run_postback(fake, source=None):
+    source = source or _postback_source()
+    with mock.patch("steps.find_minutes_files.process.fetch", side_effect=fake):
+        return collect_minutes_links(source, _EAGENDA, excluded_out=[])
+
+
+def test_postback_posts_each_meeting_through_the_three_step_flow():
+    fake = _FakeEagenda({
+        _DATES[0]: _link("FilesUpLoaded/1Item01_Minutes_Monthly_14092026.pdf",
+                         "Minutes of Mayo County Council Meeting 14th September 2026"),
+        _DATES[1]: "",
+    })
+    records = _run_postback(fake)
+    assert [r["file_url"] for r in records] == [
+        "https://eagenda.mayo.ie/FilesUpLoaded/1Item01_Minutes_Monthly_14092026.pdf"]
+    assert records[0]["public_body_id"] == 1508
+    assert records[0]["meeting_date"] == "2026-09-14"
+    assert len(fake.posts) == 1 + 2 * len(_DATES)  # entry + (date, type) per meeting
+
+
+def test_postback_keeps_county_minutes_only():
+    fake = _FakeEagenda({_DATES[0]: (
+        _link("F/a_Minutes_Monthly_11052026.pdf", "Minutes of Mayo County Council Meeting 11th May 2026")
+        + _link("F/b_Minutes_CSMD_01042026.pdf", "Minutes Claremorris Swinford MD Meeting 1st April 2026")
+        + _link("F/c_Minutes_BallinaMD.pdf", "Minutes of Ballina Municipal District Monthly Meeting")
+        + _link("F/d_Report.pdf", "Chief Executive Report")), _DATES[1]: ""})
+    records = _run_postback(fake)
+    assert [r["file_url"].rsplit("/", 1)[-1] for r in records] == ["a_Minutes_Monthly_11052026.pdf"]
+
+
+def test_postback_dedupes_file_urls_and_caps_meetings():
+    link = _link("F/a_Minutes_Monthly_11052026.pdf", "Minutes of Mayo County Council 11th May 2026")
+    fake = _FakeEagenda({_DATES[0]: link, _DATES[1]: link})
+    assert len(_run_postback(fake)) == 1
+    fake = _FakeEagenda({_DATES[0]: link, _DATES[1]: ""})
+    _run_postback(fake, _postback_source({**_POSTBACK, "max_meetings": 1}))
+    assert len(fake.posts) == 1 + 2
+
+
+def test_postback_survives_a_failing_meeting():
+    fake = _FakeEagenda({
+        _DATES[0]: "",
+        _DATES[1]: _link("F/a_Minutes_Monthly_11052026.pdf", "Minutes of Mayo County Council 11th May 2026"),
+    }, fail_dates=[_DATES[0]])
+    assert len(_run_postback(fake)) == 1
+
+
+def test_parse_meeting_date_reads_ordinals_and_ddmmyyyy_filenames():
+    assert parse_meeting_date("Minutes 14th September 2026", "x.pdf") == "2026-09-14"
+    assert parse_meeting_date("Minutes", "F/2026641520Item01_Minutes_Monthly_11052026.pdf") == "2026-05-11"
+    assert parse_meeting_date("Minutes", "F/2026641520Item01_Minutes.pdf") is None
+
+
+def test_postback_reads_every_agenda_type_of_a_meeting():
+    fake = _FakeEagenda({_DATES[0]: {
+        "Monthly": _link("F/a_Minutes_Monthly_14092026.pdf", "Minutes of Mayo County Council 14th September 2026"),
+        "Budget": _link("F/b_Minutes_Budget_01122025.pdf", "Minutes Budget Meeting 1st December 2025"),
+    }, _DATES[1]: ""})
+    names = sorted(r["file_url"].rsplit("/", 1)[-1] for r in _run_postback(fake))
+    assert names == ["a_Minutes_Monthly_14092026.pdf", "b_Minutes_Budget_01122025.pdf"]
+
+
+def test_postback_document_url_admits_docx_minutes_but_not_legacy_doc():
+    fake = _FakeEagenda({_DATES[0]: (
+        _link("F/0Minutes%2014th%20January%2C%202019%20(Monthly).docx", "Minutes 14th January, 2019 (Monthly)")
+        + _link("F/0Minutes%20-%2014th%20May%2C%202007.doc", "Minutes - 14th May, 2007")
+        + _link("F/0Report.docx", "Report on Rent Scheme")), _DATES[1]: ""})
+    records = _run_postback(fake)
+    assert [r["file_url"].rsplit("/", 1)[-1] for r in records] == [
+        "0Minutes%2014th%20January%2C%202019%20(Monthly).docx"]
+    assert records[0]["meeting_date"] == "2019-01-14"

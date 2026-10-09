@@ -162,9 +162,10 @@ def override_sources(authorities, overrides):
             "source_method": "override",
             "overridden": True,
         }
-        # Optional per-source listing-walk config for find_minutes_files.
-        if rec.get("walk"):
-            record["walk"] = rec["walk"]
+        # Optional per-source driver config for find_minutes_files.
+        for driver in ("walk", "postback"):
+            if rec.get(driver):
+                record[driver] = rec[driver]
         records.append(record)
     return records
 
