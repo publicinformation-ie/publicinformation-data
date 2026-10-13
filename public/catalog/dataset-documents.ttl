@@ -9,7 +9,7 @@
 <https://data.publicinformation.ie/dataset/documents>
     a dcat:Dataset ;
     dct:title "Transport Policy Documents (Markdown bundles)"@en ;
-    dct:description "Reproducible per-document bundles (Markdown sections, figures, llms.txt) of the PDFs curated for each policy in the transport-policies dataset; `index.json` links each document to its `policy_id` and `policy_role`."@en ;
+    dct:description "Reproducible per-document bundles (Markdown sections, figures, llms.txt) of the curated transport-policy PDFs that convert fully; documents that do not (coverage gaps) are listed under `failed` in `index.json`. Each published document is linked to its `policy_id` and `policy_role`."@en ;
     dct:publisher <https://www.publicinformation.ie/> ;
     dct:creator <https://www.publicinformation.ie/> ;
     dct:issued "2026-10-13"^^xsd:date ;

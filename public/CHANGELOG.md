@@ -9,7 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed (breaking)
 
 - Host migration: every published identifier under the retired legacy hosts now resolves under the canonical base URI `https://data.publicinformation.ie` (dataset `@id`s, `Base URI`s, curl/fetch examples, schema `$id`s, vocabulary term URIs, catalog URLs, and repository links now point at GitHub). The same entity keeps the same path — only the host prefix changed — but consumers matching on the old host strings must update. The previously immutable `v1.0.0/` and `v2.0.0/` snapshots were rewritten once for this move; their record content is untouched.
-- The documents bundle is re-published as the transport policy documents (`public/documents/index.json` + per-document bundles), now covering only the PDFs curated for the transport-policies dataset. `index.json` (bundle contract 1.1.0) gains `policy_id` and `policy_role`.
+- The documents bundle is re-published as the transport policy documents (`public/documents/index.json` + per-document bundles), now covering only the curated transport-policy PDFs that convert fully (documents with coverage gaps are listed under `failed` in `index.json`). `index.json` (bundle contract 1.1.0) gains `policy_id` and `policy_role`.
 
 ## [public-body-actions 2.0.0] - 2026-10-13
 
