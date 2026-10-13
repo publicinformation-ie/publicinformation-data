@@ -1,0 +1,63 @@
+# National Roads 2040 Final Report
+
+> Transport Infrastructure Ireland — 15 chapters, 38 sections, 87 source pages.
+> Source: https://www.tii.ie/media/zvypdolo/tii-nr2040-final-report-en-april-2023.pdf
+> Full text: full.md
+
+## Chapters
+
+- [1 Introduction](sections/1-introduction/) — pages 11–13
+  - [1.1 Purpose of National Roads 2040](sections/1-introduction/1-1-purpose-of-national-roads-2040.md) — pages 11–11
+  - [1.2 Scope and Role of National Roads](sections/1-introduction/1-2-scope-and-role-of-national-roads.md) — pages 12–12
+  - [1.3 NR2040 Report Structure](sections/1-introduction/1-3-nr2040-report-structure.md) — pages 13–13
+- [2 Policy Context](sections/2-policy-context/) — pages 14–20
+  - [2.1 Project Ireland 2040](sections/2-policy-context/2-1-project-ireland-2040.md) — pages 14–15
+  - [2.2 Climate Action Plan 2023](sections/2-policy-context/2-2-climate-action-plan-2023.md) — pages 16–16
+  - [2.4 National Sustainable Mobility Policy](sections/2-policy-context/2-4-national-sustainable-mobility-policy.md) — pages 17–17
+  - [2.5 Trans-European Transport Network (TEN-T)](sections/2-policy-context/2-5-trans-european-transport-network-ten-t.md) — pages 18–18
+  - [2.6 TII Climate Adaption Strategy](sections/2-policy-context/2-6-tii-climate-adaption-strategy.md) — pages 19–19
+  - [2.8 National Ports Policy](sections/2-policy-context/2-8-national-ports-policy.md) — pages 20–20
+- [_Hlk27756872](sections/hlk27756872/) — pages 1–4
+  - [_Hlk27756872](sections/hlk27756872/overview.md) — pages 1–4
+- [Executive Summary](sections/executive-summary/) — pages 5–10
+  - [Executive Summary](sections/executive-summary/overview.md) — pages 5–10
+- [4 NR2040 Vision and Key Objectives](sections/4-nr2040-vision-and-key-objectives/) — pages 33–34
+  - [4 NR2040 Vision and Key Objectives](sections/4-nr2040-vision-and-key-objectives/overview.md) — pages 33–34
+- [5 National Roads Investment Priorities and Portfolios](sections/5-national-roads-investment-priorities-and-portfolios/) — pages 35–39
+  - [5 National Roads Investment Priorities and Portfolios](sections/5-national-roads-investment-priorities-and-portfolios/overview.md) — pages 35–35
+  - [5.1 Decarbonisation](sections/5-national-roads-investment-priorities-and-portfolios/5-1-decarbonisation.md) — pages 36–37
+  - [5.2 Protection and Renewal](sections/5-national-roads-investment-priorities-and-portfolios/5-2-protection-and-renewal.md) — pages 38–39
+- [3 Long Term Strategic Issues
+for National Roads](sections/3-long-term-strategic-issues-for-national-roads/) — pages 21–22
+  - [3.1 Future Demographic Growth Trends](sections/3-long-term-strategic-issues-for-national-roads/3-1-future-demographic-growth-trends.md) — pages 22–22
+  - [3 Long Term Strategic Issues
+for National Roads](sections/3-long-term-strategic-issues-for-national-roads/overview.md) — pages 21–21
+- [6 Implementation](sections/6-implementation/) — pages 47–54
+  - [6.1 NR2040 Commitments](sections/6-implementation/6-1-nr2040-commitments.md) — pages 47–50
+  - [6.2 NR2040 Implementation Structure](sections/6-implementation/6-2-nr2040-implementation-structure.md) — pages 51–51
+  - [6.3 Project Development Process](sections/6-implementation/6-3-project-development-process.md) — pages 52–53
+  - [6.5 Collaboration](sections/6-implementation/6-5-collaboration.md) — pages 54–54
+- [_Hlk104888790](sections/hlk104888790/) — pages 22–32
+  - [3.2 Road Transport Decarbonisation](sections/hlk104888790/3-2-road-transport-decarbonisation.md) — pages 23–24
+  - [3.4 Sustainability](sections/hlk104888790/3-4-sustainability.md) — pages 25–26
+  - [3.7 Road Safety](sections/hlk104888790/3-7-road-safety.md) — pages 27–27
+  - [3.8 Movement of People](sections/hlk104888790/3-8-movement-of-people.md) — pages 28–28
+  - [3.9 Movement of Goods and Services](sections/hlk104888790/3-9-movement-of-goods-and-services.md) — pages 29–29
+  - [3.10 Urban Congestion](sections/hlk104888790/3-10-urban-congestion.md) — pages 30–30
+  - [3.12 Asset Management and Operations](sections/hlk104888790/3-12-asset-management-and-operations.md) — pages 31–31
+  - [3.14 Customer Experience](sections/hlk104888790/3-14-customer-experience.md) — pages 32–32
+  - [_Hlk104888790](sections/hlk104888790/overview.md) — pages 22–22
+- [7 Monitoring Framework](sections/7-monitoring-framework/) — pages 55–55
+  - [7 Monitoring Framework](sections/7-monitoring-framework/overview.md) — pages 55–55
+- [_Hlk105598131](sections/hlk105598131/) — pages 40–46
+  - [5.3 Mobility of People & Goods in Urban Areas](sections/hlk105598131/5-3-mobility-of-people-goods-in-urban-areas.md) — pages 41–42
+  - [5.4 Enhanced Regional and Rural Connectivity](sections/hlk105598131/5-4-enhanced-regional-and-rural-connectivity.md) — pages 43–46
+  - [_Hlk105598131](sections/hlk105598131/overview.md) — pages 40–40
+- [Appendix A National Policy Actions for National Roads](sections/appendix-a-national-policy-actions-for-national-roads/) — pages 56–59
+  - [Appendix A National Policy Actions for National Roads](sections/appendix-a-national-policy-actions-for-national-roads/overview.md) — pages 56–59
+- [Appendix B Assessment of Alternatives Summary](sections/appendix-b-assessment-of-alternatives-summary/) — pages 60–61
+  - [Appendix B Assessment of Alternatives Summary](sections/appendix-b-assessment-of-alternatives-summary/overview.md) — pages 60–61
+- [Appendix C Response to Public Consultation Comments for Draft NR2040](sections/appendix-c-response-to-public-consultation-comments-for-draft-nr2040/) — pages 62–85
+  - [Appendix C Response to Public Consultation Comments for Draft NR2040](sections/appendix-c-response-to-public-consultation-comments-for-draft-nr2040/overview.md) — pages 62–85
+- [Glossary](sections/glossary/) — pages 86–86
+  - [Glossary](sections/glossary/overview.md) — pages 86–86

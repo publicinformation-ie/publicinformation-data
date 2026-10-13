@@ -1,0 +1,19 @@
+# Code of Practice: Design, Construction, Equipment, and Operation of Small Fishing Vessels of less than 15 metres Length overall
+
+> Department of Transport — 5 chapters, 6 sections, 72 source pages.
+> Source: https://assets.gov.ie/static/documents/code-of-practice-for-fishing-vessels-of-less-than-15-metres-length-overall-revision-3.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–42
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–42
+- [8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND](sections/8-manning-training-certification-emergency-procedures-and/) — pages 43–45
+  - [8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND](sections/8-manning-training-certification-emergency-procedures-and/overview.md) — pages 43–45
+- [9 RADIO COMMUNICATIONS](sections/9-radio-communications/) — pages 46–54
+  - [9 RADIO COMMUNICATIONS](sections/9-radio-communications/overview.md) — pages 46–54
+- [11 ACCOMMODATION AND WORKING SPACES](sections/11-accommodation-and-working-spaces/) — pages 57–71
+  - [11 ACCOMMODATION AND WORKING SPACES](sections/11-accommodation-and-working-spaces/overview.md) — pages 57–63
+  - [12.2.2 Limitations on the use of this method](sections/11-accommodation-and-working-spaces/12-2-2-limitations-on-the-use-of-this-method.md) — pages 64–71
+- [12 m or more Loa](sections/12-m-or-more-loa/) — pages 54–56
+  - [12 m or more Loa](sections/12-m-or-more-loa/overview.md) — pages 54–56

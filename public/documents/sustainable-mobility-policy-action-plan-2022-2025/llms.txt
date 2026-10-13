@@ -1,0 +1,17 @@
+# Sustainable Mobility Policy Action Plan 2022-2025
+
+> Department of Transport — 4 chapters, 5 sections, 24 source pages.
+> Source: https://assets.gov.ie/static/documents/sustainable-mobility-policy-action-plan-2022-2025.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Mobility Policy](sections/mobility-policy/) — pages 1–1
+  - [Mobility Policy](sections/mobility-policy/overview.md) — pages 1–1
+  - [2040](sections/mobility-policy/2040.md) — pages 1–1
+- [Mobility](sections/mobility/) — pages 3–12
+  - [Mobility](sections/mobility/overview.md) — pages 3–12
+- [Mobility](sections/mobility-2/) — pages 13–17
+  - [Mobility](sections/mobility-2/overview.md) — pages 13–17
+- [Mobility](sections/mobility-3/) — pages 18–24
+  - [Mobility](sections/mobility-3/overview.md) — pages 18–24

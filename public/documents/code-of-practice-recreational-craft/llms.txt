@@ -1,0 +1,123 @@
+# Code of Practice: The Safe Operation of Recreational Craft
+
+> Department of Transport — 19 chapters, 96 sections, 268 source pages.
+> Source: https://assets.gov.ie/static/documents/code-of-practice-for-the-safe-operation-of-recreational-craft-75c0ed13-84cb-40af-a689-.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–38
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–38
+- [Introduction and Application of Part B](sections/introduction-and-application-of-part-b/) — pages 68–68
+  - [Introduction and Application of Part B](sections/introduction-and-application-of-part-b/overview.md) — pages 68–68
+- [1.2 Legislation applicable to all recreational craft](sections/1-2-legislation-applicable-to-all-recreational-craft/) — pages 39–51
+  - [1.2.2 SOLAS Chapter V - safety of navigation](sections/1-2-legislation-applicable-to-all-recreational-craft/1-2-2-solas-chapter-v-safety-of-navigation.md) — pages 39–39
+  - [1.2.3 3 Prevention of pollution by oil from ships - Annex I of MARPOL](sections/1-2-legislation-applicable-to-all-recreational-craft/1-2-3-3-prevention-of-pollution-by-oil-from-ships-annex-i-of-marpol.md) — pages 40–40
+  - [1.2.4 Wearing of Personal Flotation Devices/Lifejackets](sections/1-2-legislation-applicable-to-all-recreational-craft/1-2-4-wearing-of-personal-flotation-devices-lifejackets.md) — pages 41–41
+  - [1.2.4 2 Lifejacket regulations on personal watercraft (PWC), e.g. Jet Skis](sections/1-2-legislation-applicable-to-all-recreational-craft/1-2-4-2-lifejacket-regulations-on-personal-watercraft-pwc-e-g-jet-skis.md) — pages 42–42
+  - [1.2.4 3 Lifejacket regulations for Waterskiing, Wake Boarding, Parasailing and other towed rides](sections/1-2-legislation-applicable-to-all-recreational-craft/1-2-4-3-lifejacket-regulations-for-waterskiing-wake-boarding-parasailing-and-other-towed-rides.md) — pages 43–43
+  - [1.2.7 Inconsiderate, careless and dangerous operation of vessels](sections/1-2-legislation-applicable-to-all-recreational-craft/1-2-7-inconsiderate-careless-and-dangerous-operation-of-vessels.md) — pages 44–44
+  - [1.2.9 Directive 2013/53/EU on recreational craft and personal watercraft](sections/1-2-legislation-applicable-to-all-recreational-craft/1-2-9-directive-2013-53-eu-on-recreational-craft-and-personal-watercraft.md) — pages 45–47
+  - [1.2.10 Marine Casualty Investigation Board](sections/1-2-legislation-applicable-to-all-recreational-craft/1-2-10-marine-casualty-investigation-board.md) — pages 48–48
+  - [1.2.12 Radiocommunications](sections/1-2-legislation-applicable-to-all-recreational-craft/1-2-12-radiocommunications.md) — pages 49–49
+  - [1.2.12 1 Emergency Position Indicating Radio Beacons and Personal Locator Beacons](sections/1-2-legislation-applicable-to-all-recreational-craft/1-2-12-1-emergency-position-indicating-radio-beacons-and-personal-locator-beacons.md) — pages 50–51
+- [1.3 Legislation applicable to recreational craft greater than 12 metres in length](sections/1-3-legislation-applicable-to-recreational-craft-greater-than-12-metres-in-length/) — pages 52–52
+  - [1.3.1 Nautical charts and publications](sections/1-3-legislation-applicable-to-recreational-craft-greater-than-12-metres-in-length/1-3-1-nautical-charts-and-publications.md) — pages 52–52
+- [1.4 Legislation applicable to recreational craft greater than 15 net registered tonnes (NRT)](sections/1-4-legislation-applicable-to-recreational-craft-greater-than-15-net-registered-tonnes-nrt/) — pages 53–55
+  - [1.4.1 Registration of recreational craft – Mercantile Marine Act 1955 as amended](sections/1-4-legislation-applicable-to-recreational-craft-greater-than-15-net-registered-tonnes-nrt/1-4-1-registration-of-recreational-craft-mercantile-marine-act-1955-as-amended.md) — pages 53–53
+  - [1.4.2 Future registration developments – Merchant Shipping (Registration of Ships) Act 2014 (No. 43 of 2014)](sections/1-4-legislation-applicable-to-recreational-craft-greater-than-15-net-registered-tonnes-nrt/1-4-2-future-registration-developments-merchant-shipping-registration-of-ships-act-2014-no-43-of-2014.md) — pages 54–55
+- [1.5 Legislation applicable to recreational craft of 13.7 metres in length and greater](sections/1-5-legislation-applicable-to-recreational-craft-of-13-7-metres-in-length-and-greater/) — pages 56–61
+  - [1.5.1 Lifesaving and Safety Equipment](sections/1-5-legislation-applicable-to-recreational-craft-of-13-7-metres-in-length-and-greater/1-5-1-lifesaving-and-safety-equipment.md) — pages 56–57
+  - [1.5.1 2 Class XII recreational craft constructed or after 1 July 1986 of 21.3 metres in length and greater](sections/1-5-legislation-applicable-to-recreational-craft-of-13-7-metres-in-length-and-greater/1-5-1-2-class-xii-recreational-craft-constructed-or-after-1-july-1986-of-21-3-metres-in-length-and-greater.md) — pages 58–59
+  - [1.5.2 1 Recreational craft of 13.7 metres in length and greater](sections/1-5-legislation-applicable-to-recreational-craft-of-13-7-metres-in-length-and-greater/1-5-2-1-recreational-craft-of-13-7-metres-in-length-and-greater.md) — pages 60–61
+- [1.6 Inland Waterways and Canal Systems](sections/1-6-inland-waterways-and-canal-systems/) — pages 62–63
+  - [1.5.2 2 Recreational craft less than 13.7 metres in length](sections/1-6-inland-waterways-and-canal-systems/1-5-2-2-recreational-craft-less-than-13-7-metres-in-length.md) — pages 62–62
+  - [1.6.4 Navigation on the Corrib System](sections/1-6-inland-waterways-and-canal-systems/1-6-4-navigation-on-the-corrib-system.md) — pages 63–63
+- [1.7 Maritime Safety Act 2005 (No. 11 of 2005), as amended](sections/1-7-maritime-safety-act-2005-no-11-of-2005-as-amended/) — pages 64–65
+  - [1.7 Maritime Safety Act 2005 (No. 11 of 2005), as amended](sections/1-7-maritime-safety-act-2005-no-11-of-2005-as-amended/overview.md) — pages 64–65
+- [1.8 Other legislation and considerations](sections/1-8-other-legislation-and-considerations/) — pages 66–67
+  - [1.8.1 Merchant Shipping (Salvage and Wreck) Act 1993 – Wrecks and stranded vessels](sections/1-8-other-legislation-and-considerations/1-8-1-merchant-shipping-salvage-and-wreck-act-1993-wrecks-and-stranded-vessels.md) — pages 66–67
+- [Sail and Motor Boats – Coastal Operation](sections/sail-and-motor-boats-coastal-operation/) — pages 69–90
+  - [Sail and Motor Boats – Coastal Operation](sections/sail-and-motor-boats-coastal-operation/overview.md) — pages 69–72
+  - [2.2.1 Traffic Report Messages – Let the Coast Guard know](sections/sail-and-motor-boats-coastal-operation/2-2-1-traffic-report-messages-let-the-coast-guard-know.md) — pages 73–75
+  - [2.3 Pre-departure Safety Checks and Briefing](sections/sail-and-motor-boats-coastal-operation/2-3-pre-departure-safety-checks-and-briefing.md) — pages 76–77
+  - [2.4.1 Category A - Ocean](sections/sail-and-motor-boats-coastal-operation/2-4-1-category-a-ocean.md) — pages 78–83
+  - [2.8.1 Training](sections/sail-and-motor-boats-coastal-operation/2-8-1-training.md) — pages 84–84
+  - [2.8.3 Pre-departure Checks and Briefing](sections/sail-and-motor-boats-coastal-operation/2-8-3-pre-departure-checks-and-briefing.md) — pages 85–85
+  - [2.8.4 Traffic Report Message for Divers – Let the Coast Guard know](sections/sail-and-motor-boats-coastal-operation/2-8-4-traffic-report-message-for-divers-let-the-coast-guard-know.md) — pages 86–87
+  - [2.10 Pot Fishing](sections/sail-and-motor-boats-coastal-operation/2-10-pot-fishing.md) — pages 88–89
+  - [2.11 Sea Angling Boats](sections/sail-and-motor-boats-coastal-operation/2-11-sea-angling-boats.md) — pages 90–90
+- [Sail and Motor Boats – Inland Waterways](sections/sail-and-motor-boats-inland-waterways/) — pages 91–102
+  - [Sail and Motor Boats – Inland Waterways](sections/sail-and-motor-boats-inland-waterways/overview.md) — pages 91–95
+  - [3.2.2 Category F](sections/sail-and-motor-boats-inland-waterways/3-2-2-category-f.md) — pages 96–99
+  - [3.4 Boat Angling – Inland Waters](sections/sail-and-motor-boats-inland-waterways/3-4-boat-angling-inland-waters.md) — pages 100–100
+  - [3.5 Communications](sections/sail-and-motor-boats-inland-waterways/3-5-communications.md) — pages 101–101
+  - [3.6 Spread of invasive species by boats on inland waters](sections/sail-and-motor-boats-inland-waterways/3-6-spread-of-invasive-species-by-boats-on-inland-waters.md) — pages 102–102
+- [Sailing Dinghies](sections/sailing-dinghies/) — pages 103–108
+  - [Sailing Dinghies](sections/sailing-dinghies/overview.md) — pages 103–106
+  - [4.3 Pre-Launch Checks prior to entering the water](sections/sailing-dinghies/4-3-pre-launch-checks-prior-to-entering-the-water.md) — pages 107–107
+  - [4.4 National Association](sections/sailing-dinghies/4-4-national-association.md) — pages 108–108
+- [Personal Watercraft – Jet Skis and High Speed Power Boats](sections/personal-watercraft-jet-skis-and-high-speed-power-boats/) — pages 109–118
+  - [Personal Watercraft – Jet Skis and High Speed Power Boats](sections/personal-watercraft-jet-skis-and-high-speed-power-boats/overview.md) — pages 109–112
+  - [5.2 Recommended equipment for personal watercraft](sections/personal-watercraft-jet-skis-and-high-speed-power-boats/5-2-recommended-equipment-for-personal-watercraft.md) — pages 113–113
+  - [5.4.2 Emergency Procedures](sections/personal-watercraft-jet-skis-and-high-speed-power-boats/5-4-2-emergency-procedures.md) — pages 114–114
+  - [5.4.3 On the water](sections/personal-watercraft-jet-skis-and-high-speed-power-boats/5-4-3-on-the-water.md) — pages 115–115
+  - [5.7 Personal Watercraft Safety Checklist](sections/personal-watercraft-jet-skis-and-high-speed-power-boats/5-7-personal-watercraft-safety-checklist.md) — pages 116–116
+  - [5.8 High Speed Power/Sports Boats – Operation and handling](sections/personal-watercraft-jet-skis-and-high-speed-power-boats/5-8-high-speed-power-sports-boats-operation-and-handling.md) — pages 117–117
+  - [5.8.2 On the water:](sections/personal-watercraft-jet-skis-and-high-speed-power-boats/5-8-2-on-the-water.md) — pages 118–118
+- [Windsurfing, Foiling and Kitesurfing](sections/windsurfing-foiling-and-kitesurfing/) — pages 119–128
+  - [Windsurfing, Foiling and Kitesurfing](sections/windsurfing-foiling-and-kitesurfing/overview.md) — pages 119–122
+  - [6.2.1 Prior to entering the water](sections/windsurfing-foiling-and-kitesurfing/6-2-1-prior-to-entering-the-water.md) — pages 123–123
+  - [6.2.2 On the water](sections/windsurfing-foiling-and-kitesurfing/6-2-2-on-the-water.md) — pages 124–124
+  - [6.4.1 Safe Surfing Guidelines](sections/windsurfing-foiling-and-kitesurfing/6-4-1-safe-surfing-guidelines.md) — pages 125–125
+  - [6.4.2 Foiling Safety](sections/windsurfing-foiling-and-kitesurfing/6-4-2-foiling-safety.md) — pages 126–126
+  - [6.4.3 Kitesurfing Safety](sections/windsurfing-foiling-and-kitesurfing/6-4-3-kitesurfing-safety.md) — pages 127–128
+- [Canoeing/Kayaking and Stand-Up Paddle Boarding](sections/canoeing-kayaking-and-stand-up-paddle-boarding/) — pages 129–140
+  - [Canoeing/Kayaking and Stand-Up Paddle Boarding](sections/canoeing-kayaking-and-stand-up-paddle-boarding/overview.md) — pages 129–132
+  - [7.2 Prior to entering the water](sections/canoeing-kayaking-and-stand-up-paddle-boarding/7-2-prior-to-entering-the-water.md) — pages 133–134
+  - [7.4 Sea Kayaking](sections/canoeing-kayaking-and-stand-up-paddle-boarding/7-4-sea-kayaking.md) — pages 135–135
+  - [7.5 River Kayaking/Canoeing](sections/canoeing-kayaking-and-stand-up-paddle-boarding/7-5-river-kayaking-canoeing.md) — pages 136–137
+  - [7.6 National Association for canoe and kayak activities](sections/canoeing-kayaking-and-stand-up-paddle-boarding/7-6-national-association-for-canoe-and-kayak-activities.md) — pages 138–138
+  - [7.7.1 Prior to entering the water](sections/canoeing-kayaking-and-stand-up-paddle-boarding/7-7-1-prior-to-entering-the-water.md) — pages 139–139
+  - [7.7.2 On the water](sections/canoeing-kayaking-and-stand-up-paddle-boarding/7-7-2-on-the-water.md) — pages 140–140
+- [Rowing Boats](sections/rowing-boats/) — pages 141–150
+  - [Rowing Boats](sections/rowing-boats/overview.md) — pages 141–144
+  - [8.3 Olympic style rowing boats and safety boats](sections/rowing-boats/8-3-olympic-style-rowing-boats-and-safety-boats.md) — pages 145–145
+  - [8.4 Boat construction and equipment](sections/rowing-boats/8-4-boat-construction-and-equipment.md) — pages 146–146
+  - [8.5 Coastal and Traditional racing currachs and Safety Boats](sections/rowing-boats/8-5-coastal-and-traditional-racing-currachs-and-safety-boats.md) — pages 147–148
+  - [8.6 National Associations](sections/rowing-boats/8-6-national-associations.md) — pages 149–150
+- [Charter Boats/Bare Boat Hire](sections/charter-boats-bare-boat-hire/) — pages 151–154
+  - [Charter Boats/Bare Boat Hire](sections/charter-boats-bare-boat-hire/overview.md) — pages 151–152
+  - [9.1 Training](sections/charter-boats-bare-boat-hire/9-1-training.md) — pages 153–153
+  - [9.3 Minimum safety equipment on board](sections/charter-boats-bare-boat-hire/9-3-minimum-safety-equipment-on-board.md) — pages 154–154
+- [Operational Safety, including at Marinas, and Maintenance](sections/operational-safety-including-at-marinas-and-maintenance/) — pages 155–168
+  - [Operational Safety, including at Marinas, and Maintenance](sections/operational-safety-including-at-marinas-and-maintenance/overview.md) — pages 155–155
+  - [10.2 Marina Safety](sections/operational-safety-including-at-marinas-and-maintenance/10-2-marina-safety.md) — pages 156–157
+  - [10.3 Slipways](sections/operational-safety-including-at-marinas-and-maintenance/10-3-slipways.md) — pages 158–158
+  - [10.4 Beach launching](sections/operational-safety-including-at-marinas-and-maintenance/10-4-beach-launching.md) — pages 159–159
+  - [10.5.1 Rigging](sections/operational-safety-including-at-marinas-and-maintenance/10-5-1-rigging.md) — pages 160–160
+  - [10.5.3 Outboard engines](sections/operational-safety-including-at-marinas-and-maintenance/10-5-3-outboard-engines.md) — pages 161–161
+  - [10.5.5 Minimum spare parts](sections/operational-safety-including-at-marinas-and-maintenance/10-5-5-minimum-spare-parts.md) — pages 162–162
+  - [10.5.6 Tool Kit](sections/operational-safety-including-at-marinas-and-maintenance/10-5-6-tool-kit.md) — pages 163–164
+  - [10.7 Liquified/Liquid Petroleum Gas (LPG)](sections/operational-safety-including-at-marinas-and-maintenance/10-7-liquified-liquid-petroleum-gas-lpg.md) — pages 165–165
+  - [10.8 Vessel Refuelling](sections/operational-safety-including-at-marinas-and-maintenance/10-8-vessel-refuelling.md) — pages 166–166
+  - [10.9.1 Smart Weather Buoys](sections/operational-safety-including-at-marinas-and-maintenance/10-9-1-smart-weather-buoys.md) — pages 167–168
+- [Emergency Procedures](sections/emergency-procedures/) — pages 169–268
+  - [Emergency Procedures](sections/emergency-procedures/overview.md) — pages 169–169
+  - [11.1.2 Making an urgency broadcast using VHF - PAN-PAN](sections/emergency-procedures/11-1-2-making-an-urgency-broadcast-using-vhf-pan-pan.md) — pages 170–172
+  - [11.2.3 Use of Handheld VHF Radios](sections/emergency-procedures/11-2-3-use-of-handheld-vhf-radios.md) — pages 173–173
+  - [11.3 Emergency Position Indicating Radio Beacons (EPIRBS)](sections/emergency-procedures/11-3-emergency-position-indicating-radio-beacons-epirbs.md) — pages 174–174
+  - [11.4 Marine VHF Communications Network](sections/emergency-procedures/11-4-marine-vhf-communications-network.md) — pages 175–175
+  - [11.5 Automatic Identification System (AIS)](sections/emergency-procedures/11-5-automatic-identification-system-ais.md) — pages 176–176
+  - [11.6.1 1 Cold Water Shock](sections/emergency-procedures/11-6-1-1-cold-water-shock.md) — pages 177–177
+  - [11.6.1 2 Hypothermia](sections/emergency-procedures/11-6-1-2-hypothermia.md) — pages 178–178
+  - [11.6.2 Choosing a Liferaft](sections/emergency-procedures/11-6-2-choosing-a-liferaft.md) — pages 179–180
+  - [11.6.3 Abandoning Ship](sections/emergency-procedures/11-6-3-abandoning-ship.md) — pages 181–181
+  - [11.6.4 Survival in the water](sections/emergency-procedures/11-6-4-survival-in-the-water.md) — pages 182–182
+  - [11.7.1 Recovery of man overboard](sections/emergency-procedures/11-7-1-recovery-of-man-overboard.md) — pages 183–185
+  - [11.7.2 2 Craft with an engine](sections/emergency-procedures/11-7-2-2-craft-with-an-engine.md) — pages 186–187
+  - [11.8 Emergency towing – receiving or giving a tow](sections/emergency-procedures/11-8-emergency-towing-receiving-or-giving-a-tow.md) — pages 188–189
+  - [11.9 Helicopter rescue procedures](sections/emergency-procedures/11-9-helicopter-rescue-procedures.md) — pages 190–190
+  - [11.10 Flares](sections/emergency-procedures/11-10-flares.md) — pages 191–191
+  - [11.10.1 Disposal of expired pyrotechnics](sections/emergency-procedures/11-10-1-disposal-of-expired-pyrotechnics.md) — pages 192–192
+  - [11.11 Mobile Devices](sections/emergency-procedures/11-11-mobile-devices.md) — pages 193–268

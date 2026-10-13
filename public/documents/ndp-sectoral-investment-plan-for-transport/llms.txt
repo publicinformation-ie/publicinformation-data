@@ -1,0 +1,21 @@
+# National Development Plan Review 2025 Securing Ireland’s Future Sectoral Investment Plan: Transport
+
+> Department of Transport — 5 chapters, 8 sections, 40 source pages.
+> Source: https://assets.gov.ie/static/documents/df0ce05f/NDP_Review_2025_Sectoral_Investment_Plan_for_Transport.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–18
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–18
+- [3 and 5](sections/3-and-5/) — pages 29–40
+  - [3 and 5](sections/3-and-5/overview.md) — pages 29–29
+  - [6.4 Programme D – Civil Aviation](sections/3-and-5/6-4-programme-d-civil-aviation.md) — pages 30–31
+  - [6.5 Programme E – Maritime Transport & Safety](sections/3-and-5/6-5-programme-e-maritime-transport-safety.md) — pages 32–32
+  - [6.6 Programme F – Information Technology, Engagement and Research](sections/3-and-5/6-6-programme-f-information-technology-engagement-and-research.md) — pages 33–40
+- [6.1 Programme A - Active Travel & Greenways](sections/6-1-programme-a-active-travel-greenways/) — pages 18–19
+  - [6.1 Programme A - Active Travel & Greenways](sections/6-1-programme-a-active-travel-greenways/overview.md) — pages 18–19
+- [6.2 Programme B - Public Transport](sections/6-2-programme-b-public-transport/) — pages 20–23
+  - [6.2 Programme B - Public Transport](sections/6-2-programme-b-public-transport/overview.md) — pages 20–23
+- [6.3 Programme C - Road Networks & Road Safety](sections/6-3-programme-c-road-networks-road-safety/) — pages 24–29
+  - [6.3 Programme C - Road Networks & Road Safety](sections/6-3-programme-c-road-networks-road-safety/overview.md) — pages 24–29

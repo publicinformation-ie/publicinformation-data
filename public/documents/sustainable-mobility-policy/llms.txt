@@ -1,0 +1,45 @@
+# National Sustainable Mobility Policy
+
+> Department of Transport — 9 chapters, 28 sections, 72 source pages.
+> Source: https://assets.gov.ie/static/documents/sustainable-mobility-policy.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–6
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–6
+- [1](sections/1/) — pages 9–19
+  - [1](sections/1/overview.md) — pages 9–10
+  - [Introduction](sections/1/introduction.md) — pages 10–19
+- [Foreword](sections/foreword/) — pages 6–7
+  - [Foreword](sections/foreword/overview.md) — pages 6–7
+- [Summary](sections/summary/) — pages 7–9
+  - [Summary](sections/summary/overview.md) — pages 7–9
+- [2](sections/2/) — pages 19–26
+  - [2](sections/2/overview.md) — pages 19–20
+  - [Introduction](sections/2/introduction-2.md) — pages 20–26
+- [3](sections/3/) — pages 27–30
+  - [Introduction](sections/3/introduction-3.md) — pages 27–28
+  - ["](sections/3/section.md) — pages 28–30
+- [4](sections/4/) — pages 30–44
+  - [4](sections/4/overview.md) — pages 30–31
+  - [Introduction](sections/4/introduction-4.md) — pages 31–32
+  - [Safety](sections/4/safety.md) — pages 32–35
+  - [Decarbonisation](sections/4/decarbonisation.md) — pages 35–39
+  - ["](sections/4/section-2.md) — pages 39–42
+  - [demand management](sections/4/demand-management.md) — pages 42–44
+- [5](sections/5/) — pages 44–58
+  - [5](sections/5/overview.md) — pages 44–45
+  - [Introduction](sections/5/introduction-5.md) — pages 45–47
+  - [approach](sections/5/approach.md) — pages 47–50
+  - [Infrastructure design](sections/5/infrastructure-design.md) — pages 50–54
+  - [engagement](sections/5/engagement.md) — pages 54–55
+  - ["](sections/5/section-3.md) — pages 55–58
+- [6](sections/6/) — pages 58–72
+  - [6](sections/6/overview.md) — pages 58–59
+  - [Introduction](sections/6/introduction-6.md) — pages 59–60
+  - [and transport planning](sections/6/and-transport-planning.md) — pages 60–64
+  - [Smart mobility](sections/6/smart-mobility.md) — pages 64–68
+  - [List of Abbreviations](sections/6/list-of-abbreviations.md) — pages 68–68
+  - [Notes](sections/6/notes.md) — pages 69–70
+  - [Notes](sections/6/notes-2.md) — pages 70–72

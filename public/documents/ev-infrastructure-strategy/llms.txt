@@ -1,0 +1,66 @@
+# Electric Vehicle Charging Infrastructure Strategy 2022-2025
+
+> Department of Transport — 9 chapters, 49 sections, 92 source pages.
+> Source: https://assets.gov.ie/static/documents/ev-infrastructure-strategy.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–17
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–17
+- [1.1 National and international](sections/1-1-national-and-international/) — pages 17–22
+  - [1.1 National and international](sections/1-1-national-and-international/overview.md) — pages 17–17
+  - [1.1.1 Climate Action Plan](sections/1-1-national-and-international/1-1-1-climate-action-plan.md) — pages 17–18
+  - [1.1.3 Alternative Fuels Infrastructure](sections/1-1-national-and-international/1-1-3-alternative-fuels-infrastructure.md) — pages 18–18
+  - [1.1.2 EU ‘Fit for 55’](sections/1-1-national-and-international/1-1-2-eu-fit-for-55.md) — pages 18–19
+  - [1.1.6 National Sustainable Mobility Policy](sections/1-1-national-and-international/1-1-6-national-sustainable-mobility-policy.md) — pages 19–19
+  - [1.1.4 Renewable Energy Directive](sections/1-1-national-and-international/1-1-4-renewable-energy-directive.md) — pages 19–19
+  - [1.1.5 National Development Plan](sections/1-1-national-and-international/1-1-5-national-development-plan.md) — pages 19–19
+  - [1.1.7 Public Sector Leadership](sections/1-1-national-and-international/1-1-7-public-sector-leadership.md) — pages 20–20
+  - [1.1.8 Shared Island](sections/1-1-national-and-international/1-1-8-shared-island.md) — pages 20–22
+- [2.1 Principle 1: EV infrastructure](sections/2-1-principle-1-ev-infrastructure/) — pages 22–23
+  - [2.1 Principle 1: EV infrastructure](sections/2-1-principle-1-ev-infrastructure/overview.md) — pages 22–23
+- [2.3 Principle 3: For the majority](sections/2-3-principle-3-for-the-majority/) — pages 23–24
+  - [2.3 Principle 3: For the majority](sections/2-3-principle-3-for-the-majority/overview.md) — pages 23–24
+- [2.4 Principle 4: Options will be](sections/2-4-principle-4-options-will-be/) — pages 24–25
+  - [2.4 Principle 4: Options will be](sections/2-4-principle-4-options-will-be/overview.md) — pages 24–25
+- [2.5 Principle 5: Across the EV](sections/2-5-principle-5-across-the-ev/) — pages 25–27
+  - [2.5 Principle 5: Across the EV](sections/2-5-principle-5-across-the-ev/overview.md) — pages 25–27
+- [3.1 Demand on the system and expansion of EV charging](sections/3-1-demand-on-the-system-and-expansion-of-ev-charging/) — pages 28–30
+  - [3.1 Demand on the system and expansion of EV charging](sections/3-1-demand-on-the-system-and-expansion-of-ev-charging/overview.md) — pages 28–30
+- [23 kW-350 kW](sections/23-kw-350-kw/) — pages 31–49
+  - [3.2 Managing energy demand and grid capacity](sections/23-kw-350-kw/3-2-managing-energy-demand-and-grid-capacity.md) — pages 32–32
+  - [3.3 Grid development and resilience for delivery of higher-speed](sections/23-kw-350-kw/3-3-grid-development-and-resilience-for-delivery-of-higher-speed.md) — pages 33–35
+  - [4.1 Innovating for the future: EV](sections/23-kw-350-kw/4-1-innovating-for-the-future-ev.md) — pages 35–35
+  - [4.2 Case studies](sections/23-kw-350-kw/4-2-case-studies.md) — pages 35–37
+  - [4.2.1 Case Study 1: On-Street Kerbside Charge Points in European Cities](sections/23-kw-350-kw/4-2-1-case-study-1-on-street-kerbside-charge-points-in-european-cities.md) — pages 37–39
+  - [4.2.2 Case Study 2: Vehicle-to-Grid Charging System in Oslo Car Park](sections/23-kw-350-kw/4-2-2-case-study-2-vehicle-to-grid-charging-system-in-oslo-car-park.md) — pages 39–39
+  - [4.2.3 Case Study 3: Wireless Charging in Rotterdam](sections/23-kw-350-kw/4-2-3-case-study-3-wireless-charging-in-rotterdam.md) — pages 40–41
+  - [4.2.4 Case Study 4: Planning for Dublin’s EV Needs: The Dublin Local](sections/23-kw-350-kw/4-2-4-case-study-4-planning-for-dublin-s-ev-needs-the-dublin-local.md) — pages 41–42
+  - [4.2.5 Case Study 5: Rural EV Infrastructure and Innovation: The Dingle](sections/23-kw-350-kw/4-2-5-case-study-5-rural-ev-infrastructure-and-innovation-the-dingle.md) — pages 42–43
+  - [4.2.6 Case Study 6: Fingal County Council 'e-Mobility Hubs'](sections/23-kw-350-kw/4-2-6-case-study-6-fingal-county-council-e-mobility-hubs.md) — pages 43–44
+  - [4.2.7 Case Study 7: En-Route High-Power Charging & Charging Pools in](sections/23-kw-350-kw/4-2-7-case-study-7-en-route-high-power-charging-charging-pools-in.md) — pages 44–46
+  - [5.1 Infrastructure Designed for](sections/23-kw-350-kw/5-1-infrastructure-designed-for.md) — pages 46–46
+  - [5.2 What will be delivered](sections/23-kw-350-kw/5-2-what-will-be-delivered.md) — pages 46–48
+  - [5.3 Risks and Dependencies](sections/23-kw-350-kw/5-3-risks-and-dependencies.md) — pages 46–46
+  - [5.5 National Publicly-Accessible](sections/23-kw-350-kw/5-5-national-publicly-accessible.md) — pages 49–49
+  - [23 kW-350 kW](sections/23-kw-350-kw/overview.md) — pages 31–31
+- [23 kW-350 kW](sections/23-kw-350-kw-2/) — pages 50–92
+  - [5.6 Existing Exchequer supports](sections/23-kw-350-kw-2/5-6-existing-exchequer-supports.md) — pages 50–50
+  - [5.6.1 Home charging](sections/23-kw-350-kw-2/5-6-1-home-charging.md) — pages 50–50
+  - [5.6.2 Residential/Neighbourhood](sections/23-kw-350-kw-2/5-6-2-residential-neighbourhood.md) — pages 50–52
+  - [5.7 New Infrastructure Supports](sections/23-kw-350-kw-2/5-7-new-infrastructure-supports.md) — pages 52–52
+  - [5.7.1 Home Charging/Shared Charging](sections/23-kw-350-kw-2/5-7-1-home-charging-shared-charging.md) — pages 52–52
+  - [5.6.3 Top-up charging (Destination and](sections/23-kw-350-kw-2/5-6-3-top-up-charging-destination-and.md) — pages 52–52
+  - [5.7.2 Residential Charging](sections/23-kw-350-kw-2/5-7-2-residential-charging.md) — pages 53–53
+  - [5.7.3 Destination Charging](sections/23-kw-350-kw-2/5-7-3-destination-charging.md) — pages 53–54
+  - [5.8 En-route charging network](sections/23-kw-350-kw-2/5-8-en-route-charging-network.md) — pages 54–55
+  - [5.9 Heavy-duty vehicle charging](sections/23-kw-350-kw-2/5-9-heavy-duty-vehicle-charging.md) — pages 56–59
+  - [6.1 Governmental and](sections/23-kw-350-kw-2/6-1-governmental-and.md) — pages 59–59
+  - [6.2 Zero Emission Vehicles](sections/23-kw-350-kw-2/6-2-zero-emission-vehicles.md) — pages 59–61
+  - [6.2.1 Public Sector Energy Delivery](sections/23-kw-350-kw-2/6-2-1-public-sector-energy-delivery.md) — pages 61–61
+  - [6.2.3 Public-Private Infrastructure](sections/23-kw-350-kw-2/6-2-3-public-private-infrastructure.md) — pages 61–61
+  - [6.2.2 Public Sector EV Infrastructure](sections/23-kw-350-kw-2/6-2-2-public-sector-ev-infrastructure.md) — pages 61–62
+  - [6.2.4 Public-Private Vehicles Stakeholder](sections/23-kw-350-kw-2/6-2-4-public-private-vehicles-stakeholder.md) — pages 63–63
+  - [6.3 What’s Been Achieved Since](sections/23-kw-350-kw-2/6-3-what-s-been-achieved-since.md) — pages 64–67
+  - [6.4 Overview of Implementation](sections/23-kw-350-kw-2/6-4-overview-of-implementation.md) — pages 68–92

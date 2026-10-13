@@ -1,0 +1,48 @@
+# National Ports Policy
+
+> Department of Transport — 12 chapters, 28 sections, 60 source pages.
+> Source: https://assets.gov.ie/static/documents/national-ports-policy.PDF
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–2
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–2
+- [Contents](sections/contents/) — pages 3–3
+  - [Contents](sections/contents/overview.md) — pages 3–3
+- [1 Introduction](sections/1-introduction/) — pages 17–19
+  - [1 Introduction](sections/1-introduction/overview.md) — pages 17–19
+- [List of Tables and Figures](sections/list-of-tables-and-figures/) — pages 4–6
+  - [List of Tables and Figures](sections/list-of-tables-and-figures/overview.md) — pages 4–6
+- [2 Organisational and Ownership Structure](sections/2-organisational-and-ownership-structure/) — pages 20–34
+  - [2.2 Report of the Review Group on State Assets and Liabilities](sections/2-organisational-and-ownership-structure/2-2-report-of-the-review-group-on-state-assets-and-liabilities.md) — pages 20–20
+  - [2.3 Issues for consideration](sections/2-organisational-and-ownership-structure/2-3-issues-for-consideration.md) — pages 21–21
+  - [2.3.1 Competition](sections/2-organisational-and-ownership-structure/2-3-1-competition.md) — pages 22–22
+  - [2.5.1 Dublin Port Company](sections/2-organisational-and-ownership-structure/2-5-1-dublin-port-company.md) — pages 23–23
+  - [2.5.3 Shannon Foynes Port Company](sections/2-organisational-and-ownership-structure/2-5-3-shannon-foynes-port-company.md) — pages 24–24
+  - [2.6.1 Port of Waterford Company](sections/2-organisational-and-ownership-structure/2-6-1-port-of-waterford-company.md) — pages 25–25
+  - [2.6.2 Rosslare Europort](sections/2-organisational-and-ownership-structure/2-6-2-rosslare-europort.md) — pages 26–26
+  - [2.7 Ports of Regional Significance](sections/2-organisational-and-ownership-structure/2-7-ports-of-regional-significance.md) — pages 27–28
+  - [2.7.3 Galway Harbour Company](sections/2-organisational-and-ownership-structure/2-7-3-galway-harbour-company.md) — pages 29–29
+  - [2.7.4 New Ross Port Company](sections/2-organisational-and-ownership-structure/2-7-4-new-ross-port-company.md) — pages 30–30
+  - [2.7.7 Legislative amendments required for ports of regional significance](sections/2-organisational-and-ownership-structure/2-7-7-legislative-amendments-required-for-ports-of-regional-significance.md) — pages 31–34
+- [Minister’s Statement](sections/minister-s-statement/) — pages 7–10
+  - [Minister’s Statement](sections/minister-s-statement/overview.md) — pages 7–10
+- [3 Corporate Governance](sections/3-corporate-governance/) — pages 35–40
+  - [3.1 Introduction](sections/3-corporate-governance/3-1-introduction.md) — pages 35–35
+  - [3.3 Port company boards](sections/3-corporate-governance/3-3-port-company-boards.md) — pages 36–36
+  - [3.4 Dividend policy](sections/3-corporate-governance/3-4-dividend-policy.md) — pages 37–37
+  - [3.6 Port company pensions](sections/3-corporate-governance/3-6-port-company-pensions.md) — pages 38–40
+- [Executive Summary](sections/executive-summary/) — pages 11–16
+  - [Executive Summary](sections/executive-summary/overview.md) — pages 11–16
+- [4 Ports Policy and the Planning and Development System](sections/4-ports-policy-and-the-planning-and-development-system/) — pages 41–46
+  - [4.2 Future capacity requirements](sections/4-ports-policy-and-the-planning-and-development-system/4-2-future-capacity-requirements.md) — pages 41–42
+  - [4.4 Hinterland connections](sections/4-ports-policy-and-the-planning-and-development-system/4-4-hinterland-connections.md) — pages 43–43
+  - [4.5 Ports and the urban environment](sections/4-ports-policy-and-the-planning-and-development-system/4-5-ports-and-the-urban-environment.md) — pages 44–46
+- [5 Environmental and Foreshore Issues](sections/5-environmental-and-foreshore-issues/) — pages 47–50
+  - [5.2 Environmental issues](sections/5-environmental-and-foreshore-issues/5-2-environmental-issues.md) — pages 47–47
+  - [5.3 Foreshore issues](sections/5-environmental-and-foreshore-issues/5-3-foreshore-issues.md) — pages 48–50
+- [6 Appendix I – Actions and Timelines](sections/6-appendix-i-actions-and-timelines/) — pages 51–54
+  - [6 Appendix I – Actions and Timelines](sections/6-appendix-i-actions-and-timelines/overview.md) — pages 51–54
+- [7 Bibliography](sections/7-bibliography/) — pages 55–60
+  - [7 Bibliography](sections/7-bibliography/overview.md) — pages 55–60
