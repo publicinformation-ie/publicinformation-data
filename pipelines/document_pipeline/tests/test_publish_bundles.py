@@ -483,7 +483,7 @@ def test_version_is_present_and_equals_contract_version(
         assemble_dir, figures_dir)
     index = json.loads((public_root / "index.json").read_text())
     assert index["version"] == CONTRACT_VERSION
-    assert CONTRACT_VERSION == "1.0.0"
+    assert CONTRACT_VERSION == "1.1.0"
 
 
 # --- pure builders ----------------------------------------------------------
@@ -562,3 +562,16 @@ def test_build_bundle_bytes_is_a_valid_reproducible_gzip():
     with gzip.GzipFile(fileobj=io.BytesIO(first)) as gz:
         with tarfile.open(fileobj=io.BytesIO(gz.read())) as tar:
             pass  # opens cleanly as a real tar
+
+
+def test_index_entry_carries_policy_fields():
+    from steps.publish_bundles.process import index_entry
+    meta = {"doc_slug": "a", "title": "A", "publisher": "P", "public_body_id": 1,
+            "source_url": "https://e.org/a.pdf", "published_date": None, "page_count": 3,
+            "chapters": [], "detection_method": "outline", "source_sha256": "x",
+            "built_at": "2026-01-01T00:00:00+00:00"}
+    fetch_record = {"policy_id": "national-sustainable-mobility-policy-nsmp",
+                    "policy_role": "action-plan"}
+    entry = index_entry({}, fetch_record, meta, {}, "a/bundle.tar.gz", "sha", 10)
+    assert entry["policy_id"] == "national-sustainable-mobility-policy-nsmp"
+    assert entry["policy_role"] == "action-plan"

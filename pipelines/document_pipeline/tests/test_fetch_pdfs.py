@@ -12,7 +12,8 @@ FIXTURE_PDF = Path(__file__).parent / "fixtures" / "fixture.pdf"
 def _doc(**overrides):
     record = {"doc_slug": "fixture-doc", "title": "Fixture Transport Strategy",
               "url": "https://example.org/fixture.pdf", "publisher": "Test Authority",
-              "public_body_id": None, "published_date": None}
+              "public_body_id": None, "published_date": None,
+              "policy_id": "p", "policy_role": "primary"}
     record.update(overrides)
     return record
 
@@ -80,7 +81,7 @@ def test_one_failing_document_does_not_prevent_the_others(tmp_path, make_writer,
 
 def test_doc_metadata_carries_role_and_report_fields():
     meta = _doc_metadata({
-        "doc_slug": "a-report", "title": "A Report", "url": "https://example.ie/b.pdf",
+        "doc_slug": "a-report", "policy_id": "p", "policy_role": "primary", "title": "A Report", "url": "https://example.ie/b.pdf",
         "role": "report", "reports_on": "a-plan",
         "expected_status_counts": {"Complete": 58},
     })
@@ -92,7 +93,7 @@ def test_doc_metadata_carries_role_and_report_fields():
 
 def test_doc_metadata_defaults_role_to_plan_when_absent():
     meta = _doc_metadata({
-        "doc_slug": "discovered", "title": "Discovered", "url": "https://example.ie/c.pdf",
+        "doc_slug": "discovered", "policy_id": "p", "policy_role": "primary", "title": "Discovered", "url": "https://example.ie/c.pdf",
     })
     assert meta["role"] == "plan"
     assert meta["reports_on"] is None
@@ -104,7 +105,8 @@ def test_publisher_is_taken_from_the_document(tmp_path, make_writer, monkeypatch
     writer = make_writer("fetch_pdfs")
     curated_doc = {"doc_slug": "curated-doc", "title": "Curated Plan",
                    "url": "https://example.org/fixture.pdf",
-                   "publisher": "Real Body", "public_body_id": 1, "published_date": None}
+                   "publisher": "Real Body", "public_body_id": 1, "published_date": None,
+                   "policy_id": "p", "policy_role": "primary"}
 
     process([curated_doc], tmp_path, writer)
     writer.finalize()
@@ -139,3 +141,12 @@ def test_cache_hit_recomputes_metadata_and_preserves_fetched_at(tmp_path, make_w
     assert second["fetched_at"] == first["fetched_at"]
     assert second["source_sha256"] == first["source_sha256"]
     assert second["page_count"] == first["page_count"]
+
+
+def test_doc_metadata_carries_policy_fields():
+    from steps.fetch_pdfs.process import _doc_metadata
+    meta = _doc_metadata({"doc_slug": "a", "title": "A", "url": "https://e.org/a.pdf",
+                          "policy_id": "greater-dublin-area-transport-strategy",
+                          "policy_role": "primary"})
+    assert meta["policy_id"] == "greater-dublin-area-transport-strategy"
+    assert meta["policy_role"] == "primary"

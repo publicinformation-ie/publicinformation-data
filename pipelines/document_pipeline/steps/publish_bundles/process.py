@@ -55,7 +55,7 @@ STEP_NAME = "publish_bundles"
 # §8), not over content. Bump MAJOR on a removed/retyped field, a changed slug
 # rule or a changed bundle layout; MINOR on a new optional field or
 # `detection_method` value. Coordinate with the web repo on any bump.
-CONTRACT_VERSION = "1.0.0"
+CONTRACT_VERSION = "1.1.0"
 
 _UNSAFE_ARCNAME = re.compile(r"(^/|(^|/)\.\.(/|$))")
 _FRONTMATTER_RE = re.compile(r"\A---\n.*?\n---\n", re.DOTALL)
@@ -141,6 +141,12 @@ def index_entry(record: dict, fetch_record: dict, meta: dict, figures_record: di
         "bundle_bytes": bundle_bytes,
         "source_sha256": meta["source_sha256"],
         "built_at": meta["built_at"],
+        # Which transport policy this document belongs to, and in what capacity;
+        # sourced from the fetch record because nothing between fetch_pdfs and
+        # here carries it. .get(): a record fetched before these fields existed
+        # publishes null rather than failing the whole index.
+        "policy_id": fetch_record.get("policy_id"),
+        "policy_role": fetch_record.get("policy_role"),
     }
 
 

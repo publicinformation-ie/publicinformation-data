@@ -167,6 +167,8 @@ def _doc_metadata(doc: dict) -> dict:
         # document with no role defaults to a plan with no expectations.
         "role": doc.get("role") or "plan",
         "reports_on": doc.get("reports_on"),
+        "policy_id": doc["policy_id"],
+        "policy_role": doc["policy_role"],
         "expected_action_count": doc.get("expected_action_count"),
         "expected_status_counts": doc.get("expected_status_counts"),
     }
