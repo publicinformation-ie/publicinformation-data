@@ -49,6 +49,10 @@ This dataset has three tables: [actions](latest/public-body-actions/actions.csv)
 
 ## [Motions](latest/motions/motions.csv)
 
+
+## [Transport policies](latest/transport-policies/transport-policies.csv)
+
+The 21 transport policies, strategies and codes of practice that define the transport document corpus: who issued each, the period it covers, its scope, and links to its official pages and published PDFs.
 Motions moved at meetings of Irish local authorities, from the authorities' published meeting minutes: who proposed and seconded each motion, the meeting date and type, and the outcome.
 
 ## Worked example: find a body's FOI contact email
@@ -59,6 +63,6 @@ Motions moved at meetings of Irish local authorities, from the authorities' publ
 
 ---
 
-Want the full technical details behind each file (every column, how the data was collected, what to watch out for)? See the [Public Bodies](latest/public-bodies/README.md), [FOI Disclosures](latest/foi-disclosures/README.md), [FOI Request Files](latest/foi-request-files/README.md), [Who Does What](latest/who-does-what/README.md), [data.gov.ie Links](latest/data-gov-ie-links/README.md), [lobbying.ie Links](latest/lobbying-ie-links/README.md), [Public Body Actions](latest/public-body-actions/README.md), and [Motions](latest/motions/README.md) reference pages.
+Want the full technical details behind each file (every column, how the data was collected, what to watch out for)? See the [Public Bodies](latest/public-bodies/README.md), [FOI Disclosures](latest/foi-disclosures/README.md), [FOI Request Files](latest/foi-request-files/README.md), [Who Does What](latest/who-does-what/README.md), [data.gov.ie Links](latest/data-gov-ie-links/README.md), [lobbying.ie Links](latest/lobbying-ie-links/README.md), [Public Body Actions](latest/public-body-actions/README.md), [Motions](latest/motions/README.md), and [Transport Policies](latest/transport-policies/README.md) reference pages.
 
 Wondering how complete this data is, or found something that looks wrong? See [Data quality & reporting a problem](DATA_QUALITY.md).

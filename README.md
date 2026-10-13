@@ -29,7 +29,7 @@ Start at [`public/README.md`](public/README.md) — the data hub, with one entry
 
 #### Curated Linked Data datasets
 
-Eight datasets are published as versioned Linked Data under `public/latest/<dataset>/` (always the newest release) and `public/vX.Y.Z/<dataset>/` (immutable per-version snapshots), each with its own JSON-LD, CSV, and CSV metadata, plus a dataset-specific `README.md`:
+Nine datasets are published as versioned Linked Data under `public/latest/<dataset>/` (always the newest release) and `public/vX.Y.Z/<dataset>/` (immutable per-version snapshots), each with its own JSON-LD, CSV, and CSV metadata, plus a dataset-specific `README.md`:
 
 | Dataset | Version | Records | Docs |
 |---------|---------|---------|------|
@@ -37,12 +37,13 @@ Eight datasets are published as versioned Linked Data under `public/latest/<data
 | FOI Disclosures | v1.0.0 | 60,177 | [`public/latest/foi-disclosures/README.md`](public/latest/foi-disclosures/README.md) |
 | FOI Request Files | v1.0.0 | 1,593 | [`public/latest/foi-request-files/README.md`](public/latest/foi-request-files/README.md) |
 | Who Does What | v1.0.0 | 27 | [`public/latest/who-does-what/README.md`](public/latest/who-does-what/README.md) |
+| Transport Policies | v1.0.0 | 21 | [`public/latest/transport-policies/README.md`](public/latest/transport-policies/README.md) |
 | data.gov.ie Links | v1.0.0 | 137 | [`public/latest/data-gov-ie-links/README.md`](public/latest/data-gov-ie-links/README.md) |
 | lobbying.ie Links | v1.0.0 | 121 | [`public/latest/lobbying-ie-links/README.md`](public/latest/lobbying-ie-links/README.md) |
 | Public Body Actions | v1.0.0 | 198 | [`public/latest/public-body-actions/README.md`](public/latest/public-body-actions/README.md) |
 | Motions | v1.0.0 | 3,959 | [`public/latest/motions/README.md`](public/latest/motions/README.md) |
 
-`public-bodies` is regenerated automatically by the FOI pipeline's `export_status` step on every full run (logic in `src/lib/publish_public_bodies.py`), so it always stays in lockstep with `pipeline-data.json`; the other datasets are produced by standalone `scripts/transform_*.py` — seven such scripts as of this writing (`ls scripts/transform_*.py`).
+`public-bodies` is regenerated automatically by the FOI pipeline's `export_status` step on every full run (logic in `src/lib/publish_public_bodies.py`), so it always stays in lockstep with `pipeline-data.json`; the other datasets are produced by standalone `scripts/transform_*.py` — eight such scripts as of this writing (`ls scripts/transform_*.py`).
 
 Supporting technical-reference files: [`public/catalog/`](public/catalog/) (one DCAT-AP `.ttl` per dataset) and [`public/schemas/`](public/schemas/) (one JSON Schema per dataset).
 
@@ -296,7 +297,7 @@ All files in the `public/` directory are safe for direct use. There are two tier
 
 ### Curated Linked Data datasets
 
-The curated datasets — Public Bodies, FOI Disclosures, FOI Request Files, Who Does What, data.gov.ie Links, lobbying.ie Links, Public Body Actions, and Motions — implement 3-4 star Linked Data best practices and are published as JSON-LD + CSV under `public/latest/<dataset>/` (always the newest release) and `public/vX.Y.Z/<dataset>/` (immutable per-version snapshots). Each dataset has its own `README.md` documenting its data model, versioning, and provenance — see the table in [Get the Data](#get-the-data) above. Shared technical-reference files:
+The curated datasets — Public Bodies, FOI Disclosures, FOI Request Files, Who Does What, data.gov.ie Links, lobbying.ie Links, Public Body Actions, Motions, and Transport Policies — implement 3-4 star Linked Data best practices and are published as JSON-LD + CSV under `public/latest/<dataset>/` (always the newest release) and `public/vX.Y.Z/<dataset>/` (immutable per-version snapshots). Each dataset has its own `README.md` documenting its data model, versioning, and provenance — see the table in [Get the Data](#get-the-data) above. Shared technical-reference files:
 
 - **`public/catalog/`**: DCAT-AP 3.0 compliant dataset metadata (RDF/Turtle), one `.ttl` per dataset
 - **`public/schemas/`**: JSON Schema for validation, one per dataset

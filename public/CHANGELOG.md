@@ -11,6 +11,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Host migration: every published identifier under the retired legacy hosts now resolves under the canonical base URI `https://data.publicinformation.ie` (dataset `@id`s, `Base URI`s, curl/fetch examples, schema `$id`s, vocabulary term URIs, catalog URLs, and repository links now point at GitHub). The same entity keeps the same path — only the host prefix changed — but consumers matching on the old host strings must update. The previously immutable `v1.0.0/` and `v2.0.0/` snapshots were rewritten once for this move; their record content is untouched.
 - The strategies-and-plans documents bundle is retired: it is no longer published and its catalog entry is removed. The document pipeline still writes its bundle locally; it is simply not a published dataset.
 
+## [transport-policies 1.0.0] - 2026-10-13
+
+### Added
+- Transport Policies dataset: the 21 transport policies, strategies and codes of practice defining the transport document corpus, with `has_document` / `doc_slugs` linking each to its published PDFs
+- CSVW metadata, JSON Schema and DCAT-AP entry
+
 ## [public-bodies 1.0.0] - 2026-07-02
 
 ### Added

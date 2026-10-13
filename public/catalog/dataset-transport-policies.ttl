@@ -1,0 +1,51 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+<https://data.publicinformation.ie/dataset/transport-policies>
+    a dcat:Dataset ;
+    dct:title "Transport Policies, Strategies and Codes of Practice for Ireland"@en ;
+    dct:description "The 21 transport policies, strategies and codes of practice that define the scope of the PublicInformation.ie transport document corpus, with issuing authority, horizon, scope, statutory linkages, official source URLs and the PDF documents curated for each."@en ;
+    dct:publisher <https://www.publicinformation.ie/> ;
+    dct:creator <https://www.publicinformation.ie/> ;
+    dct:issued "2026-10-13"^^xsd:date ;
+    dct:modified "2026-10-13"^^xsd:date ;
+    owl:versionInfo "1.0.0" ;
+    dct:language <http://publications.europa.eu/resource/authority/language/ENG> ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcat:keyword "transport", "policy", "strategy", "Ireland", "open data"@en ;
+    dcat:theme <http://data.europa.eu/m8g/GOVERNMENT> ;
+    dcat:contactPoint [
+        a vcard:Organization ;
+        vcard:fn "PublicInformation.ie" ;
+        vcard:hasEmail <mailto:dave@publicinformation.ie> ;
+    ] ;
+    dct:relation <https://data.publicinformation.ie/dataset/public-body-actions> ;
+
+    dcat:distribution [
+        a dcat:Distribution ;
+        dct:title "Transport Policies (CSV, latest)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/transport-policies/transport-policies.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/transport-policies/transport-policies.csv> ;
+        dct:conformsTo <http://www.w3.org/ns/csvw> ;
+        dct:conformsTo <https://data.publicinformation.ie/v1.0.0/transport-policies/transport-policies.csv-metadata.json> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "text/csv" ;
+    ] .
+
+<https://data.publicinformation.ie/dataset/transport-policies>
+    prov:wasGeneratedBy [
+        a prov:Activity ;
+        prov:startedAtTime "2026-10-13T00:00:00Z"^^xsd:dateTime ;
+        prov:wasAssociatedWith [
+            a prov:Agent ;
+            prov:actedOnBehalfOf <https://www.publicinformation.ie/> ;
+            foaf:name "PublicInformation.ie Pipeline" ;
+            foaf:homepage <https://github.com/publicinformation-ie/publicinformation-data> ;
+        ] ;
+    ] .
