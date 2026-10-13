@@ -2,11 +2,20 @@ import pytest
 
 from documents import InvalidDocumentRole, load_documents
 
+POLICY_IDS = {"greater-dublin-area-transport-strategy", "national-sustainable-mobility-policy-nsmp"}
+
+
+def _load(path):
+    return load_documents(path, policy_ids=POLICY_IDS)
+
+
 VALID = """
 documents:
   - doc_slug: gda-transport-strategy-2022-2042
     title: "GDA Transport Strategy"
     url: "https://example.org/strategy.pdf"
+    policy_id: greater-dublin-area-transport-strategy
+    policy_role: primary
     publisher: "National Transport Authority"
     public_body_id: 1486
     published_date: "2023-01-19"
@@ -20,8 +29,10 @@ def _write(tmp_path, text):
 
 
 def test_load_documents_returns_one_normalised_record(tmp_path):
-    records = load_documents(_write(tmp_path, VALID))
+    records = _load(_write(tmp_path, VALID))
     assert records == [{
+        "policy_id": "greater-dublin-area-transport-strategy",
+        "policy_role": "primary",
         "doc_slug": "gda-transport-strategy-2022-2042",
         "title": "GDA Transport Strategy",
         "url": "https://example.org/strategy.pdf",
@@ -40,9 +51,9 @@ def test_load_documents_defaults_optional_fields_to_none(tmp_path):
         "documents:\n"
         "  - doc_slug: a-doc\n"
         '    title: "A Doc"\n'
-        '    url: "https://example.org/a.pdf"\n'
+        '    url: "https://example.org/a.pdf"\n    policy_id: greater-dublin-area-transport-strategy\n    policy_role: primary\n'
     )
-    (record,) = load_documents(_write(tmp_path, text))
+    (record,) = _load(_write(tmp_path, text))
     assert record["publisher"] is None
     assert record["public_body_id"] is None
     assert record["published_date"] is None
@@ -53,31 +64,31 @@ def test_load_documents_defaults_optional_fields_to_none(tmp_path):
 
 @pytest.mark.parametrize("slug", ["Not_A_Slug", "trailing-", "-leading", "has space", ""])
 def test_load_documents_rejects_a_malformed_slug(tmp_path, slug):
-    text = f'documents:\n  - doc_slug: "{slug}"\n    title: "T"\n    url: "https://e.org/a.pdf"\n'
+    text = f'documents:\n  - doc_slug: "{slug}"\n    title: "T"\n    url: "https://e.org/a.pdf"\n    policy_id: greater-dublin-area-transport-strategy\n    policy_role: primary\n'
     with pytest.raises(ValueError, match="doc_slug"):
-        load_documents(_write(tmp_path, text))
+        _load(_write(tmp_path, text))
 
 
 def test_load_documents_rejects_a_duplicate_slug(tmp_path):
     text = (
         "documents:\n"
-        '  - doc_slug: a-doc\n    title: "One"\n    url: "https://e.org/1.pdf"\n'
-        '  - doc_slug: a-doc\n    title: "Two"\n    url: "https://e.org/2.pdf"\n'
+        '  - doc_slug: a-doc\n    title: "One"\n    url: "https://e.org/1.pdf"\n    policy_id: greater-dublin-area-transport-strategy\n    policy_role: primary\n'
+        '  - doc_slug: a-doc\n    title: "Two"\n    url: "https://e.org/2.pdf"\n    policy_id: greater-dublin-area-transport-strategy\n    policy_role: primary\n'
     )
     with pytest.raises(ValueError, match="duplicate"):
-        load_documents(_write(tmp_path, text))
+        _load(_write(tmp_path, text))
 
 
 def test_load_documents_rejects_a_non_http_url(tmp_path):
-    text = 'documents:\n  - doc_slug: a-doc\n    title: "T"\n    url: "ftp://e.org/a.pdf"\n'
+    text = 'documents:\n  - doc_slug: a-doc\n    title: "T"\n    url: "ftp://e.org/a.pdf"\n    policy_id: greater-dublin-area-transport-strategy\n    policy_role: primary\n'
     with pytest.raises(ValueError, match="url"):
-        load_documents(_write(tmp_path, text))
+        _load(_write(tmp_path, text))
 
 
 def test_load_documents_rejects_a_missing_required_field(tmp_path):
-    text = 'documents:\n  - doc_slug: a-doc\n    url: "https://e.org/a.pdf"\n'
+    text = 'documents:\n  - doc_slug: a-doc\n    url: "https://e.org/a.pdf"\n    policy_id: greater-dublin-area-transport-strategy\n    policy_role: primary\n'
     with pytest.raises(ValueError, match="title"):
-        load_documents(_write(tmp_path, text))
+        _load(_write(tmp_path, text))
 
 
 def write_yaml(tmp_path, body):
@@ -90,11 +101,13 @@ PLAN = """documents:
   - doc_slug: a-plan
     title: "A Plan"
     url: "https://example.ie/a.pdf"
+    policy_id: greater-dublin-area-transport-strategy
+    policy_role: primary
 """
 
 
 def test_role_defaults_to_plan_when_absent(tmp_path):
-    records = load_documents(write_yaml(tmp_path, PLAN))
+    records = _load(write_yaml(tmp_path, PLAN))
     assert records[0]["role"] == "plan"
     assert records[0]["reports_on"] is None
     assert records[0]["expected_action_count"] is None
@@ -105,10 +118,12 @@ def test_report_resolves_reports_on_to_another_slug(tmp_path):
     path = write_yaml(tmp_path, PLAN + """  - doc_slug: a-report
     title: "A Report"
     url: "https://example.ie/b.pdf"
+    policy_id: greater-dublin-area-transport-strategy
+    policy_role: progress-report
     role: report
     reports_on: a-plan
 """)
-    records = load_documents(path)
+    records = _load(path)
     assert records[1]["role"] == "report"
     assert records[1]["reports_on"] == "a-plan"
 
@@ -117,21 +132,25 @@ def test_report_without_reports_on_is_fatal(tmp_path):
     path = write_yaml(tmp_path, PLAN + """  - doc_slug: a-report
     title: "A Report"
     url: "https://example.ie/b.pdf"
+    policy_id: greater-dublin-area-transport-strategy
+    policy_role: progress-report
     role: report
 """)
     with pytest.raises(InvalidDocumentRole, match="reports_on"):
-        load_documents(path)
+        _load(path)
 
 
 def test_report_with_unresolvable_reports_on_is_fatal(tmp_path):
     path = write_yaml(tmp_path, PLAN + """  - doc_slug: a-report
     title: "A Report"
     url: "https://example.ie/b.pdf"
+    policy_id: greater-dublin-area-transport-strategy
+    policy_role: progress-report
     role: report
     reports_on: no-such-plan
 """)
     with pytest.raises(InvalidDocumentRole, match="no-such-plan"):
-        load_documents(path)
+        _load(path)
 
 
 def test_unknown_role_is_fatal(tmp_path):
@@ -139,10 +158,12 @@ def test_unknown_role_is_fatal(tmp_path):
   - doc_slug: a-plan
     title: "A Plan"
     url: "https://example.ie/a.pdf"
+    policy_id: greater-dublin-area-transport-strategy
+    policy_role: primary
     role: annex
 """)
     with pytest.raises(InvalidDocumentRole, match="annex"):
-        load_documents(path)
+        _load(path)
 
 
 def test_reports_on_is_rejected_on_a_plan(tmp_path):
@@ -150,10 +171,12 @@ def test_reports_on_is_rejected_on_a_plan(tmp_path):
   - doc_slug: a-plan
     title: "A Plan"
     url: "https://example.ie/a.pdf"
+    policy_id: greater-dublin-area-transport-strategy
+    policy_role: primary
     reports_on: a-plan
 """)
     with pytest.raises(InvalidDocumentRole, match="reports_on"):
-        load_documents(path)
+        _load(path)
 
 
 def test_expected_counts_are_parsed(tmp_path):
@@ -161,17 +184,21 @@ def test_expected_counts_are_parsed(tmp_path):
   - doc_slug: a-plan
     title: "A Plan"
     url: "https://example.ie/a.pdf"
+    policy_id: greater-dublin-area-transport-strategy
+    policy_role: primary
     expected_action_count: 91
   - doc_slug: a-report
     title: "A Report"
     url: "https://example.ie/b.pdf"
+    policy_id: greater-dublin-area-transport-strategy
+    policy_role: progress-report
     role: report
     reports_on: a-plan
     expected_status_counts:
       Complete: 58
       Delayed: 28
 """)
-    records = load_documents(path)
+    records = _load(path)
     assert records[0]["expected_action_count"] == 91
     assert records[1]["expected_status_counts"] == {"Complete": 58, "Delayed": 28}
 
@@ -181,10 +208,12 @@ def test_non_integer_expected_action_count_is_rejected(tmp_path):
   - doc_slug: a-plan
     title: "A Plan"
     url: "https://example.ie/a.pdf"
+    policy_id: greater-dublin-area-transport-strategy
+    policy_role: primary
     expected_action_count: "ninety-one"
 """)
     with pytest.raises(ValueError, match="expected_action_count"):
-        load_documents(path)
+        _load(path)
 
 
 def test_non_integer_expected_status_count_value_is_rejected(tmp_path):
@@ -192,13 +221,15 @@ def test_non_integer_expected_status_count_value_is_rejected(tmp_path):
   - doc_slug: a-report
     title: "A Report"
     url: "https://example.ie/b.pdf"
+    policy_id: greater-dublin-area-transport-strategy
+    policy_role: progress-report
     role: report
     reports_on: a-report
     expected_status_counts:
       Complete: many
 """)
     with pytest.raises(ValueError):
-        load_documents(path)
+        _load(path)
 
 
 def test_the_real_documents_yml_declares_the_smp_corpus():
@@ -216,3 +247,53 @@ def test_the_real_documents_yml_declares_the_smp_corpus():
     # Page 7 of this report publishes its own split: 63.7%/30.8%/5.5% of 91
     # actions.
     assert final["expected_status_counts"] == {"Complete": 58, "Delayed": 28, "Modified": 5}
+
+
+ENTRY = ('  - doc_slug: {slug}\n    title: "T"\n    url: "https://e.org/{slug}.pdf"\n'
+         '    policy_id: {policy}\n    policy_role: {prole}\n{extra}')
+NSMP = "national-sustainable-mobility-policy-nsmp"
+GDA = "greater-dublin-area-transport-strategy"
+
+
+def _doc(slug="a-doc", policy=GDA, prole="primary", extra=""):
+    return ENTRY.format(slug=slug, policy=policy, prole=prole, extra=extra)
+
+
+@pytest.mark.parametrize("field", ["policy_id", "policy_role"])
+def test_policy_fields_are_required(tmp_path, field):
+    text = "documents:\n" + _doc()
+    text = "\n".join(l for l in text.splitlines() if field + ":" not in l) + "\n"
+    with pytest.raises(ValueError, match=field):
+        _load(_write(tmp_path, text))
+
+
+def test_policy_id_must_exist_in_the_inventory(tmp_path):
+    with pytest.raises(ValueError, match="policy_id"):
+        _load(_write(tmp_path, "documents:\n" + _doc(policy="not-a-policy")))
+
+
+def test_policy_role_must_be_a_known_value(tmp_path):
+    with pytest.raises(ValueError, match="policy_role"):
+        _load(_write(tmp_path, "documents:\n" + _doc(prole="appendix")))
+
+
+def test_a_report_must_be_a_progress_report_and_vice_versa(tmp_path):
+    plan = _doc("plan-doc", NSMP, "action-plan")
+    wrong = _doc("rep", NSMP, "action-plan", "    role: report\n    reports_on: plan-doc\n")
+    with pytest.raises(InvalidDocumentRole, match="progress-report"):
+        _load(_write(tmp_path, "documents:\n" + plan + wrong))
+    inverse = _doc("rep", NSMP, "progress-report")      # role defaults to plan
+    with pytest.raises(InvalidDocumentRole, match="progress-report"):
+        _load(_write(tmp_path, "documents:\n" + plan + inverse))
+
+
+def test_a_report_must_report_on_a_plan_of_the_same_policy(tmp_path):
+    plan = _doc("plan-doc", GDA, "primary")
+    rep = _doc("rep", NSMP, "progress-report", "    role: report\n    reports_on: plan-doc\n")
+    with pytest.raises(InvalidDocumentRole, match="same policy"):
+        _load(_write(tmp_path, "documents:\n" + plan + rep))
+
+
+def test_the_curated_documents_yml_matches_the_real_inventory():
+    records = load_documents()                          # real yml + real inventory
+    assert records and all(r["policy_id"] and r["policy_role"] for r in records)

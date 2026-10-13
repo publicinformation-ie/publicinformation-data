@@ -10,16 +10,19 @@ from pathlib import Path
 
 import yaml
 
+from policies import load_policies
+
 DOCUMENTS_PATH = Path(__file__).parent / "documents.yml"
 
 SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
-_REQUIRED = ("doc_slug", "title", "url")
+_REQUIRED = ("doc_slug", "title", "url", "policy_id", "policy_role")
 _OPTIONAL = ("publisher", "public_body_id", "published_date", "role",
              "reports_on", "expected_action_count", "expected_status_counts")
 
 VALID_ROLES = ("plan", "report")
+VALID_POLICY_ROLES = ("primary", "action-plan", "progress-report")
 
 
 class InvalidDocumentRole(ValueError):
@@ -32,9 +35,11 @@ class InvalidDocumentRole(ValueError):
     """
 
 
-def load_documents(path=DOCUMENTS_PATH) -> list:
+def load_documents(path=DOCUMENTS_PATH, policy_ids=None) -> list:
     """Parse and validate documents.yml. Raises ValueError on any violation."""
     path = Path(path)
+    if policy_ids is None:
+        policy_ids = {p["policy_id"] for p in load_policies()}
     try:
         raw = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
     except yaml.YAMLError as e:
@@ -81,6 +86,19 @@ def load_documents(path=DOCUMENTS_PATH) -> list:
             raise InvalidDocumentRole(
                 f"{where} has role {role!r}; must be one of {VALID_ROLES}")
 
+        policy_id = entry["policy_id"]
+        if policy_id not in policy_ids:
+            raise ValueError(
+                f"{where} has policy_id {policy_id!r}, which is not in the policy inventory")
+        policy_role = entry["policy_role"]
+        if policy_role not in VALID_POLICY_ROLES:
+            raise ValueError(
+                f"{where} has policy_role {policy_role!r}; must be one of {VALID_POLICY_ROLES}")
+        if (role == "report") != (policy_role == "progress-report"):
+            raise InvalidDocumentRole(
+                f"{where} has role {role!r} but policy_role {policy_role!r}; "
+                f"a report must be a progress-report and vice versa")
+
         reports_on = entry.get("reports_on")
         if role == "report" and not reports_on:
             raise InvalidDocumentRole(
@@ -118,12 +136,19 @@ def load_documents(path=DOCUMENTS_PATH) -> list:
         record["role"] = role
         records.append(record)
 
-    slugs = {record["doc_slug"] for record in records}
+    by_slug = {record["doc_slug"]: record for record in records}
+    slugs = set(by_slug)
     for record in records:
         target = record["reports_on"]
         if target is not None and target not in slugs:
             raise InvalidDocumentRole(
                 f"{path} entry {record['doc_slug']!r} has reports_on {target!r}, "
                 f"which is not a doc_slug in this file")
+        if target is not None:
+            if by_slug[target]["policy_id"] != record["policy_id"]:
+                raise InvalidDocumentRole(
+                    f"{path} entry {record['doc_slug']!r} reports on {target!r}, "
+                    f"which belongs to a different policy; a report and its plan must "
+                    f"share the same policy_id")
 
     return records
