@@ -83,3 +83,140 @@ documents:
       Delayed: 28
       Modified: 5
 
+
+  - doc_slug: national-investment-framework-for-transport-in-ireland
+    title: "National Investment Framework for Transport in Ireland"
+    url: "https://assets.gov.ie/static/documents/national-investment-framework-for-transport-in-ireland-e0da00c5-441f-44bd-955c-a4bcdac.pdf"
+    policy_id: national-investment-framework-for-transport-in-ireland-nifti
+    policy_role: primary
+    publisher: "Department of Transport"
+    public_body_id: 1213
+
+  - doc_slug: sustainable-mobility-policy
+    title: "National Sustainable Mobility Policy"
+    url: "https://assets.gov.ie/static/documents/sustainable-mobility-policy.pdf"
+    policy_id: national-sustainable-mobility-policy-nsmp
+    policy_role: primary
+    publisher: "Department of Transport"
+    public_body_id: 1213
+
+  - doc_slug: ndp-sectoral-investment-plan-for-transport
+    title: "National Development Plan Review 2025 Securing Ireland’s Future Sectoral Investment Plan: Transport"
+    url: "https://assets.gov.ie/static/documents/df0ce05f/NDP_Review_2025_Sectoral_Investment_Plan_for_Transport.pdf"
+    policy_id: ndp-sectoral-investment-plan-for-transport
+    policy_role: primary
+    publisher: "Department of Transport"
+    public_body_id: 1213
+
+  - doc_slug: moving-together-strategy
+    title: "Moving Together: A Collaborative Approach to Systems Change in Transport 2026–2030"
+    url: "https://assets.gov.ie/static/documents/543adefe/The_Moving_Together_Strategy.pdf"
+    policy_id: national-demand-management-strategy-moving-together
+    policy_role: primary
+    publisher: "Department of Transport"
+    public_body_id: 1213
+
+  - doc_slug: all-island-strategic-rail-review-final-report
+    title: "All-Island Strategic Rail Review Final Report"
+    url: "https://assets.gov.ie/static/documents/final-report-of-the-all-island-strategic-rail-review.pdf"
+    policy_id: all-island-strategic-rail-review-aisrr
+    policy_role: primary
+    publisher: "Department of Transport"
+    public_body_id: 1213
+    published_date: "2024-07-31"
+
+  - doc_slug: national-roads-2040-final-report
+    title: "National Roads 2040 Final Report"
+    url: "https://www.tii.ie/media/zvypdolo/tii-nr2040-final-report-en-april-2023.pdf"
+    policy_id: national-roads-2040-nr2040
+    policy_role: primary
+    publisher: "Transport Infrastructure Ireland"
+    public_body_id: 1827
+
+  - doc_slug: national-cycle-network-plan
+    title: "National Cycle Network Plan Report 2023"
+    url: "https://assets.gov.ie/static/documents/national-cycle-network-plan-report.pdf"
+    policy_id: national-cycle-network-ncn-plan
+    policy_role: primary
+    publisher: "Department of Transport"
+    public_body_id: 1213
+
+  - doc_slug: ev-infrastructure-strategy
+    title: "Electric Vehicle Charging Infrastructure Strategy 2022-2025"
+    url: "https://assets.gov.ie/static/documents/ev-infrastructure-strategy.pdf"
+    policy_id: electric-vehicle-charging-infrastructure-strategy
+    policy_role: primary
+    publisher: "Department of Transport"
+    public_body_id: 1213
+
+  - doc_slug: nta-statement-of-strategy-2026-2030
+    title: "Statement of Strategy 2026-2030"
+    url: "https://www.nationaltransport.ie/wp-content/uploads/2026/02/NTA-Statement-of-Strategy-2026-2030-English.pdf"
+    policy_id: nta-statement-of-strategy
+    policy_role: primary
+    publisher: "National Transport Authority"
+    public_body_id: 1570
+
+  - doc_slug: tii-sustainability-implementation-plan-2026
+    title: "Sustainability Implementation Plan 2026"
+    url: "https://www.tii.ie/media/rpkjdxbq/tii-sustainability-implementation-plan-2026.pdf"
+    policy_id: tii-sustainability-implementation-plan-sip
+    policy_role: primary
+    publisher: "Transport Infrastructure Ireland"
+    public_body_id: 1827
+
+  - doc_slug: connecting-ireland-rural-mobility-plan
+    title: "Connecting Ireland Rural Mobility Plan Summary Report"
+    url: "https://www.nationaltransport.ie/wp-content/uploads/2021/10/NTA-Connecting-Ireland-Report.pdf"
+    policy_id: connecting-ireland-rural-mobility-plan
+    policy_role: primary
+    publisher: "National Transport Authority"
+    public_body_id: 1570
+
+  - doc_slug: cycleconnects-summary-report
+    title: "CycleConnects: Summary Report"
+    url: "https://consult.nationaltransport.ie/sites/default/files/uploads/consultation/3961/CycleConnects%20-%20Summary%20Report.pdf"
+    policy_id: cycleconnects-plan
+    policy_role: primary
+    publisher: "National Transport Authority"
+    public_body_id: 1570
+
+  - doc_slug: gda-cycle-network-plan-2022
+    title: "2022 Greater Dublin Area Cycle Network"
+    url: "https://www.nationaltransport.ie/wp-content/uploads/2023/01/2022-GDA-Cycle-Network.pdf"
+    policy_id: gda-cycle-network-plan
+    policy_role: primary
+    publisher: "National Transport Authority"
+    public_body_id: 1570
+
+  - doc_slug: emra-regional-spatial-and-economic-strategy
+    title: "Regional Spatial & Economic Strategy 2019-2031"
+    url: "https://www.emra.ie/rses-download/EMRA-RSES.pdf"
+    policy_id: regional-spatial-economic-strategies-rses
+    policy_role: primary
+    publisher: "Eastern and Midland Regional Assembly"
+    public_body_id: 1247
+
+  - doc_slug: national-ports-policy
+    title: "National Ports Policy"
+    url: "https://assets.gov.ie/static/documents/national-ports-policy.PDF"
+    policy_id: national-ports-policy
+    policy_role: primary
+    publisher: "Department of Transport"
+    public_body_id: 1213
+
+  - doc_slug: code-of-practice-fishing-vessels-under-15m
+    title: "Code of Practice: Design, Construction, Equipment, and Operation of Small Fishing Vessels of less than 15 metres Length overall"
+    url: "https://assets.gov.ie/static/documents/code-of-practice-for-fishing-vessels-of-less-than-15-metres-length-overall-revision-3.pdf"
+    policy_id: code-of-practice-for-small-fishing-vessels-15m
+    policy_role: primary
+    publisher: "Department of Transport"
+    public_body_id: 1213
+
+  - doc_slug: code-of-practice-recreational-craft
+    title: "Code of Practice: The Safe Operation of Recreational Craft"
+    url: "https://assets.gov.ie/static/documents/code-of-practice-for-the-safe-operation-of-recreational-craft-75c0ed13-84cb-40af-a689-.pdf"
+    policy_id: code-of-practice-for-safe-operation-of-recreational-craft
+    policy_role: primary
+    publisher: "Department of Transport"
+    public_body_id: 1213
