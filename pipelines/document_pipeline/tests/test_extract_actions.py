@@ -467,3 +467,24 @@ def test_an_explicit_plan_document_still_yields_actions(tmp_path, make_writer):
     writer.finalize()
     results = json.loads((tmp_path / "output.json").read_text())["results"]
     assert len(results) == 1
+
+
+def test_a_primary_policy_document_yields_no_actions(tmp_path, make_writer):
+    writer = make_writer("extract_actions")
+    records = [clean_record([table_block(dated_rows())], doc_slug="a-strategy")]
+    meta = plan_meta("a-strategy")
+    meta["a-strategy"]["policy_role"] = "primary"
+    process(records, meta, tmp_path, writer)
+    writer.finalize()
+    assert json.loads((tmp_path / "output.json").read_text())["results"] == []
+
+
+def test_an_action_plan_policy_role_still_yields_actions(tmp_path, make_writer):
+    writer = make_writer("extract_actions")
+    records = [clean_record([table_block(dated_rows())], doc_slug="an-action-plan")]
+    meta = plan_meta("an-action-plan")
+    meta["an-action-plan"]["policy_role"] = "action-plan"
+    process(records, meta, tmp_path, writer)
+    writer.finalize()
+    results = json.loads((tmp_path / "output.json").read_text())["results"]
+    assert len(results) == 1 and results[0]["action_count"] > 0

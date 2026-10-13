@@ -381,6 +381,14 @@ def process(clean_records, meta, step_dir, writer, doc_slug=None, verbose=False)
             if verbose:
                 print(f"  {slug} ... [skipped: not a plan]", flush=True)
             continue
+        # Only curated action-plan documents are action sources: a primary
+        # policy (strategy, code of practice) can carry tables that merely
+        # look like action tables. fetch_pdfs always supplies policy_role;
+        # a record without one (legacy fixtures) is treated as an action plan.
+        if ((meta.get(slug) or {}).get("policy_role") or "action-plan") != "action-plan":
+            if verbose:
+                print(f"  {slug} ... [skipped: not an action plan]", flush=True)
+            continue
         if writer.is_processed(slug):
             continue
         if verbose:
@@ -448,7 +456,8 @@ def main():
                    "publisher": record.get("publisher"),
                    "published_date": record.get("published_date"),
                    "public_body_id": record.get("public_body_id"),
-                   "role": record.get("role") or "plan"}
+                   "role": record.get("role") or "plan",
+                   "policy_role": record.get("policy_role")}
             for slug, record in fetched.items()}
 
     writer = IncrementalWriter(output_path, STEP_NAME, key_field="doc_slug",
