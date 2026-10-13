@@ -31,6 +31,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 sys.path.insert(0, str(REPO_ROOT / "pipelines" / "document_pipeline"))
+sys.path.insert(0, str(REPO_ROOT / "src"))
 
 from src.lib.body_refs import BASE_URI, slugify
 from src.lib.dataset_publish import render_csv, render_jsonld, stamp_if_changed

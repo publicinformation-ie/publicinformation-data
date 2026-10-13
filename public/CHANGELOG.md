@@ -20,7 +20,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [transport-policies 1.0.0] - 2026-10-13
 
 ### Added
-- Transport Policies dataset: the 21 transport policies, strategies and codes of practice defining the transport document corpus, with `has_document` / `doc_slugs` linking each to its published PDFs
+- Transport Policies dataset: the 21 transport policies, strategies and codes of practice defining the transport document corpus, with `has_document` / `doc_slugs` linking each to its curated PDFs (curated in the documents pipeline; see `documents/index.json` for whether each is published or listed under `failed`)
 - CSVW metadata, JSON Schema and DCAT-AP entry
 
 ## [public-bodies 1.0.0] - 2026-07-02

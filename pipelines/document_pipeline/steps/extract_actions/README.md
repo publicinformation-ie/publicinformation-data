@@ -18,6 +18,8 @@ For each document in `clean_text/output.json`:
 
 The action rows in `output.json` are consumed by `actions_pipeline`'s `resolve_action_identity` step and published as the `public-body-actions` dataset (which carries `public_body_id`, stable `action_id`s, and status history).
 
+Only documents whose curated `policy_role` is `action-plan` are action sources; primary policy documents and other roles are skipped, since their tables are not commitments.
+
 Supports incremental resumption via `IncrementalWriter` (`key_field="doc_slug"`) and `--doc` scoping (`add_doc_arg`); scoping is also available by calling `process(..., doc_slug=...)` directly.
 
 ## Input

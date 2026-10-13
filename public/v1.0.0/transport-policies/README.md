@@ -24,8 +24,8 @@ Each row of `transport-policies.csv` is one policy:
 | `scope` | String | Scope and strategic pillar | Yes |
 | `linkages` | String | Core statutory and framework linkages | Yes |
 | `source_urls` | URI list | Official landing page(s) for the policy, separated by `\|` | Yes |
-| `has_document` | Boolean | `true` when at least one PDF is curated and published in the documents dataset | Yes |
-| `doc_slugs` | String list | `doc_slug` of each published PDF for this policy, separated by `\|` (empty when `has_document` is `false`; see the documents dataset `index.json`) | No |
+| `has_document` | Boolean | `true` when at least one PDF is curated for this policy in the documents pipeline (not necessarily published; see the documents dataset `index.json`) | Yes |
+| `doc_slugs` | String list | `doc_slug` of each curated PDF for this policy, separated by `\|` (empty when `has_document` is `false`); see the documents dataset `index.json` for whether each slug is published or listed under `failed` | No |
 
 ## Files
 

@@ -76,3 +76,34 @@ def test_ttl_has_the_stampable_modified_line_and_the_csv_distribution():
     assert len(re.findall(r'^    dct:modified "\d{4}-\d{2}-\d{2}"\^\^xsd:date ;$', text, re.M)) == 1
     assert "/latest/transport-policies/transport-policies.csv" in text
     assert "transport-policies.csv-metadata.json" in text
+
+
+PINNED_POLICY_IDS = [
+    "national-investment-framework-for-transport-in-ireland-nifti",
+    "national-sustainable-mobility-policy-nsmp",
+    "ndp-sectoral-investment-plan-for-transport",
+    "national-demand-management-strategy-moving-together",
+    "all-island-strategic-rail-review-aisrr",
+    "national-roads-2040-nr2040",
+    "national-cycle-network-ncn-plan",
+    "electric-vehicle-charging-infrastructure-strategy",
+    "nta-statement-of-strategy",
+    "tii-sustainability-implementation-plan-sip",
+    "greater-dublin-area-transport-strategy",
+    "busconnects-programme-strategies",
+    "connecting-ireland-rural-mobility-plan",
+    "cycleconnects-plan",
+    "gda-cycle-network-plan",
+    "regional-spatial-economic-strategies-rses",
+    "local-transport-plans-ltp-frameworks",
+    "national-ports-policy",
+    "maritime-safety-strategy",
+    "code-of-practice-for-small-fishing-vessels-15m",
+    "code-of-practice-for-safe-operation-of-recreational-craft",
+]
+
+
+def test_published_policy_ids_are_pinned():
+    # A title edit must not silently change a published, citable id.
+    ids = [r["policy_id"] for r in _rows()]
+    assert ids == PINNED_POLICY_IDS

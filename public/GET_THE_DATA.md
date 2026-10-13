@@ -49,11 +49,11 @@ This dataset has three tables: [actions](latest/public-body-actions/actions.csv)
 
 ## [Motions](latest/motions/motions.csv)
 
+Motions moved at meetings of Irish local authorities, from the authorities' published meeting minutes: who proposed and seconded each motion, the meeting date and type, and the outcome.
 
 ## [Transport policies](latest/transport-policies/transport-policies.csv)
 
-The 21 transport policies, strategies and codes of practice that define the transport document corpus: who issued each, the period it covers, its scope, and links to its official pages and published PDFs.
-Motions moved at meetings of Irish local authorities, from the authorities' published meeting minutes: who proposed and seconded each motion, the meeting date and type, and the outcome.
+The 21 transport policies, strategies and codes of practice that define the transport document corpus: who issued each, the period it covers, its scope, and links to its official pages and its curated PDFs (curated in the documents pipeline; see [documents/index.json](documents/index.json) for whether each is published or listed under `failed`).
 
 ## Worked example: find a body's FOI contact email
 

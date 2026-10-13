@@ -29,7 +29,7 @@ Start at [`public/README.md`](public/README.md) — the data hub, with one entry
 
 #### Curated Linked Data datasets
 
-Nine datasets are published as versioned Linked Data under `public/latest/<dataset>/` (always the newest release) and `public/vX.Y.Z/<dataset>/` (immutable per-version snapshots), each with its own JSON-LD, CSV, and CSV metadata, plus a dataset-specific `README.md`:
+Nine datasets are published as versioned Linked Data under `public/latest/<dataset>/` (always the newest release) and `public/vX.Y.Z/<dataset>/` (immutable per-version snapshots), each with its own JSON-LD, CSV, and CSV metadata (Transport Policies is the exception: CSV and CSV metadata only, no JSON-LD), plus a dataset-specific `README.md`:
 
 | Dataset | Version | Records | Docs |
 |---------|---------|---------|------|
@@ -297,7 +297,7 @@ All files in the `public/` directory are safe for direct use. There are two tier
 
 ### Curated Linked Data datasets
 
-The curated datasets — Public Bodies, FOI Disclosures, FOI Request Files, Who Does What, data.gov.ie Links, lobbying.ie Links, Public Body Actions, Motions, and Transport Policies — implement 3-4 star Linked Data best practices and are published as JSON-LD + CSV under `public/latest/<dataset>/` (always the newest release) and `public/vX.Y.Z/<dataset>/` (immutable per-version snapshots). Each dataset has its own `README.md` documenting its data model, versioning, and provenance — see the table in [Get the Data](#get-the-data) above. Shared technical-reference files:
+The curated datasets — Public Bodies, FOI Disclosures, FOI Request Files, Who Does What, data.gov.ie Links, lobbying.ie Links, Public Body Actions, Motions, and Transport Policies — implement 3-4 star Linked Data best practices and are published as JSON-LD + CSV (Transport Policies is the exception: CSV only) under `public/latest/<dataset>/` (always the newest release) and `public/vX.Y.Z/<dataset>/` (immutable per-version snapshots). Each dataset has its own `README.md` documenting its data model, versioning, and provenance — see the table in [Get the Data](#get-the-data) above. Shared technical-reference files:
 
 - **`public/catalog/`**: DCAT-AP 3.0 compliant dataset metadata (RDF/Turtle), one `.ttl` per dataset
 - **`public/schemas/`**: JSON Schema for validation, one per dataset
