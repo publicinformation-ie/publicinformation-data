@@ -42,7 +42,7 @@ FIND_PUBLIC_BODIES_PATH = "pipelines/foi_pipeline/steps/find_public_bodies/outpu
 STATUS_VOCABULARY_PATH = "public/vocabularies/action-status.csv"
 RELATIONSHIP_VOCABULARY_PATH = "public/vocabularies/action-relationship.csv"
 
-OUTPUT_DIR = "public/v1.0.0/public-body-actions"
+OUTPUT_DIR = "public/v2.0.0/public-body-actions"
 LATEST_DIR = "public/latest/public-body-actions"
 TTL_PATH = "public/catalog/dataset-public-body-actions.ttl"
 

@@ -52,7 +52,7 @@ def test_each_vocabulary_has_a_matching_csvw_descriptor():
             assert next(csv.reader(f)) == declared
 
 
-CSVW_PATH = REPO_ROOT / "public" / "v1.0.0" / "public-body-actions" / "public-body-actions.csv-metadata.json"
+CSVW_PATH = REPO_ROOT / "public" / "v2.0.0" / "public-body-actions" / "public-body-actions.csv-metadata.json"
 SCHEMA_PATH = REPO_ROOT / "public" / "schemas" / "public-body-actions.schema.json"
 TTL_PATH = REPO_ROOT / "public" / "catalog" / "dataset-public-body-actions.ttl"
 
@@ -95,8 +95,8 @@ def test_the_schema_relationship_enum_matches_the_relationship_vocabulary():
     assert set(enum) == {r["notation"] for r in read_vocabulary("action-relationship.csv")}
 
 
-def test_the_ttl_declares_version_1_0_0_and_a_stampable_dct_modified():
+def test_the_ttl_declares_version_2_0_0_and_a_stampable_dct_modified():
     import re
     text = TTL_PATH.read_text()
-    assert 'owl:versionInfo "1.0.0"' in text
+    assert 'owl:versionInfo "2.0.0"' in text
     assert len(re.findall(r'(dct:modified\s+")[^"]*("\^\^xsd:date\s*;)', text)) == 1

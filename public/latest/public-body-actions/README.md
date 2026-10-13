@@ -107,7 +107,7 @@ The source PDFs contain ligature-reordering artifacts introduced by PDF text ext
 
 ## Versioning
 
-This directory (`v1.0.0/`) is an immutable, versioned release. `../../latest/public-body-actions/` always mirrors the newest version. Releases are also tagged in git (`public-body-actions-v1.0.0`).
+This directory (`v2.0.0/`) is an immutable, versioned release. `../../latest/public-body-actions/` always mirrors the newest version. Releases are also tagged in git (`public-body-actions-v2.0.0`).
 
 ## Accessing Data
 

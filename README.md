@@ -40,7 +40,7 @@ Nine datasets are published as versioned Linked Data under `public/latest/<datas
 | Transport Policies | v1.0.0 | 21 | [`public/latest/transport-policies/README.md`](public/latest/transport-policies/README.md) |
 | data.gov.ie Links | v1.0.0 | 137 | [`public/latest/data-gov-ie-links/README.md`](public/latest/data-gov-ie-links/README.md) |
 | lobbying.ie Links | v1.0.0 | 121 | [`public/latest/lobbying-ie-links/README.md`](public/latest/lobbying-ie-links/README.md) |
-| Public Body Actions | v1.0.0 | 198 | [`public/latest/public-body-actions/README.md`](public/latest/public-body-actions/README.md) |
+| Public Body Actions | v2.0.0 | 186 | [`public/latest/public-body-actions/README.md`](public/latest/public-body-actions/README.md) |
 | Motions | v1.0.0 | 3,959 | [`public/latest/motions/README.md`](public/latest/motions/README.md) |
 
 `public-bodies` is regenerated automatically by the FOI pipeline's `export_status` step on every full run (logic in `src/lib/publish_public_bodies.py`), so it always stays in lockstep with `pipeline-data.json`; the other datasets are produced by standalone `scripts/transform_*.py` — eight such scripts as of this writing (`ls scripts/transform_*.py`).

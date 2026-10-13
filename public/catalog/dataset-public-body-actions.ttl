@@ -13,8 +13,8 @@
     dct:publisher <https://www.publicinformation.ie/> ;
     dct:creator <https://www.publicinformation.ie/> ;
     dct:issued "2026-08-29"^^xsd:date ;
-    dct:modified "2026-08-30"^^xsd:date ;
-    owl:versionInfo "1.0.0" ;
+    dct:modified "2026-10-13"^^xsd:date ;
+    owl:versionInfo "2.0.0" ;
     dct:language <http://publications.europa.eu/resource/authority/language/ENG> ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dcat:keyword "action plan", "commitments", "sustainable mobility", "Ireland", "government", "open data"@en ;
@@ -31,9 +31,9 @@
         dct:title "Public Body Actions (CSV, actions, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
         dcat:accessURL <https://data.publicinformation.ie/latest/public-body-actions/actions.csv> ;
-        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/public-body-actions/actions.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v2.0.0/public-body-actions/actions.csv> ;
         dct:conformsTo <http://www.w3.org/ns/csvw> ;
-        dct:conformsTo <https://data.publicinformation.ie/v1.0.0/public-body-actions/public-body-actions.csv-metadata.json> ;
+        dct:conformsTo <https://data.publicinformation.ie/v2.0.0/public-body-actions/public-body-actions.csv-metadata.json> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "text/csv" ;
     ] , [
@@ -41,9 +41,9 @@
         dct:title "Public Body Actions (CSV, action status observations, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
         dcat:accessURL <https://data.publicinformation.ie/latest/public-body-actions/action-status-observations.csv> ;
-        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/public-body-actions/action-status-observations.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v2.0.0/public-body-actions/action-status-observations.csv> ;
         dct:conformsTo <http://www.w3.org/ns/csvw> ;
-        dct:conformsTo <https://data.publicinformation.ie/v1.0.0/public-body-actions/public-body-actions.csv-metadata.json> ;
+        dct:conformsTo <https://data.publicinformation.ie/v2.0.0/public-body-actions/public-body-actions.csv-metadata.json> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "text/csv" ;
     ] , [
@@ -51,9 +51,9 @@
         dct:title "Public Body Actions (CSV, action relationships, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
         dcat:accessURL <https://data.publicinformation.ie/latest/public-body-actions/action-relationships.csv> ;
-        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/public-body-actions/action-relationships.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v2.0.0/public-body-actions/action-relationships.csv> ;
         dct:conformsTo <http://www.w3.org/ns/csvw> ;
-        dct:conformsTo <https://data.publicinformation.ie/v1.0.0/public-body-actions/public-body-actions.csv-metadata.json> ;
+        dct:conformsTo <https://data.publicinformation.ie/v2.0.0/public-body-actions/public-body-actions.csv-metadata.json> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "text/csv" ;
     ] , [
@@ -61,7 +61,7 @@
         dct:title "Public Body Actions (JSON-LD, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
         dcat:accessURL <https://data.publicinformation.ie/latest/public-body-actions/public-body-actions.jsonld> ;
-        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/public-body-actions/public-body-actions.jsonld> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v2.0.0/public-body-actions/public-body-actions.jsonld> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "application/ld+json" ;
         dct:conformsTo <https://data.publicinformation.ie/schemas/public-body-actions.schema.json> ;
@@ -70,7 +70,7 @@
         dct:title "Public Body Actions (CSVW TableGroup metadata, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
         dcat:accessURL <https://data.publicinformation.ie/latest/public-body-actions/public-body-actions.csv-metadata.json> ;
-        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/public-body-actions/public-body-actions.csv-metadata.json> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v2.0.0/public-body-actions/public-body-actions.csv-metadata.json> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "application/csvm+json" ;
         dct:conformsTo <http://www.w3.org/ns/csvw> ;

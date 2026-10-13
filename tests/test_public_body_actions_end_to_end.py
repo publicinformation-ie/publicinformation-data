@@ -59,7 +59,7 @@ def test_the_final_report_reproduces_its_own_published_split(resolved):
 
 
 def test_the_published_csvs_are_consistent_with_the_pipeline(resolved):
-    published = REPO_ROOT / "public/v1.0.0/public-body-actions/actions.csv"
+    published = REPO_ROOT / "public/v2.0.0/public-body-actions/actions.csv"
     if not published.exists():
         pytest.skip("dataset not yet published")
     with published.open(newline="", encoding="utf-8") as f:

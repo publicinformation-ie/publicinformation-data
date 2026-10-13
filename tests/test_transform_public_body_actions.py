@@ -226,7 +226,7 @@ def test_an_observation_links_to_its_actions_uri():
 
 
 def test_output_lands_in_both_the_versioned_and_latest_directories():
-    assert transform.OUTPUT_DIR == "public/v1.0.0/public-body-actions"
+    assert transform.OUTPUT_DIR == "public/v2.0.0/public-body-actions"
     assert transform.LATEST_DIR == "public/latest/public-body-actions"
 
 
