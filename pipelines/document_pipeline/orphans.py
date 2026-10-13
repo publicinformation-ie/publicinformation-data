@@ -14,13 +14,17 @@ from documents import load_documents
 
 STEP_ARTEFACT_DIRS = ("pdfs", "pages", "assets", "sections", "contact-sheets")
 RETIRED_STEP_DIRS = ("find_plan_pdfs",)
+SLUG_SUFFIXES = (".pdf", ".html")
 PUBLIC_KEEP_FILES = ("index.json", "index.html")
 DEFAULT_MANIFEST = (Path(__file__).resolve().parents[2]
                     / "docs" / "superpowers" / "research" / "2026-10-13-deletion-manifest.md")
 
 
 def _slug_of(path: Path) -> str:
-    return path.name[:-4] if path.name.endswith(".pdf") else path.name
+    for suffix in SLUG_SUFFIXES:
+        if path.name.endswith(suffix):
+            return path.name[:-len(suffix)]
+    return path.name
 
 
 def find_orphans(keep_slugs, pipeline_dir, public_documents_dir) -> list:
@@ -42,7 +46,7 @@ def find_orphans(keep_slugs, pipeline_dir, public_documents_dir) -> list:
 
 
 def _allowed(path: Path, pipeline_dir: Path, public_documents_dir: Path, keep_slugs) -> bool:
-    if path.is_symlink() or path.resolve() != Path(path).absolute().resolve():
+    if path.is_symlink() or ".." in path.parts:
         return False
     resolved = path.resolve()
     parent = resolved.parent
@@ -64,10 +68,11 @@ def apply_manifest(manifest_path, pipeline_dir, public_documents_dir, keep_slugs
         if not _allowed(path, pipeline_dir, public_documents_dir, keep_slugs):
             raise ValueError(f"refusing to delete {path}: not an orphaned artefact path")
     for path in listed:
-        if path.is_dir():
-            shutil.rmtree(path)
+        target = path.resolve()  # the object that was checked is the object deleted
+        if target.is_dir():
+            shutil.rmtree(target)
         else:
-            path.unlink(missing_ok=True)
+            target.unlink(missing_ok=True)
     return listed
 
 

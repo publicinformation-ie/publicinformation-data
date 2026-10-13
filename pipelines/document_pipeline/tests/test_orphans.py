@@ -55,14 +55,16 @@ def test_apply_deletes_exactly_the_manifest(tree, tmp_path):
 
 
 @pytest.mark.parametrize("bad", [
-    "../outside",                       # traversal
+    "../outside",                       # absolute path outside every root
     "steps/fetch_pdfs/pdfs/keep-me.pdf",  # a kept slug
     "steps/fetch_pdfs/output.json",     # not an artefact root
+    "steps/fetch_pdfs/pdfs/../../fetch_pdfs/output.json",  # literal .. segment
+    "steps/extract_figures/contact-sheets/keep-me.html",   # kept slug, html artefact
 ])
 def test_apply_refuses_unsafe_paths_and_deletes_nothing(tree, tmp_path, bad):
     pipeline, public = tree
     target = (pipeline / bad) if not bad.startswith("..") else (tmp_path / "outside")
-    target.parent.mkdir(parents=True, exist_ok=True)
+    target.parent.resolve().mkdir(parents=True, exist_ok=True)
     target.write_text("x")
     stale = pipeline / "steps" / "fetch_pdfs" / "pdfs" / "stale-doc.pdf"
     manifest = tmp_path / "m.md"
@@ -83,3 +85,27 @@ def test_apply_refuses_a_symlink_that_escapes(tree, tmp_path):
     with pytest.raises(ValueError):
         apply_manifest(manifest, pipeline, public, KEEP)
     assert outside.exists()
+
+
+def test_contact_sheet_html_slugs(tree):
+    pipeline, public = tree
+    cs = pipeline / "steps" / "extract_figures" / "contact-sheets"
+    cs.mkdir()
+    (cs / "keep-me.html").write_text("x")
+    (cs / "stale-one.html").write_text("x")
+    found = {p.name for p in find_orphans(KEEP, pipeline, public)}
+    assert "stale-one.html" in found and "keep-me.html" not in found
+
+
+def test_apply_refuses_intermediate_symlink(tree, tmp_path):
+    pipeline, public = tree
+    outside = tmp_path / "outside_dir"
+    outside.mkdir()
+    (outside / "stale-doc").write_text("x")
+    link = pipeline / "steps" / "extract_pages" / "pages" / "linkdir"
+    link.symlink_to(outside)
+    manifest = tmp_path / "m.md"
+    manifest.write_text(f"- `{link / 'stale-doc'}`\n")
+    with pytest.raises(ValueError):
+        apply_manifest(manifest, pipeline, public, KEEP)
+    assert (outside / "stale-doc").exists()
