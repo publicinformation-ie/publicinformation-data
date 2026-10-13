@@ -63,20 +63,19 @@ cd pipelines/foi_pipeline && uv run python process.py --force --stop-on-error
 | 2 | `match_public_bodies` |
 | 3 | `apply_overrides` |
 
-### `document_pipeline` (10 steps)
+### `document_pipeline` (9 steps)
 
 | # | Step |
 |---:|---|
-| 1 | `find_plan_pdfs` |
-| 2 | `fetch_pdfs` |
-| 3 | `extract_pages` |
-| 4 | `detect_structure` |
-| 5 | `extract_figures` |
-| 6 | `clean_text` |
-| 7 | `extract_actions` |
-| 8 | `extract_action_status` |
-| 9 | `assemble_sections` |
-| 10 | `publish_bundles` |
+| 1 | `fetch_pdfs` |
+| 2 | `extract_pages` |
+| 3 | `detect_structure` |
+| 4 | `extract_figures` |
+| 5 | `clean_text` |
+| 6 | `extract_actions` |
+| 7 | `extract_action_status` |
+| 8 | `assemble_sections` |
+| 9 | `publish_bundles` |
 
 ### `foi_pipeline` (27 steps)
 
@@ -282,7 +281,7 @@ Bump `owl:versionInfo` by hand only for a breaking (MAJOR) or additive (MINOR) c
 | FOI discovery/search | Network access; `APIFY_TOKEN` for Apify-backed search steps |
 | FOI database upload | `.env.admin` for remote libSQL; otherwise local `local.db` fallback |
 | FOI evaluation | Optional provider credentials and model settings; may incur LLM cost |
-| Document discovery/fetch | Network access and Apify for PDF discovery; cached PDFs are reused where possible |
+| Document discovery/fetch | Network access to download PDFs listed in `documents.yml`; cached PDFs are reused where possible |
 | Pages publishing | Publishes a `public/` artifact via the deploy workflow; merge to `main` only after reviewing `public/` changes |
 
 ## Data Quality and Artifacts

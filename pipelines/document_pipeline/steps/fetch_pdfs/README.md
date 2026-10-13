@@ -24,7 +24,7 @@ Supports **incremental resumption** via `IncrementalWriter` (`key_field="doc_slu
 ## Input
 
 `documents.yml`, via `documents.load_documents()` — this pipeline's hand-curated source list.
-`find_plan_pdfs/output.json`, via `--input` — discovered plans merged in via `_merge_documents()`; a `documents.yml` entry always wins on `doc_slug` collision.
+This step reads only `documents.yml`. `--input` is accepted but ignored (the shared runner passes the step directory).
 
 ## Output
 

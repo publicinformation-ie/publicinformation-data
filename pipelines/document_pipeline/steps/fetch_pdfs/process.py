@@ -148,45 +148,23 @@ def _load_prior_records(output_path: Path) -> dict:
         return {}
 
 
-def _load_discovered(input_path) -> list:
-    """Read find_plan_pdfs/output.json's results list. Not fatal: if the
-    file is missing or unreadable (e.g. find_plan_pdfs never ran, or failed
-    before writing output — missing APIFY_TOKEN, a failed Apify run), this
-    step should still be able to proceed on documents.yml alone."""
-    try:
-        return read_json(input_path).get("results", [])
-    except (OSError, ValueError):
-        return []
-
-
-def _merge_documents(documents: list, discovered: list) -> list:
-    """documents.yml wins on doc_slug collision; a find_plan_pdfs record
-    whose doc_slug is not already curated in documents.yml is appended
-    unchanged, so process() sees it as an ordinary document (its optional
-    fields are already None, same shape documents.py itself produces)."""
-    existing_slugs = {d["doc_slug"] for d in documents}
-    return documents + [d for d in discovered if d["doc_slug"] not in existing_slugs]
-
-
 def _doc_metadata(doc: dict) -> dict:
-    """The record fields derived from the curated `doc` (documents.yml or a
-    find_plan_pdfs result) rather than from the downloaded PDF. These can
-    change between runs without the PDF changing, so a cache hit must still
+    """The record fields derived from the curated `doc` (documents.yml) rather than from the
+    downloaded PDF. These can change between runs without the PDF changing, so a cache hit must still
     recompute them — only the download-derived facts (sha256, page_count,
     fetched_at, ...) stay pinned to the original fetch."""
     return {
         "doc_slug": doc["doc_slug"],
         "title": doc["title"],
         "url": doc["url"],
-        "publisher": doc.get("publisher") or doc.get("department"),
+        "publisher": doc.get("publisher"),
         "public_body_id": doc.get("public_body_id"),
         "published_date": doc.get("published_date"),
         # role/reports_on travel with the document because every consumer of a
         # fetched record — extract_actions' plan scoping, extract_action_status'
         # report scoping, and the publisher's count invariants — needs them, and
         # fetch_pdfs' record is the pipeline's provenance of record. A
-        # find_plan_pdfs discovery carries none of them, so a discovered
-        # document defaults to a plan with no expectations.
+        # document with no role defaults to a plan with no expectations.
         "role": doc.get("role") or "plan",
         "reports_on": doc.get("reports_on"),
         "expected_action_count": doc.get("expected_action_count"),
@@ -282,9 +260,9 @@ def _parse_local_pdf_args(pairs) -> dict:
 def main():
     parser = argparse.ArgumentParser(
         description="Fetch (or reuse a cached copy of) each document's source PDF")
-    parser.add_argument("--input", required=True,
-                        help="find_plan_pdfs/output.json — discovered plans merged with "
-                             "documents.yml (documents.yml wins on doc_slug collision)")
+    parser.add_argument("--input", default=None,
+                        help="Ignored: fetch_pdfs is the first step and reads only documents.yml "
+                             "(the shared runner passes the step directory here)")
     parser.add_argument("--output", default=None, help="Path to write output.json")
     parser.add_argument("--force", action="store_true", help="Re-download every document")
     parser.add_argument("--verbose", action="store_true", help="Print progress")
@@ -299,8 +277,6 @@ def main():
     output_path = Path(args.output) if args.output else step_dir / "output.json"
 
     documents = load_documents()
-    discovered = _load_discovered(args.input)
-    documents = _merge_documents(documents, discovered)
     if args.doc is not None:
         documents = [d for d in documents if d["doc_slug"] == args.doc]
 

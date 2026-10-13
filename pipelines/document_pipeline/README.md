@@ -8,16 +8,15 @@ The authoritative step order is defined in [`pipeline.json`](pipeline.json). Ste
 
 | # | Step | What it does |
 |---|---|---|
-| 1 | [`find_plan_pdfs`](steps/find_plan_pdfs/) | Searches for each plan/strategy listed in `input_plans.md` and resolves it to a gov.ie source PDF URL via batched Apify search. |
-| 2 | [`fetch_pdfs`](steps/fetch_pdfs/) | Downloads (or reuses a cached copy of) each document's source PDF from `documents.yml` merged with `find_plan_pdfs`'s discoveries. |
-| 3 | [`extract_pages`](steps/extract_pages/) | Extracts page-level text spans, drawings, images and tables from each PDF. |
-| 4 | [`detect_structure`](steps/detect_structure/) | Detects each document's chapter/section tree — outline, numbering, font-hierarchy or flat fallback. |
-| 5 | [`extract_figures`](steps/extract_figures/) | Clusters page geometry into figures, renders them to WebP, writes a contact sheet per document. |
-| 6 | [`clean_text`](steps/clean_text/) | Reflows raw positioned spans into headings, paragraphs, lists and tables. |
-| 7 | [`extract_actions`](steps/extract_actions/) | Classifies each document's action tables and extracts each action row plus its target date into reviewable metadata. |
-| 8 | [`extract_action_status`](steps/extract_action_status/) | For each `role: report` document, reads its annex tables and turns every action row into one dated status observation (status, reported deadline, progress narrative). |
-| 9 | [`assemble_sections`](steps/assemble_sections/) | Cuts cleaned blocks into per-section Markdown, interleaves figures, asserts page coverage. |
-| 10 | [`publish_bundles`](steps/publish_bundles/) | Packs each publishable document into a `bundle.tar.gz` and writes `public/documents/index.json`. |
+| 1 | [`fetch_pdfs`](steps/fetch_pdfs/) | Downloads (or reuses a cached copy of) each document's source PDF from `documents.yml`, its only source. `documents.yml` is curated per policy; `input_plans_transport.md` defines the policies. |
+| 2 | [`extract_pages`](steps/extract_pages/) | Extracts page-level text spans, drawings, images and tables from each PDF. |
+| 3 | [`detect_structure`](steps/detect_structure/) | Detects each document's chapter/section tree — outline, numbering, font-hierarchy or flat fallback. |
+| 4 | [`extract_figures`](steps/extract_figures/) | Clusters page geometry into figures, renders them to WebP, writes a contact sheet per document. |
+| 5 | [`clean_text`](steps/clean_text/) | Reflows raw positioned spans into headings, paragraphs, lists and tables. |
+| 6 | [`extract_actions`](steps/extract_actions/) | Classifies each document's action tables and extracts each action row plus its target date into reviewable metadata. |
+| 7 | [`extract_action_status`](steps/extract_action_status/) | For each `role: report` document, reads its annex tables and turns every action row into one dated status observation (status, reported deadline, progress narrative). |
+| 8 | [`assemble_sections`](steps/assemble_sections/) | Cuts cleaned blocks into per-section Markdown, interleaves figures, asserts page coverage. |
+| 9 | [`publish_bundles`](steps/publish_bundles/) | Packs each publishable document into a `bundle.tar.gz` and writes `public/documents/index.json`. |
 
 `detect_structure`, `extract_figures` and `clean_text` all consume `extract_pages/output.json`; `extract_action_status` and `assemble_sections` both consume `clean_text/output.json`. Their explicit fan-in dependencies are recorded in `pipeline.json` under `input_steps`; the shared runner uses those paths both for staleness checks and for the `--input` argument. Keep that mapping in sync when changing the pipeline order.
 

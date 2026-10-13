@@ -1,4 +1,4 @@
-"""End-to-end test: runs all nine document_pipeline steps as real
+"""End-to-end test: runs all the document_pipeline steps as real
 subprocesses against a `tmp_path` copy of the pipeline, using
 `--local-pdf` to substitute the committed fixture PDF for a network
 fetch, and asserts the published bundle matches
@@ -39,7 +39,7 @@ while not (REPO_ROOT / ".git").exists():
 PIPELINE_SRC = REPO_ROOT / "pipelines" / "document_pipeline"
 FIXTURE_PDF = PIPELINE_SRC / "tests" / "fixtures" / "fixture.pdf"
 
-STEPS = ("find_plan_pdfs", "fetch_pdfs", "extract_pages", "detect_structure", "extract_figures",
+STEPS = ("fetch_pdfs", "extract_pages", "detect_structure", "extract_figures",
          "clean_text", "extract_actions", "assemble_sections", "publish_bundles")
 
 DOC_SLUG = "fixture-doc"
@@ -49,12 +49,12 @@ documents:
   - doc_slug: {DOC_SLUG}
     title: "Fixture Transport Strategy"
     url: "https://example.org/fixture.pdf"
+    policy_id: greater-dublin-area-transport-strategy
+    policy_role: primary
     publisher: "Test Authority"
     public_body_id: 1570
     published_date: "2023-01-19"
 """
-
-EMPTY_INPUT_PLANS_MD = "# Current and Future Plans for all government departments in Ireland\n"
 
 # Anything a prior run (of the real pipeline, against the real documents.yml)
 # may have left behind in the copied step directories. Deleted before the
@@ -75,7 +75,7 @@ def _clean_step_dir(step_dir: Path) -> None:
 def fixture_run(tmp_path_factory):
     """Copy pipelines/document_pipeline/ into a session-scoped tmp dir, point
     it at a one-document documents.yml keyed to the fixture PDF, and run all
-    nine steps as subprocesses with --force --local-pdf.
+    the steps as subprocesses with --force --local-pdf.
 
     Returns the *assemble_sections* step directory (a Path), so callers that
     only need the produced Markdown — the golden-file test — can do
@@ -90,7 +90,6 @@ def fixture_run(tmp_path_factory):
                     ignore=shutil.ignore_patterns("__pycache__"))
 
     (pipeline_copy / "documents.yml").write_text(DOCUMENTS_YML, encoding="utf-8")
-    (pipeline_copy / "input_plans.md").write_text(EMPTY_INPUT_PLANS_MD, encoding="utf-8")
 
     steps_dir = pipeline_copy / "steps"
     for step in STEPS:
