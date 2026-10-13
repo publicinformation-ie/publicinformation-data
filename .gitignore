@@ -54,7 +54,6 @@ pipelines/document_pipeline/steps/*/pages/
 pipelines/document_pipeline/steps/*/assets/
 pipelines/document_pipeline/steps/*/sections/
 pipelines/document_pipeline/steps/*/contact-sheets/
-public/documents/
 pipelines/minutes_pipeline/steps/*/pdf_cache/
 
 # CSO website-resolution caches and experiment results (local, regenerable, paid-for — never commit)

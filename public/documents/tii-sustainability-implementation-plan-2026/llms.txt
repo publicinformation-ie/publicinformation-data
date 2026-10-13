@@ -1,0 +1,26 @@
+# Sustainability Implementation Plan 2026
+
+> Transport Infrastructure Ireland — 9 chapters, 9 sections, 50 source pages.
+> Source: https://www.tii.ie/media/rpkjdxbq/tii-sustainability-implementation-plan-2026.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–1
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–1
+- [Exec Summary](sections/exec-summary/) — pages 2–2
+  - [Exec Summary](sections/exec-summary/overview.md) — pages 2–2
+- [The plan](sections/the-plan/) — pages 3–3
+  - [The plan](sections/the-plan/overview.md) — pages 3–3
+- [Intro](sections/intro/) — pages 4–8
+  - [Intro](sections/intro/overview.md) — pages 4–8
+- [What does success look like](sections/what-does-success-look-like/) — pages 9–9
+  - [What does success look like](sections/what-does-success-look-like/overview.md) — pages 9–9
+- [Principles](sections/principles/) — pages 10–12
+  - [Principles](sections/principles/overview.md) — pages 10–12
+- [Overarching principles](sections/overarching-principles/) — pages 13–18
+  - [Overarching principles](sections/overarching-principles/overview.md) — pages 13–18
+- [SE Principles](sections/se-principles/) — pages 19–49
+  - [SE Principles](sections/se-principles/overview.md) — pages 19–49
+- [Governance](sections/governance/) — pages 50–50
+  - [Governance](sections/governance/overview.md) — pages 50–50

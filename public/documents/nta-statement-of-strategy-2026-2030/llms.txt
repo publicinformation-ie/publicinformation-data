@@ -1,0 +1,24 @@
+# Statement of Strategy 2026-2030
+
+> National Transport Authority — 2 chapters, 14 sections, 28 source pages.
+> Source: https://www.nationaltransport.ie/wp-content/uploads/2026/02/NTA-Statement-of-Strategy-2026-2030-English.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–1
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–1
+- [Strategy](sections/strategy/) — pages 1–28
+  - [Strategy](sections/strategy/overview.md) — pages 1–1
+  - [Contents](sections/strategy/contents.md) — pages 2–2
+  - [Statement](sections/strategy/statement.md) — pages 4–5
+  - [Introduction](sections/strategy/introduction-2.md) — pages 6–7
+  - [Authority](sections/strategy/authority.md) — pages 8–8
+  - [NTA Responsibilities](sections/strategy/nta-responsibilities.md) — pages 9–10
+  - [Development](sections/strategy/development.md) — pages 11–11
+  - [Structured Approach](sections/strategy/structured-approach.md) — pages 12–14
+  - [€102.4 billion](sections/strategy/102-4-billion.md) — pages 14–14
+  - [€2.0 billion](sections/strategy/2-0-billion.md) — pages 14–16
+  - [Mission, Vision & Values](sections/strategy/mission-vision-values.md) — pages 17–24
+  - [& Key Risks](sections/strategy/key-risks.md) — pages 25–26
+  - [Glossary](sections/strategy/glossary.md) — pages 27–28

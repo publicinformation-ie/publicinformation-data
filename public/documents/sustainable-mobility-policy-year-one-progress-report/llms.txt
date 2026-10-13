@@ -1,0 +1,39 @@
+# National Sustainable Mobility Policy Year One Progress Report
+
+> Department of Transport — 11 chapters, 20 sections, 40 source pages.
+> Source: https://assets.gov.ie/static/documents/national-sustainable-mobility-policy-year-one-progress-report.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–1
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–1
+- [Contents](sections/contents/) — pages 2–2
+  - [Contents](sections/contents/overview.md) — pages 2–2
+- [Minister’s Foreword](sections/minister-s-foreword/) — pages 3–3
+  - [Minister’s Foreword](sections/minister-s-foreword/overview.md) — pages 3–3
+- [Executive Summary](sections/executive-summary/) — pages 4–4
+  - [Executive Summary](sections/executive-summary/overview.md) — pages 4–4
+- [Sustainable Mobility Policy and Action Plan](sections/sustainable-mobility-policy-and-action-plan/) — pages 5–5
+  - [Sustainable Mobility Policy and Action Plan](sections/sustainable-mobility-policy-and-action-plan/overview.md) — pages 5–5
+- [SMP Action Status Update](sections/smp-action-status-update/) — pages 6–9
+  - [SMP Action Status Update](sections/smp-action-status-update/overview.md) — pages 6–6
+  - [Complete](sections/smp-action-status-update/complete.md) — pages 7–7
+  - [At Risk of Delay](sections/smp-action-status-update/at-risk-of-delay.md) — pages 8–8
+  - [Ongoing](sections/smp-action-status-update/ongoing.md) — pages 9–9
+- [SMP Leadership Group, Delivery Team, and Pathfinder Programme](sections/smp-leadership-group-delivery-team-and-pathfinder-programme/) — pages 10–12
+  - [Delivery Team](sections/smp-leadership-group-delivery-team-and-pathfinder-programme/delivery-team.md) — pages 10–10
+  - [SMP Pathfinder Programme](sections/smp-leadership-group-delivery-team-and-pathfinder-programme/smp-pathfinder-programme.md) — pages 11–11
+  - [Project Management Approach](sections/smp-leadership-group-delivery-team-and-pathfinder-programme/project-management-approach.md) — pages 12–12
+- [National Sustainable Mobility Forum](sections/national-sustainable-mobility-forum/) — pages 13–13
+  - [National Sustainable Mobility Forum](sections/national-sustainable-mobility-forum/overview.md) — pages 13–13
+- [Climate Communications Campaign](sections/climate-communications-campaign/) — pages 14–14
+  - [Climate Communications Campaign](sections/climate-communications-campaign/overview.md) — pages 14–14
+- [Climate Action Plan 2023 and Beyond – SMP Alignment](sections/climate-action-plan-2023-and-beyond-smp-alignment/) — pages 15–15
+  - [Climate Action Plan 2023 and Beyond – SMP Alignment](sections/climate-action-plan-2023-and-beyond-smp-alignment/overview.md) — pages 15–15
+- [ANNEX I](sections/annex-i/) — pages 16–40
+  - [Complete](sections/annex-i/complete-2.md) — pages 16–20
+  - [On Schedule](sections/annex-i/on-schedule-2.md) — pages 21–31
+  - [Delayed](sections/annex-i/delayed-2.md) — pages 32–34
+  - [At Risk of Delay](sections/annex-i/at-risk-of-delay-2.md) — pages 35–37
+  - [Ongoing](sections/annex-i/ongoing-2.md) — pages 38–40

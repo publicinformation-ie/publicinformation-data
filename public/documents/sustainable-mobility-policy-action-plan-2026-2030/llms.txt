@@ -1,0 +1,20 @@
+# Sustainable Mobility Policy Action Plan 2026-2030
+
+> Department of Transport — 5 chapters, 7 sections, 42 source pages.
+> Source: https://assets.gov.ie/static/documents/7da21a41/Sustainable_Mobility_Policy_Action_Plan_2026-2030.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–1
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–1
+- [”](sections/section/) — pages 5–6
+  - [”](sections/section/overview.md) — pages 5–5
+  - [Collaborative Approach and Alignment with Wider Policy](sections/section/alignment-with-wider-policy.md) — pages 6–6
+- [Table of contents](sections/table-of-contents/) — pages 3–3
+  - [Table of contents](sections/table-of-contents/overview.md) — pages 3–3
+- [Minister’s Foreword](sections/minister-s-foreword/) — pages 4–4
+  - [Minister’s Foreword](sections/minister-s-foreword/overview.md) — pages 4–4
+- [”](sections/section-2/) — pages 7–42
+  - [”](sections/section-2/overview.md) — pages 7–7
+  - [Plan 2026-2030](sections/section-2/plan-2026-2030.md) — pages 8–42

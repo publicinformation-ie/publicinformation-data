@@ -1,0 +1,71 @@
+# National Cycle Network Plan Report 2023
+
+> Department of Transport — 17 chapters, 46 sections, 1107 source pages.
+> Source: https://assets.gov.ie/static/documents/national-cycle-network-plan-report.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–13
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–13
+- [1.3 and outlined in further detail in Table 1.2. The approach incorporated multiple elements to provide](sections/1-3-and-outlined-in-further-detail-in-table-1-2-the-approach-incorporated-multiple-elements-to-provide/) — pages 17–20
+  - [1.3 and outlined in further detail in Table 1.2. The approach incorporated multiple elements to provide](sections/1-3-and-outlined-in-further-detail-in-table-1-2-the-approach-incorporated-multiple-elements-to-provide/overview.md) — pages 17–20
+- [1 way](sections/1-way-2/) — pages 100–105
+  - [1 way](sections/1-way-2/overview.md) — pages 100–105
+- [1 way](sections/1-way-4/) — pages 105–105
+  - [1 way](sections/1-way-4/overview.md) — pages 105–105
+- [1 Buncrana to](sections/1-buncrana-to/) — pages 900–901
+  - [1 Buncrana to](sections/1-buncrana-to/overview.md) — pages 900–901
+- [2 Derry to](sections/2-derry-to/) — pages 902–905
+  - [2 Derry to](sections/2-derry-to/overview.md) — pages 902–905
+- [3 Derry to](sections/3-derry-to/) — pages 906–906
+  - [3 Derry to](sections/3-derry-to/overview.md) — pages 906–906
+- [4 Public Consultation.](sections/4-public-consultation/) — pages 20–100
+  - [4 Public Consultation.](sections/4-public-consultation/overview.md) — pages 20–24
+  - [4.1 and Table 4.2.](sections/4-public-consultation/4-1-and-table-4-2.md) — pages 36–56
+  - [6.4 Awareness and Education](sections/4-public-consultation/6-4-awareness-and-education.md) — pages 56–100
+  - [90.2 million (4%). Combined with walking trips this takes 330,000 cars off the road every day in the](sections/4-public-consultation/90-2-million-4-combined-with-walking-trips-this-takes-330-000-cars-off-the-road-every-day-in-the.md) — pages 24–36
+- [4 Letterkenny](sections/4-letterkenny/) — pages 907–910
+  - [4 Letterkenny](sections/4-letterkenny/overview.md) — pages 907–910
+- [5 Letterkenny](sections/5-letterkenny/) — pages 911–917
+  - [5 Letterkenny](sections/5-letterkenny/overview.md) — pages 911–917
+- [6 Sligo to](sections/6-sligo-to/) — pages 918–921
+  - [6 Sligo to](sections/6-sligo-to/overview.md) — pages 918–921
+- [6.1 MtCO2eq by 2030, in line with the sectoral emissions ceilings established by Government in July](sections/6-1-mtco2eq-by-2030-in-line-with-the-sectoral-emissions-ceilings-established-by-government-in-july/) — pages 13–17
+  - [6.1 MtCO2eq by 2030, in line with the sectoral emissions ceilings established by Government in July](sections/6-1-mtco2eq-by-2030-in-line-with-the-sectoral-emissions-ceilings-established-by-government-in-july/overview.md) — pages 13–17
+- [7 Enniskillen to](sections/7-enniskillen-to/) — pages 922–923
+  - [7 Enniskillen to](sections/7-enniskillen-to/overview.md) — pages 922–923
+- [8 Longford to](sections/8-longford-to/) — pages 924–927
+  - [8 Longford to](sections/8-longford-to/overview.md) — pages 924–927
+- [9 Sligo to](sections/9-sligo-to/) — pages 928–1107
+  - [9 Sligo to](sections/9-sligo-to/overview.md) — pages 928–1107
+- [70 [approximately 110kph]](sections/70-approximately-110kph/) — pages 105–225
+  - [2.11 As highlighted above, the NCN Plan will focus on key inter-urban routes.  Whilst still to be](sections/70-approximately-110kph/2-11-as-highlighted-above-the-ncn-plan-will-focus-on-key-inter-urban-routes-whilst-still-to-be.md) — pages 187–187
+  - [2.12 The designations with the potential to be affected include: National Parks; Special Areas of](sections/70-approximately-110kph/2-12-the-designations-with-the-potential-to-be-affected-include-national-parks-special-areas-of.md) — pages 187–192
+  - [4.10 In this respect the NCN Plan has the potential to set the framework for plans and projects which](sections/70-approximately-110kph/4-10-in-this-respect-the-ncn-plan-has-the-potential-to-set-the-framework-for-plans-and-projects-which.md) — pages 192–192
+  - [4.11 In conclusion, the NCN Plan will identify, at a national level, key strategic corridors for](sections/70-approximately-110kph/4-11-in-conclusion-the-ncn-plan-will-identify-at-a-national-level-key-strategic-corridors-for.md) — pages 192–192
+  - [4.12 Whilst the NCN Plan will itself not propose detailed interventions within the identified corridors,](sections/70-approximately-110kph/4-12-whilst-the-ncn-plan-will-itself-not-propose-detailed-interventions-within-the-identified-corridors.md) — pages 192–192
+  - [4.13 In this respect, the plan is likely to set the framework for subsequent plans and projects which](sections/70-approximately-110kph/4-13-in-this-respect-the-plan-is-likely-to-set-the-framework-for-subsequent-plans-and-projects-which.md) — pages 192–196
+  - [4.12 Key Sustainability Issues .................................................................................. 65](sections/70-approximately-110kph/4-12-key-sustainability-issues-65.md) — pages 196–225
+  - [70 [approximately 110kph]](sections/70-approximately-110kph/overview.md) — pages 105–187
+- [73 blanket](sections/73-blanket/) — pages 225–899
+  - [2.3.1 Appropriate Assessment (AA) ............................................................................. 5](sections/73-blanket/2-3-1-appropriate-assessment-aa-5.md) — pages 453–459
+  - [2.3.1 Appropriate Assessment (AA)](sections/73-blanket/2-3-1-appropriate-assessment-aa.md) — pages 459–899
+  - [3.3 respectively.](sections/73-blanket/3-3-respectively.md) — pages 459–459
+  - [4.10 Landscape and Visual](sections/73-blanket/4-10-landscape-and-visual.md) — pages 257–257
+  - [4.10.1 Introduction](sections/73-blanket/4-10-1-introduction.md) — pages 257–257
+  - [4.10.2 Landscape Assessment](sections/73-blanket/4-10-2-landscape-assessment.md) — pages 257–258
+  - [4.10.3 Habitat and Landscape Features of Importance for Biodiversity](sections/73-blanket/4-10-3-habitat-and-landscape-features-of-importance-for-biodiversity.md) — pages 258–258
+  - [4.10.4 Summary of Future Baseline](sections/73-blanket/4-10-4-summary-of-future-baseline.md) — pages 258–259
+  - [4.11 Transboundary Effects](sections/73-blanket/4-11-transboundary-effects.md) — pages 259–259
+  - [4.11.1 Introduction](sections/73-blanket/4-11-1-introduction.md) — pages 259–262
+  - [4.12 Key Sustainability Issues](sections/73-blanket/4-12-key-sustainability-issues.md) — pages 262–262
+  - [4.12.1 Key issues: Biodiversity](sections/73-blanket/4-12-1-key-issues-biodiversity.md) — pages 262–262
+  - [4.12.2 Key issues: Population and Human Health](sections/73-blanket/4-12-2-key-issues-population-and-human-health.md) — pages 262–263
+  - [4.12.3 Key issues: Land and Soils](sections/73-blanket/4-12-3-key-issues-land-and-soils.md) — pages 263–264
+  - [4.12.4 Key issues: Water](sections/73-blanket/4-12-4-key-issues-water.md) — pages 264–264
+  - [4.12.5 Key issues: Air Quality](sections/73-blanket/4-12-5-key-issues-air-quality.md) — pages 264–264
+  - [4.12.6 Key issues: Climate Change](sections/73-blanket/4-12-6-key-issues-climate-change.md) — pages 264–265
+  - [4.12.7 Key issues: Cultural Heritage](sections/73-blanket/4-12-7-key-issues-cultural-heritage.md) — pages 265–266
+  - [4.12.8 Key issues: Landscape and Visual](sections/73-blanket/4-12-8-key-issues-landscape-and-visual.md) — pages 266–453
+  - [73 blanket](sections/73-blanket/overview.md) — pages 225–257

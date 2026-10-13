@@ -1,0 +1,153 @@
+# Regional Spatial & Economic Strategy 2019-2031
+
+> Eastern and Midland Regional Assembly — 30 chapters, 115 sections, 244 source pages.
+> Source: https://www.emra.ie/rses-download/EMRA-RSES.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–2
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–2
+- [1 in 8 people in the Region are aged over 65 but it is this](sections/1-in-8-people-in-the-region-are-aged-over-65-but-it-is-this/) — pages 200–200
+  - [1 in 8 people in the Region are aged over 65 but it is this](sections/1-in-8-people-in-the-region-are-aged-over-65-but-it-is-this/overview.md) — pages 200–200
+- [1.1 Vision ...............................................................................6](sections/1-1-vision-6/) — pages 2–2
+  - [1.1 Vision ...............................................................................6](sections/1-1-vision-6/overview.md) — pages 2–2
+- [1.2 Eastern and Midland](sections/1-2-eastern-and-midland/) — pages 6–8
+  - [1.2 Eastern and Midland](sections/1-2-eastern-and-midland/overview.md) — pages 6–8
+- [1.3 What is a Regional Spatial and Economic Strategy (RSES)?](sections/1-3-what-is-a-regional-spatial-and-economic-strategy-rses/) — pages 8–10
+  - [1.3 What is a Regional Spatial and Economic Strategy (RSES)?](sections/1-3-what-is-a-regional-spatial-and-economic-strategy-rses/overview.md) — pages 8–10
+- [1.4 Spatial and Economic Policy Background](sections/1-4-spatial-and-economic-policy-background/) — pages 10–13
+  - [1.4 Spatial and Economic Policy Background](sections/1-4-spatial-and-economic-policy-background/overview.md) — pages 10–13
+- [1.5 The RSES Process](sections/1-5-the-rses-process/) — pages 13–14
+  - [1.5 The RSES Process](sections/1-5-the-rses-process/overview.md) — pages 13–14
+- [1.6 Regional Proﬁle](sections/1-6-regional-pro-le/) — pages 14–14
+  - [1.6 Regional Proﬁle](sections/1-6-regional-pro-le/overview.md) — pages 14–14
+- [2.1 Our Shared Goals .......................................................20](sections/2-1-our-shared-goals-20/) — pages 2–2
+  - [2.1 Our Shared Goals .......................................................20](sections/2-1-our-shared-goals-20/overview.md) — pages 2–2
+- [3.1 Developing a Growth Strategy for the Region .......27](sections/3-1-developing-a-growth-strategy-for-the-region-27/) — pages 2–2
+  - [3.1 Developing a Growth Strategy for the Region .......27](sections/3-1-developing-a-growth-strategy-for-the-region-27/overview.md) — pages 2–2
+- [4.5 Regional Growth Centres ...........................................53](sections/4-5-regional-growth-centres-53/) — pages 2–2
+  - [4.5 Regional Growth Centres ...........................................53](sections/4-5-regional-growth-centres-53/overview.md) — pages 2–2
+- [4.7 Self-Sustaining Growth Towns and](sections/4-7-self-sustaining-growth-towns-and/) — pages 2–2
+  - [4.7 Self-Sustaining Growth Towns and](sections/4-7-self-sustaining-growth-towns-and/overview.md) — pages 2–2
+- [5.1 Introduction and Context ......................................... 98](sections/5-1-introduction-and-context-98/) — pages 2–2
+  - [5.1 Introduction and Context ......................................... 98](sections/5-1-introduction-and-context-98/overview.md) — pages 2–2
+- [5.3 Guiding Principles for the growth of the Dublin](sections/5-3-guiding-principles-for-the-growth-of-the-dublin/) — pages 2–2
+  - [5.3 Guiding Principles for the growth of the Dublin](sections/5-3-guiding-principles-for-the-growth-of-the-dublin/overview.md) — pages 2–2
+- [5.8 Employment Generation .......................................... 114](sections/5-8-employment-generation-114/) — pages 2–2
+  - [5.8 Employment Generation .......................................... 114](sections/5-8-employment-generation-114/overview.md) — pages 2–2
+- [5.9 Green Infrastructure and Amenities ......................116](sections/5-9-green-infrastructure-and-amenities-116/) — pages 2–2
+  - [5.9 Green Infrastructure and Amenities ......................116](sections/5-9-green-infrastructure-and-amenities-116/overview.md) — pages 2–2
+- [6.7 Capacity Building: Bidding capacity, Shared](sections/6-7-capacity-building-bidding-capacity-shared/) — pages 3–3
+  - [6.7 Capacity Building: Bidding capacity, Shared](sections/6-7-capacity-building-bidding-capacity-shared/overview.md) — pages 3–3
+- [7.8 Landscape ...................................................................169](sections/7-8-landscape-169/) — pages 3–3
+  - [7.8 Landscape ...................................................................169](sections/7-8-landscape-169/overview.md) — pages 3–3
+- [8 of the regional population are non-Irish nationals, with](sections/8-of-the-regional-population-are-non-irish-nationals-with/) — pages 200–238
+  - [8 of the regional population are non-Irish nationals, with](sections/8-of-the-regional-population-are-non-irish-nationals-with/overview.md) — pages 200–201
+  - [9.3 Housing and Regeneration](sections/8-of-the-regional-population-are-non-irish-nationals-with/9-3-housing-and-regeneration.md) — pages 201–205
+  - [9.4 Healthy Placemaking](sections/8-of-the-regional-population-are-non-irish-nationals-with/9-4-healthy-placemaking.md) — pages 205–208
+  - [9.5 Social and Economic Opportunity](sections/8-of-the-regional-population-are-non-irish-nationals-with/9-5-social-and-economic-opportunity.md) — pages 208–211
+  - [9.6 Access to Childcare, Education and Health Services](sections/8-of-the-regional-population-are-non-irish-nationals-with/9-6-access-to-childcare-education-and-health-services.md) — pages 211–214
+  - [9.7 Access to Arts, Culture, Language and Heritage](sections/8-of-the-regional-population-are-non-irish-nationals-with/9-7-access-to-arts-culture-language-and-heritage.md) — pages 214–218
+  - [10.1 Introduction](sections/8-of-the-regional-population-are-non-irish-nationals-with/10-1-introduction.md) — pages 218–219
+  - [10.2 Sustainable Management of Water](sections/8-of-the-regional-population-are-non-irish-nationals-with/10-2-sustainable-management-of-water.md) — pages 219–224
+  - [10.3 Energy](sections/8-of-the-regional-population-are-non-irish-nationals-with/10-3-energy.md) — pages 224–227
+  - [10.4 Waste Management](sections/8-of-the-regional-population-are-non-irish-nationals-with/10-4-waste-management.md) — pages 227–228
+  - [11.1 Introduction](sections/8-of-the-regional-population-are-non-irish-nationals-with/11-1-introduction.md) — pages 228–229
+  - [11.2 Collaboration with Northern Ireland in Support of an All Island Approach](sections/8-of-the-regional-population-are-non-irish-nationals-with/11-2-collaboration-with-northern-ireland-in-support-of-an-all-island-approach.md) — pages 229–232
+  - [11.3 Collaboration with the Southern Region and Northern and Western Region](sections/8-of-the-regional-population-are-non-irish-nationals-with/11-3-collaboration-with-the-southern-region-and-northern-and-western-region.md) — pages 232–234
+  - [12.1 Introduction](sections/8-of-the-regional-population-are-non-irish-nationals-with/12-1-introduction.md) — pages 234–235
+  - [12.2 Legislative Background](sections/8-of-the-regional-population-are-non-irish-nationals-with/12-2-legislative-background.md) — pages 235–237
+  - [12.3 Implementation](sections/8-of-the-regional-population-are-non-irish-nationals-with/12-3-implementation.md) — pages 237–238
+- [8.2 Transport Strategy ....................................................183](sections/8-2-transport-strategy-183/) — pages 3–3
+  - [8.2 Transport Strategy ....................................................183](sections/8-2-transport-strategy-183/overview.md) — pages 3–3
+- [9.3 Housing and Regeneration ......................................201](sections/9-3-housing-and-regeneration-201/) — pages 3–3
+  - [9.3 Housing and Regeneration ......................................201](sections/9-3-housing-and-regeneration-201/overview.md) — pages 3–3
+- [9.7 Access to Arts, Culture, Language](sections/9-7-access-to-arts-culture-language/) — pages 4–6
+  - [9.7 Access to Arts, Culture, Language](sections/9-7-access-to-arts-culture-language/overview.md) — pages 4–6
+- [10 year period of the National Development Plan are the](sections/10-year-period-of-the-national-development-plan-are-the/) — pages 238–244
+  - [2.1 EU Thematic Objectives  ......................................... 20](sections/10-year-period-of-the-national-development-plan-are-the/2-1-eu-thematic-objectives-20.md) — pages 243–243
+  - [3.1 Asset/Potential Based Criteria Approach](sections/10-year-period-of-the-national-development-plan-are-the/3-1-asset-potential-based-criteria-approach.md) — pages 242–242
+  - [3.1 Growth Strategy – Strategic Connections ............. 29](sections/10-year-period-of-the-national-development-plan-are-the/3-1-growth-strategy-strategic-connections-29.md) — pages 243–243
+  - [4.1 EMRA Large Towns .................................................... 43](sections/10-year-period-of-the-national-development-plan-are-the/4-1-emra-large-towns-43.md) — pages 243–243
+  - [4.3 Regional Growth Centres ...........................................53](sections/10-year-period-of-the-national-development-plan-are-the/4-3-regional-growth-centres-53.md) — pages 243–243
+  - [5.1 Strategic Development Areas and Corridors,](sections/10-year-period-of-the-national-development-plan-are-the/5-1-strategic-development-areas-and-corridors.md) — pages 242–242
+  - [5.2 Strategic employment development areas](sections/10-year-period-of-the-national-development-plan-are-the/5-2-strategic-employment-development-areas.md) — pages 242–242
+  - [5.1 MASP Boundary ......................................................... 99](sections/10-year-period-of-the-national-development-plan-are-the/5-1-masp-boundary-99.md) — pages 243–243
+  - [5.3 Metropolitan Cycle Network .................................. 110](sections/10-year-period-of-the-national-development-plan-are-the/5-3-metropolitan-cycle-network-110.md) — pages 243–243
+  - [5.5 Green Infrastructure and Ecosystem Services](sections/10-year-period-of-the-national-development-plan-are-the/5-5-green-infrastructure-and-ecosystem-services.md) — pages 243–244
+  - [6.1 Retail Hierarchy for the Region ..............................137](sections/10-year-period-of-the-national-development-plan-are-the/6-1-retail-hierarchy-for-the-region-137.md) — pages 242–242
+  - [6.2 Disruptive Technologies Innovation Fund](sections/10-year-period-of-the-national-development-plan-are-the/6-2-disruptive-technologies-innovation-fund.md) — pages 243–243
+  - [6.1 Eastern & Midland Region Total Employment ....122](sections/10-year-period-of-the-national-development-plan-are-the/6-1-eastern-midland-region-total-employment-122.md) — pages 243–243
+  - [6.7 Smart City Concepts ................................................ 144](sections/10-year-period-of-the-national-development-plan-are-the/6-7-smart-city-concepts-144.md) — pages 243–243
+  - [7.5 Observed and projected climate changes and](sections/10-year-period-of-the-national-development-plan-are-the/7-5-observed-and-projected-climate-changes-and.md) — pages 243–243
+  - [8.1 Hierarchy of Policies and Plans ..............................185](sections/10-year-period-of-the-national-development-plan-are-the/8-1-hierarchy-of-policies-and-plans-185.md) — pages 242–242
+  - [8.3 Bus Projects for the Region ......................................191](sections/10-year-period-of-the-national-development-plan-are-the/8-3-bus-projects-for-the-region-191.md) — pages 242–242
+  - [8.5 New and Enhanced Park and Ride ........................... 193](sections/10-year-period-of-the-national-development-plan-are-the/8-5-new-and-enhanced-park-and-ride-193.md) — pages 242–242
+  - [8.1 EMRA Strategic Transport Infrastructure ............186](sections/10-year-period-of-the-national-development-plan-are-the/8-1-emra-strategic-transport-infrastructure-186.md) — pages 243–243
+  - [9.1 Changing Demographic Proﬁle ..............................198](sections/10-year-period-of-the-national-development-plan-are-the/9-1-changing-demographic-pro-le-198.md) — pages 243–243
+  - [9.2 Healthy Placemaking Stategy ................................205](sections/10-year-period-of-the-national-development-plan-are-the/9-2-healthy-placemaking-stategy-205.md) — pages 243–243
+  - [10 year period of the National Development Plan are the](sections/10-year-period-of-the-national-development-plan-are-the/overview.md) — pages 238–241
+  - [11.1 TENT-T Core Network .............................................230](sections/10-year-period-of-the-national-development-plan-are-the/11-1-tent-t-core-network-230.md) — pages 243–243
+  - [12.4 Monitoring and Reporting](sections/10-year-period-of-the-national-development-plan-are-the/12-4-monitoring-and-reporting.md) — pages 241–242
+- [10.1 Introduction ................................................................218](sections/10-1-introduction-218/) — pages 3–3
+  - [10.1 Introduction ................................................................218](sections/10-1-introduction-218/overview.md) — pages 3–3
+- [11.1 Introduction ...............................................................228](sections/11-1-introduction-228/) — pages 3–3
+  - [11.1 Introduction ...............................................................228](sections/11-1-introduction-228/overview.md) — pages 3–3
+- [12.1 Introduction ...............................................................234](sections/12-1-introduction-234/) — pages 3–3
+  - [12.1 Introduction ...............................................................234](sections/12-1-introduction-234/overview.md) — pages 3–3
+- [12.4 Monitoring and Reporting .......................................241](sections/12-4-monitoring-and-reporting-241/) — pages 3–3
+  - [12.4 Monitoring and Reporting .......................................241](sections/12-4-monitoring-and-reporting-241/overview.md) — pages 3–3
+- [16 Regional Strategic Outcomes (RSOs) are aligned to](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/) — pages 20–200
+  - [2.2 Vision and Key Principles](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/2-2-vision-and-key-principles.md) — pages 23–24
+  - [2.3 Regional Strategic Outcomes](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/2-3-regional-strategic-outcomes.md) — pages 24–27
+  - [3.1 Developing a Growth Strategy for the Region](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/3-1-developing-a-growth-strategy-for-the-region.md) — pages 27–33
+  - [3.2 Growth Enablers for the Region](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/3-2-growth-enablers-for-the-region.md) — pages 33–42
+  - [4.1 Introduction and context](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/4-1-introduction-and-context.md) — pages 42–44
+  - [4.2 Settlement Strategy](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/4-2-settlement-strategy.md) — pages 44–44
+  - [4.1 are to inform the delivery of national](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/4-1-are-to-inform-the-delivery-of-national.md) — pages 44–46
+  - [4.3 Deﬁning a Settlement Typology](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/4-3-de-ning-a-settlement-typology.md) — pages 46–52
+  - [4.4 Dublin City and Suburbs](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/4-4-dublin-city-and-suburbs.md) — pages 52–53
+  - [4.5 Regional Growth Centres](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/4-5-regional-growth-centres.md) — pages 53–71
+  - [4.6 Key Towns](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/4-6-key-towns.md) — pages 71–93
+  - [4.7 Self-Sustaining Growth Towns and Self-Sustaining Towns](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/4-7-self-sustaining-growth-towns-and-self-sustaining-towns.md) — pages 93–94
+  - [4.8 Rural Places: Towns, Villages and the Countryside](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/4-8-rural-places-towns-villages-and-the-countryside.md) — pages 94–98
+  - [5.1 Introduction and Context](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/5-1-introduction-and-context.md) — pages 98–100
+  - [5.2 Vision](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/5-2-vision.md) — pages 100–101
+  - [5.3 Guiding Principles for the growth of the Dublin Metropolitan Area](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/5-3-guiding-principles-for-the-growth-of-the-dublin-metropolitan-area.md) — pages 101–102
+  - [5.4 Metropolitan Area Strategy](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/5-4-metropolitan-area-strategy.md) — pages 102–106
+  - [5.5 Enabling Infrastructure](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/5-5-enabling-infrastructure.md) — pages 106–107
+  - [5.6 Integrated Land use and Transportation](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/5-6-integrated-land-use-and-transportation.md) — pages 107–112
+  - [5.7 Housing Delivery](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/5-7-housing-delivery.md) — pages 112–114
+  - [5.8 Employment Generation](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/5-8-employment-generation.md) — pages 114–116
+  - [5.9 Green Infrastructure and Amenities](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/5-9-green-infrastructure-and-amenities.md) — pages 116–120
+  - [6.1 Introduction](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/6-1-introduction.md) — pages 120–122
+  - [6.2 Proﬁle](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/6-2-pro-le.md) — pages 122–124
+  - [6.3 Economic Strategy](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/6-3-economic-strategy.md) — pages 124–132
+  - [6.4 The Region’s Economic Engines and their Sectoral Opportunities](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/6-4-the-region-s-economic-engines-and-their-sectoral-opportunities.md) — pages 132–136
+  - [6.5 Speciﬁc Sectors: Retail, Tourism, Marine, Low Carbon Economy and Agriculture](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/6-5-speci-c-sectors-retail-tourism-marine-low-carbon-economy-and-agriculture.md) — pages 136–142
+  - [6.6 Drivers for Resilient, Sustainable and Inclusive Economic Growth](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/6-6-drivers-for-resilient-sustainable-and-inclusive-economic-growth.md) — pages 142–148
+  - [6.7 Capacity Building: Bidding Capacity, Shared Evidence Base, Future](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/6-7-capacity-building-bidding-capacity-shared-evidence-base-future.md) — pages 148–150
+  - [7.1 Introduction](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/7-1-introduction.md) — pages 150–152
+  - [7.2 Integrated Land and Marine Planning](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/7-2-integrated-land-and-marine-planning.md) — pages 152–155
+  - [7.3 A Clean and Healthy Environment](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/7-3-a-clean-and-healthy-environment.md) — pages 155–158
+  - [7.4 Flood Risk Management](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/7-4-flood-risk-management.md) — pages 158–160
+  - [7.5 Biodiversity and Natural Heritage](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/7-5-biodiversity-and-natural-heritage.md) — pages 160–163
+  - [7.6 Ecosystem Services](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/7-6-ecosystem-services.md) — pages 163–164
+  - [7.7 Green Infrastructure](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/7-7-green-infrastructure.md) — pages 164–169
+  - [7.8 Landscape](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/7-8-landscape.md) — pages 169–172
+  - [7.9 Climate Change](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/7-9-climate-change.md) — pages 172–182
+  - [8.1 Introduction](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/8-1-introduction.md) — pages 182–183
+  - [8.2 Transport Strategy](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/8-2-transport-strategy.md) — pages 183–185
+  - [8.3 Framework for the Integration of Transport planning with Spatial Planning Policies](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/8-3-framework-for-the-integration-of-transport-planning-with-spatial-planning-policies.md) — pages 185–190
+  - [8.4 Transport Investment Priorities](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/8-4-transport-investment-priorities.md) — pages 190–194
+  - [8.5 International Connectivity](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/8-5-international-connectivity.md) — pages 194–197
+  - [8.6 Communications Network and Digital Infrastructure](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/8-6-communications-network-and-digital-infrastructure.md) — pages 197–198
+  - [9.1 Introduction](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/9-1-introduction.md) — pages 198–199
+  - [9.2 Diverse and Inclusive Region](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/9-2-diverse-and-inclusive-region.md) — pages 199–200
+  - [16 Regional Strategic Outcomes (RSOs) are aligned to](sections/16-regional-strategic-outcomes-rsos-are-aligned-to/overview.md) — pages 20–23
+- [44 persons](sections/44-persons/) — pages 14–16
+  - [44 persons](sections/44-persons/overview.md) — pages 14–16
+- [65 + years](sections/65-years/) — pages 16–20
+  - [2.1 Our Shared Goals](sections/65-years/2-1-our-shared-goals.md) — pages 20–20
+  - [65 + years](sections/65-years/overview.md) — pages 16–20

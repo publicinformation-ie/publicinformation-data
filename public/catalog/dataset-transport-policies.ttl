@@ -24,7 +24,8 @@
         vcard:fn "PublicInformation.ie" ;
         vcard:hasEmail <mailto:dave@publicinformation.ie> ;
     ] ;
-    dct:relation <https://data.publicinformation.ie/dataset/public-body-actions> ;
+    dct:relation <https://data.publicinformation.ie/dataset/public-body-actions> ,
+        <https://data.publicinformation.ie/dataset/documents> ;
 
     dcat:distribution [
         a dcat:Distribution ;

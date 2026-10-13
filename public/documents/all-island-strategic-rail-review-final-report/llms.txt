@@ -1,0 +1,44 @@
+# All-Island Strategic Rail Review Final Report
+
+> Department of Transport — 16 chapters, 20 sections, 162 source pages.
+> Source: https://assets.gov.ie/static/documents/final-report-of-the-all-island-strategic-rail-review.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–1
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–1
+- [All-Island Strategic Rail Review](sections/all-island-strategic-rail-review/) — pages 1–3
+  - [All-Island Strategic Rail Review](sections/all-island-strategic-rail-review/overview.md) — pages 1–3
+- [All-Island Strategic Rail Review](sections/all-island-strategic-rail-review-2/) — pages 3–4
+  - [All-Island Strategic Rail Review](sections/all-island-strategic-rail-review-2/overview.md) — pages 3–3
+  - [If the recommendations in this Review were delivered:](sections/all-island-strategic-rail-review-2/if-the-recommendations-in-this-review-were-delivered.md) — pages 4–4
+- [Contents](sections/contents/) — pages 5–5
+  - [21](sections/contents/21.md) — pages 5–5
+- [Glossary](sections/glossary/) — pages 6–6
+  - [Central Statistics Office](sections/glossary/central-statistics-office.md) — pages 6–6
+- [Executive Summary](sections/executive-summary-2/) — pages 7–16
+  - [Executive Summary](sections/executive-summary-2/overview.md) — pages 7–16
+- [Chapter 1 | Purpose](sections/chapter-1-purpose-2/) — pages 17–20
+  - [Chapter 1 | Purpose](sections/chapter-1-purpose-2/overview.md) — pages 17–20
+- [Chapter 2 | The Railway Today](sections/chapter-2-the-railway-today-2/) — pages 21–32
+  - [Chapter 2 | The Railway Today](sections/chapter-2-the-railway-today-2/overview.md) — pages 21–32
+- [Chapter 3 | The Case for Change](sections/chapter-3-the-case-for-change-2/) — pages 33–42
+  - [Chapter 3 | The Case for Change](sections/chapter-3-the-case-for-change-2/overview.md) — pages 33–42
+- [Chapter 4 | Recommendations](sections/chapter-4-recommendations-2/) — pages 43–88
+  - [Chapter 4 | Recommendations](sections/chapter-4-recommendations-2/overview.md) — pages 43–88
+- [Chapter 5 | Benefits and Costs](sections/chapter-5-benefits-and-costs-2/) — pages 89–100
+  - [Chapter 5 | Benefits and Costs](sections/chapter-5-benefits-and-costs-2/overview.md) — pages 89–98
+  - [Marta](sections/chapter-5-benefits-and-costs-2/marta.md) — pages 99–99
+  - [Holly](sections/chapter-5-benefits-and-costs-2/holly.md) — pages 99–100
+  - [Jim](sections/chapter-5-benefits-and-costs-2/jim.md) — pages 100–100
+- [Chapter 6 | Roadmap for Delivery](sections/chapter-6-roadmap-for-delivery-2/) — pages 101–106
+  - [Chapter 6 | Roadmap for Delivery](sections/chapter-6-roadmap-for-delivery-2/overview.md) — pages 101–106
+- [Appendix A | Public Consultation](sections/appendix-a-public-consultation-2/) — pages 107–116
+  - [Appendix A | Public Consultation](sections/appendix-a-public-consultation-2/overview.md) — pages 107–116
+- [Appendix B | Review Methodology](sections/appendix-b-review-methodology-2/) — pages 117–138
+  - [Appendix B | Review Methodology](sections/appendix-b-review-methodology-2/overview.md) — pages 117–138
+- [Mitigation and Monitoring Measures](sections/mitigation-and-monitoring-measures/) — pages 139–156
+  - [Mitigation and Monitoring Measures](sections/mitigation-and-monitoring-measures/overview.md) — pages 139–156
+- [Appendix D | Inflation](sections/appendix-d-inflation-2/) — pages 157–162
+  - [Appendix D | Inflation](sections/appendix-d-inflation-2/overview.md) — pages 157–162

@@ -1,0 +1,44 @@
+# CycleConnects: Summary Report
+
+> National Transport Authority — 14 chapters, 22 sections, 14 source pages.
+> Source: https://consult.nationaltransport.ie/sites/default/files/uploads/consultation/3961/CycleConnects%20-%20Summary%20Report.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–1
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–1
+- [1 Executive Summary](sections/1-executive-summary/) — pages 3–3
+  - [1 Executive Summary](sections/1-executive-summary/overview.md) — pages 3–3
+- [Table of Contents](sections/table-of-contents/) — pages 2–2
+  - [Table of Contents](sections/table-of-contents/overview.md) — pages 2–2
+- [2 Introduction](sections/2-introduction/) — pages 4–4
+  - [2 Introduction](sections/2-introduction/overview.md) — pages 4–4
+- [Network](sections/network/) — pages 11–11
+  - [Network](sections/network/overview.md) — pages 11–11
+- [3 Route Development Methodology](sections/3-route-development-methodology/) — pages 5–8
+  - [• Major Cities/Towns (5,000+)](sections/3-route-development-methodology/major-cities-towns-5-000.md) — pages 5–5
+  - [• Towns (1000-4,999)](sections/3-route-development-methodology/towns-1000-4-999.md) — pages 5–5
+  - [• Villages (500-999)](sections/3-route-development-methodology/villages-500-999.md) — pages 5–5
+  - [• Linking to (Communities, schools, services, tourism)](sections/3-route-development-methodology/linking-to-communities-schools-services-tourism.md) — pages 5–5
+  - [• Understanding issues/constraints (High speeds/traffic,](sections/3-route-development-methodology/understanding-issues-constraints-high-speeds-traffic.md) — pages 5–5
+  - [• Interurban Route](sections/3-route-development-methodology/interurban-route.md) — pages 5–5
+  - [• Greenway](sections/3-route-development-methodology/greenway.md) — pages 5–5
+  - [• Tourist Routes](sections/3-route-development-methodology/tourist-routes.md) — pages 5–8
+  - [3 Route Development Methodology](sections/3-route-development-methodology/overview.md) — pages 5–5
+- [4 Local Authority Engagement](sections/4-local-authority-engagement/) — pages 9–9
+  - [4 Local Authority Engagement](sections/4-local-authority-engagement/overview.md) — pages 9–9
+- [Network](sections/network-2/) — pages 11–11
+  - [Network](sections/network-2/overview.md) — pages 11–11
+- [5 Proposed County Cycle Networks](sections/5-proposed-county-cycle-networks/) — pages 10–10
+  - [5 Proposed County Cycle Networks](sections/5-proposed-county-cycle-networks/overview.md) — pages 10–10
+- [Greenways and Blueways](sections/greenways-and-blueways/) — pages 11–11
+  - [Greenways and Blueways](sections/greenways-and-blueways/overview.md) — pages 11–11
+- [Metropolitan Cities](sections/metropolitan-cities/) — pages 11–12
+  - [Metropolitan Cities](sections/metropolitan-cities/overview.md) — pages 11–12
+- [6 Next Steps](sections/6-next-steps/) — pages 14–14
+  - [6 Next Steps](sections/6-next-steps/overview.md) — pages 14–14
+- [Environmental Assessments](sections/environmental-assessments/) — pages 12–13
+  - [Environmental Assessments](sections/environmental-assessments/overview.md) — pages 12–13
+- [Local Transport Plans](sections/local-transport-plans/) — pages 13–13
+  - [Local Transport Plans](sections/local-transport-plans/overview.md) — pages 13–13

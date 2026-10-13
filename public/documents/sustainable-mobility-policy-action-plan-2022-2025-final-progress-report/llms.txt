@@ -1,0 +1,29 @@
+# National Sustainable Mobility Policy Action Plan 2022-2025 Final Progress Report
+
+> Department of Transport — 10 chapters, 11 sections, 50 source pages.
+> Source: https://assets.gov.ie/static/documents/87a674c0/National_Sustainable_Mobility_Policy_Action_Plan_2022_-_2025_Final_Progress_Report.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–6
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–6
+- [1 - Imminent](sections/1-imminent/) — pages 10–10
+  - [1 - Imminent](sections/1-imminent/overview.md) — pages 10–10
+- [1.1 Governance of the SMP](sections/1-1-governance-of-the-smp/) — pages 7–9
+  - [1.1 Governance of the SMP](sections/1-1-governance-of-the-smp/overview.md) — pages 7–9
+- [2 - Other](sections/2-other/) — pages 10–50
+  - [2 - Other](sections/2-other/overview.md) — pages 10–15
+  - [3.1 Further work on](sections/2-other/3-1-further-work-on.md) — pages 15–50
+- [2.1 Complete](sections/2-1-complete/) — pages 9–9
+  - [2.1 Complete](sections/2-1-complete/overview.md) — pages 9–9
+- [2.2 Modified](sections/2-2-modified/) — pages 9–10
+  - [2.2 Modified](sections/2-2-modified/overview.md) — pages 9–10
+- [2.3 Delayed](sections/2-3-delayed/) — pages 10–10
+  - [2.3 Delayed](sections/2-3-delayed/overview.md) — pages 10–10
+- [4 - Moving](sections/4-moving/) — pages 10–10
+  - [4 - Moving](sections/4-moving/overview.md) — pages 10–10
+- [4 - Road](sections/4-road/) — pages 10–10
+  - [4 - Road](sections/4-road/overview.md) — pages 10–10
+- [17 - SMP Action](sections/17-smp-action/) — pages 10–10
+  - [17 - SMP Action](sections/17-smp-action/overview.md) — pages 10–10

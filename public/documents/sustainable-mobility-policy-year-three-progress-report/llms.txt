@@ -1,0 +1,27 @@
+# National Sustainable Mobility Policy Year Three Progress Report
+
+> Department of Transport — 5 chapters, 14 sections, 62 source pages.
+> Source: https://assets.gov.ie/static/documents/076637ab/Year_3_Progress_Report_-_FINAL_DRAFT_-_AMENDED_Clean.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–1
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–1
+- [”](sections/section/) — pages 5–16
+  - [”](sections/section/overview.md) — pages 5–6
+  - [Delivery Team](sections/section/delivery-team.md) — pages 7–7
+  - [Updates](sections/section/updates.md) — pages 8–14
+  - [delivery to date](sections/section/delivery-to-date.md) — pages 15–16
+- [Table of contents](sections/table-of-contents/) — pages 3–3
+  - [Table of contents](sections/table-of-contents/overview.md) — pages 3–3
+- [Minister’s Foreword](sections/minister-s-foreword/) — pages 4–4
+  - [Minister’s Foreword](sections/minister-s-foreword/overview.md) — pages 4–4
+- [”](sections/section-2/) — pages 17–62
+  - [”](sections/section-2/overview.md) — pages 17–17
+  - [Programme](sections/section-2/programme.md) — pages 18–18
+  - [Mobility Forum](sections/section-2/mobility-forum.md) — pages 19–20
+  - [Disability and Inclusion](sections/section-2/disability-and-inclusion.md) — pages 21–21
+  - [Just Transition](sections/section-2/just-transition.md) — pages 22–23
+  - [Shared Mobility](sections/section-2/shared-mobility.md) — pages 24–27
+  - [of SMP Actions](sections/section-2/of-smp-actions.md) — pages 28–62

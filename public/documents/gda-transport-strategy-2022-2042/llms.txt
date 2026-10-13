@@ -1,0 +1,48 @@
+# Greater Dublin Area Transport Strategy 2022–2042
+
+> National Transport Authority — 20 chapters, 20 sections, 244 source pages.
+> Source: https://www.nationaltransport.ie/wp-content/uploads/2023/01/Greater-Dublin-Area-Transport-Strategy-2022-42-1.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–6
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–6
+- [1 Introduction](sections/1-introduction/) — pages 7–10
+  - [1 Introduction](sections/1-introduction/overview.md) — pages 7–10
+- [Servicing](sections/servicing/) — pages 196–202
+  - [Servicing](sections/servicing/overview.md) — pages 196–202
+- [2 Progress Made on the Prior Transport Strategy](sections/2-progress-made-on-the-prior-transport-strategy/) — pages 11–16
+  - [2 Progress Made on the Prior Transport Strategy](sections/2-progress-made-on-the-prior-transport-strategy/overview.md) — pages 11–16
+- [Assessment](sections/assessment/) — pages 227–235
+  - [Assessment](sections/assessment/overview.md) — pages 227–235
+- [3 Strategy Challenges](sections/3-strategy-challenges/) — pages 17–24
+  - [3 Strategy Challenges](sections/3-strategy-challenges/overview.md) — pages 17–24
+- [4 Policy Review](sections/4-policy-review/) — pages 25–38
+  - [4 Policy Review](sections/4-policy-review/overview.md) — pages 25–38
+- [5 Strategy Aim and Objectives](sections/5-strategy-aim-and-objectives/) — pages 39–43
+  - [5 Strategy Aim and Objectives](sections/5-strategy-aim-and-objectives/overview.md) — pages 39–43
+- [6 Public Consultation](sections/6-public-consultation/) — pages 44–49
+  - [6 Public Consultation](sections/6-public-consultation/overview.md) — pages 44–49
+- [7 Strategy Development Process](sections/7-strategy-development-process/) — pages 50–54
+  - [7 Strategy Development Process](sections/7-strategy-development-process/overview.md) — pages 50–54
+- [8 Planning for Sustainable Transport](sections/8-planning-for-sustainable-transport/) — pages 55–73
+  - [8 Planning for Sustainable Transport](sections/8-planning-for-sustainable-transport/overview.md) — pages 55–73
+- [9 Integration and Inclusion](sections/9-integration-and-inclusion/) — pages 74–94
+  - [9 Integration and Inclusion](sections/9-integration-and-inclusion/overview.md) — pages 74–94
+- [10 Walking, Accessibility and Public Realm](sections/10-walking-accessibility-and-public-realm/) — pages 95–104
+  - [10 Walking, Accessibility and Public Realm](sections/10-walking-accessibility-and-public-realm/overview.md) — pages 95–104
+- [11 Cycling and Personal Mobility Vehicles](sections/11-cycling-and-personal-mobility-vehicles/) — pages 105–118
+  - [11 Cycling and Personal Mobility Vehicles](sections/11-cycling-and-personal-mobility-vehicles/overview.md) — pages 105–118
+- [12 Public Transport](sections/12-public-transport/) — pages 121–166
+  - [12 Public Transport](sections/12-public-transport/overview.md) — pages 121–166
+- [13 Roads](sections/13-roads/) — pages 167–181
+  - [13 Roads](sections/13-roads/overview.md) — pages 167–181
+- [14 Traffic Management and Travel Options](sections/14-traffic-management-and-travel-options/) — pages 182–195
+  - [14 Traffic Management and Travel Options](sections/14-traffic-management-and-travel-options/overview.md) — pages 182–195
+- [16 Climate Action Management](sections/16-climate-action-management/) — pages 203–211
+  - [16 Climate Action Management](sections/16-climate-action-management/overview.md) — pages 203–211
+- [17 Strategy Outcomes](sections/17-strategy-outcomes/) — pages 213–226
+  - [17 Strategy Outcomes](sections/17-strategy-outcomes/overview.md) — pages 213–226
+- [19 Next Steps](sections/19-next-steps/) — pages 236–244
+  - [19 Next Steps](sections/19-next-steps/overview.md) — pages 236–244

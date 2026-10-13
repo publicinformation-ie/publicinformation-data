@@ -23,8 +23,8 @@ def test_hub_links_every_dataset_readme():
         assert f"latest/{slug}/README.md" in hub, slug
 
 
-def test_hub_has_no_documents_bundle_link():
-    assert "documents/" not in HUB.read_text(encoding="utf-8")
+def test_hub_links_the_documents_index():
+    assert "documents/index.json" in HUB.read_text(encoding="utf-8")
 
 
 def test_hub_links_the_three_guides():

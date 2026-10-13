@@ -1,0 +1,34 @@
+# National Sustainable Mobility Policy Year Two Progress Report
+
+> Department of Transport — 7 chapters, 19 sections, 57 source pages.
+> Source: https://assets.gov.ie/static/documents/national-sustainable-mobility-policy-year-two-progress-report.pdf
+> Full text: full.md
+
+## Chapters
+
+- [”](sections/section/) — pages 4–12
+  - [”](sections/section/overview.md) — pages 4–4
+  - [Policy and Action Plan](sections/section/policy-and-action-plan.md) — pages 5–10
+  - [Delivery Team](sections/section/delivery-team.md) — pages 11–11
+  - [Programme](sections/section/programme.md) — pages 12–12
+- [Policy](sections/policy/) — pages 1–1
+  - [Policy](sections/policy/overview.md) — pages 1–1
+- [Table of contents](sections/table-of-contents/) — pages 2–2
+  - [Table of contents](sections/table-of-contents/overview.md) — pages 2–2
+- [Minister’s Foreword](sections/minister-s-foreword/) — pages 3–3
+  - [Minister’s Foreword](sections/minister-s-foreword/overview.md) — pages 3–3
+- [Executive Summary](sections/executive-summary/) — pages 4–4
+  - [Executive Summary](sections/executive-summary/overview.md) — pages 4–4
+- [”](sections/section-2/) — pages 13–21
+  - [”](sections/section-2/overview.md) — pages 13–14
+  - [SMP Research Network](sections/section-2/smp-research-network.md) — pages 15–15
+  - [Mobility Forum](sections/section-2/mobility-forum.md) — pages 16–17
+  - [Moving Together:](sections/section-2/moving-together.md) — pages 18–19
+  - [Strategy](sections/section-2/strategy.md) — pages 20–21
+- [”](sections/section-3/) — pages 21–57
+  - [”](sections/section-3/overview.md) — pages 21–21
+  - [Road Safety](sections/section-3/road-safety.md) — pages 22–22
+  - [Shared Mobility](sections/section-3/shared-mobility.md) — pages 23–24
+  - [SMP Outcomes:](sections/section-3/smp-outcomes.md) — pages 25–25
+  - [Action Plan 2026-2030](sections/section-3/action-plan-2026-2030.md) — pages 26–26
+  - [of SMP Actions](sections/section-3/of-smp-actions.md) — pages 27–57
