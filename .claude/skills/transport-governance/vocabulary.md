@@ -25,9 +25,11 @@ what in a particular region lives only in that region's RACI file (`raci-gda.md`
 3. A footpath or cycle facility is `infra/active-travel` wherever it is located; the carriageway
    and other road assets are the relevant roads subdomain.
 4. A pedestrian crossing is a pedestrian facility and is `infra/active-travel`.
-5. A contractor acting for a body is recorded as that body.
+5. A works or service contractor acting for a body is recorded as that body. An operator that has its own body ID (PSO-op, Comm-op) is recorded under that ID.
 6. A row whose Qualifier is `—` covers every case not covered by a qualified row for the same
-   subdomain and function.
+   subdomain and function. A Qualifier may combine two terms with ` · `; adding `Municipal District`
+   marks the row that applies where the local authority has Municipal Districts, and the same row
+   without it covers the rest.
 
 ## RACI letters
 
@@ -129,7 +131,7 @@ what in a particular region lives only in that region's RACI file (`raci-gda.md`
 | g/municipal-district | Municipal District | A statutory subdivision of a county council whose members exercise some reserved functions for that area. | municipal district | Dublin area committees, which are not Municipal Districts. |
 | g/bye-law | bye-law | A binding local rule made by a public body under a specific statutory power. | local bye-law | National regulations. |
 | g/part-8 | Part 8 | The procedure under Part 8 of the Planning and Development Regulations 2001 by which a local authority's elected members approve or reject its own development. | council approval of its own project | Planning permission; Section 38. |
-| g/section-38 | Section 38 | The power under Road Traffic Act 1994 s.38 for a road authority to provide traffic calming measures as an executive function. | traffic-calming decision by council officials | Part 8. |
+| g/section-38 | Section 38 | The power under Road Traffic Act 1994 s.38 for a road authority to provide traffic calming measures, an executive function except where the local authority has Municipal Districts, whose members then exercise it. | traffic-calming decision by council officials | Part 8. |
 | g/section-51 | Section 51 approval | The approval by ACP, under Roads Act 1993 s.51, of a road scheme that needs environmental impact assessment. | national planning approval for a road scheme | Part 8. |
 | g/railway-order | Railway Order | The consent by ACP, under the Transport (Railway Infrastructure) Act 2001, to build a railway. | permission for a new railway or Luas line | Planning permission. |
 | g/development-plan | development plan | The six-year statutory land-use plan adopted by a local authority's elected members under Planning and Development Act 2000 s.10. | county or city development plan | Local Transport Plan. |
@@ -137,6 +139,8 @@ what in a particular region lives only in that region's RACI file (`raci-gda.md`
 | g/gda-transport-strategy | GDA Transport Strategy | The statutory long-range transport strategy for the GDA, prepared by NTA and approved by DoT. | the Greater Dublin Area transport strategy | Local Transport Plan. |
 | g/annual-budget | annual budget | The yearly local authority budget, adopted by its elected members as a reserved function. | the council budget | state grant. |
 | g/state-grant | state grant | Money allocated by a government department or state agency to another body for a set purpose. | government grant | annual budget. |
+| g/schedule-md-works | schedule of municipal district works | The yearly programme of road works for one Municipal District, adopted by its members. | the municipal district's works programme | Specification of a single scheme. |
+| g/aircraft-noise | aircraft noise | The noise from aircraft operating at an airport, regulated under the Aircraft Noise (Dublin Airport) Regulation Act 2019. | aircraft noise | airport. |
 | g/taking-in-charge | taking in charge | The declaration by a local authority's elected members that a road becomes a public road maintained by the road authority. | taking an estate in charge | Specification of road works. |
 | g/road-opening-licence | road opening licence | A licence from the road authority to open or occupy a public road for works. | road opening licence | Consent to build. |
 | g/traffic-management | traffic management | The control of vehicle movement on a specific road through regulatory traffic signs and road markings. | traffic management | special speed limit; parking. |

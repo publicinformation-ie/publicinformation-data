@@ -14,7 +14,8 @@ in `vocabulary.md`. A row is identified as `<subdomain> · <Function> · <Qualif
 | Strategic planning | — | TII | TII | DoT, NTA, LA-CE | practice | verify |
 | Funding | — | TII | TII | DoT | Roads Act 1993 s.19 | verify |
 | Specification | — | TII | TII, LA-CE | NTA | Roads Act 1993 s.19 | verify |
-| Consent | — | ACP | ACP | TII, LA-CE | Roads Act 1993 s.51 | verify |
+| Consent | Section 51 approval | ACP | ACP | TII, LA-CE | Roads Act 1993 s.51 | verify |
+| Consent | Part 8 | LA-members | LA-CE | TII | Planning and Development Act 2000 s.179 | verify |
 | Delivery | — | TII | LA-CE, TII | — | Roads Act 1993 | verify |
 | Operation | — | TII | TII, LA-CE | — | practice | verify |
 | Maintenance | — | TII | LA-CE, TII | — | Roads Act 1993 s.13 | verify |
@@ -40,10 +41,12 @@ Not applicable: none.
 | Funding | state grant | DoT | DoT | — | practice | verify |
 | Funding | annual budget | LA-members | LA-CE | — | Local Government Act 2001 | verify |
 | Specification | — | LA-CE | LA-CE | LA-members | Roads Act 1993 s.13 | verify |
-| Specification | Municipal District | LA-MD | LA-CE | — | Local Government Reform Act 2014 | verify |
+| Specification | schedule of municipal district works | LA-MD | LA-CE | — | Local Government Reform Act 2014 | verify |
 | Specification | taking in charge | LA-members | LA-CE | — | Roads Act 1993 s.11 | verify |
+| Specification | taking in charge · Municipal District | LA-MD | LA-CE | — | Roads Act 1993 s.11 | verify |
 | Consent | Part 8 | LA-members | LA-CE | — | Planning and Development Act 2000 s.179 | verify |
 | Consent | Section 38 | LA-CE | LA-CE | AGS | Road Traffic Act 1994 s.38 | verify |
+| Consent | Section 38 · Municipal District | LA-MD | LA-CE | AGS | Road Traffic Act 1994 s.38 | verify |
 | Consent | Section 51 approval | ACP | ACP | LA-CE | Roads Act 1993 s.51 | verify |
 | Delivery | — | LA-CE | LA-CE | — | Roads Act 1993 s.13 | verify |
 | Operation | — | LA-CE | LA-CE | — | practice | verify |
@@ -55,10 +58,10 @@ Not applicable: none.
 
 Not applicable: none.
 
-1. `Specification · Municipal District` applies where the local authority is divided into
-   Municipal Districts: LA-MD adopts the schedule of municipal district works. Dublin City, Dún
-   Laoghaire–Rathdown, Fingal and South Dublin have no Municipal Districts, so the `—` row
-   applies there.
+1. Rows with the `Municipal District` qualifier apply where the local authority is divided into
+   Municipal Districts: LA-MD adopts the schedule of municipal district works, makes Section 38
+   decisions and takes estates in charge. Dublin City, Dún Laoghaire–Rathdown, Fingal and South
+   Dublin have no Municipal Districts, so the rows without it apply there.
 2. LA-MD appears in C only where the local authority has Municipal Districts.
 
 ### infra/active-travel — tags: active
@@ -71,6 +74,7 @@ Not applicable: none.
 | Specification | — | LA-CE | LA-CE | NTA, LA-members | practice | verify |
 | Consent | Part 8 | LA-members | LA-CE | — | Planning and Development Act 2000 s.179 | verify |
 | Consent | Section 38 | LA-CE | LA-CE | AGS, NTA | Road Traffic Act 1994 s.38 | verify |
+| Consent | Section 38 · Municipal District | LA-MD | LA-CE | AGS, NTA | Road Traffic Act 1994 s.38 | verify |
 | Delivery | — | LA-CE | LA-CE | NTA | practice | verify |
 | Maintenance | — | LA-CE | LA-CE | — | Roads Act 1993 s.13 | verify |
 | Regulation | — | LA-CE | LA-CE | AGS | Road Traffic Act 1961 s.95 | verify |
@@ -151,7 +155,8 @@ Not applicable: none.
 | Delivery | — | LA-CE | LA-CE | — | practice | verify |
 | Operation | — | LA-CE | LA-CE | — | practice | verify |
 | Maintenance | — | LA-CE | LA-CE | — | Roads Act 1993 s.13 | verify |
-| Regulation | parking | LA-members | LA-CE | LA-MD, AGS | Road Traffic Act 1994 s.36 | verify |
+| Regulation | parking | LA-members | LA-CE | AGS | Road Traffic Act 1994 s.36 | verify |
+| Regulation | parking · Municipal District | LA-MD | LA-CE | AGS | Road Traffic Act 1994 s.36 | verify |
 | Regulation | appointed stand | LA-members | LA-CE | NTA, AGS | Road Traffic Act 1994 | verify |
 | Regulation | clamping | NTA | NTA | — | Vehicle Clamping Act 2015 | verify |
 | Enforcement | parking | LA-CE | LA-CE | — | Road Traffic Act 1994 s.36 | verify |
@@ -159,8 +164,8 @@ Not applicable: none.
 
 Not applicable: none.
 
-1. Where the local authority has Municipal Districts, confirm whether its parking bye-laws are
-   made by LA-MD; if so, split `Regulation · parking`.
+1. The `Municipal District` rows apply where the local authority has Municipal Districts; the
+   rows without it cover the rest.
 2. `Regulation · appointed stand` decides where taxi ranks are. Licensing taxis and their
    drivers is `svc/spsv · Regulation`.
 
@@ -184,6 +189,7 @@ Not applicable: none.
 | Maintenance | airport | daa | daa | — | practice | verify |
 | Regulation | port | Port-co | Port-co | DoT | Harbours Act 1996 | verify |
 | Regulation | airport | IAA | IAA | — | Air Navigation and Transport Act 2022 | verify |
+| Regulation | aircraft noise | LA-CE | LA-CE | IAA, daa | Aircraft Noise (Dublin Airport) Regulation Act 2019 | verify |
 | Enforcement | port | Port-co | Port-co | — | Harbours Act 1996 | verify |
 | Enforcement | airport | IAA | IAA | — | Air Navigation and Transport Act 2022 | verify |
 
@@ -192,6 +198,8 @@ Not applicable: none.
 1. A military aerodrome has no rows: DoD is A and R for every function there.
 2. Where a port is vested in a local authority rather than a Port-co, LA-CE takes the Port-co
    role in every port row and LA-members adopt its annual budget.
+3. `Consent` with `—` covers strategic infrastructure and appeals decided by ACP. Ordinary
+   planning applications for airport development are decided by LA-CE (verify).
 
 ## Services
 

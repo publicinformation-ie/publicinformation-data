@@ -40,14 +40,19 @@ never run for this).
 | 19 | A motion calls on Bus Éireann and the Department of Education to provide a school bus place for every pupil who needs one. Who decides? | svc/school-transport · Specification → A: DoE, R: BE | motion; trap: school transport | motion: 1511, 2023-10-02 |
 | 20 | A motion asks that a taxi rank be installed in a town, with locations put to the elected members. Who decides? | infra/kerbside · Regulation · appointed stand → A: LA-members, R: LA-CE | motion; trap: taxi rank vs SPSV | motion: 1511, 2017-04-24 |
 | 21 | A motion asks for high-powered EV charging hubs in a Municipal District. Who pays, and who decides where they go? | infra/kerbside · Funding · EV charging → A: DoT, R: DoT; infra/kerbside · Specification → A: LA-CE, R: LA-CE | motion | motion: 1511, 2024-09-03 |
-| 22 | A motion calls on the local authority to take a housing estate in charge and repair its roads and footpaths. Who decides the taking in charge? | infra/regional-local-roads · Specification · taking in charge → A: LA-members, R: LA-CE | motion | motion: 1511, 2026-05-20 |
+| 22 | A motion calls on the local authority to take a housing estate in charge and repair its roads and footpaths. Who decides the taking in charge in a council with Municipal Districts? | infra/regional-local-roads · Specification · taking in charge · Municipal District → A: LA-MD, R: LA-CE | motion; trap: Municipal District reserved function | motion: 1511, 2026-05-20 |
 | 23 | A motion asks for a pedestrian crossing at a bus stop. Who decides whether it is built? | infra/active-travel · Specification → A: LA-CE, R: LA-CE | boundary: crossing at a bus stop | motion: 1511, 2026-05-20 |
-| 24 | Who decides the yearly programme of road maintenance works in Dún Laoghaire–Rathdown, and in Meath? | infra/regional-local-roads · Specification → A: LA-CE, R: LA-CE; infra/regional-local-roads · Specification · Municipal District → A: LA-MD, R: LA-CE | with and without Municipal Districts | design |
+| 24 | Who decides the yearly programme of road maintenance works in Dún Laoghaire–Rathdown, and in Meath? | infra/regional-local-roads · Specification → A: LA-CE, R: LA-CE; infra/regional-local-roads · Specification · schedule of municipal district works → A: LA-MD, R: LA-CE | with and without Municipal Districts | design |
 | 25 | Who pays for a licensed commercial bus route? | svc/commercial-bus · Funding → Not applicable | answer is no body | design |
 | 26 | Write one sentence of public-facing copy saying who decides where taxi ranks go. | copy: uses the plain labels of LA-members and LA-CE; no IDs, no row references, no banned terms | public register | design |
+| 27 | A Municipal District member asks for traffic calming on an estate road in Meath. Who decides? | infra/regional-local-roads · Consent · Section 38 · Municipal District → A: LA-MD, R: LA-CE | Section 38 where Municipal Districts exist | motion: 1511, 2014-09-10 |
+| 28 | Who makes the parking bye-laws for a town in a Meath Municipal District? | infra/kerbside · Regulation · parking · Municipal District → A: LA-MD, R: LA-CE | Municipal District reserved function | motion: 1511, 2014-10-13 |
+| 29 | Who approves a national road scheme that does not need environmental impact assessment? | infra/national-roads · Consent · Part 8 → A: LA-members, R: LA-CE | national road Consent split | design |
+| 30 | Who regulates aircraft noise at Dublin Airport? | infra/ports-airfields · Regulation · aircraft noise → A: LA-CE, R: LA-CE | Fingal at Dublin Airport | design |
 
 ## Validation log
 
 | Date | # | Answer given | Resolution |
 |---|---|---|---|
 | 2026-10-14 | all | 26/26 matched on first run (fresh subagent, SKILL.md, vocabulary.md and raci-gda.md only; check 26 used the plain labels, no IDs or banned terms) | No model or expectation change. Note: checks 11 and 17 name Drogheda, which is outside the GDA; the subagent answered from the GDA rows and said so. |
+| 2026-10-14 | 22, 24, 27–30 | Final-review fix pass: expectations written first (6 refs failed the lint), then model changed; fresh subagent re-run 6/6 matched | Municipal District splits for Section 38, parking bye-laws and taking in charge; works-schedule qualifier narrowed; national road Consent split into Part 8 and Section 51; aircraft noise row added; boundary rule 5 limited to works and service contractors |
