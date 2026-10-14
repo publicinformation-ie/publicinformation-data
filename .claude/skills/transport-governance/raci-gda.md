@@ -192,3 +192,163 @@ Not applicable: none.
 1. A military aerodrome has no rows: DoD is A and R for every function there.
 2. Where a port is vested in a local authority rather than a Port-co, LA-CE takes the Port-co
    role in every port row and LA-members adopt its annual budget.
+
+## Services
+
+### svc/pso-bus — tags: bus
+
+| Function | Qualifier | A | R | C | Basis | Status |
+|---|---|---|---|---|---|---|
+| Policy | — | DoT | DoT | NTA | practice | verify |
+| Strategic planning | — | DoT | NTA | LA-CE | Dublin Transport Authority Act 2008 s.12 | verify |
+| Funding | — | NTA | NTA | DoT | Dublin Transport Authority Act 2008 | verify |
+| Specification | — | NTA | NTA | DB, BE, PSO-op, LA-CE | Dublin Transport Authority Act 2008 | verify |
+| Delivery | — | NTA | NTA | — | Dublin Transport Authority Act 2008 | verify |
+| Operation | — | NTA | DB, BE, PSO-op | — | Dublin Transport Authority Act 2008 | verify |
+| Maintenance | — | NTA | DB, BE, PSO-op | — | practice | verify |
+| Regulation | — | NTA | NTA | — | Public Transport Regulation Act 2009 | verify |
+| Enforcement | — | NTA | DB, BE, PSO-op | AGS | practice | verify |
+
+Not applicable: Consent.
+
+1. Specification covers routes, timetables and fares.
+2. Delivery is the procurement of PSO contracts and of buses.
+3. Rural services branded TFI Local Link are PSO bus services run by PSO-op.
+
+### svc/commercial-bus — tags: bus
+
+| Function | Qualifier | A | R | C | Basis | Status |
+|---|---|---|---|---|---|---|
+| Policy | — | DoT | DoT | NTA | practice | verify |
+| Specification | — | Comm-op | Comm-op | NTA | Public Transport Regulation Act 2009 | verify |
+| Operation | — | Comm-op | Comm-op | — | Public Transport Regulation Act 2009 | verify |
+| Maintenance | — | Comm-op | Comm-op | — | practice | verify |
+| Regulation | — | NTA | NTA | — | Public Transport Regulation Act 2009 | verify |
+| Enforcement | — | NTA | NTA | AGS | Public Transport Regulation Act 2009 | verify |
+
+Not applicable: Strategic planning, Funding, Consent, Delivery.
+
+1. NTA's approval of a route and timetable through the licence is Regulation; the choice of
+   route, timetable and fare is Comm-op's Specification.
+
+### svc/rail — tags: rail
+
+| Function | Qualifier | A | R | C | Basis | Status |
+|---|---|---|---|---|---|---|
+| Policy | — | DoT | DoT | NTA, IE | practice | verify |
+| Strategic planning | — | DoT | NTA | IE | Dublin Transport Authority Act 2008 s.12 | verify |
+| Funding | — | NTA | NTA | DoT | Dublin Transport Authority Act 2008 | verify |
+| Specification | — | NTA | NTA | IE | Dublin Transport Authority Act 2008 | verify |
+| Delivery | — | NTA | IE | — | practice | verify |
+| Operation | — | NTA | IE | — | Dublin Transport Authority Act 2008 | verify |
+| Maintenance | — | IE | IE | — | practice | verify |
+| Regulation | — | CRR | CRR | — | Railway Safety Act 2005 | verify |
+| Enforcement | bye-law | IE | IE | AGS | practice | verify |
+| Enforcement | rail safety | CRR | CRR | — | Railway Safety Act 2005 | verify |
+
+Not applicable: Consent.
+
+1. Delivery and Maintenance here are of trains; track and stations are `infra/heavy-rail`.
+
+### svc/light-rail — tags: light-rail
+
+| Function | Qualifier | A | R | C | Basis | Status |
+|---|---|---|---|---|---|---|
+| Policy | — | DoT | DoT | NTA | practice | verify |
+| Strategic planning | — | DoT | NTA | TII | Dublin Transport Authority Act 2008 s.12 | verify |
+| Funding | — | NTA | NTA | DoT | Dublin Transport Authority Act 2008 | verify |
+| Specification | — | NTA | NTA | TII | Dublin Transport Authority Act 2008 | verify |
+| Delivery | — | NTA | TII | — | practice | verify |
+| Operation | — | NTA | PSO-op | TII | practice | verify |
+| Maintenance | — | TII | PSO-op | — | practice | verify |
+| Regulation | — | CRR | CRR | — | Railway Safety Act 2005 | verify |
+| Enforcement | bye-law | TII | PSO-op | AGS | practice | verify |
+| Enforcement | rail safety | CRR | CRR | — | Railway Safety Act 2005 | verify |
+
+Not applicable: Consent.
+
+1. Delivery is the procurement of the operations and maintenance contract, which TII runs for
+   NTA.
+
+### svc/spsv — tags: taxi
+
+| Function | Qualifier | A | R | C | Basis | Status |
+|---|---|---|---|---|---|---|
+| Policy | — | DoT | DoT | NTA | practice | verify |
+| Funding | — | NTA | NTA | DoT | practice | verify |
+| Operation | — | Comm-op | Comm-op | — | Taxi Regulation Act 2013 | verify |
+| Maintenance | — | Comm-op | Comm-op | — | Taxi Regulation Act 2013 | verify |
+| Regulation | — | NTA | NTA | AGS | Taxi Regulation Act 2013 | verify |
+| Enforcement | — | NTA | NTA, AGS | — | Taxi Regulation Act 2013 | verify |
+
+Not applicable: Strategic planning, Specification, Consent, Delivery.
+
+1. Regulation includes licensing vehicles and drivers and setting the national maximum taxi fare.
+2. Where taxi ranks are is `infra/kerbside · Regulation · appointed stand`.
+
+### svc/school-transport — tags: bus, school
+
+| Function | Qualifier | A | R | C | Basis | Status |
+|---|---|---|---|---|---|---|
+| Policy | — | DoE | DoE | — | practice | verify |
+| Funding | — | DoE | DoE | — | practice | verify |
+| Specification | — | DoE | BE | — | practice | verify |
+| Delivery | — | DoE | BE | — | practice | verify |
+| Operation | — | BE | BE | — | practice | verify |
+| Maintenance | — | BE | BE | — | practice | verify |
+
+Not applicable: Strategic planning, Consent, Regulation, Enforcement.
+
+1. DoE sets eligibility; BE plans the routes.
+2. NTA, LA-members and LA-CE have no row in this subdomain.
+
+### svc/shared-mobility — tags: active, shared
+
+| Function | Qualifier | A | R | C | Basis | Status |
+|---|---|---|---|---|---|---|
+| Policy | — | DoT | DoT | NTA | practice | verify |
+| Funding | — | NTA | NTA | LA-CE | practice | verify |
+| Specification | — | LA-CE | LA-CE | NTA | practice | verify |
+| Delivery | — | LA-CE | LA-CE | NTA | practice | verify |
+| Operation | — | Comm-op | Comm-op | — | practice | verify |
+| Maintenance | — | Comm-op | Comm-op | — | practice | verify |
+| Regulation | — | LA-members | LA-CE | AGS | Road Traffic and Roads Act 2023 | verify |
+| Enforcement | — | LA-CE | LA-CE | — | Road Traffic and Roads Act 2023 | verify |
+
+Not applicable: Strategic planning, Consent.
+
+1. Use of a privately bought e-scooter on a public road is `users/traffic-law`.
+
+## Users
+
+### users/vehicles-drivers — tags: road
+
+| Function | Qualifier | A | R | C | Basis | Status |
+|---|---|---|---|---|---|---|
+| Policy | — | DoT | DoT | RSA | practice | verify |
+| Strategic planning | — | DoT | RSA | AGS, TII | practice | verify |
+| Funding | — | DoT | DoT | — | practice | verify |
+| Operation | — | RSA | RSA | — | Road Safety Authority Act 2006 | verify |
+| Regulation | — | RSA | RSA | DoT | Road Safety Authority Act 2006 | verify |
+| Enforcement | — | RSA | RSA | — | Road Safety Authority Act 2006 | verify |
+
+Not applicable: Specification, Consent, Delivery, Maintenance.
+
+1. Operation covers driver testing and vehicle testing services; issuing licences is Regulation.
+2. Driving without a licence or test certificate is enforced by AGS under
+   `users/traffic-law · Enforcement`; this Enforcement row covers RSA's roadside checks of
+   commercial vehicles.
+
+### users/traffic-law — tags: road
+
+| Function | Qualifier | A | R | C | Basis | Status |
+|---|---|---|---|---|---|---|
+| Policy | — | DoT | DoT | RSA, AGS | Road Traffic Acts 1961–2024 | verify |
+| Strategic planning | — | DoT | RSA | AGS | practice | verify |
+| Regulation | — | DoT | DoT | RSA | Road Traffic Acts 1961–2024 | verify |
+| Enforcement | — | AGS | AGS | — | Road Traffic Acts 1961–2024 | verify |
+
+Not applicable: Funding, Specification, Consent, Delivery, Operation, Maintenance.
+
+1. Regulation covers the rules of the road and default speed limits; a special speed limit is
+   Regulation on the road's infra subdomain.
