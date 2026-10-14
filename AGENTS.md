@@ -305,5 +305,6 @@ Documentation owner: repository maintainers. Last reviewed: 2026-08-14. Re-run `
 | Adding a new step | [pipelines/foi_pipeline/steps/AGENTS.md](pipelines/foi_pipeline/steps/AGENTS.md) |
 | Running / triaging document_pipeline | [pipelines/document_pipeline/README.md](pipelines/document_pipeline/README.md) |
 | Which script answers a data-quality question | [scripts/AGENTS.md](scripts/AGENTS.md) — check before writing a new one-off script |
+| Which body plans, funds, consents, operates or enforces a GDA transport matter | [.claude/skills/transport-governance/SKILL.md](.claude/skills/transport-governance/SKILL.md) |
 | Data model evolution | [pipelines/foi_pipeline/AGENTS.md#key-concepts](pipelines/foi_pipeline/AGENTS.md#key-concepts) |
 | Troubleshooting data issues | [pipelines/foi_pipeline/AGENTS.md#troubleshooting](pipelines/foi_pipeline/AGENTS.md#troubleshooting) |
