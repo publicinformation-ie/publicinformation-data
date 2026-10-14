@@ -50,3 +50,4 @@ never run for this).
 
 | Date | # | Answer given | Resolution |
 |---|---|---|---|
+| 2026-10-14 | all | 26/26 matched on first run (fresh subagent, SKILL.md, vocabulary.md and raci-gda.md only; check 26 used the plain labels, no IDs or banned terms) | No model or expectation change. Note: checks 11 and 17 name Drogheda, which is outside the GDA; the subagent answered from the GDA rows and said so. |
