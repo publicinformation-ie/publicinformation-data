@@ -13,11 +13,14 @@ For each document in `extract_pages/output.json`:
    | Strategy | Fires when | `confidence` |
    |---|---|---|
    | `outline` | The PDF has a table of contents (`extract_pages`'s `outline`) | 1.0 |
+   | `toc` | No outline, but a parseable Table of Contents page whose entries match body headings at or above the match-rate gate | 0.95 |
    | `numbering` | Lines of the form `1 First Chapter` / `1.1 Introduction` (≤3 levels), set above body size **or** bold | 0.9 |
    | `font` | No numbering, but distinct styles larger than body+0.5pt exist; the largest three rank into levels 1–3 | 0.6 |
    | `flat` | Nothing above applied — one node per page (`page-001`, `page-002`, …) | 0.2 |
 
    Two guards keep prose out of the numbering strategy: a candidate is rejected if it is set at body size and not bold, or if its title is longer than 120 characters or reads as a sentence (ends in `.` and has more than four words). `2.4 million trips are made each day.` matches the heading pattern perfectly and is rejected only by the size guard.
+
+   The **TOC-name strategy** (`toc`) parses the document's own Table of Contents into canonical heading entries, locates each entry's body occurrence by exact normalized text match (with deterministic number-prefix stripping — never fuzzy similarity) across one to three joined body lines, scores occurrences by font rules (relative size, boldness, isolation), and builds a node per distinct entry. It activates only when the share of plausible body-heading entries matched above the score floor meets `MATCH_RATE_GATE` (0.60); furniture entries (abbreviations, glossary, list-of-figures) are excluded from that denominator. Matched boundaries are supplemented with numbered headings not in the TOC, and a below-gate match rate falls back to the legacy cascade, logging `LowTocMatchRate`. Only the first contiguous block of TOC pages is parsed (`list-of-*` pages and later part-TOCs are flagged, not parsed), so a multi-part document does not over-split. Thresholds were pinned by the read-only experiment in `experiments/2026-10-17-toc-splitting-comparison/`.
 
 4. Assigns `parent` (nearest preceding node of a lower level), `order` (from the heading number where there is one — `1.1` → 101 — otherwise from position), and `end_page`.
 5. Applies `override.json`, if present, and records whether it did.
@@ -41,9 +44,10 @@ Supports **incremental resumption** via `IncrementalWriter` (`key_field="doc_slu
 | Field | Description |
 |---|---|
 | `doc_slug` | Natural key, carried through from `extract_pages` |
-| `detection_method` | `outline`, `numbering`, `font` or `flat` — never suffixed, so it stays a fixed enum for the web repo |
+| `detection_method` | `outline`, `toc`, `numbering`, `font` or `flat` — never suffixed, so it stays a fixed enum for the web repo |
 | `overridden` | `true` when at least one `override.json` entry was applied to this document |
 | `page_count` | Number of pages in the document |
+| `toc_entry_count`, `toc_matched_count`, `toc_match_rate` | Present when a TOC was detected: the plausible-heading entry count, how many were matched above the score floor, and their ratio |
 | `nodes` | The tree, in document order — see below |
 
 Each node:
@@ -69,6 +73,9 @@ Repeated headings — `1.1 Introduction` continued onto the next page, or the sa
   | `error_type` | Cause |
   |---|---|
   | `LowConfidenceStructure` | The flat fallback fired. Informational: the document still publishes |
+  | `LowTocMatchRate` | A TOC was detected but its match rate was below the gate, so the legacy cascade was used |
+  | `TocEntryUnmatched` | A TOC entry had no body occurrence under the matching rule; no boundary created |
+  | `TocEntryNoHeading` | A TOC entry matched a body line below the score floor (not above body size or bold); no boundary created |
   | `UnknownOverrideSlug` | An `override.json` entry names a slug detection no longer produces — the heading was probably renamed, or the detection method changed |
   | `MalformedOverride` | An `override.json` entry is not an object, has no `slug`, or sets a field that is not a node field |
 

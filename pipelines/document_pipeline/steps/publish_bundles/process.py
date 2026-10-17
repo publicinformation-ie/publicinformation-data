@@ -55,7 +55,7 @@ STEP_NAME = "publish_bundles"
 # §8), not over content. Bump MAJOR on a removed/retyped field, a changed slug
 # rule or a changed bundle layout; MINOR on a new optional field or
 # `detection_method` value. Coordinate with the web repo on any bump.
-CONTRACT_VERSION = "1.1.0"
+CONTRACT_VERSION = "1.2.0"
 
 _UNSAFE_ARCNAME = re.compile(r"(^/|(^|/)\.\.(/|$))")
 _FRONTMATTER_RE = re.compile(r"\A---\n.*?\n---\n", re.DOTALL)

@@ -59,3 +59,6 @@ pipelines/minutes_pipeline/steps/*/pdf_cache/
 # CSO website-resolution caches and experiment results (local, regenerable, paid-for — never commit)
 pipelines/cso_pipeline/cache/
 pipelines/cso_pipeline/experiments/**/results/
+
+# document_pipeline experiment results (regenerable — never commit)
+pipelines/document_pipeline/experiments/**/results/

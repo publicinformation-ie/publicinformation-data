@@ -4,6 +4,11 @@ All notable changes to the Public Bodies dataset will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [documents 1.2.0] - 2026-10-17
+
+### Added
+- `detection_method` gains a new value `toc`: documents without a PDF outline now split on their own Table of Contents, using TOC titles as canonical headings and font rules only as a disambiguator (with a numbered-heading supplement and a match-rate gate, falling back to the previous cascade otherwise). Bundle contract bumped 1.1.0 → 1.2.0 (MINOR — a new `detection_method` value).
+
 ## [Unreleased] - 2026-10-06
 
 ### Changed (breaking)

@@ -2,7 +2,21 @@ import json
 from pathlib import Path
 
 from documents import SLUG_RE
-from steps.detect_structure.process import detect_structure, merge_overrides, process
+from steps.detect_structure.process import (
+    Node,
+    _below_score_floor,
+    build_occurrence_index,
+    detect_structure,
+    find_occurrences,
+    is_heading_candidate,
+    merge_overrides,
+    normalize_heading_text,
+    parse_toc,
+    process,
+    running_header_texts,
+    score_occurrence,
+    validate_split,
+)
 from steps.extract_pages.process import extract_page
 
 import pymupdf
@@ -49,7 +63,7 @@ def by_slug(nodes):
 def test_the_outline_strategy_wins_when_the_pdf_has_an_outline():
     outline = [{"level": 1, "title": "1 First Chapter", "page": 2, "y": 76.0},
                {"level": 2, "title": "1.1 Introduction", "page": 2, "y": 118.0}]
-    nodes, method = detect_structure(load_pages("pages_numbered.json"), outline, 4)
+    nodes, method, _ = detect_structure(load_pages("pages_numbered.json"), outline, 4)
 
     assert method == "outline"
     assert [n.slug for n in nodes] == ["1-first-chapter", "1-1-introduction"]
@@ -59,7 +73,7 @@ def test_the_outline_strategy_wins_when_the_pdf_has_an_outline():
 
 
 def test_the_numbering_strategy_detects_chapters_sections_and_parents():
-    nodes, method = detect_structure(load_pages("pages_numbered.json"), [], 4)
+    nodes, method, _ = detect_structure(load_pages("pages_numbered.json"), [], 4)
 
     assert method == "numbering"
     assert [n.slug for n in nodes] == ["1-first-chapter", "1-1-introduction", "1-2-figures",
@@ -77,13 +91,13 @@ def test_the_numbering_strategy_detects_chapters_sections_and_parents():
 def test_a_numeric_line_at_body_size_is_not_a_heading():
     """`10.5% of trips …` and `2.4 million trips …` are prose. The second one
     even matches the heading pattern; only the font-size guard rejects it."""
-    nodes, _ = detect_structure(load_pages("pages_numbered.json"), [], 4)
+    nodes, _, _ = detect_structure(load_pages("pages_numbered.json"), [], 4)
 
     assert not any("trips" in node.title for node in nodes)
 
 
 def test_the_font_strategy_ranks_larger_styles_into_levels():
-    nodes, method = detect_structure(load_pages("pages_font.json"), [], 2)
+    nodes, method, _ = detect_structure(load_pages("pages_font.json"), [], 2)
 
     assert method == "font"
     assert [n.title for n in nodes] == ["Introduction", "Methodology", "A sub point",
@@ -94,7 +108,7 @@ def test_the_font_strategy_ranks_larger_styles_into_levels():
 
 def test_the_flat_fallback_fires_when_there_is_no_signal_and_is_logged(tmp_path, make_writer):
     upstream, records = write_upstream(tmp_path, load_pages("pages_flat.json"))
-    nodes, method = detect_structure(load_pages("pages_flat.json"), [], 3)
+    nodes, method, _ = detect_structure(load_pages("pages_flat.json"), [], 3)
 
     assert method == "flat"
     assert [n.slug for n in nodes] == ["page-001", "page-002", "page-003"]
@@ -115,7 +129,7 @@ def test_the_flat_fallback_fires_when_there_is_no_signal_and_is_logged(tmp_path,
 # --- node fields -----------------------------------------------------------
 
 def test_end_page_stops_before_the_next_same_or_higher_level_node():
-    nodes, _ = detect_structure(load_pages("pages_numbered.json"), [], 4)
+    nodes, _, _ = detect_structure(load_pages("pages_numbered.json"), [], 4)
     indexed = by_slug(nodes)
 
     # 1.1 ends on page 2 because 1.2 (same level) starts on page 3.
@@ -129,7 +143,7 @@ def test_end_page_stops_before_the_next_same_or_higher_level_node():
 
 
 def test_slugs_retain_heading_numbers_and_match_the_repo_slug_pattern():
-    nodes, _ = detect_structure(load_pages("pages_numbered.json"), [], 4)
+    nodes, _, _ = detect_structure(load_pages("pages_numbered.json"), [], 4)
 
     assert by_slug(nodes)["1-1-introduction"].title == "Introduction"
     for node in nodes:
@@ -145,7 +159,7 @@ def test_a_repeated_heading_gets_a_numeric_suffix():
                    span("Body text continued from the preceding page.", y0=118.0, block=1)],
                   number=2)]
 
-    nodes, _ = detect_structure(pages, [], 2)
+    nodes, _, _ = detect_structure(pages, [], 2)
 
     assert [n.slug for n in nodes] == ["1-first-chapter", "1-1-introduction",
                                        "1-1-introduction-2"]
@@ -154,7 +168,7 @@ def test_a_repeated_heading_gets_a_numeric_suffix():
 # --- override merge --------------------------------------------------------
 
 def test_merge_overrides_replaces_a_title_and_leaves_other_nodes_alone():
-    nodes, _ = detect_structure(load_pages("pages_numbered.json"), [], 4)
+    nodes, _, _ = detect_structure(load_pages("pages_numbered.json"), [], 4)
     before = {n.slug: n.title for n in nodes}
 
     merged, errors = merge_overrides(
@@ -181,7 +195,7 @@ def test_merge_overrides_can_flatten_a_staircase_outline():
                {"level": 3, "title": "Safe System Approach", "page": 3, "y": 0.0},
                {"level": 4, "title": "Vision Zero", "page": 4, "y": 0.0},
                {"level": 4, "title": "Abbreviations", "page": 5, "y": 0.0}]
-    nodes, method = detect_structure([], outline, 5)
+    nodes, method, _ = detect_structure([], outline, 5)
     assert method == "outline"
 
     merged, errors = merge_overrides(
@@ -202,7 +216,7 @@ def test_merge_overrides_can_flatten_a_staircase_outline():
 
 
 def test_merge_overrides_reports_a_slug_that_no_longer_exists():
-    nodes, _ = detect_structure(load_pages("pages_numbered.json"), [], 4)
+    nodes, _, _ = detect_structure(load_pages("pages_numbered.json"), [], 4)
 
     merged, errors = merge_overrides(nodes, [{"slug": "1-9-mystery", "title": "Mystery"}], 4)
 
@@ -217,7 +231,7 @@ def test_the_fixture_pdf_detects_as_two_chapters_with_one_section_each():
     doc = pymupdf.open(FIXTURES / "fixture.pdf")
     pages = [extract_page(doc[i], i + 1) for i in range(doc.page_count)]
 
-    nodes, method = detect_structure(pages, [], doc.page_count)
+    nodes, method, _ = detect_structure(pages, [], doc.page_count)
 
     assert method == "numbering"
     assert [(n.level, n.slug, n.start_page, n.end_page) for n in nodes] == [
@@ -247,3 +261,128 @@ def test_process_applies_the_override_file(tmp_path, make_writer):
     assert node["title"] == "Introduction and context"
     assert set(node) == {"level", "number", "title", "slug", "start_page", "start_y",
                          "end_page", "confidence", "parent", "order"}
+
+
+# --- TOC-name helpers ------------------------------------------------------
+
+def test_normalize_heading_text_strips_control_chars_and_punctuation():
+    assert normalize_heading_text("  Executive\u2009Summary\x08  ") == "executive summary"
+    assert normalize_heading_text("Introduction .....") == "introduction"
+    assert normalize_heading_text("Glossary\u2026") == "glossary"
+    assert normalize_heading_text("1.1 Purpose of National Roads 2040") == \
+        "1.1 purpose of national roads 2040"
+
+
+def test_is_heading_candidate_rejects_junk():
+    assert is_heading_candidate("Introduction")
+    assert not is_heading_candidate("")
+    assert not is_heading_candidate("123")
+    assert not is_heading_candidate("x")
+    assert not is_heading_candidate("Intro....")
+    assert not is_heading_candidate("\u2022 bullet")
+    assert not is_heading_candidate("\u20ac100 million")
+
+
+def test_running_header_texts_threshold():
+    pages = []
+    for i in range(5):
+        spans = [span("Running Header", size=8.0, block=0, line=0, y0=10.0)]
+        if i == 0:
+            spans.append(span("One-off title", size=12.0, block=1, line=0, y0=50.0))
+        pages.append(page(spans, number=i + 1))
+    running = running_header_texts(pages)
+    assert "running header" in running
+    assert "one-off title" not in running
+
+
+def test_parse_toc_detects_page_and_parses_entries():
+    body = 10.0
+    toc_page = page([
+        span("Contents", size=16.0, y0=40.0, block=0),
+        span("Introduction", size=12.0, y0=80.0, block=1),
+        span("3", size=12.0, y0=80.0, x0=540.0, block=2),
+        span("Methodology", size=12.0, y0=95.0, block=3),
+        span("5", size=12.0, y0=95.0, x0=540.0, block=4),
+        span("Abbreviations", size=12.0, y0=110.0, block=5),
+        span("12", size=12.0, y0=110.0, x0=540.0, block=6),
+    ], number=2)
+    entries, toc_pages, level_signal, flags = parse_toc([toc_page], body)
+
+    assert toc_pages == [2]
+    assert [e["title"] for e in entries] == ["Introduction", "Methodology", "Abbreviations"]
+    assert [e["furniture"] for e in entries] == [False, False, True]
+    assert flags["right_page_number"] is True
+
+
+def test_parse_toc_infers_levels_from_numbering():
+    body = 10.0
+    toc_page = page([
+        span("Contents", size=16.0, y0=40.0, block=0),
+        span("1 Introduction", size=12.0, y0=80.0, block=1),
+        span("1.1 Background", size=12.0, y0=95.0, block=2),
+        span("2 Method", size=12.0, y0=110.0, block=3),
+    ], number=2)
+    entries, _, level_signal, _ = parse_toc([toc_page], body)
+
+    assert level_signal == "numbering"
+    assert [e["level"] for e in entries] == [1, 2, 1]
+
+
+def test_find_occurrences_number_tolerant_alias():
+    body = 10.0
+    pages = [
+        page([span("1.1 Introduction", size=14.0, y0=80.0, block=0)], number=3),
+        page([span("Introduction", size=14.0, y0=80.0, block=0)], number=4),
+    ]
+    index = build_occurrence_index(pages, set(), set(), body)
+    occs = find_occurrences(index, "Introduction")
+    assert sorted(o["page"] for o in occs) == [3, 4]
+
+
+def test_build_occurrence_index_excludes_toc_pages_and_running_headers():
+    body = 10.0
+    pages = [
+        page([span("Introduction", size=14.0, y0=80.0, block=0)], number=2),
+        page([span("Introduction", size=14.0, y0=80.0, block=0)], number=3),
+    ]
+    running = running_header_texts(pages)
+    assert "introduction" in running  # on both pages
+    index = build_occurrence_index(pages, {2}, running, body)
+    assert find_occurrences(index, "Introduction") == []
+
+
+def test_score_occurrence_and_floor():
+    body = 10.0
+    assert score_occurrence({"size": 14.0, "bold": False, "isolated": True}, body) == \
+        14.0 / 10.0 + 0.3
+    assert score_occurrence({"size": 14.0, "bold": True, "isolated": True}, body) == \
+        14.0 / 10.0 + 0.5 + 0.3
+
+    assert _below_score_floor({"size": 10.0, "bold": False}, body) is True
+    assert _below_score_floor({"size": 10.5, "bold": False}, body) is False
+    assert _below_score_floor({"size": 8.0, "bold": True}, body) is False
+
+
+def test_validate_split_flags_junk_duplicate_and_gap():
+    junk = Node(level=1, number=None, title="", slug="empty",
+                start_page=4, start_y=80.0, end_page=4)
+    assert any("empty" in i for i in validate_split([junk], 4))
+
+    a = Node(level=1, number=None, title="A", slug="a", start_page=2, start_y=80.0, end_page=4)
+    b = Node(level=1, number=None, title="B", slug="b", start_page=2, start_y=80.0, end_page=4)
+    assert any("duplicate" in i for i in validate_split([a, b], 4))
+
+    early = Node(level=1, number=None, title="Intro", slug="intro",
+                 start_page=2, start_y=1.0, end_page=2)
+    late = Node(level=1, number=None, title="End", slug="end",
+                start_page=5, start_y=1.0, end_page=5)
+    gaps = [i for i in validate_split([early, late], 5) if "gap" in i]
+    assert len(gaps) == 2  # pages 3 and 4; page 1 is front matter, not a gap
+
+
+def test_validate_split_valid_tree_has_no_issues():
+    a = Node(level=1, number=None, title="Intro", slug="intro",
+             start_page=2, start_y=1.0, end_page=3)
+    b = Node(level=2, number=None, title="Detail", slug="detail",
+             start_page=4, start_y=1.0, end_page=5)
+    assert validate_split([a, b], 5) == []

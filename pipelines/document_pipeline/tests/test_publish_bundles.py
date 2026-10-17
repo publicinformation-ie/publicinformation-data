@@ -483,7 +483,7 @@ def test_version_is_present_and_equals_contract_version(
         assemble_dir, figures_dir)
     index = json.loads((public_root / "index.json").read_text())
     assert index["version"] == CONTRACT_VERSION
-    assert CONTRACT_VERSION == "1.1.0"
+    assert CONTRACT_VERSION == "1.2.0"
 
 
 # --- pure builders ----------------------------------------------------------
