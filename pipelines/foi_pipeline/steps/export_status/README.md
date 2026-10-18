@@ -21,6 +21,23 @@ In addition to the step-level `output.json`, this step writes three public JSON 
 | `public/disclosure-files.json` | Flat list of all discovered disclosure log file URLs |
 | `public/foi-disclosures.json` | All canonicalised FOI request records |
 
+On a full (unscoped) run it also regenerates the public-bodies catalog via
+`publish_public_artifacts()` → `src/lib/publish_public_bodies.py`, writing
+`public/v2.0.0/public-bodies/` and `public/latest/public-bodies/`. Scoped
+`--public-body` runs skip this: their merge holds one body, and publishing it
+would blank every other body's crawl columns.
+
+## Orphan guard
+
+Disclosure-step records naming a `public_body_id` that is not a canonical body
+normally abort the run — that is the wrong-id mistake the guard exists for (an
+override attached to an unrelated body). One exception: an id that names a real
+body in `find_public_bodies` but is **no longer FOI-subject** — foi.gov.ie
+dropped it from its directory — is stale rather than corrupt. Those records are
+skipped by the mergers and reported under "Retired bodies still referenced by
+disclosure steps" for review, because raising would wedge every subsequent run.
+A hand-curated (`overridden`) record naming an out-of-scope body still raises.
+
 ## Input
 
 All step `output.json` files (read directly from sibling step directories, not via the `--input` argument).

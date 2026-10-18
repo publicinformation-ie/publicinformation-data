@@ -6,6 +6,7 @@ from steps.export_status.process import (
     DISCLOSURE_STEPS,
     PER_BODY_STEPS,
     collect_disclosure_ids,
+    collect_overridden_ids,
     format_coverage_summary,
     merge,
     publish_public_artifacts,
@@ -993,6 +994,86 @@ def test_merge_raises_on_orphan_in_find_disclosure_files(tmp_path):
         merge(steps_dir, PIPELINE_STEPS)
     assert "8888" in str(exc.value)
     assert "find_disclosure_files" in str(exc.value)
+
+
+def test_merge_tolerates_retired_body_and_reports_it(tmp_path):
+    """A disclosure record for a body that exists in find_public_bodies but is no
+    longer FOI-subject is not corruption: foi.gov.ie dropped it from its
+    directory, so its stale records are simply not consumable. Must not wedge
+    the pipeline, but must be reported for review."""
+    steps_dir = setup_steps_dir(tmp_path, {
+        "find_public_bodies": {
+            "metadata": {},
+            "public_bodies": BASE_OUTPUT["public_bodies"] + [
+                {"public_body_id": 1500, "name": "Retired Body",
+                 "official_website_url": None, "category": "public body"},
+            ],
+        },
+        "find_public_bodies_subject_to_foi": BASE_OUTPUT,
+        "find_disclosure_files": {
+            "metadata": {},
+            "results": [
+                {"public_body_id": 1500, "file_url": "x", "file_type": "xlsx"},
+            ],
+        },
+    })
+    retired = {}
+    result = merge(steps_dir, PIPELINE_STEPS, retired=retired)
+
+    assert {b["public_body_id"] for b in result} == {1001, 1002}
+    assert retired["find_disclosure_files"] == [1500]
+
+
+def test_merge_still_raises_for_unknown_orphan_id(tmp_path):
+    """An id that matches no body at all is real corruption and must still raise."""
+    steps_dir = setup_steps_dir(tmp_path, {
+        "find_public_bodies": BASE_OUTPUT,
+        "find_public_bodies_subject_to_foi": BASE_OUTPUT,
+        "find_disclosure_files": {
+            "metadata": {},
+            "results": [
+                {"public_body_id": 9999, "file_url": "x", "file_type": "xlsx"},
+            ],
+        },
+    })
+    with pytest.raises(ValueError) as exc:
+        merge(steps_dir, PIPELINE_STEPS)
+    assert "9999" in str(exc.value)
+
+
+def test_merge_raises_for_manual_override_about_a_retired_body(tmp_path):
+    """A hand-asserted record about a body outside the canonical set is the
+    wrong-id class of mistake the guard exists for -- even though the id is a
+    real body -- so it must still fail loudly."""
+    steps_dir = setup_steps_dir(tmp_path, {
+        "find_public_bodies": {
+            "metadata": {},
+            "public_bodies": BASE_OUTPUT["public_bodies"] + [
+                {"public_body_id": 1500, "name": "Retired Body",
+                 "official_website_url": None, "category": "public body"},
+            ],
+        },
+        "find_public_bodies_subject_to_foi": BASE_OUTPUT,
+        "find_disclosure_files": {
+            "metadata": {},
+            "results": [
+                {"public_body_id": 1500, "file_url": "x", "file_type": "xlsx",
+                 "overridden": True},
+            ],
+        },
+    })
+    with pytest.raises(ValueError) as exc:
+        merge(steps_dir, PIPELINE_STEPS)
+    assert "1500" in str(exc.value)
+
+
+def test_collect_overridden_ids_only_manual_records():
+    step_data = {"results": [
+        {"public_body_id": 1},
+        {"public_body_id": 2, "overridden": True},
+        {"public_body_id": 3, "overridden": False},
+    ]}
+    assert collect_overridden_ids(step_data) == {2}
 
 
 def test_merge_does_not_raise_when_all_disclosure_ids_valid(tmp_path):

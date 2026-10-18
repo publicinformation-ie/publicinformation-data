@@ -30,9 +30,13 @@ def write_inclusions(step_dir, ids):
 
 
 def _mock_load_inclusions(tmp_path):
-    """Helper to create a mock load_inclusions function for tests."""
+    """Helper to create a mock load_inclusions function for tests.
+
+    Accepts the real signature (foigovie path, overrides path, known ids) and
+    ignores the extra arguments.
+    """
     from lib.file_utils import read_json
-    def mock(path):
+    def mock(*args, **kwargs):
         return set(read_json(tmp_path / "inclusions.json"))
     return mock
 
@@ -201,3 +205,61 @@ def test_load_inclusions_fatal_exits_on_an_empty_inclusion_set(tmp_path):
     write_json(path, {"metadata": {}, "results": []})
     with pytest.raises(SystemExit):
         load_inclusions(path)
+
+
+# ---------------------------------------------------------------------------
+# Curated additions: bodies foi.gov.ie's directory does not list
+# ---------------------------------------------------------------------------
+
+def test_load_inclusions_adds_curated_bodies_the_directory_omits(tmp_path):
+    """foi.gov.ie's directory is the primary source but is incomplete. A body it
+    omits must still be FOI-subject when a human has curated it in."""
+    from lib.file_utils import write_json
+    fo = tmp_path / "foigovie.json"
+    write_json(fo, {"metadata": {}, "results": [
+        {"foigovie_slug": "a", "public_body_id": 1014},
+    ]})
+    overrides = tmp_path / "inclusion_overrides.json"
+    write_json(overrides, [
+        {"public_body_id": 1607, "name": "Office of the Protected Disclosures Commissioner",
+         "reason": "not listed on foi.gov.ie"},
+    ])
+    known = {1014, 1607}
+    assert load_inclusions(fo, overrides, known) == {1014, 1607}
+
+
+def test_load_inclusions_fatal_exits_on_an_unknown_override_id(tmp_path):
+    """A curated id that matches no body is a typo or a stale id; failing loudly
+    beats silently shipping a body that does not exist."""
+    from lib.file_utils import write_json
+    fo = tmp_path / "foigovie.json"
+    write_json(fo, {"metadata": {}, "results": [{"foigovie_slug": "a", "public_body_id": 1014}]})
+    overrides = tmp_path / "inclusion_overrides.json"
+    write_json(overrides, [{"public_body_id": 9999, "name": "Ghost", "reason": "x"}])
+    with pytest.raises(SystemExit):
+        load_inclusions(fo, overrides, {1014})
+
+
+def test_load_inclusions_requires_a_reason_on_every_override(tmp_path):
+    from lib.file_utils import write_json
+    fo = tmp_path / "foigovie.json"
+    write_json(fo, {"metadata": {}, "results": [{"foigovie_slug": "a", "public_body_id": 1014}]})
+    overrides = tmp_path / "inclusion_overrides.json"
+    write_json(overrides, [{"public_body_id": 1607, "name": "Body"}])
+    with pytest.raises(SystemExit):
+        load_inclusions(fo, overrides, {1014, 1607})
+
+
+def test_main_writes_the_resolved_inclusion_set(tmp_path, monkeypatch):
+    """inclusions.json is what the published catalog reads for foi_subject. It
+    must be the resolved set this run used, not a stale hand-maintained list."""
+    inp = tmp_path / "input.json"
+    out = tmp_path / "output.json"
+    step_dir = tmp_path / "steps" / STEP_NAME
+    step_dir.mkdir(parents=True)
+    write_input(inp, [make_body(1001), make_body(1002)])
+    monkeypatch.setattr(proc, "load_inclusions", lambda *a, **k: {1001})
+    monkeypatch.setattr(proc, "__file__", str(step_dir / "process.py"))
+    sys.argv = ["process.py", "--input", str(inp), "--output", str(out), "--force"]
+    main()
+    assert json.loads((step_dir / "inclusions.json").read_text()) == [1001]

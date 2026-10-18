@@ -1,7 +1,7 @@
 {
   "metadata": {
     "step": "validate_websites",
-    "completed_at": "2026-10-18T16:30:39.779962+00:00"
+    "completed_at": "2026-10-18T17:05:58.290544+00:00"
   },
   "results": [
     {
@@ -43,14 +43,6 @@
       "is_reachable": true,
       "http_status": 200,
       "checked_at": "2026-07-03T09:53:21.917715+00:00"
-    },
-    {
-      "public_body_id": 1019,
-      "name": "An Rialálaí Agraibhia (The Agri Food Regulator)",
-      "official_website_url": null,
-      "is_reachable": false,
-      "http_status": null,
-      "checked_at": "2026-07-03T09:53:21.918574+00:00"
     },
     {
       "public_body_id": 1023,
@@ -1661,14 +1653,6 @@
       "checked_at": "2026-07-03T09:54:30.418993+00:00"
     },
     {
-      "public_body_id": 1149,
-      "name": "Comhlacht Formhaoirsithe Seachtrach Óglaigh na hÉireann (the External Oversight Body)",
-      "official_website_url": null,
-      "is_reachable": false,
-      "http_status": null,
-      "checked_at": "2026-07-03T09:54:30.420980+00:00"
-    },
-    {
       "public_body_id": 1415,
       "name": "Incorporated Orthopaedic Hospital",
       "official_website_url": null,
@@ -2197,6 +2181,22 @@
       "checked_at": "2026-10-18T16:30:39.604774+00:00"
     },
     {
+      "public_body_id": 1847,
+      "name": "Veterinary Council of Ireland",
+      "official_website_url": "https://www.vci.ie/",
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-10-18T16:30:39.777682+00:00"
+    },
+    {
+      "public_body_id": 1019,
+      "name": "An Rialálaí Agraibhia (The Agri Food Regulator)",
+      "official_website_url": "https://www.agrifoodregulator.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-10-18T17:05:55.870790+00:00"
+    },
+    {
       "public_body_id": 1210,
       "name": "Department of Rural and Community Development and the Gaeltacht",
       "official_website_url": "https://www.gov.ie/en/department-of-rural-and-community-development-and-the-gaeltacht/",
@@ -2224,12 +2224,12 @@
       "overridden": true
     },
     {
-      "public_body_id": 1847,
-      "name": "Veterinary Council of Ireland",
-      "official_website_url": "https://www.vci.ie/",
+      "public_body_id": 1149,
+      "name": "Comhlacht Formhaoirsithe Seachtrach Óglaigh na hÉireann (the External Oversight Body)",
+      "official_website_url": null,
       "is_reachable": false,
       "http_status": null,
-      "checked_at": "2026-10-18T16:30:39.777682+00:00"
+      "checked_at": "2026-10-18T17:05:58.289404+00:00"
     }
   ]
 }

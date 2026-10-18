@@ -1,0 +1,22 @@
+[
+  {
+    "public_body_id": 1019,
+    "name": "An Rialálaí Agraibhia (The Agri Food Regulator)",
+    "reason": "Established body that foi.gov.ie's all-foi-bodies directory does not list (checked 2026-10-18). Restores it to the FOI-subject set alongside the directory-derived entries."
+  },
+  {
+    "public_body_id": 1149,
+    "name": "Comhlacht Formhaoirsithe Seachtrach Óglaigh na hÉireann (the External Oversight Body)",
+    "reason": "Listed in the register and in inclusion sets predating the switch to the foi.gov.ie-derived set, but absent from foi.gov.ie's directory (checked 2026-10-18). Kept subject to FOI until the directory or a human reviewer says otherwise."
+  },
+  {
+    "public_body_id": 1298,
+    "name": "Fiosrú - Oifig an Ombudsman Póilíneachta.",
+    "reason": "Present in inclusion sets before the switch to the foi.gov.ie-derived set, and the pipeline has crawled FOI pages and a disclosure log for it. Not on foi.gov.ie's directory (checked 2026-10-18), which is a source gap rather than a retirement."
+  },
+  {
+    "public_body_id": 1607,
+    "name": "Office of the Protected Disclosures Commissioner",
+    "reason": "Unambiguously subject to FOI and publishes its own disclosure log, but foi.gov.ie's directory omits it (checked 2026-10-18). The directory is the primary source, not an exhaustive one."
+  }
+]

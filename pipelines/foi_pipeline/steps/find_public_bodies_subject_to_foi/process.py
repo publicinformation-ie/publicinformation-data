@@ -10,18 +10,24 @@ from lib.file_utils import read_json, write_json, write_status
 STEP_NAME = "find_public_bodies_subject_to_foi"
 
 FOIGOVIE_OUTPUT_PATH = "pipelines/foigovie_pipeline/steps/apply_overrides/output.json"
+OVERRIDES_PATH = "inclusion_overrides.json"
+INCLUSIONS_PATH = "inclusions.json"
 
 
-def load_inclusions(foigovie_output_path) -> set:
-    """Return the set of public_body_ids foi.gov.ie lists as subject to FOI.
+def load_inclusions(foigovie_output_path, overrides_path=None, known_ids=None) -> set:
+    """Return the set of public_body_ids that are subject to FOI.
 
-    Replaces the hand-maintained inclusions.json: the inclusion set is now
-    derived from foi.gov.ie's official directory on every run, so it is
-    auditable and self-updating. Several foi.gov.ie entries can resolve to
-    one canonical body (e.g. HSE regions), hence a set rather than a list.
+    Primary source: foi.gov.ie's official directory, via the foigovie pipeline.
+    Several foi.gov.ie entries can resolve to one canonical body (e.g. HSE
+    regions), hence a set rather than a list.
 
-    Fatal-exits on a missing file or an empty set — either would silently
-    empty the FOI pipeline rather than failing loudly.
+    Curated additions (`inclusion_overrides.json`) are unioned in: the directory
+    is not exhaustive, and a body it omits is still subject to FOI. Every
+    addition must name a body that exists and state why it is being added.
+
+    Fatal-exits on a missing or empty source, on an addition whose id matches no
+    body, and on an addition with no reason -- any of those would silently
+    distort the FOI pipeline rather than fail it.
     """
     path = Path(foigovie_output_path)
     if not path.exists():
@@ -36,6 +42,26 @@ def load_inclusions(foigovie_output_path) -> set:
     if not ids:
         print(f"Fatal: {path} yielded 0 FOI-subject public bodies", file=sys.stderr)
         sys.exit(1)
+
+    if overrides_path and Path(overrides_path).exists():
+        for entry in read_json(overrides_path):
+            body_id = entry.get("public_body_id")
+            if body_id is None or not entry.get("reason"):
+                print(
+                    f"Fatal: every entry in {overrides_path} needs a "
+                    f"'public_body_id' and a 'reason'; got {entry!r}",
+                    file=sys.stderr,
+                )
+                sys.exit(1)
+            if known_ids is not None and body_id not in known_ids:
+                print(
+                    f"Fatal: {overrides_path} lists public_body_id={body_id} "
+                    f"({entry.get('name', 'unnamed')}), which is not in "
+                    f"find_public_bodies/output.json. Check the id.",
+                    file=sys.stderr,
+                )
+                sys.exit(1)
+            ids.add(body_id)
     return ids
 
 
@@ -48,7 +74,15 @@ def main():
     output_path = Path(args.output)
 
     repo_root = step_dir.parent.parent.parent.parent  # steps/<name>/ -> foi_pipeline/ -> pipelines/ -> repo
-    inclusions = load_inclusions(repo_root / FOIGOVIE_OUTPUT_PATH)
+    known_ids = {
+        b["public_body_id"]
+        for b in read_json(Path(args.input)).get("public_bodies", [])
+    } if Path(args.input).exists() else set()
+    inclusions = load_inclusions(
+        repo_root / FOIGOVIE_OUTPUT_PATH,
+        step_dir / OVERRIDES_PATH,
+        known_ids or None,
+    )
 
     if args.public_body is not None and not args.force and output_path.exists():
         saved = read_json(output_path)
@@ -82,8 +116,10 @@ def main():
         "results": bodies,
     }
     write_json(output_path, output)
+    write_json(step_dir / INCLUSIONS_PATH, sorted(inclusions))
     write_status(step_dir, len(bodies))
     print(f"Wrote {len(bodies)} FOI-subject public bodies to {output_path}")
+    print(f"Wrote the resolved inclusion set ({len(inclusions)} ids) to {step_dir / INCLUSIONS_PATH}")
 
 
 if __name__ == "__main__":

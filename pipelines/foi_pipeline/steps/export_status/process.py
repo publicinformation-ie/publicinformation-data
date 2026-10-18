@@ -131,6 +131,15 @@ STEP_MERGERS = {
 # legitimately reference bodies outside the subject-to-FOI subset and skip
 # them via `if bid in body_map`, so guarding them would false-positive.
 # If you add a new merger that COUNTS disclosure records per body, add it here.
+#
+# The guard has one documented exception: an id that names a real body in
+# find_public_bodies but is no longer FOI-subject (foi.gov.ie dropped it from
+# its directory) is stale, not corrupt. Raising on those would wedge every
+# future run, because nothing evicts their records -- find_public_bodies_
+# subject_to_foi does not participate in the dirty_ids cascade. They are
+# reported via merge()'s `retired` out-param instead. A hand-curated
+# (`overridden`) record naming an out-of-scope body still raises: that is the
+# wrong-id mistake this guard exists for.
 DISCLOSURE_STEPS = {
     "find_disclosure_files",
     "transform_disclosure_files",
@@ -160,6 +169,36 @@ def collect_disclosure_ids(step_data):
         r["public_body_id"]
         for r in step_data.get("results", [])
         if "public_body_id" in r
+    }
+
+
+def collect_overridden_ids(step_data):
+    """Return the public_body_ids of hand-curated (`overridden`) records in a
+    step's output."""
+    return {
+        r["public_body_id"]
+        for r in step_data.get("results", [])
+        if r.get("overridden") and "public_body_id" in r
+    }
+
+
+def known_body_ids(steps_dir):
+    """Every public_body_id in find_public_bodies -- i.e. the full body universe,
+    including bodies that are not currently subject to FOI.
+
+    Used to tell an unexplained orphan (an id matching no body at all: a typo
+    or a wrong id in an override) from a body that has legitimately retired
+    from foi.gov.ie's FOI directory. Returns an empty set when
+    find_public_bodies/output.json is absent, which keeps every orphan
+    unexplained -- the stricter, pre-existing behaviour.
+    """
+    path = Path(steps_dir) / "find_public_bodies" / "output.json"
+    if not path.exists():
+        return set()
+    return {
+        b["public_body_id"]
+        for b in read_json(path).get("public_bodies", [])
+        if "public_body_id" in b
     }
 
 
@@ -220,7 +259,8 @@ def publish_public_artifacts(repo_root, bodies, scoped=False):
     return publish_public_bodies(repo_root, bodies)
 
 
-def merge(steps_dir, pipeline_steps, target_public_body=None, coverage=None):
+def merge(steps_dir, pipeline_steps, target_public_body=None, coverage=None,
+          retired=None):
     base_data = read_json(steps_dir / "find_public_bodies_subject_to_foi" / "output.json")
     base_data = filter_by_public_body(base_data, target_public_body)
     bodies = copy.deepcopy(base_data["public_bodies"])
@@ -231,6 +271,7 @@ def merge(steps_dir, pipeline_steps, target_public_body=None, coverage=None):
         body["public_body_category"] = body.pop("category")
         body.pop("short_name", None)
 
+    universe = known_body_ids(steps_dir)
     orphans_by_step = {}
     for step_name in pipeline_steps:
         if step_name in ("find_public_bodies", STEP_NAME):
@@ -253,8 +294,20 @@ def merge(steps_dir, pipeline_steps, target_public_body=None, coverage=None):
             }
         if step_name in DISCLOSURE_STEPS:
             orphans = collect_disclosure_ids(step_data) - set(body_map)
-            if orphans:
-                orphans_by_step[step_name] = sorted(orphans)
+            if not orphans:
+                continue
+            # An orphan is unexplained unless the id belongs to a real body that
+            # has since retired from foi.gov.ie's FOI directory: those records
+            # are stale leftovers from when the body was in scope, the mergers
+            # already skip them, and raising would wedge the pipeline for ever.
+            # A hand-curated (overridden) record about an out-of-scope body is
+            # still the wrong-id mistake this guard exists to catch.
+            unexplained = (orphans - universe) | (collect_overridden_ids(step_data) & orphans)
+            if unexplained:
+                orphans_by_step[step_name] = sorted(unexplained)
+            stale = orphans - unexplained
+            if stale and retired is not None:
+                retired[step_name] = sorted(set(retired.get(step_name, [])) | stale)
 
     if orphans_by_step:
         all_ids = sorted({oid for ids in orphans_by_step.values() for oid in ids})
@@ -300,7 +353,17 @@ def main():
     pipeline_config = read_json(pipeline_dir / "pipeline.json")
 
     coverage = {}
-    bodies = merge(steps_dir, pipeline_config["steps"], target_public_body=args.public_body, coverage=coverage)
+    retired = {}
+    bodies = merge(steps_dir, pipeline_config["steps"], target_public_body=args.public_body,
+                   coverage=coverage, retired=retired)
+    if retired:
+        # Not an error: these bodies exist in find_public_bodies but are no
+        # longer FOI-subject, so disclosure records still naming them are stale
+        # and are skipped by the mergers. Surfaced for review, and cleared on
+        # the next full crawl once the disclosure steps re-run without them.
+        print("Retired bodies still referenced by disclosure steps (stale records skipped):")
+        for step_name in sorted(retired):
+            print(f"  {step_name}: {retired[step_name]}")
     output = {
         "metadata": {
             "step": STEP_NAME,

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "step": "find_public_bodies_subject_to_foi",
-    "completed_at": "2026-10-18T16:32:02.005171+00:00"
+    "completed_at": "2026-10-18T17:04:17.360336+00:00"
   },
   "public_bodies": [
     {
@@ -152,6 +152,41 @@
       "status": {
         "website_url": {
           "url": "https://www.garda.ie/en/",
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1019,
+      "name": "An Rialálaí Agraibhia (The Agri Food Regulator)",
+      "official_website_url": "https://www.agrifoodregulator.ie/",
+      "category": "public body",
+      "status": {
+        "website_url": {
+          "url": "https://www.agrifoodregulator.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -2742,6 +2777,41 @@
       "status": {
         "website_url": {
           "url": "https://www.fingal.ie/",
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1298,
+      "name": "Fiosrú - Oifig an Ombudsman Póilíneachta.",
+      "official_website_url": "https://www.fiosru.ie/",
+      "category": "public body",
+      "status": {
+        "website_url": {
+          "url": "https://www.fiosru.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -8860,6 +8930,41 @@
       }
     },
     {
+      "public_body_id": 1149,
+      "name": "Comhlacht Formhaoirsithe Seachtrach Óglaigh na hÉireann (the External Oversight Body)",
+      "official_website_url": null,
+      "category": "public body",
+      "status": {
+        "website_url": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
       "public_body_id": 1415,
       "name": "Incorporated Orthopaedic Hospital",
       "official_website_url": null,
@@ -9077,6 +9182,41 @@
       "status": {
         "website_url": {
           "url": null,
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1607,
+      "name": "Office of the Protected Disclosures Commissioner",
+      "official_website_url": "https://www.opdc.ie/",
+      "category": "public body",
+      "status": {
+        "website_url": {
+          "url": "https://www.opdc.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -9772,6 +9912,41 @@
       }
     },
     {
+      "public_body_id": 1019,
+      "name": "An Rialálaí Agraibhia (The Agri Food Regulator)",
+      "official_website_url": "https://www.agrifoodregulator.ie/",
+      "category": "public body",
+      "status": {
+        "website_url": {
+          "url": "https://www.agrifoodregulator.ie/",
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
       "public_body_id": 1023,
       "name": "Approved Housing Bodies Regulatory Authority (AHBRA)",
       "official_website_url": null,
@@ -12334,6 +12509,41 @@
       "status": {
         "website_url": {
           "url": "https://www.fingal.ie/",
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1298,
+      "name": "Fiosrú - Oifig an Ombudsman Póilíneachta.",
+      "official_website_url": "https://www.fiosru.ie/",
+      "category": "public body",
+      "status": {
+        "website_url": {
+          "url": "https://www.fiosru.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -18452,6 +18662,41 @@
       }
     },
     {
+      "public_body_id": 1149,
+      "name": "Comhlacht Formhaoirsithe Seachtrach Óglaigh na hÉireann (the External Oversight Body)",
+      "official_website_url": null,
+      "category": "public body",
+      "status": {
+        "website_url": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
       "public_body_id": 1415,
       "name": "Incorporated Orthopaedic Hospital",
       "official_website_url": null,
@@ -18669,6 +18914,41 @@
       "status": {
         "website_url": {
           "url": null,
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1607,
+      "name": "Office of the Protected Disclosures Commissioner",
+      "official_website_url": "https://www.opdc.ie/",
+      "category": "public body",
+      "status": {
+        "website_url": {
+          "url": "https://www.opdc.ie/",
           "status": "not_attempted"
         },
         "foi_page": {

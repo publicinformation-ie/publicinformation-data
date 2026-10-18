@@ -1,7 +1,7 @@
 {
   "metadata": {
     "step": "export_status",
-    "completed_at": "2026-07-24T06:59:35.540913+00:00"
+    "completed_at": "2026-10-18T17:07:11.326556+00:00"
   },
   "public_bodies": [
     {
@@ -129,13 +129,13 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 42,
-          "valid": 42,
+          "total": 46,
+          "valid": 46,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 421,
+          "valid": 653,
           "errors": 0,
           "status": "success"
         }
@@ -184,20 +184,20 @@
       "public_body_id": 1019,
       "status": {
         "website_url": {
-          "url": null,
-          "status": "failed"
+          "url": "https://www.agrifoodregulator.ie/",
+          "status": "success"
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -212,7 +212,7 @@
         }
       },
       "public_body_name": "An Rialálaí Agraibhia (The Agri Food Regulator)",
-      "public_body_url": null,
+      "public_body_url": "https://www.agrifoodregulator.ie/",
       "public_body_category": "public body"
     },
     {
@@ -224,15 +224,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -247,6 +247,76 @@
         }
       },
       "public_body_name": "Approved Housing Bodies Regulatory Authority (AHBRA)",
+      "public_body_url": null,
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1038,
+      "status": {
+        "website_url": {
+          "url": "https://www.atu.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.atu.ie/freedom-of-information",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@atu.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.atu.ie/freedom-of-information/freedom-of-information-disclosure-log/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 4,
+          "valid": 4,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 66,
+          "errors": 0,
+          "status": "success"
+        }
+      },
+      "public_body_name": "Atlantic Technological University",
+      "public_body_url": "https://www.atu.ie/",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1039,
+      "status": {
+        "website_url": {
+          "url": null,
+          "status": "failed"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Avista CLG (Daughters of Charity Disability Support Services CLG)",
       "public_body_url": null,
       "public_body_category": "public body"
     },
@@ -311,7 +381,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 124,
+          "valid": 203,
           "errors": 0,
           "status": "success"
         }
@@ -346,7 +416,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 88,
+          "valid": 92,
           "errors": 0,
           "status": "success"
         }
@@ -356,23 +426,23 @@
       "public_body_category": "public body"
     },
     {
-      "public_body_id": 1078,
+      "public_body_id": 1068,
       "status": {
         "website_url": {
-          "url": "https://employment.camphill.ie/",
-          "status": "success"
+          "url": null,
+          "status": "failed"
         },
         "foi_page": {
-          "url": "https://employment.camphill.ie/contact/freedom-of-information/",
-          "status": "success"
+          "url": null,
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
-          "url": "https://employment.camphill.ie/contact/freedom-of-information/",
-          "status": "success"
+          "url": null,
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -386,28 +456,28 @@
           "status": "failed"
         }
       },
-      "public_body_name": "Camphill Communities of Ireland",
-      "public_body_url": "https://employment.camphill.ie/",
+      "public_body_name": "Brothers of Charity Services Ireland",
+      "public_body_url": null,
       "public_body_category": "public body"
     },
     {
       "public_body_id": 1085,
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://carlow.ie/",
           "status": "failed"
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -422,8 +492,43 @@
         }
       },
       "public_body_name": "Carlow County Council",
-      "public_body_url": null,
+      "public_body_url": "https://carlow.ie/",
       "public_body_category": "local authority"
+    },
+    {
+      "public_body_id": 1093,
+      "status": {
+        "website_url": {
+          "url": "https://www.cmetb.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.cmetb.ie/freedom-of-information/",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@cmetb.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.cmetb.ie/freedom-of-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 3,
+          "valid": 2,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Cavan and Monaghan Education and Training Board",
+      "public_body_url": "https://www.cmetb.ie/",
+      "public_body_category": "public body"
     },
     {
       "public_body_id": 1094,
@@ -445,7 +550,7 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 35,
+          "total": 34,
           "valid": 10,
           "failed": 0,
           "status": "success"
@@ -487,7 +592,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 369,
+          "valid": 391,
           "errors": 0,
           "status": "success"
         }
@@ -505,15 +610,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -592,7 +697,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 324,
+          "valid": 452,
           "errors": 0,
           "status": "success"
         }
@@ -662,7 +767,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 36,
+          "valid": 37,
           "errors": 0,
           "status": "success"
         }
@@ -707,6 +812,111 @@
       "public_body_category": "public body"
     },
     {
+      "public_body_id": 1112,
+      "status": {
+        "website_url": {
+          "url": "https://www.tusla.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.tusla.ie/about/your-personal-information/",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "failed"
+        },
+        "disclosures_page": {
+          "url": "https://www.tusla.ie/about/your-personal-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Child and Family Agency (Tusla)",
+      "public_body_url": "https://www.tusla.ie/",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1114,
+      "status": {
+        "website_url": {
+          "url": null,
+          "status": "failed"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Children's Health Ireland at Crumlin",
+      "public_body_url": null,
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1116,
+      "status": {
+        "website_url": {
+          "url": null,
+          "status": "failed"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Children's Health Ireland at Temple Street",
+      "public_body_url": null,
+      "public_body_category": "public body"
+    },
+    {
       "public_body_id": 1129,
       "status": {
         "website_url": {
@@ -733,7 +943,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 794,
+          "valid": 795,
           "errors": 0,
           "status": "success"
         }
@@ -741,6 +951,41 @@
       "public_body_name": "Clare County Council",
       "public_body_url": "https://www.clarecoco.ie/",
       "public_body_category": "local authority"
+    },
+    {
+      "public_body_id": 1148,
+      "status": {
+        "website_url": {
+          "url": "https://www.cnam.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Coimisiún na Meán",
+      "public_body_url": "https://www.cnam.ie/",
+      "public_body_category": "public body"
     },
     {
       "public_body_id": 1151,
@@ -768,7 +1013,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 58,
+          "valid": 206,
           "errors": 0,
           "status": "success"
         }
@@ -848,41 +1093,6 @@
       "public_body_category": "public body"
     },
     {
-      "public_body_id": 1154,
-      "status": {
-        "website_url": {
-          "url": "https://www.childabusecommission.com/",
-          "status": "success"
-        },
-        "foi_page": {
-          "url": null,
-          "status": "failed"
-        },
-        "foi_email": {
-          "email": null,
-          "status": "failed"
-        },
-        "disclosures_page": {
-          "url": null,
-          "status": "failed"
-        },
-        "disclosure_files": {
-          "total": 0,
-          "valid": 0,
-          "failed": 0,
-          "status": "failed"
-        },
-        "foi_requests": {
-          "valid": 0,
-          "errors": 0,
-          "status": "failed"
-        }
-      },
-      "public_body_name": "Commission to Inquire into Child Abuse (CICA)",
-      "public_body_url": "https://www.childabusecommission.com/",
-      "public_body_category": "public body"
-    },
-    {
       "public_body_id": 1156,
       "status": {
         "website_url": {
@@ -916,41 +1126,6 @@
       },
       "public_body_name": "Competition and Consumer Protection Commission",
       "public_body_url": "https://www.ccpc.ie/",
-      "public_body_category": "public body"
-    },
-    {
-      "public_body_id": 1157,
-      "status": {
-        "website_url": {
-          "url": "https://www.cao.ie/",
-          "status": "success"
-        },
-        "foi_page": {
-          "url": null,
-          "status": "success"
-        },
-        "foi_email": {
-          "email": "foi@audit.gov.ie",
-          "status": "success"
-        },
-        "disclosures_page": {
-          "url": "https://www.audit.gov.ie/en/freedom-of-information/foi-disclosure-log/",
-          "status": "success"
-        },
-        "disclosure_files": {
-          "total": 1,
-          "valid": 2,
-          "failed": 0,
-          "status": "success"
-        },
-        "foi_requests": {
-          "valid": 292,
-          "errors": 0,
-          "status": "success"
-        }
-      },
-      "public_body_name": "Comptroller and Auditor General",
-      "public_body_url": "https://www.cao.ie/",
       "public_body_category": "public body"
     },
     {
@@ -989,6 +1164,41 @@
       "public_body_category": "public body"
     },
     {
+      "public_body_id": 1160,
+      "status": {
+        "website_url": {
+          "url": null,
+          "status": "failed"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Cope Foundation",
+      "public_body_url": null,
+      "public_body_category": "public body"
+    },
+    {
       "public_body_id": 1162,
       "status": {
         "website_url": {
@@ -1014,7 +1224,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1432,
+          "valid": 1531,
           "errors": 0,
           "status": "success"
         }
@@ -1050,7 +1260,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1720,
+          "valid": 1778,
           "errors": 0,
           "status": "success"
         }
@@ -1058,6 +1268,41 @@
       "public_body_name": "Cork County Council",
       "public_body_url": "https://www.corkcoco.ie/en",
       "public_body_category": "local authority"
+    },
+    {
+      "public_body_id": 1164,
+      "status": {
+        "website_url": {
+          "url": "https://www.corketb.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.corketb.ie/access-to-information/freedom-of-information/",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@corketb.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.corketb.ie/access-to-information/freedom-of-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 9,
+          "valid": 8,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 93,
+          "errors": 0,
+          "status": "success"
+        }
+      },
+      "public_body_name": "Cork Education and Training Board",
+      "public_body_url": "https://www.corketb.ie/",
+      "public_body_category": "public body"
     },
     {
       "public_body_id": 1169,
@@ -1121,7 +1366,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 751,
+          "valid": 766,
           "errors": 0,
           "status": "success"
         }
@@ -1174,15 +1419,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -1279,7 +1524,8 @@
         },
         "foi_page": {
           "url": "https://www.gov.ie/en/department-of-agriculture-food-and-the-marine/organisation-information/freedom-of-information-foi/",
-          "status": "success"
+          "status": "success",
+          "verified": true
         },
         "foi_email": {
           "email": "freedomofinformation@agriculture.gov.ie",
@@ -1297,7 +1543,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1568,
+          "valid": 1578,
           "errors": 0,
           "status": "success"
         }
@@ -1333,7 +1579,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1204,
+          "valid": 1208,
           "errors": 0,
           "status": "success"
         }
@@ -1365,14 +1611,14 @@
         },
         "disclosure_files": {
           "total": 7,
-          "valid": 0,
+          "valid": 7,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 0,
+          "valid": 1595,
           "errors": 0,
-          "status": "failed"
+          "status": "success"
         }
       },
       "public_body_name": "Department of Climate, Energy and the Environment",
@@ -1399,15 +1645,15 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 30,
-          "valid": 25,
+          "total": 0,
+          "valid": 0,
           "failed": 0,
-          "status": "success"
+          "status": "failed"
         },
         "foi_requests": {
-          "valid": 1329,
+          "valid": 0,
           "errors": 0,
-          "status": "success"
+          "status": "failed"
         }
       },
       "public_body_name": "Department of Culture, Communications and Sport",
@@ -1436,13 +1682,13 @@
           "verified": true
         },
         "disclosure_files": {
-          "total": 0,
-          "valid": 0,
+          "total": 24,
+          "valid": 23,
           "failed": 0,
-          "status": "failed"
+          "status": "success"
         },
         "foi_requests": {
-          "valid": 844,
+          "valid": 912,
           "errors": 0,
           "status": "success"
         }
@@ -1473,13 +1719,13 @@
           "verified": true
         },
         "disclosure_files": {
-          "total": 0,
-          "valid": 0,
+          "total": 35,
+          "valid": 35,
           "failed": 0,
-          "status": "failed"
+          "status": "success"
         },
         "foi_requests": {
-          "valid": 2018,
+          "valid": 2049,
           "errors": 0,
           "status": "success"
         }
@@ -1514,7 +1760,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 701,
+          "valid": 726,
           "errors": 0,
           "status": "success"
         }
@@ -1588,7 +1834,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1293,
+          "valid": 1332,
           "errors": 0,
           "status": "success"
         }
@@ -1654,13 +1900,13 @@
           "verified": true
         },
         "disclosure_files": {
-          "total": 0,
-          "valid": 0,
+          "total": 40,
+          "valid": 19,
           "failed": 0,
-          "status": "failed"
+          "status": "success"
         },
         "foi_requests": {
-          "valid": 1828,
+          "valid": 1894,
           "errors": 0,
           "status": "success"
         }
@@ -1696,7 +1942,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 4174,
+          "valid": 4597,
           "errors": 0,
           "status": "success"
         }
@@ -1727,14 +1973,14 @@
         },
         "disclosure_files": {
           "total": 21,
-          "valid": 0,
+          "valid": 10,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 0,
+          "valid": 2796,
           "errors": 0,
-          "status": "failed"
+          "status": "success"
         }
       },
       "public_body_name": "Department of Justice, Home Affairs and Migration",
@@ -1769,7 +2015,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 2313,
+          "valid": 2363,
           "errors": 0,
           "status": "success"
         }
@@ -1788,7 +2034,7 @@
         },
         "foi_page": {
           "url": "https://www.gov.ie/en/department-of-rural-and-community-development-and-the-gaeltacht/organisation-information/freedom-of-informationaccess-to-information-on-the-environment/",
-          "status": "failed",
+          "status": "success",
           "verified": true
         },
         "foi_email": {
@@ -1803,12 +2049,12 @@
         },
         "disclosure_files": {
           "total": 33,
-          "valid": 34,
+          "valid": 33,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 601,
+          "valid": 622,
           "errors": 0,
           "status": "success"
         }
@@ -1843,7 +2089,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 747,
+          "valid": 773,
           "errors": 0,
           "status": "success"
         }
@@ -1878,7 +2124,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 2077,
+          "valid": 2996,
           "errors": 0,
           "status": "success"
         }
@@ -1910,14 +2156,14 @@
         },
         "disclosure_files": {
           "total": 37,
-          "valid": 0,
+          "valid": 37,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 0,
+          "valid": 2754,
           "errors": 0,
-          "status": "failed"
+          "status": "success"
         }
       },
       "public_body_name": "Department of Transport",
@@ -1928,8 +2174,8 @@
       "public_body_id": 1220,
       "status": {
         "website_url": {
-          "url": null,
-          "status": "failed"
+          "url": "https://www.thedigitalhub.com/",
+          "status": "success"
         },
         "foi_page": {
           "url": "https://www.thedigitalhub.com",
@@ -1946,7 +2192,7 @@
           "verified": true
         },
         "disclosure_files": {
-          "total": 11,
+          "total": 9,
           "valid": 0,
           "failed": 0,
           "status": "success"
@@ -1958,7 +2204,7 @@
         }
       },
       "public_body_name": "Digital Hub Development Agency",
-      "public_body_url": null,
+      "public_body_url": "https://www.thedigitalhub.com/",
       "public_body_category": "public body"
     },
     {
@@ -1988,7 +2234,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1404,
+          "valid": 1410,
           "errors": 0,
           "status": "success"
         }
@@ -1996,6 +2242,76 @@
       "public_body_name": "Donegal County Council",
       "public_body_url": "https://www.donegalcoco.ie/",
       "public_body_category": "local authority"
+    },
+    {
+      "public_body_id": 1229,
+      "status": {
+        "website_url": {
+          "url": "https://www.donegaletb.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.donegaletb.ie/donegal-etb/freedom-of-information/",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@donegaletb.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.donegaletb.ie/donegal-etb/publications-resources/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 1,
+          "valid": 0,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Donegal Education and Training Board",
+      "public_body_url": "https://www.donegaletb.ie/",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1234,
+      "status": {
+        "website_url": {
+          "url": "https://www.ddletb.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@ddletb.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.ddletb.ie/corporate/corporate-about-us/access-to-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Dublin and Dun Laoghaire Education and Training Board",
+      "public_body_url": "https://www.ddletb.ie/",
+      "public_body_category": "public body"
     },
     {
       "public_body_id": 1235,
@@ -2018,15 +2334,15 @@
           "verified": true
         },
         "disclosure_files": {
-          "total": 3,
-          "valid": 3,
+          "total": 4,
+          "valid": 4,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 0,
+          "valid": 1348,
           "errors": 0,
-          "status": "failed"
+          "status": "success"
         }
       },
       "public_body_name": "Dublin City Council",
@@ -2069,6 +2385,41 @@
       "public_body_category": "public body"
     },
     {
+      "public_body_id": 1239,
+      "status": {
+        "website_url": {
+          "url": "https://www.dentalhospital.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.dentalhospital.ie/about/freedom-of-information",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "failed"
+        },
+        "disclosures_page": {
+          "url": "https://www.dentalhospital.ie/about/freedom-of-information",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Dublin Dental Hospital",
+      "public_body_url": "https://www.dentalhospital.ie/",
+      "public_body_category": "public body"
+    },
+    {
       "public_body_id": 1240,
       "status": {
         "website_url": {
@@ -2077,15 +2428,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "success"
         },
         "foi_email": {
           "email": null,
           "status": "failed"
         },
         "disclosures_page": {
-          "url": null,
-          "status": "failed"
+          "url": "https://www.dias.ie/2010/07/19/foi-statementpolicy/",
+          "status": "success"
         },
         "disclosure_files": {
           "total": 0,
@@ -2130,7 +2481,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 662,
+          "valid": 679,
           "errors": 0,
           "status": "success"
         }
@@ -2165,7 +2516,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 199,
+          "valid": 204,
           "errors": 0,
           "status": "success"
         }
@@ -2194,7 +2545,7 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 13,
+          "total": 1,
           "valid": 0,
           "failed": 0,
           "status": "success"
@@ -2300,13 +2651,13 @@
           "verified": true
         },
         "disclosure_files": {
-          "total": 10,
-          "valid": 6,
+          "total": 11,
+          "valid": 7,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 215,
+          "valid": 241,
           "errors": 0,
           "status": "success"
         }
@@ -2405,13 +2756,13 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 9,
-          "valid": 9,
+          "total": 10,
+          "valid": 10,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 319,
+          "valid": 375,
           "errors": 0,
           "status": "success"
         }
@@ -2440,13 +2791,13 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 36,
+          "total": 37,
           "valid": 18,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 79,
+          "valid": 86,
           "errors": 0,
           "status": "success"
         }
@@ -2482,7 +2833,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 645,
+          "valid": 1116,
           "errors": 0,
           "status": "success"
         }
@@ -2528,6 +2879,41 @@
       "public_body_category": "public body"
     },
     {
+      "public_body_id": 1336,
+      "status": {
+        "website_url": {
+          "url": "https://www.screenireland.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.screenireland.ie/about/freedom-of-information",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@screenireland.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.screenireland.ie/about/freedom-of-information",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 1,
+          "valid": 1,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 8,
+          "errors": 0,
+          "status": "success"
+        }
+      },
+      "public_body_name": "Fís Éireann/Screen Ireland",
+      "public_body_url": "https://www.screenireland.ie/",
+      "public_body_category": "public body"
+    },
+    {
       "public_body_id": 1307,
       "status": {
         "website_url": {
@@ -2566,20 +2952,20 @@
       "public_body_id": 1309,
       "status": {
         "website_url": {
-          "url": null,
-          "status": "failed"
+          "url": "https://forensicscience.ie/",
+          "status": "success"
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -2594,7 +2980,42 @@
         }
       },
       "public_body_name": "Forensic Science Ireland",
-      "public_body_url": null,
+      "public_body_url": "https://forensicscience.ie/",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1339,
+      "status": {
+        "website_url": {
+          "url": "https://gretb.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://gretb.ie/corporate/freedom-of-information/",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "failed"
+        },
+        "disclosures_page": {
+          "url": "https://gretb.ie/document/gretb-foi-disclosure-log-2025/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 13,
+          "valid": 1,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 5,
+          "errors": 0,
+          "status": "success"
+        }
+      },
+      "public_body_name": "Galway and Roscommon Education and Training Board",
+      "public_body_url": "https://gretb.ie/",
       "public_body_category": "public body"
     },
     {
@@ -2605,7 +3026,7 @@
           "status": "success"
         },
         "foi_page": {
-          "url": null,
+          "url": "https://eur04.safelinks.protection.outlook.com/?url=https%3A%2F%2Fscanner.topsec.com%2F%3Fd%3D1122%26r%3Dshow%26u%3Dhttps%253A%252F%252Fcloud.3dissue.net%252F38175%252F38324%252F38703%252F145834%252Findex.html%253F99427%26t%3D9846cdf633703357f26b069d98e4da3753e1714f&data=05%7C02%7Cvalerie.totman%40galwaycity.ie%7C51240e225b6a4f0cc0a008de9bbfe920%7Cd7a0f67a0cae4b21abdbb5186f6e07a9%7C0%7C0%7C639119445892862297%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=sHrwgES5jAn9IFg15bhS5j4xs0W6EdqQ7ASCeFHoih8%3D&reserved=0",
           "status": "success"
         },
         "foi_email": {
@@ -2623,7 +3044,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 646,
+          "valid": 647,
           "errors": 0,
           "status": "success"
         }
@@ -2636,20 +3057,20 @@
       "public_body_id": 1342,
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.galway.ie/",
           "status": "failed"
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -2658,13 +3079,13 @@
           "status": "failed"
         },
         "foi_requests": {
-          "valid": 1367,
+          "valid": 1390,
           "errors": 0,
           "status": "success"
         }
       },
       "public_body_name": "Galway County Council",
-      "public_body_url": null,
+      "public_body_url": "https://www.galway.ie/",
       "public_body_category": "local authority"
     },
     {
@@ -2741,16 +3162,17 @@
       "public_body_id": 1388,
       "status": {
         "website_url": {
-          "url": null,
-          "status": "failed"
+          "url": "https://www.hsa.ie/",
+          "status": "failed",
+          "verified": true
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": "https://www.hsa.ie/freedom_of_information/freedom_of_information_publication_scheme/foi_disclosure_log_and_other_information_to_be_published_routinely/",
@@ -2764,13 +3186,48 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 184,
+          "valid": 219,
           "errors": 0,
           "status": "success"
         }
       },
       "public_body_name": "Health and Safety Authority",
-      "public_body_url": null,
+      "public_body_url": "https://www.hsa.ie/",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1389,
+      "status": {
+        "website_url": {
+          "url": "https://www.coru.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.coru.ie/public-protection/freedom-of-information/",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@coru.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.coru.ie/public-protection/freedom-of-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 3,
+          "valid": 3,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 62,
+          "errors": 0,
+          "status": "success"
+        }
+      },
+      "public_body_name": "Health and Social Care Professionals Council (CORU)",
+      "public_body_url": "https://www.coru.ie/",
       "public_body_category": "public body"
     },
     {
@@ -2799,7 +3256,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 742,
+          "valid": 767,
           "errors": 0,
           "status": "success"
         }
@@ -2869,7 +3326,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 123,
+          "valid": 128,
           "errors": 0,
           "status": "success"
         }
@@ -3009,7 +3466,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 207,
+          "valid": 212,
           "errors": 0,
           "status": "success"
         }
@@ -3079,7 +3536,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 20,
+          "valid": 27,
           "errors": 0,
           "status": "success"
         }
@@ -3101,11 +3558,11 @@
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -3127,20 +3584,20 @@
       "public_body_id": 1412,
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.idaireland.com",
           "status": "failed"
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -3155,42 +3612,7 @@
         }
       },
       "public_body_name": "IDA Ireland",
-      "public_body_url": null,
-      "public_body_category": "public body"
-    },
-    {
-      "public_body_id": 1417,
-      "status": {
-        "website_url": {
-          "url": "https://fishinginireland.info/",
-          "status": "success"
-        },
-        "foi_page": {
-          "url": null,
-          "status": "success"
-        },
-        "foi_email": {
-          "email": "foi@fisheriesireland.ie",
-          "status": "success"
-        },
-        "disclosures_page": {
-          "url": "https://www.fisheriesireland.ie/who-we-are/how-we-can-help/freedom-of-information",
-          "status": "success"
-        },
-        "disclosure_files": {
-          "total": 2,
-          "valid": 0,
-          "failed": 0,
-          "status": "success"
-        },
-        "foi_requests": {
-          "valid": 0,
-          "errors": 0,
-          "status": "failed"
-        }
-      },
-      "public_body_name": "Inland Fisheries Ireland",
-      "public_body_url": "https://fishinginireland.info/",
+      "public_body_url": "https://www.idaireland.com",
       "public_body_category": "public body"
     },
     {
@@ -3226,6 +3648,41 @@
       },
       "public_body_name": "Insolvency Service Ireland",
       "public_body_url": "https://www.gov.ie/en/insolvency-service-of-ireland/",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1421,
+      "status": {
+        "website_url": {
+          "url": "https://iadt.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "info@iadt.iecopied",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://iadt.ie/about/your-rights-entitlements/freedom-of-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 7,
+          "valid": 0,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Institute of Art, Design and Technology (IADT) Dun Laoghaire",
+      "public_body_url": "https://iadt.ie/",
       "public_body_category": "public body"
     },
     {
@@ -3272,15 +3729,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -3307,15 +3764,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -3412,15 +3869,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -3499,7 +3956,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 25,
+          "valid": 30,
           "errors": 0,
           "status": "success"
         }
@@ -3614,6 +4071,41 @@
       "public_body_category": "public body"
     },
     {
+      "public_body_id": 1443,
+      "status": {
+        "website_url": {
+          "url": "https://www.irishrail.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@irishrail.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.irishrail.ie/en-ie/about-us/company-information/freedom-of-information/request-records",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 89,
+          "valid": 77,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 687,
+          "errors": 0,
+          "status": "success"
+        }
+      },
+      "public_body_name": "Irish Rail (Iarnród Éireann)",
+      "public_body_url": "https://www.irishrail.ie/",
+      "public_body_category": "public body"
+    },
+    {
       "public_body_id": 1445,
       "status": {
         "website_url": {
@@ -3622,15 +4114,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -3646,6 +4138,41 @@
       },
       "public_body_name": "Irish Wheelchair Association",
       "public_body_url": "https://www.iwa.ie/",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1447,
+      "status": {
+        "website_url": {
+          "url": "https://www.kare.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.kare.ie/foi",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@kare.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.kare.ie/foi-disclosures-log",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 1,
+          "valid": 0,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Kare, Promoting Inclusion for People with Intellectual Disability",
+      "public_body_url": "https://www.kare.ie/",
       "public_body_category": "public body"
     },
     {
@@ -3669,13 +4196,13 @@
           "verified": true
         },
         "disclosure_files": {
-          "total": 4,
-          "valid": 2,
+          "total": 5,
+          "valid": 3,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 269,
+          "valid": 438,
           "errors": 0,
           "status": "success"
         }
@@ -3683,6 +4210,76 @@
       "public_body_name": "Kerry County Council",
       "public_body_url": "https://www.kerrycoco.ie/",
       "public_body_category": "local authority"
+    },
+    {
+      "public_body_id": 1450,
+      "status": {
+        "website_url": {
+          "url": "https://www.kerryetb.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.kerryetb.ie/organisational-support-development/corporate-and-procurement/freedom-of-information/",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@kerryetb.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.kerryetb.ie/organisational-support-development/corporate-and-procurement/freedom-of-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Kerry Education and Training Board",
+      "public_body_url": "https://www.kerryetb.ie/",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1455,
+      "status": {
+        "website_url": {
+          "url": "https://kwetb.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@kwetb.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://kwetb.ie/about-us-2/access-to-information/freedom-of-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 6,
+          "valid": 6,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 64,
+          "errors": 0,
+          "status": "success"
+        }
+      },
+      "public_body_name": "Kildare and Wicklow Education and Training Board",
+      "public_body_url": "https://kwetb.ie/",
+      "public_body_category": "public body"
     },
     {
       "public_body_id": 1456,
@@ -3710,7 +4307,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1010,
+          "valid": 1017,
           "errors": 0,
           "status": "success"
         }
@@ -3718,6 +4315,41 @@
       "public_body_name": "Kildare County Council",
       "public_body_url": "https://www.kildarecoco.ie/",
       "public_body_category": "local authority"
+    },
+    {
+      "public_body_id": 1460,
+      "status": {
+        "website_url": {
+          "url": "https://kcetb.ie/en/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://kcetb.ie/en/corporate/freedom-of-information/",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@kcetb.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://kcetb.ie/en/corporate/freedom-of-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 4,
+          "valid": 4,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 24,
+          "errors": 0,
+          "status": "success"
+        }
+      },
+      "public_body_name": "Kilkenny and Carlow Education and Training Board",
+      "public_body_url": "https://kcetb.ie/en/",
+      "public_body_category": "public body"
     },
     {
       "public_body_id": 1461,
@@ -3755,19 +4387,54 @@
       "public_body_category": "local authority"
     },
     {
-      "public_body_id": 1470,
+      "public_body_id": 1469,
       "status": {
         "website_url": {
-          "url": null,
-          "status": "failed"
+          "url": "https://loetb.ie/",
+          "status": "success"
         },
         "foi_page": {
-          "url": null,
-          "status": "failed"
+          "url": "https://loetb.ie/organisation-support-development/corporate-services/freedom-of-information/",
+          "status": "success"
         },
         "foi_email": {
           "email": null,
           "status": "failed"
+        },
+        "disclosures_page": {
+          "url": "https://loetb.ie/organisation-support-development/corporate-services/freedom-of-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Laois and Offaly Education and Training Board",
+      "public_body_url": "https://loetb.ie/",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1470,
+      "status": {
+        "website_url": {
+          "url": "https://laois.ie/",
+          "status": "failed"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": "https://laois.ie/governance-and-administration/statutory-access-to-information/freedom-of-information-disclosure-log-publication",
@@ -3787,7 +4454,7 @@
         }
       },
       "public_body_name": "Laois County Council",
-      "public_body_url": null,
+      "public_body_url": "https://laois.ie/",
       "public_body_category": "local authority"
     },
     {
@@ -3921,7 +4588,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 503,
+          "valid": 567,
           "errors": 0,
           "status": "success"
         }
@@ -3929,6 +4596,41 @@
       "public_body_name": "Leitrim County Council",
       "public_body_url": "https://www.leitrim.ie/",
       "public_body_category": "local authority"
+    },
+    {
+      "public_body_id": 1484,
+      "status": {
+        "website_url": {
+          "url": "https://lcetb.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@lcetb.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://lcetb.ie/freedom-of-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 2,
+          "valid": 1,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 79,
+          "errors": 0,
+          "status": "success"
+        }
+      },
+      "public_body_name": "Limerick and Clare Education and Training Board",
+      "public_body_url": "https://lcetb.ie/",
+      "public_body_category": "public body"
     },
     {
       "public_body_id": 1486,
@@ -3951,13 +4653,13 @@
           "verified": true
         },
         "disclosure_files": {
-          "total": 11,
-          "valid": 11,
+          "total": 12,
+          "valid": 12,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1704,
+          "valid": 1560,
           "errors": 0,
           "status": "success"
         }
@@ -4002,6 +4704,41 @@
       "public_body_category": "public body"
     },
     {
+      "public_body_id": 1496,
+      "status": {
+        "website_url": {
+          "url": "https://www.lwetb.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.lwetb.ie/freedom-of-information/",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "failed"
+        },
+        "disclosures_page": {
+          "url": "https://www.lwetb.ie/freedom-of-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 4,
+          "valid": 2,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 133,
+          "errors": 0,
+          "status": "success"
+        }
+      },
+      "public_body_name": "Longford and Westmeath Education and Training Board",
+      "public_body_url": "https://www.lwetb.ie/",
+      "public_body_category": "public body"
+    },
+    {
       "public_body_id": 1497,
       "status": {
         "website_url": {
@@ -4037,6 +4774,41 @@
       "public_body_category": "local authority"
     },
     {
+      "public_body_id": 1500,
+      "status": {
+        "website_url": {
+          "url": "https://www.lmetb.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.lmetb.ie/corporate/corporate-education-services/freedom-of-information-foi/",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "failed"
+        },
+        "disclosures_page": {
+          "url": "https://www.lmetb.ie/category/foi-disclosure/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 3,
+          "valid": 2,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 15,
+          "errors": 0,
+          "status": "success"
+        }
+      },
+      "public_body_name": "Louth and Meath Education and Training Board",
+      "public_body_url": "https://www.lmetb.ie/",
+      "public_body_category": "public body"
+    },
+    {
       "public_body_id": 1501,
       "status": {
         "website_url": {
@@ -4057,13 +4829,13 @@
           "verified": true
         },
         "disclosure_files": {
-          "total": 9,
-          "valid": 18,
+          "total": 11,
+          "valid": 11,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 841,
+          "valid": 1088,
           "errors": 0,
           "status": "success"
         }
@@ -4098,7 +4870,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 94,
+          "valid": 98,
           "errors": 0,
           "status": "success"
         }
@@ -4116,15 +4888,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -4163,13 +4935,13 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 32,
-          "valid": 32,
+          "total": 33,
+          "valid": 33,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1074,
+          "valid": 1138,
           "errors": 0,
           "status": "success"
         }
@@ -4177,6 +4949,41 @@
       "public_body_name": "Mayo County Council",
       "public_body_url": "https://www.mayo.ie/en-ie/home",
       "public_body_category": "local authority"
+    },
+    {
+      "public_body_id": 1509,
+      "status": {
+        "website_url": {
+          "url": null,
+          "status": "failed"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Mayo, Sligo and Leitrim Education and Training Board",
+      "public_body_url": null,
+      "public_body_category": "public body"
     },
     {
       "public_body_id": 1511,
@@ -4223,15 +5030,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -4293,15 +5100,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -4328,15 +5135,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -4358,20 +5165,20 @@
       "public_body_id": 1525,
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://monaghan.ie/",
           "status": "failed"
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -4386,7 +5193,7 @@
         }
       },
       "public_body_name": "Monaghan County Council",
-      "public_body_url": null,
+      "public_body_url": "https://monaghan.ie/",
       "public_body_category": "local authority"
     },
     {
@@ -4415,7 +5222,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 52,
+          "valid": 53,
           "errors": 0,
           "status": "success"
         }
@@ -4479,10 +5286,10 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 0,
+          "total": 7,
           "valid": 0,
           "failed": 0,
-          "status": "failed"
+          "status": "success"
         },
         "foi_requests": {
           "valid": 0,
@@ -4555,7 +5362,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 65,
+          "valid": 79,
           "errors": 0,
           "status": "success"
         }
@@ -4747,7 +5554,7 @@
           "status": "success"
         },
         "foi_page": {
-          "url": null,
+          "url": "https://www.museum.ie/en-IE/Press-and-Media-Information/FOI",
           "status": "success"
         },
         "foi_email": {
@@ -4835,7 +5642,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 96,
+          "valid": 104,
           "errors": 0,
           "status": "success"
         }
@@ -4870,7 +5677,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 959,
+          "valid": 973,
           "errors": 0,
           "status": "success"
         }
@@ -4899,13 +5706,13 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 41,
-          "valid": 82,
+          "total": 42,
+          "valid": 42,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 525,
+          "valid": 542,
           "errors": 0,
           "status": "success"
         }
@@ -5090,10 +5897,45 @@
       "public_body_category": "public body"
     },
     {
+      "public_body_id": 1587,
+      "status": {
+        "website_url": {
+          "url": "https://www.nmbi.ie/Home",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.nmbi.ie/What-We-Do/Freedom-of-Information",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "failed"
+        },
+        "disclosures_page": {
+          "url": "https://www.nmbi.ie/What-We-Do/Freedom-of-Information/FOI-Disclosure-Log",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 5,
+          "valid": 5,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 28,
+          "errors": 0,
+          "status": "success"
+        }
+      },
+      "public_body_name": "Nursing and Midwifery Board of Ireland (NMBI)",
+      "public_body_url": "https://www.nmbi.ie/Home",
+      "public_body_category": "public body"
+    },
+    {
       "public_body_id": 1590,
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.offaly.ie/",
           "status": "failed"
         },
         "foi_page": {
@@ -5117,13 +5959,13 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 774,
+          "valid": 785,
           "errors": 0,
           "status": "success"
         }
       },
       "public_body_name": "Offaly County Council",
-      "public_body_url": null,
+      "public_body_url": "https://www.offaly.ie/",
       "public_body_category": "local authority"
     },
     {
@@ -5135,15 +5977,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -5152,7 +5994,7 @@
           "status": "failed"
         },
         "foi_requests": {
-          "valid": 1446,
+          "valid": 1503,
           "errors": 0,
           "status": "success"
         }
@@ -5165,20 +6007,20 @@
       "public_body_id": 1595,
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.gov.ie/en/office-of-the-attorney-general/",
           "status": "failed"
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -5193,7 +6035,7 @@
         }
       },
       "public_body_name": "Office of the Attorney General",
-      "public_body_url": null,
+      "public_body_url": "https://www.gov.ie/en/office-of-the-attorney-general/",
       "public_body_category": "public body"
     },
     {
@@ -5443,6 +6285,41 @@
       "public_body_category": "public body"
     },
     {
+      "public_body_id": 1610,
+      "status": {
+        "website_url": {
+          "url": "https://www.coimisineir.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.coimisineir.ie/Foilseachain?lang=GA",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "eolas@coimisineir.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.coimisineir.ie/Foilseachain?lang=GA",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 11,
+          "valid": 0,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Oifig Choimisinéir na dTeangacha Oifigúla",
+      "public_body_url": "https://www.coimisineir.ie/",
+      "public_body_category": "public body"
+    },
+    {
       "public_body_id": 1611,
       "status": {
         "website_url": {
@@ -5462,10 +6339,10 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 0,
-          "valid": 0,
+          "total": 1,
+          "valid": 1,
           "failed": 0,
-          "status": "failed"
+          "status": "success"
         },
         "foi_requests": {
           "valid": 0,
@@ -5510,6 +6387,76 @@
       },
       "public_body_name": "Our Lady's Hospice",
       "public_body_url": "https://olh.ie/",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1624,
+      "status": {
+        "website_url": {
+          "url": null,
+          "status": "failed"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Peamount Hospital",
+      "public_body_url": null,
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1629,
+      "status": {
+        "website_url": {
+          "url": "https://www.psi.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.psi.ie/about-psi/governance/freedom-information",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@psi.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.psi.ie/about-psi/governance/freedom-information",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 1,
+          "valid": 1,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 72,
+          "errors": 0,
+          "status": "success"
+        }
+      },
+      "public_body_name": "Pharmaceutical Society of Ireland",
+      "public_body_url": "https://www.psi.ie/",
       "public_body_category": "public body"
     },
     {
@@ -5723,39 +6670,38 @@
       "public_body_category": "public body"
     },
     {
-      "public_body_id": 1679,
+      "public_body_id": 1655,
       "status": {
         "website_url": {
-          "url": "https://equigeek.ie/",
+          "url": "https://www.rte.ie/",
           "status": "success"
         },
         "foi_page": {
-          "url": null,
+          "url": "https://about.rte.ie/freedom-of-information-foi/what-is-freedom-of-information/",
           "status": "success"
         },
         "foi_email": {
-          "email": "foi.officer@grireland.ie",
-          "status": "success"
+          "email": null,
+          "status": "failed"
         },
         "disclosures_page": {
-          "url": "https://www.grireland.ie/About-GRI/freedom-of-information-publication-scheme/",
-          "status": "success",
-          "verified": true
+          "url": "https://about.rte.ie/foi-disclosure-log-and-other-information-published-2/",
+          "status": "success"
         },
         "disclosure_files": {
-          "total": 10,
-          "valid": 5,
+          "total": 49,
+          "valid": 38,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 83,
+          "valid": 1362,
           "errors": 0,
           "status": "success"
         }
       },
-      "public_body_name": "Rásaíocht Con Éireann",
-      "public_body_url": "https://equigeek.ie/",
+      "public_body_name": "Raidió Teilifís Éireann - RTÉ",
+      "public_body_url": "https://www.rte.ie/",
       "public_body_category": "public body"
     },
     {
@@ -5784,7 +6730,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 86,
+          "valid": 92,
           "errors": 0,
           "status": "success"
         }
@@ -5867,20 +6813,21 @@
       "public_body_id": 1667,
       "status": {
         "website_url": {
-          "url": null,
-          "status": "failed"
+          "url": "https://www.rsa.ie/",
+          "status": "failed",
+          "verified": true
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -5895,7 +6842,7 @@
         }
       },
       "public_body_name": "Road Safety Authority",
-      "public_body_url": null,
+      "public_body_url": "https://www.rsa.ie/",
       "public_body_category": "public body"
     },
     {
@@ -5916,7 +6863,7 @@
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -6146,6 +7093,41 @@
       "public_body_category": "local authority"
     },
     {
+      "public_body_id": 1726,
+      "status": {
+        "website_url": {
+          "url": "https://www.solas.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.solas.ie/freedom-of-information/",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@solas.iepublication",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.solas.ie/freedom-of-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "SOLAS An tSeirbhís Oideachais Leanúnaigh agus Scileanna",
+      "public_body_url": "https://www.solas.ie/",
+      "public_body_category": "public body"
+    },
+    {
       "public_body_id": 1732,
       "status": {
         "website_url": {
@@ -6172,7 +7154,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1024,
+          "valid": 1973,
           "errors": 0,
           "status": "success"
         }
@@ -6190,15 +7172,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -6330,15 +7312,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -6353,6 +7335,41 @@
         }
       },
       "public_body_name": "St. Johns Hospital, Limerick",
+      "public_body_url": null,
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1750,
+      "status": {
+        "website_url": {
+          "url": null,
+          "status": "failed"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "St. Luke's Hospital, Rathgar",
       "public_body_url": null,
       "public_body_category": "public body"
     },
@@ -6395,20 +7412,20 @@
       "public_body_id": 1753,
       "status": {
         "website_url": {
-          "url": null,
-          "status": "failed"
+          "url": "https://www.sipo.ie/",
+          "status": "success"
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -6423,7 +7440,7 @@
         }
       },
       "public_body_name": "Standards in Public Office Commission",
-      "public_body_url": null,
+      "public_body_url": "https://www.sipo.ie/",
       "public_body_category": "public body"
     },
     {
@@ -6575,15 +7592,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -6610,15 +7627,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -6680,15 +7697,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -6732,7 +7749,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 53,
+          "valid": 61,
           "errors": 0,
           "status": "success"
         }
@@ -6847,6 +7864,76 @@
       "public_body_category": "public body"
     },
     {
+      "public_body_id": 1777,
+      "status": {
+        "website_url": {
+          "url": "https://www.tg4.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "asf@tg4.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.tg4.ie/en/corporate/freedom-of-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 5,
+          "valid": 2,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Teilifís na Gaeilge - TG4",
+      "public_body_url": "https://www.tg4.ie/",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1779,
+      "status": {
+        "website_url": {
+          "url": "https://artscouncil.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://artscouncil.ie/contact-us/freedom-of-information/",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@artscouncil.ieaddress",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://artscouncil.ie/contact-us/freedom-of-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "The Arts Council (An Chomhairle Ealaíon)",
+      "public_body_url": "https://artscouncil.ie/",
+      "public_body_category": "public body"
+    },
+    {
       "public_body_id": 1782,
       "status": {
         "website_url": {
@@ -6883,6 +7970,41 @@
       "public_body_category": "public body"
     },
     {
+      "public_body_id": 1786,
+      "status": {
+        "website_url": {
+          "url": "https://www.housingagency.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.housingagency.ie/governance/foi-publication-scheme/",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "failed"
+        },
+        "disclosures_page": {
+          "url": "https://www.housingagency.ie/governance/freedom-of-information",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 10,
+          "valid": 10,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 204,
+          "errors": 0,
+          "status": "success"
+        }
+      },
+      "public_body_name": "The Housing Agency (Housing & Sustainable Communities Agency)",
+      "public_body_url": "https://www.housingagency.ie/",
+      "public_body_category": "public body"
+    },
+    {
       "public_body_id": 1789,
       "status": {
         "website_url": {
@@ -6891,15 +8013,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -6914,6 +8036,41 @@
         }
       },
       "public_body_name": "The Irish National Stud DAC",
+      "public_body_url": null,
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1797,
+      "status": {
+        "website_url": {
+          "url": null,
+          "status": "failed"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "The National Orthopaedic Hospital Cappagh DAC",
       "public_body_url": null,
       "public_body_category": "public body"
     },
@@ -6937,7 +8094,7 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 4,
+          "total": 3,
           "valid": 0,
           "failed": 0,
           "status": "success"
@@ -6950,6 +8107,41 @@
       },
       "public_body_name": "The Pensions Authority",
       "public_body_url": "https://pensionsauthority.ie/",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1806,
+      "status": {
+        "website_url": {
+          "url": "https://rotunda.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://rotunda.ie/freedom-of-information/",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "failed"
+        },
+        "disclosures_page": {
+          "url": "https://rotunda.ie/freedom-of-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 2,
+          "valid": 0,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "The Rotunda Hospital, Dublin",
+      "public_body_url": "https://rotunda.ie/",
       "public_body_category": "public body"
     },
     {
@@ -7015,7 +8207,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1027,
+          "valid": 1071,
           "errors": 0,
           "status": "success"
         }
@@ -7023,6 +8215,41 @@
       "public_body_name": "Tipperary County Council",
       "public_body_url": "https://www.tipperarycoco.ie/",
       "public_body_category": "local authority"
+    },
+    {
+      "public_body_id": 1818,
+      "status": {
+        "website_url": {
+          "url": null,
+          "status": "failed"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Tipperary Education and Training Board",
+      "public_body_url": null,
+      "public_body_category": "public body"
     },
     {
       "public_body_id": 1827,
@@ -7079,13 +8306,13 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 10,
-          "valid": 10,
+          "total": 11,
+          "valid": 11,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 656,
+          "valid": 726,
           "errors": 0,
           "status": "success"
         }
@@ -7270,23 +8497,58 @@
       "public_body_category": "public body"
     },
     {
+      "public_body_id": 1846,
+      "status": {
+        "website_url": {
+          "url": "https://www.valuationtribunal.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.valuationtribunal.ie/about-us/foi-psi-function/",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "info@valuationtribunal.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.valuationtribunal.ie/about-us/foi-psi-function/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 1,
+          "valid": 0,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Valuation Tribunal",
+      "public_body_url": "https://www.valuationtribunal.ie/",
+      "public_body_category": "public body"
+    },
+    {
       "public_body_id": 1847,
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.vci.ie/",
           "status": "failed"
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -7301,7 +8563,7 @@
         }
       },
       "public_body_name": "Veterinary Council of Ireland",
-      "public_body_url": null,
+      "public_body_url": "https://www.vci.ie/",
       "public_body_category": "public body"
     },
     {
@@ -7313,15 +8575,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -7337,6 +8599,41 @@
       },
       "public_body_name": "Water Safety Ireland",
       "public_body_url": null,
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1863,
+      "status": {
+        "website_url": {
+          "url": "https://www.wwetb.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foirequests@wwetb.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.wwetb.ie/about/organisation/compliance/access-to-personal-and-non-personal-information/freedom-of-information-act-foi/freedom-of-information-act/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Waterford and Wexford Education and Training Board",
+      "public_body_url": "https://www.wwetb.ie/",
       "public_body_category": "public body"
     },
     {
@@ -7366,7 +8663,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 6,
+          "valid": 120,
           "errors": 0,
           "status": "success"
         }
@@ -7401,7 +8698,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 5,
+          "valid": 6,
           "errors": 0,
           "status": "success"
         }
@@ -7430,13 +8727,13 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 24,
+          "total": 23,
           "valid": 8,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 16,
+          "valid": 44,
           "errors": 0,
           "status": "success"
         }
@@ -7510,7 +8807,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 437,
+          "valid": 441,
           "errors": 0,
           "status": "success"
         }
@@ -7547,7 +8844,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1006,
+          "valid": 1019,
           "errors": 0,
           "status": "success"
         }
@@ -7565,15 +8862,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -7627,6 +8924,76 @@
       "public_body_category": "public body"
     },
     {
+      "public_body_id": 1089,
+      "status": {
+        "website_url": {
+          "url": "http://carrigleaservices.com/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "http://carrigleaservices.com/?page_id=262",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "info@carrigleaservices.com",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "http://carrigleaservices.com/?page_id=262",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 8,
+          "valid": 1,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 9,
+          "errors": 0,
+          "status": "success"
+        }
+      },
+      "public_body_name": "Carriglea Cairde Services",
+      "public_body_url": "http://carrigleaservices.com/",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1109,
+      "status": {
+        "website_url": {
+          "url": "https://www.cheshirefai.org/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "whh.foi@nhs.net",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://northcheshireandmersey.nhs.uk/about-us/freedom-of-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 13,
+          "valid": 0,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Cheshire Foundation",
+      "public_body_url": "https://www.cheshirefai.org/",
+      "public_body_category": "public body"
+    },
+    {
       "public_body_id": 1149,
       "status": {
         "website_url": {
@@ -7635,15 +9002,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -7670,15 +9037,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -7705,15 +9072,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -7740,15 +9107,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -7810,15 +9177,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -7880,15 +9247,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -7950,15 +9317,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -7985,15 +9352,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -8009,6 +9376,76 @@
       },
       "public_body_name": "Parole Board",
       "public_body_url": "https://www.gov.ie/en/parole-board/",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1684,
+      "status": {
+        "website_url": {
+          "url": null,
+          "status": "failed"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Saint Patrick's Centre (Kilkenny) T/A Aurora Enriching Lives Enriching Communities",
+      "public_body_url": null,
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1751,
+      "status": {
+        "website_url": {
+          "url": null,
+          "status": "failed"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "St. Michaels Hospital, Dun Laoghaire",
+      "public_body_url": null,
       "public_body_category": "public body"
     },
     {
@@ -8055,15 +9492,15 @@
         },
         "foi_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "foi_email": {
           "email": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosures_page": {
           "url": null,
-          "status": "failed"
+          "status": "not_attempted"
         },
         "disclosure_files": {
           "total": 0,
@@ -8079,6 +9516,287 @@
       },
       "public_body_name": "The Royal Hospital Donnybrook",
       "public_body_url": null,
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1078,
+      "status": {
+        "website_url": {
+          "url": "https://camphill.ie",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://employment.camphill.ie/contact/freedom-of-information/",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "failed"
+        },
+        "disclosures_page": {
+          "url": "https://employment.camphill.ie/contact/freedom-of-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Camphill Communities of Ireland",
+      "public_body_url": "https://camphill.ie",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1121,
+      "status": {
+        "website_url": {
+          "url": "https://www.citizensinformationboard.ie",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.citizensinformationboard.ie/en/freedom_of_information/",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@ciboard.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.citizensinformationboard.ie/en/freedom_of_information/foi_disclosure_log_and_other_information_to_be_published_routinely",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Citizens Information Board",
+      "public_body_url": "https://www.citizensinformationboard.ie",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1122,
+      "status": {
+        "website_url": {
+          "url": "https://www.cityofdublinetb.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": "https://www.cityofdublinetb.ie/about-us/corporate-services/freedom-of-information/",
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@cdetb.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.cityofdublinetb.ie/about-us/corporate-services/freedom-of-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 7,
+          "valid": 7,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 130,
+          "errors": 0,
+          "status": "success"
+        }
+      },
+      "public_body_name": "City of Dublin Education and Training Board",
+      "public_body_url": "https://www.cityofdublinetb.ie/",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1154,
+      "status": {
+        "website_url": {
+          "url": "https://childabusecommission.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "failed"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Commission to Inquire into Child Abuse (CICA)",
+      "public_body_url": "https://childabusecommission.ie/",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1157,
+      "status": {
+        "website_url": {
+          "url": "https://audit.gov.ie",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@audit.gov.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.audit.gov.ie/en/freedom-of-information/foi-disclosure-log/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 1,
+          "valid": 2,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 410,
+          "errors": 0,
+          "status": "success"
+        }
+      },
+      "public_body_name": "Comptroller and Auditor General",
+      "public_body_url": "https://audit.gov.ie",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1417,
+      "status": {
+        "website_url": {
+          "url": "https://www.fisheriesireland.ie",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi@fisheriesireland.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.fisheriesireland.ie/who-we-are/how-we-can-help/freedom-of-information",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 2,
+          "valid": 0,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "Inland Fisheries Ireland",
+      "public_body_url": "https://www.fisheriesireland.ie",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1679,
+      "status": {
+        "website_url": {
+          "url": "https://www.grireland.ie",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "success"
+        },
+        "foi_email": {
+          "email": "foi.officer@grireland.ie",
+          "status": "success"
+        },
+        "disclosures_page": {
+          "url": "https://www.grireland.ie/About-GRI/freedom-of-information-publication-scheme/",
+          "status": "success",
+          "verified": true
+        },
+        "disclosure_files": {
+          "total": 10,
+          "valid": 5,
+          "failed": 0,
+          "status": "success"
+        },
+        "foi_requests": {
+          "valid": 83,
+          "errors": 0,
+          "status": "success"
+        }
+      },
+      "public_body_name": "Rásaíocht Con Éireann",
+      "public_body_url": "https://www.grireland.ie",
+      "public_body_category": "public body"
+    },
+    {
+      "public_body_id": 1746,
+      "status": {
+        "website_url": {
+          "url": "https://svhf.ie/",
+          "status": "success"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "success"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "failed"
+        },
+        "disclosures_page": {
+          "url": "https://svhf.ie/freedom-of-information/",
+          "status": "success"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "failed"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "failed"
+        }
+      },
+      "public_body_name": "St Vincents Hospital Fairview",
+      "public_body_url": "https://svhf.ie/",
       "public_body_category": "public body"
     }
   ]
