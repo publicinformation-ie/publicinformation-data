@@ -8,6 +8,7 @@ from steps.export_status.process import (
     collect_disclosure_ids,
     format_coverage_summary,
     merge,
+    publish_public_artifacts,
     merge_validate_websites,
     merge_find_foi_pages,
     merge_check_foi_pages,
@@ -1148,3 +1149,41 @@ def test_format_coverage_summary_sorts_steps():
     lines = out.splitlines()
     assert lines[1].strip().startswith("get_foi_emails")
     assert lines[2].strip().startswith("validate_websites")
+
+
+# ---------------------------------------------------------------------------
+# public-bodies catalog publishing
+# ---------------------------------------------------------------------------
+
+def test_publish_public_artifacts_regenerates_the_catalog(monkeypatch, tmp_path):
+    """export_status must regenerate public/latest + public/v2.0.0 public-bodies
+    from the same bodies it publishes, otherwise the published dataset drifts
+    out of step with pipeline-data.json."""
+    import steps.export_status.process as proc
+
+    calls = []
+    monkeypatch.setattr(
+        proc, "publish_public_bodies",
+        lambda repo_root, bodies: calls.append((repo_root, bodies)),
+    )
+    bodies = [{"public_body_id": 1001}]
+
+    publish_public_artifacts(tmp_path, bodies)
+
+    assert calls == [(tmp_path, bodies)]
+
+
+def test_publish_public_artifacts_skipped_for_scoped_runs(monkeypatch, tmp_path):
+    """A --public-body run merges one body but the catalog is built from the full
+    body list, so publishing it would strip crawl status from every other body."""
+    import steps.export_status.process as proc
+
+    calls = []
+    monkeypatch.setattr(
+        proc, "publish_public_bodies",
+        lambda repo_root, bodies: calls.append((repo_root, bodies)),
+    )
+
+    publish_public_artifacts(tmp_path, [{"public_body_id": 1001}], scoped=True)
+
+    assert calls == []

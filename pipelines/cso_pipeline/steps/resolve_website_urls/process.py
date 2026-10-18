@@ -12,21 +12,33 @@ from lib.website_probe import STUB_MARKER, resolve_stub_url  # noqa: F401  (re-e
 STEP_NAME = "resolve_website_urls"
 
 
-def pick_best_url(body: dict) -> str | None:
-    """Return the best available URL source to fetch and validate.
+def candidate_urls(body: dict) -> list[str]:
+    """URL sources to try, best first, deduplicated.
 
     Priority: apify > llm (direct+high) > official (gov.ie stub) > llm (related).
     url_type=parent is excluded: it points to a different legal entity, not this body.
+
+    Returns an ordered list rather than a single pick: a candidate that cannot be
+    fetched says nothing about the next one, so a failure must fall through to
+    the remaining candidates instead of ending the search (see process()).
     """
+    candidates = []
     if url := body.get("apify_website_url"):
-        return url
+        candidates.append(url)
     if (url := body.get("llm_website_url")) and body.get("llm_url_type") == "direct" and body.get("llm_confidence") == "high":
-        return url
+        candidates.append(url)
     if url := body.get("official_website_url"):
-        return url
+        candidates.append(url)
     if (url := body.get("llm_website_url")) and body.get("llm_url_type") != "parent":
-        return url
-    return None
+        candidates.append(url)
+    return list(dict.fromkeys(candidates))
+
+
+def pick_best_url(body: dict) -> str | None:
+    """Highest-priority candidate, or None. Kept for callers that only need the
+    first choice; process() walks the whole candidate list."""
+    candidates = candidate_urls(body)
+    return candidates[0] if candidates else None
 
 
 def process(input_data, step_dir, writer, verbose=False):
@@ -38,25 +50,45 @@ def process(input_data, step_dir, writer, verbose=False):
         body_id = body["public_body_id"]
         if writer.is_processed(body_id):
             continue
-        url = pick_best_url(body)
-        if url is None:
+        candidates = candidate_urls(body)
+        if not candidates:
             writer.append([body])
             continue
-        try:
-            response = fetch("GET", url, allow_redirects=True)
-            response.raise_for_status()
-            final_url = response.url if is_safe_url(response.url) else url
-            resolved_url = resolve_stub_url(response.text, final_url)
+        attempts = []
+        for url in candidates:
+            try:
+                response = fetch("GET", url, allow_redirects=True)
+                response.raise_for_status()
+                final_url = response.url if is_safe_url(response.url) else url
+                resolved_url = resolve_stub_url(response.text, final_url)
+            except Exception as e:
+                # A failed fetch does NOT prove the URL is wrong: the host may
+                # not exist, but it may equally be bot-blocked (403/challenge),
+                # which is evidence the site is alive. Try the next candidate
+                # instead of nulling a value the source already carried, which
+                # is a confirmed-silent data loss. The failure is only escalated
+                # to errors.json if no candidate resolves (see below) — logging
+                # recovered candidates would make the next run evict and re-fetch
+                # the body forever.
+                attempts.append({
+                    "url": url,
+                    "error_type": type(e).__name__,
+                    "error_message": str(e),
+                })
+                continue
             writer.append([{**body, "official_website_url": resolved_url}])
-        except Exception as e:
+            break
+        else:
+            # No candidate resolved: keep the source value untouched (usually
+            # None) and log the body so the next run retries it.
             append_error(step_dir, {
                 "step": STEP_NAME,
                 "timestamp": datetime.now(timezone.utc).isoformat(),
-                "error_type": type(e).__name__,
-                "error_message": str(e),
-                "context": {"url": url, "public_body_id": body_id},
+                "error_type": "NoUsableCandidate",
+                "error_message": f"none of {len(attempts)} candidate URL(s) could be fetched",
+                "context": {"public_body_id": body_id, "attempts": attempts},
             })
-            writer.append([{**body, "official_website_url": None}])
+            writer.append([body])
         if verbose:
             print(".", end="", flush=True)
 

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "step": "validate_websites",
-    "completed_at": "2026-08-25T11:21:55.867262+00:00"
+    "completed_at": "2026-10-18T16:30:39.779962+00:00"
   },
   "results": [
     {
@@ -429,14 +429,6 @@
       "checked_at": "2026-07-03T09:53:45.392055+00:00"
     },
     {
-      "public_body_id": 1220,
-      "name": "Digital Hub Development Agency",
-      "official_website_url": null,
-      "is_reachable": false,
-      "http_status": null,
-      "checked_at": "2026-07-03T09:53:45.393371+00:00"
-    },
-    {
       "public_body_id": 1227,
       "name": "Donegal County Council",
       "official_website_url": "https://www.donegalcoco.ie/",
@@ -573,14 +565,6 @@
       "checked_at": "2026-07-03T09:53:49.284505+00:00"
     },
     {
-      "public_body_id": 1309,
-      "name": "Forensic Science Ireland",
-      "official_website_url": null,
-      "is_reachable": false,
-      "http_status": null,
-      "checked_at": "2026-07-03T09:53:49.286158+00:00"
-    },
-    {
       "public_body_id": 1340,
       "name": "Galway City Council",
       "official_website_url": "https://www.galwaycity.ie/",
@@ -611,14 +595,6 @@
       "is_reachable": true,
       "http_status": 200,
       "checked_at": "2026-07-03T09:53:49.682377+00:00"
-    },
-    {
-      "public_body_id": 1388,
-      "name": "Health and Safety Authority",
-      "official_website_url": null,
-      "is_reachable": false,
-      "http_status": null,
-      "checked_at": "2026-07-03T09:53:49.683418+00:00"
     },
     {
       "public_body_id": 1390,
@@ -699,14 +675,6 @@
       "is_reachable": true,
       "http_status": 200,
       "checked_at": "2026-07-03T09:53:52.257807+00:00"
-    },
-    {
-      "public_body_id": 1412,
-      "name": "IDA Ireland",
-      "official_website_url": null,
-      "is_reachable": false,
-      "http_status": null,
-      "checked_at": "2026-07-03T09:53:52.259605+00:00"
     },
     {
       "public_body_id": 1417,
@@ -1165,14 +1133,6 @@
       "checked_at": "2026-07-03T09:54:11.660899+00:00"
     },
     {
-      "public_body_id": 1595,
-      "name": "Office of the Attorney General",
-      "official_website_url": null,
-      "is_reachable": false,
-      "http_status": null,
-      "checked_at": "2026-07-03T09:54:11.663410+00:00"
-    },
-    {
       "public_body_id": 1596,
       "name": "Office of the Commission for Public Service Appointments",
       "official_website_url": "https://www.cpsa.ie/en/",
@@ -1325,14 +1285,6 @@
       "checked_at": "2026-07-03T09:54:18.956839+00:00"
     },
     {
-      "public_body_id": 1667,
-      "name": "Road Safety Authority",
-      "official_website_url": null,
-      "is_reachable": false,
-      "http_status": null,
-      "checked_at": "2026-07-03T09:54:18.958627+00:00"
-    },
-    {
       "public_body_id": 1670,
       "name": "Roscommon County Council",
       "official_website_url": "https://www.roscommoncoco.ie/en/",
@@ -1443,14 +1395,6 @@
       "is_reachable": true,
       "http_status": 200,
       "checked_at": "2026-07-03T09:54:20.439712+00:00"
-    },
-    {
-      "public_body_id": 1753,
-      "name": "Standards in Public Office Commission",
-      "official_website_url": null,
-      "is_reachable": false,
-      "http_status": null,
-      "checked_at": "2026-07-03T09:54:20.441493+00:00"
     },
     {
       "public_body_id": 1754,
@@ -1645,14 +1589,6 @@
       "checked_at": "2026-07-03T09:54:21.969332+00:00"
     },
     {
-      "public_body_id": 1847,
-      "name": "Veterinary Council of Ireland",
-      "official_website_url": null,
-      "is_reachable": false,
-      "http_status": null,
-      "checked_at": "2026-07-03T09:54:21.971464+00:00"
-    },
-    {
       "public_body_id": 1861,
       "name": "Water Safety Ireland",
       "official_website_url": null,
@@ -1827,15 +1763,6 @@
       "is_reachable": false,
       "http_status": null,
       "checked_at": "2026-07-03T09:54:34.537761+00:00"
-    },
-    {
-      "public_body_id": 1210,
-      "name": "Department of Rural and Community Development and the Gaeltacht",
-      "official_website_url": "https://www.gov.ie/en/department-of-rural-and-community-development-and-the-gaeltacht/",
-      "is_reachable": true,
-      "http_status": 200,
-      "checked_at": "2026-07-24T06:59:29.018103+00:00",
-      "overridden": true
     },
     {
       "public_body_id": 1038,
@@ -2228,6 +2155,81 @@
       "is_reachable": true,
       "http_status": 200,
       "checked_at": "2026-08-25T11:21:55.861545+00:00"
+    },
+    {
+      "public_body_id": 1309,
+      "name": "Forensic Science Ireland",
+      "official_website_url": "https://forensicscience.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-10-18T07:59:12.180540+00:00"
+    },
+    {
+      "public_body_id": 1220,
+      "name": "Digital Hub Development Agency",
+      "official_website_url": "https://www.thedigitalhub.com/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-10-18T16:30:38.464314+00:00"
+    },
+    {
+      "public_body_id": 1412,
+      "name": "IDA Ireland",
+      "official_website_url": "https://www.idaireland.com",
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-10-18T16:30:38.622483+00:00"
+    },
+    {
+      "public_body_id": 1595,
+      "name": "Office of the Attorney General",
+      "official_website_url": "https://www.gov.ie/en/office-of-the-attorney-general/",
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-10-18T16:30:38.762166+00:00"
+    },
+    {
+      "public_body_id": 1753,
+      "name": "Standards in Public Office Commission",
+      "official_website_url": "https://www.sipo.ie/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-10-18T16:30:39.604774+00:00"
+    },
+    {
+      "public_body_id": 1210,
+      "name": "Department of Rural and Community Development and the Gaeltacht",
+      "official_website_url": "https://www.gov.ie/en/department-of-rural-and-community-development-and-the-gaeltacht/",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-07-24T06:59:29.018103+00:00",
+      "overridden": true
+    },
+    {
+      "public_body_id": 1388,
+      "name": "Health and Safety Authority",
+      "official_website_url": "https://www.hsa.ie/",
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-10-18T09:15:41.220914+00:00",
+      "overridden": true
+    },
+    {
+      "public_body_id": 1667,
+      "name": "Road Safety Authority",
+      "official_website_url": "https://www.rsa.ie/",
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-10-18T09:16:02.884310+00:00",
+      "overridden": true
+    },
+    {
+      "public_body_id": 1847,
+      "name": "Veterinary Council of Ireland",
+      "official_website_url": "https://www.vci.ie/",
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-10-18T16:30:39.777682+00:00"
     }
   ]
 }

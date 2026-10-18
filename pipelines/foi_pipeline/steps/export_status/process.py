@@ -8,6 +8,7 @@ from pathlib import Path
 
 from lib.cli_utils import add_common_args, filter_by_public_body
 from lib.file_utils import read_json, write_json, write_status
+from lib.publish_public_bodies import publish_public_bodies
 
 STEP_NAME = "export_status"
 
@@ -204,6 +205,21 @@ def write_foi_disclosures_output(steps_dir, repo_root):
     return output_path
 
 
+def publish_public_artifacts(repo_root, bodies, scoped=False):
+    """Regenerate the public-bodies catalog (public/v2.0.0 + public/latest) from
+    the bodies this run just merged, so the published dataset cannot drift out
+    of step with pipeline-data.json.
+
+    Skipped for scoped (--public-body) runs: publish_public_bodies builds the
+    catalog from the FULL find_public_bodies body list but takes crawl status
+    from `bodies`, so publishing a one-body merge would blank every other
+    body's website/FOI columns.
+    """
+    if scoped:
+        return None
+    return publish_public_bodies(repo_root, bodies)
+
+
 def merge(steps_dir, pipeline_steps, target_public_body=None, coverage=None):
     base_data = read_json(steps_dir / "find_public_bodies_subject_to_foi" / "output.json")
     base_data = filter_by_public_body(base_data, target_public_body)
@@ -308,6 +324,7 @@ def main():
     public_path = write_public_output(output, repo_root)
     disclosure_path = write_disclosure_files_output(steps_dir, repo_root)
     foi_disclosures_path = write_foi_disclosures_output(steps_dir, repo_root)
+    publish_public_artifacts(repo_root, bodies, scoped=args.public_body is not None)
 
     print(f"Wrote {len(bodies)} public bodies to {output_path}")
     print(f"Wrote public data to {public_path}")

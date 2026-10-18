@@ -1,7 +1,7 @@
 {
   "metadata": {
     "step": "find_public_bodies_subject_to_foi",
-    "completed_at": "2026-08-21T18:46:05.307292+00:00"
+    "completed_at": "2026-10-18T16:32:02.005171+00:00"
   },
   "public_bodies": [
     {
@@ -427,11 +427,11 @@
     {
       "public_body_id": 1085,
       "name": "Carlow County Council",
-      "official_website_url": null,
+      "official_website_url": "https://carlow.ie/",
       "category": "local authority",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://carlow.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -1967,11 +1967,11 @@
     {
       "public_body_id": 1210,
       "name": "Department of Rural and Community Development and the Gaeltacht",
-      "official_website_url": null,
+      "official_website_url": "https://www.gov.ie/en/department-of-rural-and-community-development-and-the-gaeltacht/",
       "category": "government department",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.gov.ie/en/department-of-rural-and-community-development-and-the-gaeltacht/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -2107,11 +2107,11 @@
     {
       "public_body_id": 1220,
       "name": "Digital Hub Development Agency",
-      "official_website_url": null,
+      "official_website_url": "https://www.thedigitalhub.com/",
       "category": "public body",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.thedigitalhub.com/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -2842,11 +2842,11 @@
     {
       "public_body_id": 1309,
       "name": "Forensic Science Ireland",
-      "official_website_url": null,
+      "official_website_url": "https://forensicscience.ie/",
       "category": "public body",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://forensicscience.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -2947,11 +2947,11 @@
     {
       "public_body_id": 1342,
       "name": "Galway County Council",
-      "official_website_url": null,
+      "official_website_url": "https://www.galway.ie/",
       "category": "local authority",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.galway.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -3052,11 +3052,11 @@
     {
       "public_body_id": 1388,
       "name": "Health and Safety Authority",
-      "official_website_url": null,
+      "official_website_url": "https://www.hsa.ie/",
       "category": "public body",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.hsa.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -3472,11 +3472,11 @@
     {
       "public_body_id": 1412,
       "name": "IDA Ireland",
-      "official_website_url": null,
+      "official_website_url": "https://www.idaireland.com",
       "category": "public body",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.idaireland.com",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -4312,11 +4312,11 @@
     {
       "public_body_id": 1470,
       "name": "Laois County Council",
-      "official_website_url": null,
+      "official_website_url": "https://laois.ie/",
       "category": "local authority",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://laois.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -5047,11 +5047,11 @@
     {
       "public_body_id": 1525,
       "name": "Monaghan County Council",
-      "official_website_url": null,
+      "official_website_url": "https://monaghan.ie/",
       "category": "local authority",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://monaghan.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -5817,11 +5817,11 @@
     {
       "public_body_id": 1590,
       "name": "Offaly County Council",
-      "official_website_url": null,
+      "official_website_url": "https://www.offaly.ie/",
       "category": "local authority",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.offaly.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -5887,11 +5887,11 @@
     {
       "public_body_id": 1595,
       "name": "Office of the Attorney General",
-      "official_website_url": null,
+      "official_website_url": "https://www.gov.ie/en/office-of-the-attorney-general/",
       "category": "public body",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.gov.ie/en/office-of-the-attorney-general/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -6692,11 +6692,11 @@
     {
       "public_body_id": 1667,
       "name": "Road Safety Authority",
-      "official_website_url": null,
+      "official_website_url": "https://www.rsa.ie/",
       "category": "public body",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.rsa.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -7287,11 +7287,11 @@
     {
       "public_body_id": 1753,
       "name": "Standards in Public Office Commission",
-      "official_website_url": null,
+      "official_website_url": "https://www.sipo.ie/",
       "category": "public body",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.sipo.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -8407,11 +8407,11 @@
     {
       "public_body_id": 1847,
       "name": "Veterinary Council of Ireland",
-      "official_website_url": null,
+      "official_website_url": "https://www.vci.ie/",
       "category": "public body",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.vci.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -10019,11 +10019,11 @@
     {
       "public_body_id": 1085,
       "name": "Carlow County Council",
-      "official_website_url": null,
+      "official_website_url": "https://carlow.ie/",
       "category": "local authority",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://carlow.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -11559,11 +11559,11 @@
     {
       "public_body_id": 1210,
       "name": "Department of Rural and Community Development and the Gaeltacht",
-      "official_website_url": null,
+      "official_website_url": "https://www.gov.ie/en/department-of-rural-and-community-development-and-the-gaeltacht/",
       "category": "government department",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.gov.ie/en/department-of-rural-and-community-development-and-the-gaeltacht/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -11699,11 +11699,11 @@
     {
       "public_body_id": 1220,
       "name": "Digital Hub Development Agency",
-      "official_website_url": null,
+      "official_website_url": "https://www.thedigitalhub.com/",
       "category": "public body",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.thedigitalhub.com/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -12434,11 +12434,11 @@
     {
       "public_body_id": 1309,
       "name": "Forensic Science Ireland",
-      "official_website_url": null,
+      "official_website_url": "https://forensicscience.ie/",
       "category": "public body",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://forensicscience.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -12539,11 +12539,11 @@
     {
       "public_body_id": 1342,
       "name": "Galway County Council",
-      "official_website_url": null,
+      "official_website_url": "https://www.galway.ie/",
       "category": "local authority",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.galway.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -12644,11 +12644,11 @@
     {
       "public_body_id": 1388,
       "name": "Health and Safety Authority",
-      "official_website_url": null,
+      "official_website_url": "https://www.hsa.ie/",
       "category": "public body",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.hsa.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -13064,11 +13064,11 @@
     {
       "public_body_id": 1412,
       "name": "IDA Ireland",
-      "official_website_url": null,
+      "official_website_url": "https://www.idaireland.com",
       "category": "public body",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.idaireland.com",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -13904,11 +13904,11 @@
     {
       "public_body_id": 1470,
       "name": "Laois County Council",
-      "official_website_url": null,
+      "official_website_url": "https://laois.ie/",
       "category": "local authority",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://laois.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -14639,11 +14639,11 @@
     {
       "public_body_id": 1525,
       "name": "Monaghan County Council",
-      "official_website_url": null,
+      "official_website_url": "https://monaghan.ie/",
       "category": "local authority",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://monaghan.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -15409,11 +15409,11 @@
     {
       "public_body_id": 1590,
       "name": "Offaly County Council",
-      "official_website_url": null,
+      "official_website_url": "https://www.offaly.ie/",
       "category": "local authority",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.offaly.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -15479,11 +15479,11 @@
     {
       "public_body_id": 1595,
       "name": "Office of the Attorney General",
-      "official_website_url": null,
+      "official_website_url": "https://www.gov.ie/en/office-of-the-attorney-general/",
       "category": "public body",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.gov.ie/en/office-of-the-attorney-general/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -16284,11 +16284,11 @@
     {
       "public_body_id": 1667,
       "name": "Road Safety Authority",
-      "official_website_url": null,
+      "official_website_url": "https://www.rsa.ie/",
       "category": "public body",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.rsa.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -16879,11 +16879,11 @@
     {
       "public_body_id": 1753,
       "name": "Standards in Public Office Commission",
-      "official_website_url": null,
+      "official_website_url": "https://www.sipo.ie/",
       "category": "public body",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.sipo.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -17999,11 +17999,11 @@
     {
       "public_body_id": 1847,
       "name": "Veterinary Council of Ireland",
-      "official_website_url": null,
+      "official_website_url": "https://www.vci.ie/",
       "category": "public body",
       "status": {
         "website_url": {
-          "url": null,
+          "url": "https://www.vci.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
