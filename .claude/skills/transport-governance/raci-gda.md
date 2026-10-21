@@ -12,36 +12,38 @@ in `vocabulary.md`. A row is identified as `<subdomain> · <Function> · <Qualif
 |---|---|---|---|---|---|---|
 | Policy | — | DoT | DoT | TII | practice | verify |
 | Strategic planning | — | TII | TII | DoT, NTA, LA-CE | practice | verify |
-| Funding | — | TII | TII | DoT | Roads Act 1993 s.19 | verify |
-| Specification | — | TII | TII, LA-CE | NTA | Roads Act 1993 s.19 | verify |
+| Funding | — | TII | TII | DoT | Roads Act 1993 s.24 | verify |
+| Specification | — | TII | TII, LA-CE | NTA | Roads Act 1993 s.17(1)(a) | verify |
 | Consent | Section 51 approval | ACP | ACP | TII, LA-CE | Roads Act 1993 s.51 | verify |
 | Consent | Part 8 | LA-members | LA-CE | TII | Planning and Development Act 2000 s.179 | verify |
 | Delivery | — | TII | LA-CE, TII | — | Roads Act 1993 | verify |
 | Operation | — | TII | TII, LA-CE | — | practice | verify |
-| Maintenance | — | TII | LA-CE, TII | — | Roads Act 1993 s.13 | verify |
-| Regulation | special speed limit | LA-members | LA-CE | TII, AGS | Road Traffic Act 2004 s.9 | verify |
+| Maintenance | — | LA-CE | LA-CE | — | Roads Act 1993 s.13 | verify |
+| Regulation | special speed limit | LA-members | LA-CE | TII, AGS | Road Traffic Act 2004 s.9(7) | verify |
 | Regulation | toll | TII | TII | DoT | Roads Act 1993 s.57 | verify |
 | Enforcement | toll | TII | TII | — | Roads Act 1993 | verify |
 
 Not applicable: none.
 
-1. LA-CE remains the road authority for national roads in its area and carries the statutory
-   maintenance duty (Roads Act 1993 s.13). A is TII because TII funds, specifies and approves
-   the work.
-2. A special speed limit on a national road needs TII's consent, which is stronger than C. It is
-   recorded as C until the model has a way to record a binding consent by another body.
+1. The split is by function. TII is A for Funding, Specification, Strategic planning and
+   Consent, because it funds, specifies and supervises the network. LA-CE is the road authority
+   and carries the statutory maintenance duty (Roads Act 1993 s.13), so it is A for Maintenance.
+   Delivery and Operation are still recorded with TII as A, pending confirmation.
+2. A special speed limit on a national road needs TII's prior written consent (Road Traffic Act
+   2004 s.9(7)), so TII's role is binding, not advisory. The row still records TII as C (see Open
+   questions).
 
 ### infra/regional-local-roads — tags: road
 
 | Function | Qualifier | A | R | C | Basis | Status |
 |---|---|---|---|---|---|---|
 | Policy | — | DoT | DoT | DHLGH | practice | verify |
-| Strategic planning | development plan | LA-members | LA-CE | NTA, LA-SPC | Planning and Development Act 2000 s.10 | verify |
+| Strategic planning | development plan | LA-members | LA-CE | NTA, LA-SPC | Planning and Development Act 2024 s.43, s.55 | verify |
 | Strategic planning | Local Transport Plan | LA-members | LA-CE | NTA, TII | practice | verify |
 | Funding | state grant | DoT | DoT | — | practice | verify |
 | Funding | annual budget | LA-members | LA-CE | — | Local Government Act 2001 | verify |
 | Specification | — | LA-CE | LA-CE | LA-members | Roads Act 1993 s.13 | verify |
-| Specification | schedule of municipal district works | LA-MD | LA-CE | — | Local Government Reform Act 2014 | verify |
+| Specification | schedule of municipal district works · Municipal District | LA-MD | LA-CE | — | Local Government Reform Act 2014 | verify |
 | Specification | taking in charge | LA-members | LA-CE | — | Roads Act 1993 s.11 | verify |
 | Specification | taking in charge · Municipal District | LA-MD | LA-CE | — | Roads Act 1993 s.11 | verify |
 | Consent | Part 8 | LA-members | LA-CE | — | Planning and Development Act 2000 s.179 | verify |
@@ -50,8 +52,8 @@ Not applicable: none.
 | Consent | Section 51 approval | ACP | ACP | LA-CE | Roads Act 1993 s.51 | verify |
 | Delivery | — | LA-CE | LA-CE | — | Roads Act 1993 s.13 | verify |
 | Operation | — | LA-CE | LA-CE | — | practice | verify |
-| Maintenance | — | LA-CE | LA-CE | LA-MD | Roads Act 1993 s.13 | verify |
-| Regulation | special speed limit | LA-members | LA-CE | LA-MD, AGS | Road Traffic Act 2004 s.9 | verify |
+| Maintenance | — | LA-CE | LA-CE | — | Roads Act 1993 s.13 | verify |
+| Regulation | special speed limit | LA-members | LA-CE | AGS | Road Traffic Act 2004 s.9 | verify |
 | Regulation | traffic management | LA-CE | LA-CE | AGS | Road Traffic Act 1961 s.95 | verify |
 | Regulation | road opening licence | LA-CE | LA-CE | — | Roads Act 1993 s.13 | verify |
 | Enforcement | road opening licence | LA-CE | LA-CE | — | Roads Act 1993 s.13 | verify |
@@ -69,7 +71,7 @@ Not applicable: none.
 | Function | Qualifier | A | R | C | Basis | Status |
 |---|---|---|---|---|---|---|
 | Policy | — | DoT | DoT | NTA | practice | verify |
-| Strategic planning | — | NTA | NTA | LA-CE | Dublin Transport Authority Act 2008 | verify |
+| Strategic planning | — | DoT | NTA | LA-CE | Dublin Transport Authority Act 2008 | verify |
 | Funding | — | NTA | NTA | DoT | practice | verify |
 | Specification | — | LA-CE | LA-CE | NTA, LA-members | practice | verify |
 | Consent | Part 8 | LA-members | LA-CE | — | Planning and Development Act 2000 s.179 | verify |
@@ -102,8 +104,6 @@ Not applicable: Operation, Enforcement.
 Not applicable: Enforcement.
 
 1. Bus lane offences are enforced by AGS under `users/traffic-law · Enforcement`.
-2. In Operation, NTA runs passenger information at stops and LA-CE runs the traffic signals that
-   give buses priority.
 
 ### infra/heavy-rail — tags: rail
 
@@ -111,19 +111,17 @@ Not applicable: Enforcement.
 |---|---|---|---|---|---|---|
 | Policy | — | DoT | DoT | NTA, IE | practice | verify |
 | Strategic planning | — | DoT | NTA | IE | Dublin Transport Authority Act 2008 s.12 | verify |
-| Funding | — | DoT | DoT, NTA | — | practice | verify |
+| Funding | existing network | DoT | DoT | — | practice | verify |
+| Funding | new GDA project | NTA | NTA | DoT | practice | verify |
 | Specification | — | NTA | NTA, IE | — | Dublin Transport Authority Act 2008 | verify |
 | Consent | — | ACP | ACP | IE | Transport (Railway Infrastructure) Act 2001 | verify |
 | Delivery | — | IE | IE | NTA | Transport (Railway Infrastructure) Act 2001 | verify |
 | Operation | — | IE | IE | — | Railway Safety Act 2005 | verify |
-| Maintenance | — | IE | IE | — | Railway Safety Act 2005 | verify |
+| Maintenance | — | IE | IE | — | practice | verify |
 | Regulation | — | CRR | CRR | — | Railway Safety Act 2005 | verify |
 | Enforcement | — | CRR | CRR | — | Railway Safety Act 2005 | verify |
 
 Not applicable: none.
-
-1. In Funding, DoT pays for IE's maintenance and renewal of the existing network; NTA pays for
-   new GDA rail projects.
 
 ### infra/light-rail — tags: light-rail
 
@@ -147,17 +145,18 @@ Not applicable: none.
 | Function | Qualifier | A | R | C | Basis | Status |
 |---|---|---|---|---|---|---|
 | Policy | — | DoT | DoT | — | practice | verify |
-| Strategic planning | — | LA-members | LA-CE | NTA, LA-SPC | Planning and Development Act 2000 s.10 | verify |
+| Strategic planning | — | LA-members | LA-CE | NTA, LA-SPC | Planning and Development Act 2024 s.43, s.55 | verify |
 | Funding | — | LA-members | LA-CE | — | Local Government Act 2001 | verify |
 | Funding | EV charging | DoT | DoT | LA-CE | practice | verify |
-| Specification | — | LA-CE | LA-CE | LA-MD | practice | verify |
+| Specification | — | LA-CE | LA-CE | — | practice | verify |
 | Consent | — | LA-CE | LA-CE | — | Planning and Development Act 2000 s.254 | verify |
 | Delivery | — | LA-CE | LA-CE | — | practice | verify |
 | Operation | — | LA-CE | LA-CE | — | practice | verify |
 | Maintenance | — | LA-CE | LA-CE | — | Roads Act 1993 s.13 | verify |
 | Regulation | parking | LA-members | LA-CE | AGS | Road Traffic Act 1994 s.36 | verify |
 | Regulation | parking · Municipal District | LA-MD | LA-CE | AGS | Road Traffic Act 1994 s.36 | verify |
-| Regulation | appointed stand | LA-members | LA-CE | NTA, AGS | Road Traffic Act 1994 | verify |
+| Regulation | appointed stand | LA-members | LA-CE | NTA, AGS | Road Traffic Act 1961 s.84 | verify |
+| Regulation | appointed stand · Municipal District | LA-MD | LA-CE | NTA, AGS | Local Government Act 2001 Sch. 14A item 29 | verify |
 | Regulation | clamping | NTA | NTA | — | Vehicle Clamping Act 2015 | verify |
 | Enforcement | parking | LA-CE | LA-CE | — | Road Traffic Act 1994 s.36 | verify |
 | Enforcement | clamping | NTA | NTA | — | Vehicle Clamping Act 2015 | verify |
@@ -180,7 +179,8 @@ Not applicable: none.
 | Funding | airport | daa | daa | — | State Airports Act 2004 | verify |
 | Specification | port | Port-co | Port-co | — | Harbours Act 1996 | verify |
 | Specification | airport | daa | daa | IAA | practice | verify |
-| Consent | — | ACP | ACP | LA-CE | Planning and Development Act 2000 s.37A | verify |
+| Consent | strategic infrastructure | ACP | ACP | LA-CE | Planning and Development Act 2000 s.37A | verify |
+| Consent | planning application | LA-CE | LA-CE | — | Planning and Development Act 2000 s.34 | verify |
 | Delivery | port | Port-co | Port-co | — | Harbours Act 1996 | verify |
 | Delivery | airport | daa | daa | — | practice | verify |
 | Operation | port | Port-co | Port-co | — | Harbours Act 1996 | verify |
@@ -198,8 +198,6 @@ Not applicable: none.
 1. A military aerodrome has no rows: DoD is A and R for every function there.
 2. Where a port is vested in a local authority rather than a Port-co, LA-CE takes the Port-co
    role in every port row and LA-members adopt its annual budget.
-3. `Consent` with `—` covers strategic infrastructure and appeals decided by ACP. Ordinary
-   planning applications for airport development are decided by LA-CE (verify).
 
 ## Services
 
@@ -249,7 +247,7 @@ Not applicable: Strategic planning, Funding, Consent, Delivery.
 | Specification | — | NTA | NTA | IE | Dublin Transport Authority Act 2008 | verify |
 | Delivery | — | NTA | IE | — | practice | verify |
 | Operation | — | NTA | IE | — | Dublin Transport Authority Act 2008 | verify |
-| Maintenance | — | IE | IE | — | practice | verify |
+| Maintenance | — | NTA | IE | — | practice | verify |
 | Regulation | — | CRR | CRR | — | Railway Safety Act 2005 | verify |
 | Enforcement | bye-law | IE | IE | AGS | practice | verify |
 | Enforcement | rail safety | CRR | CRR | — | Railway Safety Act 2005 | verify |
@@ -257,6 +255,8 @@ Not applicable: Strategic planning, Funding, Consent, Delivery.
 Not applicable: Consent.
 
 1. Delivery and Maintenance here are of trains; track and stations are `infra/heavy-rail`.
+2. Maintenance is A for NTA, following the decision to use NTA for vehicle maintenance. The owner
+   of the Irish Rail fleet has not been checked (see Open questions).
 
 ### svc/light-rail — tags: light-rail
 
@@ -277,6 +277,8 @@ Not applicable: Consent.
 
 1. Delivery is the procurement of the operations and maintenance contract, which TII runs for
    NTA.
+2. Maintenance is A for TII as recorded. The Luas fleet owner has not been confirmed (see Open
+   questions).
 
 ### svc/spsv — tags: taxi
 
@@ -360,3 +362,24 @@ Not applicable: Funding, Specification, Consent, Delivery, Operation, Maintenanc
 
 1. Regulation covers the rules of the road and default speed limits; a special speed limit is
    Regulation on the road's infra subdomain.
+
+## Open questions
+
+Parked decisions. Each stays open until the user records an answer here.
+
+1. **Binding consent in the model.** TII's consent to a special speed limit on a national road is
+   binding (`infra/national-roads · Regulation · special speed limit`, note 2), but the model has
+   no way to record a binding consent. Options: a new column, a qualifier, or a note. The row
+   records TII as C for now.
+2. **Luas fleet owner.** No official source confirms who owns the Luas trams.
+   `svc/light-rail · Maintenance` has TII as A on that basis. If NTA owns the fleet, the decision
+   to use NTA for vehicle maintenance would apply.
+3. **Irish Rail fleet owner.** `svc/rail · Maintenance` has NTA as A under the decision to use NTA
+   for vehicle maintenance. The owner of the fleet has not been checked.
+4. **National road Delivery and Operation.** Both have TII as A, which follows the split of
+   national roads by function. Confirm whether LA-CE is A for either.
+5. **Municipal District rule.** All GDA local authorities have Municipal Districts, so the rule
+   that an unqualified row covers "the rest" (vocabulary, Boundary rule 6) rarely applies in this
+   region. Decide whether to keep the rule for the non-GDA file.
+6. **Enforcement of parking.** `infra/kerbside · Enforcement · parking` cites RTA 1994 s.36, which
+   is the bye-law power, not an enforcement power. Find the enforcement basis.

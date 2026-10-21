@@ -20,7 +20,7 @@ what in a particular region lives only in that region's RACI file (`raci-gda.md`
    lane) is **Regulation** on that place's infra subdomain. A rule that applies to all road users
    nationally is on `users/traffic-law`.
 2. Enforcement by AGS of road traffic offences is recorded once, under
-   `users/traffic-law · Enforcement`. Enforcement run by the LA (parking) is recorded on the
+   `users/traffic-law · Enforcement`. Enforcement run by LA-CE (parking) is recorded on the
    infra subdomain whose rule is breached.
 3. A footpath or cycle facility is `infra/active-travel` wherever it is located; the carriageway
    and other road assets are the relevant roads subdomain.
@@ -87,7 +87,7 @@ what in a particular region lives only in that region's RACI file (`raci-gda.md`
 | svc/light-rail | Light rail services | Passenger tram and metro services. | Luas and metro services | Rail services. | light-rail |
 | svc/spsv | Small public service vehicles | Passenger services by taxi, hackney and limousine. | taxis, hackneys and limousines | Taxi ranks (infra/kerbside); bare PSV. | taxi |
 | svc/school-transport | School transport | The state scheme carrying pupils to and from school. | school buses | PSO bus services that pupils also use. | bus, school |
-| svc/shared-mobility | Shared mobility | Schemes renting bikes, e-bikes, e-scooters or cars to the public for short trips. | bike, scooter and car sharing | Privately owned e-scooters (users/traffic-law). | active, shared |
+| svc/shared-mobility | Shared mobility | Schemes renting bikes, e-bikes, e-scooters or cars to the public for short trips. | bike, scooter and car sharing | Privately purchased e-scooters (users/traffic-law). | active, shared |
 | users/vehicles-drivers | Vehicles and drivers | The licensing and testing of drivers and vehicles. | driving licences and vehicle tests | SPSV licensing (svc/spsv). | road |
 | users/traffic-law | Traffic law | The national rules of the road for all road users, and their enforcement. | road traffic law | Special speed limits and parking rules (infra subdomains). | road |
 
@@ -115,8 +115,8 @@ what in a particular region lives only in that region's RACI file (`raci-gda.md`
 | ACP | An Coimisiún Pleanála | The national planning body that decides planning appeals and gives consent for strategic infrastructure, road schemes and railways. | An Coimisiún Pleanála, the national planning body | Formerly An Bord Pleanála; not LA-CE, which decides ordinary planning applications. |
 | IAA | Irish Aviation Authority | The state agency that regulates civil aviation safety, security and economic matters. | the Irish Aviation Authority | daa; DoD. |
 | CRR | Commission for Railway Regulation | The state agency that regulates the safety of heavy and light rail. | the rail safety regulator | NTA; IE. |
-| Port-co | Port company | A state-owned company that is the harbour authority for a commercial port. | the port company | A harbour vested in a local authority. |
-| daa | daa | The state-owned company that operates and develops the state airports at Dublin and Cork. | daa, the Dublin Airport operator | IAA. |
+| Port-co | Port company | A state company that is the harbour authority for a commercial port. | the port company | A harbour vested in a local authority. |
+| daa | daa | The state company that operates and develops the state airports at Dublin and Cork. | daa, the Dublin Airport operator | IAA. |
 
 ## Governance terms
 
@@ -132,6 +132,11 @@ what in a particular region lives only in that region's RACI file (`raci-gda.md`
 | g/bye-law | bye-law | A binding local rule made by a public body under a specific statutory power. | local bye-law | National regulations. |
 | g/part-8 | Part 8 | The procedure under Part 8 of the Planning and Development Regulations 2001 by which a local authority's elected members approve or reject its own development. | council approval of its own project | Planning permission; Section 38. |
 | g/section-38 | Section 38 | The power under Road Traffic Act 1994 s.38 for a road authority to provide traffic calming measures, an executive function except where the local authority has Municipal Districts, whose members then exercise it. | traffic-calming decision by council officials | Part 8. |
+| g/strategic-infrastructure | strategic infrastructure | Development that ACP, not the local authority, decides under the strategic infrastructure provisions of the Planning and Development Act 2000 s.37A. | major infrastructure decided by the national planning body | Planning application, which LA-CE decides. |
+| g/planning-application | planning application | An application for ordinary planning permission, which LA-CE decides and which is appealable to ACP. | a planning application | Strategic infrastructure; Part 8. |
+| g/existing-network | existing network | Rail infrastructure already in service, as opposed to a new project. | the railway already in use | New GDA project. |
+| g/new-gda-project | new GDA project | A rail infrastructure project in the GDA that is not yet in service. | a new railway project | Existing network. |
+| g/local-link | TFI Local Link | The Transport for Ireland brand for rural PSO bus services, run by PSO-op. | rural bus services | Commercial bus services. |
 | g/section-51 | Section 51 approval | The approval by ACP, under Roads Act 1993 s.51, of a road scheme that needs environmental impact assessment. | national planning approval for a road scheme | Part 8. |
 | g/railway-order | Railway Order | The consent by ACP, under the Transport (Railway Infrastructure) Act 2001, to build a railway. | permission for a new railway or Luas line | Planning permission. |
 | g/development-plan | development plan | The six-year statutory land-use plan adopted by a local authority's elected members under Planning and Development Act 2000 s.10. | county or city development plan | Local Transport Plan. |
