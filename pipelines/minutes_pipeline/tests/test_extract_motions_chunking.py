@@ -7,7 +7,7 @@ from steps.extract_motions.chunking import (
 
 def _unique_text(n: int) -> str:
     """One unique Unicode character per position, so text.index(chunk) is exact."""
-    return "".join(chr(0x1000 + i) for i in range(n))
+    return "".join(chr(0x10000 + i) for i in range(n))
 
 
 def test_short_text_is_a_single_unchanged_chunk():

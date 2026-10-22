@@ -103,14 +103,20 @@ def process(input_data, step_dir, writer, verbose=False, max_workers=2, api_fn=N
         for future in as_completed(futures):
             file_url, record, exc, failed = future.result()
             if exc is not None or failed:
+                context = {"file_url": file_url,
+                           "public_body_id": record["public_body_id"] if record else None}
+                if record is not None:
+                    if record.get("failed_chunks"):
+                        context["failed_chunks"] = record["failed_chunks"]
+                    if record.get("chunk_count"):
+                        context["chunk_count"] = record["chunk_count"]
                 append_error(step_dir, {
                     "step": STEP_NAME,
                     "timestamp": datetime.now(timezone.utc).isoformat(),
                     "error_type": (type(exc).__name__ if exc else "MotionExtractionError"),
                     "error_message": (str(exc) if exc else
                                       "LLM returned unparseable/empty motions JSON"),
-                    "context": {"file_url": file_url, "public_body_id": record["public_body_id"]
-                                if record else None},
+                    "context": context,
                 })
                 if record is not None:
                     writer.append([record])
