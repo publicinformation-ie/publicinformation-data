@@ -10,6 +10,7 @@ from steps.extract_motions.process import (
     extract_one,
     process,
 )
+from steps.extract_motions.chunking import MAX_CHUNK_CHARS, split_text
 from lib.file_utils import read_json
 
 
@@ -113,3 +114,111 @@ def test_extract_one_preserves_nonnull_upstream_meeting_date():
     assert record["meeting_date"] == "2024-01-02"     # upstream preserved, untouched
     assert record["stated_date"] == "2024-09-09"      # LLM value carried through raw
     assert record["motions"] == payload["motions"]
+
+
+def _payload(text, *, date=None):
+    return {"meeting_date": date, "motions": [
+        {"motion_text": text, "proposer": "Cllr A", "seconder": "Cllr B",
+         "status_label": "carried"}
+    ]}
+
+
+def test_short_doc_makes_exactly_one_call_with_the_current_prompt():
+    doc = _doc(text="a" * (MAX_CHUNK_CHARS - 1))
+    with mock.patch("steps.extract_motions.process.extract_json",
+                    return_value={"motions": []}) as m:
+        extract_one(doc)
+    assert m.call_count == 1
+    assert m.call_args.args[1] == build_user_prompt(doc)
+
+
+def test_exactly_max_chars_makes_exactly_one_call():
+    doc = _doc(text="a" * MAX_CHUNK_CHARS)
+    with mock.patch("steps.extract_motions.process.extract_json",
+                    return_value={"motions": []}) as m:
+        extract_one(doc)
+    assert m.call_count == 1
+
+
+def test_large_doc_calls_once_per_chunk_and_merges_in_order():
+    text = "".join(chr(0x1000 + i) for i in range(200_000))
+    doc = _doc(text=text)
+    payloads = [_payload("m1"), _payload("m2"), _payload("m3")]
+    with mock.patch("steps.extract_motions.process.extract_json",
+                    side_effect=payloads) as m:
+        record = extract_one(doc)
+    assert m.call_count == len(split_text(text)) == 3
+    assert [x["motion_text"] for x in record["motions"]] == ["m1", "m2", "m3"]
+
+
+def test_chunked_extraction_dedupes_an_overlap_duplicate():
+    text = "".join(chr(0x1000 + i) for i in range(200_000))
+    doc = _doc(text=text)
+    payloads = [_payload("same motion"), _payload("same motion"), _payload("m3")]
+    with mock.patch("steps.extract_motions.process.extract_json",
+                    side_effect=payloads):
+        record = extract_one(doc)
+    assert [x["motion_text"] for x in record["motions"]] == ["same motion", "m3"]
+
+
+def test_within_chunk_duplicates_are_preserved():
+    text = "".join(chr(0x1000 + i) for i in range(200_000))
+    doc = _doc(text=text)
+    same = _payload("same motion")["motions"][0]
+    payloads = [{"motions": [same, same]}, _payload("m2"), _payload("m3")]
+    with mock.patch("steps.extract_motions.process.extract_json",
+                    side_effect=payloads):
+        record = extract_one(doc)
+    assert [x["motion_text"] for x in record["motions"]] == [
+        "same motion", "same motion", "m2", "m3"
+    ]
+
+
+def test_chunked_extraction_uses_first_non_null_stated_date():
+    text = "".join(chr(0x1000 + i) for i in range(200_000))
+    doc = _doc(text=text)
+    payloads = [{"meeting_date": None, "motions": []},
+                _payload("m2", date="2024-09-09"),
+                _payload("m3", date="2024-10-10")]
+    with mock.patch("steps.extract_motions.process.extract_json",
+                    side_effect=payloads):
+        record = extract_one(doc)
+    assert record["stated_date"] == "2024-09-09"
+
+
+def test_one_failed_chunk_fails_the_whole_document_and_stops_early():
+    text = "".join(chr(0x1000 + i) for i in range(200_000))
+    doc = _doc(text=text)
+    payloads = [_payload("m1", date="2024-09-09"), None, _payload("m3")]
+    with mock.patch("steps.extract_motions.process.extract_json",
+                    side_effect=payloads) as m:
+        record = extract_one(doc)
+    assert m.call_count == 2
+    assert record["motions"] is None
+    assert record["stated_date"] == "2024-09-09"
+    assert record["failed_chunks"] == [2]
+    assert record["chunk_count"] == 3
+
+
+def test_a_non_object_motion_item_fails_the_chunk():
+    text = "".join(chr(0x1000 + i) for i in range(200_000))
+    doc = _doc(text=text)
+    payloads = [{"motions": ["not an object"]}, _payload("m2"), _payload("m3")]
+    with mock.patch("steps.extract_motions.process.extract_json",
+                    side_effect=payloads):
+        record = extract_one(doc)
+    assert record["motions"] is None
+    assert record["failed_chunks"] == [1]
+    assert record["chunk_count"] == 3
+
+
+def test_chunked_prompt_asks_for_complete_motions_only():
+    text = "".join(chr(0x1000 + i) for i in range(200_000))
+    doc = _doc(text=text)
+    payloads = [_payload("m1"), _payload("m2"), _payload("m3")]
+    with mock.patch("steps.extract_motions.process.extract_json",
+                    side_effect=payloads) as m:
+        extract_one(doc)
+    second_prompt = m.call_args_list[1].args[1]
+    assert "part 2 of 3" in second_prompt
+    assert "fully contained" in second_prompt.lower()

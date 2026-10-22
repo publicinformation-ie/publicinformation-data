@@ -9,6 +9,8 @@ from lib.cli_utils import add_common_args, filter_by_public_body
 from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
 from lib.llm_extract import extract_json
 
+from steps.extract_motions.chunking import split_text
+
 STEP_NAME = "extract_motions"
 
 _SYSTEM_PROMPT = (
@@ -25,27 +27,57 @@ _SYSTEM_PROMPT = (
 )
 
 
-def build_user_prompt(record) -> str:
-    return (
-        f"Extract the motions from these minutes "
-        f"(municipal district {record.get('municipal_district')}, "
-        f"meeting date {record.get('meeting_date')}).\n\n"
-        f"{record['text']}"
-    )
+def build_user_prompt(record, part=None, total=None) -> str:
+    if part is None:
+        header = ("Extract the motions from these minutes "
+                  f"(municipal district {record.get('municipal_district')}, "
+                  f"meeting date {record.get('meeting_date')}).")
+    else:
+        header = ("Extract the motions from part "
+                  f"{part} of {total} of these minutes "
+                  f"(municipal district {record.get('municipal_district')}, "
+                  f"meeting date {record.get('meeting_date')}). "
+                  "Only extract complete motions fully contained in this part; "
+                  "ignore any motion that is cut off at the start or end.")
+    return f"{header}\n\n{record['text']}"
+
+
+def _normalise_motion_text(motion) -> str:
+    return " ".join((motion.get("motion_text") or "").split()).lower()
 
 
 def extract_one(record, api_fn=None, model=None, effort=None):
-    """Return the record with a 'motions' list (or None on failure) and a
-    raw 'stated_date' passthrough of whatever date the LLM reported. Date
-    *resolution* is the resolve_meeting_date step's job, not this one."""
-    result = extract_json(_SYSTEM_PROMPT, build_user_prompt(record), api_fn=api_fn,
-                          model=model, effort=effort)
-    if not isinstance(result, dict):
-        return {**record, "stated_date": None, "motions": None}
-    stated_date = result.get("meeting_date")
-    motions = result.get("motions")
-    if not isinstance(motions, list):
-        return {**record, "stated_date": stated_date, "motions": None}
+    """Extract motions, chunking documents over MAX_CHUNK_CHARS. One failed
+    chunk fails the whole document (no partial motions)."""
+    chunks = split_text(record.get("text") or "")
+    total = len(chunks)
+    motions = []
+    seen_texts = set()
+    stated_date = None
+    failed_chunks = []
+
+    for index, chunk in enumerate(chunks, start=1):
+        prompt = (build_user_prompt(record, index, total) if total > 1
+                  else build_user_prompt(record))
+        result = extract_json(_SYSTEM_PROMPT, prompt, api_fn=api_fn,
+                              model=model, effort=effort)
+        payload_motions = result.get("motions") if isinstance(result, dict) else None
+        if not isinstance(payload_motions, list) or not all(
+                isinstance(motion, dict) for motion in payload_motions):
+            failed_chunks.append(index)
+            break
+        if stated_date is None and isinstance(result.get("meeting_date"), str):
+            stated_date = result["meeting_date"]
+        chunk_motions = [
+            motion for motion in payload_motions
+            if _normalise_motion_text(motion) not in seen_texts
+        ]
+        motions.extend(chunk_motions)
+        seen_texts.update(_normalise_motion_text(m) for m in chunk_motions)
+
+    if failed_chunks:
+        return {**record, "stated_date": stated_date, "motions": None,
+                "failed_chunks": failed_chunks, "chunk_count": total}
     return {**record, "stated_date": stated_date, "motions": motions}
 
 
