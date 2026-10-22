@@ -27,7 +27,7 @@ _SYSTEM_PROMPT = (
 )
 
 
-def build_user_prompt(record, part=None, total=None) -> str:
+def build_user_prompt(record, part=None, total=None, text=None) -> str:
     if part is None:
         header = ("Extract the motions from these minutes "
                   f"(municipal district {record.get('municipal_district')}, "
@@ -39,7 +39,8 @@ def build_user_prompt(record, part=None, total=None) -> str:
                   f"meeting date {record.get('meeting_date')}). "
                   "Only extract complete motions fully contained in this part; "
                   "ignore any motion that is cut off at the start or end.")
-    return f"{header}\n\n{record['text']}"
+    body = record["text"] if text is None else text
+    return f"{header}\n\n{body}"
 
 
 def _normalise_motion_text(motion) -> str:
@@ -57,8 +58,8 @@ def extract_one(record, api_fn=None, model=None, effort=None):
     failed_chunks = []
 
     for index, chunk in enumerate(chunks, start=1):
-        prompt = (build_user_prompt(record, index, total) if total > 1
-                  else build_user_prompt(record))
+        prompt = (build_user_prompt(record, index, total, text=chunk)
+                  if total > 1 else build_user_prompt(record))
         result = extract_json(_SYSTEM_PROMPT, prompt, api_fn=api_fn,
                               model=model, effort=effort)
         payload_motions = result.get("motions") if isinstance(result, dict) else None

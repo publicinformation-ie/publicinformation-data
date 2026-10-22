@@ -129,7 +129,12 @@ def test_short_doc_makes_exactly_one_call_with_the_current_prompt():
                     return_value={"motions": []}) as m:
         extract_one(doc)
     assert m.call_count == 1
-    assert m.call_args.args[1] == build_user_prompt(doc)
+    prompt = m.call_args.args[1]
+    assert prompt.startswith(
+        "Extract the motions from these minutes "
+        "(municipal district Navan, meeting date 2024-07-08).\n\n"
+    )
+    assert prompt.split("\n\n", 1)[1] == doc["text"]
 
 
 def test_exactly_max_chars_makes_exactly_one_call():
@@ -148,6 +153,9 @@ def test_large_doc_calls_once_per_chunk_and_merges_in_order():
                     side_effect=payloads) as m:
         record = extract_one(doc)
     assert m.call_count == len(split_text(text)) == 3
+    bodies = [call.args[1].split("\n\n", 1)[1] for call in m.call_args_list]
+    assert bodies == split_text(text)
+    assert all(len(body) <= MAX_CHUNK_CHARS for body in bodies)
     assert [x["motion_text"] for x in record["motions"]] == ["m1", "m2", "m3"]
 
 
