@@ -70,11 +70,20 @@ def canonicalize_records(input_records, authorities, body_id=None, errors_out=No
             })
             continue
         motions = record.get("motions")
-        if not motions:            # None (failed LLM) or [] (empty document)
+        if not motions:            # None (failed/skipped LLM) or [] (empty document)
+            skip_reason = record.get("skip_reason")
+            context = {"public_body_id": bid, "file_url": record.get("file_url")}
+            if skip_reason:
+                context["skip_reason"] = skip_reason
+                error_type = "SkippedDocument"
+                error_message = f"document skipped: {skip_reason}"
+            else:
+                error_type = "NoMotionsExtracted"
+                error_message = "document produced no motions"
             errors.append({
-                "error_type": "NoMotionsExtracted",
-                "error_message": "document produced no motions",
-                "context": {"public_body_id": bid, "file_url": record.get("file_url")},
+                "error_type": error_type,
+                "error_message": error_message,
+                "context": context,
             })
             continue
         meeting_date = record.get("meeting_date")

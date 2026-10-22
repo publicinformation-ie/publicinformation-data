@@ -102,3 +102,14 @@ def test_canonicalize_meeting_type_council_when_district_null():
     canonical, _ = canonicalize_records(records, authorities, "1511")
     assert canonical[0]["municipal_district"] is None
     assert canonical[0]["meeting_type"] == "council"
+
+
+def test_canonicalize_skipped_document_errors_with_reason():
+    authorities = {"1511": {"slug": "meath", "name": "Meath County Council"}}
+    rec = _motion_record()
+    rec["motions"] = None
+    rec["skip_reason"] = "ce_recommendation_schedule"
+    canonical, errors = canonicalize_records([rec], authorities, "1511")
+    assert canonical == []
+    assert [e["error_type"] for e in errors] == ["SkippedDocument"]
+    assert errors[0]["context"]["skip_reason"] == "ce_recommendation_schedule"

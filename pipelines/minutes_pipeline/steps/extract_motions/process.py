@@ -10,6 +10,10 @@ from lib.file_utils import append_error, read_json, write_json, write_status, In
 from lib.llm_extract import extract_json
 
 from steps.extract_motions.chunking import split_text
+from steps.extract_motions.guards import (
+    detect_ce_schedule,
+    detect_procedural_dump,
+)
 
 STEP_NAME = "extract_motions"
 
@@ -49,7 +53,14 @@ def _normalise_motion_text(motion) -> str:
 
 def extract_one(record, api_fn=None, model=None, effort=None):
     """Extract motions, chunking documents over MAX_CHUNK_CHARS. One failed
-    chunk fails the whole document (no partial motions)."""
+    chunk fails the whole document (no partial motions). Two deterministic
+    guards quarantine extreme CE schedules and procedural acceptance dumps."""
+    schedule = detect_ce_schedule(record.get("text"))
+    if schedule is not None:
+        return {**record, "stated_date": None, "motions": None,
+                "skip_reason": "ce_recommendation_schedule",
+                "guard_evidence": schedule}
+
     chunks = split_text(record.get("text") or "")
     total = len(chunks)
     motions = []
@@ -79,6 +90,11 @@ def extract_one(record, api_fn=None, model=None, effort=None):
     if failed_chunks:
         return {**record, "stated_date": stated_date, "motions": None,
                 "failed_chunks": failed_chunks, "chunk_count": total}
+    dump = detect_procedural_dump(motions)
+    if dump is not None:
+        return {**record, "stated_date": stated_date, "motions": None,
+                "skip_reason": "procedural_acceptance_dump",
+                "chunk_count": total, "guard_evidence": dump}
     return {**record, "stated_date": stated_date, "motions": motions}
 
 
@@ -104,6 +120,7 @@ def process(input_data, step_dir, writer, verbose=False, max_workers=2, api_fn=N
         for future in as_completed(futures):
             file_url, record, exc, failed = future.result()
             if exc is not None or failed:
+                skip_reason = (record or {}).get("skip_reason")
                 context = {"file_url": file_url,
                            "public_body_id": record["public_body_id"] if record else None}
                 if record is not None:
@@ -111,12 +128,24 @@ def process(input_data, step_dir, writer, verbose=False, max_workers=2, api_fn=N
                         context["failed_chunks"] = record["failed_chunks"]
                     if record.get("chunk_count"):
                         context["chunk_count"] = record["chunk_count"]
+                    if skip_reason:
+                        context["skip_reason"] = skip_reason
+                    if record.get("guard_evidence"):
+                        context["guard_evidence"] = record["guard_evidence"]
+                if skip_reason:
+                    error_type = "MotionExtractionSkipped"
+                    error_message = f"Skipped by guard: {skip_reason}"
+                elif exc is not None:
+                    error_type = type(exc).__name__
+                    error_message = str(exc)
+                else:
+                    error_type = "MotionExtractionError"
+                    error_message = "LLM returned unparseable/empty motions JSON"
                 append_error(step_dir, {
                     "step": STEP_NAME,
                     "timestamp": datetime.now(timezone.utc).isoformat(),
-                    "error_type": (type(exc).__name__ if exc else "MotionExtractionError"),
-                    "error_message": (str(exc) if exc else
-                                      "LLM returned unparseable/empty motions JSON"),
+                    "error_type": error_type,
+                    "error_message": error_message,
                     "context": context,
                 })
                 if record is not None:

@@ -14,7 +14,7 @@ The authoritative step order is defined in [`pipeline.json`](pipeline.json). Ste
 | 4 | [`find_minutes_files`](steps/find_minutes_files/) | Crawls each minutes page (following year links one level deep), collecting links to minutes PDFs with a deterministic `meeting_date` where derivable. |
 | 5 | [`transform_minutes_files`](steps/transform_minutes_files/) | Downloads each PDF and extracts prose text with pdfplumber (image-only scans yield empty text). |
 | 6 | [`ocr_minutes_files`](steps/ocr_minutes_files/) | OCRs empty-text records with Tesseract (pymupdf render + pytesseract); passes the rest through unchanged. |
-| 7 | [`extract_motions`](steps/extract_motions/) | One LLM request per chunk (documents ≤ 80,000 characters are one chunk) via the shared `src/lib/llm_extract.py`, returning `{"motions": [{motion_text, proposer, seconder, status_label}, …], "meeting_date": <LLM guess or null>}`; chunk results merge in order and the LLM's first non-null date is carried forward as `stated_date`. Reads `ocr_minutes_files/output.json`. |
+| 7 | [`extract_motions`](steps/extract_motions/) | One LLM request per chunk (documents ≤ 80,000 characters are one chunk) via the shared `src/lib/llm_extract.py`, returning `{"motions": [{motion_text, proposer, seconder, status_label}, …], "meeting_date": <LLM guess or null>}`; chunk results merge in order and the LLM's first non-null date is carried forward as `stated_date`. A two-stage guard skips extreme CE-recommendation schedules before the LLM call and quarantines procedural acceptance dumps after extraction (`motions: null`, `skip_reason`, `guard_evidence`). Reads `ocr_minutes_files/output.json`. |
 | 8 | [`resolve_meeting_date`](steps/resolve_meeting_date/) | Deterministic per-document date resolution: a full date from `find_minutes_files`, else an LLM `stated_date` that parses to a full day, else a `<day> <Month>` from the document header combined with the `<Month> <YYYY>` in the link text (month cross-checked; the URL folder is never a year source). Unresolvable + has motions → `UnresolvedMeetingDate`. |
 | 9 | [`canonicalize_motions`](steps/canonicalize_motions/) | Deterministic fan-in: maps status to the closed set, resolves the composite id `<slug>/<meeting_date>/m<NNN>`, dedupes, classifies meeting type. |
 | 10 | [`export_motions`](steps/export_motions/) | Groups by authority and writes `public/motions/<slug>.json` plus `public/motions/index.json`. |
@@ -52,7 +52,7 @@ uv run python pipelines/minutes_pipeline/status.py --all
 uv run python pipelines/minutes_pipeline/status.py --all --csv
 ```
 
-Columns: per-step body record count, step completion time, body error count, plus stage signals (`website=MISSING`, `empty_text=`, `motions_null=`/`motions_extracted=`, `date_unresolved=`). Errors are attributed via `errors.json → context.public_body_id`, grouped by type with an example `file_url` each.
+Columns: per-step body record count, step completion time, body error count, plus stage signals (`website=MISSING`, `empty_text=`, `motions_null=`/`skipped=`/`motions_extracted=`, `date_unresolved=`). Errors are attributed via `errors.json → context.public_body_id`, grouped by type with an example `file_url` each.
 
 Exit codes: `0` = flows end to end (≥1 motion exported), `1` = runs dry (first zero-record step is named — fix there first), `2` = unknown body or missing authority output. Drop-offs between consecutive stages (e.g. files found but none transformed) are flagged as warnings. `--all` always exits `0` on success (`2` on data error); its `DRY_AT` column carries the per-body verdict (`flowing` or the short step label).
 
@@ -68,6 +68,7 @@ Aligns with the repo-wide data-handling principle — never guess, silently null
 - Unresolvable `meeting_date` on a document that carried motions → `UnresolvedMeetingDate` in `resolve_meeting_date/errors.json` (motion still excluded downstream — no stable id). Such a document's `file_url` also appears in `canonicalize_motions/errors.json` as `MissingMeetingDate` (a defensive second guard), so the same URL is recorded in two steps' error files.
 - A document that produced no motions → `NoMotionsExtracted` in `canonicalize_motions/errors.json` (no `MissingMeetingDate` noise for motion-less scans).
 - Failed/unparseable LLM response → whole document gets `motions: null` **plus** a per-document error (no partial guess).
+- Guard quarantine → `MotionExtractionSkipped` in `extract_motions/errors.json` and `SkippedDocument` in `canonicalize_motions/errors.json`; `motions: null` means nothing is published.
 - A committed authority name missing from the CSO output → **fatal**, not a silent drop.
 
 A run with unresolved reconstruction errors requires human review before publication. The MVP public output under `public/motions/` must be reviewed before merging to `main` (merging is what publishes).

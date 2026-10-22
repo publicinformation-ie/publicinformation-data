@@ -95,8 +95,10 @@ def summarize_step(step_name: str, records: list) -> tuple:
         return n, ""
     if step_name == "extract_motions":
         nulls = sum(1 for r in records if r.get("motions") is None)
+        skipped = sum(1 for r in records if r.get("skip_reason"))
         total = sum(len(r["motions"]) for r in records if isinstance(r.get("motions"), list))
-        return n, f"motions_null={nulls}, motions_extracted={total}" if n else ""
+        return n, (f"motions_null={nulls}, skipped={skipped}, "
+                   f"motions_extracted={total}") if n else ""
     if step_name == "resolve_meeting_date":
         unresolved = sum(1 for r in records if not r.get("meeting_date"))
         return n, f"date_unresolved={unresolved}" if n else ""

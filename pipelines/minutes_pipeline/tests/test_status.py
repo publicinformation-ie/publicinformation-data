@@ -170,3 +170,12 @@ def test_main_all_table_and_csv(tmp_path, capsys):
     assert csv_out.splitlines()[0] == "id,slug," + ",".join(
         body_status.short_label(s) for s in STEPS) + ",errs,dry_at"
     assert any(line.startswith("1456,kildare,") for line in csv_out.splitlines())
+
+
+def test_extract_motions_detail_counts_skipped():
+    records = [rec(1456, motions=None,
+                   skip_reason="ce_recommendation_schedule")]
+    n, detail = body_status.summarize_step("extract_motions", records)
+    assert n == 1
+    assert "motions_null=1" in detail
+    assert "skipped=1" in detail

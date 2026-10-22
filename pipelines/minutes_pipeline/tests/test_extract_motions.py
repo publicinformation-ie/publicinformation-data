@@ -247,3 +247,84 @@ def test_process_logs_failed_chunk_context(tmp_path, make_writer):
     assert errors[0]["context"]["failed_chunks"] == [2]
     assert errors[0]["context"]["chunk_count"] == 3
     assert errors[0]["context"]["file_url"] == item["file_url"]
+
+
+def _ce_schedule_text():
+    return "\n".join(
+        ["Proposed Material Alteration No. 1"] * 500
+        + ["We accept the Chief Executive's recommendation."] * 200
+        + ["On the proposal by Cllr. A."] * 200
+    )
+
+
+def _procedural_dump_payload(n=100, accept_n=80, pma_n=80,
+                             proposer_n=80, seconder_n=80):
+    motions = []
+    for i in range(n):
+        text = "That the council act."
+        if i < accept_n:
+            text += " Accept the Chief Executive's recommendation."
+        if i < pma_n:
+            text += " Proposed Material Alteration No. 1."
+        motions.append({
+            "motion_text": f"{text} Item {i}.",
+            "proposer": "Cllr. Doyle" if i < proposer_n else f"Cllr. Other {i}",
+            "seconder": "Cllr. Sammon" if i < seconder_n else f"Cllr. Other {i}",
+            "status_label": "carried",
+        })
+    return {"motions": motions}
+
+
+def test_extract_one_prefilters_ce_schedule_without_calling_llm():
+    doc = _doc(text=_ce_schedule_text())
+    with mock.patch("steps.extract_motions.process.extract_json",
+                    return_value={"motions": []}) as m:
+        record = extract_one(doc)
+    assert m.call_count == 0
+    assert record["motions"] is None
+    assert record["skip_reason"] == "ce_recommendation_schedule"
+    assert record["guard_evidence"]["proposed_material_alteration_count"] == 500
+
+
+def test_extract_one_quarantines_procedural_acceptance_dump():
+    doc = _doc()
+    with mock.patch("steps.extract_motions.process.extract_json",
+                    return_value=_procedural_dump_payload()) as m:
+        record = extract_one(doc)
+    assert m.call_count == 1
+    assert record["motions"] is None
+    assert record["skip_reason"] == "procedural_acceptance_dump"
+    assert record["guard_evidence"]["motion_count"] == 100
+
+
+def test_extract_one_keeps_a_legitimate_mixed_motion_list():
+    payload = {"motions": [
+        {"motion_text": f"That the council act on item {i}.",
+         "proposer": f"Cllr. {i}", "seconder": "Cllr. B",
+         "status_label": "carried"}
+        for i in range(11)
+    ]}
+    with mock.patch("steps.extract_motions.process.extract_json",
+                    return_value=payload):
+        record = extract_one(_doc())
+    assert record["motions"] == payload["motions"]
+    assert "skip_reason" not in record
+
+
+def test_process_logs_guard_skip_with_evidence(tmp_path, make_writer):
+    item = _doc(text=_ce_schedule_text())
+    with mock.patch("steps.extract_motions.process.extract_json",
+                    return_value={"motions": []}) as m:
+        writer = make_writer(STEP_NAME, key_field="file_url")
+        process({"results": [item]}, tmp_path, writer)
+        writer.finalize()
+    assert m.call_count == 0
+    errors = read_json(tmp_path / "errors.json")
+    assert len(errors) == 1
+    assert errors[0]["error_type"] == "MotionExtractionSkipped"
+    assert errors[0]["context"]["skip_reason"] == "ce_recommendation_schedule"
+    assert errors[0]["context"]["guard_evidence"][
+        "proposed_material_alteration_count"] == 500
+    out = read_json(tmp_path / "output.json")
+    assert out["results"][0]["motions"] is None
+    assert out["results"][0]["skip_reason"] == "ce_recommendation_schedule"
