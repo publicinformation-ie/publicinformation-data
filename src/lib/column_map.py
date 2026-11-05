@@ -103,6 +103,8 @@ _SYNONYMS: dict[str, list[str]] = {
         'C i nneadh Eisithe/\nDecision Made',    # 2022–2024 PDFs
         'C i n n e adh Eisithe/\nDecision Made', # 2025 PDF variant
         'C i n n eadh Eisithe/ Decision Made',   # Galway City 2024 (space not \n, different OCR spacing)
+        # Cork County Council 2025 PDF: OCR splits "Decision" into "D e c ision"
+        'D e c ision date',
         # Fingal County Council: "Decision/Response Sent" is the date the decision was sent,
         # not the decision type. Without these entries the bilingual fallback splits on "/" and
         # picks up "decision" → decision_status, overriding the correct Cineál Cinneadh column.
@@ -162,6 +164,8 @@ _SYNONYMS: dict[str, list[str]] = {
         # Group E — additional PDF variants
         'decisions made',
         'request outcome',
+        # Cork County Council 2025 PDF
+        'decision and exemption applied',
         # Irish-language and reversed variants (Fingal, DLR, Tipperary PDFs)
         'cinneadh',
         'date decision',    # Tipperary PDFs: "Date Decision" is their decision outcome column, not a date

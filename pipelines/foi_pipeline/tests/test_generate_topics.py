@@ -1,6 +1,14 @@
 import pytest
 import json
-from steps.generate_topics.process import process_topics, sort_disclosures, write_public_topics, STEP_NAME, _keyword_matches
+from pathlib import Path
+from steps.generate_topics.process import (
+    process_topics,
+    sort_disclosures,
+    write_public_topics,
+    repo_root_for,
+    STEP_NAME,
+    _keyword_matches,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -259,6 +267,33 @@ def test_write_public_topics_overwrites_existing(tmp_path):
     write_public_topics(results, tmp_path)
     data = json.loads((tmp_path / "public" / "topics.json").read_text())
     assert data[0]["slug"] == "housing"
+
+
+# ---------------------------------------------------------------------------
+# repo_root_for
+# ---------------------------------------------------------------------------
+
+
+def test_repo_root_for_resolves_repository_root():
+    # Steps live at <repo_root>/pipelines/<pipeline>/steps/<step>/
+    step_dir = Path("/repo/pipelines/foi_pipeline/steps/generate_topics")
+    assert repo_root_for(step_dir) == Path("/repo")
+
+
+def test_repo_root_for_is_not_the_pipelines_dir():
+    # Regression: an off-by-one here wrote public/topics.json into
+    # <repo_root>/pipelines/public/ instead of <repo_root>/public/.
+    step_dir = Path("/repo/pipelines/foi_pipeline/steps/generate_topics")
+    assert repo_root_for(step_dir).name != "pipelines"
+
+
+def test_repo_root_for_points_at_this_checkout():
+    from steps.generate_topics.process import STEP_NAME
+
+    step_dir = Path(__file__).resolve().parents[1] / "steps" / STEP_NAME
+    expected = Path(__file__).resolve().parents[3]
+    assert repo_root_for(step_dir) == expected
+    assert (repo_root_for(step_dir) / "pipelines" / "foi_pipeline").is_dir()
 
 
 # ---------------------------------------------------------------------------

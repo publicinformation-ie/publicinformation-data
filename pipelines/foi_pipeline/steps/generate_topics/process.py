@@ -66,6 +66,15 @@ def process_topics(topics_config, disclosures):
     return results
 
 
+def repo_root_for(step_dir):
+    """Resolve the repository root from a step directory.
+
+    Steps live at ``<repo_root>/pipelines/<pipeline>/steps/<step>/``, so the
+    repository root is four levels up from the step directory.
+    """
+    return Path(step_dir).resolve().parents[3]
+
+
 def write_public_topics(results, repo_root):
     public_dir = repo_root / "public"
     public_dir.mkdir(parents=True, exist_ok=True)
@@ -87,8 +96,7 @@ def main():
         sys.exit(0)
 
     steps_dir = step_dir.parent
-    pipeline_dir = steps_dir.parent
-    repo_root = pipeline_dir.parent
+    repo_root = repo_root_for(step_dir)
 
     topics_config_path = step_dir / "topics-config.json"
     topics_config = read_json(topics_config_path)

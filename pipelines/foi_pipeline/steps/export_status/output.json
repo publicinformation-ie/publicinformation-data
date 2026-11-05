@@ -1,7 +1,7 @@
 {
   "metadata": {
     "step": "export_status",
-    "completed_at": "2026-10-18T17:07:11.326556+00:00"
+    "completed_at": "2026-11-05T12:32:49.949444+00:00"
   },
   "public_bodies": [
     {
@@ -135,7 +135,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 653,
+          "valid": 606,
           "errors": 0,
           "status": "success"
         }
@@ -381,7 +381,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 203,
+          "valid": 124,
           "errors": 0,
           "status": "success"
         }
@@ -416,7 +416,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 92,
+          "valid": 88,
           "errors": 0,
           "status": "success"
         }
@@ -592,7 +592,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 391,
+          "valid": 369,
           "errors": 0,
           "status": "success"
         }
@@ -697,7 +697,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 452,
+          "valid": 324,
           "errors": 0,
           "status": "success"
         }
@@ -943,7 +943,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 795,
+          "valid": 794,
           "errors": 0,
           "status": "success"
         }
@@ -1013,7 +1013,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 206,
+          "valid": 58,
           "errors": 0,
           "status": "success"
         }
@@ -1224,7 +1224,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1531,
+          "valid": 1432,
           "errors": 0,
           "status": "success"
         }
@@ -1260,7 +1260,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1778,
+          "valid": 1729,
           "errors": 0,
           "status": "success"
         }
@@ -1366,7 +1366,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 766,
+          "valid": 751,
           "errors": 0,
           "status": "success"
         }
@@ -1543,7 +1543,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1578,
+          "valid": 1568,
           "errors": 0,
           "status": "success"
         }
@@ -1579,7 +1579,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1208,
+          "valid": 1204,
           "errors": 0,
           "status": "success"
         }
@@ -1616,7 +1616,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1595,
+          "valid": 1589,
           "errors": 0,
           "status": "success"
         }
@@ -1688,7 +1688,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 912,
+          "valid": 881,
           "errors": 0,
           "status": "success"
         }
@@ -1725,7 +1725,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 2049,
+          "valid": 2018,
           "errors": 0,
           "status": "success"
         }
@@ -1760,7 +1760,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 726,
+          "valid": 701,
           "errors": 0,
           "status": "success"
         }
@@ -1834,7 +1834,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1332,
+          "valid": 1293,
           "errors": 0,
           "status": "success"
         }
@@ -1906,7 +1906,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1894,
+          "valid": 1828,
           "errors": 0,
           "status": "success"
         }
@@ -1942,7 +1942,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 4597,
+          "valid": 4174,
           "errors": 0,
           "status": "success"
         }
@@ -2015,7 +2015,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 2363,
+          "valid": 2313,
           "errors": 0,
           "status": "success"
         }
@@ -2054,7 +2054,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 622,
+          "valid": 597,
           "errors": 0,
           "status": "success"
         }
@@ -2089,7 +2089,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 773,
+          "valid": 747,
           "errors": 0,
           "status": "success"
         }
@@ -2124,7 +2124,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 2996,
+          "valid": 2077,
           "errors": 0,
           "status": "success"
         }
@@ -2161,7 +2161,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 2754,
+          "valid": 2678,
           "errors": 0,
           "status": "success"
         }
@@ -2234,7 +2234,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1410,
+          "valid": 1404,
           "errors": 0,
           "status": "success"
         }
@@ -2340,7 +2340,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1348,
+          "valid": 634,
           "errors": 0,
           "status": "success"
         }
@@ -2481,7 +2481,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 679,
+          "valid": 662,
           "errors": 0,
           "status": "success"
         }
@@ -2516,7 +2516,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 204,
+          "valid": 199,
           "errors": 0,
           "status": "success"
         }
@@ -2657,7 +2657,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 241,
+          "valid": 239,
           "errors": 0,
           "status": "success"
         }
@@ -2797,7 +2797,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 86,
+          "valid": 79,
           "errors": 0,
           "status": "success"
         }
@@ -2833,7 +2833,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1116,
+          "valid": 645,
           "errors": 0,
           "status": "success"
         }
@@ -3044,7 +3044,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 647,
+          "valid": 646,
           "errors": 0,
           "status": "success"
         }
@@ -3079,7 +3079,7 @@
           "status": "failed"
         },
         "foi_requests": {
-          "valid": 1390,
+          "valid": 1367,
           "errors": 0,
           "status": "success"
         }
@@ -3186,7 +3186,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 219,
+          "valid": 184,
           "errors": 0,
           "status": "success"
         }
@@ -3256,7 +3256,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 767,
+          "valid": 742,
           "errors": 0,
           "status": "success"
         }
@@ -3326,7 +3326,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 128,
+          "valid": 123,
           "errors": 0,
           "status": "success"
         }
@@ -3466,7 +3466,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 212,
+          "valid": 207,
           "errors": 0,
           "status": "success"
         }
@@ -3956,7 +3956,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 30,
+          "valid": 25,
           "errors": 0,
           "status": "success"
         }
@@ -4096,7 +4096,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 687,
+          "valid": 682,
           "errors": 0,
           "status": "success"
         }
@@ -4202,7 +4202,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 438,
+          "valid": 436,
           "errors": 0,
           "status": "success"
         }
@@ -4307,7 +4307,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1017,
+          "valid": 1010,
           "errors": 0,
           "status": "success"
         }
@@ -4342,7 +4342,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 24,
+          "valid": 22,
           "errors": 0,
           "status": "success"
         }
@@ -4588,7 +4588,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 567,
+          "valid": 503,
           "errors": 0,
           "status": "success"
         }
@@ -4659,7 +4659,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1560,
+          "valid": 1552,
           "errors": 0,
           "status": "success"
         }
@@ -4729,7 +4729,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 133,
+          "valid": 125,
           "errors": 0,
           "status": "success"
         }
@@ -4799,7 +4799,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 15,
+          "valid": 4,
           "errors": 0,
           "status": "success"
         }
@@ -4835,7 +4835,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1088,
+          "valid": 985,
           "errors": 0,
           "status": "success"
         }
@@ -4870,7 +4870,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 98,
+          "valid": 94,
           "errors": 0,
           "status": "success"
         }
@@ -5222,7 +5222,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 53,
+          "valid": 52,
           "errors": 0,
           "status": "success"
         }
@@ -5362,7 +5362,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 79,
+          "valid": 65,
           "errors": 0,
           "status": "success"
         }
@@ -5642,7 +5642,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 104,
+          "valid": 96,
           "errors": 0,
           "status": "success"
         }
@@ -5677,7 +5677,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 973,
+          "valid": 959,
           "errors": 0,
           "status": "success"
         }
@@ -5922,7 +5922,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 28,
+          "valid": 27,
           "errors": 0,
           "status": "success"
         }
@@ -5959,7 +5959,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 785,
+          "valid": 774,
           "errors": 0,
           "status": "success"
         }
@@ -5994,7 +5994,7 @@
           "status": "failed"
         },
         "foi_requests": {
-          "valid": 1503,
+          "valid": 1446,
           "errors": 0,
           "status": "success"
         }
@@ -6695,7 +6695,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1362,
+          "valid": 717,
           "errors": 0,
           "status": "success"
         }
@@ -6730,7 +6730,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 92,
+          "valid": 86,
           "errors": 0,
           "status": "success"
         }
@@ -7154,7 +7154,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1973,
+          "valid": 1024,
           "errors": 0,
           "status": "success"
         }
@@ -7749,7 +7749,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 61,
+          "valid": 51,
           "errors": 0,
           "status": "success"
         }
@@ -7995,7 +7995,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 204,
+          "valid": 201,
           "errors": 0,
           "status": "success"
         }
@@ -8207,7 +8207,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1071,
+          "valid": 1027,
           "errors": 0,
           "status": "success"
         }
@@ -8312,7 +8312,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 726,
+          "valid": 708,
           "errors": 0,
           "status": "success"
         }
@@ -8663,7 +8663,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 120,
+          "valid": 6,
           "errors": 0,
           "status": "success"
         }
@@ -8698,7 +8698,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 6,
+          "valid": 5,
           "errors": 0,
           "status": "success"
         }
@@ -8733,7 +8733,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 44,
+          "valid": 41,
           "errors": 0,
           "status": "success"
         }
@@ -8807,7 +8807,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 441,
+          "valid": 437,
           "errors": 0,
           "status": "success"
         }
@@ -8844,7 +8844,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 1019,
+          "valid": 1006,
           "errors": 0,
           "status": "success"
         }
@@ -9614,7 +9614,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 130,
+          "valid": 127,
           "errors": 0,
           "status": "success"
         }
@@ -9684,7 +9684,7 @@
           "status": "success"
         },
         "foi_requests": {
-          "valid": 410,
+          "valid": 292,
           "errors": 0,
           "status": "success"
         }

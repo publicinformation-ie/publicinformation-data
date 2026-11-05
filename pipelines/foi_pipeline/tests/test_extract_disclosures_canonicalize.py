@@ -115,6 +115,16 @@ def test_strip_iso_datetime_does_not_affect_plain_headers():
     assert canonicalize_header("Decision Date") == "decision_date"
 
 
+def test_canonicalize_cork_decision_and_exemption_header():
+    # Cork County Council 2025 disclosure log: outcome column header
+    assert canonicalize_header("Decision and Exemption applied") == "decision_status"
+
+
+def test_canonicalize_ocr_spaced_decision_date_header():
+    # Cork County Council 2025 disclosure log: OCR split "Decision" into "D e c ision"
+    assert canonicalize_header("D e c ision date") == "decision_date"
+
+
 # ── canonicalize_file and process() tests ─────────────────────────────────────
 
 from steps.extract_disclosures_canonicalize.process import (
@@ -150,6 +160,29 @@ def test_canonicalize_file_maps_known_headers():
     assert results[0]["request_description"] == "some request"
     assert results[0]["date_received"] == "2016-01-05"
     assert results[0]["decision_date"] is None
+    assert errors == []
+
+
+def test_canonicalize_file_maps_cork_2025_decision_headers():
+    # Regression: Cork County Council 2025 log uses "Decision and Exemption
+    # applied" for the outcome and an OCR-spaced "D e c ision date" for the
+    # decision date. Both must map so the outcome/date are not silently lost.
+    rows = [
+        [
+            "Date received",
+            "Category of requester",
+            "Subject matter of request (non-personal only)",
+            "Decision and Exemption applied",
+            "D e c ision date",
+        ],
+        ["2025-01-06", "Member of Business/Interest group", "Estates", "Partially granted. 37 (1)", "31/01/2025"],
+    ]
+    results, errors, _ = canonicalize_file({**BASE_META, "rows": rows, "header_row_idx": 0})
+    assert len(results) == 1
+    assert results[0]["decision_status"] == "Partially granted. 37 (1)"
+    assert results[0]["decision_date"] == "31/01/2025"
+    assert "decision_status" not in results[0].get("missing_columns", [])
+    assert "decision_date" not in results[0].get("missing_columns", [])
     assert errors == []
 
 
