@@ -30,7 +30,9 @@ Fetch errors here are frequently `BotChallengeError` (WAF/bot-protection challen
 | `page_hash` | `sha256-<hex>` of the sorted file URL set |
 | `file_count` | Number of file links found (0 on error or no files) |
 
-`dirty_ids.json` — sorted list of body IDs whose pages changed. Consumed by `find_disclosure_files` via `IncrementalWriter`'s `upstream_dirty_path`.
+`dirty_ids.json` — sorted list of body IDs whose pages changed. It accumulates: each run writes `previous ∪ changed this run`, so IDs deferred by a scoped `find_disclosure_files` run (or never yet consumed) are not lost. Only `find_disclosure_files` drains it, via `IncrementalWriter`'s `upstream_dirty_path`. A corrupt file raises `ValueError`.
+
+Scoped runs (`--public-body N`): only that body is fetched; its record replaces (or is appended to) the previous records, all other bodies' records, hashes and `errors.json` entries are kept.
 
 ## Notable files
 
