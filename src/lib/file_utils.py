@@ -55,6 +55,27 @@ def read_dirty_ids(path) -> set[int]:
 
 
 class IncrementalWriter:
+    """Resumable, per-body results writer with dirty-ID propagation.
+
+    Dirty-state rules (per instance). U = upstream dirty IDs (read once in
+    __init__ via read_dirty_ids; empty if the file is absent), T =
+    {target_public_body} if scoped else empty.
+
+    | Run kind               | Evicted        | Deferred (warned) | Consumed |
+    |------------------------|----------------|-------------------|----------|
+    | Unscoped, not forced   | U              | none              | U        |
+    | Scoped (any force)     | T              | U - T             | U & T    |
+    | Unscoped, forced       | none           | none              | none     |
+
+    After finalize(): own dirty file = previous_own | dirty_body_ids | consumed
+    (accumulates; written first). Upstream file = U - consumed, rewritten only
+    if U was non-empty and the path is not the own dirty file. Never removes
+    IDs that were not in U. Corrupt dirty files raise ValueError.
+
+    Single-consumer invariant: each dirty_ids.json is drained by exactly one
+    consumer (the next step, via upstream_dirty_path). Two readers of one file
+    means the first to finalize drains it for both.
+    """
     def __init__(self, output_path, step_name, key_field="public_body_id",
                  force=False, override_path=None, upstream_dirty_path=None,
                  target_public_body=None, target_key=None):
