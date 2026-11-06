@@ -44,7 +44,10 @@ def read_dirty_ids(path) -> set[int]:
     Raises ValueError naming the path otherwise, so a corrupt file is never
     silently treated as empty or mis-read (a dict would yield its keys, a list
     of strings would yield IDs that never match)."""
-    data = read_json(path)
+    try:
+        data = read_json(path)
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Invalid dirty IDs file {path}: not valid JSON ({e})") from e
     if (not isinstance(data, list)
             or not all(isinstance(x, int) and not isinstance(x, bool) for x in data)):
         raise ValueError(f"Invalid dirty IDs file {path}: expected a JSON list of integers")
@@ -61,6 +64,7 @@ class IncrementalWriter:
         self.results = []
         self.processed_keys = set()
         self.dirty_body_ids = set()
+        self._force = force
 
         if ((not force or target_public_body is not None or target_key is not None)
                 and self.output_path.exists()):
@@ -92,6 +96,16 @@ class IncrementalWriter:
             self._evict_keys({target_public_body})
         else:
             self._evict_keys(self._upstream_dirty_ids)
+
+        # IDs this run takes responsibility for: they are removed from the
+        # upstream file and added to our own at finalize(), even if we held
+        # no records for them (so a crash after append() still cascades).
+        if target_public_body is not None:
+            self._consumed_upstream_ids: set = self._upstream_dirty_ids & {target_public_body}
+        elif force:
+            self._consumed_upstream_ids = set()
+        else:
+            self._consumed_upstream_ids = set(self._upstream_dirty_ids)
 
         if target_key is not None:
             # Scoped re-run of one key_field value (e.g. --doc): drop that
@@ -206,6 +220,12 @@ class IncrementalWriter:
         print(".", end="", flush=True)
 
     def finalize(self) -> int:
+        # Single-consumer invariant: each dirty_ids.json is drained by exactly
+        # one consumer (the next step, via --input). If two steps read the same
+        # upstream file, the first to finalize drains it for both.
+        own_path = self.output_path.parent / "dirty_ids.json"
+        # Validate before any write so a corrupt file never gets overwritten.
+        previous_own = read_dirty_ids(own_path) if own_path.exists() else set()
         write_json(
             self.output_path,
             {
@@ -216,7 +236,21 @@ class IncrementalWriter:
                 "results": self.results,
             },
         )
-        write_json(self.output_path.parent / "dirty_ids.json", sorted(self.dirty_body_ids))
+        write_json(own_path, sorted(previous_own | self.dirty_body_ids | self._consumed_upstream_ids))
+        up = self._upstream_dirty_path
+        if self._upstream_dirty_ids and up is not None:
+            if up.resolve() == own_path.resolve():
+                print("Dirty: upstream file is this step's own file; not consuming")
+            else:
+                write_json(up, sorted(self._upstream_dirty_ids - self._consumed_upstream_ids))
+        if self.deferred_dirty_body_ids:
+            ids = sorted(self.deferred_dirty_body_ids)
+            print(
+                f"WARNING: {self.step_name}: {len(ids)} upstream-dirty body ID(s) "
+                f"deferred by this scoped run: {ids}. A later unscoped run may skip "
+                f"this step as up to date; drain them with: "
+                f"process.py --from {self.step_name} --stop-on-error"
+            )
         print()
         return len(self.results)
 

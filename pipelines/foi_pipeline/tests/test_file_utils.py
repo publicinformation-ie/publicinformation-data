@@ -388,7 +388,8 @@ class TestIncrementalWriterDirtyPropagation:
 
     def test_finalize_writes_dirty_ids_json_after_eviction(self, tmp_path):
         output_path = self._output_with(tmp_path, [self._RECORD])
-        dirty_path = tmp_path / "dirty_ids.json"
+        (tmp_path / "upstream").mkdir()
+        dirty_path = tmp_path / "upstream" / "dirty_ids.json"
         write_json(dirty_path, [99])
         w = IncrementalWriter(output_path, "test_step", upstream_dirty_path=dirty_path)
         w.finalize()
@@ -567,3 +568,131 @@ class TestScopedRunUpstreamDirty:
         out, up = self._setup(tmp_path, [2, 3])
         w = IncrementalWriter(out, "s", upstream_dirty_path=up)
         assert {r["public_body_id"] for r in w.results} == {1}
+
+
+class TestDirtyStateLifecycle:
+    def _out(self, tmp_path, ids):
+        out_dir = tmp_path / "out"
+        out_dir.mkdir(exist_ok=True)
+        out = out_dir / "output.json"
+        write_json(out, {"metadata": {}, "results": [{"public_body_id": i} for i in ids]})
+        return out, out_dir / "dirty_ids.json"
+
+    def _up(self, tmp_path, ids):
+        d = tmp_path / "upstream"
+        d.mkdir(exist_ok=True)
+        write_json(d / "dirty_ids.json", ids)
+        return d / "dirty_ids.json"
+
+    def test_finalize_unions_with_previous_dirty_ids(self, tmp_path):
+        out, own = self._out(tmp_path, [7])
+        write_json(own, [5])
+        IncrementalWriter(out, "s", target_public_body=7).finalize()
+        assert read_json(own) == [5, 7]
+
+    def test_consecutive_scoped_runs_keep_both_dirty_ids(self, tmp_path):
+        out, own = self._out(tmp_path, [1, 2])
+        IncrementalWriter(out, "s", target_public_body=1).finalize()
+        IncrementalWriter(out, "s", target_public_body=2).finalize()
+        assert read_json(own) == [1, 2]
+
+    def test_finalize_removes_consumed_ids_from_upstream_file(self, tmp_path):
+        out, own = self._out(tmp_path, [2, 3])
+        up = self._up(tmp_path, [2, 3])
+        IncrementalWriter(out, "s", upstream_dirty_path=up).finalize()
+        assert read_json(up) == []
+        assert read_json(own) == [2, 3]
+
+    def test_scoped_finalize_keeps_deferred_ids_in_upstream_file(self, tmp_path):
+        out, own = self._out(tmp_path, [1, 2, 3])
+        up = self._up(tmp_path, [2, 3])
+        IncrementalWriter(out, "s", upstream_dirty_path=up, target_public_body=1).finalize()
+        assert read_json(up) == [2, 3]
+
+    def test_scoped_finalize_consumes_target_from_upstream_file(self, tmp_path):
+        out, own = self._out(tmp_path, [1, 2])
+        up = self._up(tmp_path, [1, 2])
+        IncrementalWriter(out, "s", upstream_dirty_path=up, target_public_body=1).finalize()
+        assert read_json(up) == [2]
+
+    def test_consumed_id_without_local_records_still_cascades(self, tmp_path):
+        out, own = self._out(tmp_path, [1])
+        up = self._up(tmp_path, [9])
+        IncrementalWriter(out, "s", upstream_dirty_path=up).finalize()
+        assert read_json(up) == []
+        assert 9 in read_json(own)
+
+    def test_crash_after_append_still_cascades_on_rerun(self, tmp_path):
+        out, own = self._out(tmp_path, [4])
+        up = self._up(tmp_path, [4])
+        a = IncrementalWriter(out, "s", upstream_dirty_path=up)
+        a.append([])
+        assert read_json(up) == [4]
+        b = IncrementalWriter(out, "s", upstream_dirty_path=up)
+        assert b.dirty_body_ids == set()
+        b.finalize()
+        assert 4 in read_json(own)
+        assert read_json(up) == []
+
+    def test_upstream_file_untouched_if_finalize_not_reached(self, tmp_path):
+        out, own = self._out(tmp_path, [2])
+        up = self._up(tmp_path, [2])
+        IncrementalWriter(out, "s", upstream_dirty_path=up)
+        assert read_json(up) == [2]
+
+    def test_finalize_does_not_create_missing_upstream_file(self, tmp_path):
+        out, own = self._out(tmp_path, [2])
+        up = tmp_path / "upstream" / "dirty_ids.json"
+        IncrementalWriter(out, "s", upstream_dirty_path=up).finalize()
+        assert not up.exists()
+
+    def test_same_path_upstream_is_not_consumed_or_clobbered(self, tmp_path, capsys):
+        out, own = self._out(tmp_path, [2, 3])
+        write_json(own, [2])
+        w = IncrementalWriter(out, "s", upstream_dirty_path=own)
+        w.dirty_body_ids.add(3)  # as an override would
+        w.finalize()
+        assert read_json(own) == [2, 3]
+        assert "not consuming" in capsys.readouterr().out
+
+    def test_forced_unscoped_run_consumes_nothing(self, tmp_path):
+        out, own = self._out(tmp_path, [2, 3])
+        up = self._up(tmp_path, [2, 3])
+        IncrementalWriter(out, "s", force=True, upstream_dirty_path=up).finalize()
+        assert read_json(up) == [2, 3]
+        assert read_json(own) == []
+
+    def test_forced_scoped_run_follows_scoped_rules(self, tmp_path):
+        out, own = self._out(tmp_path, [1, 2])
+        up = self._up(tmp_path, [1, 2])
+        w = IncrementalWriter(out, "s", force=True, upstream_dirty_path=up,
+                              target_public_body=1)
+        w.finalize()
+        assert read_json(up) == [2]
+        assert 2 in {r["public_body_id"] for r in read_json(out)["results"]}
+
+    def test_corrupt_previous_dirty_file_raises(self, tmp_path):
+        out, own = self._out(tmp_path, [2])
+        write_json(own, {"a": 1})
+        up = self._up(tmp_path, [2])
+        w = IncrementalWriter(out, "s", upstream_dirty_path=up)
+        with pytest.raises(ValueError, match="dirty_ids.json"):
+            w.finalize()
+        assert "completed_at" not in read_json(out)["metadata"]
+        assert read_json(up) == [2]
+
+    def test_read_dirty_ids_invalid_json_names_path(self, tmp_path):
+        from lib.file_utils import read_dirty_ids
+        p = tmp_path / "dirty_ids.json"
+        p.write_text("{not json")
+        with pytest.raises(ValueError, match="dirty_ids.json"):
+            read_dirty_ids(p)
+
+    def test_scoped_finalize_warns_about_deferred_ids(self, tmp_path, capsys):
+        out, own = self._out(tmp_path, [1, 2, 3])
+        up = self._up(tmp_path, [2, 3])
+        IncrementalWriter(out, "my_step", upstream_dirty_path=up,
+                          target_public_body=1).finalize()
+        o = capsys.readouterr().out
+        assert "WARNING" in o and "my_step" in o and "2" in o and "3" in o
+        assert "--from my_step" in o
