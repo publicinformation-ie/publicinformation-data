@@ -290,5 +290,13 @@
     "disclosure_page_url": "https://www.gov.ie/en/department-of-education/collections/foi-disclosure-logs/",
     "source_method": "manual",
     "overridden": true
+  },
+  {
+    "public_body_id": 1024,
+    "name": "Aquaculture Licences Appeals Board",
+    "foi_page_url": "https://www.alab.ie/informationrequests/instructionsonfoiaierequests/",
+    "disclosure_page_url": "https://www.alab.ie/informationrequests/foireturns/",
+    "source_method": "manual",
+    "overridden": true
   }
 ]
