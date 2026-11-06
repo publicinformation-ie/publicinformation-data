@@ -38,6 +38,19 @@ def write_json(path, data):
         raise
 
 
+def read_dirty_ids(path) -> set[int]:
+    """Read a dirty_ids.json file, validating it is a JSON list of integers.
+
+    Raises ValueError naming the path otherwise, so a corrupt file is never
+    silently treated as empty or mis-read (a dict would yield its keys, a list
+    of strings would yield IDs that never match)."""
+    data = read_json(path)
+    if (not isinstance(data, list)
+            or not all(isinstance(x, int) and not isinstance(x, bool) for x in data)):
+        raise ValueError(f"Invalid dirty IDs file {path}: expected a JSON list of integers")
+    return set(data)
+
+
 class IncrementalWriter:
     def __init__(self, output_path, step_name, key_field="public_body_id",
                  force=False, override_path=None, upstream_dirty_path=None,
@@ -59,11 +72,26 @@ class IncrementalWriter:
                 self.results = []
                 self.processed_keys = set()
 
-        if upstream_dirty_path and Path(upstream_dirty_path).exists():
-            self._evict_upstream_dirty(Path(upstream_dirty_path))
+        self._upstream_dirty_path = Path(upstream_dirty_path) if upstream_dirty_path else None
+        self._upstream_dirty_ids: set = set()
+        self.deferred_dirty_body_ids: set = set()
+        if self._upstream_dirty_path is not None and self._upstream_dirty_path.exists():
+            self._upstream_dirty_ids = read_dirty_ids(self._upstream_dirty_path)
 
         if target_public_body is not None:
+            # Scoped run: only the target is reprocessed; other upstream-dirty
+            # bodies are deferred (left pending) rather than evicted.
+            self.deferred_dirty_body_ids = self._upstream_dirty_ids - {target_public_body}
+            # (U ∩ {target} is a subset of the target eviction below.)
+            if self.deferred_dirty_body_ids:
+                print(
+                    f"Scoped: deferred {len(self.deferred_dirty_body_ids)} upstream-dirty "
+                    f"body ID(s) (not evicted): "
+                    f"{', '.join(str(k) for k in sorted(self.deferred_dirty_body_ids))}"
+                )
             self._evict_keys({target_public_body})
+        else:
+            self._evict_keys(self._upstream_dirty_ids)
 
         if target_key is not None:
             # Scoped re-run of one key_field value (e.g. --doc): drop that
@@ -81,9 +109,6 @@ class IncrementalWriter:
 
         if override_path and Path(override_path).exists():
             self._load_overrides(Path(override_path))
-
-    def _evict_upstream_dirty(self, dirty_path):
-        self._evict_keys(set(read_json(dirty_path)))
 
     def _evict_keys(self, body_ids: set):
         """Remove all records whose public_body_id is in body_ids from

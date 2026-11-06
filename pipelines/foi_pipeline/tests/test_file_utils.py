@@ -505,3 +505,65 @@ class TestIncrementalWriterTargetBody:
         assert "a.pdf" not in w.processed_keys
         assert "b.pdf" not in w.processed_keys
         assert "c.pdf" in w.processed_keys
+
+
+class TestDirtyIdsValidation:
+    def test_read_dirty_ids_accepts_int_list(self, tmp_path):
+        from lib.file_utils import read_dirty_ids
+        p = tmp_path / "dirty_ids.json"
+        write_json(p, [3, 1, 3])
+        assert read_dirty_ids(p) == {1, 3}
+
+    @pytest.mark.parametrize("payload", [{"a": 1}, ["1"], [True], 5])
+    def test_read_dirty_ids_rejects_dict_strings_bools_scalar(self, tmp_path, payload):
+        from lib.file_utils import read_dirty_ids
+        p = tmp_path / "dirty_ids.json"
+        write_json(p, payload)
+        with pytest.raises(ValueError, match="dirty_ids.json"):
+            read_dirty_ids(p)
+
+    @pytest.mark.parametrize("payload", [{"a": 1}, ["1"]])
+    def test_corrupt_upstream_dirty_file_raises(self, tmp_path, payload):
+        output_path = tmp_path / "output.json"
+        write_json(output_path, {"metadata": {}, "results": [{"public_body_id": 1}]})
+        up = tmp_path / "upstream"
+        up.mkdir()
+        write_json(up / "dirty_ids.json", payload)
+        with pytest.raises(ValueError, match="dirty_ids.json"):
+            IncrementalWriter(output_path, "s", upstream_dirty_path=up / "dirty_ids.json")
+
+
+class TestScopedRunUpstreamDirty:
+    def _setup(self, tmp_path, dirty):
+        output_path = tmp_path / "output.json"
+        write_json(output_path, {"metadata": {}, "results": [
+            {"public_body_id": 1}, {"public_body_id": 2}, {"public_body_id": 3}]})
+        up = tmp_path / "upstream"
+        up.mkdir()
+        write_json(up / "dirty_ids.json", dirty)
+        return output_path, up / "dirty_ids.json"
+
+    def test_scoped_run_does_not_evict_other_upstream_dirty_bodies(self, tmp_path):
+        out, up = self._setup(tmp_path, [2, 3])
+        w = IncrementalWriter(out, "s", upstream_dirty_path=up, target_public_body=1)
+        assert {r["public_body_id"] for r in w.results} == {2, 3}
+        assert w.processed_keys == {2, 3}
+
+    def test_scoped_run_reports_deferred_dirty_bodies(self, tmp_path, capsys):
+        out, up = self._setup(tmp_path, [2, 3])
+        w = IncrementalWriter(out, "s", upstream_dirty_path=up, target_public_body=1)
+        assert w.deferred_dirty_body_ids == {2, 3}
+        assert w._upstream_dirty_ids == {2, 3}
+        assert w._upstream_dirty_path == up
+        stdout = capsys.readouterr().out
+        assert "deferred" in stdout and "2" in stdout and "3" in stdout
+
+    def test_scoped_run_evicts_target_even_if_not_dirty(self, tmp_path):
+        out, up = self._setup(tmp_path, [2])
+        w = IncrementalWriter(out, "s", upstream_dirty_path=up, target_public_body=1)
+        assert {r["public_body_id"] for r in w.results} == {2, 3}
+
+    def test_unscoped_run_still_evicts_all_upstream_dirty(self, tmp_path):
+        out, up = self._setup(tmp_path, [2, 3])
+        w = IncrementalWriter(out, "s", upstream_dirty_path=up)
+        assert {r["public_body_id"] for r in w.results} == {1}
