@@ -151,6 +151,7 @@ uv run python process.py --from validate_websites --public-body 1001 --stop-on-e
 - **`dirty_ids.json` accumulates.** Each run writes `previous ∪ marked this run ∪ consumed upstream IDs`. It is drained only by the *next* step, and only if that step passes `upstream_dirty_path` to `IncrementalWriter`. Single-consumer invariant: each `dirty_ids.json` must be read by exactly one consumer; if two steps read the same file, whichever finalizes first drains it for both.
 - **Unread files grow.** Steps whose successor does not opt in (`resolve_website_urls`, `validate_websites`, `find_foi_pages`, `find_foi_pages_search`, `check_foi_pages`, `find_disclosure_pages`, `extract_disclosures_normalize_rows`) keep a `dirty_ids.json` that is never read and grows over time. That is not pending work; do not use it for triage.
 - **Unscoped forced runs neither evict nor consume.** Forced steps mark nothing dirty, so a windowed `--from A --to B --force` run does not signal its reprocessed bodies to steps after B. Run a forced window through to the end of the pipeline.
+- **Unscoped `--force` consumes nothing.** `fingerprint_disclosure_pages`' dirty IDs therefore stay pending, and the next ordinary run reprocesses every body in that queue. This is the safe direction: work is redone, none is lost.
 - **`fingerprint_disclosure_pages`** keeps pending dirty IDs and other bodies' records and hashes on scoped runs (it previously overwrote both).
 - A corrupt or non-list `dirty_ids.json` raises `ValueError` naming the path rather than being silently reset.
 

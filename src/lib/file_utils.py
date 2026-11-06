@@ -67,6 +67,8 @@ class IncrementalWriter:
     | Scoped (any force)     | T              | U - T             | U & T    |
     | Unscoped, forced       | none           | none              | none     |
 
+    Caveat: a forced run with target_key set still evicts upstream-dirty keys.
+
     After finalize(): own dirty file = previous_own | dirty_body_ids | consumed
     (accumulates; written first). Upstream file = U - consumed, rewritten only
     if U was non-empty and the path is not the own dirty file. Never removes

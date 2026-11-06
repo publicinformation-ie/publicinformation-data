@@ -241,3 +241,13 @@ def test_scoped_forced_run_preserves_other_bodies(requests_mock, tmp_path):
     assert [r["public_body_id"] for r in res] == [1001, 1002, 1003]
     assert res[0]["page_hash"] == "sha256-x" and res[2]["page_hash"] == "sha256-y"
     assert json.loads((d / "dirty_ids.json").read_text()) == [1002]
+
+
+def test_scoped_run_with_unreadable_previous_output_exits(requests_mock, tmp_path, capsys):
+    _mock_all(requests_mock)
+    d = _setup(tmp_path)
+    (d / "output.json").write_text("{not json")
+    with pytest.raises(SystemExit) as exc:
+        _run(tmp_path, "--public-body", "1002")
+    assert exc.value.code == 1
+    assert str(d / "output.json") in capsys.readouterr().err

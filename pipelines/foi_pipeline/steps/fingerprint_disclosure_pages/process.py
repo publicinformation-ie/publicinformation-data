@@ -125,7 +125,13 @@ def main():
                 if "public_body_id" in r and "page_hash" in r:
                     preserved_hashes[r["public_body_id"]] = r["page_hash"]
         except (json.JSONDecodeError, KeyError):
-            pass  # First run or corrupt file — treat as empty
+            if args.public_body is not None:
+                # Scoped run would overwrite every other body's records/hashes
+                print(f"Fatal: could not read previous output {output_path}; "
+                      "refusing scoped run (fix or delete it, or run unscoped)",
+                      file=sys.stderr)
+                sys.exit(1)
+            # Unscoped: first run or corrupt file — treat as empty
 
     # Pending dirty IDs from earlier runs (drained only by find_disclosure_files).
     # Read before writing anything; raises ValueError if corrupt.
