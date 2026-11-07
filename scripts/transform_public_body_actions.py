@@ -58,13 +58,14 @@ ACTION_FIELDS = [
     "original_deadline_start", "original_deadline_end",
     "original_deadline_precision", "original_deadline_confidence",
     "original_timeline_raw", "lead", "support", "output", "source_page",
-    "source_ref",
+    "source_ref", "action_text_clean", "original_deadline_label",
+    "original_deadline_milestones",
 ]
 OBSERVATION_FIELDS = [
     "action_id", "report_slug", "report_title", "as_of", "status",
     "reported_deadline_raw", "reported_deadline_start", "reported_deadline_end",
     "reported_deadline_precision", "progress_text", "asi", "source_page",
-    "source_ref",
+    "source_ref", "progress_text_clean",
 ]
 RELATIONSHIP_FIELDS = [
     "from_action_id", "to_action_id", "to_plan_hint", "to_action_number",
@@ -72,6 +73,8 @@ RELATIONSHIP_FIELDS = [
 ]
 
 CONFIDENCES = ("stated", "interpreted")
+OPEN_ENDED_PRECISIONS = ("annual", "ongoing")
+DATED_PRECISIONS = ("day", "month", "quarter", "year", "range")
 
 
 class InvariantViolation(Exception):
@@ -194,8 +197,27 @@ def check_invariants(actions, observations, relationships, expectations,
             violations.append(
                 f"{action['action_id']}: original_deadline_precision "
                 f"{precision!r} is outside {PRECISIONS}")
+        if precision is None:
+            violations.append(
+                f"{action['action_id']}: original_deadline_precision is null")
+        elif precision in OPEN_ENDED_PRECISIONS:
+            if (action["original_deadline_start"] is not None
+                    or action["original_deadline_end"] is not None):
+                violations.append(
+                    f"{action['action_id']}: open-ended precision "
+                    f"{precision!r} must not have deadline bounds")
+        elif precision in DATED_PRECISIONS:
+            if action["original_deadline_start"] is None:
+                violations.append(
+                    f"{action['action_id']}: dated precision {precision!r} "
+                    f"must have a start")
     for observation in observations:
         precision = observation["reported_deadline_precision"]
+        if observation["reported_deadline_raw"] and precision is None:
+            violations.append(
+                f"observation {observation['action_id']}/"
+                f"{observation['report_slug']}: reported_deadline_precision "
+                f"is null but reported_deadline_raw is non-empty")
         if precision is not None and precision not in PRECISIONS:
             violations.append(
                 f"observation {observation['action_id']}/"
@@ -209,13 +231,28 @@ def check_invariants(actions, observations, relationships, expectations,
             violations.append(
                 f"{action['action_id']}: original_deadline_confidence "
                 f"{confidence!r} is outside {CONFIDENCES}")
-        has_deadline = action["original_deadline_start"] is not None
-        if has_deadline != (confidence is not None):
+        has_precision = action["original_deadline_precision"] is not None
+        if has_precision != (confidence is not None):
             violations.append(
                 f"{action['action_id']}: original_deadline_confidence must be "
-                f"null if and only if original_deadline_start is null "
-                f"(confidence={confidence!r}, start="
-                f"{action['original_deadline_start']!r})")
+                f"null if and only if original_deadline_precision is null "
+                f"(confidence={confidence!r}, precision="
+                f"{action['original_deadline_precision']!r})")
+
+    # 8. Every action carries a single-line deadline label.
+    for action in actions:
+        label = action.get("original_deadline_label")
+        if not label or "\n" in label:
+            violations.append(
+                f"{action['action_id']}: original_deadline_label must be "
+                f"non-empty and single-line (got {label!r})")
+
+    # 9. Clean action text is present whenever the raw text is.
+    for action in actions:
+        if action.get("action_text") and not action.get("action_text_clean"):
+            violations.append(
+                f"{action['action_id']}: action_text_clean is empty but "
+                f"action_text is not")
 
     return violations
 
