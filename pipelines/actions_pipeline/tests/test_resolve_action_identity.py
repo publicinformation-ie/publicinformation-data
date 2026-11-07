@@ -3,6 +3,7 @@ from steps.resolve_action_identity.process import (
     build_observations,
     column_value,
     mint_action_id,
+    resolve_deadline,
     resolve_original_deadline,
     strip_leading_ordinal,
 )
@@ -117,9 +118,16 @@ def test_a_cell_whose_only_years_are_all_in_ranges_yields_nothing():
     assert resolve_original_deadline("", "Deliver IMMAC 2025-2030") == (None, None)
 
 
-def test_a_cell_with_no_date_yields_null_fields_and_no_confidence():
-    assert resolve_original_deadline("", "Annual campaigns") == (None, None)
-    assert resolve_original_deadline("", "Ongoing") == (None, None)
+def test_an_open_ended_cell_parses_with_a_stated_open_ended_precision():
+    for cell, precision in (("Ongoing", "ongoing"), ("Annual campaigns", "annual")):
+        result = resolve_deadline("", cell)
+        assert result.parsed["precision"] == precision
+        assert result.parsed["start"] is None
+        assert result.confidence == "stated"
+
+
+def test_as_soon_as_practicable_is_still_not_a_deadline():
+    assert resolve_original_deadline("", "As soon as practicable") == (None, None)
 
 
 def test_unlabelled_years_in_a_multi_year_cell_are_not_guessed_at():
@@ -133,6 +141,68 @@ def test_a_real_deadline_column_wins_over_the_timeline_cell():
     parsed, confidence = resolve_original_deadline("2029", "2024: X. 2025: Y.")
     assert confidence == "stated"
     assert parsed["year"] == 2029
+
+
+# --- deadline label and milestones ------------------------------------------
+
+def test_an_unlabelled_final_milestone_is_the_deadline():
+    result = resolve_deadline(
+        "", "2023: 41 additional carriages placed into passenger service. "
+            "2025 95 DART+ carriages delivered.")
+    assert (result.parsed["year"], result.label, result.confidence) == (
+        2025, "2025", "interpreted")
+
+
+def test_incidental_years_without_a_milestone_label_are_refused():
+    result = resolve_deadline(
+        "", "Building on the 2021 review and the 2022 consultation")
+    assert result.parsed is None
+    assert result.label == ""
+
+
+def test_the_label_is_short_and_the_milestones_keep_the_prose():
+    cell = ("2022: Report developed. 2023: First report published and annual "
+            "reports published thereafet r.")
+    result = resolve_deadline("", cell)
+    assert result.label == "2023"
+    assert result.milestones == cell
+
+
+def test_a_bare_date_has_no_separate_milestones():
+    result = resolve_deadline("", "Q4 2024")
+    assert result.label == "Q4 2024"
+    assert result.milestones == ""
+
+
+def test_an_annual_prefix_does_not_hide_a_dated_milestone():
+    result = resolve_deadline(
+        "", "Annual: Train 5,000 pupils. 2022: Programme commenced.")
+    assert result.parsed["year"] == 2022
+    assert result.label == "2022"
+
+
+def test_a_deadline_column_wins_and_interim_milestones_are_kept():
+    actions, _ = build_actions([plan_record([plan_action(
+        "1. Do a thing", raw_date="2029",
+        columns={"INTERIM MILESTONES": "Q2 2026 - Preferred model agreed."})])], {})
+    assert actions[0]["original_deadline_label"] == "2029"
+    assert actions[0]["original_deadline_milestones"] == (
+        "Q2 2026 - Preferred model agreed.")
+    assert actions[0]["original_deadline_raw"] == "2029"
+
+
+def test_an_annual_cell_gets_an_annual_label_and_no_start():
+    result = resolve_deadline("", "Annual campaigns")
+    assert result.parsed["precision"] == "annual"
+    assert result.label == "Annual"
+    assert result.confidence == "stated"
+    assert result.parsed["start"] is None
+
+
+def test_a_contract_name_range_is_still_not_a_deadline():
+    result = resolve_deadline(
+        "", "2024: Existing IMMAC reviewed. 2025: IMMAC 2025-2030 agreed.")
+    assert result.parsed["year"] == 2025
 
 
 def test_the_raw_timeline_cell_is_preserved_in_every_case():
@@ -159,16 +229,22 @@ def test_bel_artifacts_are_stripped_from_the_published_timeline_raw():
 def test_an_unparseable_timeline_logs_a_date_parse_error():
     _, errors = build_actions(
         [plan_record([plan_action("1. Do a thing",
-                                  columns={"TIMELINE & OUTPUT": "Annual campaigns"})])], {})
+                                  columns={"TIMELINE & OUTPUT": "As soon as practicable"})])], {})
     assert [e["error_type"] for e in errors] == ["DateParseError"]
 
 
-def test_confidence_is_null_exactly_when_the_deadline_is_null():
+def test_confidence_is_null_exactly_when_no_deadline_resolved():
+    actions, _ = build_actions(
+        [plan_record([plan_action("1. Do a thing",
+                                  columns={"TIMELINE & OUTPUT": "As soon as practicable"})])], {})
+    assert actions[0]["original_deadline_start"] is None
+    assert actions[0]["original_deadline_confidence"] is None
+
     actions, _ = build_actions(
         [plan_record([plan_action("1. Do a thing",
                                   columns={"TIMELINE & OUTPUT": "Ongoing"})])], {})
     assert actions[0]["original_deadline_start"] is None
-    assert actions[0]["original_deadline_confidence"] is None
+    assert actions[0]["original_deadline_confidence"] == "stated"
 
 
 # --- columns ----------------------------------------------------------------
