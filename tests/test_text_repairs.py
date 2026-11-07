@@ -39,3 +39,24 @@ def test_find_repairs_reports_offsets():
 def test_the_mapping_has_no_duplicate_sources():
     sources = [before.lower() for before, _ in REPAIRS]
     assert len(sources) == len(set(sources))
+
+
+def test_url_fragment_with_percent_encoding_untouched():
+    frag = "text=The%20guiding,a betet r%2C cleaner"
+    assert repair_text(frag) == frag
+    assert repair_text("a betet r plan") == "a better plan"
+
+
+def test_replacement_casing_follows_match():
+    assert repair_text("the statoi n") == "the station"
+    assert repair_text("Statoi n") == "Station"
+    assert repair_text("STATOI N") == "STATION"
+    assert repair_text("COMMITET E") == "COMMITTEE"
+    assert repair_text("a commitet e met") == "a committee met"
+
+
+def test_construction_and_evaluation_repaired():
+    assert repair_text("Q4 2027 – Constructoi n commenced") == (
+        "Q4 2027 – Construction commenced")
+    assert repair_text("Q1 2027 – Evaluatoi n of pilot") == (
+        "Q1 2027 – Evaluation of pilot")

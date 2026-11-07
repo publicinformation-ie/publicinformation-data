@@ -43,12 +43,12 @@ REPAIRS: tuple[tuple[str, str], ...] = (
     ("patet rns", "patterns"),
     ("setnti g", "setting"),
     ("atti udes", "attitudes"),
-    ("connectni g", "Connecting"),
-    ("statoi n", "Station"),
+    ("connectni g", "connecting"),
+    ("statoi n", "station"),
     ("platof rm", "platform"),
     ("submitet d", "submitted"),
     ("permitet d", "permitted"),
-    ("commitet e", "Committee"),
+    ("commitet e", "committee"),
     ("atet nd", "attend"),
     ("betet r", "better"),
     ("thereafet r", "thereafter"),
@@ -58,6 +58,8 @@ REPAIRS: tuple[tuple[str, str], ...] = (
     ("trafcfi", "traffic"),
     ("staf.f", "staff"),
     ("staf f", "staff"),
+    ("constructoi n", "construction"),
+    ("evaluatoi n", "evaluation"),
 )
 
 # Each source pattern compiled with re.escape, sorted longest first at
@@ -68,6 +70,8 @@ _COMPILED = tuple(
 )
 
 _URL_MARKERS = ("://", "@")
+# Percent-encoded space/comma: PDF-wrapped URL fragments.
+_URL_ENCODINGS = ("%20", "%2C")
 _DOMAIN_LIKE_RE = re.compile(r"\w+\.\w+")
 _SUSPICIOUS_RE = re.compile(r"\b[A-Za-z]{3,}(?:et|of|ef|oi|ni|pi)\s[a-z]{1,3}\b")
 
@@ -98,6 +102,8 @@ def _is_protected(text: str, start: int, end: int) -> bool:
         token_end += 1
     remainder = text[token_start:start] + text[end:token_end]
     if any(marker in remainder for marker in _URL_MARKERS):
+        return True
+    if any(enc in remainder.upper() for enc in _URL_ENCODINGS):
         return True
     return _DOMAIN_LIKE_RE.search(remainder) is not None
 

@@ -422,13 +422,6 @@
     },
     {
       "field": "progress_text",
-      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#68@sustainable-mobility-policy-year-two-progress-report",
-      "before": "betet r",
-      "after": "better",
-      "status": "repaired"
-    },
-    {
-      "field": "progress_text",
       "record_id": "sustainable-mobility-policy-action-plan-2022-2025#80@sustainable-mobility-policy-year-two-progress-report",
       "before": "betet r",
       "after": "better",
@@ -509,13 +502,6 @@
       "record_id": "sustainable-mobility-policy-action-plan-2022-2025#14@sustainable-mobility-policy-year-three-progress-report",
       "before": "batet ry",
       "after": "battery",
-      "status": "repaired"
-    },
-    {
-      "field": "progress_text",
-      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#68@sustainable-mobility-policy-year-three-progress-report",
-      "before": "betet r",
-      "after": "better",
       "status": "repaired"
     },
     {
@@ -1001,16 +987,6 @@
       "field": "output",
       "record_id": "sustainable-mobility-policy-action-plan-2026-2030#26",
       "text": "platof rms"
-    },
-    {
-      "field": "original_deadline_milestones",
-      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#35",
-      "text": "Constructoi n"
-    },
-    {
-      "field": "original_deadline_milestones",
-      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#37",
-      "text": "Evaluatoi n"
     },
     {
       "field": "action_text",

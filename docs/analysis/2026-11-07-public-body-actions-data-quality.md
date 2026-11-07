@@ -20,7 +20,7 @@ Baseline from the spec's measured baseline (2026-11-07); "after" computed from `
 | `…2022-2025#20` deadline | 2023 | 2025 (2025-01-01 – 2025-12-31) |
 | Actions with `action_text_clean` differing from `action_text` | n/a | 14 of 186 |
 | Observations with `progress_text_clean` differing from `progress_text` | n/a | 51 of 279 |
-| Records with confirmed broken text | 87 | 87 records, 140 mapped occurrences (spec said 146 occurrences; the audit counts non-overlapping, URL-guarded matches per field) |
+| Records with confirmed broken text | 87 | 87 records, 138 mapped occurrences (spec said 146 occurrences; the audit counts non-overlapping, URL-guarded matches per field) |
 | Mapped artefacts remaining in clean fields | n/a | 0 |
 | Actions with no observation | 95 | 95 (all 2026–2030) |
 | Hard hierarchy findings / soft department mismatches | – / 2 | 0 / 2 |
@@ -33,7 +33,7 @@ Baseline from the spec's measured baseline (2026-11-07); "after" computed from `
 
 **Issue 3 – final milestone.** `sustainable-mobility-policy-action-plan-2022-2025#20`: 2023 → 2025.
 
-**Issue 4 – text artefacts.** 140 mapped occurrences, full list (field, record id, before → after) in `docs/analysis/2026-11-07-text-audit.json`. By field: `progress_text` 83 and `action_text` 15 (status `repaired`: the `_clean` twin carries the repair); raw-only `output` 16, `original_deadline_raw` 10, `original_timeline_raw` 10, `support` 6 (status `flagged`, left as extracted). Most frequent repairs: `submitet d`→submitted (30), `batet ry`→battery (22), `platof rm`→platform (13), `betet r`→better (7), `efef ct`→effect (7), `thereafet r`→thereafter (7), `atet nd`→attend (7), `Commitet e`→Committee (6), `Letet rkenny`→Letterkenny (5), `efof rt`→effort (5), plus 22 rarer patterns.
+**Issue 4 – text artefacts.** 138 mapped occurrences, full list (field, record id, before → after) in `docs/analysis/2026-11-07-text-audit.json`. By field: `progress_text` 81 and `action_text` 15 (status `repaired`: the `_clean` twin carries the repair); raw-only `output` 16, `original_deadline_raw` 10, `original_timeline_raw` 10, `support` 6 (status `flagged`, left as extracted). Most frequent repairs: `submitet d`→submitted (30), `batet ry`→battery (22), `platof rm`→platform (13), `betet r`→better (5), `efef ct`→effect (7), `thereafet r`→thereafter (7), `atet nd`→attend (7), `Commitet e`→Committee (6), `Letet rkenny`→Letterkenny (5), `efof rt`→effort (5), plus rarer patterns (33 distinct in total). Two further reviewed repairs, `Constructoi n`→Construction (`…2026-2030#35`) and `Evaluatoi n`→Evaluation (`…2026-2030#37`), fix clean-field milestone text. Percent-encoded URL fragments (`%20`/`%2C`) are now protected from repair, which removed two `betet r` hits.
 
 **Issue 5 – no observation.** 95 actions, all in the 2026–2030 plan, have no observation. Null `latest_status` means "not yet reported", not "unknown".
 
@@ -41,8 +41,8 @@ Baseline from the spec's measured baseline (2026-11-07); "after" computed from `
 
 ## Unresolved / accepted
 
-- 46 suspicious spans not in the repair map. Most are legitimate prose matching the heuristic (`target of/for/to/by` 18, `fleet …` 12, `Cabinet for` 2, `platof rms` 3 which the `platof rm` repair already handles).
-- Probable real artefacts **not mapped** (not added: the map is human-reviewed): `Lifef y` (5: `…2026-2030#16` milestones and the 2022-2025 `#23` progress text in two reports), `Constructoi n` (`…2026-2030#35` milestones), `Evaluatoi n` (`…2026-2030#37` milestones). The two milestone hits are in a clean field but unmapped, so `--check` does not fail on them; a reviewer should decide on map additions.
+- 44 suspicious spans not in the repair map. Most are legitimate prose matching the heuristic (`target of/for/to/by` 18, `fleet …` 12, `Cabinet for` 2, `platof rms` 3 which the `platof rm` repair already handles).
+- Probable real artefact **not mapped** (no confident expansion; the map is human-reviewed): `Lifef y` (5: `…2026-2030#16` milestones and the 2022-2025 `#23` progress text in two reports).
 - Raw-only fields still contain 42 mapped artefacts (flagged, by design).
 - The 2 soft hierarchy mismatches above.
 
