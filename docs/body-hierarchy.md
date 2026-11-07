@@ -7,7 +7,7 @@ The public-bodies dataset carries two distinct relationships:
 
 ## Worked example
 
-Córas Iompair Éireann (1186) is the parent of 1073, 1074 and 1443. All four are sponsored by the Department of Transport (1213); none has `parent_id` = 1213. Further groups: daa plc (1192), Shannon Group (1699), Port of Cork (1633).
+Córas Iompair Éireann (`coras-iompair-eireann`) is the parent of Irish Rail (`irish-rail-iarnrod-eireann`), Bus Éireann (`bus-eireann`) and Bus Átha Cliath (`bus-atha-cliath`). All four are sponsored by the Department of Transport (`department-of-transport`); none has `parent_id` = `department-of-transport`. Further verified groups, each with `parent_id` set to the group body and the same sponsor (`department-of-transport`): daa plc (`daa-plc`) is the parent of `daa-airport-services-ltd`, `daa-international-ltd`, `daa-operations-ltd`, `daa-finance-plc` and `daa-pension-corporate-trustee-dac`; Shannon Group PLC (`shannon-group-plc`) is the parent of `shannon-airport-authority-dac`, `shannon-airport-authority-financial-services-dac`, `shannon-airport-authority-pension-corporate-trustee-dac` and `shannon-commercial-enterprises-dac`; Port of Cork Company (`port-of-cork-company`) is the parent of `port-of-cork-infrastructure-development-company-dac`. A name alone does not imply group membership: for example `shannon-heritage-designated-activity-company` and `shannon-broadband-ltd` have a different sponsor and no `parent_id`.
 
 Local authorities (e.g. Carlow County Council) have `government_department_id` equal to their own `@id`. This is expected and is not a cycle.
 

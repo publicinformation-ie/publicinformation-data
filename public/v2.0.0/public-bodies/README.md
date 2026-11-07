@@ -78,13 +78,13 @@ These are two different relationships and must not be conflated:
 - `parent_id` — URI of the body's owning/parent body in the state's corporate hierarchy (e.g. Córas Iompair Éireann for Bus Átha Cliath). This is not the sponsoring department.
 - `government_department_id` — URI of the sponsoring government department (the body's aegis). This is not the owning parent. For a local authority it is the authority itself.
 
-Worked example: Córas Iompair Éireann (1186) is the parent of Iarnród Éireann (1073), Bus Éireann (1074) and Bus Átha Cliath (1443). All four are sponsored by the Department of Transport (1213); none has `parent_id` = 1213.
+Worked example: Córas Iompair Éireann (`coras-iompair-eireann`) is the parent of Irish Rail (`irish-rail-iarnrod-eireann`), Bus Éireann (`bus-eireann`) and Bus Átha Cliath (`bus-atha-cliath`). All four are sponsored by the Department of Transport (`department-of-transport`); none has `parent_id` = `department-of-transport`.
 
-Further examples: daa plc (1192), Shannon Group (1699) and Port of Cork (1633) each own subsidiaries that share the group's sponsoring department but hold the group body as `parent_id`.
+Further verified groups, each with `parent_id` set to the group body and the same sponsor (`department-of-transport`): daa plc (`daa-plc`) is the parent of `daa-airport-services-ltd`, `daa-international-ltd`, `daa-operations-ltd`, `daa-finance-plc` and `daa-pension-corporate-trustee-dac`; Shannon Group PLC (`shannon-group-plc`) is the parent of `shannon-airport-authority-dac`, `shannon-airport-authority-financial-services-dac`, `shannon-airport-authority-pension-corporate-trustee-dac` and `shannon-commercial-enterprises-dac`; Port of Cork Company (`port-of-cork-company`) is the parent of `port-of-cork-infrastructure-development-company-dac`. A name alone does not imply group membership: for example `shannon-heritage-designated-activity-company` and `shannon-broadband-ltd` have a different sponsor and no `parent_id`.
 
 Local authorities have a `government_department_id` equal to their own `@id` (e.g. Carlow County Council); this is not a cycle, as only `parent_id` forms the ownership graph.
 
-See [docs/body-hierarchy.md](../../../docs/body-hierarchy.md) for the audit command and known exceptions.
+See [docs/body-hierarchy.md](https://github.com/publicinformation-ie/publicinformation-data/blob/main/docs/body-hierarchy.md) for the audit command and known exceptions.
 
 ## Files
 
