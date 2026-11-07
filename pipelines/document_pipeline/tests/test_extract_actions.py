@@ -212,10 +212,16 @@ def test_parse_date_iso():
 
 def test_parse_date_empty_or_unparseable_returns_none():
     assert parse_date("") is None
-    assert parse_date("Ongoing") is None
-    assert parse_date("Annual") is None
+    assert parse_date("As soon as practicable") is None
     assert parse_date("31 February 2026") is None   # invalid date
     assert parse_date("Notadate") is None
+
+
+def test_parse_date_open_ended_cells_have_a_precision_but_no_bounds():
+    assert parse_date("Ongoing")["precision"] == "ongoing"
+    assert parse_date("Annual")["precision"] == "annual"
+    assert parse_date("Ongoing")["start"] is None
+    assert parse_date("Annual")["end"] is None
 
 
 # --- row extraction ---------------------------------------------------------
@@ -314,19 +320,33 @@ def test_an_undated_table_emits_actions_with_empty_dates():
 def test_an_unparseable_date_is_kept_raw_and_logged():
     rows = [
         ["ACTION", "DEADLINE"],
-        ["Build", "Ongoing"],
+        ["Build", "As soon as practicable"],
     ]
     verdict = classify_table(rows)
     errors = []
     actions = extract_table(rows, 1, 0, verdict, "fixture-doc", errors)
     (action,) = actions
-    assert action["raw_date"] == "Ongoing"
+    assert action["raw_date"] == "As soon as practicable"
     assert action["precision"] is None
     assert action["start"] is None
     assert len(errors) == 1
     assert errors[0]["error_type"] == "DateParseError"
     assert errors[0]["context"]["doc_slug"] == "fixture-doc"
-    assert errors[0]["context"]["raw_date"] == "Ongoing"
+    assert errors[0]["context"]["raw_date"] == "As soon as practicable"
+
+
+def test_an_open_ended_deadline_is_not_an_error():
+    rows = [
+        ["ACTION", "DEADLINE"],
+        ["Build", "Ongoing"],
+    ]
+    verdict = classify_table(rows)
+    errors = []
+    (action,) = extract_table(rows, 1, 0, verdict, "fixture-doc", errors)
+    assert action["raw_date"] == "Ongoing"
+    assert action["precision"] == "ongoing"
+    assert action["start"] is None
+    assert errors == []
 
 
 # --- document-level classification ------------------------------------------

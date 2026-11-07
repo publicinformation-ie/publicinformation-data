@@ -40,6 +40,21 @@ For each `role: report` document in `clean_text/output.json`:
 
 `source_ref` is `p<page>-t<table>-r<row>` (page zero-padded to 3, table index + 1, 1-based row number within the table's data rows).
 
+### Reported deadline precision
+
+`reported_deadline_raw` is never discarded. Structured fields per `reported_deadline_precision` (the same semantics as `extract_actions`' date precision):
+
+| `reported_deadline_precision` | Example `reported_deadline_raw` | Populated |
+|---|---|---|
+| `year` | `2030` | `reported_deadline_start`/`_end` year bounds |
+| `quarter` | `Q2 2027` | `reported_deadline_start`/`_end` quarter bounds |
+| `month` | `January 2026` | `reported_deadline_start`/`_end` month bounds |
+| `day` | `15 January 2026` / `2026-01-15` | `reported_deadline_start` = `reported_deadline_end` |
+| `range` | `2026–2030` / `Q1 2026 – Q4 2027` | `reported_deadline_start`/`_end` only |
+| `annual` | `Annual`, `Annual campaigns` | none — open-ended, `start`/`end` null, no error |
+| `ongoing` | `Ongoing` | none — open-ended, `start`/`end` null, no error |
+| `null` | unrecognised text, e.g. `As soon as practicable` | none — raw kept, `DateParseError` logged |
+
 ## Errors
 
 Nothing here is process-fatal for the batch; each is logged to `errors.json` (truncated to `[]` at the start of every run) and the affected observation, table, or document is skipped.

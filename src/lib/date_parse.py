@@ -11,7 +11,9 @@ happened. One module, one set of semantics.
 Raw-plus-structured and fail-closed: the caller always keeps the raw text,
 and structured fields are filled only when a pattern matches confidently.
 There is no "best effort" branch — an unmatched cell returns None and the
-caller logs a `DateParseError`.
+caller logs a `DateParseError`. An entirely open-ended cell (`Ongoing`,
+`Annual`) is a confident match with no date bounds, so it gets its own
+precision rather than being treated as unparseable.
 """
 import calendar
 import re
@@ -25,9 +27,12 @@ MONTHS = {
     "sep": 9, "sept": 9, "oct": 10, "nov": 11, "dec": 12,
 }
 
-PRECISIONS = ("day", "month", "quarter", "year", "range")
+PRECISIONS = ("day", "month", "quarter", "year", "range", "annual", "ongoing")
+
+OPEN_ENDED = frozenset({"annual", "ongoing"})
 
 _DASH = r"[–—\-]"
+_OPEN_ENDED_RE = re.compile(r"^(annual|ongoing)\b", re.IGNORECASE)
 _QUARTER_RANGE_RE = re.compile(
     rf"^q([1-4])\s+(\d{{4}})\s*{_DASH}\s*q([1-4])\s+(\d{{4}})$", re.IGNORECASE)
 _QUARTER_SINGLE_RE = re.compile(r"^q([1-4])\s+(\d{4})$", re.IGNORECASE)
@@ -66,11 +71,18 @@ def parse_date(raw):
     dict when a pattern matches confidently, else None (the caller keeps the
     raw text and logs a `DateParseError` — nothing is silently dropped). For
     `range` precision a single `year`/`quarter` is undefined, so those stay
-    null and `start`/`end` carry the span.
+    null and `start`/`end` carry the span. An entirely open-ended cell
+    (`ongoing`, `annual`) gets that precision with every date field null; the
+    digit guard keeps a milestone list such as
+    `Annual: … 2022: …` from being mistaken for an open-ended span.
     """
     if not raw:
         return None
     text = " ".join(str(raw).split())
+
+    open_ended = _OPEN_ENDED_RE.match(text)
+    if open_ended and not re.search(r"\d", text):
+        return _structured(open_ended.group(1).lower())
 
     match = _QUARTER_RANGE_RE.match(text)
     if match:

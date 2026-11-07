@@ -52,7 +52,9 @@ Each action's `action_id` is `p<page>-t<table>-r<row>` (page zero-padded to 3, t
 | `month` | `January 2026` | `year`, `month`, `start`/`end` month bounds |
 | `day` | `15 January 2026` / `2026-01-15` | `year`, `month`, `day`, `start` = `end` |
 | `range` | `2026–2030` / `Q1 2026 – Q4 2027` | `start`/`end` only (`year`/`quarter` null — no single value) |
-| `null` | `Ongoing`, `Annual` | none — `raw_date` kept, `DateParseError` logged |
+| `annual` | `Annual`, `Annual campaigns` | none — open-ended, `start`/`end`/`year` null, no error |
+| `ongoing` | `Ongoing` | none — open-ended, `start`/`end`/`year` null, no error |
+| `null` | unrecognised text, e.g. `As soon as practicable` | none — `raw_date` kept, `DateParseError` logged |
 
 ## Notable files
 

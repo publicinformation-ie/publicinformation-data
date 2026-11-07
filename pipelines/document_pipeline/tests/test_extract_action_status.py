@@ -234,11 +234,22 @@ def test_an_unparseable_reported_deadline_keeps_the_raw_and_logs():
     errors = []
     observations = extract_table(
         [FORMAT_A_HEADER,
+         ["01", "Do a thing", "A thing", "As soon as practicable", "Complete", "p", "Improve"]],
+        9, 0, "A", None, "a-report", errors)
+    assert observations[0]["reported_deadline_raw"] == "As soon as practicable"
+    assert observations[0]["reported_deadline_start"] is None
+    assert [e["error_type"] for e in errors] == ["DateParseError"]
+
+
+def test_an_open_ended_reported_deadline_is_not_an_error():
+    errors = []
+    observations = extract_table(
+        [FORMAT_A_HEADER,
          ["01", "Do a thing", "A thing", "Ongoing", "Complete", "p", "Improve"]],
         9, 0, "A", None, "a-report", errors)
     assert observations[0]["reported_deadline_raw"] == "Ongoing"
-    assert observations[0]["reported_deadline_start"] is None
-    assert [e["error_type"] for e in errors] == ["DateParseError"]
+    assert observations[0]["reported_deadline_precision"] == "ongoing"
+    assert errors == []
 
 
 def test_the_reported_deadline_uses_the_same_parser_as_extract_actions():
