@@ -1,0 +1,1217 @@
+{
+  "records": [
+    {
+      "field": "action_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#1",
+      "before": "staf.f",
+      "after": "staff",
+      "status": "repaired"
+    },
+    {
+      "field": "output",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#7",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "flagged"
+    },
+    {
+      "field": "action_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#13",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "action_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#21",
+      "before": "platof rm",
+      "after": "platform",
+      "status": "repaired"
+    },
+    {
+      "field": "output",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#21",
+      "before": "platof rm",
+      "after": "platform",
+      "status": "flagged"
+    },
+    {
+      "field": "output",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#22",
+      "before": "Statoi n",
+      "after": "Station",
+      "status": "flagged"
+    },
+    {
+      "field": "output",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#22",
+      "before": "Platof rm",
+      "after": "Platform",
+      "status": "flagged"
+    },
+    {
+      "field": "output",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#25",
+      "before": "platof rm",
+      "after": "platform",
+      "status": "flagged"
+    },
+    {
+      "field": "output",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#26",
+      "before": "platof rm",
+      "after": "platform",
+      "status": "flagged"
+    },
+    {
+      "field": "output",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#29",
+      "before": "patet rns",
+      "after": "patterns",
+      "status": "flagged"
+    },
+    {
+      "field": "action_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#34",
+      "before": "trafcfi",
+      "after": "traffic",
+      "status": "repaired"
+    },
+    {
+      "field": "output",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#35",
+      "before": "locatoi ns",
+      "after": "locations",
+      "status": "flagged"
+    },
+    {
+      "field": "output",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#36",
+      "before": "Connectni g",
+      "after": "Connecting",
+      "status": "flagged"
+    },
+    {
+      "field": "output",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#36",
+      "before": "Connectni g",
+      "after": "Connecting",
+      "status": "flagged"
+    },
+    {
+      "field": "action_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#42",
+      "before": "ofef ring",
+      "after": "offering",
+      "status": "repaired"
+    },
+    {
+      "field": "action_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#42",
+      "before": "difef rent",
+      "after": "different",
+      "status": "repaired"
+    },
+    {
+      "field": "action_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#48",
+      "before": "afof rdable",
+      "after": "affordable",
+      "status": "repaired"
+    },
+    {
+      "field": "output",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#48",
+      "before": "afof rdable",
+      "after": "affordable",
+      "status": "flagged"
+    },
+    {
+      "field": "support",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#57",
+      "before": "Commitet e",
+      "after": "Committee",
+      "status": "flagged"
+    },
+    {
+      "field": "output",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#58",
+      "before": "platof rm",
+      "after": "platform",
+      "status": "flagged"
+    },
+    {
+      "field": "action_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#62",
+      "before": "betet r",
+      "after": "better",
+      "status": "repaired"
+    },
+    {
+      "field": "output",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#62",
+      "before": "betet r",
+      "after": "better",
+      "status": "flagged"
+    },
+    {
+      "field": "output",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#62",
+      "before": "informatoi n",
+      "after": "information",
+      "status": "flagged"
+    },
+    {
+      "field": "support",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#64",
+      "before": "Commitet e",
+      "after": "Committee",
+      "status": "flagged"
+    },
+    {
+      "field": "support",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#65",
+      "before": "Commitet e",
+      "after": "Committee",
+      "status": "flagged"
+    },
+    {
+      "field": "output",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#68",
+      "before": "multpi le",
+      "after": "multiple",
+      "status": "flagged"
+    },
+    {
+      "field": "action_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#74",
+      "before": "atti udes",
+      "after": "attitudes",
+      "status": "repaired"
+    },
+    {
+      "field": "action_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#78",
+      "before": "efef ct",
+      "after": "effect",
+      "status": "repaired"
+    },
+    {
+      "field": "support",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#79",
+      "before": "Commitet e",
+      "after": "Committee",
+      "status": "flagged"
+    },
+    {
+      "field": "action_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#81",
+      "before": "efef ct",
+      "after": "effect",
+      "status": "repaired"
+    },
+    {
+      "field": "action_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#82",
+      "before": "efef ct",
+      "after": "effect",
+      "status": "repaired"
+    },
+    {
+      "field": "action_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#83",
+      "before": "setnti g",
+      "after": "setting",
+      "status": "repaired"
+    },
+    {
+      "field": "output",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#85",
+      "before": "platof rm",
+      "after": "platform",
+      "status": "flagged"
+    },
+    {
+      "field": "original_deadline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#1",
+      "before": "thereafet r",
+      "after": "thereafter",
+      "status": "flagged"
+    },
+    {
+      "field": "original_timeline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#1",
+      "before": "thereafet r",
+      "after": "thereafter",
+      "status": "flagged"
+    },
+    {
+      "field": "original_deadline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#11",
+      "before": "platof rm",
+      "after": "platform",
+      "status": "flagged"
+    },
+    {
+      "field": "original_timeline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#11",
+      "before": "platof rm",
+      "after": "platform",
+      "status": "flagged"
+    },
+    {
+      "field": "original_deadline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#12",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "flagged"
+    },
+    {
+      "field": "original_deadline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#12",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "flagged"
+    },
+    {
+      "field": "original_deadline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#12",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "flagged"
+    },
+    {
+      "field": "original_deadline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#12",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "flagged"
+    },
+    {
+      "field": "original_timeline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#12",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "flagged"
+    },
+    {
+      "field": "original_timeline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#12",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "flagged"
+    },
+    {
+      "field": "original_timeline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#12",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "flagged"
+    },
+    {
+      "field": "original_timeline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#12",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "flagged"
+    },
+    {
+      "field": "original_deadline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#24",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "flagged"
+    },
+    {
+      "field": "original_timeline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#24",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "flagged"
+    },
+    {
+      "field": "original_deadline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#34",
+      "before": "Letet rkenny",
+      "after": "Letterkenny",
+      "status": "flagged"
+    },
+    {
+      "field": "original_timeline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#34",
+      "before": "Letet rkenny",
+      "after": "Letterkenny",
+      "status": "flagged"
+    },
+    {
+      "field": "support",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#36",
+      "before": "Commitet e",
+      "after": "Committee",
+      "status": "flagged"
+    },
+    {
+      "field": "action_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#47",
+      "before": "Betet r",
+      "after": "Better",
+      "status": "repaired"
+    },
+    {
+      "field": "action_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#48",
+      "before": "platof rm",
+      "after": "platform",
+      "status": "repaired"
+    },
+    {
+      "field": "original_deadline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#48",
+      "before": "platof rm",
+      "after": "platform",
+      "status": "flagged"
+    },
+    {
+      "field": "original_timeline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#48",
+      "before": "platof rm",
+      "after": "platform",
+      "status": "flagged"
+    },
+    {
+      "field": "support",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#50",
+      "before": "Commitet e",
+      "after": "Committee",
+      "status": "flagged"
+    },
+    {
+      "field": "original_deadline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#69",
+      "before": "thereafet r",
+      "after": "thereafter",
+      "status": "flagged"
+    },
+    {
+      "field": "original_timeline_raw",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#69",
+      "before": "thereafet r",
+      "after": "thereafter",
+      "status": "flagged"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#61@sustainable-mobility-policy-year-one-progress-report",
+      "before": "efof rt",
+      "after": "effort",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#61@sustainable-mobility-policy-year-one-progress-report",
+      "before": "efof rt",
+      "after": "effort",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#36@sustainable-mobility-policy-year-two-progress-report",
+      "before": "ofef r",
+      "after": "offer",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#68@sustainable-mobility-policy-year-two-progress-report",
+      "before": "betet r",
+      "after": "better",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#80@sustainable-mobility-policy-year-two-progress-report",
+      "before": "betet r",
+      "after": "better",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#88@sustainable-mobility-policy-year-two-progress-report",
+      "before": "efof rt",
+      "after": "effort",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#2@sustainable-mobility-policy-year-two-progress-report",
+      "before": "staf frespect",
+      "after": "staff respect",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#2@sustainable-mobility-policy-year-two-progress-report",
+      "before": "etiquetet",
+      "after": "etiquette",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#2@sustainable-mobility-policy-year-two-progress-report",
+      "before": "staf f",
+      "after": "staff",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#34@sustainable-mobility-policy-year-two-progress-report",
+      "before": "Letet rkenny",
+      "after": "Letterkenny",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#12@sustainable-mobility-policy-year-two-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#12@sustainable-mobility-policy-year-two-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#23@sustainable-mobility-policy-year-two-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#60@sustainable-mobility-policy-year-two-progress-report",
+      "before": "atet nd",
+      "after": "attend",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#82@sustainable-mobility-policy-year-two-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#14@sustainable-mobility-policy-year-three-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#68@sustainable-mobility-policy-year-three-progress-report",
+      "before": "betet r",
+      "after": "better",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#80@sustainable-mobility-policy-year-three-progress-report",
+      "before": "betet r",
+      "after": "better",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#80@sustainable-mobility-policy-year-three-progress-report",
+      "before": "thereafet r",
+      "after": "thereafter",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#88@sustainable-mobility-policy-year-three-progress-report",
+      "before": "efof rt",
+      "after": "effort",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#2@sustainable-mobility-policy-year-three-progress-report",
+      "before": "staf frespect",
+      "after": "staff respect",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#2@sustainable-mobility-policy-year-three-progress-report",
+      "before": "difef rences",
+      "after": "differences",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#2@sustainable-mobility-policy-year-three-progress-report",
+      "before": "ofef r",
+      "after": "offer",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#5@sustainable-mobility-policy-year-three-progress-report",
+      "before": "atet nd",
+      "after": "attend",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#5@sustainable-mobility-policy-year-three-progress-report",
+      "before": "thereafet r",
+      "after": "thereafter",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#12@sustainable-mobility-policy-year-three-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#12@sustainable-mobility-policy-year-three-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#21@sustainable-mobility-policy-year-three-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#21@sustainable-mobility-policy-year-three-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#23@sustainable-mobility-policy-year-three-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#23@sustainable-mobility-policy-year-three-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#66@sustainable-mobility-policy-year-three-progress-report",
+      "before": "of flater",
+      "after": "off later",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#82@sustainable-mobility-policy-year-three-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#11@sustainable-mobility-policy-year-three-progress-report",
+      "before": "platof rm",
+      "after": "platform",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#13@sustainable-mobility-policy-year-three-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#13@sustainable-mobility-policy-year-three-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#15@sustainable-mobility-policy-year-three-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#15@sustainable-mobility-policy-year-three-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#20@sustainable-mobility-policy-year-three-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#24@sustainable-mobility-policy-year-three-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#34@sustainable-mobility-policy-year-three-progress-report",
+      "before": "Letet rkenny",
+      "after": "Letterkenny",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#47@sustainable-mobility-policy-year-three-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#78@sustainable-mobility-policy-year-three-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#31@sustainable-mobility-policy-year-three-progress-report",
+      "before": "efef ct",
+      "after": "effect",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#60@sustainable-mobility-policy-year-three-progress-report",
+      "before": "atet nd",
+      "after": "attend",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#60@sustainable-mobility-policy-year-three-progress-report",
+      "before": "staf fcan",
+      "after": "staff can",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#60@sustainable-mobility-policy-year-three-progress-report",
+      "before": "staf f",
+      "after": "staff",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#60@sustainable-mobility-policy-year-three-progress-report",
+      "before": "atet nd",
+      "after": "attend",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#87@sustainable-mobility-policy-year-three-progress-report",
+      "before": "efef ct",
+      "after": "effect",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#2@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "ofef r",
+      "after": "offer",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#14@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#14@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#80@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "betet r",
+      "after": "better",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#88@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "efof rt",
+      "after": "effort",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#31@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "efef ct",
+      "after": "effect",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#60@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "atet nd",
+      "after": "attend",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#60@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "staf fcan",
+      "after": "staff can",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#60@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "staf f",
+      "after": "staff",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#60@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "atet nd",
+      "after": "attend",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#5@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "atet nd",
+      "after": "attend",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#5@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "efef ct",
+      "after": "effect",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#5@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "permitet d",
+      "after": "permitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#5@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "thereafet r",
+      "after": "thereafter",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#11@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "platof rm",
+      "after": "platform",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#12@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#12@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#12@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#12@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#13@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#13@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#15@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#15@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#20@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#20@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#20@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#20@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "batet ry",
+      "after": "battery",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#21@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#21@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#24@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#34@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "Letet rkenny",
+      "after": "Letterkenny",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#47@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#78@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#82@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "before": "submitet d",
+      "after": "submitted",
+      "status": "repaired"
+    }
+  ],
+  "suspicious": [
+    {
+      "field": "original_deadline_milestones",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#16",
+      "text": "Lifef y"
+    },
+    {
+      "field": "action_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#21",
+      "text": "platof rms"
+    },
+    {
+      "field": "output",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#21",
+      "text": "platof rms"
+    },
+    {
+      "field": "output",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#26",
+      "text": "platof rms"
+    },
+    {
+      "field": "original_deadline_milestones",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#35",
+      "text": "Constructoi n"
+    },
+    {
+      "field": "original_deadline_milestones",
+      "record_id": "sustainable-mobility-policy-action-plan-2026-2030#37",
+      "text": "Evaluatoi n"
+    },
+    {
+      "field": "action_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#10",
+      "text": "fleet to"
+    },
+    {
+      "field": "action_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#10",
+      "text": "fleet to"
+    },
+    {
+      "field": "action_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#48",
+      "text": "fleet for"
+    },
+    {
+      "field": "action_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#48",
+      "text": "fleet for"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#13@sustainable-mobility-policy-year-two-progress-report",
+      "text": "fleet as"
+    },
+    {
+      "field": "progress_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#13@sustainable-mobility-policy-year-two-progress-report",
+      "text": "fleet as"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#35@sustainable-mobility-policy-year-two-progress-report",
+      "text": "target of"
+    },
+    {
+      "field": "progress_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#35@sustainable-mobility-policy-year-two-progress-report",
+      "text": "target of"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#48@sustainable-mobility-policy-year-two-progress-report",
+      "text": "target to"
+    },
+    {
+      "field": "progress_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#48@sustainable-mobility-policy-year-two-progress-report",
+      "text": "target to"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#21@sustainable-mobility-policy-year-two-progress-report",
+      "text": "target for"
+    },
+    {
+      "field": "progress_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#21@sustainable-mobility-policy-year-two-progress-report",
+      "text": "target for"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#35@sustainable-mobility-policy-year-three-progress-report",
+      "text": "target of"
+    },
+    {
+      "field": "progress_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#35@sustainable-mobility-policy-year-three-progress-report",
+      "text": "target of"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#41@sustainable-mobility-policy-year-three-progress-report",
+      "text": "target for"
+    },
+    {
+      "field": "progress_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#41@sustainable-mobility-policy-year-three-progress-report",
+      "text": "target for"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#80@sustainable-mobility-policy-year-three-progress-report",
+      "text": "Cabinet for"
+    },
+    {
+      "field": "progress_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#80@sustainable-mobility-policy-year-three-progress-report",
+      "text": "Cabinet for"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#23@sustainable-mobility-policy-year-three-progress-report",
+      "text": "Lifef y"
+    },
+    {
+      "field": "progress_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#23@sustainable-mobility-policy-year-three-progress-report",
+      "text": "Lifef y"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#22@sustainable-mobility-policy-year-three-progress-report",
+      "text": "fleet and"
+    },
+    {
+      "field": "progress_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#22@sustainable-mobility-policy-year-three-progress-report",
+      "text": "fleet and"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#14@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "text": "fleet of"
+    },
+    {
+      "field": "progress_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#14@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "text": "fleet of"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#23@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "text": "Lifef y"
+    },
+    {
+      "field": "progress_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#23@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "text": "Lifef y"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#29@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "text": "target by"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#29@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "text": "target of"
+    },
+    {
+      "field": "progress_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#29@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "text": "target by"
+    },
+    {
+      "field": "progress_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#29@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "text": "target of"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#35@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "text": "target of"
+    },
+    {
+      "field": "progress_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#35@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "text": "target of"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#41@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "text": "target for"
+    },
+    {
+      "field": "progress_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#41@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "text": "target for"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#50@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "text": "fleet are"
+    },
+    {
+      "field": "progress_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#50@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "text": "fleet are"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#13@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "text": "fleet of"
+    },
+    {
+      "field": "progress_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#13@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "text": "fleet of"
+    },
+    {
+      "field": "progress_text",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#22@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "text": "fleet and"
+    },
+    {
+      "field": "progress_text_clean",
+      "record_id": "sustainable-mobility-policy-action-plan-2022-2025#22@sustainable-mobility-policy-action-plan-2022-2025-final-progress-report",
+      "text": "fleet and"
+    }
+  ],
+  "failures": []
+}

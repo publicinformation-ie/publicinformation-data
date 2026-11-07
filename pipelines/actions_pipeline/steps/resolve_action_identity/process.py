@@ -258,9 +258,9 @@ def resolve_original_deadline(raw_date, timeline_cell):
     fields.
 
     `confidence` is published so a consumer can tell what the document *stated*
-    from what we *concluded* — 63 of the 2022-2025 plan's 91 baselines are
-    transcribed, 23 are derived by the latest-milestone rule — without having
-    to re-derive that judgement from the raw text.
+    from what we *concluded* (in the 2022-2025 plan's 91 baselines, measured at
+    the 2.1.0 release: 68 stated, 23 interpreted by the latest-milestone rule)
+    without having to re-derive that judgement from the raw text.
     """
     result = resolve_deadline(raw_date, timeline_cell)
     return result.parsed, result.confidence

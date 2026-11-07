@@ -176,3 +176,15 @@ extract_disclosures_canonicalize       100% SUCCESS
 extract_disclosures_canonicalize_rows   100% SUCCESS
 extract_disclosures_deduplicate        100% SUCCESS
 ```
+
+## audit_text_artefacts.py
+
+Scans the resolved `public-body-actions` data (`pipelines/actions_pipeline/steps/resolve_action_identity/output.json`) for confirmed PDF text-extraction artefacts using `lib.text_repairs` (`find_repairs` for mapped artefacts, `find_suspicious` for a review list of unmapped look-alikes). Clean fields (`action_text_clean`, `original_deadline_milestones`, `progress_text_clean`) must contain no mapped artefact and must be present; raw-only fields (`original_deadline_raw`, `original_timeline_raw`, `reported_deadline_raw`, `lead`, `support`, `output`) report artefacts as `flagged` and never fail.
+
+### Usage
+
+```bash
+uv run python scripts/audit_text_artefacts.py            # summary
+uv run python scripts/audit_text_artefacts.py --json     # full report
+uv run python scripts/audit_text_artefacts.py --check    # exit 1 on clean-field residue
+```

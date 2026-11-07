@@ -27,11 +27,14 @@ This dataset records what a plan or progress report *stated* — the action as p
 | `source_url` | URI | Source URL of the declaring plan | Yes |
 | `action_number` | Integer | The number the plan itself gives the action; unique only within a plan | Yes |
 | `action_text` | String | The action as published, with its leading ordinal and bullet artifacts stripped | Yes |
+| `action_text_clean` | String | Action text with confirmed PDF-extraction artefacts repaired; the display field. `action_text` remains the untouched extraction | Yes |
 | `original_deadline_raw` | String | The plan's deadline cell, verbatim | Yes |
 | `original_deadline_start` | Date | Normalised deadline start | No |
 | `original_deadline_end` | Date | Normalised deadline end | No |
-| `original_deadline_precision` | String | `day`, `month`, `quarter`, `year` or `range` | Yes |
-| `original_deadline_confidence` | String | `stated` (a single unambiguous date, transcribed) or `interpreted` (derived by the latest-milestone rule from a multi-milestone cell); empty when no date was parseable | Yes |
+| `original_deadline_precision` | String | `day`, `month`, `quarter`, `year`, `range`, `annual` or `ongoing` (the last two carry no start or end) | Yes |
+| `original_deadline_confidence` | String | `stated` (a single unambiguous deadline, transcribed, including Annual/Ongoing) or `interpreted` (derived by the latest-milestone rule); empty exactly when no precision was resolved | Yes |
+| `original_deadline_label` | String | Short, display-ready final deadline (`2023`, `Q4 2027`, `Annual`, `Ongoing`). Use this as the heading | Yes |
+| `original_deadline_milestones` | String | Milestone prose preserved from the plan's timeline or interim-milestones cell; empty for a single-date action | Yes |
 | `original_timeline_raw` | String | The plan's full timeline cell verbatim, preserving milestone structure the single deadline collapses | Yes |
 | `lead` | String | Lead organisation | Yes |
 | `support` | String | Supporting organisation(s) | Yes |
@@ -51,8 +54,9 @@ This dataset records what a plan or progress report *stated* — the action as p
 | `reported_deadline_raw` | String | The report's restated deadline cell, verbatim | Yes |
 | `reported_deadline_start` | Date | Normalised restated deadline start | No |
 | `reported_deadline_end` | Date | Normalised restated deadline end | No |
-| `reported_deadline_precision` | String | `day`, `month`, `quarter`, `year` or `range` | Yes |
+| `reported_deadline_precision` | String | `day`, `month`, `quarter`, `year`, `range`, `annual` or `ongoing` | Yes |
 | `progress_text` | String | Free-text progress narrative | Yes |
+| `progress_text_clean` | String | Progress narrative with confirmed PDF-extraction artefacts repaired; the display field | Yes |
 | `asi` | String | Avoid / Shift / Improve classification; published only by the Year One and Year Two reports, empty for the others | Yes |
 | `source_page` | Integer | Page number in the source PDF | Yes |
 | `source_ref` | String | Positional reference in the source PDF, for provenance only | Yes |
@@ -81,17 +85,25 @@ A null `to_action_id` means the target plan is not in the corpus. A null `to_act
 
 23 of the 2022-2025 plan's 91 baselines are `interpreted` — derived by a latest-milestone rule from a multi-milestone timeline cell — rather than transcribed as a single stated date. This is disclosed, not hidden: consult `original_timeline_raw` to audit any `interpreted` baseline against the source text directly, without re-fetching the PDF.
 
+## Deadline labels and open-ended commitments
+
+`original_deadline_label` is the final date in a multi-milestone cell, provided the cell has at least one year-labelled milestone; a separate DEADLINE column always wins. The earlier milestones are not lost: they stay in `original_deadline_milestones` and `original_timeline_raw`.
+
+`annual` and `ongoing` precisions mean the plan stated an open-ended commitment rather than a date. They have no start or end, so sort them deliberately rather than treating them as missing. A `stated` confidence is valid for these rows (the plan stated an open-ended commitment, not a date).
+
+## Reading `latest_status`
+
+`latest_status`/`latest_as_of` are derived by joining observations on `action_id` and taking the greatest `as_of`; null means "not yet reported", not "unknown". In this release that is all 95 actions of the 2026–2030 plan.
+
 ## Known limitations
 
-`action-status-observations.csv` includes status observations only from the Year One progress report. The Year Two, Year Three and Final progress reports use a table format that the shared PDF table-header detection (`extract_pages`) does not yet parse, so `extract_action_status` correctly skips them (`UnknownReportFormat`) rather than fabricating observations. This is tracked as a follow-up; a fix to `extract_pages`'s table-header detection will let a future release add their observations without any change to this dataset's shape.
+The current run has 279 observations from all four progress reports (Year One, Year Two, Year Three and Final). Rows in a report whose status term is not in the published `action-status` vocabulary are omitted (`UnknownStatusValue`) rather than coerced to a nearest value; these are logged individually in the step's `errors.json`, so the gap is auditable rather than silent.
 
-Even within Year One's own annex, coverage is partial: the report's annex is split across 24 separate PDF tables, of which only 5 carry a header this step recognizes, yielding 15 observations from a total of roughly 67 annex data rows across all 24 tables. The other 19 tables use a header the step doesn't yet recognize (logged individually as `UnrecognisedAnnexTable` in `errors.json`, with page/table context, so the gap is auditable rather than silent) and their rows are not represented here. This is the same underlying class of gap as the Year Two/Three/Final skip above, just partial rather than total for this one document, and is tracked alongside it as a follow-up.
-
-A small number of Year One observations (2, at the time of writing) use a status term, "At Risk of Delay", that is not yet in the published `action-status` vocabulary. These rows are correctly omitted (`UnknownStatusValue`) pending a decision on whether to add the term, rather than being coerced to a nearest existing value.
+`parent_id` and `government_department_id` on the public body are different things: the first is the body's parent in the register hierarchy, the second the department that sponsors it. Do not use one as a substitute for the other.
 
 ## Text quality (spec §16.1)
 
-The source PDFs contain ligature-reordering artifacts introduced by PDF text extraction — real examples from this corpus are `"staf.f"` (for "staff") and `"Please ofef r me a seat"` (for "Please offer me a seat"). `action_text` and `progress_text` are published as extracted, with no attempt to silently repair this class of error. This is disclosed rather than implying a cleanliness the data does not have.
+The source PDFs contain ligature-reordering artifacts introduced by PDF text extraction — real examples from this corpus are `"staf.f"` (for "staff") and `"Please ofef r me a seat"` (for "Please offer me a seat"). The raw fields (`action_text`, `progress_text`, `original_deadline_raw`) remain as extracted. `action_text_clean`, `progress_text_clean` and `original_deadline_milestones` carry the repaired display text; the audit report lists every repair and every remaining flag.
 
 ## Files
 
@@ -107,7 +119,7 @@ The source PDFs contain ligature-reordering artifacts introduced by PDF text ext
 
 ## Versioning
 
-This directory (`v2.0.0/`) is an immutable, versioned release. `../../latest/public-body-actions/` always mirrors the newest version. Releases are also tagged in git (`public-body-actions-v2.0.0`).
+This directory (`v2.1.0/`) is an immutable, versioned release. `../../latest/public-body-actions/` always mirrors the newest version. Releases are also tagged in git (`public-body-actions-v2.1.0`).
 
 ## Accessing Data
 
