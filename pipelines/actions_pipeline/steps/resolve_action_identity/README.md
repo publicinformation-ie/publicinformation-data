@@ -45,7 +45,7 @@ Two further jobs:
 | `original_deadline_raw` / `original_deadline_start` / `original_deadline_end` / `original_deadline_precision` | Structured baseline deadline, or all null if unresolved; an open-ended cell carries precision `annual`/`ongoing` with null bounds |
 | `original_deadline_confidence` | `"stated"` / `"interpreted"` / `None` — never guessed silently |
 | `original_deadline_label` | Short display form of the deadline — the normalised deadline text, `Annual`/`Ongoing` for open-ended cells, `""` when nothing resolved |
-| `original_deadline_milestones` | The plan's interim-milestone prose — the separate `INTERIM MILESTONES` column when the plan publishes one, else the timeline cell when it carries more than the bare date, else `""`; published repaired (`repair_text`), with `original_deadline_raw` keeping the verbatim cell as the audit trail |
+| `original_deadline_milestones` | The plan's interim-milestone prose — the separate `INTERIM MILESTONES` column when the plan publishes one, else the timeline cell when it carries more than the bare date, else `""`; published repaired (`repair_text`), with `original_deadline_raw` keeping the verbatim cell as the audit trail where milestones derive from the timeline cell; where a separate milestone column supplies the prose, it is published only in repaired form — its verbatim source remains in the upstream `extract_actions` output |
 | `original_timeline_raw` | The plan's own timeline cell text, preserved verbatim regardless of parse outcome |
 | `lead` / `support` / `output` | Read off the plan table's own columns |
 | `source_page` / `source_ref` | Positional provenance only — never identity |
