@@ -224,7 +224,25 @@ def running_header_texts(pages: list, fraction: float = RUNNING_HEADER_FRACTION)
             norm = normalize_heading_text(line.text)
             if len(norm) >= 4:
                 count[norm] += 1
-    return {text for text, n in count.items() if n / max(total, 1) >= fraction}
+    # n >= 2: a line seen on a single page is not repeating, however short the
+    # document (on a one-page input every line would otherwise be 100%).
+    return {text for text, n in count.items() if n >= 2 and n / max(total, 1) >= fraction}
+
+
+def running_header_leads(pages: list, fraction: float = RUNNING_HEADER_FRACTION) -> set:
+    """Normalized first-span texts that repeat on >= `fraction` of pages (and
+    on at least two). A running header such as `National Sustainable Mobility
+    Policy | <section name>` carries a constant lead span and a span that
+    changes per page, so the whole line never repeats while the lead does.
+    Counted once per page."""
+    count = Counter()
+    for page in pages:
+        leads = {normalize_heading_text(line.lead) for line in page_lines(page)}
+        for lead in leads:
+            if len(lead) >= 4:
+                count[lead] += 1
+    total = max(len(pages), 1)
+    return {lead for lead, n in count.items() if n >= 2 and n / total >= fraction}
 
 
 # --------------------------------------------------------------------------
@@ -412,14 +430,25 @@ def _strip_toc_suffix(text: str) -> str:
     return t.strip()
 
 
-def _parse_toc_page(page: dict):
+def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
     """Return (entries, flags) for one TOC page.
 
     Each entry is {title, number, level_hint, x0, furniture}. Handles the
     entry shapes the experiment documented: separate-line numbers (`1.` on its
     own line), right-hand page-number lines, and inline numbers.
+
+    Lines are consumed in reading order. Collection starts after the
+    `contents` title line (anything above it is page furniture); bare page
+    numbers are skipped wherever they sit, and so are running-header lines
+    (`running` holds whole-line texts, `running_leads` the repeating first-span
+    texts). A skipped line creates no entry, so it also contributes no `x0` to
+    `_infer_levels`.
     """
     lines = page_lines(page)
+    for position, candidate in enumerate(lines):
+        if normalize_heading_text(candidate.text) in TOC_TITLES:
+            lines = lines[position + 1:]
+            break
     width = float(page.get("width") or 595.0)
     entries = []
     flags = {"separate_line_number": False, "right_page_number": False,
@@ -442,9 +471,18 @@ def _parse_toc_page(page: dict):
             i += 1
             continue
 
-        # A bare page number sitting far right (right-hand column shape).
-        if re.fullmatch(r"\d{1,3}", text) and line.bbox[0] > width * RIGHT_COLUMN_MIN_X_FRACTION:
-            flags["right_page_number"] = True
+        # Running headers/footers are page furniture, not entries.
+        if norm in running or normalize_heading_text(line.lead) in running_leads:
+            i += 1
+            continue
+
+        # A bare page number (`12`, no trailing dot) is a page number wherever
+        # it sits: far right is the usual shape, but a footer number sits at
+        # the left edge. Dotted numbers (`1.`, `1.1`) stay separate-line
+        # section numbers, handled below.
+        if re.fullmatch(r"\d{1,3}", text):
+            if line.bbox[0] > width * RIGHT_COLUMN_MIN_X_FRACTION:
+                flags["right_page_number"] = True
             i += 1
             continue
 
@@ -537,13 +575,16 @@ def parse_toc(pages: list, body: float):
              "unicode_dot_leader": False, "ascii_dot_leader": False,
              "multi_toc": False, "title_at_body_size": False, "part_tocs": []}
 
+    running = running_header_texts(pages)
+    running_leads = running_header_leads(pages)
+
     all_entries = []
     for num in toc_pages:
         page = next(p for p in pages if p["number"] == num)
         title_heading, title_any, _, _ = _page_toc_signals(page, body)
         if title_any and not title_heading:
             flags["title_at_body_size"] = True
-        entries, page_flags = _parse_toc_page(page)
+        entries, page_flags = _parse_toc_page(page, running, running_leads)
         for key in ("separate_line_number", "right_page_number",
                     "unicode_dot_leader", "ascii_dot_leader"):
             flags[key] = flags[key] or page_flags[key]

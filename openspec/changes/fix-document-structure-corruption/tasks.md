@@ -8,9 +8,9 @@
 
 ## 2. TOC page filtering + entry collection (D5)
 
-- [ ] 2.1 Extend `_parse_toc_page` to skip bare-number lines at any x on a flagged TOC page, skip running-header lines (thread the already-computed running-header set in), and start collection after the `contents` title line in reading order; add `pages_smp_toc.json` fixture (real SMP page 4) asserting no entry from the footer `2` and no entry from the running header — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k toc_filtering`
-- [ ] 2.2 Assert the fixture's parsed entries start with `Foreword` and that `Table of contents` produces no entry — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k toc_filtering`
-- [ ] 2.3 Assert on the same fixture that the skipped footer line contributes no `x0` bucket: `_infer_levels` returns signal `none` and every entry is level 1 (the SMP all-level-2 failure, fixed at its cause) — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k toc_filtering`
+- [x] 2.1 Extend `_parse_toc_page` to skip bare-number lines at any x on a flagged TOC page, skip running-header lines (thread the already-computed running-header set in), and start collection after the `contents` title line in reading order; add `pages_smp_toc.json` fixture (real SMP page 4) asserting no entry from the footer `2` and no entry from the running header — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k toc_filtering`
+- [x] 2.2 Assert the fixture's parsed entries start with `Foreword` and that `Table of contents` produces no entry — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k toc_filtering`
+- [x] 2.3 Assert on the same fixture that the skipped footer line contributes no `x0` bucket: `_infer_levels` returns signal `none` and every entry is level 1 (the SMP all-level-2 failure, fixed at its cause) — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k toc_filtering`
 
 ## 3. TOC pages excluded from the legacy strategies (D5b)
 

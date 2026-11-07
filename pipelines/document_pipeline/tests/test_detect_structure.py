@@ -5,6 +5,7 @@ from documents import SLUG_RE
 from steps.detect_structure.process import (
     Node,
     _below_score_floor,
+    _parse_toc_page,
     build_occurrence_index,
     detect_structure,
     find_occurrences,
@@ -423,3 +424,55 @@ def test_reading_order_ignores_sub_grid_baseline_noise():
              span("left", y0=100.0, x0=72.0, block=1, line=0),
              span("below", y0=140.0, x0=72.0, block=2, line=0)]
     assert [l.text for l in page_lines(page(spans))] == ["left", "right", "below"]
+
+
+# --- toc_filtering ---------------------------------------------------------
+
+def _smp_toc_parse():
+    """SMP page 4 (the TOC), page 6, and eight further body pages (copies of
+    page 28 renumbered) so the running-header lead repeats on enough pages,
+    and `Foreword`, which appears on pages 4 and 6, stays below the
+    running-header fraction as it does in the full 60-page document."""
+    pages = load_pages("pages_smp_toc.json") + load_pages("pages_two_column.json")
+    for number in range(10, 18):
+        pages.append({**load_pages("pages_smp_quote.json")[0], "number": number})
+    return parse_toc(pages, 10.0)
+
+
+def test_toc_filtering_skips_the_footer_number_and_the_running_header():
+    entries, toc_pages, _signal, _flags = _smp_toc_parse()
+    titles = [e["title"] for e in entries]
+
+    assert toc_pages == [4]
+    assert not any(e["number"] == "2" for e in entries)  # footer `2` is not a section number
+    assert not any("National Sustainable Mobility Policy" in t for t in titles)
+
+
+def test_toc_filtering_starts_at_foreword_and_the_title_line_is_not_an_entry():
+    entries, _pages, _signal, _flags = _smp_toc_parse()
+    titles = [e["title"] for e in entries]
+
+    assert titles[:3] == ["Foreword", "Summary", "Chapter 1 – Introduction"]
+    assert not any(t.lower() in ("table of contents", "contents") for t in titles)
+
+
+def test_toc_filtering_skipped_footer_adds_no_indent_bucket_so_levels_are_flat():
+    """The footer line (x0 ~ 43) used to become a bogus entry whose x0 made
+    `_infer_levels` see two indent buckets and push every real entry to
+    level 2. With it skipped, all entries share one left edge."""
+    entries, _pages, signal, _flags = _smp_toc_parse()
+
+    assert signal == "none"
+    assert entries and {e["level"] for e in entries} == {1}
+
+
+def test_toc_filtering_skips_a_bare_page_number_at_the_left_edge():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0),
+             span("First Chapter", y0=120.0, block=1),
+             span("5", y0=120.0, x0=500.0, block=1, line=1),
+             span("Second Chapter", y0=140.0, block=2),
+             span("9", y0=140.0, x0=500.0, block=2, line=1),
+             span("3", y0=800.0, x0=40.0, block=3)]  # footer, left edge
+    entries, flags = _parse_toc_page(page(spans))
+
+    assert [e["title"] for e in entries] == ["First Chapter", "Second Chapter"]
