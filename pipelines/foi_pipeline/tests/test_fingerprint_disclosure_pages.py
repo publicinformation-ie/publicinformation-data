@@ -251,3 +251,30 @@ def test_scoped_run_with_unreadable_previous_output_exits(requests_mock, tmp_pat
         _run(tmp_path, "--public-body", "1002")
     assert exc.value.code == 1
     assert str(d / "output.json") in capsys.readouterr().err
+
+
+def test_dirty_file_written_before_output(requests_mock, tmp_path, monkeypatch):
+    _mock_all(requests_mock)
+    d = _setup(tmp_path, _prev_output({1001: "sha256-old"}), [1002])
+    real = fp_mod.write_json
+
+    def boom(path, data):
+        if str(path).endswith("output.json"):
+            raise RuntimeError("crash")
+        return real(path, data)
+
+    monkeypatch.setattr(fp_mod, "write_json", boom)
+    with pytest.raises(RuntimeError, match="crash"):
+        _run(tmp_path)
+    assert json.loads((d / "dirty_ids.json").read_text()) == [1001, 1002]
+
+
+def test_scoped_run_target_absent_from_previous_output_appended_once(requests_mock, tmp_path):
+    requests_mock.get("https://d1003.ie/disc/", text=HTML_PDF)
+    prev = _prev_output()
+    prev["results"] = [r for r in prev["results"] if r["public_body_id"] != 1003]
+    d = _setup(tmp_path, prev)
+    _run(tmp_path, "--public-body", "1003")
+    res = json.loads((d / "output.json").read_text())["results"]
+    assert [r["public_body_id"] for r in res] == [1001, 1002, 1003]
+    assert json.loads((d / "dirty_ids.json").read_text()) == [1003]

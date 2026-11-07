@@ -34,6 +34,8 @@ Fetch errors here are frequently `BotChallengeError` (WAF/bot-protection challen
 
 Pending IDs are never dropped by a scoped or unscoped fingerprint run; they leave the file only when `find_disclosure_files` consumes them (an unscoped, non-forced run of it, or a scoped run naming that body). A scoped `find_disclosure_files` run defers the others and prints a `WARNING` with the drain command (`process.py --from find_disclosure_files --stop-on-error`).
 
+After a full `process.py --force` run, the next ordinary run re-crawls every body: forced fingerprinting marks every fetched body dirty, and forced `find_disclosure_files` neither consumes nor evicts, so the whole list is cascaded. Nothing is lost; the cost is one redundant full network crawl.
+
 Scoped runs (`--public-body N`): only that body is fetched; its record replaces (or is appended to) the previous records, all other bodies' records, hashes and `errors.json` entries are kept.
 
 ## Notable files

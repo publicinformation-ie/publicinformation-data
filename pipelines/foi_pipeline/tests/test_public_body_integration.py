@@ -222,9 +222,9 @@ def test_scoped_then_unscoped_run_through_fingerprint_preserves_and_drains_dirty
     monkeypatch.setattr(fdf, "__file__", str(fdf_dir / "process.py"))
 
     def run(extra):
-        sys.argv = ["process.py", "--input", str(fdp_output), "--output", str(fp_output)] + extra
+        monkeypatch.setattr(sys, "argv", ["process.py", "--input", str(fdp_output), "--output", str(fp_output)] + extra)
         fp.main()
-        sys.argv = ["process.py", "--input", str(fp_output), "--output", str(fdf_output)] + extra
+        monkeypatch.setattr(sys, "argv", ["process.py", "--input", str(fp_output), "--output", str(fdf_output)] + extra)
         fdf.main()
 
     def fdf_by_body():
@@ -238,7 +238,7 @@ def test_scoped_then_unscoped_run_through_fingerprint_preserves_and_drains_dirty
     out = capsys.readouterr().out
 
     assert {r["public_body_id"] for r in read_json(fp_output)["results"]} == set(ids)
-    assert {A, B} <= set(read_json(fp_dir / "dirty_ids.json"))
+    assert set(read_json(fp_dir / "dirty_ids.json")) == {A, B}
     by = fdf_by_body()
     for i in (A, B):
         assert [r.get("marker") for r in by[i]] == ["stale"]

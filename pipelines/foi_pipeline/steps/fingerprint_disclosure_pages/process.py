@@ -160,6 +160,12 @@ def main():
         merged.extend(new_by_id.values())
         results = merged
 
+    # Write dirty_ids.json BEFORE output.json: output.json holds the hashes used
+    # for change detection, so a crash between the writes must over-mark (the
+    # next run re-detects nothing new but pending IDs survive) rather than lose
+    # dirty IDs.
+    pending = previous_dirty | dirty_ids
+    write_json(dirty_path, sorted(pending))
     write_json(output_path, {
         "metadata": {
             "step": STEP_NAME,
@@ -167,8 +173,6 @@ def main():
         },
         "results": results,
     })
-    pending = previous_dirty | dirty_ids
-    write_json(dirty_path, sorted(pending))
     write_status(step_dir, len(results))
     print(f"Wrote {len(results)} records ({len(dirty_ids)} dirty this run, {len(pending)} pending total)")
 

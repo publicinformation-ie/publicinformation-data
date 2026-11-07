@@ -557,7 +557,7 @@ class TestScopedRunUpstreamDirty:
         assert w._upstream_dirty_ids == {2, 3}
         assert w._upstream_dirty_path == up
         stdout = capsys.readouterr().out
-        assert "deferred" in stdout and "2" in stdout and "3" in stdout
+        assert "deferred" in stdout and ": 2, 3" in stdout
 
     def test_scoped_run_evicts_target_even_if_not_dirty(self, tmp_path):
         out, up = self._setup(tmp_path, [2])
@@ -694,5 +694,5 @@ class TestDirtyStateLifecycle:
         IncrementalWriter(out, "my_step", upstream_dirty_path=up,
                           target_public_body=1).finalize()
         o = capsys.readouterr().out
-        assert "WARNING" in o and "my_step" in o and "2" in o and "3" in o
+        assert "WARNING" in o and "my_step" in o and "[2, 3]" in o
         assert "--from my_step" in o
