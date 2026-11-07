@@ -95,6 +95,12 @@ MATCH_RATE_GATE = 0.60          # min share of plausible entries matched to fire
 SCORE_FLOOR = 1.05              # body-size multiplier; below this and not bold is rejected
 ISOLATION_BONUS = 0.3           # reward an occurrence flanked by body-sized text
 RIGHT_COLUMN_MIN_X_FRACTION = 0.5  # a bare number this far right is a page number
+# A wrapped heading's continuation line sits below the first at a baseline
+# pitch of at most this multiple of the heading's own type size (a tight
+# pitch is ~1.1-1.3x). Lines on one baseline (pitch ~0, i.e. separate columns)
+# and lines further apart than this are never joined.
+HEADING_JOIN_MAX_GAP = 1.6
+HEADING_JOIN_MIN_GAP = 0.5      # below this pitch, two lines share a baseline
 # Reading order rounds a line's y0 to this many points before comparing, so
 # lines on one visual baseline (differing by sub-point noise) sort left to
 # right. Too coarse and a two-column page interleaves; too fine and noise
@@ -358,6 +364,32 @@ def from_outline(outline: list) -> list:
     return nodes
 
 
+def _heading_continuation(line: Line, lines: list):
+    """Index in `lines` of the line that continues a wrapped heading, or None.
+
+    A continuation shares the heading's rounded type size and bold class, sits
+    directly below it (horizontal overlap, baseline pitch within
+    HEADING_JOIN_MIN_GAP..HEADING_JOIN_MAX_GAP type sizes), and the heading
+    line does not end a sentence. Chosen by position, not by reading-order
+    adjacency: on a two-column page the line after a column-one line in
+    reading order is the column-two line on the same baseline.
+    """
+    if line.text.rstrip().endswith((".", "!", "?")):
+        return None
+    best, best_pitch = None, None
+    for index, other in enumerate(lines):
+        if other is line or other.size != line.size or is_bold(other.font) != is_bold(line.font):
+            continue
+        pitch = other.y0 - line.y0
+        if not (HEADING_JOIN_MIN_GAP * line.size <= pitch <= HEADING_JOIN_MAX_GAP * line.size):
+            continue
+        if min(line.bbox[2], other.bbox[2]) - max(line.bbox[0], other.bbox[0]) <= 0:
+            continue
+        if best_pitch is None or pitch < best_pitch:
+            best, best_pitch = index, pitch
+    return best
+
+
 def from_numbering(pages: list, body: float, skip_pages=frozenset()) -> list:
     """Headings of the form `1 Chapter` / `1.1 Section`, filtered by type size.
     Pages in `skip_pages` (the detected TOC pages) contribute no candidates: a
@@ -371,13 +403,18 @@ def from_numbering(pages: list, body: float, skip_pages=frozenset()) -> list:
     for page in pages:
         if page["number"] in skip_pages:
             continue
-        for line in page_lines(page):
+        lines = page_lines(page)
+        for line in lines:
             match = HEADING_RE.match(line.text)
             if not match:
                 continue
             if line.size < body * 1.05 and not is_bold(line.font):
                 continue
-            title = clean_title(match.group(4))
+            title = match.group(4)
+            follow = _heading_continuation(line, lines)
+            if follow is not None and not HEADING_RE.match(lines[follow].text):
+                title = f"{title} {lines[follow].text}"
+            title = clean_title(title)
             if (len(title) > MAX_TITLE_CHARS or _looks_like_a_sentence(title)
                     or not is_heading_candidate(title)):
                 continue
@@ -395,11 +432,20 @@ def from_font_hierarchy(pages: list, body: float, skip_pages=frozenset()) -> lis
     for page in pages:
         if page["number"] in skip_pages:
             continue
-        for line in page_lines(page):
+        lines = page_lines(page)
+        consumed = set()
+        for position, line in enumerate(lines):
+            if position in consumed:
+                continue
             level = levels.get(line.size)
             if level is None or len(line.text) > MAX_TITLE_CHARS:
                 continue
-            number, title = _split_number(line.text)
+            text = line.text
+            follow = _heading_continuation(line, lines)
+            if follow is not None:
+                consumed.add(follow)
+                text = f"{text} {lines[follow].text}"
+            number, title = _split_number(clean_title(text))
             title = clean_title(title)
             if not is_heading_candidate(title):
                 continue

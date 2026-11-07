@@ -8,6 +8,8 @@ from steps.detect_structure.process import (
     _legacy_cascade,
     _parse_toc_page,
     _supplement_numbered_nodes,
+    _heading_continuation,
+    body_size,
     clean_title,
     from_font_hierarchy,
     from_numbering,
@@ -584,3 +586,98 @@ def test_title_cleanup_interior_dot_leaders_are_rejected_not_cleaned():
     assert clean_title("Landscape and Visual ......... 23") == "Landscape and Visual ......... 23"
     assert from_numbering([leader], 9.0) == []
     assert from_font_hierarchy([leader], 9.0) == []
+
+
+# --- cascade_guard ---------------------------------------------------------
+
+def _titles(nodes):
+    return [n.title for n in nodes]
+
+
+def test_cascade_guard_a_lone_chapter_numeral_makes_no_node_but_the_title_survives():
+    """SMP page 9: a 119pt `1`, a 32pt `CHAPTER`, and the real 37pt title."""
+    nodes = from_font_hierarchy(load_pages("pages_smp_opener.json"), 10.0)
+
+    assert "1" not in _titles(nodes)
+    assert "Introduction" in _titles(nodes)
+
+
+def test_cascade_guard_a_pull_quote_glyph_makes_no_node():
+    """SMP page 28: a 70pt quote glyph followed by the real `Targets` heading."""
+    pages = load_pages("pages_smp_quote.json")
+    nodes = from_font_hierarchy(pages, 10.0)
+
+    assert not [t for t in _titles(nodes) if t.strip(' "\u201d\u201c') == ""]
+    assert "Targets" in _titles(nodes)
+
+
+def test_cascade_guard_cover_text_numeral_makes_no_node():
+    """Action plan cover: `2040` (the Project Ireland logo) is set at heading size."""
+    nodes = from_font_hierarchy(load_pages("pages_actionplan_cover.json"), 10.0)
+
+    assert "2040" not in _titles(nodes)
+    assert not any(t.isdigit() for t in _titles(nodes))
+
+
+def test_cascade_guard_a_map_glyph_makes_no_node():
+    pages = load_pages("pages_gda_glyph.json")
+    nodes = from_font_hierarchy(pages, body_size(pages))
+
+    assert nodes, "sanity: the map page still yields real headings"
+    assert not [t for t in _titles(nodes) if len(t) == 1]
+
+
+def test_cascade_guard_joins_a_wrapped_heading_into_one_node():
+    """Action plan page 3: `Safe and Green` / `Mobility`, both 33.4pt bold."""
+    nodes = from_font_hierarchy(load_pages("pages_actionplan_join.json"), 10.0)
+
+    assert "Safe and Green Mobility" in _titles(nodes)
+    assert "Safe and Green" not in _titles(nodes)
+    assert "Mobility" not in _titles(nodes)
+
+
+def test_cascade_guard_joins_the_cover_title_lines():
+    nodes = from_font_hierarchy(load_pages("pages_actionplan_cover.json"), 10.0)
+
+    assert "National Sustainable Mobility Policy" in _titles(nodes)
+
+
+def test_cascade_guard_numbering_joins_a_wrapped_numbered_heading():
+    nodes = from_numbering(load_pages("pages_ev_heading.json"), 10.0)
+    by_number = {n.number: n for n in nodes}
+
+    assert by_number["1.1"].title == "National and international policy context"
+
+
+def test_cascade_guard_does_not_join_lines_in_separate_columns():
+    """SMP page 6: two body columns share a baseline and a type size. Their
+    lines sit next to each other in reading order, but are never continuations
+    of one another: a continuation is the line directly below, in-column."""
+    lines = page_lines(load_pages("pages_two_column.json")[0])
+    left = next(l for l in lines if l.text.startswith("The National Sustainable"))
+    right = next(l for l in lines if l.text.startswith("in rural areas and that"))
+
+    assert abs(left.y0 - right.y0) < 1.0  # same baseline, different column
+    follow = _heading_continuation(left, lines)
+    assert follow is None or lines[follow] is not right
+    assert follow is not None and lines[follow].bbox[0] == left.bbox[0]  # the in-column line below
+
+
+def test_cascade_guard_join_is_bounded_by_the_gap_constant():
+    near = [span("Wrapped", size=20.0, font="Helvetica-Bold", y0=100.0, block=0),
+            span("Heading", size=20.0, font="Helvetica-Bold", y0=124.0, block=1)]
+    far = [span("Wrapped", size=20.0, font="Helvetica-Bold", y0=100.0, block=0),
+           span("Heading", size=20.0, font="Helvetica-Bold", y0=170.0, block=1)]
+    different_style = [span("Wrapped", size=20.0, font="Helvetica-Bold", y0=100.0, block=0),
+                       span("Heading", size=20.0, font="Helvetica", y0=124.0, block=1)]
+    sentence = [span("A full sentence.", size=20.0, font="Helvetica-Bold", y0=100.0, block=0),
+                span("Heading", size=20.0, font="Helvetica-Bold", y0=124.0, block=1)]
+
+    def joins(spans):
+        lines = page_lines(page(spans))
+        return _heading_continuation(lines[0], lines) is not None
+
+    assert joins(near)
+    assert not joins(far)
+    assert not joins(different_style)
+    assert not joins(sentence)

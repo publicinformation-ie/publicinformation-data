@@ -25,9 +25,9 @@
 
 ## 5. Legacy-cascade heading guard (D7)
 
-- [ ] 5.1 Apply `is_heading_candidate` to every candidate in `from_font_hierarchy` and `from_numbering`; fixture `pages_smp_opener.json` (real SMP page 9) asserts no node titled `1` and that `Introduction` survives — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k cascade_guard`
-- [ ] 5.2 Add glyph/numeral/cover-text fixtures (SMP page 28 `”`, action-plan cover `2040`, gda-cycle map glyph `l`) asserting no node is titled by any of them — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k cascade_guard`
-- [ ] 5.3 Implement the same-style line join behind a named `HEADING_JOIN_MAX_GAP` constant (≤2 lines, same rounded size + bold class, adjacency within the constant, first line not sentence-ending) with two-directional fixtures: join succeeds on action-plan page 3 (`Safe and Green` + `Mobility` → one node), does not join on SMP page 6's two pull-quote columns — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k cascade_guard`
+- [x] 5.1 Apply `is_heading_candidate` to every candidate in `from_font_hierarchy` and `from_numbering`; fixture `pages_smp_opener.json` (real SMP page 9) asserts no node titled `1` and that `Introduction` survives — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k cascade_guard`
+- [x] 5.2 Add glyph/numeral/cover-text fixtures (SMP page 28 `”`, action-plan cover `2040`, gda-cycle map glyph `l`) asserting no node is titled by any of them — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k cascade_guard`
+- [x] 5.3 Implement the same-style line join behind a named `HEADING_JOIN_MAX_GAP` constant (≤2 lines, same rounded size + bold class, adjacency within the constant, first line not sentence-ending) with two-directional fixtures: join succeeds on action-plan page 3 (`Safe and Green` + `Mobility` → one node), does not join on SMP page 6's two pull-quote columns — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k cascade_guard`
 
 ## 6. Split validation + production wiring (D1, D2)
 
