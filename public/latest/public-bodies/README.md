@@ -71,6 +71,21 @@ parent/child body relationships **are** published — see the table above;
 they were the two fields the v1.0.0 README listed as future work, now
 delivered via the CSO join.)
 
+### `parent_id` vs `government_department_id`
+
+These are two different relationships and must not be conflated:
+
+- `parent_id` — URI of the body's owning/parent body in the state's corporate hierarchy (e.g. Córas Iompair Éireann for Bus Átha Cliath). This is not the sponsoring department.
+- `government_department_id` — URI of the sponsoring government department (the body's aegis). This is not the owning parent. For a local authority it is the authority itself.
+
+Worked example: Córas Iompair Éireann (1186) is the parent of Iarnród Éireann (1073), Bus Éireann (1074) and Bus Átha Cliath (1443). All four are sponsored by the Department of Transport (1213); none has `parent_id` = 1213.
+
+Further examples: daa plc (1192), Shannon Group (1699) and Port of Cork (1633) each own subsidiaries that share the group's sponsoring department but hold the group body as `parent_id`.
+
+Local authorities have a `government_department_id` equal to their own `@id` (e.g. Carlow County Council); this is not a cycle, as only `parent_id` forms the ownership graph.
+
+See [docs/body-hierarchy.md](../../../docs/body-hierarchy.md) for the audit command and known exceptions.
+
 ## Files
 
 - **[public-bodies.jsonld](public-bodies.jsonld)** — JSON-LD, single `@context` + `@graph` of all 883 records

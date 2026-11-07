@@ -37,6 +37,18 @@ python scripts/audit_disclosures.py --min-errors 5
 
 Use this instead of `file_issues.py` when you want to check the DB as actually exported/deployed, rather than the pipeline's intermediate step artifacts.
 
+## audit_body_hierarchy.py
+
+Checks the published public-bodies hierarchy (`public/latest/public-bodies/public-bodies.jsonld`): dangling parents, self-parents and parent cycles (hard), parent/child sponsoring-department mismatches (soft), and state-group bodies missing a `parent_id` (info). See [docs/body-hierarchy.md](../docs/body-hierarchy.md).
+
+### Usage
+
+```bash
+uv run python scripts/audit_body_hierarchy.py
+uv run python scripts/audit_body_hierarchy.py --json
+uv run python scripts/audit_body_hierarchy.py --check   # exit 1 only on hard findings
+```
+
 ## migrate_foi_ids_to_cso.py
 
 One-time, idempotent migration that remaps all FOI/disclosure data onto the canonical CSO `public_body_id` namespace.
