@@ -63,6 +63,13 @@ def test_leading_ordinal_and_bel_artifacts_are_stripped():
     assert text == "Develop and publish an annual review"
 
 
+def test_raw_action_text_is_kept_and_clean_text_is_repaired():
+    actions, _ = build_actions(
+        [plan_record([plan_action("1. Improve staf.f support")])], {})
+    assert actions[0]["action_text"] == "Improve staf.f support"
+    assert actions[0]["action_text_clean"] == "Improve staff support"
+
+
 def test_a_close_paren_ordinal_is_also_stripped():
     assert strip_leading_ordinal("12) Do a thing") == (12, "Do a thing")
 
@@ -166,6 +173,15 @@ def test_the_label_is_short_and_the_milestones_keep_the_prose():
     result = resolve_deadline("", cell)
     assert result.label == "2023"
     assert result.milestones == cell
+
+
+def test_milestones_are_repaired_but_the_deadline_raw_is_not():
+    actions, _ = build_actions([plan_record([plan_action(
+        "1. Do a thing",
+        columns={"TIMELINE & OUTPUT":
+                 "2022: Report developed. 2023: Report published thereafet r."})])], {})
+    assert "thereafet r" in actions[0]["original_deadline_raw"]
+    assert actions[0]["original_deadline_milestones"].endswith("thereafter.")
 
 
 def test_a_bare_date_has_no_separate_milestones():
@@ -282,6 +298,15 @@ def test_an_observation_joins_to_its_plan_via_reports_on():
     assert observations[0]["report_slug"] == "year-one"
     assert observations[0]["as_of"] == "2023-10-20"
     assert errors == []
+
+
+def test_progress_text_is_repaired_in_a_clean_column():
+    actions, _ = build_actions([plan_record([plan_action("1. Do a thing")])], {})
+    observations, _ = build_observations(
+        [report_record([observation(1, progress_text="Signed of flater in Q3.")])],
+        actions)
+    assert observations[0]["progress_text"] == "Signed of flater in Q3."
+    assert observations[0]["progress_text_clean"] == "Signed off later in Q3."
 
 
 def test_an_unresolvable_action_number_is_skipped_not_attached_to_a_neighbour():

@@ -41,10 +41,11 @@ Two further jobs:
 | `action_id` | `{plan_slug}#{action_number}` — this step's minted identity |
 | `public_body_id` / `plan_slug` / `plan_title` / `source_url` | Plan provenance, from `documents.yml` |
 | `action_number` / `action_text` | Recovered from the leading ordinal, stripped of BEL artifacts |
+| `action_text_clean` | `action_text` with confirmed PDF artefacts repaired (`repair_text`) for display; the raw `action_text` remains the audit trail |
 | `original_deadline_raw` / `original_deadline_start` / `original_deadline_end` / `original_deadline_precision` | Structured baseline deadline, or all null if unresolved; an open-ended cell carries precision `annual`/`ongoing` with null bounds |
 | `original_deadline_confidence` | `"stated"` / `"interpreted"` / `None` — never guessed silently |
 | `original_deadline_label` | Short display form of the deadline — the normalised deadline text, `Annual`/`Ongoing` for open-ended cells, `""` when nothing resolved |
-| `original_deadline_milestones` | The plan's interim-milestone prose — the separate `INTERIM MILESTONES` column when the plan publishes one, else the timeline cell when it carries more than the bare date, else `""` |
+| `original_deadline_milestones` | The plan's interim-milestone prose — the separate `INTERIM MILESTONES` column when the plan publishes one, else the timeline cell when it carries more than the bare date, else `""`; published repaired (`repair_text`), with `original_deadline_raw` keeping the verbatim cell as the audit trail |
 | `original_timeline_raw` | The plan's own timeline cell text, preserved verbatim regardless of parse outcome |
 | `lead` / `support` / `output` | Read off the plan table's own columns |
 | `source_page` / `source_ref` | Positional provenance only — never identity |
@@ -54,6 +55,7 @@ Two further jobs:
 | `action_id` | The action this observation was joined to |
 | `report_slug` / `report_title` / `as_of` | Report provenance |
 | `status` / `progress_text` / `asi` | Carried through from `extract_action_status` |
+| `progress_text_clean` | `progress_text` with confirmed PDF artefacts repaired (`repair_text`) for display; the raw `progress_text` remains the audit trail |
 | `reported_deadline_raw` / `reported_deadline_start` / `reported_deadline_end` / `reported_deadline_precision` | The report's own re-stated deadline — never merged into the action's original deadline |
 | `source_page` / `source_ref` | Positional provenance |
 

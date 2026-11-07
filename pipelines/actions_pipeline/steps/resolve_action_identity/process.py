@@ -40,6 +40,7 @@ from pathlib import Path
 
 from lib.date_parse import OPEN_ENDED, parse_date
 from lib.file_utils import append_errors, read_json, write_json, write_status
+from lib.text_repairs import repair_text
 
 STEP_NAME = "resolve_action_identity"
 
@@ -308,13 +309,14 @@ def build_actions(plan_records, plan_meta):
                 "source_url": meta.get("source_url") or record.get("source_url") or "",
                 "action_number": number,
                 "action_text": action_text,
+                "action_text_clean": repair_text(action_text),
                 "original_deadline_raw": timeline_raw,
                 "original_deadline_start": parsed["start"] if parsed else None,
                 "original_deadline_end": parsed["end"] if parsed else None,
                 "original_deadline_precision": parsed["precision"] if parsed else None,
                 "original_deadline_confidence": confidence,
                 "original_deadline_label": resolution.label,
-                "original_deadline_milestones": resolution.milestones,
+                "original_deadline_milestones": repair_text(resolution.milestones),
                 "original_timeline_raw": timeline_raw,
                 "lead": column_value(columns, LEAD_ALIASES),
                 "support": column_value(columns, SUPPORT_ALIASES),
@@ -367,6 +369,7 @@ def build_observations(report_records, actions):
                 "reported_deadline_end": raw.get("reported_deadline_end"),
                 "reported_deadline_precision": raw.get("reported_deadline_precision"),
                 "progress_text": raw.get("progress_text") or "",
+                "progress_text_clean": repair_text(raw.get("progress_text") or ""),
                 "asi": raw.get("asi"),
                 "source_page": raw.get("source_page"),
                 "source_ref": raw.get("source_ref"),
