@@ -4,6 +4,18 @@ All notable changes to the Public Bodies dataset will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [public-body-actions 2.1.0] - 2026-11-07
+
+### Added
+- `original_deadline_label`, `original_deadline_milestones`, `action_text_clean` on actions and `progress_text_clean` on status observations.
+- `annual` and `ongoing` values for `original_deadline_precision` and `reported_deadline_precision`.
+
+### Fixed
+- Action `…2022-2025#20` final deadline 2023 → 2025.
+
+### Documented
+- `latest_status` null semantics ("not yet reported", not "unknown") and the `parent_id`/`government_department_id` distinction.
+
 ## [Unreleased] - 2026-10-18
 
 ### Fixed
