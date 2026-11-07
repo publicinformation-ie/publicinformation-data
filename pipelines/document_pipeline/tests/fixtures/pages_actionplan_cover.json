@@ -1,0 +1,139 @@
+[
+ {
+  "number": 1,
+  "width": 595.28,
+  "height": 841.89,
+  "rotation": 0,
+  "spans": [
+   {
+    "text": "National Sustainable  ",
+    "font": "Lato-Black",
+    "size": 31.0,
+    "bbox": [
+     107.41,
+     149.8,
+     409.87,
+     193.7
+    ],
+    "block": 1,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Mobility Policy",
+    "font": "Lato-Black",
+    "size": 31.0,
+    "bbox": [
+     107.41,
+     187.0,
+     317.26,
+     230.9
+    ],
+    "block": 1,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Action Plan 2022-2025",
+    "font": "Lato-Black",
+    "size": 25.0,
+    "bbox": [
+     107.41,
+     226.54,
+     368.97,
+     261.94
+    ],
+    "block": 1,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "2040",
+    "font": "Quadraat",
+    "size": 26.75,
+    "bbox": [
+     483.96,
+     769.14,
+     532.59,
+     798.56
+    ],
+    "block": 2,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Tionscadal Éireann",
+    "font": "QuadraatSans-Bold",
+    "size": 8.18,
+    "bbox": [
+     485.54,
+     758.62,
+     550.93,
+     768.35
+    ],
+    "block": 3,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Project Ireland",
+    "font": "QuadraatSans-Regular",
+    "size": 8.18,
+    "bbox": [
+     485.54,
+     767.11,
+     534.04,
+     776.91
+    ],
+    "block": 3,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Prepared by the  ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     107.87,
+     754.66,
+     182.44,
+     768.13
+    ],
+    "block": 3,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "Department of Transport",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     107.87,
+     768.66,
+     216.52,
+     782.13
+    ],
+    "block": 3,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "gov.ie/transport",
+    "font": "Lato-Black",
+    "size": 10.0,
+    "bbox": [
+     107.87,
+     784.11,
+     180.98,
+     798.27
+    ],
+    "block": 4,
+    "line": 0,
+    "span": 0
+   }
+  ],
+  "drawings": [],
+  "images": [],
+  "tables": []
+ }
+]

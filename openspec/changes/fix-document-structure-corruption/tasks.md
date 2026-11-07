@@ -2,9 +2,9 @@
 
 ## 1. Reading-order line extraction (D3)
 
-- [ ] 1.1 Add page-fixture `pages_two_column.json` (real SMP foreword page 6 raw spans, where raw span order puts footer before header); add the `READING_ORDER_Y_GRID` module constant and implement the `(y0 rounded, x0, block/line)` stable sort in `page_lines()`; verify the fixture asserts header-then-body-then-footer order and that same-baseline lines sort left-to-right — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k reading_order`
-- [ ] 1.2 Verify existing strategy tests still pass with the sort in place (no fixture relied on raw span order) — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -q`
-- [ ] 1.3 Record each document's current TOC match rate before any other change (from the existing audit/eval output) as the baseline task 7.2 compares against — `PYTHONPATH=".:../../src" python experiments/2026-11-07-structure-corruption-audit/audit.py --head > /tmp/structure-audit-baseline.txt`
+- [x] 1.1 Add page-fixture `pages_two_column.json` (real SMP foreword page 6 raw spans, where raw span order puts footer before header); add the `READING_ORDER_Y_GRID` module constant and implement the `(y0 rounded, x0, block/line)` stable sort in `page_lines()`; verify the fixture asserts header-then-body-then-footer order and that same-baseline lines sort left-to-right — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k reading_order`
+- [x] 1.2 Verify existing strategy tests still pass with the sort in place (no fixture relied on raw span order) — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -q`
+- [x] 1.3 Record each document's current TOC match rate before any other change (from the existing audit/eval output) as the baseline task 7.2 compares against — `PYTHONPATH=".:../../src" python experiments/2026-11-07-structure-corruption-audit/audit.py --head > /tmp/structure-audit-baseline.txt`
 
 ## 2. TOC page filtering + entry collection (D5)
 

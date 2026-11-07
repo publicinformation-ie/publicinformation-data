@@ -95,6 +95,11 @@ MATCH_RATE_GATE = 0.60          # min share of plausible entries matched to fire
 SCORE_FLOOR = 1.05              # body-size multiplier; below this and not bold is rejected
 ISOLATION_BONUS = 0.3           # reward an occurrence flanked by body-sized text
 RIGHT_COLUMN_MIN_X_FRACTION = 0.5  # a bare number this far right is a page number
+# Reading order rounds a line's y0 to this many points before comparing, so
+# lines on one visual baseline (differing by sub-point noise) sort left to
+# right. Too coarse and a two-column page interleaves; too fine and noise
+# reorders a single visual line.
+READING_ORDER_Y_GRID = 3.0
 
 # Fields an override.json entry may set. `slug` is the match key, not a value.
 OVERRIDE_FIELDS = {"level", "number", "title", "start_page", "start_y", "end_page",
@@ -114,6 +119,10 @@ class Line:
     block: int
     index: int
     page: int
+    # Text of the line's first span. A running header is often a constant
+    # lead ("National Sustainable Mobility Policy | ") followed by a span that
+    # changes per page, so the whole line never repeats but the lead does.
+    lead: str = ""
 
     @property
     def y0(self) -> float:
@@ -126,6 +135,13 @@ def is_bold(font) -> bool:
 
 def page_lines(page: dict) -> list:
     """Group a page's spans into lines, in reading order.
+
+    Reading order is top to bottom, then left to right: lines are sorted by
+    `(y0 // READING_ORDER_Y_GRID, x0, block, line)`, not left in the
+    extractor's raw span order, which can put a footer page number before the
+    running header and a page title after all the body text. The grid rounds
+    y so that lines on one visual baseline sort by x rather than by sub-point
+    noise.
 
     A line's size and font come from its largest span, so a line that starts
     with a small bullet or footnote marker is still classified by the type it
@@ -158,7 +174,9 @@ def page_lines(page: dict) -> list:
             block=key[0],
             index=key[1],
             page=page["number"],
+            lead=spans[0]["text"],
         ))
+    result.sort(key=lambda l: (round(l.y0 / READING_ORDER_Y_GRID), l.bbox[0], l.block, l.index))
     return result
 
 

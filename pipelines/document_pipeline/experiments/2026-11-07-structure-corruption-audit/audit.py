@@ -14,6 +14,7 @@ Produces two tables:
                extract_pages sidecars and audit the resulting tree
 """
 import argparse
+from collections import Counter
 import json
 import os
 import re
@@ -63,8 +64,10 @@ def audit_head(slug):
     if not P:
         return None
     pc = len(P)
-    nodes, method, _report = ds.detect_structure(P, None, pc)
+    nodes, method, report = ds.detect_structure(P, None, pc)
     l1 = [n for n in nodes if n.level == 1]
+    rate = report["match_rate"] if report else None
+    levels = dict(sorted(Counter(n.level for n in nodes).items()))
     issues = []
     if len({n.level for n in nodes}) > 1 and not l1:
         issues.append("no-level-1")
@@ -74,7 +77,7 @@ def audit_head(slug):
         elif not ds.is_heading_candidate(n.title):
             issues.append(f"not-candidate:{n.title[:28]!r}")
     issues += ds.validate_split(nodes, pc)
-    return method, len(nodes), len(l1), issues
+    return method, len(nodes), len(l1), issues, rate, levels
 
 
 def audit_published(slug):
@@ -108,10 +111,11 @@ def main():
             if r is None:
                 print(f"{slug[:52]:52} (no sidecars)")
                 continue
-            method, nodes, l1, issues = r
+            method, nodes, l1, issues, rate, levels = r
             status = "OK " if not issues else "BAD"
+            rate_s = "-" if rate is None else f"{rate:.3f}"
             print(f"{status} {slug[:52]:52} {method:9} n={nodes:3} "
-                  f"l1={l1:3} issues={len(issues)}")
+                  f"l1={l1:3} issues={len(issues)} toc_rate={rate_s} levels={levels}")
             for i in issues[:6]:
                 print(f"      {i}")
 

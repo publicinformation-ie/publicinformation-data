@@ -11,12 +11,14 @@ from steps.detect_structure.process import (
     is_heading_candidate,
     merge_overrides,
     normalize_heading_text,
+    page_lines,
     parse_toc,
     process,
     running_header_texts,
     score_occurrence,
     validate_split,
 )
+from steps.detect_structure.process import READING_ORDER_Y_GRID
 from steps.extract_pages.process import extract_page
 
 import pymupdf
@@ -386,3 +388,38 @@ def test_validate_split_valid_tree_has_no_issues():
     b = Node(level=2, number=None, title="Detail", slug="detail",
              start_page=4, start_y=1.0, end_page=5)
     assert validate_split([a, b], 5) == []
+
+
+# --- reading order ---------------------------------------------------------
+
+def test_reading_order_puts_header_then_title_then_body_then_footer():
+    """SMP foreword page 6: raw span order is header, footer, body, then the
+    40pt `Foreword` title last. Reading order is top to bottom."""
+    lines = page_lines(load_pages("pages_two_column.json")[0])
+    texts = [l.text for l in lines]
+
+    assert texts[0].startswith("National Sustainable Mobility Policy")
+    assert texts[-1] == "4"  # footer page number, bottom-most and left-most
+    assert texts.index("Foreword") < texts.index(
+        next(t for t in texts if t.startswith("The National Sustainable Mobility Policy provides")))
+    # y is monotonically non-decreasing up to the grid, so nothing is out of order
+    ys = [round(l.y0 / READING_ORDER_Y_GRID) for l in lines]
+    assert ys == sorted(ys)
+
+
+def test_reading_order_sorts_same_baseline_lines_left_to_right():
+    """The two columns of page 6 share baselines; the left column's line
+    precedes the right column's line at the same y."""
+    lines = page_lines(load_pages("pages_two_column.json")[0])
+    texts = [l.text for l in lines]
+    left = texts.index(next(t for t in texts if t.startswith("The National Sustainable")))
+    right = texts.index(next(t for t in texts if t.startswith("in rural areas and that")))
+
+    assert left + 1 == right
+
+
+def test_reading_order_ignores_sub_grid_baseline_noise():
+    spans = [span("right", y0=100.2, x0=300.0, block=0, line=0),
+             span("left", y0=100.0, x0=72.0, block=1, line=0),
+             span("below", y0=140.0, x0=72.0, block=2, line=0)]
+    assert [l.text for l in page_lines(page(spans))] == ["left", "right", "below"]

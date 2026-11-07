@@ -1,0 +1,55 @@
+[
+ {
+  "number": 9,
+  "width": 595.28,
+  "height": 841.89,
+  "rotation": 0,
+  "spans": [
+   {
+    "text": "1",
+    "font": "Lato-Black",
+    "size": 119.41,
+    "bbox": [
+     428.95,
+     428.14,
+     494.65,
+     606.38
+    ],
+    "block": 3,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "CHAPTER",
+    "font": "Lato-Regular",
+    "size": 32.27,
+    "bbox": [
+     392.52,
+     423.71,
+     530.33,
+     469.53
+    ],
+    "block": 4,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Introduction",
+    "font": "Lato-Bold",
+    "size": 37.0,
+    "bbox": [
+     335.49,
+     700.06,
+     540.64,
+     751.31
+    ],
+    "block": 5,
+    "line": 0,
+    "span": 0
+   }
+  ],
+  "drawings": [],
+  "images": [],
+  "tables": []
+ }
+]
