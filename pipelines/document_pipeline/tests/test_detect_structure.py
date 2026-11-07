@@ -20,6 +20,7 @@ from steps.detect_structure.process import (
     merge_overrides,
     normalize_heading_text,
     page_lines,
+    reading_order_lines,
     parse_toc,
     process,
     running_header_texts,
@@ -403,7 +404,7 @@ def test_validate_split_valid_tree_has_no_issues():
 def test_reading_order_puts_header_then_title_then_body_then_footer():
     """SMP foreword page 6: raw span order is header, footer, body, then the
     40pt `Foreword` title last. Reading order is top to bottom."""
-    lines = page_lines(load_pages("pages_two_column.json")[0])
+    lines = reading_order_lines(load_pages("pages_two_column.json")[0])
     texts = [l.text for l in lines]
 
     assert texts[0].startswith("National Sustainable Mobility Policy")
@@ -418,7 +419,7 @@ def test_reading_order_puts_header_then_title_then_body_then_footer():
 def test_reading_order_sorts_same_baseline_lines_left_to_right():
     """The two columns of page 6 share baselines; the left column's line
     precedes the right column's line at the same y."""
-    lines = page_lines(load_pages("pages_two_column.json")[0])
+    lines = reading_order_lines(load_pages("pages_two_column.json")[0])
     texts = [l.text for l in lines]
     left = texts.index(next(t for t in texts if t.startswith("The National Sustainable")))
     right = texts.index(next(t for t in texts if t.startswith("in rural areas and that")))
@@ -430,7 +431,7 @@ def test_reading_order_ignores_sub_grid_baseline_noise():
     spans = [span("right", y0=100.2, x0=300.0, block=0, line=0),
              span("left", y0=100.0, x0=72.0, block=1, line=0),
              span("below", y0=140.0, x0=72.0, block=2, line=0)]
-    assert [l.text for l in page_lines(page(spans))] == ["left", "right", "below"]
+    assert [l.text for l in reading_order_lines(page(spans))] == ["left", "right", "below"]
 
 
 # --- toc_filtering ---------------------------------------------------------
@@ -546,12 +547,24 @@ def test_toc_page_exclusion_supplement_adds_nothing_from_a_toc_page():
 # --- title_cleanup ---------------------------------------------------------
 
 def test_title_cleanup_strips_the_leading_pipe_from_a_real_nifti_toc_page():
-    entries, toc_pages, _signal, _flags = parse_toc(load_pages("pages_nifti_toc.json"), 10.0)
+    """Nifti page 3 lists `1.2 | Investing in Transport`. The running header
+    (`National Investment Framework … | Overview`) repeats, so a second copy of
+    the page gives it the two pages it needs to be recognised."""
+    toc = load_pages("pages_nifti_toc.json")[0]
+    header = toc["spans"][:2]  # the two spans that make up the running header
+    # Nine further pages carrying only the same running header, so it repeats
+    # on enough pages to be recognised while the TOC entries do not.
+    fillers = [page([{**header[0], "block": 0, "line": 0, "span": 0},
+                     {**header[1], "block": 0, "line": 0, "span": 1},
+                     span("Body text on a later page.", size=10.0, y0=120.0, block=1)],
+                    number=number)
+               for number in range(10, 19)]
+    entries, toc_pages, _signal, _flags = parse_toc([toc] + fillers, 10.0)
     titles = [e["title"] for e in entries]
 
     assert toc_pages == [3]
     assert "Investing in Transport" in titles
-    assert not any(t.startswith("|") or "| " in t for t in titles)
+    assert not any("|" in t for t in titles)
 
 
 def test_title_cleanup_strips_control_characters_from_a_matched_heading():
@@ -653,7 +666,7 @@ def test_cascade_guard_does_not_join_lines_in_separate_columns():
     """SMP page 6: two body columns share a baseline and a type size. Their
     lines sit next to each other in reading order, but are never continuations
     of one another: a continuation is the line directly below, in-column."""
-    lines = page_lines(load_pages("pages_two_column.json")[0])
+    lines = reading_order_lines(load_pages("pages_two_column.json")[0])
     left = next(l for l in lines if l.text.startswith("The National Sustainable"))
     right = next(l for l in lines if l.text.startswith("in rural areas and that"))
 
@@ -674,10 +687,162 @@ def test_cascade_guard_join_is_bounded_by_the_gap_constant():
                 span("Heading", size=20.0, font="Helvetica-Bold", y0=124.0, block=1)]
 
     def joins(spans):
-        lines = page_lines(page(spans))
+        lines = reading_order_lines(page(spans))
         return _heading_continuation(lines[0], lines) is not None
 
     assert joins(near)
     assert not joins(far)
     assert not joins(different_style)
     assert not joins(sentence)
+
+
+# --- validate_split: level invariant (6.1) ----------------------------------
+
+def _n(slug, level, start, end, title="A heading"):
+    return Node(level=level, number=None, title=title, slug=slug,
+                start_page=start, start_y=1.0, end_page=end)
+
+
+def test_validate_split_flags_a_tree_with_no_level_1_node():
+    """The `sustainable-mobility-policy` failure: every node is level 2, so
+    the tree has a single level — a 'more than one level' condition would
+    miss it. The invariant is unconditional."""
+    tree = [_n("a", 2, 1, 2, "Alpha"), _n("b", 2, 3, 4, "Beta")]
+
+    issues = validate_split(tree, 4)
+
+    assert len(issues) == 1 and "no level-1 node" in issues[0]
+
+
+def test_validate_split_flags_a_deeper_tree_with_no_level_1_node():
+    tree = [_n("a", 2, 1, 2, "Alpha"), _n("b", 3, 3, 4, "Beta")]
+    assert any("no level-1 node" in i for i in validate_split(tree, 4))
+
+
+def test_validate_split_accepts_a_flat_all_level_1_tree():
+    tree = [_n("a", 1, 1, 2, "Alpha"), _n("b", 1, 3, 4, "Beta")]
+    assert validate_split(tree, 4) == []
+
+
+def test_validate_split_an_empty_tree_has_no_level_issue():
+    assert validate_split([], 4) == []
+
+
+# --- validation_gate (6.2) ---------------------------------------------------
+
+def _run_process(tmp_path, make_writer, outline=None, overrides=None, pages="pages_numbered.json"):
+    upstream, records = write_upstream(tmp_path, load_pages(pages), outline=outline)
+    step_dir = tmp_path / "detect_structure"
+    step_dir.mkdir()
+    writer = make_writer("detect_structure")
+    process(records, upstream, step_dir, writer, overrides=overrides or {})
+    writer.finalize()
+    (record,) = json.loads((tmp_path / "output.json").read_text())["results"]
+    errors = json.loads((step_dir / "errors.json").read_text())
+    return record, [e for e in errors if e["error_type"] == "InvalidStructure"]
+
+
+def test_validation_gate_flags_an_invalid_tree_and_still_writes_it(tmp_path, make_writer):
+    outline = [{"level": 2, "title": "Alpha", "page": 2, "y": 76.0},
+               {"level": 2, "title": "Beta", "page": 3, "y": 76.0}]
+
+    record, flagged = _run_process(tmp_path, make_writer, outline=outline)
+
+    assert [n["level"] for n in record["nodes"]] == [2, 2]  # written unaltered
+    assert len(flagged) == 1
+    assert flagged[0]["context"]["doc_slug"] == "fixture-doc"
+    assert flagged[0]["context"]["check"] == "no-level-1-node"
+    assert flagged[0]["context"]["value"] == [2]
+
+
+def test_validation_gate_runs_after_overrides(tmp_path, make_writer):
+    """A junk title introduced by an override is still caught."""
+    overrides = {"fixture-doc": [{"slug": "1-1-introduction", "title": "1"}]}
+
+    record, flagged = _run_process(tmp_path, make_writer, overrides=overrides)
+
+    assert record["overridden"] is True
+    assert [f["context"]["check"] for f in flagged] == ["non-heading-title"]
+    assert flagged[0]["context"]["value"] == "1"
+
+
+def test_validation_gate_a_valid_tree_records_nothing(tmp_path, make_writer):
+    _record, flagged = _run_process(tmp_path, make_writer)
+
+    assert flagged == []
+
+
+def test_validation_gate_flags_a_duplicate_boundary(tmp_path, make_writer):
+    outline = [{"level": 1, "title": "Alpha", "page": 2, "y": 76.0},
+               {"level": 1, "title": "Beta", "page": 2, "y": 76.0}]
+
+    _record, flagged = _run_process(tmp_path, make_writer, outline=outline)
+
+    assert [f["context"]["check"] for f in flagged] == ["duplicate-boundary"]
+
+
+def test_page_lines_keeps_the_raw_span_order_other_steps_rely_on():
+    """`clean_text` and `extract_figures` share `page_lines`; it must not sort."""
+    raw = page_lines(load_pages("pages_two_column.json")[0])
+    ordered = reading_order_lines(load_pages("pages_two_column.json")[0])
+
+    assert [l.text for l in raw][:2] == ["National Sustainable Mobility Policy | Foreword", "4"]
+    assert [l.text for l in ordered][-1] == "4"
+    assert sorted(l.text for l in raw) == sorted(l.text for l in ordered)
+
+
+# --- joined runs in columns -------------------------------------------------
+
+def _index_for(pages):
+    body = body_size(pages)
+    return build_occurrence_index(pages, set(), running_header_texts(pages), body), body
+
+
+def test_joined_runs_join_two_spans_emitted_on_one_baseline():
+    """All-island page 139: `Appendix C |` and `Mitigation and Monitoring
+    Measures` are separate line groups on one baseline. Raw adjacency used to
+    join them; reading order must still join them, across a tiny horizontal gap."""
+    pages = load_pages("pages_allisland_appendix.json")
+    index, _body = _index_for(pages)
+
+    occurrences = index.get(normalize_heading_text("Appendix C | Mitigation and Monitoring Measures"), [])
+
+    assert occurrences and occurrences[0]["page"] == 139
+
+
+def test_joined_runs_join_a_wrapped_heading_across_an_interleaved_column():
+    """Moving Together page 26: `Economic and Financial` / `Sustainability`
+    wrap down the left column while right-column body lines interleave in
+    reading order. The run follows the column, not the row."""
+    pages = load_pages("pages_moving_together_column.json")
+    index, _body = _index_for(pages)
+
+    occurrences = index.get(normalize_heading_text("Economic and Financial Sustainability"), [])
+
+    assert occurrences and occurrences[0]["page"] == 26
+
+
+def test_joined_runs_do_not_join_two_columns_on_one_baseline():
+    """SMP page 6 is one visual row of two columns; no run may splice them."""
+    page_record = {**load_pages("pages_two_column.json")[0], "number": 1}
+    index, body = _index_for([page_record])
+    lines = reading_order_lines(page_record)
+    left = next(l for l in lines if l.text.startswith("The National Sustainable"))
+    right = next(l for l in lines if l.text.startswith("in rural areas and that"))
+
+    assert abs(left.y0 - right.y0) < 1.0
+    assert normalize_heading_text(f"{left.text} {right.text}") not in index
+
+
+def test_toc_pages_are_read_column_by_column():
+    """Emra page 2 is a two-column contents page: the left column's chapters
+    come before the right column's, not interleaved row by row."""
+    from steps.detect_structure.process import _toc_reading_order
+
+    lines = _toc_reading_order(load_pages("pages_emra_toc.json")[0])
+    texts = [l.text for l in lines]
+    chapter_1 = texts.index("CHAPTER 1:")
+    chapter_4 = texts.index("CHAPTER 4:")
+
+    assert chapter_1 < chapter_4
+    assert all(i < chapter_4 for i, t in enumerate(texts) if t.startswith(("1.", "2.", "3.")))

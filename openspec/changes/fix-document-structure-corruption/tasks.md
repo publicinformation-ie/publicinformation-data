@@ -31,10 +31,10 @@
 
 ## 6. Split validation + production wiring (D1, D2)
 
-- [ ] 6.1 Add the level invariant to `validate_split` itself — a non-empty node set with no level-1 node is an issue, unconditionally, with an all-level-1 flat tree valid; unit-test an all-level-2 tree (issue raised), a flat all-level-1 tree (no issue), and confirm the two existing `validate_split` tests still pass unchanged — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k validate_split`
-- [ ] 6.2 Wire `validate_split()` into `process()` post-`merge_overrides`, appending `InvalidStructure` entries (doc_slug, failing check, offending value) to `errors.json` without altering the tree, and still writing the record to output; test that a failing document is written *and* flagged — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k validation_gate`
-- [ ] 6.3 Confirm `steps/detect_structure/eval/compare.py` still reports correctly now that `validate_split` can return a level issue (its issue counts change for affected documents) — run it on one document and check the output reads sensibly
-- [ ] 6.4 Update `steps/detect_structure/README.md`: add `InvalidStructure` to the error table and note that validation always runs in production and that an unresolved entry blocks the merge — `uv run pytest pipelines/document_pipeline/tests -q && uv run pyright`
+- [x] 6.1 Add the level invariant to `validate_split` itself — a non-empty node set with no level-1 node is an issue, unconditionally, with an all-level-1 flat tree valid; unit-test an all-level-2 tree (issue raised), a flat all-level-1 tree (no issue), and confirm the two existing `validate_split` tests still pass unchanged — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k validate_split`
+- [x] 6.2 Wire `validate_split()` into `process()` post-`merge_overrides`, appending `InvalidStructure` entries (doc_slug, failing check, offending value) to `errors.json` without altering the tree, and still writing the record to output; test that a failing document is written *and* flagged — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k validation_gate`
+- [x] 6.3 Confirm `steps/detect_structure/eval/compare.py` still reports correctly now that `validate_split` can return a level issue (its issue counts change for affected documents) — run it on one document and check the output reads sensibly
+- [x] 6.4 Update `steps/detect_structure/README.md`: add `InvalidStructure` to the error table and note that validation always runs in production and that an unresolved entry blocks the merge — `uv run pytest pipelines/document_pipeline/tests -q && uv run pyright`
 
 ## 7. Corpus regeneration + audit (D8, D9)
 

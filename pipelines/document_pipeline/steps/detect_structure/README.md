@@ -76,6 +76,7 @@ Repeated headings — `1.1 Introduction` continued onto the next page, or the sa
   | `LowTocMatchRate` | A TOC was detected but its match rate was below the gate, so the legacy cascade was used |
   | `TocEntryUnmatched` | A TOC entry had no body occurrence under the matching rule; no boundary created |
   | `TocEntryNoHeading` | A TOC entry matched a body line below the score floor (not above body size or bold); no boundary created |
+  | `InvalidStructure` | The final tree (after overrides) failed `validate_split` (e.g. no level-1 node, orphaned or empty sections). The tree is not altered and the record is still written. Validation always runs in production; an unresolved entry blocks the merge — fix it with an `override.json` entry |
   | `UnknownOverrideSlug` | An `override.json` entry names a slug detection no longer produces — the heading was probably renamed, or the detection method changed |
   | `MalformedOverride` | An `override.json` entry is not an object, has no `slug`, or sets a field that is not a node field |
 

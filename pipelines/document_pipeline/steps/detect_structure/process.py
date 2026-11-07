@@ -101,6 +101,11 @@ RIGHT_COLUMN_MIN_X_FRACTION = 0.5  # a bare number this far right is a page numb
 # and lines further apart than this are never joined.
 HEADING_JOIN_MAX_GAP = 1.6
 HEADING_JOIN_MIN_GAP = 0.5      # below this pitch, two lines share a baseline
+# A heading can be emitted as two spans grouped into two "lines" on one
+# baseline (`Appendix C |` + `Mitigation and Monitoring Measures`): the second
+# starts within this many points of where the first ends. A wider gap is a
+# column gutter, not a wrapped heading.
+SAME_LINE_SPAN_GAP = 6.0
 # Reading order rounds a line's y0 to this many points before comparing, so
 # lines on one visual baseline (differing by sub-point noise) sort left to
 # right. Too coarse and a two-column page interleaves; too fine and noise
@@ -140,14 +145,12 @@ def is_bold(font) -> bool:
 
 
 def page_lines(page: dict) -> list:
-    """Group a page's spans into lines, in reading order.
+    """Group a page's spans into lines, in the extractor's raw span order.
 
-    Reading order is top to bottom, then left to right: lines are sorted by
-    `(y0 // READING_ORDER_Y_GRID, x0, block, line)`, not left in the
-    extractor's raw span order, which can put a footer page number before the
-    running header and a page title after all the body text. The grid rounds
-    y so that lines on one visual baseline sort by x rather than by sub-point
-    noise.
+    Other steps (`clean_text`, `extract_figures`) share this function and rely
+    on that order — `clean_text` even uses out-of-y-order spans within a block
+    as its suspect-reading-order signal — so it deliberately does not sort.
+    Detection strategies use `reading_order_lines` instead.
 
     A line's size and font come from its largest span, so a line that starts
     with a small bullet or footnote marker is still classified by the type it
@@ -182,8 +185,20 @@ def page_lines(page: dict) -> list:
             page=page["number"],
             lead=spans[0]["text"],
         ))
-    result.sort(key=lambda l: (round(l.y0 / READING_ORDER_Y_GRID), l.bbox[0], l.block, l.index))
     return result
+
+
+def reading_order_lines(page: dict) -> list:
+    """A page's lines in reading order: top to bottom, then left to right.
+
+    Sorted by `(round(y0 / READING_ORDER_Y_GRID), x0, block, line)`. The
+    extractor's raw span order can put a footer page number before the running
+    header and a page title after all the body text. The grid rounds y so that
+    lines on one visual baseline sort by x rather than by sub-point noise.
+    Every detection strategy consumes lines through this function.
+    """
+    return sorted(page_lines(page),
+                  key=lambda l: (round(l.y0 / READING_ORDER_Y_GRID), l.bbox[0], l.block, l.index))
 
 
 def style_histogram(pages: list) -> Counter:
@@ -226,7 +241,7 @@ def running_header_texts(pages: list, fraction: float = RUNNING_HEADER_FRACTION)
     count = Counter()
     total = len(pages)
     for page in pages:
-        for line in page_lines(page):
+        for line in reading_order_lines(page):
             norm = normalize_heading_text(line.text)
             if len(norm) >= 4:
                 count[norm] += 1
@@ -243,7 +258,7 @@ def running_header_leads(pages: list, fraction: float = RUNNING_HEADER_FRACTION)
     Counted once per page."""
     count = Counter()
     for page in pages:
-        leads = {normalize_heading_text(line.lead) for line in page_lines(page)}
+        leads = {normalize_heading_text(line.lead) for line in reading_order_lines(page)}
         for lead in leads:
             if len(lead) >= 4:
                 count[lead] += 1
@@ -403,7 +418,7 @@ def from_numbering(pages: list, body: float, skip_pages=frozenset()) -> list:
     for page in pages:
         if page["number"] in skip_pages:
             continue
-        lines = page_lines(page)
+        lines = reading_order_lines(page)
         for line in lines:
             match = HEADING_RE.match(line.text)
             if not match:
@@ -432,7 +447,7 @@ def from_font_hierarchy(pages: list, body: float, skip_pages=frozenset()) -> lis
     for page in pages:
         if page["number"] in skip_pages:
             continue
-        lines = page_lines(page)
+        lines = reading_order_lines(page)
         consumed = set()
         for position, line in enumerate(lines):
             if position in consumed:
@@ -472,7 +487,7 @@ def _page_toc_signals(page: dict, body: float):
     """TOC-page signals for one page: a `contents` title at heading size, a
     `contents` title at any size, dot-leader line count, right-column page
     numbers."""
-    lines = page_lines(page)
+    lines = reading_order_lines(page)
     width = float(page.get("width") or 595.0)
     title_heading = title_any = False
     for line in lines:
@@ -489,7 +504,7 @@ def _page_toc_signals(page: dict, body: float):
 
 def _page_kind(page: dict):
     """Classify a flagged page as 'contents', 'list-of' (furniture), or None."""
-    for line in page_lines(page):
+    for line in reading_order_lines(page):
         norm = normalize_heading_text(line.text)
         if norm in TOC_TITLES:
             return "contents"
@@ -506,6 +521,24 @@ def _strip_toc_suffix(text: str) -> str:
     return t.strip()
 
 
+def _toc_reading_order(page: dict) -> list:
+    """A TOC page's lines in column-major reading order: the left column top to
+    bottom, then the right column, each row left to right.
+
+    A two-column contents page (emra's, for one) lists chapters down the left
+    column and continues down the right; plain row-major order would interleave
+    the two columns and turn one chapter line into several entries. A line is
+    assigned to a column by its left edge relative to the page's mid-point, so
+    a full-width line (a title, a chapter opener) stays in the left column and
+    keeps its place in it.
+    """
+    width = float(page.get("width") or 595.0)
+    return sorted(page_lines(page),
+                  key=lambda l: (0 if l.bbox[0] < width * RIGHT_COLUMN_MIN_X_FRACTION else 1,
+                                 round(l.y0 / READING_ORDER_Y_GRID), l.bbox[0],
+                                 l.block, l.index))
+
+
 def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
     """Return (entries, flags) for one TOC page.
 
@@ -518,9 +551,9 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
     numbers are skipped wherever they sit, and so are running-header lines
     (`running` holds whole-line texts, `running_leads` the repeating first-span
     texts). A skipped line creates no entry, so it also contributes no `x0` to
-    `_infer_levels`.
+    `_infer_levels`. Lines are read column by column (`_toc_reading_order`).
     """
-    lines = page_lines(page)
+    lines = _toc_reading_order(page)
     for position, candidate in enumerate(lines):
         if normalize_heading_text(candidate.text) in TOC_TITLES:
             lines = lines[position + 1:]
@@ -678,11 +711,52 @@ def parse_toc(pages: list, body: float):
     return all_entries, toc_pages, level_signal, flags
 
 
-def _joined_runs(lines):
-    n = len(lines)
-    for k in (1, 2, 3):
-        for start in range(n - k + 1):
-            yield start, k, " ".join(l.text for l in lines[start:start + k])
+def _column_successors(lines) -> dict:
+    """Map a line index to the index of the line that continues it: either the
+    rest of the same visual line (the next span at the same baseline, starting
+    where this one ends) or the next line below in the same column.
+
+    Not simply the next line in reading order: on a two-column page, the line
+    after a column-one line is the column-two line on the same baseline, and
+    joining those would sand two headings together while splitting every
+    wrapped one.
+    """
+    successors = {}
+    for index, line in enumerate(lines):
+        same_line, same_line_gap = None, None
+        below, below_y = None, None
+        for other_index, other in enumerate(lines):
+            if other_index == index:
+                continue
+            if abs(other.y0 - line.y0) <= HEADING_JOIN_MIN_GAP * line.size:
+                gap = other.bbox[0] - line.bbox[2]
+                if 0 <= gap <= SAME_LINE_SPAN_GAP and (same_line_gap is None or gap < same_line_gap):
+                    same_line, same_line_gap = other_index, gap
+                continue
+            if other.y0 <= line.y0:
+                continue
+            if min(line.bbox[2], other.bbox[2]) - max(line.bbox[0], other.bbox[0]) <= 0:
+                continue
+            if below_y is None or other.y0 < below_y:
+                below, below_y = other_index, other.y0
+        best = same_line if same_line is not None else below
+        if best is not None:
+            successors[index] = best
+    return successors
+
+
+def _joined_runs(lines, successors=None):
+    """Yield `(line_indices, joined_text)` for one to three lines that follow
+    one another down one column."""
+    successors = _column_successors(lines) if successors is None else successors
+    for start in range(len(lines)):
+        indices = (start,)
+        yield indices, lines[start].text
+        current = start
+        while len(indices) < 3 and current in successors:
+            current = successors[current]
+            indices += (current,)
+            yield indices, " ".join(lines[i].text for i in indices)
 
 
 def build_occurrence_index(pages: list, toc_page_numbers: set, running_headers: set,
@@ -698,14 +772,19 @@ def build_occurrence_index(pages: list, toc_page_numbers: set, running_headers: 
     for page in pages:
         if page["number"] in toc_page_numbers:
             continue
-        lines = page_lines(page)
-        for _start, _k, joined in _joined_runs(lines):
+        lines = reading_order_lines(page)
+        successors = _column_successors(lines)
+        predecessors = {target: source for source, target in successors.items()}
+        for indices, joined in _joined_runs(lines, successors):
+            # Same cleanup the TOC side applies to entry titles, so a body
+            # heading `1.1 | Introduction` still meets the entry `Introduction`.
+            joined = clean_title(joined)
             norm = normalize_heading_text(joined)
             if norm in running_headers:
                 continue
-            block = lines[_start:_start + _k]
-            prev = lines[_start - 1] if _start > 0 else None
-            nxt = lines[_start + _k] if _start + _k < len(lines) else None
+            block = [lines[i] for i in indices]
+            prev = lines[predecessors[indices[0]]] if indices[0] in predecessors else None
+            nxt = lines[successors[indices[-1]]] if indices[-1] in successors else None
             occ = {
                 "page": page["number"],
                 "y0": block[0].y0,
@@ -718,7 +797,7 @@ def build_occurrence_index(pages: list, toc_page_numbers: set, running_headers: 
             index.setdefault(norm, []).append(occ)
             number, rest = _split_number(joined)
             if number:
-                index.setdefault(normalize_heading_text(rest), []).append(occ)
+                index.setdefault(normalize_heading_text(clean_title(rest)), []).append(occ)
     return index
 
 
@@ -918,25 +997,30 @@ def _legacy_cascade(pages: list, body: float, toc_pages=frozenset()):
     return nodes, method
 
 
-def validate_split(nodes: list, page_count: int) -> list:
-    """Return a list of issue strings for a node list.
-
-    A split is valid only when every title passes the heading-candidate guard,
-    no two nodes share the same (start_page, start_y) boundary, and the union
-    of node page ranges covers from the first node's start_page through
-    page_count without gaps. Pages before the first node are front matter,
-    not a gap.
-    """
+def split_issues(nodes: list, page_count: int) -> list:
+    """Structured form of `validate_split`: a list of `{check, value, message}`
+    dicts, one per problem, so the production step can record *which* check
+    failed and the offending value rather than a free-text string."""
     issues = []
     for node in nodes:
         if not is_heading_candidate(node.title):
-            issues.append(f"node {node.slug!r} has a non-heading title {node.title!r}")
+            issues.append({"check": "non-heading-title", "value": node.title,
+                           "message": f"node {node.slug!r} has a non-heading title {node.title!r}"})
     seen = {}
     for node in nodes:
         key = (node.start_page, round(node.start_y, 1))
         if key in seen:
-            issues.append(f"duplicate boundary {node.slug!r} and {seen[key]!r}")
+            issues.append({"check": "duplicate-boundary", "value": [node.slug, seen[key]],
+                           "message": f"duplicate boundary {node.slug!r} and {seen[key]!r}"})
         seen[key] = node.slug
+    # A tree needs a root a reader can start from. Unconditional: an all-level-2
+    # tree has a single level, so a "more than one level" condition would miss
+    # exactly that failure. An all-level-1 (flat) tree is valid.
+    if nodes and not any(node.level == 1 for node in nodes):
+        issues.append({"check": "no-level-1-node",
+                       "value": sorted({node.level for node in nodes}),
+                       "message": "tree has no level-1 node (levels present: "
+                                  f"{sorted({node.level for node in nodes})})"})
     ordered = sorted(nodes, key=lambda n: (n.start_page, n.start_y))
     if not ordered:
         return issues
@@ -946,8 +1030,21 @@ def validate_split(nodes: list, page_count: int) -> list:
             covered.add(page)
     for page in range(ordered[0].start_page, page_count + 1):
         if page not in covered:
-            issues.append(f"coverage gap at page {page}")
+            issues.append({"check": "coverage-gap", "value": page,
+                           "message": f"coverage gap at page {page}"})
     return issues
+
+
+def validate_split(nodes: list, page_count: int) -> list:
+    """Return a list of issue strings for a node list.
+
+    A split is valid only when every title passes the heading-candidate guard,
+    no two nodes share the same (start_page, start_y) boundary, the node set
+    contains at least one level-1 node, and the union of node page ranges
+    covers from the first node's start_page through page_count without gaps.
+    Pages before the first node are front matter, not a gap.
+    """
+    return [issue["message"] for issue in split_issues(nodes, page_count)]
 
 
 def detect_structure(pages: list, outline=None, page_count=None):
@@ -1109,6 +1206,20 @@ def process(upstream_records, pages_base_dir, step_dir, writer, doc_slug=None,
                     "error_message": problem["error_message"],
                     "context": {"doc_slug": slug, **problem["context"]},
                 })
+
+        # Validate the tree as it will be written, after overrides. Never alters
+        # the tree: a failing document is still written, and the failure is
+        # recorded for triage. An unresolved entry is resolved by a code fix or
+        # a committed override.json entry, and blocks the merge that publishes.
+        for issue in split_issues(nodes, page_count):
+            append_error(step_dir, {
+                "step": STEP_NAME,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "error_type": "InvalidStructure",
+                "error_message": f"Detected tree fails validation: {issue['message']}",
+                "context": {"doc_slug": slug, "check": issue["check"],
+                            "value": issue["value"], "detection_method": method},
+            })
 
         if method == "flat":
             # Not a failure — the document still publishes — but a human should
