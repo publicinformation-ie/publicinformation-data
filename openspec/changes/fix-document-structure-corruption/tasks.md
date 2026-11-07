@@ -14,9 +14,9 @@
 
 ## 3. TOC pages excluded from the legacy strategies (D5b)
 
-- [ ] 3.1 Thread the detected TOC page set from `parse_toc` through `detect_structure` into `_legacy_cascade` and `_supplement_numbered_nodes`, and skip those pages in `from_numbering` and `from_font_hierarchy`; add `pages_emra_toc.json` fixture (real emra page 2) asserting no node is produced from its dot-leader TOC lines — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k toc_page_exclusion`
-- [ ] 3.2 Assert the exclusion applies on the fallback path too (TOC detected, match rate below the gate → `numbering`/`font` still skip the TOC pages), since that is where the affected documents actually land — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k toc_page_exclusion`
-- [ ] 3.3 Assert `_supplement_numbered_nodes` adds no node from a TOC-page line on a `toc`-method document — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k toc_page_exclusion`
+- [x] 3.1 Thread the detected TOC page set from `parse_toc` through `detect_structure` into `_legacy_cascade` and `_supplement_numbered_nodes`, and skip those pages in `from_numbering` and `from_font_hierarchy`; add `pages_emra_toc.json` fixture (real emra page 2) asserting no node is produced from its dot-leader TOC lines — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k toc_page_exclusion`
+- [x] 3.2 Assert the exclusion applies on the fallback path too (TOC detected, match rate below the gate → `numbering`/`font` still skip the TOC pages), since that is where the affected documents actually land — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k toc_page_exclusion`
+- [x] 3.3 Assert `_supplement_numbered_nodes` adds no node from a TOC-page line on a `toc`-method document — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k toc_page_exclusion`
 
 ## 4. Title normalization (D6)
 

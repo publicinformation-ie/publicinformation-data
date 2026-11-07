@@ -338,8 +338,10 @@ def from_outline(outline: list) -> list:
     return nodes
 
 
-def from_numbering(pages: list, body: float) -> list:
+def from_numbering(pages: list, body: float, skip_pages=frozenset()) -> list:
     """Headings of the form `1 Chapter` / `1.1 Section`, filtered by type size.
+    Pages in `skip_pages` (the detected TOC pages) contribute no candidates: a
+    table-of-contents line is never a body heading.
 
     The size guard is what keeps prose out: `2.4 million trips are made each
     day.` matches the pattern perfectly and is only rejected because it is set
@@ -347,6 +349,8 @@ def from_numbering(pages: list, body: float) -> list:
     """
     nodes = []
     for page in pages:
+        if page["number"] in skip_pages:
+            continue
         for line in page_lines(page):
             match = HEADING_RE.match(line.text)
             if not match:
@@ -362,12 +366,14 @@ def from_numbering(pages: list, body: float) -> list:
     return nodes
 
 
-def from_font_hierarchy(pages: list, body: float) -> list:
+def from_font_hierarchy(pages: list, body: float, skip_pages=frozenset()) -> list:
     levels = heading_levels(pages, body)
     if not levels:
         return []
     nodes = []
     for page in pages:
+        if page["number"] in skip_pages:
+            continue
         for line in page_lines(page):
             level = levels.get(line.size)
             if level is None or len(line.text) > MAX_TITLE_CHARS:
@@ -667,14 +673,16 @@ def _below_score_floor(occ: dict, body: float) -> bool:
     return occ["size"] < body * SCORE_FLOOR and not occ["bold"]
 
 
-def _supplement_numbered_nodes(pages, body, base_nodes, entries, running_headers):
+def _supplement_numbered_nodes(pages, body, base_nodes, entries, running_headers,
+                               toc_pages=frozenset()):
     """Add legacy numbered headings not already in the TOC set. The font
     strategy is not used — it is the low-precision over-splitter this strategy
-    replaces, and re-adding its nodes reintroduces the junk."""
+    replaces, and re-adding its nodes reintroduces the junk. TOC pages are
+    excluded so a TOC line cannot re-enter as a body heading."""
     toc_set = {normalize_heading_text(e["title"]) for e in entries}
     claimed = {(n.start_page, round(n.start_y, 1)) for n in base_nodes}
     extra = []
-    for node in from_numbering(pages, body):
+    for node in from_numbering(pages, body, toc_pages):
         if normalize_heading_text(node.title) in toc_set:
             continue
         if normalize_heading_text(node.title) in running_headers:
@@ -687,15 +695,16 @@ def _supplement_numbered_nodes(pages, body, base_nodes, entries, running_headers
     return base_nodes + extra
 
 
-def from_toc(pages: list, body: float):
+def from_toc(pages: list, body: float, parsed=None):
     """Build the TOC-name tree, or signal fallback.
 
     Returns (nodes, report). `nodes` is None when the strategy should not fire
     (no usable TOC, or match rate below the gate). `report` is None when there
     is no TOC at all; otherwise it carries the entry/matched counts, the match
-    rate, and the errors for errors.json.
+    rate, and the errors for errors.json. `parsed` is an optional precomputed
+    `parse_toc(pages, body)` result.
     """
-    entries, toc_pages, _level_signal, _flags = parse_toc(pages, body)
+    entries, toc_pages, _level_signal, _flags = parsed or parse_toc(pages, body)
     if not entries:
         return None, None
 
@@ -746,7 +755,7 @@ def from_toc(pages: list, body: float):
              "match_rate": round(match_rate, 3), "gate": MATCH_RATE_GATE})]
         return None, report
 
-    nodes = _supplement_numbered_nodes(pages, body, nodes, entries, running)
+    nodes = _supplement_numbered_nodes(pages, body, nodes, entries, running, set(toc_pages))
     report["errors"] = errors
     return nodes, report
 
@@ -828,11 +837,12 @@ def assign_page_ranges(nodes: list, page_count: int) -> list:
     return ordered
 
 
-def _legacy_cascade(pages: list, body: float):
-    """The pre-TOC cascade: numbering, then font, then flat."""
-    nodes, method = from_numbering(pages, body), "numbering"
+def _legacy_cascade(pages: list, body: float, toc_pages=frozenset()):
+    """The pre-TOC cascade: numbering, then font, then flat. Detected TOC pages
+    are excluded from both heading strategies."""
+    nodes, method = from_numbering(pages, body, toc_pages), "numbering"
     if len(nodes) < 2:
-        nodes, method = from_font_hierarchy(pages, body), "font"
+        nodes, method = from_font_hierarchy(pages, body, toc_pages), "font"
     if len(nodes) < 2:
         nodes, method = flat_fallback([p["number"] for p in pages]), "flat"
     return nodes, method
@@ -885,11 +895,13 @@ def detect_structure(pages: list, outline=None, page_count=None):
         nodes, method = from_outline(outline), "outline"
     else:
         body = body_size(pages)
-        toc_nodes, toc_report = from_toc(pages, body)
+        parsed = parse_toc(pages, body)
+        toc_pages = set(parsed[1])
+        toc_nodes, toc_report = from_toc(pages, body, parsed)
         if toc_nodes is not None and len(toc_nodes) >= 2:
             nodes, method = toc_nodes, "toc"
         else:
-            nodes, method = _legacy_cascade(pages, body)
+            nodes, method = _legacy_cascade(pages, body, toc_pages)
 
     total = int(page_count or len(pages))
     nodes = dedupe_slugs(_in_document_order(nodes))

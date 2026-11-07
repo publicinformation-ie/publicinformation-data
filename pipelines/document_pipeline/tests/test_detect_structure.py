@@ -5,7 +5,11 @@ from documents import SLUG_RE
 from steps.detect_structure.process import (
     Node,
     _below_score_floor,
+    _legacy_cascade,
     _parse_toc_page,
+    _supplement_numbered_nodes,
+    from_font_hierarchy,
+    from_numbering,
     build_occurrence_index,
     detect_structure,
     find_occurrences,
@@ -476,3 +480,61 @@ def test_toc_filtering_skips_a_bare_page_number_at_the_left_edge():
     entries, flags = _parse_toc_page(page(spans))
 
     assert [e["title"] for e in entries] == ["First Chapter", "Second Chapter"]
+
+
+# --- toc_page_exclusion ----------------------------------------------------
+
+def _body_page(number, heading, size=18.0):
+    """A body page: one bold numbered heading and 9pt prose, so 9pt is body."""
+    spans = [span(heading, size=size, font="Helvetica-Bold", y0=60.0, block=0)]
+    for row in range(12):
+        spans.append(span("Prose set at nine points runs on for a good while here.",
+                          size=9.0, y0=100.0 + row * 12.0, block=1 + row))
+    return page(spans, number=number)
+
+
+def test_toc_page_exclusion_numbering_and_font_skip_a_dot_leader_toc_page():
+    emra = load_pages("pages_emra_toc.json")[0]  # real emra page 2: dot-leader TOC lines
+
+    assert from_numbering([emra], 9.0), "sanity: the TOC lines are heading-like at this body size"
+    assert from_numbering([emra], 9.0, skip_pages={2}) == []
+    assert from_font_hierarchy([emra], 9.0, skip_pages={2}) == []
+
+
+def test_toc_page_exclusion_applies_on_the_fallback_path():
+    """TOC detected but nothing in the body matches it: match rate 0, below the
+    gate, so the cascade falls back — and must still skip the TOC page."""
+    pages = [load_pages("pages_emra_toc.json")[0],
+             _body_page(3, "1 Alpha Chapter"),
+             _body_page(4, "2 Beta Chapter")]
+
+    nodes, method, report = detect_structure(pages, [], 4)
+
+    assert report is not None and report["match_rate"] < 0.6  # the fallback fired
+    assert method == "numbering"
+    assert [n.title for n in nodes] == ["Alpha Chapter", "Beta Chapter"]
+    assert all(n.start_page != 2 for n in nodes)
+    assert not any("...." in n.title for n in nodes)
+
+
+def test_toc_page_exclusion_legacy_cascade_takes_the_toc_page_set():
+    emra = load_pages("pages_emra_toc.json")[0]
+    pages = [emra, _body_page(3, "1 Alpha Chapter"), _body_page(4, "2 Beta Chapter")]
+
+    with_toc, _ = _legacy_cascade(pages, 9.0)
+    without_toc, _ = _legacy_cascade(pages, 9.0, {2})
+
+    assert any(n.start_page == 2 for n in with_toc)
+    assert not any(n.start_page == 2 for n in without_toc)
+
+
+def test_toc_page_exclusion_supplement_adds_nothing_from_a_toc_page():
+    toc_page = page([span("Contents", size=20.0, font="Helvetica-Bold", y0=60.0, block=0),
+                     span("9.9 Orphan Heading", size=14.0, font="Helvetica-Bold", y0=120.0, block=1)],
+                    number=2)
+    body = _body_page(3, "1 Alpha Chapter")
+
+    assert [n.title for n in _supplement_numbered_nodes([toc_page, body], 9.0, [], [], set(), {2})] \
+        == ["Alpha Chapter"]
+    assert "Orphan Heading" in [n.title for n in
+                                _supplement_numbered_nodes([toc_page, body], 9.0, [], [], set())]
