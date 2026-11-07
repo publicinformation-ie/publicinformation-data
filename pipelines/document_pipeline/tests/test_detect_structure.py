@@ -8,6 +8,7 @@ from steps.detect_structure.process import (
     _legacy_cascade,
     _parse_toc_page,
     _supplement_numbered_nodes,
+    clean_title,
     from_font_hierarchy,
     from_numbering,
     build_occurrence_index,
@@ -538,3 +539,48 @@ def test_toc_page_exclusion_supplement_adds_nothing_from_a_toc_page():
         == ["Alpha Chapter"]
     assert "Orphan Heading" in [n.title for n in
                                 _supplement_numbered_nodes([toc_page, body], 9.0, [], [], set())]
+
+
+# --- title_cleanup ---------------------------------------------------------
+
+def test_title_cleanup_strips_the_leading_pipe_from_a_real_nifti_toc_page():
+    entries, toc_pages, _signal, _flags = parse_toc(load_pages("pages_nifti_toc.json"), 10.0)
+    titles = [e["title"] for e in entries]
+
+    assert toc_pages == [3]
+    assert "Investing in Transport" in titles
+    assert not any(t.startswith("|") or "| " in t for t in titles)
+
+
+def test_title_cleanup_strips_control_characters_from_a_matched_heading():
+    nodes = from_numbering(load_pages("pages_ev_heading.json"), 10.0)
+    by_number = {n.number: n for n in nodes}
+
+    assert by_number["1.1"].title.startswith("National and international")
+    assert all("\x07" not in n.title and "\x07" not in n.slug for n in nodes)
+    assert by_number["1.1"].slug.startswith("1-1-national-and-international")
+
+
+def test_title_cleanup_helper_handles_each_fragment():
+    assert clean_title("| Investing in Transport") == "Investing in Transport"
+    assert clean_title("-Moving towards") == "Moving towards"
+    assert clean_title("1.1 \x07National") == "1.1 National"
+    assert clean_title("  Spaced   out  ") == "Spaced out"
+
+
+def test_title_cleanup_does_not_launder_a_bullet_into_a_title():
+    """`- 21.3 metres length` is a bullet; cleanup must leave it for the
+    heading-candidate guard to reject, not turn it into a passing title."""
+    assert clean_title("- 21.3 metres length") == "- 21.3 metres length"
+    assert not is_heading_candidate(clean_title("- 21.3 metres length"))
+
+
+def test_title_cleanup_interior_dot_leaders_are_rejected_not_cleaned():
+    leader = page([span("1.1 Landscape and Visual ......... 23", size=14.0, font="Helvetica-Bold",
+                        y0=60.0, block=0),
+                   span("Prose set at nine points runs on for a good while here.", size=9.0,
+                        y0=100.0, block=1)], number=5)
+
+    assert clean_title("Landscape and Visual ......... 23") == "Landscape and Visual ......... 23"
+    assert from_numbering([leader], 9.0) == []
+    assert from_font_hierarchy([leader], 9.0) == []

@@ -20,8 +20,8 @@
 
 ## 4. Title normalization (D6)
 
-- [ ] 4.1 Add a shared title-cleanup (strip leading `|`/`-` fragments, trailing dot leaders with a glued page number, control characters) applied wherever a title or slug source is accepted; fixtures: nifti TOC page (`| Investing in Transport` → `Investing in Transport`), ev-infrastructure matched heading (`\x07` stripped) — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k title_cleanup`
-- [ ] 4.2 Assert interior dot leaders are **not** stripped: a line such as `Landscape and Visual ......... 23` reaching the numbering or font strategy is rejected by `is_heading_candidate` and produces no node, rather than being cleaned into a passing title — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k title_cleanup`
+- [x] 4.1 Add a shared title-cleanup (strip leading `|`/`-` fragments, trailing dot leaders with a glued page number, control characters) applied wherever a title or slug source is accepted; fixtures: nifti TOC page (`| Investing in Transport` → `Investing in Transport`), ev-infrastructure matched heading (`\x07` stripped) — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k title_cleanup`
+- [x] 4.2 Assert interior dot leaders are **not** stripped: a line such as `Landscape and Visual ......... 23` reaching the numbering or font strategy is rejected by `is_heading_candidate` and produces no node, rather than being cleaned into a passing title — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k title_cleanup`
 
 ## 5. Legacy-cascade heading guard (D7)
 

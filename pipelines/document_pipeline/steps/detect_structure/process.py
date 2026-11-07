@@ -278,7 +278,7 @@ def slugify(text: str) -> str:
 
 
 def _make(level, number, title, page, y, confidence) -> Node:
-    title = str(title).strip()
+    title = clean_title(title)
     slug_source = f"{number} {title}" if number else title
     return Node(level=int(level), number=number, title=title, slug=slugify(slug_source),
                 start_page=int(page), start_y=round(float(y), 2), confidence=confidence)
@@ -303,6 +303,26 @@ def normalize_heading_text(text) -> str:
     t = re.sub(r"[\x00-\x1f\x7f]", " ", str(text))
     t = re.sub(r"\s+", " ", t).strip().lower()
     return t.rstrip(".,;:!?\u2026 \t")
+
+
+_CONTROL_RE = re.compile(r"[\x00-\x1f\x7f]")
+# A leading pipe fragment (`| Investing in Transport`) or a dash glued straight
+# onto a letter (`-Moving`). A dash followed by a space is a bullet, which
+# `is_heading_candidate` rejects; stripping it first would launder a bullet
+# line into a passing title.
+_LEADING_FRAGMENT_RE = re.compile(r"^(?:[\s|]+|[-\u2013\u2014](?=[^\W\d_]))")
+
+
+def clean_title(text) -> str:
+    """Remove extraction artifacts from a title or slug source: control
+    characters (`\\x07`), whitespace runs, and a leading pipe/glued-dash
+    fragment. It does **not** strip dot leaders — a line carrying them is a
+    table-of-contents line, and `is_heading_candidate` must still see the
+    leaders to reject it (the TOC entry path strips them itself, via
+    `_strip_toc_suffix`, because there they are the expected shape)."""
+    t = _CONTROL_RE.sub(" ", str(text))
+    t = re.sub(r"\s+", " ", t).strip()
+    return _LEADING_FRAGMENT_RE.sub("", t).strip()
 
 
 def is_heading_candidate(title) -> bool:
@@ -357,8 +377,9 @@ def from_numbering(pages: list, body: float, skip_pages=frozenset()) -> list:
                 continue
             if line.size < body * 1.05 and not is_bold(line.font):
                 continue
-            title = match.group(4).strip()
-            if len(title) > MAX_TITLE_CHARS or _looks_like_a_sentence(title):
+            title = clean_title(match.group(4))
+            if (len(title) > MAX_TITLE_CHARS or _looks_like_a_sentence(title)
+                    or not is_heading_candidate(title)):
                 continue
             parts = [g for g in match.groups()[:3] if g]
             nodes.append(_make(len(parts), ".".join(parts), title, line.page, line.y0,
@@ -379,6 +400,9 @@ def from_font_hierarchy(pages: list, body: float, skip_pages=frozenset()) -> lis
             if level is None or len(line.text) > MAX_TITLE_CHARS:
                 continue
             number, title = _split_number(line.text)
+            title = clean_title(title)
+            if not is_heading_candidate(title):
+                continue
             nodes.append(_make(level, number, title, line.page, line.y0, CONFIDENCE["font"]))
     return nodes
 
@@ -508,7 +532,7 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
                 title_parts.append(nt)
                 i += 1
             raw = " ".join(title_parts)
-            title = _strip_toc_suffix(raw)
+            title = clean_title(_strip_toc_suffix(raw))
             if title and is_heading_candidate(title):
                 _note_leader(raw)
                 entries.append({"title": title, "number": number,
@@ -523,7 +547,7 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
         if m:
             number = m.group(1)
             text = m.group(2)
-        title = _strip_toc_suffix(text)
+        title = clean_title(_strip_toc_suffix(text))
         if title and is_heading_candidate(title):
             _note_leader(text)
             entries.append({"title": title, "number": number,
