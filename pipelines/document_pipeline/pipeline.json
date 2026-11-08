@@ -2,6 +2,7 @@
   "steps": [
     "fetch_pdfs",
     "extract_pages",
+    "ocr_pages",
     "detect_structure",
     "extract_figures",
     "clean_text",
@@ -11,8 +12,9 @@
     "publish_bundles"
   ],
   "input_steps": {
+    "detect_structure": "extract_pages",
     "extract_figures": "extract_pages",
-    "clean_text": "extract_pages",
+    "clean_text": "ocr_pages",
     "extract_action_status": "clean_text",
     "assemble_sections": "clean_text"
   }

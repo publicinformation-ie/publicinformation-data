@@ -605,6 +605,19 @@ def test_title_cleanup_strips_the_leading_pipe_from_a_real_nifti_toc_page():
     assert not any("|" in t for t in titles)
 
 
+def test_a_numbered_line_whose_title_starts_lowercase_is_not_a_heading():
+    """A wrapped sentence can begin with a number (`26 weather events. The Q4
+    published United Nations...`, CAP 2024 Q3-Q4); a heading's title starts
+    with a capital, so the lowercase start rules it out."""
+    pg = page([
+        span("26 weather events. The Q4 published United Nations", size=12.0, y0=100.0, line=0),
+        span("2 Agriculture", size=12.0, y0=200.0, line=1),
+    ])
+    titles = [n.title for n in from_numbering([pg], 10.0)]
+
+    assert titles == ["Agriculture"]
+
+
 def test_title_cleanup_strips_control_characters_from_a_matched_heading():
     nodes = from_numbering(load_pages("pages_ev_heading.json"), 10.0)
     by_number = {n.number: n for n in nodes}
@@ -988,6 +1001,21 @@ def test_filter_outline_drops_unusable_titles_and_reports_them():
     assert [e["title"] for e in kept] == ["Introduction", "2. Policy"]
     assert [p["context"]["title"] for p in problems] == ["1.", "_Hlk25760943", ""]
     assert {p["error_type"] for p in problems} == {"OutlineEntryDropped"}
+
+
+def test_split_number_splits_a_number_glued_to_a_capitalised_word():
+    """Climate Action Plan progress reports set the number flush against the
+    title (`1Executive Summary`, `1.2.1High impact actions`); their TOC lists
+    `1 Executive Summary`, so without the split no entry matched and detection
+    fell through to the font strategy."""
+    from steps.detect_structure.process import _split_number
+
+    assert _split_number("1Executive Summary") == ("1", "Executive Summary")
+    assert _split_number("1.2.1High impact actions in Q1 and Q2 2024") == ("1.2.1", "High impact actions in Q1 and Q2 2024")
+    # A capital alone is not a title start: units and model names stay whole.
+    assert _split_number("3D modelling") == (None, "3D modelling")
+    assert _split_number("5G rollout") == (None, "5G rollout")
+    assert _split_number("2024Annual") == (None, "2024Annual")
 
 
 def test_split_number_keeps_four_level_numbers_whole():

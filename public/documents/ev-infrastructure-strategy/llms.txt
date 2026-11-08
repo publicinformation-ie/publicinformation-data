@@ -1,6 +1,6 @@
 # Electric Vehicle Charging Infrastructure Strategy 2022-2025
 
-> Department of Transport — 13 chapters, 59 sections, 92 source pages.
+> Department of Transport — 11 chapters, 58 sections, 92 source pages.
 > Source: https://assets.gov.ie/static/documents/ev-infrastructure-strategy.pdf
 > Full text: full.md
 
@@ -31,9 +31,11 @@
   - [2.5 Principle 5: Across the EV charging network, EV charging](sections/2-fundamental-principles/2-5-principle-5-across-the-ev-charging-network-ev-charging.md) — pages 25–27
 - [Introduction](sections/introduction/) — pages 11–12
   - [Introduction](sections/introduction/overview.md) — pages 11–12
-- [3 Electricity Network Demand](sections/3-electricity-network-demand/) — pages 27–30
+- [3 Electricity Network Demand](sections/3-electricity-network-demand/) — pages 27–34
   - [3 Electricity Network Demand](sections/3-electricity-network-demand/overview.md) — pages 27–27
-  - [3.1 Demand on the system and expansion of EV charging](sections/3-electricity-network-demand/3-1-demand-on-the-system-and-expansion-of-ev-charging.md) — pages 28–30
+  - [3.1 Demand on the system and expansion of EV charging](sections/3-electricity-network-demand/3-1-demand-on-the-system-and-expansion-of-ev-charging.md) — pages 28–31
+  - [3.2 Managing energy demand and grid capacity](sections/3-electricity-network-demand/3-2-managing-energy-demand-and-grid-capacity.md) — pages 32–32
+  - [3.3 Grid development and resilience for delivery of higher-speed charging infrastructure](sections/3-electricity-network-demand/3-3-grid-development-and-resilience-for-delivery-of-higher-speed-charging-infrastructure.md) — pages 33–34
 - [User Needs](sections/user-needs/) — pages 13–14
   - [User Needs](sections/user-needs/overview.md) — pages 13–14
 - [4 Existing & Future Technologies](sections/4-existing-future-technologies/) — pages 34–45
@@ -49,32 +51,27 @@
   - [4.2.7 Case Study 7: En-Route High-Power Charging & Charging Pools in Ireland](sections/4-existing-future-technologies/4-2-7-case-study-7-en-route-high-power-charging-charging-pools-in-ireland.md) — pages 44–45
 - [Strategy structure](sections/strategy-structure/) — pages 15–16
   - [Strategy structure](sections/strategy-structure/overview.md) — pages 15–16
-- [Infrastructure](sections/infrastructure/) — pages 46–49
+- [Infrastructure](sections/infrastructure/) — pages 46–92
   - [5.1 Infrastructure Designed for Users](sections/infrastructure/5-1-infrastructure-designed-for-users.md) — pages 46–46
   - [5.2 What will be delivered](sections/infrastructure/5-2-what-will-be-delivered.md) — pages 46–48
   - [5.3 Risks and Dependencies](sections/infrastructure/5-3-risks-and-dependencies.md) — pages 46–46
   - [5.5 National Publicly-Accessible Infrastructure Targets](sections/infrastructure/5-5-national-publicly-accessible-infrastructure-targets.md) — pages 49–49
+  - [5.6 Existing Exchequer supports for charging infrastructure](sections/infrastructure/5-6-existing-exchequer-supports-for-charging-infrastructure.md) — pages 50–50
+  - [5.6.1 Home charging](sections/infrastructure/5-6-1-home-charging.md) — pages 50–50
+  - [5.6.2 Residential/Neighbourhood Charging](sections/infrastructure/5-6-2-residential-neighbourhood-charging.md) — pages 50–52
+  - [5.7 New Infrastructure Supports to deliver for User needs:](sections/infrastructure/5-7-new-infrastructure-supports-to-deliver-for-user-needs.md) — pages 52–52
+  - [5.7.1 Home Charging/Shared Charging](sections/infrastructure/5-7-1-home-charging-shared-charging.md) — pages 52–52
+  - [5.6.3 Top-up charging (Destination and En-route)](sections/infrastructure/5-6-3-top-up-charging-destination-and-en-route.md) — pages 52–52
+  - [5.7.2 Residential Charging](sections/infrastructure/5-7-2-residential-charging.md) — pages 53–53
+  - [5.7.3 Destination Charging](sections/infrastructure/5-7-3-destination-charging.md) — pages 53–54
+  - [5.8 En-route charging network](sections/infrastructure/5-8-en-route-charging-network.md) — pages 54–55
+  - [5.9 Heavy-duty vehicle charging hubs](sections/infrastructure/5-9-heavy-duty-vehicle-charging-hubs.md) — pages 56–59
   - [Infrastructure](sections/infrastructure/overview.md) — pages 46–46
-- [23 kW-350 kW](sections/23-kw-350-kw/) — pages 31–34
-  - [3.2 Managing energy demand and grid capacity](sections/23-kw-350-kw/3-2-managing-energy-demand-and-grid-capacity.md) — pages 32–32
-  - [3.3 Grid development and resilience for delivery of higher-speed charging infrastructure](sections/23-kw-350-kw/3-3-grid-development-and-resilience-for-delivery-of-higher-speed-charging-infrastructure.md) — pages 33–34
-  - [23 kW-350 kW](sections/23-kw-350-kw/overview.md) — pages 31–31
-- [23 kW-350 kW](sections/23-kw-350-kw-2/) — pages 50–92
-  - [5.6 Existing Exchequer supports for charging infrastructure](sections/23-kw-350-kw-2/5-6-existing-exchequer-supports-for-charging-infrastructure.md) — pages 50–50
-  - [5.6.1 Home charging](sections/23-kw-350-kw-2/5-6-1-home-charging.md) — pages 50–50
-  - [5.6.2 Residential/Neighbourhood Charging](sections/23-kw-350-kw-2/5-6-2-residential-neighbourhood-charging.md) — pages 50–52
-  - [5.7 New Infrastructure Supports to deliver for User needs:](sections/23-kw-350-kw-2/5-7-new-infrastructure-supports-to-deliver-for-user-needs.md) — pages 52–52
-  - [5.7.1 Home Charging/Shared Charging](sections/23-kw-350-kw-2/5-7-1-home-charging-shared-charging.md) — pages 52–52
-  - [5.6.3 Top-up charging (Destination and En-route)](sections/23-kw-350-kw-2/5-6-3-top-up-charging-destination-and-en-route.md) — pages 52–52
-  - [5.7.2 Residential Charging](sections/23-kw-350-kw-2/5-7-2-residential-charging.md) — pages 53–53
-  - [5.7.3 Destination Charging](sections/23-kw-350-kw-2/5-7-3-destination-charging.md) — pages 53–54
-  - [5.8 En-route charging network](sections/23-kw-350-kw-2/5-8-en-route-charging-network.md) — pages 54–55
-  - [5.9 Heavy-duty vehicle charging hubs](sections/23-kw-350-kw-2/5-9-heavy-duty-vehicle-charging-hubs.md) — pages 56–59
-  - [6.1 Governmental and Collaborative Structures](sections/23-kw-350-kw-2/6-1-governmental-and-collaborative-structures.md) — pages 59–59
-  - [6.2 Zero Emission Vehicles Ireland (ZEVI)](sections/23-kw-350-kw-2/6-2-zero-emission-vehicles-ireland-zevi.md) — pages 59–61
-  - [6.2.1 Public Sector Energy Delivery Group](sections/23-kw-350-kw-2/6-2-1-public-sector-energy-delivery-group.md) — pages 61–61
-  - [6.2.3 Public-Private Infrastructure Stakeholder Group](sections/23-kw-350-kw-2/6-2-3-public-private-infrastructure-stakeholder-group.md) — pages 61–61
-  - [6.2.2 Public Sector EV Infrastructure Delivery Group](sections/23-kw-350-kw-2/6-2-2-public-sector-ev-infrastructure-delivery-group.md) — pages 61–62
-  - [6.2.4 Public-Private Vehicles Stakeholder Group](sections/23-kw-350-kw-2/6-2-4-public-private-vehicles-stakeholder-group.md) — pages 63–63
-  - [6.3 What’s Been Achieved Since Publication of the Draft Strategy](sections/23-kw-350-kw-2/6-3-what-s-been-achieved-since-publication-of-the-draft-strategy.md) — pages 64–67
-  - [6.4 Overview of Implementation Plan](sections/23-kw-350-kw-2/6-4-overview-of-implementation-plan.md) — pages 68–92
+  - [6.1 Governmental and Collaborative Structures](sections/infrastructure/6-1-governmental-and-collaborative-structures.md) — pages 59–59
+  - [6.2 Zero Emission Vehicles Ireland (ZEVI)](sections/infrastructure/6-2-zero-emission-vehicles-ireland-zevi.md) — pages 59–61
+  - [6.2.1 Public Sector Energy Delivery Group](sections/infrastructure/6-2-1-public-sector-energy-delivery-group.md) — pages 61–61
+  - [6.2.3 Public-Private Infrastructure Stakeholder Group](sections/infrastructure/6-2-3-public-private-infrastructure-stakeholder-group.md) — pages 61–61
+  - [6.2.2 Public Sector EV Infrastructure Delivery Group](sections/infrastructure/6-2-2-public-sector-ev-infrastructure-delivery-group.md) — pages 61–62
+  - [6.2.4 Public-Private Vehicles Stakeholder Group](sections/infrastructure/6-2-4-public-private-vehicles-stakeholder-group.md) — pages 63–63
+  - [6.3 What’s Been Achieved Since Publication of the Draft Strategy](sections/infrastructure/6-3-what-s-been-achieved-since-publication-of-the-draft-strategy.md) — pages 64–67
+  - [6.4 Overview of Implementation Plan](sections/infrastructure/6-4-overview-of-implementation-plan.md) — pages 68–92

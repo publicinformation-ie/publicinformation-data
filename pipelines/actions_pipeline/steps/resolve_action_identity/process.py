@@ -34,11 +34,13 @@ Two further jobs:
 import argparse
 import re
 import sys
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
-from lib.date_parse import parse_date
+from lib.date_parse import OPEN_ENDED, parse_date
 from lib.file_utils import append_errors, read_json, write_json, write_status
+from lib.text_repairs import repair_text
 
 STEP_NAME = "resolve_action_identity"
 
@@ -52,6 +54,7 @@ SUPPORT_ALIASES = ("support", "supporting bodies", "support organisation",
 OUTPUT_ALIASES = ("output", "outputs", "proposed output")
 TIMELINE_ALIASES = ("timeline & output", "timeline and output", "timeline",
                     "timeline & outputs", "timeframe", "deadline", "target date")
+MILESTONE_ALIASES = ("interim milestones", "milestones", "interim milestone")
 
 _BEL = "\x07"
 _ORDINAL_RE = re.compile(r"^\s*(\d{1,3})\s*[.)]\s*")
@@ -128,42 +131,139 @@ def _parse_candidate(candidate):
     return parse_date(f"Q{quarter} {year}" if quarter else str(year))
 
 
-def resolve_original_deadline(raw_date, timeline_cell):
-    """`(structured_date | None, confidence | None)` for one plan action.
+@dataclass(frozen=True)
+class DeadlineResolution:
+    """One plan action's original deadline, display-ready.
 
-    `confidence` is published so a consumer can tell what the document *stated*
-    from what we *concluded* — 63 of the 2022-2025 plan's 91 baselines are
-    transcribed, 23 are derived by the latest-milestone rule — without having
-    to re-derive that judgement from the raw text.
+    `parsed`/`confidence` are the structured result (`"stated"` for what the
+    document wrote, `"interpreted"` for what the last-milestone rule
+    concluded); `label` is the short display form a consumer can print
+    without re-parsing anything, and `milestones` is the plan's own interim
+    milestone prose. A cell with no resolvable deadline yields null
+    parsed/confidence and an empty label — never a guessed date.
+    """
+
+    parsed: dict | None
+    confidence: str | None
+    label: str
+    milestones: str
+
+
+def _format_candidate(candidate):
+    """The display form of a `(year, quarter, labelled)` candidate."""
+    year, quarter, _ = candidate
+    return f"Q{quarter} {year}" if quarter else str(year)
+
+
+def _label_for(parsed, raw_text):
+    """Short display label for a transcribed date.
+
+    An open-ended cell would otherwise label itself with the whole cell text
+    (`"Annual campaigns"`); `Annual`/`Ongoing` is what the deadline actually
+    says. Every other precision keeps the normalised raw text, which for a
+    transcribed cell is already short.
+    """
+    if parsed["precision"] in OPEN_ENDED:
+        return parsed["precision"].capitalize()
+    return raw_text
+
+
+def _default_milestones(timeline, parsed, label, explicit):
+    """The milestone prose to publish alongside a deadline.
+
+    A separate milestone column wins whenever the plan publishes one. A bare
+    date (the timeline *is* the label) and an open-ended cell have no
+    separate milestones to keep, and nothing is attributed to a deadline that
+    did not resolve. Anything else is milestone prose — the timeline cell
+    itself, preserved in full rather than flattened into the label.
+    """
+    if explicit:
+        return explicit
+    if parsed is None or parsed["precision"] in OPEN_ENDED or timeline == label:
+        return ""
+    return timeline
+
+
+def resolve_deadline(raw_date, timeline_cell,
+                     milestone_cell="") -> DeadlineResolution:
+    """Resolve one plan action's original deadline into a display-ready form.
+
+    Order of authority, each return carrying its milestone prose:
+
+    1. A separate deadline column (`raw_date`) wins outright — the plan
+       stating the deadline is worth more than any inference from prose.
+    2. A timeline cell that *is* a single date is transcribed, `"stated"`.
+    3. A timeline cell with exactly one distinct candidate `(year, quarter)`
+       resolves to that candidate, `"stated"`.
+    4. A multi-milestone cell with at least one labelled milestone resolves
+       to its latest candidate by `(year, quarter or 4)`, `"interpreted"` —
+       the last milestone is the deadline whether or not its year carried a
+       label, since the labelled ones establish the cell as a milestone list.
+    5. Several candidate years with no milestone label among them have no
+       rule that picks one, so the result is refused rather than guessed at;
+       a cell with no candidates at all is refused the same way.
     """
     raw_date = " ".join(str(raw_date or "").split())
+    timeline = " ".join(str(timeline_cell or "").replace(_BEL, " ").split())
+
     if raw_date:
         parsed = parse_date(raw_date)
         if parsed is not None:
-            return parsed, "stated"
+            label = _label_for(parsed, raw_date)
+            return DeadlineResolution(
+                parsed, "stated", label,
+                _default_milestones(timeline, parsed, label, milestone_cell))
 
-    text = " ".join(str(timeline_cell or "").replace(_BEL, " ").split())
-    if not text:
-        return None, None
+    if timeline:
+        parsed = parse_date(timeline)
+        if parsed is not None:
+            label = _label_for(parsed, timeline)
+            return DeadlineResolution(
+                parsed, "stated", label,
+                _default_milestones(timeline, parsed, label, milestone_cell))
 
-    parsed = parse_date(text)
-    if parsed is not None:
-        return parsed, "stated"
-
-    candidates = _date_candidates(text)
-    if not candidates:
-        return None, None
-
+    candidates = _date_candidates(timeline)
     distinct = {(year, quarter) for year, quarter, _ in candidates}
     if len(distinct) == 1:
-        return _parse_candidate(candidates[0]), "stated"
+        candidate = candidates[0]
+        parsed = _parse_candidate(candidate)
+        label = _format_candidate(candidate)
+        return DeadlineResolution(
+            parsed, "stated", label,
+            _default_milestones(timeline, parsed, label, milestone_cell))
 
-    milestones = [c for c in candidates if c[2]]
-    if not milestones:
-        # Several candidate years, none introduced as a milestone: there is no
-        # rule that picks one, so refuse rather than take the latest.
-        return None, None
-    return _parse_candidate(max(milestones, key=lambda c: (c[0], c[1] or 4))), "interpreted"
+    if candidates:
+        if not any(candidate[2] for candidate in candidates):
+            # Several candidate years, none introduced as a milestone: there
+            # is no rule that picks one, so refuse rather than take the
+            # latest.
+            return DeadlineResolution(
+                None, None, "",
+                _default_milestones(timeline, None, "", milestone_cell))
+        # The last-milestone rule: the latest candidate year is the deadline.
+        candidate = max(candidates, key=lambda c: (c[0], c[1] or 4))
+        parsed = _parse_candidate(candidate)
+        label = _format_candidate(candidate)
+        return DeadlineResolution(
+            parsed, "interpreted", label,
+            _default_milestones(timeline, parsed, label, milestone_cell))
+
+    return DeadlineResolution(
+        None, None, "", _default_milestones(timeline, None, "", milestone_cell))
+
+
+def resolve_original_deadline(raw_date, timeline_cell):
+    """`(structured_date | None, confidence | None)` — compatibility wrapper
+    around `resolve_deadline` for callers that predate the label/milestones
+    fields.
+
+    `confidence` is published so a consumer can tell what the document *stated*
+    from what we *concluded* (in the 2022-2025 plan's 91 baselines, measured at
+    the 2.1.0 release: 68 stated, 23 interpreted by the latest-milestone rule)
+    without having to re-derive that judgement from the raw text.
+    """
+    result = resolve_deadline(raw_date, timeline_cell)
+    return result.parsed, result.confidence
 
 
 def build_actions(plan_records, plan_meta):
@@ -189,8 +289,10 @@ def build_actions(plan_records, plan_meta):
             timeline_raw = (column_value(columns, TIMELINE_ALIASES)
                             or raw.get("raw_date") or "").replace(_BEL, " ")
             timeline_raw = " ".join(timeline_raw.split())
-            parsed, confidence = resolve_original_deadline(
-                raw.get("raw_date"), timeline_raw)
+            milestone_raw = column_value(columns, MILESTONE_ALIASES)
+            resolution = resolve_deadline(raw.get("raw_date"), timeline_raw,
+                                          milestone_raw)
+            parsed, confidence = resolution.parsed, resolution.confidence
             if timeline_raw and parsed is None:
                 errors.append(_error_dict(
                     "DateParseError",
@@ -207,11 +309,14 @@ def build_actions(plan_records, plan_meta):
                 "source_url": meta.get("source_url") or record.get("source_url") or "",
                 "action_number": number,
                 "action_text": action_text,
+                "action_text_clean": repair_text(action_text),
                 "original_deadline_raw": timeline_raw,
                 "original_deadline_start": parsed["start"] if parsed else None,
                 "original_deadline_end": parsed["end"] if parsed else None,
                 "original_deadline_precision": parsed["precision"] if parsed else None,
                 "original_deadline_confidence": confidence,
+                "original_deadline_label": resolution.label,
+                "original_deadline_milestones": repair_text(resolution.milestones),
                 "original_timeline_raw": timeline_raw,
                 "lead": column_value(columns, LEAD_ALIASES),
                 "support": column_value(columns, SUPPORT_ALIASES),
@@ -264,6 +369,7 @@ def build_observations(report_records, actions):
                 "reported_deadline_end": raw.get("reported_deadline_end"),
                 "reported_deadline_precision": raw.get("reported_deadline_precision"),
                 "progress_text": raw.get("progress_text") or "",
+                "progress_text_clean": repair_text(raw.get("progress_text") or ""),
                 "asi": raw.get("asi"),
                 "source_page": raw.get("source_page"),
                 "source_ref": raw.get("source_ref"),

@@ -1,6 +1,6 @@
 # Regional Spatial & Economic Strategy 2019-2031
 
-> Eastern and Midland Regional Assembly — 12 chapters, 76 sections, 244 source pages.
+> Eastern and Midland Regional Assembly — 8 chapters, 71 sections, 244 source pages.
 > Source: https://www.emra.ie/rses-download/EMRA-RSES.pdf
 > Full text: full.md
 
@@ -8,8 +8,6 @@
 
 - [Front Matter](sections/front-matter/) — pages 1–6
   - [Front Matter](sections/front-matter/front-matter.md) — pages 1–6
-- [1 in 8 people in the Region are aged over 65 but it is this cohort that is projected to increase most signiﬁcantly](sections/1-in-8-people-in-the-region-are-aged-over-65-but-it-is-this-cohort-that-is-projected-to-increase-most-signi-cantly/) — pages 200–200
-  - [1 in 8 people in the Region are aged over 65 but it is this cohort that is projected to increase most signiﬁcantly](sections/1-in-8-people-in-the-region-are-aged-over-65-but-it-is-this-cohort-that-is-projected-to-increase-most-signi-cantly/overview.md) — pages 200–200
 - [1.1 Vision and Eastern and Midland Regional Assembly](sections/1-1-vision/) — pages 6–8
   - [1.1 Vision and Eastern and Midland Regional Assembly](sections/1-1-vision/overview.md) — pages 6–8
 - [1.3 What is a Regional Spatial and Economic Strategy (RSES)?](sections/1-3-what-is-a-regional-spatial-and-economic-strategy-rses/) — pages 8–10
@@ -18,37 +16,16 @@
   - [1.4 Spatial and Economic Policy Background](sections/1-4-spatial-and-economic-policy-background/overview.md) — pages 10–13
 - [1.5 The RSES Process](sections/1-5-the-rses-process/) — pages 13–14
   - [1.5 The RSES Process](sections/1-5-the-rses-process/overview.md) — pages 13–14
-- [1.6 Regional Proﬁle](sections/1-6-regional-pro-le/) — pages 14–14
-  - [1.6 Regional Proﬁle](sections/1-6-regional-pro-le/overview.md) — pages 14–14
-- [8 of the regional population are non-Irish nationals, with higher rates in Dublin City and the counties of Fingal and](sections/8-of-the-regional-population-are-non-irish-nationals-with-higher-rates-in-dublin-city-and-the-counties-of-fingal-and/) — pages 200–238
-  - [8 of the regional population are non-Irish nationals, with higher rates in Dublin City and the counties of Fingal and](sections/8-of-the-regional-population-are-non-irish-nationals-with-higher-rates-in-dublin-city-and-the-counties-of-fingal-and/overview.md) — pages 200–201
-  - [9.3 Housing and Regeneration](sections/8-of-the-regional-population-are-non-irish-nationals-with-higher-rates-in-dublin-city-and-the-counties-of-fingal-and/9-3-housing-and-regeneration.md) — pages 201–205
-  - [9.4 Healthy Placemaking](sections/8-of-the-regional-population-are-non-irish-nationals-with-higher-rates-in-dublin-city-and-the-counties-of-fingal-and/9-4-healthy-placemaking.md) — pages 205–208
-  - [9.5 Social and Economic Opportunity](sections/8-of-the-regional-population-are-non-irish-nationals-with-higher-rates-in-dublin-city-and-the-counties-of-fingal-and/9-5-social-and-economic-opportunity.md) — pages 208–211
-  - [9.6 Access to Childcare, Education and Health Services](sections/8-of-the-regional-population-are-non-irish-nationals-with-higher-rates-in-dublin-city-and-the-counties-of-fingal-and/9-6-access-to-childcare-education-and-health-services.md) — pages 211–214
-  - [9.7 Access to Arts, Culture, Language and Heritage](sections/8-of-the-regional-population-are-non-irish-nationals-with-higher-rates-in-dublin-city-and-the-counties-of-fingal-and/9-7-access-to-arts-culture-language-and-heritage.md) — pages 214–218
-  - [10.1 Introduction](sections/8-of-the-regional-population-are-non-irish-nationals-with-higher-rates-in-dublin-city-and-the-counties-of-fingal-and/10-1-introduction.md) — pages 218–219
-  - [10.2 Sustainable Management of Water](sections/8-of-the-regional-population-are-non-irish-nationals-with-higher-rates-in-dublin-city-and-the-counties-of-fingal-and/10-2-sustainable-management-of-water.md) — pages 219–224
-  - [10.3 Energy](sections/8-of-the-regional-population-are-non-irish-nationals-with-higher-rates-in-dublin-city-and-the-counties-of-fingal-and/10-3-energy.md) — pages 224–227
-  - [10.4 Waste Management](sections/8-of-the-regional-population-are-non-irish-nationals-with-higher-rates-in-dublin-city-and-the-counties-of-fingal-and/10-4-waste-management.md) — pages 227–228
-  - [11.1 Introduction](sections/8-of-the-regional-population-are-non-irish-nationals-with-higher-rates-in-dublin-city-and-the-counties-of-fingal-and/11-1-introduction.md) — pages 228–229
-  - [11.2 Collaboration with Northern Ireland in Support of an All Island Approach](sections/8-of-the-regional-population-are-non-irish-nationals-with-higher-rates-in-dublin-city-and-the-counties-of-fingal-and/11-2-collaboration-with-northern-ireland-in-support-of-an-all-island-approach.md) — pages 229–232
-  - [11.3 Collaboration with the Southern Region and Northern and Western Region](sections/8-of-the-regional-population-are-non-irish-nationals-with-higher-rates-in-dublin-city-and-the-counties-of-fingal-and/11-3-collaboration-with-the-southern-region-and-northern-and-western-region.md) — pages 232–234
-  - [12.1 Introduction](sections/8-of-the-regional-population-are-non-irish-nationals-with-higher-rates-in-dublin-city-and-the-counties-of-fingal-and/12-1-introduction.md) — pages 234–235
-  - [12.2 Legislative Background](sections/8-of-the-regional-population-are-non-irish-nationals-with-higher-rates-in-dublin-city-and-the-counties-of-fingal-and/12-2-legislative-background.md) — pages 235–237
-  - [12.3 Implementation](sections/8-of-the-regional-population-are-non-irish-nationals-with-higher-rates-in-dublin-city-and-the-counties-of-fingal-and/12-3-implementation.md) — pages 237–238
-- [10 year period of the National Development Plan are the Urban Regeneration and Development Fund, the Rural](sections/10-year-period-of-the-national-development-plan-are-the-urban-regeneration-and-development-fund-the-rural/) — pages 238–244
-  - [1.9 Deﬁning Functional Urban Areas, Census 2016 ...19](sections/10-year-period-of-the-national-development-plan-are-the-urban-regeneration-and-development-fund-the-rural/1-9-de-ning-functional-urban-areas-census-2016-19.md) — pages 243–244
-  - [10 year period of the National Development Plan are the Urban Regeneration and Development Fund, the Rural](sections/10-year-period-of-the-national-development-plan-are-the-urban-regeneration-and-development-fund-the-rural/overview.md) — pages 238–241
-  - [12.4 Monitoring and Reporting](sections/10-year-period-of-the-national-development-plan-are-the-urban-regeneration-and-development-fund-the-rural/12-4-monitoring-and-reporting.md) — pages 241–243
-- [16 Regional Strategic Outcomes (RSOs) are aligned to the UN Sustainable Development Goals, the EU thematic](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/) — pages 20–200
+- [1.6 Regional Proﬁle](sections/1-6-regional-pro-le/) — pages 14–16
+  - [1.6 Regional Proﬁle](sections/1-6-regional-pro-le/overview.md) — pages 14–16
+- [16 Regional Strategic Outcomes (RSOs) are aligned to the UN Sustainable Development Goals, the EU thematic](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/) — pages 20–244
+  - [1.9 Deﬁning Functional Urban Areas, Census 2016 ...19](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/1-9-de-ning-functional-urban-areas-census-2016-19.md) — pages 243–244
   - [2.2 Vision and Key Principles](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/2-2-vision-and-key-principles.md) — pages 23–24
   - [2.3 Regional Strategic Outcomes](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/2-3-regional-strategic-outcomes.md) — pages 24–27
   - [3.1 Developing a Growth Strategy for the Region](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/3-1-developing-a-growth-strategy-for-the-region.md) — pages 27–33
   - [3.2 Growth Enablers for the Region](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/3-2-growth-enablers-for-the-region.md) — pages 33–42
   - [4.1 Introduction and context](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/4-1-introduction-and-context.md) — pages 42–44
-  - [4.2 Settlement Strategy](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/4-2-settlement-strategy.md) — pages 44–44
-  - [4.1 are to inform the delivery of national policy expressed in the NPF and the delivery](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/4-1-are-to-inform-the-delivery-of-national-policy-expressed-in-the-npf-and-the-delivery.md) — pages 44–46
+  - [4.2 Settlement Strategy](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/4-2-settlement-strategy.md) — pages 44–46
   - [4.3 Deﬁning a Settlement Typology](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/4-3-de-ning-a-settlement-typology.md) — pages 46–52
   - [4.4 Dublin City and Suburbs](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/4-4-dublin-city-and-suburbs.md) — pages 52–53
   - [4.5 Regional Growth Centres](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/4-5-regional-growth-centres.md) — pages 53–71
@@ -87,10 +64,24 @@
   - [8.5 International Connectivity](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/8-5-international-connectivity.md) — pages 194–197
   - [8.6 Communications Network and Digital Infrastructure](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/8-6-communications-network-and-digital-infrastructure.md) — pages 197–198
   - [9.1 Introduction](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/9-1-introduction.md) — pages 198–199
-  - [9.2 Diverse and Inclusive Region](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/9-2-diverse-and-inclusive-region.md) — pages 199–200
+  - [9.2 Diverse and Inclusive Region](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/9-2-diverse-and-inclusive-region.md) — pages 199–201
+  - [9.3 Housing and Regeneration](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/9-3-housing-and-regeneration.md) — pages 201–205
+  - [9.4 Healthy Placemaking](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/9-4-healthy-placemaking.md) — pages 205–208
+  - [9.5 Social and Economic Opportunity](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/9-5-social-and-economic-opportunity.md) — pages 208–211
+  - [9.6 Access to Childcare, Education and Health Services](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/9-6-access-to-childcare-education-and-health-services.md) — pages 211–214
+  - [9.7 Access to Arts, Culture, Language and Heritage](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/9-7-access-to-arts-culture-language-and-heritage.md) — pages 214–218
+  - [10.1 Introduction](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/10-1-introduction.md) — pages 218–219
+  - [10.2 Sustainable Management of Water](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/10-2-sustainable-management-of-water.md) — pages 219–224
+  - [10.3 Energy](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/10-3-energy.md) — pages 224–227
+  - [10.4 Waste Management](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/10-4-waste-management.md) — pages 227–228
+  - [11.1 Introduction](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/11-1-introduction.md) — pages 228–229
+  - [11.2 Collaboration with Northern Ireland in Support of an All Island Approach](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/11-2-collaboration-with-northern-ireland-in-support-of-an-all-island-approach.md) — pages 229–232
+  - [11.3 Collaboration with the Southern Region and Northern and Western Region](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/11-3-collaboration-with-the-southern-region-and-northern-and-western-region.md) — pages 232–234
+  - [12.1 Introduction](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/12-1-introduction.md) — pages 234–235
+  - [12.2 Legislative Background](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/12-2-legislative-background.md) — pages 235–237
+  - [12.3 Implementation](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/12-3-implementation.md) — pages 237–241
+  - [12.4 Monitoring and Reporting](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/12-4-monitoring-and-reporting.md) — pages 241–243
   - [16 Regional Strategic Outcomes (RSOs) are aligned to the UN Sustainable Development Goals, the EU thematic](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/overview.md) — pages 20–23
-- [44 persons](sections/44-persons/) — pages 14–16
-  - [44 persons](sections/44-persons/overview.md) — pages 14–16
 - [65 + years 12%](sections/65-years-12/) — pages 16–20
   - [2.1 Our Shared Goals](sections/65-years-12/2-1-our-shared-goals.md) — pages 20–20
   - [65 + years 12%](sections/65-years-12/overview.md) — pages 16–20

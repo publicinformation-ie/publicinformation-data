@@ -6,7 +6,7 @@ Source: https://assets.gov.ie/static/documents/code-of-practice-for-fishing-vess
 
 ### Front Matter
 
-*Pages 1–42*
+*Pages 1–8*
 
 Code of Practice Design, Construction, Equipment, and Operation of Small Fishing Vessels of less than 15 metres Length overall
 
@@ -362,6 +362,12 @@ Manning, Training, Certification, Emergency Procedures and Organisation of Worki
 
 1GENERAL
 
+## 1.1 Foreword
+
+### 1.1 Foreword
+
+*Pages 8–10*
+
 1.1Foreword .1This version of the Code of Practice, Revision 3 dated 1 March 2022, updates and replaces Revision
 
 2 of the Code (dated 20 January 2014), and comes into effect from 1 May 2022. All previous versions of the Code of Practice are hereby withdrawn. .2This Code of Practice sets the standards of safety and protection for all persons on board small
@@ -454,6 +460,12 @@ Practice only and are not to be used for registration purposes. .19In this Revis
 
 recommendations relating to safety on board small fishing vessels, the master has ultimate responsibility for the safety of the vessel and its crew.
 
+## 1.2 The Department of Transport and Sources of Information
+
+### 1.2 The Department of Transport and Sources of Information
+
+*Pages 10–11*
+
 1.2The Department of Transport and Sources of Information .1This Code of Practice is published by the Department of Transport and is available to view or
 
 download from the Department’s website: www.gov.ie/transport. .2The Irish Maritime Directorate of the Department of Transport is responsible for maritime safety
@@ -477,6 +489,12 @@ a)Voluntary Guidelines for the Design, Construction and Equipment of Small Fishi
 2005 (2nd edition 2006); and b)Safety Recommendations for Decked Fishing Vessels of Less than 12 metres in Length and
 
 Undecked Fishing Vessels (2012).
+
+## 1.3 Definitions
+
+### 1.3 Definitions
+
+*Pages 11–13*
 
 1.3Definitions .1In the Code of Practice:-
 
@@ -580,7 +598,17 @@ at which the depth is to be determined, the moulded depth shall be measured to a
 
 “Working space” means any space on the vessel, apart from accommodation and machinery spaces, to which the crew normally has access in connection with the operation of the vessel.
 
+## 1.4 Application and Interpretation
+
+### 1.4 Application and Interpretation
+
+*Pages 13–13*
+
 1.4Application and Interpretation
+
+### 1.4.1 Application
+
+*Pages 13–14*
 
 1.4.1Application .1This Revision 3 of the Code applies from 1 May 2022 to all fishing vessels of less than 15 metres
 
@@ -602,19 +630,41 @@ requirements of the previous “Revision 2” of this Code remains valid until t
 
 therefore vessels issued with a Declaration of Compliance are not considered suitable to be used for overnight crew accommodation in port.
 
+### 1.4.2 Certification
+
+*Pages 14–14*
+
 1.4.2Certification .1To be issued with a Declaration of Compliance, a vessel must comply with all the requirements of
 
 the Code for the declared operating area, to the satisfaction of the Authorised Person.
+
+### 1.4.3 Interpretation
+
+*Pages 14–14*
 
 1.4.3Interpretation .1The Marine Survey Office is responsible for the technical interpretations of the Code and
 
 promulgation of the Code requirements.
 
+### 1.4.4 Updating of the Code
+
+*Pages 14–14*
+
 1.4.4Updating of the Code .1The Code will be periodically reviewed to take into account experience gained and any new
 
 statutory requirements which it might be considered reasonable to apply to vessels operating under the Code.
 
+## 1.5 Compliance Procedures, Survey, Certification and Maintenance
+
+### 1.5 Compliance Procedures, Survey, Certification and Maintenance
+
+*Pages 14–14*
+
 1.5Compliance Procedures, Survey, Certification and Maintenance This section applies to all fishing vessels (pre-2004 and post-2004).
+
+### 1.5.1 Compliance Survey for first issue of a Declaration of Compliance
+
+*Pages 14–14*
 
 1.5.1Compliance Survey for first issue of a Declaration of Compliance .1The owner of a vessel must arrange for the necessary compliance survey of the arrangements,
 
@@ -626,15 +676,27 @@ ashore. The arrangements, fittings and equipment provided on the vessel are to b
 
 If the vessel is operated in more than one area, then details of these additional areas shall be included. The Declaration of Compliance shall also detail the type or types of fishing activity for which the vessel has been surveyed.
 
+### 1.5.2 Compliance Survey for Renewal of a Declaration of Compliance
+
+*Pages 15–15*
+
 1.5.2Compliance Survey for Renewal of a Declaration of Compliance .1Within a 3-month period before the existing Declaration expires, the owner must arrange for a
 
 compliance survey, including a hull survey, to be carried out by an Authorised Person. Upon satisfactory completion of the survey verifying that the arrangements, fittings and equipment remain in compliance with the Code and that the vessel, its hull and its machinery are in a sound and well-maintained condition, the Authorised Person must complete a Declaration of Compliance. Both the Authorised Person and the owner must sign the Declaration of Compliance. The Declaration of Compliance is to be kept on board the vessel and is to be available for inspection at all times. One copy is to be sent to the Marine Survey Office and one is to be retained by the Authorised Person. .2If a vessel is surveyed up to 3 months after the expiry date of the existing Declaration of
 
 Compliance, the renewal Declaration of Compliance will normally be valid for four years from the expiry date. However, if there is evidence that the vessel has been laid up since the existing Declaration of Compliance’s expiry date, the renewal Declaration of Compliance may be valid for not more than four years from the date the survey is satisfactorily completed.
 
+### 1.5.3 Appeal against the Findings of a Survey
+
+*Pages 15–15*
+
 1.5.3Appeal against the Findings of a Survey .1If an owner is dissatisfied with the findings of a survey, and agreement cannot be reached with
 
 the Authorised Person who carried out the survey, the owner may appeal to the Marine Survey Office to review the findings. At this review, the owner may call a representative or professional adviser to give opinions in support of the argument against the findings of the survey.
+
+### 1.5.4 Maintaining and Operating a Vessel
+
+*Pages 15–15*
 
 1.5.4Maintaining and Operating a Vessel .1A surveyor from the MSO may survey a vessel at any reasonable time.
 
@@ -653,6 +715,10 @@ Code.
 .5Any equipment carried on board a vessel that is in addition to equipment required by this Code
 
 must be maintained and serviced in full.
+
+### 1.5.5 Validity and cancellation of Declaration of Compliance
+
+*Pages 15–17*
 
 1.5.5Validity and cancellation of Declaration of Compliance .1A Declaration of Compliance will normally be valid for not more than four years from the date of
 
@@ -682,7 +748,17 @@ after the initial survey date for the issue of the Declaration of Compliance. A 
 
 2CONSTRUCTION, STRUCTURAL STRENGTH AND WEATHERTIGHT INTEGRITY
 
+## 2.1 Part A - Pre-2004 Fishing Vessels
+
+### 2.1 Part A - Pre-2004 Fishing Vessels
+
+*Pages 17–17*
+
 2.1Part A - Pre-2004 Fishing Vessels
+
+### 2.1.1 General Requirements
+
+*Pages 17–17*
 
 2.1.1General Requirements .1As there are many designs, types and construction methods, it is more difficult to incorporate the
 
@@ -694,6 +770,10 @@ operation of the vessel, in all expected operating conditions, at the required d
 
 of seawater. The number of openings in the weathertight structure of the vessel must be as few as practicable and be provided with the closing and securing arrangements described below.
 
+### 2.1.2 Modifications and repairs
+
+*Pages 17–17*
+
 2.1.2Modifications and repairs .1 When modifications or repairs are carried out to a vessel, the additional or replacement
 
 construction materials must be of a similar nature and standard as the original material. Alternative materials must also be compatible with the original hull material.
@@ -702,6 +782,10 @@ construction materials must be of a similar nature and standard as the original 
 
 vessels, and note the requirements in section 1.5.5 above.
 
+### 2.1.3 Construction Materials
+
+*Pages 17–17*
+
 2.1.3Construction Materials .1Vessels should be constructed of the following materials, or a suitable combination:
 
 a.Wood; b.Fibre/Glass reinforced plastic (F.R.P.) (G.R.P.); c.Steel; d.Aluminium Alloy.
@@ -709,6 +793,10 @@ a.Wood; b.Fibre/Glass reinforced plastic (F.R.P.) (G.R.P.); c.Steel; d.Aluminium
 .2Vessels of construction and materials differing from those listed above will be specially
 
 considered, taking into account the nature of the material and soundness of construction.
+
+### 2.1.4 Structural Strength
+
+*Pages 17–18*
 
 2.1.4Structural Strength .1A vessel will be considered to be acceptable if the structure, such as the hull, decks and bulkheads,
 
@@ -730,6 +818,10 @@ vessel undergoes major structural work or alterations and, in the case of machin
 
 operation, to the standard required for post-2004 fishing vessels (see paragraph 2.2.1.7 below).
 
+### 2.1.8 Doorways above Weather Deck
+
+*Pages 18–18*
+
 2.1.8Doorways above Weather Deck .1Doorways giving access to space below the deck should be fitted with a permanent coaming of
 
 300mm minimum height. Alternatively, a portable coaming may be provided, fixed in guide channels, to give a minimum coaming height of 300mm. .2Doors must be of sound construction and be weathertight.
@@ -740,6 +832,10 @@ substantial construction, and with a minimum height of 300mm, should be provided
 
 (Access and Escape Arrangements).
 
+### 2.1.10 Weather Deck Hatches
+
+*Pages 18–18*
+
 2.1.10Weather Deck Hatches .1Hatchway covers fitted in the weather deck must be provided with efficient means of weathertight
 
 closure. .2The securing arrangements may include lashing and eyeplates.
@@ -748,9 +844,17 @@ closure. .2The securing arrangements may include lashing and eyeplates.
 
 fastening, and with the loose cover permanently attached to the structure with chain.
 
+### 2.1.12 Skylights
+
+*Pages 18–18*
+
 2.1.12Skylights .1Skylights must be of efficient construction. Where the glazing material and its method of fixing is
 
 not equivalent in strength to the surrounding structure, portable blanking pieces or plates that can be secured over the glazing must be provided. Portable blanking pieces or plates must be stored in a readily accessible position.
+
+### 2.1.13 Side Scuttles and Portlights
+
+*Pages 18–19*
 
 2.1.13Side Scuttles and Portlights .1Side scuttles or portlights fitted below the weathertight deck, and not fitted with an attached
 
@@ -759,6 +863,10 @@ deadlight, must be provided with a portable blanking plate, which can be efficie
 .2Glazing material in existing sidelights must be sound and efficiently secured. When the glazing
 
 material is damaged it must be blanked off. Replacement material must meet the requirements for post-2004 fishing vessels.
+
+### 2.1.14 Windows
+
+*Pages 19–19*
 
 2.1.14Windows .1Windows fitted to spaces above the weather deck, such as a deckhouse or superstructure
 
@@ -770,17 +878,29 @@ weather deck, they must be of sound construction, provide watertight integrity, 
 
 toughened or laminated. When the glazing material is damaged it must be blanked off. Replacement material must meet the requirements for post-2004 fishing vessels.
 
+### 2.1.15 Ventilators
+
+*Pages 19–19*
+
 2.1.15Ventilators .1Ventilators must be efficient.
 
 .2Ventilators serving spaces below the weathertight deck must be provided with an effective means
 
 of weathertight closure.
 
+### 2.1.16 Exhaust Systems
+
+*Pages 19–19*
+
 2.1.16Exhaust Systems .1Engine exhaust systems of the dry or water-injected type, which discharge through the hull below
 
 the weathertight deck at the side or stern, should be provided with means of preventing back flooding into the hull or engine through the exhaust system. This may be by system design, or valve, or non-return device. .2Existing systems, for pre-2004 fishing vessels, will be accepted, provided that they are of sound
 
 construction and that existing hoses are of a suitable material, well supported, free from defects, and contact with combustible materials is avoided.
+
+### 2.1.17 Air Pipes
+
+*Pages 19–20*
 
 2.1.17Air Pipes .1Air pipe arrangements will be accepted subject to the following provisions:
 
@@ -802,6 +922,10 @@ must be of sound and efficient construction.
 
 and toilet drains, etc., should be also fitted with an automatic non-return valve adjacent to the closing valve. Alternatively, a screw down non-return type valve may be fitted.
 
+### 2.1.19 Materials for Valves and Associated Piping - Sea Water Systems
+
+*Pages 20–20*
+
 2.1.19Materials for Valves and Associated Piping - Sea Water Systems .1Valves, pipes and fittings serving as sea inlets and discharges attached directly to the hull of the
 
 vessel below the load waterline should be of steel, bronze, or other equivalent and compatible material. .2Where the sea inlet valve or fitting is connected to the hull by means of a tube or distance piece,
@@ -812,25 +936,11 @@ the tube or distance piece should be of a material that is compatible with the h
 
 piping systems must be well supported with pipe clips or mounts and protected against vibration and chafing.
 
-2.2Part B - Post-2004 fishing vessels
+## 2.2 Part B - Post-2004 fishing vessels
 
-2.2.1Construction and Structural Strength .1Vessels must be constructed of materials in accordance with Acceptable Construction Rules (see
+### Decks
 
-definition in section 1.3). These include:
-
-a.Wood; b.Fibre/Glass Reinforced Plastic; c.Steel; d.Aluminium Alloy; or e.any acceptable combination of these materials.
-
-.2Proposals to use other materials must be submitted to the MSO.
-
-.3The structural strength of any vessel must meet the minimum requirements in the following four
-
-sub-paragraphs:
-
-Hulls General
-
-.4Scantlings and construction of the main hull or shell are to be as required by Acceptable
-
-Construction Rules.
+*Pages 20–20*
 
 Decks
 
@@ -838,11 +948,19 @@ Decks
 
 condition of loading and be of adequate strength to withstand conditions likely to be met in the proposed area of operation. Drainage arrangements must meet the requirements specified for pre-2004 fishing vessels, or the requirements of Acceptable Construction Rules.
 
+### Bulkheads
+
+*Pages 21–21*
+
 Bulkheads
 
 .6All vessels of Loa ≥ 7 m decked in the forward part must be fitted with a substantially watertight
 
 collision bulkhead situated in the fore part of the vessel. Machinery space bulkheads must be fitted to the requirements of Acceptable Construction Rules.
+
+### Bulkhead Doors
+
+*Pages 21–21*
 
 Bulkhead Doors
 
@@ -850,15 +968,9 @@ Bulkhead Doors
 
 fitted where necessary for the safe operation of the vessel and they must be constructed and permanently attached to the bulkhead in such a manner as to be of equivalent strength to the unpierced bulkhead, in accordance with Acceptable Construction Rules.
 
-2.2.2Weathertight Integrity .1Openings in the watertight structure of the vessel should be kept to a minimum and designed to
+### Hatches and Coamings
 
-prevent the ready ingress of water and comply with the requirements of Acceptable Construction Rules.
-
-Doors
-
-.2Doors and doorways above and below the weather deck are to meet the requirements of
-
-Acceptable Construction Rules. Doorways above the weather deck leading directly to spaces below the deck are to have a minimum coaming height of 300mm.
+*Pages 21–21*
 
 Hatches and Coamings
 
@@ -878,6 +990,10 @@ Ventilators and Air Pipes
 
 than 300mm to the lowest part of the gooseneck or bend. Ventilators and air pipes terminating at less than 1.5m height above the weathertight deck must be fitted with a closing device in accordance with Acceptable Construction Rules.
 
+### Sea Inlets and Discharges
+
+*Pages 21–22*
+
 Sea Inlets and Discharges
 
 .6All inlets and discharges below the weathertight deck must be fitted with a valve and connection,
@@ -885,6 +1001,52 @@ Sea Inlets and Discharges
 in accordance with the requirements of Acceptable Construction Rules. Valves, which are not easily accessible, must be fitted with a remote means of control operated from above the deck.
 
 2.3Part C – all fishing vessels (Pre-2004 and Post-2004)
+
+### 2.2 Part B - Post-2004 fishing vessels
+
+*Pages 20–20*
+
+2.2Part B - Post-2004 fishing vessels
+
+### 2.2.1 Construction and Structural Strength
+
+*Pages 20–20*
+
+2.2.1Construction and Structural Strength .1Vessels must be constructed of materials in accordance with Acceptable Construction Rules (see
+
+definition in section 1.3). These include:
+
+a.Wood; b.Fibre/Glass Reinforced Plastic; c.Steel; d.Aluminium Alloy; or e.any acceptable combination of these materials.
+
+.2Proposals to use other materials must be submitted to the MSO.
+
+.3The structural strength of any vessel must meet the minimum requirements in the following four
+
+sub-paragraphs:
+
+Hulls General
+
+.4Scantlings and construction of the main hull or shell are to be as required by Acceptable
+
+Construction Rules.
+
+### 2.2.2 Weathertight Integrity
+
+*Pages 21–21*
+
+2.2.2Weathertight Integrity .1Openings in the watertight structure of the vessel should be kept to a minimum and designed to
+
+prevent the ready ingress of water and comply with the requirements of Acceptable Construction Rules.
+
+Doors
+
+.2Doors and doorways above and below the weather deck are to meet the requirements of
+
+Acceptable Construction Rules. Doorways above the weather deck leading directly to spaces below the deck are to have a minimum coaming height of 300mm.
+
+### 2.3.1 Freeing Ports
+
+*Pages 22–23*
 
 2.3.1Freeing Ports .1In fishing operations, especially when towing, or hove-to when attending to pots or nets, a
 
@@ -928,6 +1090,10 @@ open position and will not float off from the stowed positions.
 
 3.1.1.1.
 
+### 3.1.2 Stability Standard
+
+*Pages 23–23*
+
 3.1.2Stability Standard .1It is strongly recommended that the stability standards described in paragraph 3.2.1.3, below, be
 
 applied. If these standards are applied to a pre-2004 fishing vessel, and the vessel complies with the standards, then a roll test as described in Annex 1 shall not be carried out. .2Where a pre-2004 fishing vessel does not apply the stability standards described in paragraph
@@ -968,13 +1134,27 @@ The formula is applicable for vessels having:
 
 For vessels with parameters outside of the above limits, the formula should be applied with special care.
 
+### 3.1.3 Capsize Safety
+
+*Pages 24–24*
+
 3.1.3Capsize Safety .1The guidance notes for vessel operators, given in Annex 2, including the use of portable fish-hold
 
 divisions, must be studied and followed where practicable.
 
+### 3.1.4 Stability Book
+
+*Pages 24–24*
+
 3.1.4Stability Book .1It is recommended that all decked vessels should also have a Stability Information Book.
 
 3.2Part B – Post-2004 fishing vessels
+
+## 3.2.1 Stability
+
+### 3.2.1 Stability
+
+*Pages 24–25*
 
 3.2.1Stability .1It is the responsibility of the builder and designer to ensure that adequate margins of freeboard
 
@@ -998,6 +1178,10 @@ divisions, should be studied and followed where practicable.
 
 4.1Part A – Pre-2004 fishing vessels
 
+### 4.1.1 Machinery – General requirements and recommendations
+
+*Pages 25–25*
+
 4.1.1Machinery – General requirements and recommendations .1Access for persons to machinery spaces must be arranged clear of any moving or heated surfaces,
 
 and the latter must be sufficiently insulated. Effective guards must protect exposed moving parts such as shafts, drive pulleys and belts. Access ladders must be securely fixed to the vessel’s permanent structure. Ancillary equipment and piping must be in accordance with the appropriate part of the Code. In particular, care should be exercised when accessing the bilge area when shafts are rotating. .2Layout and installation of machinery spaces and propulsion machinery should be designed for safe
@@ -1013,6 +1197,10 @@ requirements of the propulsion machinery and to prevent build-up of fumes or exc
 .5Access ladders should be of metal, where practicable.
 
 .6Floor plates, where fitted, should be non-slip and securely fastened with accessible fasteners.
+
+### 4.1.2 Propulsion Machinery and Stern Gear
+
+*Pages 25–26*
 
 4.1.2Propulsion Machinery and Stern Gear .1Propulsion engines and associated stern gear must be of a design, type and rating to suit the
 
@@ -1036,9 +1224,17 @@ must be in a sound condition and operate efficiently. Shaft materials and diamet
 
 suitable for the power being transmitted. Inboard-mounted stern glands must be accessible for adjustment.
 
+### 4.1.3 Engine Starting
+
+*Pages 26–26*
+
 4.1.3Engine Starting .1All propulsion engines, except those engines fitted only with hand starting arrangements, should
 
 be provided with a secondary means of starting, where practicable.
+
+### 4.1.4 Controls and Instruments
+
+*Pages 26–26*
 
 4.1.4Controls and Instruments .1The controls and instrumentation systems as fitted will generally be accepted, provided that the
 
@@ -1047,6 +1243,10 @@ systems are in a good state of repair and operate satisfactorily. .2Propulsion e
 from the wheelhouse or helm position must be provided, on or adjacent to the engine, with arrangements or mechanism for stopping the engine.
 
 .3High water temperature and low lubricating oil pressure alarms shall be fitted, where practicable.
+
+### 4.1.5 Steering System
+
+*Pages 26–26*
 
 4.1.5Steering System .1The steering system must operate efficiently and be well maintained. The steering gear, including
 
@@ -1061,6 +1261,10 @@ gear has a clear view for the safe navigation of the vessel.
 .4All parts of mechanical linkages of rod and chain should be accessible with adequate lubrication
 
 arrangements provided.
+
+### 4.1.6 Electrical Installations
+
+*Pages 26–28*
 
 4.1.6Electrical Installations
 
@@ -1134,6 +1338,10 @@ those containing D.C. systems. Systems and equipment must be clearly marked.
 
 and lamps into high voltage systems.
 
+### 4.1.7 Pumping and Piping Systems
+
+*Pages 28–29*
+
 4.1.7Pumping and Piping Systems
 
 4.1.7.1Fuel Oil Installations .1Tanks will generally be accepted, provided that they are of sound and efficient construction and
@@ -1198,6 +1406,10 @@ must be fitted to indicate leakage of water into the machinery space. Indication
 
 4.2Part B – Post-2004 fishing vessels
 
+### 4.2.1 Machinery
+
+*Pages 29–30*
+
 4.2.1Machinery .1The layout of engine rooms and propulsion machinery must satisfy the following, and the
 
 requirements of Acceptable Construction Rules:
@@ -1216,6 +1428,10 @@ started from a dead ship condition.
 
 connected when vessel is underway.
 
+### 4.2.2 Piping Systems
+
+*Pages 30–30*
+
 4.2.2Piping Systems .1Fuel oil and cooling water systems and valves are to be fitted in accordance with Acceptable
 
 Construction Rules. Vessels of Loa ≥ 7m are to be fitted with a means of providing an alternative engine cooling water supply in the event of blockage of the engine sea inlet. .2Where any existing fuel and hydraulic lines are replaced, they shall be constructed out of fire-
@@ -1226,9 +1442,17 @@ resistant material.
 
 notices are displayed onboard highlighting the dangers of the inhalation of toxic gases from refrigerated seawater. Further information can be found in Marine Notice No. 43 of 2016 - “Fatal Incident Caused by the Inhalation of Toxic Gases Onboard a Fishing Vessel”.
 
+### 4.2.3 Shafting and Stern Gear
+
+*Pages 30–30*
+
 4.2.3Shafting and Stern Gear .1The arrangement, material, and diameter of the propeller shaft and any intermediate shafts are
 
 to be in accordance with Acceptable Construction Rules.
+
+### 4.2.4 Bilge Pumping Systems
+
+*Pages 30–30*
 
 4.2.4Bilge Pumping Systems .1All vessels are to have a bilge pumping system in accordance with Acceptable Construction Rules.
 
@@ -1237,6 +1461,10 @@ The number and capacity of bilge pumps are to be a minimum of those required for
 Bilge main, vessels of Loa ≥ 7 m - 35 mm inside diameter Bilge main, vessels of Loa < 7 m - 30 mm inside diameter Branch bilge pipes, all vessels - 30 mm inside diameter .2In vessels where the engine is enclosed under the deck, or in open boats, where the bilge space
 
 cannot be readily seen, an audible and visual level alarm is to be fitted, with indication at the helm or control position.
+
+### 4.2.5 Steering Gear
+
+*Pages 31–31*
 
 4.2.5Steering Gear .1All vessels are to be fitted with an efficient means of steering in accordance with Acceptable
 
@@ -1248,6 +1476,10 @@ alarm is incorporated.
 
 has a clear view for the safe navigation of the vessel.
 
+### 4.2.6 Electrical Systems
+
+*Pages 31–31*
+
 4.2.6Electrical Systems .1Low voltage direct current systems up to 24v D.C. and A.C. systems must comply with the
 
 requirements of Acceptable Construction Rules and with the following regulations:
@@ -1257,6 +1489,10 @@ a.The Institution of Electrical Engineers (IEE) Regulations for the Electrical a
 Equipment of Ships with Recommended Practice for their Implementation, 6th Edition 1990 and Supplement 1994. b.Marine Notice No. 58 of 2011 – “Electrical Systems in Small Craft”. c.ISO 10133 - Small Craft Electrical Equipment Extra-low Voltage DC Installations. d.ISO 13297 - Small Craft Electrical Equipment Alternating Current Installations.
 
 4.3Part C – all fishing vessels (Pre-2004 and Post-2004)
+
+### 4.3.1 Anchors and Cables
+
+*Pages 31–33*
 
 4.3.1Anchors and Cables
 
@@ -1296,7 +1532,15 @@ and safe working load to withstand foreseeable loads. All load-bearing parts mus
 
 5FIRE PROTECTION, DETECTION AND EXTINCTION
 
+### 5.1 Part A – Pre-2004 fishing vessels
+
+*Pages 33–33*
+
 5.1Part A – Pre-2004 fishing vessels
+
+### 5.1.1 Provision for Gas-Extinguishing System
+
+*Pages 33–33*
 
 5.1.1Provision for Gas-Extinguishing System In a vessel with a gas-extinguishing system, the boundary of the machinery space must be able to contain the fire-extinguishing medium, i.e., the space must be capable of being closed down in order that the fire-extinguishing medium cannot penetrate to any other part of the vessel, or outside the vessel. This arrangement includes the closure of ventilation systems and hatchways.
 
@@ -1318,11 +1562,19 @@ combustible materials.
 
 permanent fuel oil tank. Petrol engines must be fitted in an enclosure with a suitable fireextinguishing system or portable fire extinguisher.
 
+### 5.2 Part B – Post-2004 fishing vessels
+
+*Pages 33–33*
+
 5.2Part B – Post-2004 fishing vessels
 
 5.2.1General .1In addition to the requirements of Acceptable Construction Rules, vessels must be constructed to
 
 avoid the risk of fire occurring and to mitigate the effects of any fire by giving appropriate attention to the choice of materials, equipment, and layout.
+
+### 5.2.2 Fire Prevention
+
+*Pages 33–33*
 
 5.2.2Fire Prevention .1Fire hazardous materials such as petrol, gas and paint must not be stowed within the boundaries
 
@@ -1330,9 +1582,17 @@ of engine spaces. .2Vessels with permanent fuel oil tanks must have a suitable f
 
 to the fuel tank compartment and to the engine, whether inboard or outboard.
 
+### 5.2.3 Furnishing Materials
+
+*Pages 33–33*
+
 5.2.3Furnishing Materials .1Only combustion modified high resilience (CMHR) foams must be used in upholstered furniture
 
 and mattresses.
+
+### 5.2.4 Means of Escape
+
+*Pages 33–34*
 
 5.2.4Means of Escape .1Provision of a ready means of escape is recommended from accessible engine and fuel tank
 
@@ -1342,11 +1602,19 @@ compartments and from those parts of the vessel from which exit may be obstructe
 
 subject to a fire risk, must have two means of escape, if practicable. A single means of escape may be acceptable in exceptional cases, such as when that escape is direct to an open deck or when a second means of escape would be considered detrimental to the overall safety of the vessel.
 
+### 5.3 Part C – all fishing vessels (Pre-2004 and Post-2004)
+
+*Pages 34–34*
+
 5.3Part C – all fishing vessels (Pre-2004 and Post-2004)
 
 5.3.1General .1Curtains, or any other suspended textile materials, must not be fitted within 600mm of any open-
 
 flame cooking, heating or other appliance.
+
+### 5.3.2 Emergency Action
+
+*Pages 34–34*
 
 5.3.2Emergency Action .1A suitable notice, detailing the action to be taken when an alarm is given by the gas detection
 
@@ -1355,6 +1623,10 @@ system, should be displayed prominently in the vessel. .2The information given s
 a.To be ever alert for gas leakage. b.When leakage is detected or suspected, to shut off all gas consuming appliances at
 
 the main supply from the container(s) and to refrain from smoking until safe to do so. c.NEVER TO USE NAKED LIGHTS AS A MEANS OF LOCATING GAS LEAKS.
+
+### 5.3.3 Fire Fighting Appliances
+
+*Pages 34–35*
 
 5.3.3Fire Fighting Appliances
 
@@ -1416,6 +1688,10 @@ inboard/outboard engine is fitted, the extinguisher must be suitable for extingu
 
 remote controls, operable from outside the machinery space, to fuel tank outlet valves shall be provided.
 
+### 5.3.4 Open-Flame Gas Appliances (including Gas Refrigerators)
+
+*Pages 36–36*
+
 5.3.4Open-Flame Gas Appliances (including Gas Refrigerators) .1Appliances must not be positioned close to engines and fuel tanks. Selection of open-flame
 
 cooking appliances must have due regard to the fire risk involved. The type of equipment should be suitable for marine duty, and manufacturers’ fitting and operating instructions must be carefully followed. .2All types of stoves and heating appliances must be strongly secured to the surrounding structure.
@@ -1425,6 +1701,10 @@ New appliances must conform to the requirements of Regulation (EU) 2016/426 and 
 of gas must be provided, or in any adjoining space or compartment into which the gas may seep. Detectors must be fitted in each compartment in accordance with fitting instructions. The alarm unit, which should incorporate an audible and visible alarm, and the control panel should be fitted outside the space containing the installation. In all cases, arrangements must be such that the detection system can be tested frequently while the vessel is in service. .4Liquefied petroleum gas (L.P.G.) systems must comply with Marine Notice No. 37 of 2017. It
 
 should be noted that the Marine Notice also contains maintenance and servicing requirements.
+
+### 5.3.5 Cleanliness and Pollution Prevention
+
+*Pages 36–37*
 
 5.3.5Cleanliness and Pollution Prevention .1Wherever practicable, provision should be made to retain any oil leakage within the confines of
 
@@ -1444,9 +1724,17 @@ This chapter applies to all fishing vessels (pre-2004 and post-2004).
 
 with deckhouses or exposed decks. For smaller vessels, where the same risks to personnel exist, it is recommended that the same measures be applied to the maximum extent practicable.
 
+### 6.2 Means of access
+
+*Pages 37–37*
+
 6.2Means of access .1Safe means of access, appropriate to the vessel, should be provided to reduce the risk while
 
 boarding and disembarking the vessel. Consideration should be given to rail openings, non-slip surfaces, hand holds and an indication of the location of approved or recommended boarding points.
+
+### 6.3 Bulwarks, Guard Rails and Handrails
+
+*Pages 37–37*
 
 6.3Bulwarks, Guard Rails and Handrails .1The perimeter of an exposed deck should be fitted with bulwarks, guard rails or guard wires of
 
@@ -1460,6 +1748,10 @@ the safety of the crew.
 
 pots (creels) are manually launched.
 
+### 6.4 Safety Harnesses
+
+*Pages 37–37*
+
 6.4Safety Harnesses .1Safety harnesses provide excellent protection against falling from exposed decks, or into the sea,
 
 and they should be carried and worn, particularly in the case of single-person operation. .2Efficient means for securing lifelines for the safety harnesses should be provided, to enable crew
@@ -1472,6 +1764,10 @@ impeded (see section 6.6.3 below)
 
 .4Consideration should be given to the importance of the inspection of safety harnesses
 
+### 6.5 Surface of Working Decks
+
+*Pages 37–38*
+
 6.5Surface of Working Decks .1Decks to which the crew are expected to have access must be provided with an adequate non-slip
 
 surface, or efficient non-slip covering. .2Particular attention must be paid to the provision of a non-slip surface to any hatch cover fitted
@@ -1479,6 +1775,10 @@ surface, or efficient non-slip covering. .2Particular attention must be paid to 
 on a working deck.
 
 .3The exposed bottom boards of open boats must have a non-slip surface.
+
+### 6.6 Personal Protective Equipment
+
+*Pages 38–39*
 
 6.6Personal Protective Equipment .1In accordance with the Safety, Health and Welfare at Work Act 2005 (No. 10 of 2005), and the
 
@@ -1508,11 +1808,19 @@ responsibility. The master is responsible for the use and maintenance of the med
 
 Radio Medical Consultation Centre for Ireland. The unit is available to provide vessels at sea with free medical advice by radio on a 24-hour basis. Further details are provided in Marine Notice No. 60 of 2021.
 
+### 6.8 Medical Training
+
+*Pages 39–39*
+
 6.8Medical Training .1The owner of a vessel must also ensure that the master or any other person designated to
 
 maintain and use medical supplies aboard the vessel, attends an approved medical training course relating to the category of vessel concerned, and undertakes an approved updated medical training course every five years. .2The owner must further ensure that the guide to the use of the medicines, medical equipment
 
 and antidotes, set out in Marine Notice No. 60 of 2021 – “Minimum Safety and Health Requirements for Improved Medical Treatment on Board Vessels”, is in a language and format understood by a person who is required to attend an approved medical training course.
+
+### 6.9 Securing of Heavy Items of Equipment and Fishing Gear, etc.
+
+*Pages 39–40*
 
 6.9Securing of Heavy Items of Equipment and Fishing Gear, etc. .1Heavy items of equipment such as batteries, cooking appliances and spare gear must be securely
 
@@ -1532,15 +1840,27 @@ This chapter applies to all fishing vessels (pre-2004 and post-2004).
 
 comply with the Marine Equipment Directive (MED): Directive 2014/90/EU, as amended.
 
+### 7.2 Servicing
+
+*Pages 40–40*
+
 7.2Servicing .1Where carried, inflatable liferafts, hydrostatic release units (HRUs) and inflatable life jackets must
 
 be serviced in accordance with the manufacturer’s recommendations. Additional information on servicing can be found in Marine Notice No. 53 of 2012 – “Servicing of a Vessel’s Inflatable Liferafts, Inflatable Lifejackets, Marine Evacuation Systems, Hydrostatic Release Units, Inflated Boats, Rigid and Inflated Rescue Boats”.
+
+### 7.3 Lifejackets
+
+*Pages 40–40*
 
 7.3Lifejackets .1All vessels must carry at least one lifejacket for each person on board (see also paragraph 7.6.1
 
 below). .2Lifejackets must be stowed in an easily accessible position. .3Lifejackets must be of a MED/SOLAS-approved type1 and be fitted with a signalling whistle, light,
 
 and retro-reflective tape. Lifejacket donning notices should be displayed, where practicable, in the wheelhouse or other prominent positions.
+
+### 7.4 Carriage of Inflatable Liferafts
+
+*Pages 40–41*
 
 7.4Carriage of Inflatable Liferafts .1The following table sets out the carriage requirements for inflatable liferafts:
 
@@ -1569,6 +1889,10 @@ Vessels of Less Than 15 Metres in Length Overall (Loa)”.
 
 are not required to carry a liferaft for compliance with this Code. The Department strongly recommends that a liferaft is voluntarily carried onboard such vessels. It is also recommended that such voluntarily carried liferafts are of either the SOLAS/MED type or one of the non- SOLAS/non-MED types specified in Note 3 above and that these are serviced at an approved liferaft servicing station at intervals not exceeding 12 months.
 
+### 7.5 Lifebuoys
+
+*Pages 41–41*
+
 7.5Lifebuoys .1All vessels must carry at least two lifebuoys.
 
 .2One of the lifebuoys must be fitted with 18 metres of buoyant heaving line.
@@ -1581,15 +1905,27 @@ to one of the lifebuoys.
 
 .5Each lifebuoy must be marked with the vessel’s Name and Port of Registry.
 
+### 7.6 Personal Flotation Devices
+
+*Pages 41–41*
+
 7.6Personal Flotation Devices .1In accordance with the Fishing Vessel (Personal Flotation Devices) Regulations, 2001 (S.I. No. 586
 
 of 2001), as amended by S.I. No. 401 of 2018, a suitable Personal Flotation Device (PFD) shall be provided for each person on board, and worn on deck at all times. Guidance on the selection of PFDs for use on-board fishing vessels can be found in Marine Notice No. 39 of 2013 - “Wear a Personal Flotation Device (PFD) and increase your chance of survival in the event of entering water”. See also section 6.6.3 above.
+
+### 7.7 Loose Equipment
+
+*Pages 42–42*
 
 7.7Loose Equipment .1Where space is restricted in smaller vessels, a portable watertight container should be carried
 
 which is capable of stowing the following safety items:-
 
 a.Distress signals; b.Waterproof torch; c.Signalling whistle; d.Compass; e.First aid kit; and f.Hand-held radio,if required by paragraph 9.2.3.7 below.
+
+### 7.8 Distress Signals
+
+*Pages 42–42*
 
 7.8Distress Signals .1In addition to those provided with any liferaft carried, the following distress signals must be
 
@@ -1600,6 +1936,10 @@ carried:
 | 6 Red Star Signals |  |  | 12 Parachute Distress Rocket Signals |  |  |
 | Or |  |  |  |  |  |
 | 4 Parachute Distress Rocket Signals, 4 Red Hand Flares and 2 Buoyant Orange Smoke Flares may be carried in lieu of 6 Red Star Signals. |  |  |  |  |  |
+
+### 7.9 Means for Recovering Persons from the Water
+
+*Pages 42–42*
 
 7.9Means for Recovering Persons from the Water .1To aid the recovery of a person from the water, a retrieval system must be provided or a system
 
@@ -1613,11 +1953,11 @@ secondary to the speed of retrieval so that the person does not become hypotherm
 
 2013 – “Man Overboard Recovery Systems on Fishing Vessels”.
 
-## 8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND ORGANISATION OF WORKING TIME
+## 8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND
 
-### 8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND ORGANISATION OF WORKING TIME
+### 8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND
 
-*Pages 43–45*
+*Pages 43–43*
 
 8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND ORGANISATION OF WORKING TIME
 
@@ -1629,6 +1969,10 @@ operation of small commercial fishing vessels. .2Furthermore, this chapter sets 
 
 emergency procedures on vessels, as well as the regulation of work/rest time.
 
+### 8.2 Safety Training
+
+*Pages 43–43*
+
 8.2Safety Training .1All persons on board must comply with the Fishing Vessel (Basic Safety Training) Regulations 2001
 
 (S.I. No. 587 of 2001). It is also required that safety skills and knowledge be updated on a regular basis, and such enhanced safety training as set out in Marine Notice No. 16 of 2014 – “Enhanced Safety Training for Skippers and Crews of Fishing Vessels Less than 15m Length overall”, every 5 years. .2The master or any other appropriate person on-board tasked with maintaining or using the
@@ -1636,6 +1980,10 @@ emergency procedures on vessels, as well as the regulation of work/rest time.
 medical supplies as set out in section 6.7 above, must attend an approved medical training course relating to the category of vessel concerned at least once every five years.
 
 .3Single-person operation should be restricted to 30 nautical miles from a safe haven.
+
+### 8.3 Standards of Competence
+
+*Pages 43–43*
 
 8.3Standards of Competence .1The owner/operator of a fishing vessel should ensure that all fishers are sufficiently competent to
 
@@ -1647,23 +1995,43 @@ a.operating and maintaining the engine, including ancillary machinery and system
 
 safe haven, or home base, the fishers operate, the more competent across a wider range of skills they will need to be.
 
+### 8.4 Operation and Maintenance of Propulsion Machinery
+
+*Pages 43–43*
+
 8.4Operation and Maintenance of Propulsion Machinery .1The master, or other appropriate person on-board, must be competent to operate and maintain
 
 the vessel’s main propulsion machinery and ancillary equipment.
+
+### 8.5 Operation of Radio Equipment
+
+*Pages 43–43*
 
 8.5Operation of Radio Equipment .1 Every vessel must carry at least one person suitably qualified, in accordance with section 9.2.10
 
 (Radio Personnel) below, to operate the radio equipment carried on-board.
 
+### 8.6 Responsibility of the Owner for Safe Manning of Vessel
+
+*Pages 44–44*
+
 8.6Responsibility of the Owner for Safe Manning of Vessel .1It is the owner’s responsibility to ensure that the master has, in addition to the certification and
 
 competence requirements already detailed in sections 8.2 to 8.5, recent and relevant experience of the type and size of vessel, the machinery on-board, and the type of operation undertaken. The owner must also ensure that there are sufficient qualified crew on-board, having regard to the type and duration of the voyage undertaken.
+
+### 8.7 Safe Navigational Watch
+
+*Pages 44–44*
 
 8.7Safe Navigational Watch .1It is the master’s responsibility to ensure that there is, at all times, an alert person with adequate
 
 experience in charge of the navigational watch. In making this decision the master should take account of all the factors affecting the safety of the vessel, including:
 
 a.the present and forecast state of the weather, sea state and visibility; b.the proximity of navigational hazards; and c.the density of traffic in the area.
+
+### 8.8 Musters and Drills for Emergency Procedures
+
+*Pages 44–44*
 
 8.8Musters and Drills for Emergency Procedures .1The master and crew shall comply with the Merchant Shipping (Musters) (Fishing Vessels)
 
@@ -1693,6 +2061,12 @@ appliances and fire-fighting appliances can be found in Marine Notice No. 40 of 
 
 exercise drills, including preparing for a grounding event or collision incident and unexpected loss of propulsion or electrical power, is highlighted in Marine Notice No. 41 of 2020.
 
+## 8.9 Organisation of Working Time
+
+### 8.9 Organisation of Working Time
+
+*Pages 45–45*
+
 8.9Organisation of Working Time .1The master and owner shall comply, if applicable, with:
 
 a)The European Union (International Labour Organisation Work in Fishing Convention)
@@ -1709,13 +2083,21 @@ rest for workers on board sea-going fishing vessels, as well as the requirement 
 
 ### 9 RADIO COMMUNICATIONS
 
-*Pages 46–54*
+*Pages 46–46*
 
 9 RADIO COMMUNICATIONS
 
 This chapter applies to all fishing vessels (pre-2004 and post-2004).
 
+### 9.1 Part 1 – General
+
+*Pages 46–46*
+
 9.1Part 1 – General
+
+### 9.1.1 The Global Maritime Distress and Safety System (GMDSS)
+
+*Pages 46–46*
 
 9.1.1The Global Maritime Distress and Safety System (GMDSS) .1The basic concept of the GMDSS is that search and rescue authorities ashore will be alerted, as
 
@@ -1735,7 +2117,15 @@ which continuous alerting by DSC is available; c.Sea Area A3 means an area withi
 
 service such as an INMARSAT geostationary satellite system in which continuous alerting is available; and d.Sea Area A4 means an area outside of sea areas A1, A2 and A3.
 
+### 9.2 Part 2 – Vessel Requirements
+
+*Pages 46–46*
+
 9.2Part 2 – Vessel Requirements
+
+### 9.2.1 Radio Installations Regulations
+
+*Pages 46–46*
 
 9.2.1Radio Installations Regulations .1Every vessel must comply with the requirements of the Fishing Vessel (Radio Installations)
 
@@ -1748,6 +2138,10 @@ this Code) of the radio installations regulations for vessels of less than 12m L
 .3All vessels are required to have on board a ship radio licence issued by the Department for the sea
 
 area of operation, installed radiocommunication equipment and to have on board the appropriate radio operator holding the required certificate of competency. Any EPIRB or PLB devices must be registered with the EPIRB and PLB registry. The following legislation applies: the Wireless Telegraphy (Ship Station Radio Licence) Regulations, 2006 (S.I. No. 414 of 2006) and the Wireless Telegraphy Act, 1926 (Section 3) (Exemption of 406MHz Personal Locator Beacons) Order, 2010 (S.I. No. 290 of 2010). The Radio Regulations of the International Telecommunications Union (ITU) apply in Ireland and the relevant Articles, Appendices, Resolutions and Recommendations apply on board all Irish vessels.
+
+### 9.2.2 Functional Requirements
+
+*Pages 47–48*
 
 9.2.2Functional Requirements .1Every fishing vessel, while at sea, shall be capable:
 
@@ -1798,6 +2192,10 @@ prescribed by section 9.2.2 above, by means of a fixed installation, every radio
 a.be an approved portable waterproof transmitter and receiver; b.be provided with a suitable antenna; and c.be provided with a fully charged sealed reserve power pack at all times while the
 
 vessel is at sea.
+
+### 9.2.4 Radio Equipment to be Provided for all Sea Areas (including EPIRBs and PLBs)
+
+*Pages 48–49*
 
 9.2.4Radio Equipment to be Provided for all Sea Areas (including EPIRBs and PLBs) .1Every fishing vessel of less than 12 m Loa shall be provided with:
 
@@ -1861,6 +2259,10 @@ MHz band, shall be provided for each person on-board and shall be carried by eac
 
 “Personal Locator Beacons (PLB) Registry”.
 
+### 9.2.5 Additional Radio Equipment to be Provided for Sea Areas A1 and A2
+
+*Pages 49–50*
+
 9.2.5Additional Radio Equipment to be Provided for Sea Areas A1 and A2 .1In addition to meeting the requirements of paragraphs 9.2.4.1 and 9.2.4.2 above, every fishing
 
 vessel of less than 12 m Loa engaged on voyages beyond Sea Area A1, but remaining within Sea Area A2, shall be provided with:
@@ -1909,6 +2311,10 @@ iii.have a fully charged power pack available at all times while the vessel is a
 
 sea.
 
+### 9.2.6 Radio Watches
+
+*Pages 50–51*
+
 9.2.6Radio Watches .1Every vessel while at sea shall maintain a continuous watch:
 
 a)on VHF channel 16;
@@ -1920,6 +2326,10 @@ c)on the distress and safety DSC frequency 2187.5 kHz (assigned frequency), if t
 fitted with an MF DSC radio installation. .2Every vessel, while at sea, shall maintain a radio watch for broadcasts of maritime safety
 
 information on the appropriate frequency or frequencies on which such information is broadcast for the area in which the vessel is navigating.
+
+### 9.2.7 Sources of Energy
+
+*Pages 51–52*
 
 9.2.7Sources of Energy .1There shall be available at all times, while the vessel is at sea, a supply of electrical energy
 
@@ -1961,9 +2371,17 @@ the following formula is recommended for determining the electrical load to be s
 
 ½ of the current consumption necessary for transmission + the current consumption necessary for reception + the current consumption of any additional loads.
 
+### 9.2.8 Performance Standards
+
+*Pages 52–52*
+
 9.2.8Performance Standards .1Equipment required to be provided under the Radio Regulations shall conform to appropriate
 
 performance specifications set out in the European Union (Radio Equipment) Regulations 2017 (S.I. No. 248 of 2017) and the European Union (Marine Equipment) Regulations 2017 (S.I. No. 177 of 2017), as amended.
+
+### 9.2.9 Serviceability and Maintenance Requirements
+
+*Pages 52–52*
 
 9.2.9Serviceability and Maintenance Requirements .1Equipment shall be so designed that the main units can be replaced readily, without elaborate
 
@@ -1978,6 +2396,10 @@ maintained.
 .4On every fishing vessel of 12 m Loa and greater, a member of the crew, nominated by the master
 
 shall, while the vessel is at sea, carry out the appropriate tests and checks specified in Annex 3 (Radio Equipment Tests and Reserve Power Checks). If any of the radio installations required by the Radio Regulations is not in a working order, the master shall be informed and the details recorded in the Radio Log.
+
+### 9.2.10 Radio Personnel
+
+*Pages 52–54*
 
 9.2.10Radio Personnel .1Every vessel shall carry personnel qualified for distress and safety radio communication purposes
 
@@ -2005,6 +2427,10 @@ This chapter applies to all fishing vessels (pre-2004 and post-2004).
 
 (COLREGS), which are implemented in Irish law by the Merchant Shipping (Collision Regulations) (Ships and Water Craft on the Water) Order 2012 (S.I. No. 507 of 2012), and the Signals of Distress (Ships) Rules 2012 (S.I. No.170 of 2012). Further information can be found in Marine Notice No. 06 of 2013.
 
+### 10.2 Navigation Equipment
+
+*Pages 54–54*
+
 10.2Navigation Equipment .1All vessels must carry a magnetic compass to provide an accurate course setting. The compass
 
 shall be properly adjusted, and its table or curve of residual deviations shall be available at all times. .2In vessels equipped with an auto-pilot system actuated by a magnetic sensor that does not
@@ -2023,9 +2449,17 @@ Identification System (AIS) signals that indicate the position of Aids to Naviga
 
 .6The visibility from the wheelhouse should be adequate both ahead and astern.
 
+### 10.3 Navigation Lights
+
+*Pages 54–54*
+
 10.3Navigation Lights .1 Vessels, which operate only during daylight hours, and in good visibility, are not required to
 
 carry navigation lights. However, failure to exhibit navigation lights while underway between sunset and sunrise, or in restricted visibility, would be in contravention of the Collision Regulations, referred to in section 10.1.
+
+### 10.4 Steaming Lights
+
+*Pages 54–55*
 
 10.4Steaming Lights .1All vessels must, subject to paragraphs .2 and .3 below, exhibit the following Steaming Lights:
 
@@ -2037,15 +2471,133 @@ carry navigation lights. However, failure to exhibit navigation lights while und
 | 1 Port light | 1 mile | 2 miles |
 | 1 Stern light | 2 miles | 2 miles |
 
+.2A power-driven vessel of less than 12 metres Loa may, in lieu of the above lights, exhibit an all-
+
+round white light and sidelights.
+
+.3A power-driven vessel of less than 7 metres Loa with a maximum speed not exceeding 7 knots
+
+may, in lieu of the above requirements, exhibit an all-round white light of visibility 2 miles and, if practicable, side lights.
+
+### 10.5 Fishing Lights
+
+*Pages 55–55*
+
+10.5Fishing Lights .1All vessels must exhibit the following Fishing Lights:
+
+a)Trawlers One all-round green light over one all-round white light, one metre apart; both with a range of visibility of 2 miles. b)Vessels other than trawlers One all-round red light over one all-round white light, one metre apart; both with visibility 2 miles.
+
+### 10.6 Additional Fishing Light
+
+*Pages 55–55*
+
+10.6Additional Fishing Light .1Where there is outlying gear extending more than 150 metres horizontally from the vessel, one
+
+all-round white light must be exhibited in the direction of the gear. The light must be visible for at least 2 miles.
+
+### 10.7 Anchor Light
+
+*Pages 55–55*
+
+10.7Anchor Light .1When at anchor, an all-round white light must be shown where it can best be seen. The light must
+
+be visible for at least 2 miles.
+
+### 10.8 Position of Lights
+
+*Pages 55–55*
+
+10.8Position of Lights .1The masthead light of vessels 12 metres or more Loa must be exhibited not less than 2.5 metres
+
+above the gunwale. However, on vessels less than 12 metres Loa the masthead light may be carried less than 2.5 metres above the gunwale, providing there is at least one metre between the sidelights and the mast light. .2The lower of the two all-round fishing lights shall be at a height above the sidelights not less than
+
+twice the distance between the vertical lights. Sidelights must be positioned above the gunwale so as not to be so low as to be interfered with by deck lights. The stern light must be positioned where it can be clearly seen.
+
+.3Where an additional all-round white light is fitted to indicate the direction of outlying fishing gear,
+
+it must be shown at a horizontal distance of not less than 2 metres, and not more than 6 metres, away from the all-round red and white lights. It must be vertically displayed not higher than the all-round white light, and above the sidelights.
+
+### 10.9 Day Signals
+
+*Pages 55–56*
+
+10.9Day Signals .1All vessels must display the following signals:
+
+a)Fishing Signal – Two Black Cones with Apexes together or a basket. b)Anchor Signal – Single Black Ball.
+
+.2Where the outlying fishing gear extends more than 150 metres horizontally from the vessel, an
+
+additional black cone must be displayed, apex upwards, in the direction of the gear.
+
+.3The size of the shapes must be commensurate with the size of the vessel.
+
+.4The shapes and signals must be shown only when the vessel is engaged in fishing and at no other
+
+time. It is a contravention of the Collision Regulations to display these signals when not engaged in fishing.
+
+### 10.10 Sound Signals
+
+*Pages 56–56*
+
+10.10Sound Signals .1All vessels must be provided with the means of making an efficient sound signal. Vessels of 12
+
+metres or more Loa must be provided with an approved whistle with a frequency between 250 and 700 Hz, which is audible for a distance of 0.5 miles, and a bell with a diameter of at least 200mm.
+
+### 10.11 Charts and Nautical Publications
+
+*Pages 56–56*
+
+10.11Charts and Nautical Publications .1Fishers should be aware of the contents of important ‘fishing related’ Marine Notices, which are
+
+a source of valuable safety advice. Copies of individual Marine Notices are available from the Department’s Marine Notice webpage, or from the MSO. .2In line with the requirements of the Merchant Shipping (Carriage of Nautical Charts and
+
+Publications) Regulations 2021 (S.I. No. 149 of 2021), vessels should carry an up to date copy of the Illustrated Table of Life Saving Signals.
+
+### 10.12 Signalling Lamp
+
+*Pages 56–56*
+
+10.12Signalling Lamp .1All vessels should be provided with an efficient signalling lamp, or waterproof torch, suitable for
+
+Morse signalling.
+
+### 10.13 Radar Reflector
+
+*Pages 56–56*
+
+10.13Radar Reflector .1All vessels should carry a radar reflector.
+
+### 10.14 Search Light
+
+*Pages 56–56*
+
+10.14Search Light .1Where electrical power supply is provided, and where practicable, all vessels of 7m Loa and over
+
+should carry an efficient fixed and/or portable searchlight suitable for use in man overboard search and recovery operations.
+
+10.15Navigation Safety .1 Before departure, Masters must take steps to plan for any intended voyage, including all stages
+
+of the voyage, taking into account weather forecasts, tidal information, navigation and pilotage, and any other factor that may affect the safe navigation of their vessel.
+
+.2The voyage plan shall be from berth to berth, and with contingency plans in place. Further details
+
+can be found in Marine Notice No. 41 of 2020.
+
 ## 11 ACCOMMODATION AND WORKING SPACES
 
 ### 11 ACCOMMODATION AND WORKING SPACES
 
-*Pages 57–63*
+*Pages 57–57*
 
 11 ACCOMMODATION AND WORKING SPACES
 
 This chapter applies to all fishing vessels (pre-2004 and post-2004)
+
+## 11.1 General
+
+### 11.1 General
+
+*Pages 57–57*
 
 11.1General .1The provisions within this chapter, except for those referred to in paragraph.2 below,
 
@@ -2059,19 +2611,35 @@ a.flooding danger where a toilet is fitted (section 11.6), b.escapes (section 11
 
 from the sea and provide adequate protection for crew against falls on the vessel or from falling overboard.
 
+### 11.2 Living Quarters
+
+*Pages 57–57*
+
 11.2Living Quarters .1The location, construction and insulation should provide protection against the sea, weather
 
 and excessive heat or cold.
 
+### 11.3 Sleeping Accommodation
+
+*Pages 57–57*
+
 11.3Sleeping Accommodation .1In vessels intended to be at sea regularly for more than 24 hours, a sufficient number of berths
 
 should be provided on board.
+
+### 11.4 Food Preparation
+
+*Pages 57–57*
 
 11.4Food Preparation .1Means for cooking and for supplying hot water should be provided, together with adequate
 
 space for the preparation and storage of food. Sufficient ventilation should be provided. .2It is extremely important to take appropriate precautions to prevent instances of foodborne
 
 illness at sea, such as hygienic cleaning of hands by food handlers.
+
+### 11.5 Messing Arrangements
+
+*Pages 57–57*
 
 11.5Messing Arrangements .1Where space permits, facilities should be provided to permit the crew to rest and eat when
 
@@ -2082,6 +2650,10 @@ not working.
 marine standard design and quality, with inlet and discharge pipe connections complying with section 2.1.18 above. .2When the rim of the toilet is either below, or less than 300mm above, the deepest waterline
 
 of the vessel, anti-siphon measures must be provided.
+
+### 11.7 Access and Escape Arrangements
+
+*Pages 58–58*
 
 11.7Access and Escape Arrangements .1Routes and exits, which can be used as emergency escape routes, must be unobstructed,
 
@@ -2095,13 +2667,25 @@ spaces must not be capable of being locked, unless kick panels or other suitable
 
 early warning of a fire emergency, which could cut off escape from a space. .6Ladders, steps, handgrips and suchlike, necessary for escape, must be fitted.
 
+### 11.8 Ventilation
+
+*Pages 58–58*
+
 11.8Ventilation .1Effective means of ventilation must be provided to enclosed spaces, which under normal
 
 operating conditions may be entered by persons on board. This is particularly important in sleeping accommodation. In this context it is considered that the hatch will effectively ventilate fish holds. .2Mechanical ventilation may be required for safety reasons in accommodation spaces, which
 
 are situated completely below the level of the weather deck. As far as practicable, such ventilation arrangements must be designed to provide at least 6 changes of air per hour, when the access openings to the spaces are closed. (see paragraphs 5.3.4.2 and 5.3.4.4 above – L.P.G. installations). .3Sanitary spaces should be provided with separate exhausts to the open air.
 
+### 11.9 Water Services
+
+*Pages 58–58*
+
 11.9Water Services .1An adequate supply of cold fresh water, including drinking water, should be provided.
+
+### 11.10 Lighting
+
+*Pages 58–58*
 
 11.10Lighting .1An electric lighting system must be installed, which is capable of supplying adequate light to
 
@@ -2109,9 +2693,17 @@ all enclosed accommodation and working spaces. .2Adequate lighting must be provi
 
 stowage positions. Waterproof torches, appropriately located, will be considered to meet this requirement.
 
+### 11.11 Temperature
+
+*Pages 59–59*
+
 11.11Temperature .1The temperature within accommodation spaces and enclosed work areas should be kept
 
 within a comfortable range, having regard to the physical demands placed on the crew and the actual, or potential, weather conditions in the area in which the vessel operates.
+
+### 11.12 Hand Holds and Grab-rails
+
+*Pages 59–60*
 
 11.12Hand Holds and Grab-rails .1Sufficient handholds should be provided, to allow safe movement around the accommodation
 
@@ -2128,6 +2720,10 @@ securely fastened in place, to prevent movement due to motion of the vessel in a
 ANNEX 1 – STABILITY (APPLIES TO PRE-2004 FISHING VESSELS)
 
 (Referred to in Chapter 3)
+
+### 12.1 Determination of vessel's stability by means of rolling period tests
+
+*Pages 60–63*
 
 12.1Determination of vessel's stability by means of rolling period tests .1The International Maritime Organization (IMO), recognizing the desirability of supplying to
 
@@ -2229,7 +2825,7 @@ drum), should be secured against such movement. The free surface effects of slac
 
 ### 12.2.2 Limitations on the use of this method
 
-*Pages 64–71*
+*Pages 64–65*
 
 12.2.2 Limitations on the use of this method
 
@@ -2247,11 +2843,23 @@ Applies to all fishing vessels (Pre-2004 and Post-2004)
 
 (Referred to in Chapters 2, 3, 4, 6 and 11)
 
+### 13.1 Guidance on Capsize Safety
+
+*Pages 65–65*
+
 13.1Guidance on Capsize Safety
+
+### 13.1.1 Actions in Port
+
+*Pages 65–65*
 
 13.1.1Actions in Port .1It is important to ensure that the vessel is in as near an upright position as practicable prior to
 
 departure.
+
+### 13.1.2 Reducing Top Weight
+
+*Pages 65–65*
 
 13.1.2Reducing Top Weight .1It is prudent to identify any items fitted or stowed high on the vessel which are redundant and
 
@@ -2264,6 +2872,10 @@ masts and gantries, and deckhouse tops and contents, particularly in the case of
 .3Removing top weight ashore always has two beneficial effects. The first is to increase
 
 freeboard, thus helping to protect against shipping water and increasing the range of positive stability. It also lowers the centre of gravity, increasing both upright statical stability, and its positive range. This is particularly important for open boats.
+
+### 13.1.3 Vessel Modifications
+
+*Pages 65–68*
 
 13.1.3Vessel Modifications .1Vessel owners and/or masters must be aware of the dangers of carrying out modifications to
 
@@ -2339,7 +2951,15 @@ ANNEX 3 – RADIO EQUIPMENT TESTS
 
 Radio tests should be noted in the RADIO LOG – see Annex 4.
 
+### 14.1 Radio Equipment Tests and Reserve Power Checks
+
+*Pages 68–68*
+
 14.1Radio Equipment Tests and Reserve Power Checks
+
+### 14.1.1 Daily
+
+*Pages 68–68*
 
 14.1.1Daily .1The proper functioning of the Digital Selective Calling (DSC) facilities shall be tested at least
 
@@ -2348,6 +2968,10 @@ once daily without radiation of signals, by use of the means provided by the equ
 daily and, where necessary, brought up to the fully charged condition. .3Where the reserve source of energy is not a battery (for example, a motor generator), the
 
 reserve source of energy shall be tested daily.
+
+### 14.1.2 Weekly
+
+*Pages 68–71*
 
 14.1.2Weekly .1The proper operation of the DSC facilities shall be tested at least once each week by means of
 
@@ -2424,81 +3048,3 @@ Chain cable diameter is given for short link chain. Chain cable should be sized 
 (iii) The rope diameter given is for nylon construction, when rope of differing construction is provided, the breaking load should not be less than that of the nylon rope specified in the table.
 
 (iv) Where stud link chain cable is used, the diameter may be 1.5 mm less than the tabular diameter stated.
-
-## 12 m or more Loa
-
-### 12 m or more Loa
-
-*Pages 54–56*
-
-.2A power-driven vessel of less than 12 metres Loa may, in lieu of the above lights, exhibit an all-
-
-round white light and sidelights.
-
-.3A power-driven vessel of less than 7 metres Loa with a maximum speed not exceeding 7 knots
-
-may, in lieu of the above requirements, exhibit an all-round white light of visibility 2 miles and, if practicable, side lights.
-
-10.5Fishing Lights .1All vessels must exhibit the following Fishing Lights:
-
-a)Trawlers One all-round green light over one all-round white light, one metre apart; both with a range of visibility of 2 miles. b)Vessels other than trawlers One all-round red light over one all-round white light, one metre apart; both with visibility 2 miles.
-
-10.6Additional Fishing Light .1Where there is outlying gear extending more than 150 metres horizontally from the vessel, one
-
-all-round white light must be exhibited in the direction of the gear. The light must be visible for at least 2 miles.
-
-10.7Anchor Light .1When at anchor, an all-round white light must be shown where it can best be seen. The light must
-
-be visible for at least 2 miles.
-
-10.8Position of Lights .1The masthead light of vessels 12 metres or more Loa must be exhibited not less than 2.5 metres
-
-above the gunwale. However, on vessels less than 12 metres Loa the masthead light may be carried less than 2.5 metres above the gunwale, providing there is at least one metre between the sidelights and the mast light. .2The lower of the two all-round fishing lights shall be at a height above the sidelights not less than
-
-twice the distance between the vertical lights. Sidelights must be positioned above the gunwale so as not to be so low as to be interfered with by deck lights. The stern light must be positioned where it can be clearly seen.
-
-.3Where an additional all-round white light is fitted to indicate the direction of outlying fishing gear,
-
-it must be shown at a horizontal distance of not less than 2 metres, and not more than 6 metres, away from the all-round red and white lights. It must be vertically displayed not higher than the all-round white light, and above the sidelights.
-
-10.9Day Signals .1All vessels must display the following signals:
-
-a)Fishing Signal – Two Black Cones with Apexes together or a basket. b)Anchor Signal – Single Black Ball.
-
-.2Where the outlying fishing gear extends more than 150 metres horizontally from the vessel, an
-
-additional black cone must be displayed, apex upwards, in the direction of the gear.
-
-.3The size of the shapes must be commensurate with the size of the vessel.
-
-.4The shapes and signals must be shown only when the vessel is engaged in fishing and at no other
-
-time. It is a contravention of the Collision Regulations to display these signals when not engaged in fishing.
-
-10.10Sound Signals .1All vessels must be provided with the means of making an efficient sound signal. Vessels of 12
-
-metres or more Loa must be provided with an approved whistle with a frequency between 250 and 700 Hz, which is audible for a distance of 0.5 miles, and a bell with a diameter of at least 200mm.
-
-10.11Charts and Nautical Publications .1Fishers should be aware of the contents of important ‘fishing related’ Marine Notices, which are
-
-a source of valuable safety advice. Copies of individual Marine Notices are available from the Department’s Marine Notice webpage, or from the MSO. .2In line with the requirements of the Merchant Shipping (Carriage of Nautical Charts and
-
-Publications) Regulations 2021 (S.I. No. 149 of 2021), vessels should carry an up to date copy of the Illustrated Table of Life Saving Signals.
-
-10.12Signalling Lamp .1All vessels should be provided with an efficient signalling lamp, or waterproof torch, suitable for
-
-Morse signalling.
-
-10.13Radar Reflector .1All vessels should carry a radar reflector.
-
-10.14Search Light .1Where electrical power supply is provided, and where practicable, all vessels of 7m Loa and over
-
-should carry an efficient fixed and/or portable searchlight suitable for use in man overboard search and recovery operations.
-
-10.15Navigation Safety .1 Before departure, Masters must take steps to plan for any intended voyage, including all stages
-
-of the voyage, taking into account weather forecasts, tidal information, navigation and pilotage, and any other factor that may affect the safe navigation of their vessel.
-
-.2The voyage plan shall be from berth to berth, and with contingency plans in place. Further details
-
-can be found in Marine Notice No. 41 of 2020.

@@ -51,7 +51,7 @@
     "legacy_issues": 5,
     "toc_fired": true,
     "toc_method": "toc",
-    "toc_nodes": 19,
+    "toc_nodes": 16,
     "toc_issues": 0,
     "entry_count": 17,
     "matched_count": 15,
@@ -137,8 +137,8 @@
   {
     "doc_slug": "ndp-sectoral-investment-plan-for-transport",
     "legacy_method": "numbering",
-    "legacy_nodes": 7,
-    "legacy_issues": 0,
+    "legacy_nodes": 6,
+    "legacy_issues": 1,
     "toc_fired": false,
     "toc_method": "numbering",
     "toc_nodes": null,
@@ -147,7 +147,7 @@
     "matched_count": null,
     "match_rate": null,
     "slug_preserved": 0,
-    "slug_total": 7
+    "slug_total": 6
   },
   {
     "doc_slug": "moving-together-strategy",
@@ -186,7 +186,7 @@
     "legacy_issues": 13,
     "toc_fired": true,
     "toc_method": "toc",
-    "toc_nodes": 64,
+    "toc_nodes": 59,
     "toc_issues": 0,
     "entry_count": 32,
     "matched_count": 29,
@@ -197,32 +197,32 @@
   {
     "doc_slug": "national-cycle-network-plan",
     "legacy_method": "numbering",
-    "legacy_nodes": 47,
+    "legacy_nodes": 35,
     "legacy_issues": 0,
-    "toc_fired": false,
-    "toc_method": "numbering",
-    "toc_nodes": null,
-    "toc_issues": null,
+    "toc_fired": true,
+    "toc_method": "toc",
+    "toc_nodes": 69,
+    "toc_issues": 0,
     "entry_count": 40,
-    "matched_count": 18,
-    "match_rate": 0.45,
-    "slug_preserved": 0,
-    "slug_total": 47
+    "matched_count": 35,
+    "match_rate": 0.875,
+    "slug_preserved": 35,
+    "slug_total": 35
   },
   {
     "doc_slug": "ev-infrastructure-strategy",
     "legacy_method": "numbering",
-    "legacy_nodes": 49,
-    "legacy_issues": 0,
+    "legacy_nodes": 47,
+    "legacy_issues": 1,
     "toc_fired": true,
     "toc_method": "toc",
-    "toc_nodes": 59,
+    "toc_nodes": 57,
     "toc_issues": 0,
     "entry_count": 36,
     "matched_count": 24,
     "match_rate": 0.667,
-    "slug_preserved": 48,
-    "slug_total": 49
+    "slug_preserved": 46,
+    "slug_total": 47
   },
   {
     "doc_slug": "nta-statement-of-strategy-2026-2030",
@@ -257,7 +257,7 @@
   {
     "doc_slug": "connecting-ireland-rural-mobility-plan",
     "legacy_method": "numbering",
-    "legacy_nodes": 8,
+    "legacy_nodes": 7,
     "legacy_issues": 0,
     "toc_fired": false,
     "toc_method": "numbering",
@@ -267,7 +267,7 @@
     "matched_count": 2,
     "match_rate": 0.2,
     "slug_preserved": 0,
-    "slug_total": 8
+    "slug_total": 7
   },
   {
     "doc_slug": "cycleconnects-summary-report",
@@ -302,7 +302,7 @@
   {
     "doc_slug": "emra-regional-spatial-and-economic-strategy",
     "legacy_method": "numbering",
-    "legacy_nodes": 77,
+    "legacy_nodes": 72,
     "legacy_issues": 1,
     "toc_fired": false,
     "toc_method": "numbering",
@@ -312,7 +312,7 @@
     "matched_count": 42,
     "match_rate": 0.429,
     "slug_preserved": 0,
-    "slug_total": 77
+    "slug_total": 72
   },
   {
     "doc_slug": "national-ports-policy",
@@ -321,7 +321,7 @@
     "legacy_issues": 18,
     "toc_fired": true,
     "toc_method": "toc",
-    "toc_nodes": 44,
+    "toc_nodes": 43,
     "toc_issues": 0,
     "entry_count": 43,
     "matched_count": 35,
@@ -332,17 +332,17 @@
   {
     "doc_slug": "code-of-practice-fishing-vessels-under-15m",
     "legacy_method": "numbering",
-    "legacy_nodes": 5,
+    "legacy_nodes": 4,
     "legacy_issues": 0,
-    "toc_fired": false,
-    "toc_method": "numbering",
-    "toc_nodes": null,
-    "toc_issues": null,
+    "toc_fired": true,
+    "toc_method": "toc",
+    "toc_nodes": 137,
+    "toc_issues": 0,
     "entry_count": 156,
-    "matched_count": 8,
-    "match_rate": 0.051,
-    "slug_preserved": 0,
-    "slug_total": 5
+    "matched_count": 135,
+    "match_rate": 0.865,
+    "slug_preserved": 3,
+    "slug_total": 4
   },
   {
     "doc_slug": "code-of-practice-recreational-craft",

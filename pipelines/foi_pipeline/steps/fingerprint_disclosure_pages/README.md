@@ -30,7 +30,13 @@ Fetch errors here are frequently `BotChallengeError` (WAF/bot-protection challen
 | `page_hash` | `sha256-<hex>` of the sorted file URL set |
 | `file_count` | Number of file links found (0 on error or no files) |
 
-`dirty_ids.json` — sorted list of body IDs whose pages changed. Consumed by `find_disclosure_files` via `IncrementalWriter`'s `upstream_dirty_path`.
+`dirty_ids.json` — sorted list of body IDs whose pages changed. It accumulates: each run writes `previous ∪ changed this run`, so IDs deferred by a scoped `find_disclosure_files` run (or never yet consumed) are not lost. Only `find_disclosure_files` drains it, via `IncrementalWriter`'s `upstream_dirty_path`. A corrupt file raises `ValueError`.
+
+Pending IDs are never dropped by a scoped or unscoped fingerprint run; they leave the file only when `find_disclosure_files` consumes them (an unscoped, non-forced run of it, or a scoped run naming that body). A scoped `find_disclosure_files` run defers the others and prints a `WARNING` with the drain command (`process.py --from find_disclosure_files --stop-on-error`).
+
+After a full `process.py --force` run, the next ordinary run re-crawls every body: forced fingerprinting marks every fetched body dirty, and forced `find_disclosure_files` neither consumes nor evicts, so the whole list is cascaded. Nothing is lost; the cost is one redundant full network crawl.
+
+Scoped runs (`--public-body N`): only that body is fetched; its record replaces (or is appended to) the previous records, all other bodies' records, hashes and `errors.json` entries are kept.
 
 ## Notable files
 

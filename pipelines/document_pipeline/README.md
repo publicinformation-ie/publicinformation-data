@@ -8,17 +8,18 @@ The authoritative step order is defined in [`pipeline.json`](pipeline.json). Ste
 
 | # | Step | What it does |
 |---|---|---|
-| 1 | [`fetch_pdfs`](steps/fetch_pdfs/) | Downloads (or reuses a cached copy of) each document's source PDF from `documents.yml`, its only source. `documents.yml` is curated per policy; `input_plans_transport.md` defines the policies. |
+| 1 | [`fetch_pdfs`](steps/fetch_pdfs/) | Downloads (or reuses a cached copy of) each document's source PDF from `documents.yml`, its only source. `documents.yml` is curated per policy; the `input_plans_<domain>.md` files (transport, climate) define the policies. |
 | 2 | [`extract_pages`](steps/extract_pages/) | Extracts page-level text spans, drawings, images and tables from each PDF. |
-| 3 | [`detect_structure`](steps/detect_structure/) | Detects each document's chapter/section tree — outline, numbering, font-hierarchy or flat fallback. |
-| 4 | [`extract_figures`](steps/extract_figures/) | Clusters page geometry into figures, renders them to WebP, writes a contact sheet per document. |
-| 5 | [`clean_text`](steps/clean_text/) | Reflows raw positioned spans into headings, paragraphs, lists and tables. |
-| 6 | [`extract_actions`](steps/extract_actions/) | Classifies each document's action tables and extracts each action row plus its target date into reviewable metadata. |
-| 7 | [`extract_action_status`](steps/extract_action_status/) | For each `role: report` document, reads its annex tables and turns every action row into one dated status observation (status, reported deadline, progress narrative). |
-| 8 | [`assemble_sections`](steps/assemble_sections/) | Cuts cleaned blocks into per-section Markdown, interleaves figures, asserts page coverage. |
-| 9 | [`publish_bundles`](steps/publish_bundles/) | Packs each publishable document into a `bundle.tar.gz` and writes `public/documents/index.json`. |
+| 3 | [`ocr_pages`](steps/ocr_pages/) | OCRs only the pages the curator lists under `ocr_pages` in `documents.yml` (full-page images with no text layer); every other page passes through untouched. |
+| 4 | [`detect_structure`](steps/detect_structure/) | Detects each document's chapter/section tree — outline, numbering, font-hierarchy or flat fallback. |
+| 5 | [`extract_figures`](steps/extract_figures/) | Clusters page geometry into figures, renders them to WebP, writes a contact sheet per document. |
+| 6 | [`clean_text`](steps/clean_text/) | Reflows raw positioned spans into headings, paragraphs, lists and tables. |
+| 7 | [`extract_actions`](steps/extract_actions/) | Classifies each document's action tables and extracts each action row plus its target date into reviewable metadata. |
+| 8 | [`extract_action_status`](steps/extract_action_status/) | For each `role: report` document, reads its annex tables and turns every action row into one dated status observation (status, reported deadline, progress narrative). |
+| 9 | [`assemble_sections`](steps/assemble_sections/) | Cuts cleaned blocks into per-section Markdown, interleaves figures, asserts page coverage. |
+| 10 | [`publish_bundles`](steps/publish_bundles/) | Packs each publishable document into a `bundle.tar.gz` and writes `public/documents/index.json`. |
 
-`detect_structure`, `extract_figures` and `clean_text` all consume `extract_pages/output.json`; `extract_action_status` and `assemble_sections` both consume `clean_text/output.json`. Their explicit fan-in dependencies are recorded in `pipeline.json` under `input_steps`; the shared runner uses those paths both for staleness checks and for the `--input` argument. Keep that mapping in sync when changing the pipeline order.
+`ocr_pages`, `detect_structure` and `extract_figures` consume `extract_pages/output.json`; `clean_text` consumes `ocr_pages/output.json`; `extract_action_status` and `assemble_sections` both consume `clean_text/output.json`. Their explicit fan-in dependencies are recorded in `pipeline.json` under `input_steps`; the shared runner uses those paths both for staleness checks and for the `--input` argument. Keep that mapping in sync when changing the pipeline order.
 
 ## Running it
 
@@ -84,6 +85,14 @@ Don't use `public/latest/public-bodies/public-bodies.csv` for this lookup — it
 - `expected_action_count` — optional, plan documents only. The number of action rows `extract_actions` should find; used as an invariant check, not a target to extract towards.
 - `expected_status_counts` — optional, report documents only. A `{status: count}` mapping (`Complete`, `OnSchedule`, `Delayed`, `Ongoing`, `Modified`) that `extract_action_status`'s tally is expected to match exactly.
 
+- `status_source` — optional, report documents only (rejected on a plan; the only valid value is `"annex"`). Declares that the report's machine-readable status detail is published in a companion spreadsheet, not in the PDF. `extract_action_status` then skips the report by declaration — no status record, no `UnknownReportFormat` error — while the PDF still publishes as a normal document bundle. A report *without* the marker whose layout is unrecognised still errors. The Climate Action Plan progress reports use it.
+
+- `hold` — optional, any document. A non-empty string giving the human reason the document is deliberately withheld. `publish_bundles` lists a held document under `index.json` `failed` with `reason: "held"` and this string as `message`, writes no bundle, and removes any stale one — whether or not `assemble_sections` says it is publishable (hold wins over `not_publishable`). Keep the entry if other documents `reports_on` it; remove `hold` to publish.
+
+**`policy_id` and the policy inventory.** `policy_id` must resolve against the merged policy inventory: every `input_plans_<domain>.md` file in this directory (`input_plans_transport.md`, `input_plans_climate.md`) is parsed by `policies.py` and merged into one namespace, each record carrying its `domain`. A `policy_id` defined by two files is process-fatal, and `number` is row order *within its own file* — never an identifier across domains. Datasets built from the inventory filter to their own domain (`scripts/transform_transport_policies.py` publishes `domain == "transport"` only), so adding a domain does not change another domain's published dataset. Annual plans are editions of one policy: the single `climate-action-plan` policy holds the CAP23–CAP25 plan PDFs and their progress reports.
+
+**A `primary` plan document is not an action source.** Only `policy_role: action-plan` documents are read by `extract_actions`; a `primary` plan (such as each Climate Action Plan PDF) is bundled and published as a document but skipped with "not an action plan", so it contributes nothing to the actions dataset. Declaring a document `action-plan` is a deliberate, separate curation decision.
+
 Then run the pipeline scoped to the new doc, from inside `pipelines/document_pipeline/` (see "Running it" above for why cwd matters here):
 
 ```bash
@@ -143,3 +152,17 @@ A document skipped by any of the four is **not** marked processed, so the next r
 | `override.json` | Hand-authored corrections that are never overwritten by automation (only `detect_structure` uses this today) |
 
 See the parent [`AGENTS.md`](../../AGENTS.md) for repository-wide conventions, the Dataset Version Bumps process, and where `document_pipeline` fits alongside the other pipelines in this repo.
+
+## Learnings from adding a corpus (Climate Action Plan, 2026-11)
+
+- **Scoped publishes are destructive.** A `--doc` run of `publish_bundles` deletes every other document's bundle and rewrites `index.json`. Use scoped runs only to experiment, then `git checkout -- public/documents && git clean -fdq public/documents`. For the real publish run the full pipeline, and `steps/*/errors.json` is overwritten per run, so snapshot it between scoped runs.
+- **Published bundles can lag the code.** Bundles are only rebuilt on a publish, so a full run after pipeline commits (e.g. TOC-name detection, text repair) changes *existing* documents too. When adding documents, don't let that ride along: restore the existing bundle dirs from git and splice the old `index.json` entries (rebuild `index.html` with `publish_bundles.build_index_html`). Republish stale documents in their own reviewed commit.
+- **Publishing a few documents without a full run.** Build each with a scoped run and copy out its `public/documents/<slug>/` dir and its `index.json` entry, revert `public/documents`, then copy the dirs back and insert the entries into HEAD's `index.json` (sorted by slug, removed from `failed`) and rebuild `index.html`. Never keep the scoped run's own `index.json`: it lists only documents in the step's accumulated `output.json` and can drop entries such as `held` ones. Note `index.json` and `bundle.tar.gz` are Git LFS files; compare their content, not the pointer diff.
+- **Image-only pages** (coverage gap on a full-page raster) are fixed by listing them under `ocr_pages` in `documents.yml` so the `ocr_pages` step reads them, never by marking them furniture. Check the gap list against the PDF: a scanned page that carries a printed page number is not a gap page but still needs listing.
+- **Withholding a document** is done with `hold: "<reason>"` in `documents.yml`, not a coverage gap (a gap is fragile: a well-meaning furniture fix silently publishes it). It lands under `index.json` `failed` with `reason: "held"`. Keep the entry if other documents `reports_on` it.
+- **Furniture overrides are for blank or running-header-only pages only.** Before adding a gap page to `assemble_sections/override.json`, OCR it (tesseract is available). Full-page raster pages with real content must not be marked furniture; list such pages under `ocr_pages` in `documents.yml` instead so the `ocr_pages` step reads them (see `steps/ocr_pages/README.md`).
+- **Policies are multi-domain.** `input_plans_<domain>.md` files each define a domain; `load_policies()` merges them, records carry `domain`, and the transport dataset filters on `DOMAIN = "transport"`. New corpus = new `input_plans_*.md` plus a policy per plan family.
+- **`status_source: annex`** on a report in `documents.yml` makes `extract_action_status` skip it (status lives in companion spreadsheets); it still bundles. Plans use `policy_role: primary` so no action records are extracted.
+- **Dating:** `published_date` only from a source that agrees with the cover (listing page, or PDF creation date matching the cover month); otherwise omit it.
+- **Utilities:** `orphans.py` needs `PYTHONPATH=../../src` and a command (`manifest`/`apply`); curl to gov.ie is 403 (use a fetch tool), `assets.gov.ie` PDFs download with a browser User-Agent.
+- **Worktrees** don't carry gitignored pipeline state or untracked OpenSpec dirs; copy the change dir in. Pushing a fast-forward `HEAD:main` from a worktree publishes without touching a dirty main checkout.

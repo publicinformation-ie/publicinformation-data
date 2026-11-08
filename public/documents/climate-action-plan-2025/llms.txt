@@ -1,0 +1,62 @@
+# Climate Action Plan 2025
+
+> Department of Climate, Energy and the Environment — 27 chapters, 27 sections, 188 source pages.
+> Source: https://assets.gov.ie/static/documents/c491032e/DECC_Climate_Action_Plan_2025_Main_Report_-_Final_Web.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–3
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–3
+- [Foreword](sections/foreword/) — pages 4–6
+  - [Foreword](sections/foreword/overview.md) — pages 4–6
+- [Glossary of Acronyms](sections/glossary-of-acronyms/) — pages 7–12
+  - [Glossary of Acronyms](sections/glossary-of-acronyms/overview.md) — pages 7–12
+- [Executive Summary](sections/executive-summary/) — pages 13–17
+  - [Executive Summary](sections/executive-summary/overview.md) — pages 13–17
+- [Chapter 1: The Critical Nature of the Challenge](sections/chapter-1-the-critical-nature-of-the-challenge/) — pages 18–23
+  - [Chapter 1: The Critical Nature of the Challenge](sections/chapter-1-the-critical-nature-of-the-challenge/overview.md) — pages 18–23
+- [Chapter 2: Where We Stand](sections/chapter-2-where-we-stand/) — pages 24–27
+  - [Chapter 2: Where We Stand](sections/chapter-2-where-we-stand/overview.md) — pages 24–27
+- [Chapter 3: Policy to Date and Expected Impact of Planned Policies](sections/chapter-3-policy-to-date-and-expected-impact-of-planned-policies/) — pages 28–34
+  - [Chapter 3: Policy to Date and Expected Impact of Planned Policies](sections/chapter-3-policy-to-date-and-expected-impact-of-planned-policies/overview.md) — pages 28–34
+- [Chapter 4: Research and Innovation](sections/chapter-4-research-and-innovation/) — pages 35–42
+  - [Chapter 4: Research and Innovation](sections/chapter-4-research-and-innovation/overview.md) — pages 35–42
+- [Chapter 5: Governance](sections/chapter-5-governance/) — pages 43–48
+  - [Chapter 5: Governance](sections/chapter-5-governance/overview.md) — pages 43–48
+- [Chapter 6: Ensuring a Just Transition to a Climate Neutral Ireland](sections/chapter-6-ensuring-a-just-transition-to-a-climate-neutral-ireland/) — pages 49–56
+  - [Chapter 6: Ensuring a Just Transition to a Climate Neutral Ireland](sections/chapter-6-ensuring-a-just-transition-to-a-climate-neutral-ireland/overview.md) — pages 49–56
+- [Chapter 7: Delivering a Just Transition in the Midlands Region](sections/chapter-7-delivering-a-just-transition-in-the-midlands-region/) — pages 57–62
+  - [Chapter 7: Delivering a Just Transition in the Midlands Region](sections/chapter-7-delivering-a-just-transition-in-the-midlands-region/overview.md) — pages 57–62
+- [Chapter 8: Citizen Engagement](sections/chapter-8-citizen-engagement/) — pages 63–69
+  - [Chapter 8: Citizen Engagement](sections/chapter-8-citizen-engagement/overview.md) — pages 63–69
+- [Chapter 9: Public Sector Leading by Example](sections/chapter-9-public-sector-leading-by-example/) — pages 70–76
+  - [Chapter 9: Public Sector Leading by Example](sections/chapter-9-public-sector-leading-by-example/overview.md) — pages 70–76
+- [Chapter 10: Carbon Pricing and Cross-Cutting Policies](sections/chapter-10-carbon-pricing-and-cross-cutting-policies/) — pages 77–84
+  - [Chapter 10: Carbon Pricing and Cross-Cutting Policies](sections/chapter-10-carbon-pricing-and-cross-cutting-policies/overview.md) — pages 77–84
+- [Chapter 11: Electricity](sections/chapter-11-electricity/) — pages 85–93
+  - [Chapter 11: Electricity](sections/chapter-11-electricity/overview.md) — pages 85–93
+- [Chapter 12: Industry](sections/chapter-12-industry/) — pages 94–101
+  - [Chapter 12: Industry](sections/chapter-12-industry/overview.md) — pages 94–101
+- [Chapter 13: Built Environment](sections/chapter-13-built-environment/) — pages 102–109
+  - [Chapter 13: Built Environment](sections/chapter-13-built-environment/overview.md) — pages 102–109
+- [Chapter 14: Transport](sections/chapter-14-transport/) — pages 110–118
+  - [Chapter 14: Transport](sections/chapter-14-transport/overview.md) — pages 110–118
+- [Chapter 15: Agriculture](sections/chapter-15-agriculture/) — pages 119–126
+  - [Chapter 15: Agriculture](sections/chapter-15-agriculture/overview.md) — pages 119–126
+- [Chapter 16: Land Use, Land Use Change, Forestry](sections/chapter-16-land-use-land-use-change-forestry/) — pages 127–134
+  - [Chapter 16: Land Use, Land Use Change, Forestry](sections/chapter-16-land-use-land-use-change-forestry/overview.md) — pages 127–134
+- [Chapter 17: The Marine Environment](sections/chapter-17-the-marine-environment/) — pages 135–141
+  - [Chapter 17: The Marine Environment](sections/chapter-17-the-marine-environment/overview.md) — pages 135–141
+- [Chapter 18: Local Government](sections/chapter-18-local-government/) — pages 142–148
+  - [Chapter 18: Local Government](sections/chapter-18-local-government/overview.md) — pages 142–148
+- [Chapter 19: The Circular Economy and Other Emissions](sections/chapter-19-the-circular-economy-and-other-emissions/) — pages 149–156
+  - [Chapter 19: The Circular Economy and Other Emissions](sections/chapter-19-the-circular-economy-and-other-emissions/overview.md) — pages 149–156
+- [Chapter 20: International Climate Action](sections/chapter-20-international-climate-action/) — pages 157–163
+  - [Chapter 20: International Climate Action](sections/chapter-20-international-climate-action/overview.md) — pages 157–163
+- [Chapter 21: Sustainable Development Goals](sections/chapter-21-sustainable-development-goals/) — pages 164–170
+  - [Chapter 21: Sustainable Development Goals](sections/chapter-21-sustainable-development-goals/overview.md) — pages 164–170
+- [Chapter 22: Adaptation](sections/chapter-22-adaptation/) — pages 171–181
+  - [Chapter 22: Adaptation](sections/chapter-22-adaptation/overview.md) — pages 171–181
+- [Appendix 1: Public Sector Climate Action Mandate](sections/appendix-1-public-sector-climate-action-mandate/) — pages 182–188
+  - [Appendix 1: Public Sector Climate Action Mandate](sections/appendix-1-public-sector-climate-action-mandate/overview.md) — pages 182–188

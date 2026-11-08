@@ -38,4 +38,12 @@
   {"slug": "11-7-2-2-craft-with-an-engine", "drop": true},
   {"slug": "11-7-2-1-craft-without-an-engine", "title": "Craft without an engine and Craft with an engine"},
   {"slug": "11-6-1-1-cold-water-shock", "drop": true}
+],
+"ndp-sectoral-investment-plan-for-transport": [
+  {"slug": "6-1-programme-a-active-travel-greenways", "level": 1},
+  {"slug": "6-2-programme-b-public-transport", "level": 1},
+  {"slug": "6-3-programme-c-road-networks-road-safety", "level": 1},
+  {"slug": "6-4-programme-d-civil-aviation", "level": 1},
+  {"slug": "6-5-programme-e-maritime-transport-safety", "level": 1},
+  {"slug": "6-6-programme-f-information-technology-engagement-and-research-delivery-organisation-requirements", "level": 1}
 ]}

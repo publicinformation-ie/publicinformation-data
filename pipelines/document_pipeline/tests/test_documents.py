@@ -43,6 +43,9 @@ def test_load_documents_returns_one_normalised_record(tmp_path):
         "reports_on": None,
         "expected_action_count": None,
         "expected_status_counts": None,
+        "status_source": None,
+        "hold": None,
+        "ocr_pages": None,
     }]
 
 
@@ -239,7 +242,8 @@ def test_the_real_documents_yml_declares_the_smp_corpus():
     plan = records["sustainable-mobility-policy-action-plan-2022-2025"]
     assert plan["role"] == "plan"
     assert plan["expected_action_count"] == 91
-    reports = [r for r in records.values() if r["role"] == "report"]
+    reports = [r for r in records.values()
+               if r["role"] == "report" and r["reports_on"] == plan["doc_slug"]]
     assert len(reports) == 4
     assert all(r["reports_on"] == plan["doc_slug"] for r in reports)
     assert all(r["public_body_id"] == 1213 for r in reports)
@@ -297,3 +301,69 @@ def test_a_report_must_report_on_a_plan_of_the_same_policy(tmp_path):
 def test_the_curated_documents_yml_matches_the_real_inventory():
     records = load_documents()                          # real yml + real inventory
     assert records and all(r["policy_id"] and r["policy_role"] for r in records)
+
+
+_STATUS_REPORT = PLAN + """  - doc_slug: a-report
+    title: "A Report"
+    url: "https://example.ie/b.pdf"
+    policy_id: greater-dublin-area-transport-strategy
+    policy_role: progress-report
+    role: report
+    reports_on: a-plan
+"""
+
+
+def test_status_source_annex_is_accepted_on_a_report(tmp_path):
+    records = _load(write_yaml(tmp_path, _STATUS_REPORT + "    status_source: annex\n"))
+    assert records[1]["status_source"] == "annex"
+    assert records[0]["status_source"] is None
+
+
+def test_status_source_defaults_to_none_on_a_report(tmp_path):
+    assert _load(write_yaml(tmp_path, _STATUS_REPORT))[1]["status_source"] is None
+
+
+def test_status_source_is_rejected_on_a_plan(tmp_path):
+    path = write_yaml(tmp_path, PLAN + "    status_source: annex\n")
+    with pytest.raises(InvalidDocumentRole, match="status_source"):
+        _load(path)
+
+
+def test_unknown_status_source_is_fatal(tmp_path):
+    path = write_yaml(tmp_path, _STATUS_REPORT + "    status_source: spreadsheet\n")
+    with pytest.raises(ValueError, match="status_source 'spreadsheet'"):
+        _load(path)
+
+
+# --- hold ---------------------------------------------------------------
+
+def test_hold_is_accepted_and_carried_on_a_plan(tmp_path):
+    path = write_yaml(tmp_path, PLAN + '    hold: "Structure is broken."\n')
+    assert _load(path)[0]["hold"] == "Structure is broken."
+
+
+def test_hold_defaults_to_none(tmp_path):
+    assert _load(write_yaml(tmp_path, PLAN))[0]["hold"] is None
+
+
+@pytest.mark.parametrize("bad", ['""', '"   "', "true", "3", "[x]"])
+def test_hold_must_be_a_non_empty_string(tmp_path, bad):
+    path = write_yaml(tmp_path, PLAN + f"    hold: {bad}\n")
+    with pytest.raises(ValueError, match="hold"):
+        _load(path)
+
+
+# --- ocr_pages ----------------------------------------------------------
+
+def test_ocr_pages_is_accepted_sorted_and_defaults_to_none(tmp_path):
+    path = write_yaml(tmp_path, PLAN + "    ocr_pages: [20, 1, 4]\n")
+    assert _load(path)[0]["ocr_pages"] == [1, 4, 20]
+    assert _load(write_yaml(tmp_path, PLAN))[0]["ocr_pages"] is None
+
+
+@pytest.mark.parametrize("bad", ["[]", "3", '"1,2"', "[0]", "[-1]", "[1, 1]",
+                                 "[true]", '["2"]', "[1.5]"])
+def test_ocr_pages_must_be_a_non_empty_list_of_unique_positive_ints(tmp_path, bad):
+    path = write_yaml(tmp_path, PLAN + f"    ocr_pages: {bad}\n")
+    with pytest.raises(ValueError, match="ocr_pages"):
+        _load(path)

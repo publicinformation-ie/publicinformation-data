@@ -10,7 +10,7 @@ from urllib.parse import urlparse
 
 from lib.cli_utils import add_common_args, filter_by_public_body
 from lib.disclosure_link_utils import FILE_EXTENSIONS, find_file_links
-from lib.file_utils import append_error, read_json, write_json, write_status
+from lib.file_utils import append_error, errors_outside_bodies, read_dirty_ids, read_json, write_json, write_status
 from lib.http_utils import fetch
 
 STEP_NAME = "fingerprint_disclosure_pages"
@@ -49,9 +49,6 @@ def process(input_data, step_dir, previous_hashes, preserved_hashes=None, force=
     preserved_hashes: hashes loaded from previous output, used on fetch error to avoid
     losing the last known hash even when force=True clears effective_hashes for dirty-detection.
     """
-    errors_path = Path(step_dir) / "errors.json"
-    write_json(errors_path, [])
-
     effective_hashes = {} if force else previous_hashes
     items = input_data["results"]
     results_by_id = {}
@@ -101,8 +98,11 @@ def main():
     parser.add_argument("--workers", type=int, default=10)
     args = parser.parse_args()
 
-    step_dir = Path(__file__).parent
     output_path = Path(args.output)
+    # Same as steps/<step>/ in production (the runner passes steps/<step>/output.json)
+    step_dir = output_path.parent
+    dirty_path = step_dir / "dirty_ids.json"
+    errors_path = step_dir / "errors.json"
 
     try:
         input_data = read_json(args.input)
@@ -116,14 +116,32 @@ def main():
 
     # Always load for error-preservation, even on force runs
     preserved_hashes = {}
+    previous_records = []
     if output_path.exists():
         try:
             prev = read_json(output_path)
-            for r in prev.get("results", []):
+            previous_records = prev.get("results", [])
+            for r in previous_records:
                 if "public_body_id" in r and "page_hash" in r:
                     preserved_hashes[r["public_body_id"]] = r["page_hash"]
         except (json.JSONDecodeError, KeyError):
-            pass  # First run or corrupt file — treat as empty
+            if args.public_body is not None:
+                # Scoped run would overwrite every other body's records/hashes
+                print(f"Fatal: could not read previous output {output_path}; "
+                      "refusing scoped run (fix or delete it, or run unscoped)",
+                      file=sys.stderr)
+                sys.exit(1)
+            # Unscoped: first run or corrupt file — treat as empty
+
+    # Pending dirty IDs from earlier runs (drained only by find_disclosure_files).
+    # Read before writing anything; raises ValueError if corrupt.
+    previous_dirty = read_dirty_ids(dirty_path) if dirty_path.exists() else set()
+
+    # Scoped runs keep other bodies' errors; unscoped runs reset them
+    if args.public_body is not None:
+        write_json(errors_path, errors_outside_bodies(errors_path, {args.public_body}))
+    else:
+        write_json(errors_path, [])
 
     # previous_hashes for dirty-detection (empty on force)
     previous_hashes = {} if args.force else preserved_hashes
@@ -134,6 +152,20 @@ def main():
         force=args.force, max_workers=args.workers
     )
 
+    if args.public_body is not None:
+        new_by_id = {r["public_body_id"]: r for r in results}
+        merged = []
+        for r in previous_records:
+            merged.append(new_by_id.pop(r.get("public_body_id"), r))
+        merged.extend(new_by_id.values())
+        results = merged
+
+    # Write dirty_ids.json BEFORE output.json: output.json holds the hashes used
+    # for change detection, so a crash between the writes must over-mark (the
+    # next run re-detects nothing new but pending IDs survive) rather than lose
+    # dirty IDs.
+    pending = previous_dirty | dirty_ids
+    write_json(dirty_path, sorted(pending))
     write_json(output_path, {
         "metadata": {
             "step": STEP_NAME,
@@ -141,9 +173,8 @@ def main():
         },
         "results": results,
     })
-    write_json(step_dir / "dirty_ids.json", sorted(dirty_ids))
     write_status(step_dir, len(results))
-    print(f"Wrote {len(results)} records to {output_path} ({len(dirty_ids)} dirty)")
+    print(f"Wrote {len(results)} records ({len(dirty_ids)} dirty this run, {len(pending)} pending total)")
 
 
 if __name__ == "__main__":

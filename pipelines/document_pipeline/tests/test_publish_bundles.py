@@ -200,6 +200,34 @@ def test_not_publishable_document_is_omitted_and_listed_as_failed(
     assert not (public_root / "broken-doc").exists()
 
 
+def test_held_publishable_document_is_failed_as_held_with_no_bundle(
+        record, figures_record, fetch_record, assemble_dir, figures_dir, tmp_path):
+    held_fetch = dict(fetch_record, hold="Withheld on purpose.")
+    _step_dir, public_root = run_process(
+        tmp_path, [record], {DOC: figures_record}, {DOC: held_fetch},
+        assemble_dir, figures_dir)
+
+    index = json.loads((public_root / "index.json").read_text())
+    assert index["documents"] == []
+    assert index["failed"] == [{"doc_slug": DOC, "reason": "held",
+                                "message": "Withheld on purpose."}]
+    assert not (public_root / DOC).exists()
+
+
+def test_hold_wins_over_not_publishable(
+        record, not_publishable_record, figures_record, fetch_record,
+        assemble_dir, figures_dir, tmp_path):
+    held_fetch = dict(fetch_record, doc_slug="broken-doc", hold="Held, not a gap.")
+    _step_dir, public_root = run_process(
+        tmp_path, [not_publishable_record], {"broken-doc": figures_record},
+        {"broken-doc": held_fetch}, assemble_dir, figures_dir)
+
+    index = json.loads((public_root / "index.json").read_text())
+    assert index["failed"] == [{"doc_slug": "broken-doc", "reason": "held",
+                                "message": "Held, not a gap."}]
+    assert not (public_root / "broken-doc").exists()
+
+
 def test_regression_to_not_publishable_removes_the_stale_published_dir(
         record, not_publishable_record, figures_record, fetch_record,
         assemble_dir, figures_dir, tmp_path):
@@ -575,3 +603,13 @@ def test_index_entry_carries_policy_fields():
     entry = index_entry({}, fetch_record, meta, {}, "a/bundle.tar.gz", "sha", 10)
     assert entry["policy_id"] == "national-sustainable-mobility-policy-nsmp"
     assert entry["policy_role"] == "action-plan"
+
+
+def test_meta_json_carries_ocr_pages_only_for_sections_that_have_them(record, fetch_record):
+    meta = contract_meta(record, fetch_record)
+    assert all("ocr_pages" not in s for c in meta["chapters"] for s in c["sections"])
+
+    ocr_record = json.loads(json.dumps(record))
+    ocr_record["chapters"][0]["sections"][0]["ocr_pages"] = [2]
+    meta = contract_meta(ocr_record, fetch_record)
+    assert meta["chapters"][0]["sections"][0]["ocr_pages"] == [2]

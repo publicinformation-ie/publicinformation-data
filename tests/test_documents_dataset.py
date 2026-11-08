@@ -41,3 +41,14 @@ def test_index_matches_documents_yml_and_the_policy_table():
     for slug, entry in published.items():
         assert entry["policy_id"] == curated[slug]["policy_id"]
         assert entry["policy_role"] == curated[slug]["policy_role"]
+
+
+def test_held_documents_are_listed_as_held_in_index_failed():
+    from documents import load_documents
+    index = json.loads(INDEX.read_text(encoding="utf-8"))
+    failed = {d["doc_slug"]: d for d in index.get("failed", [])}
+    held = [d for d in load_documents() if d.get("hold")]
+    assert held                                        # climate-action-plan-2023
+    for doc in held:
+        assert failed[doc["doc_slug"]]["reason"] == "held"
+        assert failed[doc["doc_slug"]]["message"] == doc["hold"]

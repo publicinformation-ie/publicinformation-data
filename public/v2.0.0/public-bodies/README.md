@@ -71,6 +71,21 @@ parent/child body relationships **are** published — see the table above;
 they were the two fields the v1.0.0 README listed as future work, now
 delivered via the CSO join.)
 
+### `parent_id` vs `government_department_id`
+
+These are two different relationships and must not be conflated:
+
+- `parent_id` — URI of the body's owning/parent body in the state's corporate hierarchy (e.g. Córas Iompair Éireann for Bus Átha Cliath). This is not the sponsoring department.
+- `government_department_id` — URI of the sponsoring government department (the body's aegis). This is not the owning parent. For a local authority or a government department it is the body itself.
+
+Worked example: Córas Iompair Éireann (`coras-iompair-eireann`) is the parent of Irish Rail (`irish-rail-iarnrod-eireann`), Bus Éireann (`bus-eireann`) and Bus Átha Cliath (`bus-atha-cliath`). All four are sponsored by the Department of Transport (`department-of-transport`); none has `parent_id` = `department-of-transport`.
+
+Further verified groups, each with `parent_id` set to the group body and the same sponsor (`department-of-transport`): daa plc (`daa-plc`) is the parent of, among others, `daa-airport-services-ltd`, `daa-international-ltd`, `daa-operations-ltd`, `daa-finance-plc` and `daa-pension-corporate-trustee-dac`; Shannon Group PLC (`shannon-group-plc`) is the parent of `shannon-airport-authority-dac`, `shannon-airport-authority-financial-services-dac`, `shannon-airport-authority-pension-corporate-trustee-dac` and `shannon-commercial-enterprises-dac`; Port of Cork Company (`port-of-cork-company`) is the parent of, among others, `port-of-cork-infrastructure-development-company-dac`. A name alone does not imply group membership: for example `shannon-heritage-designated-activity-company` and `shannon-broadband-ltd` have a different sponsor and no `parent_id`.
+
+Local authorities and government departments (49 bodies in total, e.g. Carlow County Council, `department-of-defence`) have a `government_department_id` equal to their own `@id`; this is not a cycle, as only `parent_id` forms the ownership graph.
+
+See [docs/body-hierarchy.md](https://github.com/publicinformation-ie/publicinformation-data/blob/main/docs/body-hierarchy.md) for the audit command and known exceptions.
+
 ## Files
 
 - **[public-bodies.jsonld](public-bodies.jsonld)** — JSON-LD, single `@context` + `@graph` of all 883 records

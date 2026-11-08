@@ -1,0 +1,175 @@
+# Climate Action Plan 2024
+
+> Department of Climate, Energy and the Environment — 25 chapters, 142 sections, 416 source pages.
+> Source: https://assets.gov.ie/static/documents/climate-action-plan-2024-8ccbde73-e288-4241-8b26-6b4922389f25.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–7
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–7
+- [Foreword](sections/foreword/) — pages 8–23
+  - [Foreword](sections/foreword/overview.md) — pages 8–9
+  - [Glossary of Acronyms](sections/foreword/glossary-of-acronyms.md) — pages 10–16
+  - [Executive Summary](sections/foreword/executive-summary.md) — pages 17–23
+- [The Critical Nature of the Challenge](sections/the-critical-nature-of-the-challenge/) — pages 23–32
+  - [1.1 Introduction](sections/the-critical-nature-of-the-challenge/1-1-introduction.md) — pages 25–25
+  - [1.2 Human Influence](sections/the-critical-nature-of-the-challenge/1-2-human-influence.md) — pages 25–26
+  - [1.3 Paris Agreement](sections/the-critical-nature-of-the-challenge/1-3-paris-agreement.md) — pages 26–28
+  - [1.4 Ireland Impacted Also](sections/the-critical-nature-of-the-challenge/1-4-ireland-impacted-also.md) — pages 28–28
+  - [1.5 European Green Deal](sections/the-critical-nature-of-the-challenge/1-5-european-green-deal.md) — pages 29–29
+  - [1.6 Climate Action is Accelerating](sections/the-critical-nature-of-the-challenge/1-6-climate-action-is-accelerating.md) — pages 29–29
+  - [1.7 Taking Action in Ireland](sections/the-critical-nature-of-the-challenge/1-7-taking-action-in-ireland.md) — pages 29–32
+  - [The Critical Nature of the Challenge](sections/the-critical-nature-of-the-challenge/overview.md) — pages 23–24
+- [Where We Stand](sections/where-we-stand/) — pages 32–42
+  - [2.1 Trends in Ireland’s Emissions to Date](sections/where-we-stand/2-1-trends-in-ireland-s-emissions-to-date.md) — pages 34–37
+  - [2.2 Ireland’s National Climate Targets](sections/where-we-stand/2-2-ireland-s-national-climate-targets.md) — pages 37–38
+  - [2.3 Projections for Ireland’s Emissions](sections/where-we-stand/2-3-projections-for-ireland-s-emissions.md) — pages 39–42
+  - [Where We Stand](sections/where-we-stand/overview.md) — pages 32–33
+- [Policy to Date and Expected Impact of Planned Policies](sections/policy-to-date-and-expected-impact-of-planned-policies/) — pages 42–48
+  - [3.1 Ireland’s Emissions Reduction Targets](sections/policy-to-date-and-expected-impact-of-planned-policies/3-1-ireland-s-emissions-reduction-targets.md) — pages 44–44
+  - [3.2 Climate Action Plans](sections/policy-to-date-and-expected-impact-of-planned-policies/3-2-climate-action-plans.md) — pages 44–45
+  - [3.3 Carbon Budgets and Sectoral Emissions Ceilings](sections/policy-to-date-and-expected-impact-of-planned-policies/3-3-carbon-budgets-and-sectoral-emissions-ceilings.md) — pages 46–48
+  - [Policy to Date and Expected Impact of Planned Policies](sections/policy-to-date-and-expected-impact-of-planned-policies/overview.md) — pages 42–43
+- [Research and Innovation](sections/research-and-innovation/) — pages 49–61
+  - [4.1 Introduction](sections/research-and-innovation/4-1-introduction.md) — pages 51–51
+  - [4.2 Current State of Play](sections/research-and-innovation/4-2-current-state-of-play.md) — pages 51–52
+  - [4.3 Themes of Strategic Importance](sections/research-and-innovation/4-3-themes-of-strategic-importance.md) — pages 52–58
+  - [4.4 A Strategic Approach to Climate Research and Innovation](sections/research-and-innovation/4-4-a-strategic-approach-to-climate-research-and-innovation.md) — pages 58–59
+  - [4.5 Actions](sections/research-and-innovation/4-5-actions.md) — pages 60–61
+  - [Research and Innovation](sections/research-and-innovation/overview.md) — pages 49–50
+- [Choosing the Pathways](sections/choosing-the-pathways/) — pages 61–73
+  - [5.1 Introduction](sections/choosing-the-pathways/5-1-introduction.md) — pages 63–63
+  - [5.2 Sectoral Emissions Ceilings and Pathways](sections/choosing-the-pathways/5-2-sectoral-emissions-ceilings-and-pathways.md) — pages 63–63
+  - [5.3 Emissions Trajectory and Projections](sections/choosing-the-pathways/5-3-emissions-trajectory-and-projections.md) — pages 63–66
+  - [5.4 Underpinning Delivery](sections/choosing-the-pathways/5-4-underpinning-delivery.md) — pages 66–67
+  - [5.5 Implied Capital Requirements to Deliver Emissions Ceilings and Pathways](sections/choosing-the-pathways/5-5-implied-capital-requirements-to-deliver-emissions-ceilings-and-pathways.md) — pages 67–68
+  - [5.6 Measures to Address Unallocated Savings](sections/choosing-the-pathways/5-6-measures-to-address-unallocated-savings.md) — pages 68–71
+  - [5.7 Benefits for Ireland](sections/choosing-the-pathways/5-7-benefits-for-ireland.md) — pages 71–72
+  - [5.8 Actions](sections/choosing-the-pathways/5-8-actions.md) — pages 72–73
+  - [Choosing the Pathways](sections/choosing-the-pathways/overview.md) — pages 61–62
+- [Governance](sections/governance/) — pages 74–86
+  - [6.1 Introduction](sections/governance/6-1-introduction.md) — pages 76–76
+  - [6.2 Review of Sectoral Emissions Ceiling Ministerial Accountability Framework](sections/governance/6-2-review-of-sectoral-emissions-ceiling-ministerial-accountability-framework.md) — pages 76–77
+  - [6.3 Oversight of Government](sections/governance/6-3-oversight-of-government.md) — pages 77–78
+  - [6.4 Delivery of Climate Action Plans](sections/governance/6-4-delivery-of-climate-action-plans.md) — pages 79–84
+  - [6.5 Climate Proofing of Government Decisions and Investments](sections/governance/6-5-climate-proofing-of-government-decisions-and-investments.md) — pages 84–84
+  - [6.6 Non-compliance with the Carbon Budgets and Sectoral Emissions Ceilings](sections/governance/6-6-non-compliance-with-the-carbon-budgets-and-sectoral-emissions-ceilings.md) — pages 84–84
+  - [6.7 Alignment with Ireland’s Long-term Climate Strategy](sections/governance/6-7-alignment-with-ireland-s-long-term-climate-strategy.md) — pages 85–85
+  - [6.8 Alignment with EU Governance and Reporting Framework](sections/governance/6-8-alignment-with-eu-governance-and-reporting-framework.md) — pages 85–86
+  - [6.9 Actions](sections/governance/6-9-actions.md) — pages 86–86
+  - [Governance](sections/governance/overview.md) — pages 74–75
+- [Ensuring a Just Transition to a Climate Neutral Ireland](sections/ensuring-a-just-transition-to-a-climate-neutral-ireland/) — pages 87–98
+  - [7.1 Introduction](sections/ensuring-a-just-transition-to-a-climate-neutral-ireland/7-1-introduction.md) — pages 89–89
+  - [7.2 Just Transition Framework and Principles](sections/ensuring-a-just-transition-to-a-climate-neutral-ireland/7-2-just-transition-framework-and-principles.md) — pages 90–95
+  - [7.5 Principle 3: The costs are shared so that the impact is equitable and existing inequalities are not exacerbated](sections/ensuring-a-just-transition-to-a-climate-neutral-ireland/7-5-principle-3-the-costs-are-shared-so-that-the-impact-is-equitable-and-existing-inequalities-are-not-exacerbated.md) — pages 96–97
+  - [7.7 Actions](sections/ensuring-a-just-transition-to-a-climate-neutral-ireland/7-7-actions.md) — pages 97–98
+  - [Ensuring a Just Transition to a Climate Neutral Ireland](sections/ensuring-a-just-transition-to-a-climate-neutral-ireland/overview.md) — pages 87–88
+- [Delivering a Just Transition in the Midlands Region](sections/delivering-a-just-transition-in-the-midlands-region/) — pages 98–107
+  - [8.1 Responding to the Transition](sections/delivering-a-just-transition-in-the-midlands-region/8-1-responding-to-the-transition.md) — pages 100–100
+  - [8.2 Measures to Deliver a Just Transition in the Midlands](sections/delivering-a-just-transition-in-the-midlands-region/8-2-measures-to-deliver-a-just-transition-in-the-midlands.md) — pages 100–106
+  - [8.3 Actions](sections/delivering-a-just-transition-in-the-midlands-region/8-3-actions.md) — pages 106–107
+  - [Delivering a Just Transition in the Midlands Region](sections/delivering-a-just-transition-in-the-midlands-region/overview.md) — pages 98–99
+- [Citizen Engagement](sections/citizen-engagement/) — pages 108–122
+  - [9.1 State of Play](sections/citizen-engagement/9-1-state-of-play.md) — pages 110–114
+  - [9.2 Measures to Deliver Targets in 2024](sections/citizen-engagement/9-2-measures-to-deliver-targets-in-2024.md) — pages 114–120
+  - [9.3 Impacts from a National Campaign of Communication and Engagement on Climate Action](sections/citizen-engagement/9-3-impacts-from-a-national-campaign-of-communication-and-engagement-on-climate-action.md) — pages 120–121
+  - [9.4 Actions](sections/citizen-engagement/9-4-actions.md) — pages 121–122
+  - [Citizen Engagement](sections/citizen-engagement/overview.md) — pages 108–109
+- [Public Sector Leading by Example](sections/public-sector-leading-by-example/) — pages 123–139
+  - [10.1 State of Play](sections/public-sector-leading-by-example/10-1-state-of-play.md) — pages 125–125
+  - [10.2 2025 and 2030 Key Performance Indicators](sections/public-sector-leading-by-example/10-2-2025-and-2030-key-performance-indicators.md) — pages 126–128
+  - [10.3 Measures to Deliver Target Impact](sections/public-sector-leading-by-example/10-3-measures-to-deliver-target-impact.md) — pages 128–138
+  - [10.4 Actions](sections/public-sector-leading-by-example/10-4-actions.md) — pages 138–139
+  - [Public Sector Leading by Example](sections/public-sector-leading-by-example/overview.md) — pages 123–124
+- [Carbon Pricing and Cross-Cutting Policies](sections/carbon-pricing-and-cross-cutting-policies/) — pages 140–153
+  - [11.1 State of Play](sections/carbon-pricing-and-cross-cutting-policies/11-1-state-of-play.md) — pages 142–142
+  - [11.2 Measures to Deliver Cross-cutting Policy Objectives](sections/carbon-pricing-and-cross-cutting-policies/11-2-measures-to-deliver-cross-cutting-policy-objectives.md) — pages 142–152
+  - [11.3 Actions](sections/carbon-pricing-and-cross-cutting-policies/11-3-actions.md) — pages 152–153
+  - [Carbon Pricing and Cross-Cutting Policies](sections/carbon-pricing-and-cross-cutting-policies/overview.md) — pages 140–141
+- [Electricity](sections/electricity/) — pages 153–177
+  - [12.1 State of Play](sections/electricity/12-1-state-of-play.md) — pages 155–160
+  - [12.2 Sectoral Ceiling and Carbon Budgets](sections/electricity/12-2-sectoral-ceiling-and-carbon-budgets.md) — pages 160–160
+  - [12.3 Emissions Projections for Electricity](sections/electricity/12-3-emissions-projections-for-electricity.md) — pages 161–163
+  - [12.4 2025 and 2030 KPIs](sections/electricity/12-4-2025-and-2030-kpis.md) — pages 163–169
+  - [12.4 Citizen Engagement](sections/electricity/12-4-citizen-engagement.md) — pages 169–170
+  - [12.5 Just Transition](sections/electricity/12-5-just-transition.md) — pages 170–171
+  - [12.6 Actions](sections/electricity/12-6-actions.md) — pages 171–177
+  - [Electricity](sections/electricity/overview.md) — pages 153–155
+- [Industry](sections/industry/) — pages 178–199
+  - [13.1 State of Play](sections/industry/13-1-state-of-play.md) — pages 180–184
+  - [13.2 Sectoral Ceiling and Carbon Budgets](sections/industry/13-2-sectoral-ceiling-and-carbon-budgets.md) — pages 184–184
+  - [13.3 2025 and 2030 KPIs](sections/industry/13-3-2025-and-2030-kpis.md) — pages 185–193
+  - [13.4 Citizen Engagement](sections/industry/13-4-citizen-engagement.md) — pages 193–193
+  - [13.5 Just Transition](sections/industry/13-5-just-transition.md) — pages 194–195
+  - [13.6 Actions](sections/industry/13-6-actions.md) — pages 195–199
+  - [Industry](sections/industry/overview.md) — pages 178–180
+- [Built Environment](sections/built-environment/) — pages 199–231
+  - [14.1 State of Play](sections/built-environment/14-1-state-of-play.md) — pages 201–204
+  - [14.2 Greenhouse Gas Emissions in the Built Environment](sections/built-environment/14-2-greenhouse-gas-emissions-in-the-built-environment.md) — pages 204–205
+  - [14.3 Sectoral Emissions Ceilings in the Built Environment](sections/built-environment/14-3-sectoral-emissions-ceilings-in-the-built-environment.md) — pages 205–207
+  - [14.4 2025 and 2030 KPIs](sections/built-environment/14-4-2025-and-2030-kpis.md) — pages 208–224
+  - [14.5 Just Transition](sections/built-environment/14-5-just-transition.md) — pages 224–226
+  - [14.6 Actions](sections/built-environment/14-6-actions.md) — pages 226–231
+  - [Built Environment](sections/built-environment/overview.md) — pages 199–200
+- [Transport](sections/transport/) — pages 231–272
+  - [15.1 State of Play](sections/transport/15-1-state-of-play.md) — pages 233–241
+  - [15.2 Measures to Deliver Sectoral Emissions Ceilings](sections/transport/15-2-measures-to-deliver-sectoral-emissions-ceilings.md) — pages 242–259
+  - [15.3 Targets and 2025 and 2030 KPIs](sections/transport/15-3-targets-and-2025-and-2030-kpis.md) — pages 259–263
+  - [15.4 Just Transition](sections/transport/15-4-just-transition.md) — pages 264–265
+  - [15.5 Actions](sections/transport/15-5-actions.md) — pages 265–272
+  - [Transport](sections/transport/overview.md) — pages 231–232
+- [Agriculture](sections/agriculture/) — pages 273–298
+  - [16.1 State of Play](sections/agriculture/16-1-state-of-play.md) — pages 277–281
+  - [16.2 Sectoral Ceiling and Carbon Budgets](sections/agriculture/16-2-sectoral-ceiling-and-carbon-budgets.md) — pages 281–283
+  - [16.3 2025 and 2030 KPIs Key Metrics](sections/agriculture/16-3-2025-and-2030-kpis-key-metrics.md) — pages 283–285
+  - [16.4 Citizen Engagement](sections/agriculture/16-4-citizen-engagement.md) — pages 286–286
+  - [16.5 Just Transition](sections/agriculture/16-5-just-transition.md) — pages 286–287
+  - [16.6 Actions and Updates](sections/agriculture/16-6-actions-and-updates.md) — pages 287–293
+  - [16.7 Actions](sections/agriculture/16-7-actions.md) — pages 293–298
+  - [Agriculture](sections/agriculture/overview.md) — pages 273–276
+- [Land Use, Land Use Change, and Forestry](sections/land-use-land-use-change-and-forestry/) — pages 298–326
+  - [17.1 State of Play](sections/land-use-land-use-change-and-forestry/17-1-state-of-play.md) — pages 301–304
+  - [17.2 A New Approach to Achieve our Goals for LULUCF](sections/land-use-land-use-change-and-forestry/17-2-a-new-approach-to-achieve-our-goals-for-lulucf.md) — pages 304–307
+  - [17.3 Measures to Deliver Sectoral Abatement](sections/land-use-land-use-change-and-forestry/17-3-measures-to-deliver-sectoral-abatement.md) — pages 308–317
+  - [17.4 Further Developments Affecting LULUCF](sections/land-use-land-use-change-and-forestry/17-4-further-developments-affecting-lulucf.md) — pages 317–318
+  - [17.5 2025 and 2030 KPIs](sections/land-use-land-use-change-and-forestry/17-5-2025-and-2030-kpis.md) — pages 319–319
+  - [17.6 Just Transition](sections/land-use-land-use-change-and-forestry/17-6-just-transition.md) — pages 320–321
+  - [17.7 Actions](sections/land-use-land-use-change-and-forestry/17-7-actions.md) — pages 322–326
+  - [Land Use, Land Use Change, and Forestry](sections/land-use-land-use-change-and-forestry/overview.md) — pages 298–300
+- [The Marine Environment](sections/the-marine-environment/) — pages 327–339
+  - [18.1 State of Play](sections/the-marine-environment/18-1-state-of-play.md) — pages 330–334
+  - [18.2 Measures to Deliver](sections/the-marine-environment/18-2-measures-to-deliver.md) — pages 335–338
+  - [18.3 Actions](sections/the-marine-environment/18-3-actions.md) — pages 338–339
+  - [The Marine Environment](sections/the-marine-environment/overview.md) — pages 327–329
+- [Local Government](sections/local-government/) — pages 340–354
+  - [19.1 State of Play](sections/local-government/19-1-state-of-play.md) — pages 342–347
+  - [19.2 Measures to Deliver](sections/local-government/19-2-measures-to-deliver.md) — pages 347–352
+  - [19.3 Supporting Local Government Delivery](sections/local-government/19-3-supporting-local-government-delivery.md) — pages 352–353
+  - [19.4 Actions](sections/local-government/19-4-actions.md) — pages 353–354
+  - [Local Government](sections/local-government/overview.md) — pages 340–341
+- [The Circular Economy and Other Emissions](sections/the-circular-economy-and-other-emissions/) — pages 355–368
+  - [20.1 State of Play – the Circular Economy](sections/the-circular-economy-and-other-emissions/20-1-state-of-play-the-circular-economy.md) — pages 357–358
+  - [20.2 Measures to Deliver a Circular Economy](sections/the-circular-economy-and-other-emissions/20-2-measures-to-deliver-a-circular-economy.md) — pages 358–358
+  - [20.3 Other (F-gases, Waste and Petroleum Refinement)](sections/the-circular-economy-and-other-emissions/20-3-other-f-gases-waste-and-petroleum-refinement.md) — pages 358–367
+  - [20.4 Actions](sections/the-circular-economy-and-other-emissions/20-4-actions.md) — pages 368–368
+  - [The Circular Economy and Other Emissions](sections/the-circular-economy-and-other-emissions/overview.md) — pages 355–356
+- [International Climate Action](sections/international-climate-action/) — pages 369–379
+  - [21.1 Introduction](sections/international-climate-action/21-1-introduction.md) — pages 372–373
+  - [21.2 Developments in International Climate Policy](sections/international-climate-action/21-2-developments-in-international-climate-policy.md) — pages 373–377
+  - [21.3 Principles for Climate Action](sections/international-climate-action/21-3-principles-for-climate-action.md) — pages 377–379
+  - [21.4 Actions](sections/international-climate-action/21-4-actions.md) — pages 379–379
+  - [International Climate Action](sections/international-climate-action/overview.md) — pages 369–371
+- [Sustainable Development Goals](sections/sustainable-development-goals/) — pages 380–385
+  - [22.1 Background](sections/sustainable-development-goals/22-1-background.md) — pages 382–382
+  - [22.2 The Contribution of the Climate Action Plan to the Sustainable Development Goals](sections/sustainable-development-goals/22-2-the-contribution-of-the-climate-action-plan-to-the-sustainable-development-goals.md) — pages 383–385
+  - [Sustainable Development Goals](sections/sustainable-development-goals/overview.md) — pages 380–381
+- [Adaptation](sections/adaptation/) — pages 386–416
+  - [23.1 What is Climate Adaptation?](sections/adaptation/23-1-what-is-climate-adaptation.md) — pages 389–390
+  - [23.2 Global and EU Position](sections/adaptation/23-2-global-and-eu-position.md) — pages 390–392
+  - [23.3 Policy Measures for Ireland](sections/adaptation/23-3-policy-measures-for-ireland.md) — pages 393–396
+  - [23.4 Local Adaptation](sections/adaptation/23-4-local-adaptation.md) — pages 397–397
+  - [23.5 Climate Impact Information for Ireland](sections/adaptation/23-5-climate-impact-information-for-ireland.md) — pages 397–398
+  - [23.6 Actions](sections/adaptation/23-6-actions.md) — pages 398–400
+  - [Adaptation](sections/adaptation/overview.md) — pages 386–388
+  - [Appendix 1 Sectoral Emissions Graphics](sections/adaptation/appendix-1-sectoral-emissions-graphics.md) — pages 402–416

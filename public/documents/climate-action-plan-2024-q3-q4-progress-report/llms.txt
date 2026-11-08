@@ -1,0 +1,32 @@
+# Climate Action Plan Progress Report Q3 & Q4 2024
+
+> Department of the Taoiseach — 10 chapters, 14 sections, 37 source pages.
+> Source: https://assets.gov.ie/static/documents/Climate_Action_Plan_2024_Q3_and_Q4_Progress_Report.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–2
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–2
+- [1 Introduction](sections/1-introduction/) — pages 3–12
+  - [1 Introduction](sections/1-introduction/overview.md) — pages 3–3
+  - [1.1 Climate change news and activity in Q3 and Q4 2024](sections/1-introduction/1-1-climate-change-news-and-activity-in-q3-and-q4-2024.md) — pages 4–7
+  - [1.2 Overview of delivery in Q3 and Q4 2024](sections/1-introduction/1-2-overview-of-delivery-in-q3-and-q4-2024.md) — pages 8–9
+  - [1.2.1 High impact actions in Q3 and Q4 2024](sections/1-introduction/1-2-1-high-impact-actions-in-q3-and-q4-2024.md) — pages 9–11
+  - [1.2.2 Overcoming delays to climate action delivery](sections/1-introduction/1-2-2-overcoming-delays-to-climate-action-delivery.md) — pages 11–12
+- [2 Agriculture](sections/2-agriculture/) — pages 13–15
+  - [2 Agriculture](sections/2-agriculture/overview.md) — pages 13–15
+- [3 Transport](sections/3-transport/) — pages 16–18
+  - [3 Transport](sections/3-transport/overview.md) — pages 16–18
+- [4 Electricity](sections/4-electricity/) — pages 19–21
+  - [4 Electricity](sections/4-electricity/overview.md) — pages 19–21
+- [5 Buildings](sections/5-buildings/) — pages 22–24
+  - [5 Buildings](sections/5-buildings/overview.md) — pages 22–24
+- [6 Industry](sections/6-industry/) — pages 25–27
+  - [6 Industry](sections/6-industry/overview.md) — pages 25–27
+- [7 Land Use, Land Use Change and Forestry](sections/7-land-use-land-use-change-and-forestry/) — pages 28–30
+  - [7 Land Use, Land Use Change and Forestry](sections/7-land-use-land-use-change-and-forestry/overview.md) — pages 28–30
+- [8 Cross-cutting actions](sections/8-cross-cutting-actions/) — pages 31–34
+  - [8 Cross-cutting actions](sections/8-cross-cutting-actions/overview.md) — pages 31–34
+- [9 Conclusion](sections/9-conclusion/) — pages 35–37
+  - [9 Conclusion](sections/9-conclusion/overview.md) — pages 35–37

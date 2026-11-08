@@ -683,7 +683,7 @@ Network Demand
 
 ### 3.1 Demand on the system and expansion of EV charging
 
-*Pages 28–30*
+*Pages 28–31*
 
 3.1 Demand on the system and expansion of EV charging
 
@@ -787,6 +787,98 @@ Table 1: Charge Point Rollout Scenarios
 | Scenario 3 | 1,990 | 1,320 | 3,310 | 169,000 |
 | Scenario 4 | 2,660 | 1,180 | 3,840 | 169,000 |
 | Scenario 5 | 4,070 | 780 | 4,850 | 169,000 |
+
+top-up charging will increase41. When sited at motorway service locations, these will have the added benefit of supporting and enabling longerdistance emission-free travel. The siting of higherpowered, faster charge points will be dictated by two key factors: the consumer demand for particular charge points as well as the local electricity grid’s ability to accommodate them in a
+
+As electric vehicle uptake increases, EV charging is expected to have a significant impact on the local (low and medium voltage) electricity grid.
+
+ESB Networks studies, as part of their National Network Local Connections Programme (NNLC)42, have shown that EV charging could result in different localised peaks at different times in different places. This would require significant investment in new and reinforced electrical networks to accommodate this additional
+
+Figure 2: EV Energy Demand - Median Scenario
+
+2022
+
+2023
+
+2024
+
+2025
+
+n BEVs n Commercial Vehicles
+
+41 OECD/IEA; Nordic EV Outlook 2018: Insights from leaders in electric mobility | READ online (oecd-ilibrary.org)
+
+42 National Network, Local Connections Programme (esbnetworks.ie)
+
+43 EirGrid and SONI – Ireland Capacity Outlook 2022-2031
+
+### 3.2 Managing energy demand and grid capacity
+
+*Pages 32–32*
+
+3.2 Managing energy demand and grid capacity
+
+As EV numbers increase on Irish roads, how and when people charge will become critical for the effective management of the wider electricity system. Technological developments, such as smart, integrated electric-charging solutions, will help manage the impact and maximise the renewable energy used to supply this new load.
+
+The path towards electric mobility may not only change the overall demand volume but also the shape of the hourly load curve of the power system. This will entail significant challenges for electricity generation and transmission as well as for distribution infrastructure44. However, there is potential for reducing the impact on peak load by coordinating the charging sessions to make the demand more flexible. ESB Networks is advancing options in this space. With the rollout of smart meters and smart home chargers, people will have access to at-home technology with the ability to receive pricing signals. These signals will guide EV owners to charge at times that are more favourable. Furthermore, this load - if charging takes place at times when renewable generation is high - would increase the level of renewable generation that can be accommodated on the electricity network. This would minimise or defer the required investments in infrastructure upgrades.
+
+management systems, where plugged-in EVs can act as back-up batteries and feed energy back into the grid at certain times to help balance demand45. Another possibility is microgeneration, where homes and businesses generate renewable energy for their own consumption46. Microgeneration, where installed, can potentially allow EVs to be charged at home (or at a local level), off-grid. This would reduce demand on the national electricity network and facilitate EVs to be powered by 100% carbon-neutral, renewable energy.
+
+Potentially, EV owners can financially benefit from smart and flexible charging options in two ways:
+
+(1) At home, they can save money by charging
+
+during off-peak hours. Night-time charging is approximately half the price of day-time charging.
+
+(2) Where the EV charging point (at home or
+
+in public) can respond to ESB Networks or EirGrid signals, there are financial incentives emerging to reward the user for this service.
+
+Other initiatives also have the potential to offset increased EV energy demands. These include the possibility of Vehicle-to-Grid (V2G) energy-
+
+44 European Commission - Effect of electromobility on the power system and the integration of RES
+
+45 Guide To… Vehicle-to-Grid Charging — IrishEVs
+
+![Figure from page 32](assets/p032-f01.webp)
+
+*Figure from page 32*
+
+46 Micro-generation Support Scheme | Press Release | SEAI
+
+### 3.3 Grid development and resilience for delivery of higher-speed charging infrastructure
+
+*Pages 33–34*
+
+3.3 Grid development and resilience for delivery of higher-speed charging infrastructure
+
+Destination, en-route, and other fast-charging infrastructure is important for the continued uptake of electric vehicles. Therefore, it is essential for the electricity grid to have the capacity and resilience to support such demand. The grid must be supported by a smart and equally-resilient charging network. Zero Emission Vehicles Ireland will intensively engage with ESBN, EirGrid, CRU, and energy suppliers, as well as charge point and forecourt operators, to ensure a timely and coordinated approach to energy provision and grid management.
+
+Even with off-peak overnight charging (AC 7 kW) as the baseline default charging option for most EV users, there remains a need for provision of higher-speed top-up charging at trip destinations or en route. In practice, this would involve higherspeed DC charging at power levels ranging from 50 kW up to 350 kW.
+
+on AFIR requirements, this number will need to increase to between 780-1,320 rapid-charging points.
+
+Delivering this ultra-rapid charging network will require a high level of planning as well as engagement with energy providers and electricity network operators. The energy demand for this will be significant, with power demands of above 2 MW required in some cases. This is equivalent to a connection for a large factory or 800-home housing estate. This will necessitate much planning, as well as deep reinforcement of the electricity network in some instances. It can take 90 working days to complete planning studies and develop a quotation for such a large installation. It is critical that ESB Networks are informed at the earliest stage of planning and that every EV charger is installed in compliance with all regulated connection policies and contractual agreements.
+
+Destination Charging
+
+Destination charging will provide charging solutions (typically 7 kW-100 kW) at tourism and leisure locations such as leisure centres, parks, hotels, and visitor attractions. These would allow EV drivers to charge their vehicles for 1-10 hours before returning home, depending on the nature of their visit and duration of stay.
+
+The private sector has already shown interest in this area of the market. In Ireland, we have seen the provision of top-up charging infrastructure in locations such as car parks, supermarkets, and hotels.
+
+In Ireland to date, Government, European, and ESB funding have supported private investment to deliver the initial phase of infrastructure that is in place today. In other EU states, there is widespread private-sector investment in motorway charging facilities. Stakeholder engagement shows that Ireland’s private sector seems to have a similar desire to invest more widely in this infrastructure.
+
+This strategy envisages a supporting role for Government in providing initial seed funding to stimulate and encourage more widespread rollout of this kind of charging infrastructure. Government will also have a key role in coordinating the various stakeholders involved in delivering this infrastructure.
+
+En-Route Charging
+
+Ultra-rapid, high-speed, on-the-go charging will encourage the transition to electric vehicles. Such charging infrastructure must be fast and highpowered (100 kW or more) to make the charging experience as similar as possible to taking a quick comfort break while driving an ICE vehicle.
+
+Government’s role is to work as a facilitator, supporting and enabling investment in the ultra-rapid, en-route charging infrastructure. An example of this will be the development of a National EV Charging Network plan. The plan will define the EV charger rollout requirements and consider these in the context of the electricity grid’s readiness to meet the projected EV public charge-point demand between 2023 and 2025.
+
+Currently, in Ireland, there are approximately 375 publicly-accessible charge points at power levels in the range of 50 kW-350 kW capacity. To deliver
+
+CHAPTER
 
 ## User Needs
 
@@ -1339,114 +1431,6 @@ Table 5: Charge Point Rollout Scenarios
 | Scenario 4 | 2,660 | 1,180 | 3,840 | 169,000 |
 | Scenario 5 | 4,070 | 780 | 4,850 | 169,000 |
 
-### Infrastructure
-
-*Pages 46–46*
-
-This chapter sets out the landscape of public EV charging infrastructure in the medium term. It explores the standards that will apply, as well as the existing and planned Government supports and funding instruments. These supports will target and address identified gaps in the EV infrastructure market. The chapter also sets out the objective for delivery of charge point infrastructure by 2025. This will support increasing EV uptake and ensure that charging infrastructure provision stays ahead of demand.
-
-need for top-up charging where required.
-
-## 23 kW-350 kW
-
-### 3.2 Managing energy demand and grid capacity
-
-*Pages 32–32*
-
-3.2 Managing energy demand and grid capacity
-
-As EV numbers increase on Irish roads, how and when people charge will become critical for the effective management of the wider electricity system. Technological developments, such as smart, integrated electric-charging solutions, will help manage the impact and maximise the renewable energy used to supply this new load.
-
-The path towards electric mobility may not only change the overall demand volume but also the shape of the hourly load curve of the power system. This will entail significant challenges for electricity generation and transmission as well as for distribution infrastructure44. However, there is potential for reducing the impact on peak load by coordinating the charging sessions to make the demand more flexible. ESB Networks is advancing options in this space. With the rollout of smart meters and smart home chargers, people will have access to at-home technology with the ability to receive pricing signals. These signals will guide EV owners to charge at times that are more favourable. Furthermore, this load - if charging takes place at times when renewable generation is high - would increase the level of renewable generation that can be accommodated on the electricity network. This would minimise or defer the required investments in infrastructure upgrades.
-
-management systems, where plugged-in EVs can act as back-up batteries and feed energy back into the grid at certain times to help balance demand45. Another possibility is microgeneration, where homes and businesses generate renewable energy for their own consumption46. Microgeneration, where installed, can potentially allow EVs to be charged at home (or at a local level), off-grid. This would reduce demand on the national electricity network and facilitate EVs to be powered by 100% carbon-neutral, renewable energy.
-
-Potentially, EV owners can financially benefit from smart and flexible charging options in two ways:
-
-(1) At home, they can save money by charging
-
-during off-peak hours. Night-time charging is approximately half the price of day-time charging.
-
-(2) Where the EV charging point (at home or
-
-in public) can respond to ESB Networks or EirGrid signals, there are financial incentives emerging to reward the user for this service.
-
-Other initiatives also have the potential to offset increased EV energy demands. These include the possibility of Vehicle-to-Grid (V2G) energy-
-
-44 European Commission - Effect of electromobility on the power system and the integration of RES
-
-45 Guide To… Vehicle-to-Grid Charging — IrishEVs
-
-![Figure from page 32](assets/p032-f01.webp)
-
-*Figure from page 32*
-
-46 Micro-generation Support Scheme | Press Release | SEAI
-
-### 3.3 Grid development and resilience for delivery of higher-speed charging infrastructure
-
-*Pages 33–34*
-
-3.3 Grid development and resilience for delivery of higher-speed charging infrastructure
-
-Destination, en-route, and other fast-charging infrastructure is important for the continued uptake of electric vehicles. Therefore, it is essential for the electricity grid to have the capacity and resilience to support such demand. The grid must be supported by a smart and equally-resilient charging network. Zero Emission Vehicles Ireland will intensively engage with ESBN, EirGrid, CRU, and energy suppliers, as well as charge point and forecourt operators, to ensure a timely and coordinated approach to energy provision and grid management.
-
-Even with off-peak overnight charging (AC 7 kW) as the baseline default charging option for most EV users, there remains a need for provision of higher-speed top-up charging at trip destinations or en route. In practice, this would involve higherspeed DC charging at power levels ranging from 50 kW up to 350 kW.
-
-on AFIR requirements, this number will need to increase to between 780-1,320 rapid-charging points.
-
-Delivering this ultra-rapid charging network will require a high level of planning as well as engagement with energy providers and electricity network operators. The energy demand for this will be significant, with power demands of above 2 MW required in some cases. This is equivalent to a connection for a large factory or 800-home housing estate. This will necessitate much planning, as well as deep reinforcement of the electricity network in some instances. It can take 90 working days to complete planning studies and develop a quotation for such a large installation. It is critical that ESB Networks are informed at the earliest stage of planning and that every EV charger is installed in compliance with all regulated connection policies and contractual agreements.
-
-Destination Charging
-
-Destination charging will provide charging solutions (typically 7 kW-100 kW) at tourism and leisure locations such as leisure centres, parks, hotels, and visitor attractions. These would allow EV drivers to charge their vehicles for 1-10 hours before returning home, depending on the nature of their visit and duration of stay.
-
-The private sector has already shown interest in this area of the market. In Ireland, we have seen the provision of top-up charging infrastructure in locations such as car parks, supermarkets, and hotels.
-
-In Ireland to date, Government, European, and ESB funding have supported private investment to deliver the initial phase of infrastructure that is in place today. In other EU states, there is widespread private-sector investment in motorway charging facilities. Stakeholder engagement shows that Ireland’s private sector seems to have a similar desire to invest more widely in this infrastructure.
-
-This strategy envisages a supporting role for Government in providing initial seed funding to stimulate and encourage more widespread rollout of this kind of charging infrastructure. Government will also have a key role in coordinating the various stakeholders involved in delivering this infrastructure.
-
-En-Route Charging
-
-Ultra-rapid, high-speed, on-the-go charging will encourage the transition to electric vehicles. Such charging infrastructure must be fast and highpowered (100 kW or more) to make the charging experience as similar as possible to taking a quick comfort break while driving an ICE vehicle.
-
-Government’s role is to work as a facilitator, supporting and enabling investment in the ultra-rapid, en-route charging infrastructure. An example of this will be the development of a National EV Charging Network plan. The plan will define the EV charger rollout requirements and consider these in the context of the electricity grid’s readiness to meet the projected EV public charge-point demand between 2023 and 2025.
-
-Currently, in Ireland, there are approximately 375 publicly-accessible charge points at power levels in the range of 50 kW-350 kW capacity. To deliver
-
-CHAPTER
-
-### 23 kW-350 kW
-
-*Pages 31–31*
-
-top-up charging will increase41. When sited at motorway service locations, these will have the added benefit of supporting and enabling longerdistance emission-free travel. The siting of higherpowered, faster charge points will be dictated by two key factors: the consumer demand for particular charge points as well as the local electricity grid’s ability to accommodate them in a
-
-As electric vehicle uptake increases, EV charging is expected to have a significant impact on the local (low and medium voltage) electricity grid.
-
-ESB Networks studies, as part of their National Network Local Connections Programme (NNLC)42, have shown that EV charging could result in different localised peaks at different times in different places. This would require significant investment in new and reinforced electrical networks to accommodate this additional
-
-Figure 2: EV Energy Demand - Median Scenario
-
-2022
-
-2023
-
-2024
-
-2025
-
-n BEVs n Commercial Vehicles
-
-41 OECD/IEA; Nordic EV Outlook 2018: Insights from leaders in electric mobility | READ online (oecd-ilibrary.org)
-
-42 National Network, Local Connections Programme (esbnetworks.ie)
-
-43 EirGrid and SONI – Ireland Capacity Outlook 2022-2031
-
-## 23 kW-350 kW
-
 ### 5.6 Existing Exchequer supports for charging infrastructure
 
 *Pages 50–50*
@@ -1792,6 +1776,14 @@ Implementation
 This final chapter contains information on the ZEVI structures, the high-level actions, funding streams, and supports that have been implemented since the publication of the draft strategy in March 2022. It also presents an overview of the Implementation Plan. The draft version of this strategy underwent a public consultation process. Details from that process have been incorporated into this final strategy.
 
 maximising cooperation, the Government will work with the Northern Ireland Executive to promote and support EV charging infrastructure deployment. This will happen through initiatives such as the Shared Island Fund, as well as through other international collaborative and funding opportunities. This collaborative approach will help integrate and standardise public charge point networks on the island, to ensure ease of use and application for cross-border travel.
+
+### Infrastructure
+
+*Pages 46–46*
+
+This chapter sets out the landscape of public EV charging infrastructure in the medium term. It explores the standards that will apply, as well as the existing and planned Government supports and funding instruments. These supports will target and address identified gaps in the EV infrastructure market. The chapter also sets out the objective for delivery of charge point infrastructure by 2025. This will support increasing EV uptake and ensure that charging infrastructure provision stays ahead of demand.
+
+need for top-up charging where required.
 
 ### 6.1 Governmental and Collaborative Structures
 

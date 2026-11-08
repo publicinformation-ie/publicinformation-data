@@ -247,197 +247,6 @@ Together, these projects reflect a coordinated national effort to integrate tran
 
 #### 6. NDP Funding Allocations 2026-2030 6.1 Programme A - Active Travel & Greenways
 
-## 3 and 5 Coonagh to
-
-### 3 and 5 Coonagh to
-
-*Pages 29–29*
-
-Progression of all individual projects remains subject to compliance with the Infrastructure Guidelines, statutory planning and procurement requirements, as relevant.
-
-### 6.4 Programme D – Civil Aviation
-
-*Pages 30–31*
-
-6.4 Programme D – Civil Aviation
-
-High Level Goal: To deliver an accessible, efficient safe and sustainable Aviation system that supports communities, households and businesses.
-
-![Figure from page 30](assets/p030-f01.webp)
-
-*Figure from page 30*
-
-Civil Aviation Indicative Annual Allocations
-
-| Programme D: Civil Aviation* |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- |
-| 2026 | 2027 | 2028 | 2029 | 2030 |  |
-| €8.9m | €9.5m | €10m | €8.2m | €8m |  |
-
-*All funding is indicative and subject to annual Estimates process; rounding may affect totals.
-
-Programme Summary
-
-The Programme for Government acknowledges the value of aviation in supporting international connectivity, economic development, and tourism via our airports. Furthermore, Government policy on regional airports seeks to optimise conditions for connectivity and regional development, both for the social and economic benefits that can be derived from facilitating access to and from the associated regions. It is recognised that as employers, airports contribute to the local economy; employment is also supported through the various ancillary services that are provided to airports.
-
-Policy on regional airports is currently being implemented and delivered under an Exchequer-funded Regional Airports Programme. The Programme supports Ireland’s smallest regional airports. Eligibility for supports is determined by both average annual passenger numbers (over the preceding two financial years) and the scheduled passenger services they provide. Scheduled services must facilitate international connectivity, either directly or via another national hub airport such as Dublin.
-
-Capital investment under the programme supports safety and security related activities, to assist airports in meeting relevant related regulatory requirements. Projects with a sustainability focus are also supported, assisting airports in meeting their carbon emission reduction targets under the Climate Action Plan, as well as to build resilience against the likely impact of climate change.
-
-The Programme for Government has committed to continue to invest in the Regional Airports Programme and to develop a new Regional Airports Programme 2026-2030.
-
-Delivery Structures
-
-Projects supported under the Regional Airports Programme 2026-2030 will be dependent on detailed
-
-project proposals being submitted by airports and then evaluated and assessed for eligibility and suitability for funding by the Department in Q1 in each funding year.
-
-Funding to support approved projects will then be provided on a recoupment basis each year as projects progress and complete and at a rate in line with relevant State aid rules.
-
-While it is likely that the majority of projects proposed for support by airports will be below €500,000 (as was the case in recent years), larger projects may also be considered. Such project proposals will be appraised in accordance with the Infrastructure Guidelines.
-
-In all cases the Department will be the Approving Authority, and the relevant airport will be the Sponsoring Agency.
-
-### 6.5 Programme E – Maritime Transport & Safety
-
-*Pages 32–32*
-
-6.5 Programme E – Maritime Transport & Safety
-
-High Level Goal: To deliver an accessible, efficient, safe and sustainable Maritime system that supports communities, households, and businesses.
-
-![Figure from page 32](assets/p032-f01.webp)
-
-*Figure from page 32*
-
-Maritime Transport & Safety Indicative Annual Allocations
-
-| Programme E: Maritime Transport & Safety* |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
-| 2026 | 2027 | 2028 | 2029 | 2030 |  |
-| €8m | €8m | €43m | €43m | €43m |  |
-
-*All funding is indicative and subject to annual Estimates process; rounding may affect totals.
-
-Programme Summary
-
-This programme comprises two key aspects over the period 2026 to 2030: the Irish Coast Guard buildings programme and the proposed replacement of the Commissioners of Irish Lights’ (CIL) vessel ILV Granuaile.
-
-The Irish Coast Guard is supported by approximately 1,000 volunteers in 44 units around our coast. Many of these facilities are not fit for purpose. Following a full review of the building programme, a new strategy was launched in 2025, with a focus on more agile delivery mechanisms and more diverse range of solutions to include leasing, upgrades, etc.
-
-The CIL is tasked with upholding the State’s statutory obligations for the provision of marine aids to navigation (AtoN). The Irish State has international and national legal obligations to provide for maritime safety, including to uphold the International Convention for the Safety of Life at Sea 1974 (SOLAS Convention) and the provisions for the safety of all vessels at sea set out in the Merchant Shipping Acts. The replacement of the CIL vessel ILV Granuaile was included as an objective of the National Development Plan 2021-2030 and was subsequently set out in the Programme for Government (2025).
-
-Delivery Structures
-
-In relation to the Irish Coast Guard (IRCG) building programme, the Department will be the Approving Authority with the IRCG as the Sponsoring Agency and the Office of Public Works as the Contracting Authority.
-
-For the ILV Granuaile project, the Department will be the Approving Authority, with the CIL acting as the Sponsoring Agency.
-
-### 6.6 Programme F – Information Technology, Engagement and Research Delivery, Organisation requirements
-
-*Pages 33–40*
-
-6.6 Programme F – Information Technology, Engagement and Research Delivery, Organisation requirements
-
-High Level Goal: To provide essential support for the delivery of the Department’s strategic objectives.
-
-![Figure from page 33](assets/p033-f01.webp)
-
-*Figure from page 33*
-
-Information Technology, Engagement and Research Delivery, Organisation Indicative Annual Allocations
-
-| Programme F- Information Technology, Engagement and Research Delivery, Organisation requirements * |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- |
-| 2026 | 2027 | 2028 | 2029 | 2030 |  |
-| €31m | €50m | €50m | €50m | €50m |  |
-
-*All funding is indicative and subject to annual Estimates process; rounding may affect totals. Programme Summary
-
-Advanced Traffic Management Advanced traffic management is a system of technologies that uses real-time data, intelligent algorithms, and communication to improve road safety and efficiency, and to reduce congestion. It involves a centralized control hub that integrates various subsystems - such as sensors, cameras, and adaptive traffic signals - to make dynamic adjustments and optimise traffic flow for drivers and pedestrians. Unlike traditional systems, advanced systems are very dependent on vehicle communications and use of sensors, as well as data collection and management techniques. Key elements are data collection, data analysis, dynamic control, and integrated systems.
-
-Advance traffic management is a core component of ITS, the implementation of the ITS Directive, and the implementation of Connected and autonomous vehicles, particularly in urban areas. It includes adaptive and connected traffic signals, CCTV monitoring, and variable messaging signs (roadside, in-vehicle). Benefits include improved safety, reduced congestion, and increased efficiency.
-
-Connected and Autonomous Vehicles Connected and autonomous vehicles (CAVs) are vehicles that use a combination of sensors, artificial intelligence, and wireless communication to drive themselves and interact with their surroundings. They can connect to other vehicles, infrastructure, and the cloud to improve safety by preventing collisions, reducing congestion, and optimising traffic flow. The ‘connected’ aspect involves communication for elements like map and software updates, while ’autonomous’ refers to the vehicle’s ability to drive without human input. Ultimately, CAV is a fusion of vehicles and civil infrastructure for which road safety and ITS are key enablers.
-
-CAVs are already appearing on our roads. Implementation is based on implementing roadside and cloud based digital infrastructure and the connections to vehicles in a secure and safe manner. Supporting structures will also need to be put in place in relation to testing, collisions, and road data. Much of this will align with the requirements of the ITS Directive and other international legislation.
-
-Digital Hub The Department consolidated all digital and ICT functions into one business unit in 2024, and this ‘Digital Hub’ is tasked with driving the Department’s ambitious digital transformation plan for its citizen services.
-
-The Department administers Motor Tax (collection of circa €1bn in tax receipts annually) and the registration of change of vehicle ownership (processing over 1 million ownership change requests and issuances of new registration certificates each year), as well as providing the IT infrastructure that underpins the issuing of driver licences and record keeping of penalty points. The expenditure will support transformation projects in these customer services, including the digitalisation required to remove the need for paper discs in vehicle windscreens and the expansion of the online change of vehicle ownership service.
-
-The Department is also working with the Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation to ensure all appropriate driver and vehicle services are aligned to the Life Events programme of work under the Better Public Services initiative. This includes participation in Digital Government Wallet. Underneath the customer facing services, the Department will continue to invest in the technology refresh programme needed to move away from legacy software, including the movement to cloud where appropriate. An improved cyber security posture is also central to the technology changes being implemented, as is the deployment of a new data analytics platform which allows for advanced analytics and the Department’s AI proof of concepts. • Process Automation programme – the Department is reviewing manual processes to determine where efficiencies can be gained by digitising them and introducing automation where appropriate. • Business application developments - working with all Department Divisions in modernising legacy business applications to facilitate migration to digital systems to allow integration with citizen portals and access to online systems. • Expanded use of cloud technology to enable collaboration with external parties/agencies. • Cyber Security - ensuring that all digital solutions meet the ever-demanding requirements in the cyber security environment. This will require annual investment in resources and technology and ensuring that the applications are used securely and in compliance with various governance obligations, including Data Protection/GDPR. • The Department is working with the OGCIO and the Road Safety Authority on development of a life events portal and digital wallet that would include a digital driving licence and other Departmental legal certificates currently issued in paper format.
-
-• Multi-annual technology refresh programme that is critical to ensure that all Departmental IT systems are operating at maximum capacity, are resilient, have increased scalability, and keep pace with industry standards, including legal obligations.
-
-Intelligent Transport Systems Intelligent Transport Systems (ITS) refer to the application of technologies, communication, and information systems to transportation, making them safer, more efficient, and more sustainable. ITS encompasses a broad range of technologies and applications, including traffic management, public transport management, and vehicle safety systems. Much work and expenditure in relation to ITS relates to physical and civil infrastructure deployment and maintenance.
-
-ITS delivery under the NDP is not only based on implementation of the ITS Directive requirements but also supporting EVs (e.g. ZEVI), Integrated Ticketing, and CAVs/Road Safety. This is based on implementing supporting structures but also on a National Access Point and implementing improved and new process to support ITS Services.
-
-Appendix A – Road Projects to be advanced for future construction
-
-| Project | Approving Authority | Sponsoring Agency | Current Stage of Project Lifecycle | Next Approval Gate |
-| --- | --- | --- | --- | --- |
-| N2 Rath Roundabout to Kilmoon Cross | TII | Meath County Council | Pre-AG1 | AG1 |
-| N11 Junction 4 to 14 Project | TII | Wicklow County Council | Pre-AG1 | AG1 |
-| N15 Sligo to County Boundary | TII | Sligo County Council | Pre-AG1 | AG1 |
-| N22 Macroom to Ovens | TII | Cork County Council | Pre-AG1 | AG1 |
-| N24 Waterford to Cahir | TII | Kilkenny County Council | Pre-AG1 | AG1 |
-| N25 Carrigtwohill to Midleton | TII | Cork County Council | Pre-AG1 | AG1 |
-| N25 Waterford to Glenmore | TII | Kilkenny County Council | Pre-AG1 | AG1 |
-| N52 Tullamore to Kilbeggan | TII | Westmeath County Council | Pre-AG1 | AG1 |
-| N59 Clifden to Maam Cross | TII | Galway County Council | Pre-AG1 | AG1 |
-| Bypass / Relief Road Programme (e.g. Athlone, Claregalway, Thurles, Ballina) | TII/DoT | Various | Pre-AG1 | AG1 |
-| Carlow Southern Relief Road | DoT | Carlow County Council | Pre-AG1 | AG1 |
-| Cork City Northern Transport Project | TII | Cork City Council | Pre-AG1 | AG1 |
-| Cork Southern Ring Road (TEN-T) | TII | Cork City Council | Pre-AG1 | AG1 |
-| Shannon Airport Access Road | TII | Clare County Council | Pre-AG1 | AG1 |
-
-Appendix B –List of Acronyms
-
-| Alternative Fuels Infrastructure Regulation | AFIR |
-| --- | --- |
-| Approval Gate | AG |
-| Aids to Navigation | AtoN |
-| Climate Action Plan | CAP |
-| Connected and Autonomous Vehicles | CAVs |
-| Commissioners of Irish Lights | CIL |
-| Commission for Railway Regulation | CRR |
-| East Coast Railway Infrastructure Protection Projects | ECRIPP |
-| Environmental Protection Agency | EPA |
-| Electric Vehicle | EV |
-| Heavy Duty Vehicle | HDV |
-| Internal Combustion Engine | ICE |
-| Infrastructure Manager Multi-Annual Contract | IMMAC |
-| Intelligent Transport Systems | ITS |
-| Land Development Agency | LDA |
-| National Cycle Network | NCN |
-| National Competitiveness and Productivity Council | NCPC |
-| National Development Plan | NDP |
-| National Investment Framework for Transport in Ireland | NIFTI |
-| National Planning Framework | NPF |
-| National Roads 2040 | NRA2040 |
-| National Transport Authority | NTA |
-| Pavement Condition Survey Indicator | PCSI |
-| Public Service Obligation | PSO |
-| Shared Island Fund | SIF |
-
-| Sustainable Mobility Policy | SMP |
-| --- | --- |
-| Transport Appraisal Framework | TAF |
-| Trans-European Transport Network | TEN-T |
-| Transport Infrastructure Ireland | TII |
-| Transport Orientated Development | TOD |
-| Zero-Emission Heavy Duty Vehicle Purchase Grant Scheme | ZEHDV |
-| Zero Emission Vehicles Ireland | ZEVI |
-
-![Figure from page 40](assets/p040-f01.webp)
-
-*Figure from page 40*
-
-Prepared by the Department of Transport November 2025 | gov.ie
-
 ## 6.1 Programme A - Active Travel & Greenways
 
 ### 6.1 Programme A - Active Travel & Greenways
@@ -692,3 +501,194 @@ List of Strategic Regional Road Projects Scheduled to Commence Construction by 2
 | R498 Latteragh Upgrade | DoT | Tipperary County Council | Final Business Case | AG3 | N/A | Commence by 2025 | Wills Bros Ltd | €20m- €50m |
 | Thurles Inner Relief Road | DoT | Tipperary County Council | Strategic Assessment & Preliminary Business Case | AG1 | Procurement by 2026 | Commence by 2027 | Not yet awarded | €10m- €20m |
 | Tralee Northern Relief Road | DoT | Kerry County Council | Implementation | N/A | N/A | Phase 1 completion due 2026 | Alan O Connell Developments Limited & TBC | €20m- €50m |
+
+Progression of all individual projects remains subject to compliance with the Infrastructure Guidelines, statutory planning and procurement requirements, as relevant.
+
+## 6.4 Programme D – Civil Aviation
+
+### 6.4 Programme D – Civil Aviation
+
+*Pages 30–31*
+
+6.4 Programme D – Civil Aviation
+
+High Level Goal: To deliver an accessible, efficient safe and sustainable Aviation system that supports communities, households and businesses.
+
+![Figure from page 30](assets/p030-f01.webp)
+
+*Figure from page 30*
+
+Civil Aviation Indicative Annual Allocations
+
+| Programme D: Civil Aviation* |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+| 2026 | 2027 | 2028 | 2029 | 2030 |  |
+| €8.9m | €9.5m | €10m | €8.2m | €8m |  |
+
+*All funding is indicative and subject to annual Estimates process; rounding may affect totals.
+
+Programme Summary
+
+The Programme for Government acknowledges the value of aviation in supporting international connectivity, economic development, and tourism via our airports. Furthermore, Government policy on regional airports seeks to optimise conditions for connectivity and regional development, both for the social and economic benefits that can be derived from facilitating access to and from the associated regions. It is recognised that as employers, airports contribute to the local economy; employment is also supported through the various ancillary services that are provided to airports.
+
+Policy on regional airports is currently being implemented and delivered under an Exchequer-funded Regional Airports Programme. The Programme supports Ireland’s smallest regional airports. Eligibility for supports is determined by both average annual passenger numbers (over the preceding two financial years) and the scheduled passenger services they provide. Scheduled services must facilitate international connectivity, either directly or via another national hub airport such as Dublin.
+
+Capital investment under the programme supports safety and security related activities, to assist airports in meeting relevant related regulatory requirements. Projects with a sustainability focus are also supported, assisting airports in meeting their carbon emission reduction targets under the Climate Action Plan, as well as to build resilience against the likely impact of climate change.
+
+The Programme for Government has committed to continue to invest in the Regional Airports Programme and to develop a new Regional Airports Programme 2026-2030.
+
+Delivery Structures
+
+Projects supported under the Regional Airports Programme 2026-2030 will be dependent on detailed
+
+project proposals being submitted by airports and then evaluated and assessed for eligibility and suitability for funding by the Department in Q1 in each funding year.
+
+Funding to support approved projects will then be provided on a recoupment basis each year as projects progress and complete and at a rate in line with relevant State aid rules.
+
+While it is likely that the majority of projects proposed for support by airports will be below €500,000 (as was the case in recent years), larger projects may also be considered. Such project proposals will be appraised in accordance with the Infrastructure Guidelines.
+
+In all cases the Department will be the Approving Authority, and the relevant airport will be the Sponsoring Agency.
+
+## 6.5 Programme E – Maritime Transport & Safety
+
+### 6.5 Programme E – Maritime Transport & Safety
+
+*Pages 32–32*
+
+6.5 Programme E – Maritime Transport & Safety
+
+High Level Goal: To deliver an accessible, efficient, safe and sustainable Maritime system that supports communities, households, and businesses.
+
+![Figure from page 32](assets/p032-f01.webp)
+
+*Figure from page 32*
+
+Maritime Transport & Safety Indicative Annual Allocations
+
+| Programme E: Maritime Transport & Safety* |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+| 2026 | 2027 | 2028 | 2029 | 2030 |  |
+| €8m | €8m | €43m | €43m | €43m |  |
+
+*All funding is indicative and subject to annual Estimates process; rounding may affect totals.
+
+Programme Summary
+
+This programme comprises two key aspects over the period 2026 to 2030: the Irish Coast Guard buildings programme and the proposed replacement of the Commissioners of Irish Lights’ (CIL) vessel ILV Granuaile.
+
+The Irish Coast Guard is supported by approximately 1,000 volunteers in 44 units around our coast. Many of these facilities are not fit for purpose. Following a full review of the building programme, a new strategy was launched in 2025, with a focus on more agile delivery mechanisms and more diverse range of solutions to include leasing, upgrades, etc.
+
+The CIL is tasked with upholding the State’s statutory obligations for the provision of marine aids to navigation (AtoN). The Irish State has international and national legal obligations to provide for maritime safety, including to uphold the International Convention for the Safety of Life at Sea 1974 (SOLAS Convention) and the provisions for the safety of all vessels at sea set out in the Merchant Shipping Acts. The replacement of the CIL vessel ILV Granuaile was included as an objective of the National Development Plan 2021-2030 and was subsequently set out in the Programme for Government (2025).
+
+Delivery Structures
+
+In relation to the Irish Coast Guard (IRCG) building programme, the Department will be the Approving Authority with the IRCG as the Sponsoring Agency and the Office of Public Works as the Contracting Authority.
+
+For the ILV Granuaile project, the Department will be the Approving Authority, with the CIL acting as the Sponsoring Agency.
+
+## 6.6 Programme F – Information Technology, Engagement and Research Delivery, Organisation requirements
+
+### 6.6 Programme F – Information Technology, Engagement and Research Delivery, Organisation requirements
+
+*Pages 33–40*
+
+6.6 Programme F – Information Technology, Engagement and Research Delivery, Organisation requirements
+
+High Level Goal: To provide essential support for the delivery of the Department’s strategic objectives.
+
+![Figure from page 33](assets/p033-f01.webp)
+
+*Figure from page 33*
+
+Information Technology, Engagement and Research Delivery, Organisation Indicative Annual Allocations
+
+| Programme F- Information Technology, Engagement and Research Delivery, Organisation requirements * |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+| 2026 | 2027 | 2028 | 2029 | 2030 |  |
+| €31m | €50m | €50m | €50m | €50m |  |
+
+*All funding is indicative and subject to annual Estimates process; rounding may affect totals. Programme Summary
+
+Advanced Traffic Management Advanced traffic management is a system of technologies that uses real-time data, intelligent algorithms, and communication to improve road safety and efficiency, and to reduce congestion. It involves a centralized control hub that integrates various subsystems - such as sensors, cameras, and adaptive traffic signals - to make dynamic adjustments and optimise traffic flow for drivers and pedestrians. Unlike traditional systems, advanced systems are very dependent on vehicle communications and use of sensors, as well as data collection and management techniques. Key elements are data collection, data analysis, dynamic control, and integrated systems.
+
+Advance traffic management is a core component of ITS, the implementation of the ITS Directive, and the implementation of Connected and autonomous vehicles, particularly in urban areas. It includes adaptive and connected traffic signals, CCTV monitoring, and variable messaging signs (roadside, in-vehicle). Benefits include improved safety, reduced congestion, and increased efficiency.
+
+Connected and Autonomous Vehicles Connected and autonomous vehicles (CAVs) are vehicles that use a combination of sensors, artificial intelligence, and wireless communication to drive themselves and interact with their surroundings. They can connect to other vehicles, infrastructure, and the cloud to improve safety by preventing collisions, reducing congestion, and optimising traffic flow. The ‘connected’ aspect involves communication for elements like map and software updates, while ’autonomous’ refers to the vehicle’s ability to drive without human input. Ultimately, CAV is a fusion of vehicles and civil infrastructure for which road safety and ITS are key enablers.
+
+CAVs are already appearing on our roads. Implementation is based on implementing roadside and cloud based digital infrastructure and the connections to vehicles in a secure and safe manner. Supporting structures will also need to be put in place in relation to testing, collisions, and road data. Much of this will align with the requirements of the ITS Directive and other international legislation.
+
+Digital Hub The Department consolidated all digital and ICT functions into one business unit in 2024, and this ‘Digital Hub’ is tasked with driving the Department’s ambitious digital transformation plan for its citizen services.
+
+The Department administers Motor Tax (collection of circa €1bn in tax receipts annually) and the registration of change of vehicle ownership (processing over 1 million ownership change requests and issuances of new registration certificates each year), as well as providing the IT infrastructure that underpins the issuing of driver licences and record keeping of penalty points. The expenditure will support transformation projects in these customer services, including the digitalisation required to remove the need for paper discs in vehicle windscreens and the expansion of the online change of vehicle ownership service.
+
+The Department is also working with the Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation to ensure all appropriate driver and vehicle services are aligned to the Life Events programme of work under the Better Public Services initiative. This includes participation in Digital Government Wallet. Underneath the customer facing services, the Department will continue to invest in the technology refresh programme needed to move away from legacy software, including the movement to cloud where appropriate. An improved cyber security posture is also central to the technology changes being implemented, as is the deployment of a new data analytics platform which allows for advanced analytics and the Department’s AI proof of concepts. • Process Automation programme – the Department is reviewing manual processes to determine where efficiencies can be gained by digitising them and introducing automation where appropriate. • Business application developments - working with all Department Divisions in modernising legacy business applications to facilitate migration to digital systems to allow integration with citizen portals and access to online systems. • Expanded use of cloud technology to enable collaboration with external parties/agencies. • Cyber Security - ensuring that all digital solutions meet the ever-demanding requirements in the cyber security environment. This will require annual investment in resources and technology and ensuring that the applications are used securely and in compliance with various governance obligations, including Data Protection/GDPR. • The Department is working with the OGCIO and the Road Safety Authority on development of a life events portal and digital wallet that would include a digital driving licence and other Departmental legal certificates currently issued in paper format.
+
+• Multi-annual technology refresh programme that is critical to ensure that all Departmental IT systems are operating at maximum capacity, are resilient, have increased scalability, and keep pace with industry standards, including legal obligations.
+
+Intelligent Transport Systems Intelligent Transport Systems (ITS) refer to the application of technologies, communication, and information systems to transportation, making them safer, more efficient, and more sustainable. ITS encompasses a broad range of technologies and applications, including traffic management, public transport management, and vehicle safety systems. Much work and expenditure in relation to ITS relates to physical and civil infrastructure deployment and maintenance.
+
+ITS delivery under the NDP is not only based on implementation of the ITS Directive requirements but also supporting EVs (e.g. ZEVI), Integrated Ticketing, and CAVs/Road Safety. This is based on implementing supporting structures but also on a National Access Point and implementing improved and new process to support ITS Services.
+
+Appendix A – Road Projects to be advanced for future construction
+
+| Project | Approving Authority | Sponsoring Agency | Current Stage of Project Lifecycle | Next Approval Gate |
+| --- | --- | --- | --- | --- |
+| N2 Rath Roundabout to Kilmoon Cross | TII | Meath County Council | Pre-AG1 | AG1 |
+| N11 Junction 4 to 14 Project | TII | Wicklow County Council | Pre-AG1 | AG1 |
+| N15 Sligo to County Boundary | TII | Sligo County Council | Pre-AG1 | AG1 |
+| N22 Macroom to Ovens | TII | Cork County Council | Pre-AG1 | AG1 |
+| N24 Waterford to Cahir | TII | Kilkenny County Council | Pre-AG1 | AG1 |
+| N25 Carrigtwohill to Midleton | TII | Cork County Council | Pre-AG1 | AG1 |
+| N25 Waterford to Glenmore | TII | Kilkenny County Council | Pre-AG1 | AG1 |
+| N52 Tullamore to Kilbeggan | TII | Westmeath County Council | Pre-AG1 | AG1 |
+| N59 Clifden to Maam Cross | TII | Galway County Council | Pre-AG1 | AG1 |
+| Bypass / Relief Road Programme (e.g. Athlone, Claregalway, Thurles, Ballina) | TII/DoT | Various | Pre-AG1 | AG1 |
+| Carlow Southern Relief Road | DoT | Carlow County Council | Pre-AG1 | AG1 |
+| Cork City Northern Transport Project | TII | Cork City Council | Pre-AG1 | AG1 |
+| Cork Southern Ring Road (TEN-T) | TII | Cork City Council | Pre-AG1 | AG1 |
+| Shannon Airport Access Road | TII | Clare County Council | Pre-AG1 | AG1 |
+
+Appendix B –List of Acronyms
+
+| Alternative Fuels Infrastructure Regulation | AFIR |
+| --- | --- |
+| Approval Gate | AG |
+| Aids to Navigation | AtoN |
+| Climate Action Plan | CAP |
+| Connected and Autonomous Vehicles | CAVs |
+| Commissioners of Irish Lights | CIL |
+| Commission for Railway Regulation | CRR |
+| East Coast Railway Infrastructure Protection Projects | ECRIPP |
+| Environmental Protection Agency | EPA |
+| Electric Vehicle | EV |
+| Heavy Duty Vehicle | HDV |
+| Internal Combustion Engine | ICE |
+| Infrastructure Manager Multi-Annual Contract | IMMAC |
+| Intelligent Transport Systems | ITS |
+| Land Development Agency | LDA |
+| National Cycle Network | NCN |
+| National Competitiveness and Productivity Council | NCPC |
+| National Development Plan | NDP |
+| National Investment Framework for Transport in Ireland | NIFTI |
+| National Planning Framework | NPF |
+| National Roads 2040 | NRA2040 |
+| National Transport Authority | NTA |
+| Pavement Condition Survey Indicator | PCSI |
+| Public Service Obligation | PSO |
+| Shared Island Fund | SIF |
+
+| Sustainable Mobility Policy | SMP |
+| --- | --- |
+| Transport Appraisal Framework | TAF |
+| Trans-European Transport Network | TEN-T |
+| Transport Infrastructure Ireland | TII |
+| Transport Orientated Development | TOD |
+| Zero-Emission Heavy Duty Vehicle Purchase Grant Scheme | ZEHDV |
+| Zero Emission Vehicles Ireland | ZEVI |
+
+![Figure from page 40](assets/p040-f01.webp)
+
+*Figure from page 40*
+
+Prepared by the Department of Transport November 2025 | gov.ie

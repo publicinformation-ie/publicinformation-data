@@ -19,7 +19,10 @@ def action(number=1, **overrides):
               "original_deadline_precision": "quarter",
               "original_deadline_confidence": "stated",
               "original_timeline_raw": "Q4 2024", "lead": "DoT", "support": "NTA",
-              "output": "", "source_page": 9, "source_ref": "p009-t01-r01"}
+              "output": "", "source_page": 9, "source_ref": "p009-t01-r01",
+              "action_text_clean": "Do a thing",
+              "original_deadline_label": "Q4 2024",
+              "original_deadline_milestones": []}
     record.update(overrides)
     return record
 
@@ -32,7 +35,8 @@ def observation(number=1, report="year-one", **overrides):
               "reported_deadline_end": "2025-12-31",
               "reported_deadline_precision": "quarter",
               "progress_text": "Underway", "asi": "Improve",
-              "source_page": 12, "source_ref": "p012-t01-r01"}
+              "source_page": 12, "source_ref": "p012-t01-r01",
+              "progress_text_clean": "Underway"}
     record.update(overrides)
     return record
 
@@ -153,8 +157,10 @@ def test_an_unknown_confidence_value_is_a_violation():
     assert any("confidence" in v.lower() for v in violations)
 
 
-def test_a_confidence_without_a_deadline_is_a_violation():
+def test_a_confidence_without_a_precision_is_a_violation():
     violations = check([action(1, original_deadline_start=None,
+                               original_deadline_end=None,
+                               original_deadline_precision=None,
                                original_deadline_confidence="stated")], [], [])
     assert any("confidence" in v.lower() for v in violations)
 
@@ -164,11 +170,82 @@ def test_a_deadline_without_a_confidence_is_a_violation():
     assert any("confidence" in v.lower() for v in violations)
 
 
-def test_a_null_deadline_with_a_null_confidence_is_fine():
-    assert check([action(1, original_deadline_start=None,
-                         original_deadline_end=None,
-                         original_deadline_precision=None,
-                         original_deadline_confidence=None)], [], []) == []
+def test_a_null_precision_with_a_null_confidence_is_still_a_precision_violation():
+    violations = check([action(1, original_deadline_start=None,
+                               original_deadline_end=None,
+                               original_deadline_precision=None,
+                               original_deadline_confidence=None)], [], [])
+    assert violations == [f"{PLAN}#1: original_deadline_precision is null"]
+
+
+# --- new columns and open-ended deadlines ---------------------------------
+
+def test_a_null_original_precision_is_a_violation():
+    violations = check([action(original_deadline_precision=None)], [], [])
+    assert any("original_deadline_precision is null" in v for v in violations)
+
+
+def test_an_open_ended_precision_must_not_have_bounds():
+    violations = check([action(
+        original_deadline_precision="ongoing",
+        original_deadline_start=None, original_deadline_end=None,
+        original_deadline_confidence="stated")], [], [])
+    assert violations == []
+
+
+def test_an_open_ended_precision_with_a_bound_is_a_violation():
+    violations = check([action(original_deadline_precision="annual")], [], [])
+    assert any("must not have" in v for v in violations)
+
+
+def test_a_dated_precision_must_have_a_start():
+    violations = check([action(
+        original_deadline_precision="year",
+        original_deadline_start=None, original_deadline_confidence="stated")], [], [])
+    assert any("must have a start" in v for v in violations)
+
+
+def test_confidence_is_null_exactly_when_precision_is_null():
+    violations = check([action(
+        original_deadline_precision=None,
+        original_deadline_start=None,
+        original_deadline_confidence="stated")], [], [])
+    assert any("confidence" in v for v in violations)
+
+
+def test_an_empty_label_is_a_violation():
+    violations = check([action(original_deadline_label="")], [], [])
+    assert any("original_deadline_label" in v for v in violations)
+
+
+def test_a_multiline_label_is_a_violation():
+    violations = check([action(original_deadline_label="Q4\n2024")], [], [])
+    assert any("original_deadline_label" in v for v in violations)
+
+
+def test_empty_clean_action_text_is_a_violation():
+    violations = check([action(action_text_clean="")], [], [])
+    assert any("action_text_clean" in v for v in violations)
+
+
+def test_a_reported_raw_without_a_precision_is_a_violation():
+    violations = check([action(1)], [observation(
+        1, reported_deadline_precision=None, reported_deadline_start=None,
+        reported_deadline_end=None)], [])
+    assert any("reported_deadline_precision is null" in v for v in violations)
+
+
+def test_an_empty_reported_raw_may_have_a_null_precision():
+    assert check([action(1)], [observation(
+        1, reported_deadline_raw="", reported_deadline_precision=None,
+        reported_deadline_start=None, reported_deadline_end=None)], []) == []
+
+
+def test_the_new_columns_are_appended_in_order():
+    assert transform.ACTION_FIELDS[-3:] == [
+        "action_text_clean", "original_deadline_label",
+        "original_deadline_milestones"]
+    assert transform.OBSERVATION_FIELDS[-1] == "progress_text_clean"
 
 
 # --- publication ------------------------------------------------------------
@@ -226,7 +303,7 @@ def test_an_observation_links_to_its_actions_uri():
 
 
 def test_output_lands_in_both_the_versioned_and_latest_directories():
-    assert transform.OUTPUT_DIR == "public/v2.0.0/public-body-actions"
+    assert transform.OUTPUT_DIR == "public/v2.1.0/public-body-actions"
     assert transform.LATEST_DIR == "public/latest/public-body-actions"
 
 

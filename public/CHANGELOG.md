@@ -4,6 +4,35 @@ All notable changes to the Public Bodies dataset will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [documents, content only] - 2026-11-08 (OCR)
+
+### Added
+- The Climate Action Plan 2025 Q1 and Q4 progress reports are now published. Their full-page image pages (Q1: 1, 20, 24; Q4: 16 pages) are read with OCR (Tesseract) by a new opt-in `ocr_pages` pipeline step, and each affected section opens with a note that its text is machine-read and may contain recognition errors. `meta.json` sections list these pages as `ocr_pages`.
+- No `owl:versionInfo` or contract-version change. All other document bundles and index entries are unchanged; the Climate Action Plan 2023 stays held.
+
+## [documents, content only] - 2026-11-08
+
+### Added
+- 9 Climate Action Plan documents (the 2024 and 2025 plans and 7 quarterly or half-yearly progress reports) added to the document library. The Climate Action Plan 2023 (poor structure detection, held back) and the Q1 2025 and Q4 2025 reports (full-page images with no extractable text, pending OCR) are listed under `failed` (`not_publishable`).
+- No `owl:versionInfo` change. Existing document bundles are unchanged; no actions or statuses are extracted for the climate documents.
+
+## [public-bodies, documentation only] - 2026-11-07
+
+### Documented
+- Documented the `parent_id` / `government_department_id` distinction (README, schema descriptions); no field or version change.
+
+## [public-body-actions 2.1.0] - 2026-11-07
+
+### Added
+- `original_deadline_label`, `original_deadline_milestones`, `action_text_clean` on actions and `progress_text_clean` on status observations.
+- `annual` and `ongoing` values for `original_deadline_precision` and `reported_deadline_precision`.
+
+### Fixed
+- Action `…2022-2025#20` final deadline 2023 → 2025.
+
+### Documented
+- `latest_status` null semantics ("not yet reported", not "unknown") and the `parent_id`/`government_department_id` distinction.
+
 ## [Unreleased] - 2026-10-18
 
 ### Fixed

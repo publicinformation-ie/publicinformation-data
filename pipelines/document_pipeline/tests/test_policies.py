@@ -151,3 +151,77 @@ def test_the_real_inventory_multi_url_and_directory_url_rows():
     by_n = {p["number"]: p for p in load_policies(POLICIES_PATH)}
     assert len(by_n[16]["source_urls"]) == 3                      # EMRA / Southern / NWRA
     assert by_n[17]["source_urls"] == ["https://www.localgov.ie/"]
+
+
+# ---- multi-domain merge --------------------------------------------------
+
+CLIMATE_MASTER = ["| **Climate Plan** | DCEE | 2023–2050 | Scope C | Act 2021 |\n"]
+CLIMATE_URLS = ["| 1 | Climate | [Page](https://example.org/c) |\n"]
+TRANSPORT_MASTER = GOOD_MASTER[:1]
+TRANSPORT_URLS = GOOD_URLS[:1]
+
+
+def _inventory_dir(tmp_path, **domains):
+    for domain, (master, urls) in domains.items():
+        (tmp_path / f"input_plans_{domain}.md").write_text(_md(master, urls), encoding="utf-8")
+    return tmp_path
+
+
+def test_merged_inventory_carries_each_policys_domain(tmp_path):
+    d = _inventory_dir(tmp_path, transport=(TRANSPORT_MASTER, TRANSPORT_URLS),
+                       climate=(CLIMATE_MASTER, CLIMATE_URLS))
+    merged = load_policies(directory=d)
+    by_id = {p["policy_id"]: p for p in merged}
+    assert by_id["alpha-plan-moving"]["domain"] == "transport"
+    assert by_id["climate-plan"]["domain"] == "climate"
+    # `number` is file-scoped row order: both are #1 in their own file
+    assert by_id["alpha-plan-moving"]["number"] == by_id["climate-plan"]["number"] == 1
+
+
+def test_cross_domain_policy_id_collision_is_fatal_and_names_both_files(tmp_path):
+    clash = ["| **Alpha Plan (Moving)** | DCEE | 2023 | Scope C | Act |\n"]
+    d = _inventory_dir(tmp_path, transport=(TRANSPORT_MASTER, TRANSPORT_URLS),
+                       climate=(clash, CLIMATE_URLS))
+    with pytest.raises(ValueError) as exc:
+        load_policies(directory=d)
+    msg = str(exc.value)
+    assert "duplicate policy_id 'alpha-plan-moving'" in msg
+    assert "input_plans_climate.md" in msg and "input_plans_transport.md" in msg
+
+
+def test_a_malformed_row_in_any_domain_file_is_fatal(tmp_path):
+    d = _inventory_dir(tmp_path, transport=(TRANSPORT_MASTER, TRANSPORT_URLS),
+                       climate=(["| only | two |\n"], CLIMATE_URLS))
+    with pytest.raises(ValueError, match=r"input_plans_climate\.md:\d+"):
+        load_policies(directory=d)
+
+
+def test_transport_code_of_practice_rule_does_not_apply_to_other_domains(tmp_path, monkeypatch):
+    monkeypatch.setattr(policies, "CODE_OF_PRACTICE_NUMBERS", frozenset({2}))
+    d = _inventory_dir(tmp_path, transport=(GOOD_MASTER, GOOD_URLS),
+                       climate=(CLIMATE_MASTER * 1, CLIMATE_URLS))
+    merged = load_policies(directory=d)
+    assert [p["kind"] for p in merged if p["domain"] == "climate"] == ["policy"]
+    assert [p["kind"] for p in merged if p["domain"] == "transport"] == ["policy", "code-of-practice"]
+
+
+def test_a_directory_with_no_inventory_files_is_fatal(tmp_path):
+    with pytest.raises(ValueError, match="no input_plans_"):
+        load_policies(directory=tmp_path)
+
+
+def test_inventory_filename_must_name_a_domain(tmp_path):
+    with pytest.raises(ValueError, match="input_plans_<domain>"):
+        policies.domain_of(tmp_path / "plans.md")
+
+
+def test_the_real_merged_inventory_keeps_transport_numbers_and_adds_climate():
+    merged = load_policies()
+    transport = [p for p in merged if p["domain"] == "transport"]
+    assert [p["policy_id"] for p in transport] == EXPECTED_IDS
+    assert [p["number"] for p in transport] == list(range(1, 22))
+    climate = [p for p in merged if p["domain"] == "climate"]
+    assert [p["policy_id"] for p in climate] == ["climate-action-plan"]    # permanent id
+    assert climate[0]["number"] == 1
+    assert climate[0]["kind"] == "policy" and climate[0]["source_urls"]
+    assert len({p["policy_id"] for p in merged}) == len(merged)

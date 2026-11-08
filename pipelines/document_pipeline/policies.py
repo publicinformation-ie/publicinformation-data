@@ -1,7 +1,9 @@
-"""Loader for input_plans_transport.md — the authoritative inventory of Irish
-transport policies, strategies and codes of practice.
+"""Loader for the input_plans_<domain>.md files — the authoritative, per-domain
+inventories of Irish policies, strategies and codes of practice (transport,
+climate, ...). load_policies() merges every domain file into one `policy_id`
+namespace; each record carries the `domain` of the file it came from.
 
-The first markdown table is the master inventory (5 columns, row N = policy
+In each file the first markdown table is the master inventory (5 columns, row N = policy
 #N, in order). Later tables whose header starts with `#` list each policy's
 official URL(s). Everything else in the file (prose, `[image]` lines, `+N`
 lines left over from the export) is ignored.
@@ -14,10 +16,15 @@ from pathlib import Path
 
 from lib.body_refs import slugify
 
-POLICIES_PATH = Path(__file__).parent / "input_plans_transport.md"
+POLICIES_DIR = Path(__file__).parent
+POLICIES_GLOB = "input_plans_*.md"
+_DOMAIN_RE = re.compile(r"^input_plans_(?P<domain>[a-z0-9-]+)\.md$")
+DEFAULT_DOMAIN = "transport"
+POLICIES_PATH = POLICIES_DIR / f"input_plans_{DEFAULT_DOMAIN}.md"
 
-# Policy numbers (row order in the master table) that are codes of practice.
-# Cross-checked against the title so a reordered table fails loudly.
+# Transport policy numbers (row order in the transport file's master table) that
+# are codes of practice. Cross-checked against the title so a reordered table
+# fails loudly. Evaluated for the transport file only: other domains have none.
 CODE_OF_PRACTICE_NUMBERS = frozenset({20, 21})
 CODE_OF_PRACTICE_PREFIX = "Code of Practice"
 
@@ -78,9 +85,45 @@ def strip_footnote(text):
     raise ValueError(f"ambiguous trailing digits {run!r} in {text!r}")
 
 
-def load_policies(path=POLICIES_PATH) -> list:
-    """Parse and validate the inventory. Raises ValueError on any violation."""
-    path = Path(path)
+def domain_of(path) -> str:
+    """Domain encoded in an inventory filename (`input_plans_<domain>.md`)."""
+    m = _DOMAIN_RE.match(Path(path).name)
+    if m is None:
+        raise ValueError(f"{path}: inventory filename must match input_plans_<domain>.md")
+    return m.group("domain")
+
+
+def inventory_paths(directory=POLICIES_DIR) -> list:
+    """Every domain inventory file in `directory`, in stable (sorted) order."""
+    return sorted(Path(directory).glob(POLICIES_GLOB))
+
+
+def load_policies(path=None, domain=DEFAULT_DOMAIN, directory=POLICIES_DIR) -> list:
+    """Parse and validate the inventory. Raises ValueError on any violation.
+
+    With no `path`, merges every `input_plans_<domain>.md` in `directory` into
+    one list; a `policy_id` defined by two files is process-fatal. With an
+    explicit `path`, parses just that file under `domain`.
+    """
+    if path is not None:
+        return _parse_file(Path(path), domain)
+
+    merged, origin = [], {}
+    for file in inventory_paths(directory):
+        for record in _parse_file(file, domain_of(file)):
+            first = origin.setdefault(record["policy_id"], file)
+            if first != file:
+                raise ValueError(
+                    f"duplicate policy_id {record['policy_id']!r} defined in both "
+                    f"{first.name} and {file.name}")
+            merged.append(record)
+    if not merged:
+        raise ValueError(f"no {POLICIES_GLOB} inventory files found in {directory}")
+    return merged
+
+
+def _parse_file(path, domain) -> list:
+    code_numbers = CODE_OF_PRACTICE_NUMBERS if domain == DEFAULT_DOMAIN else frozenset()
     tables = _tables(path.read_text(encoding="utf-8").splitlines(), path)
     if not tables:
         raise ValueError(f"{path} contains no tables")
@@ -127,7 +170,7 @@ def load_policies(path=POLICIES_PATH) -> list:
         linkages = strip_footnote(linkages)
 
         is_code = title.startswith(CODE_OF_PRACTICE_PREFIX)
-        if is_code != (number in CODE_OF_PRACTICE_NUMBERS):
+        if is_code != (number in code_numbers):
             raise ValueError(
                 f"{where}: policy #{number} {title!r} disagrees with CODE_OF_PRACTICE_NUMBERS")
 
@@ -138,6 +181,7 @@ def load_policies(path=POLICIES_PATH) -> list:
 
         records.append({
             "policy_id": policy_id,
+            "domain": domain,
             "number": number,
             "title": title,
             "kind": "code-of-practice" if is_code else "policy",

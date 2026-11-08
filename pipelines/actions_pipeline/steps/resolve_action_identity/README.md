@@ -20,10 +20,11 @@ Two further jobs:
 ## What it does
 
 1. For every plan record in `extract_actions/output.json`, strips the leading ordinal (`"1. \x07Develop…"` → `(1, "Develop…")`) off each action cell to recover its published number, and mints `{plan_slug}#{action_number}`. A cell with no leading ordinal has no stated number and is `UnresolvedActionNumber` — skipped, never assigned a synthetic one.
-2. Resolves each action's **original deadline** (`resolve_original_deadline`): prefers a real deadline column (`raw_date`) over the plan's `TIMELINE & OUTPUT` cell; within that cell, prefers a single unambiguous date (`confidence: "stated"`) over inferring one from a multi-milestone narrative (`confidence: "interpreted"`, taking the latest year introduced as a milestone — `Q<n> <year>` or `<year>:`). A year that is part of a range or contract name (`IMMAC 2025-2030`) is never read as a deadline; unlabelled years with no milestone marker are refused rather than guessed at. A non-empty timeline cell that yields no confident date is `DateParseError` — the raw text is kept, structured fields stay null.
-3. Reads `lead`/`support`/`output` off the plan's own table columns (`column_value`, case-insensitive alias lookup — `extract_actions` keys `columns` with `normalize_text`, not `normalize_header`, so keys keep source casing like `LEAD`/`OWNER`).
-4. Joins every `role: report` document's observations (`extract_action_status/output.json`) onto their action via the report's own `reports_on` + the observation's `action_number`. An observation naming an unknown plan, or a number with no match in that plan, is `UnresolvedActionNumber` — skipped, never attached to a neighbour.
-5. For the *earliest* report mentioning each action, compares its reported deadline against the action's original deadline. A mismatch is `DeadlineDivergedAtFirstReport` — informational, not a fault: it means the action had already slipped before the first progress report was written, which is exactly the kind of row this dataset exists to surface.
+2. Resolves each action's **original deadline** (`resolve_deadline`; `resolve_original_deadline` remains as a `(parsed, confidence)` compatibility wrapper): a separate deadline column (`raw_date`) always wins over the plan's `TIMELINE & OUTPUT` cell; within that cell, a single unambiguous date is transcribed (`confidence: "stated"`), and a multi-milestone narrative is resolved by the **last-milestone rule** — once any year in the cell is introduced as a milestone (`Q<n> <year>` or `<year>:`), the latest candidate year is the deadline (`confidence: "interpreted"`), so an unlabelled final milestone still wins. A year that is part of a range or contract name (`IMMAC 2025-2030`) is never read as a deadline; several unlabelled years with no milestone marker among them are refused rather than guessed at. An open-ended cell (`Ongoing`, `Annual …`) parses with precision `ongoing`/`annual` and every date bound null. A non-empty timeline cell that yields no confident date is `DateParseError` — the raw text is kept, structured fields stay null.
+3. Publishes a display **label** and the **milestones** prose alongside the structured deadline. `original_deadline_label` is the short display form — the normalised deadline text for a dated cell, `Annual`/`Ongoing` for an open-ended one, and `""` when nothing resolved (a missing deadline is reported as empty, never filled with a guessed date). `original_deadline_milestones` keeps the plan's interim-milestone prose: the separate `INTERIM MILESTONES` column when the plan publishes one, else the timeline cell itself whenever it carries more than the bare date, else `""`.
+4. Reads `lead`/`support`/`output` off the plan's own table columns (`column_value`, case-insensitive alias lookup — `extract_actions` keys `columns` with `normalize_text`, not `normalize_header`, so keys keep source casing like `LEAD`/`OWNER`).
+5. Joins every `role: report` document's observations (`extract_action_status/output.json`) onto their action via the report's own `reports_on` + the observation's `action_number`. An observation naming an unknown plan, or a number with no match in that plan, is `UnresolvedActionNumber` — skipped, never attached to a neighbour.
+6. For the *earliest* report mentioning each action, compares its reported deadline against the action's original deadline. A mismatch is `DeadlineDivergedAtFirstReport` — informational, not a fault: it means the action had already slipped before the first progress report was written, which is exactly the kind of row this dataset exists to surface.
 
 ## Inputs
 
@@ -40,8 +41,11 @@ Two further jobs:
 | `action_id` | `{plan_slug}#{action_number}` — this step's minted identity |
 | `public_body_id` / `plan_slug` / `plan_title` / `source_url` | Plan provenance, from `documents.yml` |
 | `action_number` / `action_text` | Recovered from the leading ordinal, stripped of BEL artifacts |
-| `original_deadline_raw` / `original_deadline_start` / `original_deadline_end` / `original_deadline_precision` | Structured baseline deadline, or all null if unresolved |
+| `action_text_clean` | `action_text` with confirmed PDF artefacts repaired (`repair_text`) for display; the raw `action_text` remains the audit trail |
+| `original_deadline_raw` / `original_deadline_start` / `original_deadline_end` / `original_deadline_precision` | Structured baseline deadline, or all null if unresolved; an open-ended cell carries precision `annual`/`ongoing` with null bounds |
 | `original_deadline_confidence` | `"stated"` / `"interpreted"` / `None` — never guessed silently |
+| `original_deadline_label` | Short display form of the deadline — the normalised deadline text, `Annual`/`Ongoing` for open-ended cells, `""` when nothing resolved |
+| `original_deadline_milestones` | The plan's interim-milestone prose — the separate `INTERIM MILESTONES` column when the plan publishes one, else the timeline cell when it carries more than the bare date, else `""`; published repaired (`repair_text`), with `original_deadline_raw` keeping the verbatim cell as the audit trail where milestones derive from the timeline cell; where a separate milestone column supplies the prose, it is published only in repaired form — its verbatim source remains in the upstream `extract_actions` output |
 | `original_timeline_raw` | The plan's own timeline cell text, preserved verbatim regardless of parse outcome |
 | `lead` / `support` / `output` | Read off the plan table's own columns |
 | `source_page` / `source_ref` | Positional provenance only — never identity |
@@ -51,6 +55,7 @@ Two further jobs:
 | `action_id` | The action this observation was joined to |
 | `report_slug` / `report_title` / `as_of` | Report provenance |
 | `status` / `progress_text` / `asi` | Carried through from `extract_action_status` |
+| `progress_text_clean` | `progress_text` with confirmed PDF artefacts repaired (`repair_text`) for display; the raw `progress_text` remains the audit trail |
 | `reported_deadline_raw` / `reported_deadline_start` / `reported_deadline_end` / `reported_deadline_precision` | The report's own re-stated deadline — never merged into the action's original deadline |
 | `source_page` / `source_ref` | Positional provenance |
 

@@ -1,6 +1,6 @@
 # Connecting Ireland Rural Mobility Plan Summary Report
 
-> National Transport Authority — 7 chapters, 7 sections, 128 source pages.
+> National Transport Authority — 6 chapters, 6 sections, 128 source pages.
 > Source: https://www.nationaltransport.ie/wp-content/uploads/2021/10/NTA-Connecting-Ireland-Report.pdf
 > Full text: full.md
 
@@ -12,11 +12,9 @@
   - [1 Introduction](sections/1-introduction/overview.md) — pages 4–4
 - [2 NTA’s Role in Improving the Public Transport Network](sections/2-nta-s-role-in-improving-the-public-transport-network/) — pages 5–6
   - [2 NTA’s Role in Improving the Public Transport Network](sections/2-nta-s-role-in-improving-the-public-transport-network/overview.md) — pages 5–6
-- [4 Policy Framework](sections/4-policy-framework/) — pages 7–15
-  - [4 Policy Framework](sections/4-policy-framework/overview.md) — pages 7–15
+- [4 Policy Framework](sections/4-policy-framework/) — pages 7–18
+  - [4 Policy Framework](sections/4-policy-framework/overview.md) — pages 7–18
 - [7 Our Approach to Network Development](sections/7-our-approach-to-network-development/) — pages 19–21
   - [7 Our Approach to Network Development](sections/7-our-approach-to-network-development/overview.md) — pages 19–21
 - [8 Public Consultation](sections/8-public-consultation/) — pages 22–128
   - [8 Public Consultation](sections/8-public-consultation/overview.md) — pages 22–128
-- [15 min walk](sections/15-min-walk/) — pages 15–18
-  - [15 min walk](sections/15-min-walk/overview.md) — pages 15–18

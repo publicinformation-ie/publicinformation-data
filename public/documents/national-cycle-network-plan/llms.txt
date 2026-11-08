@@ -1,60 +1,93 @@
 # National Cycle Network Plan Report 2023
 
-> Department of Transport — 16 chapters, 36 sections, 1107 source pages.
+> Department of Transport — 20 chapters, 65 sections, 1107 source pages.
 > Source: https://assets.gov.ie/static/documents/national-cycle-network-plan-report.pdf
 > Full text: full.md
 
 ## Chapters
 
-- [Front Matter](sections/front-matter/) — pages 1–13
-  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–13
-- [1 way](sections/1-way-2/) — pages 100–105
-  - [1 way](sections/1-way-2/overview.md) — pages 100–105
-- [1 way](sections/1-way-4/) — pages 105–105
-  - [1 way](sections/1-way-4/overview.md) — pages 105–105
+- [Front Matter](sections/front-matter/) — pages 1–12
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–12
+- [Introduction](sections/introduction/) — pages 12–20
+  - [Introduction](sections/introduction/overview.md) — pages 12–13
+  - [1.2 Governance Approach for NCN Plan Development](sections/introduction/1-2-governance-approach-for-ncn-plan-development.md) — pages 16–19
+  - [1.4 Stakeholder and Public Engagement](sections/introduction/1-4-stakeholder-and-public-engagement.md) — pages 19–20
+  - [6.1 MtCO2eq by 2030, in line with the sectoral emissions ceilings established by Government in July 2022](sections/introduction/6-1-mtco2eq-by-2030-in-line-with-the-sectoral-emissions-ceilings-established-by-government-in-july-2022.md) — pages 13–16
 - [1 Buncrana to Letterkenny/](sections/1-buncrana-to-letterkenny/) — pages 900–901
   - [1 Buncrana to Letterkenny/](sections/1-buncrana-to-letterkenny/overview.md) — pages 900–901
+- [Background Research](sections/background-research/) — pages 23–29
+  - [Background Research](sections/background-research/overview.md) — pages 23–24
+  - [2.1 Cycling Trends in Ireland](sections/background-research/2-1-cycling-trends-in-ireland.md) — pages 24–25
+  - [2.2 Policy Review](sections/background-research/2-2-policy-review.md) — pages 25–26
+  - [2.3 Literature Review](sections/background-research/2-3-literature-review.md) — pages 26–27
+  - [2.4 Existing Cycle Network Inventory](sections/background-research/2-4-existing-cycle-network-inventory.md) — pages 27–27
+  - [2.5 Assessment of International Best Practice](sections/background-research/2-5-assessment-of-international-best-practice.md) — pages 27–29
+  - [2.6 Market Research](sections/background-research/2-6-market-research.md) — pages 29–29
 - [2 Derry to Letterkenny](sections/2-derry-to-letterkenny/) — pages 902–905
   - [2 Derry to Letterkenny](sections/2-derry-to-letterkenny/overview.md) — pages 902–905
+- [NCN Plan - Vision and Objectives](sections/ncn-plan-vision-and-objectives/) — pages 30–34
+  - [NCN Plan - Vision and Objectives](sections/ncn-plan-vision-and-objectives/overview.md) — pages 30–31
+  - [NCN Plan Vision](sections/ncn-plan-vision-and-objectives/ncn-plan-vision.md) — pages 31–32
+  - [NCN Plan Objectives](sections/ncn-plan-vision-and-objectives/ncn-plan-objectives.md) — pages 32–34
 - [3 Derry to Strabane](sections/3-derry-to-strabane/) — pages 906–906
   - [3 Derry to Strabane](sections/3-derry-to-strabane/overview.md) — pages 906–906
-- [4 Public Consultation.](sections/4-public-consultation/) — pages 20–100
-  - [4 Public Consultation.](sections/4-public-consultation/overview.md) — pages 20–36
-  - [4.1 and Table 4.2.](sections/4-public-consultation/4-1-and-table-4-2.md) — pages 36–56
-  - [6.4 Awareness and Education](sections/4-public-consultation/6-4-awareness-and-education.md) — pages 56–100
+- [4 Public Consultation.](sections/4-public-consultation/) — pages 20–22
+  - [4 Public Consultation.](sections/4-public-consultation/overview.md) — pages 20–22
+- [Network Development](sections/network-development/) — pages 34–43
+  - [Network Development](sections/network-development/overview.md) — pages 34–43
 - [4 Letterkenny to Strabane](sections/4-letterkenny-to-strabane/) — pages 907–910
   - [4 Letterkenny to Strabane](sections/4-letterkenny-to-strabane/overview.md) — pages 907–910
+- [Feedback on NCN Proposals](sections/feedback-on-ncn-proposals/) — pages 43–46
+  - [Feedback on NCN Proposals](sections/feedback-on-ncn-proposals/overview.md) — pages 43–44
+  - [5.2 Incorporating and Upgrading Existing Cycle Infrastructure](sections/feedback-on-ncn-proposals/5-2-incorporating-and-upgrading-existing-cycle-infrastructure.md) — pages 44–44
+  - [5.3 Leisure and Exercise Use of the NCN](sections/feedback-on-ncn-proposals/5-3-leisure-and-exercise-use-of-the-ncn.md) — pages 44–44
+  - [5.4 Access and Segregation](sections/feedback-on-ncn-proposals/5-4-access-and-segregation.md) — pages 44–44
+  - [5.5 Greenways and Rural Settlements](sections/feedback-on-ncn-proposals/5-5-greenways-and-rural-settlements.md) — pages 44–45
+  - [5.6 Local Network and Town Centre Integration](sections/feedback-on-ncn-proposals/5-6-local-network-and-town-centre-integration.md) — pages 45–45
+  - [5.7 Conclusion](sections/feedback-on-ncn-proposals/5-7-conclusion.md) — pages 45–46
 - [5 Letterkenny to Sligo](sections/5-letterkenny-to-sligo/) — pages 911–917
   - [5 Letterkenny to Sligo](sections/5-letterkenny-to-sligo/overview.md) — pages 911–917
+- [National Cycle Network](sections/national-cycle-network/) — pages 46–58
+  - [National Cycle Network](sections/national-cycle-network/overview.md) — pages 46–50
+  - [6.2 Benefits of the NCN](sections/national-cycle-network/6-2-benefits-of-the-ncn.md) — pages 50–56
+  - [6.4 Awareness and Education](sections/national-cycle-network/6-4-awareness-and-education.md) — pages 56–58
 - [6 Sligo to Enniskillen](sections/6-sligo-to-enniskillen/) — pages 918–921
   - [6 Sligo to Enniskillen](sections/6-sligo-to-enniskillen/overview.md) — pages 918–921
-- [6.1 MtCO2eq by 2030, in line with the sectoral emissions ceilings established by Government in July 2022](sections/6-1-mtco2eq-by-2030-in-line-with-the-sectoral-emissions-ceilings-established-by-government-in-july-2022/) — pages 13–20
-  - [6.1 MtCO2eq by 2030, in line with the sectoral emissions ceilings established by Government in July 2022](sections/6-1-mtco2eq-by-2030-in-line-with-the-sectoral-emissions-ceilings-established-by-government-in-july-2022/overview.md) — pages 13–20
+- [Implementation of the NCN Plan](sections/implementation-of-the-ncn-plan/) — pages 58–63
+  - [Implementation of the NCN Plan](sections/implementation-of-the-ncn-plan/overview.md) — pages 58–58
+  - [7.2 Implementation Cost](sections/implementation-of-the-ncn-plan/7-2-implementation-cost.md) — pages 58–60
+  - [7.3 Phased Implementation](sections/implementation-of-the-ncn-plan/7-3-phased-implementation.md) — pages 60–61
+  - [7.4 Governance of Implementation](sections/implementation-of-the-ncn-plan/7-4-governance-of-implementation.md) — pages 61–62
+  - [7.6 Environmental Assessment](sections/implementation-of-the-ncn-plan/7-6-environmental-assessment.md) — pages 62–63
 - [7 Enniskillen to Cavan](sections/7-enniskillen-to-cavan/) — pages 922–923
   - [7 Enniskillen to Cavan](sections/7-enniskillen-to-cavan/overview.md) — pages 922–923
+- [Monitoring, Evaluation and Learning Framework](sections/monitoring-evaluation-and-learning-framework/) — pages 63–105
+  - [Monitoring, Evaluation and Learning Framework](sections/monitoring-evaluation-and-learning-framework/overview.md) — pages 63–64
+  - [Indicators and Measurements](sections/monitoring-evaluation-and-learning-framework/indicators-and-measurements.md) — pages 64–67
+  - [Metrics](sections/monitoring-evaluation-and-learning-framework/metrics.md) — pages 67–105
 - [8 Longford to Sligo](sections/8-longford-to-sligo/) — pages 924–927
   - [8 Longford to Sligo](sections/8-longford-to-sligo/overview.md) — pages 924–927
 - [9 Sligo to Ballina](sections/9-sligo-to-ballina/) — pages 928–1107
   - [9 Sligo to Ballina](sections/9-sligo-to-ballina/overview.md) — pages 928–1107
-- [70 [approximately 110kph] *Separation strip should be at least 0.5m alongside kerbside parking and 1.5m where wheelchair](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/) — pages 105–225
-  - [70 [approximately 110kph] *Separation strip should be at least 0.5m alongside kerbside parking and 1.5m where wheelchair](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/overview.md) — pages 105–225
-- [73 blanket bogs)](sections/73-blanket-bogs/) — pages 225–899
-  - [2.3.1 Appropriate Assessment (AA)](sections/73-blanket-bogs/2-3-1-appropriate-assessment-aa.md) — pages 459–899
-  - [3.3 respectively.](sections/73-blanket-bogs/3-3-respectively.md) — pages 459–459
-  - [4.10 Landscape and Visual](sections/73-blanket-bogs/4-10-landscape-and-visual.md) — pages 257–257
-  - [4.10.1 Introduction](sections/73-blanket-bogs/4-10-1-introduction.md) — pages 257–257
-  - [4.10.2 Landscape Assessment](sections/73-blanket-bogs/4-10-2-landscape-assessment.md) — pages 257–258
-  - [4.10.3 Habitat and Landscape Features of Importance for Biodiversity](sections/73-blanket-bogs/4-10-3-habitat-and-landscape-features-of-importance-for-biodiversity.md) — pages 258–258
-  - [4.10.4 Summary of Future Baseline](sections/73-blanket-bogs/4-10-4-summary-of-future-baseline.md) — pages 258–259
-  - [4.11 Transboundary Effects](sections/73-blanket-bogs/4-11-transboundary-effects.md) — pages 259–259
-  - [4.11.1 Introduction](sections/73-blanket-bogs/4-11-1-introduction.md) — pages 259–262
-  - [4.12 Key Sustainability Issues](sections/73-blanket-bogs/4-12-key-sustainability-issues.md) — pages 262–262
-  - [4.12.1 Key issues: Biodiversity](sections/73-blanket-bogs/4-12-1-key-issues-biodiversity.md) — pages 262–262
-  - [4.12.2 Key issues: Population and Human Health](sections/73-blanket-bogs/4-12-2-key-issues-population-and-human-health.md) — pages 262–263
-  - [4.12.3 Key issues: Land and Soils](sections/73-blanket-bogs/4-12-3-key-issues-land-and-soils.md) — pages 263–264
-  - [4.12.4 Key issues: Water](sections/73-blanket-bogs/4-12-4-key-issues-water.md) — pages 264–264
-  - [4.12.5 Key issues: Air Quality](sections/73-blanket-bogs/4-12-5-key-issues-air-quality.md) — pages 264–264
-  - [4.12.6 Key issues: Climate Change](sections/73-blanket-bogs/4-12-6-key-issues-climate-change.md) — pages 264–265
-  - [4.12.7 Key issues: Cultural Heritage](sections/73-blanket-bogs/4-12-7-key-issues-cultural-heritage.md) — pages 265–266
-  - [4.12.8 Key issues: Landscape and Visual](sections/73-blanket-bogs/4-12-8-key-issues-landscape-and-visual.md) — pages 266–459
-  - [73 blanket bogs)](sections/73-blanket-bogs/overview.md) — pages 225–257
+- [70 [approximately 110kph] *Separation strip should be at least 0.5m alongside kerbside parking and 1.5m where wheelchair](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/) — pages 105–899
+  - [2.3.1 Appropriate Assessment (AA)](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/2-3-1-appropriate-assessment-aa.md) — pages 459–500
+  - [2 Methodology](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/2-methodology.md) — pages 501–899
+  - [4.10 Landscape and Visual](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/4-10-landscape-and-visual.md) — pages 257–257
+  - [4.10.1 Introduction](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/4-10-1-introduction.md) — pages 257–257
+  - [4.10.2 Landscape Assessment](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/4-10-2-landscape-assessment.md) — pages 257–258
+  - [4.10.3 Habitat and Landscape Features of Importance for Biodiversity](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/4-10-3-habitat-and-landscape-features-of-importance-for-biodiversity.md) — pages 258–258
+  - [4.10.4 Summary of Future Baseline](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/4-10-4-summary-of-future-baseline.md) — pages 258–259
+  - [4.11 Transboundary Effects](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/4-11-transboundary-effects.md) — pages 259–259
+  - [4.11.1 Introduction](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/4-11-1-introduction.md) — pages 259–262
+  - [4.12 Key Sustainability Issues](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/4-12-key-sustainability-issues.md) — pages 262–262
+  - [4.12.1 Key issues: Biodiversity](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/4-12-1-key-issues-biodiversity.md) — pages 262–262
+  - [4.12.2 Key issues: Population and Human Health](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/4-12-2-key-issues-population-and-human-health.md) — pages 262–263
+  - [4.12.3 Key issues: Land and Soils](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/4-12-3-key-issues-land-and-soils.md) — pages 263–264
+  - [4.12.4 Key issues: Water](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/4-12-4-key-issues-water.md) — pages 264–264
+  - [4.12.5 Key issues: Air Quality](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/4-12-5-key-issues-air-quality.md) — pages 264–264
+  - [4.12.6 Key issues: Climate Change](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/4-12-6-key-issues-climate-change.md) — pages 264–265
+  - [4.12.7 Key issues: Cultural Heritage](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/4-12-7-key-issues-cultural-heritage.md) — pages 265–266
+  - [4.12.8 Key issues: Landscape and Visual](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/4-12-8-key-issues-landscape-and-visual.md) — pages 266–459
+  - [Safety](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/safety.md) — pages 116–198
+  - [Overview](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/overview.md) — pages 105–257
+  - [70 [approximately 110kph] *Separation strip should be at least 0.5m alongside kerbside parking and 1.5m where wheelchair](sections/70-approximately-110kph-separation-strip-should-be-at-least-0-5m-alongside-kerbside-parking-and-1-5m-where-wheelchair/overview.md) — pages 105–257

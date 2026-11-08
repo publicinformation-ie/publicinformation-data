@@ -38,7 +38,46 @@ def write_json(path, data):
         raise
 
 
+def read_dirty_ids(path) -> set[int]:
+    """Read a dirty_ids.json file, validating it is a JSON list of integers.
+
+    Raises ValueError naming the path otherwise, so a corrupt file is never
+    silently treated as empty or mis-read (a dict would yield its keys, a list
+    of strings would yield IDs that never match)."""
+    try:
+        data = read_json(path)
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Invalid dirty IDs file {path}: not valid JSON ({e})") from e
+    if (not isinstance(data, list)
+            or not all(isinstance(x, int) and not isinstance(x, bool) for x in data)):
+        raise ValueError(f"Invalid dirty IDs file {path}: expected a JSON list of integers")
+    return set(data)
+
+
 class IncrementalWriter:
+    """Resumable, per-body results writer with dirty-ID propagation.
+
+    Dirty-state rules (per instance). U = upstream dirty IDs (read once in
+    __init__ via read_dirty_ids; empty if the file is absent), T =
+    {target_public_body} if scoped else empty.
+
+    | Run kind               | Evicted        | Deferred (warned) | Consumed |
+    |------------------------|----------------|-------------------|----------|
+    | Unscoped, not forced   | U              | none              | U        |
+    | Scoped (any force)     | T              | U - T             | U & T    |
+    | Unscoped, forced       | none           | none              | none     |
+
+    Caveat: a forced run with target_key set still evicts upstream-dirty keys.
+
+    After finalize(): own dirty file = previous_own | dirty_body_ids | consumed
+    (accumulates; written first). Upstream file = U - consumed, rewritten only
+    if U was non-empty and the path is not the own dirty file. Never removes
+    IDs that were not in U. Corrupt dirty files raise ValueError.
+
+    Single-consumer invariant: each dirty_ids.json is drained by exactly one
+    consumer (the next step, via upstream_dirty_path). Two readers of one file
+    means the first to finalize drains it for both.
+    """
     def __init__(self, output_path, step_name, key_field="public_body_id",
                  force=False, override_path=None, upstream_dirty_path=None,
                  target_public_body=None, target_key=None):
@@ -48,6 +87,7 @@ class IncrementalWriter:
         self.results = []
         self.processed_keys = set()
         self.dirty_body_ids = set()
+        self._force = force
 
         if ((not force or target_public_body is not None or target_key is not None)
                 and self.output_path.exists()):
@@ -59,11 +99,36 @@ class IncrementalWriter:
                 self.results = []
                 self.processed_keys = set()
 
-        if upstream_dirty_path and Path(upstream_dirty_path).exists():
-            self._evict_upstream_dirty(Path(upstream_dirty_path))
+        self._upstream_dirty_path = Path(upstream_dirty_path) if upstream_dirty_path else None
+        self._upstream_dirty_ids: set = set()
+        self.deferred_dirty_body_ids: set = set()
+        if self._upstream_dirty_path is not None and self._upstream_dirty_path.exists():
+            self._upstream_dirty_ids = read_dirty_ids(self._upstream_dirty_path)
 
         if target_public_body is not None:
+            # Scoped run: only the target is reprocessed; other upstream-dirty
+            # bodies are deferred (left pending) rather than evicted.
+            self.deferred_dirty_body_ids = self._upstream_dirty_ids - {target_public_body}
+            # (U ∩ {target} is a subset of the target eviction below.)
+            if self.deferred_dirty_body_ids:
+                print(
+                    f"Scoped: deferred {len(self.deferred_dirty_body_ids)} upstream-dirty "
+                    f"body ID(s) (not evicted): "
+                    f"{', '.join(str(k) for k in sorted(self.deferred_dirty_body_ids))}"
+                )
             self._evict_keys({target_public_body})
+        else:
+            self._evict_keys(self._upstream_dirty_ids)
+
+        # IDs this run takes responsibility for: they are removed from the
+        # upstream file and added to our own at finalize(), even if we held
+        # no records for them (so a crash after append() still cascades).
+        if target_public_body is not None:
+            self._consumed_upstream_ids: set = self._upstream_dirty_ids & {target_public_body}
+        elif force:
+            self._consumed_upstream_ids = set()
+        else:
+            self._consumed_upstream_ids = set(self._upstream_dirty_ids)
 
         if target_key is not None:
             # Scoped re-run of one key_field value (e.g. --doc): drop that
@@ -81,9 +146,6 @@ class IncrementalWriter:
 
         if override_path and Path(override_path).exists():
             self._load_overrides(Path(override_path))
-
-    def _evict_upstream_dirty(self, dirty_path):
-        self._evict_keys(set(read_json(dirty_path)))
 
     def _evict_keys(self, body_ids: set):
         """Remove all records whose public_body_id is in body_ids from
@@ -181,6 +243,12 @@ class IncrementalWriter:
         print(".", end="", flush=True)
 
     def finalize(self) -> int:
+        # Single-consumer invariant: each dirty_ids.json is drained by exactly
+        # one consumer (the next step, via --input). If two steps read the same
+        # upstream file, the first to finalize drains it for both.
+        own_path = self.output_path.parent / "dirty_ids.json"
+        # Validate before any write so a corrupt file never gets overwritten.
+        previous_own = read_dirty_ids(own_path) if own_path.exists() else set()
         write_json(
             self.output_path,
             {
@@ -191,7 +259,21 @@ class IncrementalWriter:
                 "results": self.results,
             },
         )
-        write_json(self.output_path.parent / "dirty_ids.json", sorted(self.dirty_body_ids))
+        write_json(own_path, sorted(previous_own | self.dirty_body_ids | self._consumed_upstream_ids))
+        up = self._upstream_dirty_path
+        if self._upstream_dirty_ids and up is not None:
+            if up.resolve() == own_path.resolve():
+                print("Dirty: upstream file is this step's own file; not consuming")
+            else:
+                write_json(up, sorted(self._upstream_dirty_ids - self._consumed_upstream_ids))
+        if self.deferred_dirty_body_ids:
+            ids = sorted(self.deferred_dirty_body_ids)
+            print(
+                f"WARNING: {self.step_name}: {len(ids)} upstream-dirty body ID(s) "
+                f"deferred by this scoped run: {ids}. A later unscoped run may skip "
+                f"this step as up to date; drain them with: "
+                f"process.py --from {self.step_name} --stop-on-error"
+            )
         print()
         return len(self.results)
 

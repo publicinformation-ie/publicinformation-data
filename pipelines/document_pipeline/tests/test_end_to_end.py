@@ -39,7 +39,7 @@ while not (REPO_ROOT / ".git").exists():
 PIPELINE_SRC = REPO_ROOT / "pipelines" / "document_pipeline"
 FIXTURE_PDF = PIPELINE_SRC / "tests" / "fixtures" / "fixture.pdf"
 
-STEPS = ("fetch_pdfs", "extract_pages", "detect_structure", "extract_figures",
+STEPS = ("fetch_pdfs", "extract_pages", "ocr_pages", "detect_structure", "extract_figures",
          "clean_text", "extract_actions", "assemble_sections", "publish_bundles")
 
 DOC_SLUG = "fixture-doc"
@@ -101,7 +101,8 @@ def fixture_run(tmp_path_factory):
            "PYTHONPATH": f"{pipeline_copy}{os.pathsep}{REPO_ROOT / 'src'}"}
 
     prev_out = None
-    input_steps = {"extract_figures": "extract_pages", "clean_text": "extract_pages",
+    input_steps = {"detect_structure": "extract_pages", "extract_figures": "extract_pages",
+                   "clean_text": "ocr_pages",
                    "assemble_sections": "clean_text"}
     for step in STEPS:
         step_dir = steps_dir / step

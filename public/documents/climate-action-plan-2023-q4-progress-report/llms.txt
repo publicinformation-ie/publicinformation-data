@@ -1,0 +1,29 @@
+# Climate Action Plan Progress Report Q4 2023
+
+> Department of the Taoiseach — 8 chapters, 13 sections, 32 source pages.
+> Source: https://assets.gov.ie/static/documents/climate-action-plan-2023-fourth-progress-report-q4-2023.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–2
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–2
+- [1 Executive Summary](sections/1-executive-summary/) — pages 3–11
+  - [1 Executive Summary](sections/1-executive-summary/overview.md) — pages 3–3
+  - [1.1 Climate change news and activity in Q4 2023](sections/1-executive-summary/1-1-climate-change-news-and-activity-in-q4-2023.md) — pages 4–6
+  - [1.2 Overview of delivery in Q4 2023](sections/1-executive-summary/1-2-overview-of-delivery-in-q4-2023.md) — pages 6–7
+  - [1.2.1 Sectoral actions completed and delayed in Q4 2023](sections/1-executive-summary/1-2-1-sectoral-actions-completed-and-delayed-in-q4-2023.md) — pages 8–9
+  - [1.2.2 Cross-cutting actions completed and delayed in Q4 2023](sections/1-executive-summary/1-2-2-cross-cutting-actions-completed-and-delayed-in-q4-2023.md) — pages 9–10
+  - [1.3 Overcoming delays to climate action delivery](sections/1-executive-summary/1-3-overcoming-delays-to-climate-action-delivery.md) — pages 10–11
+- [2 Agriculture](sections/2-agriculture/) — pages 12–15
+  - [2 Agriculture](sections/2-agriculture/overview.md) — pages 12–15
+- [3 Transport](sections/3-transport/) — pages 16–18
+  - [3 Transport](sections/3-transport/overview.md) — pages 16–18
+- [4 Electricity](sections/4-electricity/) — pages 19–22
+  - [4 Electricity](sections/4-electricity/overview.md) — pages 19–22
+- [5 Buildings](sections/5-buildings/) — pages 23–26
+  - [5 Buildings](sections/5-buildings/overview.md) — pages 23–26
+- [6 Land Use, Land Use Change and Forestry](sections/6-land-use-land-use-change-and-forestry/) — pages 27–29
+  - [6 Land Use, Land Use Change and Forestry](sections/6-land-use-land-use-change-and-forestry/overview.md) — pages 27–29
+- [7 Industry](sections/7-industry/) — pages 30–32
+  - [7 Industry](sections/7-industry/overview.md) — pages 30–32

@@ -37,6 +37,18 @@ python scripts/audit_disclosures.py --min-errors 5
 
 Use this instead of `file_issues.py` when you want to check the DB as actually exported/deployed, rather than the pipeline's intermediate step artifacts.
 
+## audit_body_hierarchy.py
+
+Checks the published public-bodies hierarchy (`public/latest/public-bodies/public-bodies.jsonld`): dangling parents, self-parents and parent cycles (hard), parent/child sponsoring-department mismatches (soft), and state-group bodies missing a `parent_id` (info). See [docs/body-hierarchy.md](../docs/body-hierarchy.md).
+
+### Usage
+
+```bash
+uv run python scripts/audit_body_hierarchy.py
+uv run python scripts/audit_body_hierarchy.py --json
+uv run python scripts/audit_body_hierarchy.py --check   # exit 1 only on hard findings
+```
+
 ## migrate_foi_ids_to_cso.py
 
 One-time, idempotent migration that remaps all FOI/disclosure data onto the canonical CSO `public_body_id` namespace.
@@ -163,4 +175,16 @@ extract_disclosures_normalize_rows      100% SUCCESS
 extract_disclosures_canonicalize       100% SUCCESS
 extract_disclosures_canonicalize_rows   100% SUCCESS
 extract_disclosures_deduplicate        100% SUCCESS
+```
+
+## audit_text_artefacts.py
+
+Scans the resolved `public-body-actions` data (`pipelines/actions_pipeline/steps/resolve_action_identity/output.json`) for confirmed PDF text-extraction artefacts using `lib.text_repairs` (`find_repairs` for mapped artefacts, `find_suspicious` for a review list of unmapped look-alikes). Clean fields (`action_text_clean`, `original_deadline_milestones`, `progress_text_clean`) must contain no mapped artefact and must be present; raw-only fields (`original_deadline_raw`, `original_timeline_raw`, `reported_deadline_raw`, `lead`, `support`, `output`) report artefacts as `flagged` and never fail.
+
+### Usage
+
+```bash
+uv run python scripts/audit_text_artefacts.py            # summary
+uv run python scripts/audit_text_artefacts.py --json     # full report
+uv run python scripts/audit_text_artefacts.py --check    # exit 1 on clean-field residue
 ```

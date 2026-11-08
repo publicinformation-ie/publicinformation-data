@@ -61,7 +61,7 @@ OVERRIDE_FILENAME = "override.json"
 HEADING_RE = re.compile(r"^(\d{1,2})(?:\.(\d{1,2}))?(?:\.(\d{1,2}))?\s+(\S.*)$")
 # Up to four levels (1.2.3.4). The lookahead stops a deeper number being split
 # mid-number into a digit-led title (`11.7.2` + `1 Craft…`).
-NUMBER_PREFIX_RE = re.compile(r"^(\d{1,2}(?:\.\d{1,2}){0,3})(?!\.?\d)[.\s]+(\S.*)$")
+NUMBER_PREFIX_RE = re.compile(r"^(\d{1,2}(?:\.\d{1,2}){0,3})(?!\.?\d)(?:[.\s]+|(?=[A-Z][a-z]))(\S.*)$")
 _BOLD_RE = re.compile(r"bold|black|heavy|semib|\bhebo\b|\bcobo\b|\btibo\b", re.IGNORECASE)
 _NON_SLUG_RE = re.compile(r"[^a-z0-9]+")
 
@@ -550,8 +550,10 @@ def from_numbering(pages: list, body: float, skip_pages=frozenset()) -> list:
             if follow is not None and not HEADING_RE.match(lines[follow].text):
                 title = f"{title} {lines[follow].text}"
             title = clean_title(title)
+            # A lowercase start is a wrapped sentence that happens to begin
+            # with a number (`26 weather events. The Q4 ...`), not a heading.
             if (len(title) > MAX_TITLE_CHARS or _looks_like_a_sentence(title)
-                    or not is_heading_candidate(title)):
+                    or title[:1].islower() or not is_heading_candidate(title)):
                 continue
             parts = [g for g in match.groups()[:3] if g]
             nodes.append(_make(len(parts), ".".join(parts), title, line.page, line.y0,
