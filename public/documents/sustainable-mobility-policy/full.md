@@ -6,7 +6,7 @@ Source: https://assets.gov.ie/static/documents/sustainable-mobility-policy.pdf
 
 ### Front Matter
 
-*Pages 1–6*
+*Pages 1–7*
 
 National Sustainable Mobility Policy
 
@@ -55,7 +55,7 @@ National Sustainable Mobility Policy | Table of Contents
 | Stakeholder engagement 53 |  |
 | National Transport Authority Advisory Council 53 |  |
 | Research 55 |  |
-| Chapter 6 - Principle 3: Betet r Integrated Mobility | 56 |
+| Chapter 6 - Principle 3: Better Integrated Mobility | 56 |
 | Introduction 57 |  |
 | Integration of land use and transport planning 58 |  |
 | Smart mobility 62 |  |
@@ -63,113 +63,131 @@ National Sustainable Mobility Policy | Table of Contents
 
 National Sustainable Mobility Policy | Foreword
 
-## 1
+#### Foreword
 
-### 1
+The National Sustainable Mobility Policy provides an opportunity to change our daily travel choices by making it easier for people to travel by more sustainable modes – be that walking, cycling or public transport. The Policy aims to support this modal shift between now and 2030, through infrastructure and service improvements, as well as demand management and behavioural change measures. This is with a view to encouraging healthier mobility choices, relieving traffic congestion, improving urban environments and helping to tackle the climate crisis.
 
-*Pages 9–10*
+in rural areas and that a ‘one-size fits all’ approach won’t work.
 
-Introduction
+Increased funding under the National Development Plan will allow us to improve and expand walking, cycling and public transport options across the country to enable access to education, health care, work, cultural and public life by sustainable modes of travel. This will include commencing delivery of BusConnects programmes in our five cities, DART+ and Metrolink in Dublin along with increased investment in the inter-urban and regional rail network. This will be complemented by expanded public transport services, including in regional and rural areas under the Connecting Ireland programme.
 
-National Sustainable Mobility Policy | Introduction
+We have made a commitment to a 51% reduction in our carbon emissions by 2030 and to reach net zero by 2050. To garner permanent reductions in our emissions we must make changes in our everyday life to sustainable behaviours. This Policy has been developed to help us make those changes and, alongside the Climate Action Plan, will put in place measures to enable and encourage greater use of sustainable mobility and reduce private car journeys.
 
-### Introduction
+This Policy also supports better integration of land use and transport planning through a transportorientated housing development approach. We can no longer afford to build communities that are predicated on car ownership. Better integrated planning will allow for a more effective public transport system, empowering people to move away from car dependency.
 
-*Pages 10–19*
+A collaborative approach has been taken by the Department in developing the Policy through public consultation and extensive stakeholder and cross-government engagement. It is aligned with international best practice and supports the strategic outcomes of the National Planning Framework particularly in relation to decarbonisation, compact growth and better balanced regional development.
+
+Improving sustainable mobility options is not enough. There is also a need to implement demand management and behavioural change measures to manage daily travel demand more efficiently and reduce journeys taken by private car.
+
+The establishment of a Leadership Group, chaired by the Department of Transport and overseen by the Cabinet Committee on the Environment and Climate Change, will ensure that there is a strong implementation structure to drive delivery of the Policy and accompanying action plan. We will review and update the action plan in 2025 to ensure that we continue to focus on the right measures to make walking, cycling and public transport the preferred option for as many people as possible.
+
+Our three principles of safe and green mobility; people focused mobility; and better integrated mobility will guide the delivery of sustainable mobility policy over the coming decade. We need to support a switch away from private car journeys and bring life back to our city and town centres. In urban areas in particular, the focus will be on the sustainable movement of people rather than the movement of the private car. We also recognise the need to improve sustainable mobility options
+
+Eamon Ryan TD, Minister for Transport
+
+Hildegarde Naughton TD, Minister of State at the Department of Transport with special responsibility for International and Road Transport and Logistics
+
+National Sustainable Mobility Policy | Summary
+
+#### Summary
+
+## Purpose of Policy
+
+### Purpose of Policy
+
+*Pages 7–7*
 
 Purpose of Policy
 
-This National Sustainable Mobility Policy sets outs a framework to 2030 for active travel and public transport to support Ireland’s overall requirement to achieve a 51% reduction in greenhouse gas emissions by 2030. Transport is responsible for around 18% of our greenhouse gas emissions and it is vital that by 2030 we put in place the infrastructure, services and measures that enable and encourage more people to make the switch to more sustainable modes of travel.
+MTo set out a strategic framework to 2030 for active travel and public transport
 
-changes are forecast over this decade. Ireland has a growing population and an expanding workforce, and we need to cater for this growth in a sustainable manner.
+to support Ireland’s overall requirement to achieve a 51% reduction in carbon emissions by the end of this decade.
 
-What is Sustainable Mobility?
+## Targets
 
-The Policy forms part of Ireland’s climate action agenda with a number of complementary actions in the Climate Action Plan 2021, including actions focused on decarbonising the public transport fleet and enhancements across active travel and public transport. This Policy is primarily focused on measures to promote and facilitate active travel and public transport for all and, in doing so, encourage less private car usage nationally and particularly to, from, and within our towns and cities. The Climate Action Plan 2021 sets out additional measures to promote other complementary transport mitigation measures such as the switch over to electric car usage and greater use of renewable fuels for transport. The cumulative impact of all these measures will provide for a greener, cleaner transport system in Ireland.
+### Targets
 
-Connecting people and places in a sustainable way by supporting:
+*Pages 7–7*
 
-MSafe, accessible, comfortable and
+Targets
 
-affordable journeys to and from home, work, education, shops and leisure.
+MTo deliver at least 500,000 additional daily active travel and public transport
 
-MTravel by cleaner and greener public
+journeys and a 10% reduction in kilometres driven by fossil fuelled cars by 2030 in line with metrics for transport set out in the Climate Action Plan 20211.
 
-transport.
+We will support Safe and Green Mobility by
 
-MA shift away from the private car to
+MContinuing to protect and maintain the
 
-greater use of active travel and public transport.
+MImproving rail infrastructure in
 
-What is Active Travel?
+safety of existing walking, cycling and public transport networks and ensuring that new sustainable mobility infrastructure meets the highest safety standards.
 
-However, promoting safe, green and more sustainable mobility is not just critical to meeting our climate change commitments, it also provides an opportunity to reorientate communities across the country so that they become more people focused, liveable places. Improved walking, cycling and public transport infrastructure and services can improve citizens’ health and well-being, boost quality of life and enable economic growth. As such, the Policy also aligns closely with wider commitments in relation to the UN Sustainable Development Goals and Public Sector Duty2.
+the five cities.
 
-Walking, wheeling, or cycling as a means of transport in order to get to a particular destination such as work, the shops or to visit family or friends. Active travel can be for complete journeys or parts of a journey.
+MImproving journey times and reliability on
 
-The Policy builds on and replaces existing active travel and public transport policy as set out in the 2009 policy documents - Smarter Travel: A Sustainable Transport Future and the National Cycle Policy Framework. A lot has changed since those policies were published and further
+the inter-urban and regional rail network.
 
-Better integration of transport and housing development can also support the Government’s ambition in the area of housing delivery.
+MExpanding electrification of the rail network
 
-2 www.ihrec.ie/our-work/public-sector-duty/
+MContinuing measures to address safety
 
-National Sustainable Mobility Policy | Introduction
+in the Greater Dublin Area under the DART+ programme.
 
-Transport-orientated development can unlock the potential of lands for large-scale housing delivery and maximise the value of our existing transport hubs. In addition, the construction of public transport infrastructure either in advance of, or parallel with, significant new housing development has been found to be an important driver of modal shift internationally which supports realisation of our climate change commitments.
+issues when travelling on public transport.
 
-It is important to note that improved sustainable mobility is not solely an urban requirement. We need to improve active travel and public transport in rural areas as well, acknowledging the differing features between urban and rural areas and cognisant that tailored solutions are required to deliver the fundamental change required in the nature of transport in Ireland.
+MCommencing construction of MetroLink in
 
-![Figure 1: Benefits of Sustainable Mobility](assets/p011-f01.webp)
+MDeveloping pedestrian enhancement
 
-*Figure 1: Benefits of Sustainable Mobility*
+Dublin.
 
-Social
+plans and cycle network plans to guide investment in new active travel infrastructure and retrofitting of existing infrastructure.
 
-Environmental
+MContinuing the design and development
 
-�Reduces levels of social isolation
+of other light rail projects in the Greater Dublin Area and Cork, and considering the feasibility of light rail in Galway.
 
-�Reduces greenhouse gas emissions
+MExpanding walking and cycling options
 
-�Supports connected and liveable communities
+MRebalancing transport movement in
 
-�Improves air quality
+across the country, including greenways.
 
-�Enables equitable access to services and amenities
+metropolitan areas and other urban centres away from the private car and towards active travel and public transport.
 
-�Reduces noise pollution
+MRolling out the Safe Routes to School
 
-Sustainable
+Programme.
 
-Mobility
+MIdentifying a pathway for the
 
-Economic
+MTransitioning the public transport fleets to
 
-Health and Well-Being
+implementation of suitable demand management measures at national and local level to reduce reliance on the private car.
 
-�Allows more efficient movement of people
+low and zero emission vehicles.
 
-�Increases physical activity levels through active travel
+MExpanding bus capacity and services
 
-�Provides access to employment opportunities
+through the BusConnects Programmes in the five cities of Cork, Dublin, Galway, Limerick and Waterford; improved town bus services; and the Connecting Ireland programme in rural areas.
 
-�Creates safer roads and streets
+MExpanding behavioural change measures
 
-�Reduces traffic congestion
+including the Smarter Travel Workplaces and Campus Programmes and Cycle Right training programme.
 
-National Sustainable Mobility Policy | Introduction
+MDeveloping an enhanced bus stop
 
-Impact of COVID-19 pandemic
+programme for regional and rural services.
 
-The alignment of these remote working hubs with walking and cycling infrastructure has the potential to support the regeneration of towns and the Town Centre First approach.
+1 These metrics were set for sustainable mobility and demand management measures in the Climate Action Plan 2021 and may be subject to revision in further iterations of the plan once sectoral emissions ceilings have been settled.
 
-The COVID-19 pandemic had a major impact on our travel patterns with lifestyles and working practices changing overnight. The introduction of severe travel restrictions and greater remote working in 2020 resulted in significant reductions in private cars on the road, particularly for commuting. Public transport numbers also declined sharply due to capacity restrictions and increased remote working. In parallel, the numbers of people walking and cycling increased as lower traffic on roads and restrictions on longer distance journeys encouraged more people to move around their local area in a different way. These changes in travel patterns are estimated to have resulted in a reduction of just 16%3 in transport emissions for 2020 compared to 2019 levels. This conveys some sense of the scale of the challenge we face in delivering a 51% reduction in transport emissions by 2030.
+## Climate change challenge
 
-It is important however that remote working practices support compact growth in line with the objectives of the National Planning Framework (NPF) and does not lead to increased sprawl to areas which may be difficult to serve with effective sustainable mobility links. International research has found that remote working may not result in overall travel reductions, as it can increase non-commuting trips4, and may, in the long-term reduce the need to live close to work. The OECD has highlighted the importance of land use planning when considering remote working policy5. It considers that careful analysis of regulations for new developments can help avoid the expansion of low-density areas, which makes the development of dense and multi-modal transport networks difficult, and increase travel distances and car dependence.
+### Climate change challenge
 
-The long-term impacts of the pandemic on travel demand are unknown. However, it is likely that increased levels of remote working will remain, which will impact the traditional commuting patterns and possibly change the nature of future travel demand generally. The National Remote Work Strategy, Making Remote Work, aims to make remote working a permanent option for life after the pandemic and commits to make home and remote working the norm for 20% of public sector employees. Continued remote working practices may lead to a reduction in the daytime population of our cities and large towns as fewer workers commute to the main employment centres. Remote working could also impact on settlement patterns as it can facilitate workers across certain industries and sectors to avail of a greater range of locations to live. Making Remote Work commits to further invest in remote work hubs ensuring they are in locations that suit workers and are close to childcare care facilities.
-
-The growth in online retail and the continuation of some form of online teaching for schools and colleges may also impact on aspects of future travel demand. Of course, there are a range of other daily travel needs, beyond commuting, education and retail, which impact on travel demand and which need to be catered for. Continued investment is required in walking, cycling and public transport projects to support localised travel and/or provide connectivity to citizens wishing to undertake a wide range of daily activities.
+*Pages 12–12*
 
 Climate change challenge
 
@@ -181,115 +199,11 @@ Climate change is recognised as the world’s foremost challenge. In line with E
 
 5 www.oecd.org/environment/transport-strategies-for-net-zero-systems-by-design-0a20f779-en.htm
 
-National Sustainable Mobility Policy | Introduction
+## Transport trends
 
-Irish greenhouse gas emissions attributable to transport6, the sector must play a key role in Ireland’s decarbonisation efforts. Road transport accounted for 94% of transport emissions in 2020 and is directly responsible for a range of air pollutants that negatively impact both human health and the environment. Transport can contribute to increased levels of noise, collisions and congestion which in turn can reduce quality of life, deter active travel, and cost society hundreds of millions of euro per year in unproductive time.
+### Transport trends
 
-Our policy approach to achieve a more sustainable transport sector is based on the Avoid-Shift-Improve principle and implementing measures to:
-
-MAvoid: Reduce the frequency and distance of
-
-trips.
-
-MShift: Move towards more environmentally
-
-friendly modes of transport, such as walking, cycling or using public transport.
-
-MImprove: Promoting efficient fuel and vehicle
-
-technologies.
-
-Private car use remains the dominant mode of transport, accounting for about 54% of road transport emissions in 2020. Emissions from the transport sector increased by 13% between 2012 and 2019 with emissions from road transport driving this growth. The transport sector tends to grow or reduce in line with economic growth. As the Irish economy has grown in recent years, transport use and emissions have increased as well, and we need to break the link between economic growth and increased car use.
-
-We need to step up this approach if we are to address our climate change challenge and meet our ambitious targets. The challenge is such that only fundamental change in the nature of transport can achieve our 51% target by 2030. Increasing active travel infrastructure provision, expanding public transport capacity and services - including transitioning to low and zero emission fleets, and implementing behavioural change and demand management measures are all required to help meet our challenging target.
-
-![Figure 2: Climate statistics and targets](assets/p013-f01.webp)
-
-*Figure 2: Climate statistics and targets*
-
-Road Transport18% Transport94%
-
-Total GHG
-
-Total Transport
-
-51% reduction
-
-Emissions
-
-Emissions
-
-by 2030
-
-6 www.epa.ie/publications/monitoring--assessment/climate-change/air-emissions/Irelands-Provisional-Greenhouse-Gas-Emissionsreport-1990-2020_finalv2.pdf
-
-National Sustainable Mobility Policy | Introduction
-
-![Figure 3: Avoid-Shift-Improve Principle](assets/p014-f01.webp)
-
-*Figure 3: Avoid-Shift-Improve Principle*
-
-![Figure from page 14](assets/p014-f02.webp)
-
-*Figure from page 14*
-
-![Figure from page 14](assets/p014-f03.webp)
-
-*Figure from page 14*
-
-Improve Avoid Shift
-
-Improve the energy efficiency
-
-Reduce or avoid
-
-Shift to more environmentally
-
-the need for
-
-of vehicle technology
-
-travel
-
-friendly modes
-
-Vehicle efficiency, clean fuels
-
-Public transport, Land-use planning
-
-active travel
-
-Population trends
-
-The population of Ireland is projected to reach 5.7 million by 2040 from an estimated 5 million in 2021, with a projected need for at least 550,000 more homes and an economy supporting around 660,000 additional jobs. The NPF sets out targets to manage this population growth in a more balanced way across our three regions – Eastern and Midland; Northern and Western; and Southern - and our five cities of Cork, Dublin, Galway, Limerick and Waterford.
-
-What is transportorientated development?
-
-7
-
-Transport-orientated development is a form of urban development that seeks to maximise the provision of housing, employment, public services and leisure space in close proximity to frequent, highquality transport services. It is a form of development that is friendlier to public transport users, cyclists and pedestrians, and seeks to convert car trips to public and active transport trips. This in turn improves mobility and environmental conditions, and delivers more efficient and sustainable urban development.
-
-The NPF recognises that significant investment is required in both active travel and public transport if these targets are to be achieved. As well as supporting the future growth of Dublin, the NPF sets ambitious growth targets for the four cities of Cork, Galway, Limerick and Waterford to ensure that they grow at twice the pace of Dublin. Improved sustainable mobility within the cities can act as a key growth enabler and support a better quality of life for all, as well as supporting the delivery of housing through a transportorientated development approach.
-
-7 www.nesc.ie/work-programme/land-use-land-value-urban-development/transport-oriented-development/
-
-National Sustainable Mobility Policy | Introduction
-
-Outside of the five cities, the NPF targets 50% of sustainable growth in the regional centres (Athlone, Drogheda, Dundalk, Letterkenny, and Sligo), towns, villages and rural areas. Around 37%8 of Ireland’s population live in rural areas which play a key role in defining national identity, in supporting our economy, and our high-quality environment. The Central Statistics Office (CSO) defines a settlement of fewer than 1,500 people as rural. The NPF recognises the positive impact improved and connected sustainable mobility options can have on rural communities, particularly for older people living in more remote areas.
-
-even before the COVID-19 pandemic, commuting to work represented less than 25% of all trips. In the context of our climate challenge, it is clear therefore that we need to focus on how best to meet citizens' travel needs across the day and for a wide range of reasons. This changed emphasis may in turn require new ways of looking at how, when and where we provide public transport services. It is important to note that the NTS does not include all journeys of the whole student population as the survey only samples persons aged 18 years and over. However, it includes companion journeys which may involve journeys to collect or escort somebody to their place of education.
-
-As well as breaking the link between economic growth and car use, we need to break the link between increased transport emissions and travel demand from our growing population. To meet our climate change targets, we need our transport emissions to reduce at a rate that is higher than the increase in travel demand.
-
-![Figure 4: Why we travel](assets/p015-f01.webp)
-
-*Figure 4: Why we travel*
-
-We also have an ageing and diverse population. Along with supporting the NPF growth targets, we must ensure that sustainable mobility options meet the needs of all sectors of our society and are accessible to everyone regardless of ability, age, ethnicity, gender, income and sexuality.
-
-Total Transport
-
-Emissions
+*Pages 15–17*
 
 Transport trends
 
@@ -375,6 +289,12 @@ A new annual NHTS will be developed by the NTA, building on their experience gai
 
 When Smarter Travel was published in 2009, Ireland was undergoing an economic and financial crisis. As a result, funding for relevant capital investment in sustainable mobility infrastructure was reduced by almost 60% between 2009 and 2013 which obviously impacted delivery in the earlier stages of the policy. Funding did increase in 2014; however, it was not until the 2018 National Development Plan that sustained yearon-year increases were restored.
 
+## Lessons learnt
+
+### Lessons learnt
+
+*Pages 17–18*
+
 Lessons learnt
 
 An Environmental Performance Review11 of Ireland was carried out by the OECD in 2021 to assess our progress towards our environmental and sustainable development objectives and to make policy recommendations to improve our performance. The Department of Transport requested the OECD include a special chapter on sustainable mobility to provide an international perspective and assist with the review of sustainable mobility policy generally. The OECD review concluded that mobility patterns and trends in Ireland are a source of rising environmental pressures. It recommended better enforcement of planning regulations to ensure that all developments promote settlements with easy access to transport links and include a network of safe walking and cycling routes. The review also considered that better incentives are needed to manage travel demand.
@@ -392,6 +312,12 @@ intermediate focus established through the development of the action (implementa
 in the future. Informed by these discussions, the Department of Transport developed a comprehensive set of background papers across a range of themes which were then published as part of the public consultation process launched in end 2019. A further stakeholder engagement event was held at that time along with engagement with the members of the three regional assemblies.
 
 Over 250 submissions across a broad range of themes were received as part of the public consultation process from people and organisations in the public, private and non-profit sectors.
+
+## How the Policy was developed
+
+### How the Policy was developed
+
+*Pages 18–20*
 
 How the Policy was developed
 
@@ -429,211 +355,21 @@ nStatistics 1%
 
 CHAPTER
 
-## Foreword
-
-### Foreword
-
-*Pages 6–7*
-
-The National Sustainable Mobility Policy provides an opportunity to change our daily travel choices by making it easier for people to travel by more sustainable modes – be that walking, cycling or public transport. The Policy aims to support this modal shift between now and 2030, through infrastructure and service improvements, as well as demand management and behavioural change measures. This is with a view to encouraging healthier mobility choices, relieving traffic congestion, improving urban environments and helping to tackle the climate crisis.
-
-in rural areas and that a ‘one-size fits all’ approach won’t work.
-
-Increased funding under the National Development Plan will allow us to improve and expand walking, cycling and public transport options across the country to enable access to education, health care, work, cultural and public life by sustainable modes of travel. This will include commencing delivery of BusConnects programmes in our five cities, DART+ and Metrolink in Dublin along with increased investment in the inter-urban and regional rail network. This will be complemented by expanded public transport services, including in regional and rural areas under the Connecting Ireland programme.
-
-We have made a commitment to a 51% reduction in our carbon emissions by 2030 and to reach net zero by 2050. To garner permanent reductions in our emissions we must make changes in our everyday life to sustainable behaviours. This Policy has been developed to help us make those changes and, alongside the Climate Action Plan, will put in place measures to enable and encourage greater use of sustainable mobility and reduce private car journeys.
-
-This Policy also supports better integration of land use and transport planning through a transportorientated housing development approach. We can no longer afford to build communities that are predicated on car ownership. Better integrated planning will allow for a more effective public transport system, empowering people to move away from car dependency.
-
-A collaborative approach has been taken by the Department in developing the Policy through public consultation and extensive stakeholder and cross-government engagement. It is aligned with international best practice and supports the strategic outcomes of the National Planning Framework particularly in relation to decarbonisation, compact growth and better balanced regional development.
-
-Improving sustainable mobility options is not enough. There is also a need to implement demand management and behavioural change measures to manage daily travel demand more efficiently and reduce journeys taken by private car.
-
-The establishment of a Leadership Group, chaired by the Department of Transport and overseen by the Cabinet Committee on the Environment and Climate Change, will ensure that there is a strong implementation structure to drive delivery of the Policy and accompanying action plan. We will review and update the action plan in 2025 to ensure that we continue to focus on the right measures to make walking, cycling and public transport the preferred option for as many people as possible.
-
-Our three principles of safe and green mobility; people focused mobility; and better integrated mobility will guide the delivery of sustainable mobility policy over the coming decade. We need to support a switch away from private car journeys and bring life back to our city and town centres. In urban areas in particular, the focus will be on the sustainable movement of people rather than the movement of the private car. We also recognise the need to improve sustainable mobility options
-
-Eamon Ryan TD, Minister for Transport
-
-Hildegarde Naughton TD, Minister of State at the Department of Transport with special responsibility for International and Road Transport and Logistics
-
-National Sustainable Mobility Policy | Summary
-
-## Summary
-
-### Summary
-
-*Pages 7–9*
-
-Purpose of Policy
-
-MTo set out a strategic framework to 2030 for active travel and public transport
-
-to support Ireland’s overall requirement to achieve a 51% reduction in carbon emissions by the end of this decade.
-
-Targets
-
-MTo deliver at least 500,000 additional daily active travel and public transport
-
-journeys and a 10% reduction in kilometres driven by fossil fuelled cars by 2030 in line with metrics for transport set out in the Climate Action Plan 20211.
-
-We will support Safe and Green Mobility by
-
-MContinuing to protect and maintain the
-
-MImproving rail infrastructure in
-
-safety of existing walking, cycling and public transport networks and ensuring that new sustainable mobility infrastructure meets the highest safety standards.
-
-the five cities.
-
-MImproving journey times and reliability on
-
-the inter-urban and regional rail network.
-
-MExpanding electrification of the rail network
-
-MContinuing measures to address safety
-
-in the Greater Dublin Area under the DART+ programme.
-
-issues when travelling on public transport.
-
-MCommencing construction of MetroLink in
-
-MDeveloping pedestrian enhancement
-
-Dublin.
-
-plans and cycle network plans to guide investment in new active travel infrastructure and retrofitting of existing infrastructure.
-
-MContinuing the design and development
-
-of other light rail projects in the Greater Dublin Area and Cork, and considering the feasibility of light rail in Galway.
-
-MExpanding walking and cycling options
-
-MRebalancing transport movement in
-
-across the country, including greenways.
-
-metropolitan areas and other urban centres away from the private car and towards active travel and public transport.
-
-MRolling out the Safe Routes to School
-
-Programme.
-
-MIdentifying a pathway for the
-
-MTransitioning the public transport fleets to
-
-implementation of suitable demand management measures at national and local level to reduce reliance on the private car.
-
-low and zero emission vehicles.
-
-MExpanding bus capacity and services
-
-through the BusConnects Programmes in the five cities of Cork, Dublin, Galway, Limerick and Waterford; improved town bus services; and the Connecting Ireland programme in rural areas.
-
-MExpanding behavioural change measures
-
-including the Smarter Travel Workplaces and Campus Programmes and Cycle Right training programme.
-
-MDeveloping an enhanced bus stop
-
-programme for regional and rural services.
-
-1 These metrics were set for sustainable mobility and demand management measures in the Climate Action Plan 2021 and may be subject to revision in further iterations of the plan once sectoral emissions ceilings have been settled.
-
-National Sustainable Mobility Policy | Summary
-
-We will support People Focused Mobility by
-
-We will support Better Integrated Mobility by
-
-MContinuing to make existing and new
-
-MAdopting a transport-orientated housing
-
-walking, cycling and public transport networks more accessible for all users.
-
-development approach.
-
-MIdentifying housing delivery areas within
-
-MImplementing a universal design
-
-a 1 km distance of public transport stops with the best potential to grow.
-
-approach in the design of walking, cycling and public transport infrastructure and in the retrofitting of older infrastructure.
-
-MDelivering metropolitan area transport
-
-strategies in the five cities and preparing local transport plans for the regional growth centres and key towns.
-
-MIntroducing a more equitable fares
-
-structure.
-
-MExpanding the transport planning remit
-
-MReviewing, updating and developing
-
-of the National Transport Authority (NTA) to all of the five cities.
-
-existing guidelines, standards and supporting legislation, where necessary, to allow for a range of solutions to be developed for the reallocation of road space use to prioritise walking, cycling and public transport.
-
-MDeveloping a governance framework for
-
-Mobility as a Service (MaaS).
-
-The Policy aims to improve the Delivery of Sustainable Mobility by
-
-MImplementing the accompanying action plan to 2025 and a reviewed and updated
-
-action plan for 2026 to 2030.
-
-MEstablishing a Leadership Group to oversee and drive implementation of the Policy and delivery
-
-of the action plan, and agree a programme of “pathfinder” projects at local level.
-
-MIntroducing a new annual National Household Travel Survey to measure progress against the
-
-Policy’s targets.
-
-MConvening a new National Sustainable Mobility Forum to provide a platform for collaborative
-
-engagement with national, regional and local stakeholders.
-
-MIncreasing public engagement around the benefits of sustainable mobility and raising awareness
-
-of the availability of alternative options to the private car.
-
-MEstablishing a new National Transport Authority Advisory Council to engage with the NTA
-
-around the discharge of its functions.
-
-MDeveloping a transport research network to support existing research programmes and draw on
-
-the sustainable mobility expertise available across academia and industry, both in Ireland and internationally.
-
-CHAPTER
-
 ## 2
-
-### 2
-
-*Pages 19–20*
 
 Alignment with existing policies
 
 National Sustainable Mobility Policy | Alignment with existing policies
 
-### Introduction
-
-*Pages 20–26*
+#### Introduction
 
 Sustainable mobility policy cannot be considered in isolation given its key role in meeting climate change objectives, supporting housing delivery, as well as its economic, health and social benefits. This Policy has been developed to align with, and complement, other international, European and national policies and frameworks.
+
+## International
+
+### International
+
+*Pages 20–21*
 
 International
 
@@ -687,101 +423,11 @@ The European Commission subsequently launched its Sustainable and Smart Mobility
 
 The European Urban Mobility Framework was launched by the European Commission in 2021 and sets out guidance on how cities can cut emissions and improve mobility, including through sustainable urban mobility plans. The main focus is on public transport, walking and cycling. The proposal also considers zero-emission solutions for urban fleets, including taxis and ride hailing services, the last mile of urban deliveries, and the construction and modernisation of multimodal hubs, as well as new digital solutions and services.
 
-National Sustainable Mobility Policy | Alignment with existing policies
+## Vision
 
-National
+### Vision
 
-the transition to sustainable mobility and meet our climate goals. The NDP will also continue to support the protection and maintenance of the existing road network to ensure the safe and efficient travel of all road users across the country, as well as targeted new road investment to provide for regional connectivity and compact urban growth.
-
-National Planning Framework
-
-The NPF sets out policy on spatial planning over the period to 2040 to accommodate Ireland’s projected demographic changes in a sustainable and balanced way. It identifies ten National Strategic Outcomes (NSOs) built around the overarching themes of well-being, equality and opportunity. Sustainable mobility is a key enabler of a number of these NSOs particularly in relation to NSO 1: Compact Growth; NSO 2: Enhanced Regional Accessibility; NSO 3: Strengthened Rural Economies and Communities; NSO 4: Sustainable Mobility; and NSO 8: Transition to a Low Carbon and Climate Resilient Society.
-
-Climate Action Plan 2021
-
-The Climate Action Plan 2021 charts a course to reduce transport greenhouse gas emissions to meet our commitments to a 51% reduction in emissions by 2030. This equates to an emissions reduction target for the transport sector of 7 million tonnes of CO₂. The plan contains considerably more ambitious measures and actions than its 2019 predecessor reflecting the step change in climate ambition nationally and internationally. The plan, which will be updated annually, recognises that expanding the availability of sustainable mobility to provide meaningful alternative to everyday private car use is necessary to reduce transport emissions. This will require continued and enhanced investment in our walking, cycling and public infrastructure and services across the country on a scale not previously seen. It sets transport target metrics of 500,000 additional active travel and public transport journeys per day and a 10% reduction in kilometres driven by fossil fuelled cars by 2030. The Climate Action Plan will be further revised in 2022 taking account of carbon budgets and associated sectoral ceilings. The associated targets in this Policy will be adjusted once the sectoral emission targets for transport have been settled.
-
-The NPF recognises that the provision of a well-functioning integrated public transport system, enhancing competitiveness, sustaining economic progress and enabling sustainable mobility choices for citizens, supports the overall framework objectives. It includes a number of specific National Policy Objectives around sustainable mobility such as integrating land use and spatial planning to support public transport and transport-orientated development, promoting walking and cycling as more favourable modes of transport to the private car, and prioritising walking and cycling accessibility to both existing and proposed developments.
-
-National Development Plan
-
-The National Development Plan (NDP) 2021-2030 outlines a €165 billion capital investment plan for the decade with a particular focus on priority solutions to strengthen housing, climate ambitions, transport, healthcare, jobs growth and economic renewal. The NDP allocates €35 billion for transport over the ten years which will enable the development of a range of active travel and bus and rail infrastructure over the coming years to facilitate
-
-There are over 70 actions in the transport chapter of the Climate Action Plan from delivering significant enhancements across public transport, active travel and electric vehicle charging infrastructure to developing strategies that will help drive behavioural change away from traditional fossil fuelled private car journeys to healthier, more sustainable mobility options. These actions are reflected in, and complemented by, actions included in this Policy.
-
-National Sustainable Mobility Policy | Alignment with existing policies
-
-Housing for All – A New Housing Plan for Ireland
-
-Town Centre First
-
-Town Centre First – A Policy Approach for Irish Towns was published in 2022 and builds upon and complements a wide range of government policies. It provides a crosscutting and collaborative framework for central government, local authorities, public and private sector stakeholders, and especially communities, to put the health of town centres at the heart of decision-making processes. This will enable a coordinated approach across government to the delivery of commitments for town centre renewal in Ireland in a manner that will be both informed by and supportive of the wider policy framework. Providing citizens with reliable and realistic sustainable mobility options to enable better mobility choices is a key enabler of town centre regeneration.
-
-Housing for All is the Government’s housing plan to 2030 to improve Ireland’s housing system and deliver more homes of all types for people with different housing needs. It is estimated that Ireland will need an average of 33,000 new homes to be provided each year from 2021 to 2030. Sustainable mobility infrastructure and services are a critical enabler of new housing supply and aligning land use planning with transportorientated development can support the delivery of large-scale housing development at key strategic locations.
-
-In order to meet the twin NPF objectives of tackling climate change and delivering more compact growth, Housing for All recognises that there is a need for developments at scale in our cities, particularly close to public transport nodes and where walking and cycling can become the dominant form of mobility within our town centres.
-
-Road Safety Strategy 2021-2030
-
-Underpinning the Road Safety Strategy 2021- 2030 is Ireland’s long-term goal of achieving Vision Zero (zero road deaths or serious injuries) by 2050. Vision Zero was formally adopted in the Programme for Government in 2020 and underpins the EU Road Safety Policy Framework (2021-2030) and the UN’s Second Decade of Action for Road Safety (2021-2030). To ensure this long-term goal is achieved, the Road Safety Strategy sets a target to reduce road deaths and serious injuries by 50% by 2030.
-
-Our Rural Future
-
-Our Rural Future 2021- 2025 is the national rural development policy. It recognises that people living in rural areas should have access to good quality public services that enable them to continue to live sustainably in rural communities and help them to maintain a good quality of life.
-
-Transport services are hugely important for people who live and work in rural Ireland. Improvement and further integration of rural public transport services will enable people to continue to live in rural area and to access work, education and social activities, while development of active travel amenities will bring economic and social benefits to communities.
-
-Seven Safe System priority intervention areas have been identified including safe and healthy modes of travel to promote and protect road users engaging in public transport or active travel. It involves the promotion of safer public transport modes and the promotion and provision of safe road environments for otherwise healthy active modes. This includes walking and cycling where the risks of death and serious injury are higher
-
-National Sustainable Mobility Policy | Alignment with existing policies
-
-than for protected, in-vehicle road users. The strategy’s actions under safe and healthy modes of travel align with the actions in this Policy to maintain and improve our existing sustainable mobility system while also providing a safe space for all road users. A number of actions under other priority intervention areas also complement this Policy’s vision, principles and goals.
-
-The plan recognises the need for interlinking policies and programme implementation in the promotion of physical activity across domains such as health, education, sport, recreational physical activity, transport and environment. It contains 60 actions across eight areas.
-
-Healthy Ireland and the National Physical Activity Plan feed into and play a vital role in the development and promotion of active travel, and supporting the vision, principles and goals of this Policy.
-
-Healthy Ireland: A Framework for Improved Health and Well-being 2013-2025
-
-Strategy for the Future Development of National and Regional Greenways
-
-Healthy Ireland was launched in 2013 as a strategic framework to improve the health and well-being of the nation. The framework is based on international evidence which shows that to create positive change in population health and well-being, a whole of government approach and the buy in of local communities, as well as all of society is required. Healthy Ireland sets out four central goals and outlines actions under six thematic areas.
-
-The Strategy for the Future Development of National and Regional Greenways was published in 2018 and sets out how national and regional greenways in Ireland should be planned and constructed over the following ten years. While the focus is on tourism and leisure amenities, greenways have potential to enable active travel within local communities and many of the routes funded under the strategy will provide safe segregated routes to schools and workplaces.
-
-The Healthy Ireland Strategic Action Plan 2021- 2025 was published in 2021 to take stock of the progress made on the original framework and to provide a detailed roadmap for the remaining years of the framework. The plan contains 56 actions across the six themes which will be implemented using a cross-government approach.
-
-Well-Being Framework
-
-The Well-Being Framework is a Programme for Government commitment to create a set of indicators to support a broader context for policymaking. It is a cross-government initiative that aims to provide a multidimensional approach to understanding what makes for a better quality of life and thereby more connected policymaking. By considering and measuring progress across economic, societal, environmental and health outcomes, it aims to provide a holistic view of whether taken as a whole, things are getting better or worse, our relative performance, whether it is equal across cohorts, and if it is sustainable into the future.
-
-National Physical Activity Plan for Ireland
-
-The National Physical Activity Plan for Ireland was published in 2016 following a commitment in the Healthy Ireland Framework. The key target of the plan is to increase the number of people taking regular exercise by 1% a year over ten years by making exercise a normal part of everyday life and giving people more opportunities to be active. The plan seeks to ensure that no group is disadvantaged and recognises that targeted interventions are required to address and overcome barriers to participation.
-
-National Sustainable Mobility Policy | Alignment with existing policies
-
-The first report on the development of the framework was approved by Government in June 2021. It includes an initial Well-Being Framework and supporting measurements tool – the Well- Being Dashboard – which will be improved over time. It is intended that the Well-Being Framework will be integrated across government policymaking. The overall vision and dimensions of the framework link closely with the vision, principles and goals of this Policy.
-
-private transport. To make best use of our existing assets, protecting and renewing the existing land transport network should, where possible, be the first solution considered. This is followed by maximising the value of the network through optimising its use. Infrastructural investment will then be considered after these two categories have been assessed as inappropriate for the identified problem, with upgrades to existing infrastructure to be considered before outright new infrastructure.
-
-National Investment Framework for Transport in Ireland
-
-The National Investment Framework for Transport in Ireland (NIFTI) is the long-term sectoral strategy for investment in land transport and replaces the 2015 Strategic Investment Framework for Land Transport. Its purpose is to establish the high-level direction and parameters for future investment and ensure that investment is consistent with Government policy. NIFTI is a high-level tool through which project sponsors can align capital transport projects with the NPF. It will guide transport investment to support the delivery of the NPF, enable the Climate Action Plan and promote positive social, environmental and economic outcomes throughout Ireland.
-
-The framework establishes four high-level strategic investment priorities – Decarbonisation; Protection and Renewal; Mobility of People and Goods in Urban Areas; and Enhanced Regional and Rural Connectivity. These priorities are not an either/or scenario. Investment is required in all these areas to support the NPF and Climate Action Plan objectives. The priorities represent the key objectives of transport investment that new projects should align with.
-
-NIFTI also establishes a process to help decide the best solution to an identified need or problem through modal and interventional hierarchies. The framework encourages the use of active travel and public transport ahead of solutions reliant on
-
-Note: this image is low resolution, send on the high res video file and we will extract an image as high res as we can.
-
-## 3
-
-### Introduction
-
-*Pages 27–28*
-
-This Policy sets out a strategic framework for sustainable mobility – active travel and public transport - in Ireland to 2030. The primary focus is to cater for daily travel needs in a more sustainable manner. We intend to achieve this by making sustainable modes the most attractive choice.
+*Pages 27–27*
 
 Vision
 
@@ -797,13 +443,19 @@ accessible and efficient.
 
 The Policy is guided by three key principles which are underpinned by 10 high-level goals.
 
+## Principles and Goals
+
+### Principles and Goals
+
+*Pages 27–28*
+
 Principles and Goals
 
 | PRINCIPLES | GOALS |
 | --- | --- |
 | Safe and Green Mobility | 1. Improve mobility safety. 2. Decarbonise public transport. 3. Expand availability of sustainable mobility in metropolitan areas. 4. Expand availability of sustainable mobility in regional and rural areas. 5. Encourage people to choose sustainable mobility over the private car. |
 | People Focused Mobility | 6. Take a whole of journey approach to mobility, promoting inclusive access for all. 7. Design infrastructure according to Universal Design Principles and the Hierarchy of Road Users model. 8. Promote sustainable mobility through research and citizen engagement. |
-| Betet r Integrated Mobility | 9. Betet r integrate land use and transport planning at all levels. 10. Promote smart and integrated mobility through innovative technologies and development of appropriate regulation. |
+| Better Integrated Mobility | 9. Better integrate land use and transport planning at all levels. 10. Promote smart and integrated mobility through innovative technologies and development of appropriate regulation. |
 
 National Sustainable Mobility Policy | Our Vision
 
@@ -814,8 +466,6 @@ Learning from past experience, and as recommended by the OECD, the implementatio
 Our overarching targets are aligned with the transport target metrics in the Climate Action Plan 2021 of 500,000 additional active travel and public transport journeys per day and a 10% reduction in kilometres driven by fossil fuelled cars by 2030. It is estimated that this will deliver a reduction in greenhouse emissions of 1.4MtCO₂eq by 2030. The process for settling carbon budgets and associated sectoral emissions ceilings under the Climate Act, which is currently underway, may impact the targets for the transport chapter in the next revision of the Climate Action Plan 2022. Such changes will need to be taken into account as part of the on-going review of targets and indicators for this Policy.
 
 ### "
-
-*Pages 28–30*
 
 The principles, goals and actions set out in this Policy represent a holistic framework to enable realisation of these challenging targets. In order to measure progress, a new annual National Household Travel Survey will be developed by the NTA, building on their experience gained through the current 5-year survey, and published each year. This annual survey will allow us track progress toward our targets, analyse the impact of post-COVID-19 travel patterns and provide a rich and current data source for Irish transport research. The first of these surveys will be available in early 2023 with annual updates published thereafter and will provide an evidenceinformed perspective on progress toward our 2030 targets.
 
@@ -834,6 +484,12 @@ through the current 5-year survey,
 and published each year.
 
 The Policy will be implemented in collaboration with other government departments, the NTA, Transport Infrastructure Ireland (TII), the regional assemblies, local authorities and other stakeholders. A Leadership Group will be established to oversee implementation of the Policy and delivery of the action plan including the mid-term review of the action plan in 2025. The group will be chaired by the Department of Transport and will include representatives of the key stakeholders involved in leading and supporting implementation of the actions.
+
+## Implementation, monitoring and review
+
+### Implementation, monitoring and review
+
+*Pages 28–29*
 
 Implementation, monitoring and review
 
@@ -877,25 +533,27 @@ We are committed to improving the recording and provision of data in relation to
 
 A National Sustainable Mobility Forum will be established to provide a platform for wider collaborative engagement with national, regional and local stakeholders around the implementation of the Policy. Further information on the role of this forum and the Leadership Group is set out under Goal 8.
 
+## Funding
+
+### Funding
+
+*Pages 29–31*
+
 Funding
 
 Implementation of the Policy will be funded through the capital expenditure allocations provided by the NDP and through the current
 
 Note: this image is low resolution, send on the high res video file and we will extract an image as high res as we can.
 
-## 4
-
-### 4
-
-*Pages 30–31*
-
 Principle 1: Safe and
 
 National Sustainable Mobility Policy | Principle 1: Safe and Green Mobility
 
+## Introduction
+
 ### Introduction
 
-*Pages 31–32*
+*Pages 31–72*
 
 Sustainable mobility needs to be safe and accessible for all users. We will support the commitment to achieve Vision Zero (zero road deaths or serious injuries) on our roads by 2050 by ensuring that our existing and new walking, cycling and public transport networks continue to meet the highest safety standards. Safe road use by all road users will also be fostered through education, training and enforcement measures.
 
@@ -931,9 +589,7 @@ There is a need to rebalance transport movement in metropolitan areas and other 
 
 National Sustainable Mobility Policy | Principle 1: Safe and Green Mobility
 
-### Safety
-
-*Pages 32–35*
+#### Safety
 
 Improve mobility safety GOAL
 
@@ -983,9 +639,7 @@ While the vast majority of public transport journeys occur without risk to passe
 
 National Sustainable Mobility Policy | Principle 1: Safe and Green Mobility
 
-### Decarbonisation
-
-*Pages 35–39*
+#### Decarbonisation
 
 Decarbonise public transport GOAL
 
@@ -1067,8 +721,6 @@ In the five metropolitan areas there are a number of opportunities to further de
 
 ### "
 
-*Pages 39–42*
-
 BusConnects will enhance the
 
 capacity and potential of the public
@@ -1147,9 +799,7 @@ some areas are well connected while others are not well served.
 
 National Sustainable Mobility Policy | Principle 1: Safe and Green Mobility
 
-### demand management
-
-*Pages 42–44*
+#### Behavioural change and demand management
 
 Encourage people to choose sustainable mobility over the private car
 
@@ -1187,19 +837,13 @@ CHAPTER
 
 ## 5
 
-### 5
-
-*Pages 44–45*
-
 Principle 2: People
 
 Focused Mobility
 
 National Sustainable Mobility Policy | Principle 2: People Focused Mobility
 
-### Introduction
-
-*Pages 45–47*
+#### Introduction
 
 Sustainable mobility options should be accessible to everyone. We will support a people focused and rights-based approach in the delivery of this Policy to enable access to education, health care, work, and cultural and public life. Universally accessible, affordable and reliable sustainable mobility can make a big difference to quality of life, and public transport in particular can play a big part in reducing social isolation and enabling people to go about their daily lives.
 
@@ -1249,9 +893,7 @@ management of public space to reverse the trend of induced demand (i.e. increase
 
 National Sustainable Mobility Policy | Principle 2: People Focused Mobility
 
-### approach
-
-*Pages 47–50*
+#### Whole of journey approach
 
 Take a whole of journey approach to mobility, promoting inclusive access for all
 
@@ -1301,9 +943,7 @@ The Travel Assistance Scheme will now be expanded beyond the GDA to the other ci
 
 National Sustainable Mobility Policy | Principle 2: People Focused Mobility
 
-### Infrastructure design
-
-*Pages 50–54*
+#### Infrastructure design
 
 Design infrastructure according to Universal Design Principles and the Hierarchy of Road Users model
 
@@ -1437,9 +1077,7 @@ Mmulti-modal travel
 
 National Sustainable Mobility Policy | Principle 2: People Focused Mobility
 
-### engagement
-
-*Pages 54–55*
+#### Research and citizen engagement
 
 Promote sustainable mobility through research and citizen engagement
 
@@ -1467,9 +1105,7 @@ The Leadership Group will comprise senior decision makers within the Department 
 
 National Sustainable Mobility Policy | Principle 2: People Focused Mobility
 
-### "
-
-*Pages 55–58*
+### " A new National Sustainable Mobility
 
 Stakeholder engagement
 
@@ -1515,19 +1151,11 @@ The Department of Transport and its agencies are engaging in various research pr
 
 Note: this image is low resolution, send on the high res video file and we will extract an image as high res as we can.
 
-## 6
-
-### 6
-
-*Pages 58–59*
-
 Principle 3: Better Integrated Mobility
 
 National Sustainable Mobility Policy | Principle 3: Better Integrated Mobility
 
-### Introduction
-
-*Pages 59–60*
+#### Introduction
 
 How we lay out our cities, towns and villages and how we connect communities to our transport system are key factors in increasing the use of sustainable mobility. Sustainable mobility planning must be integrated at all stages of land use planning – at national, regional and local level. Better integrated land use and transport planning and transport-orientated development can help counteract dispersed settlements and organise the transport system in a way that facilitates the conversion of car trips to active travel and public transport trips. Compact communities will allow people to reach local amenities by a short walk or cycle. Higher-density urban neighbourhoods located along frequent public transport routes can facilitate longer journeys without reliance on a private car.
 
@@ -1551,9 +1179,7 @@ Transport is inherently complex with new problems and solutions constantly emerg
 
 National Sustainable Mobility Policy | Principle 3: Better Integrated Mobility
 
-### and transport planning
-
-*Pages 60–64*
+#### Integration of land use and transport planning
 
 Better integrate land use and transport planning at all levels
 
@@ -1659,9 +1285,7 @@ The SRA continues disseminating the attributes of 10 Minute Cities and Towns, in
 
 National Sustainable Mobility Policy | Principle 3: Better Integrated Mobility
 
-### Smart mobility
-
-*Pages 64–68*
+#### Smart mobility
 
 Promote smart and integrated mobility through innovative technologies and development of appropriate regulation
 
@@ -1709,9 +1333,7 @@ List of Abbreviations
 
 National Sustainable Mobility Policy | List of Abbreviations
 
-### List of Abbreviations
-
-*Pages 68–68*
+#### List of Abbreviations
 
 CAF Common Appraisal Framework for Transport Projects and Programmes
 
@@ -1761,9 +1383,7 @@ TII Transport Infrastructure Ireland
 
 UN United Nations
 
-### Notes
-
-*Pages 69–70*
+#### Notes
 
 
 
@@ -1827,9 +1447,7 @@ UN United Nations
 
 National Sustainable Mobility Policy | Notes
 
-### Notes
-
-*Pages 70–72*
+#### Notes
 
 
 
@@ -1896,3 +1514,411 @@ National Sustainable Mobility Policy | Notes
 *Figure from page 72*
 
 Department of Transport gov.ie/transport
+
+## 5 Summary
+
+### 5 Summary
+
+*Pages 8–12*
+
+National Sustainable Mobility Policy | Summary
+
+We will support People Focused Mobility by
+
+We will support Better Integrated Mobility by
+
+MContinuing to make existing and new
+
+MAdopting a transport-orientated housing
+
+walking, cycling and public transport networks more accessible for all users.
+
+development approach.
+
+MIdentifying housing delivery areas within
+
+MImplementing a universal design
+
+a 1 km distance of public transport stops with the best potential to grow.
+
+approach in the design of walking, cycling and public transport infrastructure and in the retrofitting of older infrastructure.
+
+MDelivering metropolitan area transport
+
+strategies in the five cities and preparing local transport plans for the regional growth centres and key towns.
+
+MIntroducing a more equitable fares
+
+structure.
+
+MExpanding the transport planning remit
+
+MReviewing, updating and developing
+
+of the National Transport Authority (NTA) to all of the five cities.
+
+existing guidelines, standards and supporting legislation, where necessary, to allow for a range of solutions to be developed for the reallocation of road space use to prioritise walking, cycling and public transport.
+
+MDeveloping a governance framework for
+
+Mobility as a Service (MaaS).
+
+The Policy aims to improve the Delivery of Sustainable Mobility by
+
+MImplementing the accompanying action plan to 2025 and a reviewed and updated
+
+action plan for 2026 to 2030.
+
+MEstablishing a Leadership Group to oversee and drive implementation of the Policy and delivery
+
+of the action plan, and agree a programme of “pathfinder” projects at local level.
+
+MIntroducing a new annual National Household Travel Survey to measure progress against the
+
+Policy’s targets.
+
+MConvening a new National Sustainable Mobility Forum to provide a platform for collaborative
+
+engagement with national, regional and local stakeholders.
+
+MIncreasing public engagement around the benefits of sustainable mobility and raising awareness
+
+of the availability of alternative options to the private car.
+
+MEstablishing a new National Transport Authority Advisory Council to engage with the NTA
+
+around the discharge of its functions.
+
+MDeveloping a transport research network to support existing research programmes and draw on
+
+the sustainable mobility expertise available across academia and industry, both in Ireland and internationally.
+
+CHAPTER
+
+## 1
+
+Introduction
+
+National Sustainable Mobility Policy | Introduction
+
+#### Introduction
+
+Purpose of Policy
+
+This National Sustainable Mobility Policy sets outs a framework to 2030 for active travel and public transport to support Ireland’s overall requirement to achieve a 51% reduction in greenhouse gas emissions by 2030. Transport is responsible for around 18% of our greenhouse gas emissions and it is vital that by 2030 we put in place the infrastructure, services and measures that enable and encourage more people to make the switch to more sustainable modes of travel.
+
+changes are forecast over this decade. Ireland has a growing population and an expanding workforce, and we need to cater for this growth in a sustainable manner.
+
+What is Sustainable Mobility?
+
+The Policy forms part of Ireland’s climate action agenda with a number of complementary actions in the Climate Action Plan 2021, including actions focused on decarbonising the public transport fleet and enhancements across active travel and public transport. This Policy is primarily focused on measures to promote and facilitate active travel and public transport for all and, in doing so, encourage less private car usage nationally and particularly to, from, and within our towns and cities. The Climate Action Plan 2021 sets out additional measures to promote other complementary transport mitigation measures such as the switch over to electric car usage and greater use of renewable fuels for transport. The cumulative impact of all these measures will provide for a greener, cleaner transport system in Ireland.
+
+Connecting people and places in a sustainable way by supporting:
+
+MSafe, accessible, comfortable and
+
+affordable journeys to and from home, work, education, shops and leisure.
+
+MTravel by cleaner and greener public
+
+transport.
+
+MA shift away from the private car to
+
+greater use of active travel and public transport.
+
+What is Active Travel?
+
+However, promoting safe, green and more sustainable mobility is not just critical to meeting our climate change commitments, it also provides an opportunity to reorientate communities across the country so that they become more people focused, liveable places. Improved walking, cycling and public transport infrastructure and services can improve citizens’ health and well-being, boost quality of life and enable economic growth. As such, the Policy also aligns closely with wider commitments in relation to the UN Sustainable Development Goals and Public Sector Duty2.
+
+Walking, wheeling, or cycling as a means of transport in order to get to a particular destination such as work, the shops or to visit family or friends. Active travel can be for complete journeys or parts of a journey.
+
+The Policy builds on and replaces existing active travel and public transport policy as set out in the 2009 policy documents - Smarter Travel: A Sustainable Transport Future and the National Cycle Policy Framework. A lot has changed since those policies were published and further
+
+Better integration of transport and housing development can also support the Government’s ambition in the area of housing delivery.
+
+2 www.ihrec.ie/our-work/public-sector-duty/
+
+National Sustainable Mobility Policy | Introduction
+
+Transport-orientated development can unlock the potential of lands for large-scale housing delivery and maximise the value of our existing transport hubs. In addition, the construction of public transport infrastructure either in advance of, or parallel with, significant new housing development has been found to be an important driver of modal shift internationally which supports realisation of our climate change commitments.
+
+It is important to note that improved sustainable mobility is not solely an urban requirement. We need to improve active travel and public transport in rural areas as well, acknowledging the differing features between urban and rural areas and cognisant that tailored solutions are required to deliver the fundamental change required in the nature of transport in Ireland.
+
+![Figure 1: Benefits of Sustainable Mobility](assets/p011-f01.webp)
+
+*Figure 1: Benefits of Sustainable Mobility*
+
+Social
+
+Environmental
+
+�Reduces levels of social isolation
+
+�Reduces greenhouse gas emissions
+
+�Supports connected and liveable communities
+
+�Improves air quality
+
+�Enables equitable access to services and amenities
+
+�Reduces noise pollution
+
+Sustainable
+
+Mobility
+
+Economic
+
+Health and Well-Being
+
+�Allows more efficient movement of people
+
+�Increases physical activity levels through active travel
+
+�Provides access to employment opportunities
+
+�Creates safer roads and streets
+
+�Reduces traffic congestion
+
+National Sustainable Mobility Policy | Introduction
+
+Impact of COVID-19 pandemic
+
+The alignment of these remote working hubs with walking and cycling infrastructure has the potential to support the regeneration of towns and the Town Centre First approach.
+
+The COVID-19 pandemic had a major impact on our travel patterns with lifestyles and working practices changing overnight. The introduction of severe travel restrictions and greater remote working in 2020 resulted in significant reductions in private cars on the road, particularly for commuting. Public transport numbers also declined sharply due to capacity restrictions and increased remote working. In parallel, the numbers of people walking and cycling increased as lower traffic on roads and restrictions on longer distance journeys encouraged more people to move around their local area in a different way. These changes in travel patterns are estimated to have resulted in a reduction of just 16%3 in transport emissions for 2020 compared to 2019 levels. This conveys some sense of the scale of the challenge we face in delivering a 51% reduction in transport emissions by 2030.
+
+It is important however that remote working practices support compact growth in line with the objectives of the National Planning Framework (NPF) and does not lead to increased sprawl to areas which may be difficult to serve with effective sustainable mobility links. International research has found that remote working may not result in overall travel reductions, as it can increase non-commuting trips4, and may, in the long-term reduce the need to live close to work. The OECD has highlighted the importance of land use planning when considering remote working policy5. It considers that careful analysis of regulations for new developments can help avoid the expansion of low-density areas, which makes the development of dense and multi-modal transport networks difficult, and increase travel distances and car dependence.
+
+The long-term impacts of the pandemic on travel demand are unknown. However, it is likely that increased levels of remote working will remain, which will impact the traditional commuting patterns and possibly change the nature of future travel demand generally. The National Remote Work Strategy, Making Remote Work, aims to make remote working a permanent option for life after the pandemic and commits to make home and remote working the norm for 20% of public sector employees. Continued remote working practices may lead to a reduction in the daytime population of our cities and large towns as fewer workers commute to the main employment centres. Remote working could also impact on settlement patterns as it can facilitate workers across certain industries and sectors to avail of a greater range of locations to live. Making Remote Work commits to further invest in remote work hubs ensuring they are in locations that suit workers and are close to childcare care facilities.
+
+The growth in online retail and the continuation of some form of online teaching for schools and colleges may also impact on aspects of future travel demand. Of course, there are a range of other daily travel needs, beyond commuting, education and retail, which impact on travel demand and which need to be catered for. Continued investment is required in walking, cycling and public transport projects to support localised travel and/or provide connectivity to citizens wishing to undertake a wide range of daily activities.
+
+## 10 Impact of COVID-19 pandemic
+
+### 10 Impact of COVID-19 pandemic
+
+*Pages 13–14*
+
+National Sustainable Mobility Policy | Introduction
+
+Irish greenhouse gas emissions attributable to transport6, the sector must play a key role in Ireland’s decarbonisation efforts. Road transport accounted for 94% of transport emissions in 2020 and is directly responsible for a range of air pollutants that negatively impact both human health and the environment. Transport can contribute to increased levels of noise, collisions and congestion which in turn can reduce quality of life, deter active travel, and cost society hundreds of millions of euro per year in unproductive time.
+
+Our policy approach to achieve a more sustainable transport sector is based on the Avoid-Shift-Improve principle and implementing measures to:
+
+MAvoid: Reduce the frequency and distance of
+
+trips.
+
+MShift: Move towards more environmentally
+
+friendly modes of transport, such as walking, cycling or using public transport.
+
+MImprove: Promoting efficient fuel and vehicle
+
+technologies.
+
+Private car use remains the dominant mode of transport, accounting for about 54% of road transport emissions in 2020. Emissions from the transport sector increased by 13% between 2012 and 2019 with emissions from road transport driving this growth. The transport sector tends to grow or reduce in line with economic growth. As the Irish economy has grown in recent years, transport use and emissions have increased as well, and we need to break the link between economic growth and increased car use.
+
+We need to step up this approach if we are to address our climate change challenge and meet our ambitious targets. The challenge is such that only fundamental change in the nature of transport can achieve our 51% target by 2030. Increasing active travel infrastructure provision, expanding public transport capacity and services - including transitioning to low and zero emission fleets, and implementing behavioural change and demand management measures are all required to help meet our challenging target.
+
+![Figure 2: Climate statistics and targets](assets/p013-f01.webp)
+
+*Figure 2: Climate statistics and targets*
+
+Road Transport18% Transport94%
+
+Total GHG
+
+Total Transport
+
+51% reduction
+
+Emissions
+
+Emissions
+
+by 2030
+
+6 www.epa.ie/publications/monitoring--assessment/climate-change/air-emissions/Irelands-Provisional-Greenhouse-Gas-Emissionsreport-1990-2020_finalv2.pdf
+
+National Sustainable Mobility Policy | Introduction
+
+![Figure 3: Avoid-Shift-Improve Principle](assets/p014-f01.webp)
+
+*Figure 3: Avoid-Shift-Improve Principle*
+
+![Figure from page 14](assets/p014-f02.webp)
+
+*Figure from page 14*
+
+![Figure from page 14](assets/p014-f03.webp)
+
+*Figure from page 14*
+
+Improve Avoid Shift
+
+Improve the energy efficiency
+
+Reduce or avoid
+
+Shift to more environmentally
+
+the need for
+
+of vehicle technology
+
+travel
+
+friendly modes
+
+Vehicle efficiency, clean fuels
+
+Public transport, Land-use planning
+
+active travel
+
+Population trends
+
+The population of Ireland is projected to reach 5.7 million by 2040 from an estimated 5 million in 2021, with a projected need for at least 550,000 more homes and an economy supporting around 660,000 additional jobs. The NPF sets out targets to manage this population growth in a more balanced way across our three regions – Eastern and Midland; Northern and Western; and Southern - and our five cities of Cork, Dublin, Galway, Limerick and Waterford.
+
+What is transportorientated development?
+
+7
+
+Transport-orientated development is a form of urban development that seeks to maximise the provision of housing, employment, public services and leisure space in close proximity to frequent, highquality transport services. It is a form of development that is friendlier to public transport users, cyclists and pedestrians, and seeks to convert car trips to public and active transport trips. This in turn improves mobility and environmental conditions, and delivers more efficient and sustainable urban development.
+
+The NPF recognises that significant investment is required in both active travel and public transport if these targets are to be achieved. As well as supporting the future growth of Dublin, the NPF sets ambitious growth targets for the four cities of Cork, Galway, Limerick and Waterford to ensure that they grow at twice the pace of Dublin. Improved sustainable mobility within the cities can act as a key growth enabler and support a better quality of life for all, as well as supporting the delivery of housing through a transportorientated development approach.
+
+7 www.nesc.ie/work-programme/land-use-land-value-urban-development/transport-oriented-development/
+
+## 12 Population trends
+
+### 12 Population trends
+
+*Pages 15–15*
+
+National Sustainable Mobility Policy | Introduction
+
+Outside of the five cities, the NPF targets 50% of sustainable growth in the regional centres (Athlone, Drogheda, Dundalk, Letterkenny, and Sligo), towns, villages and rural areas. Around 37%8 of Ireland’s population live in rural areas which play a key role in defining national identity, in supporting our economy, and our high-quality environment. The Central Statistics Office (CSO) defines a settlement of fewer than 1,500 people as rural. The NPF recognises the positive impact improved and connected sustainable mobility options can have on rural communities, particularly for older people living in more remote areas.
+
+even before the COVID-19 pandemic, commuting to work represented less than 25% of all trips. In the context of our climate challenge, it is clear therefore that we need to focus on how best to meet citizens' travel needs across the day and for a wide range of reasons. This changed emphasis may in turn require new ways of looking at how, when and where we provide public transport services. It is important to note that the NTS does not include all journeys of the whole student population as the survey only samples persons aged 18 years and over. However, it includes companion journeys which may involve journeys to collect or escort somebody to their place of education.
+
+As well as breaking the link between economic growth and car use, we need to break the link between increased transport emissions and travel demand from our growing population. To meet our climate change targets, we need our transport emissions to reduce at a rate that is higher than the increase in travel demand.
+
+![Figure 4: Why we travel](assets/p015-f01.webp)
+
+*Figure 4: Why we travel*
+
+We also have an ageing and diverse population. Along with supporting the NPF growth targets, we must ensure that sustainable mobility options meet the needs of all sectors of our society and are accessible to everyone regardless of ability, age, ethnicity, gender, income and sexuality.
+
+Total Transport
+
+Emissions
+
+## 19 European
+
+### 19 European
+
+*Pages 22–22*
+
+National Sustainable Mobility Policy | Alignment with existing policies
+
+National
+
+the transition to sustainable mobility and meet our climate goals. The NDP will also continue to support the protection and maintenance of the existing road network to ensure the safe and efficient travel of all road users across the country, as well as targeted new road investment to provide for regional connectivity and compact urban growth.
+
+National Planning Framework
+
+The NPF sets out policy on spatial planning over the period to 2040 to accommodate Ireland’s projected demographic changes in a sustainable and balanced way. It identifies ten National Strategic Outcomes (NSOs) built around the overarching themes of well-being, equality and opportunity. Sustainable mobility is a key enabler of a number of these NSOs particularly in relation to NSO 1: Compact Growth; NSO 2: Enhanced Regional Accessibility; NSO 3: Strengthened Rural Economies and Communities; NSO 4: Sustainable Mobility; and NSO 8: Transition to a Low Carbon and Climate Resilient Society.
+
+Climate Action Plan 2021
+
+The Climate Action Plan 2021 charts a course to reduce transport greenhouse gas emissions to meet our commitments to a 51% reduction in emissions by 2030. This equates to an emissions reduction target for the transport sector of 7 million tonnes of CO₂. The plan contains considerably more ambitious measures and actions than its 2019 predecessor reflecting the step change in climate ambition nationally and internationally. The plan, which will be updated annually, recognises that expanding the availability of sustainable mobility to provide meaningful alternative to everyday private car use is necessary to reduce transport emissions. This will require continued and enhanced investment in our walking, cycling and public infrastructure and services across the country on a scale not previously seen. It sets transport target metrics of 500,000 additional active travel and public transport journeys per day and a 10% reduction in kilometres driven by fossil fuelled cars by 2030. The Climate Action Plan will be further revised in 2022 taking account of carbon budgets and associated sectoral ceilings. The associated targets in this Policy will be adjusted once the sectoral emission targets for transport have been settled.
+
+The NPF recognises that the provision of a well-functioning integrated public transport system, enhancing competitiveness, sustaining economic progress and enabling sustainable mobility choices for citizens, supports the overall framework objectives. It includes a number of specific National Policy Objectives around sustainable mobility such as integrating land use and spatial planning to support public transport and transport-orientated development, promoting walking and cycling as more favourable modes of transport to the private car, and prioritising walking and cycling accessibility to both existing and proposed developments.
+
+National Development Plan
+
+The National Development Plan (NDP) 2021-2030 outlines a €165 billion capital investment plan for the decade with a particular focus on priority solutions to strengthen housing, climate ambitions, transport, healthcare, jobs growth and economic renewal. The NDP allocates €35 billion for transport over the ten years which will enable the development of a range of active travel and bus and rail infrastructure over the coming years to facilitate
+
+There are over 70 actions in the transport chapter of the Climate Action Plan from delivering significant enhancements across public transport, active travel and electric vehicle charging infrastructure to developing strategies that will help drive behavioural change away from traditional fossil fuelled private car journeys to healthier, more sustainable mobility options. These actions are reflected in, and complemented by, actions included in this Policy.
+
+## 20 National
+
+### 20 National
+
+*Pages 23–27*
+
+National Sustainable Mobility Policy | Alignment with existing policies
+
+Housing for All – A New Housing Plan for Ireland
+
+Town Centre First
+
+Town Centre First – A Policy Approach for Irish Towns was published in 2022 and builds upon and complements a wide range of government policies. It provides a crosscutting and collaborative framework for central government, local authorities, public and private sector stakeholders, and especially communities, to put the health of town centres at the heart of decision-making processes. This will enable a coordinated approach across government to the delivery of commitments for town centre renewal in Ireland in a manner that will be both informed by and supportive of the wider policy framework. Providing citizens with reliable and realistic sustainable mobility options to enable better mobility choices is a key enabler of town centre regeneration.
+
+Housing for All is the Government’s housing plan to 2030 to improve Ireland’s housing system and deliver more homes of all types for people with different housing needs. It is estimated that Ireland will need an average of 33,000 new homes to be provided each year from 2021 to 2030. Sustainable mobility infrastructure and services are a critical enabler of new housing supply and aligning land use planning with transportorientated development can support the delivery of large-scale housing development at key strategic locations.
+
+In order to meet the twin NPF objectives of tackling climate change and delivering more compact growth, Housing for All recognises that there is a need for developments at scale in our cities, particularly close to public transport nodes and where walking and cycling can become the dominant form of mobility within our town centres.
+
+Road Safety Strategy 2021-2030
+
+Underpinning the Road Safety Strategy 2021- 2030 is Ireland’s long-term goal of achieving Vision Zero (zero road deaths or serious injuries) by 2050. Vision Zero was formally adopted in the Programme for Government in 2020 and underpins the EU Road Safety Policy Framework (2021-2030) and the UN’s Second Decade of Action for Road Safety (2021-2030). To ensure this long-term goal is achieved, the Road Safety Strategy sets a target to reduce road deaths and serious injuries by 50% by 2030.
+
+Our Rural Future
+
+Our Rural Future 2021- 2025 is the national rural development policy. It recognises that people living in rural areas should have access to good quality public services that enable them to continue to live sustainably in rural communities and help them to maintain a good quality of life.
+
+Transport services are hugely important for people who live and work in rural Ireland. Improvement and further integration of rural public transport services will enable people to continue to live in rural area and to access work, education and social activities, while development of active travel amenities will bring economic and social benefits to communities.
+
+Seven Safe System priority intervention areas have been identified including safe and healthy modes of travel to promote and protect road users engaging in public transport or active travel. It involves the promotion of safer public transport modes and the promotion and provision of safe road environments for otherwise healthy active modes. This includes walking and cycling where the risks of death and serious injury are higher
+
+National Sustainable Mobility Policy | Alignment with existing policies
+
+than for protected, in-vehicle road users. The strategy’s actions under safe and healthy modes of travel align with the actions in this Policy to maintain and improve our existing sustainable mobility system while also providing a safe space for all road users. A number of actions under other priority intervention areas also complement this Policy’s vision, principles and goals.
+
+The plan recognises the need for interlinking policies and programme implementation in the promotion of physical activity across domains such as health, education, sport, recreational physical activity, transport and environment. It contains 60 actions across eight areas.
+
+Healthy Ireland and the National Physical Activity Plan feed into and play a vital role in the development and promotion of active travel, and supporting the vision, principles and goals of this Policy.
+
+Healthy Ireland: A Framework for Improved Health and Well-being 2013-2025
+
+Strategy for the Future Development of National and Regional Greenways
+
+Healthy Ireland was launched in 2013 as a strategic framework to improve the health and well-being of the nation. The framework is based on international evidence which shows that to create positive change in population health and well-being, a whole of government approach and the buy in of local communities, as well as all of society is required. Healthy Ireland sets out four central goals and outlines actions under six thematic areas.
+
+The Strategy for the Future Development of National and Regional Greenways was published in 2018 and sets out how national and regional greenways in Ireland should be planned and constructed over the following ten years. While the focus is on tourism and leisure amenities, greenways have potential to enable active travel within local communities and many of the routes funded under the strategy will provide safe segregated routes to schools and workplaces.
+
+The Healthy Ireland Strategic Action Plan 2021- 2025 was published in 2021 to take stock of the progress made on the original framework and to provide a detailed roadmap for the remaining years of the framework. The plan contains 56 actions across the six themes which will be implemented using a cross-government approach.
+
+Well-Being Framework
+
+The Well-Being Framework is a Programme for Government commitment to create a set of indicators to support a broader context for policymaking. It is a cross-government initiative that aims to provide a multidimensional approach to understanding what makes for a better quality of life and thereby more connected policymaking. By considering and measuring progress across economic, societal, environmental and health outcomes, it aims to provide a holistic view of whether taken as a whole, things are getting better or worse, our relative performance, whether it is equal across cohorts, and if it is sustainable into the future.
+
+National Physical Activity Plan for Ireland
+
+The National Physical Activity Plan for Ireland was published in 2016 following a commitment in the Healthy Ireland Framework. The key target of the plan is to increase the number of people taking regular exercise by 1% a year over ten years by making exercise a normal part of everyday life and giving people more opportunities to be active. The plan seeks to ensure that no group is disadvantaged and recognises that targeted interventions are required to address and overcome barriers to participation.
+
+National Sustainable Mobility Policy | Alignment with existing policies
+
+The first report on the development of the framework was approved by Government in June 2021. It includes an initial Well-Being Framework and supporting measurements tool – the Well- Being Dashboard – which will be improved over time. It is intended that the Well-Being Framework will be integrated across government policymaking. The overall vision and dimensions of the framework link closely with the vision, principles and goals of this Policy.
+
+private transport. To make best use of our existing assets, protecting and renewing the existing land transport network should, where possible, be the first solution considered. This is followed by maximising the value of the network through optimising its use. Infrastructural investment will then be considered after these two categories have been assessed as inappropriate for the identified problem, with upgrades to existing infrastructure to be considered before outright new infrastructure.
+
+National Investment Framework for Transport in Ireland
+
+The National Investment Framework for Transport in Ireland (NIFTI) is the long-term sectoral strategy for investment in land transport and replaces the 2015 Strategic Investment Framework for Land Transport. Its purpose is to establish the high-level direction and parameters for future investment and ensure that investment is consistent with Government policy. NIFTI is a high-level tool through which project sponsors can align capital transport projects with the NPF. It will guide transport investment to support the delivery of the NPF, enable the Climate Action Plan and promote positive social, environmental and economic outcomes throughout Ireland.
+
+The framework establishes four high-level strategic investment priorities – Decarbonisation; Protection and Renewal; Mobility of People and Goods in Urban Areas; and Enhanced Regional and Rural Connectivity. These priorities are not an either/or scenario. Investment is required in all these areas to support the NPF and Climate Action Plan objectives. The priorities represent the key objectives of transport investment that new projects should align with.
+
+NIFTI also establishes a process to help decide the best solution to an identified need or problem through modal and interventional hierarchies. The framework encourages the use of active travel and public transport ahead of solutions reliant on
+
+Note: this image is low resolution, send on the high res video file and we will extract an image as high res as we can.
+
+#### Introduction
+
+This Policy sets out a strategic framework for sustainable mobility – active travel and public transport - in Ireland to 2030. The primary focus is to cater for daily travel needs in a more sustainable manner. We intend to achieve this by making sustainable modes the most attractive choice.

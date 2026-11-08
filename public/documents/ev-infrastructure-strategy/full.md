@@ -6,7 +6,7 @@ Source: https://assets.gov.ie/static/documents/ev-infrastructure-strategy.pdf
 
 ### Front Matter
 
-*Pages 1–17*
+*Pages 1–5*
 
 Electric Vehicle Charging Infrastructure Strategy 2022-2025
 
@@ -79,7 +79,11 @@ Introduction 9
 | Appendix A Personas & Journeys | 67 |
 | Appendix B EV Basics | 82 |
 
-#### Acronyms and Definitions
+## Acronyms and Definitions
+
+### Acronyms and Definitions
+
+*Pages 6–9*
 
 AC Alternating current AFIR Alternative Fuels Infrastructure Regulation BESS Battery energy storage system BEV Battery electric vehicle CAF Climate Action Fund CCS Combined charging system CAP Climate Action Plan CARO Climate Action Regional Office CCMA County and City Management Association CRU Commission for Regulation of Utilities DAA Dublin Airport Authority DC Direct current DoT Department of Transport ECA European Court of Auditors ERS Electric roads systems ESBN Electricity Supply Board Networks eSPSV Electric small public service vehicle EU European Union EV Electric vehicle EVPP Electric Vehicle Policy Pathway GDP Gross domestic product HGV/HDV Heavy goods/duty vehicle HPC High power charger ICE Internal combustion engine IEA International Energy Agency LDV Light Duty Vehicle LEV Low-emission vehicle LGMA Local Government Management Agency MaREI Research Centre for Energy, Climate and Marine NEWKD North East West Kerry Development NSAI National Standards Authority of Ireland NTA National Transport Authority OEM Original equipment manufacturer OGP Office of Government Procurement PHEV Plug-in hybrid electric vehicle PMO Project Management Office SDG Sustainable Development Goal SEAI Sustainable Energy Authority of Ireland SFI Science Foundation Ireland SIMI Society of the Irish Motor Industry T&E Transport and Environment TEN-T Trans-European Transport Network TII Transport Infrastructure Ireland UK OSEV United Kingdom Office for Zero Emission Vehicles UN United Nations V2G Vehicle-to-Grid V2H Vehicle-to-House ZEVI Zero Emission Vehicles Ireland
 
@@ -171,7 +175,11 @@ Interoperability
 
 Interoperability, in its widest sense, is the ability of computer systems or software to exchange and make use of information. In the case of the electric vehicle charging infrastructure, achieving an interoperable ecosystem means that the available information and payment options allow any user to easily charge any model of electric vehicle at any charging station.
 
-#### Minister’s Foreword
+## Minister’s Foreword
+
+### Minister’s Foreword
+
+*Pages 10–10*
 
 The Government is deeply committed to its efforts to decarbonise private transport. I firmly believe that through our collective efforts, we can deliver on our climate objectives. The National Development Plan dedicates €1bn towards decarbonisation of transport in the period up to 2030. This funding will assist the transport sector to reduce its carbon emissions and to transform our communities into healthier places to live.
 
@@ -193,7 +201,11 @@ Through initiatives such as the Shared Island Fund and the Just Transition Fund,
 
 Eamon Ryan TD, Minister for Transport
 
-#### Introduction
+## Introduction
+
+### Introduction
+
+*Pages 11–12*
 
 What will this Strategy do?
 
@@ -251,7 +263,11 @@ The strategy focuses on the provision of publiclyaccessible charging infrastruct
 
 *Figure from page 12*
 
-#### User Needs
+## User Needs
+
+### User Needs
+
+*Pages 13–14*
 
 Understanding the user experience has been of paramount importance in the development of this strategy. It continues to be a key part of the implementation phase. In order to put users at the centre of EV infrastructure planning, we have developed seven characters and their user journeys to show how people may interact with the future EV public charging network. The development of these personas has been supported by feedback received during the consultation process. The profiles begin to explore the users’ specific requirements and how EV charging provision will need to evolve over the coming years to respond to context, scale, and opportunity. An in-depth exploration of each persona's key moments and user journey is included as an appendix. Here is a brief overview of each:
 
@@ -283,7 +299,11 @@ The Jacksons, a Tourist Family
 
 When the Jackson family travel in Ireland, they want to have a seamless EV experience. They want to be able to rent an EV and have charging facilities available at each of their destinations (including the remote ones). They don't want to worry about being stranded or lost on their holiday in Ireland.
 
-#### Strategy structure
+## Strategy structure
+
+### Strategy structure
+
+*Pages 15–16*
 
 The Strategy consists of Six chapters along with two appendices:
 
@@ -315,25 +335,13 @@ CHAPTER
 
 ## 1
 
-Policy and
+## Policy and Context
 
-Context
-
-The United Nations has identified climate change as the defining crisis of our time4 and in 2019, Ireland became the second country in the world to declare a climate emergency5. Science tells us that through human actions, particularly the burning of fossil fuels, our world is heating. This is leading to rapid changes in weather patterns, with many negative impacts on connected natural and human environments6. Nationally and internationally, fast and meaningful action to reduce global warming has been identified as a priority, with a focus on limiting emissions of the greenhouse gases that cause global warming.
-
-Council of the Houses of the Oireachtas) was formally adopted. These carbon budgets placed legally-binding limits on the level of emissions that may be released during a specific time period. This was the first time such limits had been introduced.
-
-## 1.1 National and international
-
-### 1.1 National and international
-
-*Pages 17–17*
-
-1.1 National and international policy context
-
-### 1.1.1 Climate Action Plan
+### 1.1 National and international policy context
 
 *Pages 17–18*
+
+1.1 National and international policy context
 
 1.1.1 Climate Action Plan
 
@@ -397,7 +405,7 @@ In Ireland, our national EV infrastructure systems will also be shaped by update
 
 Having an effective and reliable charging network is an essential part of enabling drivers to make the switch to electric vehicles. It is also an essential part of ensuring just and equal access to EVs across Ireland, including in rural areas13. This strategy is intended as a tool to deliver this infrastructure, and its remit is clearly set out in Action 27114 of the Climate Action Plan, which is to:
 
-### 1.1.3 Alternative Fuels Infrastructure
+### 1.1.3 Alternative Fuels Infrastructure Regulation
 
 *Pages 18–18*
 
@@ -491,7 +499,7 @@ The public sector will lead by example in meeting EV targets under the CAP by pr
 
 ### 1.1.8 Shared Island
 
-*Pages 20–22*
+*Pages 20–21*
 
 1.1.8 Shared Island
 
@@ -517,15 +525,19 @@ CHAPTER
 
 ## 2
 
-Fundamental
+### Policy and Context
 
-Principles
+*Pages 16–17*
 
-This strategy is based on a set of fundamental principles that underpin the rollout of EV charging infrastructure over the coming decade. These principles exist against the backdrop of climate change, the urgent need to decarbonise the Irish transport system, and the opportunity to maximise the benefits of the electric mobility transition for all citizens. They aim to make EV charging possible for everyone, regardless of income, age, health, or location.
+Policy and
 
-infrastructure is undertaken in a way that considers the wider sustainable-transport system. The Government’s new Sustainable Mobility Policy will set out a roadmap for the transition to sustainable transport systems and technologies in the coming decade.
+Context
 
-## 2.1 Principle 1: EV infrastructure
+The United Nations has identified climate change as the defining crisis of our time4 and in 2019, Ireland became the second country in the world to declare a climate emergency5. Science tells us that through human actions, particularly the burning of fossil fuels, our world is heating. This is leading to rapid changes in weather patterns, with many negative impacts on connected natural and human environments6. Nationally and internationally, fast and meaningful action to reduce global warming has been identified as a priority, with a focus on limiting emissions of the greenhouse gases that cause global warming.
+
+Council of the Houses of the Oireachtas) was formally adopted. These carbon budgets placed legally-binding limits on the level of emissions that may be released during a specific time period. This was the first time such limits had been introduced.
+
+## Fundamental Principles
 
 ### 2.1 Principle 1: EV infrastructure
 
@@ -571,8 +583,6 @@ As EV uptake accelerates in Ireland, home charging should remain the most common
 
 The need for a reliable EV infrastructure to support the tourism industry will also be given special consideration, particularly in those areas (often rural) where seasonality may pose challenges to developing a year-round, commercially-viable charging infrastructure. This includes, for instance, tourist offerings such as the Wild Atlantic Way, the Gaeltacht, and the Islands.
 
-## 2.3 Principle 3: For the majority
-
 ### 2.3 Principle 3: For the majority
 
 *Pages 23–24*
@@ -605,9 +615,7 @@ Similarly, for commercial vehicles such as electric vans and light trucks (as we
 
 expected that as growing numbers of people switch to EVs, there will be an increased need for publicly-accessible and on-street (c. 7 kW) charge points to cater for those who do not have access to private off-street parking and cannot charge their vehicles at home33.
 
-## 2.4 Principle 4: Options will be
-
-### 2.4 Principle 4: Options will be
+### 2.4 Principle 4: Options will be provided for those who cannot charge at home
 
 *Pages 24–25*
 
@@ -660,8 +668,6 @@ greening of the taxi fleet, a number of dedicated fast taxi-charging hubs will b
 MPublicly-accessible heavy-duty-vehicle
 
 charge points: A minimum number of publiclyaccessible high-powered charge points will also be required to meet the future charging needs of heavy-duty electric vehicles such as large goods trucks. This number will be set out in the revised Alternative Fuels Infrastructure Regulation and will be dictated by Irelandspecific market needs and freight transport patterns.
-
-## 2.5 Principle 5: Across the EV
 
 ### 2.5 Principle 5: Across the EV
 
@@ -725,9 +731,19 @@ at home
 
 Note: this image is low resolution, send on the high res video file and we will extract an image as high res as we can.
 
-Network Demand
+### Fundamental Principles
 
-## 3.1 Demand on the system and expansion of EV charging
+*Pages 21–22*
+
+Fundamental
+
+Principles
+
+This strategy is based on a set of fundamental principles that underpin the rollout of EV charging infrastructure over the coming decade. These principles exist against the backdrop of climate change, the urgent need to decarbonise the Irish transport system, and the opportunity to maximise the benefits of the electric mobility transition for all citizens. They aim to make EV charging possible for everyone, regardless of income, age, health, or location.
+
+infrastructure is undertaken in a way that considers the wider sustainable-transport system. The Government’s new Sustainable Mobility Policy will set out a roadmap for the transition to sustainable transport systems and technologies in the coming decade.
+
+## Electricity Network Demand
 
 ### 3.1 Demand on the system and expansion of EV charging
 
@@ -836,85 +852,13 @@ Table 1: Charge Point Rollout Scenarios
 | Scenario 4 | 2,660 | 1,180 | 3,840 | 169,000 |
 | Scenario 5 | 4,070 | 780 | 4,850 | 169,000 |
 
-## 23 kW-350 kW
+### Electricity Network Demand
 
-### 3.2 Managing energy demand and grid capacity
+*Pages 27–27*
 
-*Pages 32–32*
+Network Demand
 
-3.2 Managing energy demand and grid capacity
-
-As EV numbers increase on Irish roads, how and when people charge will become critical for the effective management of the wider electricity system. Technological developments, such as smart, integrated electric-charging solutions, will help manage the impact and maximise the renewable energy used to supply this new load.
-
-The path towards electric mobility may not only change the overall demand volume but also the shape of the hourly load curve of the power system. This will entail significant challenges for electricity generation and transmission as well as for distribution infrastructure44. However, there is potential for reducing the impact on peak load by coordinating the charging sessions to make the demand more flexible. ESB Networks is advancing options in this space. With the rollout of smart meters and smart home chargers, people will have access to at-home technology with the ability to receive pricing signals. These signals will guide EV owners to charge at times that are more favourable. Furthermore, this load - if charging takes place at times when renewable generation is high - would increase the level of renewable generation that can be accommodated on the electricity network. This would minimise or defer the required investments in infrastructure upgrades.
-
-management systems, where plugged-in EVs can act as back-up batteries and feed energy back into the grid at certain times to help balance demand45. Another possibility is microgeneration, where homes and businesses generate renewable energy for their own consumption46. Microgeneration, where installed, can potentially allow EVs to be charged at home (or at a local level), off-grid. This would reduce demand on the national electricity network and facilitate EVs to be powered by 100% carbon-neutral, renewable energy.
-
-Potentially, EV owners can financially benefit from smart and flexible charging options in two ways:
-
-(1) At home, they can save money by charging
-
-during off-peak hours. Night-time charging is approximately half the price of day-time charging.
-
-(2) Where the EV charging point (at home or
-
-in public) can respond to ESB Networks or EirGrid signals, there are financial incentives emerging to reward the user for this service.
-
-Other initiatives also have the potential to offset increased EV energy demands. These include the possibility of Vehicle-to-Grid (V2G) energy-
-
-44 European Commission - Effect of electromobility on the power system and the integration of RES
-
-45 Guide To… Vehicle-to-Grid Charging — IrishEVs
-
-![Figure from page 32](assets/p032-f01.webp)
-
-*Figure from page 32*
-
-46 Micro-generation Support Scheme | Press Release | SEAI
-
-### 3.3 Grid development and resilience for delivery of higher-speed
-
-*Pages 33–35*
-
-3.3 Grid development and resilience for delivery of higher-speed charging infrastructure
-
-Destination, en-route, and other fast-charging infrastructure is important for the continued uptake of electric vehicles. Therefore, it is essential for the electricity grid to have the capacity and resilience to support such demand. The grid must be supported by a smart and equally-resilient charging network. Zero Emission Vehicles Ireland will intensively engage with ESBN, EirGrid, CRU, and energy suppliers, as well as charge point and forecourt operators, to ensure a timely and coordinated approach to energy provision and grid management.
-
-Even with off-peak overnight charging (AC 7 kW) as the baseline default charging option for most EV users, there remains a need for provision of higher-speed top-up charging at trip destinations or en route. In practice, this would involve higherspeed DC charging at power levels ranging from 50 kW up to 350 kW.
-
-on AFIR requirements, this number will need to increase to between 780-1,320 rapid-charging points.
-
-Delivering this ultra-rapid charging network will require a high level of planning as well as engagement with energy providers and electricity network operators. The energy demand for this will be significant, with power demands of above 2 MW required in some cases. This is equivalent to a connection for a large factory or 800-home housing estate. This will necessitate much planning, as well as deep reinforcement of the electricity network in some instances. It can take 90 working days to complete planning studies and develop a quotation for such a large installation. It is critical that ESB Networks are informed at the earliest stage of planning and that every EV charger is installed in compliance with all regulated connection policies and contractual agreements.
-
-Destination Charging
-
-Destination charging will provide charging solutions (typically 7 kW-100 kW) at tourism and leisure locations such as leisure centres, parks, hotels, and visitor attractions. These would allow EV drivers to charge their vehicles for 1-10 hours before returning home, depending on the nature of their visit and duration of stay.
-
-The private sector has already shown interest in this area of the market. In Ireland, we have seen the provision of top-up charging infrastructure in locations such as car parks, supermarkets, and hotels.
-
-In Ireland to date, Government, European, and ESB funding have supported private investment to deliver the initial phase of infrastructure that is in place today. In other EU states, there is widespread private-sector investment in motorway charging facilities. Stakeholder engagement shows that Ireland’s private sector seems to have a similar desire to invest more widely in this infrastructure.
-
-This strategy envisages a supporting role for Government in providing initial seed funding to stimulate and encourage more widespread rollout of this kind of charging infrastructure. Government will also have a key role in coordinating the various stakeholders involved in delivering this infrastructure.
-
-En-Route Charging
-
-Ultra-rapid, high-speed, on-the-go charging will encourage the transition to electric vehicles. Such charging infrastructure must be fast and highpowered (100 kW or more) to make the charging experience as similar as possible to taking a quick comfort break while driving an ICE vehicle.
-
-Government’s role is to work as a facilitator, supporting and enabling investment in the ultra-rapid, en-route charging infrastructure. An example of this will be the development of a National EV Charging Network plan. The plan will define the EV charger rollout requirements and consider these in the context of the electricity grid’s readiness to meet the projected EV public charge-point demand between 2023 and 2025.
-
-Currently, in Ireland, there are approximately 375 publicly-accessible charge points at power levels in the range of 50 kW-350 kW capacity. To deliver
-
-CHAPTER
-
-## 4
-
-Existing & Future
-
-Technologies
-
-Mass-market adoption of electric vehicles is still at an early stage. The sector is constantly seeking new innovations to improve the experience of EV owners and to enable the transition from ICEs to EVs. In this chapter, we look at innovative initiatives and pilot schemes that are taking place in Ireland and across Europe. By learning from these, diverse user needs can be accommodated. In addition, every user’s experience of EVs and charging infrastructure will be on a continuous path to improvement.
-
-for heavy-duty buses, as well as pilot electric road system (ERS)48.
+## Existing & Future Technologies
 
 ### 4.1 Innovating for the future: EV
 
@@ -1239,7 +1183,7 @@ Photo: https://easygo.ie/news/dublin-city-councilevolve-sustainable-transport-in
 
 ### 4.2.7 Case Study 7: En-Route High-Power Charging & Charging Pools in
 
-*Pages 44–46*
+*Pages 44–45*
 
 4.2.7 Case Study 7: En-Route High-Power Charging & Charging Pools in Ireland
 
@@ -1277,9 +1221,19 @@ CHAPTER
 
 Delivering Infrastructure
 
-This chapter sets out the landscape of public EV charging infrastructure in the medium term. It explores the standards that will apply, as well as the existing and planned Government supports and funding instruments. These supports will target and address identified gaps in the EV infrastructure market. The chapter also sets out the objective for delivery of charge point infrastructure by 2025. This will support increasing EV uptake and ensure that charging infrastructure provision stays ahead of demand.
+### Existing & Future Technologies
 
-need for top-up charging where required.
+*Pages 34–35*
+
+Existing & Future
+
+Technologies
+
+Mass-market adoption of electric vehicles is still at an early stage. The sector is constantly seeking new innovations to improve the experience of EV owners and to enable the transition from ICEs to EVs. In this chapter, we look at innovative initiatives and pilot schemes that are taking place in Ireland and across Europe. By learning from these, diverse user needs can be accommodated. In addition, every user’s experience of EVs and charging infrastructure will be on a continuous path to improvement.
+
+for heavy-duty buses, as well as pilot electric road system (ERS)48.
+
+## Infrastructure
 
 ### 5.1 Infrastructure Designed for
 
@@ -1323,7 +1277,7 @@ Table 3: Risks and Dependencies for Delivering EV Infrastructure
 | --- | --- | --- |
 | Lack of available grid capacity to meet demand within the timelines | Investment in grid capacity Establish a working group to manage this particular risk Deliver a National EV Charging Network Plan for AFIR | ZEVI ESB Networks Transport Infrastructure Ireland Commission for Regulation of Utilities Local Authorities Charge Point Operators SEAI |
 | Lack of site availability for implementation of charge points across schemes | National Planning Framework |  |
-| Lack of available staf f& resources for delivery | Resourced stakeholder recruitment plans |  |
+| Lack of available staff & resources for delivery | Resourced stakeholder recruitment plans |  |
 | Lack of adequate public & private funding in the years up to 2025 | ZEVI funding plan within Department of Transport planning process Available private funding for investment |  |
 
 ![Figure from page 47](assets/p047-f01.webp)
@@ -1340,11 +1294,11 @@ Table 4: Required Standards
 
 | User Needs | Required Standards |
 | --- | --- |
-| Ease of Payment | M All new public charge points installed afet r the Alternative Fuels Infrastructure Regulation comes into force (expected to be in 2023), will be required to accept card payments by means of a contactless facility. This will enable ad-hoc transactions. M From 1 January 2027 onwards, charge point operators shall ensure that all publicly-accessible charging points operated by them (and that have a power output equal to or more than 50 kW) can accept card payments. M Charge point operators will clearly display their prices, as well as comparison costs for other fuels. As a result, this information is known to end users before they initiate a charging session. Pricing will be non-discriminatory. |
+| Ease of Payment | M All new public charge points installed after the Alternative Fuels Infrastructure Regulation comes into force (expected to be in 2023), will be required to accept card payments by means of a contactless facility. This will enable ad-hoc transactions. M From 1 January 2027 onwards, charge point operators shall ensure that all publicly-accessible charging points operated by them (and that have a power output equal to or more than 50 kW) can accept card payments. M Charge point operators will clearly display their prices, as well as comparison costs for other fuels. As a result, this information is known to end users before they initiate a charging session. Pricing will be non-discriminatory. |
 | Accessibility Standards & Safety | M ZEVI will consult on accessibility standards for all users in Q1 2023. Accessibility guidelines for EV charge points in Ireland will be published following this consultation. From then on, public charge points will need to adhere to these standards. |
-| Data Sharing to Facilitate Innovation | M Charge points will be enabled to send and receive data dynamically, enabling the flow of information between market actors that are dependent on this data to fully develop the charging experience. Such parties include charge point operators, mobility service providers, e-roaming platof rms, ESB Networks and, ultimately, end consumers. In 2023, ZEVI (in consultation with stakeholders) will publish a Data Strategy of how information will flow and be used. |
+| Data Sharing to Facilitate Innovation | M Charge points will be enabled to send and receive data dynamically, enabling the flow of information between market actors that are dependent on this data to fully develop the charging experience. Such parties include charge point operators, mobility service providers, e-roaming platforms, ESB Networks and, ultimately, end consumers. In 2023, ZEVI (in consultation with stakeholders) will publish a Data Strategy of how information will flow and be used. |
 | Interoperability | M While the market may dictate additional connectors, charging points for light-duty vehicles will be equipped (at least) with Type 2 connectors for AC connections and Combo 2 connectors for DC connections. Future innovations, such as wireless charging, will also be required to comply with minimum technical specifications. |
-| Smart Charging , V2G, and Innovations | M From one year afet r AFIR comes into force, all new public charge points (installed from that point onwards) will be required to be enabled for smart charging. This will enable future Vehicle-to-Grid operations and other system services and efficiencies such as electricity-demand regulation. |
+| Smart Charging , V2G, and Innovations | M From one year after AFIR comes into force, all new public charge points (installed from that point onwards) will be required to be enabled for smart charging. This will enable future Vehicle-to-Grid operations and other system services and efficiencies such as electricity-demand regulation. |
 | Sustainability Tracking | M In tracking the progress made under this strategy (and in alignment with other relevant strategies such as the Sustainable Mobility Strategy), we will be tracking sustainability benefits. |
 | Reliability and Reporting | M Reliable infrastructure is critical to mass-market rollout. ZEVI will consider options for ensuring reliability of service for EV users, with reference to actions in other jurisdictions. It will implement such options if appropriate or required. |
 
@@ -1384,6 +1338,86 @@ Table 5: Charge Point Rollout Scenarios
 | Scenario 3 | 1,990 | 1,320 | 3,310 | 169,000 |
 | Scenario 4 | 2,660 | 1,180 | 3,840 | 169,000 |
 | Scenario 5 | 4,070 | 780 | 4,850 | 169,000 |
+
+### Infrastructure
+
+*Pages 46–46*
+
+This chapter sets out the landscape of public EV charging infrastructure in the medium term. It explores the standards that will apply, as well as the existing and planned Government supports and funding instruments. These supports will target and address identified gaps in the EV infrastructure market. The chapter also sets out the objective for delivery of charge point infrastructure by 2025. This will support increasing EV uptake and ensure that charging infrastructure provision stays ahead of demand.
+
+need for top-up charging where required.
+
+## 23 kW-350 kW
+
+### 3.2 Managing energy demand and grid capacity
+
+*Pages 32–32*
+
+3.2 Managing energy demand and grid capacity
+
+As EV numbers increase on Irish roads, how and when people charge will become critical for the effective management of the wider electricity system. Technological developments, such as smart, integrated electric-charging solutions, will help manage the impact and maximise the renewable energy used to supply this new load.
+
+The path towards electric mobility may not only change the overall demand volume but also the shape of the hourly load curve of the power system. This will entail significant challenges for electricity generation and transmission as well as for distribution infrastructure44. However, there is potential for reducing the impact on peak load by coordinating the charging sessions to make the demand more flexible. ESB Networks is advancing options in this space. With the rollout of smart meters and smart home chargers, people will have access to at-home technology with the ability to receive pricing signals. These signals will guide EV owners to charge at times that are more favourable. Furthermore, this load - if charging takes place at times when renewable generation is high - would increase the level of renewable generation that can be accommodated on the electricity network. This would minimise or defer the required investments in infrastructure upgrades.
+
+management systems, where plugged-in EVs can act as back-up batteries and feed energy back into the grid at certain times to help balance demand45. Another possibility is microgeneration, where homes and businesses generate renewable energy for their own consumption46. Microgeneration, where installed, can potentially allow EVs to be charged at home (or at a local level), off-grid. This would reduce demand on the national electricity network and facilitate EVs to be powered by 100% carbon-neutral, renewable energy.
+
+Potentially, EV owners can financially benefit from smart and flexible charging options in two ways:
+
+(1) At home, they can save money by charging
+
+during off-peak hours. Night-time charging is approximately half the price of day-time charging.
+
+(2) Where the EV charging point (at home or
+
+in public) can respond to ESB Networks or EirGrid signals, there are financial incentives emerging to reward the user for this service.
+
+Other initiatives also have the potential to offset increased EV energy demands. These include the possibility of Vehicle-to-Grid (V2G) energy-
+
+44 European Commission - Effect of electromobility on the power system and the integration of RES
+
+45 Guide To… Vehicle-to-Grid Charging — IrishEVs
+
+![Figure from page 32](assets/p032-f01.webp)
+
+*Figure from page 32*
+
+46 Micro-generation Support Scheme | Press Release | SEAI
+
+### 3.3 Grid development and resilience for delivery of higher-speed
+
+*Pages 33–34*
+
+3.3 Grid development and resilience for delivery of higher-speed charging infrastructure
+
+Destination, en-route, and other fast-charging infrastructure is important for the continued uptake of electric vehicles. Therefore, it is essential for the electricity grid to have the capacity and resilience to support such demand. The grid must be supported by a smart and equally-resilient charging network. Zero Emission Vehicles Ireland will intensively engage with ESBN, EirGrid, CRU, and energy suppliers, as well as charge point and forecourt operators, to ensure a timely and coordinated approach to energy provision and grid management.
+
+Even with off-peak overnight charging (AC 7 kW) as the baseline default charging option for most EV users, there remains a need for provision of higher-speed top-up charging at trip destinations or en route. In practice, this would involve higherspeed DC charging at power levels ranging from 50 kW up to 350 kW.
+
+on AFIR requirements, this number will need to increase to between 780-1,320 rapid-charging points.
+
+Delivering this ultra-rapid charging network will require a high level of planning as well as engagement with energy providers and electricity network operators. The energy demand for this will be significant, with power demands of above 2 MW required in some cases. This is equivalent to a connection for a large factory or 800-home housing estate. This will necessitate much planning, as well as deep reinforcement of the electricity network in some instances. It can take 90 working days to complete planning studies and develop a quotation for such a large installation. It is critical that ESB Networks are informed at the earliest stage of planning and that every EV charger is installed in compliance with all regulated connection policies and contractual agreements.
+
+Destination Charging
+
+Destination charging will provide charging solutions (typically 7 kW-100 kW) at tourism and leisure locations such as leisure centres, parks, hotels, and visitor attractions. These would allow EV drivers to charge their vehicles for 1-10 hours before returning home, depending on the nature of their visit and duration of stay.
+
+The private sector has already shown interest in this area of the market. In Ireland, we have seen the provision of top-up charging infrastructure in locations such as car parks, supermarkets, and hotels.
+
+In Ireland to date, Government, European, and ESB funding have supported private investment to deliver the initial phase of infrastructure that is in place today. In other EU states, there is widespread private-sector investment in motorway charging facilities. Stakeholder engagement shows that Ireland’s private sector seems to have a similar desire to invest more widely in this infrastructure.
+
+This strategy envisages a supporting role for Government in providing initial seed funding to stimulate and encourage more widespread rollout of this kind of charging infrastructure. Government will also have a key role in coordinating the various stakeholders involved in delivering this infrastructure.
+
+En-Route Charging
+
+Ultra-rapid, high-speed, on-the-go charging will encourage the transition to electric vehicles. Such charging infrastructure must be fast and highpowered (100 kW or more) to make the charging experience as similar as possible to taking a quick comfort break while driving an ICE vehicle.
+
+Government’s role is to work as a facilitator, supporting and enabling investment in the ultra-rapid, en-route charging infrastructure. An example of this will be the development of a National EV Charging Network plan. The plan will define the EV charger rollout requirements and consider these in the context of the electricity grid’s readiness to meet the projected EV public charge-point demand between 2023 and 2025.
+
+Currently, in Ireland, there are approximately 375 publicly-accessible charge points at power levels in the range of 50 kW-350 kW capacity. To deliver
+
+CHAPTER
+
+## 4
 
 ### 23 kW-350 kW
 
@@ -2137,7 +2171,7 @@ Customer Journey - The Car Sharer
 
 |  | Planning |  | The Journey |  |  | The Way Home |
 | --- | --- | --- | --- | --- | --- | --- |
-| Moments | Caroline has just moved and needs to move her belongings across the city, from Drumcondra to Kilmainham. She signs up to a car-sharing app so that she can move her belongings and make a trip to the retail park to pick up some new home decor. | Caroline plans to pick up a car in the local e-mobility hub on Saturday morning. This is usually a busy time, so she books in advance to avoid disappointment. | Caroline takes a bus down to the local e-mobility hub and is able to collect her fully-charged car easily. She packs up the car and makes a few trips back and forth from the old apartment to the new apartment. | On Saturday afet rnoon, Caroline makes a trip to the retail park. She needs to make sure that the car has enough charge in it to avoid a fine when she returns to the hub. | Caroline isn't familiar with EV charging services. She checks online and reserves a fast charger in the retail park. She charges the car while she does her shopping. | Caroline brings the car back to the e-mobility hub and takes the bus home. |
+| Moments | Caroline has just moved and needs to move her belongings across the city, from Drumcondra to Kilmainham. She signs up to a car-sharing app so that she can move her belongings and make a trip to the retail park to pick up some new home decor. | Caroline plans to pick up a car in the local e-mobility hub on Saturday morning. This is usually a busy time, so she books in advance to avoid disappointment. | Caroline takes a bus down to the local e-mobility hub and is able to collect her fully-charged car easily. She packs up the car and makes a few trips back and forth from the old apartment to the new apartment. | On Saturday afternoon, Caroline makes a trip to the retail park. She needs to make sure that the car has enough charge in it to avoid a fine when she returns to the hub. | Caroline isn't familiar with EV charging services. She checks online and reserves a fast charger in the retail park. She charges the car while she does her shopping. | Caroline brings the car back to the e-mobility hub and takes the bus home. |
 | Highs and Lows | Excited to move apartment | Relieved to have booked a car | Tired | Anxious about not finding a charger | Relieved that she could find the information she needed |  |
 | Considera i tons | How might we encourage people to consider e-car sharing as a viable alternative to owning a car? | How might we meet the demand for car sharing at weekends? | How might we ensure that e-mobility hubs are easily- accessible by public transport or active mobility? | How might we support users to find charging facilities so that they don't risk facing a fine upon returning the car? | How might we provide accessible information about EV charging to infrequent users? |  |
 
@@ -2205,7 +2239,7 @@ Customer Experience – The Taxi Driver
 
 |  | Planning | The First Journey - Going Out |  | The Second Journey - Coming Home |  |
 | --- | --- | --- | --- | --- | --- |
-| Moments | It's Saturday afet rnoon and Tara has been busy on the phone taking bookings for the evening. People rely on her taxi service to go out at night and to get home. There are quite a few long trips ahead: on a typical night she could be driving almost 200 km between the bigger towns and villages. Tara has a home charger installed in her driveway. | It's 7 pm, and she starts her evening of fin Skibbereen. Firstly, she heads to Schull where she has a few pre- bookings. Afet r Schull, she heads to Baltimore, Castletownshend, and Glandore. It's a big night out in Skibbereen so she has multiple big trips to do between Skibbereen and the surrounding areas. | It's already 11 pm, the time when there is a momentary lull before it's home time for all the people she brought out. She's been driving for almost 4 hours and needs to top up her charge. There's a small mobility hub outside of Skibbereen. There is a dedicated taxi charger, so she can take a break for 20 minutes and top up her charge. | She feels confident now that she will have enough charge in her car to complete all her bookings. She heads back into Skibbereen and brings home everyone who was out that night. | Once she has finished up in Skibbereen, she gets a last-minute passenger looking to go to Bantry. She brings them there as the last trip of the evening. Afet r all the pre- bookings, as well as the last-minute ones, she manages to get home to Skibbereen at 2 am. |
+| Moments | It's Saturday afternoon and Tara has been busy on the phone taking bookings for the evening. People rely on her taxi service to go out at night and to get home. There are quite a few long trips ahead: on a typical night she could be driving almost 200 km between the bigger towns and villages. Tara has a home charger installed in her driveway. | It's 7 pm, and she starts her evening off in Skibbereen. Firstly, she heads to Schull where she has a few pre- bookings. After Schull, she heads to Baltimore, Castletownshend, and Glandore. It's a big night out in Skibbereen so she has multiple big trips to do between Skibbereen and the surrounding areas. | It's already 11 pm, the time when there is a momentary lull before it's home time for all the people she brought out. She's been driving for almost 4 hours and needs to top up her charge. There's a small mobility hub outside of Skibbereen. There is a dedicated taxi charger, so she can take a break for 20 minutes and top up her charge. | She feels confident now that she will have enough charge in her car to complete all her bookings. She heads back into Skibbereen and brings home everyone who was out that night. | Once she has finished up in Skibbereen, she gets a last-minute passenger looking to go to Bantry. She brings them there as the last trip of the evening. After all the pre- bookings, as well as the last-minute ones, she manages to get home to Skibbereen at 2 am. |
 | Highs and Lows | Prepared for the night ahead | Looking forward to the evening ahead | Anxious about how much charge is left in the car | Restless that it's only halfway through the night | Relieved she's been able to complete all her trips |
 | Considera i tons | How might we assist taxi drivers to install home chargers if there are no other alternatives in the local area? | How might we encourage people to pre-book taxis and share taxis with neighbours in rural areas? | How might we ensure that taxi drivers have dedicated access to chargers at busy periods? | How might we support taxi drivers to be able take all the bookings they need to without worrying about their charge? |  |
 
@@ -2343,7 +2377,7 @@ Anna is worried about having to queue excessively, as there are limited chargers
 
 Customer Journey - The Apartment Dweller
 
-|  | Saturday Morning |  |  |  | Saturday Afet rnoon | Saturday Evening |
+|  | Saturday Morning |  |  |  | Saturday Afternoon | Saturday Evening |
 | --- | --- | --- | --- | --- | --- | --- |
 | Moments | Anna needs to go to lunch with family in Ballinrobe. It's about a 100 km roundtrip. Anna's parents don't have an at-home charger, so she needs to make sure she has a full charge before she leaves. | The chargers in the apartment block have been booked up over the last few evenings so Anna hasn't had the chance to fully charge her car this week. | She has a half charge in the car, so she decides to leave early so that she can charge in the forecourt on her way. It's a fast charger, so it's a bit more expensive than what she's used to paying. | She is waiting for about 30 minutes to charge. There are restaurants and shops at the forecourt, so she manages to get some breakfast and pick up a dessert for the family lunch. | She arrives at her parents’ house and spends a lovely evening with the family. Before she leaves, she remembers to book a charging slot in the apartment block. There will be a free charger for her when she gets home. | She heads back home that evening and the charging spot she booked is free to use at last. She'll now have a full charge and be ready for the next spontaneous trip. |
 | Highs and Lows | Excited to spend time with the family | Annoyed that she never gets to use the charger in the apartment block 7 | Frustrated that she always has to look for another charger | Patient while she gets some food | Organised and prepared to get a charger when she gets home | Relieved to see the charger she booked is free |
@@ -2419,7 +2453,7 @@ Customer Journey – The HGV Driver
 
 |  | Leaving in the morning |  | Arriving to Work |  | On the Way Home |  |
 | --- | --- | --- | --- | --- | --- | --- |
-| Moments | Mike collects his lorry from the HGV depot outside Waterford. It has been charging overnight there so he is able to get in and set of ffor the day. | Afet r heading to the port to collect his load, he finds out he is driving to Galway this morning. He is under a tight deadline, and only has 4 hours to get there. | It's lunchtime, and he'd like to stop and rest for a while. He would also like to try to top up the charge on his lorry while he takes a break for lunch so that he doesn't have to worry about it later. | He stops in a forecourt just of fthe motorway. There are dedicated chargers for HGVs, so he parks and charges for an hour while he gets lunch. This is his usual spot for charging and eating lunch. | He gets back on the motorway and manages to make his delivery in Galway on time. Leaving early and avoiding rush hour makes all the difef rence. | He leaves the lorry in the depot in Galway to charge overnight. He is staying overnight in the city, so he'll come back and collect it in the morning to make another trip home tomorrow. |
+| Moments | Mike collects his lorry from the HGV depot outside Waterford. It has been charging overnight there so he is able to get in and set off for the day. | After heading to the port to collect his load, he finds out he is driving to Galway this morning. He is under a tight deadline, and only has 4 hours to get there. | It's lunchtime, and he'd like to stop and rest for a while. He would also like to try to top up the charge on his lorry while he takes a break for lunch so that he doesn't have to worry about it later. | He stops in a forecourt just off the motorway. There are dedicated chargers for HGVs, so he parks and charges for an hour while he gets lunch. This is his usual spot for charging and eating lunch. | He gets back on the motorway and manages to make his delivery in Galway on time. Leaving early and avoiding rush hour makes all the difference. | He leaves the lorry in the depot in Galway to charge overnight. He is staying overnight in the city, so he'll come back and collect it in the morning to make another trip home tomorrow. |
 | Highs and Lows | Ready for the day ahead | Anxious to get on the road early | Getting tired before lunch | Rested and on the home stretch | Confident he'll finish his journey on time | Happy to finish driving for the day |
 | Considera i tons |  | How might we ensure that charging requirements don't unnecessarily delay HGV drivers who are working to tight deadlines? | How might we design forecourts in a way that gives HGV drivers access to dedicated HGV chargers and spaces to rest? | How might we reward HGV drivers who frequently stop at the same forecourts for rest and charging? |  |  |
 
@@ -2485,7 +2519,7 @@ Customer Journey – The Retired Urban Dweller
 
 |  | Planning |  |  |  |  | Charging | The Way Home |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Moments | Rachel has to go to a doctor’s appointment in town. It's a 15-minute drive to the other side of town. | Rachel doesn't drive very ofet n, so she tries not to hog the on-street charger. However, she is sometimes left not knowing how much charge is in her car before she gets in. | She's running late and realises she might only have enough charge to get to the doctor’s. She needs to top up her charge either on the way or at the doctor’s office. | There is an easy-to-use app where she has already loaded her charging preferences - she needs an accessible spot and a fast charger beside the doctor’s office. There is a picture of the EV charger available, so she knows what to expect when she arrives. She reserves the spot. | She's nervous that she won't be able to find the spot. She has never parked there before so is on the lookout for signs. | She arrives to the doctor's practice and there is a sign to direct her to the EV chargers. The charger is what she expected to see. She plugs in her car to the fast charger. | Rachel heads in to see the doctor and when she comes out her car has plenty of charge to take her home. |
+| Moments | Rachel has to go to a doctor’s appointment in town. It's a 15-minute drive to the other side of town. | Rachel doesn't drive very often, so she tries not to hog the on-street charger. However, she is sometimes left not knowing how much charge is in her car before she gets in. | She's running late and realises she might only have enough charge to get to the doctor’s. She needs to top up her charge either on the way or at the doctor’s office. | There is an easy-to-use app where she has already loaded her charging preferences - she needs an accessible spot and a fast charger beside the doctor’s office. There is a picture of the EV charger available, so she knows what to expect when she arrives. She reserves the spot. | She's nervous that she won't be able to find the spot. She has never parked there before so is on the lookout for signs. | She arrives to the doctor's practice and there is a sign to direct her to the EV chargers. The charger is what she expected to see. She plugs in her car to the fast charger. | Rachel heads in to see the doctor and when she comes out her car has plenty of charge to take her home. |
 | Highs and Lows | Confident that she knows where she's going 3 | Anxious about how much charge is left in her car. | Nervous about her range | Reassured that there's an app to book a spot | Worried she won't be able to find the spot | Relieved to be able to find the charger and make her appointment on time | Happy that she was able to access the right charger 3 |
 | Considera i tons |  | How might we help infrequent drivers to know how much charge they need based on their travel habits? | How might we support drivers who are not able to access their first choice of charger? | How might we provide accessible chargers and information to those who need it? How might we support those who are unfamiliar with EV chargers to confidently use and book spaces? | How might we provide appropriate signage for EV chargers? |  |  |
 

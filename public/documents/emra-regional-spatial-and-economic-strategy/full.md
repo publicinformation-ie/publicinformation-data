@@ -6838,9 +6838,9 @@ Figure 7.4 Climate Stategy
 | Parameter | Observed | Projected | Example of Biophysical Impacts |
 | --- | --- | --- | --- |
 | Temperature | n A verage temperatures have increased by 0.8°C since 1900, an average of 0.07°C per decade. n T he number of warm days (over 20°C) has increased while the number of cold days (below 0°C) has decreased. | n P rojections indicate an increase in average temperatures across all seasons (0.9- 1.7°C). n T he number of warm days is expected to increase and heat waves are expected to occur more frequently. | n I ncidences of cold stress are likely to decrease while incidences of heat stress will increase. n T he duration of the growing season will increase, occurring earlier and extending farther. |
-| Precipitation | n I ncrease in average annual national rainfall of approximately 60mm or 5% in the period 1981-2010, compared to the 30- year period 1961-1990. n T he largest increases are observed over the west of the country. | n S ignifciant reductions are expected in average levels of annual, spring and summer rainfall. n P rojections indicate a substantial increase in the frequency of heavy precipitation events in Winter and Autumn (approx. 20%). | n T he increased occurrence of dry spells will result in increased pressure on water supply. n A n increase in the frequency of extreme precipitation events will result in increased ful vial and pluvial fol od risk. |
-| Wind Speed and Storms | n N o long-term change in average wind speed or direction can be determined with confdi ence. n T he number and intensity of storms in the North Atlantic has increased by approx. three storms per decade since 1950. | n P rojections indicate an overall decrease in wind speed and an increase in extreme wind speeds, particularly during winter. n T he number of very intense storms is projected to increase over the North Atlantic region. Projections suggest that the winter track of these storms may extend further south and over Ireland more often. | n I ncreases in extreme wind speeds may impact on wind turbines and the continuity of power supply. n I nfrastructure will be at risk due to the increased occurrence of intense storms (e.g. winter 2013/2014). |
-| Sea Level and Sea Surface Temperature | n H istorically, sea level has not been measured with the necessary accuracy to determine sea level changes around Ireland. However, measurements from Newlyn, in southwest England, show a sea level rise of 1.7cm per decade since 1916. These measurements are considered to be representative of the situation to the South of Ireland. n S ea surface temperatures have increased by 0.85°C since 1950, with 2007 the warmest year in Irish coastal records. | n S ea levels will continue to rise for all coastal areas, by up to 0.8 m by 2100. The south of Ireland will likely feel the impacts of these rises frist. n S ea surface temperatures are projected to continue warming for the coming decade. For the Irish Sea, projections indicate a warming of 1.9°C by the end of the century. | n S ignifciant increase in areas at risk of coastal inundation and erosion. n I ncreased risk to coastal aquifers and water supply. n C hange in distribution fsih species; n I mplications for fsiheries and aquaculture industries. |
+| Precipitation | n I ncrease in average annual national rainfall of approximately 60mm or 5% in the period 1981-2010, compared to the 30- year period 1961-1990. n T he largest increases are observed over the west of the country. | n S ignificant reductions are expected in average levels of annual, spring and summer rainfall. n P rojections indicate a substantial increase in the frequency of heavy precipitation events in Winter and Autumn (approx. 20%). | n T he increased occurrence of dry spells will result in increased pressure on water supply. n A n increase in the frequency of extreme precipitation events will result in increased fluvial and pluvial flood risk. |
+| Wind Speed and Storms | n N o long-term change in average wind speed or direction can be determined with confidence. n T he number and intensity of storms in the North Atlantic has increased by approx. three storms per decade since 1950. | n P rojections indicate an overall decrease in wind speed and an increase in extreme wind speeds, particularly during winter. n T he number of very intense storms is projected to increase over the North Atlantic region. Projections suggest that the winter track of these storms may extend further south and over Ireland more often. | n I ncreases in extreme wind speeds may impact on wind turbines and the continuity of power supply. n I nfrastructure will be at risk due to the increased occurrence of intense storms (e.g. winter 2013/2014). |
+| Sea Level and Sea Surface Temperature | n H istorically, sea level has not been measured with the necessary accuracy to determine sea level changes around Ireland. However, measurements from Newlyn, in southwest England, show a sea level rise of 1.7cm per decade since 1916. These measurements are considered to be representative of the situation to the South of Ireland. n S ea surface temperatures have increased by 0.85°C since 1950, with 2007 the warmest year in Irish coastal records. | n S ea levels will continue to rise for all coastal areas, by up to 0.8 m by 2100. The south of Ireland will likely feel the impacts of these rises first. n S ea surface temperatures are projected to continue warming for the coming decade. For the Irish Sea, projections indicate a warming of 1.9°C by the end of the century. | n S ignificant increase in areas at risk of coastal inundation and erosion. n I ncreased risk to coastal aquifers and water supply. n C hange in distribution fish species; n I mplications for fisheries and aquaculture industries. |
 
 Figure 7.5 Observed and projected climate changes and impacts for Ireland Source: National Adaptation Framework
 
@@ -7826,21 +7826,21 @@ National Planning Framework and its National Strategic Outcomes and Priorities o
 | --- | --- |
 |  |  |
 
-| 3. Strengthened !ral 1onolies and Collnitei s |  |
+| 3. Strengthened !ral 1onolies and Collnities |  |
 | --- | --- |
 |  |  |
 
 1.Colra1| ro|_
 
-| 10. 11ess \|o  C_ild1areķ d1a and eal\|_ "eri1es | ali\| toi n |
+| 10. 11ess \|o  C_ild1areķ d1a and eal\|_ "eri1es | ali\| tion |
 | --- | --- |
 |  |  |
 
-|  | tional "\|ra\|e]i1 |  |  | 5.  "\|ro srror\|e n\|errris and "hill | n] 1onol d 0 eķ Innoatoi n s |
+|  | tional "\|ra\|e]i1 |  |  | 5.  "\|ro srror\|e n\|errris and "hill | n] 1onol d 0 eķ Innoation s |
 | --- | --- | --- | --- | --- | --- |
-|  | \|1oles |  | leni\| 6. i]_Ŋ In\|ernat Conne1t |  |  |
+|  | \|1oles |  | leni\| 6. i]_Ŋ In\|ernati Conne1t |  |  |
 |  | \|o a o 7. n_an1ed  Clila\|e and Heritage ie\| |  |  |  |  |
-| 8. $ransitoi n Car0on and !esilien\| "o1 | \|o a o Clila\|e ie\| | 7. n_an1ed  and Heritage | leni\| | 6. i]_Ŋ In\|ernat Conne1t |  |
+| 8. $ransition Car0on and !esilien\| "o1 | \|o a o Clila\|e ie\| | 7. n_an1ed  and Heritage | leni\| | 6. i]_Ŋ In\|ernati Conne1t |  |
 |  |  |  |  |  |  |
 
 9."s|aina0le ana]elen| o= )a|erķ )as|e and o|_er nironlen|al !esor1es

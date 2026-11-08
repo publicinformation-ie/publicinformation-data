@@ -6,7 +6,7 @@ Source: https://assets.gov.ie/static/documents/national-investment-framework-for
 
 ### Front Matter
 
-*Pages 1–13*
+*Pages 1–6*
 
 ![Figure from page 1](assets/p001-f01.webp)
 
@@ -103,7 +103,7 @@ National Investment Framework for Transport in Ireland | Overview
 | Figure 1: Where NIFTI sits in the hierarchy of Project Ireland 2040 strategies and plans | 14 |
 | Figure 2: Project Ireland 2040 National Strategic Outcomes | 20 |
 | Figure 3: Percentage Share of Land Transport Gross Expenditure, 2005 to 2020 | 28 |
-| Figure 4: Revised Natoi nal Development Plan 2021-2030 annual investment in transport, 2021 to 2025 | 29 |
+| Figure 4: Revised National Development Plan 2021-2030 annual investment in transport, 2021 to 2025 | 29 |
 | Figure 5: NIFTI Investment Priorities | 44 |
 | Figure 6: NIFTI Modal Hierarchy | 57 |
 | Figure 7: NIFTI Intervention Hierarchy | 50 |
@@ -111,15 +111,17 @@ National Investment Framework for Transport in Ireland | Overview
 
 | List of Tables |  |
 | --- | --- |
-| Table 1: Estmi ated average annual funding requirement for asset protectoi n and renewal, 2018 to 2040 | 33 |
+| Table 1: Estimated average annual funding requirement for asset protection and renewal, 2018 to 2040 | 33 |
 | Table 2: National Planning Framework targeted pattern of city population growth | 35 |
 | Table 3: NIFTI Intervention Hierarchy—Example Measures | 49 |
 | Table 4: Priority Areas for Further Analysis and Policy Development | 58 |
 | Table 5: Strategic Environmental Assessment Objectives | 63 |
 
-National Investment Framework for Transport in Ireland | Foreword
+## Foreword
 
-#### Foreword
+### Foreword
+
+*Pages 7–8*
 
 The population of Ireland will grow to almost 5.7 million people by 2040. To ensure our transport system can manage the demands that this growth brings, we must plan today for how we will invest in the coming years and decades. That is the purpose of the National Investment Framework for Transport in Ireland.
 
@@ -147,7 +149,393 @@ Hildegarde Naughton TD, Minister of State at the Department of Transport with sp
 
 National Investment Framework for Transport in Ireland | Project Ireland 2040
 
-#### Executive Summary
+## Executive Summary
+
+### 1.2 | Investing in Transport
+
+*Pages 13–14*
+
+1.2 | Investing in Transport
+
+Investment in transport is never for its own sake. The goal of transport is not the construction of a new railway line, for example, but to facilitate all the benefits which that piece of infrastructure will bring by allowing for the movement of people and goods.
+
+Transport supports liveable communities and connects families and friends. Investing in transport allows people to travel around the island, accessing amenities, employment and key public services such as healthcare and education. The right transport investment promotes
+
+National Investment Framework for Transport in Ireland | Project Ireland 2040
+
+positive social and economic outcomes for all. By developing an accessible network, the transport system can ensure that everyone can get to and from their chosen destinations.
+
+The population of Ireland is projected to grow by one million people between 2018 and 2040. In recent decades Dublin and the wider Eastern and Midland region has experienced the majority of growth in population, homes and jobs. This concentration is not sustainable. Consequently, the NPF sets out a region-focused strategy for managing future growth. This regional rebalancing must be supported by appropriate transport investment across the country.
+
+Transport is fundamental for economic development. Reducing the time spent travelling between and within towns and cities supports economic activity. Ensuring that surface access to ports and airports is available for goods and services of high strategic value is essential for international trade. Providing workers with access to employment creates opportunities and is crucial for attracting investment. Tourism depends on transport links, both internally and with regard to international gateways.
+
+The NPF targets half of the growth in population between now and 2040 to take place in the Eastern and Midland region, and only 25% within Dublin and its suburbs. The remaining half is to be shared between the Northern and Western, and Southern Regions. Half of population growth is targeted to take place in the five cities—Dublin, Cork, Limerick, Galway and Waterford—and half in towns, villages and rural areas.
+
+As the second largest source of Irish greenhouse gas emissions, the transport sector will have to significantly decarbonise in the decades ahead for Ireland to meet its climate change goals and minimise the damage from climate breakdown, such as more frequent extreme weather events, rising sea levels and population displacement. As the economy has grown in recent years, transport activity and emissions have risen also, and the correlation between emissions and economic growth must be broken. This will require considerable investment in walking, cycling and public transport, which will also bring environmental benefits in terms of air quality and noise pollution.
+
+Outside the cities, the regional importance of Athlone, Sligo, Letterkenny, Drogheda and Dundalk is recognised, as are the important cross-border economic and social links with Derry and Belfast in relation to the final three of those towns. To help tackle urban sprawl and the continual expansion of our towns and cities, a target of 40% of all new housing to be delivered within the footprints of existing settlements has also been set.
+
+While the NPF sets the national spatial and development strategy, the three Regional Assemblies have a key role to play in delivering the NSOs at a regional scale. Central to this is the preparation of Regional Spatial and Economic Strategies for each of the regions, to promote the sustainable development of the regions and identify the policies and initiatives to enable the delivery of national planning policy at a regional level. The Regional Assemblies actively engage with the Department of Transport in respect of their Regional Spatial and Economic Strategies, including identifying where transport investment can help meet regional priorities. In future, this engagement and investment will be guided by NIFTI.
+
+Tackling congestion through the provision of sustainable mobility also lessens the amount of time people spend commuting each day and leads to improvements in public health.
+
+### 1.3 | Project Ireland 2040
+
+*Pages 14–15*
+
+1.3 | Project Ireland 2040
+
+Project Ireland 2040 was launched in February 2018 with the publication of the National Planning Framework (NPF) and the National Development Plan 2018-2027 (NDP). A revised National Development Plan 2021-2030 was published in October 2021.
+
+Project Ireland 2040 is underpinned by a set of shared objectives, the National Strategic Outcomes (NSO), for the decades ahead which will ensure Ireland develops sustainably and that the benefits from that development are shared by every community in the country.
+
+To support the continued realisation of the National Planning Framework, the revised NDP has set out a major public capital investment programme of €165bn between 2021 and 2030. In the first five years of the plan, over €13bn will be invested in transport which will
+
+National Investment Framework for Transport in Ireland | Overview
+
+see maintenance requirements for existing infrastructure largely met and, over the lifetime of the plan, a host of significant and transformative new infrastructure and services delivered.
+
+NIFTI translates the ten NSOs to a transportspecific context, developing the Investment Priorities that will ensure that the transport sector plays its part in delivering the NPF.
+
+Within the NDP, Departmental funding envelopes are set out for a five-year period to 2025, and this is extended on a rolling basis as part of the annual Estimates process.
+
+Future transport investment projects and programmes as identified in investment strategies—whether they are developed by the NTA in the case of public transport, TII in the case of the National Roads network, or Local Authorities in the case of regional and local roads and other projects of a local nature—will have to demonstrate their fit with NIFTI and, by extension, with the NPF and NSOs.
+
+### 1.4 | Strategic Investment Framework for Land Transport
+
+*Pages 15–15*
+
+1.4 | Strategic Investment Framework for Land Transport
+
+### 1.5 | Sustainable Mobility Policy Review
+
+*Pages 15–16*
+
+1.5 | Sustainable Mobility Policy Review
+
+The Strategic Investment Framework for Land Transport (SIFLT) was published by the Department of Transport in 2015. In the context of constrained funding following the financial crisis, SIFLT established high-level priorities for future transport investment and the key principles to which investment proposals had to adhere.
+
+In parallel with NIFTI, the Department has undertaken a review and plans to publish a new Sustainable Mobility Policy shortly. This will set out the policy framework for walking, cycling and public transport to support Ireland’s overall requirement to achieve a 51% reduction in greenhouse gas emissions by 2030. The new policy will primarily focus on measures to promote and facilitate active travel and public transport for all and, in doing so, encourage less private car usage nationally to support our climate commitment. It will set out a comprehensive set of actions to increase active travel infrastructure provision and improve public transport capacity and services across the country. These will be supported by behavioural change and demand management measures to make sustainable modes the preferred choice for as many people as possible. The Climate Action Plan sets out additional measures to promote other complementary transport mitigation measures such as the switch over to electric car usage and greater use of renewable fuels for transport.
+
+Developed in the context of constrained investment as a result of fiscal consolidation, at the time of publication SIFLT noted that funding levels were insufficient to maintain the network and there was virtually no scope to invest in infrastructure improvements. The key transport investment challenge, therefore, was to “attain funding levels consistent with maintaining, renewing and improving” the network so that it could support the economic and social needs of the country.
+
+SIFLT has successfully guided investment in the land transport network over recent years and its first investment priority of achieving steady state maintenance is prominent within the NDP and revised NDP. However, the SIFLT framework must be periodically reviewed to ensure it remains appropriate. With the launch of Project Ireland 2040 in February 2018, it is timely to undertake such a review.
+
+The new policy will build on and replace the existing sectoral policy documents that were published in 2009: Smarter Travel, A Sustainable Transport Future 2009-2020, and the National Cycle Policy Framework.
+
+NIFTI will replace SIFLT as the framework for future land transport investment (Figure 1). In the hierarchy of national and subnational frameworks, strategies and plans, the NPF has established the shared vision across Government for development in the coming decades, underpinned by the public capital investment programme set out in the NDP.
+
+It will be underpinned by funding for sustainable mobility under the renewed National Development Plan, which provides €35bn in total for transport investment over the next decade.
+
+National Investment Framework for Transport in Ireland | Project Ireland 2040
+
+![Figure 1: Where NIFTI sits in the hierarchy of Project Ireland 2040 strategies and plans](assets/p016-f01.webp)
+
+*Figure 1: Where NIFTI sits in the hierarchy of Project Ireland 2040 strategies and plans*
+
+*Under development
+
+The overarching sustainable mobility policy framework is centred around three principles— Safe and Green Mobility, People Focused Mobility, and Better Integrated Mobility—supported by ten high-level goals which together shape a wide range of supporting actions to be delivered by 2025.
+
+budget represents the total amount of greenhouse gases that may be emitted in the State during each five-year period from 2021 to 2025, and 2026 to 2030.
+
+The first set of carbon budgets was proposed by the CCAC in October 2021. The proposed carbon budgets will go to Government and then to the Oireachtas for approval. Once these overall, economy-wide carbon budgets are approved, the Minister for Environment, Climate and Communications will divide the overall carbon budgets into sectoral emissions ceilings and bring to Government for approval.
+
+### 1.6 | The Climate
+
+*Pages 16–17*
+
+1.6 | The Climate Action and Low Carbon Development (Amendment) Act 2021
+
+To achieve the national emission reduction targets, the Act also requires the development of annual Climate Action Plans that set out detailed mitigation actions for each sector.
+
+The Climate Action and Low Carbon Development (Amendment) Act 2021 establishes a legally binding commitment to achieve net-zero emissions no later than 2050, and a 51% reduction in emissions by the end of this decade. The Act provides for the development of a series of carbon budgets informed by the Climate Change Advisory Council (CCAC). Each carbon
+
+National Investment Framework for Transport in Ireland | Overview
+
+### 1.7 | Climate Action Plan
+
+*Pages 17–17*
+
+1.7 | Climate Action Plan
+
+The NAPCP lists the policies and measures contained within relevant policy documents including the NDP, the Clean Air Strategy, and the National Energy and Climate Plan which will support the reduction of air pollutants, including for the transport sector. While these measures are mainly designed to address related problems such as reducing greenhouse gas emissions, addressing congestion and promoting fuel efficiency, they will also contribute to a reduction in nitrogen oxide emissions. Measures include encouraging vehicles with higher engine standards into the Irish fleet through early scrappage schemes, obliging suppliers of road transport fuels to ensure that a proportion of the fuels they place on the market are produced from renewable sources, and achieving modal shift through large-scale public transport capital projects such as BusConnects.
+
+Transport currently accounts for approximately 18% of Ireland’s greenhouse gas (GHG) emissions. To put Ireland on a pathway to achieve net zero emissions by 2050, the Climate Action Plan 2021 sets an emission reduction target for the transport sector of 7 million tonnes of CO2, approximately 51% over the period 2021 to 2030. To achieve this target the Plan sets out a range of measures to reduce emissions in the transport sector. These measures consist of a mix of investments in sustainable transport infrastructure designed to deliver an additional 500,000 daily journeys by walking, cycling and public transport, scaling up the deployment of zero emissions technologies to increase the fleet of Electric Vehicles (EVs) and low-emission (with hyphen) vehicles (LEVs) on the road to 945,000, increasing biofuel blending rates, and the use of behavioural change interventions, including demand management, to reduce the kilometres driven by the remaining internal combustion engine (ICE) cars.
+
+The NAPCP notes the particular importance of achieving high rates of electric vehicle penetration to remain in compliance with the nitrogen oxide emissions ceiling for 2030. This will also support reductions in other local air pollutants and contribute towards achieving the climate mitigation goals set out in the NDP and the Climate Action Plan.
+
+Given the significant contribution transport makes to Ireland’s GHG emissions and the ambitious target for the transport sector outlined above, it is imperative that NIFTI reflects the need to rapidly decarbonise the transport sector.
+
+### 1.8 | National Air Pollution Control Programme
+
+*Pages 17–18*
+
+1.8 | National Air Pollution Control Programme
+
+Air pollution is one of the leading causes of premature death in Europe. Besides health impacts, air pollution can cause significant adverse environmental impacts, including the degradation of biodiversity and water quality. To address these health and environmental challenges the Department of the Environment, Climate and Communications (DECC) is in the process of developing a National Clean Air Strategy.
+
+Ireland is required to produce a National Air Pollution Control Programme (NAPCP) every four years, under the EU National Emissions Ceiling Directive (NECD). The NECD establishes emission ceilings for 2020 and 2030 for five specified pollutants.
+
+In the transport sector, emissions arise mostly from road transport, which is responsible for nitrogen oxide, fine particulate matter and black carbon pollution arising from increased numbers of diesel cars and buses in our cities and towns. The Urban Environmental Indicators report published by the Environmental Protection Agency (EPA) in 2019 reveals the extent of nitrogen dioxide pollution across Dublin City resulting from heavy traffic levels.
+
+The first NAPCP for Ireland was prepared and submitted to the European Commission in 2019. The NAPCP demonstrates the pathway Ireland will follow to achieve compliance with the NECD 2020 and 2030 targets and presents an overview of current and projected 2030 emissions levels for each of the five pollutants.
+
+The transport sector is a significant contributor to air pollution in Ireland. It is the primary source of nitrogen oxide emissions, with passenger cars and heavy goods vehicles the most significant emitters.
+
+The consultation document prepared as part of the development of the Clean Air Strategy makes
+
+National Investment Framework for Transport in Ireland | Project Ireland 2040
+
+several suggestions for how these emissions could be reduced, including the transition away from internal combustion engine vehicles to electric vehicles, increased travel by sustainable modes, the deployment of low emissions zones, and the introduction of congestion charging.
+
+Development Goals. NIFTI will ensure that this alignment is extended to the transport sector when undertaking future investment.
+
+### 1.9 | Clean Air Strategy
+
+*Pages 17–17*
+
+1.9 | Clean Air Strategy
+
+### 1.10 | Biodiversity
+
+*Pages 18–18*
+
+1.10 | Biodiversity
+
+If poorly implemented, transport infrastructure investment can damage the natural world and lead to losses in connectivity and habitat fragmentation. To mitigate these risks, a Strategic Environmental Assessment (SEA), Appropriate Assessment (AA), and Strategic Flood Risk Assessment (SFRA) have been carried out alongside NIFTI to identify potential negative environmental outcomes of the framework for protected sites and designated species. This analysis is discussed further in Section 6.
+
+In July 2020, Transport Infrastructure Ireland published the Travelling in a Woman’s Shoes report which investigates the needs and travel behaviours of women, and is the first study of its kind conducted in Ireland.1 The report found that women in Ireland rely heavily on car transport infrastructure and identified significant caregiving responsibilities, safety concerns and equality of access as drivers of car dependency for women. The full realisation of the National Strategic Outcomes set out by the NPF requires that future transport investment address the barriers that women face in the access and use of our transport system.
+
+### 1.11 | United Nations Sustainable Development Goals
+
+*Pages 18–21*
+
+1.11 | United Nations Sustainable Development Goals
+
+The NPF notes that a significant proportion of the population will experience disability at some stage in their lives, and acknowledges the need to facilitate independent living, access, and mobility in relation to buildings and the environment, and full integration with society generally for people with disabilities, including access to employment. Transport accessibility is a crucial element of facilitating access to and integration with wider society for people with disabilities.
+
+The 2030 Agenda for Sustainable Development was adopted by all United Nations Member States, including Ireland, in 2015. At its heart are 17 Sustainable Development Goals. Appropriate development of transport infrastructure can be a powerful means of achieving some of the Sustainable Development Goals, such as ensuring healthy lives and promoting wellbeing; making cities and human settlements inclusive, safe, resilient and sustainable; promoting sustained, inclusive and sustainable economic growth; and taking urgent action to combat climate change. As part of Project Ireland 2040, there is already significant alignment between the National Strategic Outcomes and the Sustainable
+
+The NPF observes that there is significant similarity in many of the planning related issues that are most impactful for people with disabilities and for older people, and it is likely that transport accessibility will become increasingly important in the coming years as our population ages. Given this, it is crucial that our transport infrastructure
+
+National Investment Framework for Transport in Ireland | Overview
+
+be accessible by design to empower independent travel by users with a variety of different mobility requirements.
+
+inclusion, and key environmental policies and plans such as the Climate Action Plan, National Air Pollution Control Programme, Clean Air Strategy, National Biodiversity Action Plan and All-Ireland Pollinator Plan.
+
+New technologies have the potential to revolutionise everyday journeys for groups with reduced access to transport and there is widespread innovation taking place in areas across the transport sector, from self-driving cars designed to be accessible to people with disabilities to applications designed to support accessibility, such as by helping people with vision impairments navigate public transport stations using audio technology, to the development of artificial intelligence software that uses existing closed circuit television cameras to automatically identify and report incidents of concern on public transport, helping service users feel safe after dark. Transport investment must be flexible and adaptive enough to exploit the opportunities provided by emerging technologies as they develop, and indeed to foster and support native innovation in this space. 1.13 | Conclusion
+
+The right transport investment helps to deliver high-quality travel and supports positive outcomes for society, the environment and the economy. However, these outcomes do not happen by chance. It is important to have in place a framework to guide transport investment and deliver the infrastructure and services we need. That is the purpose of NIFTI.
+
+New transport investments will have to demonstrate their alignment with NIFTI. By extension, this will ensure that investment is aligned with the NPF and its National Strategic Outcomes, resulting in a consistent approach to investment across Government, with transport supporting our growth and development goals. In this way, NIFTI will ensure that transport enables the NPF.
+
+NIFTI establishes a common lens through which to consider potential investment in transport infrastructure. However, it is not the only consideration. In addition to NIFTI, transport investment will continue to be informed by specific sectoral priorities and wider policy objectives, including the new Sustainable Mobility Policy, the United Nations Sustainable Development Goals, considerations around
+
+National Investment Framework for Transport in Ireland | Project Ireland 2040
+
+## 2 The Purpose of NIFTI
+
+National Investment Framework for Transport in Ireland | The Purpose of NIFTI
+
+#### The Purpose of NIFTI
+
+The purpose of the National Investment Framework for Transport in Ireland is to support the delivery of the National Planning Framework. Transport is a key enabler of the National Strategic Outcomes and the appropriate transport investment can facilitate these outcomes across a range of areas, including the environment, society and economy.
+
+2.1 | Introduction
+
+The National Planning Framework has set out the vision for the sustainable development of Irish society over the coming decades, a vision encapsulated by the ten NSOs. Transport has a key role to play in realising this vision.
+
+NIFTI ensures that transport investment is aligned with the NSOs and supports, enables and facilitates the NPF, delivering positive social, environmental and economic outcomes throughout Ireland.
+
+The following section articulates our high-level objectives when we invest in transport and how this investment relates to the ten NSOs.
+
+### 1.12 | Accessibility and Inclusion
+
+*Pages 18–18*
+
+1.12 | Accessibility and Inclusion
+
+A number of ongoing policy initiatives will indirectly support improvements in local air quality. For example, transitioning journeys to more sustainable modes will support the climate policy goals outlined in the Climate Action Plan while also contributing to improvements in local air quality. The Clean Air strategy maximises these synergies and reduces the potential for tensions between policy objectives.
+
+To deliver the greatest possible benefits and support the realisation of the strategic outcomes described in the NPF, transport infrastructure must be accessible by design, so that it accounts for and serves the needs of all members of our society. The United Nations Sustainable Development Goals stress the importance of providing access to safe, affordable, accessible and sustainable transport systems for all by 2030, referencing in particular the needs of women, children, persons with disabilities and older persons.
+
+### 2.2 | Objectives of Transport Investment
+
+*Pages 21–22*
+
+2.2 | Objectives of Transport Investment
+
+In the coming decades, we will invest to deliver a safe and sustainable land transport network which supports prosperous communities, promotes balanced development and helps to realise our climate change goals.
+
+There will be an estimated one million more people living in Ireland in 2040 when compared to 2018. The NPF has set specific targets for where this population will live and work, and transport has a key enabling role to play in achieving these targets. By delivering sustainable mobility infrastructure and services in our cities and towns, transport can help realise compact growth and the decarbonisation of the transport sector. By developing the interurban road and rail network and public transport
+
+National Investment Framework for Transport in Ireland | Project Ireland 2040
+
+![Figure 2: Project Ireland 2040 National Strategic Outcomes](assets/p022-f01.webp)
+
+*Figure 2: Project Ireland 2040 National Strategic Outcomes*
+
+services, people will be able to travel between regions quickly and safely to visit family and friends and access economic opportunities and services. By investing in the regional and local road network, transport can ensure the continued vibrancy of our towns, villages and rural areas. By securing access to our ports and airports, transport can ensure international connectivity and support economic development. By investing in infrastructure that is accessible by design, transport can support an integrated, diverse and inclusive society where all members can access essential services, participate in the economy, and contribute to their local communities.
+
+the transport network that Ireland will need in the coming decades to enable the NPF.
+
+### 2.3 | National Strategic Outcomes
+
+*Pages 22–23*
+
+2.3 | National Strategic Outcomes
+
+The National Strategic Outcomes are a single vision and shared set of goals for every community in Ireland (Figure 2). In some cases, transport’s role is explicit, such as delivering sustainable mobility, while in others transport has a facilitating role, such as access to high-quality childcare, education and health services.
+
+It is not possible to definitively list all of Ireland’s transport needs over the next two decades, nor is it the purpose of NIFTI to identify specific transport interventions. However, the framework ensures that future investment aligns with the National Strategic Outcomes and thereby delivers
+
+Future investment in transport should meet one or more of the National Strategic Outcomes. To take some examples from the revised NDP, the development of BusConnects and comprehensive cycle networks in each of the five cities meets the
+
+National Investment Framework for Transport in Ireland | The Purpose of NIFTI
+
+fourth NSO, sustainable mobility, and also strongly supports compact growth and transitioning to a low carbon society. By contrast, a nonurban project such as the development of the link between Cork and Limerick will enhance regional accessibility in the south and southwest of the country. There may be occasions when a certain type of investment performs strongly against one NSO but negatively against another. Where these considerations arise, they will be balanced through the strategic assessment stage in the project lifecycle, discussed in greater detail in Section 5.
+
+a low-carbon, economically competitive and environmentally sustainable economy by 2050. As the second largest source of greenhouse gas emissions in Ireland, the transport sector has a key role to play in achieving these objectives.
+
+Building on the substantial investment in sustainable mobility set out in the revised National Development Plan 2021-2030, the 2021 Climate Action Plan sets out additional measures to help Ireland achieve a 51% reduction in emissions from the transport sector by 2030 compared to current levels and delivering an additional 500,000 daily journeys by walking, cycling and public transport. These measures will be reflected in, and complemented by, actions to be included in the forthcoming Sustainable Mobility Policy, which will establish the sectoral policy framework for active travel and public transport.
+
+While transport investment can be an enabler of the NPF, it must be noted that good transport investment is contingent on policy elsewhere too. While transport is a key component of delivering compact growth, effective land use policy is necessary to reduce the need to travel and deliver the population densities required for viable public transport services.
+
+The Climate Action Plan also commits to increasing the number of electric vehicles on the road to 945,000 by 2030. To achieve this level of electric vehicle penetration, it is vital to address potential barriers to uptake such as range anxiety, which is a driver’s fear that an electric vehicle will have insufficient energy to complete a given journey. To address this issue, the Climate Action Plan commits to the development of a national infrastructure strategy to support the development of the national charging network, particularly in non-urban areas.
+
+Decisions taken in other sectors can also impact on the demands placed on the transport system. For example, the development of communications technology infrastructure can mitigate the need for travel in certain circumstances, while the construction of key public services such as schools and hospitals will create demand for trips and pressures on the network locally. Ideally, new development will optimise the use of existing transport assets rather than require the construction of new infrastructure.
+
+Reducing greenhouse gas emissions will mean different things on different parts of the network. Within our cities and large towns, NIFTI will support investment in public transport, walking and cycling to encourage modal shift away from the private car. Demand management will also have a role in encouraging this shift. The deployment of demand management measures in our large urban centres is given significant consideration in the recently published Five Cities Demand Management Study. Further analysis will also be required to identify how measures identified in this study can be applied in different regions and locations across the country. Advancing research in this area will be important in supporting the delivery of the Climate Action Plan and the forthcoming Sustainable Mobility Policy Framework.
+
+The following sections set out in more detail the types of outcomes that transport can deliver or enable in support of the NPF across a range of considerations.
+
+### 2.4 | Delivering Clean, Low-
+
+*Pages 23–24*
+
+2.4 | Delivering Clean, Lowcarbon and Environmentally Sustainable Mobility
+
+A sustainable transport system is one that can meet the needs of the population today without compromising its ability to meet the needs of the population tomorrow. In terms of environmental sustainability, the reduction in greenhouse gas emissions is a foremost priority. This is reflected in National Strategic Outcome 8, which is the transition to a low-carbon and climate resilient society. It is also a national objective to achieve
+
+On the interurban network, the construction of new roads, with the potential to induce additional car use, will be appraised in the context of
+
+National Investment Framework for Transport in Ireland | Project Ireland 2040
+
+### 2.5 | Supporting Successful Places and Vibrant Communities
+
+*Pages 24–25*
+
+2.5 | Supporting Successful Places and Vibrant Communities
+
+Ireland’s climate change goals, particularly with the coming introduction of carbon budgeting. Improvements to rail and interurban bus services can reduce the need to travel by car between our cities, while the development of charging infrastructure and uptake of electric vehicles can serve to mitigate emissions from those journeys which are taken by car.
+
+The National Planning Framework estimates that the population of Ireland will grow by one million over the next twenty years to almost six million people. Where this population lives and works will be a key factor in how Ireland develops, socially and economically, and the National Planning Framework has set the objective of accommodating one quarter of the growth in Dublin, one quarter in the other four cities, and the remaining half in towns and rural areas. The provision of appropriate transport infrastructure will play a crucial enabling role in the delivery of this objective and supporting quality of life for all Ireland’s inhabitants.
+
+While ensuring surface access to ports and airports is primarily a question of facilitating the efficient movement of economic activity, NIFTI will support the development of sustainable mobility options for private passengers to access strategic links, such as progressing the MetroLink project.
+
+In rural areas, it will not be viable to provide the full suite of sustainable mobility options available in our cities and towns. Nevertheless, the strategic provision of park and ride facilities can be an effective means of increasing the catchment area for public transport services in certain areas. Services such as Local Link can reduce reliance on the private car to some extent, and new innovations such as mobility as a service have the potential to allow for the intelligent expansion of routes in future. Greenways can also make a contribution to reducing private car use in rural areas by providing an alternative means of accessing larger settlements. Overall, however, the private car can be expected to remain the primary transport mode for people living in rural areas so, as with interurban travel, it will be important to support the transition to low-emission vehicles.
+
+The densification of Ireland’s five cities will place additional strain on urban transport networks which are already approaching capacity in many locations. For the NPF spatial goals to be delivered, it is therefore essential that urban congestion is tackled. This will mean increasing public transport capacity and usage, and investing in active travel to discourage private car use as much as possible. Beyond the cities, the provision of park and ride close to transport links can ensure access to employment and services for those living outside the major settlements and reduce the need for people to commute into the cities by car. In the medium-term, congestion charging may be required in some of the cities and is being considered in the context of the Sustainable Mobility Policy Review as informed by the Five Cities Demand Management Study.
+
+Many of the same measures that reduce greenhouse gas emissions can also have a beneficial impact for other elements of environmental sustainability. Increased public transport and alternative fuel usage can help to improve air quality and reduce noise pollution, while active travel brings health benefits. Conversely, if urban densification occurs but internal combustion engine cars remain the primary transport mode, emissions and air quality will worsen. It is essential that the transport sector does not cause undue negative outcomes in terms of health and quality of life, while enabling the urban growth envisaged by the NPF.
+
+On the interurban network, besides providing people with more opportunities to travel by sustainable modes, the transport system and new infrastructure should support rather than undermine the NPF spatial objectives. For example, in the absence of other measures, improving the connection between two urban centres contributes to interurban connectivity but could encourage sprawl, thereby impacting on compact growth. Where such tensions arise, sequencing will be an important consideration to ensure that the right investment is undertaken at the right time and negative spillovers are mitigated.
+
+National Investment Framework for Transport in Ireland | The Purpose of NIFTI
+
+### 2.6 | Facilitating Safe,
+
+*Pages 25–26*
+
+2.6 | Facilitating Safe, Accessible, Reliable and Efficient Travel on the Network
+
+To support the continued vibrancy of rural Ireland, rural areas must be attractive places to live and work. This will mean ensuring reliable access to services and amenities, particularly for communities that are highly dependent on a small number of regionally important transport links. Given that transport in rural Ireland largely does not face capacity constraints, a key focus will be meeting maintenance requirements for existing infrastructure to provide a guaranteed level of connectivity to centres of scale. This will be supplemented by the targeted provision of new infrastructure and services where necessary.
+
+Delivering a high level of service means the provision of a transport network that is safe, reliable, efficient and accessible. The growth in population forecast between now and 2040 will result in a significant increase in trips, for both people and goods. Investment in the land transport network must enable this growth without compromising on service levels. Moreover, investment must be financially sustainable, and among other things this means ensuring that the transport network is appropriate to the population’s needs rather than delivering high levels of excess capacity.
+
+National Investment Framework for Transport in Ireland | Project Ireland 2040
+
+In urban areas, NIFTI will support investments which allow people to access employment, services and leisure opportunities safely and within a reasonable time period. As with supporting other NSOs, this will mean encouraging modal shift though the provision of high-quality public transport and active travel facilities and reducing the need to travel by private car. It will also mean ensuring that new services and infrastructure are fully accessible and retrofitting existing infrastructure so that the entire transport system becomes accessible over time.
+
+Moreover, many of Ireland’s strategic links are part of either the core or comprehensive Trans- European Transport Network (TEN-T). There are certain infrastructure requirements arising from the TEN-T Regulation, which will need to be considered in the context of future transport planning and investment.
+
+Enhancing regional and rural accessibility, with improved services and reliable journey times to centres of scale, and pursuing compact growth are essential to ensuring that economic development and opportunity is distributed across the regions, with conditions that attract investment and foster opportunities for indigenous employment and enterprise growth.
+
+On the interurban network, an objective of the NPF is to deliver average journey time speeds of 90km/h or better between all of Ireland’s cities and regional centres.2 In some instances this will mean the development of new infrastructure or upgrading of existing infrastructure, though addressing congestion on the key strategic links surrounding our cities will also be necessary to improve reliability. Investment in interurban bus and rail services can ensure accessibility to centres of scale for those who are unable to travel by car, while meeting asset protection and renewal requirements can help to ensure the safety of the network.
+
+2.8 | Conclusion
+
+Transport investment is a key enabler of the National Planning Framework. The appropriate investment can promote positive outcomes across a range of considerations by facilitating safe and reliable travel for everyone, supporting vibrant communities, decoupling carbon emissions from travel demand, and encouraging balanced economic development.
+
+In common with interurban passenger travel, a key issue for freight is congestion on the land transport network adjacent to strategic links. Addressing congestion through demand management measures and the diversion of some trips to other modes and links will help to ensure the reliable and efficient movement of imports and exports.
+
+Future transport investment will have to demonstrate alignment with NIFTI and, by extension, support the delivery of the NPF and the NSOs.
+
+Finally, investment in rural roads will help to ensure that those living in rural communities can travel safely and reliably to centres of scale.
+
+### 2.7 | Promoting a Strong and Balanced Economy
+
+*Pages 26–30*
+
+2.7 | Promoting a Strong and Balanced Economy
+
+As a small, open economy, Ireland is dependent on high-quality international connectivity through its strategic links. State ports and airports have the ability to raise their own finance so Exchequer funding for key projects is not necessary but enhancing surface access is under the remit of the Department and of strategic importance.
+
+National Investment Framework for Transport in Ireland | Project Ireland 2040
+
+## 3 Identifying the Challenges
+
+National Investment Framework for Transport in Ireland | Identifying the Challenges
+
+#### Identifying the Challenges
+
+The National Investment Framework for Transport in Ireland is informed by a broad range of supporting analysis which has identified key transport challenges across the network, both today and in the future. The framework has been developed to address these challenges and ensure that transport investment enables and facilitates the National Strategic Outcomes in the coming years and decades.
+
+3.1 | Introduction
+
+As part of NIFTI, a wide range of supporting analysis has been conducted to identify key transport challenges, needs and constraints, both today and in the future. This analysis can divided into three broad categories: context and background, the existing land transport network, and the future land transport network.
+
+The first set of analysis considers the context within which NIFTI has been developed and identifies factors with the potential to affect how and where transport will take place in the decades ahead. Given uncertainty around future developments in the transport sector, NIFTI is designed with sufficient flexibility to accommodate potential changes to transport use and patterns arising from, for example, Brexit and new technologies.
+
+The current network work package considers the management and renewal of the existing land transport system in terms of maintenance, safety, resilience and contractual obligations. Ensuring that existing assets provide safe travel and are maintained to a good standard is fundamental to realising the full benefits of past investment.
+
+Finally, applying National Planning Framework settlement and population projections, the future network work package identifies potential constraints on the future land transport network, indicating the types of issues and areas that will need to be addressed if the ten National Strategic Outcomes are to be realised.
+
+National Investment Framework for Transport in Ireland | Project Ireland 2040
+
+80%
+
+70%
+
+60%
+
+50%
+
+40%
+
+30%
+
+20%
+
+10%
+
+0%
+
+2005200620072008200920102011201220132014201520162017201820192020
+
+Road Improvement/Maintenance Sustainable Mobility
+
+The following section summarises the key points that emerged from the background analysis and identifies the challenges to be addressed through future investment.
+
+the cities in those regions—Cork, Galway, Limerick and Waterford—as well as the regional centres of Letterkenny and Sligo.
+
+In terms of infrastructure supply, for the coming decade the NDP has identified a range of transport projects that will be commenced, subject to compliance processes such as the Public Spending Code. These include BusConnects in all five cities along with comprehensive walking and cycling networks, MetroLink, DART+, the upgraded link between Cork and Limerick and the replacement of the Dublin-Belfast Enterprise train fleet. In addition to these very large projects, a host of smaller projects are set out that will enhance regional connectivity and improve the transport offering in rural Ireland. Finally, besides investment in new projects, it is expected that a significant proportion of maintenance and renewal costs across the network will be funded in future years following a long period of underinvestment in the aftermath of the financial crisis.
+
+### Executive Summary
+
+*Pages 8–13*
 
 The population of Ireland is projected to grow by approximately one million people by 2040. The National Planning Framework is the government’s long-term spatial strategy for accommodating this growth in a sustainable manner and making Ireland a better country for all its people. The ten National Strategic Outcomes represent the priorities of the National Planning Framework, and include objectives relating to compact growth in our cities, enhanced accessibility, strengthened rural communities, sustainable mobility, and decarbonisation. The transport system will therefore be a key enabler of the National Planning Framework over the coming decades.
 
@@ -219,12 +607,6 @@ National Investment Framework for Transport in Ireland | Overview
 
 The National Investment Framework for Transport in Ireland is the strategic framework for future investment decision making in land transport. It will guide transport investment in the years ahead to enable the National Planning Framework, support the Climate Action Plan, and promote positive social, environmental and economic outcomes throughout Ireland.
 
-## 1.1 | Introduction
-
-### 1.1 | Introduction
-
-*Pages 13–13*
-
 1.1 | Introduction
 
 Transport connects people and places. It facilitates opportunities and helps to create prosperous communities, from city centres to rural areas. The sector also has a key role to play in achieving our climate change targets and mitigating the worst effects of climate breakdown. The National Investment Framework for Transport in Ireland (NIFTI) has been developed with these relationships in mind.
@@ -232,448 +614,6 @@ Transport connects people and places. It facilitates opportunities and helps to 
 NIFTI is the Department of Transport’s high-level, strategic framework for future investment in the land transport network. Its purpose is to guide the development of the transport network in the decades ahead to enable the National Planning Framework and promote positive social, environmental and economic outcomes throughout the country. A number of key challenges in relation to transport investment have been identified and our strategic Investment Priorities are designed to address them.
 
 The following section outlines why investment in transport is important and sets out the policy context within which NIFTI has been developed.
-
-## 1.2 | Investing in Transport
-
-### 1.2 | Investing in Transport
-
-*Pages 13–14*
-
-1.2 | Investing in Transport
-
-Investment in transport is never for its own sake. The goal of transport is not the construction of a new railway line, for example, but to facilitate all the benefits which that piece of infrastructure will bring by allowing for the movement of people and goods.
-
-Transport supports liveable communities and connects families and friends. Investing in transport allows people to travel around the island, accessing amenities, employment and key public services such as healthcare and education. The right transport investment promotes
-
-National Investment Framework for Transport in Ireland | Project Ireland 2040
-
-positive social and economic outcomes for all. By developing an accessible network, the transport system can ensure that everyone can get to and from their chosen destinations.
-
-The population of Ireland is projected to grow by one million people between 2018 and 2040. In recent decades Dublin and the wider Eastern and Midland region has experienced the majority of growth in population, homes and jobs. This concentration is not sustainable. Consequently, the NPF sets out a region-focused strategy for managing future growth. This regional rebalancing must be supported by appropriate transport investment across the country.
-
-Transport is fundamental for economic development. Reducing the time spent travelling between and within towns and cities supports economic activity. Ensuring that surface access to ports and airports is available for goods and services of high strategic value is essential for international trade. Providing workers with access to employment creates opportunities and is crucial for attracting investment. Tourism depends on transport links, both internally and with regard to international gateways.
-
-The NPF targets half of the growth in population between now and 2040 to take place in the Eastern and Midland region, and only 25% within Dublin and its suburbs. The remaining half is to be shared between the Northern and Western, and Southern Regions. Half of population growth is targeted to take place in the five cities—Dublin, Cork, Limerick, Galway and Waterford—and half in towns, villages and rural areas.
-
-As the second largest source of Irish greenhouse gas emissions, the transport sector will have to significantly decarbonise in the decades ahead for Ireland to meet its climate change goals and minimise the damage from climate breakdown, such as more frequent extreme weather events, rising sea levels and population displacement. As the economy has grown in recent years, transport activity and emissions have risen also, and the correlation between emissions and economic growth must be broken. This will require considerable investment in walking, cycling and public transport, which will also bring environmental benefits in terms of air quality and noise pollution.
-
-Outside the cities, the regional importance of Athlone, Sligo, Letterkenny, Drogheda and Dundalk is recognised, as are the important cross-border economic and social links with Derry and Belfast in relation to the final three of those towns. To help tackle urban sprawl and the continual expansion of our towns and cities, a target of 40% of all new housing to be delivered within the footprints of existing settlements has also been set.
-
-While the NPF sets the national spatial and development strategy, the three Regional Assemblies have a key role to play in delivering the NSOs at a regional scale. Central to this is the preparation of Regional Spatial and Economic Strategies for each of the regions, to promote the sustainable development of the regions and identify the policies and initiatives to enable the delivery of national planning policy at a regional level. The Regional Assemblies actively engage with the Department of Transport in respect of their Regional Spatial and Economic Strategies, including identifying where transport investment can help meet regional priorities. In future, this engagement and investment will be guided by NIFTI.
-
-Tackling congestion through the provision of sustainable mobility also lessens the amount of time people spend commuting each day and leads to improvements in public health.
-
-## 1.3 | Project Ireland 2040
-
-### 1.3 | Project Ireland 2040
-
-*Pages 14–15*
-
-1.3 | Project Ireland 2040
-
-Project Ireland 2040 was launched in February 2018 with the publication of the National Planning Framework (NPF) and the National Development Plan 2018-2027 (NDP). A revised National Development Plan 2021-2030 was published in October 2021.
-
-Project Ireland 2040 is underpinned by a set of shared objectives, the National Strategic Outcomes (NSO), for the decades ahead which will ensure Ireland develops sustainably and that the benefits from that development are shared by every community in the country.
-
-To support the continued realisation of the National Planning Framework, the revised NDP has set out a major public capital investment programme of €165bn between 2021 and 2030. In the first five years of the plan, over €13bn will be invested in transport which will
-
-National Investment Framework for Transport in Ireland | Overview
-
-see maintenance requirements for existing infrastructure largely met and, over the lifetime of the plan, a host of significant and transformative new infrastructure and services delivered.
-
-NIFTI translates the ten NSOs to a transportspecific context, developing the Investment Priorities that will ensure that the transport sector plays its part in delivering the NPF.
-
-Within the NDP, Departmental funding envelopes are set out for a five-year period to 2025, and this is extended on a rolling basis as part of the annual Estimates process.
-
-Future transport investment projects and programmes as identified in investment strategies—whether they are developed by the NTA in the case of public transport, TII in the case of the National Roads network, or Local Authorities in the case of regional and local roads and other projects of a local nature—will have to demonstrate their fit with NIFTI and, by extension, with the NPF and NSOs.
-
-## 1.4 | Strategic Investment
-
-### 1.4 | Strategic Investment
-
-*Pages 15–15*
-
-1.4 | Strategic Investment Framework for Land Transport
-
-## 1.5 | Sustainable Mobility
-
-### 1.5 | Sustainable Mobility
-
-*Pages 15–16*
-
-1.5 | Sustainable Mobility Policy Review
-
-The Strategic Investment Framework for Land Transport (SIFLT) was published by the Department of Transport in 2015. In the context of constrained funding following the financial crisis, SIFLT established high-level priorities for future transport investment and the key principles to which investment proposals had to adhere.
-
-In parallel with NIFTI, the Department has undertaken a review and plans to publish a new Sustainable Mobility Policy shortly. This will set out the policy framework for walking, cycling and public transport to support Ireland’s overall requirement to achieve a 51% reduction in greenhouse gas emissions by 2030. The new policy will primarily focus on measures to promote and facilitate active travel and public transport for all and, in doing so, encourage less private car usage nationally to support our climate commitment. It will set out a comprehensive set of actions to increase active travel infrastructure provision and improve public transport capacity and services across the country. These will be supported by behavioural change and demand management measures to make sustainable modes the preferred choice for as many people as possible. The Climate Action Plan sets out additional measures to promote other complementary transport mitigation measures such as the switch over to electric car usage and greater use of renewable fuels for transport.
-
-Developed in the context of constrained investment as a result of fiscal consolidation, at the time of publication SIFLT noted that funding levels were insufficient to maintain the network and there was virtually no scope to invest in infrastructure improvements. The key transport investment challenge, therefore, was to “attain funding levels consistent with maintaining, renewing and improving” the network so that it could support the economic and social needs of the country.
-
-SIFLT has successfully guided investment in the land transport network over recent years and its first investment priority of achieving steady state maintenance is prominent within the NDP and revised NDP. However, the SIFLT framework must be periodically reviewed to ensure it remains appropriate. With the launch of Project Ireland 2040 in February 2018, it is timely to undertake such a review.
-
-The new policy will build on and replace the existing sectoral policy documents that were published in 2009: Smarter Travel, A Sustainable Transport Future 2009-2020, and the National Cycle Policy Framework.
-
-NIFTI will replace SIFLT as the framework for future land transport investment (Figure 1). In the hierarchy of national and subnational frameworks, strategies and plans, the NPF has established the shared vision across Government for development in the coming decades, underpinned by the public capital investment programme set out in the NDP.
-
-It will be underpinned by funding for sustainable mobility under the renewed National Development Plan, which provides €35bn in total for transport investment over the next decade.
-
-National Investment Framework for Transport in Ireland | Project Ireland 2040
-
-![Figure 1: Where NIFTI sits in the hierarchy of Project Ireland 2040 strategies and plans](assets/p016-f01.webp)
-
-*Figure 1: Where NIFTI sits in the hierarchy of Project Ireland 2040 strategies and plans*
-
-*Under development
-
-The overarching sustainable mobility policy framework is centred around three principles— Safe and Green Mobility, People Focused Mobility, and Better Integrated Mobility—supported by ten high-level goals which together shape a wide range of supporting actions to be delivered by 2025.
-
-budget represents the total amount of greenhouse gases that may be emitted in the State during each five-year period from 2021 to 2025, and 2026 to 2030.
-
-The first set of carbon budgets was proposed by the CCAC in October 2021. The proposed carbon budgets will go to Government and then to the Oireachtas for approval. Once these overall, economy-wide carbon budgets are approved, the Minister for Environment, Climate and Communications will divide the overall carbon budgets into sectoral emissions ceilings and bring to Government for approval.
-
-## 1.6 | The Climate
-
-### 1.6 | The Climate
-
-*Pages 16–17*
-
-1.6 | The Climate Action and Low Carbon Development (Amendment) Act 2021
-
-To achieve the national emission reduction targets, the Act also requires the development of annual Climate Action Plans that set out detailed mitigation actions for each sector.
-
-The Climate Action and Low Carbon Development (Amendment) Act 2021 establishes a legally binding commitment to achieve net-zero emissions no later than 2050, and a 51% reduction in emissions by the end of this decade. The Act provides for the development of a series of carbon budgets informed by the Climate Change Advisory Council (CCAC). Each carbon
-
-National Investment Framework for Transport in Ireland | Overview
-
-## 1.7 | Climate Action Plan
-
-### 1.7 | Climate Action Plan
-
-*Pages 17–17*
-
-1.7 | Climate Action Plan
-
-The NAPCP lists the policies and measures contained within relevant policy documents including the NDP, the Clean Air Strategy, and the National Energy and Climate Plan which will support the reduction of air pollutants, including for the transport sector. While these measures are mainly designed to address related problems such as reducing greenhouse gas emissions, addressing congestion and promoting fuel efficiency, they will also contribute to a reduction in nitrogen oxide emissions. Measures include encouraging vehicles with higher engine standards into the Irish fleet through early scrappage schemes, obliging suppliers of road transport fuels to ensure that a proportion of the fuels they place on the market are produced from renewable sources, and achieving modal shift through large-scale public transport capital projects such as BusConnects.
-
-Transport currently accounts for approximately 18% of Ireland’s greenhouse gas (GHG) emissions. To put Ireland on a pathway to achieve net zero emissions by 2050, the Climate Action Plan 2021 sets an emission reduction target for the transport sector of 7 million tonnes of CO2, approximately 51% over the period 2021 to 2030. To achieve this target the Plan sets out a range of measures to reduce emissions in the transport sector. These measures consist of a mix of investments in sustainable transport infrastructure designed to deliver an additional 500,000 daily journeys by walking, cycling and public transport, scaling up the deployment of zero emissions technologies to increase the fleet of Electric Vehicles (EVs) and low-emission (with hyphen) vehicles (LEVs) on the road to 945,000, increasing biofuel blending rates, and the use of behavioural change interventions, including demand management, to reduce the kilometres driven by the remaining internal combustion engine (ICE) cars.
-
-The NAPCP notes the particular importance of achieving high rates of electric vehicle penetration to remain in compliance with the nitrogen oxide emissions ceiling for 2030. This will also support reductions in other local air pollutants and contribute towards achieving the climate mitigation goals set out in the NDP and the Climate Action Plan.
-
-Given the significant contribution transport makes to Ireland’s GHG emissions and the ambitious target for the transport sector outlined above, it is imperative that NIFTI reflects the need to rapidly decarbonise the transport sector.
-
-## 1.8 | National Air Pollution
-
-### 1.8 | National Air Pollution
-
-*Pages 17–18*
-
-1.8 | National Air Pollution Control Programme
-
-Air pollution is one of the leading causes of premature death in Europe. Besides health impacts, air pollution can cause significant adverse environmental impacts, including the degradation of biodiversity and water quality. To address these health and environmental challenges the Department of the Environment, Climate and Communications (DECC) is in the process of developing a National Clean Air Strategy.
-
-Ireland is required to produce a National Air Pollution Control Programme (NAPCP) every four years, under the EU National Emissions Ceiling Directive (NECD). The NECD establishes emission ceilings for 2020 and 2030 for five specified pollutants.
-
-In the transport sector, emissions arise mostly from road transport, which is responsible for nitrogen oxide, fine particulate matter and black carbon pollution arising from increased numbers of diesel cars and buses in our cities and towns. The Urban Environmental Indicators report published by the Environmental Protection Agency (EPA) in 2019 reveals the extent of nitrogen dioxide pollution across Dublin City resulting from heavy traffic levels.
-
-The first NAPCP for Ireland was prepared and submitted to the European Commission in 2019. The NAPCP demonstrates the pathway Ireland will follow to achieve compliance with the NECD 2020 and 2030 targets and presents an overview of current and projected 2030 emissions levels for each of the five pollutants.
-
-The transport sector is a significant contributor to air pollution in Ireland. It is the primary source of nitrogen oxide emissions, with passenger cars and heavy goods vehicles the most significant emitters.
-
-The consultation document prepared as part of the development of the Clean Air Strategy makes
-
-National Investment Framework for Transport in Ireland | Project Ireland 2040
-
-several suggestions for how these emissions could be reduced, including the transition away from internal combustion engine vehicles to electric vehicles, increased travel by sustainable modes, the deployment of low emissions zones, and the introduction of congestion charging.
-
-Development Goals. NIFTI will ensure that this alignment is extended to the transport sector when undertaking future investment.
-
-## 1.9 | Clean Air Strategy
-
-### 1.9 | Clean Air Strategy
-
-*Pages 17–17*
-
-1.9 | Clean Air Strategy
-
-## 1.10 | Biodiversity
-
-### 1.10 | Biodiversity
-
-*Pages 18–18*
-
-1.10 | Biodiversity
-
-If poorly implemented, transport infrastructure investment can damage the natural world and lead to losses in connectivity and habitat fragmentation. To mitigate these risks, a Strategic Environmental Assessment (SEA), Appropriate Assessment (AA), and Strategic Flood Risk Assessment (SFRA) have been carried out alongside NIFTI to identify potential negative environmental outcomes of the framework for protected sites and designated species. This analysis is discussed further in Section 6.
-
-In July 2020, Transport Infrastructure Ireland published the Travelling in a Woman’s Shoes report which investigates the needs and travel behaviours of women, and is the first study of its kind conducted in Ireland.1 The report found that women in Ireland rely heavily on car transport infrastructure and identified significant caregiving responsibilities, safety concerns and equality of access as drivers of car dependency for women. The full realisation of the National Strategic Outcomes set out by the NPF requires that future transport investment address the barriers that women face in the access and use of our transport system.
-
-## 1.11 | United Nations
-
-### 1.11 | United Nations
-
-*Pages 18–19*
-
-1.11 | United Nations Sustainable Development Goals
-
-The NPF notes that a significant proportion of the population will experience disability at some stage in their lives, and acknowledges the need to facilitate independent living, access, and mobility in relation to buildings and the environment, and full integration with society generally for people with disabilities, including access to employment. Transport accessibility is a crucial element of facilitating access to and integration with wider society for people with disabilities.
-
-The 2030 Agenda for Sustainable Development was adopted by all United Nations Member States, including Ireland, in 2015. At its heart are 17 Sustainable Development Goals. Appropriate development of transport infrastructure can be a powerful means of achieving some of the Sustainable Development Goals, such as ensuring healthy lives and promoting wellbeing; making cities and human settlements inclusive, safe, resilient and sustainable; promoting sustained, inclusive and sustainable economic growth; and taking urgent action to combat climate change. As part of Project Ireland 2040, there is already significant alignment between the National Strategic Outcomes and the Sustainable
-
-The NPF observes that there is significant similarity in many of the planning related issues that are most impactful for people with disabilities and for older people, and it is likely that transport accessibility will become increasingly important in the coming years as our population ages. Given this, it is crucial that our transport infrastructure
-
-National Investment Framework for Transport in Ireland | Overview
-
-be accessible by design to empower independent travel by users with a variety of different mobility requirements.
-
-inclusion, and key environmental policies and plans such as the Climate Action Plan, National Air Pollution Control Programme, Clean Air Strategy, National Biodiversity Action Plan and All-Ireland Pollinator Plan.
-
-New technologies have the potential to revolutionise everyday journeys for groups with reduced access to transport and there is widespread innovation taking place in areas across the transport sector, from self-driving cars designed to be accessible to people with disabilities to applications designed to support accessibility, such as by helping people with vision impairments navigate public transport stations using audio technology, to the development of artificial intelligence software that uses existing closed circuit television cameras to automatically identify and report incidents of concern on public transport, helping service users feel safe after dark. Transport investment must be flexible and adaptive enough to exploit the opportunities provided by emerging technologies as they develop, and indeed to foster and support native innovation in this space. 1.13 | Conclusion
-
-## 1.12 | Accessibility and
-
-### 1.12 | Accessibility and
-
-*Pages 18–18*
-
-1.12 | Accessibility and Inclusion
-
-A number of ongoing policy initiatives will indirectly support improvements in local air quality. For example, transitioning journeys to more sustainable modes will support the climate policy goals outlined in the Climate Action Plan while also contributing to improvements in local air quality. The Clean Air strategy maximises these synergies and reduces the potential for tensions between policy objectives.
-
-To deliver the greatest possible benefits and support the realisation of the strategic outcomes described in the NPF, transport infrastructure must be accessible by design, so that it accounts for and serves the needs of all members of our society. The United Nations Sustainable Development Goals stress the importance of providing access to safe, affordable, accessible and sustainable transport systems for all by 2030, referencing in particular the needs of women, children, persons with disabilities and older persons.
-
-## 1.13 | Conclusion
-
-### 1.13 | Conclusion
-
-*Pages 19–21*
-
-The right transport investment helps to deliver high-quality travel and supports positive outcomes for society, the environment and the economy. However, these outcomes do not happen by chance. It is important to have in place a framework to guide transport investment and deliver the infrastructure and services we need. That is the purpose of NIFTI.
-
-New transport investments will have to demonstrate their alignment with NIFTI. By extension, this will ensure that investment is aligned with the NPF and its National Strategic Outcomes, resulting in a consistent approach to investment across Government, with transport supporting our growth and development goals. In this way, NIFTI will ensure that transport enables the NPF.
-
-NIFTI establishes a common lens through which to consider potential investment in transport infrastructure. However, it is not the only consideration. In addition to NIFTI, transport investment will continue to be informed by specific sectoral priorities and wider policy objectives, including the new Sustainable Mobility Policy, the United Nations Sustainable Development Goals, considerations around
-
-National Investment Framework for Transport in Ireland | Project Ireland 2040
-
-## 2 The Purpose of NIFTI
-
-National Investment Framework for Transport in Ireland | The Purpose of NIFTI
-
-#### The Purpose of NIFTI
-
-The purpose of the National Investment Framework for Transport in Ireland is to support the delivery of the National Planning Framework. Transport is a key enabler of the National Strategic Outcomes and the appropriate transport investment can facilitate these outcomes across a range of areas, including the environment, society and economy.
-
-## 2.1 | Introduction
-
-### 2.1 | Introduction
-
-*Pages 21–21*
-
-2.1 | Introduction
-
-The National Planning Framework has set out the vision for the sustainable development of Irish society over the coming decades, a vision encapsulated by the ten NSOs. Transport has a key role to play in realising this vision.
-
-NIFTI ensures that transport investment is aligned with the NSOs and supports, enables and facilitates the NPF, delivering positive social, environmental and economic outcomes throughout Ireland.
-
-The following section articulates our high-level objectives when we invest in transport and how this investment relates to the ten NSOs.
-
-## 2.2 | Objectives of Transport Investment
-
-### 2.2 | Objectives of Transport Investment
-
-*Pages 21–22*
-
-2.2 | Objectives of Transport Investment
-
-In the coming decades, we will invest to deliver a safe and sustainable land transport network which supports prosperous communities, promotes balanced development and helps to realise our climate change goals.
-
-There will be an estimated one million more people living in Ireland in 2040 when compared to 2018. The NPF has set specific targets for where this population will live and work, and transport has a key enabling role to play in achieving these targets. By delivering sustainable mobility infrastructure and services in our cities and towns, transport can help realise compact growth and the decarbonisation of the transport sector. By developing the interurban road and rail network and public transport
-
-National Investment Framework for Transport in Ireland | Project Ireland 2040
-
-![Figure 2: Project Ireland 2040 National Strategic Outcomes](assets/p022-f01.webp)
-
-*Figure 2: Project Ireland 2040 National Strategic Outcomes*
-
-services, people will be able to travel between regions quickly and safely to visit family and friends and access economic opportunities and services. By investing in the regional and local road network, transport can ensure the continued vibrancy of our towns, villages and rural areas. By securing access to our ports and airports, transport can ensure international connectivity and support economic development. By investing in infrastructure that is accessible by design, transport can support an integrated, diverse and inclusive society where all members can access essential services, participate in the economy, and contribute to their local communities.
-
-the transport network that Ireland will need in the coming decades to enable the NPF.
-
-## 2.3 | National Strategic
-
-### 2.3 | National Strategic
-
-*Pages 22–23*
-
-2.3 | National Strategic Outcomes
-
-The National Strategic Outcomes are a single vision and shared set of goals for every community in Ireland (Figure 2). In some cases, transport’s role is explicit, such as delivering sustainable mobility, while in others transport has a facilitating role, such as access to high-quality childcare, education and health services.
-
-It is not possible to definitively list all of Ireland’s transport needs over the next two decades, nor is it the purpose of NIFTI to identify specific transport interventions. However, the framework ensures that future investment aligns with the National Strategic Outcomes and thereby delivers
-
-Future investment in transport should meet one or more of the National Strategic Outcomes. To take some examples from the revised NDP, the development of BusConnects and comprehensive cycle networks in each of the five cities meets the
-
-National Investment Framework for Transport in Ireland | The Purpose of NIFTI
-
-fourth NSO, sustainable mobility, and also strongly supports compact growth and transitioning to a low carbon society. By contrast, a nonurban project such as the development of the link between Cork and Limerick will enhance regional accessibility in the south and southwest of the country. There may be occasions when a certain type of investment performs strongly against one NSO but negatively against another. Where these considerations arise, they will be balanced through the strategic assessment stage in the project lifecycle, discussed in greater detail in Section 5.
-
-a low-carbon, economically competitive and environmentally sustainable economy by 2050. As the second largest source of greenhouse gas emissions in Ireland, the transport sector has a key role to play in achieving these objectives.
-
-Building on the substantial investment in sustainable mobility set out in the revised National Development Plan 2021-2030, the 2021 Climate Action Plan sets out additional measures to help Ireland achieve a 51% reduction in emissions from the transport sector by 2030 compared to current levels and delivering an additional 500,000 daily journeys by walking, cycling and public transport. These measures will be reflected in, and complemented by, actions to be included in the forthcoming Sustainable Mobility Policy, which will establish the sectoral policy framework for active travel and public transport.
-
-While transport investment can be an enabler of the NPF, it must be noted that good transport investment is contingent on policy elsewhere too. While transport is a key component of delivering compact growth, effective land use policy is necessary to reduce the need to travel and deliver the population densities required for viable public transport services.
-
-The Climate Action Plan also commits to increasing the number of electric vehicles on the road to 945,000 by 2030. To achieve this level of electric vehicle penetration, it is vital to address potential barriers to uptake such as range anxiety, which is a driver’s fear that an electric vehicle will have insufficient energy to complete a given journey. To address this issue, the Climate Action Plan commits to the development of a national infrastructure strategy to support the development of the national charging network, particularly in non-urban areas.
-
-Decisions taken in other sectors can also impact on the demands placed on the transport system. For example, the development of communications technology infrastructure can mitigate the need for travel in certain circumstances, while the construction of key public services such as schools and hospitals will create demand for trips and pressures on the network locally. Ideally, new development will optimise the use of existing transport assets rather than require the construction of new infrastructure.
-
-Reducing greenhouse gas emissions will mean different things on different parts of the network. Within our cities and large towns, NIFTI will support investment in public transport, walking and cycling to encourage modal shift away from the private car. Demand management will also have a role in encouraging this shift. The deployment of demand management measures in our large urban centres is given significant consideration in the recently published Five Cities Demand Management Study. Further analysis will also be required to identify how measures identified in this study can be applied in different regions and locations across the country. Advancing research in this area will be important in supporting the delivery of the Climate Action Plan and the forthcoming Sustainable Mobility Policy Framework.
-
-The following sections set out in more detail the types of outcomes that transport can deliver or enable in support of the NPF across a range of considerations.
-
-## 2.4 | Delivering Clean, Low-
-
-### 2.4 | Delivering Clean, Low-
-
-*Pages 23–24*
-
-2.4 | Delivering Clean, Lowcarbon and Environmentally Sustainable Mobility
-
-A sustainable transport system is one that can meet the needs of the population today without compromising its ability to meet the needs of the population tomorrow. In terms of environmental sustainability, the reduction in greenhouse gas emissions is a foremost priority. This is reflected in National Strategic Outcome 8, which is the transition to a low-carbon and climate resilient society. It is also a national objective to achieve
-
-On the interurban network, the construction of new roads, with the potential to induce additional car use, will be appraised in the context of
-
-National Investment Framework for Transport in Ireland | Project Ireland 2040
-
-## 2.5 | Supporting Successful
-
-### 2.5 | Supporting Successful
-
-*Pages 24–25*
-
-2.5 | Supporting Successful Places and Vibrant Communities
-
-Ireland’s climate change goals, particularly with the coming introduction of carbon budgeting. Improvements to rail and interurban bus services can reduce the need to travel by car between our cities, while the development of charging infrastructure and uptake of electric vehicles can serve to mitigate emissions from those journeys which are taken by car.
-
-The National Planning Framework estimates that the population of Ireland will grow by one million over the next twenty years to almost six million people. Where this population lives and works will be a key factor in how Ireland develops, socially and economically, and the National Planning Framework has set the objective of accommodating one quarter of the growth in Dublin, one quarter in the other four cities, and the remaining half in towns and rural areas. The provision of appropriate transport infrastructure will play a crucial enabling role in the delivery of this objective and supporting quality of life for all Ireland’s inhabitants.
-
-While ensuring surface access to ports and airports is primarily a question of facilitating the efficient movement of economic activity, NIFTI will support the development of sustainable mobility options for private passengers to access strategic links, such as progressing the MetroLink project.
-
-In rural areas, it will not be viable to provide the full suite of sustainable mobility options available in our cities and towns. Nevertheless, the strategic provision of park and ride facilities can be an effective means of increasing the catchment area for public transport services in certain areas. Services such as Local Link can reduce reliance on the private car to some extent, and new innovations such as mobility as a service have the potential to allow for the intelligent expansion of routes in future. Greenways can also make a contribution to reducing private car use in rural areas by providing an alternative means of accessing larger settlements. Overall, however, the private car can be expected to remain the primary transport mode for people living in rural areas so, as with interurban travel, it will be important to support the transition to low-emission vehicles.
-
-The densification of Ireland’s five cities will place additional strain on urban transport networks which are already approaching capacity in many locations. For the NPF spatial goals to be delivered, it is therefore essential that urban congestion is tackled. This will mean increasing public transport capacity and usage, and investing in active travel to discourage private car use as much as possible. Beyond the cities, the provision of park and ride close to transport links can ensure access to employment and services for those living outside the major settlements and reduce the need for people to commute into the cities by car. In the medium-term, congestion charging may be required in some of the cities and is being considered in the context of the Sustainable Mobility Policy Review as informed by the Five Cities Demand Management Study.
-
-Many of the same measures that reduce greenhouse gas emissions can also have a beneficial impact for other elements of environmental sustainability. Increased public transport and alternative fuel usage can help to improve air quality and reduce noise pollution, while active travel brings health benefits. Conversely, if urban densification occurs but internal combustion engine cars remain the primary transport mode, emissions and air quality will worsen. It is essential that the transport sector does not cause undue negative outcomes in terms of health and quality of life, while enabling the urban growth envisaged by the NPF.
-
-On the interurban network, besides providing people with more opportunities to travel by sustainable modes, the transport system and new infrastructure should support rather than undermine the NPF spatial objectives. For example, in the absence of other measures, improving the connection between two urban centres contributes to interurban connectivity but could encourage sprawl, thereby impacting on compact growth. Where such tensions arise, sequencing will be an important consideration to ensure that the right investment is undertaken at the right time and negative spillovers are mitigated.
-
-National Investment Framework for Transport in Ireland | The Purpose of NIFTI
-
-## 2.6 | Facilitating Safe,
-
-### 2.6 | Facilitating Safe,
-
-*Pages 25–26*
-
-2.6 | Facilitating Safe, Accessible, Reliable and Efficient Travel on the Network
-
-To support the continued vibrancy of rural Ireland, rural areas must be attractive places to live and work. This will mean ensuring reliable access to services and amenities, particularly for communities that are highly dependent on a small number of regionally important transport links. Given that transport in rural Ireland largely does not face capacity constraints, a key focus will be meeting maintenance requirements for existing infrastructure to provide a guaranteed level of connectivity to centres of scale. This will be supplemented by the targeted provision of new infrastructure and services where necessary.
-
-Delivering a high level of service means the provision of a transport network that is safe, reliable, efficient and accessible. The growth in population forecast between now and 2040 will result in a significant increase in trips, for both people and goods. Investment in the land transport network must enable this growth without compromising on service levels. Moreover, investment must be financially sustainable, and among other things this means ensuring that the transport network is appropriate to the population’s needs rather than delivering high levels of excess capacity.
-
-National Investment Framework for Transport in Ireland | Project Ireland 2040
-
-In urban areas, NIFTI will support investments which allow people to access employment, services and leisure opportunities safely and within a reasonable time period. As with supporting other NSOs, this will mean encouraging modal shift though the provision of high-quality public transport and active travel facilities and reducing the need to travel by private car. It will also mean ensuring that new services and infrastructure are fully accessible and retrofitting existing infrastructure so that the entire transport system becomes accessible over time.
-
-Moreover, many of Ireland’s strategic links are part of either the core or comprehensive Trans- European Transport Network (TEN-T). There are certain infrastructure requirements arising from the TEN-T Regulation, which will need to be considered in the context of future transport planning and investment.
-
-Enhancing regional and rural accessibility, with improved services and reliable journey times to centres of scale, and pursuing compact growth are essential to ensuring that economic development and opportunity is distributed across the regions, with conditions that attract investment and foster opportunities for indigenous employment and enterprise growth.
-
-On the interurban network, an objective of the NPF is to deliver average journey time speeds of 90km/h or better between all of Ireland’s cities and regional centres.2 In some instances this will mean the development of new infrastructure or upgrading of existing infrastructure, though addressing congestion on the key strategic links surrounding our cities will also be necessary to improve reliability. Investment in interurban bus and rail services can ensure accessibility to centres of scale for those who are unable to travel by car, while meeting asset protection and renewal requirements can help to ensure the safety of the network.
-
-## 2.7 | Promoting a Strong
-
-### 2.7 | Promoting a Strong
-
-*Pages 26–29*
-
-2.7 | Promoting a Strong and Balanced Economy
-
-As a small, open economy, Ireland is dependent on high-quality international connectivity through its strategic links. State ports and airports have the ability to raise their own finance so Exchequer funding for key projects is not necessary but enhancing surface access is under the remit of the Department and of strategic importance.
-
-National Investment Framework for Transport in Ireland | Project Ireland 2040
-
-## 3 Identifying the Challenges
-
-National Investment Framework for Transport in Ireland | Identifying the Challenges
-
-#### Identifying the Challenges
-
-The National Investment Framework for Transport in Ireland is informed by a broad range of supporting analysis which has identified key transport challenges across the network, both today and in the future. The framework has been developed to address these challenges and ensure that transport investment enables and facilitates the National Strategic Outcomes in the coming years and decades.
-
-## 2.8 | Conclusion
-
-### 2.8 | Conclusion
-
-*Pages 26–26*
-
-2.8 | Conclusion
-
-Transport investment is a key enabler of the National Planning Framework. The appropriate investment can promote positive outcomes across a range of considerations by facilitating safe and reliable travel for everyone, supporting vibrant communities, decoupling carbon emissions from travel demand, and encouraging balanced economic development.
-
-In common with interurban passenger travel, a key issue for freight is congestion on the land transport network adjacent to strategic links. Addressing congestion through demand management measures and the diversion of some trips to other modes and links will help to ensure the reliable and efficient movement of imports and exports.
-
-Future transport investment will have to demonstrate alignment with NIFTI and, by extension, support the delivery of the NPF and the NSOs.
-
-Finally, investment in rural roads will help to ensure that those living in rural communities can travel safely and reliably to centres of scale.
-
-## 3.1 | Introduction
-
-### 3.1 | Introduction
-
-*Pages 29–30*
-
-3.1 | Introduction
-
-As part of NIFTI, a wide range of supporting analysis has been conducted to identify key transport challenges, needs and constraints, both today and in the future. This analysis can divided into three broad categories: context and background, the existing land transport network, and the future land transport network.
-
-The first set of analysis considers the context within which NIFTI has been developed and identifies factors with the potential to affect how and where transport will take place in the decades ahead. Given uncertainty around future developments in the transport sector, NIFTI is designed with sufficient flexibility to accommodate potential changes to transport use and patterns arising from, for example, Brexit and new technologies.
-
-The current network work package considers the management and renewal of the existing land transport system in terms of maintenance, safety, resilience and contractual obligations. Ensuring that existing assets provide safe travel and are maintained to a good standard is fundamental to realising the full benefits of past investment.
-
-Finally, applying National Planning Framework settlement and population projections, the future network work package identifies potential constraints on the future land transport network, indicating the types of issues and areas that will need to be addressed if the ten National Strategic Outcomes are to be realised.
-
-National Investment Framework for Transport in Ireland | Project Ireland 2040
-
-80%
-
-70%
-
-60%
-
-50%
-
-40%
-
-30%
-
-20%
-
-10%
-
-0%
-
-2005200620072008200920102011201220132014201520162017201820192020
-
-Road Improvement/Maintenance Sustainable Mobility
-
-The following section summarises the key points that emerged from the background analysis and identifies the challenges to be addressed through future investment.
-
-the cities in those regions—Cork, Galway, Limerick and Waterford—as well as the regional centres of Letterkenny and Sligo.
-
-In terms of infrastructure supply, for the coming decade the NDP has identified a range of transport projects that will be commenced, subject to compliance processes such as the Public Spending Code. These include BusConnects in all five cities along with comprehensive walking and cycling networks, MetroLink, DART+, the upgraded link between Cork and Limerick and the replacement of the Dublin-Belfast Enterprise train fleet. In addition to these very large projects, a host of smaller projects are set out that will enhance regional connectivity and improve the transport offering in rural Ireland. Finally, besides investment in new projects, it is expected that a significant proportion of maintenance and renewal costs across the network will be funded in future years following a long period of underinvestment in the aftermath of the financial crisis.
-
-## 3.2 | Context and
 
 ### 3.2 | Context and
 
@@ -800,8 +740,6 @@ Key Transport Challenge
 
 Incorporating innovative and emerging technologies within the future transport system
 
-## 3.3 | Current Network
-
 ### 3.3 | Current Network
 
 *Pages 34–37*
@@ -868,11 +806,9 @@ Table 2: National Planning Framework targeted pattern of city population growth
 | Galway | 80,000 | 50-60 | 40,000-48,000 | 120,000 |
 | Waterford | 54,000 | 50-60 | 27,000-32,000 | 81,000 |
 
-## 3.4 | Future Network
-
 ### 3.4 | Future Network
 
-*Pages 37–43*
+*Pages 37–45*
 
 3.4 | Future Network Analysis
 
@@ -920,7 +856,7 @@ capacity issues in the modelling are adjacent to public transport hubs, such as 
 | ENCOURAGING COMPACT GROWTH |  |
 | --- | --- |
 |  | Transport- orientated development |
-| Efef ctive planning and land use strategies encourage the use of sustainable mobility and contribute to liveable communities. Dún Laoghaire is an example of this in practice. In keeping with the principles of transit- oriented development, densities in the immediate vicinity of the DART station are higher than the town average. Dún Laoghaire is also the terminus for well- serviced bus routes, while residents are within walking distance of a range of local amenities, including shops, cultural centres, and blue and green space. Dún Laoghaire also has a high proportion of households without a car. Crucially, although no-car households often correlate with deprivation, this is not the case in Dún Laoghaire. This suggests that many residents choose not to own a car due to the walkability of their neighbourhood and the availability of sustainable mobility modes. Combined with competitive journey times to the city centre when compared with the private car, the comprehensive provision of sustainable mobility likely contributes to the modal split of the Dún Laoghaire Local Electoral Area, in which 46% of people commuted using a sustainable mode according to 2016 Census figures. |  |
+| Effective planning and land use strategies encourage the use of sustainable mobility and contribute to liveable communities. Dún Laoghaire is an example of this in practice. In keeping with the principles of transit- oriented development, densities in the immediate vicinity of the DART station are higher than the town average. Dún Laoghaire is also the terminus for well- serviced bus routes, while residents are within walking distance of a range of local amenities, including shops, cultural centres, and blue and green space. Dún Laoghaire also has a high proportion of households without a car. Crucially, although no-car households often correlate with deprivation, this is not the case in Dún Laoghaire. This suggests that many residents choose not to own a car due to the walkability of their neighbourhood and the availability of sustainable mobility modes. Combined with competitive journey times to the city centre when compared with the private car, the comprehensive provision of sustainable mobility likely contributes to the modal split of the Dún Laoghaire Local Electoral Area, in which 46% of people commuted using a sustainable mode according to 2016 Census figures. |  |
 
 Investment beyond the cities can help address pressures on urban infrastructure if traffic is diverted from entering the city centre, creating more space for sustainable mobility solutions. For example, the modelling suggests that this will be a result of the proposed Galway City Ring Road, by diverting east-west traffic which currently has to travel through the city around the city instead. As far as possible, infrastructure investment should take trips out of cities and towns which do not inherently need to be there, such as heavy goods vehicles travelling to ports via urban areas.
 
@@ -965,7 +901,7 @@ While half of the population growth over coming decades is targeted at the citie
 | ENSURING ACCESSIBILITY |  |
 | --- | --- |
 |  | Lifeline roads on the Dingle peninsula |
-| A ‘lifeline’ road is one which has few available alternatives. Failure of these roads adversely impacts on the accessibility of the surrounding area, leaving the communities they serve exposed to severe disruption and significant increases in journey times. The Dingle Peninsula is an example of an area which is particularly dependent on lifeline roads. Because of its isolated geographic position, the area is reliant on two roads, the N86 and R561, which provide the only access on and of fthe Peninsula. These roads are vital for providing access for goods and tourism, and local residents’ access to hospitals and airports. The roads are located within 10km of each other meaning that there is a heightened risk of both of them becoming inoperable at the same time in the event of area-wide weather disruption. Modelling by TII indicates that the closure of just the N86 would have a similarly significant impact on increasing journey times as the closure of all the roads on the peninsula. This demonstrates the importance of the N86 in providing access and connectivity to the area, and emphasises that maintaining the usability of this road is essential to preserving and strengthening communities living and working on the Dingle peninsula. Because of the high social and economic cost of the failure of lifeline roads on local communities, maintaining their operability must be a high priority. This may require the maintenance of lifeline roads to be considered separately from the general upkeep of the road network. |  |
+| A ‘lifeline’ road is one which has few available alternatives. Failure of these roads adversely impacts on the accessibility of the surrounding area, leaving the communities they serve exposed to severe disruption and significant increases in journey times. The Dingle Peninsula is an example of an area which is particularly dependent on lifeline roads. Because of its isolated geographic position, the area is reliant on two roads, the N86 and R561, which provide the only access on and off the Peninsula. These roads are vital for providing access for goods and tourism, and local residents’ access to hospitals and airports. The roads are located within 10km of each other meaning that there is a heightened risk of both of them becoming inoperable at the same time in the event of area-wide weather disruption. Modelling by TII indicates that the closure of just the N86 would have a similarly significant impact on increasing journey times as the closure of all the roads on the peninsula. This demonstrates the importance of the N86 in providing access and connectivity to the area, and emphasises that maintaining the usability of this road is essential to preserving and strengthening communities living and working on the Dingle peninsula. Because of the high social and economic cost of the failure of lifeline roads on local communities, maintaining their operability must be a high priority. This may require the maintenance of lifeline roads to be considered separately from the general upkeep of the road network. |  |
 
 Rural communities rely on urban areas for accessing certain services. The development of the national transport network will therefore be vital to enhancing access to services for people in rural Ireland. Continued investment in urban transport networks will aid those living in rural areas as well.
 
@@ -1019,12 +955,6 @@ Key Transport Challenge
 
 Ensuring that transport investment decisions are robust to unanticipated shocks and uncertainty
 
-## 3.5 | Conclusion
-
-### 3.5 | Conclusion
-
-*Pages 43–45*
-
 3.5 | Conclusion
 
 There are a range of challenges that threaten to undermine the transport sector’s ability to enable the NPF. These include striking the appropriate balance between new investments and protecting and renewing existing assets, decarbonising transport through increased sustainable mobility, supporting connectivity and accessibility in regional and rural areas, and safeguarding access to strategic links for people and goods. NIFTI guides project planning and decision-making to ensure that future investment in transport is tailored to meet these challenges and prioritises the most efficient and effective interventions to do so.
@@ -1037,19 +967,11 @@ National Investment Framework for Transport in Ireland | Investment Priorities
 
 For future transport investment to support the delivery of the National Planning Framework and address the challenges we face, it will be necessary to give priority to certain types of investment over others. The NIFTI Investment Priorities identify the types of transport interventions that will be given precedence under the framework. These priorities are supplemented by Modal and Intervention Hierarchies, which will ensure that the most appropriate solution to a given problem or opportunity is deployed.
 
-## 4.1 | Introduction
-
-### 4.1 | Introduction
-
-*Pages 45–45*
-
 4.1 | Introduction
 
 Drawing on the challenges identified in Section 3, the following section sets out the four NIFTI Investment Priorities. These priorities will enable us to meet the identified challenges as efficiently and effectively as possible regardless of the size of future funding envelopes.
 
 The priorities are supplemented by Modal and Intervention Hierarchies. These Hierarchies will ensure that, for any investment, the most appropriate, environmentally friendly and cost-effective option for meeting a given set of objectives is selected.
-
-## 4.2 | Investment Priorities
 
 ### 4.2 | Investment Priorities
 
@@ -1127,8 +1049,6 @@ Enhancing connectivity supports regional and rural accessibility and a strong an
 
 The principles of compact growth and improving sustainable urban mobility are not confined to the five cities. There are over 200 towns in Ireland, and a consistent focus of transport development in all of these settlements should be to provide high-quality alternatives to the private car wherever possible.13 Improvements to urban mobility in these smaller centres, in particular, will also be of benefit to people living in rural Ireland who depend on local towns to access certain goods and services.
 
-## 4.3 | Investment
-
 ### 4.3 | Investment
 
 *Pages 48–48*
@@ -1187,7 +1107,7 @@ National Investment Framework for Transport in Ireland |Project Ireland 2040
 
 ### 4.3.2 | Intervention
 
-*Pages 50–52*
+*Pages 50–55*
 
 4.3.2 | Intervention Hierarchy
 
@@ -1226,12 +1146,6 @@ National Investment Framework for Transport in Ireland |Project Ireland 2040
 
 *Figure 7: NIFTI Intervention Hierarchy*
 
-## 4.4 | Conclusion
-
-### 4.4 | Conclusion
-
-*Pages 52–55*
-
 4.4 | Conclusion
 
 sector. Improved multi-modal integration between transport options, such as space for bikes on public transport or increased availability of micro mobility, can also assist with first and last mile issues and make sustainable transport options more accessible to those who have mobility issues.
@@ -1262,17 +1176,9 @@ National Investment Framework for Transport in Ireland | Implementation
 
 To ensure the success of NIFTI, sectoral appraisal guidance will be updated so that the framework is reflected at the level of individual projects. Strategic Assessment Reports will be a key new output to demonstrate alignment with NIFTI, both at the level of individual schemes and when capital planning across schemes. To further inform future policy development, we will continue building the evidence base in priority areas.
 
-## 5.1 | Introduction
-
-### 5.1 | Introduction
-
-*Pages 55–55*
-
 5.1 | Introduction
 
 NIFTI sets out the framework for investment in Ireland’s transport system over the next 20 years to support the NPF. The success of NIFTI requires a process that channels investment in accordance with the NIFTI Investment Priorities. Among other things, this process must include effective governance and oversight, clearly defined roles and responsibilities, and a rigorous project development process. The following section sets out some of the proposals for how NIFTI will be implemented in the coming years.
-
-## 5.2 | Identifying Transport Investments
 
 ### 5.2 | Identifying Transport Investments
 
@@ -1289,8 +1195,6 @@ National Investment Framework for Transport in Ireland |Project Ireland 2040
 ![Figure from page 56](assets/p056-f01.webp)
 
 *Figure from page 56*
-
-## 5.3 | Project Development
 
 ### 5.3 | Project Development
 
@@ -1312,8 +1216,6 @@ Sponsoring agencies will be required to demonstrate project alignment with NIFTI
 
 Schemes that are identified as priorities within strategic plans may be given approval to proceed to the first stage of project development, the Strategic Assessment Stage. At this stage, scheme sponsors are required to set out the strategic case for projects. This includes the need for the scheme, the scheme objectives, and its alignment with policy. This information is brought together in a Strategic Assessment Report, alongside the preliminary identification of options and costs and an appraisal plan. To be approved to proceed to the next phases of project development, Strategic Assessment Reports will have to demonstrate that the scheme aligns with NIFTI and, by extension, the NPF more generally.
 
-## 5.4 | Supporting the
-
 ### 5.4 | Supporting the
 
 *Pages 56–57*
@@ -1333,8 +1235,6 @@ Implementation Action
 As well as ensuring we invest in the right things, it is important to ensure that transport planning is integrated with spatial planning, and that transport investment is correctly sequenced. Developing a sustainable transport network and delivering compact growth are complementary objectives. Limited urban space means public transport and active travel are necessary to deliver compact growth. Conversely, higher densities of people increase the viability of these types of transport modes.
 
 The Department of Transport will develop strengthened requirements around spatial and land use considerations as part of updated sectoral appraisal guidance
-
-## 5.5 | Developing
 
 ### 5.5 | Developing
 
@@ -1358,9 +1258,7 @@ Strategic Assessment Reports will be developed at a sufficiently early stage to 
 
 National Investment Framework for Transport in Ireland |Project Ireland 2040
 
-## 5.6 | Enhancing Transport
-
-### 5.6 | Enhancing Transport
+### 5.7 | Continuing to
 
 *Pages 58–59*
 
@@ -1404,11 +1302,9 @@ A central motivation for NIFTI is to ensure that future investment in land trans
 
 In trying to identify the future challenges on the transport network within the five cities, the transport modelling indicates that urban congestion will be an issue by 2040 without further intervention beyond that set out in the NDP. To inform the development of policy in this space, we will refresh the costs of congestion analysis for the Greater Dublin Area published in 2017. We will also carry out similar analysis for the other four cities.
 
-## 5.8 | Monitoring and
-
 ### 5.8 | Monitoring and
 
-*Pages 59–61*
+*Pages 59–63*
 
 5.8 | Monitoring and Oversight
 
@@ -1436,7 +1332,7 @@ Table 4: Priority Areas for Further Analysis and Policy Development
 | 4 | Identifying priority assets and infrastructure for protection and renewal investment in the context of climate adaptation and evolving infrastructure uses |
 | 5 | Refreshing the cost of congestion analysis for Dublin and carrying out similar research for the other cities |
 | 6 | Investigating the future role to be played by demand management |
-| 7 | Developing our rail policy and identifying where rail services and infrastructure can be deployed most efficiently and efef ctively, including for freight, and the potential role of higher-/high-speed rail |
+| 7 | Developing our rail policy and identifying where rail services and infrastructure can be deployed most efficiently and effectively, including for freight, and the potential role of higher-/high-speed rail |
 | 8 | Exploring potential future travel demand scenarios and assessing their implications on investment requirements |
 | 9 | Identifying the housing potential associated with planned or proposed transport infrastructure development in the major urban centres |
 
@@ -1449,12 +1345,6 @@ Finally, while a considerable body of evidence has been collected to inform NIFT
 Through the appropriate Departmental divisions, the implementation group will monitor and report on Sponsoring Agencies’ compliance with the relevant environmental screening and appraisal requirements, appropriate planning processes, inherent mitigation and construction best practices in respect of future transport investment. This will be part of the Department of Transport’s ongoing compliance with environmental regulations.
 
 The Department of Transport is committed to mainstreaming environmental requirements and objectives into early-stage decision making, and this is reflected in its sectoral appraisal requirements, the CAF. In line with the recommendations identified through the SEA process, the Department will seek to strengthen and further integrate environmental considerations within the updated CAF.
-
-## 5.9 | Conclusion
-
-### 5.9 | Conclusion
-
-*Pages 61–63*
 
 5.9 | Conclusion
 
@@ -1470,8 +1360,6 @@ National Investment Framework for Transport in Ireland | Assessing Environmental
 
 Several environmental assessments have been conducted in support of NIFTI to identify the potential environmental impacts of future investment made in accordance with the framework. We will ensure that future proposed transport projects take account of the environmental issues identified through our updated sectoral appraisal guidance, and we will monitor the impacts of NIFTI on the environment over time.
 
-## 6.1 | Introduction
-
 ### 6.1 | Introduction
 
 *Pages 63–63*
@@ -1479,8 +1367,6 @@ Several environmental assessments have been conducted in support of NIFTI to ide
 6.1 | Introduction
 
 The preparation of NIFTI has been an iterative process. A number of environmental assessments have been carried out in parallel with its development. These assessments include a Strategic Environmental Assessment (SEA), Appropriate Assessment (AA) and Strategic Flood Risk Assessment (SFRA). All three assessments have informed the development of NIFTI and provided the basis for considering high-level environmental issues and mitigation measures to be embedded in the future implementation process.
-
-## 6.2 | Strategic Environmental
 
 ### 6.2 | Strategic Environmental
 
@@ -1499,19 +1385,19 @@ Table 5: Strategic Environmental Assessment Objectives
 | Population, Human Health and Economy | Protect and enhance human health and quality of life in relation to increasing accessibility to economic, employment and community facilities through enhanced transport infrastructure and contributing to reduced transport emissions. |
 | Tourism and Recreation | Protect recreation areas and amenity facilities and support and enhance access for tourism and recreation. |
 | Biodiversity, Flora and Fauna | Protect and, where appropriate, enhance terrestrial, aquatic and soil biodiversity, particularly EU and national designated sites and protected species, and associated ecological corridors. |
-| Landscape and Visual Amenity | Safeguard the character and diversity of the Irish landscape and minimise the visual efef cts on sensitive, designated landscapes and public views. |
+| Landscape and Visual Amenity | Safeguard the character and diversity of the Irish landscape and minimise the visual effects on sensitive, designated landscapes and public views. |
 | Cultural Heritage | Protect cultural heritage resources and their settings. |
 | Geology and Soils | Protect geological sites of value and contribute towards the appropriate management of soil resources and quality. |
 | Air Quality | Contribute to the reduction of air pollution (and improvement of air quality) resulting from transport. |
 | Noise and Vibration | Contribute to mitigation of noise pollution issues resulting from transport. |
 | Water Environment | Support the achievement of Water Framework Directive objectives and avoid increasing flood risk. |
-| Land Use and Material Assets | Promote the sustainable use of natural resources (including land), encourage energy efficiency, materials reuse and recycling and the efef ctive use of existing infrastructure. |
+| Land Use and Material Assets | Promote the sustainable use of natural resources (including land), encourage energy efficiency, materials reuse and recycling and the effective use of existing infrastructure. |
 | Climate Change (Mitigation) | Minimise contributions to climate change (through reducing greenhouse gas emissions and decarbonisation of the transport fleet) as a result of construction of new and/or upgraded transport infrastructure or operation of existing and new transport networks and fleets. |
 | Climate Change (Adaptation) | Ensure that resilience to climate change is incorporated within the existing transport network and any proposed new transport infrastructure and that environmental resilience to climate change is supported. |
 
 National Investment Framework for Transport in Ireland | Assessing Environmental Impact
 
-### 6.2.3 | Findings of the SEA
+### 6.2.1 | Purpose of the SEA
 
 *Pages 65–65*
 
@@ -1575,9 +1461,7 @@ For further detail on the assessment of NIFTI, see Section 8 of the Environmenta
 
 National Investment Framework for Transport in Ireland | Project Ireland 2040
 
-## 6.4 | Strategic Flood Risk
-
-### 6.4 | Strategic Flood Risk
+### 6.3 |Appropriate
 
 *Pages 66–66*
 
@@ -1650,8 +1534,6 @@ In the absence of NIFTI, the 2015 Strategic Investment Framework for Land Transp
 ᴏ Address Urban Congestion
 
 ᴏ Maximise the Value of Existing Land Transport Networks
-
-## 6.5 | Integrating
 
 ### 6.5 | Integrating
 
@@ -1730,8 +1612,6 @@ NIFTI also sets out the revised transport sector structures and processes which 
 ᴏ Feeding information gathered into the next national transport investment framework.
 
 National Investment Framework for Transport in Ireland | Assessing Environmental Impact
-
-## 6.6 | Conclusion
 
 ### 6.6 | Conclusion
 
@@ -1882,3 +1762,11 @@ Galway, City Centre, Eyre Square (Section 2) by Professor Chaosheng Zhang
 *Figure from page 72*
 
 Department of Transport gov.ie/transport
+
+## 4 List of Figures
+
+### 4 List of Figures
+
+*Pages 7–7*
+
+National Investment Framework for Transport in Ireland | Foreword
