@@ -4,6 +4,12 @@ All notable changes to the Public Bodies dataset will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [documents, content only] - 2026-11-08 (OCR)
+
+### Added
+- The Climate Action Plan 2025 Q1 and Q4 progress reports are now published. Their full-page image pages (Q1: 1, 20, 24; Q4: 16 pages) are read with OCR (Tesseract) by a new opt-in `ocr_pages` pipeline step, and each affected section opens with a note that its text is machine-read and may contain recognition errors. `meta.json` sections list these pages as `ocr_pages`.
+- No `owl:versionInfo` or contract-version change. All other document bundles and index entries are unchanged; the Climate Action Plan 2023 stays held.
+
 ## [documents, content only] - 2026-11-08
 
 ### Added

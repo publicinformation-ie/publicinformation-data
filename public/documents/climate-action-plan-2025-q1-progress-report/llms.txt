@@ -1,0 +1,22 @@
+# Climate Action Plan 2025 Q1 Progress Report
+
+> Department of the Taoiseach — 6 chapters, 8 sections, 25 source pages.
+> Source: https://assets.gov.ie/static/documents/CAP25_Q1_Progress_Report_-_Final.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–2
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–2
+- [1 Executive Summary ............................................................................................ 3](sections/1-executive-summary-3/) — pages 2–2
+  - [1 Executive Summary ............................................................................................ 3](sections/1-executive-summary-3/overview.md) — pages 2–2
+  - [1.1 Climate change news and activity in Q1 2025 ..................................... 4](sections/1-executive-summary-3/1-1-climate-change-news-and-activity-in-q1-2025-4.md) — pages 2–2
+- [3 Transport](sections/3-transport/) — pages 10–25
+  - [3 Transport](sections/3-transport/overview.md) — pages 10–25
+- [7 Land Use, Land Use Change and Forestry ................................................. 21](sections/7-land-use-land-use-change-and-forestry-21/) — pages 2–2
+  - [7 Land Use, Land Use Change and Forestry ................................................. 21](sections/7-land-use-land-use-change-and-forestry-21/overview.md) — pages 2–2
+- [8 Cross-cutting actions ....................................................................................... 23](sections/8-cross-cutting-actions-23/) — pages 2–6
+  - [1.1 Climate change news and activity in Q1 2025](sections/8-cross-cutting-actions-23/1-1-climate-change-news-and-activity-in-q1-2025.md) — pages 4–6
+  - [8 Cross-cutting actions ....................................................................................... 23](sections/8-cross-cutting-actions-23/overview.md) — pages 2–4
+- [96 community groups across Ireland awarded grants to engage new audiences in their](sections/96-community-groups-across-ireland-awarded-grants-to-engage-new-audiences-in-their/) — pages 7–9
+  - [96 community groups across Ireland awarded grants to engage new audiences in their](sections/96-community-groups-across-ireland-awarded-grants-to-engage-new-audiences-in-their/overview.md) — pages 7–9
