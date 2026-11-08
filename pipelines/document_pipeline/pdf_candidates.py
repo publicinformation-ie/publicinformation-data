@@ -68,7 +68,7 @@ def render_review_list(policies: list, results: dict) -> str:
     lines = [
         "# Transport policy PDF candidates — for review",
         "",
-        "Generated from the landing pages in `input_plans_transport.md`. **Nothing here is in "
+        "Generated from the landing pages in the `input_plans_<domain>.md` policy inventories. **Nothing here is in "
         "`documents.yml` yet.** For each policy, mark the PDFs to curate and the `policy_role` "
         "(`primary` / `action-plan` / `progress-report`).",
         "",

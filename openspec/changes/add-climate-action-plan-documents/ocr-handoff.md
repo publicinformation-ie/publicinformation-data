@@ -5,8 +5,8 @@ Two curated documents are in `documents.yml` but are NOT published. They appear 
 
 | doc_slug | gap pages (no extractable text) | pages |
 |---|---|---|
-| `climate-action-plan-2025-q1-progress-report` | 1, 20, 24 | ? (see PDF) |
-| `climate-action-plan-2025-q4-progress-report` | 1, 4, 6, 7, 9, 10, 11, 12, 13, 15, 16, 18, 19, 20, 21, 23 | ? |
+| `climate-action-plan-2025-q1-progress-report` | 1, 20, 24 | 25 |
+| `climate-action-plan-2025-q4-progress-report` | 1, 4, 6, 7, 9, 10, 11, 12, 13, 15, 16, 18, 19, 20, 21, 23 | 24 |
 
 Cause: those pages are full-page raster images. `extract_pages` finds zero text blocks and zero figures, so `assemble_sections` reports a coverage gap and `publish_bundles` withholds the document.
 
@@ -27,4 +27,7 @@ Cause: those pages are full-page raster images. `extract_pages` finds zero text 
 - Index changes must land in the same commit as the `documents.yml` change (`tests/test_documents_dataset.py` asserts `published ∪ failed == curated`).
 - Hand-stamp `dct:modified` in `public/catalog/dataset-documents.ttl` and add a `public/CHANGELOG.md` entry when the bundles are published. No `owl:versionInfo` change needed.
 - curl to gov.ie is blocked (403), but `assets.gov.ie` PDFs download with `curl -A "Mozilla/5.0"`.
-- Related and similarly withheld: `climate-action-plan-2023` (structure detection collapses it to two chapters; see the comment in `documents.yml`).
+- Related and similarly withheld: `climate-action-plan-2023` (structure detection collapses it to two chapters). It is now withheld explicitly via `hold` in `documents.yml` (listed under `index.json` `failed` with `reason: "held"`), not by a coverage gap, so adding furniture overrides alone will not publish it. Its four 2023 progress reports are published with `reports_on` pointing at this unpublished slug; the site must tolerate a `reports_on` target that is not in `documents[]`.
+
+## Out of scope / future work
+- `status_source: annex` means the companion status spreadsheets are never ingested, so CAP progress-report status data (per-action status) needs a separate change.
