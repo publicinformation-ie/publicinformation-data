@@ -149,3 +149,15 @@ A document skipped by any of the four is **not** marked processed, so the next r
 | `override.json` | Hand-authored corrections that are never overwritten by automation (only `detect_structure` uses this today) |
 
 See the parent [`AGENTS.md`](../../AGENTS.md) for repository-wide conventions, the Dataset Version Bumps process, and where `document_pipeline` fits alongside the other pipelines in this repo.
+
+## Learnings from adding a corpus (Climate Action Plan, 2026-11)
+
+- **Scoped publishes are destructive.** A `--doc` run of `publish_bundles` deletes every other document's bundle and rewrites `index.json`. Use scoped runs only to experiment, then `git checkout -- public/documents && git clean -fdq public/documents`. For the real publish run the full pipeline, and `steps/*/errors.json` is overwritten per run, so snapshot it between scoped runs.
+- **Published bundles can lag the code.** Bundles are only rebuilt on a publish, so a full run after pipeline commits (e.g. TOC-name detection, text repair) changes *existing* documents too. When adding documents, don't let that ride along: restore the existing bundle dirs from git and splice the old `index.json` entries (rebuild `index.html` with `publish_bundles.build_index_html`). Republish stale documents in their own reviewed commit.
+- **Withholding a document** is done by leaving a coverage gap: no `assemble_sections` furniture override, so it lands under `index.json` `failed` with `not_publishable`. Keep the `documents.yml` entry if other documents `reports_on` it.
+- **Furniture overrides are for blank or running-header-only pages only.** Before adding a gap page to `assemble_sections/override.json`, OCR it (tesseract is available). Full-page raster pages with real content must not be marked furniture; the document stays unpublishable until `extract_pages` gains OCR (see `openspec/changes/add-climate-action-plan-documents/ocr-handoff.md`).
+- **Policies are multi-domain.** `input_plans_<domain>.md` files each define a domain; `load_policies()` merges them, records carry `domain`, and the transport dataset filters on `DOMAIN = "transport"`. New corpus = new `input_plans_*.md` plus a policy per plan family.
+- **`status_source: annex`** on a report in `documents.yml` makes `extract_action_status` skip it (status lives in companion spreadsheets); it still bundles. Plans use `policy_role: primary` so no action records are extracted.
+- **Dating:** `published_date` only from a source that agrees with the cover (listing page, or PDF creation date matching the cover month); otherwise omit it.
+- **Utilities:** `orphans.py` needs `PYTHONPATH=../../src` and a command (`manifest`/`apply`); curl to gov.ie is 403 (use a fetch tool), `assets.gov.ie` PDFs download with a browser User-Agent.
+- **Worktrees** don't carry gitignored pipeline state or untracked OpenSpec dirs; copy the change dir in. Pushing a fast-forward `HEAD:main` from a worktree publishes without touching a dirty main checkout.
