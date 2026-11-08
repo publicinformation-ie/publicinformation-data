@@ -142,7 +142,20 @@ uv run python process.py --public-body 1001 --stop-on-error
 uv run python process.py --from validate_websites --public-body 1001 --stop-on-error
 ```
 
-> **Note:** `--public-body` never forces. Combining with `--force` reduces output to the single body.
+> **Note:** `--public-body` never forces. Combining with `--force` does **not** reduce output to the single body: `IncrementalWriter` loads the existing output whenever `target_public_body` is set (even with `force`), so other bodies' records are preserved and only the target is reprocessed.
+
+### Dirty-state lifecycle (`dirty_ids.json`)
+
+- **Scoped runs defer other dirty bodies.** A scoped run (`--public-body N`) reprocesses only `N`. Other bodies listed in the upstream `dirty_ids.json` are *deferred*: their records are not evicted and their IDs stay in the upstream file. The step prints a `WARNING` naming them and the command that drains them: `process.py --from <step> --stop-on-error`.
+- **Why a warning, not auto-scheduling.** The runner's staleness check is mtime-only, so a later unscoped run may skip the step as up to date. (`fingerprint_disclosure_pages` is always-run and rewrites its output, so `find_disclosure_files` does become stale and drains its queue on the next run; pipelines without an always-run step rely on the warning alone.)
+- **`dirty_ids.json` accumulates.** Each run writes `previous ∪ marked this run ∪ consumed upstream IDs`. It is drained only by the *next* step, and only if that step passes `upstream_dirty_path` to `IncrementalWriter`. Single-consumer invariant: each `dirty_ids.json` must be read by exactly one consumer; if two steps read the same file, whichever finalizes first drains it for both.
+- **Unread files grow.** Steps whose successor does not opt in (`resolve_website_urls`, `validate_websites`, `find_foi_pages`, `find_foi_pages_search`, `check_foi_pages`, `find_disclosure_pages`, `extract_disclosures_normalize_rows`) keep a `dirty_ids.json` that is never read and grows over time. That is not pending work; do not use it for triage.
+- **Unscoped forced runs neither evict nor consume.** Forced steps mark nothing dirty and drain nothing, so a windowed `--from A --to B --force` run does not signal its reprocessed bodies to steps after B (run a forced window through to the end of the pipeline), and any pending dirty IDs stay pending. This is the safe direction: work is redone, none is lost.
+- **After a full `process.py --force` run, the next ordinary run re-crawls EVERY body.** A forced `fingerprint_disclosure_pages` marks every fetched body dirty, and a forced `find_disclosure_files` neither consumes nor evicts, so the whole list is cascaded on the next ordinary run. Nothing is lost; the cost is one redundant full network crawl.
+- **`fingerprint_disclosure_pages`** keeps pending dirty IDs and other bodies' records and hashes on scoped runs (it previously overwrote both).
+- A corrupt or non-list `dirty_ids.json` raises `ValueError` naming the path rather than being silently reset.
+
+**Migration note.** `dirty_ids.json` files written by older code were overwritten on every run and had already been consumed. Under the accumulate/consume rules above they are treated as pending, so the first run after this change redundantly re-crawls/reprocesses the bodies they list (roughly 52 for `fingerprint_disclosure_pages`, 27-38 per downstream step in the maintainer's checkout). This is safe: redundant work, not lost work. An operator who has confirmed the last unscoped run completed may reset those files to `[]` to skip the redundant pass; this is never done automatically.
 
 ## Environment Variables
 

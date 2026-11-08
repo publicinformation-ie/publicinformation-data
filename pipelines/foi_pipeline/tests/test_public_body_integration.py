@@ -166,3 +166,93 @@ def test_from_plus_public_body_passthrough(tmp_path):
         idx = cmd.index("--public-body")
         assert cmd[idx + 1] == "1002"
         assert "--force" not in cmd
+
+
+# ---------------------------------------------------------------------------
+# Incident regression: scoped run then unscoped run through the real
+# fingerprint_disclosure_pages -> find_disclosure_files wiring
+# ---------------------------------------------------------------------------
+
+def test_scoped_then_unscoped_run_through_fingerprint_preserves_and_drains_dirty_bodies(
+    requests_mock, tmp_path, monkeypatch, capsys
+):
+    import steps.fingerprint_disclosure_pages.process as fp
+    import steps.find_disclosure_files.process as fdf
+
+    A, B, C = 2001, 2002, 2003
+    ids = [A, B, C]
+    page_url = {i: f"https://b{i}.ie/disc/" for i in ids}
+    file_url = {i: f"https://b{i}.ie/new{i}.pdf" for i in ids}
+    html = {i: f'<html><body><a href="{file_url[i]}">f</a></body></html>' for i in ids}
+    for i in ids:
+        requests_mock.get(page_url[i], text=html[i])
+        requests_mock.get(file_url[i], text="x")
+
+    # find_disclosure_pages output
+    fdp_dir = tmp_path / "find_disclosure_pages"
+    fdp_dir.mkdir()
+    fdp_output = fdp_dir / "output.json"
+    write_json(fdp_output, {"results": [
+        {"public_body_id": i, "name": f"B{i}", "disclosure_page_url": page_url[i]}
+        for i in ids
+    ]})
+
+    # fingerprint output: hashes match current page content; A and B pending
+    fp_dir = tmp_path / "fingerprint_disclosure_pages"
+    fp_dir.mkdir()
+    fp_output = fp_dir / "output.json"
+    write_json(fp_output, {"results": [
+        {"public_body_id": i, "name": f"B{i}", "disclosure_page_url": page_url[i],
+         "page_hash": fp._hash_links([{"file_url": file_url[i]}]), "file_count": 1}
+        for i in ids
+    ]})
+    write_json(fp_dir / "dirty_ids.json", [A, B])
+
+    # find_disclosure_files output with stale records for all three
+    fdf_dir = tmp_path / "find_disclosure_files"
+    fdf_dir.mkdir()
+    fdf_output = fdf_dir / "output.json"
+    write_json(fdf_output, {"results": [
+        {"public_body_id": i, "name": f"B{i}", "disclosure_page_url": page_url[i],
+         "file_url": f"https://b{i}.ie/old{i}.pdf", "file_type": "pdf", "link_text": "",
+         "marker": "stale"}
+        for i in ids
+    ]})
+
+    monkeypatch.setattr(fdf, "__file__", str(fdf_dir / "process.py"))
+
+    def run(extra):
+        monkeypatch.setattr(sys, "argv", ["process.py", "--input", str(fdp_output), "--output", str(fp_output)] + extra)
+        fp.main()
+        monkeypatch.setattr(sys, "argv", ["process.py", "--input", str(fp_output), "--output", str(fdf_output)] + extra)
+        fdf.main()
+
+    def fdf_by_body():
+        by = {}
+        for r in read_json(fdf_output)["results"]:
+            by.setdefault(r["public_body_id"], []).append(r)
+        return by
+
+    # --- Scoped run on C ---
+    run(["--public-body", str(C)])
+    out = capsys.readouterr().out
+
+    assert {r["public_body_id"] for r in read_json(fp_output)["results"]} == set(ids)
+    assert set(read_json(fp_dir / "dirty_ids.json")) == {A, B}
+    by = fdf_by_body()
+    for i in (A, B):
+        assert [r.get("marker") for r in by[i]] == ["stale"]
+        assert by[i][0]["file_url"] == f"https://b{i}.ie/old{i}.pdf"
+    assert [r["file_url"] for r in by[C]] == [file_url[C]]
+    assert "WARNING" in out and f"[{A}, {B}]" in out
+
+    # --- Unscoped run, no --force ---
+    run([])
+    capsys.readouterr()
+
+    by = fdf_by_body()
+    assert set(by) == set(ids)
+    for i in ids:
+        assert [r["file_url"] for r in by[i]] == [file_url[i]]
+    assert read_json(fp_dir / "dirty_ids.json") == []
+    assert set(read_json(fdf_dir / "dirty_ids.json")) == set(ids)

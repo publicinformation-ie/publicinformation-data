@@ -19,6 +19,8 @@ The authoritative step order is defined in [`pipeline.json`](pipeline.json). Ste
 | 9 | [`canonicalize_motions`](steps/canonicalize_motions/) | Deterministic fan-in: maps status to the closed set, resolves the composite id `<slug>/<meeting_date>/m<NNN>`, dedupes, classifies meeting type. |
 | 10 | [`export_motions`](steps/export_motions/) | Groups by authority and writes `public/motions/<slug>.json` plus `public/motions/index.json`. |
 
+> **Note:** `find_meeting_minutes_pages` and `extract_motions` write `dirty_ids.json` files that no downstream step reads (`find_meeting_minutes_pages_search` does not read its upstream, and `resolve_meeting_date` does not use the dirty file), so those files only grow and are not pending work.
+
 ## Committed inputs (source of truth)
 
 - [`steps/find_local_authorities/local_authorities.json`](steps/find_local_authorities/local_authorities.json) — the 31-authority name list. Names must match the CSO output exactly; a name missing there is **fatal**.
