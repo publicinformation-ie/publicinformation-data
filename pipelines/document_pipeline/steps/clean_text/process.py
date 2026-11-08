@@ -320,6 +320,8 @@ def blocks_for_page(page: dict, body: float, repeated: set, levels: dict):
         blocks.sort(key=lambda block: block["y"])
     for block in blocks:
         block.pop("x", None)
+        if page.get("ocr") and block["type"] != "table":
+            block["source"] = "ocr"     # machine-read text; carried to the bundle
     return blocks, suspect
 
 

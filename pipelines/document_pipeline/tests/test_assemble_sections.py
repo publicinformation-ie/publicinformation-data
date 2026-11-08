@@ -579,3 +579,29 @@ def test_front_matter_section_only_covers_its_own_pre_boundary_pages(
     assert "Cover page." not in body_of(introduction)
     assert result.coverage["gaps"] == []
     assert result.publishable is True
+
+
+# --- OCR provenance ---------------------------------------------------------
+
+def test_a_section_with_machine_read_pages_says_so_and_lists_them(structure, figures, clean):
+    for block in clean["pages"][1]["blocks"]:
+        block["source"] = "ocr"
+    result = assemble(structure, figures, clean)
+
+    intro = section_by_slug(result, "1-1-introduction")
+    assert intro.ocr_pages == [2]
+    assert "machine-read" in body_of(intro) and "page 2" in body_of(intro)
+    # frontmatter contract is unchanged
+    assert "ocr" not in frontmatter_block(intro)
+    entry = next(s for c in result.chapters for s in c["sections"]
+                 if s["slug"] == "1-1-introduction")
+    assert entry["ocr_pages"] == [2]
+
+
+def test_sections_without_ocr_blocks_are_byte_for_byte_unchanged(structure, figures, clean):
+    result = assemble(structure, figures, clean)
+    for section in result.sections:
+        assert section.ocr_pages == []
+        assert "machine-read" not in section.markdown
+    for chapter in result.chapters:
+        assert all("ocr_pages" not in s for s in chapter["sections"])

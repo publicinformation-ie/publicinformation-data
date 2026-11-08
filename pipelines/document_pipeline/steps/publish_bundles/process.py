@@ -96,6 +96,10 @@ def contract_meta(record: dict, fetch_record: dict) -> dict:
                 "source_pages": section["source_pages"],
                 "word_count": section["word_count"],
                 "assets": list(section["assets"]),
+                # Only sections with machine-read (OCR) text carry the key, so
+                # every other document's meta.json stays byte-identical.
+                **({"ocr_pages": list(section["ocr_pages"])}
+                   if section.get("ocr_pages") else {}),
             })
         chapters.append({
             "slug": chapter["slug"],

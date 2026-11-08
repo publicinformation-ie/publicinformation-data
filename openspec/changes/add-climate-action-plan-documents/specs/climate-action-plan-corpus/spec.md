@@ -84,3 +84,28 @@ The published document index SHALL account for exactly the curated set: every cu
 
 - **WHEN** a curated CAP document appears neither as published nor as failed
 - **THEN** verification fails
+
+### Requirement: Image-only pages are machine-read and labelled
+
+A page that a curator has listed under `ocr_pages` in `documents.yml`, and that is a full-page raster image with no meaningful text layer, SHALL be read with a deterministic OCR pass in its own pipeline step (`ocr_pages`), which never modifies the upstream page extraction, so its content is covered rather than silently dropped or papered over as furniture. Text derived from OCR SHALL be marked as machine-read in the pipeline's intermediate records and in the published bundle (section text and `meta.json`), and OCR pages that return no text or low confidence SHALL be logged for human review. An OCR page that returns no text SHALL NOT count as covered.
+
+#### Scenario: Image-only page is read
+
+- **WHEN** a progress-report page is a full-page image with no text layer
+- **THEN** its OCR text is assigned to a section, the section's body states that pages are machine-read, and `meta.json` lists them under the section's `ocr_pages`
+
+#### Scenario: OCR is opt-in per page
+
+- **WHEN** a page is image-only but not listed under its document's `ocr_pages`
+- **THEN** it is never OCR'd and its extracted output is unchanged
+
+#### Scenario: Listed page is not scanned
+
+- **WHEN** `ocr_pages` lists a page that has a real text layer, no full-page image, or does not exist
+- **THEN** the page is not OCR'd and an `OcrPageNotScanned` error is logged
+
+#### Scenario: OCR finds nothing
+
+- **WHEN** OCR of an image-only page returns no text
+- **THEN** the page remains a coverage gap, an `OcrEmpty` error is logged, and the document stays withheld
+

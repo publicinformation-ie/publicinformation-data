@@ -45,6 +45,7 @@ def test_load_documents_returns_one_normalised_record(tmp_path):
         "expected_status_counts": None,
         "status_source": None,
         "hold": None,
+        "ocr_pages": None,
     }]
 
 
@@ -349,4 +350,20 @@ def test_hold_defaults_to_none(tmp_path):
 def test_hold_must_be_a_non_empty_string(tmp_path, bad):
     path = write_yaml(tmp_path, PLAN + f"    hold: {bad}\n")
     with pytest.raises(ValueError, match="hold"):
+        _load(path)
+
+
+# --- ocr_pages ----------------------------------------------------------
+
+def test_ocr_pages_is_accepted_sorted_and_defaults_to_none(tmp_path):
+    path = write_yaml(tmp_path, PLAN + "    ocr_pages: [20, 1, 4]\n")
+    assert _load(path)[0]["ocr_pages"] == [1, 4, 20]
+    assert _load(write_yaml(tmp_path, PLAN))[0]["ocr_pages"] is None
+
+
+@pytest.mark.parametrize("bad", ["[]", "3", '"1,2"', "[0]", "[-1]", "[1, 1]",
+                                 "[true]", '["2"]', "[1.5]"])
+def test_ocr_pages_must_be_a_non_empty_list_of_unique_positive_ints(tmp_path, bad):
+    path = write_yaml(tmp_path, PLAN + f"    ocr_pages: {bad}\n")
+    with pytest.raises(ValueError, match="ocr_pages"):
         _load(path)

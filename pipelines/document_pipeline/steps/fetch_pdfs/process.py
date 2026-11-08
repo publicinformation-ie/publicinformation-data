@@ -173,6 +173,9 @@ def _doc_metadata(doc: dict) -> dict:
         # Reason the document is deliberately withheld; publish_bundles lists it
         # under index.json `failed` as "held" whatever assemble_sections says.
         "hold": doc.get("hold"),
+        # 1-based pages the curator has opted in to OCR (full-page images with no
+        # text layer); the ocr_pages step OCRs exactly these and nothing else.
+        "ocr_pages": doc.get("ocr_pages"),
         "policy_id": doc["policy_id"],
         "policy_role": doc["policy_role"],
         "expected_action_count": doc.get("expected_action_count"),

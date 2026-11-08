@@ -119,6 +119,7 @@ class Section:
     word_count: int
     assets: list
     markdown: str
+    ocr_pages: list = field(default_factory=list)   # pages whose text is machine-read (OCR)
 
 
 @dataclass
@@ -265,6 +266,18 @@ def _figure_markdown(figure: dict) -> str:
 
 def _caption_key(page: int, text: str) -> tuple:
     return (int(page), " ".join(str(text).split()).casefold())
+
+
+def _ocr_pages(items: list) -> list:
+    """Pages contributing OCR-derived blocks to a section."""
+    return sorted({item["page"] for item in items
+                   if item["kind"] == "block" and item["block"].get("source") == "ocr"})
+
+
+def _ocr_note(pages: list) -> str:
+    label = "page" if len(pages) == 1 else "pages"
+    return (f"*Text from {label} {', '.join(str(p) for p in pages)} of the source PDF is "
+            "machine-read (OCR) from a scanned image and may contain recognition errors.*")
 
 
 def _render(items: list, figures_by_id: dict, errors: list, doc_slug: str):
@@ -481,6 +494,9 @@ def build(structure: dict, figures: dict, clean: dict, doc_slug: str, doc_title:
         pages = sorted({item["page"] for item in content})
         source_pages = [pages[0], pages[-1]]
         body, assets = _render(content, figures_by_id, errors, doc_slug)
+        ocr_pages = _ocr_pages(content)
+        if ocr_pages:
+            body = f"{_ocr_note(ocr_pages)}\n\n{body}"
         head = frontmatter({
             "title": title,
             "doc": doc_slug,
@@ -499,7 +515,7 @@ def build(structure: dict, figures: dict, clean: dict, doc_slug: str, doc_title:
             title=title, order=order,
             file=f"sections/{doc_slug}/{chapter['slug']}/{slug}.md",
             source_pages=source_pages, word_count=len(body.split()),
-            assets=assets, markdown=f"{head}\n\n{body}\n"))
+            assets=assets, markdown=f"{head}\n\n{body}\n", ocr_pages=ocr_pages))
         pages_by_section[f"{chapter['slug']}/{slug}"] = pages
 
     if front_matter_items:
@@ -509,6 +525,9 @@ def build(structure: dict, figures: dict, clean: dict, doc_slug: str, doc_title:
         pages = sorted({item["page"] for item in front_matter_items})
         source_pages = [pages[0], pages[-1]]
         body, assets = _render(front_matter_items, figures_by_id, errors, doc_slug)
+        ocr_pages = _ocr_pages(front_matter_items)
+        if ocr_pages:
+            body = f"{_ocr_note(ocr_pages)}\n\n{body}"
         head = frontmatter({
             "title": FRONT_MATTER_TITLE,
             "doc": doc_slug,
@@ -527,7 +546,7 @@ def build(structure: dict, figures: dict, clean: dict, doc_slug: str, doc_title:
             title=FRONT_MATTER_TITLE, order=0,
             file=f"sections/{doc_slug}/{FRONT_MATTER}/{FRONT_MATTER}.md",
             source_pages=source_pages, word_count=len(body.split()),
-            assets=assets, markdown=f"{head}\n\n{body}\n"))
+            assets=assets, markdown=f"{head}\n\n{body}\n", ocr_pages=ocr_pages))
         pages_by_section[f"{FRONT_MATTER}/{FRONT_MATTER}"] = pages
 
     sections.sort(key=lambda s: (s.order, s.slug))
@@ -552,7 +571,8 @@ def build(structure: dict, figures: dict, clean: dict, doc_slug: str, doc_title:
             "source_pages": [min(chapter_pages), max(chapter_pages)],
             "sections": [{"slug": s.slug, "title": s.title, "order": s.order,
                           "file": s.file, "source_pages": s.source_pages,
-                          "word_count": s.word_count, "assets": s.assets}
+                          "word_count": s.word_count, "assets": s.assets,
+                          **({"ocr_pages": s.ocr_pages} if s.ocr_pages else {})}
                          for s in members],
         })
     chapters.sort(key=lambda c: c["order"])
