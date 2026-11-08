@@ -6,7 +6,7 @@ Source: https://assets.gov.ie/static/documents/national-sustainable-mobility-pol
 
 ### Front Matter
 
-*Pages 1–1*
+*Pages 1–2*
 
 ![Figure from page 1](assets/p001-f01.webp)
 
@@ -16,13 +16,13 @@ Source: https://assets.gov.ie/static/documents/national-sustainable-mobility-pol
 
 Prepared by the Department of Transport gov.ie/transport
 
+National Sustainable Mobility Policy | Year One Progress Report
+
 ## Contents
 
 ### Contents
 
-*Pages 2–2*
-
-National Sustainable Mobility Policy | Year One Progress Report
+*Pages 2–3*
 
 Contents 1
 
@@ -72,13 +72,13 @@ At Risk of Delay 34
 
 Ongoing
 
+National Sustainable Mobility Policy |Year One Progress Report
+
 ## Minister’s Foreword
 
 ### Minister’s Foreword
 
-*Pages 3–3*
-
-National Sustainable Mobility Policy |Year One Progress Report
+*Pages 3–4*
 
 We are now one year into the implementation phase of the National Sustainable Mobility Policy (SMP)1 – a policy that aims to transform how we travel, making sustainable journeys more attractive and feasible for all.
 
@@ -104,13 +104,13 @@ This has been accomplished through a substantial step up in investment, with aro
 
 1 https://www.gov.ie/en/publication/848df-national-sustainable-mobility-policy/
 
+National Sustainable Mobility Policy | Year One Progress Report
+
 ## Executive Summary
 
 ### Executive Summary
 
-*Pages 4–4*
-
-National Sustainable Mobility Policy | Year One Progress Report
+*Pages 4–5*
 
 The National Sustainable Mobility Policy (SMP) was published in April 2022 with a target of delivering at least 500,000 additional daily active travel and public transport journeys, and a 10% reduction in kilometres driven by fossil-fuelled cars, by 2030. The Climate Action Plan 2023 updated these targets to a 50% increase in daily active travel journeys, a 130% increase in daily public transport journeys, and a 20% reduction in total vehicle kilometres travelled by 2030.
 
@@ -136,13 +136,13 @@ This report outlines the progress made in the first year of the SMP, and related
 
 2 https://www.gov.ie/en/publication/143e3-pathfinder-programme/
 
+National Sustainable Mobility Policy |Year One Progress Report
+
 ## Sustainable Mobility Policy and Action Plan
 
 ### Sustainable Mobility Policy and Action Plan
 
 *Pages 5–5*
-
-National Sustainable Mobility Policy |Year One Progress Report
 
 The 91 actions in the SMP Action Plan are grouped under 10 high-level goals, all stemming from the SMP’s three overarching principles:
 
@@ -178,7 +178,7 @@ Principle 3: Better-Integrated Mobility
 
 ### SMP Action Status Update
 
-*Pages 6–6*
+*Pages 6–7*
 
 SMP Action Progress to end April 2023
 
@@ -204,11 +204,11 @@ Figure 1: Action delivery status to the end of April 2023
 
 Full details of progress across all 91 actions may be found in Annex I. For ease of reference, the following provides a summary of the highlighted action categories in Figure 1
 
-### Complete
+National Sustainable Mobility Policy |Year One Progress Report
+
+### On-Schedule
 
 *Pages 7–7*
-
-National Sustainable Mobility Policy |Year One Progress Report
 
 On-Schedule
 
@@ -217,6 +217,10 @@ Further information about the Forum and the topics discussed can be found later 
 The majority of actions remain on schedule and progress related to these is detailed in Annex I.
 
 The Department has also established a number of groups to complement wider efforts to integrate sustainable transport with other key policy areas including road safety (Action 63), urban planning and development (Action 80), and research and analysis to help guide and evaluate policy in terms of both focus and delivery (Action 74).
+
+### Complete
+
+*Pages 7–8*
 
 Complete
 
@@ -244,10 +248,6 @@ As per the commitment under Action 71, the first National Sustainable Mobility F
 
 3 https://www.nationaltransport.ie/wp-content/uploads/2023/03/Connecting-Ireland-Bulletin-Q1-2023-Rev.4-1.pdf 4 https://www.nationaltransport.ie/wp-content/uploads/2023/03/Connecting-Ireland-Phase-1-Key-Achievements-Infographic.pdf 5 https://www.gov.ie/en/press-release/9f9b8-minister-ryan-launches-transformative-pathfinder-projects-to-bring-more-publictransport-walking-and-cycling-options-to-our-villages-towns-and-cities-by-2025/ 6 https://www.gov.ie/en/publication/7bd8c-climate-action-plan-2023/ 7 https://www.gov.ie/en/publication/0d8cd-national-sustainable-mobility-forum-19-20-april-2023/
 
-### At Risk of Delay
-
-*Pages 8–8*
-
 National Sustainable Mobility Policy | Year One Progress Report
 
 ![Figure from page 8](assets/p008-f01.webp)
@@ -262,9 +262,17 @@ The new TFI Live App was rolled out in February 2023 and combined the previously
 
 Of the 13 actions that were delayed at end April, two have since been completed. Action 89 relating to the introduction of PPTs was completed with the passing of new Road Traffic and Roads Act 2023 and Action 73 (as above) was completed with the publication of the Transport Appraisal Framework. Accordingly, by the end of June, the number of delayed actions had fallen to 12%.
 
+### At Risk of Delay
+
+*Pages 8–8*
+
 At Risk of Delay
 
 A number of actions have been identified as being at risk of delay despite progress being made. In some cases, this is due to delays arising in dependent actions – for example, Action 90 relates to usage and safety regulations for PPTs which must be submitted to the European Commission for consideration for a minimum 12 weeks. This piece of work was dependent on the successful enactment of the Road Traffic and Roads Act 2023 which occurred in late June. Thus, while the action is now likely to be complete by end 2023, the earlier delay in enacting the relevant legislation has created a minor risk of late delivery for Action 90.
+
+### Delayed
+
+*Pages 8–9*
 
 Delayed
 
@@ -277,10 +285,6 @@ In other cases, the ‘At Risk’ status reflects minor delays to some elements 
 An unavoidable delay arose in relation to Action 73. In this case, it was prudent to await the publication of a related Government Circular before moving to publish the revised Transport Appraisal Framework.
 
 8 https://www.transportforireland.ie/news/new-tfi-live-app-is-available-now/
-
-### Ongoing
-
-*Pages 9–9*
 
 National Sustainable Mobility Policy |Year One Progress Report
 
@@ -298,21 +302,23 @@ Some ‘At Risk’ actions (e.g., Actions 72 and 75) may be subject to potential
 
 Overall, the SMP Leadership Group and its Delivery Team will continue to monitor actions which are ‘At Risk’ to ensure they are brought on schedule as soon as possible, and to prioritise those actions which will have a direct and tangible impact in shifting journeys from private cars to more sustainable modes of transport.
 
+### Ongoing
+
+*Pages 9–10*
+
 Ongoing
 
 Several SMP actions relate to areas of work which take place annually or on an ongoing basis, which are monitored via quarterly updates.
 
 Two of these actions relate to programmes of work whose status will not fully materialise until the end of the delivery period in 2025, e.g. Action 62 which relates to an average number of road safety improvement schemes per year over that period. Another – Action 61 - reflects ongoing interdepartmental collaboration, which began in 2022 but which will continue and even expand over the full lifetime of the SMP.
 
-## SMP Leadership Group, Delivery Team, and Pathfinder Programme
-
-### Delivery Team
-
-*Pages 10–10*
-
 National Sustainable Mobility Policy | Year One Progress Report
 
 ## SMP Leadership Group, Delivery Team, and Pathfinder Programme
+
+### Leadership Group and Delivery Team
+
+*Pages 10–11*
 
 Leadership Group
 
@@ -332,11 +338,11 @@ Initially meeting on a weekly basis to develop the Pathfinder Programme, the Del
 
 In addition, the LG established a Delivery Team to provide oversight of SMP implementation at operational level as well as to formulate a programme of ‘pathfinder’ projects linked to the SMP and to be delivered by 2025.
 
+National Sustainable Mobility Policy |Year One Progress Report
+
 ### SMP Pathfinder Programme
 
 *Pages 11–11*
-
-National Sustainable Mobility Policy |Year One Progress Report
 
 SMP Pathfinder Programme
 
@@ -362,7 +368,7 @@ Delivery is also well underway on several infrastructure projects, including the
 
 ### Project Management Approach
 
-*Pages 12–12*
+*Pages 12–13*
 
 Project Management Approach
 
@@ -378,13 +384,13 @@ Consideration was also given to the identification of high-level risks associate
 
 These tools have provided a structure for the ongoing management of the implementation of the SMP. Towards the end of the first year of the SMP, the department also commenced work on a similar PMO-led approach to the management of the Pathfinder Programme.
 
+National Sustainable Mobility Policy |Year One Progress Report
+
 ## National Sustainable Mobility Forum
 
 ### National Sustainable Mobility Forum
 
-*Pages 13–13*
-
-National Sustainable Mobility Policy |Year One Progress Report
+*Pages 13–14*
 
 The inaugural National Sustainable Mobility Forum took place on 20 April, bringing together stakeholders from local authorities, transport agencies and operators, Government departments, academics, civil society groups and others.
 
@@ -414,13 +420,13 @@ The Forum itself was a busy event with more than 120 people in attendance. Follo
 
 *Figure from page 13*
 
+National Sustainable Mobility Policy | Year One Progress Report
+
 ## Climate Communications Campaign
 
 ### Climate Communications Campaign
 
-*Pages 14–14*
-
-National Sustainable Mobility Policy | Year One Progress Report
+*Pages 14–15*
 
 There is a need to promote greater awareness and understanding across society about the ambition for transport – and what’s required - in the Climate Action Plan 2023 (CAP23).
 
@@ -438,13 +444,13 @@ A multi-layered communication and engagement strategy is being developed and wil
 
 4. Developing an evaluation framework and research support, including a long-term attitudes and behaviour impact research study, to measure changing attitudes towards sustainable mobility as the strategy is implemented; in addition, this will be supported by a robust evaluation framework as well as on-going research for best-practice communications and engagement activities in the area of sustainable mobility.
 
+National Sustainable Mobility Policy |Year One Progress Report
+
 ## Climate Action Plan 2023 and Beyond – SMP Alignment
 
 ### Climate Action Plan 2023 and Beyond – SMP Alignment
 
-*Pages 15–15*
-
-National Sustainable Mobility Policy |Year One Progress Report
+*Pages 15–16*
 
 As set out in CAP23, Government has established six climate delivery taskforces in key sectoral areas. The role of the transport taskforce is fulfilled by the SMP Leadership Group (LG). Of the fifteen transport-related work programmes identified in CAP23’s Annex of Actions, ten fall under the remit of the LG. These programmes are specifically concerned with integrating sustainable mobility into our transport system and encouraging a shift to the use of more sustainable modes - such as walking, cycling and public transport.
 
@@ -474,21 +480,23 @@ Transport-related actions in the CAP23 Annex of Actions consolidates and integra
 
 The remaining five work programmes are not under the remit of this taskforce and have different governance and oversight arrangements. Moving forward into the second year of the lifetime of the SMP, the LG will meet on a quarterly basis to oversee its implementation. The PMO which was established in December 2022 will continue to support the LG in its oversight function – helping the Group to focus on key issues related to implementation, such as risk management and mitigation, the rollout of a climate communications campaign, and issues arising in the context of Climate Action Plan targets or other emerging policy imperatives.
 
-## ANNEX I
-
-### Complete
-
-*Pages 16–20*
-
 National Sustainable Mobility Policy | Year One Progress Report
 
 ## ANNEX I
+
+### ANNEX I
+
+*Pages 16–16*
 
 SMP Action Status to end April 2023
 
 In the tables below, references to CAP actions (or to actions which complement CAP actions) should be taken to mean the Climate Action Plan 2021 (CAP21) which helped to inform the drafting of the SMP and its action plan, rather than the more recent CAP23.
 
 Actions are categorised according to status at end April. Where actions have made advances in the interim, this is reflected in the ‘Progress’ column.
+
+### Complete
+
+*Pages 16–21*
 
 Complete
 
@@ -529,11 +537,11 @@ National Sustainable Mobility Policy | Year One Progress Report
 
 *Figure from page 20*
 
+National Sustainable Mobility Policy |Year One Progress Report
+
 ### On Schedule
 
-*Pages 21–31*
-
-National Sustainable Mobility Policy |Year One Progress Report
+*Pages 21–32*
 
 On Schedule
 
@@ -625,11 +633,11 @@ National Sustainable Mobility Policy |Year One Progress Report
 | 86 | Develop National Consolidated Customer Contact Centre for Transport. | Centre developed | 2025 Q4 | On Schedule | Tender documents issued to the bidders and expect to award the contract in mid 2023, followed by a mobilisation phase. | Shift |
 | 87 | Expand shared car, bike and powered personal transporters (PPT) services at transport hubs and interchanges. | Strategy for rollout of expanded shared services developed. | 2023 Q4 | On Schedule | This will be addressed via the strategy for shared mobility services which is to be developed by end Q4 2023. | Shift |
 
+National Sustainable Mobility Policy | Year One Progress Report
+
 ### Delayed
 
-*Pages 32–34*
-
-National Sustainable Mobility Policy | Year One Progress Report
+*Pages 32–35*
 
 Delayed
 
@@ -657,11 +665,11 @@ National Sustainable Mobility Policy | Year One Progress Report
 | 89 | Legislate to permit the use of PPTs on public roads. (Complements CAP action 237, RSS action 134) | Legislation passed | 2022 Q3 | Delayed | The Road Traffic and Roads Act 2023 was enacted in June 2023. | Shift |
 | 91 | Examine the feasibility of utilising bus mounted cameras to detect and enforce illegal parking in bus lanes and if appropriate make recommendations for implementation. (RSS action 122) |  | 2022 Q4 | Delayed | A report on this action was prepared in Q2 2023 and is being reviewed. | Shift |
 
+National Sustainable Mobility Policy |Year One Progress Report
+
 ### At Risk of Delay
 
-*Pages 35–37*
-
-National Sustainable Mobility Policy |Year One Progress Report
+*Pages 35–38*
 
 At Risk of Delay
 
@@ -685,11 +693,11 @@ National Sustainable Mobility Policy |Year One Progress Report
 
 *Figure from page 37*
 
+National Sustainable Mobility Policy | Year One Progress Report
+
 ### Ongoing
 
 *Pages 38–40*
-
-National Sustainable Mobility Policy | Year One Progress Report
 
 Ongoing
 

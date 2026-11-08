@@ -479,3 +479,17 @@ def test_the_fixture_pdf_reflows_into_readable_prose(tmp_path):
     lists = [b for b in page_two["blocks"] if b["type"] == "list"]
     assert len(lists) == 1
     assert lists[0]["items"] == ["Walking", "Cycling", "Public transport"]
+
+
+# --- OCR provenance ---------------------------------------------------------
+
+def test_blocks_from_an_ocr_page_are_marked_source_ocr_and_text_pages_are_not():
+    ocr_spans = [dict(span("Emissions fell sharply this quarter.", y0=100.0), source="ocr")]
+    ocr_page = page(ocr_spans)
+    ocr_page["ocr"] = {"engine": "tesseract", "mean_confidence": 91.0, "word_count": 5}
+    blocks, _ = blocks_for_page(ocr_page, body=10.0, repeated=set(), levels={})
+    assert blocks and all(b["source"] == "ocr" for b in blocks)
+
+    blocks, _ = blocks_for_page(page([span("Ordinary text.")]), body=10.0,
+                                repeated=set(), levels={})
+    assert blocks and all("source" not in b for b in blocks)

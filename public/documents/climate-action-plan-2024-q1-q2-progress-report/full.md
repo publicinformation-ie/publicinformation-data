@@ -6,17 +6,13 @@ Source: https://assets.gov.ie/static/documents/climate-action-plan-2024-q1-and-q
 
 ### Front Matter
 
-*Pages 1–1*
+*Pages 1–2*
 
 ![Figure from page 1](assets/p001-f01.webp)
 
 *Figure from page 1*
 
 ## Table of Contents
-
-### Table of Contents
-
-*Pages 2–2*
 
 1 Introduction ................................................................................................................... 3
 
@@ -44,131 +40,115 @@ Source: https://assets.gov.ie/static/documents/climate-action-plan-2024-q1-and-q
 
 9 Conclusion ................................................................................................................... 34
 
-## 1Introduction
+## 1 Introduction
 
-### 1 1Climate change news and activity in Q1 and Q2 2024
-
-*Pages 4–4*
-
-![Figure from page 4](assets/p004-f01.webp)
-
-*Figure from page 4*
-
-### 1.2 1High impact actions in Q1 and Q2 2024
-
-*Pages 9–11*
-
-Examples of high impact actions completed and delayed in the first half of 2024 are in Tables 4
-
-and 5. These include both new Q1 and Q2 actions from CAP24 and the legacy actions that rolled
-
-over from CAP23 for reporting this year. With significant potential for direct emissions
-
-reduction, example actions are further expanded upon in chapters throughout this progress
-
-report. Information on every reportable action is at Appendix 1.
-
-|  |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- |
-|  | Sector |  |  | Actions completed in Q1 and Q2 2024 |  |
-| Agriculture |  |  | Publish a National Biomethane Strategy (legacy) |  |  |
-| Transport |  |  | Publish a high-powered EV charging strategy (legacy) |  |  |
-|  |  |  | Develop Strategic Rail Review implementation plan (new Q2) |  |  |
-| Electricity |  |  | Reduce the minimum number of large fossil-fuel electricity generators (new Q2) |  |  |
-| Buildings |  |  | Deliver low-cost finance for home retrofit (legacy) |  |  |
-| Industry |  |  | Publish a decarbonisation roadmap for industrial heat (legacy) |  |  |
-|  |  |  | Specify low carbon methods and materials for procured construction projects (legacy) |  |  |
-| LULUCF |  |  | Establish the National Agricultural Soil Carbon Observatory (legacy) |  |  |
-| Governance |  |  | Update shadow price of carbon (legacy) |  |  |
-|  |  |  | Publish Long Term Climate Strategy (legacy) |  |  |
-| Circular Economy |  |  | Go-live of the Deposit & Return Scheme for bottles and cans (new Q1) |  |  |
-| Public Sector |  |  | Publish new Green Public Procurement Strategy (legacy) |  |  |
-| Local Government |  |  | Adopt 31 Local Authority Climate Action Plans (new Q1) |  |  |
-| Adaptation |  |  | Develop a new National Adaptation Framework (new Q2) |  |  |
-
-|  |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- |
-|  | Sector |  |  | Actions delayed in Q1 and Q2 2024 |  |
-| Agriculture |  |  | Update legislation for maximum nitrogen limits (new Q1) |  |  |
-|  |  |  | Develop a carbon farming framework in agriculture (new Q2) |  |  |
-| Transport |  |  | Publish National Demand Management Strategy (legacy) |  |  |
-| Electricity |  |  | Introduce new incentives for Large Energy Users (new Q2) |  |  |
-|  |  |  | Publish the Renewable Electricity Spatial Policy Framework (legacy) |  |  |
-|  |  |  | Publish National Energy Demand Strategy and Implementation Plan (legacy) |  |  |
-| Buildings |  |  | Publish roadmap to phase out fossil fuel heating systems in all buildings (legacy) |  |  |
-|  |  |  | Draft Heat Bill to establish regulatory model for district heating (new Q2) |  |  |
-| LULUCF |  |  | Finalise forestry communication plan (new Q1) |  |  |
-| Industry |  |  | Develop implementation plan for the National Hydrogen Strategy (new Q2) |  |  |
-| Just Transition |  |  | Establish a Just Transition Commission (legacy) |  |  |
-| Public Sector |  |  | Update climate action roadmaps by public sector bodies (legacy) |  |  |
-
-![Figure from page 10](assets/p010-f01.webp)
-
-*Figure from page 10*
-
-![Figure 4: National Agricultural Soil Carbon Observatory launched (Source: Teagasc)](assets/p011-f01.webp)
-
-*Figure 4: National Agricultural Soil Carbon Observatory launched (Source: Teagasc)*
-
-### 1.2 2Overcoming delays to climate action delivery
-
-*Pages 11–11*
-
-In total, 39 actions are reported as delayed in the first half of 2024, including 13 from CAP24
-
-and 26 legacy high impact actions from CAP23. The most common reasons reported by
-
-Departments for delivery delays include:
-
-Need for further stakeholder engagement, including public consultation or internal consensus building
-
-within working groups, departments and agencies;
-
-Layers of administrative clearance, whereby actions are significantly advanced and are awaiting final
-
-approval or publication (e.g. final drafts have been prepared or schemes are awaiting final launch) and
-
-expect completion in Q3;
-
-Issues of sequencing and alignment, whereby the completion of actions is reliant on the finalisation of
-
-another activity or policy both at national and/or EU levels; and
-
-Capacity and capability constraints, including internal resourcing issues and procurement delays arising
-
-from a reliance on external expertise for climate policy or scheme development; and/or
-
-Unexpected legal or technical complexity, often leading to the need for extra time for additional research,
-
-outreach, legal drafting, and/or the development of new working approaches.
-
-### due contained at Appendix 1.
+### 1 Introduction
 
 *Pages 3–3*
+
+#### This Progress Report on the Climate Action Plan (CAP) 20241 details progress on the 10
+
+#### new actions that were due for completion in Q1 2024 and the 23 new actions due for
+
+#### completion in Q2 2024. At the end of Q2, 20 of the 33 new CAP24 actions have been
+
+#### delivered.
+
+#### The progress made on high impact actions delayed from CAP 2023 is also included in
+
+#### this Report, with 21 of 47 reportable legacy actions completing in the first half of 2024.
+
+#### There are persistent challenges within the system to deliver on climate action and risks
+
+#### to meeting international, EU and national emissions reduction targets are evident.
+
+#### Transparent reporting on progress is intended to draw attention to these risks, maintain
+
+#### accountability for delivery and help identify solutions to barriers encountered.
+
+#### This report is organised into sectoral chapters in order of emissions impact (Agriculture,
+
+#### Transport, Electricity, Buildings, Industry, and Land Use, Land-use Change and Forestry
+
+#### (LULUCF)). A new chapter is introduced in this progress report to highlight cross-cutting
+
+#### actions that provide an essential enabling framework for climate action. Throughout the
+
+#### chapters, attention is given to Key Performance Indicators (KPIs), emissions trends and
+
+#### projections2, detail from the recent Climate Change in the Irish Mind (CCIM) survey, the
+
+#### Climate Change Advisory Council Annual Report, and high impact action case studies.
+
+#### Building on progress in CAP23, the CAP24 Annex of Actions aims to further limit
+
+#### reportable actions to new initiatives or significant steps towards the Government’s
+
+#### climate ambitions. The continued implementation of lower impact or already established
+
+#### activities (e.g. present in the action tables in the final Plan but not in the Annex) do not
+
+#### fall for centralised reporting by the Department of the Taoiseach. High-impact activity
+
+#### is therefore detailed in this Progress Report, with information on every reportable action
+
+#### due contained at Appendix 1.
 
 1 Note for the purposes of this report, CAP24 refers to the final CAP24 that published on 21 May 2024 following the detailed SEA/AA process and public consultation on the draft CAP that published in December 2023. Amendments to the Plan and its Annex of Actions occurred as part of this consultation and so Q1 and Q2 reporting was combined to reflect the most recent version of CAP.
 
 2 This includes the Q2 published EPA emissions projections under WEM (with existing measures) and WAM (with additional measures) scenarios. WEM includes measures being implemented by the end of 2022. WAM assumes implementation of planned policies and models their predicted impact on GHGs (e.g. some ambitious CAP24 measures).
 
-### the 1.5°C limit set by the international Paris climate agreement.
+### 1.1 Climate change news and activity in Q1 and Q2 2024
 
-*Pages 4–4*
+*Pages 4–7*
+
+![Figure from page 4](assets/p004-f01.webp)
+
+*Figure from page 4*
+
+#### In 2023, the Earth experienced the joint warmest or second warmest year on record
+
+#### depending on the data set as reported by the Copernicus climate change service. The
+
+#### Copernicus Climate Change Service further reports that June 2024 was the thirteenth
+
+#### month in a row to be the hottest on record. This was mirrored by an Irish climate report
+
+#### from Met Eireann released earlier this year, which sets out how Ireland experienced a
+
+#### number of record-breaking extremes in 2023, with rainfall and warming at
+
+#### unprecedented levels at times. These reports underline the importance and urgency of
+
+#### climate action, globally and in Ireland. This surge in temperatures is rapidly approaching
+
+#### the 1.5°C limit set by the international Paris climate agreement.
 
 ![Figure from page 4](assets/p004-f02.webp)
 
 *Figure from page 4*
 
-### governments and businesses. The future climate is in our collective hands.
+#### The urgency to curb climate change by cutting greenhouse gas (GHG) emissions is
 
-*Pages 4–4*
+#### highlighted by the increasing severity of its impacts worldwide, including flooding,
+
+#### wildfires, and extreme heat events. Climate scientists warn that the effects of a warmer
+
+#### planet will continue to worsen without transformative change in planning decisions by
+
+#### governments and businesses. The future climate is in our collective hands.
 
 ![Figure from page 4](assets/p004-f03.webp)
 
 *Figure from page 4*
 
-### drive emissions down at the scale and pace required to meet national and EU targets.
+#### The latest EPA data shows that Ireland’s greenhouse gas emissions fell by 6.8% in 2023
 
-*Pages 4–7*
+#### (excluding LULUCF), compared with 2022. Reductions were seen in almost all sectors.
+
+#### While this downward trend is very welcome, we need to further intensify our efforts to
+
+#### drive emissions down at the scale and pace required to meet national and EU targets.
 
 Climate Change in Europe
 
@@ -482,9 +462,15 @@ shape better climate policy and public
 
 Figure 2: Minister Ryan at launch of Local Authority Climate Action Plans Source: X
 
-### with 21 of 47 reportable legacy actions3 completing in the first half of 2024.
+### 1.2 Overview of delivery in Q1 and Q2 2024
 
 *Pages 8–9*
+
+#### In total, 20 of the 33 new actions due to date under CAP24 have been completed. The
+
+#### progress of high impact actions delayed from CAP 2023 is also included in this Report,
+
+#### with 21 of 47 reportable legacy actions3 completing in the first half of 2024.
 
 Delivery by responsible Department for new actions due in the first half of 2024 is detailed in
 
@@ -540,11 +526,119 @@ Table 3 Delivery by Sector by end of Q2 2024 (including delayed high impact CAP2
 | Cross-Cutting |  |  | 16 |  |  | 28 |  |  |
 | TOTAL |  |  | 41 |  |  | 80 |  |  |
 
-## 2Agriculture
+### 1.2.1 High impact actions in Q1 and Q2 2024
 
-### c.40% of total Irish emissions.
+*Pages 9–11*
+
+Examples of high impact actions completed and delayed in the first half of 2024 are in Tables 4
+
+and 5. These include both new Q1 and Q2 actions from CAP24 and the legacy actions that rolled
+
+over from CAP23 for reporting this year. With significant potential for direct emissions
+
+reduction, example actions are further expanded upon in chapters throughout this progress
+
+report. Information on every reportable action is at Appendix 1.
+
+|  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+|  | Sector |  |  | Actions completed in Q1 and Q2 2024 |  |
+| Agriculture |  |  | Publish a National Biomethane Strategy (legacy) |  |  |
+| Transport |  |  | Publish a high-powered EV charging strategy (legacy) |  |  |
+|  |  |  | Develop Strategic Rail Review implementation plan (new Q2) |  |  |
+| Electricity |  |  | Reduce the minimum number of large fossil-fuel electricity generators (new Q2) |  |  |
+| Buildings |  |  | Deliver low-cost finance for home retrofit (legacy) |  |  |
+| Industry |  |  | Publish a decarbonisation roadmap for industrial heat (legacy) |  |  |
+|  |  |  | Specify low carbon methods and materials for procured construction projects (legacy) |  |  |
+| LULUCF |  |  | Establish the National Agricultural Soil Carbon Observatory (legacy) |  |  |
+| Governance |  |  | Update shadow price of carbon (legacy) |  |  |
+|  |  |  | Publish Long Term Climate Strategy (legacy) |  |  |
+| Circular Economy |  |  | Go-live of the Deposit & Return Scheme for bottles and cans (new Q1) |  |  |
+| Public Sector |  |  | Publish new Green Public Procurement Strategy (legacy) |  |  |
+| Local Government |  |  | Adopt 31 Local Authority Climate Action Plans (new Q1) |  |  |
+| Adaptation |  |  | Develop a new National Adaptation Framework (new Q2) |  |  |
+
+|  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+|  | Sector |  |  | Actions delayed in Q1 and Q2 2024 |  |
+| Agriculture |  |  | Update legislation for maximum nitrogen limits (new Q1) |  |  |
+|  |  |  | Develop a carbon farming framework in agriculture (new Q2) |  |  |
+| Transport |  |  | Publish National Demand Management Strategy (legacy) |  |  |
+| Electricity |  |  | Introduce new incentives for Large Energy Users (new Q2) |  |  |
+|  |  |  | Publish the Renewable Electricity Spatial Policy Framework (legacy) |  |  |
+|  |  |  | Publish National Energy Demand Strategy and Implementation Plan (legacy) |  |  |
+| Buildings |  |  | Publish roadmap to phase out fossil fuel heating systems in all buildings (legacy) |  |  |
+|  |  |  | Draft Heat Bill to establish regulatory model for district heating (new Q2) |  |  |
+| LULUCF |  |  | Finalise forestry communication plan (new Q1) |  |  |
+| Industry |  |  | Develop implementation plan for the National Hydrogen Strategy (new Q2) |  |  |
+| Just Transition |  |  | Establish a Just Transition Commission (legacy) |  |  |
+| Public Sector |  |  | Update climate action roadmaps by public sector bodies (legacy) |  |  |
+
+![Figure from page 10](assets/p010-f01.webp)
+
+*Figure from page 10*
+
+![Figure 4: National Agricultural Soil Carbon Observatory launched (Source: Teagasc)](assets/p011-f01.webp)
+
+*Figure 4: National Agricultural Soil Carbon Observatory launched (Source: Teagasc)*
+
+### 1.2.2 Overcoming delays to climate action delivery
+
+*Pages 11–11*
+
+In total, 39 actions are reported as delayed in the first half of 2024, including 13 from CAP24
+
+and 26 legacy high impact actions from CAP23. The most common reasons reported by
+
+Departments for delivery delays include:
+
+Need for further stakeholder engagement, including public consultation or internal consensus building
+
+within working groups, departments and agencies;
+
+Layers of administrative clearance, whereby actions are significantly advanced and are awaiting final
+
+approval or publication (e.g. final drafts have been prepared or schemes are awaiting final launch) and
+
+expect completion in Q3;
+
+Issues of sequencing and alignment, whereby the completion of actions is reliant on the finalisation of
+
+another activity or policy both at national and/or EU levels; and
+
+Capacity and capability constraints, including internal resourcing issues and procurement delays arising
+
+from a reliance on external expertise for climate policy or scheme development; and/or
+
+Unexpected legal or technical complexity, often leading to the need for extra time for additional research,
+
+outreach, legal drafting, and/or the development of new working approaches.
+
+#### Delays in climate action delivery must be urgently overcome to work towards emissions
+
+#### reduction targets at international, EU and national levels. Failure to complete climate
+
+#### actions now will result in steeper trajectories and decarbonisation pathways to bring
+
+#### sectors, society and the Irish economy back on track.
+
+## 2 Agriculture
+
+### 2 Agriculture
 
 *Pages 12–14*
+
+#### Agriculture is the largest GHG emitting sector in Ireland, responsible for 34% of national
+
+#### emissions in 2023. In 2023, agricultural emissions decreased to 20.78 MtCO2eq, mostly
+
+#### driven by reductions in fertiliser use and liming, as well as a reduction in overall cattle
+
+#### numbers. When combined with additional agriculture-related emissions from grasslands
+
+#### used for farming currently accounted for in LULUCF, agricultural activity accounts for
+
+#### c.40% of total Irish emissions.
 
 ![Figure from page 12](assets/p012-f01.webp)
 
@@ -684,11 +778,19 @@ intensity on drained organic soils.
 
 *Figure from page 14*
 
-## 3Transport
+## 3 Transport
 
-### 2030 depending on the speed and scale of measures implemented (Figure 8).
+### 3 Transport
 
 *Pages 15–17*
+
+#### At20%, transport was the second biggest greenhouse gas emitting sector in Ireland in
+
+#### 2023, experiencing the largest increase of all sectors since 1990. In its projections, the
+
+#### EPA estimates that emissions from transport will reduce by 5 - 26% between 2022 and
+
+#### 2030 depending on the speed and scale of measures implemented (Figure 8).
 
 ![Figure from page 15](assets/p015-t01.webp)
 
@@ -833,11 +935,21 @@ emissions. It will make the country’s transport system work better for everyon
 
 *Figure from page 17*
 
-## 4Electricity
+## 4 Electricity
 
-### commits to achieving 80% of electricity demand from renewable sources by 2030.
+### 4 Electricity
 
 *Pages 18–20*
+
+#### Energy industries (primarily power generation) accounted for 13% of national emissions
+
+#### in 2023. Increases in renewable generation (e.g. wind and solar) and reductions in coal,
+
+#### oil, and peat use drive emissions reduction in the sector. In 2023, renewables accounted
+
+#### for 42% of electricity generation in Ireland, an increase from 38.6% in 2022. CAP24 re-
+
+#### commits to achieving 80% of electricity demand from renewable sources by 2030.
 
 |  |  |  |
 | --- | --- | --- |
@@ -983,11 +1095,19 @@ Large Energy Users Connection Policy given their significant impact in this area
 
 *Figure from page 20*
 
-## 5Buildings
+## 5 Buildings
 
-### buildings. Emissions from the residential sector have decreased by c.7% since 2022.
+### 5 Buildings
 
 *Pages 21–23*
+
+#### Emissions from all buildings made up 11% of Ireland’s emissions in 2023. Most of this
+
+#### (c.9%) was from residential buildings. Energy prices, yearly temperatures, energy
+
+#### efficiency measures, fuel switching, and remote working all influence emissions from
+
+#### buildings. Emissions from the residential sector have decreased by c.7% since 2022.
 
 |  |  |  |
 | --- | --- | --- |
@@ -1137,11 +1257,19 @@ fuel heating systems will provide a pathway and market certainty to achieve this
 
 *Figure from page 23*
 
-## 6Industry
+## 6 Industry
 
-### can be impacted by economic cycles.
+### 6 Industry
 
 *Pages 24–26*
+
+#### Industrial emissions accounted for 10% of Ireland's total emissions in 2023.
+
+#### Manufacturing combustion and industrial processes are the key emissions sources.
+
+#### Industry emissions are largely affected by cement production in Ireland, which in turn
+
+#### can be impacted by economic cycles.
 
 |  |  |  |
 | --- | --- | --- |
@@ -1253,9 +1381,9 @@ necessary work programme and appropriate governance arrangements for its deliver
 
 *Figure from page 26*
 
-## 7Land Use, Land Use Change and Forestry
+## 7 Land Use, Land Use Change and Forestry
 
-### 7Land Use, Land Use Change and Forestry
+### 7 Land Use, Land Use Change and Forestry
 
 *Pages 27–29*
 
@@ -1427,9 +1555,9 @@ Communication activity is ongoing and the Communication Plan for the programme p
 
 currently being updated.
 
-## 8Cross-cutting actions
+## 8 Cross-cutting actions
 
-### 8Cross-cutting actions
+### 8 Cross-cutting actions
 
 *Pages 30–33*
 
@@ -1649,9 +1777,9 @@ learning to access and create future benefits.
 
 *Figure from page 33*
 
-## 9Conclusion
+## 9 Conclusion
 
-### 9Conclusion
+### 9 Conclusion
 
 *Pages 34–36*
 

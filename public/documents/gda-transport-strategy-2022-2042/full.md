@@ -128,13 +128,7 @@ It has been an essential component, along with investment programmes in other se
 
 ### Servicing
 
-*Pages 196–202*
-
-![Figure from page 196](assets/p196-f01.webp)
-
-*Figure from page 196*
-
-### 15. Freight, Delivery and Servicing
+*Pages 197–202*
 
 15. Freight, Delivery and Servicing
 
@@ -393,174 +387,6 @@ Safe Routes to School – this programme, which commenced in 2020, will deliver 
 *Figure from page 16*
 
 ### 3. Strategy Challenges
-
-## Assessment
-
-### Assessment
-
-*Pages 227–235*
-
-17.5.4 Access to Jobs for those Living in Disadvantaged Areas
-
-The Transport Strategy is forecast to increase the numbers of jobs accessible to people living in Disadvantaged Areas in the GDA by 30 minutes public transport journey time by 57%.
-
-Car ownership rates are significantly lower in disadvantaged areas and as such, this is an important metric which demonstrates the impact of the strategy in facilitating access to the labour market for those with limited travel options.
-
-17.5.5 Accessibility to High Frequency Public Transport
-
-The number of people forecast to be living within a 800m catchment of a rail, light rail or high frequency bus service will grow by 182% between 2016 and 2042 with the strategy in place.
-
-![Figure from page 227](assets/p227-f01.webp)
-
-*Figure from page 227*
-
-![Figure from page 228](assets/p228-f01.webp)
-
-*Figure from page 228*
-
-### 18. Enviromental Assessment
-
-18. Environmental Assessment
-
-18.1 Introduction
-
-18.3 Lower-level Decision Making
-
-Strategic Environmental Assessment (SEA) and Appropriate Assessment (AA) have both been undertaken alongside the preparation of the Strategy. All recommendations arising from the SEA and AA processes have been integrated into the Strategy. Many of these recommendations have been set out in the SEA Environmental Report; however, some of the more strategic recommendations are detailed below. Compliance with these measures will facilitate environmental protection and management.
-
-Lower levels of decision making and environmental assessment should consider the environmental sensitivities identified in Section 4 of the SEA Environmental Report, including the following:
-
-Special Areas of Conservation and Special Protection Areas;
-
-Features of the landscape that provide linkages/ connectivity to designated sites (e.g. watercourses and areas of semi-natural habitat, such as linear woodlands);
-
-Salmonid Waters;
-
-18.2 Regulatory Framework for Environmental Protection and Management
-
-Shellfish Waters;
-
-Freshwater Pearl Mussel catchments;
-
-Nature Reserves;
-
-Natural Heritage Areas and proposed Natural Heritage Areas;
-
-In implementing this Strategy, the Authority will cumulatively contribute towards – in combination with other users and bodies – the achievement of the objectives of the regulatory framework for environmental protection and management and will ensure that plans, programmes and projects comply with EU Directives – including the Habitats Directive (92/43/EEC), the Birds Directive (2009/147/EC), the Environmental Impact Assessment Directive (2011/92/EU, as amended by 2014/52/ EC) and the Strategic Environmental Assessment Directive (2001/42/EC) – and relevant transposing Regulations.
-
-Areas likely to contain a habitat listed in Annex 1 of the Habitats Directive;
-
-Entries to the Record of Monuments and Places and Zones of Archaeological Potential;
-
-Entries to the Record of Protected Structures;
-
-Un-designated sites of importance to wintering or breeding bird species of conservation concern;
-
-The National Biodiversity Action Plan;
-
-Architectural Conservation Areas; and
-
-![Figure from page 230](assets/p230-f01.webp)
-
-*Figure from page 230*
-
-Relevant landscape designations.
-
-Where developments, arising from this strategy, do not require Environmental Impact Assessment, impacts to biodiversity will be assessed by the preparation of a non-statutory Ecological Impact Assessment (EcIA).
-
-18.4 Corridor and Route Selection Process
-
-The following Corridor and Route Selection Process will be undertaken for relevant infrastructure:
-
-Stage 1 – Route Corridor Identification, Evaluation and Selection
-
-Environmental constraints (including those identified in Section 4 of the SEA Environmental Report) and opportunities (such as existing linear infrastructure) will assist in the identification of possible route corridor options;
-
-Stage 2 – Route Identification, Evaluation and Selection
-
-Potentially feasible routes within the preferred corridor will be identified and assessed. The selection of preferred routes will avoid constraints and meet opportunities to the optimum extent, as advised by relevant specialists, taking into account project level information and potential mitigation measures that are readily achievable;
-
-Potentially feasible corridors within which infrastructure could be accommodated will be identified and these corridors assessed. The selection of the preferred route corridor will avoid constraints and meet opportunities to the optimum extent, as advised by relevant specialists; and
-
-In addition to the constraints identified above, site-specific field data may be required to identify the most appropriate routes; and
-
-In addition to the constraints identified above, site-specific field data may be required to identify the most appropriate corridors.
-
-In addition to environmental considerations, the identification of route corridors and the refinement of the route lines is likely to be informed by other considerations.
-
-Appropriate Assessment, and subsequent Appropriate Assessment where necessary, that:
-
-The Plan or project will not give rise to adverse direct, indirect or secondary effects on the integrity of any European site (either individually or in combination with other plans or projects); or
-
-European sites may be vulnerable to greenway/cycleway developments due to their location. As outlined in Appendix I to the AA Natura Impact Statement, amenity and leisure activities are already posing an existing level of threat and pressure to various European sites within the Greater Dublin Area. Some of these sites are in close proximity to a number of already proposed greenways as identified in the GDA Cycle Network Plan that accompanies this Strategy.
-
-The Plan or project will have significant adverse effects on the integrity of any European site (that does not host a priority natural habitat type/and or a priority species) but there are no alternative solutions and the plan or project must nevertheless be carried out for imperative reasons of overriding public interest, including those of a social or economic nature. In this case, it will be a requirement to follow procedures set out in legislation and agree and undertake all compensatory measures necessary to ensure the protection of the overall coherence of Natura 2000; or
-
-Screening for AA, and subsequent stages of AA as relevant, will be required for all greenway/cycleway developments when implementing the Strategy.
-
-The feasibility and determination of each route is subject to presenting no significant adverse effect(s) to the integrity of European sites, alone or in combination with other plans or projects, where projects do not meet the strict criteria for imperative reasons of overriding public interest and/or where alternative routes are identified.
-
-The Plan or project will have a significant adverse effect on the integrity of any European site (that hosts a natural habitat type and/or a priority species) but there are no alternative solutions and the plan or project must nevertheless be carried out for imperative reasons for overriding public interest, restricted to reasons of human health or public safety, to beneficial consequences of primary importance for the environment or, further to an opinion from the Commission, to other imperative reasons of overriding public interest. In this case, it will be a requirement to follow procedures set out in legislation and agree and undertake all compensatory measures necessary to ensure the protection of the overall coherence of Natura 2000.
-
-18.5 Appropriate Assessment
-
-All projects and plans arising from this Strategy will be screened for the need to undertake Appropriate Assessment under Article 6 of the Habitats Directive. A plan or project will only be authorised after the competent authority has ascertained, based on scientific evidence, Screening for
-
-18.5.1 Protection of Natura 2000 Sites
-
-In implementing the Strategy, the Authority will support relevant provisions contained in the National Energy and Climate Plan, the Climate Adaptation Strategies of planning authorities within the Greater Dublin Area, the Climate Action Plan, National Climate Change Adaptation Framework (2018), the National Mitigation Plan (2017), the Department of Transport’s Sectoral Adaptation Plan for Transport Infrastructure, which builds on the 2017 “Adaptation Planning – Developing Resilience to Climate Change in the Irish Transport Sector”, and the sectoral adaptation plans of local authorities.
-
-No projects giving rise to adverse effects on the integrity of European sites (cumulatively, directly or indirectly) arising from their size or scale, land take, proximity, resource requirements, emissions (disposal to land, water or air), transportation requirements, duration of construction, operation, decommissioning or from any other effects shall be permitted on the basis of this Strategy (either individually or in combination with other plans or projects)1, 2. 18.6 Climate Change, Emissions and Energy
-
-Cognisant of the imperative to reduce emissions, the Authority will seek to ensure primacy for transport options that provide for unit reductions in carbon emissions. This can most effectively be done by promoting public transport, walking and cycling, and by actively seeking to reduce car use in circumstances where alternative options are available.
-
-As identified in the SEA Environmental Report that accompanies this Strategy, the Strategy facilitates sustainable mobility and associated positive effects, including those relating to:
-
-Reductions in greenhouse gas emissions and associated achievement of legally binding targets;
-
-During the preparation and/or review of policies and plans relating to climate charge, carbon emissions and energy usage, the Authority will seek to integrate Strategy objectives, as appropriate.
-
-Reductions in emissions to air and associated achievement of air quality objectives, thereby contributing towards improvement or air quality and protection of human health;
-
-Reductions in consumption of non-renewable energy sources and achievement of legally binding renewable energy targets; and
-
-18.7 Other SEA Recommendations
-
-In implementing the Strategy, the Authority will ensure that the measures included in Table 9.2 of the SEA Environmental Report are complied with – measures relating to the protection of European sites are referred to on Table 5.2 in the AA Natura Impact Statement.
-
-Energy security.
-
-1 Except as provided for in Article 6(4) of the Habitats Directive, viz. There must be: a) no alternative solution available; b) imperative reasons of overriding public interest for the project to proceed; and c) Adequate compensatory measures in place.
-
-2Various other measures within Section 18, including the requirements at Section 18.4 “Corridor and Route Selection Process”, will contribute towards the protection of European sites. Mitigation measures relevant to the protection of European sites are identified in the AA Natura Impact Statement.
-
-![Figure from page 234](assets/p234-f01.webp)
-
-*Figure from page 234*
-
-### 19. Next Steps
-
-19. Next Steps
-
-It is the intention of the NTA to deliver the Transport Strategy in accordance with the high-level phasing shown in Figure 19.1. The planning and design stage of major projects takes several years and it is worth noting that significant progress has been made in the design and planning for MetroLink, the DART+ Programme, the BusConnects Core Bus Corridors and Luas Finglas. The implementation of the BusConnects New Dublin Area Bus Network has commenced and significant resources have now been allocated to the delivery of the GDA Cycle Network Plan across the local authorities.
-
-19.1 Phasing
-
-The pace of implementation of the Transport Strategy will be dictated by the level of available funding. While the planning process for schemes can be lengthy and complex, it is the budgetary environment which primarily determines the rate at which strategic infrastructure projects can be delivered. As such, the phasing of this strategy has been fully aligned with the National Development Plan 2021-30.
-
-Figure 19.1 divides the period of the Transport Strategy into three time bands – the first up to 2030, aligning with the current National Development Plan; the second from 2031 to 2036; and the third up the end of the strategy period in 2042. It sets out the completion or implementation dates for various major projects, divided into these three time bands.
-
-![Figure from page 235](assets/p235-f01.webp)
-
-*Figure from page 235*
-
-The phasing of the Transport Strategy also takes into account the Dublin Metropolitan Area Strategic Plan requirements as set out in the RSES.
-
-Additionally, all schemes will be required to demonstrate their alignment with the NIFTI Investment Priorities to be considered for funding, and the options development process for schemes must be considered in line with the NIFTI Modal and Intervention Hierarchies. Projects must also comply with the relevant approval processes set out in the Transport Appraisal Framework and the Public Spending Code.
-
-The overall capital cost of the proposals set out in the Transport Strategy is in the order of €25 billion in current prices. Spread over the twenty year period of the strategy,
-
-this investment will deliver the public transport infrastructure, cycling network, roads, park & ride provision and the various other elements required to provide an effective, efficient and sustainable transport system for the region.
 
 ## 3 Strategy Challenges
 
@@ -1112,7 +938,7 @@ National Cycle Manual (NTA, 2011)
 
 ### 5 Strategy Aim and Objectives
 
-*Pages 39–43*
+*Pages 39–42*
 
 5. Strategy Aim and Objectives
 
@@ -1194,6 +1020,12 @@ To deliver a high quality, equitable and accessible transport system, which cate
 
 ### 6. Public Consultation
 
+## 6 Public Consultation
+
+### 6 Public Consultation
+
+*Pages 43–48*
+
 6. Public Consultation
 
 6.1 Pre-Draft Consultation
@@ -1215,12 +1047,6 @@ Paper were prepared, and direct contact was made with various Disability Groups.
 Due to the Covid-19 related restrictions it was not possible to undertake in-person events, and instead the consultation was run online with the public given an opportunity to submit commentary via a pre-prepared questionnaire and, if required, via a written submission portal. To best achieve accessibility for all members of the public, accessible versions of the Issues
 
 To ensure maximise exposure of the Strategy Consultation, an extensive publicity campaign was undertaken, with advertisements placed in national and local newspapers, on radio, on social media and also utilising outdoor advertising on bus shelters – see Figure 6.1.
-
-## 6 Public Consultation
-
-### 6 Public Consultation
-
-*Pages 44–49*
 
 ![Figure from page 44](assets/p044-f01.webp)
 
@@ -1353,6 +1179,12 @@ As such, this Transport Strategy comprises a comprehensive approach to transport
 
 ### 7. Strategy Development Process
 
+## 7 Strategy Development Process
+
+### 7 Strategy Development Process
+
+*Pages 49–54*
+
 7. Strategy Development Process
 
 7.1 Introduction
@@ -1384,12 +1216,6 @@ Statement.
 ![Figure from page 49](assets/p049-f01.webp)
 
 *Figure from page 49*
-
-## 7 Strategy Development Process
-
-### 7 Strategy Development Process
-
-*Pages 50–54*
 
 7.2 Analysis Work
 
@@ -1449,7 +1275,7 @@ The alignments and details of proposed transport projects set out in the Transpo
 
 ### 8 Planning for Sustainable Transport
 
-*Pages 55–73*
+*Pages 55–72*
 
 8. Planning for Sustainable Transport
 
@@ -1735,6 +1561,12 @@ Provision of the maximum number of bicycle spaces required and the minimum numbe
 
 ### 9. Integration and Inclusion
 
+## 9 Integration and Inclusion
+
+### 9 Integration and Inclusion
+
+*Pages 73–94*
+
 9. Integration and Inclusion
 
 9.1 Introduction
@@ -1752,12 +1584,6 @@ Mobility Hubs Of The Future: Towards A New Mobility Behaviour, ARUP, 2020
 Finally, Transport Integration relates to the fact that the transport system operates in the context of wider social and cultural norms prevalent in the city region. The manner in which service providers and infrastructure respond to the wide variety of needs across all sectors of society is a central consideration.
 
 In advance of setting out the various strands of investment in the individual modes of transport, this chapter addresses the way in which the NTA will continue to develop these strands into a seamless and inclusive transport network across the GDA over the coming years.
-
-## 9 Integration and Inclusion
-
-### 9 Integration and Inclusion
-
-*Pages 74–94*
 
 9.2 Dublin-Belfast Economic Corridor
 
@@ -3720,7 +3546,7 @@ The NTA and Irish Rail plan to complete the National Train Control Centre in 202
 
 ### 13 Roads
 
-*Pages 167–181*
+*Pages 167–180*
 
 13. Roads
 
@@ -3986,6 +3812,12 @@ Urban design and placemaking schemes which extend the
 
 ### 14. Traffic Management and Travel Options
 
+## 14 Traffic Management and Travel Options
+
+### 14 Traffic Management and Travel Options
+
+*Pages 181–196*
+
 14. Traffic Management and Travel Options
 
 14.1 Introduction
@@ -4001,12 +3833,6 @@ Design Manual for Urban Roads and Streets, Government of Ireland, 2013
 The main objective of Traffic Management is to ensure that the regional transport system continues to operate in an efficient manner, i.e., that the movement of people by public transport, walking and cycling, and the movement of goods, is not adversely affected by private car traffic, and that the impacts of traffic congestion can be minimised. Measures which confer an advantage on sustainable modes can help meet this objective. Many of these are set out in the Walking, Cycling and Bus sections of the strategy, but those aimed specifically at managing private vehicular traffic are included here.
 
 This chapter sets out a broad range of measures that aim to manage the transport supply network in a way which places sustainable modes at the top of the road user hierarchy (as set out in Figure 8.4), and which seek to rebalance the cost of travel (in its broadest sense) towards these modes.
-
-## 14 Traffic Management and Travel Options
-
-### 14 Traffic Management and Travel Options
-
-*Pages 182–195*
 
 14.2 Management of Dublin City Centre
 
@@ -4350,6 +4176,10 @@ The NTA will work with the Department of Transport and local authorities to take
 
 Connected and autonomous vehicles are an emerging and potentially significant change to road transport. The term
 
+![Figure from page 196](assets/p196-f01.webp)
+
+*Figure from page 196*
+
 ## 16 Climate Action Management
 
 ### 16 Climate Action Management
@@ -4600,7 +4430,7 @@ Through the implementation of the full measures set out in this strategy, in com
 
 ### 17 Strategy Outcomes
 
-*Pages 213–226*
+*Pages 213–228*
 
 17. Strategy Outcomes
 
@@ -5034,11 +4864,179 @@ As such, the Transport Strategy, within its statutory remit, and in combination 
 
 This, coupled with the improvements to the walking and cycling environment, demonstrates the manner in which the Transport Strategy will make it easier for people to access the workplace by sustainable modes without the need to own a car. Disadvantaged Areas.
 
+17.5.4 Access to Jobs for those Living in Disadvantaged Areas
+
+The Transport Strategy is forecast to increase the numbers of jobs accessible to people living in Disadvantaged Areas in the GDA by 30 minutes public transport journey time by 57%.
+
+Car ownership rates are significantly lower in disadvantaged areas and as such, this is an important metric which demonstrates the impact of the strategy in facilitating access to the labour market for those with limited travel options.
+
+17.5.5 Accessibility to High Frequency Public Transport
+
+The number of people forecast to be living within a 800m catchment of a rail, light rail or high frequency bus service will grow by 182% between 2016 and 2042 with the strategy in place.
+
+![Figure from page 227](assets/p227-f01.webp)
+
+*Figure from page 227*
+
+![Figure from page 228](assets/p228-f01.webp)
+
+*Figure from page 228*
+
+### 18. Enviromental Assessment
+
+## 18 Environmental Assessment
+
+### 18 Environmental Assessment
+
+*Pages 229–234*
+
+18. Environmental Assessment
+
+18.1 Introduction
+
+18.3 Lower-level Decision Making
+
+Strategic Environmental Assessment (SEA) and Appropriate Assessment (AA) have both been undertaken alongside the preparation of the Strategy. All recommendations arising from the SEA and AA processes have been integrated into the Strategy. Many of these recommendations have been set out in the SEA Environmental Report; however, some of the more strategic recommendations are detailed below. Compliance with these measures will facilitate environmental protection and management.
+
+Lower levels of decision making and environmental assessment should consider the environmental sensitivities identified in Section 4 of the SEA Environmental Report, including the following:
+
+Special Areas of Conservation and Special Protection Areas;
+
+Features of the landscape that provide linkages/ connectivity to designated sites (e.g. watercourses and areas of semi-natural habitat, such as linear woodlands);
+
+Salmonid Waters;
+
+18.2 Regulatory Framework for Environmental Protection and Management
+
+Shellfish Waters;
+
+Freshwater Pearl Mussel catchments;
+
+Nature Reserves;
+
+Natural Heritage Areas and proposed Natural Heritage Areas;
+
+In implementing this Strategy, the Authority will cumulatively contribute towards – in combination with other users and bodies – the achievement of the objectives of the regulatory framework for environmental protection and management and will ensure that plans, programmes and projects comply with EU Directives – including the Habitats Directive (92/43/EEC), the Birds Directive (2009/147/EC), the Environmental Impact Assessment Directive (2011/92/EU, as amended by 2014/52/ EC) and the Strategic Environmental Assessment Directive (2001/42/EC) – and relevant transposing Regulations.
+
+Areas likely to contain a habitat listed in Annex 1 of the Habitats Directive;
+
+Entries to the Record of Monuments and Places and Zones of Archaeological Potential;
+
+Entries to the Record of Protected Structures;
+
+Un-designated sites of importance to wintering or breeding bird species of conservation concern;
+
+The National Biodiversity Action Plan;
+
+Architectural Conservation Areas; and
+
+![Figure from page 230](assets/p230-f01.webp)
+
+*Figure from page 230*
+
+Relevant landscape designations.
+
+Where developments, arising from this strategy, do not require Environmental Impact Assessment, impacts to biodiversity will be assessed by the preparation of a non-statutory Ecological Impact Assessment (EcIA).
+
+18.4 Corridor and Route Selection Process
+
+The following Corridor and Route Selection Process will be undertaken for relevant infrastructure:
+
+Stage 1 – Route Corridor Identification, Evaluation and Selection
+
+Environmental constraints (including those identified in Section 4 of the SEA Environmental Report) and opportunities (such as existing linear infrastructure) will assist in the identification of possible route corridor options;
+
+Stage 2 – Route Identification, Evaluation and Selection
+
+Potentially feasible routes within the preferred corridor will be identified and assessed. The selection of preferred routes will avoid constraints and meet opportunities to the optimum extent, as advised by relevant specialists, taking into account project level information and potential mitigation measures that are readily achievable;
+
+Potentially feasible corridors within which infrastructure could be accommodated will be identified and these corridors assessed. The selection of the preferred route corridor will avoid constraints and meet opportunities to the optimum extent, as advised by relevant specialists; and
+
+In addition to the constraints identified above, site-specific field data may be required to identify the most appropriate routes; and
+
+In addition to the constraints identified above, site-specific field data may be required to identify the most appropriate corridors.
+
+In addition to environmental considerations, the identification of route corridors and the refinement of the route lines is likely to be informed by other considerations.
+
+Appropriate Assessment, and subsequent Appropriate Assessment where necessary, that:
+
+The Plan or project will not give rise to adverse direct, indirect or secondary effects on the integrity of any European site (either individually or in combination with other plans or projects); or
+
+European sites may be vulnerable to greenway/cycleway developments due to their location. As outlined in Appendix I to the AA Natura Impact Statement, amenity and leisure activities are already posing an existing level of threat and pressure to various European sites within the Greater Dublin Area. Some of these sites are in close proximity to a number of already proposed greenways as identified in the GDA Cycle Network Plan that accompanies this Strategy.
+
+The Plan or project will have significant adverse effects on the integrity of any European site (that does not host a priority natural habitat type/and or a priority species) but there are no alternative solutions and the plan or project must nevertheless be carried out for imperative reasons of overriding public interest, including those of a social or economic nature. In this case, it will be a requirement to follow procedures set out in legislation and agree and undertake all compensatory measures necessary to ensure the protection of the overall coherence of Natura 2000; or
+
+Screening for AA, and subsequent stages of AA as relevant, will be required for all greenway/cycleway developments when implementing the Strategy.
+
+The feasibility and determination of each route is subject to presenting no significant adverse effect(s) to the integrity of European sites, alone or in combination with other plans or projects, where projects do not meet the strict criteria for imperative reasons of overriding public interest and/or where alternative routes are identified.
+
+The Plan or project will have a significant adverse effect on the integrity of any European site (that hosts a natural habitat type and/or a priority species) but there are no alternative solutions and the plan or project must nevertheless be carried out for imperative reasons for overriding public interest, restricted to reasons of human health or public safety, to beneficial consequences of primary importance for the environment or, further to an opinion from the Commission, to other imperative reasons of overriding public interest. In this case, it will be a requirement to follow procedures set out in legislation and agree and undertake all compensatory measures necessary to ensure the protection of the overall coherence of Natura 2000.
+
+18.5 Appropriate Assessment
+
+All projects and plans arising from this Strategy will be screened for the need to undertake Appropriate Assessment under Article 6 of the Habitats Directive. A plan or project will only be authorised after the competent authority has ascertained, based on scientific evidence, Screening for
+
+18.5.1 Protection of Natura 2000 Sites
+
+In implementing the Strategy, the Authority will support relevant provisions contained in the National Energy and Climate Plan, the Climate Adaptation Strategies of planning authorities within the Greater Dublin Area, the Climate Action Plan, National Climate Change Adaptation Framework (2018), the National Mitigation Plan (2017), the Department of Transport’s Sectoral Adaptation Plan for Transport Infrastructure, which builds on the 2017 “Adaptation Planning – Developing Resilience to Climate Change in the Irish Transport Sector”, and the sectoral adaptation plans of local authorities.
+
+No projects giving rise to adverse effects on the integrity of European sites (cumulatively, directly or indirectly) arising from their size or scale, land take, proximity, resource requirements, emissions (disposal to land, water or air), transportation requirements, duration of construction, operation, decommissioning or from any other effects shall be permitted on the basis of this Strategy (either individually or in combination with other plans or projects)1, 2. 18.6 Climate Change, Emissions and Energy
+
+Cognisant of the imperative to reduce emissions, the Authority will seek to ensure primacy for transport options that provide for unit reductions in carbon emissions. This can most effectively be done by promoting public transport, walking and cycling, and by actively seeking to reduce car use in circumstances where alternative options are available.
+
+As identified in the SEA Environmental Report that accompanies this Strategy, the Strategy facilitates sustainable mobility and associated positive effects, including those relating to:
+
+Reductions in greenhouse gas emissions and associated achievement of legally binding targets;
+
+During the preparation and/or review of policies and plans relating to climate charge, carbon emissions and energy usage, the Authority will seek to integrate Strategy objectives, as appropriate.
+
+Reductions in emissions to air and associated achievement of air quality objectives, thereby contributing towards improvement or air quality and protection of human health;
+
+Reductions in consumption of non-renewable energy sources and achievement of legally binding renewable energy targets; and
+
+18.7 Other SEA Recommendations
+
+In implementing the Strategy, the Authority will ensure that the measures included in Table 9.2 of the SEA Environmental Report are complied with – measures relating to the protection of European sites are referred to on Table 5.2 in the AA Natura Impact Statement.
+
+Energy security.
+
+1 Except as provided for in Article 6(4) of the Habitats Directive, viz. There must be: a) no alternative solution available; b) imperative reasons of overriding public interest for the project to proceed; and c) Adequate compensatory measures in place.
+
+2Various other measures within Section 18, including the requirements at Section 18.4 “Corridor and Route Selection Process”, will contribute towards the protection of European sites. Mitigation measures relevant to the protection of European sites are identified in the AA Natura Impact Statement.
+
+![Figure from page 234](assets/p234-f01.webp)
+
+*Figure from page 234*
+
+### 19. Next Steps
+
 ## 19 Next Steps
 
 ### 19 Next Steps
 
-*Pages 236–244*
+*Pages 235–244*
+
+19. Next Steps
+
+It is the intention of the NTA to deliver the Transport Strategy in accordance with the high-level phasing shown in Figure 19.1. The planning and design stage of major projects takes several years and it is worth noting that significant progress has been made in the design and planning for MetroLink, the DART+ Programme, the BusConnects Core Bus Corridors and Luas Finglas. The implementation of the BusConnects New Dublin Area Bus Network has commenced and significant resources have now been allocated to the delivery of the GDA Cycle Network Plan across the local authorities.
+
+19.1 Phasing
+
+The pace of implementation of the Transport Strategy will be dictated by the level of available funding. While the planning process for schemes can be lengthy and complex, it is the budgetary environment which primarily determines the rate at which strategic infrastructure projects can be delivered. As such, the phasing of this strategy has been fully aligned with the National Development Plan 2021-30.
+
+Figure 19.1 divides the period of the Transport Strategy into three time bands – the first up to 2030, aligning with the current National Development Plan; the second from 2031 to 2036; and the third up the end of the strategy period in 2042. It sets out the completion or implementation dates for various major projects, divided into these three time bands.
+
+![Figure from page 235](assets/p235-f01.webp)
+
+*Figure from page 235*
+
+The phasing of the Transport Strategy also takes into account the Dublin Metropolitan Area Strategic Plan requirements as set out in the RSES.
+
+Additionally, all schemes will be required to demonstrate their alignment with the NIFTI Investment Priorities to be considered for funding, and the options development process for schemes must be considered in line with the NIFTI Modal and Intervention Hierarchies. Projects must also comply with the relevant approval processes set out in the Transport Appraisal Framework and the Public Spending Code.
+
+The overall capital cost of the proposals set out in the Transport Strategy is in the order of €25 billion in current prices. Spread over the twenty year period of the strategy,
+
+this investment will deliver the public transport infrastructure, cycling network, roads, park & ride provision and the various other elements required to provide an effective, efficient and sustainable transport system for the region.
 
 Figure 19.1: Strategy Phasing
 

@@ -371,11 +371,9 @@ The adaptation landscape in Ireland is evolving through several key initiatives:
 
 *Figure from page 17*
 
-## Chapter 1: The Critical Nature 
-of the Challenge
+## Chapter 1: The Critical Nature of the Challenge
 
-### Chapter 1: The Critical Nature 
-of the Challenge
+### Chapter 1: The Critical Nature of the Challenge
 
 *Pages 18–23*
 
@@ -1298,11 +1296,9 @@ Engagement programmes suited to a broad range of networks and communities of int
 
 *Figure from page 69*
 
-## Chapter 9: Public Sector Leading 
-by Example
+## Chapter 9: Public Sector Leading by Example
 
-### Chapter 9: Public Sector Leading 
-by Example
+### Chapter 9: Public Sector Leading by Example
 
 *Pages 70–76*
 

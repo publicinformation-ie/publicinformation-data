@@ -1,0 +1,27 @@
+# Climate Action Plan 2025 Q1 Progress Report
+
+> Department of the Taoiseach — 9 chapters, 10 sections, 25 source pages.
+> Source: https://assets.gov.ie/static/documents/CAP25_Q1_Progress_Report_-_Final.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–2
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–2
+- [1 Executive Summary](sections/1-executive-summary/) — pages 3–6
+  - [1 Executive Summary](sections/1-executive-summary/overview.md) — pages 3–4
+  - [1.1 Climate change news and activity in Q1 2025](sections/1-executive-summary/1-1-climate-change-news-and-activity-in-q1-2025.md) — pages 4–6
+- [2 Agriculture](sections/2-agriculture/) — pages 7–9
+  - [2 Agriculture](sections/2-agriculture/overview.md) — pages 7–9
+- [3 Transport](sections/3-transport/) — pages 10–12
+  - [3 Transport](sections/3-transport/overview.md) — pages 10–12
+- [4 Electricity](sections/4-electricity/) — pages 13–15
+  - [4 Electricity](sections/4-electricity/overview.md) — pages 13–15
+- [5 Buildings](sections/5-buildings/) — pages 16–18
+  - [5 Buildings](sections/5-buildings/overview.md) — pages 16–18
+- [6 Industry](sections/6-industry/) — pages 19–20
+  - [6 Industry](sections/6-industry/overview.md) — pages 19–20
+- [7 Land Use, Land Use Change and Forestry](sections/7-land-use-land-use-change-and-forestry/) — pages 21–22
+  - [7 Land Use, Land Use Change and Forestry](sections/7-land-use-land-use-change-and-forestry/overview.md) — pages 21–22
+- [8 Cross-cutting actions](sections/8-cross-cutting-actions/) — pages 23–25
+  - [8 Cross-cutting actions](sections/8-cross-cutting-actions/overview.md) — pages 23–25

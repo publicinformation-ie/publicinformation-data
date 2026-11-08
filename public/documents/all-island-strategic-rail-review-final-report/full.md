@@ -6,15 +6,9 @@ Source: https://assets.gov.ie/static/documents/final-report-of-the-all-island-st
 
 ### Front Matter
 
-*Pages 1–1*
+*Pages 1–6*
 
 Department of Transport and Department for Infrastructure All-Island Strategic Rail Review
-
-## All-Island Strategic Rail Review
-
-### All-Island Strategic Rail Review
-
-*Pages 1–3*
 
 Final Report
 
@@ -32,10 +26,6 @@ Department of Transport and Department for Infrastructure
 
 ## All-Island Strategic Rail Review
 
-### All-Island Strategic Rail Review
-
-*Pages 3–3*
-
 Final Report
 
 July 2024
@@ -52,8 +42,6 @@ Ove Arup & Partners Limited 50 Ringsend Rd Dublin D04 T6X0 Ireland arup.com
 
 ### If the recommendations in this Review were delivered:
 
-*Pages 4–4*
-
 ![Figure from page 4](assets/p004-f01.webp)
 
 *Figure from page 4*
@@ -62,23 +50,73 @@ Ove Arup & Partners Limited 50 Ringsend Rd Dublin D04 T6X0 Ireland arup.com
 
 ## Contents
 
-### 21
+#### Executive Summary 7
 
-*Pages 5–5*
+#### Chapter 1 | Purpose 17
+
+#### Chapter 2 | The Railway Today 21
 
 ![Figure from page 5](assets/p005-f01.webp)
 
 *Figure from page 5*
 
+#### Chapter 3 | The Case for Change 33
+
+#### Chapter 4 | Recommendations 43
+
+#### Chapter 4 | Decarbonisation 49
+
+#### Chapter 4 | Intercity Spine 53
+
+#### Chapter 4 | Regional and Rural 59
+
+#### Chapter 4 | Sustainable Cities 71
+
+#### Chapter 4 | Freight 77
+
+#### Chapter 4 | Customer Experience 82
+
+#### Chapter 5 | Benefits and Costs 89
+
+#### Chapter 6 | Roadmap for Delivery 101
+
+#### Appendix A | Public Consultation 107
+
+#### Appendix B | Review Methodology 117
+
+#### Appendix C | Mitigation and Monitoring Measures 139
+
+#### Appendix D | Inflation 157
+
 ## Glossary
 
-### Central Statistics Office
+#### BCR Benefit to Cost Ratio
 
-*Pages 6–6*
+#### CAF Common Appraisal Framework
+
+#### CSO Central Statistics Office
 
 ![Figure from page 6](assets/p006-f01.webp)
 
 *Figure from page 6*
+
+#### DART Dublin Area Rapid Transit
+
+#### DART+ A programme to expand DART services
+
+#### DKK Danish Krone
+
+#### EU European Union
+
+#### GHG Green House Gas emissions
+
+#### LoLo Lift-on/lift-off
+
+#### OHLE Overhead Line Electrification
+
+#### TAG Transport Analysis Guidance
+
+#### UK United Kingdom
 
 ## Executive Summary
 
@@ -1927,7 +1965,7 @@ The costs of these interventions are not included in the capital costs presented
 
 ### Chapter 5 | Benefits and Costs
 
-*Pages 89–98*
+*Pages 89–100*
 
 ![Figure from page 89](assets/p089-f01.webp)
 
@@ -2166,10 +2204,6 @@ Table 4 How the recommendations of this Review deliver its Goals and Objectives
 | with DART services. It is often delayed | Centre will greatly speed up rail travel |  |
 | between Drogheda and Connolly. | times. |  |
 
-### Marta
-
-*Pages 99–99*
-
 | Darren |  |  |
 | --- | --- | --- |
 | The business traveller |  |  |
@@ -2199,10 +2233,6 @@ Table 4 How the recommendations of this Review deliver its Goals and Objectives
 | The wheelchair user |  |  |
 | Holly is a 29-year-old living in Ballymote who plans to visit |  |  |
 | Kilkenny for a weekend away with friends. |  |  |
-
-### Holly
-
-*Pages 99–100*
 
 | Today’s railway | A potential future railway |
 | --- | --- |
@@ -2249,10 +2279,6 @@ Table 4 How the recommendations of this Review deliver its Goals and Objectives
 | means that his journey is not as | improve customer experience. |  |
 | pleasant as it could be. |  |  |
 |  |  |  |
-
-### Jim
-
-*Pages 100–100*
 
 Table 5 Personas and stories for a future transformed railway in the island of Ireland
 
@@ -3206,11 +3232,13 @@ Table B.5
 
 Results of a qualitative multi-criteria assessment of the performance of the eight packages against the Review’s Goals and Objectives. Key to shading is provided to the right.
 
-## Mitigation and Monitoring Measures
+## Appendix C | Mitigation and Monitoring Measures
 
-### Mitigation and Monitoring Measures
+### Appendix C | Mitigation and Monitoring Measures
 
 *Pages 139–156*
+
+## Mitigation and Monitoring Measures
 
 ![Figure from page 139](assets/p139-f01.webp)
 

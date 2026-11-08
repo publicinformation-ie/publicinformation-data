@@ -1,0 +1,1362 @@
+[
+ {
+  "number": 40,
+  "width": 419.53,
+  "height": 595.28,
+  "rotation": 0,
+  "spans": [
+   {
+    "text": "Legislation",
+    "font": "Lato-Bold",
+    "size": 13.0,
+    "bbox": [
+     13.95,
+     61.38,
+     31.95,
+     123.51
+    ],
+    "block": 1,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "1",
+    "font": "Lato-Bold",
+    "size": 13.0,
+    "bbox": [
+     20.71,
+     27.61,
+     28.25,
+     45.62
+    ],
+    "block": 2,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "1.2.3 The International Convention ",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     42.52,
+     38.96,
+     199.83,
+     52.81
+    ],
+    "block": 5,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "for the prevention of pollution ",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     42.52,
+     50.96,
+     179.25,
+     64.81
+    ],
+    "block": 5,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "from ships  (MARPOL) ",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     42.52,
+     62.96,
+     143.92,
+     76.81
+    ],
+    "block": 5,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "1.2.3.1 Prevention of pollution by ",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     42.52,
+     80.63,
+     193.17,
+     94.48
+    ],
+    "block": 6,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "garbage from ships – Annex V of ",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     42.52,
+     92.63,
+     188.21,
+     106.48
+    ],
+    "block": 6,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "MARPOL",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     42.52,
+     104.63,
+     84.8,
+     118.48
+    ],
+    "block": 6,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "(S.I. No. 351 of 2022) as outlined in ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     221.1,
+     39.29,
+     370.33,
+     52.08
+    ],
+    "block": 16,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "section 1.2.3.2.",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     221.1,
+     51.28,
+     284.74,
+     64.08
+    ],
+    "block": 16,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1.2.3.2 Obligations under the Port ",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     221.1,
+     71.07,
+     374.44,
+     84.92
+    ],
+    "block": 17,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Reception Facilities Directive",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     221.1,
+     83.07,
+     350.21,
+     96.92
+    ],
+    "block": 17,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "\t▪The European Union (Port ",
+    "font": "Lato-Regular",
+    "size": 9.45,
+    "bbox": [
+     221.1,
+     104.32,
+     341.84,
+     117.12
+    ],
+    "block": 18,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Reception Facilities for the ",
+    "font": "Lato-Regular",
+    "size": 9.45,
+    "bbox": [
+     232.44,
+     116.32,
+     344.24,
+     129.11
+    ],
+    "block": 19,
+    "line": 0,
+    "span": 0
+   }
+  ],
+  "drawings": [
+   {
+    "bbox": [
+     -8.5,
+     -8.5,
+     31.73,
+     556.31
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     -8.5,
+     -8.5,
+     31.73,
+     556.31
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     16.26,
+     558.46,
+     36.09,
+     578.29
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     14.17,
+     556.38,
+     38.17,
+     580.38
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     14.17,
+     556.38,
+     38.17,
+     580.38
+    ],
+    "fill": true,
+    "width": 0.0
+   }
+  ],
+  "images": [],
+  "tables": []
+ },
+ {
+  "number": 65,
+  "width": 419.53,
+  "height": 595.28,
+  "rotation": 0,
+  "spans": [
+   {
+    "text": "Legislation",
+    "font": "Lato-Bold",
+    "size": 13.0,
+    "bbox": [
+     389.03,
+     61.37,
+     407.04,
+     123.5
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "1",
+    "font": "Lato-Bold",
+    "size": 13.0,
+    "bbox": [
+     392.43,
+     27.61,
+     399.97,
+     45.62
+    ],
+    "block": 1,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "or to imprisonment for a term not ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     47.48,
+     39.92,
+     189.53,
+     52.71
+    ],
+    "block": 4,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "exceeding 6 months, or both, or ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     47.48,
+     51.92,
+     181.55,
+     64.71
+    ],
+    "block": 4,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "on conviction on indictment to a ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     47.48,
+     63.91,
+     184.81,
+     76.71
+    ],
+    "block": 4,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "fine not exceeding €100,000 or ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     47.48,
+     75.91,
+     180.56,
+     88.71
+    ],
+    "block": 4,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "to imprisonment for a term not ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     47.48,
+     87.91,
+     178.46,
+     100.71
+    ],
+    "block": 4,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "exceeding 2 years or both",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     47.48,
+     99.91,
+     154.29,
+     112.71
+    ],
+    "block": 4,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "\t▪the preparation and publication of ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     36.14,
+     113.33,
+     191.57,
+     126.13
+    ],
+    "block": 4,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "Codes of Practice to promote the ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     47.48,
+     125.33,
+     188.14,
+     138.13
+    ],
+    "block": 5,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "1.8 Other legislation and ",
+    "font": "Lato-Bold",
+    "size": 11.0,
+    "bbox": [
+     36.14,
+     446.26,
+     159.02,
+     461.49
+    ],
+    "block": 13,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "considerations",
+    "font": "Lato-Bold",
+    "size": 11.0,
+    "bbox": [
+     36.14,
+     458.26,
+     107.57,
+     473.49
+    ],
+    "block": 13,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1.8.1 Merchant Shipping (Salvage ",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     36.14,
+     478.44,
+     185.96,
+     492.29
+    ],
+    "block": 14,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "and Wreck) Act 1993 – Wrecks and ",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     36.14,
+     490.44,
+     195.22,
+     504.29
+    ],
+    "block": 14,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "stranded vessels",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     36.14,
+     502.44,
+     108.97,
+     516.29
+    ],
+    "block": 14,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "and wreck. The Act sets out the ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     223.59,
+     39.92,
+     357.0,
+     52.71
+    ],
+    "block": 17,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "roles and responsibilities of various ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     223.59,
+     51.91,
+     371.26,
+     64.71
+    ],
+    "block": 17,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "participants in salvage and wreck ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     223.59,
+     63.91,
+     363.0,
+     76.71
+    ],
+    "block": 17,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "situations. The Department of ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     223.59,
+     75.91,
+     350.51,
+     88.71
+    ],
+    "block": 17,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "Transport has the lead policy ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     223.59,
+     87.91,
+     344.98,
+     100.71
+    ],
+    "block": 17,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "role under the Act. Operational ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     223.59,
+     99.91,
+     355.11,
+     112.7
+    ],
+    "block": 17,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "responsibility for the area lies with ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     223.59,
+     111.91,
+     368.33,
+     124.7
+    ],
+    "block": 17,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "the Revenue Commissioners whose ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     223.59,
+     123.9,
+     373.35,
+     136.7
+    ],
+    "block": 17,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "revenue.ie/en/customs/businesses/",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     223.59,
+     441.57,
+     372.63,
+     454.37
+    ],
+    "block": 21,
+    "line": 9,
+    "span": 0
+   },
+   {
+    "text": "rules-reporting-aviation-marine/",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     223.59,
+     453.57,
+     358.72,
+     466.37
+    ],
+    "block": 21,
+    "line": 10,
+    "span": 0
+   },
+   {
+    "text": "receivers-of-wreck/index.aspx) ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     223.59,
+     465.57,
+     354.36,
+     478.36
+    ],
+    "block": 21,
+    "line": 11,
+    "span": 0
+   },
+   {
+    "text": "\t▪If salvaged cargo is brought into ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     212.24,
+     480.42,
+     358.02,
+     493.22
+    ],
+    "block": 22,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "the State, the role of the Receiver ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     223.59,
+     492.42,
+     365.12,
+     505.22
+    ],
+    "block": 23,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "of Wreck is to receive the wreck, ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     223.59,
+     504.42,
+     361.74,
+     517.21
+    ],
+    "block": 23,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "secure it, notify relevant parties in ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     223.59,
+     516.42,
+     367.35,
+     529.21
+    ],
+    "block": 23,
+    "line": 2,
+    "span": 0
+   }
+  ],
+  "drawings": [
+   {
+    "bbox": [
+     387.74,
+     -8.5,
+     427.98,
+     556.31
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     387.74,
+     -8.5,
+     427.98,
+     556.31
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     384.1,
+     558.46,
+     403.93,
+     578.29
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     382.02,
+     556.38,
+     406.02,
+     580.38
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     382.02,
+     556.38,
+     406.02,
+     580.38
+    ],
+    "fill": true,
+    "width": 0.0
+   }
+  ],
+  "images": [],
+  "tables": []
+ },
+ {
+  "number": 66,
+  "width": 419.53,
+  "height": 595.28,
+  "rotation": 0,
+  "spans": [
+   {
+    "text": "Legislation",
+    "font": "Lato-Bold",
+    "size": 13.0,
+    "bbox": [
+     13.95,
+     61.38,
+     31.95,
+     123.51
+    ],
+    "block": 1,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "1",
+    "font": "Lato-Bold",
+    "size": 13.0,
+    "bbox": [
+     20.71,
+     27.61,
+     28.25,
+     45.62
+    ],
+    "block": 2,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "\t▪It is an offence to board or attempt ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     42.52,
+     39.31,
+     200.94,
+     52.11
+    ],
+    "block": 5,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "to board any wrecked or stranded ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     53.86,
+     51.31,
+     196.01,
+     64.11
+    ],
+    "block": 6,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "vessel without the permission ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     53.86,
+     63.31,
+     180.0,
+     76.1
+    ],
+    "block": 6,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "of the master or owner of that ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     53.86,
+     75.31,
+     181.53,
+     88.1
+    ],
+    "block": 6,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "vessel. This is unless acting in ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     53.86,
+     87.31,
+     178.3,
+     100.1
+    ],
+    "block": 6,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "an emergency for the purpose ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     53.86,
+     99.3,
+     181.06,
+     112.1
+    ],
+    "block": 6,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "of either saving the lives of ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     53.86,
+     111.3,
+     167.9,
+     124.1
+    ],
+    "block": 6,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "shipwrecked persons or saving the ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     53.86,
+     123.3,
+     199.35,
+     136.1
+    ],
+    "block": 6,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "For example, where the use of ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     216.85,
+     39.3,
+     344.44,
+     52.09
+    ],
+    "block": 12,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "recreational craft involves an ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     216.85,
+     51.29,
+     338.7,
+     64.09
+    ],
+    "block": 12,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "employer/employee relationship or ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     216.85,
+     63.29,
+     364.28,
+     76.09
+    ],
+    "block": 12,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "where the use of such craft directly ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     216.85,
+     75.29,
+     365.54,
+     88.09
+    ],
+    "block": 12,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "relates to an undertaking of a self-",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     216.85,
+     87.29,
+     359.03,
+     100.09
+    ],
+    "block": 12,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "employed person, there are duties ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     216.85,
+     99.29,
+     361.06,
+     112.09
+    ],
+    "block": 12,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "imposed under the Safety, Health and ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     216.85,
+     111.29,
+     375.72,
+     124.08
+    ],
+    "block": 12,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "Welfare at Work Act 2005.  Further ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     216.85,
+     123.29,
+     366.59,
+     136.08
+    ],
+    "block": 12,
+    "line": 7,
+    "span": 0
+   }
+  ],
+  "drawings": [
+   {
+    "bbox": [
+     -8.5,
+     -8.5,
+     31.73,
+     556.31
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     -8.5,
+     -8.5,
+     31.73,
+     556.31
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     16.26,
+     558.46,
+     36.09,
+     578.29
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     14.17,
+     556.38,
+     38.17,
+     580.38
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     14.17,
+     556.38,
+     38.17,
+     580.38
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     419.53,
+     80.3,
+     847.2,
+     615.82
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     419.53,
+     144.41,
+     847.56,
+     620.93
+    ],
+    "fill": true,
+    "width": 0.0
+   }
+  ],
+  "images": [],
+  "tables": []
+ },
+ {
+  "number": 62,
+  "width": 419.53,
+  "height": 595.28,
+  "rotation": 0,
+  "spans": [
+   {
+    "text": "Legislation",
+    "font": "Lato-Bold",
+    "size": 13.0,
+    "bbox": [
+     13.95,
+     61.38,
+     31.95,
+     123.51
+    ],
+    "block": 1,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "1",
+    "font": "Lato-Bold",
+    "size": 13.0,
+    "bbox": [
+     20.71,
+     27.61,
+     28.25,
+     45.62
+    ],
+    "block": 2,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "1.5.2.2 Recreational craft less than ",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     42.52,
+     39.57,
+     197.77,
+     53.42
+    ],
+    "block": 5,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "13.7 metres in length",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     42.52,
+     51.57,
+     136.56,
+     65.42
+    ],
+    "block": 5,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "There are currently no statutory ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     42.52,
+     72.82,
+     177.37,
+     85.62
+    ],
+    "block": 6,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "fire appliance requirements for ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     42.52,
+     84.82,
+     172.19,
+     97.62
+    ],
+    "block": 6,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "recreational craft less than 13.7 ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     42.52,
+     96.82,
+     175.98,
+     109.62
+    ],
+    "block": 6,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "metres in length. However, it is ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     42.52,
+     108.82,
+     173.54,
+     121.62
+    ],
+    "block": 6,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "strongly recommended that such ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     42.52,
+     120.82,
+     181.28,
+     133.61
+    ],
+    "block": 6,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "relation to buoyage and marking ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     218.27,
+     39.88,
+     354.85,
+     52.67
+    ],
+    "block": 10,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "schemes on some inland \n",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     218.27,
+     51.88,
+     324.52,
+     64.67
+    ],
+    "block": 10,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "waterways.",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     218.27,
+     63.87,
+     265.36,
+     76.67
+    ],
+    "block": 10,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "1.6.1 Shannon Navigation Acts and ",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     218.27,
+     83.67,
+     375.6,
+     97.52
+    ],
+    "block": 11,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "associated Bye-Laws",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     218.27,
+     95.67,
+     310.61,
+     109.52
+    ],
+    "block": 11,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Relevant legislation for the Shannon ",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     218.27,
+     114.09,
+     370.35,
+     126.89
+    ],
+    "block": 12,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "system:",
+    "font": "Lato-Regular",
+    "size": 9.5,
+    "bbox": [
+     218.27,
+     126.09,
+     249.8,
+     138.89
+    ],
+    "block": 12,
+    "line": 1,
+    "span": 0
+   }
+  ],
+  "drawings": [
+   {
+    "bbox": [
+     -8.5,
+     -8.5,
+     31.73,
+     556.31
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     -8.5,
+     -8.5,
+     31.73,
+     556.31
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     16.26,
+     558.46,
+     36.09,
+     578.29
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     14.17,
+     556.38,
+     38.17,
+     580.38
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     14.17,
+     556.38,
+     38.17,
+     580.38
+    ],
+    "fill": true,
+    "width": 0.0
+   }
+  ],
+  "images": [],
+  "tables": []
+ }
+]

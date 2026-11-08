@@ -1,0 +1,1035 @@
+[
+ {
+  "number": 2,
+  "width": 595.28,
+  "height": 841.89,
+  "rotation": 0,
+  "spans": [
+   {
+    "text": "Contents ",
+    "font": "WhitneyHTF-Bold",
+    "size": 21.0,
+    "bbox": [
+     49.61,
+     85.37,
+     135.45,
+     109.6
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "i ",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     52.44,
+     137.89,
+     57.07,
+     149.4
+    ],
+    "block": 1,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Director’s Foreward ......................................................4",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     72.28,
+     137.89,
+     284.88,
+     149.4
+    ],
+    "block": 1,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "ii ",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     52.44,
+     151.89,
+     59.5,
+     163.4
+    ],
+    "block": 1,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "Members of the Eastern and  ",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     72.28,
+     151.89,
+     195.1,
+     163.4
+    ],
+    "block": 1,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "Midland Regional Assembly .......................................4",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     72.28,
+     165.89,
+     284.88,
+     177.4
+    ],
+    "block": 1,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "iii ",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     52.44,
+     179.89,
+     61.93,
+     191.4
+    ],
+    "block": 1,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "Cathaoirleach’s Message  ...........................................5",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     72.28,
+     179.89,
+     284.88,
+     191.4
+    ],
+    "block": 1,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "CHAPTER 1: ",
+    "font": "WhitneyHTF-Bold",
+    "size": 11.0,
+    "bbox": [
+     51.02,
+     219.13,
+     110.85,
+     231.82
+    ],
+    "block": 2,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Introduction ",
+    "font": "WhitneyHTF-Bold",
+    "size": 12.0,
+    "bbox": [
+     51.02,
+     248.13,
+     117.39,
+     261.98
+    ],
+    "block": 3,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "6",
+    "font": "WhitneyHTF-Bold",
+    "size": 12.0,
+    "bbox": [
+     277.96,
+     248.13,
+     284.88,
+     261.98
+    ],
+    "block": 3,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1.1  Vision ...............................................................................6",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     52.44,
+     272.57,
+     284.88,
+     284.08
+    ],
+    "block": 4,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "1.2  Eastern and Midland Regional Assembly ................6",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     52.44,
+     286.57,
+     284.88,
+     298.08
+    ],
+    "block": 4,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1.3  What is a Regional Spatial and Economic  ",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     52.44,
+     300.57,
+     246.42,
+     312.08
+    ],
+    "block": 4,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "Strategy (RSES)? ...........................................................8",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     72.28,
+     314.57,
+     284.89,
+     326.08
+    ],
+    "block": 4,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "1.4  Spatial and Economic Policy Background...............10",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     52.45,
+     328.57,
+     284.88,
+     340.08
+    ],
+    "block": 4,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "1.5  The RSES Process ........................................................ 13",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     52.44,
+     342.57,
+     284.88,
+     354.08
+    ],
+    "block": 4,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "1.6  Regional Proﬁle ............................................................14",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     52.44,
+     356.57,
+     284.88,
+     368.08
+    ],
+    "block": 4,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "CHAPTER 2: ",
+    "font": "WhitneyHTF-Bold",
+    "size": 11.0,
+    "bbox": [
+     51.02,
+     395.81,
+     112.45,
+     408.5
+    ],
+    "block": 5,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Strategic Vision ",
+    "font": "WhitneyHTF-Bold",
+    "size": 12.0,
+    "bbox": [
+     51.02,
+     424.81,
+     135.35,
+     438.66
+    ],
+    "block": 6,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "20",
+    "font": "WhitneyHTF-Bold",
+    "size": 12.0,
+    "bbox": [
+     270.65,
+     424.81,
+     284.88,
+     438.66
+    ],
+    "block": 6,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "2.1  Our Shared Goals .......................................................20",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     52.44,
+     449.25,
+     284.88,
+     460.76
+    ],
+    "block": 7,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "2.2  Vision and Key Principles ..........................................23",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     52.44,
+     463.25,
+     284.88,
+     474.76
+    ],
+    "block": 7,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "2.3  Regional Strategic Outcomes .................................. 24",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     52.44,
+     477.25,
+     284.88,
+     488.76
+    ],
+    "block": 7,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "CHAPTER 3: ",
+    "font": "WhitneyHTF-Bold",
+    "size": 11.0,
+    "bbox": [
+     51.02,
+     516.48,
+     112.37,
+     529.18
+    ],
+    "block": 8,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Growth Strategy ",
+    "font": "WhitneyHTF-Bold",
+    "size": 12.0,
+    "bbox": [
+     51.02,
+     545.49,
+     138.59,
+     559.34
+    ],
+    "block": 9,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "26",
+    "font": "WhitneyHTF-Bold",
+    "size": 12.0,
+    "bbox": [
+     271.44,
+     545.49,
+     284.88,
+     559.34
+    ],
+    "block": 9,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "3.1  Developing a Growth Strategy for the Region .......27",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     52.44,
+     569.93,
+     284.88,
+     581.44
+    ],
+    "block": 10,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "3.2  Growth Enablers for the Region ...............................33",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     52.44,
+     583.93,
+     284.88,
+     595.44
+    ],
+    "block": 10,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "CHAPTER 4: ",
+    "font": "WhitneyHTF-Bold",
+    "size": 11.0,
+    "bbox": [
+     311.46,
+     106.78,
+     373.52,
+     119.47
+    ],
+    "block": 11,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "People and Place ",
+    "font": "WhitneyHTF-Bold",
+    "size": 12.0,
+    "bbox": [
+     311.46,
+     135.78,
+     400.15,
+     149.63
+    ],
+    "block": 12,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "42",
+    "font": "WhitneyHTF-Bold",
+    "size": 12.0,
+    "bbox": [
+     531.37,
+     135.78,
+     545.31,
+     149.63
+    ],
+    "block": 12,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "4.1  Introduction and context .......................................... 42",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     160.23,
+     545.31,
+     171.74
+    ],
+    "block": 13,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "4.2  Settlement Strategy ...................................................44",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     174.23,
+     545.31,
+     185.74
+    ],
+    "block": 13,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "4.3  Deﬁning a Settlement Typology .............................. 47",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     188.23,
+     545.31,
+     199.74
+    ],
+    "block": 13,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "4.4  Dublin City and Suburbs ............................................52",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     202.23,
+     545.31,
+     213.74
+    ],
+    "block": 13,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "4.5  Regional Growth Centres ...........................................53",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     216.23,
+     545.31,
+     227.74
+    ],
+    "block": 13,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "4.6  Key Towns ..................................................................... 71",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     230.23,
+     545.31,
+     241.74
+    ],
+    "block": 13,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "4.7  Self-Sustaining Growth Towns and  ",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     244.23,
+     479.88,
+     255.74
+    ],
+    "block": 13,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "Self-Sustaining Towns ............................................... 93",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     332.71,
+     258.23,
+     545.31,
+     269.74
+    ],
+    "block": 13,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "4.8  Rural Places: Towns, Villages and the ",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     272.23,
+     488.28,
+     283.74
+    ],
+    "block": 13,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "Countryside .................................................................94",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     332.71,
+     286.23,
+     545.31,
+     297.74
+    ],
+    "block": 13,
+    "line": 9,
+    "span": 0
+   },
+   {
+    "text": "CHAPTER 5: ",
+    "font": "WhitneyHTF-Bold",
+    "size": 11.0,
+    "bbox": [
+     311.46,
+     325.46,
+     372.91,
+     338.15
+    ],
+    "block": 14,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Dublin Metropolitan Area Strategic Plan ",
+    "font": "WhitneyHTF-Bold",
+    "size": 12.0,
+    "bbox": [
+     311.46,
+     354.46,
+     520.27,
+     368.31
+    ],
+    "block": 15,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "(MASP) ",
+    "font": "WhitneyHTF-Bold",
+    "size": 12.0,
+    "bbox": [
+     311.46,
+     367.41,
+     356.07,
+     381.26
+    ],
+    "block": 15,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "98",
+    "font": "WhitneyHTF-Bold",
+    "size": 12.0,
+    "bbox": [
+     531.32,
+     367.41,
+     545.31,
+     381.26
+    ],
+    "block": 15,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "5.1  Introduction and Context ......................................... 98",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     391.86,
+     545.31,
+     403.37
+    ],
+    "block": 16,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "5.2  Vision ..........................................................................100",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     405.86,
+     545.31,
+     417.37
+    ],
+    "block": 16,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "5.3  Guiding Principles for the growth of the Dublin ",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     419.86,
+     528.67,
+     431.37
+    ],
+    "block": 16,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "Metropolitan Area .................................................... 101",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     332.71,
+     433.86,
+     545.31,
+     445.37
+    ],
+    "block": 16,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "5.4  Metropolitan Area Strategy ....................................102",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     447.86,
+     545.31,
+     459.37
+    ],
+    "block": 16,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "5.5  Enabling Infrastructure ........................................... 106",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     461.86,
+     545.31,
+     473.37
+    ],
+    "block": 16,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "5.6  Integrated Land use and Transportation ..............107",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     475.86,
+     545.31,
+     487.37
+    ],
+    "block": 16,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "5.7  Housing Delivery ........................................................112",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     489.86,
+     545.31,
+     501.37
+    ],
+    "block": 16,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "5.8  Employment Generation .......................................... 114",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     503.86,
+     545.31,
+     515.37
+    ],
+    "block": 16,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "5.9  Green Infrastructure and Amenities ......................116",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     517.86,
+     545.31,
+     529.37
+    ],
+    "block": 16,
+    "line": 9,
+    "span": 0
+   },
+   {
+    "text": "CHAPTER 6: ",
+    "font": "WhitneyHTF-Bold",
+    "size": 11.0,
+    "bbox": [
+     311.46,
+     557.09,
+     373.16,
+     569.78
+    ],
+    "block": 17,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Economy and Employment ",
+    "font": "WhitneyHTF-Bold",
+    "size": 12.0,
+    "bbox": [
+     311.46,
+     586.09,
+     449.18,
+     599.94
+    ],
+    "block": 18,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "120",
+    "font": "WhitneyHTF-Bold",
+    "size": 12.0,
+    "bbox": [
+     526.2,
+     586.09,
+     545.31,
+     599.94
+    ],
+    "block": 18,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "6.1  Introduction ................................................................120",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     610.53,
+     545.31,
+     622.04
+    ],
+    "block": 19,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "6.2  Proﬁle ...........................................................................122",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     624.53,
+     545.31,
+     636.04
+    ],
+    "block": 19,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "6.3  Economic Strategy ....................................................124",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     638.53,
+     545.31,
+     650.04
+    ],
+    "block": 19,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "6.4  The Region’s Economic Engines and  ",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     652.53,
+     485.59,
+     664.04
+    ],
+    "block": 19,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "their Sectoral Opportunities ...................................132",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     332.71,
+     666.53,
+     545.31,
+     678.04
+    ],
+    "block": 19,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "6.5  Speciﬁc sectors: Retail, Tourism, Marine,  ",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     680.53,
+     506.37,
+     692.04
+    ],
+    "block": 19,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "Low Carbon Economy and Agriculture .................136",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     332.71,
+     694.53,
+     545.31,
+     706.04
+    ],
+    "block": 19,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "6.6  Drivers for Resilient, Sustainable and  ",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     708.53,
+     490.66,
+     720.04
+    ],
+    "block": 19,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "Inclusive Economic Growth .....................................142",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     332.71,
+     722.53,
+     545.31,
+     734.04
+    ],
+    "block": 19,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "6.7  Capacity Building: Bidding capacity, Shared ",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     312.87,
+     736.53,
+     514.5,
+     748.04
+    ],
+    "block": 19,
+    "line": 9,
+    "span": 0
+   },
+   {
+    "text": "evidence base, future proof, and anticipating ",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     332.71,
+     750.53,
+     520.3,
+     762.04
+    ],
+    "block": 19,
+    "line": 10,
+    "span": 0
+   },
+   {
+    "text": "economic structural changes .................................148",
+    "font": "WhitneyHTF-Medium",
+    "size": 10.0,
+    "bbox": [
+     332.71,
+     764.53,
+     545.31,
+     776.04
+    ],
+    "block": 19,
+    "line": 11,
+    "span": 0
+   },
+   {
+    "text": "2",
+    "font": "WhitneyHTF-SemiBold",
+    "size": 7.5,
+    "bbox": [
+     29.07,
+     24.97,
+     33.14,
+     33.62
+    ],
+    "block": 20,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Regional Spatial & Economic Strategy",
+    "font": "WhitneyHTF-Bold",
+    "size": 9.0,
+    "bbox": [
+     45.35,
+     24.42,
+     189.35,
+     34.81
+    ],
+    "block": 20,
+    "line": 1,
+    "span": 0
+   }
+  ],
+  "drawings": [],
+  "images": [],
+  "tables": []
+ }
+]

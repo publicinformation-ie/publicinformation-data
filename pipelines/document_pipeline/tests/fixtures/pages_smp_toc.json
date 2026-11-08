@@ -1,0 +1,685 @@
+[
+ {
+  "number": 4,
+  "width": 595.28,
+  "height": 841.89,
+  "rotation": 0,
+  "spans": [
+   {
+    "text": "2",
+    "font": "Lato-Regular",
+    "size": 10.5,
+    "bbox": [
+     42.52,
+     791.23,
+     48.61,
+     805.37
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "National Sustainable Mobility Policy | ",
+    "font": "Lato-Regular",
+    "size": 8.0,
+    "bbox": [
+     42.52,
+     21.13,
+     173.97,
+     31.91
+    ],
+    "block": 1,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Table of Contents",
+    "font": "Lato-Regular",
+    "size": 8.0,
+    "bbox": [
+     173.74,
+     21.13,
+     235.33,
+     31.91
+    ],
+    "block": 1,
+    "line": 0,
+    "span": 1
+   },
+   {
+    "text": "Foreword",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     173.76,
+     122.59,
+     187.23
+    ],
+    "block": 2,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "4",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     519.32,
+     173.76,
+     525.12,
+     187.23
+    ],
+    "block": 2,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Summary",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     198.82,
+     121.63,
+     212.29
+    ],
+    "block": 3,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "5",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     519.32,
+     198.82,
+     525.12,
+     212.29
+    ],
+    "block": 3,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Chapter 1 – Introduction",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     223.88,
+     189.13,
+     237.35
+    ],
+    "block": 4,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "7",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     519.32,
+     223.88,
+     525.12,
+     237.35
+    ],
+    "block": 4,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Purpose of Policy",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     248.94,
+     156.69,
+     262.41
+    ],
+    "block": 5,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "8",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     519.32,
+     248.94,
+     525.12,
+     262.41
+    ],
+    "block": 5,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Impact of COVID-19 pandemic",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     274.0,
+     216.23,
+     287.47
+    ],
+    "block": 6,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "10",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     513.52,
+     274.0,
+     525.12,
+     287.47
+    ],
+    "block": 6,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Climate change challenge",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     299.06,
+     191.67,
+     312.53
+    ],
+    "block": 7,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "10",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     513.52,
+     299.06,
+     525.12,
+     312.53
+    ],
+    "block": 7,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Population trends",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     324.12,
+     158.17,
+     337.59
+    ],
+    "block": 8,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "12",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     513.52,
+     324.12,
+     525.12,
+     337.59
+    ],
+    "block": 8,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Transport trends",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     349.18,
+     152.65,
+     362.65
+    ],
+    "block": 9,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "13",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     513.52,
+     349.18,
+     525.12,
+     362.65
+    ],
+    "block": 9,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Lessons learnt",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     374.24,
+     142.73,
+     387.71
+    ],
+    "block": 10,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "15",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     513.52,
+     374.24,
+     525.12,
+     387.71
+    ],
+    "block": 10,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "How the Policy was developed",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     399.3,
+     214.27,
+     412.77
+    ],
+    "block": 11,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "16",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     513.52,
+     399.3,
+     525.12,
+     412.77
+    ],
+    "block": 11,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Chapter 2 – Alignment with existing policies",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     424.36,
+     272.98,
+     437.83
+    ],
+    "block": 12,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "17",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     513.52,
+     424.36,
+     525.12,
+     437.83
+    ],
+    "block": 12,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Introduction",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     449.42,
+     134.81,
+     462.89
+    ],
+    "block": 13,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "18",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     513.52,
+     449.42,
+     525.12,
+     462.89
+    ],
+    "block": 13,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "International",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     474.48,
+     136.48,
+     487.95
+    ],
+    "block": 14,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "18",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     513.52,
+     474.48,
+     525.12,
+     487.95
+    ],
+    "block": 14,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "European",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     499.54,
+     122.21,
+     513.01
+    ],
+    "block": 15,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "19",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     513.52,
+     499.54,
+     525.12,
+     513.01
+    ],
+    "block": 15,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "National",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     524.6,
+     117.67,
+     538.07
+    ],
+    "block": 16,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "20",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     513.52,
+     524.6,
+     525.12,
+     538.07
+    ],
+    "block": 16,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Chapter 3 - Our Vision",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     549.66,
+     179.06,
+     563.13
+    ],
+    "block": 17,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "24",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     513.52,
+     549.66,
+     525.12,
+     563.13
+    ],
+    "block": 17,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Introduction",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     574.72,
+     134.81,
+     588.19
+    ],
+    "block": 18,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "25",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     513.52,
+     574.72,
+     525.12,
+     588.19
+    ],
+    "block": 18,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Vision",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     599.78,
+     107.69,
+     613.25
+    ],
+    "block": 19,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "25",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     513.52,
+     599.78,
+     525.12,
+     613.25
+    ],
+    "block": 19,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Principles and Goals",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     624.84,
+     168.66,
+     638.31
+    ],
+    "block": 20,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "25",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     513.52,
+     624.84,
+     525.12,
+     638.31
+    ],
+    "block": 20,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Targets",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     649.9,
+     112.07,
+     663.37
+    ],
+    "block": 21,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "26",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     513.52,
+     649.9,
+     525.12,
+     663.37
+    ],
+    "block": 21,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Implementation, monitoring and review",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     674.96,
+     252.91,
+     688.43
+    ],
+    "block": 22,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "26",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     513.52,
+     674.96,
+     525.12,
+     688.43
+    ],
+    "block": 22,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Funding",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     80.54,
+     700.02,
+     115.75,
+     713.49
+    ],
+    "block": 23,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "27",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     513.52,
+     700.02,
+     525.12,
+     713.49
+    ],
+    "block": 23,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Table of contents",
+    "font": "Lato-Light",
+    "size": 20.0,
+    "bbox": [
+     76.54,
+     120.39,
+     230.7,
+     146.77
+    ],
+    "block": 24,
+    "line": 0,
+    "span": 0
+   }
+  ],
+  "drawings": [],
+  "images": [],
+  "tables": []
+ }
+]

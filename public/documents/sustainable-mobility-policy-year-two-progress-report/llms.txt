@@ -1,43 +1,41 @@
 # National Sustainable Mobility Policy Year Two Progress Report
 
-> Department of Transport — 15 chapters, 20 sections, 57 source pages.
+> Department of Transport — 15 chapters, 18 sections, 57 source pages.
 > Source: https://assets.gov.ie/static/documents/national-sustainable-mobility-policy-year-two-progress-report.pdf
 > Full text: full.md
 
 ## Chapters
 
-- [Front Matter](sections/front-matter/) — pages 1–3
-  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–3
-- [Governance Structures – Leadership Group and Delivery Team](sections/governance-structures-leadership-group-and-delivery-team/) — pages 11–12
-  - [Governance Structures – Leadership Group and Delivery Team](sections/governance-structures-leadership-group-and-delivery-team/overview.md) — pages 11–12
-- [2 Minister’s Foreword](sections/2-minister-s-foreword/) — pages 4–4
-  - [2 Minister’s Foreword](sections/2-minister-s-foreword/overview.md) — pages 4–4
-- [SMP Outcomes: A Reflection on the Impacts of SMP Implementation To Date](sections/smp-outcomes-a-reflection-on-the-impacts-of-smp-implementation-to-date/) — pages 25–26
-  - [SMP Outcomes: A Reflection on the Impacts of SMP Implementation To Date](sections/smp-outcomes-a-reflection-on-the-impacts-of-smp-implementation-to-date/overview.md) — pages 25–26
-- [3 Executive Summary](sections/3-executive-summary/) — pages 5–5
-  - [3 Executive Summary](sections/3-executive-summary/overview.md) — pages 5–5
-- [4 Sustainable Mobility Policy and Action Plan](sections/4-sustainable-mobility-policy-and-action-plan/) — pages 6–6
-  - [Completed](sections/4-sustainable-mobility-policy-and-action-plan/completed.md) — pages 6–6
-  - [4 Sustainable Mobility Policy and Action Plan](sections/4-sustainable-mobility-policy-and-action-plan/overview.md) — pages 6–6
-- [5 SMP Action Status Update](sections/5-smp-action-status-update/) — pages 7–10
-  - [5 SMP Action Status Update](sections/5-smp-action-status-update/overview.md) — pages 7–10
-- [11 SMP Pathfinder Programme](sections/11-smp-pathfinder-programme/) — pages 13–15
-  - [11 SMP Pathfinder Programme](sections/11-smp-pathfinder-programme/overview.md) — pages 13–15
-- [14 SMP Research Network](sections/14-smp-research-network/) — pages 16–16
-  - [14 SMP Research Network](sections/14-smp-research-network/overview.md) — pages 16–16
-- [15 National Sustainable Mobility Forum](sections/15-national-sustainable-mobility-forum/) — pages 17–20
-  - [15 National Sustainable Mobility Forum](sections/15-national-sustainable-mobility-forum/overview.md) — pages 17–20
-- [19 Public Engagement Strategy](sections/19-public-engagement-strategy/) — pages 21–22
-  - [19 Public Engagement Strategy](sections/19-public-engagement-strategy/overview.md) — pages 21–22
-- [21 Road Safety](sections/21-road-safety/) — pages 23–23
-  - [21 Road Safety](sections/21-road-safety/overview.md) — pages 23–23
-- [22 Shared Mobility](sections/22-shared-mobility/) — pages 24–24
-  - [22 Shared Mobility](sections/22-shared-mobility/overview.md) — pages 24–24
-- [25 Looking Ahead – SMP Action Plan 2026-2030](sections/25-looking-ahead-smp-action-plan-2026-2030/) — pages 27–27
-  - [25 Looking Ahead – SMP Action Plan 2026-2030](sections/25-looking-ahead-smp-action-plan-2026-2030/overview.md) — pages 27–27
-- [26 Annex 1 – Delivery to date of SMP Actions](sections/26-annex-1-delivery-to-date-of-smp-actions/) — pages 28–57
-  - [26 Annex 1 – Delivery to date of SMP Actions](sections/26-annex-1-delivery-to-date-of-smp-actions/overview.md) — pages 28–36
-  - [35 On Schedule](sections/26-annex-1-delivery-to-date-of-smp-actions/35-on-schedule.md) — pages 37–44
-  - [43 Delayed](sections/26-annex-1-delivery-to-date-of-smp-actions/43-delayed.md) — pages 45–51
-  - [50 At Risk of Delay](sections/26-annex-1-delivery-to-date-of-smp-actions/50-at-risk-of-delay.md) — pages 52–55
-  - [54 Ongoing](sections/26-annex-1-delivery-to-date-of-smp-actions/54-ongoing.md) — pages 56–57
+- [Front Matter](sections/front-matter/) — pages 1–2
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–2
+- [Minister’s Foreword](sections/minister-s-foreword/) — pages 3–3
+  - [Minister’s Foreword](sections/minister-s-foreword/overview.md) — pages 3–3
+- [Executive Summary](sections/executive-summary/) — pages 4–4
+  - [Executive Summary](sections/executive-summary/overview.md) — pages 4–4
+- [Sustainable Mobility Policy and Action Plan](sections/sustainable-mobility-policy-and-action-plan/) — pages 5–5
+  - [Sustainable Mobility Policy and Action Plan](sections/sustainable-mobility-policy-and-action-plan/overview.md) — pages 5–5
+- [SMP Action Status Update](sections/smp-action-status-update/) — pages 6–10
+  - [SMP Action Status Update](sections/smp-action-status-update/overview.md) — pages 6–6
+  - [Completed](sections/smp-action-status-update/completed.md) — pages 6–10
+- [Governance Structures – Leadership Group and Delivery Team](sections/governance-structures-leadership-group-and-delivery-team/) — pages 11–11
+  - [Governance Structures – Leadership Group and Delivery Team](sections/governance-structures-leadership-group-and-delivery-team/overview.md) — pages 11–11
+- [SMP Pathfinder Programme](sections/smp-pathfinder-programme/) — pages 12–14
+  - [SMP Pathfinder Programme](sections/smp-pathfinder-programme/overview.md) — pages 12–14
+- [SMP Research Network](sections/smp-research-network/) — pages 15–15
+  - [SMP Research Network](sections/smp-research-network/overview.md) — pages 15–15
+- [National Sustainable Mobility Forum](sections/national-sustainable-mobility-forum/) — pages 16–19
+  - [National Sustainable Mobility Forum](sections/national-sustainable-mobility-forum/overview.md) — pages 16–19
+- [Public Engagement Strategy](sections/public-engagement-strategy/) — pages 20–21
+  - [Public Engagement Strategy](sections/public-engagement-strategy/overview.md) — pages 20–21
+- [Road Safety](sections/road-safety/) — pages 22–22
+  - [Road Safety](sections/road-safety/overview.md) — pages 22–22
+- [Shared Mobility](sections/shared-mobility/) — pages 23–24
+  - [Shared Mobility](sections/shared-mobility/overview.md) — pages 23–24
+- [SMP Outcomes: A Reflection on the Impacts of SMP Implementation To Date](sections/smp-outcomes-a-reflection-on-the-impacts-of-smp-implementation-to-date/) — pages 25–25
+  - [SMP Outcomes: A Reflection on the Impacts of SMP Implementation To Date](sections/smp-outcomes-a-reflection-on-the-impacts-of-smp-implementation-to-date/overview.md) — pages 25–25
+- [Looking Ahead – SMP Action Plan 2026-2030](sections/looking-ahead-smp-action-plan-2026-2030/) — pages 26–26
+  - [Looking Ahead – SMP Action Plan 2026-2030](sections/looking-ahead-smp-action-plan-2026-2030/overview.md) — pages 26–26
+- [Annex 1 – Delivery to date of SMP Actions](sections/annex-1-delivery-to-date-of-smp-actions/) — pages 27–57
+  - [Annex 1 – Delivery to date of SMP Actions](sections/annex-1-delivery-to-date-of-smp-actions/overview.md) — pages 27–35
+  - [On Schedule](sections/annex-1-delivery-to-date-of-smp-actions/on-schedule.md) — pages 36–50
+  - [At Risk of Delay](sections/annex-1-delivery-to-date-of-smp-actions/at-risk-of-delay.md) — pages 51–57
