@@ -23,6 +23,7 @@ from steps.detect_structure.process import (
     reading_order_lines,
     parse_toc,
     process,
+    running_header_leads,
     running_header_texts,
     score_occurrence,
     validate_split,
@@ -1000,3 +1001,50 @@ def test_split_number_keeps_four_level_numbers_whole():
     assert _split_number("6. Public Consultation") == ("6", "Public Consultation")
     # A five-level number is left whole rather than split mid-number.
     assert _split_number("1.2.3.4.5 Too deep") == (None, "1.2.3.4.5 Too deep")
+
+
+# --- supplement_dedupe -----------------------------------------------------
+
+def test_supplement_dedupe_keeps_repeated_numbered_introductions():
+    """Real NIFTI pages 13 and 21 each open with `N.1 | Introduction`. A single
+    TOC `Introduction` must not drop either one."""
+    pages = load_pages("pages_nifti_intro.json")
+    entries = [{"title": "Introduction"}]
+
+    nodes = _supplement_numbered_nodes(pages, 10.0, [], entries, set())
+
+    intros = [(n.number, n.title, n.start_page) for n in nodes if n.title == "Introduction"]
+    assert intros == [("1.1", "Introduction", 13), ("2.1", "Introduction", 21)]
+
+
+def test_supplement_dedupe_does_not_duplicate_the_toc_matched_heading():
+    pages = load_pages("pages_nifti_intro.json")
+    nodes = from_numbering(pages, 10.0)
+    first = next(n for n in nodes if n.start_page == 13 and n.title == "Introduction")
+    base = [Node(**{**first.__dict__})]
+
+    out = _supplement_numbered_nodes(pages, 10.0, base, [{"title": "Introduction"}], set())
+
+    assert [n.start_page for n in out if n.title == "Introduction"] == [13, 21]
+
+
+# --- toc_separate_number_running -------------------------------------------
+
+def test_toc_separate_number_running_footer_is_not_a_title_line():
+    """Real cycleconnects page 2: `6.` + `Next Steps ....` is the last entry, and
+    the footer (`Prepared for: …`, `AECOM`) follows it in reading order."""
+    toc = load_pages("pages_cycleconnects_toc.json")[0]
+    furniture = toc["spans"][:6]  # running header + footer spans
+    fillers = [page([{**s, "block": s["block"], "line": s["line"]} for s in furniture]
+                    + [span("Body text.", size=10.0, y0=300.0, block=9)], number=n)
+               for n in range(10, 19)]
+    pages = [toc] + fillers
+    running = running_header_texts(pages)
+    leads = running_header_leads(pages)
+
+    entries, _flags = _parse_toc_page(toc, running, leads)
+    titles = [e["title"] for e in entries]
+
+    assert len(entries) == 6
+    assert titles[5] == "Next Steps"
+    assert not any("Prepared for" in t or "AECOM" in t for t in titles)

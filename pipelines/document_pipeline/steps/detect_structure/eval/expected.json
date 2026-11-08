@@ -96,12 +96,12 @@
     "legacy_issues": 1,
     "toc_fired": true,
     "toc_method": "toc",
-    "toc_nodes": 11,
+    "toc_nodes": 13,
     "toc_issues": 0,
     "entry_count": 16,
     "matched_count": 11,
     "match_rate": 0.688,
-    "slug_preserved": 3,
+    "slug_preserved": 5,
     "slug_total": 5
   },
   {
@@ -111,12 +111,12 @@
     "legacy_issues": 4,
     "toc_fired": true,
     "toc_method": "toc",
-    "toc_nodes": 52,
+    "toc_nodes": 62,
     "toc_issues": 0,
     "entry_count": 27,
     "matched_count": 18,
     "match_rate": 0.72,
-    "slug_preserved": 40,
+    "slug_preserved": 50,
     "slug_total": 61
   },
   {
@@ -186,12 +186,12 @@
     "legacy_issues": 13,
     "toc_fired": true,
     "toc_method": "toc",
-    "toc_nodes": 60,
+    "toc_nodes": 64,
     "toc_issues": 0,
     "entry_count": 32,
     "matched_count": 29,
     "match_rate": 0.906,
-    "slug_preserved": 40,
+    "slug_preserved": 41,
     "slug_total": 52
   },
   {
@@ -216,12 +216,12 @@
     "legacy_issues": 0,
     "toc_fired": true,
     "toc_method": "toc",
-    "toc_nodes": 58,
+    "toc_nodes": 59,
     "toc_issues": 0,
     "entry_count": 36,
     "matched_count": 24,
     "match_rate": 0.667,
-    "slug_preserved": 47,
+    "slug_preserved": 48,
     "slug_total": 49
   },
   {
@@ -276,12 +276,12 @@
     "legacy_issues": 0,
     "toc_fired": true,
     "toc_method": "toc",
-    "toc_nodes": 5,
+    "toc_nodes": 6,
     "toc_issues": 0,
-    "entry_count": 5,
-    "matched_count": 5,
+    "entry_count": 6,
+    "matched_count": 6,
     "match_rate": 1.0,
-    "slug_preserved": 5,
+    "slug_preserved": 6,
     "slug_total": 14
   },
   {
@@ -321,12 +321,12 @@
     "legacy_issues": 18,
     "toc_fired": true,
     "toc_method": "toc",
-    "toc_nodes": 37,
+    "toc_nodes": 44,
     "toc_issues": 0,
     "entry_count": 43,
     "matched_count": 35,
     "match_rate": 0.833,
-    "slug_preserved": 29,
+    "slug_preserved": 36,
     "slug_total": 45
   },
   {

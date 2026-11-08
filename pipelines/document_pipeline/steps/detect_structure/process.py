@@ -726,6 +726,11 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
                 nt = nxt.text.strip()
                 if re.fullmatch(r"\d{1,3}", nt) or normalize_heading_text(nt) in TOC_TITLES:
                     break
+                # Footer/header lines are page furniture, not title lines.
+                if (normalize_heading_text(nt) in running
+                        or normalize_heading_text(nxt.lead) in running_leads):
+                    i += 1
+                    continue
                 if re.fullmatch(r"\d{1,2}(?:\.\d{1,2}){0,2}\.?", nt) and len(nt) <= 7:
                     break
                 title_parts.append(nt)
@@ -944,15 +949,17 @@ def _below_score_floor(occ: dict, body: float) -> bool:
 
 def _supplement_numbered_nodes(pages, body, base_nodes, entries, running_headers,
                                toc_pages=frozenset()):
-    """Add legacy numbered headings not already in the TOC set. The font
+    """Add legacy numbered headings not already among the base nodes. The font
     strategy is not used — it is the low-precision over-splitter this strategy
     replaces, and re-adding its nodes reintroduces the junk. TOC pages are
     excluded so a TOC line cannot re-enter as a body heading."""
-    toc_set = {normalize_heading_text(e["title"]) for e in entries}
     claimed = {(n.start_page, round(n.start_y, 1)) for n in base_nodes}
     extra = []
+    seen = {(normalize_heading_text(n.title), n.start_page) for n in base_nodes}
     for node in from_numbering(pages, body, toc_pages):
-        if normalize_heading_text(node.title) in toc_set:
+        # Skip only a duplicate of a node already present (same title, same
+        # page); a title merely listed in the TOC may recur as `N.1 Introduction`.
+        if (normalize_heading_text(node.title), node.start_page) in seen:
             continue
         if normalize_heading_text(node.title) in running_headers:
             continue
