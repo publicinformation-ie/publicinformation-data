@@ -866,6 +866,82 @@ def test_outline_resolve_positions_uses_title_line_y_and_reports_misses():
     assert problems[0]["context"] == {"title": "Missing", "page": 5}
 
 
+def _craft_pages():
+    return load_pages("pages_recreational_craft_outline.json")
+
+
+def test_outline_resolve_chains_three_lines_and_skips_the_running_header():
+    outline = [{"level": 3, "title": "1.2.3 The International Convention for the prevention of pollution from ships (MARPOL)", "page": 40}]
+    resolved, problems = resolve_outline_positions(outline, _craft_pages())
+    assert problems == []
+    assert round(resolved[0]["y"], 1) == 39.0 and resolved[0]["page"] == 40
+
+
+def test_outline_resolve_chains_a_three_line_title_on_page_65():
+    outline = [{"level": 2, "title": "1.8.1 Merchant Shipping (Salvage and Wreck) Act 1993 \u2013 Wrecks and stranded vessels", "page": 65}]
+    resolved, problems = resolve_outline_positions(outline, _craft_pages())
+    assert problems == []
+    assert round(resolved[0]["y"], 1) == 478.4
+
+
+def test_outline_resolve_keeps_a_numeric_continuation_line_as_title_text():
+    # The second line starts `13.7 metres`, which must not be read as a section number.
+    outline = [{"level": 4, "title": "1.5.2.2 Recreational craft less than 13.7 metres in length", "page": 62}]
+    resolved, problems = resolve_outline_positions(outline, _craft_pages())
+    assert problems == []
+    assert round(resolved[0]["y"], 1) == 39.6
+
+
+def test_outline_resolve_falls_back_to_the_previous_page_on_an_exact_miss():
+    outline = [{"level": 1, "title": "1.8 Other legislation and considerations", "page": 66},
+               {"level": 2, "title": "1.8.1 Merchant Shipping (Salvage and Wreck) Act 1993 \u2013 Wrecks and stranded vessels", "page": 66}]
+    resolved, problems = resolve_outline_positions(outline, _craft_pages())
+    assert problems == []
+    assert (resolved[0]["page"], round(resolved[0]["y"], 1)) == (65, 446.3)
+    assert (resolved[1]["page"], round(resolved[1]["y"], 1)) == (65, 478.4)
+
+
+def test_outline_resolve_never_moves_a_title_found_on_its_stated_page():
+    pages = _craft_pages()
+    outline = [{"level": 1, "title": "1.8 Other legislation and considerations", "page": 65}]
+    resolved, problems = resolve_outline_positions(outline, pages)
+    assert problems == [] and (resolved[0]["page"], round(resolved[0]["y"], 1)) == (65, 446.3)
+    # The same title present on both pages stays on the stated page.
+    twin = [{**pages[2], "number": 66, "spans": [dict(s) for s in pages[1]["spans"]]}]
+    outline = [{"level": 1, "title": "1.8 Other legislation and considerations", "page": 66}]
+    resolved, problems = resolve_outline_positions(outline, [pages[1], *twin])
+    assert problems == [] and resolved[0]["page"] == 66
+
+
+def test_outline_resolve_does_not_fall_back_on_a_partial_match():
+    outline = [{"level": 1, "title": "1.8 Other legislation and considerations and more", "page": 66},
+               {"level": 1, "title": "No such heading anywhere", "page": 66}]
+    resolved, problems = resolve_outline_positions(outline, _craft_pages())
+    assert [p["error_type"] for p in problems] == ["OutlineEntryUnresolved"] * 2
+    assert all(not r.get("y") and r["page"] == 66 for r in resolved)
+
+
+def test_outline_resolve_claims_two_column_headings_on_one_baseline():
+    pages = load_pages("pages_smp_progress_columns.json")
+    outline = [{"level": 1, "title": "SMP Leadership Group, Delivery Team, and Pathfinder Programme", "page": 10},
+               {"level": 2, "title": "Leadership Group", "page": 10},
+               {"level": 2, "title": "Delivery Team", "page": 10}]
+    resolved, problems = resolve_outline_positions(outline, pages)
+    assert problems == []
+    assert round(resolved[0]["y"], 1) == 63.7
+    assert [round(r["y"], 1) for r in resolved[1:]] == [228.9, 228.9]
+
+
+def test_outline_resolve_fallback_ignores_body_size_text_on_the_previous_page():
+    body = [span(f"ordinary body sentence number {i} here", size=10.0, y0=40.0 + 14 * i, index=i, line=i)
+            for i in range(12)]
+    body.append(span("Delivery Team", size=10.0, y0=300.0, index=50, line=50))
+    outline = [{"level": 2, "title": "Delivery Team", "page": 6}]
+    resolved, problems = resolve_outline_positions(outline, [page(body, number=5), page([], number=6)])
+    assert [p["error_type"] for p in problems] == ["OutlineEntryUnresolved"]
+    assert resolved[0]["page"] == 6 and not resolved[0].get("y")
+
+
 def test_filter_outline_drops_unusable_titles_and_reports_them():
     outline = [{"title": "Introduction", "page": 1}, {"title": "1.", "page": 2},
                {"title": "_Hlk25760943", "page": 3}, {"title": "", "page": 4},

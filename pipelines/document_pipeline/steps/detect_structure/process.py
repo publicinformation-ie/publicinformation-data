@@ -100,6 +100,8 @@ RIGHT_COLUMN_MIN_X_FRACTION = 0.5  # a bare number this far right is a page numb
 # pitch is ~1.1-1.3x). Lines on one baseline (pitch ~0, i.e. separate columns)
 # and lines further apart than this are never joined.
 HEADING_JOIN_MAX_GAP = 1.6
+# A bookmark title is matched against at most this many wrapped lines.
+OUTLINE_TITLE_MAX_LINES = 4
 HEADING_JOIN_MIN_GAP = 0.5      # below this pitch, two lines share a baseline
 # A heading can be emitted as two spans grouped into two "lines" on one
 # baseline (`Appendix C |` + `Mitigation and Monitoring Measures`): the second
@@ -396,15 +398,61 @@ def filter_outline(outline):
     return kept, problems
 
 
+def _line_key(page_no: int, line) -> tuple:
+    """Identity of a line for the `used` set. Includes x so two column headings
+    on one baseline are distinct lines."""
+    return (page_no, round(line.y0, 1), round(line.bbox[0]))
+
+
+def _find_title_line(page_no: int, page, want: str, used: set, min_size=None):
+    """The unclaimed line on `page` whose text, alone or joined with up to
+    OUTLINE_TITLE_MAX_LINES - 1 wrapped continuation lines, normalizes to
+    exactly `want`; None if there is none. Partial matches never count. With
+    `min_size`, the first line must also be larger than that and pass
+    `is_heading_candidate` (the previous-page fallback's guard against a short
+    title exactly matching a body-text line)."""
+    if page is None or not want:
+        return None
+    lines = reading_order_lines(page)
+    for line in lines:
+        if _line_key(page_no, line) in used:
+            continue
+        if min_size is not None and (line.size <= min_size or not is_heading_candidate(clean_title(line.text))):
+            continue
+        _, text = _split_number(clean_title(line.text))
+        joined = text
+        current = line
+        for _ in range(OUTLINE_TITLE_MAX_LINES):
+            got = normalize_heading_text(joined)
+            if got == want:
+                return line
+            if len(got) < 3 or not want.startswith(got):
+                break
+            nxt = _heading_continuation(current, lines)
+            if nxt is None:
+                break
+            current = lines[nxt]
+            # A continuation line is title text even when it starts with a
+            # number (`13.7 metres in length`), so it is not number-split.
+            joined = f"{joined} {clean_title(current.text)}"
+    return None
+
+
 def resolve_outline_positions(outline, pages: list):
     """Fill in `y` for outline entries that name only a page.
 
     Many PDF bookmarks point at a page, not a position on it, so every entry on
     a page would otherwise start at y=0 and the sections between them could not
     be separated. For each such entry, find the line on that page whose text is
-    the entry's title (optionally with its wrapped continuation line) and use
-    that line's top. An entry whose title cannot be located is left unchanged
-    and reported, never guessed; the validation gate then flags the tree.
+    the entry's title, joined with up to OUTLINE_TITLE_MAX_LINES - 1 wrapped
+    continuation lines (a differently sized running header between them is
+    skipped), and use that line's top. Some producers (InDesign `/Fit`
+    destinations) point one page after the heading; only when the title has no
+    exact match on the stated page is the previous page tried, under the same
+    exact-match rule and only for a line larger than the body size (so a short
+    title cannot match body text), and a match there moves the entry's `page`. An entry
+    whose title cannot be located is left unchanged and reported, never
+    guessed; the validation gate then flags the tree.
 
     Returns `(outline, problems)`; problems are `OutlineEntryUnresolved` dicts.
     """
@@ -419,25 +467,12 @@ def resolve_outline_positions(outline, pages: list):
         page_no = int(entry.get("page", 1))
         _, title = _split_number(str(entry.get("title", "")))
         want = normalize_heading_text(clean_title(title))
-        found = None
-        page = by_page.get(page_no)
-        if page is not None and want:
-            lines = reading_order_lines(page)
-            for line in lines:
-                if (page_no, round(line.y0, 1)) in used:
-                    continue
-                _, text = _split_number(clean_title(line.text))
-                got = normalize_heading_text(text)
-                if got == want:
-                    found = line
-                    break
-                if want.startswith(got) and len(got) >= 3:
-                    nxt = _heading_continuation(line, lines)
-                    if nxt is not None:
-                        _, more = _split_number(clean_title(lines[nxt].text))
-                        if normalize_heading_text(f"{text} {more}") == want:
-                            found = line
-                            break
+        found_page = page_no
+        found = _find_title_line(page_no, by_page.get(page_no), want, used)
+        if found is None and page_no > 1:
+            found_page = page_no - 1
+            found = _find_title_line(found_page, by_page.get(found_page), want, used,
+                                     min_size=body_size(pages))
         if found is None:
             resolved.append(entry)
             problems.append({
@@ -446,8 +481,8 @@ def resolve_outline_positions(outline, pages: list):
                 "context": {"title": entry.get("title"), "page": page_no},
             })
             continue
-        used.add((page_no, round(found.y0, 1)))
-        resolved.append({**entry, "y": found.y0})
+        used.add(_line_key(found_page, found))
+        resolved.append({**entry, "page": found_page, "y": found.y0})
     return resolved, problems
 
 
