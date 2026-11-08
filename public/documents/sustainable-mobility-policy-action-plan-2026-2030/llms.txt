@@ -1,20 +1,26 @@
 # Sustainable Mobility Policy Action Plan 2026-2030
 
-> Department of Transport — 5 chapters, 7 sections, 42 source pages.
+> Department of Transport — 6 chapters, 12 sections, 42 source pages.
 > Source: https://assets.gov.ie/static/documents/7da21a41/Sustainable_Mobility_Policy_Action_Plan_2026-2030.pdf
 > Full text: full.md
 
 ## Chapters
 
-- [Front Matter](sections/front-matter/) — pages 1–1
-  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–1
-- [”](sections/section/) — pages 5–6
-  - [”](sections/section/overview.md) — pages 5–5
-  - [Collaborative Approach and Alignment with Wider Policy](sections/section/alignment-with-wider-policy.md) — pages 6–6
-- [Table of contents](sections/table-of-contents/) — pages 3–3
-  - [Table of contents](sections/table-of-contents/overview.md) — pages 3–3
-- [Minister’s Foreword](sections/minister-s-foreword/) — pages 4–4
-  - [Minister’s Foreword](sections/minister-s-foreword/overview.md) — pages 4–4
-- [”](sections/section-2/) — pages 7–42
-  - [”](sections/section-2/overview.md) — pages 7–7
-  - [Plan 2026-2030](sections/section-2/plan-2026-2030.md) — pages 8–42
+- [Front Matter](sections/front-matter/) — pages 1–4
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–4
+- [Collaborative Approach and Alignment with Wider Policy](sections/alignment-with-wider-policy/) — pages 6–6
+  - [Collaborative Approach and Alignment with Wider Policy](sections/alignment-with-wider-policy/overview.md) — pages 6–6
+- [2 Minister’s Foreword](sections/2-minister-s-foreword/) — pages 5–5
+  - [2 Minister’s Foreword](sections/2-minister-s-foreword/overview.md) — pages 5–5
+- [Abbreviations](sections/abbreviations/) — pages 39–42
+  - [Abbreviations](sections/abbreviations/overview.md) — pages 39–42
+- [4 Collaborative Approach](sections/4-collaborative-approach/) — pages 7–8
+  - [4 Collaborative Approach](sections/4-collaborative-approach/overview.md) — pages 7–8
+- [6 Governance of the SMP Action Plan 2026-2030](sections/6-governance-of-the-smp-action-plan-2026-2030/) — pages 9–38
+  - [Goal 1: Improve mobility safety](sections/6-governance-of-the-smp-action-plan-2026-2030/goal-1-improve-mobility-safety.md) — pages 9–11
+  - [Goal 5: Encourage people to choose sustainable mobility over the private car.](sections/6-governance-of-the-smp-action-plan-2026-2030/goal-5-encourage-people-to-choose-sustainable-mobility-over-the-private-car.md) — pages 20–32
+  - [9 Goal 2: Decarbonise public transport](sections/6-governance-of-the-smp-action-plan-2026-2030/9-goal-2-decarbonise-public-transport.md) — pages 12–13
+  - [11 Goal 3: Expand availability of sustainable mobility in metropolitan areas.](sections/6-governance-of-the-smp-action-plan-2026-2030/11-goal-3-expand-availability-of-sustainable-mobility-in-metropolitan-areas.md) — pages 14–17
+  - [15 Goal 4: Expand availability of sustainable mobility in regional and rural areas.](sections/6-governance-of-the-smp-action-plan-2026-2030/15-goal-4-expand-availability-of-sustainable-mobility-in-regional-and-rural-areas.md) — pages 18–19
+  - [30 Goal 8: Promote sustainable mobility through research and citizen engagement.](sections/6-governance-of-the-smp-action-plan-2026-2030/30-goal-8-promote-sustainable-mobility-through-research-and-citizen-engagement.md) — pages 33–36
+  - [34 Goal 9: Better integrate land use and transport planning at all levels.](sections/6-governance-of-the-smp-action-plan-2026-2030/34-goal-9-better-integrate-land-use-and-transport-planning-at-all-levels.md) — pages 37–38

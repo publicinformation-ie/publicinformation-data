@@ -1,49 +1,62 @@
 # Electric Vehicle Charging Infrastructure Strategy 2022-2025
 
-> Department of Transport — 9 chapters, 49 sections, 92 source pages.
+> Department of Transport — 13 chapters, 58 sections, 92 source pages.
 > Source: https://assets.gov.ie/static/documents/ev-infrastructure-strategy.pdf
 > Full text: full.md
 
 ## Chapters
 
-- [Front Matter](sections/front-matter/) — pages 1–17
-  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–17
-- [1.1 National and international](sections/1-1-national-and-international/) — pages 17–22
-  - [1.1 National and international](sections/1-1-national-and-international/overview.md) — pages 17–17
-  - [1.1.1 Climate Action Plan](sections/1-1-national-and-international/1-1-1-climate-action-plan.md) — pages 17–18
-  - [1.1.3 Alternative Fuels Infrastructure](sections/1-1-national-and-international/1-1-3-alternative-fuels-infrastructure.md) — pages 18–18
-  - [1.1.2 EU ‘Fit for 55’](sections/1-1-national-and-international/1-1-2-eu-fit-for-55.md) — pages 18–19
-  - [1.1.6 National Sustainable Mobility Policy](sections/1-1-national-and-international/1-1-6-national-sustainable-mobility-policy.md) — pages 19–19
-  - [1.1.4 Renewable Energy Directive](sections/1-1-national-and-international/1-1-4-renewable-energy-directive.md) — pages 19–19
-  - [1.1.5 National Development Plan](sections/1-1-national-and-international/1-1-5-national-development-plan.md) — pages 19–19
-  - [1.1.7 Public Sector Leadership](sections/1-1-national-and-international/1-1-7-public-sector-leadership.md) — pages 20–20
-  - [1.1.8 Shared Island](sections/1-1-national-and-international/1-1-8-shared-island.md) — pages 20–22
-- [2.1 Principle 1: EV infrastructure](sections/2-1-principle-1-ev-infrastructure/) — pages 22–23
-  - [2.1 Principle 1: EV infrastructure](sections/2-1-principle-1-ev-infrastructure/overview.md) — pages 22–23
-- [2.3 Principle 3: For the majority](sections/2-3-principle-3-for-the-majority/) — pages 23–24
-  - [2.3 Principle 3: For the majority](sections/2-3-principle-3-for-the-majority/overview.md) — pages 23–24
-- [2.4 Principle 4: Options will be](sections/2-4-principle-4-options-will-be/) — pages 24–25
-  - [2.4 Principle 4: Options will be](sections/2-4-principle-4-options-will-be/overview.md) — pages 24–25
-- [2.5 Principle 5: Across the EV](sections/2-5-principle-5-across-the-ev/) — pages 25–27
-  - [2.5 Principle 5: Across the EV](sections/2-5-principle-5-across-the-ev/overview.md) — pages 25–27
-- [3.1 Demand on the system and expansion of EV charging](sections/3-1-demand-on-the-system-and-expansion-of-ev-charging/) — pages 28–30
-  - [3.1 Demand on the system and expansion of EV charging](sections/3-1-demand-on-the-system-and-expansion-of-ev-charging/overview.md) — pages 28–30
-- [23 kW-350 kW](sections/23-kw-350-kw/) — pages 31–49
+- [Front Matter](sections/front-matter/) — pages 1–5
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–5
+- [Acronyms and Definitions](sections/acronyms-and-definitions/) — pages 6–9
+  - [Acronyms and Definitions](sections/acronyms-and-definitions/overview.md) — pages 6–9
+- [Minister’s Foreword](sections/minister-s-foreword/) — pages 10–10
+  - [Minister’s Foreword](sections/minister-s-foreword/overview.md) — pages 10–10
+- [Introduction](sections/introduction/) — pages 11–12
+  - [Introduction](sections/introduction/overview.md) — pages 11–12
+- [User Needs](sections/user-needs/) — pages 13–14
+  - [User Needs](sections/user-needs/overview.md) — pages 13–14
+- [Strategy structure](sections/strategy-structure/) — pages 15–16
+  - [Strategy structure](sections/strategy-structure/overview.md) — pages 15–16
+- [Policy and Context](sections/policy-and-context/) — pages 16–21
+  - [1.1 National and international policy context](sections/policy-and-context/1-1-national-and-international-policy-context.md) — pages 17–18
+  - [1.1.3 Alternative Fuels Infrastructure Regulation](sections/policy-and-context/1-1-3-alternative-fuels-infrastructure-regulation.md) — pages 18–18
+  - [1.1.2 EU ‘Fit for 55’](sections/policy-and-context/1-1-2-eu-fit-for-55.md) — pages 18–19
+  - [1.1.6 National Sustainable Mobility Policy](sections/policy-and-context/1-1-6-national-sustainable-mobility-policy.md) — pages 19–19
+  - [1.1.4 Renewable Energy Directive](sections/policy-and-context/1-1-4-renewable-energy-directive.md) — pages 19–19
+  - [1.1.5 National Development Plan](sections/policy-and-context/1-1-5-national-development-plan.md) — pages 19–19
+  - [1.1.7 Public Sector Leadership](sections/policy-and-context/1-1-7-public-sector-leadership.md) — pages 20–20
+  - [1.1.8 Shared Island](sections/policy-and-context/1-1-8-shared-island.md) — pages 20–21
+  - [Policy and Context](sections/policy-and-context/overview.md) — pages 16–17
+- [Fundamental Principles](sections/fundamental-principles/) — pages 21–27
+  - [2.1 Principle 1: EV infrastructure](sections/fundamental-principles/2-1-principle-1-ev-infrastructure.md) — pages 22–23
+  - [2.3 Principle 3: For the majority](sections/fundamental-principles/2-3-principle-3-for-the-majority.md) — pages 23–24
+  - [2.4 Principle 4: Options will be provided for those who cannot charge at home](sections/fundamental-principles/2-4-principle-4-options-will-be-provided-for-those-who-cannot-charge-at-home.md) — pages 24–25
+  - [2.5 Principle 5: Across the EV](sections/fundamental-principles/2-5-principle-5-across-the-ev.md) — pages 25–27
+  - [Fundamental Principles](sections/fundamental-principles/overview.md) — pages 21–22
+- [Electricity Network Demand](sections/electricity-network-demand/) — pages 27–30
+  - [3.1 Demand on the system and expansion of EV charging](sections/electricity-network-demand/3-1-demand-on-the-system-and-expansion-of-ev-charging.md) — pages 28–30
+  - [Electricity Network Demand](sections/electricity-network-demand/overview.md) — pages 27–27
+- [Existing & Future Technologies](sections/existing-future-technologies/) — pages 34–45
+  - [4.1 Innovating for the future: EV](sections/existing-future-technologies/4-1-innovating-for-the-future-ev.md) — pages 35–35
+  - [4.2 Case studies](sections/existing-future-technologies/4-2-case-studies.md) — pages 35–37
+  - [4.2.1 Case Study 1: On-Street Kerbside Charge Points in European Cities](sections/existing-future-technologies/4-2-1-case-study-1-on-street-kerbside-charge-points-in-european-cities.md) — pages 37–39
+  - [4.2.2 Case Study 2: Vehicle-to-Grid Charging System in Oslo Car Park](sections/existing-future-technologies/4-2-2-case-study-2-vehicle-to-grid-charging-system-in-oslo-car-park.md) — pages 39–39
+  - [4.2.3 Case Study 3: Wireless Charging in Rotterdam](sections/existing-future-technologies/4-2-3-case-study-3-wireless-charging-in-rotterdam.md) — pages 40–41
+  - [4.2.4 Case Study 4: Planning for Dublin’s EV Needs: The Dublin Local](sections/existing-future-technologies/4-2-4-case-study-4-planning-for-dublin-s-ev-needs-the-dublin-local.md) — pages 41–42
+  - [4.2.5 Case Study 5: Rural EV Infrastructure and Innovation: The Dingle](sections/existing-future-technologies/4-2-5-case-study-5-rural-ev-infrastructure-and-innovation-the-dingle.md) — pages 42–43
+  - [4.2.6 Case Study 6: Fingal County Council 'e-Mobility Hubs'](sections/existing-future-technologies/4-2-6-case-study-6-fingal-county-council-e-mobility-hubs.md) — pages 43–44
+  - [4.2.7 Case Study 7: En-Route High-Power Charging & Charging Pools in](sections/existing-future-technologies/4-2-7-case-study-7-en-route-high-power-charging-charging-pools-in.md) — pages 44–45
+  - [Existing & Future Technologies](sections/existing-future-technologies/overview.md) — pages 34–35
+- [Infrastructure](sections/infrastructure/) — pages 46–49
+  - [5.1 Infrastructure Designed for](sections/infrastructure/5-1-infrastructure-designed-for.md) — pages 46–46
+  - [5.2 What will be delivered](sections/infrastructure/5-2-what-will-be-delivered.md) — pages 46–48
+  - [5.3 Risks and Dependencies](sections/infrastructure/5-3-risks-and-dependencies.md) — pages 46–46
+  - [5.5 National Publicly-Accessible](sections/infrastructure/5-5-national-publicly-accessible.md) — pages 49–49
+  - [Infrastructure](sections/infrastructure/overview.md) — pages 46–46
+- [23 kW-350 kW](sections/23-kw-350-kw/) — pages 31–34
   - [3.2 Managing energy demand and grid capacity](sections/23-kw-350-kw/3-2-managing-energy-demand-and-grid-capacity.md) — pages 32–32
-  - [3.3 Grid development and resilience for delivery of higher-speed](sections/23-kw-350-kw/3-3-grid-development-and-resilience-for-delivery-of-higher-speed.md) — pages 33–35
-  - [4.1 Innovating for the future: EV](sections/23-kw-350-kw/4-1-innovating-for-the-future-ev.md) — pages 35–35
-  - [4.2 Case studies](sections/23-kw-350-kw/4-2-case-studies.md) — pages 35–37
-  - [4.2.1 Case Study 1: On-Street Kerbside Charge Points in European Cities](sections/23-kw-350-kw/4-2-1-case-study-1-on-street-kerbside-charge-points-in-european-cities.md) — pages 37–39
-  - [4.2.2 Case Study 2: Vehicle-to-Grid Charging System in Oslo Car Park](sections/23-kw-350-kw/4-2-2-case-study-2-vehicle-to-grid-charging-system-in-oslo-car-park.md) — pages 39–39
-  - [4.2.3 Case Study 3: Wireless Charging in Rotterdam](sections/23-kw-350-kw/4-2-3-case-study-3-wireless-charging-in-rotterdam.md) — pages 40–41
-  - [4.2.4 Case Study 4: Planning for Dublin’s EV Needs: The Dublin Local](sections/23-kw-350-kw/4-2-4-case-study-4-planning-for-dublin-s-ev-needs-the-dublin-local.md) — pages 41–42
-  - [4.2.5 Case Study 5: Rural EV Infrastructure and Innovation: The Dingle](sections/23-kw-350-kw/4-2-5-case-study-5-rural-ev-infrastructure-and-innovation-the-dingle.md) — pages 42–43
-  - [4.2.6 Case Study 6: Fingal County Council 'e-Mobility Hubs'](sections/23-kw-350-kw/4-2-6-case-study-6-fingal-county-council-e-mobility-hubs.md) — pages 43–44
-  - [4.2.7 Case Study 7: En-Route High-Power Charging & Charging Pools in](sections/23-kw-350-kw/4-2-7-case-study-7-en-route-high-power-charging-charging-pools-in.md) — pages 44–46
-  - [5.1 Infrastructure Designed for](sections/23-kw-350-kw/5-1-infrastructure-designed-for.md) — pages 46–46
-  - [5.2 What will be delivered](sections/23-kw-350-kw/5-2-what-will-be-delivered.md) — pages 46–48
-  - [5.3 Risks and Dependencies](sections/23-kw-350-kw/5-3-risks-and-dependencies.md) — pages 46–46
-  - [5.5 National Publicly-Accessible](sections/23-kw-350-kw/5-5-national-publicly-accessible.md) — pages 49–49
+  - [3.3 Grid development and resilience for delivery of higher-speed](sections/23-kw-350-kw/3-3-grid-development-and-resilience-for-delivery-of-higher-speed.md) — pages 33–34
   - [23 kW-350 kW](sections/23-kw-350-kw/overview.md) — pages 31–31
 - [23 kW-350 kW](sections/23-kw-350-kw-2/) — pages 50–92
   - [5.6 Existing Exchequer supports](sections/23-kw-350-kw-2/5-6-existing-exchequer-supports.md) — pages 50–50
