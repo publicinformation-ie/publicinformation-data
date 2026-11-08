@@ -6,17 +6,13 @@ Source: https://www.nationaltransport.ie/wp-content/uploads/2023/01/2022-GDA-Cyc
 
 ### Front Matter
 
-*Pages 1–1*
+*Pages 1–3*
 
 ![Figure from page 1](assets/p001-f01.webp)
 
 *Figure from page 1*
 
-## Cycle Network
-
-### Cycle Network
-
-*Pages 2–3*
+## 2022 Greater Dublin Area Cycle Network
 
 Table of Contents
 
@@ -112,6 +108,8 @@ Ashbourne
 
 *Figure from page 3*
 
+## DUBLIN METROPOLITAN AREA
+
 ### DUBLIN METROPOLITAN AREA
 
 *Pages 4–4*
@@ -174,9 +172,11 @@ HIGHFIELD ROAD
 
 R114
 
+## DUBLIN CITY CENTRE
+
 ### DUBLIN CITY CENTRE
 
-*Pages 5–5*
+*Pages 5–6*
 
 R148
 
@@ -226,10 +226,6 @@ THIRD AVENUE
 
 COOKSTOWN WAY
 
-### DUBLIN MID WEST
-
-*Pages 6–6*
-
 BOND ROAD
 
 OLD AIRPORT ROAD
@@ -274,9 +270,11 @@ NORTH STRAND ROAD
 
 WEST ROAD
 
+## DUBLIN NORTH CENTRAL
+
 ### DUBLIN NORTH CENTRAL
 
-*Pages 7–7*
+*Pages 7–9*
 
 MALAHIDE ROAD
 
@@ -338,17 +336,9 @@ CARRICKBRACK ROAD
 
 *Figure from page 7*
 
-### DUBLIN NORTH EAST
-
-*Pages 8–8*
-
 R121
 
 R121
-
-### Clonee
-
-*Pages 8–8*
 
 WESTWAY
 
@@ -383,10 +373,6 @@ M50
 R148
 
 N4
-
-### DUBLIN NORTH WEST
-
-*Pages 9–9*
 
 LEA ROAD
 
@@ -436,9 +422,11 @@ LEOPARDSTOWN ROAD
 
 KILGOBBIN ROAD
 
+## DUBLIN SOUTH CENTRAL
+
 ### DUBLIN SOUTH CENTRAL
 
-*Pages 10–10*
+*Pages 10–12*
 
 ASH GROVE
 
@@ -469,10 +457,6 @@ R118
 BRIDES GLEN ROAD
 
 PUCK'S CASTLE LANE
-
-### DUBLIN SOUTH EAST
-
-*Pages 11–11*
 
 LONG MILE ROAD
 
@@ -508,10 +492,6 @@ OAKDALE PARK
 
 OLDCOURT ROAD
 
-### DUBLIN SOUTH WEST
-
-*Pages 12–12*
-
 BALLINAHEESE
 
 SHELTON
@@ -526,9 +506,11 @@ BALLYRUSH
 
 R747
 
+## Arklow
+
 ### Arklow
 
-*Pages 12–12*
+*Pages 12–13*
 
 ST PETER'S PLACE
 
@@ -558,17 +540,9 @@ SPRINGFIELD
 
 KNOCKGREANY
 
-### l
-
-*Pages 12–12*
-
 ![Figure from page 12](assets/p012-t01.webp)
 
 *Figure from page 12*
-
-### ARKLOW
-
-*Pages 13–13*
 
 WILLSGROVE
 
@@ -582,9 +556,11 @@ COIS BHEARÚ
 
 WOODSTOCK STREET
 
+## Athy
+
 ### Athy
 
-*Pages 13–13*
+*Pages 13–15*
 
 "D
 
@@ -608,10 +584,6 @@ SHANGANAGH BEG
 
 GRANGEROSNOLVAN
 
-### Ballyroe
-
-*Pages 13–13*
-
 1:30,000
 
 310 620
@@ -620,15 +592,7 @@ GRANGEROSNOLVAN
 | --- | --- | --- |
 | Title: 2022 GREATER DUBLIN AREA BLIN AREA CYCLE NETWORK PLAN - PLAN ATHY | "D Proposed Crossing Points Inter Urban Legend: Primary Radial Feeder Primary Orbital Greenway - Leisure Secondary Further Study Greenway - Utility |  |
 
-### ATHY
-
-*Pages 14–14*
-
 DROGHEDA STREET
-
-### Balbriggan
-
-*Pages 14–14*
 
 COVETOWN
 
@@ -646,23 +610,13 @@ BOWHILL
 
 INCH
 
-### Balrothery
-
-*Pages 14–14*
+#### Balrothery
 
 KNOCK
-
-### Skerries
-
-*Pages 14–14*
 
 | JORDANSTOWN TOOMAN KINOUD | BALDONGAN BALCUNNIN | R128 Esri, |
 | --- | --- | --- |
 | Project: Title: 2022 GRE 2022 GREATER DUBLIN AREA CYCLE CYCLE NETWORK PLAN BALBRIG | "D Proposed Crossing Points Inter Urban Legend: Primary Radial Feeder ATER DUBLIN AREA Primary Orbital Greenway NETWORK PLAN - Secondary Further Stu GAN & SKERRIES Greenway - Utility | - Leisure dy |
-
-### BALBRIGGAN & SKERRIES
-
-*Pages 15–15*
 
 GREENMOUNT
 
@@ -672,19 +626,17 @@ REDBOG
 
 R759
 
-### Manor Kilbride
-
-*Pages 15–15*
-
 GLEN VIEW
 
 ASHTON
 
 BALLINASCULLOGE
 
+## Blessington
+
 ### Blessington
 
-*Pages 15–15*
+*Pages 15–16*
 
 R410
 
@@ -702,27 +654,15 @@ KILBEG
 | --- | --- | --- |
 | GREATER DUBLIN AREA LE NETWORK PLAN | Title: 2022 GREATER DUBLIN AREA CYCLE NETWORK PLAN - BLESSINGTON | "D Proposed Crossing Points Inter Urban Legend: Primary Radial Feeder Primary Orbital Greenway - Leisure Secondary Further Study Greenway - Utility |
 
-### BLESSINGTON
-
-*Pages 16–16*
-
 CASTLEGATE
 
 CRINKEN LANE
 
 QUARRY ROAD
 
-### cullen
-
-*Pages 16–16*
-
 FERNDALE ROAD
 
 THORNHILL ROAD
-
-### Bray
-
-*Pages 16–16*
 
 R918
 
@@ -732,10 +672,6 @@ FASSAROE LANE
 
 DARGLE LANE
 
-### Enniskerry
-
-*Pages 16–16*
-
 KILBRIDE
 
 COOKSTOWN
@@ -744,9 +680,7 @@ R768
 
 KILCRONEY
 
-### Kilmacanogue
-
-*Pages 16–16*
+#### Kilmacanogue
 
 N11
 
@@ -754,7 +688,9 @@ ROCKY VALLEY
 
 N11
 
-### Rathcoffey
+## BRAY & ENNISKERRY
+
+### BRAY & ENNISKERRY
 
 *Pages 17–17*
 
@@ -770,17 +706,9 @@ BALLYNAGAPPAGH
 
 BALLYNAGAPPAGH
 
-### Clane
-
-*Pages 17–17*
-
 HOGANSTOWN LANE
 
 FIRMOUNT WEST
-
-### Prosperous
-
-*Pages 17–17*
 
 DAARS SOUTH
 
@@ -796,6 +724,8 @@ LANDENSTOWN
 | --- | --- | --- | --- |
 | Project: Tit 2022 GREATER DUBLIN AREA CYCLE NETWORK PLAN | "D Propos le: Legend: Primary 2022 GREATER DUBLIN AREA Primary CYCLE NETWORK PLAN - Second CLANE & PROSPEROUS Greenw | ed Crossing Points Inter Urban Radial Feeder Orbital Greenway - Leisure ary Further Study ay - Utility |  |
 
+## CLANE & PROSPEROUS
+
 ### CLANE & PROSPEROUS
 
 *Pages 18–18*
@@ -808,25 +738,13 @@ BODEEN
 
 CRAKENSTOWN
 
-### Ashbourne
-
-*Pages 18–18*
-
 TWENTYPARK
-
-### Dunshaughlin
-
-*Pages 18–18*
 
 SKRYNE ROAD
 
 R125
 
 SOMERVILLE
-
-### Ratoath
-
-*Pages 18–18*
 
 SEAGRAVE PARK
 
@@ -837,6 +755,8 @@ FAIRYHOUSE ROAD
 ![Figure from page 18](assets/p018-t01.webp)
 
 *Figure from page 18*
+
+## DUNSHAUGHLIN, RATHOATH & ASHBOURNE
 
 ### DUNSHAUGHLIN, RATHOATH & ASHBOURNE
 
@@ -896,6 +816,8 @@ BALLYCANON
 
 *Figure from page 19*
 
+## ENFIELD & KILCOCK
+
 ### ENFIELD & KILCOCK
 
 *Pages 20–20*
@@ -910,10 +832,6 @@ CLIFF ROAD
 
 STILEBAWN
 
-### Kilmacanogue
-
-*Pages 20–20*
-
 R761
 
 R760
@@ -925,10 +843,6 @@ BALLYBAWN
 ENNIS LANE
 
 BLACKLION
-
-### Greystones-Delgany
-
-*Pages 20–20*
 
 GLASNAMULLEN
 
@@ -946,13 +860,11 @@ CALARY UPPER
 
 CALARY UPPER
 
-### Kilpedder
-
-*Pages 20–20*
-
 | Kilpedder KILLINPARK SEAVIEW | KILQUADE SEA ROAD R761 Esri, |
 | --- | --- |
 | Title: Le 2022 GREATER DUBLIN AREA R DUBLIN AREA CYCLE NETWORK PLAN - ORK PLAN GREYSTONES & KILPEDDER | "D Proposed Crossing Points Inter Urban gend: Primary Radial Feeder Primary Orbital Greenway - Leisure Secondary Further Study Greenway - Utility |
+
+## GREYSTONES & KILPEDDER
 
 ### GREYSTONES & KILPEDDER
 
@@ -964,9 +876,11 @@ R147
 
 ROSSMEEN
 
+## Kells
+
 ### Kells
 
-*Pages 21–21*
+*Pages 21–22*
 
 MAUDLIN ROAD
 
@@ -998,23 +912,11 @@ BALRATH
 | --- | --- | --- | --- |
 | Project: 2022 GREATER DUBLIN A CYCLE NETWORK PLAN | Title: 2022 GREATER DUBLIN AREA REA CYCLE NETWORK PLAN - KELLS | "D Proposed Crossing Points Inter Urban Legend: Primary Radial Feeder Primary Orbital Greenway - Leisure Secondary Further Study Greenway - Utility |  |
 
-### KELLS
-
-*Pages 22–22*
-
 KILLICKABAWN
-
-### Kilpedder
-
-*Pages 22–22*
 
 SEAVIEW
 
 SUNNYBANK
-
-### Kilcoole
-
-*Pages 22–22*
 
 N11
 
@@ -1028,9 +930,7 @@ DUBLIN ROAD
 
 KILMACULLAGH
 
-### Newtownmountkennedy
-
-*Pages 22–22*
+#### Newtownmountkennedy
 
 ROSSMORE COURT
 
@@ -1041,6 +941,8 @@ MOUNTJOHN
 | CALLOWHILL | Esri, KILMARTIN R772 |
 | --- | --- |
 | Project: Title: 2022 GREATER DUBLIN AREA 2022 GREATER DUBLIN AREA CYCLE NETWORK PLAN - CYCLE NETWORK PLAN KILCOOLE & NEWTOWNMOUNTKEN | "D Proposed Crossing Points Inter Urban Legend: Primary Radial Feeder Primary Orbital Greenway - Leisure Secondary Further Study NEDY Greenway - Utility |
+
+## KILCOOLE & NEWTOWNMOUNTKENNEDY
 
 ### KILCOOLE & NEWTOWNMOUNTKENNEDY
 
@@ -1054,10 +956,6 @@ GREATCOMMON
 
 RAHENY
 
-### Rush
-
-*Pages 23–23*
-
 RATHMORE ROAD
 
 R128
@@ -1066,9 +964,7 @@ ROGERSTOWN LANE
 
 BALLEALLY WEST LANE
 
-### Donabate
-
-*Pages 23–23*
+#### Donabate
 
 TURVEY GREEN
 
@@ -1078,15 +974,13 @@ CHAPEL VIEW
 | --- | --- | --- | --- |
 | Project: Title: 2022 GREATER DUBLIN AREA CYCLE NETWORK PLAN | "D Proposed Cros Legend: Primary Radial 2022 GREATER DUBLIN AREA Primary Orbita CYCLE NETWORK PLAN - Secondary LUSK, RUSH & DONABATE Greenway - Ut | sing Points Inter Urban Feeder l Greenway - Leisure Further Study ility |  |
 
+## LUSK, RUSH & DONABATE
+
 ### LUSK, RUSH & DONABATE
 
 *Pages 24–24*
 
 TEMPLE WOOD
-
-### Leixlip
-
-*Pages 24–24*
 
 R449
 
@@ -1096,17 +990,9 @@ KILWOGAN LANE
 
 HAWTHORN VIEW
 
-### Ballyoulster
-
-*Pages 24–24*
-
 THE DRIVE
 
 DARA COURT
-
-### Celbridge
-
-*Pages 24–24*
 
 OLDTOWN ROAD
 
@@ -1118,9 +1004,11 @@ RIVERVIEW
 
 NEWTOWN
 
-### Kilt
+## MAYNOOTH, CELBRIDGE & LEIXLIP
 
-*Pages 25–25*
+### MAYNOOTH, CELBRIDGE & LEIXLIP
+
+*Pages 25–26*
 
 JOHNSTOWN
 
@@ -1128,17 +1016,11 @@ JOHNSTOWN
 
 R445
 
-### Johnstown
-
-*Pages 25–25*
+#### Johnstown
 
 FISHERY LANE
 
 KINGSFURZE
-
-### Naas
-
-*Pages 25–25*
 
 TIPPER WEST
 
@@ -1146,17 +1028,17 @@ TIPPER NORTH
 
 ### NAAS, SALLINS & KILL
 
-*Pages 26–26*
-
 SIMONSTOWN LANE
 
 FERNDALE
 
 ABBEYLANDS
 
+## Navan
+
 ### Navan
 
-*Pages 26–26*
+*Pages 26–27*
 
 SILVERLAWN
 
@@ -1182,21 +1064,11 @@ R161
 
 *Figure from page 26*
 
-### Milltown
-
-*Pages 27–27*
-
 HAWKFIELD
 
-### Newbridge
-
-*Pages 27–27*
+#### Newbridge
 
 BLACKBERRY LANE
-
-### Kildare
-
-*Pages 27–27*
 
 M7
 
@@ -1204,13 +1076,11 @@ M7
 
 CURRAGH
 
-### Maddenstown
-
-*Pages 27–27*
-
 | R415 | BROWNSTOWN LOWER |
 | --- | --- |
 | Project: 2022 GREATER DUBLIN A CYCLE NETWORK PLAN | "D Proposed Crossing Points Inter Urban Title: Legend: Primary Radial Feeder 2022 GREATER DUBLIN AREA REA Primary Orbital Greenway - CYCLE NETWORK PLAN - Secondary Further Stud NEWBRIDGE & KILDARE Greenway - Utility |
+
+## NEWBRIDGE & KILDARE
 
 ### NEWBRIDGE & KILDARE
 
@@ -1230,19 +1100,11 @@ R132
 
 R132
 
-### Swords
-
-*Pages 28–28*
-
 R132
 
 LONGLANDS
 
 FOXWOOD
-
-### Malahide
-
-*Pages 28–28*
 
 DRYNAM ROAD
 
@@ -1250,9 +1112,7 @@ LAKEVIEW DRIVE
 
 THE VILLA
 
-### Kinsealy
-
-*Pages 28–28*
+#### Kinsealy
 
 R125
 
@@ -1266,11 +1126,9 @@ KETTLES LANE
 
 STOCKHOLE LANE
 
-### Kinsaley
-
-*Pages 28–28*
-
 CLONSHAUGH ROAD
+
+## SWORDS, MALAHIDE & PORTMARNOCK
 
 ### SWORDS, MALAHIDE & PORTMARNOCK
 
@@ -1284,9 +1142,11 @@ INNER RELIEF ROAD
 
 GORT NA RI
 
+## Trim
+
 ### Trim
 
-*Pages 29–29*
+*Pages 29–30*
 
 FRIARS PARK
 
@@ -1300,10 +1160,6 @@ R158
 
 *Figure from page 29*
 
-### Ashford
-
-*Pages 30–30*
-
 BALLINAPARK
 
 16
@@ -1314,15 +1170,7 @@ TIGHE AVENUE
 
 16
 
-### Rathnew
-
-*Pages 30–30*
-
 BALLYBEG
-
-### Wicklow
-
-*Pages 30–30*
 
 17
 
@@ -1335,10 +1183,6 @@ SEACLIFF
 M11
 
 18
-
-### Glenealy
-
-*Pages 30–30*
 
 R772
 

@@ -106,13 +106,23 @@ November 2021
 
 Contents
 
-## 1 Introduction
-
-### 1 Introduction
-
-*Pages 3–3*
-
 1 Introduction 2
+
+2 NTA’s Role in Improving the Public Transport Network 3
+
+%HQH´WVRI&RQQHFWLQJ,UHODQG 
+
+3ROLF\)UDPHZRUN 
+
+3RWHQWLDOIRU*URZWKRI3XEOLF7UDQVSRUW 
+
+,GHQWLI\LQJWKH*DSVLQWKH1HWZRUN 
+
+2XU$SSURDFKWR1HWZRUN'HYHORSPHQW 
+
+3XEOLF&RQVXOWDWLRQ 
+
+Appendices 21
 
 ## 1 Introduction
 
@@ -140,31 +150,9 @@ Adding new services and
 
 &RQQHFWLQJ,UHODQGLVWKH´UVWUXUDOSXEOLFWUDQVSRUWSODQRILWV NLQGLQ,UHODQGDQGZHZDQWWRJHW\RXUYLHZVRQRXUSURSRVDOV WRKHOSVKDSHWKHIXWXUHRI,UHODQG­VSXEOLFWUDQVSRUWQHWZRUN
 
-## 2 NTA’s Role in Improving the Public Transport
+## 2 NTA’s Role in Improving the Public Transport Network
 
-### 2 NTA’s Role in Improving the Public Transport
-
-*Pages 3–3*
-
-2 NTA’s Role in Improving the Public Transport Network 3
-
-%HQH´WVRI&RQQHFWLQJ,UHODQG 
-
-3ROLF\)UDPHZRUN 
-
-3RWHQWLDOIRU*URZWKRI3XEOLF7UDQVSRUW 
-
-,GHQWLI\LQJWKH*DSVLQWKH1HWZRUN 
-
-2XU$SSURDFKWR1HWZRUN'HYHORSPHQW 
-
-3XEOLF&RQVXOWDWLRQ 
-
-Appendices 21
-
-## 2 NTA’s Role in Improving the
-
-### 2 NTA’s Role in Improving the
+### 2 NTA’s Role in Improving the Public Transport Network
 
 *Pages 5–6*
 
@@ -482,9 +470,9 @@ In rural areas only 44%of people live within 15 min walk of a bus stop.
 
 -
 
-## 7 Our Approach to
+## 7 Our Approach to Network Development
 
-### 7 Our Approach to
+### 7 Our Approach to Network Development
 
 *Pages 19–21*
 

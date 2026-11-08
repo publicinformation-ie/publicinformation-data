@@ -6,25 +6,21 @@ Source: https://www.nationaltransport.ie/wp-content/uploads/2026/02/NTA-Statemen
 
 ### Front Matter
 
-*Pages 1–1*
+*Pages 1–2*
 
 ![Figure from page 1](assets/p001-f01.webp)
 
 *Figure from page 1*
 
+## Statement of
+
 ## Strategy
-
-### Strategy
-
-*Pages 1–1*
 
 2026 > 2030
 
 January 2026
 
 ### Contents
-
-*Pages 2–2*
 
 Introduction 3
 
@@ -94,7 +90,9 @@ Key Risks 26
 
 Glossary
 
-### Statement
+## Chairperson’s Statement
+
+### Chairperson’s Statement
 
 *Pages 4–5*
 
@@ -122,7 +120,9 @@ Peter Strachan
 
 Chairperson
 
-### Introduction
+## Chief Executive’s Introduction
+
+### Chief Executive’s Introduction
 
 *Pages 6–7*
 
@@ -154,7 +154,9 @@ Anne Shaw
 
 Chief Executive Officer
 
-### Authority
+## Who is the National Transport Authority
+
+### Purpose and Function
 
 *Pages 8–8*
 
@@ -172,6 +174,10 @@ The NTA is also the approving authority for the three mega public transport proj
 
 The NTA’s remit includes meeting the demand for sustainable transport services across Ireland as well as working with stakeholders to reduce carbon emissions from a transport perspective.
 
+### Enabling Legislation
+
+*Pages 8–8*
+
 Enabling Legislation
 
 The NTA was established in December 2009 on foot of the Dublin Transport Authority Act 2008.
@@ -185,6 +191,8 @@ The Public Transport Act 2016 further extended NTA’s powers to empower it to m
 The Vehicle Clamping Act 2015, which gives NTA responsibility for the regulation of clamping activities nationally, came into operation on 1 October 2017.
 
 The NTA also has some specific functions in respect of infrastructure and the integration of transport and land use planning in the Greater Dublin Area, reflecting the particular public transport and traffic management needs of the region comprising 40% of the population of the State and 43% of total State employment by place of residence.
+
+## NTA Responsibilities
 
 ### NTA Responsibilities
 
@@ -250,7 +258,9 @@ Non-statutory functions undertaken on behalf of Department of Transport are:
 
 › Management of the Green Schools Travel Programme
 
-### Development
+## Strategy Development
+
+### Strategy Development
 
 *Pages 11–11*
 
@@ -258,15 +268,21 @@ Non-statutory functions undertaken on behalf of Department of Transport are:
 
 *Figure from page 11*
 
+## Structured Approach
+
 ### Structured Approach
 
-*Pages 12–14*
+*Pages 12–12*
 
 In developing this Statement of Strategy, the NTA has followed a structured process, giving careful consideration to details including current policies and legislation, stakeholder feedback, the impact of climate change, current and forecast economic conditions, as well as international transport trends.
 
 ![Figure from page 12](assets/p012-f01.webp)
 
 *Figure from page 12*
+
+### Policy Backdrop
+
+*Pages 12–13*
 
 Policy Backdrop
 
@@ -312,6 +328,10 @@ Feedback from this consultation process focused largely on the NTA’s indicativ
 
 • A survey designed for NTA staff.
 
+### Climate Change
+
+*Pages 13–13*
+
 Climate Change
 
 Ireland is already experiencing the impacts of climate change, including rising temperatures, more intense storms, increased river and coastal flooding, and rising sea levels, all impacting on transport infrastructure and services. However, through the Climate Action Plan, Ireland aims to achieve a climate-resilient, biodiversity-rich, and net-zero economy by 2050, while halving emissions by 2030.
@@ -328,6 +348,10 @@ For the transport sector to reduce its carbon emissions by 50% by 2030, the Clim
 
 • Increased use of biofuels where it’s not economically viable to electrify the transport fleet.
 
+### Economic Outlook
+
+*Pages 14–14*
+
 Economic Outlook
 
 In the last decade or so, Ireland has experienced strong economic growth, with forecasts predicting continued expansion in the coming years. The economy is expected to be driven by strong employment, healthy tax revenues, and relatively low inflation. While global headwinds including potential trade tariffs are a concern, the overall outlook remains positive. In turn, the level of economic opportunity has led to strong population growth, also expected to continue in the coming years.
@@ -340,27 +364,35 @@ Reflective of a strong economy, the updated National Development Plan for 2026-2
 
 *Figure from page 14*
 
-### €102.4 billion
+#### €275.4 billion
 
-*Pages 14–14*
+#### €102.4 billion
 
 in Exchequer capital allocations
 
 committed for 2026-2035
 
-### €2.0 billion
+#### €24.3 billion
 
-*Pages 14–16*
+#### €2.0 billion
 
 on Transport
 
 to Metrolink
+
+### Public Transport Security
+
+*Pages 14–14*
 
 Public Transport Security
 
 While the last few years have seen significant progress on investment in safety measures, antisocial behaviour remains a serious issue, and it is those who regularly use and work within our public transport network who are most directly impacted by any safety or security incidents on the network. In the Programme for Government 2025, there is a commitment to create a Transport Security Force under the National Transport Authority, which would operate and have similar powers to the Airport Police and Customs Officers.
 
 While there has been a significant increase in investment in safety measures on public transport in recent years, the establishment of the Transport Security Force will play a central role in helping to tackle this important issue.
+
+### International Transport Trends
+
+*Pages 15–16*
 
 International Transport Trends
 
@@ -392,13 +424,19 @@ AI is increasingly being used in the transport sector. For example, AI systems t
 
 *Figure from page 16*
 
-### Mission, Vision & Values
+## Mission, Vision & Values
 
-*Pages 17–24*
+### Mission
+
+*Pages 17–17*
 
 Mission
 
 To connect Ireland's people and places, by providing accessible, high quality, sustainable transport infrastructure and services, contributing to vibrant, climate resilient communities, a healthy environment, balanced regional development and a strong economy.
+
+### Vision
+
+*Pages 17–17*
 
 Vision
 
@@ -410,11 +448,21 @@ In fulfilling our mission, our vision is to be:
 
 3. an organisation that provides our people with the opportunity to reach their potential and build fulfilling careers, while feeling valued in an environment that supports diversity and inclusion.
 
+### Values
+
+*Pages 17–17*
+
 Values
 
 The values held by the NTA guide how we behave and our decision-making process. We will deliver on our strategy while adhering to our core values as set out below.
 
 › Public Service Commitment – we will prioritise the needs of the public in all transport planning and delivery, while ensuring services are inclusive, equitable, and responsive to community needs. › Sustainability – we will promote environmentally responsible transport solutions and support Ireland’s climate goals through active travel initiatives and lowemission public transport fleet. › Safety and Reliability – we will maintain high standards of safety for all transport users, while delivering consistent, dependable services that people can trust. › Accessibility and Inclusion – we will foster an inclusive workplace and implement transport solutions that support accessible transport for people of all ages, abilities, and locations, promoting universal design and rural connectivity. › Innovation and Efficiency – we will embrace smart technologies and data-driven decision-making, while empowering our people to continuously improve systems and practices, to maximise performance and value for money. › Transparency and Accountability – we will operate with openness, integrity, and clear communication, being accountable to our people, the public, stakeholders, and government. › Strategic Vision – we will plan for long-term mobility needs with foresight and adaptability, aligning transport infrastructure with national development and urban planning, while investing in our people’s development to meet future challenges. › Collaboration – – we will work together in partnership with stakeholders including local authorities, transport operators, and communities, while fostering cooperation across sectors to deliver integrated transport networks.
+
+## Goals
+
+### Goals
+
+*Pages 18–18*
 
 Goals
 
@@ -434,9 +482,19 @@ Goals
 
 • People & Organisation – Support the development of our people in a positive working environment, while maintaining an innovative, fit-for-purpose and evidencebased organisation, to achieve high standards in governance and service delivery.
 
+## Strategic Objectives
+
+### Strategic Objectives
+
+*Pages 19–19*
+
 Strategic Objectives
 
 In the pursuit of delivering on the NTA’s goals, each goal has been assigned several strategic objectives which are to be achieved over the life of the strategy. Set out below are the strategic objectives, aligned to their respective goals, which are to be achieved during 2026-2030. Please note that several of the strategic objectives below are subject to external dependencies, including planning approval and government funding.
+
+### Customer First
+
+*Pages 19–19*
 
 Customer First
 
@@ -460,6 +518,10 @@ Customer First
 
 10. Enhance inclusivity, proactively engage with various user groups to inform improvements that meet their specific needs.
 
+### Climate & Environmental Action
+
+*Pages 20–20*
+
 Climate & Environmental Action
 
 1. Promote an improved transport modal balance, with a greater proportion of people using sustainable modes including walking, cycling, shared mobility and public transport.
@@ -482,6 +544,10 @@ Climate & Environmental Action
 
 10. Continuously improve organisational sustainability and efficiency, on the journey towards becoming climate neutral.
 
+### Transport Planning
+
+*Pages 20–20*
+
 Transport Planning
 
 1. Foster and develop enhanced integration between transport provision and land use planning and practice, with a specific focus on supporting compact growth and transport-oriented development.
@@ -495,6 +561,10 @@ Transport Planning
 5. Monitor the implementation of the transport strategies through the relevant plans, programmes and projects to ensure alignment with the objectives set out in the strategies.
 
 6. Develop and maintain guidance and tools to support transport planning and transport investment decisions.
+
+### Transport Infrastructure
+
+*Pages 21–21*
 
 Transport Infrastructure
 
@@ -524,6 +594,10 @@ Transport Infrastructure
 
 13. Support our delivery partners, transport providers, Regional Assemblies and local authorities, by developing and maintaining guidance and training to support infrastructure development and delivery.
 
+### Transport Services
+
+*Pages 21–22*
+
 Transport Services
 
 1. Further develop the subsidised public transport services framework, setting out the key priorities as well as providing direction on the sustainable funding of these transport services in line with future developments.
@@ -546,6 +620,10 @@ Transport Services
 
 10. Leverage the latest technologies and data insights to continuously enhance services and customer experience.
 
+### Transport Safety & Regulation
+
+*Pages 22–22*
+
 Transport Safety & Regulation
 
 1. Actively engage with the Department of Transport and key stakeholders in developing a framework to strengthen security arrangements on public transport, including the establishment of a new Transport Security Force in line with the current Programme for Government.
@@ -560,6 +638,10 @@ Transport Safety & Regulation
 
 6. Rollout a new regulatory framework under the Critical Entities Resilience Directive, ensuring identification of essential services and critical entities, enhancing transport resilience in Ireland.
 
+### Stakeholder Engagement
+
+*Pages 22–22*
+
 Stakeholder Engagement
 
 1. Effectively communicate with the public on the NTA’s programme of work.
@@ -573,6 +655,10 @@ Stakeholder Engagement
 5. Effectively facilitate and engage with the Transport Users Advisory Group and the Advisory Committee on Small Public Service Vehicles.
 
 6. Effectively respond to and proactively engage with elected representatives, including Oireachtas, Regional Assembly and local authority members.
+
+### People & Organisation
+
+*Pages 23–24*
 
 People & Organisation
 
@@ -600,9 +686,11 @@ People & Organisation
 
 *Figure from page 24*
 
-### & Key Risks
+## Delivery Challenges & Key Risks
 
-*Pages 25–26*
+### Delivery Challenges & Key Risks
+
+*Pages 25–25*
 
 Delivery Challenges
 
@@ -615,6 +703,10 @@ Labour Shortages In delivering major transport projects, the NTA anticipates tha
 Planning Approvals Major projects are complex and timeconsuming to advance through the planning process, often encountering unanticipated issues. After receiving planning approval, judicial reviews and appeals can frequently stall projects for extended periods or ultimately result in the planning approval being overturned. Given how closely transport delivery depends on timely, predictable planning decisions, the NTA welcomes recent progress across the planning system.
 
 Compliance Requirements The NTA’s activities are subject to extensive compliance requirements including the Infrastructure Guidelines, the EU public procurement directives and Climate Action Plan 2025. Whilst such policies and measures help ensure that high standards are maintained, they require significant rigour and can be time intensive, slowing delivery. For example, effective procurement processes can be complex and timeconsuming but are critical to maintain competitive tension and in turn ensure that value for money is achieved.
+
+### Key Risks
+
+*Pages 26–26*
 
 Key Risks
 
@@ -643,6 +735,8 @@ In undertaking its functions, the NTA identified key risk areas as set out below
 • Cyber-attacks increasing in frequency and complexity.
 
 • Shortages of staff with necessary skills.
+
+## Glossary
 
 ### Glossary
 

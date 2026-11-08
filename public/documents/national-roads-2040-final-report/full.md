@@ -2,287 +2,9 @@
 
 Source: https://www.tii.ie/media/zvypdolo/tii-nr2040-final-report-en-april-2023.pdf
 
-## 1 Introduction
+## Front Matter
 
-### 1.1 Purpose of National Roads 2040
-
-*Pages 11–11*
-
-#### 1 Introduction
-
-Transport Infrastructure Ireland’s (TII) primary functions are to: operate, maintain and extend the life of national roads and light railway infrastructure. These functions will ensure the safety and efficiency of our transport networks, ensure appropriate management of environmental resources and contribute to the transition to a low-carbon and climate resilient society. TII must deliver national road, light railway, metro and Active Travel infrastructure, contributing to compact growth, sustainable mobility, enhanced regional accessibility and the transition to a low-carbon future. TII must operate TII’s light rail, tolling and traffic control systems and contribute to the electrification and digitalisation of transport, benefiting our customers and contributing to sustainable mobility and de-carbonisation of transport.
-
-1.1 Purpose of National Roads 2040
-
-National Roads 2040 (NR2040) is TII’s long-term strategy for planning, operating, and maintaining the National Roads network. NR2040 has been developed to support the delivery of Project Ireland 2040 objectives and to align with the Department of Transport’s (DoT) National Investment Framework for Transport in Ireland (NIFTI, December 2021). NR2040 also aligns with commitments in wider policy including the Climate Action Plan and the DoT’s National Sustainable Mobility policy.
-
-TII conducted analysis to understand differing functions of the national roads network and to identify how to realise policy ambitions included in the Project Ireland 2020 National Planning Framework (NPF) and NIFTI. With NR2040 TII identifies key issues facing the current and future national road network.
-
-The provision of network improvements is still a key responsibility for TII. The management and operation of the National Roads network is expected to require greater resources into the future. The focus in the NR2040 strategy is on maintaining a functional, well-performing and evolving National Roads network, guiding the full range of TII’s National Roads activities over a 20-year period. Through the strategy TII provides a framework for outlining priorities for future investment across National Roads, in the face of fiscal, social, and environmental change. NR2040 is a means to communicate TII’s strategic perspective; providing guidance to sponsoring agencies and local authorities, as to types of investments and areas where these will be made.
-
-![Figure from page 11](assets/p011-f01.webp)
-
-*Figure from page 11*
-
-TII has responsibility to secure the provision of a safe and efficient network of national roads....and in doing so must consider the needs of all roads users
-
-Roads Act 1993
-
-### 1.2 Scope and Role of National Roads
-
-*Pages 12–12*
-
-1.2 Scope and Role of National Roads
-
-The National Roads network consists of almost 5,300 km of roads: National Primary roads (including motorways) and National Secondary roads. The network forms vital transport infrastructure for all sectors of society. The network facilitates movement of people and goods and a wide range of trip purposes including health, education, employment, tourism and access to key services.
-
-Role of National Roads
-
-Providing opportunities to access jobs, education, leisure,
-
-Permitting
-
-Connecting people and places
-
-efficient movement of goods
-
-and to develop
-
-and services, and enabling economic
-
-and services, on foot, by bicycle, by
-
-communities
-
-activity
-
-car and public
-
-transport
-
-### 3.5 million daily vehicular trips
-
-### 82,000 daily HGV trips
-
-Motorway 995km
-
-Primary 1639km
-
-Secondary 2659km
-
-### 1.3 NR2040 Report Structure
-
-*Pages 13–13*
-
-1.3 NR2040 Report Structure »Chapter 2Policy Context reviews the government policies and plans that influence NR2040 »Chapter 3Long Term Strategic Issues for National Roads is a brief evidence-based review of
-
-baseline and projected future trends identifying key strategic issues facing the National Roads network »Chapter 4NR2040 Vision and Key Objectives is a statement of TII’s goals in the development
-
-of this strategy, considering national policy context and strategic issues »Chapter 5National Roads Investment Priorities and Portfolios presents TII’s priority
-
-investment themes »Chapter 6Implementation summarises guidance to sponsoring agencies in developing
-
-projects/interventions that align with NR2040 »Chapter 7 Monitoring Framework outlines the aspects through which TII will monitor the
-
-implementation of NR2040
-
-## 2 Policy Context
-
-### 2.1 Project Ireland 2040
-
-*Pages 14–15*
-
-#### 2 Policy Context
-
-NR2040 is TII’s response to ensure the strategic alignment of the National Roads network to recently published Governmental policies, plans and planning/investment frameworks.
-
-![Figure 2.1. presents where NR2040 sits in the strategy and plan hierarchy of Project Ireland 2040.](assets/p014-f01.webp)
-
-*Figure 2.1. presents where NR2040 sits in the strategy and plan hierarchy of Project Ireland 2040.*
-
-CLIMATE ACTION PLAN 2023 CAP23
-
-Changing Ireland for the Better
-
-NR2040 was prepared in succession to NIFTI to ensure alignment between the departmental investment framework and the operational and functional needs of National Roads. Collaboration has taken place between DoT and TII, ensuring a common understanding of the network function, current and future users’ and infrastructure requirements on the network, to enable Project Ireland 2040.
-
-![Figure 2.1 Project Ireland 2040 Hierarchy of Strategies and Plans, as shown in NIFTI](assets/p014-f02.webp)
-
-*Figure 2.1 Project Ireland 2040 Hierarchy of Strategies and Plans, as shown in NIFTI*
-
-2.1 Project Ireland 2040
-
-Project Ireland 2040 includes the National Planning Framework, which sets out the overarching spatial strategy for the next twenty years, along with the National Development Plan, which sets out the investment strategy and budget for the period 2021-2030.
-
-2.1.1 National Planning Framework
-
-Project Ireland 2040: National Planning Framework (NPF), is the government’s long term spatial strategy for accommodating population growth as well as responding to the need to rapidly decarbonise various sectors across Ireland. The NPF vision is encapsulated in the National Strategic Outcomes (NSOs) representing a shared set of goals, which include compact growth, enhanced regional accessibility, access to services and opportunities, strong rural communities, sustainable mobility, and the transition to a low carbon and climate resilient society, among others.
-
-Within the NPF, there are various actions directly related to National Roads, set out under several of the NSOs, particularly: NSO1 Compact Growth; NSO2 Enhanced Regional Accessibility; NSO3 Strengthened Rural Economics and Communities; NSO4 Sustainable Mobility; and NSO6 High-Quality International Connectivity.
-
-![Figure 2.2 National Planning Framework NSOs](assets/p015-f01.webp)
-
-*Figure 2.2 National Planning Framework NSOs*
-
-The NSO’s mentioned above emphasise the National Roads network’s strategic role in providing regional and international accessibility for all road users, including public transport and active travel modes. The NSOs also outline the importance of ensuring safety and a high level of service. A high-quality level of service. is to be achieved through the upgrade of existing corridors and effective traffic management. Detailed review in Appendix A.
-
-2.1.2 National Development Plan 2021-2030
-
-Project Ireland 2040: National Development Plan (NDP) 2021-2030, published in October 2021, is the Government’s over-arching ten-year investment strategy and budget. The NDP gives an overview of the transport strategy and subsequent strategic investment priorities across each of the ten NPF NSOs with reference to Ireland’s climate action goals.
-
-NDP actions for National Roads fall particularly under: NSO1 Compact Growth; NSO2 Enhanced Regional Accessibility; NSO6 High-Quality International Connectivity; and NSO8 Transition to a Climate-Neutral and Climate-Resilient Society, as set out in Appendix A.
-
-As part of NSO2, Enhanced Regional Accessibility, the NDP identified several National Roads’ schemes ‘currently under construction’ and several to ‘start construction’ in the near future. It also includes 31 National Roads’ schemes that are ‘subject to further approval’.
-
-The NDP further highlights the role of National Roads in delivering NSO8, Transition to a Climate- Neutral and Climate-Resilient Society, by enabling significant transition from private internal combustion engine vehicles to electric vehicles. NSO8 also refers to encouraging modal shift from car to public transport and active travel modes. In addition, preventative measures to ensure climate resilience of the road network are required, to ensure safety and availability over time.
-
-A mid-term review of NDP (2021-2030) will be undertaken in 2025, to allow the Government to: take stock of progress in terms of delivery of the planned projects and programmes. The review will also consider and potentially reaffirm the investment priorities of the Government.
-
-### 2.2 Climate Action Plan 2023
-
-*Pages 16–16*
-
-2.2 Climate Action Plan 2023
-
-The Climate Action Plan 2023 (CAP), published in December 2022, is the second annual update to Ireland’s Climate Action Plan. CAP2023 sets out a roadmap of actions in various sectors, including transport to reduce greenhouse gas emissions by 51percent by 2030 (relative to 2018 levels) and reach net zero emissions no later than 2050. The accompanying Annex of actions will be published later in 2023. The 2023 plan is the first to be prepared under the Climate Action and Low Carbon Development (Amendment) Act 2021, following the introduction of economy-wide carbon budgets and sectoral emissions ceilings approved by Government in 2022.
-
-The Government recognises that there are transformational and unprecedented systems and behavioural change required to deliver transport sector emissions reductions. Transport is identified in the CAP as a sector required to reduce emissions by 50 percent by 2030. The CAP supports policies to transform how society travels and to reduce transport emissions by adopting the Avoid-Shift-Improve approach. This approach involves reducing or avoiding the need to travel (e.g., through land-use planning) and where travel is still required, shifting to sustainable modes of travel, and improving the energy efficiency of vehicles (e.g., by using clean fuels).
-
-CAP 2023 specifies numerous measures and actions required to support the Avoid Shift Improve approach. These range from developing updated standards, support for active travel projects, delivering greenway schemes, working collaboratively with stakeholders and engaging the public on climate action and sustainable mobility.
-
-Some of the actions relevant to road transport include:
-
-»Change the way road space is used (i.e., reallocation of road space to sustainable modes) »Reduce demand/the total distance driven across all car journeys by 20 percent »Increase walking, cycling and public transport to account for 50 percent of all journeys »Support for nearly 1 in 3 private vehicles to be electric vehicles by 2030 »Increase the walking and cycling network »Increase rural transport bus services
-
-NR2040 has been developed in alignment with CAP.
-
-### 2.4 National Sustainable Mobility Policy
-
-*Pages 17–17*
-
-2.3 National Investment Framework for Transport in Ireland
-
-The National Investment Framework for Transport in Ireland (NIFTI), published in Dec 2021, is the DoT’s framework for prioritising future investment in the land transport network to support the delivery of the NPF NSOs. NIFTI also ensures alignment with the Climate Action Plan 2021 by incorporating measures set out within the action plan for land transport.
-
-2.3.1 NIFTI Investment Priorities
-
-NIFTI translates the ten NPF NSOs to a land transport specific context, developing four Investment Priorities that will ensure that the transport sector plays its part in delivering the NPF. NIFTI also considers and incorporates the requirements of the Climate Action Plan with respect to transport.
-
-![Figure 2.3 NIFTI Investement Priorities](assets/p017-f01.webp)
-
-*Figure 2.3 NIFTI Investement Priorities*
-
-Future transport projects must align with one or more of NIFTI’s four Investment Priorities: Decarbonisation; Protection and Renewal; Mobility of People and Goods in Urban Areas; Enhanced Regional and Rural Connectivity; and set out how potential negative impacts against them will be mitigated, to be considered for funding.
-
-As the NSOs are embedded in NIFTI, future investment in accordance with these priorities which will support the delivery of the NPF over the coming decades to 2040.
-
-2.3.2 NIFTI Modal and Intervention Hierarchies
-
-A well-managed National Roads network (now and into the future) will support the achievement of various Project Ireland 2040 NSOs, for example: enhancing regional accessibility by reducing congestion on National Roads, allowing people and goods to move freely between the five cities and five regional centres in Ireland (as defined in the NPF1). NIFTI also establishes Modal and Intervention Hierarchies to further guide transport investment; and ensure appropriate transport solutions are developed.
-
-| NIFTI Intervention Hierarchy | NIFTI Modal Hierarchy |
-| --- | --- |
-| Maintain Optimise Improve New | Active Travel Public Transport Private Vehicles |
-
-The Modal and Intervention Hierarchies are also incorporated within NR2040. Future investment on National Roads will be developed in accordance with the Hierarchies.
-
-2.4 National Sustainable Mobility Policy
-
-The DoT’s National Sustainable Mobility policy, published in April 2022, sets out a strategic framework to 2030 for active travel and public transport. The policy aims to support Ireland’s overall requirement to achieve a 51 percent reduction in carbon emissions by the end of this decade. The policy targets at least 500,000 additional daily active travel and public transport journeys and a 10 percent reduction in kilometres driven by fossil fuelled cars by 2030, in line with targets for transport set out in the Climate Action Plan 2021. For TII, actions relating to National Roads focus on improving road safety and provision of infrastructure to support sustainable mobility. These are also set out in Appendix A.
-
-1 Cities – Dublin, Cork, Limerick, Galway and Waterford. Regional Centres – Athlone, Drogheda, Dundalk, Letterkenny and Sligo.
-
-### 2.5 Trans-European Transport Network (TEN-T)
-
-*Pages 18–18*
-
-2.5 Trans-European Transport Network (TEN-T)
-
-The TEN-T policy, based on Regulation (EU) No 1315/2013, supports provision of quality transport infrastructure across the European Union. TEN-T dedicates financial support towards the realisation of important transport infrastructure across all transport modes and supports the application of innovation, new technologies and digital solutions. The objective is to improve the use of infrastructure, reduce the environmental impact of transport, enhance energy efficiency, and increase safety whilst implementing and developing a Europe-wide transport network.
-
-The TEN-T network comprises of two ‘layers’:
-
-![Figure 2.4 Ireland’s TEN-T network and TEN-T Atlantic corridor between Ireland and mainland Europe](assets/p018-t01.webp)
-
-*Figure 2.4 Ireland’s TEN-T network and TEN-T Atlantic corridor between Ireland and mainland Europe*
-
-all European regions and is
-
-completed by 2030. Represented by nine Core
-
-to be completed by 2050.
-
-Network Corridors, identified as strategically
-
-most important missing connections.
-
-Part of Ireland’s National Roads network comprises the Ten-T network.
-
-![Figure 2.4 Ireland’s TEN-T network and TEN-T Atlantic corridor between Ireland and mainland Europe](assets/p018-f01.webp)
-
-*Figure 2.4 Ireland’s TEN-T network and TEN-T Atlantic corridor between Ireland and mainland Europe*
-
-Ten-T policy provides both opportunities for funding alongside obligation to comply and align with EU policy standards and requirements, such as: National Roads’ connectivity to ports that act as a gateway to other EU member states, for the movement of both people and goods and innovative solutions for leveraging existing capacity prior to investment in new infrastructure.
-
-### 2.6 TII Climate Adaption Strategy
-
-*Pages 19–19*
-
-2.6 TII Climate Adaption Strategy
-
-TII’s Climate Adaptation Strategy, published in December 2022, outlines TII’s approach to adapting to climate change and extreme weather events, including flooding, increased risk of landslides, pavement degradation and possible storm damage that will affect the National Roads network and light rail networks. The Strategy builds upon the previous climate adaption strategy published by TII in 2017. The strategy also responds to the Climate Action Plan 2021 (CAP21) Action 297, “Improve climate resilience and adapt to climate change on the Light rail and National Road Network”.
-
-The Strategy outlines seven climate adaption strategic objectives, which adhere to the six guiding principles from TII’s Sustainability Implementation Plan – Our Future. The climate adaption objectives highlight the need to:
-
-»Reduce the frequency of network disruptions during climate-related incidents. »Quickly recuperate from any climate-related incidents. »Ensure organisations responding to climate-related incidents are robust, adaptable, and
-
-equitable. »Improve the climate resilience of lifeline roads thereby providing more accessible communities. »Participate in the broader adaptation initiatives across Ireland through partnerships and
-
-extensive research. »Incorporate climate adaptation within TII’s procedures, policies, and practises to provide a secure
-
-and robust network. »Employ low-carbon methods throughout TII’s designs, procedures, and standards in response to
-
-climate adaptation as well as considering more extensive societal and environmental benefits.
-
-It is important that Ireland’s light rail and National Roads networks isare keptresilient to extreme weather conditions. To address this, NR2040 provides a framework for transport investment on the National Roads network which will include climate change adaptation measures to be developed, prioritised, and implemented. Chapter 5 of NR2040 addresses network resilience and climate adaption as well as the importance of continually maintaining and renewing National Roads infrastructure. .
-
-### 2.8 National Ports Policy
-
-*Pages 20–20*
-
-2.7 Redesigning Ireland’s Transport for Net Zero: Towards Systems that Work for People and the Planet
-
-Redesigning Ireland’s Transport for Net Zero: Towards Systems that Work for People and the Planet was published by the Organisation for Economic Co-operation and Development (OECD) in October 2022. The report highlights the issue of increasing car use and emissions because of the way the Irish transport system has evolved through design and land use planning. The OECD notes three main unsustainable dynamics contributing to car dependency that include:
-
-1 Induced car demand
-
-2 Urban sprawl
-
-3 The sustainable modes low-attractiveness trap
-
-Decarbonising the transport system through private vehicle fleet electrification alone, may not achieve the changes in behaviour, emission reductions and general well-being improvements that are required in Ireland. Relying heavily on private vehicles will not address the issues of accessibility, urban congestion, and other negative impacts such as road fatalities. Therefore, the OECD makes the following recommendations:
-
-»Prioritise the policies with high potential of reshaping the car-dependent system »Redefine the electrification strategy to support the transition towards a sustainable transport
-
-system »Encourage a systemic approach to policy decision-making across government departments
-
-The NR2040 strategy has been developed in accordance with the OECD recommendations and recognises the issues of increasing car use and emissions. TII widely supports the mitigations measures that should be put in place to reduce these emissions and improve the well-being of Irish citizens, which have been broadly responded to and recognised by the NR2040 investment priorities and commitments.
-
-2.8 National Ports Policy
-
-The National Ports Policy, published in 2013 2 by the Department of Transport, Tourism and Sport, establishes a broad set of principles to serve as the foundation for a policy framework that enables the port sector to grow in a sustainable way. The policies’s primary objective is to promote a competitive and effective market for maritime transport services. The framework supports future decisions on port restructuring, designed in light of the economic issues that Ireland was facing at the time.
-
-To ensure that the ports sector continues to expand sustainably, the connection between the port sector and the planning and development system is crucial.
-
-Integration between planning and policy for ports with the transport system should be of high priority.
-
-TII recognises the potential for greater alignment between planning and policy for ports with that of the National Roads network and will collaborate with the DoT and Irish Maritime Development Office in the development of the next National Ports Policy.
-
-2 Currently Undergoing Update
-
-## _Hlk27756872
-
-### _Hlk27756872
+### Front Matter
 
 *Pages 1–4*
 
@@ -598,6 +320,848 @@ NR2040 is not a ‘predict and provide’ exercise, but a proactive policy-led s
 
 x
 
+## 1 Introduction
+
+### 1 Introduction
+
+*Pages 11–11*
+
+Transport Infrastructure Ireland’s (TII) primary functions are to: operate, maintain and extend the life of national roads and light railway infrastructure. These functions will ensure the safety and efficiency of our transport networks, ensure appropriate management of environmental resources and contribute to the transition to a low-carbon and climate resilient society. TII must deliver national road, light railway, metro and Active Travel infrastructure, contributing to compact growth, sustainable mobility, enhanced regional accessibility and the transition to a low-carbon future. TII must operate TII’s light rail, tolling and traffic control systems and contribute to the electrification and digitalisation of transport, benefiting our customers and contributing to sustainable mobility and de-carbonisation of transport.
+
+### 1.1 Purpose of National Roads 2040
+
+*Pages 11–11*
+
+1.1 Purpose of National Roads 2040
+
+National Roads 2040 (NR2040) is TII’s long-term strategy for planning, operating, and maintaining the National Roads network. NR2040 has been developed to support the delivery of Project Ireland 2040 objectives and to align with the Department of Transport’s (DoT) National Investment Framework for Transport in Ireland (NIFTI, December 2021). NR2040 also aligns with commitments in wider policy including the Climate Action Plan and the DoT’s National Sustainable Mobility policy.
+
+TII conducted analysis to understand differing functions of the national roads network and to identify how to realise policy ambitions included in the Project Ireland 2020 National Planning Framework (NPF) and NIFTI. With NR2040 TII identifies key issues facing the current and future national road network.
+
+The provision of network improvements is still a key responsibility for TII. The management and operation of the National Roads network is expected to require greater resources into the future. The focus in the NR2040 strategy is on maintaining a functional, well-performing and evolving National Roads network, guiding the full range of TII’s National Roads activities over a 20-year period. Through the strategy TII provides a framework for outlining priorities for future investment across National Roads, in the face of fiscal, social, and environmental change. NR2040 is a means to communicate TII’s strategic perspective; providing guidance to sponsoring agencies and local authorities, as to types of investments and areas where these will be made.
+
+![Figure from page 11](assets/p011-f01.webp)
+
+*Figure from page 11*
+
+TII has responsibility to secure the provision of a safe and efficient network of national roads....and in doing so must consider the needs of all roads users
+
+Roads Act 1993
+
+### 1.2 Scope and Role of National Roads
+
+*Pages 12–12*
+
+1.2 Scope and Role of National Roads
+
+The National Roads network consists of almost 5,300 km of roads: National Primary roads (including motorways) and National Secondary roads. The network forms vital transport infrastructure for all sectors of society. The network facilitates movement of people and goods and a wide range of trip purposes including health, education, employment, tourism and access to key services.
+
+Role of National Roads
+
+Providing opportunities to access jobs, education, leisure,
+
+Permitting
+
+Connecting people and places
+
+efficient movement of goods
+
+and to develop
+
+and services, and enabling economic
+
+and services, on foot, by bicycle, by
+
+communities
+
+activity
+
+car and public
+
+transport
+
+### 3.5 million daily vehicular trips
+
+### 82,000 daily HGV trips
+
+Motorway 995km
+
+Primary 1639km
+
+Secondary 2659km
+
+### 1.3 NR2040 Report Structure
+
+*Pages 13–13*
+
+1.3 NR2040 Report Structure »Chapter 2Policy Context reviews the government policies and plans that influence NR2040 »Chapter 3Long Term Strategic Issues for National Roads is a brief evidence-based review of
+
+baseline and projected future trends identifying key strategic issues facing the National Roads network »Chapter 4NR2040 Vision and Key Objectives is a statement of TII’s goals in the development
+
+of this strategy, considering national policy context and strategic issues »Chapter 5National Roads Investment Priorities and Portfolios presents TII’s priority
+
+investment themes »Chapter 6Implementation summarises guidance to sponsoring agencies in developing
+
+projects/interventions that align with NR2040 »Chapter 7 Monitoring Framework outlines the aspects through which TII will monitor the
+
+implementation of NR2040
+
+## 2 Policy Context
+
+### 2 Policy Context
+
+*Pages 14–14*
+
+NR2040 is TII’s response to ensure the strategic alignment of the National Roads network to recently published Governmental policies, plans and planning/investment frameworks.
+
+![Figure 2.1. presents where NR2040 sits in the strategy and plan hierarchy of Project Ireland 2040.](assets/p014-f01.webp)
+
+*Figure 2.1. presents where NR2040 sits in the strategy and plan hierarchy of Project Ireland 2040.*
+
+CLIMATE ACTION PLAN 2023 CAP23
+
+Changing Ireland for the Better
+
+NR2040 was prepared in succession to NIFTI to ensure alignment between the departmental investment framework and the operational and functional needs of National Roads. Collaboration has taken place between DoT and TII, ensuring a common understanding of the network function, current and future users’ and infrastructure requirements on the network, to enable Project Ireland 2040.
+
+![Figure 2.1 Project Ireland 2040 Hierarchy of Strategies and Plans, as shown in NIFTI](assets/p014-f02.webp)
+
+*Figure 2.1 Project Ireland 2040 Hierarchy of Strategies and Plans, as shown in NIFTI*
+
+### 2.1 Project Ireland 2040
+
+*Pages 14–15*
+
+2.1 Project Ireland 2040
+
+Project Ireland 2040 includes the National Planning Framework, which sets out the overarching spatial strategy for the next twenty years, along with the National Development Plan, which sets out the investment strategy and budget for the period 2021-2030.
+
+2.1.1 National Planning Framework
+
+Project Ireland 2040: National Planning Framework (NPF), is the government’s long term spatial strategy for accommodating population growth as well as responding to the need to rapidly decarbonise various sectors across Ireland. The NPF vision is encapsulated in the National Strategic Outcomes (NSOs) representing a shared set of goals, which include compact growth, enhanced regional accessibility, access to services and opportunities, strong rural communities, sustainable mobility, and the transition to a low carbon and climate resilient society, among others.
+
+Within the NPF, there are various actions directly related to National Roads, set out under several of the NSOs, particularly: NSO1 Compact Growth; NSO2 Enhanced Regional Accessibility; NSO3 Strengthened Rural Economics and Communities; NSO4 Sustainable Mobility; and NSO6 High-Quality International Connectivity.
+
+![Figure 2.2 National Planning Framework NSOs](assets/p015-f01.webp)
+
+*Figure 2.2 National Planning Framework NSOs*
+
+The NSO’s mentioned above emphasise the National Roads network’s strategic role in providing regional and international accessibility for all road users, including public transport and active travel modes. The NSOs also outline the importance of ensuring safety and a high level of service. A high-quality level of service. is to be achieved through the upgrade of existing corridors and effective traffic management. Detailed review in Appendix A.
+
+2.1.2 National Development Plan 2021-2030
+
+Project Ireland 2040: National Development Plan (NDP) 2021-2030, published in October 2021, is the Government’s over-arching ten-year investment strategy and budget. The NDP gives an overview of the transport strategy and subsequent strategic investment priorities across each of the ten NPF NSOs with reference to Ireland’s climate action goals.
+
+NDP actions for National Roads fall particularly under: NSO1 Compact Growth; NSO2 Enhanced Regional Accessibility; NSO6 High-Quality International Connectivity; and NSO8 Transition to a Climate-Neutral and Climate-Resilient Society, as set out in Appendix A.
+
+As part of NSO2, Enhanced Regional Accessibility, the NDP identified several National Roads’ schemes ‘currently under construction’ and several to ‘start construction’ in the near future. It also includes 31 National Roads’ schemes that are ‘subject to further approval’.
+
+The NDP further highlights the role of National Roads in delivering NSO8, Transition to a Climate- Neutral and Climate-Resilient Society, by enabling significant transition from private internal combustion engine vehicles to electric vehicles. NSO8 also refers to encouraging modal shift from car to public transport and active travel modes. In addition, preventative measures to ensure climate resilience of the road network are required, to ensure safety and availability over time.
+
+A mid-term review of NDP (2021-2030) will be undertaken in 2025, to allow the Government to: take stock of progress in terms of delivery of the planned projects and programmes. The review will also consider and potentially reaffirm the investment priorities of the Government.
+
+### 2.2 Climate Action Plan 2023
+
+*Pages 16–16*
+
+2.2 Climate Action Plan 2023
+
+The Climate Action Plan 2023 (CAP), published in December 2022, is the second annual update to Ireland’s Climate Action Plan. CAP2023 sets out a roadmap of actions in various sectors, including transport to reduce greenhouse gas emissions by 51percent by 2030 (relative to 2018 levels) and reach net zero emissions no later than 2050. The accompanying Annex of actions will be published later in 2023. The 2023 plan is the first to be prepared under the Climate Action and Low Carbon Development (Amendment) Act 2021, following the introduction of economy-wide carbon budgets and sectoral emissions ceilings approved by Government in 2022.
+
+The Government recognises that there are transformational and unprecedented systems and behavioural change required to deliver transport sector emissions reductions. Transport is identified in the CAP as a sector required to reduce emissions by 50 percent by 2030. The CAP supports policies to transform how society travels and to reduce transport emissions by adopting the Avoid-Shift-Improve approach. This approach involves reducing or avoiding the need to travel (e.g., through land-use planning) and where travel is still required, shifting to sustainable modes of travel, and improving the energy efficiency of vehicles (e.g., by using clean fuels).
+
+CAP 2023 specifies numerous measures and actions required to support the Avoid Shift Improve approach. These range from developing updated standards, support for active travel projects, delivering greenway schemes, working collaboratively with stakeholders and engaging the public on climate action and sustainable mobility.
+
+Some of the actions relevant to road transport include:
+
+»Change the way road space is used (i.e., reallocation of road space to sustainable modes) »Reduce demand/the total distance driven across all car journeys by 20 percent »Increase walking, cycling and public transport to account for 50 percent of all journeys »Support for nearly 1 in 3 private vehicles to be electric vehicles by 2030 »Increase the walking and cycling network »Increase rural transport bus services
+
+NR2040 has been developed in alignment with CAP.
+
+### 2.3 National Investment Framework for Transport in Ireland
+
+*Pages 17–17*
+
+2.3 National Investment Framework for Transport in Ireland
+
+The National Investment Framework for Transport in Ireland (NIFTI), published in Dec 2021, is the DoT’s framework for prioritising future investment in the land transport network to support the delivery of the NPF NSOs. NIFTI also ensures alignment with the Climate Action Plan 2021 by incorporating measures set out within the action plan for land transport.
+
+2.3.1 NIFTI Investment Priorities
+
+NIFTI translates the ten NPF NSOs to a land transport specific context, developing four Investment Priorities that will ensure that the transport sector plays its part in delivering the NPF. NIFTI also considers and incorporates the requirements of the Climate Action Plan with respect to transport.
+
+![Figure 2.3 NIFTI Investement Priorities](assets/p017-f01.webp)
+
+*Figure 2.3 NIFTI Investement Priorities*
+
+Future transport projects must align with one or more of NIFTI’s four Investment Priorities: Decarbonisation; Protection and Renewal; Mobility of People and Goods in Urban Areas; Enhanced Regional and Rural Connectivity; and set out how potential negative impacts against them will be mitigated, to be considered for funding.
+
+As the NSOs are embedded in NIFTI, future investment in accordance with these priorities which will support the delivery of the NPF over the coming decades to 2040.
+
+2.3.2 NIFTI Modal and Intervention Hierarchies
+
+A well-managed National Roads network (now and into the future) will support the achievement of various Project Ireland 2040 NSOs, for example: enhancing regional accessibility by reducing congestion on National Roads, allowing people and goods to move freely between the five cities and five regional centres in Ireland (as defined in the NPF1). NIFTI also establishes Modal and Intervention Hierarchies to further guide transport investment; and ensure appropriate transport solutions are developed.
+
+| NIFTI Intervention Hierarchy | NIFTI Modal Hierarchy |
+| --- | --- |
+| Maintain Optimise Improve New | Active Travel Public Transport Private Vehicles |
+
+The Modal and Intervention Hierarchies are also incorporated within NR2040. Future investment on National Roads will be developed in accordance with the Hierarchies.
+
+### 2.4 National Sustainable Mobility Policy
+
+*Pages 17–17*
+
+2.4 National Sustainable Mobility Policy
+
+The DoT’s National Sustainable Mobility policy, published in April 2022, sets out a strategic framework to 2030 for active travel and public transport. The policy aims to support Ireland’s overall requirement to achieve a 51 percent reduction in carbon emissions by the end of this decade. The policy targets at least 500,000 additional daily active travel and public transport journeys and a 10 percent reduction in kilometres driven by fossil fuelled cars by 2030, in line with targets for transport set out in the Climate Action Plan 2021. For TII, actions relating to National Roads focus on improving road safety and provision of infrastructure to support sustainable mobility. These are also set out in Appendix A.
+
+1 Cities – Dublin, Cork, Limerick, Galway and Waterford. Regional Centres – Athlone, Drogheda, Dundalk, Letterkenny and Sligo.
+
+### 2.5 Trans-European Transport Network (TEN-T)
+
+*Pages 18–18*
+
+2.5 Trans-European Transport Network (TEN-T)
+
+The TEN-T policy, based on Regulation (EU) No 1315/2013, supports provision of quality transport infrastructure across the European Union. TEN-T dedicates financial support towards the realisation of important transport infrastructure across all transport modes and supports the application of innovation, new technologies and digital solutions. The objective is to improve the use of infrastructure, reduce the environmental impact of transport, enhance energy efficiency, and increase safety whilst implementing and developing a Europe-wide transport network.
+
+The TEN-T network comprises of two ‘layers’:
+
+![Figure 2.4 Ireland’s TEN-T network and TEN-T Atlantic corridor between Ireland and mainland Europe](assets/p018-t01.webp)
+
+*Figure 2.4 Ireland’s TEN-T network and TEN-T Atlantic corridor between Ireland and mainland Europe*
+
+all European regions and is
+
+completed by 2030. Represented by nine Core
+
+to be completed by 2050.
+
+Network Corridors, identified as strategically
+
+most important missing connections.
+
+Part of Ireland’s National Roads network comprises the Ten-T network.
+
+![Figure 2.4 Ireland’s TEN-T network and TEN-T Atlantic corridor between Ireland and mainland Europe](assets/p018-f01.webp)
+
+*Figure 2.4 Ireland’s TEN-T network and TEN-T Atlantic corridor between Ireland and mainland Europe*
+
+Ten-T policy provides both opportunities for funding alongside obligation to comply and align with EU policy standards and requirements, such as: National Roads’ connectivity to ports that act as a gateway to other EU member states, for the movement of both people and goods and innovative solutions for leveraging existing capacity prior to investment in new infrastructure.
+
+### 2.6 TII Climate Adaption Strategy
+
+*Pages 19–19*
+
+2.6 TII Climate Adaption Strategy
+
+TII’s Climate Adaptation Strategy, published in December 2022, outlines TII’s approach to adapting to climate change and extreme weather events, including flooding, increased risk of landslides, pavement degradation and possible storm damage that will affect the National Roads network and light rail networks. The Strategy builds upon the previous climate adaption strategy published by TII in 2017. The strategy also responds to the Climate Action Plan 2021 (CAP21) Action 297, “Improve climate resilience and adapt to climate change on the Light rail and National Road Network”.
+
+The Strategy outlines seven climate adaption strategic objectives, which adhere to the six guiding principles from TII’s Sustainability Implementation Plan – Our Future. The climate adaption objectives highlight the need to:
+
+»Reduce the frequency of network disruptions during climate-related incidents. »Quickly recuperate from any climate-related incidents. »Ensure organisations responding to climate-related incidents are robust, adaptable, and
+
+equitable. »Improve the climate resilience of lifeline roads thereby providing more accessible communities. »Participate in the broader adaptation initiatives across Ireland through partnerships and
+
+extensive research. »Incorporate climate adaptation within TII’s procedures, policies, and practises to provide a secure
+
+and robust network. »Employ low-carbon methods throughout TII’s designs, procedures, and standards in response to
+
+climate adaptation as well as considering more extensive societal and environmental benefits.
+
+It is important that Ireland’s light rail and National Roads networks isare keptresilient to extreme weather conditions. To address this, NR2040 provides a framework for transport investment on the National Roads network which will include climate change adaptation measures to be developed, prioritised, and implemented. Chapter 5 of NR2040 addresses network resilience and climate adaption as well as the importance of continually maintaining and renewing National Roads infrastructure. .
+
+### 2.7 Redesigning Ireland’s Transport for Net Zero: Towards Systems that Work for People and the Planet
+
+*Pages 20–20*
+
+2.7 Redesigning Ireland’s Transport for Net Zero: Towards Systems that Work for People and the Planet
+
+Redesigning Ireland’s Transport for Net Zero: Towards Systems that Work for People and the Planet was published by the Organisation for Economic Co-operation and Development (OECD) in October 2022. The report highlights the issue of increasing car use and emissions because of the way the Irish transport system has evolved through design and land use planning. The OECD notes three main unsustainable dynamics contributing to car dependency that include:
+
+1 Induced car demand
+
+2 Urban sprawl
+
+3 The sustainable modes low-attractiveness trap
+
+Decarbonising the transport system through private vehicle fleet electrification alone, may not achieve the changes in behaviour, emission reductions and general well-being improvements that are required in Ireland. Relying heavily on private vehicles will not address the issues of accessibility, urban congestion, and other negative impacts such as road fatalities. Therefore, the OECD makes the following recommendations:
+
+»Prioritise the policies with high potential of reshaping the car-dependent system »Redefine the electrification strategy to support the transition towards a sustainable transport
+
+system »Encourage a systemic approach to policy decision-making across government departments
+
+The NR2040 strategy has been developed in accordance with the OECD recommendations and recognises the issues of increasing car use and emissions. TII widely supports the mitigations measures that should be put in place to reduce these emissions and improve the well-being of Irish citizens, which have been broadly responded to and recognised by the NR2040 investment priorities and commitments.
+
+### 2.8 National Ports Policy
+
+*Pages 20–20*
+
+2.8 National Ports Policy
+
+The National Ports Policy, published in 2013 2 by the Department of Transport, Tourism and Sport, establishes a broad set of principles to serve as the foundation for a policy framework that enables the port sector to grow in a sustainable way. The policies’s primary objective is to promote a competitive and effective market for maritime transport services. The framework supports future decisions on port restructuring, designed in light of the economic issues that Ireland was facing at the time.
+
+To ensure that the ports sector continues to expand sustainably, the connection between the port sector and the planning and development system is crucial.
+
+Integration between planning and policy for ports with the transport system should be of high priority.
+
+TII recognises the potential for greater alignment between planning and policy for ports with that of the National Roads network and will collaborate with the DoT and Irish Maritime Development Office in the development of the next National Ports Policy.
+
+2 Currently Undergoing Update
+
+## 3 Long Term Strategic Issues for National Roads
+
+### 3 Long Term Strategic Issues for National Roads
+
+*Pages 21–21*
+
+To ensure that the future needs of the National Roads network and its customers are met, the context of how the network is used may change over the coming decades and must be understood. The following issues presented in Figure 3.1 have been considered by TII in developing a strategy for National Roads.
+
+The mitigation measures that address these issues are elaborated through TII’s investment priorities in Chapter 5 and commitments in Chapter 6. Appendix B summarises the assessment of alternatives where three main scenarios (‘Do nothing’, ‘Predict and Provide’, and ‘Policy-Led’) were considered during the development of the NR2040 Strategy.
+
+![Figure 3.1 NR2040 12 long term planning issues](assets/p021-f01.webp)
+
+*Figure 3.1 NR2040 12 long term planning issues*
+
+![Figure 3.1 NR2040 12 long term planning issues](assets/p021-f02.webp)
+
+*Figure 3.1 NR2040 12 long term planning issues*
+
+![Figure from page 21](assets/p021-f03.webp)
+
+*Figure from page 21*
+
+Climate Adaption
+
+Road Transport Decarbonisation
+
+Future Demographic
+
+and Resilience
+
+Growth Trends
+
+![Figure from page 21](assets/p021-f04.webp)
+
+*Figure from page 21*
+
+![Figure from page 21](assets/p021-f05.webp)
+
+*Figure from page 21*
+
+![Figure from page 21](assets/p021-f06.webp)
+
+*Figure from page 21*
+
+Road Safety
+
+Movement of people
+
+Sustainability
+
+![Figure from page 21](assets/p021-f07.webp)
+
+*Figure from page 21*
+
+![Figure from page 21](assets/p021-f08.webp)
+
+*Figure from page 21*
+
+![Figure from page 21](assets/p021-f09.webp)
+
+*Figure from page 21*
+
+Urban congestion Technological change
+
+Movement of goods
+
+and services
+
+![Figure from page 21](assets/p021-f10.webp)
+
+*Figure from page 21*
+
+![Figure from page 21](assets/p021-f11.webp)
+
+*Figure from page 21*
+
+![Figure from page 21](assets/p021-f12.webp)
+
+*Figure from page 21*
+
+Integrated mobility Customer Experience
+
+Network management
+
+### 3.1 Future Demographic Growth Trends
+
+*Pages 22–23*
+
+3.1 Future Demographic Growth Trends
+
+Demographic growth poses a challenge to maintaining and improving levels of service in road transport
+
+According to Project Ireland 2040, Ireland’s population is expected to increase by up to 1.1 million people by the year 2040, increasing the population of Ireland upwards to approximately 5.9 million. It is anticipated that half of the future population and jobs growth will be focused on the five cities (Dublin, Cork, Galway, Limerick, and Waterford) and their suburbs. Additionally, it is expected that there will be a significant population increase in Ireland’s towns and some rural areas.
+
+Figure 3.2 NPF target growth 2040 - a target of half (50 percent) of future population and employment growth will be focused in the existing five cities and their suburbs
+
+2040 2017
+
++14.7% 2,570,000
+
++10.3% 1,500,000
+
+2,190,000
+
+1,345,402
+
+Dublin
+
+Cork
+
+Limerick
+
+Rest of Ireland
+
+Waterford
+
+Galway
+
+TII analysis shows that this targeted population increase has the potential, if current travel behaviour continues, to increase the number of trips travelled on the national road network by 2.7 million per day. This represents an increase of over 20 percent trips per day by 2040 above a baseline figures of 13.4 million. This is in addition to an increase in the number of journeys made on Ireland’s local and regional roads.
+
+If current current development patterns and associated travel behaviour continues, demographic growth will not only increase the demand for travel but may also increase car dependency. Currently 82 percent of Irish households own at least one car, with 41 percent of households owning two or more cars3. Accordingly, 67 percent of trips are made in privately owned cars4. These journeys are often facilitated by National Roads.
+
+Demographic and employment growth pose a significant challenge in the effort to maintain and improve the level of service on the National Roads Network. Through the implementation of the Climate Action Plan, and the NR2040 investment priorities and mitigation measures, inter-urban demand for private vehicle trips can be mitigated.
+
+3 Census, 2016, Central Statistics Office 4 Source: TII analysis of CSO, 2020; Central Statistics Office, ‘National Travel Survey 2019’
+
+Figure 3.3 Population growth will increase demand on the national road network
+
+2.7 million by 2040
+
+#### Driving Employment
+
+#### Increase
+
+1.1 million increase by 2040
+
+#### 2.7 million more trips on our road
+
+#### Population
+
+#### Growth
+
+2.2 million by 2040
+
+#### networks everyday by
+
+#### +500,000 More Homes
+
+#### 2040
+
+#### Needed
+
+### 3.2 Road Transport Decarbonisation
+
+*Pages 23–24*
+
+3.2 Road Transport Decarbonisation
+
+Adherence to Ireland’s decarbonisation goals poses a significant challenge for the road transport sector, including the National Roads network
+
+Ireland’s Climate Action Plan has set an overall Greenhouse Gas (GHG) emissions reduction target of 51 percent by 2030, compared with 2018, and climate neutrality by 2050. In July 2022, the Government announced sectoral emissions ceilings where the overall target of 51 percent reduction by 2030 can only be met depending on the success of each sector of the Irish economy (electricity, transport, buildings, industry, and agriculture) meeting their individual ceiling targets. The transport sector’s ceiling for GHG emissions till 2030 was set to 6 Mega tonne CO2 equivalent5 .
+
+The transport sector must play a significant role in this reduction, with a specific 42 percent - 51 percent target reduction by 2030. In 2020, road transport GHG emissions made up 94 percent of transport emissions in Ireland6. Especially concerning is the evidence that lockdown measures in response to the COVID-19 pandemic in 2020 resulted in a 16 percent decrease in transport emissions, compared to 20197 TII traffic counts showing that 2021 travel trends largely returned to 2019 pre-Covid levels8. Emissions from the sector are estimated to reduce to 39 percent below 2018 levels by 2030 if additional measures in plans and policies are implemented, including significant EV share by 2030 and measures to support more sustainable transport9.
+
+5 Source: Department of the Taoiseach, 2022; gov.ie, ‘Government announces sectoral emissions ceilings, setting Ireland on a pathway to turn the tide on climate change’ 6 EPA Provisional Greenhouse Gas Emissions for Ireland, 2020 (October 2021) 7 EPA Provisional Greenhouse Gas Emissions for Ireland, 2020 (October 2021) 8 TII National Roads Network Indicators, 2021 9 EPA Ireland’s Greenhouse Gas Emissions Projections, 2021-2040 (June 2022)
+
+The NIFTI priorities around facilitating mobility of people and goods in urban areas and enhancing regional and rural connectivity must be achieved while minimising or reducing carbon emissions. Where we live, the places we travel to, the mode and frequency of travel, the occupancy levels of the vehicles in which we travel, the energy and technology underpinning our means of transport and traffic conditions, all contribute to GHG emissions. These factors must all be considered and understood when planning for a low carbon transport system. While TII has a limited role in behavioural change, the provision of high quality multi modal infrastructure has an important role in enabling and encouraging a modal shift to support a reduction in carbon emissions. The provision of multi-modal infrastructure in combination with improved public transport services will increase transport options on our road network, improving the mobility of people in urban areas and enhancing regional and rural connectivity in alignment with carbon reduction targets.
+
+In an urban context, congestion causes inefficient vehicle engine performance and results in significantly elevated levels of vehicle emissions. This is a particular issue where heavy vehicles make up a sizable proportion of traffic. In an inter-urban travel context, where free-flow conditions contribute to more efficient engine performance, the key driver for carbon emissions is the length of the trip.
+
+![Figure from page 24](assets/p024-f01.webp)
+
+*Figure from page 24*
+
+A shift to electric technology in the car fleet is a significant step towards decarbonisation of the road transport sector. This must be supported with provision of charging infrastructure along the National Roads network. The emissions from commercial and heavy vehicles must also be mitigated.
+
+TII analysis finds that across the National and Regional Roads networks a significant proportion of personal trips are short in nature, typically less than 15 minutes duration10. These shorter trips are associated with colder engines, which leads to higher emissions. Interventions promoting a shift to low carbon options for these trips, using for example active travel along or adjacent to the National Roads network, would support efforts to reduce both congestion and emissions.
+
+10 TII National Roads Network Indicators (2012-2021)
+
+### 3.3 Climate Adaptation & Resilience
+
+*Pages 25–25*
+
+3.3 Climate Adaptation & Resilience
+
+The road network, and the people who rely on it, are vulnerable to a range of possible climate change effects.
+
+Ireland’s climate is changing, and the indications are that further and more profound changes are likely. Major recent weather events in Ireland include Storm Ophelia (2017), which caused major power outages, lifted roofs and coastal flooding; Storm Emma (2018), which brought sub-zero temperatures and heavy snow showers that caused disruption and closure of transport systems including roadblocks; as well as heatwaves and drought (2018).
+
+The road network, and the people who rely on it, are vulnerable to a range of possible climate change effects, including strong winds, landslides, changing rainfall patterns and extreme weather events leading to flooding and variable temperatures. In the longer-term sea level rising may also pose a threat. These may cause a range of debilitating impacts on the National Roads network, ranging from reduced performance- such as slower journey times, lower visibility and poor driving conditions; to damaged infrastructure and heightened user risk, causing disruption or closure of sections of the National Roads network. Closure of important transport links bring risks to people and businesses, especially in areas of low resilience where National Roads provide sole transport infrastructure for people and goods and in essence function as regional lifelines.
+
+Adaptation to the impacts of climate change requires action to both manage the risks and to prepare mitigation and resilience plans to reduce vulnerabilities. Climate change mitigation has become an essential component of long term, strategic economic planning. An integrated approach involving stakeholders is essential. TII must prepare strategies for various climatic events that will impact the National Roads network.
+
+![Figure from page 25](assets/p025-f01.webp)
+
+*Figure from page 25*
+
+### 3.4 Sustainability
+
+*Pages 25–26*
+
+3.4 Sustainability
+
+Striking the appropriate balance between investment in transport and sustainability impacts requires a continued effort.
+
+Sustainable development is “development that meets the needs of the present without comprising the ability of future generations to meet their own needs” (Brundtland Commission).
+
+Transport infrastructure can bring about social and economic benefits, such as enhanced mobility, access to markets and social participation. However, the development and management of transport infrastructure must avoid, reduce and mitigate adverse environmental impacts, such as harmful emissions from transport (GHGs, air quality and noise impacts), and direct and indirect impacts to biodiversity and/or habitats as well as to neighbouring properties and communities
+
+adjoining the National Roads network. Striking an appropriate balance, between maximizing the benefits arising from investment in transport infrastructure and reducing potential negative environmental, social and/or economic impacts, requires continued effort as the asset changes and adapts to new futures.
+
+This might mean that some projects may be more expensive up front but will likely have more benefits over the long-term particularly regarding emissions and social impacts.
+
+TII Sustainability Implementation Plan
+
+Through TII’s Sustainability Implementation Plan a roadmap has been developed to apply the sustainability principles in developing and operating the National Roads network. We recognise that ‘sustainability’ is complex and far reaching but we are committed to integrating it into everything we do.
+
+TIIs sustainability statement and implementation plan, lay out six core principles and two overarching principles. The six principles are set out below, these broadly align with the UN Sustainable Development Goals and have been developed to reflect TII’s organisational ambitions.
+
+![Table 3.1 TII Sustainability Principles](assets/p026-t01.webp)
+
+*Table 3.1 TII Sustainability Principles*
+
+Provide effective, efficient, and equitable mobility
+
+Enable safe and resilient networks and services:
+
+Collaborate for a holistic approach
+
+Deliver end-to-end improvements
+
+Transition to net zero
+
+Create total value for society
+
+TII recognises that to truly deliver on sustainability it requires all of society to get involved, and as such the six principles are tied together with two overarching principles: »Leadership, Collaboration and Partnership; and »Working together and enabling people
+
+These overarching principles ensure connectivity across the six core principles and are supported in NR2040 commitments.
+
+### 3.5 Air Quality
+
+*Pages 27–27*
+
+3.5 Air Quality
+
+The transport system in Ireland is highly fossil fuel dependent (diesel & petrol), which results in significant emissions of GHGs and air pollutants (that are contained in exhaust fumes) to the environment. The Environmental Protection Agency (EPA) ‘An Integrated Assessment Report - 2020’ predicts that the transport sector will continue to dominate in emissions of NOx for the 2020 and 2030 period meaning transport will continue to be one of the most significant contributors to air pollution in Ireland. The composition of the Irish vehicle fleet plays a significant role in local ambient air pollution levels. The number of Irish vehicles on the roads has grown consistently in line with population growth and economic growth contributing to a rise in NOx emissions. Implementing measures identified in NR2040, as well as the Government’s Climate Action Plan, is likely to result in more concerted efforts to address air quality issues across Ireland including those from the transport sector.
+
+### 3.6 Noise
+
+*Pages 27–27*
+
+3.6 Noise
+
+According to the World Health Organisation (WHO), noise is the second greatest environmental cause of health problems, after air quality. Environmental noise from major infrastructure including roads, railways and airports is governed by the Environmental Noise Directive 2002/42/ EC. The Directive relates to the assessment and management of environmental noise and is the key EU instrument to identify noise pollution levels and to trigger the necessary action both at Member State and at EU level. In Ireland, the Directive is transposed into Irish Law by the European Communities (Environmental Noise) Regulations 2018 (S.I. No. 549 of 2018). Under the regulations, TII is responsible for the development of strategic noise mapping for all National Roads carrying more than 3 million vehicles a year and for major railways which carry more than 30,000 passengers per year. Local Authorities are responsible for preparing the Noise Action Plan. CAP includes targets to reduce the total vehicle kilometres of travel by 20 percent by 2030 which will also influence reductions in noise from road transport.
+
+### 3.7 Road Safety
+
+*Pages 27–27*
+
+3.7 Road Safety
+
+Road Safety is at the heart of every aspect of management of the National Roads network, on the way towards achieving Vision Zero
+
+Ireland’s new Government Road Safety Strategy (2021-2030) ‘Our Journey towards Vision Zero’ has set an ambitious target for Ireland to reduce road traffic fatalities and serious injuries by 50 percent by 2030. Longer term, the strategy aims to eradicate road traffic deaths and serious injuries by 2050. In 2021, there were 58 fatalities on National Roads11, representing a declining trend but still an area for continuous improvement.
+
+An upturn in active travel modes and specifically in cycling, both for commuting and leisure, emphasises the need for a greater focus on prioritising the safety of vulnerable road users. Better cycling and walking provision are an important consideration for investment in the National Roads network and prioritisation of vulnerable road users aligns with the modal hierarchy set out in NIFTI.
+
+TII’s statutory remit includes the provision of a safe and efficient National Roads network. The Vision Zero long-term goal and the Safe Systems approach must inform TII investment decisions.
+
+Safe Systems approach Places primary responsibility for road safety on system designers. Four principles identified are:
+
+Human life and health are paramount and take priority over
+
+Road traffic systems should
+
+Providers and regulators must
+
+Providers & regulators share
+
+take account of
+
+do their duty to support safe travel
+
+responsibility
+
+human fallibility and resultant harm
+
+mobility
+
+of all citizens
+
+11 TII-National-Roads-Network-Indicators-2021
+
+### 3.8 Movement of People
+
+*Pages 28–28*
+
+3.8 Movement of People
+
+The operation, maintenance, renewal, and development of National Roads must focus on the movement of people, rather than vehicles.
+
+Project Ireland 2040’s NSO4 relates to Sustainable Mobility, which supports social and economic activity, and the role of National Roads in a sustainable transport system is a key consideration.
+
+What constitutes efficient mobility differs between urban; rural; and inter-urban contexts as well as between users within each context: female/male; elderly/young; trip purpose- to work or for errands; etc. Availability of active travel infrastructure and public transport services will enable road users to choose the most convenient and efficient transport modes and routes for them.
+
+Nationally, bus (and coach) journeys increased by 60 percent from 2013 to 2019 (141 mil. trips to 226 mil.), accounting for 82 percent total public transport vehicle-km (2019)12. Figure 3.4 illustrates public transport services facilitated across the National Roads network13 , not accounting for service frequency which may vary across the network and time of day. Infrequent services, particularly during commuter periods, does not enable many road users to switch to an alternative mode from the car. Population growth along with national decarbonisation targets drives the need for more efficient use of road space. Re-allocation of road space is to be investigated, to promote and enable a sustainable modal-shift while minimising environmental impact.
+
+In line with the 1993 Roads Act (as amended), the needs of all road users must be considered. Public transport operators and customers will seek more capacity as well as increased speed and frequencies for reduced travel time and journey time reliability in years ahead. It is the role of the National Roads network to accommodate this. In relation to active travel, where national roads are too dangerous for active travel, meaningful interventions should be considered in cooperation with relevant stakeholders and partner agencies.
+
+Figure 3.4 Bus service routes operating on National Roads (2022)
+
+12 NTA - Commercial Bus Services in Ireland - Statistical Bulletin: 01 / 2021 13 Source: General Transit Feed Specification data (https://www.transportforireland.ie/transitData/PT_Data.html)
+
+### 3.9 Movement of Goods and Services
+
+*Pages 29–30*
+
+3.9 Movement of Goods and Services
+
+On National Roads a balance must be found between the movement of people and the movement of goods.
+
+Ireland’s economy is heavily dependent on the efficient movement of goods, both domestically as well as into and out of the country and is therefore dependent on efficient domestic and international transport networks. Freight dependent industries need high-quality transport connections to ensure certainty of arrival of incoming goods and outward shipping of products. Producers and retailers need efficient distribution systems for timely access to their markets and customers.
+
+Currently, the vast majority of internal trade freight in Ireland is carried on the road network14, in a variety of vehicles, from Heavy Goods Vehicles (HGVs) to smaller vans TII estimates that in the region of 80-90 percent of all freight transport occurs on National Roads15. The movement of goods takes place throughout the entire country, and intensifies on National Primary roads, notably on the east coast, M50, and around Cork and Limerick, as illustrated in Figure 3.5. Along the M50, for example, goods vehicles (HGV/LGV) represent 25 percent of all vehicles and take up 33 percent of the available road space.
+
+![Figure 3.5 National weekday HGV movements, 2019](assets/p029-f01.webp)
+
+*Figure 3.5 National weekday HGV movements, 2019*
+
+14 Central Statistics Office, Road Freight Transport Survey Quarter 4 and Year 2020. 15 Vehicle kilometers estimate based on CSO national freight travel estimates and TII’s network of roadside traffic counters.
+
+There is often limited flexibility in mode or time of travel associated with freight transport given its role in the movement of essential goods for society. The importance of facilitating efficient freight transport for society was highlighted during the COVID pandemic where, despite restrictions to movement of people, demand for goods movement remained constant – only 4 percent less in 2020 than 201916.
+
+Transport emissions reduction from goods vehicles represent a significant challenge, as, reflective of their size/engine types, they generate 5 to 6 times higher emissions than cars. In 2020, goods vehicles represented nearly 40 percent of the total CO2e emissions on National Roads17. While the car fleet is transitioning towards EV/LEVs there are currently no scaled alternatives for HGVs, though the Alternative Fuels Infrastructure Regulation is expected to place an emphasis on provision of electric vehicle charging for HGVs. The progression of technology and traffic management measures is therefore necessary..
+
+Integration of road and rail freight is supported by TII and is important for reducing freight related congestion and emissions on the National Roads network. Iarnród Éireann has developed its strategy Rail Freight 2040, which envisions rail playing a key role in enhancing regional connectivity and supporting economic growth whilst meeting climate change objectives.
+
+National Roads can be essential arteries for economic activity across the country, their role in this regard must be acknowledged and protected. National Roads infrastructure should be fit for purpose for the transport of heavy vehicles, noting the high levels of wear and degradation of the carriageway under heavy loading. While the freight sector has proven to be historically resilient, capacity re-allocation or freight specific transport management schemes, which would need to be considered at the appropriate tier of the NIFTI Modal and Intervention Hierarchies. In December 2022, the DoT published ‘Ireland’s Road Haulage Strategy 2022–2031’. When implementing NR2040, TII will work closely with the DoT to take account of the needs of the Haulage and Road Freight sector.
+
+### 3.10 Urban Congestion
+
+*Pages 30–31*
+
+3.10 Urban Congestion
+
+We cannot build our way out of urban congestion challenges - the management of National Roads must balance increasing mobility demands and finite road space.
+
+Congestion has a significant impact on the well-being of people in our cities and urban communities. It detrimentally affects local, national, and international accessibility. Land use patterns and a shortage of meaningful alternatives, including public transport and high-quality cycling and walking facilities, have led to an over-reliance on car use, thus leading to congestion.
+
+Congestion is especially evident on national roads in the approaches to and in the environs of urban centres leading towards and around urban centres during peak periods. Thus, not only does congestion adversely affect personal travel experience, but it also hinders the use of the road as a well-functioning public asset.
+
+The economic cost of congestion is evident, as analysis for the Greater Dublin Area estimates- the cost of time lost due to aggravated congestion was €358 million in 2012. This is forecast to rise to €2.08 billion per year in 203318. The economic cost of congestion is especially relevant in respect to the transport of goods, which rely on the National Roads network for efficient access to ports and airports.
+
+Congestion also leads to increased carbon emissions and reductions in air quality, resulting
+
+16 TII Road Traffic Counts 17 TII Emissions Model 18 The Costs of Congestion - An Analysis of the Greater Dublin Area, EFEU Research Report (July 2017)
+
+from stop-start traffic conditions. However, this may be mitigated over time, thanks to car fleet electrification policies.
+
+Managing congestion on the urban sections of the National Roads network will allow TII to optimise the use of assets under its remit. However, we cannot build our way out of urban congestion challenges. The management of National Roads must balance increasing mobility demands and finite road space. A collaboration of stakeholders, sectors and interventions is necessary. Ongoing monitoring and demand analysis will enable identification of necessary interventions, such as road space repurposing. Where the National Roads network cannot safely accommodate all road users, including active travel modes, adjacent alternative solutions should be explored.
+
+### 3.11 Technological Change
+
+*Pages 31–31*
+
+3.11 Technological Change
+
+The management and operation of National Roads must evolve to support and manage the uptake in developing technologies to the benefit of customers.
+
+The transport options available for customers will expand as technology develops. Aspects where technological change is likely to include: connected vehicles, dynamic traffic management, advanced intelligent transport systems (ITS), electrification of vehicles and potentially energy generating capacity within the road network, advanced payment systems, improved customer information, enforcement measures, Mobility as a Service (MaaS). These technological changes may transform the way National Roads are used and operated.
+
+TII has deployed proven road technologies and Intelligent Transport Systems (ITS) on key sections of the National Roads network. TII is currently in the latter phases of implementing Variable Speed Limits on the M50 as part of its Dynamic Traffic Management Project and has commenced a Co-operative ITS pilot project on the M50 and M1 in Dublin. TII is committed to the facilitation of Connected Driving on National Roads in collaboration with key stakeholders.
+
+It is from this base that the technological future of the National Roads network will evolve.
+
+### 3.12 Asset Management and Operations
+
+*Pages 31–31*
+
+3.12 Asset Management and Operations
+
+The National Roads network is a valued state asset that requires extensive investment for ongoing management and operations.
+
+Past capital investment in National Roads, including motorways and dual carriageways, has delivered a valuable state asset. The management and operation of this asset represents TII’s main expenditure item and will increase as the network, particularly the motorways sections, approaches an age where it requires major renewal investment. Overall ageing of the asset coupled with climate change will affect network resilience and put a further strain on the budget for the ongoing maintenance and operations of the National Roads network. If investment in protection and renewal is deferred, there will be a greater overall cost incurred as the asset deteriorates further.
+
+Meanwhile, new categories of expenditure are expected over time with technology playing a greater role in the management of the asset and demand for the same. Protection and Renewal is one of NIFTI’s Investment Priorities and requires prioritisation by TII. It must also be noted that public-private partnership (PPP) contracts for the motorway network will begin to expire in the 2030s which will require decisions on how the transition will be managed and what the replacement model might be.
+
+![Figure from page 31](assets/p031-f01.webp)
+
+*Figure from page 31*
+
+TII’s Project BRUCE (Better Road User Charging Evaluation) will help inform a future direction for road user charging, operation and maintenance. It will consider whether the existing PPP road tolls should be removed, retained or replaced with a new user charging model.
+
+### 3.13 Integrated Mobility
+
+*Pages 32–32*
+
+3.13 Integrated Mobility
+
+Integrated mobility is key to an inclusive, well connected, and sustainable transport system and must be facilitated through the National Roads network.
+
+The most effective provision of sustainable mobility is through an efficient and well-integrated transport system, where each mode of transport has its own role to play, but also complements and provides resilience for the other modes within that system. The context for Ireland’s transport system changes between rural and urban areas. Where there are high levels of trip demand, the case for the provision of public transport alternatives to car travel increases. Where there is dispersed population in rural areas it may not be sustainable to provide bus services that fully meet the mobility needs of all users.
+
+The goal for transport agencies is to enhance accessibility and opportunities for interchange to enable trip-makers to choose the most efficient and convenient combination of modes. However, transport agencies must also ensure efficient provision of transport services and infrastructure, as well as enabling and encouraging travel choices that are socially and environmentally sustainable.
+
+### 3.14 Customer Experience
+
+*Pages 32–32*
+
+3.14 Customer Experience
+
+TII recognises the need for a customer-centric approach when planning for the National Roads network.
+
+A diverse range of customers use the National Roads in different ways and for different reasons. These include regular users of National Roads, and includes those who do not directly use it but benefit from it, e.g., a household receiving deliveries. It is important to understand evolving customer needs and acquire better insight into the wide spectrum of customer expectations, mode preferences and purposes.
+
+TII continues to seek a better understanding of customer expectations depending on location, mode preference and travel purposes.
+
+One area of research targeted by TII has been that of gender and transport. Designing sustainable transport infrastructure becomes synonymous with designing inclusive, safe, equitable and high-quality experiences that consider all users. Doing so requires an integrated approach, including several physical, social, and policy interventions across public and private bodies. For National Roads, this can take the form of improved lighting for transport facilities on the network or improved public transport service frequency on National Road routes.
+
+New initiatives will survey users periodically to help understand issues and develop customer orientated solutions, to meet existing and future needs.
+
+## Appendix A National Policy Actions for National Roads
+
+### Appendix A National Policy Actions for National Roads
+
+*Pages 56–59*
+
+Note: Any reference to individual projects is for illustrative purposes only, as excerpted from the NPF. All projects are subject to planning approval and compliance with all other applicable environmental law, regulatory and public expenditure requirements for the project concerned, including compliance with the CAF and PSC.
+
+Table A.1 National Planning Framework actions for National Roads (Excerpts from the NPF)
+
+![Figure from page 56](assets/p056-t01.webp)
+
+*Figure from page 56*
+
+Growth22
+
+allowing better integration with their surrounding areas. NSO2 Enhanced Regional Accessibility23
+
+Inter-Urban Roads:
+
+Maintaining the strategic capacity and safety of National Roads including planning for future capacity enhancements;
+
+Improving average journey times targeting an average inter-urban speed of 90kph;
+
+Enabling more effective traffic management within and around cities and re-allocation of inner-city road-space in favour of bus-based public transport services and walking/cycling facilities; and
+
+Advancing orbital traffic management solutions.
+
+Accessibility to the North-West:
+
+Upgrading northern sections of the N4 and N5 routes and sections of the N3/M3 National Primary route; and
+
+Public Transport:
+
+Strengthening public transport connectivity between cities and large growth towns in Ireland and Northern Ireland with improved services and reliable journey times. NSO3 Strengthened Rural Economies and Communities24
+
+Invest in and maintain regional and local roads and strategic road improvement projects in rural areas to ensure access to critical services such as education, healthcare, and employment. NSO4 Sustainable Mobility25
+
+Expand attractive public transport alternatives to car transport to reduce congestion and emissions and enable the transport sector to cater for the demands associated with longer term population and employment growth in a sustainable manner.
+
+22 Project Ireland 2040: National Planning Framework (February 2018), p. 139. 23 Project Ireland 2040: National Planning Framework (February 2018), p. 140. 24 Project Ireland 2040: National Planning Framework (February 2018), p. 141. 25 Project Ireland 2040: National Planning Framework (February 2018), p. 142.
+
+![Figure from page 57](assets/p057-t01.webp)
+
+*Figure from page 57*
+
+International Connectivity26
+
+Airports:
+
+Enhancing land-side access, particularly in public transport terms.
+
+Ports:
+
+Improve land transport connections to the major ports, including:
+
+Facilitating the growth of Dublin Port through greater efficiency, limited expansion into Dublin Harbour and improved road access, particularly to/ from the Southern port area;
+
+Table A.2 National Development Plan actions for National Roads (Excerpts from the NDP (2021-2030)
+
+![Figure from page 57](assets/p057-t02.webp)
+
+*Figure from page 57*
+
+Growth
+
+allowing better integration with their surrounding areas NSO2 Enhanced Regional Accessibility
+
+Investment will continue in new inter-urban roads, having regard to the potential for carrying public transport services and better integrating public transport and active travel networks on the approaches to urban areas. A key priority will be to maintain the existing national road network to a robust and safe standard and a significant percentage of National Roads expenditure over the course of this NDP will relate to maintenance works, in order to protect and renew existing assets.27
+
+The feasibility of bypasses will be considered for towns and villages throughout the country that are experiencing major congestion issues. While regional connectivity remains a NSOwhich the Government is committed to, there will be an increased focus on the delivery of infrastructure which facilitates compact growth in our towns and cities. This will allow for more compact urban and rural communities supported by jobs, houses and services by facilitating public transport and active travel options.28
+
+NSO6 High Quality International Connectivity
+
+Strengthening access routes to Ireland’s ports through investment to upgrade and enhance the road and rail transport network to improve journey times is and remains a government priority. 29
+
+26 Project Ireland 2040: National Planning Framework (February 2018), p. 145. 27 National Development Plan 2021-2030 (October, 2021), p.61. 28 National Development Plan 2021-2030 (October, 2021), p.65. 29 National Development Plan 2021-2030 (October, 2021), p.108.
+
+![Figure from page 58](assets/p058-t01.webp)
+
+*Figure from page 58*
+
+Climate-Neutral and Climate-Resilient Society
+
+Transitioning the passenger car fleet to electricity and providing additional charging infrastructure.
+
+Encouraging a significant modal shift through greater levels of investment and further development of meaningful alternatives to private car uses under the following three major environmentally sustainable mobility schemes:
+
+Additional cycling and walking infrastructure which will provide additional sustainable mobility options to complement increased capacity and faster, higher quality public transport in our main cities;
+
+Travel demand management measures in the five cities;
+
+Pilot initiatives for low emitting technologies in the transport sector. There is also the need to make the road network more resilient to the effects of climate change. This would include the following measures which would be undertaken under national, regional and local programmes:
+
+Improved drainage schemes;
+
+Strengthened road pavements and bridges which can resist the effects of increased rainfall and the effects of scour damage;
+
+Raising of roads in certain instances in order to prevent roads becoming impassable after heavy rainfall.
+
+Table A.3 National Sustainable Mobility Policy actions for TII30
+
+| National Sustainable Mobility Policy actions related to national Roads, where TII is owner (Excerpts from National Sustainable Mobility Policy: Action Plan) |  |
+| --- | --- |
+| Goal | Actions |
+
+including sustainable mobility users Expand speed management measures on National Roads at schools and high-risk locations
+
+Goal 1: Improve mobility safety
+
+Increase provision of Park and Ride and Park and Share at transport interchanges Develop and implement an active travel infrastructure programme for regional growth centres and key towns outside of the Greater Dublin Area. (Complements CAP Action 233, RSS Action 5, 40) Develop and publish a strategic national cycle network. (Complements CAP Action 232, RSS Action 39) Goal 4: Expand availability of sustainable mobility in regional and rural areas
+
+Goal 3: Expand availability of sustainable mobility in metropolitan areas
+
+Deliver public transport corridors providing prioritised bus lanes on national radial routes to the M50. (CAP Action 261)
+
+30 National Sustainable Mobility Policy: Action Plan 2022-2025 (April, 2022)
+
+| National Sustainable Mobility Policy actions related to national Roads, where TII is owner (Excerpts from National Sustainable Mobility Policy: Action Plan) |  |
+| --- | --- |
+| Goal | Actions |
+
+people to choose sustainable mobility over the private car
+
+User Charging Evaluation (BRUCE) study (CAP Action 259)
+
+Update national standards and project management guidelines to facilitate all road users on the national road network including the delivery of public transport facilities. Deliver an average of 60 road safety improvement schemes and fund an average of four minor realignment schemes on National Roads per year, to create forgiving roadsides, self-explaining roads, and a safe environment for vulnerable road users
+
+Goal 7: Design infrastructure according to Universal Design Principles and Hierarchy of Road Users Model
+
 ## 4 NR2040 Vision and Key Objectives
 
 ### 4 NR2040 Vision and Key Objectives
@@ -658,11 +1222,51 @@ Managed and improved as a key public asset
 
 The National Roads network is a key national asset that has received significant investment over the years, primarily related to the maintenance, the improvement and expansion of the network. In light of national targets associated with supporting decarbonisation and climate action, TII stewardship will evolve to manage, improve and enhance the National Roads network in line with these ambitions and as a key public asset.
 
+## Appendix B Assessment of Alternatives Summary
+
+### Appendix B Assessment of Alternatives Summary
+
+*Pages 60–61*
+
+Three main alternatives were considered during the development of the NR2040 to comply with the SEA Directive Article 5, which requires the SEA process to identify, describe and evaluate ‘reasonable alternatives’ of attaining the objectives of the NR2040 strategy. These are presented at length in Chapter 7 of the SEA Environmental Report and summarised in this section.
+
+The alternatives include:
+
+#### »Alternative 1: Do Nothing scenario »Alternative 2: Predict and Provide scenario »Alternative 3: Policy-Led scenario
+
+Alternative 1, a ‘Do Nothing’ scenario is the baseline or current situation, referencing 2018 when NR2040 development was initiated, as the ‘base year’. This approach does not involve any additional investment or changes to the National Roads network. Furthermore, the ‘Do Nothing’ scenario does not include current emission reduction targets and assumes that economic growth will continue in accordance with normal cycles. For example, it does not consider potential recession or inflation of energy / fuel prices.
+
+Considering these omissions, transport planning was guided predominantly by the 2015 Strategic Investment Framework for Land Transport (SIFLT) which recognised three, hierarchical, priorities:
+
+1 Achieve steady state maintenance
+
+2 Address urban congestion
+
+3 Maximise the value of existing land transport networks
+
+The ‘Do Nothing’ approach was discounted as it fails to address new policy framework, does not provide TII with a long-term vision and identified to likely have a negative effect, directly or indirectly, on Environmental Protection Objectives (EPO).
+
+Alternative 2, a ‘Predict and Provide’ scenario involves forecasting future travel demand and providing the required infrastructure and services to meet this demand. In essence, it would be an improved version of the SIFLT based on similar principles. Opportunities for sustainable travel, protection and renewal portfolios would also be included as part of this approach.
+
+This scenario assumes land use development and travel patterns develop according to the NPF, and seeks to provide for the predicted travel needs resulting thereof. This scenario would likely result in provision of more road capacity, i.e., construction of roads, in a ‘predict and provide’ manner that would not be consistent with the NIFTI approach involving investment decisionmaking based on use of NIFTI intervention and modal hierarchies.
+
+The ‘Predict and Provide’ approach was discounted based on the shifting policy, probable substantial negative environmental effects over a range of EPOs as well as poor resource efficiency, due to the expected development of more roads.
+
+Alternative 3, a ‘Policy Led (Decide & Provide)’ scenario includes a strategic vision for the National Roads network that recognises the continuously changing environment and takes policy change into account while also contributing to policy development at national, regional, and local levels
+
+(including sectors of the Irish economy).
+
+The ‘Policy Led’ approach supports the NPF NSOs and consequently NIFTI. It guarantees alignment between government policies and the operational and functional requirements of National Roads. This approach sets a standard where TII will ‘provide’ for National Roads investments adhering to the national policy requirements to support population growth and the economy. It supports the internationally recognised ‘Avoid, Shift and Improve’ policy approach and promotes sustainable mobility to reduce negative effects on the EPO’s.
+
+Integration of multiple modes will limit growth in vehicle kilometres. Bus and truck priority will be deployed where it can provide for more efficient movement of people and goods. Provision of walking and cycling infrastructure, in particular where it addresses severance, will reduce unnecessary car travel. All investments will be carried out in line with NIFTI modal hierarchy. In addition, this approach prioritises utilisation of existing assets, in line with NIFTI intervention hierarchy, prior to the development of new roads.
+
+The ‘Policy Led’ approach was selected to move forward with in the development of NR2040 as it is aligned with current and emerging international and national policy in terms of supporting an integrated transportation network that will result in fewer negative effects on the EPO’s when compared with the other alternatives.
+
 ## 5 National Roads Investment Priorities and Portfolios
 
 ### 5 National Roads Investment Priorities and Portfolios
 
-*Pages 35–35*
+*Pages 35–36*
 
 TII has assessed National Roads needs the need for the National Roads network to deliveralign with on relevant National Strategic Outcomes and has also identified several strategic issues for the network. These considerations have influenced the NR2040 Investment Priorities.
 
@@ -774,10 +1378,6 @@ OO
 
 G
 
-### 5.1 Decarbonisation
-
-*Pages 36–37*
-
 O
 
 N
@@ -791,6 +1391,10 @@ S
 R
 
 A
+
+### 5.1 Decarbonisation
+
+*Pages 36–38*
 
 5.1 Decarbonisation
 
@@ -927,10 +1531,6 @@ The TII REM Tool works with the TII National Transport Model (NTpM). This facili
 
 When planning future infrastructure, climate modelling may have to be performed for a range of future transport scenarios to take account of potential behavioural change and different future profiles of the national vehicle fleet. This will provide information of how future transport infrastructure will perform under a range of potential future emission scenarios and support the consideration of whether an investment aligns with Ireland’s national decarbonisation targets.
 
-### 5.2 Protection and Renewal
-
-*Pages 38–39*
-
 O
 
 N
@@ -956,6 +1556,10 @@ I
 O
 
 E
+
+### 5.2 Protection and Renewal
+
+*Pages 38–41*
 
 5.2 Protection and Renewal
 
@@ -1154,630 +1758,21 @@ Strategies to prioritise protection and renewal were successfully implemented fo
 | The Dynamic Traffic Management programme consists of four key strands: M50 Traffic Flow Optimisation (MTFO): The optimisation of traffic flow on the M50 and approaches through the deployment of Intelligent Transportation Systems (ITS) technology, including variable speed limits, lane control signals, variable message signs and CCTV coverage. The expansion of the existing Dublin Tunnel Control Building to provide a new, state of the art motorway operations control centre (MOCC), in which TII manages the motorway network The implementation of a Network Intelligence and Management System (NIMS), an overarching, adaptive system that receives and processes information from multiple roadside traffic monitoring devices and allows TII to manage all ITS systems operating on the motorway network. A national Cooperative Intelligent Transportation System (C-ITS) pilot project, implemented as part of Ireland’s participation in the C-Roads platform, a joint initiative of EU member states and road operators to ensure harmonisation and interoperability of C-ITS services across the EU. |  |
 |  | Figure 5.2 Ireland’s C_ITS Pilot |
 
-## 3 Long Term Strategic Issues
-for National Roads
+![Figure from page 40](assets/p040-t01.webp)
 
-### 3.1 Future Demographic Growth Trends
+*Figure from page 40*
 
-*Pages 22–22*
+There is a need to ensure the road network is resilient to the effects of climate change, identified as a strategic issue for the National Road network and therefore a new portfolio theme in TII’s scope of work.
 
-3.1 Future Demographic Growth Trends
+TII is updating its ‘Strategy for Adapting to Climate Change on Ireland’s Light Rail and National Road Network’19. The strategy is examining the impacts of climatic events on surface, groundwater resources and environmental measures as an integral part of the climate adaptation strategy.
 
-Demographic growth poses a challenge to maintaining and improving levels of service in road transport
+TII is continually maintaining and renewing road pavements and road assets such as signage, crash barriers and noise barriers. Adaptation to climate change is included in drainage designs by strengthening bridges and raising of roads, allowing for future increases in rainfall intensities and volumes, preventing roads becoming impassable after heavy rainfall.
 
-According to Project Ireland 2040, Ireland’s population is expected to increase by up to 1.1 million people by the year 2040, increasing the population of Ireland upwards to approximately 5.9 million. It is anticipated that half of the future population and jobs growth will be focused on the five cities (Dublin, Cork, Galway, Limerick, and Waterford) and their suburbs. Additionally, it is expected that there will be a significant population increase in Ireland’s towns and some rural areas.
-
-Figure 3.2 NPF target growth 2040 - a target of half (50 percent) of future population and employment growth will be focused in the existing five cities and their suburbs
-
-2040 2017
-
-+14.7% 2,570,000
-
-+10.3% 1,500,000
-
-2,190,000
-
-1,345,402
-
-Dublin
-
-Cork
-
-Limerick
-
-Rest of Ireland
-
-Waterford
-
-Galway
-
-TII analysis shows that this targeted population increase has the potential, if current travel behaviour continues, to increase the number of trips travelled on the national road network by 2.7 million per day. This represents an increase of over 20 percent trips per day by 2040 above a baseline figures of 13.4 million. This is in addition to an increase in the number of journeys made on Ireland’s local and regional roads.
-
-If current current development patterns and associated travel behaviour continues, demographic growth will not only increase the demand for travel but may also increase car dependency. Currently 82 percent of Irish households own at least one car, with 41 percent of households owning two or more cars3. Accordingly, 67 percent of trips are made in privately owned cars4. These journeys are often facilitated by National Roads.
-
-Demographic and employment growth pose a significant challenge in the effort to maintain and improve the level of service on the National Roads Network. Through the implementation of the Climate Action Plan, and the NR2040 investment priorities and mitigation measures, inter-urban demand for private vehicle trips can be mitigated.
-
-### 3 Long Term Strategic Issues
-for National Roads
-
-*Pages 21–21*
-
-To ensure that the future needs of the National Roads network and its customers are met, the context of how the network is used may change over the coming decades and must be understood. The following issues presented in Figure 3.1 have been considered by TII in developing a strategy for National Roads.
-
-The mitigation measures that address these issues are elaborated through TII’s investment priorities in Chapter 5 and commitments in Chapter 6. Appendix B summarises the assessment of alternatives where three main scenarios (‘Do nothing’, ‘Predict and Provide’, and ‘Policy-Led’) were considered during the development of the NR2040 Strategy.
-
-![Figure 3.1 NR2040 12 long term planning issues](assets/p021-f01.webp)
-
-*Figure 3.1 NR2040 12 long term planning issues*
-
-![Figure 3.1 NR2040 12 long term planning issues](assets/p021-f02.webp)
-
-*Figure 3.1 NR2040 12 long term planning issues*
-
-![Figure from page 21](assets/p021-f03.webp)
-
-*Figure from page 21*
-
-Climate Adaption
-
-Road Transport Decarbonisation
-
-Future Demographic
-
-and Resilience
-
-Growth Trends
-
-![Figure from page 21](assets/p021-f04.webp)
-
-*Figure from page 21*
-
-![Figure from page 21](assets/p021-f05.webp)
-
-*Figure from page 21*
-
-![Figure from page 21](assets/p021-f06.webp)
-
-*Figure from page 21*
-
-Road Safety
-
-Movement of people
-
-Sustainability
-
-![Figure from page 21](assets/p021-f07.webp)
-
-*Figure from page 21*
-
-![Figure from page 21](assets/p021-f08.webp)
-
-*Figure from page 21*
-
-![Figure from page 21](assets/p021-f09.webp)
-
-*Figure from page 21*
-
-Urban congestion Technological change
-
-Movement of goods
-
-and services
-
-![Figure from page 21](assets/p021-f10.webp)
-
-*Figure from page 21*
-
-![Figure from page 21](assets/p021-f11.webp)
-
-*Figure from page 21*
-
-![Figure from page 21](assets/p021-f12.webp)
-
-*Figure from page 21*
-
-Integrated mobility Customer Experience
-
-Network management
-
-## 6 Implementation
-
-### 6.1 NR2040 Commitments
-
-*Pages 47–50*
-
-#### 6 Implementation
-
-NR2040 is TII’s strategy for the National Roads network, identifying the function and investment priorities for different parts of the National Roads network, for the purpose of:
-
-»Enabling Project Ireland 2040 (National Planning Framework and NDPs) »Supporting the realisation of several National Strategic Objectives (NSOs) »Aligning with NIFTI and other Government policy
-
-This implementation chapter provides NR2040’s summary guidance to Sponsoring Agencies and Local Authorities. It outlines:
-
-»TII commitments to addressing strategic issues »Provides a means of filtering future interventions »Defines TII investment portfolios »Concludes with TII’s commitment to collaboration, recognised throughout the strategy as a
-
-necessary means for the successful implementation of identified interventions and achievement of national targets
-
-6.1 NR2040 Commitments
-
-The NR2040 Investment Priorities are reinforced by a series of TII commitments, further addressing the strategic issues identified facing the National Roads network in the coming years. Policy obligations, including NPF, NIFTI, the Road Safety Strategy, and internal TII analysis and plans inform these commitments.
-
-These commitments outlined in Table 6.1 can will also be used to influence the scope of projects on the National Roads network developed by local authorities or other agencies.
-
-Table 6.1 NR2040 Commitments
-
-| Addressing Issues | NR2040 Commitments |
+| National Roads Operational Continuity during Storm Emma (2018) | National Motorway covered in snow |
 | --- | --- |
-| Future Demographic Growth Trends | TII will continue to analyse possible growth in travel demand, reflecting Project Ireland 2040 population targets. TII will continue to develop and plan for multiple future demand scenarios that factor in possible behavioural and technological change. TII will ensure that the potential for induced travel demand will be estimated for all major projects. TII will implement government policy on demand management. NIFTI sets out the importance of the provision of alternative transport options, such as cycle infrastructure and public transport services before demand-side measures are implemented. TII will ensure that any future implementation of demand management proposals on the National Roads network aligns with the National Sustainability Mobility Policy as well as NIFTI Modal and Intervention Hierarchies. TII will explore the potential of road-user charging measures through the Better Road User Charging Evaluation (BRUCE) study |
+| Storm Emma struck Ireland in February 2018, bringing up to 690 mm of snow to parts of the country. TII was represented on the National Emergency Coordination Group (NECG) given that National Roads are critical infrastructure. In its response to the emergency TII maintained full staffing levels for 24 hours a day between the 26th of February and the 4th of March, and provided food, sleeping and welfare facilities in local hotels and maintenance depots for operatives. Maintenance of continued road operations on routes to hospitals, emergency service stations was prioritised, with the entire network ready for morning travel on Monday 5th March 2018. |  |
 
-| Addressing Issues | NR2040 Commitments |
-| --- | --- |
-| Decarbonisation | To reduce emissions, TII will prioritise trafcfi management investment in freight corridors and where congestion results in high levels of GHG emissions. National Road projects will be appraised in the context of compliance with Ireland’s climate change targets, in line with each of the governments Climate Action Plan, NIFTI and in accordance with the Department of Transports Common Appraisal Framework. Predicted changes and/or targets associated with the levels of usage of each mode (e.g., bicycle, car, public transport, truck, van) will inform this. TII will continue to develop and enhance its Road Emissions Model to explore the emissions impact of changes in transport demand, supply of transport networks/ services and changes in vehicle fel et technology. TII will reduce its emissions and environmental impacts from maintenance and operations of existing National Road infrastructure. TII will reduce carbon emissions associated with the development, construction, and operation of new infrastructure. TII will support the Department of Transport and its Zero Emissions Vehicle Ireland (ZEVI) Ofcfi e to increase the provision of electric vehicle charging infrastructure nationwide. TII will continue to participate in wider efof rts to decarbonise road transport through the provision of appropriate infrastructure, and technology, and support of policy aimed at changing behaviours. |
-| Climate Adaption & Resilience | TII will enhance the resilience of National Roads, in particular sections of the rural National Secondary road network, that provide lifeline links to individuals and communities. TII will implement its Climate Adaption Strategy (2022). |
-
-| Addressing Issues | NR2040 Commitments |
-| --- | --- |
-| Sustainability | TII will work with government agencies and stakeholders to support each Climate Action Plan and government’s national climate objective to “transition to a climate resilient, biodiversity rich, environmentally sustainable and climate neutral economy by 2050.” TII will incorporate economic, social and environmental sustainability objectives and goals in all decisions, policies, projects and processes. TII will promote inter-modal solutions that maximise overall transport efcfi iency in terms of infrastructure and resource use. For example, facilitating safe active travel along national road corridors that connect with rail and bus stations. In line with its legislative remit, TII will minimise the impact of road infrastructure on the environment and support the development and maintenance of ecological corridors along National Roads. In line with NIFTI, TII will prioritise online improvements and avoid delivering high levels of excess capacity. In line with its legislative remit, TII will work with relevant bodies to support measures to reduce air quality and noise impacts from road transport. TII will continue to support TII’s Sustainability Implementation Plan (and subsequent revisions) to integrate all aspects of sustainability in to TII’s core activities. |
-| Road safety | TII will deliver on its actions in the Government’s Road Safety Strategy 2021- 2030 ‘Our Journey towards Vision Zero’ and collaborate with partners to deliver on supporting actions. TII will prioritise delivery of high quality, suitable infrastructure to create forgiving roadsides, self-explaining roads and a safe environment for vulnerable road users. In line with NIFTI, TII will meet asset protection and renewal requirements to help to ensure the safety of the network. In line with the European Union’s Road Infrastructure Safety Management (RISM) Directive, TII will target investment on sections of national roads with the highest risk of fatal or serious injury. |
-| Movement of People | TII will support Connecting Ireland and prioritisation measures such as dedicated bus lanes where such prioritisation results in greater transport efcfi iency. TII will consider the needs of all road users for all projects. On urban dual carriageways and motorways approaching cities, TII will work with partner agencies to enable public transport and high-quality active travel alternatives. TII will continue to support reductions in car dependency and levels of car usage nationally while recognising the important role that private mobility plays for many road users. TII recognises that busy urban motorways, ring roads and town bypasses can be hostile environments for pedestrians and cyclists wishing to cross. TII will identify and remedy severance impacts from National Roads. Where bypasses are built, urban realm improvements will be required in the bypassed town to enable more sustainable mobility. |
-
-| Addressing Issues | NR2040 Commitments |
-| --- | --- |
-| Movement of Goods & Services | In line with the NPF and NIFTI, TII will work to achieve average inter-urban speeds of 90km/h on National Road corridors between Ireland’s fvi e cities (Dublin, Cork, Galway, Limerick, and Waterford) and fvi e regional centres (Letterkenny, Drogheda, Dundalk, Sligo and Athlone). In some instances, this will mean the development of new infrastructure or upgrading of existing infrastructure to deliver on this NPF and NIFTI inter-urban accessibility objective. TII will work towards improving regional and rural accessibility in line with the NPF and NIFTI, In partnership with other agencies, TII will work to protect access to ports and airports and improve access where required. TII will provide/ consider prioritisation measures such as dedicated freight lanes where such prioritisation results in greater transport efficiency. TII supports the development of rail freight and multi-modal freight distribution centres on or near National Roads. TII recognises the need to provide quality services and secure parking areas for HGV drivers as required by both the TEN-T Regulation and ITS Directive. An update to TII’s Service Area Policy, which outlines the current requirement for motorway service area on the motorway and dual carriageway network, will be published in 2023 |
-| Urban Congestion | TII will promote traffic management interventions that help optimise traffic movement on urban National Roads. TII will support the use of public transport on or adjacent to urban National Roads. TII will support the provision of segregated or offline active travel infrastructure adjacent to national roads. |
-
-### 6.2 NR2040 Implementation Structure
-
-*Pages 51–51*
-
-6.2 NR2040 Implementation Structure
-
-The NR2040 implementation structure consists of several portfolios under the four NIFTI Investment Priorities, plus a portfolio of non-infrastructure programmes. This assists in categorising TII expenditure against Government priorities.
-
-The Decarbonisation Investment Priority is the National Roads network’s greatest challenge. The Investment Priority incorporates Integrated Mobility programme, including major projects such as core bus corridors, bus and passenger facilities, Park & Ride and Park & Share; as well as an Active Travel programme, which includes the National Cycle Network (NCN) and Electric Vehicle Charging infrastructure development.
-
-The Protection and Renewal Investment Priority represents the largest area of expenditure on National Roads. It will continue to deliver Safety and Minor Works portfolios in addition to Network Resilience and Asset Management of infrastructure, including pavements; structures; motorways and tunnels; signs and lines; as well as Network Operations of motorways and tunnel operations; PPP; control centres and ITS; winter operations.
-
-Movement of People and Goods in Urban Areas will include programmes and projects encompassing traffic and demand management measures; technology solutions; and infrastructure interventions in and around cities and towns.
-
-The Enhanced Regional and Rural Connectivity Investment Priority focuses on enhancing Interurban Connectivity, Regional Connectivity and International Connectivity. Within this portfolio, there are sub-portfolios for National Primary and National Secondary Roads.
-
-Finally, TII recognises necessary supporting activities for investment that will address the changes to processes, technologies, and organisational needs. It will respond to NIFTI’s request for long term planning and evolution of practices in the care and development of road infrastructure.
-
-These include, for example:
-
-#### »Customer engagement and understanding- developing and delivering practices and
-
-processes to improve TII’s engagement with, and understanding of, all road customers; »Sustainability implementation plan- integrating sustainable practices and processes into
-
-every aspect of National Roads development and management, and ensuring sustainability is the bedrock of all decision-making, as articulated in TII’s Sustainability Implementation Plan. The implementation plan requires new ways of thinking; reviewing all corporate policies, standards and specifications; engaging with the wider supply chain and construction industry; and extensive collaboration; »Innovation and continuous improvement- TII ‘s track record is one of continuous improvement,
-
-for example effective implementation of the motorways programme and innovation; early adopters of free flow tolling – M50 and interoperable tolling. TII’s continuous improvement must be maintained in the new policy context of decarbonisation, multi-modality and technological change; »Digitalisation- including embedding a ‘digital-by-design’ philosophy, creating a digital twin
-
-of National Roads assets, C-ITS integration, and delivery of digital platforms. Digitalisation will improve NR2040’s communication and interaction with stakeholders. It will involve changes to skills, resources, organisations and activities; »Monitoring and evaluation- of investment programmes and projects is a key requirement of
-
-the Public Spending Code for capital and operating expenditure. NR2040 and its supporting environmental assessments provides the framework for monitoring and evaluation activity;
-
-### 6.3 Project Development Process
-
-*Pages 52–53*
-
-#### »Supporting development of a goods distribution centre network- on or near National Roads
-
-(developed by third parties) to play a significant part in the creation of a more efficient, lower emission, haulage industry.
-
-Figure 6.1 NR2040 Implementation Structure
-
-|  | Investment Priorities |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- | --- |
-|  |  | Protection | Movement of | Enhanced Regional & Rural Connectivity National National Secondary Primary |  |  |
-|  | Decarbonisation Active Travel Integrated Mobility Electric Vehicle Charging | & Renewal Network Resilience Safety and Minor Works Asset Management Operations | People & Goods in Urban Areas Traffic and Demand Management » M50 and Dublin Radials » M40 and Cork Area » Dublin Tunnel » Other Urban areas Technology Bypass Development | Rural Co National Secondary |  |  |
-| Investment Portfolios |  |  |  |  |  |  |
-|  |  |  |  | Interurban Connectivity |  |  |
-|  |  |  |  | Arterial Routes Lifeline Routes Collector Routes |  | Regional Connectivity International Connectivity |
-|  | Supporting Activities » » » Customer engagement Innovation and Monitoring and evaluation » and understanding continuous improvement Supporting development » » Sustainability Digitalisation of a goods distribution implementation plan centre network |  |  |  |  |  |
-
-6.3 Project Development Process
-
-NR2040 is a policy led
-
-TII, through NR2040, will align with the NIFTI Intervention Hierarchy and seek to address transport challenges through the use of existing road space before considering provision of new infrastructure.
-
-strategy, not a “predict and provide” (demand-led) strategy
-
-When developing a project on National Roads, the relevant Local Authority, third party and / or TII department will need to show that the proposed investment aligns with NIFTI as set out in the DoT Common Appraisal Framework (CAF) and/or associated appraisal guidance documents as published by DoT, and address how to work towards achieving the NIFTI Investment Priorities.
-
-NR2040 provides interpretation and further detail to streamline the project development process, by indicating:
-
-»How the project objectives align with NIFTI investment priorities (reviewed in chapter 2) »Specific strategic issue(s) facing National Roads that the project resolves (reviewed in chapter 3) »How the project objectives align with NR2040 Vision and Objectives (reviewed in chapter 4) »How the project aligns with NR2040 Investment Priorities and the spatial context through
-
-guidance on the types of intervention for different regions and the types of National Roads (reviewed in chapter 5) »How the project aligns to one or more of TII’s commitments (reviewed in section 6.1) »Identification of the NR2040 portfolio and programme that would accommodate the project
-
-(reviewed in section 6.2)
-
-This process is consistent with existing TII Project Appraisal Guidelines(PAG), DoT CAF and DoT NIFTI investment priorities and hierarchies. It also aligns with the DEPR’s Public Spending Code (PSC) requirements to demonstrate the strategic rationale for significant, publicly funded investments.
-
-Intervention types and examples are presented in Table 6.2.
-
-![Table 6.2 National Roads intervention types and examples](assets/p053-t01.webp)
-
-*Table 6.2 National Roads intervention types and examples*
-
-Priority of public transport, walking, cycling and goods
-
-Enable a sustainable transport system through coordination with partner organisations. Reduce the reliance on private vehicles by coordinating access and priority on National Roads for public transport, goods vehicles, walking and cycling.
-
-active mode collaboration and interchange »Building pedestrian and cycle
-
-bridges to reduce severance
-
-#### »Smart motorways »C-ITS »Modern asset management
-
-Integrate new road technologies and provide for vehicle innovation. Incentivise and promote quicker, easier and lower-carbon travel alternatives to fossil-fuelled vehicles.
-
-New transport and road technologies
-
-systems
-
-#### »HOV, bus and cycle lanes »Ramp metering »Tolling
-
-Prioritise and incentivise use of the network. Restrict use of the network by time, location, trip purpose, vehicle type or other criteria necessary to balance the needs of the community, environment and economy.
-
-Demand management
-
-#### »Junction improvements »Short road segment
-
-Resilience and capacity via local reconstruction
-
-Improve resilience or capacity through localised reconstruction, notably on National Secondary Roads
-
-improvements
-
-#### »Town Bypasses »Build new to reduce net
-
-Where no feasible alternative exists to serve the required function, deliver new road infrastructure with sustainable procurement and circular economy practices.
-
-Road construction
-
-carbon »Build better (new multi-modal
-
-links)
-
-### 6.5 Collaboration
-
-*Pages 54–54*
-
-6.4 Environmental Assessments
-
-As part of the preparation of NR2040 a number of environmental assessments have been undertaken in tandem with the development of the Strategy. Assessments include a Strategic Environmental Assessment (SEA), an Appropriate Assessment (AA) and a Strategic Flood Risk Assessment (SFRA). The assessments identify, at a strategic level, potential effects on the environment as a result of the strategy commitments/ actions and these assessments have helped inform the high-level of protection of the environment with a view to promoting sustainable development.
-
-NR2040 sits within the overall hierarchy of policy documents. Any future projects requiring planning consent arising from NR2040 are subject to the relevant project level environmental assessment requirements including and the requirements of environmental directives including but not limited to: SEA Directive (2001/42/EC), EIA Directive (2011/92/EU as amended by 2014/52/EU) and Habitats Directive 92/43/EEC, Water Framework Directive (2000/60/EC) and Floods Directive (2007/60/EC) and associated national legislation, as appropriate.
-
-This strategy should be read in conjunction with the following environmental assessment reports: SEA Statement, AANatura Impact Statement and SFRA and the mitigation included within them.
-
-A summary of how the SEA process, including consultation from environmental authorities, has influenced the strategy is included in the SEA Statement published in conjunction to the Strategy.
-
-6.5 Collaboration
-
-National Roads have a multi-modal, integrated future that must be delivered by TII in collaboration with other government agencies and transport stakeholders. Early collaboration with third parties is vital to deliver on current and future policy.
-
-Some of TII’s key collaborators are: Local Authorities; Department of Transport; Road Safety Authority; National Transport Authority; Department of the Environment, Climate and Communications and other government departments (e.g. Department of Housing, Local Government and Heritage).
-
-Considering the new types of projects envisioned, TII recogniszes the need for a wide variety of skills and multi-disciplinary teams to ensure successful development and achievement of goals and objectives. A strong supply chain of land use and transport planners, engineers, contractors, technical advisors, public communication and engagement specialists, suppliers and operators is of vital importance, with an increasing emphasis on technology suppliers.
-
-In addition, it is important that future transport investment is coordinated and integrated with other sectors, including land-use planning and policy to support compact sustainable development of our cities and towns, and supports regional and rural development. Cooperation with state agencies will continue to allow National Roads to be used for services of national importance, such as access to international ports.
-
-The success of both ‘Movement of People and Goods in Urban Areas’ and ‘Decarbonisation’ portfolios is particularly dependent on a strong collaboration with a range of stakeholders.
-
-## _Hlk104888790
-
-### 3.2 Road Transport Decarbonisation
-
-*Pages 23–24*
-
-Figure 3.3 Population growth will increase demand on the national road network
-
-2.7 million by 2040
-
-#### Driving Employment
-
-#### Increase
-
-1.1 million increase by 2040
-
-#### 2.7 million more trips on our road
-
-#### Population
-
-#### Growth
-
-2.2 million by 2040
-
-#### networks everyday by
-
-#### +500,000 More Homes
-
-#### 2040
-
-#### Needed
-
-3.2 Road Transport Decarbonisation
-
-Adherence to Ireland’s decarbonisation goals poses a significant challenge for the road transport sector, including the National Roads network
-
-Ireland’s Climate Action Plan has set an overall Greenhouse Gas (GHG) emissions reduction target of 51 percent by 2030, compared with 2018, and climate neutrality by 2050. In July 2022, the Government announced sectoral emissions ceilings where the overall target of 51 percent reduction by 2030 can only be met depending on the success of each sector of the Irish economy (electricity, transport, buildings, industry, and agriculture) meeting their individual ceiling targets. The transport sector’s ceiling for GHG emissions till 2030 was set to 6 Mega tonne CO2 equivalent5 .
-
-The transport sector must play a significant role in this reduction, with a specific 42 percent - 51 percent target reduction by 2030. In 2020, road transport GHG emissions made up 94 percent of transport emissions in Ireland6. Especially concerning is the evidence that lockdown measures in response to the COVID-19 pandemic in 2020 resulted in a 16 percent decrease in transport emissions, compared to 20197 TII traffic counts showing that 2021 travel trends largely returned to 2019 pre-Covid levels8. Emissions from the sector are estimated to reduce to 39 percent below 2018 levels by 2030 if additional measures in plans and policies are implemented, including significant EV share by 2030 and measures to support more sustainable transport9.
-
-5 Source: Department of the Taoiseach, 2022; gov.ie, ‘Government announces sectoral emissions ceilings, setting Ireland on a pathway to turn the tide on climate change’ 6 EPA Provisional Greenhouse Gas Emissions for Ireland, 2020 (October 2021) 7 EPA Provisional Greenhouse Gas Emissions for Ireland, 2020 (October 2021) 8 TII National Roads Network Indicators, 2021 9 EPA Ireland’s Greenhouse Gas Emissions Projections, 2021-2040 (June 2022)
-
-The NIFTI priorities around facilitating mobility of people and goods in urban areas and enhancing regional and rural connectivity must be achieved while minimising or reducing carbon emissions. Where we live, the places we travel to, the mode and frequency of travel, the occupancy levels of the vehicles in which we travel, the energy and technology underpinning our means of transport and traffic conditions, all contribute to GHG emissions. These factors must all be considered and understood when planning for a low carbon transport system. While TII has a limited role in behavioural change, the provision of high quality multi modal infrastructure has an important role in enabling and encouraging a modal shift to support a reduction in carbon emissions. The provision of multi-modal infrastructure in combination with improved public transport services will increase transport options on our road network, improving the mobility of people in urban areas and enhancing regional and rural connectivity in alignment with carbon reduction targets.
-
-In an urban context, congestion causes inefficient vehicle engine performance and results in significantly elevated levels of vehicle emissions. This is a particular issue where heavy vehicles make up a sizable proportion of traffic. In an inter-urban travel context, where free-flow conditions contribute to more efficient engine performance, the key driver for carbon emissions is the length of the trip.
-
-![Figure from page 24](assets/p024-f01.webp)
-
-*Figure from page 24*
-
-A shift to electric technology in the car fleet is a significant step towards decarbonisation of the road transport sector. This must be supported with provision of charging infrastructure along the National Roads network. The emissions from commercial and heavy vehicles must also be mitigated.
-
-TII analysis finds that across the National and Regional Roads networks a significant proportion of personal trips are short in nature, typically less than 15 minutes duration10. These shorter trips are associated with colder engines, which leads to higher emissions. Interventions promoting a shift to low carbon options for these trips, using for example active travel along or adjacent to the National Roads network, would support efforts to reduce both congestion and emissions.
-
-10 TII National Roads Network Indicators (2012-2021)
-
-### 3.4 Sustainability
-
-*Pages 25–26*
-
-3.3 Climate Adaptation & Resilience
-
-The road network, and the people who rely on it, are vulnerable to a range of possible climate change effects.
-
-Ireland’s climate is changing, and the indications are that further and more profound changes are likely. Major recent weather events in Ireland include Storm Ophelia (2017), which caused major power outages, lifted roofs and coastal flooding; Storm Emma (2018), which brought sub-zero temperatures and heavy snow showers that caused disruption and closure of transport systems including roadblocks; as well as heatwaves and drought (2018).
-
-The road network, and the people who rely on it, are vulnerable to a range of possible climate change effects, including strong winds, landslides, changing rainfall patterns and extreme weather events leading to flooding and variable temperatures. In the longer-term sea level rising may also pose a threat. These may cause a range of debilitating impacts on the National Roads network, ranging from reduced performance- such as slower journey times, lower visibility and poor driving conditions; to damaged infrastructure and heightened user risk, causing disruption or closure of sections of the National Roads network. Closure of important transport links bring risks to people and businesses, especially in areas of low resilience where National Roads provide sole transport infrastructure for people and goods and in essence function as regional lifelines.
-
-Adaptation to the impacts of climate change requires action to both manage the risks and to prepare mitigation and resilience plans to reduce vulnerabilities. Climate change mitigation has become an essential component of long term, strategic economic planning. An integrated approach involving stakeholders is essential. TII must prepare strategies for various climatic events that will impact the National Roads network.
-
-![Figure from page 25](assets/p025-f01.webp)
-
-*Figure from page 25*
-
-3.4 Sustainability
-
-Striking the appropriate balance between investment in transport and sustainability impacts requires a continued effort.
-
-Sustainable development is “development that meets the needs of the present without comprising the ability of future generations to meet their own needs” (Brundtland Commission).
-
-Transport infrastructure can bring about social and economic benefits, such as enhanced mobility, access to markets and social participation. However, the development and management of transport infrastructure must avoid, reduce and mitigate adverse environmental impacts, such as harmful emissions from transport (GHGs, air quality and noise impacts), and direct and indirect impacts to biodiversity and/or habitats as well as to neighbouring properties and communities
-
-adjoining the National Roads network. Striking an appropriate balance, between maximizing the benefits arising from investment in transport infrastructure and reducing potential negative environmental, social and/or economic impacts, requires continued effort as the asset changes and adapts to new futures.
-
-This might mean that some projects may be more expensive up front but will likely have more benefits over the long-term particularly regarding emissions and social impacts.
-
-TII Sustainability Implementation Plan
-
-Through TII’s Sustainability Implementation Plan a roadmap has been developed to apply the sustainability principles in developing and operating the National Roads network. We recognise that ‘sustainability’ is complex and far reaching but we are committed to integrating it into everything we do.
-
-TIIs sustainability statement and implementation plan, lay out six core principles and two overarching principles. The six principles are set out below, these broadly align with the UN Sustainable Development Goals and have been developed to reflect TII’s organisational ambitions.
-
-![Table 3.1 TII Sustainability Principles](assets/p026-t01.webp)
-
-*Table 3.1 TII Sustainability Principles*
-
-Provide effective, efficient, and equitable mobility
-
-Enable safe and resilient networks and services:
-
-Collaborate for a holistic approach
-
-Deliver end-to-end improvements
-
-Transition to net zero
-
-Create total value for society
-
-TII recognises that to truly deliver on sustainability it requires all of society to get involved, and as such the six principles are tied together with two overarching principles: »Leadership, Collaboration and Partnership; and »Working together and enabling people
-
-These overarching principles ensure connectivity across the six core principles and are supported in NR2040 commitments.
-
-### 3.7 Road Safety
-
-*Pages 27–27*
-
-3.5 Air Quality
-
-The transport system in Ireland is highly fossil fuel dependent (diesel & petrol), which results in significant emissions of GHGs and air pollutants (that are contained in exhaust fumes) to the environment. The Environmental Protection Agency (EPA) ‘An Integrated Assessment Report - 2020’ predicts that the transport sector will continue to dominate in emissions of NOx for the 2020 and 2030 period meaning transport will continue to be one of the most significant contributors to air pollution in Ireland. The composition of the Irish vehicle fleet plays a significant role in local ambient air pollution levels. The number of Irish vehicles on the roads has grown consistently in line with population growth and economic growth contributing to a rise in NOx emissions. Implementing measures identified in NR2040, as well as the Government’s Climate Action Plan, is likely to result in more concerted efforts to address air quality issues across Ireland including those from the transport sector.
-
-3.6 Noise
-
-According to the World Health Organisation (WHO), noise is the second greatest environmental cause of health problems, after air quality. Environmental noise from major infrastructure including roads, railways and airports is governed by the Environmental Noise Directive 2002/42/ EC. The Directive relates to the assessment and management of environmental noise and is the key EU instrument to identify noise pollution levels and to trigger the necessary action both at Member State and at EU level. In Ireland, the Directive is transposed into Irish Law by the European Communities (Environmental Noise) Regulations 2018 (S.I. No. 549 of 2018). Under the regulations, TII is responsible for the development of strategic noise mapping for all National Roads carrying more than 3 million vehicles a year and for major railways which carry more than 30,000 passengers per year. Local Authorities are responsible for preparing the Noise Action Plan. CAP includes targets to reduce the total vehicle kilometres of travel by 20 percent by 2030 which will also influence reductions in noise from road transport.
-
-3.7 Road Safety
-
-Road Safety is at the heart of every aspect of management of the National Roads network, on the way towards achieving Vision Zero
-
-Ireland’s new Government Road Safety Strategy (2021-2030) ‘Our Journey towards Vision Zero’ has set an ambitious target for Ireland to reduce road traffic fatalities and serious injuries by 50 percent by 2030. Longer term, the strategy aims to eradicate road traffic deaths and serious injuries by 2050. In 2021, there were 58 fatalities on National Roads11, representing a declining trend but still an area for continuous improvement.
-
-An upturn in active travel modes and specifically in cycling, both for commuting and leisure, emphasises the need for a greater focus on prioritising the safety of vulnerable road users. Better cycling and walking provision are an important consideration for investment in the National Roads network and prioritisation of vulnerable road users aligns with the modal hierarchy set out in NIFTI.
-
-TII’s statutory remit includes the provision of a safe and efficient National Roads network. The Vision Zero long-term goal and the Safe Systems approach must inform TII investment decisions.
-
-Safe Systems approach Places primary responsibility for road safety on system designers. Four principles identified are:
-
-Human life and health are paramount and take priority over
-
-Road traffic systems should
-
-Providers and regulators must
-
-Providers & regulators share
-
-take account of
-
-do their duty to support safe travel
-
-responsibility
-
-human fallibility and resultant harm
-
-mobility
-
-of all citizens
-
-11 TII-National-Roads-Network-Indicators-2021
-
-### 3.8 Movement of People
-
-*Pages 28–28*
-
-3.8 Movement of People
-
-The operation, maintenance, renewal, and development of National Roads must focus on the movement of people, rather than vehicles.
-
-Project Ireland 2040’s NSO4 relates to Sustainable Mobility, which supports social and economic activity, and the role of National Roads in a sustainable transport system is a key consideration.
-
-What constitutes efficient mobility differs between urban; rural; and inter-urban contexts as well as between users within each context: female/male; elderly/young; trip purpose- to work or for errands; etc. Availability of active travel infrastructure and public transport services will enable road users to choose the most convenient and efficient transport modes and routes for them.
-
-Nationally, bus (and coach) journeys increased by 60 percent from 2013 to 2019 (141 mil. trips to 226 mil.), accounting for 82 percent total public transport vehicle-km (2019)12. Figure 3.4 illustrates public transport services facilitated across the National Roads network13 , not accounting for service frequency which may vary across the network and time of day. Infrequent services, particularly during commuter periods, does not enable many road users to switch to an alternative mode from the car. Population growth along with national decarbonisation targets drives the need for more efficient use of road space. Re-allocation of road space is to be investigated, to promote and enable a sustainable modal-shift while minimising environmental impact.
-
-In line with the 1993 Roads Act (as amended), the needs of all road users must be considered. Public transport operators and customers will seek more capacity as well as increased speed and frequencies for reduced travel time and journey time reliability in years ahead. It is the role of the National Roads network to accommodate this. In relation to active travel, where national roads are too dangerous for active travel, meaningful interventions should be considered in cooperation with relevant stakeholders and partner agencies.
-
-Figure 3.4 Bus service routes operating on National Roads (2022)
-
-12 NTA - Commercial Bus Services in Ireland - Statistical Bulletin: 01 / 2021 13 Source: General Transit Feed Specification data (https://www.transportforireland.ie/transitData/PT_Data.html)
-
-### 3.9 Movement of Goods and Services
-
-*Pages 29–29*
-
-3.9 Movement of Goods and Services
-
-On National Roads a balance must be found between the movement of people and the movement of goods.
-
-Ireland’s economy is heavily dependent on the efficient movement of goods, both domestically as well as into and out of the country and is therefore dependent on efficient domestic and international transport networks. Freight dependent industries need high-quality transport connections to ensure certainty of arrival of incoming goods and outward shipping of products. Producers and retailers need efficient distribution systems for timely access to their markets and customers.
-
-Currently, the vast majority of internal trade freight in Ireland is carried on the road network14, in a variety of vehicles, from Heavy Goods Vehicles (HGVs) to smaller vans TII estimates that in the region of 80-90 percent of all freight transport occurs on National Roads15. The movement of goods takes place throughout the entire country, and intensifies on National Primary roads, notably on the east coast, M50, and around Cork and Limerick, as illustrated in Figure 3.5. Along the M50, for example, goods vehicles (HGV/LGV) represent 25 percent of all vehicles and take up 33 percent of the available road space.
-
-![Figure 3.5 National weekday HGV movements, 2019](assets/p029-f01.webp)
-
-*Figure 3.5 National weekday HGV movements, 2019*
-
-14 Central Statistics Office, Road Freight Transport Survey Quarter 4 and Year 2020. 15 Vehicle kilometers estimate based on CSO national freight travel estimates and TII’s network of roadside traffic counters.
-
-### 3.10 Urban Congestion
-
-*Pages 30–30*
-
-There is often limited flexibility in mode or time of travel associated with freight transport given its role in the movement of essential goods for society. The importance of facilitating efficient freight transport for society was highlighted during the COVID pandemic where, despite restrictions to movement of people, demand for goods movement remained constant – only 4 percent less in 2020 than 201916.
-
-Transport emissions reduction from goods vehicles represent a significant challenge, as, reflective of their size/engine types, they generate 5 to 6 times higher emissions than cars. In 2020, goods vehicles represented nearly 40 percent of the total CO2e emissions on National Roads17. While the car fleet is transitioning towards EV/LEVs there are currently no scaled alternatives for HGVs, though the Alternative Fuels Infrastructure Regulation is expected to place an emphasis on provision of electric vehicle charging for HGVs. The progression of technology and traffic management measures is therefore necessary..
-
-Integration of road and rail freight is supported by TII and is important for reducing freight related congestion and emissions on the National Roads network. Iarnród Éireann has developed its strategy Rail Freight 2040, which envisions rail playing a key role in enhancing regional connectivity and supporting economic growth whilst meeting climate change objectives.
-
-National Roads can be essential arteries for economic activity across the country, their role in this regard must be acknowledged and protected. National Roads infrastructure should be fit for purpose for the transport of heavy vehicles, noting the high levels of wear and degradation of the carriageway under heavy loading. While the freight sector has proven to be historically resilient, capacity re-allocation or freight specific transport management schemes, which would need to be considered at the appropriate tier of the NIFTI Modal and Intervention Hierarchies. In December 2022, the DoT published ‘Ireland’s Road Haulage Strategy 2022–2031’. When implementing NR2040, TII will work closely with the DoT to take account of the needs of the Haulage and Road Freight sector.
-
-3.10 Urban Congestion
-
-We cannot build our way out of urban congestion challenges - the management of National Roads must balance increasing mobility demands and finite road space.
-
-Congestion has a significant impact on the well-being of people in our cities and urban communities. It detrimentally affects local, national, and international accessibility. Land use patterns and a shortage of meaningful alternatives, including public transport and high-quality cycling and walking facilities, have led to an over-reliance on car use, thus leading to congestion.
-
-Congestion is especially evident on national roads in the approaches to and in the environs of urban centres leading towards and around urban centres during peak periods. Thus, not only does congestion adversely affect personal travel experience, but it also hinders the use of the road as a well-functioning public asset.
-
-The economic cost of congestion is evident, as analysis for the Greater Dublin Area estimates- the cost of time lost due to aggravated congestion was €358 million in 2012. This is forecast to rise to €2.08 billion per year in 203318. The economic cost of congestion is especially relevant in respect to the transport of goods, which rely on the National Roads network for efficient access to ports and airports.
-
-Congestion also leads to increased carbon emissions and reductions in air quality, resulting
-
-16 TII Road Traffic Counts 17 TII Emissions Model 18 The Costs of Congestion - An Analysis of the Greater Dublin Area, EFEU Research Report (July 2017)
-
-### 3.12 Asset Management and Operations
-
-*Pages 31–31*
-
-from stop-start traffic conditions. However, this may be mitigated over time, thanks to car fleet electrification policies.
-
-Managing congestion on the urban sections of the National Roads network will allow TII to optimise the use of assets under its remit. However, we cannot build our way out of urban congestion challenges. The management of National Roads must balance increasing mobility demands and finite road space. A collaboration of stakeholders, sectors and interventions is necessary. Ongoing monitoring and demand analysis will enable identification of necessary interventions, such as road space repurposing. Where the National Roads network cannot safely accommodate all road users, including active travel modes, adjacent alternative solutions should be explored.
-
-3.11 Technological Change
-
-The management and operation of National Roads must evolve to support and manage the uptake in developing technologies to the benefit of customers.
-
-The transport options available for customers will expand as technology develops. Aspects where technological change is likely to include: connected vehicles, dynamic traffic management, advanced intelligent transport systems (ITS), electrification of vehicles and potentially energy generating capacity within the road network, advanced payment systems, improved customer information, enforcement measures, Mobility as a Service (MaaS). These technological changes may transform the way National Roads are used and operated.
-
-TII has deployed proven road technologies and Intelligent Transport Systems (ITS) on key sections of the National Roads network. TII is currently in the latter phases of implementing Variable Speed Limits on the M50 as part of its Dynamic Traffic Management Project and has commenced a Co-operative ITS pilot project on the M50 and M1 in Dublin. TII is committed to the facilitation of Connected Driving on National Roads in collaboration with key stakeholders.
-
-It is from this base that the technological future of the National Roads network will evolve.
-
-3.12 Asset Management and Operations
-
-The National Roads network is a valued state asset that requires extensive investment for ongoing management and operations.
-
-Past capital investment in National Roads, including motorways and dual carriageways, has delivered a valuable state asset. The management and operation of this asset represents TII’s main expenditure item and will increase as the network, particularly the motorways sections, approaches an age where it requires major renewal investment. Overall ageing of the asset coupled with climate change will affect network resilience and put a further strain on the budget for the ongoing maintenance and operations of the National Roads network. If investment in protection and renewal is deferred, there will be a greater overall cost incurred as the asset deteriorates further.
-
-Meanwhile, new categories of expenditure are expected over time with technology playing a greater role in the management of the asset and demand for the same. Protection and Renewal is one of NIFTI’s Investment Priorities and requires prioritisation by TII. It must also be noted that public-private partnership (PPP) contracts for the motorway network will begin to expire in the 2030s which will require decisions on how the transition will be managed and what the replacement model might be.
-
-![Figure from page 31](assets/p031-f01.webp)
-
-*Figure from page 31*
-
-TII’s Project BRUCE (Better Road User Charging Evaluation) will help inform a future direction for road user charging, operation and maintenance. It will consider whether the existing PPP road tolls should be removed, retained or replaced with a new user charging model.
-
-### 3.14 Customer Experience
-
-*Pages 32–32*
-
-3.13 Integrated Mobility
-
-Integrated mobility is key to an inclusive, well connected, and sustainable transport system and must be facilitated through the National Roads network.
-
-The most effective provision of sustainable mobility is through an efficient and well-integrated transport system, where each mode of transport has its own role to play, but also complements and provides resilience for the other modes within that system. The context for Ireland’s transport system changes between rural and urban areas. Where there are high levels of trip demand, the case for the provision of public transport alternatives to car travel increases. Where there is dispersed population in rural areas it may not be sustainable to provide bus services that fully meet the mobility needs of all users.
-
-The goal for transport agencies is to enhance accessibility and opportunities for interchange to enable trip-makers to choose the most efficient and convenient combination of modes. However, transport agencies must also ensure efficient provision of transport services and infrastructure, as well as enabling and encouraging travel choices that are socially and environmentally sustainable.
-
-3.14 Customer Experience
-
-TII recognises the need for a customer-centric approach when planning for the National Roads network.
-
-A diverse range of customers use the National Roads in different ways and for different reasons. These include regular users of National Roads, and includes those who do not directly use it but benefit from it, e.g., a household receiving deliveries. It is important to understand evolving customer needs and acquire better insight into the wide spectrum of customer expectations, mode preferences and purposes.
-
-TII continues to seek a better understanding of customer expectations depending on location, mode preference and travel purposes.
-
-One area of research targeted by TII has been that of gender and transport. Designing sustainable transport infrastructure becomes synonymous with designing inclusive, safe, equitable and high-quality experiences that consider all users. Doing so requires an integrated approach, including several physical, social, and policy interventions across public and private bodies. For National Roads, this can take the form of improved lighting for transport facilities on the network or improved public transport service frequency on National Road routes.
-
-New initiatives will survey users periodically to help understand issues and develop customer orientated solutions, to meet existing and future needs.
-
-### _Hlk104888790
-
-*Pages 22–22*
-
-3 Census, 2016, Central Statistics Office 4 Source: TII analysis of CSO, 2020; Central Statistics Office, ‘National Travel Survey 2019’
-
-## 7 Monitoring Framework
-
-### 7 Monitoring Framework
-
-*Pages 55–55*
-
-Monitoring of NR2040 will be led by TII and undertaken through three different aspects:
-
-#### »Project-level assessments and appraisals – through existing method of monitoring carried
-
-out by TII where the development, and appraisal process aligns with the TII PAG, DoT CAF, and DoT NIFTI investment priorities and hierarchies. Project-level assessments should highlight existing issues and those that may arise in the future as well as their underlying causes. This may include existing or potential future problems regarding safety, travel time, travel time reliability, accessibility and social inclusion, severance, connectivity, employment, and socio-economic factors. This will ensure that programmes and projects entering the implementation portfolios are aligned with NR2040. TII in its role of approving authority must ensure compliance with the PSC’s requirements on monitoring during delivery and evaluation post-delivery. »Annual National Roads Indicators reports – Yearly key performance indicators and updates
-
-on the use of the National Roads network will be compiled and reported. Indicators include information on the road network, economy, road condition, safety, accessibility, and the environment. »Environmental monitoring of the Strategy – The SEA Directive requires the monitoring of
-
-the likely significant environmental effects of the implementation of plans or programmes. The SEA Monitoring programme developed for NR2040 is presented in the SEA Statement. The monitoring programme identifies targets and indicators, the source of information (including the lead agency or any stakeholders involved in data collection. The frequency of monitoring is also identified.
-
-![Figure from page 55](assets/p055-f01.webp)
-
-*Figure from page 55*
-
-## _Hlk105598131
-
-### 5.3 Mobility of People & Goods in Urban Areas
-
-*Pages 41–42*
+19 https://www.tii.ie/technical-services/environment/changing-climate/1_PSF-ENW-0003-01-StrategyForAdaptingToClimateChange_Final_December_2017_Print_ Version.pdf
 
 O
 
@@ -1796,6 +1791,10 @@ C
 E
 
 D
+
+### 5.3 Mobility of People & Goods in Urban Areas
+
+*Pages 41–43*
 
 5.3 Mobility of People & Goods in Urban Areas
 
@@ -1905,10 +1904,6 @@ Iarnród Éireann has identified potential routes suitable to rail, within an in
 
 TII will support travel demand management measures for National Roads in the five cities (Dublin, Cork, Galway, Limerick, and Waterford) and implement other government policy on demand management on national roads. TII will expand traffic management measures in congested sections of national roads to ensure optimal vehicle flow to minimise carbon emissions, particularly from freight.
 
-### 5.4 Enhanced Regional and Rural Connectivity
-
-*Pages 43–46*
-
 | Project showcase- M50 Demand Management Study (DMS) |  |
 | --- | --- |
 | The M50 is the single most important element of the road transport network in Ireland for the movement of people and goods. TII prepared the M50 Demand Management Study (DMS) in 2014 to set out a plan for the management of increasing demand through fiscal policy, intelligent transport systems/traffic control, information, smarter travel and network control measures. Elements of this Study have subsequently been delivered including an Incident Management System, junction layout improvements and Variable Speed Limits on the M50. In 2021 TII, in recognising continued growth (and associated emissions) on the M50, commissioned further work to gain a thorough understanding of the M50 users and customers including extensive customer engagement. |  |
@@ -1930,6 +1925,10 @@ C
 E
 
 D
+
+### 5.4 Enhanced Regional and Rural Connectivity
+
+*Pages 43–46*
 
 5.4 Enhanced Regional and Rural Connectivity
 
@@ -2120,196 +2119,6 @@ Arterial National Secondary roads cater for high travel demand and are in close 
 Collector National Secondary roads cater for travel needs across much of the state. Collectors have some level of redundancy, meaning closures are only an inconvenience because alternative routes are available. Safety and route consistency is a priority for these roads.
 
 Any interventions for National Secondary roads will be selected through application of the NIFTI Modal and Intervention Hierarchies.
-
-### _Hlk105598131
-
-*Pages 40–40*
-
-![Figure from page 40](assets/p040-t01.webp)
-
-*Figure from page 40*
-
-There is a need to ensure the road network is resilient to the effects of climate change, identified as a strategic issue for the National Road network and therefore a new portfolio theme in TII’s scope of work.
-
-TII is updating its ‘Strategy for Adapting to Climate Change on Ireland’s Light Rail and National Road Network’19. The strategy is examining the impacts of climatic events on surface, groundwater resources and environmental measures as an integral part of the climate adaptation strategy.
-
-TII is continually maintaining and renewing road pavements and road assets such as signage, crash barriers and noise barriers. Adaptation to climate change is included in drainage designs by strengthening bridges and raising of roads, allowing for future increases in rainfall intensities and volumes, preventing roads becoming impassable after heavy rainfall.
-
-| National Roads Operational Continuity during Storm Emma (2018) | National Motorway covered in snow |
-| --- | --- |
-| Storm Emma struck Ireland in February 2018, bringing up to 690 mm of snow to parts of the country. TII was represented on the National Emergency Coordination Group (NECG) given that National Roads are critical infrastructure. In its response to the emergency TII maintained full staffing levels for 24 hours a day between the 26th of February and the 4th of March, and provided food, sleeping and welfare facilities in local hotels and maintenance depots for operatives. Maintenance of continued road operations on routes to hospitals, emergency service stations was prioritised, with the entire network ready for morning travel on Monday 5th March 2018. |  |
-
-19 https://www.tii.ie/technical-services/environment/changing-climate/1_PSF-ENW-0003-01-StrategyForAdaptingToClimateChange_Final_December_2017_Print_ Version.pdf
-
-## Appendix A National Policy Actions for National Roads
-
-### Appendix A National Policy Actions for National Roads
-
-*Pages 56–59*
-
-Note: Any reference to individual projects is for illustrative purposes only, as excerpted from the NPF. All projects are subject to planning approval and compliance with all other applicable environmental law, regulatory and public expenditure requirements for the project concerned, including compliance with the CAF and PSC.
-
-Table A.1 National Planning Framework actions for National Roads (Excerpts from the NPF)
-
-![Figure from page 56](assets/p056-t01.webp)
-
-*Figure from page 56*
-
-Growth22
-
-allowing better integration with their surrounding areas. NSO2 Enhanced Regional Accessibility23
-
-Inter-Urban Roads:
-
-Maintaining the strategic capacity and safety of National Roads including planning for future capacity enhancements;
-
-Improving average journey times targeting an average inter-urban speed of 90kph;
-
-Enabling more effective traffic management within and around cities and re-allocation of inner-city road-space in favour of bus-based public transport services and walking/cycling facilities; and
-
-Advancing orbital traffic management solutions.
-
-Accessibility to the North-West:
-
-Upgrading northern sections of the N4 and N5 routes and sections of the N3/M3 National Primary route; and
-
-Public Transport:
-
-Strengthening public transport connectivity between cities and large growth towns in Ireland and Northern Ireland with improved services and reliable journey times. NSO3 Strengthened Rural Economies and Communities24
-
-Invest in and maintain regional and local roads and strategic road improvement projects in rural areas to ensure access to critical services such as education, healthcare, and employment. NSO4 Sustainable Mobility25
-
-Expand attractive public transport alternatives to car transport to reduce congestion and emissions and enable the transport sector to cater for the demands associated with longer term population and employment growth in a sustainable manner.
-
-22 Project Ireland 2040: National Planning Framework (February 2018), p. 139. 23 Project Ireland 2040: National Planning Framework (February 2018), p. 140. 24 Project Ireland 2040: National Planning Framework (February 2018), p. 141. 25 Project Ireland 2040: National Planning Framework (February 2018), p. 142.
-
-![Figure from page 57](assets/p057-t01.webp)
-
-*Figure from page 57*
-
-International Connectivity26
-
-Airports:
-
-Enhancing land-side access, particularly in public transport terms.
-
-Ports:
-
-Improve land transport connections to the major ports, including:
-
-Facilitating the growth of Dublin Port through greater efficiency, limited expansion into Dublin Harbour and improved road access, particularly to/ from the Southern port area;
-
-Table A.2 National Development Plan actions for National Roads (Excerpts from the NDP (2021-2030)
-
-![Figure from page 57](assets/p057-t02.webp)
-
-*Figure from page 57*
-
-Growth
-
-allowing better integration with their surrounding areas NSO2 Enhanced Regional Accessibility
-
-Investment will continue in new inter-urban roads, having regard to the potential for carrying public transport services and better integrating public transport and active travel networks on the approaches to urban areas. A key priority will be to maintain the existing national road network to a robust and safe standard and a significant percentage of National Roads expenditure over the course of this NDP will relate to maintenance works, in order to protect and renew existing assets.27
-
-The feasibility of bypasses will be considered for towns and villages throughout the country that are experiencing major congestion issues. While regional connectivity remains a NSOwhich the Government is committed to, there will be an increased focus on the delivery of infrastructure which facilitates compact growth in our towns and cities. This will allow for more compact urban and rural communities supported by jobs, houses and services by facilitating public transport and active travel options.28
-
-NSO6 High Quality International Connectivity
-
-Strengthening access routes to Ireland’s ports through investment to upgrade and enhance the road and rail transport network to improve journey times is and remains a government priority. 29
-
-26 Project Ireland 2040: National Planning Framework (February 2018), p. 145. 27 National Development Plan 2021-2030 (October, 2021), p.61. 28 National Development Plan 2021-2030 (October, 2021), p.65. 29 National Development Plan 2021-2030 (October, 2021), p.108.
-
-![Figure from page 58](assets/p058-t01.webp)
-
-*Figure from page 58*
-
-Climate-Neutral and Climate-Resilient Society
-
-Transitioning the passenger car fleet to electricity and providing additional charging infrastructure.
-
-Encouraging a significant modal shift through greater levels of investment and further development of meaningful alternatives to private car uses under the following three major environmentally sustainable mobility schemes:
-
-Additional cycling and walking infrastructure which will provide additional sustainable mobility options to complement increased capacity and faster, higher quality public transport in our main cities;
-
-Travel demand management measures in the five cities;
-
-Pilot initiatives for low emitting technologies in the transport sector. There is also the need to make the road network more resilient to the effects of climate change. This would include the following measures which would be undertaken under national, regional and local programmes:
-
-Improved drainage schemes;
-
-Strengthened road pavements and bridges which can resist the effects of increased rainfall and the effects of scour damage;
-
-Raising of roads in certain instances in order to prevent roads becoming impassable after heavy rainfall.
-
-Table A.3 National Sustainable Mobility Policy actions for TII30
-
-| National Sustainable Mobility Policy actions related to national Roads, where TII is owner (Excerpts from National Sustainable Mobility Policy: Action Plan) |  |
-| --- | --- |
-| Goal | Actions |
-
-including sustainable mobility users Expand speed management measures on National Roads at schools and high-risk locations
-
-Goal 1: Improve mobility safety
-
-Increase provision of Park and Ride and Park and Share at transport interchanges Develop and implement an active travel infrastructure programme for regional growth centres and key towns outside of the Greater Dublin Area. (Complements CAP Action 233, RSS Action 5, 40) Develop and publish a strategic national cycle network. (Complements CAP Action 232, RSS Action 39) Goal 4: Expand availability of sustainable mobility in regional and rural areas
-
-Goal 3: Expand availability of sustainable mobility in metropolitan areas
-
-Deliver public transport corridors providing prioritised bus lanes on national radial routes to the M50. (CAP Action 261)
-
-30 National Sustainable Mobility Policy: Action Plan 2022-2025 (April, 2022)
-
-| National Sustainable Mobility Policy actions related to national Roads, where TII is owner (Excerpts from National Sustainable Mobility Policy: Action Plan) |  |
-| --- | --- |
-| Goal | Actions |
-
-people to choose sustainable mobility over the private car
-
-User Charging Evaluation (BRUCE) study (CAP Action 259)
-
-Update national standards and project management guidelines to facilitate all road users on the national road network including the delivery of public transport facilities. Deliver an average of 60 road safety improvement schemes and fund an average of four minor realignment schemes on National Roads per year, to create forgiving roadsides, self-explaining roads, and a safe environment for vulnerable road users
-
-Goal 7: Design infrastructure according to Universal Design Principles and Hierarchy of Road Users Model
-
-## Appendix B Assessment of Alternatives Summary
-
-### Appendix B Assessment of Alternatives Summary
-
-*Pages 60–61*
-
-Three main alternatives were considered during the development of the NR2040 to comply with the SEA Directive Article 5, which requires the SEA process to identify, describe and evaluate ‘reasonable alternatives’ of attaining the objectives of the NR2040 strategy. These are presented at length in Chapter 7 of the SEA Environmental Report and summarised in this section.
-
-The alternatives include:
-
-#### »Alternative 1: Do Nothing scenario »Alternative 2: Predict and Provide scenario »Alternative 3: Policy-Led scenario
-
-Alternative 1, a ‘Do Nothing’ scenario is the baseline or current situation, referencing 2018 when NR2040 development was initiated, as the ‘base year’. This approach does not involve any additional investment or changes to the National Roads network. Furthermore, the ‘Do Nothing’ scenario does not include current emission reduction targets and assumes that economic growth will continue in accordance with normal cycles. For example, it does not consider potential recession or inflation of energy / fuel prices.
-
-Considering these omissions, transport planning was guided predominantly by the 2015 Strategic Investment Framework for Land Transport (SIFLT) which recognised three, hierarchical, priorities:
-
-1 Achieve steady state maintenance
-
-2 Address urban congestion
-
-3 Maximise the value of existing land transport networks
-
-The ‘Do Nothing’ approach was discounted as it fails to address new policy framework, does not provide TII with a long-term vision and identified to likely have a negative effect, directly or indirectly, on Environmental Protection Objectives (EPO).
-
-Alternative 2, a ‘Predict and Provide’ scenario involves forecasting future travel demand and providing the required infrastructure and services to meet this demand. In essence, it would be an improved version of the SIFLT based on similar principles. Opportunities for sustainable travel, protection and renewal portfolios would also be included as part of this approach.
-
-This scenario assumes land use development and travel patterns develop according to the NPF, and seeks to provide for the predicted travel needs resulting thereof. This scenario would likely result in provision of more road capacity, i.e., construction of roads, in a ‘predict and provide’ manner that would not be consistent with the NIFTI approach involving investment decisionmaking based on use of NIFTI intervention and modal hierarchies.
-
-The ‘Predict and Provide’ approach was discounted based on the shifting policy, probable substantial negative environmental effects over a range of EPOs as well as poor resource efficiency, due to the expected development of more roads.
-
-Alternative 3, a ‘Policy Led (Decide & Provide)’ scenario includes a strategic vision for the National Roads network that recognises the continuously changing environment and takes policy change into account while also contributing to policy development at national, regional, and local levels
-
-(including sectors of the Irish economy).
-
-The ‘Policy Led’ approach supports the NPF NSOs and consequently NIFTI. It guarantees alignment between government policies and the operational and functional requirements of National Roads. This approach sets a standard where TII will ‘provide’ for National Roads investments adhering to the national policy requirements to support population growth and the economy. It supports the internationally recognised ‘Avoid, Shift and Improve’ policy approach and promotes sustainable mobility to reduce negative effects on the EPO’s.
-
-Integration of multiple modes will limit growth in vehicle kilometres. Bus and truck priority will be deployed where it can provide for more efficient movement of people and goods. Provision of walking and cycling infrastructure, in particular where it addresses severance, will reduce unnecessary car travel. All investments will be carried out in line with NIFTI modal hierarchy. In addition, this approach prioritises utilisation of existing assets, in line with NIFTI intervention hierarchy, prior to the development of new roads.
-
-The ‘Policy Led’ approach was selected to move forward with in the development of NR2040 as it is aligned with current and emerging international and national policy in terms of supporting an integrated transportation network that will result in fewer negative effects on the EPO’s when compared with the other alternatives.
 
 ## Appendix C Response to Public Consultation Comments for Draft NR2040
 
@@ -3184,6 +2993,201 @@ y p
 |  |  |  |  | Integrated Mobility programme, including major projects |  |
 |  |  |  |  | such as… an Active Travel programme” |  |
 
+## 6 Implementation
+
+### 6 Implementation
+
+*Pages 47–47*
+
+NR2040 is TII’s strategy for the National Roads network, identifying the function and investment priorities for different parts of the National Roads network, for the purpose of:
+
+»Enabling Project Ireland 2040 (National Planning Framework and NDPs) »Supporting the realisation of several National Strategic Objectives (NSOs) »Aligning with NIFTI and other Government policy
+
+This implementation chapter provides NR2040’s summary guidance to Sponsoring Agencies and Local Authorities. It outlines:
+
+»TII commitments to addressing strategic issues »Provides a means of filtering future interventions »Defines TII investment portfolios »Concludes with TII’s commitment to collaboration, recognised throughout the strategy as a
+
+necessary means for the successful implementation of identified interventions and achievement of national targets
+
+### 6.1 NR2040 Commitments
+
+*Pages 47–50*
+
+6.1 NR2040 Commitments
+
+The NR2040 Investment Priorities are reinforced by a series of TII commitments, further addressing the strategic issues identified facing the National Roads network in the coming years. Policy obligations, including NPF, NIFTI, the Road Safety Strategy, and internal TII analysis and plans inform these commitments.
+
+These commitments outlined in Table 6.1 can will also be used to influence the scope of projects on the National Roads network developed by local authorities or other agencies.
+
+Table 6.1 NR2040 Commitments
+
+| Addressing Issues | NR2040 Commitments |
+| --- | --- |
+| Future Demographic Growth Trends | TII will continue to analyse possible growth in travel demand, reflecting Project Ireland 2040 population targets. TII will continue to develop and plan for multiple future demand scenarios that factor in possible behavioural and technological change. TII will ensure that the potential for induced travel demand will be estimated for all major projects. TII will implement government policy on demand management. NIFTI sets out the importance of the provision of alternative transport options, such as cycle infrastructure and public transport services before demand-side measures are implemented. TII will ensure that any future implementation of demand management proposals on the National Roads network aligns with the National Sustainability Mobility Policy as well as NIFTI Modal and Intervention Hierarchies. TII will explore the potential of road-user charging measures through the Better Road User Charging Evaluation (BRUCE) study |
+
+| Addressing Issues | NR2040 Commitments |
+| --- | --- |
+| Decarbonisation | To reduce emissions, TII will prioritise trafcfi management investment in freight corridors and where congestion results in high levels of GHG emissions. National Road projects will be appraised in the context of compliance with Ireland’s climate change targets, in line with each of the governments Climate Action Plan, NIFTI and in accordance with the Department of Transports Common Appraisal Framework. Predicted changes and/or targets associated with the levels of usage of each mode (e.g., bicycle, car, public transport, truck, van) will inform this. TII will continue to develop and enhance its Road Emissions Model to explore the emissions impact of changes in transport demand, supply of transport networks/ services and changes in vehicle fel et technology. TII will reduce its emissions and environmental impacts from maintenance and operations of existing National Road infrastructure. TII will reduce carbon emissions associated with the development, construction, and operation of new infrastructure. TII will support the Department of Transport and its Zero Emissions Vehicle Ireland (ZEVI) Ofcfi e to increase the provision of electric vehicle charging infrastructure nationwide. TII will continue to participate in wider efof rts to decarbonise road transport through the provision of appropriate infrastructure, and technology, and support of policy aimed at changing behaviours. |
+| Climate Adaption & Resilience | TII will enhance the resilience of National Roads, in particular sections of the rural National Secondary road network, that provide lifeline links to individuals and communities. TII will implement its Climate Adaption Strategy (2022). |
+
+| Addressing Issues | NR2040 Commitments |
+| --- | --- |
+| Sustainability | TII will work with government agencies and stakeholders to support each Climate Action Plan and government’s national climate objective to “transition to a climate resilient, biodiversity rich, environmentally sustainable and climate neutral economy by 2050.” TII will incorporate economic, social and environmental sustainability objectives and goals in all decisions, policies, projects and processes. TII will promote inter-modal solutions that maximise overall transport efcfi iency in terms of infrastructure and resource use. For example, facilitating safe active travel along national road corridors that connect with rail and bus stations. In line with its legislative remit, TII will minimise the impact of road infrastructure on the environment and support the development and maintenance of ecological corridors along National Roads. In line with NIFTI, TII will prioritise online improvements and avoid delivering high levels of excess capacity. In line with its legislative remit, TII will work with relevant bodies to support measures to reduce air quality and noise impacts from road transport. TII will continue to support TII’s Sustainability Implementation Plan (and subsequent revisions) to integrate all aspects of sustainability in to TII’s core activities. |
+| Road safety | TII will deliver on its actions in the Government’s Road Safety Strategy 2021- 2030 ‘Our Journey towards Vision Zero’ and collaborate with partners to deliver on supporting actions. TII will prioritise delivery of high quality, suitable infrastructure to create forgiving roadsides, self-explaining roads and a safe environment for vulnerable road users. In line with NIFTI, TII will meet asset protection and renewal requirements to help to ensure the safety of the network. In line with the European Union’s Road Infrastructure Safety Management (RISM) Directive, TII will target investment on sections of national roads with the highest risk of fatal or serious injury. |
+| Movement of People | TII will support Connecting Ireland and prioritisation measures such as dedicated bus lanes where such prioritisation results in greater transport efcfi iency. TII will consider the needs of all road users for all projects. On urban dual carriageways and motorways approaching cities, TII will work with partner agencies to enable public transport and high-quality active travel alternatives. TII will continue to support reductions in car dependency and levels of car usage nationally while recognising the important role that private mobility plays for many road users. TII recognises that busy urban motorways, ring roads and town bypasses can be hostile environments for pedestrians and cyclists wishing to cross. TII will identify and remedy severance impacts from National Roads. Where bypasses are built, urban realm improvements will be required in the bypassed town to enable more sustainable mobility. |
+
+| Addressing Issues | NR2040 Commitments |
+| --- | --- |
+| Movement of Goods & Services | In line with the NPF and NIFTI, TII will work to achieve average inter-urban speeds of 90km/h on National Road corridors between Ireland’s fvi e cities (Dublin, Cork, Galway, Limerick, and Waterford) and fvi e regional centres (Letterkenny, Drogheda, Dundalk, Sligo and Athlone). In some instances, this will mean the development of new infrastructure or upgrading of existing infrastructure to deliver on this NPF and NIFTI inter-urban accessibility objective. TII will work towards improving regional and rural accessibility in line with the NPF and NIFTI, In partnership with other agencies, TII will work to protect access to ports and airports and improve access where required. TII will provide/ consider prioritisation measures such as dedicated freight lanes where such prioritisation results in greater transport efficiency. TII supports the development of rail freight and multi-modal freight distribution centres on or near National Roads. TII recognises the need to provide quality services and secure parking areas for HGV drivers as required by both the TEN-T Regulation and ITS Directive. An update to TII’s Service Area Policy, which outlines the current requirement for motorway service area on the motorway and dual carriageway network, will be published in 2023 |
+| Urban Congestion | TII will promote traffic management interventions that help optimise traffic movement on urban National Roads. TII will support the use of public transport on or adjacent to urban National Roads. TII will support the provision of segregated or offline active travel infrastructure adjacent to national roads. |
+
+### 6.2 NR2040 Implementation Structure
+
+*Pages 51–52*
+
+6.2 NR2040 Implementation Structure
+
+The NR2040 implementation structure consists of several portfolios under the four NIFTI Investment Priorities, plus a portfolio of non-infrastructure programmes. This assists in categorising TII expenditure against Government priorities.
+
+The Decarbonisation Investment Priority is the National Roads network’s greatest challenge. The Investment Priority incorporates Integrated Mobility programme, including major projects such as core bus corridors, bus and passenger facilities, Park & Ride and Park & Share; as well as an Active Travel programme, which includes the National Cycle Network (NCN) and Electric Vehicle Charging infrastructure development.
+
+The Protection and Renewal Investment Priority represents the largest area of expenditure on National Roads. It will continue to deliver Safety and Minor Works portfolios in addition to Network Resilience and Asset Management of infrastructure, including pavements; structures; motorways and tunnels; signs and lines; as well as Network Operations of motorways and tunnel operations; PPP; control centres and ITS; winter operations.
+
+Movement of People and Goods in Urban Areas will include programmes and projects encompassing traffic and demand management measures; technology solutions; and infrastructure interventions in and around cities and towns.
+
+The Enhanced Regional and Rural Connectivity Investment Priority focuses on enhancing Interurban Connectivity, Regional Connectivity and International Connectivity. Within this portfolio, there are sub-portfolios for National Primary and National Secondary Roads.
+
+Finally, TII recognises necessary supporting activities for investment that will address the changes to processes, technologies, and organisational needs. It will respond to NIFTI’s request for long term planning and evolution of practices in the care and development of road infrastructure.
+
+These include, for example:
+
+#### »Customer engagement and understanding- developing and delivering practices and
+
+processes to improve TII’s engagement with, and understanding of, all road customers; »Sustainability implementation plan- integrating sustainable practices and processes into
+
+every aspect of National Roads development and management, and ensuring sustainability is the bedrock of all decision-making, as articulated in TII’s Sustainability Implementation Plan. The implementation plan requires new ways of thinking; reviewing all corporate policies, standards and specifications; engaging with the wider supply chain and construction industry; and extensive collaboration; »Innovation and continuous improvement- TII ‘s track record is one of continuous improvement,
+
+for example effective implementation of the motorways programme and innovation; early adopters of free flow tolling – M50 and interoperable tolling. TII’s continuous improvement must be maintained in the new policy context of decarbonisation, multi-modality and technological change; »Digitalisation- including embedding a ‘digital-by-design’ philosophy, creating a digital twin
+
+of National Roads assets, C-ITS integration, and delivery of digital platforms. Digitalisation will improve NR2040’s communication and interaction with stakeholders. It will involve changes to skills, resources, organisations and activities; »Monitoring and evaluation- of investment programmes and projects is a key requirement of
+
+the Public Spending Code for capital and operating expenditure. NR2040 and its supporting environmental assessments provides the framework for monitoring and evaluation activity;
+
+#### »Supporting development of a goods distribution centre network- on or near National Roads
+
+(developed by third parties) to play a significant part in the creation of a more efficient, lower emission, haulage industry.
+
+Figure 6.1 NR2040 Implementation Structure
+
+|  | Investment Priorities |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  | Protection | Movement of | Enhanced Regional & Rural Connectivity National National Secondary Primary |  |  |
+|  | Decarbonisation Active Travel Integrated Mobility Electric Vehicle Charging | & Renewal Network Resilience Safety and Minor Works Asset Management Operations | People & Goods in Urban Areas Traffic and Demand Management » M50 and Dublin Radials » M40 and Cork Area » Dublin Tunnel » Other Urban areas Technology Bypass Development | Rural Co National Secondary |  |  |
+| Investment Portfolios |  |  |  |  |  |  |
+|  |  |  |  | Interurban Connectivity |  |  |
+|  |  |  |  | Arterial Routes Lifeline Routes Collector Routes |  | Regional Connectivity International Connectivity |
+|  | Supporting Activities » » » Customer engagement Innovation and Monitoring and evaluation » and understanding continuous improvement Supporting development » » Sustainability Digitalisation of a goods distribution implementation plan centre network |  |  |  |  |  |
+
+### 6.3 Project Development Process
+
+*Pages 52–53*
+
+6.3 Project Development Process
+
+NR2040 is a policy led
+
+TII, through NR2040, will align with the NIFTI Intervention Hierarchy and seek to address transport challenges through the use of existing road space before considering provision of new infrastructure.
+
+strategy, not a “predict and provide” (demand-led) strategy
+
+When developing a project on National Roads, the relevant Local Authority, third party and / or TII department will need to show that the proposed investment aligns with NIFTI as set out in the DoT Common Appraisal Framework (CAF) and/or associated appraisal guidance documents as published by DoT, and address how to work towards achieving the NIFTI Investment Priorities.
+
+NR2040 provides interpretation and further detail to streamline the project development process, by indicating:
+
+»How the project objectives align with NIFTI investment priorities (reviewed in chapter 2) »Specific strategic issue(s) facing National Roads that the project resolves (reviewed in chapter 3) »How the project objectives align with NR2040 Vision and Objectives (reviewed in chapter 4) »How the project aligns with NR2040 Investment Priorities and the spatial context through
+
+guidance on the types of intervention for different regions and the types of National Roads (reviewed in chapter 5) »How the project aligns to one or more of TII’s commitments (reviewed in section 6.1) »Identification of the NR2040 portfolio and programme that would accommodate the project
+
+(reviewed in section 6.2)
+
+This process is consistent with existing TII Project Appraisal Guidelines(PAG), DoT CAF and DoT NIFTI investment priorities and hierarchies. It also aligns with the DEPR’s Public Spending Code (PSC) requirements to demonstrate the strategic rationale for significant, publicly funded investments.
+
+Intervention types and examples are presented in Table 6.2.
+
+![Table 6.2 National Roads intervention types and examples](assets/p053-t01.webp)
+
+*Table 6.2 National Roads intervention types and examples*
+
+Priority of public transport, walking, cycling and goods
+
+Enable a sustainable transport system through coordination with partner organisations. Reduce the reliance on private vehicles by coordinating access and priority on National Roads for public transport, goods vehicles, walking and cycling.
+
+active mode collaboration and interchange »Building pedestrian and cycle
+
+bridges to reduce severance
+
+#### »Smart motorways »C-ITS »Modern asset management
+
+Integrate new road technologies and provide for vehicle innovation. Incentivise and promote quicker, easier and lower-carbon travel alternatives to fossil-fuelled vehicles.
+
+New transport and road technologies
+
+systems
+
+#### »HOV, bus and cycle lanes »Ramp metering »Tolling
+
+Prioritise and incentivise use of the network. Restrict use of the network by time, location, trip purpose, vehicle type or other criteria necessary to balance the needs of the community, environment and economy.
+
+Demand management
+
+#### »Junction improvements »Short road segment
+
+Resilience and capacity via local reconstruction
+
+Improve resilience or capacity through localised reconstruction, notably on National Secondary Roads
+
+improvements
+
+#### »Town Bypasses »Build new to reduce net
+
+Where no feasible alternative exists to serve the required function, deliver new road infrastructure with sustainable procurement and circular economy practices.
+
+Road construction
+
+carbon »Build better (new multi-modal
+
+links)
+
+### 6.4 Environmental Assessments
+
+*Pages 54–54*
+
+6.4 Environmental Assessments
+
+As part of the preparation of NR2040 a number of environmental assessments have been undertaken in tandem with the development of the Strategy. Assessments include a Strategic Environmental Assessment (SEA), an Appropriate Assessment (AA) and a Strategic Flood Risk Assessment (SFRA). The assessments identify, at a strategic level, potential effects on the environment as a result of the strategy commitments/ actions and these assessments have helped inform the high-level of protection of the environment with a view to promoting sustainable development.
+
+NR2040 sits within the overall hierarchy of policy documents. Any future projects requiring planning consent arising from NR2040 are subject to the relevant project level environmental assessment requirements including and the requirements of environmental directives including but not limited to: SEA Directive (2001/42/EC), EIA Directive (2011/92/EU as amended by 2014/52/EU) and Habitats Directive 92/43/EEC, Water Framework Directive (2000/60/EC) and Floods Directive (2007/60/EC) and associated national legislation, as appropriate.
+
+This strategy should be read in conjunction with the following environmental assessment reports: SEA Statement, AANatura Impact Statement and SFRA and the mitigation included within them.
+
+A summary of how the SEA process, including consultation from environmental authorities, has influenced the strategy is included in the SEA Statement published in conjunction to the Strategy.
+
+### 6.5 Collaboration
+
+*Pages 54–54*
+
+6.5 Collaboration
+
+National Roads have a multi-modal, integrated future that must be delivered by TII in collaboration with other government agencies and transport stakeholders. Early collaboration with third parties is vital to deliver on current and future policy.
+
+Some of TII’s key collaborators are: Local Authorities; Department of Transport; Road Safety Authority; National Transport Authority; Department of the Environment, Climate and Communications and other government departments (e.g. Department of Housing, Local Government and Heritage).
+
+Considering the new types of projects envisioned, TII recogniszes the need for a wide variety of skills and multi-disciplinary teams to ensure successful development and achievement of goals and objectives. A strong supply chain of land use and transport planners, engineers, contractors, technical advisors, public communication and engagement specialists, suppliers and operators is of vital importance, with an increasing emphasis on technology suppliers.
+
+In addition, it is important that future transport investment is coordinated and integrated with other sectors, including land-use planning and policy to support compact sustainable development of our cities and towns, and supports regional and rural development. Cooperation with state agencies will continue to allow National Roads to be used for services of national importance, such as access to international ports.
+
+The success of both ‘Movement of People and Goods in Urban Areas’ and ‘Decarbonisation’ portfolios is particularly dependent on a strong collaboration with a range of stakeholders.
+
 ## Glossary
 
 ### Glossary
@@ -3193,3 +3197,23 @@ y p
 | AA Appropriate Assessment CCTV Closed circuit television COVID Coronavirus CSO Central Statistics Office Co-operative intelligent transport C-ITS system DoT Department of Transport Enhancing motorway operation eMOS services EU European Union EV Electric vehicle EPA Environmental Protection Agency GHG Greenhouse gas HGV Heavy goods vehicle HOV High occupancy vehicle ITS Intelligent transport system km Kilometres km/h Kilometres per hour LEV Low-emitting vehicles LGV Light goods vehicle MaaS Mobility as a service | National Development Plan 2021- NDP 2030 National Investment Framework for NIFTI Transport in Ireland NPF National Planning Framework NPO National Policy Objective National Strategic Outcomes (of NSO Project Ireland 2040) NR2040 National Roads 2040 NTpM TII’s National Transport Model PPP Public-private partnership REM Road Emissions Model RSA Road Safety Authority SEA Strategic Environmental Assessment SFRA Strategic Flood Risk Assessment TEN-T Trans-European Transport Network TII Transport Infrastructure Ireland VMS Variable message sign V/C Volume / capacity UN United Nations VMS Variable message sign |  |
 | --- | --- | --- |
 |  |  |  |
+
+## 7 Monitoring Framework
+
+### 7 Monitoring Framework
+
+*Pages 55–55*
+
+Monitoring of NR2040 will be led by TII and undertaken through three different aspects:
+
+#### »Project-level assessments and appraisals – through existing method of monitoring carried
+
+out by TII where the development, and appraisal process aligns with the TII PAG, DoT CAF, and DoT NIFTI investment priorities and hierarchies. Project-level assessments should highlight existing issues and those that may arise in the future as well as their underlying causes. This may include existing or potential future problems regarding safety, travel time, travel time reliability, accessibility and social inclusion, severance, connectivity, employment, and socio-economic factors. This will ensure that programmes and projects entering the implementation portfolios are aligned with NR2040. TII in its role of approving authority must ensure compliance with the PSC’s requirements on monitoring during delivery and evaluation post-delivery. »Annual National Roads Indicators reports – Yearly key performance indicators and updates
+
+on the use of the National Roads network will be compiled and reported. Indicators include information on the road network, economy, road condition, safety, accessibility, and the environment. »Environmental monitoring of the Strategy – The SEA Directive requires the monitoring of
+
+the likely significant environmental effects of the implementation of plans or programmes. The SEA Monitoring programme developed for NR2040 is presented in the SEA Statement. The monitoring programme identifies targets and indicators, the source of information (including the lead agency or any stakeholders involved in data collection. The frequency of monitoring is also identified.
+
+![Figure from page 55](assets/p055-f01.webp)
+
+*Figure from page 55*

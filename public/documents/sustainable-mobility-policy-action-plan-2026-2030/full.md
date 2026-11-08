@@ -6,7 +6,7 @@ Source: https://assets.gov.ie/static/documents/7da21a41/Sustainable_Mobility_Pol
 
 ### Front Matter
 
-*Pages 1–1*
+*Pages 1–3*
 
 Sustainable Mobility Policy Action Plan 2026-2030
 
@@ -14,49 +14,7 @@ Prepared by the Department of Transport
 
 gov.ie/transport
 
-## ”
-
-### ”
-
-*Pages 5–5*
-
-The Sustainable Mobility Policy (SMP) sets out a strategic framework to 2030 for increasing the share of active travel and public transport journeys in Ireland. It was published in 2022 alongside an accompanying SMP Action Plan 2022-2025, which consisted of 91 actions that collectively sought to promote sustainable mobility through a range of interventions, including investment in public transport infrastructure and services, active travel promotion and supports, road safety initiatives, legislative measures, research, and public engagement.
-
-![Figure from page 5](assets/p005-f01.webp)
-
-*Figure from page 5*
-
-While the Policy addresses a variety of objectives for sustainable transport, the first SMP Action Plan was closely aligned with the objectives of the Climate Action Plan 2021 (CAP21) in terms of metrics and targets, including targets to deliver at least 500,000 additional daily active travel and public transport journeys and achieve a 10% reduction in kilometres driven by fossil-fuelled cars by 2030. Following the introduction of sector-specific emissions reduction targets in 2023, which envisages a halving of transport emissions by 2030 compared with 2018, the Climate Action Plan 2023 (CAP23) set out revisions to sustainable mobility performance indicators as follows:
-
-●50% increase in daily active travel journeys
-
-●130% increase in daily public transport journeys
-
-●20% reduction in total vehicle kilometres travelled
-
-The new Plan will monitor performance relative to these Key Performance Indicators.
-
-### Collaborative Approach and Alignment with Wider Policy
-
-*Pages 6–6*
-
-Achieving the objectives of the SMP depends on strong collaboration across government, agencies, and local authorities. The SMP embedded the principles of sustainable mobility into land use and spatial planning. Through close collaboration with the Department of Housing, Local Government and Heritage, this approach was reinforced by the establishment of the Housing Activation Office within that department, which includes transport specialists in its multi-disciplinary team and will support compact growth to reduce travel demand. The SMP Action Plan 2026-2030 expands this collaborative approach, working with the Department of Further and Higher Education, Research, Innovation and Science to consider the transport needs of third level students, the Department of Finance in respect of the Cycle to Work scheme, and the Department of Climate, Energy and the Environment on various work programmes of common interest.
-
-The first SMP Action Plan included a commitment to establish an annual National Sustainable Mobility Forum to strengthen collaboration with transport stakeholders. In May 2025, with a focus on developing this new Plan, the third annual Forum brought together over 160 representatives from local authorities, transport agencies, Disabled People’s Representative Organisations, government departments, public participation networks, youth groups, academics and community groups. Through a hybrid format of in-person and online sessions to facilitate a diverse range of perspectives, participants considered key themes such as transportoriented development, decarbonising urban networks, inclusive active travel infrastructure, public transport access, shared mobility, and data integration. Their insights have been incorporated into the development of this new Plan, which will transform investment into delivery over the period 2026 to 2030.
-
-The SMP was designed to align with many national and international policies. In addition to those set out in the Policy, the objectives of more recent strategies and policies, as well as commitments in the Programme for Government 2025, are reflected in this new Action Plan. Those of particular relevance include:
-
-to the development of Active Travel and Greenway infrastructure over the same period. These commitments are incorporated as actions with defined outputs in this Action Plan, and progress on their implementation will be tracked through annual SMP Progress Reports.
-
-The first revision of the National Planning Framework reaffirms the critical importance of taking an integrated approach to land use and transport. The Framework seeks to enable Transport Orientated Development (TOD) at scale at suitable locations, served by highcapacity public transport. This closely aligns with SMP Goal 9: Better integrate land use and transport planning at all levels.
-
-The National Development Plan Review 2025 and associated Sectoral Investment Plan for Transport commits to approximately €12.1 billion in public transport capital investment funding from 2026-2030, to advance projects including MetroLink, DART+, BusConnects, and the Cork Area Commuter Rail Programme. €360 million is also allocated per annum
-
-## Table of contents
-
 ### Table of contents
-
-*Pages 3–3*
 
 Minister’s Foreword 2
 
@@ -114,11 +72,53 @@ Darragh O'Brien T.D. Minister for Transport
 
 This new Action Plan, to cover the period 2026 to 2030, reflects the next phase of Ireland’s sustainable mobility journey. Again, this coordinated approach allows for accountable monitoring of delivery against Programme for Government ambitions. It aligns with updated Climate Action Plan targets and responds to new demographic, economic and environmental challenges. Its development has been shaped by close collaboration across national, regional and local government and through targeted engagement with community groups, disability organisations, mobility operators, youth groups and academia as part of the National Sustainable Mobility Forum.
 
-## ”
+## Introduction
 
-### ”
+### Introduction
 
-*Pages 7–7*
+*Pages 5–5*
+
+The Sustainable Mobility Policy (SMP) sets out a strategic framework to 2030 for increasing the share of active travel and public transport journeys in Ireland. It was published in 2022 alongside an accompanying SMP Action Plan 2022-2025, which consisted of 91 actions that collectively sought to promote sustainable mobility through a range of interventions, including investment in public transport infrastructure and services, active travel promotion and supports, road safety initiatives, legislative measures, research, and public engagement.
+
+![Figure from page 5](assets/p005-f01.webp)
+
+*Figure from page 5*
+
+While the Policy addresses a variety of objectives for sustainable transport, the first SMP Action Plan was closely aligned with the objectives of the Climate Action Plan 2021 (CAP21) in terms of metrics and targets, including targets to deliver at least 500,000 additional daily active travel and public transport journeys and achieve a 10% reduction in kilometres driven by fossil-fuelled cars by 2030. Following the introduction of sector-specific emissions reduction targets in 2023, which envisages a halving of transport emissions by 2030 compared with 2018, the Climate Action Plan 2023 (CAP23) set out revisions to sustainable mobility performance indicators as follows:
+
+●50% increase in daily active travel journeys
+
+●130% increase in daily public transport journeys
+
+●20% reduction in total vehicle kilometres travelled
+
+The new Plan will monitor performance relative to these Key Performance Indicators.
+
+## Collaborative Approach
+
+### Collaborative Approach
+
+*Pages 6–6*
+
+Achieving the objectives of the SMP depends on strong collaboration across government, agencies, and local authorities. The SMP embedded the principles of sustainable mobility into land use and spatial planning. Through close collaboration with the Department of Housing, Local Government and Heritage, this approach was reinforced by the establishment of the Housing Activation Office within that department, which includes transport specialists in its multi-disciplinary team and will support compact growth to reduce travel demand. The SMP Action Plan 2026-2030 expands this collaborative approach, working with the Department of Further and Higher Education, Research, Innovation and Science to consider the transport needs of third level students, the Department of Finance in respect of the Cycle to Work scheme, and the Department of Climate, Energy and the Environment on various work programmes of common interest.
+
+The first SMP Action Plan included a commitment to establish an annual National Sustainable Mobility Forum to strengthen collaboration with transport stakeholders. In May 2025, with a focus on developing this new Plan, the third annual Forum brought together over 160 representatives from local authorities, transport agencies, Disabled People’s Representative Organisations, government departments, public participation networks, youth groups, academics and community groups. Through a hybrid format of in-person and online sessions to facilitate a diverse range of perspectives, participants considered key themes such as transportoriented development, decarbonising urban networks, inclusive active travel infrastructure, public transport access, shared mobility, and data integration. Their insights have been incorporated into the development of this new Plan, which will transform investment into delivery over the period 2026 to 2030.
+
+## Alignment with Wider Policy
+
+### Alignment with Wider Policy
+
+*Pages 6–7*
+
+The SMP was designed to align with many national and international policies. In addition to those set out in the Policy, the objectives of more recent strategies and policies, as well as commitments in the Programme for Government 2025, are reflected in this new Action Plan. Those of particular relevance include:
+
+to the development of Active Travel and Greenway infrastructure over the same period. These commitments are incorporated as actions with defined outputs in this Action Plan, and progress on their implementation will be tracked through annual SMP Progress Reports.
+
+The first revision of the National Planning Framework reaffirms the critical importance of taking an integrated approach to land use and transport. The Framework seeks to enable Transport Orientated Development (TOD) at scale at suitable locations, served by highcapacity public transport. This closely aligns with SMP Goal 9: Better integrate land use and transport planning at all levels.
+
+The National Development Plan Review 2025 and associated Sectoral Investment Plan for Transport commits to approximately €12.1 billion in public transport capital investment funding from 2026-2030, to advance projects including MetroLink, DART+, BusConnects, and the Cork Area Commuter Rail Programme. €360 million is also allocated per annum
+
+## ” The SMP was designed to
 
 The Road Safety Strategy: Phase 2 Action Plan 2025–2027 sets out 12 Primary Actions and 77 complementary Supporting Actions with the objective of reducing road deaths and injuries by 50% by 2030. These are closely aligned with SMP objectives, particularly under Goal 1: Improve Mobility Safety.
 
@@ -142,9 +142,11 @@ The forthcoming transposition of EU Directive 2023/2661 on the framework for the
 
 Moving Together: A Collaborative Approach to Systems Change in Transport represents a strategic approach to improving the efficiency of the transport network. It seeks to incrementally improve conditions for a cultural shift in transport over the long term. By working across society and Government, and through widespread collaboration, a key aim of the strategy is to ensure opportunities for sustainable travel are fully optimised, through
 
-### Plan 2026-2030
+## Governance of the SMP Action Plan 2026-2030
 
-*Pages 8–42*
+### Governance of the SMP Action Plan 2026-2030
+
+*Pages 8–8*
 
 To date, the implementation of actions under the SMP has been overseen by a Climate Action Taskforce, namely the SMP Leadership Group. Reports detailing progress on the 2022-2025 Action Plan were published annually by the Department of Transport.
 
@@ -153,6 +155,10 @@ Under this new Plan, the Leadership Group’s oversight function will continue, 
 ![Figure from page 8](assets/p008-f01.webp)
 
 *Figure from page 8*
+
+### Goal 1: Improve mobility safety
+
+*Pages 9–10*
 
 Goal 1: Improve mobility safety
 
@@ -165,6 +171,10 @@ Goal 1: Improve mobility safety
 | --- | --- | --- | --- | --- | --- |
 | 3. Monitor implementation of Infrastructure Manager Multi- Annual Contract (IMMAC) 2025- 2030 to protect and renew rail infrastructure. | DoT | CRR, IÉ, NTA | 2030 | Provide for a safe and secure railway network, where steady state maintenance needs are met. | Convene Quarterly Monitoring meetings with Iarnród Éireann and the Commission for Railway Regulation to monitor Iarnród Éireann’s performance under agreed KPIs. |
 | 4. Review expenditure and prepare IMMAC for 2031-2035 period. | DoT | CRR, IÉ, NTA | 2030 | Commence a review of the Contract to inform the next contract period. Review IMMAC contract and KPIs to inform funding allocation for the next contract period. | Q1 2029 – Convene working group to review contract. Q3 2030 – Secure Ministerial sign-of fon new contract in advance of the new contract period in 2031. |
+
+### Goal 2: Decarbonise public transport
+
+*Pages 11–12*
 
 Goal 2: Decarbonise public transport
 
@@ -182,6 +192,10 @@ Goal 2: Decarbonise public transport
 | 11. Commence key works on DART+ Coastal North, subject to funding. | NTA | DoT | 2030 | Construction commenced on elements of DART+ Coastal North, including supporting infrastructure prior to 2030, in advance of works on Overhead Line Equipment, subject to funding. | Q4 2026 – Engagement on funding progressed. Q4 2028 – Construction commenced, on the basis that funding is in place |
 | 12. Establish a pathway to support commercial bus operators to transition to a 100% wheelchair accessible and low/zero emission fleet. | NTA | DoT | Q4 2026 | Pathway identified and decision taken on a potential support scheme. | Q2 2026 – Finalise options and produce recommendations. |
 | 13. Commence rollout of 95 new batet ry-electric DART+ carriages. | IÉ | DoT, NTA | Q2 2027 |  | Q3 2026 - Application to EU Agency for Railways for approval for new train fleet. |
+
+### Goal 3: Expand availability of sustainable mobility in metropolitan areas.
+
+*Pages 13–16*
 
 Goal 3: Expand availability of sustainable mobility in metropolitan areas.
 
@@ -213,6 +227,10 @@ Goal 3: Expand availability of sustainable mobility in metropolitan areas.
 | 28. Commence construction of Luas Finglas, subject to Enforceable Railway Order. | NTA | DoT | 2029 | Construction of Luas Finglas commenced. | Q4 2027 – Commence main construction contract procurements. |
 | 29. Implement consistent, evenly spaced, clock- faced timetables on Intercity and Commuter Rail Services outside of Peak Periods throughout the week. | NTA | DoT | 2029 | Revised rail timetables driven by demand and travel patet rns. | Annual timetable revisions in line with operating requirements. |
 
+### Goal 4: Expand availability of sustainable mobility in regional and rural areas.
+
+*Pages 17–19*
+
 Goal 4: Expand availability of sustainable mobility in regional and rural areas.
 
 | ACTION | LEAD | SUPPORT | DEADLINE | OUTPUT | INTERIM MILESTONES |
@@ -234,6 +252,10 @@ Goal 4: Expand availability of sustainable mobility in regional and rural areas.
 | 38. Advance rollout of Park and Ride Facilities under NTA’s Park and Ride Development Office. | NTA | DoT | 2029 | At least three sites to be established. | Q4 2026 – Planning consent obtained for four sites. |
 | 39. Extend programme of improved town bus services to towns across Ireland. | NTA | DoT | 2030 | Town services introduced or improved in Naas, Newbridge, Mullingar, Ennis and Tullamore. Existing services enhanced and expanded to meet rising demand. | Q1 2026 - Mullingar Town Service implemented. Q4 2026 - Ennis Town Service implemented, subject to funding and resources. |
 | 40. Continue bus stop and bus shelter programme for regional and rural services. | NTA | DoT | Annual | Deliver at least 150 additional bus shelters per year. | Q4 2026 – Deliver at least 150 additional bus shelters. Q4 2027 – Deliver at least 150 additional bus shelters. |
+
+### Goal 5: Encourage people to choose sustainable mobility over the private car.
+
+*Pages 20–31*
 
 Goal 5: Encourage people to choose sustainable mobility over the private car.
 
@@ -309,6 +331,10 @@ Goal 7: Design infrastructure according to Universal Design Principles and Hiera
 | --- | --- | --- | --- | --- | --- |
 | 72. Assess need for increased capacity-building and access to necessary specialist skills in support of sustainable mobility delivery. | SMP Leadership Group | NTA, CCMA, LGMA, LAs, LASTNG, Academic sector | 2028 | Assessment complete. | Q1 2027 – Exercise to identify current training provision, and potential for enhancing existing capacity. |
 
+### Goal 8: Promote sustainable mobility through research and citizen engagement.
+
+*Pages 32–35*
+
 Goal 8: Promote sustainable mobility through research and citizen engagement.
 
 | ACTION | LEAD | SUPPORT | DEADLINE | OUTPUT | INTERIM MILESTONES |
@@ -337,6 +363,10 @@ Goal 8: Promote sustainable mobility through research and citizen engagement.
 | 85. Strengthen work of the SMP Research Network by revisiting research priorities, fostering collaboration opportunities between stakeholders and academia, and ensuring research outputs are widely disseminated through a clear strategy and defined targets. | DoT | TII, NTA, SEAI, SMP Research Network | 2030 | Publication of SMP Research Network outputs through the Sustainable Mobility Academy online platof rm. | Q4 2027 – Carry out revision of research priorities. |
 | 86. Continue to carry out regular stakeholder engagement activities, including through a National Sustainable Mobility Forum every two years. | DoT |  | 2030 |  | Q2 2027 – National Sustainable Mobility Forum held. |
 
+### Goal 9: Better integrate land use and transport planning at all levels.
+
+*Pages 36–38*
+
 Goal 9: Better integrate land use and transport planning at all levels.
 
 | ACTION | LEAD | SUPPORT | DEADLINE | OUTPUT | INTERIM MILESTONES |
@@ -360,6 +390,12 @@ Goal 10: Promote smart and integrated mobility through innovative technologies a
 | 93. Roll out Next Generation Ticketing (NGT) in the Greater Dublin Area on all PSO services, allowing for contactless payment. | NTA | DoT | 2028 | NGT in place on PSO buses, Luas and trains in the GDA. | Q4 2027 – NGT back office live, and rollout of Leap-enabled devices across the network underway. |
 | 94. Promote smart, sustainable and integrated mobility through the development of a Connected and Automated Vehicle (CAV) strategy. | DoT |  | Q2 2026 | Publication of Connected and Automated Vehicle Strategy. |  |
 | 95. Capture learnings from pilots on the use of AI systems in road asset management. | DoT | TII, LAs | Q4 2028 | Develop a best practice approach on the use of AI to inform maintenance programmes, for wider application across LAs. |  |
+
+## Abbreviations
+
+### Abbreviations
+
+*Pages 39–42*
 
 Abbreviations
 

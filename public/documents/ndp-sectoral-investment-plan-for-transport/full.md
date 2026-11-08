@@ -247,9 +247,9 @@ Together, these projects reflect a coordinated national effort to integrate tran
 
 #### 6. NDP Funding Allocations 2026-2030 6.1 Programme A - Active Travel & Greenways
 
-## 3 and 5
+## 3 and 5 Coonagh to
 
-### 3 and 5
+### 3 and 5 Coonagh to
 
 *Pages 29–29*
 
@@ -334,7 +334,7 @@ In relation to the Irish Coast Guard (IRCG) building programme, the Department w
 
 For the ILV Granuaile project, the Department will be the Approving Authority, with the CIL acting as the Sponsoring Agency.
 
-### 6.6 Programme F – Information Technology, Engagement and Research
+### 6.6 Programme F – Information Technology, Engagement and Research Delivery, Organisation requirements
 
 *Pages 33–40*
 

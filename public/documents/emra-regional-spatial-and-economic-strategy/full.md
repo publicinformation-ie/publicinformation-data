@@ -6,7 +6,7 @@ Source: https://www.emra.ie/rses-download/EMRA-RSES.pdf
 
 ### Front Matter
 
-*Pages 1–2*
+*Pages 1–6*
 
 |  |  |  |  |  |
 | --- | --- | --- | --- | --- |
@@ -24,9 +24,167 @@ Contents
 
 i Director’s Foreward ......................................................4 ii Members of the Eastern and Midland Regional Assembly .......................................4 iii Cathaoirleach’s Message ...........................................5
 
-## 1 in 8 people in the Region are aged over 65 but it is this
+CHAPTER 1:
 
-### 1 in 8 people in the Region are aged over 65 but it is this
+Introduction
+
+1.1 Vision ...............................................................................6 1.2 Eastern and Midland Regional Assembly ................6 1.3 What is a Regional Spatial and Economic Strategy (RSES)? ...........................................................8 1.4 Spatial and Economic Policy Background...............10 1.5 The RSES Process ........................................................ 13 1.6 Regional Proﬁle ............................................................14
+
+CHAPTER 2:
+
+Strategic Vision
+
+2.1 Our Shared Goals .......................................................20 2.2 Vision and Key Principles ..........................................23 2.3 Regional Strategic Outcomes .................................. 24
+
+CHAPTER 3:
+
+Growth Strategy
+
+3.1 Developing a Growth Strategy for the Region .......27 3.2 Growth Enablers for the Region ...............................33
+
+![Figure from page 3](assets/p003-f01.webp)
+
+*Figure from page 3*
+
+Contents
+
+218
+
+10.1 Introduction ................................................................218 10.2 Sustainable Management of Water ......................219 10.3 Energy .........................................................................224 10.4 Waste Management ................................................ 227
+
+228
+
+11.1 Introduction ...............................................................228 Support of an All Island Approach .......................229
+
+234
+
+12.1 Introduction ...............................................................234 12.2 Legislative Background ........................................... 235 12.3 Implementation ........................................................ 237 12.4 Monitoring and Reporting .......................................241
+
+List of Tables ......................................................................242 List of Figures ....................................................................243
+
+SPA and County Population Tables Economic Chapter Appendices Functional Urban Area Methodology List of Designated Sites in EMRA List of Flood Relief Schemes to be advanced in initial phase to detailed List of Regional Policy Objectives
+
+![Figure from page 4](assets/p004-f01.webp)
+
+*Figure from page 4*
+
+Regional Spatial & Economic Strategy
+
+Director’s Foreword
+
+A Regional Spatial and Economic Strategy (RSES) is a strategic plan and investment framework to shape future growth and to better manage regional planning and economic development throughout the Region. It identiﬁes regional assets, opportunities and pressures and provides appropriate policy responses in the form of Regional Policy Objectives.
+
+This RSES brings together for the ﬁrst time spatial planning, economic policy and provides the environment for investment, and in doing so it marks a signiﬁcant policy milestone for Regional Government in Ireland. Members from the 12 local authorities that constitute the Region, came together as an Assembly to make, for the ﬁrst time, an overarching strategy that beneﬁts the entire Region. In making this Strategy the Assembly is playing a key role in informing new approaches towards assisting in the delivery of regional development.
+
+![Figure from page 4](assets/p004-f02.webp)
+
+*Figure from page 4*
+
+Throughout the strategy there are 3 cross cutting key principles;
+
+• Healthy Placemaking - To promote people’s quality of life through the creation of healthy and attractive places to live, work, visit, invest and study in.
+
+• Climate Action - The need to enhance climate resilience and to accelerate a transition to a low carbon society recognising the role of natural capital and ecosystem services in achieving this.
+
+• Economic Opportunity - To create the right conditions and opportunities for the Region to realise sustainable economic growth and quality jobs that ensure a good living standard for all.
+
+The Assembly recognises the opportunities in the changing dynamic in Ireland and the Strategy seeks to optimise investment in the region and maximise the potential of national and European funding. This will be done through partnership with stakeholders and in collaboration with other agencies to deliver on the shared vision of the Strategy and to continue building a sustainable, healthy and resilient region.
+
+Established in 2015, the Assembly spent its initial setup period developing a comprehensive understanding of the needs of its stakeholders, particularly across the areas such as place making, housing, economic opportunity, our environment and heritage and the regions infrastructure challenges. An evidence based approach, to establish the issues and identify solutions, was undertaken by the Assemblies executive team and underpins the Strategy. A vision for the Region was developed by the elected members and stakeholders to guide and inform the policies and objectives of the Strategy.
+
+Jim Conway, Director
+
+The RSES builds on the foundations of Government policy in Project Ireland 2040, which combines spatial planning with capital investment, and has been prepared from an extensive bottom up consultation process. It is an integrated cohesive policy document that provides a Spatial Strategy to manage future growth in the region. It is a Climate Action Strategy to accelerate climate action. It is an Economic Strategy to sustain and strengthen our economy and a Metropolitan Plan for the sustainable growth of Dublin as an international city. Finally, it is an Investment Framework to prioritise funding.
+
+![Figure from page 5](assets/p005-f01.webp)
+
+*Figure from page 5*
+
+Cathaoirleach’s Message
+
+It gives me great pleasure to introduce the ﬁrst Regional Spatial and Economic Strategy for the Eastern and Midland Region, which has been made by the Regional Assembly. It marks the result of extensive consultation and work across the region and it demonstrates the importance and effectiveness of regional government.
+
+At the outset I would like to thank and commend my colleagues from the 12 local authorities represented on this Assembly who worked tirelessly to ensure that an equitable and far sighted strategy, designed to achieve balanced regional growth across the entire region, is now in place to ensure a clear roadmap for achieving healthy placemaking, climate action and economic opportunity for all citizens.
+
+Ours is a diverse region, stretching from a vibrant national capital of international signiﬁcance through areas of rich heritage and immense natural beauty that support a varied tourism and recreation offering. We have natural assets include the raised bogs and lakes in the Midlands, the Wicklow Mountains National Park, Slieve Bloom mountains, the bays and estuaries of the eastern seaboard and inland waterways such as the Royal and Grand Canals and the Shannon corridor.
+
+![Figure from page 5](assets/p005-f02.webp)
+
+*Figure from page 5*
+
+Our built heritage includes historic and walled towns, world class museums and attractions such as the Book of Kells and the UNESCO World Heritage site of Brú na Boinne, the medieval monasteries of Clonmacnoise and Glendalough and a number of historic castles, houses and demesne landscapes.
+
+This Strategy will ensure that we focus on maximising these great advantages as well as identifying new opportunities and planning for the foreseen and unforeseen challenges that await us, both here in Ireland and internationally.
+
+Starting in 2017, we sought the views of individuals and organisations to build up a picture of what was needed to ensure the future of the people who live, work and lead their lives in our Region and indeed that of the generations to come.
+
+This Strategy marks a signiﬁcant step forward by regions in Ireland and demonstrates what we can achieve when we pull all our regional strength together. It now falls to us to make sure the objectives of the Strategy are met and I look forward to being a part of making this happen over the coming years.
+
+I would like also to thank everyone who contributed to bringing the Strategy together, be they individuals or those who work for the many stakeholders who actively participated in this production.
+
+Eddie Fitzpatrick, Cathoirleach
+
+![Figure from page 5](assets/p005-f03.webp)
+
+*Figure from page 5*
+
+Members of the Eastern and Midland Regional Assembly
+
+Dublin City Council (DCC)
+
+South Dublin County Council (SDCC)
+
+Fingal County Council (FCC)
+
+Kildare County Council
+
+Wicklow County Council
+
+Longford County Council
+
+Paddy Bourke Christy Burke Ciarán Cuffe Gaye Fagan Mary Freehill Dermot Lacey Claire O’Connor
+
+Francis Duffy Pamela Kearns Robert Russell
+
+Kieran Dennison David Healy Brian McDonagh
+
+Ivan Keatley Padraig McEvoy Martin Miley
+
+Thomas Cullen Derek Mitchell Pat Vance Irene Winters
+
+Mick Cahill PJ Reilly
+
+Westmeath County Council
+
+Dún Laoghaire - Rathdown County Council (DLR)
+
+Louth County Council
+
+Meath County Council
+
+Offaly County Council
+
+Conor Keelan Colm Markey
+
+Andrew Duncan Paddy Hill
+
+Brian Fitzgerald Maria Murphy Tommy Reilly
+
+Kate Feeney Mary Hanaﬁn Pat Hand Lettie McCarthy Barry Ward
+
+Eamon Dooley Eddie Fitzpatrick
+
+Laois County Council
+
+Paddy Bracken Catherine Fitzgerald
+
+Regional Spatial & Economic Strategy
+
+## 1 Introduction
+
+## 1 in 8 people in the Region are aged over 65 but it is this cohort that is projected to increase most signiﬁcantly
+
+### 1 in 8 people in the Region are aged over 65 but it is this cohort that is projected to increase most signiﬁcantly
 
 *Pages 200–200*
 
@@ -44,17 +202,9 @@ RPO 9.1: Local authorities shall ensure the integration of age friendly and fami
 
 The CSO population projections highlight demographic pressures that will remain a feature in the Region, as migration will be a key driver of future population growth over the lifetime of the RSES. The Region is the most demographically diverse in the State, and more than 1 in 8 of the regional population are non-Irish nationals, with higher rates in Dublin City and the counties of Fingal and Longford. As more immigrants become Irish or dual citizens, the numbers of non-Irish nationals in the Region have fallen in the last intercensal period. Settlements that have more than a quarter of their residents born outside the State include; Longford, Blanchardstown, Athlone and Portlaoise.
 
-## 1.1 Vision ...............................................................................6
+## 1.1 Vision and Eastern and Midland Regional Assembly
 
-### 1.1 Vision ...............................................................................6
-
-*Pages 2–2*
-
-1.1 Vision ...............................................................................6 1.2 Eastern and Midland Regional Assembly ................6 1.3 What is a Regional Spatial and Economic Strategy (RSES)? ...........................................................8 1.4 Spatial and Economic Policy Background...............10 1.5 The RSES Process ........................................................ 13 1.6 Regional Proﬁle ............................................................14
-
-## 1.2 Eastern and Midland
-
-### 1.2 Eastern and Midland
+### 1.1 Vision and Eastern and Midland Regional Assembly
 
 *Pages 6–8*
 
@@ -372,95 +522,9 @@ Meath
 
 1,347,400
 
-## 2.1 Our Shared Goals .......................................................20
+## 8 of the regional population are non-Irish nationals, with higher rates in Dublin City and the counties of Fingal and
 
-### 2.1 Our Shared Goals .......................................................20
-
-*Pages 2–2*
-
-2.1 Our Shared Goals .......................................................20 2.2 Vision and Key Principles ..........................................23 2.3 Regional Strategic Outcomes .................................. 24
-
-## 3.1 Developing a Growth Strategy for the Region .......27
-
-### 3.1 Developing a Growth Strategy for the Region .......27
-
-*Pages 2–2*
-
-3.1 Developing a Growth Strategy for the Region .......27 3.2 Growth Enablers for the Region ...............................33
-
-## 4.5 Regional Growth Centres ...........................................53
-
-### 4.5 Regional Growth Centres ...........................................53
-
-*Pages 2–2*
-
-CHAPTER 1:
-
-## 4.7 Self-Sustaining Growth Towns and
-
-### 4.7 Self-Sustaining Growth Towns and
-
-*Pages 2–2*
-
-Introduction
-
-## 5.1 Introduction and Context ......................................... 98
-
-### 5.1 Introduction and Context ......................................... 98
-
-*Pages 2–2*
-
-CHAPTER 2:
-
-## 5.3 Guiding Principles for the growth of the Dublin
-
-### 5.3 Guiding Principles for the growth of the Dublin
-
-*Pages 2–2*
-
-Strategic Vision
-
-## 5.8 Employment Generation .......................................... 114
-
-### 5.8 Employment Generation .......................................... 114
-
-*Pages 2–2*
-
-CHAPTER 3:
-
-## 5.9 Green Infrastructure and Amenities ......................116
-
-### 5.9 Green Infrastructure and Amenities ......................116
-
-*Pages 2–2*
-
-Growth Strategy
-
-## 6.7 Capacity Building: Bidding capacity, Shared
-
-### 6.7 Capacity Building: Bidding capacity, Shared
-
-*Pages 3–3*
-
-![Figure from page 3](assets/p003-f01.webp)
-
-*Figure from page 3*
-
-Contents
-
-218
-
-## 7.8 Landscape ...................................................................169
-
-### 7.8 Landscape ...................................................................169
-
-*Pages 3–3*
-
-228
-
-## 8 of the regional population are non-Irish nationals, with
-
-### 8 of the regional population are non-Irish nationals, with
+### 8 of the regional population are non-Irish nationals, with higher rates in Dublin City and the counties of Fingal and
 
 *Pages 200–201*
 
@@ -1653,165 +1717,21 @@ Project Ireland 2040 (PI 2040) Resources and Funding
 
 The launch of Project Ireland 2040 links planning and investment for the ﬁrst time in Irish history through simultaneous publication of the National Planning Framework and the National Development Plan, to provide for Government policy and investment to facilitate social and economic progress in the coming years.
 
-## 8.2 Transport Strategy ....................................................183
+## 10 year period of the National Development Plan are the Urban Regeneration and Development Fund, the Rural
 
-### 8.2 Transport Strategy ....................................................183
+### 1.9 Deﬁning Functional Urban Areas, Census 2016 ...19
 
-*Pages 3–3*
+*Pages 243–244*
 
-234
+2. Strategic Vision
 
-## 9.3 Housing and Regeneration ......................................201
-
-### 9.3 Housing and Regeneration ......................................201
-
-*Pages 3–3*
-
-SPA and County Population Tables Economic Chapter Appendices Functional Urban Area Methodology List of Designated Sites in EMRA List of Flood Relief Schemes to be advanced in initial phase to detailed List of Regional Policy Objectives
-
-## 9.7 Access to Arts, Culture, Language
-
-### 9.7 Access to Arts, Culture, Language
-
-*Pages 4–6*
-
-![Figure from page 4](assets/p004-f01.webp)
-
-*Figure from page 4*
-
-Regional Spatial & Economic Strategy
-
-Director’s Foreword
-
-A Regional Spatial and Economic Strategy (RSES) is a strategic plan and investment framework to shape future growth and to better manage regional planning and economic development throughout the Region. It identiﬁes regional assets, opportunities and pressures and provides appropriate policy responses in the form of Regional Policy Objectives.
-
-This RSES brings together for the ﬁrst time spatial planning, economic policy and provides the environment for investment, and in doing so it marks a signiﬁcant policy milestone for Regional Government in Ireland. Members from the 12 local authorities that constitute the Region, came together as an Assembly to make, for the ﬁrst time, an overarching strategy that beneﬁts the entire Region. In making this Strategy the Assembly is playing a key role in informing new approaches towards assisting in the delivery of regional development.
-
-![Figure from page 4](assets/p004-f02.webp)
-
-*Figure from page 4*
-
-Throughout the strategy there are 3 cross cutting key principles;
-
-• Healthy Placemaking - To promote people’s quality of life through the creation of healthy and attractive places to live, work, visit, invest and study in.
-
-• Climate Action - The need to enhance climate resilience and to accelerate a transition to a low carbon society recognising the role of natural capital and ecosystem services in achieving this.
-
-• Economic Opportunity - To create the right conditions and opportunities for the Region to realise sustainable economic growth and quality jobs that ensure a good living standard for all.
-
-The Assembly recognises the opportunities in the changing dynamic in Ireland and the Strategy seeks to optimise investment in the region and maximise the potential of national and European funding. This will be done through partnership with stakeholders and in collaboration with other agencies to deliver on the shared vision of the Strategy and to continue building a sustainable, healthy and resilient region.
-
-Established in 2015, the Assembly spent its initial setup period developing a comprehensive understanding of the needs of its stakeholders, particularly across the areas such as place making, housing, economic opportunity, our environment and heritage and the regions infrastructure challenges. An evidence based approach, to establish the issues and identify solutions, was undertaken by the Assemblies executive team and underpins the Strategy. A vision for the Region was developed by the elected members and stakeholders to guide and inform the policies and objectives of the Strategy.
-
-Jim Conway, Director
-
-The RSES builds on the foundations of Government policy in Project Ireland 2040, which combines spatial planning with capital investment, and has been prepared from an extensive bottom up consultation process. It is an integrated cohesive policy document that provides a Spatial Strategy to manage future growth in the region. It is a Climate Action Strategy to accelerate climate action. It is an Economic Strategy to sustain and strengthen our economy and a Metropolitan Plan for the sustainable growth of Dublin as an international city. Finally, it is an Investment Framework to prioritise funding.
-
-![Figure from page 5](assets/p005-f01.webp)
-
-*Figure from page 5*
-
-Cathaoirleach’s Message
-
-It gives me great pleasure to introduce the ﬁrst Regional Spatial and Economic Strategy for the Eastern and Midland Region, which has been made by the Regional Assembly. It marks the result of extensive consultation and work across the region and it demonstrates the importance and effectiveness of regional government.
-
-At the outset I would like to thank and commend my colleagues from the 12 local authorities represented on this Assembly who worked tirelessly to ensure that an equitable and far sighted strategy, designed to achieve balanced regional growth across the entire region, is now in place to ensure a clear roadmap for achieving healthy placemaking, climate action and economic opportunity for all citizens.
-
-Ours is a diverse region, stretching from a vibrant national capital of international signiﬁcance through areas of rich heritage and immense natural beauty that support a varied tourism and recreation offering. We have natural assets include the raised bogs and lakes in the Midlands, the Wicklow Mountains National Park, Slieve Bloom mountains, the bays and estuaries of the eastern seaboard and inland waterways such as the Royal and Grand Canals and the Shannon corridor.
-
-![Figure from page 5](assets/p005-f02.webp)
-
-*Figure from page 5*
-
-Our built heritage includes historic and walled towns, world class museums and attractions such as the Book of Kells and the UNESCO World Heritage site of Brú na Boinne, the medieval monasteries of Clonmacnoise and Glendalough and a number of historic castles, houses and demesne landscapes.
-
-This Strategy will ensure that we focus on maximising these great advantages as well as identifying new opportunities and planning for the foreseen and unforeseen challenges that await us, both here in Ireland and internationally.
-
-Starting in 2017, we sought the views of individuals and organisations to build up a picture of what was needed to ensure the future of the people who live, work and lead their lives in our Region and indeed that of the generations to come.
-
-This Strategy marks a signiﬁcant step forward by regions in Ireland and demonstrates what we can achieve when we pull all our regional strength together. It now falls to us to make sure the objectives of the Strategy are met and I look forward to being a part of making this happen over the coming years.
-
-I would like also to thank everyone who contributed to bringing the Strategy together, be they individuals or those who work for the many stakeholders who actively participated in this production.
-
-Eddie Fitzpatrick, Cathoirleach
-
-![Figure from page 5](assets/p005-f03.webp)
-
-*Figure from page 5*
-
-Members of the Eastern and Midland Regional Assembly
-
-Dublin City Council (DCC)
-
-South Dublin County Council (SDCC)
-
-Fingal County Council (FCC)
-
-Kildare County Council
-
-Wicklow County Council
-
-Longford County Council
-
-Paddy Bourke Christy Burke Ciarán Cuffe Gaye Fagan Mary Freehill Dermot Lacey Claire O’Connor
-
-Francis Duffy Pamela Kearns Robert Russell
-
-Kieran Dennison David Healy Brian McDonagh
-
-Ivan Keatley Padraig McEvoy Martin Miley
-
-Thomas Cullen Derek Mitchell Pat Vance Irene Winters
-
-Mick Cahill PJ Reilly
-
-Westmeath County Council
-
-Dún Laoghaire - Rathdown County Council (DLR)
-
-Louth County Council
-
-Meath County Council
-
-Offaly County Council
-
-Conor Keelan Colm Markey
-
-Andrew Duncan Paddy Hill
-
-Brian Fitzgerald Maria Murphy Tommy Reilly
-
-Kate Feeney Mary Hanaﬁn Pat Hand Lettie McCarthy Barry Ward
-
-Eamon Dooley Eddie Fitzpatrick
-
-Laois County Council
-
-Paddy Bracken Catherine Fitzgerald
-
-Regional Spatial & Economic Strategy
-
-## 1 Introduction
-
-## 10 year period of the National Development Plan are the
-
-### 2.1 EU Thematic Objectives  ......................................... 20
-
-*Pages 243–243*
+7. Environment and Climate
 
 2.1 EU Thematic Objectives ......................................... 20 2.2 UN Sustainable Development Goals ....................... 21 2.3 National Strategic Outcomes ...................................22 2.4 Regional Strategic Outcomes .................................. 24
 
 7.1 Status of Water Bodies ............................................156 7.2 Designated Sites in the Region .............................. 160 7.3 Navigational map of the Region’s main Green/ Blueway routes ..........................................................166 7.4 Climate Stategy .........................................................173 7.5 Observed and projected climate changes and impacts for Ireland ....................................................173 7.6 Carbon Dioxide Emissions in the Region ..............175
 
-### 3.1 Asset/Potential Based Criteria Approach
-
-*Pages 242–242*
-
-3.1 Asset/Potential Based Criteria Approach to Growth Strategy ..................................................... 28 3.2 Selection of preferred scenarios for the Eastern and Midland RSES ................................. 31
-
-### 3.1 Growth Strategy – Strategic Connections ............. 29
-
-*Pages 243–243*
+3. Growth Strategy
 
 3.1 Growth Strategy – Strategic Connections ............. 29
 
@@ -1819,45 +1739,21 @@ Regional Spatial & Economic Strategy
 
 4. People and Place
 
-### 4.1 EMRA Large Towns .................................................... 43
-
-*Pages 243–243*
+8.1 EMRA Strategic Transport Infrastructure ............186
 
 4.1 EMRA Large Towns .................................................... 43 4.2 Settlement Strategy ................................................... 45 4.3 Regional Growth Centres ...........................................53
 
-### 4.3 Regional Growth Centres ...........................................53
-
-*Pages 243–243*
-
 9. Quality of Life
 
-### 5.1 Strategic Development Areas and Corridors,
+9.1 Changing Demographic Proﬁle ..............................198 9.2 Healthy Placemaking Stategy ................................205 9.3 Pobal HP Deprivation Index ....................................210
 
-*Pages 242–242*
-
-5.1 Strategic Development Areas and Corridors, Capacity, Infrastructure and Phasing ................... 104 5.2 Strategic employment development areas in the Dublin Metropolitan Area .............................115
-
-### 5.2 Strategic employment development areas
-
-*Pages 242–242*
-
-6. Economy and Employment
-
-### 5.1 MASP Boundary ......................................................... 99
-
-*Pages 243–243*
+5. MASP
 
 5.1 MASP Boundary ......................................................... 99 5.2 Dublin Metropolitan Area Strategic Pan ..............103 5.3 Metropolitan Cycle Network .................................. 110 5.4 Greater Dublin Area Public Transport Network 2027 ............................................................. 111 5.5 Green Infrastructure and Ecosystem Services Mapping ......................................................................119
 
-### 5.3 Metropolitan Cycle Network .................................. 110
-
-*Pages 243–243*
-
 11. All Island Cohesion
 
-### 5.5 Green Infrastructure and Ecosystem Services
-
-*Pages 243–244*
+11.1 TENT-T Core Network .............................................230
 
 Photographs
 
@@ -1869,85 +1765,7 @@ In addition to the resources of the Eastern and Midland Regional Assembly, image
 
 Tionól Reigiúnach Oirthir agus Lár-Tíre Eastern and Midland Regional Assembly
 
-### 6.1 Retail Hierarchy for the Region ..............................137
-
-*Pages 242–242*
-
-6.1 Retail Hierarchy for the Region ..............................137 6.2 Disruptive Technologies Innovation Fund (DTIF) - Themes and Priority Areas ......................143
-
-### 6.2 Disruptive Technologies Innovation Fund
-
-*Pages 243–243*
-
-![Figure from page 243](assets/p243-f01.webp)
-
-*Figure from page 243*
-
-List of Figures EMRA RSES
-
-1. Introduction
-
-6. Economy and Employment
-
-### 6.1 Eastern & Midland Region Total Employment ....122
-
-*Pages 243–243*
-
-1.1 EMRA Strategic Planning Areas .................................7 1.2 Spatial Planning Hierarchy in Ireland ........................9 1.3 NPF Map ........................................................................11 1.4 RSES Process ............................................................... 13 1.5 Our Strategic Planning Areas ...................................14 1.6 Population Change 2006-2016 ................................ 15 1.7 Age structure – EMRA and State .............................16 1.8 Resident Workers and Local Jobs ............................ 17 1.9 Deﬁning Functional Urban Areas, Census 2016 ...19
-
-6.1 Eastern & Midland Region Total Employment ....122 6.2 Percentage of Local Jobs by Industry ....................123 6.3 The Economic Strategy ...........................................126 6.4 Enterprise 2025 Renewed Sectoral Cohorts .......127 6.5 EMRA’s Enterprise Development and Innovation Assets......................................................128 6.6 Dublin SPA’s Enterprise Development and Innovation Assets......................................................129 6.7 Smart City Concepts ................................................ 144
-
-### 6.7 Smart City Concepts ................................................ 144
-
-*Pages 243–243*
-
-2. Strategic Vision
-
-7. Environment and Climate
-
-### 7.5 Observed and projected climate changes and
-
-*Pages 243–243*
-
-3. Growth Strategy
-
-### 8.1 Hierarchy of Policies and Plans ..............................185
-
-*Pages 242–242*
-
-4. Settlement Strategy
-
-### 8.3 Bus Projects for the Region ......................................191
-
-*Pages 242–242*
-
-4.1 NPF Population Projections ......................................44 4.2 Settlement Hierarchy ................................................44 4.3 Settlement Typologies and Policy Responses ...... 47
-
-### 8.5 New and Enhanced Park and Ride ........................... 193
-
-*Pages 242–242*
-
-5. Dublin Metropolitan Area Strategic Plan (MASP)
-
-### 8.1 EMRA Strategic Transport Infrastructure ............186
-
-*Pages 243–243*
-
-8.1 EMRA Strategic Transport Infrastructure ............186
-
-### 9.1 Changing Demographic Proﬁle ..............................198
-
-*Pages 243–243*
-
-9.1 Changing Demographic Proﬁle ..............................198 9.2 Healthy Placemaking Stategy ................................205 9.3 Pobal HP Deprivation Index ....................................210
-
-### 9.2 Healthy Placemaking Stategy ................................205
-
-*Pages 243–243*
-
-5. MASP
-
-### 10 year period of the National Development Plan are the
+### 10 year period of the National Development Plan are the Urban Regeneration and Development Fund, the Rural
 
 *Pages 238–241*
 
@@ -2059,15 +1877,9 @@ RPO 12.4: The EMRA supports smart growth initiatives that develop new solutions 
 
 Implementation & Monitoring
 
-### 11.1 TENT-T Core Network .............................................230
-
-*Pages 243–243*
-
-11.1 TENT-T Core Network .............................................230
-
 ### 12.4 Monitoring and Reporting
 
-*Pages 241–242*
+*Pages 241–243*
 
 12.4 Monitoring and Reporting
 
@@ -2107,39 +1919,35 @@ List of Tables EMRA RSES
 
 3. Growth Strategy
 
-## 10.1 Introduction ................................................................218
+3.1 Asset/Potential Based Criteria Approach to Growth Strategy ..................................................... 28 3.2 Selection of preferred scenarios for the Eastern and Midland RSES ................................. 31
 
-### 10.1 Introduction ................................................................218
+4. Settlement Strategy
 
-*Pages 3–3*
+4.1 NPF Population Projections ......................................44 4.2 Settlement Hierarchy ................................................44 4.3 Settlement Typologies and Policy Responses ...... 47
 
-10.1 Introduction ................................................................218 10.2 Sustainable Management of Water ......................219 10.3 Energy .........................................................................224 10.4 Waste Management ................................................ 227
+5. Dublin Metropolitan Area Strategic Plan (MASP)
 
-## 11.1 Introduction ...............................................................228
+5.1 Strategic Development Areas and Corridors, Capacity, Infrastructure and Phasing ................... 104 5.2 Strategic employment development areas in the Dublin Metropolitan Area .............................115
 
-### 11.1 Introduction ...............................................................228
+6. Economy and Employment
 
-*Pages 3–3*
+6.1 Retail Hierarchy for the Region ..............................137 6.2 Disruptive Technologies Innovation Fund (DTIF) - Themes and Priority Areas ......................143
 
-11.1 Introduction ...............................................................228 Support of an All Island Approach .......................229
+![Figure from page 243](assets/p243-f01.webp)
 
-## 12.1 Introduction ...............................................................234
+*Figure from page 243*
 
-### 12.1 Introduction ...............................................................234
+List of Figures EMRA RSES
 
-*Pages 3–3*
+1. Introduction
 
-12.1 Introduction ...............................................................234 12.2 Legislative Background ........................................... 235 12.3 Implementation ........................................................ 237 12.4 Monitoring and Reporting .......................................241
+6. Economy and Employment
 
-## 12.4 Monitoring and Reporting .......................................241
+1.1 EMRA Strategic Planning Areas .................................7 1.2 Spatial Planning Hierarchy in Ireland ........................9 1.3 NPF Map ........................................................................11 1.4 RSES Process ............................................................... 13 1.5 Our Strategic Planning Areas ...................................14 1.6 Population Change 2006-2016 ................................ 15 1.7 Age structure – EMRA and State .............................16 1.8 Resident Workers and Local Jobs ............................ 17 1.9 Deﬁning Functional Urban Areas, Census 2016 ...19
 
-### 12.4 Monitoring and Reporting .......................................241
+6.1 Eastern & Midland Region Total Employment ....122 6.2 Percentage of Local Jobs by Industry ....................123 6.3 The Economic Strategy ...........................................126 6.4 Enterprise 2025 Renewed Sectoral Cohorts .......127 6.5 EMRA’s Enterprise Development and Innovation Assets......................................................128 6.6 Dublin SPA’s Enterprise Development and Innovation Assets......................................................129 6.7 Smart City Concepts ................................................ 144
 
-*Pages 3–3*
-
-List of Tables ......................................................................242 List of Figures ....................................................................243
-
-## 16 Regional Strategic Outcomes (RSOs) are aligned to
+## 16 Regional Strategic Outcomes (RSOs) are aligned to the UN Sustainable Development Goals, the EU thematic
 
 ### 2.2 Vision and Key Principles
 
@@ -2905,7 +2713,7 @@ The NPF sets out a targeted pattern of growth for our Region and our Capital Cit
 | Midlands | 292,500 | 318,500 - 324,500 | 329,500 - 337,000 |
 | Total | 2,329,000 | 2,566,500 - 2,619,000 | 2,668,000 - 2,740,500 |
 
-### 4.1 are to inform the delivery of national
+### 4.1 are to inform the delivery of national policy expressed in the NPF and the delivery
 
 *Pages 44–46*
 
@@ -6004,7 +5812,7 @@ RPO 6.34: EMRA will support the construction of a regional brand that is consist
 
 Regional Spatial & Economic Strategy
 
-### 6.7 Capacity Building: Bidding Capacity, Shared Evidence Base, Future
+### 6.7 Capacity Building: Bidding Capacity, Shared Evidence Base, Future Proof and Anticipating Economic Structural Changes
 
 *Pages 148–150*
 
@@ -7790,7 +7598,7 @@ There is an urgent need for responsive planning policy to avoid an ageing popula
 
 The Traveller community in Ireland represents c.1% of the population and, according to the ESRI’s 2017 research paper A Social Portrait of Travellers in Ireland, experiences different social and economic conditions from the wider population. This includes different age proﬁles, rates of fertility, health proﬁles (including life expectancy) and levels of discrimination.
 
-### 16 Regional Strategic Outcomes (RSOs) are aligned to
+### 16 Regional Strategic Outcomes (RSOs) are aligned to the UN Sustainable Development Goals, the EU thematic
 
 *Pages 20–23*
 
@@ -7937,7 +7745,7 @@ EMRA Age Profile (CSO, 2016)
 
 *Figure from page 16*
 
-## 65 + years
+## 65 + years 12%
 
 ### 2.1 Our Shared Goals
 
@@ -7947,7 +7755,7 @@ EMRA Age Profile (CSO, 2016)
 
 At its core, the Regional Spatial and Economic Strategy (RSES) sets out a settlement and economic growth strategy that seeks to ensure that the needs of the Region’s citizens such as access to employment opportunities and services, ease of travel and overall well-being are met.
 
-### 65 + years
+### 65 + years 12%
 
 *Pages 16–20*
 

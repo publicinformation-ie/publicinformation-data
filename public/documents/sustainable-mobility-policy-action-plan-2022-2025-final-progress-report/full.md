@@ -6,7 +6,7 @@ Source: https://assets.gov.ie/static/documents/87a674c0/National_Sustainable_Mob
 
 ### Front Matter
 
-*Pages 1–6*
+*Pages 1–3*
 
 National Sustainable Mobility Policy Action Plan 2022-2025 Final Progress Report
 
@@ -50,7 +50,11 @@ Modified 33
 
 Delayed 35
 
+## Minister’s Foreword
+
 ### Minister’s Foreword
+
+*Pages 4–4*
 
 Tá áthas orm an dul chun cinn atá déanta go dtí seo faoin mbeartas soghluaisteachta inbhuanaithe a thaispeáint sa tuarascáil seo.
 
@@ -68,23 +72,11 @@ Darragh O'Brien T.D. Minister for Transport
 
 These achievements are being complemented by continued investment in major transport infrastructure. The review of the National Development Plan allocated €24.33 billion to 2030 for public transport projects. Investments in Metrolink, DART+ and BusConnects will expand capacity, improve connectivity, and support sustainable growth while helping to reduce transport emissions.
 
-### Executive Summary
+## 1 National Sustainable Mobility Policy and Action Plan
 
-” These targets include achieving a 50% increase in daily active travel journeys, a 130% increase in daily public transport journeys, and a 20% reduction in total vehicle kilometres travelled by 2030.
+### 1 National Sustainable Mobility Policy and Action Plan
 
-The National Sustainable Mobility Policy (SMP), published in April 2022, established a strategic framework to 2030 for increasing active travel (walking and cycling) and public transport journeys. It was accompanied by an Action Plan to 2025 containing 91 actions designed to support delivery of the Policy and the sustainable mobility targets subsequently refined in the Climate Action Plan 2023. These targets include achieving a 50% increase in daily active travel journeys, a 130% increase in daily public transport journeys, and a 20% reduction in total vehicle kilometres travelled by 2030.
-
-This Final Progress Report marks the conclusion of the 2022–2025 SMP Action Plan. It provides a comprehensive account of progress across all 91 actions. Of these, 58 actions have been fully completed, while five have been modified to better align with the intended outcomes. 28 actions have been delayed beyond the original Action Plan timelines, although substantial progress has still been made.
-
-through which outstanding actions are being carried forward beyond the lifetime of this Action Plan, many of which have been carried out with revised timelines and outputs in the new SMP Action Plan 2026-2030.
-
-Finally, the report assesses the outcomes of the policy measures implemented to date against existing targets and Key Performance Indicators, as well as providing some additional policy updates on progress in areas related to sustainable mobility.
-
-The report also identifies the policies, programmes, and ongoing workstreams
-
-![Figure from page 5](assets/p005-f01.webp)
-
-*Figure from page 5*
+*Pages 6–6*
 
 1. National Sustainable Mobility Policy and Action Plan
 
@@ -126,19 +118,9 @@ Key Principle
 
 Progress Reports have been published on an annual basis detailing the delivery of each of the Actions set out in the Plan. This Final Progress Report marks the conclusion of the 2022–2025 SMP actions Plan, covering the period April to December 2025.
 
-## 1 - Imminent
-
-### 1 - Imminent
-
-*Pages 10–10*
-
-1 - Imminent completion
-
-## 1.1 Governance of the SMP
-
 ### 1.1 Governance of the SMP
 
-*Pages 7–9*
+*Pages 7–7*
 
 1.1 Governance of the SMP
 
@@ -154,7 +136,33 @@ The Leadership Group (LG) is comprised of high-level representatives from the Na
 
 *Figure from page 7*
 
-### 2. SMP Action Status Updates
+## Executive Summary
+
+### Executive Summary
+
+*Pages 5–5*
+
+” These targets include achieving a 50% increase in daily active travel journeys, a 130% increase in daily public transport journeys, and a 20% reduction in total vehicle kilometres travelled by 2030.
+
+The National Sustainable Mobility Policy (SMP), published in April 2022, established a strategic framework to 2030 for increasing active travel (walking and cycling) and public transport journeys. It was accompanied by an Action Plan to 2025 containing 91 actions designed to support delivery of the Policy and the sustainable mobility targets subsequently refined in the Climate Action Plan 2023. These targets include achieving a 50% increase in daily active travel journeys, a 130% increase in daily public transport journeys, and a 20% reduction in total vehicle kilometres travelled by 2030.
+
+This Final Progress Report marks the conclusion of the 2022–2025 SMP Action Plan. It provides a comprehensive account of progress across all 91 actions. Of these, 58 actions have been fully completed, while five have been modified to better align with the intended outcomes. 28 actions have been delayed beyond the original Action Plan timelines, although substantial progress has still been made.
+
+through which outstanding actions are being carried forward beyond the lifetime of this Action Plan, many of which have been carried out with revised timelines and outputs in the new SMP Action Plan 2026-2030.
+
+Finally, the report assesses the outcomes of the policy measures implemented to date against existing targets and Key Performance Indicators, as well as providing some additional policy updates on progress in areas related to sustainable mobility.
+
+The report also identifies the policies, programmes, and ongoing workstreams
+
+![Figure from page 5](assets/p005-f01.webp)
+
+*Figure from page 5*
+
+## 2 SMP Action Status Updates
+
+### 2 SMP Action Status Updates
+
+*Pages 8–9*
 
 This report sets out the progress made in the three years since the Policy was launched in April 2022, as well as an update on the implementation of actions since the last report was published in September 2025.
 
@@ -190,11 +198,69 @@ For ease of reference, the following explains the action status categories in li
 | Modified | The original action in the SMP Action Plan has progressed but has diverged in scope and/or direction impacting timescales and output definitions. This reflects the need for agility and adaptability. This was introduced as a new category in the Year Three Progress Report. |
 | Delayed | The action and related outputs in the SMP Action Plan are past their scheduled date for delivery and have not yet been fully completed. |
 
-## 2 - Other
+### 2.1 Complete
 
-### 2 - Other
+*Pages 9–9*
+
+2.1 Complete
+
+Comisiún Pleanála with heavy construction to start on the Liffey Valley to City Centre, and Ballymun-Finglas to City Centre schemes this year in 2026.
+
+A total of 11 actions have been completed since the publication of the Year Three SMP Progress Report. Five of these were ongoing actions related to areas of work which take place annually or on an ongoing basis. These include the provision of training and annual work programmes to improve road infrastructure and providing funding for Active Travel infrastructure (Actions 4, 56, 61, 62 and 67).
+
+Action 8, which was to deliver fuelling/ charging infrastructure to support operation of a zero-emission public bus fleet, has been completed, with works finished in Athlone and Limerick and considerable work progressed in Phibsborough, Summerhill, Harristown and Galway.
+
+Other completed actions include the Infrastructure Manager Multi-Annual Contract (IMMAC) contract being approved by Government and signed by the Department and Iarnród Éireann in December 2025 (Action 3), as well as delivering awareness campaigns on public transport (Action 2).
+
+Action 65, which was to ‘Review and make recommendations on facilitating cyclists and pedestrians at junctions, including measures that do not require powered traffic signals’, was completed following the update of regulations.
+
+Finally, Action 76 was completed with the commencement of the review of the Regional Spatial and Economic Strategy for the Eastern and Midland Region.
+
+Another action completed was the delivery of additional cycling infrastructure in the GDA and the regional cities (Action 19). The Action Plan set targets of 400km of the GDA and 200km of the regional cities’ networks being completed or under construction by the end of 2025. In total, 416km (GDA) and 350km (regional cities) of cycling infrastructure was completed or underway by the end of the year.
+
+### 2.2 Modified
+
+*Pages 9–10*
+
+2.2 Modified
+
+As outlined in the previous report, five of the actions set out in the SMP Action Plan – Actions 26, 31, 33, 60 and 87 – have been modified in response to changing circumstances. These actions have diverged in scope and/or direction to the extent that some of their originally envisaged outputs
+
+For BusConnects (Action 23), all 12 corridor applications have been lodged with An
+
+have now been superseded. However, the objectives of these actions have been addressed through a different approach.
+
+outputs to improve accessibility in the public transport system. In total, six of the seven outputs for the action were completed before the deadline, but the target output of equipping 25 bus stations with wheelchair accessible bus bays was not fully completed by the end of 2025. Twenty-one wheelchair accessible bus bays were put in place in time, with the remaining four expected to be completed by March 2027.
+
+### 2.3 Delayed
 
 *Pages 10–15*
+
+2.3 Delayed
+
+In total, 28 actions have passed their deadline as set out in the Plan but are not yet fully complete. While all of these actions have progressed and several have completed most of the proposed outputs set out in the Action Plan, further progress is required to fully deliver them.
+
+Additionally, the development of Local Transport Plans (LTPs) has been moved to delayed (Action 77). It is anticipated that LTPs will be commenced for two further Key Towns in 2026.
+
+Out of the 15 actions where a delay was anticipated from the previous Progress Report, 14 have been moved to delayed with Action 8 having been moved to complete.
+
+All status updates of the delayed actions can be found in the Annex 1. A full account of where these delayed actions are being carried forward is set out in the graphic and table below.
+
+There were three actions that were moved from ‘On Schedule’ to ‘Delayed’. One of these was Action 48, which incorporated various
+
+4 - Moving Together
+
+4 - Road Safety Strategy
+
+17 - SMP Action Plan 2026-2030
+
+(RSS): Phase 2
+
+Action Plan
+
+28 Actions
+
+1 - Imminent completion
 
 2 - Other
 
@@ -272,9 +338,9 @@ Indicator Target (if set) Delivery to date
 
 ## ” To support the effective measurement of Policy outcomes, the Action Plan 2022-2025 included
 
-### 3.1 Further work on
+### 3.1 Further work on measurement
 
-*Pages 15–50*
+*Pages 15–16*
 
 3.1 Further work on measurement
 
@@ -300,19 +366,11 @@ The Strategy seeks to encourage a collective and collaborative approach to behav
 
 The Strategy will now progress to the implementation phase, supported by a strong oversight mechanism to monitor the delivery of actions and assess the effectiveness of the measures outlined. This will complement and reinforce the significant investment being made in public transport services and active travel infrastructure, supporting a shift towards more sustainable modes such as walking, cycling, and public and shared transport.
 
-### 5. SMP Action Plan 2026-2030
-
-The SMP Action Plan 2026–2030 succeeds the previous Action Plan. The new Plan maintains the collaborative approach established under the Sustainable Mobility Policy and integrates with the Programme for Government 2025 as well as wider government policy. It was developed through a structured and inclusive consultation process, designed to ensure that the measures contained within it are informed by evidence, stakeholder expertise, and lived experience across the transport and mobility system.
-
-alongside relevant Government Departments and agencies, to refine high-level proposals into a coherent and implementable set of actions. This included collaboration with the Department of Housing, Local Government and Heritage, reflecting the SMP’s emphasis on better integrating transport with land use and spatial planning as well as building on the establishment of the Housing Activation Office with embedded transport expertise. The development process also expanded collaboration to include the Department of Further and Higher Education, Research, Innovation and Science in relation to the transport needs of third-level students; the Department of Finance in respect of measures such as the Cycle to Work scheme; and the Department of Climate, Energy and the Environment on areas of shared interest.
-
-A cornerstone in the development process was the National Sustainable Mobility Forum. The 2025 Forum was held over four halfday events, two in person and two online, to facilitate equity of participation from a broad range of stakeholders. Approximately 160 stakeholders across the sustainable mobility sector including Local Authorities, transport agencies, Disabled People’s Organisations, representatives of Government departments, members of Public Participation Networks and other community representatives, youth groups and academics took part in the Forum events. The insights of these stakeholders were captured in the Forum report and fed into the development process for the new Action Plan.
-
-The resulting SMP Action Plan 2026–2030, published in March 2026, sets out 95 actions designed to further advance sustainable mobility across infrastructure, services, spatial planning, accessibility, behaviour change, and data. The Plan aligns closely with wider national and international policy frameworks, including the Programme for Government 2025, the National Development Plan Review 2025, the revised National Planning Framework, and key sectoral strategies. Together, these actions will build on the success of its predecessor in delivering a more sustainable transport system for all.
-
-Following the Forum, extensive follow-up engagement was undertaken with policy leads within the Department of Transport,
+## Annex 1 – Delivery to Date of SMP Actions
 
 ### Annex 1 – Delivery to Date of SMP Actions
+
+*Pages 18–34*
 
 Complete
 
@@ -425,6 +483,10 @@ Complete
 | --- | --- | --- | --- | --- |
 | 91 | Examine the feasibility of utilising bus mounted cameras to detect and enforce illegal parking in bus lanes and if appropriate make recommendations for implementation. (RSS action 122) |  | 2022 Q4 | A report on this action was completed by the NTA and presented to the Road Safety Transformation Partnership Board in November 2023. Along with work by TII in relation to speed cameras, this report formed key input into the published National Safety Camera Strategy, which was led by TII with input from key stakeholders across the Transport and Justice sectors. |
 
+### Modified
+
+*Pages 35–36*
+
 Modified
 
 | No. | Action | Proposed Output | SMP Deadline | Progress |
@@ -437,6 +499,10 @@ Modified
 | --- | --- | --- | --- | --- |
 | 60 | Expand continuous professional training for key design skills and application of national standards. | 2022 Online workshops carried out. 2023 Graduate training programme introduced | 2023 Q4 | Eight online Design Manual for Urban Roads and Streets (DMURS) workshops took place in 2022 with over 3500 atet ndees. There are courses in Atlantic Technological University which are funded by DoT through the Local Authority Services National Training Group (LASNTG) which Local Authority Engineers can undertake via the annual training grant. The DoT and LASNTG have also been working with the South East Technological University (SETU) in Carlow in 2025 to expand the number of road engineering courses which Local Authority staf fcan undertake via the annual training grant. DoT and LASNTG have also had meetings with Engineers Ireland in 2025 and added a number of their road engineering courses to the list of courses which Local Authority staf f can atet nd via funding from the annual grant allocation. |
 | 87 | Expand shared car, bike and powered personal transporters (PPT) services at transport hubs and interchanges. | Strategy for rollout of expanded shared services developed. | 2023 | Work to develop a strategy for expanded shared services has been superseded by two projects being delivered by the NTA – the Regional Micromobility Schemes in the regional cities; and the Mobility Hubs Pilot Programme. The regional schemes will include shared e-bikes and (in some cities) e-scooters, while the hubs will include shared electric cars, e-bikes, e-scooters and e-cargo bikes. |
+
+### Delayed
+
+*Pages 37–50*
 
 Delayed
 
@@ -510,88 +576,18 @@ Delayed
 
 Prepared by the Department of Transport gov.ie/transport
 
-## 2.1 Complete
+## 5 SMP Action Plan 2026-2030
 
-### 2.1 Complete
+### 5 SMP Action Plan 2026-2030
 
-*Pages 9–9*
+*Pages 17–17*
 
-2.1 Complete
+The SMP Action Plan 2026–2030 succeeds the previous Action Plan. The new Plan maintains the collaborative approach established under the Sustainable Mobility Policy and integrates with the Programme for Government 2025 as well as wider government policy. It was developed through a structured and inclusive consultation process, designed to ensure that the measures contained within it are informed by evidence, stakeholder expertise, and lived experience across the transport and mobility system.
 
-Comisiún Pleanála with heavy construction to start on the Liffey Valley to City Centre, and Ballymun-Finglas to City Centre schemes this year in 2026.
+alongside relevant Government Departments and agencies, to refine high-level proposals into a coherent and implementable set of actions. This included collaboration with the Department of Housing, Local Government and Heritage, reflecting the SMP’s emphasis on better integrating transport with land use and spatial planning as well as building on the establishment of the Housing Activation Office with embedded transport expertise. The development process also expanded collaboration to include the Department of Further and Higher Education, Research, Innovation and Science in relation to the transport needs of third-level students; the Department of Finance in respect of measures such as the Cycle to Work scheme; and the Department of Climate, Energy and the Environment on areas of shared interest.
 
-A total of 11 actions have been completed since the publication of the Year Three SMP Progress Report. Five of these were ongoing actions related to areas of work which take place annually or on an ongoing basis. These include the provision of training and annual work programmes to improve road infrastructure and providing funding for Active Travel infrastructure (Actions 4, 56, 61, 62 and 67).
+A cornerstone in the development process was the National Sustainable Mobility Forum. The 2025 Forum was held over four halfday events, two in person and two online, to facilitate equity of participation from a broad range of stakeholders. Approximately 160 stakeholders across the sustainable mobility sector including Local Authorities, transport agencies, Disabled People’s Organisations, representatives of Government departments, members of Public Participation Networks and other community representatives, youth groups and academics took part in the Forum events. The insights of these stakeholders were captured in the Forum report and fed into the development process for the new Action Plan.
 
-Action 8, which was to deliver fuelling/ charging infrastructure to support operation of a zero-emission public bus fleet, has been completed, with works finished in Athlone and Limerick and considerable work progressed in Phibsborough, Summerhill, Harristown and Galway.
+The resulting SMP Action Plan 2026–2030, published in March 2026, sets out 95 actions designed to further advance sustainable mobility across infrastructure, services, spatial planning, accessibility, behaviour change, and data. The Plan aligns closely with wider national and international policy frameworks, including the Programme for Government 2025, the National Development Plan Review 2025, the revised National Planning Framework, and key sectoral strategies. Together, these actions will build on the success of its predecessor in delivering a more sustainable transport system for all.
 
-Other completed actions include the Infrastructure Manager Multi-Annual Contract (IMMAC) contract being approved by Government and signed by the Department and Iarnród Éireann in December 2025 (Action 3), as well as delivering awareness campaigns on public transport (Action 2).
-
-Action 65, which was to ‘Review and make recommendations on facilitating cyclists and pedestrians at junctions, including measures that do not require powered traffic signals’, was completed following the update of regulations.
-
-Finally, Action 76 was completed with the commencement of the review of the Regional Spatial and Economic Strategy for the Eastern and Midland Region.
-
-Another action completed was the delivery of additional cycling infrastructure in the GDA and the regional cities (Action 19). The Action Plan set targets of 400km of the GDA and 200km of the regional cities’ networks being completed or under construction by the end of 2025. In total, 416km (GDA) and 350km (regional cities) of cycling infrastructure was completed or underway by the end of the year.
-
-## 2.2 Modified
-
-### 2.2 Modified
-
-*Pages 9–10*
-
-2.2 Modified
-
-As outlined in the previous report, five of the actions set out in the SMP Action Plan – Actions 26, 31, 33, 60 and 87 – have been modified in response to changing circumstances. These actions have diverged in scope and/or direction to the extent that some of their originally envisaged outputs
-
-For BusConnects (Action 23), all 12 corridor applications have been lodged with An
-
-have now been superseded. However, the objectives of these actions have been addressed through a different approach.
-
-outputs to improve accessibility in the public transport system. In total, six of the seven outputs for the action were completed before the deadline, but the target output of equipping 25 bus stations with wheelchair accessible bus bays was not fully completed by the end of 2025. Twenty-one wheelchair accessible bus bays were put in place in time, with the remaining four expected to be completed by March 2027.
-
-## 2.3 Delayed
-
-### 2.3 Delayed
-
-*Pages 10–10*
-
-2.3 Delayed
-
-In total, 28 actions have passed their deadline as set out in the Plan but are not yet fully complete. While all of these actions have progressed and several have completed most of the proposed outputs set out in the Action Plan, further progress is required to fully deliver them.
-
-Additionally, the development of Local Transport Plans (LTPs) has been moved to delayed (Action 77). It is anticipated that LTPs will be commenced for two further Key Towns in 2026.
-
-Out of the 15 actions where a delay was anticipated from the previous Progress Report, 14 have been moved to delayed with Action 8 having been moved to complete.
-
-All status updates of the delayed actions can be found in the Annex 1. A full account of where these delayed actions are being carried forward is set out in the graphic and table below.
-
-There were three actions that were moved from ‘On Schedule’ to ‘Delayed’. One of these was Action 48, which incorporated various
-
-## 4 - Moving
-
-### 4 - Moving
-
-*Pages 10–10*
-
-4 - Moving Together
-
-## 4 - Road
-
-### 4 - Road
-
-*Pages 10–10*
-
-4 - Road Safety Strategy
-
-## 17 - SMP Action
-
-### 17 - SMP Action
-
-*Pages 10–10*
-
-17 - SMP Action Plan 2026-2030
-
-(RSS): Phase 2
-
-Action Plan
-
-28 Actions
+Following the Forum, extensive follow-up engagement was undertaken with policy leads within the Department of Transport,

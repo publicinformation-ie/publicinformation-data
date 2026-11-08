@@ -391,72 +391,6 @@ In 2021, following request from the Minister for Transport, Transport Infrastruc
 
 In line with these national commitments, the Climate Action Plan 2023 highlights the need to facilitate a 50% increase in daily walking and cycling journeys as part of the transport sector’s own decarbonisation pathway, where the sector is required to halve its emissions from its 2018 baseline of 12.2 MtCO2eq. to 6.1 MtCO2eq by 2030, in line with the sectoral emissions ceilings established by Government in July 2022
 
-## 1.3 and outlined in further detail in Table 1.2. The approach incorporated multiple elements to provide
-
-### 1.3 and outlined in further detail in Table 1.2. The approach incorporated multiple elements to provide
-
-*Pages 17–20*
-
-Close and regular collaboration with stakeholders and a comprehensive public consultation.
-
-Thorough assessment of existing and planned infrastructure.
-
-Identification of potential environmental concerns and a full strategic environmental assessment.
-
-Research on potential future user needs and behaviour.
-
-International peer review and case studies.
-
-A robust and tailored approach to network development and assessment.
-
-As assessment of design standards and infrastructure requirement.
-
-A monitoring framework.
-
-Development of an implementation strategy.
-
-![Figure 1.3: NCN Pan Development Process](assets/p017-f02.webp)
-
-*Figure 1.3: NCN Pan Development Process*
-
-National Cycle Network Plan
-
-Table 1.2: NCN Plan Methodology
-
-|  | Stage Overview |  |  | Key Tasks Undertaken |  |
-| --- | --- | --- | --- | --- | --- |
-| Stage 1 – Strategy Planning Mobilisation of the project and agreement of approach through the development of the PEP (Project Execution Plan) and SMP (Stakeholder Management Plan) as well as commencement of critical tasks to delivery, such as the GIS dashboard and market research. The project vision and objectives were developed, and stakeholder engagement commenced. |  |  |  Preparation of Project Execution Plan  Development of project vision statement  Development of project objectives  Development of Project Logo and Collateral  Preparation of Stakeholder Management Plan  Market Research  Development of NCN GIS Dashboard  Strategic Environmental Assessment (SEA) and Appropriate Assessment (AA) Screening  Initial engagement with stakeholders  Stakeholder engagement |  |  |
-| Stage 2 – Data Collection and Analysis Analyses to inform the identification of the NCN corridors and development of an inventory of the existing and planned infrastructure. Investigation of international case studies and engagement. Market analysis including a nationally representative sample survey to define the criterion for development of the NCN. A detailed review of the network proposed in the 2010 NCN Scoping Report was also undertaken to investigate how it aligns with current objectives and requirements. |  |  |  Inventory of the existing and planned cycle network  Benchmarking of international case studies  Identification of key destinations and attractions  NCN Market Analysis  Stakeholder engagement  Review of 2010 NCN Scoping Study recommendations  Development of assessment framework |  |  |
-| Stage 3 – Plan Development and Appraisal Entailed the identification and refinement of the proposed NCN corridors. The NCN Plan defines a set of corridors connecting Primary and Secondary nodes which combined make up the network. Stakeholders were engaged at key points to review work and provide feedback as the network was developed and assessed. |  |  |  Policy and sustainability review  Identification of NCN Corridors  Stakeholder Engagement  Design case studies  Identification of implementation requirements  Strategic Environmental Assessment (SEA)  Appropriate Assessment (AA) |  |  |
-| Stage 4 – Public Consultation Public consultation was completed via an online website with widespread publicity and stakeholder engagement. The consultation period was open from 6th of May until the 7th of June 2022 after which an analysis of the feedback was undertaken. Feedback from both the public and stakeholders was then used to determine any amendments to the proposed plan. |  |  |  Public consultation  Stakeholder workshops  Definition of monitoring framework  Summary of feedback |  |  |
-| Stage 5 – Finalisation The draft NCN proposals were finalised based on the feedback received and an agreed approach to implementation and monitoring. |  |  |  Preparation of Final NCN Plan |  |  |
-
-National Cycle Network Plan
-
-1.4Stakeholder and Public Engagement
-
-Proactive and early engagement with stakeholders is a vital aspect of strategic transport planning and has a significant influence on the success of project delivery. The approach taken to stakeholder management in developing the NCN Plan was based on the five steps illustrated in Figure 1.4.
-
-![Figure 1.4: Approach to Stakeholder Engagement](assets/p019-f01.webp)
-
-*Figure 1.4: Approach to Stakeholder Engagement*
-
-Stakeholder Mapping
-
-Stakeholder mapping incorporates steps one and two above. Following the identification of appropriate stakeholders, their respective needs were catalogued within a stakeholder register. Stakeholders were categorised as shown in Table 1.3 to reflect the different levels of engagement, as follows:
-
-Delivery partners – These stakeholders will be instrumental in the development of the NCN through direct approval, funding, oversight and/or implementation. These stakeholders are included in the project governance structure and were engaged in monthly meetings.
-
-Note: The Department of Transport was represented in both the Project Board and the Advisory Group. Due to its role in funding the NCN and developing various active travel policies, it was both the Project Approver and a Delivery Partner.
-
-Engaged parties – These stakeholders had a specific role or interest in the development of cycling infrastructure and were critically important in developing the plan. Engagement commenced during the data collection phase of the project through stakeholder workshops and continued throughout the project. Engagement with this group initially focused on sharing approaches to project delivery and project objectives, as well as receiving data and information regarding existing and planned cycle and other relevant infrastructure from stakeholders. A series of workshops were also held during the network development phase of the project to solicit input and feedback at key stages (see Section 4, Network Development for further information regarding these workshops).
-
-Interested parties – These stakeholders were identified as having an interest in the outcome of the NCN Plan and cycle infrastructure in Ireland more broadly. Engagement was primarily done during Stage 4 Public Consultation, via written notifications and submissions.
-
-National Cycle Network Plan
-
-General public – This group includes all other audiences who may be users of the infrastructure or have an interest in how the NCN will be delivered. Engagement with the public was focused on Stage 4 Public Consultation.
-
 ## 1 way
 
 ### 1 way
@@ -609,9 +543,9 @@ Table B.4 : Minimum Recommended Horizontal Separation between Carriageway and Cy
 | 60 [approximately 95kph] | 2.5 |  |  | 2.0 |  |  |
 | 70 [approximately 110kph] | 3.5 |  |  | 3.0 |  |  |
 
-## 1 Buncrana to
+## 1 Buncrana to Letterkenny/
 
-### 1 Buncrana to
+### 1 Buncrana to Letterkenny/
 
 *Pages 900–901*
 
@@ -624,9 +558,9 @@ Table B.4 : Minimum Recommended Horizontal Separation between Carriageway and Cy
 |  |  |  | ran within 200m of a European site, these impacts are avoidable through either routing decisions or decisions regarding how the relevant sections of cycle route will be created (e.g. utilising existing infrastructure rather than creating new infrastructure in the most constrained sections, or using standard mitigation methods). |  |
 | 2 | Derry to Letterkenny | Lough Swilly SAC, Lough Swilly SPA | A large part of the 4km corridor within which the final cycle route will | As a first preference the final route should be located at least 200m from the Lough Swilly SAC/SPA unless it can be demonstrated at individual scheme level that no adverse effects on the integrity of the SAC/SPA would arise from routing it closer. If it is routed closer than 200m care will need to be taken to ensure that there is no new lighting introduced in areas that are currently unlit unless it can be demonstrated that |
 
-## 2 Derry to
+## 2 Derry to Letterkenny
 
-### 2 Derry to
+### 2 Derry to Letterkenny
 
 *Pages 902–905*
 
@@ -647,9 +581,9 @@ Table B.4 : Minimum Recommended Horizontal Separation between Carriageway and Cy
 |  |  |  | utilising existing infrastructure rather than creating new infrastructure in the most constrained sections, or using standard mitigation methods). |  |
 | 3 | Derry to Strabane | River Finn SAC, River Foyle and Tributaries SAC | The 4km corridor is sufficiently wide that direct impacts on any European sites can be avoided if necessary. Therefore, while noise and visual disturbance impacts, and air quality impacts (if construction was required) could arise if the final route ran within | The final route alignment should avoid any new construction within 200m of River Finn SAC or River Foyle and Tributaries SAC where possible unless it can be shown by detailed studies that no negative effects on otter would arise, such as due to the absence of holts in the relevant location. If the River Finn is to be traversed it should be using existing road alignments and bridges as a first preference and care will need to be taken to ensure that there is no new lighting introduced in areas that are currently unlit unless it can be demonstrated that there would be no adverse effect on site integrity. If any new construction within 200m of European sites is needed to create the cycle route an air quality assessment (and potentially noise and air quality mitigation) will be required to ensure there is no air pollution impacts on sensitive habitats. |
 
-## 3 Derry to
+## 3 Derry to Strabane
 
-### 3 Derry to
+### 3 Derry to Strabane
 
 *Pages 906–906*
 
@@ -662,7 +596,7 @@ Table B.4 : Minimum Recommended Horizontal Separation between Carriageway and Cy
 
 ### 4 Public Consultation.
 
-*Pages 20–24*
+*Pages 20–36*
 
 Table 1.3: Stakeholder Classification
 
@@ -778,6 +712,285 @@ The literature review also revealed key insights about recent cycling trends in 
 The volume of people walking and cycling in Ireland has increased dramatically in recent years due to a combination of improved infrastructure (43km of new protected cycle routes added between 2019-2021 in Dublin alone), peoples increased awareness of the health and environmental benefits and as a result of the uptake in these modes following the ‘enforced’ introduction to new users during COVID-19.
 
 Between 2019 and 2021 the number of annual cycling trips in Dublin increased from 86.6 million to 90.2 million (4%). Combined with walking trips this takes 330,000 cars off the road every day in the Dublin Metropolitan Area across Dublin, according to the 2021 Walking and Cycling Index2
+
+64% of adult residents walk 5 or more days a week and 25% of adults cycle at least once a week.3
+
+Approximately 3% of commuters cycled to work in 20163, although cycling to work has become more popular increasing by 43% from 2011 to 2016.
+
+57,000 people commuted via a cycle in Ireland in 2016, with a further 10,700 cycling to third level institutions. There is likely potential for increased levels of cycle commuting as nearly 75% of people surveyed as part of one of the research papers above said they would consider cycling to a new job if ‘off road’ cycle spaces were available (Caulfield, Brick et. al, 2012). Recent surveys suggest that 71% of residents support building cycle tracks physically separated from traffic and pedestrians even where that means less room for other traffic3
+
+The distance travelled to work also influences a person’s ability or willingness to switch to a cycle commute. In 2016, the average commute was 15km, an increase of 0.3km from 2011. Between 2011 and 2016, there was a rise of 10% of people that commuted 25km or more to work.
+
+Although only 3% of people in Ireland use cycling as their main form of transport (less than the EU average of 14%), 10% cycle regularly (Sport Ireland, 2019). This figure includes recreational cyclists who generally cycle longer distances than commuters.
+
+The Walking and Cycling Index 2021 survey found that 65% of people would find traffic-free routes away from roads useful to help them cycle more, 63% would find cycle tracks, physically separated from traffic and pedestrians useful to help them cycle more, 64% would like more signposted local cycle routes along quieter streets and 57% want better links with public transport3. 71% of
+
+2 https://www.nationaltransport.ie/planning-and-investment/transport-investment/active-travel-investmentprogramme/walking-and-cycling-index-2021/ 3 CSO Census data, 2016
+
+National Cycle Network Plan
+
+residents supported building more physically separated on-road cycle tracks, even when this would mean less space for other road traffic.
+
+In the same survey, people were asked that type of support would encourage them to cycle more: 59% cited improved access to shared cycle schemes, 28% cited improved access to a cargo bike, 36% mentioned improved access to electric bikes and 53% cited better access to bicycles3. These all point towards the need to provide continued support to residents for the purchase of bicycles but also the need to enhance our shared micromobility networks.
+
+2.2Policy Review
+
+A detailed policy and literature review was undertaken and outlined in Appendix A. A brief summary is provided hereunder. The table below provides a summary of the international, national, regional, and local policies which were reviewed to provide some context for development of the NCN Plan.
+
+Table 2.1: Overview of Policies Reviewed for Alignment with NCN Plan
+
+|  | Policy Level |  |  | Policy Document |  |
+| --- | --- | --- | --- | --- | --- |
+| International Policy |  |  |  2030 Agenda for Sustainable Development |  |  |
+| European Policy |  |  |  EU Sustainable and Smart Mobility Strategy (2021) |  |  |
+| National Policy |  |  |  Climate Action Plan 2023  Project Ireland National Planning Framework 2040  National Development Plan 2021-2030  Programme for Government: Our Shared Future  National Sustainable Mobility Policy (2022)  National Investment Framework for Transport in Ireland (NIFTI) (2021)  Outdoor Recreational Plan for Public Lands and Waters in Ireland 2017-2021  Ireland’s Government Road Safety Strategy 2021–2030  Ireland’s 4th National Biodiversity Action Plan (2022) |  |  |
+| Regional & Local Policy |  |  |  Regional Spatial and Economic Strategies  Ireland’s Cycle Network (NTA, 2022)  Greater Dublin Area Draft Cycle Network Plan (2021)  Regional City Transport Strategies  Area-Based Transport Assessments (ABTAs)  County Development Plans and Local Area Plans  Five Cities Demand Management Study |  |  |
+
+A common theme emerging from the review of international and national policy is the need to provide high-quality linkages for non-car modes between settlements. This is particularly important in addressing sustainability and climate action objectives as well as beneficial in terms of health, wellbeing and gender equality.
+
+European policy includes targets to reduce transport-related greenhouse gas emissions, which is reflected nationally in the targets outlined in the Climate Action Plan to halve Ireland’s emissions by 2030 and reach net zero no later than 2050. This is underpinned by a target of increasing daily active travel journeys by 50% by 2030. More recently, sectoral emissions ceilings have been set which require a 50% reduction in transport emissions by 2030 and this further highlights the need to encourage alternative transport modes other than the private car.
+
+As such, support and investment in sustainable mobility is a common action / policy in a number of national policy documents, including the National Planning Framework, National Development Plan and
+
+National Cycle Network Plan
+
+Sustainable Mobility Policy, the latter of which specifically notes that “a strategic national cycle network will be identified, providing key inter-urban links and enabling the continued development and delivery of that network”.
+
+The importance of cycling in realising sustainable mobility targets/goals is reflected in many policy documents, including the Programme for Government (2020), Regional Spatial and Economic Strategies and Greater Dublin Area (and other regional cities) Transport Strategies. It is also reflected in the National Investment Framework for Transport Infrastructure (NIFTI) (2021), which places active travel at the top of its modal hierarchy. The objectives of the NCN Plan support and align with European, national, regional and local objectives.
+
+Broadly speaking, recent policy documents at all levels have focused on the importance of sustainable transport in transitioning to a low-carbon economy. The core element of this is modal shift away from the private car. This is dependent, not only on improved public transport services, but also on an increase in the use of active modes. Numerous initiatives and objectives around the development of new and improved cycle facilities are present at all policy levels. The development of the NCN will support the achievement of these policy objectives and initiatives.
+
+2.3Literature Review
+
+An academic literature review included a range of research papers, articles, data sets. A summary of the publications included in the academic review is provided in Table 2.2.
+
+Table 2.2: Overview of Articles Reviewed for Market Research
+
+| Title | Author(s) |  | Year of |  |
+| --- | --- | --- | --- | --- |
+|  |  |  | Publication |  |
+| A Strategy for the Development of Irish Cycling Tourism: Conclusions Report | Sustrans | 2007 |  |  |
+| Bike Life Dublin Metropolitan Area | NTA | 2019 |  |  |
+| Commuting in Ireland | Central Statistics Office | 2016 |  |  |
+| Determining Bicycle Infrastructure Preferences - A Case Study of Dublin | Brick, Caulfield, et al. | 2012 |  |  |
+| Four Types of Cyclists?: Testing a Typology to Better Understanding of Bicycling Behaviour and Potential | Dill et al. | 2012 |  |  |
+| Greenways and Cycle Routes Ancillary Infrastructure | Department of Transport, Tourism and Sport | 2018 |  |  |
+| How Far is too Far to Cycle to Work (Article) | Bicycle 2 Work (bicycle2work.com) | Not Specified |  |  |
+| Irish Sports Monitor: Annual Report | Sport Ireland | 2019 |  |  |
+| Travelling in a Woman’s Shoes - Understanding Women’s Travel Needs in Ireland to inform the Future of Sustainable Transport Policy and Design | Transport Infrastructure Ireland (TII) | 2020 |  |  |
+
+The review highlighted a number of areas relevant to the development and implementation of the NCN Plan:
+
+Trip Lengths for Commuters - Commuting by cycle is increasing in popularity but is heavily dependent on where one lives. In 2016, the average commute was 15km, Urban areas (in particular Dublin) with a shorter distance to work have higher rates of commuting by cycle. Although most NCN corridors are inter-urban and mostly cover longer distances, it is likely they will still cater for commuter trips. These trips may not necessarily be from urban centre to urban centre but from
+
+National Cycle Network Plan
+
+areas outside the continuous built up area into the urban centre. As such, it is important that the NCN has good connectivity to local and urban cycle networks to facilitate these journeys. This was a key element of the development of the NCN Plan.
+
+Cycle Facilities and Confidence - Segregated and / or traffic free cycle infrastructure increases levels of comfort and safety and encourage more trips to be taken by cycle across all cycling confidence levels. This was a key factor in determining the NCN Design Principles (Section 6.3) and the types of infrastructure that are suitable for inclusion in the NCN.
+
+Gender Influence- A large gender disparity exists in cycle participation in Ireland, with men generally twice as likely to cycle. Safety is seen by women as a significant barrier to cycling. and the provision of safe cycle infrastructure is seen as a key factor to overcoming this. Again, this influenced the types of infrastructure considered for inclusion in the NCN.
+
+Recreational Cycling - Recreational cycling is more popular in Ireland than commuting by cycle and has distinct infrastructure preferences compared to commuting (i.e., scenic routes and recreational infrastructure versus directness of route). this was taken into consideration when developing and assessing corridor options.
+
+2.4Existing Cycle Network Inventory
+
+The NCN Plan will incorporate, or connect into as appropriate, existing and planned cycling infrastructure. As such, the starting point for the development of the plan was to collate information about this infrastructure across Ireland, so that the NCN could be specified to utilise as much of it as possible.
+
+Consultation was undertaken with key stakeholders to identify and collate data on existing and planned cycle infrastructure. This information was integrated within an online GIS dashboard to inform the development of proposals and corridor alignments. Focusing primarily on inter-urban and rural segregated cycle ways, this GIS-based platform was used to identify connections to key destinations and attractions.
+
+2.5Assessment of International Best Practice
+
+The project team undertook a review of cycle network planning at a national level in three countries, as follows: Denmark, the United Kingdom and Hungary. The reviews are provided in detail in Appendix B with some of the key insights summarised below. This review was critical to development of the NCN Plan.
+
+Denmark
+
+Denmark has multiple types of cycle networks that were developed separately, with different purposes in mind, but which combine to create a comprehensive overall network. Two in particular are of interest to the NCN. National Cycle Routes are long routes (each over 200km) crossing the country north-south and east-west and primarily aimed at tourist and recreational cyclists. The Super Cycle Highways (Super Cykelstier), on the other hand, are primarily aimed at shorter trips and, in particular, commuters across the wider Copenhagen Region. The success of the Danish cycle networks is reflected in the fact that cycling accounts for 26% of trips under 5km and 16% of all trips throughout Denmark4.
+
+Key takeaways from a review of the planning of both networks were incorporated into the development of the NCN Plan, including:
+
+Complementary Networks – the examples from Denmark show how two separate cycle networks, the National Cycle Routes and the Super Cycle Highways, can combine to create a comprehensive network that caters for a variety of different trip lengths purposes, and integrate with wider networks, including quiet, rural etc.
+
+4 (Cycling Embassy of Denmark, 2018)
+
+National Cycle Network Plan
+
+In a similar way, although the NCN has been developed to cater predominantly for longer-distance inter-urban travel, it will integrate with urban networks. As such, cooperation with the NTA’s CycleConnects team was an ongoing feature of the Plans development, to ensure that both networks complemented each other.
+
+Stakeholder Cooperation – several organisations contribute to the planning and delivery of the Danish cycle networks, including the Danish Cyclists’ Federation, Cycling Embassy of Denmark, Danish Cycling Tourism, and the Municipal Cycling Council.
+
+Similarly, the development of the NCN Plan has included regular engagement with a range of stakeholders (outlined previously in Section 1.4). Close engagement with a range of stakeholders will be a key element in the delivery of the network.
+
+Use of and Integration with Existing Cycle Infrastructure - Many parts of the Super Cycle Highway network were based on existing infrastructure which was upgraded. The first step was identifying what infrastructure was already in place, followed by identifying the gaps in infrastructure.
+
+This approach was incorporated into the NCN Plan development, in particular through the inclusion of Objective 5.2 (as outlined in Section 3.2). Similar to the Danish example, a comprehensive inventory of existing cycling facilities in Ireland was also undertaken at the outset of the project (further detail is provided in Section 2.5).
+
+Integration with Transport Hubs - Many of the Cycle Superhighways were built in coordination with the S-Train Network to give easy access to its stations. This allows users to cycle out and take the train home or cycle to another station if they don’t want to change trains.
+
+The proposed NCN incorporates rail transport hubs as secondary nodes (as outlined in Section 4). Connectivity with public transport was also a key consideration of the corridor options identification and assessment process.
+
+UK
+
+The UK’s National Cycle Network (UK NCN) was established to encourage cycling and walking throughout the UK. Sustrans is the custodian of the network and has aided the project since 1979. Many routes on the UK NCN were built prior to the introduction of the first set of UK cycling guidelines in 1996.
+
+In the mid-90’s, a renewed impetus and significant funding saw a push to vastly expand the network and by 2018 it was nearly 27,000km in length.
+
+Key takeaways from a review of the planning and implementation of the UK NCN were incorporated into the development of the NCN Plan, including:
+
+Safety and Accessibility - In 2018 Sustrans completed a detailed review of the entire network (Paths for Everyone). This review concluded that vast sections of the network were of ‘poor’ or ‘very poor’ standard. Following this, two strategic priorities were identified. Strategic Priority 1 aims to make the NCN safer for everyone by making more of the NCN traffic-free. Strategic Priority 2 aims to make the NCN accessible for everyone.
+
+These lessons learned show the importance of safety and universal design, concepts which have been incorporated into both the vision and objectives of the NCN Plan (outlined in Section 3).
+
+Prioritise Quality over Quantity – Although the UK NCN expanded significantly from the mid-90s, the 2018 Sustrans review highlighted that significant proportions of the network were of ‘poor’ or ‘very poor’ quality. This was attributed to a ‘rush for miles’ that occurred as a result of a fresh impetus around network development and funding. This led to Sustrans removing the NCN classification from significant proportions of the network due to them not reaching the new standards set by the 2018 review.
+
+The development of the NCN Plan has therefore placed an emphasis on providing high quality infrastructure, with standards for the type of infrastructure considered appropriate investigated and determined, as summarised in Section 7.3.
+
+National Cycle Network Plan
+
+Integration with Local Networks - Although the UK NCN spans the entire length of the country, there is a lack of integration with local networks. For example, the ‘Bee Network’ (Greater Manchester’s cycle network) has no connections with the greater NCN.
+
+As outlined previously, the NCN has been developed to integrate with urban networks, to ensure connectivity from urban centre to urban centre, as well as route continuity.
+
+Hungary
+
+Hungary’s cycle infrastructure was previously developed on an ad hoc basis with isolated developments across the country. The recently developed Cycle Route Network (CRN) plan aims to provide a more coherent network across four specific route types: European, National, Regional and Local. Although the specific route types differ, the goal of producing a coherent network from dispersed ad hoc facilities mirrors that of the NCN Plan. Key takeaways from a review of the planning and implementation (to date) of the CRN were incorporated into the development of the NCN Plan, including:
+
+Corridor Development – the element of Hungary’s CRN of most relevance to the Irish NCN is the national core network. This network is identified at a corridor level – corridors are 25km wide bands within which the final route must adhere.
+
+A similar approach has been taken to the development of the NCN, although the corridors used for the NCN are not nearly as wide with final route subject to design and environmental assessment.
+
+Monitoring - The CRN is constantly being upgraded and improved. Fifty-one automatic counters are set up in Hungary in the countryside alone with more being implemented in urban areas. Manual counting is also conducted annually at 100-150 points throughout the country. The counters help indicate trends and aid in route selection for urban planners.
+
+The establishment of a framework for ongoing monitoring, evaluation and learning has been identified as essential to measuring the success of the NCN, and to identify areas that may require improvement.
+
+2.6Market Research
+
+A nationally representative survey was undertaken to gain a better understanding of cycling behaviour and attitudes in Ireland and define the potential user base for the NCN. An online survey was compiled and completed by a nationally representative sample of 1,000 adults (as part of a large omnibus survey) as well as 67 members of Cyclist.ie. The survey comprised questions regarding cycling behaviour, infrastructure preferences, route preferences and other cycle related topics were included. The full survey results are provided in Appendix D. Key points, which influenced the development of the NCN Plan are outlined below, these reinforced the findings from other areas of background research:
+
+Lack of Confidence is a Barrier to Cycling Uptake - There is a discrepancy between the number of respondents who want to cycle regularly and the number that actually cycle. Results of the surveys showed that the more confident cyclists are more likely cycle which is in keeping with the findings from other research undertaken. This finding has influenced the type of cycling infrastructure considered for the NCN.
+
+Infrastructure Preferences – Safety is the main factor influencing a persons’ decision to make a trip by cycle and people almost universally feel safer on segregated infrastructure. Survey results showed that some cyclists will take a longer route for their journey if it uses safer infrastructure. This theme was consistent throughout the research undertaken and influenced corridor selection and infrastructure types considered.
+
+Recreational Cycling – Survey results reinforced the findings from the academic literature review that more people cycle for recreational purposes than commuting purposes in Ireland and that recreational cyclists tend to make longer distance trips (>10km) than commuters. Again, this was considered when developing route corridors, with opportunities to connect to local leisure and recreation facilities investigated.
+
+## NCN Plan - Vision and Objectives
+
+![Figure from page 30](assets/p030-f01.webp)
+
+*Figure from page 30*
+
+![Figure from page 30](assets/p030-f02.webp)
+
+*Figure from page 30*
+
+National Cycle Network Plan
+
+NCN Plan - Vision and Objectives
+
+3.1 NCN Plan Vision
+
+Developing a coherent and connected NCN has the potential to improve people’s health and reduce the negative environmental impacts associated with private car use. By encouraging more people to choose active travel options, such as walking, cycling, and wheeling, it can help to reduce greenhouse gas emissions, air pollution, and traffic congestion. These benefits can result in a cleaner, healthier, and more sustainable environment for everyone. Therefore, the need for the development of a coherent and connected NCN Plan is identified as a way to promote active travel and improve the environment.
+
+The vision of the NCN Plan is to:
+
+“Develop a safe, connected, and inviting cycle network between urban areas and key destinations to achieve accessible, sustainable, and high-quality routes that will help to reduce the carbon impact of
+
+transport and promote a healthy and inclusive society.”
+
+The NCN will link cities and towns of over 5,000 people with a safe, connected and inviting cycle network. The plan will also see the creation of cycle routes to destinations such as transport hubs, centres of education, centres of employment, leisure, and tourist destinations. Where possible, it will optimise the potential for people to cycle as part of their daily activities, such as work or educational commuting. It will also integrate with existing and proposed cycle infrastructure. Both road safety, and the safety and security of users, will be central to the development of the NCN.
+
+The NCN Plan builds on previous work completed by TII and aligns with the CycleConnects work being undertaken by the NTA in developing urban and county level cycle networks. It integrates with other cycle routes and networks in various stages of development, including the EuroVelo routes, national and regional greenways, and the Strategic Plan for Greenways in Northern Ireland. The NCN Plan complements these projects and establishes a core spine of infrastructure to encourage further development of cycling projects in the future.
+
+![Figure 3.1: NCN as Core Cycle Network](assets/p031-f01.webp)
+
+*Figure 3.1: NCN as Core Cycle Network*
+
+National Cycle Network Plan
+
+The NCN will help to facilitate Action 232 of CAP 2021, which specifically calls for the development of a coherent and connected NCN Plan, as well as Action TR23/30 of CAP 2023, which calls for the advance roll-out of national cycle networks.
+
+3.2 NCN Plan Objectives
+
+The NCN Plan has been developed in the context of a set of project objectives agreed by TII and key stakeholders including the DoT, NTA and CCMA.
+
+The NCN Plan objectives, outlined in Table 3.1, are consistent with national and regional policy objectives.
+
+Table 3.1: NCN Plan Objectives
+
+|  |  |  |  |  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+|  | National policy |  |  | Policy Goal |  |  | NCN Plan Objective |  |  |
+|  |  |  |  |  |  |  |  |  |  |
+| Combat climate change & improve air quality (NPF, CAP, NIFTI, & RSES). |  |  | 1. Reduce emissions from transportation by supporting a modal shift from private vehicles to cycling and walking. |  |  | 1.1 |  | Increase the number of cycle trips by improving the provision of safe and attractive cycle infrastructure. |  |
+|  |  |  |  |  |  | 1.2 |  | Enhance and protect local environments and biodiversity (e.g., pollinator plans, green corridors). |  |
+| Healthy living (NPF & SRTS). |  |  | 2. Encourage active travel for daily activities and recreation. |  |  | 2.1 |  | Connect to strategic destinations outside of urban areas as appropriate (including centres of education, centres of employment, and leisure destinations). |  |
+|  |  |  |  |  |  | 2.2 |  | Support the development of cycling and walking culture in Ireland. |  |
+| Regional accessibility and economic development (NPF & RSES). |  |  | 3. Support connectivity and economic growth of regional urban areas of 5,000+ population as well as priority tourist destinations. |  |  | 3.1 |  | Connect identified urban areas of 5,000+ population and those urban areas listed in the NTA’s urban cycle network strategy. |  |
+|  |  |  |  |  |  | 3.2 |  | Connect to strategic destinations outside of urban areas as appropriate (including transport hubs and tourist destinations), as appropriate. |  |
+|  |  |  |  |  |  | 3.3 |  | Integrate with existing and proposed cycle infrastructure (including greenways, safe routes to schools, the EuroVelo network, Interreg projects), as appropriate. |  |
+|  |  |  |  |  |  | 3.4 |  | Integrate with existing and proposed cycle infrastructure in Northern Ireland, as appropriate. |  |
+| Safety & accessibility (RSS & NPF & SRTS). |  |  | 4. Propose safe and accessible infrastructure that encourages modal shift and limits interactions with other vehicles. |  |  | 4.1 |  | Encourage use of off-road infrastructure, where appropriate. |  |
+|  |  |  |  |  |  | 4.2 |  | Where efficient and effective, encourage routes that use ‘quiet’, low traffic volume roads. |  |
+|  |  |  |  |  |  | 4.3 |  | Promote the design of cycle infrastructure that is fully accessible to all users, regardless of age or ability. |  |
+
+National Cycle Network Plan
+
+|  |  |  |  |  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+|  | National policy |  |  | Policy Goal |  |  | NCN Plan Objective |  |  |
+|  |  |  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  | 4.4 |  | Promote the design of cycle infrastructure that meets safety requirements. |  |
+|  |  |  |  |  |  | 4.5 |  | Promote the design of cycle infrastructure that provides a safe and secure environment for all users. |  |
+| Prudent use of public funds (PSC). |  |  | 5. Ensure appropriate balance between value for money and quality of outcome, in terms of potential impact on mode shift. |  |  | 5.1 |  | Propose corridors to maximise the number of users. |  |
+|  |  |  |  |  |  | 5.2 |  | Incorporate existing greenways, disused railways, canals, bypassed national roads, regional and local roads, long distance trails, as appropriate. |  |
+|  |  |  |  |  |  | 5.3 |  | Maximise the use of publicly owned land, where possible. |  |
+|  |  |  |  |  |  | 5.4 |  | Provide a framework to support the targeted investment in associated active travel projects. |  |
+|  |  |  |  |  |  | 5.5 |  | Take lessons from best practice internationally in development of national cycle networks, particularly the UK and EU high-cycling countries. |  |
+|  |  |  |  |  |  | 5.6 |  | Future-proof cycle route capacity, taking account of population growth and additional demand from modal shift. |  |
+
+![Figure from page 34](assets/p034-f01.webp)
+
+*Figure from page 34*
+
+## Network Development
+
+![Figure from page 34](assets/p034-f02.webp)
+
+*Figure from page 34*
+
+National Cycle Network Plan
+
+Network Development
+
+Development of the NCN corridors was based on an iterative process, summarised in Figure 4.1 and outlined in detail in this section.
+
+![Figure 4.1: Summary of Network Development Process](assets/p035-f01.webp)
+
+*Figure 4.1: Summary of Network Development Process*
+
+Key assumptions that were central to defining the network were as follows:
+
+Nodes are the towns, settlements or other key destinations which represent a start, end or layover point on the NCN. Three types of nodes were defined, as follows:
+
+Primary node – Consisting of cities and / or large towns with a population of over 20,000 ─ people (towns with over 10,000 were also considered in areas which were more sparsely populated). These represent an NCN start or end point.
+
+Secondary node – Consisting of medium sized towns with a population of between 10,000 ─ and 20,000 people (plus a selection of smaller towns in sparsely populated areas with populations of between 5,000 and 10,000). Major tourist attractions located outside urban areas were also included, and / or Major transport hubs. These represent an NCN start or end point.
+
+Other nodes – Consisting of small towns and settlements, strategic destinations (e.g. transport ─ hubs, centres of education, centres of employment, leisure destinations, and tourist destinations).
+
+Some exceptions to these classifications were made in areas that are remote and do not have the population threshold, to ensure an even and national spread of coverage.
+
+Connections were defined as initial ‘straight line’ links between nodes. Following more detailed assessment of the opportunities presented by each link, a corridor between nodes was defined. Corridors are proposed only at an indicative level and provide a broad alignment within which there may be several potential routes. An options assessment exercise will be required to test the
+
+National Cycle Network Plan
+
+potential routes within a corridor against a series of criteria to define the preferred route. This options assessment exercise does not form part of the current project and will be undertaken as part of the roll out of the NCN.
+
+An overview of each step in defining the NCN is presented in the following sections.
+
+Step 1 – Define Destinations
+
+Using the criteria outlined above, the key destinations for the NCN were identified, as outlined in Table 4.1 and Table 4.2.
 
 ### 4.1 and Table 4.2.
 
@@ -2353,292 +2566,9 @@ Table B.2 : Design Standards of Varying Cycling Infrastructures4
 |  | >50km/h | 2 way | >1000 |  |  | 2.5m | 2.0m |
 | One-way contra flow | <30km/h | 1 way | N/A |  |  | 1.9m | 1.5m |
 
-### 90.2 million (4%). Combined with walking trips this takes 330,000 cars off the road every day in the
+## 4 Letterkenny to Strabane
 
-*Pages 24–36*
-
-64% of adult residents walk 5 or more days a week and 25% of adults cycle at least once a week.3
-
-Approximately 3% of commuters cycled to work in 20163, although cycling to work has become more popular increasing by 43% from 2011 to 2016.
-
-57,000 people commuted via a cycle in Ireland in 2016, with a further 10,700 cycling to third level institutions. There is likely potential for increased levels of cycle commuting as nearly 75% of people surveyed as part of one of the research papers above said they would consider cycling to a new job if ‘off road’ cycle spaces were available (Caulfield, Brick et. al, 2012). Recent surveys suggest that 71% of residents support building cycle tracks physically separated from traffic and pedestrians even where that means less room for other traffic3
-
-The distance travelled to work also influences a person’s ability or willingness to switch to a cycle commute. In 2016, the average commute was 15km, an increase of 0.3km from 2011. Between 2011 and 2016, there was a rise of 10% of people that commuted 25km or more to work.
-
-Although only 3% of people in Ireland use cycling as their main form of transport (less than the EU average of 14%), 10% cycle regularly (Sport Ireland, 2019). This figure includes recreational cyclists who generally cycle longer distances than commuters.
-
-The Walking and Cycling Index 2021 survey found that 65% of people would find traffic-free routes away from roads useful to help them cycle more, 63% would find cycle tracks, physically separated from traffic and pedestrians useful to help them cycle more, 64% would like more signposted local cycle routes along quieter streets and 57% want better links with public transport3. 71% of
-
-2 https://www.nationaltransport.ie/planning-and-investment/transport-investment/active-travel-investmentprogramme/walking-and-cycling-index-2021/ 3 CSO Census data, 2016
-
-National Cycle Network Plan
-
-residents supported building more physically separated on-road cycle tracks, even when this would mean less space for other road traffic.
-
-In the same survey, people were asked that type of support would encourage them to cycle more: 59% cited improved access to shared cycle schemes, 28% cited improved access to a cargo bike, 36% mentioned improved access to electric bikes and 53% cited better access to bicycles3. These all point towards the need to provide continued support to residents for the purchase of bicycles but also the need to enhance our shared micromobility networks.
-
-2.2Policy Review
-
-A detailed policy and literature review was undertaken and outlined in Appendix A. A brief summary is provided hereunder. The table below provides a summary of the international, national, regional, and local policies which were reviewed to provide some context for development of the NCN Plan.
-
-Table 2.1: Overview of Policies Reviewed for Alignment with NCN Plan
-
-|  | Policy Level |  |  | Policy Document |  |
-| --- | --- | --- | --- | --- | --- |
-| International Policy |  |  |  2030 Agenda for Sustainable Development |  |  |
-| European Policy |  |  |  EU Sustainable and Smart Mobility Strategy (2021) |  |  |
-| National Policy |  |  |  Climate Action Plan 2023  Project Ireland National Planning Framework 2040  National Development Plan 2021-2030  Programme for Government: Our Shared Future  National Sustainable Mobility Policy (2022)  National Investment Framework for Transport in Ireland (NIFTI) (2021)  Outdoor Recreational Plan for Public Lands and Waters in Ireland 2017-2021  Ireland’s Government Road Safety Strategy 2021–2030  Ireland’s 4th National Biodiversity Action Plan (2022) |  |  |
-| Regional & Local Policy |  |  |  Regional Spatial and Economic Strategies  Ireland’s Cycle Network (NTA, 2022)  Greater Dublin Area Draft Cycle Network Plan (2021)  Regional City Transport Strategies  Area-Based Transport Assessments (ABTAs)  County Development Plans and Local Area Plans  Five Cities Demand Management Study |  |  |
-
-A common theme emerging from the review of international and national policy is the need to provide high-quality linkages for non-car modes between settlements. This is particularly important in addressing sustainability and climate action objectives as well as beneficial in terms of health, wellbeing and gender equality.
-
-European policy includes targets to reduce transport-related greenhouse gas emissions, which is reflected nationally in the targets outlined in the Climate Action Plan to halve Ireland’s emissions by 2030 and reach net zero no later than 2050. This is underpinned by a target of increasing daily active travel journeys by 50% by 2030. More recently, sectoral emissions ceilings have been set which require a 50% reduction in transport emissions by 2030 and this further highlights the need to encourage alternative transport modes other than the private car.
-
-As such, support and investment in sustainable mobility is a common action / policy in a number of national policy documents, including the National Planning Framework, National Development Plan and
-
-National Cycle Network Plan
-
-Sustainable Mobility Policy, the latter of which specifically notes that “a strategic national cycle network will be identified, providing key inter-urban links and enabling the continued development and delivery of that network”.
-
-The importance of cycling in realising sustainable mobility targets/goals is reflected in many policy documents, including the Programme for Government (2020), Regional Spatial and Economic Strategies and Greater Dublin Area (and other regional cities) Transport Strategies. It is also reflected in the National Investment Framework for Transport Infrastructure (NIFTI) (2021), which places active travel at the top of its modal hierarchy. The objectives of the NCN Plan support and align with European, national, regional and local objectives.
-
-Broadly speaking, recent policy documents at all levels have focused on the importance of sustainable transport in transitioning to a low-carbon economy. The core element of this is modal shift away from the private car. This is dependent, not only on improved public transport services, but also on an increase in the use of active modes. Numerous initiatives and objectives around the development of new and improved cycle facilities are present at all policy levels. The development of the NCN will support the achievement of these policy objectives and initiatives.
-
-2.3Literature Review
-
-An academic literature review included a range of research papers, articles, data sets. A summary of the publications included in the academic review is provided in Table 2.2.
-
-Table 2.2: Overview of Articles Reviewed for Market Research
-
-| Title | Author(s) |  | Year of |  |
-| --- | --- | --- | --- | --- |
-|  |  |  | Publication |  |
-| A Strategy for the Development of Irish Cycling Tourism: Conclusions Report | Sustrans | 2007 |  |  |
-| Bike Life Dublin Metropolitan Area | NTA | 2019 |  |  |
-| Commuting in Ireland | Central Statistics Office | 2016 |  |  |
-| Determining Bicycle Infrastructure Preferences - A Case Study of Dublin | Brick, Caulfield, et al. | 2012 |  |  |
-| Four Types of Cyclists?: Testing a Typology to Better Understanding of Bicycling Behaviour and Potential | Dill et al. | 2012 |  |  |
-| Greenways and Cycle Routes Ancillary Infrastructure | Department of Transport, Tourism and Sport | 2018 |  |  |
-| How Far is too Far to Cycle to Work (Article) | Bicycle 2 Work (bicycle2work.com) | Not Specified |  |  |
-| Irish Sports Monitor: Annual Report | Sport Ireland | 2019 |  |  |
-| Travelling in a Woman’s Shoes - Understanding Women’s Travel Needs in Ireland to inform the Future of Sustainable Transport Policy and Design | Transport Infrastructure Ireland (TII) | 2020 |  |  |
-
-The review highlighted a number of areas relevant to the development and implementation of the NCN Plan:
-
-Trip Lengths for Commuters - Commuting by cycle is increasing in popularity but is heavily dependent on where one lives. In 2016, the average commute was 15km, Urban areas (in particular Dublin) with a shorter distance to work have higher rates of commuting by cycle. Although most NCN corridors are inter-urban and mostly cover longer distances, it is likely they will still cater for commuter trips. These trips may not necessarily be from urban centre to urban centre but from
-
-National Cycle Network Plan
-
-areas outside the continuous built up area into the urban centre. As such, it is important that the NCN has good connectivity to local and urban cycle networks to facilitate these journeys. This was a key element of the development of the NCN Plan.
-
-Cycle Facilities and Confidence - Segregated and / or traffic free cycle infrastructure increases levels of comfort and safety and encourage more trips to be taken by cycle across all cycling confidence levels. This was a key factor in determining the NCN Design Principles (Section 6.3) and the types of infrastructure that are suitable for inclusion in the NCN.
-
-Gender Influence- A large gender disparity exists in cycle participation in Ireland, with men generally twice as likely to cycle. Safety is seen by women as a significant barrier to cycling. and the provision of safe cycle infrastructure is seen as a key factor to overcoming this. Again, this influenced the types of infrastructure considered for inclusion in the NCN.
-
-Recreational Cycling - Recreational cycling is more popular in Ireland than commuting by cycle and has distinct infrastructure preferences compared to commuting (i.e., scenic routes and recreational infrastructure versus directness of route). this was taken into consideration when developing and assessing corridor options.
-
-2.4Existing Cycle Network Inventory
-
-The NCN Plan will incorporate, or connect into as appropriate, existing and planned cycling infrastructure. As such, the starting point for the development of the plan was to collate information about this infrastructure across Ireland, so that the NCN could be specified to utilise as much of it as possible.
-
-Consultation was undertaken with key stakeholders to identify and collate data on existing and planned cycle infrastructure. This information was integrated within an online GIS dashboard to inform the development of proposals and corridor alignments. Focusing primarily on inter-urban and rural segregated cycle ways, this GIS-based platform was used to identify connections to key destinations and attractions.
-
-2.5Assessment of International Best Practice
-
-The project team undertook a review of cycle network planning at a national level in three countries, as follows: Denmark, the United Kingdom and Hungary. The reviews are provided in detail in Appendix B with some of the key insights summarised below. This review was critical to development of the NCN Plan.
-
-Denmark
-
-Denmark has multiple types of cycle networks that were developed separately, with different purposes in mind, but which combine to create a comprehensive overall network. Two in particular are of interest to the NCN. National Cycle Routes are long routes (each over 200km) crossing the country north-south and east-west and primarily aimed at tourist and recreational cyclists. The Super Cycle Highways (Super Cykelstier), on the other hand, are primarily aimed at shorter trips and, in particular, commuters across the wider Copenhagen Region. The success of the Danish cycle networks is reflected in the fact that cycling accounts for 26% of trips under 5km and 16% of all trips throughout Denmark4.
-
-Key takeaways from a review of the planning of both networks were incorporated into the development of the NCN Plan, including:
-
-Complementary Networks – the examples from Denmark show how two separate cycle networks, the National Cycle Routes and the Super Cycle Highways, can combine to create a comprehensive network that caters for a variety of different trip lengths purposes, and integrate with wider networks, including quiet, rural etc.
-
-4 (Cycling Embassy of Denmark, 2018)
-
-National Cycle Network Plan
-
-In a similar way, although the NCN has been developed to cater predominantly for longer-distance inter-urban travel, it will integrate with urban networks. As such, cooperation with the NTA’s CycleConnects team was an ongoing feature of the Plans development, to ensure that both networks complemented each other.
-
-Stakeholder Cooperation – several organisations contribute to the planning and delivery of the Danish cycle networks, including the Danish Cyclists’ Federation, Cycling Embassy of Denmark, Danish Cycling Tourism, and the Municipal Cycling Council.
-
-Similarly, the development of the NCN Plan has included regular engagement with a range of stakeholders (outlined previously in Section 1.4). Close engagement with a range of stakeholders will be a key element in the delivery of the network.
-
-Use of and Integration with Existing Cycle Infrastructure - Many parts of the Super Cycle Highway network were based on existing infrastructure which was upgraded. The first step was identifying what infrastructure was already in place, followed by identifying the gaps in infrastructure.
-
-This approach was incorporated into the NCN Plan development, in particular through the inclusion of Objective 5.2 (as outlined in Section 3.2). Similar to the Danish example, a comprehensive inventory of existing cycling facilities in Ireland was also undertaken at the outset of the project (further detail is provided in Section 2.5).
-
-Integration with Transport Hubs - Many of the Cycle Superhighways were built in coordination with the S-Train Network to give easy access to its stations. This allows users to cycle out and take the train home or cycle to another station if they don’t want to change trains.
-
-The proposed NCN incorporates rail transport hubs as secondary nodes (as outlined in Section 4). Connectivity with public transport was also a key consideration of the corridor options identification and assessment process.
-
-UK
-
-The UK’s National Cycle Network (UK NCN) was established to encourage cycling and walking throughout the UK. Sustrans is the custodian of the network and has aided the project since 1979. Many routes on the UK NCN were built prior to the introduction of the first set of UK cycling guidelines in 1996.
-
-In the mid-90’s, a renewed impetus and significant funding saw a push to vastly expand the network and by 2018 it was nearly 27,000km in length.
-
-Key takeaways from a review of the planning and implementation of the UK NCN were incorporated into the development of the NCN Plan, including:
-
-Safety and Accessibility - In 2018 Sustrans completed a detailed review of the entire network (Paths for Everyone). This review concluded that vast sections of the network were of ‘poor’ or ‘very poor’ standard. Following this, two strategic priorities were identified. Strategic Priority 1 aims to make the NCN safer for everyone by making more of the NCN traffic-free. Strategic Priority 2 aims to make the NCN accessible for everyone.
-
-These lessons learned show the importance of safety and universal design, concepts which have been incorporated into both the vision and objectives of the NCN Plan (outlined in Section 3).
-
-Prioritise Quality over Quantity – Although the UK NCN expanded significantly from the mid-90s, the 2018 Sustrans review highlighted that significant proportions of the network were of ‘poor’ or ‘very poor’ quality. This was attributed to a ‘rush for miles’ that occurred as a result of a fresh impetus around network development and funding. This led to Sustrans removing the NCN classification from significant proportions of the network due to them not reaching the new standards set by the 2018 review.
-
-The development of the NCN Plan has therefore placed an emphasis on providing high quality infrastructure, with standards for the type of infrastructure considered appropriate investigated and determined, as summarised in Section 7.3.
-
-National Cycle Network Plan
-
-Integration with Local Networks - Although the UK NCN spans the entire length of the country, there is a lack of integration with local networks. For example, the ‘Bee Network’ (Greater Manchester’s cycle network) has no connections with the greater NCN.
-
-As outlined previously, the NCN has been developed to integrate with urban networks, to ensure connectivity from urban centre to urban centre, as well as route continuity.
-
-Hungary
-
-Hungary’s cycle infrastructure was previously developed on an ad hoc basis with isolated developments across the country. The recently developed Cycle Route Network (CRN) plan aims to provide a more coherent network across four specific route types: European, National, Regional and Local. Although the specific route types differ, the goal of producing a coherent network from dispersed ad hoc facilities mirrors that of the NCN Plan. Key takeaways from a review of the planning and implementation (to date) of the CRN were incorporated into the development of the NCN Plan, including:
-
-Corridor Development – the element of Hungary’s CRN of most relevance to the Irish NCN is the national core network. This network is identified at a corridor level – corridors are 25km wide bands within which the final route must adhere.
-
-A similar approach has been taken to the development of the NCN, although the corridors used for the NCN are not nearly as wide with final route subject to design and environmental assessment.
-
-Monitoring - The CRN is constantly being upgraded and improved. Fifty-one automatic counters are set up in Hungary in the countryside alone with more being implemented in urban areas. Manual counting is also conducted annually at 100-150 points throughout the country. The counters help indicate trends and aid in route selection for urban planners.
-
-The establishment of a framework for ongoing monitoring, evaluation and learning has been identified as essential to measuring the success of the NCN, and to identify areas that may require improvement.
-
-2.6Market Research
-
-A nationally representative survey was undertaken to gain a better understanding of cycling behaviour and attitudes in Ireland and define the potential user base for the NCN. An online survey was compiled and completed by a nationally representative sample of 1,000 adults (as part of a large omnibus survey) as well as 67 members of Cyclist.ie. The survey comprised questions regarding cycling behaviour, infrastructure preferences, route preferences and other cycle related topics were included. The full survey results are provided in Appendix D. Key points, which influenced the development of the NCN Plan are outlined below, these reinforced the findings from other areas of background research:
-
-Lack of Confidence is a Barrier to Cycling Uptake - There is a discrepancy between the number of respondents who want to cycle regularly and the number that actually cycle. Results of the surveys showed that the more confident cyclists are more likely cycle which is in keeping with the findings from other research undertaken. This finding has influenced the type of cycling infrastructure considered for the NCN.
-
-Infrastructure Preferences – Safety is the main factor influencing a persons’ decision to make a trip by cycle and people almost universally feel safer on segregated infrastructure. Survey results showed that some cyclists will take a longer route for their journey if it uses safer infrastructure. This theme was consistent throughout the research undertaken and influenced corridor selection and infrastructure types considered.
-
-Recreational Cycling – Survey results reinforced the findings from the academic literature review that more people cycle for recreational purposes than commuting purposes in Ireland and that recreational cyclists tend to make longer distance trips (>10km) than commuters. Again, this was considered when developing route corridors, with opportunities to connect to local leisure and recreation facilities investigated.
-
-## NCN Plan - Vision and Objectives
-
-![Figure from page 30](assets/p030-f01.webp)
-
-*Figure from page 30*
-
-![Figure from page 30](assets/p030-f02.webp)
-
-*Figure from page 30*
-
-National Cycle Network Plan
-
-NCN Plan - Vision and Objectives
-
-3.1 NCN Plan Vision
-
-Developing a coherent and connected NCN has the potential to improve people’s health and reduce the negative environmental impacts associated with private car use. By encouraging more people to choose active travel options, such as walking, cycling, and wheeling, it can help to reduce greenhouse gas emissions, air pollution, and traffic congestion. These benefits can result in a cleaner, healthier, and more sustainable environment for everyone. Therefore, the need for the development of a coherent and connected NCN Plan is identified as a way to promote active travel and improve the environment.
-
-The vision of the NCN Plan is to:
-
-“Develop a safe, connected, and inviting cycle network between urban areas and key destinations to achieve accessible, sustainable, and high-quality routes that will help to reduce the carbon impact of
-
-transport and promote a healthy and inclusive society.”
-
-The NCN will link cities and towns of over 5,000 people with a safe, connected and inviting cycle network. The plan will also see the creation of cycle routes to destinations such as transport hubs, centres of education, centres of employment, leisure, and tourist destinations. Where possible, it will optimise the potential for people to cycle as part of their daily activities, such as work or educational commuting. It will also integrate with existing and proposed cycle infrastructure. Both road safety, and the safety and security of users, will be central to the development of the NCN.
-
-The NCN Plan builds on previous work completed by TII and aligns with the CycleConnects work being undertaken by the NTA in developing urban and county level cycle networks. It integrates with other cycle routes and networks in various stages of development, including the EuroVelo routes, national and regional greenways, and the Strategic Plan for Greenways in Northern Ireland. The NCN Plan complements these projects and establishes a core spine of infrastructure to encourage further development of cycling projects in the future.
-
-![Figure 3.1: NCN as Core Cycle Network](assets/p031-f01.webp)
-
-*Figure 3.1: NCN as Core Cycle Network*
-
-National Cycle Network Plan
-
-The NCN will help to facilitate Action 232 of CAP 2021, which specifically calls for the development of a coherent and connected NCN Plan, as well as Action TR23/30 of CAP 2023, which calls for the advance roll-out of national cycle networks.
-
-3.2 NCN Plan Objectives
-
-The NCN Plan has been developed in the context of a set of project objectives agreed by TII and key stakeholders including the DoT, NTA and CCMA.
-
-The NCN Plan objectives, outlined in Table 3.1, are consistent with national and regional policy objectives.
-
-Table 3.1: NCN Plan Objectives
-
-|  |  |  |  |  |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-|  | National policy |  |  | Policy Goal |  |  | NCN Plan Objective |  |  |
-|  |  |  |  |  |  |  |  |  |  |
-| Combat climate change & improve air quality (NPF, CAP, NIFTI, & RSES). |  |  | 1. Reduce emissions from transportation by supporting a modal shift from private vehicles to cycling and walking. |  |  | 1.1 |  | Increase the number of cycle trips by improving the provision of safe and attractive cycle infrastructure. |  |
-|  |  |  |  |  |  | 1.2 |  | Enhance and protect local environments and biodiversity (e.g., pollinator plans, green corridors). |  |
-| Healthy living (NPF & SRTS). |  |  | 2. Encourage active travel for daily activities and recreation. |  |  | 2.1 |  | Connect to strategic destinations outside of urban areas as appropriate (including centres of education, centres of employment, and leisure destinations). |  |
-|  |  |  |  |  |  | 2.2 |  | Support the development of cycling and walking culture in Ireland. |  |
-| Regional accessibility and economic development (NPF & RSES). |  |  | 3. Support connectivity and economic growth of regional urban areas of 5,000+ population as well as priority tourist destinations. |  |  | 3.1 |  | Connect identified urban areas of 5,000+ population and those urban areas listed in the NTA’s urban cycle network strategy. |  |
-|  |  |  |  |  |  | 3.2 |  | Connect to strategic destinations outside of urban areas as appropriate (including transport hubs and tourist destinations), as appropriate. |  |
-|  |  |  |  |  |  | 3.3 |  | Integrate with existing and proposed cycle infrastructure (including greenways, safe routes to schools, the EuroVelo network, Interreg projects), as appropriate. |  |
-|  |  |  |  |  |  | 3.4 |  | Integrate with existing and proposed cycle infrastructure in Northern Ireland, as appropriate. |  |
-| Safety & accessibility (RSS & NPF & SRTS). |  |  | 4. Propose safe and accessible infrastructure that encourages modal shift and limits interactions with other vehicles. |  |  | 4.1 |  | Encourage use of off-road infrastructure, where appropriate. |  |
-|  |  |  |  |  |  | 4.2 |  | Where efficient and effective, encourage routes that use ‘quiet’, low traffic volume roads. |  |
-|  |  |  |  |  |  | 4.3 |  | Promote the design of cycle infrastructure that is fully accessible to all users, regardless of age or ability. |  |
-
-National Cycle Network Plan
-
-|  |  |  |  |  |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-|  | National policy |  |  | Policy Goal |  |  | NCN Plan Objective |  |  |
-|  |  |  |  |  |  |  |  |  |  |
-|  |  |  |  |  |  | 4.4 |  | Promote the design of cycle infrastructure that meets safety requirements. |  |
-|  |  |  |  |  |  | 4.5 |  | Promote the design of cycle infrastructure that provides a safe and secure environment for all users. |  |
-| Prudent use of public funds (PSC). |  |  | 5. Ensure appropriate balance between value for money and quality of outcome, in terms of potential impact on mode shift. |  |  | 5.1 |  | Propose corridors to maximise the number of users. |  |
-|  |  |  |  |  |  | 5.2 |  | Incorporate existing greenways, disused railways, canals, bypassed national roads, regional and local roads, long distance trails, as appropriate. |  |
-|  |  |  |  |  |  | 5.3 |  | Maximise the use of publicly owned land, where possible. |  |
-|  |  |  |  |  |  | 5.4 |  | Provide a framework to support the targeted investment in associated active travel projects. |  |
-|  |  |  |  |  |  | 5.5 |  | Take lessons from best practice internationally in development of national cycle networks, particularly the UK and EU high-cycling countries. |  |
-|  |  |  |  |  |  | 5.6 |  | Future-proof cycle route capacity, taking account of population growth and additional demand from modal shift. |  |
-
-![Figure from page 34](assets/p034-f01.webp)
-
-*Figure from page 34*
-
-## Network Development
-
-![Figure from page 34](assets/p034-f02.webp)
-
-*Figure from page 34*
-
-National Cycle Network Plan
-
-Network Development
-
-Development of the NCN corridors was based on an iterative process, summarised in Figure 4.1 and outlined in detail in this section.
-
-![Figure 4.1: Summary of Network Development Process](assets/p035-f01.webp)
-
-*Figure 4.1: Summary of Network Development Process*
-
-Key assumptions that were central to defining the network were as follows:
-
-Nodes are the towns, settlements or other key destinations which represent a start, end or layover point on the NCN. Three types of nodes were defined, as follows:
-
-Primary node – Consisting of cities and / or large towns with a population of over 20,000 ─ people (towns with over 10,000 were also considered in areas which were more sparsely populated). These represent an NCN start or end point.
-
-Secondary node – Consisting of medium sized towns with a population of between 10,000 ─ and 20,000 people (plus a selection of smaller towns in sparsely populated areas with populations of between 5,000 and 10,000). Major tourist attractions located outside urban areas were also included, and / or Major transport hubs. These represent an NCN start or end point.
-
-Other nodes – Consisting of small towns and settlements, strategic destinations (e.g. transport ─ hubs, centres of education, centres of employment, leisure destinations, and tourist destinations).
-
-Some exceptions to these classifications were made in areas that are remote and do not have the population threshold, to ensure an even and national spread of coverage.
-
-Connections were defined as initial ‘straight line’ links between nodes. Following more detailed assessment of the opportunities presented by each link, a corridor between nodes was defined. Corridors are proposed only at an indicative level and provide a broad alignment within which there may be several potential routes. An options assessment exercise will be required to test the
-
-National Cycle Network Plan
-
-potential routes within a corridor against a series of criteria to define the preferred route. This options assessment exercise does not form part of the current project and will be undertaken as part of the roll out of the NCN.
-
-An overview of each step in defining the NCN is presented in the following sections.
-
-Step 1 – Define Destinations
-
-Using the criteria outlined above, the key destinations for the NCN were identified, as outlined in Table 4.1 and Table 4.2.
-
-## 4 Letterkenny
-
-### 4 Letterkenny
+### 4 Letterkenny to Strabane
 
 *Pages 907–910*
 
@@ -2659,9 +2589,9 @@ Using the criteria outlined above, the key destinations for the NCN were identif
 |  |  |  | Unless it stops at Lifford, there is no way the connection to Strabane can be accomplished without crossing the River Finn SAC due to the length of the SAC, other than by making a c. 15km detour north to cross the river downstream of the SAC at Whitehouse. |  |
 | 5 | Letterkenny to Sligo | Durnesh Lough SAC, Lough Eske and Ardnamona Wood SAC, Lough Melvin SAC, Dunmuckrum Turloughs SAC, Lough Gill SAC, Lough Swilly SAC, River Finn SAC, Cummeen Strand/Drumcliff Bay (Sligo Bay) SAC, Ben Bulben, Gleniff And Glenade Complex SAC, Croaghonagh Bog SAC, Ballintra SAC, Streedagh Point | For the most part the 4km corridor allows for the route to be moved well away from European sites if necessary. Therefore, while noise and | The final route alignment should avoid any new construction within 200m of any European sites as a first preference. Where European sites are to be traversed existing roads and bridges should be used to carry the cycle route where possible and there should be no new lighting introduced in areas that are currently unlit unless it can be demonstrated that there would be no adverse effect on site integrity. If any new construction within 200m is needed to create the cycle route a noise and air quality assessment (and potentially noise and air quality mitigation) will be required to ensure there is no construction-related disturbance that could significantly affect SPA birds or significant air pollution impacts on sensitive habitats. Parts of the 4km corridor lies within 2km of Sligo/Leitrim Uplands SPA, Donegal Bay SPA, Drumcliff Bay SPA, Lough |
 
-## 5 Letterkenny
+## 5 Letterkenny to Sligo
 
-### 5 Letterkenny
+### 5 Letterkenny to Sligo
 
 *Pages 911–917*
 
@@ -2694,9 +2624,9 @@ Using the criteria outlined above, the key destinations for the NCN were identif
 |  |  |  | avoid traversing Lough Melvin but only with a substantial 12km detour to the east and back. |  |
 | 6 | Sligo to Enniskillen | Lough Gill SAC,Cummeen Strand/Drumcliff Bay (Sligo Bay) SAC,Ballysadare Bay SAC,Boleybrack Mountain SAC,Unshin River SAC,Union Wood SAC,Corratirrim SAC,Ballysadare Bay SPA,Cummeen Strand SPA | For the most part the 4km corridor allows for the final route to be moved well away from European sites if necessary. Therefore, while noise and visual disturbance impacts, and air quality impacts, (if construction was required) could arise if the final route ran within 200m of these SACs or SPAs, these impacts | The final route alignment should avoid any new construction within 200m of any European sites as a first preference. Where European sites are to be traversed existing roads and bridges should be used to carry the cycle route where feasible and there should be no new lighting introduced in areas that are currently unlit unless it can be demonstrated that there would be no adverse effect on site integrity. If any new construction within 200m is needed to create the cycle route a noise and air quality assessment (and potentially noise and air quality mitigation) will be required to ensure there is no construction-related disturbance that could significantly affect SPA birds or significant air pollution impacts on sensitive habitats. Parts of the 4km corridor lies within 2km of Ballysadare Bay SPA and Cummeen Strand SPA. There will therefore need to be consideration of any potential for loss of functionally-linked habitat for SPA birds once the actual cycle route is determined. This will only be required if new construction is required within natural habitats and loss of habitat is greater than trivial; this is relevant because very little land is required for a cycle route. In such a situation wintering bird surveys to determine use of the habitats by SPA birds may be required and, if necessary, appropriate mitigation provided to ensure no adverse effect on the integrity of the European site before the works are consented. The approach to delivering the crossing of the Unshin River should be as follows: 1. Where feasible the crossing will be made using existing road bridges; 2. Where engineering works to a road bridge would be required to render it suitable, any permanent works must remain out of the water column, unless it can be demonstrated this would not affect site integrity, and must not hinder potential for |
 
-## 6 Sligo to
+## 6 Sligo to Enniskillen
 
-### 6 Sligo to
+### 6 Sligo to Enniskillen
 
 *Pages 918–921*
 
@@ -2717,11 +2647,11 @@ Using the criteria outlined above, the key destinations for the NCN were identif
 |  |  |  | cases it would not be possible to make the connection to Sligo from the south without crossing the Unshin River SAC due to the length of the river. |  |
 | 7 | Enniskillen to Cavan | Lough Oughter And Associated Loughs SAC,Kilroosky Lough Cluster SAC,Lough Oughter SPA | The 4km corridor is sufficiently wide that direct impacts on any European sites can be avoided if necessary. Therefore, while noise and visual disturbance impacts, and air quality impacts (if construction was required) could arise if the final route ran within | It is possible to deliver most of the final cycle route without any direct effects on European sites. The final route alignment should avoid any new construction within 200m of any European sites where possible. Where European sites are to be traversed existing roads and bridges should be used to carry the cycle route where feasible and there should be no new lighting introduced in areas that are currently unlit unless it can be demonstrated that there would be no adverse effect on site integrity. Where the cycle route will traverse a European site there will also be a need for consideration at the project level of any detailed design requirements (such as prevention of access) that will assess the potential impact of any possible net increase in recreational access to, or pressure within, the European site and determine if it is considered acceptable. If any new construction within 200m is needed to create the cycle route a noise and air quality assessment (and potentially noise and air quality mitigation) will be required to ensure there is no construction-related disturbance that could significantly affect SPA birds or significant air pollution impacts on sensitive habitats. Parts of the 4km corridor lie within 2km of Lough Oughter SPA. There will therefore need to be consideration of any potential for loss of functionally-linked habitat for SPA birds once the actual cycle route is determined. This will only be required if new construction is required within natural habitats and loss of habitat is greater than trivial; this is relevant because very little land is required for a cycle route. In such a situation wintering bird surveys to |
 
-## 6.1 MtCO2eq by 2030, in line with the sectoral emissions ceilings established by Government in July
+## 6.1 MtCO2eq by 2030, in line with the sectoral emissions ceilings established by Government in July 2022
 
-### 6.1 MtCO2eq by 2030, in line with the sectoral emissions ceilings established by Government in July
+### 6.1 MtCO2eq by 2030, in line with the sectoral emissions ceilings established by Government in July 2022
 
-*Pages 13–17*
+*Pages 13–20*
 
 To support these targets, the NCN Plan has been designed to connect urban areas to each other and to strategic destinations (including transport hubs, centres of education, centres of employment, leisure destinations, and tourist destinations). Its development has been informed by an understanding of future users needs through an iterative process of consultation and collaboration with relevant stakeholders and delivery partners; particularly the Department of Transport (DoT), the National Transport Authority (NTA), and local authorities, and through consultation with other key stakeholders and with the public.
 
@@ -2796,9 +2726,69 @@ National Cycle Network Plan
 
 The methodology for developing the NCN Plan consisted of a five-stage process, summarised in Figure 1.3 and outlined in further detail in Table 1.2. The approach incorporated multiple elements to provide key inputs, reference points and evidence to inform the development of the final plan, including:
 
-## 7 Enniskillen to
+Close and regular collaboration with stakeholders and a comprehensive public consultation.
 
-### 7 Enniskillen to
+Thorough assessment of existing and planned infrastructure.
+
+Identification of potential environmental concerns and a full strategic environmental assessment.
+
+Research on potential future user needs and behaviour.
+
+International peer review and case studies.
+
+A robust and tailored approach to network development and assessment.
+
+As assessment of design standards and infrastructure requirement.
+
+A monitoring framework.
+
+Development of an implementation strategy.
+
+![Figure 1.3: NCN Pan Development Process](assets/p017-f02.webp)
+
+*Figure 1.3: NCN Pan Development Process*
+
+National Cycle Network Plan
+
+Table 1.2: NCN Plan Methodology
+
+|  | Stage Overview |  |  | Key Tasks Undertaken |  |
+| --- | --- | --- | --- | --- | --- |
+| Stage 1 – Strategy Planning Mobilisation of the project and agreement of approach through the development of the PEP (Project Execution Plan) and SMP (Stakeholder Management Plan) as well as commencement of critical tasks to delivery, such as the GIS dashboard and market research. The project vision and objectives were developed, and stakeholder engagement commenced. |  |  |  Preparation of Project Execution Plan  Development of project vision statement  Development of project objectives  Development of Project Logo and Collateral  Preparation of Stakeholder Management Plan  Market Research  Development of NCN GIS Dashboard  Strategic Environmental Assessment (SEA) and Appropriate Assessment (AA) Screening  Initial engagement with stakeholders  Stakeholder engagement |  |  |
+| Stage 2 – Data Collection and Analysis Analyses to inform the identification of the NCN corridors and development of an inventory of the existing and planned infrastructure. Investigation of international case studies and engagement. Market analysis including a nationally representative sample survey to define the criterion for development of the NCN. A detailed review of the network proposed in the 2010 NCN Scoping Report was also undertaken to investigate how it aligns with current objectives and requirements. |  |  |  Inventory of the existing and planned cycle network  Benchmarking of international case studies  Identification of key destinations and attractions  NCN Market Analysis  Stakeholder engagement  Review of 2010 NCN Scoping Study recommendations  Development of assessment framework |  |  |
+| Stage 3 – Plan Development and Appraisal Entailed the identification and refinement of the proposed NCN corridors. The NCN Plan defines a set of corridors connecting Primary and Secondary nodes which combined make up the network. Stakeholders were engaged at key points to review work and provide feedback as the network was developed and assessed. |  |  |  Policy and sustainability review  Identification of NCN Corridors  Stakeholder Engagement  Design case studies  Identification of implementation requirements  Strategic Environmental Assessment (SEA)  Appropriate Assessment (AA) |  |  |
+| Stage 4 – Public Consultation Public consultation was completed via an online website with widespread publicity and stakeholder engagement. The consultation period was open from 6th of May until the 7th of June 2022 after which an analysis of the feedback was undertaken. Feedback from both the public and stakeholders was then used to determine any amendments to the proposed plan. |  |  |  Public consultation  Stakeholder workshops  Definition of monitoring framework  Summary of feedback |  |  |
+| Stage 5 – Finalisation The draft NCN proposals were finalised based on the feedback received and an agreed approach to implementation and monitoring. |  |  |  Preparation of Final NCN Plan |  |  |
+
+National Cycle Network Plan
+
+1.4Stakeholder and Public Engagement
+
+Proactive and early engagement with stakeholders is a vital aspect of strategic transport planning and has a significant influence on the success of project delivery. The approach taken to stakeholder management in developing the NCN Plan was based on the five steps illustrated in Figure 1.4.
+
+![Figure 1.4: Approach to Stakeholder Engagement](assets/p019-f01.webp)
+
+*Figure 1.4: Approach to Stakeholder Engagement*
+
+Stakeholder Mapping
+
+Stakeholder mapping incorporates steps one and two above. Following the identification of appropriate stakeholders, their respective needs were catalogued within a stakeholder register. Stakeholders were categorised as shown in Table 1.3 to reflect the different levels of engagement, as follows:
+
+Delivery partners – These stakeholders will be instrumental in the development of the NCN through direct approval, funding, oversight and/or implementation. These stakeholders are included in the project governance structure and were engaged in monthly meetings.
+
+Note: The Department of Transport was represented in both the Project Board and the Advisory Group. Due to its role in funding the NCN and developing various active travel policies, it was both the Project Approver and a Delivery Partner.
+
+Engaged parties – These stakeholders had a specific role or interest in the development of cycling infrastructure and were critically important in developing the plan. Engagement commenced during the data collection phase of the project through stakeholder workshops and continued throughout the project. Engagement with this group initially focused on sharing approaches to project delivery and project objectives, as well as receiving data and information regarding existing and planned cycle and other relevant infrastructure from stakeholders. A series of workshops were also held during the network development phase of the project to solicit input and feedback at key stages (see Section 4, Network Development for further information regarding these workshops).
+
+Interested parties – These stakeholders were identified as having an interest in the outcome of the NCN Plan and cycle infrastructure in Ireland more broadly. Engagement was primarily done during Stage 4 Public Consultation, via written notifications and submissions.
+
+National Cycle Network Plan
+
+General public – This group includes all other audiences who may be users of the infrastructure or have an interest in how the NCN will be delivered. Engagement with the public was focused on Stage 4 Public Consultation.
+
+## 7 Enniskillen to Cavan
+
+### 7 Enniskillen to Cavan
 
 *Pages 922–923*
 
@@ -2811,9 +2801,9 @@ The methodology for developing the NCN Plan consisted of a five-stage process, s
 |  |  |  | designated for mobile species that may make use of habitat outside the SPA boundary there is potential for any new cycle route construction in this location to affect functionally- linked land for SPA birds outside the SPA boundary. |  |
 | 8 | Longford to Sligo | Lough Gill SAC,Cummeen Strand/Drumcliff Bay (Sligo Bay) SAC,Clooneen Bog SAC,Ballysadare Bay SAC,Lough Arrow SAC,Unshin River SAC,Bricklieve Mountains and Keishcorran SAC,Union Wood SAC,Lough Forbes Complex SAC,Ballykenny-Fisherstown Bog SPA,Ballysadare Bay SPA,Lough Arrow SPA,Cummeen Strand SPA | For the most part, the 4km corridor is sufficiently wide that direct impacts on any European sites can be avoided if necessary. Therefore, while noise and visual disturbance | The final route alignment should avoid any new construction within 200m of any European sites as a first preference. Where European sites are to be traversed existing roads and bridges should be used to carry the cycle route where feasible and there should be no new lighting introduced in areas that are currently unlit unless it can be demonstrated that there would be no adverse effect on site integrity. If any new construction within 200m is needed to create the cycle route a noise and air quality assessment (and potentially noise and air quality mitigation) will be required to ensure there is no construction-related disturbance that could significantly affect SPA birds or significant air pollution impacts on sensitive habitats. Parts of the 4km corridor lies within 2km of several SPAs. There will therefore need to be consideration of any potential for loss of functionally-linked habitat for SPA birds once the actual cycle route is determined. This will only be required if new construction is required within natural habitats and loss of habitat is greater than trivial; this is relevant because very little land |
 
-## 8 Longford to
+## 8 Longford to Sligo
 
-### 8 Longford to
+### 8 Longford to Sligo
 
 *Pages 924–927*
 
@@ -2834,9 +2824,9 @@ The methodology for developing the NCN Plan consisted of a five-stage process, s
 |  |  |  | Molinia meadows on calcareous, peaty or clayey- silt-laden soils, its alluvial forests with Alnus glutinosa and Fraxinus excelsior and its populations of salmon and otter. It would not be possible to make the connection to Sligo from the south without crossing the Unshin River SAC due to the length of the river. |  |
 | 9 | Sligo to Ballina | Ox Mountains Bogs SAC,Lough Nabrickkeagh Bog SAC,Lough Gill SAC,River Moy SAC,Cummeen Strand/Drumcliff Bay (Sligo Bay) SAC,Ballysadare Bay SAC,Unshin | Parts of the 4km corridor within which the final cycle route will be | The final route alignment should avoid any new construction within 200m of any European sites as a first preference. Where European sites are to be traversed existing roads and bridges should be used to carry the cycle route where feasible and there should be no new lighting introduced in areas that are currently unlit unless it can be demonstrated that there would be no adverse effect on site integrity. If any new |
 
-## 9 Sligo to
+## 9 Sligo to Ballina
 
-### 9 Sligo to
+### 9 Sligo to Ballina
 
 *Pages 928–1107*
 
@@ -3712,1829 +3702,11 @@ n
 
 Department of Transport 2 Leeson Lane, Dublin, D02 TR60 T: (01) 670 7444 W: www.gov.ie/transport/
 
-## 70 [approximately 110kph]
+## 70 [approximately 110kph] *Separation strip should be at least 0.5m alongside kerbside parking and 1.5m where wheelchair
 
-### 2.11 As highlighted above, the NCN Plan will focus on key inter-urban routes.  Whilst still to be
+### 70 [approximately 110kph] *Separation strip should be at least 0.5m alongside kerbside parking and 1.5m where wheelchair
 
-*Pages 187–187*
-
-2.11 As highlighted above, the NCN Plan will focus on key inter-urban routes. Whilst still to be determined, the corridors to be identified have the potential to pass through or close to key environmental designations in Ireland, focus on sensitive locations such as disused railway lines and canal corridors, and affect key habitats such as bogs or heathlands.
-
-### 2.12 The designations with the potential to be affected include: National Parks; Special Areas of
-
-*Pages 187–192*
-
-2.12 The designations with the potential to be affected include: National Parks; Special Areas of Conservation, Special Protection Areas and Ramsar sites; and Natural Heritage Areas. They also have the potential to affect features recorded on the Site and Monuments Record and National Inventory of Architectural Heritage.
-
-AECOM
-
-National Cycle Network (NCN) Plan Strategic Environmental Assessment (SEA)
-
-Screening Report
-
-### 3. Screening determination
-
-Screening criteria
-
-Schedule 1 of S.I. No. 435/2004 - European Communities (Environmental Assessment of Certain Plans and Programmes) Regulations 2004 (as amended) sets out the criteria for determining the likely significant effects of implementing the plan on the environment. The criteria are based on those set out in Annex II of the SEA Directive.
-
-These criteria are as follows:
-
-The characteristics of the plan or programme, or modification to a plan or programme, having regard, in particular, to:
-
-the degree to which the plan or programme, or modification to a plan or programme, sets a framework for projects and other activities, either with regard to the location, nature, size and operating conditions or by allocating resources;
-
-the degree to which the plan or programme, or modification to a plan or programme, influences other plans including those in a hierarchy;
-
-the relevance of the plan or programme, or modification to a plan or programme, for the integration of environmental considerations in particular with a view to promoting sustainable development;
-
-environmental problems relevant to the plan or programme, or modification to a plan or programme; and
-
-the relevance of the plan or programme, or modification to a plan or programme, for the implementation of European Union legislation on the environment (e.g. plans and programmes linked to waste management or water protection).
-
-Characteristics of the effects and of the area likely to be affected, having regard, in particular, to:
-
-the probability, duration, frequency and reversibility of the effects;
-
-the cumulative nature of the effects;
-
-the transboundary nature of the effects;
-
-the risks to human health or the environment (e.g. due to accidents);
-
-the magnitude and spatial extent of the effects (geographical area and size of the population likely to be affected);
-
-the value and vulnerability of the area likely to be affected due to:
-
-(a) special natural characteristics or cultural heritage,
-
-(b) exceeded environmental quality standards or limit values,
-
-(c) intensive land-use; and
-
-the effects on areas or landscapes which have a recognised national, European Union or international protection status.
-
-The following section of this Screening Report therefore assesses the proposed NCN Plan against the criteria set out above.
-
-AECOM
-
-National Cycle Network (NCN) Plan Strategic Environmental Assessment (SEA)
-
-Screening Report
-
-Screening assessment
-
-3.4 Table 3.1 and Table 3.2 below presents the screening assessment using the criteria for determining the likely significance of effects as set out in the Annex II of the SEA Directive and Schedule 1 of the SEA Regulations.
-
-Table 3.1: Screening assessment relating to Schedule 1 (1) of the SEA Regulations
-
-The characteristics of the plan, having due regard, in particular, to the following criteria
-
-Criteria Screening assessment
-
-The degree to which the plan or programme, or modification to a plan or programme, sets a framework for projects and other activities, either with regard to the location, nature, size and operating conditions or by allocating resources
-
-The NCN Plan will identify, at a national level, key strategic corridors for interventions. This will comprise a proposed national network connecting settlements of over 5,000 inhabitants along identified corridors, including key strategic destinations. Detailed proposals for these corridors will then be implemented through subsequent plans and projects. In this respect the NCN Plan will set the framework for cycle infrastructure projects taken forward within these corridors.
-
-The degree to which the plan or programme, or modification to a plan or programme, influences other plans including those in a hierarchy
-
-The NCN Plan is a national plan. It will influence subsequent regional and local-level plans and projects. These could include, for example, Cycle Network Plans, local authority Development Plans and specific active travel schemes/projects.
-
-The relevance of the plan or programme, or modification to a plan or programme, for the integration of environmental considerations in particular with a view to promoting sustainable development
-
-The plan will support the ongoing development of a National Cycle Network. This will help facilitate a reduction of impacts on the environment from transport by supporting active travel use via non-motorised forms of transport. In this respect a key element of the NCN Plan will be to support the sustainability of Ireland’s transport network.
-
-Environmental problems relevant to the plan or programme, or modification to a plan or programme
-
-There are no specific environmental problems relevant to the plan. However, the plan will, through promoting active travel use, support the ongoing development of a National Cycle Network which will support a reduction of impacts on the environment from transport.
-
-The relevance of the plan or programme, or modification to a plan or programme, for the implementation of European Union legislation on the environment (e.g. plans and programmes linked to waste management or water protection)
-
-The NCN Plan has limited direct relevance in terms of the implementation of EU legislation on the environment. For example, it does not seek to change regimes associated with the Water Framework Directive, Waste Framework Directive or Habitats/Birds Directives.
-
-AECOM
-
-National Cycle Network (NCN) Plan Strategic Environmental Assessment (SEA)
-
-Screening Report
-
-Table 3.2: Screening assessment relating to Schedule 1 (2) of the SEA Regulations
-
-Characteristics of the effects and of the area likely to be affected, having regard, in particular, to
-
-Criteria Screening assessment
-
-The probability, duration, frequency and reversibility of the effects
-
-The NCN Plan will set out a proposed national cycle network connecting settlements with 5,000 inhabitants or more along identified corridors. It will also seek to connect key strategic destinations, (e.g. top tourist attractions, transport hubs, centres of education, centres of employment and others). The NCN Plan will consider corridors which have the potential to pass through environmentally sensitive locations. This includes locations sensitive in terms of landscape character, biodiversity, the historic environment; and areas which are of importance for supporting resilience to the effects of climate change and for supporting climate change mitigation. These locations are likely to be in many cases in proximity to sites internationally and nationally designated for their environmental value, including, potentially, the following: National Parks; Special Areas of Conservation, Special Protection Areas and Ramsar sites; and Natural Heritage Areas. These corridors are also likely to be in locations in proximity to features recorded on the Site and Monuments Record and National Inventory of Architectural Heritage. Whilst the NCN Plan has the potential to take forward corridors within areas of significant environmental sensitivity, the plan will not propose specific schemes within these corridors. However, within these corridors, the plan will set the framework for plans and projects which have the potential to have significant environment effects. These could include short, medium and long-term effects, direct and indirect effects, and cumulative effects.
-
-The cumulative nature of the effects
-
-The transboundary nature of the effects
-
-The risks to human health or the environment (e.g. due to accidents)
-
-The magnitude and spatial extent of the effects (geographical area and size of the population likely to be affected)
-
-The value and vulnerability of the area likely to be affected due to: (a) special natural characteristics or cultural heritage, (b) exceeded environmental quality standards or limit values, (c) intensive land-use
-
-The effects on areas or landscapes which have a recognised national, European Union or international protection status.
-
-AECOM
-
-National Cycle Network (NCN) Plan Strategic Environmental Assessment (SEA)
-
-Screening Report
-
-### 4. Summary and conclusions
-
-4.1 The NCN Plan has been screened against the criteria set out in the SEA Directive and implementing SEA Regulations. The below summary discusses the two overarching considerations on whether the NCN Plan should be screened in as requiring a full SEA process.
-
-Legislative, regulatory or administrative provisions
-
-4.2 Article 2 of the SEA Directive and Schedule 2 2.(3) of S.I. No 435/2004 suggests that SEA may only be required for plans and programmes which are required by “legislative, regulatory or administrative provisions”.
-
-4.3 Whilst the NCN Plan is not specifically required by legislative, regulatory or administrative provisions, case law in Ireland suggests that this is not a reason to screen out the plan for SEA. In this respect European Commission guidance1 on the issue suggests that, relating to nonmandatory plans and programmes:
-
-“Where there is any doubt, the distinction between plans and programmes and other measures should be drawn by referring to the specific objective laid down in Article 1 of the SEAD [SEA Directive], namely that plans and programmes which are likely to have significant effects on the environment are subject to an environmental assessment.”
-
-4.4 In light of these considerations, the NCN Plan should not be screened out for SEA due to it not being a mandatory plan required by legislative, regulatory or administrative provisions.
-
-Setting the framework for plans and projects
-
-4.5 Schedule 2 2.(9) of SI No 435/2004 highlights that an SEA “shall be carried out for all plans and programmes…which are prepared for agriculture, forestry, fisheries, energy, industry, transport, waste management, water management, telecommunications and tourism, and which set the framework for future development consent of projects listed in Annexes I and II to the Environmental Impact Assessment Directive”.
-
-4.6 A key consideration is therefore whether the NCN Plan sets the framework for projects which require Environmental Impact Assessment.
-
-4.7 In this regard the NCN Plan will identify, at a strategic-level, key corridors for interventions. Detailed proposals for these corridors will then be implemented through subsequent plans and projects. In terms of whether these projects are likely to require EIA, this depends on whether they meet the criteria set out by provisions relating to the classes set out in Annex I or II of the EIA Directive, specifically in Schedule 5, Part 2 of the Planning and Development Regulations 2001, as amended.
-
-4.8 Whilst cycling infrastructure is not specifically highlighted in Schedule 5, Part 2, there is some potential for projects which subsequently come forward within the identified corridors to require EIA. As such, the determination of whether such projects would require an EIA is dependent on the outcome of EIA screening on these projects.
-
-4.9 The NCN Plan may also set the framework for plans which cover smaller elements of the National Cycle Network. Whilst these would not be plans deemed as mandatory under legislative, regulatory or administrative provisions, these plans could potentially include proposals which have the potential to have significant effects on the environment. These plans may therefore themselves require SEA.
-
-1 European Commission 2017 REPORT FROM THE COMMISSION TO THE COUNCIL AND THE EUROPEAN PARLIAMENT under Article 12(3) of Directive 2001/42/EC on the assessment of the effects of certain plans and programmes on the environment https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:52017DC0234&from=EN
-
-AECOM
-
-National Cycle Network (NCN) Plan Strategic Environmental Assessment (SEA)
-
-Screening Report
-
-### 4.10 In this respect the NCN Plan has the potential to set the framework for plans and projects which
-
-*Pages 192–192*
-
-4.10 In this respect the NCN Plan has the potential to set the framework for plans and projects which have the potential to lead to significant effects on the environment.
-
-Conclusions
-
-### 4.11 In conclusion, the NCN Plan will identify, at a national level, key strategic corridors for
-
-*Pages 192–192*
-
-4.11 In conclusion, the NCN Plan will identify, at a national level, key strategic corridors for interventions. It will comprise a proposed national network connecting settlements of over 5,000 inhabitants along identified corridors, including key strategic destinations. Detailed proposals for these corridors will then be taken forward and implemented through subsequent plans and projects.
-
-### 4.12 Whilst the NCN Plan will itself not propose detailed interventions within the identified corridors,
-
-*Pages 192–192*
-
-4.12 Whilst the NCN Plan will itself not propose detailed interventions within the identified corridors, it will influence the location of new strategic active travel infrastructure, particularly outside urban areas. This infrastructure has the potential to take place in locations with significant environmental sensitivity, including in terms of landscape, historic environment and biodiversity designations.
-
-### 4.13 In this respect, the plan is likely to set the framework for subsequent plans and projects which
-
-*Pages 192–196*
-
-4.13 In this respect, the plan is likely to set the framework for subsequent plans and projects which have the potential for significant effects on the environment. This includes, potentially, plans requiring an SEA process or projects requiring an EIA process.
-
-4.14 For this reason, it is concluded that a full SEA process is required to accompany the NCN Plan.
-
-AECOM
-
-Appendix G
-
-### SEA Environmental Report
-
-### National Cycle Network Plan
-
-![Figure from page 194](assets/p194-f01.webp)
-
-*Figure from page 194*
-
-Strategic Environmental Assessment (SEA)
-
-Environmental Report (Updated)
-
-TransportInfrastructureIreland
-
-Projectnumber: 60657618
-
-July 2022
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-Quality information
-
-Prepared by Checked by Verified by Approved by
-
-Rebecca Dunlea Senior Environmental Consultant
-
-Nick Chisholm-Batten Associate Director Environment
-
-Ben Green Associate Director Transport
-
-Derval Cummins Director of Planning
-
-Elaine Keenan Environmental Consultant
-
-Revision History
-
-Revision Revision date Details Authorized Name Position
-
-6th May 2022 Consultation version
-
-6th May 2022 Nick Chisholm-Batten Associate Director
-
-28th July 2022 Draft Final (Updated)
-
-28th July 2022 Nick Chisholm-Batten Associate Director
-
-Prepared for:
-
-Transport Infrastructure Ireland (TII)
-
-Prepared by: AECOM Ireland Limited 4th Floor Adelphi Plaza Georges Street Upper Dun Laoghaire Co. Dublin A96 T927 T: +353 1 238 3100 aecom.com
-
-© 2022 AECOM Ireland Limited. All Rights Reserved.
-
-This document has been prepared by AECOM Ireland Limited (“AECOM”) for sole use of our client (the “Client”) in accordance with generally accepted consultancy principles, the budget for fees and the terms of reference agreed between AECOM and the Client. Any information provided by third parties and referred to herein has not been checked or verified by AECOM, unless otherwise expressly stated in the document. No third party may rely upon this document without the prior and express written agreement of AECOM.
-
-Prepared for: Transport Infrastructure Ireland AECOM
-
-SEA of the National Cycle Network Plan
-
-Table of Contents
-
-1. Introduction .................................................................................................................. 1 1.1 Overview ............................................................................................................. 1 1.2 Background to the National Cycle Network (NCN) Plan ...................................... 1 1.3 Scope / Geographical Coverage of the NCN Plan ............................................... 2 1.4 Vision and Aims for the NCN Plan ....................................................................... 4 1.5 Development Process for the NCN Plan ............................................................. 4 2. Approach to the SEA ................................................................................................... 6 2.1 Introduction ......................................................................................................... 6 2.2 Hierarchy of Planning and Environmental Assessment ....................................... 7 2.3 Overview of SEA Process and Stages ................................................................ 7 2.4 SEA Screening (Stage 1) .................................................................................... 9 2.5 SEA Scoping (Stage 2) ..................................................................................... 10 2.6 SEA Environmental Report (Stage 3) ................................................................. 11 2.7 SEA Adoption Statement (Stage 4, Final Stage) ............................................... 12 2.8 Appropriate Assessment (AA) ........................................................................... 12 2.9 SEA Guidance .................................................................................................. 13 3. Review of Relevant Plans, Polices and Programmes ................................................. 17 3.1 Introduction ....................................................................................................... 17 3.2 EU and National Legislation .............................................................................. 18 3.3 Relevant National & Regional Plans, Programmes and Guidelines ................... 20 3.4 Transboundary Policies. Plans, Programmes and Guidelines ........................... 21 4. Environmental Baseline ............................................................................................. 23 4.1 Introduction ....................................................................................................... 23 4.2 List of Datasets for the SEA .............................................................................. 24 4.3 Biodiversity ....................................................................................................... 26 4.4 Population and Human Health .......................................................................... 32 4.5 Land, Soils and Geology ................................................................................... 36 4.6 Water ................................................................................................................ 43 4.7 Air Quality ......................................................................................................... 49 4.8 Climate Change ................................................................................................ 53 4.9 Cultural Heritage ............................................................................................... 56 4.10 Landscape and Visual ....................................................................................... 60 4.11 Transboundary Effects ...................................................................................... 62 4.12 Key Sustainability Issues .................................................................................. 65 5. Strategic Environmental Objectives ........................................................................... 70 5.1 SEA Framework of Objectives and Assessment Questions ............................... 70 6. Assessment of Reasonable Alternatives for the NCN Plan ......................................... 72 6.1 Reasonable Alternatives ................................................................................... 72 6.2 Overview of Corridor Options Considered as Reasonable Alternatives ............. 72 6.3 Approach to the Appraisal of Corridor Options .................................................. 73 6.4 Appraisal Findings ............................................................................................ 74 6.5 Preferred Approach for the NCN Plan ............................................................... 80 7. Assessment of the NCN Plan ..................................................................................... 83 7.1 Assessment of Preferred Corridor Options ........................................................ 83 7.2 Cumulative Impacts .......................................................................................... 89 7.3 Mitigation Measures .......................................................................................... 90 8. Next Steps ................................................................................................................. 92 8.1 Updates to the NCN Plan and Assessment of Changes .................................... 92
-
-### 4.12 Key Sustainability Issues .................................................................................. 65
-
-*Pages 196–225*
-
-Prepared for: Transport Infrastructure Ireland
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-8.2 SEA Adoption Statement ................................................................................... 92 Appendix A: Summary of Scoping Submissions Table 1: Summary of Scoping
-
-Submissions .............................................................................................................. 93 Appendix B: Corridor Options Assessment Tables ............................................................ 104
-
-Prepared for: Transport Infrastructure Ireland
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-#### 1. Introduction
-
-1.1 Overview
-
-AECOM were commissioned to undertake an independent strategic environmental
-
-assessment of the National Cycle Network Plan (referred to hereafter as the ‘NCN Plan’).
-
-Strategic environmental assessment (SEA) is a systematic process of predicting and
-
-evaluating the likely significant environmental effects of implementing a proposed plan or
-
-programme, in order to ensure that these effects are adequately addressed at the earliest
-
-appropriate stages of decision-making in tandem with economic, social and other
-
-considerations.
-
-This document updates the draft SEA Environmental Report which was published alongside
-
-the NCN Plan for public consultation in May 2022. The Environmental Report was the main
-
-output of the SEA process and provided stakeholders with an overview of the likely significant
-
-effects of the NCN Plan and reasonable alternatives.
-
-1.2 Background to the National Cycle Network (NCN) Plan
-
-Transport Infrastructure Ireland (TII) worked with key stakeholders to prepare a new National
-
-Cycle Network Plan (‘NCN Plan’). The NCN Plan maps existing cycling infrastructure and
-
-identifies gaps where future investment could be focused to establish a comprehensive and
-
-connected cycling network around Ireland.
-
-The NCN Plan focuses on linking cities and towns of over 5,000 people with a safe, connected
-
-and inviting cycle network. It includes plans to create cycle routes to destinations such as
-
-transport hubs, centres of education, centres of employment, leisure and tourist destinations.
-
-It will optimise the potential for people to cycle as part of their daily activities, such as work or
-
-educational commuting. It will also integrate with existing and proposed cycle infrastructure.
-
-Both the safety and security of cyclists will be central to the development of the NCN.
-
-The NCN builds on previous work completed by TII and aligns with the work being undertaken
-
-by the National Transport Authority (NTA) in developing urban and county level cycle networks.
-
-It integrates with other cycle routes and networks in various stages of development, including
-
-the EuroVelo routes, greenways and the Strategic Plan for Greenways in Northern Ireland.
-
-The NCN plan will complement these other cycling development projects and will provide a
-
-core spine that other networks and routes can connect to.
-
-Prepared for: Transport Infrastructure Ireland AECOM
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-1.3 Scope / Geographical Coverage of the NCN Plan
-
-The NCN Plan sets out a coherent and coordinated network of cycle corridors connecting
-
-settlements with 5,000 inhabitants or more. It integrates with and complements other existing
-
-and proposed cycle routes and networks.
-
-The likely corridors identified through the NCN Plan mainly cover non-urban areas. Urban
-
-cycle networks are being covered by work currently being undertaken by the National
-
-Transport Authority (NTA).
-
-Whilst the NCN Plan does not include specific or detailed routes, it does identify broad
-
-corridors through which interventions should be targeted. These identified corridors will be
-
-accompanied by recommendations relating to a minimum level of infrastructure required
-
-across the network (e.g., segregated cycle path).
-
-Figure 1.1 highlights the potential nodes that were focussed on through the development of
-
-the NCN Plan.
-
-It is an objective of the NCN Plan to ‘integrate with existing and proposed cycling infrastructure
-
-in Northern Ireland, as appropriate’.
-
-Both the Department for Infrastructure and Sustrans Northern Ireland have been consulted in
-
-relation to the development of the NCN Plan with ongoing engagement planned to ensure
-
-integration of planned cycle networks across the border.
-
-Prepared for: Transport Infrastructure Ireland AECOM
-
-SEA of the National Cycle Network Plan
-
-![Figure 1.1: Map of the Nodes Focussed on Through the Development of the NCN Plan](assets/p200-f01.webp)
-
-*Figure 1.1: Map of the Nodes Focussed on Through the Development of the NCN Plan*
-
-Prepared for: Transport Infrastructure Ireland
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-1.4 Vision and Aims for the NCN Plan
-
-The vision statement of the NCN Plan is to:
-
-“Develop a safe, connected, and inviting cycle network between urban areas and key
-
-destinations to achieve accessible, sustainable, and high-quality routes that will help to
-
-reduce the carbon impact of transport and promote a healthy and inclusive society.”
-
-The NCN aims to link towns, cities and destinations across Ireland with a safe, connected and
-
-inviting cycle network; encouraging more people away from their cars and onto their cycles.
-
-In this context the NCN aims to generate benefits for cyclists and communities across Ireland,
-
-including:
-
-Being the core cycle network for Ireland, connecting towns and destinations to which
-
-other cycle networks will connect.
-
-Acting as a multifunctional network available for commuters, leisure users and tourists.
-
-Establishing a coherent and coordinated network that integrates with existing and
-
-proposed cycle routes being developed by TII and other bodies.
-
-Helping inform how local authorities prioritise Exchequer-funded investments in cycle
-
-infrastructure.
-
-Making use of existing infrastructure wherever possible including greenways and
-
-declassified roads where there is enough space to provide safe and appropriate cycle
-
-facilities.
-
-Providing high-quality cycle infrastructure to promote safety, comfort and increased
-
-participation in cycling. Minimum design standards will be developed for how the
-
-network will be built.
-
-Clearly signposting the network to identify and distinguish it from other cycle facilities.
-
-1.5 Development Process for the NCN Plan
-
-The approach to the Plan is structured around a five-stage process outlined in Figure 1.2. The
-
-current stage in plan development is Stage 5 - Finalisation.
-
-Prepared for: Transport Infrastructure Ireland AECOM
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-![Figure 1.2: NCN Plan Development Process](assets/p202-f01.webp)
-
-*Figure 1.2: NCN Plan Development Process*
-
-Following consultation on the draft NCN Plan (which was undertaken in May 2022), responses
-
-were analysed, and the NCN proposals were updated to reflect feedback received. Detailed
-
-plans for the roll out of the NCN over the coming years will then be developed.
-
-Prepared for: Transport Infrastructure Ireland
-
-SEA of the National Cycle Network Plan
-
-#### 2. Approach to the SEA
-
-2.1 Introduction
-
-Strategic Environmental Assessment (SEA) is a process for evaluating, at the earliest
-
-appropriate stage, the potential environmental implications of plans or programmes (P/Ps).
-
-The SEA process involves appraisal and reporting, proposing mitigation measures and
-
-monitoring environmental effects of plans, programmes, and strategies.
-
-The purpose is to ensure that the environmental consequences of P/Ps are assessed both
-
-during their preparation and prior to their adoption. The SEA process also gives specified
-
-‘environmental authorities’, interested parties and the general public, an opportunity to
-
-comment on the environmental impacts of the proposed P/P and reasonable alternatives, and
-
-to be kept informed during the decision-making process.
-
-SEA derives from the Directive 2001/42/EC - Assessment of Effects of Certain Plans and
-
-Programmes on the Environment (the ‘SEA Directive’). Article 1 of the SEA Directive states
-
-that:
-
-“The objective of this directive is to provide for a high level of protection of the environment
-
-and to contribute to the integration of environmental considerations into the preparation
-
-and adoption of plans and programmes with a view to promoting sustainable
-
-development, by ensuring that, in accordance with this directive, an environmental
-
-assessment is carried out of certain plans and programmes which are likely to have
-
-significant effects on the environment.”
-
-The requirement for SEA in Ireland was introduced by:
-
-European Communities (Environmental Assessment of Certain Plans and
-
-Programmes) Regulations 2004 (S.I. No. 435 of 2004); as amended by European
-
-Communities (Environmental Assessment of Certain Plans and Programmes)
-
-(Amendment) Regulations 2011, (S.I. No. 200 of 2011); and
-
-Planning and Development Strategic Environmental Assessment (SEA) Regulations
-
-2004 (S.I. No. 436 of 2004), as amended by the Planning and Development (Strategic
-
-Environmental Assessment) (Amendment) Regulations 2011 (S.I. No. 201 of 2011).
-
-Schedule 2 (9) of S.I. No. 435 of 2004 highlights that an SEA “shall be carried out for all plans
-
-and programmes…which are prepared for agriculture, forestry, fisheries, energy, industry,
-
-transport, waste management, water management, telecommunications and tourism, and
-
-which set the framework for future development consent of projects listed in Annexes I and II
-
-to the Environmental Impact Assessment Directive”. 1 The SEA for the NCN Plan has therefore
-
-1 Section 9(1) of S.I. No. 435 of 2004 as amended by S.I. No. 200 of 2011
-
-Prepared for: Transport Infrastructure Ireland
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-been undertaken to meet the requirements S.I. No. 435 (as amended), referred to in this
-
-Environmental Report as the ‘SEA Regulations’.
-
-2.2 Hierarchy of Planning and Environmental Assessment
-
-The hierarchy of planning and environmental assessment in which the NCN Plan is situated
-
-is detailed on Figure 2.1 below.
-
-![Figure 2.1: Hierarchy of Planning and Environmental Assessment](assets/p204-f01.webp)
-
-*Figure 2.1: Hierarchy of Planning and Environmental Assessment*
-
-The National Planning Framework 2040 (NPF) was subject to a full SEA and Stage 2 AA. The
-
-NPF will be given regional expression through land use plans including the Regional Spatial
-
-and Economic Strategies (RSES), which are also subject to SEA and AA. SEA and AA
-
-requirements apply to City and County Development Plans and Local Area Plans.
-
-The priorities and objectives of the NCN Plan align with the objectives and priorities set out in
-
-the NPF and transport strategies focused on providing a safe and connected cycle network
-
-across Ireland.
-
-2.3 Overview of SEA Process and Stages
-
-SEA is a systematic process for evaluating the environmental consequences of proposed
-
-plans or programmes to ensure environmental issues are fully integrated and addressed at
-
-Prepared for: Transport Infrastructure Ireland
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-the earliest appropriate stage of decision making, with a view to promoting sustainable
-
-development. The central focus of SEA is to enable environmental issues, and in particular
-
-‘likely significant environmental effects’ of a Plans or Programmes (P/Ps), to be taken into
-
-consideration during the plan or programme making process.
-
-The key phases in the SEA process as outlined in the Environmental Protection Agency's
-
-(EPA’s) SEA Process Checklist2 are outlined in Table 2.1.
-
-Table 2.1: Overview of SEA Process
-
-Phase Description Status
-
-The requirement to undertake a SEA is mandatory for certain Plan / Programme (P/P). Where SEA is not a mandatory requirement, the P/Ps is subject to a ‘Screening process’, to consider if it is likely to have significant effects on the environment, and therefore, if SEA is required.
-
-Complete (November 2021)
-
-1. Screening
-
-Preparation of a SEA Scoping Report highlighting that the Environmental Report is required to include:
-
-Methods of assessment; Contents and level of detail in the Plan/Programme; The stage in the Plan/Programme-making process; and The extent to which certain matters are more appropriately assessed at different levels in the decision-making process in order to avoid duplication of environmental assessment. Transboundary consultation was undertaken with the relevant authorities in Northern Ireland.
-
-Complete (March 2022)
-
-2. Scoping
-
-The purpose of this stage of the process is to assess the likely significant impacts on the environment as a result of implementation of the P/P and consideration of reasonable alternatives.
-
-Complete (May 2022)
-
-3. Environmental Assessment
-
-The output from this stage is an Environmental Report which accompanies the draft P/P for consultation.
-
-Transboundary consultation, was undertaken with the relevant authorities in Northern Ireland.
-
-| 4. SEA Statement | Completion/adoption of the P/P taking account of likely |  | Current Stage (Final) |
-| --- | --- | --- | --- |
-|  | significant environmental effects, any submissions or |  |  |
-|  | observations received from consultations and integration of |  |  |
-|  | mitigation and monitoring measures within the Plan. |  |  |
-|  | The Environmental Report was updated to reflect |  |  |
-|  | consultation comments, and an SEA Statement was |  |  |
-|  | prepared, summarising: |  |  |
-|  | • How environmental considerations have been |  |  |
-|  | integrated into the P/P; |  |  |
-|  | • How the environmental report, and any submissions or |  |  |
-|  | consultations have been taken into account in the |  |  |
-|  | preparation of the P/P; |  |  |
-|  | • The reasons for choosing the P/P; and |  |  |
-|  | • The measures decided for monitoring the significant |  |  |
-|  | environmental effects of implementation of the P/P. |  |  |
-
-2 EPA (2013).
-
-Prepared for: Transport Infrastructure Ireland
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-In the context of the SEA process for the NCN Plan, the key stages (following SEA screening)
-
-are set out in Figure 2.2.
-
-![Figure 2.2: Key Stages of SEA Process for the NCN Plan](assets/p206-f01.webp)
-
-*Figure 2.2: Key Stages of SEA Process for the NCN Plan*
-
-A more detailed overview of the SEA process for the NCN Plan is presented below.
-
-2.4 SEA Screening (Stage 1)
-
-An SEA Screening Report was prepared by AECOM for the NCN Plan in November 2021. The
-
-screening sought to determine whether a full SEA process was required for the NCN Plan.
-
-The report concluded the following:
-
-“... the plan is likely to set the framework for subsequent plans and projects which have the
-
-potential for significant effects on the environment. This includes, potentially, plans
-
-requiring an SEA process or projects requiring an EIA process. For this reason, it is
-
-concluded that a full SEA process is required to accompany the NCN Plan”
-
-Given the plan timescales, and the strong likelihood of the NCN Plan requiring SEA, a
-
-separate consultation on the SEA Screening Report was not undertaken for the Plan. The SEA
-
-instead progressed to the next steps of the process, scoping.
-
-Prepared for: Transport Infrastructure Ireland
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-2.5 SEA Scoping (Stage 2)
-
-Article 5 of the SEA Directive requires that the competent authority responsible for the plan or
-
-programme in question consult with ‘environmental authorities’ regarding the scope and level
-
-of detail to be included in the environmental report.
-
-To meet this requirement, a Scoping Report was prepared in early 2022 for the SEA of the
-
-NCN Plan.
-
-Reflecting the requirements of the SEA Regulations, the following information was presented
-
-in the Scoping Report:
-
-Context review: This explored the environmental and sustainability ‘context’ for the
-
-SEA / NCN Plan through reviewing high level messages (e.g., internationally, from
-
-central government and at the regional level) with a view to establishing the focus for
-
-the SEA.
-
-Baseline data: This established the baseline situation in the absence of the NCN Plan
-
-(including the future baseline) in order to help identify the plan’s likely significant
-
-effects.
-
-Key issues: This identified particular problems or opportunities (‘issues’) that should
-
-be a focus of the SEA.
-
-Drawing on the evidence base established and key issues identified through the above
-
-process, the Scoping Report presented an SEA Framework of objectives and assessment
-
-questions which would be used to assess plan proposals and alternatives.
-
-2.5.1 SEA Scoping Consultation
-
-Statutory consultation on the SEA Scoping Report was undertaken with the ‘environmental
-
-authorities’ for SEA in Ireland in March 2022.
-
-Currently, the SEA ‘environmental authorities’ set out by the SEA Regulations are as follows:
-
-Environmental Protection Agency (EPA);
-
-Minister for Agriculture, Food and the Marine;
-
-Minister for Housing, Local Government and Heritage [including the Development
-
-Applications Unit]; and
-
-Minister for the Environment, Climate and Communications.
-
-As the NCN Plan may affect the environment in Northern Ireland, transboundary consultation
-
-was also undertaken with the relevant authorities in Northern Ireland.
-
-Prepared for: Transport Infrastructure Ireland
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-Five consultation responses were received on the SEA Scoping Report, including three from
-
-the SEA environmental authorities in ROI and two from Northern Ireland authorities.
-
-Responses were received from the following organisations:
-
-Environmental Protection Agency (EPA).
-
-Geological Survey Ireland (GSI) under the Department of the Environment, Climate
-
-and Communications (DECC).
-
-Department of Environment, Climate and Communications (DECC). Environmental
-
-Protection and Circular Economy - Materials Management Divisions.
-
-Northern Ireland Environment Agency (NIEA) under the Department of Agriculture,
-
-Environment and Rural Affairs (DAERA).
-
-Historic Environment Division (HED) under the Department for Communities (DfC).
-
-The submissions provided information on sources of guidance, useful resources and
-
-suggestions for items to be addressed / monitored.
-
-Appendix A provides a summary of the submissions received from the environmental
-
-authorities and transboundary consultees at scoping and provides an overview of how these
-
-comments have been considered and addressed.
-
-2.6 SEA Environmental Report (Stage 3)
-
-Stage 3 comprises the preparation of the main output of the SEA process: the SEA
-
-Environmental Report.
-
-The SEA Regulations require that an environmental report is published for consultation
-
-alongside the draft plan that shall “identify, describe and evaluate the likely significant effects
-
-on the environment of implementing the plan…and reasonable alternatives taking account of
-
-the objectives and the geographical scope of the plan”. The report must then be taken into
-
-account, alongside consultation responses, when finalising the plan.
-
-This SEA Environmental Report therefore assesses and evaluates the likely significant effects
-
-of the NCN Plan and the alternatives. This is with a view to providing TII, stakeholders and the
-
-public with a clear understanding of the likely environmental consequences of implementing
-
-the NCN Plan.
-
-The draft NCN Plan and SEA Environmental Report were made available for consultation via
-
-the following website: https://ncn.consultation.ai/
-
-The SEA environmental authorities, as well as any relevant transboundary authorities, were
-
-notified so that they may make a submission or observation in relation to the SEA
-
-Environmental Report and / or the draft NCN Plan.
-
-Prepared for: Transport Infrastructure Ireland AECOM
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-Northern Ireland’s statutory stakeholders and environmental authorities were also notified on
-
-the release of the draft NCN Plan and associated SEA Environmental Report.
-
-Submissions made on the draft NCN Plan and associated documents, including the SEA, have
-
-resulted in an update to this Environmental Report, in order to take account of consultation
-
-responses and in order to take account of the minor changes that were made to the NCN Plan
-
-following consultation.
-
-2.7 SEA Adoption Statement (Stage 4, Final Stage)
-
-During this final stage of the SEA process (Stage 4), TII will publish an SEA Adoption
-
-Statement alongside the final adopted NCN Plan.
-
-The SEA Adoption Statement includes how the SEA Environmental Report and consultations
-
-have been taken into account, summarising the key issues raised during the consultation
-
-process and in the Environmental Report indicating what / if action was taken.
-
-The SEA Adoption Statement also includes the measures decided upon to monitor the
-
-significant environmental effects of implementing of the plan.
-
-2.8 Appropriate Assessment (AA)
-
-Under the EU Habitats Directive Member States are required to ensure the protection,
-
-conservation, and management of the habitats and species of conservation in all European
-
-sites.
-
-The Habitats Directive (92/43/EEC) was transposed into Irish law by both the Planning and
-
-Development Act 2000 (as amended) and the European Communities (EC) (Birds and Natural
-
-Habitats) Regulations 2011 (as amended).
-
-Appropriate Assessment (AA) screening is required for any project in Ireland (Article 6(3) of
-
-the Habitats Directive) with the potential to have a significant effect on a designated European
-
-site. AA is the assessment of the implications of a plan, alone and in-combination with other
-
-plans and projects, on the integrity of a Natura 2000 site, in view of its conservation objectives.
-
-There is an overlap between both the SEA and AA processes as both assessment regimes
-
-consider the potential impacts of a plan on biodiversity.
-
-The Draft NCN Plan has undergone AA screening during its preparation. The conclusion of
-
-the AA Screening3 was:
-
-“At this strategic stage these corridors are intentionally wide to enable detailed design work
-
-to be undertaken to capture the most appropriate route.
-
-3 AECOM (2022).
-
-Prepared for: Transport Infrastructure Ireland AECOM
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-Given this is and the multiple potential impacts associated with constructing new or
-
-updating existing cycle routes, it is impossible to draw a conclusion of ‘no likely significant
-
-effect’ in relation to the NCN Plan. Therefore, it is necessary to proceed to the next stage
-
-of Appropriate Assessment. All potential NCN route corridors are screened in for the
-
-Appropriate Assessment. “
-
-The Draft Plan was subject to a “Stage 2 AA” as required by Article 6(3) of the Habitats
-
-Directive (92/43/EEC) and a Natura Impact Report (NIR) was prepared and put on public
-
-display.
-
-The preparation of the Draft Plan, SEA and AA has taken place concurrently and the findings
-
-of the AA have informed both the Plan and the SEA.
-
-The NIR concluded:
-
-“Given the flexibility of design of the proposed cycle routes it can be concluded that the
-
-NCN would not have an adverse effect European sites alone.”
-
-“Additionally, an in-combination assessment was also undertaken of relevant plans and
-
-projects…
-
-Given that each of the land use plans provide a policy for European site protection and
-
-each will have undergone their own Appropriate Assessment alone and in-combination and
-
-would have concluded no adverse effects before the plans could become adopted…
-
-It can be concluded that the NCN Plan would not have an adverse effect on the integrity of
-
-European sites, either alone or in combination with other plans and projects.”
-
-The NIR also provided recommendations that should be included in the Final NCN Plan.
-
-2.9 SEA Guidance
-
-The SEA process has been undertaken to meet the requirements of Directive 2001/42/EC on
-
-the Assessment of the Effects of Certain Plans and Programmes on the Environment (the SEA
-
-Directive) and the national implementing legislation, S.I. No. 435 of 2004, as amended by
-
-Regulations S.I. No. 200 of 2011.
-
-The following principal sources of guidance were identified during the SEA process, including
-
-in the preparation of the Environmental Report:
-
-Department of Communications, Climate Action & Environment (DCCAE) (2019).
-
-Climate Action Plan 2019, To Tackle Climate Breakdown.
-
-Department of Environment, Community and Local Government (DECLG) (2013).
-
-Integrated Biodiversity Impact Assessment – Streamlining AA, SEA and EIA
-
-Prepared for: Transport Infrastructure Ireland AECOM
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-Processes: Practitioner’s Manual. EPA Strive Programme 2007-2013. Strive Report
-
-Series No. 106.
-
-Department of Environment, Community and Local Government (DECLG) (2013).
-
-Circular Letter PL 9/2013: Article 8 (Decision Making) of EU Directives 2001/42/EC on
-
-Strategic Environmental Assessment (SEA) as amended.
-
-Department of Environment, Community and Local Government (DECLG) (2013).
-
-Circular Letter PSSP 6/2011: Further Transposition of EU Directive 2001/42/EC on
-
-Strategic Environmental Assessment (SEA).
-
-Department of Environment, Heritage and Local Government (DEHLG) (2014).
-
-Implementation of SEA Directive (2001/42/EC): Assessment of the Effects of Certain
-
-Plans and Programmes on the Environment.
-
-Environmental Protection Agency (EPA)(2003). SEA Methodologies for Plans and
-
-Programmes in Ireland – Synthesis Report.
-
-Environmental Protection Agency (EPA)(2008). SEA Process Checklist, 2008.
-
-Environmental Protection Agency (EPA) (2013). SEA Resource Manual for Local and
-
-Regional Planning Authorities.
-
-Environmental Protection Agency (EPA) (2015). Developing and Assessing
-
-Alternatives in Strategic Environmental Assessment - Good Practice Guidance.
-
-Environmental Protection Agency (EPA)(2015). SEA Scoping Guidance Document.
-
-Environmental Protection Agency (EPA) (2017). GISEA Manual - Improving the
-
-Evidence Base in SEA.
-
-Environmental Protection Agency (EPA) (2019 updated). Integrating Climate Change
-
-into Strategic Environmental Assessment in Ireland - A Guidance Note.
-
-Environmental Protection Agency (EPA)(2019). Tiering of Environmental Assessment
-
-- The Influence of Strategic Environmental Assessment on Project-level Environmental
-
-Impact Assessment.
-
-Environmental Protection Agency (EPA) (2020). Good Practice Guidance on
-
-Cumulative Effects Assessment in Strategic Environmental Assessment.
-
-Environmental Protection Agency (EPA)(2020). Guidance on Strategic Environmental
-
-Assessment (SEA) Statements and Monitoring.
-
-Environmental Protection Agency (EPA)(2020). Ireland's Environment - An Integrated
-
-Assessment 2020.
-
-Environmental Protection Agency (EPA)(2020). Second Review of SEA Effectiveness
-
-in Ireland.
-
-Environmental Protection Agency (EPA)(2021). SEA Pack, September 2021.
-
-Environmental Protection Agency (EPA)(2022). SEA Spatial Information Sources
-
-inventory, January 2022.
-
-Prepared for: Transport Infrastructure Ireland AECOM
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-European Communities (EC) (1992). DIRECTIVE 92/43/EEC.
-
-European Communities (EC)(2001). Directive 2001/42/EC on the assessment of
-
-Certain Plans and Programmes on the Environment.
-
-European Communities (EC) (2004).Guidance on Implementation of Directive
-
-2001/42/EC.
-
-European Communities (EC) (2013).Guidance on Integrating Climate Change and
-
-Biodiversity into Strategic Environmental Assessment.
-
-European Communities (EC). (2002). Assessment of plans and projects significantly
-
-affecting Natura 2000 sites - Methodological guidance on the provisions of Article 6(3)
-
-and (4) of the Habitats Directive 92/43/EEC.
-
-European Communities (EC). S.I. No. 200 of 2011 - European Communities
-
-(Environmental Assessment of Certain Plans and Programmes) (Amendment)
-
-Regulations 2011.
-
-European Communities (EC). S.I. No. 435 of 2004 - Environmental Assessment of
-
-Certain Plans and Programmes) Regulations 2004.
-
-EPA AA GeoTool: https://gis.epa.ie/EPAMaps/AAGeoTool
-
-EPA Air Quality Reports: https://www.epa.ie/publications/monitoring--assessment/air/
-
-EPA Environmental Mapping / Geographical Information System (GIS) tools:
-
-http://gis.epa.ie/SeeMaps
-
-EPA SEA WebGIS Tool:https://gis.epa.ie/EPAMaps/SEA
-
-EPA Strategic Environmental Assessment. Available at: https://www.epa.ie/our-
-
-services/monitoring--assessment/assessment/strategic-environmental-assessment/
-
-EPA Water QualityReports: https://www.epa.ie/publications/monitoring--assessment/
-
-EPA WFD Application: www.catchments.ie
-
-GEOHIVE Environmental Sensitivity Mapping (2022).
-
-Department for Communities (DfC) (2022). Historic Environment Map Viewer.
-
-Available at: https://www.communities-ni.gov.uk/services/historic-environment-map-
-
-viewer
-
-Department for Infrastructure (DfI) (2015). Strategic Planning Policy Statement for
-
-Northern Ireland.
-
-Department of Agriculture, Environment and Rural Affairs (DAERA) (2015).
-
-Biodiversity Strategy for Northern Ireland to 2020.
-
-Department of Agriculture, Environment and Rural Affairs (DAERA) (2021). Draft
-
-Environment Strategy for Northern Ireland.
-
-Department of Agriculture, Environment and Rural Affairs (DAERA) (2013). Northern
-
-Ireland State ofthe Environment Report. Available at: https://www.daera-
-
-ni.gov.uk/publications/state-environment-report-2013
-
-Prepared for: Transport Infrastructure Ireland
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-Department of Agriculture, Environment and Rural Affairs (DAERA) (2022).
-
-Designated Scientific Sites. Available at: www.daera-ni.gov.uk/landing-
-
-pages/protected-areas
-
-Department of Agriculture, Environment and Rural Affairs (DAERA) (2022). Regional
-
-Landscape Character Map viewer. Available at: https://www.daera-
-
-ni.gov.uk/services/regional-landscape-character-areas-map-viewer
-
-Department of Agriculture, Environment and Rural Affairs (DAERA) (2022). Map
-
-browser for NI protected sites and known priority habitat. Available at: www.daera-
-
-ni.gov.uk/services/natural-environment-map-viewer
-
-Department of Agriculture, Environment and Rural Affairs (DAERA) (2022). Natural
-
-Environment Datasets.Available at: https://www.daera-ni.gov.uk/contacts/natural-
-
-environment-related-datasets
-
-NI Heritage (2019). Archaeology 2030 - A Strategic Approach for Northern Ireland.
-
-Available at: niheritagedelivers.org
-
-Northern Ireland Environment Agency (NIEA) (2013). A Second Assessment of the
-
-State of Northern Ireland’s Environment.
-
-Northern Ireland Environment Agency (NIEA) (2021). Water Framework Directive
-
-Statistics Report.
-
-Department of Agriculture, Environment and Rural Affairs (DAERA) (2020). Air
-
-Pollution in Northern Ireland 2020. Available at:
-
-https://www.airqualityni.co.uk/documents/technical-
-
-reports/Air_Pollution_in_Northern_Ireland_2020_Issue1-screen-optimised.pdf
-
-Department of Agriculture, Environment and Rural Affairs (DAERA) (2022).
-
-Landscape Character of Northern Ireland. Available at: https://www.daera-
-
-ni.gov.uk/articles/landscape-character-northern-ireland
-
-Department of Finance (2022). Northern Ireland Statistics and Research Agency
-
-(NISRA). Available at: https://www.nisra.gov.uk/
-
-Prepared for: Transport Infrastructure Ireland
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-#### 3. Review of Relevant Plans, Polices and Programmes
-
-3.1 Introduction
-
-This chapter sets out how the NCN Plan interacts with other key relevant plans, policies and
-
-programmes and their environmental protection objectives. A review of other plans, policies
-
-and programmes and the legislative framework is an important part of setting the context for
-
-the SEA and the NCN Plan.
-
-The SEA Directive states in Article 5(1) of Annex 1 that the environmental assessment must
-
-identify:
-
-“the environmental protection objectives, established at International, European Union or
-
-national level, which are relevant to the plan or programme, or modification to the plan or
-
-programme, and the way those objectives and any environmental considerations have
-
-been taken into account during its preparation”.
-
-Therefore, the NCN Plan is part of a larger picture of overall national policies that must work
-
-towards a single set of overall objectives. Policies and objectives around issues such as land
-
-use, development, population distribution, sustainability and climate action, for example, are
-
-determined by other government agencies and authorities, but must be fully reflected in the
-
-NCN Plan.
-
-This appendix is not intended to represent a comprehensive list of all legislation / plans /
-
-programmes / guidelines, but rather a collation of the most relevant all legislation / plans /
-
-programmes / guidelines.
-
-3.1.1 UN Sustainable Development Goals
-
-Since 2015, Ireland has been a signatory to the United Nations (UN) Sustainable Development
-
-Goals (SDGs), which frame national agendas and policies to 2030. There are 17 SDGs which
-
-form part of the 2030 Agenda, which sets out a 15-year plan to achieve these goals (Figure
-
-3.1). These goals are mirrored through EU strategies such as Europe 2020 and the European
-
-Regional Development Fund which emphasise smart, sustainable and inclusive growth.
-
-Key priorities are to halt biodiversity loss, protect and improve the environment, and enable
-
-the transition to a circular economy. As sustainability is at the heart of long-term energy
-
-planning, it is important that the SDGs are integrated into Irish policymaking from the top tier
-
-down.
-
-Prepared for: Transport Infrastructure Ireland AECOM
-
-SEA of the National Cycle Network Plan
-
-![Figure 3.1: United Nations Sustainable Development Goals4](assets/p215-f01.webp)
-
-*Figure 3.1: United Nations Sustainable Development Goals4*
-
-There is significant alignment between the UN SDGs and the Project Ireland 2040 National
-
-Planning Framework National Strategic Outcomes (NSOs). For example, SDG 11 Sustainable
-
-Cities and Communities aligns with NSO1 Compact Growth and NSO4 Sustainable Mobility.
-
-Similarly, SDG 13 Climate Action aligns with NSO8 Transition to a Low Carbon and Climate
-
-Resilient Society.
-
-The development of the NCN Plan aligns with the following five UN SDGs, which are:
-
-3. Good Health and Wellbeing.
-
-5. Gender Equality.
-
-10. Reduced Inequalities.
-
-11. Sustainable Cities and Communities.
-
-13. Climate Action.
-
-The NCN Plan is consistent with these SDGs, in that it will develop a safe, connected, and
-
-cycle network between urban areas and key destinations. The NCN Plan will also achieve
-
-accessible, sustainable, and high-quality routes that will help to reduce the carbon impact of
-
-transport and promote a healthy and inclusive society.
-
-3.2 EU and National Legislation
-
-There is a legislative framework for the protection of the environment and our natural
-
-resources. Where relevant these are referenced in the plan-making process for the
-
-development plan and the NCN Plan includes relevant objectives for integration with key aims
-
-and requirements.
-
-4 United Nations (UN) (2022).
-
-Prepared for: Transport Infrastructure Ireland
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-Table 3.1 and Table 3.2 provide a list of the principal EU and national legislation and EU
-
-frameworks respectively. These are not intended to be a register of all legislation / plans /
-
-programmes / guidelines, but rather an examination of the key environmental protection
-
-objectives relevant to the NCN Plan.
-
-Table 3.1: Principal EU and National Legislation
-
-EU Legislation National Legislation
-
-Strategic Environmental Assessment (SEA) Planning and Development Acts 2000, as amended Directive (2001/42/EEC)
-
-Environmental Impact Assessment Directive (2011/92/EU) as amended by (2014/52/EU)
-
-Planning and Development Regulations 2001, as amended
-
-European Communities (Birds and Natural Habitats Habitats Directive (92/43/EEC) Regulations) 2011 (S.I. No. 477 of 2011)
-
-Birds Directive (2009/147/EC) on the Wildlife Act 1976, as amended Conservation of Wild Birds, 1979
-
-Planning Development (Strategic Environmental Assessment) Regulations 2004 (S.I. 435 of 2004) as amended by S.I. 200 of 2011
-
-Water Framework Directive (WFD) (2000/60/EC)
-
-Groundwater Directive (2006/118/EC) The Water Services Act (2007 & 2013)
-
-Climate Action and Low Carbon Development Act Marine Strategy Framework Directive 2015
-
-Climate Action and Low Carbon Development Floods Directive (2007/60/EC) (Amendment) Act 2021
-
-Urban Wastewater Treatment Directive Roads Act 1993, as amended (91/271/EEC)
-
-Drinking Water Directive (98/83/EC) Waste Management Act 1996 as amended
-
-EU Landfill Directive (1999/31/EC) National Monuments Act 1930-2004
-
-Waste Framework Directive (2008/98/EC) as Heritage Act amended by Directive (EU) 2018/851
-
-Environmental Noise Directive (2002/49/EC) Architectural Heritage and Historic Monuments Act
-
-Environmental Liability Directive (2004/35/EC) Transposing Regulation for Directives
-
-Air Quality Fourth Daughter Directive (2004/107/EC)
-
-Air Quality Clean Air for Europe (CAFÉ) Directive (2008/50/EC)
-
-Revisited National Emissions Ceilings Directive (EU 2016/2284)
-
-Noise Directive (2002/49/EC)
-
-Governance of the Energy Union and Climate Action Regulation (EU) 2018/1999
-
-Prepared for: Transport Infrastructure Ireland AECOM
-
-Table 3.2: EU Frameworks
-
-A New Circular Economy Action Plan for a Cleaner More Competitive Europe (2020)
-
-EU Sustainable and Smart Mobility Strategy European Landscape Convention 2000 (2020)
-
-Eighth (8th) Environment Action Programme (EAP) to 2030 (TBC)
-
-EU 2030 Climate and Energy Package
-
-Relevant National & Regional Plans, Programmes and Guidelines
-
-Table 3.3 presents a list of some of the main national and regional plans, programmes and
-
-guidelines influencing the Plan.
-
-Table 3.3: National & Regional Plans, Programmes and Guidelines
-
-National & Regional Plans, Programmes and Guidelines
-
-National Policy Framework for Alternative Fuel National Planning Framework (NPF) Infrastructure in Transport in Ireland (2017-2030)
-
-National Investment Framework for Transport in National Development Plan (NDP) 2021-2030 Ireland (2021)
-
-Integrated Implementation National Mitigation Plan 2017 (Transport)
-
-Architectural Heritage Protection Guidelines for National Adaptation Framework 2018 Planning Authorities (2011)
-
-Regional Spatial and Economic Strategies Heritage Ireland 2030
-
-County and City Development Plans County Heritage Plans
-
-National Landscape Strategy 2015-2025
-
-National Energy and Climate Plan 2021-2030 County Landscape Character Assessments
-
-Change Adaptation Framework including the Sectoral Adaptation
-
-National Peatland Strategy Forestry Programme 2014-2020
-
-National Policy Position on Climate Action and National Countryside Recreation Strategy (2018) Low Carbon Development (2014)
-
-Regional / County based waste management Capital Investment Plan 2016-2021 strategies
-
-Healthy Ireland: A Framework for Improved Health Ireland’s Environment - An Assessment (2020) and Wellbeing 2019-2025
-
-Draft River Basin Management Plan for Ireland Healthy Cities and Counties (2019)
-
-National CFRAMS Programme (2011) National Physical Activity Plan 2016
-
-Flood Risk Management Plans Sport Ireland Participation Plan 2021-2024
-
-and Flood Risk Management for Planning Authorities (2009)
-
-Creating Green Enhancing Natural Capital for Human Wellbeing
-
-Prepared for: Transport Infrastructure Ireland
-
-SEA of the National Cycle Network Plan
-
-National & Regional Plans, Programmes and Guidelines
-
-National Biodiversity Action Plan 2017-2021 Food Wise 2025 (NBAP for 2021-2025 pending)
-
-County Biodiversity Action Plans Food Harvest 2020
-
-Management Plans for Natura 2000 sites Tourism Action Plan 2019-2021
-
-All-Ireland Pollinator Plan 2021-2025 Tourism Policy Statement
-
-Our Sustainable Future - A Framework for Sustainable Development for Ireland (2012) and Progress Report 2015
-
-Irish Water National Water Resources Plan Framework Plan (2021)
-
-Water Services Strategic Plan. A Plan for the TII’s Sustainability Implementation Plan (2021) Future of Water Services (2015) (Irish Water)
-
-Irish Water Services Policy Statement 2018- Outdoor Recreational Plan for Public Lands and 2025 Waters in Ireland (2017-2021)
-
-National Air Pollution Control Programme (NAPCP) (2019)
-
-Greater Dublin Area Draft Cycle Network Plan (2021)
-
-Draft National Clean Air Strategy for Ireland Other Regional City Transport Strategies (2022) (Consultation)
-
-Draft Statutory Climate Change Adaptation Fáilte Ireland Visitor Experience Development Plan for the Transport Sector (2019)
-
-Draft National Sustainable Mobility Policy Metropolitan Area Transport Plans
-
-Smarter Travel - A Sustainable Transport Future - Transport Policy for Ireland 2009-2020
-
-Regional developed by Fáilte Ireland)
-
-Whole of Government Circular Economy Strategy 2022-2023
-
-Development of new Solid Fuel Regulations for Ireland (Public Consultation) (2021)
-
-The Greenway Strategy - Strategy for the Future Development of National and Regional Greenways (2018)
-
-Dublin Region Air Quality Plan 2021 (Four Dublin Local Authorities)
-
-National Investment Framework for WHO Global Air Quality Guidelines 2021 Transportation in Ireland
-
-Traffic and Transport Assessment Guidelines (2014)
-
-Urban Transport-Related Air Pollution (UTRAP) Working Group (2021)
-
-Transport 21, as superseded by the Department of Public Expenditure and Reform document titled Infrastructure and Capital Investment (2012-2016)
-
-3.4 Transboundary Policies. Plans, Programmes and Guidelines
-
-Table 3.4 presents a list of some of the main transboundary (Northern Ireland) polices, plans,
-
-programmes and guidelines influencing the Plan.
-
-Prepared for: Transport Infrastructure Ireland
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-Table 3.4: Transboundary Policies, Plans, Programmes and Guidelines
-
-Transboundary Policies, Plans, Programmes and Guidelines
-
-Convention for the Protection of the Architectural Wildlife (NI) Order 1985 (as amended) Heritage of Europe (Granada, 1985)
-
-Convention for the Protection of the Archaeological Wildlife and Natural Environment Act (NI) 2011 Heritage of Europe (Valletta, 1992)
-
-Conservation (Natural Habitats, etc.) Regulations (Northern Ireland) 1995 (as amended)
-
-Historic Monuments and Archaeological Objects (Northern Ireland) Order 1995
-
-The Environment (NI) Order 2002 Protection of Wrecks Act 1973
-
-Planning (Environmental Impact Assessment) Regional Development Strategy 2035 Regulations (Northern Ireland) 2017
-
-Strategic Planning Policy Statement (SPPS) for Northern Ireland
-
-Archaeology 2030 - A Strategic Approach for Northern Ireland
-
-Planning Policy Statements (PPS – in particular PPS2 and PPS185
-
-Strategic Planning Policy Statement for Northern Ireland
-
-Biodiversity Strategy for Northern Ireland to Marine and Coastal Access Act 2009 2020
-
-Draft Environment Strategy for Northern Ireland Marine Act (Northern Ireland) 2013
-
-Climate Change Bill (NI) 2022 UK Marine Policy Statement (MPS) (2011)
-
-Draft Northern Ireland Peatland Policy 2021- Draft Marine Plan for Northern Ireland (2018) 2040
-
-Draft Green Growth Strategy for Northern Ireland
-
-Sustainable Water - A Long-Term Water Strategy for Northern Ireland (2015-2040)
-
-Northern Ireland Energy Strategy 2050 NI Water (2020) Our Strategy 2021-2046
-
-The Water Environment (Floods Directive) Planning Act (Northern Ireland) 2011 Regulations (Northern Ireland) 2009
-
-Fisheries Act 2020
-
-5 It should be noted that the PPS’s will be superseded by Local Development Plans when they are adopted.
-
-Prepared for: Transport Infrastructure Ireland
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-#### 4. Environmental Baseline
-
-4.1 Introduction
-
-Presented below is a description of the present state of the environment, and a description of
-
-how the baseline is likely develop should the plan not be implemented.
-
-The baseline description is focused in the first instance on the Republic of Ireland (ROI)
-
-however given that Ireland shares a land boundary with Northern Ireland (NI), there is potential
-
-for environmental impact on population and human health, biodiversity, land and soils, water,
-
-air quality, climatic factors, cultural heritage and landscape which are transboundary, and
-
-potential for transboundary impacts are noted where relevant.
-
-As highlighted in Section 2.3, the Scoping Report presented a context review which explored
-
-the environmental and sustainability ‘context’ for the SEA / NCN Plan, the baseline information
-
-for the SEA and a series of key issues which identified particular problems or opportunities
-
-that should be a focus of the SEA. Drawing on this scoping work, the SEA subsequently
-
-presented an SEA Framework of objectives and assessment questions against which the draft
-
-plan and alternatives could be appraised.
-
-This scoping information (and the information presented in this Environmental Report) has
-
-been presented through the following themes:
-
-1. Biodiversity (including Flora & Fauna).
-
-2. Population and Human Health.
-
-3. Land, Soils and Geology.
-
-4. Water Quality.
-
-5. Air Quality.
-
-6. Climate Change (which includes mitigation and adaptation).
-
-7. Cultural Heritage (including architecture and archaeology).
-
-8. Landscape.
-
-The selected SEA themes incorporate the ‘SEA topics’ suggested by Annex I (f) of the SEA
-
-Directive6. These were refined to reflect a broad understanding of the anticipated scope of
-
-NCN Plan effects.
-
-A summary of the key issues and the full SEA Framework is presented below. The context
-
-review and baseline data, have been updated to reflect comments received on the Scoping
-
-Report consultation and Draft Environmental Report.
-
-6 The SEA Directive is 'of a procedural nature' (para 9 of the Directive preamble) and does not set out to prescribe particular issues that should and should not be a focus, beyond requiring a focus on 'the environment, including on issues such as biodiversity, population, human health, fauna, flora, soil, water, air, climatic factors, material assets, cultural heritage including architectural and archaeological heritage, landscape and the interrelationship between the above factors' [our emphasis]
-
-Prepared for: Transport Infrastructure Ireland
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-4.1.1 Ireland’s Environment - An Integrated Assessment 2020
-
-The seventh State of the Environment Report published by the EPA (2020) - Ireland’s
-
-Environment - An Integrated Assessment 2020, indicates that the overall quality of Ireland’s
-
-environment is not what it should be.
-
-As highlighted by the report, the environmental challenges that are currently facing Ireland cut
-
-across different environmental topics, such as climate, air, soil, water, biodiversity and waste,
-
-and across organisations and sectors, business and all levels of society. Unspoilt areas are
-
-being squeezed out and Ireland is losing pristine waters and the habitats that provide vital
-
-spaces for biodiversity. Climate change is also impacting the established economic, social and
-
-natural structures of our world7.
-
-There are 13 key State of the Environment messages identified by the report that require
-
-vision and full implementation to be successful in order to protect the environment, health, and
-
-wellbeing.
-
-The State of the Environment Report highlights that high-quality green and blue spaces are
-
-not just for nature but for peoples’ health and wellbeing. Chapter 11 of this report focuses on
-
-environmental pressures from transport and looking at the transformation towards sustainable
-
-mobility within the sector. Chapter 14 of this report looks as the importance of providing
-
-integrated health-promoting environments in urban planning which can promote more active
-
-travel, reduce air pollution through the use of fewer private vehicles, act as quiet areas buffered
-
-from environmental noise and improve the physical and mental health of those cycling. Other
-
-chapters in this report relevant to the NCN Plan, include Chapter 2 - Climate Change, Chapter
-
-3 - Air Quality and Chapter 4 - Environmental Noise.
-
-The relevant recommendations, key issues and challenges described in the EPA’s State of the
-
-Environment Report will be taken into account during the development of the Draft NCN Plan
-
-and SEA.
-
-4.2 List of Datasets for the SEA
-
-The datasets identified in the Table 4.1 below will be utilised throughout the SEA process.
-
-7 EPA (2020). Ireland’s Environment - An Integrated Assessment 2020.
-
-Prepared for: Transport Infrastructure Ireland AECOM
-
-SEA of the National Cycle Network Plan
-
-Table 4.1: List of Datasets for the SEA
-
-Potential Data Sources SEA Theme
-
-- Birds Atlas
-- Invasive Species Ireland website
-- National Biodiversity Action Plan
-- National Parks and Wildlife Services (NPWS)
-- RAMSAR
-- UNESCO Biosphere Reserve
-- DAERA - Designated Scientific Sites
-- Northern Ireland Environment Agency
-
-Biodiversity
-
-- CSO Census
-- EPA
-- Fáilte Ireland
-- Population centres, density and statistics
-- Tourism – Dept of Tourism
-- Northern Ireland Statistics and Research Agency (NISRA)
-
-Population and Human Health
-
-- CORINE Land cover Database
-- EPA GIS datasets
-- European Commission
-- Geological Survey Ireland (GSI)
-- Teagasc Soil Information
-- UK Land Cover Map
-- Geological Survey of Northern Ireland (GSNI)
-
-Land Soils, Geology
-
-• EPA GIS datasets • Catchments.ie • National Catchment Flood Risk Management Programme (CFRAM) • Office Public Works (OPW) • Geological Survey Ireland (GSI) • DAERA • Northern Ireland Environment Agency • Morphological Quality Index / River Hydromorphology Assessment Technique
-
-Water
-
-- EPA Air Quality in Ireland reports
-- EPA datasets
-- World Health Organisation (WHO)
-- Northern Ireland Environment Agency (NIEA)
-- DAERA – Air Pollution in NI
-
-Air Quality
-
-- CSO datasets
-- EPA datasets
-- Flood Risk Management Plans
-- Met Éireann
-- Sectoral Climate Change Adaptation Plans
-- UNFCC
-- Geological Survey Ireland (GSI)
-- Climate Change Committee
-- Northern Ireland Environment Agency (NIEA)
-- Northern Ireland Climate Change Adaptation Program
-
-Climate Change
-
-Prepared for: Transport Infrastructure Ireland
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-Potential Data Sources SEA Theme
-
-• National Monuments Service / Record of Monuments and Places (RMP) • National Inventory of Architectural Heritage (NIAH) • UNESCO World Heritage Sites • Department of Heritage • Built Heritage at Risk in Northern Ireland (BHARNI) database • Historic Map Viewer (DFI) • Historic Environment Division (HED) • NI Heritage
-
-Cultural Heritage
-
-- CORINE Land cover Database
-- EPA datasets
-- National Landscape Strategy 2015-2025
-- DAERA - Regional Landscape Character Map viewer
-- DAERA - Landscape Character of Northern Ireland
-
-Landscape
-
-4.3 Biodiversity
-
-4.3.1 Introduction
-
-Biodiversity is a measurement of the variety and variability of flora and fauna in an area and
-
-any associated habitats. The importance of preserving biodiversity is recognised from an
-
-international to a local level. There is an intrinsic value to biodiversity while also having value
-
-in terms of quality of life and amenity.
-
-Ireland has a rich diversity of ecosystems and wildlife in its terrestrial, freshwater and marine
-
-environments. However, over the last number of decades, human impacts on biodiversity have
-
-accelerated, which has resulted in increased damage and loss of habitats and species, the
-
-diversification of wildlife and the degradation of our environment8. On a global scale,
-
-biodiversity loss has been identified as one of the biggest threats facing humanity in the next
-
-decade.
-
-Under EU law, Ireland is obligated to protect and preserve biodiversity. This protection covers
-
-species and habitats both within and outside designated sites. The Habitats Directive seeks
-
-to ensure the appropriate conservation of natural habitats and of wild fauna and flora. The
-
-Birds Directive (2009/147/EC) ensures the appropriate protection of Special Protection Areas
-
-(SPAs) (sites which are classified for rare and vulnerable birds listed in Annex I of the
-
-Directive).
-
-The National Biodiversity Action Plan (NBAP) for Ireland provides a framework for
-
-government, civil society and private sectors to track and assess progress towards Ireland’s
-
-Vision for Biodiversity over a five-year timeframe from 2017 to 2021.The NBAP seeks to
-
-address current issues and halt loss of biodiversity, in line with international commitments. The
-
-goal was to reduce biodiversity loss and degradation by 2016 and progress toward a
-
-8 Department of Culture, Heritage and the Gaeltacht (DCHG) (2017). National Biodiversity Action Plan 2017-2021.
-
-Prepared for: Transport Infrastructure Ireland AECOM
-
-SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
-
-substantial recovery be made by 2020. This follows the European Commission EU Biodiversity
-
-Strategyto 2020 and the recent 8th Environmental Action Programme to 2030, to protect
-
-biodiversity, pursing zero pollution to air water and soil, and reducing climate pressures. At the
-
-time of writing this report the NBAP for 2021-2025 has not been released.
-
-Designated Sites
-
-To protect its biodiversity resources, Ireland has designated numerous sites and species of
-
-conservation value and / or concern. These are outlined in Table 4.2 below.
-
-Table 4.2: List of Designated Sites in Ireland
-
-Number of Description
-
-Sites
-
-Biosphere reserves promote solutions reconciling the conservation of biodiversity with its sustainable use. They are learning areas for sustainable development under diverse ecological, social and economic contexts, touching the lives of more than 250 million people9.
-
-2
-
-In Ireland these sites comprise Dublin Bay and Killarney National Park.
-
-Within OSPAR, MPAs are identified as areas for which protective, conservation, restorative or precautionary measures have been instituted for the purpose of protecting and conserving species, habitats, ecosystems or ecological processes of the marine environment.
-
-OSPAR Marine Protected Area
-
-19
-
-They may include existing SACs and SPAs, as well as other areas established under international or regional agreements (e.g., OSPAR, Helsinki Commission [HELCOM]).
-
-The Convention on Wetlands, called the RAMSAR Convention, is an intergovernmental treaty that provides the framework for national action and international cooperation for the conservation and wise use of wetlands and their resources10.
-
-45
-
-Wetlands are important ecosystems, which improve water quality, provide storm protection, flood mitigation, stabilise shorelines and maintain biodiversity. Ireland presently has 45 no. RAMSAR sites.
-
-The Important Bird Areas (IBA) Programme is a BirdLife International initiative aimed at identifying and protecting a network of critical sites for the conservation of the world’s birds.
-
-140
-
-BirdWatch Ireland is responsible for promoting and updating the status of Ireland’s birds and their key sites11.
-
-Special Areas of
-
-439 (6 are offshore)
-
-Special Areas of Conservation (SAC) are designated under the EU Habitats Directive (92/43/EEC).
-
-SACs*
-
-Special Protection Areas (SPAs) are designated under the Birds 165* Directive (2009/147/EC).
-
-Protection Area
-
-9 UNESCO (2022). Biosphere Reserves. 10 RAMSAR (2022). 11 Bird Life (2022). Data Zone.
-
-Prepared for: Transport Infrastructure Ireland AECOM
-
-SEA of the National Cycle Network Plan
-
-Designation Description Type
-
-Natural Heritage Areas (NHAs) are legally protected areas that are considered important for their habitats or which hold species of plants and animals whose habitat needs protection, including geological/geomorphological sites in need of protection through NHA designation.
-
-Natural Heritage Area (NHA)
-
-### 70 [approximately 110kph]
-
-*Pages 105–187*
+*Pages 105–225*
 
 *Separation strip should be at least 0.5m alongside kerbside parking and 1.5m where wheelchair access is required.
 
@@ -7784,63 +5956,493 @@ Public Spending Code (PSC).
 
 Key environmental constraints potentially affected by the NCN Plan
 
-## 73 blanket
+2.11 As highlighted above, the NCN Plan will focus on key inter-urban routes. Whilst still to be determined, the corridors to be identified have the potential to pass through or close to key environmental designations in Ireland, focus on sensitive locations such as disused railway lines and canal corridors, and affect key habitats such as bogs or heathlands.
 
-### 2.3.1 Appropriate Assessment (AA) ............................................................................. 5
+2.12 The designations with the potential to be affected include: National Parks; Special Areas of Conservation, Special Protection Areas and Ramsar sites; and Natural Heritage Areas. They also have the potential to affect features recorded on the Site and Monuments Record and National Inventory of Architectural Heritage.
 
-*Pages 453–459*
+AECOM
 
-Tables
+National Cycle Network (NCN) Plan Strategic Environmental Assessment (SEA)
 
-Table 3.1: Summary of SEA Environmental Report Submissions ........................................ 10 Table 5.1: Targets, Indicators and Sources .......................................................................... 24
+Screening Report
+
+### 3. Screening determination
+
+Screening criteria
+
+Schedule 1 of S.I. No. 435/2004 - European Communities (Environmental Assessment of Certain Plans and Programmes) Regulations 2004 (as amended) sets out the criteria for determining the likely significant effects of implementing the plan on the environment. The criteria are based on those set out in Annex II of the SEA Directive.
+
+These criteria are as follows:
+
+The characteristics of the plan or programme, or modification to a plan or programme, having regard, in particular, to:
+
+the degree to which the plan or programme, or modification to a plan or programme, sets a framework for projects and other activities, either with regard to the location, nature, size and operating conditions or by allocating resources;
+
+the degree to which the plan or programme, or modification to a plan or programme, influences other plans including those in a hierarchy;
+
+the relevance of the plan or programme, or modification to a plan or programme, for the integration of environmental considerations in particular with a view to promoting sustainable development;
+
+environmental problems relevant to the plan or programme, or modification to a plan or programme; and
+
+the relevance of the plan or programme, or modification to a plan or programme, for the implementation of European Union legislation on the environment (e.g. plans and programmes linked to waste management or water protection).
+
+Characteristics of the effects and of the area likely to be affected, having regard, in particular, to:
+
+the probability, duration, frequency and reversibility of the effects;
+
+the cumulative nature of the effects;
+
+the transboundary nature of the effects;
+
+the risks to human health or the environment (e.g. due to accidents);
+
+the magnitude and spatial extent of the effects (geographical area and size of the population likely to be affected);
+
+the value and vulnerability of the area likely to be affected due to:
+
+(a) special natural characteristics or cultural heritage,
+
+(b) exceeded environmental quality standards or limit values,
+
+(c) intensive land-use; and
+
+the effects on areas or landscapes which have a recognised national, European Union or international protection status.
+
+The following section of this Screening Report therefore assesses the proposed NCN Plan against the criteria set out above.
+
+AECOM
+
+National Cycle Network (NCN) Plan Strategic Environmental Assessment (SEA)
+
+Screening Report
+
+Screening assessment
+
+3.4 Table 3.1 and Table 3.2 below presents the screening assessment using the criteria for determining the likely significance of effects as set out in the Annex II of the SEA Directive and Schedule 1 of the SEA Regulations.
+
+Table 3.1: Screening assessment relating to Schedule 1 (1) of the SEA Regulations
+
+The characteristics of the plan, having due regard, in particular, to the following criteria
+
+Criteria Screening assessment
+
+The degree to which the plan or programme, or modification to a plan or programme, sets a framework for projects and other activities, either with regard to the location, nature, size and operating conditions or by allocating resources
+
+The NCN Plan will identify, at a national level, key strategic corridors for interventions. This will comprise a proposed national network connecting settlements of over 5,000 inhabitants along identified corridors, including key strategic destinations. Detailed proposals for these corridors will then be implemented through subsequent plans and projects. In this respect the NCN Plan will set the framework for cycle infrastructure projects taken forward within these corridors.
+
+The degree to which the plan or programme, or modification to a plan or programme, influences other plans including those in a hierarchy
+
+The NCN Plan is a national plan. It will influence subsequent regional and local-level plans and projects. These could include, for example, Cycle Network Plans, local authority Development Plans and specific active travel schemes/projects.
+
+The relevance of the plan or programme, or modification to a plan or programme, for the integration of environmental considerations in particular with a view to promoting sustainable development
+
+The plan will support the ongoing development of a National Cycle Network. This will help facilitate a reduction of impacts on the environment from transport by supporting active travel use via non-motorised forms of transport. In this respect a key element of the NCN Plan will be to support the sustainability of Ireland’s transport network.
+
+Environmental problems relevant to the plan or programme, or modification to a plan or programme
+
+There are no specific environmental problems relevant to the plan. However, the plan will, through promoting active travel use, support the ongoing development of a National Cycle Network which will support a reduction of impacts on the environment from transport.
+
+The relevance of the plan or programme, or modification to a plan or programme, for the implementation of European Union legislation on the environment (e.g. plans and programmes linked to waste management or water protection)
+
+The NCN Plan has limited direct relevance in terms of the implementation of EU legislation on the environment. For example, it does not seek to change regimes associated with the Water Framework Directive, Waste Framework Directive or Habitats/Birds Directives.
+
+AECOM
+
+National Cycle Network (NCN) Plan Strategic Environmental Assessment (SEA)
+
+Screening Report
+
+Table 3.2: Screening assessment relating to Schedule 1 (2) of the SEA Regulations
+
+Characteristics of the effects and of the area likely to be affected, having regard, in particular, to
+
+Criteria Screening assessment
+
+The probability, duration, frequency and reversibility of the effects
+
+The NCN Plan will set out a proposed national cycle network connecting settlements with 5,000 inhabitants or more along identified corridors. It will also seek to connect key strategic destinations, (e.g. top tourist attractions, transport hubs, centres of education, centres of employment and others). The NCN Plan will consider corridors which have the potential to pass through environmentally sensitive locations. This includes locations sensitive in terms of landscape character, biodiversity, the historic environment; and areas which are of importance for supporting resilience to the effects of climate change and for supporting climate change mitigation. These locations are likely to be in many cases in proximity to sites internationally and nationally designated for their environmental value, including, potentially, the following: National Parks; Special Areas of Conservation, Special Protection Areas and Ramsar sites; and Natural Heritage Areas. These corridors are also likely to be in locations in proximity to features recorded on the Site and Monuments Record and National Inventory of Architectural Heritage. Whilst the NCN Plan has the potential to take forward corridors within areas of significant environmental sensitivity, the plan will not propose specific schemes within these corridors. However, within these corridors, the plan will set the framework for plans and projects which have the potential to have significant environment effects. These could include short, medium and long-term effects, direct and indirect effects, and cumulative effects.
+
+The cumulative nature of the effects
+
+The transboundary nature of the effects
+
+The risks to human health or the environment (e.g. due to accidents)
+
+The magnitude and spatial extent of the effects (geographical area and size of the population likely to be affected)
+
+The value and vulnerability of the area likely to be affected due to: (a) special natural characteristics or cultural heritage, (b) exceeded environmental quality standards or limit values, (c) intensive land-use
+
+The effects on areas or landscapes which have a recognised national, European Union or international protection status.
+
+AECOM
+
+National Cycle Network (NCN) Plan Strategic Environmental Assessment (SEA)
+
+Screening Report
+
+### 4. Summary and conclusions
+
+4.1 The NCN Plan has been screened against the criteria set out in the SEA Directive and implementing SEA Regulations. The below summary discusses the two overarching considerations on whether the NCN Plan should be screened in as requiring a full SEA process.
+
+Legislative, regulatory or administrative provisions
+
+4.2 Article 2 of the SEA Directive and Schedule 2 2.(3) of S.I. No 435/2004 suggests that SEA may only be required for plans and programmes which are required by “legislative, regulatory or administrative provisions”.
+
+4.3 Whilst the NCN Plan is not specifically required by legislative, regulatory or administrative provisions, case law in Ireland suggests that this is not a reason to screen out the plan for SEA. In this respect European Commission guidance1 on the issue suggests that, relating to nonmandatory plans and programmes:
+
+“Where there is any doubt, the distinction between plans and programmes and other measures should be drawn by referring to the specific objective laid down in Article 1 of the SEAD [SEA Directive], namely that plans and programmes which are likely to have significant effects on the environment are subject to an environmental assessment.”
+
+4.4 In light of these considerations, the NCN Plan should not be screened out for SEA due to it not being a mandatory plan required by legislative, regulatory or administrative provisions.
+
+Setting the framework for plans and projects
+
+4.5 Schedule 2 2.(9) of SI No 435/2004 highlights that an SEA “shall be carried out for all plans and programmes…which are prepared for agriculture, forestry, fisheries, energy, industry, transport, waste management, water management, telecommunications and tourism, and which set the framework for future development consent of projects listed in Annexes I and II to the Environmental Impact Assessment Directive”.
+
+4.6 A key consideration is therefore whether the NCN Plan sets the framework for projects which require Environmental Impact Assessment.
+
+4.7 In this regard the NCN Plan will identify, at a strategic-level, key corridors for interventions. Detailed proposals for these corridors will then be implemented through subsequent plans and projects. In terms of whether these projects are likely to require EIA, this depends on whether they meet the criteria set out by provisions relating to the classes set out in Annex I or II of the EIA Directive, specifically in Schedule 5, Part 2 of the Planning and Development Regulations 2001, as amended.
+
+4.8 Whilst cycling infrastructure is not specifically highlighted in Schedule 5, Part 2, there is some potential for projects which subsequently come forward within the identified corridors to require EIA. As such, the determination of whether such projects would require an EIA is dependent on the outcome of EIA screening on these projects.
+
+4.9 The NCN Plan may also set the framework for plans which cover smaller elements of the National Cycle Network. Whilst these would not be plans deemed as mandatory under legislative, regulatory or administrative provisions, these plans could potentially include proposals which have the potential to have significant effects on the environment. These plans may therefore themselves require SEA.
+
+1 European Commission 2017 REPORT FROM THE COMMISSION TO THE COUNCIL AND THE EUROPEAN PARLIAMENT under Article 12(3) of Directive 2001/42/EC on the assessment of the effects of certain plans and programmes on the environment https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:52017DC0234&from=EN
+
+AECOM
+
+National Cycle Network (NCN) Plan Strategic Environmental Assessment (SEA)
+
+Screening Report
+
+4.10 In this respect the NCN Plan has the potential to set the framework for plans and projects which have the potential to lead to significant effects on the environment.
+
+Conclusions
+
+4.11 In conclusion, the NCN Plan will identify, at a national level, key strategic corridors for interventions. It will comprise a proposed national network connecting settlements of over 5,000 inhabitants along identified corridors, including key strategic destinations. Detailed proposals for these corridors will then be taken forward and implemented through subsequent plans and projects.
+
+4.12 Whilst the NCN Plan will itself not propose detailed interventions within the identified corridors, it will influence the location of new strategic active travel infrastructure, particularly outside urban areas. This infrastructure has the potential to take place in locations with significant environmental sensitivity, including in terms of landscape, historic environment and biodiversity designations.
+
+4.13 In this respect, the plan is likely to set the framework for subsequent plans and projects which have the potential for significant effects on the environment. This includes, potentially, plans requiring an SEA process or projects requiring an EIA process.
+
+4.14 For this reason, it is concluded that a full SEA process is required to accompany the NCN Plan.
+
+AECOM
+
+Appendix G
+
+### SEA Environmental Report
+
+### National Cycle Network Plan
+
+![Figure from page 194](assets/p194-f01.webp)
+
+*Figure from page 194*
+
+Strategic Environmental Assessment (SEA)
+
+Environmental Report (Updated)
+
+TransportInfrastructureIreland
+
+Projectnumber: 60657618
+
+July 2022
+
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
+
+Quality information
+
+Prepared by Checked by Verified by Approved by
+
+Rebecca Dunlea Senior Environmental Consultant
+
+Nick Chisholm-Batten Associate Director Environment
+
+Ben Green Associate Director Transport
+
+Derval Cummins Director of Planning
+
+Elaine Keenan Environmental Consultant
+
+Revision History
+
+Revision Revision date Details Authorized Name Position
+
+6th May 2022 Consultation version
+
+6th May 2022 Nick Chisholm-Batten Associate Director
+
+28th July 2022 Draft Final (Updated)
+
+28th July 2022 Nick Chisholm-Batten Associate Director
+
+Prepared for:
+
+Transport Infrastructure Ireland (TII)
+
+Prepared by: AECOM Ireland Limited 4th Floor Adelphi Plaza Georges Street Upper Dun Laoghaire Co. Dublin A96 T927 T: +353 1 238 3100 aecom.com
+
+© 2022 AECOM Ireland Limited. All Rights Reserved.
+
+This document has been prepared by AECOM Ireland Limited (“AECOM”) for sole use of our client (the “Client”) in accordance with generally accepted consultancy principles, the budget for fees and the terms of reference agreed between AECOM and the Client. Any information provided by third parties and referred to herein has not been checked or verified by AECOM, unless otherwise expressly stated in the document. No third party may rely upon this document without the prior and express written agreement of AECOM.
 
 Prepared for: Transport Infrastructure Ireland AECOM
 
-National Cycle Network Plan SEA Adoption Statement
+SEA of the National Cycle Network Plan
+
+Table of Contents
+
+1. Introduction .................................................................................................................. 1 1.1 Overview ............................................................................................................. 1 1.2 Background to the National Cycle Network (NCN) Plan ...................................... 1 1.3 Scope / Geographical Coverage of the NCN Plan ............................................... 2 1.4 Vision and Aims for the NCN Plan ....................................................................... 4 1.5 Development Process for the NCN Plan ............................................................. 4 2. Approach to the SEA ................................................................................................... 6 2.1 Introduction ......................................................................................................... 6 2.2 Hierarchy of Planning and Environmental Assessment ....................................... 7 2.3 Overview of SEA Process and Stages ................................................................ 7 2.4 SEA Screening (Stage 1) .................................................................................... 9 2.5 SEA Scoping (Stage 2) ..................................................................................... 10 2.6 SEA Environmental Report (Stage 3) ................................................................. 11 2.7 SEA Adoption Statement (Stage 4, Final Stage) ............................................... 12 2.8 Appropriate Assessment (AA) ........................................................................... 12 2.9 SEA Guidance .................................................................................................. 13 3. Review of Relevant Plans, Polices and Programmes ................................................. 17 3.1 Introduction ....................................................................................................... 17 3.2 EU and National Legislation .............................................................................. 18 3.3 Relevant National & Regional Plans, Programmes and Guidelines ................... 20 3.4 Transboundary Policies. Plans, Programmes and Guidelines ........................... 21 4. Environmental Baseline ............................................................................................. 23 4.1 Introduction ....................................................................................................... 23 4.2 List of Datasets for the SEA .............................................................................. 24 4.3 Biodiversity ....................................................................................................... 26 4.4 Population and Human Health .......................................................................... 32 4.5 Land, Soils and Geology ................................................................................... 36 4.6 Water ................................................................................................................ 43 4.7 Air Quality ......................................................................................................... 49 4.8 Climate Change ................................................................................................ 53 4.9 Cultural Heritage ............................................................................................... 56 4.10 Landscape and Visual ....................................................................................... 60 4.11 Transboundary Effects ...................................................................................... 62 4.12 Key Sustainability Issues .................................................................................. 65 5. Strategic Environmental Objectives ........................................................................... 70 5.1 SEA Framework of Objectives and Assessment Questions ............................... 70 6. Assessment of Reasonable Alternatives for the NCN Plan ......................................... 72 6.1 Reasonable Alternatives ................................................................................... 72 6.2 Overview of Corridor Options Considered as Reasonable Alternatives ............. 72 6.3 Approach to the Appraisal of Corridor Options .................................................. 73 6.4 Appraisal Findings ............................................................................................ 74 6.5 Preferred Approach for the NCN Plan ............................................................... 80 7. Assessment of the NCN Plan ..................................................................................... 83 7.1 Assessment of Preferred Corridor Options ........................................................ 83 7.2 Cumulative Impacts .......................................................................................... 89 7.3 Mitigation Measures .......................................................................................... 90 8. Next Steps ................................................................................................................. 92 8.1 Updates to the NCN Plan and Assessment of Changes .................................... 92
+
+Prepared for: Transport Infrastructure Ireland
+
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
+
+8.2 SEA Adoption Statement ................................................................................... 92 Appendix A: Summary of Scoping Submissions Table 1: Summary of Scoping
+
+Submissions .............................................................................................................. 93 Appendix B: Corridor Options Assessment Tables ............................................................ 104
+
+Prepared for: Transport Infrastructure Ireland
+
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
+
+#### 1. Introduction
+
+1.1 Overview
+
+AECOM were commissioned to undertake an independent strategic environmental
+
+assessment of the National Cycle Network Plan (referred to hereafter as the ‘NCN Plan’).
+
+Strategic environmental assessment (SEA) is a systematic process of predicting and
+
+evaluating the likely significant environmental effects of implementing a proposed plan or
+
+programme, in order to ensure that these effects are adequately addressed at the earliest
+
+appropriate stages of decision-making in tandem with economic, social and other
+
+considerations.
+
+This document updates the draft SEA Environmental Report which was published alongside
+
+the NCN Plan for public consultation in May 2022. The Environmental Report was the main
+
+output of the SEA process and provided stakeholders with an overview of the likely significant
+
+effects of the NCN Plan and reasonable alternatives.
+
+1.2 Background to the National Cycle Network (NCN) Plan
+
+Transport Infrastructure Ireland (TII) worked with key stakeholders to prepare a new National
+
+Cycle Network Plan (‘NCN Plan’). The NCN Plan maps existing cycling infrastructure and
+
+identifies gaps where future investment could be focused to establish a comprehensive and
+
+connected cycling network around Ireland.
+
+The NCN Plan focuses on linking cities and towns of over 5,000 people with a safe, connected
+
+and inviting cycle network. It includes plans to create cycle routes to destinations such as
+
+transport hubs, centres of education, centres of employment, leisure and tourist destinations.
+
+It will optimise the potential for people to cycle as part of their daily activities, such as work or
+
+educational commuting. It will also integrate with existing and proposed cycle infrastructure.
+
+Both the safety and security of cyclists will be central to the development of the NCN.
+
+The NCN builds on previous work completed by TII and aligns with the work being undertaken
+
+by the National Transport Authority (NTA) in developing urban and county level cycle networks.
+
+It integrates with other cycle routes and networks in various stages of development, including
+
+the EuroVelo routes, greenways and the Strategic Plan for Greenways in Northern Ireland.
+
+The NCN plan will complement these other cycling development projects and will provide a
+
+core spine that other networks and routes can connect to.
 
 Prepared for: Transport Infrastructure Ireland AECOM
 
-National Cycle Network Plan
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
 
-### 1. Introduction
+1.3 Scope / Geographical Coverage of the NCN Plan
 
-1.1 Introduction and Legislative Context
+The NCN Plan sets out a coherent and coordinated network of cycle corridors connecting
 
-This is the Strategic Environmental Assessment (SEA) Adoption Statement for the National
+settlements with 5,000 inhabitants or more. It integrates with and complements other existing
 
-Cycle Network (NCN) Plan (referred to hereafter as the ‘NCN Plan’).
+and proposed cycle routes and networks.
 
-Strategic environmental assessment (SEA) is a process for evaluating, at the earliest
+The likely corridors identified through the NCN Plan mainly cover non-urban areas. Urban
 
-appropriate stage, the likely environmental effects of implementing a Plan or other strategic
+cycle networks are being covered by work currently being undertaken by the National
 
-action in order to ensure that environmental considerations are appropriately addressed in the
+Transport Authority (NTA).
 
-decision-making process both during the preparation and prior to adoption of a plan.
+Whilst the NCN Plan does not include specific or detailed routes, it does identify broad
 
-The European Directive (2001/42/EC) on the Assessment of the Effects of Certain Plans and
+corridors through which interventions should be targeted. These identified corridors will be
 
-Programmes on the Environment (the ‘SEA Directive’) was transposed into national legislation
+accompanied by recommendations relating to a minimum level of infrastructure required
 
-by:
+across the network (e.g., segregated cycle path).
 
-European Communities (EC) (Environmental Assessment of Certain Plans and
+Figure 1.1 highlights the potential nodes that were focussed on through the development of
 
-Programmes) Regulations 2004 (S.I. No. 435 of 2004); and
+the NCN Plan.
 
-Planning and Development (Strategic Environmental Assessment) Regulations 2004
+It is an objective of the NCN Plan to ‘integrate with existing and proposed cycling infrastructure
 
-(S.I. No. 436 of 2004).
+in Northern Ireland, as appropriate’.
 
-These regulations were subsequently amended by the:
+Both the Department for Infrastructure and Sustrans Northern Ireland have been consulted in
 
-EC (Environmental Assessment of Certain Plans and Programmes) (Amendment)
+relation to the development of the NCN Plan with ongoing engagement planned to ensure
 
-Regulations, 2011 (S.I. No. 200 of 2011); and
+integration of planned cycle networks across the border.
 
-Planning and Development (Strategic Environmental Assessment) (Amendment)
+Prepared for: Transport Infrastructure Ireland AECOM
 
-Regulations, 2011 (S.I. No. 201 of 2011).
+SEA of the National Cycle Network Plan
+
+![Figure 1.1: Map of the Nodes Focussed on Through the Development of the NCN Plan](assets/p200-f01.webp)
+
+*Figure 1.1: Map of the Nodes Focussed on Through the Development of the NCN Plan*
+
+Prepared for: Transport Infrastructure Ireland
+
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
+
+1.4 Vision and Aims for the NCN Plan
+
+The vision statement of the NCN Plan is to:
+
+“Develop a safe, connected, and inviting cycle network between urban areas and key
+
+destinations to achieve accessible, sustainable, and high-quality routes that will help to
+
+reduce the carbon impact of transport and promote a healthy and inclusive society.”
+
+The NCN aims to link towns, cities and destinations across Ireland with a safe, connected and
+
+inviting cycle network; encouraging more people away from their cars and onto their cycles.
+
+In this context the NCN aims to generate benefits for cyclists and communities across Ireland,
+
+including:
+
+Being the core cycle network for Ireland, connecting towns and destinations to which
+
+other cycle networks will connect.
+
+Acting as a multifunctional network available for commuters, leisure users and tourists.
+
+Establishing a coherent and coordinated network that integrates with existing and
+
+proposed cycle routes being developed by TII and other bodies.
+
+Helping inform how local authorities prioritise Exchequer-funded investments in cycle
+
+infrastructure.
+
+Making use of existing infrastructure wherever possible including greenways and
+
+declassified roads where there is enough space to provide safe and appropriate cycle
+
+facilities.
+
+Providing high-quality cycle infrastructure to promote safety, comfort and increased
+
+participation in cycling. Minimum design standards will be developed for how the
+
+network will be built.
+
+Clearly signposting the network to identify and distinguish it from other cycle facilities.
+
+1.5 Development Process for the NCN Plan
+
+The approach to the Plan is structured around a five-stage process outlined in Figure 1.2. The
+
+current stage in plan development is Stage 5 - Finalisation.
+
+Prepared for: Transport Infrastructure Ireland AECOM
+
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
+
+![Figure 1.2: NCN Plan Development Process](assets/p202-f01.webp)
+
+*Figure 1.2: NCN Plan Development Process*
+
+Following consultation on the draft NCN Plan (which was undertaken in May 2022), responses
+
+were analysed, and the NCN proposals were updated to reflect feedback received. Detailed
+
+plans for the roll out of the NCN over the coming years will then be developed.
+
+Prepared for: Transport Infrastructure Ireland
+
+SEA of the National Cycle Network Plan
+
+#### 2. Approach to the SEA
+
+2.1 Introduction
+
+Strategic Environmental Assessment (SEA) is a process for evaluating, at the earliest
+
+appropriate stage, the potential environmental implications of plans or programmes (P/Ps).
+
+The SEA process involves appraisal and reporting, proposing mitigation measures and
+
+monitoring environmental effects of plans, programmes, and strategies.
+
+The purpose is to ensure that the environmental consequences of P/Ps are assessed both
+
+during their preparation and prior to their adoption. The SEA process also gives specified
+
+‘environmental authorities’, interested parties and the general public, an opportunity to
+
+comment on the environmental impacts of the proposed P/P and reasonable alternatives, and
+
+to be kept informed during the decision-making process.
+
+SEA derives from the Directive 2001/42/EC - Assessment of Effects of Certain Plans and
+
+Programmes on the Environment (the ‘SEA Directive’). Article 1 of the SEA Directive states
+
+that:
+
+“The objective of this directive is to provide for a high level of protection of the environment
+
+and to contribute to the integration of environmental considerations into the preparation
+
+and adoption of plans and programmes with a view to promoting sustainable
+
+development, by ensuring that, in accordance with this directive, an environmental
+
+assessment is carried out of certain plans and programmes which are likely to have
+
+significant effects on the environment.”
+
+The requirement for SEA in Ireland was introduced by:
+
+European Communities (Environmental Assessment of Certain Plans and
+
+Programmes) Regulations 2004 (S.I. No. 435 of 2004); as amended by European
+
+Communities (Environmental Assessment of Certain Plans and Programmes)
+
+(Amendment) Regulations 2011, (S.I. No. 200 of 2011); and
+
+Planning and Development Strategic Environmental Assessment (SEA) Regulations
+
+2004 (S.I. No. 436 of 2004), as amended by the Planning and Development (Strategic
+
+Environmental Assessment) (Amendment) Regulations 2011 (S.I. No. 201 of 2011).
 
 Schedule 2 (9) of S.I. No. 435 of 2004 highlights that an SEA “shall be carried out for all plans
 
@@ -7850,83 +6452,130 @@ transport, waste management, water management, telecommunications and tourism, a
 
 which set the framework for future development consent of projects listed in Annexes I and II
 
-to the Environmental Impact Assessment Directive”1. The SEA for the NCN Plan has therefore
-
-been undertaken to meet the requirements of S.I. No. 435 of 2004 (as amended).
-
-The legislation requires that the plan-making authority must make available an SEA Adoption
-
-Statement summarising how the SEA and SEA consultations have been taken into account in
-
-the making of the Plan. In addition, the plan-making authority has to detail the reasons for
-
-choosing the plan or programme as adopted, in the light of the other reasonable alternatives
-
-dealt with, and the measures decided concerning monitoring.
+to the Environmental Impact Assessment Directive”. 1 The SEA for the NCN Plan has therefore
 
 1 Section 9(1) of S.I. No. 435 of 2004 as amended by S.I. No. 200 of 2011
 
 Prepared for: Transport Infrastructure Ireland
 
-National Cycle Network Plan SEA Adoption Statement
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
 
-This SEA Adoption Statement is a reflective document that looks back on the SEA process,
+been undertaken to meet the requirements S.I. No. 435 (as amended), referred to in this
 
-what has been achieved and it also sets out what monitoring will be done in the future.
+Environmental Report as the ‘SEA Regulations’.
 
-1.2 Content of the SEA Adoption Statement
+2.2 Hierarchy of Planning and Environmental Assessment
 
-The main purpose of an SEA Adoption Statement is to document how environmental
+The hierarchy of planning and environmental assessment in which the NCN Plan is situated
 
-considerations and the views of statutory consultees and other submissions, and observations
+is detailed on Figure 2.1 below.
 
-received during the consultation phases have been taken into account during the preparation
+![Figure 2.1: Hierarchy of Planning and Environmental Assessment](assets/p204-f01.webp)
 
-of the final Plan and the arrangements put in place for monitoring.
+*Figure 2.1: Hierarchy of Planning and Environmental Assessment*
 
-The SEA Adoption Statement is described in Article 9 of the SEA Directive as a statutory
+The National Planning Framework 2040 (NPF) was subject to a full SEA and Stage 2 AA. The
 
-requirement and should be made available with the adopted Plan. The SEA Adoption
+NPF will be given regional expression through land use plans including the Regional Spatial
 
-Statement will be issued to the ‘environmental authorities’ previously consulted, with a view to
+and Economic Strategies (RSES), which are also subject to SEA and AA. SEA and AA
 
-outlining the key stages of the SEA process and illustrating how environmental considerations
+requirements apply to City and County Development Plans and Local Area Plans.
 
-have been integrated into the plan and key decisions taken in the Plan as a consequence of
+The priorities and objectives of the NCN Plan align with the objectives and priorities set out in
 
-the SEA.
+the NPF and transport strategies focused on providing a safe and connected cycle network
 
-The SEA Adoption Statement is required to include the following information:
+across Ireland.
 
-a) How environmental considerations have been integrated into the Plan (Section 2);
+2.3 Overview of SEA Process and Stages
 
-b) How the Environmental Report, submissions and observations made to the planning
+SEA is a systematic process for evaluating the environmental consequences of proposed
 
-authority and any transboundary consultations (where relevant) have been taken
+plans or programmes to ensure environmental issues are fully integrated and addressed at
 
-into account during the preparation of the Plan (Section 3);
+Prepared for: Transport Infrastructure Ireland
 
-c) The reasons for choosing the Plan, as adopted, in the light of the other reasonable
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
 
-alternatives dealt with (Section 4); and
+the earliest appropriate stage of decision making, with a view to promoting sustainable
 
-d) The measures decided upon to monitor the significant environmental effects of
+development. The central focus of SEA is to enable environmental issues, and in particular
 
-implementation of the Plan (Section 5).
+‘likely significant environmental effects’ of a Plans or Programmes (P/Ps), to be taken into
 
-On adoption of the National Cycle Network Plan the authority (Transport Infrastructure Ireland
+consideration during the plan or programme making process.
 
-(TII)) is required under Section 13I of the Planning and Development (Strategic Environmental
+The key phases in the SEA process as outlined in the Environmental Protection Agency's
 
-Assessment) Regulations 2004 (S.I. No. 436 of 2004) as amended, to make this SEA
+(EPA’s) SEA Process Checklist2 are outlined in Table 2.1.
 
-Statement available to the ‘environmental authorities’ and the public.
+Table 2.1: Overview of SEA Process
 
-1.3 Implications of SEA for the Plan
+Phase Description Status
+
+The requirement to undertake a SEA is mandatory for certain Plan / Programme (P/P). Where SEA is not a mandatory requirement, the P/Ps is subject to a ‘Screening process’, to consider if it is likely to have significant effects on the environment, and therefore, if SEA is required.
+
+Complete (November 2021)
+
+1. Screening
+
+Preparation of a SEA Scoping Report highlighting that the Environmental Report is required to include:
+
+Methods of assessment; Contents and level of detail in the Plan/Programme; The stage in the Plan/Programme-making process; and The extent to which certain matters are more appropriately assessed at different levels in the decision-making process in order to avoid duplication of environmental assessment. Transboundary consultation was undertaken with the relevant authorities in Northern Ireland.
+
+Complete (March 2022)
+
+2. Scoping
+
+The purpose of this stage of the process is to assess the likely significant impacts on the environment as a result of implementation of the P/P and consideration of reasonable alternatives.
+
+Complete (May 2022)
+
+3. Environmental Assessment
+
+The output from this stage is an Environmental Report which accompanies the draft P/P for consultation.
+
+Transboundary consultation, was undertaken with the relevant authorities in Northern Ireland.
+
+| 4. SEA Statement | Completion/adoption of the P/P taking account of likely |  | Current Stage (Final) |
+| --- | --- | --- | --- |
+|  | significant environmental effects, any submissions or |  |  |
+|  | observations received from consultations and integration of |  |  |
+|  | mitigation and monitoring measures within the Plan. |  |  |
+|  | The Environmental Report was updated to reflect |  |  |
+|  | consultation comments, and an SEA Statement was |  |  |
+|  | prepared, summarising: |  |  |
+|  | • How environmental considerations have been |  |  |
+|  | integrated into the P/P; |  |  |
+|  | • How the environmental report, and any submissions or |  |  |
+|  | consultations have been taken into account in the |  |  |
+|  | preparation of the P/P; |  |  |
+|  | • The reasons for choosing the P/P; and |  |  |
+|  | • The measures decided for monitoring the significant |  |  |
+|  | environmental effects of implementation of the P/P. |  |  |
+
+2 EPA (2013).
+
+Prepared for: Transport Infrastructure Ireland
+
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
+
+In the context of the SEA process for the NCN Plan, the key stages (following SEA screening)
+
+are set out in Figure 2.2.
+
+![Figure 2.2: Key Stages of SEA Process for the NCN Plan](assets/p206-f01.webp)
+
+*Figure 2.2: Key Stages of SEA Process for the NCN Plan*
+
+A more detailed overview of the SEA process for the NCN Plan is presented below.
+
+2.4 SEA Screening (Stage 1)
 
 An SEA Screening Report was prepared by AECOM for the NCN Plan in November 2021. The
 
-screening sought to determine whether the full SEA process was required for the NCN Plan.
+screening sought to determine whether a full SEA process was required for the NCN Plan.
 
 The report concluded the following:
 
@@ -7938,65 +6587,63 @@ requiring an SEA process or projects requiring an EIA process. For this reason, 
 
 concluded that a full SEA process is required to accompany the NCN Plan”
 
-Prepared for: Transport Infrastructure Ireland AECOM
+Given the plan timescales, and the strong likelihood of the NCN Plan requiring SEA, a
 
-National Cycle Network Plan SEA Adoption Statement
+separate consultation on the SEA Screening Report was not undertaken for the Plan. The SEA
 
-The SEA was subsequently undertaken, with the findings of the SEA process being presented
+instead progressed to the next steps of the process, scoping.
 
-in the SEA Environmental Report, which accompanied the draft NCN Plan for public
+Prepared for: Transport Infrastructure Ireland
 
-consultation (May 2022).
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
 
-Following consultation on the draft NCN Plan, the SEA Environmental Report was updated to
+2.5 SEA Scoping (Stage 2)
 
-in order to take account of:
+Article 5 of the SEA Directive requires that the competent authority responsible for the plan or
 
-consultation comments on the draft NCN Plan and Environmental Report; and
+programme in question consult with ‘environmental authorities’ regarding the scope and level
 
-changes to the draft NCN Plan that were made following consultation.
+of detail to be included in the environmental report.
 
-Transport Infrastructure Ireland (TII) has taken into account the findings of all relevant SEA
+To meet this requirement, a Scoping Report was prepared in early 2022 for the SEA of the
 
-outputs during the development of the NCN Plan. In this respect the SEA has formed an
+NCN Plan.
 
-integral part of the evidence base for the NCN Plan.
+Reflecting the requirements of the SEA Regulations, the following information was presented
 
-Prepared for: Transport Infrastructure Ireland AECOM
+in the Scoping Report:
 
-National Cycle Network Plan SEA Adoption Statement
+Context review: This explored the environmental and sustainability ‘context’ for the
 
-### 2. How Environmental Considerations were Integrated into the Plan
+SEA / NCN Plan through reviewing high level messages (e.g., internationally, from
 
-2.1 Introduction
+central government and at the regional level) with a view to establishing the focus for
 
-Environmental considerations were integrated into the NCN Plan making process at all stages,
+the SEA.
 
-i.e., the Scoping stage, at the Environmental Report stage and following the submissions and
+Baseline data: This established the baseline situation in the absence of the NCN Plan
 
-observations from the ‘environmental authorities’ and the public.
+(including the future baseline) in order to help identify the plan’s likely significant
 
-Environmental considerations were integrated into the NCN Plan through:
+effects.
 
-Responses to consultation.
+Key issues: This identified particular problems or opportunities (‘issues’) that should
 
-Communication of environmental sensitivities throughout the SEA process.
+be a focus of the SEA.
 
-Appropriate Assessment2.
+Drawing on the evidence base established and key issues identified through the above
 
-Consideration of alternatives.
+process, the Scoping Report presented an SEA Framework of objectives and assessment
 
-Integration of individual measures into the NCN Plan (i.e., SEA and AA).
+questions which would be used to assess plan proposals and alternatives.
 
-These stages are discussed in more detail below.
+2.5.1 SEA Scoping Consultation
 
-2.2 Consultation
+Statutory consultation on the SEA Scoping Report was undertaken with the ‘environmental
 
-The ‘environmental authorities’ identified by the SEA Regulations, were issued the SEA
+authorities’ for SEA in Ireland in March 2022.
 
-Scoping Report in March 2022. Currently, the SEA environmental authorities are as follows
-
-the:
+Currently, the SEA ‘environmental authorities’ set out by the SEA Regulations are as follows:
 
 Environmental Protection Agency (EPA);
 
@@ -8008,31 +6655,1098 @@ Applications Unit]; and
 
 Minister for the Environment, Climate and Communications.
 
-As the NCN Plan has the potential to affect the environment in Northern Ireland, transboundary
+As the NCN Plan may affect the environment in Northern Ireland, transboundary consultation
 
-consultation was also undertaken with the main environmental authority in Northern Ireland:
+was also undertaken with the relevant authorities in Northern Ireland.
 
-Department of Agriculture, Environment and Rural Affairs (DAERA): Northern Ireland
+Prepared for: Transport Infrastructure Ireland
 
-Environment Agency (NIEA)3.
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
 
-The Draft NCN Plan and SEA Environmental Report were made available for consultation,
+Five consultation responses were received on the SEA Scoping Report, including three from
 
-alongside consultation on the draft NCN Plan4. The SEA environmental authorities, as well as
+the SEA environmental authorities in ROI and two from Northern Ireland authorities.
 
-2 A Stage 2 Appropriate Assessment (AA) has been undertaken alongside the preparation of the Plan. 3 A submission was also received from Department for Communities (DfC): Historic Environment Division (HED). 4 Website for the NCN Plan Consultation available at: https://ncn.consultation.ai/
+Responses were received from the following organisations:
+
+Environmental Protection Agency (EPA).
+
+Geological Survey Ireland (GSI) under the Department of the Environment, Climate
+
+and Communications (DECC).
+
+Department of Environment, Climate and Communications (DECC). Environmental
+
+Protection and Circular Economy - Materials Management Divisions.
+
+Northern Ireland Environment Agency (NIEA) under the Department of Agriculture,
+
+Environment and Rural Affairs (DAERA).
+
+Historic Environment Division (HED) under the Department for Communities (DfC).
+
+The submissions provided information on sources of guidance, useful resources and
+
+suggestions for items to be addressed / monitored.
+
+Appendix A provides a summary of the submissions received from the environmental
+
+authorities and transboundary consultees at scoping and provides an overview of how these
+
+comments have been considered and addressed.
+
+2.6 SEA Environmental Report (Stage 3)
+
+Stage 3 comprises the preparation of the main output of the SEA process: the SEA
+
+Environmental Report.
+
+The SEA Regulations require that an environmental report is published for consultation
+
+alongside the draft plan that shall “identify, describe and evaluate the likely significant effects
+
+on the environment of implementing the plan…and reasonable alternatives taking account of
+
+the objectives and the geographical scope of the plan”. The report must then be taken into
+
+account, alongside consultation responses, when finalising the plan.
+
+This SEA Environmental Report therefore assesses and evaluates the likely significant effects
+
+of the NCN Plan and the alternatives. This is with a view to providing TII, stakeholders and the
+
+public with a clear understanding of the likely environmental consequences of implementing
+
+the NCN Plan.
+
+The draft NCN Plan and SEA Environmental Report were made available for consultation via
+
+the following website: https://ncn.consultation.ai/
+
+The SEA environmental authorities, as well as any relevant transboundary authorities, were
+
+notified so that they may make a submission or observation in relation to the SEA
+
+Environmental Report and / or the draft NCN Plan.
 
 Prepared for: Transport Infrastructure Ireland AECOM
 
-National Cycle Network Plan SEA Adoption Statement
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
 
-the relevant transboundary authority, were notified so that they may make a submission or
+Northern Ireland’s statutory stakeholders and environmental authorities were also notified on
 
-observation in relation to the SEA Environmental Report and / or the draft NCN Plan.
+the release of the draft NCN Plan and associated SEA Environmental Report.
 
-Details of the submissions made during the SEA Scoping Report and draft NCN Plan and / or
+Submissions made on the draft NCN Plan and associated documents, including the SEA, have
 
-the SEA Environmental Report while on public display is provided in Section 3.2 and Section
+resulted in an update to this Environmental Report, in order to take account of consultation
+
+responses and in order to take account of the minor changes that were made to the NCN Plan
+
+following consultation.
+
+2.7 SEA Adoption Statement (Stage 4, Final Stage)
+
+During this final stage of the SEA process (Stage 4), TII will publish an SEA Adoption
+
+Statement alongside the final adopted NCN Plan.
+
+The SEA Adoption Statement includes how the SEA Environmental Report and consultations
+
+have been taken into account, summarising the key issues raised during the consultation
+
+process and in the Environmental Report indicating what / if action was taken.
+
+The SEA Adoption Statement also includes the measures decided upon to monitor the
+
+significant environmental effects of implementing of the plan.
+
+2.8 Appropriate Assessment (AA)
+
+Under the EU Habitats Directive Member States are required to ensure the protection,
+
+conservation, and management of the habitats and species of conservation in all European
+
+sites.
+
+The Habitats Directive (92/43/EEC) was transposed into Irish law by both the Planning and
+
+Development Act 2000 (as amended) and the European Communities (EC) (Birds and Natural
+
+Habitats) Regulations 2011 (as amended).
+
+Appropriate Assessment (AA) screening is required for any project in Ireland (Article 6(3) of
+
+the Habitats Directive) with the potential to have a significant effect on a designated European
+
+site. AA is the assessment of the implications of a plan, alone and in-combination with other
+
+plans and projects, on the integrity of a Natura 2000 site, in view of its conservation objectives.
+
+There is an overlap between both the SEA and AA processes as both assessment regimes
+
+consider the potential impacts of a plan on biodiversity.
+
+The Draft NCN Plan has undergone AA screening during its preparation. The conclusion of
+
+the AA Screening3 was:
+
+“At this strategic stage these corridors are intentionally wide to enable detailed design work
+
+to be undertaken to capture the most appropriate route.
+
+3 AECOM (2022).
+
+Prepared for: Transport Infrastructure Ireland AECOM
+
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
+
+Given this is and the multiple potential impacts associated with constructing new or
+
+updating existing cycle routes, it is impossible to draw a conclusion of ‘no likely significant
+
+effect’ in relation to the NCN Plan. Therefore, it is necessary to proceed to the next stage
+
+of Appropriate Assessment. All potential NCN route corridors are screened in for the
+
+Appropriate Assessment. “
+
+The Draft Plan was subject to a “Stage 2 AA” as required by Article 6(3) of the Habitats
+
+Directive (92/43/EEC) and a Natura Impact Report (NIR) was prepared and put on public
+
+display.
+
+The preparation of the Draft Plan, SEA and AA has taken place concurrently and the findings
+
+of the AA have informed both the Plan and the SEA.
+
+The NIR concluded:
+
+“Given the flexibility of design of the proposed cycle routes it can be concluded that the
+
+NCN would not have an adverse effect European sites alone.”
+
+“Additionally, an in-combination assessment was also undertaken of relevant plans and
+
+projects…
+
+Given that each of the land use plans provide a policy for European site protection and
+
+each will have undergone their own Appropriate Assessment alone and in-combination and
+
+would have concluded no adverse effects before the plans could become adopted…
+
+It can be concluded that the NCN Plan would not have an adverse effect on the integrity of
+
+European sites, either alone or in combination with other plans and projects.”
+
+The NIR also provided recommendations that should be included in the Final NCN Plan.
+
+2.9 SEA Guidance
+
+The SEA process has been undertaken to meet the requirements of Directive 2001/42/EC on
+
+the Assessment of the Effects of Certain Plans and Programmes on the Environment (the SEA
+
+Directive) and the national implementing legislation, S.I. No. 435 of 2004, as amended by
+
+Regulations S.I. No. 200 of 2011.
+
+The following principal sources of guidance were identified during the SEA process, including
+
+in the preparation of the Environmental Report:
+
+Department of Communications, Climate Action & Environment (DCCAE) (2019).
+
+Climate Action Plan 2019, To Tackle Climate Breakdown.
+
+Department of Environment, Community and Local Government (DECLG) (2013).
+
+Integrated Biodiversity Impact Assessment – Streamlining AA, SEA and EIA
+
+Prepared for: Transport Infrastructure Ireland AECOM
+
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
+
+Processes: Practitioner’s Manual. EPA Strive Programme 2007-2013. Strive Report
+
+Series No. 106.
+
+Department of Environment, Community and Local Government (DECLG) (2013).
+
+Circular Letter PL 9/2013: Article 8 (Decision Making) of EU Directives 2001/42/EC on
+
+Strategic Environmental Assessment (SEA) as amended.
+
+Department of Environment, Community and Local Government (DECLG) (2013).
+
+Circular Letter PSSP 6/2011: Further Transposition of EU Directive 2001/42/EC on
+
+Strategic Environmental Assessment (SEA).
+
+Department of Environment, Heritage and Local Government (DEHLG) (2014).
+
+Implementation of SEA Directive (2001/42/EC): Assessment of the Effects of Certain
+
+Plans and Programmes on the Environment.
+
+Environmental Protection Agency (EPA)(2003). SEA Methodologies for Plans and
+
+Programmes in Ireland – Synthesis Report.
+
+Environmental Protection Agency (EPA)(2008). SEA Process Checklist, 2008.
+
+Environmental Protection Agency (EPA) (2013). SEA Resource Manual for Local and
+
+Regional Planning Authorities.
+
+Environmental Protection Agency (EPA) (2015). Developing and Assessing
+
+Alternatives in Strategic Environmental Assessment - Good Practice Guidance.
+
+Environmental Protection Agency (EPA)(2015). SEA Scoping Guidance Document.
+
+Environmental Protection Agency (EPA) (2017). GISEA Manual - Improving the
+
+Evidence Base in SEA.
+
+Environmental Protection Agency (EPA) (2019 updated). Integrating Climate Change
+
+into Strategic Environmental Assessment in Ireland - A Guidance Note.
+
+Environmental Protection Agency (EPA)(2019). Tiering of Environmental Assessment
+
+- The Influence of Strategic Environmental Assessment on Project-level Environmental
+
+Impact Assessment.
+
+Environmental Protection Agency (EPA) (2020). Good Practice Guidance on
+
+Cumulative Effects Assessment in Strategic Environmental Assessment.
+
+Environmental Protection Agency (EPA)(2020). Guidance on Strategic Environmental
+
+Assessment (SEA) Statements and Monitoring.
+
+Environmental Protection Agency (EPA)(2020). Ireland's Environment - An Integrated
+
+Assessment 2020.
+
+Environmental Protection Agency (EPA)(2020). Second Review of SEA Effectiveness
+
+in Ireland.
+
+Environmental Protection Agency (EPA)(2021). SEA Pack, September 2021.
+
+Environmental Protection Agency (EPA)(2022). SEA Spatial Information Sources
+
+inventory, January 2022.
+
+Prepared for: Transport Infrastructure Ireland AECOM
+
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
+
+European Communities (EC) (1992). DIRECTIVE 92/43/EEC.
+
+European Communities (EC)(2001). Directive 2001/42/EC on the assessment of
+
+Certain Plans and Programmes on the Environment.
+
+European Communities (EC) (2004).Guidance on Implementation of Directive
+
+2001/42/EC.
+
+European Communities (EC) (2013).Guidance on Integrating Climate Change and
+
+Biodiversity into Strategic Environmental Assessment.
+
+European Communities (EC). (2002). Assessment of plans and projects significantly
+
+affecting Natura 2000 sites - Methodological guidance on the provisions of Article 6(3)
+
+and (4) of the Habitats Directive 92/43/EEC.
+
+European Communities (EC). S.I. No. 200 of 2011 - European Communities
+
+(Environmental Assessment of Certain Plans and Programmes) (Amendment)
+
+Regulations 2011.
+
+European Communities (EC). S.I. No. 435 of 2004 - Environmental Assessment of
+
+Certain Plans and Programmes) Regulations 2004.
+
+EPA AA GeoTool: https://gis.epa.ie/EPAMaps/AAGeoTool
+
+EPA Air Quality Reports: https://www.epa.ie/publications/monitoring--assessment/air/
+
+EPA Environmental Mapping / Geographical Information System (GIS) tools:
+
+http://gis.epa.ie/SeeMaps
+
+EPA SEA WebGIS Tool:https://gis.epa.ie/EPAMaps/SEA
+
+EPA Strategic Environmental Assessment. Available at: https://www.epa.ie/our-
+
+services/monitoring--assessment/assessment/strategic-environmental-assessment/
+
+EPA Water QualityReports: https://www.epa.ie/publications/monitoring--assessment/
+
+EPA WFD Application: www.catchments.ie
+
+GEOHIVE Environmental Sensitivity Mapping (2022).
+
+Department for Communities (DfC) (2022). Historic Environment Map Viewer.
+
+Available at: https://www.communities-ni.gov.uk/services/historic-environment-map-
+
+viewer
+
+Department for Infrastructure (DfI) (2015). Strategic Planning Policy Statement for
+
+Northern Ireland.
+
+Department of Agriculture, Environment and Rural Affairs (DAERA) (2015).
+
+Biodiversity Strategy for Northern Ireland to 2020.
+
+Department of Agriculture, Environment and Rural Affairs (DAERA) (2021). Draft
+
+Environment Strategy for Northern Ireland.
+
+Department of Agriculture, Environment and Rural Affairs (DAERA) (2013). Northern
+
+Ireland State ofthe Environment Report. Available at: https://www.daera-
+
+ni.gov.uk/publications/state-environment-report-2013
+
+Prepared for: Transport Infrastructure Ireland
+
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
+
+Department of Agriculture, Environment and Rural Affairs (DAERA) (2022).
+
+Designated Scientific Sites. Available at: www.daera-ni.gov.uk/landing-
+
+pages/protected-areas
+
+Department of Agriculture, Environment and Rural Affairs (DAERA) (2022). Regional
+
+Landscape Character Map viewer. Available at: https://www.daera-
+
+ni.gov.uk/services/regional-landscape-character-areas-map-viewer
+
+Department of Agriculture, Environment and Rural Affairs (DAERA) (2022). Map
+
+browser for NI protected sites and known priority habitat. Available at: www.daera-
+
+ni.gov.uk/services/natural-environment-map-viewer
+
+Department of Agriculture, Environment and Rural Affairs (DAERA) (2022). Natural
+
+Environment Datasets.Available at: https://www.daera-ni.gov.uk/contacts/natural-
+
+environment-related-datasets
+
+NI Heritage (2019). Archaeology 2030 - A Strategic Approach for Northern Ireland.
+
+Available at: niheritagedelivers.org
+
+Northern Ireland Environment Agency (NIEA) (2013). A Second Assessment of the
+
+State of Northern Ireland’s Environment.
+
+Northern Ireland Environment Agency (NIEA) (2021). Water Framework Directive
+
+Statistics Report.
+
+Department of Agriculture, Environment and Rural Affairs (DAERA) (2020). Air
+
+Pollution in Northern Ireland 2020. Available at:
+
+https://www.airqualityni.co.uk/documents/technical-
+
+reports/Air_Pollution_in_Northern_Ireland_2020_Issue1-screen-optimised.pdf
+
+Department of Agriculture, Environment and Rural Affairs (DAERA) (2022).
+
+Landscape Character of Northern Ireland. Available at: https://www.daera-
+
+ni.gov.uk/articles/landscape-character-northern-ireland
+
+Department of Finance (2022). Northern Ireland Statistics and Research Agency
+
+(NISRA). Available at: https://www.nisra.gov.uk/
+
+Prepared for: Transport Infrastructure Ireland
+
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
+
+#### 3. Review of Relevant Plans, Polices and Programmes
+
+3.1 Introduction
+
+This chapter sets out how the NCN Plan interacts with other key relevant plans, policies and
+
+programmes and their environmental protection objectives. A review of other plans, policies
+
+and programmes and the legislative framework is an important part of setting the context for
+
+the SEA and the NCN Plan.
+
+The SEA Directive states in Article 5(1) of Annex 1 that the environmental assessment must
+
+identify:
+
+“the environmental protection objectives, established at International, European Union or
+
+national level, which are relevant to the plan or programme, or modification to the plan or
+
+programme, and the way those objectives and any environmental considerations have
+
+been taken into account during its preparation”.
+
+Therefore, the NCN Plan is part of a larger picture of overall national policies that must work
+
+towards a single set of overall objectives. Policies and objectives around issues such as land
+
+use, development, population distribution, sustainability and climate action, for example, are
+
+determined by other government agencies and authorities, but must be fully reflected in the
+
+NCN Plan.
+
+This appendix is not intended to represent a comprehensive list of all legislation / plans /
+
+programmes / guidelines, but rather a collation of the most relevant all legislation / plans /
+
+programmes / guidelines.
+
+3.1.1 UN Sustainable Development Goals
+
+Since 2015, Ireland has been a signatory to the United Nations (UN) Sustainable Development
+
+Goals (SDGs), which frame national agendas and policies to 2030. There are 17 SDGs which
+
+form part of the 2030 Agenda, which sets out a 15-year plan to achieve these goals (Figure
+
+3.1). These goals are mirrored through EU strategies such as Europe 2020 and the European
+
+Regional Development Fund which emphasise smart, sustainable and inclusive growth.
+
+Key priorities are to halt biodiversity loss, protect and improve the environment, and enable
+
+the transition to a circular economy. As sustainability is at the heart of long-term energy
+
+planning, it is important that the SDGs are integrated into Irish policymaking from the top tier
+
+down.
+
+Prepared for: Transport Infrastructure Ireland AECOM
+
+SEA of the National Cycle Network Plan
+
+![Figure 3.1: United Nations Sustainable Development Goals4](assets/p215-f01.webp)
+
+*Figure 3.1: United Nations Sustainable Development Goals4*
+
+There is significant alignment between the UN SDGs and the Project Ireland 2040 National
+
+Planning Framework National Strategic Outcomes (NSOs). For example, SDG 11 Sustainable
+
+Cities and Communities aligns with NSO1 Compact Growth and NSO4 Sustainable Mobility.
+
+Similarly, SDG 13 Climate Action aligns with NSO8 Transition to a Low Carbon and Climate
+
+Resilient Society.
+
+The development of the NCN Plan aligns with the following five UN SDGs, which are:
+
+3. Good Health and Wellbeing.
+
+5. Gender Equality.
+
+10. Reduced Inequalities.
+
+11. Sustainable Cities and Communities.
+
+13. Climate Action.
+
+The NCN Plan is consistent with these SDGs, in that it will develop a safe, connected, and
+
+cycle network between urban areas and key destinations. The NCN Plan will also achieve
+
+accessible, sustainable, and high-quality routes that will help to reduce the carbon impact of
+
+transport and promote a healthy and inclusive society.
+
+3.2 EU and National Legislation
+
+There is a legislative framework for the protection of the environment and our natural
+
+resources. Where relevant these are referenced in the plan-making process for the
+
+development plan and the NCN Plan includes relevant objectives for integration with key aims
+
+and requirements.
+
+4 United Nations (UN) (2022).
+
+Prepared for: Transport Infrastructure Ireland
+
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
+
+Table 3.1 and Table 3.2 provide a list of the principal EU and national legislation and EU
+
+frameworks respectively. These are not intended to be a register of all legislation / plans /
+
+programmes / guidelines, but rather an examination of the key environmental protection
+
+objectives relevant to the NCN Plan.
+
+Table 3.1: Principal EU and National Legislation
+
+EU Legislation National Legislation
+
+Strategic Environmental Assessment (SEA) Planning and Development Acts 2000, as amended Directive (2001/42/EEC)
+
+Environmental Impact Assessment Directive (2011/92/EU) as amended by (2014/52/EU)
+
+Planning and Development Regulations 2001, as amended
+
+European Communities (Birds and Natural Habitats Habitats Directive (92/43/EEC) Regulations) 2011 (S.I. No. 477 of 2011)
+
+Birds Directive (2009/147/EC) on the Wildlife Act 1976, as amended Conservation of Wild Birds, 1979
+
+Planning Development (Strategic Environmental Assessment) Regulations 2004 (S.I. 435 of 2004) as amended by S.I. 200 of 2011
+
+Water Framework Directive (WFD) (2000/60/EC)
+
+Groundwater Directive (2006/118/EC) The Water Services Act (2007 & 2013)
+
+Climate Action and Low Carbon Development Act Marine Strategy Framework Directive 2015
+
+Climate Action and Low Carbon Development Floods Directive (2007/60/EC) (Amendment) Act 2021
+
+Urban Wastewater Treatment Directive Roads Act 1993, as amended (91/271/EEC)
+
+Drinking Water Directive (98/83/EC) Waste Management Act 1996 as amended
+
+EU Landfill Directive (1999/31/EC) National Monuments Act 1930-2004
+
+Waste Framework Directive (2008/98/EC) as Heritage Act amended by Directive (EU) 2018/851
+
+Environmental Noise Directive (2002/49/EC) Architectural Heritage and Historic Monuments Act
+
+Environmental Liability Directive (2004/35/EC) Transposing Regulation for Directives
+
+Air Quality Fourth Daughter Directive (2004/107/EC)
+
+Air Quality Clean Air for Europe (CAFÉ) Directive (2008/50/EC)
+
+Revisited National Emissions Ceilings Directive (EU 2016/2284)
+
+Noise Directive (2002/49/EC)
+
+Governance of the Energy Union and Climate Action Regulation (EU) 2018/1999
+
+Prepared for: Transport Infrastructure Ireland AECOM
+
+Table 3.2: EU Frameworks
+
+A New Circular Economy Action Plan for a Cleaner More Competitive Europe (2020)
+
+EU Sustainable and Smart Mobility Strategy European Landscape Convention 2000 (2020)
+
+Eighth (8th) Environment Action Programme (EAP) to 2030 (TBC)
+
+EU 2030 Climate and Energy Package
+
+Relevant National & Regional Plans, Programmes and Guidelines
+
+Table 3.3 presents a list of some of the main national and regional plans, programmes and
+
+guidelines influencing the Plan.
+
+Table 3.3: National & Regional Plans, Programmes and Guidelines
+
+National & Regional Plans, Programmes and Guidelines
+
+National Policy Framework for Alternative Fuel National Planning Framework (NPF) Infrastructure in Transport in Ireland (2017-2030)
+
+National Investment Framework for Transport in National Development Plan (NDP) 2021-2030 Ireland (2021)
+
+Integrated Implementation National Mitigation Plan 2017 (Transport)
+
+Architectural Heritage Protection Guidelines for National Adaptation Framework 2018 Planning Authorities (2011)
+
+Regional Spatial and Economic Strategies Heritage Ireland 2030
+
+County and City Development Plans County Heritage Plans
+
+National Landscape Strategy 2015-2025
+
+National Energy and Climate Plan 2021-2030 County Landscape Character Assessments
+
+Change Adaptation Framework including the Sectoral Adaptation
+
+National Peatland Strategy Forestry Programme 2014-2020
+
+National Policy Position on Climate Action and National Countryside Recreation Strategy (2018) Low Carbon Development (2014)
+
+Regional / County based waste management Capital Investment Plan 2016-2021 strategies
+
+Healthy Ireland: A Framework for Improved Health Ireland’s Environment - An Assessment (2020) and Wellbeing 2019-2025
+
+Draft River Basin Management Plan for Ireland Healthy Cities and Counties (2019)
+
+National CFRAMS Programme (2011) National Physical Activity Plan 2016
+
+Flood Risk Management Plans Sport Ireland Participation Plan 2021-2024
+
+and Flood Risk Management for Planning Authorities (2009)
+
+Creating Green Enhancing Natural Capital for Human Wellbeing
+
+Prepared for: Transport Infrastructure Ireland
+
+SEA of the National Cycle Network Plan
+
+National & Regional Plans, Programmes and Guidelines
+
+National Biodiversity Action Plan 2017-2021 Food Wise 2025 (NBAP for 2021-2025 pending)
+
+County Biodiversity Action Plans Food Harvest 2020
+
+Management Plans for Natura 2000 sites Tourism Action Plan 2019-2021
+
+All-Ireland Pollinator Plan 2021-2025 Tourism Policy Statement
+
+Our Sustainable Future - A Framework for Sustainable Development for Ireland (2012) and Progress Report 2015
+
+Irish Water National Water Resources Plan Framework Plan (2021)
+
+Water Services Strategic Plan. A Plan for the TII’s Sustainability Implementation Plan (2021) Future of Water Services (2015) (Irish Water)
+
+Irish Water Services Policy Statement 2018- Outdoor Recreational Plan for Public Lands and 2025 Waters in Ireland (2017-2021)
+
+National Air Pollution Control Programme (NAPCP) (2019)
+
+Greater Dublin Area Draft Cycle Network Plan (2021)
+
+Draft National Clean Air Strategy for Ireland Other Regional City Transport Strategies (2022) (Consultation)
+
+Draft Statutory Climate Change Adaptation Fáilte Ireland Visitor Experience Development Plan for the Transport Sector (2019)
+
+Draft National Sustainable Mobility Policy Metropolitan Area Transport Plans
+
+Smarter Travel - A Sustainable Transport Future - Transport Policy for Ireland 2009-2020
+
+Regional developed by Fáilte Ireland)
+
+Whole of Government Circular Economy Strategy 2022-2023
+
+Development of new Solid Fuel Regulations for Ireland (Public Consultation) (2021)
+
+The Greenway Strategy - Strategy for the Future Development of National and Regional Greenways (2018)
+
+Dublin Region Air Quality Plan 2021 (Four Dublin Local Authorities)
+
+National Investment Framework for WHO Global Air Quality Guidelines 2021 Transportation in Ireland
+
+Traffic and Transport Assessment Guidelines (2014)
+
+Urban Transport-Related Air Pollution (UTRAP) Working Group (2021)
+
+Transport 21, as superseded by the Department of Public Expenditure and Reform document titled Infrastructure and Capital Investment (2012-2016)
+
+3.4 Transboundary Policies. Plans, Programmes and Guidelines
+
+Table 3.4 presents a list of some of the main transboundary (Northern Ireland) polices, plans,
+
+programmes and guidelines influencing the Plan.
+
+Prepared for: Transport Infrastructure Ireland
+
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
+
+Table 3.4: Transboundary Policies, Plans, Programmes and Guidelines
+
+Transboundary Policies, Plans, Programmes and Guidelines
+
+Convention for the Protection of the Architectural Wildlife (NI) Order 1985 (as amended) Heritage of Europe (Granada, 1985)
+
+Convention for the Protection of the Archaeological Wildlife and Natural Environment Act (NI) 2011 Heritage of Europe (Valletta, 1992)
+
+Conservation (Natural Habitats, etc.) Regulations (Northern Ireland) 1995 (as amended)
+
+Historic Monuments and Archaeological Objects (Northern Ireland) Order 1995
+
+The Environment (NI) Order 2002 Protection of Wrecks Act 1973
+
+Planning (Environmental Impact Assessment) Regional Development Strategy 2035 Regulations (Northern Ireland) 2017
+
+Strategic Planning Policy Statement (SPPS) for Northern Ireland
+
+Archaeology 2030 - A Strategic Approach for Northern Ireland
+
+Planning Policy Statements (PPS – in particular PPS2 and PPS185
+
+Strategic Planning Policy Statement for Northern Ireland
+
+Biodiversity Strategy for Northern Ireland to Marine and Coastal Access Act 2009 2020
+
+Draft Environment Strategy for Northern Ireland Marine Act (Northern Ireland) 2013
+
+Climate Change Bill (NI) 2022 UK Marine Policy Statement (MPS) (2011)
+
+Draft Northern Ireland Peatland Policy 2021- Draft Marine Plan for Northern Ireland (2018) 2040
+
+Draft Green Growth Strategy for Northern Ireland
+
+Sustainable Water - A Long-Term Water Strategy for Northern Ireland (2015-2040)
+
+Northern Ireland Energy Strategy 2050 NI Water (2020) Our Strategy 2021-2046
+
+The Water Environment (Floods Directive) Planning Act (Northern Ireland) 2011 Regulations (Northern Ireland) 2009
+
+Fisheries Act 2020
+
+5 It should be noted that the PPS’s will be superseded by Local Development Plans when they are adopted.
+
+Prepared for: Transport Infrastructure Ireland
+
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
+
+#### 4. Environmental Baseline
+
+4.1 Introduction
+
+Presented below is a description of the present state of the environment, and a description of
+
+how the baseline is likely develop should the plan not be implemented.
+
+The baseline description is focused in the first instance on the Republic of Ireland (ROI)
+
+however given that Ireland shares a land boundary with Northern Ireland (NI), there is potential
+
+for environmental impact on population and human health, biodiversity, land and soils, water,
+
+air quality, climatic factors, cultural heritage and landscape which are transboundary, and
+
+potential for transboundary impacts are noted where relevant.
+
+As highlighted in Section 2.3, the Scoping Report presented a context review which explored
+
+the environmental and sustainability ‘context’ for the SEA / NCN Plan, the baseline information
+
+for the SEA and a series of key issues which identified particular problems or opportunities
+
+that should be a focus of the SEA. Drawing on this scoping work, the SEA subsequently
+
+presented an SEA Framework of objectives and assessment questions against which the draft
+
+plan and alternatives could be appraised.
+
+This scoping information (and the information presented in this Environmental Report) has
+
+been presented through the following themes:
+
+1. Biodiversity (including Flora & Fauna).
+
+2. Population and Human Health.
+
+3. Land, Soils and Geology.
+
+4. Water Quality.
+
+5. Air Quality.
+
+6. Climate Change (which includes mitigation and adaptation).
+
+7. Cultural Heritage (including architecture and archaeology).
+
+8. Landscape.
+
+The selected SEA themes incorporate the ‘SEA topics’ suggested by Annex I (f) of the SEA
+
+Directive6. These were refined to reflect a broad understanding of the anticipated scope of
+
+NCN Plan effects.
+
+A summary of the key issues and the full SEA Framework is presented below. The context
+
+review and baseline data, have been updated to reflect comments received on the Scoping
+
+Report consultation and Draft Environmental Report.
+
+6 The SEA Directive is 'of a procedural nature' (para 9 of the Directive preamble) and does not set out to prescribe particular issues that should and should not be a focus, beyond requiring a focus on 'the environment, including on issues such as biodiversity, population, human health, fauna, flora, soil, water, air, climatic factors, material assets, cultural heritage including architectural and archaeological heritage, landscape and the interrelationship between the above factors' [our emphasis]
+
+Prepared for: Transport Infrastructure Ireland
+
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
+
+4.1.1 Ireland’s Environment - An Integrated Assessment 2020
+
+The seventh State of the Environment Report published by the EPA (2020) - Ireland’s
+
+Environment - An Integrated Assessment 2020, indicates that the overall quality of Ireland’s
+
+environment is not what it should be.
+
+As highlighted by the report, the environmental challenges that are currently facing Ireland cut
+
+across different environmental topics, such as climate, air, soil, water, biodiversity and waste,
+
+and across organisations and sectors, business and all levels of society. Unspoilt areas are
+
+being squeezed out and Ireland is losing pristine waters and the habitats that provide vital
+
+spaces for biodiversity. Climate change is also impacting the established economic, social and
+
+natural structures of our world7.
+
+There are 13 key State of the Environment messages identified by the report that require
+
+vision and full implementation to be successful in order to protect the environment, health, and
+
+wellbeing.
+
+The State of the Environment Report highlights that high-quality green and blue spaces are
+
+not just for nature but for peoples’ health and wellbeing. Chapter 11 of this report focuses on
+
+environmental pressures from transport and looking at the transformation towards sustainable
+
+mobility within the sector. Chapter 14 of this report looks as the importance of providing
+
+integrated health-promoting environments in urban planning which can promote more active
+
+travel, reduce air pollution through the use of fewer private vehicles, act as quiet areas buffered
+
+from environmental noise and improve the physical and mental health of those cycling. Other
+
+chapters in this report relevant to the NCN Plan, include Chapter 2 - Climate Change, Chapter
+
+3 - Air Quality and Chapter 4 - Environmental Noise.
+
+The relevant recommendations, key issues and challenges described in the EPA’s State of the
+
+Environment Report will be taken into account during the development of the Draft NCN Plan
+
+and SEA.
+
+4.2 List of Datasets for the SEA
+
+The datasets identified in the Table 4.1 below will be utilised throughout the SEA process.
+
+7 EPA (2020). Ireland’s Environment - An Integrated Assessment 2020.
+
+Prepared for: Transport Infrastructure Ireland AECOM
+
+SEA of the National Cycle Network Plan
+
+Table 4.1: List of Datasets for the SEA
+
+Potential Data Sources SEA Theme
+
+- Birds Atlas
+- Invasive Species Ireland website
+- National Biodiversity Action Plan
+- National Parks and Wildlife Services (NPWS)
+- RAMSAR
+- UNESCO Biosphere Reserve
+- DAERA - Designated Scientific Sites
+- Northern Ireland Environment Agency
+
+Biodiversity
+
+- CSO Census
+- EPA
+- Fáilte Ireland
+- Population centres, density and statistics
+- Tourism – Dept of Tourism
+- Northern Ireland Statistics and Research Agency (NISRA)
+
+Population and Human Health
+
+- CORINE Land cover Database
+- EPA GIS datasets
+- European Commission
+- Geological Survey Ireland (GSI)
+- Teagasc Soil Information
+- UK Land Cover Map
+- Geological Survey of Northern Ireland (GSNI)
+
+Land Soils, Geology
+
+• EPA GIS datasets • Catchments.ie • National Catchment Flood Risk Management Programme (CFRAM) • Office Public Works (OPW) • Geological Survey Ireland (GSI) • DAERA • Northern Ireland Environment Agency • Morphological Quality Index / River Hydromorphology Assessment Technique
+
+Water
+
+- EPA Air Quality in Ireland reports
+- EPA datasets
+- World Health Organisation (WHO)
+- Northern Ireland Environment Agency (NIEA)
+- DAERA – Air Pollution in NI
+
+Air Quality
+
+- CSO datasets
+- EPA datasets
+- Flood Risk Management Plans
+- Met Éireann
+- Sectoral Climate Change Adaptation Plans
+- UNFCC
+- Geological Survey Ireland (GSI)
+- Climate Change Committee
+- Northern Ireland Environment Agency (NIEA)
+- Northern Ireland Climate Change Adaptation Program
+
+Climate Change
+
+Prepared for: Transport Infrastructure Ireland
+
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
+
+Potential Data Sources SEA Theme
+
+• National Monuments Service / Record of Monuments and Places (RMP) • National Inventory of Architectural Heritage (NIAH) • UNESCO World Heritage Sites • Department of Heritage • Built Heritage at Risk in Northern Ireland (BHARNI) database • Historic Map Viewer (DFI) • Historic Environment Division (HED) • NI Heritage
+
+Cultural Heritage
+
+- CORINE Land cover Database
+- EPA datasets
+- National Landscape Strategy 2015-2025
+- DAERA - Regional Landscape Character Map viewer
+- DAERA - Landscape Character of Northern Ireland
+
+Landscape
+
+4.3 Biodiversity
+
+4.3.1 Introduction
+
+Biodiversity is a measurement of the variety and variability of flora and fauna in an area and
+
+any associated habitats. The importance of preserving biodiversity is recognised from an
+
+international to a local level. There is an intrinsic value to biodiversity while also having value
+
+in terms of quality of life and amenity.
+
+Ireland has a rich diversity of ecosystems and wildlife in its terrestrial, freshwater and marine
+
+environments. However, over the last number of decades, human impacts on biodiversity have
+
+accelerated, which has resulted in increased damage and loss of habitats and species, the
+
+diversification of wildlife and the degradation of our environment8. On a global scale,
+
+biodiversity loss has been identified as one of the biggest threats facing humanity in the next
+
+decade.
+
+Under EU law, Ireland is obligated to protect and preserve biodiversity. This protection covers
+
+species and habitats both within and outside designated sites. The Habitats Directive seeks
+
+to ensure the appropriate conservation of natural habitats and of wild fauna and flora. The
+
+Birds Directive (2009/147/EC) ensures the appropriate protection of Special Protection Areas
+
+(SPAs) (sites which are classified for rare and vulnerable birds listed in Annex I of the
+
+Directive).
+
+The National Biodiversity Action Plan (NBAP) for Ireland provides a framework for
+
+government, civil society and private sectors to track and assess progress towards Ireland’s
+
+Vision for Biodiversity over a five-year timeframe from 2017 to 2021.The NBAP seeks to
+
+address current issues and halt loss of biodiversity, in line with international commitments. The
+
+goal was to reduce biodiversity loss and degradation by 2016 and progress toward a
+
+8 Department of Culture, Heritage and the Gaeltacht (DCHG) (2017). National Biodiversity Action Plan 2017-2021.
+
+Prepared for: Transport Infrastructure Ireland AECOM
+
+SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
+
+substantial recovery be made by 2020. This follows the European Commission EU Biodiversity
+
+Strategyto 2020 and the recent 8th Environmental Action Programme to 2030, to protect
+
+biodiversity, pursing zero pollution to air water and soil, and reducing climate pressures. At the
+
+time of writing this report the NBAP for 2021-2025 has not been released.
+
+Designated Sites
+
+To protect its biodiversity resources, Ireland has designated numerous sites and species of
+
+conservation value and / or concern. These are outlined in Table 4.2 below.
+
+Table 4.2: List of Designated Sites in Ireland
+
+Number of Description
+
+Sites
+
+Biosphere reserves promote solutions reconciling the conservation of biodiversity with its sustainable use. They are learning areas for sustainable development under diverse ecological, social and economic contexts, touching the lives of more than 250 million people9.
+
+2
+
+In Ireland these sites comprise Dublin Bay and Killarney National Park.
+
+Within OSPAR, MPAs are identified as areas for which protective, conservation, restorative or precautionary measures have been instituted for the purpose of protecting and conserving species, habitats, ecosystems or ecological processes of the marine environment.
+
+OSPAR Marine Protected Area
+
+19
+
+They may include existing SACs and SPAs, as well as other areas established under international or regional agreements (e.g., OSPAR, Helsinki Commission [HELCOM]).
+
+The Convention on Wetlands, called the RAMSAR Convention, is an intergovernmental treaty that provides the framework for national action and international cooperation for the conservation and wise use of wetlands and their resources10.
+
+45
+
+Wetlands are important ecosystems, which improve water quality, provide storm protection, flood mitigation, stabilise shorelines and maintain biodiversity. Ireland presently has 45 no. RAMSAR sites.
+
+The Important Bird Areas (IBA) Programme is a BirdLife International initiative aimed at identifying and protecting a network of critical sites for the conservation of the world’s birds.
+
+140
+
+BirdWatch Ireland is responsible for promoting and updating the status of Ireland’s birds and their key sites11.
+
+Special Areas of
+
+439 (6 are offshore)
+
+Special Areas of Conservation (SAC) are designated under the EU Habitats Directive (92/43/EEC).
+
+SACs*
+
+Special Protection Areas (SPAs) are designated under the Birds 165* Directive (2009/147/EC).
+
+Protection Area
+
+9 UNESCO (2022). Biosphere Reserves. 10 RAMSAR (2022). 11 Bird Life (2022). Data Zone.
+
+Prepared for: Transport Infrastructure Ireland AECOM
+
+SEA of the National Cycle Network Plan
+
+Designation Description Type
+
+Natural Heritage Areas (NHAs) are legally protected areas that are considered important for their habitats or which hold species of plants and animals whose habitat needs protection, including geological/geomorphological sites in need of protection through NHA designation.
+
+Natural Heritage Area (NHA)
+
+## 73 blanket bogs)
 
 ### 2.3.1 Appropriate Assessment (AA)
 
@@ -14176,7 +13890,7 @@ SEA of the National Cycle Network Plan SEA Environmental Report (Updated)
 
 ### 4.12.8 Key issues: Landscape and Visual
 
-*Pages 266–453*
+*Pages 266–459*
 
 4.12.8 Key issues: Landscape and Visual
 
@@ -18025,7 +17739,251 @@ Table of Contents
 
 1. Introduction .................................................................................................................. 1 1.1 Introduction and Legislative Context ................................................................... 1 1.2 Content of the SEA Adoption Statement .............................................................. 2 1.3 Implications of SEA for the Plan .......................................................................... 2 2. How Environmental Considerations were Integrated into the Plan ............................... 4 2.1 Introduction ......................................................................................................... 4 2.2 Consultation ........................................................................................................ 4 2.3 Communication of Environmental Sensitivities Throughout the SEA process ...... 5 2.3.1 Appropriate Assessment (AA) ............................................................................. 5 2.4 Consideration of Alternatives .............................................................................. 6 2.5 Integration of Individual Measures into the NCN Plan ......................................... 6 3. Environmental Report and Submissions / Observations ............................................... 7 3.1 Introduction ......................................................................................................... 7 3.2 Submissions on the SEA Scoping Report ........................................................... 7 3.3 Submissions on the Draft NCN Plan and SEA Environmental Report ................. 9 3.4 SEA Environmental Report ................................................................................. 9 4. Summary of Alternatives Considered ......................................................................... 20 4.1 Introduction ....................................................................................................... 20 4.2 Limitations in Available Alternatives .................................................................. 20 4.3 Assessment of Reasonable Alternatives for the NCN Plan................................ 21 4.4 Summary of Evaluation of Alternatives .............................................................. 21 5. Monitoring Measures ................................................................................................. 22 5.1 Introduction ....................................................................................................... 22 5.2 Indicators .......................................................................................................... 22 5.3 Targets .............................................................................................................. 23 5.4 Sources, Reporting and Frequency ................................................................... 23 Appendix A Summary of Scoping Submissions ................................................................... 27
 
-### 73 blanket
+Tables
+
+Table 3.1: Summary of SEA Environmental Report Submissions ........................................ 10 Table 5.1: Targets, Indicators and Sources .......................................................................... 24
+
+Prepared for: Transport Infrastructure Ireland AECOM
+
+National Cycle Network Plan SEA Adoption Statement
+
+Prepared for: Transport Infrastructure Ireland AECOM
+
+National Cycle Network Plan
+
+### 1. Introduction
+
+1.1 Introduction and Legislative Context
+
+This is the Strategic Environmental Assessment (SEA) Adoption Statement for the National
+
+Cycle Network (NCN) Plan (referred to hereafter as the ‘NCN Plan’).
+
+Strategic environmental assessment (SEA) is a process for evaluating, at the earliest
+
+appropriate stage, the likely environmental effects of implementing a Plan or other strategic
+
+action in order to ensure that environmental considerations are appropriately addressed in the
+
+decision-making process both during the preparation and prior to adoption of a plan.
+
+The European Directive (2001/42/EC) on the Assessment of the Effects of Certain Plans and
+
+Programmes on the Environment (the ‘SEA Directive’) was transposed into national legislation
+
+by:
+
+European Communities (EC) (Environmental Assessment of Certain Plans and
+
+Programmes) Regulations 2004 (S.I. No. 435 of 2004); and
+
+Planning and Development (Strategic Environmental Assessment) Regulations 2004
+
+(S.I. No. 436 of 2004).
+
+These regulations were subsequently amended by the:
+
+EC (Environmental Assessment of Certain Plans and Programmes) (Amendment)
+
+Regulations, 2011 (S.I. No. 200 of 2011); and
+
+Planning and Development (Strategic Environmental Assessment) (Amendment)
+
+Regulations, 2011 (S.I. No. 201 of 2011).
+
+Schedule 2 (9) of S.I. No. 435 of 2004 highlights that an SEA “shall be carried out for all plans
+
+and programmes…which are prepared for agriculture, forestry, fisheries, energy, industry,
+
+transport, waste management, water management, telecommunications and tourism, and
+
+which set the framework for future development consent of projects listed in Annexes I and II
+
+to the Environmental Impact Assessment Directive”1. The SEA for the NCN Plan has therefore
+
+been undertaken to meet the requirements of S.I. No. 435 of 2004 (as amended).
+
+The legislation requires that the plan-making authority must make available an SEA Adoption
+
+Statement summarising how the SEA and SEA consultations have been taken into account in
+
+the making of the Plan. In addition, the plan-making authority has to detail the reasons for
+
+choosing the plan or programme as adopted, in the light of the other reasonable alternatives
+
+dealt with, and the measures decided concerning monitoring.
+
+1 Section 9(1) of S.I. No. 435 of 2004 as amended by S.I. No. 200 of 2011
+
+Prepared for: Transport Infrastructure Ireland
+
+National Cycle Network Plan SEA Adoption Statement
+
+This SEA Adoption Statement is a reflective document that looks back on the SEA process,
+
+what has been achieved and it also sets out what monitoring will be done in the future.
+
+1.2 Content of the SEA Adoption Statement
+
+The main purpose of an SEA Adoption Statement is to document how environmental
+
+considerations and the views of statutory consultees and other submissions, and observations
+
+received during the consultation phases have been taken into account during the preparation
+
+of the final Plan and the arrangements put in place for monitoring.
+
+The SEA Adoption Statement is described in Article 9 of the SEA Directive as a statutory
+
+requirement and should be made available with the adopted Plan. The SEA Adoption
+
+Statement will be issued to the ‘environmental authorities’ previously consulted, with a view to
+
+outlining the key stages of the SEA process and illustrating how environmental considerations
+
+have been integrated into the plan and key decisions taken in the Plan as a consequence of
+
+the SEA.
+
+The SEA Adoption Statement is required to include the following information:
+
+a) How environmental considerations have been integrated into the Plan (Section 2);
+
+b) How the Environmental Report, submissions and observations made to the planning
+
+authority and any transboundary consultations (where relevant) have been taken
+
+into account during the preparation of the Plan (Section 3);
+
+c) The reasons for choosing the Plan, as adopted, in the light of the other reasonable
+
+alternatives dealt with (Section 4); and
+
+d) The measures decided upon to monitor the significant environmental effects of
+
+implementation of the Plan (Section 5).
+
+On adoption of the National Cycle Network Plan the authority (Transport Infrastructure Ireland
+
+(TII)) is required under Section 13I of the Planning and Development (Strategic Environmental
+
+Assessment) Regulations 2004 (S.I. No. 436 of 2004) as amended, to make this SEA
+
+Statement available to the ‘environmental authorities’ and the public.
+
+1.3 Implications of SEA for the Plan
+
+An SEA Screening Report was prepared by AECOM for the NCN Plan in November 2021. The
+
+screening sought to determine whether the full SEA process was required for the NCN Plan.
+
+The report concluded the following:
+
+“... the plan is likely to set the framework for subsequent plans and projects which have the
+
+potential for significant effects on the environment. This includes, potentially, plans
+
+requiring an SEA process or projects requiring an EIA process. For this reason, it is
+
+concluded that a full SEA process is required to accompany the NCN Plan”
+
+Prepared for: Transport Infrastructure Ireland AECOM
+
+National Cycle Network Plan SEA Adoption Statement
+
+The SEA was subsequently undertaken, with the findings of the SEA process being presented
+
+in the SEA Environmental Report, which accompanied the draft NCN Plan for public
+
+consultation (May 2022).
+
+Following consultation on the draft NCN Plan, the SEA Environmental Report was updated to
+
+in order to take account of:
+
+consultation comments on the draft NCN Plan and Environmental Report; and
+
+changes to the draft NCN Plan that were made following consultation.
+
+Transport Infrastructure Ireland (TII) has taken into account the findings of all relevant SEA
+
+outputs during the development of the NCN Plan. In this respect the SEA has formed an
+
+integral part of the evidence base for the NCN Plan.
+
+Prepared for: Transport Infrastructure Ireland AECOM
+
+National Cycle Network Plan SEA Adoption Statement
+
+### 2. How Environmental Considerations were Integrated into the Plan
+
+2.1 Introduction
+
+Environmental considerations were integrated into the NCN Plan making process at all stages,
+
+i.e., the Scoping stage, at the Environmental Report stage and following the submissions and
+
+observations from the ‘environmental authorities’ and the public.
+
+Environmental considerations were integrated into the NCN Plan through:
+
+Responses to consultation.
+
+Communication of environmental sensitivities throughout the SEA process.
+
+Appropriate Assessment2.
+
+Consideration of alternatives.
+
+Integration of individual measures into the NCN Plan (i.e., SEA and AA).
+
+These stages are discussed in more detail below.
+
+2.2 Consultation
+
+The ‘environmental authorities’ identified by the SEA Regulations, were issued the SEA
+
+Scoping Report in March 2022. Currently, the SEA environmental authorities are as follows
+
+the:
+
+Environmental Protection Agency (EPA);
+
+Minister for Agriculture, Food and the Marine;
+
+Minister for Housing, Local Government and Heritage [including the Development
+
+Applications Unit]; and
+
+Minister for the Environment, Climate and Communications.
+
+As the NCN Plan has the potential to affect the environment in Northern Ireland, transboundary
+
+consultation was also undertaken with the main environmental authority in Northern Ireland:
+
+Department of Agriculture, Environment and Rural Affairs (DAERA): Northern Ireland
+
+Environment Agency (NIEA)3.
+
+The Draft NCN Plan and SEA Environmental Report were made available for consultation,
+
+alongside consultation on the draft NCN Plan4. The SEA environmental authorities, as well as
+
+2 A Stage 2 Appropriate Assessment (AA) has been undertaken alongside the preparation of the Plan. 3 A submission was also received from Department for Communities (DfC): Historic Environment Division (HED). 4 Website for the NCN Plan Consultation available at: https://ncn.consultation.ai/
+
+Prepared for: Transport Infrastructure Ireland AECOM
+
+National Cycle Network Plan SEA Adoption Statement
+
+the relevant transboundary authority, were notified so that they may make a submission or
+
+observation in relation to the SEA Environmental Report and / or the draft NCN Plan.
+
+Details of the submissions made during the SEA Scoping Report and draft NCN Plan and / or
+
+the SEA Environmental Report while on public display is provided in Section 3.2 and Section
+
+### 73 blanket bogs)
 
 *Pages 225–257*
 

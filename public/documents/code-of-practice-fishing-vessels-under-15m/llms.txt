@@ -8,8 +8,8 @@
 
 - [Front Matter](sections/front-matter/) — pages 1–42
   - [Front Matter](sections/front-matter/front-matter.md) — pages 1–42
-- [8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND](sections/8-manning-training-certification-emergency-procedures-and/) — pages 43–45
-  - [8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND](sections/8-manning-training-certification-emergency-procedures-and/overview.md) — pages 43–45
+- [8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND ORGANISATION OF WORKING TIME](sections/8-manning-training-certification-emergency-procedures-and-organisation-of-working-time/) — pages 43–45
+  - [8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND ORGANISATION OF WORKING TIME](sections/8-manning-training-certification-emergency-procedures-and-organisation-of-working-time/overview.md) — pages 43–45
 - [9 RADIO COMMUNICATIONS](sections/9-radio-communications/) — pages 46–54
   - [9 RADIO COMMUNICATIONS](sections/9-radio-communications/overview.md) — pages 46–54
 - [11 ACCOMMODATION AND WORKING SPACES](sections/11-accommodation-and-working-spaces/) — pages 57–71

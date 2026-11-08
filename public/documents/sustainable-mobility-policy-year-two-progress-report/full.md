@@ -2,221 +2,17 @@
 
 Source: https://assets.gov.ie/static/documents/national-sustainable-mobility-policy-year-two-progress-report.pdf
 
-## ”
+## Front Matter
 
-### ”
+### Front Matter
 
-*Pages 4–4*
+*Pages 1–2*
 
-The Year Two Progress Report provides an update on progress across each of the 91 actions since the publication of the SMP Year One Progress Report in August 2023. To date, 33 actions are complete, 24 are on schedule for delivery, 19 are delayed, eight are at risk of delay and seven relate to areas of work which take place annually or on an ongoing basis.
-
-targets are a 50% increase in daily active travel journeys, a 130% increase in daily public transport journeys, and a 20% reduction in total vehicle kilometres travelled by 2030
-
-The report also outlines the work of key initiatives established as part of the SMP: the SMP Pathfinder Programme; the SMP Research Network; and the National Sustainable Mobility Forum. Additional
-
-![Figure from page 4](assets/p004-f01.webp)
-
-*Figure from page 4*
-
-### Policy and Action Plan
-
-*Pages 5–10*
-
-The 91 actions in the SMP Action Plan are grouped under 10 high-level goals, all stemming from the SMP’s three overarching principles:
-
-Safe and Green Mobility
-
-Key Principle
-
-1. Improve Mobility Safety.
-
-2. Decarbonise Public Transport.
-
-3. Expand availability of sustainable mobility in metropolitan areas.
-
-4. Expand availability of sustainable mobility in regional and rural areas.
-
-5. Encourage people to choose sustainable mobility over the private car.
-
-People-Focused Mobility
-
-Key Principle
-
-6.Take a whole of journey approach to mobility, promoting inclusive access for all.
-
-7.Design infrastructure according to Universal Design Principles and the Hierarchy of Road Users model.
-
-8.Promote sustainable mobility through research and citizen engagement.
-
-Better-Integrated Mobility
-
-9. Better integrate land use and transport planning at all levels.
-
-Key Principle
-
-10. Promote smart and integrated mobility through innovative technologies and development of appropriate regulation.
-
-A dedicated division within the Department of Transport (DoT) was established in September 2022 to manage the SMP portfolio and to act as a secretariat to the SMP Leadership Group and Delivery Team which work to oversee and drive implementation of the SMP Action Plan and the SMP Pathfinder Programme, respectively.
-
-SMP Action Status Update
-
-This Report provides an outline of the progress made in the two years since the Policy was launched in April 2022, as well as an update on the implementation of actions since the last report was published in August 2023.
-
-Ongoing (7)
-
-![Figure 1: Action delivery status to the end of Year 2.](assets/p006-f01.webp)
-
-*Figure 1: Action delivery status to the end of Year 2.*
-
-8%
-
-Completed (33)
-
-36%
-
-At Risk of Delay (8)
-
-9%
-
-SMP Action Progress
-
-Delayed (19) 26%
-
-On Schedule (24)
-
-21%
-
-Completed
-
-It should be noted that the action status categorisation, as outlined in Figure 1 and the remainder of the report, is by necessity an imperfect tool. For example, where actions consist of several sub-actions, a small delay to only one sub-action will have the effect of categorising the main action as ‘Delayed’ or ‘At Risk of Delay’. This often misrepresents the level of progress underway across an action, particularly where the remaining sub-actions are on schedule for delivery or are fully completed. Accordingly, headline statistics should be read together with Annex 1, which provides the full details on progress across all 91 actions under the SMP.
-
-In its first year, 17 SMP actions were completed, including the introduction of the Young Adult Travel Card, the Transport for Ireland (TFI) Live App and an enhancement of public transport services throughout various towns and villages throughout Ireland. In its second year, 16 further SMP actions were completed. Like many of the actions contained in the policy, these will help to enhance road safety, promote sustainable mobility and increase services in rural areas.
-
-For example, a report was completed on the feasibility of using bus-mounted cameras to detect illegal parking in bus lanes (SMP Action 91). Building on this work, a new Camera Strategy is currently under development by Transport Infrastructure Ireland (TII) to further develop camera-based enforcement by An Garda Síochána (Action 07).
-
-For ease of reference, however, the following summarises the progress made under the action status categories in line with Figure 1:
-
-Sustainable Mobility Policy | Year Two Progress Report
-
-Guidelines were also issued to road authorities related to traffic calming measures (Action 58). These are crucial steps to ensuring safer and more efficient roads for all road users.
-
-The Department and NTA have completed various actions to further promote the uptake of sustainable mobility and active travel. The NTA have expanded the Smarter Travel behaviour change programme, increasing the number of Smarter Travel partners and successfully launching the Smarter Travel Mark (Action 44). The Department also completed a study to assess incentives for encouraging greater use of active travel as a mode of transport (Action 45) and a public engagement strategy was developed and published to promote the benefits of sustainable mobility and raise public awareness of options (Action 68)3. A review was also carried out by the Department on the impact of the Pilot Bike and E-Bike Upcycling Initiative (Action 43)4, in collaboration with the Department of Community and Rural Development.
-
-In relation to increasing the suite of available sustainable mobility options, legislation was commenced to permit the use of Powered Public Transporters (PPTs) on public roads (Action 89) with a full suite of regulations introduced on 20 May 2024 (Action 90) to allow for the safe design and use of e-scooters in urban settings.
-
-As well as the publication of the National Cycle Network in Q1 2024 (Action 29), the Cycle Design Manual was also published in Q2 2024 and associated training carried out (Action 64)2. This incorporates updated cycle scheme design guidance aligned with the safe system approach. Collectively, these will facilitate the rollout of high-quality active travel infrastructure.
-
-A strategy to transition the Small Public Service Vehicle (SPSV) fleet to lower/zero emission technologies was developed and commenced by Zero Emission Vehicles
-
-2. https://www.nationaltransport.ie/publications/cycle-design-manual/ 3. https://www.gov.ie/en/publication/e3134-public-engagement-strategy/#:~:text=The%20guiding%20principle%20is%20 that,a%20better%2C%20cleaner%20and%20fairer 4. https://www.pobal.ie/app/uploads/2023/12/Upcycling-of-Bicycles-and-e-Bikes-Pilot-Initiative-EVALUATION-REPORT_. pdf
-
-Ireland (ZEVI), which is an office within the Department of Transport (Action 10).
-
-Several actions within the SMP relate to the introduction of public transport improvements. Delivery of these actions is also progressing well, including the expansion of rail fleet capacity (Action 20), and implementing a programme of improved town bus services (Action 34).
-
-In conjunction with the development of Connecting Ireland, work was undertaken to increase the provision of local area hackney services. The subsidised Local Area Hackney Scheme Pilot went live in early 2023 with provisional grant offers issued to 15 areas (Action 36).
-
-At Risk of Delay
-
-Six new actions have been moved into the “At Risk of Delay” category since the first Progress Report was published in August 2023, placing eight actions overall in this category.
-
-The NTA published its National Household Travel Survey in Q3 2023, a nationwide study of Ireland’s travel habits. These reports will be published annually (Action 69)5 and will be vital in informing future policy.
-
-Two of these have been deemed at risk of delay due to their dependency on other actions being completed or by being overtaken by wider workstreams. For example, the expansion of the operation of shared bike schemes in cities (Action 18) and a model for bike share schemes for regional growth centres and key towns (Action 31) will now form part of the NTA's wider 'strategy for rollout of expanded shared services' (Action 87) and will be aligned with a new National Policy Statement on Shared Mobility Hubs which is being developed by the Department. As a result, the current contract governing the operation of TFI bikes has been extended by 1 year. These actions are expected to be complete by end 2024.
-
-Transport appraisal guidance has been updated to replace the existing Common Appraisal Framework (Action 73) and guidelines have been published and issued to Local Authorities on Sustainable and Compact Settlement Guidance (Action 79).
-
-On Schedule
-
-As outlined in Figure 1, 26% of actions remain on schedule. These include a variety of initiatives and interventions including the electrification of bus fleets in each of the five cities as well as town and Local Link services (Actions 13, 14 and 15). Also on schedule are actions related to the delivery of additional cycling infrastructure in the five cities and regional areas, the expansion of the greenway network and the implementation of a programme of secure bike parking (Action 19, 27, 30 and 41). Further actions related to improving passenger experience, the rollout of awareness campaigns on public transport, and a series of activities to improve accessibility in public transport vehicles and stations are also on track to be delivered on time (Action 1, 2 and 48).
-
-With regard to Metrolink, the Railway Order was submitted on schedule to An Bord Pleanála in September 2022, and an oral hearing on the project was concluded on 28 March 2024. Work is progressing on the development of the required procurement strategy, design and tender documents and in June 2024 TII announced the selection of a Project Director to lead the project in the coming years. Notwithstanding these positive developments, the project is currently rated as ‘at risk of delay’ in recognition of the time
-
-5. https://www.nationaltransport.ie/publications/national-household-travel-survey-2022/
-
-elapsed since lodgement of the Railway Order and the time taken in relation to securing key personnel. (Action 24)
-
-Amendments arising from related consultation processes delayed the publishing of the Cycle Network plans (Action 28). However, following a statutory consultation in respect of a Strategic Environmental Assessment, it is now expected to publish relevant Cycle Network plans in Q3 2024. There have also been some delays with the development of a demand management scheme for the Greater Dublin Area (Action 40) which is linked to progress on the wider national ‘Moving Together’ strategy. The GDA strategy is expected to be published for public consultation following the finalisation of the national strategy.
-
-Overall, the SMP Leadership Group and its Delivery Team will continue to monitor actions which are ‘At Risk’ to ensure they are brought on schedule as soon as possible, and to prioritise those actions which will have a direct and tangible impact in shifting journeys from private cars to more sustainable modes of transport.
-
-Delayed
-
-Out of the 13 total actions that were delayed from the first year, nine were completed (Actions 7, 29, 58, 64, 68, 73, 79, 82, 89 and 91) and one has been moved to ongoing (Action 46). Although 16 further actions are delayed in addition to the three carried over from the first year, most of these are expected to be completed shortly – during Q3 and Q4 of 2024.
-
-With regard to the development of the framework strategy for the transition of commercial and PSO long distance bus services to low emission technologies, the Department is currently awaiting a report from a market consultation on Zero-Emission Ramp-Accessible Coaches (Action 9). In cases where changes to legislation are required
-
-![Figure from page 9](assets/p009-f01.webp)
-
-*Figure from page 9*
-
-(Actions 72 and 75), constraints on Oireachtas time have had an impact on the final delivery date.
-
-which had consequent impacts on the original timeline for Action 87 under the SMP. That said, it is expected that the ‘strategy for rollout of expanded shared services’ will be developed by the end of 2024.
-
-The DART+ Coastal South was delayed due to a change of scope and is now being progressed through a phased approach (Action 12). However, the DART+ West and DART+ South West Railway Order applications have already been submitted, and the DART+ Coastal North Railway Order was also recently submitted in July 2024. Permission was granted by An Bord Pleanála to the DART+ West line in July 2024.
-
-Ongoing
-
-Several SMP actions relate to areas of work which take place annually or on an ongoing basis, which are monitored via quarterly updates. These include the provision of training and annual work programmes to improve road infrastructure.
-
-Action 46 has been changed to ‘Ongoing’ this year as it incorporates the annual provision of training to students under the Cycle Right programme. The other elements of this action – the commencement of the Safe Routes to Schools programme and the identification of measures to improve the sustainability of the School Transport system – have been completed.
-
-The appraisal and planning processes for new light rail in Dublin and Cork are also delayed, along with work to consider the feasibility of light rail in Galway (Action 21). However, progress has been made, with the preferred route for Cork close to being identified. Equally, the Preliminary Business Case and Draft Railway Order documentation for Luas Finglas are under preparation and on target for submission in Q3 2024. The draft Galway transport strategy is also expected to be published for consultation by Q2 2025.
-
-A draft Alignment and Pathways report has been prepared to operationalise Action 47 (Explore potential of road-user charging measures through the Better Road User Charging Evaluation (BRUCE) study). However, this study will form part of a wider review on transport taxation as envisaged by a recommendation in a new national demand management strategy, ‘Moving Together: A Strategic Approach to the Improved Efficiency of the Transport System in Ireland’, which is due for completion later in 2024.
-
-Work to develop a strategy for the expansion of shared car, bike and PPT services at transport hubs and interchanges (Action 87) is well advanced and is being developed in tandem with a significant pilot on mobility hubs, which arose from an action in the Climate Action Plan 2023. CAP23 outlined an increased ambition for shared mobility,
-
-### Delivery Team
-
-*Pages 11–11*
-
-In Year Two of delivering the SMP (April 2023- 2024), the governance structures established in the first year continued to provide an effective means for scrutinising overall implementation.
-
-including the Strategic Approach to Public Engagement on Climate Action and Sustainable Mobility and Moving Together: A Strategic Approach to the Improved Efficiency of the Transport System in Ireland. In addition, in its role as the Taskforce with responsibility for overseeing the delivery of cross-cutting actions related to transport in the Climate Action Plans, the LG provided input into the development of the Transport Chapter of Climate Action Plan 2024 (CAP24).
-
-The Leadership Group (LG) is comprised of high-level representatives from the National Transport Authority (NTA), Transport Infrastructure Ireland (TII), the regional assemblies (SRA, NWRA, and EMRA), City and County Management Association (CCMA), Department of Housing, Local Government, and Heritage (DHLGH), Department of the Environment, Climate and Communications (DECC), Road Safety Authority (RSA), Sustainable Energy Authority of Ireland (SEAI), as well as several divisions of the Department of Transport. This group continued to meet on a quarterly basis during the second year of implementation, considering challenges to the delivery of specific actions where needed.
-
-The SMP Delivery Team (DT), which consists of representatives from the LG’s own organisations as well as broader representation when required, continued to interrogate the delivery of the SMP and Pathfinder Programme at a more granular level. The DT met on a monthly basis throughout Year 2, monitoring progress on the implementation of the various pathfinders, considering any risks and/or mitigations required to facilitate timely delivery and escalating issues - where necessary - to the LG.
-
-The LG contributed on an ongoing basis to the development of SMP-related measures
-
-![Figure from page 11](assets/p011-f01.webp)
-
-*Figure from page 11*
-
-### Programme
-
-*Pages 12–12*
-
-The SMP Pathfinder Programme was established in October 2022. The Pathfinders are a series of innovative projects and initiatives to be delivered expeditiously, with the objective of reducing carbon emissions in the transport sector and demonstrating how delivery can happen at pace while showcasing the benefits of the projects in many communities, towns and cities across the country.
-
-way for a similar transition in other services across Ireland, starting with Limerick where an electrified regional bus service was launched in April 2024.
-
-In May 2023, the National Transport Authority launched a new Smarter Travel Mark. This Mark provides certification to organisations that support active and sustainable travel and encourage the reduction in single-person car usage amongst their staff, customers, visitors, and students in the case of third level campuses. As of July 2024, 57 organisations have been awarded either the gold, silver or bronze award, including the Department of Transport, and 8 applications are currently in progress. The NTA’s Smarter Travel team engage with any organisation who do not
-
-To date, two projects have been fully completed, with good progress being made across all other pathfinder projects. In January 2023, the first full electrification of a town bus service was launched in Athlone, providing clean and green public transport services for the town. This Pathfinder project paved the
-
-![Figure from page 12](assets/p012-f01.webp)
-
-*Figure from page 12*
-
-Launch of Phase One of the D24 Neighbourhood Cycle Network
-
-## Policy
-
-### Policy
-
-*Pages 1–1*
+#### Sustainable Mobility Policy Year Two Progress Report
 
 Department of Transport
 
-## Table of contents
-
 ### Table of contents
-
-*Pages 2–2*
 
 Minister’s Foreword 2
 
@@ -308,11 +104,221 @@ The National Sustainable Mobility Policy was published in April 2022. The Policy
 
 sections set out the progress that has been made on policy developments since the publication of the SMP in the areas of shared mobility, demand management, public engagement and road safety. Finally, the report considers the impact of policy measures taken to date, and the steps to be taken to develop a second Action Plan covering the remaining years of the SMP. Throughout the report, case studies provide examples of specific initiatives to support the rollout of sustainable mobility measures across the country.
 
-## ”
+## ” These key Climate Action Plan
 
-### ”
+The Year Two Progress Report provides an update on progress across each of the 91 actions since the publication of the SMP Year One Progress Report in August 2023. To date, 33 actions are complete, 24 are on schedule for delivery, 19 are delayed, eight are at risk of delay and seven relate to areas of work which take place annually or on an ongoing basis.
 
-*Pages 13–14*
+targets are a 50% increase in daily active travel journeys, a 130% increase in daily public transport journeys, and a 20% reduction in total vehicle kilometres travelled by 2030
+
+The report also outlines the work of key initiatives established as part of the SMP: the SMP Pathfinder Programme; the SMP Research Network; and the National Sustainable Mobility Forum. Additional
+
+![Figure from page 4](assets/p004-f01.webp)
+
+*Figure from page 4*
+
+## Sustainable Mobility Policy and Action Plan
+
+### Sustainable Mobility Policy and Action Plan
+
+*Pages 5–5*
+
+The 91 actions in the SMP Action Plan are grouped under 10 high-level goals, all stemming from the SMP’s three overarching principles:
+
+Safe and Green Mobility
+
+Key Principle
+
+1. Improve Mobility Safety.
+
+2. Decarbonise Public Transport.
+
+3. Expand availability of sustainable mobility in metropolitan areas.
+
+4. Expand availability of sustainable mobility in regional and rural areas.
+
+5. Encourage people to choose sustainable mobility over the private car.
+
+People-Focused Mobility
+
+Key Principle
+
+6.Take a whole of journey approach to mobility, promoting inclusive access for all.
+
+7.Design infrastructure according to Universal Design Principles and the Hierarchy of Road Users model.
+
+8.Promote sustainable mobility through research and citizen engagement.
+
+Better-Integrated Mobility
+
+9. Better integrate land use and transport planning at all levels.
+
+Key Principle
+
+10. Promote smart and integrated mobility through innovative technologies and development of appropriate regulation.
+
+A dedicated division within the Department of Transport (DoT) was established in September 2022 to manage the SMP portfolio and to act as a secretariat to the SMP Leadership Group and Delivery Team which work to oversee and drive implementation of the SMP Action Plan and the SMP Pathfinder Programme, respectively.
+
+## SMP Action Status Update
+
+### SMP Action Status Update
+
+*Pages 6–6*
+
+SMP Action Status Update
+
+This Report provides an outline of the progress made in the two years since the Policy was launched in April 2022, as well as an update on the implementation of actions since the last report was published in August 2023.
+
+Ongoing (7)
+
+![Figure 1: Action delivery status to the end of Year 2.](assets/p006-f01.webp)
+
+*Figure 1: Action delivery status to the end of Year 2.*
+
+8%
+
+Completed (33)
+
+36%
+
+At Risk of Delay (8)
+
+9%
+
+SMP Action Progress
+
+Delayed (19) 26%
+
+On Schedule (24)
+
+21%
+
+### Completed
+
+*Pages 6–10*
+
+Completed
+
+It should be noted that the action status categorisation, as outlined in Figure 1 and the remainder of the report, is by necessity an imperfect tool. For example, where actions consist of several sub-actions, a small delay to only one sub-action will have the effect of categorising the main action as ‘Delayed’ or ‘At Risk of Delay’. This often misrepresents the level of progress underway across an action, particularly where the remaining sub-actions are on schedule for delivery or are fully completed. Accordingly, headline statistics should be read together with Annex 1, which provides the full details on progress across all 91 actions under the SMP.
+
+In its first year, 17 SMP actions were completed, including the introduction of the Young Adult Travel Card, the Transport for Ireland (TFI) Live App and an enhancement of public transport services throughout various towns and villages throughout Ireland. In its second year, 16 further SMP actions were completed. Like many of the actions contained in the policy, these will help to enhance road safety, promote sustainable mobility and increase services in rural areas.
+
+For example, a report was completed on the feasibility of using bus-mounted cameras to detect illegal parking in bus lanes (SMP Action 91). Building on this work, a new Camera Strategy is currently under development by Transport Infrastructure Ireland (TII) to further develop camera-based enforcement by An Garda Síochána (Action 07).
+
+For ease of reference, however, the following summarises the progress made under the action status categories in line with Figure 1:
+
+Sustainable Mobility Policy | Year Two Progress Report
+
+Guidelines were also issued to road authorities related to traffic calming measures (Action 58). These are crucial steps to ensuring safer and more efficient roads for all road users.
+
+The Department and NTA have completed various actions to further promote the uptake of sustainable mobility and active travel. The NTA have expanded the Smarter Travel behaviour change programme, increasing the number of Smarter Travel partners and successfully launching the Smarter Travel Mark (Action 44). The Department also completed a study to assess incentives for encouraging greater use of active travel as a mode of transport (Action 45) and a public engagement strategy was developed and published to promote the benefits of sustainable mobility and raise public awareness of options (Action 68)3. A review was also carried out by the Department on the impact of the Pilot Bike and E-Bike Upcycling Initiative (Action 43)4, in collaboration with the Department of Community and Rural Development.
+
+In relation to increasing the suite of available sustainable mobility options, legislation was commenced to permit the use of Powered Public Transporters (PPTs) on public roads (Action 89) with a full suite of regulations introduced on 20 May 2024 (Action 90) to allow for the safe design and use of e-scooters in urban settings.
+
+As well as the publication of the National Cycle Network in Q1 2024 (Action 29), the Cycle Design Manual was also published in Q2 2024 and associated training carried out (Action 64)2. This incorporates updated cycle scheme design guidance aligned with the safe system approach. Collectively, these will facilitate the rollout of high-quality active travel infrastructure.
+
+A strategy to transition the Small Public Service Vehicle (SPSV) fleet to lower/zero emission technologies was developed and commenced by Zero Emission Vehicles
+
+2. https://www.nationaltransport.ie/publications/cycle-design-manual/ 3. https://www.gov.ie/en/publication/e3134-public-engagement-strategy/#:~:text=The%20guiding%20principle%20is%20 that,a%20better%2C%20cleaner%20and%20fairer 4. https://www.pobal.ie/app/uploads/2023/12/Upcycling-of-Bicycles-and-e-Bikes-Pilot-Initiative-EVALUATION-REPORT_. pdf
+
+Ireland (ZEVI), which is an office within the Department of Transport (Action 10).
+
+Several actions within the SMP relate to the introduction of public transport improvements. Delivery of these actions is also progressing well, including the expansion of rail fleet capacity (Action 20), and implementing a programme of improved town bus services (Action 34).
+
+In conjunction with the development of Connecting Ireland, work was undertaken to increase the provision of local area hackney services. The subsidised Local Area Hackney Scheme Pilot went live in early 2023 with provisional grant offers issued to 15 areas (Action 36).
+
+At Risk of Delay
+
+Six new actions have been moved into the “At Risk of Delay” category since the first Progress Report was published in August 2023, placing eight actions overall in this category.
+
+The NTA published its National Household Travel Survey in Q3 2023, a nationwide study of Ireland’s travel habits. These reports will be published annually (Action 69)5 and will be vital in informing future policy.
+
+Two of these have been deemed at risk of delay due to their dependency on other actions being completed or by being overtaken by wider workstreams. For example, the expansion of the operation of shared bike schemes in cities (Action 18) and a model for bike share schemes for regional growth centres and key towns (Action 31) will now form part of the NTA's wider 'strategy for rollout of expanded shared services' (Action 87) and will be aligned with a new National Policy Statement on Shared Mobility Hubs which is being developed by the Department. As a result, the current contract governing the operation of TFI bikes has been extended by 1 year. These actions are expected to be complete by end 2024.
+
+Transport appraisal guidance has been updated to replace the existing Common Appraisal Framework (Action 73) and guidelines have been published and issued to Local Authorities on Sustainable and Compact Settlement Guidance (Action 79).
+
+On Schedule
+
+As outlined in Figure 1, 26% of actions remain on schedule. These include a variety of initiatives and interventions including the electrification of bus fleets in each of the five cities as well as town and Local Link services (Actions 13, 14 and 15). Also on schedule are actions related to the delivery of additional cycling infrastructure in the five cities and regional areas, the expansion of the greenway network and the implementation of a programme of secure bike parking (Action 19, 27, 30 and 41). Further actions related to improving passenger experience, the rollout of awareness campaigns on public transport, and a series of activities to improve accessibility in public transport vehicles and stations are also on track to be delivered on time (Action 1, 2 and 48).
+
+With regard to Metrolink, the Railway Order was submitted on schedule to An Bord Pleanála in September 2022, and an oral hearing on the project was concluded on 28 March 2024. Work is progressing on the development of the required procurement strategy, design and tender documents and in June 2024 TII announced the selection of a Project Director to lead the project in the coming years. Notwithstanding these positive developments, the project is currently rated as ‘at risk of delay’ in recognition of the time
+
+5. https://www.nationaltransport.ie/publications/national-household-travel-survey-2022/
+
+elapsed since lodgement of the Railway Order and the time taken in relation to securing key personnel. (Action 24)
+
+Amendments arising from related consultation processes delayed the publishing of the Cycle Network plans (Action 28). However, following a statutory consultation in respect of a Strategic Environmental Assessment, it is now expected to publish relevant Cycle Network plans in Q3 2024. There have also been some delays with the development of a demand management scheme for the Greater Dublin Area (Action 40) which is linked to progress on the wider national ‘Moving Together’ strategy. The GDA strategy is expected to be published for public consultation following the finalisation of the national strategy.
+
+Overall, the SMP Leadership Group and its Delivery Team will continue to monitor actions which are ‘At Risk’ to ensure they are brought on schedule as soon as possible, and to prioritise those actions which will have a direct and tangible impact in shifting journeys from private cars to more sustainable modes of transport.
+
+Delayed
+
+Out of the 13 total actions that were delayed from the first year, nine were completed (Actions 7, 29, 58, 64, 68, 73, 79, 82, 89 and 91) and one has been moved to ongoing (Action 46). Although 16 further actions are delayed in addition to the three carried over from the first year, most of these are expected to be completed shortly – during Q3 and Q4 of 2024.
+
+With regard to the development of the framework strategy for the transition of commercial and PSO long distance bus services to low emission technologies, the Department is currently awaiting a report from a market consultation on Zero-Emission Ramp-Accessible Coaches (Action 9). In cases where changes to legislation are required
+
+![Figure from page 9](assets/p009-f01.webp)
+
+*Figure from page 9*
+
+(Actions 72 and 75), constraints on Oireachtas time have had an impact on the final delivery date.
+
+which had consequent impacts on the original timeline for Action 87 under the SMP. That said, it is expected that the ‘strategy for rollout of expanded shared services’ will be developed by the end of 2024.
+
+The DART+ Coastal South was delayed due to a change of scope and is now being progressed through a phased approach (Action 12). However, the DART+ West and DART+ South West Railway Order applications have already been submitted, and the DART+ Coastal North Railway Order was also recently submitted in July 2024. Permission was granted by An Bord Pleanála to the DART+ West line in July 2024.
+
+Ongoing
+
+Several SMP actions relate to areas of work which take place annually or on an ongoing basis, which are monitored via quarterly updates. These include the provision of training and annual work programmes to improve road infrastructure.
+
+Action 46 has been changed to ‘Ongoing’ this year as it incorporates the annual provision of training to students under the Cycle Right programme. The other elements of this action – the commencement of the Safe Routes to Schools programme and the identification of measures to improve the sustainability of the School Transport system – have been completed.
+
+The appraisal and planning processes for new light rail in Dublin and Cork are also delayed, along with work to consider the feasibility of light rail in Galway (Action 21). However, progress has been made, with the preferred route for Cork close to being identified. Equally, the Preliminary Business Case and Draft Railway Order documentation for Luas Finglas are under preparation and on target for submission in Q3 2024. The draft Galway transport strategy is also expected to be published for consultation by Q2 2025.
+
+A draft Alignment and Pathways report has been prepared to operationalise Action 47 (Explore potential of road-user charging measures through the Better Road User Charging Evaluation (BRUCE) study). However, this study will form part of a wider review on transport taxation as envisaged by a recommendation in a new national demand management strategy, ‘Moving Together: A Strategic Approach to the Improved Efficiency of the Transport System in Ireland’, which is due for completion later in 2024.
+
+Work to develop a strategy for the expansion of shared car, bike and PPT services at transport hubs and interchanges (Action 87) is well advanced and is being developed in tandem with a significant pilot on mobility hubs, which arose from an action in the Climate Action Plan 2023. CAP23 outlined an increased ambition for shared mobility,
+
+## Governance Structures – Leadership Group and Delivery Team
+
+### Governance Structures – Leadership Group and Delivery Team
+
+*Pages 11–11*
+
+In Year Two of delivering the SMP (April 2023- 2024), the governance structures established in the first year continued to provide an effective means for scrutinising overall implementation.
+
+including the Strategic Approach to Public Engagement on Climate Action and Sustainable Mobility and Moving Together: A Strategic Approach to the Improved Efficiency of the Transport System in Ireland. In addition, in its role as the Taskforce with responsibility for overseeing the delivery of cross-cutting actions related to transport in the Climate Action Plans, the LG provided input into the development of the Transport Chapter of Climate Action Plan 2024 (CAP24).
+
+The Leadership Group (LG) is comprised of high-level representatives from the National Transport Authority (NTA), Transport Infrastructure Ireland (TII), the regional assemblies (SRA, NWRA, and EMRA), City and County Management Association (CCMA), Department of Housing, Local Government, and Heritage (DHLGH), Department of the Environment, Climate and Communications (DECC), Road Safety Authority (RSA), Sustainable Energy Authority of Ireland (SEAI), as well as several divisions of the Department of Transport. This group continued to meet on a quarterly basis during the second year of implementation, considering challenges to the delivery of specific actions where needed.
+
+The SMP Delivery Team (DT), which consists of representatives from the LG’s own organisations as well as broader representation when required, continued to interrogate the delivery of the SMP and Pathfinder Programme at a more granular level. The DT met on a monthly basis throughout Year 2, monitoring progress on the implementation of the various pathfinders, considering any risks and/or mitigations required to facilitate timely delivery and escalating issues - where necessary - to the LG.
+
+The LG contributed on an ongoing basis to the development of SMP-related measures
+
+![Figure from page 11](assets/p011-f01.webp)
+
+*Figure from page 11*
+
+## SMP Pathfinder Programme
+
+### SMP Pathfinder Programme
+
+*Pages 12–14*
+
+The SMP Pathfinder Programme was established in October 2022. The Pathfinders are a series of innovative projects and initiatives to be delivered expeditiously, with the objective of reducing carbon emissions in the transport sector and demonstrating how delivery can happen at pace while showcasing the benefits of the projects in many communities, towns and cities across the country.
+
+way for a similar transition in other services across Ireland, starting with Limerick where an electrified regional bus service was launched in April 2024.
+
+In May 2023, the National Transport Authority launched a new Smarter Travel Mark. This Mark provides certification to organisations that support active and sustainable travel and encourage the reduction in single-person car usage amongst their staff, customers, visitors, and students in the case of third level campuses. As of July 2024, 57 organisations have been awarded either the gold, silver or bronze award, including the Department of Transport, and 8 applications are currently in progress. The NTA’s Smarter Travel team engage with any organisation who do not
+
+To date, two projects have been fully completed, with good progress being made across all other pathfinder projects. In January 2023, the first full electrification of a town bus service was launched in Athlone, providing clean and green public transport services for the town. This Pathfinder project paved the
+
+![Figure from page 12](assets/p012-f01.webp)
+
+*Figure from page 12*
+
+Launch of Phase One of the D24 Neighbourhood Cycle Network
+
+## ” It is intended that the Sustainable Mobility Academy
 
 achieve an award to assist them to improve their scores and work towards at least the bronze level certification. Details about the Mark and the list of awardees can be found here.
 
@@ -350,6 +356,8 @@ Departmental funding goes towards reducing the cost of the training programme fo
 
 The Department of Transport is committed to continuing to work with Cycling Ireland and other stakeholders, to ensure that the children have access to this important safety training, thereby encouraging them to use this sustainable transport option for both school and leisure activities.
 
+## SMP Research Network
+
 ### SMP Research Network
 
 *Pages 15–15*
@@ -372,9 +380,11 @@ The Research Network developed eight research priorities to support the allocati
 
 The Research Network also engages with the broader research community. External
 
-### Mobility Forum
+## National Sustainable Mobility Forum
 
-*Pages 16–17*
+### National Sustainable Mobility Forum
+
+*Pages 16–19*
 
 The establishment of a National Sustainable Mobility Forum as a means of providing a platform for collaborative engagement with national, regional and local stakeholders was one of the core actions set out on the SMP. The inaugural Forum took place in April 2023, and the second was held in Portlaoise on 23 May 2024.
 
@@ -400,9 +410,7 @@ A report of the Forum has been published and is available to access here.
 
 *Figure from page 17*
 
-### Moving Together:
-
-*Pages 18–19*
+### Moving Together: A Strategic Approach to the Improved Efficiency of the Transport System in Ireland
 
 As per Action 39 of the SMP, which committed to establishing ‘a Demand Management Unit within the Department of Transport to develop an approach to traffic demand management taking account of the recommendations of the Five Cities Demand Management Study’ and a later commitment in CAP23 to develop a new national demand management strategy, the Department published for public consultation a draft Strategy ‘Moving together - A Strategic Approach to Improving the Efficiency of Ireland’s Transport System’ in April 2024.
 
@@ -428,7 +436,9 @@ Several lessons were learned from implementing the schemes in Blackrock and Dun 
 
 Through collaboration between DLRCC and Technological University (TU) Dublin, an evaluation framework was developed to define what types of data needed to be collected for monitoring and analysis. The independent evaluation of the CMR by TU Dublin found that the route demonstrated positive impacts both in terms of mobility and from a socio-economic perspective. It is the highest performing cycle route in the DLR area, with bike trips increasing through the provision of quality cycle infrastructure. In terms of business and
 
-### Strategy
+## Public Engagement Strategy
+
+### Public Engagement Strategy
 
 *Pages 20–21*
 
@@ -460,11 +470,7 @@ In this context, the following initiatives are in place:
 
 Your Journey Counts, a multi-year, multimillion-euro national advertising campaign launched in August 2023. The campaign aims to provide a vision for Ireland’s transport system and the necessary developments to achieve it.
 
-## ”
-
-### ”
-
-*Pages 21–21*
+## ” The Public Engagement Strategy
 
 aims to strengthen the social contract between the public and
 
@@ -486,6 +492,8 @@ take climate action.
 
 *Figure from page 21*
 
+## Road Safety
+
 ### Road Safety
 
 *Pages 22–22*
@@ -503,6 +511,8 @@ Formal adoption of the Road Safety Strategy Phase 2 Action Plan is expected in Q
 *Figure from page 22*
 
 The three remaining Actions – 6, 65 and 66 – are delayed. A scoping exercise to consider the steps required to deliver SMP Action 6 is now complete, but this action will involve a comprehensive review of all road traffic legislation, and can happen only in the context of consolidation of the related Acts. Similarly, new secondary legislation is required to undertake a pilot project to examine the feasibility of introducing a ‘cyclist turning left on red’ provision as set out in Action 66. With regard to Action 65 ‘Review and make recommendations on facilitating cyclists and pedestrians at junctions, including measures that do not require powered traffic signals’, progressing this action was dependent on the completion of the National Cycle Network and the outcome of the Speed Limits Review. Given the progress made on these actions, the next step involves the development of a report which will consider overall progress, identify where further progress is required and develop an implementation plan.
+
+## Shared Mobility
 
 ### Shared Mobility
 
@@ -532,7 +542,9 @@ The Sligo project has already demonstrated the value of utilising a pilot approa
 
 The pilot sought to understand if a shared e-bike schemes could encourage the desired modal shift from private car towards sustainable transport within Sligo. Since its introduction, almost 150,000 trips have been taken on the e-bikes, travelling 280,000 kms. The average journey is 9 minutes and covers a journey of 1.9km. While key metrics
 
-### SMP Outcomes:
+## SMP Outcomes: A Reflection on the Impacts of SMP Implementation To Date
+
+### SMP Outcomes: A Reflection on the Impacts of SMP Implementation To Date
 
 *Pages 25–25*
 
@@ -542,7 +554,9 @@ While transport emissions increased marginally, from 2022 to 2023, by 0.3 per ce
 
 Other trends suggest the early implementation of actions under this Policy are helping to augment the behavioural change needed. For example, in 2022, there were 88% more primary school children commuting by bicycle than in 2016, and the number of students aged 13 to 18 cycling to school was up 79%. While it may be too early to capture statistically significant data on the 1,000 plus active travel projects being delivered across the country, these projects are being wellreceived upon completion, providing people with new and safer options for active travel. It is also expected that the impacts of such interventions will become more magnified when local walking and cycling infrastructure projects become further connected and optimised by the network effect. These projects are also helping to enhance the public realm, creating safer, and more accessible town centres in line with the core principles of the SMP.
 
-### Action Plan 2026-2030
+## Looking Ahead – SMP Action Plan 2026-2030
+
+### Looking Ahead – SMP Action Plan 2026-2030
 
 *Pages 26–26*
 
@@ -558,9 +572,11 @@ A Strategic Approach to the Improved Efficiency of the Transport System in Irela
 
 The exercise to develop this new Action Plan will complement ongoing policy development and delivery across the Department of Transport and Government more broadly, including the finalisation of ‘Moving Together:
 
-### of SMP Actions
+## Annex 1 – Delivery to date of SMP Actions
 
-*Pages 27–57*
+### Annex 1 – Delivery to date of SMP Actions
+
+*Pages 27–35*
 
 SMP Action Status to end April 2024
 
@@ -627,6 +643,10 @@ Complete
 | --- | --- | --- | --- | --- | --- | --- |
 | 90 | Regulate to ensure the safe use of and minimum safety and design requirements for PPTs. | Regulation introduced | 2023 Q4 | Complete | • Full suite of regulations were commenced on 20 May 2024. o The Road Traffic (Electric Scooters) Regulations 2024 (S.I 199 of 2024) o The Road Traffic (Signs) Regulations 2024 (S.I 200 of 2024) o The Road Traffic (Traffic and Parking) (Amendment) Regulations 2024 (S.I 222 of 2024) o The Road Traffic (Use of Powered Personal Transporters) Regulations 2024 (S.I 224 of 2024) o The Road Traffic Act 1994 (Detention of Powered Personal Transporters) Regulations 2024 (S.I 223 of 2024) o The Road Traffic Act 2010 (Part 3) (Fixed Charge Ofef nces) Regulations 2024 (S.I 227 of 2024), | Shift |
 | 91 | Examine the feasibility of utilising bus mounted cameras to detect and enforce illegal parking in bus lanes and if appropriate make recommendations for implementation. (RSS action 122) |  | 2022 Q4 | Complete | A report on this action was completed by the NTA and presented to the Road Safety Transformation Partnership Board in November 2023. Along with work by TII in relation to speed cameras, this report forms a key input into the ongoing work to develop a National Safety Camera Strategy. Development of this strategy is being led by TII and it is expected to be published before the end of 2024. | Shift |
+
+### On Schedule
+
+*Pages 36–50*
 
 On Schedule
 
@@ -721,6 +741,10 @@ Delayed
 | 78 | Deliver metropolitan area transport strategies in the cities. (Complements CAP actions 254 and 256) | 2022 Limerick Shannon Metropolitan Area Transport Strategy published. Review of Transport Strategy for the Greater Dublin Area completed, Waterford Metropolitan Area Transport Strategy published. 2023 Review of Galway Transport Strategy completed. 2025 Review of Cork Metropolitan Area Transport Strategy commenced. | 2025 Q4 | Delayed | Limerick Shannon MATS published 1 December 2022 Waterford MATS published 19 December 2022. Finalised, updated Greater Dublin Area Transport Strategy published January 2023. Development is underway on the updating of the Galway Metropolitan Area Transport Strategy. Draft expected to be published for consultation by Q2 2025. | Avoid |
 | 82 | Define a governance framework for the implementation and operation of Mobility as a Service (MaaS) to encompass all transport modes nationally. | Governance framework defined | 2024 Q4 | Delayed | NTA submitet d a position paper to DoT in May 2024 outlining the Authority's proposed governance model for implementing an integrated Mobility as a Service (MaaS) system. | Shift |
 | 87 | Expand shared car, bike and powered personal transporters (PPT) services at transport hubs and interchanges. | Strategy for rollout of expanded shared services developed. | 2023 Q4 |  | A draft strategy has been prepared, taking account account of related actions in the SMP but also new actions in CAP 23/24. It is expected to be finalised in the coming months. | Shift |
+
+### At Risk of Delay
+
+*Pages 51–57*
 
 At Risk of Delay
 
