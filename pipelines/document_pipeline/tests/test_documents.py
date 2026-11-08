@@ -44,6 +44,7 @@ def test_load_documents_returns_one_normalised_record(tmp_path):
         "expected_action_count": None,
         "expected_status_counts": None,
         "status_source": None,
+        "hold": None,
     }]
 
 
@@ -330,4 +331,22 @@ def test_status_source_is_rejected_on_a_plan(tmp_path):
 def test_unknown_status_source_is_fatal(tmp_path):
     path = write_yaml(tmp_path, _STATUS_REPORT + "    status_source: spreadsheet\n")
     with pytest.raises(ValueError, match="status_source 'spreadsheet'"):
+        _load(path)
+
+
+# --- hold ---------------------------------------------------------------
+
+def test_hold_is_accepted_and_carried_on_a_plan(tmp_path):
+    path = write_yaml(tmp_path, PLAN + '    hold: "Structure is broken."\n')
+    assert _load(path)[0]["hold"] == "Structure is broken."
+
+
+def test_hold_defaults_to_none(tmp_path):
+    assert _load(write_yaml(tmp_path, PLAN))[0]["hold"] is None
+
+
+@pytest.mark.parametrize("bad", ['""', '"   "', "true", "3", "[x]"])
+def test_hold_must_be_a_non_empty_string(tmp_path, bad):
+    path = write_yaml(tmp_path, PLAN + f"    hold: {bad}\n")
+    with pytest.raises(ValueError, match="hold"):
         _load(path)

@@ -170,6 +170,9 @@ def _doc_metadata(doc: dict) -> dict:
         # Where a report's status detail lives when not in its PDF ("annex");
         # extract_action_status skips a report that declares one.
         "status_source": doc.get("status_source"),
+        # Reason the document is deliberately withheld; publish_bundles lists it
+        # under index.json `failed` as "held" whatever assemble_sections says.
+        "hold": doc.get("hold"),
         "policy_id": doc["policy_id"],
         "policy_role": doc["policy_role"],
         "expected_action_count": doc.get("expected_action_count"),

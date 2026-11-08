@@ -31,6 +31,10 @@ A document `assemble_sections` marked `publishable: false` is skipped here —
 that is the point at which a coverage gap or overlap actually withholds a
 document, per the contract's "never half-published" guarantee — and listed
 under `index.json`'s `failed` with a reason and message instead.
+
+A document whose `documents.yml` entry sets `hold` is listed under `failed`
+with `reason: "held"` and the hold string as `message`, no bundle written —
+regardless of `publishable`. Hold takes precedence over `not_publishable`.
 """
 from __future__ import annotations
 
@@ -420,6 +424,23 @@ def process(records, figures_by_doc, fetched_by_doc, assemble_dir, figures_dir,
             continue
         if verbose:
             print(f"  {slug} ...", end=" ", flush=True)
+
+        hold = (fetched_by_doc.get(slug) or {}).get("hold")
+        if hold:
+            # Explicit withholding wins over every other state, including a
+            # document that happens to be publishable.
+            writer.append([{
+                "doc_slug": slug, "status": "failed", "reason": "held",
+                "message": hold,
+            }])
+            try:
+                _remove_stale_doc_dir(public_root, slug)
+            except Exception as e:
+                append_error(step_dir, _error_dict(
+                    "PublishBundlesStaleDirRemovalFailed", str(e), {"doc_slug": slug}))
+            if verbose:
+                print("[held]", flush=True)
+            continue
 
         if not record.get("publishable"):
             coverage = record["coverage"]

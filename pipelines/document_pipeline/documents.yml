@@ -227,13 +227,12 @@ documents:
   # only `action-plan` documents are action sources (see README), so none of
   # these emit action records. Titles are read off the PDF covers.
 
-  # HELD BACK from publication on purpose: detect_structure collapses this
-  # 284-page plan into two chapters (pages 1-214 "Front Matter", 215-284
-  # "Untitled"). Pages 2 and 283 are blank, and with no furniture override the
-  # coverage gap keeps it out of the library (listed under index.json `failed`).
-  # The entry stays because the 2023 progress reports `reports_on` it. To publish,
-  # fix its structure, then add [2, 283] under this slug in
-  # steps/assemble_sections/override.json.
+  # HELD BACK from publication on purpose (see `hold` below): detect_structure
+  # collapses this 284-page plan into two chapters (pages 1-214 "Front Matter",
+  # 215-284 "Untitled"). The entry stays because the 2023 progress reports
+  # `reports_on` it. To publish: fix its structure, add the blank-page furniture
+  # override [2, 283] under this slug in steps/assemble_sections/override.json,
+  # then remove `hold`. Adding the override alone does NOT publish it.
   - doc_slug: climate-action-plan-2023
     title: "Climate Action Plan 2023"
     url: "https://assets.gov.ie/static/documents/climate-action-plan-2023-8b7dba92-f397-4163-8293-3aea656f6b5f.pdf"
@@ -242,6 +241,7 @@ documents:
     publisher: "Department of Climate, Energy and the Environment"
     public_body_id: 1198
     published_date: "2022-12-21"
+    hold: "Structure detection collapses it to two chapters; republish once detect_structure handles it."
 
   - doc_slug: climate-action-plan-2024
     title: "Climate Action Plan 2024"

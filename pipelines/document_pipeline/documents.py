@@ -20,7 +20,7 @@ DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 _REQUIRED = ("doc_slug", "title", "url", "policy_id", "policy_role")
 _OPTIONAL = ("publisher", "public_body_id", "published_date", "role",
              "reports_on", "expected_action_count", "expected_status_counts",
-             "status_source")
+             "status_source", "hold")
 
 VALID_ROLES = ("plan", "report")
 # Where a report's machine-readable status detail lives, when not in its PDF.
@@ -123,6 +123,13 @@ def load_documents(path=DOCUMENTS_PATH, policy_ids=None) -> list:
                 raise ValueError(
                     f"{where} has status_source {status_source!r}; "
                     f"must be one of {VALID_STATUS_SOURCES}")
+
+        if "hold" in entry:
+            hold = entry["hold"]
+            if not isinstance(hold, str) or not hold.strip():
+                raise ValueError(
+                    f"{where} has hold {hold!r}; must be a non-empty string "
+                    f"giving the reason the document is withheld")
 
         expected_actions = entry.get("expected_action_count")
         if expected_actions is not None and (isinstance(expected_actions, bool)

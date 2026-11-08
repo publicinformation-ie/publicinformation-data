@@ -160,3 +160,10 @@ def test_doc_metadata_carries_status_source():
     assert meta["status_source"] == "annex"
     assert _doc_metadata({"doc_slug": "a", "policy_id": "p", "policy_role": "primary",
                           "title": "A", "url": "https://example.ie/a.pdf"})["status_source"] is None
+
+
+def test_doc_metadata_carries_hold():
+    meta = _doc_metadata({
+        "doc_slug": "d", "title": "D", "url": "https://x/d.pdf",
+        "policy_id": "p", "policy_role": "primary", "hold": "Because."})
+    assert meta["hold"] == "Because."
