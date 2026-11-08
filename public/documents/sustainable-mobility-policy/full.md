@@ -55,7 +55,7 @@ National Sustainable Mobility Policy | Table of Contents
 | Stakeholder engagement 53 |  |
 | National Transport Authority Advisory Council 53 |  |
 | Research 55 |  |
-| Chapter 6 - Principle 3: Betet r Integrated Mobility | 56 |
+| Chapter 6 - Principle 3: Better Integrated Mobility | 56 |
 | Introduction 57 |  |
 | Integration of land use and transport planning 58 |  |
 | Smart mobility 62 |  |
@@ -863,7 +863,7 @@ Principles and Goals
 | --- | --- |
 | Safe and Green Mobility | 1. Improve mobility safety. 2. Decarbonise public transport. 3. Expand availability of sustainable mobility in metropolitan areas. 4. Expand availability of sustainable mobility in regional and rural areas. 5. Encourage people to choose sustainable mobility over the private car. |
 | People Focused Mobility | 6. Take a whole of journey approach to mobility, promoting inclusive access for all. 7. Design infrastructure according to Universal Design Principles and the Hierarchy of Road Users model. 8. Promote sustainable mobility through research and citizen engagement. |
-| Betet r Integrated Mobility | 9. Betet r integrate land use and transport planning at all levels. 10. Promote smart and integrated mobility through innovative technologies and development of appropriate regulation. |
+| Better Integrated Mobility | 9. Better integrate land use and transport planning at all levels. 10. Promote smart and integrated mobility through innovative technologies and development of appropriate regulation. |
 
 National Sustainable Mobility Policy | Our Vision
 

@@ -103,7 +103,7 @@ National Investment Framework for Transport in Ireland | Overview
 | Figure 1: Where NIFTI sits in the hierarchy of Project Ireland 2040 strategies and plans | 14 |
 | Figure 2: Project Ireland 2040 National Strategic Outcomes | 20 |
 | Figure 3: Percentage Share of Land Transport Gross Expenditure, 2005 to 2020 | 28 |
-| Figure 4: Revised Natoi nal Development Plan 2021-2030 annual investment in transport, 2021 to 2025 | 29 |
+| Figure 4: Revised National Development Plan 2021-2030 annual investment in transport, 2021 to 2025 | 29 |
 | Figure 5: NIFTI Investment Priorities | 44 |
 | Figure 6: NIFTI Modal Hierarchy | 57 |
 | Figure 7: NIFTI Intervention Hierarchy | 50 |
@@ -117,7 +117,7 @@ National Investment Framework for Transport in Ireland | Overview
 
 | List of Tables |  |
 | --- | --- |
-| Table 1: Estmi ated average annual funding requirement for asset protectoi n and renewal, 2018 to 2040 | 33 |
+| Table 1: Estimated average annual funding requirement for asset protection and renewal, 2018 to 2040 | 33 |
 | Table 2: National Planning Framework targeted pattern of city population growth | 35 |
 | Table 3: NIFTI Intervention Hierarchy—Example Measures | 49 |
 | Table 4: Priority Areas for Further Analysis and Policy Development | 58 |
@@ -816,7 +816,7 @@ capacity issues in the modelling are adjacent to public transport hubs, such as 
 | ENCOURAGING COMPACT GROWTH |  |
 | --- | --- |
 |  | Transport- orientated development |
-| Efef ctive planning and land use strategies encourage the use of sustainable mobility and contribute to liveable communities. Dún Laoghaire is an example of this in practice. In keeping with the principles of transit- oriented development, densities in the immediate vicinity of the DART station are higher than the town average. Dún Laoghaire is also the terminus for well- serviced bus routes, while residents are within walking distance of a range of local amenities, including shops, cultural centres, and blue and green space. Dún Laoghaire also has a high proportion of households without a car. Crucially, although no-car households often correlate with deprivation, this is not the case in Dún Laoghaire. This suggests that many residents choose not to own a car due to the walkability of their neighbourhood and the availability of sustainable mobility modes. Combined with competitive journey times to the city centre when compared with the private car, the comprehensive provision of sustainable mobility likely contributes to the modal split of the Dún Laoghaire Local Electoral Area, in which 46% of people commuted using a sustainable mode according to 2016 Census figures. |  |
+| Effective planning and land use strategies encourage the use of sustainable mobility and contribute to liveable communities. Dún Laoghaire is an example of this in practice. In keeping with the principles of transit- oriented development, densities in the immediate vicinity of the DART station are higher than the town average. Dún Laoghaire is also the terminus for well- serviced bus routes, while residents are within walking distance of a range of local amenities, including shops, cultural centres, and blue and green space. Dún Laoghaire also has a high proportion of households without a car. Crucially, although no-car households often correlate with deprivation, this is not the case in Dún Laoghaire. This suggests that many residents choose not to own a car due to the walkability of their neighbourhood and the availability of sustainable mobility modes. Combined with competitive journey times to the city centre when compared with the private car, the comprehensive provision of sustainable mobility likely contributes to the modal split of the Dún Laoghaire Local Electoral Area, in which 46% of people commuted using a sustainable mode according to 2016 Census figures. |  |
 
 Investment beyond the cities can help address pressures on urban infrastructure if traffic is diverted from entering the city centre, creating more space for sustainable mobility solutions. For example, the modelling suggests that this will be a result of the proposed Galway City Ring Road, by diverting east-west traffic which currently has to travel through the city around the city instead. As far as possible, infrastructure investment should take trips out of cities and towns which do not inherently need to be there, such as heavy goods vehicles travelling to ports via urban areas.
 
@@ -861,7 +861,7 @@ While half of the population growth over coming decades is targeted at the citie
 | ENSURING ACCESSIBILITY |  |
 | --- | --- |
 |  | Lifeline roads on the Dingle peninsula |
-| A ‘lifeline’ road is one which has few available alternatives. Failure of these roads adversely impacts on the accessibility of the surrounding area, leaving the communities they serve exposed to severe disruption and significant increases in journey times. The Dingle Peninsula is an example of an area which is particularly dependent on lifeline roads. Because of its isolated geographic position, the area is reliant on two roads, the N86 and R561, which provide the only access on and of fthe Peninsula. These roads are vital for providing access for goods and tourism, and local residents’ access to hospitals and airports. The roads are located within 10km of each other meaning that there is a heightened risk of both of them becoming inoperable at the same time in the event of area-wide weather disruption. Modelling by TII indicates that the closure of just the N86 would have a similarly significant impact on increasing journey times as the closure of all the roads on the peninsula. This demonstrates the importance of the N86 in providing access and connectivity to the area, and emphasises that maintaining the usability of this road is essential to preserving and strengthening communities living and working on the Dingle peninsula. Because of the high social and economic cost of the failure of lifeline roads on local communities, maintaining their operability must be a high priority. This may require the maintenance of lifeline roads to be considered separately from the general upkeep of the road network. |  |
+| A ‘lifeline’ road is one which has few available alternatives. Failure of these roads adversely impacts on the accessibility of the surrounding area, leaving the communities they serve exposed to severe disruption and significant increases in journey times. The Dingle Peninsula is an example of an area which is particularly dependent on lifeline roads. Because of its isolated geographic position, the area is reliant on two roads, the N86 and R561, which provide the only access on and off the Peninsula. These roads are vital for providing access for goods and tourism, and local residents’ access to hospitals and airports. The roads are located within 10km of each other meaning that there is a heightened risk of both of them becoming inoperable at the same time in the event of area-wide weather disruption. Modelling by TII indicates that the closure of just the N86 would have a similarly significant impact on increasing journey times as the closure of all the roads on the peninsula. This demonstrates the importance of the N86 in providing access and connectivity to the area, and emphasises that maintaining the usability of this road is essential to preserving and strengthening communities living and working on the Dingle peninsula. Because of the high social and economic cost of the failure of lifeline roads on local communities, maintaining their operability must be a high priority. This may require the maintenance of lifeline roads to be considered separately from the general upkeep of the road network. |  |
 
 Rural communities rely on urban areas for accessing certain services. The development of the national transport network will therefore be vital to enhancing access to services for people in rural Ireland. Continued investment in urban transport networks will aid those living in rural areas as well.
 
@@ -1382,7 +1382,7 @@ Table 4: Priority Areas for Further Analysis and Policy Development
 | 4 | Identifying priority assets and infrastructure for protection and renewal investment in the context of climate adaptation and evolving infrastructure uses |
 | 5 | Refreshing the cost of congestion analysis for Dublin and carrying out similar research for the other cities |
 | 6 | Investigating the future role to be played by demand management |
-| 7 | Developing our rail policy and identifying where rail services and infrastructure can be deployed most efficiently and efef ctively, including for freight, and the potential role of higher-/high-speed rail |
+| 7 | Developing our rail policy and identifying where rail services and infrastructure can be deployed most efficiently and effectively, including for freight, and the potential role of higher-/high-speed rail |
 | 8 | Exploring potential future travel demand scenarios and assessing their implications on investment requirements |
 | 9 | Identifying the housing potential associated with planned or proposed transport infrastructure development in the major urban centres |
 
@@ -1439,13 +1439,13 @@ Table 5: Strategic Environmental Assessment Objectives
 | Population, Human Health and Economy | Protect and enhance human health and quality of life in relation to increasing accessibility to economic, employment and community facilities through enhanced transport infrastructure and contributing to reduced transport emissions. |
 | Tourism and Recreation | Protect recreation areas and amenity facilities and support and enhance access for tourism and recreation. |
 | Biodiversity, Flora and Fauna | Protect and, where appropriate, enhance terrestrial, aquatic and soil biodiversity, particularly EU and national designated sites and protected species, and associated ecological corridors. |
-| Landscape and Visual Amenity | Safeguard the character and diversity of the Irish landscape and minimise the visual efef cts on sensitive, designated landscapes and public views. |
+| Landscape and Visual Amenity | Safeguard the character and diversity of the Irish landscape and minimise the visual effects on sensitive, designated landscapes and public views. |
 | Cultural Heritage | Protect cultural heritage resources and their settings. |
 | Geology and Soils | Protect geological sites of value and contribute towards the appropriate management of soil resources and quality. |
 | Air Quality | Contribute to the reduction of air pollution (and improvement of air quality) resulting from transport. |
 | Noise and Vibration | Contribute to mitigation of noise pollution issues resulting from transport. |
 | Water Environment | Support the achievement of Water Framework Directive objectives and avoid increasing flood risk. |
-| Land Use and Material Assets | Promote the sustainable use of natural resources (including land), encourage energy efficiency, materials reuse and recycling and the efef ctive use of existing infrastructure. |
+| Land Use and Material Assets | Promote the sustainable use of natural resources (including land), encourage energy efficiency, materials reuse and recycling and the effective use of existing infrastructure. |
 | Climate Change (Mitigation) | Minimise contributions to climate change (through reducing greenhouse gas emissions and decarbonisation of the transport fleet) as a result of construction of new and/or upgraded transport infrastructure or operation of existing and new transport networks and fleets. |
 | Climate Change (Adaptation) | Ensure that resilience to climate change is incorporated within the existing transport network and any proposed new transport infrastructure and that environmental resilience to climate change is supported. |
 

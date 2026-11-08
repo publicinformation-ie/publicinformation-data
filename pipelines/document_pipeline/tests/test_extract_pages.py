@@ -90,3 +90,23 @@ def test_one_malformed_document_does_not_prevent_the_others(tmp_path, make_write
     (error,) = json.loads((tmp_path / "errors.json").read_text())
     assert error["error_type"] == "PageExtractionFailed"
     assert error["context"]["doc_slug"] == "bad-doc"
+
+
+LIGATURE_PDF = Path(__file__).parent / "fixtures" / "ligature_table.pdf"
+
+
+def test_table_cell_text_survives_kerned_ligatures():
+    import pymupdf
+    from steps.extract_pages.process import extract_tables
+    page = pymupdf.open(LIGATURE_PDF)[0]
+    tables = extract_tables(page)
+    cells = [cell for t in tables for row in t["text"] for cell in row]
+    assert any(cell.startswith("700 battery-\n") for cell in cells)
+    assert not any("batet" in cell for cell in cells)
+
+
+def test_spans_on_the_ligature_page_are_unchanged():
+    import pymupdf
+    from steps.extract_pages.process import extract_spans
+    page = pymupdf.open(LIGATURE_PDF)[0]
+    assert any(s["text"].startswith("700 battery-") for s in extract_spans(page))

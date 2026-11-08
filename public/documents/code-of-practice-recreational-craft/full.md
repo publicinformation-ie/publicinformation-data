@@ -764,7 +764,7 @@ Below is an example of a template that could be used to assist with conducting a
 |  | Think and Prepare | Identify and Assess Hazards and Risks |  |
 | --- | --- | --- | --- |
 | Hazard | Risk | Control Measure | Review/Evaluate your Control Measure |
-| Falling Overboard – Cold water immersion. | Unable to re-board the craft Hypothermia | Never go out alone. Wear a suitable PFD and ensure it fits correctly. Wear appropriate clothing. Have a safe means of re- boarding your craft. | Maintain PFD’s before and afet r every use. Visually check your PFD before your trip. Maintain wetsuits. |
+| Falling Overboard – Cold water immersion. | Unable to re-board the craft Hypothermia | Never go out alone. Wear a suitable PFD and ensure it fits correctly. Wear appropriate clothing. Have a safe means of re- boarding your craft. | Maintain PFD’s before and after every use. Visually check your PFD before your trip. Maintain wetsuits. |
 
 It is important to remain aware of your situation on the water.
 
@@ -776,7 +776,7 @@ There are many types of hazards and associated risks and these can vary dependin
 
 | Possible Hazard | Risk associated with the Hazard | Control Measure/Mitigation |
 | --- | --- | --- |
-| Weather conditions/ Adverse weather forecast. | Dangerous sea/water conditions. Capsize. Falling into cold water/ drowning. Unable to return home. Blown out to sea/of f course. Hypothermia. | Ask the Question – Is it safe to go out? Do not go out in adverse weather conditions or where adverse weather is forecast. Training. Wear PFD. Wear suitable clothing. Know how to use equipment. Never go out alone. Dependable means of communication. |
+| Weather conditions/ Adverse weather forecast. | Dangerous sea/water conditions. Capsize. Falling into cold water/ drowning. Unable to return home. Blown out to sea/off course. Hypothermia. | Ask the Question – Is it safe to go out? Do not go out in adverse weather conditions or where adverse weather is forecast. Training. Wear PFD. Wear suitable clothing. Know how to use equipment. Never go out alone. Dependable means of communication. |
 
 Think and Prepare
 
@@ -788,7 +788,7 @@ Identify and Assess Hazards and Risks
 | --- | --- | --- |
 | Cold weather/ water | Hypothermia. Lack of protective clothing. | Training. Wear PFD. Wear suitable clothing. Dependable means of communication. |
 | Hot sunny weather | Hyperthermia (sunstroke). | Wear suitable clothing. Sunscreen. Wear a hat. |
-| Strong winds Dangerous sea conditions/strong currents | Capsize/falling into cold water/drowning. Hypothermia/cold water shock. Blown out to sea/of f course. | Ask the Question – Is it safe to go out? Wear a PFD. Training. Know Capsize Drill. Know Man Overboard rescue procedures. Means to re-board a craft such as a boarding ladder. Dependable means of communication. |
+| Strong winds Dangerous sea conditions/strong currents | Capsize/falling into cold water/drowning. Hypothermia/cold water shock. Blown out to sea/off course. | Ask the Question – Is it safe to go out? Wear a PFD. Training. Know Capsize Drill. Know Man Overboard rescue procedures. Means to re-board a craft such as a boarding ladder. Dependable means of communication. |
 | Poor visibility/ fog/very heavy rain/darkness | Inability to find way back. Collision with rocks, other fixed objects, river bank, other craft. | Do not go out. Training. Know lights and sound signals used by vessels. Dependable means of communication. |
 
 Think and Prepare
@@ -799,7 +799,7 @@ Identify and Assess Hazards and Risks
 | --- | --- | --- |
 | No voyage plan. No contingency plan if things go wrong. No means of communication. | No plan to deal with an emergency situation. Unable to contact anyone to raise the alarm. No one knows where you are or where you are going. | Plan your voyage and have a back-up plan if you need to change. Tell someone ashore what your plans are, where you are going and your expected departure/arrival times. Log a Traffic Report Message with the IRCG. Have a dependable means of communication. Wear a PFD. |
 | Falling into the water without a PFD/Lifejacket. | Drowning. Cold Water Shock. Hypothermia. | Wear a PFD/Lifejacket at all times. Know how to float without a PFD/Lifejacket. Learn Float to Live techniques. Never go out alone. |
-| Engine failure/ fri e. Damaged boat. Injury. | Float away. Blown of fcourse. Need to abandon ship. | Emergency Action Plan. Designated person ashore. Know how to raise the alarm. Dependable means of communication. Know how to use equipment. Carry appropriate spare parts for your boat’s engine and know how to fix it in an emergency. Carry appropriate equipment to rig a tow and know how to prepare your boat. First Aid Kit. |
+| Engine failure/ fire. Damaged boat. Injury. | Float away. Blown off course. Need to abandon ship. | Emergency Action Plan. Designated person ashore. Know how to raise the alarm. Dependable means of communication. Know how to use equipment. Carry appropriate spare parts for your boat’s engine and know how to fix it in an emergency. Carry appropriate equipment to rig a tow and know how to prepare your boat. First Aid Kit. |
 
 Think and Prepare
 
@@ -999,7 +999,7 @@ Table A – Legislation that applies to recreational craft - continued
 
 | Legislation | All Recreational Craft | Recreational Craft >12 m | Recreational Craft >15 NRT | Recreational Craft >13.7 m |
 | --- | --- | --- | --- | --- |
-| Merchant Shipping (Carriage of Nautical Charts and Publications) Regulations 2021 (S.I. No. 149 of 2021). | Note: All craft, including a craft less than 12m in length that goes out to sea or atet mpts to go out to sea, are required to carry an Illustrated Table of Life Saving Signals. | ✓ | ✓ | ✓ |
+| Merchant Shipping (Carriage of Nautical Charts and Publications) Regulations 2021 (S.I. No. 149 of 2021). | Note: All craft, including a craft less than 12m in length that goes out to sea or attempts to go out to sea, are required to carry an Illustrated Table of Life Saving Signals. | ✓ | ✓ | ✓ |
 | Mercantile Marine Act 1955 (No. 29 of 1955), as amended. |  |  | ✓ | ✓ |
 | Merchant Shipping (Life Saving Appliances) Rules 1983 and 1993. |  |  |  | ✓ |
 | Merchant Shipping (Fire Appliances) Rules 1967, 1983 and 1985 and Merchant Shipping (Fire Protection) Rules 2023. |  |  |  | ✓ |
@@ -1844,15 +1844,15 @@ Table B: Class XII boats – Mandatory Lifesaving Equipment
 | --- | --- | --- |
 | Lifebuoys |  |  |
 | Lifebuoy for each 2 persons carried on board. (Minimum of 2) | ✓ |  |
-| One Lifebuoy fitet d with self-activating smoke and light signal | ✓ |  |
+| One Lifebuoy fitted with self-activating smoke and light signal | ✓ |  |
 
 | Lifesaving Equipment | Recreational Craft (1)* 13.7 - 21.3 metres length Restricted operations | Recreational Craft (2)+ 13.7 - 21.3 metres length Seagoing (post 1986) |
 | --- | --- | --- |
-| One Lifebuoy fitet d with buoyant line (18 m) | ✓ | ✓ |
-| 2 Lifebuoys, one fti et d with smoke/ light signal |  | ✓ |
+| One Lifebuoy fitted with buoyant line (18 m) | ✓ | ✓ |
+| 2 Lifebuoys, one fitted with smoke/ light signal |  | ✓ |
 | Lifejacket |  |  |
 | Lifejacket for each person on board | ✓ |  |
-| Lifejacket for each person on board with light fitet d |  | ✓ |
+| Lifejacket for each person on board with light fitted |  | ✓ |
 | Pyrotechnics |  |  |
 | Six parachute flares or red star rockets | ✓ | ✓ |
 | Waterproof container for flares | ✓ | ✓ |
@@ -1912,12 +1912,12 @@ Legislation
 | --- | --- | --- |
 | Lifebuoys |  |  |
 | Lifebuoy for each 2 persons carried on board. (Minimum of 2) | ✓ |  |
-| One Lifebuoy fitet d with self-activating smoke and light signal | ✓ |  |
-| One Lifebuoy fitet d with buoyant line (18 metres) | ✓ | ✓ |
-| 2 Lifebuoys, one fitet d with smoke/light signal |  | ✓ |
+| One Lifebuoy fitted with self-activating smoke and light signal | ✓ |  |
+| One Lifebuoy fitted with buoyant line (18 metres) | ✓ | ✓ |
+| 2 Lifebuoys, one fitted with smoke/light signal |  | ✓ |
 | Lifejacket |  |  |
 | Lifejacket for each person on board | ✓ |  |
-| Lifejacket for each person on board with light fitet d |  | ✓ |
+| Lifejacket for each person on board with light fitted |  | ✓ |
 | Pyrotechnics |  |  |
 | Six parachute flares or red star rockets | ✓ | ✓ |
 | Waterproof container for flares | ✓ | ✓ |
@@ -1988,9 +1988,9 @@ Table D: Mandatory Fire Fighting Equipment
 | Equipment Item | Boats 13.7 - 15 metres in length | Boats 15 – less than 21.34 metres in length and less than 150 tonnes | Boats of 21.34 metres in length and greater |
 | --- | --- | --- | --- |
 | Fire Extinguishers |  |  |  |
-| 2 fri e extinguishers or fire buckets (one with lanyard) | ✓ | ✓ |  |
-| 3 fri e extinguishers or fire buckets (one with lanyard) |  |  | ✓ |
-| 2 fri e extinguishers suitable for use on oil fires, for boats with internal combustion engines fitet d | ✓ | ✓ | ✓ |
+| 2 fire extinguishers or fire buckets (one with lanyard) | ✓ | ✓ |  |
+| 3 fire extinguishers or fire buckets (one with lanyard) |  |  | ✓ |
+| 2 fire extinguishers suitable for use on oil fires, for boats with internal combustion engines fitted | ✓ | ✓ | ✓ |
 | Fire Pumps/Hoses |  |  |  |
 | Manual fire pump (hand operated) | ✓ | ✓ |  |
 | Dedicated fire pump sea suction | ✓ | ✓ | ✓ |
@@ -1998,7 +1998,7 @@ Table D: Mandatory Fire Fighting Equipment
 | Fire hose nozzle (minimum diameter 6 mm) with jet and water spray | ✓ | ✓ |  |
 | Power driven fire pump |  |  | ✓* |
 | Fire main and hydrant |  |  | ✓ |
-| 2 fri e hoses |  |  | ✓ |
+| 2 fire hoses |  |  | ✓ |
 | Fire hose spray nozzle for machinery spaces |  |  | ✓ |
 | Fireman’s axe |  |  | ✓ |
 
@@ -2660,8 +2660,8 @@ Table E: Sail and Motor Boats - Coastal
 | 1.6 Life raft of sufficient capacity to cater for all crew carried*. | ✓ | ✓ | *✓ |  |
 | 1.7 Emergency Liferaft Grab Bag for abandoning ship. | ✓ | ✓ | ✓ |  |
 | 1.8 A Throw Bag/buoyant heaving line. | ✓ | ✓ | ✓ | ✓ |
-| 1.9 Horseshoe type lifebelt with light. Danbuoy with flag fitet d to one lifebelt. | ✓ | ✓ | ✓ |  |
-| 1.10 Buoyancy sling with floating line – can be fitet d in lieu of one horseshoe lifebelt. | ✓ | ✓ | ✓ |  |
+| 1.9 Horseshoe type lifebelt with light. Danbuoy with flag fitted to one lifebelt. | ✓ | ✓ | ✓ |  |
+| 1.10 Buoyancy sling with floating line – can be fitted in lieu of one horseshoe lifebelt. | ✓ | ✓ | ✓ |  |
 | 1.11 Boarding Ladder. | ✓ | ✓ | ✓ | ✓ |
 
 *Category C craft engaged on overnight coastal passages.
@@ -2678,7 +2678,7 @@ Table E: Sail and Motor Boats - Coastal
 
 | 3. Radios and Communications (see Appendix 2 for additional requirements for Sea Area A1, A2) | A | B | C | D |
 | --- | --- | --- | --- | --- |
-| 3.1 A suitable fixed Marine Band VHF radio transmitet r, with DSC facility (Operators licence required from MSO). | ✓ | ✓ | ✓ |  |
+| 3.1 A suitable fixed Marine Band VHF radio transmitter, with DSC facility (Operators licence required from MSO). | ✓ | ✓ | ✓ |  |
 | 3.2 Marine Band MF/HF/SSB and/or global satellite communication system. | ✓ |  |  |  |
 | 3.3 EPIRB – type 406 – registered in the name of the vessel. | ✓ | ✓ |  |  |
 | 3.4 Radio Transponder unit – SART. | ✓ |  |  |  |
@@ -2727,9 +2727,9 @@ Table E: Sail and Motor Boats - Coastal
 | --- | --- | --- | --- | --- |
 | 6.2 At least one complete repair kit including spares should be carried. | ✓ | ✓ | ✓ |  |
 | 6.3 An electric or engine driven pump can be substituted for a manual model. | ✓ | ✓ |  |  |
-| 6.4 A bucket of capacity 8 – 12 litres, suitably fitet d with a rope lanyard.* | ✓(2) | ✓(2) | ✓ | ✓ |
+| 6.4 A bucket of capacity 8 – 12 litres, suitably fitted with a rope lanyard.* | ✓(2) | ✓(2) | ✓ | ✓ |
 | 6.5 Softwood tapered plugs, located adjacent to all through hull underwater fittings. | ✓ | ✓ | ✓ |  |
-| 6.6 All through hull fittings to be fitet d with isolation valves. | ✓ | ✓ | ✓ |  |
+| 6.6 All through hull fittings to be fitted with isolation valves. | ✓ | ✓ | ✓ |  |
 
 * Do not deploy the bucket overboard while the boat is moving.
 
@@ -2741,13 +2741,13 @@ Table E: Sail and Motor Boats - Coastal
 
 | 8. General Equipment | A | B | C | D |
 | --- | --- | --- | --- | --- |
-| 8.1 Emergency steering means, i.e. tiller for vessels fitet d with wheel steering as their primary means of steering. | ✓ | ✓ | ✓ | ✓ |
+| 8.1 Emergency steering means, i.e. tiller for vessels fitted with wheel steering as their primary means of steering. | ✓ | ✓ | ✓ | ✓ |
 | 8.2 Waterproof torch, capable of also being used for signalling. | ✓ | ✓ | ✓ | ✓ |
 | 8.3 An appropriate tool kit and spare parts for the type of craft being used. | ✓ | ✓ | ✓ | ✓ |
 
 | 8. General Equipment | A | B | C | D |
 | --- | --- | --- | --- | --- |
-| 8.4 Suitable secondary means of engine starting including batet ry, hand start or suitable jump leads. | ✓ | ✓ | ✓ |  |
+| 8.4 Suitable secondary means of engine starting including battery, hand start or suitable jump leads. | ✓ | ✓ | ✓ |  |
 | 8.5 Suitable First Aid Kit including a First Aid manual. | ✓ | ✓ | ✓ | ✓ |
 | 8.6 Storm sails which can be quickly rigged, or the facility to deep reef sails on yachts. | ✓ | ✓ | ✓ |  |
 | 8.7 Emergency repair kit including sail repair kit, spare wash boards and window blanks. | ✓ | ✓ |  |  |
@@ -3304,8 +3304,8 @@ Sail and Motor Boats – Inland Waterways
 | --- | --- | --- |
 | 5.1 Manual/Electric Bilge pump capable of pumping from any hull watertight compartment and with all hatches closed. | ✓ | ✓ |
 | 5.2 At least one complete repair kit including spares should be carried. | ✓ |  |
-| 5.3 2 buckets fitet d with a rope lanyard (Do not use bucket overboard while the boat is moving). In the case of Category F, one bucket or a smaller bailer. | ✓ | ✓(1) |
-| 5.4 All through hull fittings to be fitet d with isolation valves. | ✓ |  |
+| 5.3 2 buckets fitted with a rope lanyard (Do not use bucket overboard while the boat is moving). In the case of Category F, one bucket or a smaller bailer. | ✓ | ✓(1) |
+| 5.4 All through hull fittings to be fitted with isolation valves. | ✓ |  |
 | 5.5 Softwood tapered plugs located adjacent to each through hull underwater fitting. | ✓ |  |
 
 | 6. Anchors and Warps | E | F |
@@ -3316,10 +3316,10 @@ Sail and Motor Boats – Inland Waterways
 
 | 7. General Equipment | E | F |
 | --- | --- | --- |
-| 7.1 Emergency steering means, i.e. tiller for vessels fitet d with wheel steering as their primary means of steering. | ✓ |  |
+| 7.1 Emergency steering means, i.e. tiller for vessels fitted with wheel steering as their primary means of steering. | ✓ |  |
 | 7.2 Waterproof torch. | ✓ | ✓ |
 | 7.3 An appropriate tool kit, and spare parts for the type of craft being used. | ✓ | ✓ |
-| 7.4 Suitable secondary means of engine starting including batet ry or hand start. | ✓ |  |
+| 7.4 Suitable secondary means of engine starting including battery or hand start. | ✓ |  |
 | 7.5 Appropriate First Aid Kit. | ✓ | ✓ |
 | 7.6 Storm Sail which can be quickly rigged, or the facility to deep reef existing sails (Yachts). | ✓ |  |
 | 7.7 Set of Oars / Oarlocks / Paddles. | ✓ | ✓ |
@@ -7978,7 +7978,7 @@ It should also be noted that Automatic Identification System (AIS), transponder 
 | --- | --- | --- | --- | --- |
 | Sea Area radio range | A1 – approx. 30 nM |  |  |  |
 | VHF | Fixed type- approved VHF Radiotelephony on Channels 16, 13, 6 | Fixed type- approved VHF Radiotelephony on Channels 16, 13, 6 | Fixed type- approved VHF Radiotelephony on Channels 16, 13, 6 | Fixed type- approved VHF Radiotelephony on Channels 16, 13, 6 |
-| Handheld VHF | Handheld waterproof VHF with charging facility or spare batet ry in waterproof container | Handheld waterproof VHF with charging facility or spare batet ry in waterproof container | Handheld waterproof VHF with charging facility or spare batet ry in waterproof container |  |
+| Handheld VHF | Handheld waterproof VHF with charging facility or spare battery in waterproof container | Handheld waterproof VHF with charging facility or spare battery in waterproof container | Handheld waterproof VHF with charging facility or spare battery in waterproof container |  |
 | VHF Digital Selective Calling (DSC) | VHF DSC on Channel 70 | VHF DSC on Channel 70 | VHF DSC on Channel 70 |  |
 | EPIRB/PLB | Type-approved EPIRB or PLB | Type-approved EPIRB or PLB | Type-approved EPIRB or PLB |  |
 | Search and Rescue Transponder (SART) | Type-approved SART | Type-approved SART |  |  |
@@ -8160,9 +8160,9 @@ Green marks are kept to your right (starboard) going upstream and into bays and 
 
 Red marks are kept to your left (port) going upstream and into bays and harbours. Red topmarks are always round. Fixed (as opposed to floating) marks often have a white arrow indicating the safe-side.
 
-| (a) and (b) | Vertical stakes or perches with circular red or square/rectangular green topmarks. The stake itself may or may not be painted the same colour as the topmark. Stakes can be near the bank, in the reed margin, on a visible obstruction or out in the water-body. In some areas a topmark is fitet d to the top of a cairn of stones. |
+| (a) and (b) | Vertical stakes or perches with circular red or square/rectangular green topmarks. The stake itself may or may not be painted the same colour as the topmark. Stakes can be near the bank, in the reed margin, on a visible obstruction or out in the water-body. In some areas a topmark is fitted to the top of a cairn of stones. |
 | --- | --- |
-| (c) and (d) | Large floating cagebuoys with circular red or square/rectangular green topmarks and ofet n a large letet r or number which can be related to the navigation charts. Buoy body painted same colour as topmark. |
+| (c) and (d) | Large floating cagebuoys with circular red or square/rectangular green topmarks and often a large letter or number which can be related to the navigation charts. Buoy body painted same colour as topmark. |
 | (e) and (f) | Small cone-shaped floating buoys with circular red or square/ rectangular green top marks. Buoy body painted same colour as the topmark. |
 | (g) and (h) | Red or green painted floating cans or drums with a topmark. |
 | (i) and (j) | Red circles or green squares/rectangles painted on the piers of a bridge to indicate the navigation arch or arches. (Showing “safe- side” arrows) |
@@ -8477,11 +8477,11 @@ The following Table lists the different types of PFD/lifejackets with suggested 
 | Type and Markings | Suggested Uses |
 | --- | --- |
 | International Standard: IMO SOLAS/EU Marine Equipment Directive | Lifejackets for seagoing ships. Intended primarily for use on seagoing ships under IMO (International Maritime Organization) rules. Use for abandoning ship. Not intended for everyday use as they are generally bulky and they need to be kept in good condition for use in abandon ship situations. |
-| European Harmonised Standard: I.S. EN ISO 12402-2:2006 Old Standard: EN 399 | For offshore use and by people who are using items of significant weight and thus require additional buoyancy. Also of value to those who are using clothing which traps air and which will adversely afef ct the self- righting capacity of the lifejacket. Designed to ensure that the user is floating with his/ her mouth and nose clear of the surface at an angle and with sufficient freeboard to limit mouth immersions in waves. |
+| European Harmonised Standard: I.S. EN ISO 12402-2:2006 Old Standard: EN 399 | For offshore use and by people who are using items of significant weight and thus require additional buoyancy. Also of value to those who are using clothing which traps air and which will adversely affect the self- righting capacity of the lifejacket. Designed to ensure that the user is floating with his/ her mouth and nose clear of the surface at an angle and with sufficient freeboard to limit mouth immersions in waves. |
 
 | Type and Markings | Suggested Uses |
 | --- | --- |
-| European Harmonised Standard: I.S. EN ISO 12402-3:2006 Old Standard: EN 396 | For swimmers and non-swimmers of any age. For general offshore and rough weather use. Turns most unconscious wearers face up in water. However, performance may be afef cted if the user is wearing heavy and/or waterproof clothing. May be suitable for use in tidal waters or when foul weather clothing is being worn and where the wearers may not be capable of helping themselves due to injury or exhaustion. |
+| European Harmonised Standard: I.S. EN ISO 12402-3:2006 Old Standard: EN 396 | For swimmers and non-swimmers of any age. For general offshore and rough weather use. Turns most unconscious wearers face up in water. However, performance may be affected if the user is wearing heavy and/or waterproof clothing. May be suitable for use in tidal waters or when foul weather clothing is being worn and where the wearers may not be capable of helping themselves due to injury or exhaustion. |
 | European Harmonised Standard: I.S. EN ISO 12402-4:2006 Old Standard: EN 395 | For swimmers of any age. For use in relatively sheltered/calm waters and intended for those who may have to wait for rescue. Will not turn unconscious wearers face up in water (particularly when wearing heavy clothing). May be suitable in instances where the wearers remain capable of helping themselves. Whilst these PFDs may be less bulky than other types of PFDs, they should not be used in rough conditions or when there is wave splash. |
 | European Harmonised Standard: I.S. EN ISO 12402-5:2006 Old Standard: EN 393 | Only for good swimmers and for use near to a bank or shore where help is close at hand. Requires active participation of the user. Will not hold the face of an unconscious wearer clear of the water and does not have sufficient buoyancy to protect people who are unable to help themselves. May be suitable in circumstances where more bulky or buoyant devices could impair the user’s activity or actually endanger them. They have minimum bulk and cost, but they are of limited use in disturbed water and cannot be expected to keep the user safe for a long period of time. Not a lifejacket. |
 
@@ -8784,10 +8784,10 @@ Appendix
 | 5 | Fresh breeze | Moderate waves, taking a more pronounced, longer form; many white horses are formed. Chance of some spray/ Small trees in leaf begin to sway, crested wavelets form on inland waters | 17- 21 | 19- 24 | 29- 38 |
 | 6 | Strong breeze | Large waves begin to form; the white foam crests are more extensive everywhere. Some spray/Large branches in motion, whistling heard in telephone wires; umbrellas used with difficulty | 22- 27 | 25- 31 | 39- 49 |
 | 7 | Near gale | Sea heaps up and white foam from breaking waves begins to be blown in streaks along the direction of the wind/ Whole trees in motion, inconvenience walking against the wind | 28- 33 | 32- 38 | 50- 61 |
-| 8 | Gale | Moderately high waves of greater length; edges of crests begin to break into spindrift. The foam is blown in well-marked streaks/Breaks of ftwigs, generally impedes progress | 34- 40 | 39- 46 | 62- 74 |
+| 8 | Gale | Moderately high waves of greater length; edges of crests begin to break into spindrift. The foam is blown in well-marked streaks/Breaks off twigs, generally impedes progress | 34- 40 | 39- 46 | 62- 74 |
 | 9 | Strong gale | High waves. Dense streaks of foam along the direction of the wind. Crests of waves begin to topple, tumble and roll over/Slight structural damage occurs (chimney pots and slates removed) | 41- 47 | 47- 54 | 75- 88 |
-| 10 | Storm | Very high waves with long overhanging crests. The resulting foam, in great patches, is blown in dense white streaks, along the direction of the wind. The whole surface of the sea takes on a white appearance. Visibility afef cted/ Seldom experienced inland, trees uprooted, considerable structural damage occurs | 48- 55 | 55- 63 | 89- 102 |
-| 11 | Violent Storm | Exceptionally high waves (small and medium ships might be, for a time, lost to view behind the waves). The surface is covered with long white patches of foam lying along the direction of the wind. Everywhere, the edges of the wave crests are being blown into the froth. Visibility afef cted/ Very rarely experienced, accompanied by widespread damage | 56- 63 | 64- 72 | 103- 117 |
+| 10 | Storm | Very high waves with long overhanging crests. The resulting foam, in great patches, is blown in dense white streaks, along the direction of the wind. The whole surface of the sea takes on a white appearance. Visibility affected/ Seldom experienced inland, trees uprooted, considerable structural damage occurs | 48- 55 | 55- 63 | 89- 102 |
+| 11 | Violent Storm | Exceptionally high waves (small and medium ships might be, for a time, lost to view behind the waves). The surface is covered with long white patches of foam lying along the direction of the wind. Everywhere, the edges of the wave crests are being blown into the froth. Visibility affected/ Very rarely experienced, accompanied by widespread damage | 56- 63 | 64- 72 | 103- 117 |
 | 12 | Hurricane | The air is filled with foam and spray. Sea completely white with driving spray. | 64> | 73> | 117> |
 
 ![Figure from page 243](assets/p243-f02.webp)
@@ -9403,10 +9403,10 @@ Glossary of Terms
 | RIB | Rigid Inflatable Boat |
 | RMSS | Recognized Mobile Satellite Service – a service that operates through a satellite system and is recognised by the IMO for use in the GMDSS. |
 | RNLI | Royal National Lifeboat Institution |
-| SAR | Search and Rescue services incorporating clif,f sea and air rescue. |
+| SAR | Search and Rescue services incorporating cliff, sea and air rescue. |
 | SART | Search and Rescue Radar Transponder |
 | S.I. | Statutory Instrument (Secondary Legislation) |
-| Smooth Waters | Areas of water specified as “smooth” in a Marine Notci e. |
+| Smooth Waters | Areas of water specified as “smooth” in a Marine Notice. |
 | SOLAS | IMO International Convention for the Safety of Life at Sea 1974, as amended. This Convention was one of the first international treaties of its kind. It was first formed and adopted in 1914 as a reaction to the Titanic disaster in 1912. |
 | Statutory Requirements | Irish legislation comprising of Acts and Statutory Instruments and incorporating national law, European Union Regulations and Directives, and obligations under various international maritime conventions. |
 | SUP | Stand-Up Paddle Board |

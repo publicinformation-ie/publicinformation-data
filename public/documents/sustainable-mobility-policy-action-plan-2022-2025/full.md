@@ -13,7 +13,7 @@ Goal 1: Improve mobility safety
 | CORE ACTIONS |  |  |  |
 | --- | --- | --- | --- |
 | ACTION | OWNER | SUPPORT | TIMELINE & OUTPUT |
-| 1. Develop and publish an annual public transport passenger safety and personal security report, and implement measures where appropriate. | NTA | Transport operators | 2022: Report developed. 2023: First report published and annual reports published thereafet r. |
+| 1. Develop and publish an annual public transport passenger safety and personal security report, and implement measures where appropriate. | NTA | Transport operators | 2022: Report developed. 2023: First report published and annual reports published thereafter. |
 | 2. Continue awareness campaigns with the aim of promoting inclusivity, courtesy and respect for all when travelling on public transport. | NTA | Transport operators | Annual campaigns |
 | 3. Continue to protect and renew rail infrastructure through the Infrastructure Manager Multi-Annual Contract (IMMAC). | DoT | CRR, IÉ, NTA | 2024: Existing IMMAC reviewed. 2025: IMMAC 2025-2030 agreed. |
 | 4. Continue to protect and renew road infrastructure for all road users including sustainable mobility users. | DoT, LAs, TII | NTA | Ongoing |
@@ -33,8 +33,8 @@ Goal 2: Decarbonise public transport
 | 8. Deliver fuelling/charging infrastructure to support operation of zero emission public bus fleet. | NTA | DECC, DoT, transport operators | 2025: Fuelling and charging infrastructure in place for public bus fleet. |
 | 9. Develop a strategy for the transition of commercial and PSO long distance bus services to low emission technologies. | NTA | DoT | 2023: Strategy framework developed. |
 | 10. Develop a strategy to transition the Small Public Service Vehicle (SPSV) fleet to lower/zero emission technologies. | DoT | NTA, SPSV sector | 2024: Strategy developed and implementation commenced. |
-| 11. Commence delivery of phase 1 of Cork Area Commuter Rail Programme. | NTA | CRR, DoT, IÉ | 2024: Kent Station platof rm completed. 2025: Midleton double-tracking completed. |
-| 12. Commence delivery of DART+ Programme. (Complements Climate Action Plan (CAP) action 246) | IÉ, NTA | CRR, DoT | 2022: DART+ West: Railway Order application submitet d. DART+ South West: Railway Order application submitet d. DART+ Coastal South: First round of public consultation completed. DART+ Coastal North: First and second rounds of public consultation completed. 2023: DART+ Coastal North: Railway Order application submitet d. DART+ Coastal South: Second round of public consultation. DART+ Coastal South: Railway Order application submitet d. |
+| 11. Commence delivery of phase 1 of Cork Area Commuter Rail Programme. | NTA | CRR, DoT, IÉ | 2024: Kent Station platform completed. 2025: Midleton double-tracking completed. |
+| 12. Commence delivery of DART+ Programme. (Complements Climate Action Plan (CAP) action 246) | IÉ, NTA | CRR, DoT | 2022: DART+ West: Railway Order application submitted. DART+ South West: Railway Order application submitted. DART+ Coastal South: First round of public consultation completed. DART+ Coastal North: First and second rounds of public consultation completed. 2023: DART+ Coastal North: Railway Order application submitted. DART+ Coastal South: Second round of public consultation. DART+ Coastal South: Railway Order application submitted. |
 
 | CORE ACTIONS |  |  |  |
 | --- | --- | --- | --- |
@@ -60,7 +60,7 @@ Goal 3: Expand availability of sustainable mobility in metropolitan areas
 | ACTION | OWNER | SUPPORT | TIMELINE & OUTPUT |
 | 22. Commence delivery of BusConnects network redesign in the five cities. (Complements CAP actions 239, 240) | NTA | DoT, LAs, TII | 2022: Network of Cork and Galway services finalised. 2023: Network of Limerick and Waterford services finalised. 2025: Dublin BCNR Phases 1-11 implemented (phased implementation on an annual basis). Cork BCNR fully implemented. Galway BCNR fully implemented. |
 | 23. Commence delivery of BusConnects Core Bus Corridor Infrastructure Works in the five cities. (Complements CAP actions 241, 242, 243, 244) | NTA | DoT, LAs, TII | 2022: Construction of Salmon Weir cycling and pedestrian bridge commenced as part of BusConnects Galway. Planning process for Cross City Link commenced as part of BusConnects Galway. 2023: Planning process for Dublin Road scheme commenced as part of BusConnects Galway. On-street construction of Radial Core Bus Corridor Schemes commenced as part of BusConnects Dublin. |
-| 24. Commence delivery of MetroLink. (Complements CAP action 247) | TII | DoT, NTA | 2022: Railway Order application submitet d. 2025: MetroLink enabling works contracts commenced (subject to Government approval and planning consent). |
+| 24. Commence delivery of MetroLink. (Complements CAP action 247) | TII | DoT, NTA | 2022: Railway Order application submitted. 2025: MetroLink enabling works contracts commenced (subject to Government approval and planning consent). |
 | COMPLEMENTARY ACTION IN CLIMATE ACTION PLAN 2021 |  |  |  |
 | ACTION | OWNER | SUPPORT | TIMELINE & OUTPUT |
 | 25. Increase provision of park and ride/share at transport interchanges. (CAP action 260) | NTA, TII | DoT, IÉ, LAs, transport operators | 2022: Implementation of GDA Park and Ride Strategy commenced. |
@@ -82,9 +82,9 @@ Goal 4: Expand availability of sustainable mobility in regional and rural areas
 | CORE ACTIONS |  |  |  |
 | --- | --- | --- | --- |
 | ACTION | OWNER | SUPPORT | TIMELINE & OUTPUT |
-| 34. Develop and implement a programme of improved town bus services. | NTA | LA’s, DoT, Local Link, transport operators | 2025: Improved town bus services implemented in Carlow, Ennis, Letet rkenny, Mullingar, Portlaoise. |
+| 34. Develop and implement a programme of improved town bus services. | NTA | LA’s, DoT, Local Link, transport operators | 2025: Improved town bus services implemented in Carlow, Ennis, Letterkenny, Mullingar, Portlaoise. |
 | 35. Develop and commence delivery of an enhanced bus stop and bus shelter programme for regional and rural services. (Complements RSS action 71, 72) | NTA | LAs | 2022: Programme developed. 2025: 200 additional bus shelters installed for regional and rural services. |
-| 36. Increase provision of local area hackney services in conjunction with development of Connecting Ireland. | NTA | LAs, SPSV Advisory Commitet e | 2022: Local Area Hackney Scheme reviewed and local area hackneys developed in line with Connecting Ireland programme for community cars. 2023: Revised subsidised Local Area Hackney Programme introduced based on findings of review. |
+| 36. Increase provision of local area hackney services in conjunction with development of Connecting Ireland. | NTA | LAs, SPSV Advisory Committee | 2022: Local Area Hackney Scheme reviewed and local area hackneys developed in line with Connecting Ireland programme for community cars. 2023: Revised subsidised Local Area Hackney Programme introduced based on findings of review. |
 | 37. Upgrade regional rail lines. | IÉ | CRR, DoT | 2022:  Track renewal works completed on Ballybrophy to Limerick line. 2025: 50% of programme of upgrade (and elimination) to user worked level crossings on Ballybrophy to Limerick line. 25% of track improvement works on Limerick to Waterford line. 20% of programme of upgrade (and elimination) to user worked level crossings on Limerick to Waterford line. |
 | COMPLEMENTARY ACTION IN CLIMATE ACTION PLAN 2021 |  |  |  |
 | ACTION | OWNER | SUPPORT | TIMELINE & OUTPUT |
@@ -107,7 +107,7 @@ Goal 5: Encourage people to choose sustainable mobility over the private car
 | --- | --- | --- | --- |
 | ACTION | OWNER | SUPPORT | TIMELINE & OUTPUT |
 | 46. Accelerate sustainable mobility plans for schools through: - Expansion of Cycle Right Training in primary and post-primary schools. - Rollout of Safe Routes to Schools Infrastructure Programme. - Complete review of the School Transport Scheme and identify measures to improve sustainability of school transport scheme. (CAP action 235) | Cycling Ireland, DoE, NTA | Bus Éireann, DECC, DoT, DPER, Green Schools, LAs, NCSE | Annual: Additional 5,000 pupils per year trained under Cycle Right programme. 2022: Safe Routes to School Infrastructure Programme commenced in 170 schools. Measures to improve sustainability of School Transport system identified. |
-| 47. Explore potential of road-user charging measures through the Betet r Road User Charging Evaluation (BRUCE) study. (CAP action 259) | TII | DoT, NTA | 2023: Draft implementation plan published. |
+| 47. Explore potential of road-user charging measures through the Better Road User Charging Evaluation (BRUCE) study. (CAP action 259) | TII | DoT, NTA | 2023: Draft implementation plan published. |
 
 ## National Sustainable Mobility Policy
 
@@ -130,13 +130,13 @@ Goal 6: Take a whole of journey approach to mobility, promoting inclusive access
 | CORE ACTIONS |  |  |  |
 | --- | --- | --- | --- |
 | ACTION | OWNER | SUPPORT | TIMELINE & OUTPUT |
-| 48. Promote the principle of ‘Access for All’ across sustainable mobility services through: - Provision of customer service officers on all inter-city trains. - Enhancement of rail station accessibility including platof rm access, lift reliability, information provision and signage. - Enhancement of bus station accessibility including additional wheelchair accessible bus bays, information provision and signage. - Expansion of number of wheelchair accessible bus stops suitable for coach lifts. - Expansion of low floor coach fleet for ramp-based wheelchair access. - Enhancement of National Journey Planner to include additional accessibility information. - Provision of Changing Places toilets at key transport hubs, being major rail or bus stations. | DoT, NTA | LAs, transport operators | 2022: Customer service officers provided on all inter-city trains. 2025: Eight additional railway stations equipped with footbridge and lifts to allow all platof rm access. All bus stations equipped with wheelchair accessible bus bay. Wheelchair accessible stops for lift equipped coaches provided in additional 50 towns. 100 additional low floor vehicles for regional/ inter-city coach services introduced. Roll-out of new National Journey Planner commenced. Changing Places toilets installed at three additional transport hubs. |
+| 48. Promote the principle of ‘Access for All’ across sustainable mobility services through: - Provision of customer service officers on all inter-city trains. - Enhancement of rail station accessibility including platform access, lift reliability, information provision and signage. - Enhancement of bus station accessibility including additional wheelchair accessible bus bays, information provision and signage. - Expansion of number of wheelchair accessible bus stops suitable for coach lifts. - Expansion of low floor coach fleet for ramp-based wheelchair access. - Enhancement of National Journey Planner to include additional accessibility information. - Provision of Changing Places toilets at key transport hubs, being major rail or bus stations. | DoT, NTA | LAs, transport operators | 2022: Customer service officers provided on all inter-city trains. 2025: Eight additional railway stations equipped with footbridge and lifts to allow all platform access. All bus stations equipped with wheelchair accessible bus bay. Wheelchair accessible stops for lift equipped coaches provided in additional 50 towns. 100 additional low floor vehicles for regional/ inter-city coach services introduced. Roll-out of new National Journey Planner commenced. Changing Places toilets installed at three additional transport hubs. |
 
 | CORE ACTIONS |  |  |  |
 | --- | --- | --- | --- |
 | ACTION | OWNER | SUPPORT | TIMELINE & OUTPUT |
 | 49. Expand the Travel Assistance Scheme beyond the GDA. | NTA | Transport operators | 2023: Scheme expanded to Cork. 2025: Scheme expanded to Galway, Limerick and Waterford. |
-| 50. Expand the number of Wheelchair Accessible Vehicles in the SPSV fleet. | NTA | SPSV Advisory Commitet e, transport operators | 2025: WAVs expanded by 25%. |
+| 50. Expand the number of Wheelchair Accessible Vehicles in the SPSV fleet. | NTA | SPSV Advisory Committee, transport operators | 2025: WAVs expanded by 25%. |
 | 51. Ensure all transport operators are contractually obliged to put in place operational procedures to assist people with mobility difficulties in event of unplanned service disruptions. | NTA | Transport operators | 2022: Contracts updated. |
 | 52. Develop and implement an equitable fares strategy for all applicable subsidised services. | NTA | Transport operators, DoT | 2022: Strategy developed. 2023: Implementation commenced. |
 | 53. Introduce Young Adult Card on a phased basis. (Complements CAP action 248) | NTA | DoT, DCEDIY | 2022: Card introduced. |
@@ -173,7 +173,7 @@ Goal 8: Promote sustainable mobility through research and citizen engagement
 | --- | --- | --- | --- |
 | ACTION | OWNER | SUPPORT | TIMELINE & OUTPUT |
 | 68. Develop and implement a public engagement strategy to promote the benefits of sustainable mobility and raise public awareness of options. | DoT | All | 2022: Engagement strategy developed. |
-| 69. Develop and publish an annual National Household Travel Survey. | NTA | CSO, DoT | 2023: First survey published and annual updates published thereafet r. |
+| 69. Develop and publish an annual National Household Travel Survey. | NTA | CSO, DoT | 2023: First survey published and annual updates published thereafter. |
 | 70. Establish a Leadership Group to oversee implementation of the Policy and delivery of the action plan. | DoT | CCMA, government departments, NTA, RAs, TII | 2022: Leadership Group established. |
 | 71. Convene a National Sustainable Mobility Forum to engage with stakeholders on progress in relation to the Policy. | DoT | Stakeholders | 2022: Forum established. |
 | 72. Amend Section 17 of the Dublin Transport Authority Act 2008 to establish a National Transport Authority Advisory Council. | DoT | NTA | 2023: Legislation amended. |

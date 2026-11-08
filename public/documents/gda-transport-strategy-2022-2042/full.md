@@ -2842,7 +2842,7 @@ It is the intention of the NTA to provide significant improvements to orbital an
 | 3. | Ballymun/Finglas to City Centre |
 | 4. | Blanchardstown to City Centre |
 | 5. | Lucan to City to Centre |
-| 6. | Lifef y Valley to City Centre |
+| 6. | Liffey Valley to City Centre |
 | 7. | Tallaght/Clondalkin to City Centre |
 | 8. | Kimmage to City Centre |
 | 9. | Templeogue/Rathfarnham to City Centre |

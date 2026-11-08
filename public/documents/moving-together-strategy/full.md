@@ -323,7 +323,7 @@ Acronyms
 | EMRA | Eastern and Midlands Regional Assembly |
 | EPA | Environmental Protection Agency |
 | ESD | Education for Sustainable Development |
-| ESR | Efof rt Sharing Regulation |
+| ESR | Effort Sharing Regulation |
 | ETD | Energy Taxation Directive |
 | EU | European Union |
 | EV | Electric Vehicle |
@@ -3332,7 +3332,7 @@ Engaging with business sector to embed demand management principles and practice
 | No. | Recommendation |
 | 28 | Enhance modelling tools to better understand the impacts of specific demand management measures as part of wider climate action initiatives. |
 | Commission research to measure and model the cumulative and relative impacts of the 29 recommendations. |  |
-| 30 | Undertake analysis on the efef ctiveness of reducing car parking as a demand management measure, taking account of wider parking availability. |
+| 30 | Undertake analysis on the effectiveness of reducing car parking as a demand management measure, taking account of wider parking availability. |
 | 31 Establish mechanism to support demand management pilot measures. |  |
 | 32 | Establish an oversight mechanism to monitor and evaluate the Strategy. |
 
@@ -4167,7 +4167,7 @@ Appendix 3 Implementation Plan
 | 1 | Strengthen policy alignment and implementation mechanisms to deliver NPF National Strategic Outcome 1 ‘Compact Growth’ and NSO 4 ‘Sustainable Mobility’ given the critical role of compact growth in reducing travel demand and in enhancing transport system efficiencies. |  |  |  |  |  |
 | 1a | Identify and embed revised NPF transport priorities as part of RSES and MATS updates. | Avoid | RAs, NTA | LAs | RSES Q2 2028 MATS Q2 2029 | Transport planning investment priorities incorporated, as required, into the statutory Regional Spatial and Economic Strategies and Metropolitan Area Strategic Plans. |
 | 1b | Enhance implementation mechanisms to deliver transport planning priorities in line with revised NPF (NPO 10, 97 and 99). | Avoid | DHLGH | DoT | Q2 2026 | Enhanced mechanisms identified to support NPF implementation, with timelines for introduction. |
-| 1c | Extend NTA statutory arrangements for spatial and transport planning in the Greater Dublin Area to other cities for Metropolitan Area Transport Strategies in line with revised NPF. | Avoid | DoT | DHLGH, NTA, RAs | Q2 2027 | NTA remit extended with efef ct that plans will be on a statutory footing. |
+| 1c | Extend NTA statutory arrangements for spatial and transport planning in the Greater Dublin Area to other cities for Metropolitan Area Transport Strategies in line with revised NPF. | Avoid | DoT | DHLGH, NTA, RAs | Q2 2027 | NTA remit extended with effect that plans will be on a statutory footing. |
 | 1d | Establish advisory arrangements to assist delivery of these actions. | Avoid | DHLGH, DoT | NTA, TII, LDA | Q3 2026 | Advisory arrangements identified. |
 
 | Embedding Polluter Pays Principle in Taxation Policy over Medium to Long Term |  |  |  |  |  |  |
@@ -4212,7 +4212,7 @@ Q2 2027 DoF
 | --- | --- | --- | --- | --- | --- | --- |
 | 8 | Communications and engagement support for LAs. |  |  |  |  |  |
 | Expand and improve NTA, D/ Public engagement pilot community engagement Sport, Sport 8a Avoid & Shift DoT Q3 2026 initiatives developed and activities based on good Ireland, An learnings disseminated. practice and pilot learnings. Taisce, LAs |  |  |  |  |  |  |
-| Sustainable Mobility Academy Develop evidence-based platof rm enhanced to guidance for LA s and others support knowledge sharing, LGMA, to engage efef ctively with networking opportunities and 8b Avoid & Shift DoT, NTA, TII CAROs, Q4 2026 communities in pre and post dissemination of best-practice LAs scheme development, through consultation and engagement Sustainable Mobility Academy. toolkits (including database of best-in-class Irish projects). |  |  |  |  |  |  |
+| Sustainable Mobility Academy Develop evidence-based platform enhanced to guidance for LA s and others support knowledge sharing, LGMA, to engage effectively with networking opportunities and 8b Avoid & Shift DoT, NTA, TII CAROs, Q4 2026 communities in pre and post dissemination of best-practice LAs scheme development, through consultation and engagement Sustainable Mobility Academy. toolkits (including database of best-in-class Irish projects). |  |  |  |  |  |  |
 | Develop training and accreditation programme for Long term training and LAs, including councillors, in development model developed 8c relation to DM approaches, Avoid & Shift DoT, NTA / Q4 2026 to include short, on-demand based on SMP Smart and training modules, site visits etc. Sustainable Accelerator Pathfinder. |  |  |  |  |  |  |
 | Develop a long-term strategy All and implementation plan Long-term strategy and 8d Avoid & Shift DoT, NTA, TII transport Q3 2026 for the Sustainable Mobility implementation plan in place. bodies Academy. |  |  |  |  |  |  |
 | 9 | Supplement, through alternative financing options, existing supports from national Government. |  |  |  |  |  |
@@ -4311,7 +4311,7 @@ Avoid DCEE Q4 2026
 | No. | Action | A-S-I Framework | Lead | Support | Timeline | Output/Outcome |
 | --- | --- | --- | --- | --- | --- | --- |
 | Commence process to incorporate carbon Methodology developed recognition for non-PS target 19b Avoid & Shift SEAI, NTA DoT, DCEE Q4 2026 and applied to public sector attributable transport related bodies. emissions into the SEAI’s M&R system. |  |  |  |  |  |  |
-| 20 | Leverage potential of Civil Service Motor Travel Rates to efef ct change, including the introduction of single rate for all cars regardless of engine type. |  |  |  |  |  |
+| 20 | Leverage potential of Civil Service Motor Travel Rates to effect change, including the introduction of single rate for all cars regardless of engine type. |  |  |  |  |  |
 | Introduce a single rate for all Avoid, Shift & Options brought to 20a DPER DoT Q4 2026 cars regardless of engine type. Improve Government. |  |  |  |  |  |  |
 | Examine role of CS Motor Travel Rates system in Options brought to 20b providing higher rates for Avoid & Shift DPER DoT Q4 2026 Government. greater annual distances travelled. |  |  |  |  |  |  |
 | Engaging with education and sports sector to embed demand management principles and practices |  |  |  |  |  |  |
@@ -4358,7 +4358,7 @@ Avoid & Shift NTA DoT, DEY Q4 2027
 | 23 | Sporting organisations will encourage less car travel to sports fixtures and training sessions in collaboration with local communities. |  |  |  |  |  |
 | Existing or new transport toolkits expanded to guide the sports sectors in helping to reduce demand, particularly single occupancy car travel, Building on the model of through specific strategies the Green Club Programme, Sport Ireland, for reducing their transport develop toolkit for sports Sporting emissions - for example, 23a Avoid & Shift DCCS Q1 2027 sector to embed demand Orgs, DoT, available local measures such management principles and NTA, as fixtures scheduling, car park support sustainable mobility. reduction, provision of public transport shuttle services, location of sports grounds, encouragement of carpooling, private bus hire sharing of best practice etc. |  |  |  |  |  |  |
 | Strategies in place from national governing sports bodies for reducing their transport emissions through, for example, available local measures such All national governing Sport Ireland, as fixtures scheduling, car park bodies to develop strategies, Sporting 23b Avoid & Shift DCCS Q1 2028 reduction, provision of public supported by toolkits (action Orgs, DoT transport shuttle services, 23a). NTA location of sports grounds, encouragement of car-pooling, private bus hire, sharing of best practice etc, akin to NTA’s Smarter Travel Programme. |  |  |  |  |  |  |
-| Monitor, measure, share and Progress shared across sporting recognise performance to bodies, particularly recognition 23c reduce transport demand Avoid & Shift DoT DCCS Q1 2028 of efof rts to achieve the best generated from sports related practice. activities. |  |  |  |  |  |  |
+| Monitor, measure, share and Progress shared across sporting recognise performance to bodies, particularly recognition 23c reduce transport demand Avoid & Shift DoT DCCS Q1 2028 of efforts to achieve the best generated from sports related practice. activities. |  |  |  |  |  |  |
 | Engaging with business sector to embed demand management principles and practices |  |  |  |  |  |  |
 | 24 | Strengthening focus on transport/mobility related dimensions of corporate sustainability requirements. |  |  |  |  |  |
 
@@ -4443,7 +4443,7 @@ Shift DoT ESRI Q2 2026
 | Building the Evidence Base to Inform Policy Choices and Demonstrate Success |  |  |  |  |  |  |
 | --- | --- | --- | --- | --- | --- | --- |
 | No. | Action | A-S-I Framework | Lead | Support | Timeline | Output/Outcome |
-| 28 | Enhance modelling tools to betet r understand the impacts of specific demand management measures as part of wider climate action initiatives. |  |  |  |  |  |
+| 28 | Enhance modelling tools to better understand the impacts of specific demand management measures as part of wider climate action initiatives. |  |  |  |  |  |
 
 National transport emissions modelling refreshed to take account of demand management measures including through notably CAP26 Corrective Action Modelling Project which is also developing appropriate links with other transport and energy models to re-calibrate national transport emissions modelling overall.
 
@@ -4489,11 +4489,11 @@ NTA, TII, Avoid DoT Q2 2026 SEAI, EPA
 
 | No. | Action | A-S-I Framework | Lead | Support | Timeline | Output/Outcome |
 | --- | --- | --- | --- | --- | --- | --- |
-| 30 | Undertake analysis on the efef ctiveness of reducing car parking as a demand management measure, taking account of wider parking availability. |  |  |  |  |  |
+| 30 | Undertake analysis on the effectiveness of reducing car parking as a demand management measure, taking account of wider parking availability. |  |  |  |  |  |
 | Agree approach to developing a national parking inventory Commence development DHLGH, for towns with populations 30a of a national parking data Avoid DoT NTA, TII, Q2 2026 over 20k to support potential inventory. OPW, RAs parking related measures inter alia through the LA Demand Management Strategies. |  |  |  |  |  |  |
 | Methodology developed to capture key data for replication Establish quantum and nature DHLGH, and comparison across urban 30b of car parking that is available Avoid DoT Q4 2026 NTA,TII centres nationally, with an in urban centres. initial focus on towns with populations over 20k. |  |  |  |  |  |  |
 | Establish quantum of public sector car parking provision. Quantify space currently DHLGH, Develop methodology, 30c dedicated to parking across Avoid DoT NTA, TII, Q4 2026 including potential mapping the public sector. OPW and tracking of parking spaces, for achieving objectives in the Public Sector Mandate. |  |  |  |  |  |  |
-| Undertake analysis, building on data captured from actions Examine efef ctiveness of 30a to 30c above, to inform 30d reducing car parking as a Avoid DoT, NTA LAs Q2 2027 approaches to parking control demand management measure. that support objectives of this Strategy. |  |  |  |  |  |  |
+| Undertake analysis, building on data captured from actions Examine effectiveness of 30a to 30c above, to inform 30d reducing car parking as a Avoid DoT, NTA LAs Q2 2027 approaches to parking control demand management measure. that support objectives of this Strategy. |  |  |  |  |  |  |
 | 31 | Establish mechanism to support demand management pilot measures. |  |  |  |  |  |
 | 31a | Design an appropriate funding mechanism to support LAs in particular to develop and roll out pilot, demonstrator projects to evaluate impacts. | Avoid | DoT | DoF, NTA | Q4 2026 | Funding options identified to support pilot demonstrator and capacity building initiatives across all sectors involved in the implementation of the Strategy, including ongoing research. |
 
