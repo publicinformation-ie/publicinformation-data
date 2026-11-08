@@ -1,0 +1,1217 @@
+[
+ {
+  "number": 26,
+  "width": 595.28,
+  "height": 841.89,
+  "rotation": 0,
+  "spans": [
+   {
+    "text": "Moving Together –",
+    "font": "Lato-Regular",
+    "size": 8.0,
+    "bbox": [
+     62.15,
+     25.32,
+     127.91,
+     36.1
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "A Collaborative Approach to Systems Change in Transport",
+    "font": "Lato-Regular",
+    "size": 8.0,
+    "bbox": [
+     129.69,
+     25.32,
+     331.63,
+     36.1
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 2
+   },
+   {
+    "text": "26",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     37.84,
+     790.39,
+     49.44,
+     803.86
+    ],
+    "block": 1,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Economic and Financial ",
+    "font": "Lato-Bold",
+    "size": 15.0,
+    "bbox": [
+     62.15,
+     69.28,
+     221.52,
+     90.05
+    ],
+    "block": 2,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Sustainability",
+    "font": "Lato-Bold",
+    "size": 15.0,
+    "bbox": [
+     62.15,
+     87.28,
+     151.68,
+     108.05
+    ],
+    "block": 2,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "This Strategy supports measures that are ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     114.49,
+     242.96,
+     127.96
+    ],
+    "block": 3,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "economically and financially sustainable. An ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     127.49,
+     254.96,
+     140.96
+    ],
+    "block": 3,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "efficient transport network is vital to the economy. ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     140.49,
+     285.92,
+     153.96
+    ],
+    "block": 3,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "As well as social, personal and environmental ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     153.49,
+     261.33,
+     166.96
+    ],
+    "block": 3,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "costs, a poorly performing transport system, ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     166.49,
+     257.29,
+     179.96
+    ],
+    "block": 3,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "where congestion is commonplace, is proven to ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     179.49,
+     271.96,
+     192.96
+    ],
+    "block": 3,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "have a significant cost to the economy whereas ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     192.49,
+     271.21,
+     205.96
+    ],
+    "block": 3,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "the efficient movement of traffic is beneficial for ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     205.49,
+     275.02,
+     218.96
+    ],
+    "block": 3,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "industry and society alike. Access to sustainable ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     218.49,
+     272.73,
+     231.96
+    ],
+    "block": 3,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "transport modes and the optimisation of ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     231.49,
+     241.25,
+     244.96
+    ],
+    "block": 3,
+    "line": 9,
+    "span": 0
+   },
+   {
+    "text": "roadspace across users in favour of such modes ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     244.49,
+     272.11,
+     257.96
+    ],
+    "block": 3,
+    "line": 10,
+    "span": 0
+   },
+   {
+    "text": "has generally been found to have a positive impact ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     257.49,
+     285.91,
+     270.96
+    ],
+    "block": 3,
+    "line": 11,
+    "span": 0
+   },
+   {
+    "text": "on footfall and spend in retail outlets, particularly ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     270.49,
+     279.11,
+     283.96
+    ],
+    "block": 3,
+    "line": 12,
+    "span": 0
+   },
+   {
+    "text": "in urban centres. This Strategy has the potential to ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     283.49,
+     284.67,
+     296.96
+    ],
+    "block": 3,
+    "line": 13,
+    "span": 0
+   },
+   {
+    "text": "create a positive impact on both national and local ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     296.49,
+     284.54,
+     309.96
+    ],
+    "block": 3,
+    "line": 14,
+    "span": 0
+   },
+   {
+    "text": "economies.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     309.49,
+     111.62,
+     322.96
+    ],
+    "block": 3,
+    "line": 15,
+    "span": 0
+   },
+   {
+    "text": "Oversight and Responsibility",
+    "font": "Lato-Bold",
+    "size": 15.0,
+    "bbox": [
+     62.15,
+     330.28,
+     252.74,
+     351.06
+    ],
+    "block": 4,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "This Strategy sets out several action-orientated ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     357.5,
+     271.17,
+     370.97
+    ],
+    "block": 5,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "recommendations, including the governance ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     370.5,
+     257.88,
+     383.97
+    ],
+    "block": 5,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "structures that will be established to monitor, ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     383.5,
+     262.69,
+     396.97
+    ],
+    "block": 5,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "evaluate, and measure impacts and outcomes.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     396.5,
+     262.77,
+     409.97
+    ],
+    "block": 5,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "Each recommendation in this Strategy ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     107.65,
+     418.0,
+     275.87,
+     431.47
+    ],
+    "block": 6,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "is assigned a lead owner who will be ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     107.65,
+     431.0,
+     268.01,
+     444.47
+    ],
+    "block": 6,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "responsible for its delivery where ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     107.65,
+     444.0,
+     254.78,
+     457.47
+    ],
+    "block": 6,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "appropriate (see Appendix 3). However, the ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     457.0,
+     254.17,
+     470.47
+    ],
+    "block": 6,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "success of this Strategy will require continued ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     470.0,
+     264.11,
+     483.47
+    ],
+    "block": 6,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "collaboration from all involved. As recommended ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     483.0,
+     278.02,
+     496.47
+    ],
+    "block": 6,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "by the Climate Change Advisory Council (CCAC) ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     496.0,
+     274.12,
+     509.47
+    ],
+    "block": 6,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "in its 2024 ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     509.0,
+     111.32,
+     522.47
+    ],
+    "block": 6,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "Annual Review of the Transport Sector",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     110.99,
+     509.0,
+     279.23,
+     522.47
+    ],
+    "block": 6,
+    "line": 7,
+    "span": 1
+   },
+   {
+    "text": ", ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     278.85,
+     509.0,
+     283.68,
+     522.47
+    ],
+    "block": 6,
+    "line": 7,
+    "span": 2
+   },
+   {
+    "text": "timely delivery of actions across all aspects of ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     522.0,
+     263.37,
+     535.47
+    ],
+    "block": 6,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "the Strategy will need to be supported by a ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     535.0,
+     252.74,
+     548.47
+    ],
+    "block": 6,
+    "line": 9,
+    "span": 0
+   },
+   {
+    "text": "well-resourced, system wide implementation ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     548.0,
+     259.89,
+     561.47
+    ],
+    "block": 6,
+    "line": 10,
+    "span": 0
+   },
+   {
+    "text": "mechanism. This will require a whole of ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     561.0,
+     235.78,
+     574.47
+    ],
+    "block": 6,
+    "line": 11,
+    "span": 0
+   },
+   {
+    "text": "Government approach, including local government ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     574.0,
+     285.09,
+     587.47
+    ],
+    "block": 6,
+    "line": 12,
+    "span": 0
+   },
+   {
+    "text": "and enterprise and community/citizen buy-in to ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     587.0,
+     273.03,
+     600.47
+    ],
+    "block": 6,
+    "line": 13,
+    "span": 0
+   },
+   {
+    "text": "ensure delivery.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     600.0,
+     130.93,
+     613.47
+    ],
+    "block": 6,
+    "line": 14,
+    "span": 0
+   },
+   {
+    "text": "In that context, the National Demand ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     621.51,
+     227.73,
+     634.98
+    ],
+    "block": 7,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Management Steering Group will be reconfigured ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     634.51,
+     279.87,
+     647.98
+    ],
+    "block": 7,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "with its membership and terms of reference ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     647.51,
+     255.59,
+     660.98
+    ],
+    "block": 7,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "refreshed as an oversight mechanism to monitor ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     660.51,
+     275.25,
+     673.98
+    ],
+    "block": 7,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "and evaluate implementation of the strategy. ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     673.51,
+     260.27,
+     686.98
+    ],
+    "block": 7,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "The Group should be a strong, advocate for ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     686.51,
+     254.1,
+     699.98
+    ],
+    "block": 7,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "change across the system as well as ensuring ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     699.51,
+     260.37,
+     712.98
+    ],
+    "block": 7,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "effective implementation of the recommendations ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     712.51,
+     283.91,
+     725.98
+    ],
+    "block": 7,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "contained in the strategy itself. ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     62.15,
+     725.51,
+     199.6,
+     738.98
+    ],
+    "block": 7,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "The Group will meet on a quarterly basis to ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     70.96,
+     502.67,
+     84.43
+    ],
+    "block": 8,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "oversee delivery of the recommendations and ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     83.96,
+     514.01,
+     97.43
+    ],
+    "block": 8,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "actions and to shape developments in demand ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     96.96,
+     517.14,
+     110.43
+    ],
+    "block": 8,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "management as issues arise and as policy evolves.  ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     109.96,
+     533.47,
+     123.43
+    ],
+    "block": 8,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "It will be serviced by the Department of Transport.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     122.96,
+     531.16,
+     136.43
+    ],
+    "block": 8,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "As the policy levers and scope of this strategy ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     144.46,
+     513.65,
+     157.93
+    ],
+    "block": 9,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "extend well beyond transport and many of the ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     157.46,
+     516.16,
+     170.93
+    ],
+    "block": 9,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "recommendations are directed at business, ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     170.46,
+     500.94,
+     183.93
+    ],
+    "block": 9,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "community and voluntary sectors, it will be ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     183.46,
+     501.13,
+     196.93
+    ],
+    "block": 9,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "important to bring leadership perspectives from ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     196.46,
+     523.11,
+     209.93
+    ],
+    "block": 9,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "these sectors to the Steering Group.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     209.46,
+     469.89,
+     222.93
+    ],
+    "block": 9,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "To ensure that the implementation process is ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     230.97,
+     510.41,
+     244.44
+    ],
+    "block": 10,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "disability and equality proofed, having regard to ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     243.97,
+     521.73,
+     257.44
+    ],
+    "block": 10,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "obligations under the United Nations Convention ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     256.97,
+     529.57,
+     270.44
+    ],
+    "block": 10,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "on the Rights of Persons with Disabilities ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     269.97,
+     492.93,
+     283.44
+    ],
+    "block": 10,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "(UNCCPD), a consultative group will also be ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     282.97,
+     505.43,
+     296.44
+    ],
+    "block": 10,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "established to challenge and test the approach ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     295.97,
+     517.48,
+     309.44
+    ],
+    "block": 10,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "to implementation in consultation with relevant ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     308.97,
+     521.75,
+     322.44
+    ],
+    "block": 10,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "organisations including nominees from the likes of ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     321.97,
+     533.06,
+     335.44
+    ],
+    "block": 10,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "the Just Transition Commission, Disability Persons ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     334.97,
+     532.24,
+     348.44
+    ],
+    "block": 10,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "Representative Organisations (DPROs), business ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     347.97,
+     524.94,
+     361.44
+    ],
+    "block": 10,
+    "line": 9,
+    "span": 0
+   },
+   {
+    "text": "representatives and Local Authorities to ensure ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     360.97,
+     520.45,
+     374.44
+    ],
+    "block": 10,
+    "line": 10,
+    "span": 0
+   },
+   {
+    "text": "the guiding principles of the strategy remain ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     373.97,
+     506.56,
+     387.44
+    ],
+    "block": 10,
+    "line": 11,
+    "span": 0
+   },
+   {
+    "text": "central to implementation.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     386.97,
+     427.17,
+     400.44
+    ],
+    "block": 10,
+    "line": 12,
+    "span": 0
+   },
+   {
+    "text": "Recommendations from this Strategy will be ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     408.47,
+     506.78,
+     421.94
+    ],
+    "block": 11,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "incorporated, where relevant, into further ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     421.47,
+     495.56,
+     434.94
+    ],
+    "block": 11,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "iterations of the Climate Action Plan, which ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     434.47,
+     503.43,
+     447.94
+    ],
+    "block": 11,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "will provide an additional layer of oversight and ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     447.47,
+     520.48,
+     460.94
+    ],
+    "block": 11,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "accountability at a government level.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     460.47,
+     471.62,
+     473.94
+    ],
+    "block": 11,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "This approach is captured in ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     481.98,
+     436.71,
+     495.45
+    ],
+    "block": 12,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Recommendation 32: ",
+    "font": "Lato-Black",
+    "size": 10.0,
+    "bbox": [
+     436.71,
+     481.6,
+     534.94,
+     495.76
+    ],
+    "block": 12,
+    "line": 0,
+    "span": 1
+   },
+   {
+    "text": "Establish an oversight mechanism to monitor and ",
+    "font": "Lato-Black",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     494.6,
+     534.15,
+     508.76
+    ],
+    "block": 12,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "evaluate the Strategy",
+    "font": "Lato-Black",
+    "size": 10.0,
+    "bbox": [
+     311.7,
+     507.6,
+     407.43,
+     521.76
+    ],
+    "block": 12,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": " (see Chapter 10).",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     407.43,
+     507.98,
+     484.18,
+     521.45
+    ],
+    "block": 12,
+    "line": 2,
+    "span": 1
+   }
+  ],
+  "drawings": [],
+  "images": [],
+  "tables": []
+ }
+]

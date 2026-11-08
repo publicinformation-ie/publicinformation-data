@@ -1,24 +1,49 @@
 # Statement of Strategy 2026-2030
 
-> National Transport Authority — 2 chapters, 14 sections, 28 source pages.
+> National Transport Authority — 12 chapters, 29 sections, 28 source pages.
 > Source: https://www.nationaltransport.ie/wp-content/uploads/2026/02/NTA-Statement-of-Strategy-2026-2030-English.pdf
 > Full text: full.md
 
 ## Chapters
 
-- [Front Matter](sections/front-matter/) — pages 1–1
-  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–1
-- [Strategy](sections/strategy/) — pages 1–28
-  - [Strategy](sections/strategy/overview.md) — pages 1–1
-  - [Contents](sections/strategy/contents.md) — pages 2–2
-  - [Statement](sections/strategy/statement.md) — pages 4–5
-  - [Introduction](sections/strategy/introduction-2.md) — pages 6–7
-  - [Authority](sections/strategy/authority.md) — pages 8–8
-  - [NTA Responsibilities](sections/strategy/nta-responsibilities.md) — pages 9–10
-  - [Development](sections/strategy/development.md) — pages 11–11
-  - [Structured Approach](sections/strategy/structured-approach.md) — pages 12–14
-  - [€102.4 billion](sections/strategy/102-4-billion.md) — pages 14–14
-  - [€2.0 billion](sections/strategy/2-0-billion.md) — pages 14–16
-  - [Mission, Vision & Values](sections/strategy/mission-vision-values.md) — pages 17–24
-  - [& Key Risks](sections/strategy/key-risks.md) — pages 25–26
-  - [Glossary](sections/strategy/glossary.md) — pages 27–28
+- [Front Matter](sections/front-matter/) — pages 1–2
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–2
+- [Chairperson’s Statement](sections/chairperson-s-statement/) — pages 4–5
+  - [Chairperson’s Statement](sections/chairperson-s-statement/overview.md) — pages 4–5
+- [Chief Executive’s Introduction](sections/chief-executive-s-introduction/) — pages 6–7
+  - [Chief Executive’s Introduction](sections/chief-executive-s-introduction/overview.md) — pages 6–7
+- [Who is the National Transport Authority](sections/who-is-the-national-transport-authority/) — pages 8–8
+  - [Purpose and Function](sections/who-is-the-national-transport-authority/purpose-and-function.md) — pages 8–8
+  - [Enabling Legislation](sections/who-is-the-national-transport-authority/enabling-legislation.md) — pages 8–8
+- [NTA Responsibilities](sections/nta-responsibilities/) — pages 9–10
+  - [NTA Responsibilities](sections/nta-responsibilities/overview.md) — pages 9–10
+- [Strategy Development](sections/strategy-development/) — pages 11–11
+  - [Strategy Development](sections/strategy-development/overview.md) — pages 11–11
+- [Structured Approach](sections/structured-approach/) — pages 12–16
+  - [Structured Approach](sections/structured-approach/overview.md) — pages 12–12
+  - [Policy Backdrop](sections/structured-approach/policy-backdrop.md) — pages 12–13
+  - [Climate Change](sections/structured-approach/climate-change.md) — pages 13–13
+  - [Economic Outlook](sections/structured-approach/economic-outlook.md) — pages 14–14
+  - [Public Transport Security](sections/structured-approach/public-transport-security.md) — pages 14–14
+  - [International Transport Trends](sections/structured-approach/international-transport-trends.md) — pages 15–16
+- [Mission, Vision & Values](sections/mission-vision-values/) — pages 17–17
+  - [Mission](sections/mission-vision-values/mission.md) — pages 17–17
+  - [Vision](sections/mission-vision-values/vision.md) — pages 17–17
+  - [Values](sections/mission-vision-values/values.md) — pages 17–17
+- [Goals](sections/goals/) — pages 18–18
+  - [Goals](sections/goals/overview.md) — pages 18–18
+- [Strategic Objectives](sections/strategic-objectives/) — pages 19–24
+  - [Strategic Objectives](sections/strategic-objectives/overview.md) — pages 19–19
+  - [Customer First](sections/strategic-objectives/customer-first.md) — pages 19–19
+  - [Climate & Environmental Action](sections/strategic-objectives/climate-environmental-action.md) — pages 20–20
+  - [Transport Planning](sections/strategic-objectives/transport-planning.md) — pages 20–20
+  - [Transport Infrastructure](sections/strategic-objectives/transport-infrastructure.md) — pages 21–21
+  - [Transport Services](sections/strategic-objectives/transport-services.md) — pages 21–22
+  - [Transport Safety & Regulation](sections/strategic-objectives/transport-safety-regulation.md) — pages 22–22
+  - [Stakeholder Engagement](sections/strategic-objectives/stakeholder-engagement.md) — pages 22–22
+  - [People & Organisation](sections/strategic-objectives/people-organisation.md) — pages 23–24
+- [Delivery Challenges & Key Risks](sections/delivery-challenges-key-risks/) — pages 25–26
+  - [Delivery Challenges & Key Risks](sections/delivery-challenges-key-risks/overview.md) — pages 25–25
+  - [Key Risks](sections/delivery-challenges-key-risks/key-risks.md) — pages 26–26
+- [Glossary](sections/glossary/) — pages 27–28
+  - [Glossary](sections/glossary/overview.md) — pages 27–28

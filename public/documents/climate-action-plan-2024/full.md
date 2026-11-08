@@ -632,7 +632,7 @@ Glossary of Acronyms
 
 ### Executive Summary
 
-*Pages 17–22*
+*Pages 17–23*
 
 Executive Summary
 
@@ -730,15 +730,23 @@ Adaptation
 
 The impacts of climate change are already evident in Ireland, with record temperatures experienced in June 2023, pluvial flooding events affecting communities, along with significant effects on our coastlines, land use and natural resources. In addition to reducing emissions, urgent acceleration of adaptation efforts is required to minimize risks and build resilience to the locked-in impacts of climate change. The 2018 National Adaptation Framework and the 2019 Sectoral Adaptation Plans established the strategic direction for adaptation in Ireland. The Government will shortly consider the adoption of a new National Adaptation Framework. This will underpin a new cycle of revised Sectoral Adaptation Plans informed by the first National Climate Change Risk Assessment. Adaptation will be further progressed through the implementation of local authority Climate Action Plans, which will integrate adaptation into local policymaking.
 
+![Figure from page 23](assets/p023-f01.webp)
+
+*Figure from page 23*
+
 ## The Critical Nature of the Challenge
 
-### 1.2 Human Influence
+### 1.1 Introduction
 
 *Pages 25–25*
 
 1.1 Introduction
 
 Our climate is changing rapidly and is transforming our world. Since 1850 there has been an increase of over 1.1oC in average global temperature, and the increase since 1970 has been faster than in any other 50-year period over at least the last 2,000 years. Warming is being propelled by increases in greenhouse gases (GHGs) in the atmosphere mainly produced when we burn fossil fuels and power industrial processes, together with emissions associated with land-use. Over the period 2013 to 2022, human-induced warming has been increasing at an unprecedented rate of 0.2oC per decade and reached 1.26oC in 2022. In 2023, the World Meteorological Organisation’s Global Annual to Decadal Climate Update indicated that global temperatures are likely to surge to record levels in the next five years. Increased GHG emissions are being driven by unsustainable patterns of production and consumption. Today, atmospheric carbon dioxide (CO2) concentrations are higher than at any time in at least 2 million years, and concentrations of methane (CH4) and nitrous oxide (N2O) are higher than at any time in at least 800,000 years.
+
+### 1.2 Human Influence
+
+*Pages 25–26*
 
 1.2 Human Influence
 
@@ -747,10 +755,6 @@ Human influence has warmed the atmosphere, ocean and land leading to widespread 
 The future is projected to see multiple climate hazards occurring simultaneously, further compounding the risks for people and nature across the globe. It is also clear that some impacts of climate change, such as loss of ice sheets and rising sea levels, will be irreversible for centuries or millennia.
 
 A series of exceptional climate- and weather-related events were recorded in 2023. Antarctic sea ice extent was at record lows for the time of year in January, February, and May 2023. In June 2023 global average sea surface temperatures reached unprecedented levels and the north Atlantic recorded exceptionally warm sea surface temperatures, with several extreme marine heatwaves. In July 2023 scientists reported Earth’s hottest days on record and Summer 2023 saw heatwaves in Europe, North America, and China with consequent impacts for people and ecosystems, including widespread wildfires in Greece and Canada. Both September and October 2023 were the warmest on record, and 2023 was by far the warmest year on record with temperatures 1.35oC above the pre-industrial average.
-
-### 1.3 Paris Agreement
-
-*Pages 26–27*
 
 Scientists warn that without rapid, deep, and sustained reductions in carbon dioxide and other GHGs such as methane and nitrous oxide, global warming will be greater than 2°C above pre-industrial levels and, at current emission rates, could rise to 2.5-2.9°C by the end of the century. Limiting warming to 1.5°C will substantially reduce loss and damage to people and to ecosystems, although it will not eliminate them altogether.
 
@@ -776,6 +780,10 @@ Changes in the timing of lifecycle events for plants and animals on land and in 
 
 It highlights the link between climate change and biodiversity loss and underscores the need to safeguard biodiversity and ecosystems as a fundamental part of climate resilient development.
 
+### 1.3 Paris Agreement
+
+*Pages 26–28*
+
 1.3 Paris Agreement
 
 It is, therefore, essential that the international community steps up its efforts towards meeting the Paris Agreement objectives of:
@@ -800,11 +808,11 @@ At COP27 Parties agreed on the establishment of new funding arrangements, includ
 
 COP28 saw the conclusion of the first Global Stocktake (GST) which assessed Parties progress towards the achievement of the collectively agreed goals of the Paris Agreement. It found that despite overall progress on mitigation, adaptation and means of implementation and support, Parties are not yet collectively on track towards achieving the purpose of the Paris Agreement and its long-term goals. The decision did for the first time recognise the need to transition away from fossil fuels if Parties are to keep warming under 1.5°C. It also called for ambitious new targets for renewable energy and energy efficiency.
 
+The first GST occurred in a critical decade for climate action, as the decisions and actions taken now have immediate effects and will have intergenerational impacts for thousands of years. The Emissions Gap Report 2023, published ahead of COP28, found that significantly more ambitious and rapid action is required this decade to deliver the emissions reductions required to meet the Paris Agreement goals.
+
 ### 1.4 Ireland Impacted Also
 
 *Pages 28–28*
-
-The first GST occurred in a critical decade for climate action, as the decisions and actions taken now have immediate effects and will have intergenerational impacts for thousands of years. The Emissions Gap Report 2023, published ahead of COP28, found that significantly more ambitious and rapid action is required this decade to deliver the emissions reductions required to meet the Paris Agreement goals.
 
 1.4 Ireland Impacted Also
 
@@ -822,9 +830,9 @@ These changes will cause extensive direct and indirect harm to Ireland and its p
 
 Therefore, there is an onus on us to mitigate the magnitude of long-term climate change by acting now to reduce GHG emissions, and to increase the capacity of carbon sinks such as forests and wetlands. In addition, short-lived pollutants with high global warming potential (such as methane, nitrous oxide and others), which together with carbon dioxide are responsible for climate change, are also damaging to human health and have, for example, been shown to be linked to respiratory diseases. Reductions in these emissions will not only address the climate challenge but will also improve our quality of life.
 
-### 1.7 Taking Action in Ireland
+### 1.5 European Green Deal
 
-*Pages 29–31*
+*Pages 29–29*
 
 1.5 European Green Deal
 
@@ -834,9 +842,17 @@ The Green Deal commits to delivering net-zero GHG emissions at EU level by 2050.
 
 The war in Ukraine has had a significant impact on the cost and security of our energy supply. In response to this, the EU launched the REPowerEU Plan in 2022 which aims to phase out the use of Russian fossil fuels and fast-forward the green transition. This includes enhanced energy savings, diversification of energy supplies and the accelerated roll out of renewable energy in homes, industry and power generation by 2027.
 
+### 1.6 Climate Action is Accelerating
+
+*Pages 29–29*
+
 1.6 Climate Action is Accelerating
 
 Across the globe action is accelerating to reduce GHG emissions. In Europe the legislation to reduce emissions by at least 55% by 2030 is now in place and in the US, the Inflation Reduction Act represents the largest investment in emissions reduction in US history. Worldwide, renewables – including solar and wind energy – are replacing fossil fuel-based energy systems as costs have plummeted and capacity has rapidly increased. Similarly, numbers of electric vehicles are increasing as battery technology has improved and production costs have reduced. The economic benefits of the transition to a low carbon economy are being increasingly recognised and acted upon internationally which points to the need to act now to ensure Ireland’s economic future in a low-carbon world. This imperative is reflected in the Government’s White Paper on Enterprise which emphasises the need to integrate decarbonisation commitments into enterprise policy to maintain competitiveness.
+
+### 1.7 Taking Action in Ireland
+
+*Pages 29–32*
 
 1.7 Taking Action in Ireland
 
@@ -856,13 +872,13 @@ While much of this Plan focuses on climate mitigation – the imperative to redu
 
 This Climate Action Plan sets out the roadmap to deliver on Ireland’s climate ambition. It aligns with the legally binding economy-wide carbon budgets and sectoral ceilings that were agreed by Government in July 2022. This will enable Ireland to meet 2030 targets and be well placed to meet mid-century decarbonisation objectives. This will also deliver cleaner air, warmer homes, a more secure energy system and a better quality of life for Irish citizens.
 
+![Figure from page 32](assets/p032-f02.webp)
+
+*Figure from page 32*
+
 ### The Critical Nature of the Challenge
 
 *Pages 23–24*
-
-![Figure from page 23](assets/p023-f01.webp)
-
-*Figure from page 23*
 
 The Critical Nature of the Challenge
 
@@ -900,7 +916,7 @@ Climate Action Plan 2024 sets out the roadmap to deliver on Ireland’s climate 
 
 ### 2.1 Trends in Ireland’s Emissions to Date
 
-*Pages 34–36*
+*Pages 34–37*
 
 2.1 Trends in Ireland’s Emissions to Date
 
@@ -960,13 +976,13 @@ In February 2023, DECC and DPENDR published the latter joint research paper seek
 
 https://www.competitiveness.ie/publications/2023/ireland%20s%20competitiveness%20challenge%20 2023.pdf
 
-### 2.2 Ireland’s National Climate Targets
-
-*Pages 37–38*
-
 The IFAC suggests that transition costs could reduce Exchequer revenue by an annual rate of 0.9% (about €2.5 billion in today’s money) in the period up to 2030. In terms of Government expenditure, and depending on the extent of private sector investment, the IFAC estimates that the Government may face annual costs of between €1.6 billion and €3 billion over the years 2026 to 2030.
 
 The IFAC also suggests that additional costs to the State arising from the provision of supports to respond to more frequent and adverse extreme weather events could amount about €0.5 billion or 0.2% of GNI*, and notes that limiting these risks could require further adaptation costs beyond the €0.1 billion per annum allocated for flood defenses in the National Development Plan.
+
+### 2.2 Ireland’s National Climate Targets
+
+*Pages 37–38*
 
 2.2 Ireland’s National Climate Targets
 
@@ -994,7 +1010,7 @@ The EU’s new regulations are particularly relevant to the LULUCF sector given 
 
 ### 2.3 Projections for Ireland’s Emissions
 
-*Pages 39–41*
+*Pages 39–42*
 
 2.3 Projections for Ireland’s Emissions
 
@@ -1064,13 +1080,13 @@ Enhance rail connectivity to ports, including completion of phase 1 of Shannon- 
 
 Accelerate the implementation of smart and sustainable mobility projects through the Smart and Sustainable Mobility Accelerator project, launched under the Sustainable Mobility Policy Pathfinder Programme – a comprehensive training and capacity-building programme designed to support Local Authorities and stakeholders.
 
+![Figure from page 42](assets/p042-f02.webp)
+
+*Figure from page 42*
+
 ### Where We Stand
 
 *Pages 32–33*
-
-![Figure from page 32](assets/p032-f02.webp)
-
-*Figure from page 32*
 
 Where We Stand
 
@@ -1104,13 +1120,17 @@ Climate Action Plan 2024, together with our Long-term Climate Strategy, will set
 
 ## Policy to Date and Expected Impact of Planned Policies
 
-### 3.2 Climate Action Plans
+### 3.1 Ireland’s Emissions Reduction Targets
 
-*Pages 44–45*
+*Pages 44–44*
 
 3.1 Ireland’s Emissions Reduction Targets
 
 As noted in the previous chapter, the Climate Action and Low Carbon Development (Amendment) Act 2021 commits Ireland to reducing our greenhouse gas (GHG) emissions by 51% by 2030, compared to 2018 levels, and achieving by no later than 2050 the transition to a climate resilient, biodiversity-rich, environmentally sustainable, and climateneutral economy. The strengthened climate governance framework set out in the 2021 Act includes a requirement for annual updates to the Climate Action Plan, supported by a programme of carbon budgets and sectoral emissions ceilings, and the periodic updating of our Long-term Climate Strategy. The carbon budgets and sectoral emissions ceilings (see Tables 3.1 and 3.2 below) provide an emissions reduction pathway towards our 2030 and 2050 climate targets.
+
+### 3.2 Climate Action Plans
+
+*Pages 44–45*
 
 3.2 Climate Action Plans
 
@@ -1201,10 +1221,6 @@ Table 3.2 – Sectoral Emission Ceilings
 
 *Pages 42–43*
 
-![Figure from page 42](assets/p042-f02.webp)
-
-*Figure from page 42*
-
 Policy to Date and Expected Impact of Planned Policies
 
 Image: Aerial view of Intel site - Provided by Intel
@@ -1235,7 +1251,7 @@ The policies, measures and actions set out in this Climate Action Plan will assi
 
 ## Research and Innovation
 
-### 4.2 Current State of Play
+### 4.1 Introduction
 
 *Pages 51–51*
 
@@ -1245,6 +1261,10 @@ Research has been central in developing an understanding of climate change and i
 
 Research and innovation (R&I) defined here respectively as the creation of new knowledge and as putting research to use, are fundamental to implementing existing and devising new solutions, and to developing the policies, behavioural interventions, and technologies required to mitigate the effects of climate change and adapt to its consequences.
 
+### 4.2 Current State of Play
+
+*Pages 51–52*
+
 4.2 Current State of Play
 
 This chapter builds on the actions in Climate Action Plan 2023 (CAP23) to ensure that R&I informs climate action now and in the future. Many R&I actions set out in CAP23 have been successfully completed16. In 2023 Science Foundation Ireland (SFI) launched the final funding calls17 under the National Challenge Fund. The Department of the Environment, Climate and Communications (DECC) has supported participation by Dublin and Cork cities in the Horizon Europe Climate-Neutral and Smart Cities Mission and seven Local Authorities have signed the Climate Adaptation Mission Charter18. The Environmental Protection Agency (EPA) is coordinating Irish participation in the Integrated Carbon Observation System Research Infrastructure Consortium (ICOS-RI), which Ireland recently joined. Research Classification Ireland was published and will help to classify public investment in R&I19, facilitating improved insights, evidence and transparency in relation to publicly funded climate research.
@@ -1253,15 +1273,15 @@ The chapter also refines the themes of strategic importance included in CAP23, o
 
 16 Several actions identified in CAP23 are ongoing activities which take place on an annual basis. As these have been set out in CAP23 and will continue as usual in 2024, they have not been included in the CAP24 Annex of Actions. 17 Sustainable Communities and Future Food Systems 18 EU Missions operate as a portfolio of actions (research projects, policy measures and legislative initiatives) to achieve a measurable goal. There are currently 5 EU Missions. In July 2023, the European Commission proposed a sixth mission on the New European Bauhaus. See https://research-and-innovation.ec.europa. eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe/eu-missionshorizon-europe_en 19 https://www.gov.ie/en/policy-information/e1a41-research-classification-ireland/
 
-### 4.3 Themes of Strategic Importance
-
-*Pages 52–57*
-
 4.2.1 Ireland’s Climate Research Ecosystem
 
 Ireland has built a strong R&I system in recent years. Impact 2030, Ireland’s Research and Innovation Strategy seeks to advance that system’s strategic development and to maximise the impact of R&I on our economy and society. It focusses on key societal challenges including climate, environment, and sustainability. The R&I system also benefits from competitive European R&I programmes, including Horizon Europe, the LIFE Programme20 and Innovation Fund.
 
 R&I is performed within the higher education, public, private and third (charities, nongovernmental and community organisations) sectors and is supported by funding from public, private, and philanthropic sources. Irish higher education institutions (HEIs) play a key role in climate research delivery and there are many pathways for collaboration with research partners including small and medium-sized enterprises (SMEs), multinational corporations (MNCs), Government Departments and Agencies. These pathways include the SFI Research Centres21, Enterprise Ireland/IDA Ireland Technology Centres and Enterprise Ireland (EI) Technology Gateways. Cross-sectoral collaborations help to develop the talent and skills needed for the jobs of the future, and provide innovative technologies, processes and insights to address key challenges. Summary details of the main Government Departments and Agencies involved in carrying out and supporting climate research and innovation can be found here22.
+
+### 4.3 Themes of Strategic Importance
+
+*Pages 52–58*
 
 4.3 Themes of Strategic Importance
 
@@ -1343,10 +1363,6 @@ People are at the heart of research and innovation, and drive progress forward. 
 
 26 Notably, this includes work by the SFI MaREI Research Centre, whose research has informed the development of national climate policy for a decade and continues to inform annual Climate Action Plans. 27 The 2023 OECD Report for the Irish Government Strengthening Policy Development in the Public Sector sets out a series of actions to develop a stronger research and evidence focus for public policy.
 
-### 4.4 A Strategic Approach to Climate Research and Innovation
-
-*Pages 58–59*
-
 This includes masters and PhD researchers, postdoctoral researchers, and early-career, established and leading researchers. Impact 2030 has set out a goal to nurture, develop and retain talent in the higher education and public research system, in enterprises, communities and public services, and this is being progressed by DFHERIS.
 
 Providing climate researchers working in all sectors with the right opportunities, skills, lifelong learning, and career support to enable them to realise their potential is also essential. This includes opportunities to carry out research which is focused on technological or policy innovation (applied research), and where appropriate, within, or in collaboration with industry, Government or societal partners. There are several programmes which support this, such as SEAI Fellowships, the Irish Research Council’s Enterprise Partnership Scheme28 and the SFI Industry RD&I and Public Service Fellowships29. There may be a need to increase the capacity of these programmes to support climate R&I.
@@ -1356,6 +1372,10 @@ Providing climate researchers working in all sectors with the right opportunitie
 While climate action is often expressed in terms of national targets, delivery must happen at regional or local level. The need to effectively downscale these targets and deliver them poses a range of organisational, behavioural, and regulatory challenges. Currently, a lack of regional and local data on emissions is a barrier to regional and local delivery. The role of Local Authorities, and Climate Action Regional Offices in supporting them, in leading climate action at local level, needs to continue to be developed in the future30.
 
 Levels of innovation performance in enterprise will be increased across our regions and opportunities for innovation diffusion will be maximised through smart specialisation, guided by the National Smart Specialisation Strategy for Innovation 2022-2027 (S3) which embraces a regional approach to addressing Ireland’s RD&I challenges. S3 has identified regional economic and research strengths and emerging areas of opportunity with ICT, pharmaceuticals, agri-food and the growing renewable energy sector identified as strengths right across the country.
+
+### 4.4 A Strategic Approach to Climate Research and Innovation
+
+*Pages 58–59*
 
 4.4 A Strategic Approach to Climate Research and Innovation
 
@@ -1393,7 +1413,7 @@ High-level leadership is needed to deliver current and future climate R&I priori
 
 ### 4.5 Actions
 
-*Pages 60–60*
+*Pages 60–61*
 
 4.5 Actions
 
@@ -1414,6 +1434,10 @@ Table 4.1 – Actions
 | RE/24/9 | Develop and publish spatio-temporal water maps to identify waterways at risk and indicators of climate change |
 | RE/24/10 | Establish an EPA Climate Research Fellowship Programme |
 | RE/24/11 | Establish Climate Research and Innovation Missions to focus on specific challenges that require coordinated action by multiple stakeholders and to scale promising innovations for wider applicability |
+
+![Figure from page 61](assets/p061-f01.webp)
+
+*Figure from page 61*
 
 ### Research and Innovation
 
@@ -1447,13 +1471,17 @@ New knowledge, expertise, data, evidence, technologies and solutions will contin
 
 ## Choosing the Pathways
 
-### 5.3 Emissions Trajectory and Projections
+### 5.1 Introduction
 
-*Pages 63–65*
+*Pages 63–63*
 
 5.1 Introduction
 
 Following the approval of the carbon budget programme, the Minister for the Environment, Climate and Communications engaged with relevant Ministers, Departments and Agencies to determine the level of effort required by each sector of the economy to deliver these budgets. The resultant sectoral emissions ceilings were approved by Government on 28 July 2022. Chapter 3 summarises the approved carbon budgets and sectoral emissions ceilings.
+
+### 5.2 Sectoral Emissions Ceilings and Pathways
+
+*Pages 63–63*
 
 5.2. Sectoral Emissions Ceilings and Pathways
 
@@ -1462,6 +1490,10 @@ Achieving the sectoral emissions ceilings will require ambitious climate action 
 Sectoral pathways to achieve the sectoral emissions ceilings were agreed, backed by specific measures and actions for each sector. Key performance indicators are used to track progress towards emissions targets and enable each sector to gauge the need for additional corrective actions, as required by the Climate Act.
 
 The sectoral emissions ceilings and the pathways detailed in Climate Action Plan 2023 (CAP23) were largely based on analytical work produced by the Department of the Environment, Climate and Communications. In Climate Action Plan 2024 (CAP24), this has been enhanced as many sectors have developed their own independent but complementary analytical approaches. This allows for deeper insight into the decarbonisation measures available to the sector and their associated abatement potential, ultimately building confidence in each sector’s emissions reduction pathway. For example, the agriculture sector now benefits from updated modelling of emissions reduction measures in the 2023 Teagasc Marginal Abatement Cost Curve (MACC); the pathway for the electricity sector is detailed in EirGrid’s Shaping our Electricity Future; and the National Transport Authority have modelled the measures underpinning the pathway for the transport sector. It should be noted that the abatement figures in CAP24 may not precisely bridge from 2018 emissions to the 2030 target because some abatement is needed to address assumed growth in underlying economic activity (e.g., in electricity, some abatement measures are needed to address growth in electricity demand).
+
+### 5.3 Emissions Trajectory and Projections
+
+*Pages 63–66*
 
 5.3. Emissions Trajectory and Projections
 
@@ -1645,13 +1677,13 @@ LULUCF: CAP24 updates the Government’s approach to emissions and reductions in
 
 34 As outlined in Chapter 18, the range is set such that all activity levels allow the sector to comply with the estimated EU targets for the LULUCF sector that Ireland has committed to.
 
-### 5.4 Underpinning Delivery
-
-*Pages 66–66*
-
 regarding the modelling of these scenarios. The sector is to follow a reporting approach aligned with the EU regulations for LULUCF that Ireland has committed to, which provides clear and stable emissions targets;
 
 Differences in Modelling Approach: In cases where modelling differences exist, the approach is to ensure continued engagement between the relevant responsible Department and the EPA.
+
+### 5.4 Underpinning Delivery
+
+*Pages 66–67*
 
 5.4 Underpinning Delivery
 
@@ -1663,23 +1695,19 @@ Industry: In the industry sector, several strategic initiatives on decarbonisati
 
 Built Environment: Significant efforts were made to advance the decarbonisation of the building sector. The Heat and Built Environment Delivery Taskforce focuses on acceleration of system-wide programme and project delivery for the measures identified. The Energy Efficiency Directive takes the principle of “energy efficiency first” as a key policy requirement for buildings. The impending publication of a National Heat Policy Statement, informed by the National Heat Study, will outline the comprehensive approach to decarbonising the heat sector by the end of 2023. The District Heating Steering Group issued recommendations to enhance district heating. Lastly, the Policy Statement on Geothermal Energy for a Circular Economy further contributed to sustainable building initiatives;
 
-### 5.5 Implied Capital Requirements to Deliver Emissions Ceilings and Pathways
-
-*Pages 67–67*
-
 Transport: Numerous new national policies, plans and strategies support emissions reductions in the transport sector. These include the National EV Charging Infrastructure Strategy; a revised Greater Dublin Area Transport Strategy; the Renewable Fuels for Transport Policy Statement 2023-2025; and the implementation and roll-out of the first projects under the Sustainable Mobility Policy Pathfinder Programme (including the first all-electric town bus service). Additionally, emissions reduction will be underpinned by the adoption of key EU regulations, such as the Alternative Fuels Infrastructure Regulation as well as the ReFuelEU Aviation and FuelEU Maritime regulations;
 
 Agriculture: The agricultural sector has improved its analytical foundation for emissions reductions through the 2023 Teagasc MACC, which assesses the abatement potential of levers identified in CAP23, as well as some additional levers, and this analysis is set to be integrated into future Climate Action Plans following relevant stakeholder engagement processes. Additionally, the Fifth Nitrates Action Programme 2022-2025 helps reduce nitrate pollution of Ireland’s soils and water while reducing the emissions of nitrous oxide, a potent GHG.
+
+### 5.5 Implied Capital Requirements to Deliver Emissions Ceilings and Pathways
+
+*Pages 67–68*
 
 5.5 Implied Capital Requirements to Deliver Emissions Ceilings and Pathways
 
 Chapter 5 of CAP23 estimated that an additional ~€119 billion of capital investment would be required to deliver the measures identified. Of this, it was estimated that approximately ~€70 billion of capital investments (~60% of the total) would be redirected rather than incremental investments. Capital investment costs were evaluated based on a least cost pathway model that optimises total system cost.
 
 Since the finalisation of CAP23, there has been some evidence of a potential increase in capital investment required (most significantly related to the CapEx required for renewable electricity generation capacity). The cost estimate is now ~€119-125 billion of capital investment needed.
-
-### 5.6 Measures to Address Unallocated Savings
-
-*Pages 68–70*
 
 Figure 5.3 – Estimated Investment Required to Mobilise Key Technologies
 
@@ -1702,6 +1730,10 @@ Total
 1. Including interconnection | 2. Includes e.g. residential and commercial electric cooking
 
 In addition, further investments will be required to deliver the unallocated emissions savings outlined in section 5.6. Investments will likely be concentrated in the deployment of key emerging technologies. Estimates of the exact investment required are to be brought forward in advance of addressing the unallocated emissions ahead of the second carbon budgetary period.
+
+### 5.6 Measures to Address Unallocated Savings
+
+*Pages 68–71*
 
 5.6 Measures to Address Unallocated Savings
 
@@ -1759,10 +1791,6 @@ The deployment of CCUS technology is not integrated in the Climate Action Plans.
 
 Ireland’s Climate Action Plan does not incorporate the use of carbon removal strategies, encompassing the extraction, storage, and utilisation of biogenic carbon dioxide. Global reports, including those by the IEA and the UK CCC, along with domestic research such as SEAI’s Carbon Capture Utilisation and Storage: Suitability, Costs and Deployment Options in Ireland and Coillte’s strategic vision, underscore the considerable potential of carbon removals in Ireland. Notably, within the second carbon budget, two distinct carbon removal methods emerge as potentially promising avenues capable of addressing part of the gap in residual unallocated emissions:
 
-### 5.7 Benefits for Ireland
-
-*Pages 71–71*
-
 Biochar: Utilising biogenic woody residue to produce biochar (e.g., for use as soil enhancement);
 
 Bioenergy with Carbon Capture and Storage: Removing biogenic carbon dioxide from renewable biomass power plants.
@@ -1777,6 +1805,10 @@ Assess of the potential impacts (e.g., economic, social, environmental); and ide
 
 This work is to be completed ahead of Climate Action Plan 2026, and well in advance of the second carbon budgetary period.
 
+### 5.7 Benefits for Ireland
+
+*Pages 71–72*
+
 5.7 Benefits for Ireland
 
 ![Figure 5.4 – Benefits of climate action](assets/p071-f01.webp)
@@ -1785,15 +1817,15 @@ This work is to be completed ahead of Climate Action Plan 2026, and well in adva
 
 Co-benefits: Climate co-benefits refer to additional social and economic benefits that arise from climate action. For example, the restoration of peatlands and increase in woodland enables habitat creation and improves air quality. Increased forest cover can retain excess water and mitigate the impacts of floods, increasing resilience to climate change. Changes to farming practices bring air quality improvements from the reduction in ammonia use, and reduced eutrophication/water pollution because of more efficient nitrous oxide application. Regenerative agricultural practices improve soil health and the soil’s capacity to infiltrate, reducing the need for irrigation and improving water and energy efficiency.
 
-### 5.8 Actions
-
-*Pages 72–73*
-
 Health benefits: There is a wealth of evidence that many climate actions can lead to health improvements and reduced health risks. For example, embracing active travel (walking and cycling) can have improved physical and mental health benefits which, considered in economic terms, are even greater than the positive environmental impact, while the shift to renewable fuel sources improves air quality. Additionally, climate action can help improve air quality, which was highlighted as a priority in the EPA’s 2022 Air Quality in Ireland report.35 Action to reduce transport emissions in particular reduces exposure to pollutants and associated mortality risks and will help Ireland achieve its ambition to move towards the World Health Organisation Air Quality guidelines, as outlined in the Clean Air Strategy.
 
 Job creation: Climate action can lead to market opportunities that enable sustainable economic growth and green job creation. For example, increased demand for jobs in higher- skilled roles such as offshore wind installation engineers. Ireland is well positioned to seize new high-growth green export and import substitution opportunities such as horticulture and harvested wood products. Further opportunities for job creation exist in low-carbon transition sectors such as buildings, transport, and manufacturing. In the buildings sector, this could include jobs to support the energy efficiency and low-carbon heat programmes.
 
 The actions set out in this plan aim to ensure that Ireland’s response to climate change maximises the potential benefits outlined above and ensures that the impacts are distributed fairly.
+
+### 5.8 Actions
+
+*Pages 72–73*
 
 5.8 Actions
 
@@ -1816,10 +1848,6 @@ Table 5.1 – Actions
 ### Choosing the Pathways
 
 *Pages 61–62*
-
-![Figure from page 61](assets/p061-f01.webp)
-
-*Figure from page 61*
 
 Choosing the Pathways
 
@@ -1861,13 +1889,17 @@ Chart a pathway for allocating the 26 MtCO2eq. of emissions savings that are cur
 
 ## Governance
 
-### 6.2 Review of Sectoral Emissions Ceiling Ministerial Accountability Framework
+### 6.1 Introduction
 
 *Pages 76–76*
 
 6.1 Introduction
 
 The carbon budget programme adopted by the Oireachtas in April 2022, and the sectoral emissions ceilings approved by the Government in July of that year, continue to underpin the policies, measures and actions set out in this Climate Action Plan, sitting alongside and supporting our EU targets and their associated governance and reporting framework. Further information our carbon budgets and sectoral emissions ceilings is provided in chapter 3.
+
+### 6.2 Review of Sectoral Emissions Ceiling Ministerial Accountability Framework
+
+*Pages 76–77*
 
 6.2 Review of Sectoral Emissions Ceiling Ministerial Accountability Framework
 
@@ -1886,10 +1918,6 @@ Table 6.1 – Proposed Revisions to the Sectoral Emissions Ceiling Ministerial A
 
 36 https://www.epa.ie/publications/monitoring--assessment/climate-change/air-emissions/2023-EPA- Provisional-GHG-Report_Final_v3.pdf
 
-### 6.3 Oversight of Government
-
-*Pages 77–78*
-
 | Sector | Minister with Responsibility |
 | --- | --- |
 | Agriculture | Minister for Agriculture, Food and the Marine |
@@ -1897,6 +1925,10 @@ Table 6.1 – Proposed Revisions to the Sectoral Emissions Ceiling Ministerial A
 | Other (F-Gases, Waste & Petroleum Refining) | Minister for the Environment, Climate and Communications |
 
 Pending future decisions on these proposed revisions, the current Sectoral Emissions Ceiling Ministerial Accountability Framework remains operative.
+
+### 6.3 Oversight of Government
+
+*Pages 77–78*
 
 6.3 Oversight of Government
 
@@ -1932,7 +1964,7 @@ The overall and sector-specific recommendations in the CCAC annual review are ad
 
 ### 6.4 Delivery of Climate Action Plans
 
-*Pages 79–83*
+*Pages 79–84*
 
 6.4 Delivery of Climate Action Plans
 
@@ -2085,10 +2117,6 @@ Table 6.2 – Taskforce and Related Structures Summary
 
 42 gov.ie - Offshore Wind Delivery Taskforce (www.gov.ie) 43 gov.ie - Heat and Built Environment Taskforce (www.gov.ie)
 
-### 6.6 Non-compliance with the Carbon Budgets and Sectoral Emissions Ceilings
-
-*Pages 84–84*
-
 | Taskforce | Summary |
 | --- | --- |
 | Transport | A Leadership Group was established 2022 to drive delivery of the Sustainable Mobility Policy Action Plan and Pathfinder Programme |
@@ -2099,15 +2127,23 @@ Table 6.2 – Taskforce and Related Structures Summary
 
 A monitoring and reporting system to track progress against the key performance indicators (KPIs) set out in Climate Action Plans has been developed. Starting in 2024, DECC will publish an annual KPI Report, complementing the quarterly reporting by the Department of An Taoiseach, and the periodic reporting by the EPA and CCAC.
 
+### 6.5 Climate Proofing of Government Decisions and Investments
+
+*Pages 84–84*
+
 6.5 Climate Proofing of Government Decisions and Investments
 
 To better inform Government Memoranda, we will use a standardised, evidence-based approach to evaluating the climate impact of Government decisions and investments. This will enable a consistent approach to considering proposals across sectors, and support Government in meeting our legally binding national and EU climate targets.
+
+### 6.6 Non-compliance with the Carbon Budgets and Sectoral Emissions Ceilings
+
+*Pages 84–84*
 
 6.6 Non-compliance with the Carbon Budgets and Sectoral Emissions Ceilings
 
 As required, corrective or additional measures will be introduced to assist in reaching our climate targets. However, at the end of a five-year carbon budget period, any excess emissions will be carried forward to the next budgetary period, with that carbon budget reduced by the amount of the excess emissions. DPENDR will continue to monitor and review potential compliance costs associated with reaching Ireland’s EU climate and energy targets, including applying methodologies to apportion any compliance costs to across the sectors with excess emissions.
 
-### 6.8 Alignment with EU Governance and Reporting Framework
+### 6.7 Alignment with Ireland’s Long-term Climate Strategy
 
 *Pages 85–85*
 
@@ -2123,6 +2159,10 @@ an assessment of potential opportunities for achieving reductions in GHG emissio
 
 Ireland’s current Long-term Climate Strategy, published in April 2023, builds on the decarbonisation pathways set by the carbon budgets, sectoral emissions ceilings and CAP23, to ensure coherent and effective climate policy. It is underpinned by analysis of transition options across each key sector of the economy and provides a crucial link between Ireland’s 2030 and 2050 climate targets. The strategy was shaped by responses received from a wide range of stakeholders to a public consultation in 2019. Notwithstanding that these responses remain relevant in the current policy context, the Minister launched a further public consultation in 2023 given the important climate policy developments since 2019. The inputs received through this consultation have formed the basis for preparing an updated Long-term Climate Strategy, complying with the requirements of both national and EU law.
 
+### 6.8 Alignment with EU Governance and Reporting Framework
+
+*Pages 85–86*
+
 6.8 Alignment with EU Governance and Reporting Framework
 
 Ireland’s climate governance and reporting framework is informed and guided by the obligations and requirements set out in the relevant EU legislation and regulations. The European Green Deal, published in 2019, frames the EU’s response to climate breakdown. It is a growth strategy aimed at transforming the EU into a climate-neutral, fair, and prosperous society, with a modern, resource-efficient, and competitive economy. The European Green Deal is underpinned by the European Climate Law, enacted in 2020, which:
@@ -2131,15 +2171,15 @@ Sets legally binding EU-wide targets (reducing net GHG emissions by at least 55%
 
 Establishes, for the first time, a separate EU land-based net carbon removals target of 310 MtCO2eq. by 2030;
 
-### 6.9 Actions
-
-*Pages 86–86*
-
 Commits to negative emissions after 2050;
 
 Calls on the EU Commission to make a proposal to set a EU-wide climate target for 2040.
 
 Ireland contributes to the achievement of the EU-wide 2030 targets through legally binding national targets under the EU Effort Sharing Regulation, as well as through obligations under the Renewable Energy and Energy Efficiency Directives, with a requirement to report every two years from 2023 onwards on our integrated National Energy and Climate Plan (NECP).
+
+### 6.9 Actions
+
+*Pages 86–86*
 
 6.9 Actions
 
@@ -2210,9 +2250,9 @@ Strong climate governance and progressive policies contained in this Climate Act
 
 44 NESC (2020) Addressing Employment Vulnerability as Part of a Just Transition in Ireland https://www.nesc. ie/publications/addressing-employment-vulnerability-as-part-of-a-just-transition-in-ireland-2/
 
-### 7.3 Principle 1: An integrated, structured, and evidence-based approach to identify and respond to just transition needs as they emerge
+### 7.2 Just Transition Framework and Principles
 
-*Pages 90–92*
+*Pages 90–95*
 
 7.2 Just Transition Framework and Principles
 
@@ -2286,10 +2326,6 @@ Our capacity to anticipate and plan for a just transition requires a robust evid
 
 NESC reports on Addressing Employment Vulnerability as Part of a Just Transition in Ireland (2020) and Exploring a Just Transition in Agriculture and Land Use (2023), and related research publications such as Exploring Place-based Opportunities for Policy and Practice in Transition (2022);
 
-### 7.4 Principle 2: People are equipped with the right skills to be able to participate in and benefit from the future net zero economy
-
-*Pages 93–95*
-
 The annual reviews and working papers of the CCAC;
 
 A three-year research programme under the Energy Poverty Action Plan is being carried out by the Economic and Social Research Institute (ESRI), which includes energy efficiency, and income and energy poverty and health outcomes, and is informing the work of the Energy Poverty Action Plan Steering Group;
@@ -2346,9 +2382,9 @@ In 2023, provision of a training programme on Nearly Zero-emission Building (NZE
 
 Dublin Port Construction project partners with Dublin Port to provide training in construction skills and engages participants with employers, providing work pathways to individuals who may have been out of work for long periods, those who are newly arrived in Ireland or those who may face other barriers such as criminal records, homelessness, or recovery from drug addiction. The project has trained 382 people to date in 2023, with a 60% success rate in participants being employed.
 
-### 7.6 Principle 4: Social dialogue to ensure impacted citizens and communities are empowered and are core to the transition process
+### 7.5 Principle 3: The costs are shared so that the impact is equitable and existing inequalities are not exacerbated
 
-*Pages 96–96*
+*Pages 96–97*
 
 7.5 Principle 3: The costs are shared so that the impact is equitable and existing inequalities are not exacerbated
 
@@ -2362,13 +2398,13 @@ The NDCA is the key mechanism for facilitating social dialogue on climate action
 
 NDCA inputs received in 2023 reinforced the view of stakeholders that just transition should be integral to all aspects of climate action, with a key measure of success for climate transformation being the extent to which the most vulnerable communities can be protected and thrive.
 
-### 7.7 Actions
-
-*Pages 97–97*
-
 Similar themes emerged from the National Youth Assembly on Climate, which raised many just transition related recommendations, including: an Ireland where people feel safe to walk and bike; more accessible and affordable public transport in rural areas and reskilling and supporting farmers to be more sustainable through training, education, grants, incentives, so that they can be empowered to contribute to climate solutions.
 
 The Climate Conversations have highlighted the importance of communicating just transition messages and how sectors will be supported at every stage of the transition, especially around upskilling, retraining, and financial supports, noting the needs of the most impacted and marginalised groups, such as Travellers, older or less able members of society, who have expressed a desire to have more engagement and participation in the transition to climate neutrality.
+
+### 7.7 Actions
+
+*Pages 97–98*
 
 7.7 Actions
 
@@ -2381,6 +2417,10 @@ Table 7.1 – Actions
 | JT/24/1 | Develop the green skills and capacities required for a net-zero economy through Education and Training Boards |
 | JT/24/2 | Develop the green skills and capacities required for a net-zero economy through Springboard+ and HCI Pillar 1 |
 | JT/24/3 | Work with key stakeholders on the Just Transition Taskforce to devise a recommended approach on the future structure, functions, and membership of a Just Transition Commission |
+
+![Figure from page 98](assets/p098-f02.webp)
+
+*Figure from page 98*
 
 ### Ensuring a Just Transition to a Climate Neutral Ireland
 
@@ -2420,13 +2460,17 @@ The cost of climate action will be shared equitably across society
 
 ## Delivering a Just Transition in the Midlands Region
 
-### 8.2 Measures to Deliver a Just Transition in the Midlands
+### 8.1 Responding to the Transition
 
-*Pages 100–105*
+*Pages 100–100*
 
 8.1 Responding to the Transition
 
 Exchequer and EU resources are providing continuing support to the Midlands region in addressing the socio-economic impacts following the closure of peat-fired power stations and the cessation of commercial peat extraction as a feedstock for power generation.46Our continuing work to support a just transition in the region is set out in this chapter.
+
+### 8.2 Measures to Deliver a Just Transition in the Midlands
+
+*Pages 100–106*
 
 8.2 Measures to Deliver a Just Transition in the Midlands
 
@@ -2550,10 +2594,6 @@ Create innovative education and demonstration facilities that include live testi
 
 Promote sustainability and the circular economy in the built environment.
 
-### 8.3 Actions
-
-*Pages 106–107*
-
 Bord na Móna continues to offer subsidised re-training supports, through LOETB, including a new 5-month Start Your Own Business Traineeship programme to enable a transition from employment to entrepreneurship. This includes class-based tuition, workshops, self-directed learning, and work-based experiential learning and mentoring on a full-time basis. Bord na Móna will provide seed investment to successful start-ups, building on the company’s successful Accelerate Green programme. Offaly LEO is a key partner on the programme offering support and mentoring to participants.
 
 8.2.4 Renewable Energy Infrastructure and Geological Resources
@@ -2563,6 +2603,10 @@ Bord na Móna, the ESB and several private energy companies have announced inves
 The SEAI Sustainable Energy Communities Programme continues to support Midlands communities, through local mentors and co-ordinators, on their decarbonisation journey. The mentors provide free guidance on how to form a sustainable energy community and develop an energy master plan, including establishing a baseline for energy used in the community and a register of opportunities for projects. By the end of 2024, it is estimated that investment of €450,000 will have supported the development of 30 energy master plans in the Midlands region.
 
 The Geological Survey of Ireland will carry out a range of investigations and evaluate the geological potential of the Midlands, including producing a map and report outlining available resources and potential associated management considerations. It will also evaluate the possibility for communities and local economies to use resources, such as groundwater or geothermal energy, as part of the just transition, including assessing the feasibility of their use.
+
+### 8.3 Actions
+
+*Pages 106–107*
 
 8.3 Actions
 
@@ -2585,10 +2629,6 @@ Table 8.1 – Actions
 ### Delivering a Just Transition in the Midlands Region
 
 *Pages 98–99*
-
-![Figure from page 98](assets/p098-f02.webp)
-
-*Figure from page 98*
 
 Delivering a Just Transition in the Midlands Region
 
@@ -2626,7 +2666,7 @@ Strengthened resilience and sustainability of the regional economy of the Midlan
 
 ### 9.1 State of Play
 
-*Pages 110–113*
+*Pages 110–114*
 
 9.1 State of Play
 
@@ -2696,10 +2736,6 @@ Developing an overarching climate communications and information campaign, which
 
 51 Climate Change Advisory Council 2023 Annual Review: https://www.climatecouncil.ie/ councilpublications/annualreviewandreport/CCAC-AR-2023-postfinal.pdf
 
-### 9.2 Measures to Deliver Targets in 2024
-
-*Pages 114–119*
-
 Developing a concurrent and co-ordinated interactive dialogue and engagement programme, nationally, locally and at the community/network level;
 
 Providing specific engagement opportunities to those who are vulnerable to the transition to climate neutrality or who feel disenfranchised;
@@ -2707,6 +2743,10 @@ Providing specific engagement opportunities to those who are vulnerable to the t
 Positioning Ireland as a global leader in climate communications and collective climate action;
 
 Measurement and evaluation of activity.
+
+### 9.2 Measures to Deliver Targets in 2024
+
+*Pages 114–120*
 
 9.2 Measures to Deliver Targets in 2024
 
@@ -2870,10 +2910,6 @@ Data Management System
 
 The Roadmap of Climate Engagement Activities will constitute a coordinated approach to the delivery of the National Campaign of Communication and Engagement on Climate Action. Based on the agreed roadmap, outputs, results, and impacts, with associated Key Performance Indicators (KPIs) will be defined, and a measurement system will be designed and implemented. Each engagement activity and campaign will be required to employ existing evidence provided by the NDCA programme in its design, including defining KPIs and agreed mechanisms for their measurement.
 
-### 9.3 Impacts from a National Campaign of Communication and Engagement on Climate Action
-
-*Pages 120–120*
-
 Box 9.2 – LOGIC Model to be guide the Monitoring and Evaluation of Citizen Engagement
 
 ![Figure from page 120](assets/p120-f01.webp)
@@ -2888,6 +2924,10 @@ Consolidate research data to inform communications, engagement, and climate poli
 
 Better understand the ‘say-do’ gap to empower individuals and communities of interest, via existing networks, to take climate action.
 
+### 9.3 Impacts from a National Campaign of Communication and Engagement on Climate Action
+
+*Pages 120–121*
+
 9.3 Impacts from a National Campaign of Communication and Engagement on Climate Action
 
 The development and implementation of a national campaign will allow the Government to build an understanding of, and support for, climate action through informed communications, as set out in the Communications Strategy. Each of the three strategic goals below will be advanced:
@@ -2901,10 +2941,6 @@ Improve climate awareness and literacy, countering misunderstanding;
 Facilitate a well-informed public discourse, clearly identifying key challenges and opportunities;
 
 Build a deeper understanding of climate impacts, and the best actions to address them;
-
-### 9.4 Actions
-
-*Pages 121–122*
 
 Communicate the wider benefits of climate action such as health/wellbeing, cost of living, and green jobs;
 
@@ -2935,6 +2971,10 @@ Encourage and support individual and collective climate action;
 Engage a critical mass nationally through cohesive and accessible campaigns and online resources.
 
 In adopting this approach, the programme will have a strong action focus leveraging public, sectoral and regional involvement in delivering changes at system levels within relevant spheres of influence, while also promoting and enabling long-term behavioural change. This approach engages those already involved in climate action, enables those not yet engaged to get involved, and empowers those who are likely to be most affected by climate change to act. Cumulatively this supports the strengthening of a new social contract on climate action between the Government and the Irish people.
+
+### 9.4 Actions
+
+*Pages 121–122*
 
 9.4 Actions
 
@@ -3005,7 +3045,7 @@ Table 10.1 – Public Sector GHG Emissions, 202254
 
 ### 10.2 2025 and 2030 Key Performance Indicators
 
-*Pages 126–127*
+*Pages 126–128*
 
 10.2 2025 and 2030 Key Performance Indicators
 
@@ -3063,10 +3103,6 @@ Growth
 
 If an increase in a public sector body’s operations can be demonstrated to lead to a significant overall net economy-wide emissions reduction an “emissions recognition” can apply. An “emissions recognition” will apply only where the relevant projects have a wider societal benefit by reducing overall emissions. The net societal emissions savings must be additional.
 
-### 10.3 Measures to Deliver Target Impact
-
-*Pages 128–137*
-
 Approval must be given by the Minister for the Environment, Climate, and Communications for an “emissions recognition”. This will be dealt with on a caseby-case basis. A general approach to “emissions recognition” has been developed and will be piloted in the transport sector. SEAI will update its M&R methodology in order to take into consideration this “emissions recognition” and how it will operate.
 
 Governance
@@ -3080,6 +3116,10 @@ Be part of a sectoral group, which includes a given Government Department and al
 SEAI Annual Report on Public Sector Decarbonisation and Energy Efficiency Performance
 
 Public bodies are required to report annual energy data to the SEAI using their online national energy M&R system. The 2022 Annual Report on Public Sector Decarbonisation and Energy Efficiency Performance, which reports on 2021 data, shows that the 345 public bodies and 2,898 schools who reported collectively improved their energy efficiency by 31.5% since 2009.
+
+### 10.3 Measures to Deliver Target Impact
+
+*Pages 128–138*
 
 10.3 Measures to Deliver Target Impact
 
@@ -3289,10 +3329,6 @@ DECC and the Department of Transport have engaged with the SEAI in relation to t
 
 61 SEAI Annual Report on Public Sector Energy Performance, section 3.3. 62 SEAI Public Sector Results: https://www.seai.ie/business-and-public-sector/public-sector/monitoringand-reporting/public-sector-results/ 63 Public transport decarbonisation (e.g., bus, taxi, and rail), is dealt with in Chapter 16: Transport.
 
-### 10.4 Actions
-
-*Pages 138–139*
-
 10.3.11. Financing and Funding
 
 It is a legal requirement that the Climate Action Plan represents the best possible value for money consistent with the sustainable management of the public finances. Estimation of the costs and effects of measures under consideration should, therefore, form a core element of each Department’s work on annual updates to the Climate Action Plan. Furthermore, this work should be integrated with the annual budget cycle, so knowledge of the costs and value for money of proposed actions can feed into Department’s financial planning and prioritisation for the year ahead, in line with agreed allocations.
@@ -3302,6 +3338,10 @@ Analysis and modelling of costs and emissions reductions should begin in Q2 each
 The National Development Plan 2021–2030 (NDP) published in 2021 is backed by funding of €165 billion. This expenditure is pivotal in delivering the infrastructure needed to support our future economic requirements and to address our social investment and climate change commitments. An additional €2.25 billion from the windfall corporation tax receipts was made available to capital expenditure over the period 2024-26 in the Summer Economic Statement (SES) 2023. This was to facilitate the progression of important projects and enable more rapid development of key Programme for Government commitments. As a percentage of national income, annual capital investment is among the highest in the EU and well above the recent average of 3% of national income. It is up to the Departments in receipt of these funds to identify the policies and measures that maximise the impact of this planned investment on the achievement of climate targets and determining the appropriate balance and mix of expenditures in their sector. Public sector bodies are also encouraged to look at all available funding options to achieve climate action targets, including, where appropriate, Public Private Partnerships and/or Energy Performance Contracts, or borrowing within approved limits.
 
 Funding for climate action needs to be integrated into overall budgetary frameworks across public sector programmes. This will ensure that the goals that have been set are supported by robust, realistic, and cost-effective resourcing plans that can accommodate the trade-offs that inevitably arise in the context of budgetary and other wider economic constraints that may exist.
+
+### 10.4 Actions
+
+*Pages 138–139*
 
 10.4 Actions
 
@@ -3375,13 +3415,17 @@ Implement and review the Public Sector Climate Action Mandate annually
 
 ## Carbon Pricing and Cross-Cutting Policies
 
-### 11.2 Measures to Deliver Cross-cutting Policy Objectives
+### 11.1 State of Play
 
-*Pages 142–151*
+*Pages 142–142*
 
 11.1 State of Play
 
 For the actions and targets set out in this Climate Action plan to achieve the Government’s sectoral emissions ceilings, key cross-cutting policies at national level will provide a broad, supportive, national policy framework to promote the transition to a climate neutral society. Government policies on taxation, expenditure, sustainable finance, spatial planning, digital transformation, and the bioeconomy provide an important enabling framework for individual, household, community, and company-level climate action. These policies also act as enablers for a wide range of other Government policies and activities within individual sectors.
+
+### 11.2 Measures to Deliver Cross-cutting Policy Objectives
+
+*Pages 142–152*
 
 11.2 Measures to Deliver Cross-cutting Policy Objectives
 
@@ -3577,13 +3621,13 @@ The Government will also continue to support remote working through its Making R
 
 Our bioeconomy is a powerful enabling tool which can address the key challenges that the climate transition poses while providing sustainable sources of proteins; bioactivities; energy; biobased fertiliser; locally sourced feed for our animals; nature-based building materials; and many other innovative sustainable products that displace fossil fuels, while ensuring both the continued success of our agri-food, marine, industry and forestry sectors and contributing to our emissions reduction targets and the development of a circular economy.
 
-### 11.3 Actions
-
-*Pages 152–152*
-
 Supporting our bioeconomy offers us the potential to modernise industries and sectors through innovation while minimising and managing the impact on our climate or environment, as often these new bio-based solutions can course-correct previously harmful practices. The bioeconomy seeks to do more with less, it seeks to cascade the use of our biological resources for higher value diversification opportunities, and harness waste and natural capital sustainably, displacing the use of fossil-based, fossil-reliant, or nonrenewable products.
 
 The bioeconomy has been fully embraced at national and EU levels through the National Policy Statement on the Bioeconomy 2018 and through the EU Bioeconomy Strategy. These strategies aim to accelerate the development of a sustainable European bioeconomy market, which will aid in the delivery of the Sustainable Development Goals while also assisting in the delivery of goals outlined in the Paris Climate Accords and the European Green Deal transformation. A new national Bioeconomy Action Plan 2023-2025 has recently been adopted by Government, representing a key step in achieving the vision outlined in the National Policy Statement on the Bioeconomy. Climate Action Plan 2024 will progress its implementation through increased public and stakeholder understanding and awareness of the bioeconomy, and biobased innovation and solutions, and through the development of guidelines and the launch of a call, developing further opportunities for the bioeconomy.
+
+### 11.3 Actions
+
+*Pages 152–153*
 
 11.3 Actions
 
@@ -3596,6 +3640,10 @@ Table 11.1 – Actions
 | CP/24/1 | Monitor and review the carbon tax increases as legislated in the 2020 Finance Act and other environment related taxation reform |
 | CP/24/2 | Publish Green Budgeting Analysis on tax and tax expenditure |
 | CP/24/3 | Publish Green Budgeting Analysis on expenditure allocations |
+
+![Figure from page 153](assets/p153-f01.webp)
+
+*Figure from page 153*
 
 ### Carbon Pricing and Cross-Cutting Policies
 
@@ -3639,21 +3687,7 @@ National Planning Framework objectives will support climate policy implementatio
 
 ### 12.1 State of Play
 
-*Pages 155–159*
-
-Measures and Actions
-
-Transformational policies, measures and actions, and societal change are required to increase the deployment of renewable energy generation, strengthen the electricity grid, and meet the demand and flexibility needs required for the challenges of:
-
-Increasing renewable generation to supply 80% of demand by 2030 through the accelerated expansion of onshore wind and solar energy generation, developing offshore renewable generation, and delivering additional grid infrastructure
-
-Developing micro- and small-scale generation, as well as community projects, through actions such as grant funding and enabling small-scale production to participate in energy markets
-
-Transforming the flexibility of the electricity system by improving system services and increasing storage capacity
-
-Developing tools and mechanisms that support demand side flexibility services which leverage smart metering, including market incentives and smart tariffs, reducing/removing regulatory barriers, and focusing on flexibility-ready standards for smart technology
-
-Delivery of at least 2 GWs of new flexible gas-fired generation
+*Pages 155–160*
 
 12.1 State of Play
 
@@ -3768,15 +3802,15 @@ Rapid delivery of flexible gas generation is needed at scale and in a timeframe 
 
 70 https://www.gov.ie/en/publication/5c499-energy-security-in-ireland-to-2030/
 
-### 12.2 Sectoral Ceiling and Carbon Budgets
-
-*Pages 160–160*
-
 A continued drive for solar energy, with an ambitious target of up to 5 GW by 2025, will support land-use diversification and enable farmers and communities to participate in the energy transition. Maximising the self-consumption of renewable electricity will reduce costs and selling surplus electricity to the grid will allow for the diversification of income.
 
 The potential use of brownfield sites, infrastructure corridors for renewables, renewable hubs, energy parks and multi-activity sites, off-grid solutions, existing wind farm connections, and private wires, could open-up the potential for solar energy to supply a growing amount of Ireland’s electricity demand and offset emissions from fossil fuels, and should be explored, where feasible. The development of hybrid connections to the grid could also open the potential for more rapid deployment of renewable energy generation in particular through co-locating solar energy projects with existing wind farms.
 
 All of these investments are necessary for an electricity system that is expected to accommodate even higher levels of renewable energy from offshore wind during the third carbon budget period. The scale, investment, and capacity required to deliver it should not be underestimated.
+
+### 12.2 Sectoral Ceiling and Carbon Budgets
+
+*Pages 160–160*
 
 12.2 Sectoral Ceiling and Carbon Budgets
 
@@ -3796,7 +3830,7 @@ Table 12.4 – Required Level of Decarbonisation for Sector
 
 ### 12.3 Emissions Projections for Electricity
 
-*Pages 161–162*
+*Pages 161–163*
 
 12.3 Emissions Projections for Electricity
 
@@ -3830,13 +3864,13 @@ Finally, a supportive investment climate for renewables in Ireland is essential 
 
 Government is overseeing a phased approach to offshore wind development. The Offshore Wind Delivery Taskforce has been established to drive delivery and capture the wider and longer-term economic and business opportunities associated with the development of offshore renewables in Ireland.
 
-### 12.4 2025 and 2030 KPIs
-
-*Pages 163–168*
-
 To deliver on the roadmap for renewables set out in CAP23, the Accelerating Renewable Electricity Taskforce has been established to coordinate the fast-track and increased deployment and output of renewable electricity generation and supporting technologies in the near-term.
 
 Notwithstanding the above, the scale of projected electricity demand growth means that the delivery and integration of the renewables programme alone does not deliver required levels of emissions reduction. Net Zero demand growth and calibrating renewable energy with demand will need to be pursued as a matter of urgency as a part of a longer-term decarbonisation pathway for the sector including for the third carbon budget.
+
+### 12.4 2025 and 2030 KPIs
+
+*Pages 163–169*
 
 12.4 2025 and 2030 KPIs
 
@@ -3960,11 +3994,11 @@ Publish a regulatory decision on dynamic green electricity tariffs;
 
 Enable and encourage domestic customers, businesses, and communities to participate in demand flexibility services;
 
+Enable and encourage customers to participate in wholesale and system services markets as a matter of urgency. Local balancing of flexible demand and renewable generation will contribute to an increase in renewable electricity usage and a reduction in carbon emissions.
+
 ### 12.4 Citizen Engagement
 
-*Pages 169–169*
-
-Enable and encourage customers to participate in wholesale and system services markets as a matter of urgency. Local balancing of flexible demand and renewable generation will contribute to an increase in renewable electricity usage and a reduction in carbon emissions.
+*Pages 169–170*
 
 12.4 Citizen Engagement
 
@@ -3984,11 +4018,11 @@ Most people feel like they and their communities can have a say in the planning 
 
 74 https://www.seai.ie/publications/SEAI-RESS-National-Survey.pdf
 
+The survey results align with increasing levels of benefits to communities from local indigenous renewable energy projects. Countryside access, walking, recreational routes, heritage development, viewing points, education centres, biodiversity initiatives and other pro-active measures at wind and solar farms are helping to successfully integrate the facilities with the wider community. For example, in addition to a public sensory garden and outdoor gym, Bord Na Móna’s Mount Lucas Wind Farm has over 10 kms of public walkway-cycleway, has welcomed in excess of 215,000 visitors since it first opened, and is utilised by local schools, sports and athletics clubs, and society groups.
+
 ### 12.5 Just Transition
 
-*Pages 170–170*
-
-The survey results align with increasing levels of benefits to communities from local indigenous renewable energy projects. Countryside access, walking, recreational routes, heritage development, viewing points, education centres, biodiversity initiatives and other pro-active measures at wind and solar farms are helping to successfully integrate the facilities with the wider community. For example, in addition to a public sensory garden and outdoor gym, Bord Na Móna’s Mount Lucas Wind Farm has over 10 kms of public walkway-cycleway, has welcomed in excess of 215,000 visitors since it first opened, and is utilised by local schools, sports and athletics clubs, and society groups.
+*Pages 170–171*
 
 12.5 Just Transition
 
@@ -4002,10 +4036,6 @@ The Right Skills
 
 The RESS Good Practice Principles Handbook for CBFs provides guidance and recommendations in relation to good practice for setting up and administering CBFs. Good practice should ensure there is successful operation and delivery of the funds, as well as provide clarity and transparency as to how CBFs are being allocated across communities.
 
-### 12.6 Actions
-
-*Pages 171–177*
-
 Equitable Impact
 
 CBFs are intended to enable the local community to share in the benefits of renewable electricity generation. The amount payable by RESS projects into the fund is mandated at €2 per megawatt hour of generation of the RESS Project. This means there are real and quantifiable funds being made available annually for the benefit of the local community.
@@ -4013,6 +4043,10 @@ CBFs are intended to enable the local community to share in the benefits of rene
 Dialogue
 
 Community participation in fund decision making for the allocation of funds is built into the CBF. Communities provide volunteers to sit on fund committee projects. This ensures their participation in the decision making on RESS projects.
+
+### 12.6 Actions
+
+*Pages 171–177*
 
 12.6 Actions
 
@@ -4100,11 +4134,7 @@ Table 12.7 – 2024 Actions
 
 ### Electricity
 
-*Pages 153–154*
-
-![Figure from page 153](assets/p153-f01.webp)
-
-*Figure from page 153*
+*Pages 153–155*
 
 Electricity
 
@@ -4139,17 +4169,25 @@ Key Targets
 | New Flexible Gas Plant | - | At least 2 GW |
 | Demand Side Flexibility | 15-20% | 20-30% |
 
+Measures and Actions
+
+Transformational policies, measures and actions, and societal change are required to increase the deployment of renewable energy generation, strengthen the electricity grid, and meet the demand and flexibility needs required for the challenges of:
+
+Increasing renewable generation to supply 80% of demand by 2030 through the accelerated expansion of onshore wind and solar energy generation, developing offshore renewable generation, and delivering additional grid infrastructure
+
+Developing micro- and small-scale generation, as well as community projects, through actions such as grant funding and enabling small-scale production to participate in energy markets
+
+Transforming the flexibility of the electricity system by improving system services and increasing storage capacity
+
+Developing tools and mechanisms that support demand side flexibility services which leverage smart metering, including market incentives and smart tariffs, reducing/removing regulatory barriers, and focusing on flexibility-ready standards for smart technology
+
+Delivery of at least 2 GWs of new flexible gas-fired generation
+
 ## Industry
 
 ### 13.1 State of Play
 
-*Pages 180–183*
-
-Utilisation of biomass, and low and zero emission gas as key fuels for decarbonisation, noting that these are limited resources, and priority will be given to its use in areas where alternative methods of decarbonisation (e.g., electrification) are not commercially or technically viable
-
-Continue to develop policies for hydrogen to support its deployment, predominantly for the third carbon budget period and beyond
-
-Start to develop carbon capture, utilisation and storage policies to support its deployment, predominantly for the third carbon budget period and beyond.
+*Pages 180–184*
 
 13.1 State of Play
 
@@ -4246,11 +4284,11 @@ The sectoral emissions ceilings and carbon budgets detailed in section 13.2 belo
 
 76 https://www.seai.ie/publications/Energy-in-Ireland-2022.pdf
 
+These directives, coupled with the national targets and existing market frameworks such as the European Emissions Trading Scheme, will require substantive coordinated action for this sector.
+
 ### 13.2 Sectoral Ceiling and Carbon Budgets
 
 *Pages 184–184*
-
-These directives, coupled with the national targets and existing market frameworks such as the European Emissions Trading Scheme, will require substantive coordinated action for this sector.
 
 13.2 Sectoral Ceiling and Carbon Budgets
 
@@ -4272,7 +4310,7 @@ Table 13.4 – Required Level of Decarbonisation for Sector
 
 ### 13.3 2025 and 2030 KPIs
 
-*Pages 185–192*
+*Pages 185–193*
 
 13.3 2025 and 2030 KPIs
 
@@ -4382,10 +4420,6 @@ Examples of this include the Green Transition Fund (GTF) and other funding sourc
 
 The SEAI also offers a range of initiatives and supports to improve business energy efficiency. These include Government-funded EXEED and Support Scheme for Renewable Heat (SSRH). The SEAI also continues to support energy audits, provides free training for businesses, and provides financial support to those businesses that want to invest in energy efficiency.
 
-### 13.4 Citizen Engagement
-
-*Pages 193–193*
-
 13.3.2.9 Market Based Instruments
 
 In addition to the categories of measures identified for heating, construction, energy efficiency, zero-emissions gas, and advice and support, the EU ETS and Non-ETS sectors of industry in Ireland are subject to one of two market-based instruments designed to incentivise decarbonisation.
@@ -4398,13 +4432,17 @@ Irish Carbon Pricing
 
 The carbon tax applies to industry that falls outside of the EU ETS in Ireland. As we pursue decarbonised industrial activities, policy will work to prevent a large gap emerging between carbon pricing in the EU ETS and non-ETS sectors so as to ensure a strong broad signalling effect for industrial decarbonisation.
 
+### 13.4 Citizen Engagement
+
+*Pages 193–193*
+
 13.4 Citizen Engagement
 
 Climate Conversations 2022 are a core component of the annual National Dialogue on Climate Action programme. 4,300 people across Ireland were engaged through the online consultation in addition to public participation network workshops. The public consultation found over four-fifths (81%) of respondents said that businesses and enterprises play a “very important” role in delivering climate action. People supported stronger regulations on emissions, stricter reporting requirements, but think that companies – particularly SMEs – require increased support from the Government to improve their climate literacy and reduce emissions.
 
 ### 13.5 Just Transition
 
-*Pages 194–194*
+*Pages 194–195*
 
 13.5 Just Transition
 
@@ -4420,10 +4458,6 @@ The Right Skills
 
 The LEOs offer an extensive suite of supports to businesses and entrepreneurs. These include direct financial grants, as well as training and mentoring services. For example, GreenStart provides grant funding for training and advisory projects which aim to improve the environmental performance of a business. Additional capacity building supports available to all businesses include the SEAI’s Energy Academy and Skillnet Ireland’s Climate Ready Academy, which offer training in energy efficiency, climate action, and sustainability.
 
-### 13.6 Actions
-
-*Pages 195–198*
-
 Equitable Impact
 
 Transitioning to a low carbon economy requires significant investment in new technologies and skills. This poses challenges, especially to smaller businesses which may not have access to the required skills or funding. Government supports from State Agencies such as LEOs and the SEAI seek to address these challenges. For example, both GreenStart and the SEAI’s Support Scheme for Renewable Heat are accessible to smaller businesses and provide financial support for skills development and sustainable technology respectively.
@@ -4431,6 +4465,10 @@ Transitioning to a low carbon economy requires significant investment in new tec
 Dialogue
 
 The policy position for business supports is set by DETE. The development of policy includes the White Paper, which is underpinned by an extensive consultation process, to ensure the views, experience and aspirations of Ireland’s citizens, workers and businesses are adequately captured in the analysis.
+
+### 13.6 Actions
+
+*Pages 195–199*
 
 13.6 Actions
 
@@ -4472,9 +4510,13 @@ This table sets out all actions for delivery in 2024. Where these actions are hi
 | IN/24/7 | Enterprise agencies will support their clients in implementing the use of zero-emission gas |
 | IN/24/8 | Develop a work programme for implementing the National Hydrogen Strategy, and ensure appropriate governance arrangements are in place for its delivery |
 
+![Figure from page 199](assets/p199-f01.webp)
+
+*Figure from page 199*
+
 ### Industry
 
-*Pages 178–179*
+*Pages 178–180*
 
 Industry
 
@@ -4511,11 +4553,17 @@ Electrification of new and current manufacturing processes displacing the use of
 
 Low and net zero carbon product substitution for construction materials and a reduction in the clinker content for cement where practical
 
+Utilisation of biomass, and low and zero emission gas as key fuels for decarbonisation, noting that these are limited resources, and priority will be given to its use in areas where alternative methods of decarbonisation (e.g., electrification) are not commercially or technically viable
+
+Continue to develop policies for hydrogen to support its deployment, predominantly for the third carbon budget period and beyond
+
+Start to develop carbon capture, utilisation and storage policies to support its deployment, predominantly for the third carbon budget period and beyond.
+
 ## Built Environment
 
 ### 14.1 State of Play
 
-*Pages 201–203*
+*Pages 201–204*
 
 14.1 State of Play
 
@@ -4625,11 +4673,11 @@ In order to remain within the carbon budgets for both periods, all key metrics s
 
 89 A more detailed graphic regarding the Built Environment (Commercial and Public) sector’s emissions relative to Sectoral Emission Ceilings and EPA projections is available in Appendix 1
 
+Progress on climate action in the built environment has been strong. For example, 27,199 residential property upgrades were completed in 2022, exceeding the target of 26,940, and in December 2022 the Tallaght District Heating Scheme became operational. Further details of progress can be found online in the Climate Action Plan 2023 (CAP23) Progress Reports90 and reports on residential retrofit91
+
 ### 14.2 Greenhouse Gas Emissions in the Built Environment
 
-*Pages 204–204*
-
-Progress on climate action in the built environment has been strong. For example, 27,199 residential property upgrades were completed in 2022, exceeding the target of 26,940, and in December 2022 the Tallaght District Heating Scheme became operational. Further details of progress can be found online in the Climate Action Plan 2023 (CAP23) Progress Reports90 and reports on residential retrofit91
+*Pages 204–205*
 
 14.2 Greenhouse Gas Emissions in the Built Environment
 
@@ -4652,11 +4700,11 @@ Ireland has reduced the share of national emissions from the built environment s
 
 90 https://www.gov.ie/en/publication/55fde-climate-action-important-publications/ 91 https://www.seai.ie/news-and-media/home-energy-upgrades-2022/ 92 Data based on EPA Provisional data for 2022, see https://www.epa.ie/publications/monitoring-- assessment/climate-change/air-emissions/irelands-provisional-greenhouse-gas-emissions-1990-2022. php
 
+Oil and liquid petroleum gas are no longer used as the primary heating source in new dwellings, with heat pumps installed in 88%93 of dwellings completed during the period 2020 to 2023.
+
 ### 14.3 Sectoral Emissions Ceilings in the Built Environment
 
 *Pages 205–207*
-
-Oil and liquid petroleum gas are no longer used as the primary heating source in new dwellings, with heat pumps installed in 88%93 of dwellings completed during the period 2020 to 2023.
 
 14.3 Sectoral Emissions Ceilings in the Built Environment
 
@@ -4698,7 +4746,7 @@ This will be driven at EU level by an updated and strengthened Energy Performanc
 
 ### 14.4 2025 and 2030 KPIs
 
-*Pages 208–223*
+*Pages 208–224*
 
 14.4 2025 and 2030 KPIs
 
@@ -5002,10 +5050,6 @@ A key deliverable that the SEAI is working on with public sector bodies is the d
 
 102 The majority of buildings in DFHERIS are not in direct ownership or control of that Department 103 https://www.gov.ie/en/publication/337b6-public-sector-climate-action-mandate/#public-sectorclimate-action-mandate
 
-### 14.5 Just Transition
-
-*Pages 224–225*
-
 The SEAI and the public sector working group will work with national estate portfolio leads with responsibility for the largest buildings estates, including the HSE, OPW, the Department of Education, the Local Authorities and DFHERIS on the sequencing of investments.
 
 Public bodies that are not national estate portfolio leads will continue to implement behavioural and operational energy efficiency measures in the buildings that they occupy, and to undertake light retrofit measures and include this information in their respective Climate Action Roadmaps.
@@ -5015,6 +5059,10 @@ The SEAI Pathfinder Programme, co-funded with building portfolio owners, provide
 The SEAI public sector energy efficiency programme will be continued in 2024, including a specific “reduce your use” awareness campaign with associated actions for public sector bodies.
 
 In addition to the SEAI Pathfinder Programme, a pilot programme to provide up to 6 kW PV panels to all schools is to be funded from the Climate Action Fund. This will assist with school energy needs and costs along with supporting the decarbonisation of our school buildings. This PV programme will form part of the response to meeting the 2030 and 2050 climate action targets for the schools sector.
+
+### 14.5 Just Transition
+
+*Pages 224–226*
 
 14.5 Just Transition
 
@@ -5034,13 +5082,13 @@ Equitable Impact
 
 Government policy has resulted in the redistribution of carbon tax revenue, in a fair and equitable manner, since 2020 with a proportion of carbon tax receipts ringfenced annually to support a socially progressive residential retrofit programme. In 2023, over half of the Government’s total annual retrofit budget is ring-fenced for fully funded upgrades through the Warmer Homes Scheme and the Social Housing Energy Efficiency Retrofit Programme. In 2022, 2,283 social homes were retrofitted by Local Authorities. The Communities Energy Grant Scheme promotes a just transition through cross-sectoral and communityoriented partnerships, aiming to achieve energy savings in various building types (public, commercial and community buildings). A new Solar PV Support Scheme for medically vulnerable households has also commenced.
 
-### 14.6 Actions
-
-*Pages 226–230*
-
 Dialogue
 
 In addition to ongoing dialogue through the National Dialogue on Climate Action, an Energy Poverty Stakeholder forum has been set up that provides an opportunity for dialogue and collaboration on the topic of energy poverty, identifying concerns of stakeholders and considering how best to tackle this issue.
+
+### 14.6 Actions
+
+*Pages 226–231*
 
 14.6 Actions
 
@@ -5119,13 +5167,13 @@ Table 14.10 – 2024 Actions Built Environment (Commercial/Public Sector)
 | BE/24/22 | Develop pilot programme of solar PV provision in schools |
 | BE/24/23 | Integrate learnings from exemplar buildings into new OPW projects |
 
+![Figure from page 231](assets/p231-f01.webp)
+
+*Figure from page 231*
+
 ### Built Environment
 
 *Pages 199–200*
-
-![Figure from page 199](assets/p199-f01.webp)
-
-*Figure from page 199*
 
 Built Environment
 
@@ -5377,7 +5425,7 @@ Climate Change Advisory Council Recommendations
 
 ### 15.2 Measures to Deliver Sectoral Emissions Ceilings
 
-*Pages 242–258*
+*Pages 242–259*
 
 15.2 Measures to Deliver Sectoral Emissions Ceilings
 
@@ -5693,10 +5741,6 @@ The planned update to our National Ports Policy will also include the re-evaluat
 
 In aviation, the European Green Deal aims to achieve net-zero emissions by 2050 and reflects the global long-term aspirational goal (LTAG) for international aviation of net-zero carbon emissions by 2050, agreed by the International Civil Aviation Organization. Due to the inherent cross-border and international nature of aviation emissions, efforts to reduce aviation emissions are best undertaken within an international framework. The ReFuelEU Aviation regulation will also mandate the increasing deployment of SAF at Union airports and include a ten-year transition period where fuel suppliers can supply the required level of SAF as a weighted average across the EU.
 
-### 15.3 Targets and 2025 and 2030 KPIs
-
-*Pages 259–263*
-
 In that context, the Department of Transport is establishing a Task Force in this area which will include industry and academia representatives. This will bring together stakeholders with responsibility for, and interest in, policy development and implementation in relation to SAF. One of its main tasks will be to assist with the development of a national SAF Policy Roadmap which will help inform policy formation to highlight the necessary stakeholder actions to ensure Ireland can meet its regulatory obligations to decarbonise aviation (cf. CCAC Recommendation 6.13).
 
 Conscious of the non-CO2 climate impacts of aviation, we will engage with the process already underway in relation to the potential integration of non-CO2 forcing into the EU ETS. We will also encourage the development of technical capacity in the relevant State aviation companies to support future work at EU level on this issue.
@@ -5710,6 +5754,10 @@ The Sectoral Adaptation Plan for Transport maps out the steps that are necessary
 In accordance with the National Adaptation Framework, the Department of Transport is developing a new Sectoral Adaptation Plan for Transport, including an updated risk analysis and SMART actions and objectives to accelerate the transport sector’s adaptation to climate change. This process will be supported by targeted research on transport-sector adaptation to fill existing knowledge gaps, including on a cross-sectoral basis.
 
 The need to integrate adaptation and mitigation actions is now recognised, to prioritise those actions with the potential for co-benefits, avoid maladaptation and maximise resources.
+
+### 15.3 Targets and 2025 and 2030 KPIs
+
+*Pages 259–263*
 
 15.3 Targets and 2025 and 2030 KPIs
 
@@ -5761,7 +5809,7 @@ Table 15.5 – Key Metrics to Deliver Abatement in Transport
 
 ### 15.4 Just Transition
 
-*Pages 264–264*
+*Pages 264–265*
 
 15.4 Just Transition
 
@@ -5777,10 +5825,6 @@ The Right Skills
 
 The Expert Group on Future Skills Needs report Skills for Zero Carbon – The Demand for Renewable Energy, Residential Retrofit and Electric Vehicle Deployment Skills to 2030 identifies the skills needed to support the development of e-mobility in Ireland, including the provision of EV charging infrastructure. Measures identified include engagement with existing motor mechanics to encourage and support their upskilling to work on Electric Vehicles;
 
-### 15.5 Actions
-
-*Pages 265–272*
-
 to improve the attractiveness of the sector to retain existing labour and attract new entrants; to incorporate EV material into relevant Apprenticeship Syllabuses and provide EV Safety Training to the existing mechanic labour force.
 
 SOLAS, the state agency overseeing Ireland’s Further Education and Training (FET) Sector, will work with Education and Training Boards (ETBs) to ensure learners are equipped with the right skills to advance, and benefit from, the transition to sustainable mobility. This will include the development and implementation of a robust governance framework with subgroups for skills development oversight at agency level, aligned to the cross-departmental transport sector groups.
@@ -5792,6 +5836,10 @@ Equitable Impact
 Dialogue
 
 Transport continues to be a focus within the National Dialogue for Climate Action. ZEVI’s strategy takes a people-first approach, focusing on seven user groups (or personas) illustrating different transport needs across different parts of the country both rural and urban, or in different housing types, for example. It then follows an individual’s journey from the planning stages to their return home, mirroring the needs of real people and groups.
+
+### 15.5 Actions
+
+*Pages 265–272*
 
 15.5 Actions
 
@@ -5886,10 +5934,6 @@ Table 15.7 – 2024 Actions
 
 *Pages 231–232*
 
-![Figure from page 231](assets/p231-f01.webp)
-
-*Figure from page 231*
-
 Transport
 
 Image:Athenry train station, Co.Galway
@@ -5928,7 +5972,7 @@ CAP24 adheres to the framework set out in CAP23 but makes some necessary refinem
 
 ### 16.1 State of Play
 
-*Pages 277–280*
+*Pages 277–281*
 
 16.1 State of Play
 
@@ -6037,11 +6081,11 @@ Technical improvements have led greater greenhouse gas-efficiencies in productio
 
 114 Absolute figures may vary from those referenced in previous climate action plans due to ongoing inventory revisions – please see p. 36
 
+The substantial increase in total cattle numbers took place between 2011 and 2017, since when total numbers have been stabilising, with a reduction of 1% in 2022. Historic changes in emissions are driven by economics, the expansion and contraction of demand for certain products, and the changes to the European Common Agricultural Policy. For example, the removal of EU quotas for milk production in 2015 has had a major impact in the expansion of the dairy sector.
+
 ### 16.2 Sectoral Ceiling and Carbon Budgets
 
-*Pages 281–282*
-
-The substantial increase in total cattle numbers took place between 2011 and 2017, since when total numbers have been stabilising, with a reduction of 1% in 2022. Historic changes in emissions are driven by economics, the expansion and contraction of demand for certain products, and the changes to the European Common Agricultural Policy. For example, the removal of EU quotas for milk production in 2015 has had a major impact in the expansion of the dairy sector.
+*Pages 281–283*
 
 16.2 Sectoral Ceiling and Carbon Budgets
 
@@ -6083,10 +6127,6 @@ Under Food Vision 2030, a number of working groups were established whose remit 
 
 The third iteration of the Teagasc MACC, published in July 2023, outlines pathways for significant step changes. The 2023 MACC identifies, in the form of a single visual representation, the most cost-effective pathway to reduce GHG emissions and enhance carbon sequestration in the agricultural, land-use, land-use change and forestry sectors plus (bio) energy. Each potential measure for emissions reduction is assessed in terms of cost and total potential mitigation.
 
-### 16.3 2025 and 2030 KPIs Key Metrics
-
-*Pages 283–285*
-
 Building on the last MACC (published in 2019), the 2023 document reflects new developments in technology, research, and global market conditions. It will serve as a key tool for policymakers in identifying further options to reduce emissions in the agriculture sector. There are a number of key differences to the previous MACC. These include:
 
 Updated animal number projections based on the latest modelling;
@@ -6108,6 +6148,10 @@ Funded by the European Commission through the European Institute of Technology (
 DAFM has partnered with EIT Climate-KIC to work with public and private stakeholders in the Irish agri-food sector and help the sector deliver an accelerated pathway of climate action.
 
 Climate-KIC are applying their “Deep Demonstration” model of innovation to the entire agri-food and biobased value chain. This involves working with stakeholders from public, private, finance, civic and education sectors to develop and deploy coordinated actions. A key step will see the partnership identify, mobilise, and deploy both grant funding and private investment (venture, corporate and institutional) capital to support the innovation actions.
+
+### 16.3 2025 and 2030 KPIs Key Metrics
+
+*Pages 283–285*
 
 16.3 2025 and 2030 KPIs Key Metrics
 
@@ -6133,7 +6177,7 @@ Table 16.5 – Key Metrics to Deliver Abatement in Agriculture115
 |  | Production of up to 5.7 TWh of Biomethane by 2030 Target up to 450,000 ha of organics by 2030 Target up to 400,000 ha of tillage by 2030 | 0.4 | Further development of diversification options |
 |  |  | 1.06 – 1.2 |  |
 
-### 16.5 Just Transition
+### 16.4 Citizen Engagement
 
 *Pages 286–286*
 
@@ -6149,15 +6193,15 @@ Furthermore, many farmers already feel they are stewards of the land, with some 
 
 69% of respondents overall also responded that it was ‘very important’ to change the way we consume food, raising issues such as emissions from production, supporting local produce, health and reducing waste.
 
+### 16.5 Just Transition
+
+*Pages 286–287*
+
 16.5 Just Transition
 
 Integrated, Structured, evidence-based approach
 
 The Programme for Government commits €1.5 billion funding from carbon tax receipts for the new results-based Agri-Climate Rural Environment Scheme (ACRES), which rewards farmers for undertaking measures with a range of environmental benefits, including for biodiversity, climate and water quality. The Co-operative element of ACRES is based on local action planning, with farmers as the leading actors of change, collaborating with a local co-operation project team, to assess and address regional ecological priorities.
-
-### 16.6 Actions and Updates
-
-*Pages 287–292*
 
 The Right Skills
 
@@ -6170,6 +6214,10 @@ The Council recommends a firm commitment to fairness, as embedded in the idea of
 Dialogue
 
 Socially inclusive dialogue and participation is also identified as central to ensuring an equitable transition. The NESC’s report recommends that, for the agriculture sector, local and context-specific participation in innovation and experimentation be built on, so that successful initiatives can be scaled up nationally. A wide and participatory process of further engagement is recommended to build a greater sense of shared direction in the sector.
+
+### 16.6 Actions and Updates
+
+*Pages 287–293*
 
 16.6 Actions and Updates
 
@@ -6275,13 +6323,13 @@ Bioeconomy Action Plan
 
 As outlined in Food Vision 2030, a key goal of government is to “Embed the Agri-Food Sector in the Circular, Regenerative Bioeconomy”. This process must be supported with actions aimed at enabling innovation, experimentation, diffusion, cooperation, and networking in specific contexts. To address this need, “Bioeconomy Demonstration Initiative” schemes are now being offered under the EU Just Transition Fund and will be developed under the Shared Island Initiative. These funding opportunities will seek to
 
-### 16.7 Actions
-
-*Pages 293–297*
-
 develop regenerative, transformative bioeconomy demonstration initiatives relating to agriculture, horticulture, forestry, fisheries, and aquaculture that supports a food and biobased system that is good for people, farmers, nature, and business.
 
 The Bioeconomy Action Plan will seek to develop innovation support services focused on the deployment of bio-based business models across all bio-based sectors. These innovation support services will support the establishment of sustainable biobased value chains through the development of cooperation approaches aligning natural capital, primary production and circular bioeconomy value chains and the development of cooperative business models. Additionally, as the production of agri-biomethane has emerged as a climate action for the agriculture sector, actions in this area will be co-established with bioeconomy progression to ensure that biobased products are codeveloped as part of this expansion.
+
+### 16.7 Actions
+
+*Pages 293–298*
 
 16.7 Actions
 
@@ -6345,6 +6393,10 @@ Table 16.7– 2024 Actions
 | AG/24/24 | Development of the obligation in the heat sector and incentivizing the production of indigenously produced Biomethane |
 | AG/24/25 | Provide financial support to farmers who convert to Organic Farming |
 | AG/24/26 | Development of ecosystem services through the creation of a carbon farming framework |
+
+![Figure from page 298](assets/p298-f02.webp)
+
+*Figure from page 298*
 
 ### Agriculture
 
@@ -6420,7 +6472,7 @@ Supporting the development of new research
 
 ### 17.1 State of Play
 
-*Pages 301–303*
+*Pages 301–304*
 
 17.1 State of Play
 
@@ -6513,10 +6565,6 @@ Refinements to the inventory for all categories are a feature of the internation
 
 121 Environmental Protection Agency, National Inventory Reports (2021, 2022, 2023) 122 See, for example, Tuohy, P., O’Sullivan, L., Bracken, C. J., & Fenton, O. (2023). Drainage status of grassland peat soils in Ireland: Extent, efficacy and implications for GHG emissions and rewetting efforts. Journal of Environmental Management, 344, 118391.
 
-### 17.2 A New Approach to Achieve our Goals for LULUCF
-
-*Pages 304–307*
-
 Figure 17.3 – Increased inventory refinement requirements under EU LULUCF Regulation
 
 ![Figure 17.3 – Increased inventory refinement requirements under EU](assets/p304-f01.webp)
@@ -6545,6 +6593,10 @@ National statistics
 |  |  |  |  |  |  | LULUCF would ideally get here, and key categories have to use at least Tier 2 approaches |  |  |  |
 
 yt ni atr e c n u d e c u d e R
+
+### 17.2 A New Approach to Achieve our Goals for LULUCF
+
+*Pages 304–307*
 
 17.2 A New Approach to Achieve our Goals for LULUCF
 
@@ -6644,7 +6696,7 @@ Following the EU-type approach requires compliance with:
 
 ### 17.3 Measures to Deliver Sectoral Abatement
 
-*Pages 308–316*
+*Pages 308–317*
 
 17.3 Measures to Deliver Sectoral Abatement
 
@@ -6891,10 +6943,6 @@ Peatlands cover 21% of our land area, and 64% of our total soil organic carbon s
 
 Restoration of Natura 2000 and Natural Heritage Area (NHA) Sites by the National Parks and Wildlife Service and other schemes such as EU LIFE projects (Wild Atlantic Nature LIFE). The restoration/rewetting and hydrological management of our protected peatlands, will halt and reduce peat oxidation and carbon loss;
 
-### 17.4 Further Developments Affecting LULUCF
-
-*Pages 317–318*
-
 Continue further research to assess the potential to sequester, store and reduce emissions of carbon through the management, restoration and rehabilitation of peatlands as outlined in the National Peatlands Strategy;
 
 Upgrade land-use and habitat mapping systems to establish the baseline condition of wetlands and inform the development of best-practice guidelines for wetland management, including the management of degraded sites and peatlands previously exploited for energy peat extraction;
@@ -6922,6 +6970,10 @@ Altered water-table management on 80,000 ha of grasslands on drained organic soi
 Increasing the return of manure to cropland on up to 112,000 ha;
 
 Incorporate up to 40,000 kms of new hedgerow planting and improve hedgerow management on 75,000 kms.
+
+### 17.4 Further Developments Affecting LULUCF
+
+*Pages 317–318*
 
 17.4 Further Developments Affecting LULUCF
 
@@ -7066,10 +7118,6 @@ Table 17.4 – 2024 Actions
 ### Land Use, Land Use Change, and Forestry
 
 *Pages 298–300*
-
-![Figure from page 298](assets/p298-f02.webp)
-
-*Figure from page 298*
 
 Land Use, Land Use Change, and Forestry
 
@@ -7216,7 +7264,7 @@ The general scheme of the MPA Bill, approved by Government in December 2022, pro
 
 ### 18.2 Measures to Deliver
 
-*Pages 335–337*
+*Pages 335–338*
 
 18.2 Measures to Deliver
 
@@ -7284,10 +7332,6 @@ The European Commission’s Communication on the energy transition of the fisher
 
 The new National Marine Research and Innovation Strategy, Ocean Knowledge 2030, will be developed to provide a future framework within which funding for marine research can be targeted most effectively to areas of strategic importance:
 
-### 18.3 Actions
-
-*Pages 338–339*
-
 The Marine Institute will continue to progress investment in research to address climate change issues such as rising sea level, ocean acidification, fish distribution and abundance changes;
 
 To increase the resilience of our coastal infrastructure to the impacts of climate change, we will develop climate adaptation tools to guide future policy making and protection strategies for our coastal communities and seafood infrastructure;
@@ -7295,6 +7339,10 @@ To increase the resilience of our coastal infrastructure to the impacts of clima
 We will also examine the ways in which we can reduce fossil fuel dependency across the fishery harbours centres e.g., by increasing shore power and providing electric vehicle charging points in the harbours;
 
 We will develop ocean climate outreach material in order to engage with our coastal communities to increase understanding and inform behaviours towards our marine environment and its resources. Knowledge transfer conferences will be held with the seafood industry on the outputs of the Blue Carbon Footprint Report.
+
+### 18.3 Actions
+
+*Pages 338–339*
 
 18.3 Actions
 
@@ -7369,7 +7417,7 @@ Increased understanding of the impacts of climate change on our marine and coast
 
 ### 19.1 State of Play
 
-*Pages 342–346*
+*Pages 342–347*
 
 19.1 State of Play
 
@@ -7449,13 +7497,13 @@ Development Plans are required to be consistent with higher tier national and re
 
 National and regional climate objectives are given effect in County/City Development Plans through specific policies and objectives that also reflect the local context. Section 10(2)(n) of the Planning and Development Act, 2000 (as amended) identifies climate action (adaptation and mitigation) as a mandatory objective to be included in all Development Plans. Adopted by the elected members of the Local Authority, the Development Plans are subject to a review and evaluation by the Office of the Planning Regulator to ensure consistency with national policy and guidance. See Cross-Cutting Policies Chapter for more.
 
-### 19.2 Measures to Deliver
-
-*Pages 347–351*
-
 Local Authorities provide over 1,000 services and many of these impact indirectly on greenhouse gas emissions. It can include supporting nature-based climate solutions through local strategies for blue - green infrastructure and ecosystem services, functions such as managing the public realm, building active travel infrastructure (see Transport Chapter), litter and street cleaning management. 135 This also includes a range of adaptation services at the local level (see Adaptation Chapter).
 
 Much of what local government influences and shapes is through co-ordinating, facilitating and advocating. Local and regional government can champion and show leadership for a particular initiative. Local Authorities are effective in co-ordinating between different players, facilitating projects and identifying funding opportunities. A Local Authority has multiple communication channels which it uses to share information and influence people. Even where the role of a local authority is to deliver a particular service this often encompasses a strong element of local advocacy and engagement to facilitate and champion behavioural change. For example, in the area of active travel the role of Local Authorities is to deliver infrastructure but local advocacy and engagement with communities to encourage its use and to change travel habits is a key component of the work.
+
+### 19.2 Measures to Deliver
+
+*Pages 347–352*
 
 19.2 Measures to Deliver
 
@@ -7553,10 +7601,6 @@ A training needs analysis for the programme will be carried out in early 2024 to
 
 In addition, the Department of Transport is funding capacity building in Local Authorities through the Smart and Sustainable Mobility Accelerator Project which is being delivered by the Regional Assemblies. Phase 2 of the programme will be rolled out by Q4 2024.
 
-### 19.3 Supporting Local Government Delivery
-
-*Pages 352–352*
-
 Box 19.2 Strengthening Capacity within Local Authorities
 
 Smart and Sustainable Mobility Accelerator Project
@@ -7571,15 +7615,15 @@ An online platform was launched as part of the Accelerator Project and will cont
 
 There will be a programme of engagement in 2024 for communications across Irish society through which government can engage, enable and empower everyone to take climate action. This will include providing support for local climate action, sharing insights from social and behavioural research, and developing and sharing engagement toolkits. It will be carried out through established networks and will include local government - see Citizen Engagement Chapter for more.
 
+### 19.3 Supporting Local Government Delivery
+
+*Pages 352–353*
+
 19.3 Supporting Local Government Delivery
 
 19.3.1 Co-ordinating Structures and Resourcing
 
 There are a number of strategic governance arrangements bringing together national, regional and local levels of climate governance. For example, the CAROs provide a coordination function between central government, the local government sector and each individual local authority. Similarly, the sector has come together to decide on policy and strategy at a sectoral level via the CCMA and regularly engages with funding departments at this centralised level.
-
-### 19.4 Actions
-
-*Pages 353–354*
 
 The regional assemblies provide the statutory regional spatial and economic policy framework for the development of each region. They ensure a strategic link between EU, national and local levels and help to coordinate the work of Local Authorities, working closely with local authorities, elected members, government agencies and departments to support delivery of national and regional policy objectives at local level.
 
@@ -7590,6 +7634,10 @@ Ireland’s Local Authority system has limited direct functions in many sectoral
 As the nature of local government’s role in climate action evolves there will be a need to ensure appropriate resourcing so that the sector is well positioned to deliver all that is required to achieve national climate targets. Enablers need to be put in place to support the sector in achieving this. Continued partnership and engagement between government departments and the Local Authority sector is critical.
 
 Research will be commissioned to explore in more detail opportunities for improved governance structures and how to ensure accelerated delivery at the local and regional levels, taking into account the complex funding and operating structures
+
+### 19.4 Actions
+
+*Pages 353–354*
 
 19.4 Actions
 
@@ -7648,7 +7696,7 @@ Greater local government involvement in and capacity for the delivery and owners
 
 ### 20.1 State of Play – the Circular Economy
 
-*Pages 357–357*
+*Pages 357–358*
 
 20.1 State of Play – the Circular Economy
 
@@ -7676,13 +7724,13 @@ Incentivised pricing for commercial waste to support increased segregation was i
 
 140 Circularity rate indicates the share of material which is recovered and fed back into an economy
 
-### 20.3 Other (F-gases, Waste and Petroleum Refinement)
-
-*Pages 358–367*
-
 A new National Waste Management Plan was advanced to publication by the local government sector;
 
 Levies to drive waste prevention, reuse and recycling were expanded to include a new charge on waste recovered at landfills, used for energy generation, or exported, with monies raised being ringfenced for environmental projects in the Circular Economy Fund.
+
+### 20.2 Measures to Deliver a Circular Economy
+
+*Pages 358–358*
 
 20.2 Measures to Deliver a Circular Economy
 
@@ -7697,6 +7745,10 @@ The enactment of the Circular Economy and Miscellaneous Provisions Act in 2022 w
 The EPA’s Circular Economy Programme 2021 – 2027 which incorporates and builds upon the previous National Waste Prevention Programme to support national-level, strategic programmes to prevent waste and drive the Circular Economy in Ireland;
 
 In line with obligations under the Waste Management Act 1996, the local government sector has prepared the first National Waste Management Plan for a Circular Economy 2023 – 2029, which replaces previous regionally based plans. This plan sets out a framework for the prevention and management of waste across Ireland for the period 2023 to 2029.
+
+### 20.3 Other (F-gases, Waste and Petroleum Refinement)
+
+*Pages 358–367*
 
 20.3 Other (F-gases, Waste and Petroleum Refinement)
 
@@ -7929,7 +7981,7 @@ Savings in GHG emissions through reducing consumption and maximising the efficie
 
 ### 21.1 Introduction
 
-*Pages 372–372*
+*Pages 372–373*
 
 21.1 Introduction
 
@@ -7943,13 +7995,13 @@ In September 2015, all 193 UN Member States, including Ireland, adopted the Sust
 
 The 2023 SDG Summit was held in September 2023 during the United Nations General Assembly (UNGA) high-level week, marking the mid-point of the implementation of the 2030 Agenda. Heads of State and Government undertook a comprehensive review of the state of the SDGs, responding to the impact of multiple and interlocking crises facing the world, and providing high-level political guidance on transformative and accelerated actions leading up to the target year of 2030 for achieving the SDGs. Ireland was honoured to co-facilitate the negotiations on the Political Declaration for the SDG Summit this September reinvigorating the ambitious, global action needed to rescue the
 
-### 21.2 Developments in International Climate Policy
-
-*Pages 373–376*
-
 Goals and deliver progress for people and the planet by 2030. The Political Declaration was adopted at the opening of the SDG Summit. Ireland, together with EU Member States and likeminded countries sought to preserve the strong language in the 2030 Agenda on human rights and gender equality and proposed stronger language on climate change.
 
 The global challenge of climate change cannot be addressed by one country alone but requires coordinated and collaborative global efforts. In order to contribute to this, Ireland remains committed to engaging strongly in multilateral fora on climate action and seeks to use its position there to advocate for ambitious climate action and to continue to support individuals and communities in LDCs and SIDS. This includes our work through the EU, the UN, International Financial Institutions (IFIs), the Organisation for Economic Co-operation and Development (OECD), and others.
+
+### 21.2 Developments in International Climate Policy
+
+*Pages 373–377*
 
 21.2 Developments in International Climate Policy
 
@@ -8003,11 +8055,11 @@ Ireland has also been engaging with international partners to support efforts to
 
 Ireland has also been an active and vocal participant in the negotiations and delivery of the internationally binding agreement on marine biodiversity in areas beyond national jurisdiction (BBNJ Agreement) which was adopted in June 2023. In line with the work on BBNJ Agreement, Ireland has joined approximately 20 other countries in calling for a
 
+precautionary pause of deep-sea mining on the international seabed, until such time as a robust regulatory framework is in place to protect the marine environment. It is essential that the scientific knowledge base is sufficient to allow for informed decision-making. Ireland will continue to promote this position within the International Seabed Authority and other relevant fora.
+
 ### 21.3 Principles for Climate Action
 
-*Pages 377–378*
-
-precautionary pause of deep-sea mining on the international seabed, until such time as a robust regulatory framework is in place to protect the marine environment. It is essential that the scientific knowledge base is sufficient to allow for informed decision-making. Ireland will continue to promote this position within the International Seabed Authority and other relevant fora.
+*Pages 377–379*
 
 21.3 Principles for Climate Action
 
@@ -8041,11 +8093,11 @@ The connected issues of climate action and climate justice have increasingly bee
 
 Ireland remains an advocate for the importance of gender-sensitive climate action and continues to support gender activities under the UNFCCC, including implementation of the Gender Action Plan. Ireland also works with a range of partners and non-governmental organisations and grassroots organisations to empower communities who are at the
 
+forefront of climate change, including the Women’s Environment and Development Organisation who work to strengthen women’s participation and contribution to national and international climate discussions through training, capacity building, and the provision of travel funds. Ireland is also enhancing its tracking and reporting of international climate finance that contributes to gender equality in our Climate Finance Reports.
+
 ### 21.4 Actions
 
 *Pages 379–379*
-
-forefront of climate change, including the Women’s Environment and Development Organisation who work to strengthen women’s participation and contribution to national and international climate discussions through training, capacity building, and the provision of travel funds. Ireland is also enhancing its tracking and reporting of international climate finance that contributes to gender equality in our Climate Finance Reports.
 
 21.4 Actions
 
@@ -8210,7 +8262,7 @@ a high-level analysis of the principal national policies is possible to identify
 
 ### 23.1 What is Climate Adaptation?
 
-*Pages 389–389*
+*Pages 389–390*
 
 23.1 What is Climate Adaptation?
 
@@ -8226,11 +8278,11 @@ Climate Conversations 2022 surveyed the Irish public specifically on adaptation 
 
 143 https://www.swissre.com/institute/research/topics-and-risk-dialogues/climate-and-naturalcatastrophe-risk/expertise-publication-economics-of-climate-change.html
 
+Although the importance of adaptation is increasingly recognised at global, EU and national levels, multiple reports highlight a general lack of preparedness across the globe. Reports of extreme weather events and their impacts are an almost constant presence in the media, and the increased intensity and frequency of weather events due to climate change is a growing feature in global policymaking. Extreme heatwaves across Europe saw many regional temperature records broken in July 2023, while deadly wildfires raged across Hawaii, Canada and on the Greek island of Rhodes. These wildfires caused death and destruction of property across large regions in the short term but will also have longer term impacts from which it will take years, if not decades, to recover. In Ireland, according to Met Éireann data, June 2023 exceeded the previous hottest June on record (1940) by more than half a degree, while July 2023 was the wettest July on record in Ireland with four times more rain than July 2022.
+
 ### 23.2 Global and EU Position
 
 *Pages 390–392*
-
-Although the importance of adaptation is increasingly recognised at global, EU and national levels, multiple reports highlight a general lack of preparedness across the globe. Reports of extreme weather events and their impacts are an almost constant presence in the media, and the increased intensity and frequency of weather events due to climate change is a growing feature in global policymaking. Extreme heatwaves across Europe saw many regional temperature records broken in July 2023, while deadly wildfires raged across Hawaii, Canada and on the Greek island of Rhodes. These wildfires caused death and destruction of property across large regions in the short term but will also have longer term impacts from which it will take years, if not decades, to recover. In Ireland, according to Met Éireann data, June 2023 exceeded the previous hottest June on record (1940) by more than half a degree, while July 2023 was the wettest July on record in Ireland with four times more rain than July 2022.
 
 23.2 Global and EU Position
 
@@ -8354,13 +8406,17 @@ Work cooperatively across sectors to tackle complex challenges and to support th
 
 Ensure the necessary information is in place for independent adaptation actions by private actors.
 
-### 23.5 Climate Impact Information for Ireland
+### 23.4 Local Adaptation
 
 *Pages 397–397*
 
 23.4 Local Adaptation
 
 The current NAF clearly identifies the critical role of Local Authorities in building climate resilience. Four Government-funded Local Authority Climate Action Regional Offices supported the preparation of Local Adaptation Strategies in all 31 Local Authorities. They are now working with Local Authorities and coordinating the development of Local Authority Climate Action Plans in 2023, which will include adaptation measures. Actions related to local authorities are covered in Chapter 19.
+
+### 23.5 Climate Impact Information for Ireland
+
+*Pages 397–398*
 
 23.5 Climate Impact Information for Ireland
 
@@ -8372,10 +8428,6 @@ Met Éireann is leading on the implementation of the National Framework for Clim
 
 The EPA is responsible for the provision of Climate Ireland, Ireland’s National Adaptation Platform. Climate Ireland is Ireland’s national web-based resource of up-to-date climate information and adaptation tools. It serves local, regional, and sectoral decision-makers. It plays a key role in increasing awareness and building capacity in relation to adaptation planning through the provision of guidance and tailored adaptation planning workshops and seminars. The EPA will continue to develop the Climate Ireland Adaptation Network and associated practitioner annual seminar. It will prioritise the development of Climate Ireland, which will play a significant role as a platform for data produced under the NFCS. The EPA will also be progressing the first semi-quantitative National Climate Change Risk Assessment in 2024, to identify and prioritise risks at a national level and to ensure that risk information underpinning the second iteration of Sectoral Adaptation Plans is robust and fit for purpose.
 
-### 23.6 Actions
-
-*Pages 398–400*
-
 23.5.3 Global Climate Observing System
 
 The Global Climate Observing System National Committee for Ireland (GCOS-Ireland), which includes Met Éireann, the EPA and the Marine Institute, promotes the GCOS principles for observing essential climate variables of relevance to Ireland. The GCOS- Ireland Climate Status Report for Ireland 2020 provides high quality evidence to support the development of appropriate climate mitigation and adaptation solutions.
@@ -8383,6 +8435,10 @@ The Global Climate Observing System National Committee for Ireland (GCOS-Ireland
 23.5.4 Office of Public Works
 
 The Office of Public Works’ national flood information portal, www.floodinfo.ie151, provides access to historical and projected flood data for Ireland (including for future scenarios taking account of the potential impacts of climate change), thereby supporting adaptation and emergency response planning, and empowering individuals and communities to respond to flood risk.
+
+### 23.6 Actions
+
+*Pages 398–400*
 
 23.6 Actions
 
@@ -8460,8 +8516,7 @@ Expected Outcomes
 
 Adaptation measures are taken in anticipation of the impacts of climate change so as to minimise the risks and future costs of climate change to society. Adaptation can reduce the risks and potential impacts of climate change, but it cannot eliminate them
 
-### Appendix 1
-Sectoral Emissions Graphics
+### Appendix 1 Sectoral Emissions Graphics
 
 *Pages 402–416*
 

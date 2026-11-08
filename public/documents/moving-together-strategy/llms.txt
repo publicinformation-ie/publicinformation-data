@@ -1,6 +1,6 @@
 # Moving Together: A Collaborative Approach to Systems Change in Transport 2026–2030
 
-> Department of Transport — 19 chapters, 68 sections, 176 source pages.
+> Department of Transport — 22 chapters, 100 sections, 176 source pages.
 > Source: https://assets.gov.ie/static/documents/543adefe/The_Moving_Together_Strategy.pdf
 > Full text: full.md
 
@@ -12,84 +12,119 @@
   - [Minister’s Foreword](sections/minister-s-foreword/overview.md) — pages 6–6
 - [Acronyms](sections/acronyms/) — pages 7–12
   - [Acronyms](sections/acronyms/overview.md) — pages 7–12
-- [Executive Summary](sections/executive-summary/) — pages 13–15
-  - [Executive Summary](sections/executive-summary/overview.md) — pages 13–15
-- [Introduction](sections/introduction/) — pages 16–26
-  - [Introduction](sections/introduction/overview.md) — pages 16–16
-  - [Ambition](sections/introduction/ambition.md) — pages 17–17
+- [Executive Summary](sections/executive-summary/) — pages 13–16
+  - [Executive Summary](sections/executive-summary/overview.md) — pages 13–16
+- [Introduction](sections/introduction/) — pages 17–27
+  - [Ambition](sections/introduction/ambition.md) — pages 17–18
+  - [Emissions Trajectory](sections/introduction/emissions-trajectory.md) — pages 18–18
   - [Positive Trends](sections/introduction/positive-trends.md) — pages 18–18
-  - [Purpose of Strategy](sections/introduction/purpose-of-strategy.md) — pages 19–20
+  - [Purpose of Strategy](sections/introduction/purpose-of-strategy.md) — pages 19–21
+  - [Strategy Structure](sections/introduction/strategy-structure.md) — pages 21–21
   - [Vision](sections/introduction/vision.md) — pages 21–21
-  - [Objectives](sections/introduction/objectives.md) — pages 22–22
-  - [Process to Develop the Strategy](sections/introduction/process-to-develop-the-strategy.md) — pages 23–23
-  - [Just Transition Focus](sections/introduction/just-transition-focus.md) — pages 24–24
+  - [Objectives](sections/introduction/objectives.md) — pages 22–23
+  - [Status of the Strategy](sections/introduction/status-of-the-strategy.md) — pages 23–23
+  - [Process to Develop the Strategy](sections/introduction/process-to-develop-the-strategy.md) — pages 23–24
+  - [Systems Focus](sections/introduction/systems-focus.md) — pages 24–24
+  - [Demand Generation Focus](sections/introduction/demand-generation-focus.md) — pages 24–24
+  - [Just Transition Focus](sections/introduction/just-transition-focus.md) — pages 24–25
+  - [Accessibility and Inclusion](sections/introduction/accessibility-and-inclusion.md) — pages 25–25
+  - [Guiding Principles in Developing and Implementing the Strategy](sections/introduction/guiding-principles-in-developing-and-implementing-the-strategy.md) — pages 25–25
   - [Rural Recognition](sections/introduction/rural-recognition.md) — pages 25–25
-  - [Oversight and Responsibility](sections/introduction/oversight-and-responsibility.md) — pages 26–26
-- [Understanding the Challenge](sections/understanding-the-challenge/) — pages 27–32
-  - [Understanding the Challenge](sections/understanding-the-challenge/overview.md) — pages 27–32
-- [International and European Policy Drivers](sections/international-and-european-policy-drivers/) — pages 33–35
-  - [International and European Policy Drivers](sections/international-and-european-policy-drivers/overview.md) — pages 33–33
+  - [Just Transition](sections/introduction/just-transition.md) — pages 25–25
+  - [Economic and Financial Sustainability](sections/introduction/economic-and-financial-sustainability.md) — pages 26–26
+  - [Oversight and Responsibility](sections/introduction/oversight-and-responsibility.md) — pages 26–27
+- [Understanding the Challenge](sections/understanding-the-challenge/) — pages 28–33
+  - [Understanding the Challenge](sections/understanding-the-challenge/overview.md) — pages 28–33
+- [International and European Policy Drivers](sections/international-and-european-policy-drivers/) — pages 34–36
+  - [International and European Policy Drivers](sections/international-and-european-policy-drivers/overview.md) — pages 34–34
   - [WHO – Air Quality and Health Impacts](sections/international-and-european-policy-drivers/who-air-quality-and-health-impacts.md) — pages 34–34
+  - [UN Sustainable Development Goals and Renewable Energy – Amended Renewable Energy Directive](sections/international-and-european-policy-drivers/un-sustainable-development-goals.md) — pages 35–35
   - [Energy Taxation Directive (ETD)](sections/international-and-european-policy-drivers/energy-taxation-directive-etd.md) — pages 35–35
-- [National Climate and Transport Policy Drivers](sections/national-climate-and-transport-policy-drivers/) — pages 36–44
-  - [National Climate and Transport Policy Drivers](sections/national-climate-and-transport-policy-drivers/overview.md) — pages 36–36
-  - [National Sustainable Mobility Policy](sections/national-climate-and-transport-policy-drivers/national-sustainable-mobility-policy.md) — pages 37–37
-  - [Metropolitan Area Transport Strategies](sections/national-climate-and-transport-policy-drivers/metropolitan-area-transport-strategies.md) — pages 38–38
-  - [Electrification and Renewable Energy Policy](sections/national-climate-and-transport-policy-drivers/electrification-and-renewable-energy-policy.md) — pages 39–39
+  - [European Policy on Energy](sections/international-and-european-policy-drivers/european-policy-on-energy.md) — pages 35–35
+  - [Energy Efficiency Directive](sections/international-and-european-policy-drivers/energy-efficiency-directive.md) — pages 35–36
+- [National Climate and Transport Policy Drivers](sections/national-climate-and-transport-policy-drivers/) — pages 37–45
+  - [National Climate and Transport Policy Drivers](sections/national-climate-and-transport-policy-drivers/overview.md) — pages 37–37
+  - [Climate Action Plan](sections/national-climate-and-transport-policy-drivers/climate-action-plan.md) — pages 37–37
+  - [Corrective Action Modelling Project](sections/national-climate-and-transport-policy-drivers/corrective-action-modelling-project.md) — pages 37–37
+  - [National Sustainable Mobility Policy](sections/national-climate-and-transport-policy-drivers/national-sustainable-mobility-policy.md) — pages 37–38
+  - [Metropolitan Area Transport Strategies](sections/national-climate-and-transport-policy-drivers/metropolitan-area-transport-strategies.md) — pages 38–39
+  - [Transport Orientated Development](sections/national-climate-and-transport-policy-drivers/transport-orientated-development.md) — pages 39–39
+  - [GDA Strategy and Demand Management Scheme](sections/national-climate-and-transport-policy-drivers/gda-strategy-and-demand-management-scheme.md) — pages 39–39
+  - [Electrification and Renewable Energy Policy](sections/national-climate-and-transport-policy-drivers/electrification-and-renewable-energy-policy.md) — pages 39–40
   - [Freight and Haulage Strategy](sections/national-climate-and-transport-policy-drivers/freight-and-haulage-strategy.md) — pages 40–40
+  - [Energy Efficiency and Security](sections/national-climate-and-transport-policy-drivers/energy-efficiency-and-security.md) — pages 40–42
   - [National Investment Framework for Transport in Ireland](sections/national-climate-and-transport-policy-drivers/national-investment-framework-for-transport-in-ireland.md) — pages 42–42
-  - [Road Safety Policy](sections/national-climate-and-transport-policy-drivers/road-safety-policy.md) — pages 43–43
-  - [Speed Limits Review](sections/national-climate-and-transport-policy-drivers/speed-limits-review.md) — pages 44–44
-- [Leveraging Other Policies and Programmes](sections/leveraging-other-policies-and-programmes/) — pages 45–61
-  - [Leveraging Other Policies and Programmes](sections/leveraging-other-policies-and-programmes/overview.md) — pages 45–45
+  - [National Roads 2040](sections/national-climate-and-transport-policy-drivers/national-roads-2040.md) — pages 42–42
+  - [Road Safety Policy](sections/national-climate-and-transport-policy-drivers/road-safety-policy.md) — pages 43–44
+  - [Speed Limits Review](sections/national-climate-and-transport-policy-drivers/speed-limits-review.md) — pages 44–45
+- [Leveraging Other Policies and Programmes](sections/leveraging-other-policies-and-programmes/) — pages 46–62
+  - [Leveraging Other Policies and Programmes](sections/leveraging-other-policies-and-programmes/overview.md) — pages 46–46
   - [National Planning Framework](sections/leveraging-other-policies-and-programmes/national-planning-framework.md) — pages 46–46
-  - [Local Authority Climate Action](sections/leveraging-other-policies-and-programmes/local-authority-climate-action.md) — pages 47–47
+  - [The National Development Plan](sections/leveraging-other-policies-and-programmes/the-national-development-plan.md) — pages 47–47
+  - [Local Authority Climate Action](sections/leveraging-other-policies-and-programmes/local-authority-climate-action.md) — pages 47–48
   - [Urban Renewal and Rural Development](sections/leveraging-other-policies-and-programmes/urban-renewal-and-rural-development.md) — pages 48–49
-  - [Parking Measures](sections/leveraging-other-policies-and-programmes/parking-measures.md) — pages 50–50
-  - [Fiscal Policies](sections/leveraging-other-policies-and-programmes/fiscal-policies.md) — pages 51–51
-  - [Educational Sector](sections/leveraging-other-policies-and-programmes/educational-sector.md) — pages 53–54
-  - [Business and Enterprise](sections/leveraging-other-policies-and-programmes/business-and-enterprise.md) — pages 55–56
-  - [Tourism](sections/leveraging-other-policies-and-programmes/tourism.md) — pages 57–57
-  - [Accessibility and Inclusion](sections/leveraging-other-policies-and-programmes/accessibility-and-inclusion-2.md) — pages 58–59
-  - [Health-Related Policies](sections/leveraging-other-policies-and-programmes/health-related-policies.md) — pages 60–61
-- [Communications and Engagement](sections/communications-and-engagement/) — pages 62–65
-  - [Communications and Engagement](sections/communications-and-engagement/overview.md) — pages 62–65
-- [Legislative Powers and Levers](sections/legislative-powers-and-levers/) — pages 66–67
-  - [Legislative Powers and Levers](sections/legislative-powers-and-levers/overview.md) — pages 66–67
-- [Research and Policy Analysis](sections/research-and-policy-analysis/) — pages 68–76
-  - [Research and Policy Analysis](sections/research-and-policy-analysis/overview.md) — pages 68–68
+  - [Parking Measures](sections/leveraging-other-policies-and-programmes/parking-measures.md) — pages 50–51
+  - [Fiscal Policies](sections/leveraging-other-policies-and-programmes/fiscal-policies.md) — pages 51–53
+  - [Educational Sector](sections/leveraging-other-policies-and-programmes/educational-sector.md) — pages 53–55
+  - [Business and Enterprise](sections/leveraging-other-policies-and-programmes/business-and-enterprise.md) — pages 55–57
+  - [Tourism](sections/leveraging-other-policies-and-programmes/tourism.md) — pages 57–58
+  - [Sports Sector](sections/leveraging-other-policies-and-programmes/sports-sector.md) — pages 58–58
+  - [Accessibility and Inclusion](sections/leveraging-other-policies-and-programmes/accessibility-and-inclusion-2.md) — pages 58–60
+  - [Health-Related Policies](sections/leveraging-other-policies-and-programmes/health-related-policies.md) — pages 60–62
+- [Communications and Engagement](sections/communications-and-engagement/) — pages 63–66
+  - [Communications and Engagement](sections/communications-and-engagement/overview.md) — pages 63–66
+- [Legislative Powers and Levers](sections/legislative-powers-and-levers/) — pages 67–68
+  - [Legislative Powers and Levers](sections/legislative-powers-and-levers/overview.md) — pages 67–68
+- [Research and Policy Analysis](sections/research-and-policy-analysis/) — pages 69–77
   - [The Five Cities Demand Management Study](sections/research-and-policy-analysis/the-five-cities-demand-management-study.md) — pages 69–69
+  - [International Transport Forum (ITF) Decarbonising Transport Initiative](sections/research-and-policy-analysis/international-transport-forum-itf-decarbonising-transport-initiative.md) — pages 69–70
   - [OECD Report](sections/research-and-policy-analysis/oecd-report.md) — pages 70–70
   - [Modelling for CAP](sections/research-and-policy-analysis/modelling-for-cap.md) — pages 71–72
   - [Better Road User Charging Evaluation](sections/research-and-policy-analysis/better-road-user-charging-evaluation.md) — pages 73–73
-  - [Tax Strategy Group](sections/research-and-policy-analysis/tax-strategy-group.md) — pages 74–74
-  - [Public Attitudes to Demand Management Measures](sections/research-and-policy-analysis/public-attitudes-to-demand-management-measures.md) — pages 75–76
-- [Six Key Areas of Focus](sections/six-key-areas-of-focus/) — pages 77–122
-  - [Six Key Areas of Focus](sections/six-key-areas-of-focus/overview.md) — pages 77–77
-  - [Integrated Land-Use and Transport Planning](sections/six-key-areas-of-focus/integrated-land-use-and-transport-planning.md) — pages 78–83
-  - [Optimal Use of Space](sections/six-key-areas-of-focus/optimal-use-of-space.md) — pages 84–91
+  - [Commission on Taxation and Welfare Report](sections/research-and-policy-analysis/commission-on-taxation-and-welfare-report.md) — pages 73–73
+  - [Economic Cost of Congestion in the GDA](sections/research-and-policy-analysis/economic-cost-of-congestion-in-the-gda.md) — pages 74–74
+  - [Tax Strategy Group](sections/research-and-policy-analysis/tax-strategy-group.md) — pages 74–75
+  - [Travel Behaviour and Public Insights](sections/research-and-policy-analysis/travel-behaviour-and-public-insights.md) — pages 75–75
+  - [National Householder Travel Survey](sections/research-and-policy-analysis/national-householder-travel-survey.md) — pages 75–75
+  - [Public Attitudes to Demand Management Measures](sections/research-and-policy-analysis/public-attitudes-to-demand-management-measures.md) — pages 75–77
+- [Six Key Areas of Focus](sections/six-key-areas-of-focus/) — pages 78–123
+  - [Six Key Areas of Focus](sections/six-key-areas-of-focus/overview.md) — pages 78–78
+  - [Integrated Land-Use and Transport Planning](sections/six-key-areas-of-focus/integrated-land-use-and-transport-planning.md) — pages 78–84
+  - [Optimal Use of Space](sections/six-key-areas-of-focus/optimal-use-of-space.md) — pages 84–92
   - [Fiscal Measures](sections/six-key-areas-of-focus/fiscal-measures.md) — pages 92–101
-  - [Generators of Demand (Education, Sport, Public Sector and Tourism)](sections/six-key-areas-of-focus/generators-of-demand-education-sport-public-sector-and-tourism.md) — pages 102–110
+  - [Generators of Demand (Education, Sport, Public Sector and Tourism)](sections/six-key-areas-of-focus/generators-of-demand-education-sport-public-sector-and-tourism.md) — pages 102–111
   - [Generators of Demand (Retail, Industry, and Freight)](sections/six-key-areas-of-focus/generators-of-demand-retail-industry-and-freight.md) — pages 111–117
-  - [Captive Car Users](sections/six-key-areas-of-focus/captive-car-users.md) — pages 118–122
-- [Recommendations](sections/recommendations/) — pages 123–127
-  - [Recommendations](sections/recommendations/overview.md) — pages 123–127
-- [Delivery and Implementation](sections/delivery-and-implementation/) — pages 128–131
-  - [Delivery and Implementation](sections/delivery-and-implementation/overview.md) — pages 128–128
-  - [Cost Implications of Delivering this Strategy](sections/delivery-and-implementation/cost-implications-of-delivering-this-strategy.md) — pages 129–129
+  - [Captive Car Users](sections/six-key-areas-of-focus/captive-car-users.md) — pages 118–123
+- [Recommendations](sections/recommendations/) — pages 124–128
+  - [Recommendations](sections/recommendations/overview.md) — pages 124–128
+- [Delivery and Implementation](sections/delivery-and-implementation/) — pages 129–132
+  - [Cost Implications of Delivering this Strategy](sections/delivery-and-implementation/cost-implications-of-delivering-this-strategy.md) — pages 129–130
   - [EU Taxonomy](sections/delivery-and-implementation/eu-taxonomy.md) — pages 130–130
-  - [Financing Options](sections/delivery-and-implementation/financing-options.md) — pages 131–131
-- [Evaluation and Review](sections/evaluation-and-review/) — pages 132–138
-  - [Evaluation and Review](sections/evaluation-and-review/overview.md) — pages 132–133
-  - [Air Quality](sections/evaluation-and-review/air-quality.md) — pages 134–134
+  - [Value for Money](sections/delivery-and-implementation/value-for-money.md) — pages 130–131
+  - [Financing Options](sections/delivery-and-implementation/financing-options.md) — pages 131–132
+- [Evaluation and Review](sections/evaluation-and-review/) — pages 133–139
+  - [Evaluation and Review](sections/evaluation-and-review/overview.md) — pages 133–134
+  - [Air Quality](sections/evaluation-and-review/air-quality.md) — pages 134–135
+  - [NTA National Household Travel Survey](sections/evaluation-and-review/nta-national-household-travel-survey.md) — pages 135–135
+  - [Economic Cost of Congestion](sections/evaluation-and-review/economic-cost-of-congestion.md) — pages 135–135
   - [Percentage of Urban Road Space Designated to Vehicles](sections/evaluation-and-review/percentage-of-urban-road-space-designated-to-vehicles.md) — pages 135–135
   - [Distance from Public Transport Services](sections/evaluation-and-review/distance-from-public-transport-services.md) — pages 136–136
-  - [Safety Indicators](sections/evaluation-and-review/safety-indicators.md) — pages 137–138
-- [Case Studies](sections/case-studies/) — pages 139–152
+  - [Noise Harmful Effects Assessments](sections/evaluation-and-review/noise-harmful-effects-assessments.md) — pages 136–136
+  - [Road Traffic Volumes](sections/evaluation-and-review/road-traffic-volumes.md) — pages 136–136
+  - [Public Transport Accessibility Levels](sections/evaluation-and-review/public-transport-accessibility-levels.md) — pages 137–137
+  - [Safety Indicators](sections/evaluation-and-review/safety-indicators.md) — pages 137–137
+  - [Affordability Indicators](sections/evaluation-and-review/affordability-indicators.md) — pages 137–139
+- [Appendix 1](sections/appendix-1/) — pages 139–139
+  - [Appendix 1](sections/appendix-1/overview.md) — pages 139–139
+- [Case Studies](sections/case-studies/) — pages 140–153
   - [1 Sligo County Council:](sections/case-studies/1-sligo-county-council.md) — pages 140–145
-  - [Case Studies](sections/case-studies/overview.md) — pages 139–139
-  - [International Case Studies](sections/case-studies/international-case-studies.md) — pages 146–152
-- [Ensuring a Just Transition through Investment](sections/ensuring-a-just-transition-through-investment/) — pages 153–159
-  - [Ensuring a Just Transition through Investment](sections/ensuring-a-just-transition-through-investment/overview.md) — pages 153–159
-- [Implementation Plan](sections/implementation-plan/) — pages 160–176
-  - [Implementation Plan](sections/implementation-plan/overview.md) — pages 160–176
+  - [Case Studies](sections/case-studies/overview.md) — pages 140–140
+  - [International Case Studies](sections/case-studies/international-case-studies.md) — pages 146–153
+- [Appendix 2](sections/appendix-2/) — pages 153–153
+  - [Appendix 2](sections/appendix-2/overview.md) — pages 153–153
+- [Ensuring a Just Transition through Investment](sections/ensuring-a-just-transition-through-investment/) — pages 154–160
+  - [Ensuring a Just Transition through Investment](sections/ensuring-a-just-transition-through-investment/overview.md) — pages 154–160
+- [Appendix 3](sections/appendix-3/) — pages 160–160
+  - [Appendix 3](sections/appendix-3/overview.md) — pages 160–160
+- [Implementation Plan](sections/implementation-plan/) — pages 161–176
+  - [Implementation Plan](sections/implementation-plan/overview.md) — pages 161–176

@@ -224,17 +224,25 @@ Image Credit: Tim Stonton / VOR
 
 ## 2 Organisational and Ownership Structure
 
-### 2.2 Report of the Review Group on State Assets and Liabilities
+### 2 Organisational and Ownership Structure
 
 *Pages 20–20*
 
 2. Organisational and Ownership Structure
+
+### 2.1 Introduction
+
+*Pages 20–20*
 
 2.1 Introduction The organisational structure of Ireland’s commercial ports sector has been largely unaltered since corporatisation on foot of the Harbours Act 1996. That process mirrored a trend across the European ports sector that was characterised by a move away from traditional organisational structures toward more flexible commercialised entities better able to respond to changing market demands.
 
 This structure of independent competing port companies has responded reasonably well to evolving market demands. However, with the difficult challenges now facing the sector, it is timely to reconsider whether the current structure is best suited to developing the type of port services and infrastructure required for the future.
 
 The port governance model in Ireland is broadly in line with the European norm. A recent survey by the European Sea Ports Organisation found “that the vast majority of port authorities in Europe are publicly owned” and that “the ownership situation of port authorities looks fairly stable” (Verhoeven, 2011). The United Kingdom is an exception, with many ports having been privatised in the period since 1980. However, many important UK ports remain in public ownership. In Northern Ireland, Belfast, Warrenpoint and Derry remain in public ownership. Larne is privately owned.
+
+### 2.2 Report of the Review Group on State Assets and Liabilities
+
+*Pages 20–20*
 
 2.2 Report of the Review Group on State Assets and Liabilities
 
@@ -302,11 +310,15 @@ Table 2.3: Long-term global trends in the cellular container ship fleet
 
 (UNCTAD, 2011)
 
-### 2.3.1 Competition
+### 2.4 Trans European Network – Transport (TEN-T)
 
 *Pages 22–22*
 
 2.4 Trans European Network – Transport (TEN-T)
+
+### 2.3.1 Competition
+
+*Pages 22–22*
 
 2.3.1 Competition As referred to earlier, the core objective of National Ports Policy is to facilitate a competitive and effective market for maritime transport services. The issue of competition is a critical one in terms of ensuring that our economy is served by the type of port facilities and services it requires.
 
@@ -330,11 +342,15 @@ The Minister for Jobs, Enterprise and Innovation announced in June 2012 that he 
 
 Competition within the sector exists both in terms of inter-port competition and indeed intra-port competition
 
-### 2.5.1 Dublin Port Company
+### 2.5 Ports of National Significance (Tier 1)
 
 *Pages 23–23*
 
 2.5 Ports of National Significance (Tier 1)
+
+### 2.5.1 Dublin Port Company
+
+*Pages 23–23*
 
 2.5.1 Dublin Port Company Dublin Port Company is the State’s largest port company. It handles approx. 43% of all seaborne trade in the State. The port’s importance is even more pronounced in the higher-value unitised (LoLo and RoRo) sectors, where it handles approx. 70% of all LoLo and 85% of all RoRo trade in the State (IMDO, 2012a).
 
@@ -376,7 +392,7 @@ Table 2.4: Dublin Port Company overview
 
 1 National Ports Policy categorises Dún Laoghaire Harbour Company and Drogheda Port Company as Ports of Regional Significance (see section 2.7).
 
-### 2.5.3 Shannon Foynes Port Company
+### 2.5.2 Port of Cork Company and Shannon Foynes Port Company
 
 *Pages 24–24*
 
@@ -419,7 +435,7 @@ Table 2.6: Shannon Foynes Port Company overview
 
 * 2001 was the first full financial year of the amalgamated Shannon Foynes Port Company
 
-### 2.6.1 Port of Waterford Company
+### 2.6 Ports of National Significance (Tier 2)
 
 *Pages 25–25*
 
@@ -443,6 +459,10 @@ Two ports meet these requirements: the Port of Waterford Company and Rosslare Eu
 
 Bantry Bay is responsible for 11.9% of all liquid bulk handled by Irish ports, and 3.1% of all tonnage handled at Irish ports, but is not included as a Port of National Significance (Tier 2). This is due to the unique nature of its business, which is specifically focused on oil transhipment and storage. Furthermore, Bantry Bay does not have the transportation links or corporate governance structures needed to develop as a port that serves national transport needs beyond its immediate region.
 
+### 2.6.1 Port of Waterford Company
+
+*Pages 25–26*
+
 2.6.1 Port of Waterford Company The port of Waterford is the fourth largest of the State commercial port companies in terms of total tonnage handled, and the fifth largest if Rosslare Europort is included. The port offers both LoLo and bulk services. In terms of LoLo traffic, the port is the smallest of the three LoLo ports, handling approx. 8% of total LoLo traffic in 2011 (IMDO, 2012a). It enjoys excellent connectivity to both the national road and rail networks.
 
 In addition to meeting the above criteria, the Port of Waterford and Rosslare Europort also meet the European Commission’s criteria for inclusion in the comprehensive network under the TEN-T proposal (see section 2.4). These are ports that, while not enjoying the same degree of connectivity as the core network, are still an integral part of the pan-European transportation network.
@@ -461,15 +481,15 @@ Table 2.7: Port of Waterford Company overview
 
 ** 2010 and 2011 employee figures include those employed in Waterford Container Terminal Ltd. a wholly owned subsidiary of the Company since 2001.
 
-### 2.6.2 Rosslare Europort
-
-*Pages 26–26*
-
 ![Figure 2.1: Port of Waterford – traffic share as a percentage of total market](assets/p026-f01.webp)
 
 *Figure 2.1: Port of Waterford – traffic share as a percentage of total market*
 
 2002 2003 2004 2005 2006 2007
+
+### 2.6.2 Rosslare Europort
+
+*Pages 26–27*
 
 2.6.2 Rosslare Europort Rosslare is unique among the State commercial ports as it operates outside of the Harbours Acts 1996–2009. The port forms part of the Fishguard and Rosslare Railways and Harbour Company (FRRHC) which owes its origins to the Fishguard Bay Railway and Pier Act 1893. The constituent ports (Rosslare and Fishguard) of the company are nowadays the operational and financial responsibility of Iarnród Éireann and Stena Line Ports Ltd respectively.
 
@@ -489,10 +509,6 @@ Rosslare Europort enjoys a significant proportion of Irish Ro-Ro traffic (see Fi
 
 Rosslare Europort is the fourth largest port in terms of overall tonnage handled, and the State’s second largest passenger port
 
-### 2.7 Ports of Regional Significance
-
-*Pages 27–28*
-
 ![Figure 2.2: Rosslare Europort – traffic share as a percentage of total market](assets/p027-f01.webp)
 
 *Figure 2.2: Rosslare Europort – traffic share as a percentage of total market*
@@ -510,6 +526,10 @@ Rosslare Europort is the fourth largest port in terms of overall tonnage handled
 2001 2002 2003 2004 2005 2006 2007
 
 (CSO, 1998–2011)
+
+### 2.7 Ports of Regional Significance
+
+*Pages 27–28*
 
 2.7 Ports of Regional Significance
 
@@ -576,7 +596,7 @@ Table 2.9: Drogheda Port Company overview
 
 2 Dundalk Port is an exception as in July 2011 Dundalk Port Company was dissolved and its functions transferred to Dublin Port Company.
 
-### 2.7.3 Galway Harbour Company
+### 2.7.1 Drogheda Port Company
 
 *Pages 29–29*
 
@@ -592,7 +612,15 @@ The Department will initiate discussions with the local authorities and the Port
 
 The Department will initiate discussions with the local authority and the Harbour Company to determine the most suitable method of transfer to local authority control, within the framework set out in section 2.7.7.
 
+### 2.7.2 Dún Laoghaire Harbour Company
+
+*Pages 29–29*
+
 2.7.2 Dún Laoghaire Harbour Company Dún Laoghaire Harbour Company is the smallest of the State commercial port companies in terms of overall freight tonnage handled in 2011. However, it remains the third largest passenger ferry port in the State, after Dublin and Rosslare. In recent years the harbour has moved away from commercial portrelated business and is increasingly viewed as a centre for marine-related tourism and recreational activities.
+
+### 2.7.3 Galway Harbour Company
+
+*Pages 29–30*
 
 2.7.3 Galway Harbour Company Galway Harbour Company is a bulk port which caters primarily for liquid-bulk products, and the harbour is an important strategic regional hub for petroleum importation, storage and distribution. However, declining throughput levels have led to increasing reliance on non-core port activities as revenue streams. The company now derives over 50% of its revenue from non-core port activities.
 
@@ -610,10 +638,6 @@ Table 2.10: Dún Laoghaire Harbour Company overview
 
 * 1998 was the first full financial year as a commercial port company
 
-### 2.7.4 New Ross Port Company
-
-*Pages 30–30*
-
 and corporate governance oversight of the Harbour Company from the Department to a more appropriate local or regional structure.
 
 Similar to Dún Laoghaire harbour, the location of the harbour close to Galway’s city centre limits its potential for further expansion in terms of increasing trade. However, the inner harbour is an immensely attractive location for the development of marine tourism and leisure facilities, in particular a marina, as well as for urban redevelopment.
@@ -621,6 +645,10 @@ Similar to Dún Laoghaire harbour, the location of the harbour close to Galway�
 The Department will initiate discussions with the local authorities, the Harbour Company and other relevant stakeholders to determine the most suitable method of transfer, within the framework set out in section 2.7.7.
 
 While there is no Exchequer support available for these developments, National Ports Policy endorses the development proposals in respect of the inner harbour, as referred to in the Regional Planning Guidelines for the West Region 2010–2022 and the Galway City Development Plan 2011–2017, for marine tourism and leisure facilities as well as for urban redevelopment and regeneration. Furthermore, the Government notes the return of cruise tourist traffic to Galway harbour in 2012, and supports the company’s efforts to develop this business.
+
+### 2.7.4 New Ross Port Company
+
+*Pages 30–30*
 
 2.7.4 New Ross Port Company New Ross Port Company is a bulk port that principally handles dry bulk products. While the port company is the statutory authority for the management of the port, locally based private sector companies own and operate the principal freight-handling facilities.
 
@@ -656,9 +684,9 @@ Table 2.12: New Ross Port Company overview
 
 * 1998 was the first full financial year as a commercial port company
 
-### 2.7.7 Legislative amendments required for ports of regional significance
+### 2.7.5 Wicklow Port Company and Legislative amendments required for ports of regional significance
 
-*Pages 31–34*
+*Pages 31–31*
 
 2.7.5 Wicklow Port Company As with the other smaller State commercial port companies, Wicklow Port Company handles only bulk traffic. The port has been particularly badly affected by the severe declines in the construction-related break bulk sector.
 
@@ -671,6 +699,10 @@ Cognisant of the diverse nature of those ports proposed to be transferred, the D
 The Department will initiate discussions with the local authority and the Port Company to determine the most suitable method of transfer to local authority control, within the framework set out in section 2.7.7.
 
 • the creation of separate legal entities with no share capital under the control of local government
+
+### 2.7.6 Other ports of regional significance
+
+*Pages 31–34*
 
 2.7.6 Other ports of regional significance As referred to in section 2.7 and detailed in Table 2.8, a number of other ports, operating under a variety of governance models, handle commercial freight. National Ports Policy recognises their continued importance as facilitators of regional and local freight distribution.
 
@@ -736,11 +768,15 @@ Image Credit: Irish Maritime Development Office
 
 ## 3 Corporate Governance
 
-### 3.1 Introduction
+### 3 Corporate Governance
 
 *Pages 35–35*
 
 3. Corporate Governance
+
+### 3.1 Introduction
+
+*Pages 35–35*
 
 3.1 Introduction The State-owned port companies are valuable assets and have important economic, social and environmental functions. It is incumbent on those entrusted with the management of these assets that the ports fulfil the expectations of the shareholder, the public interest and the economy at large. To do so the ports require direction and clarity as to what those expectations are.
 
@@ -756,7 +792,7 @@ At an operational level, and as stated in the consultation document, the develop
 
 The Department is committed to ensuring that regular meetings at both Ministerial and official levels occur with the boards and executives of the port companies to ensure that the expectations of the State as shareholder are embedded within all levels of corporate and commercial development.
 
-### 3.3 Port company boards
+### 3.2 The Code of Practice for the Governance of State Bodies and Port company boards
 
 *Pages 36–36*
 
@@ -814,9 +850,9 @@ Section 41(4)(b) of the Harbours Act 1996 provides a mechanism whereby the Minis
 
 Finally, National Ports Policy places a strong emphasis on the retention of corporate memory on the boards of the commercial port companies. However, this should not impede a regular turnover of board members. Therefore, board appointments should ideally be staggered, with no more than three vacancies to any board arising within a calendar year.
 
-### 3.6 Port company pensions
+### 3.5 Future funding
 
-*Pages 38–40*
+*Pages 38–38*
 
 3.5 Future funding
 
@@ -837,6 +873,10 @@ Additional funding opportunities may arise through the European Investment Bank,
 As is common in the broader State commercial sector, the port companies traditionally offered employees membership of defined benefit pension schemes. Many of these schemes now face funding difficulties. The port companies have taken a number of measures to address the problem. Ports whose defined benefit schemes are currently underfunded are of course actively engaged with the Pensions Board in seeking to address their funding difficulties, as provided for in legislation.
 
 There is also the possibility that, arising from the revised TEN-T programme, there will be opportunities through the Connecting Europe Facility for those designated TEN-T ports to avail of those funding facilities.
+
+### 3.6 Port company pensions
+
+*Pages 38–40*
 
 3.6 Port company pensions
 
@@ -978,13 +1018,21 @@ DUBLIN PORT
 
 ## 4 Ports Policy and the Planning and Development System
 
-### 4.2 Future capacity requirements
+### 4 Ports Policy and the Planning and Development System
 
-*Pages 41–42*
+*Pages 41–41*
 
 4. Ports Policy and the Planning and Development System
 
+### 4.1 Introduction
+
+*Pages 41–41*
+
 4.1 Introduction The sustainable development of the port sector depends to a large extent on the relationship and interaction between the sector and the planning system. Ports act as international gateways, generate large volumes of traffic, and are key centres of economic activity. They are located at a unique interface between land and sea, in many cases in or near to major conurbations.
+
+### 4.2 Future capacity requirements
+
+*Pages 41–42*
 
 4.2 Future capacity requirements
 
@@ -1068,6 +1116,10 @@ Such connections will also be an important feature of the revised TEN-T proposal
 
 The vast majority of Ireland’s freight movements to and from ports are via road. As acknowledged in the European Commission’s White Paper, Roadmap to a Single European Transport Area – Towards a Competitive and Resource-Efficient Transport System, it is likely that “freight movements over short and medium distances (below some 300km) will to a considerable extent remain on trucks” (Commission of the European Communities, 2011c).
 
+### 4.3 Port master-planning
+
+*Pages 43–43*
+
 4.3 Port master-planning
 
 Port master-planning is in line with international best practice generally and it is consistent with policy to improve integrated planning for all modes of transport. National Ports Policy recognises strongly the desirability of this process for the long-term planning of all Ports of National Significance (Tier 1 and 2). Dublin, Cork, Shannon Foynes and Rosslare have each completed or are in the process of completing masterplans.
@@ -1116,11 +1168,15 @@ Image Credit: Irish Maritime Development Office
 
 ## 5 Environmental and Foreshore Issues
 
-### 5.2 Environmental issues
+### 5 Environmental and Foreshore Issues
 
 *Pages 47–47*
 
 5. Environmental and Foreshore Issues
+
+### 5.1 Introduction
+
+*Pages 47–47*
 
 5.1 Introduction Ports operate in a unique environment, located at the interface of land and water. All Irish ports are located in estuaries or coastal zones, which are recognised as “amongst the most dynamic and complex ecosystems in the world” (Commission of the European Communities, 2011a). Environmental legislation in recent years has sought to strengthen the protection of such ecosystems. Development within such sensitive areas is subject to stringent oversight at both a national and European level.
 
@@ -1132,19 +1188,23 @@ These guidelines provide all stakeholders with greater clarity on the interplay 
 
 In addition to their obligations under environmental legislation, ports are subject to the consent processes under the Foreshore Acts. These Acts regulate activity carried out on foreshore and encompass a broad range of activities inherent in any commercial port’s business.
 
+### 5.2 Environmental issues
+
+*Pages 47–48*
+
 5.2 Environmental issues
 
 The planning and development of maritime transport infrastructure is unique in a number of ways. The most obvious is the fact that such infrastructure involves developments both on the land and on the foreshore. Also, most Irish ports have estuarial locations and tend to be either in or adjacent to protected natural habitats. This makes the planning and development of port infrastructure particularly complex.
-
-### 5.3 Foreshore issues
-
-*Pages 48–50*
 
 Where applicable, this dual consent process requires separate applications to both a planning authority under the Planning and Development Acts as well as the Minister for the Environment, Community and Local Government under the Foreshore Acts. A dual consent process, relating to the one proposed development, and relying upon the same supporting documentation (e.g. technical information, environmental reports, Environmental Impact Statement, Natura Impact Statement etc.) represents a substantial duplication of effort for all parties.
 
 Regulation 40 of the European Communities (Birds and Habitats) Regulations 2011 provide for such an engagement by allowing for administrative agreements between the Minister of Arts, Heritage and the Gaeltacht and public authorities, such as the port companies. Such an agreement could be a valuable tool in achieving clarity on the roles and responsibilities of the port companies in this important area. The Department has facilitated engagement on the matter between the Irish Ports Association and the Department of Arts, Heritage and the Gaeltacht. It is expected that this administrative agreement will be concluded during 2013.
 
 In addition to the duplication of effort described above, the current consent processes under the Foreshore Acts do not provide for specific timelines regarding decisions or appeals, which is at variance with the consent processes provided for by the Planning and Development Acts.
+
+### 5.3 Foreshore issues
+
+*Pages 48–50*
 
 5.3 Foreshore issues
 

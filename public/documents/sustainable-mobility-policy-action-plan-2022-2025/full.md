@@ -2,23 +2,9 @@
 
 Source: https://assets.gov.ie/static/documents/sustainable-mobility-policy-action-plan-2022-2025.pdf
 
-## Mobility Policy
+## Safe and Green Mobility
 
-### Mobility Policy
-
-*Pages 1–1*
-
-Prepared by the Department of Transport
-
-### 2040
-
-*Pages 1–1*
-
-gov.ie/transport
-
-## Mobility
-
-### Mobility
+### Safe and Green Mobility
 
 *Pages 3–12*
 
@@ -123,9 +109,19 @@ Goal 5: Encourage people to choose sustainable mobility over the private car
 | 46. Accelerate sustainable mobility plans for schools through: - Expansion of Cycle Right Training in primary and post-primary schools. - Rollout of Safe Routes to Schools Infrastructure Programme. - Complete review of the School Transport Scheme and identify measures to improve sustainability of school transport scheme. (CAP action 235) | Cycling Ireland, DoE, NTA | Bus Éireann, DECC, DoT, DPER, Green Schools, LAs, NCSE | Annual: Additional 5,000 pupils per year trained under Cycle Right programme. 2022: Safe Routes to School Infrastructure Programme commenced in 170 schools. Measures to improve sustainability of School Transport system identified. |
 | 47. Explore potential of road-user charging measures through the Betet r Road User Charging Evaluation (BRUCE) study. (CAP action 259) | TII | DoT, NTA | 2023: Draft implementation plan published. |
 
-## Mobility
+## National Sustainable Mobility Policy
 
-### Mobility
+### National Sustainable Mobility Policy
+
+*Pages 1–1*
+
+Prepared by the Department of Transport
+
+gov.ie/transport
+
+## People Focused Mobility
+
+### People Focused Mobility
 
 *Pages 13–17*
 
@@ -184,9 +180,9 @@ Goal 8: Promote sustainable mobility through research and citizen engagement
 | 73. Develop and update appraisal guidance and appraisal review processes based on the most relevant and applicable evidence and methodological advances in the sustainable mobility area. | DoT | NTA, TII | 2022: Appraisal guidance updated to replace existing Common Appraisal Framework. |
 | 74. Establish a network and mechanisms to advise on, agree and focus resources towards research priorities that provide an evidence base for implementation of the Policy, drawing on national and international best practice. | DoT | NTA, TII, academics, industry | 2022: Network and mechanisms established. |
 
-## Mobility
+## Better Integrated Mobility
 
-### Mobility
+### Better Integrated Mobility
 
 *Pages 18–24*
 

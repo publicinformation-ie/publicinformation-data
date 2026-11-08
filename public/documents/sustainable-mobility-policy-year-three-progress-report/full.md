@@ -6,7 +6,7 @@ Source: https://assets.gov.ie/static/documents/076637ab/Year_3_Progress_Report_-
 
 ### Front Matter
 
-*Pages 1–1*
+*Pages 1–3*
 
 Sustainable Mobility Policy Year Three Progress Report
 
@@ -16,11 +16,87 @@ Sustainable Mobility Policy Year Three Progress Report
 
 Department of Transport
 
-## ”
+### Table of contents
 
-### ”
+Minister’s Foreword 2
 
-*Pages 5–6*
+Executive Summary 3
+
+National Sustainable Mobility Policy and Action Plan 4
+
+SMP Governance – Leadership Group and Delivery Team 5
+
+SMP Action Status Updates 6
+
+Completed 7
+
+On Schedule 8
+
+Ongoing 8
+
+Modified 9
+
+Delayed 11
+
+Delay Anticipated 11
+
+Measuring SMP Outcomes: Key Performance Indicator delivery to date 13
+
+SMP Pathfinder Programme 16
+
+National Sustainable Mobility Forum 17
+
+A Focus on Accessibility, Disability and Inclusion 19
+
+Just Transition 20
+
+Shared Mobility 22
+
+Other Relevant Developments 24
+
+Looking Ahead – SMP Action Plan 2026-2030 25
+
+Annex 1 – Delivery to date of SMP Actions 26
+
+Complete 26
+
+On Schedule 40
+
+Delayed 43
+
+Delay Anticipated 50
+
+Modified 56
+
+Ongoing 58
+
+## Minister’s Foreword
+
+### Minister’s Foreword
+
+*Pages 4–4*
+
+This report marks the end of the third year of the National Sustainable Mobility Policy (SMP) and its accompanying Action Plan, which was published in April 2022, setting out a highly ambitious and detailed series of over 90 actions to be completed by the end of 2025 to improve and expand sustainable mobility options across the country. The Action Plan will have addressed or delivered close to 70% of actions by year end, with substantial progress made on others, from the new electric buses now appearing across our cities and towns to the major strides that are being made in constructing new walking and cycling infrastructure. My thanks to all the many stakeholders involved in delivering on this plan to date and their ongoing commitment to achieving its vision of a connected and sustainable transport network across the country.
+
+Rural mobility is also being enhanced through new initiatives, such as the recently launched SMART Demand Responsive Transport pilot projects in Achill and Killarney, which provides a tailored solution to the transport needs of rural communities. Meanwhile, and as committed to in the Programme for Government, the successful pilot programme in Leitrim to integrate public, disability and health transport services is now being mainstreamed. The Government is committed to expanding on these projects to build a transport system that serves every corner of the country, and leaves no one behind.
+
+Accessibility and inclusion are critical objectives in the SMP. This report highlights the progress achieved to date in addressing the gaps in service provision while acknowledging that there is still significant further investment required.
+
+The Government will further build on this progress through a new SMP Action Plan 2026- 2030, which will set out an enhanced vision for sustainable mobility across Ireland, one which will meet the challenge set by our ambitious carbon emissions reduction targets, while also fulfilling the needs of our people – through the provision of a green, safe, affordable and reliable network of walking, cycling and public transport infrastructure. It will be a challenging task, but one that the Government is ready for, and one which I know will benefit our people for decades to come.
+
+The recent National Development Plan (NDP) review demonstrated the Government’s commitment to the transport sector by allocating €24.33 billion up to 2030 in support of broad objectives including those envisaged under the SMP. Importantly, this includes a ringfenced €2 billion to commence construction of Metrolink, the most ambitious and transformational transport project ever seen in this country. This essential piece of infrastructure for our capital city is long overdue and will sit alongside further investment in DART+ and BusConnects projects in each of the five cities. Indeed, in July, I had the pleasure of announcing that the first BusConnects construction contract has been awarded, for the Liffey Valley Core Bus Corridor, with construction to commence this month. The new NDP review sets the financial parameters for continued prioritisation of sustainable mobility for the next five years and beyond.
+
+The critical role of regional connectivity is also recognised in the SMP, and the NDP will underpin expanded support for rural mobility through initiatives such as Connecting Ireland. This has been a phenomenal success to date, connecting 240 new towns and villages – and counting – to the public transport network.
+
+Darragh O'Brien T.D. Minister for Transport
+
+## Executive Summary
+
+### Executive Summary
+
+*Pages 5–5*
+
+## ” To date, 46 actions are complete; six are on schedule
 
 The National Sustainable Mobility Policy was published in April 2022. The Policy sets out a strategic framework to 2030 for active travel (walking and cycling) and public transport journeys. The SMP is accompanied by an Action Plan to 2025 detailing 91 actions to support the achievement of key sustainable mobility targets, which were further defined in the Climate Action Plan 2023. These key Climate Action Plan targets are a 50% increase in daily active travel journeys, a 130% increase in daily public transport journeys, and a 20% reduction in total vehicle kilometres travelled by 2030.
 
@@ -43,6 +119,12 @@ The report also outlines the work of key initiatives established as part of the 
 ![Figure from page 5](assets/p005-f01.webp)
 
 *Figure from page 5*
+
+## National Sustainable Mobility Policy and Action Plan
+
+### National Sustainable Mobility Policy and Action Plan
+
+*Pages 6–6*
 
 National Sustainable Mobility Policy and Action Plan
 
@@ -84,7 +166,9 @@ Key Principle
 
 A dedicated division within the Department of Transport was established in September 2022 to manage the SMP portfolio and to act as a secretariat to the SMP Leadership Group and Delivery Team which work to oversee and drive implementation of the SMP Action Plan and the SMP Pathfinder Programme, respectively.
 
-### Delivery Team
+## SMP Governance – Leadership Group and Delivery Team
+
+### SMP Governance – Leadership Group and Delivery Team
 
 *Pages 7–7*
 
@@ -102,9 +186,11 @@ The LG contributed on an ongoing basis to the development of SMP-related measure
 
 *Figure from page 7*
 
-### Updates
+## SMP Action Status Updates
 
-*Pages 8–14*
+### SMP Action Status Updates
+
+*Pages 8–9*
 
 This report sets out the progress made in the three years since the Policy was launched in April 2022, as well as an update on the implementation of actions since the last report was published in August 2024.
 
@@ -150,6 +236,10 @@ For ease of reference, the following explains the action status categories in li
 | Modified | The original action in the SMP Action Plan has progressed but has diverged in scope and/or direction impacting timescales and output definitions. This reflects the need for agility and adaptability. This is a new category in the Year Three report. |
 | Delayed | The action and related outputs in the SMP Action Plan are past their scheduled date for delivery and have not yet been fully completed. |
 | Delay Anticipated | The action and related outputs in the SMP Action Plan are due for delivery in Q4 2025 and it is not now expected that they will be fully delivered by that date. This category was referred to as “At Risk of Delay” in previous reports. |
+
+### Completed
+
+*Pages 9–14*
 
 Completed
 
@@ -263,9 +353,11 @@ The target to have 350 km of Greenway either constructed or under construction b
 
 Regarding Metrolink, where a risk of delay was noted in the previous SMP progress report, the Railway Order (RO) was submitted on schedule to An Coimisiún Pleanála in September 2022, and an oral hearing on the application was concluded on 28 March 2024. A further statutory public consultation, requested by An Coimisiún Pleanála, commenced in August 2024 and concluded in October 2024. In advance of a decision on the Railway Order, which is currently awaited, work is also progressing on the development of the procurement strategy, and designers are actively preparing designs and tender
 
-### delivery to date
+## Measuring SMP Outcomes: Key Performance Indicator delivery to date
 
-*Pages 15–16*
+### Measuring SMP Outcomes: Key Performance Indicator delivery to date
+
+*Pages 15–17*
 
 The SMP sets out a clear implementation, monitoring and review structure (detailed on pp. 26-27 of the Policy). To support the effective measurement of Policy outcomes, the Action Plan 2022-2025 included actions to strengthen the quality of data to inform evaluation of the impact of SMP measures, through rolling out the Walking and Cycling Index to all cities and holding the National Household Travel Survey on an annual basis instead of on its previous five-year cycle.
 
@@ -293,90 +385,6 @@ KPI Target (if set) Delivery to date
 | Daily active travel journeys | ● 50% increase in daily active travel journeys (on 2018 baseline). In practice, this equates to 28% of journeys being carried out through active means by 2030. *CAP23 target | ● 20% of daily journeys currently undertaken through active travel (as of 2023) |
 | Reduced vehicle travel | ● 20% reduction in vehicle km travelled by 2030 relative to a Business-As- Usual (BAU) scenario modelled by the NTA and published alongside CAP23. *CAP23 target | ● 2023 mileage trending at 11.63% reduction in vehicle km travelled relative to 2030 BAU scenario. |
 
-## Table of contents
-
-### Table of contents
-
-*Pages 3–3*
-
-Minister’s Foreword 2
-
-Executive Summary 3
-
-National Sustainable Mobility Policy and Action Plan 4
-
-SMP Governance – Leadership Group and Delivery Team 5
-
-SMP Action Status Updates 6
-
-Completed 7
-
-On Schedule 8
-
-Ongoing 8
-
-Modified 9
-
-Delayed 11
-
-Delay Anticipated 11
-
-Measuring SMP Outcomes: Key Performance Indicator delivery to date 13
-
-SMP Pathfinder Programme 16
-
-National Sustainable Mobility Forum 17
-
-A Focus on Accessibility, Disability and Inclusion 19
-
-Just Transition 20
-
-Shared Mobility 22
-
-Other Relevant Developments 24
-
-Looking Ahead – SMP Action Plan 2026-2030 25
-
-Annex 1 – Delivery to date of SMP Actions 26
-
-Complete 26
-
-On Schedule 40
-
-Delayed 43
-
-Delay Anticipated 50
-
-Modified 56
-
-Ongoing 58
-
-## Minister’s Foreword
-
-### Minister’s Foreword
-
-*Pages 4–4*
-
-This report marks the end of the third year of the National Sustainable Mobility Policy (SMP) and its accompanying Action Plan, which was published in April 2022, setting out a highly ambitious and detailed series of over 90 actions to be completed by the end of 2025 to improve and expand sustainable mobility options across the country. The Action Plan will have addressed or delivered close to 70% of actions by year end, with substantial progress made on others, from the new electric buses now appearing across our cities and towns to the major strides that are being made in constructing new walking and cycling infrastructure. My thanks to all the many stakeholders involved in delivering on this plan to date and their ongoing commitment to achieving its vision of a connected and sustainable transport network across the country.
-
-Rural mobility is also being enhanced through new initiatives, such as the recently launched SMART Demand Responsive Transport pilot projects in Achill and Killarney, which provides a tailored solution to the transport needs of rural communities. Meanwhile, and as committed to in the Programme for Government, the successful pilot programme in Leitrim to integrate public, disability and health transport services is now being mainstreamed. The Government is committed to expanding on these projects to build a transport system that serves every corner of the country, and leaves no one behind.
-
-Accessibility and inclusion are critical objectives in the SMP. This report highlights the progress achieved to date in addressing the gaps in service provision while acknowledging that there is still significant further investment required.
-
-The Government will further build on this progress through a new SMP Action Plan 2026- 2030, which will set out an enhanced vision for sustainable mobility across Ireland, one which will meet the challenge set by our ambitious carbon emissions reduction targets, while also fulfilling the needs of our people – through the provision of a green, safe, affordable and reliable network of walking, cycling and public transport infrastructure. It will be a challenging task, but one that the Government is ready for, and one which I know will benefit our people for decades to come.
-
-The recent National Development Plan (NDP) review demonstrated the Government’s commitment to the transport sector by allocating €24.33 billion up to 2030 in support of broad objectives including those envisaged under the SMP. Importantly, this includes a ringfenced €2 billion to commence construction of Metrolink, the most ambitious and transformational transport project ever seen in this country. This essential piece of infrastructure for our capital city is long overdue and will sit alongside further investment in DART+ and BusConnects projects in each of the five cities. Indeed, in July, I had the pleasure of announcing that the first BusConnects construction contract has been awarded, for the Liffey Valley Core Bus Corridor, with construction to commence this month. The new NDP review sets the financial parameters for continued prioritisation of sustainable mobility for the next five years and beyond.
-
-The critical role of regional connectivity is also recognised in the SMP, and the NDP will underpin expanded support for rural mobility through initiatives such as Connecting Ireland. This has been a phenomenal success to date, connecting 240 new towns and villages – and counting – to the public transport network.
-
-Darragh O'Brien T.D. Minister for Transport
-
-## ”
-
-### ”
-
-*Pages 17–17*
-
 Subsequent work undertaken by the Department, notably the Adopting a Wellbeing Approach to Assessing Climate Action in The Transport Sector paper, has taken a more holistic perspective on potential additional KPIs which measure the experience of walking, cycling and using public transport, including the following:
 
 ●Distance from public transport services
@@ -397,7 +405,9 @@ It is intended to further build upon this work to develop more comprehensive and
 
 *Figure from page 17*
 
-### Programme
+## SMP Pathfinder Programme
+
+### SMP Pathfinder Programme
 
 *Pages 18–18*
 
@@ -417,7 +427,9 @@ The Pathfinder Programme will continue to run until the end of 2025. Following i
 
 ●Building on the success of the Smart and Sustainable Mobility Accelerator (SSMA) Pathfinder project, a more enduring model for capacity building in this area is required, having regard to the potential for mainstreaming initiatives within existing training and development mechanisms, to help embed behavioural change and systems thinking across wide-ranging teams within LAs.
 
-### Mobility Forum
+## National Sustainable Mobility Forum
+
+### National Sustainable Mobility Forum
 
 *Pages 19–20*
 
@@ -453,7 +465,9 @@ Approximately 160 stakeholders took part in these workshops over the four events
 
 *Figure from page 20*
 
-### Disability and Inclusion
+## A Focus on Accessibility, Disability and Inclusion
+
+### A Focus on Accessibility, Disability and Inclusion
 
 *Pages 21–21*
 
@@ -476,6 +490,8 @@ In line with the emphasis placed on accessibility, the SMP Leadership Group dedi
 Progress has been made too in implementing the Public Transport Accessibility Retrofit Programme. The focus of the Programme is on installing accessible bus stops in rural/ regional areas, retrofitting bus and train stations – lifts, platforms, and accessible bus bays - and increasing the number of taxis that use wheelchair accessible vehicles (WAVs). Funding for the Retrofit Programme has increased by 67% in 2025 compared to 2024.
 
 While this is an area for continuous improvement, strong progress is being made under the SMP across the various factors that influence the public transport user experience. Our urban bus fleets are now accessible, as are most of the rural bus fleets. The period of
+
+## Just Transition
 
 ### Just Transition
 
@@ -507,9 +523,11 @@ While the SMP predates the establishment of the Just Transition Framework, it is
 
 *Figure from page 23*
 
+## Shared Mobility
+
 ### Shared Mobility
 
-*Pages 24–27*
+*Pages 24–25*
 
 Shared mobility hubs offer people the opportunity to hire a range of transport modes - bikes, e-bikes, e-scooters, e-cargo bikes and electric vehicles - on a ‘pay-as-you-go’ basis. They also offer people a wide range of choice in how they make journeys. Three SMP Actions (18, 31 and 87) seek to expand the availability of shared bikes, cars and powered personal transporters, while the Programme for Government sets out a commitment to establish mobility hubs in each local authority area.
 
@@ -557,6 +575,12 @@ In parallel and as outlined in more detail above in the section on ‘modified�
 
 12.Build on learnings from the NTA shared mobility hub pilot and other current shared mobility schemes, develop a detailed Shared Mobility Policy.
 
+## Other Relevant Developments
+
+### Other Relevant Developments
+
+*Pages 26–26*
+
 Other Relevant Developments
 
 The new Programme for Government, which was published in January 2025, commits to implementing actions that optimise mobility, reduce congestion, and ensure that transportation works seamlessly for everyone. A multi-faceted approach is needed to achieve this.
@@ -572,6 +596,12 @@ Naturally, there is a strong overlap between this new strategy and the SMP. Supp
 The new Moving Together strategy recommends a variety of measures that seek to trigger a cultural and behavioural shift in the way people and business engage with travel and transport. It is a call for collective action across Government and society not only to help reduce carbon emissions from transport over the medium to long term, but also to address the more immediate issues of congestion, road safety and air quality. The Moving Together strategy, which is expected to be brought to Government for consideration in the coming months, also aims
 
 Finally, a revised National Development Plan was published in July 2025 on foot of a commitment in the new Programme for Government. The levels of investment envisaged for transport will be critical to determining the level of ambition and scope of the new SMP Action Plan.
+
+## Looking Ahead – SMP Action Plan 2026-2030
+
+### Looking Ahead – SMP Action Plan 2026-2030
+
+*Pages 27–27*
 
 Looking Ahead – SMP Action Plan 2026-2030
 
@@ -589,9 +619,11 @@ The new Plan will play a critical role in contributing to Ireland’s legally bi
 
 However, as outlined in the Programme for Government, the new Action Plan will also strive to take a holistic perspective on sustainable mobility, recognising and reinforcing the societal, health and wellbeing benefits of a high-quality, affordable and reliable network of walking, cycling and public transport infrastructure. It is intended that the new Plan will put an increased focus on access to sustainable mobility in all its forms – for people with disabilities, those living in regional and rural areas, those travelling within and between our cities, and those living in new housing developments or within revitalised
 
-### of SMP Actions
+## Annex 1 – Delivery to date of SMP Actions
 
-*Pages 28–62*
+### Complete
+
+*Pages 28–41*
 
 Complete
 
@@ -683,6 +715,10 @@ Complete
 | --- | --- | --- | --- | --- |
 | 91 | Examine the feasibility of utilising bus mounted cameras to detect and enforce illegal parking in bus lanes and if appropriate make recommendations for implementation. (RSS action 122) |  | 2022 Q4 | A report on this action was completed by the NTA and presented to the Road Safety Transformation Partnership Board in November 2023. Along with work by TII in relation to speed cameras, this report forms a key input into the ongoing work to develop a National Safety Camera Strategy, which is being led by TII with input from key stakeholders across the Transport and Justice sectors. |
 
+### On Schedule
+
+*Pages 42–44*
+
 On Schedule
 
 Many of these actions have annual outputs, with elements due to date successfully delivered.
@@ -701,6 +737,10 @@ Many of these actions have annual outputs, with elements due to date successfull
 | --- | --- | --- | --- | --- |
 | 76 | Ensure that the statutory reviews of the Regional Spatial and Economic Strategies include an analysis of land use development potential based on accessibility to each region’s proposed core public transport network. | Review of RSES for the Eastern and Midland Region commenced. | 2025 Q4 | Following the commencement of Part 3 of the Planning and Development Act 2024, as amended, the review of all RSESs will commence in accordance with the planning legislation. In this respect, it is anticipated that the review of the EMRA RSES, as well as the RSESs for the Southern Region and Northern and Western Region, will commence in late 2025/early 2026. |
 | 77 | Prepare and commence implementation of local transport plans for regional growth centres and key towns having regard to the Area Based Transport Assessment Guidance Note. | Local transport plans for regional growth centres and key towns completed. | 2025 Q4 | The NTA are currently working with the relevant local authorities to progress Local Transport Plans in the five Regional Growth Centres with three completed, one at draft stage and the final one commenced. Additionally, LTPs or transport studies are underway for 24 of the Key Towns, with nine completed and six progressed to draft stage. A number of plans are underway for other settlements across the country. |
+
+### Delayed
+
+*Pages 45–51*
 
 Delayed
 
@@ -739,6 +779,10 @@ Delayed
 | 75 | Extend the statutory transport planning remit of the National Transport Authority to the metropolitan areas of Cork, Galway, Limerick and Waterford. | Legislation to extend remit introduced. | 2023 Q4 | The aim is to progress one aspect of extending the NTA’s statutory remit and an amendment to section 44 of the DTA Act 2008 was included on the Summer Legislation Programme for drafting. It is anticipated this will be brought to Government in September 2025 for approval to draft a Dublin Transport Authority Amendment Bill. The Bill has been put forward again for the Autumn Programme for priority drafting. This is a first step to enable the NTA to deliver public transport infrastructure in the regional cities, as they currently do within the GDA. Further consideration will be needed on wider legislative amendments required to extend the NTA’s remit which will be progressed in a separate wider Bill. |
 | 82 | Define a governance framework for the implementation and operation of Mobility as a Service (MaaS) to encompass all transport modes nationally. | Governance framework defined. | 2024 Q4 | NTA submitet d a paper to the Department of Transport on 28 May 2024. Work on finalising a governance structure and developing a MaaS project will commence afet r the NGT project has been delivered. |
 
+### Delay Anticipated
+
+*Pages 52–57*
+
 Delay Anticipated
 
 | No. | Action | Proposed Output | SMP Deadline | Progress |
@@ -774,6 +818,10 @@ Delay Anticipated
 | 83 | Rollout of Next Generation Ticketing (NGT) on all PSO bus services operating in Dublin. | 2023 NGT contract awarded. 2025 Implementation of first bus route with NGT. | 2025 Q4 | The NTA and Indra signed a Framework Agreement for the rollout of NGT in Q2 2024. Systems design and development underway. Work has commenced on planning for implementation of NGT in the Greater Dublin Area, with a view to rollout in the coming years. |
 | 85 | Rollout Next Generation Bus Automated Vehicle Location System (AVL). | AVL system rolled out. | 2025 Q4 | Next Generation AVL is in implementation. The project commenced System Acceptance Testing (SAT) in June 2025, with a view to the first pilot going live for customers by the end of the year. |
 
+### Modified
+
+*Pages 58–59*
+
 Modified
 
 | No. | Action | Proposed Output | SMP Deadline | Progress |
@@ -786,6 +834,10 @@ Modified
 | --- | --- | --- | --- | --- |
 | 60 | Expand continuous professional training for key design skills and application of national standards. | 2022 Online workshops carried out. 2023 Graduate training programme introduced. | 2023 Q4 | Eight online Design Manual for Urban Roads and Streets (DMURS) workshops took place in 2022 with over 3500 atet ndees. There are courses in ATU which are funded by DoT through the Local Authority Services National Training Group (LASNTG) which Local Authority Engineers can undertake via the annual training grant. The DoT and LASNTG have also been working with the South East Technological University (SETU) in Carlow in 2025 to expand the number of road engineering courses which Local Authority staf fcan undertake via the annual training grant. DoT and LASNTG have also had meetings with Engineers Ireland in 2025 and added a number of their road engineering courses to the list of courses which Local Authority staf f can atet nd via funding from the annual grant allocation. |
 | 87 | Expand shared car, bike and powered personal transporters (PPT) services at transport hubs and interchanges. | Strategy for rollout of expanded shared services developed. | 2023 Q4 | Work to develop a strategy for expanded shared services has been superseded through the delivery of the NTA’s new Shared Micromobility Schemes in the Regional Cities and as part of a more ambitious pilot programme to test the network efef ct of Mobility Hubs in a number of urban centres, which will include shared electric cars, bikes, e-bikes and powered personal transporters i.e. e-scooters |
+
+### Ongoing
+
+*Pages 60–62*
 
 Ongoing
 

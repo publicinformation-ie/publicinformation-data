@@ -24,12 +24,6 @@ Prepared by the Department of tot thatacise gov.ie/ClimateAction
 
 Table of Contents
 
-## 1 Executive Summary ............................................................................................ 3
-
-### 1 Executive Summary ............................................................................................ 3
-
-*Pages 2–2*
-
 1 Executive Summary ............................................................................................ 3
 
 2 Agriculture ............................................................................................................ 5
@@ -42,23 +36,17 @@ Table of Contents
 
 6 Industry ............................................................................................................... 17
 
-## 7 Land Use, Land Use Change and Forestry (LULUCF) .............................. 19
-
-### 7 Land Use, Land Use Change and Forestry (LULUCF) .............................. 19
-
-*Pages 2–2*
-
 7 Land Use, Land Use Change and Forestry (LULUCF) .............................. 19
 
-## 8 Cross-cutting actions ....................................................................................... 22
-
-### 8 Cross-cutting actions ....................................................................................... 22
-
-*Pages 2–24*
-
-*Text from pages 4, 6, 7, 9, 10, 11, 12, 13, 15, 16, 18, 19, 20, 21, 23 of the source PDF is machine-read (OCR) from a scanned image and may contain recognition errors.*
-
 8 Cross-cutting actions ....................................................................................... 22
+
+## 1 Executive Summary
+
+### 1 Executive Summary
+
+*Pages 3–4*
+
+*Text from page 4 of the source PDF is machine-read (OCR) from a scanned image and may contain recognition errors.*
 
 1Executive Summary
 
@@ -119,6 +107,14 @@ DCEE fe) 9 DAFM 1 1 D/Transport 1 5 DHLGH fe) 2 TOTAL 2 17
 Table 3 Delivery by Department on legacy actions due for reporting in Q4 2025
 
 DCEE 1 24 DAFM 3 5 D/Transport fe) 7 DHLGH 1 2 DPER fe) 3 DETE fe) 2 TOTAL 5 43
+
+## 2 Agriculture
+
+### 2 Agriculture
+
+*Pages 5–7*
+
+*Text from pages 6, 7 of the source PDF is machine-read (OCR) from a scanned image and may contain recognition errors.*
 
 2Agriculture
 
@@ -221,6 +217,14 @@ value chain Identify policy and support mechanisms to enable organic feed millin
 wider agri-food sector.
 
 Completion date is now expected to be Q4 2027.
+
+## 3 Transport
+
+### 3 Transport
+
+*Pages 8–13*
+
+*Text from pages 9, 10, 11, 12, 13 of the source PDF is machine-read (OCR) from a scanned image and may contain recognition errors.*
 
 3Transport
 
@@ -394,6 +398,14 @@ during the consultation phase.
 
 fi ~) 13
 
+## 5 Buildings
+
+### 5 Buildings
+
+*Pages 14–16*
+
+*Text from pages 15, 16 of the source PDF is machine-read (OCR) from a scanned image and may contain recognition errors.*
+
 5Buildings
 
 In 2024, 12.3% of Ireland’s emissions came from Buildings (mostly residential buildings).
@@ -469,6 +481,14 @@ development of a draft National Building Renovation Plan (NBRP), with input from
 working with vulnerable households.
 
 As work remains ongoing between DCEE and the Department of Housing, Local Government and Heritage (DHLGH), it has not yet been possible to carry out a public consultation on a draft version of the NBRP. DCEE is continuing to work cross- Departmentally to progress these matters and a public consultation process on the NBRP will be undertaken before it is submitted by the end of 2026 in line with the Energy Performance of Buildings Directive (EPBD).
+
+## 6 Industry
+
+### 6 Industry
+
+*Pages 17–21*
+
+*Text from pages 18, 19, 20, 21 of the source PDF is machine-read (OCR) from a scanned image and may contain recognition errors.*
 
 6Industry
 
@@ -591,6 +611,14 @@ The proposed outcomes from this Mid-Term review are required to be screened, to 
 In addition, following Storms Eowyn and Darragh, significant damage was caused to both Coillte and privately owned forests. This has necessitated substantial re-planning of forest operations over the short and medium in the forest sector as it aims to recover the windblown timber. DAFM has established a Forest Windblow Taskforce which comprises of stakeholders representing forest owners, forestry companies, Teagasc and Coillte. It is meeting regularly to work collaboratively and is focusing on providing practical solutions immediately to those landowners whose forests have been adversely affected and are faced with a major clean-up operation in dealing with fallen trees.
 
 Satellite imagery assessments are indicating that just over 26,000 hectares of forestry have been damaged by windblow, including approximately 13,000 in private ownership. Government approval has now been received to launch a new €55 million Reconstitution Scheme for qualifying private forest owners. The Scheme will provide support to private forest owners for replanting their damaged forest areas. This Scheme is in alignment with the Forestry Programme 2023-2027, which contains a general Reconstitution measure that aims to restore and retain forest land and forest ecosystems following significant damage events. Development of this Scheme is underway, and it is expected that applications for the scheme will open in early 2026.
+
+## 8 Cross-cutting actions
+
+### 8 Cross-cutting actions
+
+*Pages 22–24*
+
+*Text from page 23 of the source PDF is machine-read (OCR) from a scanned image and may contain recognition errors.*
 
 8Cross-cutting actions
 

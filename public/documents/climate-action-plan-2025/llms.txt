@@ -14,10 +14,8 @@
   - [Glossary of Acronyms](sections/glossary-of-acronyms/overview.md) — pages 7–12
 - [Executive Summary](sections/executive-summary/) — pages 13–17
   - [Executive Summary](sections/executive-summary/overview.md) — pages 13–17
-- [Chapter 1: The Critical Nature 
-of the Challenge](sections/chapter-1-the-critical-nature-of-the-challenge/) — pages 18–23
-  - [Chapter 1: The Critical Nature 
-of the Challenge](sections/chapter-1-the-critical-nature-of-the-challenge/overview.md) — pages 18–23
+- [Chapter 1: The Critical Nature of the Challenge](sections/chapter-1-the-critical-nature-of-the-challenge/) — pages 18–23
+  - [Chapter 1: The Critical Nature of the Challenge](sections/chapter-1-the-critical-nature-of-the-challenge/overview.md) — pages 18–23
 - [Chapter 2: Where We Stand](sections/chapter-2-where-we-stand/) — pages 24–27
   - [Chapter 2: Where We Stand](sections/chapter-2-where-we-stand/overview.md) — pages 24–27
 - [Chapter 3: Policy to Date and Expected Impact of Planned Policies](sections/chapter-3-policy-to-date-and-expected-impact-of-planned-policies/) — pages 28–34
@@ -32,10 +30,8 @@ of the Challenge](sections/chapter-1-the-critical-nature-of-the-challenge/overvi
   - [Chapter 7: Delivering a Just Transition in the Midlands Region](sections/chapter-7-delivering-a-just-transition-in-the-midlands-region/overview.md) — pages 57–62
 - [Chapter 8: Citizen Engagement](sections/chapter-8-citizen-engagement/) — pages 63–69
   - [Chapter 8: Citizen Engagement](sections/chapter-8-citizen-engagement/overview.md) — pages 63–69
-- [Chapter 9: Public Sector Leading 
-by Example](sections/chapter-9-public-sector-leading-by-example/) — pages 70–76
-  - [Chapter 9: Public Sector Leading 
-by Example](sections/chapter-9-public-sector-leading-by-example/overview.md) — pages 70–76
+- [Chapter 9: Public Sector Leading by Example](sections/chapter-9-public-sector-leading-by-example/) — pages 70–76
+  - [Chapter 9: Public Sector Leading by Example](sections/chapter-9-public-sector-leading-by-example/overview.md) — pages 70–76
 - [Chapter 10: Carbon Pricing and Cross-Cutting Policies](sections/chapter-10-carbon-pricing-and-cross-cutting-policies/) — pages 77–84
   - [Chapter 10: Carbon Pricing and Cross-Cutting Policies](sections/chapter-10-carbon-pricing-and-cross-cutting-policies/overview.md) — pages 77–84
 - [Chapter 11: Electricity](sections/chapter-11-electricity/) — pages 85–93

@@ -1,17 +1,16 @@
 # Sustainable Mobility Policy Action Plan 2022-2025
 
-> Department of Transport — 4 chapters, 5 sections, 24 source pages.
+> Department of Transport — 4 chapters, 4 sections, 24 source pages.
 > Source: https://assets.gov.ie/static/documents/sustainable-mobility-policy-action-plan-2022-2025.pdf
 > Full text: full.md
 
 ## Chapters
 
-- [Mobility Policy](sections/mobility-policy/) — pages 1–1
-  - [Mobility Policy](sections/mobility-policy/overview.md) — pages 1–1
-  - [2040](sections/mobility-policy/2040.md) — pages 1–1
-- [Mobility](sections/mobility/) — pages 3–12
-  - [Mobility](sections/mobility/overview.md) — pages 3–12
-- [Mobility](sections/mobility-2/) — pages 13–17
-  - [Mobility](sections/mobility-2/overview.md) — pages 13–17
-- [Mobility](sections/mobility-3/) — pages 18–24
-  - [Mobility](sections/mobility-3/overview.md) — pages 18–24
+- [Safe and Green Mobility](sections/safe-and-green-mobility/) — pages 3–12
+  - [Safe and Green Mobility](sections/safe-and-green-mobility/overview.md) — pages 3–12
+- [National Sustainable Mobility Policy](sections/national-sustainable-mobility-policy/) — pages 1–1
+  - [National Sustainable Mobility Policy](sections/national-sustainable-mobility-policy/overview.md) — pages 1–1
+- [People Focused Mobility](sections/people-focused-mobility/) — pages 13–17
+  - [People Focused Mobility](sections/people-focused-mobility/overview.md) — pages 13–17
+- [Better Integrated Mobility](sections/better-integrated-mobility/) — pages 18–24
+  - [Better Integrated Mobility](sections/better-integrated-mobility/overview.md) — pages 18–24

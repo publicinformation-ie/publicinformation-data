@@ -1,0 +1,2090 @@
+[
+ {
+  "number": 13,
+  "width": 595.28,
+  "height": 841.89,
+  "rotation": 0,
+  "spans": [
+   {
+    "text": "National Investment Framework for Transport in Ireland  | ",
+    "font": "Lato-Regular",
+    "size": 8.0,
+    "bbox": [
+     307.69,
+     19.86,
+     509.99,
+     30.64
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Overview",
+    "font": "Lato-Regular",
+    "size": 8.0,
+    "bbox": [
+     509.99,
+     19.86,
+     544.05,
+     30.64
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 1
+   },
+   {
+    "text": "11",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     532.29,
+     790.39,
+     543.89,
+     803.86
+    ],
+    "block": 1,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "The National Investment Framework ",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     219.43,
+     151.19,
+     483.35,
+     173.35
+    ],
+    "block": 3,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "for Transport in Ireland is the strategic ",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     219.43,
+     170.39,
+     493.12,
+     192.55
+    ],
+    "block": 3,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "framework for future investment decision ",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     219.43,
+     189.59,
+     519.32,
+     211.75
+    ],
+    "block": 3,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "making in land transport. It will guide ",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     219.43,
+     208.79,
+     485.66,
+     230.95
+    ],
+    "block": 3,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "transport investment in the years ahead to ",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     219.43,
+     227.99,
+     524.31,
+     250.15
+    ],
+    "block": 3,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "enable the National Planning Framework, ",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     219.43,
+     247.19,
+     516.36,
+     269.35
+    ],
+    "block": 3,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "support the Climate Action Plan, and ",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     219.43,
+     266.39,
+     483.68,
+     288.55
+    ],
+    "block": 3,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "promote positive social, environmental and ",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     219.43,
+     285.59,
+     529.01,
+     307.75
+    ],
+    "block": 3,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "economic outcomes throughout Ireland.",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     219.43,
+     304.79,
+     503.14,
+     326.95
+    ],
+    "block": 3,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "1.1 |",
+    "font": "Lato-Light",
+    "size": 25.0,
+    "bbox": [
+     219.43,
+     345.95,
+     266.98,
+     378.92
+    ],
+    "block": 4,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": " Introduction",
+    "font": "Lato-Bold",
+    "size": 17.0,
+    "bbox": [
+     267.02,
+     353.62,
+     365.41,
+     377.17
+    ],
+    "block": 4,
+    "line": 0,
+    "span": 1
+   },
+   {
+    "text": "Transport connects people and places. It facilitates opportunities and ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     385.87,
+     522.8,
+     399.34
+    ],
+    "block": 5,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "helps to create prosperous communities, from city centres to rural areas. ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     398.87,
+     537.91,
+     412.34
+    ],
+    "block": 5,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "The sector also has a key role to play in achieving our climate change ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     411.87,
+     521.51,
+     425.34
+    ],
+    "block": 5,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "targets and mitigating the worst effects of climate breakdown. The ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     424.87,
+     512.16,
+     438.34
+    ],
+    "block": 5,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "National Investment Framework for Transport in Ireland (NIFTI) has been ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     437.87,
+     539.11,
+     451.34
+    ],
+    "block": 5,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "developed with these relationships in mind.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     450.87,
+     408.86,
+     464.34
+    ],
+    "block": 5,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "NIFTI is the Department of Transport’s high-level, strategic framework ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     472.38,
+     528.43,
+     485.85
+    ],
+    "block": 6,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "for future investment in the land transport network. Its purpose is to ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     485.38,
+     520.87,
+     498.85
+    ],
+    "block": 6,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "guide the development of the transport network in the decades ahead ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     498.38,
+     528.47,
+     511.85
+    ],
+    "block": 6,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "to enable the National Planning Framework and promote positive social, ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     511.38,
+     536.69,
+     524.85
+    ],
+    "block": 6,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "environmental and economic outcomes throughout the country. A number ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     524.38,
+     546.37,
+     537.85
+    ],
+    "block": 6,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "of key challenges in relation to transport investment have been identified ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     537.38,
+     540.84,
+     550.85
+    ],
+    "block": 6,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "and our strategic Investment Priorities are designed to address them.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     550.38,
+     520.14,
+     563.85
+    ],
+    "block": 6,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "The following section outlines why investment in transport is important ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     571.88,
+     533.77,
+     585.35
+    ],
+    "block": 7,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "and sets out the policy context within which NIFTI has been developed.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     584.88,
+     531.98,
+     598.35
+    ],
+    "block": 7,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1.2 |",
+    "font": "Lato-Light",
+    "size": 25.0,
+    "bbox": [
+     219.43,
+     612.14,
+     266.98,
+     645.11
+    ],
+    "block": 8,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": " Investing in Transport",
+    "font": "Lato-Bold",
+    "size": 17.0,
+    "bbox": [
+     267.02,
+     619.81,
+     434.33,
+     643.36
+    ],
+    "block": 8,
+    "line": 0,
+    "span": 1
+   },
+   {
+    "text": "Investment in transport is never for its own sake. The goal of transport is ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     652.06,
+     538.15,
+     665.53
+    ],
+    "block": 9,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "not the construction of a new railway line, for example, but to facilitate all ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     665.06,
+     543.56,
+     678.53
+    ],
+    "block": 9,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "the benefits which that piece of infrastructure will bring by allowing for ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     678.06,
+     531.73,
+     691.53
+    ],
+    "block": 9,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "the movement of people and goods.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     691.06,
+     376.91,
+     704.53
+    ],
+    "block": 9,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "Transport supports liveable communities and connects families and ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     712.56,
+     514.63,
+     726.03
+    ],
+    "block": 10,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "friends. Investing in transport allows people to travel around the ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     725.56,
+     502.41,
+     739.03
+    ],
+    "block": 10,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "island, accessing amenities, employment and key public services such ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     738.56,
+     523.35,
+     752.03
+    ],
+    "block": 10,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "as healthcare and education. The right transport investment promotes ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     219.43,
+     751.56,
+     527.28,
+     765.03
+    ],
+    "block": 10,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "Overview",
+    "font": "Lato-Light",
+    "size": 40.0,
+    "bbox": [
+     219.43,
+     63.7,
+     385.69,
+     116.46
+    ],
+    "block": 11,
+    "line": 0,
+    "span": 0
+   }
+  ],
+  "drawings": [
+   {
+    "bbox": [
+     79.85,
+     573.08,
+     160.82,
+     654.09
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     151.13,
+     640.75,
+     160.82,
+     647.37
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     124.41,
+     585.8,
+     142.76,
+     604.36
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     130.47,
+     591.36,
+     149.0,
+     609.78
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     143.25,
+     618.96,
+     152.76,
+     628.49
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     120.34,
+     618.98,
+     129.82,
+     628.48
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     81.28,
+     374.48,
+     157.8,
+     438.31
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     128.6,
+     363.2,
+     145.81,
+     379.75
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     117.81,
+     374.61,
+     128.54,
+     377.54
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     111.99,
+     374.6,
+     114.92,
+     377.55
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     118.34,
+     435.19,
+     121.29,
+     438.14
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     94.93,
+     374.48,
+     141.58,
+     427.3
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     128.6,
+     363.2,
+     145.81,
+     379.75
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     117.81,
+     374.61,
+     128.54,
+     377.54
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     111.99,
+     374.6,
+     114.92,
+     377.55
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     118.34,
+     435.19,
+     121.29,
+     438.14
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     78.5,
+     483.32,
+     162.3,
+     530.96
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     78.5,
+     495.71,
+     112.32,
+     508.13
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     78.5,
+     495.57,
+     81.94,
+     499.2
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     112.0,
+     527.49,
+     115.81,
+     530.96
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     117.71,
+     495.7,
+     156.21,
+     508.2
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     92.28,
+     171.95,
+     153.48,
+     223.48
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     116.69,
+     169.5,
+     144.9,
+     189.02
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     116.7,
+     152.45,
+     131.32,
+     167.07
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     87.33,
+     220.69,
+     89.88,
+     223.13
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     98.46,
+     189.05,
+     128.49,
+     218.25
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     92.04,
+     171.7,
+     153.77,
+     223.38
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     116.43,
+     169.25,
+     145.17,
+     189.26
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     116.44,
+     152.2,
+     131.57,
+     167.32
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     87.07,
+     220.44,
+     90.14,
+     223.38
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     98.18,
+     188.84,
+     128.77,
+     218.5
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     112.79,
+     202.03,
+     115.73,
+     205.1
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     113.04,
+     202.29,
+     115.47,
+     204.84
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     114.05,
+     277.5,
+     136.42,
+     303.97
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     104.12,
+     286.11,
+     126.63,
+     330.75
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     110.97,
+     256.64,
+     128.57,
+     274.25
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     121.23,
+     310.19,
+     138.59,
+     329.14
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     100.08,
+     282.68,
+     112.92,
+     293.14
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     94.33,
+     328.61,
+     97.72,
+     331.85
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     112.36,
+     328.61,
+     115.75,
+     331.85
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     123.23,
+     328.18,
+     126.61,
+     331.42
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     142.96,
+     328.61,
+     146.35,
+     331.85
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     108.78,
+     718.69,
+     111.49,
+     721.39
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     135.13,
+     718.69,
+     137.83,
+     721.39
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     115.63,
+     718.69,
+     118.34,
+     721.39
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     73.7,
+     700.28,
+     167.3,
+     739.81
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     88.8,
+     725.11,
+     98.85,
+     735.11
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     141.74,
+     725.1,
+     151.8,
+     735.11
+    ],
+    "fill": true,
+    "width": 0.0
+   }
+  ],
+  "images": [
+   {
+    "xref": 85,
+    "bbox": [
+     -1.1,
+     -1.07,
+     1.13,
+     427.75
+    ],
+    "width": 10,
+    "height": 1787
+   }
+  ],
+  "tables": []
+ },
+ {
+  "number": 21,
+  "width": 595.28,
+  "height": 841.89,
+  "rotation": 0,
+  "spans": [
+   {
+    "text": "National Investment Framework for Transport in Ireland  | ",
+    "font": "Lato-Regular",
+    "size": 8.0,
+    "bbox": [
+     266.57,
+     19.86,
+     468.87,
+     30.64
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "The Purpose of NIFTI",
+    "font": "Lato-Regular",
+    "size": 8.0,
+    "bbox": [
+     468.63,
+     19.86,
+     543.88,
+     30.64
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 1
+   },
+   {
+    "text": "19",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     532.29,
+     790.39,
+     543.89,
+     803.86
+    ],
+    "block": 1,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "The purpose of the National Investment ",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     220.16,
+     188.33,
+     507.12,
+     210.49
+    ],
+    "block": 2,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Framework for Transport in Ireland is to ",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     220.16,
+     207.53,
+     504.48,
+     229.69
+    ],
+    "block": 2,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "support the delivery of the National Planning ",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     220.16,
+     226.73,
+     542.86,
+     248.89
+    ],
+    "block": 2,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "Framework. Transport is a key enabler ",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     220.16,
+     245.93,
+     492.27,
+     268.09
+    ],
+    "block": 2,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "of the National Strategic Outcomes and ",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     220.16,
+     265.13,
+     504.85,
+     287.29
+    ],
+    "block": 2,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "the appropriate transport investment can ",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     220.16,
+     284.33,
+     516.43,
+     306.49
+    ],
+    "block": 2,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "facilitate these outcomes across a range of ",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     220.16,
+     303.53,
+     525.72,
+     325.69
+    ],
+    "block": 2,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "areas, including the environment, society and ",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     220.16,
+     322.73,
+     543.76,
+     344.89
+    ],
+    "block": 2,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "economy.",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     220.16,
+     341.93,
+     288.5,
+     364.09
+    ],
+    "block": 2,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "2.1 |",
+    "font": "Lato-Light",
+    "size": 25.0,
+    "bbox": [
+     220.16,
+     379.27,
+     267.71,
+     412.25
+    ],
+    "block": 3,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": " Introduction",
+    "font": "Lato-Bold",
+    "size": 17.0,
+    "bbox": [
+     267.74,
+     386.95,
+     366.13,
+     410.49
+    ],
+    "block": 3,
+    "line": 0,
+    "span": 1
+   },
+   {
+    "text": "The National Planning Framework has set out the vision for the ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     419.2,
+     498.61,
+     432.67
+    ],
+    "block": 4,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "sustainable development of Irish society over the coming decades, a vision ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     432.2,
+     546.83,
+     445.67
+    ],
+    "block": 4,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "encapsulated by the ten NSOs. Transport has a key role to play in realising ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     445.2,
+     544.6,
+     458.67
+    ],
+    "block": 4,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "this vision.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     458.2,
+     266.27,
+     471.67
+    ],
+    "block": 4,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "NIFTI ensures that transport investment is aligned with the NSOs and ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     479.7,
+     527.03,
+     493.17
+    ],
+    "block": 5,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "supports, enables and facilitates the NPF, delivering positive social, ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     492.7,
+     514.55,
+     506.17
+    ],
+    "block": 5,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "environmental and economic outcomes throughout Ireland.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     505.7,
+     479.11,
+     519.17
+    ],
+    "block": 5,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "The following section articulates our high-level objectives when we invest ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     527.2,
+     545.06,
+     540.67
+    ],
+    "block": 6,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "in transport and how this investment relates to the ten NSOs.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     540.2,
+     488.82,
+     553.67
+    ],
+    "block": 6,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "2.2 |",
+    "font": "Lato-Light",
+    "size": 25.0,
+    "bbox": [
+     220.16,
+     567.46,
+     267.71,
+     600.44
+    ],
+    "block": 7,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": " Objectives of Transport Investment",
+    "font": "Lato-Bold",
+    "size": 17.0,
+    "bbox": [
+     267.74,
+     575.14,
+     537.57,
+     598.68
+    ],
+    "block": 7,
+    "line": 0,
+    "span": 1
+   },
+   {
+    "text": "In the coming decades, we will invest to deliver a safe and sustainable ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     607.38,
+     526.34,
+     620.85
+    ],
+    "block": 8,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "land transport network which supports prosperous communities, ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     620.38,
+     505.33,
+     633.85
+    ],
+    "block": 8,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "promotes balanced development and helps to realise our climate change ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     633.38,
+     537.94,
+     646.85
+    ],
+    "block": 8,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "goals.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     646.38,
+     244.97,
+     659.85
+    ],
+    "block": 8,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "There will be an estimated one million more people living in Ireland in ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     667.89,
+     525.34,
+     681.36
+    ],
+    "block": 9,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "2040 when compared to 2018. The NPF has set specific targets for ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     680.89,
+     515.58,
+     694.36
+    ],
+    "block": 9,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "where this population will live and work, and transport has a key enabling ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     693.89,
+     542.46,
+     707.36
+    ],
+    "block": 9,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "role to play in achieving these targets. By delivering sustainable mobility ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     706.89,
+     536.13,
+     720.36
+    ],
+    "block": 9,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "infrastructure and services in our cities and towns, transport can help ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     719.89,
+     524.91,
+     733.36
+    ],
+    "block": 9,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "realise compact growth and the decarbonisation of the transport sector. ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     732.89,
+     536.42,
+     746.36
+    ],
+    "block": 9,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "By developing the interurban road and rail network and public transport ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     220.16,
+     745.89,
+     536.34,
+     759.36
+    ],
+    "block": 9,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "The Purpose of ",
+    "font": "Lato-Light",
+    "size": 40.0,
+    "bbox": [
+     219.43,
+     63.7,
+     493.75,
+     116.46
+    ],
+    "block": 10,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "NIFTI",
+    "font": "Lato-Light",
+    "size": 40.0,
+    "bbox": [
+     219.43,
+     111.7,
+     316.15,
+     164.46
+    ],
+    "block": 10,
+    "line": 1,
+    "span": 0
+   }
+  ],
+  "drawings": [
+   {
+    "bbox": [
+     79.85,
+     601.47,
+     160.82,
+     682.48
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     151.13,
+     669.13,
+     160.82,
+     675.75
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     124.41,
+     614.18,
+     142.76,
+     632.74
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     130.47,
+     619.74,
+     149.0,
+     638.16
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     143.25,
+     647.35,
+     152.76,
+     656.87
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     120.34,
+     647.36,
+     129.82,
+     656.86
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     81.28,
+     402.87,
+     157.8,
+     466.69
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     128.6,
+     391.58,
+     145.81,
+     408.14
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     117.81,
+     402.99,
+     128.54,
+     405.93
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     111.99,
+     402.98,
+     114.92,
+     405.93
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     118.34,
+     463.57,
+     121.29,
+     466.52
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     94.93,
+     402.87,
+     141.58,
+     455.69
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     128.6,
+     391.58,
+     145.81,
+     408.14
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     117.81,
+     402.99,
+     128.54,
+     405.93
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     111.99,
+     402.98,
+     114.92,
+     405.93
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     118.34,
+     463.57,
+     121.29,
+     466.52
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     78.5,
+     511.71,
+     162.3,
+     559.34
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     78.5,
+     524.09,
+     112.32,
+     536.51
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     78.5,
+     523.95,
+     81.94,
+     527.58
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     112.0,
+     555.88,
+     115.81,
+     559.34
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     117.71,
+     524.09,
+     156.21,
+     536.58
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     92.28,
+     200.33,
+     153.48,
+     251.86
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     116.69,
+     197.88,
+     144.9,
+     217.4
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     116.7,
+     180.83,
+     131.32,
+     195.45
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     87.33,
+     249.08,
+     89.88,
+     251.51
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     98.46,
+     217.43,
+     128.49,
+     246.63
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     92.04,
+     200.08,
+     153.77,
+     251.76
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     116.43,
+     197.64,
+     145.17,
+     217.65
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     116.44,
+     180.58,
+     131.57,
+     195.71
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     87.07,
+     248.82,
+     90.14,
+     251.76
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     98.18,
+     217.22,
+     128.77,
+     246.89
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     112.79,
+     230.41,
+     115.73,
+     233.48
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     113.04,
+     230.67,
+     115.47,
+     233.23
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     114.05,
+     305.89,
+     136.42,
+     332.36
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     104.12,
+     314.49,
+     126.63,
+     359.14
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     110.97,
+     285.02,
+     128.57,
+     302.63
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     121.23,
+     338.58,
+     138.59,
+     357.52
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     100.08,
+     311.06,
+     112.92,
+     321.52
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     94.33,
+     356.99,
+     97.72,
+     360.23
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     112.36,
+     356.99,
+     115.75,
+     360.23
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     123.23,
+     356.57,
+     126.61,
+     359.8
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     142.96,
+     356.99,
+     146.35,
+     360.23
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     108.78,
+     747.08,
+     111.49,
+     749.78
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     135.13,
+     747.08,
+     137.83,
+     749.78
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     115.63,
+     747.08,
+     118.34,
+     749.78
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     73.7,
+     728.66,
+     167.3,
+     768.19
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     88.8,
+     753.49,
+     98.85,
+     763.49
+    ],
+    "fill": true,
+    "width": 0.0
+   },
+   {
+    "bbox": [
+     141.74,
+     753.49,
+     151.8,
+     763.5
+    ],
+    "fill": true,
+    "width": 0.0
+   }
+  ],
+  "images": [],
+  "tables": []
+ }
+]

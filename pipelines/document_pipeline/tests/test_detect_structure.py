@@ -5,18 +5,30 @@ from documents import SLUG_RE
 from steps.detect_structure.process import (
     Node,
     _below_score_floor,
+    _legacy_cascade,
+    _parse_toc_page,
+    _supplement_numbered_nodes,
+    _heading_continuation,
+    body_size,
+    clean_title,
+    from_font_hierarchy,
+    from_numbering,
     build_occurrence_index,
     detect_structure,
     find_occurrences,
     is_heading_candidate,
     merge_overrides,
     normalize_heading_text,
+    page_lines,
+    reading_order_lines,
     parse_toc,
     process,
+    running_header_leads,
     running_header_texts,
     score_occurrence,
     validate_split,
 )
+from steps.detect_structure.process import READING_ORDER_Y_GRID, resolve_outline_positions, filter_outline
 from steps.extract_pages.process import extract_page
 
 import pymupdf
@@ -215,6 +227,43 @@ def test_merge_overrides_can_flatten_a_staircase_outline():
     assert [n.order for n in merged] == sorted(n.order for n in merged)
 
 
+def _two_column_outline_nodes():
+    """Two section headings side by side on one baseline (emra p6 shape): the
+    one-dimensional boundary model cannot separate them."""
+    outline = [{"level": 1, "title": "Introduction", "page": 1, "y": 50.0},
+               {"level": 2, "title": "Vision", "page": 2, "y": 396.8},
+               {"level": 2, "title": "Regional Assembly", "page": 2, "y": 396.8},
+               {"level": 1, "title": "Next Steps", "page": 4, "y": 50.0}]
+    nodes, method, _ = detect_structure([], outline, 5)
+    assert method == "outline"
+    return nodes
+
+
+def test_merge_overrides_drop_removes_a_node_and_its_predecessor_absorbs_it():
+    nodes = _two_column_outline_nodes()
+    assert validate_split(nodes, 5)  # duplicate boundary before the override
+
+    merged, errors = merge_overrides(nodes, [{"slug": "regional-assembly", "drop": True}], 5)
+
+    assert errors == []
+    assert [n.slug for n in merged] == ["introduction", "vision", "next-steps"]
+    vision = by_slug(merged)["vision"]
+    assert vision.parent == "introduction"
+    assert vision.end_page == 3  # runs on to the page before `next-steps`
+    assert validate_split(merged, 5) == []
+
+
+def test_merge_overrides_drop_must_be_alone_and_literally_true():
+    nodes = _two_column_outline_nodes()
+
+    merged, errors = merge_overrides(
+        nodes, [{"slug": "regional-assembly", "drop": True, "title": "x"},
+                {"slug": "vision", "drop": "yes"}], 5)
+
+    assert [e["error_type"] for e in errors] == ["MalformedOverride", "MalformedOverride"]
+    assert [n.slug for n in merged] == [n.slug for n in nodes]
+
+
 def test_merge_overrides_reports_a_slug_that_no_longer_exists():
     nodes, _, _ = detect_structure(load_pages("pages_numbered.json"), [], 4)
 
@@ -386,3 +435,644 @@ def test_validate_split_valid_tree_has_no_issues():
     b = Node(level=2, number=None, title="Detail", slug="detail",
              start_page=4, start_y=1.0, end_page=5)
     assert validate_split([a, b], 5) == []
+
+
+# --- reading order ---------------------------------------------------------
+
+def test_reading_order_puts_header_then_title_then_body_then_footer():
+    """SMP foreword page 6: raw span order is header, footer, body, then the
+    40pt `Foreword` title last. Reading order is top to bottom."""
+    lines = reading_order_lines(load_pages("pages_two_column.json")[0])
+    texts = [l.text for l in lines]
+
+    assert texts[0].startswith("National Sustainable Mobility Policy")
+    assert texts[-1] == "4"  # footer page number, bottom-most and left-most
+    assert texts.index("Foreword") < texts.index(
+        next(t for t in texts if t.startswith("The National Sustainable Mobility Policy provides")))
+    # y is monotonically non-decreasing up to the grid, so nothing is out of order
+    ys = [round(l.y0 / READING_ORDER_Y_GRID) for l in lines]
+    assert ys == sorted(ys)
+
+
+def test_reading_order_sorts_same_baseline_lines_left_to_right():
+    """The two columns of page 6 share baselines; the left column's line
+    precedes the right column's line at the same y."""
+    lines = reading_order_lines(load_pages("pages_two_column.json")[0])
+    texts = [l.text for l in lines]
+    left = texts.index(next(t for t in texts if t.startswith("The National Sustainable")))
+    right = texts.index(next(t for t in texts if t.startswith("in rural areas and that")))
+
+    assert left + 1 == right
+
+
+def test_reading_order_ignores_sub_grid_baseline_noise():
+    spans = [span("right", y0=100.2, x0=300.0, block=0, line=0),
+             span("left", y0=100.0, x0=72.0, block=1, line=0),
+             span("below", y0=140.0, x0=72.0, block=2, line=0)]
+    assert [l.text for l in reading_order_lines(page(spans))] == ["left", "right", "below"]
+
+
+# --- toc_filtering ---------------------------------------------------------
+
+def _smp_toc_parse():
+    """SMP page 4 (the TOC), page 6, and eight further body pages (copies of
+    page 28 renumbered) so the running-header lead repeats on enough pages,
+    and `Foreword`, which appears on pages 4 and 6, stays below the
+    running-header fraction as it does in the full 60-page document."""
+    pages = load_pages("pages_smp_toc.json") + load_pages("pages_two_column.json")
+    for number in range(10, 18):
+        pages.append({**load_pages("pages_smp_quote.json")[0], "number": number})
+    return parse_toc(pages, 10.0)
+
+
+def test_toc_filtering_skips_the_footer_number_and_the_running_header():
+    entries, toc_pages, _signal, _flags = _smp_toc_parse()
+    titles = [e["title"] for e in entries]
+
+    assert toc_pages == [4]
+    assert not any(e["number"] == "2" for e in entries)  # footer `2` is not a section number
+    assert not any("National Sustainable Mobility Policy" in t for t in titles)
+
+
+def test_toc_filtering_starts_at_foreword_and_the_title_line_is_not_an_entry():
+    entries, _pages, _signal, _flags = _smp_toc_parse()
+    titles = [e["title"] for e in entries]
+
+    assert titles[:3] == ["Foreword", "Summary", "Chapter 1 – Introduction"]
+    assert not any(t.lower() in ("table of contents", "contents") for t in titles)
+
+
+def test_toc_filtering_skipped_footer_adds_no_indent_bucket_so_levels_are_flat():
+    """The footer line (x0 ~ 43) used to become a bogus entry whose x0 made
+    `_infer_levels` see two indent buckets and push every real entry to
+    level 2. With it skipped, all entries share one left edge."""
+    entries, _pages, signal, _flags = _smp_toc_parse()
+
+    assert signal == "none"
+    assert entries and {e["level"] for e in entries} == {1}
+
+
+def test_toc_filtering_skips_a_bare_page_number_at_the_left_edge():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0),
+             span("First Chapter", y0=120.0, block=1),
+             span("5", y0=120.0, x0=500.0, block=1, line=1),
+             span("Second Chapter", y0=140.0, block=2),
+             span("9", y0=140.0, x0=500.0, block=2, line=1),
+             span("3", y0=800.0, x0=40.0, block=3)]  # footer, left edge
+    entries, flags = _parse_toc_page(page(spans))
+
+    assert [e["title"] for e in entries] == ["First Chapter", "Second Chapter"]
+
+
+# --- toc_page_exclusion ----------------------------------------------------
+
+def _body_page(number, heading, size=18.0):
+    """A body page: one bold numbered heading and 9pt prose, so 9pt is body."""
+    spans = [span(heading, size=size, font="Helvetica-Bold", y0=60.0, block=0)]
+    for row in range(12):
+        spans.append(span("Prose set at nine points runs on for a good while here.",
+                          size=9.0, y0=100.0 + row * 12.0, block=1 + row))
+    return page(spans, number=number)
+
+
+def test_toc_page_exclusion_numbering_and_font_skip_a_dot_leader_toc_page():
+    emra = load_pages("pages_emra_toc.json")[0]  # real emra page 2: dot-leader TOC lines
+
+    assert from_numbering([emra], 9.0), "sanity: the TOC lines are heading-like at this body size"
+    assert from_numbering([emra], 9.0, skip_pages={2}) == []
+    assert from_font_hierarchy([emra], 9.0, skip_pages={2}) == []
+
+
+def test_toc_page_exclusion_applies_on_the_fallback_path():
+    """TOC detected but nothing in the body matches it: match rate 0, below the
+    gate, so the cascade falls back — and must still skip the TOC page."""
+    pages = [load_pages("pages_emra_toc.json")[0],
+             _body_page(3, "1 Alpha Chapter"),
+             _body_page(4, "2 Beta Chapter")]
+
+    nodes, method, report = detect_structure(pages, [], 4)
+
+    assert report is not None and report["match_rate"] < 0.6  # the fallback fired
+    assert method == "numbering"
+    assert [n.title for n in nodes] == ["Alpha Chapter", "Beta Chapter"]
+    assert all(n.start_page != 2 for n in nodes)
+    assert not any("...." in n.title for n in nodes)
+
+
+def test_toc_page_exclusion_legacy_cascade_takes_the_toc_page_set():
+    emra = load_pages("pages_emra_toc.json")[0]
+    pages = [emra, _body_page(3, "1 Alpha Chapter"), _body_page(4, "2 Beta Chapter")]
+
+    with_toc, _ = _legacy_cascade(pages, 9.0)
+    without_toc, _ = _legacy_cascade(pages, 9.0, {2})
+
+    assert any(n.start_page == 2 for n in with_toc)
+    assert not any(n.start_page == 2 for n in without_toc)
+
+
+def test_toc_page_exclusion_supplement_adds_nothing_from_a_toc_page():
+    toc_page = page([span("Contents", size=20.0, font="Helvetica-Bold", y0=60.0, block=0),
+                     span("9.9 Orphan Heading", size=14.0, font="Helvetica-Bold", y0=120.0, block=1)],
+                    number=2)
+    body = _body_page(3, "1 Alpha Chapter")
+
+    assert [n.title for n in _supplement_numbered_nodes([toc_page, body], 9.0, [], [], set(), {2})] \
+        == ["Alpha Chapter"]
+    assert "Orphan Heading" in [n.title for n in
+                                _supplement_numbered_nodes([toc_page, body], 9.0, [], [], set())]
+
+
+# --- title_cleanup ---------------------------------------------------------
+
+def test_title_cleanup_strips_the_leading_pipe_from_a_real_nifti_toc_page():
+    """Nifti page 3 lists `1.2 | Investing in Transport`. The running header
+    (`National Investment Framework … | Overview`) repeats, so a second copy of
+    the page gives it the two pages it needs to be recognised."""
+    toc = load_pages("pages_nifti_toc.json")[0]
+    header = toc["spans"][:2]  # the two spans that make up the running header
+    # Nine further pages carrying only the same running header, so it repeats
+    # on enough pages to be recognised while the TOC entries do not.
+    fillers = [page([{**header[0], "block": 0, "line": 0, "span": 0},
+                     {**header[1], "block": 0, "line": 0, "span": 1},
+                     span("Body text on a later page.", size=10.0, y0=120.0, block=1)],
+                    number=number)
+               for number in range(10, 19)]
+    entries, toc_pages, _signal, _flags = parse_toc([toc] + fillers, 10.0)
+    titles = [e["title"] for e in entries]
+
+    assert toc_pages == [3]
+    assert "Investing in Transport" in titles
+    assert not any("|" in t for t in titles)
+
+
+def test_a_numbered_line_whose_title_starts_lowercase_is_not_a_heading():
+    """A wrapped sentence can begin with a number (`26 weather events. The Q4
+    published United Nations...`, CAP 2024 Q3-Q4); a heading's title starts
+    with a capital, so the lowercase start rules it out."""
+    pg = page([
+        span("26 weather events. The Q4 published United Nations", size=12.0, y0=100.0, line=0),
+        span("2 Agriculture", size=12.0, y0=200.0, line=1),
+    ])
+    titles = [n.title for n in from_numbering([pg], 10.0)]
+
+    assert titles == ["Agriculture"]
+
+
+def test_title_cleanup_strips_control_characters_from_a_matched_heading():
+    nodes = from_numbering(load_pages("pages_ev_heading.json"), 10.0)
+    by_number = {n.number: n for n in nodes}
+
+    assert by_number["1.1"].title.startswith("National and international")
+    assert all("\x07" not in n.title and "\x07" not in n.slug for n in nodes)
+    assert by_number["1.1"].slug.startswith("1-1-national-and-international")
+
+
+def test_title_cleanup_helper_handles_each_fragment():
+    assert clean_title("| Investing in Transport") == "Investing in Transport"
+    assert clean_title("-Moving towards") == "Moving towards"
+    assert clean_title("1.1 \x07National") == "1.1 National"
+    assert clean_title("  Spaced   out  ") == "Spaced out"
+
+
+def test_title_cleanup_does_not_launder_a_bullet_into_a_title():
+    """`- 21.3 metres length` is a bullet; cleanup must leave it for the
+    heading-candidate guard to reject, not turn it into a passing title."""
+    assert clean_title("- 21.3 metres length") == "- 21.3 metres length"
+    assert not is_heading_candidate(clean_title("- 21.3 metres length"))
+
+
+def test_title_cleanup_interior_dot_leaders_are_rejected_not_cleaned():
+    leader = page([span("1.1 Landscape and Visual ......... 23", size=14.0, font="Helvetica-Bold",
+                        y0=60.0, block=0),
+                   span("Prose set at nine points runs on for a good while here.", size=9.0,
+                        y0=100.0, block=1)], number=5)
+
+    assert clean_title("Landscape and Visual ......... 23") == "Landscape and Visual ......... 23"
+    assert from_numbering([leader], 9.0) == []
+    assert from_font_hierarchy([leader], 9.0) == []
+
+
+# --- cascade_guard ---------------------------------------------------------
+
+def _titles(nodes):
+    return [n.title for n in nodes]
+
+
+def test_cascade_guard_a_lone_chapter_numeral_makes_no_node_but_the_title_survives():
+    """SMP page 9: a 119pt `1`, a 32pt `CHAPTER`, and the real 37pt title."""
+    nodes = from_font_hierarchy(load_pages("pages_smp_opener.json"), 10.0)
+
+    assert "1" not in _titles(nodes)
+    assert "Introduction" in _titles(nodes)
+
+
+def test_cascade_guard_a_pull_quote_glyph_makes_no_node():
+    """SMP page 28: a 70pt quote glyph followed by the real `Targets` heading."""
+    pages = load_pages("pages_smp_quote.json")
+    nodes = from_font_hierarchy(pages, 10.0)
+
+    assert not [t for t in _titles(nodes) if t.strip(' "\u201d\u201c') == ""]
+    assert "Targets" in _titles(nodes)
+
+
+def test_cascade_guard_cover_text_numeral_makes_no_node():
+    """Action plan cover: `2040` (the Project Ireland logo) is set at heading size."""
+    nodes = from_font_hierarchy(load_pages("pages_actionplan_cover.json"), 10.0)
+
+    assert "2040" not in _titles(nodes)
+    assert not any(t.isdigit() for t in _titles(nodes))
+
+
+def test_cascade_guard_a_map_glyph_makes_no_node():
+    pages = load_pages("pages_gda_glyph.json")
+    nodes = from_font_hierarchy(pages, body_size(pages))
+
+    assert nodes, "sanity: the map page still yields real headings"
+    assert not [t for t in _titles(nodes) if len(t) == 1]
+
+
+def test_cascade_guard_joins_a_wrapped_heading_into_one_node():
+    """Action plan page 3: `Safe and Green` / `Mobility`, both 33.4pt bold."""
+    nodes = from_font_hierarchy(load_pages("pages_actionplan_join.json"), 10.0)
+
+    assert "Safe and Green Mobility" in _titles(nodes)
+    assert "Safe and Green" not in _titles(nodes)
+    assert "Mobility" not in _titles(nodes)
+
+
+def test_cascade_guard_joins_the_cover_title_lines():
+    nodes = from_font_hierarchy(load_pages("pages_actionplan_cover.json"), 10.0)
+
+    assert "National Sustainable Mobility Policy" in _titles(nodes)
+
+
+def test_cascade_guard_numbering_joins_a_wrapped_numbered_heading():
+    nodes = from_numbering(load_pages("pages_ev_heading.json"), 10.0)
+    by_number = {n.number: n for n in nodes}
+
+    assert by_number["1.1"].title == "National and international policy context"
+
+
+def test_cascade_guard_does_not_join_lines_in_separate_columns():
+    """SMP page 6: two body columns share a baseline and a type size. Their
+    lines sit next to each other in reading order, but are never continuations
+    of one another: a continuation is the line directly below, in-column."""
+    lines = reading_order_lines(load_pages("pages_two_column.json")[0])
+    left = next(l for l in lines if l.text.startswith("The National Sustainable"))
+    right = next(l for l in lines if l.text.startswith("in rural areas and that"))
+
+    assert abs(left.y0 - right.y0) < 1.0  # same baseline, different column
+    follow = _heading_continuation(left, lines)
+    assert follow is None or lines[follow] is not right
+    assert follow is not None and lines[follow].bbox[0] == left.bbox[0]  # the in-column line below
+
+
+def test_cascade_guard_join_is_bounded_by_the_gap_constant():
+    near = [span("Wrapped", size=20.0, font="Helvetica-Bold", y0=100.0, block=0),
+            span("Heading", size=20.0, font="Helvetica-Bold", y0=124.0, block=1)]
+    far = [span("Wrapped", size=20.0, font="Helvetica-Bold", y0=100.0, block=0),
+           span("Heading", size=20.0, font="Helvetica-Bold", y0=170.0, block=1)]
+    different_style = [span("Wrapped", size=20.0, font="Helvetica-Bold", y0=100.0, block=0),
+                       span("Heading", size=20.0, font="Helvetica", y0=124.0, block=1)]
+    sentence = [span("A full sentence.", size=20.0, font="Helvetica-Bold", y0=100.0, block=0),
+                span("Heading", size=20.0, font="Helvetica-Bold", y0=124.0, block=1)]
+
+    def joins(spans):
+        lines = reading_order_lines(page(spans))
+        return _heading_continuation(lines[0], lines) is not None
+
+    assert joins(near)
+    assert not joins(far)
+    assert not joins(different_style)
+    assert not joins(sentence)
+
+
+# --- validate_split: level invariant (6.1) ----------------------------------
+
+def _n(slug, level, start, end, title="A heading"):
+    return Node(level=level, number=None, title=title, slug=slug,
+                start_page=start, start_y=1.0, end_page=end)
+
+
+def test_validate_split_flags_a_tree_with_no_level_1_node():
+    """The `sustainable-mobility-policy` failure: every node is level 2, so
+    the tree has a single level — a 'more than one level' condition would
+    miss it. The invariant is unconditional."""
+    tree = [_n("a", 2, 1, 2, "Alpha"), _n("b", 2, 3, 4, "Beta")]
+
+    issues = validate_split(tree, 4)
+
+    assert len(issues) == 1 and "no level-1 node" in issues[0]
+
+
+def test_validate_split_flags_a_deeper_tree_with_no_level_1_node():
+    tree = [_n("a", 2, 1, 2, "Alpha"), _n("b", 3, 3, 4, "Beta")]
+    assert any("no level-1 node" in i for i in validate_split(tree, 4))
+
+
+def test_validate_split_accepts_a_flat_all_level_1_tree():
+    tree = [_n("a", 1, 1, 2, "Alpha"), _n("b", 1, 3, 4, "Beta")]
+    assert validate_split(tree, 4) == []
+
+
+def test_validate_split_an_empty_tree_has_no_level_issue():
+    assert validate_split([], 4) == []
+
+
+# --- validation_gate (6.2) ---------------------------------------------------
+
+def _run_process(tmp_path, make_writer, outline=None, overrides=None, pages="pages_numbered.json"):
+    upstream, records = write_upstream(tmp_path, load_pages(pages), outline=outline)
+    step_dir = tmp_path / "detect_structure"
+    step_dir.mkdir()
+    writer = make_writer("detect_structure")
+    process(records, upstream, step_dir, writer, overrides=overrides or {})
+    writer.finalize()
+    (record,) = json.loads((tmp_path / "output.json").read_text())["results"]
+    errors = json.loads((step_dir / "errors.json").read_text())
+    return record, [e for e in errors if e["error_type"] == "InvalidStructure"]
+
+
+def test_validation_gate_flags_an_invalid_tree_and_still_writes_it(tmp_path, make_writer):
+    outline = [{"level": 2, "title": "Alpha", "page": 2, "y": 76.0},
+               {"level": 2, "title": "Beta", "page": 3, "y": 76.0}]
+
+    record, flagged = _run_process(tmp_path, make_writer, outline=outline)
+
+    assert [n["level"] for n in record["nodes"]] == [2, 2]  # written unaltered
+    assert len(flagged) == 1
+    assert flagged[0]["context"]["doc_slug"] == "fixture-doc"
+    assert flagged[0]["context"]["check"] == "no-level-1-node"
+    assert flagged[0]["context"]["value"] == [2]
+
+
+def test_validation_gate_runs_after_overrides(tmp_path, make_writer):
+    """A junk title introduced by an override is still caught."""
+    overrides = {"fixture-doc": [{"slug": "1-1-introduction", "title": "1"}]}
+
+    record, flagged = _run_process(tmp_path, make_writer, overrides=overrides)
+
+    assert record["overridden"] is True
+    assert [f["context"]["check"] for f in flagged] == ["non-heading-title"]
+    assert flagged[0]["context"]["value"] == "1"
+
+
+def test_validation_gate_a_valid_tree_records_nothing(tmp_path, make_writer):
+    _record, flagged = _run_process(tmp_path, make_writer)
+
+    assert flagged == []
+
+
+def test_validation_gate_flags_a_duplicate_boundary(tmp_path, make_writer):
+    outline = [{"level": 1, "title": "Alpha", "page": 2, "y": 76.0},
+               {"level": 1, "title": "Beta", "page": 2, "y": 76.0}]
+
+    _record, flagged = _run_process(tmp_path, make_writer, outline=outline)
+
+    assert [f["context"]["check"] for f in flagged] == ["duplicate-boundary"]
+
+
+def test_page_lines_keeps_the_raw_span_order_other_steps_rely_on():
+    """`clean_text` and `extract_figures` share `page_lines`; it must not sort."""
+    raw = page_lines(load_pages("pages_two_column.json")[0])
+    ordered = reading_order_lines(load_pages("pages_two_column.json")[0])
+
+    assert [l.text for l in raw][:2] == ["National Sustainable Mobility Policy | Foreword", "4"]
+    assert [l.text for l in ordered][-1] == "4"
+    assert sorted(l.text for l in raw) == sorted(l.text for l in ordered)
+
+
+# --- joined runs in columns -------------------------------------------------
+
+def _index_for(pages):
+    body = body_size(pages)
+    return build_occurrence_index(pages, set(), running_header_texts(pages), body), body
+
+
+def test_joined_runs_join_two_spans_emitted_on_one_baseline():
+    """All-island page 139: `Appendix C |` and `Mitigation and Monitoring
+    Measures` are separate line groups on one baseline. Raw adjacency used to
+    join them; reading order must still join them, across a tiny horizontal gap."""
+    pages = load_pages("pages_allisland_appendix.json")
+    index, _body = _index_for(pages)
+
+    occurrences = index.get(normalize_heading_text("Appendix C | Mitigation and Monitoring Measures"), [])
+
+    assert occurrences and occurrences[0]["page"] == 139
+
+
+def test_joined_runs_join_a_wrapped_heading_across_an_interleaved_column():
+    """Moving Together page 26: `Economic and Financial` / `Sustainability`
+    wrap down the left column while right-column body lines interleave in
+    reading order. The run follows the column, not the row."""
+    pages = load_pages("pages_moving_together_column.json")
+    index, _body = _index_for(pages)
+
+    occurrences = index.get(normalize_heading_text("Economic and Financial Sustainability"), [])
+
+    assert occurrences and occurrences[0]["page"] == 26
+
+
+def test_joined_runs_do_not_join_two_columns_on_one_baseline():
+    """SMP page 6 is one visual row of two columns; no run may splice them."""
+    page_record = {**load_pages("pages_two_column.json")[0], "number": 1}
+    index, body = _index_for([page_record])
+    lines = reading_order_lines(page_record)
+    left = next(l for l in lines if l.text.startswith("The National Sustainable"))
+    right = next(l for l in lines if l.text.startswith("in rural areas and that"))
+
+    assert abs(left.y0 - right.y0) < 1.0
+    assert normalize_heading_text(f"{left.text} {right.text}") not in index
+
+
+def test_toc_pages_are_read_column_by_column():
+    """Emra page 2 is a two-column contents page: the left column's chapters
+    come before the right column's, not interleaved row by row."""
+    from steps.detect_structure.process import _toc_reading_order
+
+    lines = _toc_reading_order(load_pages("pages_emra_toc.json")[0])
+    texts = [l.text for l in lines]
+    chapter_1 = texts.index("CHAPTER 1:")
+    chapter_4 = texts.index("CHAPTER 4:")
+
+    assert chapter_1 < chapter_4
+    assert all(i < chapter_4 for i, t in enumerate(texts) if t.startswith(("1.", "2.", "3.")))
+
+
+def test_outline_resolve_positions_uses_title_line_y_and_reports_misses():
+    pg = page([span("1. Overview", y0=80.0, index=0, line=0),
+               span("body text here", y0=120.0, index=1, line=1),
+               span("2. Wrapped", y0=300.0, index=2, line=2, block=1),
+               span("Heading Title", y0=316.0, index=3, line=3, block=1)], number=5)
+    outline = [{"level": 1, "title": "1.\tOverview", "page": 5},
+               {"level": 1, "title": "2. Wrapped Heading Title", "page": 5},
+               {"level": 1, "title": "Missing", "page": 5},
+               {"level": 1, "title": "Given", "page": 5, "y": 42.0}]
+    resolved, problems = resolve_outline_positions(outline, [pg])
+    assert resolved[0]["y"] == 80.0
+    assert resolved[1]["y"] == 300.0
+    assert not resolved[2].get("y")
+    assert resolved[3]["y"] == 42.0
+    assert [p["error_type"] for p in problems] == ["OutlineEntryUnresolved"]
+    assert problems[0]["context"] == {"title": "Missing", "page": 5}
+
+
+def _craft_pages():
+    return load_pages("pages_recreational_craft_outline.json")
+
+
+def test_outline_resolve_chains_three_lines_and_skips_the_running_header():
+    outline = [{"level": 3, "title": "1.2.3 The International Convention for the prevention of pollution from ships (MARPOL)", "page": 40}]
+    resolved, problems = resolve_outline_positions(outline, _craft_pages())
+    assert problems == []
+    assert round(resolved[0]["y"], 1) == 39.0 and resolved[0]["page"] == 40
+
+
+def test_outline_resolve_chains_a_three_line_title_on_page_65():
+    outline = [{"level": 2, "title": "1.8.1 Merchant Shipping (Salvage and Wreck) Act 1993 \u2013 Wrecks and stranded vessels", "page": 65}]
+    resolved, problems = resolve_outline_positions(outline, _craft_pages())
+    assert problems == []
+    assert round(resolved[0]["y"], 1) == 478.4
+
+
+def test_outline_resolve_keeps_a_numeric_continuation_line_as_title_text():
+    # The second line starts `13.7 metres`, which must not be read as a section number.
+    outline = [{"level": 4, "title": "1.5.2.2 Recreational craft less than 13.7 metres in length", "page": 62}]
+    resolved, problems = resolve_outline_positions(outline, _craft_pages())
+    assert problems == []
+    assert round(resolved[0]["y"], 1) == 39.6
+
+
+def test_outline_resolve_falls_back_to_the_previous_page_on_an_exact_miss():
+    outline = [{"level": 1, "title": "1.8 Other legislation and considerations", "page": 66},
+               {"level": 2, "title": "1.8.1 Merchant Shipping (Salvage and Wreck) Act 1993 \u2013 Wrecks and stranded vessels", "page": 66}]
+    resolved, problems = resolve_outline_positions(outline, _craft_pages())
+    assert problems == []
+    assert (resolved[0]["page"], round(resolved[0]["y"], 1)) == (65, 446.3)
+    assert (resolved[1]["page"], round(resolved[1]["y"], 1)) == (65, 478.4)
+
+
+def test_outline_resolve_never_moves_a_title_found_on_its_stated_page():
+    pages = _craft_pages()
+    outline = [{"level": 1, "title": "1.8 Other legislation and considerations", "page": 65}]
+    resolved, problems = resolve_outline_positions(outline, pages)
+    assert problems == [] and (resolved[0]["page"], round(resolved[0]["y"], 1)) == (65, 446.3)
+    # The same title present on both pages stays on the stated page.
+    twin = [{**pages[2], "number": 66, "spans": [dict(s) for s in pages[1]["spans"]]}]
+    outline = [{"level": 1, "title": "1.8 Other legislation and considerations", "page": 66}]
+    resolved, problems = resolve_outline_positions(outline, [pages[1], *twin])
+    assert problems == [] and resolved[0]["page"] == 66
+
+
+def test_outline_resolve_does_not_fall_back_on_a_partial_match():
+    outline = [{"level": 1, "title": "1.8 Other legislation and considerations and more", "page": 66},
+               {"level": 1, "title": "No such heading anywhere", "page": 66}]
+    resolved, problems = resolve_outline_positions(outline, _craft_pages())
+    assert [p["error_type"] for p in problems] == ["OutlineEntryUnresolved"] * 2
+    assert all(not r.get("y") and r["page"] == 66 for r in resolved)
+
+
+def test_outline_resolve_claims_two_column_headings_on_one_baseline():
+    pages = load_pages("pages_smp_progress_columns.json")
+    outline = [{"level": 1, "title": "SMP Leadership Group, Delivery Team, and Pathfinder Programme", "page": 10},
+               {"level": 2, "title": "Leadership Group", "page": 10},
+               {"level": 2, "title": "Delivery Team", "page": 10}]
+    resolved, problems = resolve_outline_positions(outline, pages)
+    assert problems == []
+    assert round(resolved[0]["y"], 1) == 63.7
+    assert [round(r["y"], 1) for r in resolved[1:]] == [228.9, 228.9]
+
+
+def test_outline_resolve_fallback_ignores_body_size_text_on_the_previous_page():
+    body = [span(f"ordinary body sentence number {i} here", size=10.0, y0=40.0 + 14 * i, index=i, line=i)
+            for i in range(12)]
+    body.append(span("Delivery Team", size=10.0, y0=300.0, index=50, line=50))
+    outline = [{"level": 2, "title": "Delivery Team", "page": 6}]
+    resolved, problems = resolve_outline_positions(outline, [page(body, number=5), page([], number=6)])
+    assert [p["error_type"] for p in problems] == ["OutlineEntryUnresolved"]
+    assert resolved[0]["page"] == 6 and not resolved[0].get("y")
+
+
+def test_filter_outline_drops_unusable_titles_and_reports_them():
+    outline = [{"title": "Introduction", "page": 1}, {"title": "1.", "page": 2},
+               {"title": "_Hlk25760943", "page": 3}, {"title": "", "page": 4},
+               {"title": "2. Policy", "page": 5}]
+    kept, problems = filter_outline(outline)
+    assert [e["title"] for e in kept] == ["Introduction", "2. Policy"]
+    assert [p["context"]["title"] for p in problems] == ["1.", "_Hlk25760943", ""]
+    assert {p["error_type"] for p in problems} == {"OutlineEntryDropped"}
+
+
+def test_split_number_splits_a_number_glued_to_a_capitalised_word():
+    """Climate Action Plan progress reports set the number flush against the
+    title (`1Executive Summary`, `1.2.1High impact actions`); their TOC lists
+    `1 Executive Summary`, so without the split no entry matched and detection
+    fell through to the font strategy."""
+    from steps.detect_structure.process import _split_number
+
+    assert _split_number("1Executive Summary") == ("1", "Executive Summary")
+    assert _split_number("1.2.1High impact actions in Q1 and Q2 2024") == ("1.2.1", "High impact actions in Q1 and Q2 2024")
+    # A capital alone is not a title start: units and model names stay whole.
+    assert _split_number("3D modelling") == (None, "3D modelling")
+    assert _split_number("5G rollout") == (None, "5G rollout")
+    assert _split_number("2024Annual") == (None, "2024Annual")
+
+
+def test_split_number_keeps_four_level_numbers_whole():
+    """`11.7.2.1 Craft without an engine` is number 11.7.2.1, not 11.7.2 with a
+    title starting `1 ` (recreational-craft had 16 such titles)."""
+    from steps.detect_structure.process import _split_number
+
+    assert _split_number("11.7.2.1 Craft without an engine") == ("11.7.2.1", "Craft without an engine")
+    assert _split_number("1.2.3.3 Prevention of pollution by oil") == ("1.2.3.3", "Prevention of pollution by oil")
+    assert _split_number("2.5.3\tShannon Foynes Port Company") == ("2.5.3", "Shannon Foynes Port Company")
+    assert _split_number("6. Public Consultation") == ("6", "Public Consultation")
+    # A five-level number is left whole rather than split mid-number.
+    assert _split_number("1.2.3.4.5 Too deep") == (None, "1.2.3.4.5 Too deep")
+
+
+# --- supplement_dedupe -----------------------------------------------------
+
+def test_supplement_dedupe_keeps_repeated_numbered_introductions():
+    """Real NIFTI pages 13 and 21 each open with `N.1 | Introduction`. A single
+    TOC `Introduction` must not drop either one."""
+    pages = load_pages("pages_nifti_intro.json")
+    entries = [{"title": "Introduction"}]
+
+    nodes = _supplement_numbered_nodes(pages, 10.0, [], entries, set())
+
+    intros = [(n.number, n.title, n.start_page) for n in nodes if n.title == "Introduction"]
+    assert intros == [("1.1", "Introduction", 13), ("2.1", "Introduction", 21)]
+
+
+def test_supplement_dedupe_does_not_duplicate_the_toc_matched_heading():
+    pages = load_pages("pages_nifti_intro.json")
+    nodes = from_numbering(pages, 10.0)
+    first = next(n for n in nodes if n.start_page == 13 and n.title == "Introduction")
+    base = [Node(**{**first.__dict__})]
+
+    out = _supplement_numbered_nodes(pages, 10.0, base, [{"title": "Introduction"}], set())
+
+    assert [n.start_page for n in out if n.title == "Introduction"] == [13, 21]
+
+
+# --- toc_separate_number_running -------------------------------------------
+
+def test_toc_separate_number_running_footer_is_not_a_title_line():
+    """Real cycleconnects page 2: `6.` + `Next Steps ....` is the last entry, and
+    the footer (`Prepared for: …`, `AECOM`) follows it in reading order."""
+    toc = load_pages("pages_cycleconnects_toc.json")[0]
+    furniture = toc["spans"][:6]  # running header + footer spans
+    fillers = [page([{**s, "block": s["block"], "line": s["line"]} for s in furniture]
+                    + [span("Body text.", size=10.0, y0=300.0, block=9)], number=n)
+               for n in range(10, 19)]
+    pages = [toc] + fillers
+    running = running_header_texts(pages)
+    leads = running_header_leads(pages)
+
+    entries, _flags = _parse_toc_page(toc, running, leads)
+    titles = [e["title"] for e in entries]
+
+    assert len(entries) == 6
+    assert titles[5] == "Next Steps"
+    assert not any("Prepared for" in t or "AECOM" in t for t in titles)

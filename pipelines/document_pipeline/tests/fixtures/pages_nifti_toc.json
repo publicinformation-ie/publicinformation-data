@@ -1,0 +1,825 @@
+[
+ {
+  "number": 3,
+  "width": 595.28,
+  "height": 841.89,
+  "rotation": 0,
+  "spans": [
+   {
+    "text": "National Investment Framework for Transport in Ireland  | ",
+    "font": "Lato-Regular",
+    "size": 8.0,
+    "bbox": [
+     307.69,
+     19.86,
+     509.99,
+     30.64
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Overview",
+    "font": "Lato-Regular",
+    "size": 8.0,
+    "bbox": [
+     509.99,
+     19.86,
+     544.05,
+     30.64
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 1
+   },
+   {
+    "text": "1",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     538.09,
+     790.39,
+     543.89,
+     803.86
+    ],
+    "block": 1,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Table of Contents",
+    "font": "Lato-Light",
+    "size": 15.0,
+    "bbox": [
+     76.54,
+     77.01,
+     190.48,
+     96.79
+    ],
+    "block": 2,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "List of Figures",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     106.54,
+     137.86,
+     120.01
+    ],
+    "block": 3,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "4",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     529.59,
+     107.95,
+     535.39,
+     121.42
+    ],
+    "block": 3,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "List of Tables",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     131.03,
+     132.99,
+     144.5
+    ],
+    "block": 4,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "4",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     529.59,
+     132.44,
+     535.39,
+     145.91
+    ],
+    "block": 4,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Foreword",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     155.52,
+     118.58,
+     168.99
+    ],
+    "block": 5,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "5",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     529.59,
+     156.93,
+     535.39,
+     170.4
+    ],
+    "block": 5,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Executive Summary",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     180.01,
+     162.81,
+     193.48
+    ],
+    "block": 6,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "6",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     529.59,
+     181.43,
+     535.39,
+     194.9
+    ],
+    "block": 6,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Section 1: Overview",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     204.5,
+     165.36,
+     217.97
+    ],
+    "block": 7,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "10",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     205.92,
+     535.39,
+     219.39
+    ],
+    "block": 7,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1.1 | Introduction",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     228.99,
+     152.4,
+     242.46
+    ],
+    "block": 8,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "11",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     230.41,
+     535.39,
+     243.88
+    ],
+    "block": 8,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1.2 | Investing in Transport",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     253.48,
+     192.42,
+     266.95
+    ],
+    "block": 9,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "11",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     254.9,
+     535.39,
+     268.37
+    ],
+    "block": 9,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1.3 | Project Ireland 2040",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     277.97,
+     187.44,
+     291.44
+    ],
+    "block": 10,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "12",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     279.39,
+     535.39,
+     292.86
+    ],
+    "block": 10,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1.4 | Strategic Investment Framework for Land Transport",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     302.46,
+     322.96,
+     315.93
+    ],
+    "block": 11,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "13",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     303.88,
+     535.39,
+     317.35
+    ],
+    "block": 11,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1.5 | Sustainable Mobility Policy Review",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     326.95,
+     249.42,
+     340.42
+    ],
+    "block": 12,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "13",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     328.37,
+     535.39,
+     341.84
+    ],
+    "block": 12,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1.6 | The Climate Action and Low Carbon Development (Amendment) Act 2021",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     351.44,
+     422.25,
+     364.91
+    ],
+    "block": 13,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "14",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     352.86,
+     535.39,
+     366.33
+    ],
+    "block": 13,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1.7 | Climate Action Plan",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     375.94,
+     184.02,
+     389.41
+    ],
+    "block": 14,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "15",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     377.35,
+     535.39,
+     390.82
+    ],
+    "block": 14,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1.8 | National Air Pollution Control Programme",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     400.43,
+     280.14,
+     413.9
+    ],
+    "block": 15,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "15",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     401.84,
+     535.39,
+     415.31
+    ],
+    "block": 15,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1.9 | Clean Air Strategy",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     424.92,
+     176.83,
+     438.39
+    ],
+    "block": 16,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "15",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     426.33,
+     535.39,
+     439.8
+    ],
+    "block": 16,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1.10 | Biodiversity",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     449.41,
+     155.75,
+     462.88
+    ],
+    "block": 17,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "16",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     450.83,
+     535.39,
+     464.3
+    ],
+    "block": 17,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1.11 | United Nations Sustainable Development Goals",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     473.9,
+     311.73,
+     487.37
+    ],
+    "block": 18,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "16",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     475.32,
+     535.39,
+     488.79
+    ],
+    "block": 18,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1.12 | Accessibility and Inclusion",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     498.39,
+     217.44,
+     511.86
+    ],
+    "block": 19,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "16",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     499.81,
+     535.39,
+     513.28
+    ],
+    "block": 19,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1.13 | Conclusion",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     522.88,
+     152.43,
+     536.35
+    ],
+    "block": 20,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "17",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     524.3,
+     535.39,
+     537.77
+    ],
+    "block": 20,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Section 2: The Purpose of NIFTI",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     547.37,
+     216.55,
+     560.84
+    ],
+    "block": 21,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "18",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     548.79,
+     535.39,
+     562.26
+    ],
+    "block": 21,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "2.1 | Introduction",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     571.86,
+     152.4,
+     585.33
+    ],
+    "block": 22,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "19",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     573.28,
+     535.39,
+     586.75
+    ],
+    "block": 22,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "2.2 | Objectives of Transport Investment",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     596.35,
+     251.89,
+     609.82
+    ],
+    "block": 23,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "19",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     597.77,
+     535.39,
+     611.24
+    ],
+    "block": 23,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "2.3 | National Strategic Outcomes",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     620.84,
+     224.13,
+     634.31
+    ],
+    "block": 24,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "20",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     622.26,
+     535.39,
+     635.73
+    ],
+    "block": 24,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "2.4 | Delivering Clean, Low-carbon and Environmentally Sustainable Mobility",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     645.33,
+     410.46,
+     658.8
+    ],
+    "block": 25,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "21",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     646.75,
+     535.39,
+     660.22
+    ],
+    "block": 25,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "2.5 | Supporting Successful Places and Vibrant Communities",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     669.83,
+     338.7,
+     683.3
+    ],
+    "block": 26,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "22",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     671.24,
+     535.39,
+     684.71
+    ],
+    "block": 26,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "2.6 | Facilitating Safe, Accessible, Reliable and Efficient Travel on the Network",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     694.32,
+     413.19,
+     707.79
+    ],
+    "block": 27,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "23",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     695.73,
+     535.39,
+     709.2
+    ],
+    "block": 27,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "2.7 | Promoting a Strong and Balanced Economy",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     718.81,
+     286.69,
+     732.28
+    ],
+    "block": 28,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "24",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     720.22,
+     535.39,
+     733.69
+    ],
+    "block": 28,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "2.8 | Conclusion",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     743.58,
+     146.63,
+     757.05
+    ],
+    "block": 29,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "24",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     523.79,
+     745.0,
+     535.39,
+     758.47
+    ],
+    "block": 29,
+    "line": 1,
+    "span": 0
+   }
+  ],
+  "drawings": [],
+  "images": [],
+  "tables": []
+ }
+]

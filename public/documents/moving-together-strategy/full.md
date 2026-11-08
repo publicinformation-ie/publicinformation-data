@@ -478,7 +478,7 @@ Acronyms
 
 ### Executive Summary
 
-*Pages 13–15*
+*Pages 13–16*
 
 Executive Summary
 
@@ -538,21 +538,17 @@ The 32 recommendations in Chapter 10 are the product of a constructive, collabor
 
 This Strategy provides a framework for delivering the systemic change recommended by the OECD by signaling the need for that change, identifying all the policies and programmes that can contribute to that change and enabling those actors across the system, whether national, local, civil society or business, to collaborate and move together towards the vision of a future transport system that sustainably connects people and places, in a way that is efficient, accessible, safe, and healthy for all. It is vital to the credibility of the Strategy that its implementation is demonstrably fair and equitable. This has been the approach taken to developing the Strategy and it will be the approach taken to its implementation.
 
-## Introduction
-
-### Introduction
-
-*Pages 16–16*
-
 ![Figure from page 16](assets/p016-f01.webp)
 
 *Figure from page 16*
 
 ## 1. Introduction
 
+## Introduction
+
 ### Ambition
 
-*Pages 17–17*
+*Pages 17–18*
 
 Ambition
 
@@ -568,10 +564,6 @@ However, it is the Climate Action and Low-Carbon Development (Amendment) Act 202
 
 *Figure 1: Gap-to-Target*
 
-### Positive Trends
-
-*Pages 18–18*
-
 In view of the sectoral emissions ceilings in place, a significant programme of work was undertaken to refresh, revalidate and recalibrate the decarbonisation pathway for transport. This was set out in CAP 2023 which identified that an additional basket of measures would be needed to bridge the above ‘gap’, estimated to be 2. MtCO2 equivalent (see Figure 1 Gap-To-Target).
 
 The reduction in transport emissions from 2023 to 2024 also suggests that emissions from the transport sector have peaked and demonstrates the positive impact of demand management and decarbonisation measures introduced in recent years with increases in the use of biofuels and electric vehicles being major factors behind the emissions decrease.
@@ -584,9 +576,17 @@ This Strategy is intended to provide an overarching framework for the delivery o
 
 In line with the pledge in the Programme for Government to take sustained action to tackle the climate crisis and to decarbonise the economy, there remains an urgent need, therefore, to continue to tackle emissions and to avoid jeopardising the sector’s capacity to achieve its targets in future years. Further and sustained decoupling of the direct correlation between transport emissions and wider social and economic activity thus forms the fundamental challenge for the sector.
 
+### Emissions Trajectory
+
+*Pages 18–18*
+
 Emissions Trajectory
 
 The achievement of the 50% reduction in transport emissions must be consistent with the Government’s carbon reduction programme, which includes a sectoral emissions ceiling of 54 MtCO2eq. for the first carbon budget period (2021-2025), and a further reduced sectoral emissions ceiling of 37 MtCO2eq. over the second carbon budget period (2026-2030).
+
+### Positive Trends
+
+*Pages 18–18*
 
 Positive Trends
 
@@ -600,7 +600,7 @@ This was achieved against a backdrop of economic growth (as expressed by modifie
 
 ### Purpose of Strategy
 
-*Pages 19–20*
+*Pages 19–21*
 
 Purpose of Strategy
 
@@ -646,13 +646,13 @@ With people’s needs to the fore, this Strategy seeks to bring equity and well-
 
 The Strategy seeks to support a radical, yet equitable transformation in how we travel over the coming years, helping in the transition towards a fully decarbonised transport sector by 2050. By ‘moving together’, whether through small steps or systemic change, the cumulative impacts will be
 
-### Vision
-
-*Pages 21–21*
-
 instrumental in delivering a sustainable transport system for Ireland, as described in the vision below.
 
 Given the importance of ensuring a just transition in the design of these measures, special attention has been given to captive car usage – those journeys where alternatives are not readily available or affordable.
+
+### Strategy Structure
+
+*Pages 21–21*
 
 Strategy Structure
 
@@ -663,6 +663,10 @@ The following sections set out the vision, and objectives of the Strategy, as we
 A strong representative oversight mechanism will be critical to the delivery of the Strategy given the system-wide changes and multiplicity of stakeholders involved. Recognising the wide range of benefits that can also be achieved through this Strategy, a broad range of key performance indicators will be used to monitor success, leveraging in particular the work by the Department of An Taoiseach and the OECD on developing a well-being framework6 and the 2022 report by the OECD on Redesigning Irelands Transport for Net Zero. The final chapters set out how the Strategy will be monitored and evaluated on an on-going basis – a critical component to ensure it remains responsive to the challenges that will inevitably arise.
 
 The Strategy has the potential to serve a broad range of Government policy objectives and international obligations in relation to climate, energy efficiency, health and well-being, air quality and road safety (Chapters 3 and 4). It will also seek to leverage and/or re-enforce aspects of many existing policies and programmes to serve the objectives of this strategy. These policies and programmes – and their relevance to this Strategy - are described in Chapter 5. Communications and public engagement will be critical to the effective delivery of the strategy (Chapter 6) along with the necessary legislative levers to enable the implementation of potential new measures (Chapter 7).
+
+### Vision
+
+*Pages 21–21*
 
 Vision
 
@@ -676,7 +680,7 @@ Informed by research and evidence from national and international experience, th
 
 ### Objectives
 
-*Pages 22–22*
+*Pages 22–23*
 
 Objectives
 
@@ -704,17 +708,21 @@ To encourage compact, mixed use and transport led development, reinforcing the r
 
 Government policy set out in the Revised National Planning Framework, and further developed through Town Centre First, highlight the importance of compact growth in reinvigorating
 
-### Process to Develop the Strategy
-
-*Pages 23–23*
-
 Metrics to determine the achievement of these objectives are set out in Chapter 12 Evaluation and Review.
 
 Consideration has been given to the likely impacts of the Strategy on European sites, alone or in combination with any other plans, programmes, and projects etc. including the need for a Stage Two SEA and AA (including the preparation of a Natura Impact Statement).
 
+### Status of the Strategy
+
+*Pages 23–23*
+
 Status of the Strategy
 
 The Strategy provides recommendations and guidance for further consideration that allow for the integration of demand management into decision making across Government and society.
+
+### Process to Develop the Strategy
+
+*Pages 23–24*
 
 Process to Develop the Strategy
 
@@ -732,13 +740,13 @@ Recognising the need for a whole of Government approach, a National Demand Manag
 
 *Figure 2: Steering Group Members*
 
-### Just Transition Focus
-
-*Pages 24–24*
-
 At the outset, six key areas for consideration were identified, with a system, demand generation and just transition focus. These were as follows (more detail on the rationale for these areas is set out in Chapter 9):
 
 (NWRA) and local authorities, NGOs (e.g. Irish Doctors for the Environment, An Taisce); disability representatives; community groups e.g. Dingle Hub; Transport Operators (Iarnród Éireann, Bus Éireann); academia (Trinity, Technological University Dublin, University of Limerick, Atlantic Technological University Sligo, University College London); industry/business - Freight Transport Association of Ireland (FTAI), Irish Road Haulage Association (IRHA), Ports, Amazon, Irish Business and Employers Confederation (IBEC); and media representatives among others.
+
+### Systems Focus
+
+*Pages 24–24*
 
 Systems Focus
 
@@ -750,11 +758,19 @@ Systems Focus
 
 Building on existing research and case studies, notably the work of the Five Cities Demand Management Study, insights from the 2022 OECD Report and the International Transport Forum in the area of demand management, each subgroup was also tasked with examining the impacts of measures through various lens including just transition, reducing less sustainable transport demand, improving air quality, reducing emissions, and maximising the wellbeing utility of public space. The outcome from this engagement is reflected in Chapter 9 of this Strategy and the collective suite of recommendations, including further measures to promote ongoing engagement, are represented in Chapter 10.
 
+### Demand Generation Focus
+
+*Pages 24–24*
+
 Demand Generation Focus
 
 4. Generators of Demand (Movement of People)
 
 5. Generators of Demand (Movement of Goods)
+
+### Just Transition Focus
+
+*Pages 24–25*
 
 Just Transition Focus
 
@@ -768,13 +784,13 @@ Over 100 stakeholders, from 57 organisations, were involved in the work of these
 
 Wider public sentiment and attitudes towards demand management measures were also considered while shaping this Strategy, through a series of focus groups which were held in October 2023.
 
-### Rural Recognition
-
-*Pages 25–25*
-
 In general terms, the research found a general openness to small reductions in car usage at a personal level but with a desire for change to be fairly applied - and there were concerns about a direct attack on all car drivers. The research acknowledged that realistic change will depend on integrated, reliable public transport as well as public knowledge of this and pointed to the need for translating the change in behaviour and reduction of car usage into something positive. More detail on this research is available in Chapter 8.
 
 endeavors, in so far as is practicable, to maximise employment opportunities, and support persons and communities that may be negatively affected by the transition. That said, the objective of this Strategy will largely support all cohorts of society in terms of accessibility, safety, health and wellbeing.
+
+### Accessibility and Inclusion
+
+*Pages 25–25*
 
 Accessibility and Inclusion
 
@@ -782,13 +798,25 @@ It is recognised that people with additional mobility requirements or considerat
 
 Finally, the Department also took steps to assess the gender impacts of this Strategy and participated in a pilot phase of the European Commission’s Technical Support Instrument (TSI) flagship project on ‘Gender Mainstreaming in Public Policy and Budgeting’, led by Department of Children, Equality, Disability, Integration and Youth (DCEDIY). The development of this Strategy was one of two areas within the Department of Transport that volunteered for inclusion in the Irish workstream of this European project.
 
+### Guiding Principles in Developing and Implementing the Strategy
+
+*Pages 25–25*
+
 Guiding Principles in Developing and Implementing the Strategy
+
+### Rural Recognition
+
+*Pages 25–25*
 
 Rural Recognition
 
 Not surprisingly, kilometres travelled by car, and the associated level of emissions per capita from transport, is significantly higher in rural areas than for inner suburban and urban areas. It is acknowledged that those living in rural areas, particularly in one-off houses or on offshore islands, have less access to sustainable means of travel compared with those living in or close to large urban centres. In light of this and given that the greatest health impacts from traffic congestion and pollution is experienced by urban residents and workers, it is intended that demand management measures will be rolled out, in the first instance, to such centres. Having regard to rural communities, where the provision of
 
 Taking account of evidence, research and experience nationally and internationally in developing and implementing similar strategies, the following guiding principles were identified as key to ensuring broad public acceptance of the Strategy and as a means of elevating the key issues for consideration, particularly during the implementation phase.
+
+### Just Transition
+
+*Pages 25–25*
 
 Just Transition
 
@@ -800,7 +828,7 @@ This Strategy will seek to ensure that the timing and sequencing of measures wil
 
 Local Link Services - Connecting Ireland
 
-### Oversight and Responsibility
+### Economic and Financial Sustainability
 
 *Pages 26–26*
 
@@ -814,6 +842,10 @@ As the policy levers and scope of this strategy extend well beyond transport and
 
 To ensure that the implementation process is disability and equality proofed, having regard to obligations under the United Nations Convention on the Rights of Persons with Disabilities (UNCCPD), a consultative group will also be established to challenge and test the approach to implementation in consultation with relevant organisations including nominees from the likes of the Just Transition Commission, Disability Persons Representative Organisations (DPROs), business representatives and Local Authorities to ensure the guiding principles of the strategy remain central to implementation.
 
+### Oversight and Responsibility
+
+*Pages 26–27*
+
 Oversight and Responsibility
 
 This Strategy sets out several action-orientated recommendations, including the governance structures that will be established to monitor, evaluate, and measure impacts and outcomes.
@@ -826,17 +858,17 @@ This approach is captured in Recommendation 32: Establish an oversight mechanism
 
 In that context, the National Demand Management Steering Group will be reconfigured with its membership and terms of reference refreshed as an oversight mechanism to monitor and evaluate implementation of the strategy. The Group should be a strong, advocate for change across the system as well as ensuring effective implementation of the recommendations contained in the strategy itself.
 
-## Understanding the Challenge
-
-### Understanding the Challenge
-
-*Pages 27–32*
-
 ![Figure from page 27](assets/p027-f01.webp)
 
 *Figure from page 27*
 
 ## 2. Understanding the Challenge
+
+## Understanding the Challenge
+
+### Understanding the Challenge
+
+*Pages 28–33*
 
 Our transport system must operate efficiently to secure the full benefits of Government investment. This can only be achieved by reducing congestion and overall demand for unsustainable journeys. By tackling these issues, other societal benefits can be unlocked through reductions in emissions and harmful localised pollutants.
 
@@ -939,25 +971,25 @@ A key driver of the behavioural change needed is the relative cost and benefits 
 
 It is noteworthy that, using the NTA model, fossil fuel price increases are effective in bridging the cost competitiveness gap between the internal combustion engine (ICE) car and sustainable transport alternatives. Implementation of such measures, however, is more challenging given the potential impacts on cohorts of the population for whom sustainable alternatives are not available and/or where affordability is an issue, particularly in relation to buying Electric Vehicles (EVs). This is the challenge in designing the range of policy interventions that will cumulatively deliver the required behavioural change in a fair and equitable manner.
 
-## International and European Policy Drivers
-
-### International and European Policy Drivers
-
-*Pages 33–33*
-
 ![Figure from page 33](assets/p033-f01.webp)
 
 *Figure from page 33*
 
 ## 3. International and European Policy Drivers
 
-### WHO – Air Quality and Health Impacts
+## International and European Policy Drivers
+
+### International and European Policy Drivers
 
 *Pages 34–34*
 
 The objectives of this Strategy align closely and will support a range of United Nations (UN) and European Union (EU) policies and obligations on climate, sustainable development, transport and energy in particular. Key policies and their relevance are set out below:
 
 although the Trans European Network – Transport (TEN-T) focuses very much on aligning investment towards a defined set of core and comprehensive transport corridors.
+
+### WHO – Air Quality and Health Impacts
+
+*Pages 34–34*
 
 WHO – Air Quality and Health Impacts
 
@@ -981,7 +1013,7 @@ At a sectoral level, the EU’s Sustainable and Smart Mobility Strategy calls fo
 
 Air pollutant emissions from the road transport sector are also regulated by EU emissions standards (such as the Euro emission standards for road vehicles) and fuel quality requirements. For example, the Euro 7 standard, which was adopted by the European Council in 2024, aims to further lower air pollutant emissions from exhaust fumes and brakes and will impose more stringent limits for various pollutants on heavy-duty vehicles in particular.
 
-### Energy Taxation Directive (ETD)
+### UN Sustainable Development Goals and Renewable Energy – Amended Renewable Energy Directive
 
 *Pages 35–35*
 
@@ -1003,11 +1035,19 @@ Of specific importance to transport, and integral to the principles of this Stra
 
 ᴏ SDG 11.2: By 2030, provide access to safe, affordable, accessible and sustainable transport systems for all, improving road safety, notably by expanding public transport, with special attention to the needs of those in vulnerable situations, women, children, persons with disabilities and older persons.
 
+### Energy Taxation Directive (ETD)
+
+*Pages 35–35*
+
 Energy Taxation Directive (ETD)
 
 The EU’s ETD entered into force in 2003 and lays down structural rules and minimum excise duty rates for the taxation of energy products used as motor and heating fuel, and electricity. However, given its age, the Directive does not suitably reflect the EU’s current climate and energy policy frameworks or legally binding climate targets.
 
 This Strategy has been developed to align Ireland with international ambition and commitments in the above areas.
+
+### European Policy on Energy
+
+*Pages 35–35*
 
 European Policy on Energy
 
@@ -1015,17 +1055,15 @@ Three other energy related policies at EU level are also particularly relevant t
 
 Accordingly, this Directive is currently being revised, with proposals aimed at ensuring that the most polluting fuels are taxed the highest and that minimum rates can be revised annually to reflect most up-to-date prices.
 
+### Energy Efficiency Directive
+
+*Pages 35–36*
+
 Energy Efficiency Directive
 
 A new recast Energy Efficiency Directive (EU) 2023/1791 introduces a series of measures to help accelerate energy efficiency, including embracing the “energy efficiency first” principle in energy and non-energy policies. Changes from the previous directives 2018/2002 and 2012/27/EU include the establishment of a legally binding target to reduce the EU’s final energy consumption by 11.7% by 2030 (relative to the 2020 reference scenario). Transport is the most significant contributor to final energy consumption as defined by the EED and can contribute significantly to achieving this target.
 
 In summary, this Strategy is aligned with and will support a wide range of UN and EU objectives and obligations across climate, transport, energy, and sustainable development sectors. Early and effective implementation of the Strategy will contribute to Ireland’s economy wide efforts to comply with EU targets and mitigate against noncompliance penalties and associated fines.
-
-## National Climate and Transport Policy Drivers
-
-### National Climate and Transport Policy Drivers
-
-*Pages 36–36*
 
 ![Figure from page 36](assets/p036-f01.webp)
 
@@ -1033,7 +1071,9 @@ In summary, this Strategy is aligned with and will support a wide range of UN an
 
 ## 4. National Climate and Transport Policy Drivers
 
-### National Sustainable Mobility Policy
+## National Climate and Transport Policy Drivers
+
+### National Climate and Transport Policy Drivers
 
 *Pages 37–37*
 
@@ -1041,11 +1081,19 @@ At a national level, this Strategy will support the achievement of objectives on
 
 To realise the abatement required, CAP23 identified the need to reduce vehicle kilometres travelled by 20% relative to what would otherwise be expected under a business-as-usual approach. It included a specific action to support this target through the development of a national demand management strategy.
 
+### Climate Action Plan
+
+*Pages 37–37*
+
 Climate Action Plan
 
 As the population continues to grow, reducing travel demand will become increasingly important. The development and implementation of this Strategy thus form crucial elements of our decarbonisation pathway and fulfills the commitment to develop a national demand management strategy as per CAP23.
 
 The challenge that Ireland faces to comply with national climate targets cannot be overstated. Climate Action Plan 2023 (CAP23), which was the first statutory Climate Action Plan that incorporated both the economy-wide targets and legally binding sectoral emission ceilings under the provisions of the Climate Action and Low- Carbon Development (Amendment) Act 2021, brought a renewed focus to the need for systemic action, at all levels of Government. Transport is particularly challenging. Emissions from the sector had been steadily rising over 2021 and 2022 at a rate of approximately 6% per annum, reflecting the strength of the economy, full employment, and continued population growth in Ireland. This trend peaked in 2023 and 2024 will be the first year since COVID where transport emissions have reduced by 1.2% despite continued economic growth.
+
+### Corrective Action Modelling Project
+
+*Pages 37–37*
 
 Corrective Action Modelling Project
 
@@ -1055,6 +1103,10 @@ CAP23 recognises that achieving our climate ambition will require a multi-facete
 
 Without the effective and early implementation of the measures envisaged in this Strategy, it is highly unlikely that transport emissions will fall within the sectoral emissions ceilings over the period out to 2030. Further iterations of the Climate Action Plan will reflect the implementation path for this Strategy.
 
+### National Sustainable Mobility Policy
+
+*Pages 37–38*
+
 National Sustainable Mobility Policy
 
 While Government will continue to support and prioritise ‘Improve’ measures related to electrification of the vehicle fleet and higher penetration levels of renewable transport fuels in the fuel mix, these measures alone will not deliver the emissions abatement required for the transport sector — more corrective action is required. Under the decarbonisation pathway set out by CAP23 and subsequent Plans, approximately 2 MtCO2eq./year (or roughly 25%) of emissions abatement will have to be achieved through ‘Avoid’ and ‘Shift’ measures by 2030. This level of abatement may even be higher when work is undertaken to update and recalibrate the emissions trajectory to 2030.
@@ -1063,13 +1115,13 @@ The National Sustainable Mobility Policy (SMP), which was published in April 202
 
 Action Plans under the SMP support a wide range of interventions including, among other things, public transport infrastructure and services, active travel promotion and supports, road safety initiatives, legislative measures, research, and public engagement. The Policy also supports the implementation of large-scale transport projects including MetroLink and DART+ in Dublin,
 
-### Metropolitan Area Transport Strategies
-
-*Pages 38–38*
-
 BusConnects in the five cities, the Connecting Ireland scheme in rural areas, and an Active Travel Infrastructure Programme providing high-quality cycling infrastructure across the country.
 
 noise, and enhance attractiveness and accessibility of cities, neighbourhoods and town centres.’
+
+### Metropolitan Area Transport Strategies
+
+*Pages 38–39*
 
 Metropolitan Area Transport Strategies
 
@@ -1097,23 +1149,31 @@ The MATS process, along with the associated guidance documents provided by the N
 
 9 https://www.gov.ie/en/publication/cc8fc-all-island-strategic-rail-review/?
 
-### Electrification and Renewable Energy Policy
-
-*Pages 39–39*
-
 measures which will support the achievement of this Strategy’s objectives and that of the Climate Action Plan. Their importance is reflected in relevant recommendations in Chapter 10.
 
 The work undertaken by the TOD Working Group informed the National Planning Framework (NPF) 2025, which introduced TOD as a new element of the Framework, with potential for supporting the delivery of new sustainable communities at brownfield and greenfield locations. National Planning Objectives 10, 97 and 99, combined, seek to deliver TOD at suitable locations (as identified in Metropolitan Area Strategic Plans) supported by the necessary institutional and funding arrangements to support the development and accelerated delivery.
 
+### Transport Orientated Development
+
+*Pages 39–39*
+
 Transport Orientated Development
 
 Transport Orientated Development is a form of urban development that seeks to maximise the provision of housing, employment, public services and leisure space in close proximity to frequent, high-quality transport services. It is a form of development that is friendlier to public transport users, cyclists and pedestrians, and seeks to convert car trips to public and active transport trips. This in turn improves mobility and environmental conditions and delivers more efficient and sustainable urban development. TOD can also be designed to provide a higher proportion of social and affordable housing. (National Economic and Social Council 2019 report)
+
+### GDA Strategy and Demand Management Scheme
+
+*Pages 39–39*
 
 GDA Strategy and Demand Management Scheme
 
 As a key delivery agency for sustainable mobility, the NTA’s Greater Dublin Area Transport Strategy 2022-2042 sets out how the transport system will be developed over this period to meet the needs of a growing population while reducing emissions by 50% across the region, covering Dublin, Meath, Wicklow and Kildare, by 2030. As well as significant investment in active, shared and public transport infrastructure and services, a key lever to achieve such reduction will be a GDA Demand Management Scheme, which the NTA expect to publish by 2026. This Strategy provides the strategic framework and impetus for that Scheme and further schemes to be developed in the remaining five cities and other local authority areas in a coherent manner.
 
 The PfG commits to focusing on linking new housing developments to public transport and schools through TOD. Further to this, the Revised NPF 2025 affirms a strong commitment to TOD with potential for supporting the delivery of new sustainable communities at brownfield and greenfield locations - by locating them along existing or planned high-capacity public transport corridors.
+
+### Electrification and Renewable Energy Policy
+
+*Pages 39–40*
 
 Electrification and Renewable Energy Policy
 
@@ -1122,10 +1182,6 @@ A Transport Orientated Development Working Group, which was established in 2021 
 CAP23 targets the electrification of almost a third of the total private car fleet in Ireland by 2030, which will require 100% of new private registrations to be electric before the end of this decade.
 
 A report for Dublin was published in June 2023. It identified opportunities for up to 130,000 residential units at fourteen locations with further significant opportunities identified in the other as yet unpublished reports. It is clear these reports identify the potential for significant numbers of residential units and the analysis undertaken underlines the role that targeted public investment in certain transport projects can play in enabling the delivery of large-scale housing delivery in the major metropolitan areas.
-
-### Freight and Haulage Strategy
-
-*Pages 40–40*
 
 Ireland has over almost 204,000 EVs and plugin hybrids on the road at the end of 2025 and Zero Emission Vehicles Ireland (ZEVI) provides a range of grants and incentives to the public and businesses to support the uptake of EVs. Additionally, to support the uptake of EVs, ZEVI published the Electric Vehicle Charging Infrastructure Strategy 2022 – 2025 and an accompanying implementation plan10 which sets out a pathway for the delivery of EV charge point infrastructure. This Strategy, which will be revised in 2026, will also provide for the rollout of EV infrastructure as required under the EU’s Alternative Fuels Infrastructure Regulation (AFIR), where a 300% increase in the amount of public recharging infrastructure is targeted for delivery.
 
@@ -1137,6 +1193,10 @@ The transition to EVs has the potential to make the greatest contribution to tac
 
 The ‘Energy Security in Ireland to 2030’ report, which was published in November 2023, provides a roadmap for ensuring a sustainable, affordable and secure energy landscape that balances energy risk and resilience against binding European and domestic energy and climate commitments. This Strategy will support, and align with, the goals of this roadmap.
 
+### Freight and Haulage Strategy
+
+*Pages 40–40*
+
 Freight and Haulage Strategy
 
 Ireland also has ambitious plans for the penetration of renewable transport fuels (including biofuels) into our transport fuel mix. The Renewable Transport Fuel Policy, 2025 – 2027 sets out a pathway to incentivise the supply of renewable transport fuel through annual increases in the renewable transport fuel obligation rate to 2030.
@@ -1147,19 +1207,23 @@ While Ireland will seek to maximise the sizeable contributions to emissions abat
 
 Heavy-Duty Vehicles (HDVs) (including buses and Heavy Goods Vehicles) and Light Duty Vehicles (LDVs), represents 51% of overall road transport emissions in Ireland and without significant intervention, this is likely to grow as economic activity increases over the coming decade. Currently more than 99% of HDV on Irish roads are diesel-fueled. Road freight transport is energy intensive and while electric vehicle technologies are now widely commercially available, they have a significant upfront cost differential when compared to a traditional ICE alternative.
 
+### Energy Efficiency and Security
+
+*Pages 40–42*
+
 Energy Efficiency and Security
 
 Transport is the largest source of energy consumption in Ireland. For this reason, policies and related targets on energy efficiency, renewable energy and energy security are heavily reliant on effective transport measures,
 
 10 https://assets.gov.ie/300570/4cfc5ab2-fdce-4729-872d-0378919f5e4b.pdf
 
-### National Investment Framework for Transport in Ireland
-
-*Pages 42–42*
-
 In addition to this, the quantity of tonnage that is being moved by road continues to grow, responding to population growth, increased consumer demand and a post-Covid economic recovery. The decarbonisation pathway for transport set out in the Climate Action Plan assumes improvements in Ireland’s HGV fleet will reduce carbon emissions by 10% overall by 2030 - primarily through reduced fuel consumption and/ or increased fuel efficiency and use of renewable fuels, rather than a significant penetration of zero emissions trucks before 2030.
 
 the delivery of Project Ireland 2040’s National Strategic Outcomes, particularly those related to enhanced regional accessibility, strengthened rural economies and communities and sustainable mobility. Priority in TII’s Strategy is given to decarbonisation of national road investment through the Department of Transport’s National Investment Framework for Transport in Ireland, described hereunder.
+
+### National Investment Framework for Transport in Ireland
+
+*Pages 42–42*
 
 National Investment Framework for Transport in Ireland
 
@@ -1175,6 +1239,10 @@ This ‘Moving Together’ Strategy seeks to encompass, and align itself with, t
 
 Under the Intervention Hierarchy Framework, NIFTI sets out four high-level categories of investment. These four categories of investment are used to inform intervention decisions, both at the budgetary level and the project level. These four high-level categories are: maintain; optimise; improve; and new. Maintaining the existing transport network is given first priority, followed by maximising the value of the network through optimising its use. Infrastructural investments are only to be considered after these two categories have been assessed as inappropriate for the identified problem, with upgrades to existing infrastructure to be considered before new infrastructure.
 
+### National Roads 2040
+
+*Pages 42–42*
+
 National Roads 2040
 
 Transport Infrastructure Ireland (TII) published its strategic vision for roads in 2023. ‘National Roads 2040’ seeks to support an evolving transport system which has safety, innovation and accessibility at its core, and includes over thirty commitments to address issues such as population growth, decarbonisation, climate adaptation, safety and congestion. National roads are key economic enablers and are essential to
@@ -1183,7 +1251,7 @@ The objectives of this Strategy, notably, to increase the efficiency of the exis
 
 ### Road Safety Policy
 
-*Pages 43–43*
+*Pages 43–44*
 
 Road Safety Policy
 
@@ -1209,10 +1277,6 @@ Notwithstanding the increases in fatalities in recent years, there is good reaso
 
 It should be remembered also that, while a demand management strategy can help to contribute to road safety, the converse is also true – improved road safety can contribute to demand management (by making active travel more attractive).
 
-### Speed Limits Review
-
-*Pages 44–44*
-
 For example, TII’s appraisal methodology uses historical information to derive expected numbers of collisions per million vehicle kilometres (PEPAG-02030-01 (tiipublications.ie), p. 15). This depends on the type of road (with/without central divider) and the speed limit (above/below 60km/hr). All else being equal, a reduction in vehicle kilometres travelled is shown to lead to a modelled decrease in collisions. The scale of benefit would also vary considerably based on the scheme. While cyclist fatalities increased in 2025, they remain close to historical low levels. It is likely that increased investment in road space reallocation and segregation of vulnerable road users has played an important role in these outcomes.
 
 appropriate for ensuring the safety of all road users in any given urban area, including limits of 30kmph.
@@ -1222,6 +1286,10 @@ Speed limits are an important tool in managing traffic, and in efforts to rebala
 Over half of all 2025 fatalities occurred on high speed roads, outside of urban areas - roads with a speed limit equal to or greater than 80km/h. If public transport uptake is further increased in rural areas in particular, this should help to reduce the high share of fatalities on these non-urban roads.
 
 Finally, the Review also pointed to the wide ranging and adverse health, social and economic effects of noise pollution and the role that appropriate speed management can have in reducing excessive traffic noise, with international efforts to achieve noise abatement measures in urban areas increasingly focusing on the implementation of 30km/h speed limits.
+
+### Speed Limits Review
+
+*Pages 44–45*
 
 Speed Limits Review
 
@@ -1235,19 +1303,15 @@ It is intended that the second phase of the speed limit changes - the introducti
 
 The co-benefits of this Strategy particularly in terms of road safety will be captured as part of the well-being framework for its evaluation (Chapter 12).
 
-## Leveraging Other Policies and Programmes
-
-### Leveraging Other Policies and Programmes
-
-*Pages 45–45*
-
 ![Figure from page 45](assets/p045-f01.webp)
 
 *Figure from page 45*
 
 ## 5. Leveraging Other Policies and Programmes
 
-### National Planning Framework
+## Leveraging Other Policies and Programmes
+
+### Leveraging Other Policies and Programmes
 
 *Pages 46–46*
 
@@ -1256,6 +1320,10 @@ A range of non-transport focused policies and programmes are also vital to advan
 NPF implementation is hugely important for transport. Overall levels of transport demand and travel patterns are driven to a large extent by Government policy (national, regional and local) and settlement patterns. Low-density development and the dispersal of residential settlements, commercial zones, schools, and workplaces in peripheral areas, are major contributory factors to high levels of car dependency and the transport poverty that is experienced in some regions, posing a particular challenge for the decarbonisation of the sector.
 
 Throughout the NPF, compact and sustainable growth is recognised as being a strategic economic objective that will aid in the reduction of private car travel and improve the ‘liveability’ and quality of life in urban places. Consolidation of development, instead of urban sprawl, is also important in creating value for money for the State in terms of investing in infrastructure.
+
+### National Planning Framework
+
+*Pages 46–46*
 
 National Planning Framework
 
@@ -1271,7 +1339,7 @@ The National Planning Framework (NPF) and the National Development Plan (NDP) co
 
 The NPF, which was revised in 2025, is at the apex of strategic planning in Ireland and establishes the overall national planning policy strategy, with which other planning policy at the national level is aligned.
 
-### Local Authority Climate Action
+### The National Development Plan
 
 *Pages 47–47*
 
@@ -1289,6 +1357,10 @@ Budget 2026 sets out €3.4 billion in capital funding for transport. This fundi
 
 The NDP emphasises the need for a transport-led approach to housing development, allowing for the emergence of sustainable and well-connected communities where active travel is feasible and attractive for many localised journeys and good quality public transport is available to facilitate longer journeys into major urban centres.
 
+### Local Authority Climate Action
+
+*Pages 47–48*
+
 Local Authority Climate Action
 
 The success of policy on climate and transport relies heavily on the support of Local Government and the implementation capacity of Local Authorities (LAs). It necessitates the formulation and implementation of measures aimed at better aligning transport with spatial and land use planning, as well as the implementation of demand management measures such as, but not limited to, road space reallocation, kerbside management, the provision of active and shared mobility infrastructure and services, and the creation of low traffic/car free environments.
@@ -1300,10 +1372,6 @@ The ongoing current funding requirements such as pay, maintenance and other oper
 These measures are key to supporting mode choice where viable alternatives exist. The role of LAs in demand management cannot be overstated. Increased capacity will be needed to achieve the objectives of this Strategy and underpin the ambition expected from Local Authority Climate Action Plans.
 
 The critical link between travel behaviour, settlement patterns and planning, and the extent to which the NPF can advance the objectives of this Strategy, are discussed in more detail in Chapter 9 and inform a number of important recommendations in Chapter 10.
-
-### Urban Renewal and Rural Development
-
-*Pages 48–49*
 
 LAs play a key role in climate mitigation and adaptation, as set out in Section 16 of the Climate Action and Low Carbon Development (Amendment) Act 2021. This requires, inter alia, each local authority to prepare a local authority climate action plan (LA CAP) specifying the mitigation and the adaptation measures to be adopted within their administrative area. The plans will be updated once every five years. Each local authority can deploy a bespoke approach to the style and structure of plans, but all LA CAPs must align with the national Climate Action Plan to ensure the delivery of our climate goals at local and community levels.
 
@@ -1322,6 +1390,10 @@ To support the development of the LA CAPs, the Department of Transport wrote to 
 It is clear that there are various levers and supports available to LAs which can be deployed to deliver demand management measures. The vital role of LAs as implementing authorities is rehearsed across all of the expert subgroup reports that input into this strategy and features in various key recommendations in Chapter 10, notably Recommendations 3 to 9 with a view both to enabling LAs to deliver and also providing guidance and tools to develop appropriate demand management strategies to support the achievement of the obligations placed on them under the Climate Act 2021.
 
 As part of its LA CAPs, each local authority is responsible for establishing Decarbonisation Zones (DZs). These are intended to be the focus for a range of climate mitigation, adaptation and biodiversity measures and will help local authorities to identify projects which will contribute to the delivery of the national climate objective. Aligned to this is the 2025 Programme for Government commitment to work with local authorities and State agencies to develop decarbonised zones in our urban areas, focusing on pedestrianisation, cycling facilities, and use of renewable energy across all transport modes. The Department of Climate, Energy and the Environment (DCEE) authorised funding for the recruitment of specialist staff to form the nucleus of climate action teams.
+
+### Urban Renewal and Rural Development
+
+*Pages 48–49*
 
 Urban Renewal and Rural Development
 
@@ -1355,7 +1427,7 @@ National Policy Objective (NPO) 19 of the NPF relates specifically to rural hous
 
 ### Parking Measures
 
-*Pages 50–50*
+*Pages 50–51*
 
 Parking Measures
 
@@ -1377,10 +1449,6 @@ These new guidelines include maximum parking rates (Specific Planning Policy Req
 
 Finally, the CCAC also recommended that the local authority of each city should introduce park and ride schemes along major arterial roads (by 1 January 2030), as well as deliver (by 1 January 2030) a plan to reduce the number of public city centre parking spaces. All of the aforementioned
 
-### Fiscal Policies
-
-*Pages 51–51*
-
 recommendations were considered as part of the development of this Strategy and were discussed by a number of the expert sub-groups to inform the recommendations in Chapter 10.
 
 That said, in recent years, the tax system, across multiple tax heads (VRT, motor tax, Benefit in Kind, capital allowances, carbon tax) has been leveraged to dis-incentivise the use of high emission fuels and to influence the purchase of more fuel-efficient private cars including EVs.
@@ -1394,6 +1462,10 @@ A critical issue in designing a credible policy in relation to parking is the la
 As highlighted by the analysis done by the Parliamentary Budget Office11 and the Fiscal Advisory Council12, some aspects of climate policies (e.g., transition to EVs) will reduce Exchequer revenues. As the Tax Strategy Group (TSG 18/07) noted – ‘The structural shift to lower CO2 emitting vehicles, and in particular any significant take up in Electric Vehicles (EVs), will severely challenge the revenue base from vehicles across fuel excise duties, motor-tax and VRT’13.
 
 As cited later, the Commission on Taxation and Welfare also examined these issues and made a number of recommendations in relation to transport in the context of mutually achieving climate goals and long-term financial sustainability. For the purposes of this Strategy, there is a need to examine fiscal measures in the round from the perspective of their proven capacity to drive behavioural change, taking account of the impacts on Exchequer revenues over the medium to longer term.
+
+### Fiscal Policies
+
+*Pages 51–53*
 
 Fiscal Policies
 
@@ -1413,13 +1485,13 @@ The potential for fiscal measures to be deployed in a demand management context 
 
 13 Energy and Environmental Taxes - TSG 18/07
 
-### Educational Sector
-
-*Pages 53–54*
-
 further in the report of the Fiscal Measures sub-group with various recommendations set out in the report and synthesised in a number of recommendations in Chapter 10, notably Recommendation 2. Any proposals of a fiscal nature that may emerge from these recommendations in the future will be informed by social, economic and distributional analysis and will ultimately be the subject of Government decision.
 
 of Education and Youth (DEY), is transporting over 181,000 children, including over 24,400 children with special educational needs, to and from primary and post-primary schools every day. This also includes for school transport scheme services which are being provided in the current school year to over 5,800 children who have arrived in Ireland from Ukraine. Under the Scheme, 100 million sustainable kilometres are travelled per year – the equivalent to 2,500 journeys around the world. The total cost of the scheme in 2025 was €537m.
+
+### Educational Sector
+
+*Pages 53–55*
 
 Educational Sector
 
@@ -1473,10 +1545,6 @@ Noting that approximately 50% of third level students commute over 5km to colleg
 
 The front of school environment at An Mhodhscoil, Limerick City before a School Street was implemented.
 
-### Business and Enterprise
-
-*Pages 55–56*
-
 The Generators of Demand (People) subgroup focused on a wide range of potential measures in the education sphere that could impact positively. These are summarised in Chapter 9 and amplified in Chapter 10’s set of recommendations.
 
 (CSRD) are placing much greater focus on climate and environmental decisions by businesses in Ireland and internationally. Transport emissions are captured directly and indirectly and are becoming an increasing focus of attention by large enterprises, particularly in terms of Scope 3 emissions (i.e., emissions a firm is responsible for but which happen outside of its walls and are controlled by other parties up and down the value chain). In terms of Scope 1 emissions, many companies in Ireland are already making significant strides to reduce carbon footprint from their own transport fleets (e.g., An Post, DPD etc).
@@ -1490,6 +1558,10 @@ The Department of Education and Youth has published a Sustainability Toolkit to 
 As a result, and as outlined in the Government’s White Paper on Enterprise, 2022 – 203015, the integration of decarbonisation and net zero commitments has been identified as a priority. The delivery of public transport infrastructure has been an ongoing issue with delays in the planning system resulting in significant delays in the rollout of many planned projects such as BusConnects. That said, many planning related delays will be alleviated in the future with the introduction of statutory timelines for decisions in the new 2024 Planning Act to go alongside increased resourcing for An Coimisiún Pleanála and LAs.
 
 A quarterly ESD to 2030 Newsletter issues to all schools and regularly contains articles and information for schools about sustainable transport initiatives and projects. ESD funding for schools has included projects in the field of sustainable transport e.g. bike libraries.
+
+### Business and Enterprise
+
+*Pages 55–57*
 
 Business and Enterprise
 
@@ -1519,13 +1591,13 @@ The retail sector is also a significant generator of travel demand, both in term
 
 16 The National Development Plan in 2023: Priorities and Capacity
 
-### Tourism
-
-*Pages 57–57*
-
 It is worth noting, however, that research in this area suggests remote working – despite the many benefits - may not have the impact on emissions that was initially anticipated. Trends in remote working will need to be closely monitored to fully appreciate the level of potential it could have – or otherwise – in reducing transport demand as reflected in research insights from the ESRI’s NDP Report (2024).
 
 vehicles are also ICE vehicles meaning these journeys are contributing to our carbon emissions. In addition to car rental, approximately 600,000 holidaymakers use private coach hire as part of a package or group holiday. Government is already working with businesses to assist them in working to achieve more sustainable business practices. For example, Fáilte Ireland provided tourism businesses with the Carbon Calculator for Businesses19 while ZEVI are working with the car rental industry to support the move to zero-emissions vehicles, as well as working on destination charging at major tourist attractions.
+
+### Tourism
+
+*Pages 57–58*
 
 Tourism
 
@@ -1551,15 +1623,15 @@ Similarly, large sporting events, festivals and conferences are a major generato
 
 21 Aviation Statistics Quarter 4 and Year 2023 - Central Statistics Office
 
-### Accessibility and Inclusion
-
-*Pages 58–59*
-
 The Generators of Demand (People) considered many of the relevant policies in place across the business, enterprise, retail and tourism sectors and identified a series of measures that could impact positively from a demand management perspective. These are set out in the separate report, summarised in Chapter 9 and synthesised in a number of key recommendations in Chapter 10.
 
 ![Figure from page 58](assets/p058-f01.webp)
 
 *Figure from page 58*
+
+### Sports Sector
+
+*Pages 58–58*
 
 Sports Sector
 
@@ -1578,6 +1650,10 @@ Universal Design is the design and composition of an environment so that it can 
 Sports Action Plan 2024 - 2027 acknowledges that the sport sector must progressively move ever closer towards carbon neutrality in the years ahead. As such, it sets out a range of actions that will support and guide the sport sector to achieving these ambitious goals. The aim of this Strategy is to build on best practice across this sector and to replicate learnings to encourage a consistent message from this highly influential sector.
 
 The implementation of these principles is a critical success factor for sustainable mobility, creating ‘people centered’ rather than ‘car-centered’ communities.
+
+### Accessibility and Inclusion
+
+*Pages 58–60*
 
 Accessibility and Inclusion
 
@@ -1607,10 +1683,6 @@ Older persons and particularly older women can face additional barriers in acces
 
 This can have compounding health impacts and lead to social and political exclusion. The inclusivity of our transport system for older persons is considered within the Strategy and its Implementation Plan.
 
-### Health-Related Policies
-
-*Pages 60–61*
-
 Furthermore, ethnicity and religion can play a role in people’s perceived safety on public transport23, particularly those with concerns related to hate crimes. For religious people who have a marked religious identity through clothing there is an increased risk of harassment or discrimination24. Compared to Catholics, members of minority religions in Ireland report somewhat higher discrimination rates in the workplace and in public and private services. Research interviews with Muslim men and women in Dublin outlined the discriminatory practices they felt they experienced from transport staff as a result of religious and racial profiling, which took the form of poor or no service provision25. Equally, members of the travelling community can have greater barriers to accessing sustainable transport alternatives, especially if traveller-specific accommodation is located in peripheral locations with unsafe active travel connectivity and poor public transport services from sites to local towns. Refugee centres and sites are often hard to reach due to more limited transport options to these areas (Dublin-centricity) with asylum seekers needing to travel great distances to central places to reach services and appointments. Ensuring that our public transport system is accessible, inclusive and safe is of vital importance to the success of the Strategy and ensuring the services provided are fully aligned to the core values of the Public Sector Duty.
 
 While pollutants originate from several sources, the transport sector accounts for more than 35% of nitrogen oxides (NOx) and 10% of fine particulate matter (PM2.5). Sources of NOx include the burning of fossil fuel in vehicle engines and by stationary combustion sources, such as industry and home heating. In towns and cities, where people are often close to traffic, vehicles are responsible for a significant portion of localised NOx levels. Vehicle engines also emit PM2.5 directly, and brake and tyre wear also contribute to levels of PM10 in the air. While new vehicles emit significantly less air pollutants than older ones, rising traffic levels also mean that where there are high levels of congestion, or where it is difficult for transport derived air pollutants to disperse (such as in heavily built-up city streets), it is becoming increasingly challenging to maintain high standards of air quality for people nearby.
@@ -1618,6 +1690,10 @@ While pollutants originate from several sources, the transport sector accounts f
 It was estimated that the external health costs attributable to nitrogen dioxide and particulate matter in Dublin was €80 million in 201526.
 
 In 2023, to address the environmental and public health issues associated with air pollution, a new Clean Air Strategy for Ireland was published by the Department of Climate, Energy and the Environment. The Clean Air Strategy seeks to enhance and protect the quality of air that we breathe through a comprehensive suite of cross Government policies and measures that targets all sources of air pollution, including those from the transport, agriculture and residential sectors. Amongst its key commitments is an ambition to work towards World Health Organisation (WHO) target values by 2040. The WHO guideline values are set for the protection of health and are generally stricter than the comparable EU standards.
+
+### Health-Related Policies
+
+*Pages 60–62*
 
 Health-Related Policies
 
@@ -1671,17 +1747,17 @@ The optimisation of road space across users such as pedestrians, cyclists, share
 
 28 https://www.sportireland.ie/sites/default/files/media/document/2023-08/2022%20ISM%20Full%20Report%20200829.pdf
 
-## Communications and Engagement
-
-### Communications and Engagement
-
-*Pages 62–65*
-
 ![Figure from page 62](assets/p062-f01.webp)
 
 *Figure from page 62*
 
 ## 6. Communications and Engagement
+
+## Communications and Engagement
+
+### Communications and Engagement
+
+*Pages 63–66*
 
 Effective consultation, engagement and communication initiatives will be key to increasing public and stakeholder support for the recommendations identified in this Strategy. Public opposition has been highlighted as a challenge across all of the sub- group discussions, and indeed in the context of the wider implementation of the Government’s Climate Action ambitions.
 
@@ -1739,17 +1815,17 @@ Initiatives supported by the funding will also look to good practice cases in co
 
 Appendix 1, which includes national and international demand management use cases, also illustrates how localised campaigns can be put to good effect in socialising change.
 
-## Legislative Powers and Levers
-
-### Legislative Powers and Levers
-
-*Pages 66–67*
-
 ![Figure from page 66](assets/p066-f01.webp)
 
 *Figure from page 66*
 
 ## 7. Legislative Powers and Levers
+
+## Legislative Powers and Levers
+
+### Legislative Powers and Levers
+
+*Pages 67–68*
 
 Within the existing legal framework, the legislative powers and levers required to reduce travel demand are spread across multiple government departments and agencies, as well as Local Authorities. This Strategy recommends a review of legislation to ensure local authorities, agencies and relevant Ministers have sufficiently robust legal vires power to bring forward the most appropriate demand management measures.
 
@@ -1795,17 +1871,13 @@ It also provides for the NTA to give a direction to a public transport authority
 
 A key output from this recommendation, as detailed in the Implementation Plan (Appendix 3), is to develop a legislative programme that will identify the legal and regulatory steps needed to support a range of demand management measures and to seek approval to progress this work, through the standard legislative process, from Government. This will provide implementing bodies with legal certainty in the delivery of measures.
 
-## Research and Policy Analysis
-
-### Research and Policy Analysis
-
-*Pages 68–68*
-
 ![Figure from page 68](assets/p068-f01.webp)
 
 *Figure from page 68*
 
 ## 8. Research and Policy Analysis
+
+## Research and Policy Analysis
 
 ### The Five Cities Demand Management Study
 
@@ -1816,6 +1888,10 @@ The Five Cities Demand Management Study
 This Strategy has been informed by a wide range of research, and evidence-based policy analysis. The primary sources are itemised below highlighting relevant findings.
 
 The Five Cities Demand Management Study, which was published in November 2021, arose from a commitment in the Climate Action Plan 2019. The rationale for undertaking the Study was to better understand generators of transport demand in the five cities of Dublin, Cork, Waterford, Limerick and Galway, and to encourage a greater shift to more sustainable and healthier forms of travel. The Study provides a focused and evidence-based approach to addressing the carbon, congestion and air quality challenges facing Irish cities – using insight from an extensive international best practice review, outputs from national and local stakeholder engagement as well as detailed qualitative and quantitative analysis.
+
+### International Transport Forum (ITF) Decarbonising Transport Initiative
+
+*Pages 69–70*
 
 International Transport Forum (ITF) Decarbonising Transport Initiative
 
@@ -1855,13 +1931,13 @@ This Strategy has been informed by the ITF Outlook, which encourages decision ma
 
 ᴏ Combine pricing measures in a coherent manner and allocate funds to sustainable modes.
 
-### OECD Report
-
-*Pages 70–70*
-
 ![Figure 13: The main problems associated with increasing urban traffic and congestion](assets/p070-f01.webp)
 
 *Figure 13: The main problems associated with increasing urban traffic and congestion*
+
+### OECD Report
+
+*Pages 70–70*
 
 OECD Report
 
@@ -1933,6 +2009,10 @@ The objective of this project is to develop clear policy pathways for future CAP
 
 The Better Road User Charging Evaluation (BRUCE) project was completed by TII. The project explored future options for user charging, and for operation and maintenance funding of the National Road Network in Ireland.
 
+### Commission on Taxation and Welfare Report
+
+*Pages 73–73*
+
 Commission on Taxation and Welfare Report
 
 Currently, thirteen sections of the national motorway network (one third of the motorway network) are operated via public private partnerships (PPPs). Eight of the PPP scheme operate toll plazas and 5 receive availability payments from TII. In addition, TII collect tolls directly on the M50 and Dublin Tunnel Toll Points. Income collected from tolls covers the operational costs on these roads as well as partially offsetting the cost of operations and maintenance funding for the larger publicly operated national road network. The majority of the 8 PPP toll plaza franchises expire between 2033-2037, with the Limerick tunnel expiring in 2041 and the M3 in 2052. The 5 availability payment PPPs expire between 2040 to 2045.
@@ -1955,7 +2035,7 @@ It is worth noting that the charging of vehicles for the use of road infrastruct
 
 The COTW report and the extensive evidence used in support of its recommendations provide a strong system-wide rationale for many of the recommendations emerging from the Fiscal Measures expert sub-group in particular.
 
-### Tax Strategy Group
+### Economic Cost of Congestion in the GDA
 
 *Pages 74–74*
 
@@ -1964,6 +2044,10 @@ Economic Cost of Congestion in the GDA
 was €5.8m in 2022 and €22.4m in 2040. Like the GDA, even with the range of planned public and sustainable transport interventions in these areas, the overall growth in the cost of congestion will not be offset by these alone.
 
 Car dependency has many impacts, but congestion is the costliest. Dublin is considered to have some of the worst congestion in the world, with other Irish cities also ranking highly in this context. In addition to increasing emissions, congestion means lost time, heightened stress, increased fuel costs and drastically worse air quality. Additionally, it brings wider costs to the economy through the increased costs of doing business.
+
+### Tax Strategy Group
+
+*Pages 74–75*
 
 Tax Strategy Group
 
@@ -1987,13 +2071,13 @@ In respect of the regional cities, a further report was published in May 2025, a
 
 33 TSG 25-10 Energy Environmental and Vehicle Tax
 
-### Public Attitudes to Demand Management Measures
-
-*Pages 75–76*
-
 ![Figure 16: Reason for Trip: National](assets/p075-f01.webp)
 
 *Figure 16: Reason for Trip: National*
+
+### Travel Behaviour and Public Insights
+
+*Pages 75–75*
 
 Travel Behaviour and Public Insights
 
@@ -2001,11 +2085,19 @@ Almost half reported living within a 15-minute walk of a doctor’s surgery (47%
 
 The source of trips was an important input to understanding and designing a Strategy that would support a reduction in demand for unsustainable journeys. For example, the above graphic is illustrative of the breakdown of national trips, showing some differences in patterns between weekdays and weekends as expected.In respect of trip lengths, the NHTS shows that 50% of trips are under 5km and 36% are under 3km. This underlines the clear potential to achieve a significant reduction in car kms for those shorter journeys through a variety of measures such as enhancing shared mobility provision, increased permeability, roadspace reallocation and active travel infrastructure, etc – across all journey types.
 
+### National Householder Travel Survey
+
+*Pages 75–75*
+
 National Householder Travel Survey
 
 The National Householder Travel Survey (NHTS) is a nationwide study of Ireland’s travel habits, which will be published annually from this year onwards as per a commitment in the SMP. According to the 2024 NHTS, work/business
 
 is the main reason for travel (21%), followed by education (19%), social reasons (18%) and shopping (15%). The car is the most frequently used mode of transport, accounting for 71% of all trips, followed by walking (18%), bus/coach (4%), truck/van (3%), cycling (2%) and Train/DART/Luas at 1%.
+
+### Public Attitudes to Demand Management Measures
+
+*Pages 75–77*
 
 Public Attitudes to Demand Management Measures
 
@@ -2041,21 +2133,17 @@ The research also suggested certain longer-term opportunities such as:
 
 ᴏ Reiterating existing initiatives that are available to encourage non-car travel: 90-minute journey, rebalanced public space to create safer streets in cities, Bike to Work etc.
 
-## Six Key Areas of Focus
-
-### Six Key Areas of Focus
-
-*Pages 77–77*
-
 ![Figure from page 77](assets/p077-f01.webp)
 
 *Figure from page 77*
 
 ## 9. Six Key Areas of Focus
 
-### Integrated Land-Use and Transport Planning
+## Six Key Areas of Focus
 
-*Pages 78–83*
+### Six Key Areas of Focus
+
+*Pages 78–78*
 
 As outlined in the Introduction and informed by the foregoing research in Chapter 8, the Steering Group identified a number of key areas that warranted particular focus – areas that were considered to have the most potential for impacting transport demand reduction, given their role in generating journeys (particularly where historic system design has been less than optimal).
 
@@ -2070,6 +2158,10 @@ Consequently, and as noted in Chapter 1, the National Steering Group established
 A summary of the outputs from each of the subgroups is set out as follows. These reflect ‘point in time’ considerations and can be reviewed in more detail in the associated reports that were prepared by each sub-group:
 
 3. Fiscal Measures – to consider the role of fiscal measures in encouraging a shift towards sustainable mobility journeys – and greater network optimisation - while ensuring the ongoing fiscal sustainability of the sector’s contribution to the Exchequer.
+
+### Integrated Land-Use and Transport Planning
+
+*Pages 78–84*
 
 Integrated Land-Use and Transport Planning
 
@@ -2189,15 +2281,15 @@ Recommendations aimed at behavioural change, with regard to parking management a
 
 ᴏ the functions of the Office of the Planning Regulator;
 
-### Optimal Use of Space
-
-*Pages 84–91*
-
 availability and charging in urban centres (large towns and cities) in relation to on-street parking, commercial parking, retail parking, workplace parking etc., and the preparation of parking quantum guidelines to better inform behaviour and activities and to support the development of targeted measures aimed at demand reduction. More specifically, the potential undesirable impact and costs to society of expensive urban centre car parking and free peripheral car parking needs to be fully quantified.
 
 urban environment. This prioritisation not only improves public health by encouraging physical activity and reducing air and noise pollution but also enhances safety through accident prevention and the creation of safer and more inclusive public spaces, especially for those with physical or sensory challenges. This approach also contributes to environmental sustainability by lowering carbon emissions, providing space for green infrastructure and conserving resources, while economic benefits emerge from increased local business support, job creation, and an increase in public transport patronage. Social inclusivity is promoted through accessible spaces, community engagement, and improved quality of life. This approach is intended for all settlement forms – cities, towns, villages, as well as rural areas – where the benefits and co-benefits that are observed can be realised with context-specific application of the measures for optimal use of space.
 
 An inventory would be needed to gather data on how much of the space is being dedicated to parking for bicycles, micro-mobility etc. how the space dedicated to different modes compares and if that is consistent with climate and wellbeing goals. This would require cross-agency collaboration to identify an approach to the development of a national parking inventory, thus allowing for a better understanding of parking provision, and the development of targeted measures aimed at demand reduction. This workstream would be encompassed under the following recommendation:
+
+### Optimal Use of Space
+
+*Pages 84–92*
 
 Internationally, cities, towns and villages have successfully demonstrated the power of managing public space, ushering in a paradigm shift in the urban environment. From the cycling and pedestrian-friendly transformations in European cities like Paris, Amsterdam, and Copenhagen to the innovative road space reconfigurations in Asian metropolises such as Seoul and Singapore, these initiatives prioritise accessibility, encouraging walking, cycling, and public transport over private cars. Smaller-scale initiatives have also been undertaken in various cities and towns within Ireland, particularly since the Covid 19 pandemic, which demonstrated how road space can be better utilised to support pedestrian use, cycle lanes, outdoor seating and other public realm improvements.
 
@@ -2385,10 +2477,6 @@ For this reason, it is important that capacity is built within LAs for the long-
 
 It should be noted that greenway schemes can also contribute to modal shift in varying degrees. While greenways are most popular for recreational trips, they also have a function in enabling greater levels of travel via walking and cycling rather than private car use amongst leisure users and tourists but also by residents for non-recreational trips – shopping, education and work/business.
 
-### Fiscal Measures
-
-*Pages 92–101*
-
 Demand Management strategies, starting with cities outside GDA and major urban towns.
 
 Finally, and building on the good work that is already underway at a national level (see Chapter 4), the successful delivery of transformative projects and initiatives – particularly at local level - will be heavily dependent on communications, co-creation, and engagement. Communication campaigns and engagement are critical to increasing awareness about the need for, and benefits of, demand management measures and to help mitigate against opposition from businesses and from drivers, and negative media coverage etc– engagement that goes beyond statutory processes, such as those related to under Section 38 of Road Traffic Act or Part 8 of Planning and Development Act (or relevant sections of the Planning and Development Act 2024, once commenced).
@@ -2408,6 +2496,10 @@ Recommendation 31: Establish mechanism to support demand management pilot measur
 The full list of recommendations across the whole Strategy is available in Chapter 10.
 
 Demonstration
+
+### Fiscal Measures
+
+*Pages 92–101*
 
 Fiscal Measures
 
@@ -2655,7 +2747,7 @@ In summary, it was recommended to review the provision in the Finance Act, provi
 
 ### Generators of Demand (Education, Sport, Public Sector and Tourism)
 
-*Pages 102–110*
+*Pages 102–111*
 
 Generators of Demand (Education, Sport, Public Sector and Tourism)
 
@@ -2865,10 +2957,6 @@ Similarly, for sports events, and building on the sports capital and equipment p
 
 Recommendation 25: Work with the operators of visitor attractions, tourist hubs, and major event organisers to increase the proportion of visitors arriving at sites/festivals by public transport and other sustainable options.
 
-### Generators of Demand (Retail, Industry, and Freight)
-
-*Pages 111–117*
-
 Recommendation 23: Sporting organisations will encourage less car travel to sports fixtures and training sessions in collaboration with local communities.
 
 continue to be a challenge in meeting extra demand. Therefore, a phased implementation of the review’s recommendations commenced in September 2024. Planned pilot projects in the 2024/2025 school years will provide valuable insight on the impact on the scheme of increased demand, the possibilities to integrate public transport services with school transport services and the possibilities to facilitate more sustainable modes of transport. The findings from the evaluation will guide the planning and implementation needed for a national rollout of a revised School Transport Scheme. Implementation of the recommendations will continue to be planned, subject to resources being available to meet the increased demand. Recommendations with a focus on the education sector are defined as follows:
@@ -2880,6 +2968,10 @@ It is clear from discussions above that support measures are needed to expand th
 Throughout the review, the value of the School Transport Scheme to both families and in supporting wider Government policies has been very apparent. In summary, school transport not only plays an important part in supporting children’s access to education, but it also aligns with wider Government objectives, including supporting climate action targets, supporting working parents and the labour market, supporting families to live and work in rural Ireland and teaching life skills for children.
 
 Recommendation 22: Increase sustainable mobility supports for primary and secondary school-going children
+
+### Generators of Demand (Retail, Industry, and Freight)
+
+*Pages 111–117*
 
 Generators of Demand (Retail, Industry, and Freight)
 
@@ -3047,7 +3139,7 @@ This recommendation would also be aligned to the national position on rail freig
 
 ### Captive Car Users
 
-*Pages 118–122*
+*Pages 118–123*
 
 Captive Car Users
 
@@ -3137,17 +3229,17 @@ Recommendation 13: Develop further ‘supply side’ measures, particularly shar
 
 Recommendation 14: Review existing incentives for encouraging uptake of EVs, with a focus on targeted supports for Captive Car Usages.
 
-## Recommendations
-
-### Recommendations
-
-*Pages 123–127*
-
 ![Figure from page 123](assets/p123-f01.webp)
 
 *Figure from page 123*
 
 ## 10. Recommendations
+
+## Recommendations
+
+### Recommendations
+
+*Pages 124–128*
 
 The Strategy is not a prescriptive set of top-down actions. It is clear from the deliberations of the expert sub-groups that this type of approach will not work. As such, it is a strategic framework intended to provide the policy direction required at a national level to achieve these objectives, identifying the wide range of options that could be deployed at national, regional and local level, and supporting, guiding and enabling the appropriate authorities and entities, both in the public and private domain, to take ownership and shape their own actions in a coherent, evidence-based manner. It is vital to the credibility of the Strategy that its implementation is demonstrably fair and equitable. This has been the approach taken in developing the Strategy and it will continue to be the approach taken to its implementation.
 
@@ -3244,21 +3336,17 @@ Engaging with business sector to embed demand management principles and practice
 | 31 Establish mechanism to support demand management pilot measures. |  |
 | 32 | Establish an oversight mechanism to monitor and evaluate the Strategy. |
 
-## Delivery and Implementation
-
-### Delivery and Implementation
-
-*Pages 128–128*
-
 ![Figure from page 128](assets/p128-f01.webp)
 
 *Figure from page 128*
 
 ## 11. Delivery and Implementation
 
+## Delivery and Implementation
+
 ### Cost Implications of Delivering this Strategy
 
-*Pages 129–129*
+*Pages 129–130*
 
 Cost Implications of Delivering this Strategy
 
@@ -3276,19 +3364,23 @@ Finally, the Strategy has taken account of what is needed to achieve the strateg
 
 As mentioned earlier in the Strategy, analysis undertaken by the Department of Transport estimates that the cost of congestion in our cities is expected to rise substantially by 2040. Congestion is a symptom of an inefficient system, one that is at capacity at certain times. These costs do not consider the health costs associated with sedentary travel, air pollution (inside and
 
-### EU Taxonomy
-
-*Pages 130–130*
-
 outside of the vehicle) and stressful travel. Neither do these costs take account of the fines that will be applied to Ireland for not meeting its legally binding climate targets by 2030.
 
 successful delivery of recommendations, ensuring a strong focus on Value for Money.
+
+### EU Taxonomy
+
+*Pages 130–130*
 
 EU Taxonomy
 
 This aim of this Strategy is to communicate the high-level direction, consisting of a set of guiding principles, that will define the type of the actions that implementing authorities may take out to 2030 and beyond. It aims to identify where potential barriers to implementation exist and sets out a work programme to remove them. As it is not prescriptive on the nature of measures to be taken by implementing bodies, the full cost of measures to be deployed is not yet know.
 
 The EU Taxonomy for sustainable activities, established by EU Regulation 2020/852, is a classification system designed to guide investments towards environmentally sustainable economic activities. It aims to clarify what constitutes a sustainable activity and, in doing so, support the European Green Deal’s goals of carbon neutrality and a circular economy. The regulation, which came into force in July 2020, lays the groundwork for the taxonomy, while the European Commission is elaborating on it through delegated and implementing acts.
+
+### Value for Money
+
+*Pages 130–131*
 
 Value for Money
 
@@ -3326,10 +3418,6 @@ Given that reporting on Taxonomy alignment will become increasingly widespread i
 
 37 In line with the EU Taxonomy for Sustainable Activities, the CSO are building Ecosystem Accounts that follow the United Nations System of Environmental Economic Accounting (UN SEEA) framework and ongoing work to develop a monetary valuation of the accounts which will connect with the System of National Accounts
 
-### Financing Options
-
-*Pages 131–131*
-
 over the next few years, companies and financial services firms are expected to develop systems to comply with these requirements efficiently. This could propel the Taxonomy into becoming a leading-standard setter in sustainability in the Irish and European economies.
 
 The process to increase the monitoring of sustainability within public expenditure and increase the sustainable use of public funds, in general, is essential regardless of whether the framework underpinning it is a domestic one or the EU Taxonomy. Government should aim to lead by example in applying sustainability best practice and monitoring the sustainability of expenditure throughout its life-cycle.
@@ -3338,21 +3426,25 @@ Though the Taxonomy regulation is developed for use by the private sector, there
 
 The system for climate-tracking EU budget funding from the Recovery and Resilience Facility provides an example of how determining and monitoring climate and sustainability contributions of government expenditure might look under the Taxonomy.
 
+### Financing Options
+
+*Pages 131–132*
+
 Financing Options
 
 This Strategy also includes a recommendation aimed at exploring broader financing options for helping transport to transition to a cleaner and greener people-centered system. Among the options that may be explored are development contribution schemes, retail parking levies, European funding schemes, adoption of internal protocols within implementing bodies for harnessing private investment and financing supports from the European Investment Bank.
-
-## Evaluation and Review
-
-### Evaluation and Review
-
-*Pages 132–133*
 
 ![Figure from page 132](assets/p132-f01.webp)
 
 *Figure from page 132*
 
 ## 12. Evaluation and Review
+
+## Evaluation and Review
+
+### Evaluation and Review
+
+*Pages 133–134*
 
 The success of this Strategy will be measured against its objectives. Measuring such success is complex because this Strategy does not stand alone. Firstly, it is one of two key policy documents involved in the effort to reduce vehicle kilometres travelled - by reducing transport demand (this Strategy) and by increasing the opportunities for shifting to more sustainable journeys (the Sustainable Mobility Policy). This Strategy relies on the implementation of the SMP and the SMP’s objectives will be heavily assisted by this Strategy.
 
@@ -3371,10 +3463,6 @@ For example, transport directly affects the Built Environment in many ways, part
 ![Figure 17: Well-being framework](assets/p133-f01.webp)
 
 *Figure 17: Well-being framework*
-
-### Air Quality
-
-*Pages 134–134*
 
 Transport also impacts the Built Environment by influencing the proximity of users to transport services and the accessibility and choice of those services.
 
@@ -3404,15 +3492,15 @@ The transport sector can also contribute indirectly to other dimensions. By enab
 
 Taking all of the above into account, the following metrics will be used in assessing this Strategy:
 
+### Air Quality
+
+*Pages 134–135*
+
 Air Quality
 
 Air Quality is one of the greatest environmental health risks facing Ireland today. In recent years, the EPA has significantly upgraded its national monitoring network. This monitoring network allows the EPA to access localised, up-to-date air quality information. There are two key drivers of localised air pollution in Ireland - solid fuel and traffic. Solid fuel is the main source of particulate matter (PM10 and PM2.5) which are the air pollutants that are most detrimental to human health.
 
 Building on the OECD’s Redesigning Ireland’s Transport for Net Zero Report, which recommended that Ireland move away from targets based on enhanced mobility and instead target sustainable accessibility in order to enhance well-being, this Strategy aims to identify appropriate metrics for the transport sector which, in addition to more traditional metrics, could be
-
-### Percentage of Urban Road Space Designated to Vehicles
-
-*Pages 135–135*
 
 Transport, particularly from congested traffic, is a significant contributor to nitrogen dioxide (NOx) which is more of an issue in towns and cities. Given the localised impact that many demand management measures could have, the EPA’s monitoring and reporting of air quality to ensure compliance with limits under the EU’s Ambient Air Quality Directive provides the basis for assessing the potential impacts of any interventions, particularly in areas at risk of exceedances. As such, the annual Air Quality in Ireland Report will be used to track progress in improving transportrelated air quality.
 
@@ -3424,11 +3512,19 @@ Both surveys have merits, and the latest figures for 2019 - 2024 will serve as t
 
 From an acute health perspective, changes in acute hospital admissions for respiratory (asthma & COAD) and cardiac conditions may also be evaluated over time.
 
+### NTA National Household Travel Survey
+
+*Pages 135–135*
+
 NTA National Household Travel Survey
 
 The NTA’s National Household Travel Survey (NHTS) is a nationwide study of Ireland’s travel habits. From 2023 onwards, this is an annual survey and as such will give the most up-to-date information. The CSO’s National Travel Survey (NTS) is also worth utilising although there are a number of similarities between both.
 
 The CSO’s NTS was last carried out in 2019, and the next iteration is expected shortly. The sample for this survey is stratified using administrative county and population density. The sample used in the NTA’s NHTS is weighted using population estimates from the CSO Labour Force Survey (LFS).
+
+### Economic Cost of Congestion
+
+*Pages 135–135*
 
 Economic Cost of Congestion
 
@@ -3437,6 +3533,10 @@ As outlined earlier in this Strategy, the department prepares regular reports th
 The NHTS collects information on distance, duration and mode of transport used, making it a useful tool for measuring success. For in-depth analysis, it looks at travel in six regions Dublin City and suburbs, the GDA, the regional cities, urban towns, rural areas and other urban districts. The most recent NHTS highlights the dominance of car travel, with seven in 10 (71%) trips being made by car across Ireland. This is in line with the 2022 Census results.
 
 Future studies by the Department will capture any changes in trends related to congestion – positive or negative - following the implementation of demand management measures.
+
+### Percentage of Urban Road Space Designated to Vehicles
+
+*Pages 135–135*
 
 Percentage of Urban Road Space Designated to Vehicles
 
@@ -3454,9 +3554,17 @@ vehicles compared to that for pedestrians, in particular, and also for cycling a
 
 In order to assess well-being under the Housing and Built Environment dimension of Ireland’s Well-Being Framework, the CSO tracks the Average Distance to Everyday Services. This indicator refers to the average distance of residential dwellings to everyday services in Ireland such as schools and hospitals and provides insights on the differences in service accessibility within urban and rural areas. This indicator also provides information on the average distance of households to their nearest bus stop. The results of this indicator shows that the average distance for a house to the nearest public transport stop was 2.7km. However, as expected, this distance was significantly lower for urban areas and higher for rural areas. This reflects the greater provision of public transport services in more densely populated urban centres.
 
+### Noise Harmful Effects Assessments
+
+*Pages 136–136*
+
 Noise Harmful Effects Assessments
 
 Noise caused by transport is considered the second most significant environmental cause of ill health in Western Europe and as such, the reduction of noise pollution will be a benefit of this Strategy. To assess the impacts of the transport sector on noise pollution, the department will review the work of LAs and the other Noise Mapping Bodies (NMBs) (e.g. TII) in undertaking harmful effects assessments as required under S.I. No. 663/2021, European Communities (European Noise) (Amendment) Regulations 2021.
+
+### Road Traffic Volumes
+
+*Pages 136–136*
 
 Road Traffic Volumes
 
@@ -3476,9 +3584,9 @@ Given that the principal unit of measurement used to assess Road Traffic Volumes
 
 38 Road Traffic Volumes - Methodology
 
-### Safety Indicators
+### Public Transport Accessibility Levels
 
-*Pages 137–138*
+*Pages 137–137*
 
 Public Transport Accessibility Levels
 
@@ -3489,6 +3597,10 @@ While the indicators discussed above provide an indicative sense of the level of
 This indicator can be used to provide useful insights on the accessibility of the transport system.
 
 There is therefore a need for an indicator based on observed data, which is updated on a regular basis to provide insights into the level of sustainable accessibility provided by the transport network.
+
+### Safety Indicators
+
+*Pages 137–137*
 
 Safety Indicators
 
@@ -3505,6 +3617,10 @@ A potential source of this indicator is the Public Transport Accessibility Level
 In the five years between 2021 and 2025, Active Travel Road User Fatalities (cyclists and pedestrians) accounted for roughly 1 in four (27.7%) of all road user deaths. During this fiveyear period, the proportion of Active Travel Road User fatalities ranged from 19.6% in 2021 to 32.2% in 2022.
 
 ᴏ A major rail station is located in the area
+
+### Affordability Indicators
+
+*Pages 137–139*
 
 Affordability Indicators
 
@@ -3537,23 +3653,23 @@ Key Performance Indicators – Targeted Under CAP21 and CAP23
 
 The Strategy will also be reviewed, and recalibrated as necessary, to maximise its effect after three years following publication.
 
+![Figure from page 139](assets/p139-f01.webp)
+
+*Figure from page 139*
+
+## Appendix 1
+
+### Appendix 1
+
+*Pages 139–139*
+
+Appendix 1 Case Studies
+
 ## Case Studies
 
 ### 1 Sligo County Council:
 
 *Pages 140–145*
-
-An essential element of the Strategy is recognising existing and ongoing success, which can be harnessed to deliver impact. While the concept of demand management may be in its infancy in Ireland, there are many national and international examples of successful implementation in this area – examples that could be leveraged by other local authorities and agencies to achieve the objectives set out in this Strategy. The following represents a sample summary of case studies that were gathered to inform this Strategy and published as part of the public consultation process in 2024. As well as a case studies compendium, the subgroup reports featured many relevant examples of learnings from practice40.
-
-Background
-
-In 2023, as part of the Pathfinder Programme, Sligo partnered with Bolt to extend their shared e-bike scheme. Part of the motivation for this project was to make Sligo a “3km Cycle Friendly Town”. The Bolt e-Bike pilot had initially begun in July 2022. Initially intended as a 6-month pilot, it was extended for 12 months due to its popularity and success. The trial scheme included 40 designated bike parking areas around Sligo Town, with 80 bikes. The trial was successful, and has now been further extended, with additional charging stations, and more than 10,216 unique users recorded as of May 2025.
-
-National Case Studies
-
-Measure Impact
-
-The pilot sought to understand if a shared e-bike scheme could encourage the desired modal shift from private car usage towards sustainable transport within Sligo. Since its introduction, over 194,844 trips have been taken on the e-bikes, travelling over 371,534 kms (as of May 2025). The average journey is 9 minutes and covers a journey of 2km. The high uptake and usage following the pilot demonstrated the success of the scheme and helped to justify the case for an active travel corridor connecting Carraroe, Sligo Town and Atlantic Technological University which is currently being developed.
 
 1. Sligo County Council: Active Travel
 
@@ -3685,17 +3801,23 @@ Public space in Dublin is ever-changing and this can make it difficult for local
 
 ### Case Studies
 
-*Pages 139–139*
+*Pages 140–140*
 
-![Figure from page 139](assets/p139-f01.webp)
+An essential element of the Strategy is recognising existing and ongoing success, which can be harnessed to deliver impact. While the concept of demand management may be in its infancy in Ireland, there are many national and international examples of successful implementation in this area – examples that could be leveraged by other local authorities and agencies to achieve the objectives set out in this Strategy. The following represents a sample summary of case studies that were gathered to inform this Strategy and published as part of the public consultation process in 2024. As well as a case studies compendium, the subgroup reports featured many relevant examples of learnings from practice40.
 
-*Figure from page 139*
+Background
 
-Appendix 1 Case Studies
+In 2023, as part of the Pathfinder Programme, Sligo partnered with Bolt to extend their shared e-bike scheme. Part of the motivation for this project was to make Sligo a “3km Cycle Friendly Town”. The Bolt e-Bike pilot had initially begun in July 2022. Initially intended as a 6-month pilot, it was extended for 12 months due to its popularity and success. The trial scheme included 40 designated bike parking areas around Sligo Town, with 80 bikes. The trial was successful, and has now been further extended, with additional charging stations, and more than 10,216 unique users recorded as of May 2025.
+
+National Case Studies
+
+Measure Impact
+
+The pilot sought to understand if a shared e-bike scheme could encourage the desired modal shift from private car usage towards sustainable transport within Sligo. Since its introduction, over 194,844 trips have been taken on the e-bikes, travelling over 371,534 kms (as of May 2025). The average journey is 9 minutes and covers a journey of 2km. The high uptake and usage following the pilot demonstrated the success of the scheme and helped to justify the case for an active travel corridor connecting Carraroe, Sligo Town and Atlantic Technological University which is currently being developed.
 
 ### International Case Studies
 
-*Pages 146–152*
+*Pages 146–153*
 
 International Case Studies
 
@@ -3889,17 +4011,23 @@ Sustainable Funding: Transparent mechanisms ᴏ for reporting on and allocating 
 
 Economically efficient collection system: ᴏ The operational cost of road user charging in NZ represents c. 1% of the total road user charging revenue which compares very favourably to the operational cost of
 
-## Ensuring a Just Transition through Investment
-
-### Ensuring a Just Transition through Investment
-
-*Pages 153–159*
-
 ![Figure from page 153](assets/p153-f01.webp)
 
 *Figure from page 153*
 
+## Appendix 2
+
+### Appendix 2
+
+*Pages 153–153*
+
 Appendix 2 Ensuring a Just Transition through Investment
+
+## Ensuring a Just Transition through Investment
+
+### Ensuring a Just Transition through Investment
+
+*Pages 154–160*
 
 Keeping public transport affordable
 
@@ -4015,17 +4143,23 @@ As acknowledged in the NDP, there is a need for record levels of capital investm
 
 Without the large-scale investment envisaged in the NDP, the transport sector would be at critical risk of significantly underachieving in its effort to cut transport emissions in half by 2030. Demand management measures can help to minimise that risk, by complementing the investment envisaged in the coming years - through greater use of the infrastructure and services provided and greater efficiency through the consequential reduction in overall car journeys. For this reason, it is anticipated that the deployment of many demand management measures will be rolled out in tandem with, or subsequent to, the planned investment to 2030 and beyond, ensuring that ‘no one is left behind’ in our transition to a better and more efficient transport system.
 
-## Implementation Plan
-
-### Implementation Plan
-
-*Pages 160–176*
-
 ![Figure from page 160](assets/p160-f01.webp)
 
 *Figure from page 160*
 
+## Appendix 3
+
+### Appendix 3
+
+*Pages 160–160*
+
 Appendix 3 Implementation Plan
+
+## Implementation Plan
+
+### Implementation Plan
+
+*Pages 161–176*
 
 | Strengthened Implementation of Demand Management across National Planning System |  |  |  |  |  |  |
 | --- | --- | --- | --- | --- | --- | --- |

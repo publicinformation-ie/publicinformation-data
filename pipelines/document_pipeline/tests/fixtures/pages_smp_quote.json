@@ -1,0 +1,1203 @@
+[
+ {
+  "number": 28,
+  "width": 595.28,
+  "height": 841.89,
+  "rotation": 0,
+  "spans": [
+   {
+    "text": "National Sustainable Mobility Policy | ",
+    "font": "Lato-Regular",
+    "size": 8.0,
+    "bbox": [
+     42.52,
+     21.13,
+     173.97,
+     31.91
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Our Vision",
+    "font": "Lato-Regular",
+    "size": 8.0,
+    "bbox": [
+     173.97,
+     21.13,
+     211.0,
+     31.91
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 1
+   },
+   {
+    "text": "26",
+    "font": "Lato-Regular",
+    "size": 10.5,
+    "bbox": [
+     42.52,
+     791.23,
+     54.7,
+     805.37
+    ],
+    "block": 1,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "\"",
+    "font": "EuropaNr1SH-Bold",
+    "size": 70.0,
+    "bbox": [
+     512.15,
+     315.84,
+     543.23,
+     403.48
+    ],
+    "block": 2,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Targets ",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     76.54,
+     122.84,
+     133.93,
+     145.0
+    ],
+    "block": 3,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Our overarching targets are aligned with the ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     148.36,
+     271.8,
+     161.83
+    ],
+    "block": 4,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "transport target metrics in the Climate Action ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     161.4,
+     277.52,
+     174.87
+    ],
+    "block": 4,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Plan 2021 of 500,000 additional active travel ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     174.44,
+     276.67,
+     187.91
+    ],
+    "block": 4,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "and public transport journeys per day and a ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     187.48,
+     268.21,
+     200.95
+    ],
+    "block": 4,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "10% reduction in kilometres driven by fossil ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     200.52,
+     270.06,
+     213.99
+    ],
+    "block": 4,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "fuelled cars by 2030. It is estimated that this ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     213.56,
+     273.01,
+     227.03
+    ],
+    "block": 4,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "will deliver a reduction in greenhouse emissions ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     226.6,
+     287.57,
+     240.07
+    ],
+    "block": 4,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "of 1.4MtCO₂eq by 2030. The process for ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     239.64,
+     256.88,
+     253.11
+    ],
+    "block": 4,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "settling carbon budgets and associated sectoral ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     252.68,
+     285.6,
+     266.15
+    ],
+    "block": 4,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "emissions ceilings under the Climate Act, which ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     265.72,
+     285.46,
+     279.19
+    ],
+    "block": 4,
+    "line": 9,
+    "span": 0
+   },
+   {
+    "text": "is currently underway, may impact the targets for ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     278.76,
+     292.97,
+     292.23
+    ],
+    "block": 4,
+    "line": 10,
+    "span": 0
+   },
+   {
+    "text": "the transport chapter in the next revision of the ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     291.8,
+     286.93,
+     305.27
+    ],
+    "block": 4,
+    "line": 11,
+    "span": 0
+   },
+   {
+    "text": "Climate Action Plan 2022. Such changes will need ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     304.84,
+     296.75,
+     318.31
+    ],
+    "block": 4,
+    "line": 12,
+    "span": 0
+   },
+   {
+    "text": "to be taken into account as part of the on-going ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     317.88,
+     287.63,
+     331.35
+    ],
+    "block": 4,
+    "line": 13,
+    "span": 0
+   },
+   {
+    "text": "review of targets and indicators for this Policy. ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     330.92,
+     280.72,
+     344.39
+    ],
+    "block": 4,
+    "line": 14,
+    "span": 0
+   },
+   {
+    "text": "The principles, goals and actions set out in this ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     352.47,
+     282.43,
+     365.94
+    ],
+    "block": 5,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Policy represent a holistic framework to enable ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     365.51,
+     284.26,
+     378.98
+    ],
+    "block": 5,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "realisation of these challenging targets. In order ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     378.55,
+     286.21,
+     392.02
+    ],
+    "block": 5,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "to measure progress, a new annual National ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     391.59,
+     269.9,
+     405.06
+    ],
+    "block": 5,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "Household Travel Survey will be developed by ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     404.63,
+     278.82,
+     418.1
+    ],
+    "block": 5,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "the NTA, building on their experience gained ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     417.67,
+     273.99,
+     431.14
+    ],
+    "block": 5,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "through the current 5-year survey, and published ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     430.71,
+     292.77,
+     444.18
+    ],
+    "block": 5,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "each year. This annual survey will allow us ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     443.75,
+     261.33,
+     457.22
+    ],
+    "block": 5,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "track progress toward our targets, analyse the ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     456.79,
+     278.95,
+     470.26
+    ],
+    "block": 5,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "impact of post-COVID-19 travel patterns and ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     469.83,
+     277.04,
+     483.3
+    ],
+    "block": 5,
+    "line": 9,
+    "span": 0
+   },
+   {
+    "text": "provide a rich and current data source for Irish ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     482.87,
+     281.05,
+     496.34
+    ],
+    "block": 5,
+    "line": 10,
+    "span": 0
+   },
+   {
+    "text": "transport research. The first of these surveys will ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     495.91,
+     291.42,
+     509.38
+    ],
+    "block": 5,
+    "line": 11,
+    "span": 0
+   },
+   {
+    "text": "be available in early 2023 with annual updates ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     508.95,
+     281.19,
+     522.42
+    ],
+    "block": 5,
+    "line": 12,
+    "span": 0
+   },
+   {
+    "text": "published thereafter and will provide an evidence-",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     521.99,
+     295.15,
+     535.46
+    ],
+    "block": 5,
+    "line": 13,
+    "span": 0
+   },
+   {
+    "text": "informed perspective on progress toward our ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     535.03,
+     276.64,
+     548.5
+    ],
+    "block": 5,
+    "line": 14,
+    "span": 0
+   },
+   {
+    "text": "2030 targets. ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     548.07,
+     137.57,
+     561.54
+    ],
+    "block": 5,
+    "line": 15,
+    "span": 0
+   },
+   {
+    "text": "Implementation, monitoring ",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     76.54,
+     567.83,
+     286.94,
+     589.99
+    ],
+    "block": 6,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "and review ",
+    "font": "Lato-Bold",
+    "size": 16.0,
+    "bbox": [
+     76.54,
+     585.88,
+     160.93,
+     608.04
+    ],
+    "block": 6,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "The Policy is accompanied by an action plan to ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     611.4,
+     282.34,
+     624.87
+    ],
+    "block": 7,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "2025 with a comprehensive range of new and ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     624.44,
+     278.77,
+     637.91
+    ],
+    "block": 7,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "expanded measures across the 10 high-level ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     637.48,
+     272.37,
+     650.95
+    ],
+    "block": 7,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "goals. These will be supported by complementary ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     650.52,
+     294.09,
+     663.99
+    ],
+    "block": 7,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "actions from other relevant national policies and ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     663.56,
+     289.77,
+     677.03
+    ],
+    "block": 7,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "strategies, which will support delivery of the ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     676.6,
+     271.73,
+     690.07
+    ],
+    "block": 7,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "Policy’s goals. The action plan will be reviewed in ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     689.64,
+     292.46,
+     703.11
+    ],
+    "block": 7,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "2025 to measure how we are delivering our goals. ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     702.68,
+     296.71,
+     716.15
+    ],
+    "block": 7,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "This will allow us to take stock, to update actions ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     715.72,
+     292.65,
+     729.19
+    ],
+    "block": 7,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "and to add new actions where necessary for the ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     728.76,
+     288.18,
+     742.23
+    ],
+    "block": 7,
+    "line": 9,
+    "span": 0
+   },
+   {
+    "text": "remaining five years to 2030. ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     76.54,
+     741.8,
+     206.18,
+     755.27
+    ],
+    "block": 7,
+    "line": 10,
+    "span": 0
+   },
+   {
+    "text": "Learning from past experience, and as ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     124.81,
+     491.82,
+     138.28
+    ],
+    "block": 8,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "recommended by the OECD, the implementation ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     138.1,
+     540.24,
+     151.57
+    ],
+    "block": 8,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "of each action will be led by a named government ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     151.39,
+     542.95,
+     164.86
+    ],
+    "block": 8,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "department, state agency or other body with ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     164.68,
+     521.36,
+     178.15
+    ],
+    "block": 8,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "supporting stakeholders identified and timelines ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     177.97,
+     536.92,
+     191.44
+    ],
+    "block": 8,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "and outputs assigned against each action. In ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     191.26,
+     519.2,
+     204.73
+    ],
+    "block": 8,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "addition, the Policy is underpinned by a multi-",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     204.55,
+     524.34,
+     218.02
+    ],
+    "block": 8,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "annual investment programme under the NDP ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     217.84,
+     528.16,
+     231.31
+    ],
+    "block": 8,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "2021-2030 to provide a platform for delivery.  ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     231.13,
+     528.16,
+     244.6
+    ],
+    "block": 8,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "The timeline of the Policy is aligned with the ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     244.42,
+     520.0,
+     257.89
+    ],
+    "block": 8,
+    "line": 9,
+    "span": 0
+   },
+   {
+    "text": "timeline of the NDP which sets out the capital ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     257.71,
+     528.05,
+     271.18
+    ],
+    "block": 8,
+    "line": 10,
+    "span": 0
+   },
+   {
+    "text": "ceilings out to 2030 alongside five year rolling ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     271.0,
+     526.89,
+     284.47
+    ],
+    "block": 8,
+    "line": 11,
+    "span": 0
+   },
+   {
+    "text": "departmental capital ceilings and investment ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     284.29,
+     521.2,
+     297.76
+    ],
+    "block": 8,
+    "line": 12,
+    "span": 0
+   },
+   {
+    "text": "priorities. ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     297.58,
+     368.1,
+     311.05
+    ],
+    "block": 8,
+    "line": 13,
+    "span": 0
+   },
+   {
+    "text": "The Policy will be implemented in collaboration ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     543.87,
+     532.65,
+     557.34
+    ],
+    "block": 9,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "with other government departments, the ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     557.16,
+     504.81,
+     570.63
+    ],
+    "block": 9,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "NTA, Transport Infrastructure Ireland (TII), ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     570.45,
+     509.28,
+     583.92
+    ],
+    "block": 9,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "the regional assemblies, local authorities and ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     583.74,
+     521.59,
+     597.21
+    ],
+    "block": 9,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "other stakeholders. A Leadership Group will be ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     597.03,
+     529.86,
+     610.5
+    ],
+    "block": 9,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "established to oversee implementation of the ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     610.32,
+     524.39,
+     623.79
+    ],
+    "block": 9,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "Policy and delivery of the action plan including ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     623.61,
+     529.47,
+     637.08
+    ],
+    "block": 9,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "the mid-term review of the action plan in 2025. ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     636.9,
+     533.75,
+     650.37
+    ],
+    "block": 9,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "The group will be chaired by the Department ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     650.19,
+     522.42,
+     663.66
+    ],
+    "block": 9,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "of Transport and will include representatives ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     663.48,
+     519.66,
+     676.95
+    ],
+    "block": 9,
+    "line": 9,
+    "span": 0
+   },
+   {
+    "text": "of the key stakeholders involved in leading and ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     676.77,
+     530.45,
+     690.24
+    ],
+    "block": 9,
+    "line": 10,
+    "span": 0
+   },
+   {
+    "text": "supporting implementation of the actions. ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     690.06,
+     510.16,
+     703.53
+    ],
+    "block": 9,
+    "line": 11,
+    "span": 0
+   },
+   {
+    "text": "The Leadership Group will report to the Minister ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     715.35,
+     538.0,
+     728.82
+    ],
+    "block": 10,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "for Transport on a quarterly basis and progress ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     728.64,
+     529.21,
+     742.11
+    ],
+    "block": 10,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "on implementation of the Policy will be overseen ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     324.06,
+     741.93,
+     539.31,
+     755.4
+    ],
+    "block": 10,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "In order to measure progress, ",
+    "font": "Lato-Italic",
+    "size": 14.0,
+    "bbox": [
+     380.11,
+     357.7,
+     545.93,
+     374.06
+    ],
+    "block": 11,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "a new annual National ",
+    "font": "Lato-Italic",
+    "size": 14.0,
+    "bbox": [
+     414.96,
+     379.69,
+     545.93,
+     396.06
+    ],
+    "block": 12,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": " Household Travel Survey will ",
+    "font": "Lato-Italic",
+    "size": 14.0,
+    "bbox": [
+     378.05,
+     401.69,
+     545.9,
+     418.05
+    ],
+    "block": 13,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "be developed by the NTA, ",
+    "font": "Lato-Italic",
+    "size": 14.0,
+    "bbox": [
+     399.7,
+     423.68,
+     545.92,
+     440.05
+    ],
+    "block": 14,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "building on their experience gained ",
+    "font": "Lato-Italic",
+    "size": 14.0,
+    "bbox": [
+     345.77,
+     445.67,
+     545.9,
+     462.04
+    ],
+    "block": 15,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "through the current 5-year survey, ",
+    "font": "Lato-Italic",
+    "size": 14.0,
+    "bbox": [
+     350.26,
+     467.67,
+     545.91,
+     484.03
+    ],
+    "block": 16,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "and published each year. ",
+    "font": "Lato-Italic",
+    "size": 14.0,
+    "bbox": [
+     404.11,
+     489.66,
+     545.91,
+     506.03
+    ],
+    "block": 17,
+    "line": 0,
+    "span": 0
+   }
+  ],
+  "drawings": [],
+  "images": [],
+  "tables": []
+ }
+]

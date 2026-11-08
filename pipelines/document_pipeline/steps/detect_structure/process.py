@@ -59,7 +59,9 @@ OVERRIDE_FILENAME = "override.json"
 # `1 First Chapter`, `1.1 Introduction`, `1.1.1 Detail` — at most three levels,
 # at most two digits per level, and always a non-empty title after the number.
 HEADING_RE = re.compile(r"^(\d{1,2})(?:\.(\d{1,2}))?(?:\.(\d{1,2}))?\s+(\S.*)$")
-NUMBER_PREFIX_RE = re.compile(r"^(\d{1,2}(?:\.\d{1,2}){0,2})[.\s]+(\S.*)$")
+# Up to four levels (1.2.3.4). The lookahead stops a deeper number being split
+# mid-number into a digit-led title (`11.7.2` + `1 Craft…`).
+NUMBER_PREFIX_RE = re.compile(r"^(\d{1,2}(?:\.\d{1,2}){0,3})(?!\.?\d)(?:[.\s]+|(?=[A-Z][a-z]))(\S.*)$")
 _BOLD_RE = re.compile(r"bold|black|heavy|semib|\bhebo\b|\bcobo\b|\btibo\b", re.IGNORECASE)
 _NON_SLUG_RE = re.compile(r"[^a-z0-9]+")
 
@@ -95,6 +97,24 @@ MATCH_RATE_GATE = 0.60          # min share of plausible entries matched to fire
 SCORE_FLOOR = 1.05              # body-size multiplier; below this and not bold is rejected
 ISOLATION_BONUS = 0.3           # reward an occurrence flanked by body-sized text
 RIGHT_COLUMN_MIN_X_FRACTION = 0.5  # a bare number this far right is a page number
+# A wrapped heading's continuation line sits below the first at a baseline
+# pitch of at most this multiple of the heading's own type size (a tight
+# pitch is ~1.1-1.3x). Lines on one baseline (pitch ~0, i.e. separate columns)
+# and lines further apart than this are never joined.
+HEADING_JOIN_MAX_GAP = 1.6
+# A bookmark title is matched against at most this many wrapped lines.
+OUTLINE_TITLE_MAX_LINES = 4
+HEADING_JOIN_MIN_GAP = 0.5      # below this pitch, two lines share a baseline
+# A heading can be emitted as two spans grouped into two "lines" on one
+# baseline (`Appendix C |` + `Mitigation and Monitoring Measures`): the second
+# starts within this many points of where the first ends. A wider gap is a
+# column gutter, not a wrapped heading.
+SAME_LINE_SPAN_GAP = 6.0
+# Reading order rounds a line's y0 to this many points before comparing, so
+# lines on one visual baseline (differing by sub-point noise) sort left to
+# right. Too coarse and a two-column page interleaves; too fine and noise
+# reorders a single visual line.
+READING_ORDER_Y_GRID = 3.0
 
 # Fields an override.json entry may set. `slug` is the match key, not a value.
 OVERRIDE_FIELDS = {"level", "number", "title", "start_page", "start_y", "end_page",
@@ -114,6 +134,10 @@ class Line:
     block: int
     index: int
     page: int
+    # Text of the line's first span. A running header is often a constant
+    # lead ("National Sustainable Mobility Policy | ") followed by a span that
+    # changes per page, so the whole line never repeats but the lead does.
+    lead: str = ""
 
     @property
     def y0(self) -> float:
@@ -125,7 +149,12 @@ def is_bold(font) -> bool:
 
 
 def page_lines(page: dict) -> list:
-    """Group a page's spans into lines, in reading order.
+    """Group a page's spans into lines, in the extractor's raw span order.
+
+    Other steps (`clean_text`, `extract_figures`) share this function and rely
+    on that order — `clean_text` even uses out-of-y-order spans within a block
+    as its suspect-reading-order signal — so it deliberately does not sort.
+    Detection strategies use `reading_order_lines` instead.
 
     A line's size and font come from its largest span, so a line that starts
     with a small bullet or footnote marker is still classified by the type it
@@ -158,8 +187,22 @@ def page_lines(page: dict) -> list:
             block=key[0],
             index=key[1],
             page=page["number"],
+            lead=spans[0]["text"],
         ))
     return result
+
+
+def reading_order_lines(page: dict) -> list:
+    """A page's lines in reading order: top to bottom, then left to right.
+
+    Sorted by `(round(y0 / READING_ORDER_Y_GRID), x0, block, line)`. The
+    extractor's raw span order can put a footer page number before the running
+    header and a page title after all the body text. The grid rounds y so that
+    lines on one visual baseline sort by x rather than by sub-point noise.
+    Every detection strategy consumes lines through this function.
+    """
+    return sorted(page_lines(page),
+                  key=lambda l: (round(l.y0 / READING_ORDER_Y_GRID), l.bbox[0], l.block, l.index))
 
 
 def style_histogram(pages: list) -> Counter:
@@ -202,11 +245,29 @@ def running_header_texts(pages: list, fraction: float = RUNNING_HEADER_FRACTION)
     count = Counter()
     total = len(pages)
     for page in pages:
-        for line in page_lines(page):
+        for line in reading_order_lines(page):
             norm = normalize_heading_text(line.text)
             if len(norm) >= 4:
                 count[norm] += 1
-    return {text for text, n in count.items() if n / max(total, 1) >= fraction}
+    # n >= 2: a line seen on a single page is not repeating, however short the
+    # document (on a one-page input every line would otherwise be 100%).
+    return {text for text, n in count.items() if n >= 2 and n / max(total, 1) >= fraction}
+
+
+def running_header_leads(pages: list, fraction: float = RUNNING_HEADER_FRACTION) -> set:
+    """Normalized first-span texts that repeat on >= `fraction` of pages (and
+    on at least two). A running header such as `National Sustainable Mobility
+    Policy | <section name>` carries a constant lead span and a span that
+    changes per page, so the whole line never repeats while the lead does.
+    Counted once per page."""
+    count = Counter()
+    for page in pages:
+        leads = {normalize_heading_text(line.lead) for line in reading_order_lines(page)}
+        for lead in leads:
+            if len(lead) >= 4:
+                count[lead] += 1
+    total = max(len(pages), 1)
+    return {lead for lead, n in count.items() if n >= 2 and n / total >= fraction}
 
 
 # --------------------------------------------------------------------------
@@ -242,7 +303,7 @@ def slugify(text: str) -> str:
 
 
 def _make(level, number, title, page, y, confidence) -> Node:
-    title = str(title).strip()
+    title = clean_title(title)
     slug_source = f"{number} {title}" if number else title
     return Node(level=int(level), number=number, title=title, slug=slugify(slug_source),
                 start_page=int(page), start_y=round(float(y), 2), confidence=confidence)
@@ -269,6 +330,26 @@ def normalize_heading_text(text) -> str:
     return t.rstrip(".,;:!?\u2026 \t")
 
 
+_CONTROL_RE = re.compile(r"[\x00-\x1f\x7f]")
+# A leading pipe fragment (`| Investing in Transport`) or a dash glued straight
+# onto a letter (`-Moving`). A dash followed by a space is a bullet, which
+# `is_heading_candidate` rejects; stripping it first would launder a bullet
+# line into a passing title.
+_LEADING_FRAGMENT_RE = re.compile(r"^(?:[\s|]+|[-\u2013\u2014](?=[^\W\d_]))")
+
+
+def clean_title(text) -> str:
+    """Remove extraction artifacts from a title or slug source: control
+    characters (`\\x07`), whitespace runs, and a leading pipe/glued-dash
+    fragment. It does **not** strip dot leaders — a line carrying them is a
+    table-of-contents line, and `is_heading_candidate` must still see the
+    leaders to reject it (the TOC entry path strips them itself, via
+    `_strip_toc_suffix`, because there they are the expected shape)."""
+    t = _CONTROL_RE.sub(" ", str(text))
+    t = re.sub(r"\s+", " ", t).strip()
+    return _LEADING_FRAGMENT_RE.sub("", t).strip()
+
+
 def is_heading_candidate(title) -> bool:
     """A title that can plausibly be a heading: it has letters, is neither a
     single character nor over-long, and carries no dot leaders, bullets, or a
@@ -291,6 +372,122 @@ def is_heading_candidate(title) -> bool:
 # Strategies
 # --------------------------------------------------------------------------
 
+_WORD_AUTO_BOOKMARK_RE = re.compile(r"^_(?:Hlk|Toc|Ref|GoBack)\w*$", re.I)
+
+
+def filter_outline(outline):
+    """Drop bookmarks that have no usable title.
+
+    A bookmark is unusable when its title is empty, has no letters (`1.`), is
+    a Word auto-bookmark (`_Hlk25760943`), or otherwise fails
+    `is_heading_candidate`. Each drop is reported as `OutlineEntryDropped`
+    so a reviewer can see exactly what was removed; nothing is renamed.
+
+    Returns `(kept, problems)`.
+    """
+    kept, problems = [], []
+    for entry in outline or []:
+        raw = str(entry.get("title", ""))
+        title = clean_title(raw)
+        if _WORD_AUTO_BOOKMARK_RE.match(title) or not is_heading_candidate(title):
+            problems.append({
+                "error_type": "OutlineEntryDropped",
+                "error_message": f"Outline bookmark {raw!r} (page {entry.get('page')}) has no usable title and was dropped",
+                "context": {"title": raw, "page": entry.get("page")},
+            })
+            continue
+        kept.append(entry)
+    return kept, problems
+
+
+def _line_key(page_no: int, line) -> tuple:
+    """Identity of a line for the `used` set. Includes x so two column headings
+    on one baseline are distinct lines."""
+    return (page_no, round(line.y0, 1), round(line.bbox[0]))
+
+
+def _find_title_line(page_no: int, page, want: str, used: set, min_size=None):
+    """The unclaimed line on `page` whose text, alone or joined with up to
+    OUTLINE_TITLE_MAX_LINES - 1 wrapped continuation lines, normalizes to
+    exactly `want`; None if there is none. Partial matches never count. With
+    `min_size`, the first line must also be larger than that and pass
+    `is_heading_candidate` (the previous-page fallback's guard against a short
+    title exactly matching a body-text line)."""
+    if page is None or not want:
+        return None
+    lines = reading_order_lines(page)
+    for line in lines:
+        if _line_key(page_no, line) in used:
+            continue
+        if min_size is not None and (line.size <= min_size or not is_heading_candidate(clean_title(line.text))):
+            continue
+        _, text = _split_number(clean_title(line.text))
+        joined = text
+        current = line
+        for _ in range(OUTLINE_TITLE_MAX_LINES):
+            got = normalize_heading_text(joined)
+            if got == want:
+                return line
+            if len(got) < 3 or not want.startswith(got):
+                break
+            nxt = _heading_continuation(current, lines)
+            if nxt is None:
+                break
+            current = lines[nxt]
+            # A continuation line is title text even when it starts with a
+            # number (`13.7 metres in length`), so it is not number-split.
+            joined = f"{joined} {clean_title(current.text)}"
+    return None
+
+
+def resolve_outline_positions(outline, pages: list):
+    """Fill in `y` for outline entries that name only a page.
+
+    Many PDF bookmarks point at a page, not a position on it, so every entry on
+    a page would otherwise start at y=0 and the sections between them could not
+    be separated. For each such entry, find the line on that page whose text is
+    the entry's title, joined with up to OUTLINE_TITLE_MAX_LINES - 1 wrapped
+    continuation lines (a differently sized running header between them is
+    skipped), and use that line's top. Some producers (InDesign `/Fit`
+    destinations) point one page after the heading; only when the title has no
+    exact match on the stated page is the previous page tried, under the same
+    exact-match rule and only for a line larger than the body size (so a short
+    title cannot match body text), and a match there moves the entry's `page`. An entry
+    whose title cannot be located is left unchanged and reported, never
+    guessed; the validation gate then flags the tree.
+
+    Returns `(outline, problems)`; problems are `OutlineEntryUnresolved` dicts.
+    """
+    if not outline:
+        return outline, []
+    by_page = {int(p.get("number", i + 1)): p for i, p in enumerate(pages)}
+    used, resolved, problems = set(), [], []
+    for entry in outline:
+        if entry.get("y"):
+            resolved.append(entry)
+            continue
+        page_no = int(entry.get("page", 1))
+        _, title = _split_number(str(entry.get("title", "")))
+        want = normalize_heading_text(clean_title(title))
+        found_page = page_no
+        found = _find_title_line(page_no, by_page.get(page_no), want, used)
+        if found is None and page_no > 1:
+            found_page = page_no - 1
+            found = _find_title_line(found_page, by_page.get(found_page), want, used,
+                                     min_size=body_size(pages))
+        if found is None:
+            resolved.append(entry)
+            problems.append({
+                "error_type": "OutlineEntryUnresolved",
+                "error_message": f"Outline entry {entry.get('title')!r} (page {page_no}) names no position and its title was not found on the page; left at the page top",
+                "context": {"title": entry.get("title"), "page": page_no},
+            })
+            continue
+        used.add(_line_key(found_page, found))
+        resolved.append({**entry, "page": found_page, "y": found.y0})
+    return resolved, problems
+
+
 def from_outline(outline: list) -> list:
     nodes = []
     for entry in outline or []:
@@ -302,8 +499,36 @@ def from_outline(outline: list) -> list:
     return nodes
 
 
-def from_numbering(pages: list, body: float) -> list:
+def _heading_continuation(line: Line, lines: list):
+    """Index in `lines` of the line that continues a wrapped heading, or None.
+
+    A continuation shares the heading's rounded type size and bold class, sits
+    directly below it (horizontal overlap, baseline pitch within
+    HEADING_JOIN_MIN_GAP..HEADING_JOIN_MAX_GAP type sizes), and the heading
+    line does not end a sentence. Chosen by position, not by reading-order
+    adjacency: on a two-column page the line after a column-one line in
+    reading order is the column-two line on the same baseline.
+    """
+    if line.text.rstrip().endswith((".", "!", "?")):
+        return None
+    best, best_pitch = None, None
+    for index, other in enumerate(lines):
+        if other is line or other.size != line.size or is_bold(other.font) != is_bold(line.font):
+            continue
+        pitch = other.y0 - line.y0
+        if not (HEADING_JOIN_MIN_GAP * line.size <= pitch <= HEADING_JOIN_MAX_GAP * line.size):
+            continue
+        if min(line.bbox[2], other.bbox[2]) - max(line.bbox[0], other.bbox[0]) <= 0:
+            continue
+        if best_pitch is None or pitch < best_pitch:
+            best, best_pitch = index, pitch
+    return best
+
+
+def from_numbering(pages: list, body: float, skip_pages=frozenset()) -> list:
     """Headings of the form `1 Chapter` / `1.1 Section`, filtered by type size.
+    Pages in `skip_pages` (the detected TOC pages) contribute no candidates: a
+    table-of-contents line is never a body heading.
 
     The size guard is what keeps prose out: `2.4 million trips are made each
     day.` matches the pattern perfectly and is only rejected because it is set
@@ -311,14 +536,24 @@ def from_numbering(pages: list, body: float) -> list:
     """
     nodes = []
     for page in pages:
-        for line in page_lines(page):
+        if page["number"] in skip_pages:
+            continue
+        lines = reading_order_lines(page)
+        for line in lines:
             match = HEADING_RE.match(line.text)
             if not match:
                 continue
             if line.size < body * 1.05 and not is_bold(line.font):
                 continue
-            title = match.group(4).strip()
-            if len(title) > MAX_TITLE_CHARS or _looks_like_a_sentence(title):
+            title = match.group(4)
+            follow = _heading_continuation(line, lines)
+            if follow is not None and not HEADING_RE.match(lines[follow].text):
+                title = f"{title} {lines[follow].text}"
+            title = clean_title(title)
+            # A lowercase start is a wrapped sentence that happens to begin
+            # with a number (`26 weather events. The Q4 ...`), not a heading.
+            if (len(title) > MAX_TITLE_CHARS or _looks_like_a_sentence(title)
+                    or title[:1].islower() or not is_heading_candidate(title)):
                 continue
             parts = [g for g in match.groups()[:3] if g]
             nodes.append(_make(len(parts), ".".join(parts), title, line.page, line.y0,
@@ -326,17 +561,31 @@ def from_numbering(pages: list, body: float) -> list:
     return nodes
 
 
-def from_font_hierarchy(pages: list, body: float) -> list:
+def from_font_hierarchy(pages: list, body: float, skip_pages=frozenset()) -> list:
     levels = heading_levels(pages, body)
     if not levels:
         return []
     nodes = []
     for page in pages:
-        for line in page_lines(page):
+        if page["number"] in skip_pages:
+            continue
+        lines = reading_order_lines(page)
+        consumed = set()
+        for position, line in enumerate(lines):
+            if position in consumed:
+                continue
             level = levels.get(line.size)
             if level is None or len(line.text) > MAX_TITLE_CHARS:
                 continue
-            number, title = _split_number(line.text)
+            text = line.text
+            follow = _heading_continuation(line, lines)
+            if follow is not None:
+                consumed.add(follow)
+                text = f"{text} {lines[follow].text}"
+            number, title = _split_number(clean_title(text))
+            title = clean_title(title)
+            if not is_heading_candidate(title):
+                continue
             nodes.append(_make(level, number, title, line.page, line.y0, CONFIDENCE["font"]))
     return nodes
 
@@ -360,7 +609,7 @@ def _page_toc_signals(page: dict, body: float):
     """TOC-page signals for one page: a `contents` title at heading size, a
     `contents` title at any size, dot-leader line count, right-column page
     numbers."""
-    lines = page_lines(page)
+    lines = reading_order_lines(page)
     width = float(page.get("width") or 595.0)
     title_heading = title_any = False
     for line in lines:
@@ -377,7 +626,7 @@ def _page_toc_signals(page: dict, body: float):
 
 def _page_kind(page: dict):
     """Classify a flagged page as 'contents', 'list-of' (furniture), or None."""
-    for line in page_lines(page):
+    for line in reading_order_lines(page):
         norm = normalize_heading_text(line.text)
         if norm in TOC_TITLES:
             return "contents"
@@ -394,14 +643,43 @@ def _strip_toc_suffix(text: str) -> str:
     return t.strip()
 
 
-def _parse_toc_page(page: dict):
+def _toc_reading_order(page: dict) -> list:
+    """A TOC page's lines in column-major reading order: the left column top to
+    bottom, then the right column, each row left to right.
+
+    A two-column contents page (emra's, for one) lists chapters down the left
+    column and continues down the right; plain row-major order would interleave
+    the two columns and turn one chapter line into several entries. A line is
+    assigned to a column by its left edge relative to the page's mid-point, so
+    a full-width line (a title, a chapter opener) stays in the left column and
+    keeps its place in it.
+    """
+    width = float(page.get("width") or 595.0)
+    return sorted(page_lines(page),
+                  key=lambda l: (0 if l.bbox[0] < width * RIGHT_COLUMN_MIN_X_FRACTION else 1,
+                                 round(l.y0 / READING_ORDER_Y_GRID), l.bbox[0],
+                                 l.block, l.index))
+
+
+def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
     """Return (entries, flags) for one TOC page.
 
     Each entry is {title, number, level_hint, x0, furniture}. Handles the
     entry shapes the experiment documented: separate-line numbers (`1.` on its
     own line), right-hand page-number lines, and inline numbers.
+
+    Lines are consumed in reading order. Collection starts after the
+    `contents` title line (anything above it is page furniture); bare page
+    numbers are skipped wherever they sit, and so are running-header lines
+    (`running` holds whole-line texts, `running_leads` the repeating first-span
+    texts). A skipped line creates no entry, so it also contributes no `x0` to
+    `_infer_levels`. Lines are read column by column (`_toc_reading_order`).
     """
-    lines = page_lines(page)
+    lines = _toc_reading_order(page)
+    for position, candidate in enumerate(lines):
+        if normalize_heading_text(candidate.text) in TOC_TITLES:
+            lines = lines[position + 1:]
+            break
     width = float(page.get("width") or 595.0)
     entries = []
     flags = {"separate_line_number": False, "right_page_number": False,
@@ -424,9 +702,18 @@ def _parse_toc_page(page: dict):
             i += 1
             continue
 
-        # A bare page number sitting far right (right-hand column shape).
-        if re.fullmatch(r"\d{1,3}", text) and line.bbox[0] > width * RIGHT_COLUMN_MIN_X_FRACTION:
-            flags["right_page_number"] = True
+        # Running headers/footers are page furniture, not entries.
+        if norm in running or normalize_heading_text(line.lead) in running_leads:
+            i += 1
+            continue
+
+        # A bare page number (`12`, no trailing dot) is a page number wherever
+        # it sits: far right is the usual shape, but a footer number sits at
+        # the left edge. Dotted numbers (`1.`, `1.1`) stay separate-line
+        # section numbers, handled below.
+        if re.fullmatch(r"\d{1,3}", text):
+            if line.bbox[0] > width * RIGHT_COLUMN_MIN_X_FRACTION:
+                flags["right_page_number"] = True
             i += 1
             continue
 
@@ -441,12 +728,17 @@ def _parse_toc_page(page: dict):
                 nt = nxt.text.strip()
                 if re.fullmatch(r"\d{1,3}", nt) or normalize_heading_text(nt) in TOC_TITLES:
                     break
+                # Footer/header lines are page furniture, not title lines.
+                if (normalize_heading_text(nt) in running
+                        or normalize_heading_text(nxt.lead) in running_leads):
+                    i += 1
+                    continue
                 if re.fullmatch(r"\d{1,2}(?:\.\d{1,2}){0,2}\.?", nt) and len(nt) <= 7:
                     break
                 title_parts.append(nt)
                 i += 1
             raw = " ".join(title_parts)
-            title = _strip_toc_suffix(raw)
+            title = clean_title(_strip_toc_suffix(raw))
             if title and is_heading_candidate(title):
                 _note_leader(raw)
                 entries.append({"title": title, "number": number,
@@ -461,7 +753,7 @@ def _parse_toc_page(page: dict):
         if m:
             number = m.group(1)
             text = m.group(2)
-        title = _strip_toc_suffix(text)
+        title = clean_title(_strip_toc_suffix(text))
         if title and is_heading_candidate(title):
             _note_leader(text)
             entries.append({"title": title, "number": number,
@@ -519,13 +811,16 @@ def parse_toc(pages: list, body: float):
              "unicode_dot_leader": False, "ascii_dot_leader": False,
              "multi_toc": False, "title_at_body_size": False, "part_tocs": []}
 
+    running = running_header_texts(pages)
+    running_leads = running_header_leads(pages)
+
     all_entries = []
     for num in toc_pages:
         page = next(p for p in pages if p["number"] == num)
         title_heading, title_any, _, _ = _page_toc_signals(page, body)
         if title_any and not title_heading:
             flags["title_at_body_size"] = True
-        entries, page_flags = _parse_toc_page(page)
+        entries, page_flags = _parse_toc_page(page, running, running_leads)
         for key in ("separate_line_number", "right_page_number",
                     "unicode_dot_leader", "ascii_dot_leader"):
             flags[key] = flags[key] or page_flags[key]
@@ -543,11 +838,52 @@ def parse_toc(pages: list, body: float):
     return all_entries, toc_pages, level_signal, flags
 
 
-def _joined_runs(lines):
-    n = len(lines)
-    for k in (1, 2, 3):
-        for start in range(n - k + 1):
-            yield start, k, " ".join(l.text for l in lines[start:start + k])
+def _column_successors(lines) -> dict:
+    """Map a line index to the index of the line that continues it: either the
+    rest of the same visual line (the next span at the same baseline, starting
+    where this one ends) or the next line below in the same column.
+
+    Not simply the next line in reading order: on a two-column page, the line
+    after a column-one line is the column-two line on the same baseline, and
+    joining those would sand two headings together while splitting every
+    wrapped one.
+    """
+    successors = {}
+    for index, line in enumerate(lines):
+        same_line, same_line_gap = None, None
+        below, below_y = None, None
+        for other_index, other in enumerate(lines):
+            if other_index == index:
+                continue
+            if abs(other.y0 - line.y0) <= HEADING_JOIN_MIN_GAP * line.size:
+                gap = other.bbox[0] - line.bbox[2]
+                if 0 <= gap <= SAME_LINE_SPAN_GAP and (same_line_gap is None or gap < same_line_gap):
+                    same_line, same_line_gap = other_index, gap
+                continue
+            if other.y0 <= line.y0:
+                continue
+            if min(line.bbox[2], other.bbox[2]) - max(line.bbox[0], other.bbox[0]) <= 0:
+                continue
+            if below_y is None or other.y0 < below_y:
+                below, below_y = other_index, other.y0
+        best = same_line if same_line is not None else below
+        if best is not None:
+            successors[index] = best
+    return successors
+
+
+def _joined_runs(lines, successors=None):
+    """Yield `(line_indices, joined_text)` for one to three lines that follow
+    one another down one column."""
+    successors = _column_successors(lines) if successors is None else successors
+    for start in range(len(lines)):
+        indices = (start,)
+        yield indices, lines[start].text
+        current = start
+        while len(indices) < 3 and current in successors:
+            current = successors[current]
+            indices += (current,)
+            yield indices, " ".join(lines[i].text for i in indices)
 
 
 def build_occurrence_index(pages: list, toc_page_numbers: set, running_headers: set,
@@ -563,14 +899,19 @@ def build_occurrence_index(pages: list, toc_page_numbers: set, running_headers: 
     for page in pages:
         if page["number"] in toc_page_numbers:
             continue
-        lines = page_lines(page)
-        for _start, _k, joined in _joined_runs(lines):
+        lines = reading_order_lines(page)
+        successors = _column_successors(lines)
+        predecessors = {target: source for source, target in successors.items()}
+        for indices, joined in _joined_runs(lines, successors):
+            # Same cleanup the TOC side applies to entry titles, so a body
+            # heading `1.1 | Introduction` still meets the entry `Introduction`.
+            joined = clean_title(joined)
             norm = normalize_heading_text(joined)
             if norm in running_headers:
                 continue
-            block = lines[_start:_start + _k]
-            prev = lines[_start - 1] if _start > 0 else None
-            nxt = lines[_start + _k] if _start + _k < len(lines) else None
+            block = [lines[i] for i in indices]
+            prev = lines[predecessors[indices[0]]] if indices[0] in predecessors else None
+            nxt = lines[successors[indices[-1]]] if indices[-1] in successors else None
             occ = {
                 "page": page["number"],
                 "y0": block[0].y0,
@@ -583,7 +924,7 @@ def build_occurrence_index(pages: list, toc_page_numbers: set, running_headers: 
             index.setdefault(norm, []).append(occ)
             number, rest = _split_number(joined)
             if number:
-                index.setdefault(normalize_heading_text(rest), []).append(occ)
+                index.setdefault(normalize_heading_text(clean_title(rest)), []).append(occ)
     return index
 
 
@@ -608,15 +949,19 @@ def _below_score_floor(occ: dict, body: float) -> bool:
     return occ["size"] < body * SCORE_FLOOR and not occ["bold"]
 
 
-def _supplement_numbered_nodes(pages, body, base_nodes, entries, running_headers):
-    """Add legacy numbered headings not already in the TOC set. The font
+def _supplement_numbered_nodes(pages, body, base_nodes, entries, running_headers,
+                               toc_pages=frozenset()):
+    """Add legacy numbered headings not already among the base nodes. The font
     strategy is not used — it is the low-precision over-splitter this strategy
-    replaces, and re-adding its nodes reintroduces the junk."""
-    toc_set = {normalize_heading_text(e["title"]) for e in entries}
+    replaces, and re-adding its nodes reintroduces the junk. TOC pages are
+    excluded so a TOC line cannot re-enter as a body heading."""
     claimed = {(n.start_page, round(n.start_y, 1)) for n in base_nodes}
     extra = []
-    for node in from_numbering(pages, body):
-        if normalize_heading_text(node.title) in toc_set:
+    seen = {(normalize_heading_text(n.title), n.start_page) for n in base_nodes}
+    for node in from_numbering(pages, body, toc_pages):
+        # Skip only a duplicate of a node already present (same title, same
+        # page); a title merely listed in the TOC may recur as `N.1 Introduction`.
+        if (normalize_heading_text(node.title), node.start_page) in seen:
             continue
         if normalize_heading_text(node.title) in running_headers:
             continue
@@ -628,15 +973,16 @@ def _supplement_numbered_nodes(pages, body, base_nodes, entries, running_headers
     return base_nodes + extra
 
 
-def from_toc(pages: list, body: float):
+def from_toc(pages: list, body: float, parsed=None):
     """Build the TOC-name tree, or signal fallback.
 
     Returns (nodes, report). `nodes` is None when the strategy should not fire
     (no usable TOC, or match rate below the gate). `report` is None when there
     is no TOC at all; otherwise it carries the entry/matched counts, the match
-    rate, and the errors for errors.json.
+    rate, and the errors for errors.json. `parsed` is an optional precomputed
+    `parse_toc(pages, body)` result.
     """
-    entries, toc_pages, _level_signal, _flags = parse_toc(pages, body)
+    entries, toc_pages, _level_signal, _flags = parsed or parse_toc(pages, body)
     if not entries:
         return None, None
 
@@ -687,7 +1033,7 @@ def from_toc(pages: list, body: float):
              "match_rate": round(match_rate, 3), "gate": MATCH_RATE_GATE})]
         return None, report
 
-    nodes = _supplement_numbered_nodes(pages, body, nodes, entries, running)
+    nodes = _supplement_numbered_nodes(pages, body, nodes, entries, running, set(toc_pages))
     report["errors"] = errors
     return nodes, report
 
@@ -769,35 +1115,41 @@ def assign_page_ranges(nodes: list, page_count: int) -> list:
     return ordered
 
 
-def _legacy_cascade(pages: list, body: float):
-    """The pre-TOC cascade: numbering, then font, then flat."""
-    nodes, method = from_numbering(pages, body), "numbering"
+def _legacy_cascade(pages: list, body: float, toc_pages=frozenset()):
+    """The pre-TOC cascade: numbering, then font, then flat. Detected TOC pages
+    are excluded from both heading strategies."""
+    nodes, method = from_numbering(pages, body, toc_pages), "numbering"
     if len(nodes) < 2:
-        nodes, method = from_font_hierarchy(pages, body), "font"
+        nodes, method = from_font_hierarchy(pages, body, toc_pages), "font"
     if len(nodes) < 2:
         nodes, method = flat_fallback([p["number"] for p in pages]), "flat"
     return nodes, method
 
 
-def validate_split(nodes: list, page_count: int) -> list:
-    """Return a list of issue strings for a node list.
-
-    A split is valid only when every title passes the heading-candidate guard,
-    no two nodes share the same (start_page, start_y) boundary, and the union
-    of node page ranges covers from the first node's start_page through
-    page_count without gaps. Pages before the first node are front matter,
-    not a gap.
-    """
+def split_issues(nodes: list, page_count: int) -> list:
+    """Structured form of `validate_split`: a list of `{check, value, message}`
+    dicts, one per problem, so the production step can record *which* check
+    failed and the offending value rather than a free-text string."""
     issues = []
     for node in nodes:
         if not is_heading_candidate(node.title):
-            issues.append(f"node {node.slug!r} has a non-heading title {node.title!r}")
+            issues.append({"check": "non-heading-title", "value": node.title,
+                           "message": f"node {node.slug!r} has a non-heading title {node.title!r}"})
     seen = {}
     for node in nodes:
         key = (node.start_page, round(node.start_y, 1))
         if key in seen:
-            issues.append(f"duplicate boundary {node.slug!r} and {seen[key]!r}")
+            issues.append({"check": "duplicate-boundary", "value": [node.slug, seen[key]],
+                           "message": f"duplicate boundary {node.slug!r} and {seen[key]!r}"})
         seen[key] = node.slug
+    # A tree needs a root a reader can start from. Unconditional: an all-level-2
+    # tree has a single level, so a "more than one level" condition would miss
+    # exactly that failure. An all-level-1 (flat) tree is valid.
+    if nodes and not any(node.level == 1 for node in nodes):
+        issues.append({"check": "no-level-1-node",
+                       "value": sorted({node.level for node in nodes}),
+                       "message": "tree has no level-1 node (levels present: "
+                                  f"{sorted({node.level for node in nodes})})"})
     ordered = sorted(nodes, key=lambda n: (n.start_page, n.start_y))
     if not ordered:
         return issues
@@ -807,8 +1159,21 @@ def validate_split(nodes: list, page_count: int) -> list:
             covered.add(page)
     for page in range(ordered[0].start_page, page_count + 1):
         if page not in covered:
-            issues.append(f"coverage gap at page {page}")
+            issues.append({"check": "coverage-gap", "value": page,
+                           "message": f"coverage gap at page {page}"})
     return issues
+
+
+def validate_split(nodes: list, page_count: int) -> list:
+    """Return a list of issue strings for a node list.
+
+    A split is valid only when every title passes the heading-candidate guard,
+    no two nodes share the same (start_page, start_y) boundary, the node set
+    contains at least one level-1 node, and the union of node page ranges
+    covers from the first node's start_page through page_count without gaps.
+    Pages before the first node are front matter, not a gap.
+    """
+    return [issue["message"] for issue in split_issues(nodes, page_count)]
 
 
 def detect_structure(pages: list, outline=None, page_count=None):
@@ -826,11 +1191,13 @@ def detect_structure(pages: list, outline=None, page_count=None):
         nodes, method = from_outline(outline), "outline"
     else:
         body = body_size(pages)
-        toc_nodes, toc_report = from_toc(pages, body)
+        parsed = parse_toc(pages, body)
+        toc_pages = set(parsed[1])
+        toc_nodes, toc_report = from_toc(pages, body, parsed)
         if toc_nodes is not None and len(toc_nodes) >= 2:
             nodes, method = toc_nodes, "toc"
         else:
-            nodes, method = _legacy_cascade(pages, body)
+            nodes, method = _legacy_cascade(pages, body, toc_pages)
 
     total = int(page_count or len(pages))
     nodes = dedupe_slugs(_in_document_order(nodes))
@@ -849,6 +1216,7 @@ def merge_overrides(nodes: list, patches: list, page_count=None):
     errors = []
     indexed = {node.slug: node for node in nodes}
     applied = {}
+    dropped = False
 
     for patch in patches or []:
         if not isinstance(patch, dict):
@@ -860,6 +1228,26 @@ def merge_overrides(nodes: list, patches: list, page_count=None):
             errors.append(_error("MalformedOverride",
                                  "override entry has no 'slug' to match on",
                                  {"entry": json.dumps(patch, ensure_ascii=False)[:200]}))
+            continue
+        if "drop" in patch:
+            # A node removed by hand: the previous boundary absorbs its text.
+            # Used where detection is right but the boundary model cannot
+            # represent it (two section headings side by side on one baseline).
+            if patch["drop"] is not True or set(patch) != {"slug", "drop"}:
+                errors.append(_error(
+                    "MalformedOverride",
+                    f"override for {slug!r}: 'drop' must be true and the only other field",
+                    {"slug": slug}))
+                continue
+            if slug not in indexed:
+                errors.append(_error(
+                    "UnknownOverrideSlug",
+                    f"override drops slug {slug!r}, which detection did not produce",
+                    {"slug": slug}))
+                continue
+            del indexed[slug]
+            applied.pop(slug, None)
+            dropped = True
             continue
         unknown = sorted(set(patch) - OVERRIDE_FIELDS - {"slug"})
         if unknown:
@@ -879,7 +1267,7 @@ def merge_overrides(nodes: list, patches: list, page_count=None):
         applied[slug] = values
 
     merged = list(indexed.values())
-    if applied:
+    if applied or dropped:
         # Recompute the derived fields so a moved or re-levelled node still has
         # consistent parents and page ranges, then re-apply the explicit values
         # on top so a hand-set derived field is not immediately clobbered.
@@ -943,7 +1331,18 @@ def process(upstream_records, pages_base_dir, step_dir, writer, doc_slug=None,
 
         pages = load_pages(pages_base_dir, record)
         page_count = int(record.get("page_count") or len(pages))
-        nodes, method, toc_report = detect_structure(pages, record.get("outline"), page_count)
+        outline, outline_problems = filter_outline(record.get("outline"))
+        outline, unresolved = resolve_outline_positions(outline, pages)
+        outline_problems += unresolved
+        for problem in outline_problems:
+            append_error(step_dir, {
+                "step": STEP_NAME,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "error_type": problem["error_type"],
+                "error_message": problem["error_message"],
+                "context": {"doc_slug": slug, **problem["context"]},
+            })
+        nodes, method, toc_report = detect_structure(pages, outline, page_count)
 
         if toc_report is not None:
             for problem in toc_report.get("errors", []):
@@ -968,6 +1367,20 @@ def process(upstream_records, pages_base_dir, step_dir, writer, doc_slug=None,
                     "error_message": problem["error_message"],
                     "context": {"doc_slug": slug, **problem["context"]},
                 })
+
+        # Validate the tree as it will be written, after overrides. Never alters
+        # the tree: a failing document is still written, and the failure is
+        # recorded for triage. An unresolved entry is resolved by a code fix or
+        # a committed override.json entry, and blocks the merge that publishes.
+        for issue in split_issues(nodes, page_count):
+            append_error(step_dir, {
+                "step": STEP_NAME,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "error_type": "InvalidStructure",
+                "error_message": f"Detected tree fails validation: {issue['message']}",
+                "context": {"doc_slug": slug, "check": issue["check"],
+                            "value": issue["value"], "detection_method": method},
+            })
 
         if method == "flat":
             # Not a failure — the document still publishes — but a human should

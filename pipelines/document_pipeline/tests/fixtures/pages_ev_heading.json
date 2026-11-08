@@ -1,0 +1,1679 @@
+[
+ {
+  "number": 17,
+  "width": 595.28,
+  "height": 841.89,
+  "rotation": 0,
+  "spans": [
+   {
+    "text": "Electric Vehicle Charging Infrastructure Strategy",
+    "font": "Lato-Regular",
+    "size": 8.0,
+    "bbox": [
+     342.39,
+     21.13,
+     510.18,
+     31.91
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": " 2022-2025",
+    "font": "Lato-Regular",
+    "size": 8.0,
+    "bbox": [
+     509.98,
+     21.13,
+     552.12,
+     31.91
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 1
+   },
+   {
+    "text": "15",
+    "font": "Lato-Regular",
+    "size": 10.5,
+    "bbox": [
+     540.58,
+     791.23,
+     552.76,
+     805.37
+    ],
+    "block": 1,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "The United Nations has identified climate change as the defining crisis of our time",
+    "font": "Lato-Bold",
+    "size": 11.5,
+    "bbox": [
+     52.05,
+     124.17,
+     467.98,
+     140.09
+    ],
+    "block": 4,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "4",
+    "font": "Lato-Bold",
+    "size": 4.66,
+    "bbox": [
+     468.06,
+     129.02,
+     470.76,
+     135.48
+    ],
+    "block": 4,
+    "line": 0,
+    "span": 1
+   },
+   {
+    "text": " and in ",
+    "font": "Lato-Bold",
+    "size": 11.5,
+    "bbox": [
+     470.76,
+     124.17,
+     507.39,
+     140.09
+    ],
+    "block": 4,
+    "line": 0,
+    "span": 2
+   },
+   {
+    "text": "2019, Ireland became the second country in the world to declare a climate emergency",
+    "font": "Lato-Bold",
+    "size": 11.5,
+    "bbox": [
+     52.05,
+     139.22,
+     487.96,
+     155.15
+    ],
+    "block": 4,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "5",
+    "font": "Lato-Bold",
+    "size": 4.66,
+    "bbox": [
+     488.05,
+     144.08,
+     490.76,
+     150.54
+    ],
+    "block": 4,
+    "line": 1,
+    "span": 1
+   },
+   {
+    "text": ". ",
+    "font": "Lato-Bold",
+    "size": 11.5,
+    "bbox": [
+     490.76,
+     139.22,
+     496.28,
+     155.15
+    ],
+    "block": 4,
+    "line": 1,
+    "span": 2
+   },
+   {
+    "text": "Science tells us that through human actions, particularly the burning of fossil fuels, our ",
+    "font": "Lato-Bold",
+    "size": 11.5,
+    "bbox": [
+     52.04,
+     154.27,
+     493.77,
+     170.2
+    ],
+    "block": 4,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "world is heating. This is leading to rapid changes in weather patterns, with many negative ",
+    "font": "Lato-Bold",
+    "size": 11.5,
+    "bbox": [
+     52.04,
+     169.33,
+     506.7,
+     185.26
+    ],
+    "block": 4,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "impacts on connected natural and human environments",
+    "font": "Lato-Bold",
+    "size": 11.5,
+    "bbox": [
+     52.04,
+     184.38,
+     335.16,
+     200.31
+    ],
+    "block": 4,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "6",
+    "font": "Lato-Bold",
+    "size": 4.66,
+    "bbox": [
+     335.2,
+     189.24,
+     337.91,
+     195.7
+    ],
+    "block": 4,
+    "line": 4,
+    "span": 1
+   },
+   {
+    "text": ". Nationally and internationally, ",
+    "font": "Lato-Bold",
+    "size": 11.5,
+    "bbox": [
+     337.91,
+     184.38,
+     499.49,
+     200.31
+    ],
+    "block": 4,
+    "line": 4,
+    "span": 2
+   },
+   {
+    "text": "fast and meaningful action to reduce global warming has been identified as a priority, with a ",
+    "font": "Lato-Bold",
+    "size": 11.5,
+    "bbox": [
+     52.05,
+     199.44,
+     521.31,
+     215.36
+    ],
+    "block": 4,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "focus on limiting emissions of the greenhouse gases that cause global warming. ",
+    "font": "Lato-Bold",
+    "size": 11.5,
+    "bbox": [
+     52.05,
+     214.49,
+     457.07,
+     230.42
+    ],
+    "block": 4,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "1.1 \u0007National and international ",
+    "font": "Lato-Bold",
+    "size": 14.0,
+    "bbox": [
+     52.05,
+     241.79,
+     248.52,
+     261.18
+    ],
+    "block": 5,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "policy context",
+    "font": "Lato-Bold",
+    "size": 14.0,
+    "bbox": [
+     76.13,
+     259.85,
+     167.46,
+     279.24
+    ],
+    "block": 5,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1.1.1 Climate Action Plan ",
+    "font": "Lato-Regular",
+    "size": 12.0,
+    "bbox": [
+     52.05,
+     281.02,
+     187.81,
+     297.19
+    ],
+    "block": 6,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "In Ireland, where climate change and its impacts ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     52.05,
+     299.07,
+     263.41,
+     312.54
+    ],
+    "block": 7,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "are a key concern of citizens",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     52.05,
+     312.12,
+     175.31,
+     325.59
+    ],
+    "block": 7,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "7",
+    "font": "Lato-Regular",
+    "size": 4.66,
+    "bbox": [
+     175.3,
+     315.22,
+     178.01,
+     321.5
+    ],
+    "block": 7,
+    "line": 1,
+    "span": 1
+   },
+   {
+    "text": ", the Government is ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     178.01,
+     312.12,
+     266.58,
+     325.59
+    ],
+    "block": 7,
+    "line": 1,
+    "span": 2
+   },
+   {
+    "text": "firmly committed to action. This has been shown ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     52.05,
+     325.17,
+     266.41,
+     338.64
+    ],
+    "block": 7,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "clearly over the last number of years, leading up ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     52.05,
+     338.22,
+     262.69,
+     351.69
+    ],
+    "block": 7,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "to the Climate Action Plan 2023.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     52.05,
+     351.27,
+     194.86,
+     364.74
+    ],
+    "block": 7,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "M",
+    "font": "ZapfDingbatsITC",
+    "size": 5.0,
+    "bbox": [
+     52.05,
+     374.55,
+     56.0,
+     379.55
+    ],
+    "block": 8,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "June 2019:",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     63.38,
+     369.8,
+     112.36,
+     383.65
+    ],
+    "block": 8,
+    "line": 1,
+    "span": 2
+   },
+   {
+    "text": " The first all-of-Government ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     112.36,
+     370.01,
+     237.16,
+     383.48
+    ],
+    "block": 8,
+    "line": 1,
+    "span": 3
+   },
+   {
+    "text": "Climate Action Plan was published, setting out ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     63.38,
+     383.06,
+     268.05,
+     396.53
+    ],
+    "block": 9,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "a pathway to reducing key greenhouse gas ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     63.38,
+     396.11,
+     251.11,
+     409.58
+    ],
+    "block": 9,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "carbon emissions from all sectors.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     63.38,
+     409.16,
+     210.84,
+     422.63
+    ],
+    "block": 9,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "M",
+    "font": "ZapfDingbatsITC",
+    "size": 5.0,
+    "bbox": [
+     52.05,
+     429.6,
+     56.0,
+     434.6
+    ],
+    "block": 10,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "June 2020:",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     63.38,
+     424.85,
+     112.36,
+     438.7
+    ],
+    "block": 10,
+    "line": 1,
+    "span": 2
+   },
+   {
+    "text": " The Programme for Government ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     112.36,
+     425.06,
+     259.32,
+     438.53
+    ],
+    "block": 10,
+    "line": 1,
+    "span": 3
+   },
+   {
+    "text": "(2020) committed to achieving a 7% average ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     63.38,
+     438.11,
+     260.08,
+     451.58
+    ],
+    "block": 11,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "annual carbon emissions reduction to 2030",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     63.38,
+     451.16,
+     252.5,
+     464.63
+    ],
+    "block": 11,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "8",
+    "font": "Lato-Regular",
+    "size": 4.66,
+    "bbox": [
+     252.5,
+     454.26,
+     255.21,
+     460.54
+    ],
+    "block": 11,
+    "line": 1,
+    "span": 1
+   },
+   {
+    "text": ".",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     255.21,
+     451.17,
+     257.57,
+     464.64
+    ],
+    "block": 11,
+    "line": 1,
+    "span": 2
+   },
+   {
+    "text": "M",
+    "font": "ZapfDingbatsITC",
+    "size": 5.0,
+    "bbox": [
+     52.05,
+     471.59,
+     56.0,
+     476.59
+    ],
+    "block": 12,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "July 2021: ",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     63.38,
+     466.85,
+     111.32,
+     480.7
+    ],
+    "block": 12,
+    "line": 1,
+    "span": 2
+   },
+   {
+    "text": "The Climate Action and Low Carbon ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     111.32,
+     467.06,
+     271.56,
+     480.53
+    ],
+    "block": 12,
+    "line": 1,
+    "span": 3
+   },
+   {
+    "text": "Development (Amendment) Act 2021",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     63.38,
+     480.11,
+     227.53,
+     493.58
+    ],
+    "block": 13,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "9",
+    "font": "Lato-Regular",
+    "size": 4.66,
+    "bbox": [
+     227.54,
+     483.2,
+     230.24,
+     489.49
+    ],
+    "block": 13,
+    "line": 0,
+    "span": 1
+   },
+   {
+    "text": " came ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     230.24,
+     480.11,
+     258.6,
+     493.58
+    ],
+    "block": 13,
+    "line": 0,
+    "span": 2
+   },
+   {
+    "text": "into effect. Ireland’s ultimate objective of ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     63.38,
+     493.16,
+     244.92,
+     506.63
+    ],
+    "block": 13,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "achieving carbon neutrality by 2020 (through ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     63.38,
+     506.21,
+     262.7,
+     519.68
+    ],
+    "block": 13,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "a just transition) was made legally-binding ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     63.38,
+     519.26,
+     248.64,
+     532.73
+    ],
+    "block": 13,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "through this act.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     63.38,
+     532.31,
+     134.69,
+     545.78
+    ],
+    "block": 13,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "M",
+    "font": "ZapfDingbatsITC",
+    "size": 5.0,
+    "bbox": [
+     52.05,
+     552.75,
+     56.0,
+     557.75
+    ],
+    "block": 14,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "November 2021:",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     63.38,
+     548.0,
+     138.09,
+     561.85
+    ],
+    "block": 14,
+    "line": 1,
+    "span": 2
+   },
+   {
+    "text": " A new Climate Action Plan ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     138.09,
+     548.21,
+     258.79,
+     561.68
+    ],
+    "block": 14,
+    "line": 1,
+    "span": 3
+   },
+   {
+    "text": "was published in 2021",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     63.38,
+     561.26,
+     161.66,
+     574.73
+    ],
+    "block": 15,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "10",
+    "font": "Lato-Regular",
+    "size": 4.66,
+    "bbox": [
+     161.67,
+     564.36,
+     167.08,
+     570.64
+    ],
+    "block": 15,
+    "line": 0,
+    "span": 1
+   },
+   {
+    "text": " to reflect increased ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     167.08,
+     561.27,
+     256.4,
+     574.74
+    ],
+    "block": 15,
+    "line": 0,
+    "span": 2
+   },
+   {
+    "text": "climate action ambitions. It also mapped out ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     63.39,
+     574.32,
+     258.92,
+     587.79
+    ],
+    "block": 15,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "(on a sector-by-sector basis) the actions to be ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     63.39,
+     587.37,
+     264.73,
+     600.84
+    ],
+    "block": 15,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "taken to achieve a 51% reduction in overall ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     63.39,
+     600.42,
+     254.22,
+     613.89
+    ],
+    "block": 15,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "greenhouse gas emissions by 2030.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     63.39,
+     613.47,
+     217.82,
+     626.94
+    ],
+    "block": 15,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "M",
+    "font": "ZapfDingbatsITC",
+    "size": 5.0,
+    "bbox": [
+     52.05,
+     633.91,
+     56.0,
+     638.91
+    ],
+    "block": 16,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "April 2022: ",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     63.38,
+     629.16,
+     115.38,
+     643.01
+    ],
+    "block": 16,
+    "line": 1,
+    "span": 2
+   },
+   {
+    "text": "The carbon budget programme ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     115.38,
+     629.37,
+     253.39,
+     642.84
+    ],
+    "block": 16,
+    "line": 1,
+    "span": 3
+   },
+   {
+    "text": "(proposed by the Climate Change Advisory ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     63.38,
+     642.42,
+     252.01,
+     655.89
+    ],
+    "block": 17,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Council of the Houses of the Oireachtas) was ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     310.9,
+     241.4,
+     510.14,
+     254.87
+    ],
+    "block": 18,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "formally adopted. These carbon budgets placed ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     310.9,
+     254.62,
+     520.1,
+     268.09
+    ],
+    "block": 18,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "legally-binding limits on the level of emissions ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     310.9,
+     267.84,
+     513.19,
+     281.31
+    ],
+    "block": 18,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "that may be released during a specific time ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     310.9,
+     281.06,
+     499.93,
+     294.53
+    ],
+    "block": 18,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "period. This was the first time such limits had ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     310.9,
+     294.28,
+     510.26,
+     307.75
+    ],
+    "block": 18,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "been introduced. ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     310.9,
+     307.5,
+     387.46,
+     320.97
+    ],
+    "block": 18,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "M",
+    "font": "ZapfDingbatsITC",
+    "size": 5.0,
+    "bbox": [
+     299.57,
+     328.13,
+     303.52,
+     333.13
+    ],
+    "block": 19,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "July 2022:",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     310.9,
+     323.38,
+     356.41,
+     337.23
+    ],
+    "block": 19,
+    "line": 1,
+    "span": 2
+   },
+   {
+    "text": " The Government established ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     356.41,
+     323.59,
+     487.23,
+     337.06
+    ],
+    "block": 19,
+    "line": 1,
+    "span": 3
+   },
+   {
+    "text": "sectoral emission ceilings for relevant sectors ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     310.9,
+     336.81,
+     510.57,
+     350.28
+    ],
+    "block": 20,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "of the economy. Under these ceilings, the ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     310.9,
+     350.03,
+     494.39,
+     363.5
+    ],
+    "block": 20,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "transport sector is obligated to achieve a 50% ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     310.9,
+     363.25,
+     513.26,
+     376.72
+    ],
+    "block": 20,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "reduction in emissions by 2030.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     310.9,
+     376.47,
+     449.68,
+     389.94
+    ],
+    "block": 20,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "M",
+    "font": "ZapfDingbatsITC",
+    "size": 5.0,
+    "bbox": [
+     299.57,
+     397.08,
+     303.52,
+     402.08
+    ],
+    "block": 21,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "December 2022:",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     310.9,
+     392.34,
+     384.96,
+     406.19
+    ],
+    "block": 21,
+    "line": 1,
+    "span": 2
+   },
+   {
+    "text": " Publication of the Climate ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     384.96,
+     392.55,
+     503.48,
+     406.02
+    ],
+    "block": 21,
+    "line": 1,
+    "span": 3
+   },
+   {
+    "text": "Action Plan 2023. This will be the first ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     310.9,
+     405.77,
+     479.82,
+     419.24
+    ],
+    "block": 22,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "statutory Climate Action Plan to take the ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     310.9,
+     418.99,
+     491.66,
+     432.46
+    ],
+    "block": 22,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "legally-binding carbon budget programme and ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     310.9,
+     432.21,
+     514.71,
+     445.68
+    ],
+    "block": 22,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "sectoral emissions ceilings into account, and ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     310.9,
+     445.43,
+     505.78,
+     458.9
+    ],
+    "block": 22,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "each sector must set out a clear action plan and ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     310.9,
+     458.65,
+     521.3,
+     472.12
+    ],
+    "block": 22,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "pathway to meeting its emissions abatement ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     310.9,
+     471.87,
+     508.16,
+     485.34
+    ],
+    "block": 22,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "targets. ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     310.9,
+     485.09,
+     346.18,
+     498.56
+    ],
+    "block": 22,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "Transport is closely tied to economic growth ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     299.56,
+     510.31,
+     495.44,
+     523.78
+    ],
+    "block": 23,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "as well as being heavily reliant on fossil fuels. ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     299.56,
+     523.53,
+     498.02,
+     537.0
+    ],
+    "block": 23,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "As a result, it has a key role to play in the fight ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     299.56,
+     536.75,
+     502.58,
+     550.22
+    ],
+    "block": 23,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "against climate change. In Ireland, transport is ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     299.56,
+     549.97,
+     501.46,
+     563.44
+    ],
+    "block": 23,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "responsible for about a fifth of our total national ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     299.56,
+     563.19,
+     512.27,
+     576.66
+    ],
+    "block": 23,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "carbon emissions, with passenger cars accounting ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     299.56,
+     576.41,
+     518.83,
+     589.88
+    ],
+    "block": 23,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "for nearly half of the transport total",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     299.56,
+     589.63,
+     454.23,
+     603.1
+    ],
+    "block": 23,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "11",
+    "font": "Lato-Regular",
+    "size": 4.66,
+    "bbox": [
+     454.24,
+     592.79,
+     459.65,
+     599.07
+    ],
+    "block": 23,
+    "line": 6,
+    "span": 1
+   },
+   {
+    "text": ". Because ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     459.65,
+     589.7,
+     503.72,
+     603.17
+    ],
+    "block": 23,
+    "line": 6,
+    "span": 2
+   },
+   {
+    "text": "of this, transitioning the Irish transport sector ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     299.57,
+     602.92,
+     500.24,
+     616.39
+    ],
+    "block": 23,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "away from the use of fossil fuels and towards ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     299.57,
+     616.14,
+     499.37,
+     629.61
+    ],
+    "block": 23,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "sustainable forms of travel is a key objective in ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     299.57,
+     629.36,
+     505.06,
+     642.83
+    ],
+    "block": 23,
+    "line": 9,
+    "span": 0
+   },
+   {
+    "text": "the achievement of Ireland’s climate goals.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     299.57,
+     642.58,
+     483.99,
+     656.05
+    ],
+    "block": 23,
+    "line": 10,
+    "span": 0
+   },
+   {
+    "text": "4\t",
+    "font": "Lato-Regular",
+    "size": 4.08,
+    "bbox": [
+     51.02,
+     678.04,
+     54.44,
+     683.54
+    ],
+    "block": 24,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "https://www.un.org/en/un75/climate-crisis-race-we-can-win, accessed 04/03/2022.",
+    "font": "Lato-Regular",
+    "size": 7.0,
+    "bbox": [
+     59.53,
+     677.22,
+     318.69,
+     686.65
+    ],
+    "block": 24,
+    "line": 0,
+    "span": 2
+   },
+   {
+    "text": "5\t",
+    "font": "Lato-Regular",
+    "size": 4.08,
+    "bbox": [
+     51.02,
+     687.04,
+     54.44,
+     692.54
+    ],
+    "block": 25,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "https://www.rte.ie/news/environment/2019/0509/1048525-climate-emergency/, accessed 04/03/2022.",
+    "font": "Lato-Regular",
+    "size": 7.0,
+    "bbox": [
+     59.53,
+     686.22,
+     383.54,
+     695.65
+    ],
+    "block": 25,
+    "line": 0,
+    "span": 2
+   },
+   {
+    "text": "6\t",
+    "font": "Lato-Regular",
+    "size": 4.08,
+    "bbox": [
+     51.02,
+     696.04,
+     54.44,
+     701.54
+    ],
+    "block": 26,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "https://www.ipcc.ch/report/sixth-assessment-report-working-group-i/, accessed 04/03/2022.",
+    "font": "Lato-Regular",
+    "size": 7.0,
+    "bbox": [
+     59.53,
+     695.22,
+     347.94,
+     704.65
+    ],
+    "block": 26,
+    "line": 0,
+    "span": 2
+   },
+   {
+    "text": "7\t",
+    "font": "Lato-Regular",
+    "size": 4.08,
+    "bbox": [
+     51.02,
+     705.04,
+     54.44,
+     710.54
+    ],
+    "block": 27,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "For example, see Leiserowitz, A. et al. (2021) Climate Change in the Irish Mind, New Haven, CT: Yale Program on Climate Change Communication; ",
+    "font": "Lato-Regular",
+    "size": 7.0,
+    "bbox": [
+     59.53,
+     704.22,
+     505.33,
+     713.65
+    ],
+    "block": 27,
+    "line": 0,
+    "span": 2
+   },
+   {
+    "text": "see also https://www.epa.ie/news-releases/news-releases-2022/epa-survey-shows-climate-change-remains-themost-pressing-environmental-issue-",
+    "font": "Lato-Regular",
+    "size": 7.0,
+    "bbox": [
+     59.53,
+     713.23,
+     512.85,
+     722.65
+    ],
+    "block": 27,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "facing-ireland.php; accessed 04/03/2022.",
+    "font": "Lato-Regular",
+    "size": 7.0,
+    "bbox": [
+     59.53,
+     722.23,
+     188.04,
+     731.66
+    ],
+    "block": 27,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "8\t",
+    "font": "Lato-Regular",
+    "size": 4.08,
+    "bbox": [
+     51.02,
+     732.04,
+     54.44,
+     737.54
+    ],
+    "block": 28,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "https://assets.gov.ie/130911/fe93e24e-dfe0-40ff-9934-def2b44b7b52.pdf; accessed 04/03/2022.",
+    "font": "Lato-Regular",
+    "size": 7.0,
+    "bbox": [
+     59.53,
+     731.22,
+     364.63,
+     740.65
+    ],
+    "block": 28,
+    "line": 0,
+    "span": 2
+   },
+   {
+    "text": "9\t",
+    "font": "Lato-Regular",
+    "size": 4.08,
+    "bbox": [
+     51.02,
+     741.04,
+     54.44,
+     746.54
+    ],
+    "block": 29,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "https://www.irishstatutebook.ie/eli/2021/act/32/enacted/en/print; accessed 21/11/2022.",
+    "font": "Lato-Regular",
+    "size": 7.0,
+    "bbox": [
+     59.53,
+     740.22,
+     337.86,
+     749.65
+    ],
+    "block": 29,
+    "line": 0,
+    "span": 2
+   },
+   {
+    "text": "10\t",
+    "font": "Lato-Regular",
+    "size": 4.08,
+    "bbox": [
+     51.02,
+     750.04,
+     56.8,
+     755.54
+    ],
+    "block": 30,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Climate Action Plan 2021",
+    "font": "Lato-Regular",
+    "size": 7.0,
+    "bbox": [
+     59.53,
+     749.22,
+     137.69,
+     758.65
+    ],
+    "block": 30,
+    "line": 0,
+    "span": 2
+   },
+   {
+    "text": "11\t",
+    "font": "Lato-Regular",
+    "size": 4.08,
+    "bbox": [
+     51.02,
+     759.04,
+     56.8,
+     764.54
+    ],
+    "block": 31,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "In 2019, transport was responsible for 20.4% of national greenhouse gas emissions, with a drop of 15.7% in 2020 due to the impacts of Covid ",
+    "font": "Lato-Regular",
+    "size": 7.0,
+    "bbox": [
+     59.53,
+     758.22,
+     493.77,
+     767.65
+    ],
+    "block": 31,
+    "line": 0,
+    "span": 2
+   },
+   {
+    "text": "restrictions on travel. With the lifting of restrictions, transport emissions have once again started to climb towards pre-pandemic levels, with increases ",
+    "font": "Lato-Regular",
+    "size": 7.0,
+    "bbox": [
+     59.53,
+     767.23,
+     518.97,
+     776.65
+    ],
+    "block": 31,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "across the whole road network in the first quarter of 2022.",
+    "font": "Lato-Regular",
+    "size": 7.0,
+    "bbox": [
+     59.53,
+     776.23,
+     239.09,
+     785.66
+    ],
+    "block": 31,
+    "line": 2,
+    "span": 0
+   }
+  ],
+  "drawings": [],
+  "images": [],
+  "tables": []
+ }
+]

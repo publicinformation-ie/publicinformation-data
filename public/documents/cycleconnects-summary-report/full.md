@@ -6,11 +6,15 @@ Source: https://consult.nationaltransport.ie/sites/default/files/uploads/consult
 
 ### Front Matter
 
-*Pages 1–1*
+*Pages 1–2*
 
 ![Figure from page 1](assets/p001-f01.webp)
 
 *Figure from page 1*
+
+### Table of Contents
+
+1. Executive Summary ................................................................................................... 5 2. Introduction ............................................................................................................... 6 3. Route Development Methodology .............................................................................. 7 4. Local Authority Engagement ..................................................................................... 11 5. Proposed County Cycle Networks ........................................................................... 12 6. Next Steps ............................................................................................................... 16
 
 ## 1 Executive Summary
 
@@ -31,14 +35,6 @@ A network development methodology was set out to aid route selection, particular
 A Strategic Environmental Assessment (SEA) and Appropriate Assessments (AA) are also being undertaken for CycleConnects. This has been conducted on the understanding that a more detailed project specific environmental assessment will be undertaken at a later stage for each route in each county once specific infrastructure and routing is finalised in each location.
 
 The proposed network plan is comprised of interurban routes that connect settlements of over 1000 people. Existing and proposed greenways/blueways were also included in the network. Any town with a population of over 5000, as per the 2016 Census, has been developed further with a more dense urban cycle network to cater for increased cycle demand. These urban networks were comprised of primary and secondary routes. This network plan is comprised of 22 county networks and 57 urban networks, linking into the existing GDA and Northern Ireland cycle networks to create a comprehensive cycle network for Ireland.
-
-## Table of Contents
-
-### Table of Contents
-
-*Pages 2–2*
-
-1. Executive Summary ................................................................................................... 5 2. Introduction ............................................................................................................... 6 3. Route Development Methodology .............................................................................. 7 4. Local Authority Engagement ..................................................................................... 11 5. Proposed County Cycle Networks ........................................................................... 12 6. Next Steps ............................................................................................................... 16
 
 ## 2 Introduction
 
@@ -70,67 +66,35 @@ Report Structure
 
 3. Proposed County Cycle Network 4. Next Steps
 
-## Network
-
-### Network
-
-*Pages 11–11*
-
-Where adjacent counties border either the GDA or Northern Ireland Cycle Network, the proposed routes have looked to directly connect and link with either planning or existing routes as part of the GDA or Northern Ireland.
-
 ## 3 Route Development Methodology
 
-### • Major Cities/Towns (5,000+)
+### 3 Route Development Methodology
 
-*Pages 5–5*
+*Pages 5–8*
+
+Following a review of both national and international cycle policy and networks, the following methodology has been developed as part of developing Cycleconnects in Ireland. The primary objective of this will be to ensure all relevant communities are connected in each county forming part of the Overall National Plan.
+
+![Figure 3.1: Interurban route selection methodology](assets/p005-f01.webp)
+
+*Figure 3.1: Interurban route selection methodology*
 
 - Major Cities/Towns (5,000+)
 - Towns (1000-4,999)
 - Villages (500-999)
 
-### • Towns (1000-4,999)
-
-*Pages 5–5*
-
 Population
-
-### • Villages (500-999)
-
-*Pages 5–5*
 
 Centres
 
-### • Linking to (Communities, schools, services, tourism)
-
-*Pages 5–5*
-
 • Linking to (Communities, schools, services, tourism) • Understanding issues/constraints (High speeds/traffic, gradients, poor visibility)
 
-### • Understanding issues/constraints (High speeds/traffic,
-
-*Pages 5–5*
-
 Link Selection
-
-### • Interurban Route
-
-*Pages 5–5*
 
 - Interurban Route
 - Greenway
 - Tourist Routes
 
-### • Greenway
-
-*Pages 5–5*
-
 Link Classification
-
-### • Tourist Routes
-
-*Pages 5–8*
-
-Figure 3.1: Interurban route selection methodology
 
 Step 1: Population Centres
 
@@ -203,16 +167,6 @@ Shopping centres, hospitals and other destinations that may attract cyclists
 
 The collation of this data has aided the selection of routes and allowed for maximised population figures to be serviced by these proposed cycle routes. It has also allowed for the servicing of key destinations. As the network developed in each county, these GIS maps were then combined to form one large national GIS map showing all cycle routes connecting all counties together.
 
-### 3 Route Development Methodology
-
-*Pages 5–5*
-
-Following a review of both national and international cycle policy and networks, the following methodology has been developed as part of developing Cycleconnects in Ireland. The primary objective of this will be to ensure all relevant communities are connected in each county forming part of the Overall National Plan.
-
-![Figure 3.1: Interurban route selection methodology](assets/p005-f01.webp)
-
-*Figure 3.1: Interurban route selection methodology*
-
 ## 4 Local Authority Engagement
 
 ### 4 Local Authority Engagement
@@ -235,25 +189,11 @@ Weekly meetings with TII NCN team
 
 AECOM has also worked on the development of the TII National Cycle Network (NCN) and the NTA CycleConnects cycle network. To ensure that both the TII National Cycle Network and NTA CycleConnects are aligned, weekly update meetings between both teams were held. This also allowed information to be shared between both teams and the development of both route plans to be reviewed on a regular basis.
 
-## Network
-
-### Network
-
-*Pages 11–11*
-
-The TII National Cycle Network (NCN) has been referenced when developing the network with the finalised corridors mapped over the various interurban routes proposed in each county. This avoided the situation where a parallel interurban route was present next to a proposed NCN Corridor. This would allow future cycle infrastructure to be concentrated in one route corridor rather than two parallel corridors. This also assisted in developing the route hierarchy in each county which is outlined below:
-
-Primary Cycle Network: Urban primary routes in combination with the main interurban/greenway connection between each town with a population over 5,000.
-
-Secondary Cycle Network: Urban secondary routes plus the main interurban/greenway route between each between a population between 1000 and 4,999.
-
-Tertiary Cycle Network: Any other remaining interurban, or greenway, routes which connect any other remaining villages or tourist destination. This may include interurban routes mapped along various EuroVelo routes in certain counties.
-
 ## 5 Proposed County Cycle Networks
 
 ### 5 Proposed County Cycle Networks
 
-*Pages 10–10*
+*Pages 10–13*
 
 This project is one network plan comprised of 22 networks. Following comprehensive data collection, and liaising with county councils, the NTA Cycle Design Office developed the CycleConnects cycle network plans. The network was developed by looking at each county and ensuring that as many settlements as possible are connected. Additionally, it was important to ensure that there is intercounty connectivity, by allowing for interurban connections across the county borders.
 
@@ -263,25 +203,59 @@ The proposed CycleConnects cycle network plans are comprised of 22 county maps a
 
 *Table 5.1: CycleConnects Urban Network List*
 
+## Interaction with GDA and Northern Irish Network
+
+Where adjacent counties border either the GDA or Northern Ireland Cycle Network, the proposed routes have looked to directly connect and link with either planning or existing routes as part of the GDA or Northern Ireland.
+
+## Interaction with TII National Cycle Network
+
+The TII National Cycle Network (NCN) has been referenced when developing the network with the finalised corridors mapped over the various interurban routes proposed in each county. This avoided the situation where a parallel interurban route was present next to a proposed NCN Corridor. This would allow future cycle infrastructure to be concentrated in one route corridor rather than two parallel corridors. This also assisted in developing the route hierarchy in each county which is outlined below:
+
+Primary Cycle Network: Urban primary routes in combination with the main interurban/greenway connection between each town with a population over 5,000.
+
+Secondary Cycle Network: Urban secondary routes plus the main interurban/greenway route between each between a population between 1000 and 4,999.
+
+Tertiary Cycle Network: Any other remaining interurban, or greenway, routes which connect any other remaining villages or tourist destination. This may include interurban routes mapped along various EuroVelo routes in certain counties.
+
 ## Greenways and Blueways
-
-### Greenways and Blueways
-
-*Pages 11–11*
 
 Planned and existing greenways were also included in the network. Blueways were also included as part of the greenway network to allow for simpler presentation of cycle routes on the county maps. Blueways are off-road cycle routes typically parallel to river, lakes and streams. These were utilised as part of the cycle networks where possible to provide safe cycle routes and to ensure that the cycle network is not overly dense. A list of completed, in progress and proposed greenways was provided by the NTA and was included in CycleConnects. Where a greenway is at early planning or feasibility stage, this has been noted on the relevant CycleConnects cycle network map.
 
 ## Metropolitan Cities
-
-### Metropolitan Cities
-
-*Pages 11–12*
 
 Cycle networks developed for the metropolitan areas of Cork, Limerick, Waterford and Galway have directly referenced the latest published Metropolitan Area Transport Strategy. Any additional changes to these networks have been discussed in workshops with the relevant County Councils and the NTA. This has included additional cycle links proposed in updated City Development Plans which have been included in the relevant CycleConnects plans.
 
 ![Figure 5.1: Overview of the locations of the urban networks (© Google 2022)](assets/p012-f01.webp)
 
 *Figure 5.1: Overview of the locations of the urban networks (© Google 2022)*
+
+## Environmental Assessments
+
+In accordance with regulatory requirements and good practice, environmental and social assessments are being undertaken alongside the development of the CycleConnects cycle network plans. These comprise the following:
+
+Strategic Environmental Assessment (SEA) to assess potential environmental effects in accordance with European Communities (EC) (Environmental Assessment of Certain Plans and Programmes) Regulations 2003, as amended by the EC (Environmental Assessment of Certain Plans and Programmes) (Amendments) Regulations 2011 (known as the ‘SEA Regulations’).
+
+Appropriate Assessment (AA) to identify if proposals could have a significant adverse effect on a European Site, either individually or in combination with other plans or projects, in accordance with EU Habitats Directive (92/43/EEC) and transposing regulations (European Communities (EC) (Birds and Natural Habitats) Regulations 2011.
+
+Equality Impact assessment (EqIA) to consider the impact of proposals on persons or groups of persons who share characteristics that are protected under the Equal Status
+
+Acts 2000-2018 and under Section 42 of the Irish Human Rights and Equality Commission Act 2014 and consider other vulnerable groups within society such as those on a low-income. This is undertaken in line with NTA good practice.
+
+These assessments will cover the cycle networks proposed for the 22 counties and will aim to:
+
+Identify where proposals have potential for significant environmental effects either directly or indirectly so that amendments could be considered.
+
+Identify potential for additional benefits or opportunities for environmental enhancement or for improved access and inclusion.
+
+Identify mitigation and management measures that will support proposals in meeting environmental and social objectives.
+
+The assessments will address the draft cycle networks as presented in the September 2022 Consultation and take account of amendments following the initial public consultation in autumn 2022. The assessment reports will be provided for statutory public consultation alongside the publication of the draft County CNP in Quarter 1 2023.
+
+## Local Transport Plans
+
+The NTA, in conjunction with TII, have developed an advice note which sets out a methodology on how to assess the opportunities and constraints for sustainable transport within an area. This Area Based Transport Assessment (ABTA) methodology has been designed as a key input into Local Transport Plans (as provided for in the National Planning Framework (NPF) and Regional Spatial and Economic Strategies (RSES)). The NTA is assisting Local Authorities to develop Local Transport Plans based on this methodology, as part of the statutory plan-making process.
+
+While the cycle networks outlined in this report have been created to reflect current transport arrangements, they may be subject to change based on the more detailed analysis and recommendations developed as part of the LTP process.
 
 ## 6 Next Steps
 
@@ -316,39 +290,3 @@ Infrastructure
 • April 2023 onwards
 
 Funding and Implementation
-
-## Environmental Assessments
-
-### Environmental Assessments
-
-*Pages 12–13*
-
-In accordance with regulatory requirements and good practice, environmental and social assessments are being undertaken alongside the development of the CycleConnects cycle network plans. These comprise the following:
-
-Strategic Environmental Assessment (SEA) to assess potential environmental effects in accordance with European Communities (EC) (Environmental Assessment of Certain Plans and Programmes) Regulations 2003, as amended by the EC (Environmental Assessment of Certain Plans and Programmes) (Amendments) Regulations 2011 (known as the ‘SEA Regulations’).
-
-Appropriate Assessment (AA) to identify if proposals could have a significant adverse effect on a European Site, either individually or in combination with other plans or projects, in accordance with EU Habitats Directive (92/43/EEC) and transposing regulations (European Communities (EC) (Birds and Natural Habitats) Regulations 2011.
-
-Equality Impact assessment (EqIA) to consider the impact of proposals on persons or groups of persons who share characteristics that are protected under the Equal Status
-
-Acts 2000-2018 and under Section 42 of the Irish Human Rights and Equality Commission Act 2014 and consider other vulnerable groups within society such as those on a low-income. This is undertaken in line with NTA good practice.
-
-These assessments will cover the cycle networks proposed for the 22 counties and will aim to:
-
-Identify where proposals have potential for significant environmental effects either directly or indirectly so that amendments could be considered.
-
-Identify potential for additional benefits or opportunities for environmental enhancement or for improved access and inclusion.
-
-Identify mitigation and management measures that will support proposals in meeting environmental and social objectives.
-
-The assessments will address the draft cycle networks as presented in the September 2022 Consultation and take account of amendments following the initial public consultation in autumn 2022. The assessment reports will be provided for statutory public consultation alongside the publication of the draft County CNP in Quarter 1 2023.
-
-## Local Transport Plans
-
-### Local Transport Plans
-
-*Pages 13–13*
-
-The NTA, in conjunction with TII, have developed an advice note which sets out a methodology on how to assess the opportunities and constraints for sustainable transport within an area. This Area Based Transport Assessment (ABTA) methodology has been designed as a key input into Local Transport Plans (as provided for in the National Planning Framework (NPF) and Regional Spatial and Economic Strategies (RSES)). The NTA is assisting Local Authorities to develop Local Transport Plans based on this methodology, as part of the statutory plan-making process.
-
-While the cycle networks outlined in this report have been created to reflect current transport arrangements, they may be subject to change based on the more detailed analysis and recommendations developed as part of the LTP process.

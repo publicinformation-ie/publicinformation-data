@@ -1,0 +1,279 @@
+[
+ {
+  "number": 2,
+  "width": 595.32,
+  "height": 841.92,
+  "rotation": 0,
+  "spans": [
+   {
+    "text": "CycleConnects: Summary Report ",
+    "font": "ArialMT",
+    "size": 6.96,
+    "bbox": [
+     72.02,
+     35.7,
+     177.87,
+     43.46
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "National Transport Authority ",
+    "font": "ArialMT",
+    "size": 6.96,
+    "bbox": [
+     430.87,
+     35.7,
+     519.95,
+     43.46
+    ],
+    "block": 0,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": " Project number: 60615775 ",
+    "font": "ArialMT",
+    "size": 6.96,
+    "bbox": [
+     433.51,
+     43.74,
+     519.95,
+     51.5
+    ],
+    "block": 1,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Prepared for:  National Transport Authority  ",
+    "font": "ArialMT",
+    "size": 6.96,
+    "bbox": [
+     72.02,
+     803.94,
+     207.66,
+     811.7
+    ],
+    "block": 2,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "AECOM ",
+    "font": "ArialMT",
+    "size": 6.96,
+    "bbox": [
+     492.34,
+     803.94,
+     519.95,
+     811.7
+    ],
+    "block": 2,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "4 ",
+    "font": "ArialMT",
+    "size": 6.96,
+    "bbox": [
+     514.18,
+     811.98,
+     519.95,
+     819.74
+    ],
+    "block": 3,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Table of Contents ",
+    "font": "Arial-BoldMT",
+    "size": 14.04,
+    "bbox": [
+     72.02,
+     66.85,
+     193.19,
+     82.51
+    ],
+    "block": 4,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "1.",
+    "font": "ArialMT",
+    "size": 11.04,
+    "bbox": [
+     72.02,
+     94.91,
+     81.21,
+     107.22
+    ],
+    "block": 5,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Executive Summary ................................................................................................... 5 ",
+    "font": "ArialMT",
+    "size": 11.04,
+    "bbox": [
+     108.02,
+     94.91,
+     526.49,
+     107.22
+    ],
+    "block": 5,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "2.",
+    "font": "ArialMT",
+    "size": 11.04,
+    "bbox": [
+     72.02,
+     109.55,
+     81.21,
+     121.86
+    ],
+    "block": 5,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "Introduction ............................................................................................................... 6 ",
+    "font": "ArialMT",
+    "size": 11.04,
+    "bbox": [
+     108.02,
+     109.55,
+     526.49,
+     121.86
+    ],
+    "block": 5,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "3.",
+    "font": "ArialMT",
+    "size": 11.04,
+    "bbox": [
+     72.02,
+     124.19,
+     81.21,
+     136.5
+    ],
+    "block": 5,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "Route Development Methodology .............................................................................. 7 ",
+    "font": "ArialMT",
+    "size": 11.04,
+    "bbox": [
+     108.02,
+     124.19,
+     526.49,
+     136.5
+    ],
+    "block": 5,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "4.",
+    "font": "ArialMT",
+    "size": 11.04,
+    "bbox": [
+     72.02,
+     138.95,
+     81.21,
+     151.26
+    ],
+    "block": 5,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "Local Authority Engagement ..................................................................................... 11 ",
+    "font": "ArialMT",
+    "size": 11.04,
+    "bbox": [
+     108.02,
+     138.95,
+     526.49,
+     151.26
+    ],
+    "block": 5,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "5.",
+    "font": "ArialMT",
+    "size": 11.04,
+    "bbox": [
+     72.02,
+     153.59,
+     81.21,
+     165.9
+    ],
+    "block": 5,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "Proposed County Cycle Networks ........................................................................... 12 ",
+    "font": "ArialMT",
+    "size": 11.04,
+    "bbox": [
+     108.02,
+     153.59,
+     526.49,
+     165.9
+    ],
+    "block": 5,
+    "line": 9,
+    "span": 0
+   },
+   {
+    "text": "6.",
+    "font": "ArialMT",
+    "size": 11.04,
+    "bbox": [
+     72.02,
+     168.23,
+     81.21,
+     180.54
+    ],
+    "block": 5,
+    "line": 10,
+    "span": 0
+   },
+   {
+    "text": "Next Steps ............................................................................................................... 16 ",
+    "font": "ArialMT",
+    "size": 11.04,
+    "bbox": [
+     108.02,
+     168.23,
+     526.49,
+     180.54
+    ],
+    "block": 5,
+    "line": 11,
+    "span": 0
+   }
+  ],
+  "drawings": [],
+  "images": [],
+  "tables": []
+ }
+]

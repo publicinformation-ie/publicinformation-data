@@ -24,17 +24,7 @@ Q1 Progress Report
 
 Table of Contents
 
-## 1 Executive Summary ............................................................................................ 3
-
-### 1 Executive Summary ............................................................................................ 3
-
-*Pages 2–2*
-
 1 Executive Summary ............................................................................................ 3
-
-### 1.1 Climate change news and activity in Q1 2025 ..................................... 4
-
-*Pages 2–2*
 
 1.1 Climate change news and activity in Q1 2025 ..................................... 4
 
@@ -48,13 +38,319 @@ Table of Contents
 
 6 Industry ............................................................................................................... 19
 
+7 Land Use, Land Use Change and Forestry ................................................. 21
+
+8 Cross-cutting actions ....................................................................................... 23
+
+## 1 Executive Summary
+
+### 1 Executive Summary
+
+*Pages 3–4*
+
+1Executive Summary
+
+This Progress Report on the Climate Action Plan (CAP) 2025 details progress on thenew
+
+actions that were due for completion in Q1 2025. In total, 4 of the 6 new Q1 actions
+
+have been delivered on time (Table 1).
+
+High impact actions delayed from CAP24 and CAP23 are also included in this report to
+
+retain accountability to their completion. Of the 64 legacy actions remaining, 10of these
+
+were completed in Q1 2025 (Table 2).
+
+Delivery results in Q1 highlight difficulties with high impact actions, particularly legacy
+
+actions, continuing to experience delays, some for over a year. Effective resolution
+
+pathways are vital to address implementation barriers. Non-implementation of
+
+commitments heightens reputational, legal, and financial risks for the State in meeting
+
+strict EU obligations.
+
+Delays in climate action delivery stem from several factors including technical complexity
+
+or data gaps; dependencies on other actions or policies; issues caused by problems
+
+resourcing areas requiring specific technical expertise, time required for legislative
+
+responses, including parliamentary time; staff resourcing supply problems; delays
+
+regarding public consultation; administrative hold-ups such as approval processes, and
+
+the need for additional analysis. These delays threaten Ireland’s ability to meet binding
+
+emissions targets and risk increasing future pressures, costs, and reputational harm. All
+
+delayed actions will continue to be reported as a part of the CAP25 reporting process,
+
+maintaining commitment to their delivery alongside new measures.
+
+To provide more detail on these risks and delivery profiles, this report is organised into
+
+sectoral chapters in order of emissions share, alongside a chapter on cross-cutting
+
+activity. Throughout the chapters, attention is given to Key Performance Indicators
+
+(KPIs), national emissions trends and projections, and high impact action case studies.
+
+Information on each reportable action from the CAP25 Annex of Actions is contained at
+
+Appendix 1.
+
+Table 1 Delivery by Department on new Q1 2025 actions
+
+|  |  |  |  |
+| --- | --- | --- | --- |
+| Department | Completed Q1 actions |  | Total new actions due |
+| DECC | 1 | 3 |  |
+| DAFM | 2 | 2 |  |
+| D/Transport | 1 | 1 |  |
+| TOTAL | 4 | 6 |  |
+
+Table 2 Delivery by Department on legacy actions due for reporting in Q1 2025
+
+|  |  |  |
+| --- | --- | --- |
+| Department | Legacy actions completed | Total legacy actions due |
+| DECC | 1 | 28 |
+| DAFM | 3 | 9 |
+| D/Transport | 3 | 13 |
+| DHLGH | 2 | 7 |
+| DPENDR | 0 | 4 |
+| DETE | 0 | 2 |
+| DFHERIS | 1 | 1 |
+| TOTAL | 10 | 64 |
+
+### 1.1 Climate change news and activity in Q1 2025
+
+*Pages 4–6*
+
+1.1 Climate change news and activity in Q1 2025
+
+Climate change remains a pressing global concern. The Copernicus Climate Change Service has
+
+confirmed that 2024 was the warmest year on record globally.
+
+A recent report from the German government warned that global warming poses an existential
+
+threat to the EU, noting that rising migration, food prices, and economic instability threaten
+
+European security.
+
+With climate change impacts increasingly evident, greater emphasis on resilience and adapting
+
+to these changes is needed. A recent OECD paper proposes an iterative approach for effective
+
+climate adaptation policymaking, emphasising multi-level governance and resilience-building in
+
+food systems due to their vulnerability to climate change.
+
+In Ireland, several important climate publications were released this quarter:
+
+EPA Focus on Adaptation Report: This report reviews progress in Ireland’s climate adaptation efforts, covering policy, governance, planning, climate services, risk assessment, and research. Sectoral adaptation plans will be developed in the coming months.
+
+Central Bank Climate Observatory 2024: This annual update provides insights into climaterelated metrics for the economy and financial sector, including global climate trends, mitigation efforts, and financial risks for banks, insurers, and investment funds.
+
+Central Bank Flood Protection Gap Report: This report assesses Ireland’s current and future flood protection capacity.
+
+CCAC & IFAC Report: The Climate Change Advisory Council (CCAC) and the Irish Fiscal Advisory Council (IFAC) published a report analysing the financial implications of failing to meet climate targets, emphasising that failing to now invest in measures to reduce this overshoot, would be a ‘Colossal Missed Opportunity’
+
+CCAC Annual Review 2025: The first of the CCAC Annual Review 2025 publications noted that extreme weather events such as Storm Eowyn have demonstrated vulnerabilities in critical infrastructure and essential services.
+
+Programme for Government: The Programme for Government restated its determination that Ireland, together with our EU partners, will play its full part in tackling climate change.
+
+New Developments in the Agriculture Sector
+
+Agriculture was a big focus this quarter. In January, Ireland and New Zealand announced €5.2
+
+million in funding for three agri-climate research projects under the Ireland-New Zealand Joint
+
+Research Initiative (JRI). Irish partners, including Teagasc and the University of Galway, will
+
+receive €2.3 million for research on mitigation measures, methane emissions, and inventory
+
+refinement. The JRI has invested nearly €20 million since 2022 to advance sustainable
+
+agriculture.
+
+Minister for Agriculture, Food and Marine, Martin Heydon TD announced €3 million in funding
+
+for projects promoting and developing the organic sector from 2025-2027. In addition, funding
+
+of almost €300,000 is available for projects supporting agri-food tourism initiatives which may
+
+also include rural food markets.
+
+The Department of Agriculture, Food and Marine has issued €24.2 million in tax-free forestry
+
+premium payments for 2025 to over 7,000 forest owners, including over 5,000 hectares
+
+covered by valid afforestation licences.
+
+The Forestry Knowledge Transfer Group (KTG) Scheme has been reopened for 2025, marking
+
+its sixth year. This initiative enhances forest management skills among private forest owners,
+
+supporting both economic and environmental benefits.
+
+The Irish government has launched the NeighbourWood Scheme under the Forestry
+
+Programme 2023-2027 to support the development of community-accessible woodlands. The
+
+scheme has a key role in promoting recreation, well-being, and environmental benefits -
+
+emphasising the social and health benefits of local forests. Funding will be available for
+
+woodland enhancements and recreational facilities, benefiting both urban and rural
+
+communities.
+
+Retrofitting
+
+The Government has announced €8 million in funding to improve energy efficiency across
+
+Further Education and Training (FET) buildings under the Green Devolved Capital Grant. The
+
+funding will support small-scale but high-impact measures such as energy audits, insulation
+
+upgrades, and the replacement of fossil fuel heating systems with renewables.
+
+Legal Cases
+
+Coolglass Wind Farm was successful in its judicial review of An Bord Pleanála’s (ABP) refusal
+
+of its planning application. An Coimisiún Pleanála has sought leave to appeal the decision.
+
+Internationally, courts have continued to play an increasing role on climate, interpreting
+
+relevant legislation. A Dutch court has recently ruled that the government must intensify
+
+efforts to cut nitrogen pollution in protected nature areas, and that at least half of the country’s
+
+vulnerable habitats must meet safe nitrogen levels by 2030, or the government will face a €10
+
+million penalty.
+
+![Figure from page 6](assets/p006-f01.webp)
+
+*Figure from page 6*
+
+Minister O’Brien announces €500,000 worth of grants for community climate engagement. 96 community groups across Ireland awarded grants to engage new audiences in their region on climate
+
+## 2 Agriculture
+
+### 2 Agriculture
+
+*Pages 7–9*
+
+2Agriculture
+
+Agriculture was responsible for 35% of national emissions in 2023 (percentage of total
+
+emissions, including LULUCF), making it the largest GHG emitting sector in Ireland. This
+
+figure excludes additional agriculture-related emissions from grasslands used for farming
+
+which is accounted for in the LULUCF sector. In 2023, agricultural emissions decreased
+
+to 20.7 MtCO2eq, driven by reductions in fertiliser use, liming and decreased milk
+
+production due to poor weather and grazing conditions.
+
+![Figure from page 7](assets/p007-f01.webp)
+
+*Figure from page 7*
+
+![Figure from page 7](assets/p007-f02.webp)
+
+*Figure from page 7*
+
+Figure 1: Agriculture sector emissions share in 2023
+
+The Programme for Government makes key
+
+commitments supporting a sustainable
+
+transition in Agriculture including: reducing
+
+Figure 2: Gap to Target – Agriculture
+
+emissions and improving sustainability; helping
+
+AgClimatise, and the Teagasc Marginal
+
+farmers adopt practical measures to cut
+
+Abatement Cost Curve (MACC) are applied.
+
+emissions; offering sustainable income
+
+Between 2018 and 2030, emissions could either
+
+diversification options; promoting carbon-
+
+rise by 1% or fall by as much as 16%. Projected
+
+reducing activities like forestry planting; and
+
+increase in the WEM scenario is a result of an
+
+partnering with farmers and rural communities
+
+increase in animal numbers and fertiliser use.
+
+to embrace opportunities in energy efficiency,
+
+Key strategies contributing to potential
+
+renewables, and nature-based solutions.
+
+reductions include restrictions on nitrogen
+
+In the EPA projections, the total emissions from
+
+fertiliser use, the adoption of alternative
+
+the agriculture sector are expected to vary
+
+fertilisers, and the incorporation of feed
+
+significantly depending on how extensively the
+
+additives for cattle.
+
+measures outlined in the Climate Action Plan,
+
+![Figure from page 7](assets/p007-f03.webp)
+
+*Figure from page 7*
+
+x
+
+![Figure from page 8](assets/p008-f01.webp)
+
+*Figure from page 8*
+
+|  | Completed CAP25 Action AG/25/1 |  |
+| --- | --- | --- |
+|  | Launch a 60% grant-aided Nutrient Storage Scheme to support reduced reliance on chemical |  |
+|  | fertiliser |  |
+| Under AG/25/1, DAFM launched a 60% grant-aided Nutrient Storage Scheme to support reduced reliance on chemical fertiliser. The Nutrient Importation Storage Scheme (NISS) will improve the production conditions on farms, improve competitiveness and contribute to the improvement of agricultural incomes and assist farmers for the storage of imported animal excreta, soiled water and other farmyard manures and related facilities. The Scheme is open to farmers with at least 5 hectares of owned, leased or rented lands which has been declared under the Basic Income Support for Sustainability (BISS) or equivalent in the year of application or preceding year, or in the case of intensive enterprises, generate a minimum of 20 production units from farming. The associated investment ceilings are €90,000 for individuals, €160,000 for Registered Farm Partnerships. It is a stand-alone scheme and does not impact other TAMS 3 investment limits; and multiple applications per tranche are allowed. |  |  |
+
+![Figure from page 9](assets/p009-f01.webp)
+
+*Figure from page 9*
+
 ## 3 Transport
 
 ### 3 Transport
 
-*Pages 10–25*
-
-*Text from pages 20, 24 of the source PDF is machine-read (OCR) from a scanned image and may contain recognition errors.*
+*Pages 10–12*
 
 3 Transport
 
@@ -144,6 +440,12 @@ sustainable transport modes.
 
 *Figure from page 12*
 
+## 4 Electricity
+
+### 4 Electricity
+
+*Pages 13–15*
+
 4Electricity
 
 Energy industries (primarily electricity generation) accounted for 13% of national
@@ -229,6 +531,12 @@ generation by 2030.
 ![Figure from page 15](assets/p015-f01.webp)
 
 *Figure from page 15*
+
+## 5 Buildings
+
+### 5 Buildings
+
+*Pages 16–18*
 
 5Buildings
 
@@ -323,6 +631,14 @@ Communities.
 
 *Figure from page 18*
 
+## 6 Industry
+
+### 6 Industry
+
+*Pages 19–20*
+
+*Text from page 20 of the source PDF is machine-read (OCR) from a scanned image and may contain recognition errors.*
+
 6Industry
 
 Industrial emissions accounted for 11% of Ireland's total emissions in 2023 (including
@@ -399,6 +715,12 @@ Conduct feasibility assessment on carbon x] capture storage ><] Publish the impl
 
 a Delayed
 
+## 7 Land Use, Land Use Change and Forestry
+
+### 7 Land Use, Land Use Change and Forestry
+
+*Pages 21–22*
+
 7Land Use, Land Use Change and Forestry
 
 The EPA reportIreland’s Final Greenhouse Gas Emissions noted that emissions from
@@ -468,6 +790,14 @@ management on organic soils used for
 ![Figure from page 22](assets/p022-f01.webp)
 
 *Figure from page 22*
+
+## 8 Cross-cutting actions
+
+### 8 Cross-cutting actions
+
+*Pages 23–25*
+
+*Text from page 24 of the source PDF is machine-read (OCR) from a scanned image and may contain recognition errors.*
 
 8Cross-cutting actions
 
@@ -604,317 +934,3 @@ can access relevant and practical climate training
 ![Figure from page 25](assets/p025-f01.webp)
 
 *Figure from page 25*
-
-## 7 Land Use, Land Use Change and Forestry ................................................. 21
-
-### 7 Land Use, Land Use Change and Forestry ................................................. 21
-
-*Pages 2–2*
-
-7 Land Use, Land Use Change and Forestry ................................................. 21
-
-## 8 Cross-cutting actions ....................................................................................... 23
-
-### 1.1 Climate change news and activity in Q1 2025
-
-*Pages 4–6*
-
-1.1 Climate change news and activity in Q1 2025
-
-Climate change remains a pressing global concern. The Copernicus Climate Change Service has
-
-confirmed that 2024 was the warmest year on record globally.
-
-A recent report from the German government warned that global warming poses an existential
-
-threat to the EU, noting that rising migration, food prices, and economic instability threaten
-
-European security.
-
-With climate change impacts increasingly evident, greater emphasis on resilience and adapting
-
-to these changes is needed. A recent OECD paper proposes an iterative approach for effective
-
-climate adaptation policymaking, emphasising multi-level governance and resilience-building in
-
-food systems due to their vulnerability to climate change.
-
-In Ireland, several important climate publications were released this quarter:
-
-EPA Focus on Adaptation Report: This report reviews progress in Ireland’s climate adaptation efforts, covering policy, governance, planning, climate services, risk assessment, and research. Sectoral adaptation plans will be developed in the coming months.
-
-Central Bank Climate Observatory 2024: This annual update provides insights into climaterelated metrics for the economy and financial sector, including global climate trends, mitigation efforts, and financial risks for banks, insurers, and investment funds.
-
-Central Bank Flood Protection Gap Report: This report assesses Ireland’s current and future flood protection capacity.
-
-CCAC & IFAC Report: The Climate Change Advisory Council (CCAC) and the Irish Fiscal Advisory Council (IFAC) published a report analysing the financial implications of failing to meet climate targets, emphasising that failing to now invest in measures to reduce this overshoot, would be a ‘Colossal Missed Opportunity’
-
-CCAC Annual Review 2025: The first of the CCAC Annual Review 2025 publications noted that extreme weather events such as Storm Eowyn have demonstrated vulnerabilities in critical infrastructure and essential services.
-
-Programme for Government: The Programme for Government restated its determination that Ireland, together with our EU partners, will play its full part in tackling climate change.
-
-New Developments in the Agriculture Sector
-
-Agriculture was a big focus this quarter. In January, Ireland and New Zealand announced €5.2
-
-million in funding for three agri-climate research projects under the Ireland-New Zealand Joint
-
-Research Initiative (JRI). Irish partners, including Teagasc and the University of Galway, will
-
-receive €2.3 million for research on mitigation measures, methane emissions, and inventory
-
-refinement. The JRI has invested nearly €20 million since 2022 to advance sustainable
-
-agriculture.
-
-Minister for Agriculture, Food and Marine, Martin Heydon TD announced €3 million in funding
-
-for projects promoting and developing the organic sector from 2025-2027. In addition, funding
-
-of almost €300,000 is available for projects supporting agri-food tourism initiatives which may
-
-also include rural food markets.
-
-The Department of Agriculture, Food and Marine has issued €24.2 million in tax-free forestry
-
-premium payments for 2025 to over 7,000 forest owners, including over 5,000 hectares
-
-covered by valid afforestation licences.
-
-The Forestry Knowledge Transfer Group (KTG) Scheme has been reopened for 2025, marking
-
-its sixth year. This initiative enhances forest management skills among private forest owners,
-
-supporting both economic and environmental benefits.
-
-The Irish government has launched the NeighbourWood Scheme under the Forestry
-
-Programme 2023-2027 to support the development of community-accessible woodlands. The
-
-scheme has a key role in promoting recreation, well-being, and environmental benefits -
-
-emphasising the social and health benefits of local forests. Funding will be available for
-
-woodland enhancements and recreational facilities, benefiting both urban and rural
-
-communities.
-
-Retrofitting
-
-The Government has announced €8 million in funding to improve energy efficiency across
-
-Further Education and Training (FET) buildings under the Green Devolved Capital Grant. The
-
-funding will support small-scale but high-impact measures such as energy audits, insulation
-
-upgrades, and the replacement of fossil fuel heating systems with renewables.
-
-Legal Cases
-
-Coolglass Wind Farm was successful in its judicial review of An Bord Pleanála’s (ABP) refusal
-
-of its planning application. An Coimisiún Pleanála has sought leave to appeal the decision.
-
-Internationally, courts have continued to play an increasing role on climate, interpreting
-
-relevant legislation. A Dutch court has recently ruled that the government must intensify
-
-efforts to cut nitrogen pollution in protected nature areas, and that at least half of the country’s
-
-vulnerable habitats must meet safe nitrogen levels by 2030, or the government will face a €10
-
-million penalty.
-
-![Figure from page 6](assets/p006-f01.webp)
-
-*Figure from page 6*
-
-Minister O’Brien announces €500,000 worth of grants for community climate engagement. 96 community groups across Ireland awarded grants to engage new audiences in their region on climate
-
-### 8 Cross-cutting actions ....................................................................................... 23
-
-*Pages 2–4*
-
-8 Cross-cutting actions ....................................................................................... 23
-
-1Executive Summary
-
-This Progress Report on the Climate Action Plan (CAP) 2025 details progress on thenew
-
-actions that were due for completion in Q1 2025. In total, 4 of the 6 new Q1 actions
-
-have been delivered on time (Table 1).
-
-High impact actions delayed from CAP24 and CAP23 are also included in this report to
-
-retain accountability to their completion. Of the 64 legacy actions remaining, 10of these
-
-were completed in Q1 2025 (Table 2).
-
-Delivery results in Q1 highlight difficulties with high impact actions, particularly legacy
-
-actions, continuing to experience delays, some for over a year. Effective resolution
-
-pathways are vital to address implementation barriers. Non-implementation of
-
-commitments heightens reputational, legal, and financial risks for the State in meeting
-
-strict EU obligations.
-
-Delays in climate action delivery stem from several factors including technical complexity
-
-or data gaps; dependencies on other actions or policies; issues caused by problems
-
-resourcing areas requiring specific technical expertise, time required for legislative
-
-responses, including parliamentary time; staff resourcing supply problems; delays
-
-regarding public consultation; administrative hold-ups such as approval processes, and
-
-the need for additional analysis. These delays threaten Ireland’s ability to meet binding
-
-emissions targets and risk increasing future pressures, costs, and reputational harm. All
-
-delayed actions will continue to be reported as a part of the CAP25 reporting process,
-
-maintaining commitment to their delivery alongside new measures.
-
-To provide more detail on these risks and delivery profiles, this report is organised into
-
-sectoral chapters in order of emissions share, alongside a chapter on cross-cutting
-
-activity. Throughout the chapters, attention is given to Key Performance Indicators
-
-(KPIs), national emissions trends and projections, and high impact action case studies.
-
-Information on each reportable action from the CAP25 Annex of Actions is contained at
-
-Appendix 1.
-
-Table 1 Delivery by Department on new Q1 2025 actions
-
-|  |  |  |  |
-| --- | --- | --- | --- |
-| Department | Completed Q1 actions |  | Total new actions due |
-| DECC | 1 | 3 |  |
-| DAFM | 2 | 2 |  |
-| D/Transport | 1 | 1 |  |
-| TOTAL | 4 | 6 |  |
-
-Table 2 Delivery by Department on legacy actions due for reporting in Q1 2025
-
-|  |  |  |
-| --- | --- | --- |
-| Department | Legacy actions completed | Total legacy actions due |
-| DECC | 1 | 28 |
-| DAFM | 3 | 9 |
-| D/Transport | 3 | 13 |
-| DHLGH | 2 | 7 |
-| DPENDR | 0 | 4 |
-| DETE | 0 | 2 |
-| DFHERIS | 1 | 1 |
-| TOTAL | 10 | 64 |
-
-## 96 community groups across Ireland awarded grants to engage new audiences in their
-
-### 96 community groups across Ireland awarded grants to engage new audiences in their
-
-*Pages 7–9*
-
-2Agriculture
-
-Agriculture was responsible for 35% of national emissions in 2023 (percentage of total
-
-emissions, including LULUCF), making it the largest GHG emitting sector in Ireland. This
-
-figure excludes additional agriculture-related emissions from grasslands used for farming
-
-which is accounted for in the LULUCF sector. In 2023, agricultural emissions decreased
-
-to 20.7 MtCO2eq, driven by reductions in fertiliser use, liming and decreased milk
-
-production due to poor weather and grazing conditions.
-
-![Figure from page 7](assets/p007-f01.webp)
-
-*Figure from page 7*
-
-![Figure from page 7](assets/p007-f02.webp)
-
-*Figure from page 7*
-
-Figure 1: Agriculture sector emissions share in 2023
-
-The Programme for Government makes key
-
-commitments supporting a sustainable
-
-transition in Agriculture including: reducing
-
-Figure 2: Gap to Target – Agriculture
-
-emissions and improving sustainability; helping
-
-AgClimatise, and the Teagasc Marginal
-
-farmers adopt practical measures to cut
-
-Abatement Cost Curve (MACC) are applied.
-
-emissions; offering sustainable income
-
-Between 2018 and 2030, emissions could either
-
-diversification options; promoting carbon-
-
-rise by 1% or fall by as much as 16%. Projected
-
-reducing activities like forestry planting; and
-
-increase in the WEM scenario is a result of an
-
-partnering with farmers and rural communities
-
-increase in animal numbers and fertiliser use.
-
-to embrace opportunities in energy efficiency,
-
-Key strategies contributing to potential
-
-renewables, and nature-based solutions.
-
-reductions include restrictions on nitrogen
-
-In the EPA projections, the total emissions from
-
-fertiliser use, the adoption of alternative
-
-the agriculture sector are expected to vary
-
-fertilisers, and the incorporation of feed
-
-significantly depending on how extensively the
-
-additives for cattle.
-
-measures outlined in the Climate Action Plan,
-
-![Figure from page 7](assets/p007-f03.webp)
-
-*Figure from page 7*
-
-x
-
-![Figure from page 8](assets/p008-f01.webp)
-
-*Figure from page 8*
-
-|  | Completed CAP25 Action AG/25/1 |  |
-| --- | --- | --- |
-|  | Launch a 60% grant-aided Nutrient Storage Scheme to support reduced reliance on chemical |  |
-|  | fertiliser |  |
-| Under AG/25/1, DAFM launched a 60% grant-aided Nutrient Storage Scheme to support reduced reliance on chemical fertiliser. The Nutrient Importation Storage Scheme (NISS) will improve the production conditions on farms, improve competitiveness and contribute to the improvement of agricultural incomes and assist farmers for the storage of imported animal excreta, soiled water and other farmyard manures and related facilities. The Scheme is open to farmers with at least 5 hectares of owned, leased or rented lands which has been declared under the Basic Income Support for Sustainability (BISS) or equivalent in the year of application or preceding year, or in the case of intensive enterprises, generate a minimum of 20 production units from farming. The associated investment ceilings are €90,000 for individuals, €160,000 for Registered Farm Partnerships. It is a stand-alone scheme and does not impact other TAMS 3 investment limits; and multiple applications per tranche are allowed. |  |  |
-
-![Figure from page 9](assets/p009-f01.webp)
-
-*Figure from page 9*

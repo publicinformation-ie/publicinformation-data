@@ -1,0 +1,1245 @@
+[
+ {
+  "number": 6,
+  "width": 595.28,
+  "height": 841.89,
+  "rotation": 0,
+  "spans": [
+   {
+    "text": "National Sustainable Mobility Policy | ",
+    "font": "Lato-Regular",
+    "size": 8.0,
+    "bbox": [
+     42.52,
+     21.13,
+     173.97,
+     31.91
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Foreword",
+    "font": "Lato-Regular",
+    "size": 8.0,
+    "bbox": [
+     173.97,
+     21.13,
+     207.61,
+     31.91
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 1
+   },
+   {
+    "text": "4",
+    "font": "Lato-Regular",
+    "size": 10.5,
+    "bbox": [
+     42.52,
+     791.23,
+     48.61,
+     805.37
+    ],
+    "block": 1,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "The National Sustainable Mobility Policy provides ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     124.82,
+     298.17,
+     138.29
+    ],
+    "block": 2,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "an opportunity to change our daily travel choices ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     137.82,
+     298.15,
+     151.29
+    ],
+    "block": 2,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "by making it easier for people to travel by more ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     150.82,
+     298.17,
+     164.29
+    ],
+    "block": 2,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "sustainable modes – be that walking, cycling or public ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     163.82,
+     298.15,
+     177.29
+    ],
+    "block": 2,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "transport.  The Policy aims to support this modal ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     176.82,
+     298.14,
+     190.29
+    ],
+    "block": 2,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "shift between now and 2030, through infrastructure ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     189.82,
+     298.15,
+     203.29
+    ],
+    "block": 2,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "and service improvements, as well as demand ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     202.82,
+     298.17,
+     216.29
+    ],
+    "block": 2,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "management and behavioural change measures. ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     215.82,
+     298.16,
+     229.29
+    ],
+    "block": 2,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "This is with a view to encouraging healthier mobility ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     228.82,
+     298.16,
+     242.29
+    ],
+    "block": 2,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "choices, relieving traffic congestion, improving ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     241.82,
+     298.16,
+     255.29
+    ],
+    "block": 2,
+    "line": 9,
+    "span": 0
+   },
+   {
+    "text": "urban environments and helping to tackle the ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     254.82,
+     298.16,
+     268.29
+    ],
+    "block": 2,
+    "line": 10,
+    "span": 0
+   },
+   {
+    "text": "climate crisis. ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     267.82,
+     135.56,
+     281.29
+    ],
+    "block": 2,
+    "line": 11,
+    "span": 0
+   },
+   {
+    "text": "We have made a commitment to a 51% reduction in ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     292.82,
+     298.15,
+     306.29
+    ],
+    "block": 3,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "our carbon emissions by 2030 and to reach net zero ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     305.82,
+     298.17,
+     319.29
+    ],
+    "block": 3,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "by 2050.  To garner permanent reductions in our ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     318.82,
+     298.17,
+     332.29
+    ],
+    "block": 3,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "emissions we must make changes in our everyday ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     331.82,
+     298.16,
+     345.29
+    ],
+    "block": 3,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "life to sustainable behaviours.  This Policy has been ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     344.82,
+     298.17,
+     358.29
+    ],
+    "block": 3,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "developed to help us make those changes and, ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     357.82,
+     298.16,
+     371.29
+    ],
+    "block": 3,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "alongside the Climate Action Plan, will put in place ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     370.82,
+     298.16,
+     384.29
+    ],
+    "block": 3,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "measures to enable and encourage greater use of ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     383.82,
+     298.17,
+     397.29
+    ],
+    "block": 3,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "sustainable mobility and reduce private car journeys. ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     396.82,
+     298.16,
+     410.29
+    ],
+    "block": 3,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "A collaborative approach has been taken by the ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     421.82,
+     298.17,
+     435.29
+    ],
+    "block": 4,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Department in developing the Policy through ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     434.82,
+     298.15,
+     448.29
+    ],
+    "block": 4,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "public consultation and extensive stakeholder and ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     447.82,
+     298.16,
+     461.29
+    ],
+    "block": 4,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "cross-government engagement.  It is aligned with ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     460.82,
+     298.15,
+     474.29
+    ],
+    "block": 4,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "international best practice and supports the strategic ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     473.82,
+     298.14,
+     487.29
+    ],
+    "block": 4,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "outcomes of the National Planning Framework ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     486.82,
+     298.17,
+     500.29
+    ],
+    "block": 4,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "particularly in relation to decarbonisation, compact ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     499.82,
+     298.16,
+     513.29
+    ],
+    "block": 4,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "growth and better balanced regional development.  ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     512.82,
+     294.43,
+     526.29
+    ],
+    "block": 4,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "Our three principles of safe and green mobility; ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     537.82,
+     298.15,
+     551.29
+    ],
+    "block": 5,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "people focused mobility; and better integrated ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     550.82,
+     298.16,
+     564.29
+    ],
+    "block": 5,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "mobility will guide the delivery of sustainable ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     563.82,
+     298.16,
+     577.29
+    ],
+    "block": 5,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "mobility policy over the coming decade.  We need ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     576.82,
+     298.16,
+     590.29
+    ],
+    "block": 5,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "to support a switch away from private car journeys ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     589.82,
+     298.14,
+     603.29
+    ],
+    "block": 5,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "and bring life back to our city and town centres.  In ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     602.82,
+     298.16,
+     616.29
+    ],
+    "block": 5,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "urban areas in particular, the focus will be on the ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     615.82,
+     298.15,
+     629.29
+    ],
+    "block": 5,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "sustainable movement of people rather than the ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     628.82,
+     298.15,
+     642.29
+    ],
+    "block": 5,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "movement of the private car.  We also recognise ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     641.82,
+     298.16,
+     655.29
+    ],
+    "block": 5,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "the need to improve sustainable mobility options ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     76.54,
+     654.82,
+     298.16,
+     668.29
+    ],
+    "block": 5,
+    "line": 9,
+    "span": 0
+   },
+   {
+    "text": "in rural areas and that a ‘one-size fits all’ approach ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     124.82,
+     545.68,
+     138.29
+    ],
+    "block": 6,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "won’t work.     ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     137.82,
+     386.41,
+     151.29
+    ],
+    "block": 6,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Increased funding under the National Development ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     162.82,
+     545.68,
+     176.29
+    ],
+    "block": 7,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Plan will allow us to improve and expand walking, ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     175.82,
+     545.7,
+     189.29
+    ],
+    "block": 7,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "cycling and public transport options across the ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     188.82,
+     545.67,
+     202.29
+    ],
+    "block": 7,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "country to enable access to education, health care, ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     201.82,
+     545.69,
+     215.29
+    ],
+    "block": 7,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "work, cultural and public life by sustainable modes ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     214.82,
+     545.67,
+     228.29
+    ],
+    "block": 7,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "of travel. This will include commencing delivery of ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     227.82,
+     545.69,
+     241.29
+    ],
+    "block": 7,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "BusConnects programmes in our five cities, DART+ ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     240.82,
+     545.67,
+     254.29
+    ],
+    "block": 7,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "and Metrolink in Dublin along with increased ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     253.82,
+     545.69,
+     267.29
+    ],
+    "block": 7,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "investment in the inter-urban and regional rail ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     266.82,
+     545.69,
+     280.29
+    ],
+    "block": 7,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "network.  This will be complemented by expanded ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     279.82,
+     545.69,
+     293.29
+    ],
+    "block": 7,
+    "line": 9,
+    "span": 0
+   },
+   {
+    "text": "public transport services, including in regional and ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     292.82,
+     545.68,
+     306.29
+    ],
+    "block": 7,
+    "line": 10,
+    "span": 0
+   },
+   {
+    "text": "rural areas under the Connecting Ireland programme. ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     305.82,
+     545.68,
+     319.29
+    ],
+    "block": 7,
+    "line": 11,
+    "span": 0
+   },
+   {
+    "text": "This Policy also supports better integration of land ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     330.82,
+     545.69,
+     344.29
+    ],
+    "block": 8,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "use and transport planning through a transport-",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     343.82,
+     543.18,
+     357.29
+    ],
+    "block": 8,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "orientated housing development approach. We ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     356.82,
+     545.68,
+     370.29
+    ],
+    "block": 8,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "can no longer afford to build communities that are ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     369.82,
+     545.68,
+     383.29
+    ],
+    "block": 8,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "predicated on car ownership. Better integrated ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     382.82,
+     545.69,
+     396.29
+    ],
+    "block": 8,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "planning will allow for a more effective public ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     395.82,
+     545.69,
+     409.29
+    ],
+    "block": 8,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "transport system, empowering people to move away ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     408.82,
+     545.68,
+     422.29
+    ],
+    "block": 8,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "from car dependency.",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     421.82,
+     416.06,
+     435.29
+    ],
+    "block": 8,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "Improving sustainable mobility options is not ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     446.82,
+     545.69,
+     460.29
+    ],
+    "block": 9,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "enough. There is also a need to implement demand ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     459.82,
+     545.69,
+     473.29
+    ],
+    "block": 9,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "management and behavioural change measures to ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     472.82,
+     545.68,
+     486.29
+    ],
+    "block": 9,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "manage daily travel demand more efficiently and ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     485.82,
+     545.68,
+     499.29
+    ],
+    "block": 9,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "reduce journeys taken by private car.   ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     498.82,
+     487.12,
+     512.29
+    ],
+    "block": 9,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "The establishment of a Leadership Group, chaired ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     523.82,
+     545.69,
+     537.29
+    ],
+    "block": 10,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "by the Department of Transport and overseen by ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     536.82,
+     545.68,
+     550.29
+    ],
+    "block": 10,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "the Cabinet Committee on the Environment and ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     549.82,
+     545.68,
+     563.29
+    ],
+    "block": 10,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "Climate Change, will ensure that there is a strong ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     562.82,
+     545.69,
+     576.29
+    ],
+    "block": 10,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "implementation structure to drive delivery of the ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     575.82,
+     545.67,
+     589.29
+    ],
+    "block": 10,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "Policy and accompanying action plan.  We will review ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     588.82,
+     545.68,
+     602.29
+    ],
+    "block": 10,
+    "line": 5,
+    "span": 0
+   },
+   {
+    "text": "and update the action plan in 2025 to ensure that ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     601.82,
+     545.68,
+     615.29
+    ],
+    "block": 10,
+    "line": 6,
+    "span": 0
+   },
+   {
+    "text": "we continue to focus on the right measures to make ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     614.82,
+     545.68,
+     628.29
+    ],
+    "block": 10,
+    "line": 7,
+    "span": 0
+   },
+   {
+    "text": "walking, cycling and public transport the preferred ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     627.82,
+     545.67,
+     641.29
+    ],
+    "block": 10,
+    "line": 8,
+    "span": 0
+   },
+   {
+    "text": "option for as many people as possible.     ",
+    "font": "Lato-Regular",
+    "size": 9.85,
+    "bbox": [
+     324.06,
+     640.82,
+     497.78,
+     654.29
+    ],
+    "block": 10,
+    "line": 9,
+    "span": 0
+   },
+   {
+    "text": "Foreword ",
+    "font": "Lato-Light",
+    "size": 40.0,
+    "bbox": [
+     76.54,
+     61.39,
+     257.74,
+     114.15
+    ],
+    "block": 11,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Eamon Ryan TD,",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     170.08,
+     675.73,
+     243.04,
+     689.58
+    ],
+    "block": 12,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Minister for Transport",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     170.08,
+     688.94,
+     265.26,
+     702.41
+    ],
+    "block": 12,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Hildegarde Naughton TD,",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     417.6,
+     675.73,
+     530.73,
+     689.58
+    ],
+    "block": 13,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Minister of State at the",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     417.6,
+     688.94,
+     518.36,
+     702.41
+    ],
+    "block": 13,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Department of Transport",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     417.6,
+     701.94,
+     526.25,
+     715.41
+    ],
+    "block": 13,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "with special responsibility",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     417.6,
+     714.94,
+     529.97,
+     728.41
+    ],
+    "block": 13,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "for International and Road",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     417.6,
+     727.94,
+     531.99,
+     741.41
+    ],
+    "block": 13,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "Transport and Logistics",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     417.6,
+     740.94,
+     518.22,
+     754.41
+    ],
+    "block": 13,
+    "line": 5,
+    "span": 0
+   }
+  ],
+  "drawings": [],
+  "images": [],
+  "tables": []
+ }
+]

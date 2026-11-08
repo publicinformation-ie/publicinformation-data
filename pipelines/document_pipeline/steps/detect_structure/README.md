@@ -76,6 +76,9 @@ Repeated headings — `1.1 Introduction` continued onto the next page, or the sa
   | `LowTocMatchRate` | A TOC was detected but its match rate was below the gate, so the legacy cascade was used |
   | `TocEntryUnmatched` | A TOC entry had no body occurrence under the matching rule; no boundary created |
   | `TocEntryNoHeading` | A TOC entry matched a body line below the score floor (not above body size or bold); no boundary created |
+  | `OutlineEntryDropped` | An outline bookmark had no usable title (empty, no letters such as `1.`, or a Word `_Hlk`/`_Toc` auto-bookmark) and was dropped from the tree |
+  | `OutlineEntryUnresolved` | An outline bookmark names only a page and its exact title was not found, so its `y` stays at the page top (the validation gate will usually flag the resulting duplicate boundary). Resolution joins up to 4 wrapped lines (running headers of another size are skipped) and, only after an exact miss on the stated page, tries the previous page for a heading-sized line (InDesign `/Fit` bookmarks can point one page late); it never guesses or tries the next page |
+  | `InvalidStructure` | The final tree (after overrides) failed `validate_split` (e.g. no level-1 node, orphaned or empty sections). The tree is not altered and the record is still written. Validation always runs in production; an unresolved entry blocks the merge — fix it with an `override.json` entry |
   | `UnknownOverrideSlug` | An `override.json` entry names a slug detection no longer produces — the heading was probably renamed, or the detection method changed |
   | `MalformedOverride` | An `override.json` entry is not an object, has no `slug`, or sets a field that is not a node field |
 
@@ -85,7 +88,7 @@ Repeated headings — `1.1 Introduction` continued onto the next page, or the sa
   {"fixture-doc": [{"slug": "1-1-introduction", "title": "Introduction and context"}]}
   ```
 
-  Any node field except `slug` may be set (`level`, `number`, `title`, `start_page`, `start_y`, `end_page`, `confidence`, `parent`, `order`). The slug is the node's identity and is never rewritten, so a retitle cannot break a published URL. Derived fields (`parent`, `order`, `end_page`) are recomputed after a merge and the override's explicit values are then re-applied on top, so a hand-set `parent` sticks while everything around it stays consistent. This is a *node-level* override and is unrelated to `IncrementalWriter`'s record-level `override_path`, which replaces whole output records.
+  Any node field except `slug` may be set (`level`, `number`, `title`, `start_page`, `start_y`, `end_page`, `confidence`, `parent`, `order`). The slug is the node's identity and is never rewritten, so a retitle cannot break a published URL. Derived fields (`parent`, `order`, `end_page`) are recomputed after a merge and the override's explicit values are then re-applied on top, so a hand-set `parent` sticks while everything around it stays consistent. An entry of exactly `{"slug": "…", "drop": true}` removes that node instead, and the previous boundary absorbs its text. Use it where detection is right but the one-dimensional `(page, y)` boundary model cannot represent the layout: two section headings side by side on one baseline (two columns) are a duplicate boundary, so the second is dropped and the survivor is retitled to name both. `drop` combined with any other field, or with a value other than `true`, is a `MalformedOverride`. This is a *node-level* override and is unrelated to `IncrementalWriter`'s record-level `override_path`, which replaces whole output records.
 
 ## Flags
 

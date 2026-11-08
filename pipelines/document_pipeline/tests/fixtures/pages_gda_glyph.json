@@ -1,0 +1,1511 @@
+[
+ {
+  "number": 12,
+  "width": 1190.24,
+  "height": 842.26,
+  "rotation": 0,
+  "spans": [
+   {
+    "text": "\"",
+    "font": "ESRIDefaultMarker",
+    "size": 11.25,
+    "bbox": [
+     647.94,
+     410.3,
+     655.82,
+     421.55
+    ],
+    "block": 208,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "D",
+    "font": "ESRIDefaultMarker",
+    "size": 11.25,
+    "bbox": [
+     647.94,
+     410.3,
+     655.82,
+     421.55
+    ],
+    "block": 208,
+    "line": 0,
+    "span": 1
+   },
+   {
+    "text": "Arklow",
+    "font": "Arial-BoldMT",
+    "size": 13.95,
+    "bbox": [
+     664.46,
+     364.63,
+     710.94,
+     391.43
+    ],
+    "block": 209,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "C",
+    "font": "Arial-BoldMT",
+    "size": 13.95,
+    "bbox": [
+     29.53,
+     736.28,
+     39.6,
+     763.08
+    ],
+    "block": 210,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "l",
+    "font": "Arial-BoldMT",
+    "size": 13.95,
+    "bbox": [
+     56.61,
+     736.28,
+     60.49,
+     763.08
+    ],
+    "block": 210,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "M11",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     441.93,
+     480.78,
+     454.2,
+     493.38
+    ],
+    "block": 211,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "R747",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     330.28,
+     236.01,
+     343.91,
+     248.59
+    ],
+    "block": 212,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "R750",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     724.73,
+     204.9,
+     738.72,
+     219.32
+    ],
+    "block": 213,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "R772",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     724.39,
+     55.24,
+     738.82,
+     69.23
+    ],
+    "block": 214,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "KISH",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     495.35,
+     657.28,
+     509.14,
+     669.96
+    ],
+    "block": 215,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "20",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     629.14,
+     151.95,
+     639.01,
+     162.53
+    ],
+    "block": 216,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "21",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     404.81,
+     674.47,
+     415.48,
+     683.99
+    ],
+    "block": 217,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "KILBRIDE",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     589.88,
+     209.35,
+     612.62,
+     230.56
+    ],
+    "block": 218,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "R752",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     89.09,
+     16.99,
+     100.83,
+     30.0
+    ],
+    "block": 219,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "CURRANSTOWN",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     270.22,
+     611.32,
+     310.23,
+     626.44
+    ],
+    "block": 220,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "DUBLIN ROAD",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     628.38,
+     311.39,
+     652.23,
+     347.27
+    ],
+    "block": 221,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "VALE ROAD",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     406.23,
+     267.28,
+     433.99,
+     292.11
+    ],
+    "block": 222,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "SHELTON ROAD",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     387.14,
+     157.15,
+     427.49,
+     181.37
+    ],
+    "block": 223,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "COOLBOY",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     546.37,
+     172.3,
+     571.01,
+     195.32
+    ],
+    "block": 224,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "TEMPLERAINY",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     624.77,
+     104.13,
+     651.05,
+     137.36
+    ],
+    "block": 225,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "SHELTON ABBEY",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     450.68,
+     228.52,
+     489.97,
+     258.68
+    ],
+    "block": 226,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "LOVE LANE",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     647.55,
+     223.35,
+     675.36,
+     233.82
+    ],
+    "block": 227,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "BALLYRUSH",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     173.42,
+     351.55,
+     191.56,
+     380.9
+    ],
+    "block": 228,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "RAHEEN",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     423.9,
+     79.2,
+     445.5,
+     98.61
+    ],
+    "block": 229,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "BALLYGRIFFIN",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     250.47,
+     417.58,
+     281.46,
+     446.33
+    ],
+    "block": 230,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "BALLYNATTIN",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     414.96,
+     576.34,
+     440.21,
+     609.24
+    ],
+    "block": 231,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "ROSTYGAH",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     82.6,
+     227.56,
+     98.75,
+     255.67
+    ],
+    "block": 232,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "SPRINGFIELD",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     528.24,
+     682.86,
+     549.8,
+     714.86
+    ],
+    "block": 233,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "BALLINAHEESE",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     455.67,
+     102.99,
+     489.6,
+     131.42
+    ],
+    "block": 234,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "ROCK BIG",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     592.97,
+     690.56,
+     607.53,
+     716.8
+    ],
+    "block": 235,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "JOHNSTOWN SOUTH",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     797.83,
+     36.23,
+     842.84,
+     77.74
+    ],
+    "block": 236,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "KEELOGE",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     453.93,
+     39.27,
+     465.0,
+     62.33
+    ],
+    "block": 237,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "SEA ROAD",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     673.63,
+     302.99,
+     694.66,
+     329.48
+    ],
+    "block": 238,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "NORTH QUAY",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     656.91,
+     415.77,
+     691.34,
+     441.77
+    ],
+    "block": 239,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "MONEYLANE",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     339.9,
+     494.84,
+     371.78,
+     517.36
+    ],
+    "block": 240,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "JOHNSTOWN HILL",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     82.96,
+     550.84,
+     99.55,
+     596.91
+    ],
+    "block": 241,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "BALLYROOAUN",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     394.88,
+     501.71,
+     431.45,
+     527.56
+    ],
+    "block": 242,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "WHITEPARK",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     453.33,
+     720.72,
+     482.72,
+     743.15
+    ],
+    "block": 243,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "KILCARRA EAST",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     211.76,
+     200.87,
+     243.6,
+     235.26
+    ],
+    "block": 244,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "EMYVALE",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     420.52,
+     416.05,
+     437.37,
+     439.73
+    ],
+    "block": 245,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "PLATTINSTOWN",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     223.39,
+     629.36,
+     254.33,
+     665.61
+    ],
+    "block": 246,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "MONAGLOGH",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     70.21,
+     273.21,
+     87.12,
+     308.39
+    ],
+    "block": 247,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "SHEEPWALK",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     340.8,
+     15.62,
+     366.02,
+     44.11
+    ],
+    "block": 248,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "COOLGREANEY ROAD",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     467.22,
+     394.2,
+     513.23,
+     437.13
+    ],
+    "block": 249,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "SEAVIEW AVENUE",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     674.25,
+     322.24,
+     711.66,
+     357.76
+    ],
+    "block": 250,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "THE BUNGALOWS",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     709.25,
+     252.4,
+     743.01,
+     293.42
+    ],
+    "block": 251,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "THOMASTOWN",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     94.21,
+     439.46,
+     132.25,
+     451.7
+    ],
+    "block": 252,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "BARNACLEAGH EAST",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     59.91,
+     329.87,
+     76.51,
+     381.04
+    ],
+    "block": 253,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "CASTLE PARK",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     598.68,
+     395.01,
+     611.93,
+     428.59
+    ],
+    "block": 254,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "BALLYKILTY UPPER",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     125.34,
+     667.6,
+     172.04,
+     686.31
+    ],
+    "block": 255,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "NEWTOWN UPPER",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     60.44,
+     645.05,
+     93.72,
+     687.99
+    ],
+    "block": 256,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "MONEY BIG",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     554.53,
+     579.26,
+     581.3,
+     607.09
+    ],
+    "block": 257,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "KNOCKGREANY",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     146.65,
+     692.98,
+     165.38,
+     731.6
+    ],
+    "block": 258,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "FERNHILL",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     485.46,
+     450.19,
+     508.38,
+     473.19
+    ],
+    "block": 259,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "SHELTON",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     501.09,
+     137.24,
+     525.38,
+     158.35
+    ],
+    "block": 260,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "ROAD STONES PROVINCE",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     657.14,
+     468.17,
+     686.36,
+     531.02
+    ],
+    "block": 261,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "KILCARRA WEST",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     148.73,
+     144.73,
+     188.86,
+     166.38
+    ],
+    "block": 262,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "SEABANK",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     759.46,
+     165.05,
+     778.08,
+     188.84
+    ],
+    "block": 263,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "HAWTHORN DRIVE",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     650.22,
+     267.27,
+     671.1,
+     314.78
+    ],
+    "block": 264,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "ABBEY PARK",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     587.52,
+     438.81,
+     618.28,
+     461.85
+    ],
+    "block": 265,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "THE RISE",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     471.6,
+     515.72,
+     494.33,
+     538.11
+    ],
+    "block": 266,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "ST PETER'S PLACE",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     537.54,
+     389.24,
+     555.26,
+     434.62
+    ],
+    "block": 267,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "COOLADANGAN",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     351.19,
+     532.57,
+     386.22,
+     565.75
+    ],
+    "block": 268,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "AVALON",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     549.4,
+     493.59,
+     559.82,
+     513.68
+    ],
+    "block": 269,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "BALLINACOR",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     370.88,
+     47.24,
+     400.15,
+     74.64
+    ],
+    "block": 270,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "ARKLOW",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     81.43,
+     403.92,
+     96.36,
+     426.76
+    ],
+    "block": 271,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "ASHFIELD",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     512.84,
+     466.49,
+     532.55,
+     490.91
+    ],
+    "block": 272,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "MONGAN",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     167.32,
+     220.89,
+     187.27,
+     245.76
+    ],
+    "block": 273,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "SPRINGFIELD",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     484.2,
+     685.53,
+     508.15,
+     716.87
+    ],
+    "block": 274,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "R747",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     447.98,
+     305.93,
+     461.43,
+     320.1
+    ],
+    "block": 275,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "R747",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     494.84,
+     361.33,
+     507.92,
+     373.15
+    ],
+    "block": 276,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "R772",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     368.96,
+     682.49,
+     378.72,
+     693.92
+    ],
+    "block": 277,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "R772",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     479.02,
+     577.77,
+     491.67,
+     591.43
+    ],
+    "block": 278,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "PLATTINSTOWN",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     198.35,
+     685.62,
+     226.48,
+     723.38
+    ],
+    "block": 279,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "R772",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     511.16,
+     516.06,
+     521.38,
+     527.87
+    ],
+    "block": 280,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "M11",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     429.53,
+     637.88,
+     442.88,
+     651.36
+    ],
+    "block": 281,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "R772",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     646.37,
+     195.08,
+     657.59,
+     207.69
+    ],
+    "block": 282,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "20",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     672.09,
+     127.17,
+     682.43,
+     137.44
+    ],
+    "block": 283,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "ROCK BIG",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     559.92,
+     657.0,
+     586.03,
+     670.78
+    ],
+    "block": 284,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "VALE ROAD",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     459.4,
+     326.32,
+     483.17,
+     354.67
+    ],
+    "block": 285,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "R772",
+    "font": "GillSansMT-BoldItalic",
+    "size": 4.95,
+    "bbox": [
+     532.81,
+     459.55,
+     545.05,
+     472.92
+    ],
+    "block": 286,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Esri,",
+    "font": "ArialMT",
+    "size": 7.92,
+    "bbox": [
+     878.62,
+     731.84,
+     894.5,
+     747.06
+    ],
+    "block": 287,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Project:",
+    "font": "ArialMT",
+    "size": 11.34,
+    "bbox": [
+     20.44,
+     752.5,
+     58.85,
+     774.29
+    ],
+    "block": 288,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Title:",
+    "font": "ArialMT",
+    "size": 11.34,
+    "bbox": [
+     271.78,
+     752.5,
+     295.89,
+     774.29
+    ],
+    "block": 288,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1:30,000",
+    "font": "ArialMT",
+    "size": 10.17,
+    "bbox": [
+     1058.31,
+     665.88,
+     1097.88,
+     685.41
+    ],
+    "block": 289,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "0",
+    "font": "ArialMT",
+    "size": 5.94,
+    "bbox": [
+     1005.87,
+     684.5,
+     1009.17,
+     695.92
+    ],
+    "block": 290,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "620",
+    "font": "ArialMT",
+    "size": 5.94,
+    "bbox": [
+     1061.14,
+     684.5,
+     1071.1,
+     695.92
+    ],
+    "block": 290,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "1,240",
+    "font": "ArialMT",
+    "size": 5.94,
+    "bbox": [
+     1117.23,
+     684.5,
+     1132.23,
+     695.92
+    ],
+    "block": 290,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "310",
+    "font": "ArialMT",
+    "size": 5.94,
+    "bbox": [
+     1031.89,
+     684.5,
+     1041.85,
+     695.92
+    ],
+    "block": 290,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "Meters",
+    "font": "ArialMT",
+    "size": 5.94,
+    "bbox": [
+     1134.11,
+     684.5,
+     1152.46,
+     695.92
+    ],
+    "block": 290,
+    "line": 4,
+    "span": 0
+   },
+   {
+    "text": "\"",
+    "font": "ESRIDefaultMarker",
+    "size": 11.16,
+    "bbox": [
+     648.12,
+     755.03,
+     655.93,
+     766.19
+    ],
+    "block": 291,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "D",
+    "font": "ESRIDefaultMarker",
+    "size": 11.16,
+    "bbox": [
+     648.12,
+     755.03,
+     655.93,
+     766.19
+    ],
+    "block": 291,
+    "line": 0,
+    "span": 1
+   },
+   {
+    "text": "Proposed Crossing Points",
+    "font": "ArialMT",
+    "size": 11.16,
+    "bbox": [
+     659.51,
+     747.08,
+     788.61,
+     768.52
+    ],
+    "block": 291,
+    "line": 0,
+    "span": 3
+   },
+   {
+    "text": "Primary Radial",
+    "font": "ArialMT",
+    "size": 11.16,
+    "bbox": [
+     659.51,
+     763.54,
+     732.7,
+     784.98
+    ],
+    "block": 292,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Primary Orbital",
+    "font": "ArialMT",
+    "size": 11.16,
+    "bbox": [
+     659.51,
+     780.09,
+     733.96,
+     801.54
+    ],
+    "block": 292,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Secondary",
+    "font": "ArialMT",
+    "size": 11.16,
+    "bbox": [
+     659.51,
+     796.56,
+     712.86,
+     818.0
+    ],
+    "block": 292,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "Greenway - Utility",
+    "font": "ArialMT",
+    "size": 11.16,
+    "bbox": [
+     659.51,
+     813.11,
+     747.59,
+     834.55
+    ],
+    "block": 292,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "Inter Urban",
+    "font": "ArialMT",
+    "size": 11.16,
+    "bbox": [
+     804.8,
+     747.08,
+     860.67,
+     768.52
+    ],
+    "block": 293,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Feeder",
+    "font": "ArialMT",
+    "size": 11.16,
+    "bbox": [
+     804.8,
+     763.54,
+     840.1,
+     784.98
+    ],
+    "block": 293,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Greenway - Leisure",
+    "font": "ArialMT",
+    "size": 11.16,
+    "bbox": [
+     804.8,
+     780.09,
+     902.23,
+     801.54
+    ],
+    "block": 293,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "Further Study",
+    "font": "ArialMT",
+    "size": 11.16,
+    "bbox": [
+     804.8,
+     796.56,
+     872.46,
+     818.0
+    ],
+    "block": 293,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "Legend:",
+    "font": "ArialMT",
+    "size": 11.34,
+    "bbox": [
+     603.06,
+     750.79,
+     644.09,
+     772.58
+    ],
+    "block": 294,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "2022 GREATER DUBLIN AREA",
+    "font": "ArialMT",
+    "size": 14.13,
+    "bbox": [
+     42.22,
+     775.01,
+     242.64,
+     802.16
+    ],
+    "block": 296,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "CYCLE NETWORK PLAN",
+    "font": "ArialMT",
+    "size": 14.13,
+    "bbox": [
+     42.22,
+     791.21,
+     206.62,
+     818.35
+    ],
+    "block": 296,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "2022 GREATER DUBLIN AREA ",
+    "font": "ArialMT",
+    "size": 14.13,
+    "bbox": [
+     323.86,
+     767.46,
+     527.42,
+     794.6
+    ],
+    "block": 297,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "CYCLE NETWORK PLAN - ",
+    "font": "ArialMT",
+    "size": 14.13,
+    "bbox": [
+     337.14,
+     783.65,
+     514.16,
+     810.8
+    ],
+    "block": 297,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "ARKLOW",
+    "font": "ArialMT",
+    "size": 14.13,
+    "bbox": [
+     395.02,
+     799.84,
+     456.31,
+     826.99
+    ],
+    "block": 298,
+    "line": 0,
+    "span": 0
+   }
+  ],
+  "drawings": [],
+  "images": [],
+  "tables": []
+ }
+]

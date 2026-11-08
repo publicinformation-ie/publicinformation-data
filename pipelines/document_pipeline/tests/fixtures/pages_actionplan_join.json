@@ -1,0 +1,629 @@
+[
+ {
+  "number": 3,
+  "width": 595.28,
+  "height": 841.89,
+  "rotation": 0,
+  "spans": [
+   {
+    "text": "1",
+    "font": "Lato-Regular",
+    "size": 10.5,
+    "bbox": [
+     546.67,
+     791.23,
+     552.76,
+     805.37
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "CORE ACTIONS",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     68.7,
+     317.82,
+     141.07,
+     331.67
+    ],
+    "block": 3,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "ACTION",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     149.56,
+     342.88,
+     187.64,
+     356.73
+    ],
+    "block": 4,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "OWNER",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     281.95,
+     342.88,
+     320.27,
+     356.73
+    ],
+    "block": 4,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "SUPPORT",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     343.66,
+     342.88,
+     389.27,
+     356.73
+    ],
+    "block": 4,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "TIMELINE & OUTPUT",
+    "font": "Lato-Bold",
+    "size": 10.0,
+    "bbox": [
+     431.77,
+     342.88,
+     530.73,
+     356.73
+    ],
+    "block": 4,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "1. \u0007Develop and publish an annual public ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     68.7,
+     368.15,
+     244.88,
+     381.62
+    ],
+    "block": 5,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "transport passenger safety and personal ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     79.42,
+     381.15,
+     256.53,
+     394.62
+    ],
+    "block": 5,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "security report, and implement measures ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     79.42,
+     394.15,
+     260.24,
+     407.62
+    ],
+    "block": 5,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "where appropriate.  ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     79.42,
+     407.15,
+     167.56,
+     420.62
+    ],
+    "block": 5,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "NTA",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     279.85,
+     368.15,
+     299.45,
+     381.62
+    ],
+    "block": 6,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Transport ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     333.71,
+     368.15,
+     378.0,
+     381.62
+    ],
+    "block": 6,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "operators",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     333.71,
+     381.15,
+     375.9,
+     394.62
+    ],
+    "block": 6,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "2022:\t \u0007Report developed.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     410.25,
+     368.15,
+     520.47,
+     381.62
+    ],
+    "block": 7,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "2023:\t \u0007First report published ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     410.25,
+     386.82,
+     537.01,
+     400.29
+    ],
+    "block": 8,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "and annual reports ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     440.25,
+     399.82,
+     524.65,
+     413.29
+    ],
+    "block": 8,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "published thereafter.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     440.25,
+     412.82,
+     530.9,
+     426.29
+    ],
+    "block": 8,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "2. \u0007Continue awareness campaigns with the ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     68.7,
+     437.88,
+     258.21,
+     451.35
+    ],
+    "block": 9,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "aim of promoting inclusivity, courtesy and ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     79.42,
+     450.88,
+     264.03,
+     464.35
+    ],
+    "block": 9,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "respect for all when travelling on public ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     79.42,
+     463.88,
+     253.61,
+     477.35
+    ],
+    "block": 9,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "transport. ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     79.42,
+     476.88,
+     124.85,
+     490.35
+    ],
+    "block": 9,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "NTA",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     279.85,
+     437.88,
+     299.45,
+     451.35
+    ],
+    "block": 10,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Transport ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     333.71,
+     437.88,
+     378.0,
+     451.35
+    ],
+    "block": 10,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "operators",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     333.71,
+     450.88,
+     375.9,
+     464.35
+    ],
+    "block": 10,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "Annual campaigns",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     410.25,
+     437.88,
+     489.66,
+     451.35
+    ],
+    "block": 11,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "3. \u0007Continue to protect and renew rail ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     68.7,
+     501.94,
+     232.8,
+     515.41
+    ],
+    "block": 12,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "infrastructure through the Infrastructure ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     79.42,
+     514.94,
+     258.48,
+     528.41
+    ],
+    "block": 12,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Manager Multi-Annual Contract (IMMAC).",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     79.42,
+     527.94,
+     263.97,
+     541.41
+    ],
+    "block": 12,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "DoT",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     279.85,
+     501.94,
+     297.72,
+     515.41
+    ],
+    "block": 13,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "CRR, IÉ, NTA",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     333.71,
+     501.94,
+     390.76,
+     515.41
+    ],
+    "block": 13,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "2024:\t \u0007Existing IMMAC ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     410.25,
+     501.94,
+     514.43,
+     515.41
+    ],
+    "block": 13,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "reviewed. ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     440.25,
+     514.94,
+     485.23,
+     528.41
+    ],
+    "block": 13,
+    "line": 3,
+    "span": 0
+   },
+   {
+    "text": "2025:\t \u0007IMMAC 2025-2030 ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     410.25,
+     533.61,
+     530.11,
+     547.08
+    ],
+    "block": 14,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "agreed. ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     440.25,
+     546.61,
+     474.93,
+     560.08
+    ],
+    "block": 14,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "4. \u0007Continue to protect and renew road ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     68.7,
+     571.67,
+     239.18,
+     585.14
+    ],
+    "block": 15,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "infrastructure for all road users including  ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     79.42,
+     584.67,
+     261.44,
+     598.14
+    ],
+    "block": 15,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "sustainable mobility users.",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     79.42,
+     597.67,
+     194.15,
+     611.14
+    ],
+    "block": 15,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "DoT, LAs, ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     279.85,
+     571.67,
+     322.9,
+     585.14
+    ],
+    "block": 16,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "TII",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     279.85,
+     584.67,
+     291.35,
+     598.14
+    ],
+    "block": 16,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "NTA",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     333.71,
+     571.67,
+     353.31,
+     585.14
+    ],
+    "block": 17,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Ongoing",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     410.25,
+     571.67,
+     447.7,
+     585.14
+    ],
+    "block": 17,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Safe and Green  ",
+    "font": "Lato-Bold",
+    "size": 33.37,
+    "bbox": [
+     63.78,
+     190.41,
+     315.38,
+     236.63
+    ],
+    "block": 18,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Mobility ",
+    "font": "Lato-Bold",
+    "size": 33.37,
+    "bbox": [
+     63.78,
+     227.95,
+     200.07,
+     274.17
+    ],
+    "block": 18,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Goal 1: Improve mobility safety",
+    "font": "Lato-Bold",
+    "size": 20.0,
+    "bbox": [
+     63.78,
+     274.0,
+     352.46,
+     301.7
+    ],
+    "block": 19,
+    "line": 0,
+    "span": 0
+   }
+  ],
+  "drawings": [],
+  "images": [],
+  "tables": []
+ }
+]

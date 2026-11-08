@@ -1010,7 +1010,7 @@ Legislation
 
 ### Introduction and Application of Part B
 
-*Pages 68–68*
+*Pages 68–69*
 
 Introduction and Application of Part B
 
@@ -1026,9 +1026,11 @@ Note: For the purpose of Part B, sailing craft are considered to be craft primar
 
 Sailboats while under power are classed as motor boats, as are lake boats fitted with outboard engines.
 
+## 2
+
 ## 1.2 Legislation applicable to all recreational craft
 
-### 1.2.2 SOLAS Chapter V - safety of navigation
+### 1.2 Legislation applicable to all recreational craft
 
 *Pages 39–39*
 
@@ -1039,6 +1041,10 @@ Sailboats while under power are classed as motor boats, as are lake boats fitted
 practicable be fitted with a radar reflector (i.e. if it can reasonably be fitted, it should be fitted with one).
 
 Legislation
+
+### 1.2.1 Collision Regulations
+
+*Pages 39–39*
 
 1.2.1 Collision Regulations
 
@@ -1064,6 +1070,10 @@ All owners, skippers or persons in charge of a recreational craft should be full
 
 skipper of a recreational craft to report any dangers to navigation and respond to distress messages. This can be done by calling the Irish Coast Guard on VHF radio, if on board, or by contacting the Irish Coast Guard at 112 or 999 and reporting directly to them. Information on the Irish Coast Guard VHF channels can be found in Marine Notice No. 61 of 2020 and on page 163.
 
+### 1.2.2 SOLAS Chapter V - safety of navigation
+
+*Pages 39–39*
+
 1.2.2 SOLAS Chapter V - safety of navigation
 
 A number of regulations in Chapter V of the International Convention for the Safety of Life at Sea (SOLAS Convention) dealing with safety of navigation apply to all recreational craft. Marine Notice No. 30 of 2023 outlines the relevant provisions, which are summarised as follows:
@@ -1076,7 +1086,7 @@ is properly planned prior to being undertaken. See Appendix 8 for an example of 
 
 signals are not misused.
 
-### 1.2.3 3 Prevention of pollution by oil from ships - Annex I of MARPOL
+### 1.2.3 The International Convention for the prevention of pollution from ships (MARPOL)
 
 *Pages 40–40*
 
@@ -1086,7 +1096,15 @@ signals are not misused.
 
 Legislation
 
+### 1.2.3.2 Obligations under the Port Reception Facilities Directive
+
+*Pages 40–40*
+
 1.2.3.2 Obligations under the Port Reception Facilities Directive
+
+### 1.2.3.1 Prevention of pollution by garbage from ships – Annex V of MARPOL
+
+*Pages 40–40*
 
 1.2.3.1 Prevention of pollution by garbage from ships – Annex V of MARPOL
 
@@ -1124,13 +1142,13 @@ gives further information on the requirements.
 
 Recreational craft users should be aware of and comply with port authority and local authority waste reception and handling plans. Attention is also drawn to the obligations under the EU Port Reception Facilities Regulations 2022
 
+### 1.2.3.3 Prevention of pollution by oil from ships - Annex I of MARPOL
+
+*Pages 40–41*
+
 1.2.3.3 Prevention of pollution by oil from ships - Annex I of MARPOL
 
 Recreational craft are required to be equipped as far as practicable
-
-### 1.2.4 Wearing of Personal Flotation Devices/Lifejackets
-
-*Pages 41–41*
 
 operational and communications capability through the Marine Rescue and Coordination Centre, Telephone +353 (0)1 662 0922 and/or email CoastGuardNMOC@ transport.gov.ie.
 
@@ -1139,6 +1157,10 @@ and reasonable with installations to ensure the storage of oil or oily mixtures 
 In addition, as a basic general principle, recreational craft that are at the end of their useful life should be disposed of in a safe and environmentally responsible manner.
 
 The National Maritime Oil/HNS Spill Contingency Plan covers pollution by oil or hazardous noxious substances, as defined in the Sea Pollution Act.
+
+### 1.2.4 Wearing of Personal Flotation Devices/Lifejackets
+
+*Pages 41–42*
 
 1.2.4 Wearing of Personal Flotation Devices/Lifejackets
 
@@ -1157,10 +1179,6 @@ Legislative Requirements
 Devices and Operation) (Safety) Regulations 2005 (S.I. No. 921 of 2005), as amended by the Pleasure Craft (Personal Flotation Devices and Operation) (Safety) (Amendment) Regulations 2012 (S.I. No. 349 of 2012) and the
 
 To facilitate the making of a report, the Irish Coast Guard maintains 24/7
-
-### 1.2.4 2 Lifejacket regulations on personal watercraft (PWC), e.g. Jet Skis
-
-*Pages 42–42*
 
 Pleasure Craft (Personal Flotation Devices and Operation) (Safety) (Amendment) Regulations 2018 (S.I. No. 400 of 2018).
 
@@ -1182,6 +1200,10 @@ is required to take all reasonable steps to ensure that a person wears a suitabl
 
 any kind that is being towed by the craft.
 
+### 1.2.4.1 Lifejacket regulations on recreational craft other than personal watercraft (PWC)
+
+*Pages 42–42*
+
 1.2.4.1 Lifejacket regulations on recreational craft other than personal watercraft (PWC)
 
 The PFD/lifejacket requirements under the Regulations do not apply to a person on board a craft which is not underway and is made fast to the shore or at anchor, and when the person:
@@ -1198,6 +1220,10 @@ off scuba diving equipment or
 
 just completed swimming (including snorkelling) from the craft.
 
+### 1.2.4.2 Lifejacket regulations on personal watercraft (PWC), e.g. Jet Skis
+
+*Pages 42–43*
+
 1.2.4.2 Lifejacket regulations on personal watercraft (PWC), e.g. Jet Skis
 
 ▪The master or owner of any craft
@@ -1210,10 +1236,6 @@ Every person on a personal watercraft is required to wear a personal flotation d
 
 is required to take all reasonable steps to ensure that all persons under the age of 16 years wear a PFD/lifejacket while on board an open craft or while on the deck of a decked craft.
 
-### 1.2.4 3 Lifejacket regulations for Waterskiing, Wake Boarding, Parasailing and other towed rides
-
-*Pages 43–43*
-
 ▪The master or owner of a PWC
 
 The term “fast power craft” means a craft that can attain a speed through or over water of 17 knots or more.
@@ -1221,6 +1243,10 @@ The term “fast power craft” means a craft that can attain a speed through or
 is required to take all reasonable steps to ensure that a person under the age of 16 years complies with the requirement to wear a PFD/lifejacket while on board or being towed by a PWC.
 
 A person under the age of 16 years should not be allowed to operate or control a personal watercraft such as a jet ski or a fast power craft that can attain a speed through or over water of 17 knots or more. A person under the age of 12 years should not be allowed to operate or control a craft with an engine rating of more than 5 hp (3.7 kW).
+
+### 1.2.4.3 Lifejacket regulations for Waterskiing, Wake Boarding, Parasailing and other towed rides
+
+*Pages 43–43*
 
 1.2.4.3 Lifejacket regulations for Waterskiing, Wake Boarding, Parasailing and other towed rides
 
@@ -1233,6 +1259,10 @@ with an engine rating of more than 5 hp (3.7 kW) is required to take all reasona
 ▪All persons while being towed
 
 by a pleasure craft or on board any vessel or object of any kind being towed by a craft must wear a personal flotation device or lifejacket. The responsibility for compliance with this requirement lies with the master or owner of the towing craft.
+
+### 1.2.6 Controls on alcohol and drugs
+
+*Pages 43–43*
 
 1.2.6 Controls on alcohol and drugs
 
@@ -1247,6 +1277,10 @@ More information on PFD/lifejackets is set out in Appendix 5.
 ▪The master or owner of a pleasure
 
 craft must not operate or control or allow another person to operate or control the craft while under the influence of alcohol or drugs or any combination of drugs or of drugs and alcohol.
+
+### 1.2.5 Operation of recreational craft - minimum age levels
+
+*Pages 43–43*
 
 1.2.5 Operation of recreational craft - minimum age levels
 
@@ -1284,9 +1318,9 @@ The Maritime Safety Act 2005 (No. 11 of 2005), as amended, also contains prohibi
 
 A member of the Garda Síochána who reasonably suspects that a person is committing or has committed an offence under Part 2 of the Maritime Safety Act 2005 or section 23 or 24 of that Act involving careless or dangerous navigation or operation of a craft may arrest without warrant the person.
 
-### 1.2.9 Directive 2013/53/EU on recreational craft and personal watercraft
+### 1.2.8 Marine Equipment Directive
 
-*Pages 45–47*
+*Pages 45–45*
 
 1.2.8 Marine Equipment Directive
 
@@ -1329,6 +1363,10 @@ In the case of a PFD, ensure it always carries the approval CE mark shown opposi
 conversion.
 
 Under Directive 2013/53/EU, any watercraft falling under its scope (whether new or second-hand) that is placed on the EU market for the first time must comply with the essential requirements as set out in the Annexes to the Directive. This guarantees their suitability for sale or use in the EU. The essential
+
+### 1.2.9 Directive 2013/53/EU on recreational craft and personal watercraft
+
+*Pages 45–48*
 
 1.2.9 Directive 2013/53/EU on recreational craft and personal watercraft
 
@@ -1438,10 +1476,6 @@ easily understood by the end-user, to accompany all watercraft to ensure their s
 
 ▪sufficient structure, stability and
 
-### 1.2.10 Marine Casualty Investigation Board
-
-*Pages 48–48*
-
 administration of the Unique Code of the Manufacturer (UCM) and appointed the Marine Survey Office as the competent authority for assigning the UCM.
 
 buoyancy in accordance with its design category;
@@ -1474,15 +1508,15 @@ European Union (Recreational Craft and Personal Watercraft) Regulations The prov
 
 CE Plate for Category ’C’ boat
 
+### 1.2.10 Marine Casualty Investigation Board
+
+*Pages 48–49*
+
 1.2.10 Marine Casualty Investigation Board
 
 The Marine Casualty Investigation Board (MCIB) was established on 5 June 2002 under section 7(1) of the Merchant Shipping (Investigation of Marine Casualties) Act 2000 (No. 14 of 2000). Under the provisions of the Act, as amended, it is the responsibility of all owners, operators and skippers to advise the
 
 The European Union (Recreational Craft and Personal Watercraft) (Procedures for Watercraft Identification) Regulations 2017 (S.I. No. 217 of 2017) amended the rules on the assignment and
-
-### 1.2.12 Radiocommunications
-
-*Pages 49–49*
 
 recreational craft are required to comply with any relevant bye-laws, in particular those in relation to:
 
@@ -1502,21 +1536,25 @@ Details of bye-laws are available from the Harbour Masters Office and should be 
 
 The European Communities (Merchant Shipping) (Investigation of Accidents) Regulations 2011 (S.I. No. 276 of 2011), as amended by S.I. No. 444 of 2020 and S.I. No. 538 of 2022, set out the regulatory framework governing the investigation of accidents in the maritime transport sector. The purpose of the Regulations is to improve maritime safety and the prevention of pollution by ships, and so reduce the risk of future marine casualties. The Regulations designate the MCIB as the investigative body in Ireland to investigate marine casualties and accidents. See www.mcib.ie for further information.
 
+### 1.2.12 Radiocommunications
+
+*Pages 49–49*
+
 1.2.12 Radiocommunications
 
 The installation of marine band radio transmitting equipment on recreational craft is voluntary. However, it is recommended that all recreational craft carry at least one means of approved marine radiocommunications equipment in order to enable the initiation of a distress alert in the event of an emergency. See Appendix 2 for Guidance notes on Radiocommunications.
 
 If marine radiocommunication equipment is voluntarily fitted or carried on any type of recreational craft, the vessel must be licensed in accordance with the Wireless Telegraphy Acts. Licences are issued under the Wireless Telegraphy (Ship Station Radio Licence) Regulations 2006 (S.I. No. 414 of 2006). The responsibility for the licensing of radio communications equipment on Irish ships and the
 
+### 1.2.11 Harbours Acts - Powers of Harbour Masters
+
+*Pages 49–50*
+
 1.2.11 Harbours Acts - Powers of Harbour Masters
 
 Harbours Acts 1996 to 2015 and Fishery Harbour Centres Acts 1968 to 2015.
 
 Under these Acts, Harbour Masters have the power to create bye-laws within the limits of their port areas. While the majority of shipping within such ports is of a commercial nature,
-
-### 1.2.12 1 Emergency Position Indicating Radio Beacons and Personal Locator Beacons
-
-*Pages 50–51*
 
 issuing of associated Certificates of Competency rests with the Marine Survey Office (MSO) of the Department of Transport.
 
@@ -1529,6 +1567,10 @@ Legislation
 A new online ship radio licence and EPIRB registration system is in place since October 2022. See Marine Notice No. 70 of 2022 regarding the Irish Maritime Radio Licence System (IMRAD). A ship radio licence is required under national and international legislation to certify that a vessel may operate approved radiocommunication equipment on specific maritime radio frequency bands. This allows the licensed vessel to operate without causing interference on marine band frequencies. The ship radio licence is also necessary for the assignment and recording of unique vessel radiocommunication maritime identifiers such as call signs and MMSI numbers.
 
 The licence document will contain a unique Radio Call Sign for the craft and a Maritime Mobile Service Identity (MMSI) number if applicable.
+
+### 1.2.12.1 Emergency Position Indicating Radio Beacons and Personal Locator Beacons
+
+*Pages 50–52*
 
 1.2.12.1 Emergency Position Indicating Radio Beacons and Personal Locator Beacons
 
@@ -1582,12 +1624,6 @@ of EPIRBs is greater than that of PLBs.
 
 In view of the above, a PLB is not considered to be a substitute for an EPIRB. However, a PLB provides an effective means of distress alerting in a small craft if used correctly.
 
-## 1.3 Legislation applicable to recreational craft greater than 12 metres in length
-
-### 1.3.1 Nautical charts and publications
-
-*Pages 52–52*
-
 The wearing of a PLB by seafarers, particularly those boating alone, is recommended.
 
 It is recommended that PLBs carried on Irish vessels be the 406 MHz satellite type. It is also recommended that PLBs have an integrated GPS receiver. This is to enable greater position accuracy, hence a quicker response time in the event of activation. PLBs should be type approved by Cospas-Sarsat and certified in accordance with the Radio Equipment Directive 2014/53/ EU.
@@ -1600,7 +1636,17 @@ Note: Compliance with the Radio Equipment Directive 2014/53/ EU is indicated by 
 
 ComReg has an online registration facility for PLB devices in Ireland – See Marine Notice No. 25 of 2010 as amended. As PLBs are not exclusively for use in the maritime environment, registration is completed with ComReg. PLB owners should register their PLB at https://www.comreg.ie/industry/ licensing/personal-locator-beacons/ Only PLBs that are programmed with the correct Irish Country Code (250) may be registered with ComReg. Any queries relating to PLB registration may be addressed to:
 
+## 1.3 Legislation applicable to recreational craft greater than 12 metres in length
+
+### 1.3 Legislation applicable to recreational craft greater than 12 metres in length
+
+*Pages 52–52*
+
 1.3 Legislation applicable to recreational craft greater than 12 metres in length
+
+### 1.3.1 Nautical charts and publications
+
+*Pages 52–52*
 
 1.3.1 Nautical charts and publications
 
@@ -1620,7 +1666,7 @@ Commission for Communications Regulation One Dockland Central Guild Street North
 
 ## 1.4 Legislation applicable to recreational craft greater than 15 net registered tonnes (NRT)
 
-### 1.4.1 Registration of recreational craft – Mercantile Marine Act 1955 as amended
+### 1.4 Legislation applicable to recreational craft greater than 15 net registered tonnes (NRT)
 
 *Pages 53–53*
 
@@ -1629,6 +1675,10 @@ Commission for Communications Regulation One Dockland Central Guild Street North
 (1) the International Code of
 
 Signals as currently maintained by the International Maritime Organization
+
+### 1.4.1 Registration of recreational craft – Mercantile Marine Act 1955 as amended
+
+*Pages 53–54*
 
 1.4.1 Registration of recreational craft – Mercantile Marine Act 1955 as amended
 
@@ -1682,10 +1732,6 @@ NOTE: A recreational craft that is less than 12 metres in length that goes out t
 
 It is also possible to carry digital publications.
 
-### 1.4.2 Future registration developments – Merchant Shipping (Registration of Ships) Act 2014 (No. 43 of 2014)
-
-*Pages 54–55*
-
 the person should ensure that his or her yacht is registered on the national register while operating abroad in order to comply with national statutory ship registration requirements.
 
 The 1955 Act does not discriminate between recreational and commercial craft – all are regarded as ships (unless propelled by oars) for the purpose of registration. The Act also defines those persons that may register a boat under the Irish flag as follows:
@@ -1709,6 +1755,10 @@ the Government.
 Under section 18(1) of the 1955 Act every ship which is wholly owned by an Irish citizen or an Irish body corporate is required to be registered under the Act unless the ship is exempt under section 18(2). Exempt ships include those under 15 net tons while navigating on the rivers, canals, lakes or coasts of Ireland, Great Britain, the Channel Islands and the Isle of Man. Ships owned by Irish citizens not ordinarily resident in the State are also exempt. However, under the Act, recreational craft greater than 15 NRT owned by an Irish citizen or an Irish body corporate must be registered in accordance with the terms of the Act.
 
 Further information on registration procedures, including survey and measurement, is available from the Mercantile Marine Office of the Department of Transport or from Revenue. The MMO is contactable at 01 – 6783480 or at mmo@transport.gov.ie.
+
+### 1.4.2 Future registration developments – Merchant Shipping (Registration of Ships) Act 2014 (No. 43 of 2014)
+
+*Pages 54–55*
 
 1.4.2 Future registration developments – Merchant Shipping (Registration of Ships) Act 2014 (No. 43 of 2014)
 
@@ -1746,9 +1796,9 @@ registration renewal and a facility to refuse ship registration or
 
 ## 1.5 Legislation applicable to recreational craft of 13.7 metres in length and greater
 
-### 1.5.1 Lifesaving and Safety Equipment
+### 1.5 Legislation applicable to recreational craft of 13.7 metres in length and greater
 
-*Pages 56–57*
+*Pages 56–56*
 
 1.5 Legislation applicable to recreational craft of 13.7 metres in length and greater
 
@@ -1757,6 +1807,10 @@ registration renewal and a facility to refuse ship registration or
 Appliances) Rules 1993 (S.I. No. 380 of 1993). These apply to craft constructed after 1986.
 
 Legislation
+
+### 1.5.1 Lifesaving and Safety Equipment
+
+*Pages 56–57*
 
 1.5.1 Lifesaving and Safety Equipment
 
@@ -1808,7 +1862,7 @@ Table B: Class XII boats – Mandatory Lifesaving Equipment
 | Training Manual for onboard safety equipment |  | ✓ |
 | Maintenance instructions for safety equipment |  | ✓ |
 
-### 1.5.1 2 Class XII recreational craft constructed or after 1 July 1986 of 21.3 metres in length and greater
+### 1.5.1.2 Class XII recreational craft constructed or after 1 July 1986 of 21.3 metres in length and greater
 
 *Pages 58–59*
 
@@ -1875,9 +1929,9 @@ Legislation
 | Line throwing appliance | ✓ | ✓ |
 | Rescue boat and launching davit |  | ✓ |
 
-### 1.5.2 1 Recreational craft of 13.7 metres in length and greater
+### 1.5.1.3 Class XII recreational craft constructed before 1 July 1986
 
-*Pages 60–61*
+*Pages 60–60*
 
 1.5.1.3 Class XII recreational craft constructed before 1 July 1986
 
@@ -1893,15 +1947,27 @@ Safety Equipment requirements are broadly similar to those outlined in sections 
 
 - Merchant Shipping (Fire Appliances) (Post 1980 Ships) Rules 1983 (S.I. No. 303 of 1983) apply to craft built between 1980 and 1984
 
+### 1.5.1.4 Recreational craft less than 13.7 metres in length
+
+*Pages 60–60*
+
 1.5.1.4 Recreational craft less than 13.7 metres in length
 
 - Merchant Shipping (Fire Appliances) (Post 1980 Ships) (Amendment) Rules 1985 (S.I. No. 278 of 1985) apply to craft built on or after 1 September 1984.
 
 There are no statutory lifesaving appliance requirements for recreational craft less than 13.7 metres in length apart from the Pleasure Craft (Personal Flotation Devices and Operation) (Safety) Regulations 2005 (S.I. No. 921 of 2005), as amended. However, it is strongly recommended that such vessels carry at least a minimum standard of life saving equipment. Guidance on this is given in Part B of this Code.
 
+### 1.5.2.1 Recreational craft of 13.7 metres in length and greater
+
+*Pages 60–60*
+
 1.5.2.1 Recreational craft of 13.7 metres in length and greater
 
 See Table D, which lists the different fire fighting equipment and indicates what is required, depending on the size of the craft.
+
+### 1.5.2 Fire-Fighting Equipment
+
+*Pages 60–61*
 
 1.5.2 Fire-Fighting Equipment
 
@@ -1938,9 +2004,7 @@ Table D: Mandatory Fire Fighting Equipment
 
 * Power driven fire pumps may be driven from the main engine. However, if this option is used, a second manual fire pump, external to the machinery spaces, must also be supplied. This additional manual pump must be able to supply a 6 metre jet of water through a 10 mm nozzle.
 
-## 1.6 Inland Waterways and Canal Systems
-
-### 1.5.2 2 Recreational craft less than 13.7 metres in length
+### 1.5.2.2 Recreational craft less than 13.7 metres in length
 
 *Pages 62–62*
 
@@ -1951,6 +2015,10 @@ relation to buoyage and marking schemes on some inland waterways.
 Legislation
 
 There are currently no statutory fire appliance requirements for recreational craft less than 13.7 metres in length. However, it is strongly recommended that such vessels carry at least a minimum standard of fire appliances. Guidance on this is given in Part B of this Code.
+
+### 1.6.1 Shannon Navigation Acts and associated Bye-Laws
+
+*Pages 62–62*
 
 1.6.1 Shannon Navigation Acts and associated Bye-Laws
 
@@ -1963,6 +2031,12 @@ Relevant legislation for the Shannon system:
 ▪Shannon Navigation (Construction
 
 of Vessels) Bye-laws 1992 (S.I. No. 79 of 1992)
+
+## 1.6 Inland Waterways and Canal Systems
+
+### 1.6 Inland Waterways and Canal Systems
+
+*Pages 62–63*
 
 1.6 Inland Waterways and Canal Systems
 
@@ -1984,10 +2058,6 @@ A “vessel” is defined as any craft that is not:
 
 ▪an open boat or undecked punt
 
-### 1.6.4 Navigation on the Corrib System
-
-*Pages 63–63*
-
 painted Red on the Port hand and Green on Starboard hand when proceeding upstream. Navigation marks are not lit on the Shannon.
 
 ▪a canoe, skiff, skull
@@ -2006,7 +2076,15 @@ On the Shannon Erne Waterway east of Lough Scur, the marking system changes to a
 
 The bye-laws were amended in 1994 to prevent the discharge of sewage directly into the navigation from any vessel.
 
+### 1.6.2 Navigation on the Shannon
+
+*Pages 63–63*
+
 1.6.2 Navigation on the Shannon
+
+### 1.6.3 Canal System Navigation
+
+*Pages 63–63*
 
 1.6.3 Canal System Navigation
 
@@ -2026,6 +2104,10 @@ or overtake in any part of the navigation less than 13 m in width.
 
 shall be given precedence for passage through a bridge by those craft navigating against the stream of the river.
 
+### 1.6.4 Navigation on the Corrib System
+
+*Pages 63–63*
+
 1.6.4 Navigation on the Corrib System
 
 ▪Boats should keep to the starboard
@@ -2042,6 +2124,12 @@ must give way to those going downstream.
 
 as laid down in the Bye-laws.
 
+## 1.7 Maritime Safety Act 2005 (No. 11 of 2005), as amended
+
+### 1.7 Maritime Safety Act 2005 (No. 11 of 2005), as amended
+
+*Pages 63–65*
+
 1.7 Maritime Safety Act 2005 (No. 11 of 2005), as amended
 
 ▪On entering the Shannon
@@ -2051,12 +2139,6 @@ Navigation, the direction of Buoyage is Northwards.
 One of the primary purposes of this Act is to strengthen the law against improper use of certain recreational
 
 Buoys, Beacons and Perches are
-
-## 1.7 Maritime Safety Act 2005 (No. 11 of 2005), as amended
-
-### 1.7 Maritime Safety Act 2005 (No. 11 of 2005), as amended
-
-*Pages 64–65*
 
 A member of the Garda Síochána who reasonably suspects that a person is committing or has committed an offence under Part 2 of the Maritime Safety Act 2005 or section 23 or 24 of that Act involving careless or dangerous navigation or operation of a craft may arrest without warrant the person.
 
@@ -2130,7 +2212,17 @@ Part 6 Provisions relating to the foreshore and to foreshore and aquaculture lic
 
 Part 6 amends certain provisions in the Foreshore Acts.
 
+## 1.8 Other legislation and considerations
+
+### 1.8 Other legislation and considerations
+
+*Pages 65–65*
+
 1.8 Other legislation and considerations
+
+### 1.8.1 Merchant Shipping (Salvage and Wreck) Act 1993 – Wrecks and stranded vessels
+
+*Pages 65–67*
 
 1.8.1 Merchant Shipping (Salvage and Wreck) Act 1993 – Wrecks and stranded vessels
 
@@ -2141,12 +2233,6 @@ the State, the role of the Receiver of Wreck is to receive the wreck, secure it,
 ▪The Merchant Shipping (Salvage and
 
 Wreck) Act 1993 is the principal Irish legislation governing salvage
-
-## 1.8 Other legislation and considerations
-
-### 1.8.1 Merchant Shipping (Salvage and Wreck) Act 1993 – Wrecks and stranded vessels
-
-*Pages 66–67*
 
 For example, where the use of recreational craft involves an employer/employee relationship or where the use of such craft directly relates to an undertaking of a selfemployed person, there are duties imposed under the Safety, Health and Welfare at Work Act 2005. Further information on the 2005 Act is available from the Health and Safety Authority at www.hsa.ie or Locall 0818 289 389 (between 9am and 3:00pm, Monday to Friday or email contactus@hsa.ie).
 
@@ -2191,8 +2277,6 @@ Recommended Guidelines for the Safe Operation of Recreational Craft
 ### Sail and Motor Boats – Coastal Operation
 
 *Pages 69–72*
-
-## 2
 
 Sail and Motor Boats –
 
@@ -2270,9 +2354,9 @@ shock can cause you to gasp, breathe uncontrollably, breathe in water and panic.
 
 or 112 and ask for the Coast Guard.
 
-### 2.2.1 Traffic Report Messages – Let the Coast Guard know
+### 2.1 Training
 
-*Pages 73–75*
+*Pages 73–73*
 
 2.1 Training
 
@@ -2283,6 +2367,10 @@ It is recommended that persons participating in sailboat and motorboat activitie
 ▪Contingency Plan – always have
 
 a plan, should anything go wrong. Before departing, consider places where a boat can take refuge should conditions deteriorate or if the crew suffer an incident or injury. The GPS set could fail at the most inconvenient time so it is good practice to make sure that the crew are not over-reliant on the GPS and can navigate to safety using alternative means such as headlands and landmarks should it fail.
+
+### 2.2 Voyage Planning
+
+*Pages 73–73*
 
 2.2 Voyage Planning
 
@@ -2301,6 +2389,10 @@ See Appendix 8 for an example of a voyage/passage planning template.
 ▪Tidal information – check the tidal
 
 predictions for the trip
+
+### 2.2.1 Traffic Report Messages – Let the Coast Guard know
+
+*Pages 73–75*
 
 2.2.1 Traffic Report Messages – Let the Coast Guard know
 
@@ -2467,6 +2559,10 @@ encountered by such design categories may at times be greater.
 
 Boat owners should be aware of the category that applies to their vessel, based on its intended usage and area of operation, and ensure it is equipped with the required safety equipment.
 
+### 2.4.1 Category A - Ocean
+
+*Pages 77–77*
+
 2.4.1 Category A - Ocean
 
 Boats in this category would generally be expected to be greater than 10 metres in length and -
@@ -2479,7 +2575,7 @@ The following paragraphs provide a list and description of each of the vessel ca
 
 greater than 4 metres in height and wind force greater than Beaufort 8.
 
-### 2.4.1 Category A - Ocean
+### 2.4 Recommended safety equipment
 
 *Pages 78–83*
 
@@ -2660,6 +2756,10 @@ Table E: Sail and Motor Boats - Coastal
 | 8.10 Instruction manuals for vessel’s essential equipment. | ✓ | ✓ | ✓ |  |
 | 8.11 Rigid or inflatable tender. | ✓ | ✓ | ✓ |  |
 
+### 2.6 Special considerations for persons with disabilities and Competitive use – Yachts
+
+*Pages 83–84*
+
 2.6 Special considerations for persons with disabilities
 
 2.7 Competitive use – Yachts
@@ -2667,10 +2767,6 @@ Table E: Sail and Motor Boats - Coastal
 The Irish Sailing Association, now known as Irish Sailing, is the national authority for sailboat racing in Ireland. All vessel owners/skippers participating competitively must be members of Irish Sailing and all such racing must comply with World
 
 Irish Sailing and Sailability Ireland encourage and support the participation of persons with disabilities in sailing. Further information is available at www.sailing.ie.
-
-### 2.8.1 Training
-
-*Pages 84–84*
 
 course for Diver Cox’ns in Ireland. Diving Ireland is accredited to CMAS (Confédération Mondiale des Activités Subaquatiques – World Underwater Federation) for its diving and instructor qualifications and its qualifications sit on the Sport Ireland Adventure Sports Instructor Framework. For further information, contact Diving Ireland or visit www.diving.ie (see Appendix 9 for details of course providers).
 
@@ -2682,9 +2778,21 @@ For information on safety guidelines and regulations governing sailing, please c
 
 Irish Sailing provides Dive Boat Coxswain courses from time to time. There are a number of training organisations that provide training in underwater activities (SCUBA, freediving, etc.). Many training organisations do not provide Boat Handling or Cox’n skills courses beyond basic seamanship. Those engaging in the sport of diving or freediving should ensure to be adequately trained in line with a recognized training agency, ideally in line with relevant ISO standards.
 
+### 2.8 Dive Boat operations
+
+*Pages 84–84*
+
 2.8 Dive Boat operations 2.8.1 Training
 
+### 2.8.1 Training
+
+*Pages 84–84*
+
 Dive boat operators are recommended to undertake appropriate training and survival courses. Training courses cover a range of important safety issues including dive planning and preparation, navigation and safety equipment, diving in low-visibility conditions, how to deal with out-ofair emergencies, the use of surface marker buoys and how to call for help and deal with an emergency on the surface.
+
+### 2.8.2 Safety
+
+*Pages 84–85*
 
 2.8.2 Safety
 
@@ -2704,15 +2812,15 @@ missing diver and missing pair of divers on the surface.
 
 oxygen administration to an injured diver(s).
 
-### 2.8.3 Pre-departure Checks and Briefing
-
-*Pages 85–85*
-
 All dive boats should have their engine in neutral when deploying and recovering divers.
 
 and equipment prior to departure. Dedicated bottle stowage racks should be fitted to dive boats.
 
 ▪Ensure all equipment carried on
+
+### 2.8.3 Pre-departure Checks and Briefing
+
+*Pages 85–85*
 
 2.8.3 Pre-departure Checks and Briefing
 
@@ -2782,7 +2890,7 @@ Before every dive, the completion of a buddy check will help to ensure that you 
 
 ### 2.8.4 Traffic Report Message for Divers – Let the Coast Guard know
 
-*Pages 86–87*
+*Pages 86–88*
 
 2.8.4 Traffic Report Message for Divers – Let the Coast Guard know
 
@@ -2828,10 +2936,6 @@ Dive Duration:
 
 Air or Mixed Gas:
 
-### 2.10 Pot Fishing
-
-*Pages 88–89*
-
 2.8.5 Operation of RIBs as Dive Boats
 
 requirements and recommendations relating to safety on board small fishing vessels and is available to view or download on www.gov.ie.
@@ -2864,9 +2968,17 @@ The Non-Commercial Pot Fishing (Lobster and Crab) Regulations 2016 (S.I. No. 31 
 
 when underway.
 
+### 2.9 National Association
+
+*Pages 88–88*
+
 2.9 National Association
 
 Diving Ireland is the National Governing Body for diving and recreational underwater sports in Ireland (see Appendix 10 for contact details).
+
+### 2.10 Pot Fishing
+
+*Pages 88–89*
 
 2.10 Pot Fishing
 
@@ -2920,15 +3032,15 @@ attempting to recover a pot snagged on the ocean floor.
 
 Non-commercial potting activities should never be undertaken by a single boatman. Always wear a suitable Personal Flotation Device and Personal Locator Beacon. Somebody ashore should be aware of where the boat is intending to operate and when it is expected to return. Owners/Skippers should carry out a risk assessment of the intended operations and take appropriate actions to reduce/ mitigate the inherent risks that arise when nobody else in on board to help or raise the alarm.
 
+### 2.11 Sea Angling Boats
+
+*Pages 89–91*
+
 2.11 Sea Angling Boats
 
 Coastal sea angling varies from an individual fishing close inshore for mackerel to major international fishing competitions involving larger boats fishing up to 20 miles offshore for species such as blue shark, in often difficult or uncomfortable conditions.
 
 While commercial angling boats are required to hold a passenger boat licence issued by the Department of Transport and as such are regulated, there are a number of items that any
-
-### 2.11 Sea Angling Boats
-
-*Pages 90–90*
 
 angler going to sea or fishing from a boat should consider:
 
@@ -2970,13 +3082,13 @@ medical action to take in the event of an incident with the above. A suitable me
 
 your engine and know what to do if it breaks down;
 
+## 3
+
 ## Sail and Motor Boats – Inland Waterways
 
 ### Sail and Motor Boats – Inland Waterways
 
 *Pages 91–95*
-
-## 3
 
 Sail and Motor Boats –
 
@@ -3086,11 +3198,15 @@ Waterways Ireland is a North/ South body with responsibility for the management,
 
 A Navigational Guide to the Shannon, Shannon-Erne and Erne Waterways is also available to purchase from a number of outlets.
 
-### 3.2.2 Category F
+### 3.1 Training
 
-*Pages 96–99*
+*Pages 96–96*
 
 3.1 Training
+
+### 3.2.1 Category E
+
+*Pages 96–96*
 
 3.2.1 Category E
 
@@ -3112,6 +3228,10 @@ used for overnight habitation;
 
 For the purpose of this Code, sailboats and motor boats are classed in six categories, four of which refer to coastal water and are covered in Chapter 2. The remaining two categories are dealt with in this Chapter.
 
+### 3.2.2 Category F
+
+*Pages 96–96*
+
 3.2.2 Category F
 
 Craft that:
@@ -3121,6 +3241,10 @@ Craft that:
 occupants and generally less than 7 metres in length;
 
 ▪Operate locally on rivers and
+
+### 3.2 Recommended minimum safety equipment – Inland Waters
+
+*Pages 96–99*
 
 3.2 Recommended minimum safety equipment – Inland Waters
 
@@ -3212,7 +3336,7 @@ Sail and Motor Boats – Inland Waterways
 
 ### 3.4 Boat Angling – Inland Waters
 
-*Pages 100–100*
+*Pages 100–101*
 
 3.4 Boat Angling – Inland Waters
 
@@ -3257,10 +3381,6 @@ its design rating; ▪Never overpower the boat with
 ▪Fitting of permanent launching
 
 wheels to the transom;
-
-### 3.5 Communications
-
-*Pages 101–101*
 
 owners should also consider carrying an EPIRB or PLB on-board. (See Radiocommunications section 1.2.12 for more information on EPIRBs and PLBs).
 
@@ -3308,17 +3428,21 @@ Appendix 4 provides information in relation to anchoring, stability and boat han
 
 Regular testing of communications equipment should be carried out to confirm correct operation.
 
+### 3.5 Communications
+
+*Pages 101–101*
+
 3.5 Communications
 
 It is recommended that all vessels operating on inland lakes and waterways carry a VHF radio. Handheld VHF batteries should be fully charged prior to departure. Vessel
 
+### 3.6 Spread of invasive species by boats on inland waters
+
+*Pages 101–103*
+
 3.6 Spread of invasive species by boats on inland waters
 
 In recent years a number of new invasive species of flora and fauna,
-
-### 3.6 Spread of invasive species by boats on inland waters
-
-*Pages 102–102*
 
 such as the Zebra Mussel, Asian Clam, Lagarosiphon and knotweeds have been introduced into Irish lakes, rivers and riparian zones (lands along the edges of rivers, streams, lakes). These species impact in a negative manner on existing natural species, in many cases leading to their extinction.
 
@@ -3356,13 +3480,13 @@ and disinfect your boat, engine and trailer prior to launching, particularly if 
 
 Tel: +353 (0) 1 884 2600 Email: info@fisheriesireland.ie Web: www.fisheriesireland.ie
 
+## 4
+
 ## Sailing Dinghies
 
 ### Sailing Dinghies
 
 *Pages 103–106*
-
-## 4
 
 Sailing Dinghies
 
@@ -3438,7 +3562,7 @@ shock can cause you to gasp, breathe uncontrollably, breathe in water and panic.
 
 or 112 and ask for the Coast Guard.
 
-### 4.3 Pre-Launch Checks prior to entering the water
+### 4.1 Training
 
 *Pages 107–107*
 
@@ -3449,6 +3573,10 @@ or 112 and ask for the Coast Guard.
 It is recommended that dinghy sailors undertake appropriate training, including in capsize and recovery techniques. A number of training schemes and approved courses are available and information may be obtained directly from course providers (see Appendix 9 for details of course providers).
 
 11. Check weather and sea conditions prior to departure.
+
+### 4.2 Safety Recommendations
+
+*Pages 107–107*
 
 4.2 Safety Recommendations
 
@@ -3472,6 +3600,10 @@ If you are dinghy sailing, you should adhere to the following practices.
 
 5. Carry a towing painter on board.
 
+### 4.3 Pre-Launch Checks prior to entering the water
+
+*Pages 107–107*
+
 4.3 Pre-Launch Checks prior to entering the water
 
 6. The crew in the dinghy should be familiar with capsize recovery techniques and towing techniques.
@@ -3486,7 +3618,7 @@ To protect dinghy operators, shipping and other water users, dinghies may be sub
 
 ### 4.4 National Association
 
-*Pages 108–108*
+*Pages 108–109*
 
 4.4 National Association
 
@@ -3498,13 +3630,13 @@ Irish Sailing 3 Park Road Dun Laoghaire Co. Dublin A96 K3C3
 
 Telephone: +353 (0)1 280 0239 Email: info@sailing.ie Website: www.sailing.ie
 
+## 5
+
 ## Personal Watercraft – Jet Skis and High Speed Power Boats
 
 ### Personal Watercraft – Jet Skis and High Speed Power Boats
 
-*Pages 109–112*
-
-## 5
+*Pages 109–113*
 
 Personal Watercraft – Jet Skis and High Speed
 
@@ -3590,10 +3722,6 @@ shock can cause you to gasp, breathe uncontrollably, breathe in water and panic.
 
 or 112 and ask for the Coast Guard.
 
-### 5.2 Recommended equipment for personal watercraft
-
-*Pages 113–113*
-
 Personal Watercraft (PWC) such as jet skis or water/wet bikes are a rapidly growing segment of the recreational craft market.
 
 ▪A flare pack should be carried
@@ -3608,6 +3736,10 @@ A PWC is a watercraft that is less than 4.88 metres (16 feet) long, propelled by
 
 be stowed on board for use in the event of engine failure.
 
+### 5.1 Training
+
+*Pages 113–113*
+
 5.1 Training
 
 It is recommended that persons operating a PWC undertake appropriate training. There are a number of training schemes and approved courses available and information can be obtained directly from course providers (see Appendix 9 for details of course providers).
@@ -3617,6 +3749,10 @@ It is recommended that persons operating a PWC undertake appropriate training. T
 ▪PWC should be equipped with
 
 a lanyard/kill cord to cut out the engine; the lanyard/kill cord must be attached to the operator's body, clothing, or PFD/lifejacket. A spare lanyard/kill cord should always be carried on board.
+
+### 5.2 Recommended equipment for personal watercraft
+
+*Pages 113–113*
 
 5.2 Recommended equipment for personal watercraft
 
@@ -3636,7 +3772,7 @@ towing and mooring.
 
 ▪Fire Extinguisher.
 
-### 5.4.2 Emergency Procedures
+### 5.3 Personal equipment to be worn/carried by operator of the personal watercraft
 
 *Pages 114–114*
 
@@ -3678,13 +3814,25 @@ especially for salt water riding.
 
 All persons on board a jet ski must wear a personal flotation device (PFD) or a lifejacket.
 
+### 5.4.2 Emergency Procedures
+
+*Pages 114–114*
+
 5.4.2 Emergency Procedures
 
 ▪In the event of falling off the
 
 craft into cold water, re-board immediately. Immersion in cold water can result in a life-threatening drop in body temperature (hypothermia). Hypothermia can also be caused by wind chill, rain and perspiration. To avoid this danger, prepare by dressing correctly including wetsuit/drysuit, hand/ foot protection. Wearing your PFD/lifejacket affords additional protection against the cold.
 
+### 5.4 Personal watercraft operations
+
+*Pages 114–114*
+
 5.4 Personal watercraft operations 5.4.1 Prior to entering the water (Pre-Launch Checks)
+
+### 5.4.1 Prior to entering the water (Pre-Launch Checks)
+
+*Pages 114–115*
 
 ▪To protect other water users and
 
@@ -3702,10 +3850,6 @@ forecast before starting out.
 
 checklist (see section 5.7) prior to departure. A waterproof laminated
 
-### 5.4.3 On the water
-
-*Pages 115–115*
-
 possible to get out of the water, wearing your PFD/lifejacket will help increase your survival time by keeping your head out of the water.
 
 towing a float, it is essential to carry an observer. This should only be done on craft with a carrying capacity of 3 or more persons.
@@ -3713,6 +3857,10 @@ towing a float, it is essential to carry an observer. This should only be done o
 ▪Always ensure sufficient fuel is on
 
 board for any intended trip. Plan to return with the fuel tank one third full thereby allowing for any possible emergencies.
+
+### 5.4.3 On the water
+
+*Pages 115–115*
 
 5.4.3 On the water
 
@@ -3725,6 +3873,10 @@ when riding a PWC: it is illegal to do so and your ability to make quick decisio
 carried on board and no fuel transfer should be attempted once the vessel is afloat.
 
 ▪Study the manufacturer's manual.
+
+### 5.5 Offshore Cruising
+
+*Pages 115–115*
 
 5.5 Offshore Cruising
 
@@ -3776,7 +3928,7 @@ channels and designated zones.
 
 ▪If engaged in waterskiing or
 
-### 5.7 Personal Watercraft Safety Checklist
+### 5.6 National Association
 
 *Pages 116–116*
 
@@ -3805,6 +3957,10 @@ Irish Sailing is the national governing body for PWCs in Ireland (see Appendix 1
 
 Personal Watercraft – Jet Skis and High Speed Power Boats
 
+### 5.7 Personal Watercraft Safety Checklist
+
+*Pages 116–116*
+
 5.7 Personal Watercraft Safety Checklist
 
 | Personal Gear | Tickbox |
@@ -3829,13 +3985,13 @@ Personal Watercraft – Jet Skis and High Speed Power Boats
 | Basic Tool Kit |  |
 | Fire Extinguisher |  |
 
+### 5.8 High Speed Power/Sports Boats – Operation and handling
+
+*Pages 116–117*
+
 5.8 High Speed Power/Sports Boats – Operation and handling
 
 A high-speed power/sports boat is generally regarded as one capable of achieving speeds in excess of 17 knots. There are a variety of craft designed as high speed power/sports boats, including rigid GRP Vee profile hulls, RIBs, Cathedral type dory hulls, etc. The high speeds that can be attained by these craft place specific
-
-### 5.8 High Speed Power/Sports Boats – Operation and handling
-
-*Pages 117–117*
 
 Competency and Skills - Ensure you have received adequate training in the operation and handling characteristics of the boat type you are using.
 
@@ -3858,6 +4014,10 @@ clothing. Be aware of the effects of wind chill at speed;
 ensure all tubes are correctly inflated.
 
 Persons under 16 years of age are not allowed to be in command of a fast power/sports craft, i.e. a craft that can attain a speed through or over water of 17 knots or more.
+
+### 5.8.2 On the water:
+
+*Pages 117–117*
 
 5.8.2 On the water:
 
@@ -3885,6 +4045,10 @@ your ability and capability;
 
 ▪Check fuel reserves regularly;
 
+### 5.8.1 Pre-departure Checks:
+
+*Pages 117–118*
+
 5.8.1 Pre-departure Checks:
 
 ▪Do not overload the craft – these
@@ -3899,10 +4063,6 @@ Engine kill cord – Always wear one, and test it prior to departing the berth.
 
 correctly;
 
-### 5.8.2 On the water:
-
-*Pages 118–118*
-
 5.10 Competitive use – Powerboats
 
 ▪Ensure all occupants are secure
@@ -3916,6 +4076,10 @@ The Powerboat Association of Northern Ireland is the National Authority for powe
 ▪If intending to swim from your
 
 boat, consider its freeboard. Check beforehand and make sure there is a suitable means to re-board from the water.
+
+### 5.9 Waterskiing, Wakeboarding and towed rides
+
+*Pages 118–119*
 
 5.9 Waterskiing, Wakeboarding and towed rides
 
@@ -3947,13 +4111,13 @@ There is a range of powerboat racing disciplines including Pleasure Navigation t
 
 The Irish Waterski and Wakeboard Federation is the national body for waterskiing in Ireland (see Appendix 10 for contact details).
 
+## 6
+
 ## Windsurfing, Foiling and Kitesurfing
 
 ### Windsurfing, Foiling and Kitesurfing
 
 *Pages 119–122*
-
-## 6
 
 Windsurfing, Foiling
 
@@ -4037,7 +4201,7 @@ shock can cause you to gasp, breathe uncontrollably, breathe in water and panic.
 
 or 112 and ask for the Coast Guard.
 
-### 6.2.1 Prior to entering the water
+### 6.1 Training
 
 *Pages 123–123*
 
@@ -4055,7 +4219,15 @@ contact number are marked on your board. Where possible, apply retro reflective 
 
 in numbers.
 
+### 6.2 Windsurfing Safety
+
+*Pages 123–123*
+
 6.2 Windsurfing Safety 6.2.1 Prior to entering the water
+
+### 6.2.1 Prior to entering the water
+
+*Pages 123–124*
 
 ▪Examine your rigging for worn
 
@@ -4084,10 +4256,6 @@ area forecast for the area you propose to sail in.
 ▪Avoid sailing in offshore winds,
 
 and be aware of the influence of tidal streams, both of which may
-
-### 6.2.2 On the water
-
-*Pages 124–124*
 
 ▪Choose a recognised boardsailing
 
@@ -4139,6 +4307,10 @@ water.
 
 phone in a waterproof case or a Personal Locator Beacon, or preferably more than one communication device.
 
+### 6.2.2 On the water
+
+*Pages 124–124*
+
 6.2.2 On the water
 
 ▪Sail cautiously when leaving
@@ -4163,6 +4335,10 @@ Learn to surf at an Irish Surfing registered surf club or surf school.
 
 water well before sunset.
 
+### 6.3 National Association
+
+*Pages 125–125*
+
 6.3 National Association
 
 The Irish Windsurfing Association (IWA) is an affiliated club of Irish Sailing and as such is the governing body for competitive windsurfing. Windsurfing events are run in accordance with the safety guidelines of the IWA (see Appendix 10 for contact details).
@@ -4172,6 +4348,10 @@ Do not attempt surfing unless you can swim.
 Do not surf alone or enter the water as dusk is approaching or if you have been drinking alcohol.
 
 Always let somebody on land know where you have gone and when you will return.
+
+### 6.4 Other water based activities
+
+*Pages 125–125*
 
 6.4 Other water based activities
 
@@ -4187,7 +4367,7 @@ Make sure your equipment, especially your leash, is in good order. Remember it i
 
 ### 6.4.2 Foiling Safety
 
-*Pages 126–126*
+*Pages 126–127*
 
 6.4.2 Foiling Safety
 
@@ -4241,10 +4421,6 @@ winds or currents that can carry you towards the open sea.
 
 which can pose a danger to yourself and others.
 
-### 6.4.3 Kitesurfing Safety
-
-*Pages 127–128*
-
 ▪Be aware of local bye-laws. Do
 
 ▪Impact vest: An impact vest is
@@ -4286,6 +4462,10 @@ aware of your surroundings.
 ▪Watch the wind direction. Avoid
 
 being blown out to sea by offshore winds.
+
+### 6.4.3 Kitesurfing Safety
+
+*Pages 127–129*
 
 6.4.3 Kitesurfing Safety
 
@@ -4405,13 +4585,13 @@ users stabilise your kite in the 12 o’clock position
 
 give way to other riders who are launching.
 
+## 7
+
 ## Canoeing/Kayaking and Stand-Up Paddle Boarding
 
 ### Canoeing/Kayaking and Stand-Up Paddle Boarding
 
-*Pages 129–132*
-
-## 7
+*Pages 129–133*
 
 Canoeing/Kayaking and Stand-Up Paddle
 
@@ -4497,47 +4677,13 @@ shock can cause you to gasp, breathe uncontrollably, breathe in water and panic.
 
 or 112 and ask for the Coast Guard.
 
-### 7.2 Prior to entering the water
-
-*Pages 133–134*
-
 Canoeing covers a wide and diverse range of disciplines including sea kayaking, white water kayaking, surf kayaking, polo, slalom, marathon, sprint, freestyle and touring.
 
 providers is available on the Canoeing Ireland website at www.canoe.ie. (see Appendix 9 for details of course providers).
 
-7.2 Prior to entering the water
+### 7.1 Training
 
-A canoe is a lightweight narrow boat, typically pointed at both ends and open on top, propelled by one or more seated or kneeling paddlers facing the direction of travel using a single-bladed paddle.
-
-▪Ensure you are a competent
-
-swimmer and capable of surviving in the water in the areas you operate in.
-
-▪Undertake a First Aid Course and
-
-a life-saving course.
-
-A kayak is a small, narrow boat which is propelled by means of a doublebladed paddle.
-
-▪Never operate alone, always canoe
-
-in company.
-
-▪Do not operate a canoe if under
-
-the influence of alcohol or drugs.
-
-In this Code of Practice, the term canoe when used also refers to a kayak.
-
-▪Inspect your craft and equipment
-
-thoroughly. Check it is fitted with adequate buoyancy material and that such buoyancy is correctly distributed and secured within the hull.
-
-There are a number of basic safety precautions that should be applied to any canoeing activity, regardless of its speciality.
-
-▪Ensure that the bung is fitted
-
-correctly.
+*Pages 133–135*
 
 7.1 Training
 
@@ -4581,10 +4727,6 @@ aware of your intended departure, locations and return details.
 
 for hidden dangers, hazards, currents, etc., prior to putting craft into the water.
 
-### 7.4 Sea Kayaking
-
-*Pages 135–135*
-
 beacon (PLB). See Chapter 1 for further information on PLBs and their registration. This will enable early alerting of the rescue services in the event of an emergency.
 
 ▪Open canoes are not suitable for
@@ -4599,13 +4741,47 @@ footrests.
 
 potential activity could contribute to a capsize situation.
 
-7.4 Sea Kayaking
+### 7.2 Prior to entering the water
 
-Kayaking on the sea presents unique challenges and risks compared with other disciplines of kayaking. It is recommended that participants get sea kayak specific training and join a club before participating. Inflatable craft such as inflatable kayaks are not suitable for use in sea kayaking. In addition to the safety advice and requirements in sections 7.1, 7.2 and 7.3, sea kayakers should observe the following precautions:
+*Pages 133–133*
 
-![Figure from page 135](assets/p135-f02.webp)
+7.2 Prior to entering the water
 
-*Figure from page 135*
+A canoe is a lightweight narrow boat, typically pointed at both ends and open on top, propelled by one or more seated or kneeling paddlers facing the direction of travel using a single-bladed paddle.
+
+▪Ensure you are a competent
+
+swimmer and capable of surviving in the water in the areas you operate in.
+
+▪Undertake a First Aid Course and
+
+a life-saving course.
+
+A kayak is a small, narrow boat which is propelled by means of a doublebladed paddle.
+
+▪Never operate alone, always canoe
+
+in company.
+
+▪Do not operate a canoe if under
+
+the influence of alcohol or drugs.
+
+In this Code of Practice, the term canoe when used also refers to a kayak.
+
+▪Inspect your craft and equipment
+
+thoroughly. Check it is fitted with adequate buoyancy material and that such buoyancy is correctly distributed and secured within the hull.
+
+There are a number of basic safety precautions that should be applied to any canoeing activity, regardless of its speciality.
+
+▪Ensure that the bung is fitted
+
+correctly.
+
+### 7.3 Personal Safety Equipment
+
+*Pages 135–135*
 
 7.3 Personal Safety Equipment
 
@@ -4655,9 +4831,21 @@ rivers of Grade 3 and higher, and while sea-kayaking, you should carry a registe
 
 ▪Carry a compass.
 
+### 7.4 Sea Kayaking
+
+*Pages 135–135*
+
+7.4 Sea Kayaking
+
+Kayaking on the sea presents unique challenges and risks compared with other disciplines of kayaking. It is recommended that participants get sea kayak specific training and join a club before participating. Inflatable craft such as inflatable kayaks are not suitable for use in sea kayaking. In addition to the safety advice and requirements in sections 7.1, 7.2 and 7.3, sea kayakers should observe the following precautions:
+
+![Figure from page 135](assets/p135-f02.webp)
+
+*Figure from page 135*
+
 ### 7.5 River Kayaking/Canoeing
 
-*Pages 136–137*
+*Pages 136–138*
 
 7.5 River Kayaking/Canoeing
 
@@ -4793,10 +4981,6 @@ Inspection is essential because serious dangers can exist. Large drops, narrow p
 
 The Canoeing Ireland website has more detail on the levels of river grading (https://www.canoe.ie/river-grading-and-area-definitions/).
 
-### 7.6 National Association for canoe and kayak activities
-
-*Pages 138–138*
-
 ▪Be particularly cautious during
 
 ▪In rivers of a high flow rate,
@@ -4809,6 +4993,10 @@ with extended periods of rapids, kayaking groups should use waterproof radios to
 
 running them; be aware that drops may change or that new hazards may have formed (e.g. fallen trees, etc.). Set up bank based rescue, where appropriate.
 
+### 7.6 National Association for canoe and kayak activities
+
+*Pages 138–138*
+
 7.6 National Association for canoe and kayak activities
 
 Canoeing Ireland is the national association for canoe and kayak based activities in Ireland (see Appendix 10 for contact details).
@@ -4817,6 +5005,10 @@ Canoeing Ireland is the national association for canoe and kayak based activitie
 
 Notices (www.waterwaysireland. org/news-centre/marinenotices) and lockkeepers for local information.
 
+### 7.7 Stand-Up Paddle Boards (SUPs)
+
+*Pages 138–139*
+
 7.7 Stand-Up Paddle Boards (SUPs)
 
 ▪Kayaking groups making descents
@@ -4824,10 +5016,6 @@ Notices (www.waterwaysireland. org/news-centre/marinenotices) and lockkeepers fo
 A development of the traditional surfing long board has seen them equipped with paddles to navigate across the flat water of lakes, estuaries and coastal areas.
 
 on remote rivers of Grade 3 and higher should carry registered Personal Location Beacons (PLBs). This will enable early alerting of the rescue services in the event of an emergency.
-
-### 7.7.1 Prior to entering the water
-
-*Pages 139–139*
 
 When used for the purposes of navigation (i.e. outside the activities of surfing), SUPs are regarded as a craft and are subject to the requirements of recreational craft.
 
@@ -4849,6 +5037,10 @@ mobile phone in a waterproof cover.
 
 ▪Consider the carriage of a Personal
 
+### 7.7.1 Prior to entering the water
+
+*Pages 139–139*
+
 7.7.1 Prior to entering the water
 
 Locator Beacon (PLB), in particular if using a paddle board alone, at sea and where unfamiliar with local currents. See Chapter 1, paragraph 1.2.12.1 of the Code for further information regarding PLBs.
@@ -4865,11 +5057,15 @@ whistle to attract attention.
 
 with a suitable leash for the environment and conditions you will be paddling in – Ankle leash for surf or still water and a quick release waist-belt leash for flowing water.
 
-### 7.7.2 On the water
+### 7.8 National Association for stand-up paddle boarding activities
 
 *Pages 140–140*
 
 7.8 National Association for stand-up paddle boarding activities
+
+### 7.7.2 On the water
+
+*Pages 140–141*
 
 7.7.2 On the water
 
@@ -4899,13 +5095,13 @@ paddle boarder. Ensure you have enough energy for the return journey. Laying low
 
 other marine traffic, fairways or shipping lanes, be aware that your profile on the water is almost invisible. Allow sufficient time to cross and never cross in front of shipping.
 
+## 8
+
 ## Rowing Boats
 
 ### Rowing Boats
 
-*Pages 141–144*
-
-## 8
+*Pages 141–145*
 
 Rowing Boats
 
@@ -4981,15 +5177,15 @@ shock can cause you to gasp, breathe uncontrollably, breathe in water and panic.
 
 or 112 and ask for the Coast Guard.
 
-### 8.3 Olympic style rowing boats and safety boats
-
-*Pages 145–145*
-
 Rowing includes “Olympic Style” rowing boats, racing gigs/skiffs and traditional racing currachs.
 
 ▪In the event that you enter the
 
 water, where possible stay with the boat, get out of the water by getting back in the boat or on top of the upturned hull in accordance with the capsize drill.
+
+### 8.1 Training
+
+*Pages 145–145*
 
 8.1 Training
 
@@ -5007,6 +5203,10 @@ All rowers should be familiar with and instructed in the capsize drill during in
 
 All participants should be aware of the requirements set out in the Rowing Ireland Safety Manual and the Row Safe publication, which are available on the Rowing Ireland website at www.rowingireland.ie.
 
+### 8.2 Prior to going on the water
+
+*Pages 145–145*
+
 8.2 Prior to going on the water
 
 ▪Ensure you are a competent
@@ -5018,6 +5218,10 @@ Exercise care when climbing into and out of boats from pontoons, jetties, quay w
 ▪It is important to risk assess local
 
 conditions, currents, wind strength and direction, etc., prior to putting craft into the water. Boats should not be operated in waters that are beyond the capabilities of the crew or the boats concerned.
+
+### 8.3 Olympic style rowing boats and safety boats
+
+*Pages 145–145*
 
 8.3 Olympic style rowing boats and safety boats
 
@@ -5031,7 +5235,7 @@ A coach and/or a safety boat should always be in attendance and other safety pre
 
 ### 8.4 Boat construction and equipment
 
-*Pages 146–146*
+*Pages 146–147*
 
 8.4 Boat construction and equipment
 
@@ -5115,10 +5319,6 @@ the water at all times when rowing craft are in use. Unescorted outings are not 
 
 of propellor guards to all outboard engines to protect persons in the water during recovery.
 
-### 8.5 Coastal and Traditional racing currachs and Safety Boats
-
-*Pages 147–148*
-
 ▪All persons participating should
 
 be in good health and capable of swimming 50 m while wearing light clothing.
@@ -5130,6 +5330,10 @@ an approved PFD/lifejacket at all times.
 Boats should not be used at night unless they comply with the requirements of the International Collision Regulations regarding navigation lights. Boats should not be operated in weather or tide conditions that may compromise their low freeboard and stability.
 
 Coaches, coxswains and crew should at all times be aware of local navigation rules, including any possible hazards or potential dangers arising from tidal stream or wind that may prevail locally. When racing in competitions, the World Rowing Rules of Racing in conjunction with the Rowing Ireland Safety Manual and the Row Safe publication should be adhered to fully.
+
+### 8.5 Coastal and Traditional racing currachs and Safety Boats
+
+*Pages 147–148*
 
 8.5 Coastal and Traditional racing currachs and Safety Boats
 
@@ -5391,6 +5595,10 @@ radio channels and relevant mobile phone numbers.
 
 Training courses are provided by various organisations (see Appendix 9).
 
+### 9.2 Insurance
+
+*Pages 153–153*
+
 9.2 Insurance
 
 ▪Is the boat covered by insurance?
@@ -5421,6 +5629,10 @@ Non-adherence to terms and conditions of insurance may cause difficulties and re
 
 including donning PFD/lifejacket, flares, radio, as applicable to boat type.
 
+### 9.3 Minimum safety equipment on board
+
+*Pages 153–155*
+
 9.3 Minimum safety equipment on board
 
 ▪Fire Fighting appliance location
@@ -5443,10 +5655,6 @@ including berthing alongside, going astern, man overboard manoeuvres and recover
 
 weather conditions, maps/charts, Marine Notices as relevant.
 
-### 9.3 Minimum safety equipment on board
-
-*Pages 154–154*
-
 Recreational Craft are classed into 6 categories:
 
 Charter Boats/Bare Boat Hire
@@ -5465,27 +5673,27 @@ Category F - Inland Waterways - open boats less than 7 m in length operating in 
 
 Hire craft in Irish waters are generally confined to Categories C, D, E and F.
 
+## 10
+
 ## Operational Safety, including at Marinas, and Maintenance
 
 ### Operational Safety, including at Marinas, and Maintenance
 
-*Pages 155–155*
-
-## 10
+*Pages 155–156*
 
 Operational Safety, including at marinas,
 
 and maintenance
-
-### 10.2 Marina Safety
-
-*Pages 156–157*
 
 Chapter 10 provides basic guidance on safety and maintenance.
 
 ▪Tenders other than inflatable
 
 types should have additional buoyancy fitted. This may be in the form of dedicated buoyancy tubes, polyethylene foam block or integral buoyancy chambers built into the boat.
+
+### 10.1 Tendering operations to moored craft
+
+*Pages 156–156*
 
 10.1 Tendering operations to moored craft
 
@@ -5518,6 +5726,10 @@ moored vessel should be provided, e.g. boarding ladder, access gates on railings
 ▪Ensure the tender is in good
 
 condition and suitably equipped. If using an inflatable dinghy type, check the tubes are correctly inflated and the dinghy is a multitube type capable of remaining afloat in the event of failure of any single tube.
+
+### 10.2 Marina Safety
+
+*Pages 156–157*
 
 10.2 Marina Safety
 
@@ -5569,7 +5781,7 @@ that involve coming alongside and departing marina berths are controlled, and do
 
 ### 10.3 Slipways
 
-*Pages 158–158*
+*Pages 158–159*
 
 ▪When using shore power
 
@@ -5607,10 +5819,6 @@ exposed marinas/pontoons must be appropriately tied up and monitored throughout.
 
 marina management.
 
-### 10.4 Beach launching
-
-*Pages 159–159*
-
 10.3 Slipways
 
 ▪Report any safety concerns
@@ -5644,6 +5852,10 @@ cable.
 swimmers.
 
 traction and power to cope with launching from a slipway with a steep gradient. If in doubt, go elsewhere.
+
+### 10.4 Beach launching
+
+*Pages 159–159*
 
 10.4 Beach launching
 
@@ -5705,7 +5917,7 @@ exceeds 0.5 m, unless using specialist craft and with suitable training.
 
 safety instructions posted by the owner of the slipway.
 
-### 10.5.1 Rigging
+### 10.5 Maintenance
 
 *Pages 160–160*
 
@@ -5714,6 +5926,10 @@ safety instructions posted by the owner of the slipway.
 ▪Always wear a suitable PFD/
 
 lifejacket and ensure all loose gear is correctly secured.
+
+### 10.5.1 Rigging
+
+*Pages 160–160*
 
 Rigging components on a sailing craft are subject to extreme loadings. If these are set up incorrectly in the beginning and adjusted subsequently, the fluctuations in load can result in fatigue failure of stays, spreaders or masts, despite the use of modern materials.
 
@@ -5731,7 +5947,7 @@ Rigging demands constant attention and inspection on an ongoing basis. While a b
 
 authority/local Beach Bye-laws that there is no prohibition on beach launching.
 
-### 10.5.3 Outboard engines
+### 10.5.2 Inboard engine operation and maintenance
 
 *Pages 161–161*
 
@@ -5795,6 +6011,10 @@ regular greasing of bearings and inspection of leakage rate at glands, should al
 
 material, size and terminals. It is recommended to have this work done professionally.
 
+### 10.5.3 Outboard engines
+
+*Pages 161–162*
+
 10.5.3 Outboard engines
 
 On craft fitted with outboard engines, the following procedures should be followed:
@@ -5802,10 +6022,6 @@ On craft fitted with outboard engines, the following procedures should be follow
 ▪Be aware of the correct procedure
 
 to tune rigging.
-
-### 10.5.5 Minimum spare parts
-
-*Pages 162–162*
 
 ▪The Engine Unit should be
 
@@ -5861,6 +6077,10 @@ mounted onto the boats transom; in addition a safety lanyard should always be at
 
 hull shut-off valves.
 
+### 10.5.5 Minimum spare parts
+
+*Pages 162–162*
+
 10.5.5 Minimum spare parts
 
 ▪The use of a “kill cord” with the
@@ -5887,6 +6107,10 @@ For Outboard Engine
 
 ▪Spark plugs (in case of petrol
 
+### 10.5.4 Annual engine maintenance
+
+*Pages 162–162*
+
 10.5.4 Annual engine maintenance
 
 engines).
@@ -5895,9 +6119,9 @@ Prior to the start of each season, owners should undertake the following annual 
 
 ▪Spare Shear Pin (if relevant).
 
-### 10.5.6 Tool Kit
+### 10.6 Electrical systems in recreational craft
 
-*Pages 163–164*
+*Pages 163–163*
 
 10.6 Electrical systems in recreational craft
 
@@ -5908,6 +6132,10 @@ Prior to the start of each season, owners should undertake the following annual 
 Electrical systems on recreational craft can vary from simple 12volt starting batteries to complex high voltage installations incorporating generators, advanced navigation, communication and domestic service systems.
 
 All electrical installations are subject to prolonged exposure to a hostile marine environment, including vibration, moisture and mechanical damage. Furthermore, they can be compromised as they degrade due to aging. Retrofitting of electrical equipment by non-competent individuals also poses serious risk to vessels.
+
+### 10.5.6 Tool Kit
+
+*Pages 163–165*
 
 10.5.6 Tool Kit
 
@@ -5989,10 +6217,6 @@ ventilation arrangements.
 
 5. Ensure any additions or modifications to the electrical installations are carried out by qualified personnel who are competent and aware of the requirements for marine electrical
 
-### 10.7 Liquified/Liquid Petroleum Gas (LPG)
-
-*Pages 165–165*
-
 Additional reference material:
 
 It is essential that all installation and any planned maintenance or repair work is undertaken by a qualified technician to an approved standard - (ISO 10239:2014 Small Craft – Liquefied Petroleum Gas (LPG) Systems), and in accordance with the manufacturer’s instructions.
@@ -6027,6 +6251,10 @@ against movement;
 
 have adequate drainage ports provided to allow the gas (which is heavier than air) dissipate safely.
 
+### 10.7 Liquified/Liquid Petroleum Gas (LPG)
+
+*Pages 165–166*
+
 10.7 Liquified/Liquid Petroleum Gas (LPG)
 
 The following safety devices should be fitted to any LPG system:
@@ -6050,10 +6278,6 @@ or adjacent to the cylinder;
 ▪An automatic safety gas cut out
 
 device located on the cylinder or adjacent to it, to cut off the gas supply in the event of a loss of pressure due to a gas leak;
-
-### 10.8 Vessel Refuelling
-
-*Pages 166–166*
 
 Emergency Action In the event of a gas leak being detected, the following actions should be taken:
 
@@ -6099,6 +6323,10 @@ Further information and advice is contained in Marine Notice No. 37 of 2017 (Use
 
 Only appliances designed for use in a marine environment should be installed on a vessel. The cooker should be fitted with a gas shut-off. Systems should be subject to annual maintenance by a qualified technician and all onboard alarms and shut-offs should be checked at least monthly when the vessel is in use.
 
+### 10.8 Vessel Refuelling
+
+*Pages 166–166*
+
 10.8 Vessel Refuelling
 
 Refuelling of boats can create a risk of fire and/or explosion, leading to loss of life, injury and significant property and environmental damage. Preventing such events or mitigating their effects requires close attention. For advice and guidance on vessel refuelling, please see Marine Notice No. 61 of 2023.
@@ -6107,11 +6335,15 @@ Appliances should be securely fixed to the craft. Where a cooker is mounted on a
 
 A means of exhaust ventilation should be fitted to the space where a LPG appliance is fitted, with suction ducting located at floor level or in bilge areas. Extraction fans should be located external to the space.
 
-### 10.9.1 Smart Weather Buoys
+### 10.9 Commissioners of Irish Lights (Irish Lights)
 
-*Pages 167–168*
+*Pages 167–167*
 
 10.9 Commissioners of Irish Lights (Irish Lights)
+
+### 10.9.1 Smart Weather Buoys
+
+*Pages 167–169*
 
 10.9.1 Smart Weather Buoys
 
@@ -6153,19 +6385,15 @@ EMERGENCY RESPONSE: &ŽƌĂŝĚƐƚŽŶĂǀŝŐĂƚŝŽŶĐŽŶƚĂĐƚŽƵ
 
 ƌĞƐƉŽŶƐĞŶƵŵďĞƌŽŶϬϭͲϮϴϬϭϵϵϲ
 
+## 11
+
 ## Emergency Procedures
 
 ### Emergency Procedures
 
-*Pages 169–169*
-
-## 11
+*Pages 169–170*
 
 Emergency Procedures
-
-### 11.1.2 Making an urgency broadcast using VHF - PAN-PAN
-
-*Pages 170–172*
 
 CALLSIGN EI __ __ __ __ (Or other identification)
 
@@ -6183,9 +6411,17 @@ STATE THE POSITION OF THE VESSEL.
 
 (If possible give the position from a GPS receiver or bearings from and distance to any known fixed points e.g. “Position one mile South of Fastnet Lighthouse”)
 
+### 11.1 Procedure for making distress or urgency calls using VHF voice
+
+*Pages 170–170*
+
 11.1 Procedure for making distress or urgency calls using VHF voice 11.1.1 Making a distress transmission using VHF voice broadcasting – MAYDAY
 
 STATE THE NATURE OF DISTRESS. (e.g. sinking, man overboard, fire on board, …)
+
+### 11.1.1 Making a distress transmission using VHF voice broadcasting – MAYDAY
+
+*Pages 170–170*
 
 STATE THE NUMBER OF PERSONS ABOARD.
 
@@ -6194,6 +6430,10 @@ STATE ANY OTHER USEFUL INFORMATION.
 In cases where there is grave or imminent danger to either the vessel or persons on board, including man overboard situations, then a MAYDAY should be broadcast on Channel 16 with the VHF unit set to high power in the following format, after pressing the VHF Distress Button (if your VHF has a DSC function):
 
 OVER”.
+
+### 11.1.2 Making an urgency broadcast using VHF - PAN-PAN
+
+*Pages 170–173*
 
 11.1.2 Making an urgency broadcast using VHF - PAN-PAN
 
@@ -6261,15 +6501,15 @@ Any Other Useful INFORMATION
 
 (Kind of Assistance Required)
 
-### 11.2.3 Use of Handheld VHF Radios
-
-*Pages 173–173*
-
 11.2 Types of radio distress calls
 
 All information will be displayed on any receiving sets’ display panel. Transmitting and receiving sets will switch to Channel 16 to allow further information to be transmitted, e.g. spoken MAYDAY message, nature of emergency, etc.
 
 The advent of the Global Maritime Distress and Safety System (GMDSS) has brought about a number of changes in the manner and procedure in which distress calls from craft are initiated.
+
+### 11.2.2 Non-Automated Calling
+
+*Pages 173–173*
 
 11.2.2 Non-Automated Calling
 
@@ -6281,11 +6521,19 @@ The MAYDAY broadcast format as described on page 158 should be used.
 
 For non-DSC radios, Channel 16 remains the listening channel for distress calls.
 
+### 11.2.3 Use of Handheld VHF Radios
+
+*Pages 173–173*
+
 11.2.3 Use of Handheld VHF Radios
 
 Therefore there are two possible scenarios:
 
 Portable VHF radio equipment can be used on small boats particularly where it is impracticable to install a fixed VHF radio. This equipment should be licensed and issued with a radio call sign.
+
+### 11.2.1 Automated Calling
+
+*Pages 173–173*
 
 11.2.1 Automated Calling
 
@@ -6319,7 +6567,7 @@ The registration of an EPIRB may be completed online on the Irish Maritime Radio
 
 ### 11.4 Marine VHF Communications Network
 
-*Pages 175–175*
+*Pages 175–176*
 
 11.4 Marine VHF Communications Network
 
@@ -6376,13 +6624,13 @@ phoning for assistance. If you are in distress or see someone in difficulty, dia
 
 Dublin Controlled Radio Stations Valentia Controlled Radio Stations
 
-### 11.5 Automatic Identification System (AIS)
-
-*Pages 176–176*
-
 Irish Search and Rescue Region
 
 Emergency Procedures
+
+### 11.5 Automatic Identification System (AIS)
+
+*Pages 176–176*
 
 11.5 Automatic Identification System (AIS)
 
@@ -6390,11 +6638,15 @@ must also carry AIS. It is important to note that there may still be a large num
 
 The Automatic Identification System (AIS) is an automatic tracking system used on ships and by vessel traffic services (VTS) for identifying and locating vessels by electronically exchanging data. AIS has been widely adopted and can be a useful tool on board recreational vessels. It can assist in identifying larger vessels as all passenger ships must have AIS. All ships of 300 gross tonnage and upwards engaged on international voyages, as well as cargo ships of 500 gross tonnage and upwards on domestic voyages,
 
-### 11.6.1 1 Cold Water Shock
+### 11.6 Survival at sea
 
 *Pages 177–177*
 
 11.6 Survival at sea
+
+### 11.6.1 Cold Water Shock and Hypothermia
+
+*Pages 177–177*
 
 11.6.1 Cold Water Shock and Hypothermia
 
@@ -6414,9 +6666,9 @@ Survival at sea even for relatively short periods of time is dependent on suitab
 
 A number of recognised course providers offer a one day Basic Sea Survival Course (see Appendix 9 for details of course providers) covering both the theoretical and practical aspects of sea survival techniques.
 
-### 11.6.1 2 Hypothermia
+### 11.6.1.2 Hypothermia
 
-*Pages 178–178*
+*Pages 178–179*
 
 11.6.1.1 Cold Water Shock
 
@@ -6518,10 +6770,6 @@ circulation
 
 Note: Do not assume a person is dead. They may only be in hibernation.
 
-### 11.6.2 Choosing a Liferaft
-
-*Pages 179–180*
-
 Prevention/Retention of Heat in water:
 
 ▪Give warm sweet drinks if
@@ -6543,6 +6791,10 @@ Note: If a person requires immediate medical attention, call the Coast Guard on 
 ▪To retain heat in water, avoid
 
 swimming if possible. Learn coldwater survival techniques (stay still with arms/elbows by sides and legs together – “HELP” (Heat Escape Lessening Position).
+
+### 11.6.2 Choosing a Liferaft
+
+*Pages 179–180*
 
 11.6.2 Choosing a Liferaft
 
@@ -6708,7 +6960,7 @@ Chambers – allows one chamber to be damaged without compromising the buoyancy 
 
 ### 11.6.3 Abandoning Ship
 
-*Pages 181–181*
+*Pages 181–182*
 
 11.6.3 Abandoning Ship
 
@@ -6772,10 +7024,6 @@ A and B should have a suitably equipped Grab Bag which can be transferred to the
 
 the water in the launching area is clear of people and obstructions.
 
-### 11.6.4 Survival in the water
-
-*Pages 182–182*
-
 ▪Wait until the liferaft is fully
 
 ▪Remain in the vicinity of the last
@@ -6783,6 +7031,10 @@ the water in the launching area is clear of people and obstructions.
 inflated before attempting to board. Do not jump onto the canopy. Avoid the raft chafing against the craft that is being abandoned.
 
 position given prior to abandoning ship.
+
+### 11.6.4 Survival in the water
+
+*Pages 182–183*
 
 11.6.4 Survival in the water
 
@@ -6846,10 +7098,6 @@ floor, bale out any water, check for leaks, ventilate by maintaining a small ope
 
 in order to conserve energy and body heat.
 
-### 11.7.1 Recovery of man overboard
-
-*Pages 183–185*
-
 ▪If possible, form a group with
 
 ▪Deploy a lifebuoy, throw bag,
@@ -6866,11 +7114,19 @@ maintain visual contact with the individual in the water at all times regardless
 
 and use the whistle attached to attract attention.
 
+### 11.7 Man overboard and recovery procedures
+
+*Pages 183–183*
+
 11.7 Man overboard and recovery procedures 11.7.1 Recovery of man overboard
 
 ▪Depending on the type of craft,
 
 exercise the required manoeuvre as described in the following section.
+
+### 11.7.1 Recovery of man overboard
+
+*Pages 183–185*
 
 The loss of a person overboard presents a serious challenge to those remaining on board who have to safely position the vessel adjacent to the individual in the water and recover the person back on board. Vessels should have a suitable means of re-boarding fitted such as a boarding ladder.
 
@@ -6926,15 +7182,19 @@ Many boats are equipped with a bathing platform at the stern which facilitates r
 
 Emergency Procedures
 
-### 11.7.2 2 Craft with an engine
+### 11.7.2 Manoeuvring boat to aid recovery of man overboard
 
-*Pages 186–187*
+*Pages 186–186*
 
 11.7.2 Manoeuvring boat to aid recovery of man overboard
 
 11.7.2.2 Craft with an engine
 
 To stay as close to the person in the water as possible:
+
+### 11.7.2.1 Craft without an engine and Craft with an engine
+
+*Pages 186–188*
 
 11.7.2.1 Craft without an engine
 
@@ -6994,10 +7254,6 @@ should proceed slowly with a good lookout as the casualty will be directly ahead
 
 lifeline; if you don’t, you may get pulled on top of the person in the water.
 
-### 11.8 Emergency towing – receiving or giving a tow
-
-*Pages 188–189*
-
 5. The initial approach to the person in the water will vary depending on weather/sea conditions and the type of boat. Let the weather help rather than hinder. Stop upwind and drift down.
 
 ▪Use the most substantial and
@@ -7023,6 +7279,10 @@ downstream to a disabled craft using a fender.
 bridle to secure the towline. Ensure the load is spread over several cleats or strong points on deck such as winches to distribute the load and allow for efficient steering. Please note that some cleats are not designed for towing and may present a projectile hazard when they come under load, hence the use of several cleats is recommended as shown in picture.
 
 7. Ensure the propeller is not turning when you are alongside the person in the water.
+
+### 11.8 Emergency towing – receiving or giving a tow
+
+*Pages 188–189*
 
 11.8 Emergency towing – receiving or giving a tow
 
@@ -7118,7 +7378,7 @@ instructions regarding the course and direction he/she may wish
 
 ### 11.10 Flares
 
-*Pages 191–191*
+*Pages 191–192*
 
 11.10 Flares
 
@@ -7162,10 +7422,6 @@ Flares are explosives and should be treated with care. Store in a waterproof con
 
 Everyone on board should know where the flares are stored and how to use them.
 
-### 11.10.1 Disposal of expired pyrotechnics
-
-*Pages 192–192*
-
 Operating Instructions are printed on all flares - always read them prior to firing!
 
 Emergency Procedures
@@ -7175,6 +7431,10 @@ Do not operate flares when a Rescue Helicopter is in the immediate vicinity - al
 3
 
 4
+
+### 11.10.1 Disposal of expired pyrotechnics
+
+*Pages 192–193*
 
 11.10.1 Disposal of expired pyrotechnics
 
@@ -7197,10 +7457,6 @@ brightness (candela),
 ▪the burn time can lengthen which
 
 could be a fire hazard,
-
-### 11.11 Mobile Devices
-
-*Pages 193–268*
 
 ▪for rockets, the ejection height
 
@@ -7235,6 +7491,10 @@ Any queries concerning TEPs should be addressed to the Marine Survey Office at e
 Safe disposal
 
 Out of date flares must be disposed of carefully. Marine Notices are issued from time to time in relation to the safe disposal of time expired pyrotechnics (TEPs), for example Marine Notice No. 13 of 2000 as amended in September 2022. Individuals or organisations may bring TEPSs to certain chandlers, as listed in the Marine Notice, noting the following points:
+
+### 11.11 Mobile Devices
+
+*Pages 193–268*
 
 11.11 Mobile Devices
 

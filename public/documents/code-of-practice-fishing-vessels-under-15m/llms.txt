@@ -1,19 +1,160 @@
 # Code of Practice: Design, Construction, Equipment, and Operation of Small Fishing Vessels of less than 15 metres Length overall
 
-> Department of Transport — 5 chapters, 6 sections, 72 source pages.
+> Department of Transport — 14 chapters, 138 sections, 72 source pages.
 > Source: https://assets.gov.ie/static/documents/code-of-practice-for-fishing-vessels-of-less-than-15-metres-length-overall-revision-3.pdf
 > Full text: full.md
 
 ## Chapters
 
-- [Front Matter](sections/front-matter/) — pages 1–42
-  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–42
-- [8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND](sections/8-manning-training-certification-emergency-procedures-and/) — pages 43–45
-  - [8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND](sections/8-manning-training-certification-emergency-procedures-and/overview.md) — pages 43–45
-- [9 RADIO COMMUNICATIONS](sections/9-radio-communications/) — pages 46–54
-  - [9 RADIO COMMUNICATIONS](sections/9-radio-communications/overview.md) — pages 46–54
-- [11 ACCOMMODATION AND WORKING SPACES](sections/11-accommodation-and-working-spaces/) — pages 57–71
-  - [11 ACCOMMODATION AND WORKING SPACES](sections/11-accommodation-and-working-spaces/overview.md) — pages 57–63
-  - [12.2.2 Limitations on the use of this method](sections/11-accommodation-and-working-spaces/12-2-2-limitations-on-the-use-of-this-method.md) — pages 64–71
-- [12 m or more Loa](sections/12-m-or-more-loa/) — pages 54–56
-  - [12 m or more Loa](sections/12-m-or-more-loa/overview.md) — pages 54–56
+- [Front Matter](sections/front-matter/) — pages 1–8
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–8
+- [1.1 Foreword](sections/1-1-foreword/) — pages 8–10
+  - [1.1 Foreword](sections/1-1-foreword/overview.md) — pages 8–10
+- [1.2 The Department of Transport and Sources of Information](sections/1-2-the-department-of-transport-and-sources-of-information/) — pages 10–11
+  - [1.2 The Department of Transport and Sources of Information](sections/1-2-the-department-of-transport-and-sources-of-information/overview.md) — pages 10–11
+- [1.3 Definitions](sections/1-3-definitions/) — pages 11–13
+  - [1.3 Definitions](sections/1-3-definitions/overview.md) — pages 11–13
+- [1.4 Application and Interpretation](sections/1-4-application-and-interpretation/) — pages 13–14
+  - [1.4 Application and Interpretation](sections/1-4-application-and-interpretation/overview.md) — pages 13–13
+  - [1.4.1 Application](sections/1-4-application-and-interpretation/1-4-1-application.md) — pages 13–14
+  - [1.4.2 Certification](sections/1-4-application-and-interpretation/1-4-2-certification.md) — pages 14–14
+  - [1.4.3 Interpretation](sections/1-4-application-and-interpretation/1-4-3-interpretation.md) — pages 14–14
+  - [1.4.4 Updating of the Code](sections/1-4-application-and-interpretation/1-4-4-updating-of-the-code.md) — pages 14–14
+- [1.5 Compliance Procedures, Survey, Certification and Maintenance](sections/1-5-compliance-procedures-survey-certification-and-maintenance/) — pages 14–17
+  - [1.5 Compliance Procedures, Survey, Certification and Maintenance](sections/1-5-compliance-procedures-survey-certification-and-maintenance/overview.md) — pages 14–14
+  - [1.5.1 Compliance Survey for first issue of a Declaration of Compliance](sections/1-5-compliance-procedures-survey-certification-and-maintenance/1-5-1-compliance-survey-for-first-issue-of-a-declaration-of-compliance.md) — pages 14–14
+  - [1.5.2 Compliance Survey for Renewal of a Declaration of Compliance](sections/1-5-compliance-procedures-survey-certification-and-maintenance/1-5-2-compliance-survey-for-renewal-of-a-declaration-of-compliance.md) — pages 15–15
+  - [1.5.3 Appeal against the Findings of a Survey](sections/1-5-compliance-procedures-survey-certification-and-maintenance/1-5-3-appeal-against-the-findings-of-a-survey.md) — pages 15–15
+  - [1.5.4 Maintaining and Operating a Vessel](sections/1-5-compliance-procedures-survey-certification-and-maintenance/1-5-4-maintaining-and-operating-a-vessel.md) — pages 15–15
+  - [1.5.5 Validity and cancellation of Declaration of Compliance](sections/1-5-compliance-procedures-survey-certification-and-maintenance/1-5-5-validity-and-cancellation-of-declaration-of-compliance.md) — pages 15–17
+- [2.1 Part A - Pre-2004 Fishing Vessels](sections/2-1-part-a-pre-2004-fishing-vessels/) — pages 17–20
+  - [2.1 Part A - Pre-2004 Fishing Vessels](sections/2-1-part-a-pre-2004-fishing-vessels/overview.md) — pages 17–17
+  - [2.1.1 General Requirements](sections/2-1-part-a-pre-2004-fishing-vessels/2-1-1-general-requirements.md) — pages 17–17
+  - [2.1.2 Modifications and repairs](sections/2-1-part-a-pre-2004-fishing-vessels/2-1-2-modifications-and-repairs.md) — pages 17–17
+  - [2.1.3 Construction Materials](sections/2-1-part-a-pre-2004-fishing-vessels/2-1-3-construction-materials.md) — pages 17–17
+  - [2.1.4 Structural Strength](sections/2-1-part-a-pre-2004-fishing-vessels/2-1-4-structural-strength.md) — pages 17–18
+  - [2.1.8 Doorways above Weather Deck](sections/2-1-part-a-pre-2004-fishing-vessels/2-1-8-doorways-above-weather-deck.md) — pages 18–18
+  - [2.1.10 Weather Deck Hatches](sections/2-1-part-a-pre-2004-fishing-vessels/2-1-10-weather-deck-hatches.md) — pages 18–18
+  - [2.1.12 Skylights](sections/2-1-part-a-pre-2004-fishing-vessels/2-1-12-skylights.md) — pages 18–18
+  - [2.1.13 Side Scuttles and Portlights](sections/2-1-part-a-pre-2004-fishing-vessels/2-1-13-side-scuttles-and-portlights.md) — pages 18–19
+  - [2.1.14 Windows](sections/2-1-part-a-pre-2004-fishing-vessels/2-1-14-windows.md) — pages 19–19
+  - [2.1.15 Ventilators](sections/2-1-part-a-pre-2004-fishing-vessels/2-1-15-ventilators.md) — pages 19–19
+  - [2.1.16 Exhaust Systems](sections/2-1-part-a-pre-2004-fishing-vessels/2-1-16-exhaust-systems.md) — pages 19–19
+  - [2.1.17 Air Pipes](sections/2-1-part-a-pre-2004-fishing-vessels/2-1-17-air-pipes.md) — pages 19–20
+  - [2.1.19 Materials for Valves and Associated Piping - Sea Water Systems](sections/2-1-part-a-pre-2004-fishing-vessels/2-1-19-materials-for-valves-and-associated-piping-sea-water-systems.md) — pages 20–20
+- [2.2 Part B - Post-2004 fishing vessels](sections/2-2-part-b-post-2004-fishing-vessels/) — pages 20–24
+  - [Decks](sections/2-2-part-b-post-2004-fishing-vessels/decks.md) — pages 20–20
+  - [Bulkheads](sections/2-2-part-b-post-2004-fishing-vessels/bulkheads.md) — pages 21–21
+  - [Bulkhead Doors](sections/2-2-part-b-post-2004-fishing-vessels/bulkhead-doors.md) — pages 21–21
+  - [Hatches and Coamings](sections/2-2-part-b-post-2004-fishing-vessels/hatches-and-coamings.md) — pages 21–21
+  - [Sea Inlets and Discharges](sections/2-2-part-b-post-2004-fishing-vessels/sea-inlets-and-discharges.md) — pages 21–22
+  - [2.2 Part B - Post-2004 fishing vessels](sections/2-2-part-b-post-2004-fishing-vessels/overview.md) — pages 20–20
+  - [2.2.1 Construction and Structural Strength](sections/2-2-part-b-post-2004-fishing-vessels/2-2-1-construction-and-structural-strength.md) — pages 20–20
+  - [2.2.2 Weathertight Integrity](sections/2-2-part-b-post-2004-fishing-vessels/2-2-2-weathertight-integrity.md) — pages 21–21
+  - [2.3.1 Freeing Ports](sections/2-2-part-b-post-2004-fishing-vessels/2-3-1-freeing-ports.md) — pages 22–23
+  - [3.1.2 Stability Standard](sections/2-2-part-b-post-2004-fishing-vessels/3-1-2-stability-standard.md) — pages 23–23
+  - [3.1.3 Capsize Safety](sections/2-2-part-b-post-2004-fishing-vessels/3-1-3-capsize-safety.md) — pages 24–24
+  - [3.1.4 Stability Book](sections/2-2-part-b-post-2004-fishing-vessels/3-1-4-stability-book.md) — pages 24–24
+- [3.2.1 Stability](sections/3-2-1-stability/) — pages 24–42
+  - [3.2.1 Stability](sections/3-2-1-stability/overview.md) — pages 24–25
+  - [4.1.1 Machinery – General requirements and recommendations](sections/3-2-1-stability/4-1-1-machinery-general-requirements-and-recommendations.md) — pages 25–25
+  - [4.1.2 Propulsion Machinery and Stern Gear](sections/3-2-1-stability/4-1-2-propulsion-machinery-and-stern-gear.md) — pages 25–26
+  - [4.1.3 Engine Starting](sections/3-2-1-stability/4-1-3-engine-starting.md) — pages 26–26
+  - [4.1.4 Controls and Instruments](sections/3-2-1-stability/4-1-4-controls-and-instruments.md) — pages 26–26
+  - [4.1.5 Steering System](sections/3-2-1-stability/4-1-5-steering-system.md) — pages 26–26
+  - [4.1.6 Electrical Installations](sections/3-2-1-stability/4-1-6-electrical-installations.md) — pages 26–28
+  - [4.1.7 Pumping and Piping Systems](sections/3-2-1-stability/4-1-7-pumping-and-piping-systems.md) — pages 28–29
+  - [4.2.1 Machinery](sections/3-2-1-stability/4-2-1-machinery.md) — pages 29–30
+  - [4.2.2 Piping Systems](sections/3-2-1-stability/4-2-2-piping-systems.md) — pages 30–30
+  - [4.2.3 Shafting and Stern Gear](sections/3-2-1-stability/4-2-3-shafting-and-stern-gear.md) — pages 30–30
+  - [4.2.4 Bilge Pumping Systems](sections/3-2-1-stability/4-2-4-bilge-pumping-systems.md) — pages 30–30
+  - [4.2.5 Steering Gear](sections/3-2-1-stability/4-2-5-steering-gear.md) — pages 31–31
+  - [4.2.6 Electrical Systems](sections/3-2-1-stability/4-2-6-electrical-systems.md) — pages 31–31
+  - [4.3.1 Anchors and Cables](sections/3-2-1-stability/4-3-1-anchors-and-cables.md) — pages 31–33
+  - [5.1 Part A – Pre-2004 fishing vessels](sections/3-2-1-stability/5-1-part-a-pre-2004-fishing-vessels.md) — pages 33–33
+  - [5.1.1 Provision for Gas-Extinguishing System](sections/3-2-1-stability/5-1-1-provision-for-gas-extinguishing-system.md) — pages 33–33
+  - [5.2 Part B – Post-2004 fishing vessels](sections/3-2-1-stability/5-2-part-b-post-2004-fishing-vessels.md) — pages 33–33
+  - [5.2.2 Fire Prevention](sections/3-2-1-stability/5-2-2-fire-prevention.md) — pages 33–33
+  - [5.2.3 Furnishing Materials](sections/3-2-1-stability/5-2-3-furnishing-materials.md) — pages 33–33
+  - [5.2.4 Means of Escape](sections/3-2-1-stability/5-2-4-means-of-escape.md) — pages 33–34
+  - [5.3 Part C – all fishing vessels (Pre-2004 and Post-2004)](sections/3-2-1-stability/5-3-part-c-all-fishing-vessels-pre-2004-and-post-2004.md) — pages 34–34
+  - [5.3.2 Emergency Action](sections/3-2-1-stability/5-3-2-emergency-action.md) — pages 34–34
+  - [5.3.3 Fire Fighting Appliances](sections/3-2-1-stability/5-3-3-fire-fighting-appliances.md) — pages 34–35
+  - [5.3.4 Open-Flame Gas Appliances (including Gas Refrigerators)](sections/3-2-1-stability/5-3-4-open-flame-gas-appliances-including-gas-refrigerators.md) — pages 36–36
+  - [5.3.5 Cleanliness and Pollution Prevention](sections/3-2-1-stability/5-3-5-cleanliness-and-pollution-prevention.md) — pages 36–37
+  - [6.2 Means of access](sections/3-2-1-stability/6-2-means-of-access.md) — pages 37–37
+  - [6.3 Bulwarks, Guard Rails and Handrails](sections/3-2-1-stability/6-3-bulwarks-guard-rails-and-handrails.md) — pages 37–37
+  - [6.4 Safety Harnesses](sections/3-2-1-stability/6-4-safety-harnesses.md) — pages 37–37
+  - [6.5 Surface of Working Decks](sections/3-2-1-stability/6-5-surface-of-working-decks.md) — pages 37–38
+  - [6.6 Personal Protective Equipment](sections/3-2-1-stability/6-6-personal-protective-equipment.md) — pages 38–39
+  - [6.8 Medical Training](sections/3-2-1-stability/6-8-medical-training.md) — pages 39–39
+  - [6.9 Securing of Heavy Items of Equipment and Fishing Gear, etc.](sections/3-2-1-stability/6-9-securing-of-heavy-items-of-equipment-and-fishing-gear-etc.md) — pages 39–40
+  - [7.2 Servicing](sections/3-2-1-stability/7-2-servicing.md) — pages 40–40
+  - [7.3 Lifejackets](sections/3-2-1-stability/7-3-lifejackets.md) — pages 40–40
+  - [7.4 Carriage of Inflatable Liferafts](sections/3-2-1-stability/7-4-carriage-of-inflatable-liferafts.md) — pages 40–41
+  - [7.5 Lifebuoys](sections/3-2-1-stability/7-5-lifebuoys.md) — pages 41–41
+  - [7.6 Personal Flotation Devices](sections/3-2-1-stability/7-6-personal-flotation-devices.md) — pages 41–41
+  - [7.7 Loose Equipment](sections/3-2-1-stability/7-7-loose-equipment.md) — pages 42–42
+  - [7.8 Distress Signals](sections/3-2-1-stability/7-8-distress-signals.md) — pages 42–42
+  - [7.9 Means for Recovering Persons from the Water](sections/3-2-1-stability/7-9-means-for-recovering-persons-from-the-water.md) — pages 42–42
+- [8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND](sections/8-manning-training-certification-emergency-procedures-and/) — pages 43–44
+  - [8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND](sections/8-manning-training-certification-emergency-procedures-and/overview.md) — pages 43–43
+  - [8.2 Safety Training](sections/8-manning-training-certification-emergency-procedures-and/8-2-safety-training.md) — pages 43–43
+  - [8.3 Standards of Competence](sections/8-manning-training-certification-emergency-procedures-and/8-3-standards-of-competence.md) — pages 43–43
+  - [8.4 Operation and Maintenance of Propulsion Machinery](sections/8-manning-training-certification-emergency-procedures-and/8-4-operation-and-maintenance-of-propulsion-machinery.md) — pages 43–43
+  - [8.5 Operation of Radio Equipment](sections/8-manning-training-certification-emergency-procedures-and/8-5-operation-of-radio-equipment.md) — pages 43–43
+  - [8.6 Responsibility of the Owner for Safe Manning of Vessel](sections/8-manning-training-certification-emergency-procedures-and/8-6-responsibility-of-the-owner-for-safe-manning-of-vessel.md) — pages 44–44
+  - [8.7 Safe Navigational Watch](sections/8-manning-training-certification-emergency-procedures-and/8-7-safe-navigational-watch.md) — pages 44–44
+  - [8.8 Musters and Drills for Emergency Procedures](sections/8-manning-training-certification-emergency-procedures-and/8-8-musters-and-drills-for-emergency-procedures.md) — pages 44–44
+- [8.9 Organisation of Working Time](sections/8-9-organisation-of-working-time/) — pages 45–45
+  - [8.9 Organisation of Working Time](sections/8-9-organisation-of-working-time/overview.md) — pages 45–45
+- [9 RADIO COMMUNICATIONS](sections/9-radio-communications/) — pages 46–56
+  - [9 RADIO COMMUNICATIONS](sections/9-radio-communications/overview.md) — pages 46–46
+  - [9.1 Part 1 – General](sections/9-radio-communications/9-1-part-1-general.md) — pages 46–46
+  - [9.1.1 The Global Maritime Distress and Safety System (GMDSS)](sections/9-radio-communications/9-1-1-the-global-maritime-distress-and-safety-system-gmdss.md) — pages 46–46
+  - [9.2 Part 2 – Vessel Requirements](sections/9-radio-communications/9-2-part-2-vessel-requirements.md) — pages 46–46
+  - [9.2.1 Radio Installations Regulations](sections/9-radio-communications/9-2-1-radio-installations-regulations.md) — pages 46–46
+  - [9.2.2 Functional Requirements](sections/9-radio-communications/9-2-2-functional-requirements.md) — pages 47–48
+  - [9.2.4 Radio Equipment to be Provided for all Sea Areas (including EPIRBs and PLBs)](sections/9-radio-communications/9-2-4-radio-equipment-to-be-provided-for-all-sea-areas-including-epirbs-and-plbs.md) — pages 48–49
+  - [9.2.5 Additional Radio Equipment to be Provided for Sea Areas A1 and A2](sections/9-radio-communications/9-2-5-additional-radio-equipment-to-be-provided-for-sea-areas-a1-and-a2.md) — pages 49–50
+  - [9.2.6 Radio Watches](sections/9-radio-communications/9-2-6-radio-watches.md) — pages 50–51
+  - [9.2.7 Sources of Energy](sections/9-radio-communications/9-2-7-sources-of-energy.md) — pages 51–52
+  - [9.2.8 Performance Standards](sections/9-radio-communications/9-2-8-performance-standards.md) — pages 52–52
+  - [9.2.9 Serviceability and Maintenance Requirements](sections/9-radio-communications/9-2-9-serviceability-and-maintenance-requirements.md) — pages 52–52
+  - [9.2.10 Radio Personnel](sections/9-radio-communications/9-2-10-radio-personnel.md) — pages 52–54
+  - [10.2 Navigation Equipment](sections/9-radio-communications/10-2-navigation-equipment.md) — pages 54–54
+  - [10.3 Navigation Lights](sections/9-radio-communications/10-3-navigation-lights.md) — pages 54–54
+  - [10.4 Steaming Lights](sections/9-radio-communications/10-4-steaming-lights.md) — pages 54–55
+  - [10.5 Fishing Lights](sections/9-radio-communications/10-5-fishing-lights.md) — pages 55–55
+  - [10.6 Additional Fishing Light](sections/9-radio-communications/10-6-additional-fishing-light.md) — pages 55–55
+  - [10.7 Anchor Light](sections/9-radio-communications/10-7-anchor-light.md) — pages 55–55
+  - [10.8 Position of Lights](sections/9-radio-communications/10-8-position-of-lights.md) — pages 55–55
+  - [10.9 Day Signals](sections/9-radio-communications/10-9-day-signals.md) — pages 55–56
+  - [10.10 Sound Signals](sections/9-radio-communications/10-10-sound-signals.md) — pages 56–56
+  - [10.11 Charts and Nautical Publications](sections/9-radio-communications/10-11-charts-and-nautical-publications.md) — pages 56–56
+  - [10.12 Signalling Lamp](sections/9-radio-communications/10-12-signalling-lamp.md) — pages 56–56
+  - [10.13 Radar Reflector](sections/9-radio-communications/10-13-radar-reflector.md) — pages 56–56
+  - [10.14 Search Light](sections/9-radio-communications/10-14-search-light.md) — pages 56–56
+- [11 ACCOMMODATION AND WORKING SPACES](sections/11-accommodation-and-working-spaces/) — pages 57–57
+  - [11 ACCOMMODATION AND WORKING SPACES](sections/11-accommodation-and-working-spaces/overview.md) — pages 57–57
+- [11.1 General](sections/11-1-general/) — pages 57–71
+  - [11.1 General](sections/11-1-general/overview.md) — pages 57–57
+  - [11.2 Living Quarters](sections/11-1-general/11-2-living-quarters.md) — pages 57–57
+  - [11.3 Sleeping Accommodation](sections/11-1-general/11-3-sleeping-accommodation.md) — pages 57–57
+  - [11.4 Food Preparation](sections/11-1-general/11-4-food-preparation.md) — pages 57–57
+  - [11.5 Messing Arrangements](sections/11-1-general/11-5-messing-arrangements.md) — pages 57–57
+  - [11.7 Access and Escape Arrangements](sections/11-1-general/11-7-access-and-escape-arrangements.md) — pages 58–58
+  - [11.8 Ventilation](sections/11-1-general/11-8-ventilation.md) — pages 58–58
+  - [11.9 Water Services](sections/11-1-general/11-9-water-services.md) — pages 58–58
+  - [11.10 Lighting](sections/11-1-general/11-10-lighting.md) — pages 58–58
+  - [11.11 Temperature](sections/11-1-general/11-11-temperature.md) — pages 59–59
+  - [11.12 Hand Holds and Grab-rails](sections/11-1-general/11-12-hand-holds-and-grab-rails.md) — pages 59–60
+  - [12.1 Determination of vessel's stability by means of rolling period tests](sections/11-1-general/12-1-determination-of-vessel-s-stability-by-means-of-rolling-period-tests.md) — pages 60–63
+  - [12.2.2 Limitations on the use of this method](sections/11-1-general/12-2-2-limitations-on-the-use-of-this-method.md) — pages 64–65
+  - [13.1 Guidance on Capsize Safety](sections/11-1-general/13-1-guidance-on-capsize-safety.md) — pages 65–65
+  - [13.1.1 Actions in Port](sections/11-1-general/13-1-1-actions-in-port.md) — pages 65–65
+  - [13.1.2 Reducing Top Weight](sections/11-1-general/13-1-2-reducing-top-weight.md) — pages 65–65
+  - [13.1.3 Vessel Modifications](sections/11-1-general/13-1-3-vessel-modifications.md) — pages 65–68
+  - [14.1 Radio Equipment Tests and Reserve Power Checks](sections/11-1-general/14-1-radio-equipment-tests-and-reserve-power-checks.md) — pages 68–68
+  - [14.1.1 Daily](sections/11-1-general/14-1-1-daily.md) — pages 68–68
+  - [14.1.2 Weekly](sections/11-1-general/14-1-2-weekly.md) — pages 68–71

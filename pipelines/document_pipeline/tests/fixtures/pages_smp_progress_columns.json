@@ -1,0 +1,195 @@
+[
+ {
+  "number": 10,
+  "width": 595.28,
+  "height": 841.89,
+  "rotation": 0,
+  "spans": [
+   {
+    "text": "National Sustainable Mobility Policy | ",
+    "font": "Lato-Regular",
+    "size": 8.0,
+    "bbox": [
+     309.66,
+     22.11,
+     441.11,
+     32.88
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Year One Progress Report",
+    "font": "Lato-Regular",
+    "size": 8.0,
+    "bbox": [
+     442.85,
+     22.11,
+     532.91,
+     32.88
+    ],
+    "block": 0,
+    "line": 0,
+    "span": 2
+   },
+   {
+    "text": "SMP Leadership Group, ",
+    "font": "Lato-Light",
+    "size": 40.0,
+    "bbox": [
+     61.55,
+     63.7,
+     476.32,
+     116.46
+    ],
+    "block": 2,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "Delivery Team, and ",
+    "font": "Lato-Light",
+    "size": 40.0,
+    "bbox": [
+     61.55,
+     111.7,
+     398.03,
+     164.46
+    ],
+    "block": 2,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Pathfinder Programme",
+    "font": "Lato-Light",
+    "size": 40.0,
+    "bbox": [
+     61.55,
+     159.7,
+     445.94,
+     212.46
+    ],
+    "block": 2,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "Leadership Group",
+    "font": "Lato-Bold",
+    "size": 17.0,
+    "bbox": [
+     61.55,
+     228.88,
+     195.18,
+     252.42
+    ],
+    "block": 3,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "The SMP Leadership Group (LG) was established ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     61.55,
+     258.29,
+     275.2,
+     271.76
+    ],
+    "block": 4,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "in May 2022 with a secretariat provided by the ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     61.55,
+     271.29,
+     268.41,
+     284.76
+    ],
+    "block": 4,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "Department of Transport. Membership of the LG ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     61.55,
+     284.29,
+     275.86,
+     297.76
+    ],
+    "block": 4,
+    "line": 2,
+    "span": 0
+   },
+   {
+    "text": "Delivery Team ",
+    "font": "Lato-Bold",
+    "size": 17.0,
+    "bbox": [
+     308.16,
+     228.88,
+     419.09,
+     252.42
+    ],
+    "block": 8,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "The SMP included a commitment to agree a ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     308.16,
+     258.29,
+     501.68,
+     271.76
+    ],
+    "block": 9,
+    "line": 0,
+    "span": 0
+   },
+   {
+    "text": "mechanism for the delivery of a programme of ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     308.16,
+     271.29,
+     512.28,
+     284.76
+    ],
+    "block": 9,
+    "line": 1,
+    "span": 0
+   },
+   {
+    "text": "‘pathfinder’ projects which would seek to highlight ",
+    "font": "Lato-Regular",
+    "size": 10.0,
+    "bbox": [
+     308.16,
+     284.29,
+     530.49,
+     297.76
+    ],
+    "block": 9,
+    "line": 2,
+    "span": 0
+   }
+  ],
+  "drawings": [],
+  "images": [],
+  "tables": []
+ }
+]
