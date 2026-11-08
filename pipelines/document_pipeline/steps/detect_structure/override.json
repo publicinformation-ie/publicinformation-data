@@ -1,7 +1,4 @@
-{"sustainable-mobility-policy-action-plan-2026-2030": [
-  {"slug": "alignment-with-wider-policy", "title": "Collaborative Approach and Alignment with Wider Policy", "start_page": 6, "start_y": 87.11}
-],
-"road-safety-strategy-phase-2-action-plan-2025-2027": [
+{"road-safety-strategy-phase-2-action-plan-2025-2027": [
   {"slug": "introduction", "level": 1},
   {"slug": "safe-system-approach-to-road-safety", "level": 1},
   {"slug": "ireland-s-path-to-vision-zero", "level": 1},
@@ -10,4 +7,34 @@
   {"slug": "phase-2-action-plan-primary-actions", "level": 1},
   {"slug": "phase-2-action-plan-supporting-actions", "level": 1},
   {"slug": "abbreviations", "level": 1}
+],
+"emra-regional-spatial-and-economic-strategy": [
+  {"slug": "1-2-eastern-and-midland-regional-assembly", "drop": true},
+  {"slug": "1-1-vision", "title": "Vision and Eastern and Midland Regional Assembly"}
+],
+"sustainable-mobility-policy-year-one-progress-report": [
+  {"slug": "delivery-team", "drop": true},
+  {"slug": "leadership-group", "title": "Leadership Group and Delivery Team"}
+],
+"gda-transport-strategy-2022-2042": [
+  {"slug": "assessment", "drop": true},
+  {"slug": "18-enviromental", "title": "Environmental Assessment", "start_page": 229, "start_y": 83.2}
+],
+"moving-together-strategy": [
+  {"slug": "renewable-energy-amended-renewable-energy-directive", "drop": true},
+  {"slug": "un-sustainable-development-goals", "title": "UN Sustainable Development Goals and Renewable Energy – Amended Renewable Energy Directive"}
+],
+"national-ports-policy": [
+  {"slug": "2-5-3-shannon-foynes-port-company", "drop": true},
+  {"slug": "2-5-2-port-of-cork-company", "title": "Port of Cork Company and Shannon Foynes Port Company"},
+  {"slug": "2-7-7-legislative-amendments-required-for-ports-of-regional-significance", "drop": true},
+  {"slug": "2-7-5-wicklow-port-company", "title": "Wicklow Port Company and Legislative amendments required for ports of regional significance"},
+  {"slug": "3-3-port-company-boards", "drop": true},
+  {"slug": "3-2-the-code-of-practice-for-the-governance-of-state-bodies", "title": "The Code of Practice for the Governance of State Bodies and Port company boards"}
+],
+"code-of-practice-recreational-craft": [
+  {"slug": "2-7-competitive-use-yachts", "drop": true},
+  {"slug": "2-6-special-considerations-for-persons-with-disabilities", "title": "Special considerations for persons with disabilities and Competitive use – Yachts"},
+  {"slug": "11-7-2-2-craft-with-an-engine", "drop": true},
+  {"slug": "11-7-2-1-craft-without-an-engine", "title": "Craft without an engine and Craft with an engine"}
 ]}

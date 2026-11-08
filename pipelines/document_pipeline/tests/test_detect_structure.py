@@ -226,6 +226,43 @@ def test_merge_overrides_can_flatten_a_staircase_outline():
     assert [n.order for n in merged] == sorted(n.order for n in merged)
 
 
+def _two_column_outline_nodes():
+    """Two section headings side by side on one baseline (emra p6 shape): the
+    one-dimensional boundary model cannot separate them."""
+    outline = [{"level": 1, "title": "Introduction", "page": 1, "y": 50.0},
+               {"level": 2, "title": "Vision", "page": 2, "y": 396.8},
+               {"level": 2, "title": "Regional Assembly", "page": 2, "y": 396.8},
+               {"level": 1, "title": "Next Steps", "page": 4, "y": 50.0}]
+    nodes, method, _ = detect_structure([], outline, 5)
+    assert method == "outline"
+    return nodes
+
+
+def test_merge_overrides_drop_removes_a_node_and_its_predecessor_absorbs_it():
+    nodes = _two_column_outline_nodes()
+    assert validate_split(nodes, 5)  # duplicate boundary before the override
+
+    merged, errors = merge_overrides(nodes, [{"slug": "regional-assembly", "drop": True}], 5)
+
+    assert errors == []
+    assert [n.slug for n in merged] == ["introduction", "vision", "next-steps"]
+    vision = by_slug(merged)["vision"]
+    assert vision.parent == "introduction"
+    assert vision.end_page == 3  # runs on to the page before `next-steps`
+    assert validate_split(merged, 5) == []
+
+
+def test_merge_overrides_drop_must_be_alone_and_literally_true():
+    nodes = _two_column_outline_nodes()
+
+    merged, errors = merge_overrides(
+        nodes, [{"slug": "regional-assembly", "drop": True, "title": "x"},
+                {"slug": "vision", "drop": "yes"}], 5)
+
+    assert [e["error_type"] for e in errors] == ["MalformedOverride", "MalformedOverride"]
+    assert [n.slug for n in merged] == [n.slug for n in nodes]
+
+
 def test_merge_overrides_reports_a_slug_that_no_longer_exists():
     nodes, _, _ = detect_structure(load_pages("pages_numbered.json"), [], 4)
 
@@ -950,3 +987,16 @@ def test_filter_outline_drops_unusable_titles_and_reports_them():
     assert [e["title"] for e in kept] == ["Introduction", "2. Policy"]
     assert [p["context"]["title"] for p in problems] == ["1.", "_Hlk25760943", ""]
     assert {p["error_type"] for p in problems} == {"OutlineEntryDropped"}
+
+
+def test_split_number_keeps_four_level_numbers_whole():
+    """`11.7.2.1 Craft without an engine` is number 11.7.2.1, not 11.7.2 with a
+    title starting `1 ` (recreational-craft had 16 such titles)."""
+    from steps.detect_structure.process import _split_number
+
+    assert _split_number("11.7.2.1 Craft without an engine") == ("11.7.2.1", "Craft without an engine")
+    assert _split_number("1.2.3.3 Prevention of pollution by oil") == ("1.2.3.3", "Prevention of pollution by oil")
+    assert _split_number("2.5.3\tShannon Foynes Port Company") == ("2.5.3", "Shannon Foynes Port Company")
+    assert _split_number("6. Public Consultation") == ("6", "Public Consultation")
+    # A five-level number is left whole rather than split mid-number.
+    assert _split_number("1.2.3.4.5 Too deep") == (None, "1.2.3.4.5 Too deep")

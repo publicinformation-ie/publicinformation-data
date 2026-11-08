@@ -59,7 +59,9 @@ OVERRIDE_FILENAME = "override.json"
 # `1 First Chapter`, `1.1 Introduction`, `1.1.1 Detail` — at most three levels,
 # at most two digits per level, and always a non-empty title after the number.
 HEADING_RE = re.compile(r"^(\d{1,2})(?:\.(\d{1,2}))?(?:\.(\d{1,2}))?\s+(\S.*)$")
-NUMBER_PREFIX_RE = re.compile(r"^(\d{1,2}(?:\.\d{1,2}){0,2})[.\s]+(\S.*)$")
+# Up to four levels (1.2.3.4). The lookahead stops a deeper number being split
+# mid-number into a digit-led title (`11.7.2` + `1 Craft…`).
+NUMBER_PREFIX_RE = re.compile(r"^(\d{1,2}(?:\.\d{1,2}){0,3})(?!\.?\d)[.\s]+(\S.*)$")
 _BOLD_RE = re.compile(r"bold|black|heavy|semib|\bhebo\b|\bcobo\b|\btibo\b", re.IGNORECASE)
 _NON_SLUG_RE = re.compile(r"[^a-z0-9]+")
 
@@ -1205,6 +1207,7 @@ def merge_overrides(nodes: list, patches: list, page_count=None):
     errors = []
     indexed = {node.slug: node for node in nodes}
     applied = {}
+    dropped = False
 
     for patch in patches or []:
         if not isinstance(patch, dict):
@@ -1216,6 +1219,26 @@ def merge_overrides(nodes: list, patches: list, page_count=None):
             errors.append(_error("MalformedOverride",
                                  "override entry has no 'slug' to match on",
                                  {"entry": json.dumps(patch, ensure_ascii=False)[:200]}))
+            continue
+        if "drop" in patch:
+            # A node removed by hand: the previous boundary absorbs its text.
+            # Used where detection is right but the boundary model cannot
+            # represent it (two section headings side by side on one baseline).
+            if patch["drop"] is not True or set(patch) != {"slug", "drop"}:
+                errors.append(_error(
+                    "MalformedOverride",
+                    f"override for {slug!r}: 'drop' must be true and the only other field",
+                    {"slug": slug}))
+                continue
+            if slug not in indexed:
+                errors.append(_error(
+                    "UnknownOverrideSlug",
+                    f"override drops slug {slug!r}, which detection did not produce",
+                    {"slug": slug}))
+                continue
+            del indexed[slug]
+            applied.pop(slug, None)
+            dropped = True
             continue
         unknown = sorted(set(patch) - OVERRIDE_FIELDS - {"slug"})
         if unknown:
@@ -1235,7 +1258,7 @@ def merge_overrides(nodes: list, patches: list, page_count=None):
         applied[slug] = values
 
     merged = list(indexed.values())
-    if applied:
+    if applied or dropped:
         # Recompute the derived fields so a moved or re-levelled node still has
         # consistent parents and page ranges, then re-apply the explicit values
         # on top so a hand-set derived field is not immediately clobbered.
