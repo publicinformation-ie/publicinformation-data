@@ -35,6 +35,7 @@
 - [x] 6.2 Wire `validate_split()` into `process()` post-`merge_overrides`, appending `InvalidStructure` entries (doc_slug, failing check, offending value) to `errors.json` without altering the tree, and still writing the record to output; test that a failing document is written *and* flagged — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k validation_gate`
 - [x] 6.3 Confirm `steps/detect_structure/eval/compare.py` still reports correctly now that `validate_split` can return a level issue (its issue counts change for affected documents) — run it on one document and check the output reads sensibly
 - [x] 6.4 Update `steps/detect_structure/README.md`: add `InvalidStructure` to the error table and note that validation always runs in production and that an unresolved entry blocks the merge — `uv run pytest pipelines/document_pipeline/tests -q && uv run pyright`
+- [x] 6.5 (added scope, approved) Resolve page-only outline bookmarks: `resolve_outline_positions` fills `y` from the matching title line on the page and reports `OutlineEntryUnresolved` instead of guessing — `uv run pytest pipelines/document_pipeline/tests/test_detect_structure.py -k outline_resolve`
 
 ## 7. Corpus regeneration + audit (D8, D9)
 

@@ -368,6 +368,61 @@ def is_heading_candidate(title) -> bool:
 # Strategies
 # --------------------------------------------------------------------------
 
+def resolve_outline_positions(outline, pages: list):
+    """Fill in `y` for outline entries that name only a page.
+
+    Many PDF bookmarks point at a page, not a position on it, so every entry on
+    a page would otherwise start at y=0 and the sections between them could not
+    be separated. For each such entry, find the line on that page whose text is
+    the entry's title (optionally with its wrapped continuation line) and use
+    that line's top. An entry whose title cannot be located is left unchanged
+    and reported, never guessed; the validation gate then flags the tree.
+
+    Returns `(outline, problems)`; problems are `OutlineEntryUnresolved` dicts.
+    """
+    if not outline:
+        return outline, []
+    by_page = {int(p.get("number", i + 1)): p for i, p in enumerate(pages)}
+    used, resolved, problems = set(), [], []
+    for entry in outline:
+        if entry.get("y"):
+            resolved.append(entry)
+            continue
+        page_no = int(entry.get("page", 1))
+        _, title = _split_number(str(entry.get("title", "")))
+        want = normalize_heading_text(clean_title(title))
+        found = None
+        page = by_page.get(page_no)
+        if page is not None and want:
+            lines = reading_order_lines(page)
+            for line in lines:
+                if (page_no, round(line.y0, 1)) in used:
+                    continue
+                _, text = _split_number(clean_title(line.text))
+                got = normalize_heading_text(text)
+                if got == want:
+                    found = line
+                    break
+                if want.startswith(got) and len(got) >= 3:
+                    nxt = _heading_continuation(line, lines)
+                    if nxt is not None:
+                        _, more = _split_number(clean_title(lines[nxt].text))
+                        if normalize_heading_text(f"{text} {more}") == want:
+                            found = line
+                            break
+        if found is None:
+            resolved.append(entry)
+            problems.append({
+                "error_type": "OutlineEntryUnresolved",
+                "error_message": f"Outline entry {entry.get('title')!r} (page {page_no}) names no position and its title was not found on the page; left at the page top",
+                "context": {"title": entry.get("title"), "page": page_no},
+            })
+            continue
+        used.add((page_no, round(found.y0, 1)))
+        resolved.append({**entry, "y": found.y0})
+    return resolved, problems
+
+
 def from_outline(outline: list) -> list:
     nodes = []
     for entry in outline or []:
@@ -1181,7 +1236,16 @@ def process(upstream_records, pages_base_dir, step_dir, writer, doc_slug=None,
 
         pages = load_pages(pages_base_dir, record)
         page_count = int(record.get("page_count") or len(pages))
-        nodes, method, toc_report = detect_structure(pages, record.get("outline"), page_count)
+        outline, outline_problems = resolve_outline_positions(record.get("outline"), pages)
+        for problem in outline_problems:
+            append_error(step_dir, {
+                "step": STEP_NAME,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "error_type": problem["error_type"],
+                "error_message": problem["error_message"],
+                "context": {"doc_slug": slug, **problem["context"]},
+            })
+        nodes, method, toc_report = detect_structure(pages, outline, page_count)
 
         if toc_report is not None:
             for problem in toc_report.get("errors", []):

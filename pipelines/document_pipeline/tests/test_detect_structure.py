@@ -27,7 +27,7 @@ from steps.detect_structure.process import (
     score_occurrence,
     validate_split,
 )
-from steps.detect_structure.process import READING_ORDER_Y_GRID
+from steps.detect_structure.process import READING_ORDER_Y_GRID, resolve_outline_positions
 from steps.extract_pages.process import extract_page
 
 import pymupdf
@@ -846,3 +846,21 @@ def test_toc_pages_are_read_column_by_column():
 
     assert chapter_1 < chapter_4
     assert all(i < chapter_4 for i, t in enumerate(texts) if t.startswith(("1.", "2.", "3.")))
+
+
+def test_outline_resolve_positions_uses_title_line_y_and_reports_misses():
+    pg = page([span("1. Overview", y0=80.0, index=0, line=0),
+               span("body text here", y0=120.0, index=1, line=1),
+               span("2. Wrapped", y0=300.0, index=2, line=2, block=1),
+               span("Heading Title", y0=316.0, index=3, line=3, block=1)], number=5)
+    outline = [{"level": 1, "title": "1.\tOverview", "page": 5},
+               {"level": 1, "title": "2. Wrapped Heading Title", "page": 5},
+               {"level": 1, "title": "Missing", "page": 5},
+               {"level": 1, "title": "Given", "page": 5, "y": 42.0}]
+    resolved, problems = resolve_outline_positions(outline, [pg])
+    assert resolved[0]["y"] == 80.0
+    assert resolved[1]["y"] == 300.0
+    assert not resolved[2].get("y")
+    assert resolved[3]["y"] == 42.0
+    assert [p["error_type"] for p in problems] == ["OutlineEntryUnresolved"]
+    assert problems[0]["context"] == {"title": "Missing", "page": 5}
