@@ -19,9 +19,13 @@ DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 _REQUIRED = ("doc_slug", "title", "url", "policy_id", "policy_role")
 _OPTIONAL = ("publisher", "public_body_id", "published_date", "role",
-             "reports_on", "expected_action_count", "expected_status_counts")
+             "reports_on", "expected_action_count", "expected_status_counts",
+             "status_source")
 
 VALID_ROLES = ("plan", "report")
+# Where a report's machine-readable status detail lives, when not in its PDF.
+# "annex": a companion spreadsheet; extract_action_status skips the report.
+VALID_STATUS_SOURCES = ("annex",)
 VALID_POLICY_ROLES = ("primary", "action-plan", "progress-report")
 
 
@@ -108,6 +112,17 @@ def load_documents(path=DOCUMENTS_PATH, policy_ids=None) -> list:
             raise InvalidDocumentRole(
                 f"{where} sets 'reports_on' but its role is {role!r}; "
                 f"reports_on is only meaningful on a report")
+
+        status_source = entry.get("status_source")
+        if status_source is not None:
+            if role != "report":
+                raise InvalidDocumentRole(
+                    f"{where} sets 'status_source' but its role is {role!r}; "
+                    f"status_source is only meaningful on a report")
+            if status_source not in VALID_STATUS_SOURCES:
+                raise ValueError(
+                    f"{where} has status_source {status_source!r}; "
+                    f"must be one of {VALID_STATUS_SOURCES}")
 
         expected_actions = entry.get("expected_action_count")
         if expected_actions is not None and (isinstance(expected_actions, bool)

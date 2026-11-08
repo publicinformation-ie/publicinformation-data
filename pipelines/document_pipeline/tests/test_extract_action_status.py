@@ -309,3 +309,31 @@ def test_an_unknown_format_document_is_not_marked_processed(tmp_path, make_write
     assert not writer.is_processed("a-report")
     assert [e["error_type"] for e in
             json.loads((tmp_path / "errors.json").read_text())] == ["UnknownReportFormat"]
+
+
+def test_a_report_declaring_an_annex_status_source_is_skipped_without_error(tmp_path, make_writer):
+    """Declared status_source: no record, no UnknownReportFormat, even though the
+    PDF has no recognisable annex layout."""
+    writer = make_writer("extract_action_status")
+    process([clean_record([table_block([["Action", "Owner"]])])],
+            {"a-report": report(status_source="annex")}, tmp_path, writer)
+    writer.finalize()
+    assert json.loads((tmp_path / "output.json").read_text())["results"] == []
+    assert json.loads((tmp_path / "errors.json").read_text()) == []
+
+
+def test_a_declared_annex_report_is_skipped_even_when_its_layout_is_recognised(tmp_path, make_writer):
+    writer = make_writer("extract_action_status")
+    process([clean_record([table_block([FORMAT_A_HEADER, ["1", "A", "o", "2025", "Complete", "p", "x"]])])],
+            {"a-report": report(status_source="annex")}, tmp_path, writer)
+    writer.finalize()
+    assert json.loads((tmp_path / "output.json").read_text())["results"] == []
+
+
+def test_an_undeclared_report_with_an_unrecognised_layout_still_errors(tmp_path, make_writer):
+    writer = make_writer("extract_action_status")
+    process([clean_record([table_block([["Action", "Owner"]])])],
+            {"a-report": report(status_source=None)}, tmp_path, writer)
+    writer.finalize()
+    assert [e["error_type"] for e in
+            json.loads((tmp_path / "errors.json").read_text())] == ["UnknownReportFormat"]

@@ -1,0 +1,15 @@
+# Climate Action Plan Progress Report Q3 & Q4 2024
+
+> Department of the Taoiseach — 3 chapters, 4 sections, 37 source pages.
+> Source: https://assets.gov.ie/static/documents/Climate_Action_Plan_2024_Q3_and_Q4_Progress_Report.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–4
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–4
+- [3 Transport](sections/3-transport/) — pages 16–37
+  - [3 Transport](sections/3-transport/overview.md) — pages 16–37
+- [26 weather events. The Q4 published United Nations Environment Programme report](sections/26-weather-events-the-q4-published-united-nations-environment-programme-report/) — pages 4–15
+  - [1.2 Overview of delivery in Q3 and Q4 2024](sections/26-weather-events-the-q4-published-united-nations-environment-programme-report/1-2-overview-of-delivery-in-q3-and-q4-2024.md) — pages 8–15
+  - [26 weather events. The Q4 published United Nations Environment Programme report](sections/26-weather-events-the-q4-published-united-nations-environment-programme-report/overview.md) — pages 4–7

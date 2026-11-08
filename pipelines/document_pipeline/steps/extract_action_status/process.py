@@ -414,6 +414,16 @@ def process(clean_records, meta, step_dir, writer, doc_slug=None,
         document = meta.get(slug) or {}
         if document.get("role", "plan") != "report":
             continue
+        if document.get("status_source"):
+            # Declared in documents.yml: this report's status detail is published
+            # outside its PDF (e.g. a companion spreadsheet annex). Skipped by
+            # declaration — no record, no UnknownReportFormat, no retry churn —
+            # while the document still bundles normally. An undeclared report
+            # with an unrecognised layout still errors below.
+            if verbose:
+                print(f"  {slug} ... [skipped: status_source "
+                      f"{document['status_source']}]", flush=True)
+            continue
         if writer.is_processed(slug):
             continue
         if verbose:
@@ -470,7 +480,8 @@ def main():
                    "published_date": record.get("published_date"),
                    "public_body_id": record.get("public_body_id"),
                    "role": record.get("role") or "plan",
-                   "reports_on": record.get("reports_on")}
+                   "reports_on": record.get("reports_on"),
+                   "status_source": record.get("status_source")}
             for slug, record in fetched.items()}
 
     writer = IncrementalWriter(output_path, STEP_NAME, key_field="doc_slug",

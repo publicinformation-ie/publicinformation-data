@@ -220,3 +220,155 @@ documents:
     policy_role: primary
     publisher: "Department of Transport"
     public_body_id: 1213
+
+  # --- Climate Action Plan (CAP23-CAP25) --------------------------------------
+  # Plan PDFs: DECC listing pages, one per plan year; published_date is the
+  # listing page's datePublished. Plans are policy_role: primary on purpose --
+  # only `action-plan` documents are action sources (see README), so none of
+  # these emit action records. Titles are read off the PDF covers.
+
+  # HELD BACK from publication on purpose: detect_structure collapses this
+  # 284-page plan into two chapters (pages 1-214 "Front Matter", 215-284
+  # "Untitled"). Pages 2 and 283 are blank, and with no furniture override the
+  # coverage gap keeps it out of the library (listed under index.json `failed`).
+  # The entry stays because the 2023 progress reports `reports_on` it. To publish,
+  # fix its structure, then add [2, 283] under this slug in
+  # steps/assemble_sections/override.json.
+  - doc_slug: climate-action-plan-2023
+    title: "Climate Action Plan 2023"
+    url: "https://assets.gov.ie/static/documents/climate-action-plan-2023-8b7dba92-f397-4163-8293-3aea656f6b5f.pdf"
+    policy_id: climate-action-plan
+    policy_role: primary
+    publisher: "Department of Climate, Energy and the Environment"
+    public_body_id: 1198
+    published_date: "2022-12-21"
+
+  - doc_slug: climate-action-plan-2024
+    title: "Climate Action Plan 2024"
+    url: "https://assets.gov.ie/static/documents/climate-action-plan-2024-8ccbde73-e288-4241-8b26-6b4922389f25.pdf"
+    policy_id: climate-action-plan
+    policy_role: primary
+    publisher: "Department of Climate, Energy and the Environment"
+    public_body_id: 1198
+    published_date: "2023-12-20"
+
+  - doc_slug: climate-action-plan-2025
+    title: "Climate Action Plan 2025"
+    url: "https://assets.gov.ie/static/documents/c491032e/DECC_Climate_Action_Plan_2025_Main_Report_-_Final_Web.pdf"
+    policy_id: climate-action-plan
+    policy_role: primary
+    publisher: "Department of Climate, Energy and the Environment"
+    public_body_id: 1198
+    published_date: "2025-04-15"
+
+  # Progress reports: Taoiseach listing page. Their status detail is published in
+  # companion spreadsheet annexes, so each declares `status_source: annex` and is
+  # skipped by extract_action_status (it still bundles as a document). The listing
+  # page carries no per-report date and most covers give only a month, so
+  # published_date is the PDF creation date ONLY where it agrees with the month on
+  # the cover; otherwise it is omitted rather than guessed (Q2 2023: cover says
+  # July 2023 but the file was created 2023-09-21; the 2025 reports state no date).
+
+  - doc_slug: climate-action-plan-2023-q1-progress-report
+    title: "Climate Action Plan 2023 Progress Report Q1 2023"
+    url: "https://assets.gov.ie/static/documents/climate-action-plan-2023-first-progress-report-q1-2023.pdf"
+    policy_id: climate-action-plan
+    policy_role: progress-report
+    publisher: "Department of the Taoiseach"
+    public_body_id: 1212
+    published_date: "2023-05-04"
+    role: report
+    reports_on: climate-action-plan-2023
+    status_source: annex
+
+  - doc_slug: climate-action-plan-2023-q2-progress-report
+    title: "Climate Action Plan Progress Report Q2 2023"
+    url: "https://assets.gov.ie/static/documents/climate-action-plan-2023-second-progress-report-q2-2023-299c641b-c5ca-4044-ab0c-9d7901.pdf"
+    policy_id: climate-action-plan
+    policy_role: progress-report
+    publisher: "Department of the Taoiseach"
+    public_body_id: 1212
+    role: report
+    reports_on: climate-action-plan-2023
+    status_source: annex
+
+  - doc_slug: climate-action-plan-2023-q3-progress-report
+    title: "Climate Action Plan Progress Report Q3 2023"
+    url: "https://assets.gov.ie/static/documents/climate-action-plan-2023-third-progress-report-q3-2023.pdf"
+    policy_id: climate-action-plan
+    policy_role: progress-report
+    publisher: "Department of the Taoiseach"
+    public_body_id: 1212
+    published_date: "2023-11-07"
+    role: report
+    reports_on: climate-action-plan-2023
+    status_source: annex
+
+  - doc_slug: climate-action-plan-2023-q4-progress-report
+    title: "Climate Action Plan Progress Report Q4 2023"
+    url: "https://assets.gov.ie/static/documents/climate-action-plan-2023-fourth-progress-report-q4-2023.pdf"
+    policy_id: climate-action-plan
+    policy_role: progress-report
+    publisher: "Department of the Taoiseach"
+    public_body_id: 1212
+    published_date: "2024-03-05"
+    role: report
+    reports_on: climate-action-plan-2023
+    status_source: annex
+
+  - doc_slug: climate-action-plan-2024-q1-q2-progress-report
+    title: "Climate Action Plan Progress Report Q1 and Q2 2024"
+    url: "https://assets.gov.ie/static/documents/climate-action-plan-2024-q1-and-q2-progress-report.pdf"
+    policy_id: climate-action-plan
+    policy_role: progress-report
+    publisher: "Department of the Taoiseach"
+    public_body_id: 1212
+    published_date: "2024-09-02"
+    role: report
+    reports_on: climate-action-plan-2024
+    status_source: annex
+
+  - doc_slug: climate-action-plan-2024-q3-q4-progress-report
+    title: "Climate Action Plan Progress Report Q3 & Q4 2024"
+    url: "https://assets.gov.ie/static/documents/Climate_Action_Plan_2024_Q3_and_Q4_Progress_Report.pdf"
+    policy_id: climate-action-plan
+    policy_role: progress-report
+    publisher: "Department of the Taoiseach"
+    public_body_id: 1212
+    published_date: "2025-04-16"
+    role: report
+    reports_on: climate-action-plan-2024
+    status_source: annex
+
+  - doc_slug: climate-action-plan-2025-q1-progress-report
+    title: "Climate Action Plan 2025 Q1 Progress Report"
+    url: "https://assets.gov.ie/static/documents/CAP25_Q1_Progress_Report_-_Final.pdf"
+    policy_id: climate-action-plan
+    policy_role: progress-report
+    publisher: "Department of the Taoiseach"
+    public_body_id: 1212
+    role: report
+    reports_on: climate-action-plan-2025
+    status_source: annex
+
+  - doc_slug: climate-action-plan-2025-q2-q3-progress-report
+    title: "Climate Action Plan 2025 Q2 & Q3 Progress Report"
+    url: "https://assets.gov.ie/static/documents/7fcc6188/Climate_Action_Plan_2025_Q2_and_Q3_Progress_Report_.pdf"
+    policy_id: climate-action-plan
+    policy_role: progress-report
+    publisher: "Department of the Taoiseach"
+    public_body_id: 1212
+    role: report
+    reports_on: climate-action-plan-2025
+    status_source: annex
+
+  - doc_slug: climate-action-plan-2025-q4-progress-report
+    title: "Climate Action Plan 2025 Q4 Progress Report"
+    url: "https://assets.gov.ie/static/documents/997e4afc/Climate_Action_Plan_2025_Q4_Progress_Report.pdf"
+    policy_id: climate-action-plan
+    policy_role: progress-report
+    publisher: "Department of the Taoiseach"
+    public_body_id: 1212
+    role: report
+    reports_on: climate-action-plan-2025
+    status_source: annex

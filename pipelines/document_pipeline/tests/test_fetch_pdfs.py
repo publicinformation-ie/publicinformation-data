@@ -150,3 +150,13 @@ def test_doc_metadata_carries_policy_fields():
                           "policy_role": "primary"})
     assert meta["policy_id"] == "greater-dublin-area-transport-strategy"
     assert meta["policy_role"] == "primary"
+
+
+def test_doc_metadata_carries_status_source():
+    meta = _doc_metadata({
+        "doc_slug": "a-report", "policy_id": "p", "policy_role": "progress-report", "title": "A Report",
+        "url": "https://example.ie/b.pdf", "role": "report", "reports_on": "a-plan",
+        "status_source": "annex"})
+    assert meta["status_source"] == "annex"
+    assert _doc_metadata({"doc_slug": "a", "policy_id": "p", "policy_role": "primary",
+                          "title": "A", "url": "https://example.ie/a.pdf"})["status_source"] is None

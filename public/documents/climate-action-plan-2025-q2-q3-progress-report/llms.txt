@@ -1,0 +1,49 @@
+# Climate Action Plan 2025 Q2 & Q3 Progress Report
+
+> Department of the Taoiseach — 16 chapters, 25 sections, 29 source pages.
+> Source: https://assets.gov.ie/static/documents/7fcc6188/Climate_Action_Plan_2025_Q2_and_Q3_Progress_Report_.pdf
+> Full text: full.md
+
+## Chapters
+
+- [251016 Front Cover](sections/251016-front-cover/) — pages 1–1
+  - [251016 Front Cover](sections/251016-front-cover/overview.md) — pages 1–1
+- [251211 CAP25 Q2 Q3 Progress Report DRAFT_cór v2](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2/) — pages 2–7
+  - [1 Executive Summary](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2/1-executive-summary.md) — pages 3–5
+  - [1.1 Climate change news and activity in Q2 and Q3 2025](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2/1-1-climate-change-news-and-activity-in-q2-and-q3-2025.md) — pages 5–7
+  - [251211 CAP25 Q2 Q3 Progress Report DRAFT_cór v2](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2/overview.md) — pages 2–3
+  - [2 Agriculture](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2/2-agriculture.md) — pages 7–7
+- [251211 Q2Q3 Climate Action Plan Infographics v3](sections/251211-q2q3-climate-action-plan-infographics-v3/) — pages 8–8
+  - [251211 Q2Q3 Climate Action Plan Infographics v3](sections/251211-q2q3-climate-action-plan-infographics-v3/overview.md) — pages 8–8
+- [251211 CAP25 Q2 Q3 Progress Report DRAFT_cór v2](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-2/) — pages 9–10
+  - [3 Transport](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-2/3-transport.md) — pages 10–10
+  - [251211 CAP25 Q2 Q3 Progress Report DRAFT_cór v2](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-2/overview.md) — pages 9–9
+- [251211 Q2Q3 Climate Action Plan Infographics v3](sections/251211-q2q3-climate-action-plan-infographics-v3-2/) — pages 11–11
+  - [251211 Q2Q3 Climate Action Plan Infographics v3](sections/251211-q2q3-climate-action-plan-infographics-v3-2/overview.md) — pages 11–11
+- [251211 CAP25 Q2 Q3 Progress Report DRAFT_cór v2](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-3/) — pages 12–13
+  - [4 Electricity](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-3/4-electricity.md) — pages 13–13
+  - [251211 CAP25 Q2 Q3 Progress Report DRAFT_cór v2](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-3/overview.md) — pages 12–13
+- [251211 Q2Q3 Climate Action Plan Infographics v3](sections/251211-q2q3-climate-action-plan-infographics-v3-3/) — pages 14–14
+  - [251211 Q2Q3 Climate Action Plan Infographics v3](sections/251211-q2q3-climate-action-plan-infographics-v3-3/overview.md) — pages 14–14
+- [251211 CAP25 Q2 Q3 Progress Report DRAFT_cór v2](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-4/) — pages 15–17
+  - [5 Buildings](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-4/5-buildings.md) — pages 17–17
+  - [251211 CAP25 Q2 Q3 Progress Report DRAFT_cór v2](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-4/overview.md) — pages 15–17
+- [251211 Q2Q3 Climate Action Plan Infographics v3](sections/251211-q2q3-climate-action-plan-infographics-v3-4/) — pages 18–18
+  - [251211 Q2Q3 Climate Action Plan Infographics v3](sections/251211-q2q3-climate-action-plan-infographics-v3-4/overview.md) — pages 18–18
+- [251211 CAP25 Q2 Q3 Progress Report DRAFT_cór v2](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-5/) — pages 19–20
+  - [6 Industry](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-5/6-industry.md) — pages 20–20
+  - [251211 CAP25 Q2 Q3 Progress Report DRAFT_cór v2](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-5/overview.md) — pages 19–20
+- [251211 Q2Q3 Climate Action Plan Infographics v3](sections/251211-q2q3-climate-action-plan-infographics-v3-5/) — pages 21–21
+  - [251211 Q2Q3 Climate Action Plan Infographics v3](sections/251211-q2q3-climate-action-plan-infographics-v3-5/overview.md) — pages 21–21
+- [251211 CAP25 Q2 Q3 Progress Report DRAFT_cór v2](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-6/) — pages 22–22
+  - [7 Land Use, Land Use Change and Forestry (LULUCF)](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-6/7-land-use-land-use-change-and-forestry-lulucf.md) — pages 22–22
+  - [251211 CAP25 Q2 Q3 Progress Report DRAFT_cór v2](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-6/overview.md) — pages 22–22
+- [251211 Q2Q3 Climate Action Plan Infographics v3](sections/251211-q2q3-climate-action-plan-infographics-v3-6/) — pages 23–23
+  - [251211 Q2Q3 Climate Action Plan Infographics v3](sections/251211-q2q3-climate-action-plan-infographics-v3-6/overview.md) — pages 23–23
+- [251211 CAP25 Q2 Q3 Progress Report DRAFT_cór v2](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-7/) — pages 24–26
+  - [8 Cross-cutting actions](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-7/8-cross-cutting-actions.md) — pages 26–26
+  - [251211 CAP25 Q2 Q3 Progress Report DRAFT_cór v2](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-7/overview.md) — pages 24–26
+- [251103 Cross Cutting Infographic Q2Q3 v1](sections/251103-cross-cutting-infographic-q2q3-v1/) — pages 27–27
+  - [251103 Cross Cutting Infographic Q2Q3 v1](sections/251103-cross-cutting-infographic-q2q3-v1/overview.md) — pages 27–27
+- [251211 CAP25 Q2 Q3 Progress Report DRAFT_cór v2](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-8/) — pages 28–29
+  - [251211 CAP25 Q2 Q3 Progress Report DRAFT_cór v2](sections/251211-cap25-q2-q3-progress-report-draft-c-r-v2-8/overview.md) — pages 28–29

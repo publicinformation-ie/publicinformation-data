@@ -31,14 +31,23 @@ TTL_PATH = "public/catalog/dataset-transport-policies.ttl"
 FIELDNAMES = ["policy_id", "title", "kind", "issuing_authority", "horizon", "scope",
               "linkages", "source_urls", "has_document", "doc_slugs"]
 MULTI_SEP = "|"
+DOMAIN = "transport"
 
 
 def build_rows(policies, documents):
     """One CSV row (all-string values) per policy, in inventory order.
 
+    Only policies of this dataset's domain are published: the loader merges every
+    domain inventory, so other domains' policies (and the documents curated under
+    them) are filtered out here and never reach the Transport Policies dataset.
+
     Raises for a document whose policy_id is not in the inventory — the loader
     already guarantees this, so reaching here means the two inputs drifted.
     """
+    other_domain_ids = {p["policy_id"] for p in policies if p["domain"] != DOMAIN}
+    policies = [p for p in policies if p["domain"] == DOMAIN]
+    documents = [d for d in documents if d["policy_id"] not in other_domain_ids]
+
     slugs_by_policy = {}
     for doc in documents:
         slugs_by_policy.setdefault(doc["policy_id"], []).append(doc["doc_slug"])

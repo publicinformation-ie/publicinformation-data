@@ -54,16 +54,39 @@ def test_csvw_columns_match_the_csv_header():
 
 def test_policy_ids_are_unique_and_match_the_inventory():
     from policies import load_policies
-    assert [r["policy_id"] for r in _rows()] == [p["policy_id"] for p in load_policies()]
+    transport = [p for p in load_policies() if p["domain"] == "transport"]
+    assert [r["policy_id"] for r in _rows()] == [p["policy_id"] for p in transport]
+
+
+def test_a_non_transport_policy_is_not_published():
+    from policies import load_policies
+    sys.path.insert(0, str(REPO_ROOT / "scripts"))
+    from transform_transport_policies import build_rows
+
+    policies = load_policies()
+    other = [p for p in policies if p["domain"] != "transport"]
+    assert other, "the merged inventory should contain at least one non-transport policy"
+    other_ids = {p["policy_id"] for p in other}
+    # a document curated under a non-transport policy must not break or leak into the dataset
+    docs = [{"doc_slug": "some-climate-doc", "policy_id": other[0]["policy_id"]}]
+    rows = build_rows(policies, docs)
+    assert not other_ids & {r["policy_id"] for r in rows}
+    assert not any("some-climate-doc" in r["doc_slugs"] for r in rows)
+    assert not other_ids & {r["policy_id"] for r in _rows()}      # and the published CSV
 
 
 def test_doc_slugs_exist_in_documents_yml():
+    """The dataset's doc_slugs cover exactly the documents curated under
+    transport policies — not the whole (multi-domain) curated corpus."""
     from documents import load_documents
+    from policies import load_policies
+    transport_ids = {p["policy_id"] for p in load_policies() if p["domain"] == "transport"}
     curated = {d["doc_slug"]: d["policy_id"] for d in load_documents()}
     for row in _rows():
         for slug in _record(row)["doc_slugs"]:
             assert curated[slug] == row["policy_id"], slug
-    assert {s for r in _rows() for s in _record(r)["doc_slugs"]} == set(curated)
+    transport_docs = {s for s, pid in curated.items() if pid in transport_ids}
+    assert {s for r in _rows() for s in _record(r)["doc_slugs"]} == transport_docs
 
 
 def test_latest_is_an_exact_copy_of_v1():

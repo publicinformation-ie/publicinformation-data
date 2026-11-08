@@ -6,13 +6,13 @@ import pytest
 from transform_transport_policies import FIELDNAMES, build_rows, publish
 
 POLICIES = [
-    {"policy_id": "alpha", "number": 1, "title": 'Alpha, "Quoted" & <b>', "kind": "policy",
+    {"policy_id": "alpha", "domain": "transport", "number": 1, "title": 'Alpha, "Quoted" & <b>', "kind": "policy",
      "issuing_authority": "DoT", "horizon": "2022–2030", "scope": "line one\nline two, with comma",
      "linkages": "NSMP, Project Ireland 2040", "source_urls": ["https://e.org/a"]},
-    {"policy_id": "beta", "number": 2, "title": "Beta", "kind": "code-of-practice",
+    {"policy_id": "beta", "domain": "transport", "number": 2, "title": "Beta", "kind": "code-of-practice",
      "issuing_authority": "DoT", "horizon": "Current", "scope": "S", "linkages": "L",
      "source_urls": ["https://e.org/b1", "https://e.org/b2"]},
-    {"policy_id": "gamma", "number": 3, "title": "Gamma", "kind": "policy",
+    {"policy_id": "gamma", "domain": "transport", "number": 3, "title": "Gamma", "kind": "policy",
      "issuing_authority": "DoT", "horizon": "Current", "scope": "S", "linkages": "L",
      "source_urls": ["https://www.localgov.ie/"]},
 ]
@@ -71,3 +71,14 @@ def test_republishing_identical_content_does_not_touch_the_ttl(tmp_path):
     ttl_after_first = ttl_path.read_text()
     assert publish(rows, csv_path, ttl_path) is False
     assert ttl_path.read_text() == ttl_after_first
+
+
+def test_policies_and_documents_of_another_domain_are_not_published():
+    climate = {"policy_id": "delta", "domain": "climate", "number": 1, "title": "Delta",
+               "kind": "policy", "issuing_authority": "DCEE", "horizon": "Current", "scope": "S",
+               "linkages": "L", "source_urls": ["https://e.org/d"]}
+    docs = DOCS + [{"doc_slug": "delta-doc", "policy_id": "delta"}]
+    rows = build_rows(POLICIES + [climate], docs)
+    assert [r["policy_id"] for r in rows] == ["alpha", "beta", "gamma"]
+    assert all("delta-doc" not in r["doc_slugs"] for r in rows)
+    assert rows == build_rows(POLICIES, DOCS)        # adding a domain changes nothing

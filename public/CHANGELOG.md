@@ -4,6 +4,12 @@ All notable changes to the Public Bodies dataset will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [documents, content only] - 2026-11-08
+
+### Added
+- 9 Climate Action Plan documents (the 2024 and 2025 plans and 7 quarterly or half-yearly progress reports) added to the document library. The Climate Action Plan 2023 (poor structure detection, held back) and the Q1 2025 and Q4 2025 reports (full-page images with no extractable text, pending OCR) are listed under `failed` (`not_publishable`).
+- No `owl:versionInfo` change. Existing document bundles are unchanged; no actions or statuses are extracted for the climate documents.
+
 ## [public-bodies, documentation only] - 2026-11-07
 
 ### Documented

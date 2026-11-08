@@ -8,7 +8,7 @@ The authoritative step order is defined in [`pipeline.json`](pipeline.json). Ste
 
 | # | Step | What it does |
 |---|---|---|
-| 1 | [`fetch_pdfs`](steps/fetch_pdfs/) | Downloads (or reuses a cached copy of) each document's source PDF from `documents.yml`, its only source. `documents.yml` is curated per policy; `input_plans_transport.md` defines the policies. |
+| 1 | [`fetch_pdfs`](steps/fetch_pdfs/) | Downloads (or reuses a cached copy of) each document's source PDF from `documents.yml`, its only source. `documents.yml` is curated per policy; the `input_plans_<domain>.md` files (transport, climate) define the policies. |
 | 2 | [`extract_pages`](steps/extract_pages/) | Extracts page-level text spans, drawings, images and tables from each PDF. |
 | 3 | [`detect_structure`](steps/detect_structure/) | Detects each document's chapter/section tree — outline, numbering, font-hierarchy or flat fallback. |
 | 4 | [`extract_figures`](steps/extract_figures/) | Clusters page geometry into figures, renders them to WebP, writes a contact sheet per document. |
@@ -83,6 +83,12 @@ Don't use `public/latest/public-bodies/public-bodies.csv` for this lookup — it
 - `reports_on` — required when `role: report`, forbidden otherwise (process-fatal violation either way, see `documents.py`). The `doc_slug` of the plan this report is reporting progress against. It must resolve to a real entry in `documents.yml` with `role: plan` — an unresolvable `reports_on` is process-fatal too.
 - `expected_action_count` — optional, plan documents only. The number of action rows `extract_actions` should find; used as an invariant check, not a target to extract towards.
 - `expected_status_counts` — optional, report documents only. A `{status: count}` mapping (`Complete`, `OnSchedule`, `Delayed`, `Ongoing`, `Modified`) that `extract_action_status`'s tally is expected to match exactly.
+
+- `status_source` — optional, report documents only (rejected on a plan; the only valid value is `"annex"`). Declares that the report's machine-readable status detail is published in a companion spreadsheet, not in the PDF. `extract_action_status` then skips the report by declaration — no status record, no `UnknownReportFormat` error — while the PDF still publishes as a normal document bundle. A report *without* the marker whose layout is unrecognised still errors. The Climate Action Plan progress reports use it.
+
+**`policy_id` and the policy inventory.** `policy_id` must resolve against the merged policy inventory: every `input_plans_<domain>.md` file in this directory (`input_plans_transport.md`, `input_plans_climate.md`) is parsed by `policies.py` and merged into one namespace, each record carrying its `domain`. A `policy_id` defined by two files is process-fatal, and `number` is row order *within its own file* — never an identifier across domains. Datasets built from the inventory filter to their own domain (`scripts/transform_transport_policies.py` publishes `domain == "transport"` only), so adding a domain does not change another domain's published dataset. Annual plans are editions of one policy: the single `climate-action-plan` policy holds the CAP23–CAP25 plan PDFs and their progress reports.
+
+**A `primary` plan document is not an action source.** Only `policy_role: action-plan` documents are read by `extract_actions`; a `primary` plan (such as each Climate Action Plan PDF) is bundled and published as a document but skipped with "not an action plan", so it contributes nothing to the actions dataset. Declaring a document `action-plan` is a deliberate, separate curation decision.
 
 Then run the pipeline scoped to the new doc, from inside `pipelines/document_pipeline/` (see "Running it" above for why cwd matters here):
 

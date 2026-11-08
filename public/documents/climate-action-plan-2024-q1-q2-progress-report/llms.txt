@@ -1,0 +1,37 @@
+# Climate Action Plan Progress Report Q1 and Q2 2024
+
+> Department of the Taoiseach — 11 chapters, 18 sections, 36 source pages.
+> Source: https://assets.gov.ie/static/documents/climate-action-plan-2024-q1-and-q2-progress-report.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–1
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–1
+- [Table of Contents](sections/table-of-contents/) — pages 2–2
+  - [Table of Contents](sections/table-of-contents/overview.md) — pages 2–2
+- [1Introduction](sections/1introduction/) — pages 3–11
+  - [1 1Climate change news and activity in Q1 and Q2 2024](sections/1introduction/1-1climate-change-news-and-activity-in-q1-and-q2-2024.md) — pages 4–4
+  - [1.2 1High impact actions in Q1 and Q2 2024](sections/1introduction/1-2-1high-impact-actions-in-q1-and-q2-2024.md) — pages 9–11
+  - [1.2 2Overcoming delays to climate action delivery](sections/1introduction/1-2-2overcoming-delays-to-climate-action-delivery.md) — pages 11–11
+  - [due contained at Appendix 1.](sections/1introduction/due-contained-at-appendix-1.md) — pages 3–3
+  - [the 1.5°C limit set by the international Paris climate agreement.](sections/1introduction/the-1-5-c-limit-set-by-the-international-paris-climate-agreement.md) — pages 4–4
+  - [governments and businesses. The future climate is in our collective hands.](sections/1introduction/governments-and-businesses-the-future-climate-is-in-our-collective-hands.md) — pages 4–4
+  - [drive emissions down at the scale and pace required to meet national and EU targets.](sections/1introduction/drive-emissions-down-at-the-scale-and-pace-required-to-meet-national-and-eu-targets.md) — pages 4–7
+  - [with 21 of 47 reportable legacy actions3 completing in the first half of 2024.](sections/1introduction/with-21-of-47-reportable-legacy-actions3-completing-in-the-first-half-of-2024.md) — pages 8–9
+- [2Agriculture](sections/2agriculture/) — pages 12–14
+  - [c.40% of total Irish emissions.](sections/2agriculture/c-40-of-total-irish-emissions.md) — pages 12–14
+- [3Transport](sections/3transport/) — pages 15–17
+  - [2030 depending on the speed and scale of measures implemented (Figure 8).](sections/3transport/2030-depending-on-the-speed-and-scale-of-measures-implemented-figure-8.md) — pages 15–17
+- [4Electricity](sections/4electricity/) — pages 18–20
+  - [commits to achieving 80% of electricity demand from renewable sources by 2030.](sections/4electricity/commits-to-achieving-80-of-electricity-demand-from-renewable-sources-by-2030.md) — pages 18–20
+- [5Buildings](sections/5buildings/) — pages 21–23
+  - [buildings. Emissions from the residential sector have decreased by c.7% since 2022.](sections/5buildings/buildings-emissions-from-the-residential-sector-have-decreased-by-c-7-since-2022.md) — pages 21–23
+- [6Industry](sections/6industry/) — pages 24–26
+  - [can be impacted by economic cycles.](sections/6industry/can-be-impacted-by-economic-cycles.md) — pages 24–26
+- [7Land Use, Land Use Change and Forestry](sections/7land-use-land-use-change-and-forestry/) — pages 27–29
+  - [7Land Use, Land Use Change and Forestry](sections/7land-use-land-use-change-and-forestry/overview.md) — pages 27–29
+- [8Cross-cutting actions](sections/8cross-cutting-actions/) — pages 30–33
+  - [8Cross-cutting actions](sections/8cross-cutting-actions/overview.md) — pages 30–33
+- [9Conclusion](sections/9conclusion/) — pages 34–36
+  - [9Conclusion](sections/9conclusion/overview.md) — pages 34–36

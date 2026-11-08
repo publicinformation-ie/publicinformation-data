@@ -167,6 +167,9 @@ def _doc_metadata(doc: dict) -> dict:
         # document with no role defaults to a plan with no expectations.
         "role": doc.get("role") or "plan",
         "reports_on": doc.get("reports_on"),
+        # Where a report's status detail lives when not in its PDF ("annex");
+        # extract_action_status skips a report that declares one.
+        "status_source": doc.get("status_source"),
         "policy_id": doc["policy_id"],
         "policy_role": doc["policy_role"],
         "expected_action_count": doc.get("expected_action_count"),
