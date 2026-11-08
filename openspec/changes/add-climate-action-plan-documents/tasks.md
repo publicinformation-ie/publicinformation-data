@@ -52,6 +52,14 @@ Source pages: DCEE `publications/climate-action-plan-<year>/` for the plans; Tao
 - [x] 6.3 Stamp `dct:modified` on `public/catalog/dataset-documents.ttl` by hand (no script does it) and add a `public/CHANGELOG.md` entry recording the corpus addition — verify no `owl:versionInfo` changes anywhere and that the Transport Policies and public-body-actions artifacts are untouched.
 - [x] 6.4 Review the full `public/**` diff before the publishing commit, including Git LFS artifact sizes for the 12 new bundles, and resolve any orphan questions via `orphans.py` manifest → apply — verify the orphan manifest lists nothing outside CAP slugs.
 
+## 7. OCR for image-only pages
+
+- [x] 7.1 Add `src/lib/ocr.py` (fixed 300 dpi / `--psm 3` / `eng` Tesseract helper) and a separate `ocr_pages` step (after `extract_pages`, feeding `clean_text`; `extract_pages` is unchanged), opt-in per page via a new `ocr_pages` field in `documents.yml` (validated in `documents.py`, carried by `fetch_pdfs`), for listed full-page raster pages with no meaningful text layer (a listed page that is not scanned logs `OcrPageNotScanned`); spans carry `source: "ocr"`, page records an `ocr` summary; `OcrEmpty` / `OcrLowConfidence` (< 60) go to `errors.json`.
+- [x] 7.2 Propagate the marker: `clean_text` blocks carry `source: "ocr"`, `assemble_sections` adds a machine-read note to the section body and `ocr_pages` to the section record, `publish_bundles` writes `ocr_pages` into `meta.json` (only for sections that have them; frontmatter contract unchanged).
+- [x] 7.2a Set `ocr_pages` on exactly the former gap pages of the Q1 ([1, 20, 24]) and Q4 reports; auto-detection was rejected because it fired on already-published documents.
+- [x] 7.3 Scoped runs of `climate-action-plan-2025-q1-progress-report` and `-q4-progress-report` publish; `public/documents` reverted afterwards.
+- [x] 7.4 Publish the two bundles: built per slug with scoped runs, then spliced into HEAD's `public/documents` (bundle dirs copied; the two entries inserted into HEAD's `index.json` and removed from `failed`; `index.html` regenerated with `build_index_html`). The scoped run's own index was discarded (it listed 26 docs and dropped the `held` 2023 entry). The 33 existing index entries and bundles are unchanged; `dct:modified` was already 2026-11-08; `public/CHANGELOG.md` entry added. 6.2 deviation now reduces to one `failed` entry (2023 plan, held).
+
 ## Workflow follow-up
 
 - Archive the change after the project's review requirements are satisfied (`public/` diff reviewed, publish committed).

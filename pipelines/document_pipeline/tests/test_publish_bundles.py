@@ -603,3 +603,13 @@ def test_index_entry_carries_policy_fields():
     entry = index_entry({}, fetch_record, meta, {}, "a/bundle.tar.gz", "sha", 10)
     assert entry["policy_id"] == "national-sustainable-mobility-policy-nsmp"
     assert entry["policy_role"] == "action-plan"
+
+
+def test_meta_json_carries_ocr_pages_only_for_sections_that_have_them(record, fetch_record):
+    meta = contract_meta(record, fetch_record)
+    assert all("ocr_pages" not in s for c in meta["chapters"] for s in c["sections"])
+
+    ocr_record = json.loads(json.dumps(record))
+    ocr_record["chapters"][0]["sections"][0]["ocr_pages"] = [2]
+    meta = contract_meta(ocr_record, fetch_record)
+    assert meta["chapters"][0]["sections"][0]["ocr_pages"] == [2]

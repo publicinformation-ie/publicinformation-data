@@ -350,6 +350,9 @@ documents:
     role: report
     reports_on: climate-action-plan-2025
     status_source: annex
+    # Pages that are full-page images with no text layer; extract_pages OCRs exactly these.
+    # Other image pages already covered by a figure are deliberately left out (chart OCR is noise).
+    ocr_pages: [1, 20, 24]
 
   - doc_slug: climate-action-plan-2025-q2-q3-progress-report
     title: "Climate Action Plan 2025 Q2 & Q3 Progress Report"
@@ -372,3 +375,6 @@ documents:
     role: report
     reports_on: climate-action-plan-2025
     status_source: annex
+    # Pages that are full-page images with no text layer; extract_pages OCRs exactly these.
+    # Other image pages already covered by a figure are deliberately left out (chart OCR is noise).
+    ocr_pages: [1, 4, 6, 7, 9, 10, 11, 12, 13, 15, 16, 18, 19, 20, 21, 23]

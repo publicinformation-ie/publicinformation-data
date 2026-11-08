@@ -1,5 +1,7 @@
 # Handoff: OCR for two image-only Climate Action Plan progress reports
 
+> **Resolved 2026-11-08** (tasks 7.1–7.4): a separate opt-in `ocr_pages` step reads the pages listed under `ocr_pages` in `documents.yml`; both reports are published. Kept below for history.
+
 ## Status
 Two curated documents are in `documents.yml` but are NOT published. They appear under `public/documents/index.json` `failed` with `reason: not_publishable`:
 

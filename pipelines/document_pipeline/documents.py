@@ -20,7 +20,7 @@ DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 _REQUIRED = ("doc_slug", "title", "url", "policy_id", "policy_role")
 _OPTIONAL = ("publisher", "public_body_id", "published_date", "role",
              "reports_on", "expected_action_count", "expected_status_counts",
-             "status_source", "hold")
+             "status_source", "hold", "ocr_pages")
 
 VALID_ROLES = ("plan", "report")
 # Where a report's machine-readable status detail lives, when not in its PDF.
@@ -130,6 +130,17 @@ def load_documents(path=DOCUMENTS_PATH, policy_ids=None) -> list:
                 raise ValueError(
                     f"{where} has hold {hold!r}; must be a non-empty string "
                     f"giving the reason the document is withheld")
+
+        if "ocr_pages" in entry:
+            pages = entry["ocr_pages"]
+            if (not isinstance(pages, list) or not pages
+                    or any(isinstance(p, bool) or not isinstance(p, int) or p < 1
+                           for p in pages)
+                    or len(set(pages)) != len(pages)):
+                raise ValueError(
+                    f"{where} has ocr_pages {pages!r}; must be a non-empty list of "
+                    f"unique 1-based page numbers (positive integers)")
+            entry["ocr_pages"] = sorted(pages)
 
         expected_actions = entry.get("expected_action_count")
         if expected_actions is not None and (isinstance(expected_actions, bool)

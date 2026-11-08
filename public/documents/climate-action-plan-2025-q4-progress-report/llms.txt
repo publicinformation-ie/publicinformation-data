@@ -1,0 +1,16 @@
+# Climate Action Plan 2025 Q4 Progress Report
+
+> Department of the Taoiseach — 4 chapters, 4 sections, 24 source pages.
+> Source: https://assets.gov.ie/static/documents/997e4afc/Climate_Action_Plan_2025_Q4_Progress_Report.pdf
+> Full text: full.md
+
+## Chapters
+
+- [Front Matter](sections/front-matter/) — pages 1–2
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–2
+- [1 Executive Summary ............................................................................................ 3](sections/1-executive-summary-3/) — pages 2–2
+  - [1 Executive Summary ............................................................................................ 3](sections/1-executive-summary-3/overview.md) — pages 2–2
+- [7 Land Use, Land Use Change and Forestry (LULUCF) .............................. 19](sections/7-land-use-land-use-change-and-forestry-lulucf-19/) — pages 2–2
+  - [7 Land Use, Land Use Change and Forestry (LULUCF) .............................. 19](sections/7-land-use-land-use-change-and-forestry-lulucf-19/overview.md) — pages 2–2
+- [8 Cross-cutting actions ....................................................................................... 22](sections/8-cross-cutting-actions-22/) — pages 2–24
+  - [8 Cross-cutting actions ....................................................................................... 22](sections/8-cross-cutting-actions-22/overview.md) — pages 2–24
