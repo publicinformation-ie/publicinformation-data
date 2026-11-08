@@ -36,9 +36,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import pymupdf
+import pymupdf.table
 
 from lib.cli_utils import add_doc_arg
 from lib.file_utils import IncrementalWriter, append_error, read_json, write_json, write_status
+from steps.extract_pages.ligatures import repair_ligature_widths
 
 STEP_NAME = "extract_pages"
 
@@ -167,6 +169,8 @@ def extract_tables(page: pymupdf.Page) -> list:
         found = page.find_tables()
     except Exception:  # pragma: no cover - pymupdf can bail on odd pages
         return tables
+    # Table.extract() reads this module global; fix ligature widths first.
+    repair_ligature_widths(pymupdf.table.CHARS)
     all_bboxes = [t.bbox for t in found.tables]
     for table in found.tables:
         bbox = _round_seq(table.bbox)

@@ -60,6 +60,10 @@ Also produces `pages/<doc_slug>/NNN.json` for each page of each successfully-ext
   | `PageExtractionFailed` | `pymupdf` raised while opening the PDF or extracting a page's spans/drawings/images/outline |
 - `pages/<doc_slug>/` — one `NNN.json` per page, for every successfully-extracted document.
 
+## Ligatures in table text
+
+PyMuPDF expands a ligature glyph (ff, tt, ti, ft) into one full-width character plus zero-width ones, and kerning can make a table cell read "batet ry" or "staf.f". Only `tables[].text` was affected; spans were always correct. `extract_tables` now calls `repair_ligature_widths` (`ligatures.py`) before `table.extract()`, spreading each glyph's width over its components. See `docs/superpowers/plans/2026-11-08-table-ligature-repair.md`.
+
 ## Flags
 
 - `--doc SLUG` — scope processing to one document.
