@@ -368,6 +368,34 @@ def is_heading_candidate(title) -> bool:
 # Strategies
 # --------------------------------------------------------------------------
 
+_WORD_AUTO_BOOKMARK_RE = re.compile(r"^_(?:Hlk|Toc|Ref|GoBack)\w*$", re.I)
+
+
+def filter_outline(outline):
+    """Drop bookmarks that have no usable title.
+
+    A bookmark is unusable when its title is empty, has no letters (`1.`), is
+    a Word auto-bookmark (`_Hlk25760943`), or otherwise fails
+    `is_heading_candidate`. Each drop is reported as `OutlineEntryDropped`
+    so a reviewer can see exactly what was removed; nothing is renamed.
+
+    Returns `(kept, problems)`.
+    """
+    kept, problems = [], []
+    for entry in outline or []:
+        raw = str(entry.get("title", ""))
+        title = clean_title(raw)
+        if _WORD_AUTO_BOOKMARK_RE.match(title) or not is_heading_candidate(title):
+            problems.append({
+                "error_type": "OutlineEntryDropped",
+                "error_message": f"Outline bookmark {raw!r} (page {entry.get('page')}) has no usable title and was dropped",
+                "context": {"title": raw, "page": entry.get("page")},
+            })
+            continue
+        kept.append(entry)
+    return kept, problems
+
+
 def resolve_outline_positions(outline, pages: list):
     """Fill in `y` for outline entries that name only a page.
 
@@ -1236,7 +1264,9 @@ def process(upstream_records, pages_base_dir, step_dir, writer, doc_slug=None,
 
         pages = load_pages(pages_base_dir, record)
         page_count = int(record.get("page_count") or len(pages))
-        outline, outline_problems = resolve_outline_positions(record.get("outline"), pages)
+        outline, outline_problems = filter_outline(record.get("outline"))
+        outline, unresolved = resolve_outline_positions(outline, pages)
+        outline_problems += unresolved
         for problem in outline_problems:
             append_error(step_dir, {
                 "step": STEP_NAME,

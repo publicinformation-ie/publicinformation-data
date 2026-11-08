@@ -27,7 +27,7 @@ from steps.detect_structure.process import (
     score_occurrence,
     validate_split,
 )
-from steps.detect_structure.process import READING_ORDER_Y_GRID, resolve_outline_positions
+from steps.detect_structure.process import READING_ORDER_Y_GRID, resolve_outline_positions, filter_outline
 from steps.extract_pages.process import extract_page
 
 import pymupdf
@@ -864,3 +864,13 @@ def test_outline_resolve_positions_uses_title_line_y_and_reports_misses():
     assert resolved[3]["y"] == 42.0
     assert [p["error_type"] for p in problems] == ["OutlineEntryUnresolved"]
     assert problems[0]["context"] == {"title": "Missing", "page": 5}
+
+
+def test_filter_outline_drops_unusable_titles_and_reports_them():
+    outline = [{"title": "Introduction", "page": 1}, {"title": "1.", "page": 2},
+               {"title": "_Hlk25760943", "page": 3}, {"title": "", "page": 4},
+               {"title": "2. Policy", "page": 5}]
+    kept, problems = filter_outline(outline)
+    assert [e["title"] for e in kept] == ["Introduction", "2. Policy"]
+    assert [p["context"]["title"] for p in problems] == ["1.", "_Hlk25760943", ""]
+    assert {p["error_type"] for p in problems} == {"OutlineEntryDropped"}
