@@ -3891,7 +3891,7 @@ Table 12.5 – Key Metrics to Deliver Abatement in Electricity71
 | --- | --- | --- | --- |
 |  | 80% renewable electricity share of demand 9 GW onshore wind capacity At least 5 GW offshore wind capacity 8 GW solar PV capacity, including 2.5 GW of new non-utility solar Green hydrogen production from renewable electricity surplus generation | 7.18 | Decarbonisation Roadmap for a net-zero power system Green hydrogen production via 2 GW offshore wind |
 |  | Maximum level of renewables at any one time on the grid: 95-100% Dispatch down (excluding surplus generation) of renewables below 7% Minimise surplus generation Required additional long-term storage (4 hour plus) in place At least 2 GW of new flexible gas- fired generation Zero-emission gas-fired generation from biomethane and hydrogen commencing by 2030 | See above abatement figure | Required additional long duration storage technologies in place Increased zero emission gas-fired generation to enable a net zero power system |
-|  | Demand side fel xibility 20-30% Zero carbon demand growth | 7.18 | Demand side flexibility 30% Zero carbon demand growth |
+|  | Demand side flexibility 20-30% Zero carbon demand growth | 7.18 | Demand side flexibility 30% Zero carbon demand growth |
 |  |  |  |  |
 
 12.4.1 Measures to Meet the Challenge
@@ -4767,10 +4767,10 @@ Table 14.5 – Key Metrics to Deliver Abatement in the Residential Sector
 |  | 2030 KPI | 2030 abatement (vs 2018) MtCO eq. 2 | 2031-2035 measures |
 | --- | --- | --- | --- |
 |  | All new dwellings designed and constructed to Zero Emission Building (ZEB) standard. 280,0006 new dwellings using heat pumps | 0.4 | Minimum Energy Performance Standards for all dwellings |
-|  | Equivalent of 500,000 dwellings retrofti ted to BER B2/ cost optimal 400,000 existing dwellings using heat pumps | 212 | Increased number of dwellings retrofitted and using heat pumps in line with activity by 2030 |
+|  | Equivalent of 500,000 dwellings retrofitted to BER B2/ cost optimal 400,000 existing dwellings using heat pumps | 212 | Increased number of dwellings retrofitted and using heat pumps in line with activity by 2030 |
 |  | Up to 2.5 TWh of district heating | 0.6 | Continued expansion to ensure heating is supplied by district heating networks |
 |  | Up to 0.7 TWh of heating provided by renewable gases to be delivered through agriculture-based supply chains | 0.1 | Focus on ensuring alignment of use of renewable gases |
-|  | Reduction of demand due to energy effci iency responses to mitigate reliance on fossil fuels | 0.4 | Embedding of sustained reductions in household heat demand |
+|  | Reduction of demand due to energy efficiency responses to mitigate reliance on fossil fuels | 0.4 | Embedding of sustained reductions in household heat demand |
 
 | Theme | 2025 KPI | 2025 abatement (vs 2018) MtCO eq. 2 |  |
 | --- | --- | --- | --- |
@@ -7065,7 +7065,7 @@ Table 17.3 – Key Actions to Deliver Abatement in LULUCF for the period 2024-20
 
 | Measure | 2024 Actions | 2025 Actions |
 | --- | --- | --- |
-| Increase Afof restation Planting Rate | Implement the new Forestry Programme 2023-2027, which introduced new afforestation measures and increased financial supports | Continue to support capital investments in afforestation |
+| Increase Afforestation Planting Rate | Implement the new Forestry Programme 2023-2027, which introduced new afforestation measures and increased financial supports | Continue to support capital investments in afforestation |
 | Forest Management | Minimise deforestation and maintain forest area of 11.6% | Minimise deforestation and maintain forest area of 11.6% |
 |  | Implement the new Forestry Programme 2023-2027, which introduced new supports to promote SFM | Continue to support SFM interventions |
 |  | Implement Coillte’s Strategic Vision, which aims to capture additional carbon dioxide in its forests, soils and wood products by 2050 | Continue to manage the Coillte estate to increase carbon storage |

@@ -35,22 +35,17 @@ list is all genuine words), and check (c) shows no letters moved.
 
 ## Published bundles
 
-15 documents are republished in full (`full.md`, `meta.json`, `llms.txt`,
-`bundle.tar.gz`), and their 15 entries in `index.json` are replaced. The rest of
-`index.json` is kept as it was at 4226e91e. Every `bundle_sha256` in the index
-matches its committed bundle.
-
-8 of the 15 differ from the previous publish only by the fix. 7 also carry older
-unpublished `detect_structure` drift (different chapter/section structure):
-sustainable-mobility-policy, the SMP 2026-2030 action plan, the SMP year-two and
-year-three progress reports, the SMP 2022-2025 final progress report, NIFTI and
-ev-infrastructure-strategy. That drift was not separately reviewed; it is
-republished here as a deliberate choice so each bundle matches its `llms.txt`.
-
-Not committed: the climate-action-plan-* deletions (an unscoped publish removes
-them with or without the fix, and drops them from `index.json`) and drift in 3
-other documents (all-island-strategic-rail-review, gda-cycle-network-plan-2022,
-nta-statement-of-strategy-2026-2030).
+After origin/main moved (PRs #9 and #10: structure fixes, ocr_pages, Climate Action
+Plan reports), the branch was merged with origin/main and the corpus regenerated
+again on the merged code (fetch_pdfs, then an unscoped `--force --from extract_pages`).
+`public/documents` here is origin/main's published data plus only the fix's effect:
+18 documents have changed `full.md`/`meta.json`/`bundle.tar.gz`/`llms.txt`, and
+their `index.json` entries are replaced. Line counts per document match the
+earlier baseline-vs-after comparison, and the three Climate Action Plan documents
+(2024, 2025, 2025 Q2-Q3) gain the same kind of fix ("Commitet e" becomes "Committee").
+Every `bundle_sha256` in the index matches its bundle. Eight Climate Action Plan
+progress reports were rebuilt with identical text (new timestamps only) and were
+left as published. `climate-action-plan-2023` is still held (not publishable).
 
 ## Tracker check (SMP 2026-2030)
 

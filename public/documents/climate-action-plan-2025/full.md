@@ -139,7 +139,7 @@ Glossary of Acronyms
 | CAP25 | Climate Action Plan 25 |
 | CARO | Climate Action Regional Office |
 | CAW | Climate Actions Work |
-| CCCC | Climate Communications Coordination Commitet e |
+| CCCC | Climate Communications Coordination Committee |
 | CCAC | Climate Change Advisory Council |
 | CCR&I | Climate and Climate-related R&I |
 | CCUS | Carbon Capture, Utilisation and Storage |
@@ -207,7 +207,7 @@ Glossary of Acronyms
 | IFAC | Irish Fiscal Advisory Council |
 | IFIs | International Financial Institutions |
 | IMF | International Monetary Fund |
-| INC | Intergovernmental Negotiating Commitet e |
+| INC | Intergovernmental Negotiating Committee |
 | IPCC | Intergovernmental Panel on Climate Change |
 | ISO | International Organisation for Standardisation |
 | JPI | Joint Programming Initiative |
@@ -968,7 +968,7 @@ The Human Capital Initiative and Springboard+ provide free or highly subsidised 
 
 | Sectoral Case Study |  |
 | --- | --- |
-| Industry People are equipped with the right skills to be able to participate in and benefit from the future net zero economy. | Upskilling courses in Nearly Zero Energy Buildings/Retrofit skills for construction workers are ofef red through a network of six Centres of Excellence operated by several Education and Training Boards. These targeted upskilling and reskilling courses are designed to rapidly develop skills for the construction sector. The number of learners availing of these opportunities has increased steadily since the first centre was opened in 2020 with a cumulative total of over 11,000 enrolments between 2020 and 2024. |
+| Industry People are equipped with the right skills to be able to participate in and benefit from the future net zero economy. | Upskilling courses in Nearly Zero Energy Buildings/Retrofit skills for construction workers are offered through a network of six Centres of Excellence operated by several Education and Training Boards. These targeted upskilling and reskilling courses are designed to rapidly develop skills for the construction sector. The number of learners availing of these opportunities has increased steadily since the first centre was opened in 2020 with a cumulative total of over 11,000 enrolments between 2020 and 2024. |
 
 6.1.3 Principle 3: The costs are shared so that the impact is equitable and existing inequalities are not exacerbated
 
@@ -978,7 +978,7 @@ A new EU Social Climate Fund, introduced as part of the Fit for 55 framework, wi
 
 | Sectoral Case Study |  |
 | --- | --- |
-| Built Environment Costs are shared so that the impact is equitable and existing inequalities are not exacerbated. | A record budget of €240 million was provided to the Warmer Homes Scheme in Budget 2025. The Scheme ofef rs free energy upgrades to eligible homeowners who are most at risk of energy poverty. This is an €83 million increase on the scheme’s 2023 budget when 5,800 homes benefitet d from a budget of €157 million and received fully funded upgrades, leaving these homes warmer, more comfortable, and more afof rdable to heat. Following public consultatoi n, a revised Energy Poverty Actoi n Plan will be published to set out a wide range of clear, tmi ebound actoi ns aimed at tackling energy poverty with appropriate governance and evaluatoi n, building on and supplementni g existni g measures. |
+| Built Environment Costs are shared so that the impact is equitable and existing inequalities are not exacerbated. | A record budget of €240 million was provided to the Warmer Homes Scheme in Budget 2025. The Scheme offers free energy upgrades to eligible homeowners who are most at risk of energy poverty. This is an €83 million increase on the scheme’s 2023 budget when 5,800 homes benefitted from a budget of €157 million and received fully funded upgrades, leaving these homes warmer, more comfortable, and more affordable to heat. Following public consultation, a revised Energy Poverty Action Plan will be published to set out a wide range of clear, timebound actions aimed at tackling energy poverty with appropriate governance and evaluation, building on and supplementing existing measures. |
 
 6.1.4 Principle 4: Social dialogue to ensure impacted citizens and communities are empowered and are core to the transition process
 
@@ -994,7 +994,7 @@ The Government notes the CCAC’s recommendation in their 2024 Agriculture Secto
 
 | Sectoral Case Study |  |
 | --- | --- |
-| Electricity Sector Social dialogue to ensure impacted citizens and communities are empowered and are core to the transition process. | DECC engaged extensively with citizens and key stakeholder groups on the South Coast Designated Maritime Area Plan for offshore renewable energy, the first maritime spatial plan for offshore renewable energy in Ireland. Engagements included a non-statutory public consultation between August and October 2023 and a 6-week statutory public consultation from 3 May to 14 June 2024, with a further period of consultation in August 2024. Online webinars were also held to provide access to those who could not atet nd an in-person event, with specific engagement with young people through on-campus engagement with third level students in Cork and Wexford. DECC also appointed a Fisheries Liaison Officer and Community Liaison Officer to continually engage in outreach and communications with fishers and coastal communities. |
+| Electricity Sector Social dialogue to ensure impacted citizens and communities are empowered and are core to the transition process. | DECC engaged extensively with citizens and key stakeholder groups on the South Coast Designated Maritime Area Plan for offshore renewable energy, the first maritime spatial plan for offshore renewable energy in Ireland. Engagements included a non-statutory public consultation between August and October 2023 and a 6-week statutory public consultation from 3 May to 14 June 2024, with a further period of consultation in August 2024. Online webinars were also held to provide access to those who could not attend an in-person event, with specific engagement with young people through on-campus engagement with third level students in Cork and Wexford. DECC also appointed a Fisheries Liaison Officer and Community Liaison Officer to continually engage in outreach and communications with fishers and coastal communities. |
 
 6.2 Actions for 2025 (actions in bold appear in the Annex)
 
@@ -1430,7 +1430,7 @@ Emissions from transport account for 28% of the public sector’s overall GHG em
 | PS/25/1 | Update Climate Action Roadmap guidance in line with the annual Climate Action Mandate. |
 | PS/25/2 | Update the M&R system to align to the annual Climate Action Mandate. |
 | PS/25/3 | Monitor implementation of commitments in the Commercial Semi-State Climate Action Framework and report to DECC on an annual basis. |
-| PS/25/4 | Align the Climate Attitudes and Literacy in the Civil Service survey with the Climate Change in the Irish Mind survey in both form and frequency to monitor efef ctiveness of the training and capacity building delivered. |
+| PS/25/4 | Align the Climate Attitudes and Literacy in the Civil Service survey with the Climate Change in the Irish Mind survey in both form and frequency to monitor effectiveness of the training and capacity building delivered. |
 | PS/25/5 | Continue to implement the new Buying Greener Green Public Procurement Strategy and Action Plan 2024–2027. |
 | PS/25/6 | Request CSBs to provide green public procurement data, where available, to assist with reporting progress within the commercial semi-state sector, as envisaged in the Green Public Procurement Strategy and Action Plan. |
 
@@ -1858,7 +1858,7 @@ The National Hydrogen Annual Work Programme has been updated for 2025. The progr
 | Action Number | Action |
 | --- | --- |
 | IN/25/1 | Enterprise agencies to focus on and prioritise high impact projects with higher decarbonisation potential as part of their ongoing engagement strategy with clients. |
-| IN/25/2 | Analyse the price difef rential between the price of fossil fuels and the price of renewables, examining options that may incentivise electrification of heat. |
+| IN/25/2 | Analyse the price differential between the price of fossil fuels and the price of renewables, examining options that may incentivise electrification of heat. |
 | IN/25/3 | CCUS Task Force, under the joint leadership of the DECC and the DETE to progress work programme. |
 | IN/25/4 | Explore tax and regulatory measures to support the adoption of recommendations from energy audits, and the installation of energy efficient equipment. |
 | IN/25/5 | The Cement and Construction Decarbonisation Working Group will consider mechanisms to ensure that public bodies report compliance with new guidance to reduce embodied carbon in procured construction. |
@@ -1950,14 +1950,14 @@ Developments under the National Residential Retrofit Plan during 2024 include:
 | New and enhanced supports were introduced for projects focused solely on residential upgrades; retrofitting multi-unit developments; and area-based home retrofit projects. |  |
 | In October, SEAI launched a Pilot Scheme to retrofit traditional built homes. |  |
 | In July, SEAI launched a pilot scheme to deliver additional retrofits to households at risk of energy poverty, leveraging private investment from the obligated parties under the Energy Efficiency Obligation Scheme. |  |
-| The fni al report on Government’s Warmth and Wellbeing pilot scheme was published in July. This report shows evidence of the benefti s of home energy upgrades to both the physical and mental health of partci ipants over a three-year period following their energy efcfi iency upgrade. |  |
+| The final report on Government’s Warmth and Wellbeing pilot scheme was published in July. This report shows evidence of the benefits of home energy upgrades to both the physical and mental health of participants over a three-year period following their energy efficiency upgrade. |  |
 | A number of changes to SEAI scheme rules were introduced to make the process of accessing heat pump grants easier for homeowners. |  |
 | The VAT rate for the installation of heat pumps will reduce to 9%, the lowest rate allowable under the VAT Directive. |  |
 
 | Pillar 2 | Funding and Financing |
 | --- | --- |
 | In 2024, a total of €527 million was allocated to support residental retrofit across Government. |  |
-| In April, the €500 million Home Energy Upgrade Loan Scheme was launched ofef ring retrofit loans from 3%. |  |
+| In April, the €500 million Home Energy Upgrade Loan Scheme was launched offering retrofit loans from 3%. |  |
 
 | Pillar 3 | Skills and Standards |
 | --- | --- |
@@ -2004,7 +2004,7 @@ The continued implementation of the Government’s Policy Statement on Geotherma
 | BE/25/6 | Expand the existing suite of NZEB/Retrofit training provision through the development of new micro-qualifications. |
 | BE/25/7 | Publish roadmap to phase out fossil fuel boilers to align with Energy Performance of Buildings Directive requirements as part of the National Building Renovation Plan. |
 | BE/25/8 | Continue the roll-out of the SEAI residential and community energy upgrade schemes. |
-| BE/25/9 | Continue roll-out of Social Housing National Retrofitting Programme with 2,500 retrofitet d properties required to reach the BER B2 or equivalent and incorporating heat pump deployment targets. |
+| BE/25/9 | Continue roll-out of Social Housing National Retrofitting Programme with 2,500 retrofitted properties required to reach the BER B2 or equivalent and incorporating heat pump deployment targets. |
 
 ## Chapter 14: Transport
 
@@ -2292,12 +2292,12 @@ Building on developments in 2024 and to further build knowledge, Ireland is host
 | AG/25/7 | Continue to research the efficacy of GHG-reducing feed ingredients under development for pasture-based systems (including their assessment over the lifetimes of animals), including methods of administering at pasture. Begin consideration of options and issues relating to the eventual use of approved feed additives and ingredients by farmers. |
 | AG/25/8 | Progress phase 2 of the Carbon Farming Framework consultation process. |
 | AG/25/9 | Double the area devoted to organic crops and vegetables to 14,000 hectares by 2030. |
-| AG/25/10 | Roll out a wider pilot programme for the incorporatoi n of methane reducing additvi es (enteric and manure) within the Signpost dairy farms. |
+| AG/25/10 | Roll out a wider pilot programme for the incorporation of methane reducing additives (enteric and manure) within the Signpost dairy farms. |
 | AG/25/11 | Develop a mechanism to assess the abatement credentials of the Common Agricultural Policy Strategic Plan (CSP) schemes. |
 
 | Action Number | Action |
 | --- | --- |
-| AG/25/12 | Encourage lime applicatoi n and support nutrient management planning. |
+| AG/25/12 | Encourage lime application and support nutrient management planning. |
 | AG/25/13 | Monitor the use of Chemical Nitrogen. |
 | AG/25/14 | Continue to support and expand establishment of multi-species and clover swards to reduce N dependence. |
 | AG/25/15 | Continued implementation of the Common Agricultural Policy Strategic Plan and reporting (CSP). |
@@ -2470,7 +2470,7 @@ DAFM is engaged in the development of the EU certification framework for permane
 | LU/25/11 | Engage and support the work of Peatland Finance Ireland to attract finance to peatland restoration activities through the development of a peatland standard for Ireland. |
 | LU/25/12 | Facilitate and encourage exchange of organic manure between livestock and tillage farmers to deliver manure application to 115k ha of cropland. |
 | LU/25/13 | Fund the geospatial drainage status detection mapping of organic rich soils for National Inventory Reporting and policy support needs. |
-| LU/25/14 | Through the inventory refni ement group, further develop and refni e data collectoi n and reportni g for KPIs and actoi ns for the LULUCF sector. |
+| LU/25/14 | Through the inventory refinement group, further develop and refine data collection and reporting for KPIs and actions for the LULUCF sector. |
 
 ![Figure from page 134](assets/p134-f01.webp)
 
@@ -2744,11 +2744,11 @@ The Department of Transport is funding capacity building in local authorities th
 
 | Action Number | Action |
 | --- | --- |
-| LG/25/1 | Deliver Phase 2 of the Local Authority Climate Action Training Programme to ensure local authority staf fand elected members can access relevant and practical climate training. |
+| LG/25/1 | Deliver Phase 2 of the Local Authority Climate Action Training Programme to ensure local authority staff and elected members can access relevant and practical climate training. |
 | LG/25/2 | Support local authorities in implementing their Decarbonising Zones (DZs) through the national DZ Advisory Group. |
 | LG/25/3 | Develop Local Authority Climate Action Plan Stakeholder and Sectoral Reports. |
 | LG/25/4 | Implement the Local Authority Climate Action Plans. |
-| LG/25/5 | Roll out training for Regional Assembly and Local Authority staf f under the revised Local Authority Renewable Energy Strategy (LARES) methodology. |
+| LG/25/5 | Roll out training for Regional Assembly and Local Authority staff under the revised Local Authority Renewable Energy Strategy (LARES) methodology. |
 | LG/25/6 | Consider the recommendations from the CARO review with a view to implementing approved recommendations. |
 
 ## Chapter 19: The Circular Economy and Other Emissions
@@ -3108,7 +3108,7 @@ Table 5. Breakdown of targets progress under CAP25
 |  | Goal 4: Quality Education | 6 out of 10 4.1; 4.3; 4.4; 4.5; 4.6; and 4.7 |
 |  | Goal 5: Gender Equality | 5 out of 9 5.1; 5.2; 5.5; 5.a; and 5.c |
 |  | Goal 6: Clean Water and Sanitation | 6 out of 8 6.1; 6.3; 6.4; 6.5; 6.6; and 6.b |
-|  | Goal 7: Afof rdable and Clean Energy | All |
+|  | Goal 7: Affordable and Clean Energy | All |
 |  | Goal 8: Decent Work and Economic Growth | 8 out of 12 8.1; 8.2; 8.3; 8.4; 8.5; 8.6; 8.8; and 8.9; |
 
 | Sustainable Development Goal |  | Targets being progressed by actions in CAP25 |
