@@ -1,45 +1,45 @@
 # Tasks
 
-> **Scaffold.** Work packages only, at the granularity the open decisions allow. Elaborate into verifiable tasks after the decisions in §0 are taken and after `add-climate-action-plan-documents` is archived. Do not implement against this list as it stands.
+## 0. Source verification (before code)
 
-## 0. Decisions (blocking — elaborate first)
+- [ ] 0.1 Re-read the three Annex of Actions PDFs on the DCEE pages and record, for each edition: the direct PDF URL, title, publication date; how references are printed (confirm the year is embedded as in `EL/23/1`); whether sub-actions have parent rows with their own text (D3); and where legacy rows from earlier editions appear (D4). If the code format contradicts D2–D4, stop and revise the design.
+- [ ] 0.2 Download each edition's quarterly XLSX annexes to scratch, and confirm they list action codes and text in a readable column layout for reconciliation (D5).
 
-- [ ] 0.1 **D-A** Action identity for alphanumeric CAP codes: widen `action_number` (MAJOR), add `action_code` alongside a synthetic integer (MINOR), or mint sequential integers (breaks citability) — and how sub-actions (`EL/23/6/A`) are represented. Decide the dataset version bump and the action URI shape in the same breath.
-- [ ] 0.2 **D-B** How a carried-over action's observation is matched to the plan edition that declared it, given `build_observations` joins solely through `reports_on`.
-- [ ] 0.3 **D-C** How an annex or report spanning plan years is expressed, given `documents.yml` allows one `reports_on` per report sharing its `policy_id`; includes the Q1&Q2 2026 legacy report, which has no 2026 plan.
-- [ ] 0.4 **D-D** Spreadsheet plumbing: how a non-PDF document is acquired, how the PDF-only middle steps skip it, and whether a second action source arrives via a change to the shared `pipeline_runner` or an extension of the existing sibling-path convention.
-- [ ] 0.5 Colour-coded status: whether fill-only status is an error or a reviewed source, and if reviewed, how the mapping is recorded and tested.
-- [ ] 0.6 Re-read the sources before committing to any of the above — published counts and layouts in this proposal were read on 2026-11-07 and the listing pages are updated quarterly.
+## 1. Web consumer first (D6)
 
-## 1. Annex of Actions PDFs become the plans' action sources
+- [ ] 1.1 In `publicinformation-web`, accept `action_number` as `number | string` (`src/lib/publicBodyActions.ts:11,32,91`), display it as printed, and replace the subtraction sort (`:130`) with a natural, segment-wise sort. Verify with tests for `"12"`, `"EL/23/1"` and `"EL/23/6/A"` ordering, and a 2.1.0 integer fixture still rendering unchanged.
+- [ ] 1.2 Deploy that change while `latest/` is still 2.1.0, and confirm the live action pages are unchanged.
 
-- [ ] 1.1 Curate the three Annex of Actions PDFs (slugs reserved: `climate-action-plan-<year>-annex-of-actions`), with titles read off the PDFs and dates off the DECC pages.
-- [ ] 1.2 Repoint each of the nine progress reports' `reports_on` from its Plan PDF to its year's annex, and confirm the role flip is intentional per `extract_actions`' own curation note.
-- [ ] 1.3 Supersede the documents-change requirement that CAP plan documents are not action sources.
+## 2. Identity and contract (actions_pipeline, schema, transform)
 
-## 2. Action extraction and identity
+- [ ] 2.1 Recognise CAP codes as references in identity resolution alongside leading ordinals, and publish `action_number` as text. Verify with fixtures for an ordinal row (`"12"`), a coded row, a sub-action row, and an unreadable row (excluded and logged, no number minted).
+- [ ] 2.2 Enforce the reference character set (`[A-Za-z0-9]` segments joined by `/`). Verify that a fixture with a stray character is excluded and logged.
+- [ ] 2.3 Add the edition-year check (D4). Verify that a 2023-coded row in a 2025 annex fixture is excluded with the document, page and reference logged.
+- [ ] 2.4 Emit `part_of` (`family: structure`, `method: extracted`) when a sub-action's parent is published in the same edition (D3). Verify both the parent-present and parent-absent cases.
+- [ ] 2.5 Update `public/schemas/public-body-actions.schema.json`: `action_number` becomes a string matching the reference pattern, and the `relationship`/`family` enums gain `part_of`/`structure`. Update any published vocabulary to match.
+- [ ] 2.6 Confirm `transform_public_body_actions.py` builds slash-preserving URIs (D2). Verify that a coded action's URI ends `/action/<slug>/EL/23/6/A`.
+- [ ] 2.7 Confirm the 29 `to_plan_hint: CAP` relationships keep a null `to_action_id` after CAP editions are present. Add a test.
+- [ ] 2.8 Regenerate transport output and verify: CSVs byte-identical to 2.1.0; JSON-LD differing only in `action_number` type; every `action_id` and `@id` identical.
 
-- [ ] 2.1 Extract declared actions from the annex PDFs, carrying each action's published reference.
-- [ ] 2.2 Implement the identity decision from 0.1 end to end, including the schema, the transform, the action URI and the `CHANGELOG` entry.
-- [ ] 2.3 Implement the attribution decision from 0.2, with unattributable observations excluded and logged.
+## 3. Corpus curation
 
-## 3. Spreadsheet annex ingestion
+- [ ] 3.1 Add the three `climate-action-plan-<year>-annex-of-actions` entries (`role: plan`, `policy_role: action-plan`, `policy_id: climate-action-plan`, publisher DCEE, `public_body_id: 1198`), with titles from the PDFs and dates from the pages. Verify that `load_documents()` passes and the `documents.yml` diff contains only these entries.
+- [ ] 3.2 Run each annex scoped (`--doc <slug> --force --stop-on-error`, bounded before any paid step), triage `errors.json` per step, and extend header aliases where an annex layout is new.
+- [ ] 3.3 Confirm Plan PDFs and progress reports still yield zero action rows.
 
-- [ ] 3.1 Implement the acquisition and step-skipping decision from 0.4.
-- [ ] 3.2 Implement fail-closed annex parsing with a reviewed per-layout header and status mapping, adapted (copied, not shared) from `foi_pipeline`'s disclosure-header chain, with fixture workbooks for recognised layout, unrecognised header, merged/multi-row header, and unmappable status and date cells.
-- [ ] 3.3 Give `status_source: annex` its operational meaning: the declared annex supplies the report's observations.
+## 4. Reconciliation (D5)
 
-## 4. Curation and verification
+- [ ] 4.1 Write the reconciliation script (extracted actions vs XLSX codes and text, per edition). It reports missing references (blocking), text mismatches (fix or record a reason) and actions not in any XLSX (informational).
+- [ ] 4.2 Run it for CAP23, CAP24 and CAP25. Resolve every blocking item and commit the report as evidence in this change's directory.
+- [ ] 4.3 Pin `expected_action_count` on each annex entry from the reconciled extraction. Verify publication fails with a deliberately wrong pin.
 
-- [ ] 4.1 Curate the eleven XLSX annexes and the Q1&Q2 2026 legacy report listed in the proposal, scoped per document, triaging `errors.json` at every step.
-- [ ] 4.2 Pin `expected_action_count` / `expected_status_counts` per entry once extraction stabilises, and decide whether publish-time enforcement is early enough.
-- [ ] 4.3 Full verification matrix (three suites + `pyright`), plus confirmation that the transport corpus's actions and observations are unchanged.
+## 5. Publication (3.0.0)
 
-## 5. Publication
-
-- [ ] 5.1 Apply the dataset version bump decided in 0.1 to `public/catalog/dataset-public-body-actions.ttl` with a `public/CHANGELOG.md` entry.
-- [ ] 5.2 Review the full `public/**` diff before the publishing commit; resolve orphans via `orphans.py` manifest → apply.
+- [ ] 5.1 Gate: task 1.2 is done (the web consumer is live and accepts text).
+- [ ] 5.2 Publish `public/v3.0.0/public-body-actions/` and the `latest/` mirror. Set `owl:versionInfo "3.0.0"` and `dct:modified` on `public/catalog/dataset-public-body-actions.ttl`. Add a `public/CHANGELOG.md` entry naming the `action_number` type change, the new `part_of`/`structure` values and the CAP23–25 editions.
+- [ ] 5.3 Full verification matrix: `pipelines/document_pipeline` tests, `pipelines/actions_pipeline` tests, root `tests/`, and `uv run pyright`.
+- [ ] 5.4 Review the full `public/**` diff before the publishing commit, and resolve orphans via `orphans.py` manifest → apply.
 
 ## Workflow follow-up
 
-- Archive after the `public/` diff is reviewed and the publish is committed; verify the published dataset shows CAP actions and observations.
+- Archive after publication. Then elaborate `add-climate-action-status-observations`, which depends on this change's identities and on the out-of-edition exclusions logged in 2.3.

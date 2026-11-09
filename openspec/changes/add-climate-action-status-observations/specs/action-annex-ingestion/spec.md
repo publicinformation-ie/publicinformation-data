@@ -4,7 +4,7 @@
 
 Covers ingestion of an action annex — a companion file publishing the actions a plan declares and the status later reported against them — into the document pipeline's action records.
 
-> **Scaffold.** Only the requirements that hold under every resolution of the open decisions in the proposal are recorded here. Action identity representation (D-A), the attribution mechanism (D-B), multi-plan annexes (D-C) and the acquisition and step-wiring approach (D-D) are deliberately unspecified; elaborate them before implementation.
+> **Scaffold.** Only the requirements that hold under every resolution of the open decisions in the proposal are recorded here. The attribution mechanism (D-B), multi-plan annexes and reports (D-C) and spreadsheet acquisition and step wiring (D-D) are deliberately unspecified; elaborate them before implementation. Action identity, citability and URIs are specified by `public-body-actions-dataset` in `add-climate-action-plan-actions`, which this change depends on.
 
 ## ADDED Requirements
 
@@ -86,17 +86,3 @@ A status observation SHALL be attributed to the plan edition that declared the a
 
 - **WHEN** an observation's action cannot be identified against any plan's declared actions
 - **THEN** it is excluded and an error names the report, the raw action reference and the reason
-
-### Requirement: Published action identity is citable and permanent
-
-A published action's identity SHALL be derivable from the action reference its own source document publishes, so a reader citing the action as the State publishes it can locate the published record. Once published, an action's identity SHALL NOT change, and a change to how identity is represented SHALL be treated as a dataset contract change at the severity that change warrants.
-
-#### Scenario: Source reference locates the published action
-
-- **WHEN** a reader holds the action reference printed in a plan's own annex
-- **THEN** that reference resolves to the published action record for that plan edition
-
-#### Scenario: Identity is stable across republication
-
-- **WHEN** the corpus is re-extracted and republished
-- **THEN** every previously published action keeps the identity it was first published with

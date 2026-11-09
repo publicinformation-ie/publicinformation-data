@@ -1,0 +1,128 @@
+# Spec Delta
+
+## Purpose
+
+The published contract of the `public-body-actions` dataset: how a published action is identified, cited and addressed, how actions are assigned to the plan edition that declares them, how an edition's extracted actions are checked against an independent list before they publish, and how a change to that contract is versioned. No spec covers this dataset today; these requirements record the contract as this change leaves it, including the existing behaviour it must preserve.
+
+## ADDED Requirements
+
+### Requirement: Action identity is the reference its plan publishes
+
+A published action SHALL be identified by its plan edition together with the action reference that edition itself prints — an ordinal such as `12` for a plan that numbers its actions, or a code such as `EL/23/1` or `EL/23/6/A` for a plan that codes them. `action_number` SHALL carry that reference as text, exactly as printed apart from whitespace normalisation. A row whose reference cannot be read confidently SHALL be excluded and logged, never given a synthetic or positional number.
+
+#### Scenario: Coded plan reference
+
+- **WHEN** a Climate Action Plan annex prints an action as `EL/23/1`
+- **THEN** the published action has `action_number` `"EL/23/1"` and `action_id` `<plan_slug>#EL/23/1`
+
+#### Scenario: Ordinal plan reference
+
+- **WHEN** a plan prints an action as `12.`
+- **THEN** the published action has `action_number` `"12"`, and its `action_id` is unchanged from the previous release
+
+#### Scenario: Unreadable reference
+
+- **WHEN** an action row carries no reference that can be read confidently
+- **THEN** the row is excluded, an error names the document, page and raw cell text, and no number is invented for it
+
+### Requirement: Published identity is permanent
+
+Once published, an action's `action_id` and URI SHALL NOT change on re-extraction or republication. A change to how identity is represented SHALL be published as a contract change at the version severity it warrants.
+
+#### Scenario: Re-extraction keeps identity
+
+- **WHEN** the corpus is re-extracted and republished with no change to the source documents
+- **THEN** every previously published action keeps its `action_id` and URI
+
+### Requirement: Action URIs are derived from the printed reference
+
+An action's URI SHALL be `{base}/action/{plan_slug}/{reference}`, where each `/` in a coded reference is kept as a path separator, so a sub-action's URI sits beneath its parent's. A reference SHALL contain only ASCII letters, digits and `/`, with no empty segment; a reference outside that set SHALL be excluded and logged rather than escaped or rewritten.
+
+#### Scenario: Coded reference URI
+
+- **WHEN** action `EL/23/6/A` of `climate-action-plan-2023-annex-of-actions` is published
+- **THEN** its URI ends `/action/climate-action-plan-2023-annex-of-actions/EL/23/6/A`
+
+#### Scenario: Existing URIs unchanged
+
+- **WHEN** the dataset is republished under this contract
+- **THEN** every action URI published by the previous release is unchanged byte for byte
+
+#### Scenario: Reference outside the permitted characters
+
+- **WHEN** a reference contains a character other than an ASCII letter, a digit or `/`
+- **THEN** the action is excluded and an error records the raw reference
+
+### Requirement: Sub-actions are actions in their own right
+
+A sub-action (for example `EL/23/6/A`) SHALL be published as its own action. Where its parent reference (`EL/23/6`) is itself a published action of the same edition, the dataset SHALL record a `part_of` relationship from the sub-action to the parent. A sub-action whose parent is not published SHALL still publish, without that relationship.
+
+#### Scenario: Parent published
+
+- **WHEN** both `EL/23/6` and `EL/23/6/A` are published actions of one edition
+- **THEN** a `part_of` relationship links `…#EL/23/6/A` to `…#EL/23/6`
+
+#### Scenario: Parent not published
+
+- **WHEN** `EL/23/6/A` is published and `EL/23/6` is not
+- **THEN** `EL/23/6/A` is published and no `part_of` relationship is emitted for it
+
+### Requirement: Actions belong to the edition that declares them
+
+An action SHALL be published under the plan edition that declares it. Where a coded reference names its plan year and that year differs from the edition being extracted — such as an earlier plan's legacy action reprinted in a later annex — the row SHALL be excluded from that edition and logged, not published as a new action of the later edition.
+
+#### Scenario: Legacy row in a later annex
+
+- **WHEN** the 2025 annex reprints action `EL/23/1`
+- **THEN** no 2025 action is published for that row, and the exclusion is logged with the document, page and reference
+
+### Requirement: References to unpublished editions stay unresolved
+
+A relationship whose target is an action of a plan edition not in the dataset SHALL keep a null `to_action_id`. It SHALL NOT be resolved by matching its number or code against an action of a different edition.
+
+#### Scenario: Earlier Climate Action Plan cited by number
+
+- **WHEN** a transport plan cites "CAP action 268" (a Climate Action Plan 2021 number) and only the CAP23–CAP25 editions are published
+- **THEN** the relationship keeps `to_plan_hint` `CAP` and a null `to_action_id`
+
+### Requirement: Extracted actions are reconciled before they publish
+
+Before a plan edition's actions first publish, they SHALL be reconciled against an independent list of that edition's actions published by the State, where one exists, by reference and by text. Every reference on the independent list SHALL resolve to an extracted action, and every text mismatch SHALL be either fixed or recorded with its reason. The edition's action count SHALL be pinned on its curated entry, and publication SHALL fail when the extracted count differs from the pin.
+
+#### Scenario: Independent list names an action that was not extracted
+
+- **WHEN** the independent list carries reference `MA/23/5` and no extracted action has it
+- **THEN** reconciliation reports the missing reference and the edition does not publish until it is resolved
+
+#### Scenario: Extracted action absent from a partial list
+
+- **WHEN** the independent list covers only some of the edition's actions (for example, those due in one year)
+- **THEN** extracted actions absent from it are reported for review but do not block publication
+
+#### Scenario: Count drift
+
+- **WHEN** an edition's extracted action count differs from its pinned count
+- **THEN** publication fails, naming the edition, the expected count and the actual count
+
+### Requirement: Existing editions are unaffected
+
+Adding a plan edition SHALL NOT change the actions, status observations or relationships already published for any other edition, apart from the representation change to `action_number` recorded in this contract.
+
+#### Scenario: Transport editions after the CAP editions are added
+
+- **WHEN** the dataset is republished with the CAP23–CAP25 editions added
+- **THEN** every transport action, observation and relationship row is identical to the previous release, except that `action_number` is text
+
+### Requirement: Breaking contract changes are versioned and staged
+
+A change that alters the type or meaning of a published field SHALL be published as a new MAJOR version in its own versioned directory, with the `latest` mirror, the catalog's `owl:versionInfo` and the changelog updated together. The `latest` mirror SHALL NOT move to a new MAJOR version until known consumers of `latest` accept it.
+
+#### Scenario: `action_number` becomes text
+
+- **WHEN** `action_number` changes from integer to text
+- **THEN** the dataset publishes as 3.0.0 under its own versioned directory, with a changelog entry that names the change
+
+#### Scenario: Consumer not yet compatible
+
+- **WHEN** a known consumer of `latest` still requires an integer `action_number`
+- **THEN** `latest` stays on the previous MAJOR version
