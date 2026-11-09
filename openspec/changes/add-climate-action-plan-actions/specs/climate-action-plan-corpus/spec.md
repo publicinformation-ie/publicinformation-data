@@ -32,6 +32,25 @@ Each plan year's Annex of Actions document SHALL be curated as that edition's ac
 - **WHEN** a CAP Plan document or progress report is processed
 - **THEN** action extraction emits no rows for it
 
+### Requirement: Annex table layouts are declared per document
+
+Layout handling that differs from the default table reading SHALL be enabled only by an explicit declaration on a document's entry, drawn from a closed set of layout behaviours. A document without the declaration SHALL be read exactly as before. An unknown behaviour, or a declaration on a document that is not an action source, SHALL be a fatal validation error.
+
+#### Scenario: Declared annex layout
+
+- **WHEN** an Annex of Actions entry declares that tables continue across pages without a header
+- **THEN** a headerless continuation table is read with the header of the table it continues, and its actions are extracted
+
+#### Scenario: Undeclared documents are unaffected
+
+- **WHEN** every curated action plan is re-extracted after layout handling is added
+- **THEN** the output for documents without a declaration is byte-identical to before
+
+#### Scenario: Invalid declaration
+
+- **WHEN** an entry declares an unknown layout behaviour, or declares one on a document that is not an action source
+- **THEN** validation fails process-fatally, naming the entry
+
 ## REMOVED Requirements
 
 ### Requirement: Plan documents are not action sources in this corpus

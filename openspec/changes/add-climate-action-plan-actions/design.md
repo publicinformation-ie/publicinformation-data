@@ -75,6 +75,16 @@ The rule:
 This keeps CAP25 at its 82 `/25/` rows, matching the published total of 82.
 **Rejected:** "first edition wins", which would make CAP24 and CAP25 counts disagree with their own annexes and progress reports.
 
+### D7. Annex table layouts are handled by an explicit per-document opt-in (decided 2026-11-09)
+Running the real annexes showed two layouts `extract_actions` doesn't handle:
+1. Each table opens with a "Key Heading" row and then a lone-cell **"Actions"** subtitle row. That row matches `ACTION_KEYWORDS`, so it is picked as the header instead of the real `Action Number | Actions | Steps | Output | Timeline | Lead | Stakeholders` row.
+2. Tables **continued on a new page have no header**, so they are skipped as having no action column.
+
+The result was 42 resolved actions out of about 680 expected. Both fixes would change how the published SMP plans are read. Following the repo's rule that a new trigger must be opt-in rather than auto-detected (the `ocr_pages` precedent), a new `documents.yml` field `action_table_layout`, a closed list of `skip_subtitle_header` and `carry_header`, turns each behaviour on per document. Documents without it are read exactly as before. That is proved by a byte-identical rerun of every curated action plan (task 3.2b).
+**Rejected:**
+- Changing header selection for every document, which risks the published SMP extraction for no SMP benefit.
+- A separate CAP-only extractor, which duplicates the table reader.
+
 ### D5. Reconcile against the XLSX annexes as a reference list, not as a source
 A review script reads each edition's quarterly XLSX annexes (openpyxl, already in the shared venv), collects their codes and action text, and compares them with the extracted actions:
 - every XLSX code for the edition must resolve to an extracted action (blocking);
@@ -93,7 +103,7 @@ The data repo cannot enforce step 1, so it is a task gate before the publishing 
 ## Risks / Trade-offs
 
 - **MAJOR bump for a type widening.** It's honest, but any unknown consumer of `latest/` that assumes an integer breaks. Mitigation: the changelog entry calls out the type change, and the versioned 2.1.0 directory stays published.
-- **Annex table layouts are unseen.** `extract_actions` has not parsed CAP annex tables. Header aliases may need extending, and each failure goes through `errors.json` triage per document.
+- **Annex table layouts.** These turned out not to be an alias problem; see D7. Each failure still goes through `errors.json` triage per document.
 - **The edition-year rule depends on the code format.** If a CAP edition's codes don't embed the year as assumed, D4 must fall back to an explicit legacy marker in the annex. Verify before implementing (0.1).
 - **Publish diff size.** Hundreds of new action rows, plus every transport JSON-LD row changing `action_number`'s type. Review the `public/**` diff before the publishing commit.
 
