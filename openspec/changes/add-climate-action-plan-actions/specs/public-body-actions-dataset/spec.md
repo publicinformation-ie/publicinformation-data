@@ -27,12 +27,22 @@ A published action SHALL be identified by its plan edition together with the act
 
 ### Requirement: Printed flags are separated from identity and preserved
 
-A reference printed with a recognised flag suffix (currently only `(TF)`) SHALL be identified without the flag. Every published action SHALL carry `action_reference_printed`: the reference as printed, whitespace-normalised. An unrecognised suffix SHALL NOT be stripped, and is subject to the reference character rules. Recognising a new flag is a reviewed change to this requirement.
+A reference printed with recognised flag suffixes SHALL be identified without them. The recognised flags are `*`, `**` and `(TF)`, in any combination and order. Every published action SHALL carry `action_reference_printed` (the reference as printed, whitespace-normalised) and `action_flags`, a list drawn from the closed set `non_reportable`, `duplicate`, `taskforce`. An unrecognised suffix SHALL NOT be stripped. Recognising a new flag is a reviewed change to this requirement.
 
 #### Scenario: Flagged reference
 
 - **WHEN** an annex prints `TR/23/46(TF)` or `TR/24/4 (TF)`
-- **THEN** the action is identified as `TR/23/46` (or `TR/24/4`) and `action_reference_printed` is `TR/23/46(TF)` (or `TR/24/4 (TF)`)
+- **THEN** the action is identified as `TR/23/46` (or `TR/24/4`), `action_reference_printed` is `TR/23/46(TF)` (or `TR/24/4 (TF)`), and `action_flags` is `[taskforce]`
+
+#### Scenario: Combined flags
+
+- **WHEN** an annex prints `RE/23/2*` or `TR/23/26**(TF)`
+- **THEN** the actions are identified as `RE/23/2` with `action_flags` `[non_reportable]` and `TR/23/26` with `action_flags` `[duplicate, taskforce]`
+
+#### Scenario: Unflagged reference
+
+- **WHEN** an action's reference carries no flag, including every ordinal reference
+- **THEN** its `action_flags` is empty
 
 #### Scenario: Same action printed both ways
 
@@ -93,12 +103,22 @@ A sub-action (a reference ending in a letter, as its own segment or attached to 
 
 ### Requirement: Actions belong to the edition that declares them
 
-An action SHALL be published under the plan edition that declares it. Where a coded reference names its plan year and that year differs from the edition being extracted — such as an earlier plan's legacy action reprinted in a later annex — the row SHALL be excluded from that edition and logged, not published as a new action of the later edition.
+A row whose code year (its delivery year) is earlier than the edition's year is a legacy reprint, and SHALL be excluded from that edition and logged. Any other row SHALL be published under the edition that prints it. Where two editions print the same reference as their own, both SHALL publish it, linked by `carried_forward_to` from the earlier to the later.
 
 #### Scenario: Legacy row in a later annex
 
 - **WHEN** the 2025 annex reprints action `EL/23/1`
 - **THEN** no 2025 action is published for that row, and the exclusion is logged with the document, page and reference
+
+#### Scenario: Forward-year action in an earlier plan
+
+- **WHEN** the 2023 annex prints `RE/24/1` as one of its actions
+- **THEN** it is published as an action of the 2023 edition
+
+#### Scenario: Same reference printed by two editions
+
+- **WHEN** both the 2023 and the 2025 annex print `LU/25/1`
+- **THEN** both editions publish it, and a `carried_forward_to` relationship links the 2023 action to the 2025 action
 
 ### Requirement: References to unpublished editions stay unresolved
 
@@ -130,12 +150,12 @@ Before a plan edition's actions first publish, they SHALL be reconciled against 
 
 ### Requirement: Existing editions are unaffected
 
-Adding a plan edition SHALL NOT change the actions, status observations or relationships already published for any other edition, apart from the representation changes recorded in this contract: `action_number` becoming text and the addition of `action_reference_printed`.
+Adding a plan edition SHALL NOT change the actions, status observations or relationships already published for any other edition, apart from the representation changes recorded in this contract: `action_number` becoming text and the addition of `action_reference_printed` and `action_flags`.
 
 #### Scenario: Transport editions after the CAP editions are added
 
 - **WHEN** the dataset is republished with the CAP23–CAP25 editions added
-- **THEN** every transport action, observation and relationship row is identical to the previous release, except that `action_number` is text and each action gains `action_reference_printed` (equal to its `action_number` for ordinal plans)
+- **THEN** every transport action, observation and relationship row is identical to the previous release, except that `action_number` is text and each action gains `action_reference_printed` (equal to its `action_number` for ordinal plans) and an empty `action_flags`
 
 ### Requirement: Breaking contract changes are versioned and staged
 

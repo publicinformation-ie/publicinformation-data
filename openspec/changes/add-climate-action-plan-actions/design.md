@@ -39,12 +39,24 @@ The facts this design rests on were read from the code on 2026-11-09:
 `/action/<slug>/EL/23/6/A`. A sub-action's URI sits beneath its parent's, and nothing is percent-encoded (`%2F` in path segments is handled inconsistently by static hosts and proxies). References are restricted to `[A-Za-z0-9]` segments joined by `/`. Anything else is excluded and logged, never escaped.
 **Rejected:** percent-encoding (`EL%2F23%2F1`), which is hard to read, ambiguous to normalise, and not what a reader would type.
 
-### D2a. `(TF)` is a flag, stripped from identity and kept in `action_reference_printed` (decided 2026-11-09)
-`source-notes.md` found about 60 CAP23/CAP24 references printed with a `(TF)` suffix (`TR/23/46(TF)`, once `TR/24/4 (TF)`). The same action appears with and without it across workbooks, so it is a flag, not identity. Identity uses the reference with a *recognised* flag suffix removed; the only recognised flag is `(TF)`. A new field present on every action, `action_reference_printed`, keeps the reference as printed (whitespace-normalised), so the flag is not lost. For ordinal plans it equals `action_number`. It ships in the same 3.0.0. Unrecognised parenthesised suffixes are not stripped, so they fail the D2 character set and are excluded and logged.
+### D2a. Printed flags are stripped from identity and recorded (decided 2026-11-09)
+The annexes print three flag suffixes on references (see `source-notes.md`); the CAP23 and CAP24 guides define them:
+- `(TF)`, the Delivery Taskforce flag: about 42 rows in CAP23, 26 in CAP24 and 13 in CAP25.
+- `*`, "non-reportable": about 73 CAP23 rows.
+- `**`, "duplicate action": 8 CAP23 rows, whose text names the action they are reported under.
+
+They combine in either order (`TR/23/2*(TF)`, `TR/23/26**(TF)`), and the same action appears with and without `(TF)` across sources, so they are flags, not identity.
+
+Identity is the reference with recognised flags removed. Two fields ship in 3.0.0 on every action:
+- `action_reference_printed`: the reference as printed, whitespace-normalised.
+- `action_flags`: a list from the closed set `non_reportable`, `duplicate`, `taskforce`, empty for unflagged and ordinal references. In CSV it is a `;`-separated cell, declared as a list in the CSVW metadata.
+
+Unrecognised suffixes are not stripped, so they fail the D2 character set and are excluded and logged. Linking a `duplicate` action to the one it is "reported under" is deferred to `add-climate-action-status-observations`, where that link decides which observations count.
+
 **Rejected:**
-- Widening the character set to allow `(` `)`, which forces URI escaping and splits one action into two identities.
-- Excluding the ~60 rows.
-- Stripping without keeping the printed form, which would lose the flag's meaning (still to be confirmed from the annex key in 0.1).
+- Widening the character set to allow `(`, `)` and `*`, which forces URI escaping and splits one action into several identities.
+- Excluding flagged rows: about 81 CAP23 actions, and the XLSX annexes list none of them, so reconciliation would not notice the loss.
+- Keeping flags only in the printed string, which would make every consumer parse `*`.
 
 ### D3. Sub-actions are actions; `part_of` records the hierarchy
 **Letter attached to the number (decided 2026-11-09).** Three references print the letter without a slash (`EL/23/10A`, `EL/23/10B`, `LU/23/7A`). They are published as printed, for citability, and are still under the D2 character set. For `part_of`, the parent of a reference ending in a letter, whether in its own segment or attached to the final number, is that reference with the letter removed.
@@ -52,8 +64,16 @@ The facts this design rests on were read from the code on 2026-11-09:
 Each sub-action is its own row. When the parent reference is itself a published action of the same edition, a relationship `part_of` (new `family: structure`, `method: extracted`, since it comes from the reference itself) links child to parent. The existing families describe lineage across editions or references between plans; neither describes containment, so overloading `split_into` would be wrong. The vocabulary addition ships in the same 3.0.0.
 **Open check (0.1):** whether CAP annexes print parent rows with their own text, or only sub-actions. If only sub-actions, no `part_of` rows are emitted, and the hierarchy is readable from the reference and URI alone.
 
-### D4. The plan year in the code must match the edition
-For a coded reference, the year segment (`EL/23/…` → 2023) must equal the year of the edition being extracted. A mismatched row, such as the CAP25 annex reprinting `EL/23/1`, is excluded and logged as out-of-edition. It is not published as a CAP25 action and not attributed elsewhere; attribution is Change 2's job. This also gives Change 2 the full list of legacy rows it will need.
+### D4. Legacy rows are excluded by code year; forward-year rows belong to the printing edition (revised 2026-11-09)
+A code's year segment is the expected **delivery** year, not the plan year (CAP23 guide). CAP23's annex declares 11 actions coded `/24/` or `/25/` (`RE/24/1`, `LU/25/1`, …).
+
+The rule:
+- A row whose code year is **earlier** than the edition's year is a legacy reprint. For example, CAP25 reprints 46 `/24/` and 18 `/23/` rows. These are excluded from the edition and logged as out-of-edition. Attributing them is Change 2's job, and the log gives Change 2 its full list of legacy rows.
+- A row whose code year is the edition year or later belongs to the printing edition.
+- When a later edition's annex prints the same reference as its own (3 CAP23 `/24/` codes in CAP24, and 4 CAP23 `/25/` codes in CAP25), both editions publish it, and `carried_forward_to` (existing `lineage` family, `method: extracted`) links earlier to later. This follows the dataset's existing rule: continuity across editions is a relationship, never a merged row.
+
+This keeps CAP25 at its 82 `/25/` rows, matching the published total of 82.
+**Rejected:** "first edition wins", which would make CAP24 and CAP25 counts disagree with their own annexes and progress reports.
 
 ### D5. Reconcile against the XLSX annexes as a reference list, not as a source
 A review script reads each edition's quarterly XLSX annexes (openpyxl, already in the shared venv), collects their codes and action text, and compares them with the extracted actions:

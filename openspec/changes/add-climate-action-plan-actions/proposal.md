@@ -10,11 +10,12 @@ Publishing the declared actions is blocked on one decision only, D-A below. The 
 
 - Curate the three **Annex of Actions PDFs** (`climate-action-plan-<year>-annex-of-actions`) as `policy_role: action-plan`, making them the corpus's action sources. Plan PDFs and progress reports stay non-sources, and reports keep `reports_on` and `status_source: annex` unchanged.
 - **Change the type of `action_number` from integer to text**, carrying the reference the plan prints: `EL/23/1`, or `12` for ordinal plans. This is a **BREAKING** change: `public-body-actions` goes **2.1.0 → 3.0.0**. Every existing `action_id` and action URI stays byte-identical, because both are built from the reference's text, which is the same for ordinal plans.
-- Add `action_reference_printed` (the reference exactly as printed). The recognised `(TF)` flag suffix is stripped from identity but kept here (design D2a).
+- Add `action_reference_printed` (the reference exactly as printed) and `action_flags` (closed set: `non_reportable`, `duplicate`, `taskforce`). The printed `*`, `**` and `(TF)` suffixes are stripped from identity and recorded there (design D2a).
 - Recognise CAP action codes in identity resolution, alongside leading ordinals. Rows that can't be read are excluded and logged, never numbered positionally.
 - Action URIs keep the code's slashes as path segments (`/action/<slug>/EL/23/6/A`). References are restricted to ASCII letters, digits and `/`.
 - Sub-actions publish as actions in their own right, with a new `part_of` relationship to a published parent. This adds a `structure` relationship family to the vocabulary.
-- An annex row whose code names a different plan year (a legacy row) is excluded from that edition and logged.
+- An annex row whose code year is earlier than the edition (a legacy reprint) is excluded and logged. Forward-year codes belong to the edition that prints them, and a code printed by two editions publishes in both, linked by `carried_forward_to` (design D4).
+- CAP24 and CAP25 annexes hold only new high-impact actions. The full roadmap stays in each Plan, which the README and changelog will state.
 - Before publishing, **reconcile** each edition's extracted actions against the Department of the Taoiseach's XLSX annexes. These are used as an independent reference list for checking only, not ingested. Each edition's `expected_action_count` is pinned.
 - The web consumer (`publicinformation-web`) must accept a text `action_number` **before** `latest/` moves to 3.0.0. Today it turns non-numbers into `0` (`src/lib/publicBodyActions.ts:91`) and sorts by subtracting numbers (`:130`).
 

@@ -13,14 +13,23 @@
 ## 2. Identity and contract (actions_pipeline, schema, transform)
 
 - [ ] 2.1 Recognise CAP codes as references in identity resolution alongside leading ordinals, and publish `action_number` as text. Verify with fixtures for an ordinal row (`"12"`), a coded row, a sub-action row, and an unreadable row (excluded and logged, no number minted).
-- [ ] 2.1a Strip the recognised `(TF)` flag (with or without a preceding space) from identity, and publish every action's printed reference in `action_reference_printed` (D2a). Verify with fixtures: `TR/23/46(TF)` → `TR/23/46`; `TR/24/4 (TF)` → `TR/24/4`; the same action printed with and without the flag → one action; `EL/23/4(X)` → excluded and logged; an ordinal row gets `action_reference_printed` == `action_number`.
+- [ ] 2.1a Strip the recognised flags `*`, `**` and `(TF)` (any combination or order, with or without a preceding space) from identity. Publish `action_reference_printed` and `action_flags` (D2a). Verify with fixtures:
+  - `TR/23/46(TF)` → `TR/23/46` with `[taskforce]`
+  - `TR/24/4 (TF)` → `TR/24/4`
+  - `RE/23/2*` → `[non_reportable]`
+  - `TR/23/26**(TF)` → `[duplicate, taskforce]`
+  - the same action printed with and without a flag → one action
+  - `EL/23/4(X)` → excluded and logged
+  - an ordinal row → printed == `action_number`, flags empty
+  - a reference wrapped across lines in the text layer (`EN/23/` + `1*`, see source-notes) → read whole
 - [ ] 2.2 Enforce the reference character set (`[A-Za-z0-9]` segments joined by `/`). Verify that a fixture with a stray character is excluded and logged.
-- [ ] 2.3 Add the edition-year check (D4). Verify that a 2023-coded row in a 2025 annex fixture is excluded with the document, page and reference logged.
+- [ ] 2.3 Add the legacy check (D4): exclude rows whose code year is earlier than the edition year. Verify that a `/23/` row in a 2025 annex fixture is excluded, with the document, page and reference logged, and that a `/24/` row in a 2023 annex fixture is kept as a 2023 action.
+- [ ] 2.3a Emit `carried_forward_to` (`lineage`, `method: extracted`) from an earlier edition's action to a later edition's action with the same reference. Verify with a 2023 + 2025 fixture that both print `LU/25/1`.
 - [ ] 2.4 Emit `part_of` (`family: structure`, `method: extracted`) when a sub-action's parent is published in the same edition (D3). Verify both the parent-present and parent-absent cases.
-- [ ] 2.5 Update `public/schemas/public-body-actions.schema.json`: `action_number` becomes a string matching the reference pattern, `action_reference_printed` (string, required) is added, and the `relationship`/`family` enums gain `part_of`/`structure`. Update any published vocabulary to match.
+- [ ] 2.5 Update `public/schemas/public-body-actions.schema.json`: `action_number` becomes a string matching the reference pattern, `action_reference_printed` (string, required) and `action_flags` (array of the closed set, required) are added, and the `relationship`/`family` enums gain `part_of`/`structure`. Update any published vocabulary to match.
 - [ ] 2.6 Confirm `transform_public_body_actions.py` builds slash-preserving URIs (D2). Verify that a coded action's URI ends `/action/<slug>/EL/23/6/A`.
 - [ ] 2.7 Confirm the 29 `to_plan_hint: CAP` relationships keep a null `to_action_id` after CAP editions are present. Add a test.
-- [ ] 2.8 Regenerate transport output and verify: CSVs identical to 2.1.0 apart from the added `action_reference_printed` column; JSON-LD differing only in `action_number` type and the added field; every `action_id` and `@id` identical.
+- [ ] 2.8 Regenerate transport output and verify: CSVs identical to 2.1.0 apart from the added `action_reference_printed` and `action_flags` columns; JSON-LD differing only in `action_number` type and the added fields; every `action_id` and `@id` identical.
 
 ## 3. Corpus curation
 
@@ -37,7 +46,7 @@
 ## 5. Publication (3.0.0)
 
 - [ ] 5.1 Gate: task 1.2 is done (the web consumer is live and accepts text).
-- [ ] 5.2 Publish `public/v3.0.0/public-body-actions/` and the `latest/` mirror. Set `owl:versionInfo "3.0.0"` and `dct:modified` on `public/catalog/dataset-public-body-actions.ttl`. Add a `public/CHANGELOG.md` entry naming the `action_number` type change, the new `part_of`/`structure` values and the CAP23–25 editions.
+- [ ] 5.2 Publish `public/v3.0.0/public-body-actions/` and the `latest/` mirror. Set `owl:versionInfo "3.0.0"` and `dct:modified` on `public/catalog/dataset-public-body-actions.ttl`. Add a `public/CHANGELOG.md` entry naming the `action_number` type change, the new `action_reference_printed`/`action_flags` fields, the new `part_of`/`structure` values and the CAP23–25 editions. State in the changelog and the dataset README that CAP24 and CAP25 annexes hold only new high-impact actions, not each plan's full roadmap.
 - [ ] 5.3 Full verification matrix: `pipelines/document_pipeline` tests, `pipelines/actions_pipeline` tests, root `tests/`, and `uv run pyright`.
 - [ ] 5.4 Review the full `public/**` diff before the publishing commit, and resolve orphans via `orphans.py` manifest → apply.
 
