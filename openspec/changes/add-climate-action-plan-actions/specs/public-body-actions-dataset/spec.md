@@ -131,7 +131,7 @@ A relationship whose target is an action of a plan edition not in the dataset SH
 
 ### Requirement: Source misprints are corrected only by curated, evidenced declarations
 
-A reference misprinted by its source MAY be corrected only by a correction declared on the document's curated entry, citing the page, the printed reference, the corrected reference and its evidence. The corrected reference SHALL be the identity, and `action_reference_printed` SHALL keep the misprint. A declared correction whose printed reference isn't found SHALL be a fatal error.
+A misprinted reference MAY be corrected only by a correction declared on the document's entry, citing page, printed reference, opening words of the row's text, corrected reference and evidence. It SHALL apply only to the one row matching both printed reference and opening words; zero or several matches SHALL be fatal. The corrected reference SHALL be the identity, and `action_reference_printed` SHALL keep the misprint.
 
 #### Scenario: Misprinted duplicate reference
 
@@ -140,8 +140,8 @@ A reference misprinted by its source MAY be corrected only by a correction decla
 
 #### Scenario: Stale correction
 
-- **WHEN** a declared correction's printed reference doesn't appear on its page
-- **THEN** extraction fails, naming the document and the correction
+- **WHEN** no row on a declared correction's page matches both its printed reference and its opening words (for example, a reissued PDF has fixed the misprint, so only the genuine row with that reference remains)
+- **THEN** extraction fails, naming the document and the correction, and no row is renamed
 
 ### Requirement: A "same as parent" action cell inherits the parent's text
 

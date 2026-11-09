@@ -98,7 +98,7 @@ Instead of adding a rule per shape, the opt-in now **declares the annex's own he
 
 CAP23 p.57 prints BE/23/38 as `BE/23/36`, which duplicates the row above. The XLSX annex has BE/23/38 with the same text. An annex entry may declare `reference_corrections`, a list of `{page, printed, corrected, evidence}` entries.
 - The corrected reference becomes the identity. `action_reference_printed` keeps the misprint, so the correction stays visible.
-- A correction whose `printed` reference isn't found on its page is a fatal error, so a correction can't go stale without notice.
+- Each correction also declares `text_starts`, the opening words of the misprinted row's action text. It applies only to the row on its page whose reference is `printed` **and** whose text starts with `text_starts`. If no row matches, or more than one does, it's a fatal error. The reference alone isn't enough, because a misprinted duplicate shares it with a genuine row: if a reissued PDF fixed the typo, matching by occurrence would silently rename the genuine row.
 - Corrections are only for misprints shown by an independent list. They are never used to change a plan's numbering.
 
 ### D9. A "-" action cell inherits the parent's text (decided 2026-11-09)
