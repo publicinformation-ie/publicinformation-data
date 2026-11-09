@@ -47,6 +47,7 @@ silently dropped or rewritten to "fit".
 """
 import argparse
 import re
+import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -381,22 +382,33 @@ def _reference_cell(action):
     return ""
 
 
+def _norm_text(text):
+    return " ".join(unicodedata.normalize("NFKC", str(text or "")).casefold().split())
+
+
 def _apply_reference_corrections(actions, corrections, doc_slug):
-    """Mark the row each correction targets (D8). A printed reference that
-    appears more than once on the page is a repeat: the correction targets the
-    last occurrence and the first is the genuine row. Not found is fatal."""
+    """Mark the row each correction targets (D8). A correction applies only to
+    the single row on its page whose reference equals `printed` and whose
+    normalised action text starts with the normalised `text_starts`. Zero or
+    several matches are fatal and nothing is renamed."""
+    targets = []
     for correction in corrections or ():
         pattern = re.compile(
             r"^\s*" + re.escape(correction["printed"]) + r"\s*(?:\(TF\)|\*+)*\s*$")
+        starts = _norm_text(correction["text_starts"])
         hits = [a for a in actions
                 if a["source_page"] == correction["page"]
-                and pattern.match(_reference_cell(a))]
-        if not hits:
+                and pattern.match(_reference_cell(a))
+                and _norm_text(a["action"]).startswith(starts)]
+        if len(hits) != 1:
             raise ReferenceCorrectionNotFound(
                 f"{doc_slug}: reference_corrections entry for page "
-                f"{correction['page']} prints {correction['printed']!r}, which "
-                f"is not on that page")
-        hits[-1]["reference_correction"] = {
+                f"{correction['page']} ({correction['printed']!r}, text starting "
+                f"{correction['text_starts']!r}) matches {len(hits)} rows, "
+                f"expected exactly 1")
+        targets.append((hits[0], correction))
+    for action, correction in targets:
+        action["reference_correction"] = {
             "printed": correction["printed"], "corrected": correction["corrected"]}
 
 

@@ -412,21 +412,22 @@ def test_action_table_layout_is_only_permitted_on_action_plans(tmp_path, policy_
 # --- reference_corrections ------------------------------------------------------------
 
 GOOD = ("    reference_corrections:\n"
-        "      - {page: 57, printed: BE/23/36, corrected: BE/23/38, evidence: XLSX}\n")
+        "      - {page: 57, printed: BE/23/36, corrected: BE/23/38, text_starts: Publish a review, evidence: XLSX}\n")
 
 
 def test_reference_corrections_default_to_none_and_accept_a_valid_list(tmp_path):
     assert _load(write_yaml(tmp_path, ACTION_PLAN))[0]["reference_corrections"] is None
     assert _load(write_yaml(tmp_path, ACTION_PLAN + GOOD))[0]["reference_corrections"] == [
-        {"page": 57, "printed": "BE/23/36", "corrected": "BE/23/38", "evidence": "XLSX"}]
+        {"page": 57, "printed": "BE/23/36", "corrected": "BE/23/38",
+         "text_starts": "Publish a review", "evidence": "XLSX"}]
 
 
 @pytest.mark.parametrize("bad", [
-    "[]", "x", "[{page: 57, printed: A, corrected: B}]",
-    "[{page: 0, printed: A, corrected: B, evidence: e}]",
+    "[]", "x", "[{page: 57, printed: A, corrected: B, evidence: e}]",  # no text_starts
+    "[{page: 0, printed: A, corrected: B, text_starts: t, evidence: e}]",
     "[{page: 5, printed: A, corrected: A, evidence: e}]",
-    "[{page: 5, printed: A, corrected: B, evidence: ''}]",
-    "[{page: 5, printed: A, corrected: B, evidence: e, extra: 1}]"])
+    "[{page: 5, printed: A, corrected: B, text_starts: t, evidence: ''}]",
+    "[{page: 5, printed: A, corrected: B, text_starts: t, evidence: e, extra: 1}]"])
 def test_reference_corrections_reject_malformed_entries(tmp_path, bad):
     with pytest.raises(ValueError, match="an-annex.*reference_corrections"):
         _load(write_yaml(tmp_path, ACTION_PLAN + f"    reference_corrections: {bad}\n"))

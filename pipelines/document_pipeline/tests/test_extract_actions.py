@@ -724,10 +724,10 @@ def misprint_page():
 
 
 CORRECTION = {"page": 57, "printed": "BE/23/36", "corrected": "BE/23/38",
-              "evidence": "XLSX Q4 sheet"}
+              "text_starts": "Training  template", "evidence": "XLSX Q4 sheet"}
 
 
-def test_a_correction_marks_the_repeated_reference_and_keeps_the_printed_cell():
+def test_a_correction_marks_the_matching_row_and_keeps_the_printed_cell():
     _, _, _, actions, _ = extract_document(
         clean_record([misprint_page()]), "doc", layout=LAYOUT, corrections=[CORRECTION])
     assert "reference_correction" not in actions[0]
@@ -743,3 +743,26 @@ def test_a_correction_not_found_on_its_page_is_fatal():
     with pytest.raises(ReferenceCorrectionNotFound, match="page 58"):
         extract_document(clean_record([misprint_page()]), "doc", layout=LAYOUT,
                         corrections=[wrong_page])
+
+
+def _fatal(rows_page, correction=CORRECTION):
+    import pytest
+    from steps.extract_actions.process import ReferenceCorrectionNotFound
+    with pytest.raises(ReferenceCorrectionNotFound, match="matches"):
+        extract_document(clean_record([rows_page]), "doc", layout=LAYOUT,
+                         corrections=[correction])
+
+
+def test_a_correction_is_fatal_when_only_the_genuine_row_is_present():
+    # a reissued PDF fixed the typo: the genuine BE/23/36 must not be renamed
+    page = table_block([HEADER, ["BE/23/36", "Climate maps", "s", "o", "Q1 2023", "L"]])
+    page["number"] = 57
+    _fatal(page)
+
+
+def test_a_correction_is_fatal_when_two_rows_match():
+    page = table_block([HEADER,
+                        ["BE/23/36", "Training template", "s", "o", "Q4 2023", "L"],
+                        ["BE/23/36", "training TEMPLATE two", "s", "o", "Q4 2023", "L"]])
+    page["number"] = 57
+    _fatal(page)

@@ -58,7 +58,7 @@
 - [x] 3.2e Edition year comes from the slug pattern `climate-action-plan-<year>-annex-of-actions`. A coded action-plan document whose slug doesn't match is a fatal error. Add a test.
 - [x] 3.3 Confirm Plan PDFs and progress reports still yield zero action rows.
 
-- [ ] 3.2k Match corrections by `text_starts` as well as `printed` (D8), replacing the last-occurrence rule. Verify: the CAP23 BE/23/38 correction still applies; a fixture where only the genuine BE/23/36 row remains is fatal and renames nothing; a fixture with two matching rows is fatal. Re-run the reconciliation: counts unchanged (445/126/82).
+- [x] 3.2k Match corrections by `text_starts` as well as `printed` (D8), replacing the last-occurrence rule. Verify: the CAP23 BE/23/38 correction still applies; a fixture where only the genuine BE/23/36 row remains is fatal and renames nothing; a fixture with two matching rows is fatal. Re-run the reconciliation: counts unchanged (445/126/82).
 
 ## 4. Reconciliation (D5)
 

@@ -169,15 +169,15 @@ def load_documents(path=DOCUMENTS_PATH, policy_ids=None) -> list:
                 raise ValueError(f"{name} {corrections!r}; must be a non-empty list")
             for item in corrections:
                 if (not isinstance(item, dict)
-                        or set(item) != {"page", "printed", "corrected", "evidence"}
+                        or set(item) != {"page", "printed", "corrected", "text_starts", "evidence"}
                         or isinstance(item["page"], bool)
                         or not isinstance(item["page"], int) or item["page"] < 1
                         or any(not isinstance(item[k], str) or not item[k].strip()
-                               for k in ("printed", "corrected", "evidence"))
+                               for k in ("printed", "corrected", "text_starts", "evidence"))
                         or item["printed"] == item["corrected"]):
                     raise ValueError(
                         f"{name} entry {item!r}; each must be "
-                        f"{{page (>= 1), printed, corrected, evidence}} with "
+                        f"{{page (>= 1), printed, corrected, text_starts, evidence}} with "
                         f"printed different from corrected")
             if policy_role != "action-plan":
                 raise ValueError(
