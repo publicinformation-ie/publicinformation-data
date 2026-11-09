@@ -101,9 +101,9 @@ def test_the_ttl_has_a_stampable_dct_modified():
     assert len(re.findall(r'(dct:modified\s+")[^"]*("\^\^xsd:date\s*;)', text)) == 1
 
 
-def test_the_ttl_declares_version_2_1_0_and_points_at_the_v2_1_0_files():
+def test_the_ttl_declares_version_3_0_0_and_points_at_the_v3_0_0_files():
     ttl = TTL_PATH.read_text()
-    assert 'owl:versionInfo "2.1.0"' in ttl
+    assert 'owl:versionInfo "3.0.0"' in ttl
     assert "v2.0.0/public-body-actions" not in ttl
     assert "v3.0.0/public-body-actions/actions.csv" in ttl
 
@@ -111,9 +111,10 @@ def test_the_ttl_declares_version_2_1_0_and_points_at_the_v2_1_0_files():
 def test_the_schema_action_properties_include_the_display_columns():
     schema = json.loads(SCHEMA_PATH.read_text())
     props = schema["$defs"]["Action"]["properties"]
-    for name in ("action_text_clean", "original_deadline_label",
-                 "original_deadline_milestones"):
+    for name in ("action_text_clean", "original_deadline_milestones"):
         assert props[name]["type"] == "string", name
+    # D10: null where the plan prints no deadline
+    assert props["original_deadline_label"]["type"] == ["string", "null"]
     obs = schema["$defs"]["ActionStatusObservation"]["properties"]
     assert obs["progress_text_clean"]["type"] == "string"
     for p in (props["original_deadline_precision"],
