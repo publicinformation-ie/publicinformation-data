@@ -85,6 +85,13 @@ The result was 42 resolved actions out of about 680 expected. Both fixes would c
 - Changing header selection for every document, which risks the published SMP extraction for no SMP benefit.
 - A separate CAP-only extractor, which duplicates the table reader.
 
+**Revised 2026-11-09 after a third layout.**
+A third table shape appeared in the real run: a multi-cell theme/KPI row (`Theme: … | 2025 KPI: … | 2025 Abatement Potential: …`), then `Measure: …`, then the lone "Actions" row, and only then the real header. `skip_subtitle_header` skips only lone-cell rows, so it can't handle this.
+
+Instead of adding a rule per shape, the opt-in now **declares the annex's own header**. `skip_subtitle_header` is replaced by `action_number_header`: the header is the first row with a cell that normalises to "action number", and every row above it is skipped as preamble. A table with no such row is a candidate for `carry_header`. This handles the lone "Actions" row and the theme/KPI rows with one rule. The closed set is now `action_number_header` and `carry_header`. Nothing was published with the old value, so the rename has no compatibility cost.
+
+**Accepted limit.** `carry_header` inherits only when the headerless table is on the page right after an action table and has the same column count. A headerless table that follows a non-action table, or that changes width, is not recovered. Such rows are not dropped silently: each reference-bearing row in a table that is not read is logged, and reconciliation (D5) flags any XLSX reference those rows would have supplied.
+
 ### D5. Reconcile against the XLSX annexes as a reference list, not as a source
 A review script reads each edition's quarterly XLSX annexes (openpyxl, already in the shared venv), collects their codes and action text, and compares them with the extracted actions:
 - every XLSX code for the edition must resolve to an extracted action (blocking);
