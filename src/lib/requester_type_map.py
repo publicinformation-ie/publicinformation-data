@@ -18,6 +18,7 @@ CANONICAL_REQUESTER_TYPES: list[str] = [
     'Staff',
     'Public',
     'Solicitor',
+    'Appellant',
 ]
 
 # Maps value.strip().lower() → canonical string.
@@ -29,6 +30,8 @@ _LOOKUP: dict[str, str] = {
     'other': 'Other',
     'others': 'Other',
     'applicant': 'Other',
+    # Appellant — a person appealing a licensing decision (e.g. ALAB)
+    'appellant': 'Appellant',
     # Member of the Public
     'member of the public': 'Member of the Public',
     'member of public': 'Member of the Public',

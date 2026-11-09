@@ -1,7 +1,7 @@
 {
   "metadata": {
     "step": "export_status",
-    "completed_at": "2026-11-05T12:32:49.949444+00:00"
+    "completed_at": "2026-11-06T10:17:49.023468+00:00"
   },
   "public_bodies": [
     {
@@ -761,7 +761,7 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 23,
+          "total": 24,
           "valid": 10,
           "failed": 0,
           "status": "success"
@@ -1645,15 +1645,15 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 0,
-          "valid": 0,
+          "total": 31,
+          "valid": 26,
           "failed": 0,
-          "status": "failed"
+          "status": "success"
         },
         "foi_requests": {
-          "valid": 0,
+          "valid": 1387,
           "errors": 0,
-          "status": "failed"
+          "status": "success"
         }
       },
       "public_body_name": "Department of Culture, Communications and Sport",
@@ -1791,15 +1791,15 @@
           "verified": true
         },
         "disclosure_files": {
-          "total": 0,
-          "valid": 0,
+          "total": 38,
+          "valid": 38,
           "failed": 0,
-          "status": "failed"
+          "status": "success"
         },
         "foi_requests": {
-          "valid": 0,
+          "valid": 2221,
           "errors": 0,
-          "status": "failed"
+          "status": "success"
         }
       },
       "public_body_name": "Department of Finance",
@@ -2049,12 +2049,12 @@
         },
         "disclosure_files": {
           "total": 33,
-          "valid": 33,
+          "valid": 34,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 597,
+          "valid": 601,
           "errors": 0,
           "status": "success"
         }
@@ -2757,12 +2757,12 @@
         },
         "disclosure_files": {
           "total": 10,
-          "valid": 10,
+          "valid": 19,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 375,
+          "valid": 710,
           "errors": 0,
           "status": "success"
         }
@@ -3003,7 +3003,7 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 13,
+          "total": 1,
           "valid": 1,
           "failed": 0,
           "status": "success"
@@ -3531,12 +3531,12 @@
         },
         "disclosure_files": {
           "total": 2,
-          "valid": 2,
+          "valid": 3,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 27,
+          "valid": 30,
           "errors": 0,
           "status": "success"
         }
@@ -3670,7 +3670,7 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 7,
+          "total": 6,
           "valid": 0,
           "failed": 0,
           "status": "success"
@@ -4793,13 +4793,13 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 3,
-          "valid": 2,
+          "total": 1,
+          "valid": 1,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 4,
+          "valid": 2,
           "errors": 0,
           "status": "success"
         }
@@ -5286,10 +5286,10 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 7,
+          "total": 0,
           "valid": 0,
           "failed": 0,
-          "status": "success"
+          "status": "failed"
         },
         "foi_requests": {
           "valid": 0,
@@ -5707,7 +5707,7 @@
         },
         "disclosure_files": {
           "total": 42,
-          "valid": 42,
+          "valid": 83,
           "failed": 0,
           "status": "success"
         },
@@ -6689,13 +6689,13 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 49,
-          "valid": 38,
+          "total": 50,
+          "valid": 39,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 717,
+          "valid": 743,
           "errors": 0,
           "status": "success"
         }
@@ -7744,12 +7744,12 @@
         },
         "disclosure_files": {
           "total": 35,
-          "valid": 34,
+          "valid": 35,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 51,
+          "valid": 53,
           "errors": 0,
           "status": "success"
         }
@@ -8094,7 +8094,7 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 3,
+          "total": 2,
           "valid": 0,
           "failed": 0,
           "status": "success"
@@ -8727,7 +8727,7 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 23,
+          "total": 25,
           "valid": 8,
           "failed": 0,
           "status": "success"
@@ -8908,15 +8908,15 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 0,
-          "valid": 0,
+          "total": 9,
+          "valid": 9,
           "failed": 0,
-          "status": "failed"
+          "status": "success"
         },
         "foi_requests": {
-          "valid": 0,
+          "valid": 19,
           "errors": 0,
-          "status": "failed"
+          "status": "success"
         }
       },
       "public_body_name": "Aquaculture Licences Appeals Board",
@@ -8978,7 +8978,7 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 13,
+          "total": 14,
           "valid": 0,
           "failed": 0,
           "status": "success"
@@ -9608,13 +9608,13 @@
           "status": "success"
         },
         "disclosure_files": {
-          "total": 7,
-          "valid": 7,
+          "total": 8,
+          "valid": 8,
           "failed": 0,
           "status": "success"
         },
         "foi_requests": {
-          "valid": 127,
+          "valid": 125,
           "errors": 0,
           "status": "success"
         }
