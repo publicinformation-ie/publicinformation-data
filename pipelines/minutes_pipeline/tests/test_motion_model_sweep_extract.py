@@ -66,3 +66,43 @@ def test_invalid_effort_level_is_fail_closed_error():
     arm = run_combo([_SAMPLE_FILE], model=_MODEL, effort="low", api_fn=_STUB_OK
                     )[_SAMPLE_FILE["file_url"]]
     assert arm["motions"] is None and "low" in (arm["error"] or "")
+
+
+def test_run_live_checkpoints_after_gold_and_each_combo(monkeypatch):
+    """on_arm is handed a partial snapshot after gold and every combo, so a
+    live run can be checkpointed per arm (interruption loses at most one)."""
+    monkeypatch.setattr(_mod, "GOLD_ARM", (_MODEL, None))
+    monkeypatch.setattr(_mod, "GRID", [(_MODEL, None)])
+    snaps = []
+    _mod.run_live({"files": [_SAMPLE_FILE]}, cache={}, api_fn=_STUB_OK,
+                  on_arm=lambda snap: snaps.append(
+                      (sorted(snap["gold"]), sorted(snap["combos"]))))
+    assert len(snaps) == 2
+    assert snaps[0][1] == []
+    assert snaps[1][1] == [_mod.combo_key(_MODEL, None)]
+
+
+def test_run_combo_calls_on_file_per_fresh_response():
+    """on_file fires once per freshly-computed file, carrying its record -
+    the hook the live run uses to flush durable state per response."""
+    seen = []
+    run_combo([_SAMPLE_FILE], model=_MODEL, effort=None, api_fn=_STUB_OK,
+              on_file=lambda url, rec: seen.append((url, rec)))
+    assert [u for u, _ in seen] == [_SAMPLE_FILE["file_url"]]
+    assert seen[0][1]["error"] is None
+
+
+def test_run_live_seeds_working_dicts_from_prior_snapshot(monkeypatch):
+    """A resumed run's per-response checkpoints start from the prior
+    arms.json content, so early flushes never clobber completed arms."""
+    monkeypatch.setattr(_mod, "GOLD_ARM", (_MODEL, None))
+    monkeypatch.setattr(_mod, "GRID", [])
+    prior = {"gold": {"https://example.ie/old.pdf": {"motions": []}},
+             "combos": {}}
+    snaps = []
+    gold, _, _ = _mod.run_live({"files": [_SAMPLE_FILE]}, cache={},
+                               api_fn=_STUB_OK, prior=prior,
+                               on_file=snaps.append)
+    assert "https://example.ie/old.pdf" in gold
+    assert snaps and all("https://example.ie/old.pdf" in s["gold"]
+                         for s in snaps)

@@ -7,6 +7,8 @@ Run from minutes_pipeline/ (MANUAL ONLY - issues live LLM calls):
 Calls the real `steps/extract_motions/process.py::extract_one` per
 (file, model, effort) with model+effort injected - the exact system/user
 prompts production uses - and caches results in `arms.json` (+ `errors.json`).
+Every single response is flushed durably to disk (flush + fsync) the moment
+it completes, so an interrupted run loses at most the one in-flight call.
 Re-runs skip completed calls via `cache_key`; `compare.py` and `report.py`
 are fully offline. Tests use stubbed `api_fn` only (no live calls in CI).
 
@@ -26,6 +28,7 @@ import argparse
 import datetime
 import hashlib
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -43,10 +46,14 @@ _SAMPLE_JSON = _HERE / "sample.json"
 _ARMS_JSON = _HERE / "arms.json"
 _ERRORS_JSON = _HERE / "errors.json"
 
-#: Candidate models (spec section 3, live price list 2026-10-07).
+#: Candidate models (spec section 3, refreshed 2026-10-16: gpt-6-luna and
+#: muse-spark-1.3-contributor are Responses-only / account-blocked on this
+#: key, so mimo-v2.6-flash and qwen3.7-plus take their slots. minimax-m3 was
+#: tried and dropped: it answers the production prompt with <think> prose
+#: instead of JSON (2/2 fails), so it would score ~100% failure_rate.
 MODELS = (
-    "opencode-go/gpt-6-luna",
-    "opencode-go/muse-spark-1.3-contributor",
+    "opencode-go/mimo-v2.6-flash",
+    "opencode-go/qwen3.7-plus",
     "opencode-go/deepseek-v4.1-flash",
     "opencode-go/glm-5.3-flash",
     "opencode-go/qwen3.8-flash",
@@ -62,18 +69,34 @@ GRID = [(model, effort) for model in MODELS for effort in EFFORTS]
 #: Gold arm: pro model at default effort.
 GOLD_ARM = (GOLD_MODEL, None)
 
-#: In / Out $/M from the spec table (docs/superpowers/specs/...-design.md #3).
+#: In / Out $/M from the gateway pricing (opencode.ai/docs/zen, checked
+#: 2026-10-16). Exception: mimo-v2.6-flash has no paid row there (only the
+#: Free variant) — priced at Xiaomi's list $0.14/$0.28, flagged here so the
+#: Pareto table's absolute $ for that arm carries a non-gateway source.
 COST_PER_M_USD = {
-    "opencode-go/gpt-6-luna": (0.10, 0.50),
-    "opencode-go/muse-spark-1.3-contributor": (0.10, 0.20),
-    "opencode-go/deepseek-v4.1-flash": (0.15, 0.60),
+    "opencode-go/mimo-v2.6-flash": (0.14, 0.28),
+    "opencode-go/qwen3.7-plus": (0.40, 1.60),
+    "opencode-go/deepseek-v4.1-flash": (0.30, 1.20),
     "opencode-go/glm-5.3-flash": (0.15, 0.50),
     "opencode-go/qwen3.8-flash": (0.15, 0.47),
-    "opencode-go/deepseek-v4-pro": (0.66, 1.98),
+    "opencode-go/deepseek-v4-pro": (1.74, 3.48),
 }
 
 #: Chars per estimated token (deterministic local heuristic; see module doc).
 _CHARS_PER_TOKEN = 4
+
+
+def _durable_write(path: Path, text: str) -> None:
+    """Write `text` to `path` with flush + fsync before close.
+
+    A plain write can sit in stdio or OS buffers and die with the process;
+    flush + fsync makes each response survive a process kill (and, via
+    fsync, a machine crash) the moment its call completes.
+    """
+    with open(path, "w", encoding="utf-8") as fh:
+        fh.write(text)
+        fh.flush()
+        os.fsync(fh.fileno())
 
 
 def combo_key(model: str, effort: str | None) -> str:
@@ -177,7 +200,7 @@ def _run_one(file: dict, model: str, effort: str | None, api_fn=None) -> dict:
 
 
 def run_combo(files: list, model: str, effort: str | None = None,
-              api_fn=None, cache: dict | None = None) -> dict:
+              api_fn=None, cache: dict | None = None, on_file=None) -> dict:
     """Run one model x effort combo over `files` (sample entries).
 
     Returns {file_url: record} where each record is {file_url, cache_key,
@@ -187,6 +210,10 @@ def run_combo(files: list, model: str, effort: str | None = None,
     propagate. Cache hits (by `cache_key`) are returned as stored, except a
     cached record missing tokens/cost is treated as stale and recomputed -
     missing cost is an error, never zero-filled.
+
+    `on_file`, when given, is called as `on_file(file_url, record)` after
+    each freshly-computed response (cache hits are already durable on disk
+    and don't refire), so the caller can flush durable state per response.
     """
     results = {}
     for file in files:
@@ -198,6 +225,8 @@ def run_combo(files: list, model: str, effort: str | None = None,
                 results[file_url] = hit
                 continue
         results[file_url] = _run_one(file, model, effort, api_fn=api_fn)
+        if on_file is not None:
+            on_file(file_url, results[file_url])
     return results
 
 
@@ -249,33 +278,71 @@ def _load_cache(arms_path: Path) -> dict:
     return cache
 
 
-def run_live(sample: dict, cache: dict | None, api_fn=None) -> tuple:
+def run_live(sample: dict, cache: dict | None, api_fn=None, on_arm=None,
+             on_file=None, prior: dict | None = None) -> tuple:
     """Run gold + full GRID over the sample; returns (gold, combos, errors).
 
     `api_fn=None` uses the real backend (live spend). Callers pass a stubbed
     `api_fn` only in tests; the manual 220-call run leaves it None.
+
+    `on_arm`, when given, is called with a partial ``{"gold": ..., "combos":
+    ..., "errors": ...}`` snapshot after gold and after each combo finishes.
+    `on_file`, when given, is called with the same snapshot shape after
+    EVERY single response, so the caller can flush durable state per call
+    and an interrupted run loses at most the one in-flight request.
+
+    `prior` seeds the working dicts from a previous snapshot (e.g. loaded
+    from arms.json), so per-response checkpoints written by `on_file` never
+    clobber arms completed by an earlier run. Error entries are stamped at
+    append time (one timestamp each, not one per run).
     """
     files = sample["files"]
-    errors = []
+    errors: list = []
+    gold: dict = dict((prior or {}).get("gold") or {})
+    combos: dict = {k: dict(v or {}) for k, v in ((prior or {}).get("combos") or {}).items()}
+
+    def _stamp(entry: dict) -> dict:
+        return {"step": "motion-model-sweep-extract",
+                "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                **entry}
+
+    def _snap() -> dict:
+        return {"gold": gold, "combos": combos, "errors": errors}
+
     gold_model, gold_effort = GOLD_ARM
     print(f"gold {combo_key(gold_model, gold_effort)}: {len(files)} files")
-    gold = run_combo(files, gold_model, gold_effort, api_fn=api_fn, cache=cache)
-    for url, rec in gold.items():
+
+    def _on_gold_file(file_url: str, rec: dict) -> None:
+        gold[file_url] = rec
         if rec["error"] is not None:
-            errors.append({"file_url": url, "combo": "gold",
-                           "model": gold_model, "effort": gold_effort,
-                           "error": rec["error"]})
-    combos = {}
+            errors.append(_stamp({"file_url": file_url, "combo": "gold",
+                                  "model": gold_model, "effort": gold_effort,
+                                  "error": rec["error"]}))
+        if on_file is not None:
+            on_file(_snap())
+
+    run_combo(files, gold_model, gold_effort, api_fn=api_fn, cache=cache,
+              on_file=_on_gold_file)
+    if on_arm is not None:
+        on_arm(_snap())
     for model, effort in GRID:
         key = combo_key(model, effort)
         print(f"combo {key}: {len(files)} files")
-        recs = run_combo(files, model, effort, api_fn=api_fn, cache=cache)
-        combos[key] = recs
-        for url, rec in recs.items():
+
+        def _on_combo_file(file_url: str, rec: dict, _key=key,
+                           _model=model, _effort=effort) -> None:
+            combos.setdefault(_key, {})[file_url] = rec
             if rec["error"] is not None:
-                errors.append({"file_url": url, "combo": key,
-                               "model": model, "effort": effort,
-                               "error": rec["error"]})
+                errors.append(_stamp({"file_url": file_url, "combo": _key,
+                                      "model": _model, "effort": _effort,
+                                      "error": rec["error"]}))
+            if on_file is not None:
+                on_file(_snap())
+
+        run_combo(files, model, effort, api_fn=api_fn, cache=cache,
+                  on_file=_on_combo_file)
+        if on_arm is not None:
+            on_arm(_snap())
     return gold, combos, errors
 
 
@@ -289,14 +356,28 @@ def main() -> int:
     cache = {} if args.force else _load_cache(_ARMS_JSON)
     if cache:
         print(f"cache: {len(cache)} records loaded from {_ARMS_JSON.name}")
+    prior: dict = {}
+    if not args.force and _ARMS_JSON.exists():
+        try:
+            loaded = json.loads(_ARMS_JSON.read_text())
+            prior = loaded if isinstance(loaded, dict) else {}
+        except ValueError:
+            prior = {}
 
-    gold, combos, errors = run_live(sample, cache)
+    def _checkpoint(snapshot: dict) -> None:
+        # Durable after EVERY response (flush + fsync on both files): an
+        # interrupted live run loses at most the single in-flight call and
+        # resumes via cache instead of paying for the grid again.
+        _durable_write(_ARMS_JSON, json.dumps({
+            "gold": snapshot.get("gold") or {},
+            "combos": snapshot.get("combos") or {},
+        }, indent=2))
+        _durable_write(_ERRORS_JSON, json.dumps(snapshot.get("errors") or [], indent=2))
 
-    stamped = [{"step": "motion-model-sweep-extract",
-                "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-                **e} for e in errors]
-    _ARMS_JSON.write_text(json.dumps({"gold": gold, "combos": combos}, indent=2))
-    _ERRORS_JSON.write_text(json.dumps(stamped, indent=2))
+    gold, combos, errors = run_live(sample, cache, prior=prior,
+                                    on_arm=_checkpoint, on_file=_checkpoint)
+
+    _checkpoint({"gold": gold, "combos": combos, "errors": errors})
 
     n_files = len(sample["files"])
     n_arms = 1 + len(combos)

@@ -16,12 +16,23 @@ is not testable on `/go`, so only default (thinking enabled) vs `"none"`
 
 | Model | In / Out $/M |
 |---|---|
-| `opencode-go/gpt-6-luna` | 0.10 / 0.50 |
-| `opencode-go/muse-spark-1.3-contributor` | 0.10 / 0.20 |
-| `opencode-go/deepseek-v4.1-flash` | 0.15 / 0.60 |
+| `opencode-go/mimo-v2.6-flash` | 0.14 / 0.28 (Xiaomi list; gateway page lists only the Free variant) |
+| `opencode-go/qwen3.7-plus` | 0.40 / 1.60 |
+| `opencode-go/deepseek-v4.1-flash` | 0.30 / 1.20 |
 | `opencode-go/glm-5.3-flash` | 0.15 / 0.50 |
 | `opencode-go/qwen3.8-flash` | 0.15 / 0.47 |
-| gold: `opencode-go/deepseek-v4-pro` (default) | 0.66 / 1.98 |
+| gold: `opencode-go/deepseek-v4-pro` (default) | 1.74 / 3.48 |
+
+Prices refreshed 2026-10-16 from `opencode.ai/docs/zen` (deepseek moved to
+peak pricing since the 2026-10-07 spec table).
+
+Replaced 2026-10-16: `gpt-6-luna` and `muse-spark-1.3-contributor` are
+Responses-only on chat (`ModelProtocolUnsupported`) and account-blocked on
+the Responses route (402 funds / 403 free-tier), so they left the grid.
+`mimo-v2.6-flash` (new family, OK 1 motion in 4s on the smoke file) and
+`qwen3.7-plus` (second qwen arm, OK 1 motion in 33s) take their slots.
+`minimax-m3` was tried and dropped: it answers the production prompt with
+`<think>` prose instead of JSON (2/2 smoke fails).
 
 Rows are `<model>@default` / `<model>@none`; `baseline` is the frozen old
 production output (regression guard, null costs, excluded from cost ranking).
@@ -75,3 +86,7 @@ uv run python experiments/2026-10-07-motion-model-sweep/report.py
 - **Status:** live grid not yet run — no `arms.json`/`results.json` on disk
   (both untracked when generated). `report.py` is covered by a fixture test
   until real results exist.
+- **Durability:** every response is flushed to `arms.json` + `errors.json`
+  (flush + fsync) the moment its call completes, seeded from any prior
+  snapshot — a killed run loses at most the one in-flight call and resumes
+  via `cache_key` without recomputing anything.
