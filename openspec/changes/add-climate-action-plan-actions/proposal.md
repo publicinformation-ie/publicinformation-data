@@ -10,6 +10,7 @@ Publishing the declared actions is blocked on one decision only, D-A below. The 
 
 - Curate the three **Annex of Actions PDFs** (`climate-action-plan-<year>-annex-of-actions`) as `policy_role: action-plan`, making them the corpus's action sources. Plan PDFs and progress reports stay non-sources, and reports keep `reports_on` and `status_source: annex` unchanged.
 - **Change the type of `action_number` from integer to text**, carrying the reference the plan prints: `EL/23/1`, or `12` for ordinal plans. This is a **BREAKING** change: `public-body-actions` goes **2.1.0 → 3.0.0**. Every existing `action_id` and action URI stays byte-identical, because both are built from the reference's text, which is the same for ordinal plans.
+- Add `action_reference_printed` (the reference exactly as printed). The recognised `(TF)` flag suffix is stripped from identity but kept here (design D2a).
 - Recognise CAP action codes in identity resolution, alongside leading ordinals. Rows that can't be read are excluded and logged, never numbered positionally.
 - Action URIs keep the code's slashes as path segments (`/action/<slug>/EL/23/6/A`). References are restricted to ASCII letters, digits and `/`.
 - Sub-actions publish as actions in their own right, with a new `part_of` relationship to a published parent. This adds a `structure` relationship family to the vocabulary.

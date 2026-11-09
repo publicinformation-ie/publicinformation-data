@@ -39,7 +39,16 @@ The facts this design rests on were read from the code on 2026-11-09:
 `/action/<slug>/EL/23/6/A`. A sub-action's URI sits beneath its parent's, and nothing is percent-encoded (`%2F` in path segments is handled inconsistently by static hosts and proxies). References are restricted to `[A-Za-z0-9]` segments joined by `/`. Anything else is excluded and logged, never escaped.
 **Rejected:** percent-encoding (`EL%2F23%2F1`), which is hard to read, ambiguous to normalise, and not what a reader would type.
 
+### D2a. `(TF)` is a flag, stripped from identity and kept in `action_reference_printed` (decided 2026-11-09)
+`source-notes.md` found about 60 CAP23/CAP24 references printed with a `(TF)` suffix (`TR/23/46(TF)`, once `TR/24/4 (TF)`). The same action appears with and without it across workbooks, so it is a flag, not identity. Identity uses the reference with a *recognised* flag suffix removed; the only recognised flag is `(TF)`. A new field present on every action, `action_reference_printed`, keeps the reference as printed (whitespace-normalised), so the flag is not lost. For ordinal plans it equals `action_number`. It ships in the same 3.0.0. Unrecognised parenthesised suffixes are not stripped, so they fail the D2 character set and are excluded and logged.
+**Rejected:**
+- Widening the character set to allow `(` `)`, which forces URI escaping and splits one action into two identities.
+- Excluding the ~60 rows.
+- Stripping without keeping the printed form, which would lose the flag's meaning (still to be confirmed from the annex key in 0.1).
+
 ### D3. Sub-actions are actions; `part_of` records the hierarchy
+**Letter attached to the number (decided 2026-11-09).** Three references print the letter without a slash (`EL/23/10A`, `EL/23/10B`, `LU/23/7A`). They are published as printed, for citability, and are still under the D2 character set. For `part_of`, the parent of a reference ending in a letter, whether in its own segment or attached to the final number, is that reference with the letter removed.
+
 Each sub-action is its own row. When the parent reference is itself a published action of the same edition, a relationship `part_of` (new `family: structure`, `method: extracted`, since it comes from the reference itself) links child to parent. The existing families describe lineage across editions or references between plans; neither describes containment, so overloading `split_into` would be wrong. The vocabulary addition ships in the same 3.0.0.
 **Open check (0.1):** whether CAP annexes print parent rows with their own text, or only sub-actions. If only sub-actions, no `part_of` rows are emitted, and the hierarchy is readable from the reference and URI alone.
 

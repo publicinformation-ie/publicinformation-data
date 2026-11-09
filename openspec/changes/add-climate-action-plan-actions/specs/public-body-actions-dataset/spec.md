@@ -25,6 +25,25 @@ A published action SHALL be identified by its plan edition together with the act
 - **WHEN** an action row carries no reference that can be read confidently
 - **THEN** the row is excluded, an error names the document, page and raw cell text, and no number is invented for it
 
+### Requirement: Printed flags are separated from identity and preserved
+
+A reference printed with a recognised flag suffix (currently only `(TF)`) SHALL be identified without the flag. Every published action SHALL carry `action_reference_printed`: the reference as printed, whitespace-normalised. An unrecognised suffix SHALL NOT be stripped, and is subject to the reference character rules. Recognising a new flag is a reviewed change to this requirement.
+
+#### Scenario: Flagged reference
+
+- **WHEN** an annex prints `TR/23/46(TF)` or `TR/24/4 (TF)`
+- **THEN** the action is identified as `TR/23/46` (or `TR/24/4`) and `action_reference_printed` is `TR/23/46(TF)` (or `TR/24/4 (TF)`)
+
+#### Scenario: Same action printed both ways
+
+- **WHEN** one source prints `TR/23/46(TF)` and another prints `TR/23/46`
+- **THEN** both resolve to the single action `TR/23/46`
+
+#### Scenario: Unrecognised suffix
+
+- **WHEN** a reference carries a parenthesised suffix other than a recognised flag, such as `EL/23/4(X)`
+- **THEN** it is not stripped, and the row is excluded and logged with the raw reference
+
 ### Requirement: Published identity is permanent
 
 Once published, an action's `action_id` and URI SHALL NOT change on re-extraction or republication. A change to how identity is represented SHALL be published as a contract change at the version severity it warrants.
@@ -55,12 +74,17 @@ An action's URI SHALL be `{base}/action/{plan_slug}/{reference}`, where each `/`
 
 ### Requirement: Sub-actions are actions in their own right
 
-A sub-action (for example `EL/23/6/A`) SHALL be published as its own action. Where its parent reference (`EL/23/6`) is itself a published action of the same edition, the dataset SHALL record a `part_of` relationship from the sub-action to the parent. A sub-action whose parent is not published SHALL still publish, without that relationship.
+A sub-action (a reference ending in a letter, as its own segment or attached to the final number) SHALL be published as its own action, with its reference as printed. Its parent is the reference with that letter removed. Where the parent is a published action of the same edition, the dataset SHALL record a `part_of` relationship from sub-action to parent; otherwise the sub-action publishes without one.
 
 #### Scenario: Parent published
 
 - **WHEN** both `EL/23/6` and `EL/23/6/A` are published actions of one edition
 - **THEN** a `part_of` relationship links `…#EL/23/6/A` to `…#EL/23/6`
+
+#### Scenario: Letter attached to the number
+
+- **WHEN** `EL/23/10A` and `EL/23/10` are both published actions of one edition
+- **THEN** `EL/23/10A` keeps its printed reference in its identity and URI, and a `part_of` relationship links it to `…#EL/23/10`
 
 #### Scenario: Parent not published
 
@@ -106,12 +130,12 @@ Before a plan edition's actions first publish, they SHALL be reconciled against 
 
 ### Requirement: Existing editions are unaffected
 
-Adding a plan edition SHALL NOT change the actions, status observations or relationships already published for any other edition, apart from the representation change to `action_number` recorded in this contract.
+Adding a plan edition SHALL NOT change the actions, status observations or relationships already published for any other edition, apart from the representation changes recorded in this contract: `action_number` becoming text and the addition of `action_reference_printed`.
 
 #### Scenario: Transport editions after the CAP editions are added
 
 - **WHEN** the dataset is republished with the CAP23–CAP25 editions added
-- **THEN** every transport action, observation and relationship row is identical to the previous release, except that `action_number` is text
+- **THEN** every transport action, observation and relationship row is identical to the previous release, except that `action_number` is text and each action gains `action_reference_printed` (equal to its `action_number` for ordinal plans)
 
 ### Requirement: Breaking contract changes are versioned and staged
 

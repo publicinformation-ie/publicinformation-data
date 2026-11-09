@@ -13,13 +13,14 @@
 ## 2. Identity and contract (actions_pipeline, schema, transform)
 
 - [ ] 2.1 Recognise CAP codes as references in identity resolution alongside leading ordinals, and publish `action_number` as text. Verify with fixtures for an ordinal row (`"12"`), a coded row, a sub-action row, and an unreadable row (excluded and logged, no number minted).
+- [ ] 2.1a Strip the recognised `(TF)` flag (with or without a preceding space) from identity, and publish every action's printed reference in `action_reference_printed` (D2a). Verify with fixtures: `TR/23/46(TF)` → `TR/23/46`; `TR/24/4 (TF)` → `TR/24/4`; the same action printed with and without the flag → one action; `EL/23/4(X)` → excluded and logged; an ordinal row gets `action_reference_printed` == `action_number`.
 - [ ] 2.2 Enforce the reference character set (`[A-Za-z0-9]` segments joined by `/`). Verify that a fixture with a stray character is excluded and logged.
 - [ ] 2.3 Add the edition-year check (D4). Verify that a 2023-coded row in a 2025 annex fixture is excluded with the document, page and reference logged.
 - [ ] 2.4 Emit `part_of` (`family: structure`, `method: extracted`) when a sub-action's parent is published in the same edition (D3). Verify both the parent-present and parent-absent cases.
-- [ ] 2.5 Update `public/schemas/public-body-actions.schema.json`: `action_number` becomes a string matching the reference pattern, and the `relationship`/`family` enums gain `part_of`/`structure`. Update any published vocabulary to match.
+- [ ] 2.5 Update `public/schemas/public-body-actions.schema.json`: `action_number` becomes a string matching the reference pattern, `action_reference_printed` (string, required) is added, and the `relationship`/`family` enums gain `part_of`/`structure`. Update any published vocabulary to match.
 - [ ] 2.6 Confirm `transform_public_body_actions.py` builds slash-preserving URIs (D2). Verify that a coded action's URI ends `/action/<slug>/EL/23/6/A`.
 - [ ] 2.7 Confirm the 29 `to_plan_hint: CAP` relationships keep a null `to_action_id` after CAP editions are present. Add a test.
-- [ ] 2.8 Regenerate transport output and verify: CSVs byte-identical to 2.1.0; JSON-LD differing only in `action_number` type; every `action_id` and `@id` identical.
+- [ ] 2.8 Regenerate transport output and verify: CSVs identical to 2.1.0 apart from the added `action_reference_printed` column; JSON-LD differing only in `action_number` type and the added field; every `action_id` and `@id` identical.
 
 ## 3. Corpus curation
 
