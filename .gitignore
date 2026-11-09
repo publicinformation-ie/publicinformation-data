@@ -26,8 +26,8 @@ pipelines/foi_pipeline/steps/normalize_disclosure_cells/output.json
 **/dirty_ids.json
 **/failed_ids.json
 **/quarantined_ids.json
-.env.admin
-.env.github
+# Local env files (secrets — never commit; .env.*.example stays tracked as a template)
+.env*
 local.db
 
 # Temp/scratch files
