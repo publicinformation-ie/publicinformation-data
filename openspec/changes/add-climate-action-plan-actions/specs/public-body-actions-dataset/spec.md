@@ -152,6 +152,20 @@ An action row whose action text is printed as "-" SHALL publish the action text 
 - **WHEN** `EL/23/6/A` prints "-" as its action text beneath `EL/23/6`
 - **THEN** `EL/23/6/A` publishes with the action text of `EL/23/6`
 
+### Requirement: The deadline label is what the plan prints
+
+An action's `original_deadline_label` SHALL be its Timeline text as printed, whitespace-normalised, and SHALL be null when the plan prints no deadline for it ("-" or an empty cell). A label that can't be parsed into a date SHALL still publish, with a null precision and date.
+
+#### Scenario: Recurring deadline
+
+- **WHEN** an action's Timeline cell prints "Q1 and Q3"
+- **THEN** its `original_deadline_label` is "Q1 and Q3" and its deadline precision is null
+
+#### Scenario: No deadline printed
+
+- **WHEN** a headline action's Timeline cell prints "-" and its sub-actions carry dates
+- **THEN** its `original_deadline_label` is null, and it doesn't inherit a sub-action's or parent's deadline
+
 ### Requirement: Extracted actions are reconciled before they publish
 
 Before a plan edition's actions first publish, they SHALL be reconciled against an independent list of that edition's actions published by the State, where one exists, by reference and by text. Every reference on the independent list SHALL resolve to an extracted action, and every text mismatch SHALL be either fixed or recorded with its reason. The edition's action count SHALL be pinned on its curated entry, and publication SHALL fail when the extracted count differs from the pin.

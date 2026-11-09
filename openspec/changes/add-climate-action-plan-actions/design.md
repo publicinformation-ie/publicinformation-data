@@ -105,6 +105,14 @@ CAP23 p.57 prints BE/23/38 as `BE/23/36`, which duplicates the row above. The XL
 
 87 CAP23 sub-action rows print "-" in the Actions cell, meaning "same as the parent". The published `action_text` takes the parent row's text in the same table, which matches the XLSX on those rows. The relationship is still recorded by `part_of`. A "-" row with no parent row in the same table is excluded and logged, rather than publishing a bare "-".
 
+### D10. The deadline label is the printed timeline, or null when nothing is printed (decided 2026-11-09)
+
+The 2.x contract required a non-empty `original_deadline_label` on every action, which no SMP row ever broke. 24 CAP rows do:
+- 19 CAP23 headline rows print "-" in the Timeline cell (their sub-actions carry the dates), and BE/23/34 has an empty cell;
+- 4 rows print a recurrence or a quarter without a year: PS/23/5 and PS/24/5 "Q1 and Q3", CP/23/6/A "Q2 and Q4 Annually", IN/25/3 "Q4".
+
+The label is the Timeline text as printed, whitespace-normalised, whenever there is any. `original_deadline_precision` and the parsed date are null when it can't be parsed. The label is null when the cell is "-" or empty. The 3.0.0 schema and README make the label nullable and say that null means the plan prints no deadline for that action. A "-" Timeline cell is not inherited from the parent (unlike D9's action text), because the parent's deadline isn't the sub-action's. No rows are excluded, so the pinned counts stand.
+
 ### D5. Reconcile against the XLSX annexes as a reference list, not as a source
 A review script reads each edition's quarterly XLSX annexes (openpyxl, already in the shared venv), collects their codes and action text, and compares them with the extracted actions:
 - every XLSX code for the edition must resolve to an extracted action (blocking);
