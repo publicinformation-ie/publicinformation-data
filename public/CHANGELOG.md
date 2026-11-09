@@ -21,6 +21,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Documented
 - Documented the `parent_id` / `government_department_id` distinction (README, schema descriptions); no field or version change.
 
+## [public-body-actions 3.0.0] - 2026-11-09
+
+### Changed (breaking)
+- `action_number` changes from integer to text (coded references such as `EL/23/6/A`). Existing transport `action_id` values are unchanged.
+- `original_deadline_label` may be null where a plan prints no deadline; `original_deadline_precision` is null where the printed timeline cannot be parsed, in which case the label holds the printed text.
+
+### Added
+- Climate Action Plan 2023, 2024 and 2025 annexes of actions: 445, 126 and 82 actions (653 in all). CAP 2024 and CAP 2025 hold only new high-impact actions, not each plan's full roadmap.
+- New `actions.csv` fields `action_reference_printed` and `action_flags`.
+- New relationship value `part_of` and new family value `structure`.
+
+### Fixed
+- Transport text fields carry the table ligature repairs.
+- "-" sub-action text is inherited from the parent action.
+- One curated misprint correction (BE/23/38).
+
 ## [public-body-actions 2.1.0] - 2026-11-07
 
 ### Added
