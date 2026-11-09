@@ -29,7 +29,7 @@
 - [x] 2.5 Prepare the contract update (schema: `action_number` string matching the reference pattern; `action_reference_printed` and `action_flags` required; `relationship`/`family` enums gain `part_of`/`structure`; CSVW columns) as `public-contract.patch`. It is applied in 5.2a, because it edits `public/`.
 - [x] 2.6 Confirm `transform_public_body_actions.py` builds slash-preserving URIs (D2). Verify that a coded action's URI ends `/action/<slug>/EL/23/6/A`.
 - [x] 2.7 Confirm the 29 `to_plan_hint: CAP` relationships keep a null `to_action_id` after CAP editions are present. Add a test.
-- [ ] 2.8 Regenerate transport output and verify against 2.1.0:
+- [x] 2.8 Regenerate transport output and verify against 2.1.0:
   - every `action_id`, `@id`, `action_number` value, observation key and relationship row is identical;
   - the only new fields are `action_reference_printed` and `action_flags`;
   - every **text** difference (`action_text`, `output`, `progress_text`, …) is a PDF-extraction repair from the table ligature fix (PR #11), shown by re-running the pre-ligature-fix extraction or by a classified diff listing each changed row.
@@ -38,11 +38,11 @@
 ## 3. Corpus curation
 
 - [x] 3.1 Add the three `climate-action-plan-<year>-annex-of-actions` entries (`role: plan`, `policy_role: action-plan`, `policy_id: climate-action-plan`, publisher DCEE, `public_body_id: 1198`), with titles from the PDFs and dates from the pages. Verify that `load_documents()` passes and the `documents.yml` diff contains only these entries.
-- [ ] 3.2a Add an opt-in `action_table_layout` field to `documents.yml`, validated in `documents.py`, permitted only on `policy_role: action-plan` entries, with a closed set of flags (D7): `skip_subtitle_header` (a lone-cell row such as "Actions" is never chosen as the header) and `carry_header` (a headerless table continuing the previous page's table inherits its header). Implement both in `extract_actions` behind the field only. Verify with fixtures for each flag, an unknown flag (fatal), the field on a non-action-plan entry (fatal), and a table without the field read exactly as today.
-- [ ] 3.2b Blast radius: rerun `extract_actions` and the actions pipeline over **every** curated action plan. Verify that the SMP 2022–2025 and 2026–2030 outputs are byte-identical to the run before 3.2a.
-- [ ] 3.2c Set `action_table_layout` on the three annex entries, run each annex scoped (`--doc <slug> --force --stop-on-error`), and triage `errors.json` per step. Target per edition: `UnresolvedActionNumber` limited to rows whose reference is genuinely unreadable, each listed. Indicative row counts from source-notes: about 410 for CAP23, 126 for CAP24, 146 for CAP25 (82 after legacy exclusion).
-- [ ] 3.2d Annex document bundles: confirm whether `extract_actions` still runs on a `hold`-declared document. If it does, hold the 2023 and 2025 annex bundles (InvalidStructure), as the 2023 Plan is held. If it doesn't, stop and report.
-- [ ] 3.2e Edition year comes from the slug pattern `climate-action-plan-<year>-annex-of-actions`. A coded action-plan document whose slug doesn't match is a fatal error. Add a test.
+- [x] 3.2a Add an opt-in `action_table_layout` field to `documents.yml`, validated in `documents.py`, permitted only on `policy_role: action-plan` entries, with a closed set of flags (D7): `skip_subtitle_header` (a lone-cell row such as "Actions" is never chosen as the header) and `carry_header` (a headerless table continuing the previous page's table inherits its header). Implement both in `extract_actions` behind the field only. Verify with fixtures for each flag, an unknown flag (fatal), the field on a non-action-plan entry (fatal), and a table without the field read exactly as today.
+- [x] 3.2b Blast radius: rerun `extract_actions` and the actions pipeline over **every** curated action plan. Verify that the SMP 2022–2025 and 2026–2030 outputs are byte-identical to the run before 3.2a.
+- [ ] 3.2c (BLOCKED: third table shape, see report) Set `action_table_layout` on the three annex entries, run each annex scoped (`--doc <slug> --force --stop-on-error`), and triage `errors.json` per step. Target per edition: `UnresolvedActionNumber` limited to rows whose reference is genuinely unreadable, each listed. Indicative row counts from source-notes: about 410 for CAP23, 126 for CAP24, 146 for CAP25 (82 after legacy exclusion).
+- [x] 3.2d Annex document bundles: confirm whether `extract_actions` still runs on a `hold`-declared document. If it does, hold the 2023 and 2025 annex bundles (InvalidStructure), as the 2023 Plan is held. If it doesn't, stop and report.
+- [x] 3.2e Edition year comes from the slug pattern `climate-action-plan-<year>-annex-of-actions`. A coded action-plan document whose slug doesn't match is a fatal error. Add a test.
 - [x] 3.3 Confirm Plan PDFs and progress reports still yield zero action rows.
 
 ## 4. Reconciliation (D5)
