@@ -43,7 +43,7 @@ FIND_PUBLIC_BODIES_PATH = "pipelines/foi_pipeline/steps/find_public_bodies/outpu
 STATUS_VOCABULARY_PATH = "public/vocabularies/action-status.csv"
 RELATIONSHIP_VOCABULARY_PATH = "public/vocabularies/action-relationship.csv"
 
-OUTPUT_DIR = "public/v2.1.0/public-body-actions"
+OUTPUT_DIR = "public/v3.0.0/public-body-actions"
 LATEST_DIR = "public/latest/public-body-actions"
 TTL_PATH = "public/catalog/dataset-public-body-actions.ttl"
 
@@ -209,9 +209,8 @@ def check_invariants(actions, observations, relationships, expectations,
             violations.append(
                 f"{action['action_id']}: original_deadline_precision "
                 f"{precision!r} is outside {PRECISIONS}")
-        if precision is None:
-            violations.append(
-                f"{action['action_id']}: original_deadline_precision is null")
+        # A null precision is allowed where the plan prints no parseable
+        # deadline (D10); invariant 7 ties it to a null confidence.
         elif precision in OPEN_ENDED_PRECISIONS:
             if (action["original_deadline_start"] is not None
                     or action["original_deadline_end"] is not None):
@@ -251,13 +250,14 @@ def check_invariants(actions, observations, relationships, expectations,
                 f"(confidence={confidence!r}, precision="
                 f"{action['original_deadline_precision']!r})")
 
-    # 8. Every action carries a single-line deadline label.
+    # 8. An action's deadline label is a non-empty single-line string, or null
+    #    where the plan prints no deadline (D10).
     for action in actions:
         label = action.get("original_deadline_label")
-        if not label or "\n" in label:
+        if label is not None and (not label or "\n" in label):
             violations.append(
-                f"{action['action_id']}: original_deadline_label must be "
-                f"non-empty and single-line (got {label!r})")
+                f"{action['action_id']}: original_deadline_label must be a "
+                f"non-empty single-line string or null (got {label!r})")
 
     # 9. Clean action text is present whenever the raw text is.
     for action in actions:

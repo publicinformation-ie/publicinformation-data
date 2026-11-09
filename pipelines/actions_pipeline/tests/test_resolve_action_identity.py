@@ -167,7 +167,7 @@ def test_incidental_years_without_a_milestone_label_are_refused():
     result = resolve_deadline(
         "", "Building on the 2021 review and the 2022 consultation")
     assert result.parsed is None
-    assert result.label == ""
+    assert result.label == "Building on the 2021 review and the 2022 consultation"
 
 
 def test_the_label_is_short_and_the_milestones_keep_the_prose():
@@ -502,3 +502,20 @@ def test_a_curated_correction_uses_the_corrected_identity_and_keeps_the_printed_
     assert [a["action_number"] for a in actions] == ["BE/23/36", "BE/23/38"]
     assert actions[1]["action_reference_printed"] == "BE/23/36"
     assert not [e for e in errors if e["error_type"] == "DuplicateActionReference"]
+
+
+# --- D10: the label when no deadline can be parsed -----------------------------
+
+@pytest.mark.parametrize("cell,label", [
+    ("Q1 and Q3", "Q1 and Q3"), ("Q2  and Q4\nAnnually", "Q2 and Q4 Annually"),
+    ("Q4", "Q4"), ("-", None), ("", None), ("\u2013", None)])
+def test_an_unparseable_timeline_is_the_label_as_printed_or_null(cell, label):
+    result = resolve_deadline("", cell)
+    assert result.parsed is None and result.confidence is None
+    assert result.label == label
+
+
+def test_a_dash_timeline_is_not_inherited_from_a_parent_row():
+    actions, _ = build(CAP23, [coded_action("BE/23/1", timeline="Q4 2023"),
+                               coded_action("BE/23/1/A", timeline="-")])
+    assert [a["original_deadline_label"] for a in actions] == ["Q4 2023", None]

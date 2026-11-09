@@ -196,6 +196,16 @@ def _default_milestones(timeline, parsed, label, explicit):
     return timeline
 
 
+_NO_DEADLINE = {"", "-", "\u2013", "\u2014"}
+
+
+def _printed_label(timeline):
+    """D10: when no deadline can be parsed the label is the Timeline text as
+    printed (whitespace-normalised), or None for an empty or dash cell. A dash
+    is not inherited from a parent row."""
+    return None if timeline in _NO_DEADLINE else timeline
+
+
 def resolve_deadline(raw_date, timeline_cell,
                      milestone_cell="") -> DeadlineResolution:
     """Resolve one plan action's original deadline into a display-ready form.
@@ -250,7 +260,7 @@ def resolve_deadline(raw_date, timeline_cell,
             # is no rule that picks one, so refuse rather than take the
             # latest.
             return DeadlineResolution(
-                None, None, "",
+                None, None, _printed_label(timeline),
                 _default_milestones(timeline, None, "", milestone_cell))
         # The last-milestone rule: the latest candidate year is the deadline.
         candidate = max(candidates, key=lambda c: (c[0], c[1] or 4))
@@ -261,7 +271,8 @@ def resolve_deadline(raw_date, timeline_cell,
             _default_milestones(timeline, parsed, label, milestone_cell))
 
     return DeadlineResolution(
-        None, None, "", _default_milestones(timeline, None, "", milestone_cell))
+        None, None, _printed_label(timeline),
+        _default_milestones(timeline, None, "", milestone_cell))
 
 
 def resolve_original_deadline(raw_date, timeline_cell):

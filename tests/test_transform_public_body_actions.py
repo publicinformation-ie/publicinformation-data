@@ -171,19 +171,19 @@ def test_a_deadline_without_a_confidence_is_a_violation():
     assert any("confidence" in v.lower() for v in violations)
 
 
-def test_a_null_precision_with_a_null_confidence_is_still_a_precision_violation():
+def test_a_null_precision_with_a_null_confidence_is_allowed_where_no_deadline_is_printed():
     violations = check([action(1, original_deadline_start=None,
                                original_deadline_end=None,
                                original_deadline_precision=None,
                                original_deadline_confidence=None)], [], [])
-    assert violations == [f"{PLAN}#1: original_deadline_precision is null"]
+    assert violations == []
 
 
 # --- new columns and open-ended deadlines ---------------------------------
 
-def test_a_null_original_precision_is_a_violation():
+def test_a_null_original_precision_with_a_confidence_is_a_violation():
     violations = check([action(original_deadline_precision=None)], [], [])
-    assert any("original_deadline_precision is null" in v for v in violations)
+    assert any("original_deadline_confidence must be null" in v for v in violations)
 
 
 def test_an_open_ended_precision_must_not_have_bounds():
@@ -217,6 +217,11 @@ def test_confidence_is_null_exactly_when_precision_is_null():
 def test_an_empty_label_is_a_violation():
     violations = check([action(original_deadline_label="")], [], [])
     assert any("original_deadline_label" in v for v in violations)
+
+
+def test_a_null_label_is_allowed_where_the_plan_prints_no_deadline():
+    assert not any("original_deadline_label" in v for v in
+                   check([action(original_deadline_label=None)], [], []))
 
 
 def test_a_multiline_label_is_a_violation():
@@ -305,7 +310,7 @@ def test_an_observation_links_to_its_actions_uri():
 
 
 def test_output_lands_in_both_the_versioned_and_latest_directories():
-    assert transform.OUTPUT_DIR == "public/v2.1.0/public-body-actions"
+    assert transform.OUTPUT_DIR == "public/v3.0.0/public-body-actions"
     assert transform.LATEST_DIR == "public/latest/public-body-actions"
 
 
