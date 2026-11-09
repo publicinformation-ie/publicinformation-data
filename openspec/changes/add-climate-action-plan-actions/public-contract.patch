@@ -1,0 +1,121 @@
+diff --git a/public/schemas/public-body-actions.schema.json b/public/schemas/public-body-actions.schema.json
+--- a/public/schemas/public-body-actions.schema.json	2026-11-09 14:41:46
++++ b/public/schemas/public-body-actions.schema.json	2026-11-09 14:41:46
+@@ -59,9 +59,19 @@
+           "format": "uri"
+         },
+         "action_number": {
+-          "type": "integer",
+-          "minimum": 1
++          "type": "string",
++          "pattern": "^([0-9]{1,3}|[A-Z0-9]+(/[A-Za-z0-9]+)*)$",
++          "description": "The reference the plan itself gives the action, flags removed: an ordinal (`12`) or a coded reference (`EL/23/6/A`). Unique only within a plan. Text, not a number."
+         },
++        "action_reference_printed": {
++          "type": "string",
++          "description": "The reference exactly as printed in the source, flags included (`EL/23/6**`)."
++        },
++        "action_flags": {
++          "type": "array",
++          "items": {"type": "string", "enum": ["non_reportable", "duplicate", "taskforce"]},
++          "description": "Flags printed against the reference and stripped from identity: `*` and `**` (non_reportable, duplicate) and `(TF)` (taskforce)."
++        },
+         "action_text": {
+           "type": "string"
+         },
+@@ -154,6 +164,8 @@
+         "public_body",
+         "plan_slug",
+         "action_number",
++        "action_reference_printed",
++        "action_flags",
+         "action_text"
+       ],
+       "description": "A commitment declared by a plan. Status is carried by ActionStatusObservation nodes, not on the action itself; the absence of an observation means \"not yet reported\", not \"unknown\"."
+@@ -307,14 +319,16 @@
+             "merged_into",
+             "carried_forward_to",
+             "complements",
+-            "references"
++            "references",
++            "part_of"
+           ]
+         },
+         "family": {
+           "type": "string",
+           "enum": [
+             "lineage",
+-            "reference"
++            "reference",
++            "structure"
+           ]
+         },
+         "method": {
+diff --git a/public/v2.1.0/public-body-actions/public-body-actions.csv-metadata.json b/public/v2.1.0/public-body-actions/public-body-actions.csv-metadata.json
+--- a/public/v2.1.0/public-body-actions/public-body-actions.csv-metadata.json	2026-11-09 14:41:46
++++ b/public/v2.1.0/public-body-actions/public-body-actions.csv-metadata.json	2026-11-09 14:41:46
+@@ -36,8 +36,8 @@
+           {
+             "name": "action_number",
+             "titles": "Action Number",
+-            "datatype": "integer",
+-            "description": "The number the plan itself gives the action; unique only within a plan"
++            "datatype": "string",
++            "description": "The reference the plan itself gives the action, flags removed: an ordinal (12) or a coded reference (EL/23/6/A); unique only within a plan"
+           },
+           {
+             "name": "action_text",
+@@ -123,6 +123,20 @@
+             "titles": "Original Deadline Milestones",
+             "datatype": "string",
+             "description": "Milestone prose preserved from the plan's timeline or interim-milestones cell; empty for a single-date action."
++          },
++          {
++            "name": "action_reference_printed",
++            "titles": "Action Reference (as printed)",
++            "datatype": "string",
++            "description": "The reference exactly as printed in the source, flags included"
++          },
++          {
++            "name": "action_flags",
++            "titles": "Action Flags",
++            "datatype": "string",
++            "separator": ";",
++            "required": false,
++            "description": "Flags printed against the reference and stripped from identity, ';'-separated: non_reportable, duplicate, taskforce. Empty when none."
+           }
+         ],
+         "primaryKey": "action_id",
+diff --git a/public/vocabularies/action-relationship.csv b/public/vocabularies/action-relationship.csv
+--- a/public/vocabularies/action-relationship.csv	2026-11-09 14:41:46
++++ b/public/vocabularies/action-relationship.csv	2026-11-09 14:41:46
+@@ -1,8 +1,9 @@
+-uri,notation,name,description,family
+-https://data.publicinformation.ie/ns/action#renumbered_as,renumbered_as,Renumbered As,The same underlying commitment was given a different action number in a later plan edition; the target row is the continuation of the source row under a new number.,lineage
+-https://data.publicinformation.ie/ns/action#supersedes,supersedes,Supersedes,"The target action replaces the source action as the current statement of the same underlying commitment; later progress should be tracked against the target, not the source.",lineage
+-https://data.publicinformation.ie/ns/action#split_into,split_into,Split Into,"The source action's single commitment was divided into multiple target actions in a later plan edition, each carrying forward part of the original scope.",lineage
+-https://data.publicinformation.ie/ns/action#merged_into,merged_into,Merged Into,"The source action's commitment was folded into the target action in a later plan edition, which now carries the combined scope.",lineage
+-https://data.publicinformation.ie/ns/action#carried_forward_to,carried_forward_to,Carried Forward To,"The same underlying commitment continues, largely unchanged in scope, as the target action in a later plan edition.",lineage
+-https://data.publicinformation.ie/ns/action#complements,complements,Complements,"The two actions are distinct commitments that support one another. A reference-family term: it does not assert that they are the same underlying commitment, and must not be used to reconstruct an action's history across plan editions.",reference
+-https://data.publicinformation.ie/ns/action#references,references,References,"The source action mentions or depends on the target action without being the same underlying commitment. A reference-family term: it does not assert continuity, and must not be used to reconstruct an action's history across plan editions.",reference
++uri,notation,name,description,family
++https://data.publicinformation.ie/ns/action#renumbered_as,renumbered_as,Renumbered As,The same underlying commitment was given a different action number in a later plan edition; the target row is the continuation of the source row under a new number.,lineage
++https://data.publicinformation.ie/ns/action#supersedes,supersedes,Supersedes,"The target action replaces the source action as the current statement of the same underlying commitment; later progress should be tracked against the target, not the source.",lineage
++https://data.publicinformation.ie/ns/action#split_into,split_into,Split Into,"The source action's single commitment was divided into multiple target actions in a later plan edition, each carrying forward part of the original scope.",lineage
++https://data.publicinformation.ie/ns/action#merged_into,merged_into,Merged Into,"The source action's commitment was folded into the target action in a later plan edition, which now carries the combined scope.",lineage
++https://data.publicinformation.ie/ns/action#carried_forward_to,carried_forward_to,Carried Forward To,"The same underlying commitment continues, largely unchanged in scope, as the target action in a later plan edition.",lineage
++https://data.publicinformation.ie/ns/action#complements,complements,Complements,"The two actions are distinct commitments that support one another. A reference-family term: it does not assert that they are the same underlying commitment, and must not be used to reconstruct an action's history across plan editions.",reference
++https://data.publicinformation.ie/ns/action#references,references,References,"The source action mentions or depends on the target action without being the same underlying commitment. A reference-family term: it does not assert continuity, and must not be used to reconstruct an action's history across plan editions.",reference
++https://data.publicinformation.ie/ns/action#part_of,part_of,Part Of,"The source action is a sub-action of the target action within the same plan edition. A structure-family term: it describes how one edition is organised, not a link between editions, and not a claim about history.",structure
+diff --git a/public/vocabularies/action-relationship.csv-metadata.json b/public/vocabularies/action-relationship.csv-metadata.json
+--- a/public/vocabularies/action-relationship.csv-metadata.json	2026-11-09 14:41:46
++++ b/public/vocabularies/action-relationship.csv-metadata.json	2026-11-09 14:41:46
+@@ -7,7 +7,7 @@
+       {"name": "notation", "titles": "Notation", "datatype": "string", "description": "Short notation/code for the relationship, as published in action-relationships.csv"},
+       {"name": "name", "titles": "Name", "datatype": "string", "description": "Human-readable name of the relationship"},
+       {"name": "description", "titles": "Description", "datatype": "string", "description": "What the relationship asserts between the two actions it connects"},
+-      {"name": "family", "titles": "Family", "datatype": "string", "description": "lineage (same underlying commitment, different published row) or reference (distinct commitments that relate). Only lineage edges are valid for reconstructing an action's history across plan editions."}
++      {"name": "family", "titles": "Family", "datatype": "string", "description": "lineage (same underlying commitment, different published row) reference (distinct commitments that relate) or structure (one action is part of another in the same edition). Only lineage edges are valid for reconstructing an action's history across plan editions."}
+     ],
+     "primaryKey": "uri",
+     "aboutUrl": "{uri}"

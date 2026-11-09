@@ -40,7 +40,9 @@ Two further jobs:
 |---|---|
 | `action_id` | `{plan_slug}#{action_number}` — this step's minted identity |
 | `public_body_id` / `plan_slug` / `plan_title` / `source_url` | Plan provenance, from `documents.yml` |
-| `action_number` / `action_text` | Recovered from the leading ordinal, stripped of BEL artifacts |
+| `action_number` | Text. An ordinal (`"12"`) recovered from the leading ordinal, or a coded reference (`EL/23/6/A`) read from a reference column, flags removed. Rows whose code year is earlier than the edition year are logged (`OutOfEditionReference`) and excluded; an unreadable or off-charset reference is `UnresolvedActionNumber` / `InvalidActionReference`; a repeat is `DuplicateActionReference` |
+| `action_reference_printed` / `action_flags` | The reference as printed, and the flags (`*`, `**`, `(TF)`) stripped from identity as `non_reportable`, `duplicate`, `taskforce` |
+| `action_text` | Stripped of BEL artifacts |
 | `action_text_clean` | `action_text` with confirmed PDF artefacts repaired (`repair_text`) for display; the raw `action_text` remains the audit trail |
 | `original_deadline_raw` / `original_deadline_start` / `original_deadline_end` / `original_deadline_precision` | Structured baseline deadline, or all null if unresolved; an open-ended cell carries precision `annual`/`ongoing` with null bounds |
 | `original_deadline_confidence` | `"stated"` / `"interpreted"` / `None` — never guessed silently |

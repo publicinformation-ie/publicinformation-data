@@ -7,13 +7,17 @@ retrofitted later: the corpus already contains 57 explicit parenthetical
 cross-references plus section-level groupings, and one referenced plan is
 already ingested.
 
-Three methods, deliberately unequal in trust:
+Methods, deliberately unequal in trust:
 
   * **extracted** — parenthetical references and section-level groupings.
     Automated and published directly, but only ever as `complements` or
     `references`. Never lineage: "complements" does not mean "is the same
     commitment as", and an automated lineage guess would splice two unrelated
     commitments into one history.
+  * **structure and edition links** — `part_of` (a sub-action to its parent,
+    same edition, `family: structure`) and `carried_forward_to` (the same
+    printed reference in two editions, earlier to later, `lineage`). Both come
+    from the printed reference alone, so both are `extracted`.
   * **declared** — narrative continuity phrases in report prose. Detected and
     logged as `RelationshipCandidate` for a human to promote. Never
     auto-published.
