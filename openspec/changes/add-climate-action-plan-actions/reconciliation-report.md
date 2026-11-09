@@ -1,28 +1,27 @@
 # CAP annex reconciliation report (task 4)
 
-Generated 2026-11-09 with `python -I scripts/reconcile_climate_action_plan_annexes.py /tmp/cap-sources/xlsx` against the extracted `resolve_action_identity` output (annex entries with `action_table_layout: [action_number_header, carry_header]`). XLSX rows belong to the edition named by their code year.
+Generated 2026-11-09 with `python -I scripts/reconcile_climate_action_plan_annexes.py /tmp/cap-sources/xlsx` against the extracted `resolve_action_identity` output (annex entries with `action_table_layout: [action_number_header, carry_header]`; CAP23 also with its `reference_corrections` entry). XLSX rows belong to the edition named by their code year.
 
-**Status: BLOCKED.** CAP23 has 4 missing references (below). CAP24 and CAP25 are clean. No `expected_action_count` is pinned.
+**Status: no blocking items.** `expected_action_count` is pinned from these extractions (CAP23 445, CAP24 126, CAP25 82).
 
-| Edition | extracted | XLSX refs | matched | dash text = parent | missing | text mismatch | extra |
-|---|---|---|---|---|---|---|---|
-| climate-action-plan-2023-annex-of-actions | 441 | 254 | 185 | 61 | 4 | 4 | 191 |
-| climate-action-plan-2024-annex-of-actions | 126 | 98 | 98 | 0 | 0 | 0 | 28 |
-| climate-action-plan-2025-annex-of-actions | 82 | 82 | 82 | 0 | 0 | 0 | 0 |
+| Edition | extracted | XLSX refs | matched | missing | text mismatch | extra |
+|---|---|---|---|---|---|---|
+| climate-action-plan-2023-annex-of-actions | 445 | 254 | 250 | 0 | 4 | 191 |
+| climate-action-plan-2024-annex-of-actions | 126 | 98 | 98 | 0 | 0 | 28 |
+| climate-action-plan-2025-annex-of-actions | 82 | 82 | 82 | 0 | 0 | 0 |
 
-## Blocking: missing references (CAP23)
+## Earlier blocking items, now resolved (CAP23)
 
-- `BE/23/34/B`, `BE/23/34/C`, `BE/23/34/D` (PDF p.56, table 0): the continuation of the BE/23/34 table at the page break. The previous table (p.55) has 8 columns (an empty spacer column after Actions); this fragment has 7, with no spacer. `carry_header` requires the same column count (D7), so the fragment is logged as `UnreadActionTable` (page 56, table 0, first reference `BE/23/34/B`, 3 rows) and not extracted. Columns after Actions sit one index apart, so inheriting the header by index would misread them. Needs a design decision (column-offset carry), not a code tweak.
-- `BE/23/38` (PDF p.57): the PDF prints this row's reference as `BE/23/36`, a duplicate of the row above. The XLSX (Q4 sheet) has it as `BE/23/38` with the same text (`Publish a review of relevant sources and a general training template ...`). The pipeline logs `DuplicateActionReference` and excludes the row. This is a source typo; fixing it needs an explicit per-document correction, which the design does not provide.
+- `BE/23/34/B`, `C`, `D` (p.56): the continuation of the BE/23/34 table has 7 columns against 8 in its header table; the extra header column is a spacer, empty in every row from the header down. `carry_header` now ignores such columns when comparing widths (D7, second revision, task 3.2h). The three rows are recovered.
+- `BE/23/38` (p.57): the PDF prints it as `BE/23/36`, repeating the row above. Resolved by the curated `reference_corrections` entry on the CAP23 document (D8, task 3.2i, evidence: the Q4 2023 XLSX). The action is published as `BE/23/38` with `action_reference_printed` `BE/23/36`; the `DuplicateActionReference` is gone.
+- 61 sub-action rows printing `-` in the Actions cell now carry the parent row's text (D9, task 3.2j), matching the XLSX. Before the change they were reported as dash placeholders.
 
-## Text mismatches (recorded reasons)
+## Text mismatches (recorded, with reasons)
 
-The PDF prints `-` in a sub-action's Actions cell (the text is the parent's). 61 of those rows match the XLSX, which repeats the parent text. The remaining 4:
-
-- `AD/23/8/A`: PDF `-`; XLSX `Make TRANSLATE the national standard set of climate projections`. The XLSX text differs from the PDF parent row (abbreviation expanded or a different action's text), so the dash is not comparable.
-- `AD/23/8/B`: PDF `-`; XLSX `Make TRANSLATE the national standard set of climate projections`. The XLSX text differs from the PDF parent row (abbreviation expanded or a different action's text), so the dash is not comparable.
-- `PS/23/12/A`: PDF `-`; XLSX `Support implementation of Green Public Procurment (GPP) in public sector`. The XLSX text differs from the PDF parent row (abbreviation expanded or a different action's text), so the dash is not comparable.
-- `PS/23/12/C`: PDF `-`; XLSX `Relevant bodies shall, where practicable, ensure private sector investment is consistent with the Go`. The XLSX text differs from the PDF parent row (abbreviation expanded or a different action's text), so the dash is not comparable.
+- `AD/23/8/A`: PDF (inherited) `Develop Climate Ireland portal as Ireland’s climate information platform as part of the NF`; XLSX `Make TRANSLATE the national standard set of climate projections`. The PDF parent AD/23/8 reads "Develop Climate Ireland portal ..."; the XLSX gives the sub-action the text "Make TRANSLATE the national standard set of climate projections". The XLSX and PDF disagree on the text; the PDF is the source and is published as printed.
+- `AD/23/8/B`: PDF (inherited) `Develop Climate Ireland portal as Ireland’s climate information platform as part of the NF`; XLSX `Make TRANSLATE the national standard set of climate projections`. As AD/23/8/A.
+- `PS/23/12/A`: PDF (inherited) `Support implementation of GPP in public sector`; XLSX `Support implementation of Green Public Procurment (GPP) in public sector`. The PDF parent says "GPP"; the XLSX expands it ("Green Public Procurment (GPP)", sic). Wording difference only.
+- `PS/23/12/C`: PDF (inherited) `Support implementation of GPP in public sector`; XLSX `Relevant bodies shall, where practicable, ensure private sector investment is consistent w`. The XLSX gives this sub-action a different action's text ("Relevant bodies shall ... private sector investment ..."); the PDF row prints `-` and inherits the parent. The XLSX and PDF disagree; the PDF is published as printed.
 
 ## Extracted, in no XLSX (informational)
 
@@ -34,6 +33,8 @@ The XLSX workbooks are quarterly returns and legacy lists, not the whole annex.
 
 ## Other triage notes
 
-- CAP23 `DuplicateActionReference` count: 1 (the BE/23/36 row above).
-- CAP25: 62 rows excluded as `OutOfEditionReference` (legacy); 2 `UnresolvedActionNumber` on p.67 (blank Action Number cell). Neither is in the XLSX reference.
-- `UnreadActionTable`: CAP23 1 (above), CAP24 0, CAP25 0.
+- CAP23: 445 resolved, 0 `DuplicateActionReference`, 0 `UnreadActionTable`.
+- CAP24: 126 resolved, 0 `UnreadActionTable`.
+- CAP25: 146 extracted, 62 excluded as `OutOfEditionReference` (legacy), 82 resolved. 2 `UnresolvedActionNumber` on p.67 (blank Action Number cell): genuinely unreadable, not in the XLSX. 0 `UnreadActionTable`.
+- `DashActionWithoutParent`: 0 in all three editions.
+- Wrong-pin check: with `expected_action_count: 127` on CAP24, `check_invariants` reports `climate-action-plan-2024-annex-of-actions: expected_action_count is 127 but 126 action(s) were extracted`.

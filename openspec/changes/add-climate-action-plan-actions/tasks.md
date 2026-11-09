@@ -47,13 +47,13 @@
   - `skip_subtitle_header` now rejected as unknown (fatal).
   Re-run the 3.2b byte-identical check for the SMP plans.
 - [x] 3.2g Log each reference-bearing row in a table that is not read as an action table (for example `UnreadActionTable`, with document, page and the first reference seen), so the `carry_header` limit is visible rather than silent.
-- [ ] 3.2h `carry_header` ignores header-table columns that are empty in every row when comparing widths (D7, revised again). Verify with a fixture that has an 8-column header with an empty spacer column and a 7-column continuation (BE/23/34/B-D recovered), and a fixture where a non-empty column differs (still not carried). Re-run the 3.2b SMP check.
-- [ ] 3.2i Add `reference_corrections` (D8), validated in `documents.py`, allowed only on action-plan entries. Apply it to CAP23 p.57 `BE/23/36` → `BE/23/38` with evidence from the XLSX. Verify:
+- [x] 3.2h `carry_header` ignores header-table columns that are empty in every row when comparing widths (D7, revised again). Verify with a fixture that has an 8-column header with an empty spacer column and a 7-column continuation (BE/23/34/B-D recovered), and a fixture where a non-empty column differs (still not carried). Re-run the 3.2b SMP check.
+- [x] 3.2i Add `reference_corrections` (D8), validated in `documents.py`, allowed only on action-plan entries. Apply it to CAP23 p.57 `BE/23/36` → `BE/23/38` with evidence from the XLSX. Verify:
   - the corrected identity is used, and `action_reference_printed` keeps the misprint;
   - a correction whose printed reference isn't on its page is fatal;
   - the DuplicateActionReference on p.57 is gone.
-- [ ] 3.2j A "-" action cell inherits the parent row's text (D9), and a "-" row with no parent is excluded and logged. Verify with fixtures. Re-check the 61 "-" rows in reconciliation, and the 4 recorded mismatches (AD/23/8/A, AD/23/8/B, PS/23/12/A, PS/23/12/C) stay recorded with a reason.
-- [ ] 3.2c (BLOCKED: CAP23 p.56 continuation has 7 columns against the 8 of its header, see reconciliation-report.md) Set `action_table_layout` on the three annex entries, run each annex scoped (`--doc <slug> --force --stop-on-error`), and triage `errors.json` per step. Target per edition: `UnresolvedActionNumber` limited to rows whose reference is genuinely unreadable, each listed. Indicative row counts from source-notes: about 410 for CAP23, 126 for CAP24, 146 for CAP25 (82 after legacy exclusion).
+- [x] 3.2j A "-" action cell inherits the parent row's text (D9), and a "-" row with no parent is excluded and logged. Verify with fixtures. Re-check the 61 "-" rows in reconciliation, and the 4 recorded mismatches (AD/23/8/A, AD/23/8/B, PS/23/12/A, PS/23/12/C) stay recorded with a reason.
+- [x] 3.2c Set `action_table_layout` on the three annex entries, run each annex scoped (`--doc <slug> --force --stop-on-error`), and triage `errors.json` per step. Target per edition: `UnresolvedActionNumber` limited to rows whose reference is genuinely unreadable, each listed. Indicative row counts from source-notes: about 410 for CAP23, 126 for CAP24, 146 for CAP25 (82 after legacy exclusion).
 - [x] 3.2d Annex document bundles: confirm whether `extract_actions` still runs on a `hold`-declared document. If it does, hold the 2023 and 2025 annex bundles (InvalidStructure), as the 2023 Plan is held. If it doesn't, stop and report.
 - [x] 3.2e Edition year comes from the slug pattern `climate-action-plan-<year>-annex-of-actions`. A coded action-plan document whose slug doesn't match is a fatal error. Add a test.
 - [x] 3.3 Confirm Plan PDFs and progress reports still yield zero action rows.
@@ -61,8 +61,8 @@
 ## 4. Reconciliation (D5)
 
 - [x] 4.1 Write the reconciliation script (extracted actions vs XLSX codes and text, per edition). It reports missing references (blocking), text mismatches (fix or record a reason) and actions not in any XLSX (informational).
-- [ ] 4.2 Run it for CAP23, CAP24 and CAP25. Resolve every blocking item and commit the report as evidence in this change's directory.
-- [ ] 4.3 Pin `expected_action_count` on each annex entry from the reconciled extraction. Verify publication fails with a deliberately wrong pin.
+- [x] 4.2 Run it for CAP23, CAP24 and CAP25. Resolve every blocking item and commit the report as evidence in this change's directory.
+- [x] 4.3 Pin `expected_action_count` on each annex entry from the reconciled extraction. Verify publication fails with a deliberately wrong pin.
 
 ## 5. Publication (3.0.0)
 
