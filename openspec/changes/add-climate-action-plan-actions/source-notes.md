@@ -91,7 +91,7 @@ Counts are from a line-matching script over the text layer, so treat them as ind
 
 ### What held
 
-- **D4, legacy rows are distinguishable in CAP25.** The 64 `/24/` and `/23/` rows in the CAP25 annex are exactly the Taoiseach "Legacy" sheets' carried-over actions (46 of the `/24/` rows also appear in the CAP24 annex; all 18 `/23/` rows appear in the CAP23 annex).
+- **D4, legacy rows are distinguishable in CAP25.** The 64 `/24/` and `/23/` rows in the CAP25 annex match the published count of 64 legacy actions carried into 2025 (46 of the `/24/` rows also appear in the CAP24 annex; all 18 `/23/` rows appear in the CAP23 annex).
 - **D3, parent rows exist.** In CAP23, all 41 parents implied by sub-action codes appear as their own rows, so `part_of` will be emitted. CAP25's two sub-actions have no parent row, so they publish without `part_of`.
 - **`(TF)`** is printed in the PDFs as in the XLSX (CAP23 about 42 rows, CAP24 26, CAP25 13) and the Annex Guide explains it: "Where Actions in CAP23 align with actions/objectives set out by the Delivery Taskforces, their Action Numbers in the annex include '(TF)'". It is a flag. It also appears inside a flag cluster (`TR/23/2*(TF)`, `TR/23/26**(TF)`).
 
