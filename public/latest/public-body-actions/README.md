@@ -2,7 +2,7 @@
 
 **Dataset URI:** `https://data.publicinformation.ie/dataset/public-body-actions`
 
-The published commitments of Irish public bodies and how their reported status changed over time. Covers the Department of Transport's Sustainable Mobility Policy (SMP) corpus — the 2022-2025 action plan, its four progress reports, and the 2026-2030 plan. Part of the PublicInformation.ie Open Data Publishing initiative.
+The published commitments of Irish public bodies and how their reported status changed over time. Covers the Department of Transport's Sustainable Mobility Policy (SMP) corpus — the 2022-2025 action plan, its four progress reports, and the 2026-2030 plan — and the Climate Action Plan annexes of actions for 2023, 2024 and 2025. Part of the PublicInformation.ie Open Data Publishing initiative.
 
 **Base URI:** `https://data.publicinformation.ie/`
 
@@ -25,15 +25,17 @@ This dataset records what a plan or progress report *stated* — the action as p
 | `plan_slug` | String | `doc_slug` of the plan declaring this action; also the provenance of its original deadline | Yes |
 | `plan_title` | String | Title of the declaring plan | Yes |
 | `source_url` | URI | Source URL of the declaring plan | Yes |
-| `action_number` | Integer | The number the plan itself gives the action; unique only within a plan | Yes |
+| `action_number` | String | The reference the plan itself gives the action (`12`, or coded such as `EL/23/6/A`); unique only within a plan. Text, not an integer, since v3.0.0 | Yes |
+| `action_reference_printed` | String | The reference exactly as printed, including any flag marks (`*`, `**`, `(TF)`) | Yes |
+| `action_flags` | String | Named flags for the marks printed against the reference (`*` gives `non_reportable`, `**` gives `duplicate`, `(TF)` gives `taskforce`), separated by `;`; empty when none | Yes |
 | `action_text` | String | The action as published, with its leading ordinal and bullet artifacts stripped | Yes |
 | `action_text_clean` | String | Action text with confirmed PDF-extraction artefacts repaired; the display field. `action_text` remains the untouched extraction | Yes |
 | `original_deadline_raw` | String | The plan's deadline cell, verbatim | Yes |
 | `original_deadline_start` | Date | Normalised deadline start | No |
 | `original_deadline_end` | Date | Normalised deadline end | No |
-| `original_deadline_precision` | String | `day`, `month`, `quarter`, `year`, `range`, `annual` or `ongoing` (the last two carry no start or end) | Yes |
+| `original_deadline_precision` | String | `day`, `month`, `quarter`, `year`, `range`, `annual` or `ongoing` (the last two carry no start or end); null when the printed timeline cannot be parsed | No |
 | `original_deadline_confidence` | String | `stated` (a single unambiguous deadline, transcribed, including Annual/Ongoing) or `interpreted` (derived by the latest-milestone rule); empty exactly when no precision was resolved | Yes |
-| `original_deadline_label` | String | Short, display-ready final deadline (`2023`, `Q4 2027`, `Annual`, `Ongoing`). Use this as the heading | Yes |
+| `original_deadline_label` | String | Short, display-ready final deadline (`2023`, `Q4 2027`, `Annual`, `Ongoing`). Where no date can be parsed it is the Timeline text as printed (`Q1 and Q3`). Null where the plan prints no deadline | No |
 | `original_deadline_milestones` | String | Milestone prose preserved from the plan's timeline or interim-milestones cell; empty for a single-date action | Yes |
 | `original_timeline_raw` | String | The plan's full timeline cell verbatim, preserving milestone structure the single deadline collapses | Yes |
 | `lead` | String | Lead organisation | Yes |
@@ -72,12 +74,12 @@ A plan with zero observations is correct, not missing data — the 2026-2030 pla
 | `to_plan_hint` | String | The target plan exactly as the source document names it | Yes |
 | `to_action_number` | String | The target action number as written; empty for a plan-level edge, where the source document names a plan but no action number | No |
 | `relationship` | String | A notation from the [`action-relationship`](../../vocabularies/action-relationship.csv) vocabulary | Yes |
-| `family` | String | `lineage` or `reference`. Only `lineage` edges are valid for reconstructing an action's history across plan editions | Yes |
+| `family` | String | `lineage`, `reference` or `structure`. Only `lineage` edges are valid for reconstructing an action's history across plan editions | Yes |
 | `method` | String | `extracted`, `declared` or `curated` | Yes |
 | `asserted_in` | String | `doc_slug` of the document making the assertion | Yes |
 | `evidence` | String | Verbatim source text for the assertion | Yes |
 
-`family` before traversal: only `lineage` edges (`renumbered_as`, `supersedes`, `split_into`, `merged_into`, `carried_forward_to`) reconstruct an action's history across plan editions. `complements` and `references` are `reference`-family — they do not imply continuity, and following them as if they were lineage will fabricate a history that was never asserted.
+`part_of` (family `structure`) links a sub-action such as `EL/23/6/A` to its parent `EL/23/6`; it records how a plan is organised, not history. `family` before traversal: only `lineage` edges (`renumbered_as`, `supersedes`, `split_into`, `merged_into`, `carried_forward_to`) reconstruct an action's history across plan editions. `complements` and `references` are `reference`-family — they do not imply continuity, and following them as if they were lineage will fabricate a history that was never asserted.
 
 A null `to_action_id` means the target plan is not in the corpus. A null `to_action_number` means the source document named a plan but no numbered action within it (a plan-level edge).
 
@@ -91,9 +93,17 @@ A null `to_action_id` means the target plan is not in the corpus. A null `to_act
 
 `annual` and `ongoing` precisions mean the plan stated an open-ended commitment rather than a date. They have no start or end, so sort them deliberately rather than treating them as missing. A `stated` confidence is valid for these rows (the plan stated an open-ended commitment, not a date).
 
+`original_deadline_label` may be null where a plan prints no deadline (a "-" or empty Timeline cell: 20 Climate Action Plan 2023 rows). A "-" Timeline is not inherited from the parent action. Where the Timeline is printed but cannot be parsed (for example `Q1 and Q3`), the label holds the printed text and the precision, start and end are null.
+
+## Climate Action Plan annexes (new in 3.0.0)
+
+The Climate Action Plan 2023, 2024 and 2025 annexes of actions add 445, 126 and 82 actions respectively (653 in all). The CAP 2024 and CAP 2025 annexes hold only the new high-impact actions of that year, not each plan's full roadmap; do not read their counts as the size of the plan. Rows referring to earlier years' actions are excluded, and `carried_forward_to` links editions.
+
+Coded references repeat across sub-actions; where a table prints "-" in the action cell, the sub-action text is inherited from its parent row. One misprinted reference in the CAP 2023 annex (BE/23/38) is corrected by a curated entry, with `action_reference_printed` keeping the printed form.
+
 ## Reading `latest_status`
 
-`latest_status`/`latest_as_of` are derived by joining observations on `action_id` and taking the greatest `as_of`; null means "not yet reported", not "unknown". In this release that is all 95 actions of the 2026–2030 plan.
+`latest_status`/`latest_as_of` are derived by joining observations on `action_id` and taking the greatest `as_of`; null means "not yet reported", not "unknown". In this release that is all 95 actions of the 2026–2030 plan and all 653 Climate Action Plan annex actions.
 
 ## Known limitations
 
@@ -103,7 +113,7 @@ The current run has 279 observations from all four progress reports (Year One, Y
 
 ## Text quality (spec §16.1)
 
-The source PDFs contain ligature-reordering artifacts introduced by PDF text extraction — real examples from this corpus are `"staf.f"` (for "staff") and `"Please ofef r me a seat"` (for "Please offer me a seat"). The raw fields (`action_text`, `progress_text`, `original_deadline_raw`) remain as extracted. `action_text_clean`, `progress_text_clean` and `original_deadline_milestones` carry the repaired display text; the audit report lists every repair and every remaining flag.
+The source PDFs contain ligature-reordering artifacts introduced by PDF text extraction — real examples from this corpus are `"staf.f"` (for "staff") and `"Please ofef r me a seat"` (for "Please offer me a seat"). The raw fields (`action_text`, `progress_text`, `original_deadline_raw`) remain as extracted. `action_text_clean`, `progress_text_clean` and `original_deadline_milestones` carry the repaired display text; transport text fields also carry the table ligature repairs; the audit report lists every repair and every remaining flag.
 
 ## Files
 
@@ -119,7 +129,7 @@ The source PDFs contain ligature-reordering artifacts introduced by PDF text ext
 
 ## Versioning
 
-This directory (`v2.1.0/`) is an immutable, versioned release. `../../latest/public-body-actions/` always mirrors the newest version. Releases are also tagged in git (`public-body-actions-v2.1.0`).
+This directory (`v3.0.0/`) is an immutable, versioned release. `../../latest/public-body-actions/` always mirrors the newest version. Releases are also tagged in git (`public-body-actions-v3.0.0`).
 
 ## Accessing Data
 

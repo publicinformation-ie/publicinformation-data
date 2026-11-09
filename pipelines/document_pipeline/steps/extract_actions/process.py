@@ -46,6 +46,8 @@ they are null and a `DateParseError` (informational) is logged. Nothing is
 silently dropped or rewritten to "fit".
 """
 import argparse
+import re
+import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -164,9 +166,27 @@ class TableVerdict:
         self.error_type = error_type
 
 
-def classify_table(rows) -> TableVerdict:
-    """Classify one table's rows against the action-table rules above."""
-    header_index = _header_index(rows)
+def _action_number_header_index(rows):
+    """Index of the first row with a cell that reads "action number", or None."""
+    for index, row in enumerate(rows):
+        if any(_normalize_header(c) == "action number" for c in row):
+            return index
+    return None
+
+
+def classify_table(rows, action_number_header=False) -> TableVerdict:
+    """Classify one table's rows against the action-table rules above.
+
+    With `action_number_header` (a per-document opt-in) the header is the first
+    row with an "Action Number" cell and every row above it is preamble; a
+    table with no such row is not an action table (and may be a continuation).
+    """
+    if action_number_header:
+        header_index = _action_number_header_index(rows)
+        if header_index is None:
+            return TableVerdict(False, False)
+    else:
+        header_index = _header_index(rows)
     if header_index is None:
         # A table with no content at all has no action column: excluded.
         return TableVerdict(False, False)
@@ -214,7 +234,8 @@ def _error_dict(error_type: str, message: str, context: dict) -> dict:
             "context": context}
 
 
-def extract_table(rows, page_number, table_index, verdict, doc_slug, errors) -> list:
+def extract_table(rows, page_number, table_index, verdict, doc_slug, errors,
+                  header=None) -> list:
     """Extract every action row from one qualified action table.
 
     One data row is one action; there is no row-level classification (a
@@ -223,7 +244,10 @@ def extract_table(rows, page_number, table_index, verdict, doc_slug, errors) -> 
     cell that no pattern matched — the action is still emitted with its raw
     date.
     """
-    header = [_normalize_cell(c) for c in rows[verdict.header_index]]
+    # `header` is passed only for a continuation table that inherited its
+    # header from the previous page (carry_header); its rows start at 0.
+    if header is None:
+        header = [_normalize_cell(c) for c in rows[verdict.header_index]]
     actions = []
     row_number = 0
 
@@ -286,13 +310,153 @@ def extract_table(rows, page_number, table_index, verdict, doc_slug, errors) -> 
 # --------------------------------------------------------------------------
 
 
-def extract_document(clean_record, doc_slug):
+_REFERENCE_ROW_RE = re.compile(r"^\s*[A-Z]{2}\s*/\s*\d{2}\s*/\s*\d")
+
+
+def _log_unread_table(rows, doc_slug, page_number, table_index, errors):
+    """`UnreadActionTable` for a table that was not read but whose rows start
+    with a plan action reference: the rows are not dropped silently (3.2g)."""
+    firsts = [_normalize_cell(row[0]) for row in rows if row and _has_content(row)]
+    refs = [c for c in firsts if _REFERENCE_ROW_RE.match(c)]
+    if refs:
+        errors.append(_error_dict(
+            "UnreadActionTable",
+            "Table has reference-bearing rows but was not read as an action "
+            "table (no Action Number header and no header to inherit); its "
+            "actions are not extracted.",
+            {"doc_slug": doc_slug, "page": page_number, "table": table_index,
+             "first_reference": refs[0], "rows": len(refs)}))
+
+
+def _empty_columns(rows, width):
+    """Indexes of columns that are empty in every row of a table."""
+    return [i for i in range(width)
+            if not any(_normalize_cell(_cell_at(r, i)) for r in rows)]
+
+
+def _continuation_verdict(rows, header, previous, spacers=()):
+    """`(verdict, rows)` reading `rows` with the previous table's column
+    mapping, or None when the table cannot be that table's continuation
+    (different width, or a row without an action cell).
+
+    The header table's columns that are empty in every row (`spacers`, a
+    layout artefact such as a blank column after Actions) are ignored when
+    comparing widths (judged over the header row and the data rows, not the
+    theme/KPI preamble above the header): the fragment is mapped onto the remaining columns and
+    returned re-expanded to the header's full width."""
+    width = max((len(r) for r in rows if _has_content(r)), default=0)
+    if not width or any(len(r) != width for r in rows):
+        return None
+    spacers = [i for i in spacers if i < len(header)]
+    kept = [i for i in range(len(header)) if i not in spacers]
+    if width == len(header):
+        expanded = rows
+    elif spacers and width == len(kept):
+        expanded = []
+        for row in rows:
+            full = [""] * len(header)
+            for source, target in enumerate(kept):
+                full[target] = row[source]
+            expanded.append(full)
+    else:
+        return None
+    for row in expanded:
+        if _has_content(row) and not _normalize_cell(_cell_at(row, previous.action_col)):
+            return None
+    return (TableVerdict(True, previous.dated, action_col=previous.action_col,
+                         date_col=previous.date_col, header_index=-1), expanded)
+
+
+DASHES = {"-", "\u2013", "\u2014"}
+
+
+class ReferenceCorrectionNotFound(Exception):
+    """A declared `reference_corrections` entry matches no row on its page."""
+
+
+def _reference_cell(action):
+    for key, value in (action.get("columns") or {}).items():
+        if str(key).lower() in ("action number", "action no", "action no.",
+                                "action reference", "reference", "ref", "ref."):
+            return value
+    return ""
+
+
+def _norm_text(text):
+    return " ".join(unicodedata.normalize("NFKC", str(text or "")).casefold().split())
+
+
+def _apply_reference_corrections(actions, corrections, doc_slug):
+    """Mark the row each correction targets (D8). A correction applies only to
+    the single row on its page whose reference equals `printed` and whose
+    normalised action text starts with the normalised `text_starts`. Zero or
+    several matches are fatal and nothing is renamed."""
+    targets = []
+    for correction in corrections or ():
+        pattern = re.compile(
+            r"^\s*" + re.escape(correction["printed"]) + r"\s*(?:\(TF\)|\*+)*\s*$")
+        starts = _norm_text(correction["text_starts"])
+        hits = [a for a in actions
+                if a["source_page"] == correction["page"]
+                and pattern.match(_reference_cell(a))
+                and _norm_text(a["action"]).startswith(starts)]
+        if len(hits) != 1:
+            raise ReferenceCorrectionNotFound(
+                f"{doc_slug}: reference_corrections entry for page "
+                f"{correction['page']} ({correction['printed']!r}, text starting "
+                f"{correction['text_starts']!r}) matches {len(hits)} rows, "
+                f"expected exactly 1")
+        targets.append((hits[0], correction))
+    for action, correction in targets:
+        action["reference_correction"] = {
+            "printed": correction["printed"], "corrected": correction["corrected"]}
+
+
+def _inherit_dash_text(actions, carried, state, doc_slug, errors):
+    """D9: a "-" action cell takes the nearest preceding non-dash row's text in
+    the same table (a carried continuation continues its table). A "-" row
+    with no such parent is excluded and logged."""
+    if not carried:
+        state["parent"] = None
+    kept = []
+    for action in actions:
+        if action["action"] in DASHES:
+            if state["parent"] is None:
+                errors.append(_error_dict(
+                    "DashActionWithoutParent",
+                    "The Actions cell is a dash and no earlier row in the same "
+                    "table supplies the text; the row is excluded.",
+                    {"doc_slug": doc_slug, "page": action["source_page"],
+                     "source_ref": action["action_id"],
+                     "reference": _reference_cell(action)}))
+                continue
+            action["action"] = state["parent"]
+        else:
+            state["parent"] = action["action"]
+        kept.append(action)
+    return kept
+
+
+def extract_document(clean_record, doc_slug, layout=(), corrections=()):
     """Classify one document and extract its actions.
 
     Returns `(category, dated_table_count, undated_table_count, actions, errors)`.
     Precedence is `dated-actions` > `undated-actions` > `no-action-tables`;
     the per-kind counts keep a mixed document visible in the report.
+
+    `layout` is the document's opt-in `action_table_layout` (D7); empty means
+    the default reading, unchanged:
+      * `action_number_header` — the header is the first row with an "Action
+        Number" cell; every row above it (theme/KPI, measure, "Actions"
+        subtitle) is preamble. A table with no such row is not an action table;
+      * `carry_header` — a table with no action column on the page right after
+        an action table, with the same number of columns, is that table's
+        continuation and inherits its header.
     """
+    number_header = "action_number_header" in layout
+    carry = "carry_header" in layout
+    previous = None   # (page, header, verdict, spacer columns) of the last action table
+    dash_state = {"parent": None}
     dated_count = 0
     undated_count = 0
     actions = []
@@ -305,7 +469,8 @@ def extract_document(clean_record, doc_slug):
                 continue
             rows = block.get("text") or []
             table_index = int(block.get("index", 0))
-            verdict = classify_table(rows)
+            verdict = classify_table(rows, number_header)
+            carried_header = None
 
             if verdict.error_type == "ActionHeaderAmbiguous":
                 errors.append(_error_dict(
@@ -324,15 +489,36 @@ def extract_document(clean_record, doc_slug):
                     {"doc_slug": doc_slug, "page": page_number,
                      "table": table_index}))
                 continue
+            if (carry and not verdict.is_action_table and previous
+                    and verdict.error_type is None
+                    and page_number == previous[0] + 1):
+                inherited = _continuation_verdict(
+                    rows, previous[1], previous[2], previous[3])
+                if inherited is not None:
+                    (verdict, rows), carried_header = inherited, previous[1]
             if not verdict.is_action_table:
+                if layout:
+                    _log_unread_table(rows, doc_slug, page_number, table_index, errors)
                 continue
 
             if verdict.dated:
                 dated_count += 1
             else:
                 undated_count += 1
-            actions.extend(extract_table(rows, page_number, table_index, verdict,
-                                         doc_slug, errors))
+            table_actions = extract_table(rows, page_number, table_index, verdict,
+                                          doc_slug, errors, header=carried_header)
+            if layout:
+                table_actions = _inherit_dash_text(
+                    table_actions, carried_header is not None, dash_state,
+                    doc_slug, errors)
+            actions.extend(table_actions)
+            header = carried_header or [
+                _normalize_cell(c) for c in rows[verdict.header_index]]
+            spacers = (previous[3] if carried_header is not None
+                       else _empty_columns(rows[verdict.header_index:], len(header)))
+            previous = (page_number, header, verdict, spacers)
+
+    _apply_reference_corrections(actions, corrections, doc_slug)
 
     if dated_count:
         category = "dated-actions"
@@ -396,7 +582,11 @@ def process(clean_records, meta, step_dir, writer, doc_slug=None, verbose=False)
 
         try:
             document = meta.get(slug) or {}
-            category, dated, undated, actions, errors = extract_document(record, slug)
+            category, dated, undated, actions, errors = extract_document(
+                record, slug, tuple(document.get("action_table_layout") or ()),
+                tuple(document.get("reference_corrections") or ()))
+        except ReferenceCorrectionNotFound:
+            raise
         except Exception as e:
             # A corrupt upstream record must not abort the batch — the same
             # isolation clean_text and assemble_sections apply. Not marked
@@ -457,7 +647,9 @@ def main():
                    "published_date": record.get("published_date"),
                    "public_body_id": record.get("public_body_id"),
                    "role": record.get("role") or "plan",
-                   "policy_role": record.get("policy_role")}
+                   "policy_role": record.get("policy_role"),
+                   "action_table_layout": record.get("action_table_layout"),
+                   "reference_corrections": record.get("reference_corrections")}
             for slug, record in fetched.items()}
 
     writer = IncrementalWriter(output_path, STEP_NAME, key_field="doc_slug",

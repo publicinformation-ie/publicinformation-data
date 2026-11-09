@@ -23,7 +23,7 @@ def resolved():
 def test_the_2022_2025_plan_publishes_all_91_actions(resolved):
     actions = [a for a in resolved["actions"] if a["plan_slug"] == PLAN]
     assert len(actions) == 91
-    assert {a["action_number"] for a in actions} == set(range(1, 92))
+    assert {a["action_number"] for a in actions} == {str(n) for n in range(1, 92)}
 
 
 def test_the_2026_2030_plan_publishes_95_actions_and_no_observations(resolved):
@@ -59,7 +59,7 @@ def test_the_final_report_reproduces_its_own_published_split(resolved):
 
 
 def test_the_published_csvs_are_consistent_with_the_pipeline(resolved):
-    published = REPO_ROOT / "public/v2.1.0/public-body-actions/actions.csv"
+    published = REPO_ROOT / "public/v3.0.0/public-body-actions/actions.csv"
     if not published.exists():
         pytest.skip("dataset not yet published")
     with published.open(newline="", encoding="utf-8") as f:

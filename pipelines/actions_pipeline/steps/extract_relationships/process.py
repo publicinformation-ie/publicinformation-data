@@ -7,13 +7,17 @@ retrofitted later: the corpus already contains 57 explicit parenthetical
 cross-references plus section-level groupings, and one referenced plan is
 already ingested.
 
-Three methods, deliberately unequal in trust:
+Methods, deliberately unequal in trust:
 
   * **extracted** — parenthetical references and section-level groupings.
     Automated and published directly, but only ever as `complements` or
     `references`. Never lineage: "complements" does not mean "is the same
     commitment as", and an automated lineage guess would splice two unrelated
     commitments into one history.
+  * **structure and edition links** — `part_of` (a sub-action to its parent,
+    same edition, `family: structure`) and `carried_forward_to` (the same
+    printed reference in two editions, earlier to later, `lineage`). Both come
+    from the printed reference alone, so both are `extracted`.
   * **declared** — narrative continuity phrases in report prose. Detected and
     logged as `RelationshipCandidate` for a human to promote. Never
     auto-published.
@@ -32,6 +36,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from lib.file_utils import append_errors, read_json, write_json, write_status
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 STEP_NAME = "extract_relationships"
 
@@ -62,6 +68,11 @@ _CONTINUITY_RE = re.compile(
 # a hint here once a correctly-numbered plan is ingested is a one-line data
 # change — the resolution path below is fully implemented and tested.
 PLAN_HINT_SLUGS = {}
+
+# `part_of` is structural, not a reference or a lineage claim. It is defined
+# here rather than in relationships.VOCABULARY because that table is coupled to
+# the published schema and vocabulary CSV (see the change's 2.5 patch).
+STRUCTURE_FAMILY = "structure"
 
 
 def _error_dict(error_type: str, message: str, context: dict) -> dict:
@@ -137,6 +148,76 @@ def section_edges(actions, nodes, plan_slug) -> list:
 
 def is_continuity_phrase(text) -> bool:
     return bool(_CONTINUITY_RE.search(text or ""))
+
+
+def structure_edges(actions) -> list:
+    """`part_of` edges from each sub-action to its parent, within one edition.
+
+    A sub-action is its own action; the parent is the reference minus its
+    trailing letter. The edge is only emitted when the parent is published in
+    the same edition, so a sub-action printed without its parent stays unlinked
+    rather than pointing at a row that does not exist.
+    """
+    from action_references import parent_reference
+    ids = {a["action_id"] for a in actions}
+    edges = []
+    for action in actions:
+        number = str(action.get("action_number") or "")
+        parent = parent_reference(number)
+        if not parent:
+            continue
+        slug = action["plan_slug"]
+        if f"{slug}#{parent}" not in ids:
+            continue
+        edges.append({
+            "from_action_id": action["action_id"],
+            "to_action_id": f"{slug}#{parent}",
+            "to_plan_hint": slug,
+            "to_action_number": parent,
+            "relationship": "part_of",
+            "family": STRUCTURE_FAMILY,
+            "method": "extracted",
+            "asserted_in": slug,
+            "evidence": f"{number} is a sub-action of {parent}",
+        })
+    return edges
+
+
+def edition_edges(actions) -> list:
+    """`carried_forward_to` edges between editions printing the same reference.
+
+    A forward-year code (for example `LU/25/1`) can be printed as its own
+    action by more than one edition. Both are published; the earlier links to
+    the later. Plain ordinals are plan-local, so they are never linked.
+    """
+    from action_references import edition_year
+    by_number = {}
+    for action in actions:
+        number = str(action.get("action_number") or "")
+        if number.isdigit() or not number:
+            continue
+        by_number.setdefault(number, []).append(action)
+
+    edges = []
+    for number in sorted(by_number):
+        group = sorted(by_number[number], key=lambda a: (
+            edition_year(a["plan_slug"]) or 0, a["plan_slug"]))
+        for earlier, later in zip(group, group[1:]):
+            if earlier["plan_slug"] == later["plan_slug"]:
+                continue
+            edges.append({
+                "from_action_id": earlier["action_id"],
+                "to_action_id": later["action_id"],
+                "to_plan_hint": later["plan_slug"],
+                "to_action_number": number,
+                "relationship": "carried_forward_to",
+                "family": "lineage",
+                "method": "extracted",
+                "asserted_in": later["plan_slug"],
+                "evidence": (f"{earlier['plan_slug']} and {later['plan_slug']} "
+                             f"both print {number} as their own action"),
+            })
+    return edges
 
 
 def build_edges(action_texts, actions, observations, nodes, section_plan_slug,
@@ -268,6 +349,9 @@ def main():
             hint_slugs=PLAN_HINT_SLUGS, curated=[])
         edges.extend(plan_edges)
         errors.extend(plan_errors)
+
+    edges.extend(structure_edges(actions))
+    edges.extend(edition_edges(actions))
 
     observation_edges, observation_errors = build_edges(
         [], actions, observations, [], "", hint_slugs=PLAN_HINT_SLUGS,

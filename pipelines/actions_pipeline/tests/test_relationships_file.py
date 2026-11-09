@@ -16,7 +16,8 @@ def test_the_vocabulary_declares_a_family_for_every_term():
         "renumbered_as": "lineage", "supersedes": "lineage",
         "split_into": "lineage", "merged_into": "lineage",
         "carried_forward_to": "lineage",
-        "complements": "reference", "references": "reference"}
+        "complements": "reference", "references": "reference",
+        "part_of": "structure"}
 
 
 def test_an_empty_file_is_valid():

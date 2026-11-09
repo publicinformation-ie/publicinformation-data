@@ -2,7 +2,9 @@ from steps.extract_relationships.process import (
     build_edges,
     extract_references,
     is_continuity_phrase,
+    edition_edges,
     section_edges,
+    structure_edges,
 )
 
 PLAN = "sustainable-mobility-policy-action-plan-2022-2025"
@@ -170,3 +172,96 @@ def test_every_edge_carries_the_family_matching_its_term():
           "action_text": "Do a thing (Complements CAP action 233)", "source_page": 9}],
         [action(19)], [], [], PLAN, hint_slugs={}, curated=[])
     assert all(e["family"] == VOCABULARY[e["relationship"]] for e in edges)
+
+
+# --- structure: sub-actions are part_of their parent -----------------------
+
+CAP23 = "climate-action-plan-2023-annex-of-actions"
+CAP24 = "climate-action-plan-2024-annex-of-actions"
+CAP25 = "climate-action-plan-2025-annex-of-actions"
+
+
+def cap(slug, number, printed=None):
+    return {"action_id": f"{slug}#{number}", "plan_slug": slug,
+            "action_number": number,
+            "action_reference_printed": printed or number,
+            "action_flags": [], "action_text": "", "source_page": 5}
+
+
+def test_a_sub_action_is_part_of_a_published_parent():
+    edges = structure_edges([cap(CAP23, "EL/23/6"), cap(CAP23, "EL/23/6/A")])
+    assert edges == [{
+        "from_action_id": f"{CAP23}#EL/23/6/A",
+        "to_action_id": f"{CAP23}#EL/23/6",
+        "to_plan_hint": CAP23,
+        "to_action_number": "EL/23/6",
+        "relationship": "part_of",
+        "family": "structure",
+        "method": "extracted",
+        "asserted_in": CAP23,
+        "evidence": "EL/23/6/A is a sub-action of EL/23/6",
+    }]
+
+
+def test_a_letter_attached_to_the_number_is_part_of_the_number():
+    edges = structure_edges([cap(CAP23, "EL/23/10"), cap(CAP23, "EL/23/10A"),
+                             cap(CAP23, "EL/23/10B")])
+    assert [(e["from_action_id"], e["to_action_id"]) for e in edges] == [
+        (f"{CAP23}#EL/23/10A", f"{CAP23}#EL/23/10"),
+        (f"{CAP23}#EL/23/10B", f"{CAP23}#EL/23/10")]
+
+
+def test_a_sub_action_without_a_published_parent_gets_no_edge():
+    assert structure_edges([cap(CAP23, "EL/23/6/A")]) == []
+
+
+def test_a_parent_in_another_edition_does_not_count():
+    assert structure_edges([cap(CAP23, "EL/23/6"), cap(CAP24, "EL/23/6/A")]) == []
+
+
+def test_ordinal_actions_have_no_structure():
+    assert structure_edges([action("12"), action("13")]) == []
+
+
+# --- lineage: the same reference printed by two editions --------------------
+
+def test_the_same_reference_in_two_editions_is_carried_forward():
+    edges = edition_edges([cap(CAP23, "LU/25/1"), cap(CAP25, "LU/25/1")])
+    assert edges == [{
+        "from_action_id": f"{CAP23}#LU/25/1",
+        "to_action_id": f"{CAP25}#LU/25/1",
+        "to_plan_hint": CAP25,
+        "to_action_number": "LU/25/1",
+        "relationship": "carried_forward_to",
+        "family": "lineage",
+        "method": "extracted",
+        "asserted_in": CAP25,
+        "evidence": f"{CAP23} and {CAP25} both print LU/25/1 as their own action",
+    }]
+
+
+def test_three_editions_chain_earlier_to_later():
+    edges = edition_edges([cap(CAP25, "XX/25/1"), cap(CAP23, "XX/25/1"),
+                           cap(CAP24, "XX/25/1")])
+    assert [(e["from_action_id"], e["to_action_id"]) for e in edges] == [
+        (f"{CAP23}#XX/25/1", f"{CAP24}#XX/25/1"),
+        (f"{CAP24}#XX/25/1", f"{CAP25}#XX/25/1")]
+
+
+def test_distinct_references_and_ordinals_are_not_linked():
+    assert edition_edges([cap(CAP23, "EL/23/1"), cap(CAP25, "EL/25/1"),
+                          action("1"), {**action("1"), "action_id": "plan-b#1",
+                                        "plan_slug": "plan-b"}]) == []
+
+
+# --- CAP hints stay unresolved once CAP editions are present ---------------
+
+def test_cap_hinted_relationships_keep_a_null_target_when_cap_editions_exist():
+    from steps.extract_relationships.process import PLAN_HINT_SLUGS
+    assert "CAP" not in PLAN_HINT_SLUGS
+    actions = [action(19), cap(CAP23, "EL/23/1"), cap(CAP23, "268")]
+    edges, errors = build_edges(
+        [{"action_id": f"{PLAN}#19", "plan_slug": PLAN,
+          "action_text": "Do a thing (Complements CAP action 268)", "source_page": 9}],
+        actions, [], [], PLAN, hint_slugs=PLAN_HINT_SLUGS, curated=[])
+    assert [(e["to_plan_hint"], e["to_action_id"]) for e in edges] == [("CAP", None)]

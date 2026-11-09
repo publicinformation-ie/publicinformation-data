@@ -42,6 +42,13 @@ from lib.date_parse import OPEN_ENDED, parse_date
 from lib.file_utils import append_errors, read_json, write_json, write_status
 from lib.text_repairs import repair_text
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from action_references import (  # noqa: E402
+    InvalidReference,
+    edition_year,
+    parse_reference,
+)
+
 STEP_NAME = "resolve_action_identity"
 
 # Column aliases. extract_actions keys `columns` with normalize_text (not
@@ -55,6 +62,11 @@ OUTPUT_ALIASES = ("output", "outputs", "proposed output")
 TIMELINE_ALIASES = ("timeline & output", "timeline and output", "timeline",
                     "timeline & outputs", "timeframe", "deadline", "target date")
 MILESTONE_ALIASES = ("interim milestones", "milestones", "interim milestone")
+# A column that carries the action's printed reference (Climate Action Plan
+# annexes: `Action Number`). Plans that number their actions with a leading
+# ordinal in the action cell have no such column.
+REFERENCE_ALIASES = ("action number", "action no", "action no.",
+                     "action reference", "reference", "ref", "ref.")
 
 _BEL = "\x07"
 _ORDINAL_RE = re.compile(r"^\s*(\d{1,3})\s*[.)]\s*")
@@ -71,7 +83,7 @@ def _error_dict(error_type: str, message: str, context: dict) -> dict:
             "context": context}
 
 
-def mint_action_id(plan_slug: str, action_number: int) -> str:
+def mint_action_id(plan_slug: str, action_number) -> str:
     return f"{plan_slug}#{action_number}"
 
 
@@ -184,6 +196,16 @@ def _default_milestones(timeline, parsed, label, explicit):
     return timeline
 
 
+_NO_DEADLINE = {"", "-", "\u2013", "\u2014"}
+
+
+def _printed_label(timeline):
+    """D10: when no deadline can be parsed the label is the Timeline text as
+    printed (whitespace-normalised), or None for an empty or dash cell. A dash
+    is not inherited from a parent row."""
+    return None if timeline in _NO_DEADLINE else timeline
+
+
 def resolve_deadline(raw_date, timeline_cell,
                      milestone_cell="") -> DeadlineResolution:
     """Resolve one plan action's original deadline into a display-ready form.
@@ -238,7 +260,7 @@ def resolve_deadline(raw_date, timeline_cell,
             # is no rule that picks one, so refuse rather than take the
             # latest.
             return DeadlineResolution(
-                None, None, "",
+                None, None, _printed_label(timeline),
                 _default_milestones(timeline, None, "", milestone_cell))
         # The last-milestone rule: the latest candidate year is the deadline.
         candidate = max(candidates, key=lambda c: (c[0], c[1] or 4))
@@ -249,7 +271,8 @@ def resolve_deadline(raw_date, timeline_cell,
             _default_milestones(timeline, parsed, label, milestone_cell))
 
     return DeadlineResolution(
-        None, None, "", _default_milestones(timeline, None, "", milestone_cell))
+        None, None, _printed_label(timeline),
+        _default_milestones(timeline, None, "", milestone_cell))
 
 
 def resolve_original_deadline(raw_date, timeline_cell):
@@ -270,22 +293,78 @@ def build_actions(plan_records, plan_meta):
     """`(actions, errors)` — the canonical action set across every plan."""
     actions = []
     errors = []
+    seen_ids = set()
 
     for record in plan_records:
         plan_slug = record["doc_slug"]
         meta = plan_meta.get(plan_slug) or {}
         for raw in record.get("actions") or []:
             source_ref = raw.get("action_id")
-            number, action_text = strip_leading_ordinal(raw.get("action"))
-            if number is None:
-                errors.append(_error_dict(
-                    "UnresolvedActionNumber",
-                    "Plan action cell carries no leading ordinal, so the row "
-                    "has no stated number to be identified by; skipped.",
-                    {"plan_slug": plan_slug, "source_ref": source_ref}))
-                continue
-
             columns = raw.get("columns") or {}
+            where = {"plan_slug": plan_slug, "source_ref": source_ref,
+                     "source_page": raw.get("source_page")}
+
+            reference_cell = column_value(columns, REFERENCE_ALIASES)
+            if reference_cell:
+                # The plan prints a reference column (Climate Action Plan
+                # annexes). It is the identity; the action cell is only text.
+                correction = raw.get("reference_correction")
+                try:
+                    reference = parse_reference(reference_cell)
+                    printed_as = reference.printed
+                    if correction:
+                        # D8: a curated misprint correction; the corrected
+                        # reference is the identity, the misprint stays in
+                        # action_reference_printed.
+                        reference = parse_reference(reference_cell.replace(
+                            correction["printed"], correction["corrected"], 1))
+                except InvalidReference as e:
+                    errors.append(_error_dict(
+                        e.error_type, f"{e} Row skipped, no number minted.",
+                        {**where, "raw_reference": reference_cell}))
+                    continue
+                if reference.year is not None:
+                    # Fatal for a slug that does not name its edition (3.2e).
+                    plan_year = edition_year(plan_slug)
+                    if reference.year < plan_year:
+                        errors.append(_error_dict(
+                            "OutOfEditionReference",
+                            f"Reference delivery year {reference.year} is "
+                            f"earlier than the {plan_year} edition: a legacy "
+                            f"reprint, excluded from this edition.",
+                            {**where, "raw_reference": reference_cell,
+                             "edition_year": plan_year}))
+                        continue
+                number = reference.number
+                printed = printed_as if correction else reference.printed
+                flags = reference.flags
+                action_text = " ".join(
+                    (raw.get("action") or "").replace(_BEL, " ").split())
+            else:
+                ordinal, action_text = strip_leading_ordinal(raw.get("action"))
+                if ordinal is None:
+                    errors.append(_error_dict(
+                        "UnresolvedActionNumber",
+                        "Plan action cell carries no leading ordinal and the "
+                        "row no reference column, so the row has no stated "
+                        "number to be identified by; skipped.",
+                        {**where, "raw_reference": None}))
+                    continue
+                number = str(ordinal)
+                printed, flags = number, []
+
+            action_id = mint_action_id(plan_slug, number)
+            if action_id in seen_ids:
+                errors.append(_error_dict(
+                    "DuplicateActionReference",
+                    "The plan prints this reference on more than one row (for "
+                    "example with and without a flag); the first row is "
+                    "kept, this one is excluded.",
+                    {**where, "action_number": number,
+                     "raw_reference": reference_cell or number}))
+                continue
+            seen_ids.add(action_id)
+
             timeline_raw = (column_value(columns, TIMELINE_ALIASES)
                             or raw.get("raw_date") or "").replace(_BEL, " ")
             timeline_raw = " ".join(timeline_raw.split())
@@ -302,12 +381,14 @@ def build_actions(plan_records, plan_meta):
                      "original_timeline_raw": timeline_raw}))
 
             actions.append({
-                "action_id": mint_action_id(plan_slug, number),
+                "action_id": action_id,
                 "public_body_id": meta.get("public_body_id") or record.get("public_body_id"),
                 "plan_slug": plan_slug,
                 "plan_title": meta.get("doc_title") or record.get("doc_title") or plan_slug,
                 "source_url": meta.get("source_url") or record.get("source_url") or "",
                 "action_number": number,
+                "action_reference_printed": printed,
+                "action_flags": flags,
                 "action_text": action_text,
                 "action_text_clean": repair_text(action_text),
                 "original_deadline_raw": timeline_raw,
