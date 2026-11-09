@@ -92,6 +92,19 @@ Instead of adding a rule per shape, the opt-in now **declares the annex's own he
 
 **Accepted limit.** `carry_header` inherits only when the headerless table is on the page right after an action table and has the same column count. A headerless table that follows a non-action table, or that changes width, is not recovered. Such rows are not dropped silently: each reference-bearing row in a table that is not read is logged, and reconciliation (D5) flags any XLSX reference those rows would have supplied.
 
+**Revised again 2026-11-09 (reconciliation).** On CAP23 p.56 the continuation of the BE/23/34 table has 7 columns. Its header table on p.55 has 8, the extra being a spacer column after Actions that is empty in every row. `carry_header` now compares widths after dropping header-table columns that are empty in every row, and maps the fragment onto the remaining columns. Adjacency is still required.
+
+### D8. Curated reference corrections for source misprints (decided 2026-11-09)
+
+CAP23 p.57 prints BE/23/38 as `BE/23/36`, which duplicates the row above. The XLSX annex has BE/23/38 with the same text. An annex entry may declare `reference_corrections`, a list of `{page, printed, corrected, evidence}` entries.
+- The corrected reference becomes the identity. `action_reference_printed` keeps the misprint, so the correction stays visible.
+- A correction whose `printed` reference isn't found on its page is a fatal error, so a correction can't go stale without notice.
+- Corrections are only for misprints shown by an independent list. They are never used to change a plan's numbering.
+
+### D9. A "-" action cell inherits the parent's text (decided 2026-11-09)
+
+87 CAP23 sub-action rows print "-" in the Actions cell, meaning "same as the parent". The published `action_text` takes the parent row's text in the same table, which matches the XLSX on those rows. The relationship is still recorded by `part_of`. A "-" row with no parent row in the same table is excluded and logged, rather than publishing a bare "-".
+
 ### D5. Reconcile against the XLSX annexes as a reference list, not as a source
 A review script reads each edition's quarterly XLSX annexes (openpyxl, already in the shared venv), collects their codes and action text, and compares them with the extracted actions:
 - every XLSX code for the edition must resolve to an extracted action (blocking);

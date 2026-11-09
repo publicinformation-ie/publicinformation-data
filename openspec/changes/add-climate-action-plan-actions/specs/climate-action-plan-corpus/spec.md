@@ -41,6 +41,11 @@ Layout handling that differs from the default table reading SHALL be enabled onl
 - **WHEN** an Annex of Actions entry declares that tables continue across pages without a header
 - **THEN** a headerless continuation table is read with the header of the table it continues, and its actions are extracted
 
+#### Scenario: Continuation without an empty spacer column
+
+- **WHEN** a declared continuation table lacks a column that is empty in every row of the table it continues
+- **THEN** it is still read with that table's header, mapped onto the non-empty columns
+
 #### Scenario: Undeclared documents are unaffected
 
 - **WHEN** every curated action plan is re-extracted after layout handling is added

@@ -129,6 +129,29 @@ A relationship whose target is an action of a plan edition not in the dataset SH
 - **WHEN** a transport plan cites "CAP action 268" (a Climate Action Plan 2021 number) and only the CAP23–CAP25 editions are published
 - **THEN** the relationship keeps `to_plan_hint` `CAP` and a null `to_action_id`
 
+### Requirement: Source misprints are corrected only by curated, evidenced declarations
+
+A reference misprinted by its source MAY be corrected only by a correction declared on the document's curated entry, citing the page, the printed reference, the corrected reference and its evidence. The corrected reference SHALL be the identity, and `action_reference_printed` SHALL keep the misprint. A declared correction whose printed reference isn't found SHALL be a fatal error.
+
+#### Scenario: Misprinted duplicate reference
+
+- **WHEN** the 2023 annex prints `BE/23/36` on page 57 for the action the XLSX lists as `BE/23/38`, and a correction is declared
+- **THEN** the action publishes as `BE/23/38` with `action_reference_printed` `BE/23/36`
+
+#### Scenario: Stale correction
+
+- **WHEN** a declared correction's printed reference doesn't appear on its page
+- **THEN** extraction fails, naming the document and the correction
+
+### Requirement: A "same as parent" action cell inherits the parent's text
+
+An action row whose action text is printed as "-" SHALL publish the action text of its parent row in the same table. A "-" row with no parent row SHALL be excluded and logged.
+
+#### Scenario: Sub-action printed with "-"
+
+- **WHEN** `EL/23/6/A` prints "-" as its action text beneath `EL/23/6`
+- **THEN** `EL/23/6/A` publishes with the action text of `EL/23/6`
+
 ### Requirement: Extracted actions are reconciled before they publish
 
 Before a plan edition's actions first publish, they SHALL be reconciled against an independent list of that edition's actions published by the State, where one exists, by reference and by text. Every reference on the independent list SHALL resolve to an extracted action, and every text mismatch SHALL be either fixed or recorded with its reason. The edition's action count SHALL be pinned on its curated entry, and publication SHALL fail when the extracted count differs from the pin.
