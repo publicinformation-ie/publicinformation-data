@@ -8,7 +8,7 @@
 ## 1. Web consumer first (D6)
 
 - [x] 1.1 In `publicinformation-web`, accept `action_number` as `number | string` (`src/lib/publicBodyActions.ts:11,32,91`), display it as printed, and replace the subtraction sort (`:130`) with a natural, segment-wise sort. Verify with tests for `"12"`, `"EL/23/1"` and `"EL/23/6/A"` ordering, and a 2.1.0 integer fixture still rendering unchanged.
-- [ ] 1.2 Deploy that change while `latest/` is still 2.1.0, and confirm the live action pages are unchanged.
+- [x] 1.2 Deploy that change while `latest/` is still 2.1.0, and confirm the live action pages are unchanged. Done 2026-11-09 in web PRs #4 and #5. #5 fixed a browser-bundle import that broke the first deploy build. Live `/actions/` shows integer numbers, none coerced to 0.
 
 ## 2. Identity and contract (actions_pipeline, schema, transform)
 
@@ -68,7 +68,7 @@
 
 ## 5. Publication (3.0.0)
 
-- [ ] 5.1 Gate: task 1.2 is done (the web consumer is live and accepts text).
+- [x] 5.1 Gate: task 1.2 is done (the web consumer is live and accepts text).
 - [ ] 5.2a Apply `public-contract.patch` (`patch -p1`, since the files are LFS-filtered) and add `part_of` to `relationships.VOCABULARY`, so the schema/vocabulary coupling tests pass. Commit the `documents.yml` annex entries in the same commit as the regenerated `public/documents/index.*`.
 - [ ] 5.2 Publish `public/v3.0.0/public-body-actions/` and the `latest/` mirror. Set `owl:versionInfo "3.0.0"` and `dct:modified` on `public/catalog/dataset-public-body-actions.ttl`. Add a `public/CHANGELOG.md` entry naming the `action_number` type change, the new `action_reference_printed`/`action_flags` fields, the new `part_of`/`structure` values and the CAP23–25 editions. Note that transport text fields carry the table ligature repairs (see 2.8). State in the changelog and the dataset README that CAP24 and CAP25 annexes hold only new high-impact actions, not each plan's full roadmap.
 - [ ] 5.3 Full verification matrix: `pipelines/document_pipeline` tests, `pipelines/actions_pipeline` tests, root `tests/`, and `uv run pyright`.
