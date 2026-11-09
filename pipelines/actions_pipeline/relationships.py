@@ -28,6 +28,7 @@ VOCABULARY = {
     "carried_forward_to": "lineage",
     "complements": "reference",
     "references": "reference",
+    "part_of": "structure",
 }
 
 

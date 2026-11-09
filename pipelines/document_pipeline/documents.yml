@@ -378,3 +378,47 @@ documents:
     # Pages that are full-page images with no text layer; extract_pages OCRs exactly these.
     # Other image pages already covered by a figure are deliberately left out (chart OCR is noise).
     ocr_pages: [1, 4, 6, 7, 9, 10, 11, 12, 13, 15, 16, 18, 19, 20, 21, 23]
+
+  - doc_slug: climate-action-plan-2023-annex-of-actions
+    title: "Climate Action Plan 2023 - Annex of Actions"
+    url: "https://assets.gov.ie/static/documents/climate-action-plan-2023-annex-of-actions-d0711ef4-d42d-4997-98bb-facab5bdfd60.pdf"
+    policy_id: climate-action-plan
+    policy_role: action-plan
+    publisher: "Department of Climate, Energy and the Environment"
+    public_body_id: 1198
+    published_date: "2023-03-08"
+    role: plan
+    expected_action_count: 445
+    action_table_layout: [action_number_header, carry_header]
+    reference_corrections:
+      - page: 57
+        printed: BE/23/36
+        corrected: BE/23/38
+        text_starts: "Publish a review of relevant sources"
+        evidence: "The Q4 2023 XLSX annex lists BE/23/38 with this row's text (Publish a review of relevant sources ...); the PDF repeats the BE/23/36 printed on the row above."
+    hold: "Structure detection finds no level-1 chapter (InvalidStructure); republish the bundle once detect_structure handles it."
+
+  - doc_slug: climate-action-plan-2024-annex-of-actions
+    title: "Climate Action Plan 2024 - Annex of Actions"
+    url: "https://assets.gov.ie/static/documents/climate-action-plan-2024-annex-of-actions-e61eb692-dbcb-489a-a9aa-7b7d6155b4c2.pdf"
+    policy_id: climate-action-plan
+    policy_role: action-plan
+    publisher: "Department of Climate, Energy and the Environment"
+    public_body_id: 1198
+    published_date: "2024-06-04"
+    role: plan
+    expected_action_count: 126
+    action_table_layout: [action_number_header, carry_header]
+
+  - doc_slug: climate-action-plan-2025-annex-of-actions
+    title: "Climate Action Plan 2025 - Annex of Actions"
+    url: "https://assets.gov.ie/static/documents/c18d3b09/DECC_Climate_Action_Plan_2025_Annex_of_Actions__-_Final_Web.pdf"
+    policy_id: climate-action-plan
+    policy_role: action-plan
+    publisher: "Department of Climate, Energy and the Environment"
+    public_body_id: 1198
+    published_date: "2025-08-29"
+    role: plan
+    expected_action_count: 82
+    action_table_layout: [action_number_header, carry_header]
+    hold: "Structure detection finds no level-1 chapter (InvalidStructure); republish the bundle once detect_structure handles it."
