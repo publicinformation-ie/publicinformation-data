@@ -23,19 +23,23 @@ Within the covered documents extraction is complete and fail-closed: the 2022-20
 
 No prior measured accuracy figure existed (no labelled sample, only structural checks and tests). This audit adds one, run over every row rather than a sample, because the source PDFs are local (`document_pipeline/steps/fetch_pdfs/pdfs/`).
 
-**Repeat it:** `python scripts/audit_public_body_actions.py [--json] [--check]` (needs `pdftotext` and the local PDFs). `--check` fails on mismatches only; layout-artefact rows are reported as `unverified`. The unlocated observation is 2022-2025 #48 in the Final report.
-
 **Method.** For each action and observation, find the row by action number in `pdftotext -layout` output for its `source_page` (independent of the pipeline's PyMuPDF extraction), and check the published value appears in that row's text. This tests extraction fidelity, not whether the source document is itself correct.
 
 | Check | Rows | Result |
 |---|---|---|
-| Stated original deadlines: raw text in PDF row | 162 | 161 match; the exception (2026-2030 #64) is a wrapped-text layout artefact |
+| Stated original deadlines: raw text in PDF row | 162 (163 stated, less 2022-2025 #32, row not found) | 161 match; the exception (2026-2030 #64) is probably a wrapped-text layout artefact |
 | Parsed start/end consistent with raw (stated and reported) | 162 + 279 | 0 errors, all precisions |
 | Interpreted deadlines: chosen year appears in the row | 23 | 23 of 23 |
 | Reported deadlines: raw text in PDF row | 279 | 278 match; 1 row not located |
-| Reported status: in PDF row | 279 | 28 flagged, all `OnSchedule`, a line-wrap artefact ("On / Schedule") |
+| Reported status: in PDF row | 97 (Year One + Year Two) | 97 of 97; 28 of these are `OnSchedule` matched across a line wrap ("On / Schedule") |
 
-Result: no extraction errors found in 465 records. Not mechanically verified: 2022-2025 #32 (row regex miss), one report observation that could not be located, Year Three / Final statuses (taken from section headings; the Final report's totals do reconcile), and 101 observations whose `progress_text` does not begin with the same words as the PDF row (probably text repairs and hyphenation; not checked).
+Result: no extraction errors found among the values checked. Not mechanically verified:
+
+- 3 rows reported as `unverified` by the script: 2026-2030 #64 (deadline text not in row), 2022-2025 #32 (row regex miss), 2022-2025 #48 in the Final report (row not found).
+- 182 Year Three / Final statuses. They are taken from section headings, not table rows, so the row check skips them; only the Final report's published totals reconcile.
+- 101 observations whose `progress_text` does not begin with the same words as the PDF row (probably text repairs and hyphenation; not checked).
+
+**Repeat it:** `python scripts/audit_public_body_actions.py [--json] [--check]` (needs `pdftotext` and the local PDFs). `--check` fails on mismatches only; layout-artefact rows are reported as `unverified`.
 
 Known text defects are separate: 87 records have PDF extraction artefacts (`submitet d`, `batet ry`); 138 occurrences are repaired in `_clean` fields, 42 remain in raw-only fields, about 5 (`Lifef y`) are unmapped. See `2026-11-07-public-body-actions-data-quality.md`.
 
@@ -43,17 +47,20 @@ Known text defects are separate: 87 records have PDF extraction artefacts (`subm
 
 | Source | Count | Reliability |
 |---|---|---|
-| 2026-2030 plan, separate deadline column | 95 `stated` | High, verified |
-| 2022-2025 plan, single date in timeline cell | 68 `stated` | High, verified |
+| 2026-2030 plan, separate deadline column | 92 `stated` (dated) | High, verified |
+| 2022-2025 plan, single date in timeline cell | 63 `stated` (dated) | High, verified |
 | 2022-2025 plan, multi-milestone prose ("last milestone wins") | 23 `interpreted` | Read correctly, meaning uncertain (below) |
+| Open-ended originals (`stated`: 3 in 2026-2030, 5 in 2022-2025) | 4 `annual`, 4 `ongoing` | No dates by design |
+| **Total original deadlines** | **186** | |
 | Report-restated deadlines | 279 observations (261 quarter, 17 ongoing, 1 year) | High, verified |
-| Open-ended originals | 4 `annual`, 4 `ongoing` | No dates by design |
 
 **Interpreted deadlines.** The year is correct for all 23 by the stated rule, but "deadline" means "latest year-labelled milestone", which is not always a completion date:
 
 - Recurring: 2022-2025 #1 (end 2023, but "annual reports published thereafter"), #22 ("on an annual basis").
-- Commencement milestone: #23, #52, #78, #24 ("commenced"), so the year is a start, not an end.
-- The remaining ~17 are plain completion milestones.
+- Commencement milestone: #23, #24, #52, #78 ("commenced"), so the year is a start, not an end.
+- The remaining 17 are plain completion milestones.
+
+The commencement problem is not limited to interpreted rows: `stated` 2022-2025 #32 is a single milestone, "2022: Connecting Ireland programme commenced…", so its deadline is also a start year. Stated rows have not been swept for this.
 
 **Slippage marker is noisy.** `DeadlineDivergedAtFirstReport` logs 76 of 91 actions because it compares start dates, so a plan's `2022` (start 1 Jan) against a report's `2022 Q4` (start 1 Oct) counts as divergence. Comparing end dates at month level gives 3 genuine divergences out of 86 comparable actions (2022-2025 #1, #47, #89). Do not build a "slipped" view on this marker as it stands.
 
@@ -62,11 +69,11 @@ Known text defects are separate: 87 records have PDF extraction artefacts (`subm
 ## Implications for the two views
 
 - **Public-body view.** Trivially works today (single body, 1213). It becomes meaningful only with CAP or other policy coverage, which is gated on the CAP decisions, chiefly the `action_number` schema question (a MAJOR bump if widened to a string).
-- **Date view.** Safe for stated deadlines and report-restated deadlines. For interpreted deadlines, keep the `interpreted` flag visible, show `original_deadline_label` or the milestones prose rather than a bare year, and bucket `annual`/`ongoing` separately.
+- **Date view.** Safe for stated deadlines and report-restated deadlines, with the caveat that some milestones (stated or interpreted) are commencements, not completions. For interpreted deadlines, keep the `interpreted` flag visible, show `original_deadline_label` or the milestones prose rather than a bare year, and bucket `annual`/`ongoing` separately.
 
 ## Suggested follow-ups
 
-1. Fix the divergence check to compare end dates at the coarser of the two precisions, with tests.
-2. Decide whether interpreted rows whose final milestone is a commencement or a recurrence should be flagged (new confidence value or note) or left as "last milestone year".
+1. Fix the divergence check to compare end dates at month level (the rule measured in section 3), with tests.
+2. Decide whether rows whose (final) milestone is a commencement or a recurrence, stated or interpreted, should be flagged (new confidence value or note) or left as is. Sweep the stated rows for commencements first.
 3. Resolve the unverified rows listed in section 2.
 4. Decide the CAP identity and schema question before planning a cross-body view.
