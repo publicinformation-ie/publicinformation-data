@@ -387,12 +387,12 @@ def test_action_table_layout_defaults_to_none(tmp_path):
 
 def test_action_table_layout_accepts_the_closed_set(tmp_path):
     path = write_yaml(tmp_path, ACTION_PLAN
-                      + "    action_table_layout: [skip_subtitle_header, carry_header]\n")
+                      + "    action_table_layout: [action_number_header, carry_header]\n")
     assert _load(path)[0]["action_table_layout"] == [
-        "skip_subtitle_header", "carry_header"]
+        "action_number_header", "carry_header"]
 
 
-@pytest.mark.parametrize("bad", ["[]", "carry_header", "[unknown_flag]",
+@pytest.mark.parametrize("bad", ["[]", "carry_header", "[unknown_flag]", "[skip_subtitle_header]",
                                  "[carry_header, carry_header]", "[1]"])
 def test_action_table_layout_rejects_unknown_or_malformed_values(tmp_path, bad):
     path = write_yaml(tmp_path, ACTION_PLAN + f"    action_table_layout: {bad}\n")

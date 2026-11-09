@@ -46,6 +46,7 @@ they are null and a `DateParseError` (informational) is logged. Nothing is
 silently dropped or rewritten to "fit".
 """
 import argparse
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -93,7 +94,7 @@ def _cell_at(cells, index):
     return cells[index]
 
 
-def _is_title_only_row(row, skip_subtitle_header=False) -> bool:
+def _is_title_only_row(row) -> bool:
     """True for a row that is a section title merged above the real header:
     a row with more than one cell overall but exactly one non-empty cell,
     where that cell doesn't look like a header keyword (e.g. "CORE ACTIONS"
@@ -103,9 +104,6 @@ def _is_title_only_row(row, skip_subtitle_header=False) -> bool:
     table) can't be distinguished this way — every row of such a table
     trivially has "exactly one non-empty cell" — so those are never
     considered title-only here.
-
-    With `skip_subtitle_header` (a per-document opt-in) a lone-cell row such
-    as "Actions" is a subtitle even though it matches a header keyword.
     """
     if len(row) <= 1:
         return False
@@ -113,13 +111,11 @@ def _is_title_only_row(row, skip_subtitle_header=False) -> bool:
     non_empty = [c for c in cells if c]
     if len(non_empty) != 1:
         return False
-    if skip_subtitle_header:
-        return True
     header_cell = _normalize_header(non_empty[0])
     return header_cell not in ACTION_KEYWORDS and header_cell not in DATE_KEYWORDS
 
 
-def _header_index(rows, skip_subtitle_header=False):
+def _header_index(rows):
     """Index of the header row, or None if every row is empty.
 
     Normally this is the first non-empty row. But a table can carry a
@@ -137,7 +133,7 @@ def _header_index(rows, skip_subtitle_header=False):
             continue
         if first_non_empty is None:
             first_non_empty = index
-        if not _is_title_only_row(row, skip_subtitle_header):
+        if not _is_title_only_row(row):
             return index
     return first_non_empty
 
@@ -169,9 +165,27 @@ class TableVerdict:
         self.error_type = error_type
 
 
-def classify_table(rows, skip_subtitle_header=False) -> TableVerdict:
-    """Classify one table's rows against the action-table rules above."""
-    header_index = _header_index(rows, skip_subtitle_header)
+def _action_number_header_index(rows):
+    """Index of the first row with a cell that reads "action number", or None."""
+    for index, row in enumerate(rows):
+        if any(_normalize_header(c) == "action number" for c in row):
+            return index
+    return None
+
+
+def classify_table(rows, action_number_header=False) -> TableVerdict:
+    """Classify one table's rows against the action-table rules above.
+
+    With `action_number_header` (a per-document opt-in) the header is the first
+    row with an "Action Number" cell and every row above it is preamble; a
+    table with no such row is not an action table (and may be a continuation).
+    """
+    if action_number_header:
+        header_index = _action_number_header_index(rows)
+        if header_index is None:
+            return TableVerdict(False, False)
+    else:
+        header_index = _header_index(rows)
     if header_index is None:
         # A table with no content at all has no action column: excluded.
         return TableVerdict(False, False)
@@ -220,7 +234,7 @@ def _error_dict(error_type: str, message: str, context: dict) -> dict:
 
 
 def extract_table(rows, page_number, table_index, verdict, doc_slug, errors,
-                  skip_subtitle_header=False, header=None) -> list:
+                  header=None) -> list:
     """Extract every action row from one qualified action table.
 
     One data row is one action; there is no row-level classification (a
@@ -239,7 +253,7 @@ def extract_table(rows, page_number, table_index, verdict, doc_slug, errors,
     for row in rows[verdict.header_index + 1:]:
         if not _has_content(row):
             continue
-        if _is_title_only_row(row, skip_subtitle_header):
+        if _is_title_only_row(row):
             # A mid-table section title (e.g. "COMPLEMENTARY ACTION IN
             # HOUSING FOR ALL") that clean_text didn't split into its own
             # table block: not a data row.
@@ -295,6 +309,24 @@ def extract_table(rows, page_number, table_index, verdict, doc_slug, errors,
 # --------------------------------------------------------------------------
 
 
+_REFERENCE_ROW_RE = re.compile(r"^\s*[A-Z]{2}\s*/\s*\d{2}\s*/\s*\d")
+
+
+def _log_unread_table(rows, doc_slug, page_number, table_index, errors):
+    """`UnreadActionTable` for a table that was not read but whose rows start
+    with a plan action reference: the rows are not dropped silently (3.2g)."""
+    firsts = [_normalize_cell(row[0]) for row in rows if row and _has_content(row)]
+    refs = [c for c in firsts if _REFERENCE_ROW_RE.match(c)]
+    if refs:
+        errors.append(_error_dict(
+            "UnreadActionTable",
+            "Table has reference-bearing rows but was not read as an action "
+            "table (no Action Number header and no header to inherit); its "
+            "actions are not extracted.",
+            {"doc_slug": doc_slug, "page": page_number, "table": table_index,
+             "first_reference": refs[0], "rows": len(refs)}))
+
+
 def _continuation_verdict(rows, header, previous):
     """A verdict reading `rows` with the previous table's column mapping, or
     None when the table cannot be that table's continuation (different width,
@@ -320,13 +352,14 @@ def extract_document(clean_record, doc_slug, layout=()):
 
     `layout` is the document's opt-in `action_table_layout` (D7); empty means
     the default reading, unchanged:
-      * `skip_subtitle_header` — a lone-cell row such as "Actions" is never
-        chosen as the header;
+      * `action_number_header` — the header is the first row with an "Action
+        Number" cell; every row above it (theme/KPI, measure, "Actions"
+        subtitle) is preamble. A table with no such row is not an action table;
       * `carry_header` — a table with no action column on the page right after
         an action table, with the same number of columns, is that table's
         continuation and inherits its header.
     """
-    skip_subtitle = "skip_subtitle_header" in layout
+    number_header = "action_number_header" in layout
     carry = "carry_header" in layout
     previous = None   # (page, header, verdict-with-columns) of the last action table
     dated_count = 0
@@ -341,7 +374,7 @@ def extract_document(clean_record, doc_slug, layout=()):
                 continue
             rows = block.get("text") or []
             table_index = int(block.get("index", 0))
-            verdict = classify_table(rows, skip_subtitle)
+            verdict = classify_table(rows, number_header)
             carried_header = None
 
             if verdict.error_type == "ActionHeaderAmbiguous":
@@ -368,6 +401,8 @@ def extract_document(clean_record, doc_slug, layout=()):
                 if inherited is not None:
                     verdict, carried_header = inherited, previous[1]
             if not verdict.is_action_table:
+                if layout:
+                    _log_unread_table(rows, doc_slug, page_number, table_index, errors)
                 continue
 
             if verdict.dated:
@@ -375,7 +410,7 @@ def extract_document(clean_record, doc_slug, layout=()):
             else:
                 undated_count += 1
             actions.extend(extract_table(rows, page_number, table_index, verdict,
-                                         doc_slug, errors, skip_subtitle,
+                                         doc_slug, errors,
                                          header=carried_header))
             header = carried_header or [
                 _normalize_cell(c) for c in rows[verdict.header_index]]

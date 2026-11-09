@@ -29,7 +29,7 @@ VALID_STATUS_SOURCES = ("annex",)
 # Opt-in table-reading behaviours for annexes whose layout differs from the
 # default (see extract_actions). Never auto-detected: undeclared documents are
 # read exactly as before.
-VALID_ACTION_TABLE_LAYOUTS = ("skip_subtitle_header", "carry_header")
+VALID_ACTION_TABLE_LAYOUTS = ("action_number_header", "carry_header")
 VALID_POLICY_ROLES = ("primary", "action-plan", "progress-report")
 
 

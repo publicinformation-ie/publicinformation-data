@@ -513,6 +513,7 @@ def test_an_action_plan_policy_role_still_yields_actions(tmp_path, make_writer):
 # --- action_table_layout (opt-in, D7) ---------------------------------------------
 
 HEADER = ["Action\nNumber", "Actions", "Steps", "Output", "Timeline", "Lead"]
+LAYOUT = ("action_number_header", "carry_header")
 
 
 def annex_rows():
@@ -525,20 +526,46 @@ def annex_rows():
     ]
 
 
+def themed_rows():
+    return [
+        ["Theme:\nAccelerate", "", "", "2025 KPI:\n50%", "", "2025 Abatement:\n1.3", ""],
+        ["Measure: Accelerate Renewable Electricity", "", "", "", "", "", ""],
+        ["Actions", "", "", "", "", "", ""],
+        HEADER + ["Stakeholders"],
+        ["EL/24/1", "Accelerate", "As per", "Published", "Q2 2024", "DECC", "DHLGH"],
+    ]
+
+
 def test_without_the_flag_a_lone_actions_row_is_still_the_header():
     verdict = classify_table(annex_rows())
     assert verdict.header_index == 1 and verdict.action_col == 0
 
 
-def test_skip_subtitle_header_chooses_the_real_header_row():
-    verdict = classify_table(annex_rows(), skip_subtitle_header=True)
+def test_action_number_header_skips_a_lone_actions_subtitle_row():
+    verdict = classify_table(annex_rows(), action_number_header=True)
     assert verdict.is_action_table
     assert (verdict.header_index, verdict.action_col, verdict.date_col) == (2, 1, 4)
     errors = []
-    actions = extract_table(annex_rows(), 10, 0, verdict, "doc", errors,
-                            skip_subtitle_header=True)
+    actions = extract_table(annex_rows(), 10, 0, verdict, "doc", errors)
     assert [a["action"] for a in actions] == ["Develop a framework", "Establish a unit"]
     assert actions[0]["columns"]["Action Number"] == "RE/24/1"
+
+
+def test_action_number_header_skips_theme_kpi_measure_and_actions_rows():
+    verdict = classify_table(themed_rows(), action_number_header=True)
+    assert verdict.is_action_table
+    assert (verdict.header_index, verdict.action_col) == (3, 1)
+    actions = extract_table(themed_rows(), 30, 0, verdict, "doc", [])
+    assert [a["columns"]["Action Number"] for a in actions] == ["EL/24/1"]
+
+
+def test_a_table_without_an_action_number_row_is_not_an_action_table_with_the_flag():
+    rows = [["RE/24/4", "Establish centres", "Launch", "List", "Q4 2024", "SFI"]]
+    verdict = classify_table(rows, action_number_header=True)
+    assert not verdict.is_action_table and verdict.error_type is None
+    # an "Actions" header with no Action Number cell is not trusted either
+    assert not classify_table([["Actions", "Lead"], ["Do it", "DoT"]],
+                              action_number_header=True).is_action_table
 
 
 def continuation(rows):
@@ -551,11 +578,12 @@ def headed_page(number=10):
     return page
 
 
+CONT_ROW = ["RE/24/4", "Establish centres", "Launch", "List", "Q4 2024", "SFI"]
+
+
 def test_carry_header_reads_a_headerless_continuation_table():
-    page2 = continuation([["RE/24/4", "Establish centres", "Launch", "List", "Q4 2024", "SFI"]])
-    record = clean_record([headed_page(), page2])
-    _, dated, _, actions, _ = extract_document(
-        record, "doc", layout=("skip_subtitle_header", "carry_header"))
+    record = clean_record([headed_page(), continuation([CONT_ROW])])
+    _, dated, _, actions, _ = extract_document(record, "doc", layout=LAYOUT)
     assert [a["action"] for a in actions] == [
         "Develop a framework", "Establish a unit", "Establish centres"]
     assert actions[2]["columns"]["Action Number"] == "RE/24/4"
@@ -564,23 +592,44 @@ def test_carry_header_reads_a_headerless_continuation_table():
 
 
 def test_a_headerless_table_is_ignored_without_carry_header():
-    page2 = continuation([["RE/24/4", "Establish centres", "Launch", "List", "Q4 2024", "SFI"]])
     _, _, _, actions, _ = extract_document(
-        clean_record([headed_page(), page2]), "doc", layout=("skip_subtitle_header",))
+        clean_record([headed_page(), continuation([CONT_ROW])]), "doc",
+        layout=("action_number_header",))
     assert len(actions) == 2
 
 
 def test_carry_header_does_not_inherit_across_a_gap_or_a_width_change():
-    far = continuation([["RE/24/4", "Establish centres", "Launch", "List", "Q4 2024", "SFI"]])
+    far = continuation([CONT_ROW])
     far["number"] = 14
     narrow = continuation([["x", "y"]])
     for page in (far, narrow):
         _, _, _, actions, _ = extract_document(
-            clean_record([headed_page(), page]), "doc",
-            layout=("skip_subtitle_header", "carry_header"))
+            clean_record([headed_page(), page]), "doc", layout=LAYOUT)
         assert len(actions) == 2
 
 
 def test_default_layout_output_is_unchanged_by_the_new_parameter():
     record = clean_record([table_block(dated_rows())])
     assert extract_document(record, "doc") == extract_document(record, "doc", layout=())
+
+
+# --- UnreadActionTable (3.2g) -----------------------------------------------------
+
+def test_a_reference_bearing_table_that_is_not_read_is_logged():
+    far = continuation([CONT_ROW, ["RE/24/5"] + CONT_ROW[1:]])
+    far["number"] = 14
+    _, _, _, actions, errors = extract_document(
+        clean_record([headed_page(), far]), "doc", layout=LAYOUT)
+    unread = [e for e in errors if e["error_type"] == "UnreadActionTable"]
+    assert len(unread) == 1
+    assert unread[0]["context"] == {"doc_slug": "doc", "page": 14, "table": 0,
+                                    "first_reference": "RE/24/4", "rows": 2}
+
+
+def test_a_read_table_and_an_undeclared_document_log_no_unread_tables():
+    _, _, _, _, errors = extract_document(
+        clean_record([headed_page(), continuation([CONT_ROW])]), "doc", layout=LAYOUT)
+    assert not [e for e in errors if e["error_type"] == "UnreadActionTable"]
+    _, _, _, _, errors = extract_document(
+        clean_record([continuation([CONT_ROW])]), "doc")
+    assert errors == []
