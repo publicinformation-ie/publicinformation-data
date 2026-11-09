@@ -12,7 +12,8 @@ PLAN = "smp-2022-2025"
 def action(number=1, **overrides):
     record = {"action_id": f"{PLAN}#{number}", "public_body_id": 1213,
               "plan_slug": PLAN, "plan_title": "SMP 2022-2025",
-              "source_url": "https://example.ie/plan.pdf", "action_number": number,
+              "source_url": "https://example.ie/plan.pdf", "action_number": str(number),
+              "action_reference_printed": str(number), "action_flags": [],
               "action_text": "Do a thing", "original_deadline_raw": "Q4 2024",
               "original_deadline_start": "2024-10-01",
               "original_deadline_end": "2024-12-31",
@@ -242,9 +243,10 @@ def test_an_empty_reported_raw_may_have_a_null_precision():
 
 
 def test_the_new_columns_are_appended_in_order():
-    assert transform.ACTION_FIELDS[-3:] == [
+    assert transform.ACTION_FIELDS[-5:] == [
         "action_text_clean", "original_deadline_label",
-        "original_deadline_milestones"]
+        "original_deadline_milestones",
+        "action_reference_printed", "action_flags"]
     assert transform.OBSERVATION_FIELDS[-1] == "progress_text_clean"
 
 
@@ -319,3 +321,52 @@ def test_stamp_if_changed_is_called_once_with_every_payload_path(tmp_path, monke
     assert {p.name for p in calls[0]} == {
         "actions.csv", "action-status-observations.csv",
         "action-relationships.csv", "public-body-actions.jsonld"}
+
+
+# --- coded action references -------------------------------------------------
+
+CAP = "climate-action-plan-2023-annex-of-actions"
+
+
+def coded(number, **overrides):
+    record = action(number, **overrides)
+    record.update(action_id=f"{CAP}#{number}", plan_slug=CAP)
+    return record
+
+
+def test_a_coded_action_uri_keeps_the_slashes_of_its_reference():
+    data = transform.transform_to_jsonld([coded("EL/23/6/A")], [], [])
+    assert data["@graph"][0]["@id"].endswith(f"/action/{CAP}/EL/23/6/A")
+    assert "#" not in data["@graph"][0]["@id"]
+
+
+def test_an_attached_letter_reference_is_kept_as_printed_in_the_uri():
+    data = transform.transform_to_jsonld([coded("EL/23/10A")], [], [])
+    assert data["@graph"][0]["@id"].endswith(f"/action/{CAP}/EL/23/10A")
+
+
+def test_action_flags_are_a_semicolon_separated_csv_cell():
+    rows = transform.build_action_rows([
+        coded("EL/23/6", action_reference_printed="EL/23/6**",
+              action_flags=["non_reportable", "duplicate"]),
+        coded("EL/23/7")])
+    assert rows[0]["action_flags"] == "non_reportable;duplicate"
+    assert rows[0]["action_reference_printed"] == "EL/23/6**"
+    assert rows[1]["action_flags"] == ""
+
+
+def test_action_flags_are_a_list_in_jsonld():
+    data = transform.transform_to_jsonld(
+        [coded("EL/23/6", action_flags=["taskforce"]), coded("EL/23/7")], [], [])
+    assert data["@graph"][0]["action_flags"] == ["taskforce"]
+    assert data["@graph"][1]["action_flags"] == []
+
+
+def test_a_structure_edge_is_publishable_when_the_term_is_in_the_vocabulary():
+    edge = relationship(from_action_id=f"{CAP}#EL/23/6/A",
+                        to_action_id=f"{CAP}#EL/23/6", relationship="part_of",
+                        family="structure")
+    terms = VOCABULARIES["relationship"] | {"part_of"}
+    assert transform.check_invariants(
+        [coded("EL/23/6"), coded("EL/23/6/A")], [], [edge], {},
+        VOCABULARIES["status"], terms) == []

@@ -59,8 +59,12 @@ ACTION_FIELDS = [
     "original_deadline_precision", "original_deadline_confidence",
     "original_timeline_raw", "lead", "support", "output", "source_page",
     "source_ref", "action_text_clean", "original_deadline_label",
-    "original_deadline_milestones",
+    "original_deadline_milestones", "action_reference_printed", "action_flags",
 ]
+# Fields holding a list. CSV renders them `;`-joined (declared as a list in the
+# CSVW); JSON-LD keeps them as arrays.
+LIST_FIELDS = {"action_flags"}
+LIST_SEPARATOR = ";"
 OBSERVATION_FIELDS = [
     "action_id", "report_slug", "report_title", "as_of", "status",
     "reported_deadline_raw", "reported_deadline_start", "reported_deadline_end",
@@ -92,8 +96,16 @@ def _cell(value):
 
 
 def _rows(records, fields):
-    return [{field: _cell(record.get(field)) for field in fields}
-            for record in records]
+    rows = []
+    for record in records:
+        row = {}
+        for field in fields:
+            value = record.get(field)
+            if field in LIST_FIELDS:
+                value = LIST_SEPARATOR.join(value or [])
+            row[field] = _cell(value)
+        rows.append(row)
+    return rows
 
 
 def build_action_rows(actions):
@@ -279,7 +291,9 @@ def transform_to_jsonld(actions, observations, relationships,
         node = {"@id": uris[action["action_id"]], "@type": "act:Action"}
         slug = body_slug_lookup.get(action["public_body_id"])
         node["public_body"] = f"{BASE_URI}/body/{slug}" if slug else None
-        node.update({field: action.get(field) for field in ACTION_FIELDS})
+        node.update({field: (list(action.get(field) or [])
+                             if field in LIST_FIELDS else action.get(field))
+                     for field in ACTION_FIELDS})
         graph.append(node)
 
     for observation in observations:

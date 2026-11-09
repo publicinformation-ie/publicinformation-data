@@ -23,7 +23,7 @@ def resolved():
 def test_the_2022_2025_plan_publishes_all_91_actions(resolved):
     actions = [a for a in resolved["actions"] if a["plan_slug"] == PLAN]
     assert len(actions) == 91
-    assert {a["action_number"] for a in actions} == set(range(1, 92))
+    assert {a["action_number"] for a in actions} == {str(n) for n in range(1, 92)}
 
 
 def test_the_2026_2030_plan_publishes_95_actions_and_no_observations(resolved):
