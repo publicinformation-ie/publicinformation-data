@@ -42,3 +42,23 @@ Distinct references after whitespace removal, by year segment: `/23/` 288, `/24/
 4. **Parent rows (D3).** Of 34 distinct CAP23 parents implied by sub-action codes, only 16 appear as rows in any workbook. These workbooks list only actions due in a period, so this is not conclusive for the PDFs.
 
 Options the design owner could choose between (not implemented): treat `(TF)` as a stripped flag recorded elsewhere (a new field, which widens the contract); keep it in the reference and widen the D2 set to allow `(`/`)` (then URIs need escaping, which D2 rejects); or exclude `(TF)` rows and log them (loses roughly 60 actions, which reconciliation would then flag as missing).
+
+## Annex of Actions PDFs (read from the DCEE pages in a browser, 2026-11-09)
+
+The gov.ie listing pages refuse scripted requests, so these were read in a normal browser session. The PDFs themselves are on `assets.gov.ie`, which serves plain requests.
+
+| Edition | Slug | Link text on page | URL |
+|---|---|---|---|
+| 2023 | `climate-action-plan-2023-annex-of-actions` | Climate Action Plan 2023 - Annex of Actions | `https://assets.gov.ie/static/documents/climate-action-plan-2023-annex-of-actions-d0711ef4-d42d-4997-98bb-facab5bdfd60.pdf` |
+| 2024 | `climate-action-plan-2024-annex-of-actions` | Climate Action Plan 2024 - Annex of Actions | `https://assets.gov.ie/static/documents/climate-action-plan-2024-annex-of-actions-e61eb692-dbcb-489a-a9aa-7b7d6155b4c2.pdf` |
+| 2025 | `climate-action-plan-2025-annex-of-actions` | DECC Climate Action Plan 2025 Annex of Actions | `https://assets.gov.ie/static/documents/c18d3b09/DECC_Climate_Action_Plan_2025_Annex_of_Actions__-_Final_Web.pdf` |
+
+**Dates.** None of the pages prints a per-file date, so take `published_date` from each PDF's own metadata or front matter and record which one was used.
+- **2023.** The annex was published separately from the plan, on 7 March 2023 (recorded when this change was scoped). The page's "Published on" is the plan's date.
+- **2024.** The page says "Published on: 20 December 2023" (the draft) and "Last updated on: 10 April 2025". The final CAP24 and its annex were approved by Government on 21 May 2024. The page also notes "minor editorial changes" to the posted version.
+- **2025.** The page says "Published on: 15 April 2025" and "Last updated on: 3 September 2025".
+
+**Scope finding: the CAP24 and CAP25 annexes are not the full action set.** Both pages say a new approach was adopted from 2024. The Annex contains only *new, high-impact actions*, and the full roadmap of measures and actions stays in the Plan document itself. CAP23's annex is the full set.
+- The Taoiseach XLSX annexes track the annex actions: 126 distinct `/24/` codes and 82 distinct `/25/` codes, against published totals of 125 and 82.
+- So "the annex is the edition's action source" means the **tracked, coded** actions. The rest of each Plan's roadmap is not published as actions by this change.
+- This should be stated in the dataset README and changelog, so readers don't take CAP24/CAP25 action counts as each plan's full scope.
