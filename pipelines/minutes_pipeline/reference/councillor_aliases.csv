@@ -1,0 +1,318 @@
+raw_name,councillor_id,method,occurrences
+Aisling Dempsey,meath/aisling-dempsey,name,9
+Aisling O'Neill,meath/aisling-oneill,name,3
+Alan Lawes,meath/alan-lawes,name,21
+Alan Tobin,meath/alan-tobin,name,43
+Amanda Smith,meath/amanda-smith,name,12
+Ann Dillon-Gallagher,meath/ann-dillon-gallagher,name,2
+Ann Dillon‐Gallagher,meath/ann-dillon-gallagher,name,1
+Annie Hoey,meath/annie-hoey,name,2
+Brian Fitzgerald,meath/brian-fitzgerald,name,14
+Bryan Reilly,meath/bryan-reilly,name,22
+Carol Lennon,meath/carol-lennon,name,19
+Caroline Lynch,meath/caroline-lynch,name,3
+Caroline O'Reilly,meath/caroline-oreilly,name,4
+Caroline O’Reilly,meath/caroline-oreilly,name,2
+Claire O' Driscoll,meath/claire-odriscoll,name,1
+Claire O’Driscoll,meath/claire-odriscoll,name,3
+Cllr Aisling Dempsey,meath/aisling-dempsey,name,1
+Cllr Aisling O’Neill,meath/aisling-oneill,name,1
+Cllr Anne Dillon-Gallagher,meath/ann-dillon-gallagher,name,1
+Cllr B Reilly,meath/bryan-reilly,initial_surname,1
+Cllr Cassells,meath/shane-cassells,surname_only,1
+Cllr Damien O’Reilly,meath/damien-oreilly,name,6
+Cllr Dillon Gallagher,meath/ann-dillon-gallagher,name,1
+Cllr Edward Fennessy,meath/edward-fennessy,name,1
+Cllr Farrelly,meath/john-farrelly,surname_only,4
+Cllr Francis Deane,meath/francis-deane,name,2
+Cllr Gerry O’Connor,meath/gerry-oconnor,name,6
+Cllr Gillian Toole,meath/gillian-toole,name,2
+Cllr Joe Reilly,meath/joe-reilly,name,1
+Cllr Maria Murphy,meath/maria-murphy,name,14
+Cllr Mike Bray,meath/michael-bray,name,1
+Cllr Nick Killian,meath/nicholas-killian,name,5
+Cllr Padraig Fitzsimons,meath/padraig-fitzsimons,name,4
+Cllr Paul O’Rourke,meath/paul-orourke,name,1
+Cllr Pádraig Coffey,meath/padraig-coffey,name,3
+Cllr Ronan Moore,meath/ronan-moore,name,2
+Cllr Seamus O’Neill,meath/seamus-oneill,name,1
+Cllr Sean Drew,meath/sean-drew,name,2
+Cllr Suzanne Jamal,meath/suzanne-jamal,name,1
+Cllr Tommy Reilly,meath/tom-reilly,name,1
+Cllr Trevor Golden,meath/trevor-golden,name,2
+Cllr William Carey,meath/william-carey,name,1
+Cllr. Bryan Reilly,meath/bryan-reilly,name,6
+Cllr. Caroline Lynch,meath/caroline-lynch,name,1
+Cllr. Cassells,meath/shane-cassells,surname_only,1
+Cllr. David Gilroy,meath/david-gilroy,name,1
+Cllr. Eimear Ferguson,meath/eimear-ferguson,name,2
+Cllr. Enda Flynn,meath/enda-flynn,name,6
+Cllr. Eugene Cassidy,meath/eugene-cassidy,name,9
+Cllr. Francis Deane,meath/francis-deane,name,1
+Cllr. Holloway,meath/james-holloway,surname_only,1
+Cllr. Joe Reilly,meath/joe-reilly,name,3
+Cllr. Johnny Guirke,meath/johnny-guirke,name,5
+Cllr. Leonard,meath/noel-leonard,surname_only,1
+Cllr. Michael Gallagher,meath/michael-gallagher,name,5
+Cllr. Noel French,meath/noel-french,name,7
+Cllr. Noel Leonard,meath/noel-leonard,name,1
+Cllr. Paddy Meade,meath/paddy-meade,name,4
+Cllr. Reilly,,unresolved,1
+Cllr. Ronan McKenna,meath/ronan-mckenna,name,1
+Cllr. Sarah Reilly,meath/sarah-reilly,name,5
+Cllr. Sean Drew,meath/sean-drew,name,6
+Cllr. Shane Cassells,meath/shane-cassells,name,1
+Cllr. Sharon Keogan,meath/sharon-keogan,name,3
+Cllr. Sharon Tolan,meath/sharon-tolan,name,3
+Cllr. Stephen McKee,meath/stephen-mckee,name,3
+Cllr. Tom Kelly,meath/tom-kelly,name,6
+Cllr. Trevor Golden,meath/trevor-golden,name,4
+Cllr. Wayne Harding,meath/wayne-harding,name,3
+Conor Tormey,meath/conor-tormey,name,13
+Councillor Aisling Dempsey,meath/aisling-dempsey,name,31
+Councillor Aisling O'Neill,meath/aisling-oneill,name,9
+Councillor Aisling O’Neill,meath/aisling-oneill,name,23
+Councillor Alan Lawes,meath/alan-lawes,name,69
+Councillor Alan Tobin,meath/alan-tobin,name,333
+Councillor Alan Tobin & Councillor Helen Meyer,,excluded_joint,1
+Councillor Alan Tobin & Councillor Suzanne Jamal,,excluded_joint,1
+Councillor Amanda Smith,meath/amanda-smith,name,45
+Councillor Ann Dillon Gallagher,meath/ann-dillon-gallagher,name,1
+Councillor Ann Dillon-Gallagher,meath/ann-dillon-gallagher,name,17
+Councillor Annie Hoey,meath/annie-hoey,name,4
+Councillor Ashling Dempsey,meath/aisling-dempsey,name,1
+Councillor Ashling O’Neill,meath/aisling-oneill,name,1
+Councillor Bonner,meath/joe-bonner,surname_only,1
+Councillor Brian Fitzgerald,meath/brian-fitzgerald,name,82
+Councillor Bryan Reilly,meath/bryan-reilly,name,20
+Councillor Carey,meath/william-carey,surname_only,1
+Councillor Carol Lennon,meath/carol-lennon,name,29
+Councillor Caroline Lynch,meath/caroline-lynch,name,105
+Councillor Caroline O'Reilly,meath/caroline-oreilly,name,13
+Councillor Caroline O’Reilly,meath/caroline-oreilly,name,3
+Councillor Cassells,meath/shane-cassells,surname_only,1
+Councillor Cassidy,meath/eugene-cassidy,surname_only,2
+Councillor Catherine Yore,meath/catherine-yore,name,11
+Councillor Charles Bobbett,meath/charles-bobbett,name,3
+Councillor Claire O'Driscoll,meath/claire-odriscoll,name,2
+Councillor Claire O’ Driscoll,meath/claire-odriscoll,name,21
+Councillor Claire O’Driscoll,meath/claire-odriscoll,name,60
+Councillor Conor Tormey,meath/conor-tormey,name,56
+Councillor Cudden,meath/jimmy-cudden,surname_only,2
+Councillor Damian O'Reilly,meath/damien-oreilly,name,1
+Councillor Damien O'Reilly,meath/damien-oreilly,name,29
+Councillor Damien O’ Reilly,meath/damien-oreilly,name,26
+Councillor Damien O’Reilly,meath/damien-oreilly,name,77
+Councillor Darren O'Rourke,meath/darren-orourke,name,4
+Councillor Darren O’ Rourke,meath/darren-orourke,name,34
+Councillor Darren O’Rourke,meath/darren-orourke,name,70
+Councillor Dave Boyne,meath/dave-boyne,name,4
+Councillor David Gilroy,meath/david-gilroy,name,44
+Councillor Deane,meath/francis-deane,surname_only,2
+Councillor Deirdre Geraghty-Smith,meath/deirdre-geraghty-smith,name,7
+Councillor Dillon Gallagher,meath/ann-dillon-gallagher,name,1
+Councillor E. Cassidy,meath/eugene-cassidy,initial_surname,1
+Councillor Eddie Fennessy,meath/edward-fennessy,name,57
+Councillor Eddie Fennessy & Councillor Francis Deane,,excluded_joint,1
+Councillor Edward Fennessy,meath/edward-fennessy,name,174
+Councillor Edward Fennesy,meath/edward-fennessy,name,1
+Councillor Eimear Ferguson,meath/eimear-ferguson,name,72
+Councillor Elaine McGinty,meath/elaine-mcginty,name,40
+Councillor Emer Toibin,meath/emer-toibin,name,5
+Councillor Emer Tóibin,meath/emer-toibin,name,3
+Councillor Emer Tóibín,meath/emer-toibin,name,69
+Councillor Enda Flynn,meath/enda-flynn,name,49
+Councillor Eoin Holmes,meath/eoin-holmes,name,20
+Councillor Eoin Homes,meath/eoin-holmes,name,1
+Councillor Eugene Cassidy,meath/eugene-cassidy,name,70
+Councillor Fegan,meath/jimmy-fegan,surname_only,4
+Councillor Fionnan Blake,meath/fionnan-blake,name,18
+Councillor Fionnán Blake,meath/fionnan-blake,name,2
+Councillor Fitzgerald,meath/brian-fitzgerald,surname_only,2
+Councillor Fox,,unresolved,1
+Councillor Francis Dean,meath/francis-deane,name,1
+Councillor Francis Deane,meath/francis-deane,name,347
+Councillor Geraldine Keogan,meath/geraldine-keogan,name,14
+Councillor Gerry O Connor,meath/gerry-oconnor,name,1
+Councillor Gerry O'Connor,meath/gerry-oconnor,name,36
+Councillor Gerry O`Connor,meath/gerry-oconnor,name,1
+Councillor Gerry O’ Connor,meath/gerry-oconnor,name,31
+Councillor Gerry O’Connor,meath/gerry-oconnor,name,97
+Councillor Gillian Toole,meath/gillian-toole,name,110
+Councillor Gillian Toole and Councillor Maria O’Kane,,excluded_joint,1
+Councillor Harding,meath/wayne-harding,surname_only,1
+Councillor Helen Meyer,meath/helen-meyer,name,83
+Councillor J. Holloway,meath/james-holloway,initial_surname,1
+Councillor J. V. Farrelly,meath/john-farrelly,name,4
+Councillor J.V. Farrelly,meath/john-farrelly,name,17
+Councillor James Holloway,meath/james-holloway,name,2
+Councillor James Mangan,meath/james-mangan,name,6
+Councillor Jenny D’Arcy,meath/jenny-darcy,name,5
+Councillor Jenny McHugh,meath/jenny-mchugh,name,12
+Councillor Jim Holloway,meath/james-holloway,name,58
+Councillor Jimmy Cudden,meath/jimmy-cudden,name,5
+Councillor Jimmy Fegan,meath/jimmy-fegan,name,10
+Councillor Joe Bonner,meath/joe-bonner,name,88
+Councillor Joe Fox,meath/joe-fox,name,73
+Councillor Joe Reilly,meath/joe-reilly,name,55
+Councillor John Duffy,meath/john-duffy,name,18
+Councillor John Farrelly,meath/john-farrelly,name,3
+Councillor John V Farrelly,meath/john-farrelly,name,7
+Councillor John V. Farrelly,meath/john-farrelly,name,45
+Councillor John v. Farrelly,meath/john-farrelly,name,1
+Councillor Johnny Guirke,meath/johnny-guirke,name,36
+Councillor Killian,meath/nicholas-killian,surname_only,3
+Councillor Leonard,meath/noel-leonard,surname_only,2
+Councillor Linda Nelson Murray,meath/linda-nelson-murray,name,6
+Councillor Linda Nelson-Murray,meath/linda-nelson-murray,name,4
+Councillor M. Gallagher,meath/michael-gallagher,initial_surname,1
+Councillor Maria Murphy,meath/maria-murphy,name,187
+Councillor Maria O'Kane,meath/maria-okane,name,1
+Councillor Maria O’ Kane,meath/maria-okane,name,5
+Councillor Maria O’Kane,meath/maria-okane,name,1
+Councillor Maria White,meath/maria-white,name,28
+Councillor McElhinney,meath/tracy-mcelhinney,surname_only,2
+Councillor Michael Gallager,meath/michael-gallagher,name,1
+Councillor Michael Gallagher,meath/michael-gallagher,name,136
+Councillor Mike Bray,meath/michael-bray,name,50
+Councillor Niamh McGowan,meath/niamh-mcgowan,name,3
+Councillor Niamh Souhan,meath/niamh-souhan,name,11
+Councillor Nicholas Killian,meath/nicholas-killian,name,4
+Councillor Nick Killian,meath/nicholas-killian,name,192
+Councillor Noel French,meath/noel-french,name,142
+Councillor Noel Leonard,meath/noel-leonard,name,37
+Councillor Oliver Fox,meath/oliver-fox,name,8
+Councillor P. Fitzsimons,meath/padraig-fitzsimons,initial_surname,1
+Councillor Paddy Meade,meath/paddy-meade,name,97
+Councillor Padraig Coffey,meath/padraig-coffey,name,5
+Councillor Padraig Fitzimons,meath/padraig-fitzsimons,name,1
+Councillor Padraig Fitzsimons,meath/padraig-fitzsimons,name,166
+Councillor Patsy O’ Neill,meath/patsy-oneill,name,1
+Councillor Paul McCabe,meath/paul-mccabe,name,41
+Councillor Paul O'Rourke,meath/paul-orourke,name,1
+Councillor Paul O’Rourke,meath/paul-orourke,name,1
+Councillor Peter Caffrey,meath/peter-caffrey,name,15
+Councillor Philip Cantwell,meath/philip-cantwell,name,2
+Councillor Phillip Cantwell,meath/philip-cantwell,name,4
+Councillor Pádraig Coffey,meath/padraig-coffey,name,2
+Councillor Pádraig Fitzsimons,meath/padraig-fitzsimons,name,2
+Councillor Regina Doherty,meath/regina-doherty,name,16
+Councillor Ronan McKenna,meath/ronan-mckenna,name,50
+Councillor Ronan Moore,meath/ronan-moore,name,53
+Councillor Ronan Moore & Councillor Padraig Coffey,,excluded_joint,1
+Councillor Sarah Reilly,meath/sarah-reilly,name,112
+Councillor Sarah Reily,meath/sarah-reilly,name,1
+Councillor Seamus Murray,meath/seamus-murray,name,5
+Councillor Seamus O'Neill,meath/seamus-oneill,name,2
+Councillor Seamus O’ Neill,meath/seamus-oneill,name,1
+Councillor Sean Drew,meath/sean-drew,name,39
+Councillor Sean Drew and Councillor Eugene Cassidy,,excluded_joint,1
+Councillor Sean Smith,meath/sean-smith,name,2
+Councillor Seán Drew,meath/sean-drew,name,33
+Councillor Seán Smith,meath/sean-smith,name,77
+Councillor Shane Cassells,meath/shane-cassells,name,58
+Councillor Sharon Keogan,meath/sharon-keogan,name,68
+Councillor Sharon Tolan,meath/sharon-tolan,name,145
+Councillor Sinead Burke,meath/sinead-burke,name,17
+Councillor Sinéad Burke,meath/sinead-burke,name,132
+Councillor Sirena Campbell,meath/sirena-campbell,name,9
+Councillor Stephen McKee,meath/stephen-mckee,name,64
+Councillor Susanne Jamal,meath/suzanne-jamal,name,1
+Councillor Suzanne Jamal,meath/suzanne-jamal,name,109
+Councillor T Reilly,meath/tom-reilly,initial_surname,1
+Councillor Tom Behan,meath/tom-behan,name,30
+Councillor Tom Kelly,meath/tom-kelly,name,30
+Councillor Tommy Reilly,meath/tom-reilly,name,204
+Councillor Tracy McElhinney,meath/tracy-mcelhinney,name,6
+Councillor Trevor Golden,meath/trevor-golden,name,96
+Councillor Wayne Forde,meath/wayne-forde,name,156
+Councillor Wayne Harding,meath/wayne-harding,name,110
+Councillor William Carey,meath/william-carey,name,9
+Councillor Willie Carey,meath/william-carey,name,23
+Councillor Yemi Adenuga,meath/yemi-adenuga,name,52
+Councillor Yvonne Everard,meath/yvonne-everard,name,9
+Councillor xx,,excluded_non_person,3
+Councillors Stephen McKee and Sharon Keogan,,excluded_joint,1
+County Manager,,excluded_non_person,1
+Damien O'Reilly,meath/damien-oreilly,name,23
+Damien O’Reilly,meath/damien-oreilly,name,20
+Darren O'Rourke,meath/darren-orourke,name,1
+Darren O’Rourke,meath/darren-orourke,name,10
+David Gilroy,meath/david-gilroy,name,25
+Deirdre Geraghty-Smith,meath/deirdre-geraghty-smith,name,2
+Dunshaughlin Area Members,,excluded_non_person,1
+Dunshaughlin Electoral Area Members,,excluded_non_person,1
+Eddie Fennessy,meath/edward-fennessy,name,27
+Edward Fennessy,meath/edward-fennessy,name,37
+Eimear Ferguson,meath/eimear-ferguson,name,26
+Elaine McGinty,meath/elaine-mcginty,name,8
+Emer Toibin,meath/emer-toibin,name,9
+Emer Toíbín,meath/emer-toibin,name,1
+Emer Téibin,meath/emer-toibin,name,1
+Emer Tóibín,meath/emer-toibin,name,14
+Enda Flynn,meath/enda-flynn,name,1
+Eugene Cassidy,meath/eugene-cassidy,name,35
+Fionnan Blake,meath/fionnan-blake,name,7
+Fionnán Blake,meath/fionnan-blake,name,4
+Francis Deane,meath/francis-deane,name,73
+Geraldine Keogan,meath/geraldine-keogan,name,12
+Gerry O' Connor,meath/gerry-oconnor,name,3
+Gerry O'Connor,meath/gerry-oconnor,name,15
+Gerry O’Connor,meath/gerry-oconnor,name,24
+Gillian Toole,meath/gillian-toole,name,41
+Helen Meyer,meath/helen-meyer,name,8
+J.V. Farrelly,meath/john-farrelly,name,2
+Jenny McHugh,meath/jenny-mchugh,name,2
+Jim Holloway,meath/james-holloway,name,4
+Joe Bonner,meath/joe-bonner,name,12
+Joe Fox,meath/joe-fox,name,12
+Joe Reilly,meath/joe-reilly,name,4
+John Duffy,meath/john-duffy,name,2
+John V. Farrelly,meath/john-farrelly,name,2
+Johnny Guirke,meath/johnny-guirke,name,21
+Maria Murphy,meath/maria-murphy,name,64
+Maria O'Kane,meath/maria-okane,name,2
+Maria O’Kane,meath/maria-okane,name,1
+Maria White,meath/maria-white,name,10
+Michael Gallagher,meath/michael-gallagher,name,59
+Mike Bray,meath/michael-bray,name,17
+Navan Electoral Area Members,,excluded_non_person,1
+Niamh McGowan,meath/niamh-mcgowan,name,1
+Niamh Souhan,meath/niamh-souhan,name,3
+Nick Killian,meath/nicholas-killian,name,50
+Noel French,meath/noel-french,name,34
+Noel Leonard,meath/noel-leonard,name,1
+Paddy Meade,meath/paddy-meade,name,55
+Padraig Coffey,meath/padraig-coffey,name,1
+Padraig Fitzsimons,meath/padraig-fitzsimons,name,34
+Paul McCabe,meath/paul-mccabe,name,18
+Paul O’Rourke,meath/paul-orourke,name,2
+Peter Caffrey,meath/peter-caffrey,name,9
+Pádraig Coffey,meath/padraig-coffey,name,1
+Ronan McKenna,meath/ronan-mckenna,name,1
+Ronan Moore,meath/ronan-moore,name,14
+Sarah Reilly,meath/sarah-reilly,name,50
+Sean Drew,meath/sean-drew,name,14
+Seán Drew,meath/sean-drew,name,20
+Seán Smith,meath/sean-smith,name,3
+Shane Cassells,meath/shane-cassells,name,5
+Sharon Keogan,meath/sharon-keogan,name,30
+Sharon Tolan,meath/sharon-tolan,name,65
+Sinn Féin Councillors,,excluded_non_person,3
+Sinéad Burke,meath/sinead-burke,name,11
+Sirena Campbell,meath/sirena-campbell,name,2
+Stephen McKee,meath/stephen-mckee,name,33
+Susanne Jamal,meath/suzanne-jamal,name,1
+Suzanne Jamal,meath/suzanne-jamal,name,7
+Tom Behan,meath/tom-behan,name,25
+Tom Kelly,meath/tom-kelly,name,23
+Tommy Reilly,meath/tom-reilly,name,36
+Tracy McElhinney,meath/tracy-mcelhinney,name,1
+Trevor Golden,meath/trevor-golden,name,11
+Wayne Forde,meath/wayne-forde,name,24
+Wayne Harding,meath/wayne-harding,name,37
+Wayne Harding and Geraldine Keogan,,excluded_joint,1
+William Carey,meath/william-carey,name,1
+Willie Carey,meath/william-carey,name,1
+Yemi Adenuga,meath/yemi-adenuga,name,17
+Yvonne Everard,meath/yvonne-everard,name,3
