@@ -50,6 +50,14 @@ _DEFAULT_MODELS = {
 
 MOTIONS_PROVIDERS = ("opencode", "openai", "anthropic", "mistral")
 
+#: Models on the /zen/go/v1 gateway that only speak the Responses API:
+#: chat/completions rejects them with 400 ModelProtocolUnsupported. Verified
+#: live 2026-10-07; extend when the gateway exposes more Responses-only ids.
+_RESPONSES_ONLY_MODELS = frozenset({
+    "gpt-6-luna",
+    "muse-spark-1.3-contributor",
+})
+
 _session_id: str | None = None
 
 
@@ -89,19 +97,29 @@ def _opencode_api_key() -> str | None:
 
 def _call_opencode_responses(base: str, key: str, system: str, user: str, model: str,
                              effort: str | None = None) -> str:
-    """Call the Zen Responses API (https://opencode.ai/zen/v1/responses).
+    """Call the Zen Responses API at ``{base}/responses``.
 
-    Used for models that don't speak chat/completions (e.g.
-    "muse-spark-1.3-contributor-free"). The free tier requires the
-    x-opencode-session header; without it the gateway returns
-    MissingSessionID.
+    Used for models that don't speak chat/completions - the /zen/go/v1
+    gateway rejects those with 400 ModelProtocolUnsupported (e.g.
+    "gpt-6-luna", "muse-spark-1.3-contributor"). The free tier requires the
+    x-opencode-session header; without it the gateway returns MissingSessionID.
 
-    The thinking on/off toggle is unverified on this path, so any
-    non-None effort fails closed with ValueError.
+    Thinking-disabled maps to ``reasoning={"effort": "none"}`` (the Responses
+    equivalent of chat/completions ``thinking``). Models that don't accept
+    "none" - e.g. muse-spark-1.3-contributor, whose lowest effort is
+    "minimal" - fail closed with a 400 from the gateway rather than being
+    silently upgraded to a thinking arm.
     """
-    if effort is not None:
-        raise ValueError(f"effort={effort!r} is unverified on the Responses API path")
+    if effort is not None and effort != "none":
+        raise ValueError(f"untransmittable effort={effort!r}: only None or 'none' are supported")
     import requests  # lazy import
+    body: dict = {
+        "model": model,
+        "instructions": system,
+        "input": user,
+    }
+    if effort == "none":
+        body["reasoning"] = {"effort": "none"}
     resp = requests.post(
         f"{base}/responses",
         headers={
@@ -109,11 +127,7 @@ def _call_opencode_responses(base: str, key: str, system: str, user: str, model:
             "Content-Type": "application/json",
             "x-opencode-session": motions_session_id(),
         },
-        json={
-            "model": model,
-            "instructions": system,
-            "input": user,
-        },
+        json=body,
         timeout=180,
     )
     if not resp.ok:
@@ -137,8 +151,6 @@ def _call_opencode(system: str, user: str, model: str, effort: str | None = None
     key = _opencode_api_key()
     if not key:
         raise RuntimeError("no Opencode API key found")
-    if base.endswith("/zen/v1"):
-        return _call_opencode_responses(base, key, system, user, model, effort)
     if model.startswith("opencode-go/"):
         # The /zen/go/v1 gateway addresses models by bare id (as listed by
         # GET /models); the provider-qualified form is rejected with
@@ -147,6 +159,10 @@ def _call_opencode(system: str, user: str, model: str, effort: str | None = None
         # routing prefix client-side; anything else passes through untouched
         # and fails closed downstream if the gateway rejects it.
         model = model.removeprefix("opencode-go/")
+    if base.endswith("/zen/v1") or model in _RESPONSES_ONLY_MODELS:
+        # The Responses-only models are reachable at {base}/responses on the
+        # same /zen/go base; the legacy /zen/v1 base always uses Responses.
+        return _call_opencode_responses(base, key, system, user, model, effort)
     body = {
         "model": model,
         "temperature": MOTIONS_TEMPERATURE,
