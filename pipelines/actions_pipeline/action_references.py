@@ -26,7 +26,7 @@ _CHARSET_RE = re.compile(r"^[A-Za-z0-9/]+$")
 _ORDINAL_RE = re.compile(r"^\d{1,3}$")
 _CODE_RE = re.compile(r"^[A-Z]{2}/(\d{2})/\d+(?:/[A-Z]|[A-Z])?$")
 _SUB_ACTION_RE = re.compile(r"^([A-Z]{2}/\d{2}/\d+)(?:/[A-Z]|[A-Z])$")
-_SLUG_YEAR_RE = re.compile(r"(?<!\d)(20\d{2})(?!\d)")
+_SLUG_YEAR_RE = re.compile(r"^climate-action-plan-(20\d{2})-annex-of-actions$")
 _BEL = "\x07"
 
 
@@ -94,7 +94,20 @@ def parent_reference(number: str):
     return match.group(1) if match else None
 
 
-def edition_year(plan_slug: str):
-    """The plan edition's year, read from its slug, or None."""
-    match = _SLUG_YEAR_RE.search(plan_slug or "")
-    return int(match.group(1)) if match else None
+class InvalidEditionSlug(ValueError):
+    """A plan carrying coded references whose slug does not name its edition.
+    Process-fatal: the legacy check (D4) cannot run without the year."""
+
+
+def edition_year(plan_slug: str) -> int:
+    """The edition's year, from the slug pattern
+    `climate-action-plan-<year>-annex-of-actions`. Any other slug raises
+    `InvalidEditionSlug`, because guessing a year would silently mis-sort or
+    mis-exclude actions."""
+    match = _SLUG_YEAR_RE.match(plan_slug or "")
+    if not match:
+        raise InvalidEditionSlug(
+            f"plan slug {plan_slug!r} does not match "
+            f"'climate-action-plan-<year>-annex-of-actions', so its edition "
+            f"year cannot be read; rename the document or extend the pattern")
+    return int(match.group(1))

@@ -2,6 +2,7 @@ import pytest
 
 from action_references import (
     InvalidReference,
+    InvalidEditionSlug,
     edition_year,
     parent_reference,
     parse_reference,
@@ -95,5 +96,13 @@ def test_the_parent_of_a_sub_action():
 
 def test_edition_year_comes_from_the_plan_slug():
     assert edition_year("climate-action-plan-2023-annex-of-actions") == 2023
-    assert edition_year("sustainable-mobility-policy-action-plan-2022-2025") == 2022
-    assert edition_year("no-year-here") is None
+    assert edition_year("climate-action-plan-2025-annex-of-actions") == 2025
+
+
+@pytest.mark.parametrize("slug", [
+    "no-year-here", "sustainable-mobility-policy-action-plan-2022-2025",
+    "climate-action-plan-2023", "climate-action-plan-2023-annex-of-actions-v2",
+    "climate-action-plan-1999-annex-of-actions", ""])
+def test_a_slug_that_does_not_name_its_edition_is_fatal(slug):
+    with pytest.raises(InvalidEditionSlug):
+        edition_year(slug)

@@ -46,6 +46,7 @@ def test_load_documents_returns_one_normalised_record(tmp_path):
         "status_source": None,
         "hold": None,
         "ocr_pages": None,
+        "action_table_layout": None,
     }]
 
 
@@ -367,3 +368,41 @@ def test_ocr_pages_must_be_a_non_empty_list_of_unique_positive_ints(tmp_path, ba
     path = write_yaml(tmp_path, PLAN + f"    ocr_pages: {bad}\n")
     with pytest.raises(ValueError, match="ocr_pages"):
         _load(path)
+
+
+# --- action_table_layout --------------------------------------------------------
+
+ACTION_PLAN = """documents:
+  - doc_slug: an-annex
+    title: "An Annex"
+    url: "https://example.ie/a.pdf"
+    policy_id: greater-dublin-area-transport-strategy
+    policy_role: action-plan
+"""
+
+
+def test_action_table_layout_defaults_to_none(tmp_path):
+    assert _load(write_yaml(tmp_path, ACTION_PLAN))[0]["action_table_layout"] is None
+
+
+def test_action_table_layout_accepts_the_closed_set(tmp_path):
+    path = write_yaml(tmp_path, ACTION_PLAN
+                      + "    action_table_layout: [skip_subtitle_header, carry_header]\n")
+    assert _load(path)[0]["action_table_layout"] == [
+        "skip_subtitle_header", "carry_header"]
+
+
+@pytest.mark.parametrize("bad", ["[]", "carry_header", "[unknown_flag]",
+                                 "[carry_header, carry_header]", "[1]"])
+def test_action_table_layout_rejects_unknown_or_malformed_values(tmp_path, bad):
+    path = write_yaml(tmp_path, ACTION_PLAN + f"    action_table_layout: {bad}\n")
+    with pytest.raises(ValueError, match="an-annex.*action_table_layout"):
+        _load(path)
+
+
+@pytest.mark.parametrize("policy_role", ["primary"])
+def test_action_table_layout_is_only_permitted_on_action_plans(tmp_path, policy_role):
+    text = (ACTION_PLAN.replace("action-plan", policy_role)
+            + "    action_table_layout: [carry_header]\n")
+    with pytest.raises(ValueError, match="an-annex.*action_table_layout.*action-plan"):
+        _load(write_yaml(tmp_path, text))

@@ -1,3 +1,6 @@
+import pytest
+
+from action_references import InvalidEditionSlug
 from steps.resolve_action_identity.process import (
     build_actions,
     build_observations,
@@ -473,10 +476,9 @@ def test_a_forward_year_row_belongs_to_the_edition_that_prints_it():
     assert errors == []
 
 
-def test_a_coded_reference_in_a_plan_with_no_edition_year_is_excluded():
-    actions, errors = build("some-plan", [coded_action("EL/23/1")])
-    assert actions == []
-    assert errors[0]["error_type"] == "UnresolvedEditionYear"
+def test_a_coded_reference_in_a_plan_whose_slug_names_no_edition_is_fatal():
+    with pytest.raises(InvalidEditionSlug):
+        build("some-plan", [coded_action("EL/23/1")])
 
 
 def test_an_ordinal_plan_is_never_subject_to_the_year_check():

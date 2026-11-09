@@ -93,7 +93,7 @@ def _cell_at(cells, index):
     return cells[index]
 
 
-def _is_title_only_row(row) -> bool:
+def _is_title_only_row(row, skip_subtitle_header=False) -> bool:
     """True for a row that is a section title merged above the real header:
     a row with more than one cell overall but exactly one non-empty cell,
     where that cell doesn't look like a header keyword (e.g. "CORE ACTIONS"
@@ -103,6 +103,9 @@ def _is_title_only_row(row) -> bool:
     table) can't be distinguished this way — every row of such a table
     trivially has "exactly one non-empty cell" — so those are never
     considered title-only here.
+
+    With `skip_subtitle_header` (a per-document opt-in) a lone-cell row such
+    as "Actions" is a subtitle even though it matches a header keyword.
     """
     if len(row) <= 1:
         return False
@@ -110,11 +113,13 @@ def _is_title_only_row(row) -> bool:
     non_empty = [c for c in cells if c]
     if len(non_empty) != 1:
         return False
+    if skip_subtitle_header:
+        return True
     header_cell = _normalize_header(non_empty[0])
     return header_cell not in ACTION_KEYWORDS and header_cell not in DATE_KEYWORDS
 
 
-def _header_index(rows):
+def _header_index(rows, skip_subtitle_header=False):
     """Index of the header row, or None if every row is empty.
 
     Normally this is the first non-empty row. But a table can carry a
@@ -132,7 +137,7 @@ def _header_index(rows):
             continue
         if first_non_empty is None:
             first_non_empty = index
-        if not _is_title_only_row(row):
+        if not _is_title_only_row(row, skip_subtitle_header):
             return index
     return first_non_empty
 
@@ -164,9 +169,9 @@ class TableVerdict:
         self.error_type = error_type
 
 
-def classify_table(rows) -> TableVerdict:
+def classify_table(rows, skip_subtitle_header=False) -> TableVerdict:
     """Classify one table's rows against the action-table rules above."""
-    header_index = _header_index(rows)
+    header_index = _header_index(rows, skip_subtitle_header)
     if header_index is None:
         # A table with no content at all has no action column: excluded.
         return TableVerdict(False, False)
@@ -214,7 +219,8 @@ def _error_dict(error_type: str, message: str, context: dict) -> dict:
             "context": context}
 
 
-def extract_table(rows, page_number, table_index, verdict, doc_slug, errors) -> list:
+def extract_table(rows, page_number, table_index, verdict, doc_slug, errors,
+                  skip_subtitle_header=False, header=None) -> list:
     """Extract every action row from one qualified action table.
 
     One data row is one action; there is no row-level classification (a
@@ -223,14 +229,17 @@ def extract_table(rows, page_number, table_index, verdict, doc_slug, errors) -> 
     cell that no pattern matched — the action is still emitted with its raw
     date.
     """
-    header = [_normalize_cell(c) for c in rows[verdict.header_index]]
+    # `header` is passed only for a continuation table that inherited its
+    # header from the previous page (carry_header); its rows start at 0.
+    if header is None:
+        header = [_normalize_cell(c) for c in rows[verdict.header_index]]
     actions = []
     row_number = 0
 
     for row in rows[verdict.header_index + 1:]:
         if not _has_content(row):
             continue
-        if _is_title_only_row(row):
+        if _is_title_only_row(row, skip_subtitle_header):
             # A mid-table section title (e.g. "COMPLEMENTARY ACTION IN
             # HOUSING FOR ALL") that clean_text didn't split into its own
             # table block: not a data row.
@@ -286,13 +295,40 @@ def extract_table(rows, page_number, table_index, verdict, doc_slug, errors) -> 
 # --------------------------------------------------------------------------
 
 
-def extract_document(clean_record, doc_slug):
+def _continuation_verdict(rows, header, previous):
+    """A verdict reading `rows` with the previous table's column mapping, or
+    None when the table cannot be that table's continuation (different width,
+    or a row without an action cell)."""
+    width = max((len(r) for r in rows if _has_content(r)), default=0)
+    if not width or any(len(r) != width for r in rows):
+        return None
+    if len(header) != width:
+        return None
+    for row in rows:
+        if _has_content(row) and not _normalize_cell(_cell_at(row, previous.action_col)):
+            return None
+    return TableVerdict(True, previous.dated, action_col=previous.action_col,
+                        date_col=previous.date_col, header_index=-1)
+
+
+def extract_document(clean_record, doc_slug, layout=()):
     """Classify one document and extract its actions.
 
     Returns `(category, dated_table_count, undated_table_count, actions, errors)`.
     Precedence is `dated-actions` > `undated-actions` > `no-action-tables`;
     the per-kind counts keep a mixed document visible in the report.
+
+    `layout` is the document's opt-in `action_table_layout` (D7); empty means
+    the default reading, unchanged:
+      * `skip_subtitle_header` — a lone-cell row such as "Actions" is never
+        chosen as the header;
+      * `carry_header` — a table with no action column on the page right after
+        an action table, with the same number of columns, is that table's
+        continuation and inherits its header.
     """
+    skip_subtitle = "skip_subtitle_header" in layout
+    carry = "carry_header" in layout
+    previous = None   # (page, header, verdict-with-columns) of the last action table
     dated_count = 0
     undated_count = 0
     actions = []
@@ -305,7 +341,8 @@ def extract_document(clean_record, doc_slug):
                 continue
             rows = block.get("text") or []
             table_index = int(block.get("index", 0))
-            verdict = classify_table(rows)
+            verdict = classify_table(rows, skip_subtitle)
+            carried_header = None
 
             if verdict.error_type == "ActionHeaderAmbiguous":
                 errors.append(_error_dict(
@@ -324,6 +361,12 @@ def extract_document(clean_record, doc_slug):
                     {"doc_slug": doc_slug, "page": page_number,
                      "table": table_index}))
                 continue
+            if (carry and not verdict.is_action_table and previous
+                    and verdict.error_type is None
+                    and page_number == previous[0] + 1):
+                inherited = _continuation_verdict(rows, previous[1], previous[2])
+                if inherited is not None:
+                    verdict, carried_header = inherited, previous[1]
             if not verdict.is_action_table:
                 continue
 
@@ -332,7 +375,11 @@ def extract_document(clean_record, doc_slug):
             else:
                 undated_count += 1
             actions.extend(extract_table(rows, page_number, table_index, verdict,
-                                         doc_slug, errors))
+                                         doc_slug, errors, skip_subtitle,
+                                         header=carried_header))
+            header = carried_header or [
+                _normalize_cell(c) for c in rows[verdict.header_index]]
+            previous = (page_number, header, verdict)
 
     if dated_count:
         category = "dated-actions"
@@ -396,7 +443,8 @@ def process(clean_records, meta, step_dir, writer, doc_slug=None, verbose=False)
 
         try:
             document = meta.get(slug) or {}
-            category, dated, undated, actions, errors = extract_document(record, slug)
+            category, dated, undated, actions, errors = extract_document(
+                record, slug, tuple(document.get("action_table_layout") or ()))
         except Exception as e:
             # A corrupt upstream record must not abort the batch — the same
             # isolation clean_text and assemble_sections apply. Not marked
@@ -457,7 +505,8 @@ def main():
                    "published_date": record.get("published_date"),
                    "public_body_id": record.get("public_body_id"),
                    "role": record.get("role") or "plan",
-                   "policy_role": record.get("policy_role")}
+                   "policy_role": record.get("policy_role"),
+                   "action_table_layout": record.get("action_table_layout")}
             for slug, record in fetched.items()}
 
     writer = IncrementalWriter(output_path, STEP_NAME, key_field="doc_slug",

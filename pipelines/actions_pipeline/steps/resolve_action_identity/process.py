@@ -305,15 +305,8 @@ def build_actions(plan_records, plan_meta):
                         {**where, "raw_reference": reference_cell}))
                     continue
                 if reference.year is not None:
+                    # Fatal for a slug that does not name its edition (3.2e).
                     plan_year = edition_year(plan_slug)
-                    if plan_year is None:
-                        errors.append(_error_dict(
-                            "UnresolvedEditionYear",
-                            "A coded reference needs the plan edition's year "
-                            "to be checked against, and the plan slug carries "
-                            "none; skipped.",
-                            {**where, "raw_reference": reference_cell}))
-                        continue
                     if reference.year < plan_year:
                         errors.append(_error_dict(
                             "OutOfEditionReference",

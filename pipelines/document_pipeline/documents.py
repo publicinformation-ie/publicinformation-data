@@ -20,12 +20,16 @@ DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 _REQUIRED = ("doc_slug", "title", "url", "policy_id", "policy_role")
 _OPTIONAL = ("publisher", "public_body_id", "published_date", "role",
              "reports_on", "expected_action_count", "expected_status_counts",
-             "status_source", "hold", "ocr_pages")
+             "status_source", "hold", "ocr_pages", "action_table_layout")
 
 VALID_ROLES = ("plan", "report")
 # Where a report's machine-readable status detail lives, when not in its PDF.
 # "annex": a companion spreadsheet; extract_action_status skips the report.
 VALID_STATUS_SOURCES = ("annex",)
+# Opt-in table-reading behaviours for annexes whose layout differs from the
+# default (see extract_actions). Never auto-detected: undeclared documents are
+# read exactly as before.
+VALID_ACTION_TABLE_LAYOUTS = ("skip_subtitle_header", "carry_header")
 VALID_POLICY_ROLES = ("primary", "action-plan", "progress-report")
 
 
@@ -141,6 +145,21 @@ def load_documents(path=DOCUMENTS_PATH, policy_ids=None) -> list:
                     f"{where} has ocr_pages {pages!r}; must be a non-empty list of "
                     f"unique 1-based page numbers (positive integers)")
             entry["ocr_pages"] = sorted(pages)
+
+        if "action_table_layout" in entry:
+            layout = entry["action_table_layout"]
+            if (not isinstance(layout, list) or not layout
+                    or any(flag not in VALID_ACTION_TABLE_LAYOUTS for flag in layout)
+                    or len(set(layout)) != len(layout)):
+                raise ValueError(
+                    f"{where} ({entry.get('doc_slug')}) has action_table_layout {layout!r}; must be a "
+                    f"non-empty list of unique values from "
+                    f"{VALID_ACTION_TABLE_LAYOUTS}")
+            if policy_role != "action-plan":
+                raise ValueError(
+                    f"{where} ({entry.get('doc_slug')}) sets action_table_layout but its policy_role is "
+                    f"{policy_role!r}; it is only permitted on an action-plan "
+                    f"entry")
 
         expected_actions = entry.get("expected_action_count")
         if expected_actions is not None and (isinstance(expected_actions, bool)
