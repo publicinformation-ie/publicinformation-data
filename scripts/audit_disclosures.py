@@ -89,6 +89,7 @@ CHECKS: list[Check] = [
                 'public representative',
                 'councillor',
                 'solicitor','solicitors',
+                'appellant',
                 'solicitor on behalf of member of the public',
                 'association','organisation','company','industry',
                 'general','commercial','customer',

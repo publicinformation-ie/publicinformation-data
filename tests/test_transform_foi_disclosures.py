@@ -150,3 +150,26 @@ def test_publish_is_noop_when_content_identical(tmp_path):
 
     assert changed is False
     assert '"2020-01-01"' in ttl_path.read_text()
+
+
+def test_known_issues_dicts_publish_as_field_names():
+    # The pipeline emits {field, issue_type, raw_value} dicts; the published
+    # contract is an array of strings naming the uncertain fields.
+    disclosure = dict(SAMPLE_DISCLOSURE)
+    disclosure["known_issues"] = [
+        {"field": "requester_type", "issue_type": "UnrecognizedRequesterType", "raw_value": "x"},
+        {"field": "decision_status", "issue_type": "UnrecognizedDecisionStatus", "raw_value": "y"},
+        {"field": "requester_type", "issue_type": "Other", "raw_value": "z"},
+    ]
+    record = build_record(disclosure, {1052: "bord-bia"}, row_index=0)
+    assert record["known_issues"] == ["requester_type", "decision_status"]
+    _, rows = transform_to_csv_rows([record])
+    assert rows[0]["known_issues"] == "requester_type|decision_status"
+
+
+def test_known_issues_dict_without_field_is_an_error():
+    import pytest
+    disclosure = dict(SAMPLE_DISCLOSURE)
+    disclosure["known_issues"] = [{"issue_type": "X"}]
+    with pytest.raises(ValueError):
+        build_record(disclosure, {1052: "bord-bia"}, row_index=0)

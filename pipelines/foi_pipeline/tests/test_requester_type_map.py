@@ -385,3 +385,12 @@ def test_splitter_does_not_invent_from_decision_contamination():
     # A misplaced decision value must NOT be coerced into a requester type.
     assert canonicalize_requester_type("Granted") is None
     assert canonicalize_requester_type("Ceadaithe/Granted") is None
+
+
+def test_appellant_is_its_own_canonical_type():
+    # Appellants (people appealing a licensing decision, e.g. ALAB, body 1773)
+    # are a distinct requester category, not 'Other'.
+    assert "Appellant" in CANONICAL_REQUESTER_TYPES
+    assert canonicalize_requester_type("Appellant") == "Appellant"
+    assert canonicalize_requester_type("appellant") == "Appellant"
+    assert canonicalize_requester_type("Applicant") == "Other"
