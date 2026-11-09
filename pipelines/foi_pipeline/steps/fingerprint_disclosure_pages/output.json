@@ -1,7 +1,7 @@
 {
   "metadata": {
     "step": "fingerprint_disclosure_pages",
-    "completed_at": "2026-08-25T11:25:16.583318+00:00"
+    "completed_at": "2026-11-06T10:29:52.431579+00:00"
   },
   "results": [
     {
@@ -65,7 +65,7 @@
       "name": "Bord Bia",
       "disclosure_page_url": "https://www.bordbia.ie/about/governance/corporate-governance/foi-disclosure-log/",
       "page_hash": "sha256-ff2657a348c497890fee4f4481c55ef28aeafc59b7c99434a328c3738c53e313",
-      "file_count": 11
+      "file_count": 0
     },
     {
       "public_body_id": 1053,
@@ -85,8 +85,8 @@
       "public_body_id": 1094,
       "name": "Cavan County Council",
       "disclosure_page_url": "https://www.cavancoco.ie/services/corporate-governance/freedom-of-information/foi-disclosure-logs/",
-      "page_hash": "sha256-642135829bf215cc416df20502b1adf811c25440769e2a712364a0452791802b",
-      "file_count": 34
+      "page_hash": "sha256-bc7f8f2479e7384de7d1d66e918fc0916a392b24917b9db9527ac918388de102",
+      "file_count": 35
     },
     {
       "public_body_id": 1106,
@@ -106,29 +106,29 @@
       "public_body_id": 1110,
       "name": "Chester Beatty Library",
       "disclosure_page_url": "https://chesterbeatty.ie/about/freedom-of-information/",
-      "page_hash": "sha256-6a5bfee4b55c7b60bec140f3265e0cbb6755cb7407b7df8837adaa3dbf97344b",
-      "file_count": 23
+      "page_hash": "sha256-a830b575769556c6e56080501809899a4e26f73237fe608860ec7c240fff813f",
+      "file_count": 24
     },
     {
       "public_body_id": 1151,
       "name": "Commission for Communications Regulation",
       "disclosure_page_url": "https://www.comreg.ie/about/foi-aie-info/foi-disclosure-log-and-other-information-to-be-published-routinely/",
       "page_hash": "sha256-c26bc32e07fab3d738c3fbb3657b3367b7528ea53d9b1550e086a3b88caaa387",
-      "file_count": 11
+      "file_count": 0
     },
     {
       "public_body_id": 1153,
       "name": "Commission for Regulation of Utilities (CRU)",
       "disclosure_page_url": "https://www.cru.ie/freedom-of-information/",
-      "page_hash": "sha256-faf510774b0113df31a9157585b1876e8eb9cbfc909b6a5fa6acd68d0d0eec04",
+      "page_hash": "sha256-f3eebc20702de671e1e044298b2556cc7a7306e9257fae04bd15afc3f53dfe59",
       "file_count": 11
     },
     {
       "public_body_id": 1169,
       "name": "Corporate Enforcement Authority (CEA)",
       "disclosure_page_url": "https://cea.gov.ie/en-ie/Freedom-of-Information/FOI-Logs",
-      "page_hash": "sha256-f311b6fcfb65cdc685a0a2f94f809673d2d500702c530925a66a64178b21ab8f",
-      "file_count": 2
+      "page_hash": "sha256-c33ea8d33c33da2a240c5205e3b67c020fbaebe90a4574a49c140a43062db021",
+      "file_count": 3
     },
     {
       "public_body_id": 1195,
@@ -197,8 +197,8 @@
       "public_body_id": 1293,
       "name": "Financial Services and Pensions Ombudsman (FSPO)",
       "disclosure_page_url": "https://www.fspo.ie/governance/freedom-of-information.asp",
-      "page_hash": "sha256-1cdb2fc535e3a67d8fc074666d7897c91a76f7bcad474a04f0ae4e23dcfdcd5c",
-      "file_count": 37
+      "page_hash": "sha256-790ee65607d15998bd7caaa0f5e7836e98e6244a00444c9fdd2482477265fd45",
+      "file_count": 38
     },
     {
       "public_body_id": 1307,
@@ -225,8 +225,8 @@
       "public_body_id": 1390,
       "name": "Health Information and Quality Authority (HIQA)",
       "disclosure_page_url": "https://www.hiqa.ie/about-us/freedom-of-information",
-      "page_hash": "sha256-fb9e6881a0e163bdee8ae37ec94a5cfc421975e98e3f846a03800a5822beba93",
-      "file_count": 12
+      "page_hash": "sha256-95350a667e10ca586714e3f5d38641d5049de9ee654521993942ac356fbb43d2",
+      "file_count": 11
     },
     {
       "public_body_id": 1391,
@@ -253,8 +253,8 @@
       "public_body_id": 1400,
       "name": "Higher Education Authority (HEA)",
       "disclosure_page_url": "https://hea.ie/freedom-of-information/",
-      "page_hash": "sha256-2045cf318d52a61c6fbb3a47be7ec08ac627c68a0bf4e88d95b62764f01cd226",
-      "file_count": 10
+      "page_hash": "sha256-db178ba7ea12e5ea8b74d470ac29b3c85f0d105d48ced084182d177fd4de7426",
+      "file_count": 15
     },
     {
       "public_body_id": 1402,
@@ -330,8 +330,8 @@
       "public_body_id": 1471,
       "name": "Law Reform Commission",
       "disclosure_page_url": "https://www.lawreform.ie/freedom-of-information-publication-scheme/",
-      "page_hash": "sha256-156ab74b52fa2d286621e6de4d26a83f18df1877b6f5cccc23f3fff0d84ad376",
-      "file_count": 28
+      "page_hash": "sha256-0bdd6738c681910542cb24a93fb49ee742017550f65437fdbaf6f6e743828350",
+      "file_count": 30
     },
     {
       "public_body_id": 1502,
@@ -351,14 +351,14 @@
       "public_body_id": 1475,
       "name": "Leitrim County Council",
       "disclosure_page_url": "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Disclosure-Log/",
-      "page_hash": "sha256-efc5a4c54ea854648c722d3baa4de8cdcd0a910962250ac81476bac4b02359cb",
-      "file_count": 22
+      "page_hash": "sha256-cefa4a9e38b652b7eafcaf8a7500f54f65bbba3fd0e85ada6e140f50dadad158",
+      "file_count": 23
     },
     {
       "public_body_id": 1497,
       "name": "Longford County Council",
       "disclosure_page_url": "https://www.longfordcoco.ie/your-council/access-to-information/freedom-of-information/disclosure-log/",
-      "page_hash": "sha256-b1c06b4453b071cb5c8f0b64fd5b7e69fa696ccafcf5ca8794bff47ca5593790",
+      "page_hash": "sha256-5c9f2a6dafb91183816418a40db2633906c902f231a6978e117fccdc02d2bdd6",
       "file_count": 7
     },
     {
@@ -372,8 +372,8 @@
       "public_body_id": 1541,
       "name": "Munster Technological University",
       "disclosure_page_url": "https://www.mtu.ie/about-mtu/legal/freedom-of-information/",
-      "page_hash": "sha256-c634b1d630c852bade0ad3a0e409885b3e86b3964d51f11d9242d328fd6724f9",
-      "file_count": 18
+      "page_hash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "file_count": 0
     },
     {
       "public_body_id": 1544,
@@ -386,8 +386,8 @@
       "public_body_id": 1550,
       "name": "National College Art and Design",
       "disclosure_page_url": "https://www.ncad.ie/about/freedom-of-information",
-      "page_hash": "sha256-fb5a3d6ab257f6fa31b4fd74ce43d3dd0ad9acf17a25c5c7f4b5d08df0355cb6",
-      "file_count": 7
+      "page_hash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "file_count": 0
     },
     {
       "public_body_id": 1552,
@@ -477,8 +477,8 @@
       "public_body_id": 1611,
       "name": "Ombudsman for Childrens Office",
       "disclosure_page_url": "https://www.oco.ie/library/oco-freedom-of-information-publication-scheme/",
-      "page_hash": "sha256-cf84920fb8bdbb2f08055d3164211eaabf4608af0d5732d4f8acb1020cece3fc",
-      "file_count": 1
+      "page_hash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "file_count": 0
     },
     {
       "public_body_id": 1615,
@@ -505,8 +505,8 @@
       "public_body_id": 1647,
       "name": "Probation Service",
       "disclosure_page_url": "https://www.probation.ie/en/PB/Pages/WP15000010",
-      "page_hash": "sha256-bc738bed99a8c35ccd44aa4c7a836d80aac546938edbf17b76ee4386f8f62856",
-      "file_count": 7
+      "page_hash": "sha256-59d24808102bbeca217f41a6dd61ad938d2835248d9d4bfcab40f7d2a1bfc78c",
+      "file_count": 8
     },
     {
       "public_body_id": 1650,
@@ -533,8 +533,8 @@
       "public_body_id": 1658,
       "name": "Regulator of the National Lottery",
       "disclosure_page_url": "https://www.rnl.ie/public-sector-info/freedom-of-information/",
-      "page_hash": "sha256-2163948f046e189f18755ec74c9be472a3c3a11fd5df4e694da22a2a4546989a",
-      "file_count": 9
+      "page_hash": "sha256-1cfc5ddf848d6da2e8935bc7c9789c3b1dffd54a08b1e8d0b7af599a320424fe",
+      "file_count": 10
     },
     {
       "public_body_id": 1661,
@@ -589,7 +589,7 @@
       "public_body_id": 1752,
       "name": "St. Vincents University Hospital",
       "disclosure_page_url": "https://www.stvincents.ie/contact-us/freedom-of-information/",
-      "page_hash": "sha256-69918f89919eee24e5185c292170a14ebcf9d2cbe685c51c4995a8c75389ba98",
+      "page_hash": "sha256-bdd1d56398404e730c7e80a27a37e90874b3f1ee5499ce6203d0aeafa3e5c251",
       "file_count": 3
     },
     {
@@ -610,22 +610,22 @@
       "public_body_id": 1773,
       "name": "Tax Appeals Commission",
       "disclosure_page_url": "https://www.taxappeals.ie/en/foi-decisions",
-      "page_hash": "sha256-7b73ff0a6f43060cb8679d5169f9f63271683d11b8715ccc2f3d8af30eb4073d",
+      "page_hash": "sha256-6d09c70ba86f5767fe80760ac1ef5246ed5958512e8eb826f5c525aac4d014fe",
       "file_count": 35
     },
     {
       "public_body_id": 1774,
       "name": "Teagasc (The Agriculture and Food Development Authority of Ireland)",
       "disclosure_page_url": "https://teagasc.ie/about/corporate-responsibility/freedom-of-information/",
-      "page_hash": "sha256-594ca9084db1335704ee8ee9114514777ceec9ceec396e09b170bd590dfc64eb",
+      "page_hash": "sha256-ee7cb313f87c71f5bd39b4b19cf095123dda69a982dc185070ba579d5200abb5",
       "file_count": 1
     },
     {
       "public_body_id": 1775,
       "name": "Technological University Dublin",
       "disclosure_page_url": "https://www.tudublin.ie/explore/governance-and-compliance/foi/foi-disclosure-log/",
-      "page_hash": "sha256-7a9ea12fd1d4b0c6d630e6bdfb395ac0574d8bdc7ea85908c62911bda0b3eb31",
-      "file_count": 8
+      "page_hash": "sha256-1b9237d669d939c4033d16d9141ccc36388a22a9e04e0e0c7efc9e37d217fbab",
+      "file_count": 9
     },
     {
       "public_body_id": 1776,
@@ -638,22 +638,22 @@
       "public_body_id": 1798,
       "name": "The Pensions Authority",
       "disclosure_page_url": "https://pensionsauthority.ie/trustee-hub/disclosure_compliance/",
-      "page_hash": "sha256-45f074a8947b689d571601e3c07f3a2d761db41c78d96bd8d040d33e727fb02b",
-      "file_count": 3
+      "page_hash": "sha256-e28df024b957a72d2c43e3a1f7ebb4c80167d252098cd313d58517190cbc2b04",
+      "file_count": 2
     },
     {
       "public_body_id": 1809,
       "name": "The Teaching Council",
       "disclosure_page_url": "https://www.teachingcouncil.ie/corporate-customer-services/freedom-of-information/",
-      "page_hash": "sha256-2eda0935a88384354d5b719c48011f93cd42b80c382c902f43da54c731fcf5f1",
-      "file_count": 1
+      "page_hash": "sha256-d73f109218fa6b5c6b21d87129d680f4b3922e0024feecc003873720810b53b9",
+      "file_count": 2
     },
     {
       "public_body_id": 1827,
       "name": "Transport Infrastructure Ireland",
       "disclosure_page_url": "https://www.tii.ie/compliance/freedom-of-information/",
-      "page_hash": "sha256-453ded52e972e2708fd7aed499f231a93cf5096c8f49f042a022c69ba8207c35",
-      "file_count": 10
+      "page_hash": "sha256-2e5e470a0c6a4e8af80302903995fc6c825c611aa94a6a47c3686bd9f11945db",
+      "file_count": 11
     },
     {
       "public_body_id": 1882,
@@ -673,8 +673,8 @@
       "public_body_id": 1844,
       "name": "University College Dublin",
       "disclosure_page_url": "https://www.ucd.ie/foi/freedomofinformation/foidisclosurelog/",
-      "page_hash": "sha256-5787011afe7f8e157fbce86266ba86eca488d67f59c739a69caad5565830c746",
-      "file_count": 9
+      "page_hash": "sha256-cdb0f89045312f84d5b871dc28909ef93b5ed85dfd784044f4adccdf2bf9432f",
+      "file_count": 10
     },
     {
       "public_body_id": 1845,
@@ -764,7 +764,7 @@
       "public_body_id": 1157,
       "name": "Comptroller and Auditor General",
       "disclosure_page_url": "https://www.audit.gov.ie/en/freedom-of-information/foi-disclosure-log/",
-      "page_hash": "sha256-cdb98ba18822f15756be98b125dc723dceb332c636ce096b4a39ba5571aa1c78",
+      "page_hash": "sha256-7df56f33f946241f68458091b711aca66aceb30b06671e8ec83194aa514842f5",
       "file_count": 1
     },
     {
@@ -778,7 +778,7 @@
       "public_body_id": 1177,
       "name": "Crawford Art Gallery",
       "disclosure_page_url": "https://www.nationalgallery.ie/FOI",
-      "page_hash": "sha256-71361e9329fc96c190c3658ae497e009d58755eda39e88b11c695397013c4ba0",
+      "page_hash": "sha256-ac37459be64d5b87dd45966a2c3a764493903001d22c61eb12697955e17cbd17",
       "file_count": 5
     },
     {
@@ -792,7 +792,7 @@
       "public_body_id": 1199,
       "name": "Department of Culture, Communications and Sport",
       "disclosure_page_url": "https://www.gov.ie/en/department-of-culture-communications-and-sport/publications/foi-logs/",
-      "page_hash": "sha256-069b24cc0d68df23fa01b6709fe7e4c68660e471b394aeda583d9022a322286b",
+      "page_hash": "sha256-79aac541a04d793c4fc04cce737e1a4375e97196d91fe68a14af89df43457c47",
       "file_count": 31
     },
     {
@@ -827,8 +827,8 @@
       "public_body_id": 1259,
       "name": "Enable Ireland",
       "disclosure_page_url": "https://enableireland.ie/freedom-of-information",
-      "page_hash": "sha256-46a9726fbc9f09889634de4e7b571bb42b220b27cd9aaf90cccefc0ece09b1df",
-      "file_count": 1
+      "page_hash": "sha256-151f795a391a76df46fccbd0c75c8273dc08570718fc8a758074c883e6750ee9",
+      "file_count": 2
     },
     {
       "public_body_id": 1340,
@@ -855,7 +855,7 @@
       "public_body_id": 1404,
       "name": "Horse Racing Ireland",
       "disclosure_page_url": "https://www.hri.ie/corporate/about-us/our-responsibilities/freedom-of-information",
-      "page_hash": "sha256-45338f6d9b1899cecbb3adf9fb9a7fd9efed7fa81278c8135624821e5628d3bd",
+      "page_hash": "sha256-fe735df91f73964c4ad782771bfdec66df630949f902ad25026b380f1a5f7963",
       "file_count": 2
     },
     {
@@ -870,7 +870,7 @@
       "name": "Irish Manuscripts Commission",
       "disclosure_page_url": "https://www.electoralcommission.ie/governance/foi-scheme/",
       "page_hash": "sha256-c4ec51032361cd5ea378d3d0958c77ef5c6449e43a3cf850b8661eb59c746b60",
-      "file_count": 1
+      "file_count": 0
     },
     {
       "public_body_id": 1440,
@@ -904,7 +904,7 @@
       "public_body_id": 1557,
       "name": "National Gallery of Ireland",
       "disclosure_page_url": "https://www.nationalgallery.ie/FOI",
-      "page_hash": "sha256-71361e9329fc96c190c3658ae497e009d58755eda39e88b11c695397013c4ba0",
+      "page_hash": "sha256-ac37459be64d5b87dd45966a2c3a764493903001d22c61eb12697955e17cbd17",
       "file_count": 5
     },
     {
@@ -939,8 +939,8 @@
       "public_body_id": 1571,
       "name": "National Treasury Management Agency (NTMA)",
       "disclosure_page_url": "https://www.ntma.ie/information-pages/freedom-of-information/disclosure-log",
-      "page_hash": "sha256-063cd04b306a378ec8b9ba6fe19e783a18d33c7b6cc39ed777c8a9984ff0c460",
-      "file_count": 42
+      "page_hash": "sha256-c101e60b523c023c9ce1d7b4bc725af21af67ae3181f82841f85f69893d9798c",
+      "file_count": 43
     },
     {
       "public_body_id": 1574,
@@ -974,7 +974,7 @@
       "public_body_id": 1711,
       "name": "Skillnet Ireland",
       "disclosure_page_url": "https://www.skillnetireland.ie/access-to-information",
-      "page_hash": "sha256-d676871072a09b9c9fd23ad590c34206e513b5a6e7889d7c91e790000240373a",
+      "page_hash": "sha256-7d8091ec3364f3bb8369004169dc938f5d2923164f3ec4157ad68563a3da732f",
       "file_count": 3
     },
     {
@@ -1016,8 +1016,8 @@
       "public_body_id": 1868,
       "name": "Western Development Commission (WDC)",
       "disclosure_page_url": "https://westerndevelopment.ie/about/governance/freedom-of-information/",
-      "page_hash": "sha256-3118ade5c202ea7292a87d8714b51e2b13278c3bb39c3711e50b149f92ddcbda",
-      "file_count": 23
+      "page_hash": "sha256-d0b834fa692947cd34e810595f6233e87e8c72b7708a53d2a8852a32b2d7b0ce",
+      "file_count": 25
     },
     {
       "public_body_id": 1004,
@@ -1030,7 +1030,7 @@
       "public_body_id": 1551,
       "name": "National Concert Hall",
       "disclosure_page_url": "https://www.nationalgallery.ie/FOI",
-      "page_hash": "sha256-71361e9329fc96c190c3658ae497e009d58755eda39e88b11c695397013c4ba0",
+      "page_hash": "sha256-ac37459be64d5b87dd45966a2c3a764493903001d22c61eb12697955e17cbd17",
       "file_count": 5
     },
     {
@@ -1058,29 +1058,29 @@
       "public_body_id": 1197,
       "name": "Department of Children, Disability and Equality",
       "disclosure_page_url": "https://www.gov.ie/en/department-of-children-disability-and-equality/collections/quarterly-foi-log/",
-      "page_hash": "sha256-c205f2a22d39ec0d1bb9f2334a5ad274c393930c0abd32f511370ccef5601bbc",
-      "file_count": 21
+      "page_hash": "sha256-b1614010b549fa57a4e21a9a381bed69dd7f9c34a70444813f3f72e6698a8e43",
+      "file_count": 22
     },
     {
       "public_body_id": 1203,
       "name": "Department of Finance",
       "disclosure_page_url": "https://www.gov.ie/en/department-of-finance/collections/foi-decisions/",
-      "page_hash": "sha256-d86064f55da50ec32140adbbd44375ced7c7c40eed5ebc88929d97eb88d7b143",
-      "file_count": 6
+      "page_hash": "sha256-790001210944756ca90a47f6b863b03d18e31c103137165cefc654d687525ac7",
+      "file_count": 14
     },
     {
       "public_body_id": 1010,
       "name": "An Coimisiún Pleanála",
       "disclosure_page_url": "https://www.pleanala.ie/en-ie/freedom-of-information-(foi)/freedom-of-information-(foi)-disclosure-log",
-      "page_hash": "sha256-6b68474439f3529ee4f86f0b7c185fe0ecfb167d9e008e2227df21618938ac50",
-      "file_count": 46
+      "page_hash": "sha256-12aaca647ac8470c70e013861ac1fefa3ed95ec888ce8c7ad4e3ba6505360e7f",
+      "file_count": 47
     },
     {
       "public_body_id": 1162,
       "name": "Cork City Council",
       "disclosure_page_url": "https://www.corkcity.ie/en/council-services/public-info/model-publication-scheme/",
       "page_hash": "sha256-d14404217e7b631c3f98afb5c47b85ae0a3abb228d0ed01bc51b412a77f72d90",
-      "file_count": 11
+      "file_count": 0
     },
     {
       "public_body_id": 1156,
@@ -1093,7 +1093,7 @@
       "public_body_id": 1198,
       "name": "Department of Climate, Energy and the Environment",
       "disclosure_page_url": "https://www.gov.ie/en/department-of-climate-energy-and-the-environment/publications/published-foi-requests/",
-      "page_hash": "sha256-a9e722f094cf0a999ddd7f54e761f591ebd5853968a0a0713908cb9616df22bf",
+      "page_hash": "sha256-0e575e7e5e6944205e3c0355c2db309235fe5902092d5f8d30dcd19ce81e4075",
       "file_count": 7
     },
     {
@@ -1107,8 +1107,8 @@
       "public_body_id": 1209,
       "name": "Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation",
       "disclosure_page_url": "https://www.gov.ie/en/department-of-public-expenditure-infrastructure-public-service-reform-and-digitalisation/collections/foi-disclosure-log/",
-      "page_hash": "sha256-9fcf4d1ea3497688d27702910b0cac328391180a837f09780d3f010ced33d708",
-      "file_count": 41
+      "page_hash": "sha256-ac9cc400423147616e4af7cd2a86d13f38a47f085d3577139fb522dfff7f53b4",
+      "file_count": 42
     },
     {
       "public_body_id": 1104,
@@ -1142,7 +1142,7 @@
       "public_body_id": 1220,
       "name": "Digital Hub Development Agency",
       "disclosure_page_url": "https://thedigitalhub.com/publications/",
-      "page_hash": "sha256-914b83b8f28352a8f42179d1272d4bce8784fd4fd9f4e8e3f5b2cb2d60c36871",
+      "page_hash": "sha256-78fd1e79dff319e9d886cc5fdca77e0ec6bc28f27376019f7efd475d53293c35",
       "file_count": 9
     },
     {
@@ -1191,8 +1191,8 @@
       "public_body_id": 1679,
       "name": "Rásaíocht Con Éireann",
       "disclosure_page_url": "https://www.grireland.ie/About-GRI/freedom-of-information-publication-scheme/",
-      "page_hash": "sha256-c4a94727bf6c9723930dd89a4548ffd566ffd573520d7fb479c351d56cff143a",
-      "file_count": 10
+      "page_hash": "sha256-3464069e503e45c2b0b0cc9e7a9d0faa82984a0d1f64c4b07df1c4ba7c1c3fa0",
+      "file_count": 12
     },
     {
       "public_body_id": 1470,
@@ -1226,15 +1226,15 @@
       "public_body_id": 1817,
       "name": "Tipperary County Council",
       "disclosure_page_url": "https://www.tipperarycoco.ie/governance-and-administration/freedom-information-disclosure-log-publication",
-      "page_hash": "sha256-8cba0a897209dd635dd597ca4eeb9499cc2068ad6174155f4bed1bbfd26a7512",
-      "file_count": 121
+      "page_hash": "sha256-d587d4816e680b8f64baefb8ea601ad70b4286bd7ec5879c41e99c05c5fd5a35",
+      "file_count": 124
     },
     {
       "public_body_id": 1870,
       "name": "Westmeath County Council",
       "disclosure_page_url": "http://www.westmeathcoco.ie/en/ourservices/yourcouncil/datatransparencyfreedomofinformation/freedomofinformationfoiresponses/",
-      "page_hash": "sha256-7b41f2462c053fcbc53698083ad85f88753fac2e5f9bd98f118020ee8511e5c9",
-      "file_count": 8
+      "page_hash": "sha256-3a93edd99fcf685a1f01d2b0768333aaacd7b406e9faaf4a8eae742a5275e59f",
+      "file_count": 9
     },
     {
       "public_body_id": 1873,
@@ -1248,14 +1248,14 @@
       "name": "Wicklow County Council",
       "disclosure_page_url": "https://www.wicklow.ie/Living/Your-Council/Governance/About-Freedom-of-Information",
       "page_hash": "sha256-ab172c9ebb4cf6bd9acffd1e6d54944f7f91a4a3a12d8cbecc99bef8a44d3b5a",
-      "file_count": 9
+      "file_count": 0
     },
     {
       "public_body_id": 1204,
       "name": "Department of Foreign Affairs and Trade",
       "disclosure_page_url": "https://www.gov.ie/en/department-of-foreign-affairs/collections/freedom-of-information-requests/",
-      "page_hash": "sha256-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "file_count": 0
+      "page_hash": "sha256-7a7d44e5129766e44ab48aa59392851b89cc7b501bbacf6384589e61a70f0fe0",
+      "file_count": 6
     },
     {
       "public_body_id": 1388,
@@ -1268,15 +1268,15 @@
       "public_body_id": 1210,
       "name": "Department of Rural and Community Development and the Gaeltacht",
       "disclosure_page_url": "https://www.gov.ie/en/department-of-rural-and-community-development-and-the-gaeltacht/collections/foi-disclosure-logs/",
-      "page_hash": "sha256-158316ff833bc439a99e852715039cceb3601863f890bd29e5aababc724f8505",
-      "file_count": 33
+      "page_hash": "sha256-8570d3128b269e228db1d6af83a638dbaa882e69e60a5bbc306a1dbf379ce412",
+      "file_count": 35
     },
     {
       "public_body_id": 1449,
       "name": "Kerry County Council",
       "disclosure_page_url": "https://www.kerrycoco.ie/freedom-of-information-disclosure/",
-      "page_hash": "sha256-21f907e4ae35093cd575ab9230932e5a6e5ea85028c5e12b2d4b03f9410bafe6",
-      "file_count": 5
+      "page_hash": "sha256-e39937bc7c03a0d641defee392b09afb5fc986bad837fed1d41c1412011b72e3",
+      "file_count": 4
     },
     {
       "public_body_id": 1602,
@@ -1366,8 +1366,8 @@
       "public_body_id": 1339,
       "name": "Galway and Roscommon Education and Training Board",
       "disclosure_page_url": "https://gretb.ie/document/gretb-foi-disclosure-log-2025/",
-      "page_hash": "sha256-b99732312b475d1c21940c5a339d5870ade91a29f9977a085896ed90ba1b35f5",
-      "file_count": 13
+      "page_hash": "sha256-3587959a931b0c5e75afd39580c17b717d84abd8b406c787162e759d62001956",
+      "file_count": 1
     },
     {
       "public_body_id": 1389,
@@ -1415,8 +1415,8 @@
       "public_body_id": 1500,
       "name": "Louth and Meath Education and Training Board",
       "disclosure_page_url": "https://www.lmetb.ie/category/foi-disclosure/",
-      "page_hash": "sha256-0483575552d6edfee4649f46b5a500e8ae76041049db3b4f13a82c6825264bcf",
-      "file_count": 3
+      "page_hash": "sha256-e8751ee51317c6966424c20c84ff3f55a7d16905bd9fb36a288e3006d79599a4",
+      "file_count": 1
     },
     {
       "public_body_id": 1587,
@@ -1429,7 +1429,7 @@
       "public_body_id": 1610,
       "name": "Oifig Choimisinéir na dTeangacha Oifigúla",
       "disclosure_page_url": "https://www.coimisineir.ie/Foilseachain?lang=GA",
-      "page_hash": "sha256-d8113a53173225347523430fbe28883c548f6742b2423c1bb120881bd45a7f20",
+      "page_hash": "sha256-e5fc57499449243b913c289250585c1630aaf10d25e1cc68b48debcc327831c3",
       "file_count": 11
     },
     {
@@ -1443,8 +1443,8 @@
       "public_body_id": 1655,
       "name": "Raidió Teilifís Éireann - RTÉ",
       "disclosure_page_url": "https://about.rte.ie/foi-disclosure-log-and-other-information-published-2/",
-      "page_hash": "sha256-e807cc7246ba5e2f72ba3e3e5a7256bf16ff794c4a4d23f080bcef8544486b8e",
-      "file_count": 49
+      "page_hash": "sha256-04a97eb9eecb5ad648c0224682a0c28d0817ebdaa24630b6f63cfa9b8c094a3a",
+      "file_count": 50
     },
     {
       "public_body_id": 1726,
@@ -1499,8 +1499,8 @@
       "public_body_id": 1122,
       "name": "City of Dublin Education and Training Board",
       "disclosure_page_url": "https://www.cityofdublinetb.ie/about-us/corporate-services/freedom-of-information/",
-      "page_hash": "sha256-b02a6770f369fa463b810b30dd56c4c91de6bb93145cb49423384330dca86119",
-      "file_count": 7
+      "page_hash": "sha256-6aa8c6189031dbee037ce88ef217387bd064aaaefcf75e98508fe4d2888c666c",
+      "file_count": 8
     },
     {
       "public_body_id": 1234,
@@ -1513,8 +1513,8 @@
       "public_body_id": 1421,
       "name": "Institute of Art, Design and Technology (IADT) Dun Laoghaire",
       "disclosure_page_url": "https://iadt.ie/about/your-rights-entitlements/freedom-of-information/",
-      "page_hash": "sha256-4838a98d7249674974414e191e507edf80bf048162bade355ae7a4670cd16e36",
-      "file_count": 7
+      "page_hash": "sha256-b061b570893fc81d23e8d7acaafa34e896e31bdde3912509fb41b5db07153fb1",
+      "file_count": 6
     },
     {
       "public_body_id": 1443,
@@ -1555,8 +1555,8 @@
       "public_body_id": 1109,
       "name": "Cheshire Foundation",
       "disclosure_page_url": "https://northcheshireandmersey.nhs.uk/about-us/freedom-of-information/",
-      "page_hash": "sha256-cb691a02b49cb4fab4c74eefc5dce3af7d324a303bb1f20a7b3148617cc8ab4a",
-      "file_count": 13
+      "page_hash": "sha256-068a506a0be813c4ec5669439ecc8c9b02bcbb32253663b7f16a8b135f4f53ad",
+      "file_count": 14
     },
     {
       "public_body_id": 1746,

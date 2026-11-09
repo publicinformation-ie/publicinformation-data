@@ -60,6 +60,26 @@ def compute_disclosure_id(file_url, index_within_file):
     return hashlib.sha1(f"{file_url}#{index_within_file}".encode("utf-8")).hexdigest()[:12]
 
 
+def known_issue_fields(issues):
+    """Reduce pipeline known_issues to the published contract: an ordered,
+    de-duplicated array of the field names flagged as uncertain.
+
+    The pipeline emits {field, issue_type, raw_value} dicts; plain strings
+    pass through. Anything else fails loudly rather than being guessed at.
+    """
+    out = []
+    for issue in issues:
+        if isinstance(issue, str):
+            name = issue
+        elif isinstance(issue, dict) and isinstance(issue.get("field"), str):
+            name = issue["field"]
+        else:
+            raise ValueError(f"Unrecognised known_issues entry: {issue!r}")
+        if name not in out:
+            out.append(name)
+    return out
+
+
 def build_record(disclosure, body_slug_lookup, row_index):
     """Build one FOI disclosure record.
 
@@ -81,7 +101,7 @@ def build_record(disclosure, body_slug_lookup, row_index):
         "name": disclosure["name"],
         "file_url": disclosure["file_url"],
         "file_type": disclosure["file_type"],
-        "known_issues": disclosure.get("known_issues", []),
+        "known_issues": known_issue_fields(disclosure.get("known_issues", [])),
         "missing_columns": disclosure.get("missing_columns", []),
     }
     for field in NULLABLE_FIELDS:
