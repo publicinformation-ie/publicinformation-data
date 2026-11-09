@@ -14,7 +14,7 @@ The DCEE listing pages (`gov.ie/en/department-of-climate-energy-and-the-environm
 
 All ten files named in `add-climate-action-status-observations/proposal.md` return `200` from `https://assets.gov.ie/static/documents/<file>`. (The Q1&Q2 2026 workbook was not fetched; it is out of scope.)
 
-Layout is consistent: one header row, columns `Chapter | Theme | Measure | Action Number | Action(s) | Step(s) | Output | Timeline` (the Q1 2025 annex also adds trailing columns), one action per row, several sheets per workbook (per quarter, plus `Legacy`). Column 4 is the reference; column 5 is the action text. Readable for reconciliation (D5).
+Layout is consistent: one header row, columns `Chapter | Theme | Measure | Action Number | Action(s) | Step(s) | Output | Timeline`, one action per row, several sheets per workbook (per quarter, plus `Legacy`). Column 4 is the reference; column 5 is the action text. Readable for reconciliation (D5).
 
 | Workbook | Sheets |
 |---|---|
@@ -36,7 +36,7 @@ Distinct references after whitespace removal, by year segment: `/23/` 288, `/24/
 - Sub-actions use a trailing `/<letter>` segment (`CZ/23/3/A`, `AD/23/14/A`, `GV/23/2/C`): 78 in CAP23, 1 in CAP24, none in CAP25.
 
 **Contradicted or underspecified (D2/D3):**
-1. **`(TF)` suffix.** 32 CAP23 and 28 CAP24 references carry a literal `(TF)` flag, for example `BE/24/15(TF)`, `TR/23/46(TF)`, `BE/23/33/A(TF)`, and once with a space (`TR/24/4 (TF)`). `(` and `)` are outside the D2 set. The flag is not part of the identity: `TR/23/46` appears both with and without `(TF)` across workbooks. All 60 are Transport and Built Environment (and one Agriculture, `AG/23/13(TF)`) actions. Whether the Annex PDFs print `(TF)` too is unverified (0.1).
+1. **`(TF)` suffix.** 32 CAP23 and 28 CAP24 references carry a literal `(TF)` flag, for example `BE/24/15(TF)`, `TR/23/46(TF)`, `BE/23/33/A(TF)`, and once with a space (`TR/24/4 (TF)`). `(` and `)` are outside the D2 set. The flag is not part of the identity: `TR/23/46` appears both with and without `(TF)` across workbooks. Prefixes seen include TR, BE and AG. Whether the Annex PDFs print `(TF)` too is unverified (0.1).
 2. **Letter without a slash.** `EL/23/10A`, `EL/23/10B`, `LU/23/7A`: sub-action letters printed without the `/` separator. Three references.
 3. **Whitespace noise.** Non-breaking spaces and doubled spaces are common (`LU/25/5\xa0`, `LU/25/1\xa0\xa0`). Whitespace normalisation handles these; they are not a contradiction.
 4. **Parent rows (D3).** Of 34 distinct CAP23 parents implied by sub-action codes, only 16 appear as rows in any workbook. These workbooks list only actions due in a period, so this is not conclusive for the PDFs.
