@@ -492,3 +492,13 @@ def test_observations_still_join_to_a_text_number():
     obs, errors = build_observations([report_record([observation(7)])], actions)
     assert all(e["error_type"] != "UnresolvedActionNumber" for e in errors)
     assert obs[0]["action_id"] == f"{PLAN_SLUG}#7"
+
+
+def test_a_curated_correction_uses_the_corrected_identity_and_keeps_the_printed_form():
+    misprint = coded_action("BE/23/36", page=57)
+    misprint["reference_correction"] = {"printed": "BE/23/36", "corrected": "BE/23/38"}
+    genuine = coded_action("BE/23/36", page=57)
+    actions, errors = build(CAP23, [genuine, misprint])
+    assert [a["action_number"] for a in actions] == ["BE/23/36", "BE/23/38"]
+    assert actions[1]["action_reference_printed"] == "BE/23/36"
+    assert not [e for e in errors if e["error_type"] == "DuplicateActionReference"]

@@ -297,8 +297,16 @@ def build_actions(plan_records, plan_meta):
             if reference_cell:
                 # The plan prints a reference column (Climate Action Plan
                 # annexes). It is the identity; the action cell is only text.
+                correction = raw.get("reference_correction")
                 try:
                     reference = parse_reference(reference_cell)
+                    printed_as = reference.printed
+                    if correction:
+                        # D8: a curated misprint correction; the corrected
+                        # reference is the identity, the misprint stays in
+                        # action_reference_printed.
+                        reference = parse_reference(reference_cell.replace(
+                            correction["printed"], correction["corrected"], 1))
                 except InvalidReference as e:
                     errors.append(_error_dict(
                         e.error_type, f"{e} Row skipped, no number minted.",
@@ -317,7 +325,8 @@ def build_actions(plan_records, plan_meta):
                              "edition_year": plan_year}))
                         continue
                 number = reference.number
-                printed, flags = reference.printed, reference.flags
+                printed = printed_as if correction else reference.printed
+                flags = reference.flags
                 action_text = " ".join(
                     (raw.get("action") or "").replace(_BEL, " ").split())
             else:

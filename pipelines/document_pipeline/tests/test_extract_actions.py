@@ -633,3 +633,113 @@ def test_a_read_table_and_an_undeclared_document_log_no_unread_tables():
     _, _, _, _, errors = extract_document(
         clean_record([continuation([CONT_ROW])]), "doc")
     assert errors == []
+
+
+# --- spacer columns (3.2h, D7 second revision) --------------------------------------
+
+SPACER_HEADER = ["Action\nNumber", "Actions", "", "Steps", "Output", "Timeline", "Lead"]
+
+
+def spacer_page(extra_cell=""):
+    rows = [["Theme: Decarbon", "", "2025 KPI: 50%", "", "", "", ""],
+            SPACER_HEADER,
+            ["BE/23/34", "Expansion", "", "As per", "", "", "DFHERIS"],
+            ["BE/23/34/A", "-", extra_cell, "Develop", "Applied", "Q4 2023", "DFHERIS"]]
+    page = table_block(rows)
+    page["number"] = 55
+    return page
+
+
+def fragment(width_rows):
+    return {"number": 56, "blocks": [{"type": "table", "index": 0, "text": width_rows,
+                                      "y": 1.0}]}
+
+
+FRAGMENT = [["BE/23/34/B", "-", "Model", "Retrofits", "Q4 2023", "SEAI"],
+            ["BE/23/34/C", "-", "Progress", "Delivery", "Q4 2023", "HEA"]]
+
+
+def test_carry_header_ignores_a_header_column_that_is_empty_in_every_row():
+    _, _, _, actions, errors = extract_document(
+        clean_record([spacer_page(), fragment(FRAGMENT)]), "doc", layout=LAYOUT)
+    refs = [a["columns"]["Action Number"] for a in actions]
+    assert refs == ["BE/23/34", "BE/23/34/A", "BE/23/34/B", "BE/23/34/C"]
+    last = actions[-1]
+    assert last["columns"]["Steps"] == "Progress" and last["columns"]["Lead"] == "HEA"
+    assert last["raw_date"] == "Q4 2023"
+    assert not [e for e in errors if e["error_type"] == "UnreadActionTable"]
+
+
+def test_carry_header_still_refuses_when_a_non_empty_column_differs():
+    # the "spacer" holds content in one row, so it is a real column: 6 != 7
+    _, _, _, actions, errors = extract_document(
+        clean_record([spacer_page("x"), fragment(FRAGMENT)]), "doc", layout=LAYOUT)
+    assert len(actions) == 2  # only the header table's rows
+    assert [e["error_type"] for e in errors] == ["UnreadActionTable"]
+
+
+# --- "-" action cell inherits the parent's text (3.2j, D9) --------------------------
+
+def test_a_dash_action_cell_takes_the_parent_rows_text_including_across_a_carried_page():
+    _, _, _, actions, _ = extract_document(
+        clean_record([spacer_page(), fragment(FRAGMENT)]), "doc", layout=LAYOUT)
+    assert [a["action"] for a in actions] == ["Expansion"] * 4
+
+
+def test_a_dash_row_with_no_parent_is_excluded_and_logged():
+    rows = [HEADER, ["X/24/1", "-", "s", "o", "Q1 2024", "L"],
+            ["X/24/2", "Real", "s", "o", "Q1 2024", "L"],
+            ["X/24/2/A", "-", "s", "o", "Q1 2024", "L"]]
+    _, _, _, actions, errors = extract_document(
+        clean_record([table_block(rows)]), "doc", layout=LAYOUT)
+    assert [a["action"] for a in actions] == ["Real", "Real"]
+    (error,) = [e for e in errors if e["error_type"] == "DashActionWithoutParent"]
+    assert error["context"]["reference"] == "X/24/1"
+
+
+def test_a_new_header_table_does_not_inherit_the_previous_tables_parent():
+    page2 = table_block([HEADER, ["X/24/9", "-", "s", "o", "Q1 2024", "L"]])
+    page2["number"] = 2
+    _, _, _, actions, errors = extract_document(
+        clean_record([headed_page(1), page2]), "doc", layout=LAYOUT)
+    assert len(actions) == 2
+    assert [e["error_type"] for e in errors] == ["DashActionWithoutParent"]
+
+
+def test_default_layout_keeps_a_dash_action_cell_unchanged():
+    rows = [["ACTION", "DEADLINE"], ["Parent", "2030"], ["-", "2030"]]
+    _, _, _, actions, errors = extract_document(clean_record([table_block(rows)]), "doc")
+    assert [a["action"] for a in actions] == ["Parent", "-"] and errors == []
+
+
+# --- reference_corrections (3.2i, D8) -----------------------------------------------
+
+def misprint_page():
+    rows = [HEADER, ["BE/23/36", "Climate maps", "s", "o", "Q1 2023", "L"],
+            ["BE/23/37", "Heritage", "s", "o", "Q4 2023", "L"],
+            ["BE/23/36", "Training template", "s", "o", "Q4 2023", "L"]]
+    page = table_block(rows)
+    page["number"] = 57
+    return page
+
+
+CORRECTION = {"page": 57, "printed": "BE/23/36", "corrected": "BE/23/38",
+              "evidence": "XLSX Q4 sheet"}
+
+
+def test_a_correction_marks_the_repeated_reference_and_keeps_the_printed_cell():
+    _, _, _, actions, _ = extract_document(
+        clean_record([misprint_page()]), "doc", layout=LAYOUT, corrections=[CORRECTION])
+    assert "reference_correction" not in actions[0]
+    assert actions[2]["reference_correction"] == {"printed": "BE/23/36",
+                                                   "corrected": "BE/23/38"}
+    assert actions[2]["columns"]["Action Number"] == "BE/23/36"
+
+
+def test_a_correction_not_found_on_its_page_is_fatal():
+    import pytest
+    from steps.extract_actions.process import ReferenceCorrectionNotFound
+    wrong_page = {**CORRECTION, "page": 58}
+    with pytest.raises(ReferenceCorrectionNotFound, match="page 58"):
+        extract_document(clean_record([misprint_page()]), "doc", layout=LAYOUT,
+                        corrections=[wrong_page])

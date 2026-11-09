@@ -327,23 +327,105 @@ def _log_unread_table(rows, doc_slug, page_number, table_index, errors):
              "first_reference": refs[0], "rows": len(refs)}))
 
 
-def _continuation_verdict(rows, header, previous):
-    """A verdict reading `rows` with the previous table's column mapping, or
-    None when the table cannot be that table's continuation (different width,
-    or a row without an action cell)."""
+def _empty_columns(rows, width):
+    """Indexes of columns that are empty in every row of a table."""
+    return [i for i in range(width)
+            if not any(_normalize_cell(_cell_at(r, i)) for r in rows)]
+
+
+def _continuation_verdict(rows, header, previous, spacers=()):
+    """`(verdict, rows)` reading `rows` with the previous table's column
+    mapping, or None when the table cannot be that table's continuation
+    (different width, or a row without an action cell).
+
+    The header table's columns that are empty in every row (`spacers`, a
+    layout artefact such as a blank column after Actions) are ignored when
+    comparing widths (judged over the header row and the data rows, not the
+    theme/KPI preamble above the header): the fragment is mapped onto the remaining columns and
+    returned re-expanded to the header's full width."""
     width = max((len(r) for r in rows if _has_content(r)), default=0)
     if not width or any(len(r) != width for r in rows):
         return None
-    if len(header) != width:
+    spacers = [i for i in spacers if i < len(header)]
+    kept = [i for i in range(len(header)) if i not in spacers]
+    if width == len(header):
+        expanded = rows
+    elif spacers and width == len(kept):
+        expanded = []
+        for row in rows:
+            full = [""] * len(header)
+            for source, target in enumerate(kept):
+                full[target] = row[source]
+            expanded.append(full)
+    else:
         return None
-    for row in rows:
+    for row in expanded:
         if _has_content(row) and not _normalize_cell(_cell_at(row, previous.action_col)):
             return None
-    return TableVerdict(True, previous.dated, action_col=previous.action_col,
-                        date_col=previous.date_col, header_index=-1)
+    return (TableVerdict(True, previous.dated, action_col=previous.action_col,
+                         date_col=previous.date_col, header_index=-1), expanded)
 
 
-def extract_document(clean_record, doc_slug, layout=()):
+DASHES = {"-", "\u2013", "\u2014"}
+
+
+class ReferenceCorrectionNotFound(Exception):
+    """A declared `reference_corrections` entry matches no row on its page."""
+
+
+def _reference_cell(action):
+    for key, value in (action.get("columns") or {}).items():
+        if str(key).lower() in ("action number", "action no", "action no.",
+                                "action reference", "reference", "ref", "ref."):
+            return value
+    return ""
+
+
+def _apply_reference_corrections(actions, corrections, doc_slug):
+    """Mark the row each correction targets (D8). A printed reference that
+    appears more than once on the page is a repeat: the correction targets the
+    last occurrence and the first is the genuine row. Not found is fatal."""
+    for correction in corrections or ():
+        pattern = re.compile(
+            r"^\s*" + re.escape(correction["printed"]) + r"\s*(?:\(TF\)|\*+)*\s*$")
+        hits = [a for a in actions
+                if a["source_page"] == correction["page"]
+                and pattern.match(_reference_cell(a))]
+        if not hits:
+            raise ReferenceCorrectionNotFound(
+                f"{doc_slug}: reference_corrections entry for page "
+                f"{correction['page']} prints {correction['printed']!r}, which "
+                f"is not on that page")
+        hits[-1]["reference_correction"] = {
+            "printed": correction["printed"], "corrected": correction["corrected"]}
+
+
+def _inherit_dash_text(actions, carried, state, doc_slug, errors):
+    """D9: a "-" action cell takes the nearest preceding non-dash row's text in
+    the same table (a carried continuation continues its table). A "-" row
+    with no such parent is excluded and logged."""
+    if not carried:
+        state["parent"] = None
+    kept = []
+    for action in actions:
+        if action["action"] in DASHES:
+            if state["parent"] is None:
+                errors.append(_error_dict(
+                    "DashActionWithoutParent",
+                    "The Actions cell is a dash and no earlier row in the same "
+                    "table supplies the text; the row is excluded.",
+                    {"doc_slug": doc_slug, "page": action["source_page"],
+                     "source_ref": action["action_id"],
+                     "reference": _reference_cell(action)}))
+                continue
+            action["action"] = state["parent"]
+        else:
+            state["parent"] = action["action"]
+        kept.append(action)
+    return kept
+
+
+def extract_document(clean_record, doc_slug, layout=(), corrections=()):
     """Classify one document and extract its actions.
 
     Returns `(category, dated_table_count, undated_table_count, actions, errors)`.
@@ -361,7 +443,8 @@ def extract_document(clean_record, doc_slug, layout=()):
     """
     number_header = "action_number_header" in layout
     carry = "carry_header" in layout
-    previous = None   # (page, header, verdict-with-columns) of the last action table
+    previous = None   # (page, header, verdict, spacer columns) of the last action table
+    dash_state = {"parent": None}
     dated_count = 0
     undated_count = 0
     actions = []
@@ -397,9 +480,10 @@ def extract_document(clean_record, doc_slug, layout=()):
             if (carry and not verdict.is_action_table and previous
                     and verdict.error_type is None
                     and page_number == previous[0] + 1):
-                inherited = _continuation_verdict(rows, previous[1], previous[2])
+                inherited = _continuation_verdict(
+                    rows, previous[1], previous[2], previous[3])
                 if inherited is not None:
-                    verdict, carried_header = inherited, previous[1]
+                    (verdict, rows), carried_header = inherited, previous[1]
             if not verdict.is_action_table:
                 if layout:
                     _log_unread_table(rows, doc_slug, page_number, table_index, errors)
@@ -409,12 +493,20 @@ def extract_document(clean_record, doc_slug, layout=()):
                 dated_count += 1
             else:
                 undated_count += 1
-            actions.extend(extract_table(rows, page_number, table_index, verdict,
-                                         doc_slug, errors,
-                                         header=carried_header))
+            table_actions = extract_table(rows, page_number, table_index, verdict,
+                                          doc_slug, errors, header=carried_header)
+            if layout:
+                table_actions = _inherit_dash_text(
+                    table_actions, carried_header is not None, dash_state,
+                    doc_slug, errors)
+            actions.extend(table_actions)
             header = carried_header or [
                 _normalize_cell(c) for c in rows[verdict.header_index]]
-            previous = (page_number, header, verdict)
+            spacers = (previous[3] if carried_header is not None
+                       else _empty_columns(rows[verdict.header_index:], len(header)))
+            previous = (page_number, header, verdict, spacers)
+
+    _apply_reference_corrections(actions, corrections, doc_slug)
 
     if dated_count:
         category = "dated-actions"
@@ -479,7 +571,10 @@ def process(clean_records, meta, step_dir, writer, doc_slug=None, verbose=False)
         try:
             document = meta.get(slug) or {}
             category, dated, undated, actions, errors = extract_document(
-                record, slug, tuple(document.get("action_table_layout") or ()))
+                record, slug, tuple(document.get("action_table_layout") or ()),
+                tuple(document.get("reference_corrections") or ()))
+        except ReferenceCorrectionNotFound:
+            raise
         except Exception as e:
             # A corrupt upstream record must not abort the batch — the same
             # isolation clean_text and assemble_sections apply. Not marked
@@ -541,7 +636,8 @@ def main():
                    "public_body_id": record.get("public_body_id"),
                    "role": record.get("role") or "plan",
                    "policy_role": record.get("policy_role"),
-                   "action_table_layout": record.get("action_table_layout")}
+                   "action_table_layout": record.get("action_table_layout"),
+                   "reference_corrections": record.get("reference_corrections")}
             for slug, record in fetched.items()}
 
     writer = IncrementalWriter(output_path, STEP_NAME, key_field="doc_slug",

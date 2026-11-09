@@ -47,6 +47,7 @@ def test_load_documents_returns_one_normalised_record(tmp_path):
         "hold": None,
         "ocr_pages": None,
         "action_table_layout": None,
+        "reference_corrections": None,
     }]
 
 
@@ -406,3 +407,31 @@ def test_action_table_layout_is_only_permitted_on_action_plans(tmp_path, policy_
             + "    action_table_layout: [carry_header]\n")
     with pytest.raises(ValueError, match="an-annex.*action_table_layout.*action-plan"):
         _load(write_yaml(tmp_path, text))
+
+
+# --- reference_corrections ------------------------------------------------------------
+
+GOOD = ("    reference_corrections:\n"
+        "      - {page: 57, printed: BE/23/36, corrected: BE/23/38, evidence: XLSX}\n")
+
+
+def test_reference_corrections_default_to_none_and_accept_a_valid_list(tmp_path):
+    assert _load(write_yaml(tmp_path, ACTION_PLAN))[0]["reference_corrections"] is None
+    assert _load(write_yaml(tmp_path, ACTION_PLAN + GOOD))[0]["reference_corrections"] == [
+        {"page": 57, "printed": "BE/23/36", "corrected": "BE/23/38", "evidence": "XLSX"}]
+
+
+@pytest.mark.parametrize("bad", [
+    "[]", "x", "[{page: 57, printed: A, corrected: B}]",
+    "[{page: 0, printed: A, corrected: B, evidence: e}]",
+    "[{page: 5, printed: A, corrected: A, evidence: e}]",
+    "[{page: 5, printed: A, corrected: B, evidence: ''}]",
+    "[{page: 5, printed: A, corrected: B, evidence: e, extra: 1}]"])
+def test_reference_corrections_reject_malformed_entries(tmp_path, bad):
+    with pytest.raises(ValueError, match="an-annex.*reference_corrections"):
+        _load(write_yaml(tmp_path, ACTION_PLAN + f"    reference_corrections: {bad}\n"))
+
+
+def test_reference_corrections_are_only_permitted_on_action_plans(tmp_path):
+    with pytest.raises(ValueError, match="an-annex.*reference_corrections.*action-plan"):
+        _load(write_yaml(tmp_path, ACTION_PLAN.replace("action-plan", "primary") + GOOD))

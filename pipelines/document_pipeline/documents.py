@@ -20,7 +20,8 @@ DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 _REQUIRED = ("doc_slug", "title", "url", "policy_id", "policy_role")
 _OPTIONAL = ("publisher", "public_body_id", "published_date", "role",
              "reports_on", "expected_action_count", "expected_status_counts",
-             "status_source", "hold", "ocr_pages", "action_table_layout")
+             "status_source", "hold", "ocr_pages", "action_table_layout",
+             "reference_corrections")
 
 VALID_ROLES = ("plan", "report")
 # Where a report's machine-readable status detail lives, when not in its PDF.
@@ -160,6 +161,29 @@ def load_documents(path=DOCUMENTS_PATH, policy_ids=None) -> list:
                     f"{where} ({entry.get('doc_slug')}) sets action_table_layout but its policy_role is "
                     f"{policy_role!r}; it is only permitted on an action-plan "
                     f"entry")
+
+        if "reference_corrections" in entry:
+            corrections = entry["reference_corrections"]
+            name = f"{where} ({entry.get('doc_slug')}) has reference_corrections"
+            if not isinstance(corrections, list) or not corrections:
+                raise ValueError(f"{name} {corrections!r}; must be a non-empty list")
+            for item in corrections:
+                if (not isinstance(item, dict)
+                        or set(item) != {"page", "printed", "corrected", "evidence"}
+                        or isinstance(item["page"], bool)
+                        or not isinstance(item["page"], int) or item["page"] < 1
+                        or any(not isinstance(item[k], str) or not item[k].strip()
+                               for k in ("printed", "corrected", "evidence"))
+                        or item["printed"] == item["corrected"]):
+                    raise ValueError(
+                        f"{name} entry {item!r}; each must be "
+                        f"{{page (>= 1), printed, corrected, evidence}} with "
+                        f"printed different from corrected")
+            if policy_role != "action-plan":
+                raise ValueError(
+                    f"{where} ({entry.get('doc_slug')}) sets reference_corrections but "
+                    f"its policy_role is {policy_role!r}; it is only permitted on an "
+                    f"action-plan entry")
 
         expected_actions = entry.get("expected_action_count")
         if expected_actions is not None and (isinstance(expected_actions, bool)

@@ -178,6 +178,7 @@ def _doc_metadata(doc: dict) -> dict:
         "ocr_pages": doc.get("ocr_pages"),
         # Opt-in annex table layouts read by extract_actions (D7).
         "action_table_layout": doc.get("action_table_layout"),
+        "reference_corrections": doc.get("reference_corrections"),
         "policy_id": doc["policy_id"],
         "policy_role": doc["policy_role"],
         "expected_action_count": doc.get("expected_action_count"),
