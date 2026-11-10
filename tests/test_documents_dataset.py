@@ -43,6 +43,21 @@ def test_index_matches_documents_yml_and_the_policy_table():
         assert entry["policy_role"] == curated[slug]["policy_role"]
 
 
+def test_every_published_bundle_matches_its_index_checksum_and_size():
+    # The web seed refuses a bundle whose bytes don't hash to index.json's
+    # bundle_sha256, so an index regenerated from local build output that was
+    # never committed breaks the site build. Catch it here instead.
+    import hashlib
+    index = json.loads(INDEX.read_text(encoding="utf-8"))
+    mismatched = []
+    for entry in index["documents"]:
+        data = (INDEX.parent / entry["bundle"]).read_bytes()
+        if (hashlib.sha256(data).hexdigest() != entry["bundle_sha256"]
+                or len(data) != entry["bundle_bytes"]):
+            mismatched.append(entry["doc_slug"])
+    assert mismatched == []
+
+
 def test_held_documents_are_listed_as_held_in_index_failed():
     from documents import load_documents
     index = json.loads(INDEX.read_text(encoding="utf-8"))
