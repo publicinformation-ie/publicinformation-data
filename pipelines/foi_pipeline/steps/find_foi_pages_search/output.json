@@ -658,7 +658,7 @@
     },
     {
       "public_body_id": 1611,
-      "name": "Ombudsman for Childrens Office",
+      "name": "Ombudsman for Children’s Office",
       "official_website_url": "https://www.oco.ie/",
       "foi_page_url": "https://www.oco.ie/library/oco-freedom-of-information-publication-scheme/",
       "source_method": "crawl"
@@ -770,7 +770,7 @@
     },
     {
       "public_body_id": 1752,
-      "name": "St. Vincents University Hospital",
+      "name": "St. Vincent’s University Hospital",
       "official_website_url": "https://www.stvincents.ie/",
       "foi_page_url": "https://www.stvincents.ie/contact-us/freedom-of-information/",
       "source_method": "crawl"
@@ -1204,7 +1204,7 @@
     },
     {
       "public_body_id": 1747,
-      "name": "St. Jamess Hospital , Dublin",
+      "name": "St. James’s Hospital , Dublin",
       "official_website_url": "www.stjames.ie",
       "foi_page_url": "https://www.stjames.ie/media/FOI%20request%20form%20Orla%20Beggs%20House.pdf",
       "source_method": "apify"

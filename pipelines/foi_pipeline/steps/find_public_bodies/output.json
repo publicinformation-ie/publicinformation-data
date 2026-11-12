@@ -1,7 +1,7 @@
 {
   "metadata": {
     "step": "find_public_bodies",
-    "completed_at": "2026-10-18T16:32:01.920787+00:00"
+    "completed_at": "2026-11-12T13:16:36.387411+00:00"
   },
   "public_bodies": [
     {
@@ -1370,41 +1370,6 @@
       }
     },
     {
-      "public_body_id": 1085,
-      "name": "Carlow County Council",
-      "official_website_url": "https://carlow.ie/",
-      "category": "local authority",
-      "status": {
-        "website_url": {
-          "url": "https://carlow.ie/",
-          "status": "not_attempted"
-        },
-        "foi_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "foi_email": {
-          "email": null,
-          "status": "not_attempted"
-        },
-        "disclosures_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "disclosure_files": {
-          "total": 0,
-          "valid": 0,
-          "failed": 0,
-          "status": "not_attempted"
-        },
-        "foi_requests": {
-          "valid": 0,
-          "errors": 0,
-          "status": "not_attempted"
-        }
-      }
-    },
-    {
       "public_body_id": 1086,
       "name": "Carlow Tourism CLG",
       "official_website_url": null,
@@ -1832,41 +1797,6 @@
       "status": {
         "website_url": {
           "url": "https://www.tusla.ie/",
-          "status": "not_attempted"
-        },
-        "foi_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "foi_email": {
-          "email": null,
-          "status": "not_attempted"
-        },
-        "disclosures_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "disclosure_files": {
-          "total": 0,
-          "valid": 0,
-          "failed": 0,
-          "status": "not_attempted"
-        },
-        "foi_requests": {
-          "valid": 0,
-          "errors": 0,
-          "status": "not_attempted"
-        }
-      }
-    },
-    {
-      "public_body_id": 1117,
-      "name": "Childrens Health Ireland (CHI) at Connolly",
-      "official_website_url": "https://chi.ie/",
-      "category": "public body",
-      "status": {
-        "website_url": {
-          "url": "https://chi.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -5640,41 +5570,6 @@
       }
     },
     {
-      "public_body_id": 1309,
-      "name": "Forensic Science Ireland",
-      "official_website_url": "https://forensicscience.ie/",
-      "category": "public body",
-      "status": {
-        "website_url": {
-          "url": "https://forensicscience.ie/",
-          "status": "not_attempted"
-        },
-        "foi_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "foi_email": {
-          "email": null,
-          "status": "not_attempted"
-        },
-        "disclosures_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "disclosure_files": {
-          "total": 0,
-          "valid": 0,
-          "failed": 0,
-          "status": "not_attempted"
-        },
-        "foi_requests": {
-          "valid": 0,
-          "errors": 0,
-          "status": "not_attempted"
-        }
-      }
-    },
-    {
       "public_body_id": 1311,
       "name": "Fort Dunree Military Musuem CLG",
       "official_website_url": null,
@@ -5822,41 +5717,6 @@
       "status": {
         "website_url": {
           "url": "https://www.galwaycity.ie/",
-          "status": "not_attempted"
-        },
-        "foi_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "foi_email": {
-          "email": null,
-          "status": "not_attempted"
-        },
-        "disclosures_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "disclosure_files": {
-          "total": 0,
-          "valid": 0,
-          "failed": 0,
-          "status": "not_attempted"
-        },
-        "foi_requests": {
-          "valid": 0,
-          "errors": 0,
-          "status": "not_attempted"
-        }
-      }
-    },
-    {
-      "public_body_id": 1342,
-      "name": "Galway County Council",
-      "official_website_url": "https://www.galway.ie/",
-      "category": "local authority",
-      "status": {
-        "website_url": {
-          "url": "https://www.galway.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -6137,41 +5997,6 @@
       "status": {
         "website_url": {
           "url": "https://www.grireland.ie/",
-          "status": "not_attempted"
-        },
-        "foi_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "foi_email": {
-          "email": null,
-          "status": "not_attempted"
-        },
-        "disclosures_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "disclosure_files": {
-          "total": 0,
-          "valid": 0,
-          "failed": 0,
-          "status": "not_attempted"
-        },
-        "foi_requests": {
-          "valid": 0,
-          "errors": 0,
-          "status": "not_attempted"
-        }
-      }
-    },
-    {
-      "public_body_id": 1388,
-      "name": "Health and Safety Authority",
-      "official_website_url": "https://www.hsa.ie/",
-      "category": "public body",
-      "status": {
-        "website_url": {
-          "url": "https://www.hsa.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -7915,41 +7740,6 @@
       }
     },
     {
-      "public_body_id": 1470,
-      "name": "Laois County Council",
-      "official_website_url": "https://laois.ie/",
-      "category": "local authority",
-      "status": {
-        "website_url": {
-          "url": "https://laois.ie/",
-          "status": "not_attempted"
-        },
-        "foi_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "foi_email": {
-          "email": null,
-          "status": "not_attempted"
-        },
-        "disclosures_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "disclosure_files": {
-          "total": 0,
-          "valid": 0,
-          "failed": 0,
-          "status": "not_attempted"
-        },
-        "foi_requests": {
-          "valid": 0,
-          "errors": 0,
-          "status": "not_attempted"
-        }
-      }
-    },
-    {
       "public_body_id": 1471,
       "name": "Law Reform Commission",
       "official_website_url": "https://www.lawreform.ie/",
@@ -9077,41 +8867,6 @@
       "status": {
         "website_url": {
           "url": "https://microfinanceireland.ie/",
-          "status": "not_attempted"
-        },
-        "foi_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "foi_email": {
-          "email": null,
-          "status": "not_attempted"
-        },
-        "disclosures_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "disclosure_files": {
-          "total": 0,
-          "valid": 0,
-          "failed": 0,
-          "status": "not_attempted"
-        },
-        "foi_requests": {
-          "valid": 0,
-          "errors": 0,
-          "status": "not_attempted"
-        }
-      }
-    },
-    {
-      "public_body_id": 1525,
-      "name": "Monaghan County Council",
-      "official_website_url": "https://monaghan.ie/",
-      "category": "local authority",
-      "status": {
-        "website_url": {
-          "url": "https://monaghan.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -10470,41 +10225,6 @@
       }
     },
     {
-      "public_body_id": 1590,
-      "name": "Offaly County Council",
-      "official_website_url": "https://www.offaly.ie/",
-      "category": "local authority",
-      "status": {
-        "website_url": {
-          "url": "https://www.offaly.ie/",
-          "status": "not_attempted"
-        },
-        "foi_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "foi_email": {
-          "email": null,
-          "status": "not_attempted"
-        },
-        "disclosures_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "disclosure_files": {
-          "total": 0,
-          "valid": 0,
-          "failed": 0,
-          "status": "not_attempted"
-        },
-        "foi_requests": {
-          "valid": 0,
-          "errors": 0,
-          "status": "not_attempted"
-        }
-      }
-    },
-    {
       "public_body_id": 1593,
       "name": "Office of Government Procurement",
       "official_website_url": "https://www.gov.ie/en/office-of-government-procurement/?referer=https://ogp.gov.ie/",
@@ -10967,41 +10687,6 @@
       "status": {
         "website_url": {
           "url": "https://www.coimisineir.ie/",
-          "status": "not_attempted"
-        },
-        "foi_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "foi_email": {
-          "email": null,
-          "status": "not_attempted"
-        },
-        "disclosures_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "disclosure_files": {
-          "total": 0,
-          "valid": 0,
-          "failed": 0,
-          "status": "not_attempted"
-        },
-        "foi_requests": {
-          "valid": 0,
-          "errors": 0,
-          "status": "not_attempted"
-        }
-      }
-    },
-    {
-      "public_body_id": 1611,
-      "name": "Ombudsman for Childrens Office",
-      "official_website_url": "https://www.oco.ie/",
-      "category": "public body",
-      "status": {
-        "website_url": {
-          "url": "https://www.oco.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -11912,41 +11597,6 @@
       "status": {
         "website_url": {
           "url": "https://www.riverbank.ie/",
-          "status": "not_attempted"
-        },
-        "foi_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "foi_email": {
-          "email": null,
-          "status": "not_attempted"
-        },
-        "disclosures_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "disclosure_files": {
-          "total": 0,
-          "valid": 0,
-          "failed": 0,
-          "status": "not_attempted"
-        },
-        "foi_requests": {
-          "valid": 0,
-          "errors": 0,
-          "status": "not_attempted"
-        }
-      }
-    },
-    {
-      "public_body_id": 1667,
-      "name": "Road Safety Authority",
-      "official_website_url": "https://www.rsa.ie/",
-      "category": "public body",
-      "status": {
-        "website_url": {
-          "url": "https://www.rsa.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -13410,111 +13060,6 @@
       }
     },
     {
-      "public_body_id": 1747,
-      "name": "St. Jamess Hospital , Dublin",
-      "official_website_url": "https://www.stjames.ie/",
-      "category": "public body",
-      "status": {
-        "website_url": {
-          "url": "https://www.stjames.ie/",
-          "status": "not_attempted"
-        },
-        "foi_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "foi_email": {
-          "email": null,
-          "status": "not_attempted"
-        },
-        "disclosures_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "disclosure_files": {
-          "total": 0,
-          "valid": 0,
-          "failed": 0,
-          "status": "not_attempted"
-        },
-        "foi_requests": {
-          "valid": 0,
-          "errors": 0,
-          "status": "not_attempted"
-        }
-      }
-    },
-    {
-      "public_body_id": 1748,
-      "name": "St. Johns Hospital, Limerick",
-      "official_website_url": null,
-      "category": "public body",
-      "status": {
-        "website_url": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "foi_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "foi_email": {
-          "email": null,
-          "status": "not_attempted"
-        },
-        "disclosures_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "disclosure_files": {
-          "total": 0,
-          "valid": 0,
-          "failed": 0,
-          "status": "not_attempted"
-        },
-        "foi_requests": {
-          "valid": 0,
-          "errors": 0,
-          "status": "not_attempted"
-        }
-      }
-    },
-    {
-      "public_body_id": 1749,
-      "name": "St. Josephs Foundation",
-      "official_website_url": null,
-      "category": "public body",
-      "status": {
-        "website_url": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "foi_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "foi_email": {
-          "email": null,
-          "status": "not_attempted"
-        },
-        "disclosures_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "disclosure_files": {
-          "total": 0,
-          "valid": 0,
-          "failed": 0,
-          "status": "not_attempted"
-        },
-        "foi_requests": {
-          "valid": 0,
-          "errors": 0,
-          "status": "not_attempted"
-        }
-      }
-    },
-    {
       "public_body_id": 1750,
       "name": "St. Luke's Hospital, Rathgar",
       "official_website_url": null,
@@ -13522,41 +13067,6 @@
       "status": {
         "website_url": {
           "url": null,
-          "status": "not_attempted"
-        },
-        "foi_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "foi_email": {
-          "email": null,
-          "status": "not_attempted"
-        },
-        "disclosures_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "disclosure_files": {
-          "total": 0,
-          "valid": 0,
-          "failed": 0,
-          "status": "not_attempted"
-        },
-        "foi_requests": {
-          "valid": 0,
-          "errors": 0,
-          "status": "not_attempted"
-        }
-      }
-    },
-    {
-      "public_body_id": 1752,
-      "name": "St. Vincents University Hospital",
-      "official_website_url": "https://www.stvincents.ie/",
-      "category": "public body",
-      "status": {
-        "website_url": {
-          "url": "https://www.stvincents.ie/",
           "status": "not_attempted"
         },
         "foi_page": {
@@ -28390,41 +27900,6 @@
       }
     },
     {
-      "public_body_id": 1751,
-      "name": "St. Michaels Hospital, Dun Laoghaire",
-      "official_website_url": null,
-      "category": "public body",
-      "status": {
-        "website_url": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "foi_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "foi_email": {
-          "email": null,
-          "status": "not_attempted"
-        },
-        "disclosures_page": {
-          "url": null,
-          "status": "not_attempted"
-        },
-        "disclosure_files": {
-          "total": 0,
-          "valid": 0,
-          "failed": 0,
-          "status": "not_attempted"
-        },
-        "foi_requests": {
-          "valid": 0,
-          "errors": 0,
-          "status": "not_attempted"
-        }
-      }
-    },
-    {
       "public_body_id": 1756,
       "name": "State Property (Misc. Deposits) Account",
       "official_website_url": null,
@@ -30882,6 +30357,531 @@
       "status": {
         "website_url": {
           "url": "https://www.neh.gov.ie/business-supports/western-investment-fund",
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1085,
+      "name": "Carlow County Council",
+      "official_website_url": "https://carlow.ie/",
+      "category": "local authority",
+      "status": {
+        "website_url": {
+          "url": "https://carlow.ie/",
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1342,
+      "name": "Galway County Council",
+      "official_website_url": "https://www.galway.ie/",
+      "category": "local authority",
+      "status": {
+        "website_url": {
+          "url": "https://www.galway.ie/",
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1470,
+      "name": "Laois County Council",
+      "official_website_url": "https://laois.ie/",
+      "category": "local authority",
+      "status": {
+        "website_url": {
+          "url": "https://laois.ie/",
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1525,
+      "name": "Monaghan County Council",
+      "official_website_url": "https://monaghan.ie/",
+      "category": "local authority",
+      "status": {
+        "website_url": {
+          "url": "https://monaghan.ie/",
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1590,
+      "name": "Offaly County Council",
+      "official_website_url": "https://www.offaly.ie/",
+      "category": "local authority",
+      "status": {
+        "website_url": {
+          "url": "https://www.offaly.ie/",
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1309,
+      "name": "Forensic Science Ireland",
+      "official_website_url": "https://forensicscience.ie/",
+      "category": "public body",
+      "status": {
+        "website_url": {
+          "url": "https://forensicscience.ie/",
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1388,
+      "name": "Health and Safety Authority",
+      "official_website_url": "https://www.hsa.ie/",
+      "category": "public body",
+      "status": {
+        "website_url": {
+          "url": "https://www.hsa.ie/",
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1667,
+      "name": "Road Safety Authority",
+      "official_website_url": "https://www.rsa.ie/",
+      "category": "public body",
+      "status": {
+        "website_url": {
+          "url": "https://www.rsa.ie/",
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1117,
+      "name": "Children’s Health Ireland (CHI) at Connolly",
+      "official_website_url": "https://chi.ie/",
+      "category": "public body",
+      "status": {
+        "website_url": {
+          "url": "https://chi.ie/",
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1611,
+      "name": "Ombudsman for Children’s Office",
+      "official_website_url": "https://www.oco.ie/",
+      "category": "public body",
+      "status": {
+        "website_url": {
+          "url": "https://www.oco.ie/",
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1747,
+      "name": "St. James’s Hospital , Dublin",
+      "official_website_url": "https://www.stjames.ie/",
+      "category": "public body",
+      "status": {
+        "website_url": {
+          "url": "https://www.stjames.ie/",
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1748,
+      "name": "St. John’s Hospital, Limerick",
+      "official_website_url": null,
+      "category": "public body",
+      "status": {
+        "website_url": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1749,
+      "name": "St. Joseph’s Foundation",
+      "official_website_url": null,
+      "category": "public body",
+      "status": {
+        "website_url": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1752,
+      "name": "St. Vincent’s University Hospital",
+      "official_website_url": "https://www.stvincents.ie/",
+      "category": "public body",
+      "status": {
+        "website_url": {
+          "url": "https://www.stvincents.ie/",
+          "status": "not_attempted"
+        },
+        "foi_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "foi_email": {
+          "email": null,
+          "status": "not_attempted"
+        },
+        "disclosures_page": {
+          "url": null,
+          "status": "not_attempted"
+        },
+        "disclosure_files": {
+          "total": 0,
+          "valid": 0,
+          "failed": 0,
+          "status": "not_attempted"
+        },
+        "foi_requests": {
+          "valid": 0,
+          "errors": 0,
+          "status": "not_attempted"
+        }
+      }
+    },
+    {
+      "public_body_id": 1751,
+      "name": "St. Michael’s Hospital, Dun Laoghaire",
+      "official_website_url": null,
+      "category": "public body",
+      "status": {
+        "website_url": {
+          "url": null,
           "status": "not_attempted"
         },
         "foi_page": {
