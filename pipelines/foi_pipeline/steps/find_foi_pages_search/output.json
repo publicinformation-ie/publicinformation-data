@@ -1,7 +1,7 @@
 {
   "metadata": {
     "step": "find_foi_pages_search",
-    "completed_at": "2026-08-25T11:23:29.908864+00:00"
+    "completed_at": "2026-11-12T12:28:31.627488+00:00"
   },
   "results": [
     {
@@ -1586,6 +1586,34 @@
       "name": "St Vincents Hospital Fairview",
       "official_website_url": "svhf.ie",
       "foi_page_url": "https://svhf.ie/freedom-of-information/",
+      "source_method": "apify"
+    },
+    {
+      "public_body_id": 1309,
+      "name": "Forensic Science Ireland",
+      "official_website_url": "https://forensicscience.ie/",
+      "foi_page_url": "https://forensicscience.ie/corporate-services/freedom-of-information/",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1753,
+      "name": "Standards in Public Office Commission",
+      "official_website_url": "https://www.sipo.ie/",
+      "foi_page_url": "https://www.sipo.ie/en/collection/e809e-freedom-of-information-foi",
+      "source_method": "crawl"
+    },
+    {
+      "public_body_id": 1148,
+      "name": "Coimisiún na Meán",
+      "official_website_url": "www.cnam.ie",
+      "foi_page_url": "https://www.gov.ie/en/department-of-finance/organisation-information/freedom-of-information-foi/",
+      "source_method": "apify"
+    },
+    {
+      "public_body_id": 1019,
+      "name": "An Rialálaí Agraibhia (The Agri Food Regulator)",
+      "official_website_url": "www.agrifoodregulator.ie",
+      "foi_page_url": "https://www.agrifoodregulator.ie/footer/foi/",
       "source_method": "apify"
     }
   ]

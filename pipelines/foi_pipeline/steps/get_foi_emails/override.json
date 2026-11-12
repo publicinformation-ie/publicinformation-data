@@ -406,5 +406,29 @@
     "foi_email": "foi@rotunda.ie",
     "email_status": "found",
     "overridden": true
+  },
+  {
+    "public_body_id": 1148,
+    "name": "Coimisiún na Meán",
+    "foi_page_url": "https://www.cnam.ie/freedom-of-information/",
+    "foi_email": "foi@cnam.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1497,
+    "name": "Longford County Council",
+    "foi_page_url": "https://www.longfordcoco.ie/your-council/access-to-information/freedom-of-information/",
+    "foi_email": "foi@longfordcoco.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1205,
+    "name": "Department of Further and Higher Education, Research, Innovation and Science",
+    "foi_page_url": "",
+    "foi_email": null,
+    "email_status": "not_found",
+    "overridden": true
   }
 ]
