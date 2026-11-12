@@ -4,6 +4,15 @@ All notable changes to the Public Bodies dataset will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [public-body-actions 3.2.0] - 2026-11-12
+
+### Added
+- A new table, `action-milestones.csv` (215 rows), with one record per interim milestone of an action, split from `original_deadline_milestones` (for example SMP 2026-2030 action 4 gives two dated milestones). Each row has an id, ordinal, due label, start, end, precision (`quarter` or `year`) and the milestone text. The CSVW, JSON Schema (`ActionMilestone`), JSON-LD and DCAT metadata describe it.
+
+### Notes
+- MINOR: additive. `actions.csv`, the observations and the relationships are unchanged, and `original_deadline_milestones` keeps its text.
+- A date is published only where the plan states one; 8 SMP 2026-2030 actions carry one undated milestone. Known miss: SMP 2022-2025 action 20 has a year with no delimiter and stays inside the previous milestone.
+
 ## [public-body-actions 3.1.0] - 2026-11-10
 
 ### Added

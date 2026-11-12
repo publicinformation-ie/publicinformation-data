@@ -39,17 +39,19 @@ from src.lib.date_parse import PRECISIONS
 
 RESOLVED_PATH = "pipelines/actions_pipeline/steps/resolve_action_identity/output.json"
 RELATIONSHIPS_PATH = "pipelines/actions_pipeline/steps/extract_relationships/output.json"
+MILESTONES_PATH = "pipelines/actions_pipeline/steps/extract_milestones/output.json"
 FIND_PUBLIC_BODIES_PATH = "pipelines/foi_pipeline/steps/find_public_bodies/output.json"
 STATUS_VOCABULARY_PATH = "public/vocabularies/action-status.csv"
 RELATIONSHIP_VOCABULARY_PATH = "public/vocabularies/action-relationship.csv"
 
-OUTPUT_DIR = "public/v3.1.0/public-body-actions"
+OUTPUT_DIR = "public/v3.2.0/public-body-actions"
 LATEST_DIR = "public/latest/public-body-actions"
 TTL_PATH = "public/catalog/dataset-public-body-actions.ttl"
 
 ACTIONS_CSV = "actions.csv"
 OBSERVATIONS_CSV = "action-status-observations.csv"
 RELATIONSHIPS_CSV = "action-relationships.csv"
+MILESTONES_CSV = "action-milestones.csv"
 JSONLD = "public-body-actions.jsonld"
 
 ACTION_FIELDS = [
@@ -74,6 +76,10 @@ OBSERVATION_FIELDS = [
 RELATIONSHIP_FIELDS = [
     "from_action_id", "to_action_id", "to_plan_hint", "to_action_number",
     "relationship", "family", "method", "asserted_in", "evidence",
+]
+MILESTONE_FIELDS = [
+    "milestone_id", "action_id", "ordinal", "due_label", "due_start",
+    "due_end", "due_precision", "milestone_text",
 ]
 
 CONFIDENCES = ("stated", "interpreted")
@@ -120,13 +126,17 @@ def build_relationship_rows(relationships):
     return _rows(relationships, RELATIONSHIP_FIELDS)
 
 
+def build_milestone_rows(milestones):
+    return _rows(milestones, MILESTONE_FIELDS)
+
+
 # --------------------------------------------------------------------------
 # Invariants (spec §12)
 # --------------------------------------------------------------------------
 
 
 def check_invariants(actions, observations, relationships, expectations,
-                     status_terms, relationship_terms) -> list:
+                     status_terms, relationship_terms, *, milestones=None) -> list:
     """Every violation, as a human-readable string. Empty means publishable.
 
     Returns all violations rather than raising on the first: a release that
@@ -272,6 +282,27 @@ def check_invariants(actions, observations, relationships, expectations,
                 f"{action['action_id']}: action_text_clean is empty but "
                 f"action_text is not")
 
+    # 10. Milestones: each belongs to a published action, ids and ordinals are
+    #     unique, and a date is present if and only if a precision is.
+    seen_ids = set()
+    for milestone in milestones or []:
+        mid = milestone["milestone_id"]
+        if milestone["action_id"] not in action_ids:
+            violations.append(
+                f"milestone {mid}: action_id resolves to no action")
+        if mid in seen_ids:
+            violations.append(f"milestone {mid} is not unique")
+        seen_ids.add(mid)
+        precision = milestone.get("due_precision") or None
+        if precision is not None and precision not in ("quarter", "year"):
+            violations.append(
+                f"milestone {mid}: due_precision {precision!r} is outside "
+                f"('quarter', 'year')")
+        if (precision is None) != (not milestone.get("due_start")):
+            violations.append(
+                f"milestone {mid}: due_start must be set if and only if "
+                f"due_precision is set")
+
     return violations
 
 
@@ -288,7 +319,7 @@ def action_uri(action) -> str:
 
 
 def transform_to_jsonld(actions, observations, relationships,
-                        body_slug_lookup=None) -> dict:
+                        body_slug_lookup=None, milestones=None) -> dict:
     body_slug_lookup = body_slug_lookup or {}
     uris = {action["action_id"]: action_uri(action) for action in actions}
     graph = []
@@ -315,6 +346,13 @@ def transform_to_jsonld(actions, observations, relationships,
                 "@type": "act:ActionRelationship",
                 "from_action": uris[edge["from_action_id"]]}
         node.update({field: edge.get(field) for field in RELATIONSHIP_FIELDS})
+        graph.append(node)
+
+    for milestone in milestones or []:
+        node = {"@id": f"{uris[milestone['action_id']]}/milestone/{milestone['ordinal']}",
+                "@type": "act:ActionMilestone",
+                "action": uris[milestone["action_id"]]}
+        node.update({field: milestone.get(field) for field in MILESTONE_FIELDS})
         graph.append(node)
 
     return {
@@ -347,10 +385,12 @@ def copy_to_latest():
 
 def publish_all(actions, observations, relationships, expectations,
                 status_terms, relationship_terms, body_slug_lookup=None,
-                output_dir=Path(OUTPUT_DIR), ttl_path=Path(TTL_PATH)) -> bool:
+                output_dir=Path(OUTPUT_DIR), ttl_path=Path(TTL_PATH),
+                *, milestones=None) -> bool:
     """Assert every invariant, then write. Returns True if content changed."""
     violations = check_invariants(actions, observations, relationships,
-                                  expectations, status_terms, relationship_terms)
+                                  expectations, status_terms, relationship_terms,
+                                  milestones=milestones)
     if violations:
         raise InvariantViolation(
             f"{len(violations)} validation invariant(s) failed; nothing "
@@ -364,9 +404,11 @@ def publish_all(actions, observations, relationships, expectations,
                                                   build_observation_rows(observations)),
         output_dir / RELATIONSHIPS_CSV: render_csv(RELATIONSHIP_FIELDS,
                                                    build_relationship_rows(relationships)),
+        output_dir / MILESTONES_CSV: render_csv(MILESTONE_FIELDS,
+                                                build_milestone_rows(milestones or [])),
         output_dir / JSONLD: render_jsonld(
             transform_to_jsonld(actions, observations, relationships,
-                                body_slug_lookup)),
+                                body_slug_lookup, milestones)),
     }
     # One call covering every payload: stamp_if_changed takes a list, so the
     # three CSVs and the JSON-LD share a single change-detection decision and
@@ -400,6 +442,8 @@ def main():
         resolved = json.load(f)
     with open(RELATIONSHIPS_PATH) as f:
         relationships = json.load(f)["relationships"]
+    with open(MILESTONES_PATH) as f:
+        milestones = json.load(f)["milestones"]
     with open(FIND_PUBLIC_BODIES_PATH) as f:
         public_bodies = json.load(f)["public_bodies"]
 
@@ -413,10 +457,11 @@ def main():
         load_expectations(),
         load_vocabulary(STATUS_VOCABULARY_PATH),
         load_vocabulary(RELATIONSHIP_VOCABULARY_PATH),
-        body_slug_lookup=body_slug_lookup)
+        body_slug_lookup=body_slug_lookup, milestones=milestones)
 
     summary = (f"{len(actions)} action(s), {len(observations)} observation(s), "
-               f"{len(relationships)} relationship(s)")
+               f"{len(relationships)} relationship(s), "
+               f"{len(milestones)} milestone(s)")
     if changed:
         copy_to_latest()
         print(f"Published {summary} (content changed, dct:modified updated)")

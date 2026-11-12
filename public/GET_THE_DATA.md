@@ -45,7 +45,7 @@ The published commitments ("actions") of public bodies, taken from their strateg
 | `original_deadline_start` | The plan's deadline, as a normalised date |
 | `lead` | The organisation leading the action |
 
-This dataset has three tables: [actions](latest/public-body-actions/actions.csv) (one row per published action), [status observations](latest/public-body-actions/action-status-observations.csv) (one row per progress report's update on an action), and [relationships](latest/public-body-actions/action-relationships.csv) (how actions relate to one another).
+This dataset has four tables: [actions](latest/public-body-actions/actions.csv) (one row per published action), [status observations](latest/public-body-actions/action-status-observations.csv) (one row per progress report's update on an action), and [relationships](latest/public-body-actions/action-relationships.csv) (how actions relate to one another), and [milestones](latest/public-body-actions/action-milestones.csv) (one row per dated interim milestone of an action).
 
 ## [Motions](latest/motions/motions.csv)
 
