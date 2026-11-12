@@ -18,6 +18,7 @@ uv run python process.py --force --stop-on-error
 1. [`extract_actions`](../document_pipeline/steps/extract_actions/) *(document_pipeline)* — plan-declared actions, one record per plan document.
 2. [`resolve_action_identity`](steps/resolve_action_identity/) — mints a stable `{plan_slug}#{action_number}` identity for every plan action, resolves each action's original deadline from the plan that declares it (never from a report), and joins every report observation (`document_pipeline/steps/extract_action_status`) onto its action via the report's explicit `reports_on`.
 3. [`extract_relationships`](steps/extract_relationships/) — builds the link table between actions: mechanical `complements`/`references` edges extracted from parenthetical cross-references and section groupings, published directly; narrative continuity phrases logged as `RelationshipCandidate` for human review; and lineage edges (`renumbered_as`, `supersedes`, …) sourced only from the curated `action_relationships.yml`.
+4. [`extract_milestones`](steps/extract_milestones/) — splits each action's `original_deadline_milestones` prose into one dated record per milestone; deterministic, lossless, no model call.
 
 ## Running it
 

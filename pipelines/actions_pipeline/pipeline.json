@@ -2,9 +2,11 @@
   "steps": [
     "/pipelines/document_pipeline/steps/extract_actions",
     "resolve_action_identity",
-    "extract_relationships"
+    "extract_relationships",
+    "extract_milestones"
   ],
   "input_steps": {
-    "resolve_action_identity": "/pipelines/document_pipeline/steps/extract_actions"
+    "resolve_action_identity": "/pipelines/document_pipeline/steps/extract_actions",
+    "extract_milestones": "resolve_action_identity"
   }
 }
