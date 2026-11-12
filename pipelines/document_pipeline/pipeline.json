@@ -8,6 +8,8 @@
     "clean_text",
     "extract_actions",
     "extract_action_status",
+    "fetch_status_annexes",
+    "extract_annex_status",
     "assemble_sections",
     "publish_bundles"
   ],
@@ -16,6 +18,11 @@
     "extract_figures": "extract_pages",
     "clean_text": "ocr_pages",
     "extract_action_status": "clean_text",
-    "assemble_sections": "clean_text"
-  }
+    "assemble_sections": "clean_text",
+    "fetch_status_annexes": "fetch_pdfs",
+    "extract_annex_status": "fetch_status_annexes"
+  },
+  "always_run": [
+    "fetch_status_annexes"
+  ]
 }

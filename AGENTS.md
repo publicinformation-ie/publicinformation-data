@@ -63,7 +63,7 @@ cd pipelines/foi_pipeline && uv run python process.py --force --stop-on-error
 | 2 | `match_public_bodies` |
 | 3 | `apply_overrides` |
 
-### `document_pipeline` (10 steps)
+### `document_pipeline` (12 steps)
 
 | # | Step |
 |---:|---|
@@ -75,8 +75,12 @@ cd pipelines/foi_pipeline && uv run python process.py --force --stop-on-error
 | 6 | `clean_text` |
 | 7 | `extract_actions` |
 | 8 | `extract_action_status` |
-| 9 | `assemble_sections` |
-| 10 | `publish_bundles` |
+| 9 | `fetch_status_annexes` |
+| 10 | `extract_annex_status` |
+| 11 | `assemble_sections` |
+| 12 | `publish_bundles` |
+
+Always-run steps: `fetch_status_annexes`.
 
 ### `foi_pipeline` (27 steps)
 

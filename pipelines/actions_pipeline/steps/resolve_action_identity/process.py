@@ -409,8 +409,52 @@ def build_actions(plan_records, plan_meta):
     return actions, errors
 
 
+def _plans_of(record) -> list:
+    """The plan slugs a report observes: `reports_on` is one slug or a list."""
+    reports_on = record.get("reports_on")
+    if not reports_on:
+        return []
+    return [reports_on] if isinstance(reports_on, str) else list(reports_on)
+
+
+def _normalise_text(text) -> str:
+    return " ".join(str(text or "").split())
+
+
+def attribute_annex_observation(raw, plans, by_id):
+    """`(action_id | None, error_type | None, detail)` for one annex observation.
+
+    Attribution is by *declared reference within the report's listed plans* —
+    never by the report's own plan, never to a neighbour. If several listed
+    plans declare the reference, the one whose edition year equals the
+    reference's code year wins, provided exactly one does.
+    """
+    number = raw.get("action_number")
+    declaring = [plan for plan in plans if mint_action_id(plan, number) in by_id]
+    if not declaring:
+        return None, "UnattributableObservation", {"plans_searched": plans}
+    if len(declaring) == 1:
+        return mint_action_id(declaring[0], number), None, {}
+    year = raw.get("reference_year")
+    matching = [plan for plan in declaring if year is not None and edition_year(plan) == year]
+    if len(matching) == 1:
+        return mint_action_id(matching[0], number), None, {}
+    return None, "AmbiguousAttribution", {"plans_declaring": declaring,
+                                          "reference_year": year}
+
+
 def build_observations(report_records, actions):
     """`(observations, errors)` — every report observation joined to an action.
+
+    Two sources reach here, and both are joined through the report's explicit
+    `reports_on` (one plan slug, or a list of them), never inferred from
+    content or filename:
+
+      * PDF reports (`extract_action_status`): ordinal numbers, joined to the
+        single plan the report names. A report that lists several plans cannot
+        resolve an ordinal — it exists in each — so it is `AmbiguousAttribution`.
+      * Annex workbooks (`extract_annex_status`): printed references, attributed
+        by `attribute_annex_observation`.
 
     Also emits the informational `DeadlineDivergedAtFirstReport` marker, and
     only for the *earliest* report that mentions an action: a plan baseline
@@ -424,20 +468,59 @@ def build_observations(report_records, actions):
 
     earliest_by_action = {}
     for record in sorted(report_records, key=lambda r: r.get("as_of") or ""):
-        plan_slug = record.get("reports_on")
+        plans = _plans_of(record)
+        is_annex = record.get("report_format") == "annex-xlsx"
         for raw in record.get("observations") or []:
             number = raw.get("action_number")
-            action_id = mint_action_id(plan_slug, number) if plan_slug else None
-            action = by_id.get(action_id)
-            if action is None:
-                errors.append(_error_dict(
-                    "UnresolvedActionNumber",
-                    f"Observation of action {number!r} in report "
-                    f"{record['doc_slug']!r} matches no action in plan "
-                    f"{plan_slug!r}; skipped, never guessed onto a neighbour.",
-                    {"report_slug": record["doc_slug"], "reports_on": plan_slug,
-                     "action_number": number, "source_ref": raw.get("source_ref")}))
+            context = {"report_slug": record["doc_slug"],
+                       "reports_on": record.get("reports_on"),
+                       "action_number": number, "source_ref": raw.get("source_ref")}
+            if is_annex:
+                action_id, error_type, detail = attribute_annex_observation(
+                    raw, plans, by_id)
+                context.update(sheet=raw.get("sheet"), row=raw.get("row"),
+                               raw_reference=raw.get("raw_reference"), **detail)
+                message = (
+                    f"Annex observation of {number!r} in report "
+                    f"{record['doc_slug']!r} is declared by none of the plans "
+                    f"it reports on ({plans}); excluded, never assigned to "
+                    f"another plan." if error_type == "UnattributableObservation" else
+                    f"Annex observation of {number!r} in report "
+                    f"{record['doc_slug']!r} is declared by several listed plans "
+                    f"({detail.get('plans_declaring')}) and the reference's code "
+                    f"year does not single one out; excluded.")
+            elif len(plans) == 1:
+                action_id = mint_action_id(plans[0], number)
+                error_type = None if action_id in by_id else "UnresolvedActionNumber"
+                message = (f"Observation of action {number!r} in report "
+                           f"{record['doc_slug']!r} matches no action in plan "
+                           f"{plans[0]!r}; skipped, never guessed onto a neighbour.")
+            else:
+                action_id = None
+                error_type = "AmbiguousAttribution" if plans else "UnresolvedActionNumber"
+                message = (f"Ordinal observation {number!r} in report "
+                           f"{record['doc_slug']!r} cannot be attributed: it "
+                           f"reports on {plans or 'no plan'}, and an ordinal "
+                           f"exists in each.")
+            if error_type is not None:
+                errors.append(_error_dict(error_type, message, context))
                 continue
+            action = by_id[action_id]
+
+            if is_annex:
+                reported = _normalise_text(raw.get("action_text"))
+                published = {_normalise_text(action.get("action_text")),
+                             _normalise_text(action.get("action_text_clean"))}
+                if reported and reported not in published:
+                    errors.append(_error_dict(
+                        "ActionTextMismatch",
+                        f"The annex text for {number!r} differs from the text "
+                        f"published by {action['plan_slug']!r}. Non-blocking: "
+                        f"the observation still publishes; review before release.",
+                        {"report_slug": record["doc_slug"], "action_id": action_id,
+                         "action_number": number, "source_ref": raw.get("source_ref"),
+                         "annex_text": reported,
+                         "plan_text": _normalise_text(action.get("action_text_clean"))}))
 
             observations.append({
                 "action_id": action_id,
@@ -460,8 +543,8 @@ def build_observations(report_records, actions):
                 continue
             earliest_by_action[action_id] = record["doc_slug"]
             baseline = action["original_deadline_start"]
-            reported = raw.get("reported_deadline_start")
-            if baseline and reported and baseline != reported:
+            reported_start = raw.get("reported_deadline_start")
+            if baseline and reported_start and baseline != reported_start:
                 errors.append(_error_dict(
                     "DeadlineDivergedAtFirstReport",
                     "The plan's original deadline differs from the earliest "
@@ -469,7 +552,7 @@ def build_observations(report_records, actions):
                     "progress report. Informational — a finding, not a fault.",
                     {"action_id": action_id, "report_slug": record["doc_slug"],
                      "original_deadline_start": baseline,
-                     "reported_deadline_start": reported}))
+                     "reported_deadline_start": reported_start}))
 
     return observations, errors
 
@@ -518,6 +601,13 @@ def main():
     if not status_path.exists():
         sys.exit(f"Missing {status_path} — run document_pipeline first")
     report_records = read_json(status_path).get("results", [])
+
+    # Annex-derived observations (extract_annex_status) join through the same
+    # path; the step is required, so a pipeline run that skipped it is loud.
+    annex_path = document_steps / "extract_annex_status" / "output.json"
+    if not annex_path.exists():
+        sys.exit(f"Missing {annex_path} — run document_pipeline first")
+    report_records = report_records + read_json(annex_path).get("results", [])
 
     sys.path.insert(0, str(_repo_root() / "pipelines" / "document_pipeline"))
     from documents import load_documents

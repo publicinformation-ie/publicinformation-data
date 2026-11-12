@@ -170,6 +170,9 @@ def _doc_metadata(doc: dict) -> dict:
         # Where a report's status detail lives when not in its PDF ("annex");
         # extract_action_status skips a report that declares one.
         "status_source": doc.get("status_source"),
+        # The companion workbook {url, format} when status_source is "annex";
+        # read by fetch_status_annexes/extract_annex_status, never by PDF steps.
+        "status_annex": doc.get("status_annex"),
         # Reason the document is deliberately withheld; publish_bundles lists it
         # under index.json `failed` as "held" whatever assemble_sections says.
         "hold": doc.get("hold"),

@@ -27,7 +27,7 @@ def plan_action(action, raw_date="", columns=None, ref="p009-t01-r01", page=9):
             "source_page": page, "source_table": 0, "columns": columns or {}}
 
 
-def report_record(observations, slug="year-one", reports_on=PLAN_SLUG):
+def report_record(observations, slug="year-one", reports_on: str | list = PLAN_SLUG):
     return {"doc_slug": slug, "doc_title": "Year One", "reports_on": reports_on,
             "as_of": "2023-10-20", "report_format": "A",
             "observations": observations}
@@ -519,3 +519,112 @@ def test_a_dash_timeline_is_not_inherited_from_a_parent_row():
     actions, _ = build(CAP23, [coded_action("BE/23/1", timeline="Q4 2023"),
                                coded_action("BE/23/1/A", timeline="-")])
     assert [a["original_deadline_label"] for a in actions] == ["Q4 2023", None]
+
+
+# --- annex observations: attribution within the report's listed plans --------
+
+CAP24 = "climate-action-plan-2024-annex-of-actions"
+
+
+def annex_obs(code, text="Do the thing", year=None, **overrides):
+    record = {"action_number": code, "action_text": text, "status": "Complete",
+              "reference_year": year if year is not None else 2000 + int(code.split("/")[1]),
+              "reported_deadline_raw": "Q3 2023", "progress_text": "done",
+              "source_ref": "Q1!r2", "sheet": "Q1", "row": 2, "raw_reference": code}
+    record.update(overrides)
+    return record
+
+
+def annex_report(observations, reports_on, slug="cap-report"):
+    return {"doc_slug": slug, "doc_title": "CAP report", "as_of": "2025-02-20",
+            "report_format": "annex-xlsx", "reports_on": reports_on,
+            "observations": observations}
+
+
+def cap_actions(*editions):
+    """`editions`: (slug, [codes...]) pairs."""
+    records = [plan_record([coded_action(code, page=10 + i) for i, code in enumerate(codes)],
+                           slug=slug) for slug, codes in editions]
+    actions, errors = build_actions(records, {})
+    assert errors == []
+    return actions
+
+
+def test_a_carried_over_action_attributes_to_the_edition_that_declares_it():
+    actions = cap_actions((CAP23, ["EN/23/6"]), (CAP25, ["EN/25/1"]))
+    obs, errors = build_observations(
+        [annex_report([annex_obs("EN/23/6")], [CAP23, CAP25])], actions)
+    assert [o["action_id"] for o in obs] == [f"{CAP23}#EN/23/6"]
+    assert errors == [] or all(e["error_type"] == "DeadlineDivergedAtFirstReport" for e in errors)
+
+
+def test_a_forward_year_code_attributes_to_the_only_listed_edition_declaring_it():
+    actions = cap_actions((CAP23, ["RE/24/1"]))
+    obs, _ = build_observations([annex_report([annex_obs("RE/24/1")], [CAP23])], actions)
+    assert [o["action_id"] for o in obs] == [f"{CAP23}#RE/24/1"]
+
+
+def test_a_reference_in_two_listed_editions_goes_to_the_code_year_edition():
+    actions = cap_actions((CAP23, ["LU/25/1"]), (CAP25, ["LU/25/1"]))
+    obs, _ = build_observations(
+        [annex_report([annex_obs("LU/25/1")], [CAP23, CAP25])], actions)
+    assert [o["action_id"] for o in obs] == [f"{CAP25}#LU/25/1"]
+
+
+def test_an_unlisted_plans_reference_is_unattributable_and_never_falls_back():
+    actions = cap_actions((CAP23, ["EN/23/1"]), (CAP25, ["EN/25/1"]))
+    obs, errors = build_observations(
+        [annex_report([annex_obs("EN/25/1")], [CAP23])], actions)
+    assert obs == []
+    (e,) = errors
+    assert e["error_type"] == "UnattributableObservation"
+    assert e["context"]["plans_searched"] == [CAP23]
+    assert e["context"]["raw_reference"] == "EN/25/1"
+    assert (e["context"]["sheet"], e["context"]["row"]) == ("Q1", 2)
+
+
+def test_an_unbreakable_tie_is_ambiguous_and_excluded():
+    # both editions declare a forward-year code that equals neither edition year
+    actions = cap_actions((CAP23, ["EN/25/1"]), (CAP24, ["EN/25/1"]))
+    obs, errors = build_observations(
+        [annex_report([annex_obs("EN/25/1")], [CAP23, CAP24])], actions)
+    assert obs == []
+    (e,) = errors
+    assert e["error_type"] == "AmbiguousAttribution"
+    assert e["context"]["plans_declaring"] == [CAP23, CAP24]
+
+
+def test_an_ordinal_observation_of_a_multi_plan_report_is_ambiguous():
+    actions, _ = build_actions([plan_record([plan_action("1. Do a thing")], slug="plan-a"),
+                                plan_record([plan_action("1. Do a thing")], slug="plan-b")], {})
+    report = report_record([observation(1)], reports_on=["plan-a", "plan-b"])
+    obs, errors = build_observations([report], actions)
+    assert obs == []
+    assert [e["error_type"] for e in errors] == ["AmbiguousAttribution"]
+
+
+def test_a_single_element_reports_on_list_behaves_like_a_scalar():
+    actions, _ = build_actions([plan_record([plan_action("1. Do a thing")])], {})
+    obs, errors = build_observations(
+        [report_record([observation(1)], reports_on=[PLAN_SLUG])], actions)
+    assert [o["action_id"] for o in obs] == [f"{PLAN_SLUG}#1"] and errors == []
+
+
+def test_annex_text_mismatch_warns_but_still_publishes():
+    actions = cap_actions((CAP23, ["EN/23/1"]))
+    obs, errors = build_observations(
+        [annex_report([annex_obs("EN/23/1", text="A different action entirely")], [CAP23])],
+        actions)
+    assert len(obs) == 1
+    (e,) = [e for e in errors if e["error_type"] == "ActionTextMismatch"]
+    assert e["context"]["action_id"] == f"{CAP23}#EN/23/1"
+    assert e["context"]["annex_text"] == "A different action entirely"
+    assert e["context"]["plan_text"] == "Do the thing"
+
+
+def test_annex_text_differing_only_in_whitespace_is_not_a_mismatch():
+    actions = cap_actions((CAP23, ["EN/23/1"]))
+    obs, errors = build_observations(
+        [annex_report([annex_obs("EN/23/1", text="Do  the thing ")], [CAP23])], actions)
+    assert len(obs) == 1
+    assert not [e for e in errors if e["error_type"] == "ActionTextMismatch"]

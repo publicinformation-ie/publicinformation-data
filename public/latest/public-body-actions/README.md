@@ -101,13 +101,19 @@ The Climate Action Plan 2023, 2024 and 2025 annexes of actions add 445, 126 and 
 
 Coded references repeat across sub-actions; where a table prints "-" in the action cell, the sub-action text is inherited from its parent row. One misprinted reference in the CAP 2023 annex (BE/23/38) is corrected by a curated entry, with `action_reference_printed` keeping the printed form.
 
+## Climate Action Plan status annexes (new in 3.1.0)
+
+Eight Climate Action Plan progress reports (2023 Q1 to the Q1 and Q2 2026 legacy report) publish status in a companion XLSX annex. Each annex row is an observation dated from its report's publication date and attributed to the plan edition that declared the action (`reports_on` may list several plans; a reference declared by two editions goes to the one matching the code year). Status is read from the cell text only (`Complete`, `Delayed`, `On Schedule`); fill colours are ignored. This release adds records only: no field, type or vocabulary changed.
+
+Not published, and logged for review: one `Discontinued` row (`AG/23/10`, 2024 Q1&Q2), which the status vocabulary cannot express; two rows whose printed reference (`EL/23/10A`, `EL/23/10B`) does not match the plan's `EL/23/10/A` and `EL/23/10/B`. The Q2&Q3 2025 and Q4 2025 reports have no curated publication date and contribute no observations. Where an annex timeline is not a strict quarter and year, `reported_deadline_raw` keeps the printed text and the structured deadline fields are null. For 64 observations the annex wording of the action differs from the plan's published text; they are published against the plan's action and flagged for review.
+
 ## Reading `latest_status`
 
-`latest_status`/`latest_as_of` are derived by joining observations on `action_id` and taking the greatest `as_of`; null means "not yet reported", not "unknown". In this release that is all 95 actions of the 2026–2030 plan and all 653 Climate Action Plan annex actions.
+`latest_status`/`latest_as_of` are derived by joining observations on `action_id` and taking the greatest `as_of`; null means "not yet reported", not "unknown". In this release that is all 95 actions of the 2026–2030 plan and the 200 Climate Action Plan annex actions that no status annex observes (453 of the 653 have at least one observation).
 
 ## Known limitations
 
-The current run has 279 observations from all four progress reports (Year One, Year Two, Year Three and Final). Rows in a report whose status term is not in the published `action-status` vocabulary are omitted (`UnknownStatusValue`) rather than coerced to a nearest value; these are logged individually in the step's `errors.json`, so the gap is auditable rather than silent.
+The current run has 998 observations: 279 from the four transport progress reports (Year One, Year Two, Year Three and Final) and 719 from the eight dated Climate Action Plan status annexes. Rows in a report whose status term is not in the published `action-status` vocabulary are omitted (`UnknownStatusValue`) rather than coerced to a nearest value; these are logged individually in the step's `errors.json`, so the gap is auditable rather than silent.
 
 `parent_id` and `government_department_id` on the public body are different things: the first is the body's parent in the register hierarchy, the second the department that sponsors it. Do not use one as a substitute for the other.
 
@@ -129,7 +135,7 @@ The source PDFs contain ligature-reordering artifacts introduced by PDF text ext
 
 ## Versioning
 
-This directory (`v3.0.0/`) is an immutable, versioned release. `../../latest/public-body-actions/` always mirrors the newest version. Releases are also tagged in git (`public-body-actions-v3.0.0`).
+This directory (`v3.1.0/`) is an immutable, versioned release. `../../latest/public-body-actions/` always mirrors the newest version. Releases are also tagged in git (`public-body-actions-v3.1.0`).
 
 ## Accessing Data
 
