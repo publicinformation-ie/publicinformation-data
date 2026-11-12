@@ -1,7 +1,7 @@
 {
   "metadata": {
     "step": "export_status",
-    "completed_at": "2026-11-12T13:17:46.165168+00:00"
+    "completed_at": "2026-11-12T13:35:14.413018+00:00"
   },
   "public_bodies": [
     {
@@ -2301,8 +2301,9 @@
           "status": "success"
         },
         "foi_email": {
-          "email": null,
-          "status": "failed"
+          "email": "foi@dublincity.ie",
+          "status": "success",
+          "verified": true
         },
         "disclosures_page": {
           "url": "https://www.dublincity.ie/your-city-council/governance-within-council/engaging-public-and-being-accountable/freedom-information",
@@ -2479,8 +2480,9 @@
           "status": "success"
         },
         "foi_email": {
-          "email": null,
-          "status": "failed"
+          "email": "foi@dkit.ie",
+          "status": "success",
+          "verified": true
         },
         "disclosures_page": {
           "url": "https://www.dkit.ie/governance-compliance/freedom-information/disclosure-log",
@@ -5971,8 +5973,9 @@
           "status": "success"
         },
         "foi_email": {
-          "email": null,
-          "status": "failed"
+          "email": "foi@oip.ie",
+          "status": "success",
+          "verified": true
         },
         "disclosures_page": {
           "url": "https://www.oip.ie/freedom-of-information/",
@@ -7592,8 +7595,9 @@
           "status": "success"
         },
         "foi_email": {
-          "email": null,
-          "status": "failed"
+          "email": "foi@housingagency.ie",
+          "status": "success",
+          "verified": true
         },
         "disclosures_page": {
           "url": "https://www.housingagency.ie/governance/freedom-of-information",

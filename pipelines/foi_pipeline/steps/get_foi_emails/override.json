@@ -430,5 +430,37 @@
     "foi_email": null,
     "email_status": "not_found",
     "overridden": true
+  },
+  {
+    "public_body_id": 1235,
+    "name": "Dublin City Council",
+    "foi_page_url": "https://www.dublincity.ie/your-city-council/governance-within-council/engaging-public-and-being-accountable/freedom-information",
+    "foi_email": "foi@dublincity.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1245,
+    "name": "Dundalk Institute of Technology (DkIT)",
+    "foi_page_url": "https://www.dkit.ie/governance-compliance/freedom-information",
+    "foi_email": "foi@dkit.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1603,
+    "name": "Office of the Inspector of Prisons",
+    "foi_page_url": "https://www.oip.ie/freedom-of-information/",
+    "foi_email": "foi@oip.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1786,
+    "name": "The Housing Agency (Housing & Sustainable Communities Agency)",
+    "foi_page_url": "https://www.housingagency.ie/governance/foi-publication-scheme/",
+    "foi_email": "foi@housingagency.ie",
+    "email_status": "found",
+    "overridden": true
   }
 ]
