@@ -14,6 +14,7 @@ from steps.export_status.process import (
     merge_find_foi_pages,
     merge_check_foi_pages,
     merge_get_foi_emails,
+    merge_find_foi_email_pages,
     merge_find_disclosure_pages,
     merge_find_disclosure_files,
     merge_transform_disclosure_files,
@@ -1268,3 +1269,39 @@ def test_publish_public_artifacts_skipped_for_scoped_runs(monkeypatch, tmp_path)
     publish_public_artifacts(tmp_path, [{"public_body_id": 1001}], scoped=True)
 
     assert calls == []
+
+
+# ---------------------------------------------------------------------------
+# merge_find_foi_email_pages
+# ---------------------------------------------------------------------------
+
+def _email_rec(bid, email, status="found", **extra):
+    return {"public_body_id": bid, "foi_email": email, "email_status": status, **extra}
+
+
+def test_find_foi_email_pages_accepts_high_confidence():
+    body_map = make_body_map(1001)
+    merge_find_foi_email_pages(body_map, {"results": [_email_rec(1001, "foi@a.ie", confidence="high")]})
+    assert body_map[1001]["status"]["foi_email"]["email"] == "foi@a.ie"
+    assert body_map[1001]["status"]["foi_email"]["status"] == "success"
+
+
+def test_find_foi_email_pages_rejects_confidence_none():
+    body_map = make_body_map(1001)
+    merge_find_foi_email_pages(body_map, {"results": [_email_rec(1001, "x@a.ie", confidence="none")]})
+    assert body_map[1001]["status"]["foi_email"]["status"] == "not_attempted"
+    assert body_map[1001]["status"]["foi_email"].get("email") is None
+
+
+def test_find_foi_email_pages_does_not_downgrade_existing_success():
+    body_map = make_body_map(1001)
+    merge_get_foi_emails(body_map, {"results": [_email_rec(1001, "foi@a.ie")]})
+    merge_find_foi_email_pages(body_map, {"results": [_email_rec(1001, None, status="not_found")]})
+    assert body_map[1001]["status"]["foi_email"]["email"] == "foi@a.ie"
+    assert body_map[1001]["status"]["foi_email"]["status"] == "success"
+
+
+def test_find_foi_email_pages_keyless_override_is_verified():
+    body_map = make_body_map(1001)
+    merge_find_foi_email_pages(body_map, {"results": [_email_rec(1001, "foi@a.ie", overridden=True)]})
+    assert body_map[1001]["status"]["foi_email"]["verified"] is True

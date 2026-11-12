@@ -64,6 +64,27 @@ def merge_get_foi_emails(body_map, step_data):
                 body_map[bid]["status"]["foi_email"]["verified"] = True
 
 
+def merge_find_foi_email_pages(body_map, step_data):
+    """Overlay emails found by find_foi_email_pages onto get_foi_emails results.
+
+    find_foi_email_pages is a superset of get_foi_emails. Only `found` rows with
+    `confidence == "high"` (or no confidence key: pass-through/overridden rows)
+    are applied; `confidence == "none"` finds need hand curation via
+    get_foi_emails/override.json and are never auto-accepted. Runs after
+    merge_get_foi_emails (pipeline order), so it never downgrades a result.
+    """
+    for r in step_data["results"]:
+        bid = r["public_body_id"]
+        if bid not in body_map or r.get("email_status") != "found":
+            continue
+        if r.get("confidence", "high") != "high" or not r.get("foi_email"):
+            continue
+        body_map[bid]["status"]["foi_email"]["email"] = r["foi_email"]
+        body_map[bid]["status"]["foi_email"]["status"] = "success"
+        if r.get("overridden"):
+            body_map[bid]["status"]["foi_email"]["verified"] = True
+
+
 def merge_find_disclosure_pages(body_map, step_data):
     for r in step_data["results"]:
         bid = r["public_body_id"]
@@ -118,6 +139,7 @@ STEP_MERGERS = {
     "find_foi_pages": merge_find_foi_pages,
     "check_foi_pages": merge_check_foi_pages,
     "get_foi_emails": merge_get_foi_emails,
+    "find_foi_email_pages": merge_find_foi_email_pages,
     "find_disclosure_pages": merge_find_disclosure_pages,
     "find_disclosure_files": merge_find_disclosure_files,
     "transform_disclosure_files": merge_transform_disclosure_files,
