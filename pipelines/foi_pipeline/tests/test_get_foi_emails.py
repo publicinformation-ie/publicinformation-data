@@ -128,3 +128,24 @@ def test_public_body_scoped_leaves_others_untouched(requests_mock, tmp_path, mon
     assert results[1003]["marker"] == "keep-1003"
     assert "marker" not in results[1002] or results[1002]["marker"] != "old-1002"
     assert _read_json(tmp_path / "dirty_ids.json") == [1002]
+
+
+HTML_AMBIGUOUS_EMAILS = '<html><body><a href="mailto:info@dept-a.ie">Info</a><a href="mailto:press@dept-a.ie">Press</a></body></html>'
+
+
+def test_multiple_found_keeps_candidates(requests_mock, tmp_path, make_writer):
+    writer = make_writer(STEP_NAME)
+    requests_mock.get("https://dept-a.ie/foi/", text=HTML_AMBIGUOUS_EMAILS)
+    process(INPUT, tmp_path, writer)
+    a = next(r for r in writer.results if r["public_body_id"] == 1001)
+    assert a["email_status"] == "multiple_found"
+    assert a["foi_email"] is None
+    assert a["candidate_emails"] == ["info@dept-a.ie", "press@dept-a.ie"]
+
+
+def test_found_has_no_candidate_emails(requests_mock, tmp_path, make_writer):
+    writer = make_writer(STEP_NAME)
+    requests_mock.get("https://dept-a.ie/foi/", text=HTML_WITH_FOI_EMAIL)
+    process(INPUT, tmp_path, writer)
+    a = next(r for r in writer.results if r["public_body_id"] == 1001)
+    assert "candidate_emails" not in a
