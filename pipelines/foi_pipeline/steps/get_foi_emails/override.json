@@ -78,5 +78,29 @@
     "foi_email": "foi@housing.gov.ie",
     "email_status": "found",
     "overridden": true
+  },
+  {
+    "public_body_id": 1004,
+    "name": "Adoption Authority of Ireland (AAI)",
+    "foi_page_url": "https://aai.gov.ie/en/who-we-are/freedom-of-information.html",
+    "foi_email": "foi@aai.gov.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1571,
+    "name": "National Treasury Management Agency (NTMA)",
+    "foi_page_url": "https://www.ntma.ie/information-pages/freedom-of-information/frequently-asked-questions",
+    "foi_email": "foi@ntma.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1770,
+    "name": "Taighde Éireann (Research Ireland)",
+    "foi_page_url": "https://www.researchireland.ie/about-us/governance-policies/freedom-of-information/",
+    "foi_email": "foi@researchireland.ie",
+    "email_status": "found",
+    "overridden": true
   }
 ]
