@@ -1,7 +1,7 @@
 {
   "metadata": {
     "step": "check_foi_pages",
-    "completed_at": "2026-08-25T11:23:48.878216+00:00"
+    "completed_at": "2026-11-12T12:28:32.193809+00:00"
   },
   "results": [
     {
@@ -931,7 +931,7 @@
     },
     {
       "public_body_id": 1611,
-      "name": "Ombudsman for Childrens Office",
+      "name": "Ombudsman for Children’s Office",
       "official_website_url": "https://www.oco.ie/",
       "foi_page_url": "https://www.oco.ie/library/oco-freedom-of-information-publication-scheme/",
       "source_method": "crawl",
@@ -1091,7 +1091,7 @@
     },
     {
       "public_body_id": 1752,
-      "name": "St. Vincents University Hospital",
+      "name": "St. Vincent’s University Hospital",
       "official_website_url": "https://www.stvincents.ie/",
       "foi_page_url": "https://www.stvincents.ie/contact-us/freedom-of-information/",
       "source_method": "crawl",
@@ -1711,7 +1711,7 @@
     },
     {
       "public_body_id": 1747,
-      "name": "St. Jamess Hospital , Dublin",
+      "name": "St. James’s Hospital , Dublin",
       "official_website_url": "www.stjames.ie",
       "foi_page_url": "https://www.stjames.ie/media/FOI%20request%20form%20Orla%20Beggs%20House.pdf",
       "source_method": "apify",
@@ -2259,6 +2259,46 @@
       "is_reachable": true,
       "http_status": 200,
       "checked_at": "2026-08-25T11:23:48.872470+00:00"
+    },
+    {
+      "public_body_id": 1309,
+      "name": "Forensic Science Ireland",
+      "official_website_url": "https://forensicscience.ie/",
+      "foi_page_url": "https://forensicscience.ie/corporate-services/freedom-of-information/",
+      "source_method": "crawl",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-11-12T12:28:31.877800+00:00"
+    },
+    {
+      "public_body_id": 1753,
+      "name": "Standards in Public Office Commission",
+      "official_website_url": "https://www.sipo.ie/",
+      "foi_page_url": "https://www.sipo.ie/en/collection/e809e-freedom-of-information-foi",
+      "source_method": "crawl",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-11-12T12:28:32.076577+00:00"
+    },
+    {
+      "public_body_id": 1148,
+      "name": "Coimisiún na Meán",
+      "official_website_url": "www.cnam.ie",
+      "foi_page_url": "https://www.gov.ie/en/department-of-finance/organisation-information/freedom-of-information-foi/",
+      "source_method": "apify",
+      "is_reachable": true,
+      "http_status": 200,
+      "checked_at": "2026-11-12T12:28:32.149642+00:00"
+    },
+    {
+      "public_body_id": 1019,
+      "name": "An Rialálaí Agraibhia (The Agri Food Regulator)",
+      "official_website_url": "www.agrifoodregulator.ie",
+      "foi_page_url": "https://www.agrifoodregulator.ie/footer/foi/",
+      "source_method": "apify",
+      "is_reachable": false,
+      "http_status": null,
+      "checked_at": "2026-11-12T12:28:32.191004+00:00"
     }
   ]
 }

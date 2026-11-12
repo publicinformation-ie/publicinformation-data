@@ -21,7 +21,8 @@
           "foi_page_url": { "type": "string" },
           "foi_email": { "type": ["string", "null"] },
           "email_status": { "enum": ["found", "not_found", "multiple_found", "invalid"] },
-          "overridden": { "type": "boolean" }
+          "overridden": { "type": "boolean" },
+          "candidate_emails": { "type": "array", "items": { "type": "string" } }
         }
       }
     }

@@ -195,7 +195,7 @@ def _write_csv(path, rows_data):
         "government_department_or_local_authority", "nace_code", "parent",
         "vote_number", "cro", "data_vintage", "description_for_sub_sector",
     ]
-    with open(path, "w", newline="", encoding="latin-1") as f:
+    with open(path, "w", newline="", encoding="cp1252") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         for row in rows_data:
@@ -268,3 +268,21 @@ def test_main_exits_if_csv_missing(tmp_path):
     with pytest.raises(SystemExit) as exc:
         proc_mod.main()
     assert exc.value.code != 0
+
+
+def test_main_decodes_cp1252_apostrophe(tmp_path):
+    csv_path = tmp_path / CSO_CSV_FILENAME
+    _write_csv(csv_path, [
+        {"entity_name": "St. John\u2019s Hospital, Limerick", "sector": "S13",
+         "legal_status": "Public Body", "data_vintage": "2025"},
+    ])
+    assert b"\x92" in csv_path.read_bytes()
+    output_path = tmp_path / "output.json"
+    sys.argv = [
+        "process.py", "--input", str(tmp_path), "--output", str(output_path),
+        "--force", "--data-dir", str(tmp_path), "--id-map", str(tmp_path / "id_map.json"),
+    ]
+    from steps.parse_cso_bodies import process as proc_mod
+    proc_mod.main()
+    names = [r["name"] for r in json.loads(output_path.read_text(encoding="utf8"))["public_bodies"]]
+    assert names == ["St. John\u2019s Hospital, Limerick"]

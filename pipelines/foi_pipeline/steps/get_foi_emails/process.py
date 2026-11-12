@@ -77,13 +77,18 @@ def process(input_data, step_dir, writer, verbose=False):
                 continue
             emails = extract_emails(response.text)
             foi_email, email_status = pick_foi_email(emails)
-            writer.append([{
+            record = {
                 "public_body_id": body_id,
                 "name": name,
                 "foi_page_url": url,
                 "foi_email": foi_email,
                 "email_status": email_status,
-            }])
+            }
+            if email_status == "multiple_found":
+                # foi_email stays null (nothing is auto-picked); keep the
+                # candidates so a human can choose one via override.json.
+                record["candidate_emails"] = sorted(set(emails))
+            writer.append([record])
         except Exception as e:
             append_error(step_dir, {
                 "step": STEP_NAME,

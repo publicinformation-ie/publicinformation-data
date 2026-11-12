@@ -1182,7 +1182,7 @@
     },
     {
       "public_body_id": 1611,
-      "name": "Ombudsman for Childrens Office",
+      "name": "Ombudsman for Children’s Office",
       "official_website_url": "https://www.oco.ie/",
       "is_reachable": true,
       "http_status": 200,
@@ -1366,7 +1366,7 @@
     },
     {
       "public_body_id": 1747,
-      "name": "St. Jamess Hospital , Dublin",
+      "name": "St. James’s Hospital , Dublin",
       "official_website_url": "https://www.stjames.ie/",
       "is_reachable": true,
       "http_status": 200,
@@ -1374,7 +1374,7 @@
     },
     {
       "public_body_id": 1748,
-      "name": "St. Johns Hospital, Limerick",
+      "name": "St. John’s Hospital, Limerick",
       "official_website_url": null,
       "is_reachable": false,
       "http_status": null,
@@ -1382,7 +1382,7 @@
     },
     {
       "public_body_id": 1752,
-      "name": "St. Vincents University Hospital",
+      "name": "St. Vincent’s University Hospital",
       "official_website_url": "https://www.stvincents.ie/",
       "is_reachable": true,
       "http_status": 200,
@@ -2110,7 +2110,7 @@
     },
     {
       "public_body_id": 1751,
-      "name": "St. Michaels Hospital, Dun Laoghaire",
+      "name": "St. Michael’s Hospital, Dun Laoghaire",
       "official_website_url": null,
       "is_reachable": false,
       "http_status": null,

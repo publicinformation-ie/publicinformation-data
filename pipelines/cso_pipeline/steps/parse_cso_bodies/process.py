@@ -108,7 +108,9 @@ def main():
               f"Place {CSO_CSV_FILENAME} in {data_dir}/", file=sys.stderr)
         sys.exit(1)
 
-    with open(csv_path, encoding="latin-1", newline="") as f:
+    # The CSO export is Windows-1252, not ISO-8859-1: byte 0x92 is the right
+    # single quote, which latin-1 decodes to an invisible C1 control character.
+    with open(csv_path, encoding="cp1252", newline="") as f:
         rows = list(csv.DictReader(f))
 
     if not rows:

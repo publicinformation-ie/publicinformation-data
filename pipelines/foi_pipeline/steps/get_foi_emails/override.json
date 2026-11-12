@@ -78,5 +78,389 @@
     "foi_email": "foi@housing.gov.ie",
     "email_status": "found",
     "overridden": true
+  },
+  {
+    "public_body_id": 1004,
+    "name": "Adoption Authority of Ireland (AAI)",
+    "foi_page_url": "https://aai.gov.ie/en/who-we-are/freedom-of-information.html",
+    "foi_email": "foi@aai.gov.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1571,
+    "name": "National Treasury Management Agency (NTMA)",
+    "foi_page_url": "https://www.ntma.ie/information-pages/freedom-of-information/frequently-asked-questions",
+    "foi_email": "foi@ntma.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1770,
+    "name": "Taighde Éireann (Research Ireland)",
+    "foi_page_url": "https://www.researchireland.ie/about-us/governance-policies/freedom-of-information/",
+    "foi_email": "foi@researchireland.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1590,
+    "name": "Offaly County Council",
+    "foi_page_url": "https://www.offaly.ie/freedom-of-information-request/",
+    "foi_email": "foi@offalycoco.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1873,
+    "name": "Wexford County Council",
+    "foi_page_url": "https://www.wexfordcoco.ie/node/152",
+    "foi_email": "foi@wexfordcoco.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1053,
+    "name": "Bord Iascaigh Mhara",
+    "foi_page_url": "https://bim.ie/about/corporate-governance/freedom-of-information/",
+    "foi_email": "foi@bim.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1104,
+    "name": "Central Bank of Ireland",
+    "foi_page_url": "https://www.centralbank.ie/about/freedom-of-information/make-a-freedom-of-information-request",
+    "foi_email": "foi@centralbank.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1162,
+    "name": "Cork City Council",
+    "foi_page_url": "https://www.corkcity.ie/en/council-services/public-info/freedom-of-information/freedom-of-information/",
+    "foi_email": "foi@corkcity.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1653,
+    "name": "Quality and Qualifications Ireland",
+    "foi_page_url": "https://www.qqi.ie/freedom-of-information",
+    "foi_email": "foi@qqi.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1112,
+    "name": "Child and Family Agency (Tusla)",
+    "foi_page_url": "https://www.tusla.ie/about/your-personal-information/new-freedom-of-information/",
+    "foi_email": "corporatefoi@tusla.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1227,
+    "name": "Donegal County Council",
+    "foi_page_url": "https://www.donegalcoco.ie/en/services/corporate/freedom-of-information",
+    "foi_email": "foi@donegalcoco.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1461,
+    "name": "Kilkenny County Council",
+    "foi_page_url": "https://www.kilkennycoco.ie/eng/services/freedom-of-information/",
+    "foi_email": "foi@kilkennycoco.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1741,
+    "name": "Sport Ireland",
+    "foi_page_url": "https://www.sportireland.ie/about-us/freedom-of-information",
+    "foi_email": "FOI@sportireland.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1882,
+    "name": "Údarás na Gaeltachta",
+    "foi_page_url": "https://udaras.ie/en/about/corporate-governance/freedom-of-information/",
+    "foi_email": "asf@udaras.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1002,
+    "name": "Ability West",
+    "foi_page_url": "https://www.abilitywest.ie/contact-us",
+    "foi_email": "foi@abilitywest.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1817,
+    "name": "Tipperary County Council",
+    "foi_page_url": "https://www.tipperarycoco.ie/governance-and-administration/freedom-information-request",
+    "foi_email": "foi@tipperarycoco.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1262,
+    "name": "Enterprise Ireland",
+    "foi_page_url": "https://www.enterprise-ireland.com/en/legal/foi-aie-and-publication/freedom-of-information-statement",
+    "foi_email": "FOIonline@enterprise-ireland.com",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1335,
+    "name": "Fáilte Ireland",
+    "foi_page_url": "https://www.failteireland.ie/Footer/freedom-of-information.aspx",
+    "foi_email": "foi@failteireland.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1573,
+    "name": "National University of Ireland",
+    "foi_page_url": "https://www.nui.ie/who-we-are/governance/freedom-of-information/",
+    "foi_email": "foi@nui.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1650,
+    "name": "Property Services Regulatory Authority",
+    "foi_page_url": "https://www.psr.ie/foi/",
+    "foi_email": "foi@psr.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1661,
+    "name": "Residential Institutions Redress Board (RIRB)",
+    "foi_page_url": "https://www.rirb.ie/freedom-of-information/",
+    "foi_email": "foi@rirb.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1754,
+    "name": "State Examinations Commission (SEC)",
+    "foi_page_url": "https://www.examinations.ie?l=en&mc=fo&sc=fi",
+    "foi_email": "FOI@examinations.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1152,
+    "name": "Commission for Railway Regulation",
+    "foi_page_url": "https://crr.ie/corporate-governance",
+    "foi_email": "foi@crr.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1177,
+    "name": "Crawford Art Gallery",
+    "foi_page_url": "https://crawfordartgallery.ie/governance/",
+    "foi_email": "foi@crawfordartgallery.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1295,
+    "name": "Fingal County Council",
+    "foi_page_url": "https://www.fingal.ie/council/service/freedom-information",
+    "foi_email": "foi@fingal.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1404,
+    "name": "Horse Racing Ireland",
+    "foi_page_url": "https://www.hri.ie/corporate/about-us/our-responsibilities/freedom-of-information",
+    "foi_email": "foi@hri.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1440,
+    "name": "Irish Museum of Modern Art",
+    "foi_page_url": "https://imma.ie/en/downloads/foi_section15.pdf",
+    "foi_email": "foi@modernart.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1557,
+    "name": "National Gallery of Ireland",
+    "foi_page_url": "https://www.nationalgallery.ie/FOI",
+    "foi_email": "foi@ngi.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1559,
+    "name": "National Library of Ireland",
+    "foi_page_url": "https://www.nli.ie/sites/default/files/2023-03/national-library-of-ireland-foi-publication-scheme-updated.pdf",
+    "foi_email": "foi@nli.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1574,
+    "name": "National University of Ireland Galway",
+    "foi_page_url": "https://www.universityofgalway.ie/foi/contact-us/",
+    "foi_email": "foi@universityofgalway.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1575,
+    "name": "National University of Ireland Maynooth",
+    "foi_page_url": "https://www.maynoothuniversity.ie/freedom-information/how-make-application",
+    "foi_email": "foi@mu.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1747,
+    "name": "St. James’s Hospital , Dublin",
+    "foi_page_url": "https://www.stjames.ie/services/corporateaffairs/accesstoinformation/",
+    "foi_email": "aio@stjames.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1670,
+    "name": "Roscommon County Council",
+    "foi_page_url": "https://www.roscommoncoco.ie/en/freedom_of_information/freedom-of-information/",
+    "foi_email": "foioff@roscommoncoco.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1239,
+    "name": "Dublin Dental Hospital",
+    "foi_page_url": "https://www.dentalhospital.ie/about/freedom-of-information",
+    "foi_email": "foi@dental.tcd.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1339,
+    "name": "Galway and Roscommon Education and Training Board",
+    "foi_page_url": "https://gretb.ie/corporate/freedom-of-information/",
+    "foi_email": "foi@gretb.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1469,
+    "name": "Laois and Offaly Education and Training Board",
+    "foi_page_url": "https://loetb.ie/organisation-support-development/corporate-services/freedom-of-information/how-to-make-an-foi-request/",
+    "foi_email": "foi@loetb.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1496,
+    "name": "Longford and Westmeath Education and Training Board",
+    "foi_page_url": "https://www.lwetb.ie/freedom-of-information/",
+    "foi_email": "foi@lwetb.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1500,
+    "name": "Louth and Meath Education and Training Board",
+    "foi_page_url": "https://www.lmetb.ie/corporate/corporate-education-services/freedom-of-information-foi/",
+    "foi_email": "foi@lmetb.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1587,
+    "name": "Nursing and Midwifery Board of Ireland (NMBI)",
+    "foi_page_url": "https://www.nmbi.ie/What-We-Do/Freedom-of-Information/Freedom-of-Information",
+    "foi_email": "foi@nmbi.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1655,
+    "name": "Raidió Teilifís Éireann - RTÉ",
+    "foi_page_url": "https://about.rte.ie/freedom-of-information-foi/how-can-i-make-an-foi-request/",
+    "foi_email": "foi@rte.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1806,
+    "name": "The Rotunda Hospital, Dublin",
+    "foi_page_url": "https://rotunda.ie/accessing-your-healthcare-records/",
+    "foi_email": "foi@rotunda.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1148,
+    "name": "Coimisiún na Meán",
+    "foi_page_url": "https://www.cnam.ie/freedom-of-information/",
+    "foi_email": "foi@cnam.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1497,
+    "name": "Longford County Council",
+    "foi_page_url": "https://www.longfordcoco.ie/your-council/access-to-information/freedom-of-information/",
+    "foi_email": "foi@longfordcoco.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1205,
+    "name": "Department of Further and Higher Education, Research, Innovation and Science",
+    "foi_page_url": "",
+    "foi_email": null,
+    "email_status": "not_found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1235,
+    "name": "Dublin City Council",
+    "foi_page_url": "https://www.dublincity.ie/your-city-council/governance-within-council/engaging-public-and-being-accountable/freedom-information",
+    "foi_email": "foi@dublincity.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1245,
+    "name": "Dundalk Institute of Technology (DkIT)",
+    "foi_page_url": "https://www.dkit.ie/governance-compliance/freedom-information",
+    "foi_email": "foi@dkit.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1603,
+    "name": "Office of the Inspector of Prisons",
+    "foi_page_url": "https://www.oip.ie/freedom-of-information/",
+    "foi_email": "foi@oip.ie",
+    "email_status": "found",
+    "overridden": true
+  },
+  {
+    "public_body_id": 1786,
+    "name": "The Housing Agency (Housing & Sustainable Communities Agency)",
+    "foi_page_url": "https://www.housingagency.ie/governance/foi-publication-scheme/",
+    "foi_email": "foi@housingagency.ie",
+    "email_status": "found",
+    "overridden": true
   }
 ]
