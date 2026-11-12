@@ -266,8 +266,16 @@ documents:
   # skipped by extract_action_status (it still bundles as a document). The listing
   # page carries no per-report date and most covers give only a month, so
   # published_date is the PDF creation date ONLY where it agrees with the month on
-  # the cover; otherwise it is omitted rather than guessed (Q2 2023: cover says
-  # July 2023 but the file was created 2023-09-21; the 2025 reports state no date).
+  # the cover; otherwise it is omitted rather than guessed.
+  # Dates added 2026-11-10 from Department of the Taoiseach press releases
+  # (gov.ie/en/department-of-the-taoiseach/press-releases/), each stating
+  # "Published on": Q2 2023 -> 2023-07-25; CAP25 Q1 -> 2025-07-17; Q1&Q2 2026 legacy
+  # -> 2026-07-29. NO press release exists for the CAP25 Q2&Q3 or Q4 reports, and
+  # the listing page carries no per-report dates, so those two stay undated: they
+  # publish no status observations (MissingReportDate) until evidence is found.
+  # The legacy-exercise workbook ("Legacy actions from Climate Action Plan 2023",
+  # legacy-actions-from-climate-action-plan-2023.xlsx) is deliberately NOT ingested:
+  # its 102 rows are exactly the Q4 2023 annex's Delayed rows and no report dates it.
 
   - doc_slug: climate-action-plan-2023-q1-progress-report
     title: "Climate Action Plan 2023 Progress Report Q1 2023"
@@ -278,8 +286,14 @@ documents:
     public_body_id: 1212
     published_date: "2023-05-04"
     role: report
-    reports_on: climate-action-plan-2023
+    reports_on: [climate-action-plan-2023-annex-of-actions]
     status_source: annex
+    status_annex:
+      url: "https://assets.gov.ie/static/documents/climate-action-plan-2023-q1-actions.xlsx"
+      format: xlsx
+    expected_status_counts:   # post-exclusion, as published; enforced by transform_public_body_actions
+      Complete: 27
+      Delayed: 9
 
   - doc_slug: climate-action-plan-2023-q2-progress-report
     title: "Climate Action Plan Progress Report Q2 2023"
@@ -288,9 +302,16 @@ documents:
     policy_role: progress-report
     publisher: "Department of the Taoiseach"
     public_body_id: 1212
+    published_date: "2023-07-25"   # press release "Published on: 25 July 2023" (cover: July 2023)
     role: report
-    reports_on: climate-action-plan-2023
+    reports_on: [climate-action-plan-2023-annex-of-actions]
     status_source: annex
+    status_annex:
+      url: "https://assets.gov.ie/static/documents/climate-action-plan-2023-q2-actions.xlsx"
+      format: xlsx
+    expected_status_counts:   # post-exclusion, as published; enforced by transform_public_body_actions
+      Complete: 35
+      Delayed: 24
 
   - doc_slug: climate-action-plan-2023-q3-progress-report
     title: "Climate Action Plan Progress Report Q3 2023"
@@ -301,8 +322,14 @@ documents:
     public_body_id: 1212
     published_date: "2023-11-07"
     role: report
-    reports_on: climate-action-plan-2023
+    reports_on: [climate-action-plan-2023-annex-of-actions]
     status_source: annex
+    status_annex:
+      url: "https://assets.gov.ie/static/documents/climate-action-plan-2023-q3-actions.xlsx"
+      format: xlsx
+    expected_status_counts:   # post-exclusion, as published; enforced by transform_public_body_actions
+      Complete: 23
+      Delayed: 42
 
   - doc_slug: climate-action-plan-2023-q4-progress-report
     title: "Climate Action Plan Progress Report Q4 2023"
@@ -313,8 +340,14 @@ documents:
     public_body_id: 1212
     published_date: "2024-03-05"
     role: report
-    reports_on: climate-action-plan-2023
+    reports_on: [climate-action-plan-2023-annex-of-actions]
     status_source: annex
+    status_annex:
+      url: "https://assets.gov.ie/static/documents/climate-action-plan-2023-q4-actions.xlsx"
+      format: xlsx
+    expected_status_counts:   # post-exclusion, as published; enforced by transform_public_body_actions
+      Complete: 101
+      Delayed: 102
 
   - doc_slug: climate-action-plan-2024-q1-q2-progress-report
     title: "Climate Action Plan Progress Report Q1 and Q2 2024"
@@ -325,8 +358,15 @@ documents:
     public_body_id: 1212
     published_date: "2024-09-02"
     role: report
-    reports_on: climate-action-plan-2024
+    reports_on: [climate-action-plan-2024-annex-of-actions, climate-action-plan-2023-annex-of-actions]
     status_source: annex
+    status_annex:
+      url: "https://assets.gov.ie/static/documents/climate-action-plan-2024-q1-q2-and-legacy-2023-actions.xlsx"
+      format: xlsx
+    expected_status_counts:   # post-exclusion, as published; enforced by transform_public_body_actions
+      Complete: 41
+      Delayed: 39
+      OnSchedule: 1
 
   - doc_slug: climate-action-plan-2024-q3-q4-progress-report
     title: "Climate Action Plan Progress Report Q3 & Q4 2024"
@@ -337,8 +377,14 @@ documents:
     public_body_id: 1212
     published_date: "2025-04-16"
     role: report
-    reports_on: climate-action-plan-2024
+    reports_on: [climate-action-plan-2024-annex-of-actions, climate-action-plan-2023-annex-of-actions]
     status_source: annex
+    status_annex:
+      url: "https://assets.gov.ie/static/documents/Climate_Action_Plan_2024_-_Q3_and_Q4_Annex_of_Actions.xlsx"
+      format: xlsx
+    expected_status_counts:   # post-exclusion, as published; enforced by transform_public_body_actions
+      Complete: 68
+      Delayed: 63
 
   - doc_slug: climate-action-plan-2025-q1-progress-report
     title: "Climate Action Plan 2025 Q1 Progress Report"
@@ -347,9 +393,16 @@ documents:
     policy_role: progress-report
     publisher: "Department of the Taoiseach"
     public_body_id: 1212
+    published_date: "2025-07-17"   # press release "First Progress Report of Climate Action Plan 2025 published", Published on 17 July 2025
     role: report
-    reports_on: climate-action-plan-2025
+    reports_on: [climate-action-plan-2025-annex-of-actions, climate-action-plan-2024-annex-of-actions, climate-action-plan-2023-annex-of-actions]
     status_source: annex
+    status_annex:
+      url: "https://assets.gov.ie/static/documents/Q1_CAP25_Progress_Report_Annex_of_Actions_-_Final.xlsx"
+      format: xlsx
+    expected_status_counts:   # post-exclusion, as published; enforced by transform_public_body_actions
+      Complete: 14
+      Delayed: 56
     # Pages that are full-page images with no text layer; extract_pages OCRs exactly these.
     # Other image pages already covered by a figure are deliberately left out (chart OCR is noise).
     ocr_pages: [1, 20, 24]
@@ -362,8 +415,11 @@ documents:
     publisher: "Department of the Taoiseach"
     public_body_id: 1212
     role: report
-    reports_on: climate-action-plan-2025
+    reports_on: [climate-action-plan-2025-annex-of-actions, climate-action-plan-2024-annex-of-actions, climate-action-plan-2023-annex-of-actions]
     status_source: annex
+    status_annex:
+      url: "https://assets.gov.ie/static/documents/702c6fd6/Climate_Action_Plan_2025_Q2_and_Q3_Annex.xlsx"
+      format: xlsx
 
   - doc_slug: climate-action-plan-2025-q4-progress-report
     title: "Climate Action Plan 2025 Q4 Progress Report"
@@ -373,11 +429,37 @@ documents:
     publisher: "Department of the Taoiseach"
     public_body_id: 1212
     role: report
-    reports_on: climate-action-plan-2025
+    reports_on: [climate-action-plan-2025-annex-of-actions, climate-action-plan-2024-annex-of-actions, climate-action-plan-2023-annex-of-actions]
     status_source: annex
+    status_annex:
+      url: "https://assets.gov.ie/static/documents/595303db/Climate_Action_Plan_2025_Q4_Annex.xlsx"
+      format: xlsx
     # Pages that are full-page images with no text layer; extract_pages OCRs exactly these.
     # Other image pages already covered by a figure are deliberately left out (chart OCR is noise).
     ocr_pages: [1, 4, 6, 7, 9, 10, 11, 12, 13, 15, 16, 18, 19, 20, 21, 23]
+
+  # Legacy-actions report: 74 actions carried over from CAP23, CAP24 and CAP25
+  # (10 complete, 64 delayed). It lists all three annexes because its workbook
+  # mixes /23/, /24/ and /25/ references. OCR: none declared. All 27 pages carry a
+  # text layer except page 27, a decorative back cover whose only content is the
+  # department/gov.ie logo baked into an image; the cover (page 1) has live text.
+  - doc_slug: climate-action-plan-2026-q1-q2-legacy-progress-report
+    title: "Climate Action Plan Q1 & Q2 2026 Progress Report on Legacy Actions"
+    url: "https://assets.gov.ie/static/documents/e23ebb44/Climate_Action_Plan_Q1__Q2_2026_Progress_Report_on_Legacy_Actions.pdf"
+    policy_id: climate-action-plan
+    policy_role: progress-report
+    publisher: "Department of the Taoiseach"
+    public_body_id: 1212
+    published_date: "2026-07-29"   # press release "Progress Report on the Climate Action Plan published", Published on 29 July 2026
+    role: report
+    reports_on: [climate-action-plan-2025-annex-of-actions, climate-action-plan-2024-annex-of-actions, climate-action-plan-2023-annex-of-actions]
+    status_source: annex
+    status_annex:
+      url: "https://assets.gov.ie/static/documents/fd00ce2a/Climate_Action_Plan_Q1__Q2_2026_Annex.xlsx"
+      format: xlsx
+    expected_status_counts:   # post-exclusion, as published; enforced by transform_public_body_actions
+      Complete: 10
+      Delayed: 64
 
   - doc_slug: climate-action-plan-2023-annex-of-actions
     title: "Climate Action Plan 2023 - Annex of Actions"

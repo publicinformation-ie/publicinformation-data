@@ -48,6 +48,7 @@ def test_load_documents_returns_one_normalised_record(tmp_path):
         "ocr_pages": None,
         "action_table_layout": None,
         "reference_corrections": None,
+        "status_annex": None,
     }]
 
 
@@ -436,3 +437,96 @@ def test_reference_corrections_reject_malformed_entries(tmp_path, bad):
 def test_reference_corrections_are_only_permitted_on_action_plans(tmp_path):
     with pytest.raises(ValueError, match="an-annex.*reference_corrections.*action-plan"):
         _load(write_yaml(tmp_path, ACTION_PLAN.replace("action-plan", "primary") + GOOD))
+
+
+# --- reports_on as a list; status_annex (add-climate-action-status-observations) ---
+
+_TWO_PLANS = PLAN + """  - doc_slug: b-plan
+    title: "B Plan"
+    url: "https://example.ie/c.pdf"
+    policy_id: greater-dublin-area-transport-strategy
+    policy_role: primary
+"""
+
+
+def _report(reports_on_line, extra=""):
+    return _TWO_PLANS + f"""  - doc_slug: a-report
+    title: "A Report"
+    url: "https://example.ie/b.pdf"
+    policy_id: greater-dublin-area-transport-strategy
+    policy_role: progress-report
+    role: report
+    {reports_on_line}
+{extra}"""
+
+
+def test_reports_on_accepts_a_list_of_plans(tmp_path):
+    records = _load(write_yaml(tmp_path, _report("reports_on: [a-plan, b-plan]")))
+    assert records[2]["reports_on"] == ["a-plan", "b-plan"]
+
+
+def test_reports_on_scalar_is_unchanged(tmp_path):
+    assert _load(write_yaml(tmp_path, _report("reports_on: a-plan")))[2]["reports_on"] == "a-plan"
+
+
+@pytest.mark.parametrize("line", [
+    "reports_on: []",
+    "reports_on: [a-plan, a-plan]",
+    "reports_on: [a-plan, no-such-plan]",
+    "reports_on: [a-plan, 3]",
+    "reports_on: 3",
+])
+def test_bad_reports_on_lists_are_fatal(tmp_path, line):
+    with pytest.raises(InvalidDocumentRole):
+        _load(write_yaml(tmp_path, _report(line)))
+
+
+def test_reports_on_list_naming_a_non_plan_is_fatal(tmp_path):
+    text = _report("reports_on: [a-plan, other-report]") + """  - doc_slug: other-report
+    title: "Other"
+    url: "https://example.ie/d.pdf"
+    policy_id: greater-dublin-area-transport-strategy
+    policy_role: progress-report
+    role: report
+    reports_on: a-plan
+"""
+    with pytest.raises(InvalidDocumentRole, match="role: plan"):
+        _load(write_yaml(tmp_path, text))
+
+
+def test_reports_on_list_across_policies_is_fatal(tmp_path):
+    text = _report("reports_on: [a-plan, c-plan]") + """  - doc_slug: c-plan
+    title: "C"
+    url: "https://example.ie/e.pdf"
+    policy_id: national-sustainable-mobility-policy-nsmp
+    policy_role: action-plan
+"""
+    with pytest.raises(InvalidDocumentRole, match="same policy_id"):
+        _load(write_yaml(tmp_path, text))
+
+
+_ANNEX = ("    status_source: annex\n    status_annex:\n"
+          "      url: https://example.ie/a.xlsx\n      format: xlsx\n")
+
+
+def test_status_annex_is_accepted_with_status_source(tmp_path):
+    records = _load(write_yaml(tmp_path, _report("reports_on: a-plan", _ANNEX)))
+    assert records[2]["status_annex"] == {"url": "https://example.ie/a.xlsx", "format": "xlsx"}
+    assert records[0]["status_annex"] is None
+
+
+def test_status_annex_without_status_source_is_rejected(tmp_path):
+    extra = "    status_annex:\n      url: https://example.ie/a.xlsx\n      format: xlsx\n"
+    with pytest.raises(ValueError, match="status_annex"):
+        _load(write_yaml(tmp_path, _report("reports_on: a-plan", extra)))
+
+
+@pytest.mark.parametrize("annex", [
+    "      url: https://example.ie/a.csv\n      format: csv\n",
+    "      url: ftp://example.ie/a.xlsx\n      format: xlsx\n",
+    "      url: https://example.ie/a.xlsx\n",
+])
+def test_bad_status_annex_is_rejected(tmp_path, annex):
+    extra = "    status_source: annex\n    status_annex:\n" + annex
+    with pytest.raises(ValueError, match="status_annex"):
+        _load(write_yaml(tmp_path, _report("reports_on: a-plan", extra)))

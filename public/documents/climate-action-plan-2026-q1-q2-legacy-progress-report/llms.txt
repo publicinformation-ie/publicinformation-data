@@ -1,0 +1,34 @@
+# Climate Action Plan Q1 & Q2 2026 Progress Report on Legacy Actions
+
+> Department of the Taoiseach — 2 chapters, 24 sections, 27 source pages.
+> Source: https://assets.gov.ie/static/documents/e23ebb44/Climate_Action_Plan_Q1__Q2_2026_Progress_Report_on_Legacy_Actions.pdf
+> Full text: full.md
+
+## Chapters
+
+- [260707 Front Cover v2](sections/260707-front-cover-v2/) — pages 1–1
+  - [260707 Front Cover v2](sections/260707-front-cover-v2/overview.md) — pages 1–1
+- [DRAFT 1](sections/draft-1/) — pages 2–27
+  - [1 Executive Summary](sections/draft-1/1-executive-summary.md) — pages 3–6
+  - [CAP Q1Q2 Progress Report_for website](sections/draft-1/cap-q1q2-progress-report-for-website.md) — pages 2–3
+  - [2 Agriculture](sections/draft-1/2-agriculture.md) — pages 6–6
+  - [260707 Q2 Climate Action Plan Infographics v2](sections/draft-1/260707-q2-climate-action-plan-infographics-v2.md) — pages 7–7
+  - [CAP Q1Q2 Progress Report_for website](sections/draft-1/cap-q1q2-progress-report-for-website-2.md) — pages 8–9
+  - [260707 Q2 Climate Action Plan Infographics v2](sections/draft-1/260707-q2-climate-action-plan-infographics-v2-2.md) — pages 10–10
+  - [CAP Q1Q2 Progress Report_for website](sections/draft-1/cap-q1q2-progress-report-for-website-3.md) — pages 11–12
+  - [260707 Q2 Climate Action Plan Infographics v2](sections/draft-1/260707-q2-climate-action-plan-infographics-v2-3.md) — pages 13–13
+  - [CAP Q1Q2 Progress Report_for website](sections/draft-1/cap-q1q2-progress-report-for-website-4.md) — pages 14–15
+  - [260707 Q2 Climate Action Plan Infographics v2](sections/draft-1/260707-q2-climate-action-plan-infographics-v2-4.md) — pages 16–16
+  - [CAP Q1Q2 Progress Report_for website](sections/draft-1/cap-q1q2-progress-report-for-website-5.md) — pages 17–18
+  - [260707 Q2 Climate Action Plan Infographics v2](sections/draft-1/260707-q2-climate-action-plan-infographics-v2-5.md) — pages 19–19
+  - [CAP Q1Q2 Progress Report_for website](sections/draft-1/cap-q1q2-progress-report-for-website-6.md) — pages 20–21
+  - [260707 Q2 Climate Action Plan Infographics v2](sections/draft-1/260707-q2-climate-action-plan-infographics-v2-6.md) — pages 22–22
+  - [CAP Q1Q2 Progress Report_for website](sections/draft-1/cap-q1q2-progress-report-for-website-7.md) — pages 23–24
+  - [260707 Q2 Climate Action Plan Infographics v2](sections/draft-1/260707-q2-climate-action-plan-infographics-v2-7.md) — pages 25–25
+  - [CAP Q1Q2 Progress Report_for website](sections/draft-1/cap-q1q2-progress-report-for-website-8.md) — pages 26–27
+  - [3 Transport](sections/draft-1/3-transport.md) — pages 9–9
+  - [4 Electricity](sections/draft-1/4-electricity.md) — pages 12–12
+  - [5 Buildings](sections/draft-1/5-buildings.md) — pages 15–15
+  - [6 Industry](sections/draft-1/6-industry.md) — pages 18–18
+  - [7 Land Use, Land Use Change and Forestry (LULUCF)](sections/draft-1/7-land-use-land-use-change-and-forestry-lulucf.md) — pages 21–21
+  - [8 Cross-cutting actions](sections/draft-1/8-cross-cutting-actions.md) — pages 24–24

@@ -52,7 +52,7 @@ def test_each_vocabulary_has_a_matching_csvw_descriptor():
             assert next(csv.reader(f)) == declared
 
 
-CSVW_PATH = REPO_ROOT / "public" / "v3.0.0" / "public-body-actions" / "public-body-actions.csv-metadata.json"
+CSVW_PATH = REPO_ROOT / "public" / "v3.1.0" / "public-body-actions" / "public-body-actions.csv-metadata.json"
 SCHEMA_PATH = REPO_ROOT / "public" / "schemas" / "public-body-actions.schema.json"
 TTL_PATH = REPO_ROOT / "public" / "catalog" / "dataset-public-body-actions.ttl"
 
@@ -103,9 +103,9 @@ def test_the_ttl_has_a_stampable_dct_modified():
 
 def test_the_ttl_declares_version_3_0_0_and_points_at_the_v3_0_0_files():
     ttl = TTL_PATH.read_text()
-    assert 'owl:versionInfo "3.0.0"' in ttl
+    assert 'owl:versionInfo "3.1.0"' in ttl
     assert "v2.0.0/public-body-actions" not in ttl
-    assert "v3.0.0/public-body-actions/actions.csv" in ttl
+    assert "v3.1.0/public-body-actions/actions.csv" in ttl
 
 
 def test_the_schema_action_properties_include_the_display_columns():

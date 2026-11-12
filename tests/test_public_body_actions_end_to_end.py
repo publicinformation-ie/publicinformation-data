@@ -35,11 +35,22 @@ def test_the_2026_2030_plan_publishes_95_actions_and_no_observations(resolved):
                 if o["action_id"].startswith(f"{slug}#")]
 
 
+def test_climate_reports_contribute_annex_observations(resolved):
+    """Status annexes (3.1.0): 8 dated reports contribute; the two undated
+    2025 reports contribute none."""
+    slugs = {o["report_slug"] for o in resolved["observations"]
+             if o["report_slug"].startswith("climate-action-plan")}
+    assert len(slugs) == 8
+    assert "climate-action-plan-2025-q4-progress-report" not in slugs
+    assert "climate-action-plan-2025-q2-q3-progress-report" not in slugs
+
+
 def test_all_four_reports_contribute_observations(resolved):
     """The extract_pages table-header-reconciliation fix (2026-08-30) recovered
     Year Two, Year Three, and the Final report from UnknownReportFormat —
     all four reports on the 2022-2025 plan now contribute."""
-    slugs = {o["report_slug"] for o in resolved["observations"]}
+    slugs = {o["report_slug"] for o in resolved["observations"]
+             if not o["report_slug"].startswith("climate-action-plan")}
     assert slugs == {
         "sustainable-mobility-policy-year-one-progress-report",
         "sustainable-mobility-policy-year-two-progress-report",
@@ -59,7 +70,7 @@ def test_the_final_report_reproduces_its_own_published_split(resolved):
 
 
 def test_the_published_csvs_are_consistent_with_the_pipeline(resolved):
-    published = REPO_ROOT / "public/v3.0.0/public-body-actions/actions.csv"
+    published = REPO_ROOT / "public/v3.1.0/public-body-actions/actions.csv"
     if not published.exists():
         pytest.skip("dataset not yet published")
     with published.open(newline="", encoding="utf-8") as f:

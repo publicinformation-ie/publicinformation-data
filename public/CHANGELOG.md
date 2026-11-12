@@ -4,6 +4,18 @@ All notable changes to the Public Bodies dataset will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [public-body-actions 3.1.0] - 2026-11-10
+
+### Added
+- Dated status observations for Climate Action Plan actions, read from the Department of the Taoiseach's quarterly XLSX status annexes (2023 Q1 to 2026 Q1&Q2: 719 observations). Each observation is dated from its report's publication date and attributed to the plan edition that declared the action.
+- Eight Climate Action Plan progress reports are now linked to their annex and observe the 2023, 2024 and 2025 Annexes of Actions, and a new document, the Q1 and Q2 2026 Progress Report on Legacy Actions, is published.
+
+### Notes
+- MINOR: records only. No field, type or status-vocabulary change; transport observations and all declared actions are unchanged.
+- Excluded and logged, not published: `AG/23/10` (`Discontinued`, 2024 Q1&Q2), because the closed status vocabulary cannot express it; two observations (`EL/23/10A`, `EL/23/10B`) whose printed references do not match the plan's `EL/23/10/A` and `EL/23/10/B`.
+- The Q2&Q3 2025 and Q4 2025 reports have no curated publication date, so they contribute no observations (the `Discontinued` row on the Q2&Q3 2025 Legacy sheet is among those not read).
+- 64 observations whose annex text differs from the declared action's text are published and flagged for review.
+
 ## [documents, content only] - 2026-11-08 (OCR)
 
 ### Added

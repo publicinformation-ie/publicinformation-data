@@ -43,7 +43,7 @@ FIND_PUBLIC_BODIES_PATH = "pipelines/foi_pipeline/steps/find_public_bodies/outpu
 STATUS_VOCABULARY_PATH = "public/vocabularies/action-status.csv"
 RELATIONSHIP_VOCABULARY_PATH = "public/vocabularies/action-relationship.csv"
 
-OUTPUT_DIR = "public/v3.0.0/public-body-actions"
+OUTPUT_DIR = "public/v3.1.0/public-body-actions"
 LATEST_DIR = "public/latest/public-body-actions"
 TTL_PATH = "public/catalog/dataset-public-body-actions.ttl"
 
@@ -224,11 +224,17 @@ def check_invariants(actions, observations, relationships, expectations,
                     f"must have a start")
     for observation in observations:
         precision = observation["reported_deadline_precision"]
-        if observation["reported_deadline_raw"] and precision is None:
+        # A null precision with a non-empty raw is allowed: an annex timeline
+        # that does not parse strictly as a quarter and year keeps its printed
+        # text and nulls the structured fields (as D10 does for plan labels),
+        # but the structured fields must then all be null together.
+        if precision is None and (
+                observation["reported_deadline_start"] is not None
+                or observation["reported_deadline_end"] is not None):
             violations.append(
                 f"observation {observation['action_id']}/"
                 f"{observation['report_slug']}: reported_deadline_precision "
-                f"is null but reported_deadline_raw is non-empty")
+                f"is null but a reported deadline bound is set")
         if precision is not None and precision not in PRECISIONS:
             violations.append(
                 f"observation {observation['action_id']}/"

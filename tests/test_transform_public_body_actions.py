@@ -234,9 +234,16 @@ def test_empty_clean_action_text_is_a_violation():
     assert any("action_text_clean" in v for v in violations)
 
 
-def test_a_reported_raw_without_a_precision_is_a_violation():
+def test_a_reported_raw_without_a_precision_is_allowed_when_unparsed():
     violations = check([action(1)], [observation(
         1, reported_deadline_precision=None, reported_deadline_start=None,
+        reported_deadline_end=None)], [])
+    assert not any("reported_deadline" in v for v in violations)
+
+
+def test_a_reported_bound_without_a_precision_is_a_violation():
+    violations = check([action(1)], [observation(
+        1, reported_deadline_precision=None, reported_deadline_start="2024-01-01",
         reported_deadline_end=None)], [])
     assert any("reported_deadline_precision is null" in v for v in violations)
 
@@ -310,7 +317,7 @@ def test_an_observation_links_to_its_actions_uri():
 
 
 def test_output_lands_in_both_the_versioned_and_latest_directories():
-    assert transform.OUTPUT_DIR == "public/v3.0.0/public-body-actions"
+    assert transform.OUTPUT_DIR == "public/v3.1.0/public-body-actions"
     assert transform.LATEST_DIR == "public/latest/public-body-actions"
 
 

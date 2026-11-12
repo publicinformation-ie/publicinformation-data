@@ -16,10 +16,12 @@ The authoritative step order is defined in [`pipeline.json`](pipeline.json). Ste
 | 6 | [`clean_text`](steps/clean_text/) | Reflows raw positioned spans into headings, paragraphs, lists and tables. |
 | 7 | [`extract_actions`](steps/extract_actions/) | Classifies each document's action tables and extracts each action row plus its target date into reviewable metadata. |
 | 8 | [`extract_action_status`](steps/extract_action_status/) | For each `role: report` document, reads its annex tables and turns every action row into one dated status observation (status, reported deadline, progress narrative). |
-| 9 | [`assemble_sections`](steps/assemble_sections/) | Cuts cleaned blocks into per-section Markdown, interleaves figures, asserts page coverage. |
-| 10 | [`publish_bundles`](steps/publish_bundles/) | Packs each publishable document into a `bundle.tar.gz` and writes `public/documents/index.json`. |
+| 9 | [`fetch_status_annexes`](steps/fetch_status_annexes/) | Downloads each report's declared `status_annex` workbook (xlsx), validating the payload (zip + readable by openpyxl) rather than its content type. Always runs; reuses a file only while its declaration in `documents.yml` is unchanged. |
+| 10 | [`extract_annex_status`](steps/extract_annex_status/) | Reads each annex workbook against a reviewed table of header layouts (fail-closed) and emits one status observation per row, dated from the report's `published_date`. |
+| 11 | [`assemble_sections`](steps/assemble_sections/) | Cuts cleaned blocks into per-section Markdown, interleaves figures, asserts page coverage. |
+| 12 | [`publish_bundles`](steps/publish_bundles/) | Packs each publishable document into a `bundle.tar.gz` and writes `public/documents/index.json`. |
 
-`ocr_pages`, `detect_structure` and `extract_figures` consume `extract_pages/output.json`; `clean_text` consumes `ocr_pages/output.json`; `extract_action_status` and `assemble_sections` both consume `clean_text/output.json`. Their explicit fan-in dependencies are recorded in `pipeline.json` under `input_steps`; the shared runner uses those paths both for staleness checks and for the `--input` argument. Keep that mapping in sync when changing the pipeline order.
+`ocr_pages`, `detect_structure` and `extract_figures` consume `extract_pages/output.json`; `clean_text` consumes `ocr_pages/output.json`; `extract_action_status` and `assemble_sections` both consume `clean_text/output.json`; `fetch_status_annexes` is triggered by `fetch_pdfs` (it reads only `documents.yml`) and `extract_annex_status` consumes `fetch_status_annexes/output.json`. An annex is an attachment of its report: the PDF steps never see it. Their explicit fan-in dependencies are recorded in `pipeline.json` under `input_steps`; the shared runner uses those paths both for staleness checks and for the `--input` argument. Keep that mapping in sync when changing the pipeline order.
 
 ## Running it
 

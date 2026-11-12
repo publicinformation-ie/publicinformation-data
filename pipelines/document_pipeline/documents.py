@@ -21,12 +21,14 @@ _REQUIRED = ("doc_slug", "title", "url", "policy_id", "policy_role")
 _OPTIONAL = ("publisher", "public_body_id", "published_date", "role",
              "reports_on", "expected_action_count", "expected_status_counts",
              "status_source", "hold", "ocr_pages", "action_table_layout",
-             "reference_corrections")
+             "reference_corrections", "status_annex")
 
 VALID_ROLES = ("plan", "report")
 # Where a report's machine-readable status detail lives, when not in its PDF.
 # "annex": a companion spreadsheet; extract_action_status skips the report.
 VALID_STATUS_SOURCES = ("annex",)
+# Formats a report's companion status workbook may be declared in.
+VALID_STATUS_ANNEX_FORMATS = ("xlsx",)
 # Opt-in table-reading behaviours for annexes whose layout differs from the
 # default (see extract_actions). Never auto-detected: undeclared documents are
 # read exactly as before.
@@ -42,6 +44,19 @@ class InvalidDocumentRole(ValueError):
     actions, so a bad link would silently mis-attribute every observation in
     the document rather than losing one field.
     """
+
+
+def reports_on_slugs(reports_on) -> list:
+    """The plan slugs a report observes, as a list.
+
+    `reports_on` is a single slug (the historical form, kept meaning exactly
+    what it did) or a non-empty list of slugs. Absent -> [].
+    """
+    if reports_on is None:
+        return []
+    if isinstance(reports_on, str):
+        return [reports_on]
+    return list(reports_on)
 
 
 def load_documents(path=DOCUMENTS_PATH, policy_ids=None) -> list:
@@ -109,6 +124,17 @@ def load_documents(path=DOCUMENTS_PATH, policy_ids=None) -> list:
                 f"a report must be a progress-report and vice versa")
 
         reports_on = entry.get("reports_on")
+        if isinstance(reports_on, list):
+            if (not reports_on
+                    or any(not isinstance(s, str) or not s for s in reports_on)
+                    or len(set(reports_on)) != len(reports_on)):
+                raise InvalidDocumentRole(
+                    f"{where} has reports_on {reports_on!r}; a list must be "
+                    f"non-empty with unique plan slugs")
+        elif reports_on is not None and not isinstance(reports_on, str):
+            raise InvalidDocumentRole(
+                f"{where} has reports_on {reports_on!r}; must be a plan slug "
+                f"or a list of plan slugs")
         if role == "report" and not reports_on:
             raise InvalidDocumentRole(
                 f"{where} has role 'report' but no 'reports_on'; a report must "
@@ -128,6 +154,23 @@ def load_documents(path=DOCUMENTS_PATH, policy_ids=None) -> list:
                 raise ValueError(
                     f"{where} has status_source {status_source!r}; "
                     f"must be one of {VALID_STATUS_SOURCES}")
+
+        if "status_annex" in entry:
+            annex = entry["status_annex"]
+            name = f"{where} ({entry.get('doc_slug')}) has status_annex"
+            if status_source != "annex":
+                raise ValueError(
+                    f"{name} but no status_source: annex; a status_annex is "
+                    f"only permitted on a report that declares status_source: annex")
+            if (not isinstance(annex, dict) or set(annex) != {"url", "format"}
+                    or not isinstance(annex["url"], str)
+                    or not annex["url"].startswith(("http://", "https://"))):
+                raise ValueError(
+                    f"{name} {annex!r}; must be {{url (http/https), format}}")
+            if annex["format"] not in VALID_STATUS_ANNEX_FORMATS:
+                raise ValueError(
+                    f"{name} format {annex['format']!r}; must be one of "
+                    f"{VALID_STATUS_ANNEX_FORMATS}")
 
         if "hold" in entry:
             hold = entry["hold"]
@@ -215,16 +258,19 @@ def load_documents(path=DOCUMENTS_PATH, policy_ids=None) -> list:
     by_slug = {record["doc_slug"]: record for record in records}
     slugs = set(by_slug)
     for record in records:
-        target = record["reports_on"]
-        if target is not None and target not in slugs:
-            raise InvalidDocumentRole(
-                f"{path} entry {record['doc_slug']!r} has reports_on {target!r}, "
-                f"which is not a doc_slug in this file")
-        if target is not None:
+        for target in reports_on_slugs(record["reports_on"]):
+            if target not in slugs:
+                raise InvalidDocumentRole(
+                    f"{path} entry {record['doc_slug']!r} has reports_on {target!r}, "
+                    f"which is not a doc_slug in this file")
             if by_slug[target]["policy_id"] != record["policy_id"]:
                 raise InvalidDocumentRole(
                     f"{path} entry {record['doc_slug']!r} reports on {target!r}, "
                     f"which belongs to a different policy; a report and its plan must "
                     f"share the same policy_id")
+            if by_slug[target]["role"] != "plan":
+                raise InvalidDocumentRole(
+                    f"{path} entry {record['doc_slug']!r} reports on {target!r}, "
+                    f"which is not a role: plan entry")
 
     return records
