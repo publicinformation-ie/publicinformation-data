@@ -52,7 +52,7 @@ def test_each_vocabulary_has_a_matching_csvw_descriptor():
             assert next(csv.reader(f)) == declared
 
 
-CSVW_PATH = REPO_ROOT / "public" / "v3.1.0" / "public-body-actions" / "public-body-actions.csv-metadata.json"
+CSVW_PATH = REPO_ROOT / "public" / "v3.2.0" / "public-body-actions" / "public-body-actions.csv-metadata.json"
 SCHEMA_PATH = REPO_ROOT / "public" / "schemas" / "public-body-actions.schema.json"
 TTL_PATH = REPO_ROOT / "public" / "catalog" / "dataset-public-body-actions.ttl"
 
@@ -61,15 +61,17 @@ def csvw():
     return json.loads(CSVW_PATH.read_text())
 
 
-def test_the_csvw_is_one_tablegroup_covering_three_tables():
+def test_the_csvw_is_one_tablegroup_covering_four_tables():
     assert [t["url"] for t in csvw()["tables"]] == [
-        "actions.csv", "action-status-observations.csv", "action-relationships.csv"]
+        "actions.csv", "action-status-observations.csv", "action-relationships.csv",
+        "action-milestones.csv"]
 
 
 def test_the_csvw_declares_the_foreign_keys_to_actions():
     tables = {t["url"]: t for t in csvw()["tables"]}
     for url, column in (("action-status-observations.csv", "action_id"),
-                        ("action-relationships.csv", "from_action_id")):
+                        ("action-relationships.csv", "from_action_id"),
+                        ("action-milestones.csv", "action_id")):
         keys = tables[url]["tableSchema"]["foreignKeys"]
         assert any(k["columnReference"] == column
                    and k["reference"] == {"resource": "actions.csv",
@@ -101,11 +103,11 @@ def test_the_ttl_has_a_stampable_dct_modified():
     assert len(re.findall(r'(dct:modified\s+")[^"]*("\^\^xsd:date\s*;)', text)) == 1
 
 
-def test_the_ttl_declares_version_3_0_0_and_points_at_the_v3_0_0_files():
+def test_the_ttl_declares_version_3_2_0_and_points_at_the_v3_2_0_files():
     ttl = TTL_PATH.read_text()
-    assert 'owl:versionInfo "3.1.0"' in ttl
+    assert 'owl:versionInfo "3.2.0"' in ttl
     assert "v2.0.0/public-body-actions" not in ttl
-    assert "v3.1.0/public-body-actions/actions.csv" in ttl
+    assert "v3.2.0/public-body-actions/actions.csv" in ttl
 
 
 def test_the_schema_action_properties_include_the_display_columns():
@@ -120,3 +122,12 @@ def test_the_schema_action_properties_include_the_display_columns():
     for p in (props["original_deadline_precision"],
               obs["reported_deadline_precision"]):
         assert {"annual", "ongoing"} <= set(p["enum"])
+
+
+def test_the_schema_declares_the_milestone_def_with_a_closed_precision():
+    schema = json.loads(SCHEMA_PATH.read_text())
+    ref = {"$ref": "#/$defs/ActionMilestone"}
+    assert ref in schema["properties"]["@graph"]["items"]["oneOf"]
+    props = schema["$defs"]["ActionMilestone"]["properties"]
+    assert props["due_precision"]["enum"] == ["quarter", "year", None]
+    assert props["@type"]["const"] == "act:ActionMilestone"

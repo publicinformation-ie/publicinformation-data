@@ -83,6 +83,23 @@ A plan with zero observations is correct, not missing data — the 2026-2030 pla
 
 A null `to_action_id` means the target plan is not in the corpus. A null `to_action_number` means the source document named a plan but no numbered action within it (a plan-level edge).
 
+### `action-milestones.csv` — one row per interim milestone
+
+Splits each action's `original_deadline_milestones` prose, so an action with several dated milestones (for example SMP 2026-2030 action 4) is queryable per milestone. `original_deadline_milestones` is unchanged.
+
+| Property | Type | Description | Required |
+|----------|------|--------------|----------|
+| `milestone_id` | String | `{action_id}/m{ordinal}` | Yes |
+| `action_id` | String | Joins to `actions.csv.action_id` | Yes |
+| `ordinal` | Integer | 1-based position in document order | Yes |
+| `due_label` | String | Canonical date label (`Q1 2029`, `2027`; `2028 onwards` keeps its words); empty when undated | No |
+| `due_start` | Date | Start of the quarter or year; empty when undated | No |
+| `due_end` | Date | End of the quarter or year; empty when undated | No |
+| `due_precision` | String | `quarter` or `year`; empty when undated | No |
+| `milestone_text` | String | The milestone with its date removed; empty for the date-only Climate Action Plan lists | No |
+
+A date appears only where the plan states one; text with no stated date is one undated milestone. Actions with no milestone text have no rows. The split is deterministic and lossless, but is a text split: one 2022-2025 row (action 20) has a year with no delimiter and stays inside the previous milestone.
+
 ## `original_deadline_confidence`
 
 23 of the 2022-2025 plan's 91 baselines are `interpreted` — derived by a latest-milestone rule from a multi-milestone timeline cell — rather than transcribed as a single stated date. This is disclosed, not hidden: consult `original_timeline_raw` to audit any `interpreted` baseline against the source text directly, without re-fetching the PDF.
@@ -126,8 +143,9 @@ The source PDFs contain ligature-reordering artifacts introduced by PDF text ext
 - **[actions.csv](actions.csv)** — one row per published action
 - **[action-status-observations.csv](action-status-observations.csv)** — one row per report's observation of an action
 - **[action-relationships.csv](action-relationships.csv)** — one row per asserted relationship between actions
-- **[public-body-actions.csv-metadata.json](public-body-actions.csv-metadata.json)** — CSV on the Web (CSVW) `TableGroup` metadata covering all three CSVs and their foreign keys
-- **[public-body-actions.jsonld](public-body-actions.jsonld)** — JSON-LD, single `@context` + `@graph` of all records across all three tables
+- **[action-milestones.csv](action-milestones.csv)** — one row per interim milestone of an action
+- **[public-body-actions.csv-metadata.json](public-body-actions.csv-metadata.json)** — CSV on the Web (CSVW) `TableGroup` metadata covering all four CSVs and their foreign keys
+- **[public-body-actions.jsonld](public-body-actions.jsonld)** — JSON-LD, single `@context` + `@graph` of all records across all four tables
 - **[../../schemas/public-body-actions.schema.json](../../schemas/public-body-actions.schema.json)** — JSON Schema, one `$defs` entry per table
 - **[../../catalog/dataset-public-body-actions.ttl](../../catalog/dataset-public-body-actions.ttl)** — DCAT-AP metadata (RDF/Turtle), related to the Public Bodies and Documents datasets via `dct:relation`
 - **[../../vocabularies/action-status.csv](../../vocabularies/action-status.csv)** — controlled vocabulary for `status`
@@ -135,7 +153,7 @@ The source PDFs contain ligature-reordering artifacts introduced by PDF text ext
 
 ## Versioning
 
-This directory (`v3.1.0/`) is an immutable, versioned release. `../../latest/public-body-actions/` always mirrors the newest version. Releases are also tagged in git (`public-body-actions-v3.1.0`).
+This directory (`v3.2.0/`) is an immutable, versioned release. `../../latest/public-body-actions/` always mirrors the newest version. Releases are also tagged in git (`public-body-actions-v3.2.0`).
 
 ## Accessing Data
 
@@ -143,6 +161,7 @@ This directory (`v3.1.0/`) is an immutable, versioned release. `../../latest/pub
 curl -L https://data.publicinformation.ie/latest/public-body-actions/actions.csv
 curl -L https://data.publicinformation.ie/latest/public-body-actions/action-status-observations.csv
 curl -L https://data.publicinformation.ie/latest/public-body-actions/action-relationships.csv
+curl -L https://data.publicinformation.ie/latest/public-body-actions/action-milestones.csv
 curl -L https://data.publicinformation.ie/latest/public-body-actions/public-body-actions.jsonld
 ```
 

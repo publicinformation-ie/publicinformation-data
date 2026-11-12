@@ -317,7 +317,7 @@ def test_an_observation_links_to_its_actions_uri():
 
 
 def test_output_lands_in_both_the_versioned_and_latest_directories():
-    assert transform.OUTPUT_DIR == "public/v3.1.0/public-body-actions"
+    assert transform.OUTPUT_DIR == "public/v3.2.0/public-body-actions"
     assert transform.LATEST_DIR == "public/latest/public-body-actions"
 
 
@@ -332,7 +332,8 @@ def test_stamp_if_changed_is_called_once_with_every_payload_path(tmp_path, monke
     assert len(calls) == 1
     assert {p.name for p in calls[0]} == {
         "actions.csv", "action-status-observations.csv",
-        "action-relationships.csv", "public-body-actions.jsonld"}
+        "action-relationships.csv", "action-milestones.csv",
+        "public-body-actions.jsonld"}
 
 
 # --- coded action references -------------------------------------------------
@@ -382,3 +383,61 @@ def test_a_structure_edge_is_publishable_when_the_term_is_in_the_vocabulary():
     assert transform.check_invariants(
         [coded("EL/23/6"), coded("EL/23/6/A")], [], [edge], {},
         VOCABULARIES["status"], terms) == []
+
+
+# --- milestones ---------------------------------------------------------------
+
+
+def milestone(ordinal=1, action_id=None, **overrides):
+    action_id = action_id or action(1)["action_id"]
+    record = {"milestone_id": f"{action_id}/m{ordinal}", "action_id": action_id,
+              "ordinal": ordinal, "due_label": "Q1 2029",
+              "due_start": "2029-01-01", "due_end": "2029-03-31",
+              "due_precision": "quarter", "milestone_text": "Convene."}
+    record.update(overrides)
+    return record
+
+
+def check_milestones(milestones):
+    return transform.check_invariants(
+        [action(1)], [], [], {}, VOCABULARIES["status"],
+        VOCABULARIES["relationship"], milestones=milestones)
+
+
+def test_valid_milestones_pass():
+    assert check_milestones([milestone(1), milestone(2)]) == []
+
+
+def test_a_milestone_referencing_no_action_is_a_violation():
+    assert any("resolves to no action" in v
+               for v in check_milestones([milestone(1, action_id="nope#1")]))
+
+
+def test_a_duplicate_milestone_id_is_a_violation():
+    assert any("not unique" in v for v in check_milestones([milestone(1), milestone(1)]))
+
+
+def test_a_date_without_a_precision_is_a_violation():
+    assert check_milestones([milestone(1, due_precision="")])
+
+
+def test_an_undated_milestone_with_empty_fields_is_fine():
+    undated = milestone(1, due_label="", due_start="", due_end="", due_precision="")
+    assert check_milestones([undated]) == []
+
+
+def test_milestone_rows_render_none_as_empty_and_keep_field_order():
+    rows = transform.build_milestone_rows([milestone(1, due_start=None)])
+    assert list(rows[0]) == transform.MILESTONE_FIELDS
+    assert rows[0]["due_start"] == ""
+
+
+def test_the_jsonld_carries_milestones_linked_to_their_action():
+    data = transform.transform_to_jsonld([action(1)], [], [], milestones=[milestone(1)])
+    nodes = [n for n in data["@graph"] if n["@type"] == "act:ActionMilestone"]
+    assert len(nodes) == 1 and nodes[0]["action"].endswith("/1")
+    assert nodes[0]["milestone_id"].endswith("/m1")
+
+
+def test_existing_positional_callers_still_work_without_milestones():
+    assert check([action(1)], [], []) == []

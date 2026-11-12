@@ -36,13 +36,14 @@ cd pipelines/foi_pipeline && uv run python process.py --force --stop-on-error
 
 <!-- BEGIN GENERATED: pipeline-overviews -->
 
-### `actions_pipeline` (3 steps)
+### `actions_pipeline` (4 steps)
 
 | # | Step |
 |---:|---|
 | 1 | `/pipelines/document_pipeline/steps/extract_actions` |
 | 2 | `resolve_action_identity` |
 | 3 | `extract_relationships` |
+| 4 | `extract_milestones` |
 
 ### `cso_pipeline` (6 steps)
 
