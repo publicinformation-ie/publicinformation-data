@@ -162,11 +162,16 @@ def load_documents(path=DOCUMENTS_PATH, policy_ids=None) -> list:
                 raise ValueError(
                     f"{name} but no status_source: annex; a status_annex is "
                     f"only permitted on a report that declares status_source: annex")
-            if (not isinstance(annex, dict) or set(annex) != {"url", "format"}
+            if (not isinstance(annex, dict) or set(annex) != {"url", "format", "sha256"}
                     or not isinstance(annex["url"], str)
                     or not annex["url"].startswith(("http://", "https://"))):
                 raise ValueError(
-                    f"{name} {annex!r}; must be {{url (http/https), format}}")
+                    f"{name} {annex!r}; must be {{url (http/https), format, sha256}}")
+            if (not isinstance(annex["sha256"], str)
+                    or not re.fullmatch(r"[0-9a-f]{64}", annex["sha256"])):
+                raise ValueError(
+                    f"{name} sha256 {annex['sha256']!r}; must be 64 lowercase hex "
+                    f"characters (the checksum of the annex file as published)")
             if annex["format"] not in VALID_STATUS_ANNEX_FORMATS:
                 raise ValueError(
                     f"{name} format {annex['format']!r}; must be one of "

@@ -291,6 +291,7 @@ documents:
     status_annex:
       url: "https://assets.gov.ie/static/documents/climate-action-plan-2023-q1-actions.xlsx"
       format: xlsx
+      sha256: "6aba8f895e3ffa5410b512c30bbb9d148a0ed6a69ac8f2cd8208407e5ce392d3"
     expected_status_counts:   # post-exclusion, as published; enforced by transform_public_body_actions
       Complete: 27
       Delayed: 9
@@ -309,6 +310,7 @@ documents:
     status_annex:
       url: "https://assets.gov.ie/static/documents/climate-action-plan-2023-q2-actions.xlsx"
       format: xlsx
+      sha256: "223a97833251700db9926576033250841568cc5a76aa4961f4166d7fced9c5c2"
     expected_status_counts:   # post-exclusion, as published; enforced by transform_public_body_actions
       Complete: 35
       Delayed: 24
@@ -327,6 +329,7 @@ documents:
     status_annex:
       url: "https://assets.gov.ie/static/documents/climate-action-plan-2023-q3-actions.xlsx"
       format: xlsx
+      sha256: "1584197ab56913ed7ceda56647108ac6a32710bc8d7c69cf2a80b1f61fe9ad87"
     expected_status_counts:   # post-exclusion, as published; enforced by transform_public_body_actions
       Complete: 23
       Delayed: 42
@@ -345,6 +348,7 @@ documents:
     status_annex:
       url: "https://assets.gov.ie/static/documents/climate-action-plan-2023-q4-actions.xlsx"
       format: xlsx
+      sha256: "f2bc0ce819ef4dd20a38528b698de793b6356187ca182863de91529d7e3ea7ea"
     expected_status_counts:   # post-exclusion, as published; enforced by transform_public_body_actions
       Complete: 101
       Delayed: 102
@@ -363,6 +367,7 @@ documents:
     status_annex:
       url: "https://assets.gov.ie/static/documents/climate-action-plan-2024-q1-q2-and-legacy-2023-actions.xlsx"
       format: xlsx
+      sha256: "f838622ced075b007d89a6a070cad4e44cfe38caa9398e92873b2e903923354b"
     expected_status_counts:   # post-exclusion, as published; enforced by transform_public_body_actions
       Complete: 41
       Delayed: 39
@@ -382,6 +387,7 @@ documents:
     status_annex:
       url: "https://assets.gov.ie/static/documents/Climate_Action_Plan_2024_-_Q3_and_Q4_Annex_of_Actions.xlsx"
       format: xlsx
+      sha256: "ea53d894d041db494d73066886742c23e48f05db4946dd638b750c194956edbc"
     expected_status_counts:   # post-exclusion, as published; enforced by transform_public_body_actions
       Complete: 68
       Delayed: 63
@@ -400,6 +406,7 @@ documents:
     status_annex:
       url: "https://assets.gov.ie/static/documents/Q1_CAP25_Progress_Report_Annex_of_Actions_-_Final.xlsx"
       format: xlsx
+      sha256: "b2ccddc176fefa54d443253315b4009cb492f8974ee97866d2cf52fa4102ba14"
     expected_status_counts:   # post-exclusion, as published; enforced by transform_public_body_actions
       Complete: 14
       Delayed: 56
@@ -420,6 +427,7 @@ documents:
     status_annex:
       url: "https://assets.gov.ie/static/documents/702c6fd6/Climate_Action_Plan_2025_Q2_and_Q3_Annex.xlsx"
       format: xlsx
+      sha256: "462f942fd2c00f4d2896879d48ea5a5b87e0b0b3ba1042e3291d75b53fc808dc"
 
   - doc_slug: climate-action-plan-2025-q4-progress-report
     title: "Climate Action Plan 2025 Q4 Progress Report"
@@ -434,6 +442,7 @@ documents:
     status_annex:
       url: "https://assets.gov.ie/static/documents/595303db/Climate_Action_Plan_2025_Q4_Annex.xlsx"
       format: xlsx
+      sha256: "34f8838c6060acc6c49ea5c8dffdce9c8e3e9692d3e877d431886a6eb01033b9"
     # Pages that are full-page images with no text layer; extract_pages OCRs exactly these.
     # Other image pages already covered by a figure are deliberately left out (chart OCR is noise).
     ocr_pages: [1, 4, 6, 7, 9, 10, 11, 12, 13, 15, 16, 18, 19, 20, 21, 23]
@@ -457,6 +466,7 @@ documents:
     status_annex:
       url: "https://assets.gov.ie/static/documents/fd00ce2a/Climate_Action_Plan_Q1__Q2_2026_Annex.xlsx"
       format: xlsx
+      sha256: "488c4c65df333614cb64b10825ccd61d3fcfd8c7a12b3b5a5b07e7723e144a4d"
     expected_status_counts:   # post-exclusion, as published; enforced by transform_public_body_actions
       Complete: 10
       Delayed: 64

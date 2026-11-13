@@ -738,6 +738,7 @@ def main():
         override_path=override_path,
         upstream_dirty_path=Path(args.input).parent / "dirty_ids.json",
         target_public_body=args.public_body,
+        record_completed_at=False,  # output.json is committed: no per-run timestamp
     )
 
     if writer.processed_keys:

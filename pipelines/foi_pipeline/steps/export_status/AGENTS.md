@@ -68,13 +68,13 @@ Each status field uses a consistent 3-state system:
 
 ## Public Output Files
 
-In addition to `output.json`, this step writes three public JSON files to `../../public/`:
+In addition to `output.json`, this step writes these public files to `../../public/`:
 
 | File | Contents |
 |------|----------|
 | `public/pipeline-data.json` | Full merged status for every public body |
 | `public/disclosure-files.json` | Flat list of all discovered disclosure log file URLs |
-| `public/foi-disclosures.json` | All canonicalized FOI request records |
+| `public/latest/foi-disclosures/bodies/<public_body_id>.ndjson` | All canonicalized FOI request records, one canonical NDJSON file per body (committed, ordinary git) |
 
 ## Merging Logic
 

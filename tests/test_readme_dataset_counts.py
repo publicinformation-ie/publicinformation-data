@@ -9,6 +9,8 @@ import csv
 import re
 from pathlib import Path
 
+from src.lib.foi_dataset import load_parts
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
 README = REPO_ROOT / "README.md"
 
@@ -28,6 +30,9 @@ PRIMARY = {
 
 
 def _csv_records(slug: str, basename: str) -> int:
+    if slug == "foi-disclosures":
+        # The CSV is a built (uncommitted) form; count the committed per-body rows.
+        return len(load_parts(REPO_ROOT / "public" / "latest" / slug / "bodies"))
     path = REPO_ROOT / "public" / "latest" / slug / basename
     with path.open(newline="", encoding="utf-8") as fh:
         return sum(1 for _ in csv.DictReader(fh))

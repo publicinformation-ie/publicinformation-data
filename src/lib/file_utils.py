@@ -80,7 +80,10 @@ class IncrementalWriter:
     """
     def __init__(self, output_path, step_name, key_field="public_body_id",
                  force=False, override_path=None, upstream_dirty_path=None,
-                 target_public_body=None, target_key=None):
+                 target_public_body=None, target_key=None, record_completed_at=True):
+        # Steps whose output is committed pass False so an unchanged run
+        # leaves a byte-identical file (a timestamp would change every run).
+        self.record_completed_at = record_completed_at
         self.output_path = Path(output_path)
         self.step_name = step_name
         self.key_field = key_field
@@ -249,16 +252,10 @@ class IncrementalWriter:
         own_path = self.output_path.parent / "dirty_ids.json"
         # Validate before any write so a corrupt file never gets overwritten.
         previous_own = read_dirty_ids(own_path) if own_path.exists() else set()
-        write_json(
-            self.output_path,
-            {
-                "metadata": {
-                    "step": self.step_name,
-                    "completed_at": datetime.now(timezone.utc).isoformat(),
-                },
-                "results": self.results,
-            },
-        )
+        metadata = {"step": self.step_name}
+        if self.record_completed_at:
+            metadata["completed_at"] = datetime.now(timezone.utc).isoformat()
+        write_json(self.output_path, {"metadata": metadata, "results": self.results})
         write_json(own_path, sorted(previous_own | self.dirty_body_ids | self._consumed_upstream_ids))
         up = self._upstream_dirty_path
         if self._upstream_dirty_ids and up is not None:

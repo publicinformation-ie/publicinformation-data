@@ -9,7 +9,14 @@ is accepted only if it is a zip container (`PK\\x03\\x04`) that openpyxl can ope
 
 Failures are per document and write **no record**, so the document stays
 unprocessed and is retried on the next run (`AnnexUnreachable`,
-`AnnexWrongFormat` naming expected and received, `AnnexUnreadable`).
+`AnnexWrongFormat` naming expected and received, `AnnexChecksumMismatch`
+naming declared and observed sha256, `AnnexUnreadable`).
+
+`annexes/` is a git-ignored download cache, not committed data: each annex is
+declared by url and sha256 in documents.yml. A cached file whose sha256 matches
+the declaration is reused without any network request; otherwise the file is
+downloaded and verified. A downloaded file that does not match the declared
+sha256 is rejected, never read as that source.
 
 Staleness: the runner only compares mtimes against an input step, and this step
 has none that reflects documents.yml. It therefore lists itself in
@@ -83,7 +90,7 @@ def inspect_workbook(path: Path) -> list:
 
 def _declared(doc: dict) -> dict:
     annex = doc["status_annex"]
-    return {"url": annex["url"], "format": annex["format"]}
+    return {"url": annex["url"], "format": annex["format"], "sha256": annex["sha256"]}
 
 
 def process(documents, step_dir, writer, verbose=False):
@@ -116,15 +123,23 @@ def process(documents, step_dir, writer, verbose=False):
             print(f"  {slug} ...", end=" ", flush=True)
         dest = annex_dir / f"{slug}.xlsx"
         try:
-            try:
-                download(want["url"], dest)
-            except Exception as e:
-                raise _AnnexError("AnnexUnreachable", str(e)) from e
-            payload = dest.read_bytes()
-            if not payload.startswith(_ZIP_MAGIC):
-                raise _AnnexError(
-                    "AnnexWrongFormat",
-                    f"expected {want['format']}, received {received_format(payload)}")
+            payload = dest.read_bytes() if dest.is_file() else b""
+            from_cache = bool(payload) and hashlib.sha256(payload).hexdigest() == want["sha256"]
+            if not from_cache:
+                try:
+                    download(want["url"], dest)
+                except Exception as e:
+                    raise _AnnexError("AnnexUnreachable", str(e)) from e
+                payload = dest.read_bytes()
+                if not payload.startswith(_ZIP_MAGIC):
+                    raise _AnnexError(
+                        "AnnexWrongFormat",
+                        f"expected {want['format']}, received {received_format(payload)}")
+                observed = hashlib.sha256(payload).hexdigest()
+                if observed != want["sha256"]:
+                    raise _AnnexError(
+                        "AnnexChecksumMismatch",
+                        f"{slug}: declared sha256 {want['sha256']}, observed {observed}")
             try:
                 sheets = inspect_workbook(dest)
             except Exception as e:
@@ -136,10 +151,10 @@ def process(documents, step_dir, writer, verbose=False):
                 "source_sha256": hashlib.sha256(payload).hexdigest(),
                 "bytes": len(payload),
                 "sheet_names": sheets,
-                "fetched_at": datetime.now(timezone.utc).isoformat(),
+                "fetched_at": None if from_cache else datetime.now(timezone.utc).isoformat(),
             }])
             if verbose:
-                print("[ok]", flush=True)
+                print("[cached]" if from_cache else "[ok]", flush=True)
         except _AnnexError as e:
             dest.unlink(missing_ok=True)
             append_error(step_dir, {

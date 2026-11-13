@@ -9,10 +9,10 @@ from scripts.transform_foi_disclosures import (
 from src.lib.body_refs import BASE_URI
 
 
-# Real pipeline records have no row_id field, and file_url is not unique
-# per record (many disclosure rows share one source file) — the id is
-# derived from (file_url, row_index) instead. See compute_disclosure_id().
+# file_url is not unique per record (many disclosure rows share one source
+# file), so the published id is derived from the row's stable row_id instead.
 SAMPLE_DISCLOSURE = {
+    "row_id": "f292642e7af3",
     "public_body_id": 1052,
     "name": "Bord Bia",
     "file_url": "https://www.bordbia.ie/foi-disclosure-log-2019.pdf",
@@ -29,11 +29,11 @@ SAMPLE_DISCLOSURE = {
     "missing_columns": ["foi_reference_id", "related_request", "review_status"],
 }
 
-EXPECTED_ID = compute_disclosure_id(SAMPLE_DISCLOSURE["file_url"], 0)
+EXPECTED_ID = compute_disclosure_id(SAMPLE_DISCLOSURE["row_id"])
 
 
 def test_build_record_happy_path():
-    record = build_record(SAMPLE_DISCLOSURE, {1052: "bord-bia"}, row_index=0)
+    record = build_record(SAMPLE_DISCLOSURE, {1052: "bord-bia"})
     assert record["@id"] == f"{BASE_URI}/foi-disclosure/{EXPECTED_ID}"
     assert record["@type"] == "foi:FoiDisclosure"
     assert record["public_body"] == f"{BASE_URI}/body/bord-bia"
@@ -45,7 +45,7 @@ def test_build_record_happy_path():
 
 
 def test_build_record_omits_null_fields():
-    record = build_record(SAMPLE_DISCLOSURE, {1052: "bord-bia"}, row_index=0)
+    record = build_record(SAMPLE_DISCLOSURE, {1052: "bord-bia"})
     assert "foi_reference_id" not in record
     assert "review_status" not in record
     assert "related_request" not in record
@@ -58,17 +58,17 @@ def test_build_record_omits_null_fields():
 
 def test_build_record_unknown_public_body_id_raises():
     with pytest.raises(ValueError, match="Unknown public_body_id"):
-        build_record(SAMPLE_DISCLOSURE, body_slug_lookup={}, row_index=0)
+        build_record(SAMPLE_DISCLOSURE, body_slug_lookup={})
 
 
-def test_build_record_different_row_index_yields_different_id():
-    record_a = build_record(SAMPLE_DISCLOSURE, {1052: "bord-bia"}, row_index=0)
-    record_b = build_record(SAMPLE_DISCLOSURE, {1052: "bord-bia"}, row_index=1)
+def test_build_record_different_row_id_yields_different_id():
+    record_a = build_record(SAMPLE_DISCLOSURE, {1052: "bord-bia"})
+    record_b = build_record({**SAMPLE_DISCLOSURE, "row_id": "other"}, {1052: "bord-bia"})
     assert record_a["@id"] != record_b["@id"]
 
 
 def test_transform_to_jsonld_includes_version_and_graph():
-    records = [build_record(SAMPLE_DISCLOSURE, {1052: "bord-bia"}, row_index=0)]
+    records = [build_record(SAMPLE_DISCLOSURE, {1052: "bord-bia"})]
     doc = transform_to_jsonld(records)
     assert doc["version"] == DATASET_VERSION
     assert doc["@graph"] == records
@@ -78,7 +78,7 @@ def test_transform_to_jsonld_includes_version_and_graph():
 def test_transform_to_csv_rows_flattens_arrays_with_pipe_delimiter():
     disclosure = dict(SAMPLE_DISCLOSURE)
     disclosure["known_issues"] = ["ocr_low_confidence", "misaligned_row"]
-    record = build_record(disclosure, {1052: "bord-bia"}, row_index=0)
+    record = build_record(disclosure, {1052: "bord-bia"})
     fieldnames, rows = transform_to_csv_rows([record])
     row = rows[0]
     assert row["known_issues"] == "ocr_low_confidence|misaligned_row"
@@ -86,7 +86,7 @@ def test_transform_to_csv_rows_flattens_arrays_with_pipe_delimiter():
 
 
 def test_transform_to_csv_rows_empty_string_for_null_fields():
-    record = build_record(SAMPLE_DISCLOSURE, {1052: "bord-bia"}, row_index=0)
+    record = build_record(SAMPLE_DISCLOSURE, {1052: "bord-bia"})
     fieldnames, rows = transform_to_csv_rows([record])
     row = rows[0]
     assert row["foi_reference_id"] == ""
@@ -97,59 +97,42 @@ def test_transform_to_csv_rows_empty_string_for_null_fields():
 
 from pathlib import Path
 
-from scripts.transform_foi_disclosures import publish
+from scripts.transform_foi_disclosures import publish, CSV_FIELDNAMES
 from src.lib.dataset_publish import render_jsonld, render_csv
 
 
-def _ttl_text(modified_date):
-    return (
-        "@prefix dct: <http://purl.org/dc/terms/> .\n"
-        "@prefix owl: <http://www.w3.org/2002/07/owl#> .\n"
-        "@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n"
-        "<https://example.ie/dataset/foi-disclosures>\n"
-        "    a dcat:Dataset ;\n"
-        f'    dct:modified "{modified_date}"^^xsd:date ;\n'
-        '    owl:versionInfo "1.0.0" ;\n'
-        "    .\n"
-    )
-
-
-def test_publish_writes_files_and_stamps_ttl_when_content_changed(tmp_path):
+def test_publish_writes_jsonld_csv_and_xlsx(tmp_path):
+    import openpyxl
     jsonld_path = tmp_path / "foi-disclosures.jsonld"
     csv_path = tmp_path / "foi-disclosures.csv"
-    ttl_path = tmp_path / "dataset-foi-disclosures.ttl"
-    ttl_path.write_text(_ttl_text("2020-01-01"))
+    xlsx_path = tmp_path / "foi-disclosures.xlsx"
     jsonld_data = {"version": "1.0.0", "@graph": [{"name": "old"}]}
     fieldnames, rows = ["id", "name"], [{"id": "1", "name": "old"}]
 
-    changed = publish(
-        jsonld_data, fieldnames, rows,
-        jsonld_path=jsonld_path, csv_path=csv_path, ttl_path=ttl_path,
-    )
+    publish(jsonld_data, fieldnames, rows, jsonld_path=jsonld_path, csv_path=csv_path, xlsx_path=xlsx_path)
 
-    assert changed is True
     assert jsonld_path.read_bytes() == render_jsonld(jsonld_data)
     assert csv_path.read_bytes() == render_csv(fieldnames, rows)
-    assert '"2020-01-01"' not in ttl_path.read_text()
+    xlsx_rows = [tuple(r) for r in openpyxl.load_workbook(xlsx_path, read_only=True).active.iter_rows(values_only=True)]
+    assert xlsx_rows == [("id", "name"), ("1", "old")]
 
 
-def test_publish_is_noop_when_content_identical(tmp_path):
-    jsonld_path = tmp_path / "foi-disclosures.jsonld"
-    csv_path = tmp_path / "foi-disclosures.csv"
-    ttl_path = tmp_path / "dataset-foi-disclosures.ttl"
-    ttl_path.write_text(_ttl_text("2020-01-01"))
-    jsonld_data = {"version": "1.0.0", "@graph": [{"name": "same"}]}
-    fieldnames, rows = ["id", "name"], [{"id": "1", "name": "same"}]
-    jsonld_path.write_bytes(render_jsonld(jsonld_data))
-    csv_path.write_bytes(render_csv(fieldnames, rows))
-
-    changed = publish(
-        jsonld_data, fieldnames, rows,
-        jsonld_path=jsonld_path, csv_path=csv_path, ttl_path=ttl_path,
-    )
-
-    assert changed is False
-    assert '"2020-01-01"' in ttl_path.read_text()
+def test_xlsx_rows_equal_csv_rows_built_from_same_fixture(tmp_path):
+    import csv
+    import openpyxl
+    disclosure = {**SAMPLE_DISCLOSURE, "foi_reference_id": 7, "request_description": "bad\x0bchar, comma"}
+    record = build_record(disclosure, {1052: "bord-bia"})
+    fieldnames, rows = transform_to_csv_rows([record])
+    jsonld_data = transform_to_jsonld([record])
+    paths = dict(jsonld_path=tmp_path / "a.jsonld", csv_path=tmp_path / "a.csv", xlsx_path=tmp_path / "a.xlsx")
+    publish(jsonld_data, fieldnames, rows, **paths)
+    xlsx = [tuple("" if v is None else str(v) for v in r)
+            for r in openpyxl.load_workbook(paths["xlsx_path"], read_only=True).active.iter_rows(values_only=True)]
+    csv_rows = [tuple(r) for r in csv.reader(open(paths["csv_path"], newline="", encoding="utf-8"))]
+    # XLSX (XML 1.0) cannot hold control characters; everything else is equal.
+    csv_rows = [tuple(c.replace("\x0b", "") for c in r) for r in csv_rows]
+    assert xlsx == csv_rows
+    assert xlsx[0] == tuple(CSV_FIELDNAMES)
 
 
 def test_known_issues_dicts_publish_as_field_names():
@@ -161,7 +144,7 @@ def test_known_issues_dicts_publish_as_field_names():
         {"field": "decision_status", "issue_type": "UnrecognizedDecisionStatus", "raw_value": "y"},
         {"field": "requester_type", "issue_type": "Other", "raw_value": "z"},
     ]
-    record = build_record(disclosure, {1052: "bord-bia"}, row_index=0)
+    record = build_record(disclosure, {1052: "bord-bia"})
     assert record["known_issues"] == ["requester_type", "decision_status"]
     _, rows = transform_to_csv_rows([record])
     assert rows[0]["known_issues"] == "requester_type|decision_status"
@@ -172,4 +155,4 @@ def test_known_issues_dict_without_field_is_an_error():
     disclosure = dict(SAMPLE_DISCLOSURE)
     disclosure["known_issues"] = [{"issue_type": "X"}]
     with pytest.raises(ValueError):
-        build_record(disclosure, {1052: "bord-bia"}, row_index=0)
+        build_record(disclosure, {1052: "bord-bia"})

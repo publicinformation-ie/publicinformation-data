@@ -34,7 +34,7 @@ Machine-readable dumps of the pipeline's working state, for debugging and
 provenance rather than everyday use:
 
 - [pipeline-data.json](pipeline-data.json) — per-body processing status.
-- [foi-disclosures.json](foi-disclosures.json) — disclosure records.
+- [foi-disclosures.json](foi-disclosures.json) — disclosure records (built from the per-body files under `latest/foi-disclosures/bodies/`, not committed; see the [dataset README](latest/foi-disclosures/README.md)).
 - [disclosure-files.json](disclosure-files.json) — source documents discovered and processed.
 - [topics.json](topics.json) — generated disclosure topics.
 

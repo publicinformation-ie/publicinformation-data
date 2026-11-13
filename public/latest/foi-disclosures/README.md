@@ -8,9 +8,17 @@ Individual Freedom of Information request records extracted from disclosure log 
 
 ## Versioning
 
-**This dataset does not keep a permanent versioned directory the way `public-bodies` and `foi-request-files` do.** Only `foi-disclosures.jsonld`/`foi-disclosures.csv` in this `latest/` directory ever exist in git — there is no `v1.0.0/foi-disclosures/` counterpart, and superseded versions' exact byte content is **not** guaranteed to remain fetchable once a new version overwrites this directory. This is a deliberate divergence, made because this dataset's files are an order of magnitude larger than the rest of the catalog (tens of megabytes), and the git storage quota is shared across every repository in the `publicinformation-ie` organization.
+**The version number is the schema version; each release adds a build.** `1.0.0` (`owl:versionInfo`, the root `"version"` of the JSON-LD) changes only when field names, types or vocabularies change. Data refreshes within a schema version are published as **builds**, identified by the UTC release date.
 
-The version number is still real and citable without needing the bytes: releases are tagged in git (`foi-disclosures-v1.0.0`), the JSON-LD document's root `"version"` field states which version `latest/` currently holds, and `../../CHANGELOG.md` records what changed and when. If you need an old version's exact content, request it — it may still exist in git history at the time you ask, but that is not a promise this dataset makes going forward.
+- **Latest:** `https://data.publicinformation.ie/latest/foi-disclosures/` always serves the current build. These URLs are unchanged.
+- **Immutable releases:** `https://releases.publicinformation.ie/foi-disclosures/v<schema>/<build>/` (for example `.../v1.0.0/20261113/`) holds `foi-disclosures.json`, `.csv`, `.jsonld`, `.xlsx`, `manifest.json` and `SHA256SUMS`. A release folder is never overwritten. Releases are tagged `foi-disclosures-v<schema>+<YYYYMMDD>` in git. (The earlier `foi-disclosures-v1.0.0` tag predates this scheme and has no release folder.)
+- Other datasets keep in-repo `public/vX.Y.Z/` snapshots; this one does not, because its files are tens of megabytes.
+
+## Storage layout
+
+The source of truth in git is one canonical NDJSON file per public body, `bodies/<public_body_id>.ndjson` (one JSON object per line, sorted by `row_id`). The combined JSON, CSV, JSON-LD, XLSX and `bodies/manifest.json` are **built from those files and not committed**; the live site serves the built copies. `bodies/manifest.json` lists every body's name, file URL, row count, date range and `sha256`: start there to find one body without downloading the whole dataset.
+
+After cloning, run `pip install -r scripts/requirements-build.txt && python scripts/build_foi_combined.py` to produce the combined files locally.
 
 ## Data Model
 
@@ -41,6 +49,8 @@ Optional fields are omitted entirely (not `null`) when absent in JSON-LD; the CS
 
 - **[foi-disclosures.jsonld](foi-disclosures.jsonld)** — JSON-LD, single `@context` + `@graph` of all records, plus a root-level `version` field
 - **[foi-disclosures.csv](foi-disclosures.csv)** — CSV, one row per disclosure
+- **foi-disclosures.xlsx** — the same rows and columns as the CSV, as a workbook
+- **[bodies/](bodies/)** — one NDJSON file per public body, plus `manifest.json`
 - **[foi-disclosures.csv-metadata.json](foi-disclosures.csv-metadata.json)** — CSV on the Web (CSVW) metadata for the CSV file
 - **[../../schemas/foi-disclosures.schema.json](../../schemas/foi-disclosures.schema.json)** — JSON Schema
 - **[../../catalog/dataset-foi-disclosures.ttl](../../catalog/dataset-foi-disclosures.ttl)** — DCAT-AP 3.0 dataset metadata (RDF/Turtle), related to the Public Bodies dataset via `dct:relation`

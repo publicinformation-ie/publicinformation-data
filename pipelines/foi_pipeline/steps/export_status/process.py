@@ -7,6 +7,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from lib.cli_utils import add_common_args, filter_by_public_body
+from lib.dataset_publish import stamp_modified
+from lib.foi_dataset import write_parts
 from lib.file_utils import read_json, write_json, write_status
 from lib.publish_public_bodies import publish_public_bodies
 
@@ -254,16 +256,38 @@ def write_disclosure_files_output(steps_dir, repo_root):
     return output_path
 
 
+FOI_BODIES_RELPATH = Path("public/latest/foi-disclosures/bodies")
+FOI_CATALOG_TTL_RELPATH = Path("public/catalog/dataset-foi-disclosures.ttl")
+REPO_ROOT = Path(__file__).resolve().parents[4]
+
+
 def write_foi_disclosures_output(steps_dir, repo_root):
+    """Write the deduplicated disclosures as one canonical NDJSON file per body.
+
+    Stamps `dct:modified` in the catalog only when a per-body file was added,
+    changed or removed, so the content date follows the stored data (the
+    built forms never touch it). Returns the per-body folder.
+    """
     input_path = Path(steps_dir) / "extract_disclosures_deduplicate" / "output.json"
     if not input_path.exists():
         return None
     data = read_json(input_path)
-    public_dir = Path(repo_root) / "public"
-    public_dir.mkdir(parents=True, exist_ok=True)
-    output_path = public_dir / "foi-disclosures.json"
-    write_json(output_path, data["results"])
-    return output_path
+    bodies_dir = Path(repo_root) / FOI_BODIES_RELPATH
+    report = write_parts(data["results"], bodies_dir)
+    ttl_path = Path(repo_root) / FOI_CATALOG_TTL_RELPATH
+    if any(report.values()) and ttl_path.exists():
+        stamp_modified(ttl_path)
+    return bodies_dir
+
+
+def build_foi_forms(repo_root):
+    """Rebuild the uncommitted FOI forms (combined JSON, CSV, JSON-LD, XLSX,
+    manifest) so local files always match the per-body files just written."""
+    if str(REPO_ROOT) not in sys.path:
+        sys.path.insert(0, str(REPO_ROOT))
+    from scripts.build_foi_combined import build
+
+    return build(Path(repo_root))
 
 
 def publish_public_artifacts(repo_root, bodies, scoped=False):
@@ -410,13 +434,15 @@ def main():
     disclosure_path = write_disclosure_files_output(steps_dir, repo_root)
     foi_disclosures_path = write_foi_disclosures_output(steps_dir, repo_root)
     publish_public_artifacts(repo_root, bodies, scoped=args.public_body is not None)
+    foi_summary = build_foi_forms(repo_root) if foi_disclosures_path else None
 
     print(f"Wrote {len(bodies)} public bodies to {output_path}")
     print(f"Wrote public data to {public_path}")
     if disclosure_path:
         print(f"Wrote disclosure files to {disclosure_path}")
-    if foi_disclosures_path:
-        print(f"Wrote FOI disclosures to {foi_disclosures_path}")
+    if foi_disclosures_path and foi_summary:
+        print(f"Wrote FOI disclosures to {foi_disclosures_path} "
+              f"and built combined forms ({foi_summary['total_rows']} rows)")
     if args.public_body is not None:
         print("Note: scoped export is derived/best-effort; run a full pipeline before publishing public/ artifacts.",
               file=sys.stderr)
