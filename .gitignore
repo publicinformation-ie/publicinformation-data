@@ -62,3 +62,4 @@ pipelines/cso_pipeline/experiments/**/results/
 
 # document_pipeline experiment results (regenerable — never commit)
 pipelines/document_pipeline/experiments/**/results/
+pipelines/foi_pipeline/steps/verify_disclosure_files/cache/
