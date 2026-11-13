@@ -505,26 +505,32 @@ def test_reports_on_list_across_policies_is_fatal(tmp_path):
         _load(write_yaml(tmp_path, text))
 
 
+_SHA = "a" * 64
 _ANNEX = ("    status_source: annex\n    status_annex:\n"
-          "      url: https://example.ie/a.xlsx\n      format: xlsx\n")
+          "      url: https://example.ie/a.xlsx\n      format: xlsx\n"
+          f"      sha256: {_SHA}\n")
 
 
 def test_status_annex_is_accepted_with_status_source(tmp_path):
     records = _load(write_yaml(tmp_path, _report("reports_on: a-plan", _ANNEX)))
-    assert records[2]["status_annex"] == {"url": "https://example.ie/a.xlsx", "format": "xlsx"}
+    assert records[2]["status_annex"] == {
+        "url": "https://example.ie/a.xlsx", "format": "xlsx", "sha256": _SHA}
     assert records[0]["status_annex"] is None
 
 
 def test_status_annex_without_status_source_is_rejected(tmp_path):
-    extra = "    status_annex:\n      url: https://example.ie/a.xlsx\n      format: xlsx\n"
+    extra = ("    status_annex:\n      url: https://example.ie/a.xlsx\n      format: xlsx\n"
+             f"      sha256: {_SHA}\n")
     with pytest.raises(ValueError, match="status_annex"):
         _load(write_yaml(tmp_path, _report("reports_on: a-plan", extra)))
 
 
 @pytest.mark.parametrize("annex", [
-    "      url: https://example.ie/a.csv\n      format: csv\n",
-    "      url: ftp://example.ie/a.xlsx\n      format: xlsx\n",
+    f"      url: https://example.ie/a.csv\n      format: csv\n      sha256: {_SHA}\n",
+    f"      url: ftp://example.ie/a.xlsx\n      format: xlsx\n      sha256: {_SHA}\n",
     "      url: https://example.ie/a.xlsx\n",
+    "      url: https://example.ie/a.xlsx\n      format: xlsx\n",  # no checksum
+    "      url: https://example.ie/a.xlsx\n      format: xlsx\n      sha256: ABC\n",
 ])
 def test_bad_status_annex_is_rejected(tmp_path, annex):
     extra = "    status_source: annex\n    status_annex:\n" + annex

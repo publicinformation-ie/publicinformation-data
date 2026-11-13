@@ -62,3 +62,13 @@ pipelines/cso_pipeline/experiments/**/results/
 
 # document_pipeline experiment results (regenerable — never commit)
 pipelines/document_pipeline/experiments/**/results/
+pipelines/foi_pipeline/steps/verify_disclosure_files/cache/
+
+# FOI disclosures: built forms (from the committed per-body files; see scripts/build_foi_combined.py)
+/public/foi-disclosures.json
+/public/latest/foi-disclosures/foi-disclosures.csv
+/public/latest/foi-disclosures/foi-disclosures.jsonld
+/public/latest/foi-disclosures/foi-disclosures.xlsx
+/public/latest/foi-disclosures/bodies/manifest.json
+# Climate Action Plan status annexes: downloaded cache, verified by sha256 in documents.yml
+/pipelines/document_pipeline/steps/fetch_status_annexes/annexes/

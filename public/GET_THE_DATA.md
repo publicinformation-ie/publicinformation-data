@@ -18,6 +18,8 @@ Every public body in Ireland: its name, whether it handles Freedom of Informatio
 
 Records of information already released under FOI: what was asked, who asked (e.g. journalist, member of the public), when, and the outcome.
 
+For one public body at a time, use the per-body files listed in the [manifest](latest/foi-disclosures/bodies/manifest.json). Cloning the repository? The combined files are built, not committed: run `python scripts/build_foi_combined.py` first. Dated, immutable copies with checksums: `https://releases.publicinformation.ie/foi-disclosures/`.
+
 ## [FOI request files](latest/foi-request-files/foi-request-files.csv)
 
 The original source documents each disclosure record came from.

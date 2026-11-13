@@ -16,7 +16,7 @@ The authoritative step order is defined in [`pipeline.json`](pipeline.json). Ste
 | 6 | [`clean_text`](steps/clean_text/) | Reflows raw positioned spans into headings, paragraphs, lists and tables. |
 | 7 | [`extract_actions`](steps/extract_actions/) | Classifies each document's action tables and extracts each action row plus its target date into reviewable metadata. |
 | 8 | [`extract_action_status`](steps/extract_action_status/) | For each `role: report` document, reads its annex tables and turns every action row into one dated status observation (status, reported deadline, progress narrative). |
-| 9 | [`fetch_status_annexes`](steps/fetch_status_annexes/) | Downloads each report's declared `status_annex` workbook (xlsx), validating the payload (zip + readable by openpyxl) rather than its content type. Always runs; reuses a file only while its declaration in `documents.yml` is unchanged. |
+| 9 | [`fetch_status_annexes`](steps/fetch_status_annexes/) | Downloads each report's declared `status_annex` workbook (xlsx), validating the payload (zip + readable by openpyxl) rather than its content type. Always runs; annexes are a git-ignored download cache, declared by url + sha256 in `documents.yml` and verified before use. |
 | 10 | [`extract_annex_status`](steps/extract_annex_status/) | Reads each annex workbook against a reviewed table of header layouts (fail-closed) and emits one status observation per row, dated from the report's `published_date`. |
 | 11 | [`assemble_sections`](steps/assemble_sections/) | Cuts cleaned blocks into per-section Markdown, interleaves figures, asserts page coverage. |
 | 12 | [`publish_bundles`](steps/publish_bundles/) | Packs each publishable document into a `bundle.tar.gz` and writes `public/documents/index.json`. |

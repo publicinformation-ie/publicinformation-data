@@ -755,39 +755,6 @@ def test_write_disclosure_files_output_multiple_bodies(tmp_path):
     assert ids == {1001, 1002}
 
 
-def test_write_foi_disclosures_output_preserves_row_id_known_issues_missing_columns(tmp_path):
-    record = {
-        "public_body_id": 1001,
-        "name": "Dept A",
-        "file_url": "https://assets.gov.ie/log.xlsx",
-        "file_type": "xlsx",
-        "foi_reference_id": "16/001",
-        "date_received": None,
-        "decision_date": "2016-02-01",
-        "requester_type": None,
-        "decision_status": "Granted",
-        "review_status": None,
-        "related_request": None,
-        "request_description": "some request",
-        "row_id": "abc123def456",
-        "known_issues": [
-            {"field": "date_received", "issue_type": "UnparseableDate", "raw_value": "32/13/2023"},
-        ],
-        "missing_columns": ["date_received", "requester_type", "review_status", "related_request"],
-    }
-    steps_dir = _make_deduplicate_steps_dir(tmp_path, [record])
-    write_foi_disclosures_output(steps_dir, tmp_path)
-    data = json.loads((tmp_path / "public" / "foi-disclosures.json").read_text())
-    assert data[0]["row_id"] == "abc123def456"
-    assert data[0]["known_issues"] == record["known_issues"]
-    assert data[0]["missing_columns"] == record["missing_columns"]
-
-
-# ---------------------------------------------------------------------------
-# write_foi_disclosures_output
-# ---------------------------------------------------------------------------
-
-
 def _make_deduplicate_steps_dir(tmp_path, results):
     """Helper: write extract_disclosures_deduplicate/output.json into a steps dir."""
     steps_dir = tmp_path / "steps"
@@ -800,75 +767,119 @@ def _make_deduplicate_steps_dir(tmp_path, results):
     return steps_dir
 
 
-def test_write_foi_disclosures_output_returns_correct_path(tmp_path):
-    steps_dir = _make_deduplicate_steps_dir(tmp_path, [])
-    path = write_foi_disclosures_output(steps_dir, tmp_path)
-    assert path == tmp_path / "public" / "foi-disclosures.json"
-
-
-def test_write_foi_disclosures_output_creates_file(tmp_path):
-    steps_dir = _make_deduplicate_steps_dir(tmp_path, [])
-    write_foi_disclosures_output(steps_dir, tmp_path)
-    assert (tmp_path / "public" / "foi-disclosures.json").exists()
-
-
-def test_write_foi_disclosures_output_content(tmp_path):
+def _disclosure(body_id, row_id, **overrides):
     record = {
-        "public_body_id": 1001,
-        "name": "Dept A",
-        "file_url": "https://x.ie/q1.xlsx",
-        "file_type": "xlsx",
-        "foi_reference_id": "16/001",
-        "decision_date": None,
-        "requester_type": None,
-        "decision_status": None,
-        "review_status": None,
-        "related_request": None,
-        "request_description": "Test request",
+        "public_body_id": body_id, "name": f"Dept {body_id}",
+        "file_url": f"https://x.ie/{body_id}.xlsx", "file_type": "xlsx",
+        "foi_reference_id": "16/001", "date_received": None, "decision_date": None,
+        "requester_type": None, "decision_status": None, "review_status": None,
+        "related_request": None, "request_description": "Test request",
+        "row_id": row_id, "known_issues": [], "missing_columns": [],
     }
-    steps_dir = _make_deduplicate_steps_dir(tmp_path, [record])
-    write_foi_disclosures_output(steps_dir, tmp_path)
-    data = json.loads((tmp_path / "public" / "foi-disclosures.json").read_text())
-    assert len(data) == 1
-    assert data[0] == record
+    record.update(overrides)
+    return record
+
+
+def _bodies_dir(tmp_path):
+    return tmp_path / "public" / "latest" / "foi-disclosures" / "bodies"
+
+
+def _read_body(tmp_path, body_id):
+    return [json.loads(line) for line in (_bodies_dir(tmp_path) / f"{body_id}.ndjson").read_text().splitlines()]
+
+
+def _write_ttl(tmp_path, modified="2020-01-01"):
+    ttl = tmp_path / "public" / "catalog" / "dataset-foi-disclosures.ttl"
+    ttl.parent.mkdir(parents=True)
+    ttl.write_text(f'<x> dct:modified "{modified}"^^xsd:date ;\n')
+    return ttl
+
+
+def _reset_ttl(ttl, modified="2020-01-01"):
+    ttl.write_text(f'<x> dct:modified "{modified}"^^xsd:date ;\n')
+
+
+# ---------------------------------------------------------------------------
+# write_foi_disclosures_output
+# ---------------------------------------------------------------------------
+
+
+def test_write_foi_disclosures_output_returns_per_body_dir(tmp_path):
+    steps_dir = _make_deduplicate_steps_dir(tmp_path, [_disclosure(1001, "a")])
+    assert write_foi_disclosures_output(steps_dir, tmp_path) == _bodies_dir(tmp_path)
 
 
 def test_write_foi_disclosures_output_returns_none_when_no_input(tmp_path):
     steps_dir = tmp_path / "steps"
     steps_dir.mkdir()
-    path = write_foi_disclosures_output(steps_dir, tmp_path)
-    assert path is None
+    assert write_foi_disclosures_output(steps_dir, tmp_path) is None
 
 
-def test_write_foi_disclosures_output_creates_public_dir(tmp_path):
-    steps_dir = _make_deduplicate_steps_dir(tmp_path, [])
+def test_write_foi_disclosures_output_does_not_write_combined_json(tmp_path):
+    steps_dir = _make_deduplicate_steps_dir(tmp_path, [_disclosure(1001, "a")])
     write_foi_disclosures_output(steps_dir, tmp_path)
-    assert (tmp_path / "public").is_dir()
+    assert not (tmp_path / "public" / "foi-disclosures.json").exists()
 
 
-def test_write_foi_disclosures_output_multiple_bodies(tmp_path):
-    records = [
-        {
-            "public_body_id": 1001, "name": "Dept A",
-            "file_url": "https://x.ie/q1.xlsx", "file_type": "xlsx",
-            "foi_reference_id": "16/001", "decision_date": None,
-            "requester_type": None, "decision_status": None, "review_status": None,
-            "related_request": None, "request_description": "First",
-        },
-        {
-            "public_body_id": 1002, "name": "Dept B",
-            "file_url": "https://y.ie/q1.xlsx", "file_type": "xlsx",
-            "foi_reference_id": "17/001", "decision_date": None,
-            "requester_type": None, "decision_status": None, "review_status": None,
-            "related_request": None, "request_description": "Second",
-        },
-    ]
+def test_write_foi_disclosures_output_preserves_row_id_known_issues_missing_columns(tmp_path):
+    record = _disclosure(
+        1001, "abc123def456",
+        known_issues=[{"field": "date_received", "issue_type": "UnparseableDate", "raw_value": "32/13/2023"}],
+        missing_columns=["date_received", "requester_type", "review_status", "related_request"],
+    )
+    steps_dir = _make_deduplicate_steps_dir(tmp_path, [record])
+    write_foi_disclosures_output(steps_dir, tmp_path)
+    data = _read_body(tmp_path, 1001)
+    assert data[0]["row_id"] == "abc123def456"
+    assert data[0]["known_issues"] == record["known_issues"]
+    assert data[0]["missing_columns"] == record["missing_columns"]
+
+
+def test_write_foi_disclosures_output_one_file_per_body(tmp_path):
+    records = [_disclosure(1001, "a"), _disclosure(1002, "b"), _disclosure(1001, "c")]
     steps_dir = _make_deduplicate_steps_dir(tmp_path, records)
     write_foi_disclosures_output(steps_dir, tmp_path)
-    data = json.loads((tmp_path / "public" / "foi-disclosures.json").read_text())
-    assert len(data) == 2
-    ids = {r["public_body_id"] for r in data}
-    assert ids == {1001, 1002}
+    assert sorted(p.name for p in _bodies_dir(tmp_path).iterdir()) == ["1001.ndjson", "1002.ndjson"]
+    assert [r["row_id"] for r in _read_body(tmp_path, 1001)] == ["a", "c"]
+    assert _read_body(tmp_path, 1002)[0] == records[1]
+
+
+def test_write_foi_disclosures_output_row_without_body_fails_and_writes_nothing(tmp_path):
+    steps_dir = _make_deduplicate_steps_dir(tmp_path, [_disclosure(1001, "a"), _disclosure(None, "b")])
+    with pytest.raises(ValueError, match="public_body_id"):
+        write_foi_disclosures_output(steps_dir, tmp_path)
+    assert not _bodies_dir(tmp_path).exists() or not list(_bodies_dir(tmp_path).iterdir())
+
+
+def test_unchanged_export_leaves_ttl_byte_identical(tmp_path):
+    steps_dir = _make_deduplicate_steps_dir(tmp_path, [_disclosure(1001, "a")])
+    ttl = _write_ttl(tmp_path)
+    write_foi_disclosures_output(steps_dir, tmp_path)  # first export adds a file -> stamps
+    _reset_ttl(ttl)
+    before = ttl.read_bytes()
+    write_foi_disclosures_output(steps_dir, tmp_path)
+    assert ttl.read_bytes() == before
+
+
+def test_changed_row_stamps_dct_modified(tmp_path):
+    ttl = _write_ttl(tmp_path)
+    write_foi_disclosures_output(_make_deduplicate_steps_dir(tmp_path, [_disclosure(1001, "a")]), tmp_path)
+    _reset_ttl(ttl)
+    (tmp_path / "steps").rename(tmp_path / "steps_old")
+    steps_dir = _make_deduplicate_steps_dir(tmp_path, [_disclosure(1001, "a", request_description="Changed")])
+    write_foi_disclosures_output(steps_dir, tmp_path)
+    assert '"2020-01-01"' not in ttl.read_text()
+
+
+def test_removed_body_stamps_and_deletes_its_file(tmp_path):
+    ttl = _write_ttl(tmp_path)
+    write_foi_disclosures_output(
+        _make_deduplicate_steps_dir(tmp_path, [_disclosure(1001, "a"), _disclosure(1002, "b")]), tmp_path)
+    _reset_ttl(ttl)
+    (tmp_path / "steps").rename(tmp_path / "steps_old")
+    write_foi_disclosures_output(_make_deduplicate_steps_dir(tmp_path, [_disclosure(1001, "a")]), tmp_path)
+    assert not (_bodies_dir(tmp_path) / "1002.ndjson").exists()
+    assert '"2020-01-01"' not in ttl.read_text()
 
 
 # ---------------------------------------------------------------------------

@@ -1,0 +1,33 @@
+name: Release FOI disclosures
+
+# Publishes an immutable release to bunny.net storage when a tag such as
+# foi-disclosures-v1.0.0+20261113 is pushed. All logic lives in
+# scripts/publish_artifacts.py; this file only supplies the tag and credentials.
+on:
+  push:
+    tags: ["foi-disclosures-v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    # Secrets live in this environment, which requires a reviewer's approval.
+    environment: foi-release
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install build requirements
+        run: pip install -r scripts/requirements-build.txt
+      - name: Publish release
+        env:
+          BUNNY_STORAGE_ZONE: ${{ secrets.BUNNY_STORAGE_ZONE }}
+          BUNNY_STORAGE_KEY: ${{ secrets.BUNNY_STORAGE_KEY }}
+        run: python scripts/publish_artifacts.py "$GITHUB_REF_NAME" --target bunny

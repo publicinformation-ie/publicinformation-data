@@ -34,7 +34,7 @@ Nine datasets are published as versioned Linked Data under `public/latest/<datas
 | Dataset | Version | Records | Docs |
 |---------|---------|---------|------|
 | Public Bodies | v2.0.0 | 883 | [`public/latest/public-bodies/README.md`](public/latest/public-bodies/README.md) |
-| FOI Disclosures | v1.0.0 | 66,901 | [`public/latest/foi-disclosures/README.md`](public/latest/foi-disclosures/README.md) |
+| FOI Disclosures | v1.0.0 | 57,685 | [`public/latest/foi-disclosures/README.md`](public/latest/foi-disclosures/README.md) |
 | FOI Request Files | v1.0.0 | 1,593 | [`public/latest/foi-request-files/README.md`](public/latest/foi-request-files/README.md) |
 | Who Does What | v1.0.0 | 27 | [`public/latest/who-does-what/README.md`](public/latest/who-does-what/README.md) |
 | Transport Policies | v1.0.0 | 21 | [`public/latest/transport-policies/README.md`](public/latest/transport-policies/README.md) |
@@ -54,7 +54,7 @@ Separate from the curated datasets above, the pipeline also writes unversioned r
 | File | Description |
 |------|-------------|
 | [`public/pipeline-data.json`](public/pipeline-data.json) | Consolidated status of all public bodies |
-| [`public/foi-disclosures.json`](public/foi-disclosures.json) | All extracted FOI request records (pre-Linked-Data raw export) |
+| [`public/foi-disclosures.json`](public/foi-disclosures.json) | All extracted FOI request records (pre-Linked-Data raw export). Built from `public/latest/foi-disclosures/bodies/*.ndjson`, not committed: run `python scripts/build_foi_combined.py` |
 | [`public/disclosure-files.json`](public/disclosure-files.json) | All discovered disclosure document URLs |
 | [`public/topics.json`](public/topics.json) | Topic groupings for FOI records |
 

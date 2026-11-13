@@ -4,20 +4,19 @@ FOI Disclosures dataset.
 Usage: python scripts/transform_foi_disclosures.py
 """
 import json
-import os
 import hashlib
-from collections import defaultdict
 from pathlib import Path
 
 from src.lib.body_refs import BASE_URI, build_body_slug_lookup, body_uri
-from src.lib.dataset_publish import render_csv, render_jsonld, stamp_if_changed
+from src.lib.dataset_publish import render_csv, render_jsonld, write_xlsx
 
-FOI_DISCLOSURES_PATH = "public/foi-disclosures.json"
+BODIES_DIR = "public/latest/foi-disclosures/bodies"
 PIPELINE_DATA_PATH = "public/pipeline-data.json"
 SLUG_SEED_PATH = "pipelines/foi_pipeline/steps/db_upload/slug_seed.json"
 LATEST_DIR = "public/latest/foi-disclosures"
 JSONLD_OUTPUT_PATH = f"{LATEST_DIR}/foi-disclosures.jsonld"
 CSV_OUTPUT_PATH = f"{LATEST_DIR}/foi-disclosures.csv"
+XLSX_OUTPUT_PATH = f"{LATEST_DIR}/foi-disclosures.xlsx"
 DATASET_VERSION = "1.0.0"
 TTL_PATH = "public/catalog/dataset-foi-disclosures.ttl"
 
@@ -48,16 +47,13 @@ def load_slug_seed(path=SLUG_SEED_PATH):
     return {int(k): v for k, v in raw.items()}
 
 
-def compute_disclosure_id(file_url, index_within_file):
-    """Deterministic id derived from (file_url, index_within_file).
+def compute_disclosure_id(row_id):
+    """Published id derived from the row's stable `row_id`.
 
-    file_url alone is not unique per record — one source disclosure log
-    file yields many individual FOI request rows — so the record's
-    position within its file's row list (in the order it appears in
-    foi-disclosures.json) disambiguates it. Stable across reruns as long
-    as a given file's extraction order doesn't change.
+    `row_id` is itself a hash of (file_url, original_row_index), so the id does
+    not depend on the order rows are stored or built in.
     """
-    return hashlib.sha1(f"{file_url}#{index_within_file}".encode("utf-8")).hexdigest()[:12]
+    return hashlib.sha1(row_id.encode("utf-8")).hexdigest()[:12]
 
 
 def known_issue_fields(issues):
@@ -80,7 +76,7 @@ def known_issue_fields(issues):
     return out
 
 
-def build_record(disclosure, body_slug_lookup, row_index):
+def build_record(disclosure, body_slug_lookup):
     """Build one FOI disclosure record.
 
     Raises for an unresolvable public_body_id rather than guessing or
@@ -91,9 +87,9 @@ def build_record(disclosure, body_slug_lookup, row_index):
     try:
         slug = body_slug_lookup[body_id]
     except KeyError:
-        raise ValueError(f"Unknown public_body_id in foi-disclosures.json: {body_id!r}")
+        raise ValueError(f"Unknown public_body_id in FOI disclosures: {body_id!r}")
 
-    disclosure_id = compute_disclosure_id(disclosure["file_url"], row_index)
+    disclosure_id = compute_disclosure_id(disclosure["row_id"])
     record = {
         "@id": f"{BASE_URI}/foi-disclosure/{disclosure_id}",
         "@type": "foi:FoiDisclosure",
@@ -156,42 +152,32 @@ def transform_to_csv_rows(records):
     return CSV_FIELDNAMES, rows
 
 
+def build_forms(disclosures, pipeline_bodies, slug_seed):
+    """Disclosure rows -> (jsonld document, csv fieldnames, csv rows)."""
+    body_slug_lookup = build_body_slug_lookup(pipeline_bodies, slug_seed)
+    records = [build_record(d, body_slug_lookup) for d in disclosures]
+    fieldnames, rows = transform_to_csv_rows(records)
+    return transform_to_jsonld(records), fieldnames, rows
+
+
 def publish(
     jsonld_data, fieldnames, rows,
-    jsonld_path=Path(JSONLD_OUTPUT_PATH), csv_path=Path(CSV_OUTPUT_PATH), ttl_path=Path(TTL_PATH),
+    jsonld_path=Path(JSONLD_OUTPUT_PATH), csv_path=Path(CSV_OUTPUT_PATH), xlsx_path=Path(XLSX_OUTPUT_PATH),
 ):
-    """Write jsonld/csv and stamp dct:modified only if content changed. Returns True if written."""
-    generated = {
-        jsonld_path: render_jsonld(jsonld_data),
-        csv_path: render_csv(fieldnames, rows),
-    }
-    return stamp_if_changed(ttl_path, [jsonld_path, csv_path], generated)
+    """Write the JSON-LD, CSV and XLSX forms. Never touches the catalog .ttl:
+    dct:modified follows the stored per-body files and is stamped by export_status."""
+    for path in (jsonld_path, csv_path, xlsx_path):
+        path.parent.mkdir(parents=True, exist_ok=True)
+    jsonld_path.write_bytes(render_jsonld(jsonld_data))
+    csv_path.write_bytes(render_csv(fieldnames, rows))
+    write_xlsx(xlsx_path, fieldnames, rows)
 
 
 def main():
-    os.makedirs(LATEST_DIR, exist_ok=True)
+    from scripts.build_foi_combined import build
 
-    with open(FOI_DISCLOSURES_PATH) as f:
-        disclosures = json.load(f)
-    with open(PIPELINE_DATA_PATH) as f:
-        pipeline_bodies = json.load(f)["public_bodies"]
-    slug_seed = load_slug_seed()
-
-    body_slug_lookup = build_body_slug_lookup(pipeline_bodies, slug_seed)
-    file_row_counters = defaultdict(int)
-    records = []
-    for d in disclosures:
-        row_index = file_row_counters[d["file_url"]]
-        file_row_counters[d["file_url"]] += 1
-        records.append(build_record(d, body_slug_lookup, row_index))
-
-    jsonld_data = transform_to_jsonld(records)
-    fieldnames, rows = transform_to_csv_rows(records)
-    changed = publish(jsonld_data, fieldnames, rows)
-    if changed:
-        print(f"Transformed {len(records)} FOI disclosures to JSON-LD and CSV (content changed, dct:modified updated)")
-    else:
-        print(f"Transformed {len(records)} FOI disclosures to JSON-LD and CSV (no content change, dct:modified untouched)")
+    summary = build(Path("."))
+    print(f"Built {summary['total_rows']} FOI disclosures (JSON, JSON-LD, CSV, XLSX, manifest)")
 
 
 if __name__ == "__main__":

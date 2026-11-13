@@ -13,13 +13,19 @@ Reads `find_public_bodies/output.json` as the base record set, then iterates thr
 - `disclosure_files` — total / valid / failed file counts.
 - `foi_requests` — count of successfully canonicalised FOI request records.
 
-In addition to the step-level `output.json`, this step writes three public JSON files to `public/`:
+In addition to the step-level `output.json`, this step writes these public files to `public/`:
 
 | File | Contents |
 |---|---|
 | `public/pipeline-data.json` | Full merged status for every public body |
 | `public/disclosure-files.json` | Flat list of all discovered disclosure log file URLs |
-| `public/foi-disclosures.json` | All canonicalised FOI request records |
+| `public/latest/foi-disclosures/bodies/<public_body_id>.ndjson` | All canonicalised FOI request records, one canonical NDJSON file per body (committed, ordinary git) |
+
+After writing the per-body files the step rebuilds the **uncommitted** combined forms
+(`public/foi-disclosures.json`, `public/latest/foi-disclosures/foi-disclosures.{csv,jsonld,xlsx}`
+and `bodies/manifest.json`) via `scripts/build_foi_combined.py`, so local files always match the
+per-body files. It stamps `dct:modified` in `public/catalog/dataset-foi-disclosures.ttl` only when
+a per-body file was added, changed or removed.
 
 On a full (unscoped) run it also regenerates the public-bodies catalog via
 `publish_public_artifacts()` → `src/lib/publish_public_bodies.py`, writing
