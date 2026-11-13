@@ -43,12 +43,22 @@ def write_xlsx(path: Path, fieldnames: list[str], rows: list[dict]) -> None:
     """Write rows to an XLSX (openpyxl write-only mode) with fieldnames as the header.
     Cell values are the same values the CSV carries; None becomes an empty cell."""
     from openpyxl import Workbook
+    from openpyxl.cell import WriteOnlyCell
 
     wb = Workbook(write_only=True)
     ws = wb.create_sheet("foi-disclosures")
-    ws.append(list(fieldnames))
+
+    def cell(value):
+        # openpyxl turns any string starting with "=" into a formula. Force
+        # literal text so source-controlled strings can never execute.
+        c = WriteOnlyCell(ws, value=_xlsx_cell(value))
+        if isinstance(c.value, str):
+            c.data_type = "s"
+        return c
+
+    ws.append([cell(f) for f in fieldnames])
     for row in rows:
-        ws.append([_xlsx_cell(row.get(f, "")) for f in fieldnames])
+        ws.append([cell(row.get(f, "")) for f in fieldnames])
     wb.save(path)
 
 

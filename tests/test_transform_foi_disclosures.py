@@ -113,7 +113,7 @@ def test_publish_writes_jsonld_csv_and_xlsx(tmp_path):
 
     assert jsonld_path.read_bytes() == render_jsonld(jsonld_data)
     assert csv_path.read_bytes() == render_csv(fieldnames, rows)
-    xlsx_rows = [tuple(r) for r in openpyxl.load_workbook(xlsx_path, read_only=True).active.iter_rows(values_only=True)]
+    xlsx_rows = [tuple(r) for r in _xlsx_values(xlsx_path)]
     assert xlsx_rows == [("id", "name"), ("1", "old")]
 
 
@@ -127,7 +127,7 @@ def test_xlsx_rows_equal_csv_rows_built_from_same_fixture(tmp_path):
     paths = dict(jsonld_path=tmp_path / "a.jsonld", csv_path=tmp_path / "a.csv", xlsx_path=tmp_path / "a.xlsx")
     publish(jsonld_data, fieldnames, rows, **paths)
     xlsx = [tuple("" if v is None else str(v) for v in r)
-            for r in openpyxl.load_workbook(paths["xlsx_path"], read_only=True).active.iter_rows(values_only=True)]
+            for r in _xlsx_values(paths["xlsx_path"])]
     csv_rows = [tuple(r) for r in csv.reader(open(paths["csv_path"], newline="", encoding="utf-8"))]
     # XLSX (XML 1.0) cannot hold control characters; everything else is equal.
     csv_rows = [tuple(c.replace("\x0b", "") for c in r) for r in csv_rows]
@@ -156,3 +156,24 @@ def test_known_issues_dict_without_field_is_an_error():
     disclosure["known_issues"] = [{"issue_type": "X"}]
     with pytest.raises(ValueError):
         build_record(disclosure, {1052: "bord-bia"})
+
+
+def test_xlsx_never_writes_formulas(tmp_path):
+    import openpyxl
+    from src.lib.dataset_publish import write_xlsx
+
+    payloads = ["=1+1", "+SUM(A1)", "-2+3", "@cmd", '=HYPERLINK("http://x","y")']
+    path = tmp_path / "f.xlsx"
+    write_xlsx(path, ["name"], [{"name": p} for p in payloads])
+    ws = openpyxl.load_workbook(path).active
+    assert ws is not None
+    cells = [ws.cell(row=i + 2, column=1) for i in range(len(payloads))]
+    assert [c.value for c in cells] == payloads
+    assert all(c.data_type == "s" for c in cells)
+
+
+def _xlsx_values(path):
+    import openpyxl
+    ws = openpyxl.load_workbook(path, read_only=True).active
+    assert ws is not None
+    return ws.iter_rows(values_only=True)
