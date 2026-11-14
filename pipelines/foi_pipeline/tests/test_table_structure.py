@@ -130,3 +130,18 @@ def test_default_thresholds_calibrated_values():
     assert DEFAULT_THRESHOLDS.max_fragment_share == 0.08
     assert DEFAULT_THRESHOLDS.max_split_word_rate == 0.02
     assert DEFAULT_THRESHOLDS.max_repeated_header_share == 0.07
+
+
+def test_optional_trailing_columns_uniform():
+    score = score_table(load("qqi_2026_trailing_optional"))
+    assert score.width_uniformity >= 0.92
+
+
+def test_three_missing_trailing_cells_not_uniform():
+    rows = [r + ["Note"] for r in clean_rows(20)]
+    for i in range(1, 21):
+        if i % 10 < 3:  # 30% of rows lose their last three cells
+            rows[i] = rows[i][:3] + [""] * 3
+    score = score_table(rows)
+    assert score.modal_width == 6
+    assert "width_uniformity" in failed_checks(score)

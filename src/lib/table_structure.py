@@ -169,7 +169,19 @@ def score_table(rows: list[list]) -> StructureScore:
     if modal_width < 2:
         return _worst(n_rows, modal_width)
 
-    width_uniformity = counts[modal_width] / n_rows
+    # Optional trailing columns: a row padded to full width whose trailing
+    # cells are empty is still uniform if at most 2 are missing. Rows wider
+    # than the table's usual padded width (stray extra columns) never are.
+    raw_counts = Counter(len(r) for r in data)
+    raw_mode = max(raw_counts, key=lambda w: (raw_counts[w], w))
+    max_width = max(modal_width, raw_mode)
+    uniform = sum(
+        1 for w, r in zip(widths, data)
+        if w == modal_width
+        or (len(r) >= modal_width and modal_width - 2 <= w <= max_width
+            and len(_non_empty(r)) >= 3)
+    )
+    width_uniformity = uniform / n_rows
     if modal_width >= 4:
         fragments = sum(1 for r in data if 1 <= len(_non_empty(r)) <= 2)
         fragment_share = fragments / n_rows
