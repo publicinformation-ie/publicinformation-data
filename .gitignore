@@ -17,6 +17,7 @@ docs/
 **/output.json
 !pipelines/foi_pipeline/steps/*/output.json
 pipelines/foi_pipeline/steps/extract_disclosures*/output.json
+pipelines/foi_pipeline/steps/assess_table_structure/output.json
 pipelines/foi_pipeline/steps/filter_phantom_rows/output.json
 pipelines/foi_pipeline/steps/normalize_disclosure_cells/output.json
 **/errors.json
