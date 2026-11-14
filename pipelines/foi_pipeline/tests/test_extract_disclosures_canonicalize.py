@@ -1500,3 +1500,10 @@ def test_duplicate_header_tie_keeps_first_column():
     results, _, _ = canonicalize_file(_canon_item(rows))
     # col 1 (Type Request) wins the tie -> its raw values flow through
     assert [r["requester_type"] for r in results] == ["Journalist", "Others"]
+
+
+def test_waterford_2025_header_mapping():
+    header = ['Tag/ Ref', 'Catagóir Cinnidh/\nDecision Category', 'Cinéal Iarratasóra/\nType of Requestor',
+              'Dáta a fuarthas/\nDate Received', 'Cinneadh Eisithe/\nDecision Made', 'Sonraí/\nDetails']
+    assert [canonicalize_header(h) for h in header] == [
+        'foi_reference_id', 'decision_status', 'requester_type', 'date_received', 'decision_date', 'request_description']

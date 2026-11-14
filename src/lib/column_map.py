@@ -90,6 +90,7 @@ _SYNONYMS: dict[str, list[str]] = {
         'cinneadh eisithe / date decision issued',
         'cinneadh eisithe/ decision issued',
         'cinneadh eisithe/decision made',      # Donegal compiled PDF (no spaces around /)
+        'cinneadh eisithe/ decision made',     # Waterford 2025 (newline after / normalises to a space)
         'decision due',
         # Leitrim and Fingal/DLR variants
         'date outcome',
@@ -126,6 +127,7 @@ _SYNONYMS: dict[str, list[str]] = {
         'cineál iarratasóra / type of requestor',  # Irish bilingual (Galway)
         'cineál iarratasóra/ type of requestor',   # no-space variant
         'cineál iarratasóra/type of requestor',    # Donegal compiled PDF (no spaces around /)
+        'cinéal iarratasóra/ type of requestor',   # Waterford 2025 ("Cinéal" spelling, newline after /)
         'type of request',
         # Group E — additional body variants
         'category of applicant',
