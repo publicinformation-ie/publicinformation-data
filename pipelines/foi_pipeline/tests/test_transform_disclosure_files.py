@@ -1806,6 +1806,77 @@ def test_select_fingal_2024_not_camelot_stream(monkeypatch):
     _stub_candidates(monkeypatch, cands)
     chosen, _ = _select()
     assert chosen.name != "camelot_stream"
+    assert chosen.name == "mistral_cache"
+
+
+# ── selection key ordering ───────────────────────────────────────────────────
+
+def _stub_scores(monkeypatch, by_tag):
+    """Score tables by their first cell. by_tag: tag -> StructureScore field overrides.
+
+    `passes` is faked: a score passes when n_rows == 1.
+    """
+    import lib.table_structure as ts
+
+    def fake_score(rows):
+        base = dict(n_rows=1, modal_width=3, width_uniformity=1.0, fragment_share=0.0,
+                    column_type_purity=1.0, cross_cell_split_rate=0.0, run_together_rate=0.0,
+                    repeated_header_share=0.0, composite=0.9, role_contamination=0.0,
+                    worst_role_contamination=0.0, worst_role=None, anchored_row_share=1.0,
+                    roles_unmapped=False)
+        base.update(by_tag[rows[0][0]])
+        return ts.StructureScore(**base)
+
+    monkeypatch.setattr(ts, "score_table", fake_score)
+    monkeypatch.setattr(ts, "passes", lambda sc: sc.n_rows == 1)
+
+
+def _select_by_scores(monkeypatch, scores):
+    """scores: candidate name -> field overrides; pdfplumber is forced to fail."""
+    tags = {name: {**ov} for name, ov in scores.items()}
+    tags["pdfplumber"] = {"n_rows": 0}
+    _stub_scores(monkeypatch, {n: o for n, o in tags.items()})
+    _stub_candidates(monkeypatch, {n: [[n]] for n in tags})
+    return _select()[0].name
+
+
+def test_selection_key_contamination_beats_composite(monkeypatch):
+    name = _select_by_scores(monkeypatch, {
+        "camelot_lattice": {"worst_role_contamination": 0.15, "composite": 0.80},
+        "pymupdf": {"worst_role_contamination": 0.01, "composite": 0.60},
+    })
+    assert name == "pymupdf"
+
+
+def test_selection_key_anchored_share_breaks_contamination_tie(monkeypatch):
+    name = _select_by_scores(monkeypatch, {
+        "camelot_lattice": {"anchored_row_share": 0.85, "composite": 0.99},
+        "pymupdf": {"anchored_row_share": 0.95, "composite": 0.70},
+    })
+    assert name == "pymupdf"
+
+
+def test_selection_key_unmeasured_roles_rank_as_fully_contaminated(monkeypatch):
+    name = _select_by_scores(monkeypatch, {
+        "camelot_lattice": {"roles_unmapped": True, "worst_role_contamination": None,
+                            "anchored_row_share": None, "composite": 0.99},
+        "pymupdf": {"worst_role_contamination": 0.18, "composite": 0.50},
+    })
+    assert name == "pymupdf"
+
+
+def test_selection_key_composite_then_candidate_order(monkeypatch):
+    name = _select_by_scores(monkeypatch, {
+        "camelot_lattice": {"composite": 0.90},
+        "pymupdf": {"composite": 0.95},
+    })
+    assert name == "pymupdf"
+    # Identical scores: the earlier entry in CANDIDATE_ORDER wins.
+    name = _select_by_scores(monkeypatch, {
+        "pymupdf": {"composite": 0.9},
+        "camelot_lattice": {"composite": 0.9},
+    })
+    assert name == "camelot_lattice"
 
 
 # ── pdf_extractor override key ───────────────────────────────────────────────

@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """_CONTINUATION_NULL_THRESHOLD sweep experiment.
 
+STALE: the constant moved to lib.table_utils; patching _nh_process below is a
+no-op, so a rerun sweeps nothing. See README. Kept as a historical record.
+
 Phase 1 — Diagnostic: classify each InsufficientColumns failure as null_header,
 vocab_gap, or not_in_fixture. Outputs diagnostic.csv.
 

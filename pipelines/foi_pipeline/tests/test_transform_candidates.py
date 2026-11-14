@@ -12,7 +12,7 @@ from steps.transform_disclosure_files.process import _extract_pdf
 
 FIXTURE = Path(__file__).parent / "fixtures" / "pdf" / "rte_2018_p1.pdf"
 CAMELOT = {"camelot_lattice", "camelot_stream"}
-GEOMETRIC = ["pdfplumber", "pdfplumber_lines", "camelot_lattice", "pymupdf", "camelot_stream"]
+GEOMETRIC = ["pdfplumber", "camelot_lattice", "pymupdf", "camelot_stream"]
 
 
 @pytest.fixture(scope="module")
@@ -56,7 +56,7 @@ def test_unknown_candidate_name_raises_value_error(pdf_bytes, tmp_path):
 
 def test_candidate_names_constant():
     assert CANDIDATE_NAMES == (
-        "pdfplumber", "pdfplumber_lines", "camelot_lattice", "pymupdf", "camelot_stream", "mistral_cache",
+        "pdfplumber", "camelot_lattice", "pymupdf", "camelot_stream", "mistral_cache",
     )
 
 

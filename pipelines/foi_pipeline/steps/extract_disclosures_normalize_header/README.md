@@ -72,7 +72,9 @@ python process.py --from extract_disclosures_normalize_header --public-body 1001
 
 ## Tuning Parameters
 
-| Parameter | Default | Description |
+The continuation-row logic lives in `src/lib/table_utils.py` (`normalize_header_row`); this step only calls it. Change the constants there, not in `process.py`.
+
+| Parameter (in `src/lib/table_utils.py`) | Default | Description |
 |-----------|---------|-------------|
 | `_CONTINUATION_NULL_THRESHOLD` | 0.5 | A row is a continuation row if > 50% of its cells are null |
-| `_MAX_CONTINUATION_ROWS` | 3 | Maximum number of rows after the header to consider as continuations |
+| `_MAX_CONTINUATION_ROWS` | 6 | Maximum number of rows after the header to consider as continuations |

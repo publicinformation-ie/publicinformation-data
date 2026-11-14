@@ -1,5 +1,12 @@
 # Experiment: `_CONTINUATION_NULL_THRESHOLD` Sweep
 
+> **Stale (2026-11-14):** `run.py` patches `_CONTINUATION_NULL_THRESHOLD` on
+> `steps.extract_disclosures_normalize_header.process`. That constant now lives in
+> `src/lib/table_utils.py`, so re-running this script silently sweeps nothing (every
+> threshold behaves like 0.5). The recorded results below are historical. To rerun,
+> patch `lib.table_utils._CONTINUATION_NULL_THRESHOLD` instead. Not rewritten here.
+
+
 **Date:** 2026-06-05
 **Status:** Complete
 

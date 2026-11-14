@@ -23,7 +23,6 @@ from steps.transform_disclosure_files.process import (
 
 CANDIDATE_NAMES = (
     "pdfplumber",
-    "pdfplumber_lines",
     "camelot_lattice",
     "pymupdf",
     "camelot_stream",
@@ -156,12 +155,6 @@ def extract_candidate(
     """Run one named extractor. None when it finds no table; raises on failure."""
     if name == "pdfplumber":
         return _pdfplumber(name, file_bytes, _DEFAULT_PDF_TABLE_SETTINGS)
-    if name == "pdfplumber_lines":
-        return _pdfplumber(
-            name,
-            file_bytes,
-            {"vertical_strategy": "lines", "horizontal_strategy": "lines", **_DEFAULT_PDF_TABLE_SETTINGS},
-        )
     if name == "camelot_lattice":
         return _camelot_lattice(file_bytes)
     if name == "pymupdf":
