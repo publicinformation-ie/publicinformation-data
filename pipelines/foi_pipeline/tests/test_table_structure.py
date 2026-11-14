@@ -162,15 +162,15 @@ def test_three_missing_trailing_cells_not_uniform():
     "tok", ["WhatsApp", "EirGrid;", "(\u201cEirGrid\u201d)", "ComReg's", "BowelScreen", "ServiceNow,"]
 )
 def test_brand_tokens_not_split_words(tok):
-    from lib.table_structure import _count_split_words
+    from lib.table_structure import _count_run_together
 
-    assert _count_split_words([[f"request about {tok} usage"]])[0] == 0
+    assert _count_run_together([[f"request about {tok} usage"]])[0] == 0
 
 
 def test_lowercase_join_still_split_word():
-    from lib.table_structure import _count_split_words
+    from lib.table_structure import _count_run_together
 
-    assert _count_split_words([["request dateAll usage"]])[0] == 1
+    assert _count_run_together([["request dateAll usage"]])[0] == 1
 
 
 def test_stvincents_brand_passes_split_check():
@@ -196,3 +196,95 @@ def test_year_like_values_in_records_kept():
     rows.append(["FOI-2019-001", "05/01/2019", "Information about housing", "Journalist", "Full Grant"])
     rows.append(["2019", "Business", "Information about roads", "Journalist", "Full Grant"])
     assert score_table(rows).n_rows == base + 2
+
+
+# --- Gate on structure, not text (openspec change foi-gate-on-structure-not-text) ---
+
+def _rows_with_pair(left, right, n=20):
+    rows = [["Reference Number", "Date of Request", "Requester", "Description", "Decision"]]
+    for i in range(n):
+        rows.append([f"FOI/2020/{i:03d}", f"{(i % 28) + 1:02d}/01/2020", left, right, "Full Grant"])
+    return rows
+
+
+@pytest.mark.parametrize("left,right", [
+    ("Journalist", "all records relating to housing"),
+    ("Client", "social housing"),
+])
+def test_adjacent_complete_values_not_split_words(left, right):
+    score = score_table(_rows_with_pair(left, right))
+    assert score.cross_cell_split_rate == 0.0
+    assert score.split_word_rate == 0.0
+    assert "split_word_rate" not in failed_checks(score)
+
+
+def test_word_stub_across_boundary_counts():
+    score = score_table(_rows_with_pair("S", "ummary of request"))
+    assert score.cross_cell_split_rate > 0.02
+    assert score.split_word_rate == score.cross_cell_split_rate
+    assert "split_word_rate" in failed_checks(score)
+
+
+def test_courts_adjacent_values_fixture_passes():
+    score = score_table(load("courts_2017_q3_adjacent_values"))
+    assert score.cross_cell_split_rate == 0.0
+    assert passes(score), failed_checks(score)
+
+
+def test_run_together_tokens_recorded_but_do_not_gate():
+    rows = clean_rows(20)
+    for row in rows[1:]:
+        row[2] = "Information aboutHousing andThe roads"
+    score = score_table(rows)
+    assert score.run_together_rate > 0.02
+    assert score.cross_cell_split_rate == 0.0
+    assert "split_word_rate" not in failed_checks(score)
+    assert passes(score), failed_checks(score)
+
+
+def test_run_together_tokens_still_lower_composite():
+    clean = score_table(clean_rows(20))
+    rows = clean_rows(20)
+    for row in rows[1:]:
+        row[2] = "Information aboutHousing andThe roads"
+    assert score_table(rows).composite < clean.composite
+
+
+def test_repeated_header_every_page_passes_and_is_recorded():
+    rows = load("repeated_header_every_page_2023")
+    score = score_table(rows)
+    assert score.repeated_header_share > 0
+    assert "repeated_header_share" not in failed_checks(score)
+    assert passes(score), failed_checks(score)
+
+
+def test_repeated_header_rows_removed_from_data():
+    rows = clean_rows(20)
+    for pos in (15, 10, 5):
+        rows.insert(pos, list(rows[0]))
+    score = score_table(rows)
+    assert score.n_rows == 20
+    assert score.repeated_header_share == pytest.approx(3 / 23)
+    assert passes(score), failed_checks(score)
+
+
+def test_width_broken_table_still_fails_uniformity():
+    rows = clean_rows(20)
+    for i, row in enumerate(rows[1:], start=1):
+        if i % 2:
+            rows[i] = row[:3]
+    assert "width_uniformity" in failed_checks(score_table(rows))
+
+
+def test_from_dict_reads_legacy_score():
+    from dataclasses import asdict
+    from lib.table_structure import StructureScore
+
+    score = score_table(clean_rows(20))
+    legacy = {k: v for k, v in asdict(score).items()
+              if k not in ("cross_cell_split_rate", "run_together_rate")}
+    legacy["split_word_rate"] = 0.5
+    rebuilt = StructureScore.from_dict(legacy)
+    assert rebuilt.cross_cell_split_rate == 0.5
+    assert rebuilt.run_together_rate == 0.0
+    assert StructureScore.from_dict(asdict(score)) == score

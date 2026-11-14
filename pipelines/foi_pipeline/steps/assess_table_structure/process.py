@@ -42,7 +42,7 @@ def _error_for(record) -> dict:
             "public_body_id": record.get("public_body_id"),
             "file_url": record["file_url"],
             "pdf_extractor": record.get("pdf_extractor"),
-            "failed_checks": failed_checks(StructureScore(**score), DEFAULT_THRESHOLDS),
+            "failed_checks": failed_checks(StructureScore.from_dict(score), DEFAULT_THRESHOLDS),
             "score": score,
         },
     }

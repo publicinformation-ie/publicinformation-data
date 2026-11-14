@@ -56,7 +56,7 @@ PYTHONPATH=".:../../src" python steps/export_status/process.py \
 10. `fingerprint_disclosure_pages` - Hashes disclosure page file links to detect changes between runs
 11. `find_disclosure_files` - Collects disclosure document links
 12. `transform_disclosure_files` - Processes files into structured data
-12a. `assess_table_structure` - Fail-closed gate: scores PDF table structure; unreliable PDFs are emptied (`rows: []`) and logged as `TableStructureUnreliable`; xlsx/xls never gated
+12a. `assess_table_structure` - Fail-closed gate: scores PDF table structure; unreliable PDFs are emptied (`rows: []`) and logged as `TableStructureUnreliable`; only structural checks gate (run-together text `run_together_rate` and `repeated_header_share` are recorded, not gated); xlsx/xls never gated
 13. `normalize_disclosure_cells` - Normalizes string cell values
 14. `filter_phantom_rows` - Drops blank rows (all file types) and merges wrapped-cell PDF fragments into their parent rows; single authoritative row-structure repair layer
 15. `extract_disclosures_detect_header_row` - Detects header rows

@@ -2,9 +2,20 @@
 
 Scores a ``rows`` grid (list of lists of cells) on structural signals that need
 no ground-truth labels: row-width uniformity, fragment rows, column type
-purity, split/run-together words and repeated header rows. Threshold values in
-``DEFAULT_THRESHOLDS`` were calibrated on a 10-file gold set (small N);
-see experiments/2026-11-14-pdf-extractor-bakeoff/results/bakeoff.md.
+purity and words split across a column boundary. These are the *structural*
+checks, and only they gate (``failed_checks``).
+
+Two signals are recorded but never gate:
+
+* ``run_together_rate``: run-together tokens inside a cell (``informaQon``,
+  ``andThe``). That is a defect in cell text, not in the table; cell repair
+  belongs in ``normalize_disclosure_cells``.
+* ``repeated_header_share``: rows equal to the header (header repeated on each
+  page). These rows are removed before scoring, as ``canonicalize`` does anyway.
+
+Both still feed ``composite`` so candidate selection prefers cleaner text.
+Threshold values in ``DEFAULT_THRESHOLDS`` were calibrated on a 10-file gold
+set (small N); see experiments/2026-11-14-pdf-extractor-bakeoff/results/bakeoff.md.
 """
 import re
 from collections import Counter
@@ -29,9 +40,26 @@ class StructureScore:
     width_uniformity: float
     fragment_share: float
     column_type_purity: float
-    split_word_rate: float
-    repeated_header_share: float
+    cross_cell_split_rate: float  # structural: a word stub across a column boundary
+    run_together_rate: float  # text: run-together tokens inside a cell (never gates)
+    repeated_header_share: float  # recorded before removal (never gates)
     composite: float
+
+    @property
+    def split_word_rate(self) -> float:
+        """Deprecated alias for ``cross_cell_split_rate`` (the gating signal)."""
+        return self.cross_cell_split_rate
+
+    @classmethod
+    def from_dict(cls, d: dict) -> "StructureScore":
+        """Rebuild from a stored score, including legacy ones that only have
+        ``split_word_rate`` (a combined rate; read as the structural one)."""
+        d = dict(d)
+        legacy = d.pop("split_word_rate", None)
+        if "cross_cell_split_rate" not in d and legacy is not None:
+            d["cross_cell_split_rate"] = legacy
+        d.setdefault("run_together_rate", 0.0)
+        return cls(**d)
 
 
 @dataclass(frozen=True)
@@ -40,6 +68,8 @@ class Thresholds:
     max_fragment_share: float = 0.08
     min_column_type_purity: float = 0.85
     max_split_word_rate: float = 0.02
+    # Kept so stored threshold reports still parse; no longer used by
+    # failed_checks (repeated header rows are removed, not rejected).
     max_repeated_header_share: float = 0.07
     min_rows: int = 1
 
@@ -109,21 +139,29 @@ def _is_year_divider(row: list) -> bool:
     return len(cells) == 1 and _YEAR_RE.fullmatch(cells[0]) is not None
 
 
-def _data_rows(rows: list[list]) -> tuple[list, list[list]]:
-    """Return (header_row, data_rows) with extra header rows and blanks dropped."""
+def _data_rows(rows: list[list]) -> tuple[list, list[list], float]:
+    """Return (header_row, data_rows, repeated_header_share).
+
+    Blank rows, year dividers, extra header rows and rows repeating the header
+    are dropped. The share is of the rows before the repeats were removed.
+    """
     if not rows:
-        return [], []
+        return [], [], 0.0
     idx = detect_header_row(rows)
     header = rows[idx]
     body = [r for r in rows[idx + 1:]
             if any(not _is_empty(c) for c in r) and not _is_year_divider(r)]
+    header_norm = [_norm(c) for c in _trimmed(header)]
+    kept = [r for r in body if [_norm(c) for c in _trimmed(r)] != header_norm]
+    repeated_share = (len(body) - len(kept)) / len(body) if body else 0.0
+    body = kept
     start = 0
     while start < len(body):
         row = body[start]
         if _has_date_or_reference(row) or not _is_header_like(row):
             break
         start += 1
-    return header, body[start:]
+    return header, body[start:], repeated_share
 
 
 def _is_run_together(tok: str) -> bool:
@@ -134,22 +172,52 @@ def _is_run_together(tok: str) -> bool:
     return not _BRAND_RE.fullmatch(core)
 
 
-def _count_split_words(rows: list[list]) -> tuple[int, int]:
-    """Return (split pairs + run-together tokens, non-empty cells)."""
-    events = 0
-    cells = 0
+# Words that may legitimately end or start a cell, so a 3-letter edge is not a stub.
+_COMMON_SHORT = frozenset(
+    "a an the of to for and or in on re by at is it as be no mr ms dr ltd na sec all any its".split()
+)
+
+
+def _is_stub_pair(left: str, right: str) -> bool:
+    """A word broken by a column boundary: a stub on at least one side.
+
+    Two adjacent complete values (``Journalist`` | ``all records``) are not.
+    """
+    if not (re.search(r"[A-Za-z]$", left) and re.match(r"[a-z]", right)):
+        return False
+    last_m = re.search(r"[A-Za-z]+$", left)
+    first_m = re.match(r"[a-z]+", right)
+    if last_m is None or first_m is None:
+        return False
+    last, first = last_m.group(0), first_m.group(0)
+    return ((len(last) <= 3 and last.lower() not in _COMMON_SHORT)
+            or (len(first) <= 3 and first not in _COMMON_SHORT))
+
+
+def _count_run_together(rows: list[list]) -> tuple[int, int]:
+    """Return (run-together tokens, non-empty cells). A text signal."""
+    events = cells = 0
+    for row in rows:
+        for cell in row:
+            t = _text(cell)
+            if not t.strip():
+                continue
+            cells += 1
+            events += sum(1 for tok in t.split() if _is_run_together(tok))
+    return events, cells
+
+
+def _count_cross_cell_splits(rows: list[list]) -> tuple[int, int]:
+    """Return (stub pairs across adjacent cells, non-empty cells). Structural."""
+    events = cells = 0
     for row in rows:
         texts = [_text(c) for c in row]
         for i, t in enumerate(texts):
             if not t.strip():
                 continue
             cells += 1
-            events += sum(1 for tok in t.split() if _is_run_together(tok))
-            if i + 1 < len(texts):
-                nxt = texts[i + 1]
-                if (nxt.strip() and re.search(r"[A-Za-z]$", t)
-                        and re.match(r"[a-z]", nxt)):
-                    events += 1
+            if i + 1 < len(texts) and texts[i + 1].strip() and _is_stub_pair(t, texts[i + 1]):
+                events += 1
     return events, cells
 
 
@@ -168,7 +236,7 @@ def _column_type_purity(data: list[list]) -> float:
 
 
 def _worst(n_rows: int, modal_width: int) -> StructureScore:
-    return StructureScore(n_rows, modal_width, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0)
+    return StructureScore(n_rows, modal_width, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0)
 
 
 def score_table(rows: list[list]) -> StructureScore:
@@ -181,7 +249,8 @@ def score_table(rows: list[list]) -> StructureScore:
     # (title rows above it), so we merge from the detected header onward, which
     # is the same row sequence the filter sees once any title rows are absent.
     rows = rows[detect_header_row(rows):] if rows else rows
-    header, data = _data_rows(merge_continuation_rows(rows)[0] if rows else rows)
+    header, data, repeated_header_share = _data_rows(
+        merge_continuation_rows(rows)[0] if rows else rows)
     n_rows = len(data)
     if n_rows == 0:
         return _worst(0, 0)
@@ -215,20 +284,18 @@ def score_table(rows: list[list]) -> StructureScore:
     else:
         fragment_share = 0.0
 
-    header_norm = [_norm(c) for c in _trimmed(header)]
-    repeated = sum(1 for r in data if [_norm(c) for c in _trimmed(r)] == header_norm)
-    repeated_header_share = repeated / n_rows
-
-    events, cells = _count_split_words([header] + data)
-    split_word_rate = events / cells if cells else 1.0
+    splits, cells = _count_cross_cell_splits([header] + data)
+    cross_cell_split_rate = splits / cells if cells else 1.0
+    run_together, cells = _count_run_together([header] + data)
+    run_together_rate = run_together / cells if cells else 1.0
 
     purity = _column_type_purity(data)
     composite = (width_uniformity * purity * (1 - fragment_share)
-                 * (1 - min(1.0, 10 * split_word_rate))
+                 * (1 - min(1.0, 10 * (cross_cell_split_rate + run_together_rate)))
                  * (1 - repeated_header_share))
     return StructureScore(n_rows, modal_width, width_uniformity, fragment_share,
-                          purity, split_word_rate, repeated_header_share,
-                          max(0.0, min(1.0, composite)))
+                          purity, cross_cell_split_rate, run_together_rate,
+                          repeated_header_share, max(0.0, min(1.0, composite)))
 
 
 def failed_checks(score: StructureScore,
@@ -242,10 +309,8 @@ def failed_checks(score: StructureScore,
         failed.append("fragment_share")
     if score.column_type_purity < thresholds.min_column_type_purity:
         failed.append("column_type_purity")
-    if score.split_word_rate > thresholds.max_split_word_rate:
+    if score.cross_cell_split_rate > thresholds.max_split_word_rate:
         failed.append("split_word_rate")
-    if score.repeated_header_share > thresholds.max_repeated_header_share:
-        failed.append("repeated_header_share")
     return failed
 
 
