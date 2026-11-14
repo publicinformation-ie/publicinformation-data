@@ -1,0 +1,68 @@
+{
+ "columns": [
+  "Date received",
+  "Our reference",
+  "Brief Description of Request",
+  "Decision",
+  "Requester Category",
+  "Decision Date"
+ ],
+ "rows": [
+  [
+   "28/02/2023",
+   "FOI 031 2023",
+   "A copy of any correspondence between the Irish Fiscal Advisory Council and D/Fin with regard to the recently announced cost of living measures (as detailed in the following article: https://www.irishtimes.com/ireland/social- affairs/2023/02/21/mixed-reaction-to-13bn-cost-of-living-package/)",
+   "01 Record Part-Granted Email addresses and telephone number(s) redacted",
+   "Non-Personal",
+   "28/03/2023"
+  ],
+  [
+   "08/07/2023",
+   "FOI 032 2023",
+   "Copies of all records held referring or relating to the issuing of the following social media thread by the Fiscal Council: https://twitter.com/fiscalcouncil/status/1676878202734510081?s=20",
+   "02 Records Part-Granted Email addresses and telephone number(s) redacted",
+   "Non-Personal",
+   "04/08/2023"
+  ],
+  [
+   "21/07/2023",
+   "FOI 033 2023",
+   "Access to any external evaluations or audits of the Fiscal Council conducted since 2020",
+   "Refused on administrative grounds under Section 15 (d) of the FOI Act 2014 as the information is already in the public domain",
+   "Non-Personal",
+   "14/08/2023"
+  ],
+  [
+   "02/08/2023",
+   "FOI 034 2023",
+   "Copy of any records e.g. internal emails, text messages, discussing or relating to pre-publication and/or post-publication of the following article by Prof Michael McMahon: https://www.irishtimes.com/opinion/2023/07/20/excess- corporation-tax-should-be-saved-to-address-the-costs-of-an-ageing- population/",
+   "07 Records Part-Granted Email addresses and telephone number(s) redacted",
+   "Non-Personal",
+   "30/08/2023"
+  ],
+  [
+   "16/08/2023",
+   "FOI 035 2023",
+   "Copies of all records held in the email account of the former chairman Sebastian Barnes relating or referring to his decision to step down from his role. This request can exclude any procedural HR records relating to his resignation. This request to cover the period 1 Jan 2023 to date (16/08/2023)",
+   "02 Records Part-Granted Email addresses and telephone number(s) redacted",
+   "Non-Personal",
+   "12/09/2023"
+  ],
+  [
+   "21/09/2023",
+   "FOI 036 2023",
+   "1) Any internal and external communication relating to the increased cost of purchasing homes due to bulk buying (by funds, local authorities and approved housing bodies) 2) Any reports or analyses undertaken to estimate the impact bulk purchasing has on the price of homes.",
+   "Refused on administrative grounds under Section 15 (1) (a) of the FOI Act 2014 as the records do not exist",
+   "Non-Personal",
+   "12/10/2023"
+  ],
+  [
+   "31/10/2023",
+   "FOI 037 2023",
+   "Copies of all internal discussion emails relating to the issuing of the following 'flash' response by the Fiscal Council: https://www.rte.ie/news/business/2023/1010/1410133-ifac-says- govt-budget-spend-serious-cause-for-concern/",
+   "03 Records Part-Granted Certain email addresses & associated hyperlinks and unrelated subject matter redacted 01 Record refused on administrative grounds under Section 15 (d) of the FOI Act 2014 as the information is already in the public domain",
+   "Non-Personal",
+   "29/11/2023"
+  ]
+ ]
+}

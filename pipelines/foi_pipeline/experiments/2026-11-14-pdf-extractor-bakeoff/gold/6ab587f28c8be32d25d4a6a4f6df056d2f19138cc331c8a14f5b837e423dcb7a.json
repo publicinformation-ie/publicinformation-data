@@ -1,0 +1,214 @@
+{
+ "columns": [
+  "Dáta an Iarratais/Date of Request",
+  "Uimhir thagartha/Reference Number",
+  "Tuairisc ar larratais/Description of Request",
+  "Catagóir on iarrthóra/Requester Category",
+  "Cineál Cinneadh/Decision Type",
+  "Dáta Eisiúna/Date of Release",
+  "Breith ar Athbhreithniú Inmheánach/Internal Review Decision",
+  "Cinneadh OIC/OIC Decision"
+ ],
+ "rows": [
+  [
+   "05/01/2016",
+   "FOI/2016/0001",
+   "Records relating to parking tickets issued within Fingal Co. Co. area in 2014 and 2015.",
+   "Other",
+   "Granted",
+   "25/01/2016",
+   "",
+   ""
+  ],
+  [
+   "21/01/2016",
+   "FOI/2016/0002",
+   "Information relating to storage building in Sutton Lawn Tennis Club, Sutton.",
+   "Other",
+   "Part-Granted",
+   "12/02/2016",
+   "",
+   ""
+  ],
+  [
+   "21/01/2016",
+   "FOI/2016/0003",
+   "Records relating to levies paid on Millers Glen, Rathbeale Road, Swords.",
+   "Other",
+   "Granted",
+   "02/02/2016",
+   "",
+   ""
+  ],
+  [
+   "21/01/2016",
+   "FOI/2016/0004",
+   "Information relating to the 2011-2017 County Development Plan",
+   "Other",
+   "Granted",
+   "16/02/2016",
+   "",
+   ""
+  ],
+  [
+   "21/01/2016",
+   "FOI/2016/0005",
+   "Information relating to Tree/Shrub Planting in Swords Area",
+   "Other",
+   "Withdrawn",
+   "",
+   "",
+   ""
+  ],
+  [
+   "21/01/2016",
+   "FOI/2016/0006",
+   "Information relating to monies spent on Housing/Parks Services in Swords Area in 2015",
+   "Other",
+   "Granted",
+   "18/02/2016",
+   "",
+   ""
+  ],
+  [
+   "21/01/2016",
+   "FOI/2016/0007",
+   "Information relating to General Purpose Grant paid to Fingal Co. Co. in 2014 and 2015.",
+   "Other",
+   "Granted",
+   "27/01/2016",
+   "",
+   ""
+  ],
+  [
+   "21/01/2016",
+   "FOI/2016/0008",
+   "Information relating to Town Hall, George's Square, Balbriggan",
+   "Other",
+   "Granted",
+   "08/02/2016",
+   "",
+   ""
+  ],
+  [
+   "21/01/2016",
+   "FOI/2016/0009",
+   "Information relating to land owned by Fingal Co. Co.",
+   "Other",
+   "Withdrawn",
+   "",
+   "",
+   ""
+  ],
+  [
+   "21/01/2016",
+   "FOI/2016/0010",
+   "Records relating to investigation of alleged illegal erection of Posters.",
+   "Other",
+   "Granted",
+   "16/02/2016",
+   "",
+   ""
+  ],
+  [
+   "21/01/2016",
+   "FOI/2016/0011",
+   "Records relating to parking tickets issued in 2015 for driving or parking in a cycle lane",
+   "Journalist",
+   "Granted",
+   "27/01/2016",
+   "",
+   ""
+  ],
+  [
+   "21/01/2016",
+   "FOI/2016/0012",
+   "Information relating to Pinewood Estate Management Agreement",
+   "Other",
+   "Withdrawn",
+   "",
+   "",
+   ""
+  ],
+  [
+   "21/01/2016",
+   "FOI/2016/0013",
+   "Information relating to HR/Payroll Solution and Provider for Fingal Co. Co.",
+   "Business",
+   "Granted",
+   "16/02/2016",
+   "",
+   ""
+  ],
+  [
+   "08/02/2016",
+   "FOI/2016/0014",
+   "Information relating to land zoned for housing, owned by Fingal Co. Co.",
+   "Other",
+   "Granted",
+   "23/02/2016",
+   "",
+   ""
+  ],
+  [
+   "08/02/2016",
+   "FOI/2016/0015",
+   "Information relating to contracts between Fingal Co. Co. and Oxigen Environmental Ltd. and Wheelbin Services Ltd.",
+   "Business",
+   "Granted",
+   "12/02/2016",
+   "",
+   ""
+  ],
+  [
+   "02/12/2016",
+   "FOI/2016/0169",
+   "Records relating to grave prices in St. Fintans Lawn Cemetery Sutton, the number of Part V Units in Knocksedan, Swords, the cost of security on County Hall, Swords in 2015 and the cost of lighting of County Hall, Swords in 2015.",
+   "Other",
+   "Granted",
+   "20/12/2016",
+   "",
+   ""
+  ],
+  [
+   "07/12/2016",
+   "FOI/2016/0170",
+   "Records relating to the lease of the GAA Pitches in Broomfield, Malahide.",
+   "Other",
+   "Refused",
+   "09/01/2017",
+   "",
+   ""
+  ],
+  [
+   "07/12/2016",
+   "FOI/2016/0171",
+   "Records relating to wayleaves on Seamount Road, Malahide, Co. Dublin.",
+   "Business",
+   "Granted",
+   "20/01/2017",
+   "",
+   ""
+  ],
+  [
+   "19/12/2016",
+   "FOI/2016/0174",
+   "Records relating to cost of grave openings in St. Fintans Lawn Cemetery, Sutton.",
+   "Other",
+   "Granted",
+   "13/01/2017",
+   "",
+   ""
+  ],
+  [
+   "16/12/2016",
+   "FOI/2016/0175",
+   "Records relating to requester's correspondence with Fingal County Council and the role, duty and responsibilities of the Water & Environmental Services Strategic Policy Committee.",
+   "Other",
+   "Part-Granted",
+   "17/01/2017",
+   "",
+   ""
+  ]
+ ]
+}
