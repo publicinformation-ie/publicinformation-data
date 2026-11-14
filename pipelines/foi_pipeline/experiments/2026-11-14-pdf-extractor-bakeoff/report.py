@@ -17,11 +17,14 @@ R = json.loads((_HERE / "results" / "bakeoff.json").read_text())
 ALL = ["pdfplumber", "pdfplumber_lines", "camelot_lattice", "pymupdf", "camelot_stream", "mistral_cache", "docling"]
 METRICS = ["width_uniformity", "fragment_share", "column_type_purity", "split_word_rate", "repeated_header_share", "composite"]
 OLD = Thresholds(0.95, 0.05, 0.85, 0.01, 0.02)
-ADOPTED = Thresholds(0.85, 0.10, 0.85, 0.02, 0.07)
+ADOPTED = Thresholds(0.92, 0.08, 0.85, 0.02, 0.07)
+ADOPTED_NAME = "adopted (0.92/0.08/0.85/0.02/0.07)"
+INTERMEDIATE_NAME = "intermediate 0.85/0.10 (rejected)"
 SETS = {
     "provisional (0.95/0.05/0.85/0.01/0.02)": OLD,
     "literal tightest-pass-all (0.50/0.51/0.93/0.02/0.07)": Thresholds(0.5, 0.51, 0.93, 0.02, 0.07),
-    "adopted (0.85/0.10/0.85/0.02/0.07)": Thresholds(0.85, 0.10, 0.85, 0.02, 0.07),
+    "intermediate 0.85/0.10 (rejected)": Thresholds(0.85, 0.10, 0.85, 0.02, 0.07),
+    "adopted (0.92/0.08/0.85/0.02/0.07)": Thresholds(0.92, 0.08, 0.85, 0.02, 0.07),
     "only sw+rh relaxed (0.95/0.05/0.85/0.02/0.07)": Thresholds(0.95, 0.05, 0.85, 0.02, 0.07),
 }
 
@@ -81,23 +84,36 @@ rho_ex = spearmanr([r["score"]["composite"] for r in P if r["candidate"] != "pdf
 w(f"- Excluding the duplicate pdfplumber_lines rows: rho = {rho_ex:.3f}")
 w("- rho >= 0.6, so the label-free score is usable as a gate, with the caveat of tiny N and that pairs are not independent (10 files).\n")
 w("## Threshold sets: confusion of `passes` vs gold accuracy >= 0.95 (normalised)\n")
-w("Pairs: 67. Positive = gold >= 0.95 (28 pairs).\n")
-w("| thresholds (width/frag/purity/split/rep-header) | TP | FP | FN | TN |")
-w("|---|---|---|---|---|")
+n_pos = sum(r["gold"]["normalised"] >= 0.95 for r in P)
+w(f"Pairs: {len(P)}. Positive = gold >= 0.95 ({n_pos} pairs). **No holdout: thresholds were tuned and are evaluated on the same 10 gold files, so these confusions are optimistic in-sample figures.**\n")
+w("| thresholds (width/frag/purity/split/rep-header) | TP | FP | FN | TN | precision |")
+w("|---|---|---|---|---|---|")
+CONF = {}
 for name, th in SETS.items():
     tp = fp = fn = tn = 0
+    fps = []
     for r in P:
         p, y = ok_pass(r, th), r["gold"]["normalised"] >= 0.95
         tp += p and y; fp += p and not y; fn += (not p) and y; tn += (not p) and not y
-    w(f"| {name} | {tp} | {fp} | {fn} | {tn} |")
+        if p and not y:
+            fps.append(f"{r['candidate']} on {r['sha256'][:6]} (gold {r['gold']['normalised']:.2f}, width {r['score']['width_uniformity']:.2f})")
+    CONF[name] = (tp, fp, fn, tn, fps)
+    w(f"| {name} | {tp} | {fp} | {fn} | {tn} | {tp / (tp + fp):.2f} |")
+fa = CONF[ADOPTED_NAME]
+w(f"\n### False positives of the adopted set ({fa[1]})\n")
+for x in fa[4]:
+    w(f"- {x}")
+w("\nThe intermediate 0.85/0.10 set additionally passed two clearly wrong outputs: " + "; ".join(
+    x for x in CONF[INTERMEDIATE_NAME][4] if x not in fa[4]) + ". The adopted width 0.92 / fragment 0.08 rejects both, which is why it was chosen (fail closed).")
 w("""
 ### Calibration reasoning
 
-- The literal rule (tightest values passing every candidate with gold >= 0.95) gives width >= 0.526 and fragment <= 0.51, driven by ONE outlier: pymupdf on file `4b31f0` (body 1210) has correct first/last 20 rows (gold 0.97) but about half its other rows are fragments. The gold set cannot see mid-file damage, so tuning to that pair would make the width and fragment checks nearly vacuous. It was not adopted.
-- Adopted: width 0.85, fragment 0.10, split-word 0.02, repeated-header 0.07; purity unchanged at 0.85 (min over positives 0.94, so no evidence to move it). Rationale per value: split-word 0.02 and repeated-header 0.07 are set just above values seen on gold-accurate output (HIQA, FSPO: genuine hyphen/bullet text scores 0.015-0.020 split-word; a header repeating mid-page on `ec6c89` gives 0.06 with gold 1.00, because the gold excludes repeated headers); width 0.85 and fragment 0.10 admit docling's 6ab587 (0.864) and the FSPO 9-row file (0.90 / 0.10) while the failure cases that matter (pdfplumber width 0.08-0.36, fragment 0.56-0.79) still fail by a wide margin.
-- Cost: of the 28 gold-accurate pairs, 4 still fail at the adopted values (pymupdf and pdfplumber on `4b31f0`, whose fragment/width damage is real in the middle of the file; docling on `4b31f0` fragment 0.17), and 10 gold-inaccurate pairs pass (FP). These FPs are mostly cases where the structure is plausible but cell text/columns are shifted from gold (e.g. column offsets); the structure score is label-free and cannot see that. Do not treat `passes` as proof of correctness.
-- Fingal sparse trailing column: clean Fingal 2019-21 logs score width_uniformity 0.93-0.949 because the last column (Appeal/OIC decision) is empty in most rows, so `_trimmed` widths vary by row. Lowering the width threshold to 0.85 passes them. A trim rule (ignore a trailing column that is >90% empty when computing width) would be more principled but was NOT added: the gold set has no clean-Fingal-2019-21 file to measure it on, and only one sparse-trailing-column file (`6ab587`, Fingal 2016, where it is also at play) exists, so it would be unvalidated code. Recommended as a follow-up with a gold file for Fingal 2019-21.
-- Thresholds are provisional in the sense that they rest on 10 files; re-run `bakeoff.py` + `report.py` when the gold set grows.
+- Starting point: the literal rule (tightest values passing every candidate with gold >= 0.95) gives width >= 0.526 and fragment <= 0.51, driven by ONE pair (pymupdf on `4b31f0`, body 1210) whose first/last 20 rows are right but whose middle is fragmented. The gold cannot see mid-file damage, so that rule would make the width and fragment checks nearly vacuous. Not adopted.
+- Split-word 0.02 and repeated-header 0.07 sit just above values seen on gold-accurate output (HIQA, FSPO hyphen/bullet text 0.015-0.020 split-word; a header repeating mid-page on `ec6c89` gives 0.06 with gold 1.00, since the gold excludes repeated headers). Purity unchanged at 0.85 (min over gold-accurate pairs 0.94).
+- Width 0.92 / fragment 0.08: fail-closed choice. Relaxing below this admits camelot_lattice on `6ab587` (gold 0.07) and pymupdf on `494a78` (gold 0.22). Clean Fingal 2019-21 logs (width 0.93-0.949) still pass 0.92 on width.
+- Cost: more gold-accurate pairs fail (see FN column), including FSPO `494a78` (width 0.90, fragment 0.10, a 9-row file, gold 0.98 for camelot_lattice, mistral, docling) and `4b31f0` (real mid-file fragmentation). Remaining FPs are mostly shifted-column or cell-text differences the label-free score cannot see; `passes` is not proof of correctness.
+- Fingal sparse trailing column: the last column is empty in most rows, so `_trimmed` widths vary by row. Lowering width to 0.92 lets the 0.93-0.949 logs pass. A trim rule was NOT added: no clean Fingal 2019-21 gold file exists to validate it. Follow-up.
+- Rests on 10 files with no holdout; re-run `bakeoff.py` + `report.py` when the gold set grows.
 """)
 w("## Recommended candidate order and verdicts\n")
 w("""- Docling: best mean gold accuracy (0.91, all 10 gold files) and highest pass rates, but it is a heavy dependency (torch + model weights downloaded from HuggingFace, 0.8-62 s per file). Free, offline once installed. Whether to adopt it as a production dependency is the user's call.

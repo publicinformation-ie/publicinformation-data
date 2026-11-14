@@ -8,13 +8,13 @@ Gold accuracy = share of gold cells matching exactly at the same column index in
 
 | extractor | tables found | pass (provisional) | pass (adopted) | gold raw | gold norm | median s/file | width uniformity | fragment share | column type purity | split word rate | repeated header share | composite |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| pdfplumber | 35/36 | 11/36 | 18/36 | 0.694 | 0.711 (n=10) | 0.23 | 0.844 | 0.169 | 0.925 | 0.077 | 0.074 | 0.646 |
-| pdfplumber_lines | 35/36 | 11/36 | 18/36 | 0.694 | 0.711 (n=10) | 0.22 | 0.844 | 0.169 | 0.925 | 0.077 | 0.074 | 0.646 |
-| camelot_lattice | 31/36 | 11/36 | 21/36 | 0.759 | 0.759 (n=10) | 1.94 | 0.925 | 0.051 | 0.952 | 0.040 | 0.049 | 0.802 |
-| pymupdf | 35/36 | 13/36 | 20/36 | 0.627 | 0.644 (n=10) | 0.26 | 0.837 | 0.165 | 0.923 | 0.063 | 0.074 | 0.706 |
+| pdfplumber | 35/36 | 11/36 | 16/36 | 0.694 | 0.711 (n=10) | 0.23 | 0.844 | 0.169 | 0.925 | 0.077 | 0.074 | 0.646 |
+| pdfplumber_lines | 35/36 | 11/36 | 16/36 | 0.694 | 0.711 (n=10) | 0.22 | 0.844 | 0.169 | 0.925 | 0.077 | 0.074 | 0.646 |
+| camelot_lattice | 31/36 | 11/36 | 16/36 | 0.759 | 0.759 (n=10) | 1.94 | 0.925 | 0.051 | 0.952 | 0.040 | 0.049 | 0.802 |
+| pymupdf | 35/36 | 13/36 | 18/36 | 0.627 | 0.644 (n=10) | 0.26 | 0.837 | 0.165 | 0.923 | 0.063 | 0.074 | 0.706 |
 | camelot_stream | 34/36 | 1/36 | 1/36 | 0.415 | 0.415 (n=10) | 0.44 | 0.401 | 0.676 | 0.950 | 0.015 | 0.002 | 0.118 |
-| mistral_cache | 24/36 | 9/36 | 15/36 | 0.874 | 0.884 (n=7) | 0.01 | 0.972 | 0.012 | 0.978 | 0.007 | 0.062 | 0.826 |
-| docling | 36/36 | 16/36 | 26/36 | 0.913 | 0.913 (n=10) | 5.04 | 0.969 | 0.026 | 0.979 | 0.009 | 0.012 | 0.834 |
+| mistral_cache | 24/36 | 9/36 | 14/36 | 0.874 | 0.884 (n=7) | 0.01 | 0.972 | 0.012 | 0.978 | 0.007 | 0.062 | 0.826 |
+| docling | 36/36 | 16/36 | 22/36 | 0.913 | 0.913 (n=10) | 5.04 | 0.969 | 0.026 | 0.979 | 0.009 | 0.012 | 0.834 |
 
 Pass rate is out of all 36 files (a missing table or error counts as not passing). Metric means are over files where a table was found. Mean gold accuracy treats a missing table as unavailable (mistral_cache has a cache hit on 7 of the 10 gold files only; the others are excluded from its mean, which flatters it). Docling seconds are from its isolated run (including model warm-up on the first file), not re-timed.
 
@@ -40,22 +40,37 @@ Best = highest mean composite over the stratum's files (missing table = 0).
 
 ## Threshold sets: confusion of `passes` vs gold accuracy >= 0.95 (normalised)
 
-Pairs: 67. Positive = gold >= 0.95 (28 pairs).
+Pairs: 67. Positive = gold >= 0.95 (28 pairs). **No holdout: thresholds were tuned and are evaluated on the same 10 gold files, so these confusions are optimistic in-sample figures.**
 
-| thresholds (width/frag/purity/split/rep-header) | TP | FP | FN | TN |
-|---|---|---|---|---|
-| provisional (0.95/0.05/0.85/0.01/0.02) | 12 | 3 | 16 | 36 |
-| literal tightest-pass-all (0.50/0.51/0.93/0.02/0.07) | 28 | 12 | 0 | 27 |
-| adopted (0.85/0.10/0.85/0.02/0.07) | 24 | 10 | 4 | 29 |
-| only sw+rh relaxed (0.95/0.05/0.85/0.02/0.07) | 19 | 7 | 9 | 32 |
+| thresholds (width/frag/purity/split/rep-header) | TP | FP | FN | TN | precision |
+|---|---|---|---|---|---|
+| provisional (0.95/0.05/0.85/0.01/0.02) | 12 | 3 | 16 | 36 | 0.80 |
+| literal tightest-pass-all (0.50/0.51/0.93/0.02/0.07) | 28 | 12 | 0 | 27 | 0.70 |
+| intermediate 0.85/0.10 (rejected) | 24 | 10 | 4 | 29 | 0.71 |
+| adopted (0.92/0.08/0.85/0.02/0.07) | 20 | 8 | 8 | 31 | 0.71 |
+| only sw+rh relaxed (0.95/0.05/0.85/0.02/0.07) | 19 | 7 | 9 | 32 | 0.73 |
+
+### False positives of the adopted set (8)
+
+- docling on 41fa00 (gold 0.89, width 1.00)
+- docling on 9c4f12 (gold 0.92, width 1.00)
+- mistral_cache on e93ccc (gold 0.76, width 0.94)
+- camelot_lattice on 4cb607 (gold 0.79, width 1.00)
+- docling on 4cb607 (gold 0.83, width 1.00)
+- camelot_lattice on ec6c89 (gold 0.93, width 1.00)
+- mistral_cache on ec6c89 (gold 0.91, width 1.00)
+- docling on 569928 (gold 0.89, width 1.00)
+
+The intermediate 0.85/0.10 set additionally passed two clearly wrong outputs: camelot_lattice on 6ab587 (gold 0.07, width 0.91); pymupdf on 494a78 (gold 0.22, width 0.90). The adopted width 0.92 / fragment 0.08 rejects both, which is why it was chosen (fail closed).
 
 ### Calibration reasoning
 
-- The literal rule (tightest values passing every candidate with gold >= 0.95) gives width >= 0.526 and fragment <= 0.51, driven by ONE outlier: pymupdf on file `4b31f0` (body 1210) has correct first/last 20 rows (gold 0.97) but about half its other rows are fragments. The gold set cannot see mid-file damage, so tuning to that pair would make the width and fragment checks nearly vacuous. It was not adopted.
-- Adopted: width 0.85, fragment 0.10, split-word 0.02, repeated-header 0.07; purity unchanged at 0.85 (min over positives 0.94, so no evidence to move it). Rationale per value: split-word 0.02 and repeated-header 0.07 are set just above values seen on gold-accurate output (HIQA, FSPO: genuine hyphen/bullet text scores 0.015-0.020 split-word; a header repeating mid-page on `ec6c89` gives 0.06 with gold 1.00, because the gold excludes repeated headers); width 0.85 and fragment 0.10 admit docling's 6ab587 (0.864) and the FSPO 9-row file (0.90 / 0.10) while the failure cases that matter (pdfplumber width 0.08-0.36, fragment 0.56-0.79) still fail by a wide margin.
-- Cost: of the 28 gold-accurate pairs, 4 still fail at the adopted values (pymupdf and pdfplumber on `4b31f0`, whose fragment/width damage is real in the middle of the file; docling on `4b31f0` fragment 0.17), and 10 gold-inaccurate pairs pass (FP). These FPs are mostly cases where the structure is plausible but cell text/columns are shifted from gold (e.g. column offsets); the structure score is label-free and cannot see that. Do not treat `passes` as proof of correctness.
-- Fingal sparse trailing column: clean Fingal 2019-21 logs score width_uniformity 0.93-0.949 because the last column (Appeal/OIC decision) is empty in most rows, so `_trimmed` widths vary by row. Lowering the width threshold to 0.85 passes them. A trim rule (ignore a trailing column that is >90% empty when computing width) would be more principled but was NOT added: the gold set has no clean-Fingal-2019-21 file to measure it on, and only one sparse-trailing-column file (`6ab587`, Fingal 2016, where it is also at play) exists, so it would be unvalidated code. Recommended as a follow-up with a gold file for Fingal 2019-21.
-- Thresholds are provisional in the sense that they rest on 10 files; re-run `bakeoff.py` + `report.py` when the gold set grows.
+- Starting point: the literal rule (tightest values passing every candidate with gold >= 0.95) gives width >= 0.526 and fragment <= 0.51, driven by ONE pair (pymupdf on `4b31f0`, body 1210) whose first/last 20 rows are right but whose middle is fragmented. The gold cannot see mid-file damage, so that rule would make the width and fragment checks nearly vacuous. Not adopted.
+- Split-word 0.02 and repeated-header 0.07 sit just above values seen on gold-accurate output (HIQA, FSPO hyphen/bullet text 0.015-0.020 split-word; a header repeating mid-page on `ec6c89` gives 0.06 with gold 1.00, since the gold excludes repeated headers). Purity unchanged at 0.85 (min over gold-accurate pairs 0.94).
+- Width 0.92 / fragment 0.08: fail-closed choice. Relaxing below this admits camelot_lattice on `6ab587` (gold 0.07) and pymupdf on `494a78` (gold 0.22). Clean Fingal 2019-21 logs (width 0.93-0.949) still pass 0.92 on width.
+- Cost: more gold-accurate pairs fail (see FN column), including FSPO `494a78` (width 0.90, fragment 0.10, a 9-row file, gold 0.98 for camelot_lattice, mistral, docling) and `4b31f0` (real mid-file fragmentation). Remaining FPs are mostly shifted-column or cell-text differences the label-free score cannot see; `passes` is not proof of correctness.
+- Fingal sparse trailing column: the last column is empty in most rows, so `_trimmed` widths vary by row. Lowering width to 0.92 lets the 0.93-0.949 logs pass. A trim rule was NOT added: no clean Fingal 2019-21 gold file exists to validate it. Follow-up.
+- Rests on 10 files with no holdout; re-run `bakeoff.py` + `report.py` when the gold set grows.
 
 ## Recommended candidate order and verdicts
 

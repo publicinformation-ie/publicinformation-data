@@ -83,7 +83,7 @@ def test_fragment_metric_agrees_with_eval_flag(name):
 
 def test_default_thresholds_calibrated_values():
     # Calibrated in the extractor bake-off (small gold set); see bakeoff.md.
-    assert DEFAULT_THRESHOLDS.min_width_uniformity == 0.85
-    assert DEFAULT_THRESHOLDS.max_fragment_share == 0.10
+    assert DEFAULT_THRESHOLDS.min_width_uniformity == 0.92
+    assert DEFAULT_THRESHOLDS.max_fragment_share == 0.08
     assert DEFAULT_THRESHOLDS.max_split_word_rate == 0.02
     assert DEFAULT_THRESHOLDS.max_repeated_header_share == 0.07

@@ -33,8 +33,8 @@ class StructureScore:
 
 @dataclass(frozen=True)
 class Thresholds:
-    min_width_uniformity: float = 0.85
-    max_fragment_share: float = 0.10
+    min_width_uniformity: float = 0.92
+    max_fragment_share: float = 0.08
     min_column_type_purity: float = 0.85
     max_split_word_rate: float = 0.02
     max_repeated_header_share: float = 0.07
