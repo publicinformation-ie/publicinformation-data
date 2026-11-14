@@ -16,6 +16,8 @@ from lib.date_parse import parse_date
 from lib.table_utils import detect_header_row
 
 _RUN_TOGETHER_RE = re.compile(r"[a-z]{2,}[A-Z][a-z]")
+# CamelCase brand names (WhatsApp, EirGrid) are not run-together words.
+_BRAND_RE = re.compile(r"^[A-Z][a-z]{2,}[A-Z][a-z]+$")
 _REF_CHARS_RE = re.compile(r"[A-Za-z/\-]")
 _MIN_TYPED_CELLS = 5
 
@@ -114,6 +116,14 @@ def _data_rows(rows: list[list]) -> tuple[list, list[list]]:
     return header, body[start:]
 
 
+def _is_run_together(tok: str) -> bool:
+    if not _RUN_TOGETHER_RE.search(tok):
+        return False
+    core = re.sub(r"^[^A-Za-z]+|[^A-Za-z]+$", "", tok)
+    core = re.sub(r"['\u2019]s$", "", core)
+    return not _BRAND_RE.fullmatch(core)
+
+
 def _count_split_words(rows: list[list]) -> tuple[int, int]:
     """Return (split pairs + run-together tokens, non-empty cells)."""
     events = 0
@@ -124,7 +134,7 @@ def _count_split_words(rows: list[list]) -> tuple[int, int]:
             if not t.strip():
                 continue
             cells += 1
-            events += sum(1 for tok in t.split() if _RUN_TOGETHER_RE.search(tok))
+            events += sum(1 for tok in t.split() if _is_run_together(tok))
             if i + 1 < len(texts):
                 nxt = texts[i + 1]
                 if (nxt.strip() and re.search(r"[A-Za-z]$", t)

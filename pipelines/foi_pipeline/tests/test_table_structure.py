@@ -145,3 +145,22 @@ def test_three_missing_trailing_cells_not_uniform():
     score = score_table(rows)
     assert score.modal_width == 6
     assert "width_uniformity" in failed_checks(score)
+
+
+@pytest.mark.parametrize(
+    "tok", ["WhatsApp", "EirGrid;", "(\u201cEirGrid\u201d)", "ComReg's", "BowelScreen", "ServiceNow,"]
+)
+def test_brand_tokens_not_split_words(tok):
+    from lib.table_structure import _count_split_words
+
+    assert _count_split_words([[f"request about {tok} usage"]])[0] == 0
+
+
+def test_lowercase_join_still_split_word():
+    from lib.table_structure import _count_split_words
+
+    assert _count_split_words([["request dateAll usage"]])[0] == 1
+
+
+def test_stvincents_brand_passes_split_check():
+    assert "split_word_rate" not in failed_checks(score_table(load("stvincents_2018_brand")))
