@@ -696,3 +696,23 @@ class TestDirtyStateLifecycle:
         o = capsys.readouterr().out
         assert "WARNING" in o and "my_step" in o and "[2, 3]" in o
         assert "--from my_step" in o
+
+
+def _append_many_errors(step_dir, worker, n):
+    for i in range(n):
+        append_error(step_dir, {"step": "s", "timestamp": "t", "error_type": f"W{worker}",
+                                "error_message": str(i), "context": {}})
+
+
+def test_append_error_is_safe_across_processes(tmp_path):
+    """Worker processes appending to one errors.json must not lose entries."""
+    import multiprocessing
+
+    ctx = multiprocessing.get_context("spawn")
+    procs = [ctx.Process(target=_append_many_errors, args=(str(tmp_path), w, 40)) for w in range(6)]
+    for p in procs:
+        p.start()
+    for p in procs:
+        p.join(60)
+        assert p.exitcode == 0
+    assert len(read_json(tmp_path / "errors.json")) == 6 * 40

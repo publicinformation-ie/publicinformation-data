@@ -1723,3 +1723,41 @@ def test_skip_mistral_url_is_an_override_and_bypasses_selection(tmp_path, monkey
         url: {"source_method": "manual", "overridden": True, "skip_mistral": True, "column_mapping": {}},
     })
     assert calls == []
+
+
+def _run_process_on_cached_pdfs(tmp_path, **kwargs):
+    import hashlib
+    from lib.file_utils import IncrementalWriter
+    from steps.transform_disclosure_files.process import process
+
+    step_dir = tmp_path / "transform_disclosure_files"
+    step_dir.mkdir(parents=True)
+    cache_dir = tmp_path / "verify_disclosure_files" / "cache"
+    cache_dir.mkdir(parents=True)
+    items = []
+    for n in range(3):
+        url = f"https://example.com/log{n}.pdf"
+        rows = [["Request ID", "Date Received", "Decision"]] + [
+            [f"R{n}-{i}", "01/02/2024", "Granted"] for i in range(4)
+        ]
+        (cache_dir / f"{hashlib.sha256(url.encode()).hexdigest()}.bytes").write_bytes(_make_pdf([[rows]]))
+        items.append({"file_url": url, "file_type": "pdf", "public_body_id": n + 1})
+    output_path = step_dir / "output.json"
+    writer = IncrementalWriter(output_path, "transform_disclosure_files", key_field="file_url", force=True)
+    process({"results": items}, step_dir, writer, **kwargs)
+    writer.finalize()
+    return json.loads(output_path.read_text())["results"]
+
+
+def test_process_pool_matches_thread_pool(tmp_path):
+    threaded = _run_process_on_cached_pdfs(tmp_path / "t")
+    pooled = _run_process_on_cached_pdfs(tmp_path / "p", processes=2)
+    assert len(threaded) == 3
+    assert pooled == threaded
+
+
+def test_process_pool_refuses_paid_ocr(tmp_path, monkeypatch):
+    monkeypatch.setenv("MISTRAL_API_KEY", "k")
+    monkeypatch.setenv("MISTRAL_OCR_PDF_BASE_URL", "https://x")
+    with pytest.raises(ValueError, match="--processes"):
+        _run_process_on_cached_pdfs(tmp_path, processes=2, allow_paid_ocr=True)

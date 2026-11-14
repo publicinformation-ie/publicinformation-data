@@ -737,8 +737,37 @@ def resolve_mistral_mode(env: Mapping[str, str], allow_paid_ocr: bool) -> Mistra
     return "live"
 
 
+_SINGLE_THREAD_ENV = ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS",
+                      "VECLIB_MAXIMUM_THREADS", "NUMEXPR_NUM_THREADS")
+
+
+def _init_worker_process():
+    """Keep each worker process to one core: native libraries (BLAS, OpenCV via
+    camelot) otherwise start their own thread pools and oversubscribe the CPU."""
+    for var in _SINGLE_THREAD_ENV:
+        os.environ[var] = "1"
+    try:
+        import cv2
+        cv2.setNumThreads(1)
+    except ImportError:
+        pass
+
+
+def _make_executor(workers, processes):
+    """Threads by default; processes when asked. pdfplumber/pdfminer and the
+    structure scorer are pure Python and hold the GIL, so threads use about one
+    core; processes scale with --processes."""
+    if processes:
+        for var in _SINGLE_THREAD_ENV:
+            os.environ.setdefault(var, "1")
+        return concurrent.futures.ProcessPoolExecutor(
+            max_workers=processes, initializer=_init_worker_process,
+        )
+    return concurrent.futures.ThreadPoolExecutor(max_workers=workers)
+
+
 def process(input_data, step_dir, writer, verbose=False, workers=8, mistral_workers=2,
-            allow_paid_ocr=False):
+            allow_paid_ocr=False, processes=0):
     errors_path = Path(step_dir) / "errors.json"
     if not errors_path.exists():
         write_json(errors_path, [])
@@ -750,6 +779,10 @@ def process(input_data, step_dir, writer, verbose=False, workers=8, mistral_work
     skip_mistral_urls = _load_skip_mistral_urls(step_dir)
 
     mistral_mode = resolve_mistral_mode(os.environ, allow_paid_ocr)
+    if processes and mistral_mode == "live":
+        # The Mistral semaphore is a threading.Semaphore: it cannot bound calls
+        # across processes, so paid OCR stays on the threaded path.
+        raise ValueError("--processes cannot be combined with --allow-paid-ocr")
     mistral_enabled = mistral_mode == "live"
     mistral_api_key = os.environ.get("MISTRAL_API_KEY") if mistral_enabled else None
     mistral_base_url = os.environ.get("MISTRAL_OCR_PDF_BASE_URL") if mistral_enabled else None
@@ -783,13 +816,10 @@ def process(input_data, step_dir, writer, verbose=False, workers=8, mistral_work
     if not items_to_process:
         return
 
-    # Process in parallel using ThreadPoolExecutor
-    # Note: We use threads instead of processes because:
-    # 1. pdfplumber releases the GIL during CPU-intensive parsing
-    # 2. File I/O also releases the GIL
-    # 3. Threads can share the cache and step_dir objects without pickling
-    # This gives us effective parallelism while avoiding pickling issues
-    with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
+    # Threads by default; --processes N for CPU-bound (cached) runs. Worker
+    # side effects are cross-process safe: the download cache uses flock and
+    # append_error locks errors.json across processes.
+    with _make_executor(workers, processes) as executor:
         # Submit all tasks and collect futures to preserve order
         futures = [
             executor.submit(
@@ -836,6 +866,12 @@ def main():
         default=2,
         help="Number of concurrent Mistral OCR API calls, independent of --workers (default: 2)",
     )
+    parser.add_argument(
+        "--processes",
+        type=int,
+        default=0,
+        help="Use N worker processes instead of threads (CPU-bound runs; not with --allow-paid-ocr)",
+    )
     args = parser.parse_args()
 
     step_dir = Path(__file__).parent
@@ -866,7 +902,7 @@ def main():
         print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")
 
     process(input_data, step_dir, writer, verbose=args.verbose, workers=args.workers, mistral_workers=args.mistral_workers,
-            allow_paid_ocr=args.allow_paid_ocr)
+            allow_paid_ocr=args.allow_paid_ocr, processes=args.processes)
     count = writer.finalize()
     write_status(step_dir, count)
     if args.verbose:

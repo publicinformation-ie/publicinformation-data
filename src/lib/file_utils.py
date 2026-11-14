@@ -1,3 +1,5 @@
+import contextlib
+import fcntl
 import json
 import jsonschema
 import os
@@ -16,6 +18,23 @@ def _get_append_error_lock(path: str) -> threading.Lock:
         if path not in _append_error_locks:
             _append_error_locks[path] = threading.Lock()
         return _append_error_locks[path]
+
+
+@contextlib.contextmanager
+def _errors_file_lock(errors_path: Path):
+    """Serialise read-modify-write of errors.json across threads AND processes.
+
+    The thread lock alone is per-process; worker processes (transform
+    --processes) would otherwise overwrite each other's appends. The flock is
+    taken on a sidecar file because write_json replaces errors.json's inode.
+    """
+    with _get_append_error_lock(str(errors_path)):
+        with open(f"{errors_path}.lock", "a") as lock_file:
+            fcntl.flock(lock_file, fcntl.LOCK_EX)
+            try:
+                yield
+            finally:
+                fcntl.flock(lock_file, fcntl.LOCK_UN)
 
 
 def read_json(path):
@@ -347,8 +366,7 @@ def _sanitize_error(error_dict):
 
 def append_error(step_dir, error_dict):
     errors_path = Path(step_dir) / "errors.json"
-    lock = _get_append_error_lock(str(errors_path))
-    with lock:
+    with _errors_file_lock(errors_path):
         try:
             errors = read_json(errors_path)
         except (FileNotFoundError, json.JSONDecodeError):
@@ -362,8 +380,7 @@ def append_errors(step_dir, error_list):
     if not error_list:
         return
     errors_path = Path(step_dir) / "errors.json"
-    lock = _get_append_error_lock(str(errors_path))
-    with lock:
+    with _errors_file_lock(errors_path):
         try:
             errors = read_json(errors_path)
         except (FileNotFoundError, json.JSONDecodeError):
