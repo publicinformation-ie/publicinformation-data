@@ -66,6 +66,17 @@ def test_two_cell_continuation_still_fragment():
     assert score_table(rows).fragment_share > 0
 
 
+def test_blank_separator_before_continuation_still_fragment():
+    # filter_phantom_rows merges raw rows before dropping blanks, so a
+    # continuation row after an all-blank row fills the blank row and survives
+    # as a fragment. The scorer must follow the same order and see it.
+    rows = clean_rows(20)
+    for pos in (15, 10, 5):
+        rows.insert(pos, ["", None, "", "", ""])
+        rows.insert(pos + 1, ["", "", "", "", "tail"])
+    assert score_table(rows).fragment_share > 0
+
+
 def test_orphan_continuation_after_header_still_fragment():
     rows = clean_rows(20)
     rows.insert(1, ["", "", "orphan text 2020", "", ""])

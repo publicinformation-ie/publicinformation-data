@@ -172,9 +172,16 @@ def _worst(n_rows: int, modal_width: int) -> StructureScore:
 
 
 def score_table(rows: list[list]) -> StructureScore:
-    header, data = _data_rows(rows)
-    # Score what survives filter_phantom_rows' merge (same shared helper).
-    data = merge_continuation_rows([header] + data)[0][1:]
+    # Score what survives filter_phantom_rows, in the same order: merge
+    # continuation rows over the RAW rows first, only then drop blank rows,
+    # year dividers and extra header rows. (Dropping blanks first would let a
+    # continuation row fold into the real record across an all-blank separator
+    # row that the filter would instead fill, hiding the surviving fragment.)
+    # The filter treats rows[0] as the header; the scorer's header may sit lower
+    # (title rows above it), so we merge from the detected header onward, which
+    # is the same row sequence the filter sees once any title rows are absent.
+    rows = rows[detect_header_row(rows):] if rows else rows
+    header, data = _data_rows(merge_continuation_rows(rows)[0] if rows else rows)
     n_rows = len(data)
     if n_rows == 0:
         return _worst(0, 0)
