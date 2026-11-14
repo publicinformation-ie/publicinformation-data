@@ -454,6 +454,20 @@ def _load_skip_mistral_urls(step_dir: Path) -> set[str]:
     return {url for url, entry in mappings.items() if entry.get("skip_mistral")}
 
 
+def _load_override_extractors(step_dir: Path) -> dict[str, str]:
+    """file_url -> candidate name for overrides that set pdf_extractor: the
+    override's column_mapping was calibrated against that candidate's table."""
+    out = {}
+    for url, entry in _load_column_mappings(step_dir).items():
+        name = entry.get("pdf_extractor")
+        if name is None:
+            continue
+        if name not in CANDIDATE_ORDER:
+            raise ValueError(f"{url}: pdf_extractor {name!r} not in {CANDIDATE_ORDER}")
+        out[url] = name
+    return out
+
+
 def _extract_pdf(file_bytes, table_settings=None, skip_canonicalization_check=False):
     """Parse PDF bytes. Returns (sheet_name, rows, fallback_cells, has_multiple_tables, merge_stats, pdf_extractor, camelot_info).
 
@@ -587,6 +601,7 @@ def _process_single_file(
     skip_mistral_urls=frozenset(), mistral_enabled=False,
     ocr_cache_dir=None, mistral_base_url=None, mistral_api_key=None,
     mistral_semaphore=None, skip_camelot_urls=frozenset(),
+    override_extractors=None,
 ):
     """Process a single file. Called by worker processes.
 
@@ -599,6 +614,8 @@ def _process_single_file(
             select_pdf_table and use _extract_pdf
         skip_camelot_urls: Subset of the overrides with skip_camelot_fallback;
             _extract_pdf does not try the camelot_stream fallback for them
+        override_extractors: {file_url: candidate name} for overrides with a
+            pdf_extractor key; extracted with that candidate, not _extract_pdf
         skip_mistral_urls: Set of file_urls with skip_mistral: true in their
             manual override; these go straight to the pdfplumber/camelot path
         mistral_enabled: Whether MISTRAL_API_KEY was set at process() startup
@@ -665,7 +682,17 @@ def _process_single_file(
                             "context": {"file_url": file_url},
                         })
             if pdf_extractor is None:
-                if file_url in manual_override_urls:
+                if override_extractors and file_url in override_extractors:
+                    from steps.transform_disclosure_files import candidates
+                    cand = candidates.extract_candidate(
+                        override_extractors[file_url], file_bytes, file_url=file_url,
+                        ocr_cache_dir=Path(ocr_cache_dir) if ocr_cache_dir else Path(step_dir) / "ocr_cache",
+                    )
+                    if cand is None:
+                        raise ValueError(f"no tables found ({override_extractors[file_url]})")
+                    sheet_name, rows, has_multiple = cand.sheet_name, cand.rows, cand.has_multiple
+                    merge_stats, pdf_extractor = cand.merge_stats, cand.name
+                elif file_url in manual_override_urls:
                     # Manual overrides were calibrated against the pre-selection
                     # extractor output; they bypass structure-based selection.
                     sheet_name, rows, _, has_multiple, merge_stats, pdf_extractor, camelot_info = _extract_pdf(
@@ -782,6 +809,7 @@ def process(input_data, step_dir, writer, verbose=False, workers=8, mistral_work
     cache = DisclosureFileCache(Path(step_dir).parent / "verify_disclosure_files" / "cache")
     manual_override_urls = _load_manual_override_urls(step_dir)
     skip_camelot_urls = _load_skip_camelot_urls(step_dir)
+    override_extractors = _load_override_extractors(step_dir)
     skip_mistral_urls = _load_skip_mistral_urls(step_dir)
 
     mistral_mode = resolve_mistral_mode(os.environ, allow_paid_ocr)
@@ -832,6 +860,7 @@ def process(input_data, step_dir, writer, verbose=False, workers=8, mistral_work
                 _process_single_file, item, cache, step_dir, manual_override_urls,
                 skip_mistral_urls, mistral_enabled, ocr_cache_dir, mistral_base_url,
                 mistral_api_key, mistral_semaphore, skip_camelot_urls,
+                override_extractors,
             )
             for item in items_to_process
         ]

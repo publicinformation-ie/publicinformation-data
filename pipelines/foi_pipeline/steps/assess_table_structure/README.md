@@ -30,7 +30,8 @@ Two signals are recorded in every score but never reject:
   but `failed_checks` ignores it.
 
 Both still feed `composite`, so candidate selection prefers cleaner text. Files
-with a manual column mapping are exempt from the gate.
+with a manual column mapping are gated like any other, scored with that
+mapping as the role map (instead of the header row).
 
 `errors.json` holds exactly one `TableStructureUnreliable` entry per excluded
 file (context: `public_body_id`, `file_url`, `pdf_extractor`, `failed_checks`,

@@ -5,8 +5,8 @@ Scores every record's rows with lib.table_structure. A PDF whose best table is
 still structurally unreliable is emptied (rows -> []) and flagged, so malformed
 tables never reach downstream status/decision parsing. xlsx/xls are scored for
 information only and never emptied. PDFs with a manual column_mappings.json
-override are likewise scored but exempt: their position-based mapping was
-calibrated by hand, so they are never emptied and raise no error.
+override are gated like any other, but scored with the override's own
+column_mapping as the role map (instead of the header row).
 """
 import argparse
 import json
@@ -16,20 +16,27 @@ from pathlib import Path
 
 from lib.cli_utils import add_common_args, filter_by_public_body
 from lib.file_utils import IncrementalWriter, append_errors, read_json, write_json, write_status
+from lib.value_kinds import ROLE_KIND
 from lib.table_structure import DEFAULT_THRESHOLDS, StructureScore, failed_checks, passes, score_table
 
 STEP_NAME = "assess_table_structure"
 ERROR_MESSAGE = "no extractor produced a structurally reliable table"
 
 
-def _load_override_urls(step_dir) -> set[str]:
-    """file_urls with a manual override in extract_disclosures_canonicalize/column_mappings.json."""
+def _load_override_role_maps(step_dir) -> dict[str, dict[int, str]]:
+    """file_url -> {column index: role} for each manual override in
+    extract_disclosures_canonicalize/column_mappings.json. Only roles the scorer
+    measures are kept; mapping keys are string indices in the json."""
     if step_dir is None:
-        return set()
+        return {}
     path = Path(step_dir).parent / "extract_disclosures_canonicalize" / "column_mappings.json"
     if not path.exists():
-        return set()
-    return set(json.loads(path.read_text()))
+        return {}
+    out = {}
+    for url, entry in json.loads(path.read_text()).items():
+        out[url] = {int(i): role for i, role in entry.get("column_mapping", {}).items()
+                    if role in ROLE_KIND}
+    return out
 
 
 def _error_for(record) -> dict:
@@ -60,7 +67,7 @@ def _rebuild_errors(step_dir, results):
 
 
 def process(input_data, writer, step_dir=None, verbose=False):
-    override_urls = _load_override_urls(step_dir)
+    override_maps = _load_override_role_maps(step_dir)
     for item in input_data["results"]:
         file_url = item["file_url"]
         if writer.is_processed(file_url):
@@ -71,14 +78,11 @@ def process(input_data, writer, step_dir=None, verbose=False):
             writer.append([{**item}])
             continue
 
-        score = score_table(rows)
+        score = score_table(rows, role_map=override_maps.get(file_url))
         out = {**item, "table_structure": asdict(score)}
         if item.get("file_type") == "pdf" and not passes(score, DEFAULT_THRESHOLDS):
-            if file_url in override_urls:
-                out["table_structure"] = {**out["table_structure"], "override_exempt": True}
-            else:
-                out["rows"] = []
-                out["table_structure_unreliable"] = True
+            out["rows"] = []
+            out["table_structure_unreliable"] = True
         writer.append([out])
         if verbose:
             print(".", end="", flush=True)

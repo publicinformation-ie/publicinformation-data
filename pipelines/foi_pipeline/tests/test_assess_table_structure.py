@@ -107,11 +107,13 @@ def test_empty_pdf_rows_pass_through_without_error(tmp_path):
     assert errs == []
 
 
-def _run_with_overrides(tmp_path, records, override_urls):
+def _run_with_overrides(tmp_path, records, overrides):
+    """overrides: {url: column_mapping dict} (string index keys, as in the json)."""
     canon = tmp_path / "extract_disclosures_canonicalize"
     canon.mkdir(exist_ok=True)
     (canon / "column_mappings.json").write_text(json.dumps(
-        {u: {"source_method": "manual", "overridden": True, "column_mapping": {}} for u in override_urls}
+        {u: {"source_method": "manual", "overridden": True, "column_mapping": m}
+         for u, m in overrides.items()}
     ))
     step_dir = tmp_path / "assess_table_structure"
     step_dir.mkdir(exist_ok=True)
@@ -123,21 +125,56 @@ def _run_with_overrides(tmp_path, records, override_urls):
     return out, (json.loads(errs_path.read_text()) if errs_path.exists() else [])
 
 
-def test_override_pdf_failing_score_keeps_rows_and_logs_no_error(tmp_path):
-    out, errs = _run_with_overrides(tmp_path, [_rec("ov", "pdf", BAD_ROWS)], {"ov"})
+FINGAL_2023_ROWS = json.loads(
+    (Path(__file__).parent / "fixtures" / "table_structure" / "fingal_2023_shifted.json").read_text()
+)
+# Correct positions for FINGAL_2023_ROWS (data columns start at index 2).
+FINGAL_2023_GOOD_MAPPING = {
+    "2": "date_received", "3": "foi_reference_id", "4": "requester_type",
+    "5": "request_description", "6": "decision_status", "7": "decision_date",
+}
+# Description and requester swapped: the shift the gate must catch.
+FINGAL_2023_SHIFTED_MAPPING = {
+    "2": "date_received", "3": "foi_reference_id", "4": "request_description",
+    "5": "requester_type", "6": "decision_status", "7": "decision_date",
+}
+
+
+def test_override_file_is_gated_with_its_mapping(tmp_path):
+    out, errs = _run_with_overrides(
+        tmp_path, [_rec("ov", "pdf", FINGAL_2023_ROWS)], {"ov": FINGAL_2023_SHIFTED_MAPPING})
     rec = out[0]
-    assert rec["rows"] == BAD_ROWS
+    assert rec["rows"] == []
+    assert rec["table_structure_unreliable"] is True
+    assert "override_exempt" not in rec["table_structure"]
+    assert len(errs) == 1
+    assert "role_contamination" in errs[0]["context"]["failed_checks"]
+
+
+def test_override_file_passing_kept(tmp_path):
+    # Rows before the fixture's page-2 shift: consistent with the good mapping.
+    rows = [FINGAL_2023_ROWS[5]] + FINGAL_2023_ROWS[9:24]
+    out, errs = _run_with_overrides(
+        tmp_path, [_rec("ov", "pdf", rows)], {"ov": FINGAL_2023_GOOD_MAPPING})
+    rec = out[0]
+    assert rec["rows"] == rows
     assert "table_structure_unreliable" not in rec
-    assert rec["table_structure"]["override_exempt"] is True
     assert errs == []
+
+
+def test_override_failing_shape_is_emptied_not_exempt(tmp_path):
+    out, errs = _run_with_overrides(tmp_path, [_rec("ov", "pdf", BAD_ROWS)], {"ov": {}})
+    assert out[0]["rows"] == []
+    assert out[0]["table_structure_unreliable"] is True
+    assert [e["context"]["file_url"] for e in errs] == ["ov"]
 
 
 def test_non_override_failing_pdf_still_emptied_when_overrides_exist(tmp_path):
     out, errs = _run_with_overrides(
-        tmp_path, [_rec("ov", "pdf", BAD_ROWS), _rec("other", "pdf", BAD_ROWS)], {"ov"}
+        tmp_path, [_rec("ov", "pdf", GOOD_ROWS), _rec("other", "pdf", BAD_ROWS)], {"ov": {}}
     )
     by_url = {r["file_url"]: r for r in out}
-    assert by_url["ov"]["rows"] == BAD_ROWS
+    assert by_url["ov"]["rows"] == GOOD_ROWS
     assert by_url["other"]["rows"] == [] and by_url["other"]["table_structure_unreliable"] is True
     assert [e["context"]["file_url"] for e in errs] == ["other"]
 

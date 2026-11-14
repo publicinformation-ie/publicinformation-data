@@ -156,6 +156,9 @@ pdfplumber/camelot path — protects manual `column_mapping`s calibrated
 against pdfplumber's row structure from silently breaking under Mistral's
 different row structure.
 
+An entry may also set `pdf_extractor: "<candidate>"` (one of `CANDIDATE_ORDER`);
+the file is then extracted with that candidate instead of `_extract_pdf`.
+
 ### Errors
 
 | Condition | error_type |
