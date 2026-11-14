@@ -17,6 +17,7 @@ The authoritative step order is defined in [`../pipeline.json`](../pipeline.json
 | 9 | [`find_disclosure_pages`](find_disclosure_pages/) | Locates the disclosure log page for each body using domain-specific rules or crawl fallback. |
 | 10 | [`find_disclosure_files`](find_disclosure_files/) | Crawls each disclosure log page and collects links to PDF/XLSX/XLS files. |
 | 11 | [`transform_disclosure_files`](transform_disclosure_files/) | Downloads spreadsheet files and converts them into JSON row arrays; PDFs are passed through unmodified. |
+| 11a | [`assess_table_structure`](assess_table_structure/) | Fail-closed gate: scores PDF table structure and empties structurally unreliable PDFs (logged as `TableStructureUnreliable`). |
 | 12 | [`normalize_disclosure_cells`](normalize_disclosure_cells/) | Normalizes string cell values in extracted disclosure log data (removes CID artifacts, normalizes whitespace). |
 | 13 | [`extract_disclosures_detect_header_row`](extract_disclosures_detect_header_row/) | Detects which spreadsheet row is the header using a 2-non-empty-cell heuristic. |
 | 14 | [`extract_disclosures_normalize_header`](extract_disclosures_normalize_header/) | Repairs null cells in the detected header row by merging continuation rows and forward-filling merged-cell spans. |
@@ -50,7 +51,7 @@ Every step accepts `--public-body <ID>` to reprocess only that body while leavin
 
 | Shape | Steps | Mechanism |
 |-------|-------|-----------|
-| §a evict | `resolve_website_urls`, `validate_websites`, `find_foi_pages`, `find_foi_pages_search`, `check_foi_pages`, `get_foi_emails`, `find_disclosure_pages`, `find_disclosure_files`, `transform_disclosure_files`, `normalize_disclosure_cells`, `extract_disclosures_detect_header_row`, `extract_disclosures_normalize_header` | `IncrementalWriter(target_public_body=ID)` evicts the body on load and marks it dirty so downstream steps cascade automatically. |
+| §a evict | `resolve_website_urls`, `validate_websites`, `find_foi_pages`, `find_foi_pages_search`, `check_foi_pages`, `get_foi_emails`, `find_disclosure_pages`, `find_disclosure_files`, `transform_disclosure_files`, `assess_table_structure`, `normalize_disclosure_cells`, `extract_disclosures_detect_header_row`, `extract_disclosures_normalize_header` | `IncrementalWriter(target_public_body=ID)` evicts the body on load and marks it dirty so downstream steps cascade automatically. |
 | §b merge-back | `extract_disclosures_normalize_rows`, `extract_disclosures_canonicalize`, `extract_disclosures_canonicalize_rows`, `extract_disclosures_deduplicate` | Filters input to the target body, processes it, then merges the new records back over the existing output (replacing only that body's rows). |
 | §c filter-reads | `export_status`, `generate_topics`, `db_upload` | Aggregator/publisher steps filter every consumed read to the target body. Output is derived/best-effort — run a full pipeline before publishing. |
 

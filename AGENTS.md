@@ -101,6 +101,7 @@ Always-run steps: `fetch_status_annexes`.
 | 12 | `find_disclosure_files` |
 | 13 | `verify_disclosure_files` |
 | 14 | `transform_disclosure_files` |
+| 14a | `assess_table_structure` |
 | 15 | `normalize_disclosure_cells` |
 | 16 | `filter_phantom_rows` |
 | 17 | `extract_disclosures_detect_header_row` |
