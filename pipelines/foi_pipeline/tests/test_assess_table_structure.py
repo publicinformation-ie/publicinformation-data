@@ -91,3 +91,17 @@ def test_downstream_handles_emptied_record(tmp_path):
     w2.finalize()
     final = json.loads((tmp_path / "p.json").read_text())["results"]
     assert sum(len(r["rows"]) for r in final) == 0
+
+
+def test_rows_none_passes_through_unscored(tmp_path):
+    out, errs = _run(tmp_path, [_rec("u4", "pdf", None)])
+    assert out[0] == _rec("u4", "pdf", None)
+    assert errs == []
+
+
+def test_empty_pdf_rows_pass_through_without_error(tmp_path):
+    out, errs = _run(tmp_path, [_rec("u5", "pdf", [])])
+    assert out[0] == _rec("u5", "pdf", [])
+    assert "table_structure" not in out[0]
+    assert "table_structure_unreliable" not in out[0]
+    assert errs == []

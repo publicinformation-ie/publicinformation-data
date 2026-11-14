@@ -53,7 +53,7 @@ def process(input_data, writer, step_dir=None, verbose=False):
             continue
 
         rows = item.get("rows")
-        if rows is None:
+        if rows is None or rows == []:
             writer.append([{**item}])
             continue
 
