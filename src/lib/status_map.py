@@ -3,6 +3,7 @@ import re
 from typing import Optional
 
 from lib.text_utils import normalize_header
+from lib.value_kinds import strip_value_punctuation
 
 # The canonical status values
 CANONICAL_STATUSES: list[str] = [
@@ -168,7 +169,20 @@ for canonical, synonyms in _STATUS_SYNONYMS.items():
 
 
 def canonicalize_status(status: str | None) -> Optional[str]:
-    """Return the canonical status for a decision status string, or None."""
+    """Return the canonical status for a decision status string, or None.
+
+    If every existing lookup fails, the lookup is repeated once on the value with
+    surrounding punctuation removed, so values that resolved before resolve identically.
+    """
+    result = _canonicalize_status_once(status)
+    if result is None and isinstance(status, str) and status.strip():
+        stripped = strip_value_punctuation(status)
+        if stripped:
+            result = _canonicalize_status_once(stripped)
+    return result
+
+
+def _canonicalize_status_once(status: str | None) -> Optional[str]:
     if not status or not isinstance(status, str) or not status.strip():
         return None
 

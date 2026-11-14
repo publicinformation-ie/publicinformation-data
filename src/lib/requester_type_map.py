@@ -2,6 +2,8 @@
 import unicodedata
 from typing import Optional
 
+from lib.value_kinds import strip_value_punctuation
+
 CANONICAL_REQUESTER_TYPES: list[str] = [
     'Journalist',
     'Other',
@@ -155,7 +157,21 @@ def is_no_data_sentinel(value: str | None) -> bool:
 
 
 def canonicalize_requester_type(value: str | None) -> Optional[str]:
-    """Return canonical requester type for a value, or None if unrecognised."""
+    """Return canonical requester type for a value, or None if unrecognised.
+
+    If every existing lookup fails, the lookup is repeated once on the value with
+    surrounding punctuation removed ('Journalist.'), so values that resolved before
+    resolve identically.
+    """
+    result = _canonicalize_requester_type_once(value)
+    if result is None and isinstance(value, str) and value.strip():
+        stripped = strip_value_punctuation(value)
+        if stripped:
+            result = _canonicalize_requester_type_once(stripped)
+    return result
+
+
+def _canonicalize_requester_type_once(value: str | None) -> Optional[str]:
     if not value or not isinstance(value, str) or not value.strip():
         return None
     decomposed = unicodedata.normalize('NFKD', value.strip().lower())

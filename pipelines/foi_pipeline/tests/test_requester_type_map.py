@@ -394,3 +394,26 @@ def test_appellant_is_its_own_canonical_type():
     assert canonicalize_requester_type("Appellant") == "Appellant"
     assert canonicalize_requester_type("appellant") == "Appellant"
     assert canonicalize_requester_type("Applicant") == "Other"
+
+
+# ── punctuation-insensitive fallback ────────────────────────
+@pytest.mark.parametrize("raw,canon", [
+    ("Journalist.", "Journalist"),
+    ("Member of the \npublic.", "Member of the Public"),
+    # 'member of staff' is not in _LOOKUP (brief example); 'staff' is
+    ("Staff.", "Staff"),
+    (".Journalist.", "Journalist"),
+])
+def test_trailing_punctuation_resolves(raw, canon):
+    assert canonicalize_requester_type(raw) == canon
+
+
+@pytest.mark.parametrize("raw", ["J ournalist.", "Granted", "Part Grant", "Interested business group"])
+def test_split_letters_and_misplaced_values_still_unrecognised(raw):
+    assert canonicalize_requester_type(raw) is None
+
+
+def test_every_lookup_key_unchanged():
+    from lib.requester_type_map import _LOOKUP
+    for key, value in _LOOKUP.items():
+        assert canonicalize_requester_type(key) == value, key

@@ -488,3 +488,17 @@ def test_unknown_requester_type_still_errors():
 def test_new_status_vocab_additions():
     assert canonicalize_status("On Hold") == "Unknown"
     assert canonicalize_status("Dealt with outside of the FOI Act") == "Handled outside of FOI"
+
+
+def test_status_trailing_punctuation_resolves():
+    assert canonicalize_status("Granted.") == "Granted"
+    assert canonicalize_status(".Refused.") == "Refused"
+
+
+def test_every_status_synonym_unchanged():
+    from lib.status_map import _STATUS_LOOKUP, _STATUS_SYNONYMS, _canonicalize_status_once
+    for synonyms in _STATUS_SYNONYMS.values():
+        for syn in synonyms:
+            assert canonicalize_status(syn) == _canonicalize_status_once(syn), syn
+    for norm, canon in _STATUS_LOOKUP.items():
+        assert canonicalize_status(norm) == canon, norm
