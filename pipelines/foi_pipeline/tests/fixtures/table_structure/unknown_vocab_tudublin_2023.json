@@ -1,0 +1,362 @@
+[
+ [
+  "Quarter",
+  "Ref",
+  "Date Request\nReceived",
+  "Requester\nCategory",
+  "Description of Request",
+  "Decision",
+  "Date of\nResponse"
+ ],
+ [
+  "1",
+  "FOI 23-001",
+  "03.01.23",
+  "Staff",
+  "Request pertains to the Convene Budget for the period from 1 April 2022 to 31 December 2022.",
+  "Refused\nSection 15(1)(g)",
+  "10.01.23"
+ ],
+ [
+  "1",
+  "FOI 23-002",
+  "04.01.23",
+  "Staff",
+  "Request pertains to Convene Project Management in the period from 30 March to 8 October\n2022.",
+  "Refused\nSection 15(1)(g)",
+  "10.01.23"
+ ],
+ [
+  "1",
+  "FOI 23-003",
+  "10.01.23",
+  "Staff",
+  "Request pertains to Convene Budget in the period 30 March to 31 May 2022.",
+  "Refused\nSection 15(1)(g)",
+  "10.01.23"
+ ],
+ [
+  "1",
+  "FOI 23-004",
+  "10.01.23",
+  "Staff",
+  "Request for documentation pertaining to the employment records of the number of people of\ncolour/ other ethnic minorities employed by TU Dublin including career progression data for TU\nDublin in the period 2012 to 2022.",
+  "Refused\nSection 15(1)(a)",
+  "08.02.23"
+ ],
+ [
+  "1",
+  "FOI 23-005",
+  "11.01.23",
+  "Staff",
+  "Request pertains to Convene Budget for the period 30 March to 31 December 2022.",
+  "Withdrawn by\nRequester",
+  "17.01.23"
+ ],
+ [
+  "1",
+  "FOI 23-006",
+  "28.02.23\nAmended",
+  "Journalist",
+  "Request relates to details of the tuition fee breakdown and allocation of expenditure in relation\nto a particular part-time course in TU Dublin.",
+  "Refused\nSection 15(1)(a)",
+  "28.03.23"
+ ],
+ [
+  "1",
+  "FOI 23-010",
+  "16.02.23",
+  "Journalist",
+  "Request relates to expenditure on the provision of mental health services in the academic year\nSeptember 2021 to summer 2022 and academic year September 2022 to February 2023, and\nthe number of students who availed of mental health services at the university in the same time\nperiods.",
+  "Granted",
+  "16.03.23"
+ ],
+ [
+  "1",
+  "FOI 23-011",
+  "16.02.23",
+  "Journalist",
+  "Request relates to the average wait time for access to mental health services in the university\nduring the academic year September 2021/2022.",
+  "Granted",
+  "16.03.23"
+ ],
+ [
+  "1",
+  "FOI 23-012",
+  "23.02.23",
+  "Journalist",
+  "Request relates to the number of cases of sexual harassment and/or abuse that were reported\nin TU Dublin by students and staff in each of the years 2019 to 2022, including records citing\nthe number of students or staff who were fined, suspended, or expelled following such\nallegations in each of the years outlined, including details relating to gender.",
+  "Refused\nSection 37(1)",
+  "22.03.23"
+ ],
+ [
+  "1",
+  "FOI 23-013",
+  "24.02.23",
+  "Journalist",
+  "Request relates to Fitness to Study and Fitness to Practice Committees held at TU Dublin from\n2019 to February 2023.",
+  "Refused\nSection\n(15)(1)(a)",
+  "22.03.23"
+ ],
+ [
+  "1",
+  "FOI 23-014",
+  "28.02.23",
+  "Journalist",
+  "Request relates to correspondence held by the President of TU Dublin referring or relating to\nthe prevalence of racist attacks on students of TU Dublin for the period 1 September 2022 to\n28 February 2023.",
+  "Part-granted\nSection 37(1)",
+  "27.03.23"
+ ],
+ [
+  "1",
+  "FOI 23-015",
+  "01.03.23",
+  "Staff",
+  "Request relates to the Organisational Design Project Steering Board pertaining to Access and\nApprenticeship for records relating to the Terms of Reference, committee members, dates of\ncommittee meetings and minutes of meetings from September 2022 to February 2023.",
+  "Refused\nSection 15(1)(a)",
+  "27.03.23"
+ ],
+ [
+  "1",
+  "FOI 23-016",
+  "13.03.23",
+  "Client",
+  "Request consisted of 15 parts.",
+  "Refused\nSection 15(1)(g)",
+  "12.04.23"
+ ],
+ [
+  "1",
+  "FOI 23-017",
+  "13.03.23",
+  "Client",
+  "Request consisted of 20 parts.",
+  "Refused\nSection 15(1)(g)",
+  "12.04.23"
+ ],
+ [
+  "1",
+  "FOI 23-018",
+  "15.03.23",
+  "Others - public",
+  "Request relates to information relating to ICT Supplier Details and Contract Start and End\nDates relating to Information Technology and IT.",
+  "Withdrawn by\nrequester",
+  "16.03.23"
+ ],
+ [
+  "1",
+  "FOI 23-019",
+  "26.04.23\nAmended",
+  "Client",
+  "Request relates to the Applied Social Studies in Social Care Level 8 course TU991 run by the\nDepartment of Humanities for records relating to the course description and Early Exit Award\nPolicy from 2017.",
+  "Part-granted\nSection 15(1)(a)",
+  "23.05.23"
+ ],
+ [
+  "1",
+  "FOI 23-020",
+  "22.03.23",
+  "Others - public",
+  "Request relates to records pertaining to the College of Engineering and Built Environment, for\nthe Subject Preparing for Employment from the inception of TU Dublin on the first of January\n2019 until 2023, including numbers of students in each year, number of students in each year\nwho completed the course, number of withdrawals, number of students who passed or failed\nthe course and number of students who were awaiting grading.",
+  "Refused\nSection 15(1)(b)",
+  "23.05.23"
+ ],
+ [
+  "1",
+  "FOI 23-021",
+  "28.03.23",
+  "Journalist",
+  "Request relates to records of accepted and rejected donations, gifts, grants and research\nfunding received from Chinese individuals, Chinese companies, Chinese charities, Chinese\ngovernment departments/agencies, and other Chinese organisations' over €10,000 for\nfinancial years 2019/20, 2020/21 and up until the end of 2022 for TU Dublin.",
+  "Part-granted\nSection 15(1)(a)\n–\nPart 2",
+  "25.04.23"
+ ],
+ [
+  "2",
+  "FOI 23-022",
+  "26.04.23\namended",
+  "Others - public",
+  "Request pertains to a gender breakdown of the Athena SWAN groups including the Athena\nSWAN Self-Assessment Team (SAT) and all associated working groups; gender breakdown\nof membership and attendance at all Athena SWAN SAT and working group meetings from 1st\nJanuary 2019 to April 2023.",
+  "Granted",
+  "08.05.23"
+ ],
+ [
+  "2",
+  "FOI 23-023",
+  "13.04.23",
+  "Journalist",
+  "Request relates to accepted donations, gifts, grants, and research funding (worth over €5,000)\ngiven to TU Dublin from Chinese entities (companies or individuals) for the financial years of\n2020-2021, 2021-2022 and 2022-2023 including details of the donor name, total sum received\n(breakdown if applicable) and also the date TU Dublin accepted the money, the specific\npurpose for which the monies were received (the department that benefitted). Also details of\nhow many of TU Dublin's students (undergraduate and postgraduate) are citizens of the\nPeople’s Republic of China including details of the total amount of tuition fee funding generated",
+  "Part-granted\nSection 15(1)(a)",
+  "12.05.23"
+ ],
+ [
+  "",
+  "",
+  "",
+  "",
+  "by this cohort for the financial years of 2020/2021, 2021/2022 and information available for the\ncurrent year 2022/2023.",
+  "",
+  ""
+ ],
+ [
+  "2",
+  "FOI 23-024",
+  "20.04.23",
+  "Journalist",
+  "Request relates to the number of registered members of any student club or society linked to",
+  "Refused\nSection 15(1)(a)",
+  "18.05.23"
+ ],
+ [
+  null,
+  null,
+  null,
+  null,
+  "a registered political party with representation in the Dáil (Fianna Fáil, Fine Gael, Sinn Féin,",
+  null,
+  null
+ ],
+ [
+  null,
+  null,
+  null,
+  null,
+  "the Social Democrats, the Labour Party, the Green Party/Comhaontas Glas; People Before",
+  null,
+  null
+ ],
+ [
+  null,
+  null,
+  null,
+  null,
+  "Profit-Solidarity, and Aontú) in particular student branches of these parties - Ógra Fianna Fáil",
+  null,
+  null
+ ],
+ [
+  null,
+  null,
+  null,
+  null,
+  "in respect of Fianna Fáil; Young Fine Gael in respect of Fine Gael; Labour Youth in respect of",
+  null,
+  null
+ ],
+ [
+  null,
+  null,
+  null,
+  null,
+  "the Labour Party; The Socialist Worker Student Society in respect of PBP-Solidarity; Ógra",
+  null,
+  null
+ ],
+ [
+  null,
+  null,
+  null,
+  null,
+  "Shinn Féin in respect of Sinn Féin and Soc Dems in respect of the Social Democrats. Also",
+  null,
+  null
+ ],
+ [
+  null,
+  null,
+  null,
+  null,
+  "requested in respect of each student political society as outlined above - the total number of",
+  null,
+  null
+ ],
+ [
+  null,
+  null,
+  null,
+  null,
+  "members registered in the current academic year; where the information is readily available,",
+  null,
+  null
+ ],
+ [
+  null,
+  null,
+  null,
+  null,
+  "how many are registered students; how many are staff and how many are alumni.",
+  null,
+  null
+ ],
+ [
+  "2",
+  "FOI 23-025",
+  "25.04.2023\namended",
+  "Business/Interest\nGroups",
+  "Request relates to the number of UDL badges obtained by staff in TU Dublin; the number of\nteaching staff in TU Dublin; the number teaching staff have obtained UDL badges; best practice\nguidelines for how UDL is implemented in TU Dublin including a copy of the guidelines.\nRequested timeline - semester 2 2018/2019 and 2022/2023.",
+  "Part-granted\nSection 15(1)(a)",
+  "23.05.23"
+ ],
+ [
+  "2",
+  "FOI 23-026",
+  "15.05.23\namended",
+  "Business/Interest\nGroups",
+  "Request relates to the number of students who accepted their place in TU Dublin and deferred\nthe year due to different circumstances from 2019 - 2023; the number of first year students\naccepted through CAO from 2013 - 2023; the number of first year students that withdrew from\ntheir course between 2013 - 2023; the number of students who opted to defer their course\nbetween 2013 - 2023 and the number of students who deferred the year, and accepted their\nplace the following year between 2013 - 2023.",
+  "Granted",
+  "08.06.23"
+ ],
+ [
+  "2",
+  "FOI 23-027",
+  "10.05.23",
+  "Business/Interest\nGroups",
+  "Request relates to the number of academic staff (WTE) employed in the academic years\n1999/2000 and 2000/2001; the number of Senior Lecturer 1 (Teaching) posts in the academic\nyears 1999/2000 and 2000/2001; the number of academic staff in the academic year\n2021/2022; the number of academic staff in the academic year 2022/2023; the number of\nacademic staff on the Senior Lecturer 1 (Teaching) grade; the number of academic staff on\nthe Senior Lecturer 1 (Teaching) grade c in the academic year 2022/2023 pertaining to the\nformer DIT; IT Blanchardstown and IT Tallaght. Information sought pertaining to TU Dublin -\nThe number of academic staff in the academic year 2021/2022; the number of academic staff\nin the academic year 2022/2023; the number of academic staff on the Senior Lecturer",
+  "Part-granted\nSection 15(1)(a)",
+  "08.06.23"
+ ],
+ [
+  "",
+  "",
+  "",
+  "",
+  "(Teaching) grade in the academic year 2021/2022 and the number of academic staff on the\nSenior Lecturer (Teaching) grade in the academic year 2022/2023.",
+  "",
+  ""
+ ],
+ [
+  "2",
+  "FOI 23-028",
+  "30.05.23",
+  "Journalist",
+  "Request pertains to personal expenses (travel, subsistence, accommodation, etc.) claimed in\n2020/2021, 2021/2022 and 2022/2023 by the President of TU Dublin including, but not limited\nto: taxis, hotel accommodation, meals, hospitality, car hire, international and domestic travel,\npublic transport, bank charges, miscellaneous; including an itemised breakdown of each cost\nincurred and paid per academic year, the amount of expenses incurred as well as a year-by-\nyear breakdown.",
+  "Granted",
+  "05.07.23"
+ ],
+ [
+  "2",
+  "FOI 23-029",
+  "30.05.23",
+  "Journalist",
+  "Request relates to records pertaining to non-economy and non-budget class flights taken by\nstaff during 2021/2022 and 2022/2023, including the cost of fare, class of flight (eg, first class,\nbusiness class) destinations of same and the purpose of flights.",
+  "Part-granted\nSection 15(1)(a)",
+  "05.07.23"
+ ],
+ [
+  "2",
+  "FOI 23-030",
+  "26.06.23",
+  "Others - public",
+  "Request relates to records pertaining to the College of Engineering and Built Environment, for\nthe Subject Preparing for Employment from the inception of TU Dublin on the first of January\n2019 until 2023, including numbers of students in each year, number of students in each year\nwho completed the course, number of withdrawals, number of students who passed or failed\nthe course and number of students who were awaiting grading.",
+  "Refused\nSection 15(1)(b)",
+  "21.07.23"
+ ],
+ [
+  "3",
+  "FOI 23-031",
+  "07.07.23",
+  "Business/Interest\nGroups",
+  "Request relates to information in a tabular format regarding the number of culinary training\nkitchens used each day (Monday to Friday) plus the hours when in use during term time in\n2022 and 2023.",
+  "Granted",
+  "30.08.23"
+ ]
+]

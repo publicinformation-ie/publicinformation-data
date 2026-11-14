@@ -22,9 +22,10 @@ from collections import Counter
 from dataclasses import dataclass
 
 from lib.continuation_rows import merge_continuation_rows
-from lib.column_map import canonicalize_headers
+from lib.column_map import canonicalize_header, canonicalize_headers
 from lib.date_parse import parse_date
-from lib.table_utils import detect_header_row
+from lib.table_utils import detect_header_row, normalize_header_row
+from lib.value_kinds import ROLE_KIND, cell_kinds, foreign_kind, strip_value_punctuation
 
 _RUN_TOGETHER_RE = re.compile(r"[a-z]{2,}[A-Z][a-z]")
 # CamelCase brand names (WhatsApp, EirGrid) are not run-together words.
@@ -44,6 +45,13 @@ class StructureScore:
     run_together_rate: float  # text: run-together tokens inside a cell (never gates)
     repeated_header_share: float  # recorded before removal (never gates)
     composite: float
+    # Role-aware metrics: recorded only, not gating. None means not measured;
+    # stored scores that predate them load that way (roles_unmapped=True).
+    role_contamination: float | None = None  # overall share of foreign cells
+    worst_role_contamination: float | None = None  # worst single column
+    worst_role: str | None = None
+    anchored_row_share: float | None = None
+    roles_unmapped: bool = True
 
     @property
     def split_word_rate(self) -> float:
@@ -239,7 +247,72 @@ def _worst(n_rows: int, modal_width: int) -> StructureScore:
     return StructureScore(n_rows, modal_width, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0)
 
 
-def score_table(rows: list[list]) -> StructureScore:
+_MIN_ROLE_CELLS = 5
+_BARE_DIGITS_RE = re.compile(r"^\d+\.?$")
+# A placeholder in a column that is not applicable to the row (e.g. "N/A" in a
+# decision-date column) is no value at all, so it is neither foreign nor own.
+_PLACEHOLDERS = frozenset({"n/a", "na", "nil", "none", "tbc", "-", "\u2013", "\u2014"})
+
+
+def _is_placeholder(cell) -> bool:
+    return strip_value_punctuation(_text(cell)) in _PLACEHOLDERS
+
+
+def _header_role_map(rows: list[list]) -> dict[int, str]:
+    """Column index -> role, from the (merged) header row. Two columns may
+    share a role; each is scored separately."""
+    if not rows:
+        return {}
+    hdr_rows, hidx = normalize_header_row(rows, 0)
+    header = hdr_rows[hidx] if hidx < len(hdr_rows) else []
+    out = {}
+    for i, cell in enumerate(header):
+        canon = canonicalize_header(_text(cell))
+        if canon in ROLE_KIND:
+            out[i] = canon
+    return out
+
+
+def _role_metrics(data: list[list], role_map: dict[int, str]) -> dict:
+    unmapped = len(role_map) < 2
+    result: dict = {"roles_unmapped": unmapped}
+    if unmapped:
+        return result
+    foreign_total = cell_total = 0
+    worst_share, worst_role = None, None
+    for col, role in role_map.items():
+        cells = [r[col] for r in data if col < len(r) and not _is_empty(r[col])
+                 and not _is_placeholder(r[col])]
+        if len(cells) < _MIN_ROLE_CELLS:
+            continue
+        foreign = sum(1 for c in cells if foreign_kind(c, role) is not None)
+        foreign_total += foreign
+        cell_total += len(cells)
+        share = foreign / len(cells)
+        if worst_share is None or share > worst_share:
+            worst_share, worst_role = share, role
+    if cell_total:
+        result["role_contamination"] = foreign_total / cell_total
+        result["worst_role_contamination"] = worst_share
+        result["worst_role"] = worst_role
+    anchors = [(c, ROLE_KIND[r]) for c, r in role_map.items()
+               if ROLE_KIND[r] in ("date", "reference")]
+    if anchors and data:
+        def anchored(row: list) -> bool:
+            for col, kind in anchors:
+                if col >= len(row):
+                    continue
+                if kind in cell_kinds(row[col]):
+                    return True
+                if kind == "reference" and _BARE_DIGITS_RE.match(_text(row[col]).strip()):
+                    return True
+            return False
+        result["anchored_row_share"] = sum(1 for r in data if anchored(r)) / len(data)
+    return result
+
+
+def score_table(rows: list[list],
+                role_map: dict[int, str] | None = None) -> StructureScore:
     # Score what survives filter_phantom_rows, in the same order: merge
     # continuation rows over the RAW rows first, only then drop blank rows,
     # year dividers and extra header rows. (Dropping blanks first would let a
@@ -289,13 +362,18 @@ def score_table(rows: list[list]) -> StructureScore:
     run_together, cells = _count_run_together([header] + data)
     run_together_rate = run_together / cells if cells else 1.0
 
+    if role_map is None:
+        role_map = _header_role_map(rows)
+    role_metrics = _role_metrics(data, role_map)
+
     purity = _column_type_purity(data)
     composite = (width_uniformity * purity * (1 - fragment_share)
                  * (1 - min(1.0, 10 * (cross_cell_split_rate + run_together_rate)))
                  * (1 - repeated_header_share))
     return StructureScore(n_rows, modal_width, width_uniformity, fragment_share,
                           purity, cross_cell_split_rate, run_together_rate,
-                          repeated_header_share, max(0.0, min(1.0, composite)))
+                          repeated_header_share, max(0.0, min(1.0, composite)),
+                          **role_metrics)
 
 
 def failed_checks(score: StructureScore,

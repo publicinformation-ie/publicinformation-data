@@ -8,6 +8,7 @@ from lib.table_structure import (
     failed_checks,
     passes,
     score_table,
+    StructureScore,
 )
 from steps.transform_disclosure_files.eval.evaluate import has_newline_split_row
 
@@ -288,3 +289,81 @@ def test_from_dict_reads_legacy_score():
     assert rebuilt.cross_cell_split_rate == 0.5
     assert rebuilt.run_together_rate == 0.0
     assert StructureScore.from_dict(asdict(score)) == score
+
+
+# --- role-aware metrics (recorded, not gating) ---
+
+def test_fingal_2023_shifted_contaminated():
+    sc = score_table(load("fingal_2023_shifted"))
+    assert not sc.roles_unmapped and sc.worst_role_contamination >= 0.5
+
+
+def test_fingal_2024_camelot_stream_worse_than_alternative():
+    c = load("fingal_2024_candidates")
+    stream = score_table(c["camelot_stream"])
+    best_other = min(score_table(c[n]).worst_role_contamination
+                     for n in ("pymupdf", "mistral_cache"))
+    assert stream.worst_role_contamination > best_other
+
+
+def test_waterford_duplicate_status_role():
+    rows = load("waterford_2025_clean")
+    sc = score_table(rows, role_map={0: "foi_reference_id", 1: "decision_status",
+                                     3: "date_received", 4: "decision_status"})
+    assert sc.worst_role == "decision_status" and sc.worst_role_contamination >= 0.9
+
+
+def test_waterford_after_alias_clean():
+    assert score_table(load("waterford_2025_clean")).worst_role_contamination == 0.0
+
+
+def test_rte_lattice_clean():
+    sc = score_table(load("rte_q4_2020_lattice"))
+    assert sc.worst_role_contamination <= 0.05 and sc.anchored_row_share >= 0.95
+
+
+def test_unknown_vocab_not_contamination():
+    sc = score_table(load("unknown_vocab_tudublin_2023"))
+    assert not sc.roles_unmapped and sc.worst_role_contamination == 0.0
+
+
+def test_ambiguous_value_not_contamination():
+    rows = [["Reference", "Date Received", "Requester Type"]]
+    rows += [[f"FOI/2024/{i:04d}", "01/02/2024", "Other"] for i in range(1, 11)]
+    sc = score_table(rows)
+    assert not sc.roles_unmapped and sc.worst_role_contamination == 0.0
+
+
+def test_headerless_roles_unmapped():
+    rows = [[f"FOI/2024/{i:04d}", "01/02/2024", "Journalist", "Records", "Granted"]
+            for i in range(1, 11)]
+    sc = score_table(rows)
+    assert sc.roles_unmapped is True
+    assert sc.role_contamination is None and sc.worst_role_contamination is None
+
+
+def test_from_dict_legacy_without_role_fields():
+    d = dict(n_rows=10, modal_width=5, width_uniformity=1.0, fragment_share=0.0,
+             column_type_purity=1.0, split_word_rate=0.0, run_together_rate=0.0,
+             repeated_header_share=0.0, composite=1.0)
+    sc = StructureScore.from_dict(d)
+    assert sc.roles_unmapped is True
+    assert sc.worst_role_contamination is None and sc.anchored_row_share is None
+
+
+def test_composite_unchanged():
+    expected = {
+        'body1505_2019_2025_year_dividers': 0.8,
+        'charities_regulator_2024_clean': 0.992736077482,
+        'courts_2017_q3_adjacent_values': 1.0,
+        'fingal_2016_continuations': 0.961038961039,
+        'qqi_2026_trailing_optional': 1.0,
+        'repeated_header_every_page_2023': 0.764705882353,
+        'rte_2018_p1_override_rows': 1.0,
+        'rte_2018_shifted': 0.842936288089,
+        'rte_q4_2019_split_words': 0.206611570248,
+        'stvincents_2018_brand': 1.0,
+        'wicklow_2023_continuations': 0.977142857143,
+    }
+    for name, value in expected.items():
+        assert score_table(load(name)).composite == pytest.approx(value, abs=1e-9), name
