@@ -68,6 +68,7 @@ def main():
             "current_failed": failed_checks(cur),
             "mistral_failed": failed_checks(mist) if mist else None,
         })
+    _OUT.mkdir(parents=True, exist_ok=True)
     (_OUT / "mistral_replay.json").write_text(json.dumps(out, indent=1))
 
     cached = [r for r in out if r["mistral"] is not None]
