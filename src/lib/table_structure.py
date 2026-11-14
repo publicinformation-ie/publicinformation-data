@@ -3,7 +3,8 @@
 Scores a ``rows`` grid (list of lists of cells) on structural signals that need
 no ground-truth labels: row-width uniformity, fragment rows, column type
 purity, split/run-together words and repeated header rows. Threshold values in
-``DEFAULT_THRESHOLDS`` are provisional and are calibrated separately.
+``DEFAULT_THRESHOLDS`` were calibrated on a 10-file gold set (small N);
+see experiments/2026-11-14-pdf-extractor-bakeoff/results/bakeoff.md.
 """
 import re
 from collections import Counter
@@ -32,11 +33,11 @@ class StructureScore:
 
 @dataclass(frozen=True)
 class Thresholds:
-    min_width_uniformity: float = 0.95
-    max_fragment_share: float = 0.05
+    min_width_uniformity: float = 0.85
+    max_fragment_share: float = 0.10
     min_column_type_purity: float = 0.85
-    max_split_word_rate: float = 0.01
-    max_repeated_header_share: float = 0.02
+    max_split_word_rate: float = 0.02
+    max_repeated_header_share: float = 0.07
     min_rows: int = 1
 
 
