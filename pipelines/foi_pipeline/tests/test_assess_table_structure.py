@@ -152,7 +152,8 @@ def test_override_file_is_gated_with_its_mapping(tmp_path):
 
 
 def test_override_file_passing_kept(tmp_path):
-    # Rows before the fixture's page-2 shift: consistent with the good mapping.
+    # A curated subset of non-contiguous fixture rows (header row 5, data rows
+    # 9-23, before the page-2 shift), consistent with the good mapping.
     rows = [FINGAL_2023_ROWS[5]] + FINGAL_2023_ROWS[9:24]
     out, errs = _run_with_overrides(
         tmp_path, [_rec("ov", "pdf", rows)], {"ov": FINGAL_2023_GOOD_MAPPING})

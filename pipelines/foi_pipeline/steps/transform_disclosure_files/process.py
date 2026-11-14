@@ -644,7 +644,8 @@ def _process_single_file(
             sheet_name, rows, _, has_multiple = _extract_xls(file_bytes)
         else:  # pdf
             pdf_extractor = None
-            use_mistral = mistral_enabled and file_url not in skip_mistral_urls
+            use_mistral = (mistral_enabled and file_url not in skip_mistral_urls
+                           and not (override_extractors and file_url in override_extractors))
             if use_mistral:
                 try:
                     markdown = call_mistral_ocr(

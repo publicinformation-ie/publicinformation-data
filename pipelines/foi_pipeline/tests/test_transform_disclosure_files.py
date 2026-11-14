@@ -1806,3 +1806,76 @@ def test_select_fingal_2024_not_camelot_stream(monkeypatch):
     _stub_candidates(monkeypatch, cands)
     chosen, _ = _select()
     assert chosen.name != "camelot_stream"
+
+
+# ── pdf_extractor override key ───────────────────────────────────────────────
+
+def _write_mappings(tmp_path, entries):
+    d = tmp_path / "extract_disclosures_canonicalize"
+    d.mkdir()
+    (d / "column_mappings.json").write_text(json.dumps(entries))
+    step_dir = tmp_path / "transform_disclosure_files"
+    step_dir.mkdir()
+    return step_dir
+
+
+def test_load_override_extractors_valid_and_unset(tmp_path):
+    from steps.transform_disclosure_files.process import _load_override_extractors
+    step_dir = _write_mappings(tmp_path, {
+        "u1": {"column_mapping": {}, "pdf_extractor": "mistral_cache"},
+        "u2": {"column_mapping": {}},
+    })
+    assert _load_override_extractors(step_dir) == {"u1": "mistral_cache"}
+
+
+def test_load_override_extractors_unknown_name_raises(tmp_path):
+    import pytest
+    from steps.transform_disclosure_files.process import _load_override_extractors
+    step_dir = _write_mappings(tmp_path, {"u1": {"column_mapping": {}, "pdf_extractor": "nope"}})
+    with pytest.raises(ValueError):
+        _load_override_extractors(step_dir)
+
+
+def _run_single(tmp_path, monkeypatch, *, mistral_enabled, cand):
+    from unittest.mock import MagicMock
+    from steps.transform_disclosure_files import candidates, process as proc
+    url = "http://example.com/o.pdf"
+    f = tmp_path / "o.bytes"
+    f.write_bytes(b"%PDF")
+    cache = MagicMock()
+    cache.get_file_path.return_value = f
+    calls = {"mistral": 0, "cand": []}
+
+    def fake_mistral(*a, **k):
+        calls["mistral"] += 1
+        return "| a | b |\n|---|---|\n| 1 | 2 |"
+
+    def fake_extract(name, b, **k):
+        calls["cand"].append(name)
+        return cand
+
+    monkeypatch.setattr(proc, "call_mistral_ocr", fake_mistral)
+    monkeypatch.setattr(candidates, "extract_candidate", fake_extract)
+    item = {"file_url": url, "file_type": "pdf", "public_body_id": 1}
+    res = proc._process_single_file(
+        item, cache, tmp_path, manual_override_urls=frozenset({url}),
+        mistral_enabled=mistral_enabled, ocr_cache_dir=tmp_path / "ocr",
+        override_extractors={url: "camelot_lattice"},
+    )
+    return res, calls
+
+
+def test_override_pdf_extractor_uses_candidate_and_skips_live_mistral(tmp_path, monkeypatch):
+    from steps.transform_disclosure_files.candidates import Candidate
+    cand = Candidate("camelot_lattice", [["h"], ["x"]], "page 1", {}, False)
+    res, calls = _run_single(tmp_path, monkeypatch, mistral_enabled=True, cand=cand)
+    assert calls["mistral"] == 0
+    assert calls["cand"] == ["camelot_lattice"]
+    rec = res[0][0]
+    assert rec["pdf_extractor"] == "camelot_lattice" and rec["rows"] == [["h"], ["x"]]
+
+
+def test_override_pdf_extractor_none_candidate_raises_no_record(tmp_path, monkeypatch):
+    res, calls = _run_single(tmp_path, monkeypatch, mistral_enabled=False, cand=None)
+    assert calls["cand"] == ["camelot_lattice"]
+    assert res[0] == []
