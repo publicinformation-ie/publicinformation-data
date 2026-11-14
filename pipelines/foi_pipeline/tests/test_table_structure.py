@@ -48,8 +48,31 @@ def test_rte_q4_2019_split_words_detected():
     assert score_table(load("rte_q4_2019_split_words")).split_word_rate > 0.01
 
 
-def test_fingal_2016_continuations_are_fragments():
-    assert score_table(load("fingal_2016_continuations")).fragment_share > 0.05
+def test_fingal_2016_continuations_fold():
+    """filter_phantom_rows merges these rows, so the gate no longer counts them."""
+    assert score_table(load("fingal_2016_continuations")).fragment_share < 0.05
+
+
+def test_wicklow_continuations_fold():
+    score = score_table(load("wicklow_2023_continuations"))
+    assert score.fragment_share == 0.0
+    assert "fragment_share" not in failed_checks(score)
+
+
+def test_two_cell_continuation_still_fragment():
+    rows = clean_rows(20)
+    for pos in (15, 10, 5):
+        rows.insert(pos, ["", "", "more text", "", "tail"])
+    assert score_table(rows).fragment_share > 0
+
+
+def test_sparse_layout_not_folded():
+    rows = [["Reference Number", "Date of Request", "Description", "Requester", "Decision"]]
+    for i in range(20):
+        row = [None] * 5
+        row[i % 5] = f"value {i}"
+        rows.append(row)
+    assert score_table(rows).fragment_share > 0
 
 
 def test_rows_above_header_are_ignored():
@@ -74,7 +97,14 @@ def test_degenerate_tables_fail_without_raising(rows):
     assert not passes(score)
 
 
-@pytest.mark.parametrize("name", NAMES)
+# The eval flag measures raw newline splits, while the gate now measures what is
+# left after the filter_phantom_rows merge, so fixtures whose newline-split rows are
+# single-cell continuations (fingal_2016, rte_2018_shifted) are excluded.
+AGREEMENT_NAMES = [n for n in NAMES
+                   if n not in ("fingal_2016_continuations", "rte_2018_shifted")]
+
+
+@pytest.mark.parametrize("name", AGREEMENT_NAMES)
 def test_fragment_metric_agrees_with_eval_flag(name):
     rows = load(name)
     score = score_table(rows)
