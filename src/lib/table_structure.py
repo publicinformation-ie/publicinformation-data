@@ -45,7 +45,7 @@ class StructureScore:
     run_together_rate: float  # text: run-together tokens inside a cell (never gates)
     repeated_header_share: float  # recorded before removal (never gates)
     composite: float
-    # Role-aware metrics: recorded only, not gating. None means not measured;
+    # Role-aware metrics: gated by failed_checks unless roles_unmapped. None means not measured;
     # stored scores that predate them load that way (roles_unmapped=True).
     role_contamination: float | None = None  # overall share of foreign cells
     worst_role_contamination: float | None = None  # worst single column
@@ -80,6 +80,9 @@ class Thresholds:
     # failed_checks (repeated header rows are removed, not rejected).
     max_repeated_header_share: float = 0.07
     min_rows: int = 1
+    # Role-aware checks (calibrated in results/role_calibration.md).
+    max_role_contamination: float = 0.2
+    min_anchored_row_share: float = 0.8
 
 
 DEFAULT_THRESHOLDS = Thresholds()
@@ -389,6 +392,18 @@ def failed_checks(score: StructureScore,
         failed.append("column_type_purity")
     if score.cross_cell_split_rate > thresholds.max_split_word_rate:
         failed.append("split_word_rate")
+    # Role checks gate only when measured. roles_unmapped (headerless, or a
+    # legacy stored score) never gates. A None contamination with mapped roles
+    # (no column had enough cells) cannot be judged, so it does not gate on
+    # contamination; the anchored check still applies, and selection ranks it
+    # as worst-contamination.
+    if not score.roles_unmapped:
+        if (score.worst_role_contamination is not None
+                and score.worst_role_contamination > thresholds.max_role_contamination):
+            failed.append("role_contamination")
+        if (score.anchored_row_share is not None
+                and score.anchored_row_share < thresholds.min_anchored_row_share):
+            failed.append("anchored_row_share")
     return failed
 
 

@@ -1799,3 +1799,10 @@ def test_pymupdf_work_holds_the_lock(monkeypatch):
     monkeypatch.setattr(candidates, "_PYMUPDF_LOCK", Spy())
     candidates._pymupdf(_pymupdf_pdf())
     assert held == [1, 0]
+
+
+def test_select_fingal_2024_not_camelot_stream(monkeypatch):
+    cands = _fixture_rows("fingal_2024_candidates.json")
+    _stub_candidates(monkeypatch, cands)
+    chosen, _ = _select()
+    assert chosen.name != "camelot_stream"

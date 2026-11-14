@@ -140,3 +140,13 @@ def test_non_override_failing_pdf_still_emptied_when_overrides_exist(tmp_path):
     assert by_url["ov"]["rows"] == BAD_ROWS
     assert by_url["other"]["rows"] == [] and by_url["other"]["table_structure_unreliable"] is True
     assert [e["context"]["file_url"] for e in errs] == ["other"]
+
+
+def test_fingal_2023_shaped_record_gated_on_role_contamination(tmp_path):
+    fixture = Path(__file__).parent / "fixtures" / "table_structure" / "fingal_2023_shifted.json"
+    rows = json.loads(fixture.read_text())
+    out, errs = _run(tmp_path, [_rec("u3", "pdf", rows)])
+    assert out[0]["rows"] == []
+    assert out[0]["table_structure_unreliable"] is True
+    assert len(errs) == 1
+    assert "role_contamination" in errs[0]["context"]["failed_checks"]

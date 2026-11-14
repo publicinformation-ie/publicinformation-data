@@ -36,3 +36,12 @@ with a manual column mapping are exempt from the gate.
 file (context: `public_body_id`, `file_url`, `pdf_extractor`, `failed_checks`,
 `score`). It is rebuilt from the final `output.json` on every run, so reruns,
 resumes and scoped runs cannot duplicate entries.
+
+## Role checks
+
+Two further checks gate alongside the shape thresholds, using the header-derived column roles:
+
+- `role_contamination`: worst single-column share of foreign-kind cells > `max_role_contamination` (0.2).
+- `anchored_row_share`: share of rows with a date/reference anchor < `min_anchored_row_share` (0.8).
+
+Neither applies when `roles_unmapped` (headerless table, or a stored score predating the fields). When roles are mapped but no column had enough cells to measure contamination, only the anchored check can fire; candidate selection ranks that case as contamination 1.0. Values come from `results/role_calibration.md`.

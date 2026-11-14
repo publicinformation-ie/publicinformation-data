@@ -367,3 +367,48 @@ def test_composite_unchanged():
     }
     for name, value in expected.items():
         assert score_table(load(name)).composite == pytest.approx(value, abs=1e-9), name
+
+
+def test_default_thresholds_role_values():
+    assert (DEFAULT_THRESHOLDS.max_role_contamination,
+            DEFAULT_THRESHOLDS.min_anchored_row_share) == (0.2, 0.8)
+
+
+def test_fingal_2023_fails_role_check():
+    assert "role_contamination" in failed_checks(score_table(load("fingal_2023_shifted")))
+
+
+def test_rte_lattice_passes():
+    score = score_table(load("rte_q4_2020_lattice"))
+    assert passes(score), failed_checks(score)
+
+
+def test_unknown_vocab_passes():
+    score = score_table(load("unknown_vocab_tudublin_2023"))
+    assert passes(score), failed_checks(score)
+
+
+def test_unmapped_roles_do_not_gate():
+    rows = [[f"x{i}", "foo", "bar"] for i in range(20)]  # headerless
+    score = score_table(rows)
+    assert score.roles_unmapped
+    fc = failed_checks(score)
+    assert "role_contamination" not in fc and "anchored_row_share" not in fc
+
+
+def test_legacy_stored_score_does_not_gate_on_roles():
+    score = score_table(clean_rows())
+    legacy = {k: v for k, v in score.__dict__.items()
+              if k not in ("role_contamination", "worst_role_contamination", "worst_role",
+                           "anchored_row_share", "roles_unmapped")}
+    s = StructureScore.from_dict(legacy)
+    fc = failed_checks(s)
+    assert "role_contamination" not in fc and "anchored_row_share" not in fc
+
+
+def test_mapped_but_unmeasured_contamination_does_not_gate_it():
+    score = StructureScore(**{**score_table(clean_rows()).__dict__,
+                              "roles_unmapped": False, "worst_role_contamination": None,
+                              "anchored_row_share": 0.1})
+    fc = failed_checks(score)
+    assert "role_contamination" not in fc and "anchored_row_share" in fc

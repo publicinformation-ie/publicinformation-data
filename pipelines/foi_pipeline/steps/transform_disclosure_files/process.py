@@ -525,7 +525,8 @@ def select_pdf_table(
     pdfplumber (the incumbent) runs first; if its table passes the structure
     thresholds nothing else runs. Otherwise every other non-excluded candidate
     runs (one that raises is recorded and skipped) and the best passing one
-    wins (ties: _score_rows, then CANDIDATE_ORDER). If none pass, the
+    wins, ranked by lowest worst-column role contamination (unmeasured = 1.0),
+    then anchored-row share, composite, _score_rows, CANDIDATE_ORDER. If none pass, the
     highest-composite candidate is returned unchanged. Raises
     ValueError("no tables found") when no candidate produced a table.
 
@@ -569,7 +570,12 @@ def select_pdf_table(
 
     def key(item):
         order, cand, sc = item
-        return (sc.composite, _score_rows(cand.rows), -order)
+        measured = not sc.roles_unmapped and sc.worst_role_contamination is not None
+        return (
+            -(sc.worst_role_contamination if measured else 1.0),
+            (sc.anchored_row_share or 0.0) if not sc.roles_unmapped else 0.0,
+            sc.composite, _score_rows(cand.rows), -order,
+        )
 
     passing = [r for r in results if passes(r[2])]
     best = max(passing or results, key=key)
