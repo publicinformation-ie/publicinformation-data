@@ -13,6 +13,8 @@ from steps.transform_disclosure_files.process import (
     _extract_pdf,
     _score_rows,
     _extract_with_camelot_stream,
+    select_pdf_table,
+    CANDIDATE_ORDER,
     process,
     STEP_NAME,
 )
@@ -374,38 +376,20 @@ def test_extract_pdf_pdfplumber_extractor_when_score_ge_2():
     assert camelot_info is None
 
 
-def test_extract_pdf_camelot_info_set_when_fallback_attempted():
-    import unittest.mock
-    # PDF where pdfplumber produces only one mappable column
-    rows = [["Blob1", "Blob2", "Blob3"], ["1", "2", "3"]]
-    pdf_bytes = _make_pdf([[rows]])
-    # Make camelot unavailable so we can test the attempt path without real camelot
-    with unittest.mock.patch(
-        "steps.transform_disclosure_files.process._extract_with_camelot_stream",
-        return_value=None,
-    ):
-        _sheet, _rows, _fb, _multi, _stats, pdf_extractor, camelot_info = _extract_pdf(pdf_bytes)
-    # camelot_info is set because fallback was attempted (n_mapped < 2)
-    # extractor stays pdfplumber since camelot returned None
-    assert pdf_extractor == "pdfplumber"
-    assert camelot_info is not None
-    assert "pdfplumber_n_mapped" in camelot_info
-    assert camelot_info["used"] == "pdfplumber"
-
-
-def test_extract_pdf_uses_camelot_when_scores_better():
+def test_extract_pdf_low_header_score_no_longer_falls_back_to_camelot():
+    """Selection (select_pdf_table) now covers the old n_mapped < 2 camelot
+    fallback; _extract_pdf itself returns the pdfplumber result."""
     import unittest.mock
     rows = [["Blob1", "Blob2", "Blob3"], ["1", "2", "3"]]
     pdf_bytes = _make_pdf([[rows]])
-    camelot_rows = [["Our Ref", "Date Received", "Description"], ["1", "2024-01-01", "req"]]
     with unittest.mock.patch(
-        "steps.transform_disclosure_files.process._extract_with_camelot_stream",
-        return_value=camelot_rows,
-    ):
+        "steps.transform_disclosure_files.process._extract_with_camelot_stream"
+    ) as mock_camelot:
         _sheet, result_rows, _fb, _multi, _stats, pdf_extractor, camelot_info = _extract_pdf(pdf_bytes)
-    assert pdf_extractor == "camelot_stream"
-    assert result_rows == camelot_rows
-    assert camelot_info["used"] == "camelot_stream"
+    mock_camelot.assert_not_called()
+    assert pdf_extractor == "pdfplumber"
+    assert camelot_info is None
+    assert result_rows == rows
 
 
 def test_extract_pdf_skip_canonicalization_check_keeps_pdfplumber_path():
@@ -427,24 +411,6 @@ def test_extract_pdf_skip_canonicalization_check_keeps_pdfplumber_path():
     assert pdf_extractor == "pdfplumber"
     assert camelot_info is None
     assert result_rows == rows
-
-
-def test_extract_pdf_skip_canonicalization_check_false_still_falls_back():
-    """Default behavior (skip_canonicalization_check=False) is unchanged —
-    low-scoring rows still trigger the camelot fallback."""
-    import unittest.mock
-    rows = [["Blob1", "Blob2", "Blob3"], ["1", "2", "3"]]
-    pdf_bytes = _make_pdf([[rows]])
-    camelot_rows = [["Our Ref", "Date Received", "Description"], ["1", "2024-01-01", "req"]]
-    with unittest.mock.patch(
-        "steps.transform_disclosure_files.process._extract_with_camelot_stream",
-        return_value=camelot_rows,
-    ):
-        _sheet, result_rows, _fb, _multi, _stats, pdf_extractor, camelot_info = _extract_pdf(
-            pdf_bytes, skip_canonicalization_check=False
-        )
-    assert pdf_extractor == "camelot_stream"
-    assert result_rows == camelot_rows
 
 
 def test_load_manual_override_urls_reads_column_mappings(tmp_path):
@@ -589,53 +555,18 @@ def test_process_respects_manual_override_skip(tmp_path):
     assert result["results"][0]["pdf_extractor"] == "pdfplumber"
 
 
-def test_process_without_skip_flag_still_falls_back_to_camelot(tmp_path):
-    """A manual override WITHOUT skip_camelot_fallback must still use
-    camelot when pdfplumber scores low — this is the case for the 3
-    non-Meath overrides (centralbank, gov.ie) whose column_mapping was
-    calibrated against camelot's row structure. Regression guard for the
-    bug found in final review: skip_canonicalization_check must not apply
-    to every override, only ones that opt in."""
-    import json
-    import hashlib
-    import unittest.mock
-    from lib.file_utils import IncrementalWriter
-    from steps.transform_disclosure_files.process import process
-
-    rows = [["Blob1", "Blob2", "Blob3"], ["1", "2", "3"]]
-    pdf_bytes = _make_pdf([[rows]])
-    camelot_rows = [["Our Ref", "Date Received", "Description"], ["1", "2024-01-01", "req"]]
-
-    step_dir = tmp_path / "transform_disclosure_files"
-    step_dir.mkdir()
-    canon_dir = tmp_path / "extract_disclosures_canonicalize"
-    canon_dir.mkdir()
-    file_url = "http://example.com/no-flag-override.pdf"
-    (canon_dir / "column_mappings.json").write_text(json.dumps({
-        file_url: {"source_method": "manual", "overridden": True, "column_mapping": {}},
-    }))
-
-    cache_dir = step_dir / "cache_data"
-    cache_dir.mkdir()
-    key = hashlib.sha256(file_url.encode()).hexdigest()
-    (cache_dir / f"{key}.bytes").write_bytes(pdf_bytes)
-
-    input_data = {"results": [{"file_url": file_url, "file_type": "pdf", "public_body_id": 1}]}
-    output_path = step_dir / "output.json"
-    writer = IncrementalWriter(output_path, "transform_disclosure_files", key_field="file_url", force=True)
-    with unittest.mock.patch(
-        "steps.transform_disclosure_files.process.DisclosureFileCache.get_file_path",
-        return_value=cache_dir / f"{key}.bytes",
-    ), unittest.mock.patch(
-        "steps.transform_disclosure_files.process._extract_with_camelot_stream",
-        return_value=camelot_rows,
-    ) as mock_camelot:
-        process(input_data, step_dir, writer)
-    writer.finalize()
-    mock_camelot.assert_called_once()
-
-    result = json.loads(output_path.read_text())
-    assert result["results"][0]["pdf_extractor"] == "camelot_stream"
+def test_process_without_skip_flag_uses_structure_selection(tmp_path, monkeypatch):
+    """A manual override WITHOUT skip_camelot_fallback goes through structure
+    selection (it used to hit the n_mapped < 2 camelot fallback): when
+    pdfplumber's table fails the structure check a camelot candidate can win."""
+    shifted = _fixture_rows("rte_2018_shifted.json")
+    clean = _fixture_rows("charities_regulator_2024_clean.json")
+    _stub_candidates(monkeypatch, {"pdfplumber": shifted, "camelot_stream": clean})
+    url = "http://example.com/no-flag-override.pdf"
+    results = _run_process_with_pdf(tmp_path, b"%PDF stub", url, {
+        url: {"source_method": "manual", "overridden": True, "column_mapping": {}},
+    })
+    assert results[0]["pdf_extractor"] == "camelot_stream"
 
 
 # ── Mistral OCR branch ────────────────────────────────────────────────────
@@ -922,38 +853,7 @@ def test_process_single_file_includes_pdf_extractor(tmp_path):
     writer.finalize()
 
     result = json.loads(output_path.read_text())
-    assert result["results"][0].get("pdf_extractor") in ("pdfplumber", "camelot_stream")
-
-
-def test_process_single_file_camelot_attempted_sets_flag_in_output(tmp_path):
-    import json
-    import unittest.mock
-    from lib.file_utils import IncrementalWriter
-    from steps.transform_disclosure_files.process import process
-
-    rows = [["Blob1", "Blob2", "Blob3"], ["1", "2", "3"]]
-    pdf_bytes = _make_pdf([[rows]])
-
-    cache_dir = tmp_path / "cache"
-    cache_dir.mkdir()
-    import hashlib
-    key = hashlib.sha256(b"http://example.com/test.pdf").hexdigest()
-    (cache_dir / f"{key}.bytes").write_bytes(pdf_bytes)
-
-    input_data = {"results": [{"file_url": "http://example.com/test.pdf", "file_type": "pdf", "public_body_id": 1}]}
-    output_path = tmp_path / "output.json"
-    writer = IncrementalWriter(output_path, "transform_disclosure_files", key_field="file_url", force=True)
-    with unittest.mock.patch("steps.transform_disclosure_files.process.DisclosureFileCache.get_file_path",
-                              return_value=cache_dir / f"{key}.bytes"), \
-         unittest.mock.patch("steps.transform_disclosure_files.process._extract_with_camelot_stream",
-                              return_value=None):
-        process(input_data, tmp_path, writer)
-    writer.finalize()
-
-    result = json.loads(output_path.read_text())
-    assert result["results"][0].get("pdf_camelot_attempted") is True
-    errors = json.loads((tmp_path / "errors.json").read_text())
-    assert not any(e.get("error_type") == "CamelotFallbackAttempted" for e in errors)
+    assert result["results"][0].get("pdf_extractor") in CANDIDATE_ORDER
 
 
 # ── _score_rows ───────────────────────────────────────────────────────────────
@@ -1090,8 +990,7 @@ def test_process_pdf_single_table_has_no_multiple_tables_flag(requests_mock, tmp
 
 
 def test_process_pdf_no_tables_logs_error_and_skips_record(requests_mock, tmp_path, make_writer, monkeypatch):
-    import steps.transform_disclosure_files.process as proc
-    monkeypatch.setattr(proc, "_extract_with_camelot_stream", lambda b: None)
+    _stub_candidates(monkeypatch, {})  # every candidate finds no table
     pdf_bytes = _make_pdf_no_tables()
     requests_mock.get(PDF_URL, content=pdf_bytes)
     writer = make_writer(STEP_NAME, key_field="file_url")
@@ -1594,3 +1493,214 @@ def test_process_without_flag_makes_no_mistral_call(tmp_path, monkeypatch):
     writer.finalize()
     mock_call.assert_not_called()
     assert json.loads(output_path.read_text())["results"][0]["pdf_extractor"] == "pdfplumber"
+
+
+# ── select_pdf_table (structure-based extractor selection) ───────────────────
+
+import pathlib as _pathlib
+
+_FIXTURES = _pathlib.Path(__file__).parent / "fixtures"
+
+
+def _fixture_rows(name):
+    return json.loads((_FIXTURES / "table_structure" / name).read_text())
+
+
+def _stub_candidates(monkeypatch, by_name, calls=None):
+    """Patch candidates.extract_candidate. by_name maps name -> rows | None | Exception."""
+    from steps.transform_disclosure_files import candidates
+
+    def fake(name, file_bytes, *, file_url, ocr_cache_dir):
+        if calls is not None:
+            calls.append(name)
+        value = by_name.get(name)
+        if isinstance(value, Exception):
+            raise value
+        if value is None:
+            return None
+        return candidates.Candidate(name, value, "page 1", {}, False)
+
+    monkeypatch.setattr(candidates, "extract_candidate", fake)
+
+
+def _select(exclude=frozenset()):
+    return select_pdf_table(b"%PDF", file_url="http://x/y.pdf", ocr_cache_dir=_pathlib.Path("/nonexistent"),
+                            exclude=exclude)
+
+
+def test_candidate_order_starts_with_incumbent_and_omits_pdfplumber_lines():
+    assert CANDIDATE_ORDER[0] == "pdfplumber"
+    assert "pdfplumber_lines" not in CANDIDATE_ORDER
+    assert set(CANDIDATE_ORDER) == {"pdfplumber", "camelot_lattice", "pymupdf", "mistral_cache", "camelot_stream"}
+
+
+def test_select_keeps_passing_incumbent_without_running_others(monkeypatch):
+    calls = []
+    clean = _fixture_rows("charities_regulator_2024_clean.json")
+    _stub_candidates(monkeypatch, {"pdfplumber": clean, "camelot_lattice": clean}, calls)
+    cand, report = _select()
+    assert calls == ["pdfplumber"]
+    assert cand.name == "pdfplumber"
+    assert report["chosen"] == "pdfplumber"
+    assert report["kept_incumbent"] is True
+    assert list(report["scores"]) == ["pdfplumber"]
+
+
+def test_select_picks_best_passing_alternative(monkeypatch):
+    shifted = _fixture_rows("rte_2018_shifted.json")
+    clean = _fixture_rows("charities_regulator_2024_clean.json")
+    _stub_candidates(monkeypatch, {"pdfplumber": shifted, "camelot_lattice": clean})
+    cand, report = _select()
+    assert cand.name == "camelot_lattice"
+    assert cand.rows == clean
+    assert report["chosen"] == "camelot_lattice"
+    assert report["kept_incumbent"] is False
+    assert report["scores"]["pdfplumber"]["composite"] < report["scores"]["camelot_lattice"]["composite"]
+    assert report["scores"]["pymupdf"] is None
+
+
+def test_select_skips_raising_candidate(monkeypatch):
+    shifted = _fixture_rows("rte_2018_shifted.json")
+    clean = _fixture_rows("charities_regulator_2024_clean.json")
+    _stub_candidates(monkeypatch, {
+        "pdfplumber": shifted,
+        "camelot_lattice": RuntimeError("ghostscript missing"),
+        "pymupdf": clean,
+    })
+    cand, report = _select()
+    assert cand.name == "pymupdf"
+    assert report["scores"]["camelot_lattice"] == {"error": "ghostscript missing"}
+
+
+def test_select_raising_incumbent_is_recorded_and_skipped(monkeypatch):
+    clean = _fixture_rows("charities_regulator_2024_clean.json")
+    _stub_candidates(monkeypatch, {"pdfplumber": RuntimeError("boom"), "pymupdf": clean})
+    cand, report = _select()
+    assert cand.name == "pymupdf"
+    assert report["scores"]["pdfplumber"] == {"error": "boom"}
+
+
+def test_select_returns_best_failing_when_none_pass(monkeypatch):
+    shifted = _fixture_rows("rte_2018_shifted.json")
+    split_words = _fixture_rows("rte_q4_2019_split_words.json")
+    from lib.table_structure import passes, score_table
+    assert not passes(score_table(shifted)) and not passes(score_table(split_words))
+    better = shifted if score_table(shifted).composite >= score_table(split_words).composite else split_words
+    worse = split_words if better is shifted else shifted
+    _stub_candidates(monkeypatch, {"pdfplumber": worse, "pymupdf": better})
+    cand, report = _select()
+    assert cand.rows == better
+    assert cand.name == "pymupdf"
+    # Incumbent is returned unchanged when it is the best failing one.
+    _stub_candidates(monkeypatch, {"pdfplumber": better, "pymupdf": worse})
+    cand, report = _select()
+    assert cand.name == "pdfplumber"
+    assert report["kept_incumbent"] is True
+
+
+def test_select_all_empty_raises_no_tables_found(monkeypatch):
+    _stub_candidates(monkeypatch, {"pdfplumber": None, "pymupdf": RuntimeError("x")})
+    with pytest.raises(ValueError, match="no tables found"):
+        _select()
+
+
+def test_select_tie_goes_to_earlier_candidate(monkeypatch):
+    shifted = _fixture_rows("rte_2018_shifted.json")
+    clean = _fixture_rows("charities_regulator_2024_clean.json")
+    _stub_candidates(monkeypatch, {"pdfplumber": shifted, "camelot_lattice": clean, "pymupdf": clean})
+    cand, _ = _select()
+    assert cand.name == "camelot_lattice"
+
+
+def test_skip_flags_exclude_candidates(monkeypatch):
+    shifted = _fixture_rows("rte_2018_shifted.json")
+    calls = []
+    _stub_candidates(monkeypatch, {"pdfplumber": shifted}, calls)
+    _select(exclude=frozenset({"camelot_lattice", "camelot_stream", "mistral_cache"}))
+    assert "camelot_lattice" not in calls
+    assert "camelot_stream" not in calls
+    assert "mistral_cache" not in calls
+    assert "pymupdf" in calls
+
+
+def _run_process_with_pdf(tmp_path, pdf_bytes, file_url, mappings=None):
+    import hashlib
+    import unittest.mock
+    from lib.file_utils import IncrementalWriter
+
+    step_dir = tmp_path / "transform_disclosure_files"
+    step_dir.mkdir()
+    canon_dir = tmp_path / "extract_disclosures_canonicalize"
+    canon_dir.mkdir()
+    if mappings is not None:
+        (canon_dir / "column_mappings.json").write_text(json.dumps(mappings))
+    cache_dir = step_dir / "cache_data"
+    cache_dir.mkdir()
+    key = hashlib.sha256(file_url.encode()).hexdigest()
+    (cache_dir / f"{key}.bytes").write_bytes(pdf_bytes)
+    input_data = {"results": [{"file_url": file_url, "file_type": "pdf", "public_body_id": 1}]}
+    output_path = step_dir / "output.json"
+    writer = IncrementalWriter(output_path, "transform_disclosure_files", key_field="file_url", force=True)
+    with unittest.mock.patch(
+        "steps.transform_disclosure_files.process.DisclosureFileCache.get_file_path",
+        return_value=cache_dir / f"{key}.bytes",
+    ):
+        process(input_data, step_dir, writer)
+    writer.finalize()
+    return json.loads(output_path.read_text())["results"]
+
+
+def test_record_carries_selection_report(tmp_path, monkeypatch):
+    shifted = _fixture_rows("rte_2018_shifted.json")
+    clean = _fixture_rows("charities_regulator_2024_clean.json")
+    _stub_candidates(monkeypatch, {"pdfplumber": shifted, "pymupdf": clean})
+    results = _run_process_with_pdf(tmp_path, b"%PDF stub", "http://example.com/sel.pdf")
+    rec = results[0]
+    assert rec["pdf_extractor"] == "pymupdf"
+    assert rec["rows"] == clean
+    assert rec["pdf_table_selection"]["chosen"] == "pymupdf"
+    assert rec["pdf_table_selection"]["kept_incumbent"] is False
+    assert "pdfplumber" in rec["pdf_table_selection"]["scores"]
+
+
+def test_manual_override_file_output_unchanged(tmp_path, monkeypatch):
+    """Review Focus 5: files with a manual override never go through selection."""
+    from steps.transform_disclosure_files import candidates
+
+    def boom(*a, **k):
+        raise AssertionError("selection must not run for manual-override files")
+
+    monkeypatch.setattr(candidates, "extract_candidate", boom)
+    pdf_bytes = (_FIXTURES / "pdf" / "rte_2018_p1.pdf").read_bytes()
+    url = "http://example.com/override.pdf"
+    results = _run_process_with_pdf(tmp_path, pdf_bytes, url, {
+        url: {"source_method": "manual", "overridden": True, "skip_camelot_fallback": True, "column_mapping": {}},
+    })
+    rec = results[0]
+    assert rec["rows"] == _fixture_rows("rte_2018_p1_override_rows.json")  # captured before Task 6
+    assert rec["pdf_extractor"] == "pdfplumber"
+    assert "pdf_table_selection" not in rec
+
+
+def test_cache_only_mode_consults_mistral_only_as_candidate(tmp_path, monkeypatch):
+    """No Mistral client is constructed; the OCR cache is reached only through selection."""
+    import steps.transform_disclosure_files.process as proc
+    shifted = _fixture_rows("rte_2018_shifted.json")
+    clean = _fixture_rows("charities_regulator_2024_clean.json")
+    calls = []
+    _stub_candidates(monkeypatch, {"pdfplumber": shifted, "mistral_cache": clean}, calls)
+    monkeypatch.setattr(proc, "call_mistral_ocr", lambda *a, **k: (_ for _ in ()).throw(AssertionError("live call")))
+    results = _run_process_with_pdf(tmp_path, b"%PDF stub", "http://example.com/m.pdf")
+    assert results[0]["pdf_extractor"] == "mistral_cache"
+
+
+def test_skip_mistral_url_excludes_mistral_cache_candidate(tmp_path, monkeypatch):
+    shifted = _fixture_rows("rte_2018_shifted.json")
+    calls = []
+    _stub_candidates(monkeypatch, {"pdfplumber": shifted}, calls)
+    url = "http://example.com/skipm.pdf"
+    _run_process_with_pdf(tmp_path, b"%PDF stub", url, {
+        url: {"source_method": "manual", "overridden": True, "skip_mistral": True, "column_mapping": {}},
+    })
+    assert "mistral_cache" not in calls
+    assert "camelot_lattice" in calls

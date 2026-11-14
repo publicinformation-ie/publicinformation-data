@@ -451,10 +451,13 @@ def _extract_pdf(file_bytes, table_settings=None, skip_canonicalization_check=Fa
     pdf_extractor is "pdfplumber" or "camelot_stream".
     camelot_info is None when no fallback was attempted; otherwise a dict with
     pdfplumber_n_mapped, camelot_n_mapped, and used keys.
-    When skip_canonicalization_check is True, the pdfplumber result is
-    returned immediately (no camelot fallback) once a table was found, even
-    if it scores low on automatic header canonicalization — used for files
-    with a manual column_mapping override that doesn't need canonicalization.
+    This is the manual-override path only: files with a manual column_mapping
+    override that opts into skip_camelot_fallback are extracted here, byte-for-byte
+    as before structure-based selection. Everything else goes through
+    select_pdf_table. The low-header-score camelot fallback that used to live
+    here is now covered by selection, so skip_canonicalization_check no longer
+    changes behaviour (kept for call-site compatibility); only the
+    "pdfplumber found no tables at all" camelot fallback remains.
     """
     import pdfplumber
     pages_rows = []
@@ -483,20 +486,73 @@ def _extract_pdf(file_bytes, table_settings=None, skip_canonicalization_check=Fa
     rows, merge_stats = _merge_page_splits(pages_rows)
     sheet_name = "page 1" if n_pages == 1 else f"pages 1-{n_pages}"
 
-    if skip_canonicalization_check:
-        return sheet_name, rows, [], total_tables > 1, merge_stats, "pdfplumber", None
-
-    n_mapped = _score_rows(rows)
-    if n_mapped < 2:
-        camelot_rows = _extract_with_camelot_stream(file_bytes)
-        camelot_n_mapped = _score_rows(camelot_rows) if camelot_rows is not None else 0
-        if camelot_rows is not None and camelot_n_mapped >= n_mapped:
-            camelot_info = {"pdfplumber_n_mapped": n_mapped, "camelot_n_mapped": camelot_n_mapped, "used": "camelot_stream"}
-            return sheet_name, camelot_rows, [], False, {}, "camelot_stream", camelot_info
-        camelot_info = {"pdfplumber_n_mapped": n_mapped, "camelot_n_mapped": camelot_n_mapped, "used": "pdfplumber"}
-        return sheet_name, rows, [], total_tables > 1, merge_stats, "pdfplumber", camelot_info
-
     return sheet_name, rows, [], total_tables > 1, merge_stats, "pdfplumber", None
+
+
+CANDIDATE_ORDER: tuple[str, ...] = (
+    "pdfplumber", "camelot_lattice", "pymupdf", "mistral_cache", "camelot_stream",
+)
+_INCUMBENT = "pdfplumber"
+
+
+def select_pdf_table(
+    file_bytes: bytes, *, file_url: str, ocr_cache_dir: Path,
+    exclude: frozenset[str] = frozenset(),
+):
+    """Choose the PDF extractor whose table has the best measured structure.
+
+    pdfplumber (the incumbent) runs first; if its table passes the structure
+    thresholds nothing else runs. Otherwise every other non-excluded candidate
+    runs (one that raises is recorded and skipped) and the best passing one
+    wins (ties: _score_rows, then CANDIDATE_ORDER). If none pass, the
+    highest-composite candidate is returned unchanged. Raises
+    ValueError("no tables found") when no candidate produced a table.
+
+    Returns (Candidate, report) where report is
+    {"chosen", "kept_incumbent", "scores": {name: score dict | {"error"} | None}}.
+    """
+    from dataclasses import asdict
+    from lib.table_structure import passes, score_table
+    from steps.transform_disclosure_files import candidates
+
+    scores: dict = {}
+    results: list = []  # (order, candidate, score)
+
+    def run(name):
+        try:
+            cand = candidates.extract_candidate(
+                name, file_bytes, file_url=file_url, ocr_cache_dir=ocr_cache_dir
+            )
+        except Exception as e:
+            scores[name] = {"error": str(e)}
+            return
+        if cand is None:
+            scores[name] = None
+            return
+        sc = score_table(cand.rows)
+        scores[name] = asdict(sc)
+        results.append((CANDIDATE_ORDER.index(name), cand, sc))
+
+    def report(cand):
+        return {"chosen": cand.name, "kept_incumbent": cand.name == _INCUMBENT, "scores": scores}
+
+    run(_INCUMBENT)
+    if results and passes(results[0][2]):
+        return results[0][1], report(results[0][1])
+
+    for name in CANDIDATE_ORDER:
+        if name != _INCUMBENT and name not in exclude:
+            run(name)
+    if not results:
+        raise ValueError("no tables found")
+
+    def key(item):
+        order, cand, sc = item
+        return (sc.composite, _score_rows(cand.rows), -order)
+
+    passing = [r for r in results if passes(r[2])]
+    best = max(passing or results, key=key)
+    return best[1], report(best[1])
 
 
 def _process_single_file(
@@ -534,7 +590,7 @@ def _process_single_file(
 
         pdf_extractor = "pdfplumber"
         merge_stats = {}
-        camelot_info = None
+        pdf_table_selection = None
         if file_type == "xlsx":
             sheet_name, rows, _, has_multiple = _extract_xlsx(file_bytes)
         elif file_type == "xls":
@@ -579,9 +635,24 @@ def _process_single_file(
                             "context": {"file_url": file_url},
                         })
             if pdf_extractor is None:
-                sheet_name, rows, _, has_multiple, merge_stats, pdf_extractor, camelot_info = _extract_pdf(
-                    file_bytes, skip_canonicalization_check=file_url in manual_override_urls
-                )
+                if file_url in manual_override_urls:
+                    # Manual overrides were calibrated against today's extractor
+                    # output; they bypass structure-based selection entirely.
+                    sheet_name, rows, _, has_multiple, merge_stats, pdf_extractor, _ = _extract_pdf(
+                        file_bytes, skip_canonicalization_check=True
+                    )
+                else:
+                    exclude = set()
+                    if file_url in skip_mistral_urls or mistral_enabled:
+                        # In live mode the pre-emptive call above already tried Mistral.
+                        exclude.add("mistral_cache")
+                    chosen, pdf_table_selection = select_pdf_table(
+                        file_bytes, file_url=file_url,
+                        ocr_cache_dir=Path(ocr_cache_dir) if ocr_cache_dir else Path(step_dir) / "ocr_cache",
+                        exclude=frozenset(exclude),
+                    )
+                    sheet_name, rows, has_multiple = chosen.sheet_name, chosen.rows, chosen.has_multiple
+                    merge_stats, pdf_extractor = chosen.merge_stats, chosen.name
 
         if file_type == "pdf":
             result_record = {
@@ -591,8 +662,8 @@ def _process_single_file(
                 "pdf_merge_stats": merge_stats,
                 "pdf_extractor": pdf_extractor,
             }
-            if camelot_info is not None:
-                result_record["pdf_camelot_attempted"] = True
+            if pdf_table_selection is not None:
+                result_record["pdf_table_selection"] = pdf_table_selection
             if has_multiple:
                 result_record["pdf_multiple_tables"] = True
         else:
