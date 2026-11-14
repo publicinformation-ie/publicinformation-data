@@ -164,3 +164,24 @@ def test_lowercase_join_still_split_word():
 
 def test_stvincents_brand_passes_split_check():
     assert "split_word_rate" not in failed_checks(score_table(load("stvincents_2018_brand")))
+
+
+def _is_lone_year(row):
+    import re
+    cells = [str(c).strip() for c in row if c is not None and str(c).strip()]
+    return len(cells) == 1 and re.fullmatch(r"(19|20)\d{2}", cells[0]) is not None
+
+
+def test_year_divider_rows_dropped():
+    rows = load("body1505_2019_2025_year_dividers")
+    stripped = [r for r in rows if not _is_lone_year(r)]
+    assert len(stripped) < len(rows)
+    assert score_table(rows) == score_table(stripped)
+
+
+def test_year_like_values_in_records_kept():
+    rows = clean_rows(10)
+    base = score_table(rows).n_rows
+    rows.append(["FOI-2019-001", "05/01/2019", "Information about housing", "Journalist", "Full Grant"])
+    rows.append(["2019", "Business", "Information about roads", "Journalist", "Full Grant"])
+    assert score_table(rows).n_rows == base + 2

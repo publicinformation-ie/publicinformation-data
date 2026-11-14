@@ -47,6 +47,9 @@ class Thresholds:
 DEFAULT_THRESHOLDS = Thresholds()
 
 
+_YEAR_RE = re.compile(r"(?:19|20)\d{2}")
+
+
 def _text(cell) -> str:
     return "" if cell is None else str(cell)
 
@@ -100,13 +103,20 @@ def _is_header_like(row: list) -> bool:
     return plain * 2 > len(cells)
 
 
+def _is_year_divider(row: list) -> bool:
+    """A row whose only non-empty cell is a bare year (a section divider)."""
+    cells = _non_empty(row)
+    return len(cells) == 1 and _YEAR_RE.fullmatch(cells[0]) is not None
+
+
 def _data_rows(rows: list[list]) -> tuple[list, list[list]]:
     """Return (header_row, data_rows) with extra header rows and blanks dropped."""
     if not rows:
         return [], []
     idx = detect_header_row(rows)
     header = rows[idx]
-    body = [r for r in rows[idx + 1:] if any(not _is_empty(c) for c in r)]
+    body = [r for r in rows[idx + 1:]
+            if any(not _is_empty(c) for c in r) and not _is_year_divider(r)]
     start = 0
     while start < len(body):
         row = body[start]
