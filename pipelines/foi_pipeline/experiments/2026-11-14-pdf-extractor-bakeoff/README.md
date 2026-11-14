@@ -41,3 +41,11 @@ Mistral is not better than the current extractors on this set: it rescues 22 fil
 - `sha256` is the hash of the file bytes. The cache filename is sha256 of the URL.
 - Cache seeding: 1 of the 36 files (the Irish Rail one) was copied read-only from the main checkout's cache; the other 35 were downloaded sequentially, 2 s apart, via `DisclosureFileCache.get_file_path`.
 - Failed downloads: none (36/36 on disk).
+
+## Task 5 Step 5: docling (isolated)
+
+`run_docling.py` runs docling's `DocumentConverter` (text layer, `do_ocr=False`) over the 36 on-disk sample PDFs and writes `results/docling/<sha256>.json` as `{"pages": [[row, ...], ...]}` (one entry per PDF page, padded to the page count; rows are table-grid rows of all tables docling found on that page) plus `_summary.json` (timings, failures). Run with `uv run --with docling python experiments/2026-11-14-pdf-extractor-bakeoff/run_docling.py`; `requirements.txt` is untouched.
+
+- Result on Python 3.14.6 (macOS arm64): installed and ran; 36 of 36 files converted, 0 failures, 2140 table rows in total, every file yielded at least one table. Per-file time 0.8-62 s (the 20-page RTE 2018 file took 62 s including model warm-up).
+- Network note: besides installing packages, docling downloads its layout/table-structure model weights from HuggingFace on first use. No Mistral/paid calls.
+- `results/` is git-ignored; these small result files (680 KB total) are committed with `git add -f` so Step 7 is reproducible.
