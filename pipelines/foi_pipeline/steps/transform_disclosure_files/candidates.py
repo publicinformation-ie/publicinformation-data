@@ -10,6 +10,7 @@ from __future__ import annotations
 import io
 import os
 import tempfile
+import threading
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -28,6 +29,11 @@ CANDIDATE_NAMES = (
     "camelot_stream",
     "mistral_cache",
 )
+
+
+# PyMuPDF (fitz) is not thread-safe: concurrent use gave different row counts on
+# identical input. Every fitz object is opened, used and closed under this lock.
+_PYMUPDF_LOCK = threading.Lock()
 
 
 @dataclass
@@ -76,7 +82,7 @@ class _PyMuPDFImageBackend:
     def convert(self, pdf_path, png_path, resolution=300):
         import pymupdf
 
-        with pymupdf.open(pdf_path) as doc:
+        with _PYMUPDF_LOCK, pymupdf.open(pdf_path) as doc:
             doc[0].get_pixmap(dpi=resolution).save(png_path)
 
 
@@ -84,7 +90,7 @@ def _camelot(name: str, flavor: str, file_bytes: bytes) -> Candidate | None:
     import camelot  # type: ignore[import-untyped]
     import pymupdf
 
-    with pymupdf.open(stream=file_bytes, filetype="pdf") as doc:
+    with _PYMUPDF_LOCK, pymupdf.open(stream=file_bytes, filetype="pdf") as doc:
         n_pages = doc.page_count
     kwargs = {"backend": _PyMuPDFImageBackend()} if flavor == "lattice" else {}
     fd, path = tempfile.mkstemp(suffix=".pdf")
@@ -115,7 +121,7 @@ def _pymupdf(file_bytes: bytes) -> Candidate | None:
 
     pages_rows: list[list[list]] = []
     n_tables = 0
-    with pymupdf.open(stream=file_bytes, filetype="pdf") as doc:
+    with _PYMUPDF_LOCK, pymupdf.open(stream=file_bytes, filetype="pdf") as doc:
         n_pages = doc.page_count
         for page in doc:
             found = page.find_tables(strategy="lines").tables

@@ -1761,3 +1761,41 @@ def test_process_pool_refuses_paid_ocr(tmp_path, monkeypatch):
     monkeypatch.setenv("MISTRAL_OCR_PDF_BASE_URL", "https://x")
     with pytest.raises(ValueError, match="--processes"):
         _run_process_on_cached_pdfs(tmp_path, processes=2, allow_paid_ocr=True)
+
+
+def _pymupdf_pdf():
+    rows = [[f"h{c}" for c in range(6)]] + [[f"r{r}c{c}" for c in range(6)] for r in range(30)]
+    return _make_pdf([[rows]] * 8)
+
+
+def test_pymupdf_candidate_is_deterministic_across_threads():
+    from concurrent.futures import ThreadPoolExecutor
+    from steps.transform_disclosure_files import candidates
+
+    pdf = _pymupdf_pdf()
+    def run(_):
+        cand = candidates._pymupdf(pdf)
+        assert cand is not None
+        return cand.rows
+
+    expected = run(0)
+    with ThreadPoolExecutor(16) as ex:
+        results = list(ex.map(run, range(48)))
+    assert all(r == expected for r in results)
+
+
+def test_pymupdf_work_holds_the_lock(monkeypatch):
+    from steps.transform_disclosure_files import candidates
+
+    held = []
+
+    class Spy:
+        def __enter__(self):
+            held.append(1)
+
+        def __exit__(self, *a):
+            held.append(0)
+
+    monkeypatch.setattr(candidates, "_PYMUPDF_LOCK", Spy())
+    candidates._pymupdf(_pymupdf_pdf())
+    assert held == [1, 0]
