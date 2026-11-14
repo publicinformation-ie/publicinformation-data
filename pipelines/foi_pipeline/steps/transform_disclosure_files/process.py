@@ -12,7 +12,9 @@ import sys
 import tempfile
 import threading
 import time
+from collections.abc import Mapping
 from pathlib import Path
+from typing import Literal
 
 from lib.cli_utils import add_common_args, filter_by_public_body
 from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
@@ -617,7 +619,27 @@ def _process_single_file(
         return [], True  # marked processed — parse errors are permanent failures
 
 
-def process(input_data, step_dir, writer, verbose=False, workers=8, mistral_workers=2):
+MistralMode = Literal["cache_only", "live"]
+
+
+class MistralConfigError(RuntimeError):
+    """--allow-paid-ocr was given but Mistral configuration is incomplete."""
+
+
+def resolve_mistral_mode(env: Mapping[str, str], allow_paid_ocr: bool) -> MistralMode:
+    """cache_only unless allow_paid_ocr; live needs both env vars, else fail loud."""
+    if not allow_paid_ocr:
+        return "cache_only"
+    missing = [v for v in ("MISTRAL_API_KEY", "MISTRAL_OCR_PDF_BASE_URL") if not env.get(v)]
+    if missing:
+        raise MistralConfigError(
+            f"--allow-paid-ocr requires {' and '.join(missing)} to be set"
+        )
+    return "live"
+
+
+def process(input_data, step_dir, writer, verbose=False, workers=8, mistral_workers=2,
+            allow_paid_ocr=False):
     errors_path = Path(step_dir) / "errors.json"
     if not errors_path.exists():
         write_json(errors_path, [])
@@ -627,16 +649,10 @@ def process(input_data, step_dir, writer, verbose=False, workers=8, mistral_work
     manual_override_urls = _load_manual_override_urls(step_dir)
     skip_mistral_urls = _load_skip_mistral_urls(step_dir)
 
-    mistral_api_key = os.environ.get("MISTRAL_API_KEY")
-    mistral_base_url = os.environ.get("MISTRAL_OCR_PDF_BASE_URL")
-    mistral_enabled = bool(mistral_api_key and mistral_base_url)
-    if not mistral_enabled:
-        missing = []
-        if not mistral_api_key:
-            missing.append("MISTRAL_API_KEY")
-        if not mistral_base_url:
-            missing.append("MISTRAL_OCR_PDF_BASE_URL")
-        print(f"{' and '.join(missing)} not set — all PDFs will use pdfplumber/camelot")
+    mistral_mode = resolve_mistral_mode(os.environ, allow_paid_ocr)
+    mistral_enabled = mistral_mode == "live"
+    mistral_api_key = os.environ.get("MISTRAL_API_KEY") if mistral_enabled else None
+    mistral_base_url = os.environ.get("MISTRAL_OCR_PDF_BASE_URL") if mistral_enabled else None
     ocr_cache_dir = Path(step_dir) / "ocr_cache"
     mistral_semaphore = threading.Semaphore(mistral_workers) if mistral_enabled else None
 
@@ -710,6 +726,11 @@ def main():
         help="Number of parallel workers for file processing (default: 8)",
     )
     parser.add_argument(
+        "--allow-paid-ocr",
+        action="store_true",
+        help="Allow paid live Mistral OCR API calls (default: off, no Mistral calls are made)",
+    )
+    parser.add_argument(
         "--mistral-workers",
         type=int,
         default=2,
@@ -744,7 +765,8 @@ def main():
     if writer.processed_keys:
         print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")
 
-    process(input_data, step_dir, writer, verbose=args.verbose, workers=args.workers, mistral_workers=args.mistral_workers)
+    process(input_data, step_dir, writer, verbose=args.verbose, workers=args.workers, mistral_workers=args.mistral_workers,
+            allow_paid_ocr=args.allow_paid_ocr)
     count = writer.finalize()
     write_status(step_dir, count)
     if args.verbose:

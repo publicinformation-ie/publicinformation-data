@@ -119,12 +119,21 @@ As of 2025-06, this step uses parallel processing and persistent caching to impr
 As of 2026-07, PDF extraction tries Mistral OCR first, falling back to the
 existing pdfplumber/camelot path on failure.
 
+**Cache-only by default.** Unless `--allow-paid-ocr` is passed, this step makes
+no Mistral calls and constructs no Mistral client, whatever the env vars say;
+all PDFs use pdfplumber/camelot (the OCR cache is not consulted yet — it will
+become a scored candidate in a later change). **`--allow-paid-ocr` makes paid
+Mistral API calls (one per uncached PDF) — only use it deliberately.** With the
+flag, a missing `MISTRAL_API_KEY` or `MISTRAL_OCR_PDF_BASE_URL` raises
+`MistralConfigError` instead of silently falling back.
+
 ### Configuration
 
 | Setting | Type | Behavior |
 |---|---|---|
-| `MISTRAL_API_KEY` | env var | Required for the Mistral path. If unset, a one-time startup warning is printed and every PDF routes to pdfplumber/camelot for the whole run. |
+| `MISTRAL_API_KEY` | env var | Required with `--allow-paid-ocr`; if unset the run fails with `MistralConfigError`. Ignored without the flag. |
 | `MISTRAL_OCR_PDF_BASE_URL` | env var | Base URL the cached PDF bytes are served from (e.g. `https://<host>`); Mistral fetches `{MISTRAL_OCR_PDF_BASE_URL}/{sha256}.bytes`. Providing this URL (ngrok, a file server, etc.) is an infrastructure concern outside this step. |
+| `--allow-paid-ocr` | CLI flag | Opt in to live (paid) Mistral calls. Default off. |
 | `--mistral-workers N` | CLI flag | Bounds concurrent Mistral API calls, independent of `--workers` (default: 2, conservative given Mistral's rate limits). |
 
 ### Caching

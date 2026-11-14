@@ -681,7 +681,7 @@ def test_process_mistral_success_sets_extractor_and_merge_stats(tmp_path, monkey
         "steps.transform_disclosure_files.process.call_mistral_ocr",
         return_value=markdown,
     ) as mock_call:
-        process(input_data, step_dir, writer)
+        process(input_data, step_dir, writer, allow_paid_ocr=True)
     writer.finalize()
     mock_call.assert_called_once()
 
@@ -730,7 +730,7 @@ def test_process_mistral_strips_header_repeated_after_title_preamble(tmp_path, m
         "steps.transform_disclosure_files.process.call_mistral_ocr",
         return_value=markdown,
     ):
-        process(input_data, step_dir, writer)
+        process(input_data, step_dir, writer, allow_paid_ocr=True)
     writer.finalize()
 
     result = json.loads(output_path.read_text())
@@ -765,7 +765,7 @@ def test_process_mistral_api_failure_falls_back_to_pdfplumber(tmp_path, monkeypa
         "steps.transform_disclosure_files.process.call_mistral_ocr",
         return_value=None,
     ):
-        process(input_data, step_dir, writer)
+        process(input_data, step_dir, writer, allow_paid_ocr=True)
     writer.finalize()
 
     result = json.loads(output_path.read_text())
@@ -798,7 +798,7 @@ def test_process_mistral_exception_falls_back_to_pdfplumber(tmp_path, monkeypatc
         "steps.transform_disclosure_files.process.call_mistral_ocr",
         side_effect=Exception("simulated failure, e.g. corrupt cache"),
     ):
-        process(input_data, step_dir, writer)
+        process(input_data, step_dir, writer, allow_paid_ocr=True)
     writer.finalize()
 
     result = json.loads(output_path.read_text())
@@ -829,7 +829,7 @@ def test_process_mistral_empty_result_falls_back_to_pdfplumber(tmp_path, monkeyp
         "steps.transform_disclosure_files.process.call_mistral_ocr",
         return_value="",
     ):
-        process(input_data, step_dir, writer)
+        process(input_data, step_dir, writer, allow_paid_ocr=True)
     writer.finalize()
 
     result = json.loads(output_path.read_text())
@@ -862,7 +862,7 @@ def test_process_skip_mistral_override_does_not_call_mistral(tmp_path, monkeypat
     ), unittest.mock.patch(
         "steps.transform_disclosure_files.process.call_mistral_ocr",
     ) as mock_call:
-        process(input_data, step_dir, writer)
+        process(input_data, step_dir, writer, allow_paid_ocr=True)
     writer.finalize()
     mock_call.assert_not_called()
 
@@ -870,68 +870,31 @@ def test_process_skip_mistral_override_does_not_call_mistral(tmp_path, monkeypat
     assert result["results"][0]["pdf_extractor"] == "pdfplumber"
 
 
-def test_process_api_key_without_base_url_falls_back_to_pdfplumber(tmp_path, monkeypatch, capsys):
-    """MISTRAL_API_KEY set but MISTRAL_OCR_PDF_BASE_URL unset must not enable
-    the Mistral branch, and must not crash — the file should still be
-    processed via pdfplumber with rows present rather than a permanent
-    zero-row failure (regression test for the base_url None.rstrip() bug)."""
-    import unittest.mock
+def test_process_api_key_without_base_url_raises_with_flag(tmp_path, monkeypatch):
+    """With --allow-paid-ocr a missing MISTRAL_OCR_PDF_BASE_URL fails loud
+    (replaces the old silent pdfplumber fallthrough)."""
     from lib.file_utils import IncrementalWriter
-    from steps.transform_disclosure_files.process import process
+    from steps.transform_disclosure_files.process import MistralConfigError, process
 
     step_dir, cache_dir, key, file_url = _make_mistral_process_fixture(tmp_path)
     monkeypatch.setenv("MISTRAL_API_KEY", "fake-key")
     monkeypatch.delenv("MISTRAL_OCR_PDF_BASE_URL", raising=False)
-
     input_data = {"results": [{"file_url": file_url, "file_type": "pdf", "public_body_id": 1}]}
-    output_path = step_dir / "output.json"
-    writer = IncrementalWriter(output_path, "transform_disclosure_files", key_field="file_url", force=True)
-    with unittest.mock.patch(
-        "steps.transform_disclosure_files.process.DisclosureFileCache.get_file_path",
-        return_value=cache_dir / f"{key}.bytes",
-    ):
-        process(input_data, step_dir, writer)
-    writer.finalize()
-
-    result = json.loads(output_path.read_text())
-    record = result["results"][0]
-    assert record["pdf_extractor"] == "pdfplumber"
-    assert record["rows"] == [["Ref", "Date"], ["1", "2024-01-01"]]
-
-    # mistral_enabled is False when base_url is missing, so the Mistral
-    # branch (and its warning logging) is never entered — no errors at all.
-    errors = json.loads((step_dir / "errors.json").read_text())
-    assert errors == []
-
-    captured = capsys.readouterr()
-    assert "MISTRAL_OCR_PDF_BASE_URL" in captured.out
+    writer = IncrementalWriter(step_dir / "output.json", "transform_disclosure_files", key_field="file_url", force=True)
+    with pytest.raises(MistralConfigError, match="MISTRAL_OCR_PDF_BASE_URL"):
+        process(input_data, step_dir, writer, allow_paid_ocr=True)
 
 
-def test_process_no_api_key_disables_mistral_for_whole_run(tmp_path, monkeypatch, capsys):
-    import unittest.mock
+def test_process_no_api_key_raises_with_flag(tmp_path, monkeypatch):
     from lib.file_utils import IncrementalWriter
-    from steps.transform_disclosure_files.process import process
+    from steps.transform_disclosure_files.process import MistralConfigError, process
 
     step_dir, cache_dir, key, file_url = _make_mistral_process_fixture(tmp_path)
     monkeypatch.delenv("MISTRAL_API_KEY", raising=False)
-
     input_data = {"results": [{"file_url": file_url, "file_type": "pdf", "public_body_id": 1}]}
-    output_path = step_dir / "output.json"
-    writer = IncrementalWriter(output_path, "transform_disclosure_files", key_field="file_url", force=True)
-    with unittest.mock.patch(
-        "steps.transform_disclosure_files.process.DisclosureFileCache.get_file_path",
-        return_value=cache_dir / f"{key}.bytes",
-    ), unittest.mock.patch(
-        "steps.transform_disclosure_files.process.call_mistral_ocr",
-    ) as mock_call:
-        process(input_data, step_dir, writer)
-    writer.finalize()
-    mock_call.assert_not_called()
-
-    result = json.loads(output_path.read_text())
-    assert result["results"][0]["pdf_extractor"] == "pdfplumber"
-    captured = capsys.readouterr()
-    assert "MISTRAL_API_KEY" in captured.out
+    writer = IncrementalWriter(step_dir / "output.json", "transform_disclosure_files", key_field="file_url", force=True)
+    with pytest.raises(MistralConfigError, match="MISTRAL_API_KEY"):
+        process(input_data, step_dir, writer, allow_paid_ocr=True)
 
 
 # ── _process_single_file result record ───────────────────────────────────────
@@ -1577,3 +1540,57 @@ def test_process_skips_unverified_item_silently(requests_mock, tmp_path, make_wr
     assert writer.results == []
     errors = json.loads((tmp_path / "errors.json").read_text())
     assert errors == []
+
+
+# ── Mistral mode resolution (cache-only by default) ───────────────────────────
+
+_BOTH_VARS = {"MISTRAL_API_KEY": "k", "MISTRAL_OCR_PDF_BASE_URL": "https://b.example.com"}
+
+
+def test_resolve_mode_default_is_cache_only_even_with_env_set():
+    from steps.transform_disclosure_files.process import resolve_mistral_mode
+    assert resolve_mistral_mode(_BOTH_VARS, False) == "cache_only"
+    assert resolve_mistral_mode({}, False) == "cache_only"
+
+
+def test_resolve_mode_live_requires_flag_and_both_vars():
+    from steps.transform_disclosure_files.process import resolve_mistral_mode
+    assert resolve_mistral_mode(_BOTH_VARS, True) == "live"
+
+
+def test_resolve_mode_flag_with_missing_var_raises():
+    from steps.transform_disclosure_files.process import (
+        MistralConfigError, resolve_mistral_mode,
+    )
+    with pytest.raises(MistralConfigError, match="MISTRAL_OCR_PDF_BASE_URL"):
+        resolve_mistral_mode({"MISTRAL_API_KEY": "k"}, True)
+    with pytest.raises(MistralConfigError, match="MISTRAL_API_KEY"):
+        resolve_mistral_mode({"MISTRAL_OCR_PDF_BASE_URL": "https://b"}, True)
+
+
+def test_process_without_flag_makes_no_mistral_call(tmp_path, monkeypatch):
+    import unittest.mock
+    from lib.file_utils import IncrementalWriter
+    from steps.transform_disclosure_files import mistral_ocr
+
+    step_dir, cache_dir, key, file_url = _make_mistral_process_fixture(tmp_path)
+    for k, v in _BOTH_VARS.items():
+        monkeypatch.setenv(k, v)
+
+    def boom(*a, **k):
+        raise AssertionError("Mistral client constructed")
+    monkeypatch.setattr(mistral_ocr, "Mistral", boom)
+
+    input_data = {"results": [{"file_url": file_url, "file_type": "pdf", "public_body_id": 1}]}
+    output_path = step_dir / "output.json"
+    writer = IncrementalWriter(output_path, "transform_disclosure_files", key_field="file_url", force=True)
+    with unittest.mock.patch(
+        "steps.transform_disclosure_files.process.DisclosureFileCache.get_file_path",
+        return_value=cache_dir / f"{key}.bytes",
+    ), unittest.mock.patch(
+        "steps.transform_disclosure_files.process.call_mistral_ocr",
+    ) as mock_call:
+        process(input_data, step_dir, writer)
+    writer.finalize()
+    mock_call.assert_not_called()
+    assert json.loads(output_path.read_text())["results"][0]["pdf_extractor"] == "pdfplumber"
