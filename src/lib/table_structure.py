@@ -10,7 +10,7 @@ import re
 from collections import Counter
 from dataclasses import dataclass
 
-from lib.continuation_rows import is_continuation_row, is_sparse_layout
+from lib.continuation_rows import merge_continuation_rows
 from lib.column_map import canonicalize_headers
 from lib.date_parse import parse_date
 from lib.table_utils import detect_header_row
@@ -153,10 +153,8 @@ def _worst(n_rows: int, modal_width: int) -> StructureScore:
 
 def score_table(rows: list[list]) -> StructureScore:
     header, data = _data_rows(rows)
-    # filter_phantom_rows merges single-cell continuation rows into their
-    # predecessor (unless the layout is sparse), so score what survives the merge.
-    if not is_sparse_layout(data):
-        data = [r for r in data if not is_continuation_row(r)]
+    # Score what survives filter_phantom_rows' merge (same shared helper).
+    data = merge_continuation_rows([header] + data)[0][1:]
     n_rows = len(data)
     if n_rows == 0:
         return _worst(0, 0)

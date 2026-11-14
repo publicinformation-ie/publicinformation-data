@@ -66,6 +66,19 @@ def test_two_cell_continuation_still_fragment():
     assert score_table(rows).fragment_share > 0
 
 
+def test_orphan_continuation_after_header_still_fragment():
+    rows = clean_rows(20)
+    rows.insert(1, ["", "", "orphan text 2020", "", ""])
+    assert score_table(rows).fragment_share > 0
+
+
+def test_non_string_continuation_not_folded():
+    rows = clean_rows(20)
+    for pos in (15, 10, 5):
+        rows.insert(pos, ["", "", 12345, "", ""])
+    assert score_table(rows).fragment_share > 0
+
+
 def test_sparse_layout_not_folded():
     rows = [["Reference Number", "Date of Request", "Description", "Requester", "Decision"]]
     for i in range(20):

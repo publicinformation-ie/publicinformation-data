@@ -57,3 +57,38 @@ def is_sparse_layout(data_rows: list[list]) -> bool:
     # threshold is a separate, evidence-backed change — do not "tidy" this to
     # match the loop without re-deriving the constant.
     return single / len(data_rows) > 0.5 and multi / len(data_rows) < MULTI_ROW_TOLERANCE
+
+
+def merge_continuation_rows(rows: list[list]) -> tuple[list[list], int]:
+    """Merge continuation rows into the preceding row; rows[0] is the header.
+
+    Single source of truth for which rows get folded: used by filter_phantom_rows
+    and by the structure scorer. A continuation row is left in place when it
+    directly follows the header, holds a non-string value, or its target cell in
+    the previous row is a non-blank non-string. Returns (rows, n_merged).
+    """
+    if not rows or max(len(r) for r in rows) < 3:
+        return rows, 0
+    if is_sparse_layout(rows[1:]):
+        return rows, 0  # sparse layout is this file's shape, not fragmentation
+
+    merged = 0
+    out = [list(rows[0])]
+    for row in rows[1:]:
+        # Blank-aware: pdfplumber emits a mix of None and '' for empty cells within
+        # the same file, so a None-only count reads a continuation row as multi-value
+        # and lets it survive as an orphan fragment.
+        if is_continuation_row(row):
+            col_idx, val = next((i, v) for i, v in enumerate(row) if not _is_blank_cell(v))
+            prev = out[-1]
+            if len(out) > 1 and col_idx < len(prev) and isinstance(val, str):
+                if isinstance(prev[col_idx], str) and prev[col_idx].strip():
+                    prev[col_idx] = prev[col_idx] + " " + val
+                    merged += 1
+                    continue
+                if _is_blank_cell(prev[col_idx]):
+                    prev[col_idx] = val
+                    merged += 1
+                    continue
+        out.append(list(row))
+    return out, merged
