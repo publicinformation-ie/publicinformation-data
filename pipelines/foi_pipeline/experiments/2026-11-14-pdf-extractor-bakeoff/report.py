@@ -30,7 +30,7 @@ SETS = {
 
 
 def ok_pass(r, th):
-    return not failed_checks(StructureScore(**r["score"]), th)
+    return not failed_checks(StructureScore.from_dict(r["score"]), th)
 
 
 L = []

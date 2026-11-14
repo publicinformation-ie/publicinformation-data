@@ -40,7 +40,7 @@ def _norm(s) -> str:
 
 
 def gold_accuracy(rows: list[list], gold: dict) -> dict:
-    _, data = _data_rows(rows)
+    _, data, _ = _data_rows(rows)
     out = {}
     for label, fn in (("raw", _ws), ("normalised", _norm)):
         total = hit = aligned = 0
