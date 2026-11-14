@@ -8,11 +8,11 @@ Gold accuracy = share of gold cells matching exactly at the same column index in
 
 | extractor | tables found | pass (provisional) | pass (adopted) | gold raw | gold norm | median s/file | width uniformity | fragment share | column type purity | split word rate | repeated header share | composite |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| pdfplumber | 35/36 | 15/36 | 19/36 | 0.694 | 0.711 (n=10) | 0.23 | 0.902 | 0.074 | 0.925 | 0.069 | 0.083 | 0.758 |
-| pdfplumber_lines | 35/36 | 15/36 | 19/36 | 0.694 | 0.711 (n=10) | 0.23 | 0.902 | 0.074 | 0.925 | 0.069 | 0.083 | 0.758 |
-| camelot_lattice | 31/36 | 16/36 | 21/36 | 0.759 | 0.759 (n=10) | 1.96 | 0.958 | 0.036 | 0.952 | 0.039 | 0.049 | 0.859 |
-| pymupdf | 35/36 | 18/36 | 22/36 | 0.627 | 0.644 (n=10) | 0.25 | 0.896 | 0.099 | 0.924 | 0.062 | 0.081 | 0.797 |
-| camelot_stream | 34/36 | 5/36 | 7/36 | 0.415 | 0.415 (n=10) | 0.44 | 0.780 | 0.237 | 0.954 | 0.022 | 0.003 | 0.495 |
+| pdfplumber | 35/36 | 15/36 | 19/36 | 0.694 | 0.711 (n=10) | 0.25 | 0.899 | 0.081 | 0.925 | 0.069 | 0.081 | 0.754 |
+| pdfplumber_lines | 35/36 | 15/36 | 19/36 | 0.694 | 0.711 (n=10) | 0.23 | 0.899 | 0.081 | 0.925 | 0.069 | 0.081 | 0.754 |
+| camelot_lattice | 31/36 | 16/36 | 21/36 | 0.759 | 0.759 (n=10) | 2.07 | 0.958 | 0.036 | 0.952 | 0.039 | 0.049 | 0.859 |
+| pymupdf | 35/36 | 18/36 | 22/36 | 0.627 | 0.644 (n=10) | 0.26 | 0.894 | 0.102 | 0.924 | 0.062 | 0.080 | 0.795 |
+| camelot_stream | 34/36 | 5/36 | 7/36 | 0.415 | 0.415 (n=10) | 0.46 | 0.782 | 0.235 | 0.954 | 0.022 | 0.003 | 0.497 |
 | mistral_cache | 24/36 | 11/36 | 14/36 | 0.874 | 0.884 (n=7) | 0.00 | 0.972 | 0.012 | 0.978 | 0.004 | 0.062 | 0.847 |
 | docling | 36/36 | 21/36 | 26/36 | 0.913 | 0.913 (n=10) | 5.04 | 0.984 | 0.010 | 0.979 | 0.006 | 0.012 | 0.891 |
 
@@ -26,16 +26,16 @@ Best = highest mean composite over the stratum's files (missing table = 0).
 |---|---|---|---|---|
 | clean_no_errors | 6 | pdfplumber | 0.99 | pdfplumber_lines (0.99) |
 | clean_with_errors | 6 | docling | 0.92 | pymupdf (0.83) |
-| fragments | 6 | docling | 0.85 | pymupdf (0.76) |
-| header_repeat | 5 | pdfplumber | 0.85 | pdfplumber_lines (0.85) |
+| fragments | 6 | docling | 0.85 | pymupdf (0.75) |
+| header_repeat | 5 | pdfplumber | 0.84 | pdfplumber_lines (0.84) |
 | split_words | 6 | pymupdf | 0.84 | docling (0.83) |
 | width_shift | 7 | docling | 0.91 | camelot_lattice (0.66) |
 
 ## Validation: composite vs gold accuracy
 
-- Spearman rho (composite vs gold raw) = **0.587** (N=67 pairs, p=1.7e-07)
-- Spearman rho (composite vs gold normalised) = **0.590** (N=67 pairs, p=1.5e-07)
-- Excluding the duplicate pdfplumber_lines rows: rho = 0.548
+- Spearman rho (composite vs gold raw) = **0.580** (N=67 pairs, p=2.7e-07)
+- Spearman rho (composite vs gold normalised) = **0.584** (N=67 pairs, p=2.2e-07)
+- Excluding the duplicate pdfplumber_lines rows: rho = 0.545
 - rho >= 0.6, so the label-free score is usable as a gate, with the caveat of tiny N and that pairs are not independent (10 files).
 
 ## Threshold sets: confusion of `passes` vs gold accuracy >= 0.95 (normalised)
@@ -46,7 +46,7 @@ Pairs: 67. Positive = gold >= 0.95 (28 pairs). **No holdout: thresholds were tun
 |---|---|---|---|---|---|
 | provisional (0.95/0.05/0.85/0.01/0.02) | 14 | 7 | 14 | 32 | 0.67 |
 | literal tightest-pass-all (0.50/0.51/0.93/0.02/0.07) | 28 | 19 | 0 | 20 | 0.60 |
-| intermediate 0.85/0.10 (rejected) | 26 | 15 | 2 | 24 | 0.63 |
+| intermediate 0.85/0.10 (rejected) | 24 | 15 | 4 | 24 | 0.62 |
 | adopted (0.92/0.08/0.85/0.02/0.07) | 22 | 12 | 6 | 27 | 0.65 |
 | only sw+rh relaxed (0.95/0.05/0.85/0.02/0.07) | 22 | 11 | 6 | 28 | 0.67 |
 
