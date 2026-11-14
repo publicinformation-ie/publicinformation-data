@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 
 from lib.cli_utils import add_common_args, filter_by_public_body
-from lib.table_utils import normalize_header_row  # noqa: F401
+from lib.table_utils import normalize_header_row  # used below; also imported from here by tests and experiments
 from lib.file_utils import read_json, write_json, write_status, IncrementalWriter
 
 STEP_NAME = "extract_disclosures_normalize_header"

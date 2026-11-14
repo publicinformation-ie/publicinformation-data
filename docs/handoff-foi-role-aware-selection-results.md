@@ -4,7 +4,7 @@ Branch `feat/foi-role-aware-selection` (on top of `feat/foi-gate-on-structure-no
 
 ## 1. Read this first: the role gate withholds a lot of probably-good data
 
-Errors fell 2,875 to 1,308 (-54%). Work packages 1 and 2 (vocabulary and header mapping) did most of that cleanly: 2,875 to 1,757 with records unchanged. The role gate (work package 3) is where the cost is.
+Errors fell 2,875 to 1,308 (-54%). Work packages 1 and 2 (vocabulary and header mapping) did most of that cleanly: 2,875 to 1,757 with records not reduced (59,600 to 59,714). The role gate (work package 3) is where the cost is.
 
 **Blast radius of the gate** (before = `foi-before-role-aware-2026-11-14`, after = current outputs):
 
@@ -13,12 +13,12 @@ Errors fell 2,875 to 1,308 (-54%). Work packages 1 and 2 (vocabulary and header 
 | files newly withheld (`TableStructureUnreliable`) | 66 (63 from the role gate, 2 override files with records, plus Fingal 2016 flagged but shielded, see below) |
 | records lost from them | 2,903 (2,672 from the 63 gate files plus 231 from the 2 override files) |
 | net record change, all causes | 59,600 to 56,850 (-2,750, -4.6%) |
-| errors those 66 files carried before | 566 |
+| errors those 66 files carried before / now | 566 / 268. The 268 now are all Fingal 2016, flagged but still published (see below), so the gate removed about 298 errors |
 | newly withheld files that had 0 errors before and published records | 29 files, 1,320 records |
 | newly withheld files with under 5% error rate before | 36 |
 | newly withheld files with 40+ records and 3 or fewer errors before | 17 |
 
-In plain terms: the gate removed about 566 errors and cost 2,903 records. About 40 of the 63 gate-withheld files had 0 canonicalize errors before (this counts files with no records and no errors; the strict count of files that published records with 0 errors is 29). Largest likely-good losses: body 1594 non-personal-requests 2017-2020 (118/152/156/141 records, 0-3 errors each, role contamination about 0.38), DLR 2021 (1244: 153 rows, 0 errors, contamination 0.39, anchored 0.0), Galway 2019 (1342: 199 rows, 3 errors), Louth 2019/2020/2021/2023 (1501: 107/65/88/96 records, 0 errors), CRU 2021-2025 (1153), HIQA 2018/19 (1390), Mayo 2023 Q1/Q2 and 2024/2025 Q2 (1508, contamination 0.20-0.23, just above the 0.2 line). Nobody looked at these files by eye; the "probably good" judgement rests on 0 or few errors before.
+In plain terms: the gate removed about 298 errors (566 before minus the 268 Fingal 2016 errors that are still published) and cost 2,903 records, roughly 10 records per error removed. About 40 of the 63 gate-withheld files had 0 canonicalize errors before (this counts files with no records and no errors; the strict count of files that published records with 0 errors is 29). Largest likely-good losses: body 1594 non-personal-requests 2017-2020 (118/152/156/141 records, 0-3 errors each, role contamination about 0.38), DLR 2021 (1244: 153 rows, 0 errors, contamination 0.39, anchored 0.0), Galway 2019 (1342: 199 rows, 3 errors), Louth 2019/2020/2021/2023 (1501: 107/65/88/96 records, 0 errors), CRU 2021-2025 (1153), HIQA 2018/19 (1390), Mayo 2023 Q1/Q2 and 2024/2025 Q2 (1508, contamination 0.20-0.23, just above the 0.2 line). Nobody looked at these files by eye; the "probably good" judgement rests on 0 or few errors before.
 
 **Calibration is thin** (`role_calibration.md`). Chosen thresholds `max_role_contamination = 0.2`, `min_anchored_row_share = 0.8`. The label for "bad" is a per-file cross-role error rate of at least 0.2, and there are only 5 bad files in the even-id fit set and 7 in the odd-id holdout.
 
@@ -39,7 +39,7 @@ No (contamination, anchored) pair reached recall 0.80 with FPR 0.05 on the fit s
 
 | option | effect | cost |
 |---|---|---|
-| A. Keep as is | 1,308 errors, 56,850 records | 2,903 records withheld (4.6% of the baseline); about 1,320 of those from files that had no errors |
+| A. Keep as is | 1,308 errors, 56,850 records | 2,903 records withheld (4.9% of the 59,600 baseline; the net change is -2,750, 4.6%); about 1,320 of those from files that had no errors |
 | B. Loosen the contamination threshold to 0.3 | recall on the fit set drops 5/5 to 4/5, odd set unchanged at 6/7; FPR 8.3% (fit) and 4.6% (odd); good records withheld 2,933 (fit) and 1,291 (odd) | saves only about 35 (fit) and 204 (odd) good records. Not a big win because the anchored threshold also withholds. Loosening the anchored threshold (0.8 to a lower value) was not gridded below 0.8 and would need a new calibration |
 | C. Gate and fall back to the next candidate instead of withholding | not measured. The selection already ranks all candidates by contamination, so a failing winner means all candidates failed or were unmeasured | would need a rule for which failing candidate to publish; needs a run |
 | D. Record-level gating (drop only rows with a foreign-kind cell) | not measured | the Mayo case shows row-level data can be wrong in every row, so this helps mainly for files with a few bad rows |
@@ -155,3 +155,10 @@ Done (commit `chore(foi): drop pdfplumber_lines; selection-key tests; doc cleanu
 Follow-ups not done (all parked from review): date regex accepts `.` separator, thin tests for it; private import of `_STATUS_LOOKUP` and double classify in the gate; no unit test for the placeholder filter (`N/A`, `nil`, `-`, `tbc`) or bare-digit anchors; `_DIGITS_RE` duplicated; headerless pdfplumber table that passes shape is kept without comparison to other candidates; the `pdf_extractor` override config guard test is vacuous until a `column_mappings.json` entry uses that key; the none-candidate test only asserts `res[0] == []`; empty-mapping shape test missing; `wp1_newly_resolved.md` and negative test for requester map missing; `report.py` of the bake-off still lists `pdfplumber_lines` (historical).
 
 Also noted: results for tasks 5, 8, 10 and 11 were measurement-only commits without independent review.
+
+## 9. Known limits of the scorer and gate
+
+- **Date/reference blind spot.** `_is_reference` in `src/lib/value_kinds.py` treats a single token containing a digit plus `/` or `-` as a reference, so `17/07/2023`, `17-07-2023` and `2023-07-17` are both date and reference. A date shifted into `foi_reference_id` therefore never counts as contamination.
+- **Unknown is never foreign.** A free-text description shifted into `requester_type` scores 0 contamination. This is the likely reason Mayo Q1-2024 and Q4-2023 now publish with fields in the wrong columns (section 1) without being gated.
+- **Overrides lost their exemption.** Files with a manual mapping are now scored with that mapping. Central Bank 2025 (130 records) and NCCA 2024 (101 records) are withheld on shape and anchoring.
+- **Fails open by ruling.** Files whose roles are mapped but unmeasured (all-`None` contamination) are not gated on contamination; the anchored check still applies.
