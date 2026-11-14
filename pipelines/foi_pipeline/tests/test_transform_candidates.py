@@ -11,6 +11,7 @@ from steps.transform_disclosure_files.candidates import (
 from steps.transform_disclosure_files.process import _extract_pdf
 
 FIXTURE = Path(__file__).parent / "fixtures" / "pdf" / "rte_2018_p1.pdf"
+CAMELOT = {"camelot_lattice", "camelot_stream"}
 GEOMETRIC = ["pdfplumber", "pdfplumber_lines", "camelot_lattice", "pymupdf", "camelot_stream"]
 
 
@@ -21,6 +22,8 @@ def pdf_bytes():
 
 @pytest.mark.parametrize("name", GEOMETRIC)
 def test_each_geometric_candidate_returns_rows_on_ruled_fixture(name, pdf_bytes, tmp_path):
+    if name in CAMELOT:
+        pytest.importorskip("cv2", reason="camelot needs opencv (absent in CI)")
     cand = extract_candidate(name, pdf_bytes, file_url="https://x/y.pdf", ocr_cache_dir=tmp_path)
     assert isinstance(cand, Candidate)
     assert cand.name == name
@@ -58,6 +61,7 @@ def test_candidate_names_constant():
 
 
 def test_extractor_failure_propagates(pdf_bytes, tmp_path, monkeypatch):
+    pytest.importorskip("cv2", reason="camelot needs opencv (absent in CI)")
     import camelot
 
     def boom(*a, **k):

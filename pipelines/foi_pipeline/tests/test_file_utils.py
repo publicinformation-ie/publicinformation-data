@@ -698,21 +698,27 @@ class TestDirtyStateLifecycle:
         assert "--from my_step" in o
 
 
-def _append_many_errors(step_dir, worker, n):
-    for i in range(n):
-        append_error(step_dir, {"step": "s", "timestamp": "t", "error_type": f"W{worker}",
-                                "error_message": str(i), "context": {}})
+_APPEND_WORKER = """
+import sys
+from lib.file_utils import append_error
+step_dir, worker, n = sys.argv[1], sys.argv[2], int(sys.argv[3])
+for i in range(n):
+    append_error(step_dir, {"step": "s", "timestamp": "t", "error_type": "W" + worker,
+                            "error_message": str(i), "context": {}})
+"""
 
 
 def test_append_error_is_safe_across_processes(tmp_path):
     """Worker processes appending to one errors.json must not lose entries."""
-    import multiprocessing
+    import os
+    import subprocess
+    import sys
 
-    ctx = multiprocessing.get_context("spawn")
-    procs = [ctx.Process(target=_append_many_errors, args=(str(tmp_path), w, 40)) for w in range(6)]
+    # Fresh interpreters with the parent's sys.path: independent of cwd and of
+    # how pytest names this module (spawn would re-import it by dotted name).
+    env = {**os.environ, "PYTHONPATH": os.pathsep.join(sys.path)}
+    procs = [subprocess.Popen([sys.executable, "-c", _APPEND_WORKER, str(tmp_path), str(w), "40"],
+                              env=env) for w in range(6)]
     for p in procs:
-        p.start()
-    for p in procs:
-        p.join(60)
-        assert p.exitcode == 0
+        assert p.wait(timeout=60) == 0
     assert len(read_json(tmp_path / "errors.json")) == 6 * 40
