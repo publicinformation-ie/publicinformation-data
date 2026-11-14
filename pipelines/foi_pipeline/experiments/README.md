@@ -8,6 +8,7 @@ Experiments live in dated subdirectories (`YYYY-MM-DD-<slug>/`). Each has its ow
 |------|-----------|---------|
 | 2025-01-03 | [mistral-ocr-comparison](2025-01-03-mistral-ocr-comparison/) | TBD |
 | 2026-06-04 | [pdfplumber-param-sweep](2026-06-04-pdfplumber-param-sweep/) | `snap_tolerance=6` adds +6.7pp clean rate; adopted as config 4 |
+| 2026-11-14 | [pdf-extractor-bakeoff](2026-11-14-pdf-extractor-bakeoff/) | Cached Mistral replay: 74 clean vs 78 current of 208 cached error PDFs; no gain |
 
 ## Before running an experiment
 
