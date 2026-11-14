@@ -83,7 +83,7 @@ cd pipelines/foi_pipeline && uv run python process.py --force --stop-on-error
 
 Always-run steps: `fetch_status_annexes`.
 
-### `foi_pipeline` (27 steps)
+### `foi_pipeline` (28 steps)
 
 | # | Step |
 |---:|---|
@@ -101,20 +101,20 @@ Always-run steps: `fetch_status_annexes`.
 | 12 | `find_disclosure_files` |
 | 13 | `verify_disclosure_files` |
 | 14 | `transform_disclosure_files` |
-| 14a | `assess_table_structure` |
-| 15 | `normalize_disclosure_cells` |
-| 16 | `filter_phantom_rows` |
-| 17 | `extract_disclosures_detect_header_row` |
-| 18 | `extract_disclosures_normalize_header` |
-| 19 | `extract_disclosures_split_combined_columns` |
-| 20 | `extract_disclosures_normalize_rows` |
-| 21 | `extract_disclosures_canonicalize` |
-| 22 | `extract_disclosures_canonicalize_rows` |
-| 23 | `extract_disclosures_deduplicate` |
-| 24 | `export_status` |
-| 25 | `generate_topics` |
-| 26 | `db_upload` |
-| 27 | `sync_backlog` |
+| 15 | `assess_table_structure` |
+| 16 | `normalize_disclosure_cells` |
+| 17 | `filter_phantom_rows` |
+| 18 | `extract_disclosures_detect_header_row` |
+| 19 | `extract_disclosures_normalize_header` |
+| 20 | `extract_disclosures_split_combined_columns` |
+| 21 | `extract_disclosures_normalize_rows` |
+| 22 | `extract_disclosures_canonicalize` |
+| 23 | `extract_disclosures_canonicalize_rows` |
+| 24 | `extract_disclosures_deduplicate` |
+| 25 | `export_status` |
+| 26 | `generate_topics` |
+| 27 | `db_upload` |
+| 28 | `sync_backlog` |
 
 Always-run steps: `fingerprint_disclosure_pages`.
 
