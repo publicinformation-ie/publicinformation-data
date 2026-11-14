@@ -139,7 +139,9 @@ def _mistral_cache(file_bytes: bytes, file_url: str, ocr_cache_dir: Path) -> Can
     pages = markdown_to_pages(markdown)
     if not pages:
         return None
-    return _finish("mistral_cache", pages, len(pages), len(pages))
+    # Markdown "pages" are OCR table chunks, not PDF pages or pdfplumber tables;
+    # report like the live Mistral path: sheet "page 1", no multiple tables.
+    return _finish("mistral_cache", pages, 1, 1)
 
 
 def extract_candidate(

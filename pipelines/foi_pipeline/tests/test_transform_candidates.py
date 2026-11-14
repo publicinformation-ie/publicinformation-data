@@ -83,3 +83,18 @@ def test_mistral_cache_candidate_returns_rows_from_populated_cache(pdf_bytes, tm
     cand = extract_candidate("mistral_cache", pdf_bytes, file_url=url, ocr_cache_dir=tmp_path)
     assert cand is not None and cand.name == "mistral_cache"
     assert [r for r in cand.rows if r[0] == "3"] == [["3", "4"]]
+
+
+def test_mistral_cache_candidate_reports_one_page_and_no_multiple_tables(pdf_bytes, tmp_path):
+    import hashlib
+    import json
+
+    from steps.transform_disclosure_files.mistral_ocr import _PAGE_BREAK_MARKER
+
+    url = "https://x/multi.pdf"
+    md = f"| A | B |\n|---|---|\n| 1 | 2 |\n{_PAGE_BREAK_MARKER}\n| A | B |\n|---|---|\n| 3 | 4 |\n"
+    (tmp_path / f"{hashlib.sha256(url.encode()).hexdigest()}.json").write_text(json.dumps({"markdown": md}))
+    cand = extract_candidate("mistral_cache", pdf_bytes, file_url=url, ocr_cache_dir=tmp_path)
+    assert cand is not None
+    assert cand.sheet_name == "page 1"
+    assert cand.has_multiple is False

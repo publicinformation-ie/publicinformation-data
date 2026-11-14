@@ -376,20 +376,20 @@ def test_extract_pdf_pdfplumber_extractor_when_score_ge_2():
     assert camelot_info is None
 
 
-def test_extract_pdf_low_header_score_no_longer_falls_back_to_camelot():
-    """Selection (select_pdf_table) now covers the old n_mapped < 2 camelot
-    fallback; _extract_pdf itself returns the pdfplumber result."""
+def test_extract_pdf_low_header_score_falls_back_to_camelot():
+    """Manual-override path: pdfplumber n_mapped < 2 tries camelot_stream."""
     import unittest.mock
     rows = [["Blob1", "Blob2", "Blob3"], ["1", "2", "3"]]
+    camelot_rows = [["Reference", "Date Received", "Status"], ["1", "2024-01-01", "Granted"]]
     pdf_bytes = _make_pdf([[rows]])
     with unittest.mock.patch(
-        "steps.transform_disclosure_files.process._extract_with_camelot_stream"
-    ) as mock_camelot:
+        "steps.transform_disclosure_files.process._extract_with_camelot_stream",
+        return_value=camelot_rows,
+    ):
         _sheet, result_rows, _fb, _multi, _stats, pdf_extractor, camelot_info = _extract_pdf(pdf_bytes)
-    mock_camelot.assert_not_called()
-    assert pdf_extractor == "pdfplumber"
-    assert camelot_info is None
-    assert result_rows == rows
+    assert pdf_extractor == "camelot_stream"
+    assert camelot_info["used"] == "camelot_stream"
+    assert result_rows == camelot_rows
 
 
 def test_extract_pdf_skip_canonicalization_check_keeps_pdfplumber_path():
@@ -415,8 +415,8 @@ def test_extract_pdf_skip_canonicalization_check_keeps_pdfplumber_path():
 
 def test_load_manual_override_urls_reads_column_mappings(tmp_path):
     """_load_manual_override_urls reads the sibling
-    extract_disclosures_canonicalize/column_mappings.json and returns only
-    the URLs whose entry opts into skip_camelot_fallback."""
+    extract_disclosures_canonicalize/column_mappings.json and returns every
+    URL with an entry (all manual overrides bypass candidate selection)."""
     from steps.transform_disclosure_files.process import _load_manual_override_urls
     import json
 
@@ -430,7 +430,7 @@ def test_load_manual_override_urls_reads_column_mappings(tmp_path):
     }))
 
     result = _load_manual_override_urls(step_dir)
-    assert result == {"https://example.com/a.pdf"}
+    assert result == {"https://example.com/a.pdf", "https://example.com/b.pdf"}
 
 
 def test_load_manual_override_urls_missing_file_returns_empty_set(tmp_path):
@@ -482,7 +482,7 @@ def test_load_skip_mistral_urls_independent_of_skip_camelot_fallback(tmp_path):
     coexist on the same entry — this test guards against one loader
     accidentally reading the other's key."""
     from steps.transform_disclosure_files.process import (
-        _load_skip_mistral_urls, _load_manual_override_urls,
+        _load_skip_mistral_urls, _load_skip_camelot_urls,
     )
     import json
 
@@ -506,7 +506,7 @@ def test_load_skip_mistral_urls_independent_of_skip_camelot_fallback(tmp_path):
     }))
 
     skip_mistral = _load_skip_mistral_urls(step_dir)
-    skip_camelot = _load_manual_override_urls(step_dir)
+    skip_camelot = _load_skip_camelot_urls(step_dir)
     assert skip_mistral == {"https://example.com/both.pdf", "https://example.com/mistral-only.pdf"}
     assert skip_camelot == {"https://example.com/both.pdf", "https://example.com/camelot-only.pdf"}
 
@@ -555,18 +555,38 @@ def test_process_respects_manual_override_skip(tmp_path):
     assert result["results"][0]["pdf_extractor"] == "pdfplumber"
 
 
-def test_process_without_skip_flag_uses_structure_selection(tmp_path, monkeypatch):
-    """A manual override WITHOUT skip_camelot_fallback goes through structure
-    selection (it used to hit the n_mapped < 2 camelot fallback): when
-    pdfplumber's table fails the structure check a camelot candidate can win."""
-    shifted = _fixture_rows("rte_2018_shifted.json")
-    clean = _fixture_rows("charities_regulator_2024_clean.json")
-    _stub_candidates(monkeypatch, {"pdfplumber": shifted, "camelot_stream": clean})
+def test_process_without_skip_flag_bypasses_selection_and_keeps_camelot_fallback(tmp_path, monkeypatch):
+    """Every manual override bypasses select_pdf_table; without skip_camelot_fallback
+    it keeps the pre-branch pdfplumber + n_mapped<2 camelot_stream fallback."""
+    import steps.transform_disclosure_files.process as proc
+    monkeypatch.setattr(proc, "select_pdf_table", lambda *a, **k: (_ for _ in ()).throw(
+        AssertionError("select_pdf_table must not run for manual overrides")))
+    camelot_rows = [["Reference", "Date Received", "Status"], ["1", "2024-01-01", "Granted"]]
+    monkeypatch.setattr(proc, "_extract_with_camelot_stream", lambda b: camelot_rows)
+    pdf_bytes = _make_pdf([[[["Blob1", "Blob2", "Blob3"], ["1", "2", "3"]]]])
     url = "http://example.com/no-flag-override.pdf"
-    results = _run_process_with_pdf(tmp_path, b"%PDF stub", url, {
+    results = _run_process_with_pdf(tmp_path, pdf_bytes, url, {
         url: {"source_method": "manual", "overridden": True, "column_mapping": {}},
     })
     assert results[0]["pdf_extractor"] == "camelot_stream"
+    assert results[0]["rows"] == camelot_rows
+    assert results[0]["pdf_camelot_attempted"] is True
+    assert "pdf_table_selection" not in results[0]
+
+
+def test_process_skip_flag_override_bypasses_selection_without_camelot(tmp_path, monkeypatch):
+    import steps.transform_disclosure_files.process as proc
+    monkeypatch.setattr(proc, "select_pdf_table", lambda *a, **k: (_ for _ in ()).throw(
+        AssertionError("select_pdf_table must not run for manual overrides")))
+    monkeypatch.setattr(proc, "_extract_with_camelot_stream", lambda b: (_ for _ in ()).throw(
+        AssertionError("camelot fallback must not run with skip_camelot_fallback")))
+    rows = [["Blob1", "Blob2", "Blob3"], ["1", "2", "3"]]
+    url = "http://example.com/skip-flag-override.pdf"
+    results = _run_process_with_pdf(tmp_path, _make_pdf([[rows]]), url, {
+        url: {"source_method": "manual", "overridden": True, "skip_camelot_fallback": True, "column_mapping": {}},
+    })
+    assert results[0]["pdf_extractor"] == "pdfplumber"
+    assert results[0]["rows"] == rows
 
 
 # ── Mistral OCR branch ────────────────────────────────────────────────────
@@ -1694,13 +1714,12 @@ def test_cache_only_mode_consults_mistral_only_as_candidate(tmp_path, monkeypatc
     assert results[0]["pdf_extractor"] == "mistral_cache"
 
 
-def test_skip_mistral_url_excludes_mistral_cache_candidate(tmp_path, monkeypatch):
+def test_skip_mistral_url_is_an_override_and_bypasses_selection(tmp_path, monkeypatch):
     shifted = _fixture_rows("rte_2018_shifted.json")
     calls = []
     _stub_candidates(monkeypatch, {"pdfplumber": shifted}, calls)
     url = "http://example.com/skipm.pdf"
-    _run_process_with_pdf(tmp_path, b"%PDF stub", url, {
+    _run_process_with_pdf(tmp_path, _make_pdf([[[["Ref", "Date"], ["1", "2"]]]]), url, {
         url: {"source_method": "manual", "overridden": True, "skip_mistral": True, "column_mapping": {}},
     })
-    assert "mistral_cache" not in calls
-    assert "camelot_lattice" in calls
+    assert calls == []

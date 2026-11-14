@@ -408,23 +408,32 @@ def _extract_with_camelot_stream(file_bytes: bytes) -> list[list] | None:
             pass
 
 
-def _load_manual_override_urls(step_dir: Path) -> set[str]:
-    """Return the set of file_urls whose manual column_mapping override in
-    the sibling extract_disclosures_canonicalize step's column_mappings.json
-    opts into skip_camelot_fallback.
-
-    Most manual overrides rely on camelot's extraction (their column_mapping
-    was calibrated against camelot's row structure) and must keep using it.
-    Only files that explicitly set skip_camelot_fallback: true — because
-    their camelot output is worse than pdfplumber's, or because they need
-    _merge_page_splits()'s page-break header stripping, which camelot never
-    runs — should skip the camelot fallback.
-    """
+def _load_column_mappings(step_dir: Path) -> dict:
     mappings_path = Path(step_dir).parent / "extract_disclosures_canonicalize" / "column_mappings.json"
     if not mappings_path.exists():
-        return set()
-    mappings = json.loads(mappings_path.read_text())
-    return {url for url, entry in mappings.items() if entry.get("skip_camelot_fallback")}
+        return {}
+    return json.loads(mappings_path.read_text())
+
+
+def _load_manual_override_urls(step_dir: Path) -> set[str]:
+    """Return every file_url with an entry in the sibling
+    extract_disclosures_canonicalize step's column_mappings.json.
+
+    Each manual override's position-based column_mapping was calibrated
+    against the pre-selection extractor output, so these files bypass
+    select_pdf_table and use _extract_pdf (pdfplumber, with the
+    n_mapped < 2 camelot_stream fallback unless the entry also sets
+    skip_camelot_fallback; see _load_skip_camelot_urls).
+    """
+    return set(_load_column_mappings(step_dir))
+
+
+def _load_skip_camelot_urls(step_dir: Path) -> set[str]:
+    """Return the file_urls whose override entry sets skip_camelot_fallback:
+    true — their camelot output is worse than pdfplumber's, or they need
+    _merge_page_splits()'s page-break header stripping. These never take the
+    camelot_stream fallback in _extract_pdf."""
+    return {url for url, e in _load_column_mappings(step_dir).items() if e.get("skip_camelot_fallback")}
 
 
 def _load_skip_mistral_urls(step_dir: Path) -> set[str]:
@@ -452,12 +461,11 @@ def _extract_pdf(file_bytes, table_settings=None, skip_canonicalization_check=Fa
     camelot_info is None when no fallback was attempted; otherwise a dict with
     pdfplumber_n_mapped, camelot_n_mapped, and used keys.
     This is the manual-override path only: files with a manual column_mapping
-    override that opts into skip_camelot_fallback are extracted here, byte-for-byte
-    as before structure-based selection. Everything else goes through
-    select_pdf_table. The low-header-score camelot fallback that used to live
-    here is now covered by selection, so skip_canonicalization_check no longer
-    changes behaviour (kept for call-site compatibility); only the
-    "pdfplumber found no tables at all" camelot fallback remains.
+    override are extracted here exactly as before structure-based selection;
+    everything else goes through select_pdf_table.
+    When skip_canonicalization_check is True, the pdfplumber result is
+    returned immediately (no n_mapped < 2 camelot fallback) once a table was
+    found; used for overrides that set skip_camelot_fallback.
     """
     import pdfplumber
     pages_rows = []
@@ -485,6 +493,19 @@ def _extract_pdf(file_bytes, table_settings=None, skip_canonicalization_check=Fa
             raise ValueError("no tables found")
     rows, merge_stats = _merge_page_splits(pages_rows)
     sheet_name = "page 1" if n_pages == 1 else f"pages 1-{n_pages}"
+
+    if skip_canonicalization_check:
+        return sheet_name, rows, [], total_tables > 1, merge_stats, "pdfplumber", None
+
+    n_mapped = _score_rows(rows)
+    if n_mapped < 2:
+        camelot_rows = _extract_with_camelot_stream(file_bytes)
+        camelot_n_mapped = _score_rows(camelot_rows) if camelot_rows is not None else 0
+        if camelot_rows is not None and camelot_n_mapped >= n_mapped:
+            camelot_info = {"pdfplumber_n_mapped": n_mapped, "camelot_n_mapped": camelot_n_mapped, "used": "camelot_stream"}
+            return sheet_name, camelot_rows, [], False, {}, "camelot_stream", camelot_info
+        camelot_info = {"pdfplumber_n_mapped": n_mapped, "camelot_n_mapped": camelot_n_mapped, "used": "pdfplumber"}
+        return sheet_name, rows, [], total_tables > 1, merge_stats, "pdfplumber", camelot_info
 
     return sheet_name, rows, [], total_tables > 1, merge_stats, "pdfplumber", None
 
@@ -559,7 +580,7 @@ def _process_single_file(
     item, cache, step_dir, manual_override_urls=frozenset(),
     skip_mistral_urls=frozenset(), mistral_enabled=False,
     ocr_cache_dir=None, mistral_base_url=None, mistral_api_key=None,
-    mistral_semaphore=None,
+    mistral_semaphore=None, skip_camelot_urls=frozenset(),
 ):
     """Process a single file. Called by worker processes.
 
@@ -568,8 +589,10 @@ def _process_single_file(
         cache: DisclosureFileCache instance
         step_dir: Step directory path
         manual_override_urls: Set of file_urls with a manual column_mapping
-            override (from extract_disclosures_canonicalize); these skip the
-            camelot canonicalization fallback in _extract_pdf
+            override (from extract_disclosures_canonicalize); these bypass
+            select_pdf_table and use _extract_pdf
+        skip_camelot_urls: Subset of the overrides with skip_camelot_fallback;
+            _extract_pdf does not try the camelot_stream fallback for them
         skip_mistral_urls: Set of file_urls with skip_mistral: true in their
             manual override; these go straight to the pdfplumber/camelot path
         mistral_enabled: Whether MISTRAL_API_KEY was set at process() startup
@@ -591,6 +614,7 @@ def _process_single_file(
         pdf_extractor = "pdfplumber"
         merge_stats = {}
         pdf_table_selection = None
+        pdf_camelot_attempted = False
         if file_type == "xlsx":
             sheet_name, rows, _, has_multiple = _extract_xlsx(file_bytes)
         elif file_type == "xls":
@@ -636,11 +660,13 @@ def _process_single_file(
                         })
             if pdf_extractor is None:
                 if file_url in manual_override_urls:
-                    # Manual overrides were calibrated against today's extractor
-                    # output; they bypass structure-based selection entirely.
-                    sheet_name, rows, _, has_multiple, merge_stats, pdf_extractor, _ = _extract_pdf(
-                        file_bytes, skip_canonicalization_check=True
+                    # Manual overrides were calibrated against the pre-selection
+                    # extractor output; they bypass structure-based selection.
+                    sheet_name, rows, _, has_multiple, merge_stats, pdf_extractor, camelot_info = _extract_pdf(
+                        file_bytes, skip_canonicalization_check=file_url in skip_camelot_urls
                     )
+                    if camelot_info is not None:
+                        pdf_camelot_attempted = True
                 else:
                     exclude = set()
                     if file_url in skip_mistral_urls or mistral_enabled:
@@ -664,6 +690,8 @@ def _process_single_file(
             }
             if pdf_table_selection is not None:
                 result_record["pdf_table_selection"] = pdf_table_selection
+            if pdf_camelot_attempted:
+                result_record["pdf_camelot_attempted"] = True
             if has_multiple:
                 result_record["pdf_multiple_tables"] = True
         else:
@@ -718,6 +746,7 @@ def process(input_data, step_dir, writer, verbose=False, workers=8, mistral_work
     # Initialize cache
     cache = DisclosureFileCache(Path(step_dir).parent / "verify_disclosure_files" / "cache")
     manual_override_urls = _load_manual_override_urls(step_dir)
+    skip_camelot_urls = _load_skip_camelot_urls(step_dir)
     skip_mistral_urls = _load_skip_mistral_urls(step_dir)
 
     mistral_mode = resolve_mistral_mode(os.environ, allow_paid_ocr)
@@ -766,7 +795,7 @@ def process(input_data, step_dir, writer, verbose=False, workers=8, mistral_work
             executor.submit(
                 _process_single_file, item, cache, step_dir, manual_override_urls,
                 skip_mistral_urls, mistral_enabled, ocr_cache_dir, mistral_base_url,
-                mistral_api_key, mistral_semaphore,
+                mistral_api_key, mistral_semaphore, skip_camelot_urls,
             )
             for item in items_to_process
         ]

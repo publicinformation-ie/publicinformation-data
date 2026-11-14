@@ -105,3 +105,38 @@ def test_empty_pdf_rows_pass_through_without_error(tmp_path):
     assert "table_structure" not in out[0]
     assert "table_structure_unreliable" not in out[0]
     assert errs == []
+
+
+def _run_with_overrides(tmp_path, records, override_urls):
+    canon = tmp_path / "extract_disclosures_canonicalize"
+    canon.mkdir(exist_ok=True)
+    (canon / "column_mappings.json").write_text(json.dumps(
+        {u: {"source_method": "manual", "overridden": True, "column_mapping": {}} for u in override_urls}
+    ))
+    step_dir = tmp_path / "assess_table_structure"
+    step_dir.mkdir(exist_ok=True)
+    writer = IncrementalWriter(step_dir / "output.json", STEP_NAME, key_field="file_url", force=True)
+    process({"results": records}, writer, step_dir=step_dir)
+    writer.finalize()
+    out = json.loads((step_dir / "output.json").read_text())["results"]
+    errs_path = step_dir / "errors.json"
+    return out, (json.loads(errs_path.read_text()) if errs_path.exists() else [])
+
+
+def test_override_pdf_failing_score_keeps_rows_and_logs_no_error(tmp_path):
+    out, errs = _run_with_overrides(tmp_path, [_rec("ov", "pdf", BAD_ROWS)], {"ov"})
+    rec = out[0]
+    assert rec["rows"] == BAD_ROWS
+    assert "table_structure_unreliable" not in rec
+    assert rec["table_structure"]["override_exempt"] is True
+    assert errs == []
+
+
+def test_non_override_failing_pdf_still_emptied_when_overrides_exist(tmp_path):
+    out, errs = _run_with_overrides(
+        tmp_path, [_rec("ov", "pdf", BAD_ROWS), _rec("other", "pdf", BAD_ROWS)], {"ov"}
+    )
+    by_url = {r["file_url"]: r for r in out}
+    assert by_url["ov"]["rows"] == BAD_ROWS
+    assert by_url["other"]["rows"] == [] and by_url["other"]["table_structure_unreliable"] is True
+    assert [e["context"]["file_url"] for e in errs] == ["other"]
