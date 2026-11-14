@@ -12,7 +12,9 @@ import sys
 import tempfile
 import threading
 import time
+from collections.abc import Mapping
 from pathlib import Path
+from typing import Literal
 
 from lib.cli_utils import add_common_args, filter_by_public_body
 from lib.file_utils import append_error, read_json, write_json, write_status, IncrementalWriter
@@ -406,23 +408,32 @@ def _extract_with_camelot_stream(file_bytes: bytes) -> list[list] | None:
             pass
 
 
-def _load_manual_override_urls(step_dir: Path) -> set[str]:
-    """Return the set of file_urls whose manual column_mapping override in
-    the sibling extract_disclosures_canonicalize step's column_mappings.json
-    opts into skip_camelot_fallback.
-
-    Most manual overrides rely on camelot's extraction (their column_mapping
-    was calibrated against camelot's row structure) and must keep using it.
-    Only files that explicitly set skip_camelot_fallback: true — because
-    their camelot output is worse than pdfplumber's, or because they need
-    _merge_page_splits()'s page-break header stripping, which camelot never
-    runs — should skip the camelot fallback.
-    """
+def _load_column_mappings(step_dir: Path) -> dict:
     mappings_path = Path(step_dir).parent / "extract_disclosures_canonicalize" / "column_mappings.json"
     if not mappings_path.exists():
-        return set()
-    mappings = json.loads(mappings_path.read_text())
-    return {url for url, entry in mappings.items() if entry.get("skip_camelot_fallback")}
+        return {}
+    return json.loads(mappings_path.read_text())
+
+
+def _load_manual_override_urls(step_dir: Path) -> set[str]:
+    """Return every file_url with an entry in the sibling
+    extract_disclosures_canonicalize step's column_mappings.json.
+
+    Each manual override's position-based column_mapping was calibrated
+    against the pre-selection extractor output, so these files bypass
+    select_pdf_table and use _extract_pdf (pdfplumber, with the
+    n_mapped < 2 camelot_stream fallback unless the entry also sets
+    skip_camelot_fallback; see _load_skip_camelot_urls).
+    """
+    return set(_load_column_mappings(step_dir))
+
+
+def _load_skip_camelot_urls(step_dir: Path) -> set[str]:
+    """Return the file_urls whose override entry sets skip_camelot_fallback:
+    true — their camelot output is worse than pdfplumber's, or they need
+    _merge_page_splits()'s page-break header stripping. These never take the
+    camelot_stream fallback in _extract_pdf."""
+    return {url for url, e in _load_column_mappings(step_dir).items() if e.get("skip_camelot_fallback")}
 
 
 def _load_skip_mistral_urls(step_dir: Path) -> set[str]:
@@ -449,10 +460,12 @@ def _extract_pdf(file_bytes, table_settings=None, skip_canonicalization_check=Fa
     pdf_extractor is "pdfplumber" or "camelot_stream".
     camelot_info is None when no fallback was attempted; otherwise a dict with
     pdfplumber_n_mapped, camelot_n_mapped, and used keys.
+    This is the manual-override path only: files with a manual column_mapping
+    override are extracted here exactly as before structure-based selection;
+    everything else goes through select_pdf_table.
     When skip_canonicalization_check is True, the pdfplumber result is
-    returned immediately (no camelot fallback) once a table was found, even
-    if it scores low on automatic header canonicalization — used for files
-    with a manual column_mapping override that doesn't need canonicalization.
+    returned immediately (no n_mapped < 2 camelot fallback) once a table was
+    found; used for overrides that set skip_camelot_fallback.
     """
     import pdfplumber
     pages_rows = []
@@ -497,11 +510,77 @@ def _extract_pdf(file_bytes, table_settings=None, skip_canonicalization_check=Fa
     return sheet_name, rows, [], total_tables > 1, merge_stats, "pdfplumber", None
 
 
+CANDIDATE_ORDER: tuple[str, ...] = (
+    "pdfplumber", "camelot_lattice", "pymupdf", "mistral_cache", "camelot_stream",
+)
+_INCUMBENT = "pdfplumber"
+
+
+def select_pdf_table(
+    file_bytes: bytes, *, file_url: str, ocr_cache_dir: Path,
+    exclude: frozenset[str] = frozenset(),
+):
+    """Choose the PDF extractor whose table has the best measured structure.
+
+    pdfplumber (the incumbent) runs first; if its table passes the structure
+    thresholds nothing else runs. Otherwise every other non-excluded candidate
+    runs (one that raises is recorded and skipped) and the best passing one
+    wins (ties: _score_rows, then CANDIDATE_ORDER). If none pass, the
+    highest-composite candidate is returned unchanged. Raises
+    ValueError("no tables found") when no candidate produced a table.
+
+    Returns (Candidate, report) where report is
+    {"chosen", "kept_incumbent", "scores": {name: score dict | {"error"} | None}}.
+    """
+    from dataclasses import asdict
+    from lib.table_structure import passes, score_table
+    from steps.transform_disclosure_files import candidates
+
+    scores: dict = {}
+    results: list = []  # (order, candidate, score)
+
+    def run(name):
+        try:
+            cand = candidates.extract_candidate(
+                name, file_bytes, file_url=file_url, ocr_cache_dir=ocr_cache_dir
+            )
+        except Exception as e:
+            scores[name] = {"error": str(e)}
+            return
+        if cand is None:
+            scores[name] = None
+            return
+        sc = score_table(cand.rows)
+        scores[name] = asdict(sc)
+        results.append((CANDIDATE_ORDER.index(name), cand, sc))
+
+    def report(cand):
+        return {"chosen": cand.name, "kept_incumbent": cand.name == _INCUMBENT, "scores": scores}
+
+    run(_INCUMBENT)
+    if results and passes(results[0][2]):
+        return results[0][1], report(results[0][1])
+
+    for name in CANDIDATE_ORDER:
+        if name != _INCUMBENT and name not in exclude:
+            run(name)
+    if not results:
+        raise ValueError("no tables found")
+
+    def key(item):
+        order, cand, sc = item
+        return (sc.composite, _score_rows(cand.rows), -order)
+
+    passing = [r for r in results if passes(r[2])]
+    best = max(passing or results, key=key)
+    return best[1], report(best[1])
+
+
 def _process_single_file(
     item, cache, step_dir, manual_override_urls=frozenset(),
     skip_mistral_urls=frozenset(), mistral_enabled=False,
     ocr_cache_dir=None, mistral_base_url=None, mistral_api_key=None,
-    mistral_semaphore=None,
+    mistral_semaphore=None, skip_camelot_urls=frozenset(),
 ):
     """Process a single file. Called by worker processes.
 
@@ -510,8 +589,10 @@ def _process_single_file(
         cache: DisclosureFileCache instance
         step_dir: Step directory path
         manual_override_urls: Set of file_urls with a manual column_mapping
-            override (from extract_disclosures_canonicalize); these skip the
-            camelot canonicalization fallback in _extract_pdf
+            override (from extract_disclosures_canonicalize); these bypass
+            select_pdf_table and use _extract_pdf
+        skip_camelot_urls: Subset of the overrides with skip_camelot_fallback;
+            _extract_pdf does not try the camelot_stream fallback for them
         skip_mistral_urls: Set of file_urls with skip_mistral: true in their
             manual override; these go straight to the pdfplumber/camelot path
         mistral_enabled: Whether MISTRAL_API_KEY was set at process() startup
@@ -532,7 +613,8 @@ def _process_single_file(
 
         pdf_extractor = "pdfplumber"
         merge_stats = {}
-        camelot_info = None
+        pdf_table_selection = None
+        pdf_camelot_attempted = False
         if file_type == "xlsx":
             sheet_name, rows, _, has_multiple = _extract_xlsx(file_bytes)
         elif file_type == "xls":
@@ -577,9 +659,26 @@ def _process_single_file(
                             "context": {"file_url": file_url},
                         })
             if pdf_extractor is None:
-                sheet_name, rows, _, has_multiple, merge_stats, pdf_extractor, camelot_info = _extract_pdf(
-                    file_bytes, skip_canonicalization_check=file_url in manual_override_urls
-                )
+                if file_url in manual_override_urls:
+                    # Manual overrides were calibrated against the pre-selection
+                    # extractor output; they bypass structure-based selection.
+                    sheet_name, rows, _, has_multiple, merge_stats, pdf_extractor, camelot_info = _extract_pdf(
+                        file_bytes, skip_canonicalization_check=file_url in skip_camelot_urls
+                    )
+                    if camelot_info is not None:
+                        pdf_camelot_attempted = True
+                else:
+                    exclude = set()
+                    if file_url in skip_mistral_urls or mistral_enabled:
+                        # In live mode the pre-emptive call above already tried Mistral.
+                        exclude.add("mistral_cache")
+                    chosen, pdf_table_selection = select_pdf_table(
+                        file_bytes, file_url=file_url,
+                        ocr_cache_dir=Path(ocr_cache_dir) if ocr_cache_dir else Path(step_dir) / "ocr_cache",
+                        exclude=frozenset(exclude),
+                    )
+                    sheet_name, rows, has_multiple = chosen.sheet_name, chosen.rows, chosen.has_multiple
+                    merge_stats, pdf_extractor = chosen.merge_stats, chosen.name
 
         if file_type == "pdf":
             result_record = {
@@ -589,7 +688,9 @@ def _process_single_file(
                 "pdf_merge_stats": merge_stats,
                 "pdf_extractor": pdf_extractor,
             }
-            if camelot_info is not None:
+            if pdf_table_selection is not None:
+                result_record["pdf_table_selection"] = pdf_table_selection
+            if pdf_camelot_attempted:
                 result_record["pdf_camelot_attempted"] = True
             if has_multiple:
                 result_record["pdf_multiple_tables"] = True
@@ -617,7 +718,56 @@ def _process_single_file(
         return [], True  # marked processed — parse errors are permanent failures
 
 
-def process(input_data, step_dir, writer, verbose=False, workers=8, mistral_workers=2):
+MistralMode = Literal["cache_only", "live"]
+
+
+class MistralConfigError(RuntimeError):
+    """--allow-paid-ocr was given but Mistral configuration is incomplete."""
+
+
+def resolve_mistral_mode(env: Mapping[str, str], allow_paid_ocr: bool) -> MistralMode:
+    """cache_only unless allow_paid_ocr; live needs both env vars, else fail loud."""
+    if not allow_paid_ocr:
+        return "cache_only"
+    missing = [v for v in ("MISTRAL_API_KEY", "MISTRAL_OCR_PDF_BASE_URL") if not env.get(v)]
+    if missing:
+        raise MistralConfigError(
+            f"--allow-paid-ocr requires {' and '.join(missing)} to be set"
+        )
+    return "live"
+
+
+_SINGLE_THREAD_ENV = ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS",
+                      "VECLIB_MAXIMUM_THREADS", "NUMEXPR_NUM_THREADS")
+
+
+def _init_worker_process():
+    """Keep each worker process to one core: native libraries (BLAS, OpenCV via
+    camelot) otherwise start their own thread pools and oversubscribe the CPU."""
+    for var in _SINGLE_THREAD_ENV:
+        os.environ[var] = "1"
+    try:
+        import cv2
+        cv2.setNumThreads(1)
+    except ImportError:
+        pass
+
+
+def _make_executor(workers, processes):
+    """Threads by default; processes when asked. pdfplumber/pdfminer and the
+    structure scorer are pure Python and hold the GIL, so threads use about one
+    core; processes scale with --processes."""
+    if processes:
+        for var in _SINGLE_THREAD_ENV:
+            os.environ.setdefault(var, "1")
+        return concurrent.futures.ProcessPoolExecutor(
+            max_workers=processes, initializer=_init_worker_process,
+        )
+    return concurrent.futures.ThreadPoolExecutor(max_workers=workers)
+
+
+def process(input_data, step_dir, writer, verbose=False, workers=8, mistral_workers=2,
+            allow_paid_ocr=False, processes=0):
     errors_path = Path(step_dir) / "errors.json"
     if not errors_path.exists():
         write_json(errors_path, [])
@@ -625,18 +775,17 @@ def process(input_data, step_dir, writer, verbose=False, workers=8, mistral_work
     # Initialize cache
     cache = DisclosureFileCache(Path(step_dir).parent / "verify_disclosure_files" / "cache")
     manual_override_urls = _load_manual_override_urls(step_dir)
+    skip_camelot_urls = _load_skip_camelot_urls(step_dir)
     skip_mistral_urls = _load_skip_mistral_urls(step_dir)
 
-    mistral_api_key = os.environ.get("MISTRAL_API_KEY")
-    mistral_base_url = os.environ.get("MISTRAL_OCR_PDF_BASE_URL")
-    mistral_enabled = bool(mistral_api_key and mistral_base_url)
-    if not mistral_enabled:
-        missing = []
-        if not mistral_api_key:
-            missing.append("MISTRAL_API_KEY")
-        if not mistral_base_url:
-            missing.append("MISTRAL_OCR_PDF_BASE_URL")
-        print(f"{' and '.join(missing)} not set — all PDFs will use pdfplumber/camelot")
+    mistral_mode = resolve_mistral_mode(os.environ, allow_paid_ocr)
+    if processes and mistral_mode == "live":
+        # The Mistral semaphore is a threading.Semaphore: it cannot bound calls
+        # across processes, so paid OCR stays on the threaded path.
+        raise ValueError("--processes cannot be combined with --allow-paid-ocr")
+    mistral_enabled = mistral_mode == "live"
+    mistral_api_key = os.environ.get("MISTRAL_API_KEY") if mistral_enabled else None
+    mistral_base_url = os.environ.get("MISTRAL_OCR_PDF_BASE_URL") if mistral_enabled else None
     ocr_cache_dir = Path(step_dir) / "ocr_cache"
     mistral_semaphore = threading.Semaphore(mistral_workers) if mistral_enabled else None
 
@@ -667,19 +816,16 @@ def process(input_data, step_dir, writer, verbose=False, workers=8, mistral_work
     if not items_to_process:
         return
 
-    # Process in parallel using ThreadPoolExecutor
-    # Note: We use threads instead of processes because:
-    # 1. pdfplumber releases the GIL during CPU-intensive parsing
-    # 2. File I/O also releases the GIL
-    # 3. Threads can share the cache and step_dir objects without pickling
-    # This gives us effective parallelism while avoiding pickling issues
-    with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
+    # Threads by default; --processes N for CPU-bound (cached) runs. Worker
+    # side effects are cross-process safe: the download cache uses flock and
+    # append_error locks errors.json across processes.
+    with _make_executor(workers, processes) as executor:
         # Submit all tasks and collect futures to preserve order
         futures = [
             executor.submit(
                 _process_single_file, item, cache, step_dir, manual_override_urls,
                 skip_mistral_urls, mistral_enabled, ocr_cache_dir, mistral_base_url,
-                mistral_api_key, mistral_semaphore,
+                mistral_api_key, mistral_semaphore, skip_camelot_urls,
             )
             for item in items_to_process
         ]
@@ -710,10 +856,21 @@ def main():
         help="Number of parallel workers for file processing (default: 8)",
     )
     parser.add_argument(
+        "--allow-paid-ocr",
+        action="store_true",
+        help="Allow paid live Mistral OCR API calls (default: off, no Mistral calls are made)",
+    )
+    parser.add_argument(
         "--mistral-workers",
         type=int,
         default=2,
         help="Number of concurrent Mistral OCR API calls, independent of --workers (default: 2)",
+    )
+    parser.add_argument(
+        "--processes",
+        type=int,
+        default=0,
+        help="Use N worker processes instead of threads (CPU-bound runs; not with --allow-paid-ocr)",
     )
     args = parser.parse_args()
 
@@ -744,7 +901,8 @@ def main():
     if writer.processed_keys:
         print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")
 
-    process(input_data, step_dir, writer, verbose=args.verbose, workers=args.workers, mistral_workers=args.mistral_workers)
+    process(input_data, step_dir, writer, verbose=args.verbose, workers=args.workers, mistral_workers=args.mistral_workers,
+            allow_paid_ocr=args.allow_paid_ocr, processes=args.processes)
     count = writer.finalize()
     write_status(step_dir, count)
     if args.verbose:

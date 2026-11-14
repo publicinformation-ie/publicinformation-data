@@ -8,6 +8,7 @@ Experiments live in dated subdirectories (`YYYY-MM-DD-<slug>/`). Each has its ow
 |------|-----------|---------|
 | 2025-01-03 | [mistral-ocr-comparison](2025-01-03-mistral-ocr-comparison/) | TBD |
 | 2026-06-04 | [pdfplumber-param-sweep](2026-06-04-pdfplumber-param-sweep/) | `snap_tolerance=6` adds +6.7pp clean rate; adopted as config 4 |
+| 2026-11-14 | [pdf-extractor-bakeoff](2026-11-14-pdf-extractor-bakeoff/) | Cached Mistral replay: 74 clean vs 78 current of 208 cached error PDFs; no gain |
 
 ## Before running an experiment
 
@@ -50,7 +51,7 @@ A PDF can trigger multiple flags. In production (post config-4 adoption), the fl
 - `snap_tolerance` is the dominant lever for column detection quality. The default (3) is too conservative; 6 is better.
 - `edge_min_length=20` is dangerous — it prunes real table edges and causes consistent regressions. Stay at 10 or below.
 - `snap_y_tolerance` has diminishing returns above 6, and ≥10 can merge document title rows into tables (see the 2016 gov.ie disclosure log regression).
-- The `newline_split_row` flag barely responds to extraction parameter tuning — it is a structural PDF rendering issue (text reflow), not an edge detection issue. Address it downstream.
+- The `newline_split_row` flag barely responds to extraction parameter tuning — it is a structural PDF rendering issue (text reflow), not an edge detection issue. Tuning does not fix it, and a different extractor can: in the 2026-11 bake-off ([results](2026-11-14-pdf-extractor-bakeoff/results/bakeoff.md)) docling (mean gold accuracy 0.91) and camelot lattice (0.76) beat pdfplumber (0.71) on the width-shift and fragment strata, where pdfplumber scores width uniformity 0.08-0.36. Measure with the label-free structure scorer (Spearman 0.74 against hand gold, small N) rather than assuming a downstream fix.
 
 ### Downstream fixes are often better than extraction tuning
 

@@ -268,3 +268,34 @@ def test_call_mistral_ocr_semaphore_bounds_concurrent_calls(tmp_path, monkeypatc
         for t in threads:
             t.join()
     assert concurrent_count["max"] == 1
+
+
+# ── read_cached_ocr ───────────────────────────────────────────────────────────
+
+import hashlib
+import json
+
+import pytest
+
+from steps.transform_disclosure_files import mistral_ocr
+from steps.transform_disclosure_files.mistral_ocr import read_cached_ocr
+
+
+def test_read_cached_ocr_hit_and_miss(tmp_path):
+    url = "https://example.com/a.pdf"
+    key = hashlib.sha256(url.encode("utf-8")).hexdigest()
+    (tmp_path / f"{key}.json").write_text(json.dumps({"file_url": url, "markdown": "| A |"}))
+    assert read_cached_ocr(url, tmp_path) == "| A |"
+    assert read_cached_ocr("https://example.com/other.pdf", tmp_path) is None
+
+
+def test_read_cached_ocr_never_constructs_client(tmp_path, monkeypatch):
+    def boom(*a, **k):
+        raise AssertionError("Mistral client constructed")
+
+    monkeypatch.setattr(mistral_ocr, "Mistral", boom)
+    assert read_cached_ocr("https://example.com/miss.pdf", tmp_path) is None
+    url = "https://example.com/hit.pdf"
+    key = hashlib.sha256(url.encode("utf-8")).hexdigest()
+    (tmp_path / f"{key}.json").write_text(json.dumps({"markdown": ""}))
+    assert read_cached_ocr(url, tmp_path) == ""

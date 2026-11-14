@@ -154,5 +154,16 @@
       "4": "decision_date",
       "5": "decision_status"
     }
+  },
+  "https://ncca.ie/media/4qffya5u/ncca-disclosure-log-2024.pdf": {
+    "source_method": "manual",
+    "overridden": true,
+    "column_mapping": {
+      "0": "foi_reference_id",
+      "1": "requester_type",
+      "2": "decision_date",
+      "3": "decision_status",
+      "4": "request_description"
+    }
   }
 }

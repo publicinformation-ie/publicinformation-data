@@ -1,0 +1,214 @@
+{
+ "columns": [
+  "Dáta an Iarratais/Date of Request",
+  "Uimhir Thagartha/Reference Number",
+  "Catagóir Iarrthóra/Requestor Category",
+  "Title (summary description)",
+  "Cineál Cinneadh/Decision Type",
+  "Decision/Response Sent",
+  "Breith ar Athbhreithniú Inmheánach/IR Decision",
+  "Appeal Decision"
+ ],
+ "rows": [
+  [
+   "04/01/2024",
+   "FOI/2024/002",
+   "Other",
+   "Request information in relation to parking fines",
+   "Full Grant",
+   "30/01/2024",
+   "04/01/2024",
+   ""
+  ],
+  [
+   "05/01/2024",
+   "FOI/2024/003",
+   "Business",
+   "Request information in relation to public buildings",
+   "Full Grant",
+   "02/02/2024",
+   "",
+   ""
+  ],
+  [
+   "09/01/2024",
+   "FOI/2024/004",
+   "Journalist",
+   "Request information in relation to refugees accommodation",
+   "Part Grant",
+   "07/02/2024",
+   "",
+   ""
+  ],
+  [
+   "10/01/2024",
+   "FOI/2024/005",
+   "Other",
+   "Request information in relation to scrapping business ongoing",
+   "Full Grant",
+   "08/02/2024",
+   "",
+   ""
+  ],
+  [
+   "11/01/2024",
+   "FOI/2024/006",
+   "Business",
+   "Request information in relation to Data Breach",
+   "Full Grant",
+   "09/02/2024",
+   "",
+   ""
+  ],
+  [
+   "18/01/2024",
+   "FOI/2024/009",
+   "Business",
+   "Request information in relation to Dunsink LAP",
+   "Part Grant",
+   "15/02/2024",
+   "",
+   ""
+  ],
+  [
+   "22/01/2024",
+   "FOI/2024/010",
+   "Journalist",
+   "Request information in relation to Defective Concrete Blocks grant scheme",
+   "Part Grant",
+   "15/02/2024",
+   "",
+   ""
+  ],
+  [
+   "23/01/2024",
+   "FOI/2024/011",
+   "Other",
+   "Request information in relation to Retention Planning Applications",
+   "Refuse",
+   "23/02/2024",
+   "",
+   ""
+  ],
+  [
+   "23/01/2024",
+   "FOI/2024/013",
+   "Business",
+   "Request information in relation to Section 5 referrals",
+   "Refuse",
+   "22/09/2024",
+   "",
+   ""
+  ],
+  [
+   "29/01/2024",
+   "FOI/2024/015",
+   "Other",
+   "Request information in relation to park between Clifflands & St. Catherines N.S.",
+   "Part Grant",
+   "06/03/2024",
+   "",
+   ""
+  ],
+  [
+   "31/01/2024",
+   "FOI/2024/017",
+   "Other",
+   "Request planning enforcement file",
+   "Refuse",
+   "05/03/2024",
+   "",
+   ""
+  ],
+  [
+   "06/02/2024",
+   "FOI/2024/018",
+   "Other",
+   "Request information in relation to Beverton estate",
+   "Full Grant",
+   "12/03/2024",
+   "",
+   ""
+  ],
+  [
+   "06/02/2024",
+   "FOI/2024/019",
+   "Journalist",
+   "Request information in relation to Quarry sites",
+   "Refuse",
+   "01/03/2024",
+   "",
+   ""
+  ],
+  [
+   "09/02/2024",
+   "FOI/2024/020",
+   "Journalist",
+   "Request information in relation to enforcement notices on inspection of rental properties",
+   "Refuse",
+   "08/03/2024",
+   "",
+   ""
+  ],
+  [
+   "12/02/2024",
+   "FOI/2024/021",
+   "Other",
+   "Request information in relation to Enforcement notice",
+   "Refuse",
+   "11/03/2024",
+   "",
+   ""
+  ],
+  [
+   "03/12/2024",
+   "FOI/2024/184",
+   "Other",
+   "Request information in relation to Works on cliff path howth",
+   "Part Grant",
+   "06/01/2025",
+   "",
+   ""
+  ],
+  [
+   "04/12/2024",
+   "FOI/2024/185",
+   "Other",
+   "Request information in relation to dog breeds",
+   "Part Grant",
+   "03/01/2025",
+   "",
+   ""
+  ],
+  [
+   "12/12/2024",
+   "FOI/2024/187",
+   "Journalist",
+   "Request information in relation to public liability claims",
+   "Withdrawn",
+   "08/01/2025",
+   "",
+   ""
+  ],
+  [
+   "17/12/2024",
+   "FOI/2024/189",
+   "Other",
+   "Request information in relation to housing statistics",
+   "Part Grant",
+   "16/01/2025",
+   "Affirm",
+   ""
+  ],
+  [
+   "23/12/2024",
+   "FOI/2025/005",
+   "Other",
+   "Request information in relation to Lanesborough Park",
+   "Part Grant",
+   "27/01/2025",
+   "",
+   ""
+  ]
+ ]
+}

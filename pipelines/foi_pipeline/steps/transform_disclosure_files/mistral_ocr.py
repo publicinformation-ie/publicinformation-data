@@ -117,6 +117,19 @@ def markdown_to_pages(markdown):
     return pages
 
 
+def read_cached_ocr(file_url, cache_dir):
+    """Return cached Mistral markdown for file_url, or None on a cache miss.
+
+    Never touches the network and never constructs a Mistral client, so it is
+    safe to call without an API key.
+    """
+    sha256 = hashlib.sha256(file_url.encode("utf-8")).hexdigest()
+    cache_path = Path(cache_dir) / f"{sha256}.json"
+    if not cache_path.exists():
+        return None
+    return json.loads(cache_path.read_text())["markdown"]
+
+
 def call_mistral_ocr(file_url, cache_dir, base_url, api_key, semaphore=None, max_retries=3):
     """Return raw Mistral OCR markdown for file_url, checking ocr_cache/ first.
 
@@ -132,9 +145,9 @@ def call_mistral_ocr(file_url, cache_dir, base_url, api_key, semaphore=None, max
     sha256 = hashlib.sha256(file_url.encode("utf-8")).hexdigest()
     cache_path = cache_dir / f"{sha256}.json"
 
-    if cache_path.exists():
-        cached = json.loads(cache_path.read_text())
-        return cached["markdown"]
+    cached = read_cached_ocr(file_url, cache_dir)
+    if cached is not None:
+        return cached
 
     document_url = f"{base_url.rstrip('/')}/{sha256}.bytes"
 

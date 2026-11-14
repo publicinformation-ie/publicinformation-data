@@ -1,0 +1,172 @@
+{
+ "columns": [
+  "FOI Reference Number",
+  "FOI Request Date Received",
+  "Request Description",
+  "Requester Category",
+  "Decision",
+  "Decision Date"
+ ],
+ "rows": [
+  [
+   "FOI-0242-2022",
+   "28/05/2022",
+   "Zoo reports, including census records and escape reports in the period 01/01/2021 to 27/05/2022.",
+   "Client",
+   "Part-Granted",
+   "29/07/2022"
+  ],
+  [
+   "FOI-0246-2022",
+   "16/06/2022",
+   "Records regarding the Croí Cónaithe scheme, including consultations with other Departments/public bodies, research, Housing Agency analysis and assessment modeling and EU State Aid submissions, in the period 01/06/2021 to 01/06/2022.",
+   "Journalist",
+   "Refused",
+   "02/08/2022"
+  ],
+  [
+   "FOI-0257-2022",
+   "07/06/2022",
+   "Documentation in relation to breaches of the Section 34 licence to capture live hares by the Loughrea coursing club during the 2021/2022 coursing season.",
+   "Business/Interest Group",
+   "Part-Granted",
+   "01/07/2022"
+  ],
+  [
+   "FOI-0258-2022",
+   "07/06/2022",
+   "Spending incurred by the Department on the Custom House Visitor Centre.",
+   "Journalist",
+   "Granted",
+   "01/07/2022"
+  ],
+  [
+   "FOI-0260-2022",
+   "16/06/2022",
+   "Correspondence from the CEO of Dublin City Council to the Department's Secretary General, Mr Graham Doyle, in the period 01/01/2022 to 06/06/2022.",
+   "Client",
+   "Granted",
+   "11/07/2022"
+  ],
+  [
+   "FOI-0261-2022",
+   "22/06/2022",
+   "All correspondence between the Department and Department of Public Expenditure and Reform in relation to Croí Cónaithe Cities. All correspondence between the Department and the Revenue Commissioners in relation to Croí Cónaithe Cities",
+   "Journalist",
+   "Refused",
+   "03/08/2022"
+  ],
+  [
+   "FOI-0263-2022",
+   "11/06/2022",
+   "Correspondence between Minister of State Malcolm Noonan and Irish Water in relation to a waste water treatment plant in An Cheathrú Rua, County Galwayin the period 05/04/2022 to 05/05/2022. Correspondence between the Department and Irish Water, in relation to a waste water treatment plant in An Cheathrú Rua, County Galway in the period 05/04/2022 to 05/05/2022.",
+   "Business/Interest Group",
+   "Part-Granted",
+   "05/07/2022"
+  ],
+  [
+   "FOI-0264-2022",
+   "13/06/2022",
+   "Correspondence between the Department's Housing For All Project Management Office and other Departments/State Agencies, in the period 02/09/2021 to 13/06/2022, in relation to action 19/9 of Housing for All: \"All Government Departments will examine their existing portfolio of properties and subject to any obligations under the PSC, the LDA Act 2021 or the State Property Act 1954, will place them on the market if they are not required and may be suitable for conversion to residential accommodation\"",
+   "Journalist",
+   "Part-Granted",
+   "20/07/2022"
+  ],
+  [
+   "FOI-0265-2022",
+   "13/06/2022",
+   "Copies of the results arising from the audit of Donegal Quarries ordered by the Minister in October 2021.",
+   "Client",
+   "Refused",
+   "08/07/2022"
+  ],
+  [
+   "FOI-0267-2022",
+   "13/06/2022",
+   "The protocol agreement referred to by the Minister as between the Department and the lead authority for the Mid- West region.The annual expenditure programme(s) submitted by the Mid-West region in relation to homeless services to the Department. Records disclosing the approved funding allocations by the Department to the Mid-West region and/or Clare County Council in the period 01/01/2017 to 13/06/2022.",
+   "Client",
+   "Part-Granted",
+   "06/07/2022"
+  ],
+  [
+   "FOI-0272-2022",
+   "15/06/2022",
+   "All correspondence between Glenveagh Properties Plc and the following people at the Department; the Minister, Kevin Dillon and Maria Graham connected to the following entry on the Lobbying Register about \"Section 28 Guidelines for Planning Authorities on Sustainable and Compact Settlement Guidance in the Housing for All Plan\". (https://www.lobbying.ie/return/83987/glenveagh-properties-plc) Minutes connected to the two meetings between Dept. of Housing, Local Government & Heritage staff",
+   "Journalist",
+   "Granted",
+   "25/07/2022"
+  ],
+  [
+   "FOI-0273-2022",
+   "22/06/2022",
+   "Records from the Regulation Office to Paul Lemass, Assistant Secretary, that contain the following search term: \"Engagement with the Regulation Office between 01/01/2016-31/12/2020. Correspondence between the Regulation Office and the Minister/Department relating to specific items in the minutes of a meeting on 21/03/2018. Correspondence between the Regulation Office and the Minister/Department relating to specific items in the minutes of a meeting on 26/04/2018.",
+   "Journalist",
+   "Part-Granted",
+   "15/07/2022"
+  ],
+  [
+   "FOI-0274-2022",
+   "10/06/2022",
+   "A record of correspondence in relation to vacant housing units/voids located at St Colmcille Terrace, Granard, Co Longford with the below: Minister of State Paudie Coffey; Minister Coffey’s then-advisor Paul Fox; Aidan O’Reilly then- Department’s Housing Capital Investment Unit; and Ms Bairbre Nic Aogusa, then-Department Assistant Secretary.",
+   "Journalist",
+   "Granted",
+   "05/07/2022"
+  ],
+  [
+   "FOI-0277-2022",
+   "27/06/2022",
+   "The letter sent by the Minister to local authority Chief Executives and the Chairperson of An Bord Pleanala on February 17, 2022. Correspondence between the Department and Local Authorities about \"planning conditions to prohibit multiple sales of housing to a single purchaser, as per the Section 28 guidelines\" in the period 17/02/2022 to 23/06/2022.",
+   "Journalist",
+   "Granted",
+   "20/07/2022"
+  ],
+  [
+   "FOI-0287-2022",
+   "23/06/2022",
+   "All legal advice received by the LA Stock Improvement Programmes and Defective Concrete Blocks Grant Scheme Unit in relation to defective concrete products/blocks/mica in the period 01/01/2019-23/06/2022.",
+   "Client",
+   "Refused",
+   "18/07/2022"
+  ],
+  [
+   "FOI-0379-2022",
+   "07/09/2022",
+   "Records of the total number of Section 42 licence applications considered by the National Parks and Wildlife Service in 2019, 2020, 2021 and so far in 2022.",
+   "Journalist",
+   "Granted",
+   "20/09/2022"
+  ],
+  [
+   "FOI-0380-2022",
+   "01/09/2022",
+   "Correspondence between the Minister and Irish Catholic Bishops/Archbishop Eamon Martin, in the period 01/09/2021 to 01/09/2022.",
+   "Journalist",
+   "Granted",
+   "23/09/2022"
+  ],
+  [
+   "FOI-0382-2022",
+   "01/09/2022",
+   "Records of the Local Government Auditor for Galway City Council, in regard to correspondence received by the Internal Auditor of Galway City Council on 07/03/2022.",
+   "Client",
+   "Part-Granted",
+   "20/09/2022"
+  ],
+  [
+   "FOI-0383-2022",
+   "02/09/2022",
+   "Records of the application made by Mayo County Council to the Rural Water Programme 2019-2022 for a Community Water Connection in Kilbride/Carrowmore, Ballycastle.",
+   "Client",
+   "Granted",
+   "28/09/2022"
+  ],
+  [
+   "FOI-0384-2022",
+   "05/09/2022",
+   "A list of e-submissions sent to the Minister in the period 01/07/2022 to 02/09/2022",
+   "Journalist",
+   "Part-Granted",
+   "29/09/2022"
+  ]
+ ]
+}

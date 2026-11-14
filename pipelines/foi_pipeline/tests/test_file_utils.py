@@ -696,3 +696,29 @@ class TestDirtyStateLifecycle:
         o = capsys.readouterr().out
         assert "WARNING" in o and "my_step" in o and "[2, 3]" in o
         assert "--from my_step" in o
+
+
+_APPEND_WORKER = """
+import sys
+from lib.file_utils import append_error
+step_dir, worker, n = sys.argv[1], sys.argv[2], int(sys.argv[3])
+for i in range(n):
+    append_error(step_dir, {"step": "s", "timestamp": "t", "error_type": "W" + worker,
+                            "error_message": str(i), "context": {}})
+"""
+
+
+def test_append_error_is_safe_across_processes(tmp_path):
+    """Worker processes appending to one errors.json must not lose entries."""
+    import os
+    import subprocess
+    import sys
+
+    # Fresh interpreters with the parent's sys.path: independent of cwd and of
+    # how pytest names this module (spawn would re-import it by dotted name).
+    env = {**os.environ, "PYTHONPATH": os.pathsep.join(sys.path)}
+    procs = [subprocess.Popen([sys.executable, "-c", _APPEND_WORKER, str(tmp_path), str(w), "40"],
+                              env=env) for w in range(6)]
+    for p in procs:
+        assert p.wait(timeout=60) == 0
+    assert len(read_json(tmp_path / "errors.json")) == 6 * 40

@@ -17,6 +17,7 @@ docs/
 **/output.json
 !pipelines/foi_pipeline/steps/*/output.json
 pipelines/foi_pipeline/steps/extract_disclosures*/output.json
+pipelines/foi_pipeline/steps/assess_table_structure/output.json
 pipelines/foi_pipeline/steps/filter_phantom_rows/output.json
 pipelines/foi_pipeline/steps/normalize_disclosure_cells/output.json
 **/errors.json
@@ -72,3 +73,4 @@ pipelines/foi_pipeline/steps/verify_disclosure_files/cache/
 /public/latest/foi-disclosures/bodies/manifest.json
 # Climate Action Plan status annexes: downloaded cache, verified by sha256 in documents.yml
 /pipelines/document_pipeline/steps/fetch_status_annexes/annexes/
+errors.json.lock
