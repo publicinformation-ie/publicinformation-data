@@ -16,7 +16,6 @@ from pathlib import Path
 from steps.transform_disclosure_files.mistral_ocr import markdown_to_pages, read_cached_ocr
 from steps.transform_disclosure_files.process import (
     _DEFAULT_PDF_TABLE_SETTINGS,
-    _extract_with_camelot_stream,
     _merge_page_splits,
     serialise_cell,
 )
@@ -81,27 +80,34 @@ class _PyMuPDFImageBackend:
             doc[0].get_pixmap(dpi=resolution).save(png_path)
 
 
-def _camelot_lattice(file_bytes: bytes) -> Candidate | None:
+def _camelot(name: str, flavor: str, file_bytes: bytes) -> Candidate | None:
     import camelot  # type: ignore[import-untyped]
+    import pymupdf
 
+    with pymupdf.open(stream=file_bytes, filetype="pdf") as doc:
+        n_pages = doc.page_count
+    kwargs = {"backend": _PyMuPDFImageBackend()} if flavor == "lattice" else {}
     fd, path = tempfile.mkstemp(suffix=".pdf")
     try:
         with os.fdopen(fd, "wb") as f:
             f.write(file_bytes)
-        tables = camelot.read_pdf(path, flavor="lattice", pages="all", backend=_PyMuPDFImageBackend())
-        n_pages = max((int(t.page) for t in tables), default=0)
+        tables = camelot.read_pdf(path, flavor=flavor, pages="all", **kwargs)
         by_page: dict[int, list[list]] = {}
         for t in tables:
             rows = by_page.setdefault(int(t.page), [])
             for row in t.df.values.tolist():
-                rows.append([c if c != "" else None for c in row])
+                rows.append([serialise_cell(c if c != "" else None)[0] for c in row])
     finally:
         try:
             os.unlink(path)
         except OSError:
             pass
     pages_rows = [by_page.get(p, []) for p in range(1, n_pages + 1)]
-    return _finish("camelot_lattice", pages_rows, len(tables), n_pages)
+    return _finish(name, pages_rows, len(tables), n_pages)
+
+
+def _camelot_lattice(file_bytes: bytes) -> Candidate | None:
+    return _camelot("camelot_lattice", "lattice", file_bytes)
 
 
 def _pymupdf(file_bytes: bytes) -> Candidate | None:
@@ -122,12 +128,8 @@ def _pymupdf(file_bytes: bytes) -> Candidate | None:
 
 
 def _camelot_stream(file_bytes: bytes) -> Candidate | None:
-    rows = _extract_with_camelot_stream(file_bytes)
-    if not rows:
-        return None
-    # The existing helper returns rows flattened across pages, so merge as one page.
-    merged, stats = _merge_page_splits([rows])
-    return Candidate("camelot_stream", merged, "pages", stats, False)
+    """Per-page stream extraction (the production helper flattens pages and swallows errors)."""
+    return _camelot("camelot_stream", "stream", file_bytes)
 
 
 def _mistral_cache(file_bytes: bytes, file_url: str, ocr_cache_dir: Path) -> Candidate | None:

@@ -55,3 +55,31 @@ def test_candidate_names_constant():
     assert CANDIDATE_NAMES == (
         "pdfplumber", "pdfplumber_lines", "camelot_lattice", "pymupdf", "camelot_stream", "mistral_cache",
     )
+
+
+def test_extractor_failure_propagates(pdf_bytes, tmp_path, monkeypatch):
+    import camelot
+
+    def boom(*a, **k):
+        raise RuntimeError("camelot exploded")
+
+    monkeypatch.setattr(camelot, "read_pdf", boom)
+    for name in ("camelot_stream", "camelot_lattice"):
+        with pytest.raises(RuntimeError):
+            extract_candidate(name, pdf_bytes, file_url="u", ocr_cache_dir=tmp_path)
+
+
+def test_mistral_cache_candidate_returns_rows_from_populated_cache(pdf_bytes, tmp_path, monkeypatch):
+    import hashlib
+    import json
+
+    def boom(*a, **k):
+        raise AssertionError("Mistral client constructed")
+
+    monkeypatch.setattr(cand_mod, "Mistral", boom, raising=False)
+    url = "https://x/hit.pdf"
+    md = "| A | B |\n|---|---|\n| 1 | 2 |\n| 3 | 4 |\n"
+    (tmp_path / f"{hashlib.sha256(url.encode()).hexdigest()}.json").write_text(json.dumps({"markdown": md}))
+    cand = extract_candidate("mistral_cache", pdf_bytes, file_url=url, ocr_cache_dir=tmp_path)
+    assert cand is not None and cand.name == "mistral_cache"
+    assert [r for r in cand.rows if r[0] == "3"] == [["3", "4"]]
