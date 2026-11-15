@@ -115,3 +115,16 @@ def test_merge_replacing_body_empty_existing():
 def test_merge_replacing_body_empty_new_removes_target():
     existing = [{"public_body_id": 1001}, {"public_body_id": 1002}]
     assert merge_replacing_body(existing, [], 1001) == [{"public_body_id": 1002}]
+
+
+def test_merge_errors_replacing_body():
+    from lib.cli_utils import merge_errors_replacing_body
+    existing = [
+        {"context": {"public_body_id": 1}, "n": "keep1"},
+        {"context": {"public_body_id": 2}, "n": "drop"},
+        {"context": {"file_url": "u2"}, "n": "legacy-drop"},
+        {"context": {"file_url": "u3"}, "n": "legacy-keep"},
+    ]
+    new = [{"context": {"public_body_id": 2}, "n": "fresh"}]
+    out = merge_errors_replacing_body(existing, new, 2, file_urls={"u2"})
+    assert [e["n"] for e in out] == ["keep1", "legacy-keep", "fresh"]

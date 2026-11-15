@@ -502,3 +502,48 @@ def test_every_status_synonym_unchanged():
             assert canonicalize_status(syn) == _canonicalize_status_once(syn), syn
     for norm, canon in _STATUS_LOOKUP.items():
         assert canonicalize_status(norm) == canon, norm
+
+
+import sys as _sys
+import steps.extract_disclosures_canonicalize_rows.process as _proc
+from lib.file_utils import read_json as _read_json, write_json as _write_json
+
+
+def _scoped_rows_fixture(tmp_path):
+    out = tmp_path / "output.json"
+    _write_json(out, {"metadata": {}, "results": [
+        {"public_body_id": 1001, "foi_reference_id": "A", "marker": "keep"},
+        {"public_body_id": 1002, "foi_reference_id": "OLD", "marker": "stale"},
+    ]})
+    _write_json(tmp_path / "errors.json", [
+        {"error_type": "UnrecognizedRequesterType", "context": {"public_body_id": 1001, "file_url": "a"}},
+        {"error_type": "UnrecognizedRequesterType", "context": {"public_body_id": 1002, "file_url": "old"}},
+    ])
+    inp = tmp_path / "input.json"
+    rec = {**_BASE_RECORD, "requester_type": "Zzz Unknown", "decision_status": None}
+    _write_json(inp, {"results": [
+        {**rec, "public_body_id": 1001, "file_url": "a"},
+        {**rec, "public_body_id": 1002, "file_url": "new"},
+    ]})
+    return out, inp
+
+
+def test_forced_public_body_run_keeps_other_bodies(tmp_path, monkeypatch):
+    out, inp = _scoped_rows_fixture(tmp_path)
+    monkeypatch.setattr(_proc, "__file__", str(tmp_path / "process.py"))
+    _sys.argv = ["process.py", "--input", str(inp), "--output", str(out),
+                 "--public-body", "1002", "--force"]
+    _proc.main()
+    results = _read_json(out)["results"]
+    assert {"public_body_id": 1001, "foi_reference_id": "A", "marker": "keep"} in results
+    assert not any(r.get("marker") == "stale" for r in results)
+
+
+def test_scoped_run_keeps_other_bodies_errors(tmp_path, monkeypatch):
+    out, inp = _scoped_rows_fixture(tmp_path)
+    monkeypatch.setattr(_proc, "__file__", str(tmp_path / "process.py"))
+    _sys.argv = ["process.py", "--input", str(inp), "--output", str(out),
+                 "--public-body", "1002"]
+    _proc.main()
+    errors = _read_json(tmp_path / "errors.json")
+    assert sorted(e["context"]["file_url"] for e in errors) == ["a", "new"]
