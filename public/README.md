@@ -20,6 +20,7 @@ there exactly as it does when browsed here on GitHub.
 | [Public Body Actions](latest/public-body-actions/README.md) | The published commitments ("actions") of public bodies, taken from their strategy and action-plan documents, with status updates from later progress reports. |
 | [Motions](latest/motions/README.md) | Motions moved at meetings of Irish local authorities, from the authorities' published meeting minutes. |
 | [Transport Policies](latest/transport-policies/README.md) | The 21 transport policies, strategies and codes of practice that define the transport document corpus, with links to their curated PDFs (see the Documents dataset's `index.json` for which are published). |
+| [Active Travel Allocations](latest/active-travel-allocations/README.md) | Every project the National Transport Authority allocated Active Travel Investment Grant money to between 2022 and 2026: the recipient, the project's code and name, and the amount in euro. |
 | [Documents](documents/index.json) | Markdown bundles for the curated policy PDFs that convert fully; documents that do not (coverage gaps) are listed under `failed` in `index.json`. Each document is linked to its policy by `policy_id` and `policy_role`. |
 
 ## Guides

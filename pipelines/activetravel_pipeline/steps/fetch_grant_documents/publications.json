@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "note": "The only ingestion source. Adding a year is an edit here, never a code change. 'kinds' is a list because one PDF can carry both the project tables and the per-recipient summary (2025 and 2026 front matter); a 'programme_summary' document (the 2022 Annex 1) is cached but never extracted as project rows.",
+  "publications": [
+    {
+      "year": 2022,
+      "publication_page": "https://www.nationaltransport.ie/publications/active-travel-investment-grants-list-of-projects-2022/",
+      "documents": [
+        {
+          "document_id": "nta-active-travel-2022",
+          "title": "Active Travel Investment Grants: 2022 Allocations",
+          "url": "https://www.nationaltransport.ie/wp-content/uploads/2022/01/2022-Active-Travel-Investment-Allocations.pdf",
+          "kinds": ["project_table"]
+        },
+        {
+          "document_id": "nta-active-travel-2022-annex-1",
+          "title": "NTA Capital Funding Programme 2022 Budget & Commentary (Annex 1)",
+          "url": "https://www.nationaltransport.ie/wp-content/uploads/2022/01/20220124-Annex-1-Summary-of-Active-Travel-funding.pdf",
+          "kinds": ["programme_summary"]
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "publication_page": "https://www.nationaltransport.ie/news/active-travel-investment-grants-2023/",
+      "documents": [
+        {
+          "document_id": "nta-active-travel-2023",
+          "title": "Active Travel Investment Grants: 2023 Allocations",
+          "url": "https://www.nationaltransport.ie/wp-content/uploads/2023/01/Combined_2023_ActiveTravel_Allocations.pdf",
+          "kinds": ["project_table"]
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "publication_page": "https://www.nationaltransport.ie/news/active-travel-investment-grants-2024-allocations/",
+      "documents": [
+        {
+          "document_id": "nta-active-travel-2024",
+          "title": "Active Travel Investment Grants: 2024 Allocations",
+          "url": "https://www.nationaltransport.ie/wp-content/uploads/2024/02/2024-Active-Travel-Allocations.pdf",
+          "kinds": ["project_table"]
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "publication_page": "https://www.nationaltransport.ie/news/active-travel-investment-grants-2025-allocations/",
+      "documents": [
+        {
+          "document_id": "nta-active-travel-2025",
+          "title": "Active Travel Investment Grants: 2025 Allocations",
+          "url": "https://www.nationaltransport.ie/wp-content/uploads/2025/01/Full-Allocations-Table-130125.pdf",
+          "kinds": ["project_table", "recipient_summary"]
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "publication_page": "https://www.nationaltransport.ie/news/active-travel-investment-grants-2026-allocations/",
+      "documents": [
+        {
+          "document_id": "nta-active-travel-2026",
+          "title": "Active Travel Investment Grants: 2026 Allocations",
+          "url": "https://www.nationaltransport.ie/wp-content/uploads/2026/01/Active-Travel-Investment-Grants-2026-Allocations.pdf",
+          "kinds": ["project_table", "recipient_summary"]
+        }
+      ]
+    }
+  ]
+}

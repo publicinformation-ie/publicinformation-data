@@ -48,4 +48,22 @@ Each disclosure log remains the property of the publishing body. Where a body's 
 
 ---
 
+## National Transport Authority (NTA)
+
+**Source:** the NTA's annual Active Travel Investment Grant allocations, published each January on [nationaltransport.ie](https://www.nationaltransport.ie/):
+
+- 2022 — [Active Travel Investment Grants – List of Projects 2022](https://www.nationaltransport.ie/publications/active-travel-investment-grants-list-of-projects-2022/): [2022 allocations](https://www.nationaltransport.ie/wp-content/uploads/2022/01/2022-Active-Travel-Investment-Allocations.pdf) and [Annex 1, programme budget and commentary](https://www.nationaltransport.ie/wp-content/uploads/2022/01/20220124-Annex-1-Summary-of-Active-Travel-funding.pdf)
+- 2023 — [Active Travel Investment Grants: 2023 Allocations](https://www.nationaltransport.ie/news/active-travel-investment-grants-2023/): [combined allocations](https://www.nationaltransport.ie/wp-content/uploads/2023/01/Combined_2023_ActiveTravel_Allocations.pdf)
+- 2024 — [Active Travel Investment Grants: 2024 Allocations](https://www.nationaltransport.ie/news/active-travel-investment-grants-2024-allocations/): [allocations](https://www.nationaltransport.ie/wp-content/uploads/2024/02/2024-Active-Travel-Allocations.pdf)
+- 2025 — [Active Travel Investment Grants: 2025 Allocations](https://www.nationaltransport.ie/news/active-travel-investment-grants-2025-allocations/): [full allocations table](https://www.nationaltransport.ie/wp-content/uploads/2025/01/Full-Allocations-Table-130125.pdf)
+- 2026 — [Active Travel Investment Grants 2026 Allocations](https://www.nationaltransport.ie/news/active-travel-investment-grants-2026-allocations/): [allocations](https://www.nationaltransport.ie/wp-content/uploads/2026/01/Active-Travel-Investment-Grants-2026-Allocations.pdf)
+
+The NTA allocates this funding to local authorities, public transport bodies and other agencies for walking and cycling infrastructure. We publish each printed project allocation with its source document and page, and reproduce the figures only where the document's own declared totals confirm them.
+
+**Licence:** the documents are published by the National Transport Authority as public sector information. Where the NTA specifies a licence or reuse policy, that policy applies. The derived dataset is published under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+> Source: National Transport Authority, Active Travel Investment Grant allocations (2022–2026).
+
+---
+
 *If you are a public body and have a concern about how your data is represented here, please contact us.*

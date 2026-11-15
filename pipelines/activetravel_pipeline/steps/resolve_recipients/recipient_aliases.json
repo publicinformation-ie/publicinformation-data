@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "note": "Canonical recipient names with the spelling variants observed in the five annual documents. A canonical local-authority name must match a name in the published Public Bodies register (public_body_name); the non-local-authority block is published by its printed name with no body link.",
+  "recipients": [
+    {"canonical": "Carlow County Council", "kind": "local_authority", "public_body_name": "Carlow County Council", "aliases": []},
+    {"canonical": "Cavan County Council", "kind": "local_authority", "public_body_name": "Cavan County Council", "aliases": []},
+    {"canonical": "Clare County Council", "kind": "local_authority", "public_body_name": "Clare County Council", "aliases": []},
+    {"canonical": "Cork City Council", "kind": "local_authority", "public_body_name": "Cork City Council", "aliases": []},
+    {"canonical": "Cork County Council", "kind": "local_authority", "public_body_name": "Cork County Council", "aliases": []},
+    {"canonical": "Donegal County Council", "kind": "local_authority", "public_body_name": "Donegal County Council", "aliases": []},
+    {"canonical": "Dublin City Council", "kind": "local_authority", "public_body_name": "Dublin City Council", "aliases": []},
+    {
+      "canonical": "Dun Laoghaire Rathdown County Council",
+      "kind": "local_authority",
+      "public_body_name": "Dun Laoghaire Rathdown County Council",
+      "aliases": [
+        "Dun Loaghaire Rathdown County Council",
+        "Dún Laoghaire Rathdown County Council"
+      ]
+    },
+    {"canonical": "Fingal County Council", "kind": "local_authority", "public_body_name": "Fingal County Council", "aliases": []},
+    {"canonical": "Galway City Council", "kind": "local_authority", "public_body_name": "Galway City Council", "aliases": []},
+    {"canonical": "Galway County Council", "kind": "local_authority", "public_body_name": "Galway County Council", "aliases": []},
+    {"canonical": "Kerry County Council", "kind": "local_authority", "public_body_name": "Kerry County Council", "aliases": []},
+    {"canonical": "Kildare County Council", "kind": "local_authority", "public_body_name": "Kildare County Council", "aliases": []},
+    {"canonical": "Kilkenny County Council", "kind": "local_authority", "public_body_name": "Kilkenny County Council", "aliases": []},
+    {"canonical": "Laois County Council", "kind": "local_authority", "public_body_name": "Laois County Council", "aliases": []},
+    {"canonical": "Leitrim County Council", "kind": "local_authority", "public_body_name": "Leitrim County Council", "aliases": []},
+    {"canonical": "Limerick City and County Council", "kind": "local_authority", "public_body_name": "Limerick City and County Council", "aliases": []},
+    {"canonical": "Longford County Council", "kind": "local_authority", "public_body_name": "Longford County Council", "aliases": []},
+    {"canonical": "Louth County Council", "kind": "local_authority", "public_body_name": "Louth County Council", "aliases": []},
+    {"canonical": "Mayo County Council", "kind": "local_authority", "public_body_name": "Mayo County Council", "aliases": []},
+    {"canonical": "Meath County Council", "kind": "local_authority", "public_body_name": "Meath County Council", "aliases": []},
+    {"canonical": "Monaghan County Council", "kind": "local_authority", "public_body_name": "Monaghan County Council", "aliases": []},
+    {"canonical": "Offaly County Council", "kind": "local_authority", "public_body_name": "Offaly County Council", "aliases": []},
+    {
+      "canonical": "Roscommon County Council",
+      "kind": "local_authority",
+      "public_body_name": "Roscommon County Council",
+      "aliases": ["Roscommon County"]
+    },
+    {"canonical": "Sligo County Council", "kind": "local_authority", "public_body_name": "Sligo County Council", "aliases": []},
+    {"canonical": "South Dublin County Council", "kind": "local_authority", "public_body_name": "South Dublin County Council", "aliases": []},
+    {"canonical": "Tipperary County Council", "kind": "local_authority", "public_body_name": "Tipperary County Council", "aliases": []},
+    {
+      "canonical": "Waterford City and County Council",
+      "kind": "local_authority",
+      "public_body_name": "Waterford City and County Council",
+      "aliases": ["Waterford City and County Council including SDZ"]
+    },
+    {"canonical": "Westmeath County Council", "kind": "local_authority", "public_body_name": "Westmeath County Council", "aliases": []},
+    {"canonical": "Wexford County Council", "kind": "local_authority", "public_body_name": "Wexford County Council", "aliases": []},
+    {"canonical": "Wicklow County Council", "kind": "local_authority", "public_body_name": "Wicklow County Council", "aliases": []},
+    {
+      "canonical": "Campuses, Hospitals, Educational Institutions and Others",
+      "kind": "other",
+      "aliases": [
+        "Campuses, Hospitals, Educational Institutions and Other",
+        "Table A: Active Travel Investment Campuses, Hospitals, SRTS and Others",
+        "Table A: Active Travel Investment \"Others\""
+      ]
+    }
+  ]
+}
