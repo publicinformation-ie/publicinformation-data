@@ -4,7 +4,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from lib.cli_utils import add_common_args, filter_by_public_body, merge_replacing_body
+from lib.cli_utils import add_common_args, filter_by_public_body, merge_replacing_body, merge_errors_replacing_body
 from lib.file_utils import read_json, write_json, write_status
 from lib.column_map import (
     CANONICAL_COLUMNS,
@@ -68,7 +68,7 @@ def _apply_manual_mapping(item: dict, mapping: dict) -> tuple[list, list, int]:
         return [], [{
             "error_type": "MissingRequiredColumns",
             "error_message": f"Manual mapping missing required columns: {sorted(missing_required)}",
-            "context": {"file_url": item["file_url"]},
+            "context": {"file_url": item["file_url"], "public_body_id": item["public_body_id"]},
         }], 0
 
     results = []
@@ -90,7 +90,7 @@ def _apply_manual_mapping(item: dict, mapping: dict) -> tuple[list, list, int]:
                 return [], [{
                     "error_type": "InvalidColumnMapping",
                     "error_message": f"column_mapping key {col_str!r} is not a valid integer column index",
-                    "context": {"file_url": item["file_url"]},
+                    "context": {"file_url": item["file_url"], "public_body_id": item["public_body_id"]},
                 }], 0
             if col_idx >= len(row):
                 continue
@@ -231,6 +231,7 @@ def canonicalize_file(item, column_swaps=None, column_mappings=None):
             "error_message": f"Only {len(canonical_to_col_idx)} canonical column(s) mapped",
             "context": {
                 "file_url": item["file_url"],
+                "public_body_id": item["public_body_id"],
                 "mapped_columns": list(canonical_to_col_idx.keys()),
             },
         }], 0
@@ -401,7 +402,7 @@ def main():
     column_mappings = _load_column_mappings(step_dir)
     header_rows_dropped = process(input_data, results, errors, column_swaps=column_swaps, column_mappings=column_mappings, verbose=args.verbose)
 
-    if args.public_body is not None and not args.force and output_path.exists():
+    if args.public_body is not None and output_path.exists():
         existing = read_json(output_path).get("results", [])
         results = merge_replacing_body(existing, results, args.public_body)
 
@@ -415,6 +416,11 @@ def main():
     })
 
     errors_path = step_dir / "errors.json"
+    if args.public_body is not None and errors_path.exists():
+        errors = merge_errors_replacing_body(
+            read_json(errors_path), errors, args.public_body,
+            file_urls={i.get("file_url") for i in input_data.get("results", [])},
+        )
     write_json(errors_path, errors)
 
     write_status(step_dir, len(results))

@@ -21,6 +21,13 @@ _FOREIGN_ORDER: tuple[Kind, ...] = ("date", "status", "requester", "reference", 
 _REF_CHARS_RE = re.compile(r"[A-Za-z/\-]")
 _PREFIXED_REF_RE = re.compile(r"^[A-Za-z]{2,6}[ /-]?\d+([ /-]+\d+)*$")
 _NUMERIC_DATE_RE = re.compile(r"^(\d{1,2})[/.-](\d{1,2})[/.-](\d{2}|\d{4})$")
+# Mirrors _DATE_PATTERNS[1] in pipelines/foi_pipeline/steps/
+# extract_disclosures_normalize_rows/process.py (src/lib cannot import from
+# pipelines/). A parity test keeps the two in sync.
+_D_MON_YY_RE = re.compile(
+    r'^(\d{1,2})-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[-\s]+(\d{2,4})$',
+    re.IGNORECASE,
+)
 _DIGITS_RE = re.compile(r"^\d+\.?$")
 _PUNCT = ".,;:"
 
@@ -47,7 +54,8 @@ def _is_date(text: str) -> bool:
     from lib.date_parse import parse_date
 
     def one(t: str) -> bool:
-        return _is_numeric_date(t) or parse_date(t) is not None
+        return (_is_numeric_date(t) or bool(_D_MON_YY_RE.match(t))
+                or parse_date(t) is not None)
 
     if one(text):
         return True

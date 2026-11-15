@@ -50,6 +50,27 @@ def merge_replacing_body(existing: list, new: list, public_body_id: int) -> list
     return kept + new
 
 
+def merge_errors_replacing_body(existing: list, new: list, public_body_id: int,
+                                file_urls=None) -> list:
+    """Error-list analogue of merge_replacing_body. Drops existing errors for
+    public_body_id (matched on context.public_body_id) and appends `new`.
+    Legacy errors with no context.public_body_id are dropped only when their
+    context.file_url is in `file_urls` (the scoped body's input files); all
+    other bodies' errors are kept untouched."""
+    urls = set(file_urls or ())
+    kept = []
+    for e in existing:
+        ctx = e.get("context") or {}
+        body = ctx.get("public_body_id")
+        if body is None:
+            if ctx.get("file_url") in urls:
+                continue
+        elif body == public_body_id:
+            continue
+        kept.append(e)
+    return kept + new
+
+
 def add_doc_arg(parser: argparse.ArgumentParser) -> None:
     """Add --doc to a document_pipeline step parser. Kept separate from
     add_common_args so foi_pipeline steps' interfaces are untouched."""
