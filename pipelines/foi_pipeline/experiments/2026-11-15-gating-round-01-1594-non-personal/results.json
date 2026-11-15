@@ -1,0 +1,3273 @@
+{
+ "cluster": "1594-non-personal-2017-2020",
+ "settings": {
+  "agreement_min": 0.9,
+  "gold_min": 0.95
+ },
+ "files": {
+  "https://assets.gov.ie/static/documents/c0ffce5e/12._Non-personal_FOI_requests_answered_in_Dec_2025.pdf": {
+   "role": "control",
+   "sha256": "d9c6ec262afae60db456d7ed9adf0a0b0fb833960a702fb4dcb20cea2d7f4f7d",
+   "public_body_id": 1204,
+   "name": "Department of Foreign Affairs and Trade",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 20,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.291,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 20,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 0.413,
+     "family": "pymupdf",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share",
+      "role_contamination",
+      "anchored_row_share"
+     ],
+     "records": 5,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 2.41,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 20,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 0.348,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share",
+      "anchored_row_share"
+     ],
+     "records": 26,
+     "errors": 4,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "not_extracted",
+     "seconds": 0.004334926605224609,
+     "family": "mistral",
+     "gate_pass": false,
+     "failed_checks": [],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.004,
+     "family": "docling",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 20,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 20,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://about.rte.ie/wp-content/uploads/2023/03/RTE-FOI-Disclosure-Log-Q3.pdf": {
+   "role": "control",
+   "sha256": "61aa93f4e43a87f7ee8fd554a8441da4075d667aa91d67dbc2a9a27cfe08bd43",
+   "public_body_id": 1655,
+   "name": "Raidi\u00f3 Teilif\u00eds \u00c9ireann - RT\u00c9",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 31,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.327,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share",
+      "split_word_rate",
+      "role_contamination",
+      "anchored_row_share"
+     ],
+     "records": 28,
+     "errors": 4,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 0.939,
+     "family": "pymupdf",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share",
+      "split_word_rate",
+      "role_contamination",
+      "anchored_row_share"
+     ],
+     "records": 84,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 2.404,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 31,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 0.45,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "fragment_share",
+      "anchored_row_share"
+     ],
+     "records": 41,
+     "errors": 11,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "not_extracted",
+     "seconds": 0.00019288063049316406,
+     "family": "mistral",
+     "gate_pass": false,
+     "failed_checks": [],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.001,
+     "family": "docling",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 31,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 31,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://assets.gov.ie/static/documents/foi-requests-january-march-2024.pdf": {
+   "role": "control",
+   "sha256": "9b3b4dbc082051ecac510571e38d7b9ddb625c7b1b0beb6267766cba53bbe212",
+   "public_body_id": 1210,
+   "name": "Department of Rural and Community Development and the Gaeltacht",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pymupdf",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 24,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.363,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "fragment_share"
+     ],
+     "records": 27,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 0.348,
+     "family": "pymupdf",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 24,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 4.768,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 0.507,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share",
+      "anchored_row_share"
+     ],
+     "records": 31,
+     "errors": 2,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "not_extracted",
+     "seconds": 0.0001800060272216797,
+     "family": "mistral",
+     "gate_pass": false,
+     "failed_checks": [],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "docling",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 24,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pymupdf",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 24,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://www.centralbank.ie/docs/default-source/tns/about---tns/freedom-of-information/disclosure-logs/freedom-of-information-disclosure-log---2022.pdf?sfvrsn=4d6f991d_5": {
+   "role": "control",
+   "sha256": "7b410e36369ec73263339e0fcd13237d57e0062869e759608cec99bfa0e24eba",
+   "public_body_id": 1104,
+   "name": "Central Bank of Ireland",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "mistral",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 44,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.244,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share",
+      "column_type_purity",
+      "split_word_rate"
+     ],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 0.217,
+     "family": "pymupdf",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share",
+      "column_type_purity",
+      "split_word_rate"
+     ],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "no_table",
+     "seconds": 2.067,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 0.367,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share"
+     ],
+     "records": 49,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "ok",
+     "seconds": 0.001,
+     "family": "mistral",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 44,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.001,
+     "family": "docling",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 44,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "mistral",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 44,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://www.mayo.ie/getmedia/25fd167c-a70c-4a45-930e-3ddb56e8cbea/FOI-Disclosure-Log-Q3-2024.pdf": {
+   "role": "control",
+   "sha256": "a0acc423d6a9a2b3dc103e3bcd63e749e330303d2a3779c5bdfdd147ae2cd6d0",
+   "public_body_id": 1508,
+   "name": "Mayo County Council",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 27,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.1,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 27,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 0.136,
+     "family": "pymupdf",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "role_contamination"
+     ],
+     "records": 27,
+     "errors": 13,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 0.686,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 27,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 0.172,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 27,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "ok",
+     "seconds": 0.001,
+     "family": "mistral",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 27,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "docling",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 27,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 27,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://www.offaly.ie/app/uploads/Council/Publications_Reports/Disclosure-Log-2022.pdf": {
+   "role": "control",
+   "sha256": "ad0a7cabe2e846b482d6040c4eb94efcb7753f9a30f058da95a90129073904b7",
+   "public_body_id": 1590,
+   "name": "Offaly County Council",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 67,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.228,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 67,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 0.177,
+     "family": "pymupdf",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 67,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 1.333,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 67,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 0.272,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 67,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "not_extracted",
+     "seconds": 0.00017523765563964844,
+     "family": "mistral",
+     "gate_pass": false,
+     "failed_checks": [],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "docling",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 67,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 67,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://assets.gov.ie/static/documents/foi-disclosure-log-october-to-december-2023.pdf": {
+   "role": "control",
+   "sha256": "34316df0df3cccec7ec9708c5de4f34ac57bc76fe6f34e4108e0cd75a190b9be",
+   "public_body_id": 1207,
+   "name": "Department of Housing, Local Government and Heritage",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 82,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.869,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity"
+     ],
+     "records": 87,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 1.445,
+     "family": "pymupdf",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share",
+      "anchored_row_share"
+     ],
+     "records": 91,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 5.474,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 82,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 1.354,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "fragment_share"
+     ],
+     "records": 65,
+     "errors": 8,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "ok",
+     "seconds": 0.002,
+     "family": "mistral",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 82,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.001,
+     "family": "docling",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 82,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 82,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://www.universityofgalway.ie/media/corporateandlegalaffairs/files/FOI-Disclosure-Log-2024.pdf": {
+   "role": "control",
+   "sha256": "269ad3fd2bccb1ccdc071514d6ce46c270df5dcca0bfe5fcc1f8860fbbdb7549",
+   "public_body_id": 1574,
+   "name": "National University of Ireland Galway",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "mistral",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 48,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.305,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "role_contamination"
+     ],
+     "records": 48,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 0.314,
+     "family": "pymupdf",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "anchored_row_share"
+     ],
+     "records": 29,
+     "errors": 1,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 0.872,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 48,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 0.346,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 49,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "ok",
+     "seconds": 0.001,
+     "family": "mistral",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 48,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "docling",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 48,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "mistral",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 48,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://www.dublincity.ie/sites/default/files/2026-02/disclosure-log-2025.pdf": {
+   "role": "control",
+   "sha256": "321826761b9345608d983727613ee4a869c427f2efeb0ed9c73052bbcf3aadf1",
+   "public_body_id": 1235,
+   "name": "Dublin City Council",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 547,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 1.423,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share",
+      "column_type_purity",
+      "split_word_rate"
+     ],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "no_table",
+     "seconds": 0.748,
+     "family": "pymupdf",
+     "gate_pass": false,
+     "failed_checks": [],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 9.18,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share",
+      "column_type_purity",
+      "split_word_rate"
+     ],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 2.57,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 547,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "ok",
+     "seconds": 0.006,
+     "family": "mistral",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 539,
+     "errors": 8,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.001,
+     "family": "docling",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 547,
+     "errors": 4,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 547,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://www.nationaltransport.ie/wp-content/uploads/2025/09/2025-Q1-FOI-Disclosure-Log.pdf": {
+   "role": "control",
+   "sha256": "cab248cfb89b2273b641dea3e237bb6bb4619f151e501b9dba81c9baa78de2c2",
+   "public_body_id": 1570,
+   "name": "National Transport Authority (NTA)",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 55,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.476,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 55,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 0.503,
+     "family": "pymupdf",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 55,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 4.962,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 55,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 0.615,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share",
+      "column_type_purity",
+      "role_contamination",
+      "anchored_row_share"
+     ],
+     "records": 109,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "ok",
+     "seconds": 0.001,
+     "family": "mistral",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity"
+     ],
+     "records": 55,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "docling",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 55,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 55,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://about.rte.ie/wp-content/uploads/2019/07/rte-freedom-of-information-q4-disclosure-log-2018.pdf": {
+   "role": "gold",
+   "sha256": "41fa00e9e9549b3f3ee5a12ba3fd84e2510091545eed3ff6f56704e8a6393ce6",
+   "public_body_id": 1655,
+   "name": "Raidi\u00f3 Teilif\u00eds \u00c9ireann - RT\u00c9",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 62,
+     "errors": 1,
+     "override_bound": false,
+     "gold": 0.98,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.646,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "role_contamination"
+     ],
+     "records": 62,
+     "errors": 49,
+     "override_bound": false,
+     "gold": 0.67,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 0.673,
+     "family": "pymupdf",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "role_contamination"
+     ],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.14,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 7.935,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 62,
+     "errors": 1,
+     "override_bound": false,
+     "gold": 0.98,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 1.172,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share",
+      "role_contamination"
+     ],
+     "records": 111,
+     "errors": 58,
+     "override_bound": false,
+     "gold": 0.26,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "not_extracted",
+     "seconds": 0.0005869865417480469,
+     "family": "mistral",
+     "gate_pass": false,
+     "failed_checks": [],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.001,
+     "family": "docling",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 62,
+     "errors": 1,
+     "override_bound": false,
+     "gold": 0.89,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 62,
+     "errors": 1,
+     "override_bound": false,
+     "gold": 0.98,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://about.rte.ie/wp-content/uploads/2020/01/RTE-FOI-DISCLOSURE-LOG-Q4.pdf": {
+   "role": "gold",
+   "sha256": "9c4f12d2901c31cc12268969145a17a736aa9db000916f087de2938000036d86",
+   "public_body_id": 1655,
+   "name": "Raidi\u00f3 Teilif\u00eds \u00c9ireann - RT\u00c9",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 75,
+     "errors": 1,
+     "override_bound": false,
+     "gold": 0.98,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.824,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share",
+      "split_word_rate",
+      "role_contamination",
+      "anchored_row_share"
+     ],
+     "records": 89,
+     "errors": 29,
+     "override_bound": false,
+     "gold": 0.58,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 1.62,
+     "family": "pymupdf",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share",
+      "anchored_row_share"
+     ],
+     "records": 6,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.18,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 6.687,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 75,
+     "errors": 1,
+     "override_bound": false,
+     "gold": 0.98,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 1.404,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share"
+     ],
+     "records": 85,
+     "errors": 17,
+     "override_bound": false,
+     "gold": 0.58,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "not_extracted",
+     "seconds": 8.821487426757812e-06,
+     "family": "mistral",
+     "gate_pass": false,
+     "failed_checks": [],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.004,
+     "family": "docling",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 75,
+     "errors": 1,
+     "override_bound": false,
+     "gold": 0.92,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 75,
+     "errors": 1,
+     "override_bound": false,
+     "gold": 0.98,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://www.fingal.ie/sites/default/files/2019-03/FOI%20Disclosure%20Log%202016.pdf": {
+   "role": "gold",
+   "sha256": "6ab587f28c8be32d25d4a6a4f6df056d2f19138cc331c8a14f5b837e423dcb7a",
+   "public_body_id": 1295,
+   "name": "Fingal County Council",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "anchored_row_share"
+     ],
+     "records": 119,
+     "errors": 268,
+     "override_bound": true,
+     "gold": 0.875,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 2.772,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "anchored_row_share"
+     ],
+     "records": 119,
+     "errors": 268,
+     "override_bound": true,
+     "gold": 0.875,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 2.22,
+     "family": "pymupdf",
+     "gate_pass": false,
+     "failed_checks": [
+      "anchored_row_share"
+     ],
+     "records": 119,
+     "errors": 268,
+     "override_bound": true,
+     "gold": 0.875,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 14.152,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 119,
+     "errors": 268,
+     "override_bound": true,
+     "gold": 0.075,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 3.675,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share",
+      "role_contamination",
+      "anchored_row_share"
+     ],
+     "records": 119,
+     "errors": 268,
+     "override_bound": true,
+     "gold": 0.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "ok",
+     "seconds": 0.01,
+     "family": "mistral",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share"
+     ],
+     "records": 119,
+     "errors": 268,
+     "override_bound": true,
+     "gold": 0.73125,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.001,
+     "family": "docling",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 119,
+     "errors": 268,
+     "override_bound": true,
+     "gold": 1.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "anchored_row_share"
+     ],
+     "records": 119,
+     "errors": 268,
+     "override_bound": true,
+     "gold": 0.875,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://www.fingal.ie/sites/default/files/2026-01/2024-foi-disclosure-log.pdf": {
+   "role": "gold",
+   "sha256": "e93ccc8d9b8cf36330287def1bc8c86728ecef24a6aad029f89553564f1c5c39",
+   "public_body_id": 1295,
+   "name": "Fingal County Council",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "mistral",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 139,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.75625,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.501,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity"
+     ],
+     "records": 126,
+     "errors": 139,
+     "override_bound": false,
+     "gold": 0.0125,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 0.591,
+     "family": "pymupdf",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 105,
+     "errors": 101,
+     "override_bound": false,
+     "gold": 0.05,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 4.365,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "role_contamination"
+     ],
+     "records": 16,
+     "errors": 15,
+     "override_bound": false,
+     "gold": 0.00625,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 1.08,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 141,
+     "errors": 141,
+     "override_bound": false,
+     "gold": 0.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "ok",
+     "seconds": 0.01,
+     "family": "mistral",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 139,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.75625,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.001,
+     "family": "docling",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "role_contamination"
+     ],
+     "records": 108,
+     "errors": 62,
+     "override_bound": false,
+     "gold": 0.7,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "mistral",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 139,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.75625,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://assets.gov.ie/static/documents/66495939/202512_DRCDG_Q4_DisclosureLog.pdf": {
+   "role": "gold",
+   "sha256": "4b31f0d260881723b7c085a4e0d0c6e2421e8ac6d776430028f470ad1f91ed71",
+   "public_body_id": 1210,
+   "name": "Department of Rural and Community Development and the Gaeltacht",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.9214285714285714,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.318,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "fragment_share"
+     ],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.9714285714285714,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 0.412,
+     "family": "pymupdf",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share"
+     ],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.9714285714285714,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 2.895,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.9214285714285714,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 0.548,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "fragment_share",
+      "anchored_row_share"
+     ],
+     "records": 66,
+     "errors": 28,
+     "override_bound": false,
+     "gold": 0.4928571428571429,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "not_extracted",
+     "seconds": 0.00020575523376464844,
+     "family": "mistral",
+     "gate_pass": false,
+     "failed_checks": [],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.008,
+     "family": "docling",
+     "gate_pass": false,
+     "failed_checks": [
+      "fragment_share"
+     ],
+     "records": 29,
+     "errors": 2,
+     "override_bound": false,
+     "gold": 0.9571428571428572,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.9214285714285714,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://www.fspo.ie/documents/FOI-Disclosure-Log-2021.pdf": {
+   "role": "gold",
+   "sha256": "494a788e1104dd71dc3825d34d6b224e2f9f399021804bd251c97a71887dedb4",
+   "public_body_id": 1293,
+   "name": "Financial Services and Pensions Ombudsman (FSPO)",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 9,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.9777777777777777,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.063,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "split_word_rate"
+     ],
+     "records": 9,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 0.042,
+     "family": "pymupdf",
+     "gate_pass": false,
+     "failed_checks": [
+      "anchored_row_share"
+     ],
+     "records": 9,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.2222222222222222,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 0.641,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 9,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.9777777777777777,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 0.133,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share",
+      "split_word_rate",
+      "anchored_row_share"
+     ],
+     "records": 9,
+     "errors": 2,
+     "override_bound": false,
+     "gold": 0.4444444444444444,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "ok",
+     "seconds": 0.001,
+     "family": "mistral",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share"
+     ],
+     "records": 10,
+     "errors": 1,
+     "override_bound": false,
+     "gold": 0.9777777777777777,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "docling",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share"
+     ],
+     "records": 10,
+     "errors": 1,
+     "override_bound": false,
+     "gold": 0.9777777777777777,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 9,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.9777777777777777,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://www.hiqa.ie/sites/default/files/2018-01/FOI-Disclosure-Log-2015-Q3-4.pdf": {
+   "role": "gold",
+   "sha256": "4cb607b1be84d65652029fd161a9103cbf9ab2687981a49ee03d223674295e1b",
+   "public_body_id": 1390,
+   "name": "Health Information and Quality Authority (HIQA)",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 32,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 1.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.371,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 32,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 1.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 0.443,
+     "family": "pymupdf",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination",
+      "anchored_row_share"
+     ],
+     "records": 32,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 1.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 3.514,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 0,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.7916666666666666,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 0.65,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share",
+      "column_type_purity",
+      "anchored_row_share"
+     ],
+     "records": 101,
+     "errors": 6,
+     "override_bound": false,
+     "gold": 0.03333333333333333,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "ok",
+     "seconds": 0.008,
+     "family": "mistral",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 32,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.8333333333333334,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "docling",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 32,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.8333333333333334,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 32,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 1.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://assets.gov.ie/static/documents/foi-requests-log-july-to-september-2022.pdf": {
+   "role": "gold",
+   "sha256": "ec6c89af73b7b4d767ef94f6937b1e000b739b16dc419a95146074d0f6eeeb79",
+   "public_body_id": 1207,
+   "name": "Department of Housing, Local Government and Heritage",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 74,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 1.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.452,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 74,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 1.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 0.687,
+     "family": "pymupdf",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 74,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 1.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 1.465,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 74,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.9333333333333333,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 0.632,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share",
+      "anchored_row_share"
+     ],
+     "records": 59,
+     "errors": 1,
+     "override_bound": false,
+     "gold": 0.7833333333333333,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "ok",
+     "seconds": 0.005,
+     "family": "mistral",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 74,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.9083333333333333,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "docling",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 74,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.9583333333333334,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 74,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 1.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://www.charitiesregulator.ie/media/1932/foi-disclosure-log-2017.pdf": {
+   "role": "gold",
+   "sha256": "569928ad2bebad897ad0f6b8faf5edbc8c9c8e14bdf820cf744ae46b75253921",
+   "public_body_id": 1107,
+   "name": "Charities Regulator",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 40,
+     "errors": 2,
+     "override_bound": false,
+     "gold": 1.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.172,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 40,
+     "errors": 2,
+     "override_bound": false,
+     "gold": 1.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 0.153,
+     "family": "pymupdf",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 40,
+     "errors": 2,
+     "override_bound": false,
+     "gold": 1.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 1.274,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 37,
+     "errors": 1,
+     "override_bound": false,
+     "gold": 0.95,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 0.373,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "fragment_share"
+     ],
+     "records": 45,
+     "errors": 6,
+     "override_bound": false,
+     "gold": 0.8875,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "ok",
+     "seconds": 0.004,
+     "family": "mistral",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 40,
+     "errors": 2,
+     "override_bound": false,
+     "gold": 0.98125,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "docling",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 40,
+     "errors": 2,
+     "override_bound": false,
+     "gold": 0.89375,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 40,
+     "errors": 2,
+     "override_bound": false,
+     "gold": 1.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://www.fiscalcouncil.ie/wp-content/uploads/2024/04/FOI-Disclosure-Log-2023.pdf": {
+   "role": "gold",
+   "sha256": "32096024434b85751cc11f79609208095006697ba508191fdf9901fb49555a9e",
+   "public_body_id": 1437,
+   "name": "Irish Fiscal Advisory Council",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 7,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 1.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.066,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 7,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 1.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 0.07,
+     "family": "pymupdf",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 7,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 1.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 0.689,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 7,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 0.9761904761904762,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 0.169,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "fragment_share",
+      "anchored_row_share"
+     ],
+     "records": 29,
+     "errors": 21,
+     "override_bound": false,
+     "gold": 0.6666666666666666,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "force:mistral_cache": {
+     "status": "ok",
+     "seconds": 0.004,
+     "family": "mistral",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 7,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 1.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "docling",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 7,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 1.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 7,
+     "errors": 0,
+     "override_bound": false,
+     "gold": 1.0,
+     "best_agreement": null,
+     "agrees_with": null,
+     "resolved": null
+    }
+   }
+  },
+  "https://assets.gov.ie/static/documents/non-personal-foi-requests-2017.pdf": {
+   "role": "cluster",
+   "sha256": "adddfe40daa3d48092a07924ebc256354038eb615566281b103c8236b769e96d",
+   "public_body_id": 1594,
+   "name": "Office of Public Works",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 118,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9943502824858758,
+     "agrees_with": "force:pymupdf",
+     "resolved": false
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.902,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 118,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9971751412429378,
+     "agrees_with": "force:pymupdf",
+     "resolved": false
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 1.241,
+     "family": "pymupdf",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 118,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9971751412429378,
+     "agrees_with": "force:pdfplumber",
+     "resolved": false
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 2.288,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 118,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9943502824858758,
+     "agrees_with": "force:pymupdf",
+     "resolved": false
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 1.394,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 121,
+     "errors": 1,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.8277777777777777,
+     "agrees_with": "force:pdfplumber",
+     "resolved": false
+    },
+    "force:mistral_cache": {
+     "status": "ok",
+     "seconds": 0.002,
+     "family": "mistral",
+     "gate_pass": false,
+     "failed_checks": [
+      "width_uniformity",
+      "role_contamination"
+     ],
+     "records": 118,
+     "errors": 1,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.8008474576271186,
+     "agrees_with": "force:pymupdf",
+     "resolved": false
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.001,
+     "family": "docling",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 108,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.8884180790960452,
+     "agrees_with": "current",
+     "resolved": false
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "camelot",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 118,
+     "errors": 0,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9943502824858758,
+     "agrees_with": "force:pymupdf",
+     "resolved": null
+    }
+   }
+  },
+  "https://assets.gov.ie/static/documents/non-personal-foi-requests-2018.pdf": {
+   "role": "cluster",
+   "sha256": "eeb9d0a7ea994397b4622f4242fb318260407e22cf21cca9aa72a1f5f5df3394",
+   "public_body_id": 1594,
+   "name": "Office of Public Works",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 152,
+     "errors": 2,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9978213507625272,
+     "agrees_with": "force:camelot_lattice",
+     "resolved": false
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.885,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 152,
+     "errors": 2,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9978213507625272,
+     "agrees_with": "force:camelot_lattice",
+     "resolved": false
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 1.292,
+     "family": "pymupdf",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 152,
+     "errors": 2,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9978213507625272,
+     "agrees_with": "force:camelot_lattice",
+     "resolved": false
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 3.218,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 152,
+     "errors": 2,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9978213507625272,
+     "agrees_with": "current",
+     "resolved": false
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 1.336,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 162,
+     "errors": 4,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.8653846153846154,
+     "agrees_with": "current",
+     "resolved": false
+    },
+    "force:mistral_cache": {
+     "status": "ok",
+     "seconds": 0.003,
+     "family": "mistral",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 152,
+     "errors": 1,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9618736383442266,
+     "agrees_with": "force:pymupdf",
+     "resolved": false
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.001,
+     "family": "docling",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 152,
+     "errors": 2,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9847494553376906,
+     "agrees_with": "force:camelot_lattice",
+     "resolved": false
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 152,
+     "errors": 2,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9978213507625272,
+     "agrees_with": "force:camelot_lattice",
+     "resolved": null
+    }
+   }
+  },
+  "https://assets.gov.ie/static/documents/non-personal-foi-requests-2019.pdf": {
+   "role": "cluster",
+   "sha256": "19aee1bec600d4b3e32010d626d3882b070a09baebe61b9b039f198e8be351ca",
+   "public_body_id": 1594,
+   "name": "Office of Public Works",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pymupdf",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 157,
+     "errors": 3,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9861995753715499,
+     "agrees_with": "force:pdfplumber",
+     "resolved": false
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 1.016,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 156,
+     "errors": 3,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9861995753715499,
+     "agrees_with": "current",
+     "resolved": false
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 1.344,
+     "family": "pymupdf",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 157,
+     "errors": 3,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9861995753715499,
+     "agrees_with": "force:pdfplumber",
+     "resolved": false
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 5.513,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 157,
+     "errors": 3,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9861995753715499,
+     "agrees_with": "current",
+     "resolved": false
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 1.343,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 157,
+     "errors": 3,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.8715498938428875,
+     "agrees_with": "current",
+     "resolved": false
+    },
+    "force:mistral_cache": {
+     "status": "ok",
+     "seconds": 0.002,
+     "family": "mistral",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 158,
+     "errors": 2,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.7685774946921444,
+     "agrees_with": "current",
+     "resolved": false
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.001,
+     "family": "docling",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 157,
+     "errors": 3,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9819532908704883,
+     "agrees_with": "current",
+     "resolved": false
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pymupdf",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 157,
+     "errors": 3,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9861995753715499,
+     "agrees_with": "force:pdfplumber",
+     "resolved": null
+    }
+   }
+  },
+  "https://assets.gov.ie/static/documents/non-personal-foi-requests-2020.pdf": {
+   "role": "cluster",
+   "sha256": "9e6d7de7ce042ec4a3f7919f5b3c76dd7c0fb614d470161e5320d942c75c9e97",
+   "public_body_id": 1594,
+   "name": "Office of Public Works",
+   "fixes": {
+    "current": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 141,
+     "errors": 2,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9905437352245863,
+     "agrees_with": "force:pymupdf",
+     "resolved": false
+    },
+    "force:pdfplumber": {
+     "status": "ok",
+     "seconds": 0.974,
+     "family": "pdfplumber",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 141,
+     "errors": 2,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9905437352245863,
+     "agrees_with": "force:pymupdf",
+     "resolved": false
+    },
+    "force:pymupdf": {
+     "status": "ok",
+     "seconds": 1.262,
+     "family": "pymupdf",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 141,
+     "errors": 2,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9988179669030733,
+     "agrees_with": "force:camelot_lattice",
+     "resolved": false
+    },
+    "force:camelot_lattice": {
+     "status": "ok",
+     "seconds": 6.221,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 141,
+     "errors": 2,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9988179669030733,
+     "agrees_with": "force:pymupdf",
+     "resolved": false
+    },
+    "force:camelot_stream": {
+     "status": "ok",
+     "seconds": 1.372,
+     "family": "camelot",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 141,
+     "errors": 11,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.7727272727272727,
+     "agrees_with": "force:pymupdf",
+     "resolved": false
+    },
+    "force:mistral_cache": {
+     "status": "ok",
+     "seconds": 0.002,
+     "family": "mistral",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 141,
+     "errors": 2,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9302600472813238,
+     "agrees_with": "force:pymupdf",
+     "resolved": false
+    },
+    "docling": {
+     "status": "ok",
+     "seconds": 0.001,
+     "family": "docling",
+     "gate_pass": false,
+     "failed_checks": [
+      "role_contamination"
+     ],
+     "records": 141,
+     "errors": 2,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9704491725768322,
+     "agrees_with": "force:pymupdf",
+     "resolved": false
+    },
+    "gate-dd-mon-yy": {
+     "status": "ok",
+     "seconds": 0.0,
+     "family": "pdfplumber",
+     "gate_pass": true,
+     "failed_checks": [],
+     "records": 141,
+     "errors": 2,
+     "override_bound": false,
+     "gold": null,
+     "best_agreement": 0.9905437352245863,
+     "agrees_with": "force:pymupdf",
+     "resolved": null
+    }
+   }
+  }
+ },
+ "fix_rows": [
+  {
+   "fix": "current",
+   "kind": "baseline",
+   "scope": "routed",
+   "files_resolved": 0,
+   "files_gate_pass": 0,
+   "records_recovered": 0,
+   "errors_after": 7,
+   "gold_accuracy": 0.949,
+   "cluster_gold": null,
+   "agreement": 0.9922,
+   "controls_worse": 0,
+   "controls_differ": 0,
+   "not_run": 0,
+   "seconds_per_file": 0.0,
+   "disqualified": false
+  },
+  {
+   "fix": "force:pdfplumber",
+   "kind": "config",
+   "scope": "routed",
+   "files_resolved": 0,
+   "files_gate_pass": 0,
+   "records_recovered": 0,
+   "errors_after": 7,
+   "gold_accuracy": 0.7109,
+   "cluster_gold": null,
+   "agreement": 0.9929,
+   "controls_worse": 7,
+   "controls_differ": 7,
+   "not_run": 0,
+   "seconds_per_file": 0.411,
+   "disqualified": false
+  },
+  {
+   "fix": "force:pymupdf",
+   "kind": "config",
+   "scope": "routed",
+   "files_resolved": 0,
+   "files_gate_pass": 0,
+   "records_recovered": 0,
+   "errors_after": 7,
+   "gold_accuracy": 0.6439,
+   "cluster_gold": null,
+   "agreement": 0.995,
+   "controls_worse": 7,
+   "controls_differ": 9,
+   "not_run": 1,
+   "seconds_per_file": 0.503,
+   "disqualified": false
+  },
+  {
+   "fix": "force:camelot_lattice",
+   "kind": "config",
+   "scope": "routed",
+   "files_resolved": 0,
+   "files_gate_pass": 0,
+   "records_recovered": 0,
+   "errors_after": 7,
+   "gold_accuracy": 0.7592,
+   "cluster_gold": null,
+   "agreement": 0.9943,
+   "controls_worse": 4,
+   "controls_differ": 8,
+   "not_run": 1,
+   "seconds_per_file": 3.218,
+   "disqualified": false
+  },
+  {
+   "fix": "force:camelot_stream",
+   "kind": "config",
+   "scope": "routed",
+   "files_resolved": 0,
+   "files_gate_pass": 0,
+   "records_recovered": 0,
+   "errors_after": 19,
+   "gold_accuracy": 0.4148,
+   "cluster_gold": null,
+   "agreement": 0.8344,
+   "controls_worse": 6,
+   "controls_differ": 8,
+   "not_run": 0,
+   "seconds_per_file": 0.623,
+   "disqualified": false
+  },
+  {
+   "fix": "force:mistral_cache",
+   "kind": "config",
+   "scope": "routed",
+   "files_resolved": 0,
+   "files_gate_pass": 0,
+   "records_recovered": 0,
+   "errors_after": 6,
+   "gold_accuracy": 0.6188,
+   "cluster_gold": null,
+   "agreement": 0.8654,
+   "controls_worse": 7,
+   "controls_differ": 8,
+   "not_run": 7,
+   "seconds_per_file": 0.002,
+   "disqualified": false
+  },
+  {
+   "fix": "docling",
+   "kind": "candidate",
+   "scope": "routed",
+   "files_resolved": 0,
+   "files_gate_pass": 0,
+   "records_recovered": 0,
+   "errors_after": 7,
+   "gold_accuracy": 0.913,
+   "cluster_gold": null,
+   "agreement": 0.9564,
+   "controls_worse": 2,
+   "controls_differ": 10,
+   "not_run": 0,
+   "seconds_per_file": 0.001,
+   "disqualified": false
+  },
+  {
+   "fix": "gate-dd-mon-yy",
+   "kind": "gate",
+   "scope": "global",
+   "files_resolved": 0,
+   "files_gate_pass": 4,
+   "records_recovered": 568,
+   "errors_after": 7,
+   "gold_accuracy": 0.949,
+   "cluster_gold": null,
+   "agreement": 0.9922,
+   "controls_worse": 0,
+   "controls_differ": 0,
+   "not_run": 0,
+   "seconds_per_file": 0.0,
+   "disqualified": false
+  }
+ ],
+ "winner": "gate-dd-mon-yy"
+}
