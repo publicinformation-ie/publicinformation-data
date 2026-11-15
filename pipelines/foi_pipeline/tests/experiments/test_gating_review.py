@@ -1,5 +1,6 @@
 import http.client
 import json
+import re
 import threading
 
 import pytest
@@ -129,7 +130,7 @@ def test_pdf_served_only_for_round_sha(server):
     st, ct, body = req(srv, "GET", f"/pdf/{S1}.pdf")
     assert (st, ct, body) == (200, "application/pdf", b"%PDF-fake")
     assert req(srv, "GET", f"/pdf/{S2}.pdf")[0] == 404  # in round, but no bytes
-    assert req(srv, "GET", "/")[0] == 200
+    assert req(srv, "GET", "/review/index.html")[0] == 200
 
 
 def test_gold_page_has_cells_and_buttons(round_dir, monkeypatch):
@@ -140,6 +141,53 @@ def test_gold_page_has_cells_and_buttons(round_dir, monkeypatch):
     rp.build(round_dir, cluster_gold_sha=S1)
     g = (round_dir / "review" / "gold.html").read_text()
     assert "gold:0:1" in g and "&lt;script&gt;" in g and ">wrong<" in g and "crops/0-1.png" in g
+
+
+def test_server_root_links_resolve(server, monkeypatch):
+    from urllib.parse import urljoin
+    srv, rd = server
+    monkeypatch.setattr(rp, "load_gold", lambda sha: {"columns": ["Ref"], "rows": [["FOI-2"]]})
+    monkeypatch.setattr(rp, "pdf_bytes", lambda u: None)
+    rp.build(rd, cluster_gold_sha=S1)
+    c = http.client.HTTPConnection("127.0.0.1", srv.server_address[1])
+    c.request("GET", "/")
+    r = c.getresponse()
+    body = r.read().decode()
+    base = urljoin("/", r.getheader("Location") or "/")
+    if r.status == 200:
+        idx = body
+    else:
+        assert r.status == 302
+        idx = req(srv, "GET", base)[2].decode()
+    table_href = next(h for h in re.findall(r"href=['\"]([^'\"]+)['\"]", idx) if h.startswith("tables/"))
+    for href in (table_href, "gold.html"):
+        assert req(srv, "GET", urljoin(base, href))[0] == 200, href
+
+
+def test_built_gold_renders_with_crops(round_dir, monkeypatch, tmp_path):
+    from experiments.gating import gold_tools as gt
+    gold = {"columns": ["Ref", "Date"], "rows": [["FOI-2", "02/02/2023"]],
+            "cells": [{"row": 0, "col": c, "page": 1, "rect": [0, 0, 1, 1]} for c in range(2)]}
+    gdir = tmp_path / "gold"
+    gt.save_gold(S1, gold, gold_dir=gdir, status_path=tmp_path / "st.json", cells_dir=tmp_path / "cells")
+    assert "cells" not in json.loads((gdir / f"{S1}.json").read_text())
+    monkeypatch.setattr(rp, "load_gold", lambda sha: json.loads((gdir / f"{sha}.json").read_text()))
+    monkeypatch.setattr(rp, "GOLD_CELLS_DIR", tmp_path / "cells")
+    monkeypatch.setattr(rp, "pdf_bytes", lambda u: b"%PDF-fake")
+    monkeypatch.setattr(rp, "crop_cell", lambda data, cell, out, **k: out)
+    rp.build(round_dir, cluster_gold_sha=S1)
+    g = (round_dir / "review" / "gold.html").read_text()
+    assert "gold:0:1" in g and "crops/0-1.png" in g
+
+
+def test_gold_without_cells_file_renders_without_crops(round_dir, monkeypatch, tmp_path):
+    gold = {"columns": ["Ref", "Date"], "rows": [["FOI-2", "02/02/2023"]]}
+    monkeypatch.setattr(rp, "load_gold", lambda sha: gold)
+    monkeypatch.setattr(rp, "GOLD_CELLS_DIR", tmp_path / "none")
+    monkeypatch.setattr(rp, "pdf_bytes", lambda u: b"%PDF-fake")
+    rp.build(round_dir, cluster_gold_sha=S1)
+    g = (round_dir / "review" / "gold.html").read_text()
+    assert "gold:0:1" in g and "<img" not in g
 
 
 def test_control_with_equal_counts_but_different_rows_is_listed(round_dir):

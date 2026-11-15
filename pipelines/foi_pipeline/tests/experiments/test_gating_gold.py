@@ -1,6 +1,7 @@
 import json
 
 import pymupdf
+import pytest
 
 from experiments.gating import gold_tools as gt
 
@@ -82,7 +83,7 @@ def test_cells_to_check_caps_random_at_available_cells():
 def test_save_gold_marks_provisional(tmp_path):
     status = tmp_path / "status.json"
     p = gt.save_gold("sha1", {"columns": ["A"], "rows": [["x"]], "cells": [1]},
-                     gold_dir=tmp_path, status_path=status)
+                     gold_dir=tmp_path, status_path=status, cells_dir=tmp_path / "cells")
     assert json.loads(p.read_text()) == {"columns": ["A"], "rows": [["x"]]}
     assert json.loads(status.read_text()) == {"sha1": "provisional"}
     gt.mark_gold_checked("sha1", status_path=status)
@@ -96,3 +97,21 @@ def test_render_and_crop(tmp_path):
     gold = gt.gold_from_bounds(data, bounds_for(2))
     out = gt.crop_cell(data, gold["cells"][0], tmp_path / "c.png")
     assert out.is_file()
+
+
+def test_save_gold_refuses_existing_unless_forced(tmp_path):
+    status = tmp_path / "status.json"
+    cells = tmp_path / "cells"
+    gold = {"columns": ["A"], "rows": [["x"]], "cells": [{"row": 0, "col": 0, "page": 1, "rect": [0, 0, 1, 1]}]}
+    p = gt.save_gold("sha1", gold, gold_dir=tmp_path, status_path=status, cells_dir=cells)
+    assert json.loads((cells / "sha1.json").read_text()) == gold["cells"]
+    gt.mark_gold_checked("sha1", status_path=status)
+    with pytest.raises(FileExistsError):
+        gt.save_gold("sha1", {"columns": ["A"], "rows": [["y"]], "cells": []},
+                     gold_dir=tmp_path, status_path=status, cells_dir=cells)
+    assert json.loads(p.read_text())["rows"] == [["x"]]
+    assert json.loads(status.read_text()) == {"sha1": "checked"}
+    gt.save_gold("sha1", {"columns": ["A"], "rows": [["y"]], "cells": []},
+                 gold_dir=tmp_path, status_path=status, cells_dir=cells, force=True)
+    assert json.loads(p.read_text())["rows"] == [["y"]]
+    assert json.loads(status.read_text()) == {"sha1": "provisional"}

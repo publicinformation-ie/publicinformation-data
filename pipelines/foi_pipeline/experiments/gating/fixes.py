@@ -9,6 +9,7 @@ from experiments.gating.downstream import Gate
 from experiments.gating.paths import DOCLING_PAGES, OCR_CACHE, content_sha
 
 from steps.transform_disclosure_files.candidates import CANDIDATE_NAMES, extract_candidate  # noqa: E402
+from steps.transform_disclosure_files.mistral_ocr import read_cached_ocr  # noqa: E402
 from steps.transform_disclosure_files.process import _merge_page_splits  # noqa: E402
 
 FIX_KINDS = ("baseline", "config", "params", "candidate", "wrapper", "fork", "gate")  # cheapest first
@@ -42,6 +43,8 @@ def register(fix: Fix) -> Fix:
         raise ValueError(f"duplicate fix: {fix.name}")
     if fix.kind not in FIX_KINDS:
         raise ValueError(f"unknown kind {fix.kind!r} for {fix.name}; known: {FIX_KINDS}")
+    if fix.kind == "gate" and fix.scope != "global":
+        raise ValueError(f"gate fix {fix.name} must have scope='global', got {fix.scope!r}")
     if fix.scope not in SCOPES:
         raise ValueError(f"unknown scope {fix.scope!r} for {fix.name}; known: {SCOPES}")
     REGISTRY[fix.name] = fix
@@ -76,6 +79,8 @@ def _forced(name: str) -> Callable[[bytes, str], list[list] | None]:
     def extract(data: bytes, url: str) -> list[list] | None:
         # mistral_cache only reads OCR_CACHE: read_cached_ocr returns None on a
         # miss and never constructs a client, so no paid call is possible.
+        if name == "mistral_cache" and read_cached_ocr(url, OCR_CACHE) is None:
+            raise NotExtracted(f"no cached OCR for {url}")
         c = extract_candidate(name, data, file_url=url, ocr_cache_dir=OCR_CACHE)
         return c.rows if c else None
     return extract

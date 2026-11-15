@@ -52,7 +52,7 @@ Definitions:
    - Render pages: `uv run python -m experiments.gating.gold_tools render --url <file_url> --out <dir> [--dpi 110]`. Prints the image paths.
    - Draft bounds (see the Haiku prompt in section 5) into a `bounds.json`:
      `{"dpi": 110, "columns": ["col a", ...], "pages": [{"page": 1, "x": [x0, x1, ...], "y": [y0, y1, ...], "skip_rows": [0]}]}`. `x` and `y` are pixel lines at that dpi; `skip_rows` are row indexes (header rows) to leave out. The text comes only from the PDF text layer.
-   - Build: `uv run python -m experiments.gating.gold_tools build --url <file_url> --bounds bounds.json`. It writes `<bakeoff>/gold/<content-sha>.json` and marks it `provisional` in `gold_status.json`. **It overwrites an existing gold file. Never point it at a sha that already has a checked gold file without the user's say-so.**
+   - Build: `uv run python -m experiments.gating.gold_tools build --url <file_url> --bounds bounds.json`. It writes `<bakeoff>/gold/<content-sha>.json` and marks it `provisional` in `gold_status.json`. It also writes cell positions to `gating/gold_cells/<content-sha>.json` (used by the review page crops). **It refuses (FileExistsError) if the gold file already exists; `--force` overwrites it and resets it to `provisional`. Never use `--force` on a sha that already has a checked gold file without the user's say-so.**
    - Cells to check: `gold_tools.cells_to_check(gold, fix_rows, n_random=10, seed="")` returns the cells where gold and the extractors disagree plus 10 random cells. The review page does this for you.
    - Rerun step 7 with `--cluster-gold <sha>`.
 9. **Build the review page.**
@@ -65,7 +65,7 @@ Definitions:
     - Verdicts are saved to `<round dir>/verdicts.json` as `{key: {text, tags, saved_at}}`. The ship answer is under key `__ship__`.
     - Stop it when the user is done.
 11. **Read `verdicts.json`.** Apply gold corrections to the gold file, then `gold_tools.mark_gold_checked(sha)` (sets `checked` in `gold_status.json`), then rerun step 7. If the user's fault name differs from the hypothesis, the user's reading wins: revise the fixes and rerun once.
-12. **Record the decision** in the round README: the table, the winner, records recoverable (a number), controls made worse for the winner (must be 0 for a global fix), and the recommendation. A docling, fork or gate win is a recommendation only (section 6).
+12. **Record the decision** in the round README: the table, the winner, records recoverable (a number), controls made worse for the winner (must be 0 for a global fix; compare with `experiments/2026-11-14-pdf-extractor-bakeoff/before_after.py`), and the recommendation. A docling, fork or gate win is a recommendation only (section 6).
 13. **Update the ledger.** `set_state(file_urls, fault_kind='E', fault_firm=True, status='open', note='<round folder>')` (status `resolved` only after something ships, `parked` per the stop rules). Then run step 1 again to rebuild.
 14. **Index row** in `experiments/README.md`, then commit with explicit paths.
 
@@ -162,7 +162,7 @@ For each file URL with a verdict, work out the fault kind (E extractor, M mappin
 
 Shipping (only on the user's yes for that cluster):
 
-- Default: explicit routing per file. The `pdf_extractor` key in `column_mappings.json`, keyed by `file_url` and validated against `CANDIDATE_ORDER`. One generated entry per file. Run the change over every file the routing matches and compare before and after (`before_after.py --bodies`). Add tests for the routing.
+- Default: explicit routing per file. The `pdf_extractor` key in `column_mappings.json`, keyed by `file_url` and validated against `CANDIDATE_ORDER`. One generated entry per file. Run the change over every file the routing matches and compare before and after (`experiments/2026-11-14-pdf-extractor-bakeoff/before_after.py --bodies`). Add tests for the routing.
 - A docling or fork win cannot ship through config alone, since the override only accepts names in `CANDIDATE_ORDER`. The proposal is to ship it as a cache-backed candidate, as `mistral_cache` works. Until the user confirms that, such a round ends with a recommendation and the measured numbers, not a ship.
 - A gate (`G`) fix touches every file, so it always needs a full before/after over all bodies and a control check.
 - A change to the global candidate order is only proposed when three or more clusters picked the same extractor and a full-corpus run shows no control made worse.

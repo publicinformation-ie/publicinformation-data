@@ -57,8 +57,14 @@ def make_server(round_dir: Path, host: str, port: int) -> ThreadingHTTPServer:
             if path == "/verdicts":
                 with lock:
                     return self._send(200, json.dumps(read_verdicts()).encode(), "application/json")
-            if path == "/" or path.startswith("/review/"):
-                rel = "index.html" if path == "/" else path[len("/review/"):]
+            if path == "/":  # the page's links are relative to /review/
+                self.send_response(302)
+                self.send_header("Location", "/review/index.html")
+                self.send_header("Content-Length", "0")
+                self.end_headers()
+                return
+            if path.startswith("/review/"):
+                rel = path[len("/review/"):]
                 p = (review / rel).resolve()
                 if p != review and review not in p.parents or not p.is_file():
                     return self._send(404, b"not found")

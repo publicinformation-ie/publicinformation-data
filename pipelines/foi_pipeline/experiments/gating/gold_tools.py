@@ -21,6 +21,7 @@ from bakeoff import _norm  # noqa: E402
 from lib.table_structure import _cell_type, _data_rows  # noqa: E402
 
 STATUS_PATH = GATING / "gold_status.json"
+GOLD_CELLS_DIR = GATING / "gold_cells"  # cell page + rect, kept out of the bake-off gold format
 FIRST, LAST = 15, 5
 
 
@@ -132,13 +133,24 @@ def _set_status(sha: str, value: str, status_path: Path) -> None:
 
 
 def save_gold(content_sha: str, gold: dict, gold_dir: Path = GOLD_DIR,
-              status_path: Path = STATUS_PATH) -> Path:
+              status_path: Path = STATUS_PATH, cells_dir: Path = GOLD_CELLS_DIR, force: bool = False) -> Path:
     gold_dir = Path(gold_dir)
     gold_dir.mkdir(parents=True, exist_ok=True)
     p = gold_dir / f"{content_sha}.json"
+    if p.exists() and not force:
+        raise FileExistsError(f"{p} already exists (may be hand-checked); pass force=True / --force to overwrite")
+    if gold.get("cells"):
+        cells_dir = Path(cells_dir)
+        cells_dir.mkdir(parents=True, exist_ok=True)
+        (cells_dir / f"{content_sha}.json").write_text(json.dumps(gold["cells"], indent=1) + "\n")
     p.write_text(json.dumps({"columns": gold["columns"], "rows": gold["rows"]}, indent=1, ensure_ascii=False) + "\n")
     _set_status(content_sha, "provisional", status_path)
     return p
+
+
+def load_gold_cells(sha: str, cells_dir: Path = GOLD_CELLS_DIR) -> list | None:
+    p = Path(cells_dir) / f"{sha}.json"
+    return json.loads(p.read_text()) if p.is_file() else None
 
 
 def mark_gold_checked(sha: str, status_path: Path = STATUS_PATH) -> None:
@@ -155,6 +167,7 @@ def main(argv=None) -> None:
     b = sub.add_parser("build")
     b.add_argument("--url", required=True)
     b.add_argument("--bounds", required=True)
+    b.add_argument("--force", action="store_true", help="overwrite an existing gold file (resets it to provisional)")
     a = ap.parse_args(argv)
     data = pdf_bytes(a.url)
     if data is None:
@@ -165,7 +178,7 @@ def main(argv=None) -> None:
     else:
         gold = gold_from_bounds(data, json.loads(Path(a.bounds).read_text()))
         sha = content_sha(data)
-        print(save_gold(sha, gold), f"({len(gold['rows'])} rows, provisional)")
+        print(save_gold(sha, gold, force=a.force), f"({len(gold['rows'])} rows, provisional)")
 
 
 if __name__ == "__main__":

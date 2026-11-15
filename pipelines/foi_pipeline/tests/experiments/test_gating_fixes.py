@@ -102,3 +102,17 @@ def test_rows_from_uses_other_fix_rows(tmp_path):
 
 def test_run_docling_module_imports_without_docling():
     import experiments.gating.run_docling  # noqa: F401
+
+
+def test_gate_fix_must_be_global_scope():
+    with pytest.raises(ValueError):
+        register(Fix(name="t:gate", kind="gate", scope="routed"))
+    register(Fix(name="t:gate", kind="gate", scope="global"))
+
+
+def test_mistral_cache_miss_is_not_extracted_and_not_cached(tmp_path, monkeypatch):
+    monkeypatch.setattr(fixes_mod, "OCR_CACHE", tmp_path / "ocr")
+    fx = get("force:mistral_cache")
+    with pytest.raises(NotExtracted):
+        fx.extract(b"%PDF-x", URL)
+    assert not (tmp_path / "ocr").exists()  # nothing written, no network path

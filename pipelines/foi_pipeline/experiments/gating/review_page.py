@@ -9,7 +9,7 @@ from pathlib import Path
 from experiments.gating.extract_cache import Extraction, get_rows
 from experiments.gating.fixes import get as get_fix, load_round_fixes
 from experiments.gating.downstream import transform_index
-from experiments.gating.gold_tools import _norm, aligned_row, cells_to_check, crop_cell
+from experiments.gating.gold_tools import _norm, aligned_row, cells_to_check, crop_cell, load_gold_cells, GOLD_CELLS_DIR
 from experiments.gating.compare import load_gold
 from experiments.gating.paths import pdf_bytes
 
@@ -154,12 +154,14 @@ def _build_gold(round_dir: Path, files: dict, cache: dict, data: dict, sha: str)
         return
     fix_rows = {n: cache[(url, n)] for n in files[url]["fixes"]}
     cells = cells_to_check(gold, fix_rows, seed=sha)
+    rects = {(x["row"], x["col"]): x for x in (gold.get("cells") or load_gold_cells(sha, GOLD_CELLS_DIR) or [])}
     review = round_dir / "review"
     body = ["<h2>Gold cells</h2><p><a href='index.html'>back</a> <span id=st></span></p>"]
     for c in cells:
         img = ""
-        if data.get(url):
-            crop_cell(data[url], {**_find_rect(gold, c), "page": _find_rect(gold, c)["page"]},
+        rect = rects.get((c["row"], c["col"]))
+        if data.get(url) and rect:
+            crop_cell(data[url], rect,
                       review / "crops" / f"{c['row']}-{c['col']}.png")
             img = f"<img src='crops/{c['row']}-{c['col']}.png'>"
         vals = "".join(f"<br>{_e(n)}: <code>{_e(v)}</code>" for n, v in c["values"].items())
@@ -172,6 +174,3 @@ def _build_gold(round_dir: Path, files: dict, cache: dict, data: dict, sha: str)
                                       f"content='width=device-width'><style>{CSS}</style>" + "".join(body)
                                       + JS.replace("%s", json.dumps(TAGS)))
 
-
-def _find_rect(gold: dict, c: dict) -> dict:
-    return next(x for x in gold["cells"] if x["row"] == c["row"] and x["col"] == c["col"])
