@@ -1,0 +1,61 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+<https://data.publicinformation.ie/dataset/active-travel-allocations>
+    a dcat:Dataset ;
+    dct:title "Active Travel Investment Grant Allocations"@en ;
+    dct:description "Project-level allocations from the National Transport Authority's annual Active Travel Investment Grant programme, 2022 to 2026. Each record is one project's allocation in one funding stream in one authority's table, read from the published PDF and published only where the document's own declared totals confirm the figures."@en ;
+    dct:publisher <https://www.publicinformation.ie/> ;
+    dct:creator <https://www.publicinformation.ie/> ;
+    dct:issued "2026-11-15"^^xsd:date ;
+    dct:modified "2026-11-15"^^xsd:date ;
+    owl:versionInfo "1.0.0" ;
+    dct:language <http://publications.europa.eu/resource/authority/language/ENG> ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:accrualPeriodicity <http://publications.europa.eu/resource/authority/frequency/ANNUAL> ;
+    dcat:keyword "active travel", "walking", "cycling", "National Transport Authority", "local authorities", "grant allocations", "Ireland", "open data"@en ;
+    dcat:theme <http://data.europa.eu/m8g/GOVERNMENT> ;
+    dcat:contactPoint [
+        a vcard:Organization ;
+        vcard:fn "PublicInformation.ie" ;
+        vcard:hasEmail <mailto:dave@publicinformation.ie> ;
+    ] ;
+    dct:relation <https://data.publicinformation.ie/dataset/public-bodies> ;
+
+    dcat:distribution [
+        a dcat:Distribution ;
+        dct:title "Active Travel allocations (JSON-LD, latest)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/active-travel-allocations/active-travel-allocations.jsonld> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/active-travel-allocations/active-travel-allocations.jsonld> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "application/ld+json" ;
+        dct:conformsTo <https://data.publicinformation.ie/schemas/active-travel-allocations.schema.json> ;
+    ] , [
+        a dcat:Distribution ;
+        dct:title "Active Travel allocations (CSV, latest)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/active-travel-allocations/active-travel-allocations.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/active-travel-allocations/active-travel-allocations.csv> ;
+        dct:conformsTo <http://www.w3.org/ns/csvw> ;
+        dct:conformsTo <https://data.publicinformation.ie/v1.0.0/active-travel-allocations/active-travel-allocations.csv-metadata.json> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "text/csv" ;
+    ] .
+
+<https://data.publicinformation.ie/dataset/active-travel-allocations>
+    prov:wasGeneratedBy [
+        a prov:Activity ;
+        prov:startedAtTime "2026-11-15T00:00:00Z"^^xsd:dateTime ;
+        prov:wasAssociatedWith [
+            a prov:Agent ;
+            prov:actedOnBehalfOf <https://www.publicinformation.ie/> ;
+            foaf:name "PublicInformation.ie Pipeline" ;
+            foaf:homepage <https://github.com/publicinformation-ie/publicinformation-data> ;
+        ] ;
+    ] .

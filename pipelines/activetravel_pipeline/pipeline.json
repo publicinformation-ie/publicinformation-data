@@ -1,0 +1,14 @@
+{
+  "steps": [
+    "fetch_grant_documents",
+    "extract_grant_tables",
+    "classify_grant_rows",
+    "normalize_grant_amounts",
+    "segment_funding_streams",
+    "resolve_recipients",
+    "reconcile_sections",
+    "reconcile_summary",
+    "canonicalize_allocations",
+    "export_allocations"
+  ]
+}
