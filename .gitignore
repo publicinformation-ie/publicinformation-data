@@ -77,3 +77,4 @@ errors.json.lock
 pipelines/foi_pipeline/experiments/gating/cache/
 pipelines/foi_pipeline/experiments/gating/scratch/
 pipelines/foi_pipeline/experiments/gating/docling_pages/
+pipelines/foi_pipeline/experiments/*-gating-round-*/review/
