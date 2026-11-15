@@ -1,14 +1,18 @@
 {
   "https://assets.gov.ie/static/documents/non-personal-foi-requests-2017.pdf": {
-    "cluster": "1594-non-personal-2017-2020"
+    "cluster": "1594-non-personal-2017-2020",
+    "status": "in_round"
   },
   "https://assets.gov.ie/static/documents/non-personal-foi-requests-2018.pdf": {
-    "cluster": "1594-non-personal-2017-2020"
+    "cluster": "1594-non-personal-2017-2020",
+    "status": "in_round"
   },
   "https://assets.gov.ie/static/documents/non-personal-foi-requests-2019.pdf": {
-    "cluster": "1594-non-personal-2017-2020"
+    "cluster": "1594-non-personal-2017-2020",
+    "status": "in_round"
   },
   "https://assets.gov.ie/static/documents/non-personal-foi-requests-2020.pdf": {
-    "cluster": "1594-non-personal-2017-2020"
+    "cluster": "1594-non-personal-2017-2020",
+    "status": "in_round"
   }
 }
