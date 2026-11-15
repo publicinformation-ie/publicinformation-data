@@ -81,6 +81,13 @@ def test_the_csv_header_matches_the_csvw_and_the_jsonld():
     assert set(header) == properties | {"id"}
 
 
+def test_the_csv_boolean_column_uses_the_lowercase_lexical_space():
+    "CSVW declares project_code_provisional as boolean; 'True' is not in its lexical space."
+    with (LATEST / "active-travel-allocations.csv").open(newline="", encoding="utf-8") as fh:
+        values = {row["project_code_provisional"] for row in csv.DictReader(fh)}
+    assert values <= {"true", "false"}, values
+
+
 def test_the_csv_row_count_matches_the_jsonld_graph():
     with (LATEST / "active-travel-allocations.csv").open(newline="", encoding="utf-8") as fh:
         rows = list(csv.DictReader(fh))

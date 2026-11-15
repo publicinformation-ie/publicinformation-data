@@ -86,7 +86,15 @@ def test_transform_to_csv_rows_uses_the_published_columns():
     assert fieldnames == CSV_FIELDNAMES
     assert rows[0]["id"] == records[0]["@id"]
     assert rows[0]["public_body_id"] == 1876
-    assert rows[0]["project_code_provisional"] is False
+    # CSVW's boolean lexical space is lowercase, matching public-bodies.csv.
+    assert rows[0]["project_code_provisional"] == "false"
+
+
+def test_transform_to_csv_rows_writes_a_true_flag_as_lowercase():
+    allocation = _allocation()
+    allocation.update(project_code="WCC/26/XXXX", project_code_provisional=True)
+    _, rows = transform_to_csv_rows([build_record(allocation, SLUG_LOOKUP)])
+    assert rows[0]["project_code_provisional"] == "true"
 
 
 def test_transform_to_csv_rows_leaves_the_body_columns_empty_for_other_recipients():

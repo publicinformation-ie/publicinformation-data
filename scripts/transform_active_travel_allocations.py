@@ -109,7 +109,14 @@ def transform_to_jsonld(records: list[dict]) -> dict:
 def transform_to_csv_rows(records: list[dict]) -> tuple[list[str], list[dict]]:
     rows = []
     for record in records:
-        row = {field: record.get(field, "") for field in RECORD_FIELDS}
+        row = {}
+        for field in RECORD_FIELDS:
+            value = record.get(field, "")
+            # CSVW declares this column as `boolean`, whose lexical space is
+            # lowercase; str(True) would not parse as one.
+            if isinstance(value, bool):
+                value = "true" if value else "false"
+            row[field] = value
         row["id"] = record["@id"]
         rows.append(row)
     return CSV_FIELDNAMES, rows
