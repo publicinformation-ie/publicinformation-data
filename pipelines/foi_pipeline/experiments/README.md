@@ -10,9 +10,13 @@ Experiments live in dated subdirectories (`YYYY-MM-DD-<slug>/`). Each has its ow
 | 2026-06-04 | [pdfplumber-param-sweep](2026-06-04-pdfplumber-param-sweep/) | `snap_tolerance=6` adds +6.7pp clean rate; adopted as config 4 |
 | 2026-11-14 | [pdf-extractor-bakeoff](2026-11-14-pdf-extractor-bakeoff/) | Cached Mistral replay: 74 clean vs 78 current of 208 cached error PDFs; no gain |
 
+## Gating rounds
+
+Fixes for gated and high-error files are tried in rounds with the harness in [`gating/`](gating/). Read [`gating/PLAYBOOK.md`](gating/PLAYBOOK.md) before running one; each round gets its own `YYYY-MM-DD-gating-round-NN-<slug>/` folder and an index row above.
+
 ## Before running an experiment
 
-**`transform_disclosure_files` is slow.** It takes ~4.5 minutes to process 500 files. Never re-run the full step to test extraction changes — instead, operate directly on cached bytes as the pdfplumber sweep does. The cache lives at `steps/transform_disclosure_files/cache/` (URL → SHA256).
+**`transform_disclosure_files` is slow.** It takes ~4.5 minutes to process 500 files. Never re-run the full step to test extraction changes — instead, operate directly on cached bytes as the pdfplumber sweep does. The cache lives at `steps/verify_disclosure_files/cache/` (`<sha256 of URL>.bytes`).
 
 **Use the eval fixture, not live output.** `steps/transform_disclosure_files/eval/input.json` is a frozen snapshot of step output used for reproducible scoring. Refresh it with:
 ```bash
