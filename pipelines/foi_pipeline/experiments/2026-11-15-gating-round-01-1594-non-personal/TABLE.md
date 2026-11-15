@@ -4,14 +4,14 @@ Winner: gate-dd-mon-yy
 
 | fix | kind | scope | files_resolved | files_gate_pass | records_recovered | errors_after | gold_accuracy | cluster_gold | agreement | controls_worse | controls_differ | not_run | seconds_per_file | disqualified |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| current | baseline | routed | 0 | 0 | 0 | 7 | 0.949 |  | 0.9922 | 0 | 0 | 0 | 0.0 | no |
-| force:pdfplumber | config | routed | 0 | 0 | 0 | 7 | 0.7109 |  | 0.9929 | 7 | 7 | 0 | 0.411 | no |
-| force:pymupdf | config | routed | 0 | 0 | 0 | 7 | 0.6439 |  | 0.995 | 7 | 9 | 1 | 0.503 | no |
-| force:camelot_lattice | config | routed | 0 | 0 | 0 | 7 | 0.7592 |  | 0.9943 | 4 | 8 | 1 | 3.218 | no |
-| force:camelot_stream | config | routed | 0 | 0 | 0 | 19 | 0.4148 |  | 0.8344 | 6 | 8 | 0 | 0.623 | no |
-| force:mistral_cache | config | routed | 0 | 0 | 0 | 6 | 0.6188 |  | 0.8654 | 7 | 8 | 7 | 0.002 | no |
-| docling | candidate | routed | 0 | 0 | 0 | 7 | 0.913 |  | 0.9564 | 2 | 10 | 0 | 0.001 | no |
-| gate-dd-mon-yy | gate | global | 0 | 4 | 568 | 7 | 0.949 |  | 0.9922 | 0 | 0 | 0 | 0.0 | no |
+| current | baseline | routed | 0 | 0 | 0 | 7 | 0.9537 | 1.0 | 0.9922 | 0 | 0 | 0 | 0.0 | no |
+| force:pdfplumber | config | routed | 0 | 0 | 0 | 7 | 0.7372 | 1.0 | 0.9929 | 7 | 7 | 0 | 0.411 | no |
+| force:pymupdf | config | routed | 0 | 0 | 0 | 7 | 0.6762 | 1.0 | 0.995 | 7 | 9 | 1 | 0.503 | no |
+| force:camelot_lattice | config | routed | 0 | 0 | 0 | 7 | 0.7811 | 1.0 | 0.9943 | 4 | 8 | 1 | 3.218 | no |
+| force:camelot_stream | config | routed | 0 | 0 | 0 | 19 | 0.4566 | 0.875 | 0.8344 | 6 | 8 | 0 | 0.623 | no |
+| force:mistral_cache | config | routed | 0 | 0 | 0 | 6 | 0.652 | 0.9833333333333333 | 0.8654 | 7 | 8 | 7 | 0.002 | no |
+| docling | candidate | routed | 0 | 0 | 0 | 7 | 0.9209 | 1.0 | 0.9564 | 2 | 10 | 0 | 0.001 | no |
+| gate-dd-mon-yy | gate | global | 4 | 4 | 568 | 7 | 0.9537 | 1.0 | 0.9922 | 0 | 0 | 0 | 0.0 | no |
 
 | file | fix | status | gate | failed checks | records | errors | best agreement | agrees with | resolved |
 |---|---|---|---|---|---|---|---|---|---|
@@ -182,7 +182,7 @@ Winner: gate-dd-mon-yy
 | Office of Public Works (cluster) | force:camelot_stream | ok | no | role_contamination | 121 | 1 | 0.8277777777777777 | force:pdfplumber | no |
 | Office of Public Works (cluster) | force:mistral_cache | ok | no | width_uniformity, role_contamination | 118 | 1 | 0.8008474576271186 | force:pymupdf | no |
 | Office of Public Works (cluster) | docling | ok | no | role_contamination | 108 | 0 | 0.8884180790960452 | current | no |
-| Office of Public Works (cluster) | gate-dd-mon-yy | ok | yes |  | 118 | 0 | 0.9943502824858758 | force:pymupdf |  |
+| Office of Public Works (cluster) | gate-dd-mon-yy | ok | yes |  | 118 | 0 | 0.9943502824858758 | force:pymupdf | yes |
 | Office of Public Works (cluster) | current | ok | no | role_contamination | 152 | 2 | 0.9978213507625272 | force:camelot_lattice | no |
 | Office of Public Works (cluster) | force:pdfplumber | ok | no | role_contamination | 152 | 2 | 0.9978213507625272 | force:camelot_lattice | no |
 | Office of Public Works (cluster) | force:pymupdf | ok | no | role_contamination | 152 | 2 | 0.9978213507625272 | force:camelot_lattice | no |
@@ -190,7 +190,7 @@ Winner: gate-dd-mon-yy
 | Office of Public Works (cluster) | force:camelot_stream | ok | no | role_contamination | 162 | 4 | 0.8653846153846154 | current | no |
 | Office of Public Works (cluster) | force:mistral_cache | ok | no | role_contamination | 152 | 1 | 0.9618736383442266 | force:pymupdf | no |
 | Office of Public Works (cluster) | docling | ok | no | role_contamination | 152 | 2 | 0.9847494553376906 | force:camelot_lattice | no |
-| Office of Public Works (cluster) | gate-dd-mon-yy | ok | yes |  | 152 | 2 | 0.9978213507625272 | force:camelot_lattice |  |
+| Office of Public Works (cluster) | gate-dd-mon-yy | ok | yes |  | 152 | 2 | 0.9978213507625272 | force:camelot_lattice | yes |
 | Office of Public Works (cluster) | current | ok | no | role_contamination | 157 | 3 | 0.9861995753715499 | force:pdfplumber | no |
 | Office of Public Works (cluster) | force:pdfplumber | ok | no | role_contamination | 156 | 3 | 0.9861995753715499 | current | no |
 | Office of Public Works (cluster) | force:pymupdf | ok | no | role_contamination | 157 | 3 | 0.9861995753715499 | force:pdfplumber | no |
@@ -198,7 +198,7 @@ Winner: gate-dd-mon-yy
 | Office of Public Works (cluster) | force:camelot_stream | ok | no | role_contamination | 157 | 3 | 0.8715498938428875 | current | no |
 | Office of Public Works (cluster) | force:mistral_cache | ok | no | role_contamination | 158 | 2 | 0.7685774946921444 | current | no |
 | Office of Public Works (cluster) | docling | ok | no | role_contamination | 157 | 3 | 0.9819532908704883 | current | no |
-| Office of Public Works (cluster) | gate-dd-mon-yy | ok | yes |  | 157 | 3 | 0.9861995753715499 | force:pdfplumber |  |
+| Office of Public Works (cluster) | gate-dd-mon-yy | ok | yes |  | 157 | 3 | 0.9861995753715499 | force:pdfplumber | yes |
 | Office of Public Works (cluster) | current | ok | no | role_contamination | 141 | 2 | 0.9905437352245863 | force:pymupdf | no |
 | Office of Public Works (cluster) | force:pdfplumber | ok | no | role_contamination | 141 | 2 | 0.9905437352245863 | force:pymupdf | no |
 | Office of Public Works (cluster) | force:pymupdf | ok | no | role_contamination | 141 | 2 | 0.9988179669030733 | force:camelot_lattice | no |
@@ -206,4 +206,4 @@ Winner: gate-dd-mon-yy
 | Office of Public Works (cluster) | force:camelot_stream | ok | no | role_contamination | 141 | 11 | 0.7727272727272727 | force:pymupdf | no |
 | Office of Public Works (cluster) | force:mistral_cache | ok | no | role_contamination | 141 | 2 | 0.9302600472813238 | force:pymupdf | no |
 | Office of Public Works (cluster) | docling | ok | no | role_contamination | 141 | 2 | 0.9704491725768322 | force:pymupdf | no |
-| Office of Public Works (cluster) | gate-dd-mon-yy | ok | yes |  | 141 | 2 | 0.9905437352245863 | force:pymupdf |  |
+| Office of Public Works (cluster) | gate-dd-mon-yy | ok | yes |  | 141 | 2 | 0.9905437352245863 | force:pymupdf | yes |

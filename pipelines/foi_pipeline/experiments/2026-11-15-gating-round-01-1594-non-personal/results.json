@@ -92,7 +92,7 @@
     },
     "force:mistral_cache": {
      "status": "not_extracted",
-     "seconds": 0.004334926605224609,
+     "seconds": 1.5974044799804688e-05,
      "family": "mistral",
      "gate_pass": false,
      "failed_checks": [],
@@ -227,7 +227,7 @@
     },
     "force:mistral_cache": {
      "status": "not_extracted",
-     "seconds": 0.00019288063049316406,
+     "seconds": 1.0013580322265625e-05,
      "family": "mistral",
      "gate_pass": false,
      "failed_checks": [],
@@ -353,7 +353,7 @@
     },
     "force:mistral_cache": {
      "status": "not_extracted",
-     "seconds": 0.0001800060272216797,
+     "seconds": 6.9141387939453125e-06,
      "family": "mistral",
      "gate_pass": false,
      "failed_checks": [],
@@ -737,7 +737,7 @@
     },
     "force:mistral_cache": {
      "status": "not_extracted",
-     "seconds": 0.00017523765563964844,
+     "seconds": 7.867813110351562e-06,
      "family": "mistral",
      "gate_pass": false,
      "failed_checks": [],
@@ -1383,7 +1383,7 @@
     },
     "force:mistral_cache": {
      "status": "not_extracted",
-     "seconds": 0.0005869865417480469,
+     "seconds": 6.9141387939453125e-06,
      "family": "mistral",
      "gate_pass": false,
      "failed_checks": [],
@@ -1520,7 +1520,7 @@
     },
     "force:mistral_cache": {
      "status": "not_extracted",
-     "seconds": 8.821487426757812e-06,
+     "seconds": 5.9604644775390625e-06,
      "family": "mistral",
      "gate_pass": false,
      "failed_checks": [],
@@ -1916,7 +1916,7 @@
     },
     "force:mistral_cache": {
      "status": "not_extracted",
-     "seconds": 0.00020575523376464844,
+     "seconds": 5.9604644775390625e-06,
      "family": "mistral",
      "gate_pass": false,
      "failed_checks": [],
@@ -2724,7 +2724,7 @@
      "gold": null,
      "best_agreement": 0.9943502824858758,
      "agrees_with": "force:pymupdf",
-     "resolved": null
+     "resolved": true
     }
    }
   },
@@ -2745,7 +2745,7 @@
      "records": 152,
      "errors": 2,
      "override_bound": false,
-     "gold": null,
+     "gold": 1.0,
      "best_agreement": 0.9978213507625272,
      "agrees_with": "force:camelot_lattice",
      "resolved": false
@@ -2761,7 +2761,7 @@
      "records": 152,
      "errors": 2,
      "override_bound": false,
-     "gold": null,
+     "gold": 1.0,
      "best_agreement": 0.9978213507625272,
      "agrees_with": "force:camelot_lattice",
      "resolved": false
@@ -2777,7 +2777,7 @@
      "records": 152,
      "errors": 2,
      "override_bound": false,
-     "gold": null,
+     "gold": 1.0,
      "best_agreement": 0.9978213507625272,
      "agrees_with": "force:camelot_lattice",
      "resolved": false
@@ -2793,7 +2793,7 @@
      "records": 152,
      "errors": 2,
      "override_bound": false,
-     "gold": null,
+     "gold": 1.0,
      "best_agreement": 0.9978213507625272,
      "agrees_with": "current",
      "resolved": false
@@ -2809,7 +2809,7 @@
      "records": 162,
      "errors": 4,
      "override_bound": false,
-     "gold": null,
+     "gold": 0.875,
      "best_agreement": 0.8653846153846154,
      "agrees_with": "current",
      "resolved": false
@@ -2825,7 +2825,7 @@
      "records": 152,
      "errors": 1,
      "override_bound": false,
-     "gold": null,
+     "gold": 0.9833333333333333,
      "best_agreement": 0.9618736383442266,
      "agrees_with": "force:pymupdf",
      "resolved": false
@@ -2841,7 +2841,7 @@
      "records": 152,
      "errors": 2,
      "override_bound": false,
-     "gold": null,
+     "gold": 1.0,
      "best_agreement": 0.9847494553376906,
      "agrees_with": "force:camelot_lattice",
      "resolved": false
@@ -2855,10 +2855,10 @@
      "records": 152,
      "errors": 2,
      "override_bound": false,
-     "gold": null,
+     "gold": 1.0,
      "best_agreement": 0.9978213507625272,
      "agrees_with": "force:camelot_lattice",
-     "resolved": null
+     "resolved": true
     }
    }
   },
@@ -2992,7 +2992,7 @@
      "gold": null,
      "best_agreement": 0.9861995753715499,
      "agrees_with": "force:pdfplumber",
-     "resolved": null
+     "resolved": true
     }
    }
   },
@@ -3126,7 +3126,7 @@
      "gold": null,
      "best_agreement": 0.9905437352245863,
      "agrees_with": "force:pymupdf",
-     "resolved": null
+     "resolved": true
     }
    }
   }
@@ -3140,8 +3140,8 @@
    "files_gate_pass": 0,
    "records_recovered": 0,
    "errors_after": 7,
-   "gold_accuracy": 0.949,
-   "cluster_gold": null,
+   "gold_accuracy": 0.9537,
+   "cluster_gold": 1.0,
    "agreement": 0.9922,
    "controls_worse": 0,
    "controls_differ": 0,
@@ -3157,8 +3157,8 @@
    "files_gate_pass": 0,
    "records_recovered": 0,
    "errors_after": 7,
-   "gold_accuracy": 0.7109,
-   "cluster_gold": null,
+   "gold_accuracy": 0.7372,
+   "cluster_gold": 1.0,
    "agreement": 0.9929,
    "controls_worse": 7,
    "controls_differ": 7,
@@ -3174,8 +3174,8 @@
    "files_gate_pass": 0,
    "records_recovered": 0,
    "errors_after": 7,
-   "gold_accuracy": 0.6439,
-   "cluster_gold": null,
+   "gold_accuracy": 0.6762,
+   "cluster_gold": 1.0,
    "agreement": 0.995,
    "controls_worse": 7,
    "controls_differ": 9,
@@ -3191,8 +3191,8 @@
    "files_gate_pass": 0,
    "records_recovered": 0,
    "errors_after": 7,
-   "gold_accuracy": 0.7592,
-   "cluster_gold": null,
+   "gold_accuracy": 0.7811,
+   "cluster_gold": 1.0,
    "agreement": 0.9943,
    "controls_worse": 4,
    "controls_differ": 8,
@@ -3208,8 +3208,8 @@
    "files_gate_pass": 0,
    "records_recovered": 0,
    "errors_after": 19,
-   "gold_accuracy": 0.4148,
-   "cluster_gold": null,
+   "gold_accuracy": 0.4566,
+   "cluster_gold": 0.875,
    "agreement": 0.8344,
    "controls_worse": 6,
    "controls_differ": 8,
@@ -3225,8 +3225,8 @@
    "files_gate_pass": 0,
    "records_recovered": 0,
    "errors_after": 6,
-   "gold_accuracy": 0.6188,
-   "cluster_gold": null,
+   "gold_accuracy": 0.652,
+   "cluster_gold": 0.9833333333333333,
    "agreement": 0.8654,
    "controls_worse": 7,
    "controls_differ": 8,
@@ -3242,8 +3242,8 @@
    "files_gate_pass": 0,
    "records_recovered": 0,
    "errors_after": 7,
-   "gold_accuracy": 0.913,
-   "cluster_gold": null,
+   "gold_accuracy": 0.9209,
+   "cluster_gold": 1.0,
    "agreement": 0.9564,
    "controls_worse": 2,
    "controls_differ": 10,
@@ -3255,12 +3255,12 @@
    "fix": "gate-dd-mon-yy",
    "kind": "gate",
    "scope": "global",
-   "files_resolved": 0,
+   "files_resolved": 4,
    "files_gate_pass": 4,
    "records_recovered": 568,
    "errors_after": 7,
-   "gold_accuracy": 0.949,
-   "cluster_gold": null,
+   "gold_accuracy": 0.9537,
+   "cluster_gold": 1.0,
    "agreement": 0.9922,
    "controls_worse": 0,
    "controls_differ": 0,
