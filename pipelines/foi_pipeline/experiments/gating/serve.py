@@ -79,6 +79,11 @@ def make_server(round_dir: Path, host: str, port: int) -> ThreadingHTTPServer:
         def do_POST(self):
             if urlsplit(self.path).path != "/verdict":
                 return self._send(404, b"not found")
+            origin = self.headers.get("Origin")
+            if origin is not None and urlsplit(origin).netloc != self.headers.get("Host"):
+                return self._send(403, b"forbidden origin")
+            if self.headers.get("Content-Type", "").split(";")[0].strip().lower() != "application/json":
+                return self._send(400, b"content-type must be application/json")
             try:
                 n = int(self.headers.get("Content-Length", "0"))
             except ValueError:

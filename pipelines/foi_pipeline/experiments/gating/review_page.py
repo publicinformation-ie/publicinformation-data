@@ -18,18 +18,18 @@ CSS = ("body{font:16px system-ui,sans-serif;margin:8px;max-width:60em}.f{border:
        "padding:8px;margin:8px 0}.rep{border-color:#c60;background:#fff7ee}.why{color:#555;font-size:14px}"
        "input[type=text],textarea{width:100%;box-sizing:border-box;font-size:16px;padding:6px}"
        "button{font-size:15px;padding:6px 10px;margin:2px}a{margin-right:10px}table{border-collapse:collapse}"
-       "td,th{border:1px solid #999;padding:2px 5px}.diff{background:#fc8}img{max-width:100%}.ok{color:#080}")
+       "td,th{border:1px solid #999;padding:2px 5px}.diff{background:#fc8}img{max-width:100%}.ok{color:#080}.sel{background:#8c8;font-weight:bold}")
 JS = """<script>
 function save(key,text,tags){fetch('/verdict',{method:'POST',headers:{'Content-Type':'application/json'},
 body:JSON.stringify({key:key,text:text,tags:tags||[]})}).then(r=>{document.getElementById('st').textContent=r.ok?'saved':'save failed'})}
 function tag(b){var i=b.parentNode.querySelector('input[type=text]');i.value=(i.value?i.value+', ':'')+b.dataset.t}
 function sv(b){var d=b.parentNode;var i=d.querySelector('input[type=text],textarea');var t=i.value;
 save(d.dataset.key,t,TAGS.filter(x=>t.indexOf(x)>=0))}
-function pick(b,v){var d=b.parentNode;var i=d.querySelector('input[type=text]');save(d.dataset.key,i.value,[v])}
+function pick(b,v){var d=b.parentNode;var i=d.querySelector('input[type=text],textarea');save(d.dataset.key,i.value,[v])}
 var TAGS=%s;
 fetch('/verdicts').then(r=>r.json()).then(v=>{document.querySelectorAll('[data-key]').forEach(d=>{
 var x=v[d.dataset.key];if(x){var i=d.querySelector('input[type=text],textarea');if(i)i.value=x.text;
-if(x.tags&&x.tags.length&&!x.text){}}})});
+d.querySelectorAll('button').forEach(b=>{if(x.tags&&x.tags.indexOf(b.textContent)>=0&&(b.getAttribute('onclick')||'').indexOf('pick')>=0)b.classList.add('sel')})}})});
 </script>"""
 
 
@@ -78,16 +78,16 @@ def _line(url: str, f: dict, why: str, rep: bool) -> str:
             f"<button type=button onclick='sv(this)'>save</button></div>")
 
 
-def _changed_by(f: dict) -> str | None:
-    for n, x in f["fixes"].items():
+def _changed_by(u: str, f: dict, cache: dict) -> str | None:
+    """First fix whose rows differ from its base fix's rows for this file."""
+    for n in f["fixes"]:
         try:
             base = get_fix(n).base
         except KeyError:
             base = "current"
-        b = f["fixes"].get(base)
-        if n == base or b is None:
+        if n == base or base not in f["fixes"]:
             continue
-        if (x.get("gate_pass"), x.get("records"), x.get("errors")) != (b.get("gate_pass"), b.get("records"), b.get("errors")):
+        if cache.get((u, n)) != cache.get((u, base)):
             return n
     return None
 
@@ -121,7 +121,7 @@ def build(round_dir: Path, representative_url: str | None = None, cluster_gold_s
         return "failed: " + ", ".join(fails) if fails else "no failed checks"
 
     cluster = [u for u, f in files.items() if f["role"] == "cluster"]
-    changed = {u: _changed_by(f) for u, f in files.items() if f["role"] != "cluster"}
+    changed = {u: _changed_by(u, f, cache) for u, f in files.items() if f["role"] != "cluster"}
     ctl = [u for u, f in files.items() if f["role"] == "control" and changed[u]]
     rest = [u for u in files if u not in cluster and u not in ctl]
     body = [f"<h2>Cluster {_e(res['cluster'])}</h2><p>Asked: (1) name the fault for the representative file, "

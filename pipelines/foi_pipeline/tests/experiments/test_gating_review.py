@@ -14,6 +14,7 @@ ROWS = {
     "current": [["Ref", "Date"], ["FOI-1", "01/01/2023"], ["FOI-2", "<script>x</script>"]],
     "force:docling": [["Ref", "Date"], ["FOI-1", "01/01/2023"], ["FOI-2", "02/02/2023"]],
 }
+ROWS_BY_URL = {}  # (url, fix) -> rows override
 
 
 def _fx(status="ok", gate=True, rec=3, err=0, checks=(), agrees=None):
@@ -35,7 +36,7 @@ def round_dir(tmp_path, monkeypatch):
                     "fixes": {"current": _fx(), "force:docling": _fx()}}}}
     (tmp_path / "results.json").write_text(json.dumps(res))
     monkeypatch.setattr(rp, "get_fix", lambda n: Fix(name=n, kind="baseline" if n == "current" else "candidate"))
-    monkeypatch.setattr(rp, "get_rows", lambda fix, u, d, st, *a, **k: rp.Extraction(ROWS[fix.name], "ok"))
+    monkeypatch.setattr(rp, "get_rows", lambda fix, u, d, st, *a, **k: rp.Extraction(ROWS_BY_URL.get((u, fix.name), ROWS[fix.name]), "ok"))
     monkeypatch.setattr(rp, "transform_index", lambda: {U1: {}, U2: {}, U3: {}})
     monkeypatch.setattr(rp, "pdf_bytes", lambda u: b"%PDF")
     return tmp_path
@@ -139,3 +140,41 @@ def test_gold_page_has_cells_and_buttons(round_dir, monkeypatch):
     rp.build(round_dir, cluster_gold_sha=S1)
     g = (round_dir / "review" / "gold.html").read_text()
     assert "gold:0:1" in g and "&lt;script&gt;" in g and ">wrong<" in g and "crops/0-1.png" in g
+
+
+def test_control_with_equal_counts_but_different_rows_is_listed(round_dir):
+    ROWS_BY_URL[(U3, "force:docling")] = [["Ref", "Date"], ["FOI-9", "09/09/2023"]]
+    try:
+        html = rp.build(round_dir).read_text()
+    finally:
+        ROWS_BY_URL.clear()
+    assert "control changed by force:docling" in html
+    assert "other files" not in html  # both controls now listed
+
+
+def test_ship_block_buttons_use_textarea_and_restore_choice(round_dir):
+    html = rp.build(round_dir).read_text()
+    assert "input[type=text],textarea');" in html.split("function pick")[1].split("}")[0]
+    assert "pick(this,'yes')" in html and "classList.add('sel')" in html
+
+
+def test_wrong_content_type_rejected(server):
+    srv, rd = server
+    st = req(srv, "POST", "/verdict", json.dumps({"key": "k", "text": "", "tags": []}),
+             {"Content-Type": "text/plain"})[0]
+    assert st == 400 and not (rd / "verdicts.json").exists()
+
+
+def test_foreign_origin_is_403(server):
+    srv, rd = server
+    st = req(srv, "POST", "/verdict", json.dumps({"key": "k", "text": "", "tags": []}),
+             {"Content-Type": "application/json", "Origin": "http://evil.test"})[0]
+    assert st == 403 and not (rd / "verdicts.json").exists()
+
+
+def test_same_origin_post_succeeds(server):
+    srv, _ = server
+    port = srv.server_address[1]
+    st = req(srv, "POST", "/verdict", json.dumps({"key": "k", "text": "", "tags": []}),
+             {"Content-Type": "application/json", "Origin": f"http://127.0.0.1:{port}"})[0]
+    assert st == 200
