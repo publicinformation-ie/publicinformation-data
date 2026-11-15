@@ -1,0 +1,110 @@
+[
+  {
+    "document_id": "nta-active-travel-2022",
+    "page": 6,
+    "row_index": 18,
+    "action": "set_amount",
+    "value": 150000,
+    "project_code": "CCC/21/0012",
+    "raw_cell": "undabo€1u5t)0,000",
+    "reason": "The project name overflows into the amount column ('...Dunkettle roundabout€150,000'), interleaving the printed figure. Cork City's declared total confirms €150,000: the section's other rows plus this value equal €46,291,010.",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "document_id": "nta-active-travel-2022",
+    "page": 8,
+    "row_index": 14,
+    "action": "set_amount",
+    "value": 60000,
+    "project_code": "CCC/22/xxxx",
+    "raw_cell": "ection€60,000",
+    "reason": "The project name overflows into the amount column ('...Connection€60,000'). €60,000 is legible in the cell and matches the run of €60,000 rows around it; Cork City's declared total confirms it.",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "document_id": "nta-active-travel-2022",
+    "page": 26,
+    "row_index": 12,
+    "action": "set_amount",
+    "value": 1500000,
+    "project_code": "FCC/20/0006",
+    "raw_cell": "& An €T1a,is5c0e0),000",
+    "reason": "The project name ('...with NTA & An Taisce)') overflows into the amount column. Fingal's declared total confirms €1,500,000: it is the only value that makes the section's rows add up to €25,535,000.",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "document_id": "nta-active-travel-2022",
+    "page": 27,
+    "row_index": 10,
+    "action": "set_amount",
+    "value": 925000,
+    "project_code": "FCC/22/xxxx",
+    "raw_cell": "s €925,000",
+    "reason": "The project name ('...Bremore Cottages') overflows into the amount column; €925,000 is legible in the cell and Fingal's declared total confirms it.",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "document_id": "nta-active-travel-2022",
+    "page": 27,
+    "row_index": 12,
+    "action": "set_amount",
+    "value": 500000,
+    "project_code": "FCC/22/xxxx",
+    "raw_cell": "e Rd) €500,000",
+    "reason": "The project name ('...out to S Shore Rd)') overflows into the amount column; €500,000 is legible in the cell and Fingal's declared total confirms it.",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "document_id": "nta-active-travel-2022",
+    "page": 76,
+    "row_index": 16,
+    "action": "set_amount",
+    "value": 200000,
+    "project_code": "NTA",
+    "raw_cell": "c.) €200,000",
+    "reason": "The project name overflows into the amount column ('...Data Collection etc.)€200,000'). €200,000 is legible and the block's declared total of €6,960,000 confirms it.",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "document_id": "nta-active-travel-2026",
+    "page": 75,
+    "row_index": 5,
+    "action": "set_amount",
+    "value": 200000,
+    "project_code": "WH/25/0010",
+    "raw_cell": "k S€t r e e t / 2 M00a,r0k0e0t P",
+    "reason": "The project name overflows into the amount column ('...at Ellen Street / Market Place'), interleaving the printed figure. Westmeath's declared total confirms €200,000.",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "document_id": "nta-active-travel-2026",
+    "page": 75,
+    "row_index": 6,
+    "action": "set_amount",
+    "value": 5000,
+    "project_code": "WH/25/0011",
+    "raw_cell": "s€ - M a c D i a r 5m,0a0d0a",
+    "reason": "The project name overflows into the amount column ('...Mac Diarmada'), interleaving the printed figure. €5,000 is the value that makes Westmeath's rows add up to €3,500,000.",
+    "source_method": "manual",
+    "overridden": true
+  },
+  {
+    "document_id": "nta-active-travel-2026",
+    "page": 75,
+    "row_index": 13,
+    "action": "set_amount",
+    "value": 10000,
+    "project_code": "WH/26/xxxx",
+    "raw_cell": "w€i t h R o s c 1 o0m,0m0o0n",
+    "reason": "The project name overflows into the amount column ('...with Roscommon'), interleaving the printed figure. €10,000 is the value that makes Westmeath's rows add up to €3,500,000.",
+    "source_method": "manual",
+    "overridden": true
+  }
+]

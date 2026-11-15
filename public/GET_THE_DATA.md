@@ -57,6 +57,12 @@ Motions moved at meetings of Irish local authorities, from the authorities' publ
 
 The 21 transport policies, strategies and codes of practice that define the transport document corpus: who issued each, the period it covers, its scope, and links to its official pages and its curated PDFs (curated in the documents pipeline; see [documents/index.json](documents/index.json) for whether each is published or listed under `failed`).
 
+## [Active Travel allocations](latest/active-travel-allocations/active-travel-allocations.csv)
+
+Every project the National Transport Authority gave Active Travel Investment Grant money to between 2022 and 2026: which local authority received it, the project's code and name, how much was allocated, and which page of which PDF it came from. Amounts are in euro.
+
+Each row is one grant allocation for one project in one year, so the same project appears once for every year it was funded — filter the `project_code` column to follow one scheme across the five years. Rows marked `project_code_provisional` (`True`) carry a placeholder code that the NTA had not yet assigned, so use the project name for those. The `funding_stream` column separates the authority's Active Travel grant (`active_travel`) from money allocated through other NTA funding streams such as bus priority (`other_nta_streams`).
+
 ## Worked example: find a body's FOI contact email
 
 1. Open [public-bodies.csv](latest/public-bodies/public-bodies.csv) in a spreadsheet program.

@@ -1,0 +1,2865 @@
+{
+ "note": "Verbatim pdfplumber rows from a few pages of each committed document, so the extraction, classification and segmentation tests need no downloaded cache. Regenerate from the cache with the snippet in tests/README.md.",
+ "documents": [
+  {
+   "document_id": "nta-active-travel-2022",
+   "pages": [
+    {
+     "page": 1,
+     "rows": [
+      [
+       "Active Travel Investment Grants: 2022 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Project C ode:",
+       "Project Name",
+       "2022 Allocation"
+      ],
+      [
+       "Carlow County Council",
+       "",
+       ""
+      ],
+      [
+       "CW/21/0001",
+       "River Burren Walking & Cycle Track",
+       "€200,000"
+      ],
+      [
+       "CW/21/0002",
+       "Hanover to Tyndall Pedestrian and Cycle Scheme",
+       "€180,000"
+      ],
+      [
+       "CW/21/0003",
+       "Green Lane/Railway Road Junction Improvement Scheme",
+       "€40,000"
+      ],
+      [
+       "CW/21/0004",
+       "Tullow Road Pedestrian and Cycle Scheme, Carlow",
+       "€200,000"
+      ],
+      [
+       "CW/21/0005",
+       "Dublin Road Pedestrian and Cycle Scheme, Carlow",
+       "€140,000"
+      ],
+      [
+       "CW/21/0006",
+       "Staplestown Rd/Pollerton Rd Permeability Link, Carlow",
+       "€48,000"
+      ],
+      [
+       "CW/21/0007",
+       "River Barrow Walk Permeability Link, Carlow",
+       "€80,000"
+      ],
+      [
+       "CW/21/0008",
+       "Tullow Town Orbital Walking & Cycling Scheme",
+       "€150,000"
+      ],
+      [
+       "CW/21/0009",
+       "New Footpath Schemes - Grange, Kildavin, Borris",
+       "€50,000"
+      ],
+      [
+       "CW/21/0010",
+       "Transport Studies / Mobility Plans - including Carlow Town",
+       "€200,000"
+      ],
+      [
+       "CW/21/0011",
+       "Muinebheag Railway Crossings Study",
+       "€52,000"
+      ],
+      [
+       "CW/21/0012",
+       "Light Segregation Cycle Schemes",
+       "€50,000"
+      ],
+      [
+       "CW/21/0013",
+       "Low Cost Junction Tightening/Pedestrian Crossing Schemes",
+       "€120,000"
+      ],
+      [
+       "CW/21/0014",
+       "Low-Cost Permeability Measures",
+       "€80,000"
+      ],
+      [
+       "CW/21/0015",
+       "Safe Routes to Schools Programme - Support Infrastructure",
+       "€100,000"
+      ],
+      [
+       "CW/22/xxxx",
+       "George Semple Bridge, Tinnahinch",
+       "€20,000"
+      ],
+      [
+       "CW/22/xxxx",
+       "Mountain View Link, Hackettstown",
+       "€60,000"
+      ]
+     ]
+    },
+    {
+     "page": 6,
+     "rows": [
+      [
+       "Active Travel Investment Grants: 2022 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Project C ode:",
+       "Project Name",
+       "2022 Allocation"
+      ],
+      [
+       "Cork City Council",
+       "",
+       ""
+      ],
+      [
+       "CCC/20/0018",
+       "Curraheen Pedestrian and Cycleway upgrade",
+       "€100,000"
+      ],
+      [
+       "CCC/20/0020",
+       "Northern Distributor Road Route Selection",
+       "€100,000"
+      ],
+      [
+       "CCC/20/0021",
+       "Passage to City Centre Greenway - Phase1 (N40 to Docklands)",
+       "€3,000,000"
+      ],
+      [
+       "CCC/20/0022",
+       "Lehenaghmore Road",
+       "€1,980,000"
+      ],
+      [
+       "CCC/20/0023",
+       "Half Moon Lane Improvement Scheme",
+       "€100,000"
+      ],
+      [
+       "CCC/20/0025",
+       "Upgrade of Dunkettle Road Phase 1",
+       "€400,000"
+      ],
+      [
+       "CCC/21/0001",
+       "Western Road Ped and Cycle Scheme",
+       "€50,000"
+      ],
+      [
+       "CCC/21/0002",
+       "Melbourne Rd and Donovans Rd to Glaseen cycle lanes",
+       "€100,000"
+      ],
+      [
+       "CCC/21/0003",
+       "Victoria Rd to McSwiney Quay Cycle Lane",
+       "€100,000"
+      ],
+      [
+       "CCC/21/0004",
+       "South Mall Cycle Lane",
+       "€120,000"
+      ],
+      [
+       "CCC/21/0005",
+       "Marina Promenade Pedestrian and Cycle facilities",
+       "€600,000"
+      ],
+      [
+       "CCC/21/0006",
+       "Coach Hill",
+       "€225,000"
+      ],
+      [
+       "CCC/21/0007",
+       "Lea to Sea Cycle Route Study",
+       "€200,000"
+      ],
+      [
+       "CCC/21/0008",
+       "Viaduct to City Cycle Route Phase 1 (Viaduct to Kinsale Road)",
+       "€220,000"
+      ],
+      [
+       "CCC/21/0010",
+       "Docklands Junctions (Albert Quay)",
+       "€100,000"
+      ],
+      [
+       "CCC/21/0012",
+       "Glanmire to City Cycle Route (Phase 1 - Village to Dunkettle ro",
+       "undabo€1u5t)0,000"
+      ],
+      [
+       "CCC/21/0013",
+       "Airport Rd Cycle Lane upgrades",
+       "€400,000"
+      ],
+      [
+       "CCC/21/0014",
+       "Mary St, Douglas Street & White Street Upgrades",
+       "€200,000"
+      ],
+      [
+       "CCC/21/0015",
+       "City Centre Street Pedestrianisation Upgrades (Princes St, Cook St and Marlboro St)",
+       "€100,000"
+      ],
+      [
+       "CCC/21/0016",
+       "Blarney Village",
+       "€200,000"
+      ]
+     ]
+    },
+    {
+     "page": 59,
+     "rows": [
+      [
+       "Active Travel Investment Grants: 2022 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Project C ode:",
+       "Project Name",
+       "2022 Allocation"
+      ],
+      [
+       "South Dublin County Council",
+       "",
+       ""
+      ],
+      [
+       "SDCC/12/0004",
+       "Dodder Greenway Section 2 - Bridges",
+       "€500,000"
+      ],
+      [
+       "SDCC/12/0020",
+       "N81 cycling, walking and bus facilities (Jobstown Junction)",
+       "€50,000"
+      ],
+      [
+       "SDCC/13/0005",
+       "Monastery road walking route",
+       "€110,000"
+      ],
+      [
+       "SDCC/18/0003",
+       "Spawell to Perrystown Cycle Route (Wellington Lane)",
+       "€250,000"
+      ],
+      [
+       "SDCC/18/0005",
+       "Canal Loop Greenway",
+       "€500,000"
+      ],
+      [
+       "SDCC/20/0006",
+       "N81 Transport Strategy",
+       "€15,000"
+      ],
+      [
+       "SDCC/20/0009",
+       "Grange Road Phase 2",
+       "€2,000,000"
+      ],
+      [
+       "SDCC/21/0001",
+       "Dodder Greenway Section 3 - Paths and Green Spaces",
+       "€1,500,000"
+      ],
+      [
+       "SDCC/21/0002",
+       "Dodder Greenway Section 4 - Springfield Ave & Lower Dodder Road",
+       "€3,000,000"
+      ],
+      [
+       "SDCC/21/0003",
+       "Dodder Greenway Section 5 - Firhouse Rd & Butterfield Ave",
+       "€400,000"
+      ],
+      [
+       "SDCC/21/0004",
+       "Dodder Greenway Section 6 - Kiltipper Rd & Old Bawn Road",
+       "€50,000"
+      ],
+      [
+       "SDCC/21/0005",
+       "Tallaght to Knocklyon (formerly part of SDCC/12/0005)",
+       "€300,000"
+      ],
+      [
+       "SDCC/21/0006",
+       "N4 to Ronanstown",
+       "€50,000"
+      ],
+      [
+       "SDCC/21/0007",
+       "School Streets",
+       "€300,000"
+      ],
+      [
+       "SDCC/21/0008",
+       "District Centre Enhancement Programme (Castletymon)",
+       "€470,000"
+      ],
+      [
+       "SDCC/21/0009",
+       "D12 Bike Bus Route - Light Segregation Scheme",
+       "€400,000"
+      ],
+      [
+       "SDCC/21/0010",
+       "Templeville Road - Light Segregation Scheme",
+       "€1,000,000"
+      ],
+      [
+       "SDCC/21/0011",
+       "",
+       "€300,000"
+      ]
+     ]
+    },
+    {
+     "page": 76,
+     "rows": [
+      [
+       "Active Travel Investment Grants: 2022 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Project C ode:",
+       "Project Name",
+       "2021 Allocation"
+      ],
+      [
+       "Campuses, Hospitals, Educational Institutions and Others",
+       "",
+       ""
+      ],
+      [
+       "TCD/17/0001",
+       "Cycle Parking",
+       "€50,000"
+      ],
+      [
+       "GUH/17/0001",
+       "Cycle Facility",
+       "€50,000"
+      ],
+      [
+       "UCD/20/0001",
+       "Cycle link to Nova Entrance",
+       "€50,000"
+      ],
+      [
+       "DCU/19/0001",
+       "DCU Cycle parking",
+       "€50,000"
+      ],
+      [
+       "UCD/21/0001",
+       "UCD Road (from Clonskeagh) Roundabout",
+       "€50,000"
+      ],
+      [
+       "UCD/21/0002",
+       "Roebuck Rd and Wicket Gate cycle link",
+       "€170,000"
+      ],
+      [
+       "UCD/21/0003",
+       "Greenfield Rd Cycle link",
+       "€120,000"
+      ],
+      [
+       "UCD/22/XXXX",
+       "Bus Interchange works (UCD)",
+       "€40,000"
+      ],
+      [
+       "UCD/22/XXXX",
+       "Concourse ramp upgrades Belfield",
+       "€200,000"
+      ],
+      [
+       "UCD/22/XXXX",
+       "Bus Terminus upgrades Belfield",
+       "€60,000"
+      ],
+      [
+       "UCD/22/XXXX",
+       "Cycle Parking",
+       "€300,000"
+      ],
+      [
+       "SJH21/0001",
+       "Bike Hub",
+       "€120,000"
+      ],
+      [
+       "NTA",
+       "C.D.O Operational Costs (Labour)",
+       "€750,000"
+      ],
+      [
+       "NTA",
+       "C.D.O 3rd Party Costs (Surveys, Studies and Data Collection et",
+       "c.) €200,000"
+      ],
+      [
+       "NTA/21/0001",
+       "SRTS Green Schools Cycle Parking (formerly TAISC/19/0001)",
+       "€2,500,000"
+      ],
+      [
+       "NTA/21/XXXX",
+       "Green Schools Cycle Parking - Non SRTS",
+       "€500,000"
+      ],
+      [
+       "NTA/15/0001",
+       "Regional Bikes operating costs",
+       "€1,000,000"
+      ],
+      [
+       "NTA/15/0001",
+       "Regional Bikes Capital Costs",
+       "€750,000"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "document_id": "nta-active-travel-2023",
+   "pages": [
+    {
+     "page": 1,
+     "rows": [
+      [
+       "Table A: Dublin City Council",
+       "",
+       ""
+      ],
+      [
+       "Active Travel Investment Grants: 2023 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Project Code",
+       "Project Name",
+       "2023 Allocation"
+      ],
+      [
+       "Dublin City Council",
+       "",
+       ""
+      ],
+      [
+       "DCC/12/0005",
+       "Royal Canal Premium Cycle Route Phase 2 (Sheriff Street To North Strand)",
+       "€ 5 0,000"
+      ],
+      [
+       "DCC/12/0006",
+       "Newcomen Bridge Footbridge",
+       "€ 150,000"
+      ],
+      [
+       "DCC/12/0007",
+       "Royal Canal Greenway (Phase 3)",
+       "€ 5,000,000"
+      ],
+      [
+       "DCC/12/0008",
+       "Liffey Cycle Route *(Pathfinder Elements)",
+       "€ 1,800,000"
+      ],
+      [
+       "DCC/12/0016",
+       "Finglas Village Active Travel Improvements",
+       "€ 100,000"
+      ],
+      [
+       "DCC/12/0018",
+       "The Point Junction Active Travel Improvement Scheme",
+       "€ 500,000"
+      ],
+      [
+       "DCC/12/0024",
+       "Grand Canal Greenway",
+       "€ 100,000"
+      ],
+      [
+       "DCC/12/0025",
+       "Heuston to Chapelizod Greenway",
+       "€ 5,000"
+      ],
+      [
+       "DCC/12/0033",
+       "Fairview to Amiens Street Cycle Route",
+       "€ 27,000,000"
+      ],
+      [
+       "DCC/12/0035",
+       "Dodder Greenway",
+       "€ 200,000"
+      ],
+      [
+       "DCC/13/0014",
+       "Royal Canal Greenway (Phase 4)",
+       "€ 300,000"
+      ],
+      [
+       "DCC/13/0012",
+       "AVL Bus Priority Team Salaries & IT",
+       "€ 600,000"
+      ],
+      [
+       "DCC/14/0001",
+       "Sandyford Clonskeagh to Charlemont Street (SC2C) Cycle Route",
+       "€ 200,000"
+      ],
+      [
+       "DCC/14/0013",
+       "DPTIM Civil Interventions",
+       "€ 1,200,000"
+      ],
+      [
+       "DCC/16/0003",
+       "City Centre Study Active Travel Proposals",
+       "€ 1,500,000"
+      ],
+      [
+       "DCC/16/0005",
+       "Luas Cross City- Associated Traffic Changes",
+       "€ 100,000"
+      ],
+      [
+       "DCC/16/0006",
+       "College Green Dame Street Public Realm*(Pathfinder)",
+       "€ 200,000"
+      ],
+      [
+       "DCC/17/0008",
+       "Fitzwilliam Cycle Route",
+       "€ 700,000"
+      ],
+      [
+       "DCC/18/0001",
+       "Dodder Greenway Herbert Park",
+       "€ 3,700,000"
+      ],
+      [
+       "DCC/18/0002",
+       "Point Pedestrian and Cycling Bridge",
+       "€ 250,000"
+      ]
+     ]
+    },
+    {
+     "page": 7,
+     "rows": [
+      [
+       "Table A: South Dublin County Council",
+       "",
+       ""
+      ],
+      [
+       "Active Travel Investment Grants: 2023 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Project Code",
+       "Project Name",
+       "2023 Allocation"
+      ],
+      [
+       "South Dublin County Council",
+       "",
+       ""
+      ],
+      [
+       "SDCC/12/0004",
+       "Dodder Greenway - Phases 1 & 2",
+       "€ 180,000"
+      ],
+      [
+       "SDCC/12/0020",
+       "N81 Jobstown Active Travel Scheme",
+       "€ 5 0,000"
+      ],
+      [
+       "SDCC/13/0005",
+       "Monastery Road Walking Route",
+       "€ 2 5,000"
+      ],
+      [
+       "SDCC/18/0003",
+       "Wellington Lane Active Travel Scheme",
+       "€ 500,000"
+      ],
+      [
+       "SDCC/18/0004",
+       "Grand Canal to Lucan Urban Greenway",
+       "€ 600,000"
+      ],
+      [
+       "SDCC/20/0006",
+       "N81 Integrated Transport Planning Strategy",
+       "€ 5 0,000"
+      ],
+      [
+       "SDCC/20/0009",
+       "Grange Road Walking & Cycling Scheme - Phase 2",
+       "€ 500,000"
+      ],
+      [
+       "SDCC/21/0001",
+       "Dodder Greenway Section 3 - Paths and Green Spaces",
+       "€ 120,000"
+      ],
+      [
+       "SDCC/21/0002",
+       "Dodder Greenway Section 4 - Springfield Ave & Dodder Road Lower",
+       "€ 4,000,000"
+      ],
+      [
+       "SDCC/21/0003",
+       "Dodder Greenway Section 5 - Firhouse Road and Butterfield Ave.",
+       "€ 700,000"
+      ],
+      [
+       "SDCC/21/0005",
+       "Tallaght to Knocklyon Active Travel Scheme",
+       "€ 700,000"
+      ],
+      [
+       "SDCC/21/0008",
+       "Castletymon District Centre Enhancement Project (Active Travel Elements)",
+       "€ 1,000,000"
+      ],
+      [
+       "SDCC/21/0009",
+       "D12 Bike Bus Route Active",
+       "€ 500,000"
+      ],
+      [
+       "SDCC/21/0010",
+       "Templeville Road Active Travel Scheme",
+       "€ 500,000"
+      ],
+      [
+       "SDCC/21/0011",
+       "Castletymon Active Travel Scheme",
+       "€ 600,000"
+      ],
+      [
+       "SDCC/21/0013",
+       "Cycle Parking",
+       "€ 300,000"
+      ],
+      [
+       "SDCC/22/0001",
+       "Avonbeg Road Active Travel Scheme",
+       "€ 100,000"
+      ],
+      [
+       "SDCC/22/0003",
+       "Tallaght to Clondalkin Active Travel Scheme",
+       "€ 400,000"
+      ],
+      [
+       "SDCC/22/0005",
+       "Rapid Deployment Pedestrian Facilities",
+       "€ 500,000"
+      ],
+      [
+       "SDCC/22/0007",
+       "Cycle Repair Stations",
+       "€ 5 0,000"
+      ]
+     ]
+    },
+    {
+     "page": 73,
+     "rows": [
+      [
+       "Table A: Active Travel Investment \"Others\"",
+       "",
+       ""
+      ],
+      [
+       "Active Travel Investment Grants: 2023 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Project Code",
+       "Project Name",
+       "2023 Allocation"
+      ],
+      [
+       "Campuses, Hospitals, Educational Institutions and Others",
+       "",
+       ""
+      ],
+      [
+       "TU DUBLIN",
+       "Cycle Parking",
+       "€ 100,000"
+      ],
+      [
+       "TCD/17/0001",
+       "Cycle Parking",
+       "€ 150,000"
+      ],
+      [
+       "DCU/19/0001",
+       "DCU Cycle parking",
+       "€ 100,000"
+      ],
+      [
+       "DCU/23/00XX",
+       "DCU Collins Avenue Bus Feasibility",
+       "€ 100,000"
+      ],
+      [
+       "UCD/21/0002",
+       "Roebuck Rd and Wicket Gate Cycle Link",
+       "€ 163,500"
+      ],
+      [
+       "UCD/21/0007",
+       "UCD Concourse Ramp Accessibility Improvement Works",
+       "€ 200,000"
+      ],
+      [
+       "UCD/22/0004",
+       "Cycle Parking 2022 Belfield",
+       "€ 273,000"
+      ],
+      [
+       "UCD/23/XXXX",
+       "BusConnects Campus Infrastructure",
+       "€ 432,544"
+      ],
+      [
+       "UCD/23/XXXX",
+       "Bike Library Pilot",
+       "€ 579,445"
+      ],
+      [
+       "SJH21/0001",
+       "Bike Hub",
+       "€ 250,000"
+      ],
+      [
+       "TUH/22/0001",
+       "Development of secure bike shelters",
+       "€ 2 8,444"
+      ],
+      [
+       "DAA/23/XXXX",
+       "Dublin Airport Cycle Locker Scheme",
+       "€ 120,000"
+      ],
+      [
+       "DAA/23/XXXX",
+       "Dublin Airport Campus Shared Cycle Scheme",
+       "€ 3 6,000"
+      ],
+      [
+       "DAA/23/XXXX",
+       "Bicycle Facilities",
+       "€ 100,000"
+      ],
+      [
+       "NTA",
+       "C.D.O Operational Costs (Labour)",
+       "€ 1,500,000"
+      ],
+      [
+       "NTA/21/0001",
+       "SRTS Green Schools Cycle Parking (formerly TAISC/19/0001)",
+       "€ 2,250,000"
+      ],
+      [
+       "NTA/21/0012",
+       "Green Schools Cycle Parking - Non SRTS",
+       "€ 1,250,000"
+      ],
+      [
+       "NTA/22/0011",
+       "Safe Routes to School Staff Costs",
+       "€ 800,000"
+      ],
+      [
+       "NTA/15/0001",
+       "Regional Bikes operating costs",
+       "€ 1,000,000"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "document_id": "nta-active-travel-2024",
+   "pages": [
+    {
+     "page": 4,
+     "rows": [
+      [
+       "Table A: South Dublin County Council",
+       "",
+       ""
+      ],
+      [
+       "Active Travel Investment Grants: 2024 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Project Code",
+       "Project Name",
+       "2024 Allocation"
+      ],
+      [
+       "South Dublin County Council",
+       "",
+       ""
+      ],
+      [
+       "SDCC/12/0004",
+       "Dodder Regional cycle route",
+       "€ 383,000"
+      ],
+      [
+       "SDCC/18/0003",
+       "Wellington Lane Active Travel Scheme",
+       "€ 1,100,000"
+      ],
+      [
+       "SDCC/18/0005",
+       "Grand Canal to Lucan Urban Greenway",
+       "€ 1,100,000"
+      ],
+      [
+       "SDCC/20/0006",
+       "N81 Integrated Transport Planning Strategy",
+       "€ 50,000"
+      ],
+      [
+       "SDCC/20/0009",
+       "Grange Road Walking & Cycling Scheme - Phase 2",
+       "€ 250,000"
+      ],
+      [
+       "SDCC/21/0002",
+       "Dodder Greenway Section 4 - Springfield Ave & Dodder Road Lower",
+       "€ 260,000"
+      ],
+      [
+       "SDCC/21/0003",
+       "Dodder Greenway Section 5 - Firhouse Road and Butterfield Ave.",
+       "€ 3,000,000"
+      ],
+      [
+       "SDCC/21/0005",
+       "Tallaght to Knocklyon Active Travel Scheme",
+       "€ 1,020,000"
+      ],
+      [
+       "SDCC/21/0009",
+       "D12 Bike Bus Route",
+       "€ 630,000"
+      ],
+      [
+       "SDCC/21/0010",
+       "Templeville Road Active Travel Scheme",
+       "€ 50,000"
+      ],
+      [
+       "SDCC/21/0011",
+       "Castletymon Active Travel Scheme - Pathfinder",
+       "€ 1,700,000"
+      ],
+      [
+       "SDCC/21/0013",
+       "Cycle Parking",
+       "€ 75,000"
+      ],
+      [
+       "SDCC/22/0001",
+       "Avonbeg Road Active Travel Scheme",
+       "€ 12,000"
+      ],
+      [
+       "SDCC/22/0003",
+       "Tallaght to Clondalkin Active Travel Scheme",
+       "€ 725,000"
+      ],
+      [
+       "SDCC/22/0005",
+       "Rapid Deployment Pedestrian Facilities",
+       "€ 250,000"
+      ],
+      [
+       "SDCC/22/0009",
+       "Active Travel Office - Staff Costs",
+       "€ 750,000"
+      ],
+      [
+       "SDCC/22/0012",
+       "Esker Permeability Scheme",
+       "€ 20,000"
+      ],
+      [
+       "SDCC/22/0013",
+       "Killinarden Park and Greenway Scheme",
+       "€ 1,500,000"
+      ],
+      [
+       "SDCC/23/0011",
+       "Canal Loop phase 2",
+       "€ 80,000"
+      ],
+      [
+       "SDCC/23/0013",
+       "D24 Neighbourhood Cycle Network - Pathfinder",
+       "€ 4,250,000"
+      ],
+      [
+       "SDCC/23/0014",
+       "Sustainable Transport Asset Renewal 2023",
+       "€ 200,000"
+      ],
+      [
+       "SDCC/23/0016",
+       "Clonburris Southern Link Street (Active Travel Elements)",
+       "€ 3,000,000"
+      ],
+      [
+       "SDCC/23/0029",
+       "Non-SRTS Schools Infrastructure - Springfield",
+       "€ 50,000"
+      ],
+      [
+       "SDCC/23/0034",
+       "SRTS Round 2 - St Maelruan's JNS",
+       "€ 150,000"
+      ],
+      [
+       "SDCC/23/0035",
+       "Non-SRTS Schools Infrastructure - Clondalkin",
+       "€ 200,000"
+      ],
+      [
+       "SDCC/23/0036",
+       "Non-SRTS Schools Infrastructure - Palmerstown",
+       "€ 200,000"
+      ],
+      [
+       "SDCC/24/xxxx",
+       "Templeville Road Active Travel Scheme Phase 2",
+       "€ 350,000"
+      ]
+     ]
+    },
+    {
+     "page": 5,
+     "rows": [
+      [
+       "Active Travel Investment Grants: 2024 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Project Code",
+       "Project Name",
+       "2024 Allocation"
+      ],
+      [
+       "South Dublin County Council",
+       "",
+       ""
+      ],
+      [
+       "SDCC/24/xxxx",
+       "Citywest to Rathfarnham Active Travel Scheme",
+       "€ 25,000"
+      ],
+      [
+       "SDCC/24/xxxx",
+       "Dodder Greenway Section 6 - Kiltipper Road & Old Bawn Road",
+       "€ 25,000"
+      ],
+      [
+       "SDCC/24/xxxx",
+       "Corkagh Park to Grand Canal Active Travel Scheme",
+       "€ 25,000"
+      ],
+      [
+       "SDCC/24/xxxx",
+       "Rapid Deployment Active Travel Facilities - Glendown Road",
+       "€ 200,000"
+      ],
+      [
+       "SDCC/24/xxxx",
+       "SRTS Round 2 - St Dominics National School",
+       "€ 200,000"
+      ],
+      [
+       "SDCC/24/xxxx",
+       "Active Travel Communication",
+       "€ 20,000"
+      ],
+      [
+       "SDCC/24/xxxx",
+       "Whitehall Road West Active Travel Scheme",
+       "€ 25,000"
+      ],
+      [
+       "SDCC/24/xxxx",
+       "Adamstown to Grand Canal-Lucan Greenway",
+       "€ 25,000"
+      ],
+      [
+       "Total",
+       "",
+       "€ 21,900,000"
+      ],
+      [
+       "",
+       "",
+       ""
+      ],
+      [
+       "Allocations Through Other NTA Funding Streams",
+       "",
+       ""
+      ],
+      [
+       "SDCC/24/xxxx",
+       "Bus Stop Enhancement Programme",
+       "€ 500,000"
+      ],
+      [
+       "Subtotal:",
+       "",
+       "€500,000"
+      ],
+      [
+       "",
+       "",
+       ""
+      ],
+      [
+       "Total:",
+       "",
+       "€22,400,000"
+      ]
+     ]
+    },
+    {
+     "page": 6,
+     "rows": [
+      [
+       "FCC/12/0001",
+       "Broadmeadow Estuary Cycle & Pedestrian Bridge",
+       "€ 7,000,000"
+      ],
+      [
+       "FCC/13/0001",
+       "S2S Extension Sutton to Malahide",
+       ""
+      ],
+      [
+       "FCC/14/0001",
+       "Royal Canal Cycle Route (12th Lock-KCC) (CN2) inc. Deep Sinking Coolmine",
+       "€ 250,000"
+      ],
+      [
+       "FCC/18/0001",
+       "Harry Reynolds Road Cycleway in Balbriggan",
+       ""
+      ],
+      [
+       "FCC/20/0001",
+       "Donabate Ped and Cycle Bridge",
+       "€ 1,500,000"
+      ],
+      [
+       "FCC/20/0004",
+       "Bicycle Parking",
+       "€ 100,000"
+      ],
+      [
+       "FCC/21/0001",
+       "National Aquatic Centre (NAC) to Ongar Village",
+       "€ 100,000"
+      ],
+      [
+       "FCC/21/0002",
+       "Baldoyle to Howth",
+       "€ 100,000"
+      ],
+      [
+       "FCC/21/0004",
+       "Donabate Hearse Rd/Main St/Portrane Rd (Link 1 & Link 2)",
+       "€ 150,000"
+      ],
+      [
+       "FCC/21/0005",
+       "Damastown to Clonsilla Cycle Route",
+       "€ 150,000"
+      ],
+      [
+       "FCC/21/0006",
+       "Clonee to Blanchardstown Shopping Centre",
+       "€ 100,000"
+      ],
+      [
+       "FCC/22/0001",
+       "Castleknock to Dunsink Lane",
+       "€ 150,000"
+      ],
+      [
+       "FCC/22/0004",
+       "Hartstown / Huntstown /Mountview Road",
+       "€ 100,000"
+      ],
+      [
+       "FCC/22/0005",
+       "St Cronins Road rapid build active travel",
+       "€ 100,000"
+      ],
+      [
+       "FCC/22/0006",
+       "Rathingle / Rivervalley Road Swords",
+       "€ 500,000"
+      ],
+      [
+       "FCC/22/0007",
+       "Balbriggan Road, Mill Street and Drogheda Street",
+       "€ 50,000"
+      ],
+      [
+       "FCC/22/0009",
+       "Permeability Links North County",
+       "€ 350,000"
+      ],
+      [
+       "FCC/22/0010",
+       "R132 Ministers Road to Blakes Cross and Kilhedge Lane",
+       "€ 625,000"
+      ],
+      [
+       "FCC/22/0011",
+       "Skerries - Harbour Road",
+       "€ 150,000"
+      ],
+      [
+       "FCC/22/0012",
+       "Seatown Road to Estuary Road (Swords to Malahide)",
+       "€ 150,000"
+      ],
+      [
+       "FCC/22/0014",
+       "Balbriggan - Coney Hill From Devlin Bridge to Bremore Cottages",
+       "€ 50,000"
+      ],
+      [
+       "FCC/22/0016",
+       "New Street Malahide Improvement Scheme",
+       "€ 300,000"
+      ],
+      [
+       "FCC/22/0018",
+       "Data collection for Active Travel Projects (traffic, air, noise)",
+       "€ 50,000"
+      ],
+      [
+       "FCC/22/0019",
+       "Skerries Active Travel Plan",
+       "€ 250,000"
+      ],
+      [
+       "FCC/22/0020",
+       "Balrothery Active Travel Review",
+       "€ 50,000"
+      ],
+      [
+       "FCC/22/0021",
+       "Seamount Heights to Old Golf Links Park Active Travel Route",
+       "€ 100,000"
+      ],
+      [
+       "FCC/22/0022",
+       "Broomfield to Paddys's Hill via Naomh Marnog GAA Active Travel Route",
+       "€ 100,000"
+      ]
+     ]
+    },
+    {
+     "page": 7,
+     "rows": [
+      [
+       "FCC/22/0026",
+       "Active Travel Office - Staff Costs",
+       "€ 1,100,000"
+      ],
+      [
+       "FCC/22/0027",
+       "Swords Cycle Network - Sustainable Swords",
+       "€ 150,000"
+      ],
+      [
+       "FCC/22/0028",
+       "Active Travel scheme Castleknock to Blanchardstown via Farmleigh",
+       "€ 50,000"
+      ],
+      [
+       "FCC/22/0029",
+       "R132 Junction upgrade design",
+       "€ 100,000"
+      ],
+      [
+       "FCC/23/0003",
+       "SRTS (R1) - Ladyswell National School",
+       "€ 300,000"
+      ],
+      [
+       "FCC/23/0004",
+       "SRTS (R1) - Scoil Ghrainne CNS",
+       "€ 200,000"
+      ],
+      [
+       "FCC/23/0005",
+       "SRTS (R1) - Scoil Choilm CNS",
+       "€ 350,000"
+      ],
+      [
+       "FCC/23/0018",
+       "Active Travel Pathfinder - Swords to Airport quick build",
+       "€ 500,000"
+      ],
+      [
+       "FCC/23/0019",
+       "SRTS (R1) - Pope John Paul II NS, Malahide",
+       "€ 350,000"
+      ],
+      [
+       "FCC/23/0020",
+       "SRTS (R1) - Bayside Junior School (Scoil Náisiúnta Muire agus Iósef, Sóisear)",
+       "€ 25,000"
+      ],
+      [
+       "FCC/24/XXXX",
+       "SRTS (R2) Design",
+       "€ 100,000"
+      ],
+      [
+       "FCC/24/XXXX",
+       "Feltrim Road cycle infrastructure",
+       "€ 150,000"
+      ],
+      [
+       "FCC/24/XXXX",
+       "Donabate to Portrane (R126) - Distributor Rd to Portrane Avenue Active Travel Routes",
+       "€ 100,000"
+      ],
+      [
+       "Total:",
+       "",
+       ""
+      ],
+      [
+       "",
+       "",
+       ""
+      ],
+      [
+       "Allocations Through Other NTA Funding Streams",
+       "",
+       ""
+      ],
+      [
+       "FCC/24/xxxx",
+       "Bus Stop Enhancement Programme",
+       "€ 500,000"
+      ],
+      [
+       "Subtotal:",
+       "",
+       "€500,000"
+      ],
+      [
+       "",
+       "",
+       ""
+      ],
+      [
+       "Total:",
+       "",
+       "€22,000,000"
+      ]
+     ]
+    },
+    {
+     "page": 34,
+     "rows": [
+      [
+       "Table A: Galway County Council",
+       "",
+       ""
+      ],
+      [
+       "Active Travel Investment Grants: 2024 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Project Code",
+       "Project Name",
+       "2024 Allocation"
+      ],
+      [
+       "Galway County Council",
+       "",
+       ""
+      ],
+      [
+       "GCO/22/0014",
+       "Athenry, Gort & Loughera Local Transport Plans",
+       "€ 35,000"
+      ],
+      [
+       "GCO/23/0012",
+       "Beechlawn & Shannonbridge Active Travel Schemes",
+       "€ 160,000"
+      ],
+      [
+       "GCO/23/0021",
+       "Tuam Sean Purcell Rd to Sports Grounds on R332 Active Travel Scheme",
+       "€ 100,000"
+      ],
+      [
+       "GCO/23/0020",
+       "Ballinasloe R446 Bridge St. to Harris Rd. Active Travel Scheme",
+       "€ 100,000"
+      ],
+      [
+       "GCO/23/0015",
+       "Oranmore Active Travel Schemes",
+       "€ 95,000"
+      ],
+      [
+       "GCO/23/0013",
+       "Oranmore to the Train Station Active Travel Scheme",
+       "€ 120,000"
+      ],
+      [
+       "GCO/23/0023",
+       "SRTS R1 Oranmore - Calasanctius College, Gaelscoil de hÍde & Scoil Iósaif Naofa",
+       "€ 300,000"
+      ],
+      [
+       "GCO/23/0022",
+       "SRTS R1 Scoil Bhaile Nua Moycullen",
+       "€ 100,000"
+      ],
+      [
+       "GCO/23/0017",
+       "East Galway City Suburbs Local Transport Plan",
+       "€ 200,000"
+      ],
+      [
+       "GCO/23/0027",
+       "Community Transport Study x 6",
+       "€ 150,000"
+      ],
+      [
+       "GCO/23/0025",
+       "Galway Walking and Cycling Strategy",
+       "€ 80,000"
+      ],
+      [
+       "GCO/24/xxxx",
+       "SRTS R1 Scoil Chroí Naofa Athenry",
+       "€ 100,000"
+      ],
+      [
+       "GCO/24/xxxx",
+       "SRTS R1 St Pauls Oughterard",
+       "€ 50,000"
+      ],
+      [
+       "GCO/24/xxxx",
+       "SRTS R1 Athenry Boys National School",
+       "€ 160,000"
+      ],
+      [
+       "GCO/24/xxxx",
+       "SRTS R2 Ballinderreen National School",
+       "€ 50,000"
+      ],
+      [
+       "GCO/24/xxxx",
+       "SRTS R2 Gort Community School",
+       "€ 50,000"
+      ],
+      [
+       "GCO/24/xxxx",
+       "SRTS R2 Scoil na bhForbacha Furbough",
+       "€ 50,000"
+      ],
+      [
+       "GCO/24/xxxx",
+       "SRTS R2 Scoil Sailearna Invernin",
+       "€ 50,000"
+      ],
+      [
+       "GCO/24/xxxx",
+       "SRTS R2 St Brendan's National School Loughera",
+       "€ 50,000"
+      ],
+      [
+       "GCO/24/xxxx",
+       "Loughrea Active Travel Schemes Design",
+       "€ 100,000"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "document_id": "nta-active-travel-2025",
+   "pages": [
+    {
+     "page": 1,
+     "rows": [
+      [
+       "Active Travel Investment Grants: 2025 Allocations",
+       ""
+      ],
+      [
+       "Agency",
+       "2025 AT Allocations"
+      ],
+      [
+       "Carlow County Council",
+       "€3,000,000"
+      ],
+      [
+       "Cavan County Council",
+       "€3,000,000"
+      ],
+      [
+       "Clare County Council",
+       "€2,750,000"
+      ],
+      [
+       "Cork City Council",
+       "€28,000,000"
+      ],
+      [
+       "Cork County Council",
+       "€19,000,000"
+      ],
+      [
+       "Donegal County Council",
+       "€4,000,000"
+      ],
+      [
+       "Dublin City Council",
+       "€45,000,000"
+      ],
+      [
+       "Dun Laoghaire Rathdown County Council",
+       "€20,000,000"
+      ],
+      [
+       "Fingal County Council",
+       "€20,000,000"
+      ],
+      [
+       "Galway City Council",
+       "€8,000,000"
+      ],
+      [
+       "Galway County Council",
+       "€2,100,000"
+      ],
+      [
+       "Kerry County Council",
+       "€2,750,000"
+      ],
+      [
+       "Kildare County Council",
+       "€9,500,000"
+      ],
+      [
+       "Kilkenny County Council",
+       "€3,000,000"
+      ],
+      [
+       "Laois County Council",
+       "€3,000,000"
+      ],
+      [
+       "Leitrim County Council",
+       "€1,900,000"
+      ],
+      [
+       "Limerick City and County Council",
+       "€18,000,000"
+      ],
+      [
+       "Longford County Council",
+       "€3,000,000"
+      ],
+      [
+       "Louth County Council",
+       "€5,800,000"
+      ],
+      [
+       "Mayo County Council",
+       "€3,000,000"
+      ],
+      [
+       "Meath County Council",
+       "€12,000,000"
+      ],
+      [
+       "Monaghan County Council",
+       "€2,500,000"
+      ],
+      [
+       "Offaly County Council",
+       "€2,750,000"
+      ],
+      [
+       "Roscommon County Council",
+       "€2,750,000"
+      ],
+      [
+       "Sligo County Council",
+       "€2,500,000"
+      ],
+      [
+       "South Dublin County Council",
+       "€20,000,000"
+      ],
+      [
+       "Tipperary County Council",
+       "€4,000,000"
+      ]
+     ]
+    },
+    {
+     "page": 3,
+     "rows": [
+      [
+       "Active Travel Investment Grants: 2025 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Project Code",
+       "Project Name",
+       "2025 Allocation"
+      ],
+      [
+       "Carlow County Council",
+       "",
+       ""
+      ],
+      [
+       "CW/21/0002",
+       "Active Travel Pathfinder - Carlow to SETU Pedestrian & Cycle Scheme (Phase 1)",
+       "€ 690,000"
+      ],
+      [
+       "CW/21/0005",
+       "Dublin Road Pedestrian and Cycle Scheme, Carlow",
+       "€ 740,000"
+      ],
+      [
+       "CW/21/0015",
+       "SRTS - Queen of the Universe, Muinebeagh (Round 1)",
+       "€ 300,000"
+      ],
+      [
+       "CW/22/0007",
+       "Church Street Pedestrian & Cycle Scheme, Graiguecullen",
+       "€ 40,000"
+      ],
+      [
+       "CW/22/0010",
+       "Active Travel Staff Costs",
+       "€ 320,000"
+      ],
+      [
+       "CW/24/0003",
+       "Ballyellen Footpath Scheme",
+       "€ 40,000"
+      ],
+      [
+       "CW/25/XXXX",
+       "Active Travel Pathfinder - Carlow to SETU Pedestrian & Cycle Scheme (Phase 2)",
+       "€ 760,000"
+      ],
+      [
+       "CW/25/XXXX",
+       "Hillbrook Estate Pedestrian & Cycle Scheme, Tullow (Tullow Orbital Project)",
+       "€ 70,000"
+      ],
+      [
+       "CW/25/XXXX",
+       "SRTS - Presentation De La Salle College, Bagenalstown (R3)",
+       "€ 20,000"
+      ],
+      [
+       "CW/25/XXXX",
+       "SRTS - St. Brigid’s National School, Grange, Tullow (R3)",
+       "€ 20,000"
+      ],
+      [
+       "Total:",
+       "",
+       "€ 3,000,000"
+      ],
+      [
+       "",
+       "",
+       ""
+      ],
+      [
+       "Allocations Through Other NTA Funding Streams",
+       "",
+       ""
+      ],
+      [
+       "CW/25/xxxx",
+       "Bus Stop Enhancement Programme",
+       "€ 500,000"
+      ],
+      [
+       "Subtotal:",
+       "",
+       "€500,000"
+      ],
+      [
+       "",
+       "",
+       ""
+      ],
+      [
+       "Total:",
+       "",
+       "€3,500,000"
+      ]
+     ]
+    },
+    {
+     "page": 4,
+     "rows": [
+      [
+       "Table A: Cavan County Council",
+       "",
+       ""
+      ],
+      [
+       "Active Travel Investment Grants: 2025 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Project Code",
+       "Project Name",
+       "2025 Allocation"
+      ],
+      [
+       "Cavan County Council",
+       "",
+       ""
+      ],
+      [
+       "CN/21/0001",
+       "Virginia - Rampart River footbridge Active Travel Measures",
+       "€ 20,000"
+      ],
+      [
+       "CN/21/0004",
+       "Cavan Town Urban Greenway Phase 2",
+       "€ 100,000"
+      ],
+      [
+       "CN/22/0008",
+       "Staff Costs AT Team",
+       "€ 390,000"
+      ],
+      [
+       "CN/22/0011",
+       "Cootehill Station Rd Active Travel Scheme",
+       "€ 500,000"
+      ],
+      [
+       "CN/22/0012",
+       "Bus Station to Cavan Hospital Active Travel Scheme",
+       "€ 125,000"
+      ],
+      [
+       "CN/22/0013",
+       "Loreto school to Cavan Town Active Travel Scheme",
+       "€ 535,000"
+      ],
+      [
+       "CN/22/0014",
+       "Cavan Town Link to Farnham N.S",
+       "€ 475,000"
+      ],
+      [
+       "CN/23/0009",
+       "Cootehill Town - Cavan Street/Road Active Travel Scheme",
+       "€ 85,000"
+      ],
+      [
+       "CN/23/0015",
+       "Kingscourt Town Urban Greenway/Permeability Link",
+       "€ 100,000"
+      ],
+      [
+       "CN/23/0016",
+       "SRTS Round 1 - St Aidan's Secondary School, Cootehill",
+       "€ 500,000"
+      ],
+      [
+       "CN/23/0020",
+       "SRTS Round 2 - St Michael's N.S., Cootehill",
+       "€ 50,000"
+      ],
+      [
+       "CN/24/0001",
+       "Market St Junction Baileborough Town",
+       "€ 20,000"
+      ],
+      [
+       "CN/25/xxxx",
+       "SRTS Round 3 - Killygarry NS. HSRR",
+       "N/A*"
+      ],
+      [
+       "CN/25/xxxx",
+       "SRTS Round 3 - Mullahoran NS. HSRR",
+       "N/A*"
+      ],
+      [
+       "CN/25/xxxx",
+       "SRTS Round 3 - Saint Patrick’s National School",
+       "€ 20,000"
+      ],
+      [
+       "CN/25/xxxx",
+       "Cavan Town Centre Active Travel connections",
+       "€ 80,000"
+      ],
+      [
+       "Total:",
+       "",
+       "€ 3 ,000,000"
+      ],
+      [
+       "* Scheme to be designed by NTA consultants under different project code",
+       "",
+       ""
+      ],
+      [
+       "Allocations Through Other NTA Funding Streams",
+       "",
+       ""
+      ],
+      [
+       "CN/25/xxxx",
+       "Bus Stop Enhancement Programme",
+       "€ 500,000"
+      ]
+     ]
+    },
+    {
+     "page": 30,
+     "rows": [
+      [
+       "Table A: Kerry County Council",
+       "",
+       ""
+      ],
+      [
+       "Active Travel Investment Grants: 2025 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Project Code",
+       "Project Name",
+       "2025 Allocation"
+      ],
+      [
+       "Kerry County Council",
+       "",
+       ""
+      ],
+      [
+       "KY/21/0010",
+       "Rock Road, Killarney - Active Travel Scheme PHASE ONE",
+       "€ 5 0,000"
+      ],
+      [
+       "KY/21/0009",
+       "Flesk, Killarney - Active Travel Scheme",
+       "€ 50,000"
+      ],
+      [
+       "KY/24/0001",
+       "New Road, Killarney",
+       "€ 350,000"
+      ],
+      [
+       "KY/21/0012",
+       "Sunhill, Killorglin",
+       "€ 100,000"
+      ],
+      [
+       "KY/22/0001",
+       "Staff costs Active Travel Team",
+       "€ 490,000"
+      ],
+      [
+       "KY/21/0005",
+       "Bracker O’Regan Road, Tralee",
+       "€ 350,000"
+      ],
+      [
+       "KY/23/0022",
+       "SRTS (R1) Mercy Secondary School, Mounthawk, Tralee",
+       "€ 150,000"
+      ],
+      [
+       "KY/23/0006",
+       "SRTS (R2) Fossa National School, Killarney",
+       "€ 9 0,000"
+      ],
+      [
+       "KY/23/0017",
+       "Upper Lewis Road & Ballydribbeen Link, Killarney",
+       "€ 5 0,000"
+      ],
+      [
+       "KY/25/XXXX",
+       "SRTS (R3) HSRR Coolick NS*",
+       "N/A*"
+      ],
+      [
+       "KY/25/XXXX",
+       "SRTS (R3) HSRR Cullina NS*",
+       "N/A*"
+      ],
+      [
+       "KY/25/XXXX",
+       "SRTS (R3) HSRR Glounaguillagh NS*",
+       "N/A*"
+      ],
+      [
+       "KY/25/XXXX",
+       "SRTS (R3) HSRR St. Joseph’s NS, Ballyheigue NS*",
+       "N/A*"
+      ],
+      [
+       "KY/23/0016",
+       "Park Road, Killarney - Active Travel Scheme",
+       "€ 1,070,000"
+      ],
+      [
+       "Total:",
+       "",
+       "€ 2 ,750,000"
+      ]
+     ]
+    },
+    {
+     "page": 31,
+     "rows": [
+      [
+       "Total:",
+       "€ 3 ,350,000"
+      ]
+     ]
+    },
+    {
+     "page": 73,
+     "rows": [
+      [
+       "Table A: Active Travel Investment Campuses, Hospitals, SRTS and Others",
+       "",
+       ""
+      ],
+      [
+       "Active Travel Investment Grants: 2025 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Project Code",
+       "Project Name",
+       "2025 Allocation"
+      ],
+      [
+       "Campuses, Hospitals, Educational Institutions and Others",
+       "",
+       ""
+      ],
+      [
+       "TUD/23/0001",
+       "TUD Cycle Parking",
+       "€ 250,000"
+      ],
+      [
+       "TCD/17/0001",
+       "TCD Cycle Parking",
+       "€ 110,000"
+      ],
+      [
+       "TCD/24/0002",
+       "TCD Transport Study",
+       "€ 55,000"
+      ],
+      [
+       "DCU/19/0001",
+       "DCU Cycle parking",
+       "€ 150,000"
+      ],
+      [
+       "UCD/23/0003",
+       "Bike Library Pilot",
+       "€ 100,000"
+      ],
+      [
+       "UCD/25/xxxx",
+       "UCD Cycle Parking 2025",
+       "€ 80,000"
+      ],
+      [
+       "UCD/25/xxxx",
+       "Wicket Gate to Concourse link",
+       "€ 125,000"
+      ],
+      [
+       "SJH/21/0001",
+       "Bike Hub",
+       "€ 65,000"
+      ],
+      [
+       "NTA/21/0001",
+       "SRTS Schools Cycle Parking",
+       "€ 150,000"
+      ],
+      [
+       "NTA/21/0012",
+       "Green Schools Cycle Parking - Non SRTS",
+       "€ 850,000"
+      ],
+      [
+       "NTA/22/0011",
+       "Safe Routes to School Staff Costs",
+       "€ 840,000"
+      ],
+      [
+       "NTA/15/0001",
+       "Regional Bikes operating costs",
+       "€ 1,500,000"
+      ],
+      [
+       "NTA/15/0001",
+       "Regional Bikes Capital Costs",
+       "€ 1,500,000"
+      ],
+      [
+       "IE/22/0020",
+       "Heuston Masterplan - Access Infrastructure",
+       "€ 200,000"
+      ],
+      [
+       "DAA/23/0001",
+       "Cycle Facilities",
+       "€ 65,000"
+      ],
+      [
+       "NTA/25/xxxx",
+       "NTA support services",
+       "€ 870,134"
+      ],
+      [
+       "NTA/25/xxxx",
+       "ATSO",
+       "€ 1,500,000"
+      ],
+      [
+       "BH/24/0001",
+       "Beaumont Hospital Cycle Parking",
+       "€ 100,000"
+      ],
+      [
+       "xx/25/xxxx",
+       "Children's Health Ireland Crumlin Cycle Parking",
+       "€ 100,000"
+      ],
+      [
+       "xx/25/xxxx",
+       "Mater Hospital Bike Parking",
+       "€ 100,000"
+      ],
+      [
+       "xx/25/xxxx",
+       "National Maternity Hospital",
+       "€ 100,000"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "document_id": "nta-active-travel-2026",
+   "pages": [
+    {
+     "page": 3,
+     "rows": [
+      [
+       "Table A: Dublin City Council",
+       "",
+       ""
+      ],
+      [
+       "Active Travel Investment Grants: 2026 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Dublin City Council",
+       "",
+       ""
+      ],
+      [
+       "Project Code",
+       "Project Name",
+       "2026 Allocation"
+      ],
+      [
+       "DCC/12/0007",
+       "Royal Canal Greenway (Phase 3) - Newcomen Bridge (North Strand Road) to Phibsborough",
+       "€ 1,800,000"
+      ],
+      [
+       "DCC/12/0008",
+       "Liffey Cycle Route - Permanent Scheme",
+       "€ 150,000"
+      ],
+      [
+       "DCC/12/0016",
+       "Finglas Village Improvement Scheme (Bus and Cycle Priority)",
+       "€ 1,500,000"
+      ],
+      [
+       "DCC/12/0018",
+       "Point Junction Improvement Scheme (Tom Clark Bridge to Sherrif Street & Cycle Connection to Upper East Wall Road)",
+       "€ 700,000"
+      ],
+      [
+       "DCC/12/0024",
+       "Grand Canal Greenway (Portobello to Blackhorse)",
+       "€ 1,000,000"
+      ],
+      [
+       "DCC/12/0033",
+       "Clontarf to City Centre (Talbot St - Alfie Byrne Road Including Tolka Greenway)",
+       "€ 2,000,000"
+      ],
+      [
+       "DCC/12/0048",
+       "Secure Cycle Parking",
+       "€ 100,000"
+      ],
+      [
+       "DCC/13/0014",
+       "Royal Canal Greenway (Phase 4) - Phibsborough to Ashtown",
+       "€ 50,000"
+      ],
+      [
+       "DCC/13/0019",
+       "On Street Cycle Parking",
+       "€ 50,000"
+      ],
+      [
+       "DCC/14/0001",
+       "Clonskeagh to City Centre Active Travel Route (Permanent) - Clonskeagh to Ranelagh",
+       "€ 1,500,000"
+      ],
+      [
+       "DCC/16/0006",
+       "College Green Plaza - 2016 Proposal",
+       "€ 500,000"
+      ],
+      [
+       "DCC/17/0008",
+       "Fitzwilliam Street",
+       "€ 1,000,000"
+      ],
+      [
+       "DCC/18/0002",
+       "Point Bridge - Pedestrian and Cycle Bridge",
+       "€ 200,000"
+      ],
+      [
+       "DCC/19/0002",
+       "East Coast Trail - S2S (East Wall Road to Liffey)",
+       "€ 140,000"
+      ],
+      [
+       "DCC/19/0006",
+       "Finglas Area Roundabouts Pedestrian and Cyclist Improvements - Lidl Roundabout",
+       "€ 50,000"
+      ],
+      [
+       "DCC/21/0001",
+       "Finglas to Killester Walking and Cycling Scheme",
+       "€ 250,000"
+      ],
+      [
+       "DCC/21/0004",
+       "Amiens St to Georges / City Quay Walking and Cycling Scheme (C2CC Extension)",
+       "€ 250,000"
+      ],
+      [
+       "DCC/21/0006",
+       "Chapelizod Rd to Chapelizod Bypass Walking and Cycling Scheme",
+       "€ 300,000"
+      ],
+      [
+       "DCC/21/0007",
+       "Kilmainham to Thomas St Walking and Cycling Scheme (interim)",
+       "€ 10,000"
+      ],
+      [
+       "DCC/21/0009",
+       "Coolock to Clontarf Walking and Cycling Scheme - Gracefield rd. to Vernon Avenue",
+       "€ 1,000,000"
+      ],
+      [
+       "DCC/21/0011",
+       "Santry River Greenway",
+       "€ 50,000"
+      ]
+     ]
+    },
+    {
+     "page": 7,
+     "rows": [
+      [
+       "Active Travel Investment Grants: 2026 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Dublin City Council",
+       "",
+       ""
+      ],
+      [
+       "Project Code",
+       "Project Name",
+       "2026 Allocation"
+      ],
+      [
+       "Allocations Through Other NTA Funding Streams",
+       "",
+       ""
+      ],
+      [
+       "DCC/25/0036",
+       "Dodder Public Transport Opening Bridge",
+       "€ 1,000,000"
+      ],
+      [
+       "DCC/25/0037",
+       "Cabra Mount Bernard Park (adjacent lands project)",
+       "€ 100,000"
+      ],
+      [
+       "DCC/26/00XX",
+       "Traffic Maintenance Costs - Intelligent Transport System",
+       "€ 1,250,000"
+      ],
+      [
+       "DCC/26/00XX",
+       "Bus Stop Enhancement Programme",
+       "€ 500,000"
+      ],
+      [
+       "Subtotal:",
+       "",
+       "€6,700,000"
+      ],
+      [
+       "",
+       "",
+       ""
+      ],
+      [
+       "Total:",
+       "",
+       "€42,650,000"
+      ]
+     ]
+    },
+    {
+     "page": 21,
+     "rows": [
+      [
+       "Table A: Wicklow County Council",
+       "",
+       ""
+      ],
+      [
+       "Active Travel Investment Grants: 2026 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Wicklow County Council",
+       "",
+       ""
+      ],
+      [
+       "Project Code",
+       "Project Name",
+       "2026 Allocation"
+      ],
+      [
+       "WCC/12/0007",
+       "Bray DART Interchange",
+       "€ 300,000"
+      ],
+      [
+       "WCC/12/0009",
+       "Active Travel Bridge (Wicklow Train Station to Port Access Route) Pathfinder",
+       "€ 500,000"
+      ],
+      [
+       "WCC/18/0002",
+       "Bray Bridge footbridges and tie-ins",
+       "€ 200,000"
+      ],
+      [
+       "WCC/20/0001",
+       "Bus Priority in Little Bray",
+       "€ 100,000"
+      ],
+      [
+       "WCC/21/0004",
+       "Delgany Village to Mill Road Active Travel Elements",
+       "€ 100,000"
+      ],
+      [
+       "WCC/21/0005",
+       "Wicklow Town Active Travel",
+       "€ 200,000"
+      ],
+      [
+       "WCC/21/0010",
+       "Blessington Main St. to Deerpark",
+       "€ 500,000"
+      ],
+      [
+       "WCC/21/0012",
+       "Greystones- Charlesland Roundabouts Upgrades",
+       "€ 150,000"
+      ],
+      [
+       "WCC/22/0003",
+       "Convent Road Active Travel Scheme",
+       "€ 100,000"
+      ],
+      [
+       "WCC/22/0015",
+       "Killincarrrig Village Enhancement Scheme - cofund",
+       "€ 600,000"
+      ],
+      [
+       "WCC/22/0022",
+       "Wicklow County Council Active Travel Office - Staff Costs",
+       "€ 800,000"
+      ],
+      [
+       "WCC/23/0004",
+       "SRTS Round 2: Gaelscoil na gCloch Liath, Greystones",
+       "€ 40,000"
+      ],
+      [
+       "WCC/23/0005",
+       "SRTS Round 2: Greystones Educate Together",
+       "€ 40,000"
+      ],
+      [
+       "WCC/23/0006",
+       "SRTS Round 2: Kilmacanogue NS, Kilmacanogue, Co. Wicklow",
+       "€ 100,000"
+      ],
+      [
+       "WCC/23/0008",
+       "SRTS Round 2: Temple Carrig School, Greystones",
+       "€ 20,000"
+      ],
+      [
+       "WCC/23/0011",
+       "Baltinglass Active Travel River Crossing Study",
+       "€ 150,000"
+      ],
+      [
+       "WCC/23/0017",
+       "Active Travel Promotion Costs",
+       "€ 20,000"
+      ],
+      [
+       "WCC/24/0003",
+       "Greystones Seafront to Charlesland Active Travel Provision",
+       "€ 200,000"
+      ],
+      [
+       "WCC/25/XXXX",
+       "SRTS Round 3: Scoil Mhuire Realt na Mara HSRR, Brittas Bay",
+       "€ 120,000"
+      ],
+      [
+       "WCC/25/0001",
+       "Aughrim Road Pedestrian Crossing, Tinahealy",
+       "€ 200,000"
+      ]
+     ]
+    },
+    {
+     "page": 22,
+     "rows": [
+      [
+       "Active Travel Investment Grants: 2026 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Wicklow County Council",
+       "",
+       ""
+      ],
+      [
+       "Project Code",
+       "Project Name",
+       "2026 Allocation"
+      ],
+      [
+       "WCC/25/0003",
+       "Vale Road Pedestrian Improvement Scheme, Arklow",
+       "€ 350,000"
+      ],
+      [
+       "WCC/25/0004",
+       "SRTS Round 3: Scoil Mhoire na n-Aird",
+       "€ 70,000"
+      ],
+      [
+       "WCC/25/0005",
+       "Scalp Road Footpath, Enniskerry",
+       "€ 25,000"
+      ],
+      [
+       "WCC/25/0010",
+       "Redford Park Junction",
+       "€ 50,000"
+      ],
+      [
+       "WCC/25/0013",
+       "Wicklow MD Crosssings",
+       "€ 200,000"
+      ],
+      [
+       "WCC/25/0014",
+       "Arklow MD Crossings",
+       "€ 200,000"
+      ],
+      [
+       "WCC/25/0015",
+       "Greystones MD Crossings",
+       "€ 200,000"
+      ],
+      [
+       "WCC/26/XXXX",
+       "Bray MD Crossings",
+       "€ 200,000"
+      ],
+      [
+       "WCC/26/XXXX",
+       "Baltinglass MD Crossing",
+       "€ 200,000"
+      ],
+      [
+       "WCC/26/XXXX",
+       "Arklow MD Junction Tightening Works",
+       "€ 200,000"
+      ],
+      [
+       "WCC/26/XXXX",
+       "Arklow MD Permeability Links",
+       "€ 250,000"
+      ],
+      [
+       "WCC/26/XXXX",
+       "SRTS R4 Scoil Naomh Brid, Talbotstown",
+       "€ 50,000"
+      ],
+      [
+       "WCC/26/XXXX",
+       "SRTS R4 St. Brigid's NS, Greystones",
+       "€ 50,000"
+      ],
+      [
+       "WCC/26/XXXX",
+       "SRTS R4 St. Brigid's National School, Manor Kilbride",
+       "€ 50,000"
+      ],
+      [
+       "WCC/26/XXXX",
+       "SRTS R4 Wicklow Educate Together NS",
+       "€ 50,000"
+      ],
+      [
+       "WCC/26/XXXX",
+       "Deerpark Cycle Link, Bray",
+       "€ 315,000"
+      ],
+      [
+       "WCC/26/XXXX",
+       "Giltspur to Charnwood Active Travel Link, Bray",
+       "€ 100,000"
+      ],
+      [
+       "Total:",
+       "",
+       "€7,000,000"
+      ]
+     ]
+    },
+    {
+     "page": 23,
+     "rows": [
+      [
+       "Active Travel Investment Grants: 2026 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Wicklow County Council",
+       "",
+       ""
+      ],
+      [
+       "Project Code",
+       "Project Name",
+       "2026 Allocation"
+      ],
+      [
+       "WCC/20/0003",
+       "Arklow Transport Study",
+       "€ 15,974"
+      ],
+      [
+       "WCC/26/XXXX",
+       "Bray Transport Study",
+       "€ 100,000"
+      ],
+      [
+       "Subtotal:",
+       "",
+       "€615,974"
+      ],
+      [
+       "",
+       "",
+       ""
+      ],
+      [
+       "Total:",
+       "",
+       "€7,615,974"
+      ]
+     ]
+    },
+    {
+     "page": 31,
+     "rows": [
+      [
+       "Active Travel Investment Grants: 2026 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Cork County Council",
+       "",
+       ""
+      ],
+      [
+       "Project Code",
+       "Project Name",
+       "2026 Allocation"
+      ],
+      [
+       "",
+       "",
+       ""
+      ],
+      [
+       "Total:",
+       "",
+       "€20,285,000"
+      ]
+     ]
+    },
+    {
+     "page": 36,
+     "rows": [
+      [
+       "Project Code",
+       "Project Name",
+       "2026 Allocation"
+      ],
+      [
+       "GCC/25/0012",
+       "SRTS R3 Colaiste Einde Secondary School",
+       "€ 50,000"
+      ],
+      [
+       "GCC/25/0013",
+       "SRTS R3 St John the Apostle Knocnacarra NS",
+       "€ 50,000"
+      ],
+      [
+       "GCC/25/0014",
+       "SRTS R3 St Patricks NS Galway City",
+       "€ 50,000"
+      ],
+      [
+       "GCC/26/xxxx",
+       "Quietways City Centre",
+       "€ 75,000"
+      ],
+      [
+       "GCC/26/xxxx",
+       "SRTS R4 Claddagh primary school",
+       "€ 5,000"
+      ],
+      [
+       "GCC/26/xxxx",
+       "SRTS R4 Gaelscoil Mhic Amhlaigh",
+       "€ 5,000"
+      ],
+      [
+       "GCC/26/xxxx",
+       "TFI Bike Infrastructure Replacement",
+       "€ 5 00,000"
+      ],
+      [
+       "",
+       "",
+       ""
+      ],
+      [
+       "Subtotal:",
+       "",
+       ""
+      ]
+     ]
+    },
+    {
+     "page": 37,
+     "rows": [
+      [
+       "Project Code",
+       "Project Name",
+       "2026 Allocation"
+      ],
+      [
+       "Allocations Through Other NTA Funding Streams",
+       "",
+       ""
+      ],
+      [
+       "GCC/17/0001",
+       "Cross City Link",
+       "€ 5 00,000"
+      ],
+      [
+       "GCC/18/0001",
+       "Dublin Road Transport Corridor",
+       "€ 1 00,000"
+      ],
+      [
+       "GCC/19/0006",
+       "Bus Priority within Urban Traffic Management Controls",
+       "€ 4 00,000"
+      ],
+      [
+       "GCC/23/0005",
+       "Parkmore Road Bus Priority Scheme",
+       "€ 6 00,000"
+      ],
+      [
+       "GCC/25/0019",
+       "Bus Stop Enhancement Programme",
+       "€ 5 00,000"
+      ],
+      [
+       "",
+       "",
+       ""
+      ],
+      [
+       "Subtotal:",
+       "",
+       "€ 2 ,100,000"
+      ],
+      [
+       "",
+       "",
+       ""
+      ],
+      [
+       "Total:",
+       "",
+       "€11,600,000"
+      ]
+     ]
+    },
+    {
+     "page": 58,
+     "rows": [
+      [
+       "Active Travel Investment Grants: 2026 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Longford County Council",
+       "",
+       ""
+      ],
+      [
+       "Project Code",
+       "Project Name",
+       "2026 Allocation"
+      ],
+      [
+       "LD/26/xxxx",
+       "Aughnacliffe: New Pedestrian Crossings and Junction Tightening",
+       "€ 6 0,000"
+      ],
+      [
+       "",
+       "Total:",
+       "€ 3,000,000"
+      ]
+     ]
+    },
+    {
+     "page": 78,
+     "rows": [
+      [
+       "Table A: Active Travel Investment Campuses, Hospitals, SRTS and Others",
+       "",
+       ""
+      ],
+      [
+       "Active Travel Investment Grants: 2026 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Campuses, Hospitals, Educational Institutions and Others",
+       "",
+       ""
+      ],
+      [
+       "Project Code",
+       "Project Name",
+       "2026 Allocation"
+      ],
+      [
+       "NTA/15/0001",
+       "Regional Bikes Costs",
+       "€ 4,000,000"
+      ],
+      [
+       "",
+       "Subtotal",
+       "€ 4,000,000"
+      ],
+      [
+       "NTA/21/0001",
+       "SRTS Schools Cycle Parking",
+       "€ 400,000"
+      ],
+      [
+       "NTA/21/0012",
+       "Green Schools Cycle Parking - Non SRTS",
+       "€ 600,000"
+      ],
+      [
+       "NTA/22/0011",
+       "Safe Routes to School Staff Costs",
+       "€ 900,000"
+      ],
+      [
+       "",
+       "Subtotal",
+       "€ 1,900,000"
+      ],
+      [
+       "NTA/13/0015",
+       "NTA support services including ATSO",
+       "€ 6,100,000"
+      ],
+      [
+       "",
+       "Subtotal",
+       "€ 6,100,000"
+      ],
+      [
+       "SJH/21/0001",
+       "Bike Hub",
+       "€ 25,000"
+      ],
+      [
+       "TUD/23/0001",
+       "TUD Cycle Parking",
+       "€ 200,000"
+      ],
+      [
+       "TCD/17/0001",
+       "TCD Cycle Parking",
+       "€ 130,000"
+      ],
+      [
+       "TCD/24/0002",
+       "TCD Transport Study",
+       "€ 50,000"
+      ],
+      [
+       "DCU/19/0001",
+       "DCU Cycle parking",
+       "€ 150,000"
+      ],
+      [
+       "UCD/23/0003",
+       "Bike Library Pilot",
+       "€ 120,000"
+      ],
+      [
+       "BH/24/0001",
+       "Beaumont Hospital Cycle Parking",
+       "€ 150,000"
+      ],
+      [
+       "OPW/25/0002",
+       "Commemorative Bridge, Island Bridge",
+       "€ 2,250,000"
+      ],
+      [
+       "DPG/25/0001",
+       "Dublin Port Greenway (LIFFEY TOLKA PROJECT-Phase 1)",
+       "€ 2,000,000"
+      ],
+      [
+       "NMH/26/xxxx",
+       "National Maternity Hospital Secure Bike Parking",
+       "€ 150,000"
+      ],
+      [
+       "SVUH/26/00XX",
+       "St Vincents Hospital Bike Bunker",
+       "€ 15,000"
+      ],
+      [
+       "IE/26/00XX",
+       "Irish Rail Secure Cycle Parking",
+       "€ 300,000"
+      ],
+      [
+       "WWI/26/xx",
+       "Royal Canal Resurfacing (Waterways Ireland)",
+       "€ 850,000"
+      ]
+     ]
+    },
+    {
+     "page": 79,
+     "rows": [
+      [
+       "Active Travel Investment Grants: 2026 Allocations",
+       "",
+       ""
+      ],
+      [
+       "Campuses, Hospitals, Educational Institutions and Others",
+       "",
+       ""
+      ],
+      [
+       "Project Code",
+       "Project Name",
+       "2026 Allocation"
+      ],
+      [
+       "",
+       "Subtotal",
+       "€ 6,390,000"
+      ],
+      [
+       "Total:",
+       "",
+       "€ 1 8,390,000"
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}
