@@ -168,3 +168,57 @@ def test_results_json_and_table_md_written(tmp_path, monkeypatch):
     assert [r["fix"] for r in on_disk["fix_rows"]] == ["tr"]
     t = (d / "TABLE.md").read_text()
     assert "files_resolved" in t and "best agreement" in t
+
+
+def _run_resolved(tmp_path, monkeypatch, cluster_gold=None, override_bound=False, agr=0.95,
+                  tr_family="docling"):
+    monkeypatch.setitem(REGISTRY, "current", Fix(name="current", kind="baseline"))
+    monkeypatch.setitem(REGISTRY, "tr", Fix(name="tr", kind="fork", family=tr_family))
+    stored = {CL: {"file_url": CL, "public_body_id": 1, "name": CL, "rows": GOOD, "pdf_extractor": "pdfplumber"}}
+    monkeypatch.setattr(rnd, "transform_index", lambda: stored)
+    monkeypatch.setattr(rnd, "file_stats", lambda: {CL: _stat(CL, 1, "pdfplumber", records=10)})
+    monkeypatch.setattr(rnd, "pdf_bytes", lambda u, *a: BYTES[u])
+    monkeypatch.setattr(rnd, "settings", lambda: S)
+    cl_sha = content_sha(BYTES[CL])
+    monkeypatch.setattr(rnd, "load_gold", lambda sha: {"score": cluster_gold} if sha == cl_sha and cluster_gold is not None else None)
+    monkeypatch.setattr(rnd, "gold_score", lambda rows, g: g["score"])
+    monkeypatch.setattr(rnd, "get_rows", lambda fix, url, data, item, *a: Extraction(GOOD, "ok", 1.0, None))
+    monkeypatch.setattr(rnd, "run_downstream", lambda items, variant, scratch=None, gate=None, **kw: {
+        it["file_url"]: FileOutcome(it["file_url"], True, [], {}, 50, 0, {}, override_bound and variant == "tr")
+        for it in items})
+    monkeypatch.setattr(rnd, "agreement", lambda a, b: agr)
+    res = rnd.run_round(tmp_path / "r", "c1", [CL], ["current", "tr"], [], [],
+                        cl_sha if cluster_gold is not None else None)
+    return res, res["files"][CL]["fixes"]["tr"], {r["fix"]: r for r in res["fix_rows"]}["tr"]
+
+
+def test_independent_family_gives_agreement_and_resolved_pending_without_gold(tmp_path, monkeypatch):
+    res, fx, row = _run_resolved(tmp_path, monkeypatch)
+    assert fx["best_agreement"] == 0.95 and fx["agrees_with"] == "current"
+    assert fx["resolved"] is None
+    assert row["agreement"] == 0.95 and row["files_resolved"] == 0 and row["cluster_gold"] is None
+
+
+def test_resolved_true_with_cluster_gold_at_or_above_threshold(tmp_path, monkeypatch):
+    res, fx, row = _run_resolved(tmp_path, monkeypatch, cluster_gold=0.96)
+    assert fx["resolved"] is True and row["files_resolved"] == 1 and row["cluster_gold"] == 0.96
+
+
+def test_resolved_false_with_cluster_gold_below_threshold(tmp_path, monkeypatch):
+    res, fx, row = _run_resolved(tmp_path, monkeypatch, cluster_gold=0.90)
+    assert fx["resolved"] is False and row["files_resolved"] == 0 and row["cluster_gold"] == 0.90
+
+
+def test_override_bound_file_is_never_resolved(tmp_path, monkeypatch):
+    res, fx, row = _run_resolved(tmp_path, monkeypatch, cluster_gold=0.99, override_bound=True)
+    assert fx["override_bound"] is True and fx["resolved"] is False and row["files_resolved"] == 0
+
+
+def test_low_agreement_is_not_resolved(tmp_path, monkeypatch):
+    res, fx, row = _run_resolved(tmp_path, monkeypatch, cluster_gold=0.99, agr=0.85)
+    assert fx["best_agreement"] == 0.85 and fx["resolved"] is False
+
+
+def test_same_family_partner_is_ignored(tmp_path, monkeypatch):
+    res, fx, row = _run_resolved(tmp_path, monkeypatch, cluster_gold=0.99, tr_family="pdfplumber")
+    assert fx["best_agreement"] is None and fx["agrees_with"] is None and fx["resolved"] is False
