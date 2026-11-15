@@ -10,11 +10,13 @@
   "saved_at": "2026-11-15T17:08:02"
  },
  "file:https://assets.gov.ie/static/documents/foi-requests-january-march-2024.pdf": {
-  "text": "split cells. DRCD-FOI-2024-0018 Split over 12 rows",
+  "text": "split cells. DRCD-FOI-2024-0018 Split over 12 rows | Control 1210: current (pymupdf) is wrong; docling is correct.",
   "tags": [
    "split cells"
   ],
-  "saved_at": "2026-11-15T17:11:39"
+  "saved_at": "2026-11-15T18:15:58",
+  "choice": "docling",
+  "choice_source": "user in chat, re-entered after review-page capture lost it"
  },
  "__ship__": {
   "text": "No. Some \u201ccurrent\u201d files aren\u2019t correct: 1210, 1508 and 1235. In each case I indicated which alternatives are correct",
@@ -22,5 +24,33 @@
    "no"
   ],
   "saved_at": "2026-11-15T17:21:35"
+ },
+ "file:https://www.mayo.ie/getmedia/25fd167c-a70c-4a45-930e-3ddb56e8cbea/FOI-Disclosure-Log-Q3-2024.pdf": {
+  "text": "Control 1508: current (camelot_stream) is wrong; force:pdfplumber is correct.",
+  "tags": [],
+  "choice": "force:pdfplumber",
+  "choice_source": "user in chat, re-entered after review-page capture lost it",
+  "saved_at": "2026-11-15T18:15:58"
+ },
+ "file:https://www.dublincity.ie/sites/default/files/2026-02/disclosure-log-2025.pdf": {
+  "text": "Control 1235: current (camelot_stream, 547 records) is wrong, records split over multiple rows; force:mistral_cache fixes it.",
+  "tags": [],
+  "choice": "force:mistral_cache",
+  "choice_source": "user in chat, re-entered after review-page capture lost it",
+  "saved_at": "2026-11-15T18:15:58"
+ },
+ "__extra_gate_files__": {
+  "text": "User checked the 8 extra files that newly pass under the widened date gate (1244, 1508 x4, 1594 AIE_2024, 1501 2023, 1647 2020): ok, dates good.",
+  "tags": [
+   "ok"
+  ],
+  "saved_at": "2026-11-15T18:15:58"
+ },
+ "__cluster_gold__": {
+  "text": "Cluster gold eeb9d0a7 reviewed by user: no faults found.",
+  "tags": [
+   "checked"
+  ],
+  "saved_at": "2026-11-15T18:15:58"
  }
 }
