@@ -74,7 +74,6 @@ def test_an_empty_response_is_not_cached(tmp_path, monkeypatch):
 def test_only_documents_with_an_extractable_kind_are_extracted(tmp_path, monkeypatch):
     "The 2022 annex is fetched and cached, but never read as project rows."
     from steps.extract_grant_tables import process as extract
-
     documents = [
         {"document_id": "nta-active-travel-2022", "year": 2022,
          "kinds": ["project_table"], "available": True, "cache_file": "x.pdf"},
@@ -96,7 +95,7 @@ def test_only_documents_with_an_extractable_kind_are_extracted(tmp_path, monkeyp
 
 
 def test_an_unavailable_document_is_not_extracted():
-    from steps.extract_grant_tables import run as extract_run
+    from steps.extract_grant_tables.process import run as extract_run
 
     documents = [{"document_id": "nta-active-travel-2026", "year": 2026,
                   "kinds": ["project_table"], "available": False, "error": "DocumentFetchError"}]

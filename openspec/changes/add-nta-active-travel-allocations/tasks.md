@@ -10,12 +10,12 @@
 
 ## 2. Document fetch
 
-- [ ] 2.1 Implement `steps/fetch_grant_documents/process.py`: read `publications.json`, fetch each document into a git-ignored cache keyed by URL digest, reuse cached bytes without a network call, record `sha256` and document metadata; verify tests cover cold cache, warm cache (no HTTP) and unreachable URL (`DocumentFetchError`, no records). **Written in `tests/test_fetch.py` but not yet run.**
+- [x] 2.1 Implement `steps/fetch_grant_documents/process.py`: read `publications.json`, fetch each document into a git-ignored cache keyed by URL digest, reuse cached bytes without a network call, record `sha256` and document metadata; verify tests cover cold cache, warm cache (no HTTP) and unreachable URL (`DocumentFetchError`, no records). Covered by `tests/test_fetch.py`.
 - [x] 2.2 Write the step `README.md` documenting the output fields, the cache location, and why digests are recorded rather than pinned (design.md §2); verify the documented cache path matches `.gitignore`.
 
 ## 3. Table extraction and structural gate
 
-- [ ] 3.1 Implement `steps/extract_grant_tables/process.py` using `pdfplumber` page tables plus `lib.table_structure` structural checks to accept or reject each page, emitting rows with page number, row index and the page's gate outcome; verify tests cover an accepted page, a rejected page (`TableStructureUnreliable`, no rows) and a text-free page (`PageHasNoText`). **The text-free and wrong-width page tests were appended to `tests/test_extraction.py` after the last suite run and are not yet run.**
+- [x] 3.1 Implement `steps/extract_grant_tables/process.py` using `pdfplumber` page tables plus `lib.table_structure` structural checks to accept or reject each page, emitting rows with page number, row index and the page's gate outcome; verify tests cover an accepted page, a rejected page (`TableStructureUnreliable`, no rows) and a text-free page (`PageHasNoText`). Covered by `tests/test_extraction.py`.
 - [x] 3.2 Add a test fixture built from real pages of each of the five committed documents asserting every accepted page yields three-column rows; verify the test fails if the extractor is changed to a two-column assumption.
 - [x] 3.3 Write the step `README.md` covering the gate's checks, what is recorded for every page, and that cell-text defects do not reject a page; verify the documented error types match those emitted by the tests.
 

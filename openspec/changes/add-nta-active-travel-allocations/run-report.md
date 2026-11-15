@@ -107,7 +107,7 @@ section reconciles exactly once the repair is applied.
 |---|---|
 | `uv run python pipelines/activetravel_pipeline/status.py --all` | all five editions flow; annex reported as "not extracted (programme summary)" |
 | `uv run pyright` | 0 errors |
-| `uv run pytest pipelines/activetravel_pipeline/tests -q` | 98 passed |
+| `uv run pytest pipelines/activetravel_pipeline/tests -q` | 107 passed |
 | `uv run pytest tests/ -q` | 442 passed, 1 failed (pre-existing: the built `foi-disclosures.csv` is absent) |
 | `uv run pytest pipelines/document_pipeline/tests -q` | 499 passed |
 | `uv run python scripts/generate_pipeline_docs.py --check` | clean |

@@ -43,7 +43,10 @@ def collect(documents: list[dict], fetcher=fetch_bytes) -> tuple[list[dict], lis
     for document in documents:
         path = cache_path(document["url"])
         entry = dict(document)
-        entry["cache_file"] = str(path.relative_to(PIPELINE_DIR))
+        try:
+            entry["cache_file"] = str(path.relative_to(PIPELINE_DIR))
+        except ValueError:  # a cache outside the pipeline directory is still usable
+            entry["cache_file"] = str(path)
         try:
             if path.exists() and path.stat().st_size > 0:
                 data = path.read_bytes()

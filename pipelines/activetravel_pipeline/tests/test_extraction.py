@@ -280,4 +280,5 @@ def test_a_summary_page_keeps_its_rows_out_of_the_project_stream(monkeypatch):
     output, errors = _extract_with(monkeypatch, [_FakePage("some text", table)])
     assert output["rows"] == []
     assert output["pages"][0]["part"] == "recipient_summary"
-    assert output["summary_rows"][0]["cells"][0] == "Dublin City Council"
+    assert [row["cells"][0] for row in output["summary_rows"]] == [
+        "Agency", "Dublin City Council"]
