@@ -1,18 +1,30 @@
 {
   "https://assets.gov.ie/static/documents/non-personal-foi-requests-2017.pdf": {
     "cluster": "1594-non-personal-2017-2020",
-    "status": "in_round"
+    "fault_firm": true,
+    "fault_kind": "G",
+    "note": "experiments/2026-11-15-gating-round-01-1594-non-personal (gate-dd-mon-yy wins; not shipped)",
+    "status": "open"
   },
   "https://assets.gov.ie/static/documents/non-personal-foi-requests-2018.pdf": {
     "cluster": "1594-non-personal-2017-2020",
-    "status": "in_round"
+    "fault_firm": true,
+    "fault_kind": "G",
+    "note": "experiments/2026-11-15-gating-round-01-1594-non-personal (gate-dd-mon-yy wins; not shipped)",
+    "status": "open"
   },
   "https://assets.gov.ie/static/documents/non-personal-foi-requests-2019.pdf": {
     "cluster": "1594-non-personal-2017-2020",
-    "status": "in_round"
+    "fault_firm": true,
+    "fault_kind": "G",
+    "note": "experiments/2026-11-15-gating-round-01-1594-non-personal (gate-dd-mon-yy wins; not shipped)",
+    "status": "open"
   },
   "https://assets.gov.ie/static/documents/non-personal-foi-requests-2020.pdf": {
     "cluster": "1594-non-personal-2017-2020",
-    "status": "in_round"
+    "fault_firm": true,
+    "fault_kind": "G",
+    "note": "experiments/2026-11-15-gating-round-01-1594-non-personal (gate-dd-mon-yy wins; not shipped)",
+    "status": "open"
   }
 }

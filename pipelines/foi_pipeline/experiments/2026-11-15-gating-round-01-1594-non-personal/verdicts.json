@@ -1,0 +1,26 @@
+{
+ "file:https://assets.gov.ie/static/documents/non-personal-foi-requests-2018.pdf": {
+  "text": "Row 1309 has garbled text in the description: JTahneu naurym 2b0e1r 7o ft os ttahfef fcroumrre tnhte d Dateep.artment",
+  "tags": [],
+  "saved_at": "2026-11-15T17:04:23"
+ },
+ "file:https://assets.gov.ie/static/documents/non-personal-foi-requests-2020.pdf": {
+  "text": "Record 1618 has a garbled date: 2 7 - J a n -20",
+  "tags": [],
+  "saved_at": "2026-11-15T17:08:02"
+ },
+ "file:https://assets.gov.ie/static/documents/foi-requests-january-march-2024.pdf": {
+  "text": "split cells. DRCD-FOI-2024-0018 Split over 12 rows",
+  "tags": [
+   "split cells"
+  ],
+  "saved_at": "2026-11-15T17:11:39"
+ },
+ "__ship__": {
+  "text": "No. Some \u201ccurrent\u201d files aren\u2019t correct: 1210, 1508 and 1235. In each case I indicated which alternatives are correct",
+  "tags": [
+   "no"
+  ],
+  "saved_at": "2026-11-15T17:21:35"
+ }
+}

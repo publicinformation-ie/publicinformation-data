@@ -2,13 +2,13 @@
 
 Files in scope: 189. Recoverable total: 3539.
 By kind: E 56, G 20, M 6, S 74, V 33.
-By status: in_round 4, open 152, parked 33.
+By status: open 156, parked 33.
 
 ## Clusters by recoverable records
 
 | cluster | kind | files | recoverable | statuses |
 |---|---|---|---|---|
-| 1594-non-personal-2017-2020 | G | 4 | 567 | in_round 4 |
+| 1594-non-personal-2017-2020 | G | 4 | 567 | open 4 |
 | 1501-G-anchored_row_share+role_contamination | G | 2 | 203 | open 2 |
 | 1342-G-anchored_row_share+role_contamination | G | 1 | 199 | open 1 |
 | 1508-G-role_contamination | G | 4 | 159 | open 4 |
@@ -143,10 +143,10 @@ By status: in_round 4, open 152, parked 33.
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Office of Public Works | 1594 | G | in_round | 156/3 | 0/0 | 156 |
-| Office of Public Works | 1594 | G | in_round | 152/2 | 0/0 | 152 |
-| Office of Public Works | 1594 | G | in_round | 141/2 | 0/0 | 141 |
-| Office of Public Works | 1594 | G | in_round | 118/0 | 0/0 | 118 |
+| Office of Public Works | 1594 | G | open | 156/3 | 0/0 | 156 |
+| Office of Public Works | 1594 | G | open | 152/2 | 0/0 | 152 |
+| Office of Public Works | 1594 | G | open | 141/2 | 0/0 | 141 |
+| Office of Public Works | 1594 | G | open | 118/0 | 0/0 | 118 |
 
 ## 1501-G-anchored_row_share+role_contamination
 
