@@ -7,11 +7,14 @@ pipeline-status.json and errors.json.
 """
 from __future__ import annotations
 
+import argparse
 import json
+import sys
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 
+REPO_ROOT = Path(__file__).resolve().parents[1]
 COST_KINDS: tuple[str, ...] = ("llm", "apify")
 
 
@@ -299,3 +302,156 @@ def discover_pipelines(repo_root: Path) -> list[Path]:
     if not root.is_dir():
         return []
     return sorted(d for d in root.iterdir() if (d / "pipeline.json").is_file())
+
+
+# ---------------------------------------------------------------------------
+# Rendering
+# ---------------------------------------------------------------------------
+
+def sort_reports(reports: list[PipelineReport]) -> list[PipelineReport]:
+    return sorted(
+        reports,
+        key=lambda r: (r.status not in ("needs_run", "blocked"), -r.error_total, r.name),
+    )
+
+
+def _local(ts: str | None) -> str:
+    if not ts:
+        return "—"
+    try:
+        return datetime.fromisoformat(ts).astimezone().strftime("%Y-%m-%d %H:%M")
+    except ValueError:
+        return "—"
+
+
+def _table(headers: list[str], rows: list[list[str]]) -> str:
+    widths = [max(len(h), *(len(r[i]) for r in rows)) if rows else len(h) for i, h in enumerate(headers)]
+    fmt = lambda cells: "  ".join(c.ljust(w) for c, w in zip(cells, widths)).rstrip()
+    return "\n".join([fmt(headers), *(fmt(r) for r in rows)])
+
+
+def _volume_cell(r: PipelineReport) -> str:
+    if not r.window:
+        return "—"
+    return f"up to {r.volume:,}" if r.volume is not None else "unknown"
+
+
+def _needs_run_cell(r: PipelineReport) -> str:
+    if r.status == "blocked":
+        cell = f"blocked: run {r.blocked_by.removesuffix('_pipeline')} first"
+    else:
+        cell = (r.run_start if r.status == "needs_run" else None) or "—"
+    if r.code_changed_from:
+        cell += f" (code: {r.code_changed_from})"
+    return cell
+
+
+def _command_lines(r: PipelineReport, indent: str = "  ") -> list[str]:
+    lines = []
+    kinds = {s.name: s.paid for s in r.steps}
+    for c in r.commands:
+        line = indent + c.command
+        if c.paid_steps:
+            line += "  # PAID: " + ", ".join(f"{n} ({', '.join(kinds[n])})" for n in c.paid_steps)
+        lines.append(line)
+    return lines
+
+
+def render_overview(reports: list[PipelineReport]) -> str:
+    headers = ["PIPELINE", "LAST RUN", "NEEDS RUN FROM", "VOLUME", "PAID", "ERRORS", "TOP ERROR STEPS"]
+    rows = [
+        [
+            r.name,
+            _local(r.last_run),
+            _needs_run_cell(r),
+            _volume_cell(r),
+            format_paid(r.paid_in_window),
+            str(r.error_total),
+            ", ".join(f"{n} {c}" for n, c in r.top_error_steps) or "—",
+        ]
+        for r in reports
+    ]
+    out = [_table(headers, rows)]
+    for r in reports:
+        if r.commands:
+            out += ["", f"{r.name}:", *_command_lines(r)]
+    notes = [f"{r.name}: {r.note}" for r in reports if r.note]
+    if notes:
+        out += ["", *notes]
+    return "\n".join(out)
+
+
+def render_drilldown(r: PipelineReport) -> str:
+    rows = [
+        [s.name, _local(s.completed_at), "—" if s.record_count is None else f"{s.record_count:,}",
+         s.state, str(s.errors), ", ".join(s.paid) or "—"]
+        for s in r.steps
+    ]
+    out = [f"{r.name} — {r.status}", "", _table(["STEP", "COMPLETED", "RECORDS", "STATE", "ERRORS", "PAID"], rows), ""]
+    out.append(f"run start: {r.run_start or '—'}")
+    out.append(f"window: {', '.join(r.window) or '—'}")
+    out.append(f"volume: {_volume_cell(r)}")
+    out.append(f"paid: {format_paid(r.paid_in_window)}")
+    if r.commands:
+        out += ["commands:", *_command_lines(r)]
+    if r.note:
+        out.append(f"note: {r.note}")
+    if r.has_status_script:
+        out.append(f"per-item view: uv run python pipelines/{r.dir_name}/status.py --help")
+    return "\n".join(out)
+
+
+def report_to_json(r: PipelineReport) -> dict:
+    return {
+        "name": r.name,
+        "dir": r.dir_name,
+        "status": r.status,
+        "last_run": r.last_run,
+        "run_start": r.run_start,
+        "code_changed_from": r.code_changed_from,
+        "blocked_by": r.blocked_by,
+        "window": r.window,
+        "volume": r.volume,
+        "paid_in_window": r.paid_in_window,
+        "error_total": r.error_total,
+        "top_error_steps": [[n, c] for n, c in r.top_error_steps],
+        "suggested_commands": [{"command": c.command, "paid_steps": c.paid_steps} for c in r.commands],
+        "note": r.note,
+        "steps": [
+            {"name": s.name, "state": s.state, "completed_at": s.completed_at,
+             "record_count": s.record_count, "errors": s.errors, "paid": s.paid}
+            for s in r.steps
+        ],
+    }
+
+
+def main(argv: list[str] | None = None, repo_root: Path = REPO_ROOT) -> int:
+    parser = argparse.ArgumentParser(description="Read-only status overview for every pipeline.")
+    parser.add_argument("--pipeline", help="show one pipeline in detail (e.g. minutes)")
+    parser.add_argument("--json", action="store_true", help="machine-readable output")
+    args = parser.parse_args(argv)
+    try:
+        dirs = discover_pipelines(repo_root)
+        if args.pipeline:
+            wanted = args.pipeline.removesuffix("_pipeline") + "_pipeline"
+            dirs = [d for d in dirs if d.name == wanted]
+            if not dirs:
+                print(f"error: unknown pipeline '{args.pipeline}'", file=sys.stderr)
+                return 2
+        reports = [build_report(repo_root, d) for d in dirs]
+    except PipelineDataError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 2
+    if not args.pipeline:
+        reports = sort_reports(reports)
+    if args.json:
+        print(json.dumps([report_to_json(r) for r in reports], indent=2))
+    elif args.pipeline:
+        print(render_drilldown(reports[0]))
+    else:
+        print(render_overview(reports))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

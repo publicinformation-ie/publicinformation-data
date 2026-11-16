@@ -6,6 +6,9 @@ import pytest
 
 from scripts.pipeline_status import (
     Command,
+    PipelineReport,
+    main,
+    sort_reports,
     PipelineDataError,
     build_report,
     discover_pipelines,
@@ -329,3 +332,106 @@ def test_discover_pipelines_sorted(tmp_path):
     make_pipeline(tmp_path, "a_pipeline", {"steps": []})
     (tmp_path / "pipelines/c_pipeline").mkdir()
     assert [d.name for d in discover_pipelines(tmp_path)] == ["a_pipeline", "b_pipeline"]
+
+
+# ---------- Task 3: rendering and CLI ----------
+
+def fake_report(name, status, errors):
+    return PipelineReport(
+        dir_name=f"{name}_pipeline", name=name, status=status, last_run=None, run_start=None,
+        code_changed_from=None, window=[], volume=None, paid_in_window={}, error_total=errors,
+        top_error_steps=[], commands=[], note=None, blocked_by=None, steps=[],
+    )
+
+
+def test_sort_needs_run_and_blocked_first_then_errors():
+    reports = [
+        fake_report("ok50", "up_to_date", 50),
+        fake_report("a_needs", "needs_run", 0),
+        fake_report("b_blocked", "blocked", 0),
+        fake_report("ok100", "up_to_date", 100),
+    ]
+    assert [r.name for r in sort_reports(reports)] == ["a_needs", "b_blocked", "ok100", "ok50"]
+
+
+def two_pipelines(tmp_path):
+    p = build(
+        tmp_path, list("abcd"),
+        {"a": T0 + 20, "b": T0 + 10, "c": T0 + 30, "d": T0 + 40},
+        paid_steps={"c": ["llm"]}, counts={"a": 12},
+    )
+    q = make_pipeline(tmp_path, "y_pipeline", {"steps": ["a"]})
+    write_output(tmp_path, step_dir(q, "a"), T0)
+    return p, q
+
+
+def test_overview_lists_every_pipeline_with_paid_label(tmp_path, capsys):
+    two_pipelines(tmp_path)
+    assert main([], repo_root=tmp_path) == 0
+    out = capsys.readouterr().out
+    assert "x" in out and "y" in out and "up to" in out
+    assert "# PAID: c (llm)" in out
+    assert out.index("--to b") < out.index("# PAID: c (llm)")
+
+
+def test_overview_blocked_and_code_cells(tmp_path, capsys):
+    make_pipeline(tmp_path, "b_pipeline", {"steps": ["/pipelines/cso_pipeline/steps/r", "a"]})
+    p = build(tmp_path, list("abc"), {"a": T0, "b": T0 + 10, "c": T0 + 20})
+    py = step_dir(p, "c") / "process.py"
+    py.write_text("")
+    os.utime(py, (T0 + 30, T0 + 30))
+    assert main([], repo_root=tmp_path) == 0
+    out = capsys.readouterr().out
+    assert "blocked: run cso first" in out
+    assert "(code: c)" in out
+
+
+def test_drilldown_table_and_pointer(tmp_path, capsys):
+    p = build(tmp_path, ["a", "b"], {"a": T0, "b": T0 + 5})
+    (p / "status.py").write_text("")
+    assert main(["--pipeline", "x"], repo_root=tmp_path) == 0
+    out = capsys.readouterr().out
+    assert "STATE" in out and "a" in out and "b" in out
+    assert "per-item view: uv run python pipelines/x_pipeline/status.py --help" in out
+
+
+def test_pipeline_name_accepts_both_forms(tmp_path):
+    build(tmp_path, ["a"], {"a": T0})
+    assert main(["--pipeline", "x"], repo_root=tmp_path) == 0
+    assert main(["--pipeline", "x_pipeline"], repo_root=tmp_path) == 0
+
+
+def test_json_overview_and_drilldown_are_arrays(tmp_path, capsys):
+    two_pipelines(tmp_path)
+    assert main(["--json"], repo_root=tmp_path) == 0
+    data = json.loads(capsys.readouterr().out)
+    assert isinstance(data, list) and len(data) == 2
+    assert main(["--pipeline", "x", "--json"], repo_root=tmp_path) == 0
+    one = json.loads(capsys.readouterr().out)
+    assert len(one) == 1
+    assert set(one[0]["steps"][0]) == {"name", "state", "completed_at", "record_count", "errors", "paid"}
+    assert set(one[0]) >= {
+        "name", "dir", "status", "last_run", "run_start", "code_changed_from", "blocked_by", "window",
+        "volume", "paid_in_window", "error_total", "top_error_steps", "suggested_commands", "note", "steps",
+    }
+
+
+def test_unknown_pipeline_exits_2(tmp_path, capsys):
+    build(tmp_path, ["a"], {"a": T0})
+    assert main(["--pipeline", "nope"], repo_root=tmp_path) == 2
+    assert capsys.readouterr().err
+
+
+def test_bad_pipeline_json_exits_2(tmp_path, capsys):
+    d = tmp_path / "pipelines/bad_pipeline"
+    d.mkdir(parents=True)
+    (d / "pipeline.json").write_text("{bad")
+    assert main([], repo_root=tmp_path) == 2
+    assert "bad_pipeline" in capsys.readouterr().err
+
+
+def test_does_not_open_output_json(tmp_path):
+    p = build(tmp_path, ["a", "b"], {"a": T0, "b": T0 + 5})
+    (step_dir(p, "a") / "output.json").write_text("{{{")
+    os.utime(step_dir(p, "a") / "output.json", (T0, T0))
+    assert main([], repo_root=tmp_path) == 0
