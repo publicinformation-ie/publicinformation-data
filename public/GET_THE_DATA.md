@@ -63,6 +63,13 @@ Every project the National Transport Authority gave Active Travel Investment Gra
 
 Each row is one grant allocation for one project in one year, so the same project appears once for every year it was funded — filter the `project_code` column to follow one scheme across the five years. Rows marked `project_code_provisional` (`True`) carry a placeholder code that the NTA had not yet assigned, so use the project name for those. The `funding_stream` column separates the authority's Active Travel grant (`active_travel`) from money allocated through other NTA funding streams such as bus priority (`other_nta_streams`).
 
+**Smaller files for Google Sheets.** Rather than the whole 4,875-row file, pull in just the part you need:
+
+- One file per recipient, all years: [by-recipient/index.csv](latest/active-travel-allocations/by-recipient/index.csv) lists every recipient and its file, e.g. `latest/active-travel-allocations/by-recipient/carlow-county-council.csv`.
+- One file per year, in the order the NTA's own table prints it: [by-year/index.csv](latest/active-travel-allocations/by-year/index.csv), e.g. `latest/active-travel-allocations/by-year/2025.csv`.
+
+In Google Sheets, use `=IMPORTDATA("https://data.publicinformation.ie/latest/active-travel-allocations/by-recipient/carlow-county-council.csv")` (`IMPORTRANGE` only reads other Google Sheets, so `IMPORTDATA` is the one for these files). Sheets refreshes the data on its own schedule, roughly hourly.
+
 ## Worked example: find a body's FOI contact email
 
 1. Open [public-bodies.csv](latest/public-bodies/public-bodies.csv) in a spreadsheet program.

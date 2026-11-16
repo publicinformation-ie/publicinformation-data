@@ -22,6 +22,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
+from scripts.active_travel_splits import build_splits, write_splits
 from src.lib.body_refs import BASE_URI, build_body_slug_lookup, body_uri
 from src.lib.dataset_publish import render_csv, render_jsonld, stamp_if_changed
 
@@ -170,6 +171,10 @@ def main():
     fieldnames, rows = transform_to_csv_rows(records)
     changed = publish(jsonld_data, fieldnames, rows)
     mirrored = mirror_to_latest()
+    split_files = build_splits(records)
+    if write_splits(split_files, Path(LATEST_DIR)):
+        print(f"Wrote {len(split_files)} spreadsheet-friendly split files "
+              "(by-recipient/, by-year/) under public/latest/")
     if changed:
         print(f"Transformed {len(records)} allocations to JSON-LD and CSV "
               "(content changed, dct:modified updated)")
