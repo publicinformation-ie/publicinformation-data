@@ -11,5 +11,13 @@
     "canonicalize_motions",
     "export_motions"
   ],
-  "body_list_step": "find_local_authorities"
+  "body_list_step": "find_local_authorities",
+  "paid_steps": {
+    "find_meeting_minutes_pages_search": [
+      "apify"
+    ],
+    "extract_motions": [
+      "llm"
+    ]
+  }
 }

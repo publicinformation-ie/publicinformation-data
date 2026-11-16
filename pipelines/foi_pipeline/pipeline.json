@@ -29,5 +29,18 @@
     "db_upload",
     "sync_backlog"
   ],
-  "always_run": ["fingerprint_disclosure_pages"]
+  "always_run": [
+    "fingerprint_disclosure_pages"
+  ],
+  "paid_steps": {
+    "find_foi_pages_search": [
+      "apify"
+    ],
+    "find_disclosure_pages": [
+      "apify"
+    ],
+    "transform_disclosure_files": [
+      "llm"
+    ]
+  }
 }

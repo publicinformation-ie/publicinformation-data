@@ -2,6 +2,20 @@
 
 For guidance on *which* script to reach for, see [AGENTS.md](AGENTS.md).
 
+## pipeline_status.py
+
+Read-only overview of every pipeline: whether it needs running, from which step, over what volume, which paid steps the run would go through, and where its errors are. It simulates the runner's skip rule using file mtimes; it never runs or imports a step and only stats `output.json`.
+
+### Usage
+
+```bash
+uv run python scripts/pipeline_status.py                      # all pipelines
+uv run python scripts/pipeline_status.py --pipeline minutes   # one pipeline, step table + commands
+uv run python scripts/pipeline_status.py --json               # machine-readable
+```
+
+Paid steps are declared in each `pipeline.json` under `paid_steps` (kinds: `llm`, `apify`).
+
 ## file_issues.py
 
 Triage view of all FOI disclosure pipeline files, grouped by issue type (errors + dropped-file detection), sourced from each step's `output.json`/`errors.json`. Runs entirely against local pipeline artifacts — no database needed.

@@ -56,6 +56,8 @@ cd pipelines/foi_pipeline && uv run python process.py --force --stop-on-error
 | 5 | `search_websites_apify` |
 | 6 | `resolve_website_urls` |
 
+Paid steps: `search_websites_apify` (apify), `search_websites_llm` (llm).
+
 ### `datagovie_pipeline` (3 steps)
 
 | # | Step |
@@ -118,6 +120,8 @@ Always-run steps: `fetch_status_annexes`.
 
 Always-run steps: `fingerprint_disclosure_pages`.
 
+Paid steps: `find_foi_pages_search` (apify), `find_disclosure_pages` (apify), `transform_disclosure_files` (llm).
+
 ### `foigovie_pipeline` (3 steps)
 
 | # | Step |
@@ -148,6 +152,8 @@ Always-run steps: `fingerprint_disclosure_pages`.
 | 8 | `resolve_meeting_date` |
 | 9 | `canonicalize_motions` |
 | 10 | `export_motions` |
+
+Paid steps: `find_meeting_minutes_pages_search` (apify), `extract_motions` (llm).
 
 ### `statespend_pipeline` (3 steps)
 
@@ -180,16 +186,20 @@ Three separate suites, all via `uv run pytest`:
 
 CI currently enforces the three test suites, `pyright`, and generated-document consistency. No formatter or linter is enforced.
 
-## Pipeline Status Scripts
+## Pipeline Status
 
-Every pipeline ships a `status.py` next to its `process.py`. Run it before digging into step `output.json`/`errors.json` — it is the triage entry point for "where did this body/document run dry":
+Run `uv run python scripts/pipeline_status.py` first. It is read-only and covers every pipeline: whether it needs running, from which step, over what volume, through which paid steps, and where its errors are. Add `--pipeline <name>` for one pipeline's step table and suggested commands, or `--json` for agents. A command that goes through a paid step is labelled `PAID: <steps>`, and the bounded `--to` command is listed first.
+
+For a per-item view, some pipelines also ship a `status.py` next to `process.py`:
 
 | Pipeline | Command | View |
 |---|---|---|
 | `foi_pipeline` | `cd pipelines/foi_pipeline && uv run python status.py` | per-step completion, record counts, staleness, errors |
 | `minutes_pipeline` | `uv run python pipelines/minutes_pipeline/status.py --public-body <id\|slug>` | per-body funnel: record counts per step, body errors, dry-step verdict |
 
-When adding a new pipeline, add a `status.py` with the same contract (read step outputs in `pipeline.json` order, report counts + errors, zero new dependencies) and document its specifics in that pipeline's `README.md`.
+A new pipeline is covered by `scripts/pipeline_status.py` automatically. Add a pipeline-specific `status.py` only for a per-item view (same contract: read step outputs in `pipeline.json` order, report counts + errors, zero new dependencies) and document its specifics in that pipeline's `README.md`.
+
+**Any step that spends money must be listed in `paid_steps` in its `pipeline.json`** (kinds: `llm`, `apify`), so the status tool can flag it.
 
 ## Instruction Scope
 

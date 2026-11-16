@@ -28,6 +28,10 @@ def render(pipelines: list[tuple[str, dict]]) -> str:
         lines.extend(f"| {index} | `{step}` |" for index, step in enumerate(steps, 1))
         if always_run:
             lines.extend(["", f"Always-run steps: {', '.join(f'`{step}`' for step in always_run)}."])
+        paid = config.get("paid_steps", {})
+        if paid:
+            described = ", ".join(f"`{step}` ({', '.join(kinds)})" for step, kinds in paid.items())
+            lines.extend(["", f"Paid steps: {described}."])
         sections.append("\n".join(lines))
     return "\n\n".join(sections)
 
