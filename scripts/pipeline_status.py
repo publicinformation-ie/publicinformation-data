@@ -8,7 +8,8 @@ pipeline-status.json and errors.json.
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from datetime import datetime
 from pathlib import Path
 
 COST_KINDS: tuple[str, ...] = ("llm", "apify")
@@ -145,3 +146,156 @@ def read_steps(repo_root: Path, pipeline_dir: Path, config: dict) -> list[StepIn
             )
         )
     return infos
+
+
+# ---------------------------------------------------------------------------
+# Report: simulate the runner's skip rule
+# ---------------------------------------------------------------------------
+
+def run_window(steps: list[StepInfo], from_step: str | None = None) -> list[str]:
+    start = next((i for i, s in enumerate(steps) if s.name == from_step), 0) if from_step else 0
+    will_run: set[str] = set()
+    for i, s in enumerate(steps):
+        if i < start or s.state == "upstream":
+            continue
+        if s.name == from_step or s.state in ("never", "stale", "always") or s.input in will_run:
+            will_run.add(s.name)
+    return [s.name for s in steps if s.name in will_run]
+
+
+def paid_summary(steps: list[StepInfo], window: list[str]) -> dict[str, int]:
+    in_window = set(window)
+    counts = {k: 0 for k in COST_KINDS}
+    for s in steps:
+        if s.name in in_window:
+            for kind in s.paid:
+                counts[kind] += 1
+    return {k: n for k, n in counts.items() if n}
+
+
+def format_paid(summary: dict[str, int]) -> str:
+    if not summary:
+        return "—"
+    return ", ".join(f"{k}×{n}" if n > 1 else k for k, n in summary.items())
+
+
+@dataclass
+class Command:
+    command: str
+    paid_steps: list[str]
+
+
+def suggest_commands(
+    dir_name: str, steps: list[StepInfo], window: list[str], from_step: str | None
+) -> list[Command]:
+    base = f"uv run python pipelines/{dir_name}/process.py pipelines/{dir_name} --stop-on-error"
+    if from_step:
+        base += f" --from {from_step}"
+    in_window = set(window)
+    paid_in = [s.name for s in steps if s.name in in_window and s.paid]
+    if not paid_in:
+        return [Command(base, [])]
+    names = [s.name for s in steps]
+    if paid_in[0] == window[0]:
+        return [Command(base, paid_in)]
+    before = names[names.index(paid_in[0]) - 1]
+    return [Command(f"{base} --to {before}", []), Command(base, paid_in)]
+
+
+@dataclass
+class PipelineReport:
+    dir_name: str
+    name: str
+    status: str  # "needs_run" | "blocked" | "up_to_date"
+    last_run: str | None
+    run_start: str | None
+    code_changed_from: str | None
+    window: list[str]
+    volume: int | None
+    paid_in_window: dict[str, int]
+    error_total: int
+    top_error_steps: list[tuple[str, int]]
+    commands: list[Command]
+    note: str | None
+    blocked_by: str | None
+    steps: list[StepInfo]
+    has_status_script: bool = field(default=False)
+
+
+def build_report(repo_root: Path, pipeline_dir: Path) -> PipelineReport:
+    config = load_config(pipeline_dir)
+    steps = read_steps(repo_root, pipeline_dir, config)
+    dir_name = pipeline_dir.name
+
+    def input_volume(step_name: str | None) -> int | None:
+        if step_name is None:
+            return None
+        step = next(s for s in steps if s.name == step_name)
+        if step.input is None:
+            return None
+        inp = next((s for s in steps if s.name == step.input), None)
+        if inp is not None:
+            return inp.record_count
+        return _read_status(entry_output(repo_root, pipeline_dir, step.input))[1]
+
+    status, blocked_by = "up_to_date", None
+    window: list[str] = []
+    commands: list[Command] = []
+    volume = None
+    note = None
+    run_start = next((s.name for s in steps if s.state in ("never", "stale")), None)
+    code_from = next((s.name for s in steps if s.state == "code"), None)
+
+    blocker = next(
+        (s for s in steps if s.state == "upstream" and (not s.output.exists() or s.output.stat().st_size == 0)),
+        None,
+    )
+    if blocker is not None:
+        status, blocked_by = "blocked", Path(blocker.name).parts[2]
+    elif run_start is not None:
+        status = "needs_run"
+        window = run_window(steps)
+        volume = input_volume(run_start)
+        commands = suggest_commands(dir_name, steps, window, None)
+    elif code_from is not None:
+        window = run_window(steps, from_step=code_from)
+        volume = input_volume(code_from)
+        commands = suggest_commands(dir_name, steps, window, code_from)
+    elif any(s.state == "always" for s in steps):
+        w = run_window(steps)
+        note = f"any run re-checks sources from {w[0]} → {len(w)} steps, paid: {format_paid(paid_summary(steps, w))}"
+
+    errors = [(s.name, s.errors) for s in steps if s.errors > 0]
+    top = sorted(errors, key=lambda e: -e[1])[:3]  # stable: ties keep pipeline order
+    stamps = [
+        (datetime.fromisoformat(s.completed_at), s.completed_at)
+        for s in steps
+        if s.state != "upstream" and s.completed_at
+    ]
+    last_run = max(stamps, key=lambda t: t[0])[1] if stamps else None
+
+    return PipelineReport(
+        dir_name=dir_name,
+        name=dir_name.removesuffix("_pipeline"),
+        status=status,
+        last_run=last_run,
+        run_start=run_start,
+        code_changed_from=code_from,
+        window=window,
+        volume=volume,
+        paid_in_window=paid_summary(steps, window),
+        error_total=sum(n for _, n in errors),
+        top_error_steps=top,
+        commands=commands,
+        note=note,
+        blocked_by=blocked_by,
+        steps=steps,
+        has_status_script=(pipeline_dir / "status.py").exists(),
+    )
+
+
+def discover_pipelines(repo_root: Path) -> list[Path]:
+    root = repo_root / "pipelines"
+    if not root.is_dir():
+        return []
+    return sorted(d for d in root.iterdir() if (d / "pipeline.json").is_file())
