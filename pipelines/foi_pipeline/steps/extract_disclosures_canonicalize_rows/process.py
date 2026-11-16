@@ -8,7 +8,7 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-from lib.cli_utils import add_common_args, filter_by_public_body, merge_replacing_body
+from lib.cli_utils import add_common_args, filter_by_public_body, merge_replacing_body, merge_errors_replacing_body
 from lib.column_map import canonicalize_header
 from lib.file_utils import read_json, write_json, write_status
 from lib.requester_type_map import canonicalize_requester_type, is_no_data_sentinel
@@ -175,7 +175,7 @@ def main():
     process_records(input_data, results, errors, verbose=args.verbose)
     
     # Handle merge-back for --public-body scoping (Shape b)
-    if args.public_body is not None and not args.force and output_path.exists():
+    if args.public_body is not None and output_path.exists():
         existing = read_json(output_path).get("results", [])
         results = merge_replacing_body(existing, results, args.public_body)
     
@@ -210,6 +210,11 @@ def main():
 
     # Write errors
     errors_path = step_dir / "errors.json"
+    if args.public_body is not None and errors_path.exists():
+        errors = merge_errors_replacing_body(
+            read_json(errors_path), errors, args.public_body,
+            file_urls={i.get("file_url") for i in input_data.get("results", [])},
+        )
     write_json(errors_path, errors)
 
     # Write pipeline status

@@ -109,7 +109,7 @@ def main():
     # Deduplicate
     deduplicated, duplicates_removed, null_ids = deduplicate_records(records)
 
-    if args.public_body is not None and not args.force and output_path.exists():
+    if args.public_body is not None and output_path.exists():
         existing = read_json(output_path).get("results", [])
         deduplicated = merge_replacing_body(existing, deduplicated, args.public_body)
 

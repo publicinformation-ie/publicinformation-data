@@ -29,7 +29,7 @@ Start at [`public/README.md`](public/README.md) — the data hub, with one entry
 
 #### Curated Linked Data datasets
 
-Nine datasets are published as versioned Linked Data under `public/latest/<dataset>/` (always the newest release) and `public/vX.Y.Z/<dataset>/` (immutable per-version snapshots), each with its own JSON-LD, CSV, and CSV metadata (Transport Policies is the exception: CSV and CSV metadata only, no JSON-LD), plus a dataset-specific `README.md`:
+Ten datasets are published as versioned Linked Data under `public/latest/<dataset>/` (always the newest release) and `public/vX.Y.Z/<dataset>/` (immutable per-version snapshots), each with its own JSON-LD, CSV, and CSV metadata (Transport Policies is the exception: CSV and CSV metadata only, no JSON-LD), plus a dataset-specific `README.md`:
 
 | Dataset | Version | Records | Docs |
 |---------|---------|---------|------|
@@ -42,8 +42,9 @@ Nine datasets are published as versioned Linked Data under `public/latest/<datas
 | lobbying.ie Links | v1.0.0 | 121 | [`public/latest/lobbying-ie-links/README.md`](public/latest/lobbying-ie-links/README.md) |
 | Public Body Actions | v3.2.0 | 839 | [`public/latest/public-body-actions/README.md`](public/latest/public-body-actions/README.md) |
 | Motions | v1.0.0 | 3,959 | [`public/latest/motions/README.md`](public/latest/motions/README.md) |
+| Active Travel Allocations | v1.0.0 | 4,875 | [`public/latest/active-travel-allocations/README.md`](public/latest/active-travel-allocations/README.md) |
 
-`public-bodies` is regenerated automatically by the FOI pipeline's `export_status` step on every full run (logic in `src/lib/publish_public_bodies.py`), so it always stays in lockstep with `pipeline-data.json`; the other datasets are produced by standalone `scripts/transform_*.py` — eight such scripts as of this writing (`ls scripts/transform_*.py`).
+`public-bodies` is regenerated automatically by the FOI pipeline's `export_status` step on every full run (logic in `src/lib/publish_public_bodies.py`), so it always stays in lockstep with `pipeline-data.json`; the other datasets are produced by standalone `scripts/transform_*.py` — nine such scripts as of this writing (`ls scripts/transform_*.py`).
 
 Supporting technical-reference files: [`public/catalog/`](public/catalog/) (one DCAT-AP `.ttl` per dataset) and [`public/schemas/`](public/schemas/) (one JSON Schema per dataset).
 

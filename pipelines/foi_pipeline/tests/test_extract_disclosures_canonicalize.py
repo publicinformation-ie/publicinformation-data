@@ -1507,3 +1507,56 @@ def test_waterford_2025_header_mapping():
               'Dáta a fuarthas/\nDate Received', 'Cinneadh Eisithe/\nDecision Made', 'Sonraí/\nDetails']
     assert [canonicalize_header(h) for h in header] == [
         'foi_reference_id', 'decision_status', 'requester_type', 'date_received', 'decision_date', 'request_description']
+
+
+def _scoped_canonicalize_fixture(tmp_path):
+    out = tmp_path / "output.json"
+    _write_json(out, {"metadata": {"step": "extract_disclosures_canonicalize"}, "results": [
+        {"public_body_id": 1001, "foi_reference_id": "A", "marker": "keep"},
+        {"public_body_id": 1002, "foi_reference_id": "OLD", "marker": "stale"},
+    ]})
+    _write_json(tmp_path / "errors.json", [
+        {"error_type": "PhantomRecord", "context": {"file_url": "a.xlsx", "public_body_id": 1001}},
+        {"error_type": "InsufficientColumns", "context": {"file_url": "old-b.xlsx", "public_body_id": 1002}},
+        {"error_type": "InsufficientColumns", "context": {"file_url": "legacy-b.xlsx"}},
+    ])
+    inp = tmp_path / "input.json"
+    _write_json(inp, {"results": [
+        {"public_body_id": 1001, "name": "A", "file_url": "a.xlsx", "file_type": "xlsx",
+         "header_row_idx": 0, "rows": [["Our Reference", "Request Details"], ["X-001", "req A"]]},
+        {"public_body_id": 1002, "name": "B", "file_url": "legacy-b.xlsx", "file_type": "xlsx",
+         "header_row_idx": 0, "rows": [["Foo", "Bar"], ["1", "2"]]},
+    ]})
+    return out, inp
+
+
+def test_forced_public_body_run_keeps_other_bodies(tmp_path, monkeypatch):
+    out, inp = _scoped_canonicalize_fixture(tmp_path)
+    monkeypatch.setattr(_proc, "__file__", str(tmp_path / "process.py"))
+    _sys.argv = ["process.py", "--input", str(inp), "--output", str(out),
+                 "--public-body", "1002", "--force"]
+    _proc.main()
+    results = _read_json(out)["results"]
+    assert {"public_body_id": 1001, "foi_reference_id": "A", "marker": "keep"} in results
+    assert not any(r.get("marker") == "stale" for r in results)
+
+
+def test_scoped_run_keeps_other_bodies_errors(tmp_path, monkeypatch):
+    out, inp = _scoped_canonicalize_fixture(tmp_path)
+    monkeypatch.setattr(_proc, "__file__", str(tmp_path / "process.py"))
+    _sys.argv = ["process.py", "--input", str(inp), "--output", str(out),
+                 "--public-body", "1002"]
+    _proc.main()
+    errors = _read_json(tmp_path / "errors.json")
+    urls = sorted(e["context"]["file_url"] for e in errors)
+    # 1001's error kept; 1002's old + legacy (no body id) errors replaced by one fresh error.
+    assert urls == ["a.xlsx", "legacy-b.xlsx"]
+    fresh = [e for e in errors if e["context"]["file_url"] == "legacy-b.xlsx"]
+    assert fresh[0]["context"]["public_body_id"] == 1002
+
+
+def test_insufficient_columns_error_carries_public_body_id():
+    item = {**BASE_META, "rows": [["Foo", "Bar"], ["1", "2"]], "header_row_idx": 0}
+    _, errors, _ = canonicalize_file(item)
+    assert errors[0]["error_type"] == "InsufficientColumns"
+    assert errors[0]["context"]["public_body_id"] == BASE_META["public_body_id"]

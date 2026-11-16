@@ -4,6 +4,18 @@ All notable changes to the Public Bodies dataset will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [active-travel-allocations 1.0.0] - 2026-11-15
+
+### Added
+- A new dataset, `active-travel-allocations`: 4,875 project-level grant allocations from the National Transport Authority's annual Active Travel Investment Grant programme, 2022–2026 (990 / 1,156 / 833 / 913 / 983 records). Each record carries the year, recipient, project code and name, the allocation in whole euro, the funding stream (`active_travel` or `other_nta_streams`), and the source document, digest and page. Local-authority recipients link to their `public-bodies` `@id`.
+- A new pipeline, `pipelines/activetravel_pipeline/`, with ten steps from the committed publication list to the export, plus a `status.py` funnel view. The 2022 Annex 1 (programme budget) is cached for provenance but never extracted as project rows.
+- `public/catalog/dataset-active-travel-allocations.ttl`, `public/schemas/active-travel-allocations.schema.json`, `scripts/transform_active_travel_allocations.py`, and the dataset README, CSVW metadata and discovery links.
+
+### Notes
+- MAJOR: initial publication of a new dataset at schema version 1.0.0. No existing dataset is modified.
+- Coverage is deliberately partial where a document's own arithmetic does not confirm it: 11 recipient funding streams are withheld across 2022–2026 (most because later editions declare money for other-NTA-streams blocks whose project rows they do not print). The dataset README lists them, and each is reported by the pipeline with both sums and the difference.
+- Nine 2022 amount cells where a project name overflows into the amount column are recovered from `row_repairs.json`, each confirmed by the section's declared total.
+
 ## [public-body-actions 3.2.0] - 2026-11-12
 
 ### Added

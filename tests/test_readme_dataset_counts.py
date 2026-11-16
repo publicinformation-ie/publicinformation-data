@@ -26,6 +26,7 @@ PRIMARY = {
     "Public Body Actions": ("public-body-actions", "actions.csv"),
     "Motions": ("motions", "motions.csv"),
     "Transport Policies": ("transport-policies", "transport-policies.csv"),
+    "Active Travel Allocations": ("active-travel-allocations", "active-travel-allocations.csv"),
 }
 
 

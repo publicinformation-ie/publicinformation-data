@@ -45,6 +45,21 @@ cd pipelines/foi_pipeline && uv run python process.py --force --stop-on-error
 | 3 | `extract_relationships` |
 | 4 | `extract_milestones` |
 
+### `activetravel_pipeline` (10 steps)
+
+| # | Step |
+|---:|---|
+| 1 | `fetch_grant_documents` |
+| 2 | `extract_grant_tables` |
+| 3 | `classify_grant_rows` |
+| 4 | `normalize_grant_amounts` |
+| 5 | `segment_funding_streams` |
+| 6 | `resolve_recipients` |
+| 7 | `reconcile_sections` |
+| 8 | `reconcile_summary` |
+| 9 | `canonicalize_allocations` |
+| 10 | `export_allocations` |
+
 ### `cso_pipeline` (6 steps)
 
 | # | Step |
@@ -196,6 +211,7 @@ For a per-item view, some pipelines also ship a `status.py` next to `process.py`
 |---|---|---|
 | `foi_pipeline` | `cd pipelines/foi_pipeline && uv run python status.py` | per-step completion, record counts, staleness, errors |
 | `minutes_pipeline` | `uv run python pipelines/minutes_pipeline/status.py --public-body <id\|slug>` | per-body funnel: record counts per step, body errors, dry-step verdict |
+| `activetravel_pipeline` | `uv run python pipelines/activetravel_pipeline/status.py --all` (or `--document <id\|year>`) | per-document funnel: rows per step, per-document errors, dry-step verdict |
 
 A new pipeline is covered by `scripts/pipeline_status.py` automatically. Add a pipeline-specific `status.py` only for a per-item view (same contract: read step outputs in `pipeline.json` order, report counts + errors, zero new dependencies) and document its specifics in that pipeline's `README.md`.
 
@@ -230,6 +246,7 @@ pipelines/
   foi_pipeline/        # Main FOI pipeline (27 steps) — deep-dive in pipelines/foi_pipeline/AGENTS.md
   document_pipeline/   # PDF → per-section markdown + figures → local bundle output (not published)
   actions_pipeline/    # Cross-document action identity + relationships → public-body-actions
+  activetravel_pipeline/  # NTA Active Travel grant allocation PDFs → active-travel-allocations
   cso_pipeline/        # CSO Register ingestion; resolve_website_urls reused by foi_pipeline
   wdw_pipeline/        # "Who Does What" plain-English descriptions
   datagovie_pipeline/  # data.gov.ie organisation links
@@ -289,6 +306,8 @@ Bump `owl:versionInfo` by hand only for a breaking (MAJOR) or additive (MINOR) c
 | Root (transform) tests | `uv run pytest tests/ -q` |
 | Trigger Pages deploy (workflow_dispatch) | `gh workflow run deploy-pages.yml` (or the Actions tab → Deploy Pages → Run workflow) |
 | One-time LFS setup | `git lfs install` |
+| Run activetravel_pipeline | `uv run python pipelines/activetravel_pipeline/process.py pipelines/activetravel_pipeline --force --stop-on-error` |
+| Triage activetravel_pipeline | `uv run python pipelines/activetravel_pipeline/status.py --all` |
 | Inspect consolidated output | `python3 -c "import json; d=json.load(open('pipelines/foi_pipeline/steps/export_status/output.json')); print(f'Bodies: {len(d[\"public_bodies\"])}')"` |
 
 ## Environment / Secrets
