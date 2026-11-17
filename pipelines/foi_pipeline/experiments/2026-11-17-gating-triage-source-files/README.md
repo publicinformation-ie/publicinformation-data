@@ -13,7 +13,7 @@ Only one file falls below 50 (0.0); the next lowest is 127.0, so the threshold o
 ## Verdicts applied (2026-11-17)
 
 User sitting complete: 74 confirmed, 0 unconfirmed — hard_table 40, not_foi_log 19, small_log 15.
-`exclusions_proposed.json` holds the 19 `not_foi_log` entries; it reaches the step only through Task 8.
+`exclusions_proposed.json` holds the 19 `not_foi_log` entries; it reaches the step only through the ship step in PLAYBOOK §7 (done in this round on 2026-11-17).
 
 ## Pattern search (Task 7 step 5)
 

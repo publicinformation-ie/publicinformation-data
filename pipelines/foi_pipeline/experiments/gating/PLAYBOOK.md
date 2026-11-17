@@ -193,4 +193,11 @@ Run from `pipelines/foi_pipeline`, in this order. `<round_dir>` is the triage ro
 3. Review: `uv run python -m experiments.gating.serve --round-dir <round_dir>`. The user's verdicts post to `<round_dir>/verdicts.json`. One class tag per file confirms it; two class tags leave it unconfirmed.
 4. Apply: `uv run python -m experiments.gating.triage apply --round-dir <round_dir>`. It updates the ledger state, prints counts and the unconfirmed URLs, and writes `<round_dir>/exclusions_proposed.json`. Then `uv run python -m experiments.gating.ledger`.
 
-Rules: `not_foi_log` is only ever confirmed by the user's own tag, never by a proposal. `exclusions_proposed.json` is copied into the step only through Task 8, never by hand or by `apply`.
+5. Ship exclusions:
+   a. For any candidate non-FOI pattern run `uv run python -m experiments.gating.exclusion_check --url-pattern P [--content-pattern "a|b"] --round-dir <round_dir>`. Add it only when `ok` and the unconfirmed hits have been read.
+   b. Get the user's explicit yes on the exclusion list.
+   c. Copy `exclusions_proposed.json` into `steps/verify_disclosure_files/excluded_files.json` (never by `apply`, never by hand-editing entries the user did not tag).
+   d. Snapshot, then run `process.py --from verify_disclosure_files --to extract_disclosures_deduplicate` without `--force`. Verify no excluded URL remains downstream and that errors dropped by the entry count.
+   e. Rebuild the ledger with `uv run python -m experiments.gating.ledger`.
+
+Rules: `not_foi_log` is only ever confirmed by the user's own tag, never by a proposal. `exclusions_proposed.json` is copied into the step only through the ship step above, never by `apply`.
