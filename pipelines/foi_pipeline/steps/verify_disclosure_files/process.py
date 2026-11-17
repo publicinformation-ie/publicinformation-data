@@ -4,7 +4,9 @@ import datetime
 import fcntl
 import hashlib
 import io
+import json
 import os
+import re
 import sys
 import tempfile
 import time
@@ -17,6 +19,8 @@ from lib.file_utils import append_error, read_json, write_json, write_status, In
 from lib.http_utils import fetch
 
 STEP_NAME = "verify_disclosure_files"
+EXCLUSION_SIGNAL = "manual_exclusion"
+EXCLUSIONS_FILE = "excluded_files.json"
 
 TIER_A = [
     "disclosure log",
@@ -250,10 +254,76 @@ def _normalize_url_text(file_url, link_text):
     return combined
 
 
-def _verify_one(item, cache, step_dir):
+def load_exclusions(step_dir) -> dict[str, dict]:
+    """Read excluded_files.json ({file_url: {reason, class, date}}). Missing file is {}."""
+    path = Path(step_dir) / EXCLUSIONS_FILE
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text())
+    except json.JSONDecodeError as e:
+        raise ValueError(f"{EXCLUSIONS_FILE} is not valid JSON: {e}") from e
+    if not isinstance(data, dict):
+        raise ValueError(f"{EXCLUSIONS_FILE} must be a JSON object keyed by file URL")
+    for url, entry in data.items():
+        if not isinstance(entry, dict):
+            raise ValueError(f"{EXCLUSIONS_FILE}: entry for {url} must be an object")
+        reason = entry.get("reason")
+        if not isinstance(reason, str) or not reason.strip():
+            raise ValueError(f"{EXCLUSIONS_FILE}: entry for {url} needs a non-empty reason")
+        if entry.get("class") != "not_foi_log":
+            raise ValueError(f"{EXCLUSIONS_FILE}: entry for {url} must have class 'not_foi_log'")
+        date = entry.get("date")
+        try:
+            if not isinstance(date, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
+                raise ValueError
+            datetime.date.fromisoformat(date)
+        except ValueError:
+            raise ValueError(f"{EXCLUSIONS_FILE}: entry for {url} needs a date as YYYY-MM-DD") from None
+    return data
+
+
+def _sync_exclusions(writer, exclusions, input_urls, public_body=None):
+    """Apply the exclusion list to records already in writer.results.
+
+    Listed URLs become rejected/manual_exclusion; records carrying that signal
+    whose URL is no longer listed are deleted so they are verified again. Other
+    records are untouched. Changed bodies are marked dirty.
+
+    On a scoped run (public_body set) only that body's records may change and
+    the unknown-URL warning is skipped: input_urls is a one-body subset, so a
+    URL for another body cannot be told apart from a typo.
+    """
+    known = set()
+    kept = []
+    for rec in writer.results:
+        url = rec.get("file_url")
+        known.add(url)
+        in_scope = public_body is None or rec.get("public_body_id") == public_body
+        if in_scope and url in exclusions and rec.get("verification_signal") != EXCLUSION_SIGNAL:
+            rec["verification_status"] = "rejected"
+            rec["verification_signal"] = EXCLUSION_SIGNAL
+            writer.dirty_body_ids.add(rec.get("public_body_id"))
+        elif (in_scope and url not in exclusions
+              and rec.get("verification_signal") == EXCLUSION_SIGNAL):
+            writer.processed_keys.discard(url)
+            writer.dirty_body_ids.add(rec.get("public_body_id"))
+            continue
+        kept.append(rec)
+    writer.results[:] = kept
+    if public_body is None:
+        for url in exclusions:
+            if url not in known and url not in input_urls:
+                print(f"WARNING: excluded_files.json lists a URL not in the input: {url}")
+
+
+def _verify_one(item, cache, step_dir, exclusions=None):
     """Download and verify a single file. Returns None on download failure, result record on success."""
     file_url = item["file_url"]
     file_type = item["file_type"]
+
+    if exclusions and file_url in exclusions:
+        return {**item, "verification_status": "rejected", "verification_signal": EXCLUSION_SIGNAL}
 
     try:
         cached_path = cache.get_file_path(file_url, step_dir)
@@ -297,12 +367,16 @@ def _verify_one(item, cache, step_dir):
         return {**item, "verification_status": "unverified", "verification_signal": None}
 
 
-def process(input_data, step_dir, writer, verbose=False, max_workers=4):
+def process(input_data, step_dir, writer, verbose=False, max_workers=4, public_body=None):
     errors_path = Path(step_dir) / "errors.json"
     if not errors_path.exists():
         write_json(errors_path, [])
 
     cache = DisclosureFileCache(Path(step_dir) / "cache")
+
+    exclusions = load_exclusions(step_dir)
+    _sync_exclusions(writer, exclusions, {i["file_url"] for i in input_data["results"]},
+                     public_body=public_body)
 
     pending = [
         item for item in input_data["results"]
@@ -314,7 +388,7 @@ def process(input_data, step_dir, writer, verbose=False, max_workers=4):
 
     results = []
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = {executor.submit(_verify_one, item, cache, step_dir): item for item in pending}
+        futures = {executor.submit(_verify_one, item, cache, step_dir, exclusions): item for item in pending}
         for future in as_completed(futures):
             result = future.result()
             if result is not None:
@@ -358,7 +432,8 @@ def main():
     if writer.processed_keys:
         print(f"Resuming: {len(writer.processed_keys)} already done, skipping...")
 
-    process(input_data, step_dir, writer, verbose=args.verbose, max_workers=args.workers)
+    process(input_data, step_dir, writer, verbose=args.verbose, max_workers=args.workers,
+            public_body=args.public_body)
     count = writer.finalize()
     write_status(step_dir, count)
     if args.verbose:

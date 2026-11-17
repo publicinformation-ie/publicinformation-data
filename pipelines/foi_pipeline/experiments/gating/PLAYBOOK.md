@@ -154,6 +154,23 @@ Read <round folder>/verdicts.json. Keys are file URLs or other ids; each value h
 For each file URL with a verdict, work out the fault kind (E extractor, M mapping, G gate, S source) from the text and tags, or write "unclear". Output a table: file URL, fault kind, one-line reason. Do not edit any file. Reply with the table and the __ship__ text word for word. The caller will run set_state from your table.
 ```
 
+### Prompt: Haiku, class for a source file
+
+```
+Classify source files for FOI disclosure-log triage. Work in /Volumes/ext/dev/publicinformation/publicinformation-data/pipelines/foi_pipeline. Round folder: <round_dir> (experiments/2026-11-17-gating-triage-source-files). Your batch: the entries of <round_dir>/inputs.json at indexes <start> to <end>.
+Each entry has: file_url, name, link_text, likely_scan (true when the PDF has under about 50 characters of text per page), text_head (first 2,000 characters of text), image (a path relative to the round folder), unreadable.
+For each entry in your batch that is not unreadable, Read the page 1 image at <round_dir>/<image> (that is <round_dir>/review/img/<sha256>.png) and look at it. Then read text_head, link_text and name.
+Pick exactly one class:
+- not_foi_log: a form, guide, privacy statement, publication scheme, press article, single decision letter, or any document that is not a table of FOI requests.
+- scan: a real log with no usable text layer.
+- hard_table: a real log with a text layer that every extractor gets wrong.
+- small_log: a real log with too few rows to pass min_rows, for example a quarter with one or no requests.
+Rules: a document that mixes a log with other material (for example a publication scheme with a log table inside) is hard_table, not not_foi_log. If you are uncertain, the file is never not_foi_log; choose the nearest of the other three. likely_scan is a hint, not a verdict: check the image.
+Output: write only <round_dir>/proposals-<batch>.json (a JSON list) with one object per file: {"file_url": "<exact url>", "class": "<one of the four>", "reason": "<one line>"}. Skip unreadable entries. Do not edit any other file, run any pipeline step, or use the network. The caller merges the batch files into proposals.json and checks them with load_proposals. Reply with the file path and any file you were unsure about.
+```
+
+Merge and check: `uv run python -c "from pathlib import Path; from experiments.gating.triage import load_proposals; print(len(load_proposals(Path('<round_dir>'))))"`.
+
 ## 6. Stop rules and shipping
 
 - Park a cluster after two rounds without a winner, or when it needs new code for fewer than about 30 records. Keep the diagnosis in the ledger note.
@@ -166,3 +183,21 @@ Shipping (only on the user's yes for that cluster):
 - A docling or fork win cannot ship through config alone, since the override only accepts names in `CANDIDATE_ORDER`. The proposal is to ship it as a cache-backed candidate, as `mistral_cache` works. Until the user confirms that, such a round ends with a recommendation and the measured numbers, not a ship.
 - A gate (`G`) fix touches every file, so it always needs a full before/after over all bodies and a control check.
 - A change to the global candidate order is only proposed when three or more clusters picked the same extractor and a full-corpus run shows no control made worse.
+
+## 7. Triage of source files
+
+Run from `pipelines/foi_pipeline`, in this order. `<round_dir>` is the triage round folder.
+
+1. Facts per kind-`S` file: `uv run python -m experiments.gating.triage inputs --round-dir <round_dir>` (writes `inputs.json` and page 1 images).
+2. Proposals: Haiku batches per the prompt in section 5, merged into `<round_dir>/proposals.json` and checked with `load_proposals`.
+3. Review: `uv run python -m experiments.gating.serve --round-dir <round_dir>`. The user's verdicts post to `<round_dir>/verdicts.json`. One class tag per file confirms it; two class tags leave it unconfirmed.
+4. Apply: `uv run python -m experiments.gating.triage apply --round-dir <round_dir>`. It updates the ledger state, prints counts and the unconfirmed URLs, and writes `<round_dir>/exclusions_proposed.json`. Then `uv run python -m experiments.gating.ledger`.
+
+5. Ship exclusions:
+   a. For any candidate non-FOI pattern run `uv run python -m experiments.gating.exclusion_check --url-pattern P [--content-pattern "a|b"] --round-dir <round_dir>`. Add it only when `ok` and the unconfirmed hits have been read.
+   b. Get the user's explicit yes on the exclusion list.
+   c. Copy `exclusions_proposed.json` into `steps/verify_disclosure_files/excluded_files.json` (never by `apply`, never by hand-editing entries the user did not tag).
+   d. Snapshot, then run `process.py --from verify_disclosure_files --to extract_disclosures_deduplicate` without `--force`. Verify no excluded URL remains downstream and that errors dropped by the entry count.
+   e. Rebuild the ledger with `uv run python -m experiments.gating.ledger`.
+
+Rules: `not_foi_log` is only ever confirmed by the user's own tag, never by a proposal. `exclusions_proposed.json` is copied into the step only through the ship step above, never by `apply`.

@@ -14,12 +14,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1089-S-split_word_rate",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "http://www.galway.ie/sites/default/files/2025-06/FOI%20Disclosure%20log%202019.pdf",
@@ -42,74 +43,8 @@
     "cluster": "1342-G-anchored_row_share+role_contamination",
     "status": "open",
     "recoverable": 199,
-    "evidence": "gate-only failure; 199 records before at 1.5% errors"
-  },
-  {
-    "file_url": "http://www.irishprisons.ie/wp-content/uploads/documents_pdf/foi_application.pdf",
-    "public_body_id": 1442,
-    "name": "Irish Prison Service",
-    "sha256": "cc592920e2f2a5b018548205a86d5a0552867b1e562b33adfd893f28044881a8",
-    "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": null,
-    "anchored_row_share": null,
-    "failed_checks": [
-      "width_uniformity",
-      "fragment_share",
-      "column_type_purity",
-      "split_word_rate"
-    ],
-    "records_before": 0,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1442-S-column_type_purity+fragment_share+split_word_rate+width_uniformity",
-    "status": "open",
-    "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "http://www.probation.ie/EN/PB/0/50BB0DA19912894F802586BD0048CAEC/$File/2020 non Personal FOI logs.pdf",
-    "public_body_id": 1647,
-    "name": "Probation Service",
-    "sha256": "8ac8bfb1e76c3c33f8d368248147b586cffe45a0e6e331f406130a47578145e8",
-    "pdf_extractor": "camelot_lattice",
-    "worst_role_contamination": 1.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [
-      "role_contamination"
-    ],
-    "records_before": 8,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "E",
-    "fault_firm": false,
-    "cluster": "1647-E-role_contamination",
-    "status": "open",
-    "recoverable": 8,
-    "evidence": "gated on role_contamination"
-  },
-  {
-    "file_url": "https://a.storyblok.com/f/46384/x/ac3c8cd7ee/foi-disclosure-log-2018-2020.pdf",
-    "public_body_id": 1758,
-    "name": "Stewarts Care Limited",
-    "sha256": "a626c009df5b01005ea10059cd5d7c82197b3e68b2e3d07325bcfc11afb86ac5",
-    "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": null,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 0,
-    "errors_before": 3,
-    "records_now": 0,
-    "errors_now": 3,
-    "fault_kind": "E",
-    "fault_firm": false,
-    "cluster": "1758-E-errors",
-    "status": "open",
-    "recoverable": 3,
-    "evidence": "error classes {'cross_role': 3}"
+    "evidence": "gate-only failure; 199 records before at 1.5% errors",
+    "triage_class": null
   },
   {
     "file_url": "https://about.rte.ie/wp-content/uploads/2019/07/rte-freedom-of-information-q4-disclosure-log-2018.pdf",
@@ -131,7 +66,8 @@
     "cluster": "1655-E-role_contamination",
     "status": "open",
     "recoverable": 62,
-    "evidence": "gated on role_contamination"
+    "evidence": "gated on role_contamination",
+    "triage_class": null
   },
   {
     "file_url": "https://about.rte.ie/wp-content/uploads/2020/10/RTE-FOI-DISCLOSURE-LOG-Q2-2020.pdf",
@@ -153,47 +89,8 @@
     "cluster": "1655-E-role_contamination",
     "status": "open",
     "recoverable": 22,
-    "evidence": "gated on role_contamination"
-  },
-  {
-    "file_url": "https://about.rte.ie/wp-content/uploads/2021/06/RTE-FOI-DISCLOSURE-LOG-Q4-2020-1.pdf",
-    "public_body_id": 1655,
-    "name": "Raidi\u00f3 Teilif\u00eds \u00c9ireann - RT\u00c9",
-    "sha256": "0e62e9d5f791ffcca32a15017114d0b5dbbb5b72e6d6045dd9f1cfc32d20189d",
-    "pdf_extractor": "camelot_lattice",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 54,
-    "errors_before": 65,
-    "records_now": 54,
-    "errors_now": 30,
-    "fault_kind": "E",
-    "fault_firm": false,
-    "cluster": "1655-E-errors",
-    "status": "open",
-    "recoverable": 30,
-    "evidence": "error classes {'glyph_split': 30}"
-  },
-  {
-    "file_url": "https://assets-eu-01.kc-usercontent.com:443/5608854e-b2c7-0144-a5f6-88a7e629b0a4/7e855dcd-fe22-4f8f-b1f2-4d4894b05328/disclosure-foi-2019.pdf",
-    "public_body_id": 1335,
-    "name": "F\u00e1ilte Ireland",
-    "sha256": "55ff18eb00b152b2f4a7c1c737fe5b0858b3eb2a2a442e5955c883bfc0bc0ea1",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.025,
-    "anchored_row_share": 0.9512195121951219,
-    "failed_checks": [],
-    "records_before": 40,
-    "errors_before": 13,
-    "records_now": 40,
-    "errors_now": 13,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1335-V-errors",
-    "status": "parked",
-    "recoverable": 13,
-    "evidence": "vocabulary errors {'unknown_value': 13}; vocabulary, non-goal"
+    "evidence": "gated on role_contamination",
+    "triage_class": null
   },
   {
     "file_url": "https://assets-eu-01.kc-usercontent.com:443/5608854e-b2c7-0144-a5f6-88a7e629b0a4/e1a94111-56fd-43da-8326-7c328c24478c/foi-disclosure-log-2024.pdf",
@@ -214,12 +111,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1335-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity",
+    "fault_kind": "G",
+    "fault_firm": true,
+    "cluster": "small-log",
     "status": "open",
     "recoverable": 0,
-    "evidence": "min_rows failed: too few rows extracted"
+    "evidence": "min_rows failed: too few rows extracted",
+    "triage_class": "small_log"
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/2371ea98/Freedom_of_Information_Quarter_3_Requests_2025.pdf",
@@ -237,12 +135,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1212-S-fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/5f66a911/Non_Personal_FOI_Requests_Q3_2025.pdf",
@@ -262,34 +161,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1594-S-column_type_purity+fragment_share+role_contamination+width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://assets.gov.ie/static/documents/AIE_Requests_2024.pdf",
-    "public_body_id": 1594,
-    "name": "Office of Public Works",
-    "sha256": "29f4328dc34df102aaab2bc4bd61b1415825b0139f9b46d21423ec657610c9ad",
-    "pdf_extractor": "camelot_lattice",
-    "worst_role_contamination": 1.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [
-      "role_contamination"
-    ],
-    "records_before": 19,
-    "errors_before": 1,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "E",
-    "fault_firm": false,
-    "cluster": "1594-E-role_contamination",
-    "status": "open",
-    "recoverable": 19,
-    "evidence": "gated on role_contamination"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/aie-requests-2021.pdf",
@@ -297,7 +175,7 @@
     "name": "Office of Public Works",
     "sha256": "93389b29f054bffa8fc8a92b520c22b8eae580daa4ea62f9930b4a4cca3bc2bb",
     "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": 0.5277777777777778,
+    "worst_role_contamination": 0.25,
     "anchored_row_share": 0.07246376811594203,
     "failed_checks": [
       "width_uniformity",
@@ -314,7 +192,8 @@
     "cluster": "1594-E-anchored_row_share+fragment_share+role_contamination+width_uniformity",
     "status": "open",
     "recoverable": 37,
-    "evidence": "gated on width_uniformity+fragment_share+role_contamination+anchored_row_share"
+    "evidence": "gated on width_uniformity+fragment_share+role_contamination+anchored_row_share",
+    "triage_class": null
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/dfheris-foi-logs-april-to-june-2024.pdf",
@@ -332,12 +211,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1205-S-role_contamination+width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/disclosure-log-february-f47a48e8-e6c9-4b97-8ae6-174f9437481b.pdf",
@@ -355,12 +235,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1196-S-fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-2019-c85f2f5e-3495-405f-a35d-4bb31b1b7bd4.pdf",
@@ -382,7 +263,8 @@
     "cluster": "1200-E-role_contamination",
     "status": "open",
     "recoverable": 86,
-    "evidence": "gated on role_contamination"
+    "evidence": "gated on role_contamination",
+    "triage_class": null
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-2020-2106a63b-a10d-4afc-815c-8db8609eb8f5.pdf",
@@ -399,52 +281,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1200-S-column_type_purity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q1-2022-6670e4aa-fb1f-4dc8-810b-c4f5c5b5e75d.pdf",
-    "public_body_id": 1200,
-    "name": "Department of Defence",
-    "sha256": "96e908046c94d0bc1a954be220d5c6af80d4be1f256a0d726c73a483a2cf3160",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 0.9705882352941176,
-    "failed_checks": [],
-    "records_before": 34,
-    "errors_before": 16,
-    "records_now": 34,
-    "errors_now": 16,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1200-V-errors",
-    "status": "parked",
-    "recoverable": 16,
-    "evidence": "vocabulary errors {'unknown_value': 16}; vocabulary, non-goal"
-  },
-  {
-    "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q2-2022-60673303-19ed-4235-b3a5-d7da4aeb5064.pdf",
-    "public_body_id": 1200,
-    "name": "Department of Defence",
-    "sha256": "356eaf94502cb70873329512d002dbcb33ff88c3d91fbb96754afde20eb1d673",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.11764705882352941,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 25,
-    "errors_before": 13,
-    "records_now": 25,
-    "errors_now": 13,
-    "fault_kind": "E",
-    "fault_firm": false,
-    "cluster": "1200-E-errors",
-    "status": "open",
-    "recoverable": 13,
-    "evidence": "error classes {'unknown_value': 10, 'glyph_split': 1, 'cross_role': 2}"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q4-2021.pdf",
@@ -468,27 +311,8 @@
     "cluster": "1200-E-anchored_row_share+fragment_share+role_contamination",
     "status": "open",
     "recoverable": 23,
-    "evidence": "gated on fragment_share+role_contamination+anchored_row_share"
-  },
-  {
-    "file_url": "https://assets.gov.ie/static/documents/foi-disclosures-log.pdf",
-    "public_body_id": 1622,
-    "name": "Parole Board",
-    "sha256": "5960c480fa3ef52d366561e298b4f7a5725dc6669ed59b36afa8daa94f64abb7",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": null,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 4,
-    "errors_before": 6,
-    "records_now": 4,
-    "errors_now": 6,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1622-V-errors",
-    "status": "parked",
-    "recoverable": 6,
-    "evidence": "vocabulary errors {'unknown_value': 6}; vocabulary, non-goal"
+    "evidence": "gated on fragment_share+role_contamination+anchored_row_share",
+    "triage_class": null
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/foi-requests-july-december-2017.pdf",
@@ -510,7 +334,8 @@
     "cluster": "1210-E-role_contamination",
     "status": "open",
     "recoverable": 13,
-    "evidence": "gated on role_contamination"
+    "evidence": "gated on role_contamination",
+    "triage_class": null
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/foi-requests-july-september-2018.pdf",
@@ -535,7 +360,8 @@
     "cluster": "1210-E-anchored_row_share+fragment_share+split_word_rate+width_uniformity",
     "status": "open",
     "recoverable": 7,
-    "evidence": "gated on width_uniformity+fragment_share+split_word_rate+anchored_row_share"
+    "evidence": "gated on width_uniformity+fragment_share+split_word_rate+anchored_row_share",
+    "triage_class": null
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/freedom-of-information-requests-2021.pdf",
@@ -554,100 +380,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1204-S-anchored_row_share+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://assets.gov.ie/static/documents/non-personal-foi-requests-2017.pdf",
-    "public_body_id": 1594,
-    "name": "Office of Public Works",
-    "sha256": "adddfe40daa3d48092a07924ebc256354038eb615566281b103c8236b769e96d",
-    "pdf_extractor": "camelot_lattice",
-    "worst_role_contamination": 1.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [
-      "role_contamination"
-    ],
-    "records_before": 118,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "G",
-    "fault_firm": true,
-    "cluster": "1594-non-personal-2017-2020",
-    "status": "open",
-    "recoverable": 118,
-    "evidence": "gate-only failure; 118 records before at 0.0% errors; experiments/2026-11-15-gating-round-01-1594-non-personal (gate-dd-mon-yy wins; not shipped)"
-  },
-  {
-    "file_url": "https://assets.gov.ie/static/documents/non-personal-foi-requests-2018.pdf",
-    "public_body_id": 1594,
-    "name": "Office of Public Works",
-    "sha256": "eeb9d0a7ea994397b4622f4242fb318260407e22cf21cca9aa72a1f5f5df3394",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 1.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [
-      "role_contamination"
-    ],
-    "records_before": 152,
-    "errors_before": 2,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "G",
-    "fault_firm": true,
-    "cluster": "1594-non-personal-2017-2020",
-    "status": "open",
-    "recoverable": 152,
-    "evidence": "gate-only failure; 152 records before at 1.3% errors; experiments/2026-11-15-gating-round-01-1594-non-personal (gate-dd-mon-yy wins; not shipped)"
-  },
-  {
-    "file_url": "https://assets.gov.ie/static/documents/non-personal-foi-requests-2019.pdf",
-    "public_body_id": 1594,
-    "name": "Office of Public Works",
-    "sha256": "19aee1bec600d4b3e32010d626d3882b070a09baebe61b9b039f198e8be351ca",
-    "pdf_extractor": "pymupdf",
-    "worst_role_contamination": 1.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [
-      "role_contamination"
-    ],
-    "records_before": 156,
-    "errors_before": 3,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "G",
-    "fault_firm": true,
-    "cluster": "1594-non-personal-2017-2020",
-    "status": "open",
-    "recoverable": 156,
-    "evidence": "gate-only failure; 156 records before at 1.9% errors; experiments/2026-11-15-gating-round-01-1594-non-personal (gate-dd-mon-yy wins; not shipped)"
-  },
-  {
-    "file_url": "https://assets.gov.ie/static/documents/non-personal-foi-requests-2020.pdf",
-    "public_body_id": 1594,
-    "name": "Office of Public Works",
-    "sha256": "9e6d7de7ce042ec4a3f7919f5b3c76dd7c0fb614d470161e5320d942c75c9e97",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.9929078014184397,
-    "anchored_row_share": 0.9929078014184397,
-    "failed_checks": [
-      "role_contamination"
-    ],
-    "records_before": 141,
-    "errors_before": 2,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "G",
-    "fault_firm": true,
-    "cluster": "1594-non-personal-2017-2020",
-    "status": "open",
-    "recoverable": 141,
-    "evidence": "gate-only failure; 141 records before at 1.4% errors; experiments/2026-11-15-gating-round-01-1594-non-personal (gate-dd-mon-yy wins; not shipped)"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/non-personal-foi-requests-q1-2024.pdf",
@@ -669,7 +408,8 @@
     "cluster": "1594-E-role_contamination",
     "status": "open",
     "recoverable": 68,
-    "evidence": "gated on role_contamination"
+    "evidence": "gated on role_contamination",
+    "triage_class": null
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/non-personal-foi-requests-q2-2024.pdf",
@@ -691,7 +431,8 @@
     "cluster": "1594-E-role_contamination",
     "status": "open",
     "recoverable": 30,
-    "evidence": "gated on role_contamination"
+    "evidence": "gated on role_contamination",
+    "triage_class": null
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/q4-2017-foi-disclosure-log.pdf",
@@ -708,32 +449,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1213-S-split_word_rate",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://assets.hpra.ie/data/docs/default-source/corporate/freedom-of-information/foi-disclosure-log---april-to-june-2025-q2.pdf?sfvrsn=983dbd6e_7",
-    "public_body_id": 1392,
-    "name": "Health Products Regulatory Authority (HPRA)",
-    "sha256": "f5fc35919d2d64ad3f1275d9cf364fe2649dec6d35a0b4a450701bda88f84716",
-    "pdf_extractor": "mistral_cache",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 18,
-    "errors_before": 7,
-    "records_now": 18,
-    "errors_now": 7,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1392-V-errors",
-    "status": "parked",
-    "recoverable": 7,
-    "evidence": "vocabulary errors {'unknown_value': 7}; vocabulary, non-goal"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://assets.hpra.ie/data/docs/default-source/corporate/freedom-of-information/foi-disclosure-log---april-to-june-2026-q2.pdf?sfvrsn=47d99c2c_3",
@@ -753,72 +475,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1392-S-anchored_row_share+fragment_share+role_contamination+width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://assets.hpra.ie/data/docs/default-source/corporate/freedom-of-information/foi-disclosure-log---january-to-march-2026-q1---updated.pdf?sfvrsn=560d88c8_7",
-    "public_body_id": 1392,
-    "name": "Health Products Regulatory Authority (HPRA)",
-    "sha256": "792838f07e1708120c2b7c526530b72db04fadbabd89dd295d764b11ec588911",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 0.8888888888888888,
-    "failed_checks": [],
-    "records_before": 9,
-    "errors_before": 4,
-    "records_now": 9,
-    "errors_now": 4,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1392-V-errors",
-    "status": "parked",
-    "recoverable": 4,
-    "evidence": "vocabulary errors {'unknown_value': 4}; vocabulary, non-goal"
-  },
-  {
-    "file_url": "https://assets.hpra.ie/data/docs/default-source/corporate/freedom-of-information/foi-disclosure-log---july-to-september-2025-q3.pdf?sfvrsn=8602a498_5",
-    "public_body_id": 1392,
-    "name": "Health Products Regulatory Authority (HPRA)",
-    "sha256": "2c7cc00468195be498e3c52d362b125b1c44059b7dd28674608c6391b33861b2",
-    "pdf_extractor": "mistral_cache",
-    "worst_role_contamination": 0.047619047619047616,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 21,
-    "errors_before": 11,
-    "records_now": 21,
-    "errors_now": 11,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1392-V-errors",
-    "status": "parked",
-    "recoverable": 11,
-    "evidence": "vocabulary errors {'unknown_value': 10, 'cross_role': 1}; vocabulary, non-goal"
-  },
-  {
-    "file_url": "https://assets.hpra.ie/data/docs/default-source/corporate/freedom-of-information/foi-disclosure-log---october-to-december-2025-q4.pdf?sfvrsn=c8d370d8_5",
-    "public_body_id": 1392,
-    "name": "Health Products Regulatory Authority (HPRA)",
-    "sha256": "1d286b55a5c08ff902fa6a53b0104b6c7303429bc8c834e25de88464246116cd",
-    "pdf_extractor": "mistral_cache",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 16,
-    "errors_before": 9,
-    "records_now": 16,
-    "errors_now": 9,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1392-V-errors",
-    "status": "parked",
-    "recoverable": 9,
-    "evidence": "vocabulary errors {'unknown_value': 9}; vocabulary, non-goal"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://assets.nama.ie/uploads/documents/Copy-of-FOI-Disclosure-log-2024.pdf",
@@ -835,12 +498,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1544-S-split_word_rate",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://assets.nama.ie/uploads/documents/FOI-Disclosure-Log-Q4-2025.pdf",
@@ -857,34 +521,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1544-S-split_word_rate",
+    "fault_kind": "G",
+    "fault_firm": true,
+    "cluster": "small-log",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://assets.oic.ie/media/283687/f0492721-fed0-46ef-8d9f-278b6cb8e758.pdf",
-    "public_body_id": 1602,
-    "name": "Office of the Information Commissioner",
-    "sha256": "07f935ccbb08234a3a1ee38721676338434bee96d60a74e2e0fad66a66724ab8",
-    "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": null,
-    "anchored_row_share": null,
-    "failed_checks": [
-      "width_uniformity"
-    ],
-    "records_before": 0,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1602-S-width_uniformity",
-    "status": "open",
-    "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "small_log"
   },
   {
     "file_url": "https://bim.ie/wp-content/uploads/2024/11/FOI-Log-2023.pdf",
@@ -907,7 +550,8 @@
     "cluster": "1053-E-anchored_row_share+role_contamination",
     "status": "open",
     "recoverable": 17,
-    "evidence": "gated on role_contamination+anchored_row_share"
+    "evidence": "gated on role_contamination+anchored_row_share",
+    "triage_class": null
   },
   {
     "file_url": "https://crawfordartgallery.ie/wp-content/uploads/20260527_FOI-LOG.pdf",
@@ -930,29 +574,8 @@
     "cluster": "1177-E-fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 15,
-    "evidence": "gated on width_uniformity+fragment_share"
-  },
-  {
-    "file_url": "https://crawfordartgallery.ie/wp-content/uploads/Access-to-Information-on-the-Environment-2.pdf",
-    "public_body_id": 1177,
-    "name": "Crawford Art Gallery",
-    "sha256": "ea81fb0e479d2671b157a8858697128ae9eb26fcb0f8dc950f550d7c2ad988a1",
-    "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": null,
-    "anchored_row_share": null,
-    "failed_checks": [
-      "width_uniformity"
-    ],
-    "records_before": 0,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1177-S-width_uniformity",
-    "status": "open",
-    "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated on width_uniformity+fragment_share",
+    "triage_class": null
   },
   {
     "file_url": "https://enterprise.gov.ie/en/publications/publication-files/foi-log-2025.pdf",
@@ -971,72 +594,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1202-S-anchored_row_share+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://kcetb.ie/wp-content/uploads/2026/01/Disclosure-Log-2025.pdf",
-    "public_body_id": 1460,
-    "name": "Kilkenny and Carlow Education and Training Board",
-    "sha256": "de4758f9ddcf16515b0abe1d77be62028523ebd39318f9341989d0653401f960",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 6,
-    "errors_before": 3,
-    "records_now": 6,
-    "errors_now": 3,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1460-V-errors",
-    "status": "parked",
-    "recoverable": 3,
-    "evidence": "vocabulary errors {'unknown_value': 3}; vocabulary, non-goal"
-  },
-  {
-    "file_url": "https://kwetb.ie/wp-content/uploads/2023/08/KWETB-FOI-DISCLOSURE-LOG-2020-1.pdf",
-    "public_body_id": 1455,
-    "name": "Kildare and Wicklow Education and Training Board",
-    "sha256": "bcbc234523c35e60bc942987970279d24ece8e04c678f15c8f1048d16d9446ce",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.18181818181818182,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 11,
-    "errors_before": 3,
-    "records_now": 11,
-    "errors_now": 3,
-    "fault_kind": "E",
-    "fault_firm": false,
-    "cluster": "1455-E-errors",
-    "status": "open",
-    "recoverable": 3,
-    "evidence": "error classes {'cross_role': 2, 'unknown_value': 1}"
-  },
-  {
-    "file_url": "https://kwetb.ie/wp-content/uploads/2023/08/KWETB-FOI-DISCLOSURE-LOG-2021-1.pdf",
-    "public_body_id": 1455,
-    "name": "Kildare and Wicklow Education and Training Board",
-    "sha256": "5e19b9ff88492b591725eb2ac507a645ba8c4de7c813c08e49e968f267b7e3d5",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.08333333333333333,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 12,
-    "errors_before": 4,
-    "records_now": 12,
-    "errors_now": 4,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1455-V-errors",
-    "status": "parked",
-    "recoverable": 4,
-    "evidence": "vocabulary errors {'unknown_value': 4}; vocabulary, non-goal"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://lcetb.ie/wp-content/uploads/2026/06/FOI-DISCLOSURE-LOG_2025.pdf",
@@ -1055,32 +619,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1484-S-anchored_row_share+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://nationalmilkagency.ie/wp-content/uploads/2026/04/FOI-Disclosure-Log-April-2026.pdf",
-    "public_body_id": 1561,
-    "name": "National Milk Agency",
-    "sha256": "5b726ee3d06c2676d1efa227e4892314782052abe4621abace3709b515524959",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 11,
-    "errors_before": 11,
-    "records_now": 11,
-    "errors_now": 11,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1561-V-errors",
-    "status": "parked",
-    "recoverable": 11,
-    "evidence": "vocabulary errors {'unknown_value': 10, 'glyph_split': 1}; vocabulary, non-goal"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://ncca.ie/media/4qffya5u/ncca-disclosure-log-2024.pdf",
@@ -1105,30 +650,8 @@
     "cluster": "1552-M-anchored_row_share+fragment_share+split_word_rate+width_uniformity",
     "status": "open",
     "recoverable": 101,
-    "evidence": "has a column_mapping or header override"
-  },
-  {
-    "file_url": "https://westerncare.com/wp-content/uploads/2020/07/RMD-6-foi-request.pdf",
-    "public_body_id": 1867,
-    "name": "Western Care Association",
-    "sha256": "f6cb43e482443a1c4d87830c696c4ccabbbb8b46631c0c1ae80e499eb32f56ae",
-    "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": null,
-    "anchored_row_share": null,
-    "failed_checks": [
-      "width_uniformity",
-      "split_word_rate"
-    ],
-    "records_before": 0,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1867-S-split_word_rate+width_uniformity",
-    "status": "open",
-    "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "has a column_mapping or header override",
+    "triage_class": null
   },
   {
     "file_url": "https://westerndevelopment.ie/wp-content/uploads/2021/02/2018-FOI-published-list.pdf",
@@ -1153,27 +676,8 @@
     "cluster": "1868-E-anchored_row_share+column_type_purity+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 4,
-    "evidence": "gated on width_uniformity+fragment_share+column_type_purity+anchored_row_share"
-  },
-  {
-    "file_url": "https://westerndevelopment.ie/wp-content/uploads/2021/02/2019-FOI-published-list.pdf",
-    "public_body_id": 1868,
-    "name": "Western Development Commission (WDC)",
-    "sha256": "57285d04ef66f0f56642fe4645731726c5321763196f1d679c0bc557ad98007b",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": null,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 1,
-    "errors_before": 1,
-    "records_now": 1,
-    "errors_now": 1,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1868-V-errors",
-    "status": "parked",
-    "recoverable": 1,
-    "evidence": "vocabulary errors {'unknown_value': 1}; vocabulary, non-goal"
+    "evidence": "gated on width_uniformity+fragment_share+column_type_purity+anchored_row_share",
+    "triage_class": null
   },
   {
     "file_url": "https://westerndevelopment.ie/wp-content/uploads/2021/02/2020-FOI-published-list.pdf",
@@ -1195,87 +699,8 @@
     "cluster": "1868-E-anchored_row_share",
     "status": "open",
     "recoverable": 2,
-    "evidence": "gated on anchored_row_share"
-  },
-  {
-    "file_url": "https://westerndevelopment.ie/wp-content/uploads/2025/06/FOI-2021.pdf",
-    "public_body_id": 1868,
-    "name": "Western Development Commission (WDC)",
-    "sha256": "67d5dc598020aec2ec497a501034633f6276086b965659688b71e0cd7db1d5b0",
-    "pdf_extractor": "mistral_cache",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 5,
-    "errors_before": 2,
-    "records_now": 5,
-    "errors_now": 2,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1868-V-errors",
-    "status": "parked",
-    "recoverable": 2,
-    "evidence": "vocabulary errors {'unknown_value': 2}; vocabulary, non-goal"
-  },
-  {
-    "file_url": "https://westerndevelopment.ie/wp-content/uploads/2025/06/FOI-2022.pdf",
-    "public_body_id": 1868,
-    "name": "Western Development Commission (WDC)",
-    "sha256": "9626f1db77191642d815a964b367e688297ec3f5cde567202d94876758c70320",
-    "pdf_extractor": "mistral_cache",
-    "worst_role_contamination": null,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 3,
-    "errors_before": 2,
-    "records_now": 3,
-    "errors_now": 2,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1868-V-errors",
-    "status": "parked",
-    "recoverable": 2,
-    "evidence": "vocabulary errors {'unknown_value': 2}; vocabulary, non-goal"
-  },
-  {
-    "file_url": "https://westerndevelopment.ie/wp-content/uploads/2025/06/FOI-2023.pdf",
-    "public_body_id": 1868,
-    "name": "Western Development Commission (WDC)",
-    "sha256": "8294459324312035edf98706797153455182853745ec796b7ba6d97b9564b75c",
-    "pdf_extractor": "mistral_cache",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 5,
-    "errors_before": 4,
-    "records_now": 5,
-    "errors_now": 4,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1868-V-errors",
-    "status": "parked",
-    "recoverable": 4,
-    "evidence": "vocabulary errors {'unknown_value': 4}; vocabulary, non-goal"
-  },
-  {
-    "file_url": "https://westerndevelopment.ie/wp-content/uploads/2025/06/FOI-2024.pdf",
-    "public_body_id": 1868,
-    "name": "Western Development Commission (WDC)",
-    "sha256": "42bc6828df4f6695c50079824e3d12386466e584690d1fa2372d3614d1329023",
-    "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 7,
-    "errors_before": 6,
-    "records_now": 7,
-    "errors_now": 6,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1868-V-errors",
-    "status": "parked",
-    "recoverable": 6,
-    "evidence": "vocabulary errors {'unknown_value': 6}; vocabulary, non-goal"
+    "evidence": "gated on anchored_row_share",
+    "triage_class": null
   },
   {
     "file_url": "https://westerndevelopment.ie/wp-content/uploads/2026/01/FOI-2025.pdf",
@@ -1292,38 +717,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1868-S-fragment_share",
+    "fault_kind": "G",
+    "fault_firm": true,
+    "cluster": "small-log",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.beaumont.ie/sites/default/files/2025-12/FOI%20Access%20to%20information%20on%20the%20environment1.pdf",
-    "public_body_id": 1047,
-    "name": "Beaumont Hospital",
-    "sha256": "7958a16443b6fe78342a8162aad1785c539a5db3a3db50fb89ea91037a52b65a",
-    "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": null,
-    "anchored_row_share": null,
-    "failed_checks": [
-      "min_rows",
-      "width_uniformity",
-      "fragment_share",
-      "column_type_purity",
-      "split_word_rate"
-    ],
-    "records_before": 0,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1047-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity",
-    "status": "open",
-    "recoverable": 0,
-    "evidence": "min_rows failed: too few rows extracted"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "small_log"
   },
   {
     "file_url": "https://www.bordbia.ie/globalassets/bordbia.ie/about/governance/foi-disclosure-log/bord-bia-foi-disclosure-log-2023.pdf",
@@ -1345,7 +745,8 @@
     "cluster": "1052-E-role_contamination",
     "status": "open",
     "recoverable": 21,
-    "evidence": "gated on role_contamination"
+    "evidence": "gated on role_contamination",
+    "triage_class": null
   },
   {
     "file_url": "https://www.centralbank.ie/docs/default-source/tns/about---tns/freedom-of-information/disclosure-logs/freedom-of-information-disclosure-log---2024-(non-personal-requests).pdf?sfvrsn=8155651a_3",
@@ -1367,7 +768,8 @@
     "cluster": "1104-M-width_uniformity",
     "status": "open",
     "recoverable": 69,
-    "evidence": "has a column_mapping or header override"
+    "evidence": "has a column_mapping or header override",
+    "triage_class": null
   },
   {
     "file_url": "https://www.centralbank.ie/docs/default-source/tns/about---tns/freedom-of-information/disclosure-logs/freedom-of-information-disclosure-log-2023-(non-personal-requests).pdf?sfvrsn=81cf621a_9",
@@ -1389,7 +791,8 @@
     "cluster": "1104-M-width_uniformity",
     "status": "open",
     "recoverable": 69,
-    "evidence": "has a column_mapping or header override"
+    "evidence": "has a column_mapping or header override",
+    "triage_class": null
   },
   {
     "file_url": "https://www.centralbank.ie/docs/default-source/tns/about---tns/freedom-of-information/disclosure-logs/freedom-of-information-disclosure-log-2025-(non-personal-requests).pdf?sfvrsn=7bc26d1a_2",
@@ -1413,7 +816,8 @@
     "cluster": "1104-M-anchored_row_share+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 130,
-    "evidence": "has a column_mapping or header override"
+    "evidence": "has a column_mapping or header override",
+    "triage_class": null
   },
   {
     "file_url": "https://www.cityofdublinetb.ie/media/2025-Quarters-1-4-FOI-Disclosure-Log.pdf",
@@ -1432,12 +836,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1122-S-anchored_row_share+column_type_purity+role_contamination",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.cityofdublinetb.ie/media/City-of-Dublin-ETB-FOI-Disclosure-Log-Q1-and-Q2-2026.pdf",
@@ -1459,7 +864,8 @@
     "cluster": "1122-E-role_contamination",
     "status": "open",
     "recoverable": 19,
-    "evidence": "gated on role_contamination"
+    "evidence": "gated on role_contamination",
+    "triage_class": null
   },
   {
     "file_url": "https://www.cityofdublinetb.ie/media/City-of-Dublin-FOI-Disclosure-Log-2023-(1).pdf",
@@ -1484,7 +890,8 @@
     "cluster": "1122-E-anchored_row_share+column_type_purity+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 20,
-    "evidence": "gated on width_uniformity+fragment_share+column_type_purity+anchored_row_share"
+    "evidence": "gated on width_uniformity+fragment_share+column_type_purity+anchored_row_share",
+    "triage_class": null
   },
   {
     "file_url": "https://www.cityofdublinetb.ie/media/City-of-Dublin-FOI-Disclosure-Log-Q3-Q4-2022.pdf",
@@ -1509,27 +916,8 @@
     "cluster": "1122-E-anchored_row_share+column_type_purity+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 6,
-    "evidence": "gated on width_uniformity+fragment_share+column_type_purity+anchored_row_share"
-  },
-  {
-    "file_url": "https://www.cityofdublinetb.ie/media/Disclosure-Log-2020.pdf",
-    "public_body_id": 1122,
-    "name": "City of Dublin Education and Training Board",
-    "sha256": "4cc1d57334c2709688daacbed7349ffefc244961596f14a7798b48cb94aa0150",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 18,
-    "errors_before": 20,
-    "records_now": 18,
-    "errors_now": 20,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1122-V-errors",
-    "status": "parked",
-    "recoverable": 20,
-    "evidence": "vocabulary errors {'unknown_value': 20}; vocabulary, non-goal"
+    "evidence": "gated on width_uniformity+fragment_share+column_type_purity+anchored_row_share",
+    "triage_class": null
   },
   {
     "file_url": "https://www.cityofdublinetb.ie/media/Disclosure-Log-2021.pdf",
@@ -1553,7 +941,8 @@
     "cluster": "1122-E-anchored_row_share+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 25,
-    "evidence": "gated on width_uniformity+fragment_share+anchored_row_share"
+    "evidence": "gated on width_uniformity+fragment_share+anchored_row_share",
+    "triage_class": null
   },
   {
     "file_url": "https://www.cityofdublinetb.ie/media/Disclosure-Log-2022-Q1-and-Q2.pdf",
@@ -1572,12 +961,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1122-S-anchored_row_share+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.cityofdublinetb.ie/media/FOI-Disclosure-Log-2024-2.pdf",
@@ -1600,57 +990,8 @@
     "cluster": "1122-E-anchored_row_share+width_uniformity",
     "status": "open",
     "recoverable": 27,
-    "evidence": "gated on width_uniformity+anchored_row_share"
-  },
-  {
-    "file_url": "https://www.cmetb.ie/wp-content/uploads/2022/11/REQUEST-FOR-ACCESS-TO-RECORDS-UNDER-THE-FREEDOM-OF-INFORMATION-ACT-2014.pdf",
-    "public_body_id": 1093,
-    "name": "Cavan and Monaghan Education and Training Board",
-    "sha256": "cf1be7194a3623fe5fd5c2e171ab04a10919be3224466a5a1f6041848cfd3ea1",
-    "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": null,
-    "anchored_row_share": null,
-    "failed_checks": [
-      "width_uniformity",
-      "fragment_share",
-      "column_type_purity",
-      "split_word_rate"
-    ],
-    "records_before": 0,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1093-S-column_type_purity+fragment_share+split_word_rate+width_uniformity",
-    "status": "open",
-    "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.cmetb.ie/wp-content/uploads/2022/12/REQUEST-FOR-ACCESS-TO-RECORDS-UNDER-THE-FREEDOM-OF-INFORMATION-ACT-2014-Gaeilge.pdf",
-    "public_body_id": 1093,
-    "name": "Cavan and Monaghan Education and Training Board",
-    "sha256": "e01d1f141709068c0b72f3487c4998c18ddd5b408ce71db5382539c2a40a1247",
-    "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": null,
-    "anchored_row_share": null,
-    "failed_checks": [
-      "width_uniformity",
-      "fragment_share",
-      "column_type_purity",
-      "split_word_rate"
-    ],
-    "records_before": 0,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1093-S-column_type_purity+fragment_share+split_word_rate+width_uniformity",
-    "status": "open",
-    "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated on width_uniformity+anchored_row_share",
+    "triage_class": null
   },
   {
     "file_url": "https://www.comreg.ie/media/2016/03/Disclosure-Log-2015-Publication-1.pdf",
@@ -1674,7 +1015,8 @@
     "cluster": "1151-E-anchored_row_share+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 14,
-    "evidence": "gated on width_uniformity+fragment_share+anchored_row_share"
+    "evidence": "gated on width_uniformity+fragment_share+anchored_row_share",
+    "triage_class": null
   },
   {
     "file_url": "https://www.corkcoco.ie/sites/default/files/2023-01/freedom-of-information-disclosure-log-2021-pdf.pdf",
@@ -1691,12 +1033,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1163-S-split_word_rate",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.corkcoco.ie/sites/default/files/2023-06/freedom-of-information-disclosure-log-2022-pdf.pdf",
@@ -1713,12 +1056,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1163-S-split_word_rate",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.corketb.ie/wp-content/uploads/2026/06/FOI-Disclosure-Log-2018.pdf",
@@ -1740,7 +1084,8 @@
     "cluster": "1164-E-anchored_row_share",
     "status": "open",
     "recoverable": 12,
-    "evidence": "gated on anchored_row_share"
+    "evidence": "gated on anchored_row_share",
+    "triage_class": null
   },
   {
     "file_url": "https://www.corketb.ie/wp-content/uploads/2026/06/FOI-Disclosure-Log-2019.pdf",
@@ -1763,7 +1108,8 @@
     "cluster": "1164-E-anchored_row_share+role_contamination",
     "status": "open",
     "recoverable": 8,
-    "evidence": "gated on role_contamination+anchored_row_share"
+    "evidence": "gated on role_contamination+anchored_row_share",
+    "triage_class": null
   },
   {
     "file_url": "https://www.corketb.ie/wp-content/uploads/2026/06/FOI-Disclosure-Log-2022.pdf",
@@ -1780,52 +1126,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1164-S-split_word_rate",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.corketb.ie/wp-content/uploads/2026/06/FOI-Disclosure-Log-2023.pdf",
-    "public_body_id": 1164,
-    "name": "Cork Education and Training Board",
-    "sha256": "759571ba8568528c072445dcfb6ff75a56709fbcba5f73d38a7ed5f25d3cc3ef",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 18,
-    "errors_before": 10,
-    "records_now": 18,
-    "errors_now": 10,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1164-V-errors",
-    "status": "parked",
-    "recoverable": 10,
-    "evidence": "vocabulary errors {'unknown_value': 10}; vocabulary, non-goal"
-  },
-  {
-    "file_url": "https://www.corketb.ie/wp-content/uploads/2026/06/FOI-Disclosure-Log-2024.pdf",
-    "public_body_id": 1164,
-    "name": "Cork Education and Training Board",
-    "sha256": "fa7defb1f8fdf7adfeb0916805c334a51e39bdbcfccbaa9ae49b65f752263832",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 12,
-    "errors_before": 5,
-    "records_now": 12,
-    "errors_now": 5,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1164-V-errors",
-    "status": "parked",
-    "recoverable": 5,
-    "evidence": "vocabulary errors {'unknown_value': 5}; vocabulary, non-goal"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.corketb.ie/wp-content/uploads/2026/07/CETB-FOI-Disclosure-Log-2025.pdf",
@@ -1842,12 +1149,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1164-S-split_word_rate",
+    "fault_kind": "G",
+    "fault_firm": true,
+    "cluster": "small-log",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "small_log"
   },
   {
     "file_url": "https://www.coru.ie/media/vdwdvd42/coru-foi-log-2022.pdf",
@@ -1866,32 +1174,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1389-S-anchored_row_share+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.cru.ie/documents/28330/CRU_2017_FOI_Disclosure_Log.pdf",
-    "public_body_id": 1153,
-    "name": "Commission for Regulation of Utilities (CRU)",
-    "sha256": "c034187022cc6e89c12e99e1c88909db977ed82048e239f31f54a7ba1ef51410",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.15384615384615385,
-    "anchored_row_share": 0.9230769230769231,
-    "failed_checks": [],
-    "records_before": 13,
-    "errors_before": 4,
-    "records_now": 13,
-    "errors_now": 4,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1153-V-errors",
-    "status": "parked",
-    "recoverable": 4,
-    "evidence": "vocabulary errors {'unknown_value': 4}; vocabulary, non-goal"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.cru.ie/documents/28336/CRU_2021_FOI_Disclosure_Log_1.pdf",
@@ -1913,7 +1202,8 @@
     "cluster": "1153-G-anchored_row_share",
     "status": "open",
     "recoverable": 25,
-    "evidence": "gate-only failure; 25 records before at 0.0% errors"
+    "evidence": "gate-only failure; 25 records before at 0.0% errors",
+    "triage_class": null
   },
   {
     "file_url": "https://www.cru.ie/documents/28657/CRU_2022_FOI_Discloure_Log.pdf",
@@ -1935,7 +1225,8 @@
     "cluster": "1153-G-anchored_row_share",
     "status": "open",
     "recoverable": 48,
-    "evidence": "gate-only failure; 48 records before at 0.0% errors"
+    "evidence": "gate-only failure; 48 records before at 0.0% errors",
+    "triage_class": null
   },
   {
     "file_url": "https://www.cru.ie/documents/28765/2023-FOI-Disclosure-Log_1_1_3.pdf",
@@ -1957,7 +1248,8 @@
     "cluster": "1153-G-anchored_row_share",
     "status": "open",
     "recoverable": 39,
-    "evidence": "gate-only failure; 39 records before at 0.0% errors"
+    "evidence": "gate-only failure; 39 records before at 0.0% errors",
+    "triage_class": null
   },
   {
     "file_url": "https://www.cru.ie/documents/29700/2024_FOI_Disclosure_Log.pdf",
@@ -1982,7 +1274,8 @@
     "cluster": "1153-E-anchored_row_share+fragment_share+role_contamination+width_uniformity",
     "status": "open",
     "recoverable": 27,
-    "evidence": "gated on width_uniformity+fragment_share+role_contamination+anchored_row_share"
+    "evidence": "gated on width_uniformity+fragment_share+role_contamination+anchored_row_share",
+    "triage_class": null
   },
   {
     "file_url": "https://www.cru.ie/documents/30609/2025_FOI_Disclosure_Log.pdf",
@@ -2006,7 +1299,8 @@
     "cluster": "1153-E-anchored_row_share+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 53,
-    "evidence": "gated on width_uniformity+fragment_share+anchored_row_share"
+    "evidence": "gated on width_uniformity+fragment_share+anchored_row_share",
+    "triage_class": null
   },
   {
     "file_url": "https://www.cru.ie/documents/30857/2026_FOI_Disclosure_Log_1.pdf",
@@ -2028,75 +1322,8 @@
     "cluster": "1153-E-role_contamination",
     "status": "open",
     "recoverable": 57,
-    "evidence": "gated on role_contamination"
-  },
-  {
-    "file_url": "https://www.dentalcouncil.ie/wp-content/uploads/2022/08/Freedom-of-Information.pdf",
-    "public_body_id": 1194,
-    "name": "Dental Council",
-    "sha256": "fe3d2a0c194af731a9ed79b664ba2217d50cf6e150e900a39ba81c14da2de020",
-    "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": null,
-    "anchored_row_share": null,
-    "failed_checks": [
-      "width_uniformity",
-      "fragment_share",
-      "column_type_purity",
-      "split_word_rate"
-    ],
-    "records_before": 0,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1194-S-column_type_purity+fragment_share+split_word_rate+width_uniformity",
-    "status": "open",
-    "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.dlrcoco.ie/sites/dlrcoco/files/2023-09/2021%20Freedom%20of%20Information%20Disclosure%20Log.pdf",
-    "public_body_id": 1244,
-    "name": "Dun Laoghaire Rathdown County Council",
-    "sha256": "1dafdec95ba8969b63f661c3949b51ff49ae17581f145b117c6713a915670551",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 1.0,
-    "anchored_row_share": 0.0,
-    "failed_checks": [
-      "role_contamination",
-      "anchored_row_share"
-    ],
-    "records_before": 153,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "G",
-    "fault_firm": false,
-    "cluster": "1244-G-anchored_row_share+role_contamination",
-    "status": "open",
-    "recoverable": 153,
-    "evidence": "gate-only failure; 153 records before at 0.0% errors"
-  },
-  {
-    "file_url": "https://www.failteireland.ie/FailteIreland/media/WebsiteStructure/Documents/4_Corporate_Documents/FOI-Disclosure-Log-January-December-2019.pdf",
-    "public_body_id": 1335,
-    "name": "F\u00e1ilte Ireland",
-    "sha256": "55ff18eb00b152b2f4a7c1c737fe5b0858b3eb2a2a442e5955c883bfc0bc0ea1",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.025,
-    "anchored_row_share": 0.9512195121951219,
-    "failed_checks": [],
-    "records_before": 40,
-    "errors_before": 13,
-    "records_now": 40,
-    "errors_now": 13,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1335-V-errors",
-    "status": "parked",
-    "recoverable": 13,
-    "evidence": "vocabulary errors {'unknown_value': 13}; vocabulary, non-goal"
+    "evidence": "gated on role_contamination",
+    "triage_class": null
   },
   {
     "file_url": "https://www.fingal.ie/sites/default/files/2019-03/FOI%20Disclosure%20Log%202016.pdf",
@@ -2118,51 +1345,8 @@
     "cluster": "1295-M-anchored_row_share",
     "status": "open",
     "recoverable": 119,
-    "evidence": "has a column_mapping or header override"
-  },
-  {
-    "file_url": "https://www.fiosru.ie/media/oukaayqx/foi-004-24.pdf",
-    "public_body_id": 1298,
-    "name": "Fiosr\u00fa - Oifig an Ombudsman P\u00f3il\u00edneachta.",
-    "sha256": "24d4a7ba3a0bda82edb0bf402b1af97526297858ed92549e22dc94cf9b9567c1",
-    "pdf_extractor": "pymupdf",
-    "worst_role_contamination": null,
-    "anchored_row_share": null,
-    "failed_checks": [
-      "width_uniformity",
-      "fragment_share",
-      "split_word_rate"
-    ],
-    "records_before": 0,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1298-S-fragment_share+split_word_rate+width_uniformity",
-    "status": "open",
-    "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.fiscalcouncil.ie/wp-content/uploads/2021/03/FOI-Disclosure-Log-2016.pdf",
-    "public_body_id": 1437,
-    "name": "Irish Fiscal Advisory Council",
-    "sha256": "a3caee17ce55130cceb6afa8e6c1d2381536ba68aecd12b09632601f724713ed",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": null,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 2,
-    "errors_before": 2,
-    "records_now": 2,
-    "errors_now": 2,
-    "fault_kind": "E",
-    "fault_firm": false,
-    "cluster": "1437-E-errors",
-    "status": "open",
-    "recoverable": 2,
-    "evidence": "error classes {'unknown_value': 1, 'glyph_split': 1}"
+    "evidence": "has a column_mapping or header override",
+    "triage_class": null
   },
   {
     "file_url": "https://www.fiscalcouncil.ie/wp-content/uploads/2021/03/FOI-Disclosure-Log-2017.pdf",
@@ -2183,12 +1367,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1437-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity",
+    "fault_kind": "G",
+    "fault_firm": true,
+    "cluster": "small-log",
     "status": "open",
     "recoverable": 0,
-    "evidence": "min_rows failed: too few rows extracted"
+    "evidence": "min_rows failed: too few rows extracted",
+    "triage_class": "small_log"
   },
   {
     "file_url": "https://www.fspo.ie/documents/FOI-Disclosure-Log-2022.pdf",
@@ -2205,12 +1390,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1293-S-split_word_rate",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.fspo.ie/documents/FOI-Disclosure-Log-Q1-2026.pdf",
@@ -2227,12 +1413,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1293-S-split_word_rate",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.fspo.ie/documents/FOI-Disclosure-Log-Q3-2024.pdf",
@@ -2252,58 +1439,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1293-S-column_type_purity+fragment_share+split_word_rate+width_uniformity",
+    "fault_kind": "G",
+    "fault_firm": true,
+    "cluster": "small-log",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.grireland.ie/globalassets/rescource-centre/documents/foi-publication-scheme/disclosure-log-2024.pdf",
-    "public_body_id": 1679,
-    "name": "R\u00e1sa\u00edocht Con \u00c9ireann",
-    "sha256": "5ab9e083e1b801eae97b268c07906409906664c813e97b6e7ace0f65a16f2eab",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 18,
-    "errors_before": 6,
-    "records_now": 18,
-    "errors_now": 6,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1679-V-errors",
-    "status": "parked",
-    "recoverable": 6,
-    "evidence": "vocabulary errors {'unknown_value': 6}; vocabulary, non-goal"
-  },
-  {
-    "file_url": "https://www.hia.ie/sites/default/files/FOI%20Application%20Form.pdf",
-    "public_body_id": 1391,
-    "name": "Health Insurance Authority",
-    "sha256": "4a3a0b4548b283eb00f373b8c1beec9526eaee00d4bb8127459993e4fd883f7b",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": null,
-    "anchored_row_share": null,
-    "failed_checks": [
-      "min_rows",
-      "width_uniformity",
-      "fragment_share",
-      "column_type_purity",
-      "split_word_rate"
-    ],
-    "records_before": 0,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1391-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity",
-    "status": "open",
-    "recoverable": 0,
-    "evidence": "min_rows failed: too few rows extracted"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "small_log"
   },
   {
     "file_url": "https://www.hiqa.ie/sites/default/files/2020-05/FOI-Disclosure-Log-2018.pdf",
@@ -2325,7 +1467,8 @@
     "cluster": "1390-G-anchored_row_share",
     "status": "open",
     "recoverable": 49,
-    "evidence": "gate-only failure; 49 records before at 0.0% errors"
+    "evidence": "gate-only failure; 49 records before at 0.0% errors",
+    "triage_class": null
   },
   {
     "file_url": "https://www.hiqa.ie/sites/default/files/2020-05/FOI-Disclosure-Log-2019.pdf",
@@ -2347,47 +1490,8 @@
     "cluster": "1390-G-anchored_row_share",
     "status": "open",
     "recoverable": 55,
-    "evidence": "gate-only failure; 55 records before at 0.0% errors"
-  },
-  {
-    "file_url": "https://www.housingagency.ie/wp-content/uploads/2019/03/2016-foi-disclosure-register.pdf",
-    "public_body_id": 1786,
-    "name": "The Housing Agency (Housing & Sustainable Communities Agency)",
-    "sha256": "107df9f44dc0504da201c703bb772aeea20673a7a71dbe4847a632eb02386276",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.16666666666666666,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 6,
-    "errors_before": 3,
-    "records_now": 6,
-    "errors_now": 3,
-    "fault_kind": "E",
-    "fault_firm": false,
-    "cluster": "1786-E-errors",
-    "status": "open",
-    "recoverable": 3,
-    "evidence": "error classes {'cross_role': 1, 'unknown_value': 2}"
-  },
-  {
-    "file_url": "https://www.housingagency.ie/wp-content/uploads/2026/05/2022_Disclosure_Register.pdf",
-    "public_body_id": 1786,
-    "name": "The Housing Agency (Housing & Sustainable Communities Agency)",
-    "sha256": "56f5698f3b8ff4edbbc1a4e274c3ad74dd67355ccd1dc07c6f4d1a8c5ebbe67b",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 0.9761904761904762,
-    "failed_checks": [],
-    "records_before": 42,
-    "errors_before": 14,
-    "records_now": 42,
-    "errors_now": 14,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1786-V-errors",
-    "status": "parked",
-    "recoverable": 14,
-    "evidence": "vocabulary errors {'unknown_value': 14}; vocabulary, non-goal"
+    "evidence": "gate-only failure; 55 records before at 0.0% errors",
+    "triage_class": null
   },
   {
     "file_url": "https://www.hsa.ie/media/ccanh352/foi-disclosure-log-2018.pdf",
@@ -2409,7 +1513,8 @@
     "cluster": "1388-E-role_contamination",
     "status": "open",
     "recoverable": 16,
-    "evidence": "gated on role_contamination"
+    "evidence": "gated on role_contamination",
+    "triage_class": null
   },
   {
     "file_url": "https://www.hsa.ie/media/lnmki5ak/foi-disclosure-log-2020.pdf",
@@ -2431,7 +1536,8 @@
     "cluster": "1388-G-role_contamination",
     "status": "open",
     "recoverable": 23,
-    "evidence": "gate-only failure; 23 records before at 0.0% errors"
+    "evidence": "gate-only failure; 23 records before at 0.0% errors",
+    "triage_class": null
   },
   {
     "file_url": "https://www.hsa.ie/media/mqhlwofq/foi-disclosure-log-2019.pdf",
@@ -2453,77 +1559,8 @@
     "cluster": "1388-E-role_contamination",
     "status": "open",
     "recoverable": 10,
-    "evidence": "gated on role_contamination"
-  },
-  {
-    "file_url": "https://www.hse.gov.uk/foi/disclosure-pdfs/ecp14-6.pdf",
-    "public_body_id": 1394,
-    "name": "Health Service Executive",
-    "sha256": "a8564657a0e7801d7d41f5ed1ca3e42a90a7e8023933f10be92cc76f114268de",
-    "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": null,
-    "anchored_row_share": null,
-    "failed_checks": [
-      "width_uniformity",
-      "fragment_share",
-      "column_type_purity",
-      "split_word_rate"
-    ],
-    "records_before": 0,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1394-S-column_type_purity+fragment_share+split_word_rate+width_uniformity",
-    "status": "open",
-    "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.hse.gov.uk/foi/disclosure-pdfs/ecp14-7.pdf",
-    "public_body_id": 1394,
-    "name": "Health Service Executive",
-    "sha256": "f345fe08d252986a6a71f65627c925c7693c7676df2c5dae1d3375d705697025",
-    "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": null,
-    "anchored_row_share": null,
-    "failed_checks": [
-      "width_uniformity",
-      "fragment_share",
-      "column_type_purity",
-      "split_word_rate"
-    ],
-    "records_before": 0,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1394-S-column_type_purity+fragment_share+split_word_rate+width_uniformity",
-    "status": "open",
-    "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.ihrec.ie/downloads/Freedom-of-Information-Disclosure-Log-Q3-2024.pdf",
-    "public_body_id": 1438,
-    "name": "Irish Human Rights and Equality Commission",
-    "sha256": "bd49e55df33f76e6dd207ad7d7fe71c2aa203f24572cad1a90faadb221abcda6",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": null,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 0,
-    "errors_before": 5,
-    "records_now": 0,
-    "errors_now": 5,
-    "fault_kind": "E",
-    "fault_firm": false,
-    "cluster": "1438-E-errors",
-    "status": "open",
-    "recoverable": 5,
-    "evidence": "error classes {'cross_role': 5}"
+    "evidence": "gated on role_contamination",
+    "triage_class": null
   },
   {
     "file_url": "https://www.irishrail.ie/_kontent/d2e85689-fbf9-010a-a02e-587ed94b5032/72460e33-7efe-41f2-8dcb-929c804b8c46/2019%20Procurement.pdf",
@@ -2540,12 +1577,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1443-S-width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.irishrail.ie/_kontent/d2e85689-fbf9-010a-a02e-587ed94b5032/8c1e8e80-74ad-4f75-8fed-98518b8651a2/2024-Finance.pdf",
@@ -2562,35 +1600,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1443-S-width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.irishrail.ie/_kontent/d2e85689-fbf9-010a-a02e-587ed94b5032/b5615c0b-db31-4e0e-8521-efd05ecbd74c/674c26fc-36b0-406e-8eb3-9e70e4dfc873.pdf",
-    "public_body_id": 1443,
-    "name": "Irish Rail (Iarnr\u00f3d \u00c9ireann)",
-    "sha256": "2e35f0255f49a15bdb7a9dba7ecc9a389ce0e866ec5a47ee6329c6ff489da0b9",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": null,
-    "anchored_row_share": null,
-    "failed_checks": [
-      "width_uniformity",
-      "fragment_share"
-    ],
-    "records_before": 0,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1443-S-fragment_share+width_uniformity",
-    "status": "open",
-    "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.lawreform.ie/wp-content/uploads/2026/03/foi-log-10072025-1.pdf",
@@ -2615,7 +1631,8 @@
     "cluster": "1471-E-anchored_row_share+column_type_purity+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 22,
-    "evidence": "gated on width_uniformity+fragment_share+column_type_purity+anchored_row_share"
+    "evidence": "gated on width_uniformity+fragment_share+column_type_purity+anchored_row_share",
+    "triage_class": null
   },
   {
     "file_url": "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Disclosure-Log/Disclosure-Log-Q4-2024.pdf",
@@ -2632,12 +1649,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1475-S-width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q1-2021.pdf",
@@ -2654,12 +1672,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1475-S-width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q1-2024.pdf",
@@ -2676,12 +1695,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1475-S-width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q3-2023.pdf",
@@ -2698,12 +1718,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1475-S-width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q4-2021.pdf",
@@ -2720,37 +1741,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1475-S-width_uniformity",
+    "fault_kind": "G",
+    "fault_firm": true,
+    "cluster": "small-log",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.lgma.ie/en/publications/corporate/access-to-information-on-the-environment.pdf",
-    "public_body_id": 1493,
-    "name": "Local Government Management Agency (LGMA)",
-    "sha256": "9726bca5d118b1162c64c431b843f74b043a5c3e979c358251dd9a538ccb5ce4",
-    "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": null,
-    "anchored_row_share": null,
-    "failed_checks": [
-      "width_uniformity",
-      "fragment_share",
-      "column_type_purity",
-      "split_word_rate"
-    ],
-    "records_before": 0,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1493-S-column_type_purity+fragment_share+split_word_rate+width_uniformity",
-    "status": "open",
-    "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "small_log"
   },
   {
     "file_url": "https://www.louthcoco.ie/media/0d3hkhve/foi-disclosures-log-2019.pdf",
@@ -2758,10 +1755,9 @@
     "name": "Louth County Council",
     "sha256": "81d718f2db68a3251c68e202b1c43fe230da2fe337b5f5e95c245b0b9f8db4a7",
     "pdf_extractor": "camelot_lattice",
-    "worst_role_contamination": 0.3333333333333333,
-    "anchored_row_share": 0.0,
+    "worst_role_contamination": 0.16666666666666666,
+    "anchored_row_share": 0.04716981132075472,
     "failed_checks": [
-      "role_contamination",
       "anchored_row_share"
     ],
     "records_before": 107,
@@ -2770,10 +1766,11 @@
     "errors_now": 0,
     "fault_kind": "G",
     "fault_firm": false,
-    "cluster": "1501-G-anchored_row_share+role_contamination",
+    "cluster": "1501-G-anchored_row_share",
     "status": "open",
     "recoverable": 107,
-    "evidence": "gate-only failure; 107 records before at 0.0% errors"
+    "evidence": "gate-only failure; 107 records before at 0.0% errors",
+    "triage_class": null
   },
   {
     "file_url": "https://www.louthcoco.ie/media/bwcfc1mo/foi-disclosures-log-2020.pdf",
@@ -2781,8 +1778,8 @@
     "name": "Louth County Council",
     "sha256": "a4527057b0e02827d44bcba844736bd6efac7430111e8bbf3a00c0ef77e70050",
     "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": 0.7567567567567568,
-    "anchored_row_share": 0.009389671361502348,
+    "worst_role_contamination": 0.45528455284552843,
+    "anchored_row_share": 0.39906103286384975,
     "failed_checks": [
       "width_uniformity",
       "fragment_share",
@@ -2799,7 +1796,8 @@
     "cluster": "1501-E-anchored_row_share+column_type_purity+fragment_share+role_contamination+width_uniformity",
     "status": "open",
     "recoverable": 65,
-    "evidence": "gated on width_uniformity+fragment_share+column_type_purity+role_contamination+anchored_row_share"
+    "evidence": "gated on width_uniformity+fragment_share+column_type_purity+role_contamination+anchored_row_share",
+    "triage_class": null
   },
   {
     "file_url": "https://www.louthcoco.ie/media/c2rdezoc/foi-2016.pdf",
@@ -2821,7 +1819,8 @@
     "cluster": "1501-G-anchored_row_share",
     "status": "open",
     "recoverable": 36,
-    "evidence": "gate-only failure; 36 records before at 0.0% errors"
+    "evidence": "gate-only failure; 36 records before at 0.0% errors",
+    "triage_class": null
   },
   {
     "file_url": "https://www.louthcoco.ie/media/jgmmylj5/foi-disclosure-log-2021.pdf",
@@ -2830,7 +1829,7 @@
     "sha256": "4a8471c6237a7f17d8061700aa91853d5e31002760c1da11a05bb0a15f37ea8d",
     "pdf_extractor": "camelot_lattice",
     "worst_role_contamination": 0.0,
-    "anchored_row_share": 0.0,
+    "anchored_row_share": 0.011363636363636364,
     "failed_checks": [
       "anchored_row_share"
     ],
@@ -2843,7 +1842,8 @@
     "cluster": "1501-G-anchored_row_share",
     "status": "open",
     "recoverable": 88,
-    "evidence": "gate-only failure; 88 records before at 0.0% errors"
+    "evidence": "gate-only failure; 88 records before at 0.0% errors",
+    "triage_class": null
   },
   {
     "file_url": "https://www.louthcoco.ie/media/mmrfs4gu/foi-disclosure-log-2017-louth-county-council.pdf",
@@ -2865,94 +1865,8 @@
     "cluster": "1501-E-width_uniformity",
     "status": "open",
     "recoverable": 64,
-    "evidence": "gated on width_uniformity"
-  },
-  {
-    "file_url": "https://www.louthcoco.ie/media/mrgeqb1q/foi-disclosure-log-2023.pdf",
-    "public_body_id": 1501,
-    "name": "Louth County Council",
-    "sha256": "15d5884710b5255cc0a740401c990efcf60aad0414ce39057a41b23dd4065af2",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.4895833333333333,
-    "anchored_row_share": 0.5104166666666666,
-    "failed_checks": [
-      "role_contamination",
-      "anchored_row_share"
-    ],
-    "records_before": 96,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "G",
-    "fault_firm": false,
-    "cluster": "1501-G-anchored_row_share+role_contamination",
-    "status": "open",
-    "recoverable": 96,
-    "evidence": "gate-only failure; 96 records before at 0.0% errors"
-  },
-  {
-    "file_url": "https://www.mayo.ie/getmedia/084db297-06e3-4cd5-987c-1a9a0c8764c4/FOI_DisclosureLog_2023_Q1.pdf",
-    "public_body_id": 1508,
-    "name": "Mayo County Council",
-    "sha256": "06e8ffed474a004a3d2d7b18adb4e54d188d52eea9a4c3dea984d049195f1a63",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 1.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [
-      "role_contamination"
-    ],
-    "records_before": 35,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "G",
-    "fault_firm": false,
-    "cluster": "1508-G-role_contamination",
-    "status": "open",
-    "recoverable": 35,
-    "evidence": "gate-only failure; 35 records before at 0.0% errors"
-  },
-  {
-    "file_url": "https://www.mayo.ie/getmedia/119b2daa-2e84-42bb-abdd-85440534102f/Disclosure-Log-Q2-2025.pdf",
-    "public_body_id": 1508,
-    "name": "Mayo County Council",
-    "sha256": "f3b5860a78fa01554f2c4eb5da86b3ad2de162a939cd089d30ad251bdea1be8b",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 1.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [
-      "role_contamination"
-    ],
-    "records_before": 38,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "G",
-    "fault_firm": false,
-    "cluster": "1508-G-role_contamination",
-    "status": "open",
-    "recoverable": 38,
-    "evidence": "gate-only failure; 38 records before at 0.0% errors"
-  },
-  {
-    "file_url": "https://www.mayo.ie/getmedia/137e2288-371f-4f9c-9127-ec488798faac/Disclosure-Log-Q4-2023.pdf",
-    "public_body_id": 1508,
-    "name": "Mayo County Council",
-    "sha256": "2bf3650b903136fc417d56160d7c23ccf89146e001692bf3d5ccfbbe0ad7334e",
-    "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": 0.08823529411764706,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 34,
-    "errors_before": 0,
-    "records_now": 35,
-    "errors_now": 35,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1508-V-errors",
-    "status": "parked",
-    "recoverable": 35,
-    "evidence": "vocabulary errors {'unknown_value': 30, 'glyph_split': 2, 'cross_role': 3}; vocabulary, non-goal"
+    "evidence": "gated on width_uniformity",
+    "triage_class": null
   },
   {
     "file_url": "https://www.mayo.ie/getmedia/1d36077f-63b0-4f22-8d19-06e739f1e0d6/Disclosure-Log-Q1-2025.pdf",
@@ -2976,27 +1890,8 @@
     "cluster": "1508-E-fragment_share+split_word_rate+width_uniformity",
     "status": "open",
     "recoverable": 32,
-    "evidence": "gated on width_uniformity+fragment_share+split_word_rate"
-  },
-  {
-    "file_url": "https://www.mayo.ie/getmedia/22f4ee22-443f-440d-9186-e8d8907f67d3/Disclosure-Log-Q1-2024.pdf",
-    "public_body_id": 1508,
-    "name": "Mayo County Council",
-    "sha256": "6e13c0a17373b0400d66719aad83f706818a005466b895eadabf4758b4ee957c",
-    "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": 0.14285714285714285,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 42,
-    "errors_before": 0,
-    "records_now": 43,
-    "errors_now": 43,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1508-V-errors",
-    "status": "parked",
-    "recoverable": 43,
-    "evidence": "vocabulary errors {'unknown_value': 36, 'cross_role': 6, 'glyph_split': 1}; vocabulary, non-goal"
+    "evidence": "gated on width_uniformity+fragment_share+split_word_rate",
+    "triage_class": null
   },
   {
     "file_url": "https://www.mayo.ie/getmedia/5bd554a5-67ff-4c94-b0ad-8f9b325e4534/FOI-Disclosure-Log-Q4-2024.pdf",
@@ -3020,71 +1915,8 @@
     "cluster": "1508-E-role_contamination+split_word_rate+width_uniformity",
     "status": "open",
     "recoverable": 31,
-    "evidence": "gated on width_uniformity+split_word_rate+role_contamination"
-  },
-  {
-    "file_url": "https://www.mayo.ie/getmedia/882f374b-cbe0-45b9-8475-ec9b08f070a0/Disclosure-Log-Q2-2024.pdf",
-    "public_body_id": 1508,
-    "name": "Mayo County Council",
-    "sha256": "1ba002f2e1c998c1a38e6538a11a3b2853d6bd9725b9ddad624fa0b771b8cc53",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 1.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [
-      "role_contamination"
-    ],
-    "records_before": 53,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "G",
-    "fault_firm": false,
-    "cluster": "1508-G-role_contamination",
-    "status": "open",
-    "recoverable": 53,
-    "evidence": "gate-only failure; 53 records before at 0.0% errors"
-  },
-  {
-    "file_url": "https://www.mayo.ie/getmedia/ae96d28b-5097-4b95-87a4-953e094b6d5a/FOI_DisclosureLog_2023_Q2.pdf",
-    "public_body_id": 1508,
-    "name": "Mayo County Council",
-    "sha256": "40df276b917d2609e1643fc1ce7cb3652daae13cc272d68874e1b205a8047757",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 1.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [
-      "role_contamination"
-    ],
-    "records_before": 33,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "G",
-    "fault_firm": false,
-    "cluster": "1508-G-role_contamination",
-    "status": "open",
-    "recoverable": 33,
-    "evidence": "gate-only failure; 33 records before at 0.0% errors"
-  },
-  {
-    "file_url": "https://www.museum.ie/getmedia/1dd83c82-3ce7-4758-ac9c-262b9844c306/FOI-Log-2025_.xlsx",
-    "public_body_id": 1562,
-    "name": "National Museum of Ireland",
-    "sha256": "3118899c9ca849b26e51cb88684d0a1a9f5df3ff41c1f3820309a4d41fda9488",
-    "pdf_extractor": null,
-    "worst_role_contamination": 1.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 14,
-    "errors_before": 12,
-    "records_now": 14,
-    "errors_now": 12,
-    "fault_kind": "E",
-    "fault_firm": false,
-    "cluster": "1562-E-errors",
-    "status": "open",
-    "recoverable": 12,
-    "evidence": "error classes {'cross_role': 12}"
+    "evidence": "gated on width_uniformity+split_word_rate+role_contamination",
+    "triage_class": null
   },
   {
     "file_url": "https://www.museum.ie/getmedia/c53add27-b3eb-4214-94fa-a68ebd325065/FOI-2024-Log-Non-personal.pdf",
@@ -3103,139 +1935,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1562-S-fragment_share+role_contamination+width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.nli.ie/sites/default/files/2023-03/national-library-of-ireland-foi-publication-scheme-updated.pdf",
-    "public_body_id": 1559,
-    "name": "National Library of Ireland",
-    "sha256": "21b3a4a068eab08f0de56ddcb2b2538fe29a88af0b07a52bbe7180d4ecd86220",
-    "pdf_extractor": "camelot_lattice",
-    "worst_role_contamination": null,
-    "anchored_row_share": null,
-    "failed_checks": [
-      "width_uniformity"
-    ],
-    "records_before": 0,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1559-S-width_uniformity",
-    "status": "open",
-    "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.nmbi.ie/NMBI/media/NMBI/Freedom-of-Information-Disclosure-Log-2021.pdf",
-    "public_body_id": 1587,
-    "name": "Nursing and Midwifery Board of Ireland (NMBI)",
-    "sha256": "d4f106a5b73f11687e4ec2824d4f450b36b5d5a2b4a709e6bbff52575b2ca613",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 7,
-    "errors_before": 3,
-    "records_now": 7,
-    "errors_now": 3,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1587-V-errors",
-    "status": "parked",
-    "recoverable": 3,
-    "evidence": "vocabulary errors {'unknown_value': 3}; vocabulary, non-goal"
-  },
-  {
-    "file_url": "https://www.nmbi.ie/NMBI/media/NMBI/Freedom-of-Information-Disclosure-Log-2022.pdf",
-    "public_body_id": 1587,
-    "name": "Nursing and Midwifery Board of Ireland (NMBI)",
-    "sha256": "96f65a83ab48130f03a91c447d28371a7f74e7db152b097dcf9e09838b4760f8",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": null,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 4,
-    "errors_before": 2,
-    "records_now": 4,
-    "errors_now": 2,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1587-V-errors",
-    "status": "parked",
-    "recoverable": 2,
-    "evidence": "vocabulary errors {'unknown_value': 2}; vocabulary, non-goal"
-  },
-  {
-    "file_url": "https://www.nmbi.ie/NMBI/media/NMBI/Freedom-of-Information-Disclosure-Log-2023.pdf",
-    "public_body_id": 1587,
-    "name": "Nursing and Midwifery Board of Ireland (NMBI)",
-    "sha256": "4530b5cdae74c8a22734fb69d14abd30cfbeae144f3d909120a375eed9585a43",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 6,
-    "errors_before": 3,
-    "records_now": 6,
-    "errors_now": 3,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1587-V-errors",
-    "status": "parked",
-    "recoverable": 3,
-    "evidence": "vocabulary errors {'unknown_value': 3}; vocabulary, non-goal"
-  },
-  {
-    "file_url": "https://www.nui.ie/app/uploads/2026/03/FOI-Disclosure-Log.pdf",
-    "public_body_id": 1573,
-    "name": "National University of Ireland",
-    "sha256": "094ec3d3b03602e2e34bea6df0a506c10ff27d4ff42e7c4c4ad590df363297b9",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.18181818181818182,
-    "anchored_row_share": 0.8181818181818182,
-    "failed_checks": [],
-    "records_before": 9,
-    "errors_before": 9,
-    "records_now": 9,
-    "errors_now": 9,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1573-V-errors",
-    "status": "parked",
-    "recoverable": 9,
-    "evidence": "vocabulary errors {'unknown_value': 9}; vocabulary, non-goal"
-  },
-  {
-    "file_url": "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/Infromation-about-Offaly-County-Council-March-2019.pdf",
-    "public_body_id": 1149,
-    "name": "Comhlacht Formhaoirsithe Seachtrach \u00d3glaigh na h\u00c9ireann (the External Oversight Body)",
-    "sha256": "d561dfda0aef427a426b94d0292f84e5fc0d6bf5cb269b2eedf08296f39d974b",
-    "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": null,
-    "anchored_row_share": null,
-    "failed_checks": [
-      "width_uniformity",
-      "fragment_share",
-      "column_type_purity",
-      "split_word_rate"
-    ],
-    "records_before": 0,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1149-S-column_type_purity+fragment_share+split_word_rate+width_uniformity",
-    "status": "open",
-    "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.pleanala.ie/getattachment/0c25a07b-6742-4fa6-91cd-f06a9d8e8668/FOI-Disclosure-log-2025-Q2-ENG.pdf?lang=en-IE",
@@ -3253,32 +1959,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1010-S-role_contamination+split_word_rate",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.pleanala.ie/getmedia/1f0ca993-b178-481a-8972-57849a81b5e4/2015-Q2.pdf",
-    "public_body_id": 1010,
-    "name": "An Coimisi\u00fan Plean\u00e1la",
-    "sha256": "04b2c43e857756991918c40f74745c003d050ec44684f5fb9aceb62e62ecd9cc",
-    "pdf_extractor": "camelot_lattice",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 6,
-    "errors_before": 2,
-    "records_now": 6,
-    "errors_now": 2,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1010-V-errors",
-    "status": "parked",
-    "recoverable": 2,
-    "evidence": "vocabulary errors {'unknown_value': 2}; vocabulary, non-goal"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.pleanala.ie/getmedia/5cd8504d-f3ef-412c-ac3c-ea11405591c8/FOI-Disclosure-Log-2025-Q4.pdf",
@@ -3297,12 +1984,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1010-S-anchored_row_share+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.pleanala.ie/getmedia/5d0c2ca0-549d-48cc-adb2-d70abb399fac/FOI-Disclosure-log-2025-Q1.pdf",
@@ -3319,12 +2007,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1010-S-split_word_rate",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.pleanala.ie/getmedia/a2ca1da6-8dc0-4547-b753-96fc647c1f48/FOI-Disclosure-Log-2026-Q2.pdf",
@@ -3344,12 +2033,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1010-S-anchored_row_share+fragment_share+role_contamination+width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.pleanala.ie/getmedia/ca4bcd8a-e0e8-4e5d-bd27-d33870385e6d/2015_Q4.pdf",
@@ -3366,12 +2056,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1010-S-split_word_rate",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.pleanala.ie/getmedia/d6bfbbf5-425c-4af0-be47-38c2fbd742b4/2016-Q1.pdf",
@@ -3388,12 +2079,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1010-S-width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.pleanala.ie/getmedia/e3049b15-8e01-4388-836a-5cb53667c531/2016-Q2.pdf",
@@ -3410,104 +2102,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1010-S-width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.sdcc.ie/en/services/our-council/access-to-information/freedom-of-information/foi-privacy-statement.pdf",
-    "public_body_id": 1732,
-    "name": "South Dublin County Council",
-    "sha256": "e10b9f2767d4521ea41ccc8219c619b5997a752c09458faca809f2470376d743",
-    "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": null,
-    "anchored_row_share": null,
-    "failed_checks": [
-      "width_uniformity",
-      "fragment_share",
-      "column_type_purity",
-      "split_word_rate"
-    ],
-    "records_before": 0,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1732-S-column_type_purity+fragment_share+split_word_rate+width_uniformity",
-    "status": "open",
-    "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.stjames.ie/media/FOI Patient Record Request Form August 2026.pdf",
-    "public_body_id": 1747,
-    "name": "St. James\u2019s Hospital , Dublin",
-    "sha256": "7c41af57529778fa49366ec2201089137af122dff02a117a0a9e46aaef8068e9",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": null,
-    "anchored_row_share": null,
-    "failed_checks": [
-      "width_uniformity",
-      "fragment_share"
-    ],
-    "records_before": 0,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1747-S-fragment_share+width_uniformity",
-    "status": "open",
-    "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.stjames.ie/media/FOI Request for Deceased Patient Records August 2026.pdf",
-    "public_body_id": 1747,
-    "name": "St. James\u2019s Hospital , Dublin",
-    "sha256": "4c7c9737969085b3331ca8eb28132a8c6df384388712a366ec931e01f065b862",
-    "pdf_extractor": "camelot_stream",
-    "worst_role_contamination": null,
-    "anchored_row_share": null,
-    "failed_checks": [
-      "width_uniformity",
-      "fragment_share",
-      "split_word_rate"
-    ],
-    "records_before": 0,
-    "errors_before": 0,
-    "records_now": 0,
-    "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1747-S-fragment_share+split_word_rate+width_uniformity",
-    "status": "open",
-    "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.taxappeals.ie/_fileupload/Freedom%20of%20Information/2021/FOI%20Disclosure%20Log%20Q4%202021.pdf",
-    "public_body_id": 1773,
-    "name": "Tax Appeals Commission",
-    "sha256": "cadded81ea139b431fadd3a7072965c516cc2d97b884904e41b43ca1fe8f5dac",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": null,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 1,
-    "errors_before": 3,
-    "records_now": 1,
-    "errors_now": 3,
-    "fault_kind": "E",
-    "fault_firm": false,
-    "cluster": "1773-E-errors",
-    "status": "open",
-    "recoverable": 3,
-    "evidence": "error classes {'cross_role': 3}"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.taxappeals.ie/_fileupload/Freedom%20of%20Information/FOIDecisions/FOI%20Disclosure%20Log%20Q2%202020.pdf",
@@ -3528,92 +2129,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1773-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity",
+    "fault_kind": "G",
+    "fault_firm": true,
+    "cluster": "small-log",
     "status": "open",
     "recoverable": 0,
-    "evidence": "min_rows failed: too few rows extracted"
-  },
-  {
-    "file_url": "https://www.taxappeals.ie/_fileupload/Freedom%20of%20Information/FOIDecisions/FOI%20Disclosure%20Log%20Q2%202022.pdf",
-    "public_body_id": 1773,
-    "name": "Tax Appeals Commission",
-    "sha256": "ec9c48061aec3e47c8db9d055ec8b3784b037613e72a57a40a37f98962784070",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": null,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 1,
-    "errors_before": 2,
-    "records_now": 1,
-    "errors_now": 2,
-    "fault_kind": "E",
-    "fault_firm": false,
-    "cluster": "1773-E-errors",
-    "status": "open",
-    "recoverable": 2,
-    "evidence": "error classes {'cross_role': 2}"
-  },
-  {
-    "file_url": "https://www.taxappeals.ie/_fileupload/Freedom%20of%20Information/FOIDecisions/FOI%20Disclosure%20Log%20Q2%202024.pdf",
-    "public_body_id": 1773,
-    "name": "Tax Appeals Commission",
-    "sha256": "97e46b7c46efa1ec360c7848457f9877fb1f93ee08eb9d7c0b303fef96616d98",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": null,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 1,
-    "errors_before": 2,
-    "records_now": 1,
-    "errors_now": 2,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1773-V-errors",
-    "status": "parked",
-    "recoverable": 2,
-    "evidence": "vocabulary errors {'unknown_value': 2}; vocabulary, non-goal"
-  },
-  {
-    "file_url": "https://www.taxappeals.ie/_fileupload/Freedom%20of%20Information/FOIDecisions/FOI%20Disclosure%20Log%20Q3%202023.pdf",
-    "public_body_id": 1773,
-    "name": "Tax Appeals Commission",
-    "sha256": "077d152932742396b9a0ecdf457f0edf015ac40dd3249e988fc70724af5cfe3d",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": null,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 1,
-    "errors_before": 2,
-    "records_now": 1,
-    "errors_now": 2,
-    "fault_kind": "E",
-    "fault_firm": false,
-    "cluster": "1773-E-errors",
-    "status": "open",
-    "recoverable": 2,
-    "evidence": "error classes {'cross_role': 2}"
-  },
-  {
-    "file_url": "https://www.taxappeals.ie/_fileupload/Freedom%20of%20Information/FOIDecisions/FOI%20Disclosure%20Log%20Q4%202022.pdf",
-    "public_body_id": 1773,
-    "name": "Tax Appeals Commission",
-    "sha256": "5f7b29549e742554c78a84f937e77486e1420de203b8721fa849765771f959be",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": null,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 1,
-    "errors_before": 3,
-    "records_now": 1,
-    "errors_now": 3,
-    "fault_kind": "E",
-    "fault_firm": false,
-    "cluster": "1773-E-errors",
-    "status": "open",
-    "recoverable": 3,
-    "evidence": "error classes {'cross_role': 3}"
+    "evidence": "min_rows failed: too few rows extracted",
+    "triage_class": "small_log"
   },
   {
     "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q1%202018.pdf",
@@ -3630,32 +2152,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1773-S-anchored_row_share",
+    "fault_kind": "G",
+    "fault_firm": true,
+    "cluster": "small-log",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q1%202020.pdf",
-    "public_body_id": 1773,
-    "name": "Tax Appeals Commission",
-    "sha256": "ee7aa162cdfd850d15fd18ccb9658be5d0b1b8a22386df5d810f5f79ebdf798f",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": null,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 1,
-    "errors_before": 2,
-    "records_now": 1,
-    "errors_now": 2,
-    "fault_kind": "E",
-    "fault_firm": false,
-    "cluster": "1773-E-errors",
-    "status": "open",
-    "recoverable": 2,
-    "evidence": "error classes {'cross_role': 2}"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "small_log"
   },
   {
     "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q1%202021.pdf",
@@ -3672,32 +2175,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1773-S-anchored_row_share",
+    "fault_kind": "G",
+    "fault_firm": true,
+    "cluster": "small-log",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q1%202022.pdf",
-    "public_body_id": 1773,
-    "name": "Tax Appeals Commission",
-    "sha256": "fd7619cd9407cceb62009d93cfba024e19130aa71cb571fe22b01d10f6d2e89e",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": null,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 1,
-    "errors_before": 2,
-    "records_now": 1,
-    "errors_now": 2,
-    "fault_kind": "E",
-    "fault_firm": false,
-    "cluster": "1773-E-errors",
-    "status": "open",
-    "recoverable": 2,
-    "evidence": "error classes {'cross_role': 2}"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "small_log"
   },
   {
     "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q1%202024.pdf",
@@ -3718,12 +2202,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1773-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity",
+    "fault_kind": "G",
+    "fault_firm": true,
+    "cluster": "small-log",
     "status": "open",
     "recoverable": 0,
-    "evidence": "min_rows failed: too few rows extracted"
+    "evidence": "min_rows failed: too few rows extracted",
+    "triage_class": "small_log"
   },
   {
     "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q1%202025.pdf",
@@ -3744,12 +2229,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1773-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity",
+    "fault_kind": "G",
+    "fault_firm": true,
+    "cluster": "small-log",
     "status": "open",
     "recoverable": 0,
-    "evidence": "min_rows failed: too few rows extracted"
+    "evidence": "min_rows failed: too few rows extracted",
+    "triage_class": "small_log"
   },
   {
     "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q2%202018.pdf",
@@ -3766,72 +2252,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1773-S-anchored_row_share",
+    "fault_kind": "G",
+    "fault_firm": true,
+    "cluster": "small-log",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q3%202019.pdf",
-    "public_body_id": 1773,
-    "name": "Tax Appeals Commission",
-    "sha256": "51181cc354b092fa53daa61b23bc60688b75350dde3b2d1d45dbd29dcc4a4903",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": null,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 1,
-    "errors_before": 1,
-    "records_now": 1,
-    "errors_now": 1,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1773-V-errors",
-    "status": "parked",
-    "recoverable": 1,
-    "evidence": "vocabulary errors {'unknown_value': 1}; vocabulary, non-goal"
-  },
-  {
-    "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q3%202022.pdf",
-    "public_body_id": 1773,
-    "name": "Tax Appeals Commission",
-    "sha256": "4fe25f5002073774c733204d4b29f570dfc7407dcf9280ef10a746fa5d2b2e88",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": null,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 1,
-    "errors_before": 3,
-    "records_now": 1,
-    "errors_now": 3,
-    "fault_kind": "E",
-    "fault_firm": false,
-    "cluster": "1773-E-errors",
-    "status": "open",
-    "recoverable": 3,
-    "evidence": "error classes {'cross_role': 3}"
-  },
-  {
-    "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q4%202018.pdf",
-    "public_body_id": 1773,
-    "name": "Tax Appeals Commission",
-    "sha256": "f1ccf9709095678d67417aad9bcbc6f128429b6d732a967b244c1ebbd608abf1",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": null,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 2,
-    "errors_before": 1,
-    "records_now": 2,
-    "errors_now": 1,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1773-V-errors",
-    "status": "parked",
-    "recoverable": 1,
-    "evidence": "vocabulary errors {'unknown_value': 1}; vocabulary, non-goal"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "small_log"
   },
   {
     "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q4%202019.pdf",
@@ -3848,12 +2275,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1773-S-anchored_row_share",
+    "fault_kind": "G",
+    "fault_firm": true,
+    "cluster": "small-log",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "small_log"
   },
   {
     "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q4%202024.pdf",
@@ -3874,12 +2302,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
-    "cluster": "1773-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity",
+    "fault_kind": "G",
+    "fault_firm": true,
+    "cluster": "small-log",
     "status": "open",
     "recoverable": 0,
-    "evidence": "min_rows failed: too few rows extracted"
+    "evidence": "min_rows failed: too few rows extracted",
+    "triage_class": "small_log"
   },
   {
     "file_url": "https://www.tcd.ie/media/tcd/infocompliance/pdfs/FOI-Disclosure-Log-2017.pdf",
@@ -3904,7 +2333,8 @@
     "cluster": "1834-E-anchored_row_share+column_type_purity+fragment_share+role_contamination",
     "status": "open",
     "recoverable": 73,
-    "evidence": "gated on fragment_share+column_type_purity+role_contamination+anchored_row_share"
+    "evidence": "gated on fragment_share+column_type_purity+role_contamination+anchored_row_share",
+    "triage_class": null
   },
   {
     "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20April%202020.pdf",
@@ -3921,12 +2351,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1817-S-split_word_rate",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20December%202018.pdf",
@@ -3949,7 +2380,8 @@
     "cluster": "1817-E-role_contamination+split_word_rate",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated on split_word_rate+role_contamination"
+    "evidence": "gated on split_word_rate+role_contamination",
+    "triage_class": null
   },
   {
     "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20February%202019.pdf",
@@ -3966,12 +2398,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1817-S-split_word_rate",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20February%202020.pdf",
@@ -3988,12 +2421,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1817-S-width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20January%202022.pdf",
@@ -4011,12 +2445,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1817-S-fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20March%202019.pdf",
@@ -4038,7 +2473,8 @@
     "cluster": "1817-E-role_contamination",
     "status": "open",
     "recoverable": 1,
-    "evidence": "gated on role_contamination"
+    "evidence": "gated on role_contamination",
+    "triage_class": null
   },
   {
     "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20September%202018.pdf",
@@ -4060,27 +2496,8 @@
     "cluster": "1817-E-role_contamination",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated on role_contamination"
-  },
-  {
-    "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20September%202020.pdf",
-    "public_body_id": 1817,
-    "name": "Tipperary County Council",
-    "sha256": "74df591e55f4979033b138de44eef05890f9a31f855a4cc59272b6b0bfb9f2a1",
-    "pdf_extractor": "mistral_cache",
-    "worst_role_contamination": null,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 0,
-    "errors_before": 3,
-    "records_now": 0,
-    "errors_now": 3,
-    "fault_kind": "E",
-    "fault_firm": false,
-    "cluster": "1817-E-errors",
-    "status": "open",
-    "recoverable": 3,
-    "evidence": "error classes {'cross_role': 3}"
+    "evidence": "gated on role_contamination",
+    "triage_class": null
   },
   {
     "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20September%202021.pdf",
@@ -4098,72 +2515,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1817-S-split_word_rate+width_uniformity",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
-  },
-  {
-    "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-12/FOI%20Disclosure%20Log%20July%202022.pdf",
-    "public_body_id": 1817,
-    "name": "Tipperary County Council",
-    "sha256": "78b4f7d1b87c2c855a10e4337e0a4f22265b174cb4dbb3211602684f2cdc1311",
-    "pdf_extractor": "mistral_cache",
-    "worst_role_contamination": null,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 2,
-    "errors_before": 1,
-    "records_now": 2,
-    "errors_now": 1,
-    "fault_kind": "M",
-    "fault_firm": false,
-    "cluster": "1817-M-errors",
-    "status": "open",
-    "recoverable": 1,
-    "evidence": "has a column_mapping or header override"
-  },
-  {
-    "file_url": "https://www.tipperarycoco.ie/sites/default/files/2026-07/June.pdf",
-    "public_body_id": 1817,
-    "name": "Tipperary County Council",
-    "sha256": "2c17bc885975b15335c64edae5d2b11e92f22e1decc8ab422c181a36abca9cde",
-    "pdf_extractor": "pymupdf",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 1.0,
-    "failed_checks": [],
-    "records_before": 6,
-    "errors_before": 3,
-    "records_now": 6,
-    "errors_now": 3,
-    "fault_kind": "E",
-    "fault_firm": false,
-    "cluster": "1817-E-errors",
-    "status": "open",
-    "recoverable": 3,
-    "evidence": "error classes {'cross_role': 3}"
-  },
-  {
-    "file_url": "https://www.tudublin.ie/media/website/explore/foi/documents/TU-Dublin-2021-Disclosure-Log.pdf",
-    "public_body_id": 1775,
-    "name": "Technological University Dublin",
-    "sha256": "fd3d01bc628fe334a0d9d23b0ee68037ebe2b5558f204b8b2d92653376f54bf4",
-    "pdf_extractor": "pdfplumber",
-    "worst_role_contamination": 0.0,
-    "anchored_row_share": 0.9777777777777777,
-    "failed_checks": [],
-    "records_before": 45,
-    "errors_before": 12,
-    "records_now": 45,
-    "errors_now": 12,
-    "fault_kind": "V",
-    "fault_firm": false,
-    "cluster": "1775-V-errors",
-    "status": "parked",
-    "recoverable": 12,
-    "evidence": "vocabulary errors {'unknown_value': 12}; vocabulary, non-goal"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.tudublin.ie/media/website/explore/foi/documents/TU-Dublin-FOI-Disclosure-Log-Q1-2026.pdf",
@@ -4180,12 +2538,13 @@
     "errors_before": 0,
     "records_now": 0,
     "errors_now": 0,
-    "fault_kind": "S",
-    "fault_firm": false,
+    "fault_kind": "E",
+    "fault_firm": true,
     "cluster": "1775-S-split_word_rate",
     "status": "open",
     "recoverable": 0,
-    "evidence": "gated; no rows at all before role-aware gate"
+    "evidence": "gated; no rows at all before role-aware gate",
+    "triage_class": "hard_table"
   },
   {
     "file_url": "https://www.udaras.ie/assets/uploads/2021/09/Loga-Nochta-2020-ASF-.pdf",
@@ -4207,6 +2566,7 @@
     "cluster": "1882-E-anchored_row_share",
     "status": "open",
     "recoverable": 12,
-    "evidence": "gated on anchored_row_share"
+    "evidence": "gated on anchored_row_share",
+    "triage_class": null
   }
 ]

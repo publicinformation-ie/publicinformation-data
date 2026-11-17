@@ -1,0 +1,97 @@
+{
+  "http://www.irishprisons.ie/wp-content/uploads/documents_pdf/foi_application.pdf": {
+    "reason": "Irish Prison Service guide on how to make an FOI request; no request table.",
+    "class": "not_foi_log",
+    "date": "2026-11-17"
+  },
+  "https://assets.oic.ie/media/283687/f0492721-fed0-46ef-8d9f-278b6cb8e758.pdf": {
+    "reason": "Office of the Information Commissioner procedures manual; table of contents, no request table.",
+    "class": "not_foi_log",
+    "date": "2026-11-17"
+  },
+  "https://crawfordartgallery.ie/wp-content/uploads/Access-to-Information-on-the-Environment-2.pdf": {
+    "reason": "Crawford Art Gallery guide to Access to Information on the Environment requests; no request table.",
+    "class": "not_foi_log",
+    "date": "2026-11-17"
+  },
+  "https://westerncare.com/wp-content/uploads/2020/07/RMD-6-foi-request.pdf": {
+    "reason": "Blank FOI application form (RMD 6), not a log",
+    "class": "not_foi_log",
+    "date": "2026-11-17"
+  },
+  "https://www.beaumont.ie/sites/default/files/2025-12/FOI%20Access%20to%20information%20on%20the%20environment1.pdf": {
+    "reason": "Access to Information on the Environment guidance page, not a log",
+    "class": "not_foi_log",
+    "date": "2026-11-17"
+  },
+  "https://www.cmetb.ie/wp-content/uploads/2022/11/REQUEST-FOR-ACCESS-TO-RECORDS-UNDER-THE-FREEDOM-OF-INFORMATION-ACT-2014.pdf": {
+    "reason": "Blank English standard FOI request form",
+    "class": "not_foi_log",
+    "date": "2026-11-17"
+  },
+  "https://www.cmetb.ie/wp-content/uploads/2022/12/REQUEST-FOR-ACCESS-TO-RECORDS-UNDER-THE-FREEDOM-OF-INFORMATION-ACT-2014-Gaeilge.pdf": {
+    "reason": "Blank Irish-language FOI request form",
+    "class": "not_foi_log",
+    "date": "2026-11-17"
+  },
+  "https://www.dentalcouncil.ie/wp-content/uploads/2022/08/Freedom-of-Information.pdf": {
+    "reason": "Dental Council FOI guidance page, not a log",
+    "class": "not_foi_log",
+    "date": "2026-11-17"
+  },
+  "https://www.fiosru.ie/media/oukaayqx/foi-004-24.pdf": {
+    "reason": "GSOC schedule of records for a single FOI decision (FOI-004-24), not a log of requests.",
+    "class": "not_foi_log",
+    "date": "2026-11-17"
+  },
+  "https://www.hia.ie/sites/default/files/FOI%20Application%20Form.pdf": {
+    "reason": "Blank FOI request application form.",
+    "class": "not_foi_log",
+    "date": "2026-11-17"
+  },
+  "https://www.hse.gov.uk/foi/disclosure-pdfs/ecp14-6.pdf": {
+    "reason": "Newspaper article clipping (The Times, 2015) released under FOI, not a request table.",
+    "class": "not_foi_log",
+    "date": "2026-11-17"
+  },
+  "https://www.hse.gov.uk/foi/disclosure-pdfs/ecp14-7.pdf": {
+    "reason": "Same Times newspaper article clipping as ecp14-6, not a request table.",
+    "class": "not_foi_log",
+    "date": "2026-11-17"
+  },
+  "https://www.irishrail.ie/_kontent/d2e85689-fbf9-010a-a02e-587ed94b5032/b5615c0b-db31-4e0e-8521-efd05ecbd74c/674c26fc-36b0-406e-8eb3-9e70e4dfc873.pdf": {
+    "reason": "Blank Irish Rail FOI request application form.",
+    "class": "not_foi_log",
+    "date": "2026-11-17"
+  },
+  "https://www.lgma.ie/en/publications/corporate/access-to-information-on-the-environment.pdf": {
+    "reason": "LGMA guide to Access to Information on the Environment (AIE) requests; a how-to guide, not a log.",
+    "class": "not_foi_log",
+    "date": "2026-11-17"
+  },
+  "https://www.nli.ie/sites/default/files/2023-03/national-library-of-ireland-foi-publication-scheme-updated.pdf": {
+    "reason": "National Library of Ireland FOI Publication Scheme; a scheme document whose section F only points to the disclosure log, no log table shown.",
+    "class": "not_foi_log",
+    "date": "2026-11-17"
+  },
+  "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/Infromation-about-Offaly-County-Council-March-2019.pdf": {
+    "reason": "Offaly County Council information-about-the-FOI-body page; descriptive body info, not a request table.",
+    "class": "not_foi_log",
+    "date": "2026-11-17"
+  },
+  "https://www.sdcc.ie/en/services/our-council/access-to-information/freedom-of-information/foi-privacy-statement.pdf": {
+    "reason": "South Dublin County Council FOI privacy statement; privacy notice, not a log.",
+    "class": "not_foi_log",
+    "date": "2026-11-17"
+  },
+  "https://www.stjames.ie/media/FOI Patient Record Request Form August 2026.pdf": {
+    "reason": "St James Hospital FOI patient record request form; blank application form.",
+    "class": "not_foi_log",
+    "date": "2026-11-17"
+  },
+  "https://www.stjames.ie/media/FOI Request for Deceased Patient Records August 2026.pdf": {
+    "reason": "St James Hospital FOI deceased patient records request form; blank application form.",
+    "class": "not_foi_log",
+    "date": "2026-11-17"
+  }
+}

@@ -1,0 +1,372 @@
+[
+ {
+  "file_url": "http://carrigleaservices.com/wp-content/uploads/2024/08/FOI-Disclosure-log.pdf",
+  "class": "hard_table",
+  "reason": "Real 9-row log with a text layer; decisions are encoded as tick marks in Granted/Part granted/Refused columns."
+ },
+ {
+  "file_url": "http://www.irishprisons.ie/wp-content/uploads/documents_pdf/foi_application.pdf",
+  "class": "not_foi_log",
+  "reason": "Irish Prison Service guide on how to make an FOI request; no request table."
+ },
+ {
+  "file_url": "https://assets-eu-01.kc-usercontent.com:443/5608854e-b2c7-0144-a5f6-88a7e629b0a4/e1a94111-56fd-43da-8326-7c328c24478c/foi-disclosure-log-2024.pdf",
+  "class": "scan",
+  "reason": "Real 5-page Fáilte Ireland log for 2024; no text layer, so needs OCR."
+ },
+ {
+  "file_url": "https://assets.gov.ie/static/documents/2371ea98/Freedom_of_Information_Quarter_3_Requests_2025.pdf",
+  "class": "hard_table",
+  "reason": "Real Q3 2025 Taoiseach log with multi-line summaries and embedded lobbying links; text layer usable. Unsure whether extractors fail on it."
+ },
+ {
+  "file_url": "https://assets.gov.ie/static/documents/5f66a911/Non_Personal_FOI_Requests_Q3_2025.pdf",
+  "class": "hard_table",
+  "reason": "Real Q3 2025 OPW log with 4 columns, no decision column, tiny font, multi-line request text and blank rows. Unsure whether extractors fail."
+ },
+ {
+  "file_url": "https://assets.gov.ie/static/documents/dfheris-foi-logs-april-to-june-2024.pdf",
+  "class": "hard_table",
+  "reason": "Real DFHERIS log; Excel date serials sit in the Category column so DecisionDate is blank and columns shift."
+ },
+ {
+  "file_url": "https://assets.gov.ie/static/documents/disclosure-log-february-f47a48e8-e6c9-4b97-8ae6-174f9437481b.pdf",
+  "class": "hard_table",
+  "reason": "Real DAFM February 2024 log; clean text layer, row count not checked. Unsure whether extractors fail on it."
+ },
+ {
+  "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-2020-2106a63b-a10d-4afc-815c-8db8609eb8f5.pdf",
+  "class": "hard_table",
+  "reason": "Real Defence 2020 log, 15 pages; text layer present. Unsure whether extractors fail on it."
+ },
+ {
+  "file_url": "https://assets.gov.ie/static/documents/freedom-of-information-requests-2021.pdf",
+  "class": "hard_table",
+  "reason": "Real DFAT 2021 log, 78 pages; text layer present. Unsure whether extractors fail on it."
+ },
+ {
+  "file_url": "https://assets.gov.ie/static/documents/q4-2017-foi-disclosure-log.pdf",
+  "class": "hard_table",
+  "reason": "Real Department of Transport Q4 2017 log; text layer present. Unsure whether extractors fail on it."
+ },
+ {
+  "file_url": "https://assets.hpra.ie/data/docs/default-source/corporate/freedom-of-information/foi-disclosure-log---april-to-june-2026-q2.pdf?sfvrsn=47d99c2c_3",
+  "class": "hard_table",
+  "reason": "Real HPRA Q2 2026 log over 3 pages with a text layer; April alone has 7 rows. Unsure whether extractors fail."
+ },
+ {
+  "file_url": "https://assets.nama.ie/uploads/documents/Copy-of-FOI-Disclosure-log-2024.pdf",
+  "class": "hard_table",
+  "reason": "Real NAMA 2024 log over 2 pages with a text layer; about 9+ rows. Unsure whether extractors fail on it."
+ },
+ {
+  "file_url": "https://assets.nama.ie/uploads/documents/FOI-Disclosure-Log-Q4-2025.pdf",
+  "class": "small_log",
+  "reason": "NAMA Q4 2025 log with only 6 requests on one page; likely below min_rows. Threshold not checked."
+ },
+ {
+  "file_url": "https://assets.oic.ie/media/283687/f0492721-fed0-46ef-8d9f-278b6cb8e758.pdf",
+  "class": "not_foi_log",
+  "reason": "Office of the Information Commissioner procedures manual; table of contents, no request table."
+ },
+ {
+  "file_url": "https://crawfordartgallery.ie/wp-content/uploads/Access-to-Information-on-the-Environment-2.pdf",
+  "class": "not_foi_log",
+  "reason": "Crawford Art Gallery guide to Access to Information on the Environment requests; no request table."
+ },
+ {
+  "file_url": "https://enterprise.gov.ie/en/publications/publication-files/foi-log-2025.pdf",
+  "class": "hard_table",
+  "reason": "FOI log 2025 table with multi-line request cells and long wrapped text; text layer present and rows wrap across lines"
+ },
+ {
+  "file_url": "https://lcetb.ie/wp-content/uploads/2026/06/FOI-DISCLOSURE-LOG_2025.pdf",
+  "class": "hard_table",
+  "reason": "Real FOI disclosure log with year banner rows and wrapped multi-line details; text columns misalign across cells"
+ },
+ {
+  "file_url": "https://westerncare.com/wp-content/uploads/2020/07/RMD-6-foi-request.pdf",
+  "class": "not_foi_log",
+  "reason": "Blank FOI application form (RMD 6), not a log"
+ },
+ {
+  "file_url": "https://westerndevelopment.ie/wp-content/uploads/2026/01/FOI-2025.pdf",
+  "class": "small_log",
+  "reason": "WDC 2025 log with about five requests; clean text layer but very few rows"
+ },
+ {
+  "file_url": "https://www.beaumont.ie/sites/default/files/2025-12/FOI%20Access%20to%20information%20on%20the%20environment1.pdf",
+  "class": "not_foi_log",
+  "reason": "Access to Information on the Environment guidance page, not a log"
+ },
+ {
+  "file_url": "https://www.cityofdublinetb.ie/media/2025-Quarters-1-4-FOI-Disclosure-Log.pdf",
+  "class": "hard_table",
+  "reason": "Cover page with quarter list followed by combined 2025 log text; mixed document with multi-line quarter tables"
+ },
+ {
+  "file_url": "https://www.cityofdublinetb.ie/media/Disclosure-Log-2022-Q1-and-Q2.pdf",
+  "class": "hard_table",
+  "reason": "CDETB 2022 Q1-Q2 log with merged quarter cells and wrapped requester/decision text"
+ },
+ {
+  "file_url": "https://www.cmetb.ie/wp-content/uploads/2022/11/REQUEST-FOR-ACCESS-TO-RECORDS-UNDER-THE-FREEDOM-OF-INFORMATION-ACT-2014.pdf",
+  "class": "not_foi_log",
+  "reason": "Blank English standard FOI request form"
+ },
+ {
+  "file_url": "https://www.cmetb.ie/wp-content/uploads/2022/12/REQUEST-FOR-ACCESS-TO-RECORDS-UNDER-THE-FREEDOM-OF-INFORMATION-ACT-2014-Gaeilge.pdf",
+  "class": "not_foi_log",
+  "reason": "Blank Irish-language FOI request form"
+ },
+ {
+  "file_url": "https://www.corkcoco.ie/sites/default/files/2023-01/freedom-of-information-disclosure-log-2021-pdf.pdf",
+  "class": "hard_table",
+  "reason": "Cork County Council 2021 log, real rows but multi-line subject and decision cells split across lines"
+ },
+ {
+  "file_url": "https://www.corkcoco.ie/sites/default/files/2023-06/freedom-of-information-disclosure-log-2022-pdf.pdf",
+  "class": "hard_table",
+  "reason": "Cork County Council 2022 log with wrapped decision cells (e.g. 'Withdrawn by CCC') that break row alignment"
+ },
+ {
+  "file_url": "https://www.corketb.ie/wp-content/uploads/2026/06/FOI-Disclosure-Log-2022.pdf",
+  "class": "hard_table",
+  "reason": "Cork ETB 2022 log, about ten rows, multi-line summaries and inconsistent reference formats; unsure whether extractors fail or small_log applies"
+ },
+ {
+  "file_url": "https://www.corketb.ie/wp-content/uploads/2026/07/CETB-FOI-Disclosure-Log-2025.pdf",
+  "class": "small_log",
+  "reason": "Cork ETB 2025 log with about eight requests; clean text layer but few rows"
+ },
+ {
+  "file_url": "https://www.coru.ie/media/vdwdvd42/coru-foi-log-2022.pdf",
+  "class": "hard_table",
+  "reason": "CORU 2022 log spanning about ten pages with multi-line numbered summary cells"
+ },
+ {
+  "file_url": "https://www.dentalcouncil.ie/wp-content/uploads/2022/08/Freedom-of-Information.pdf",
+  "class": "not_foi_log",
+  "reason": "Dental Council FOI guidance page, not a log"
+ },
+ {
+  "file_url": "https://www.fiosru.ie/media/oukaayqx/foi-004-24.pdf",
+  "class": "not_foi_log",
+  "reason": "GSOC schedule of records for a single FOI decision (FOI-004-24), not a log of requests."
+ },
+ {
+  "file_url": "https://www.fiscalcouncil.ie/wp-content/uploads/2021/03/FOI-Disclosure-Log-2017.pdf",
+  "class": "small_log",
+  "reason": "Disclosure log header with no rows; states no FOI requests were received in 2017."
+ },
+ {
+  "file_url": "https://www.fspo.ie/documents/FOI-Disclosure-Log-2022.pdf",
+  "class": "hard_table",
+  "reason": "Real 2022 request log with a text layer, but multi-line bulleted decision cells make row splitting unreliable."
+ },
+ {
+  "file_url": "https://www.fspo.ie/documents/FOI-Disclosure-Log-Q1-2026.pdf",
+  "class": "hard_table",
+  "reason": "Real non-personal request log with text layer; multi-line request cells and columns. Filename says Q1 2026 but the page shows Q4 2025 content."
+ },
+ {
+  "file_url": "https://www.fspo.ie/documents/FOI-Disclosure-Log-Q3-2024.pdf",
+  "class": "small_log",
+  "reason": "Q3 2024 disclosure log that states Nil requests for publication."
+ },
+ {
+  "file_url": "https://www.hia.ie/sites/default/files/FOI%20Application%20Form.pdf",
+  "class": "not_foi_log",
+  "reason": "Blank FOI request application form."
+ },
+ {
+  "file_url": "https://www.hse.gov.uk/foi/disclosure-pdfs/ecp14-6.pdf",
+  "class": "not_foi_log",
+  "reason": "Newspaper article clipping (The Times, 2015) released under FOI, not a request table."
+ },
+ {
+  "file_url": "https://www.hse.gov.uk/foi/disclosure-pdfs/ecp14-7.pdf",
+  "class": "not_foi_log",
+  "reason": "Same Times newspaper article clipping as ecp14-6, not a request table."
+ },
+ {
+  "file_url": "https://www.irishrail.ie/_kontent/d2e85689-fbf9-010a-a02e-587ed94b5032/72460e33-7efe-41f2-8dcb-929c804b8c46/2019%20Procurement.pdf",
+  "class": "hard_table",
+  "reason": "Real 2019 request-records table with reference links and text layer; blank date cell and multi-line descriptions misalign extraction."
+ },
+ {
+  "file_url": "https://www.irishrail.ie/_kontent/d2e85689-fbf9-010a-a02e-587ed94b5032/8c1e8e80-74ad-4f75-8fed-98518b8651a2/2024-Finance.pdf",
+  "class": "hard_table",
+  "reason": "Real 2024 finance request-records table with text layer; long multi-line descriptions per row."
+ },
+ {
+  "file_url": "https://www.irishrail.ie/_kontent/d2e85689-fbf9-010a-a02e-587ed94b5032/b5615c0b-db31-4e0e-8521-efd05ecbd74c/674c26fc-36b0-406e-8eb3-9e70e4dfc873.pdf",
+  "class": "not_foi_log",
+  "reason": "Blank Irish Rail FOI request application form."
+ },
+ {
+  "file_url": "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Disclosure-Log/Disclosure-Log-Q4-2024.pdf",
+  "class": "hard_table",
+  "reason": "Real Q4 2024 disclosure log with text layer; multi-line request details and bulleted content across columns."
+ },
+ {
+  "file_url": "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q1-2021.pdf",
+  "class": "hard_table",
+  "reason": "Real Q1 2021 disclosure log with text layer; long multi-line request details and wrapped headers."
+ },
+ {
+  "file_url": "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q1-2024.pdf",
+  "class": "hard_table",
+  "reason": "Real Q1 2024 log spanning 12 pages; columns split across pages with many rows, so page-wise extraction misaligns."
+ },
+ {
+  "file_url": "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q3-2023.pdf",
+  "class": "hard_table",
+  "reason": "Real Q3 2023 disclosure log with text layer; multi-line request details and wrapped columns."
+ },
+ {
+  "file_url": "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q4-2021.pdf",
+  "class": "small_log",
+  "reason": "Leitrim Q4 2021 log; page 1 shows only three rows (958, 965, 966) with blank space below, so the whole document is about three requests."
+ },
+ {
+  "file_url": "https://www.lgma.ie/en/publications/corporate/access-to-information-on-the-environment.pdf",
+  "class": "not_foi_log",
+  "reason": "LGMA guide to Access to Information on the Environment (AIE) requests; a how-to guide, not a log."
+ },
+ {
+  "file_url": "https://www.museum.ie/getmedia/c53add27-b3eb-4214-94fa-a68ebd325065/FOI-2024-Log-Non-personal.pdf",
+  "class": "hard_table",
+  "reason": "National Museum of Ireland FOI 2024 log; real multi-row table with a text layer and multi-line subjects that extractors split badly."
+ },
+ {
+  "file_url": "https://www.nli.ie/sites/default/files/2023-03/national-library-of-ireland-foi-publication-scheme-updated.pdf",
+  "class": "not_foi_log",
+  "reason": "National Library of Ireland FOI Publication Scheme; a scheme document whose section F only points to the disclosure log, no log table shown."
+ },
+ {
+  "file_url": "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/Infromation-about-Offaly-County-Council-March-2019.pdf",
+  "class": "not_foi_log",
+  "reason": "Offaly County Council information-about-the-FOI-body page; descriptive body info, not a request table."
+ },
+ {
+  "file_url": "https://www.pleanala.ie/getattachment/0c25a07b-6742-4fa6-91cd-f06a9d8e8668/FOI-Disclosure-log-2025-Q2-ENG.pdf?lang=en-IE",
+  "class": "hard_table",
+  "reason": "An Coimisiun Pleanala 2025 Q2 log; real dense multi-row table with wrapped query text and extra IR/AL and second decision columns."
+ },
+ {
+  "file_url": "https://www.pleanala.ie/getmedia/5cd8504d-f3ef-412c-ac3c-ea11405591c8/FOI-Disclosure-Log-2025-Q4.pdf",
+  "class": "hard_table",
+  "reason": "An Coimisiun Pleanala 2025 Q4 log; real multi-row table with long wrapped queries and a second decision column."
+ },
+ {
+  "file_url": "https://www.pleanala.ie/getmedia/5d0c2ca0-549d-48cc-adb2-d70abb399fac/FOI-Disclosure-log-2025-Q1.pdf",
+  "class": "hard_table",
+  "reason": "An Coimisiun Pleanala 2025 Q1 log; real multi-row table with wrapped queries and a second decision column."
+ },
+ {
+  "file_url": "https://www.pleanala.ie/getmedia/a2ca1da6-8dc0-4547-b753-96fc647c1f48/FOI-Disclosure-Log-2026-Q2.pdf",
+  "class": "hard_table",
+  "reason": "An Coimisiun Pleanala 2026 Q2 log; real table with four-plus long multi-line queries and a second decision column."
+ },
+ {
+  "file_url": "https://www.pleanala.ie/getmedia/ca4bcd8a-e0e8-4e5d-bd27-d33870385e6d/2015_Q4.pdf",
+  "class": "hard_table",
+  "reason": "An Bord Pleanala 2015 Q4 log (rows 516-522, seven requests); real table with text layer, column text interleaves in extraction. Near min_rows boundary."
+ },
+ {
+  "file_url": "https://www.pleanala.ie/getmedia/d6bfbbf5-425c-4af0-be47-38c2fbd742b4/2016-Q1.pdf",
+  "class": "hard_table",
+  "reason": "Filename says 2016-Q1 but page header says 2016 Q4 (rows 524-530, seven requests); real table, column text interleaves. Near min_rows boundary."
+ },
+ {
+  "file_url": "https://www.pleanala.ie/getmedia/e3049b15-8e01-4388-836a-5cb53667c531/2016-Q2.pdf",
+  "class": "hard_table",
+  "reason": "Filename says 2016-Q2 but page header says 2016 Q4 (rows 532-536, five requests); real table with multi-line queries. Near min_rows boundary."
+ },
+ {
+  "file_url": "https://www.sdcc.ie/en/services/our-council/access-to-information/freedom-of-information/foi-privacy-statement.pdf",
+  "class": "not_foi_log",
+  "reason": "South Dublin County Council FOI privacy statement; privacy notice, not a log."
+ },
+ {
+  "file_url": "https://www.stjames.ie/media/FOI Patient Record Request Form August 2026.pdf",
+  "class": "not_foi_log",
+  "reason": "St James Hospital FOI patient record request form; blank application form."
+ },
+ {
+  "file_url": "https://www.stjames.ie/media/FOI Request for Deceased Patient Records August 2026.pdf",
+  "class": "not_foi_log",
+  "reason": "St James Hospital FOI deceased patient records request form; blank application form."
+ },
+ {
+  "file_url": "https://www.taxappeals.ie/_fileupload/Freedom%20of%20Information/FOIDecisions/FOI%20Disclosure%20Log%20Q2%202020.pdf",
+  "class": "small_log",
+  "reason": "Q2 2020 log with a clean text layer but only 4 personal HR requests (FOI/002-005/2020); few rows, min_rows not checked."
+ },
+ {
+  "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q1%202018.pdf",
+  "class": "small_log",
+  "reason": "Q1 2018 page reads No FOI Requests were received; zero rows."
+ },
+ {
+  "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q1%202021.pdf",
+  "class": "small_log",
+  "reason": "Q1 2021 page reads No FOI Requests were received; zero rows."
+ },
+ {
+  "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q1%202024.pdf",
+  "class": "small_log",
+  "reason": "Q1 2024 page reads No FOI Requests were received; zero rows."
+ },
+ {
+  "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q1%202025.pdf",
+  "class": "small_log",
+  "reason": "Q1 2025 page reads No FOI Requests were received; zero rows."
+ },
+ {
+  "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q2%202018.pdf",
+  "class": "small_log",
+  "reason": "Q2 2018 page reads No FOI Requests were received; zero rows."
+ },
+ {
+  "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q4%202019.pdf",
+  "class": "small_log",
+  "reason": "Q4 2019 page reads No FOI Requests were received; zero rows."
+ },
+ {
+  "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q4%202024.pdf",
+  "class": "small_log",
+  "reason": "Q4 2024 page reads No FOI Requests were received; zero rows."
+ },
+ {
+  "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20April%202020.pdf",
+  "class": "hard_table",
+  "reason": "Real Apr 2020 log (TCC/45-46/2020 rows visible); text layer is present but multi-line cells interleave columns (requester category and description bleed across rows)."
+ },
+ {
+  "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20February%202019.pdf",
+  "class": "hard_table",
+  "reason": "Real Feb 2019 log with long multi-line descriptions; text layer present but columns and wrapped cells run together, so extractors likely misalign rows."
+ },
+ {
+  "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20February%202020.pdf",
+  "class": "hard_table",
+  "reason": "Real Feb 2020 log with a Link column and wrapped multi-line descriptions; text layer interleaves cells."
+ },
+ {
+  "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20January%202022.pdf",
+  "class": "hard_table",
+  "reason": "Real Jan 2022 log with multi-line descriptions and split Requester Category cells; text layer ragged."
+ },
+ {
+  "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20September%202021.pdf",
+  "class": "hard_table",
+  "reason": "Real Sep 2021 log with multi-line cells, a Personal column and split FOI File No/Date fields; text layer interleaves cells."
+ },
+ {
+  "file_url": "https://www.tudublin.ie/media/website/explore/foi/documents/TU-Dublin-FOI-Disclosure-Log-Q1-2026.pdf",
+  "class": "hard_table",
+  "reason": "TU Dublin Q1 2026 non-personal log with 11 requests in the header count and long wrapped descriptions; a real log that does not fit small_log or scan. Text head looks clean, so the nearest-class call is uncertain."
+ }
+]

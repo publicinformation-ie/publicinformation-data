@@ -21,8 +21,9 @@ def test_file_stats_fields(tmp_path):
     assert (h.records, h.errors) == (1, 1) and sum(h.error_classes.values()) == 1
 
 
-def test_scope_set_is_gated_or_error_rate_at_least_20pct(tmp_path):
-    assert scope_set(file_stats(make_steps(tmp_path))) == [GATED_URL, HALF_ERRORS_URL]
+def test_scope_set_is_gated_files_only(tmp_path):
+    # HALF_ERRORS_URL has error_rate 0.5 but is not gated, so it is out of scope
+    assert scope_set(file_stats(make_steps(tmp_path))) == [GATED_URL]
 
 
 def test_error_rate_zero_when_no_rows():
