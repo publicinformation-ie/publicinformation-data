@@ -1,8 +1,8 @@
 # Gating ledger
 
 Files in scope: 126. Recoverable total: 2158.
-By kind: E 37, G 10, M 5, S 74.
-By status: open 126.
+By kind: E 77, G 25, M 5, S 19.
+By status: open 107, parked 19.
 
 ## Clusters by recoverable records
 
@@ -48,61 +48,56 @@ By status: open 126.
 | 1868-E-anchored_row_share+column_type_purity+fragment_share+width_uniformity | E | 1 | 4 | open 1 |
 | 1868-E-anchored_row_share | E | 1 | 2 | open 1 |
 | 1817-E-role_contamination | E | 2 | 1 | open 2 |
-| 1010-S-anchored_row_share+fragment_share+role_contamination+width_uniformity | S | 1 | 0 | open 1 |
-| 1010-S-anchored_row_share+fragment_share+width_uniformity | S | 1 | 0 | open 1 |
-| 1010-S-role_contamination+split_word_rate | S | 1 | 0 | open 1 |
-| 1010-S-split_word_rate | S | 2 | 0 | open 2 |
-| 1010-S-width_uniformity | S | 2 | 0 | open 2 |
-| 1047-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity | S | 1 | 0 | open 1 |
-| 1089-S-split_word_rate | S | 1 | 0 | open 1 |
-| 1093-S-column_type_purity+fragment_share+split_word_rate+width_uniformity | S | 2 | 0 | open 2 |
-| 1122-S-anchored_row_share+column_type_purity+role_contamination | S | 1 | 0 | open 1 |
-| 1122-S-anchored_row_share+fragment_share+width_uniformity | S | 1 | 0 | open 1 |
-| 1149-S-column_type_purity+fragment_share+split_word_rate+width_uniformity | S | 1 | 0 | open 1 |
-| 1163-S-split_word_rate | S | 2 | 0 | open 2 |
-| 1164-S-split_word_rate | S | 2 | 0 | open 2 |
-| 1177-S-width_uniformity | S | 1 | 0 | open 1 |
-| 1194-S-column_type_purity+fragment_share+split_word_rate+width_uniformity | S | 1 | 0 | open 1 |
-| 1196-S-fragment_share+width_uniformity | S | 1 | 0 | open 1 |
-| 1200-S-column_type_purity | S | 1 | 0 | open 1 |
-| 1202-S-anchored_row_share+fragment_share+width_uniformity | S | 1 | 0 | open 1 |
-| 1204-S-anchored_row_share+fragment_share+width_uniformity | S | 1 | 0 | open 1 |
-| 1205-S-role_contamination+width_uniformity | S | 1 | 0 | open 1 |
-| 1212-S-fragment_share+width_uniformity | S | 1 | 0 | open 1 |
-| 1213-S-split_word_rate | S | 1 | 0 | open 1 |
-| 1293-S-column_type_purity+fragment_share+split_word_rate+width_uniformity | S | 1 | 0 | open 1 |
-| 1293-S-split_word_rate | S | 2 | 0 | open 2 |
-| 1298-S-fragment_share+split_word_rate+width_uniformity | S | 1 | 0 | open 1 |
-| 1335-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity | S | 1 | 0 | open 1 |
-| 1389-S-anchored_row_share+fragment_share+width_uniformity | S | 1 | 0 | open 1 |
-| 1391-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity | S | 1 | 0 | open 1 |
-| 1392-S-anchored_row_share+fragment_share+role_contamination+width_uniformity | S | 1 | 0 | open 1 |
-| 1394-S-column_type_purity+fragment_share+split_word_rate+width_uniformity | S | 2 | 0 | open 2 |
-| 1437-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity | S | 1 | 0 | open 1 |
-| 1442-S-column_type_purity+fragment_share+split_word_rate+width_uniformity | S | 1 | 0 | open 1 |
-| 1443-S-fragment_share+width_uniformity | S | 1 | 0 | open 1 |
-| 1443-S-width_uniformity | S | 2 | 0 | open 2 |
-| 1475-S-width_uniformity | S | 5 | 0 | open 5 |
-| 1484-S-anchored_row_share+fragment_share+width_uniformity | S | 1 | 0 | open 1 |
-| 1493-S-column_type_purity+fragment_share+split_word_rate+width_uniformity | S | 1 | 0 | open 1 |
-| 1544-S-split_word_rate | S | 2 | 0 | open 2 |
-| 1559-S-width_uniformity | S | 1 | 0 | open 1 |
-| 1562-S-fragment_share+role_contamination+width_uniformity | S | 1 | 0 | open 1 |
-| 1594-S-column_type_purity+fragment_share+role_contamination+width_uniformity | S | 1 | 0 | open 1 |
-| 1602-S-width_uniformity | S | 1 | 0 | open 1 |
-| 1732-S-column_type_purity+fragment_share+split_word_rate+width_uniformity | S | 1 | 0 | open 1 |
-| 1747-S-fragment_share+split_word_rate+width_uniformity | S | 1 | 0 | open 1 |
-| 1747-S-fragment_share+width_uniformity | S | 1 | 0 | open 1 |
-| 1773-S-anchored_row_share | S | 4 | 0 | open 4 |
-| 1773-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity | S | 4 | 0 | open 4 |
-| 1775-S-split_word_rate | S | 1 | 0 | open 1 |
+| 1010-S-anchored_row_share+fragment_share+role_contamination+width_uniformity | E | 1 | 0 | open 1 |
+| 1010-S-anchored_row_share+fragment_share+width_uniformity | E | 1 | 0 | open 1 |
+| 1010-S-role_contamination+split_word_rate | E | 1 | 0 | open 1 |
+| 1010-S-split_word_rate | E | 2 | 0 | open 2 |
+| 1010-S-width_uniformity | E | 2 | 0 | open 2 |
+| 1047-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity | S | 1 | 0 | parked 1 |
+| 1089-S-split_word_rate | E | 1 | 0 | open 1 |
+| 1093-S-column_type_purity+fragment_share+split_word_rate+width_uniformity | S | 2 | 0 | parked 2 |
+| 1122-S-anchored_row_share+column_type_purity+role_contamination | E | 1 | 0 | open 1 |
+| 1122-S-anchored_row_share+fragment_share+width_uniformity | E | 1 | 0 | open 1 |
+| 1149-S-column_type_purity+fragment_share+split_word_rate+width_uniformity | S | 1 | 0 | parked 1 |
+| 1163-S-split_word_rate | E | 2 | 0 | open 2 |
+| 1164-S-split_word_rate | E | 1 | 0 | open 1 |
+| 1177-S-width_uniformity | S | 1 | 0 | parked 1 |
+| 1194-S-column_type_purity+fragment_share+split_word_rate+width_uniformity | S | 1 | 0 | parked 1 |
+| 1196-S-fragment_share+width_uniformity | E | 1 | 0 | open 1 |
+| 1200-S-column_type_purity | E | 1 | 0 | open 1 |
+| 1202-S-anchored_row_share+fragment_share+width_uniformity | E | 1 | 0 | open 1 |
+| 1204-S-anchored_row_share+fragment_share+width_uniformity | E | 1 | 0 | open 1 |
+| 1205-S-role_contamination+width_uniformity | E | 1 | 0 | open 1 |
+| 1212-S-fragment_share+width_uniformity | E | 1 | 0 | open 1 |
+| 1213-S-split_word_rate | E | 1 | 0 | open 1 |
+| 1293-S-split_word_rate | E | 2 | 0 | open 2 |
+| 1298-S-fragment_share+split_word_rate+width_uniformity | S | 1 | 0 | parked 1 |
+| 1389-S-anchored_row_share+fragment_share+width_uniformity | E | 1 | 0 | open 1 |
+| 1391-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity | S | 1 | 0 | parked 1 |
+| 1392-S-anchored_row_share+fragment_share+role_contamination+width_uniformity | E | 1 | 0 | open 1 |
+| 1394-S-column_type_purity+fragment_share+split_word_rate+width_uniformity | S | 2 | 0 | parked 2 |
+| 1442-S-column_type_purity+fragment_share+split_word_rate+width_uniformity | S | 1 | 0 | parked 1 |
+| 1443-S-fragment_share+width_uniformity | S | 1 | 0 | parked 1 |
+| 1443-S-width_uniformity | E | 2 | 0 | open 2 |
+| 1475-S-width_uniformity | E | 4 | 0 | open 4 |
+| 1484-S-anchored_row_share+fragment_share+width_uniformity | E | 1 | 0 | open 1 |
+| 1493-S-column_type_purity+fragment_share+split_word_rate+width_uniformity | S | 1 | 0 | parked 1 |
+| 1544-S-split_word_rate | E | 1 | 0 | open 1 |
+| 1559-S-width_uniformity | S | 1 | 0 | parked 1 |
+| 1562-S-fragment_share+role_contamination+width_uniformity | E | 1 | 0 | open 1 |
+| 1594-S-column_type_purity+fragment_share+role_contamination+width_uniformity | E | 1 | 0 | open 1 |
+| 1602-S-width_uniformity | S | 1 | 0 | parked 1 |
+| 1732-S-column_type_purity+fragment_share+split_word_rate+width_uniformity | S | 1 | 0 | parked 1 |
+| 1747-S-fragment_share+split_word_rate+width_uniformity | S | 1 | 0 | parked 1 |
+| 1747-S-fragment_share+width_uniformity | S | 1 | 0 | parked 1 |
+| 1775-S-split_word_rate | E | 1 | 0 | open 1 |
 | 1817-E-role_contamination+split_word_rate | E | 1 | 0 | open 1 |
-| 1817-S-fragment_share+width_uniformity | S | 1 | 0 | open 1 |
-| 1817-S-split_word_rate | S | 2 | 0 | open 2 |
-| 1817-S-split_word_rate+width_uniformity | S | 1 | 0 | open 1 |
-| 1817-S-width_uniformity | S | 1 | 0 | open 1 |
-| 1867-S-split_word_rate+width_uniformity | S | 1 | 0 | open 1 |
-| 1868-S-fragment_share | S | 1 | 0 | open 1 |
+| 1817-S-fragment_share+width_uniformity | E | 1 | 0 | open 1 |
+| 1817-S-split_word_rate | E | 2 | 0 | open 2 |
+| 1817-S-split_word_rate+width_uniformity | E | 1 | 0 | open 1 |
+| 1817-S-width_uniformity | E | 1 | 0 | open 1 |
+| 1867-S-split_word_rate+width_uniformity | S | 1 | 0 | parked 1 |
+| small-log | G | 15 | 0 | open 15 |
 
 ## 1501-G-anchored_row_share
 
@@ -359,308 +354,269 @@ By status: open 126.
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| An Coimisiún Pleanála | 1010 | S | open | 0/0 | 0/0 | 0 |
+| An Coimisiún Pleanála | 1010 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1010-S-anchored_row_share+fragment_share+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| An Coimisiún Pleanála | 1010 | S | open | 0/0 | 0/0 | 0 |
+| An Coimisiún Pleanála | 1010 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1010-S-role_contamination+split_word_rate
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| An Coimisiún Pleanála | 1010 | S | open | 0/0 | 0/0 | 0 |
+| An Coimisiún Pleanála | 1010 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1010-S-split_word_rate
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| An Coimisiún Pleanála | 1010 | S | open | 0/0 | 0/0 | 0 |
-| An Coimisiún Pleanála | 1010 | S | open | 0/0 | 0/0 | 0 |
+| An Coimisiún Pleanála | 1010 | E | open | 0/0 | 0/0 | 0 |
+| An Coimisiún Pleanála | 1010 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1010-S-width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| An Coimisiún Pleanála | 1010 | S | open | 0/0 | 0/0 | 0 |
-| An Coimisiún Pleanála | 1010 | S | open | 0/0 | 0/0 | 0 |
+| An Coimisiún Pleanála | 1010 | E | open | 0/0 | 0/0 | 0 |
+| An Coimisiún Pleanála | 1010 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1047-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Beaumont Hospital | 1047 | S | open | 0/0 | 0/0 | 0 |
+| Beaumont Hospital | 1047 | S | parked | 0/0 | 0/0 | 0 |
 
 ## 1089-S-split_word_rate
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Carriglea Cairde Services | 1089 | S | open | 0/0 | 0/0 | 0 |
+| Carriglea Cairde Services | 1089 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1093-S-column_type_purity+fragment_share+split_word_rate+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Cavan and Monaghan Education and Training Board | 1093 | S | open | 0/0 | 0/0 | 0 |
-| Cavan and Monaghan Education and Training Board | 1093 | S | open | 0/0 | 0/0 | 0 |
+| Cavan and Monaghan Education and Training Board | 1093 | S | parked | 0/0 | 0/0 | 0 |
+| Cavan and Monaghan Education and Training Board | 1093 | S | parked | 0/0 | 0/0 | 0 |
 
 ## 1122-S-anchored_row_share+column_type_purity+role_contamination
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| City of Dublin Education and Training Board | 1122 | S | open | 0/0 | 0/0 | 0 |
+| City of Dublin Education and Training Board | 1122 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1122-S-anchored_row_share+fragment_share+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| City of Dublin Education and Training Board | 1122 | S | open | 0/0 | 0/0 | 0 |
+| City of Dublin Education and Training Board | 1122 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1149-S-column_type_purity+fragment_share+split_word_rate+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Comhlacht Formhaoirsithe Seachtrach Óglaigh na hÉireann (the External Oversight Body) | 1149 | S | open | 0/0 | 0/0 | 0 |
+| Comhlacht Formhaoirsithe Seachtrach Óglaigh na hÉireann (the External Oversight Body) | 1149 | S | parked | 0/0 | 0/0 | 0 |
 
 ## 1163-S-split_word_rate
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Cork County Council | 1163 | S | open | 0/0 | 0/0 | 0 |
-| Cork County Council | 1163 | S | open | 0/0 | 0/0 | 0 |
+| Cork County Council | 1163 | E | open | 0/0 | 0/0 | 0 |
+| Cork County Council | 1163 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1164-S-split_word_rate
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Cork Education and Training Board | 1164 | S | open | 0/0 | 0/0 | 0 |
-| Cork Education and Training Board | 1164 | S | open | 0/0 | 0/0 | 0 |
+| Cork Education and Training Board | 1164 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1177-S-width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Crawford Art Gallery | 1177 | S | open | 0/0 | 0/0 | 0 |
+| Crawford Art Gallery | 1177 | S | parked | 0/0 | 0/0 | 0 |
 
 ## 1194-S-column_type_purity+fragment_share+split_word_rate+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Dental Council | 1194 | S | open | 0/0 | 0/0 | 0 |
+| Dental Council | 1194 | S | parked | 0/0 | 0/0 | 0 |
 
 ## 1196-S-fragment_share+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Department of Agriculture, Food and the Marine | 1196 | S | open | 0/0 | 0/0 | 0 |
+| Department of Agriculture, Food and the Marine | 1196 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1200-S-column_type_purity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Department of Defence | 1200 | S | open | 0/0 | 0/0 | 0 |
+| Department of Defence | 1200 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1202-S-anchored_row_share+fragment_share+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Department of Enterprise, Tourism and Employment | 1202 | S | open | 0/0 | 0/0 | 0 |
+| Department of Enterprise, Tourism and Employment | 1202 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1204-S-anchored_row_share+fragment_share+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Department of Foreign Affairs and Trade | 1204 | S | open | 0/0 | 0/0 | 0 |
+| Department of Foreign Affairs and Trade | 1204 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1205-S-role_contamination+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Department of Further and Higher Education, Research, Innovation and Science | 1205 | S | open | 0/0 | 0/0 | 0 |
+| Department of Further and Higher Education, Research, Innovation and Science | 1205 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1212-S-fragment_share+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Department of the Taoiseach | 1212 | S | open | 0/0 | 0/0 | 0 |
+| Department of the Taoiseach | 1212 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1213-S-split_word_rate
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Department of Transport | 1213 | S | open | 0/0 | 0/0 | 0 |
-
-## 1293-S-column_type_purity+fragment_share+split_word_rate+width_uniformity
-
-| file | body | kind | status | before | now | recoverable |
-|---|---|---|---|---|---|---|
-| Financial Services and Pensions Ombudsman (FSPO) | 1293 | S | open | 0/0 | 0/0 | 0 |
+| Department of Transport | 1213 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1293-S-split_word_rate
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Financial Services and Pensions Ombudsman (FSPO) | 1293 | S | open | 0/0 | 0/0 | 0 |
-| Financial Services and Pensions Ombudsman (FSPO) | 1293 | S | open | 0/0 | 0/0 | 0 |
+| Financial Services and Pensions Ombudsman (FSPO) | 1293 | E | open | 0/0 | 0/0 | 0 |
+| Financial Services and Pensions Ombudsman (FSPO) | 1293 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1298-S-fragment_share+split_word_rate+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Fiosrú - Oifig an Ombudsman Póilíneachta. | 1298 | S | open | 0/0 | 0/0 | 0 |
-
-## 1335-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity
-
-| file | body | kind | status | before | now | recoverable |
-|---|---|---|---|---|---|---|
-| Fáilte Ireland | 1335 | S | open | 0/0 | 0/0 | 0 |
+| Fiosrú - Oifig an Ombudsman Póilíneachta. | 1298 | S | parked | 0/0 | 0/0 | 0 |
 
 ## 1389-S-anchored_row_share+fragment_share+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Health and Social Care Professionals Council (CORU) | 1389 | S | open | 0/0 | 0/0 | 0 |
+| Health and Social Care Professionals Council (CORU) | 1389 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1391-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Health Insurance Authority | 1391 | S | open | 0/0 | 0/0 | 0 |
+| Health Insurance Authority | 1391 | S | parked | 0/0 | 0/0 | 0 |
 
 ## 1392-S-anchored_row_share+fragment_share+role_contamination+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Health Products Regulatory Authority (HPRA) | 1392 | S | open | 0/0 | 0/0 | 0 |
+| Health Products Regulatory Authority (HPRA) | 1392 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1394-S-column_type_purity+fragment_share+split_word_rate+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Health Service Executive | 1394 | S | open | 0/0 | 0/0 | 0 |
-| Health Service Executive | 1394 | S | open | 0/0 | 0/0 | 0 |
-
-## 1437-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity
-
-| file | body | kind | status | before | now | recoverable |
-|---|---|---|---|---|---|---|
-| Irish Fiscal Advisory Council | 1437 | S | open | 0/0 | 0/0 | 0 |
+| Health Service Executive | 1394 | S | parked | 0/0 | 0/0 | 0 |
+| Health Service Executive | 1394 | S | parked | 0/0 | 0/0 | 0 |
 
 ## 1442-S-column_type_purity+fragment_share+split_word_rate+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Irish Prison Service | 1442 | S | open | 0/0 | 0/0 | 0 |
+| Irish Prison Service | 1442 | S | parked | 0/0 | 0/0 | 0 |
 
 ## 1443-S-fragment_share+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Irish Rail (Iarnród Éireann) | 1443 | S | open | 0/0 | 0/0 | 0 |
+| Irish Rail (Iarnród Éireann) | 1443 | S | parked | 0/0 | 0/0 | 0 |
 
 ## 1443-S-width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Irish Rail (Iarnród Éireann) | 1443 | S | open | 0/0 | 0/0 | 0 |
-| Irish Rail (Iarnród Éireann) | 1443 | S | open | 0/0 | 0/0 | 0 |
+| Irish Rail (Iarnród Éireann) | 1443 | E | open | 0/0 | 0/0 | 0 |
+| Irish Rail (Iarnród Éireann) | 1443 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1475-S-width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Leitrim County Council | 1475 | S | open | 0/0 | 0/0 | 0 |
-| Leitrim County Council | 1475 | S | open | 0/0 | 0/0 | 0 |
-| Leitrim County Council | 1475 | S | open | 0/0 | 0/0 | 0 |
-| Leitrim County Council | 1475 | S | open | 0/0 | 0/0 | 0 |
-| Leitrim County Council | 1475 | S | open | 0/0 | 0/0 | 0 |
+| Leitrim County Council | 1475 | E | open | 0/0 | 0/0 | 0 |
+| Leitrim County Council | 1475 | E | open | 0/0 | 0/0 | 0 |
+| Leitrim County Council | 1475 | E | open | 0/0 | 0/0 | 0 |
+| Leitrim County Council | 1475 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1484-S-anchored_row_share+fragment_share+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Limerick and Clare Education and Training Board | 1484 | S | open | 0/0 | 0/0 | 0 |
+| Limerick and Clare Education and Training Board | 1484 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1493-S-column_type_purity+fragment_share+split_word_rate+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Local Government Management Agency (LGMA) | 1493 | S | open | 0/0 | 0/0 | 0 |
+| Local Government Management Agency (LGMA) | 1493 | S | parked | 0/0 | 0/0 | 0 |
 
 ## 1544-S-split_word_rate
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| National Asset Management Agency Group | 1544 | S | open | 0/0 | 0/0 | 0 |
-| National Asset Management Agency Group | 1544 | S | open | 0/0 | 0/0 | 0 |
+| National Asset Management Agency Group | 1544 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1559-S-width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| National Library of Ireland | 1559 | S | open | 0/0 | 0/0 | 0 |
+| National Library of Ireland | 1559 | S | parked | 0/0 | 0/0 | 0 |
 
 ## 1562-S-fragment_share+role_contamination+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| National Museum of Ireland | 1562 | S | open | 0/0 | 0/0 | 0 |
+| National Museum of Ireland | 1562 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1594-S-column_type_purity+fragment_share+role_contamination+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Office of Public Works | 1594 | S | open | 0/0 | 0/0 | 0 |
+| Office of Public Works | 1594 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1602-S-width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Office of the Information Commissioner | 1602 | S | open | 0/0 | 0/0 | 0 |
+| Office of the Information Commissioner | 1602 | S | parked | 0/0 | 0/0 | 0 |
 
 ## 1732-S-column_type_purity+fragment_share+split_word_rate+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| South Dublin County Council | 1732 | S | open | 0/0 | 0/0 | 0 |
+| South Dublin County Council | 1732 | S | parked | 0/0 | 0/0 | 0 |
 
 ## 1747-S-fragment_share+split_word_rate+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| St. James’s Hospital , Dublin | 1747 | S | open | 0/0 | 0/0 | 0 |
+| St. James’s Hospital , Dublin | 1747 | S | parked | 0/0 | 0/0 | 0 |
 
 ## 1747-S-fragment_share+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| St. James’s Hospital , Dublin | 1747 | S | open | 0/0 | 0/0 | 0 |
-
-## 1773-S-anchored_row_share
-
-| file | body | kind | status | before | now | recoverable |
-|---|---|---|---|---|---|---|
-| Tax Appeals Commission | 1773 | S | open | 0/0 | 0/0 | 0 |
-| Tax Appeals Commission | 1773 | S | open | 0/0 | 0/0 | 0 |
-| Tax Appeals Commission | 1773 | S | open | 0/0 | 0/0 | 0 |
-| Tax Appeals Commission | 1773 | S | open | 0/0 | 0/0 | 0 |
-
-## 1773-S-column_type_purity+fragment_share+min_rows+split_word_rate+width_uniformity
-
-| file | body | kind | status | before | now | recoverable |
-|---|---|---|---|---|---|---|
-| Tax Appeals Commission | 1773 | S | open | 0/0 | 0/0 | 0 |
-| Tax Appeals Commission | 1773 | S | open | 0/0 | 0/0 | 0 |
-| Tax Appeals Commission | 1773 | S | open | 0/0 | 0/0 | 0 |
-| Tax Appeals Commission | 1773 | S | open | 0/0 | 0/0 | 0 |
+| St. James’s Hospital , Dublin | 1747 | S | parked | 0/0 | 0/0 | 0 |
 
 ## 1775-S-split_word_rate
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Technological University Dublin | 1775 | S | open | 0/0 | 0/0 | 0 |
+| Technological University Dublin | 1775 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1817-E-role_contamination+split_word_rate
 
@@ -672,35 +628,49 @@ By status: open 126.
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Tipperary County Council | 1817 | S | open | 0/0 | 0/0 | 0 |
+| Tipperary County Council | 1817 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1817-S-split_word_rate
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Tipperary County Council | 1817 | S | open | 0/0 | 0/0 | 0 |
-| Tipperary County Council | 1817 | S | open | 0/0 | 0/0 | 0 |
+| Tipperary County Council | 1817 | E | open | 0/0 | 0/0 | 0 |
+| Tipperary County Council | 1817 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1817-S-split_word_rate+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Tipperary County Council | 1817 | S | open | 0/0 | 0/0 | 0 |
+| Tipperary County Council | 1817 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1817-S-width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Tipperary County Council | 1817 | S | open | 0/0 | 0/0 | 0 |
+| Tipperary County Council | 1817 | E | open | 0/0 | 0/0 | 0 |
 
 ## 1867-S-split_word_rate+width_uniformity
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Western Care Association | 1867 | S | open | 0/0 | 0/0 | 0 |
+| Western Care Association | 1867 | S | parked | 0/0 | 0/0 | 0 |
 
-## 1868-S-fragment_share
+## small-log
 
 | file | body | kind | status | before | now | recoverable |
 |---|---|---|---|---|---|---|
-| Western Development Commission (WDC) | 1868 | S | open | 0/0 | 0/0 | 0 |
+| Fáilte Ireland | 1335 | G | open | 0/0 | 0/0 | 0 |
+| National Asset Management Agency Group | 1544 | G | open | 0/0 | 0/0 | 0 |
+| Western Development Commission (WDC) | 1868 | G | open | 0/0 | 0/0 | 0 |
+| Cork Education and Training Board | 1164 | G | open | 0/0 | 0/0 | 0 |
+| Irish Fiscal Advisory Council | 1437 | G | open | 0/0 | 0/0 | 0 |
+| Financial Services and Pensions Ombudsman (FSPO) | 1293 | G | open | 0/0 | 0/0 | 0 |
+| Leitrim County Council | 1475 | G | open | 0/0 | 0/0 | 0 |
+| Tax Appeals Commission | 1773 | G | open | 0/0 | 0/0 | 0 |
+| Tax Appeals Commission | 1773 | G | open | 0/0 | 0/0 | 0 |
+| Tax Appeals Commission | 1773 | G | open | 0/0 | 0/0 | 0 |
+| Tax Appeals Commission | 1773 | G | open | 0/0 | 0/0 | 0 |
+| Tax Appeals Commission | 1773 | G | open | 0/0 | 0/0 | 0 |
+| Tax Appeals Commission | 1773 | G | open | 0/0 | 0/0 | 0 |
+| Tax Appeals Commission | 1773 | G | open | 0/0 | 0/0 | 0 |
+| Tax Appeals Commission | 1773 | G | open | 0/0 | 0/0 | 0 |
