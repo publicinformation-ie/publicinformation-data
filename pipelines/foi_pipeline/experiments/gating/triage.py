@@ -5,11 +5,13 @@ Run from pipelines/foi_pipeline:
 """
 import argparse
 import json
+from datetime import date
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
 import pymupdf
 
+from experiments.gating import ledger
 from experiments.gating.ledger import TRIAGE_CLASSES
 from experiments.gating.paths import GATING, STEPS, content_sha, load_results, pdf_bytes
 
@@ -114,12 +116,87 @@ def load_proposals(round_dir: Path) -> dict[str, dict]:
     return out
 
 
+def _verdicts(round_dir: Path) -> dict[str, dict]:
+    path = Path(round_dir) / "verdicts.json"
+    raw = json.loads(path.read_text()) if path.exists() else {}
+    return {k[len("file:"):]: v for k, v in raw.items() if k.startswith("file:")}
+
+
+def _class_tags(verdict: dict | None) -> list[str]:
+    tags = (verdict or {}).get("tags") or []
+    return sorted({t for t in tags if t in TRIAGE_CLASSES})
+
+
+def decide(proposal: dict | None, verdict: dict | None) -> tuple[str | None, bool]:
+    """Return (class, confirmed). The user's class tag wins; not_foi_log is never confirmed by a proposal."""
+    tags = _class_tags(verdict)
+    if len(tags) == 1:
+        return tags[0], True
+    if len(tags) > 1 or proposal is None:
+        return None, False
+    if proposal["class"] == "not_foi_log":
+        return None, False
+    return proposal["class"], True
+
+
+LEDGER_FIELDS = {
+    "scan": {"fault_kind": "E", "cluster": "scan"},
+    "hard_table": {"fault_kind": "E"},
+    "small_log": {"fault_kind": "G", "cluster": "small-log"},
+    "not_foi_log": {"fault_kind": "S", "status": "parked", "note": "excluded upstream"},
+}
+
+
+def _decisions(round_dir: Path) -> tuple[dict[str, tuple[str | None, bool]], dict, dict]:
+    proposals = load_proposals(round_dir)
+    verdicts = _verdicts(round_dir)
+    urls = [e["file_url"] for e in json.loads((Path(round_dir) / "inputs.json").read_text())]
+    return {u: decide(proposals.get(u), verdicts.get(u)) for u in urls}, proposals, verdicts
+
+
+def apply_verdicts(round_dir: Path, state_path: Path = ledger.STATE_PATH) -> dict:
+    decisions, _, _ = _decisions(round_dir)
+    confirmed: dict[str, list[str]] = {}
+    unconfirmed = []
+    for url, (cls, ok) in decisions.items():
+        if ok and cls:
+            confirmed.setdefault(cls, []).append(url)
+        else:
+            unconfirmed.append(url)
+    for cls, urls in confirmed.items():
+        ledger.set_state(urls, state_path=state_path, fault_firm=True, triage_class=cls, **LEDGER_FIELDS[cls])
+    return {"confirmed": confirmed, "unconfirmed": unconfirmed}
+
+
+def exclusion_entries(round_dir: Path, today: str) -> dict[str, dict]:
+    """Only files whose own user tag confirmed not_foi_log; a proposal alone never does."""
+    decisions, proposals, verdicts = _decisions(round_dir)
+    out = {}
+    for url, (cls, ok) in decisions.items():
+        if ok and cls == "not_foi_log" and _class_tags(verdicts.get(url)) == ["not_foi_log"]:
+            reason = str((verdicts[url].get("text") or "")).strip() or (proposals.get(url) or {}).get("reason", "")
+            out[url] = {"reason": reason, "class": "not_foi_log", "date": today}
+    return out
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("inputs")
     p.add_argument("--round-dir", required=True, type=Path)
+    q = sub.add_parser("apply")
+    q.add_argument("--round-dir", required=True, type=Path)
     a = ap.parse_args()
+    if a.cmd == "apply":
+        res = apply_verdicts(a.round_dir)
+        print("confirmed:", {c: len(u) for c, u in sorted(res["confirmed"].items())})
+        print(f"unconfirmed: {len(res['unconfirmed'])}")
+        for u in res["unconfirmed"]:
+            print("  ", u)
+        ex = exclusion_entries(a.round_dir, date.today().isoformat())
+        (a.round_dir / "exclusions_proposed.json").write_text(json.dumps(ex, indent=2) + "\n")
+        print(f"exclusions_proposed.json: {len(ex)} entries")
+        return
     fs = build_inputs(a.round_dir)
     print(f"{len(fs)} entries; likely_scan={sum(f.likely_scan for f in fs)}; "
           f"unreadable={sum(f.unreadable is not None for f in fs)}")

@@ -151,3 +151,89 @@ def test_page_js_keeps_a_tag_set_and_save_sends_it(round_dir):
     assert "function sv(b){send(row(b))}" in h  # save uses the same set, never tags=[]
     assert "tags:tags" in h and "key:d.dataset.key" in h
     assert "TAGS" not in h and "tag(this)" not in h  # shared review_page JS is not in use
+
+
+# --- Task 5: verdicts to classes ---
+from experiments.gating.triage import apply_verdicts, decide, exclusion_entries  # noqa: E402
+
+UA, UB, UC, UD = (f"https://x.test/{c}.pdf" for c in "abcd")
+
+
+def _vround(tmp_path, proposals, verdicts, unreadable=()):
+    inputs = [{"file_url": u, "public_body_id": 1, "name": u, "unreadable": None} for u in proposals]
+    inputs += [{"file_url": u, "public_body_id": 1, "name": u, "unreadable": "no_bytes"} for u in unreadable]
+    (tmp_path / "inputs.json").write_text(json.dumps(inputs))
+    (tmp_path / "proposals.json").write_text(json.dumps(
+        [{"file_url": u, "class": c, "reason": f"r-{u[-5]}"} for u, c in proposals.items()]))
+    (tmp_path / "verdicts.json").write_text(json.dumps(
+        {f"file:{u}": {"text": t, "tags": tags, "saved_at": "x"} for u, (t, tags) in verdicts.items()}))
+    return tmp_path
+
+
+def test_decide_user_tag_wins():
+    assert decide({"class": "scan", "reason": "r"}, {"tags": ["hard_table"], "text": ""}) == ("hard_table", True)
+
+
+def test_decide_two_class_tags_unconfirmed():
+    assert decide({"class": "scan", "reason": "r"}, {"tags": ["scan", "small_log"], "text": ""}) == (None, False)
+
+
+def test_decide_not_foi_log_needs_user_tag():
+    assert decide({"class": "not_foi_log", "reason": "r"}, None) == (None, False)
+    assert decide({"class": "not_foi_log", "reason": "r"}, {"tags": [], "text": "looks like a form"}) == (None, False)
+
+
+def test_decide_other_class_stands_without_tag():
+    assert decide({"class": "hard_table", "reason": "r"}, None) == ("hard_table", True)
+
+
+def test_decide_no_proposal():
+    assert decide(None, None) == (None, False)
+    assert decide(None, {"tags": ["scan"], "text": ""}) == ("scan", True)
+
+
+def test_exclusion_entries_only_user_tagged(tmp_path):
+    _vround(tmp_path, {UA: "not_foi_log", UB: "not_foi_log", UC: "scan"},
+           {UA: ("a form", ["not_foi_log"]), UC: ("", ["not_foi_log"])})
+    got = exclusion_entries(tmp_path, "2026-11-17")
+    assert set(got) == {UA, UC}
+    assert got[UA] == {"reason": "a form", "class": "not_foi_log", "date": "2026-11-17"}
+    assert got[UC]["reason"] == "r-c"
+
+
+def test_exclusion_entries_two_classes_never(tmp_path):
+    _vround(tmp_path, {UA: "not_foi_log"}, {UA: ("", ["not_foi_log", "scan"])})
+    assert exclusion_entries(tmp_path, "2026-11-17") == {}
+
+
+def test_apply_verdicts_maps_and_leaves_unconfirmed(tmp_path):
+    from experiments.gating import ledger
+    _vround(tmp_path, {UA: "scan", UB: "not_foi_log", UC: "small_log", UD: "hard_table"},
+           {UB: ("", ["not_foi_log"])}, unreadable=["https://x.test/u.pdf"])
+    (tmp_path / "proposals.json").write_text(json.dumps(
+        [{"file_url": u, "class": c, "reason": "r"} for u, c in
+         {UA: "scan", UB: "not_foi_log", UC: "not_foi_log", UD: "hard_table"}.items()]))
+    sp = tmp_path / "state.json"
+    res = apply_verdicts(tmp_path, state_path=sp)
+    assert res["unconfirmed"] == [UC, "https://x.test/u.pdf"] or set(res["unconfirmed"]) == {UC, "https://x.test/u.pdf"}
+    assert set(res["confirmed"]) == {"scan", "not_foi_log", "hard_table"}
+    st = json.loads(sp.read_text())
+    assert st[UA] == {"fault_kind": "E", "cluster": "scan", "fault_firm": True, "triage_class": "scan"}
+    assert st[UB]["fault_kind"] == "S" and st[UB]["status"] == "parked" and st[UB]["note"] == "excluded upstream"
+    assert st[UD] == {"fault_kind": "E", "fault_firm": True, "triage_class": "hard_table"}
+    assert UC not in st and "https://x.test/u.pdf" not in st
+
+
+def test_apply_verdicts_small_log_mapping(tmp_path):
+    _vround(tmp_path, {UA: "small_log"}, {})
+    sp = tmp_path / "state.json"
+    apply_verdicts(tmp_path, state_path=sp)
+    assert json.loads(sp.read_text())[UA]["cluster"] == "small-log"
+    assert json.loads(sp.read_text())[UA]["fault_kind"] == "G"
+
+
+def test_apply_verdicts_non_class_tags_ignored(tmp_path):
+    _vround(tmp_path, {UA: "not_foi_log", UB: "scan"}, {UA: ("", ["fine"]), UB: ("", ["fine"])})
+    sp = tmp_path / "state.json"
+    res = apply_verdicts(tmp_path, state_path=sp)
+    assert res["unconfirmed"] == [UA] and res["confirmed"] == {"scan": [UB]}

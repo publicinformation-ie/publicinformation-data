@@ -183,3 +183,14 @@ Shipping (only on the user's yes for that cluster):
 - A docling or fork win cannot ship through config alone, since the override only accepts names in `CANDIDATE_ORDER`. The proposal is to ship it as a cache-backed candidate, as `mistral_cache` works. Until the user confirms that, such a round ends with a recommendation and the measured numbers, not a ship.
 - A gate (`G`) fix touches every file, so it always needs a full before/after over all bodies and a control check.
 - A change to the global candidate order is only proposed when three or more clusters picked the same extractor and a full-corpus run shows no control made worse.
+
+## 7. Triage of source files
+
+Run from `pipelines/foi_pipeline`, in this order. `<round_dir>` is the triage round folder.
+
+1. Facts per kind-`S` file: `uv run python -m experiments.gating.triage inputs --round-dir <round_dir>` (writes `inputs.json` and page 1 images).
+2. Proposals: Haiku batches per the prompt in section 5, merged into `<round_dir>/proposals.json` and checked with `load_proposals`.
+3. Review: `uv run python -m experiments.gating.serve --round-dir <round_dir>`. The user's verdicts post to `<round_dir>/verdicts.json`. One class tag per file confirms it; two class tags leave it unconfirmed.
+4. Apply: `uv run python -m experiments.gating.triage apply --round-dir <round_dir>`. It updates the ledger state, prints counts and the unconfirmed URLs, and writes `<round_dir>/exclusions_proposed.json`. Then `uv run python -m experiments.gating.ledger`.
+
+Rules: `not_foi_log` is only ever confirmed by the user's own tag, never by a proposal. `exclusions_proposed.json` is copied into the step only through Task 8, never by hand or by `apply`.
