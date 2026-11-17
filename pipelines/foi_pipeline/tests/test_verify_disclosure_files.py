@@ -1,6 +1,9 @@
 import pytest
 import unittest.mock
-from steps.verify_disclosure_files.process import _score_text, _is_non_foi_document, _verify_one, DisclosureFileCache
+from steps.verify_disclosure_files.process import (
+    _score_text, _is_non_foi_document, _verify_one, DisclosureFileCache,
+    load_exclusions, _sync_exclusions, process, EXCLUSION_SIGNAL,
+)
 
 
 class TestScoreTextUnverified:
@@ -199,3 +202,139 @@ class TestVerifyOneNonFoiRejection:
         assert result is not None
         assert result["verification_status"] == "rejected"
         assert result["verification_signal"] == "non_foi_pattern"
+
+
+# --- per-file exclusion list -------------------------------------------------
+
+URL_A = "https://x/a.pdf"
+URL_B = "https://x/b.pdf"
+ENTRY = {"reason": "form", "class": "not_foi_log", "date": "2026-11-17"}
+ITEM = {"file_url": URL_A, "file_type": "pdf", "link_text": "a", "public_body_id": 1}
+
+
+def _rec(url, body, status="verified", signal="disclosure log"):
+    return {"public_body_id": body, "file_url": url, "file_type": "pdf", "link_text": "t",
+            "verification_status": status, "verification_signal": signal}
+
+
+class FakeWriter:
+    def __init__(self, results):
+        self.results = results
+        self.processed_keys = {r["file_url"] for r in results}
+        self.dirty_body_ids = set()
+
+
+def test_excluded_url_rejected_without_download(tmp_path):
+    cache = unittest.mock.Mock()
+    out = _verify_one(ITEM, cache, tmp_path, exclusions={URL_A: ENTRY})
+    assert (out["verification_status"], out["verification_signal"]) == ("rejected", "manual_exclusion")
+    cache.get_file_path.assert_not_called()
+
+
+def test_unlisted_url_unaffected(tmp_path):
+    f = tmp_path / "f.pdf"
+    f.write_bytes(b"")
+    cache = unittest.mock.MagicMock(spec=DisclosureFileCache)
+    cache.get_file_path.return_value = f
+    item = {**ITEM, "file_url": "https://x/Calendar.pdf"}
+    assert _verify_one(item, cache, str(tmp_path), exclusions={}) == _verify_one(item, cache, str(tmp_path))
+
+
+def test_load_exclusions_missing_file_is_empty(tmp_path):
+    assert load_exclusions(tmp_path) == {}
+
+
+def test_load_exclusions_valid(tmp_path):
+    (tmp_path / "excluded_files.json").write_text('{"u": %s}' % __import__("json").dumps(ENTRY))
+    assert load_exclusions(tmp_path) == {"u": ENTRY}
+
+
+@pytest.mark.parametrize("bad", [
+    '[]',
+    '{"u": {"class": "not_foi_log", "date": "2026-11-17"}}',
+    '{"u": {"reason": "", "class": "not_foi_log", "date": "2026-11-17"}}',
+    '{"u": {"reason": "form", "class": "scan", "date": "2026-11-17"}}',
+    '{"u": {"reason": "form", "class": "not_foi_log", "date": "17/11/2026"}}',
+    '{not json',
+])
+def test_load_exclusions_malformed_raises(tmp_path, bad):
+    (tmp_path / "excluded_files.json").write_text(bad)
+    with pytest.raises(ValueError):
+        load_exclusions(tmp_path)
+
+
+def test_sync_rejects_already_verified_record_and_marks_body_dirty():
+    a, b = _rec(URL_A, 1), _rec(URL_B, 2)
+    b_before = dict(b)
+    w = FakeWriter([a, b])
+    _sync_exclusions(w, {URL_A: ENTRY}, {URL_A, URL_B})
+    assert (a["verification_status"], a["verification_signal"]) == ("rejected", EXCLUSION_SIGNAL)
+    assert b == b_before
+    assert w.dirty_body_ids == {1}
+
+
+def test_sync_removed_entry_is_reverified():
+    w = FakeWriter([_rec(URL_A, 1, "rejected", EXCLUSION_SIGNAL)])
+    _sync_exclusions(w, {}, {URL_A})
+    assert w.results == []
+    assert URL_A not in w.processed_keys
+    assert w.dirty_body_ids == {1}
+
+
+def test_sync_idempotent():
+    w = FakeWriter([_rec(URL_A, 1, "rejected", EXCLUSION_SIGNAL)])
+    before = [dict(r) for r in w.results]
+    _sync_exclusions(w, {URL_A: ENTRY}, {URL_A})
+    assert w.results == before
+    assert w.dirty_body_ids == set()
+
+
+def test_sync_warns_on_url_not_in_input(capsys):
+    _sync_exclusions(FakeWriter([]), {"https://x/typo%20.pdf": ENTRY}, set())
+    out = capsys.readouterr().out
+    assert "WARNING: excluded_files.json lists a URL not in the input: https://x/typo%20.pdf" in out
+
+
+def test_sync_leaves_pattern_rejections_alone():
+    r = _rec(URL_A, 1, "rejected", "non_foi_pattern")
+    w = FakeWriter([r])
+    _sync_exclusions(w, {}, {URL_A})
+    assert w.results == [_rec(URL_A, 1, "rejected", "non_foi_pattern")]
+    assert w.dirty_body_ids == set()
+
+
+def test_sync_scoped_touches_only_target_body_and_does_not_warn(capsys):
+    a, b = _rec(URL_A, 1), _rec(URL_B, 2, "rejected", EXCLUSION_SIGNAL)
+    w = FakeWriter([a, b])
+    # scoped to body 3: A listed (body 1), B unlisted exclusion (body 2), plus an unknown URL
+    _sync_exclusions(w, {URL_A: ENTRY, "https://x/other.pdf": ENTRY}, set(), public_body=3)
+    assert a["verification_status"] == "verified"
+    assert b["verification_signal"] == EXCLUSION_SIGNAL
+    assert w.results == [a, b]
+    assert w.dirty_body_ids == set()
+    assert "WARNING" not in capsys.readouterr().out
+
+
+def test_sync_scoped_applies_to_target_body():
+    a, b = _rec(URL_A, 1), _rec(URL_B, 2)
+    w = FakeWriter([a, b])
+    _sync_exclusions(w, {URL_A: ENTRY, URL_B: ENTRY}, {URL_A}, public_body=1)
+    assert a["verification_signal"] == EXCLUSION_SIGNAL
+    assert b["verification_status"] == "verified"
+    assert w.dirty_body_ids == {1}
+
+
+def test_process_scoped_run_only_changes_target_body(tmp_path):
+    import json
+    from lib.file_utils import IncrementalWriter
+    out = tmp_path / "output.json"
+    a, b = _rec(URL_A, 1), _rec(URL_B, 2)
+    out.write_text(json.dumps({"metadata": {"step": "x"}, "results": [a, b]}))
+    (tmp_path / "excluded_files.json").write_text(json.dumps({URL_A: ENTRY, URL_B: ENTRY}))
+    w = IncrementalWriter(out, "verify_disclosure_files", key_field="file_url", target_public_body=2)
+    # target eviction removed body 2's record; scoped input holds only body 2
+    process({"results": [dict(b)]}, tmp_path, w, public_body=2)
+    by_url = {r["file_url"]: r for r in w.results}
+    assert by_url[URL_A]["verification_status"] == "verified"
+    assert by_url[URL_B]["verification_signal"] == EXCLUSION_SIGNAL
+    assert w.dirty_body_ids == {2}
