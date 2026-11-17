@@ -1,5 +1,8 @@
 import json
 
+import pytest
+
+from experiments.gating import triage_page as tp
 from experiments.gating.triage import facts
 from tests.experiments.gating_fixtures import make_pdf
 
@@ -86,3 +89,56 @@ def test_load_proposals_missing_readable_input(tmp_path):
     rd = _round(tmp_path, [A, B], [])
     with pytest.raises(ValueError, match=A["file_url"]):
         load_proposals(rd)
+
+SHA = {n: c * 64 for n, c in zip("abcde", "abcde")}
+
+
+def _inp(url, bid, name, sha, **kw):
+    d = {"file_url": url, "public_body_id": bid, "name": name, "sha256": sha, "pages": 1,
+         "link_text": "log", "image": f"review/img/{sha}.png" if sha else None, "unreadable": None}
+    d.update(kw)
+    return d
+
+
+@pytest.fixture
+def round_dir(tmp_path):
+    inputs = [
+        _inp("https://x.test/h.pdf", 5, "Body H", SHA["a"]),
+        _inp("https://x.test/n2.pdf", 9, "Body N2", SHA["b"]),
+        _inp("https://x.test/n1.pdf", 2, "Body N1", SHA["c"]),
+        _inp("https://x.test/<b>.pdf", 3, "Body <X>", SHA["d"]),
+        _inp("https://x.test/u.pdf", 1, "Body U", None, image=None, unreadable="no_bytes"),
+    ]
+    props = [
+        {"file_url": "https://x.test/h.pdf", "class": "hard_table", "reason": "ticks"},
+        {"file_url": "https://x.test/n2.pdf", "class": "not_foi_log", "reason": "form"},
+        {"file_url": "https://x.test/n1.pdf", "class": "not_foi_log", "reason": "form"},
+        {"file_url": "https://x.test/<b>.pdf", "class": "small_log", "reason": "tiny <r>"},
+    ]
+    (tmp_path / "inputs.json").write_text(json.dumps(inputs))
+    (tmp_path / "proposals.json").write_text(json.dumps(props))
+    return tmp_path
+
+
+def test_every_url_once_and_order(round_dir):
+    h = tp.build(round_dir).read_text()
+    for u in ("https://x.test/h.pdf", "https://x.test/n1.pdf", "https://x.test/n2.pdf", "https://x.test/u.pdf"):
+        assert h.count(f"data-key='file:{u}'") == 1
+    pos = lambda s: h.index(f"data-key='file:https://x.test/{s}'")
+    assert pos("n1.pdf") < pos("n2.pdf") < pos("&lt;b&gt;.pdf") < pos("h.pdf") < pos("u.pdf")
+
+
+def test_tag_buttons_and_escape(round_dir):
+    h = tp.build(round_dir).read_text()
+    for c in ("not_foi_log", "scan", "hard_table", "small_log"):
+        assert f"pick(this,'{c}')" in h
+    assert "<b>.pdf" not in h and "Body <X>" not in h and "tiny <r>" not in h
+    assert "Body &lt;X&gt;" in h
+
+
+def test_pdf_route_support_and_image(round_dir):
+    tp.build(round_dir)
+    files = json.loads((round_dir / "results.json").read_text())["files"]
+    assert files["https://x.test/h.pdf"]["sha256"] == SHA["a"]
+    assert f"/pdf/{SHA['a']}.pdf" in (round_dir / "review/index.html").read_text()
+    assert f"img/{SHA['a']}.png" in (round_dir / "review/index.html").read_text()
