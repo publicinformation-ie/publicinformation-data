@@ -81,7 +81,7 @@ def error_rate(s: FileStat) -> float:
 
 
 def scope_set(stats: dict[str, FileStat]) -> list[str]:
-    return sorted(u for u, s in stats.items() if s.gated or error_rate(s) >= ERROR_RATE_MIN)
+    return sorted(u for u, s in stats.items() if s.gated)
 
 
 def override_urls(steps_dir: Path = STEPS) -> set[str]:

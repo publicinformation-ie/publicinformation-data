@@ -1,3 +1,4 @@
+import dataclasses
 import hashlib
 import json
 
@@ -31,11 +32,10 @@ def build(tmp_path, state=None, with_bytes=(GATED_URL, HALF_ERRORS_URL)):
 
 def test_build_generates_values(tmp_path):
     es, _ = build(tmp_path)
-    assert set(es) == {GATED_URL, HALF_ERRORS_URL}
+    assert set(es) == {GATED_URL}
     g = es[GATED_URL]
     assert g.fault_kind == "G" and g.recoverable == 30 and g.status == "open"
     assert g.sha256 == hashlib.sha256(b"pdf:" + GATED_URL.encode()).hexdigest()
-    assert es[HALF_ERRORS_URL].fault_kind in "EMV"
 
 
 def test_ledger_state_overrides_generated_values(tmp_path):
@@ -62,13 +62,28 @@ def test_set_state_rejects_unknown_status(tmp_path):
 
 
 def test_ledger_md_ranks_clusters_by_recoverable(tmp_path):
-    es, _ = build(tmp_path, {GATED_URL: {"cluster": "small"}, HALF_ERRORS_URL: {"cluster": "big"}})
-    list(es.values())[0]
-    for e in es.values():
-        e.recoverable = 100 if e.cluster == "big" else 5
+    es, _ = build(tmp_path, {GATED_URL: {"cluster": "small"}})
+    big = dataclasses.replace(es[GATED_URL], file_url=HALF_ERRORS_URL, cluster="big", recoverable=100)
+    es[GATED_URL].recoverable = 5
+    es[HALF_ERRORS_URL] = big
     out = tmp_path / "out"
     out.mkdir()
     ledger.write_ledger(list(es.values()), out)
     md = (out / "LEDGER.md").read_text()
     assert md.index("| big |") < md.index("| small |")
     assert len(json.loads((out / "ledger.json").read_text())) == 2
+
+
+def test_set_state_rejects_unknown_triage_class(tmp_path):
+    with pytest.raises(ValueError):
+        ledger.set_state([GATED_URL], state_path=tmp_path / "s.json", triage_class="maybe")
+
+
+def test_triage_class_round_trips_into_entry(tmp_path):
+    steps = make_steps(tmp_path / "steps")
+    sp = tmp_path / "s.json"
+    ledger.set_state([GATED_URL], state_path=sp, triage_class="scan")
+    es = ledger.build_ledger(steps, _snapshot(tmp_path), sp, _cache(tmp_path, GATED_URL))
+    assert es[0].triage_class == "scan"
+    ledger.set_state([GATED_URL], state_path=sp, triage_class="small_log")
+    assert json.loads(sp.read_text())[GATED_URL]["triage_class"] == "small_log"

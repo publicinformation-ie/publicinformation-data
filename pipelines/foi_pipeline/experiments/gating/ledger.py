@@ -13,7 +13,8 @@ from experiments.gating.scope import (default_cluster, error_rate, file_stats, o
 
 STATUSES = ("open", "in_round", "resolved", "parked", "no_bytes")
 KINDS = ("E", "M", "G", "S", "V")
-STATE_FIELDS = ("fault_kind", "fault_firm", "cluster", "status", "note")
+TRIAGE_CLASSES = ("not_foi_log", "scan", "hard_table", "small_log")
+STATE_FIELDS = ("fault_kind", "fault_firm", "cluster", "status", "note", "triage_class")
 STATE_PATH = GATING / "ledger_state.json"
 
 
@@ -37,6 +38,7 @@ class LedgerEntry:
     status: str
     recoverable: int
     evidence: str
+    triage_class: str | None = None
 
 
 def _load_state(path: Path) -> dict:
@@ -76,7 +78,8 @@ def build_ledger(steps_dir: Path = STEPS, snapshot_dir: Path = SNAPSHOT,
             failed_checks=n.failed_checks,
             records_before=b.records if b else 0, errors_before=b.errors if b else 0,
             records_now=n.records, errors_now=n.errors, fault_kind=kind, fault_firm=firm,
-            cluster=cluster, status=status, recoverable=recoverable(n, b), evidence=evidence))
+            cluster=cluster, status=status, recoverable=recoverable(n, b), evidence=evidence,
+            triage_class=st.get("triage_class")))
     return entries
 
 
@@ -116,6 +119,8 @@ def set_state(file_urls: list[str], state_path: Path = STATE_PATH, **fields) -> 
         raise ValueError(f"status must be one of {STATUSES}")
     if "fault_kind" in fields and fields["fault_kind"] not in KINDS:
         raise ValueError(f"fault_kind must be one of {KINDS}")
+    if "triage_class" in fields and fields["triage_class"] not in TRIAGE_CLASSES:
+        raise ValueError(f"triage_class must be one of {TRIAGE_CLASSES}")
     state = _load_state(state_path)
     for u in file_urls:
         state.setdefault(u, {}).update(fields)
