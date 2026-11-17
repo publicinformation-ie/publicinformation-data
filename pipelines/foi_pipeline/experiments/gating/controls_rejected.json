@@ -1,0 +1,39 @@
+[
+ {
+  "file_url": "https://about.rte.ie/wp-content/uploads/2022/01/RTE-FOI-DISCLOSURE-LOG-Q3-2021.pdf",
+  "public_body_id": 1655,
+  "pdf_extractor": "pymupdf",
+  "records": 39,
+  "cell_score": 0.4,
+  "checked": "2026-11-17"
+ },
+ {
+  "file_url": "https://www.dlrcoco.ie/sites/dlrcoco/files/2025-01/2024%20Freedom%20of%20Information%20Disclosure%20Log.pdf",
+  "public_body_id": 1244,
+  "pdf_extractor": "camelot_stream",
+  "records": 106,
+  "cell_score": 0.0,
+  "checked": "2026-11-17"
+ },
+ {
+  "file_url": "https://assets.gov.ie/static/documents/foi-requests-january-march-2024.pdf",
+  "public_body_id": 1210,
+  "pdf_extractor": "pymupdf",
+  "records": 24,
+  "reason": "wrong under its current extractor (user, 2026-11-15)"
+ },
+ {
+  "file_url": "https://www.mayo.ie/getmedia/25fd167c-a70c-4a45-930e-3ddb56e8cbea/FOI-Disclosure-Log-Q3-2024.pdf",
+  "public_body_id": 1508,
+  "pdf_extractor": "camelot_stream",
+  "records": 27,
+  "reason": "wrong under its current extractor (user, 2026-11-15)"
+ },
+ {
+  "file_url": "https://www.dublincity.ie/sites/default/files/2026-02/disclosure-log-2025.pdf",
+  "public_body_id": 1235,
+  "pdf_extractor": "camelot_stream",
+  "records": 547,
+  "reason": "wrong under its current extractor (user, 2026-11-15)"
+ }
+]

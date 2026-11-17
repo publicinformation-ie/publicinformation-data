@@ -33,7 +33,7 @@ before any shipping).
 Caveats: the cluster gold (sha `eeb9d0a7`) is a 20-row sample, still `provisional` (no gold-cell verdicts were
 given, so it was not marked checked). A gate change is global: it still needs a full before/after over all bodies.
 
-**User verdict (review page): ship = no.** Reasons recorded by the user:
+**User verdict (review page): ship = no. Superseded 2026-11-17: the user approved shipping this winner (PR #29).** Reasons recorded by the user:
 - On three control files "current" is not correct, so a control cannot be assumed good just because the gate passes:
   body 1210 (`foi-requests-january-march-2024.pdf`, current = pymupdf) should take **docling**;
   body 1508 (Mayo `FOI-Disclosure-Log-Q3-2024.pdf`, current = camelot_stream) should take **force:pdfplumber**;

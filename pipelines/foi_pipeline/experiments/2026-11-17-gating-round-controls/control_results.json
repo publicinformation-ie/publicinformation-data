@@ -1,0 +1,112 @@
+{
+ "d9c6ec262afae60db456d7ed9adf0a0b0fb833960a702fb4dcb20cea2d7f4f7d": {
+  "file_url": "https://assets.gov.ie/static/documents/c0ffce5e/12._Non-personal_FOI_requests_answered_in_Dec_2025.pdf",
+  "public_body_id": 1204,
+  "pdf_extractor": "pdfplumber",
+  "cell_score": 1.0,
+  "rows_pending": 0,
+  "rows_missing": false,
+  "good_control": true,
+  "complete": true
+ },
+ "61aa93f4e43a87f7ee8fd554a8441da4075d667aa91d67dbc2a9a27cfe08bd43": {
+  "file_url": "https://about.rte.ie/wp-content/uploads/2023/03/RTE-FOI-Disclosure-Log-Q3.pdf",
+  "public_body_id": 1655,
+  "pdf_extractor": "camelot_lattice",
+  "cell_score": 1.0,
+  "rows_pending": 0,
+  "rows_missing": false,
+  "good_control": true,
+  "complete": true
+ },
+ "7b410e36369ec73263339e0fcd13237d57e0062869e759608cec99bfa0e24eba": {
+  "file_url": "https://www.centralbank.ie/docs/default-source/tns/about---tns/freedom-of-information/disclosure-logs/freedom-of-information-disclosure-log---2022.pdf?sfvrsn=4d6f991d_5",
+  "public_body_id": 1104,
+  "pdf_extractor": "mistral_cache",
+  "cell_score": 1.0,
+  "rows_pending": 0,
+  "rows_missing": false,
+  "good_control": true,
+  "complete": true
+ },
+ "ad0a7cabe2e846b482d6040c4eb94efcb7753f9a30f058da95a90129073904b7": {
+  "file_url": "https://www.offaly.ie/app/uploads/Council/Publications_Reports/Disclosure-Log-2022.pdf",
+  "public_body_id": 1590,
+  "pdf_extractor": "pdfplumber",
+  "cell_score": 1.0,
+  "rows_pending": 0,
+  "rows_missing": false,
+  "good_control": true,
+  "complete": true
+ },
+ "34316df0df3cccec7ec9708c5de4f34ac57bc76fe6f34e4108e0cd75a190b9be": {
+  "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-october-to-december-2023.pdf",
+  "public_body_id": 1207,
+  "pdf_extractor": "camelot_lattice",
+  "cell_score": 1.0,
+  "rows_pending": 0,
+  "rows_missing": false,
+  "good_control": true,
+  "complete": true
+ },
+ "269ad3fd2bccb1ccdc071514d6ce46c270df5dcca0bfe5fcc1f8860fbbdb7549": {
+  "file_url": "https://www.universityofgalway.ie/media/corporateandlegalaffairs/files/FOI-Disclosure-Log-2024.pdf",
+  "public_body_id": 1574,
+  "pdf_extractor": "mistral_cache",
+  "cell_score": 1.0,
+  "rows_pending": 0,
+  "rows_missing": false,
+  "good_control": true,
+  "complete": true
+ },
+ "cab248cfb89b2273b641dea3e237bb6bb4619f151e501b9dba81c9baa78de2c2": {
+  "file_url": "https://www.nationaltransport.ie/wp-content/uploads/2025/09/2025-Q1-FOI-Disclosure-Log.pdf",
+  "public_body_id": 1570,
+  "pdf_extractor": "pdfplumber",
+  "cell_score": 1.0,
+  "rows_pending": 0,
+  "rows_missing": false,
+  "good_control": true,
+  "complete": true
+ },
+ "54c109ca2503b31b21b66a2f73243de5ba970210874ee41a5a1da55f2b572967": {
+  "file_url": "https://www.centralbank.ie/docs/default-source/tns/about---tns/freedom-of-information/disclosure-logs/freedom-of-information-disclosure-log-q2-2026-non-personal-requests.pdf?sfvrsn=17b0711a_4",
+  "public_body_id": 1104,
+  "pdf_extractor": "camelot_stream",
+  "cell_score": 1.0,
+  "rows_pending": 0,
+  "rows_missing": false,
+  "good_control": true,
+  "complete": true
+ },
+ "d7587dfa0397360b6c0514b3407c13993adef27a63c9f1e8b11a83cf98010aee": {
+  "file_url": "https://about.rte.ie/wp-content/uploads/2022/01/RTE-FOI-DISCLOSURE-LOG-Q3-2021.pdf",
+  "public_body_id": 1655,
+  "pdf_extractor": "pymupdf",
+  "cell_score": 0.4,
+  "rows_pending": 0,
+  "rows_missing": true,
+  "good_control": false,
+  "complete": true
+ },
+ "fa4c063637eb53f5c002bd46ab5ea717c6981597ab4781d53e60e2373ed6b51d": {
+  "file_url": "https://assets.gov.ie/static/documents/q1-2016-foi-disclosure-log.pdf",
+  "public_body_id": 1213,
+  "pdf_extractor": "camelot_stream",
+  "cell_score": 1.0,
+  "rows_pending": 0,
+  "rows_missing": false,
+  "good_control": true,
+  "complete": true
+ },
+ "c95c5fad60cee5de9951534de856a84a4a4d83c1fcc6825794447ed3746cf4b9": {
+  "file_url": "https://www.dlrcoco.ie/sites/dlrcoco/files/2025-01/2024%20Freedom%20of%20Information%20Disclosure%20Log.pdf",
+  "public_body_id": 1244,
+  "pdf_extractor": "camelot_stream",
+  "cell_score": 0.0,
+  "rows_pending": 0,
+  "rows_missing": true,
+  "good_control": false,
+  "complete": true
+ }
+}
