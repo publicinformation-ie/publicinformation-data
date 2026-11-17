@@ -131,7 +131,7 @@ def test_every_url_once_and_order(round_dir):
 def test_tag_buttons_and_escape(round_dir):
     h = tp.build(round_dir).read_text()
     for c in ("not_foi_log", "scan", "hard_table", "small_log"):
-        assert f"pick(this,'{c}')" in h
+        assert f"data-c='{c}' onclick='pick(this)'" in h
     assert "<b>.pdf" not in h and "Body <X>" not in h and "tiny <r>" not in h
     assert "Body &lt;X&gt;" in h
 
@@ -142,3 +142,12 @@ def test_pdf_route_support_and_image(round_dir):
     assert files["https://x.test/h.pdf"]["sha256"] == SHA["a"]
     assert f"/pdf/{SHA['a']}.pdf" in (round_dir / "review/index.html").read_text()
     assert f"img/{SHA['a']}.png" in (round_dir / "review/index.html").read_text()
+
+
+def test_page_js_keeps_a_tag_set_and_save_sends_it(round_dir):
+    h = tp.build(round_dir).read_text()
+    assert "classList.toggle('sel')" in h  # pick toggles, so two classes can be selected
+    assert "querySelectorAll('button.sel')" in h  # every post sends the whole selected set
+    assert "function sv(b){send(row(b))}" in h  # save uses the same set, never tags=[]
+    assert "tags:tags" in h and "key:d.dataset.key" in h
+    assert "TAGS" not in h and "tag(this)" not in h  # shared review_page JS is not in use
