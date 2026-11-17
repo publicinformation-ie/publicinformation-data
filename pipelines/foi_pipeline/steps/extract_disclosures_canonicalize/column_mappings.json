@@ -165,5 +165,31 @@
       "3": "decision_status",
       "4": "request_description"
     }
+  },
+  "https://www.mayo.ie/getmedia/25fd167c-a70c-4a45-930e-3ddb56e8cbea/FOI-Disclosure-Log-Q3-2024.pdf": {
+    "source_method": "manual",
+    "overridden": true,
+    "pdf_extractor": "pdfplumber",
+    "column_mapping": {
+      "0": "foi_reference_id",
+      "1": "date_received",
+      "2": "requester_type",
+      "3": "request_description",
+      "4": "decision_date",
+      "5": "decision_status"
+    }
+  },
+  "https://www.dublincity.ie/sites/default/files/2026-02/disclosure-log-2025.pdf": {
+    "source_method": "manual",
+    "overridden": true,
+    "pdf_extractor": "mistral_cache",
+    "column_mapping": {
+      "0": "foi_reference_id",
+      "1": "request_description",
+      "2": "requester_type",
+      "3": "decision_status",
+      "4": "date_received",
+      "5": "decision_date"
+    }
   }
 }

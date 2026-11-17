@@ -1,0 +1,392 @@
+{
+ "https://about.rte.ie/wp-content/uploads/2022/01/RTE-FOI-DISCLOSURE-LOG-Q3-2021.pdf": {
+  "body": 1655,
+  "stored_extractor": "pymupdf",
+  "candidates": {
+   "force:pdfplumber": {
+    "raw_rows": 71,
+    "gate_pass": false,
+    "records": 43,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 1.0,
+     "date_received": 0.0,
+     "decision_date": 0.0,
+     "decision_status": 0.84,
+     "request_description": 0.0
+    }
+   },
+   "force:camelot_lattice": {
+    "raw_rows": 43,
+    "gate_pass": true,
+    "records": 37,
+    "errors": 1,
+    "fill": {
+     "foi_reference_id": 1.0,
+     "date_received": 0.0,
+     "decision_date": 0.0,
+     "decision_status": 0.97,
+     "request_description": 0.0
+    }
+   },
+   "force:pymupdf": {
+    "raw_rows": 46,
+    "gate_pass": true,
+    "records": 39,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 1.0,
+     "date_received": 0.0,
+     "decision_date": 0.0,
+     "decision_status": 0.92,
+     "request_description": 0.0
+    }
+   },
+   "force:mistral_cache": {
+    "status": "not_extracted"
+   },
+   "force:camelot_stream": {
+    "raw_rows": 236,
+    "gate_pass": false,
+    "records": 43,
+    "errors": 11,
+    "fill": {
+     "foi_reference_id": 0.88,
+     "date_received": 0.0,
+     "decision_date": 0.0,
+     "decision_status": 0.88,
+     "request_description": 0.0
+    }
+   },
+   "docling": {
+    "raw_rows": 38,
+    "gate_pass": true,
+    "records": 37,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 1.0,
+     "date_received": 0.0,
+     "decision_date": 0.0,
+     "decision_status": 0.97,
+     "request_description": 0.0
+    }
+   }
+  }
+ },
+ "https://www.dlrcoco.ie/sites/dlrcoco/files/2025-01/2024%20Freedom%20of%20Information%20Disclosure%20Log.pdf": {
+  "body": 1244,
+  "stored_extractor": "camelot_stream",
+  "candidates": {
+   "force:pdfplumber": {
+    "raw_rows": 1,
+    "gate_pass": false,
+    "records": 106,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 0.0,
+     "date_received": 0.0,
+     "decision_date": 1.0,
+     "decision_status": 0.0,
+     "request_description": 0.89
+    }
+   },
+   "force:camelot_lattice": {
+    "raw_rows": 1,
+    "gate_pass": false,
+    "records": 106,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 0.0,
+     "date_received": 0.0,
+     "decision_date": 1.0,
+     "decision_status": 0.0,
+     "request_description": 0.89
+    }
+   },
+   "force:pymupdf": {
+    "raw_rows": 1,
+    "gate_pass": false,
+    "records": 106,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 0.0,
+     "date_received": 0.0,
+     "decision_date": 1.0,
+     "decision_status": 0.0,
+     "request_description": 0.89
+    }
+   },
+   "force:mistral_cache": {
+    "raw_rows": 107,
+    "gate_pass": false,
+    "records": 106,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 0.0,
+     "date_received": 0.0,
+     "decision_date": 1.0,
+     "decision_status": 0.0,
+     "request_description": 0.89
+    }
+   },
+   "force:camelot_stream": {
+    "raw_rows": 121,
+    "gate_pass": true,
+    "records": 106,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 0.0,
+     "date_received": 0.0,
+     "decision_date": 1.0,
+     "decision_status": 0.0,
+     "request_description": 0.89
+    }
+   },
+   "docling": {
+    "raw_rows": 107,
+    "gate_pass": false,
+    "records": 106,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 0.0,
+     "date_received": 0.0,
+     "decision_date": 1.0,
+     "decision_status": 0.0,
+     "request_description": 0.89
+    }
+   }
+  }
+ },
+ "https://assets.gov.ie/static/documents/foi-requests-january-march-2024.pdf": {
+  "body": 1210,
+  "stored_extractor": "pymupdf",
+  "candidates": {
+   "force:pdfplumber": {
+    "raw_rows": 42,
+    "gate_pass": false,
+    "records": 27,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 0.96,
+     "date_received": 0.89,
+     "decision_date": 0.89,
+     "decision_status": 0.89,
+     "request_description": 0.93
+    }
+   },
+   "force:camelot_lattice": {
+    "raw_rows": 27,
+    "gate_pass": true,
+    "records": 0,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 0.0,
+     "date_received": 0.0,
+     "decision_date": 0.0,
+     "decision_status": 0.0,
+     "request_description": 0.0
+    }
+   },
+   "force:pymupdf": {
+    "raw_rows": 40,
+    "gate_pass": true,
+    "records": 24,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 1.0,
+     "date_received": 1.0,
+     "decision_date": 1.0,
+     "decision_status": 1.0,
+     "request_description": 1.0
+    }
+   },
+   "force:mistral_cache": {
+    "status": "not_extracted"
+   },
+   "force:camelot_stream": {
+    "raw_rows": 153,
+    "gate_pass": false,
+    "records": 31,
+    "errors": 2,
+    "fill": {
+     "foi_reference_id": 0.9,
+     "date_received": 0.61,
+     "decision_date": 0.61,
+     "decision_status": 0.68,
+     "request_description": 0.74
+    }
+   },
+   "docling": {
+    "raw_rows": 28,
+    "gate_pass": true,
+    "records": 24,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 1.0,
+     "date_received": 1.0,
+     "decision_date": 1.0,
+     "decision_status": 1.0,
+     "request_description": 1.0
+    }
+   }
+  }
+ },
+ "https://www.mayo.ie/getmedia/25fd167c-a70c-4a45-930e-3ddb56e8cbea/FOI-Disclosure-Log-Q3-2024.pdf": {
+  "body": 1508,
+  "stored_extractor": "camelot_stream",
+  "candidates": {
+   "force:pdfplumber": {
+    "raw_rows": 28,
+    "gate_pass": true,
+    "records": 27,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 1.0,
+     "date_received": 1.0,
+     "decision_date": 1.0,
+     "decision_status": 1.0,
+     "request_description": 1.0
+    }
+   },
+   "force:camelot_lattice": {
+    "raw_rows": 28,
+    "gate_pass": true,
+    "records": 27,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 1.0,
+     "date_received": 1.0,
+     "decision_date": 1.0,
+     "decision_status": 1.0,
+     "request_description": 1.0
+    }
+   },
+   "force:pymupdf": {
+    "raw_rows": 30,
+    "gate_pass": false,
+    "records": 27,
+    "errors": 13,
+    "fill": {
+     "foi_reference_id": 1.0,
+     "date_received": 0.0,
+     "decision_date": 0.52,
+     "decision_status": 0.52,
+     "request_description": 1.0
+    }
+   },
+   "force:mistral_cache": {
+    "raw_rows": 28,
+    "gate_pass": true,
+    "records": 27,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 1.0,
+     "date_received": 1.0,
+     "decision_date": 1.0,
+     "decision_status": 1.0,
+     "request_description": 1.0
+    }
+   },
+   "force:camelot_stream": {
+    "raw_rows": 98,
+    "gate_pass": true,
+    "records": 27,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 1.0,
+     "date_received": 0.0,
+     "decision_date": 1.0,
+     "decision_status": 1.0,
+     "request_description": 0.0
+    }
+   },
+   "docling": {
+    "raw_rows": 28,
+    "gate_pass": true,
+    "records": 27,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 1.0,
+     "date_received": 1.0,
+     "decision_date": 1.0,
+     "decision_status": 1.0,
+     "request_description": 1.0
+    }
+   }
+  }
+ },
+ "https://www.dublincity.ie/sites/default/files/2026-02/disclosure-log-2025.pdf": {
+  "body": 1235,
+  "stored_extractor": "camelot_stream",
+  "candidates": {
+   "force:pdfplumber": {
+    "raw_rows": 548,
+    "gate_pass": false,
+    "records": 0,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 0.0,
+     "date_received": 0.0,
+     "decision_date": 0.0,
+     "decision_status": 0.0,
+     "request_description": 0.0
+    }
+   },
+   "force:camelot_lattice": {
+    "raw_rows": 548,
+    "gate_pass": false,
+    "records": 0,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 0.0,
+     "date_received": 0.0,
+     "decision_date": 0.0,
+     "decision_status": 0.0,
+     "request_description": 0.0
+    }
+   },
+   "force:pymupdf": {
+    "status": "not_extracted"
+   },
+   "force:mistral_cache": {
+    "raw_rows": 570,
+    "gate_pass": true,
+    "records": 539,
+    "errors": 8,
+    "fill": {
+     "foi_reference_id": 1.0,
+     "date_received": 0.0,
+     "decision_date": 0.0,
+     "decision_status": 1.0,
+     "request_description": 1.0
+    }
+   },
+   "force:camelot_stream": {
+    "raw_rows": 723,
+    "gate_pass": true,
+    "records": 547,
+    "errors": 0,
+    "fill": {
+     "foi_reference_id": 0.0,
+     "date_received": 0.0,
+     "decision_date": 0.0,
+     "decision_status": 0.99,
+     "request_description": 0.0
+    }
+   },
+   "docling": {
+    "raw_rows": 548,
+    "gate_pass": true,
+    "records": 547,
+    "errors": 4,
+    "fill": {
+     "foi_reference_id": 0.0,
+     "date_received": 0.0,
+     "decision_date": 0.0,
+     "decision_status": 0.99,
+     "request_description": 0.0
+    }
+   }
+  }
+ }
+}
