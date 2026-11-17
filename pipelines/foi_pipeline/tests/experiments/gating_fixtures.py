@@ -49,3 +49,15 @@ def make_steps(root: Path, gated_records=0) -> Path:
     _w(root / "extract_disclosures_canonicalize/column_mappings.json", {})
     _w(root / "extract_disclosures_normalize_header/override.json", [])
     return root
+
+
+def make_pdf(pages=1, text="", password=None) -> bytes:
+    import pymupdf
+    doc = pymupdf.open()
+    for _ in range(pages):
+        page = doc.new_page()
+        if text:
+            page.insert_textbox(pymupdf.Rect(20, 20, 580, 800), text, fontsize=8)
+    if password:
+        return doc.tobytes(encryption=pymupdf.PDF_ENCRYPT_AES_256, user_pw=password, owner_pw=password)
+    return doc.tobytes()
