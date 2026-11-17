@@ -1,7 +1,7 @@
 {
   "metadata": {
     "step": "verify_disclosure_files",
-    "completed_at": "2026-11-12T12:30:20.431378+00:00"
+    "completed_at": "2026-11-17T08:21:55.483949+00:00"
   },
   "results": [
     {
@@ -1021,8 +1021,8 @@
       "file_url": "https://www.fiosru.ie/media/oukaayqx/foi-004-24.pdf",
       "file_type": "pdf",
       "link_text": "View",
-      "verification_status": "verified",
-      "verification_signal": "decision, foi"
+      "verification_status": "rejected",
+      "verification_signal": "manual_exclusion"
     },
     {
       "public_body_id": 1298,
@@ -3221,8 +3221,8 @@
       "file_url": "https://www.hse.gov.uk/foi/disclosure-pdfs/ecp14-6.pdf",
       "file_type": "pdf",
       "link_text": "ECP 14-6 Article from the Times (BW)",
-      "verification_status": "verified",
-      "verification_signal": "decision, foi"
+      "verification_status": "rejected",
+      "verification_signal": "manual_exclusion"
     },
     {
       "public_body_id": 1394,
@@ -3231,8 +3231,8 @@
       "file_url": "https://www.hse.gov.uk/foi/disclosure-pdfs/ecp14-7.pdf",
       "file_type": "pdf",
       "link_text": "ECP 14-7 Article from the Times (MR)",
-      "verification_status": "verified",
-      "verification_signal": "decision, foi"
+      "verification_status": "rejected",
+      "verification_signal": "manual_exclusion"
     },
     {
       "public_body_id": 1394,
@@ -3701,8 +3701,8 @@
       "file_url": "https://www.sdcc.ie/en/services/our-council/access-to-information/freedom-of-information/foi-privacy-statement.pdf",
       "file_type": "pdf",
       "link_text": "",
-      "verification_status": "verified",
-      "verification_signal": "freedom of information, decision"
+      "verification_status": "rejected",
+      "verification_signal": "manual_exclusion"
     },
     {
       "public_body_id": 1505,
@@ -3831,8 +3831,8 @@
       "file_url": "https://www.dentalcouncil.ie/wp-content/uploads/2022/08/Freedom-of-Information.pdf",
       "file_type": "pdf",
       "link_text": "",
-      "verification_status": "verified",
-      "verification_signal": "freedom of information, decision"
+      "verification_status": "rejected",
+      "verification_signal": "manual_exclusion"
     },
     {
       "public_body_id": 1525,
@@ -3881,8 +3881,8 @@
       "file_url": "https://www.hia.ie/sites/default/files/FOI%20Application%20Form.pdf",
       "file_type": "pdf",
       "link_text": "Application Form",
-      "verification_status": "verified",
-      "verification_signal": "freedom of information, foi"
+      "verification_status": "rejected",
+      "verification_signal": "manual_exclusion"
     },
     {
       "public_body_id": 1439,
@@ -3911,8 +3911,8 @@
       "file_url": "https://www.nli.ie/sites/default/files/2023-03/national-library-of-ireland-foi-publication-scheme-updated.pdf",
       "file_type": "pdf",
       "link_text": "",
-      "verification_status": "verified",
-      "verification_signal": "disclosure log"
+      "verification_status": "rejected",
+      "verification_signal": "manual_exclusion"
     },
     {
       "public_body_id": 1442,
@@ -3921,8 +3921,8 @@
       "file_url": "http://www.irishprisons.ie/wp-content/uploads/documents_pdf/foi_application.pdf",
       "file_type": "pdf",
       "link_text": "here",
-      "verification_status": "verified",
-      "verification_signal": "freedom of information, decision"
+      "verification_status": "rejected",
+      "verification_signal": "manual_exclusion"
     },
     {
       "public_body_id": 1417,
@@ -5801,8 +5801,8 @@
       "file_url": "https://www.lgma.ie/en/publications/corporate/access-to-information-on-the-environment.pdf",
       "file_type": "pdf",
       "link_text": "access-to-information-on-the-environment.pdf",
-      "verification_status": "verified",
-      "verification_signal": "decision, foi"
+      "verification_status": "rejected",
+      "verification_signal": "manual_exclusion"
     },
     {
       "public_body_id": 1716,
@@ -5821,8 +5821,8 @@
       "file_url": "https://www.offaly.ie/app/uploads/Council/Council_Services_A-Z/Government_Administration/Infromation-about-Offaly-County-Council-March-2019.pdf",
       "file_type": "pdf",
       "link_text": "Infromation-about-Offaly-County-Council-March-2019.pdf",
-      "verification_status": "verified",
-      "verification_signal": "decision, foi"
+      "verification_status": "rejected",
+      "verification_signal": "manual_exclusion"
     },
     {
       "public_body_id": 1176,
@@ -6621,8 +6621,8 @@
       "file_url": "https://westerncare.com/wp-content/uploads/2020/07/RMD-6-foi-request.pdf",
       "file_type": "pdf",
       "link_text": "FOI Access Form",
-      "verification_status": "verified",
-      "verification_signal": "freedom of information, foi"
+      "verification_status": "rejected",
+      "verification_signal": "manual_exclusion"
     },
     {
       "public_body_id": 1440,
@@ -6661,8 +6661,8 @@
       "file_url": "https://www.beaumont.ie/sites/default/files/2025-12/FOI%20Access%20to%20information%20on%20the%20environment1.pdf",
       "file_type": "pdf",
       "link_text": "HERE",
-      "verification_status": "verified",
-      "verification_signal": "freedom of information, foi"
+      "verification_status": "rejected",
+      "verification_signal": "manual_exclusion"
     },
     {
       "public_body_id": 1047,
@@ -8299,8 +8299,8 @@
       "file_url": "https://assets.oic.ie/media/283687/f0492721-fed0-46ef-8d9f-278b6cb8e758.pdf",
       "file_type": "pdf",
       "link_text": "Download",
-      "verification_status": "verified",
-      "verification_signal": "decision, foi"
+      "verification_status": "rejected",
+      "verification_signal": "manual_exclusion"
     },
     {
       "public_body_id": 1602,
@@ -9009,8 +9009,8 @@
       "file_url": "https://www.cmetb.ie/wp-content/uploads/2022/12/REQUEST-FOR-ACCESS-TO-RECORDS-UNDER-THE-FREEDOM-OF-INFORMATION-ACT-2014-Gaeilge.pdf",
       "file_type": "pdf",
       "link_text": "FOI Application Form As  Gaeilge",
-      "verification_status": "verified",
-      "verification_signal": "url:freedom of information, foi"
+      "verification_status": "rejected",
+      "verification_signal": "manual_exclusion"
     },
     {
       "public_body_id": 1093,
@@ -9019,8 +9019,8 @@
       "file_url": "https://www.cmetb.ie/wp-content/uploads/2022/11/REQUEST-FOR-ACCESS-TO-RECORDS-UNDER-THE-FREEDOM-OF-INFORMATION-ACT-2014.pdf",
       "file_type": "pdf",
       "link_text": "FOI Application Form",
-      "verification_status": "verified",
-      "verification_signal": "url:freedom of information, foi"
+      "verification_status": "rejected",
+      "verification_signal": "manual_exclusion"
     },
     {
       "public_body_id": 1093,
@@ -10199,8 +10199,8 @@
       "file_url": "https://www.irishrail.ie/_kontent/d2e85689-fbf9-010a-a02e-587ed94b5032/b5615c0b-db31-4e0e-8521-efd05ecbd74c/674c26fc-36b0-406e-8eb3-9e70e4dfc873.pdf",
       "file_type": "pdf",
       "link_text": "application form",
-      "verification_status": "verified",
-      "verification_signal": "freedom of information, foi"
+      "verification_status": "rejected",
+      "verification_signal": "manual_exclusion"
     },
     {
       "public_body_id": 1443,
@@ -19843,8 +19843,8 @@
       "file_url": "https://www.stjames.ie/media/FOI Patient Record Request Form August 2026.pdf",
       "file_type": "pdf",
       "link_text": "FOI Patient Record Request Form",
-      "verification_status": "verified",
-      "verification_signal": "freedom of information, foi"
+      "verification_status": "rejected",
+      "verification_signal": "manual_exclusion"
     },
     {
       "public_body_id": 1741,
@@ -19913,8 +19913,8 @@
       "file_url": "https://www.stjames.ie/media/FOI Request for Deceased Patient Records August 2026.pdf",
       "file_type": "pdf",
       "link_text": "FOI Request for Deceased Patient Records",
-      "verification_status": "verified",
-      "verification_signal": "freedom of information, decision"
+      "verification_status": "rejected",
+      "verification_signal": "manual_exclusion"
     },
     {
       "public_body_id": 1747,
@@ -21033,8 +21033,8 @@
       "file_url": "https://crawfordartgallery.ie/wp-content/uploads/Access-to-Information-on-the-Environment-2.pdf",
       "file_type": "pdf",
       "link_text": "here",
-      "verification_status": "verified",
-      "verification_signal": "decision, foi"
+      "verification_status": "rejected",
+      "verification_signal": "manual_exclusion"
     },
     {
       "public_body_id": 1177,
