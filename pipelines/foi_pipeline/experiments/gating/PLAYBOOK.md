@@ -154,6 +154,23 @@ Read <round folder>/verdicts.json. Keys are file URLs or other ids; each value h
 For each file URL with a verdict, work out the fault kind (E extractor, M mapping, G gate, S source) from the text and tags, or write "unclear". Output a table: file URL, fault kind, one-line reason. Do not edit any file. Reply with the table and the __ship__ text word for word. The caller will run set_state from your table.
 ```
 
+### Prompt: Haiku, class for a source file
+
+```
+Classify source files for FOI disclosure-log triage. Work in /Volumes/ext/dev/publicinformation/publicinformation-data/pipelines/foi_pipeline. Round folder: <round_dir> (experiments/2026-11-17-gating-triage-source-files). Your batch: the entries of <round_dir>/inputs.json at indexes <start> to <end>.
+Each entry has: file_url, name, link_text, likely_scan (true when the PDF has under about 50 characters of text per page), text_head (first 2,000 characters of text), image (a path relative to the round folder), unreadable.
+For each entry in your batch that is not unreadable, Read the page 1 image at <round_dir>/<image> (that is <round_dir>/review/img/<sha256>.png) and look at it. Then read text_head, link_text and name.
+Pick exactly one class:
+- not_foi_log: a form, guide, privacy statement, publication scheme, press article, single decision letter, or any document that is not a table of FOI requests.
+- scan: a real log with no usable text layer.
+- hard_table: a real log with a text layer that every extractor gets wrong.
+- small_log: a real log with too few rows to pass min_rows, for example a quarter with one or no requests.
+Rules: a document that mixes a log with other material (for example a publication scheme with a log table inside) is hard_table, not not_foi_log. If you are uncertain, the file is never not_foi_log; choose the nearest of the other three. likely_scan is a hint, not a verdict: check the image.
+Output: write only <round_dir>/proposals-<batch>.json (a JSON list) with one object per file: {"file_url": "<exact url>", "class": "<one of the four>", "reason": "<one line>"}. Skip unreadable entries. Do not edit any other file, run any pipeline step, or use the network. The caller merges the batch files into proposals.json and checks them with load_proposals. Reply with the file path and any file you were unsure about.
+```
+
+Merge and check: `uv run python -c "from pathlib import Path; from experiments.gating.triage import load_proposals; print(len(load_proposals(Path('<round_dir>'))))"`.
+
 ## 6. Stop rules and shipping
 
 - Park a cluster after two rounds without a winner, or when it needs new code for fewer than about 30 records. Keep the diagnosis in the ledger note.

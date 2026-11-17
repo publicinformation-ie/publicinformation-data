@@ -10,6 +10,7 @@ from pathlib import Path
 
 import pymupdf
 
+from experiments.gating.ledger import TRIAGE_CLASSES
 from experiments.gating.paths import GATING, STEPS, content_sha, load_results, pdf_bytes
 
 SCAN_CHARS_PER_PAGE = 50
@@ -89,6 +90,27 @@ def build_inputs(round_dir: Path, ledger_path: Path = GATING / "ledger.json",
         out.append(f)
     round_dir.mkdir(parents=True, exist_ok=True)
     (round_dir / "inputs.json").write_text(json.dumps([asdict(f) for f in out], indent=2) + "\n")
+    return out
+
+
+def load_proposals(round_dir: Path) -> dict[str, dict]:
+    """Read and validate proposals.json against inputs.json."""
+    round_dir = Path(round_dir)
+    inputs = json.loads((round_dir / "inputs.json").read_text())
+    known = {e["file_url"]: e for e in inputs}
+    out: dict[str, dict] = {}
+    for p in json.loads((round_dir / "proposals.json").read_text()):
+        url = p.get("file_url")
+        if url not in known:
+            raise ValueError(f"proposal for URL not in inputs.json: {url}")
+        if p.get("class") not in TRIAGE_CLASSES:
+            raise ValueError(f"{url}: class {p.get('class')!r} not in {TRIAGE_CLASSES}")
+        if not str(p.get("reason") or "").strip():
+            raise ValueError(f"{url}: empty reason")
+        out[url] = {"class": p["class"], "reason": p["reason"].strip()}
+    for url, e in known.items():
+        if not e.get("unreadable") and url not in out:
+            raise ValueError(f"no proposal for {url}")
     return out
 
 

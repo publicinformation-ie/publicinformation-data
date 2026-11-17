@@ -49,3 +49,40 @@ def test_build_inputs_writes_json_and_image(tmp_path):
     assert len(out) == 1 and out[0].link_text == "Log" and out[0].verification_signal == "sig"
     assert (tmp_path / "round" / out[0].image).is_file()
     assert json.loads((tmp_path / "round" / "inputs.json").read_text())[0]["file_url"] == url
+
+
+import pytest
+
+from experiments.gating.triage import load_proposals
+
+
+def _round(tmp_path, inputs, proposals):
+    (tmp_path / "inputs.json").write_text(json.dumps(inputs))
+    (tmp_path / "proposals.json").write_text(json.dumps(proposals))
+    return tmp_path
+
+
+A = {"file_url": "https://x.test/a.pdf", "unreadable": None}
+B = {"file_url": "https://x.test/b.pdf", "unreadable": "encrypted"}
+
+
+def test_load_proposals_valid(tmp_path):
+    rd = _round(tmp_path, [A, B], [{"file_url": A["file_url"], "class": "scan", "reason": "image only"}])
+    assert load_proposals(rd) == {A["file_url"]: {"class": "scan", "reason": "image only"}}
+
+
+@pytest.mark.parametrize("prop", [
+    {"file_url": A["file_url"], "class": "bogus", "reason": "r"},
+    {"file_url": A["file_url"], "class": "scan", "reason": "  "},
+    {"file_url": "https://x.test/zzz.pdf", "class": "scan", "reason": "r"},
+])
+def test_load_proposals_errors_name_url(tmp_path, prop):
+    rd = _round(tmp_path, [A], [prop])
+    with pytest.raises(ValueError, match=prop["file_url"]):
+        load_proposals(rd)
+
+
+def test_load_proposals_missing_readable_input(tmp_path):
+    rd = _round(tmp_path, [A, B], [])
+    with pytest.raises(ValueError, match=A["file_url"]):
+        load_proposals(rd)
