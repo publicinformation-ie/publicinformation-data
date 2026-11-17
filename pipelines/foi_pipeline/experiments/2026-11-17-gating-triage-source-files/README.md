@@ -31,3 +31,23 @@ would reject future disclosure logs whose URL or link text carries them (e.g. a 
 a Department of the Environment log); `application` also has 3 unread unconfirmed hits. The 19 files are
 excluded by explicit URL instead. Cost if wrong: a future non-FOI form of the same family is not auto-rejected
 and returns for another triage round.
+
+## Shipped (Task 8, 2026-11-17)
+
+- Files excluded: the 19 `not_foi_log` entries, now in `steps/verify_disclosure_files/excluded_files.json` (recorded as rejections with signal `manual_exclusion`). Patterns added: none.
+- Run: verify unscoped without `--force` (no downloads, 19 `manual_exclusion` records, `dirty_ids.json` = the 16 bodies of those files: 1047, 1093, 1149, 1177, 1194, 1298, 1391, 1394, 1442, 1443, 1493, 1559, 1602, 1732, 1747, 1867), then `process.py --from transform_disclosure_files --to extract_disclosures_deduplicate` (`Dirty: evicted 103 record(s) for 16 body ID(s)`). Snapshot before the run: `/Volumes/ext/dev/publicinformation/foi-before-source-exclusions-2026-11-17`.
+- Errors before and after: `assess_table_structure` 126 -> 107 (exactly the 19 excluded URLs removed, none added). `transform_disclosure_files` 4 -> 8 and `extract_disclosures_normalize_rows` 444 -> 460 are duplicates only (unique errors identical once `timestamp` is ignored: 4 and 422, none new, none lost). Eviction removes a body's records but not its errors, so the re-run appends the same errors again. Pre-existing behaviour, accepted, not deduplicated, deferred as a minor. `extract_disclosures_canonicalize` 139 and `extract_disclosures_canonicalize_rows` 1316 unchanged.
+- Record counts: every file other than the 19 is unchanged in every step from verify to deduplicate. transform 1445 -> 1426, normalize_rows 1449 -> 1430, canonicalize 58036, canonicalize_rows 57854, deduplicate 52439 (all unchanged: the excluded files had no canonical rows). `before_after.py --bodies` over the 16 bodies: canonicalize_rows 2807 -> 2807, TableStructureUnreliable 22 -> 3.
+- Ledger rebuilt (`uv run python -m experiments.gating.ledger`): gated 107, by kind E 77, G 25, M 5. The kind `S` entries are gone.
+- Files per remaining class (of the 74 kind `S` files): hard_table 40, small_log 15 (both stay in the pipeline), not_foi_log 19 (excluded).
+- Handed to the paid trial (`scan`): 1 file, the only one under 50 chars per page (0.0), classed small_log: `https://assets-eu-01.kc-usercontent.com:443/5608854e-b2c7-0144-a5f6-88a7e629b0a4/e1a94111-56fd-43da-8326-7c328c24478c/foi-disclosure-log-2024.pdf`.
+
+### Verifier signals shared by three or more `not_foi_log` files (for a later decision on the verifier, no code change)
+
+| verification_signal | not_foi_log files |
+|---|---|
+| decision, foi | 7 |
+| freedom of information, foi | 5 |
+| freedom of information, decision | 4 |
+
+(The other two files carry `url:freedom of information, foi` x2 and `disclosure log` x1.)

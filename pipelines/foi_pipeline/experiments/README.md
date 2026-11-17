@@ -10,6 +10,7 @@ Experiments live in dated subdirectories (`YYYY-MM-DD-<slug>/`). Each has its ow
 | 2026-06-04 | [pdfplumber-param-sweep](2026-06-04-pdfplumber-param-sweep/) | `snap_tolerance=6` adds +6.7pp clean rate; adopted as config 4 |
 | 2026-11-14 | [pdf-extractor-bakeoff](2026-11-14-pdf-extractor-bakeoff/) | Cached Mistral replay: 74 clean vs 78 current of 208 cached error PDFs; no gain |
 | 2026-11-15 | [gating-round-01-1594-non-personal](2026-11-15-gating-round-01-1594-non-personal/) | Gate fault (DD-Mon-YY dates misread as references): `gate-dd-mon-yy` passes 4/4 files, +568 records, 0 controls worse; NOT shipped (user: no, current is wrong on 3 controls) |
+| 2026-11-17 | [gating-triage-source-files](2026-11-17-gating-triage-source-files/) | Triage of 74 source files (kind S): 19 non-FOI files (forms, guides) excluded upstream in verify_disclosure_files, 40 hard_table, 15 small_log; assess errors 126 -> 107, no change to any other file's records; no URL pattern added |
 
 ## Gating rounds
 
