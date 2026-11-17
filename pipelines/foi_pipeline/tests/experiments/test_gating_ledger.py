@@ -87,3 +87,35 @@ def test_triage_class_round_trips_into_entry(tmp_path):
     assert es[0].triage_class == "scan"
     ledger.set_state([GATED_URL], state_path=sp, triage_class="small_log")
     assert json.loads(sp.read_text())[GATED_URL]["triage_class"] == "small_log"
+
+
+def test_retired_s_proposal_takes_cluster_from_triaged_kind(tmp_path):
+    steps = make_steps(tmp_path / "steps")
+    sp = tmp_path / "s.json"
+    ledger.set_state([GATED_URL], state_path=sp, fault_kind="E", triage_class="hard_table")
+    # no snapshot rows before the gate -> proposed kind S
+    es = ledger.build_ledger(steps, make_steps(tmp_path / "snap0", gated_records=0), sp, _cache(tmp_path, GATED_URL))
+    assert es[0].cluster.startswith("7-E-")
+    # a non-S proposal keeps its own kind in the cluster id
+    es = ledger.build_ledger(steps, _snapshot(tmp_path), tmp_path / "none.json", _cache(tmp_path, GATED_URL))
+    assert es[0].fault_kind == "G" and es[0].cluster.startswith("7-G-")
+
+
+def test_estimate_rows_counts_date_and_reference_lines():
+    import pymupdf
+    doc = pymupdf.open()
+    page = doc.new_page()
+    page.insert_text((50, 100), "Header line\n01/02/2024 Request one\nFOI-2024-001 two\nplain text", fontsize=10)
+    data = doc.tobytes()
+    assert ledger.estimate_rows(data) == 2
+    assert ledger.estimate_rows(None) is None
+    assert ledger.estimate_rows(b"not a pdf") is None
+
+
+def test_est_rows_only_where_recoverable_zero(tmp_path):
+    steps = make_steps(tmp_path / "steps")
+    es = ledger.build_ledger(steps, make_steps(tmp_path / "snap0", gated_records=0), tmp_path / "n.json",
+                             _cache(tmp_path, GATED_URL))
+    assert es[0].recoverable == 0 and es[0].est_rows is None  # fake bytes are not a PDF
+    es = ledger.build_ledger(steps, _snapshot(tmp_path), tmp_path / "n.json", _cache(tmp_path, GATED_URL))
+    assert es[0].recoverable == 30 and es[0].est_rows is None

@@ -51,29 +51,29 @@
     "cluster": "1594-non-personal-2017-2020",
     "fault_firm": true,
     "fault_kind": "G",
-    "note": "experiments/2026-11-15-gating-round-01-1594-non-personal (gate-dd-mon-yy wins; not shipped)",
-    "status": "open"
+    "note": "no longer gated after D-Mon-YY gate fix (PR #29); see experiments/2026-11-15-gating-round-01-1594-non-personal",
+    "status": "resolved"
   },
   "https://assets.gov.ie/static/documents/non-personal-foi-requests-2018.pdf": {
     "cluster": "1594-non-personal-2017-2020",
     "fault_firm": true,
     "fault_kind": "G",
-    "note": "experiments/2026-11-15-gating-round-01-1594-non-personal (gate-dd-mon-yy wins; not shipped)",
-    "status": "open"
+    "note": "no longer gated after D-Mon-YY gate fix (PR #29); see experiments/2026-11-15-gating-round-01-1594-non-personal",
+    "status": "resolved"
   },
   "https://assets.gov.ie/static/documents/non-personal-foi-requests-2019.pdf": {
     "cluster": "1594-non-personal-2017-2020",
     "fault_firm": true,
     "fault_kind": "G",
-    "note": "experiments/2026-11-15-gating-round-01-1594-non-personal (gate-dd-mon-yy wins; not shipped)",
-    "status": "open"
+    "note": "no longer gated after D-Mon-YY gate fix (PR #29); see experiments/2026-11-15-gating-round-01-1594-non-personal",
+    "status": "resolved"
   },
   "https://assets.gov.ie/static/documents/non-personal-foi-requests-2020.pdf": {
     "cluster": "1594-non-personal-2017-2020",
     "fault_firm": true,
     "fault_kind": "G",
-    "note": "experiments/2026-11-15-gating-round-01-1594-non-personal (gate-dd-mon-yy wins; not shipped)",
-    "status": "open"
+    "note": "no longer gated after D-Mon-YY gate fix (PR #29); see experiments/2026-11-15-gating-round-01-1594-non-personal",
+    "status": "resolved"
   },
   "https://assets.gov.ie/static/documents/q4-2017-foi-disclosure-log.pdf": {
     "fault_firm": true,
