@@ -16,6 +16,7 @@ there exactly as it does when browsed here on GitHub.
 | [FOI Request Files](latest/foi-request-files/README.md) | The original source documents each disclosure record came from. |
 | [Who Does What](latest/who-does-what/README.md) | Links from each public body to its page on the Government's "Who Does What" directory. |
 | [data.gov.ie Links](latest/data-gov-ie-links/README.md) | Links from each public body to its organisation page on data.gov.ie, Ireland's open data portal. |
+| [datacatalogue.gov.ie Links](latest/datacatalogue-gov-ie-links/README.md) | Links from each public body to its organisation page on datacatalogue.gov.ie, the Public Service Data Catalogue of the data public sector bodies hold. |
 | [lobbying.ie Links](latest/lobbying-ie-links/README.md) | Links from each public body to its page on lobbying.ie, Ireland's Register of Lobbying. |
 | [Staff Numbers](latest/staff-numbers/README.md) | Full-time-equivalent staff numbers for public bodies in the latest reported quarter, from the Department of Public Expenditure's public service numbers file. |
 | [Public Body Actions](latest/public-body-actions/README.md) | The published commitments ("actions") of public bodies, taken from their strategy and action-plan documents, with status updates from later progress reports. |

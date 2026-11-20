@@ -40,6 +40,18 @@ The Department of Public Expenditure, NDP Delivery and Reform operates the offic
 
 ---
 
+## datacatalogue.gov.ie
+
+**Source:** [datacatalogue.gov.ie — Public Service Data Catalogue](https://datacatalogue.gov.ie/organization/)
+
+The Public Service Data Catalogue is a single information point where Irish public sector bodies list the data they hold — including "protected data" holdings under the EU Data Governance Act — and where data reusers can make a data request. We use its CKAN organisation list to link each canonical public body to its organisation page on the catalogue.
+
+**Licence:** not stated. The catalogue publishes no reuse licence; its pages carry only "© Government of Ireland". The derived dataset reproduces each organisation's name, page URL and its own self-description, and adds only the identifier matching, so check the catalogue's terms before reusing the underlying descriptions.
+
+> Source: Public Service Data Catalogue (datacatalogue.gov.ie), Government of Ireland.
+
+---
+
 ## Irish Public Body Websites
 
 We crawl the individual websites of Irish public bodies to locate their FOI pages, collect FOI contact details, and retrieve disclosure log documents (PDF, XLSX, XLS). The data published here — FOI request records, decision statuses, and related metadata — originates from these disclosure logs and is reproduced for transparency and public interest purposes.

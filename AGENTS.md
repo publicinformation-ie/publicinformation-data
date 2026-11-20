@@ -73,6 +73,14 @@ cd pipelines/foi_pipeline && uv run python process.py --force --stop-on-error
 
 Paid steps: `search_websites_apify` (apify), `search_websites_llm` (llm).
 
+### `datacatalogue_pipeline` (3 steps)
+
+| # | Step |
+|---:|---|
+| 1 | `fetch_datacatalogue_orgs` |
+| 2 | `match_public_bodies` |
+| 3 | `apply_overrides` |
+
 ### `datagovie_pipeline` (3 steps)
 
 | # | Step |
@@ -258,6 +266,7 @@ pipelines/
   cso_pipeline/        # CSO Register ingestion; resolve_website_urls reused by foi_pipeline
   wdw_pipeline/        # "Who Does What" plain-English descriptions
   datagovie_pipeline/  # data.gov.ie organisation links
+  datacatalogue_pipeline/  # datacatalogue.gov.ie organisation links
   foigovie_pipeline/   # foi.gov.ie body matching
   lobbying_pipeline/   # Lobbying Register body matching
 scripts/               # Helper/admin tools — which script for which question: scripts/AGENTS.md
