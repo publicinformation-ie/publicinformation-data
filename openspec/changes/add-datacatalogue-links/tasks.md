@@ -26,9 +26,9 @@
 
 ## 5. Discovery and documentation
 
-- [ ] 5.1 Add the dataset to the `README.md` dataset table (with its count) and pipeline table, to the repository-structure tree, and to the `tests/test_readme_dataset_counts.py` mapping. Verify that `uv run pytest tests/test_readme_dataset_counts.py -q` passes.
-- [ ] 5.2 Add the dataset to `public/get-the-data.html` (a download block and the reference-pages sentence), and add a `DATA_SOURCES.md` attribution with the source's licence as stated on the site. Verify that the links resolve to existing files under `public/latest/`.
-- [ ] 5.3 Add a `public/CHANGELOG.md` entry for datacatalogue-gov-ie-links v1.0.0, and add the pipeline to the `AGENTS.md` repository-structure list. Run `uv run python scripts/generate_pipeline_docs.py`. Verify that `git diff AGENTS.md` shows the new step-sequence table and that the generated-docs consistency check passes.
+- [x] 5.1 Add the dataset to the `README.md` dataset table (with its count) and pipeline table, to the repository-structure tree, and to the `tests/test_readme_dataset_counts.py` mapping. Verify that `uv run pytest tests/test_readme_dataset_counts.py -q` passes.
+- [x] 5.2 Add the dataset to `public/get-the-data.html` (a download block and the reference-pages sentence), and add a `DATA_SOURCES.md` attribution with the source's licence as stated on the site. Verify that the links resolve to existing files under `public/latest/`.
+- [x] 5.3 Add a `public/CHANGELOG.md` entry for datacatalogue-gov-ie-links v1.0.0, and add the pipeline to the `AGENTS.md` repository-structure list. Run `uv run python scripts/generate_pipeline_docs.py`. Verify that `git diff AGENTS.md` shows the new step-sequence table and that the generated-docs consistency check passes.
 
 ## 6. Integration check
 

@@ -32,6 +32,10 @@ Links from each public body to its page on the Government's "Who Does What" dire
 
 Links from each public body to its organisation page on data.gov.ie, Ireland's open data portal.
 
+## [datacatalogue.gov.ie links](latest/datacatalogue-gov-ie-links/datacatalogue-gov-ie-links.csv)
+
+Links from each public body to its organisation page on datacatalogue.gov.ie, the Public Service Data Catalogue where public sector bodies list the data they hold, including "protected data" holdings under the EU Data Governance Act. A different catalogue from data.gov.ie, and a separate dataset.
+
 ## [lobbying.ie links](latest/lobbying-ie-links/lobbying-ie-links.csv)
 
 Links from each public body to its page on lobbying.ie, Ireland's Register of Lobbying, with a point-in-time count of lobbying returns filed against it.
@@ -82,6 +86,6 @@ In Google Sheets, use `=IMPORTDATA("https://data.publicinformation.ie/latest/act
 
 ---
 
-Want the full technical details behind each file (every column, how the data was collected, what to watch out for)? See the [Public Bodies](latest/public-bodies/README.md), [FOI Disclosures](latest/foi-disclosures/README.md), [FOI Request Files](latest/foi-request-files/README.md), [Who Does What](latest/who-does-what/README.md), [data.gov.ie Links](latest/data-gov-ie-links/README.md), [lobbying.ie Links](latest/lobbying-ie-links/README.md), [Staff Numbers](latest/staff-numbers/README.md), [Public Body Actions](latest/public-body-actions/README.md), [Motions](latest/motions/README.md), and [Transport Policies](latest/transport-policies/README.md) reference pages.
+Want the full technical details behind each file (every column, how the data was collected, what to watch out for)? See the [Public Bodies](latest/public-bodies/README.md), [FOI Disclosures](latest/foi-disclosures/README.md), [FOI Request Files](latest/foi-request-files/README.md), [Who Does What](latest/who-does-what/README.md), [data.gov.ie Links](latest/data-gov-ie-links/README.md), [datacatalogue.gov.ie Links](latest/datacatalogue-gov-ie-links/README.md), [lobbying.ie Links](latest/lobbying-ie-links/README.md), [Staff Numbers](latest/staff-numbers/README.md), [Public Body Actions](latest/public-body-actions/README.md), [Motions](latest/motions/README.md), and [Transport Policies](latest/transport-policies/README.md) reference pages.
 
 Wondering how complete this data is, or found something that looks wrong? See [Data quality & reporting a problem](DATA_QUALITY.md).

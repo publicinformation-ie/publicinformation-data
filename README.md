@@ -29,7 +29,7 @@ Start at [`public/README.md`](public/README.md) — the data hub, with one entry
 
 #### Curated Linked Data datasets
 
-Ten datasets are published as versioned Linked Data under `public/latest/<dataset>/` (always the newest release) and `public/vX.Y.Z/<dataset>/` (immutable per-version snapshots), each with its own JSON-LD, CSV, and CSV metadata (Transport Policies is the exception: CSV and CSV metadata only, no JSON-LD), plus a dataset-specific `README.md`:
+Twelve datasets are published as versioned Linked Data under `public/latest/<dataset>/` (always the newest release) and `public/vX.Y.Z/<dataset>/` (immutable per-version snapshots), each with its own JSON-LD, CSV, and CSV metadata (Transport Policies is the exception: CSV and CSV metadata only, no JSON-LD), plus a dataset-specific `README.md`:
 
 | Dataset | Version | Records | Docs |
 |---------|---------|---------|------|
@@ -39,13 +39,14 @@ Ten datasets are published as versioned Linked Data under `public/latest/<datase
 | Who Does What | v1.0.0 | 27 | [`public/latest/who-does-what/README.md`](public/latest/who-does-what/README.md) |
 | Transport Policies | v1.0.0 | 21 | [`public/latest/transport-policies/README.md`](public/latest/transport-policies/README.md) |
 | data.gov.ie Links | v1.0.0 | 137 | [`public/latest/data-gov-ie-links/README.md`](public/latest/data-gov-ie-links/README.md) |
+| datacatalogue.gov.ie Links | v1.0.0 | 76 | [`public/latest/datacatalogue-gov-ie-links/README.md`](public/latest/datacatalogue-gov-ie-links/README.md) |
 | lobbying.ie Links | v1.0.0 | 121 | [`public/latest/lobbying-ie-links/README.md`](public/latest/lobbying-ie-links/README.md) |
 | Staff Numbers | v1.0.0 | 220 | [`public/latest/staff-numbers/README.md`](public/latest/staff-numbers/README.md) |
 | Public Body Actions | v3.2.0 | 839 | [`public/latest/public-body-actions/README.md`](public/latest/public-body-actions/README.md) |
 | Motions | v1.0.0 | 3,959 | [`public/latest/motions/README.md`](public/latest/motions/README.md) |
 | Active Travel Allocations | v1.0.0 | 4,875 | [`public/latest/active-travel-allocations/README.md`](public/latest/active-travel-allocations/README.md) |
 
-`public-bodies` is regenerated automatically by the FOI pipeline's `export_status` step on every full run (logic in `src/lib/publish_public_bodies.py`), so it always stays in lockstep with `pipeline-data.json`; the other datasets are produced by standalone `scripts/transform_*.py` — ten such scripts as of this writing (`ls scripts/transform_*.py`).
+`public-bodies` is regenerated automatically by the FOI pipeline's `export_status` step on every full run (logic in `src/lib/publish_public_bodies.py`), so it always stays in lockstep with `pipeline-data.json`; the other datasets are produced by standalone `scripts/transform_*.py` — eleven such scripts as of this writing (`ls scripts/transform_*.py`).
 
 Supporting technical-reference files: [`public/catalog/`](public/catalog/) (one DCAT-AP `.ttl` per dataset) and [`public/schemas/`](public/schemas/) (one JSON Schema per dataset).
 
@@ -64,7 +65,7 @@ These are regenerated automatically when the pipeline runs and are safe to use d
 
 ### Run the Pipeline Locally
 
-There are four pipelines under `pipelines/`, each with its own `pipeline.json` step order. `process.py` takes the pipeline directory as its first (mandatory) argument:
+There are thirteen pipelines under `pipelines/`, each with its own `pipeline.json` step order. `process.py` takes the pipeline directory as its first (mandatory) argument. The most commonly used are listed here:
 
 | Pipeline | What it does |
 |----------|---------------|
@@ -72,6 +73,7 @@ There are four pipelines under `pipelines/`, each with its own `pipeline.json` s
 | `cso_pipeline` | Ingests Ireland's [CSO Register of Public Sector Bodies](https://www.cso.ie/) as a more authoritative source of body/website/sector data; also supplies the `resolve_website_urls` step reused by `foi_pipeline` |
 | `wdw_pipeline` | Builds the "Who Does What" dataset — links from public bodies to their plain-English gov.ie description |
 | `datagovie_pipeline` | Links public bodies to their organisation page on [data.gov.ie](https://data.gov.ie/), Ireland's open data portal |
+| `datacatalogue_pipeline` | Links public bodies to their organisation page on [datacatalogue.gov.ie](https://datacatalogue.gov.ie/), the Public Service Data Catalogue |
 
 ```bash
 # Clone the repository
@@ -202,14 +204,15 @@ publicinformation-data/
 ├── .env.admin.example             # Environment configuration template
 ├── local.db                       # Local SQLite database (gitignored)
 │
-├── pipelines/                     # Four independent pipelines, each with process.py + pipeline.json
+├── pipelines/                     # Independent pipelines, each with process.py + pipeline.json
 │   ├── foi_pipeline/               # Main pipeline — see pipelines/foi_pipeline/AGENTS.md
 │   │   ├── steps/                  # Step implementations — see steps/README.md
 │   │   ├── experiments/            # Ad-hoc extraction-quality investigations — see experiments/README.md
 │   │   └── evaluation/             # Quality scoring framework — see evaluation/AGENTS.md
 │   ├── cso_pipeline/               # CSO Register ingestion
 │   ├── wdw_pipeline/               # "Who Does What" link builder
-│   └── datagovie_pipeline/         # data.gov.ie organisation-link builder
+│   ├── datagovie_pipeline/         # data.gov.ie organisation-link builder
+│   └── datacatalogue_pipeline/     # datacatalogue.gov.ie organisation-link builder
 │
 ├── scripts/                       # Helper and admin scripts — see scripts/README.md
 │

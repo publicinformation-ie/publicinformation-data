@@ -4,6 +4,20 @@ All notable changes to the Public Bodies dataset will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [datacatalogue-gov-ie-links 1.0.0] - 2026-11-20
+
+### Added
+- A new dataset, `datacatalogue-gov-ie-links`: 76 links from Irish public bodies to their organisation page on datacatalogue.gov.ie, the Public Service Data Catalogue. Each record carries the organisation's slug, display name and URL, its dataset count and self-description where the source provides them, and the `public-bodies` `@id` it resolves to. 58 of the 85 listed organisations matched by name, 18 more resolved through a reviewed override, and 9 were dropped as unresolved.
+- A new pipeline, `pipelines/datacatalogue_pipeline/`, with three steps (`fetch_datacatalogue_orgs`, `match_public_bodies`, `apply_overrides`) and a reviewed `override.json`.
+- `public/catalog/dataset-datacatalogue-gov-ie-links.ttl`, `public/schemas/datacatalogue-gov-ie-links.schema.json`, `scripts/transform_datacatalogue_links.py`, and the dataset README, CSVW metadata and discovery links.
+
+### Notes
+- MAJOR: initial publication of a new dataset at schema version 1.0.0. No existing dataset is modified.
+- A separate dataset from `data-gov-ie-links`, on purpose: data.gov.ie publishes open datasets, while datacatalogue.gov.ie inventories the data public sector bodies hold, including "protected data" under the EU Data Governance Act.
+- Overrides exist mainly because the catalogue carries the name a body had when its page was created: departments renamed since do not match on name alone, and several bodies are listed under their Irish name.
+- Successor bodies (Commission for Aviation Regulation, Science Foundation Ireland) are left unlinked rather than pointed at the body that absorbed them.
+- The source publishes no reuse licence; its pages carry only "© Government of Ireland".
+
 ## [staff-numbers 1.0.0] - 2026-11-20
 
 ### Added
