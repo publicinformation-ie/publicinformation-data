@@ -66,4 +66,16 @@ The NTA allocates this funding to local authorities, public transport bodies and
 
 ---
 
+## Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation (PER)
+
+**Source:** [PER Databank — Open Data PS Numbers Source](https://databank.per.gov.ie/OpenData/Open%20Data%20PS%20Numbers%20Source.csv)
+
+Quarterly public service numbers (full-time-equivalent staff) by department, sector and body. We publish the most recent quarter, matched to our canonical list of public bodies.
+
+**Licence:** not yet confirmed. The derived dataset adds matching and structure only; check the PER Databank's terms before reusing the underlying figures.
+
+> Source: Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation, Public Service Numbers.
+
+---
+
 *If you are a public body and have a concern about how your data is represented here, please contact us.*

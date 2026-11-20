@@ -40,11 +40,12 @@ Ten datasets are published as versioned Linked Data under `public/latest/<datase
 | Transport Policies | v1.0.0 | 21 | [`public/latest/transport-policies/README.md`](public/latest/transport-policies/README.md) |
 | data.gov.ie Links | v1.0.0 | 137 | [`public/latest/data-gov-ie-links/README.md`](public/latest/data-gov-ie-links/README.md) |
 | lobbying.ie Links | v1.0.0 | 121 | [`public/latest/lobbying-ie-links/README.md`](public/latest/lobbying-ie-links/README.md) |
+| Staff Numbers | v1.0.0 | 220 | [`public/latest/staff-numbers/README.md`](public/latest/staff-numbers/README.md) |
 | Public Body Actions | v3.2.0 | 839 | [`public/latest/public-body-actions/README.md`](public/latest/public-body-actions/README.md) |
 | Motions | v1.0.0 | 3,959 | [`public/latest/motions/README.md`](public/latest/motions/README.md) |
 | Active Travel Allocations | v1.0.0 | 4,875 | [`public/latest/active-travel-allocations/README.md`](public/latest/active-travel-allocations/README.md) |
 
-`public-bodies` is regenerated automatically by the FOI pipeline's `export_status` step on every full run (logic in `src/lib/publish_public_bodies.py`), so it always stays in lockstep with `pipeline-data.json`; the other datasets are produced by standalone `scripts/transform_*.py` — nine such scripts as of this writing (`ls scripts/transform_*.py`).
+`public-bodies` is regenerated automatically by the FOI pipeline's `export_status` step on every full run (logic in `src/lib/publish_public_bodies.py`), so it always stays in lockstep with `pipeline-data.json`; the other datasets are produced by standalone `scripts/transform_*.py` — ten such scripts as of this writing (`ls scripts/transform_*.py`).
 
 Supporting technical-reference files: [`public/catalog/`](public/catalog/) (one DCAT-AP `.ttl` per dataset) and [`public/schemas/`](public/schemas/) (one JSON Schema per dataset).
 
@@ -298,7 +299,7 @@ All files in the `public/` directory are safe for direct use. There are two tier
 
 ### Curated Linked Data datasets
 
-The curated datasets — Public Bodies, FOI Disclosures, FOI Request Files, Who Does What, data.gov.ie Links, lobbying.ie Links, Public Body Actions, Motions, and Transport Policies — implement 3-4 star Linked Data best practices and are published as JSON-LD + CSV (Transport Policies is the exception: CSV only) under `public/latest/<dataset>/` (always the newest release) and `public/vX.Y.Z/<dataset>/` (immutable per-version snapshots). Each dataset has its own `README.md` documenting its data model, versioning, and provenance — see the table in [Get the Data](#get-the-data) above. Shared technical-reference files:
+The curated datasets — Public Bodies, FOI Disclosures, FOI Request Files, Who Does What, data.gov.ie Links, lobbying.ie Links, Staff Numbers, Public Body Actions, Motions, and Transport Policies — implement 3-4 star Linked Data best practices and are published as JSON-LD + CSV (Transport Policies is the exception: CSV only) under `public/latest/<dataset>/` (always the newest release) and `public/vX.Y.Z/<dataset>/` (immutable per-version snapshots). Each dataset has its own `README.md` documenting its data model, versioning, and provenance — see the table in [Get the Data](#get-the-data) above. Shared technical-reference files:
 
 - **`public/catalog/`**: DCAT-AP 3.0 compliant dataset metadata (RDF/Turtle), one `.ttl` per dataset
 - **`public/schemas/`**: JSON Schema for validation, one per dataset
