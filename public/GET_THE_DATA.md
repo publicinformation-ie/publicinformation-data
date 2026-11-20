@@ -36,6 +36,10 @@ Links from each public body to its organisation page on data.gov.ie, Ireland's o
 
 Links from each public body to its page on lobbying.ie, Ireland's Register of Lobbying, with a point-in-time count of lobbying returns filed against it.
 
+## [Staff numbers](latest/staff-numbers/staff-numbers.csv)
+
+Full-time-equivalent (FTE) staff numbers for the latest reported quarter, from the Department of Public Expenditure's public service numbers file. Each row is linked to a public body where its name could be matched; aggregates such as Second Level Education are kept as unmatched rows so the totals still add up.
+
 ## [Public body actions](latest/public-body-actions/actions.csv)
 
 The published commitments ("actions") of public bodies, taken from their strategy and action-plan documents, together with how each action's reported status changed in later progress reports.
@@ -78,6 +82,6 @@ In Google Sheets, use `=IMPORTDATA("https://data.publicinformation.ie/latest/act
 
 ---
 
-Want the full technical details behind each file (every column, how the data was collected, what to watch out for)? See the [Public Bodies](latest/public-bodies/README.md), [FOI Disclosures](latest/foi-disclosures/README.md), [FOI Request Files](latest/foi-request-files/README.md), [Who Does What](latest/who-does-what/README.md), [data.gov.ie Links](latest/data-gov-ie-links/README.md), [lobbying.ie Links](latest/lobbying-ie-links/README.md), [Public Body Actions](latest/public-body-actions/README.md), [Motions](latest/motions/README.md), and [Transport Policies](latest/transport-policies/README.md) reference pages.
+Want the full technical details behind each file (every column, how the data was collected, what to watch out for)? See the [Public Bodies](latest/public-bodies/README.md), [FOI Disclosures](latest/foi-disclosures/README.md), [FOI Request Files](latest/foi-request-files/README.md), [Who Does What](latest/who-does-what/README.md), [data.gov.ie Links](latest/data-gov-ie-links/README.md), [lobbying.ie Links](latest/lobbying-ie-links/README.md), [Staff Numbers](latest/staff-numbers/README.md), [Public Body Actions](latest/public-body-actions/README.md), [Motions](latest/motions/README.md), and [Transport Policies](latest/transport-policies/README.md) reference pages.
 
 Wondering how complete this data is, or found something that looks wrong? See [Data quality & reporting a problem](DATA_QUALITY.md).

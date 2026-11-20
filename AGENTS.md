@@ -170,6 +170,14 @@ Paid steps: `find_foi_pages_search` (apify), `find_disclosure_pages` (apify), `t
 
 Paid steps: `find_meeting_minutes_pages_search` (apify), `extract_motions` (llm).
 
+### `staffnumbers_pipeline` (3 steps)
+
+| # | Step |
+|---:|---|
+| 1 | `fetch_staff_numbers` |
+| 2 | `match_public_bodies` |
+| 3 | `apply_overrides` |
+
 ### `statespend_pipeline` (3 steps)
 
 | # | Step |

@@ -4,6 +4,19 @@ All notable changes to the Public Bodies dataset will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [staff-numbers 1.0.0] - 2026-11-20
+
+### Added
+- A new dataset, `staff-numbers`: 220 rows of full-time-equivalent (FTE) staff numbers for the 2025 Q4 reporting quarter, from the Department of Public Expenditure's public service numbers file. 173 rows are linked to 172 public bodies via their `public-bodies` `@id` (96 `exact`, 29 local-authority `rule`, 48 reviewed `override`); 47 are kept as `unmatched` rows (aggregates, sub-units and rows awaiting review) so the published FTE sums to the source total.
+- A new pipeline, `pipelines/staffnumbers_pipeline/`, with three steps (`fetch_staff_numbers`, `match_public_bodies`, `apply_overrides`), a reviewed `override.json`, and `scripts/transform_staff_numbers.py`.
+- `public/catalog/dataset-staff-numbers.ttl`, `public/schemas/staff-numbers.schema.json`, the CSVW metadata and the dataset README.
+
+### Notes
+- MAJOR: initial publication of a new dataset at schema version 1.0.0. No existing dataset is modified.
+- Single quarter only; the source holds a quarterly series back to 2008 that is not published in this release.
+- Matching is deterministic (exact normalised name, or local-authority rewrite). There is no fuzzy threshold: near-misses are decided by a person and recorded in `override.json`.
+- The licence of the source file has not been confirmed.
+
 ## [active-travel-allocations 1.0.0] - 2026-11-15
 
 ### Added

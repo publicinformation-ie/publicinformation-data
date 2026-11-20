@@ -1,0 +1,60 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+<https://data.publicinformation.ie/dataset/staff-numbers>
+    a dcat:Dataset ;
+    dct:title "Public Service Staff Numbers for Irish Public Bodies"@en ;
+    dct:description "Full-time-equivalent (FTE) staff numbers for Irish public bodies, from the Department of Public Expenditure, Infrastructure, Public Service Reform and Digitalisation's public service numbers file. One row per source row for the latest reported quarter, each linked to a canonical public body where the name could be resolved and otherwise kept as an unmatched row so no headcount is dropped."@en ;
+    dct:publisher <https://www.publicinformation.ie/> ;
+    dct:creator <https://www.publicinformation.ie/> ;
+    dct:issued "2026-11-20"^^xsd:date ;
+    dct:modified "2026-11-20"^^xsd:date ;
+    owl:versionInfo "1.0.0" ;
+    dct:language <http://publications.europa.eu/resource/authority/language/ENG> ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcat:keyword "staff numbers", "public service", "employment", "FTE", "Ireland", "government"@en ;
+    dcat:theme <http://data.europa.eu/m8g/GOVERNMENT> ;
+    dcat:contactPoint [
+        a vcard:Organization ;
+        vcard:fn "PublicInformation.ie" ;
+        vcard:hasEmail <mailto:dave@publicinformation.ie> ;
+    ] ;
+    dct:relation <https://data.publicinformation.ie/dataset/public-bodies> ;
+
+    dcat:distribution [
+        a dcat:Distribution ;
+        dct:title "Staff Numbers (JSON-LD, latest)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/staff-numbers/staff-numbers.jsonld> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/staff-numbers/staff-numbers.jsonld> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "application/ld+json" ;
+        dct:conformsTo <https://data.publicinformation.ie/schemas/staff-numbers.schema.json> ;
+    ] , [
+        a dcat:Distribution ;
+        dct:title "Staff Numbers (CSV, latest)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/staff-numbers/staff-numbers.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/staff-numbers/staff-numbers.csv> ;
+        dct:conformsTo <http://www.w3.org/ns/csvw> ;
+        dct:conformsTo <https://data.publicinformation.ie/v1.0.0/staff-numbers/staff-numbers.csv-metadata.json> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "text/csv" ;
+    ] .
+
+<https://data.publicinformation.ie/dataset/staff-numbers>
+    prov:wasGeneratedBy [
+        a prov:Activity ;
+        prov:startedAtTime "2026-11-20T00:00:00Z"^^xsd:dateTime ;
+        prov:wasAssociatedWith [
+            a prov:Agent ;
+            prov:actedOnBehalfOf <https://www.publicinformation.ie/> ;
+            foaf:name "PublicInformation.ie Pipeline" ;
+            foaf:homepage <https://github.com/publicinformation-ie/publicinformation-data> ;
+        ] ;
+    ] .
