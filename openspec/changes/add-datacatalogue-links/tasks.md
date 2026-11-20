@@ -19,10 +19,10 @@
 
 ## 4. Published dataset
 
-- [ ] 4.1 Write `public/schemas/datacatalogue-gov-ie-links.schema.json` and `public/catalog/dataset-datacatalogue-gov-ie-links.ttl` (v1.0.0, relation to `public-bodies`, both distributions), modelled on the `data-gov-ie-links` files. Verify that the `.ttl` parses (`uv run python -c "import rdflib; rdflib.Graph().parse('public/catalog/dataset-datacatalogue-gov-ie-links.ttl')"`, or the repo's existing catalog test).
-- [ ] 4.2 Implement `scripts/transform_datacatalogue_links.py` (JSON-LD and CSV, CSVW metadata, fail on an unknown `public_body_id`, `stamp_if_changed`, copy to `latest/`). Verify with `tests/test_transform_datacatalogue_links.py`, which covers record building, the unknown-id error, CSV rows, and `dct:modified` staying put on unchanged content.
-- [ ] 4.3 Run the transform and add `tests/test_datacatalogue_gov_ie_links_schema.py`. Verify that `uv run pytest tests/test_datacatalogue_gov_ie_links_schema.py -q` passes against the generated JSON-LD.
-- [ ] 4.4 Write `public/v1.0.0/datacatalogue-gov-ie-links/README.md` (data model, provenance, how this catalogue differs from data.gov.ie, matching caveats) and copy it to `latest/`. Verify by checking that the README's field list matches the CSV header.
+- [x] 4.1 Write `public/schemas/datacatalogue-gov-ie-links.schema.json` and `public/catalog/dataset-datacatalogue-gov-ie-links.ttl` (v1.0.0, relation to `public-bodies`, both distributions), modelled on the `data-gov-ie-links` files. Verify that the `.ttl` parses (`uv run python -c "import rdflib; rdflib.Graph().parse('public/catalog/dataset-datacatalogue-gov-ie-links.ttl')"`, or the repo's existing catalog test).
+- [x] 4.2 Implement `scripts/transform_datacatalogue_links.py` (JSON-LD and CSV, CSVW metadata, fail on an unknown `public_body_id`, `stamp_if_changed`, copy to `latest/`). Verify with `tests/test_transform_datacatalogue_links.py`, which covers record building, the unknown-id error, CSV rows, and `dct:modified` staying put on unchanged content.
+- [x] 4.3 Run the transform and add `tests/test_datacatalogue_gov_ie_links_schema.py`. Verify that `uv run pytest tests/test_datacatalogue_gov_ie_links_schema.py -q` passes against the generated JSON-LD.
+- [x] 4.4 Write `public/v1.0.0/datacatalogue-gov-ie-links/README.md` (data model, provenance, how this catalogue differs from data.gov.ie, matching caveats) and copy it to `latest/`. Verify by checking that the README's field list matches the CSV header.
 
 ## 5. Discovery and documentation
 
