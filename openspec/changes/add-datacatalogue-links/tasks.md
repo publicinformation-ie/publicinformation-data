@@ -32,8 +32,8 @@
 
 ## 6. Integration check
 
-- [ ] 6.1 Run `uv run pytest tests -q`, `uv run pytest pipelines/datacatalogue_pipeline/tests -q`, `uv run pyright` and `uv run python scripts/pipeline_status.py --pipeline datacatalogue_pipeline`. Verify that everything passes and that the status tool reports the pipeline with no paid steps.
-- [ ] 6.2 Review the `public/` diff (record count, a sample of links opened in a browser, no unexpected changes to other datasets). Verify that the record count matches the `apply_overrides` summary line.
+- [x] 6.1 Run `uv run pytest tests -q`, `uv run pytest pipelines/datacatalogue_pipeline/tests -q`, `uv run pyright` and `uv run python scripts/pipeline_status.py --pipeline datacatalogue_pipeline`. Verify that everything passes and that the status tool reports the pipeline with no paid steps.
+- [x] 6.2 Review the `public/` diff (record count, a sample of links opened in a browser, no unexpected changes to other datasets). Verify that the record count matches the `apply_overrides` summary line.
 
 ## Workflow follow-up
 

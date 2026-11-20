@@ -58,6 +58,10 @@ def test_drop_unresolved_is_not_fatal_when_records_remain(tmp_path, monkeypatch)
         "process.py", "--input", str(input_path), "--output", str(output_path), "--force",
     ])
     from steps.apply_overrides import process as proc_mod
+
+    # Redirect the step dir too: main() writes pipeline-status.json next to
+    # __file__, which would otherwise overwrite the live step's status file.
+    monkeypatch.setattr(proc_mod, "__file__", str(tmp_path / "process.py"))
     proc_mod.main()  # must not raise / sys.exit
 
     output = json.loads(output_path.read_text())
