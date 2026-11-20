@@ -15,7 +15,7 @@
 
 - [x] 3.1 Implement `steps/match_public_bodies/process.py` and its `README.md` (copied from datagovie, keyed on `datacatalogue_slug`, writing `match_log.json`). Verify that `tests/test_match_public_bodies.py` covers a match above the threshold, a match below it, and resuming via `IncrementalWriter`.
 - [x] 3.2 Implement `steps/apply_overrides/process.py`, its `README.md` and an empty `override.json` (`{}`). Verify that `tests/test_apply_overrides.py` covers a non-null override, an explicit-null suppression, unmatched records being dropped, and the matched/override/dropped summary line.
-- [ ] 3.3 Run the pipeline live through `apply_overrides`: `uv run python pipelines/datacatalogue_pipeline/process.py pipelines/datacatalogue_pipeline --force --stop-on-error`. Review `match_log.json`, then add reviewed overrides (corrections and null suppressions) to `override.json`, checking each candidate against the `data-gov-ie-links` overrides per design D4. Verify that a re-run prints the expected matched/dropped counts and that `uv run pytest pipelines/datacatalogue_pipeline/tests -q` passes.
+- [x] 3.3 Run the pipeline live through `apply_overrides`: `uv run python pipelines/datacatalogue_pipeline/process.py pipelines/datacatalogue_pipeline --force --stop-on-error`. Review `match_log.json`, then add reviewed overrides (corrections and null suppressions) to `override.json`, checking each candidate against the `data-gov-ie-links` overrides per design D4. Verify that a re-run prints the expected matched/dropped counts and that `uv run pytest pipelines/datacatalogue_pipeline/tests -q` passes.
 
 ## 4. Published dataset
 
