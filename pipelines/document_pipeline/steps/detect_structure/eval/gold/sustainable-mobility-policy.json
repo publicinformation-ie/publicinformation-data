@@ -1,0 +1,59 @@
+{
+  "doc_slug": "sustainable-mobility-policy",
+  "pdf_sha256": "27108e90d51960aaec5cc3d53fb047e6fb7921c07f202a44eacf3579e23829eb",
+  "toc_pdf_pages": [
+    4,
+    5
+  ],
+  "annotator": "Dave",
+  "annotated_on": "2026-11-22",
+  "reviewed": true,
+  "notes": "Contents: pages 4-5. Chapter-level rows are the shaded bands; the unshaded rows beneath them are subsections and are not chapters. Foreword, Summary and List of Abbreviations are printed at the top level and are chapters. Chapters 1-6 open with a full-page divider whose number and title are set as artwork, so the text layer does not contain those titles; they are transcribed from the contents image. The printed-to-PDF offset is a constant 2.",
+  "chapters": [
+    {
+      "title": "Foreword",
+      "printed_page": "4",
+      "pdf_page": 6
+    },
+    {
+      "title": "Summary",
+      "printed_page": "5",
+      "pdf_page": 7
+    },
+    {
+      "title": "Introduction",
+      "printed_page": "7",
+      "pdf_page": 9
+    },
+    {
+      "title": "Alignment with existing policies",
+      "printed_page": "17",
+      "pdf_page": 19
+    },
+    {
+      "title": "Our Vision",
+      "printed_page": "24",
+      "pdf_page": 26
+    },
+    {
+      "title": "Principle 1: Safe and Green Mobility",
+      "printed_page": "28",
+      "pdf_page": 30
+    },
+    {
+      "title": "Principle 2: People Focused Mobility",
+      "printed_page": "42",
+      "pdf_page": 44
+    },
+    {
+      "title": "Principle 3: Better Integrated Mobility",
+      "printed_page": "56",
+      "pdf_page": 58
+    },
+    {
+      "title": "List of Abbreviations",
+      "printed_page": "65",
+      "pdf_page": 67
+    }
+  ]
+}

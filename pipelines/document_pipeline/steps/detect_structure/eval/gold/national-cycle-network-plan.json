@@ -1,0 +1,53 @@
+{
+  "doc_slug": "national-cycle-network-plan",
+  "pdf_sha256": "b7c2dcba6e3a28a690e6895479d81e750eb9edb538277e7065e3daba9616fc79",
+  "toc_pdf_pages": [
+    4
+  ],
+  "annotator": "Dave",
+  "annotated_on": "2026-11-22",
+  "reviewed": true,
+  "notes": "Contents: page 4. Every chapter opens with an unnumbered full-page divider that carries its number and title; the divider is recorded as the chapter start. Those divider pages are not counted in the printed page numbers, so the printed-to-PDF offset grows through the document (11, 12, 13, ...). That is expected, not a transcription slip.",
+  "chapters": [
+    {
+      "title": "Introduction",
+      "printed_page": "1",
+      "pdf_page": 12
+    },
+    {
+      "title": "Background Research",
+      "printed_page": "11",
+      "pdf_page": 23
+    },
+    {
+      "title": "NCN Plan - Vision and Objectives",
+      "printed_page": "17",
+      "pdf_page": 30
+    },
+    {
+      "title": "Network Development",
+      "printed_page": "20",
+      "pdf_page": 34
+    },
+    {
+      "title": "Feedback on NCN Proposals",
+      "printed_page": "28",
+      "pdf_page": 43
+    },
+    {
+      "title": "National Cycle Network",
+      "printed_page": "30",
+      "pdf_page": 46
+    },
+    {
+      "title": "Implementation of the NCN Plan",
+      "printed_page": "40",
+      "pdf_page": 58
+    },
+    {
+      "title": "Monitoring, Evaluation and Learning Framework",
+      "printed_page": "45",
+      "pdf_page": 63
+    }
+  ]
+}

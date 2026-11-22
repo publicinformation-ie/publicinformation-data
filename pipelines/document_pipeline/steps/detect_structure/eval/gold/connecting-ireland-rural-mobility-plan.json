@@ -1,0 +1,58 @@
+{
+  "doc_slug": "connecting-ireland-rural-mobility-plan",
+  "pdf_sha256": "503faeb00818ea19ff7752d627896fb652935da6e948f939e6a5d295ffeaf421",
+  "toc_pdf_pages": [
+    3
+  ],
+  "annotator": "Dave",
+  "annotated_on": "2026-11-22",
+  "reviewed": true,
+  "notes": "Contents: page 3. The PDF's text layer is garbled (a subset-font encoding: readable text extracts as '%HQH...'), so every title here is transcribed from the rendered contents image and will not match the garbled detected titles. Boundary and page metrics stay meaningful; title accuracy will read as zero by construction. Appendices is a top-level entry and is a chapter. The printed-to-PDF offset is a constant 2.",
+  "chapters": [
+    {
+      "title": "Introduction",
+      "printed_page": "2",
+      "pdf_page": 4
+    },
+    {
+      "title": "NTA's Role in Improving the Public Transport Network",
+      "printed_page": "3",
+      "pdf_page": 5
+    },
+    {
+      "title": "Benefits of Connecting Ireland",
+      "printed_page": "4",
+      "pdf_page": 6
+    },
+    {
+      "title": "Policy Framework",
+      "printed_page": "5",
+      "pdf_page": 7
+    },
+    {
+      "title": "Potential for Growth of Public Transport",
+      "printed_page": "7",
+      "pdf_page": 9
+    },
+    {
+      "title": "Identifying the Gaps in the Network",
+      "printed_page": "10",
+      "pdf_page": 12
+    },
+    {
+      "title": "Our Approach to Network Development",
+      "printed_page": "17",
+      "pdf_page": 19
+    },
+    {
+      "title": "Public Consultation",
+      "printed_page": "20",
+      "pdf_page": 22
+    },
+    {
+      "title": "Appendices",
+      "printed_page": "21",
+      "pdf_page": 23
+    }
+  ]
+}

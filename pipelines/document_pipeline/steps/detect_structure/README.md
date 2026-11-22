@@ -95,3 +95,100 @@ Repeated headings — `1.1 Introduction` continued onto the next page, or the sa
 - `--doc SLUG` — scope processing to one document.
 - `--force` — re-detect every document instead of skipping already-processed ones.
 - `--verbose` — print each document's detection method and node count.
+
+## Accuracy evaluation (gold chapters)
+
+`validate_split` checks the tree's *shape* and `eval/compare.py` checks whether the output *changed*.
+Neither answers "is this the right chapter split?". The accuracy report does: it scores each
+document's detected chapters against a hand-authored gold list transcribed from the document's
+printed table of contents, so a detector change can be shown to help or hurt.
+
+```bash
+cd pipelines/document_pipeline
+
+# Score every reviewed gold document against the committed detection snapshot,
+# diffing each metric against the committed baseline when one exists.
+PYTHONPATH=".:../../src" python steps/detect_structure/eval/score.py
+
+# Score the current local extract_pages output instead of the snapshot.
+PYTHONPATH=".:../../src" python steps/detect_structure/eval/score.py --live
+
+# Machine-readable result for a before/after comparison.
+PYTHONPATH=".:../../src" python steps/detect_structure/eval/score.py --json /tmp/structure-score.json
+
+# After an intentional detector change, rewrite eval/baseline.json.
+PYTHONPATH=".:../../src" python steps/detect_structure/eval/score.py --refresh-baseline
+
+# Gold repeatability: score one gold file against another (same metrics).
+PYTHONPATH=".:../../src" python steps/detect_structure/eval/score.py \
+    --compare-gold eval/gold/national-cycle-network-plan.json /tmp/reannotated.json
+```
+
+What it reports per document: boundary precision, recall and F1 (exact page, and within ±1 page),
+page attribution accuracy, title accuracy over exact-matched pairs, and whether the document is
+fully correct — each both on the raw detector tree and after `override.json` is applied, because an
+override must not be able to hide a regression. The corpus summary gives macro (per-document mean)
+and micro (pooled counts) averages plus the count of fully correct documents. Excluded documents are
+listed with their reason: malformed gold, not yet reviewed, in the `no_toc.json` register, a gold/PDF
+sha256 mismatch, or a detection error.
+
+Flags: `--live` (score local `extract_pages` output instead of the snapshot), `--json PATH` (also
+write the machine-readable result), `--gold DIR` (a different gold directory), `--baseline PATH` and
+`--refresh-baseline` (diff against, or rewrite, the baseline — the diff is printed automatically when
+the file exists), `--compare-gold A B` (see above), and `--check-gold` (validate every gold file and
+print its consistency warnings, drafts included — use this while annotating).
+
+The report is read-only and offline: a plain run writes nothing, `--json` writes only the path you
+name, and `--refresh-baseline` is the only write in the step's own directory. It makes no network or
+paid calls. It is not a CI gate — run it by hand before and after a detector change.
+
+`eval/score.py` (report and metrics), `eval/gold.py` (gold loading, validation and consistency
+warnings) and `eval/annotate.py` (the annotation helper) sit beside `eval/compare.py`; the snapshot
+fingerprint shared by `eval/make_input.py` and the report is in `eval/snapshot.py`.
+
+### Adding a gold document
+
+The rules are in [`eval/gold/GUIDELINE.md`](eval/gold/GUIDELINE.md) — read them first; they define
+what counts as a chapter, how titles and pages are recorded, and what belongs in `notes`. In short:
+
+1. Run the helper to render the contents pages and candidate chapter start pages to a gitignored
+   scratch directory and write a draft with `reviewed: false`:
+
+   ```bash
+   PYTHONPATH=".:../../src" python steps/detect_structure/eval/annotate.py <doc_slug>
+   ```
+
+   The draft is transcribed from the contents pages' text layer only — never from detector output,
+   so the gold cannot inherit the thing it measures.
+2. Open the images in `.scratch/detect-structure-gold/<doc_slug>/`, correct every entry (titles,
+   `pdf_page` read off the rendered start page, `printed_page`), and set `reviewed: true`. Record
+   every judgement call in `notes`.
+3. Move the finished file to `eval/gold/<doc_slug>.json` and run
+   `PYTHONPATH=".:../../src" python steps/detect_structure/eval/score.py --check-gold`: a consistency
+   warning must be fixed, or explained in `notes`. The report only scores files with
+   `reviewed: true`, so a draft stays excluded until the check is done.
+
+A document with no printed contents listing gets no gold file. Add it to `eval/gold/no_toc.json`
+with a one-line reason instead, so the report shows it as unscorable rather than silently skipping it.
+
+### Reviewing the gold files in a browser
+
+`eval/review_server.py` serves a small LAN page for the review itself: each document's contents
+pages and chapter start pages, an editable chapter list, live consistency warnings, and **Save draft**
+/ **Approve** buttons that write straight back to `eval/gold/<doc_slug>.json`.
+
+```bash
+cd pipelines/document_pipeline
+PYTHONPATH=".:../../src" python steps/detect_structure/eval/review_server.py
+# → http://<your LAN address>:8765  (the address is printed on startup)
+```
+
+It has no authentication: bind it to your own network, not the public internet. It writes only inside
+the gold directory and the gitignored `.scratch/structure-review/` cache (rendered pages and an
+`audit.log` of saves). Use `--port`, `--gold DIR` or `--refresh-images` as needed. If another machine
+cannot reach it, allow incoming connections for Python in the host firewall.
+
+Gold files are ordinary git (they are small), not LFS. `eval/input.json` is LFS-backed; regenerate it
+with `make_input.py` only when the corpus or `extract_pages` changes — the report warns when live
+output has drifted from it.
+

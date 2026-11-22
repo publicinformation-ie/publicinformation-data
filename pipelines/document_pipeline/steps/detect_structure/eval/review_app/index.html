@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gold chapter review</title>
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <h1>Gold chapter review</h1>
+      <p class="hint">Check each chapter list against the rendered pages, then approve.</p>
+    </div>
+    <div class="progress">
+      <div class="bar"><span id="progress-bar"></span></div>
+      <p id="progress-text">Loading…</p>
+    </div>
+    <nav id="doc-list" aria-label="Documents"></nav>
+    <div class="sidebar-foot">
+      <label for="reviewer">Reviewed by</label>
+      <input id="reviewer" placeholder="Your name" autocomplete="off">
+      <p class="hint">Stored in this browser; sent with every approval.</p>
+    </div>
+  </aside>
+
+  <main id="main">
+    <div class="empty" id="empty">Pick a document to review.</div>
+
+    <article id="doc" hidden>
+      <header class="doc-header">
+        <div class="doc-title">
+          <h2 id="doc-title"></h2>
+          <p class="meta" id="doc-meta"></p>
+        </div>
+        <div class="actions">
+          <span id="status-chip" class="chip"></span>
+          <button id="save" class="button">Save draft <kbd>⌘S</kbd></button>
+          <button id="approve" class="button primary">Approve <kbd>⌘↵</kbd></button>
+        </div>
+      </header>
+
+      <div id="banner" class="banner" hidden></div>
+
+      <div class="columns">
+        <section class="toc" aria-label="Contents pages">
+          <h3>Contents</h3>
+          <div id="toc-images" class="toc-images"></div>
+        </section>
+
+        <section class="chapters" aria-label="Chapter list">
+          <div class="chapters-head">
+            <h3>Chapters <span id="chapter-count" class="count"></span></h3>
+            <button id="add-chapter" class="button small">+ Add chapter</button>
+          </div>
+          <div id="chapter-list"></div>
+
+          <label class="notes-label" for="notes">
+            Notes <span class="hint">Judgement calls, and why any warning is expected.</span>
+          </label>
+          <textarea id="notes" rows="4" spellcheck="true"></textarea>
+        </section>
+      </div>
+
+      <footer class="doc-foot">
+        <span id="save-state" class="hint"></span>
+        <span id="sha" class="hint mono"></span>
+      </footer>
+    </article>
+  </main>
+</div>
+
+<div id="lightbox" class="lightbox" hidden>
+  <button id="lb-close" class="lb-close" aria-label="Close">×</button>
+  <button id="lb-prev" class="lb-prev" aria-label="Previous page">‹</button>
+  <figure>
+    <img id="lb-image" alt="">
+    <figcaption id="lb-caption"></figcaption>
+  </figure>
+  <button id="lb-next" class="lb-next" aria-label="Next page">›</button>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>

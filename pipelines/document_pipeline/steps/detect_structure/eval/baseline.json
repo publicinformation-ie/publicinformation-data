@@ -1,0 +1,390 @@
+{
+  "schema": 1,
+  "source": "snapshot",
+  "documents": [
+    {
+      "doc_slug": "all-island-strategic-rail-review-final-report",
+      "method": "toc",
+      "has_overrides": false,
+      "raw": {
+        "gold_chapters": 11,
+        "predicted_chapters": 11,
+        "exact": {
+          "matched": 11,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "tolerant": {
+          "matched": 11,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "page_count": 162,
+        "pages_correct": 162,
+        "page_accuracy": 1.0,
+        "matched_pairs": 11,
+        "titles_correct": 11,
+        "title_accuracy": 1.0,
+        "fully_correct": true
+      },
+      "post_override": null
+    },
+    {
+      "doc_slug": "climate-action-plan-2023",
+      "method": "outline",
+      "has_overrides": false,
+      "raw": {
+        "gold_chapters": 25,
+        "predicted_chapters": 1,
+        "exact": {
+          "matched": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "tolerant": {
+          "matched": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "page_count": 284,
+        "pages_correct": 7,
+        "page_accuracy": 0.02464788732394366,
+        "matched_pairs": 0,
+        "titles_correct": 0,
+        "title_accuracy": null,
+        "fully_correct": false
+      },
+      "post_override": null
+    },
+    {
+      "doc_slug": "climate-action-plan-2024-q1-q2-progress-report",
+      "method": "toc",
+      "has_overrides": false,
+      "raw": {
+        "gold_chapters": 9,
+        "predicted_chapters": 9,
+        "exact": {
+          "matched": 9,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "tolerant": {
+          "matched": 9,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "page_count": 36,
+        "pages_correct": 36,
+        "page_accuracy": 1.0,
+        "matched_pairs": 9,
+        "titles_correct": 9,
+        "title_accuracy": 1.0,
+        "fully_correct": true
+      },
+      "post_override": null
+    },
+    {
+      "doc_slug": "climate-action-plan-2025-annex-of-actions",
+      "method": "outline",
+      "has_overrides": false,
+      "raw": {
+        "gold_chapters": 16,
+        "predicted_chapters": 1,
+        "exact": {
+          "matched": 1,
+          "precision": 1.0,
+          "recall": 0.0625,
+          "f1": 0.11764705882352941
+        },
+        "tolerant": {
+          "matched": 1,
+          "precision": 1.0,
+          "recall": 0.0625,
+          "f1": 0.11764705882352941
+        },
+        "page_count": 96,
+        "pages_correct": 9,
+        "page_accuracy": 0.09375,
+        "matched_pairs": 1,
+        "titles_correct": 1,
+        "title_accuracy": 1.0,
+        "fully_correct": false
+      },
+      "post_override": null
+    },
+    {
+      "doc_slug": "connecting-ireland-rural-mobility-plan",
+      "method": "numbering",
+      "has_overrides": false,
+      "raw": {
+        "gold_chapters": 9,
+        "predicted_chapters": 5,
+        "exact": {
+          "matched": 5,
+          "precision": 1.0,
+          "recall": 0.5555555555555556,
+          "f1": 0.7142857142857143
+        },
+        "tolerant": {
+          "matched": 5,
+          "precision": 1.0,
+          "recall": 0.5555555555555556,
+          "f1": 0.7142857142857143
+        },
+        "page_count": 128,
+        "pages_correct": 11,
+        "page_accuracy": 0.0859375,
+        "matched_pairs": 5,
+        "titles_correct": 4,
+        "title_accuracy": 0.8,
+        "fully_correct": false
+      },
+      "post_override": null
+    },
+    {
+      "doc_slug": "emra-regional-spatial-and-economic-strategy",
+      "method": "numbering",
+      "has_overrides": true,
+      "raw": {
+        "gold_chapters": 15,
+        "predicted_chapters": 8,
+        "exact": {
+          "matched": 2,
+          "precision": 0.25,
+          "recall": 0.13333333333333333,
+          "f1": 0.1739130434782609
+        },
+        "tolerant": {
+          "matched": 3,
+          "precision": 0.375,
+          "recall": 0.2,
+          "f1": 0.26086956521739135
+        },
+        "page_count": 244,
+        "pages_correct": 9,
+        "page_accuracy": 0.036885245901639344,
+        "matched_pairs": 2,
+        "titles_correct": 0,
+        "title_accuracy": 0.0,
+        "fully_correct": false
+      },
+      "post_override": {
+        "gold_chapters": 15,
+        "predicted_chapters": 7,
+        "exact": {
+          "matched": 2,
+          "precision": 0.2857142857142857,
+          "recall": 0.13333333333333333,
+          "f1": 0.18181818181818182
+        },
+        "tolerant": {
+          "matched": 2,
+          "precision": 0.2857142857142857,
+          "recall": 0.13333333333333333,
+          "f1": 0.18181818181818182
+        },
+        "page_count": 244,
+        "pages_correct": 11,
+        "page_accuracy": 0.045081967213114756,
+        "matched_pairs": 2,
+        "titles_correct": 0,
+        "title_accuracy": 0.0,
+        "fully_correct": false
+      }
+    },
+    {
+      "doc_slug": "gda-transport-strategy-2022-2042",
+      "method": "outline",
+      "has_overrides": true,
+      "raw": {
+        "gold_chapters": 22,
+        "predicted_chapters": 21,
+        "exact": {
+          "matched": 3,
+          "precision": 0.14285714285714285,
+          "recall": 0.13636363636363635,
+          "f1": 0.1395348837209302
+        },
+        "tolerant": {
+          "matched": 14,
+          "precision": 0.6666666666666666,
+          "recall": 0.6363636363636364,
+          "f1": 0.6511627906976744
+        },
+        "page_count": 244,
+        "pages_correct": 64,
+        "page_accuracy": 0.26229508196721313,
+        "matched_pairs": 3,
+        "titles_correct": 2,
+        "title_accuracy": 0.6666666666666666,
+        "fully_correct": false
+      },
+      "post_override": {
+        "gold_chapters": 22,
+        "predicted_chapters": 20,
+        "exact": {
+          "matched": 3,
+          "precision": 0.15,
+          "recall": 0.13636363636363635,
+          "f1": 0.14285714285714282
+        },
+        "tolerant": {
+          "matched": 14,
+          "precision": 0.7,
+          "recall": 0.6363636363636364,
+          "f1": 0.6666666666666666
+        },
+        "page_count": 244,
+        "pages_correct": 65,
+        "page_accuracy": 0.26639344262295084,
+        "matched_pairs": 3,
+        "titles_correct": 2,
+        "title_accuracy": 0.6666666666666666,
+        "fully_correct": false
+      }
+    },
+    {
+      "doc_slug": "national-cycle-network-plan",
+      "method": "toc",
+      "has_overrides": false,
+      "raw": {
+        "gold_chapters": 8,
+        "predicted_chapters": 24,
+        "exact": {
+          "matched": 8,
+          "precision": 0.3333333333333333,
+          "recall": 1.0,
+          "f1": 0.5
+        },
+        "tolerant": {
+          "matched": 8,
+          "precision": 0.3333333333333333,
+          "recall": 1.0,
+          "f1": 0.5
+        },
+        "page_count": 1107,
+        "pages_correct": 101,
+        "page_accuracy": 0.09123757904245709,
+        "matched_pairs": 8,
+        "titles_correct": 8,
+        "title_accuracy": 1.0,
+        "fully_correct": false
+      },
+      "post_override": null
+    },
+    {
+      "doc_slug": "national-roads-2040-final-report",
+      "method": "outline",
+      "has_overrides": false,
+      "raw": {
+        "gold_chapters": 12,
+        "predicted_chapters": 18,
+        "exact": {
+          "matched": 12,
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8
+        },
+        "tolerant": {
+          "matched": 12,
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1": 0.8
+        },
+        "page_count": 87,
+        "pages_correct": 63,
+        "page_accuracy": 0.7241379310344828,
+        "matched_pairs": 12,
+        "titles_correct": 12,
+        "title_accuracy": 1.0,
+        "fully_correct": false
+      },
+      "post_override": null
+    },
+    {
+      "doc_slug": "sustainable-mobility-policy",
+      "method": "toc",
+      "has_overrides": false,
+      "raw": {
+        "gold_chapters": 9,
+        "predicted_chapters": 18,
+        "exact": {
+          "matched": 3,
+          "precision": 0.16666666666666666,
+          "recall": 0.3333333333333333,
+          "f1": 0.2222222222222222
+        },
+        "tolerant": {
+          "matched": 6,
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1": 0.4444444444444444
+        },
+        "page_count": 72,
+        "pages_correct": 9,
+        "page_accuracy": 0.125,
+        "matched_pairs": 3,
+        "titles_correct": 3,
+        "title_accuracy": 1.0,
+        "fully_correct": false
+      },
+      "post_override": null
+    }
+  ],
+  "summary": {
+    "raw": {
+      "documents": 10,
+      "fully_correct": 2,
+      "macro": {
+        "boundary_precision_exact": 0.555952380952381,
+        "boundary_recall_exact": 0.5221085858585859,
+        "boundary_f1_exact": 0.4667602922530657,
+        "boundary_precision_tolerant": 0.6375,
+        "boundary_recall_tolerant": 0.6121085858585859,
+        "boundary_f1_tolerant": 0.5488409573468754,
+        "page_accuracy": 0.3443891225269736,
+        "title_accuracy": 0.8296296296296296
+      },
+      "micro": {
+        "boundary_precision_exact": 0.46551724137931033,
+        "boundary_recall_exact": 0.39705882352941174,
+        "boundary_f1_exact": 0.42857142857142855,
+        "boundary_precision_tolerant": 0.5948275862068966,
+        "boundary_recall_tolerant": 0.5073529411764706,
+        "boundary_f1_tolerant": 0.5476190476190476,
+        "page_accuracy": 0.19146341463414634,
+        "title_accuracy": 0.9259259259259259
+      }
+    },
+    "post_override": {
+      "documents": 10,
+      "fully_correct": 2,
+      "macro": {
+        "boundary_precision_exact": 0.5602380952380952,
+        "boundary_recall_exact": 0.5221085858585859,
+        "boundary_f1_exact": 0.46788303200067904,
+        "boundary_precision_tolerant": 0.6319047619047619,
+        "boundary_recall_tolerant": 0.6054419191919191,
+        "boundary_f1_tolerant": 0.5424862066038536,
+        "page_accuracy": 0.3456186307236949,
+        "title_accuracy": 0.8296296296296296
+      },
+      "micro": {
+        "boundary_precision_exact": 0.47368421052631576,
+        "boundary_recall_exact": 0.39705882352941174,
+        "boundary_f1_exact": 0.432,
+        "boundary_precision_tolerant": 0.5964912280701754,
+        "boundary_recall_tolerant": 0.5,
+        "boundary_f1_tolerant": 0.5439999999999999,
+        "page_accuracy": 0.1926829268292683,
+        "title_accuracy": 0.9259259259259259
+      }
+    }
+  }
+}
