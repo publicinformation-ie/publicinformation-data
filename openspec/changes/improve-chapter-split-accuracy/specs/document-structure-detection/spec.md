@@ -186,9 +186,18 @@ The system SHALL record each TOC entry's printed page number when the TOC prints
 - **WHEN** a TOC entry's page number is printed as `iii`
 - **THEN** the entry records `iii` as printed and is never placed by page number
 
+### Requirement: Paged TOC columns
+
+A column of a TOC prints page numbers when it has at least three entries and half or more of them carry one. Columns SHALL be grouped by left edge in 10-point buckets. A TOC with no such column prints no page numbers.
+
+#### Scenario: A stray page number is not a column
+
+- **WHEN** one entry of an otherwise pageless contents list carries a page number
+- **THEN** the TOC has no paged column
+
 ### Requirement: Unpaged TOC entries excluded from the gate
 
-When a column of a TOC prints page numbers, meaning it has at least three entries (columns are grouped by left edge in 10-point buckets) and half or more of them carry one, the system SHALL classify each entry without a page number as unpaged. An unpaged entry SHALL be excluded from the match-rate gate's numerator and denominator. It SHALL still be matched like any other entry. When it matches, it creates a boundary. When it does not, it is recorded as `TocEntryUnmatched`. A TOC with no such column has no unpaged entries.
+When a TOC has a paged column, the system SHALL classify each entry without a page number as unpaged. An unpaged entry SHALL be excluded from the match-rate gate's numerator and denominator. It SHALL still be matched like any other entry: when it matches, it creates a boundary, and when it does not, it is recorded as `TocEntryUnmatched`. A TOC with no paged column has no unpaged entries.
 
 #### Scenario: Side-panel prose does not depress the gate
 
