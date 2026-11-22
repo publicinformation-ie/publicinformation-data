@@ -45,4 +45,11 @@
   {"slug": "6-4-programme-d-civil-aviation", "level": 1},
   {"slug": "6-5-programme-e-maritime-transport-safety", "level": 1},
   {"slug": "6-6-programme-f-information-technology-engagement-and-research-delivery-organisation-requirements", "level": 1}
+],
+"national-cycle-network-plan": [
+  {"slug": "overview", "level": 1, "number": null, "title": "SEA Environmental Report (Updated)", "start_page": 193, "start_y": 77.15, "order": 900},
+  {"slug": "2-methodology", "level": 1, "number": null, "title": "Appropriate Assessment Screening and Natura Impact Statement", "start_page": 494, "start_y": 422.23, "order": 901}
+],
+"climate-action-plan-2025-annex-of-actions": [
+  {"slug": "the-marine-environment", "start_page": 55, "start_y": 490.71, "order": 1150}
 ]}

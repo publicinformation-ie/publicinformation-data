@@ -39,24 +39,24 @@
       "held_out": false,
       "raw": {
         "gold_chapters": 25,
-        "predicted_chapters": 18,
+        "predicted_chapters": 25,
         "exact": {
-          "matched": 17,
-          "precision": 0.9444444444444444,
-          "recall": 0.68,
-          "f1": 0.7906976744186047
+          "matched": 24,
+          "precision": 0.96,
+          "recall": 0.96,
+          "f1": 0.96
         },
         "tolerant": {
-          "matched": 18,
+          "matched": 25,
           "precision": 1.0,
-          "recall": 0.72,
-          "f1": 0.8372093023255813
+          "recall": 1.0,
+          "f1": 1.0
         },
         "page_count": 284,
-        "pages_correct": 158,
-        "page_accuracy": 0.5563380281690141,
-        "matched_pairs": 17,
-        "titles_correct": 17,
+        "pages_correct": 272,
+        "page_accuracy": 0.9577464788732394,
+        "matched_pairs": 24,
+        "titles_correct": 24,
         "title_accuracy": 1.0,
         "fully_correct": false
       },
@@ -64,30 +64,30 @@
     },
     {
       "doc_slug": "climate-action-plan-2023-annex-of-actions",
-      "method": "numbering",
+      "method": "toc",
       "has_overrides": false,
       "held_out": true,
       "raw": {
         "gold_chapters": 21,
-        "predicted_chapters": 4,
+        "predicted_chapters": 19,
         "exact": {
-          "matched": 0,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0
+          "matched": 19,
+          "precision": 1.0,
+          "recall": 0.9047619047619048,
+          "f1": 0.9500000000000001
         },
         "tolerant": {
-          "matched": 0,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0
+          "matched": 19,
+          "precision": 1.0,
+          "recall": 0.9047619047619048,
+          "f1": 0.9500000000000001
         },
         "page_count": 103,
-        "pages_correct": 2,
-        "page_accuracy": 0.019417475728155338,
-        "matched_pairs": 0,
-        "titles_correct": 0,
-        "title_accuracy": null,
+        "pages_correct": 92,
+        "page_accuracy": 0.8932038834951457,
+        "matched_pairs": 19,
+        "titles_correct": 19,
+        "title_accuracy": 1.0,
         "fully_correct": false
       },
       "post_override": null
@@ -155,7 +155,7 @@
     {
       "doc_slug": "climate-action-plan-2025-annex-of-actions",
       "method": "toc",
-      "has_overrides": false,
+      "has_overrides": true,
       "held_out": false,
       "raw": {
         "gold_chapters": 16,
@@ -180,7 +180,29 @@
         "title_accuracy": 1.0,
         "fully_correct": false
       },
-      "post_override": null
+      "post_override": {
+        "gold_chapters": 16,
+        "predicted_chapters": 16,
+        "exact": {
+          "matched": 16,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "tolerant": {
+          "matched": 16,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "page_count": 96,
+        "pages_correct": 96,
+        "page_accuracy": 1.0,
+        "matched_pairs": 16,
+        "titles_correct": 16,
+        "title_accuracy": 1.0,
+        "fully_correct": true
+      }
     },
     {
       "doc_slug": "connecting-ireland-rural-mobility-plan",
@@ -219,48 +241,48 @@
       "held_out": false,
       "raw": {
         "gold_chapters": 15,
-        "predicted_chapters": 10,
+        "predicted_chapters": 13,
         "exact": {
-          "matched": 6,
-          "precision": 0.6,
-          "recall": 0.4,
-          "f1": 0.48
+          "matched": 9,
+          "precision": 0.6923076923076923,
+          "recall": 0.6,
+          "f1": 0.6428571428571429
         },
         "tolerant": {
-          "matched": 7,
-          "precision": 0.7,
-          "recall": 0.4666666666666667,
-          "f1": 0.56
+          "matched": 10,
+          "precision": 0.7692307692307693,
+          "recall": 0.6666666666666666,
+          "f1": 0.7142857142857142
         },
         "page_count": 244,
-        "pages_correct": 55,
-        "page_accuracy": 0.22540983606557377,
-        "matched_pairs": 6,
-        "titles_correct": 5,
-        "title_accuracy": 0.8333333333333334,
+        "pages_correct": 123,
+        "page_accuracy": 0.5040983606557377,
+        "matched_pairs": 9,
+        "titles_correct": 8,
+        "title_accuracy": 0.8888888888888888,
         "fully_correct": false
       },
       "post_override": {
         "gold_chapters": 15,
-        "predicted_chapters": 10,
+        "predicted_chapters": 13,
         "exact": {
-          "matched": 6,
-          "precision": 0.6,
-          "recall": 0.4,
-          "f1": 0.48
+          "matched": 9,
+          "precision": 0.6923076923076923,
+          "recall": 0.6,
+          "f1": 0.6428571428571429
         },
         "tolerant": {
-          "matched": 7,
-          "precision": 0.7,
-          "recall": 0.4666666666666667,
-          "f1": 0.56
+          "matched": 10,
+          "precision": 0.7692307692307693,
+          "recall": 0.6666666666666666,
+          "f1": 0.7142857142857142
         },
         "page_count": 244,
-        "pages_correct": 55,
-        "page_accuracy": 0.22540983606557377,
-        "matched_pairs": 6,
-        "titles_correct": 5,
-        "title_accuracy": 0.8333333333333334,
+        "pages_correct": 123,
+        "page_accuracy": 0.5040983606557377,
+        "matched_pairs": 9,
+        "titles_correct": 8,
+        "title_accuracy": 0.8888888888888888,
         "fully_correct": false
       }
     },
@@ -319,19 +341,42 @@
     {
       "doc_slug": "national-cycle-network-plan",
       "method": "toc",
-      "has_overrides": false,
+      "has_overrides": true,
       "held_out": false,
       "raw": {
-        "gold_chapters": 8,
+        "gold_chapters": 10,
         "predicted_chapters": 8,
         "exact": {
           "matched": 8,
+          "precision": 1.0,
+          "recall": 0.8,
+          "f1": 0.888888888888889
+        },
+        "tolerant": {
+          "matched": 8,
+          "precision": 1.0,
+          "recall": 0.8,
+          "f1": 0.888888888888889
+        },
+        "page_count": 1107,
+        "pages_correct": 192,
+        "page_accuracy": 0.17344173441734417,
+        "matched_pairs": 8,
+        "titles_correct": 8,
+        "title_accuracy": 1.0,
+        "fully_correct": false
+      },
+      "post_override": {
+        "gold_chapters": 10,
+        "predicted_chapters": 10,
+        "exact": {
+          "matched": 10,
           "precision": 1.0,
           "recall": 1.0,
           "f1": 1.0
         },
         "tolerant": {
-          "matched": 8,
+          "matched": 10,
           "precision": 1.0,
           "recall": 1.0,
           "f1": 1.0
@@ -339,12 +384,11 @@
         "page_count": 1107,
         "pages_correct": 1107,
         "page_accuracy": 1.0,
-        "matched_pairs": 8,
-        "titles_correct": 8,
+        "matched_pairs": 10,
+        "titles_correct": 10,
         "title_accuracy": 1.0,
         "fully_correct": true
-      },
-      "post_override": null
+      }
     },
     {
       "doc_slug": "national-ports-policy",
@@ -492,99 +536,99 @@
   "summary": {
     "raw": {
       "documents": 14,
-      "fully_correct": 6,
+      "fully_correct": 5,
       "macro": {
-        "boundary_precision_exact": 0.7891448828948829,
-        "boundary_recall_exact": 0.7304652292152293,
-        "boundary_f1_exact": 0.751919928078566,
-        "boundary_precision_tolerant": 0.8638923576423576,
-        "boundary_recall_tolerant": 0.7979688367188367,
-        "boundary_f1_tolerant": 0.8225210987794044,
-        "page_accuracy": 0.6847523151503941,
-        "title_accuracy": 0.9717948717948718
+        "boundary_precision_exact": 0.868277972027972,
+        "boundary_recall_exact": 0.8150910795553653,
+        "boundary_f1_exact": 0.8355662393162394,
+        "boundary_precision_tolerant": 0.940265984015984,
+        "boundary_recall_tolerant": 0.8825946870589727,
+        "boundary_f1_tolerant": 0.9050900488400488,
+        "page_accuracy": 0.7367041092560173,
+        "title_accuracy": 0.9777777777777777
       },
       "micro": {
-        "boundary_precision_exact": 0.8023255813953488,
-        "boundary_recall_exact": 0.6731707317073171,
-        "boundary_f1_exact": 0.7320954907161804,
-        "boundary_precision_tolerant": 0.9127906976744186,
-        "boundary_recall_tolerant": 0.7658536585365854,
-        "boundary_f1_tolerant": 0.83289124668435,
-        "page_accuracy": 0.7354702359985911,
-        "title_accuracy": 0.9855072463768116
+        "boundary_precision_exact": 0.8477157360406091,
+        "boundary_recall_exact": 0.8067632850241546,
+        "boundary_f1_exact": 0.8267326732673268,
+        "boundary_precision_tolerant": 0.9441624365482234,
+        "boundary_recall_tolerant": 0.8985507246376812,
+        "boundary_f1_tolerant": 0.9207920792079208,
+        "page_accuracy": 0.5089820359281437,
+        "title_accuracy": 0.9880239520958084
       }
     },
     "post_override": {
       "documents": 14,
-      "fully_correct": 6,
+      "fully_correct": 7,
       "macro": {
-        "boundary_precision_exact": 0.7897087926693189,
-        "boundary_recall_exact": 0.7304652292152293,
-        "boundary_f1_exact": 0.7521688081183867,
-        "boundary_precision_tolerant": 0.8674637862137863,
-        "boundary_recall_tolerant": 0.7979688367188367,
-        "boundary_f1_tolerant": 0.8240973390316029,
-        "page_accuracy": 0.6850450551972325,
-        "title_accuracy": 0.9717948717948718
+        "boundary_precision_exact": 0.8733061675166939,
+        "boundary_recall_exact": 0.8338410795553653,
+        "boundary_f1_exact": 0.8482159130068538,
+        "boundary_precision_tolerant": 0.9483016983016983,
+        "boundary_recall_tolerant": 0.9013446870589729,
+        "boundary_f1_tolerant": 0.9190670827430409,
+        "page_accuracy": 0.8012450587492358,
+        "title_accuracy": 0.9777777777777777
       },
       "micro": {
-        "boundary_precision_exact": 0.8070175438596491,
-        "boundary_recall_exact": 0.6731707317073171,
-        "boundary_f1_exact": 0.7340425531914895,
-        "boundary_precision_tolerant": 0.9181286549707602,
-        "boundary_recall_tolerant": 0.7658536585365854,
-        "boundary_f1_tolerant": 0.8351063829787234,
-        "page_accuracy": 0.7358224727016555,
-        "title_accuracy": 0.9855072463768116
+        "boundary_precision_exact": 0.8585858585858586,
+        "boundary_recall_exact": 0.821256038647343,
+        "boundary_f1_exact": 0.8395061728395061,
+        "boundary_precision_tolerant": 0.9545454545454546,
+        "boundary_recall_tolerant": 0.9130434782608695,
+        "boundary_f1_tolerant": 0.9333333333333332,
+        "page_accuracy": 0.8340965128566397,
+        "title_accuracy": 0.9882352941176471
       }
     },
     "tuning": {
       "raw": {
         "documents": 10,
-        "fully_correct": 5,
+        "fully_correct": 4,
         "macro": {
-          "boundary_precision_exact": 0.8631944444444445,
-          "boundary_recall_exact": 0.7709419191919192,
-          "boundary_f1_exact": 0.8065340531561462,
-          "boundary_precision_tolerant": 0.95875,
-          "boundary_recall_tolerant": 0.8543358585858586,
-          "boundary_f1_tolerant": 0.89537569213732,
-          "page_accuracy": 0.708165394346956,
-          "title_accuracy": 0.9633333333333333
+          "boundary_precision_exact": 0.8739807692307693,
+          "boundary_recall_exact": 0.7989419191919191,
+          "boundary_f1_exact": 0.8286388888888888,
+          "boundary_precision_tolerant": 0.9656730769230769,
+          "boundary_recall_tolerant": 0.8823358585858585,
+          "boundary_f1_tolerant": 0.9159722222222222,
+          "page_accuracy": 0.6935192653181294,
+          "title_accuracy": 0.9688888888888888
         },
         "micro": {
-          "boundary_precision_exact": 0.8050847457627118,
-          "boundary_recall_exact": 0.6985294117647058,
-          "boundary_f1_exact": 0.7480314960629922,
-          "boundary_precision_tolerant": 0.9576271186440678,
-          "boundary_recall_tolerant": 0.8308823529411765,
-          "boundary_f1_tolerant": 0.8897637795275591,
-          "page_accuracy": 0.7508130081300813,
-          "title_accuracy": 0.9789473684210527
+          "boundary_precision_exact": 0.8203125,
+          "boundary_recall_exact": 0.7608695652173914,
+          "boundary_f1_exact": 0.7894736842105263,
+          "boundary_precision_tolerant": 0.9609375,
+          "boundary_recall_tolerant": 0.8913043478260869,
+          "boundary_f1_tolerant": 0.924812030075188,
+          "page_accuracy": 0.45284552845528453,
+          "title_accuracy": 0.9809523809523809
         }
       },
       "post_override": {
         "documents": 10,
-        "fully_correct": 5,
+        "fully_correct": 6,
         "macro": {
-          "boundary_precision_exact": 0.863983918128655,
-          "boundary_recall_exact": 0.7709419191919192,
-          "boundary_f1_exact": 0.8068824852118952,
-          "boundary_precision_tolerant": 0.9637499999999999,
-          "boundary_recall_tolerant": 0.8543358585858586,
-          "boundary_f1_tolerant": 0.8975824284903979,
-          "page_accuracy": 0.7085752304125299,
-          "title_accuracy": 0.9633333333333333
+          "boundary_precision_exact": 0.8810202429149797,
+          "boundary_recall_exact": 0.8251919191919193,
+          "boundary_f1_exact": 0.8463484320557491,
+          "boundary_precision_tolerant": 0.976923076923077,
+          "boundary_recall_tolerant": 0.9085858585858586,
+          "boundary_f1_tolerant": 0.9355400696864111,
+          "page_accuracy": 0.7838765946086353,
+          "title_accuracy": 0.9688888888888888
         },
         "micro": {
-          "boundary_precision_exact": 0.811965811965812,
-          "boundary_recall_exact": 0.6985294117647058,
-          "boundary_f1_exact": 0.7509881422924901,
-          "boundary_precision_tolerant": 0.9658119658119658,
-          "boundary_recall_tolerant": 0.8308823529411765,
-          "boundary_f1_tolerant": 0.8932806324110673,
-          "page_accuracy": 0.751219512195122,
-          "title_accuracy": 0.9789473684210527
+          "boundary_precision_exact": 0.8372093023255814,
+          "boundary_recall_exact": 0.782608695652174,
+          "boundary_f1_exact": 0.8089887640449438,
+          "boundary_precision_tolerant": 0.9767441860465116,
+          "boundary_recall_tolerant": 0.9130434782608695,
+          "boundary_f1_tolerant": 0.9438202247191011,
+          "page_accuracy": 0.8280487804878048,
+          "title_accuracy": 0.9814814814814815
         }
       }
     },
@@ -593,23 +637,23 @@
         "documents": 4,
         "fully_correct": 1,
         "macro": {
-          "boundary_precision_exact": 0.6040209790209791,
-          "boundary_recall_exact": 0.6292735042735043,
-          "boundary_f1_exact": 0.6153846153846154,
-          "boundary_precision_tolerant": 0.6267482517482518,
-          "boundary_recall_tolerant": 0.657051282051282,
-          "boundary_f1_tolerant": 0.6403846153846153,
-          "page_accuracy": 0.6262196171589892,
+          "boundary_precision_exact": 0.8540209790209791,
+          "boundary_recall_exact": 0.8554639804639805,
+          "boundary_f1_exact": 0.8528846153846155,
+          "boundary_precision_tolerant": 0.8767482517482518,
+          "boundary_recall_tolerant": 0.8832417582417582,
+          "boundary_f1_tolerant": 0.8778846153846154,
+          "page_accuracy": 0.8446662191007368,
           "title_accuracy": 1.0
         },
         "micro": {
-          "boundary_precision_exact": 0.7962962962962963,
-          "boundary_recall_exact": 0.6231884057971014,
-          "boundary_f1_exact": 0.6991869918699186,
-          "boundary_precision_tolerant": 0.8148148148148148,
-          "boundary_recall_tolerant": 0.6376811594202898,
-          "boundary_f1_tolerant": 0.7154471544715448,
-          "page_accuracy": 0.6358839050131926,
+          "boundary_precision_exact": 0.8985507246376812,
+          "boundary_recall_exact": 0.8985507246376812,
+          "boundary_f1_exact": 0.8985507246376812,
+          "boundary_precision_tolerant": 0.9130434782608695,
+          "boundary_recall_tolerant": 0.9130434782608695,
+          "boundary_f1_tolerant": 0.9130434782608695,
+          "page_accuracy": 0.8733509234828496,
           "title_accuracy": 1.0
         }
       },
@@ -617,23 +661,23 @@
         "documents": 4,
         "fully_correct": 1,
         "macro": {
-          "boundary_precision_exact": 0.6040209790209791,
-          "boundary_recall_exact": 0.6292735042735043,
-          "boundary_f1_exact": 0.6153846153846154,
-          "boundary_precision_tolerant": 0.6267482517482518,
-          "boundary_recall_tolerant": 0.657051282051282,
-          "boundary_f1_tolerant": 0.6403846153846153,
-          "page_accuracy": 0.6262196171589892,
+          "boundary_precision_exact": 0.8540209790209791,
+          "boundary_recall_exact": 0.8554639804639805,
+          "boundary_f1_exact": 0.8528846153846155,
+          "boundary_precision_tolerant": 0.8767482517482518,
+          "boundary_recall_tolerant": 0.8832417582417582,
+          "boundary_f1_tolerant": 0.8778846153846154,
+          "page_accuracy": 0.8446662191007368,
           "title_accuracy": 1.0
         },
         "micro": {
-          "boundary_precision_exact": 0.7962962962962963,
-          "boundary_recall_exact": 0.6231884057971014,
-          "boundary_f1_exact": 0.6991869918699186,
-          "boundary_precision_tolerant": 0.8148148148148148,
-          "boundary_recall_tolerant": 0.6376811594202898,
-          "boundary_f1_tolerant": 0.7154471544715448,
-          "page_accuracy": 0.6358839050131926,
+          "boundary_precision_exact": 0.8985507246376812,
+          "boundary_recall_exact": 0.8985507246376812,
+          "boundary_f1_exact": 0.8985507246376812,
+          "boundary_precision_tolerant": 0.9130434782608695,
+          "boundary_recall_tolerant": 0.9130434782608695,
+          "boundary_f1_tolerant": 0.9130434782608695,
+          "page_accuracy": 0.8733509234828496,
           "title_accuracy": 1.0
         }
       }

@@ -846,7 +846,13 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
     lines = _toc_reading_order(page)
     for position, candidate in enumerate(lines):
         if normalize_heading_text(candidate.text) in TOC_TITLES:
-            lines = lines[position + 1:]
+            # The title names the page and sits above its rows, so collection is
+            # everything *below* it. A repeated contents header can be set in
+            # the right-hand column (climate-action-plan-2023's continuation
+            # pages), where column-major reading order puts it after every
+            # left-column row — starting after it by reading-order position
+            # would discard the whole page.
+            lines = [l for l in lines if l.y0 > candidate.y0]
             break
     width = float(page.get("width") or 595.0)
     rows = []
@@ -1424,7 +1430,11 @@ def from_toc(pages: list, body: float, parsed=None):
                                  f"TOC entry {entry['title']!r} has no body occurrence; "
                                  "no boundary created.", {"title": entry["title"]}))
             continue
-        best = max(occs, key=lambda o: (score_occurrence(o, body), o["page"], o["y0"]))
+        # Ties follow document order: identical artwork can print a chapter's
+        # divider twice (climate-action-plan-2023 sets chapter 11's on its own
+        # page 116 and repeats it on page 128), and the first occurrence is
+        # the chapter start.
+        best = max(occs, key=lambda o: (score_occurrence(o, body), -o["page"], -o["y0"]))
         if _below_score_floor(best, body):
             errors.append(_error("TocEntryNoHeading",
                                  f"TOC entry {entry['title']!r} matched only below the score "

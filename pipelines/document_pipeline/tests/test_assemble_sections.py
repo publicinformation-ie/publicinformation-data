@@ -141,6 +141,49 @@ def test_blocks_are_cut_at_section_boundaries_by_start_page_and_start_y(
     assert "Before the figure." not in body_of(introduction)
 
 
+def test_a_node_slugged_overview_gets_a_suffixed_slug_rather_than_sharing_the_preamble_file(
+        structure, figures, clean):
+    """`overview` is the reserved slug for a chapter's own preamble content,
+    but nothing stopped a *real* section node slugged `overview` in the same
+    chapter from claiming the same `chapter/overview` key. Both boundaries
+    then rendered one shared content list twice and two sections were written
+    to a single file — national-cycle-network-plan shipped ~130k words twice
+    that way. The chapter keeps the reserved slug (the contract fixes it);
+    the later boundary is disambiguated the way detect_structure's
+    `dedupe_slugs` does: a `-2` suffix, with the collision logged."""
+    structure = copy.deepcopy(structure)
+    clean = copy.deepcopy(clean)
+    clean["pages"][0]["blocks"].insert(
+        2, {"type": "paragraph", "text": "Chapter preamble.", "y": 90.0})
+    structure["nodes"].append(
+        node("overview", 2, None, "Overview", 2, 150.0, 103, "1-first-chapter"))
+    clean["pages"][1]["blocks"] += [
+        {"type": "heading", "level": 2, "text": "Overview", "y": 150.0},
+        {"type": "paragraph", "text": "The overview section's own prose.", "y": 200.0}]
+
+    result = assemble(structure, figures, clean)
+
+    files = [s.file for s in result.sections]
+    assert len(files) == len(set(files)), "two sections were written to one file"
+
+    preamble = section_by_slug(result, "overview")
+    overview_node = section_by_slug(result, "overview-2")
+    assert preamble.file == f"sections/{DOC}/1-first-chapter/overview.md"
+    assert overview_node.file == f"sections/{DOC}/1-first-chapter/overview-2.md"
+    assert "Chapter preamble." in body_of(preamble)
+    assert "The overview section's own prose." not in body_of(preamble)
+    assert "The overview section's own prose." in body_of(overview_node)
+    assert "Chapter preamble." not in body_of(overview_node)
+
+    collisions = [e for e in result.errors if e["error_type"] == "SectionSlugCollision"]
+    assert len(collisions) == 1
+    assert collisions[0]["context"]["chapter"] == "1-first-chapter"
+    assert collisions[0]["context"]["node"] == "overview"
+    assert collisions[0]["context"]["section_slug"] == "overview-2"
+
+    assert result.publishable
+
+
 def test_a_figure_between_two_paragraphs_is_emitted_between_them(
         structure, figures, clean):
     body = body_of(section_by_slug(assemble(structure, figures, clean), "1-2-figures"))

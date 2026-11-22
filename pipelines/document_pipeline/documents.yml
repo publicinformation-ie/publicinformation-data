@@ -241,7 +241,7 @@ documents:
     publisher: "Department of Climate, Energy and the Environment"
     public_body_id: 1198
     published_date: "2022-12-21"
-    hold: "Structure detection collapses it to two chapters; republish once detect_structure handles it."
+    hold: "Structure fixed 2026-11-22 (detect_structure RESULTS.md 1.3): 25 chapters, coverage clean. Held pending the publication decision; check the non-monotonic chapter order fields before lifting."
 
   - doc_slug: climate-action-plan-2024
     title: "Climate Action Plan 2024"
@@ -488,7 +488,7 @@ documents:
         corrected: BE/23/38
         text_starts: "Publish a review of relevant sources"
         evidence: "The Q4 2023 XLSX annex lists BE/23/38 with this row's text (Publish a review of relevant sources ...); the PDF repeats the BE/23/36 printed on the row above."
-    hold: "Structure detection finds no level-1 chapter (InvalidStructure); republish the bundle once detect_structure handles it."
+    hold: "Structure fixed 2026-11-22 (detect_structure RESULTS.md 1.5): toc method, 19/21 chapters exact (two artwork/divider residuals: RE, EL). Held pending the publication decision."
 
   - doc_slug: climate-action-plan-2024-annex-of-actions
     title: "Climate Action Plan 2024 - Annex of Actions"
@@ -513,4 +513,4 @@ documents:
     role: plan
     expected_action_count: 82
     action_table_layout: [action_number_header, carry_header]
-    hold: "Structure detection finds no level-1 chapter (InvalidStructure); republish the bundle once detect_structure handles it."
+    hold: "Structure fixed 2026-11-22 (detect_structure RESULTS.md 1.4): 16/16 chapters post-override, coverage clean. Held pending the publication decision."

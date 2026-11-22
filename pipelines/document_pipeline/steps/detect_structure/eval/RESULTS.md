@@ -449,3 +449,125 @@ sustainable-mobility-policy                     tune  toc                 0.22>1
 | emra improved but probably still below the gate | Better than predicted: it now passes the gate (match rate 0.807, method `toc`), exact F1 0.17 -> 0.48; still far from correct (artwork chapter titles match at wrong pages) |
 
 **Remaining failures on tuning documents** (not addressed here): `connecting-ireland-rural-mobility-plan` (garbled text layer, a stated non-goal), `gda-transport-strategy-2022-2042` (outline pages off by one against gold; PART A/B), `emra` (artwork titles matched at wrong pages), `climate-action-plan-2023` (see above), `climate-action-plan-2025-annex-of-actions` (0.94).
+
+### 1.2 — Bound-in reports of `national-cycle-network-plan` become chapters (FOLLOWUPS 1.2, publication decision)
+
+- **Change:** No detector code changed. The gold grows 8 → 10 chapters: the PDF is a composite, and after the Plan's chapter 8 (its own last content page is p. 192) two separately-authored statutory reports are bound into the same file — the SEA Environmental Report (Updated) behind the Plan's `Appendix G` divider from p. 193, and the Appropriate Assessment Screening and Natura Impact Statement from p. 494 — which the Plan's printed contents never lists. Rulebook **R1a** added: a separately-titled report bound into the same PDF is a chapter of the bundle. The detector stays TOC-faithful by R1; `override.json` supplies the two chapters by promoting the two supplemented nodes (`overview` → level 1, retitled, p. 193 at the `Appendix G` divider; `2-methodology` → level 1, retitled, moved to its title page p. 494, `number` nulled).
+- **Commit:** measured at `fix/assemble-sections-slug-collision` `524417f7` plus this change's gold/override edits (this entry's own commit).
+- **Kind:** gold + hand override (publication decision; not a detector change)
+
+| Summary | Documents | Fully correct | Exact F1 (macro) | Page attribution (macro) | Title accuracy (macro) |
+|---|---:|---:|---:|---:|---:|
+| tuning, raw, before | 10 | 5 | 0.81 | 0.71 | 0.96 |
+| tuning, raw, after | 10 | 4 | 0.80 | 0.63 | 0.96 |
+| tuning, published, before | 10 | 5 | 0.81 | 0.71 | 0.96 |
+| tuning, published, after | 10 | 5 | 0.81 | 0.71 | 0.96 |
+| held out, raw, before = after | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| held out, published, before = after | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| all, raw, before | 14 | 6 | 0.75 | 0.68 | 0.97 |
+| all, raw, after | 14 | 5 | 0.74 | 0.63 | 0.97 |
+| all, published, before | 14 | 6 | 0.75 | 0.69 | 0.97 |
+| all, published, after | 14 | 6 | 0.75 | 0.69 | 0.97 |
+
+**Per-document changes** (from the baseline diff):
+
+| Document | Tree | Metric | Before | After | Reason (required for every regression) |
+|---|---|---|---:|---:|---|
+| `national-cycle-network-plan` | raw | page attribution | 1.00 | 0.17 | gold grew 8 → 10: the raw detector is TOC-faithful (R1) and cannot list the two bound-in reports; expected, not a detector regression |
+| `national-cycle-network-plan` | raw | exact F1 / recall | 1.00 / 1.00 | 0.89 / 0.80 | same: 2 of 10 gold chapters are missing from the raw tree by design |
+| `national-cycle-network-plan` | published | all | 1.00 (8/8) | 1.00 (10/10) | the override supplies both chapters exactly: titles match, boundaries 193 and 494, fully correct |
+
+**Documents without gold (`compare.py`, 30 documents):**
+
+- Detection-method changes: none (no code change; the compare table still matches `expected.json`, asserted by `tests/test_comparison.py`).
+- `InvalidStructure` count: unchanged (national-cycle 0 → 0).
+- Slug changes / orphaned overrides: node slugs unchanged (`overview`, `2-methodology` keep theirs; the override never rewrites slugs). Both targets are produced by every detection run, so no orphans.
+
+**Notes:** Evidence trail: the two reports were identified from the extracted text (the Plan's `Appendix G` divider p. 193 and the SEA ER's cover p. 194, quality page p. 195 and own contents pp. 196–197, `1. Introduction` p. 198; NIS title page p. 494, its own contents p. 496, `2. Methodology` p. 501; NIS Appendices A–D at pp. 567/897/899/1100; the SEA ER's 91 corridor option assessment tables pp. 302–448), the rendered start pages were served for review on the LAN, and the human chose the split on 2026-11-22 (FOLLOWUPS 1.2). The first cut of the override used p. 198 (the report's first body page); it was corrected to the p. 193 divider after re-reading the pages — five pages of report front matter had stranded in the MELF chapter, which is why the raw page-attribution diff reads 0.17 rather than 0.18. Teaching the detector to find bound-in reports generally (option C) was considered and deferred: this PDF has no outline to lean on, so a general rule would guess at report title pages, and 6 documents carry `Appendix` headings (`all-island-strategic-rail-review-final-report`, `national-roads-2040-final-report`, this one, `tii-sustainability-implementation-plan-2026`, two CAP progress reports) that would each need gold review first. The gold `notes` and `GUIDELINE.md` R1a record the rule this entry measures against, so the raw/published gap for this document is legitimate and expected to persist.
+
+### 1.3 — Contents pages whose title sits in the right column; occurrence ties take document order
+
+- **Change:** two rules, both found while root-causing the held `climate-action-plan-2023` (FOLLOWUPS §2). (1) `_parse_toc_page` starts collection *below* the contents title by y, not after it in reading order: a repeated contents header can be set in the right-hand column (CAP 2023's continuation pages 5 and 7; emra's second contents page), and column-major reading order puts such a title after every left-column row, so the old position slice discarded the whole page — chapters 11–15 and 21–22 never became TOC entries. (2) `from_toc` breaks occurrence-score ties by document order (earliest page, then earliest y): identical artwork can print a chapter's divider twice (CAP 2023 sets chapter 11's divider on its own p. 116 and repeats it on p. 128, as the gold notes record), and the first occurrence is the chapter start. Unit tests: `test_a_contents_title_in_the_right_column_does_not_discard_the_rows_below_it`, `test_an_occurrence_score_tie_takes_the_earlier_page_in_document_order`.
+- **Kind:** detector change
+
+| Summary | Documents | Fully correct | Exact F1 (macro) | Page attribution (macro) | Title accuracy (macro) |
+|---|---:|---:|---:|---:|---:|
+| tuning, raw, before | 10 | 4 | 0.80 | 0.63 | 0.96 |
+| tuning, raw, after | 10 | 4 | 0.83 | 0.69 | 0.97 |
+| tuning, published, before | 10 | 5 | 0.81 | 0.71 | 0.96 |
+| tuning, published, after | 10 | 5 | 0.84 | 0.78 | 0.97 |
+| held out, raw/published, before = after | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| all, raw, before | 14 | 5 | 0.74 | 0.63 | 0.97 |
+| all, raw, after | 14 | 5 | 0.77 | 0.67 | 0.98 |
+| all, published, before | 14 | 6 | 0.75 | 0.69 | 0.97 |
+| all, published, after | 14 | 6 | 0.78 | 0.73 | 0.98 |
+
+Fully-correct counts are unchanged: CAP 2023 keeps its one documented ±1 (`Ensuring a Just Transition` at p. 68, its p. 67 divider being four stacked 40 pt lines, over the ≤3-line join limit), and emra keeps its artwork-title family of errors.
+
+**Per-document changes** (from the baseline diff):
+
+| Document | Tree | Metric | Before | After | Reason |
+|---|---|---|---:|---:|---|
+| `climate-action-plan-2023` | raw = published | exact F1 / page attribution / recall | 0.79 / 0.56 / 0.68 | **0.96 / 0.96 / 0.96** | contents pages 5 and 7 now parse (chapters 11–15, 21–22 and ~45 sub-entries recovered; 25 of 25 gold chapters predicted, 24 boundaries exact); the Carbon Pricing tie takes p. 116 over the p. 128 divider repeat; tolerant F1 1.00 — the one ±1 is the known Just Transition divider |
+| `emra-regional-spatial-and-economic-strategy` | raw = published | exact F1 / page attribution / titles | 0.48 / 0.23 / 0.83 | **0.64 / 0.50 / 0.89** | its second contents page also carries the title in the right column: the left column's rows now parse (110 entries, 12 of 15 gold chapters matched); the artwork titles themselves remain wrong (`People and Place` still at p. 243 against gold 42) — the anchor-consistency check in FOLLOWUPS §3 is still open |
+
+No regression on any tuning or held-out document.
+
+**Documents without gold (`production_view.py`, `compare.py` with `expected.json` regenerated):**
+
+- Production method changes: none (all 40 documents). `InvalidStructure` 11 → 11. No override orphaned.
+- Production node-count changes: `climate-action-plan-2023` 158 → 225 (the recovered entries and their supplemented sections); `sustainable-mobility-policy-action-plan-2022-2025-final-progress-report` 13 → 11 (the status-legend rows `Modified`/`Delayed`, printed in its contents as a colour key, no longer find an unused occurrence under document-order ties — junk chapters removed, not content lost).
+- `compare.py` view only (production unaffected, method `outline`): `climate-action-plan-2024` 49 → 47 — its TOC repeats generic titles (`Introduction` ×3, `Actions` ×2) and the old later-page tie-break mapped the *first* entry to the *last* body occurrence, placing chapters at p. 372/p. 398 in the annex, out of document order; document-order ties now place them at p. 25/51/63 and p. 60/72. `code-of-practice-recreational-craft` 105 → 104 (the duplicate `recovery of man overboard` placement at p. 186, same class).
+
+**Notes:** The held documents stay held. The CAP 2023 bundle rebuilds `publishable: true` — 26 chapters (front matter + all 25 gold chapters), coverage gaps none, pp. 2 and 283 named as `furniture_pages` in `steps/assemble_sections/override.json` (both verified to carry zero raw blocks and zero figures). Pre-existing and unchanged, for the hold-lift review: the chapter `order` fields early in CAP 2023 are non-monotonic (`1-the-critical-nature-of-the-challenge` carries order 101, between `foreword` 100 and `glossary-of-acronyms` 200), so the bundle's chapter list should be checked for reading order before the hold is lifted. FOLLOWUPS §2's `climate-action-plan-2023` bullet is resolved by this entry; its hold message in `documents.yml` is now stale ("collapses it to two chapters").
+
+### 1.4 — `climate-action-plan-2025-annex-of-actions`: the Marine Environment chapter moves to its divider (hand override)
+
+- **Change:** no detector code changed. The TOC entry `MA |The Marine Environment` anchors on the p. 3 code-legend table row (`['MA', 'The Marine Environment']`) — an occurrence out of TOC order — instead of its p. 55 artwork divider, whose heading the caption glue renders as `MA | Marine Image: Cliffs of Moher on bright sunny day`. `detect_structure/override.json` moves the existing node to its divider: `start_page` 55, `start_y` 490.71 (the `MA | Marine` line), `order` 1150 (between LU's 1100 and LG's 1200, keeping the bundle's reading order). The front-matter chapter absorbs pp. 1–8. Pages 94 and 95 (zero raw blocks, zero figures, between the CAP23-legacy table ending on p. 93 and its trailing figure on p. 96) are declared furniture in `steps/assemble_sections/override.json`. The out-of-order anchor remains an open detector family (FOLLOWUPS §3, emra); the artwork-tolerant matching it would also need is not attempted here.
+- **Kind:** hand override (publication correction; not a detector change)
+
+| Summary | Documents | Fully correct | Exact F1 (macro) | Page attribution (macro) | Title accuracy (macro) |
+|---|---:|---:|---:|---:|---:|
+| tuning, raw, before = after | 10 | 4 | 0.83 | 0.69 | 0.97 |
+| tuning, published, before | 10 | 5 | 0.84 | 0.78 | 0.97 |
+| tuning, published, after | 10 | **6** | **0.85** | 0.78 | 0.97 |
+| held out, raw/published, before = after | 4 | 1 | 0.62 | 0.63 | 1.00 |
+
+**Per-document changes:**
+
+| Document | Tree | Metric | Before | After | Reason |
+|---|---|---|---:|---:|---|
+| `climate-action-plan-2025-annex-of-actions` | published | all | 0.94 (15/16 exact) | **1.00 (16/16, fully correct)** | the override supplies the true boundary (p. 55 divider); every other chapter already matched exactly |
+| same | raw | all | 0.94 | 0.94 | unchanged by design: the raw detector's out-of-order p. 3 anchor is the recorded, expected gap |
+
+**Documents without gold:** none affected (no code change; production methods, `InvalidStructure` 11, and `expected.json` unchanged; no override orphaned — the target node is produced by every detection run).
+
+**Notes:** The `FigureOutOfBounds` on p. 1 (cover artwork at y = −75.33, excluded from section ordering) is informational and does not block publication. The bundle rebuilds `publishable: true`: 17 chapters in monotonic reading order, LU ending at the p. 55 divider's cut, coverage gaps none with pp. 94–95 furniture. The chapter's bundle span is pp. 56–57 (the divider sits mid-page, its upper half belonging to LU's tail) while the node boundary — what the eval scores — is exactly p. 55. The document stays held pending the human hold-lift review; its hold message in `documents.yml` ("finds no level-1 chapter (InvalidStructure)") is now stale.
+
+### 1.5 — Rotated pages extract in displayed coordinates (`climate-action-plan-2023-annex-of-actions`)
+
+- **Change:** `extract_pages` transforms every recorded bbox — spans, drawings, images, table boxes and table cells — into the page's displayed (rotation-applied) space when `/Rotate` is set. PyMuPDF returns extraction geometry in the page's *stored* space while `extract_page` records `page.rect` (the displayed dims) as the page's width and height, so a rotated page's record mixed two coordinate spaces and every downstream reader grouped its spans against the wrong dimensions: the annex's contents page — stored landscape, text typeset sideways, displayed portrait by `/Rotate 270` — read as a vertical band no strategy could parse, and the cascade landed on `numbering` with table values (`0.2 MtCO2eq`) as its only "chapters". The header-reconstruction logic inside `extract_tables` still runs in the stored space (its span-to-grid comparisons are internally consistent there); only the emitted bboxes are transformed. Unit tests: `test_spans_on_a_rotated_page_are_extracted_in_displayed_coordinates`, `test_drawings_on_a_rotated_page_are_extracted_in_displayed_coordinates`.
+- **Blast radius:** exactly one document — a scan of all 40 PDFs finds `/Rotate` set on 7 pages of this annex and nowhere else; every other document's extraction is byte-identical, and the baseline diff confirms no other document moved.
+- **Kind:** extraction change (eval snapshot rebuilt with `make_input.py`; held-out acceptance measured once, not tuned)
+
+| Summary | Documents | Fully correct | Exact F1 (macro) | Page attribution (macro) | Title accuracy (macro) |
+|---|---:|---:|---:|---:|---:|
+| held out, raw, before | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| held out, raw, after | 4 | 1 | **0.85** | **0.84** | 1.00 |
+| tuning, raw/published, before = after | 10 | 4 / 6 | 0.83 / 0.85 | 0.69 / 0.78 | 0.97 |
+| all, raw, before = after | 14 | 5 | 0.77 | 0.67 | 0.98 |
+
+**Per-document changes:**
+
+| Document | Tree | Metric | Before | After | Reason |
+|---|---|---|---:|---:|---|
+| `climate-action-plan-2023-annex-of-actions` (held out) | raw = published | exact F1 / precision / recall | 0.00 / 0.00 / 0.00 | **0.95 / 1.00 / 0.90** | the contents page now parses: 20 entries with printed pages (gold's printed→PDF offset is a constant +7), 19 chapters placed, every one on its exact gold page; method `numbering` → `toc`, `InvalidStructure` cleared |
+
+The two absent gold chapters, both left as recorded residuals rather than fixed (this is a held-out document; the change was implemented from the extraction defect and measured once):
+
+- `RE | Research` — its divider heading is artwork: `TocEntryNoHeading` ("matched only below the score floor").
+- `EL | Electricity` — its contents line ends `33.` (a trailing period after the page number), which the suffix split does not read, so the entry never forms. A `\d\.?$` tolerance in `_split_toc_suffix` would fix it, but that rule change is held until a tuning document exhibits the shape.
+
+**Documents without gold:** production `InvalidStructure` 11 → 10 (this document). `compare.py` (expected.json regenerated): the annex goes `numbering 4 nodes, 1 issue` → `toc 19 nodes, 0 issues, match rate 95%`. No other document changes method, node count or slugs; no override orphaned.
+
+**Notes:** FOLLOWUPS §2 said "its contents page uses spaced dot leaders that `DOT_LEADER_RE` does not see … start there" — that was a misdiagnosis: the spaced leaders are readable once the page's coordinates are in the displayed space (`_split_toc_suffix` splits on spaces and dots alike; the rotation, not the leaders, was the blocker). The bundle rebuilds `publishable: true`: 20 chapters in reading order (front matter, Annex of Actions Guide, Glossary, then the sectors), coverage gaps none with p. 102 declared furniture (zero raw blocks, zero figures). The two missing chapters' content sits inside their neighbours (EL's pp. 40–44 inside Carbon Pricing, RE's pp. 12–19 inside Policy to Date) — the same artwork/divider family as CAP 2023's `Ensuring a Just Transition` and the 2025 annex's Marine divider, all recorded in FOLLOWUPS §3. The document stays held pending the human hold-lift review.
