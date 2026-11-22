@@ -1,0 +1,79 @@
+{
+  "doc_slug": "nta-statement-of-strategy-2026-2030",
+  "pdf_sha256": "c05e06a66d71caaefe24cc3db77cf80ff1f568c231e22a8280c482ef3851fcaa",
+  "toc_pdf_pages": [
+    2
+  ],
+  "annotator": "Dave",
+  "annotated_on": "2026-11-22",
+  "reviewed": true,
+  "notes": "Every chapter start was checked against the page's own text layer (title printed with the folio at the top of the page). Printed and PDF page numbers are equal throughout, so there is no page offset.",
+  "chapters": [
+    {
+      "title": "Introduction",
+      "printed_page": "3",
+      "pdf_page": 3
+    },
+    {
+      "title": "Chairperson’s Statement",
+      "printed_page": "4",
+      "pdf_page": 4
+    },
+    {
+      "title": "Chief Executive’s Introduction",
+      "printed_page": "6",
+      "pdf_page": 6
+    },
+    {
+      "title": "Who is the National Transport Authority",
+      "printed_page": "8",
+      "pdf_page": 8
+    },
+    {
+      "title": "NTA Responsibilities",
+      "printed_page": "9",
+      "pdf_page": 9
+    },
+    {
+      "title": "Strategy Development",
+      "printed_page": "11",
+      "pdf_page": 11
+    },
+    {
+      "title": "Structured Approach",
+      "printed_page": "12",
+      "pdf_page": 12
+    },
+    {
+      "title": "Looking Forward Strategically",
+      "printed_page": "16",
+      "pdf_page": 16
+    },
+    {
+      "title": "Mission, Vision & Values",
+      "printed_page": "17",
+      "pdf_page": 17
+    },
+    {
+      "title": "Goals",
+      "printed_page": "18",
+      "pdf_page": 18
+    },
+    {
+      "title": "Strategic Objectives",
+      "printed_page": "19",
+      "pdf_page": 19
+    },
+    {
+      "title": "Delivery Challenges & Key Risks",
+      "printed_page": "24",
+      "pdf_page": 24
+    },
+    {
+      "title": "Glossary",
+      "printed_page": "27",
+      "pdf_page": 27
+    }
+  ],
+  "held_out": true
+}

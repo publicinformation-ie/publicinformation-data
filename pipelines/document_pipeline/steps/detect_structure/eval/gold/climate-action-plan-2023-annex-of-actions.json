@@ -1,0 +1,119 @@
+{
+  "doc_slug": "climate-action-plan-2023-annex-of-actions",
+  "pdf_sha256": "467e77c02bec0905b2a6375276c1e75f40bdc6b60c6ebf2ea8c160ba09143b22",
+  "toc_pdf_pages": [
+    2
+  ],
+  "annotator": "Dave",
+  "annotated_on": "2026-11-22",
+  "reviewed": true,
+  "notes": "Chapter start = the full-page divider (GUIDELINE), recorded even though dividers print no folio; the printed-to-PDF offset therefore changes at every chapter (divider pages are not counted in the printed numbering). printed_page is the contents listing's number. Front matter uses roman folios (Annex of Actions Guide ii = PDF 3, Glossary iv = PDF 5). Each divider was checked against the rendered page. Reviewer corrections applied: Glossary, LU, MA and JT/JM pages.",
+  "chapters": [
+    {
+      "title": "Annex of Actions Guide",
+      "printed_page": "ii",
+      "pdf_page": 3
+    },
+    {
+      "title": "Glossary of Acronyms",
+      "printed_page": "iv",
+      "pdf_page": 5
+    },
+    {
+      "title": "CN | The Critical Nature of the Challenge",
+      "printed_page": "1",
+      "pdf_page": 8
+    },
+    {
+      "title": "PD | Policy to Date and Expected Impact of Planned Policies",
+      "printed_page": "3",
+      "pdf_page": 10
+    },
+    {
+      "title": "RE | Research",
+      "printed_page": "5",
+      "pdf_page": 12
+    },
+    {
+      "title": "GV | Governance of the Challenge",
+      "printed_page": "12",
+      "pdf_page": 19
+    },
+    {
+      "title": "JT | Ensuring a Just Transition to a Climate Neutral Ireland",
+      "printed_page": "15",
+      "pdf_page": 22
+    },
+    {
+      "title": "JM | Delivering a Just Transition in the Midlands Region",
+      "printed_page": "17",
+      "pdf_page": 24
+    },
+    {
+      "title": "CZ | Citizen Engagement",
+      "printed_page": "19",
+      "pdf_page": 26
+    },
+    {
+      "title": "PS | Public Sector Leading by Example",
+      "printed_page": "24",
+      "pdf_page": 31
+    },
+    {
+      "title": "CP | Carbon Pricing and Cross-cutting Policies",
+      "printed_page": "29",
+      "pdf_page": 36
+    },
+    {
+      "title": "EL | Electricity",
+      "printed_page": "33",
+      "pdf_page": 40
+    },
+    {
+      "title": "EN | Industry",
+      "printed_page": "37",
+      "pdf_page": 44
+    },
+    {
+      "title": "BE | Built Environment",
+      "printed_page": "41",
+      "pdf_page": 48
+    },
+    {
+      "title": "TR | Transport",
+      "printed_page": "51",
+      "pdf_page": 58
+    },
+    {
+      "title": "AG | Agriculture",
+      "printed_page": "67",
+      "pdf_page": 74
+    },
+    {
+      "title": "LU | Land Use, Land Use Change, Forestry",
+      "printed_page": "72",
+      "pdf_page": 79
+    },
+    {
+      "title": "MA | The Marine Environment",
+      "printed_page": "78",
+      "pdf_page": 85
+    },
+    {
+      "title": "CE | The Circular Economy",
+      "printed_page": "82",
+      "pdf_page": 89
+    },
+    {
+      "title": "IC | International Climate Action",
+      "printed_page": "85",
+      "pdf_page": 92
+    },
+    {
+      "title": "AD | Adaptation",
+      "printed_page": "87",
+      "pdf_page": 94
+    }
+  ],
+  "held_out": true
+}
