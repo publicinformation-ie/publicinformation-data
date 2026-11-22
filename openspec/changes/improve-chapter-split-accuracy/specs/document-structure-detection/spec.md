@@ -159,13 +159,23 @@ In a TOC with at least two chapter labels, an unnumbered, non-furniture entry af
 
 ### Requirement: TOC continuation pages
 
-The system SHALL treat a page as a continuation of the main TOC when it directly follows the last page of the TOC block, has no title of its own, and has at least three right-column page numbers, and when the running header it shares with the TOC page (if any) names the contents. Its entries SHALL be parsed as part of the main TOC. A page that meets these conditions but follows a gap SHALL remain a part TOC and SHALL NOT be parsed.
+The system SHALL treat a page as a continuation of the main TOC when it directly follows the last page of the TOC block, has no title of its own or only repeats the contents title, and shows page numbers for at least three entries, either in the right column or as lines of spaced dot leaders ending in a number. Its entries SHALL be parsed as part of the main TOC.
 
 #### Scenario: Untitled second contents page parsed
 
 - **GIVEN** a TOC on page 4 and, on page 5, an untitled page with 22 right-column page numbers under the running header `… | Table of Contents`
 - **WHEN** the TOC is parsed
 - **THEN** the entries on page 5 are part of the main TOC
+
+#### Scenario: Repeated contents title
+
+- **GIVEN** a TOC on page 3 and, on page 4 directly after it, a small `Contents` title over entries set in spaced dot leaders (`Introduction. . . . . 68`)
+- **WHEN** the TOC is parsed
+- **THEN** the entries on page 4 are part of the main TOC
+
+### Requirement: Pages that stay out of the TOC
+
+A page SHALL NOT be added to the TOC when it shares a running header with the TOC page and that header does not name the contents, when it opens with a `List of …` title, or when it follows a gap. Such a page remains a part TOC and SHALL NOT be parsed.
 
 #### Scenario: Later part TOC still ignored
 

@@ -1609,3 +1609,33 @@ def test_a_code_in_the_toc_meets_the_code_in_the_body_and_the_slug_keeps_the_cod
     (node,) = from_outline([{"level": 1, "title": "RE | Research and Innovation", "page": 8, "y": 60.0}])
     assert (node.number, node.title, node.slug) == ("RE", "Research and Innovation",
                                                     "re-research-and-innovation")
+
+
+def test_a_second_contents_page_that_repeats_the_contents_title_is_part_of_the_toc():
+    pages = _continuation_document(second_title="Table of contents")
+    entries, toc_pages, _signal, _flags = parse_toc(pages, 10.0)
+
+    assert toc_pages == [4, 5]
+    assert [e["title"] for e in entries][-4:] == [f"Later {name}" for name in _NAMES]
+
+
+def test_a_second_contents_page_in_spaced_dot_leader_style_is_part_of_the_toc():
+    first = _toc_page(4, "Table of Contents", _NAMES, True)
+    spans = _header_spans("Table of Contents") + [span("Contents", size=10.0, y0=60.0, block=1)]
+    for index, name in enumerate(["Later Alpha", "Later Bravo", "Later Charlie", "Later Delta"]):
+        spans.append(span(f"{name}. . . . . . . . . . . . . . . . . . 7{index}", y0=120.0 + 16.0 * index,
+                          block=10 + index))
+    pages = [_body(1), _body(2), _body(3), first, page(spans, number=5), _body(6)]
+    _entries, toc_pages, _signal, _flags = parse_toc(pages, 10.0)
+
+    assert toc_pages == [4, 5]
+
+
+def test_a_sentence_ending_in_an_ellipsis_is_not_dot_leader_evidence():
+    from steps.detect_structure.process import _leader_page_lines
+
+    spans = [span("And so it goes on... 12", y0=100.0, block=1),
+             span("He paused... 3", y0=120.0, block=2),
+             span("Version 2. 3", y0=140.0, block=3)]
+
+    assert _leader_page_lines(page(spans)) == 0

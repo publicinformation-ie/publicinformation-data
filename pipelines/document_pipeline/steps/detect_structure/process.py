@@ -1039,6 +1039,18 @@ def _opens_with_list_of_title(page: dict, running: set, running_leads: set) -> b
     return False
 
 
+# A line that ends in spaced dot leaders and a page number (`Introduction. . . . . 68`,
+# or `. . . . . 67` on a line of its own): the leader style where `DOT_LEADER_RE`
+# (four dots in a row, or an ellipsis) finds nothing. The leaders must be spaced
+# dots, so a sentence ending `...` or a number does not count.
+_LEADER_PAGE_LINE_RE = re.compile(r"(?:\.\s){3,}\.?\s*(?:\d{1,3}|[ivxlc]{1,6})$")
+
+
+def _leader_page_lines(page: dict) -> int:
+    return sum(1 for line in reading_order_lines(page)
+               if _LEADER_PAGE_LINE_RE.search(line.text.strip()))
+
+
 def _names_contents(line) -> bool:
     return "contents" in normalize_heading_text(line.text)
 
@@ -1059,9 +1071,10 @@ def _shares_contents_header(toc_page: dict, candidate: dict, running: set, runni
 def _continuation_pages(pages: list, toc_pages: list, body: float,
                         running: set, running_leads: set) -> list:
     """Pages that continue the main TOC: each directly follows the last TOC page,
-    has no contents title of its own, is not a `list-of-` page, has at least three
-    right-column page numbers, and (when it shares a running header with the TOC
-    page) that header names the contents. A page after a gap is never added, so a
+    has no title of its own or only repeats the contents title, is not a
+    `list-of-` page, shows at least three entries' page numbers (right-column
+    numbers, or lines of dot leaders and a page number), and (when it shares a
+    running header with the TOC page) that header names the contents. A page after a gap is never added, so a
     later part-TOC stays unparsed."""
     by_number = {p["number"]: p for p in pages}
     added = []
@@ -1070,8 +1083,8 @@ def _continuation_pages(pages: list, toc_pages: list, body: float,
         page = by_number.get(last + 1)
         if page is None:
             break
-        title_heading, title_any, _dots, right_nums = _page_toc_signals(page, body)
-        if (title_heading or title_any or right_nums < 3
+        _title_heading, _title_any, _dots, right_nums = _page_toc_signals(page, body)
+        if (right_nums + _leader_page_lines(page) < 3
                 or _opens_with_list_of_title(page, running, running_leads)
                 or not _shares_contents_header(by_number[last], page, running, running_leads)):
             break

@@ -299,3 +299,31 @@ No regressions. This is the document that D3 had worsened (0.12 -> 0.00) when it
 **Documents without gold** (`production_view.py`, `compare.py` refreshed): no other document changes method, node count or slugs, including the other CAP annexes (`climate-action-plan-2023-annex-of-actions`, `-2024-annex-of-actions`), whose slugs are unchanged; `InvalidStructure` stays 11. No override orphaned.
 
 **Notes:** the one extra predicted chapter and one missed gold chapter are not examined here; the document is a tuning document and the remaining error is a separate cause.
+
+### D5c-fix — Continuation page that repeats the contents title, in spaced dot-leader style
+
+- **Change:** a continuation page may repeat the contents title (D5c required it to have none), and its evidence of page numbers may be lines that end in spaced dot leaders and a number (`Introduction. . . . . 68`) as well as right-column numbers.
+- **Why now:** found while measuring D4 (supplement confinement). `climate-action-plan-2023`'s contents list runs over many pages, but only its first was read, so chapters 7 to 25 were missing from the TOC tree and the old supplement had been hanging their numbered sections under chapter 6. D5c missed it because its second page carries a small `Contents` title and sets leaders as `. . . .`, which `DOT_LEADER_RE` does not match. Fixing it as its own commit keeps D4 attributable to one rule.
+- **Commit:** see git log (`fix(detect_structure): read a repeated-title contents page`)
+- **Kind:** detector change (correction to D5c)
+
+| Summary (raw tree) | Documents | Fully correct | Exact F1 (macro) | Page attribution (macro) | Title accuracy (macro) |
+|---|---:|---:|---:|---:|---:|
+| tuning, before | 10 | 4 | 0.72 | 0.58 | 0.96 |
+| tuning, after | 10 | 4 | 0.75 | 0.61 | 0.96 |
+| held out, before | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| held out, after | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| all, before | 14 | 5 | 0.69 | 0.59 | 0.97 |
+| all, after | 14 | 5 | 0.71 | 0.61 | 0.97 |
+
+**Per-document changes:**
+
+| Document | Metric | Before | After | Reason |
+|---|---|---:|---:|---|
+| `climate-action-plan-2023` | exact F1 | 0.53 | 0.79 | its later contents pages are now read: 59 -> 106 entries, match rate 0.864 -> 0.83, nodes 193 -> 213 |
+| `climate-action-plan-2023` | page attribution / tolerant F1 / exact recall | 0.23 / 0.53 / 0.36 | 0.56 / 0.84 / 0.68 | same |
+| `climate-action-plan-2023` | exact precision | 1.00 | **0.94 (regression)** | one added chapter, `Ensuring a Just Transition to a Climate Neutral Ireland`, is placed on p. 68 (where the body text is set) while gold records the artwork opener on p. 67. It was absent before. A boundary one page late is a smaller error than an absent chapter (tolerant F1 up 0.31), but it is still a wrong exact page. |
+
+One explained regression, in a metric whose recall rose by 0.32 in the same document.
+
+**Documents without gold** (`production_view.py`, `compare.py` refreshed): production methods unchanged for all 40 documents; `InvalidStructure` 11 -> 11. `code-of-practice-recreational-craft` (production method `outline`) now reads a 130-entry TOC in `compare.py`'s view (49 -> 130 entries, match rate 0.556 -> 0.703). No override is orphaned.
