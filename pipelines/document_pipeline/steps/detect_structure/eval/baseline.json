@@ -155,7 +155,7 @@
     {
       "doc_slug": "climate-action-plan-2025-annex-of-actions",
       "method": "toc",
-      "has_overrides": false,
+      "has_overrides": true,
       "held_out": false,
       "raw": {
         "gold_chapters": 16,
@@ -180,7 +180,29 @@
         "title_accuracy": 1.0,
         "fully_correct": false
       },
-      "post_override": null
+      "post_override": {
+        "gold_chapters": 16,
+        "predicted_chapters": 16,
+        "exact": {
+          "matched": 16,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "tolerant": {
+          "matched": 16,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "page_count": 96,
+        "pages_correct": 96,
+        "page_accuracy": 1.0,
+        "matched_pairs": 16,
+        "titles_correct": 16,
+        "title_accuracy": 1.0,
+        "fully_correct": true
+      }
     },
     {
       "doc_slug": "connecting-ireland-rural-mobility-plan",
@@ -538,26 +560,26 @@
     },
     "post_override": {
       "documents": 14,
-      "fully_correct": 6,
+      "fully_correct": 7,
       "macro": {
-        "boundary_precision_exact": 0.7974133103738367,
-        "boundary_recall_exact": 0.7647509435009435,
-        "boundary_f1_exact": 0.7758944844354252,
-        "boundary_precision_tolerant": 0.8724088411588412,
-        "boundary_recall_tolerant": 0.832254551004551,
-        "boundary_f1_tolerant": 0.8467456541716123,
-        "page_accuracy": 0.7336234105754033,
+        "boundary_precision_exact": 0.8018775960881224,
+        "boundary_recall_exact": 0.7692152292152292,
+        "boundary_f1_exact": 0.7803587701497109,
+        "boundary_precision_tolerant": 0.8768731268731269,
+        "boundary_recall_tolerant": 0.8367188367188367,
+        "boundary_f1_tolerant": 0.851209939885898,
+        "page_accuracy": 0.7388317439087365,
         "title_accuracy": 0.976068376068376
       },
       "micro": {
-        "boundary_precision_exact": 0.819672131147541,
-        "boundary_recall_exact": 0.7246376811594203,
-        "boundary_f1_exact": 0.7692307692307692,
-        "boundary_precision_tolerant": 0.9234972677595629,
-        "boundary_recall_tolerant": 0.8164251207729468,
-        "boundary_f1_tolerant": 0.8666666666666666,
-        "page_accuracy": 0.7999295526593871,
-        "title_accuracy": 0.9866666666666667
+        "boundary_precision_exact": 0.825136612021858,
+        "boundary_recall_exact": 0.7294685990338164,
+        "boundary_f1_exact": 0.7743589743589745,
+        "boundary_precision_tolerant": 0.9289617486338798,
+        "boundary_recall_tolerant": 0.821256038647343,
+        "boundary_f1_tolerant": 0.8717948717948718,
+        "page_accuracy": 0.8023952095808383,
+        "title_accuracy": 0.9867549668874173
       }
     },
     "tuning": {
@@ -587,26 +609,26 @@
       },
       "post_override": {
         "documents": 10,
-        "fully_correct": 5,
+        "fully_correct": 6,
         "macro": {
-          "boundary_precision_exact": 0.8747702429149797,
-          "boundary_recall_exact": 0.8189419191919193,
-          "boundary_f1_exact": 0.8400984320557491,
-          "boundary_precision_tolerant": 0.970673076923077,
-          "boundary_recall_tolerant": 0.9023358585858586,
-          "boundary_f1_tolerant": 0.929290069686411,
-          "page_accuracy": 0.7765849279419688,
+          "boundary_precision_exact": 0.8810202429149797,
+          "boundary_recall_exact": 0.8251919191919193,
+          "boundary_f1_exact": 0.8463484320557491,
+          "boundary_precision_tolerant": 0.976923076923077,
+          "boundary_recall_tolerant": 0.9085858585858586,
+          "boundary_f1_tolerant": 0.9355400696864111,
+          "page_accuracy": 0.7838765946086353,
           "title_accuracy": 0.9688888888888888
         },
         "micro": {
-          "boundary_precision_exact": 0.8294573643410853,
-          "boundary_recall_exact": 0.7753623188405797,
-          "boundary_f1_exact": 0.801498127340824,
-          "boundary_precision_tolerant": 0.9689922480620154,
-          "boundary_recall_tolerant": 0.9057971014492754,
-          "boundary_f1_tolerant": 0.9363295880149812,
-          "page_accuracy": 0.8252032520325203,
-          "title_accuracy": 0.9813084112149533
+          "boundary_precision_exact": 0.8372093023255814,
+          "boundary_recall_exact": 0.782608695652174,
+          "boundary_f1_exact": 0.8089887640449438,
+          "boundary_precision_tolerant": 0.9767441860465116,
+          "boundary_recall_tolerant": 0.9130434782608695,
+          "boundary_f1_tolerant": 0.9438202247191011,
+          "page_accuracy": 0.8280487804878048,
+          "title_accuracy": 0.9814814814814815
         }
       }
     },

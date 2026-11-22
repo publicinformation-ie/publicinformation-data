@@ -520,3 +520,26 @@ No regression on any tuning or held-out document.
 - `compare.py` view only (production unaffected, method `outline`): `climate-action-plan-2024` 49 → 47 — its TOC repeats generic titles (`Introduction` ×3, `Actions` ×2) and the old later-page tie-break mapped the *first* entry to the *last* body occurrence, placing chapters at p. 372/p. 398 in the annex, out of document order; document-order ties now place them at p. 25/51/63 and p. 60/72. `code-of-practice-recreational-craft` 105 → 104 (the duplicate `recovery of man overboard` placement at p. 186, same class).
 
 **Notes:** The held documents stay held. The CAP 2023 bundle rebuilds `publishable: true` — 26 chapters (front matter + all 25 gold chapters), coverage gaps none, pp. 2 and 283 named as `furniture_pages` in `steps/assemble_sections/override.json` (both verified to carry zero raw blocks and zero figures). Pre-existing and unchanged, for the hold-lift review: the chapter `order` fields early in CAP 2023 are non-monotonic (`1-the-critical-nature-of-the-challenge` carries order 101, between `foreword` 100 and `glossary-of-acronyms` 200), so the bundle's chapter list should be checked for reading order before the hold is lifted. FOLLOWUPS §2's `climate-action-plan-2023` bullet is resolved by this entry; its hold message in `documents.yml` is now stale ("collapses it to two chapters").
+
+### 1.4 — `climate-action-plan-2025-annex-of-actions`: the Marine Environment chapter moves to its divider (hand override)
+
+- **Change:** no detector code changed. The TOC entry `MA |The Marine Environment` anchors on the p. 3 code-legend table row (`['MA', 'The Marine Environment']`) — an occurrence out of TOC order — instead of its p. 55 artwork divider, whose heading the caption glue renders as `MA | Marine Image: Cliffs of Moher on bright sunny day`. `detect_structure/override.json` moves the existing node to its divider: `start_page` 55, `start_y` 490.71 (the `MA | Marine` line), `order` 1150 (between LU's 1100 and LG's 1200, keeping the bundle's reading order). The front-matter chapter absorbs pp. 1–8. Pages 94 and 95 (zero raw blocks, zero figures, between the CAP23-legacy table ending on p. 93 and its trailing figure on p. 96) are declared furniture in `steps/assemble_sections/override.json`. The out-of-order anchor remains an open detector family (FOLLOWUPS §3, emra); the artwork-tolerant matching it would also need is not attempted here.
+- **Kind:** hand override (publication correction; not a detector change)
+
+| Summary | Documents | Fully correct | Exact F1 (macro) | Page attribution (macro) | Title accuracy (macro) |
+|---|---:|---:|---:|---:|---:|
+| tuning, raw, before = after | 10 | 4 | 0.83 | 0.69 | 0.97 |
+| tuning, published, before | 10 | 5 | 0.84 | 0.78 | 0.97 |
+| tuning, published, after | 10 | **6** | **0.85** | 0.78 | 0.97 |
+| held out, raw/published, before = after | 4 | 1 | 0.62 | 0.63 | 1.00 |
+
+**Per-document changes:**
+
+| Document | Tree | Metric | Before | After | Reason |
+|---|---|---|---:|---:|---|
+| `climate-action-plan-2025-annex-of-actions` | published | all | 0.94 (15/16 exact) | **1.00 (16/16, fully correct)** | the override supplies the true boundary (p. 55 divider); every other chapter already matched exactly |
+| same | raw | all | 0.94 | 0.94 | unchanged by design: the raw detector's out-of-order p. 3 anchor is the recorded, expected gap |
+
+**Documents without gold:** none affected (no code change; production methods, `InvalidStructure` 11, and `expected.json` unchanged; no override orphaned — the target node is produced by every detection run).
+
+**Notes:** The `FigureOutOfBounds` on p. 1 (cover artwork at y = −75.33, excluded from section ordering) is informational and does not block publication. The bundle rebuilds `publishable: true`: 17 chapters in monotonic reading order, LU ending at the p. 55 divider's cut, coverage gaps none with pp. 94–95 furniture. The chapter's bundle span is pp. 56–57 (the divider sits mid-page, its upper half belonging to LU's tail) while the node boundary — what the eval scores — is exactly p. 55. The document stays held pending the human hold-lift review; its hold message in `documents.yml` ("finds no level-1 chapter (InvalidStructure)") is now stale.
