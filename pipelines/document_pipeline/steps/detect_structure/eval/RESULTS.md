@@ -444,7 +444,7 @@ sustainable-mobility-policy                     tune  toc                 0.22>1
 | Prediction | Outcome |
 |---|---|
 | national-roads and CAP 2024 Q1-Q2 fully correct or title-only misses | Both fully correct |
-| CAP 2023 and national-cycle exact F1 >= 0.9 | national-cycle 1.00 (met); **CAP 2023 0.79 (not met)**: 8 of 17 gold chapters are still missing (e.g. `Carbon Pricing`, `Electricity`) and one is a page late |
+| CAP 2023 and national-cycle exact F1 >= 0.9 | national-cycle 1.00 (met); **CAP 2023 0.79 (not met)**: 17 of its 25 gold chapters match exactly; 8 are missing (e.g. `Carbon Pricing`, `Electricity`) and one more is placed a page late |
 | sustainable-mobility page attribution >= 0.8 | 1.00 |
 | emra improved but probably still below the gate | Better than predicted: it now passes the gate (match rate 0.807, method `toc`), exact F1 0.17 -> 0.48; still far from correct (artwork chapter titles match at wrong pages) |
 
