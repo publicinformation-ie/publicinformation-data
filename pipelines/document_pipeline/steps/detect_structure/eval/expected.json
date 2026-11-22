@@ -589,14 +589,14 @@
     "legacy_method": "outline",
     "legacy_nodes": 16,
     "legacy_issues": 0,
-    "toc_fired": false,
-    "toc_method": "outline",
-    "toc_nodes": null,
-    "toc_issues": null,
+    "toc_fired": true,
+    "toc_method": "toc",
+    "toc_nodes": 24,
+    "toc_issues": 0,
     "entry_count": 36,
-    "matched_count": 4,
-    "match_rate": 0.25,
-    "slug_preserved": 0,
+    "matched_count": 16,
+    "match_rate": 1.0,
+    "slug_preserved": 15,
     "slug_total": 16
   }
 ]

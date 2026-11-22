@@ -309,7 +309,17 @@ def _make(level, number, title, page, y, confidence) -> Node:
                 start_page=int(page), start_y=round(float(y), 2), confidence=confidence)
 
 
+# A short uppercase code and a pipe (`RE | Research and Innovation`, `RE |Research`):
+# the code is the heading's number, whatever whitespace surrounds the pipe, so the
+# TOC's `RE |Title` and the body's `RE | Title` agree. `Walking | Cycling` is
+# not a code and keeps its title.
+CODE_PREFIX_RE = re.compile(r"^([A-Z0-9]{2,5})\s*\|\s*(\S.*)$")
+
+
 def _split_number(text: str):
+    code = CODE_PREFIX_RE.match(text.strip())
+    if code:
+        return code.group(1), code.group(2).strip()
     match = NUMBER_PREFIX_RE.match(text.strip())
     if match:
         return match.group(1), match.group(2).strip()
@@ -938,7 +948,7 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
             label, text = label_match.group(1), label_match.group(2).strip()
         elif pending_label is not None:
             label, pending_label = pending_label, None
-        m = NUMBER_PREFIX_RE.match(text) if label is None else None
+        m = (CODE_PREFIX_RE.match(text) or NUMBER_PREFIX_RE.match(text)) if label is None else None
         number = None
         if label is not None:
             number = label

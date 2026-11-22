@@ -271,3 +271,31 @@ No regressions. (`climate-action-plan-2025-annex-of-actions` does not change her
 **Orphaned override (to be handled in 9.3):** `emra-regional-spatial-and-economic-strategy` has an override for slug `1-1-vision` (and a drop of `1-2-eastern-and-midland-regional-assembly`) that was written for the old `numbering` tree, where two headings sit side by side on one baseline. The new `toc` tree has `1-2-...` but not `1-1-vision`, so `merge_overrides` reports that the override targets a slug detection did not produce, and still applies the drop. The published emra tree therefore needs the override re-pointed or removed before regeneration.
 
 **Documents without gold** (`production_view.py`, `compare.py` refreshed): methods unchanged for 39 of 40 documents (emra above); `InvalidStructure` 12 -> 11. Match rates in `compare.py` move slightly because matched unpaged entries no longer count: `sustainable-mobility-policy-action-plan-2026-2030` 0.667 -> 0.80, `ev-infrastructure-strategy` 0.667 -> 0.767, `national-roads-2040-final-report` 0.906 -> 0.966, `code-of-practice-fishing-vessels-under-15m` 0.871 -> 0.870, `national-ports-policy` 0.833 -> 0.829.
+
+### D7 — Pipe-separated heading codes
+
+- **Change:** a leading code of two to five uppercase letters or digits followed by `|` is the heading's number, whatever whitespace surrounds the pipe (`CODE_PREFIX_RE`, used by `_split_number` and the TOC entry parse). One change covers the outline, the TOC and the body index; the slug keeps the code.
+- **Commit:** see git log (`feat(detect_structure): read pipe-separated heading codes`)
+- **Kind:** detector change
+
+| Summary (raw tree) | Documents | Fully correct | Exact F1 (macro) | Page attribution (macro) | Title accuracy (macro) |
+|---|---:|---:|---:|---:|---:|
+| tuning, before | 10 | 4 | 0.63 | 0.50 | 0.96 |
+| tuning, after | 10 | 4 | 0.72 | 0.58 | 0.96 |
+| held out, before | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| held out, after | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| all, before | 14 | 5 | 0.63 | 0.53 | 0.97 |
+| all, after | 14 | 5 | 0.69 | 0.59 | 0.97 |
+
+**Per-document changes:**
+
+| Document | Metric | Before | After | Reason |
+|---|---|---:|---:|---|
+| `climate-action-plan-2025-annex-of-actions` | exact F1 | 0.00 | 0.91 | the TOC's `RE |Research and Innovation` now meets the body's `RE | Research and Innovation`: match rate 0.25 -> 1.00 (16 of 16 paged entries), so the method goes `numbering` -> `toc` |
+| `climate-action-plan-2025-annex-of-actions` | page attribution / exact precision / exact recall | 0.07 / 0.00 / 0.00 | 0.90 / 0.88 / 0.94 | same; 17 predicted chapters against 16 gold, 15 exact |
+
+No regressions. This is the document that D3 had worsened (0.12 -> 0.00) when it correctly stopped trusting its single-root outline; it now scores 0.91, above where it started.
+
+**Documents without gold** (`production_view.py`, `compare.py` refreshed): no other document changes method, node count or slugs, including the other CAP annexes (`climate-action-plan-2023-annex-of-actions`, `-2024-annex-of-actions`), whose slugs are unchanged; `InvalidStructure` stays 11. No override orphaned.
+
+**Notes:** the one extra predicted chapter and one missed gold chapter are not examined here; the document is a tuning document and the remaining error is a separate cause.

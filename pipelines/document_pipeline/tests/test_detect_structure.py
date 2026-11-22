@@ -1571,3 +1571,41 @@ def test_a_toc_that_prints_no_page_numbers_has_no_unpaged_entries():
     tagged = _tag_unpaged([_entry("Alpha", None), _entry("Bravo", None)])
 
     assert [e["unpaged"] for e in tagged] == [False, False]
+
+
+# --- pipe-separated heading codes (D7) -------------------------------------------
+
+def test_a_code_prefix_is_the_heading_number_whatever_surrounds_the_pipe():
+    from steps.detect_structure.process import _split_number
+
+    assert _split_number("RE |Research and Innovation") == ("RE", "Research and Innovation")
+    assert _split_number("RE | Research and Innovation") == ("RE", "Research and Innovation")
+    assert _split_number("RE|Research and Innovation") == ("RE", "Research and Innovation")
+    assert _split_number("CAP24 | Legacy Actions") == ("CAP24", "Legacy Actions")
+
+
+def test_an_ordinary_pipe_keeps_its_title():
+    from steps.detect_structure.process import _split_number
+
+    assert _split_number("Walking | Cycling") == (None, "Walking | Cycling")
+    assert _split_number("Chapter 1 | Purpose") == (None, "Chapter 1 | Purpose")   # a label, not a code
+    assert _split_number("A | Something") == (None, "A | Something")               # one letter is not a code
+
+
+def test_a_code_in_the_toc_meets_the_code_in_the_body_and_the_slug_keeps_the_code():
+    from steps.detect_structure.process import build_occurrence_index, find_occurrences, from_outline
+
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    _toc_row(spans, "RE |Research and Innovation", 120.0, number_page=8)
+    _toc_row(spans, "JT |Ensuring a Just Transition", 136.0, number_page=10)
+    entries, _flags = _parse_toc_page(page(spans))
+    assert [(e["number"], e["title"]) for e in entries] == [
+        ("RE", "Research and Innovation"), ("JT", "Ensuring a Just Transition")]
+
+    body = page([span("RE | Research and Innovation", size=18.0, y0=60.0, block=0)], number=8)
+    index = build_occurrence_index([body], set(), set(), 10.0)
+    assert find_occurrences(index, "Research and Innovation")
+
+    (node,) = from_outline([{"level": 1, "title": "RE | Research and Innovation", "page": 8, "y": 60.0}])
+    assert (node.number, node.title, node.slug) == ("RE", "Research and Innovation",
+                                                    "re-research-and-innovation")
