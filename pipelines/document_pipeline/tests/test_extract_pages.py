@@ -110,3 +110,41 @@ def test_spans_on_the_ligature_page_are_unchanged():
     from steps.extract_pages.process import extract_spans
     page = pymupdf.open(LIGATURE_PDF)[0]
     assert any(s["text"].startswith("700 battery-") for s in extract_spans(page))
+
+
+# --- rotated pages -------------------------------------------------------------
+
+def _rotated_page():
+    """A landscape page whose text was authored in the stored space and is
+    displayed portrait by /Rotate 270 — the layout of climate-action-plan-
+    2023-annex-of-actions' contents page, whose spans previously came out in
+    the stored space while the record's width/height were the displayed rect,
+    so downstream line grouping read the contents as a vertical band."""
+    import pymupdf
+    doc = pymupdf.open()
+    page = doc.new_page(width=842, height=595)
+    page.insert_text((72, 100), "Sideways contents", fontsize=12)
+    page.draw_rect(pymupdf.Rect(50, 40, 150, 90))
+    page.set_rotation(270)
+    return doc[0]
+
+
+def test_spans_on_a_rotated_page_are_extracted_in_displayed_coordinates():
+    from steps.extract_pages.process import extract_page
+
+    record = extract_page(_rotated_page(), 1)
+
+    assert (round(record["width"]), round(record["height"])) == (595, 842)
+    (span,) = record["spans"]
+    # stored (72, 87.1, 172.04, 103.59) -> displayed x' = y, y' = 842 - x
+    assert span["bbox"] == [87.1, 669.96, 103.59, 770.0]
+
+
+def test_drawings_on_a_rotated_page_are_extracted_in_displayed_coordinates():
+    from steps.extract_pages.process import extract_page
+
+    record = extract_page(_rotated_page(), 1)
+
+    (drawing,) = record["drawings"]
+    # stored (50, 40, 150, 90) -> displayed x' 40..90, y' 692..792
+    assert drawing["bbox"] == [40.0, 692.0, 90.0, 792.0]

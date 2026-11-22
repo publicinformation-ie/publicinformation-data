@@ -555,21 +555,6 @@
     "slug_total": 25
   },
   {
-    "doc_slug": "climate-action-plan-2023-annex-of-actions",
-    "legacy_method": "numbering",
-    "legacy_nodes": 4,
-    "legacy_issues": 1,
-    "toc_fired": false,
-    "toc_method": "numbering",
-    "toc_nodes": null,
-    "toc_issues": null,
-    "entry_count": null,
-    "matched_count": null,
-    "match_rate": null,
-    "slug_preserved": 0,
-    "slug_total": 4
-  },
-  {
     "doc_slug": "climate-action-plan-2024-annex-of-actions",
     "legacy_method": "outline",
     "legacy_nodes": 18,
@@ -598,5 +583,20 @@
     "match_rate": 1.0,
     "slug_preserved": 15,
     "slug_total": 16
+  },
+  {
+    "doc_slug": "climate-action-plan-2023-annex-of-actions",
+    "legacy_method": "numbering",
+    "legacy_nodes": 4,
+    "legacy_issues": 1,
+    "toc_fired": true,
+    "toc_method": "toc",
+    "toc_nodes": 19,
+    "toc_issues": 0,
+    "entry_count": 20,
+    "matched_count": 19,
+    "match_rate": 0.95,
+    "slug_preserved": 0,
+    "slug_total": 4
   }
 ]

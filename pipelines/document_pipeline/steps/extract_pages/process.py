@@ -49,6 +49,25 @@ def _round_seq(values) -> list:
     return [round(float(v), 2) for v in values]
 
 
+def _displayed_bbox(bbox, page: "pymupdf.Page") -> list:
+    """`bbox` in the page's displayed (rotation-applied) space, rounded.
+
+    PyMuPDF returns extraction geometry in the page's *stored* space, while
+    `page.rect` — what `extract_page` records as the page's width and height —
+    is the displayed space. On a page with `/Rotate` (climate-action-plan-
+    2023-annex-of-actions' contents page is stored landscape and displayed
+    portrait by /Rotate 270) the two disagree, and every downstream reader
+    groups the spans against the displayed dims: the contents page read as a
+    vertical band of text no strategy could parse. Corners are normalised so
+    a 90°/270° rotation cannot leave x0 > x1.
+    """
+    if not page.rotation:
+        return _round_seq(bbox)
+    rect = pymupdf.Rect(bbox) * page.rotation_matrix
+    return _round_seq((min(rect.x0, rect.x1), min(rect.y0, rect.y1),
+                      max(rect.x0, rect.x1), max(rect.y0, rect.y1)))
+
+
 def extract_spans(page: pymupdf.Page) -> list:
     spans = []
     text = page.get_text("dict")
@@ -61,7 +80,7 @@ def extract_spans(page: pymupdf.Page) -> list:
                     "text": span["text"],
                     "font": span["font"],
                     "size": round(float(span["size"]), 2),
-                    "bbox": _round_seq(span["bbox"]),
+                    "bbox": _displayed_bbox(span["bbox"], page),
                     "block": b_index,
                     "line": l_index,
                     "span": s_index,
@@ -76,7 +95,7 @@ def extract_drawings(page: pymupdf.Page) -> list:
         if rect is None or rect.is_empty:
             continue
         drawings.append({
-            "bbox": _round_seq(rect),
+            "bbox": _displayed_bbox(rect, page),
             "fill": drawing.get("fill") is not None,
             "width": round(float(drawing.get("width") or 0.0), 2),
         })
@@ -90,7 +109,7 @@ def extract_images(page: pymupdf.Page) -> list:
         for rect in page.get_image_rects(xref):
             images.append({
                 "xref": int(xref),
-                "bbox": _round_seq(rect),
+                "bbox": _displayed_bbox(rect, page),
                 "width": int(width),
                 "height": int(height),
             })
@@ -173,9 +192,9 @@ def extract_tables(page: pymupdf.Page) -> list:
     repair_ligature_widths(pymupdf.table.CHARS)
     all_bboxes = [t.bbox for t in found.tables]
     for table in found.tables:
-        bbox = _round_seq(table.bbox)
-        rows = int(table.row_count)
-        text = [[("" if cell is None else str(cell)) for cell in row]
+        bbox = list(table.bbox)   # stored space throughout: the header
+        rows = int(table.row_count)  # reconstruction compares stored-space
+        text = [[("" if cell is None else str(cell)) for cell in row]   # span y against the grid top
                 for row in table.extract()]
 
         other_bboxes = [b for b in all_bboxes if b != table.bbox]
@@ -187,10 +206,10 @@ def extract_tables(page: pymupdf.Page) -> list:
             bbox[1] = round(min(bbox[1], top_y), 2)
 
         tables.append({
-            "bbox": bbox,
+            "bbox": _displayed_bbox(bbox, page),
             "rows": rows,
             "cols": int(table.col_count),
-            "cells": [_round_seq(cell) for cell in table.cells if cell],
+            "cells": [_displayed_bbox(cell, page) for cell in table.cells if cell],
             "text": text,
         })
     return tables

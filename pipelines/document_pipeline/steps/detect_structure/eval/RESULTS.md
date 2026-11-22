@@ -543,3 +543,31 @@ No regression on any tuning or held-out document.
 **Documents without gold:** none affected (no code change; production methods, `InvalidStructure` 11, and `expected.json` unchanged; no override orphaned — the target node is produced by every detection run).
 
 **Notes:** The `FigureOutOfBounds` on p. 1 (cover artwork at y = −75.33, excluded from section ordering) is informational and does not block publication. The bundle rebuilds `publishable: true`: 17 chapters in monotonic reading order, LU ending at the p. 55 divider's cut, coverage gaps none with pp. 94–95 furniture. The chapter's bundle span is pp. 56–57 (the divider sits mid-page, its upper half belonging to LU's tail) while the node boundary — what the eval scores — is exactly p. 55. The document stays held pending the human hold-lift review; its hold message in `documents.yml` ("finds no level-1 chapter (InvalidStructure)") is now stale.
+
+### 1.5 — Rotated pages extract in displayed coordinates (`climate-action-plan-2023-annex-of-actions`)
+
+- **Change:** `extract_pages` transforms every recorded bbox — spans, drawings, images, table boxes and table cells — into the page's displayed (rotation-applied) space when `/Rotate` is set. PyMuPDF returns extraction geometry in the page's *stored* space while `extract_page` records `page.rect` (the displayed dims) as the page's width and height, so a rotated page's record mixed two coordinate spaces and every downstream reader grouped its spans against the wrong dimensions: the annex's contents page — stored landscape, text typeset sideways, displayed portrait by `/Rotate 270` — read as a vertical band no strategy could parse, and the cascade landed on `numbering` with table values (`0.2 MtCO2eq`) as its only "chapters". The header-reconstruction logic inside `extract_tables` still runs in the stored space (its span-to-grid comparisons are internally consistent there); only the emitted bboxes are transformed. Unit tests: `test_spans_on_a_rotated_page_are_extracted_in_displayed_coordinates`, `test_drawings_on_a_rotated_page_are_extracted_in_displayed_coordinates`.
+- **Blast radius:** exactly one document — a scan of all 40 PDFs finds `/Rotate` set on 7 pages of this annex and nowhere else; every other document's extraction is byte-identical, and the baseline diff confirms no other document moved.
+- **Kind:** extraction change (eval snapshot rebuilt with `make_input.py`; held-out acceptance measured once, not tuned)
+
+| Summary | Documents | Fully correct | Exact F1 (macro) | Page attribution (macro) | Title accuracy (macro) |
+|---|---:|---:|---:|---:|---:|
+| held out, raw, before | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| held out, raw, after | 4 | 1 | **0.85** | **0.84** | 1.00 |
+| tuning, raw/published, before = after | 10 | 4 / 6 | 0.83 / 0.85 | 0.69 / 0.78 | 0.97 |
+| all, raw, before = after | 14 | 5 | 0.77 | 0.67 | 0.98 |
+
+**Per-document changes:**
+
+| Document | Tree | Metric | Before | After | Reason |
+|---|---|---|---:|---:|---|
+| `climate-action-plan-2023-annex-of-actions` (held out) | raw = published | exact F1 / precision / recall | 0.00 / 0.00 / 0.00 | **0.95 / 1.00 / 0.90** | the contents page now parses: 20 entries with printed pages (gold's printed→PDF offset is a constant +7), 19 chapters placed, every one on its exact gold page; method `numbering` → `toc`, `InvalidStructure` cleared |
+
+The two absent gold chapters, both left as recorded residuals rather than fixed (this is a held-out document; the change was implemented from the extraction defect and measured once):
+
+- `RE | Research` — its divider heading is artwork: `TocEntryNoHeading` ("matched only below the score floor").
+- `EL | Electricity` — its contents line ends `33.` (a trailing period after the page number), which the suffix split does not read, so the entry never forms. A `\d\.?$` tolerance in `_split_toc_suffix` would fix it, but that rule change is held until a tuning document exhibits the shape.
+
+**Documents without gold:** production `InvalidStructure` 11 → 10 (this document). `compare.py` (expected.json regenerated): the annex goes `numbering 4 nodes, 1 issue` → `toc 19 nodes, 0 issues, match rate 95%`. No other document changes method, node count or slugs; no override orphaned.
+
+**Notes:** FOLLOWUPS §2 said "its contents page uses spaced dot leaders that `DOT_LEADER_RE` does not see … start there" — that was a misdiagnosis: the spaced leaders are readable once the page's coordinates are in the displayed space (`_split_toc_suffix` splits on spaces and dots alike; the rotation, not the leaders, was the blocker). The bundle rebuilds `publishable: true`: 20 chapters in reading order (front matter, Annex of Actions Guide, Glossary, then the sectors), coverage gaps none with p. 102 declared furniture (zero raw blocks, zero figures). The two missing chapters' content sits inside their neighbours (EL's pp. 40–44 inside Carbon Pricing, RE's pp. 12–19 inside Policy to Date) — the same artwork/divider family as CAP 2023's `Ensuring a Just Transition` and the 2025 annex's Marine divider, all recorded in FOLLOWUPS §3. The document stays held pending the human hold-lift review.
