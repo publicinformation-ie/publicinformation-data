@@ -1419,3 +1419,85 @@ def test_a_body_heading_with_a_chapter_label_meets_the_toc_entry_without_it():
     index = build_occurrence_index([body], set(), set(), 10.0)
 
     assert find_occurrences(index, "Purpose")
+
+
+# --- TOC continuation pages (D5, 5.3) ------------------------------------------
+
+def _header_spans(tail):
+    """A running header with a constant lead and a tail that changes per page."""
+    return [span("Policy | ", size=8.0, y0=20.0, x0=72.0, block=0, index=0),
+            span(tail, size=8.0, y0=20.0, x0=120.0, block=0, index=1)]
+
+
+def _body(number, header="Foreword"):
+    spans = _header_spans(header)
+    spans += [span(f"Body sentence {i} of page {number}.", size=10.0, y0=100.0 + 14 * i, block=i + 1)
+              for i in range(15)]
+    return page(spans, number=number)
+
+
+def _toc_page(number, header, titles, with_title):
+    spans = _header_spans(header)
+    if with_title:
+        spans.append(span("Table of contents", size=20.0, y0=60.0, block=1))
+    for index, title in enumerate(titles):
+        _toc_row(spans, title, 120.0 + 16.0 * index, number_page=3 + index, block=10 + index)
+    return page(spans, number=number)
+
+
+_NAMES = ["Alpha", "Bravo", "Charlie", "Delta"]
+
+
+def _continuation_document(second_header="Table of Contents", second_title=None, gap=False):
+    first = _toc_page(4, "Table of Contents", _NAMES, True)
+    second = _toc_page(6 if gap else 5, second_header,
+                       [f"Later {name}" for name in _NAMES],
+                       with_title=second_title is not None)
+    pages = [_body(1), _body(2), _body(3), first]
+    if gap:
+        pages.append(_body(5))
+    return pages + [second, _body(7)]
+
+
+def test_an_untitled_second_contents_page_is_part_of_the_main_toc():
+    pages = _continuation_document()
+    entries, toc_pages, _signal, flags = parse_toc(pages, 10.0)
+
+    assert toc_pages == [4, 5]
+    assert [e["title"] for e in entries] == _NAMES + [f"Later {name}" for name in _NAMES]
+    assert flags["part_tocs"] == []
+
+
+def test_a_part_toc_after_a_gap_is_still_not_parsed():
+    pages = _continuation_document(second_title="Contents", gap=True)
+    entries, toc_pages, _signal, flags = parse_toc(pages, 10.0)
+
+    assert toc_pages == [4]
+    assert not any(e["title"].startswith("Later") for e in entries)
+    assert flags["multi_toc"] is True
+
+
+def test_a_following_page_whose_shared_header_does_not_name_the_contents_is_not_added():
+    pages = _continuation_document(second_header="Foreword")
+    _entries, toc_pages, _signal, _flags = parse_toc(pages, 10.0)
+
+    assert toc_pages == [4]
+
+
+def test_a_following_list_of_tables_page_is_not_a_contents_continuation():
+    pages = _continuation_document()
+    # Make the second page open with a list-of title.
+    pages[4]["spans"].insert(1, span("List of Tables", size=14.0, y0=40.0, block=2))
+    _entries, toc_pages, _signal, _flags = parse_toc(pages, 10.0)
+
+    assert toc_pages == [4]
+
+
+def test_a_list_of_abbreviations_entry_does_not_disqualify_a_continuation_page():
+    pages = _continuation_document()
+    spans = pages[4]["spans"]
+    spans.append(span("List of Abbreviations", y0=300.0, x0=72.0, block=40))
+    spans.append(span("40", y0=300.0, x0=520.0, block=40, line=1))
+    _entries, toc_pages, _signal, _flags = parse_toc(pages, 10.0)
+
+    assert toc_pages == [4, 5]

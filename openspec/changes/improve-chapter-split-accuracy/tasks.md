@@ -34,7 +34,7 @@ Run from `pipelines/document_pipeline` with `PYTHONPATH=".:../../src" ../../.ven
 
 - [x] 5.1 Capture printed page numbers per TOC entry (arabic as int, others kept as printed), and join continuation lines. Verify with unit tests of the "Wrapped TOC entry joined", "Separate entries stay separate", "Right-column page number recorded" and "Roman page number not used" scenarios. Then measure (5a).
 - [x] 5.2 Parse `Chapter N` labels on the same line and on the line above, and add the `label` level signal. Verify with unit tests of the three "TOC chapter labels" scenarios and that the existing "Missing level signal yields a flat tree" test still passes. Then measure (5b).
-- [ ] 5.3 Detect TOC continuation pages. Verify with unit tests of "Untitled second contents page parsed" and "Later part TOC still ignored". Document 5.1 to 5.3 in the README's TOC-strategy paragraph, then measure (5c).
+- [x] 5.3 Detect TOC continuation pages. Verify with unit tests of "Untitled second contents page parsed" and "Later part TOC still ignored". Document 5.1 to 5.3 in the README's TOC-strategy paragraph, then measure (5c).
 
 ## 6. Gate denominator and heading codes (D6, D7)
 

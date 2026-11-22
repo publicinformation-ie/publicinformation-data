@@ -211,3 +211,33 @@ No regressions in the final state. **A regression appeared first and was fixed b
 **Documents without gold** (`production_view.py` and `compare.py`, refreshed in `eval/expected.json`): production detection methods unchanged for all 40 documents; `InvalidStructure` 12 -> 12; no override orphaned. In `compare.py`'s TOC view: `emra` match rate 0.534 -> 0.595 (entries 94 -> 85; still just under the 0.60 gate), `code-of-practice-recreational-craft` 0.385 -> 0.462, `climate-action-plan-2025` TOC strategy 4/26 -> 26/26 matched (its production method stays `outline`, which is plausible).
 
 **Notes:** the held-out documents did not move.
+
+### D5c — TOC continuation pages
+
+- **Change:** an untitled page directly after the last TOC page is part of the main TOC when it has at least three right-column page numbers, does not open with a `List of …` title, and (if it shares a running header with the TOC page) that header names the contents. A page after a gap is still a part-TOC and is not parsed. The pages are also excluded from the body occurrence index, as every TOC page is.
+- **Commit:** see git log (`feat(detect_structure): TOC continuation pages`)
+- **Kind:** detector change
+
+| Summary (raw tree) | Documents | Fully correct | Exact F1 (macro) | Page attribution (macro) | Title accuracy (macro) |
+|---|---:|---:|---:|---:|---:|
+| tuning, before (post-5b) | 10 | 3 | 0.58 | 0.42 | 0.87 |
+| tuning, after | 10 | 4 | 0.61 | 0.48 | 0.87 |
+| held out, before | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| held out, after | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| all, before | 14 | 4 | 0.59 | 0.48 | 0.90 |
+| all, after | 14 | 5 | 0.61 | 0.52 | 0.90 |
+
+**Per-document changes:**
+
+| Document | Metric | Before | After | Reason |
+|---|---|---:|---:|---|
+| `sustainable-mobility-policy` | exact F1 | 0.71 | 1.00 | its contents list continues on p. 5 (untitled, running header `… | Table of Contents`), so chapters 4 to 9 were never read; the 4 chapters set as artwork are now placed by their TOC entries and the document is fully correct |
+| `sustainable-mobility-policy` | page attribution / tolerant F1 / exact recall | 0.40 / 0.71 / 0.56 | 1.00 / 1.00 / 1.00 | same |
+
+No regressions.
+
+**Documents without gold** (`production_view.py`, `compare.py` refreshed in `eval/expected.json`): production detection methods unchanged for all 40 documents; `InvalidStructure` 12 -> 12. Two documents read a fuller TOC: `national-investment-framework-for-transport-in-ireland` (entries 27 -> 73, matched 18 -> 47, nodes 62 -> 65; 18 slugs change) and `code-of-practice-recreational-craft` (entries 13 -> 49, matched 6 -> 27, match rate 0.462 -> 0.551). No override is orphaned, but the first document's published slugs change, so its bundle diff needs the usual review before regeneration.
+
+**D5 as a whole** (5a + 5b + 5c, against the post-D3 reference: tuning exact F1 0.53 -> 0.61, page attribution 0.39 -> 0.48; held out unchanged): the rule improves its target `sustainable-mobility-policy` (exact F1 0.22 -> 1.00, page attribution 0.12 -> 1.00), so D10(c) holds for D5. `emra-regional-spatial-and-economic-strategy` and `connecting-ireland-rural-mobility-plan` did not move: emra's TOC match rate is now 0.595, just under the 0.60 gate (D6 removes its unpaged entries from the denominator), and connecting-ireland's text layer is garbled (a stated non-goal).
+
+**Notes:** `sustainable-mobility-policy` being fully correct also removes its D8 target; D8 is now judged on emra alone.

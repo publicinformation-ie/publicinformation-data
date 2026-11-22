@@ -994,6 +994,59 @@ def _infer_levels(entries):
     return [{**e, "level": 1} for e in entries], "none"
 
 
+def _opens_with_list_of_title(page: dict, running: set, running_leads: set) -> bool:
+    """True when the page's first line (after running headers) is a `List of
+    Tables`-style title. A `List of Abbreviations` *entry* further down a
+    contents page does not make it a list-of page."""
+    for line in reading_order_lines(page):
+        if (normalize_heading_text(line.text) in running
+                or normalize_heading_text(line.lead) in running_leads):
+            continue
+        return bool(_LIST_OF_RE.match(normalize_heading_text(line.text)))
+    return False
+
+
+def _names_contents(line) -> bool:
+    return "contents" in normalize_heading_text(line.text)
+
+
+def _shares_contents_header(toc_page: dict, candidate: dict, running: set, running_leads: set) -> bool:
+    """False only when the candidate page shares a running header with the TOC
+    page and that header does not name the contents (`Policy | Foreword` over a
+    body page). Pages that share no running header are not excluded by this test."""
+    def headers(page):
+        return [l for l in reading_order_lines(page)
+                if normalize_heading_text(l.lead) in running_leads
+                or normalize_heading_text(l.text) in running]
+    leads_on_toc = {normalize_heading_text(l.lead) for l in headers(toc_page)}
+    shared = [l for l in headers(candidate) if normalize_heading_text(l.lead) in leads_on_toc]
+    return not shared or any(_names_contents(l) for l in shared)
+
+
+def _continuation_pages(pages: list, toc_pages: list, body: float,
+                        running: set, running_leads: set) -> list:
+    """Pages that continue the main TOC: each directly follows the last TOC page,
+    has no contents title of its own, is not a `list-of-` page, has at least three
+    right-column page numbers, and (when it shares a running header with the TOC
+    page) that header names the contents. A page after a gap is never added, so a
+    later part-TOC stays unparsed."""
+    by_number = {p["number"]: p for p in pages}
+    added = []
+    last = toc_pages[-1] if toc_pages else None
+    while last is not None:
+        page = by_number.get(last + 1)
+        if page is None:
+            break
+        title_heading, title_any, _dots, right_nums = _page_toc_signals(page, body)
+        if (title_heading or title_any or right_nums < 3
+                or _opens_with_list_of_title(page, running, running_leads)
+                or not _shares_contents_header(by_number[last], page, running, running_leads)):
+            break
+        added.append(page["number"])
+        last += 1
+    return added
+
+
 def parse_toc(pages: list, body: float):
     """Detect the document's main TOC and parse its entries.
 
@@ -1022,6 +1075,8 @@ def parse_toc(pages: list, body: float):
 
     running = running_header_texts(pages)
     running_leads = running_header_leads(pages)
+    toc_pages += [n for n in _continuation_pages(pages, toc_pages, body, running, running_leads)
+                  if n not in toc_pages]
 
     all_entries = []
     for num in toc_pages:

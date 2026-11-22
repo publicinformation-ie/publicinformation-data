@@ -465,26 +465,26 @@
       "held_out": false,
       "raw": {
         "gold_chapters": 9,
-        "predicted_chapters": 5,
+        "predicted_chapters": 9,
         "exact": {
-          "matched": 5,
+          "matched": 9,
           "precision": 1.0,
-          "recall": 0.5555555555555556,
-          "f1": 0.7142857142857143
+          "recall": 1.0,
+          "f1": 1.0
         },
         "tolerant": {
-          "matched": 5,
+          "matched": 9,
           "precision": 1.0,
-          "recall": 0.5555555555555556,
-          "f1": 0.7142857142857143
+          "recall": 1.0,
+          "f1": 1.0
         },
         "page_count": 72,
-        "pages_correct": 29,
-        "page_accuracy": 0.4027777777777778,
-        "matched_pairs": 5,
-        "titles_correct": 5,
+        "pages_correct": 72,
+        "page_accuracy": 1.0,
+        "matched_pairs": 9,
+        "titles_correct": 9,
         "title_accuracy": 1.0,
-        "fully_correct": false
+        "fully_correct": true
       },
       "post_override": null
     }
@@ -492,99 +492,99 @@
   "summary": {
     "raw": {
       "documents": 14,
-      "fully_correct": 4,
+      "fully_correct": 5,
       "macro": {
         "boundary_precision_exact": 0.6535298035298035,
-        "boundary_recall_exact": 0.5898501498501499,
-        "boundary_f1_exact": 0.5883065600822269,
+        "boundary_recall_exact": 0.6215961815961817,
+        "boundary_f1_exact": 0.608714723347533,
         "boundary_precision_tolerant": 0.7737137862137863,
-        "boundary_recall_tolerant": 0.6634251859251858,
-        "boundary_f1_tolerant": 0.671119960041753,
-        "page_accuracy": 0.47956520358023713,
+        "boundary_recall_tolerant": 0.6951712176712176,
+        "boundary_f1_tolerant": 0.691528123307059,
+        "page_accuracy": 0.5222239337389672,
         "title_accuracy": 0.9
       },
       "micro": {
-        "boundary_precision_exact": 0.66875,
-        "boundary_recall_exact": 0.5219512195121951,
-        "boundary_f1_exact": 0.5863013698630137,
-        "boundary_precision_tolerant": 0.79375,
-        "boundary_recall_tolerant": 0.6195121951219512,
-        "boundary_f1_tolerant": 0.6958904109589041,
-        "page_accuracy": 0.2884818598097922,
-        "title_accuracy": 0.9719626168224299
+        "boundary_precision_exact": 0.676829268292683,
+        "boundary_recall_exact": 0.5414634146341464,
+        "boundary_f1_exact": 0.6016260162601627,
+        "boundary_precision_tolerant": 0.7987804878048781,
+        "boundary_recall_tolerant": 0.6390243902439025,
+        "boundary_f1_tolerant": 0.7100271002710027,
+        "page_accuracy": 0.3036280380415639,
+        "title_accuracy": 0.972972972972973
       }
     },
     "post_override": {
       "documents": 14,
-      "fully_correct": 4,
+      "fully_correct": 5,
       "macro": {
         "boundary_precision_exact": 0.6566447337124028,
-        "boundary_recall_exact": 0.5898501498501499,
-        "boundary_f1_exact": 0.5891200928606135,
+        "boundary_recall_exact": 0.6215961815961817,
+        "boundary_f1_exact": 0.6095282561259195,
         "boundary_precision_tolerant": 0.7709076637648067,
-        "boundary_recall_tolerant": 0.6586632811632811,
-        "boundary_f1_tolerant": 0.6670496729082936,
-        "page_accuracy": 0.4804434237207524,
+        "boundary_recall_tolerant": 0.6904093129093128,
+        "boundary_f1_tolerant": 0.6874578361735998,
+        "page_accuracy": 0.5231021538794826,
         "title_accuracy": 0.9
       },
       "micro": {
-        "boundary_precision_exact": 0.6772151898734177,
-        "boundary_recall_exact": 0.5219512195121951,
-        "boundary_f1_exact": 0.5895316804407712,
-        "boundary_precision_tolerant": 0.7974683544303798,
-        "boundary_recall_tolerant": 0.6146341463414634,
-        "boundary_f1_tolerant": 0.694214876033058,
-        "page_accuracy": 0.2895385699189856,
-        "title_accuracy": 0.9719626168224299
+        "boundary_precision_exact": 0.6851851851851852,
+        "boundary_recall_exact": 0.5414634146341464,
+        "boundary_f1_exact": 0.6049046321525887,
+        "boundary_precision_tolerant": 0.8024691358024691,
+        "boundary_recall_tolerant": 0.6341463414634146,
+        "boundary_f1_tolerant": 0.7084468664850136,
+        "page_accuracy": 0.3046847481507573,
+        "title_accuracy": 0.972972972972973
       }
     },
     "tuning": {
       "raw": {
         "documents": 10,
-        "fully_correct": 3,
+        "fully_correct": 4,
         "macro": {
           "boundary_precision_exact": 0.6733333333333333,
-          "boundary_recall_exact": 0.5740808080808081,
-          "boundary_f1_exact": 0.5774753379612715,
+          "boundary_recall_exact": 0.6185252525252525,
+          "boundary_f1_exact": 0.6060467665327001,
           "boundary_precision_tolerant": 0.8324999999999999,
-          "boundary_recall_tolerant": 0.6659747474747475,
-          "boundary_f1_tolerant": 0.6834140979046082,
-          "page_accuracy": 0.4209034381487363,
+          "boundary_recall_tolerant": 0.7104191919191919,
+          "boundary_f1_tolerant": 0.7119855264760366,
+          "page_accuracy": 0.48062566037095855,
           "title_accuracy": 0.8666666666666667
         },
         "micro": {
-          "boundary_precision_exact": 0.6037735849056604,
-          "boundary_recall_exact": 0.47058823529411764,
-          "boundary_f1_exact": 0.5289256198347108,
-          "boundary_precision_tolerant": 0.7830188679245284,
-          "boundary_recall_tolerant": 0.6102941176470589,
-          "boundary_f1_tolerant": 0.6859504132231405,
-          "page_accuracy": 0.23495934959349593,
-          "title_accuracy": 0.953125
+          "boundary_precision_exact": 0.6181818181818182,
+          "boundary_recall_exact": 0.5,
+          "boundary_f1_exact": 0.5528455284552846,
+          "boundary_precision_tolerant": 0.7909090909090909,
+          "boundary_recall_tolerant": 0.6397058823529411,
+          "boundary_f1_tolerant": 0.7073170731707316,
+          "page_accuracy": 0.2524390243902439,
+          "title_accuracy": 0.9558823529411765
         }
       },
       "post_override": {
         "documents": 10,
-        "fully_correct": 3,
+        "fully_correct": 4,
         "macro": {
           "boundary_precision_exact": 0.6776942355889723,
-          "boundary_recall_exact": 0.5740808080808081,
-          "boundary_f1_exact": 0.5786142838510127,
+          "boundary_recall_exact": 0.6185252525252525,
+          "boundary_f1_exact": 0.6071857124224412,
           "boundary_precision_tolerant": 0.8285714285714286,
-          "boundary_recall_tolerant": 0.6593080808080808,
-          "boundary_f1_tolerant": 0.6777156959177649,
-          "page_accuracy": 0.42213294634545767,
+          "boundary_recall_tolerant": 0.7037525252525253,
+          "boundary_f1_tolerant": 0.7062871244891935,
+          "page_accuracy": 0.48185516856767985,
           "title_accuracy": 0.8666666666666667
         },
         "micro": {
-          "boundary_precision_exact": 0.6153846153846154,
-          "boundary_recall_exact": 0.47058823529411764,
-          "boundary_f1_exact": 0.5333333333333333,
-          "boundary_precision_tolerant": 0.7884615384615384,
-          "boundary_recall_tolerant": 0.6029411764705882,
-          "boundary_f1_tolerant": 0.6833333333333333,
-          "page_accuracy": 0.23617886178861788,
-          "title_accuracy": 0.953125
+          "boundary_precision_exact": 0.6296296296296297,
+          "boundary_recall_exact": 0.5,
+          "boundary_f1_exact": 0.5573770491803278,
+          "boundary_precision_tolerant": 0.7962962962962963,
+          "boundary_recall_tolerant": 0.6323529411764706,
+          "boundary_f1_tolerant": 0.7049180327868853,
+          "page_accuracy": 0.25365853658536586,
+          "title_accuracy": 0.9558823529411765
         }
       }
     },
