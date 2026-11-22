@@ -3657,15 +3657,7 @@ The Strategy will also be reviewed, and recalibrated as necessary, to maximise i
 
 *Figure from page 139*
 
-## Appendix 1
-
-### Appendix 1
-
-*Pages 139–139*
-
-Appendix 1 Case Studies
-
-## Case Studies
+## Appendix 1 Case Studies
 
 ### 1 Sligo County Council:
 
@@ -3799,9 +3791,11 @@ Recommendations and Lessons Learned
 
 Public space in Dublin is ever-changing and this can make it difficult for local authorities to accommodate the demand of public space to host the eco hub. Hence, Dublin City Council is now seeking solutions to facilitate the sustainable deliveries of eco hubs and distribution centres in off-street locations in Dublin City by working closely with the delivery companies and infrastructure providers.
 
-### Case Studies
+### Appendix 1 Case Studies
 
-*Pages 140–140*
+*Pages 139–140*
+
+Appendix 1 Case Studies
 
 An essential element of the Strategy is recognising existing and ongoing success, which can be harnessed to deliver impact. While the concept of demand management may be in its infancy in Ireland, there are many national and international examples of successful implementation in this area – examples that could be leveraged by other local authorities and agencies to achieve the objectives set out in this Strategy. The following represents a sample summary of case studies that were gathered to inform this Strategy and published as part of the public consultation process in 2024. As well as a case studies compendium, the subgroup reports featured many relevant examples of learnings from practice40.
 
@@ -4015,19 +4009,13 @@ Economically efficient collection system: ᴏ The operational cost of road user 
 
 *Figure from page 153*
 
-## Appendix 2
+## Appendix 2 Ensuring a Just Transition through Investment
 
-### Appendix 2
+### Appendix 2 Ensuring a Just Transition through Investment
 
-*Pages 153–153*
+*Pages 153–160*
 
 Appendix 2 Ensuring a Just Transition through Investment
-
-## Ensuring a Just Transition through Investment
-
-### Ensuring a Just Transition through Investment
-
-*Pages 154–160*
 
 Keeping public transport affordable
 
@@ -4147,19 +4135,13 @@ Without the large-scale investment envisaged in the NDP, the transport sector wo
 
 *Figure from page 160*
 
-## Appendix 3
+## Appendix 3 Implementation Plan
 
-### Appendix 3
+### Appendix 3 Implementation Plan
 
-*Pages 160–160*
+*Pages 160–176*
 
 Appendix 3 Implementation Plan
-
-## Implementation Plan
-
-### Implementation Plan
-
-*Pages 161–176*
 
 | Strengthened Implementation of Demand Management across National Planning System |  |  |  |  |  |  |
 | --- | --- | --- | --- | --- | --- | --- |

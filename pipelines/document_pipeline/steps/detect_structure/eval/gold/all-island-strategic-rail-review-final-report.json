@@ -1,0 +1,68 @@
+{
+  "doc_slug": "all-island-strategic-rail-review-final-report",
+  "pdf_sha256": "4a5287fcfc06db811c46d00d760d7181a9999eb0fdd79e64b84c8ee6427cf3e5",
+  "toc_pdf_pages": [
+    5
+  ],
+  "annotator": "Dave",
+  "annotated_on": "2026-11-22",
+  "reviewed": true,
+  "notes": "Contents: page 5. Chapter and appendix labels are printed as 'Chapter N | Title' and 'Appendix X | Title', separated by a decorative rule; the label is stripped and only the printed title is recorded. The six sector rows indented under Chapter 4 (Decarbonisation ... Customer Experience) are not chapters. Each appendix is printed at the same indent as the chapters, so each is a chapter. Printed page equals PDF page.",
+  "chapters": [
+    {
+      "title": "Executive Summary",
+      "printed_page": "7",
+      "pdf_page": 7
+    },
+    {
+      "title": "Purpose",
+      "printed_page": "17",
+      "pdf_page": 17
+    },
+    {
+      "title": "The Railway Today",
+      "printed_page": "21",
+      "pdf_page": 21
+    },
+    {
+      "title": "The Case for Change",
+      "printed_page": "33",
+      "pdf_page": 33
+    },
+    {
+      "title": "Recommendations",
+      "printed_page": "43",
+      "pdf_page": 43
+    },
+    {
+      "title": "Benefits and Costs",
+      "printed_page": "89",
+      "pdf_page": 89
+    },
+    {
+      "title": "Roadmap for Delivery",
+      "printed_page": "101",
+      "pdf_page": 101
+    },
+    {
+      "title": "Public Consultation",
+      "printed_page": "107",
+      "pdf_page": 107
+    },
+    {
+      "title": "Review Methodology",
+      "printed_page": "117",
+      "pdf_page": 117
+    },
+    {
+      "title": "Mitigation and Monitoring Measures",
+      "printed_page": "139",
+      "pdf_page": 139
+    },
+    {
+      "title": "Inflation",
+      "printed_page": "157",
+      "pdf_page": 157
+    }
+  ]
+}

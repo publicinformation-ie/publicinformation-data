@@ -1,0 +1,93 @@
+{
+  "doc_slug": "climate-action-plan-2025-annex-of-actions",
+  "pdf_sha256": "3cbc4198d343fce408a06451721b4648bf19049882a94959eed6454578718fcd",
+  "toc_pdf_pages": [
+    2
+  ],
+  "annotator": "Dave",
+  "annotated_on": "2026-11-22",
+  "reviewed": true,
+  "notes": "Contents: page 2. Each sector code (RE, JT, JM, BE, CP, EL, IN, TR, AG, LU, MA, LG, CE, AD) is the chapter's number and is stripped from the title (R3); titles are transcribed from the rendered contents image because the text layer splits them across the theme divider artwork. The Marine Environment is printed as 'Marine' on the body divider; the TOC wording is recorded. CAP24/CAP23 Legacy Actions have no sector code and keep their printed titles. Printed page equals PDF page.",
+  "chapters": [
+    {
+      "title": "Research and Innovation",
+      "printed_page": "8",
+      "pdf_page": 8
+    },
+    {
+      "title": "Ensuring a Just Transition to a Climate Neutral Ireland",
+      "printed_page": "10",
+      "pdf_page": 10
+    },
+    {
+      "title": "Delivering a Just Transition in the Midlands Region",
+      "printed_page": "13",
+      "pdf_page": 13
+    },
+    {
+      "title": "Built Environment",
+      "printed_page": "17",
+      "pdf_page": 17
+    },
+    {
+      "title": "Carbon Pricing and Cross-cutting Policy",
+      "printed_page": "21",
+      "pdf_page": 21
+    },
+    {
+      "title": "Electricity",
+      "printed_page": "23",
+      "pdf_page": 23
+    },
+    {
+      "title": "Industry",
+      "printed_page": "27",
+      "pdf_page": 27
+    },
+    {
+      "title": "Transport",
+      "printed_page": "31",
+      "pdf_page": 31
+    },
+    {
+      "title": "Agriculture",
+      "printed_page": "46",
+      "pdf_page": 46
+    },
+    {
+      "title": "Land Use, Land Use Change & Forestry",
+      "printed_page": "51",
+      "pdf_page": 51
+    },
+    {
+      "title": "The Marine Environment",
+      "printed_page": "55",
+      "pdf_page": 55
+    },
+    {
+      "title": "Local Government",
+      "printed_page": "57",
+      "pdf_page": 57
+    },
+    {
+      "title": "The Circular Economy and Other Emissions",
+      "printed_page": "59",
+      "pdf_page": 59
+    },
+    {
+      "title": "Adaptation",
+      "printed_page": "61",
+      "pdf_page": 61
+    },
+    {
+      "title": "CAP24 Legacy Actions",
+      "printed_page": "66",
+      "pdf_page": 66
+    },
+    {
+      "title": "CAP23 Legacy Actions",
+      "printed_page": "87",
+      "pdf_page": 87
+    }
+  ]
+}

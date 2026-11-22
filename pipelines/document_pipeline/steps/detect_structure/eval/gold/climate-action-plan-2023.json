@@ -1,0 +1,142 @@
+{
+  "doc_slug": "climate-action-plan-2023",
+  "pdf_sha256": "7942f090a6510b5a98d79c1af01a991c6e2589bc58328b4abcae1b16ef7a7485",
+  "toc_pdf_pages": [
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "annotator": "Dave",
+  "annotated_on": "2026-11-22",
+  "reviewed": true,
+  "notes": "Contents: pages 3-7. Foreword, Glossary of Acronyms and Executive Summary are printed at the top level and are chapters. Chapters 1-11 and 13-22 open with a full-page photo divider that prints the number and title; the divider is recorded as the chapter start. Electricity has no divider (page 128 repeats chapter 11's divider), so its printed-to-PDF offset changes by one there: the TOC prints 128 and the chapter opens on 129.",
+  "chapters": [
+    {
+      "title": "Foreword",
+      "printed_page": "08",
+      "pdf_page": 8
+    },
+    {
+      "title": "Glossary of Acronyms",
+      "printed_page": "09",
+      "pdf_page": 9
+    },
+    {
+      "title": "Executive Summary",
+      "printed_page": "15",
+      "pdf_page": 15
+    },
+    {
+      "title": "The Critical Nature of the Challenge",
+      "printed_page": "21",
+      "pdf_page": 21
+    },
+    {
+      "title": "Where We Stand",
+      "printed_page": "28",
+      "pdf_page": 28
+    },
+    {
+      "title": "Policy to Date and Expected Impact of Planned Policies",
+      "printed_page": "32",
+      "pdf_page": 32
+    },
+    {
+      "title": "Research",
+      "printed_page": "39",
+      "pdf_page": 39
+    },
+    {
+      "title": "Choosing the Pathways",
+      "printed_page": "50",
+      "pdf_page": 50
+    },
+    {
+      "title": "Governance of the Challenge",
+      "printed_page": "59",
+      "pdf_page": 59
+    },
+    {
+      "title": "Ensuring a Just Transition to a Climate Neutral Ireland",
+      "printed_page": "67",
+      "pdf_page": 67
+    },
+    {
+      "title": "Delivering a Just Transition in the Midlands Region",
+      "printed_page": "79",
+      "pdf_page": 79
+    },
+    {
+      "title": "Citizen Engagement",
+      "printed_page": "90",
+      "pdf_page": 90
+    },
+    {
+      "title": "Public Sector Leading by Example",
+      "printed_page": "102",
+      "pdf_page": 102
+    },
+    {
+      "title": "Carbon Pricing and Cross-cutting Policies",
+      "printed_page": "116",
+      "pdf_page": 116
+    },
+    {
+      "title": "Electricity",
+      "printed_page": "128",
+      "pdf_page": 129
+    },
+    {
+      "title": "Industry",
+      "printed_page": "146",
+      "pdf_page": 146
+    },
+    {
+      "title": "Built Environment",
+      "printed_page": "160",
+      "pdf_page": 160
+    },
+    {
+      "title": "Transport",
+      "printed_page": "183",
+      "pdf_page": 183
+    },
+    {
+      "title": "Agriculture",
+      "printed_page": "213",
+      "pdf_page": 213
+    },
+    {
+      "title": "Land Use, Land Use Change, Forestry",
+      "printed_page": "226",
+      "pdf_page": 226
+    },
+    {
+      "title": "The Marine Environment",
+      "printed_page": "240",
+      "pdf_page": 240
+    },
+    {
+      "title": "The Circular Economy",
+      "printed_page": "249",
+      "pdf_page": 249
+    },
+    {
+      "title": "International Climate Action",
+      "printed_page": "260",
+      "pdf_page": 260
+    },
+    {
+      "title": "Sustainable Development Goals",
+      "printed_page": "268",
+      "pdf_page": 268
+    },
+    {
+      "title": "Adaptation",
+      "printed_page": "273",
+      "pdf_page": 273
+    }
+  ]
+}

@@ -143,6 +143,25 @@ Every step writes `errors.json` (truncated to `[]` at the start of each run) wit
 
 A document skipped by any of the four is **not** marked processed, so the next run retries it automatically once `documents.yml` or the source URL is fixed — no `--force` needed for that one document.
 
+## Measuring chapter-split accuracy
+
+`detect_structure`'s tree is checked by `validate_split` (shape only) and `eval/compare.py` (change
+only). Neither says whether the split is *right*. `steps/detect_structure/eval/score.py` scores the
+detected chapters against committed hand-authored gold lists transcribed from each document's printed
+table of contents, and diffs the result against a committed baseline, so a detector change is a
+per-document diff rather than a guess.
+
+```bash
+cd pipelines/document_pipeline
+PYTHONPATH=".:../../src" python steps/detect_structure/eval/score.py
+```
+
+Read [`steps/detect_structure/eval/gold/GUIDELINE.md`](steps/detect_structure/eval/gold/GUIDELINE.md)
+before adding a gold document; the report's flags and the annotation workflow are documented in
+[`steps/detect_structure/README.md`](steps/detect_structure/README.md#accuracy-evaluation-gold-chapters).
+The report is read-only and offline, and is not part of CI: run it before and after changing
+detection.
+
 ## Common files in each step directory
 
 | File | Purpose |

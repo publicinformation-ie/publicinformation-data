@@ -124,158 +124,6 @@ It has been an essential component, along with investment programmes in other se
 
 ### 2. Progress Made on the Prior Transport Strategy
 
-## Servicing
-
-### Servicing
-
-*Pages 197–202*
-
-15. Freight, Delivery and Servicing
-
-15.1 Introduction
-
-policies, set out clear pathways to the decarbonisation of private cars and public transport, to date an approach has not been formally adopted for similar measures in the freight sector, largely due to the technological challenges associated with larger vehicles operating over long distances.
-
-The National Planning Framework growth projections and the associated demand for new homes; continued economic growth and opportunities; as well as the provision of community infrastructure such as schools, will all combine to result in the increased need for freight movement in the GDA. There will also be a greater level of delivery and servicing activity and waste management.
-
-It is clear, however, that the Climate Action Plan targets for 2030 cannot be achieved without significant steps being taken to reduce emissions from goods vehicles. The NTA will cooperate with all stakeholders, as appropriate, through the consultative forums established via the regional freight strategy, to explore solutions in this regard.
-
-While presenting challenges in terms of safety, congestion, air and noise pollution, the clustering of activities, allied to an improvement in the strategic transport infrastructure offers the possibility of innovative approaches to mitigate the impact of freight activity and reconcile with demand / demand patterns and operational requirements associated with other modes and journey purposes.
-
-Measure FREIGHT1 – Environmental Measures for Freight
-
-It is the intention of the NTA, in collaboration with other authorities, to:
-
-The following sections set out key areas of consideration for freight movement and goods delivery.
-
-Seek the reduction of the amount of ‘last mile trips’ being made by non-zero emission vehicles;
-
-15.2 Emissions Reduction in the Freight Sector
-
-Facilitate the transition to zero-emission delivery vehicles including emerging technologies for HGV, Electric Light Goods Vehicles and cargo bikes; and
-
-Support local ‘Click and Collect’ facilities where appropriate to minimise trips to individual homes and workplaces.
-
-The freight sector is a significant contributor to carbon emissions. While the Transport Strategy, and other Government
-
-15.3 Freight Strategy
-
-Measure FREIGHT2 - Strategy for Sustainable Freight Distribution
-
-Regional Policy Objective 8.5 of the EMRA RSES supports the preparation of a strategy for freight transport in collaboration with the relevant transport agencies and the other Assemblies. From a climate change perspective, this should contribute to the acceleration of the decarbonisation of the freight sector, integrate smart technologies in logistics management and reinforce the important role that the strategic rail and road (including TEN-T) network play in efficiently moving freight. However, given the types of vehicles, their large size and the long distance nature of many of their operations, it is important to acknowledge the challenges faced by the decarbonisation of road freight transport.
-
-It is the intention of the NTA, in collaboration with other authorities, including TII and Irish Rail, and stakeholders to prepare a Strategy for Sustainable Freight Distribution for the Greater Dublin Area – to inter alia, support the decarbonisation of the freight sector, to seek to further integrate smart technologies in logistics management and to reinforce the important role that the strategic road and rail network play in the efficient movement of freight.
-
-![Figure from page 198](assets/p198-f01.webp)
-
-*Figure from page 198*
-
-The NTA supports the development of such a strategy in recognition of the need to reduce the carbon-intensity of freight movements and be cognisant of the inter-regional nature of freight movements, driven in particular by the scale and strategic importance of Dublin Port and Dublin Airport, along with the high centration of logistics and industrial activity within the GDA. It is a key objective of the National Planning Framework under National Strategic Objectives: NSO2 - Enhanced Regional Accessibility and NSO6 - High Quality International Connectivity and also the RSES to safeguard and improve access to Dublin Port and Dublin Airport, as two primary national gateways.
-
-15.4 Planning Policy and the Location & Management of Freight Intensive Development
-
-The implementation of designated ‘lorry routes’ on strategic radial and orbital roads would assist in optimising the usage of available road capacity, and mitigate delays and conflict with other modes.
-
-In addition, seeking to regulate delivery times and as far as practicable, limiting them to off-peak periods would contribute to off-setting traffic congestion within urban areas. This could also bring additional benefits to freight operators in terms of reductions on travel times and operating costs.
-
-Underpinning the Strategy’s measures relating to freight, delivery and servicing, there is an associated requirement by planning authorities in the GDA for the clear identification in development plans, of appropriate locations for freight intensive developments, and the implementation of Distribution and Servicing Plans for such developments as part of the planning process.
-
-HGV management proposals may include the following:
-
-Implementation of a HGV management plan within the Metropolitan Area to ensure that these routes retain sufficient capacity to fulfil their strategic functions, including freight movement. The manner of implementation, enforcement, access routes and extent of the scheme will be determined at a later stage between TII, the NTA, stakeholders from the freight industry and local authorities;
-
-Measure FREIGHT3 – Planning Policy and Freight
-
-It is recommended that local authorities in the GDA, with the input of the NTA and TII, identify appropriate locations for freight-intensive developments in their Development Plans.
-
-Provision for the continuation of the current Dublin City Heavy Goods Vehicle Management Strategy and for its further expansion to other vehicle types, potentially with an expanded exclusion area;
-
-15.5 Heavy Goods Vehicles
-
-Ensure that the Dublin Tunnel continues to perform its primary function of providing access to Dublin Port for freight traffic;
-
-HGVs play an integral role in the movement of goods throughout the Greater Dublin Area and at a national level. HGV movement can have significant impacts on the overall volume of traffic, noise, air pollution and the safety of other road users, particularly within urban areas.
-
-Assessment of the potential for, and, if appropriate, introduction of similar HGV management measures in other major town centres in the GDA;
-
-Support for goods vehicle parking facilities at on-line motorway service areas and other appropriate locations within the GDA in accordance with relevant planning policies and guidelines; and
-
-Enhancing connections with seaports;
-
-Developing a network of inland ports
-
-Addressing rolling stock requirements;
-
-Network developments; and
-
-Provision for appropriate Mobility management planning at key freight intensive locations such as Dublin Port, Dublin Airport and Dublin City Centre.
-
-Policy initiative
-
-![Figure from page 200](assets/p200-f01.webp)
-
-*Figure from page 200*
-
-Measure FREIGHT5 – Rail Freight
-
-Measure FREIGHT 4 – HGV Management
-
-The NTA will support Irish Rail in the implementation of the outcomes of the Rail Freight 2040 Strategy.
-
-Consideration will be given to identifying specific HGV routes and / or time restrictions for deliveries to improve the efficiency of HGV movements while minimising their impact.
-
-15.7 Construction Logistics Centres
-
-15.6 Rail Freight
-
-Shared construction and logistics centres (CLCs) are a recent trend in European cities projected to experience significant increases in population and construction activity in future years.
-
-The potential for the use of rail and associated inter modality with road based freight movement will be examined as part of the Transport Strategy’s implementation. This will take into consideration Irish Rail’s Rail Freight 2040 Strategy which examines opportunities for the expansion of rail freight volumes across the Irish Rail network over the next 20 years.
-
-CLCs are typically set-up near strategic development areas on sites adjacent to the strategic road or rail network to minimise travelling distances for construction materials. Developers are often required to sign up to shared CLCs as part of the development management process.
-
-The Rail Freight Strategy proposes a series of interventions under five investment pillars that look to support this goal:
-
-Trips to and from construction sites are reduced as HGVs with less than 80% occupancy are held until fully occupied
-
-and trips to construction sites are controlled using a booking system. The levels of development anticipated within the Strategy period across a number of key growth area within the Metropolitan Area would appear to justify the need for a number of CLCs.
-
-for example, examining the case for small electric vans delivering to restaurants and shops;
-
-Examining the case for increased use of cargo bikes for delivery in Dublin City Centre and other towns in the GDA;
-
-Examining the feasibility of out-of-hours delivery and servicing through the use of low-noise vehicles like Electric Vehicles (EVs) and the imposition of planning conditions where appropriate;
-
-Measure FREIGHT6 – Construction Logistics Centres
-
-It is the intention of the NTA, as part of the Regional Freight Strategy, to investigate the potential for Construction and Logistics Centres in the GDA.
-
-Examining the feasibility of using smaller and nonmotorised vehicles for delivery and servicing to reduce noise and air pollution and enable more street space to be given to pedestrians and cyclists;
-
-Minimising empty return trips by taking inspiration from innovative practices such as the Utrecht Cargohopper and Gothenburg’s Stadleveransen city delivery system; and
-
-15.8 Delivery and Servicing
-
-The expected growth in commercial, and goods trip intensive development over the Transport Strategy period will lead to an increase in delivery and servicing needs.
-
-Supporting the placement of local ‘Click and Collect’ facilities at rail stations, new residential developments and Park and Ride facilities, to reduce the amount of individual personal deliveries to workplaces and homes where the recipient is often absent.
-
-Personal delivery and waste management services also expected to increase substantially arising from changes in the retail sector and as the population increases.
-
-Objectives to manage this increase in delivery and servicing include:
-
-Measure FREIGHT7 – Consolidation Centres
-
-It is the intention of the NTA, in collaboration with local authorities, to support and secure the delivery of consolidation centres and break bulk facilities, which will facilitate smaller vehicles delivering to Dublin City Centre and other major town centres.
-
-Examination of the case for urban or micro-consolidation centres within the GDA, particularly within Dublin City Centre and other major town centres, to reduce the number of last-mile trips being made by larger goods vehicles -
-
-![Figure from page 202](assets/p202-f01.webp)
-
-*Figure from page 202*
-
-### 16. Climate Action Management
-
 ## 2 Progress Made on the Prior Transport Strategy
 
 ### 2 Progress Made on the Prior Transport Strategy
@@ -4179,6 +4027,158 @@ Connected and autonomous vehicles are an emerging and potentially significant ch
 ![Figure from page 196](assets/p196-f01.webp)
 
 *Figure from page 196*
+
+## 15 Freight, Delivery and Servicing
+
+### 15 Freight, Delivery and Servicing
+
+*Pages 197–202*
+
+15. Freight, Delivery and Servicing
+
+15.1 Introduction
+
+policies, set out clear pathways to the decarbonisation of private cars and public transport, to date an approach has not been formally adopted for similar measures in the freight sector, largely due to the technological challenges associated with larger vehicles operating over long distances.
+
+The National Planning Framework growth projections and the associated demand for new homes; continued economic growth and opportunities; as well as the provision of community infrastructure such as schools, will all combine to result in the increased need for freight movement in the GDA. There will also be a greater level of delivery and servicing activity and waste management.
+
+It is clear, however, that the Climate Action Plan targets for 2030 cannot be achieved without significant steps being taken to reduce emissions from goods vehicles. The NTA will cooperate with all stakeholders, as appropriate, through the consultative forums established via the regional freight strategy, to explore solutions in this regard.
+
+While presenting challenges in terms of safety, congestion, air and noise pollution, the clustering of activities, allied to an improvement in the strategic transport infrastructure offers the possibility of innovative approaches to mitigate the impact of freight activity and reconcile with demand / demand patterns and operational requirements associated with other modes and journey purposes.
+
+Measure FREIGHT1 – Environmental Measures for Freight
+
+It is the intention of the NTA, in collaboration with other authorities, to:
+
+The following sections set out key areas of consideration for freight movement and goods delivery.
+
+Seek the reduction of the amount of ‘last mile trips’ being made by non-zero emission vehicles;
+
+15.2 Emissions Reduction in the Freight Sector
+
+Facilitate the transition to zero-emission delivery vehicles including emerging technologies for HGV, Electric Light Goods Vehicles and cargo bikes; and
+
+Support local ‘Click and Collect’ facilities where appropriate to minimise trips to individual homes and workplaces.
+
+The freight sector is a significant contributor to carbon emissions. While the Transport Strategy, and other Government
+
+15.3 Freight Strategy
+
+Measure FREIGHT2 - Strategy for Sustainable Freight Distribution
+
+Regional Policy Objective 8.5 of the EMRA RSES supports the preparation of a strategy for freight transport in collaboration with the relevant transport agencies and the other Assemblies. From a climate change perspective, this should contribute to the acceleration of the decarbonisation of the freight sector, integrate smart technologies in logistics management and reinforce the important role that the strategic rail and road (including TEN-T) network play in efficiently moving freight. However, given the types of vehicles, their large size and the long distance nature of many of their operations, it is important to acknowledge the challenges faced by the decarbonisation of road freight transport.
+
+It is the intention of the NTA, in collaboration with other authorities, including TII and Irish Rail, and stakeholders to prepare a Strategy for Sustainable Freight Distribution for the Greater Dublin Area – to inter alia, support the decarbonisation of the freight sector, to seek to further integrate smart technologies in logistics management and to reinforce the important role that the strategic road and rail network play in the efficient movement of freight.
+
+![Figure from page 198](assets/p198-f01.webp)
+
+*Figure from page 198*
+
+The NTA supports the development of such a strategy in recognition of the need to reduce the carbon-intensity of freight movements and be cognisant of the inter-regional nature of freight movements, driven in particular by the scale and strategic importance of Dublin Port and Dublin Airport, along with the high centration of logistics and industrial activity within the GDA. It is a key objective of the National Planning Framework under National Strategic Objectives: NSO2 - Enhanced Regional Accessibility and NSO6 - High Quality International Connectivity and also the RSES to safeguard and improve access to Dublin Port and Dublin Airport, as two primary national gateways.
+
+15.4 Planning Policy and the Location & Management of Freight Intensive Development
+
+The implementation of designated ‘lorry routes’ on strategic radial and orbital roads would assist in optimising the usage of available road capacity, and mitigate delays and conflict with other modes.
+
+In addition, seeking to regulate delivery times and as far as practicable, limiting them to off-peak periods would contribute to off-setting traffic congestion within urban areas. This could also bring additional benefits to freight operators in terms of reductions on travel times and operating costs.
+
+Underpinning the Strategy’s measures relating to freight, delivery and servicing, there is an associated requirement by planning authorities in the GDA for the clear identification in development plans, of appropriate locations for freight intensive developments, and the implementation of Distribution and Servicing Plans for such developments as part of the planning process.
+
+HGV management proposals may include the following:
+
+Implementation of a HGV management plan within the Metropolitan Area to ensure that these routes retain sufficient capacity to fulfil their strategic functions, including freight movement. The manner of implementation, enforcement, access routes and extent of the scheme will be determined at a later stage between TII, the NTA, stakeholders from the freight industry and local authorities;
+
+Measure FREIGHT3 – Planning Policy and Freight
+
+It is recommended that local authorities in the GDA, with the input of the NTA and TII, identify appropriate locations for freight-intensive developments in their Development Plans.
+
+Provision for the continuation of the current Dublin City Heavy Goods Vehicle Management Strategy and for its further expansion to other vehicle types, potentially with an expanded exclusion area;
+
+15.5 Heavy Goods Vehicles
+
+Ensure that the Dublin Tunnel continues to perform its primary function of providing access to Dublin Port for freight traffic;
+
+HGVs play an integral role in the movement of goods throughout the Greater Dublin Area and at a national level. HGV movement can have significant impacts on the overall volume of traffic, noise, air pollution and the safety of other road users, particularly within urban areas.
+
+Assessment of the potential for, and, if appropriate, introduction of similar HGV management measures in other major town centres in the GDA;
+
+Support for goods vehicle parking facilities at on-line motorway service areas and other appropriate locations within the GDA in accordance with relevant planning policies and guidelines; and
+
+Enhancing connections with seaports;
+
+Developing a network of inland ports
+
+Addressing rolling stock requirements;
+
+Network developments; and
+
+Provision for appropriate Mobility management planning at key freight intensive locations such as Dublin Port, Dublin Airport and Dublin City Centre.
+
+Policy initiative
+
+![Figure from page 200](assets/p200-f01.webp)
+
+*Figure from page 200*
+
+Measure FREIGHT5 – Rail Freight
+
+Measure FREIGHT 4 – HGV Management
+
+The NTA will support Irish Rail in the implementation of the outcomes of the Rail Freight 2040 Strategy.
+
+Consideration will be given to identifying specific HGV routes and / or time restrictions for deliveries to improve the efficiency of HGV movements while minimising their impact.
+
+15.7 Construction Logistics Centres
+
+15.6 Rail Freight
+
+Shared construction and logistics centres (CLCs) are a recent trend in European cities projected to experience significant increases in population and construction activity in future years.
+
+The potential for the use of rail and associated inter modality with road based freight movement will be examined as part of the Transport Strategy’s implementation. This will take into consideration Irish Rail’s Rail Freight 2040 Strategy which examines opportunities for the expansion of rail freight volumes across the Irish Rail network over the next 20 years.
+
+CLCs are typically set-up near strategic development areas on sites adjacent to the strategic road or rail network to minimise travelling distances for construction materials. Developers are often required to sign up to shared CLCs as part of the development management process.
+
+The Rail Freight Strategy proposes a series of interventions under five investment pillars that look to support this goal:
+
+Trips to and from construction sites are reduced as HGVs with less than 80% occupancy are held until fully occupied
+
+and trips to construction sites are controlled using a booking system. The levels of development anticipated within the Strategy period across a number of key growth area within the Metropolitan Area would appear to justify the need for a number of CLCs.
+
+for example, examining the case for small electric vans delivering to restaurants and shops;
+
+Examining the case for increased use of cargo bikes for delivery in Dublin City Centre and other towns in the GDA;
+
+Examining the feasibility of out-of-hours delivery and servicing through the use of low-noise vehicles like Electric Vehicles (EVs) and the imposition of planning conditions where appropriate;
+
+Measure FREIGHT6 – Construction Logistics Centres
+
+It is the intention of the NTA, as part of the Regional Freight Strategy, to investigate the potential for Construction and Logistics Centres in the GDA.
+
+Examining the feasibility of using smaller and nonmotorised vehicles for delivery and servicing to reduce noise and air pollution and enable more street space to be given to pedestrians and cyclists;
+
+Minimising empty return trips by taking inspiration from innovative practices such as the Utrecht Cargohopper and Gothenburg’s Stadleveransen city delivery system; and
+
+15.8 Delivery and Servicing
+
+The expected growth in commercial, and goods trip intensive development over the Transport Strategy period will lead to an increase in delivery and servicing needs.
+
+Supporting the placement of local ‘Click and Collect’ facilities at rail stations, new residential developments and Park and Ride facilities, to reduce the amount of individual personal deliveries to workplaces and homes where the recipient is often absent.
+
+Personal delivery and waste management services also expected to increase substantially arising from changes in the retail sector and as the population increases.
+
+Objectives to manage this increase in delivery and servicing include:
+
+Measure FREIGHT7 – Consolidation Centres
+
+It is the intention of the NTA, in collaboration with local authorities, to support and secure the delivery of consolidation centres and break bulk facilities, which will facilitate smaller vehicles delivering to Dublin City Centre and other major town centres.
+
+Examination of the case for urban or micro-consolidation centres within the GDA, particularly within Dublin City Centre and other major town centres, to reduce the number of last-mile trips being made by larger goods vehicles -
+
+![Figure from page 202](assets/p202-f01.webp)
+
+*Figure from page 202*
+
+### 16. Climate Action Management
 
 ## 16 Climate Action Management
 

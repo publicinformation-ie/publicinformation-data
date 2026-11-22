@@ -1953,9 +1953,9 @@ secondary to the speed of retrieval so that the person does not become hypotherm
 
 2013 – “Man Overboard Recovery Systems on Fishing Vessels”.
 
-## 8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND
+## 8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND ORGANISATION OF WORKING TIME
 
-### 8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND
+### 8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND ORGANISATION OF WORKING TIME
 
 *Pages 43–43*
 
@@ -2060,8 +2060,6 @@ appliances and fire-fighting appliances can be found in Marine Notice No. 40 of 
 .8In addition, the necessity to develop contingency plans and procedures, to conduct emergency
 
 exercise drills, including preparing for a grounding event or collision incident and unexpected loss of propulsion or electrical power, is highlighted in Marine Notice No. 41 of 2020.
-
-## 8.9 Organisation of Working Time
 
 ### 8.9 Organisation of Working Time
 
@@ -2569,7 +2567,7 @@ Morse signalling.
 
 ### 10.14 Search Light
 
-*Pages 56–56*
+*Pages 56–57*
 
 10.14Search Light .1Where electrical power supply is provided, and where practicable, all vessels of 7m Loa and over
 
@@ -2582,12 +2580,6 @@ of the voyage, taking into account weather forecasts, tidal information, navigat
 .2The voyage plan shall be from berth to berth, and with contingency plans in place. Further details
 
 can be found in Marine Notice No. 41 of 2020.
-
-## 11 ACCOMMODATION AND WORKING SPACES
-
-### 11 ACCOMMODATION AND WORKING SPACES
-
-*Pages 57–57*
 
 11 ACCOMMODATION AND WORKING SPACES
 
@@ -2723,7 +2715,7 @@ ANNEX 1 – STABILITY (APPLIES TO PRE-2004 FISHING VESSELS)
 
 ### 12.1 Determination of vessel's stability by means of rolling period tests
 
-*Pages 60–63*
+*Pages 60–65*
 
 12.1Determination of vessel's stability by means of rolling period tests .1The International Maritime Organization (IMO), recognizing the desirability of supplying to
 
@@ -2822,10 +2814,6 @@ wharf or any other structure during its rolling. To check this, and to get some 
 and at the sides of the vessel. .8Weights of reasonable size which are liable to swing (e.g. a lifeboat), or liable to move (e.g. a
 
 drum), should be secured against such movement. The free surface effects of slack tanks should be kept as small as is practicable during the test.
-
-### 12.2.2 Limitations on the use of this method
-
-*Pages 64–65*
 
 12.2.2 Limitations on the use of this method
 

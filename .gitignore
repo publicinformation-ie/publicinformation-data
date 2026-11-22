@@ -81,3 +81,6 @@ pipelines/foi_pipeline/experiments/*-gating-round-*/review/
 
 # Pipeline caches (downloaded source documents, uncommitted)
 pipelines/activetravel_pipeline/cache/
+
+# Detection-gold annotation scratch (rendered pages, drafts)
+.scratch/

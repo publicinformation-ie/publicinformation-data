@@ -575,7 +575,7 @@ the cities in those regions—Cork, Galway, Limerick and Waterford—as well as 
 
 In terms of infrastructure supply, for the coming decade the NDP has identified a range of transport projects that will be commenced, subject to compliance processes such as the Public Spending Code. These include BusConnects in all five cities along with comprehensive walking and cycling networks, MetroLink, DART+, the upgraded link between Cork and Limerick and the replacement of the Dublin-Belfast Enterprise train fleet. In addition to these very large projects, a host of smaller projects are set out that will enhance regional connectivity and improve the transport offering in rural Ireland. Finally, besides investment in new projects, it is expected that a significant proportion of maintenance and renewal costs across the network will be funded in future years following a long period of underinvestment in the aftermath of the financial crisis.
 
-### 3.2 Context and
+### 3.2 Context and Background
 
 *Pages 30–34*
 
@@ -700,7 +700,7 @@ Key Transport Challenge
 
 Incorporating innovative and emerging technologies within the future transport system
 
-### 3.3 Current Network
+### 3.3 Current Network Analysis
 
 *Pages 34–37*
 
@@ -766,7 +766,7 @@ Table 2: National Planning Framework targeted pattern of city population growth
 | Galway | 80,000 | 50-60 | 40,000-48,000 | 120,000 |
 | Waterford | 54,000 | 50-60 | 27,000-32,000 | 81,000 |
 
-### 3.4 Future Network
+### 3.4 Future Network Analysis
 
 *Pages 37–43*
 
@@ -917,19 +917,11 @@ Ensuring that transport investment decisions are robust to unanticipated shocks 
 
 ### 3.5 Conclusion
 
-*Pages 43–45*
+*Pages 43–43*
 
 3.5 | Conclusion
 
 There are a range of challenges that threaten to undermine the transport sector’s ability to enable the NPF. These include striking the appropriate balance between new investments and protecting and renewing existing assets, decarbonising transport through increased sustainable mobility, supporting connectivity and accessibility in regional and rural areas, and safeguarding access to strategic links for people and goods. NIFTI guides project planning and decision-making to ensure that future investment in transport is tailored to meet these challenges and prioritises the most efficient and effective interventions to do so.
-
-## 4 Investment Priorities
-
-National Investment Framework for Transport in Ireland | Investment Priorities
-
-#### Investment Priorities
-
-For future transport investment to support the delivery of the National Planning Framework and address the challenges we face, it will be necessary to give priority to certain types of investment over others. The NIFTI Investment Priorities identify the types of transport interventions that will be given precedence under the framework. These priorities are supplemented by Modal and Intervention Hierarchies, which will ensure that the most appropriate solution to a given problem or opportunity is deployed.
 
 ### Executive Summary
 
@@ -1005,6 +997,16 @@ National Investment Framework for Transport in Ireland | Overview
 
 The National Investment Framework for Transport in Ireland is the strategic framework for future investment decision making in land transport. It will guide transport investment in the years ahead to enable the National Planning Framework, support the Climate Action Plan, and promote positive social, environmental and economic outcomes throughout Ireland.
 
+### 4 Investment Priorities
+
+*Pages 45–45*
+
+National Investment Framework for Transport in Ireland | Investment Priorities
+
+#### Investment Priorities
+
+For future transport investment to support the delivery of the National Planning Framework and address the challenges we face, it will be necessary to give priority to certain types of investment over others. The NIFTI Investment Priorities identify the types of transport interventions that will be given precedence under the framework. These priorities are supplemented by Modal and Intervention Hierarchies, which will ensure that the most appropriate solution to a given problem or opportunity is deployed.
+
 ### 4.1 Introduction
 
 *Pages 45–45*
@@ -1039,7 +1041,7 @@ Finally, it should be noted that investing to deliver one priority does not nece
 
 The targets set out in the Climate Action Plan are ambitious, and delivery will require the participation of all parts of our society. Therefore, it is essential that sustainable mobility alternatives take account of the needs of transport users whose experience has not always been wellconsidered in the design of transport systems to provide viable alternatives to car travel that are accessible to all. It will also mean supporting the adoption of low-emission vehicles and related infrastructure so that emissions from trips that are taken by private car fall also.
 
-### 4.2.1 NIFTI Investment
+### 4.2.1 NIFTI Investment Priority: Decarbonisation
 
 *Pages 46–47*
 
@@ -1055,13 +1057,13 @@ NSOs, such as compact growth, and will have health, environmental and quality of
 
 under the revised NDP, there is also a need to repair parts of the network that have deteriorated due to past underinvestment. This restoration should proceed in order of strategic importance.
 
-### 4.2.3 NIFTI Investment
+### 4.2.3 NIFTI Investment Priority: Mobility of People and Goods in Urban Areas
 
 *Pages 47–47*
 
 4.2.3 |NIFTI Investment Priority: Mobility of People and Goods in Urban Areas
 
-### 4.2.2 NIFTI Investment
+### 4.2.2 NIFTI Investment Priority: Protection and Renewal
 
 *Pages 47–48*
 
@@ -1091,13 +1093,13 @@ Enhancing connectivity supports regional and rural accessibility and a strong an
 
 The principles of compact growth and improving sustainable urban mobility are not confined to the five cities. There are over 200 towns in Ireland, and a consistent focus of transport development in all of these settlements should be to provide high-quality alternatives to the private car wherever possible.13 Improvements to urban mobility in these smaller centres, in particular, will also be of benefit to people living in rural Ireland who depend on local towns to access certain goods and services.
 
-### 4.3 Investment
+### 4.3 Investment Hierarchies
 
 *Pages 48–48*
 
 4.3 | Investment Hierarchies
 
-### 4.2.4 NIFTI Investment
+### 4.2.4 NIFTI Investment Priority: Enhanced Regional and Rural Connectivity
 
 *Pages 48–48*
 
@@ -1147,7 +1149,7 @@ Private transport includes cars, motorcycles and mopeds. These are low occupancy
 
 National Investment Framework for Transport in Ireland |Project Ireland 2040
 
-### 4.3.2 Intervention
+### 4.3.2 Intervention Hierarchy
 
 *Pages 50–52*
 
@@ -1266,7 +1268,7 @@ Sponsoring agencies will be required to demonstrate project alignment with NIFTI
 
 Schemes that are identified as priorities within strategic plans may be given approval to proceed to the first stage of project development, the Strategic Assessment Stage. At this stage, scheme sponsors are required to set out the strategic case for projects. This includes the need for the scheme, the scheme objectives, and its alignment with policy. This information is brought together in a Strategic Assessment Report, alongside the preliminary identification of options and costs and an appraisal plan. To be approved to proceed to the next phases of project development, Strategic Assessment Reports will have to demonstrate that the scheme aligns with NIFTI and, by extension, the NPF more generally.
 
-### 5.4 Supporting the
+### 5.4 Supporting the National Strategic Outcomes
 
 *Pages 56–57*
 
@@ -1286,7 +1288,7 @@ As well as ensuring we invest in the right things, it is important to ensure tha
 
 The Department of Transport will develop strengthened requirements around spatial and land use considerations as part of updated sectoral appraisal guidance
 
-### 5.5 Developing
+### 5.5 Developing Investment Plans
 
 *Pages 57–58*
 
@@ -1308,7 +1310,7 @@ Strategic Assessment Reports will be developed at a sufficiently early stage to 
 
 National Investment Framework for Transport in Ireland |Project Ireland 2040
 
-### 5.6 Enhancing Transport
+### 5.6 Enhancing Transport Project Appraisal Guidance
 
 *Pages 58–59*
 
@@ -1352,7 +1354,7 @@ A central motivation for NIFTI is to ensure that future investment in land trans
 
 In trying to identify the future challenges on the transport network within the five cities, the transport modelling indicates that urban congestion will be an issue by 2040 without further intervention beyond that set out in the NDP. To inform the development of policy in this space, we will refresh the costs of congestion analysis for the Greater Dublin Area published in 2017. We will also carry out similar analysis for the other four cities.
 
-### 5.8 Monitoring and
+### 5.8 Monitoring and Oversight
 
 *Pages 59–61*
 
@@ -1422,7 +1424,7 @@ Several environmental assessments have been conducted in support of NIFTI to ide
 
 The preparation of NIFTI has been an iterative process. A number of environmental assessments have been carried out in parallel with its development. These assessments include a Strategic Environmental Assessment (SEA), Appropriate Assessment (AA) and Strategic Flood Risk Assessment (SFRA). All three assessments have informed the development of NIFTI and provided the basis for considering high-level environmental issues and mitigation measures to be embedded in the future implementation process.
 
-### 6.2 Strategic Environmental
+### 6.2 Strategic Environmental Assessment
 
 *Pages 63–65*
 
@@ -1481,7 +1483,7 @@ Negative Impacts include, but are not limited to:
 
 ᴏ Long-term impacts as a result of land-take and changes in land use required for new developments.
 
-### 6.2.2 Summary of the
+### 6.2.2 Summary of the Assessment Approach
 
 *Pages 65–66*
 
@@ -1515,7 +1517,7 @@ For further detail on the assessment of NIFTI, see Section 8 of the Environmenta
 
 National Investment Framework for Transport in Ireland | Project Ireland 2040
 
-### 6.3 Appropriate
+### 6.3 Appropriate Assessment
 
 *Pages 66–66*
 
@@ -1567,7 +1569,7 @@ This SFRA has identified that NIFTI, and infrastructure projects that sit beneat
 
 National Investment Framework for Transport in Ireland | Assessing Environmental Impact
 
-### 6.5.1 Exploring
+### 6.5.1 Exploring Alternatives to NIFTI
 
 *Pages 67–67*
 
@@ -1627,7 +1629,7 @@ National Investment Framework for Transport in Ireland | Project Ireland 2040
 
 However, continuing with a ranked approach to Investment Priorities does not reflect the changed fiscal context, where protection and renewal costs will largely be met in the coming years and greater focus must be placed on how best to invest funding above this amount. Moreover, strictly applying a ranked set of priorities could lead to protection and renewal being pursued to the detriment of the other priorities. For example, protecting and renewing existing assets will not be sufficient to deliver the sustainable mobility options required to decarbonise the transport sector.
 
-### 6.5.2 Summary of SEA
+### 6.5.2 Summary of SEA Recommendations
 
 *Pages 68–69*
 
@@ -1675,7 +1677,7 @@ National Investment Framework for Transport in Ireland | Assessing Environmental
 
 ### 6.5.3 Monitoring NIFTI
 
-*Pages 69–72*
+*Pages 69–70*
 
 6.5.3 |Monitoring NIFTI
 
@@ -1701,7 +1703,11 @@ This includes, but is not limited to, monitoring the following:
 
 National Investment Framework for Transport in Ireland | Project Ireland 2040
 
-#### List of Abbreviations
+## List of Abbreviations
+
+### List of Abbreviations
+
+*Pages 70–71*
 
 AA Appropriate Assessment
 
@@ -1775,7 +1781,11 @@ UK United Kingdom
 
 National Investment Framework for Transport in Ireland | References
 
-#### References
+## References
+
+### References
+
+*Pages 71–72*
 
 1 Cahill, R. et al. (2020). Travelling in a Woman’s Shoes: Understanding Women’s Travel Needs in Ireland to Inform the Future of Sustainable Transport Policy and Design. Dublin: Transport Infrastructure Ireland.
 

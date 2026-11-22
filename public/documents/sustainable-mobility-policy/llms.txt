@@ -1,6 +1,6 @@
 # National Sustainable Mobility Policy
 
-> Department of Transport — 19 chapters, 19 sections, 72 source pages.
+> Department of Transport — 10 chapters, 39 sections, 72 source pages.
 > Source: https://assets.gov.ie/static/documents/sustainable-mobility-policy.pdf
 > Full text: full.md
 
@@ -10,37 +10,48 @@
   - [Front Matter](sections/front-matter/front-matter.md) — pages 1–6
 - [Foreword](sections/foreword/) — pages 6–7
   - [Foreword](sections/foreword/overview.md) — pages 6–7
-- [1 Introduction](sections/1-introduction/) — pages 9–10
+- [1 Introduction](sections/1-introduction/) — pages 9–19
   - [1 Introduction](sections/1-introduction/overview.md) — pages 9–10
+  - [Purpose of Policy](sections/1-introduction/purpose-of-policy.md) — pages 10–12
+  - [Impact of COVID-19 pandemic](sections/1-introduction/impact-of-covid-19-pandemic.md) — pages 12–12
+  - [Climate change challenge](sections/1-introduction/climate-change-challenge.md) — pages 12–14
+  - [Population trends](sections/1-introduction/population-trends.md) — pages 14–15
+  - [Transport trends](sections/1-introduction/transport-trends.md) — pages 15–17
+  - [Lessons learnt](sections/1-introduction/lessons-learnt.md) — pages 17–18
+  - [How the Policy was developed](sections/1-introduction/how-the-policy-was-developed.md) — pages 18–19
 - [Summary](sections/summary/) — pages 7–9
   - [Summary](sections/summary/overview.md) — pages 7–9
-- [Purpose of Policy](sections/purpose-of-policy/) — pages 10–12
-  - [Purpose of Policy](sections/purpose-of-policy/overview.md) — pages 10–12
-- [Impact of COVID-19 pandemic](sections/impact-of-covid-19-pandemic/) — pages 12–12
-  - [Impact of COVID-19 pandemic](sections/impact-of-covid-19-pandemic/overview.md) — pages 12–12
-- [Climate change challenge](sections/climate-change-challenge/) — pages 12–14
-  - [Climate change challenge](sections/climate-change-challenge/overview.md) — pages 12–14
-- [Population trends](sections/population-trends/) — pages 14–15
-  - [Population trends](sections/population-trends/overview.md) — pages 14–15
-- [Transport trends](sections/transport-trends/) — pages 15–17
-  - [Transport trends](sections/transport-trends/overview.md) — pages 15–17
-- [Lessons learnt](sections/lessons-learnt/) — pages 17–18
-  - [Lessons learnt](sections/lessons-learnt/overview.md) — pages 17–18
-- [How the Policy was developed](sections/how-the-policy-was-developed/) — pages 18–20
-  - [How the Policy was developed](sections/how-the-policy-was-developed/overview.md) — pages 18–20
-- [International](sections/international/) — pages 20–21
-  - [International](sections/international/overview.md) — pages 20–21
-- [European](sections/european/) — pages 21–22
-  - [European](sections/european/overview.md) — pages 21–22
-- [National](sections/national/) — pages 22–27
-  - [National](sections/national/overview.md) — pages 22–27
-- [Vision](sections/vision/) — pages 27–27
-  - [Vision](sections/vision/overview.md) — pages 27–27
-- [Principles and Goals](sections/principles-and-goals/) — pages 27–28
-  - [Principles and Goals](sections/principles-and-goals/overview.md) — pages 27–28
-- [Targets](sections/targets/) — pages 28–28
-  - [Targets](sections/targets/overview.md) — pages 28–28
-- [Implementation, monitoring and review](sections/implementation-monitoring-and-review/) — pages 28–29
-  - [Implementation, monitoring and review](sections/implementation-monitoring-and-review/overview.md) — pages 28–29
-- [Funding](sections/funding/) — pages 29–72
-  - [Funding](sections/funding/overview.md) — pages 29–72
+- [2 Alignment with existing policies](sections/2-alignment-with-existing-policies/) — pages 19–26
+  - [2 Alignment with existing policies](sections/2-alignment-with-existing-policies/overview.md) — pages 19–20
+  - [International](sections/2-alignment-with-existing-policies/international.md) — pages 20–21
+  - [European](sections/2-alignment-with-existing-policies/european.md) — pages 21–22
+  - [National](sections/2-alignment-with-existing-policies/national.md) — pages 22–26
+- [3 Our Vision](sections/3-our-vision/) — pages 27–30
+  - [Vision](sections/3-our-vision/vision.md) — pages 27–27
+  - [Principles and Goals](sections/3-our-vision/principles-and-goals.md) — pages 27–28
+  - [Targets](sections/3-our-vision/targets.md) — pages 28–28
+  - [Implementation, monitoring and review](sections/3-our-vision/implementation-monitoring-and-review.md) — pages 28–29
+  - [Funding](sections/3-our-vision/funding.md) — pages 29–30
+  - [3 Our Vision](sections/3-our-vision/overview.md) — pages 27–27
+- [List of Abbreviations](sections/list-of-abbreviations/) — pages 67–72
+  - [List of Abbreviations](sections/list-of-abbreviations/overview.md) — pages 67–72
+- [4 Principle 1: Safe and Green Mobility](sections/4-principle-1-safe-and-green-mobility/) — pages 30–44
+  - [Safety](sections/4-principle-1-safe-and-green-mobility/safety.md) — pages 32–35
+  - [Decarbonisation](sections/4-principle-1-safe-and-green-mobility/decarbonisation.md) — pages 35–36
+  - [Expand availability of sustainable mobility](sections/4-principle-1-safe-and-green-mobility/expand-availability-of-sustainable-mobility.md) — pages 36–42
+  - [Behavioural change and demand management](sections/4-principle-1-safe-and-green-mobility/behavioural-change-and-demand-management.md) — pages 42–44
+  - [4 Principle 1: Safe and Green Mobility](sections/4-principle-1-safe-and-green-mobility/overview.md) — pages 30–32
+- [5 Principle 2: People Focused Mobility](sections/5-principle-2-people-focused-mobility/) — pages 44–58
+  - [Whole of journey approach](sections/5-principle-2-people-focused-mobility/whole-of-journey-approach.md) — pages 47–50
+  - [Infrastructure design](sections/5-principle-2-people-focused-mobility/infrastructure-design.md) — pages 50–54
+  - [Research and citizen engagement](sections/5-principle-2-people-focused-mobility/research-and-citizen-engagement.md) — pages 54–54
+  - [Leadership Group](sections/5-principle-2-people-focused-mobility/leadership-group.md) — pages 54–54
+  - [Pathfinder Programme](sections/5-principle-2-people-focused-mobility/pathfinder-programme.md) — pages 54–55
+  - [Stakeholder engagement](sections/5-principle-2-people-focused-mobility/stakeholder-engagement.md) — pages 55–55
+  - [National Transport Authority Advisory Council](sections/5-principle-2-people-focused-mobility/national-transport-authority-advisory-council.md) — pages 55–57
+  - [Research](sections/5-principle-2-people-focused-mobility/research.md) — pages 57–58
+  - [5 Principle 2: People Focused Mobility](sections/5-principle-2-people-focused-mobility/overview.md) — pages 44–47
+- [6 Principle 3: Better Integrated Mobility](sections/6-principle-3-better-integrated-mobility/) — pages 58–66
+  - [Integration of land use and transport planning](sections/6-principle-3-better-integrated-mobility/integration-of-land-use-and-transport-planning.md) — pages 60–64
+  - [Smart mobility](sections/6-principle-3-better-integrated-mobility/smart-mobility.md) — pages 64–66
+  - [6 Principle 3: Better Integrated Mobility](sections/6-principle-3-better-integrated-mobility/overview.md) — pages 58–60

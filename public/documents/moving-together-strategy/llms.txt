@@ -1,6 +1,6 @@
 # Moving Together: A Collaborative Approach to Systems Change in Transport 2026–2030
 
-> Department of Transport — 22 chapters, 100 sections, 176 source pages.
+> Department of Transport — 19 chapters, 97 sections, 176 source pages.
 > Source: https://assets.gov.ie/static/documents/543adefe/The_Moving_Together_Strategy.pdf
 > Full text: full.md
 
@@ -114,17 +114,11 @@
   - [Public Transport Accessibility Levels](sections/evaluation-and-review/public-transport-accessibility-levels.md) — pages 137–137
   - [Safety Indicators](sections/evaluation-and-review/safety-indicators.md) — pages 137–137
   - [Affordability Indicators](sections/evaluation-and-review/affordability-indicators.md) — pages 137–139
-- [Appendix 1](sections/appendix-1/) — pages 139–139
-  - [Appendix 1](sections/appendix-1/overview.md) — pages 139–139
-- [Case Studies](sections/case-studies/) — pages 140–153
-  - [1 Sligo County Council:](sections/case-studies/1-sligo-county-council.md) — pages 140–145
-  - [Case Studies](sections/case-studies/overview.md) — pages 140–140
-  - [International Case Studies](sections/case-studies/international-case-studies.md) — pages 146–153
-- [Appendix 2](sections/appendix-2/) — pages 153–153
-  - [Appendix 2](sections/appendix-2/overview.md) — pages 153–153
-- [Ensuring a Just Transition through Investment](sections/ensuring-a-just-transition-through-investment/) — pages 154–160
-  - [Ensuring a Just Transition through Investment](sections/ensuring-a-just-transition-through-investment/overview.md) — pages 154–160
-- [Appendix 3](sections/appendix-3/) — pages 160–160
-  - [Appendix 3](sections/appendix-3/overview.md) — pages 160–160
-- [Implementation Plan](sections/implementation-plan/) — pages 161–176
-  - [Implementation Plan](sections/implementation-plan/overview.md) — pages 161–176
+- [Appendix 1 Case Studies](sections/appendix-1-case-studies/) — pages 139–153
+  - [1 Sligo County Council:](sections/appendix-1-case-studies/1-sligo-county-council.md) — pages 140–145
+  - [Appendix 1 Case Studies](sections/appendix-1-case-studies/overview.md) — pages 139–140
+  - [International Case Studies](sections/appendix-1-case-studies/international-case-studies.md) — pages 146–153
+- [Appendix 2 Ensuring a Just Transition through Investment](sections/appendix-2-ensuring-a-just-transition-through-investment/) — pages 153–160
+  - [Appendix 2 Ensuring a Just Transition through Investment](sections/appendix-2-ensuring-a-just-transition-through-investment/overview.md) — pages 153–160
+- [Appendix 3 Implementation Plan](sections/appendix-3-implementation-plan/) — pages 160–176
+  - [Appendix 3 Implementation Plan](sections/appendix-3-implementation-plan/overview.md) — pages 160–176

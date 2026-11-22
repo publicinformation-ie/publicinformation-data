@@ -1,87 +1,70 @@
 # Regional Spatial & Economic Strategy 2019-2031
 
-> Eastern and Midland Regional Assembly — 8 chapters, 71 sections, 244 source pages.
+> Eastern and Midland Regional Assembly — 11 chapters, 51 sections, 244 source pages.
 > Source: https://www.emra.ie/rses-download/EMRA-RSES.pdf
 > Full text: full.md
 
 ## Chapters
 
-- [Front Matter](sections/front-matter/) — pages 1–6
-  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–6
-- [1.1 Vision and Eastern and Midland Regional Assembly](sections/1-1-vision/) — pages 6–8
-  - [1.1 Vision and Eastern and Midland Regional Assembly](sections/1-1-vision/overview.md) — pages 6–8
-- [1.3 What is a Regional Spatial and Economic Strategy (RSES)?](sections/1-3-what-is-a-regional-spatial-and-economic-strategy-rses/) — pages 8–10
-  - [1.3 What is a Regional Spatial and Economic Strategy (RSES)?](sections/1-3-what-is-a-regional-spatial-and-economic-strategy-rses/overview.md) — pages 8–10
-- [1.4 Spatial and Economic Policy Background](sections/1-4-spatial-and-economic-policy-background/) — pages 10–13
-  - [1.4 Spatial and Economic Policy Background](sections/1-4-spatial-and-economic-policy-background/overview.md) — pages 10–13
-- [1.5 The RSES Process](sections/1-5-the-rses-process/) — pages 13–14
-  - [1.5 The RSES Process](sections/1-5-the-rses-process/overview.md) — pages 13–14
-- [1.6 Regional Proﬁle](sections/1-6-regional-pro-le/) — pages 14–16
-  - [1.6 Regional Proﬁle](sections/1-6-regional-pro-le/overview.md) — pages 14–16
-- [16 Regional Strategic Outcomes (RSOs) are aligned to the UN Sustainable Development Goals, the EU thematic](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/) — pages 20–244
-  - [1.9 Deﬁning Functional Urban Areas, Census 2016 ...19](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/1-9-de-ning-functional-urban-areas-census-2016-19.md) — pages 243–244
-  - [2.2 Vision and Key Principles](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/2-2-vision-and-key-principles.md) — pages 23–24
-  - [2.3 Regional Strategic Outcomes](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/2-3-regional-strategic-outcomes.md) — pages 24–27
-  - [3.1 Developing a Growth Strategy for the Region](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/3-1-developing-a-growth-strategy-for-the-region.md) — pages 27–33
-  - [3.2 Growth Enablers for the Region](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/3-2-growth-enablers-for-the-region.md) — pages 33–42
-  - [4.1 Introduction and context](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/4-1-introduction-and-context.md) — pages 42–44
-  - [4.2 Settlement Strategy](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/4-2-settlement-strategy.md) — pages 44–46
-  - [4.3 Deﬁning a Settlement Typology](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/4-3-de-ning-a-settlement-typology.md) — pages 46–52
-  - [4.4 Dublin City and Suburbs](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/4-4-dublin-city-and-suburbs.md) — pages 52–53
-  - [4.5 Regional Growth Centres](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/4-5-regional-growth-centres.md) — pages 53–71
-  - [4.6 Key Towns](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/4-6-key-towns.md) — pages 71–93
-  - [4.7 Self-Sustaining Growth Towns and Self-Sustaining Towns](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/4-7-self-sustaining-growth-towns-and-self-sustaining-towns.md) — pages 93–94
-  - [4.8 Rural Places: Towns, Villages and the Countryside](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/4-8-rural-places-towns-villages-and-the-countryside.md) — pages 94–98
-  - [5.1 Introduction and Context](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/5-1-introduction-and-context.md) — pages 98–100
-  - [5.2 Vision](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/5-2-vision.md) — pages 100–101
-  - [5.3 Guiding Principles for the growth of the Dublin Metropolitan Area](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/5-3-guiding-principles-for-the-growth-of-the-dublin-metropolitan-area.md) — pages 101–102
-  - [5.4 Metropolitan Area Strategy](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/5-4-metropolitan-area-strategy.md) — pages 102–106
-  - [5.5 Enabling Infrastructure](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/5-5-enabling-infrastructure.md) — pages 106–107
-  - [5.6 Integrated Land use and Transportation](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/5-6-integrated-land-use-and-transportation.md) — pages 107–112
-  - [5.7 Housing Delivery](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/5-7-housing-delivery.md) — pages 112–114
-  - [5.8 Employment Generation](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/5-8-employment-generation.md) — pages 114–116
-  - [5.9 Green Infrastructure and Amenities](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/5-9-green-infrastructure-and-amenities.md) — pages 116–120
-  - [6.1 Introduction](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/6-1-introduction.md) — pages 120–122
-  - [6.2 Proﬁle](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/6-2-pro-le.md) — pages 122–124
-  - [6.3 Economic Strategy](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/6-3-economic-strategy.md) — pages 124–132
-  - [6.4 The Region’s Economic Engines and their Sectoral Opportunities](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/6-4-the-region-s-economic-engines-and-their-sectoral-opportunities.md) — pages 132–136
-  - [6.5 Speciﬁc Sectors: Retail, Tourism, Marine, Low Carbon Economy and Agriculture](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/6-5-speci-c-sectors-retail-tourism-marine-low-carbon-economy-and-agriculture.md) — pages 136–142
-  - [6.6 Drivers for Resilient, Sustainable and Inclusive Economic Growth](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/6-6-drivers-for-resilient-sustainable-and-inclusive-economic-growth.md) — pages 142–148
-  - [6.7 Capacity Building: Bidding Capacity, Shared Evidence Base, Future Proof and Anticipating Economic Structural Changes](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/6-7-capacity-building-bidding-capacity-shared-evidence-base-future-proof-and-anticipating-economic-structural-changes.md) — pages 148–150
-  - [7.1 Introduction](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/7-1-introduction.md) — pages 150–152
-  - [7.2 Integrated Land and Marine Planning](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/7-2-integrated-land-and-marine-planning.md) — pages 152–155
-  - [7.3 A Clean and Healthy Environment](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/7-3-a-clean-and-healthy-environment.md) — pages 155–158
-  - [7.4 Flood Risk Management](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/7-4-flood-risk-management.md) — pages 158–160
-  - [7.5 Biodiversity and Natural Heritage](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/7-5-biodiversity-and-natural-heritage.md) — pages 160–163
-  - [7.6 Ecosystem Services](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/7-6-ecosystem-services.md) — pages 163–164
-  - [7.7 Green Infrastructure](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/7-7-green-infrastructure.md) — pages 164–169
-  - [7.8 Landscape](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/7-8-landscape.md) — pages 169–172
-  - [7.9 Climate Change](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/7-9-climate-change.md) — pages 172–182
-  - [8.1 Introduction](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/8-1-introduction.md) — pages 182–183
-  - [8.2 Transport Strategy](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/8-2-transport-strategy.md) — pages 183–185
-  - [8.3 Framework for the Integration of Transport planning with Spatial Planning Policies](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/8-3-framework-for-the-integration-of-transport-planning-with-spatial-planning-policies.md) — pages 185–190
-  - [8.4 Transport Investment Priorities](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/8-4-transport-investment-priorities.md) — pages 190–194
-  - [8.5 International Connectivity](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/8-5-international-connectivity.md) — pages 194–197
-  - [8.6 Communications Network and Digital Infrastructure](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/8-6-communications-network-and-digital-infrastructure.md) — pages 197–198
-  - [9.1 Introduction](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/9-1-introduction.md) — pages 198–199
-  - [9.2 Diverse and Inclusive Region](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/9-2-diverse-and-inclusive-region.md) — pages 199–201
-  - [9.3 Housing and Regeneration](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/9-3-housing-and-regeneration.md) — pages 201–205
-  - [9.4 Healthy Placemaking](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/9-4-healthy-placemaking.md) — pages 205–208
-  - [9.5 Social and Economic Opportunity](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/9-5-social-and-economic-opportunity.md) — pages 208–211
-  - [9.6 Access to Childcare, Education and Health Services](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/9-6-access-to-childcare-education-and-health-services.md) — pages 211–214
-  - [9.7 Access to Arts, Culture, Language and Heritage](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/9-7-access-to-arts-culture-language-and-heritage.md) — pages 214–218
-  - [10.1 Introduction](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/10-1-introduction.md) — pages 218–219
-  - [10.2 Sustainable Management of Water](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/10-2-sustainable-management-of-water.md) — pages 219–224
-  - [10.3 Energy](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/10-3-energy.md) — pages 224–227
-  - [10.4 Waste Management](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/10-4-waste-management.md) — pages 227–228
-  - [11.1 Introduction](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/11-1-introduction.md) — pages 228–229
-  - [11.2 Collaboration with Northern Ireland in Support of an All Island Approach](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/11-2-collaboration-with-northern-ireland-in-support-of-an-all-island-approach.md) — pages 229–232
-  - [11.3 Collaboration with the Southern Region and Northern and Western Region](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/11-3-collaboration-with-the-southern-region-and-northern-and-western-region.md) — pages 232–234
-  - [12.1 Introduction](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/12-1-introduction.md) — pages 234–235
-  - [12.2 Legislative Background](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/12-2-legislative-background.md) — pages 235–237
-  - [12.3 Implementation](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/12-3-implementation.md) — pages 237–241
-  - [12.4 Monitoring and Reporting](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/12-4-monitoring-and-reporting.md) — pages 241–243
-  - [16 Regional Strategic Outcomes (RSOs) are aligned to the UN Sustainable Development Goals, the EU thematic](sections/16-regional-strategic-outcomes-rsos-are-aligned-to-the-un-sustainable-development-goals-the-eu-thematic/overview.md) — pages 20–23
-- [65 + years 12%](sections/65-years-12/) — pages 16–20
-  - [2.1 Our Shared Goals](sections/65-years-12/2-1-our-shared-goals.md) — pages 20–20
-  - [65 + years 12%](sections/65-years-12/overview.md) — pages 16–20
+- [Front Matter](sections/front-matter/) — pages 1–5
+  - [Front Matter](sections/front-matter/front-matter.md) — pages 1–5
+- [Cathaoirleach’s Message](sections/cathaoirleach-s-message/) — pages 5–5
+  - [Cathaoirleach’s Message](sections/cathaoirleach-s-message/overview.md) — pages 5–5
+- [1 Introduction](sections/1-introduction/) — pages 6–20
+  - [1.1 Vision and Eastern and Midland Regional Assembly](sections/1-introduction/1-2-eastern-and-midland-regional-assembly.md) — pages 6–8
+  - [1.3 What is a Regional Spatial and Economic Strategy (RSES)?](sections/1-introduction/1-3-what-is-a-regional-spatial-and-economic-strategy-rses.md) — pages 8–10
+  - [1.4 Spatial and Economic Policy Background](sections/1-introduction/1-4-spatial-and-economic-policy-background.md) — pages 10–13
+  - [1.5 The RSES Process](sections/1-introduction/1-5-the-rses-process.md) — pages 13–14
+  - [1.6 Regional Proﬁle](sections/1-introduction/1-6-regional-pro-le.md) — pages 14–20
+- [Members of the Eastern and Midland Regional Assembly](sections/members-of-the-eastern-and-midland-regional-assembly/) — pages 5–6
+  - [Members of the Eastern and Midland Regional Assembly](sections/members-of-the-eastern-and-midland-regional-assembly/overview.md) — pages 5–6
+- [2 Strategic Vision](sections/2-strategic-vision/) — pages 20–26
+  - [2.1 Our Shared Goals](sections/2-strategic-vision/2-1-our-shared-goals.md) — pages 20–23
+  - [2.2 Vision and Key Principles](sections/2-strategic-vision/2-2-vision-and-key-principles.md) — pages 23–24
+  - [2.3 Regional Strategic Outcomes](sections/2-strategic-vision/2-3-regional-strategic-outcomes.md) — pages 24–26
+- [3 Growth Strategy](sections/3-growth-strategy/) — pages 26–103
+  - [Settlement Strategy](sections/3-growth-strategy/settlement-strategy.md) — pages 45–46
+  - [3 Growth Strategy](sections/3-growth-strategy/overview.md) — pages 26–27
+  - [3.1 Developing a Growth Strategy for the Region](sections/3-growth-strategy/3-1-developing-a-growth-strategy-for-the-region.md) — pages 27–33
+  - [3.2 Growth Enablers for the Region](sections/3-growth-strategy/3-2-growth-enablers-for-the-region.md) — pages 33–45
+  - [4.3 Deﬁning a Settlement Typology](sections/3-growth-strategy/4-3-de-ning-a-settlement-typology.md) — pages 46–52
+  - [4.4 Dublin City and Suburbs](sections/3-growth-strategy/4-4-dublin-city-and-suburbs.md) — pages 52–53
+  - [4.5 Regional Growth Centres](sections/3-growth-strategy/4-5-regional-growth-centres.md) — pages 53–71
+  - [4.6 Key Towns](sections/3-growth-strategy/4-6-key-towns.md) — pages 71–93
+  - [4.7 Self-Sustaining Growth Towns and Self-Sustaining Towns](sections/3-growth-strategy/4-7-self-sustaining-growth-towns-and-self-sustaining-towns.md) — pages 93–98
+  - [5.1 Introduction and Context](sections/3-growth-strategy/5-1-introduction-and-context.md) — pages 98–100
+  - [5.2 Vision](sections/3-growth-strategy/5-2-vision.md) — pages 100–101
+  - [5.3 Guiding Principles for the growth of the Dublin Metropolitan Area](sections/3-growth-strategy/5-3-guiding-principles-for-the-growth-of-the-dublin-metropolitan-area.md) — pages 101–102
+  - [5.4 Metropolitan Area Strategy](sections/3-growth-strategy/5-4-metropolitan-area-strategy.md) — pages 102–103
+- [Dublin Metropolitan Area Strategic Plan](sections/dublin-metropolitan-area-strategic-plan/) — pages 103–218
+  - [Dublin Metropolitan Area Strategic Plan](sections/dublin-metropolitan-area-strategic-plan/overview.md) — pages 103–106
+  - [Rural Places: Towns, Villages and the Countryside](sections/dublin-metropolitan-area-strategic-plan/rural-places-towns-villages-and-the-countryside.md) — pages 133–136
+  - [5.5 Enabling Infrastructure](sections/dublin-metropolitan-area-strategic-plan/5-5-enabling-infrastructure.md) — pages 106–107
+  - [5.6 Integrated Land use and Transportation](sections/dublin-metropolitan-area-strategic-plan/5-6-integrated-land-use-and-transportation.md) — pages 107–112
+  - [5.7 Housing Delivery](sections/dublin-metropolitan-area-strategic-plan/5-7-housing-delivery.md) — pages 112–114
+  - [5.8 Employment Generation](sections/dublin-metropolitan-area-strategic-plan/5-8-employment-generation.md) — pages 114–116
+  - [5.9 Green Infrastructure and Amenities](sections/dublin-metropolitan-area-strategic-plan/5-9-green-infrastructure-and-amenities.md) — pages 116–122
+  - [6.2 Proﬁle](sections/dublin-metropolitan-area-strategic-plan/6-2-pro-le.md) — pages 122–124
+  - [6.3 Economic Strategy](sections/dublin-metropolitan-area-strategic-plan/6-3-economic-strategy.md) — pages 124–132
+  - [6.4 The Region’s Economic Engines and their Sectoral Opportunities](sections/dublin-metropolitan-area-strategic-plan/6-4-the-region-s-economic-engines-and-their-sectoral-opportunities.md) — pages 132–133
+  - [6.5 Speciﬁc Sectors: Retail, Tourism, Marine, Low Carbon Economy and Agriculture](sections/dublin-metropolitan-area-strategic-plan/6-5-speci-c-sectors-retail-tourism-marine-low-carbon-economy-and-agriculture.md) — pages 136–142
+  - [6.6 Drivers for Resilient, Sustainable and Inclusive Economic Growth](sections/dublin-metropolitan-area-strategic-plan/6-6-drivers-for-resilient-sustainable-and-inclusive-economic-growth.md) — pages 142–218
+- [4 People and Place](sections/4-people-and-place/) — pages 243–244
+  - [4 People and Place](sections/4-people-and-place/overview.md) — pages 243–244
+- [6 Economy and Employment](sections/6-economy-and-employment/) — pages 243–243
+  - [6 Economy and Employment](sections/6-economy-and-employment/overview.md) — pages 243–243
+- [10 Infrastructure](sections/10-infrastructure/) — pages 218–228
+  - [10 Infrastructure](sections/10-infrastructure/overview.md) — pages 218–218
+  - [10.1 Introduction](sections/10-infrastructure/10-1-introduction.md) — pages 218–219
+  - [10.2 Sustainable Management of Water](sections/10-infrastructure/10-2-sustainable-management-of-water.md) — pages 219–224
+  - [10.3 Energy](sections/10-infrastructure/10-3-energy.md) — pages 224–227
+  - [10.4 Waste Management](sections/10-infrastructure/10-4-waste-management.md) — pages 227–228
+- [11 All Island Cohesion](sections/11-all-island-cohesion/) — pages 228–243
+  - [11.1 Introduction](sections/11-all-island-cohesion/11-1-introduction.md) — pages 228–229
+  - [11.2 Collaboration with Northern Ireland in Support of an All Island Approach](sections/11-all-island-cohesion/11-2-collaboration-with-northern-ireland-in-support-of-an-all-island-approach.md) — pages 229–232
+  - [11.3 Collaboration with the Southern Region and Northern and Western Region](sections/11-all-island-cohesion/11-3-collaboration-with-the-southern-region-and-northern-and-western-region.md) — pages 232–234
+  - [12 Implementation](sections/11-all-island-cohesion/12-implementation.md) — pages 234–234
+  - [12.1 Introduction](sections/11-all-island-cohesion/12-1-introduction.md) — pages 234–235
+  - [12.2 Legislative Background](sections/11-all-island-cohesion/12-2-legislative-background.md) — pages 235–237
+  - [12.3 Implementation](sections/11-all-island-cohesion/12-3-implementation.md) — pages 237–241
+  - [12.4 Monitoring and Reporting](sections/11-all-island-cohesion/12-4-monitoring-and-reporting.md) — pages 241–243

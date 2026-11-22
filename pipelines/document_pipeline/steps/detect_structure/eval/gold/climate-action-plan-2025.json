@@ -1,0 +1,144 @@
+{
+  "doc_slug": "climate-action-plan-2025",
+  "pdf_sha256": "a2f09623d285d0ab2c6cadaa2da105f86de1235180465cc4fc94ae36e2c7b87a",
+  "toc_pdf_pages": [
+    3
+  ],
+  "annotator": "Dave",
+  "annotated_on": "2026-11-22",
+  "reviewed": true,
+  "notes": "Every chapter start was checked against its opener page (image page carrying the chapter number and title) in the text layer. printed_page is the contents listing's number. The printed-to-PDF offset is 0 throughout except the final Appendix 1 entry, which the contents lists at printed 182 but whose opener is PDF 180 (the appendix is paginated separately); that offset change is expected.",
+  "chapters": [
+    {
+      "title": "Foreword",
+      "printed_page": "4",
+      "pdf_page": 4
+    },
+    {
+      "title": "Glossary of Acronyms",
+      "printed_page": "7",
+      "pdf_page": 7
+    },
+    {
+      "title": "Executive Summary",
+      "printed_page": "13",
+      "pdf_page": 13
+    },
+    {
+      "title": "The Critical Nature of the Challenge",
+      "printed_page": "18",
+      "pdf_page": 18
+    },
+    {
+      "title": "Where We Stand",
+      "printed_page": "24",
+      "pdf_page": 24
+    },
+    {
+      "title": "Policy to Date and Expected Impact of Planned Policies",
+      "printed_page": "28",
+      "pdf_page": 28
+    },
+    {
+      "title": "Research and Innovation",
+      "printed_page": "35",
+      "pdf_page": 35
+    },
+    {
+      "title": "Governance",
+      "printed_page": "43",
+      "pdf_page": 43
+    },
+    {
+      "title": "Ensuring a Just Transition to a Climate Neutral Ireland",
+      "printed_page": "49",
+      "pdf_page": 49
+    },
+    {
+      "title": "Delivering a Just Transition in the Midlands Region",
+      "printed_page": "57",
+      "pdf_page": 57
+    },
+    {
+      "title": "Citizen Engagement",
+      "printed_page": "63",
+      "pdf_page": 63
+    },
+    {
+      "title": "Public Sector Leading by Example",
+      "printed_page": "70",
+      "pdf_page": 70
+    },
+    {
+      "title": "Carbon Pricing and Cross-Cutting Policies",
+      "printed_page": "77",
+      "pdf_page": 77
+    },
+    {
+      "title": "Electricity",
+      "printed_page": "85",
+      "pdf_page": 85
+    },
+    {
+      "title": "Industry",
+      "printed_page": "94",
+      "pdf_page": 94
+    },
+    {
+      "title": "Built Environment",
+      "printed_page": "102",
+      "pdf_page": 102
+    },
+    {
+      "title": "Transport",
+      "printed_page": "110",
+      "pdf_page": 110
+    },
+    {
+      "title": "Agriculture",
+      "printed_page": "119",
+      "pdf_page": 119
+    },
+    {
+      "title": "Land Use, Land Use Change, Forestry",
+      "printed_page": "127",
+      "pdf_page": 127
+    },
+    {
+      "title": "The Marine Environment",
+      "printed_page": "135",
+      "pdf_page": 135
+    },
+    {
+      "title": "Local Government",
+      "printed_page": "142",
+      "pdf_page": 142
+    },
+    {
+      "title": "The Circular Economy and Other Emissions",
+      "printed_page": "149",
+      "pdf_page": 149
+    },
+    {
+      "title": "International Climate Action",
+      "printed_page": "157",
+      "pdf_page": 157
+    },
+    {
+      "title": "Sustainable Development Goals",
+      "printed_page": "164",
+      "pdf_page": 164
+    },
+    {
+      "title": "Adaptation",
+      "printed_page": "171",
+      "pdf_page": 171
+    },
+    {
+      "title": "Public Sector Climate Action Mandate",
+      "printed_page": "182",
+      "pdf_page": 180
+    }
+  ],
+  "held_out": true
+}

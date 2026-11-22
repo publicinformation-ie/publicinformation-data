@@ -1,0 +1,74 @@
+{
+  "doc_slug": "national-roads-2040-final-report",
+  "pdf_sha256": "9215ab974fa738f6c252db566cf6772d475e0e7a8428944b83282bdb2a7935ae",
+  "toc_pdf_pages": [
+    3,
+    4
+  ],
+  "annotator": "Dave",
+  "annotated_on": "2026-11-22",
+  "reviewed": true,
+  "notes": "Contents: pages 3-4. Appendix A/B/C are printed at the same indent as the numbered chapters, so each is a chapter and its label is stripped from the title (R2, R3). Executive Summary is printed at the top level on roman page v (PDF 5), so it is the first chapter. The printed-to-PDF offset is a constant 10 for the arabic entries.",
+  "chapters": [
+    {
+      "title": "Executive Summary",
+      "printed_page": "v",
+      "pdf_page": 5
+    },
+    {
+      "title": "Introduction",
+      "printed_page": "1",
+      "pdf_page": 11
+    },
+    {
+      "title": "Policy Context",
+      "printed_page": "4",
+      "pdf_page": 14
+    },
+    {
+      "title": "Long Term Strategic Issues for National Roads",
+      "printed_page": "11",
+      "pdf_page": 21
+    },
+    {
+      "title": "NR2040 Vision and Key Objectives",
+      "printed_page": "23",
+      "pdf_page": 33
+    },
+    {
+      "title": "National Roads Investment Priorities and Portfolios",
+      "printed_page": "25",
+      "pdf_page": 35
+    },
+    {
+      "title": "Implementation",
+      "printed_page": "37",
+      "pdf_page": 47
+    },
+    {
+      "title": "Monitoring Framework",
+      "printed_page": "45",
+      "pdf_page": 55
+    },
+    {
+      "title": "National Policy Actions for National Roads",
+      "printed_page": "46",
+      "pdf_page": 56
+    },
+    {
+      "title": "Assessment of Alternatives Summary",
+      "printed_page": "50",
+      "pdf_page": 60
+    },
+    {
+      "title": "Response to Public Consultation Comments for Draft NR2040",
+      "printed_page": "52",
+      "pdf_page": 62
+    },
+    {
+      "title": "Glossary",
+      "printed_page": "76",
+      "pdf_page": 86
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "doc_slug": "emra-regional-spatial-and-economic-strategy",
+  "pdf_sha256": "3e3276529d9e89d6220df24a3d726f8dc7abf5bf6749ccf18bab313f62f01771",
+  "toc_pdf_pages": [
+    2,
+    3
+  ],
+  "annotator": "Dave",
+  "annotated_on": "2026-11-22",
+  "reviewed": true,
+  "notes": "Contents: pages 2-3. Director's Foreword and Members of the Eastern and Midland Regional Assembly are both printed on the same page (4), which the document really does. The chapter openers are full-page graphics with the number and title set as artwork, so the text layer does not contain those titles; they are transcribed from the contents image. The appendices after page 234 are not in this PDF (the TOC prints them with no page numbers and the file ends at the back cover), so they are not gold chapters, and neither are the List of Tables/List of Figures.",
+  "chapters": [
+    {
+      "title": "Director's Foreword",
+      "printed_page": "4",
+      "pdf_page": 4
+    },
+    {
+      "title": "Members of the Eastern and Midland Regional Assembly",
+      "printed_page": "4",
+      "pdf_page": 4
+    },
+    {
+      "title": "Cathaoirleach's Message",
+      "printed_page": "5",
+      "pdf_page": 5
+    },
+    {
+      "title": "Introduction",
+      "printed_page": "6",
+      "pdf_page": 6
+    },
+    {
+      "title": "Strategic Vision",
+      "printed_page": "20",
+      "pdf_page": 20
+    },
+    {
+      "title": "Growth Strategy",
+      "printed_page": "26",
+      "pdf_page": 26
+    },
+    {
+      "title": "People and Place",
+      "printed_page": "42",
+      "pdf_page": 42
+    },
+    {
+      "title": "Dublin Metropolitan Area Strategic Plan (MASP)",
+      "printed_page": "98",
+      "pdf_page": 98
+    },
+    {
+      "title": "Economy and Employment",
+      "printed_page": "120",
+      "pdf_page": 120
+    },
+    {
+      "title": "Environment and Climate",
+      "printed_page": "150",
+      "pdf_page": 150
+    },
+    {
+      "title": "Connectivity",
+      "printed_page": "182",
+      "pdf_page": 182
+    },
+    {
+      "title": "Quality of Life",
+      "printed_page": "198",
+      "pdf_page": 198
+    },
+    {
+      "title": "Infrastructure",
+      "printed_page": "218",
+      "pdf_page": 218
+    },
+    {
+      "title": "All Island Cohesion",
+      "printed_page": "228",
+      "pdf_page": 228
+    },
+    {
+      "title": "Implementation and Monitoring",
+      "printed_page": "234",
+      "pdf_page": 234
+    }
+  ]
+}

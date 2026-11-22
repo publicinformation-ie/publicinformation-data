@@ -1327,9 +1327,13 @@ CHAPTER
 
 ## Infrastructure
 
-### 5.1 Infrastructure Designed for Users
+### Infrastructure
 
-*Pages 46–46*
+*Pages 46–92*
+
+This chapter sets out the landscape of public EV charging infrastructure in the medium term. It explores the standards that will apply, as well as the existing and planned Government supports and funding instruments. These supports will target and address identified gaps in the EV infrastructure market. The chapter also sets out the objective for delivery of charge point infrastructure by 2025. This will support increasing EV uptake and ensure that charging infrastructure provision stays ahead of demand.
+
+need for top-up charging where required.
 
 5.1 Infrastructure Designed for Users
 
@@ -1341,9 +1345,7 @@ Everyone experiences charging differently. Designing services which people will 
 
 Ultimately, there is no one charging solution for EV users: each type of charge-point will be used at some point by EV drivers, depending on their needs and circumstances on a given trip. What is important is to deliver sufficient charge points of different types so that each user can charge in a convenient, energy-efficient, and cost-effective manner.
 
-### 5.2 What will be delivered
-
-*Pages 46–48*
+5.3 Risks and Dependencies
 
 5.2 What will be delivered
 
@@ -1394,16 +1396,6 @@ Table 4: Required Standards
 | Sustainability Tracking | M In tracking the progress made under this strategy (and in alignment with other relevant strategies such as the Sustainable Mobility Strategy), we will be tracking sustainability benefits. |
 | Reliability and Reporting | M Reliable infrastructure is critical to mass-market rollout. ZEVI will consider options for ensuring reliability of service for EV users, with reference to actions in other jurisdictions. It will implement such options if appropriate or required. |
 
-### 5.3 Risks and Dependencies
-
-*Pages 46–46*
-
-5.3 Risks and Dependencies
-
-### 5.5 National Publicly-Accessible Infrastructure Targets
-
-*Pages 49–49*
-
 5.5 National Publicly-Accessible Infrastructure Targets
 
 With an estimated number of 195,000 plug-in EVs on the road by 2025, this target could be achieved through a number of different chargepoint scenarios. The table below outlines five example possibilities. The optimum mix of charge points will depend on driver needs, and the ability to deliver the charge points in a timely manner. The most likely outcome is scenario 2, 3, or 4 below. The amount of charge points and kW power required to meet this target will be finalised in 2023.
@@ -1431,10 +1423,6 @@ Table 5: Charge Point Rollout Scenarios
 | Scenario 4 | 2,660 | 1,180 | 3,840 | 169,000 |
 | Scenario 5 | 4,070 | 780 | 4,850 | 169,000 |
 
-### 5.6 Existing Exchequer supports for charging infrastructure
-
-*Pages 50–50*
-
 5.6 Existing Exchequer supports for charging infrastructure
 
 Electric Vehicle Apartment Charging Grant76
@@ -1442,10 +1430,6 @@ Electric Vehicle Apartment Charging Grant76
 Since July 2022, the Electric Vehicle Home Charger Grant has been expanded to include shared parking in apartment blocks and similar developments.
 
 Currently, Exchequer funding is available for the following types of EV charging infrastructure:
-
-### 5.6.1 Home charging
-
-*Pages 50–50*
 
 5.6.1 Home charging
 
@@ -1468,10 +1452,6 @@ Since September 2022, the Electric Vehicle Home Charger Grant only supports smar
 ![Figure from page 50](assets/p050-t02.webp)
 
 *Figure from page 50*
-
-### 5.6.2 Residential/Neighbourhood Charging
-
-*Pages 50–52*
 
 5.6.2 Residential/Neighbourhood Charging
 
@@ -1529,25 +1509,13 @@ Since the launch of the Scheme in 2020, charge points have been installed in Dub
 
 The Ireland-specific part of the project aims to fund up to 40 fast charge points in various locations on both sides of the border. The target date for delivery is May 2023.
 
-### 5.7 New Infrastructure Supports to deliver for User needs:
-
-*Pages 52–52*
-
 5.7 New Infrastructure Supports to deliver for User needs:
-
-### 5.7.1 Home Charging/Shared Charging
-
-*Pages 52–52*
 
 5.7.1 Home Charging/Shared Charging
 
 How might we ensure that taxi drivers have dedicated access to chargers at busy periods?
 
 ZEVI will work with the private sector to incentivise and popularise the use of ‘shared charging’ (a person renting out the use of their home charge point to other EV owners) on a wider scale in Ireland. Shared charging can bring significant benefits, particularly in urban areas, where it can provide a charging solution for EV owners without a home-charging option themselves.
-
-### 5.6.3 Top-up charging (Destination and En-route)
-
-*Pages 52–52*
 
 5.6.3 Top-up charging (Destination and En-route)
 
@@ -1579,10 +1547,6 @@ This project is ongoing and will contribute to the provision of EV infrastructur
 
 79 https://www.fasterevcharge.com/
 
-### 5.7.2 Residential Charging
-
-*Pages 53–53*
-
 5.7.2 Residential Charging
 
 ![Figure from page 53](assets/p053-t01.webp)
@@ -1592,10 +1556,6 @@ This project is ongoing and will contribute to the provision of EV infrastructur
 The ZEVI office has been working closely with local authorities to consider how best to support them as they roll out EV charging infrastructure in their jurisdictions. A key action for local authorities will be to work with ZEVI to enable and support the delivery of residential-area charging networks for residents without access to home or apartment charging solutions.
 
 To support local authorities, ZEVI will launch a comprehensive new suite of co-funding supports. This will include supports for:
-
-### 5.7.3 Destination Charging
-
-*Pages 53–54*
 
 5.7.3 Destination Charging
 
@@ -1669,10 +1629,6 @@ MEV Car clubs offer a significant opportunity
 
 for avoiding car ownership, enabling more use of public transport while still having access to sustainable motoring when other sustainable mobility options are not available. Destination charging can support car-sharing e-mobility solutions. ZEVI will work with the car-sharing sector and local authorities to pilot the provision of charging infrastructure to support e-car clubs.
 
-### 5.8 En-route charging network
-
-*Pages 54–55*
-
 5.8 En-route charging network
 
 There are already many private charge point operators that serve Irish consumers, providing both fast and high-powered charge points. Most of these charge points are stand-alone or set in groups of two to four. They are found in a range of different locations, such as petrol station forecourts, hotels, and streets80. It is expected (as in other countries) that as EV growth continues, an increasing demand will be placed on high-
@@ -1700,10 +1656,6 @@ points along the main road networks as follows:
 1. By the end of 2025, there will be at least one charging pool with at least 300 kW of charging capacity (including at least one rapid-charge point of 150 kW), every 60 km on the TEN-T Core Network. This network is coloured yellow on the map and includes the following motorways and national routes: N7, N69, N8, M1, N28, N40, and M50.
 
 81 OECD/IEA (2018), Nordic EV outlook 2018: insights from leaders in electric mobility, p. 44 of 105.
-
-### 5.9 Heavy-duty vehicle charging hubs
-
-*Pages 56–59*
 
 5.9 Heavy-duty vehicle charging hubs
 
@@ -1777,18 +1729,6 @@ This final chapter contains information on the ZEVI structures, the high-level a
 
 maximising cooperation, the Government will work with the Northern Ireland Executive to promote and support EV charging infrastructure deployment. This will happen through initiatives such as the Shared Island Fund, as well as through other international collaborative and funding opportunities. This collaborative approach will help integrate and standardise public charge point networks on the island, to ensure ease of use and application for cross-border travel.
 
-### Infrastructure
-
-*Pages 46–46*
-
-This chapter sets out the landscape of public EV charging infrastructure in the medium term. It explores the standards that will apply, as well as the existing and planned Government supports and funding instruments. These supports will target and address identified gaps in the EV infrastructure market. The chapter also sets out the objective for delivery of charge point infrastructure by 2025. This will support increasing EV uptake and ensure that charging infrastructure provision stays ahead of demand.
-
-need for top-up charging where required.
-
-### 6.1 Governmental and Collaborative Structures
-
-*Pages 59–59*
-
 6.1 Governmental and Collaborative Structures
 
 This section sets out the key structures that have been established to facilitate and quicken the delivery of electric vehicle charging infrastructure in the coming decade. Collaboration has been identified as an important part of the process and these structures aim to maximise the positive effects of sharing expertise.
@@ -1812,10 +1752,6 @@ technologies.
 This chapter gives more detail on ZEVI and on the composition and purpose of the collaborative delivery groups that will be formed to support it.
 
 Achieving successful infrastructure delivery will involve addressing key consumer concerns about affordability, convenience, and ease of use. Partnerships and collaboration will be encouraged between public and private stakeholders, academics, energy network operators, energy providers, and regulators as they work together to pilot infrastructure and to develop innovative technologies and solutions. Successful delivery will also be based on the identification and sharing of relevant data, and on targeted research and information sharing to address knowledge gaps.
-
-### 6.2 Zero Emission Vehicles Ireland (ZEVI)
-
-*Pages 59–61*
 
 6.2 Zero Emission Vehicles Ireland (ZEVI)
 
@@ -1901,17 +1837,9 @@ The delivery group will provide expertise to support the delivery of a comprehen
 
 In addition to engaging with stakeholders through these formal groups, ZEVI will engage strongly with citizens. This will be done through the website, social media channels, and a comprehensive communications program.
 
-### 6.2.1 Public Sector Energy Delivery Group
-
-*Pages 61–61*
-
 6.2.1 Public Sector Energy Delivery Group
 
 The Public Sector Energy Delivery Group will bring transport and energy expertise to inform the delivery of EV infrastructure.
-
-### 6.2.3 Public-Private Infrastructure Stakeholder Group
-
-*Pages 61–61*
 
 6.2.3 Public-Private Infrastructure Stakeholder Group
 
@@ -1920,10 +1848,6 @@ The energy sector plays a fundamental part in the successful delivery of EV char
 ZEVI established a new multistakeholder Public-Private Infrastructure Stakeholder Group to provide a partnership approach to EV infrastructure delivery.
 
 Extensive and continuous engagement with external stakeholders, industry bodies, service providers, and consumers will be central to the Government’s approach to delivering infrastructure. Best-practice examples in other jurisdictions are clear about the benefits of such engagement as a way of sharing information, addressing blockages, encouraging investment, ensuring stakeholder buy-in, and meeting the needs of citizens.
-
-### 6.2.2 Public Sector EV Infrastructure Delivery Group
-
-*Pages 61–62*
 
 6.2.2 Public Sector EV Infrastructure Delivery Group
 
@@ -1959,10 +1883,6 @@ The group will also consider how best to implement the data-sharing provisions o
 
 88 S. Hall et al. (n.d.) The innovation interface: business model innovation for electric vehicle futures, report funded by Future Cities Catapult, EPSRC and University of Leeds, UK.
 
-### 6.2.4 Public-Private Vehicles Stakeholder Group
-
-*Pages 63–63*
-
 6.2.4 Public-Private Vehicles Stakeholder
 
 Public infrastructure will be designed to meet driver needs. EV drivers' charging needs are considerably influenced by the design and capability of their vehicles, and the purpose of their journeys. For example:
@@ -1992,10 +1912,6 @@ Launch funding
 2022-25 Infrastructure
 
 delivery
-
-### 6.3 What’s Been Achieved Since Publication of the Draft Strategy
-
-*Pages 64–67*
 
 6.3 What’s Been Achieved Since Publication of the Draft Strategy
 
@@ -2054,10 +1970,6 @@ not possible and where EV
 users don’t have access to
 
 driveways
-
-### 6.4 Overview of Implementation Plan
-
-*Pages 68–92*
 
 6.4 Overview of Implementation Plan
 

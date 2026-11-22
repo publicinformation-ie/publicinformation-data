@@ -1,0 +1,58 @@
+{
+  "doc_slug": "climate-action-plan-2024-q1-q2-progress-report",
+  "pdf_sha256": "58f12655ecce90e7bb7e794a257a20dc8bd396f3883ef66a8f7c161ec12a674d",
+  "toc_pdf_pages": [
+    2
+  ],
+  "annotator": "Dave",
+  "annotated_on": "2026-11-22",
+  "reviewed": true,
+  "notes": "Contents: page 2. Every top-level entry is a numbered sector chapter or the Introduction/Conclusion; there are no dividers and printed page equals PDF page. Titles are copied as printed, including 'Cross-cutting actions' (lower-case a).",
+  "chapters": [
+    {
+      "title": "Introduction",
+      "printed_page": "3",
+      "pdf_page": 3
+    },
+    {
+      "title": "Agriculture",
+      "printed_page": "12",
+      "pdf_page": 12
+    },
+    {
+      "title": "Transport",
+      "printed_page": "15",
+      "pdf_page": 15
+    },
+    {
+      "title": "Electricity",
+      "printed_page": "18",
+      "pdf_page": 18
+    },
+    {
+      "title": "Buildings",
+      "printed_page": "21",
+      "pdf_page": 21
+    },
+    {
+      "title": "Industry",
+      "printed_page": "24",
+      "pdf_page": 24
+    },
+    {
+      "title": "Land Use, Land Use Change and Forestry",
+      "printed_page": "27",
+      "pdf_page": 27
+    },
+    {
+      "title": "Cross-cutting actions",
+      "printed_page": "30",
+      "pdf_page": 30
+    },
+    {
+      "title": "Conclusion",
+      "printed_page": "34",
+      "pdf_page": 34
+    }
+  ]
+}

@@ -74,11 +74,12 @@ def by_slug(nodes):
 
 def test_the_outline_strategy_wins_when_the_pdf_has_an_outline():
     outline = [{"level": 1, "title": "1 First Chapter", "page": 2, "y": 76.0},
-               {"level": 2, "title": "1.1 Introduction", "page": 2, "y": 118.0}]
+               {"level": 2, "title": "1.1 Introduction", "page": 2, "y": 118.0},
+               {"level": 1, "title": "2 Second Chapter", "page": 3, "y": 76.0}]
     nodes, method, _ = detect_structure(load_pages("pages_numbered.json"), outline, 4)
 
     assert method == "outline"
-    assert [n.slug for n in nodes] == ["1-first-chapter", "1-1-introduction"]
+    assert [n.slug for n in nodes] == ["1-first-chapter", "1-1-introduction", "2-second-chapter"]
     assert nodes[0].number == "1"
     assert nodes[1].title == "Introduction"
     assert all(n.confidence == 1.0 for n in nodes)
@@ -203,6 +204,7 @@ def test_merge_overrides_can_flatten_a_staircase_outline():
     override.json escape hatch fixes this by patching `level`, which must
     recompute `parent` for every affected node, not just the patched one."""
     outline = [{"level": 1, "title": "Foreword", "page": 1, "y": 0.0},
+               {"level": 1, "title": "Preface", "page": 1, "y": 10.0},
                {"level": 2, "title": "Introduction", "page": 2, "y": 0.0},
                {"level": 3, "title": "Safe System Approach", "page": 3, "y": 0.0},
                {"level": 4, "title": "Vision Zero", "page": 4, "y": 0.0},
@@ -490,7 +492,10 @@ def test_toc_filtering_skips_the_footer_number_and_the_running_header():
     titles = [e["title"] for e in entries]
 
     assert toc_pages == [4]
-    assert not any(e["number"] == "2" for e in entries)  # footer `2` is not a section number
+    # the footer `2` is not a section number; the only numbered entries are the
+    # `Chapter N` labels, which are read as heading numbers
+    assert not any(e["number"] == "2" and not e["label"] for e in entries)
+    assert not any(e["title"] == "2" for e in entries)
     assert not any("National Sustainable Mobility Policy" in t for t in titles)
 
 
@@ -498,18 +503,19 @@ def test_toc_filtering_starts_at_foreword_and_the_title_line_is_not_an_entry():
     entries, _pages, _signal, _flags = _smp_toc_parse()
     titles = [e["title"] for e in entries]
 
-    assert titles[:3] == ["Foreword", "Summary", "Chapter 1 – Introduction"]
+    assert titles[:3] == ["Foreword", "Summary", "Introduction"]
     assert not any(t.lower() in ("table of contents", "contents") for t in titles)
 
 
 def test_toc_filtering_skipped_footer_adds_no_indent_bucket_so_levels_are_flat():
     """The footer line (x0 ~ 43) used to become a bogus entry whose x0 made
     `_infer_levels` see two indent buckets and push every real entry to
-    level 2. With it skipped, all entries share one left edge."""
+    level 2. With it skipped, all entries share one left edge, so the levels
+    come from the `Chapter N` labels and never from indentation."""
     entries, _pages, signal, _flags = _smp_toc_parse()
 
-    assert signal == "none"
-    assert entries and {e["level"] for e in entries} == {1}
+    assert signal == "label"
+    assert entries and len({e["x0"] for e in entries}) == 1
 
 
 def test_toc_filtering_skips_a_bare_page_number_at_the_left_edge():
@@ -570,16 +576,29 @@ def test_toc_page_exclusion_legacy_cascade_takes_the_toc_page_set():
     assert not any(n.start_page == 2 for n in without_toc)
 
 
+def _chapter(number, title, page):
+    from steps.detect_structure.process import _make
+
+    return _make(1, number, title, page, 0.0, 0.95)
+
+
+def _chapter_entry(number, title):
+    return {"title": title, "number": number, "level": 1}
+
+
 def test_toc_page_exclusion_supplement_adds_nothing_from_a_toc_page():
     toc_page = page([span("Contents", size=20.0, font="Helvetica-Bold", y0=60.0, block=0),
-                     span("9.9 Orphan Heading", size=14.0, font="Helvetica-Bold", y0=120.0, block=1)],
+                     span("1.9 Orphan Heading", size=14.0, font="Helvetica-Bold", y0=120.0, block=1)],
                     number=2)
-    body = _body_page(3, "1 Alpha Chapter")
+    body = _body_page(3, "1.1 Alpha Section")
+    chapters, entries = [_chapter("1", "Alpha", 1)], [_chapter_entry("1", "Alpha")]
 
-    assert [n.title for n in _supplement_numbered_nodes([toc_page, body], 9.0, [], [], set(), {2})] \
-        == ["Alpha Chapter"]
+    assert [n.title for n in _supplement_numbered_nodes([toc_page, body], 9.0, chapters, entries,
+                                                        set(), {2})
+            if n.level == 2] == ["Alpha Section"]
     assert "Orphan Heading" in [n.title for n in
-                                _supplement_numbered_nodes([toc_page, body], 9.0, [], [], set())]
+                                _supplement_numbered_nodes([toc_page, body], 9.0, chapters,
+                                                           entries, set())]
 
 
 # --- title_cleanup ---------------------------------------------------------
@@ -1033,13 +1052,21 @@ def test_split_number_keeps_four_level_numbers_whole():
 
 # --- supplement_dedupe -----------------------------------------------------
 
+def _nifti_chapters():
+    """The two chapters whose first section is `N.1 | Introduction` (pages 13 and 21)."""
+    chapters = [_chapter("1", "Chapter One", 12), _chapter("2", "Chapter Two", 20)]
+    entries = [_chapter_entry("1", "Chapter One"), _chapter_entry("2", "Chapter Two")]
+    return chapters, entries
+
+
 def test_supplement_dedupe_keeps_repeated_numbered_introductions():
     """Real NIFTI pages 13 and 21 each open with `N.1 | Introduction`. A single
     TOC `Introduction` must not drop either one."""
     pages = load_pages("pages_nifti_intro.json")
-    entries = [{"title": "Introduction"}]
+    chapters, entries = _nifti_chapters()
 
-    nodes = _supplement_numbered_nodes(pages, 10.0, [], entries, set())
+    nodes = _supplement_numbered_nodes(pages, 10.0, chapters, entries + [{"title": "Introduction"}],
+                                       set())
 
     intros = [(n.number, n.title, n.start_page) for n in nodes if n.title == "Introduction"]
     assert intros == [("1.1", "Introduction", 13), ("2.1", "Introduction", 21)]
@@ -1049,11 +1076,92 @@ def test_supplement_dedupe_does_not_duplicate_the_toc_matched_heading():
     pages = load_pages("pages_nifti_intro.json")
     nodes = from_numbering(pages, 10.0)
     first = next(n for n in nodes if n.start_page == 13 and n.title == "Introduction")
-    base = [Node(**{**first.__dict__})]
+    chapters, entries = _nifti_chapters()
+    base = chapters + [Node(**{**first.__dict__})]
 
-    out = _supplement_numbered_nodes(pages, 10.0, base, [{"title": "Introduction"}], set())
+    out = _supplement_numbered_nodes(pages, 10.0, base, entries + [{"title": "Introduction"}], set())
 
     assert [n.start_page for n in out if n.title == "Introduction"] == [13, 21]
+
+
+# --- supplement confinement (D4) ----------------------------------------------------
+
+def _supplement(pages_by_heading, chapters, entries, errors):
+    pages = [_body_page(number, heading) for number, heading in pages_by_heading]
+    return _supplement_numbered_nodes(pages, 9.0, chapters, entries, set(), frozenset(), errors)
+
+
+def test_a_supplemented_heading_cannot_become_a_chapter():
+    chapters = [_chapter("8", "Routes", 1)]
+    entries = [_chapter_entry("8", "Routes")]
+    errors = []
+
+    nodes = _supplement([(2, "30 [approximately 50kph]")], chapters, entries, errors)
+
+    assert [n.title for n in nodes] == ["Routes"]
+    (rejected,) = errors
+    assert rejected["error_type"] == "SupplementHeadingRejected"
+    assert rejected["context"]["page"] == 2 and "approximately 50kph" in rejected["context"]["title"]
+    assert "never a chapter" in rejected["context"]["reason"]
+
+
+def test_a_supplemented_section_under_its_own_numbered_chapter_is_kept():
+    chapters = [_chapter("1", "Alpha", 1)]
+    entries = [_chapter_entry("1", "Alpha")]
+    errors = []
+
+    nodes = _supplement([(2, "1.6 Summary")], chapters, entries, errors)
+
+    assert [(n.number, n.title, n.level) for n in nodes if n.level == 2] == [("1.6", "Summary", 2)]
+    assert errors == []
+
+
+def test_an_unnumbered_toc_chapter_takes_its_number_from_its_numbered_children():
+    chapters = [_chapter(None, "Introduction", 1)]
+    entries = [{"title": "Introduction", "number": None, "level": 1}] + [
+        {"title": f"Child {c}", "number": f"1.{i}", "level": 2} for i, c in enumerate("ABCDE", start=1)]
+    errors = []
+
+    nodes = _supplement([(2, "1.6 Summary")], chapters, entries, errors)
+
+    assert [(n.number, n.title) for n in nodes if n.level == 2] == [("1.6", "Summary")]
+    assert errors == []
+
+
+def test_a_heading_whose_number_belongs_to_another_chapter_is_rejected():
+    chapters = [_chapter("1", "Alpha", 1), _chapter("2", "Beta", 3)]
+    entries = [_chapter_entry("1", "Alpha"), _chapter_entry("2", "Beta")]
+    errors = []
+
+    nodes = _supplement([(2, "2.1 Wrong Place")], chapters, entries, errors)   # p. 2 is in chapter 1
+
+    assert [n.title for n in nodes if n.level == 2] == []
+    assert errors[0]["error_type"] == "SupplementHeadingRejected"
+    assert "does not belong" in errors[0]["context"]["reason"]
+
+
+def test_a_section_of_an_unmatched_chapter_is_kept_in_the_span_after_the_chapter_before_it():
+    """Chapter 2 is in the contents but its title was never found in the body (set
+    as artwork), so its sections sit after chapter 1's last match, before chapter 3."""
+    chapters = [_chapter("1", "Alpha", 1), _chapter("3", "Gamma", 5)]
+    entries = [_chapter_entry("1", "Alpha"), _chapter_entry("2", "Beta"), _chapter_entry("3", "Gamma")]
+    errors = []
+
+    nodes = _supplement([(3, "2.4 A Section Of The Missing Chapter")], chapters, entries, errors)
+
+    assert [n.number for n in nodes if n.level == 2] == ["2.4"]
+    assert errors == []
+
+
+def test_a_chapter_with_no_number_cannot_take_supplemented_sections():
+    chapters = [_chapter(None, "Infrastructure", 1)]
+    entries = [{"title": "Infrastructure", "number": None, "level": 1}]
+    errors = []
+
+    nodes = _supplement([(2, "5.1 Some Section")], chapters, entries, errors)
+
+    assert [n.level for n in nodes] == [1]
+    assert "no TOC chapter" in errors[0]["context"]["reason"]
 
 
 # --- toc_separate_number_running -------------------------------------------
@@ -1076,3 +1184,560 @@ def test_toc_separate_number_running_footer_is_not_a_title_line():
     assert len(entries) == 6
     assert titles[5] == "Next Steps"
     assert not any("Prepared for" in t or "AECOM" in t for t in titles)
+
+
+# --- one detection entry point (production and eval agree) ------------------
+
+def _outline_prep_pages():
+    """Five pages: `Alpha` is printed on p. 2 and `Beta` on p. 4; the rest is body text."""
+    def body(number):
+        return [span(f"Body sentence number {i} of page {number}.", size=10.0,
+                     y0=200.0 + 14 * i, block=i + 1) for i in range(20)]
+    pages = []
+    for number in range(1, 6):
+        spans = body(number)
+        if number == 2:
+            spans.append(span("Alpha", size=20.0, y0=80.0, block=0))
+        if number == 4:
+            spans.append(span("Beta", size=20.0, y0=80.0, block=0))
+        pages.append(page(spans, number=number))
+    return pages
+
+
+def _outline_prep_outline():
+    return [{"level": 1, "title": "Alpha", "page": 3},          # one page late
+            {"level": 1, "title": "_Hlk25760943", "page": 4},   # Word bookmark
+            {"level": 1, "title": "Beta", "page": 4}]
+
+
+def test_detect_document_structure_prepares_the_outline_like_production():
+    from steps.detect_structure.process import detect_document_structure
+
+    nodes, method, _report, problems = detect_document_structure(
+        _outline_prep_pages(), _outline_prep_outline(), 5)
+
+    assert method == "outline"
+    assert [(n.title, n.start_page) for n in nodes] == [("Alpha", 2), ("Beta", 4)]
+    assert [p["error_type"] for p in problems] == ["OutlineEntryDropped"]
+    assert not any("Hlk" in n.title for n in nodes)
+
+
+def test_process_and_the_eval_write_identical_trees(tmp_path, make_writer):
+    from steps.detect_structure.eval import score
+
+    pages, outline = _outline_prep_pages(), _outline_prep_outline()
+    upstream, records = write_upstream(tmp_path, pages, outline=outline)
+    step_dir = tmp_path / "detect_structure"
+    step_dir.mkdir()
+    writer = make_writer("detect_structure")
+    process(records, upstream, step_dir, writer, overrides={})
+    writer.finalize()
+    (record,) = json.loads((tmp_path / "output.json").read_text())["results"]
+
+    document = {"doc_slug": "fixture-doc", "page_count": 5, "outline": outline, "pages": pages}
+    nodes, method, page_count = score.detect_document(document)
+
+    assert method == record["detection_method"]
+    assert [n.to_dict() for n in nodes] == record["nodes"]
+    assert page_count == record["page_count"]
+
+
+# --- outline entry normalisation (D2) ----------------------------------------
+
+def _wrapped_heading_pages():
+    """p. 2 prints one heading wrapped over two lines; p. 3 prints two headings."""
+    def body(number):
+        return [span(f"Body sentence number {i} of page {number}.", size=10.0,
+                     y0=300.0 + 14 * i, block=i + 10) for i in range(15)]
+    pages = []
+    for number in range(1, 5):
+        spans = body(number)
+        if number == 2:
+            spans += [span("15. Freight, Delivery and", size=20.0, y0=80.0, block=0, line=0),
+                      span("Servicing", size=20.0, y0=104.0, block=0, line=1)]
+        if number == 3:
+            spans += [span("Alpha", size=20.0, y0=80.0, block=0),
+                      span("Beta", size=20.0, y0=160.0, block=1)]
+        pages.append(page(spans, number=number))
+    return pages
+
+
+def test_multiline_outline_title_loses_its_number():
+    from steps.detect_structure.process import from_outline
+
+    (node,) = from_outline([{"level": 1, "page": 21,
+                             "title": "3 \x07Long Term Strategic Issues\nfor National Roads"}])
+
+    assert node.number == "3"
+    assert node.title == "Long Term Strategic Issues for National Roads"
+
+
+def test_wrapped_outline_fragments_are_merged_when_the_page_prints_the_joined_title():
+    from steps.detect_structure.process import detect_document_structure
+
+    outline = [{"level": 1, "title": "15. Freight, Delivery and", "page": 2},
+               {"level": 1, "title": "Servicing", "page": 2},
+               {"level": 1, "title": "Alpha", "page": 3}]
+    nodes, method, _report, problems = detect_document_structure(_wrapped_heading_pages(), outline, 4)
+
+    assert method == "outline"
+    assert [(n.number, n.title, n.start_page) for n in nodes] == [
+        ("15", "Freight, Delivery and Servicing", 2), (None, "Alpha", 3)]
+    assert not [p for p in problems if p["error_type"] == "OutlineEntryUnresolved"]
+
+
+def test_unverified_outline_fragments_stay_separate():
+    from steps.detect_structure.process import merge_wrapped_outline_entries
+
+    # `Alpha Beta` is not printed anywhere on p. 3, so the entries must not join.
+    outline = [{"level": 1, "title": "Alpha", "page": 3},
+               {"level": 1, "title": "Beta", "page": 3}]
+    merged, count = merge_wrapped_outline_entries(outline, _wrapped_heading_pages())
+
+    assert count == 0
+    assert [e["title"] for e in merged] == ["Alpha", "Beta"]
+
+
+def test_outline_fragments_are_not_merged_across_levels_numbers_or_sentences():
+    from steps.detect_structure.process import merge_wrapped_outline_entries
+
+    pages = _wrapped_heading_pages()
+    base = [{"level": 1, "title": "15. Freight, Delivery and", "page": 2},
+            {"level": 1, "title": "Servicing", "page": 2}]
+    assert merge_wrapped_outline_entries(base, pages)[1] == 1
+    # different level
+    assert merge_wrapped_outline_entries([base[0], {**base[1], "level": 2}], pages)[1] == 0
+    # second carries its own number
+    assert merge_wrapped_outline_entries([base[0], {**base[1], "title": "16 Servicing"}], pages)[1] == 0
+    # first ends a sentence
+    assert merge_wrapped_outline_entries([{**base[0], "title": "15. Freight, Delivery and."}, base[1]],
+                                         pages)[1] == 0
+
+
+# --- outline plausibility (D3) -------------------------------------------------
+
+def test_a_single_entry_outline_is_not_chapter_evidence():
+    from steps.detect_structure.process import detect_document_structure
+
+    pages = load_pages("pages_numbered.json")
+    nodes, method, _report, problems = detect_document_structure(
+        pages, [{"level": 1, "title": "Untitled", "page": 1, "y": 0.0}], 4)
+
+    assert method != "outline"                       # names the strategy that produced the tree
+    assert [p["error_type"] for p in problems].count("OutlineNotUsed") == 1
+    assert "Untitled" not in [n.title for n in nodes]
+
+
+def test_a_single_root_outline_is_not_chapter_evidence():
+    from steps.detect_structure.process import detect_document_structure
+
+    outline = [{"level": 1, "title": "Annex", "page": 1, "y": 0.0}] + [
+        {"level": 2, "title": f"Section {i}", "page": 1 + i % 3, "y": 10.0 * i} for i in range(1, 16)]
+    _nodes, method, _report, problems = detect_document_structure(
+        load_pages("pages_numbered.json"), outline, 4)
+
+    assert method != "outline"
+    (problem,) = [p for p in problems if p["error_type"] == "OutlineNotUsed"]
+    assert problem["context"]["entries_at_shallowest_level"] == 1
+    assert problem["context"]["outline_entries"] == 16
+
+
+def test_a_plausible_outline_still_wins_and_logs_nothing():
+    from steps.detect_structure.process import detect_document_structure
+
+    outline = [{"level": 1, "title": "1 First Chapter", "page": 2, "y": 76.0},
+               {"level": 1, "title": "2 Second Chapter", "page": 3, "y": 76.0}]
+    _nodes, method, _report, problems = detect_document_structure(
+        load_pages("pages_numbered.json"), outline, 4)
+
+    assert method == "outline"
+    assert not [p for p in problems if p["error_type"] == "OutlineNotUsed"]
+
+
+# --- TOC entry continuation and printed pages (D5, 5.1) -----------------------
+
+def _toc_row(spans, text, y, number_page=None, x0=72.0, block=None):
+    """One TOC row: the entry text on the left, an optional page number at the right."""
+    block = block if block is not None else len(spans) + 1
+    spans.append(span(text, y0=y, x0=x0, block=block, line=0))
+    if number_page is not None:
+        spans.append(span(str(number_page), y0=y, x0=520.0, block=block, line=1))
+
+
+def test_wrapped_toc_entry_is_joined_and_takes_the_last_lines_page():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    _toc_row(spans, "3 Long Term Strategic Issues", 120.0)
+    _toc_row(spans, "for National Roads", 133.0, number_page=11)
+    _toc_row(spans, "4 Vision and Key Objectives", 160.0, number_page=33)
+    entries, _flags = _parse_toc_page(page(spans))
+
+    assert [(e["number"], e["title"], e["printed_page"]) for e in entries] == [
+        ("3", "Long Term Strategic Issues for National Roads", 11),
+        ("4", "Vision and Key Objectives", 33)]
+    assert not any(e["title"] == "for National Roads" for e in entries)
+
+
+def test_toc_entries_that_each_carry_a_page_number_stay_separate():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    _toc_row(spans, "Introduction", 120.0, number_page=7)
+    _toc_row(spans, "Background", 133.0, number_page=9)
+    entries, _flags = _parse_toc_page(page(spans))
+
+    assert [(e["title"], e["printed_page"]) for e in entries] == [("Introduction", 7), ("Background", 9)]
+
+
+def test_a_pageless_contents_list_is_never_joined():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    for index, title in enumerate(["Introduction", "Background", "Method"]):
+        _toc_row(spans, title, 120.0 + 13.0 * index)
+    entries, _flags = _parse_toc_page(page(spans))
+
+    assert [e["title"] for e in entries] == ["Introduction", "Background", "Method"]
+    assert all(e["printed_page"] is None for e in entries)
+
+
+def test_a_right_column_page_number_is_recorded_and_a_footer_number_is_not():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    _toc_row(spans, "Introduction", 120.0, number_page=7)
+    spans.append(span("3", y0=800.0, x0=40.0, block=9))   # footer, left edge
+    entries, _flags = _parse_toc_page(page(spans))
+
+    assert [(e["title"], e["printed_page"]) for e in entries] == [("Introduction", 7)]
+
+
+def test_a_roman_page_number_is_kept_as_printed():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    spans.append(span("Annex of Actions Guide . . . . . . ii", y0=120.0, block=1))
+    _toc_row(spans, "Introduction", 140.0, number_page=1)
+    entries, _flags = _parse_toc_page(page(spans))
+
+    assert [(e["title"], e["printed_page"]) for e in entries] == [
+        ("Annex of Actions Guide", "ii"), ("Introduction", 1)]
+
+
+def test_a_line_that_opens_with_its_own_label_is_not_joined_onto_the_entry_before():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    _toc_row(spans, "Goal 6: Take a whole of journey approach", 120.0, number_page=23)
+    _toc_row(spans, "for all", 133.0)
+    _toc_row(spans, "Goal 7: Design infrastructure according to principles", 146.0, number_page=28)
+    entries, _flags = _parse_toc_page(page(spans))
+
+    assert [(e["title"], e["printed_page"]) for e in entries] == [
+        ("Goal 6: Take a whole of journey approach", 23),
+        ("for all", None),
+        ("Goal 7: Design infrastructure according to principles", 28)]
+
+
+def test_a_line_in_a_different_type_size_is_not_a_wrapped_tail():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    spans.append(span("Foreword", size=11.0, y0=100.0, block=1))
+    spans.append(span("General Introduction and Safety Checklists", size=9.5, y0=114.0, block=2))
+    spans.append(span("3", size=9.5, y0=114.0, x0=520.0, block=2, line=1))
+    _toc_row(spans, "Think and Prepare", 128.0, number_page=5)
+    entries, _flags = _parse_toc_page(page(spans))
+
+    assert [e["title"] for e in entries] == [
+        "Foreword", "General Introduction and Safety Checklists", "Think and Prepare"]
+
+
+def test_the_contents_heading_with_a_roman_page_is_not_an_entry():
+    spans = [span("Table of Contents . . . . . . i", y0=60.0, block=0)]
+    _toc_row(spans, "Introduction", 120.0, number_page=1)
+    entries, _flags = _parse_toc_page(page(spans))
+
+    assert [e["title"] for e in entries] == ["Introduction"]
+
+
+# --- TOC chapter labels (D5, 5.2) ---------------------------------------------
+
+def test_a_chapter_label_on_the_title_line_is_the_heading_number():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    _toc_row(spans, "Chapter 1 – Introduction", 120.0, number_page=7)
+    entries, _flags = _parse_toc_page(page(spans))
+
+    (entry,) = entries
+    assert (entry["number"], entry["title"], entry["level_hint"], entry["label"]) == (
+        "1", "Introduction", 1, True)
+    assert entry["printed_page"] == 7
+
+
+def test_a_chapter_label_on_its_own_line_joins_the_title_below_it():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    spans.append(span("CHAPTER 2:", y0=120.0, block=1))
+    _toc_row(spans, "Strategic Vision", 134.0, number_page=20)
+    entries, _flags = _parse_toc_page(page(spans))
+
+    assert [(e["number"], e["title"], e["printed_page"]) for e in entries] == [("2", "Strategic Vision", 20)]
+
+
+def test_entries_between_chapter_labels_are_sections_of_the_chapter_before():
+    from steps.detect_structure.process import _infer_levels
+
+    entries = [
+        {"title": "Foreword", "number": None, "level_hint": None, "x0": 80.0, "furniture": False, "label": False},
+        {"title": "Summary", "number": None, "level_hint": None, "x0": 80.0, "furniture": False, "label": False},
+        {"title": "Introduction", "number": "1", "level_hint": 1, "x0": 80.0, "furniture": False, "label": True},
+        {"title": "Purpose of Policy", "number": None, "level_hint": None, "x0": 80.0, "furniture": False, "label": False},
+        {"title": "Alignment with existing policies", "number": "2", "level_hint": 1, "x0": 80.0, "furniture": False, "label": True},
+        {"title": "List of Abbreviations", "number": None, "level_hint": None, "x0": 80.0, "furniture": True, "label": False},
+        {"title": "Appendix A | Consultation", "number": None, "level_hint": None, "x0": 80.0, "furniture": False, "label": False},
+    ]
+    levelled, signal = _infer_levels(entries)
+
+    assert signal == "label"
+    assert [(e["title"], e["level"]) for e in levelled] == [
+        ("Foreword", 1), ("Summary", 1), ("Introduction", 1), ("Purpose of Policy", 2),
+        ("Alignment with existing policies", 1), ("List of Abbreviations", 1),
+        ("Appendix A | Consultation", 1)]
+
+
+def test_a_repeated_chapter_number_is_a_section_of_that_chapter():
+    from steps.detect_structure.process import _infer_levels
+
+    def entry(title, number):
+        return {"title": title, "number": number, "level_hint": 1, "x0": 62.0,
+                "furniture": False, "label": True}
+    levelled, signal = _infer_levels([entry("Recommendations", "4"), entry("Freight", "4"),
+                                      entry("Benefits and Costs", "5")])
+
+    assert signal == "label"
+    assert [e["level"] for e in levelled] == [1, 2, 1]
+
+
+def test_a_single_chapter_label_is_not_a_level_signal():
+    from steps.detect_structure.process import _infer_levels
+
+    entries = [{"title": "Alpha", "number": "1", "level_hint": 1, "x0": 80.0, "furniture": False, "label": True},
+               {"title": "Beta", "number": None, "level_hint": None, "x0": 80.0, "furniture": False, "label": False}]
+    _levelled, signal = _infer_levels(entries)
+
+    assert signal == "none"
+
+
+def test_a_body_heading_with_a_chapter_label_meets_the_toc_entry_without_it():
+    from steps.detect_structure.process import build_occurrence_index, find_occurrences
+
+    body = page([span("Chapter 1 | Purpose", size=18.0, y0=60.0, block=0)], number=2)
+    index = build_occurrence_index([body], set(), set(), 10.0)
+
+    assert find_occurrences(index, "Purpose")
+
+
+# --- TOC continuation pages (D5, 5.3) ------------------------------------------
+
+def _header_spans(tail):
+    """A running header with a constant lead and a tail that changes per page."""
+    return [span("Policy | ", size=8.0, y0=20.0, x0=72.0, block=0, index=0),
+            span(tail, size=8.0, y0=20.0, x0=120.0, block=0, index=1)]
+
+
+def _body(number, header="Foreword"):
+    spans = _header_spans(header)
+    spans += [span(f"Body sentence {i} of page {number}.", size=10.0, y0=100.0 + 14 * i, block=i + 1)
+              for i in range(15)]
+    return page(spans, number=number)
+
+
+def _toc_page(number, header, titles, with_title):
+    spans = _header_spans(header)
+    if with_title:
+        spans.append(span("Table of contents", size=20.0, y0=60.0, block=1))
+    for index, title in enumerate(titles):
+        _toc_row(spans, title, 120.0 + 16.0 * index, number_page=3 + index, block=10 + index)
+    return page(spans, number=number)
+
+
+_NAMES = ["Alpha", "Bravo", "Charlie", "Delta"]
+
+
+def _continuation_document(second_header="Table of Contents", second_title=None, gap=False):
+    first = _toc_page(4, "Table of Contents", _NAMES, True)
+    second = _toc_page(6 if gap else 5, second_header,
+                       [f"Later {name}" for name in _NAMES],
+                       with_title=second_title is not None)
+    pages = [_body(1), _body(2), _body(3), first]
+    if gap:
+        pages.append(_body(5))
+    return pages + [second, _body(7)]
+
+
+def test_an_untitled_second_contents_page_is_part_of_the_main_toc():
+    pages = _continuation_document()
+    entries, toc_pages, _signal, flags = parse_toc(pages, 10.0)
+
+    assert toc_pages == [4, 5]
+    assert [e["title"] for e in entries] == _NAMES + [f"Later {name}" for name in _NAMES]
+    assert flags["part_tocs"] == []
+
+
+def test_a_part_toc_after_a_gap_is_still_not_parsed():
+    pages = _continuation_document(second_title="Contents", gap=True)
+    entries, toc_pages, _signal, flags = parse_toc(pages, 10.0)
+
+    assert toc_pages == [4]
+    assert not any(e["title"].startswith("Later") for e in entries)
+    assert flags["multi_toc"] is True
+
+
+def test_a_following_page_whose_shared_header_does_not_name_the_contents_is_not_added():
+    pages = _continuation_document(second_header="Foreword")
+    _entries, toc_pages, _signal, _flags = parse_toc(pages, 10.0)
+
+    assert toc_pages == [4]
+
+
+def test_a_following_list_of_tables_page_is_not_a_contents_continuation():
+    pages = _continuation_document()
+    # Make the second page open with a list-of title.
+    pages[4]["spans"].insert(1, span("List of Tables", size=14.0, y0=40.0, block=2))
+    _entries, toc_pages, _signal, _flags = parse_toc(pages, 10.0)
+
+    assert toc_pages == [4]
+
+
+def test_a_list_of_abbreviations_entry_does_not_disqualify_a_continuation_page():
+    pages = _continuation_document()
+    spans = pages[4]["spans"]
+    spans.append(span("List of Abbreviations", y0=300.0, x0=72.0, block=40))
+    spans.append(span("40", y0=300.0, x0=520.0, block=40, line=1))
+    _entries, toc_pages, _signal, _flags = parse_toc(pages, 10.0)
+
+    assert toc_pages == [4, 5]
+
+
+# --- unpaged TOC entries and the gate (D6) --------------------------------------
+
+def _gate_document():
+    """Four body pages, each opened by a bold heading the contents list names."""
+    names = ["Alpha", "Bravo", "Charlie", "Delta"]
+    return [_body_page(index + 2, name) for index, name in enumerate(names)], names
+
+
+def _entry(title, printed_page, furniture=False, x0=72.0):
+    return {"title": title, "number": None, "level_hint": None, "x0": x0, "furniture": furniture,
+            "printed_page": printed_page, "label": False, "level": 1}
+
+
+def _gate_report(entries):
+    from steps.detect_structure.process import _tag_unpaged, from_toc
+
+    pages, _names = _gate_document()
+    parsed = (_tag_unpaged(entries), [1], "none", {})
+    return from_toc(pages, body_size(pages), parsed)
+
+
+def test_side_panel_prose_without_page_numbers_does_not_depress_the_gate():
+    paged = [_entry(name, 2 + index) for index, name in enumerate(["Alpha", "Bravo", "Charlie", "Delta"])]
+    # The side panel is a second column of the contents page, with no page numbers.
+    prose = [_entry(f"Explanatory sentence number {i} in a side panel", None, x0=435.0)
+             for i in range(20)]
+    nodes, report = _gate_report(paged + prose)
+
+    assert nodes is not None and [n.title for n in nodes] == ["Alpha", "Bravo", "Charlie", "Delta"]
+    assert report["match_rate"] == 1.0            # 4 of the 4 paged entries
+    assert report["matched_count"] == 4
+
+
+def test_without_the_unpaged_rule_the_same_prose_would_fall_below_the_gate():
+    # The same entries with page numbers everywhere: 4 matched of 12 is below the gate.
+    entries = [_entry(name, 2 + i) for i, name in enumerate(["Alpha", "Bravo", "Charlie", "Delta"])]
+    entries += [_entry(f"Explanatory sentence number {i} in a side panel", 9 + i) for i in range(8)]
+    nodes, report = _gate_report(entries)
+
+    assert nodes is None and report["errors"][0]["error_type"] == "LowTocMatchRate"
+
+
+def test_unpaged_appendices_are_excluded_from_the_gate_and_logged_when_unmatched():
+    paged = [_entry(name, 2 + index) for index, name in enumerate(["Alpha", "Bravo", "Charlie", "Delta"])]
+    appendices = [_entry(f"Appendix {c}", None) for c in "ABC"]
+    nodes, report = _gate_report(paged + appendices)
+
+    assert nodes is not None
+    unmatched = [e["context"]["title"] for e in report["errors"] if e["error_type"] == "TocEntryUnmatched"]
+    assert unmatched == [f"Appendix {c}" for c in "ABC"]
+
+
+def test_a_column_of_prose_beside_a_paged_column_is_not_part_of_the_gate_but_one_stray_page_is_not_a_column():
+    from steps.detect_structure.process import _tag_unpaged
+
+    # One stray page number in an otherwise pageless list does not make a paged column.
+    stray = _tag_unpaged([_entry("Alpha", 4), _entry("Bravo", None), _entry("Charlie", None),
+                          _entry("Delta", None)])
+
+    assert [e["unpaged"] for e in stray] == [False] * 4
+
+
+def test_a_toc_that_prints_no_page_numbers_has_no_unpaged_entries():
+    from steps.detect_structure.process import _tag_unpaged
+
+    tagged = _tag_unpaged([_entry("Alpha", None), _entry("Bravo", None)])
+
+    assert [e["unpaged"] for e in tagged] == [False, False]
+
+
+# --- pipe-separated heading codes (D7) -------------------------------------------
+
+def test_a_code_prefix_is_the_heading_number_whatever_surrounds_the_pipe():
+    from steps.detect_structure.process import _split_number
+
+    assert _split_number("RE |Research and Innovation") == ("RE", "Research and Innovation")
+    assert _split_number("RE | Research and Innovation") == ("RE", "Research and Innovation")
+    assert _split_number("RE|Research and Innovation") == ("RE", "Research and Innovation")
+    assert _split_number("CAP24 | Legacy Actions") == ("CAP24", "Legacy Actions")
+
+
+def test_an_ordinary_pipe_keeps_its_title():
+    from steps.detect_structure.process import _split_number
+
+    assert _split_number("Walking | Cycling") == (None, "Walking | Cycling")
+    assert _split_number("Chapter 1 | Purpose") == (None, "Chapter 1 | Purpose")   # a label, not a code
+    assert _split_number("A | Something") == (None, "A | Something")               # one letter is not a code
+
+
+def test_a_code_in_the_toc_meets_the_code_in_the_body_and_the_slug_keeps_the_code():
+    from steps.detect_structure.process import build_occurrence_index, find_occurrences, from_outline
+
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    _toc_row(spans, "RE |Research and Innovation", 120.0, number_page=8)
+    _toc_row(spans, "JT |Ensuring a Just Transition", 136.0, number_page=10)
+    entries, _flags = _parse_toc_page(page(spans))
+    assert [(e["number"], e["title"]) for e in entries] == [
+        ("RE", "Research and Innovation"), ("JT", "Ensuring a Just Transition")]
+
+    body = page([span("RE | Research and Innovation", size=18.0, y0=60.0, block=0)], number=8)
+    index = build_occurrence_index([body], set(), set(), 10.0)
+    assert find_occurrences(index, "Research and Innovation")
+
+    (node,) = from_outline([{"level": 1, "title": "RE | Research and Innovation", "page": 8, "y": 60.0}])
+    assert (node.number, node.title, node.slug) == ("RE", "Research and Innovation",
+                                                    "re-research-and-innovation")
+
+
+def test_a_second_contents_page_that_repeats_the_contents_title_is_part_of_the_toc():
+    pages = _continuation_document(second_title="Table of contents")
+    entries, toc_pages, _signal, _flags = parse_toc(pages, 10.0)
+
+    assert toc_pages == [4, 5]
+    assert [e["title"] for e in entries][-4:] == [f"Later {name}" for name in _NAMES]
+
+
+def test_a_second_contents_page_in_spaced_dot_leader_style_is_part_of_the_toc():
+    first = _toc_page(4, "Table of Contents", _NAMES, True)
+    spans = _header_spans("Table of Contents") + [span("Contents", size=10.0, y0=60.0, block=1)]
+    for index, name in enumerate(["Later Alpha", "Later Bravo", "Later Charlie", "Later Delta"]):
+        spans.append(span(f"{name}. . . . . . . . . . . . . . . . . . 7{index}", y0=120.0 + 16.0 * index,
+                          block=10 + index))
+    pages = [_body(1), _body(2), _body(3), first, page(spans, number=5), _body(6)]
+    _entries, toc_pages, _signal, _flags = parse_toc(pages, 10.0)
+
+    assert toc_pages == [4, 5]
+
+
+def test_a_sentence_ending_in_an_ellipsis_is_not_dot_leader_evidence():
+    from steps.detect_structure.process import _leader_page_lines
+
+    spans = [span("And so it goes on... 12", y0=100.0, block=1),
+             span("He paused... 3", y0=120.0, block=2),
+             span("Version 2. 3", y0=140.0, block=3)]
+
+    assert _leader_page_lines(page(spans)) == 0

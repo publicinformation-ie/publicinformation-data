@@ -309,7 +309,17 @@ def _make(level, number, title, page, y, confidence) -> Node:
                 start_page=int(page), start_y=round(float(y), 2), confidence=confidence)
 
 
+# A short uppercase code and a pipe (`RE | Research and Innovation`, `RE |Research`):
+# the code is the heading's number, whatever whitespace surrounds the pipe, so the
+# TOC's `RE |Title` and the body's `RE | Title` agree. `Walking | Cycling` is
+# not a code and keeps its title.
+CODE_PREFIX_RE = re.compile(r"^([A-Z0-9]{2,5})\s*\|\s*(\S.*)$")
+
+
 def _split_number(text: str):
+    code = CODE_PREFIX_RE.match(text.strip())
+    if code:
+        return code.group(1), code.group(2).strip()
     match = NUMBER_PREFIX_RE.match(text.strip())
     if match:
         return match.group(1), match.group(2).strip()
@@ -373,6 +383,17 @@ def is_heading_candidate(title) -> bool:
 # --------------------------------------------------------------------------
 
 _WORD_AUTO_BOOKMARK_RE = re.compile(r"^_(?:Hlk|Toc|Ref|GoBack)\w*$", re.I)
+
+
+def _split_outline_title(raw):
+    """`(number, title)` of an outline bookmark title.
+
+    Whitespace is collapsed first (line breaks, thin spaces, control characters),
+    so a heading number followed by a line break or a stray control character is
+    still split off: `3\u2009\x07Long Term Strategic Issues\nfor National Roads`
+    is number `3`, title `Long Term Strategic Issues for National Roads`.
+    """
+    return _split_number(clean_title(raw))
 
 
 def filter_outline(outline):
@@ -467,8 +488,8 @@ def resolve_outline_positions(outline, pages: list):
             resolved.append(entry)
             continue
         page_no = int(entry.get("page", 1))
-        _, title = _split_number(str(entry.get("title", "")))
-        want = normalize_heading_text(clean_title(title))
+        _, title = _split_outline_title(entry.get("title", ""))
+        want = normalize_heading_text(title)
         found_page = page_no
         found = _find_title_line(page_no, by_page.get(page_no), want, used)
         if found is None and page_no > 1:
@@ -488,10 +509,53 @@ def resolve_outline_positions(outline, pages: list):
     return resolved, problems
 
 
+_SENTENCE_END_RE = re.compile(r"[.!?]$")
+
+
+def merge_wrapped_outline_entries(outline, pages: list):
+    """Join an outline heading that a producer split across two bookmarks.
+
+    Two adjacent entries are merged only when all of these hold: same level, same
+    page, the second has no heading number, the first does not end a sentence
+    (`.`, `!`, `?`), and the two titles joined are the exact text of a heading
+    line on that page. The last test is the same exact-match rule
+    `resolve_outline_positions` uses, and it is what keeps two real headings that
+    share a page (`2.7` and `2.8`) apart. Anything that fails a condition is left
+    unchanged. Returns `(outline, merged_count)`.
+    """
+    if not outline:
+        return outline, 0
+    by_page = {int(p.get("number", i + 1)): p for i, p in enumerate(pages)}
+    result, merged = [], 0
+    for entry in outline:
+        previous = result[-1] if result else None
+        if previous is not None and _can_merge_outline(previous, entry, by_page):
+            result[-1] = {**previous, "title":
+                          f"{clean_title(previous.get('title', ''))} {clean_title(entry.get('title', ''))}"}
+            merged += 1
+            continue
+        result.append(entry)
+    return result, merged
+
+
+def _can_merge_outline(first: dict, second: dict, by_page: dict) -> bool:
+    if first.get("level") != second.get("level") or first.get("page") != second.get("page"):
+        return False
+    first_number, first_title = _split_outline_title(first.get("title", ""))
+    second_number, second_title = _split_outline_title(second.get("title", ""))
+    if second_number or not first_title or not second_title:
+        return False
+    if _SENTENCE_END_RE.search(first_title):
+        return False
+    page_no = int(first.get("page", 1))
+    want = normalize_heading_text(f"{first_title} {second_title}")
+    return _find_title_line(page_no, by_page.get(page_no), want, set()) is not None
+
+
 def from_outline(outline: list) -> list:
     nodes = []
     for entry in outline or []:
-        number, title = _split_number(str(entry.get("title", "")))
+        number, title = _split_outline_title(entry.get("title", ""))
         if not title:
             continue
         nodes.append(_make(entry.get("level", 1), number, title, entry.get("page", 1),
@@ -635,12 +699,30 @@ def _page_kind(page: dict):
     return None
 
 
+def _split_toc_suffix(text: str):
+    """`(title_text, printed_page)` for a TOC line: remove trailing dot leaders
+    and the page number glued to them. An arabic number is returned as an int; a
+    lowercase roman numeral (`ii`) only after at least three leader characters,
+    and as the string printed, so a title that ends in a roman-looking word is
+    never cut. `printed_page` is None when the line prints none."""
+    t = text.strip()
+    page = None
+    m = re.search(r"[\s.\u2026]+(\d{1,3})\s*$", t)
+    if m:
+        page = int(m.group(1))
+        t = t[:m.start()]
+    else:
+        m = re.search(r"[\s.\u2026]{3,}([ivxlc]{1,6})\s*$", t)
+        if m:
+            page = m.group(1)
+            t = t[:m.start()]
+    t = re.sub(r"[\s.\u2026]+$", "", t)             # "Title ......."
+    return t.strip(), page
+
+
 def _strip_toc_suffix(text: str) -> str:
     """Remove trailing dot leaders and any page number glued to them."""
-    t = text.strip()
-    t = re.sub(r"[\s.\u2026]+\d{1,3}\s*$", "", t)  # "Title ... 12"
-    t = re.sub(r"[\s.\u2026]+$", "", t)             # "Title ......."
-    return t.strip()
+    return _split_toc_suffix(text)[0]
 
 
 def _toc_reading_order(page: dict) -> list:
@@ -661,12 +743,98 @@ def _toc_reading_order(page: dict) -> list:
                                  l.block, l.index))
 
 
+_BARE_ARABIC_RE = re.compile(r"\d{1,3}")
+_BARE_ROMAN_RE = re.compile(r"[ivxlc]{1,6}")
+# A wrapped TOC title line sits right under its first line: the gap between the
+# first line's bottom and the next line's top is well under one line height.
+TOC_WRAP_MAX_GAP = 0.6
+# ...and in the type size of its first line (a heading line above a body-size
+# entry is two entries, not one wrapped title).
+TOC_WRAP_SIZE_TOLERANCE = 0.5
+# A row that opens with its own label (`Goal 7:`, `Chapter 2 \u2013`, `Appendix 1:`) is
+# a sibling entry, never the tail of a wrapped title.
+# `Chapter 2`, `CHAPTER 2:`, `Chapter 1 \u2013 Introduction`: the label, then the title if it
+# is on the same line. Group 1 is the chapter number, group 2 the rest.
+_CHAPTER_LABEL_RE = re.compile(r"^chapter\s+(\d{1,3})\s*[:\u2013\u2014-]?\s*(.*)$", re.IGNORECASE)
+# `Appendix A | ...`, `Annex 2`, `Part B`: a top-level division of the document.
+_DIVISION_LABEL_RE = re.compile(r"^(?:appendix|annex|annexe|schedule|part)\s+[A-Za-z0-9]{1,4}\b",
+                                re.IGNORECASE)
+_ENTRY_LABEL_RE = re.compile(r"^[A-Za-z]+\s+\d{1,3}\s*[:.\u2013\u2014-]")
+
+
+def _row_from(line, title, number, level_hint, page, furniture, label=False) -> dict:
+    return {"title": title, "number": number, "level_hint": level_hint, "label": label,
+            "x0": round(line.bbox[0], 1), "furniture": furniture, "printed_page": page,
+            "top": line.y0, "bottom": line.bbox[3], "right": line.bbox[2], "size": line.size}
+
+
+# Entries are grouped into columns by left edge, in 10-point buckets, so the
+# small x-jitter between a chapter line and its sub-lines does not split a column.
+TOC_COLUMN_BUCKET = 10.0
+TOC_MIN_COLUMN_ENTRIES = 3
+
+
+def _column(item) -> int:
+    return round(item["x0"] / TOC_COLUMN_BUCKET)
+
+
+def _paged_columns(items: list) -> set:
+    """The left-edge columns of a TOC that print page numbers: those with at
+    least three entries, half or more of which carry one. A pageless contents
+    list has none. A side panel of prose beside a contents list is a column
+    without page numbers, so it is not one of these."""
+    groups = {}
+    for item in items:
+        groups.setdefault(_column(item), []).append(item)
+    return {column for column, group in groups.items()
+            if len(group) >= TOC_MIN_COLUMN_ENTRIES
+            and sum(1 for i in group if i.get("printed_page") is not None) * 2 >= len(group)}
+
+
+def _join_wrapped_rows(rows: list) -> list:
+    """Join a wrapped TOC title onto the entry before it.
+
+    A row with no heading number is the continuation of the previous row when
+    that row has no printed page yet (the page number sits on the last line of a
+    wrapped title), the row is not indented less than the first line, it sits
+    right under it in the same type size, and it does not open with its own
+    label (`Goal 7:`). The joined entry keeps the first line's indentation and takes
+    the page number of the last line. A row that follows an entry that already has
+    a page number starts a new entry, and so does any row with its own number.
+    Only done in a column that prints page numbers (`_paged_columns`): in a
+    pageless contents list, or in a side panel of prose, every line is an entry.
+    """
+    paged_columns = _paged_columns(rows)
+    joined = []
+    for row in rows:
+        previous = joined[-1] if joined else None
+        if (previous is not None and previous["printed_page"] is None
+                and row["number"] is None and not row.get("label")
+                and _column(row) in paged_columns and _column(previous) in paged_columns
+                and not _ENTRY_LABEL_RE.match(row["title"])
+                and abs(row["size"] - previous["size"]) <= TOC_WRAP_SIZE_TOLERANCE
+                and not previous.get("label_only")
+                and row["x0"] >= previous["x0"] - 2.0
+                and 0 <= row["top"] - previous["bottom"] <= TOC_WRAP_MAX_GAP * row["size"]):
+            joined[-1] = {**previous, "title": f"{previous['title']} {row['title']}",
+                          "printed_page": row["printed_page"], "bottom": row["bottom"],
+                          "top": previous["top"]}
+            continue
+        joined.append(row)
+    return joined
+
+
 def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
     """Return (entries, flags) for one TOC page.
 
-    Each entry is {title, number, level_hint, x0, furniture}. Handles the
-    entry shapes the experiment documented: separate-line numbers (`1.` on its
-    own line), right-hand page-number lines, and inline numbers.
+    Each entry is {title, number, level_hint, x0, furniture, printed_page}.
+    Handles the entry shapes the experiment documented: separate-line numbers
+    (`1.` on its own line), right-hand page-number lines, and inline numbers.
+    `printed_page` is the page number the contents list prints for the entry
+    (an int for arabic, the printed string for roman, None when there is none);
+    it is read from the dot-leader suffix, from a bare number to the right on
+    the same row, or, for a separate-line number layout, from the bare number on
+    the line after the title. A wrapped title is joined (`_join_wrapped_rows`).
 
     Lines are consumed in reading order. Collection starts after the
     `contents` title line (anything above it is page furniture); bare page
@@ -681,7 +849,7 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
             lines = lines[position + 1:]
             break
     width = float(page.get("width") or 595.0)
-    entries = []
+    rows = []
     flags = {"separate_line_number": False, "right_page_number": False,
              "unicode_dot_leader": False, "ascii_dot_leader": False}
 
@@ -691,6 +859,9 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
                 flags["unicode_dot_leader"] = True
             else:
                 flags["ascii_dot_leader"] = True
+
+    numbers = []   # bare page-number lines, matched to rows by position afterwards
+    pending_label = None   # a `CHAPTER 2:` line waiting for the title on the next line
 
     i = 0
     while i < len(lines):
@@ -710,10 +881,23 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
         # A bare page number (`12`, no trailing dot) is a page number wherever
         # it sits: far right is the usual shape, but a footer number sits at
         # the left edge. Dotted numbers (`1.`, `1.1`) stay separate-line
-        # section numbers, handled below.
-        if re.fullmatch(r"\d{1,3}", text):
+        # section numbers, handled below. One that sits on the previous entry's
+        # row, to its right, is that entry's printed page.
+        if _BARE_ARABIC_RE.fullmatch(text):
             if line.bbox[0] > width * RIGHT_COLUMN_MIN_X_FRACTION:
                 flags["right_page_number"] = True
+            if rows and rows[-1].pop("page_follows", False):
+                rows[-1]["printed_page"] = int(text)
+            else:
+                numbers.append((line, int(text)))
+            i += 1
+            continue
+
+        # A lowercase roman numeral alone at the right edge is a page number
+        # (front matter), never an entry.
+        if (_BARE_ROMAN_RE.fullmatch(text)
+                and line.bbox[0] > width * RIGHT_COLUMN_MIN_X_FRACTION):
+            numbers.append((line, text))
             i += 1
             continue
 
@@ -726,7 +910,7 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
             while i < len(lines):
                 nxt = lines[i]
                 nt = nxt.text.strip()
-                if re.fullmatch(r"\d{1,3}", nt) or normalize_heading_text(nt) in TOC_TITLES:
+                if _BARE_ARABIC_RE.fullmatch(nt) or normalize_heading_text(nt) in TOC_TITLES:
                     break
                 # Footer/header lines are page furniture, not title lines.
                 if (normalize_heading_text(nt) in running
@@ -738,42 +922,100 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
                 title_parts.append(nt)
                 i += 1
             raw = " ".join(title_parts)
-            title = clean_title(_strip_toc_suffix(raw))
+            stripped, suffix_page = _split_toc_suffix(raw)
+            title = clean_title(stripped)
             if title and is_heading_candidate(title):
                 _note_leader(raw)
-                entries.append({"title": title, "number": number,
-                                "level_hint": len(number.split(".")),
-                                "x0": round(line.bbox[0], 1),
-                                "furniture": _classify_furniture(title)})
+                row = _row_from(line, title, number, len(number.split(".")), suffix_page,
+                                _classify_furniture(title))
+                # The page number of this layout is the bare number on the line
+                # after the title, which the loop above stopped at.
+                row["page_follows"] = suffix_page is None
+                rows.append(row)
+            continue
+
+        # A chapter label: `Chapter 1 \u2013 Introduction`, or `CHAPTER 2:` alone on
+        # its line with the title on the line below.
+        label_match = _CHAPTER_LABEL_RE.match(text)
+        if label_match and not label_match.group(2).strip():
+            pending_label = label_match.group(1)
+            i += 1
             continue
 
         # Ordinary entry: title, maybe dot leaders, maybe an inline number.
-        m = NUMBER_PREFIX_RE.match(text)
+        label = None
+        if label_match:
+            label, text = label_match.group(1), label_match.group(2).strip()
+        elif pending_label is not None:
+            label, pending_label = pending_label, None
+        m = (CODE_PREFIX_RE.match(text) or NUMBER_PREFIX_RE.match(text)) if label is None else None
         number = None
-        if m:
+        if label is not None:
+            number = label
+        elif m:
             number = m.group(1)
             text = m.group(2)
-        title = clean_title(_strip_toc_suffix(text))
+        stripped, page = _split_toc_suffix(text)
+        title = clean_title(stripped)
+        if normalize_heading_text(title) in TOC_TITLES:
+            i += 1   # the contents heading itself, with a page number after leaders
+            continue
         if title and is_heading_candidate(title):
             _note_leader(text)
-            entries.append({"title": title, "number": number,
-                            "level_hint": len(number.split(".")) if number else None,
-                            "x0": round(line.bbox[0], 1),
-                            "furniture": _classify_furniture(title)})
+            rows.append(_row_from(line, title, number,
+                                  len(number.split(".")) if number else None, page,
+                                  _classify_furniture(title), label=label is not None))
         i += 1
+
+    # A page number belongs to the row on its own baseline, to its left. A number
+    # with no row to its left (a footer at the page edge) belongs to no entry.
+    for number_line, value in numbers:
+        tolerance = max(READING_ORDER_Y_GRID, 0.5 * number_line.size)
+        candidates = [r for r in rows if r["printed_page"] is None
+                      and abs(r["top"] - number_line.y0) <= tolerance
+                      and r["right"] <= number_line.bbox[0] + 1.0]
+        if candidates:
+            max(candidates, key=lambda r: r["right"])["printed_page"] = value
+
+    entries = []
+    for row in _join_wrapped_rows(rows):
+        entry = {key: row[key] for key in ("title", "number", "level_hint", "x0",
+                                           "furniture", "printed_page", "label")}
+        entry["furniture"] = _classify_furniture(entry["title"])
+        entries.append(entry)
     return entries, flags
 
 
 def _infer_levels(entries):
-    """Infer a level per entry from numbering depth, else indentation, else 1.
+    """Infer a level per entry from numbering depth, else `Chapter N` labels, else
+    indentation, else 1.
 
-    Returns (entries_with_level, signal) where signal is 'numbering', 'indent',
-    or 'none'. A missing signal is not a failure: a flat document gets a flat
+    Returns (entries_with_level, signal) where signal is 'numbering', 'label',
+    'indent', or 'none'. A missing signal is not a failure: a flat document gets a flat
     level-1 tree, which is correct for it.
     """
     numbered = [e for e in entries if e["number"]]
     if len(numbered) >= 2 and any(e["level_hint"] and e["level_hint"] > 1 for e in numbered):
         return [{**e, "level": e["level_hint"] or 1} for e in entries], "numbering"
+    if sum(1 for e in entries if e.get("label")) >= 2:
+        # `Chapter N` labels: each is a chapter; an unnumbered, non-furniture
+        # entry between one label and the next is a section of the chapter
+        # before it. Entries before the first label, and furniture, stay level 1.
+        result, in_chapter, last_label = [], False, None
+        for e in entries:
+            if e.get("label"):
+                # The same chapter number again (`Chapter 4 | Freight` after
+                # `Chapter 4 | Recommendations`) is a section of that chapter.
+                level = 2 if e["number"] == last_label else 1
+                in_chapter, last_label = True, e["number"]
+            elif _DIVISION_LABEL_RE.match(e["title"]):
+                level = 1   # `Appendix A | ...` is a division of the document, not a section
+            elif in_chapter and not e["number"] and not e["furniture"]:
+                level = 2
+            else:
+                level = 1
+            result.append({**e, "level": level})
+        return result, "label"
     x0s = sorted({e["x0"] for e in entries})
     if len(x0s) >= 2:
         levels = {x0: min(i + 1, 3) for i, x0 in enumerate(x0s[:3])}
@@ -783,6 +1025,82 @@ def _infer_levels(entries):
             result.append({**e, "level": levels[nearest]})
         return result, "indent"
     return [{**e, "level": 1} for e in entries], "none"
+
+
+def _opens_with_list_of_title(page: dict, running: set, running_leads: set) -> bool:
+    """True when the page's first line (after running headers) is a `List of
+    Tables`-style title. A `List of Abbreviations` *entry* further down a
+    contents page does not make it a list-of page."""
+    for line in reading_order_lines(page):
+        if (normalize_heading_text(line.text) in running
+                or normalize_heading_text(line.lead) in running_leads):
+            continue
+        return bool(_LIST_OF_RE.match(normalize_heading_text(line.text)))
+    return False
+
+
+# A line that ends in spaced dot leaders and a page number (`Introduction. . . . . 68`,
+# or `. . . . . 67` on a line of its own): the leader style where `DOT_LEADER_RE`
+# (four dots in a row, or an ellipsis) finds nothing. The leaders must be spaced
+# dots, so a sentence ending `...` or a number does not count.
+_LEADER_PAGE_LINE_RE = re.compile(r"(?:\.\s){3,}\.?\s*(?:\d{1,3}|[ivxlc]{1,6})$")
+
+
+def _leader_page_lines(page: dict) -> int:
+    return sum(1 for line in reading_order_lines(page)
+               if _LEADER_PAGE_LINE_RE.search(line.text.strip()))
+
+
+def _names_contents(line) -> bool:
+    return "contents" in normalize_heading_text(line.text)
+
+
+def _shares_contents_header(toc_page: dict, candidate: dict, running: set, running_leads: set) -> bool:
+    """False only when the candidate page shares a running header with the TOC
+    page and that header does not name the contents (`Policy | Foreword` over a
+    body page). Pages that share no running header are not excluded by this test."""
+    def headers(page):
+        return [l for l in reading_order_lines(page)
+                if normalize_heading_text(l.lead) in running_leads
+                or normalize_heading_text(l.text) in running]
+    leads_on_toc = {normalize_heading_text(l.lead) for l in headers(toc_page)}
+    shared = [l for l in headers(candidate) if normalize_heading_text(l.lead) in leads_on_toc]
+    return not shared or any(_names_contents(l) for l in shared)
+
+
+def _continuation_pages(pages: list, toc_pages: list, body: float,
+                        running: set, running_leads: set) -> list:
+    """Pages that continue the main TOC: each directly follows the last TOC page,
+    has no title of its own or only repeats the contents title, is not a
+    `list-of-` page, shows at least three entries' page numbers (right-column
+    numbers, or lines of dot leaders and a page number), and (when it shares a
+    running header with the TOC page) that header names the contents. A page after a gap is never added, so a
+    later part-TOC stays unparsed."""
+    by_number = {p["number"]: p for p in pages}
+    added = []
+    last = toc_pages[-1] if toc_pages else None
+    while last is not None:
+        page = by_number.get(last + 1)
+        if page is None:
+            break
+        _title_heading, _title_any, _dots, right_nums = _page_toc_signals(page, body)
+        if (right_nums + _leader_page_lines(page) < 3
+                or _opens_with_list_of_title(page, running, running_leads)
+                or not _shares_contents_header(by_number[last], page, running, running_leads)):
+            break
+        added.append(page["number"])
+        last += 1
+    return added
+
+
+def _tag_unpaged(entries: list) -> list:
+    """Mark entries that print no page number as `unpaged`, once the TOC has a
+    column that prints page numbers (`_paged_columns`). Side-panel prose and
+    appendices published separately have none; they are not evidence about the
+    match rate. A TOC that prints no page numbers has no unpaged entries."""
+    if not _paged_columns(entries):
+        return [{**e, "unpaged": False} for e in entries]
+    return [{**e, "unpaged": e.get("printed_page") is None} for e in entries]
 
 
 def parse_toc(pages: list, body: float):
@@ -813,6 +1131,8 @@ def parse_toc(pages: list, body: float):
 
     running = running_header_texts(pages)
     running_leads = running_header_leads(pages)
+    toc_pages += [n for n in _continuation_pages(pages, toc_pages, body, running, running_leads)
+                  if n not in toc_pages]
 
     all_entries = []
     for num in toc_pages:
@@ -834,6 +1154,7 @@ def parse_toc(pages: list, body: float):
     level_signal = "none"
     if all_entries:
         all_entries, level_signal = _infer_levels(all_entries)
+        all_entries = _tag_unpaged(all_entries)
 
     return all_entries, toc_pages, level_signal, flags
 
@@ -925,6 +1246,13 @@ def build_occurrence_index(pages: list, toc_page_numbers: set, running_headers: 
             number, rest = _split_number(joined)
             if number:
                 index.setdefault(normalize_heading_text(clean_title(rest)), []).append(occ)
+            else:
+                # A body heading `Chapter 1 | Purpose` meets the TOC entry `Purpose`:
+                # the TOC side reads the `Chapter N` label as a heading number.
+                label = _CHAPTER_LABEL_RE.match(joined)
+                if label and label.group(2).strip():
+                    index.setdefault(normalize_heading_text(clean_title(label.group(2))),
+                                     []).append(occ)
     return index
 
 
@@ -949,15 +1277,90 @@ def _below_score_floor(occ: dict, body: float) -> bool:
     return occ["size"] < body * SCORE_FLOOR and not occ["bold"]
 
 
+def _lead(number):
+    """The leading component of a heading number: `4.2` -> `4`, `RE` -> `RE`."""
+    return str(number).split(".")[0] if number else None
+
+
+def _toc_chapters(entries) -> list:
+    """The level-1 TOC entries in TOC order, as `(normalized title, number)`.
+
+    A chapter's number is the leading component of its own printed number or,
+    when it has none, the leading component shared by all the numbered entries
+    beneath it (up to the next level-1 entry) if they agree. A chapter with
+    neither has number None: nothing can be supplemented under it.
+    """
+    chapters = []
+    for position, entry in enumerate(entries):
+        if entry.get("level", 1) != 1:
+            continue
+        number = _lead(entry.get("number"))
+        if number is None:
+            leads = set()
+            for child in entries[position + 1:]:
+                if child.get("level", 1) == 1:
+                    break
+                if child.get("number"):
+                    leads.add(_lead(child["number"]))
+            number = leads.pop() if len(leads) == 1 else None
+        chapters.append((normalize_heading_text(entry["title"]), number))
+    return chapters
+
+
 def _supplement_numbered_nodes(pages, body, base_nodes, entries, running_headers,
-                               toc_pages=frozenset()):
-    """Add legacy numbered headings not already among the base nodes. The font
-    strategy is not used — it is the low-precision over-splitter this strategy
-    replaces, and re-adding its nodes reintroduces the junk. TOC pages are
-    excluded so a TOC line cannot re-enter as a body heading."""
+                               toc_pages=frozenset(), errors=None):
+    """Add numbered body headings the TOC does not list, as sections only.
+
+    The TOC defines the chapters. A supplemented heading is kept only when it is
+    level 2 or deeper, lies inside a TOC chapter's page range, and its leading
+    number component equals that chapter's number; anything else (a stray `30
+    [approximately 50kph]` set in a larger size, a figure number, an address) is
+    dropped and, when `errors` is given, recorded as `SupplementHeadingRejected`.
+    The font strategy is not used: it is the low-precision over-splitter this
+    strategy replaces. TOC pages are excluded so a TOC line cannot re-enter as a
+    body heading.
+    """
     claimed = {(n.start_page, round(n.start_y, 1)) for n in base_nodes}
     extra = []
     seen = {(normalize_heading_text(n.title), n.start_page) for n in base_nodes}
+    toc_chapters = _toc_chapters(entries)
+    matched_titles = {normalize_heading_text(n.title) for n in base_nodes if n.level == 1}
+    chapters = sorted((n for n in base_nodes if n.level == 1),
+                      key=lambda n: (n.start_page, n.start_y))
+
+    def chapter_of(node):
+        owner = None
+        for chapter in chapters:
+            if (chapter.start_page, chapter.start_y) <= (node.start_page, node.start_y):
+                owner = chapter
+        return owner
+
+    def candidate_numbers(owner):
+        """Numbers of the TOC chapters that can own a heading in the page span that
+        starts at `owner`: the owner itself and, in TOC order, every unmatched TOC
+        chapter listed after it up to the next matched one (their own headings
+        cannot be placed by page, so they sit in this span). Before the first
+        matched chapter: the unmatched chapters that lead the TOC."""
+        titles = [title for title, _number in toc_chapters]
+        start = titles.index(normalize_heading_text(owner.title)) if owner is not None \
+            and normalize_heading_text(owner.title) in titles else (-1 if owner is None else None)
+        if start is None:
+            return None
+        numbers = [toc_chapters[start][1]] if start >= 0 else []
+        for title, number in toc_chapters[start + 1:]:
+            if title in matched_titles:
+                break
+            numbers.append(number)
+        return {n for n in numbers if n is not None}
+
+    def reject(node, reason):
+        if errors is not None:
+            errors.append(_error(
+                "SupplementHeadingRejected",
+                f"Numbered heading {node.title!r} on page {node.start_page} was not added: {reason}.",
+                {"title": node.title, "page": node.start_page, "number": node.number,
+                 "reason": reason}))
+
     for node in from_numbering(pages, body, toc_pages):
         # Skip only a duplicate of a node already present (same title, same
         # page); a title merely listed in the TOC may recur as `N.1 Introduction`.
@@ -967,6 +1370,23 @@ def _supplement_numbered_nodes(pages, body, base_nodes, entries, running_headers
             continue
         key = (node.start_page, round(node.start_y, 1))
         if key in claimed:
+            continue
+        if node.level < 2:
+            reject(node, "a supplemented heading can only be a section, never a chapter")
+            continue
+        owner = chapter_of(node)
+        numbers = candidate_numbers(owner)
+        if numbers is None:
+            reject(node, f"its TOC chapter {owner.title!r} cannot be found in the contents list")
+            continue
+        if not numbers:
+            reject(node, "no TOC chapter that could own it has a number to match" if owner is not None
+                   else "it lies before the first TOC chapter")
+            continue
+        if _lead(node.number) not in numbers:
+            where = f" ({owner.title!r})" if owner is not None else ""
+            reject(node, f"its number {node.number} does not belong to the chapter{where} "
+                         f"or to the unmatched chapters after it ({', '.join(sorted(numbers))})")
             continue
         claimed.add(key)
         extra.append(node)
@@ -988,7 +1408,10 @@ def from_toc(pages: list, body: float, parsed=None):
 
     running = running_header_texts(pages)
     index = build_occurrence_index(pages, set(toc_pages), running, body)
-    plausible = [e for e in entries if not e["furniture"]]
+    # Unpaged entries (no printed page, in a TOC that prints pages) are matched
+    # like any other but are not counted: the gate measures the entries a body
+    # heading is expected for.
+    plausible = [e for e in entries if not e["furniture"] and not e.get("unpaged")]
 
     nodes = []
     errors = []
@@ -1014,7 +1437,7 @@ def from_toc(pages: list, body: float, parsed=None):
         number, title = _split_number(best["text"])
         nodes.append(_make(entry["level"], number, title, best["page"], best["y0"],
                            CONFIDENCE["toc"]))
-        if not entry["furniture"]:
+        if not entry["furniture"] and not entry.get("unpaged"):
             matched_plausible += 1
 
     match_rate = matched_plausible / len(plausible) if plausible else 0.0
@@ -1033,7 +1456,8 @@ def from_toc(pages: list, body: float, parsed=None):
              "match_rate": round(match_rate, 3), "gate": MATCH_RATE_GATE})]
         return None, report
 
-    nodes = _supplement_numbered_nodes(pages, body, nodes, entries, running, set(toc_pages))
+    nodes = _supplement_numbered_nodes(pages, body, nodes, entries, running, set(toc_pages),
+                                       errors)
     report["errors"] = errors
     return nodes, report
 
@@ -1176,6 +1600,16 @@ def validate_split(nodes: list, page_count: int) -> list:
     return [issue["message"] for issue in split_issues(nodes, page_count)]
 
 
+def outline_is_plausible(outline) -> bool:
+    """An outline is chapter evidence only if, after unusable entries are
+    filtered out, at least two entries sit at its shallowest level. One entry
+    (`Untitled`, a document-title wrapper) or a single root over its own
+    children (`CAP 2025 annex`: one level-1, fifteen level-2) says nothing about
+    where the chapters are, so the cascade moves on as if there were no outline."""
+    levels = [int(entry.get("level", 1)) for entry in outline or []]
+    return bool(levels) and levels.count(min(levels)) >= 2
+
+
 def detect_structure(pages: list, outline=None, page_count=None):
     """Return (nodes, detection_method, toc_report) for one document's pages.
 
@@ -1187,7 +1621,7 @@ def detect_structure(pages: list, outline=None, page_count=None):
     match rate, and any TOC errors (see `from_toc`).
     """
     toc_report = None
-    if outline:
+    if outline_is_plausible(outline):
         nodes, method = from_outline(outline), "outline"
     else:
         body = body_size(pages)
@@ -1203,6 +1637,37 @@ def detect_structure(pages: list, outline=None, page_count=None):
     nodes = dedupe_slugs(_in_document_order(nodes))
     nodes = assign_hierarchy(nodes)
     return assign_page_ranges(nodes, total), method, toc_report
+
+
+def detect_document_structure(pages: list, raw_outline, page_count=None):
+    """The one detection entry point, shared by `process()` and the accuracy eval.
+
+    Prepares the outline exactly as production does (drops `_Hlk` bookmarks and
+    other non-headings, then moves each entry to the page where its heading is
+    printed) and runs the cascade. Returns `(nodes, method, toc_report, problems)`;
+    `problems` are the outline and TOC error dicts `process()` writes to
+    `errors.json` (`error_type`, `error_message`, `context`, no `doc_slug`).
+    Keeping this in one place stops the eval scoring a tree production never writes.
+    """
+    outline, problems = filter_outline(raw_outline)
+    outline, _merged = merge_wrapped_outline_entries(outline, pages)
+    outline, unresolved = resolve_outline_positions(outline, pages)
+    problems = list(problems) + list(unresolved)
+    if outline and not outline_is_plausible(outline):
+        shallowest = min(int(entry.get("level", 1)) for entry in outline)
+        problems.append({
+            "error_type": "OutlineNotUsed",
+            "error_message": ("The PDF outline was not used as chapter evidence: it has fewer than "
+                              "two entries at its shallowest level, so it cannot say where chapters "
+                              "start. Detection continued as if there were no outline."),
+            "context": {"outline_entries": len(outline), "shallowest_level": shallowest,
+                        "entries_at_shallowest_level":
+                            sum(1 for e in outline if int(e.get("level", 1)) == shallowest)},
+        })
+    nodes, method, toc_report = detect_structure(pages, outline, page_count)
+    if toc_report is not None:
+        problems += list(toc_report.get("errors", []))
+    return nodes, method, toc_report, problems
 
 
 def merge_overrides(nodes: list, patches: list, page_count=None):
@@ -1331,10 +1796,9 @@ def process(upstream_records, pages_base_dir, step_dir, writer, doc_slug=None,
 
         pages = load_pages(pages_base_dir, record)
         page_count = int(record.get("page_count") or len(pages))
-        outline, outline_problems = filter_outline(record.get("outline"))
-        outline, unresolved = resolve_outline_positions(outline, pages)
-        outline_problems += unresolved
-        for problem in outline_problems:
+        nodes, method, toc_report, problems = detect_document_structure(
+            pages, record.get("outline"), page_count)
+        for problem in problems:
             append_error(step_dir, {
                 "step": STEP_NAME,
                 "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -1342,17 +1806,6 @@ def process(upstream_records, pages_base_dir, step_dir, writer, doc_slug=None,
                 "error_message": problem["error_message"],
                 "context": {"doc_slug": slug, **problem["context"]},
             })
-        nodes, method, toc_report = detect_structure(pages, outline, page_count)
-
-        if toc_report is not None:
-            for problem in toc_report.get("errors", []):
-                append_error(step_dir, {
-                    "step": STEP_NAME,
-                    "timestamp": datetime.now(timezone.utc).isoformat(),
-                    "error_type": problem["error_type"],
-                    "error_message": problem["error_message"],
-                    "context": {"doc_slug": slug, **problem["context"]},
-                })
 
         patches = overrides.get(slug) or []
         overridden = False
