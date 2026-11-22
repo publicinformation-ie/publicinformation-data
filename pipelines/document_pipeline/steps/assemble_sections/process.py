@@ -458,10 +458,40 @@ def build(structure: dict, figures: dict, clean: dict, doc_slug: str, doc_title:
     # directly (a chapter preamble) becomes that chapter's `overview` section.
     keys = []
     owned: dict = {}
+    claimed: set = set()
     for node in boundaries:
         chapter = _chapter_node(node, by_slug)
         slug = OVERVIEW if node is chapter else node["slug"]
         key = f"{chapter['slug']}/{slug}"
+        if key in claimed:
+            # A later boundary claiming an already-claimed chapter/slug key —
+            # in practice a section node slugged `overview` landing on its own
+            # chapter's reserved preamble slug. Nothing deduplicated the
+            # composite key, so both boundaries rendered one shared content
+            # list twice and wrote two sections to a single file. The earlier
+            # boundary keeps the slug (the preamble's is fixed by the
+            # contract); the later one gets a `-2`, `-3`… suffix, the same
+            # convention detect_structure's `dedupe_slugs` applies. Nothing
+            # is dropped, and the collision is logged rather than passed
+            # downstream silently.
+            base, n = slug, 2
+            while f"{chapter['slug']}/{base}-{n}" in claimed:
+                n += 1
+            slug = f"{base}-{n}"
+            key = f"{chapter['slug']}/{slug}"
+            errors.append(_error_dict(
+                "SectionSlugCollision",
+                f"Section node slugged {node['slug']!r} claims the same "
+                f"chapter/slug key as an earlier boundary in chapter "
+                f"{chapter['slug']!r} — typically the chapter's reserved "
+                f"`overview` preamble slug. Its section is slugged {slug!r} "
+                f"instead, so the two never share one file. Deterministic "
+                f"disambiguation, no content lost; informational, does not "
+                f"block publication.",
+                {"doc_slug": doc_slug, "chapter": chapter["slug"],
+                 "node": node["slug"], "node_title": node.get("title"),
+                 "section_slug": slug}))
+        claimed.add(key)
         keys.append((key, node, chapter, slug))
         owned[key] = []
 
