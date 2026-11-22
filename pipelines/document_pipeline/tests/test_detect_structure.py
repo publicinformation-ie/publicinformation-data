@@ -492,7 +492,10 @@ def test_toc_filtering_skips_the_footer_number_and_the_running_header():
     titles = [e["title"] for e in entries]
 
     assert toc_pages == [4]
-    assert not any(e["number"] == "2" for e in entries)  # footer `2` is not a section number
+    # the footer `2` is not a section number; the only numbered entries are the
+    # `Chapter N` labels, which are read as heading numbers
+    assert not any(e["number"] == "2" and not e["label"] for e in entries)
+    assert not any(e["title"] == "2" for e in entries)
     assert not any("National Sustainable Mobility Policy" in t for t in titles)
 
 
@@ -500,18 +503,19 @@ def test_toc_filtering_starts_at_foreword_and_the_title_line_is_not_an_entry():
     entries, _pages, _signal, _flags = _smp_toc_parse()
     titles = [e["title"] for e in entries]
 
-    assert titles[:3] == ["Foreword", "Summary", "Chapter 1 – Introduction"]
+    assert titles[:3] == ["Foreword", "Summary", "Introduction"]
     assert not any(t.lower() in ("table of contents", "contents") for t in titles)
 
 
 def test_toc_filtering_skipped_footer_adds_no_indent_bucket_so_levels_are_flat():
     """The footer line (x0 ~ 43) used to become a bogus entry whose x0 made
     `_infer_levels` see two indent buckets and push every real entry to
-    level 2. With it skipped, all entries share one left edge."""
+    level 2. With it skipped, all entries share one left edge, so the levels
+    come from the `Chapter N` labels and never from indentation."""
     entries, _pages, signal, _flags = _smp_toc_parse()
 
-    assert signal == "none"
-    assert entries and {e["level"] for e in entries} == {1}
+    assert signal == "label"
+    assert entries and len({e["x0"] for e in entries}) == 1
 
 
 def test_toc_filtering_skips_a_bare_page_number_at_the_left_edge():
@@ -1340,3 +1344,78 @@ def test_the_contents_heading_with_a_roman_page_is_not_an_entry():
     entries, _flags = _parse_toc_page(page(spans))
 
     assert [e["title"] for e in entries] == ["Introduction"]
+
+
+# --- TOC chapter labels (D5, 5.2) ---------------------------------------------
+
+def test_a_chapter_label_on_the_title_line_is_the_heading_number():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    _toc_row(spans, "Chapter 1 – Introduction", 120.0, number_page=7)
+    entries, _flags = _parse_toc_page(page(spans))
+
+    (entry,) = entries
+    assert (entry["number"], entry["title"], entry["level_hint"], entry["label"]) == (
+        "1", "Introduction", 1, True)
+    assert entry["printed_page"] == 7
+
+
+def test_a_chapter_label_on_its_own_line_joins_the_title_below_it():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    spans.append(span("CHAPTER 2:", y0=120.0, block=1))
+    _toc_row(spans, "Strategic Vision", 134.0, number_page=20)
+    entries, _flags = _parse_toc_page(page(spans))
+
+    assert [(e["number"], e["title"], e["printed_page"]) for e in entries] == [("2", "Strategic Vision", 20)]
+
+
+def test_entries_between_chapter_labels_are_sections_of_the_chapter_before():
+    from steps.detect_structure.process import _infer_levels
+
+    entries = [
+        {"title": "Foreword", "number": None, "level_hint": None, "x0": 80.0, "furniture": False, "label": False},
+        {"title": "Summary", "number": None, "level_hint": None, "x0": 80.0, "furniture": False, "label": False},
+        {"title": "Introduction", "number": "1", "level_hint": 1, "x0": 80.0, "furniture": False, "label": True},
+        {"title": "Purpose of Policy", "number": None, "level_hint": None, "x0": 80.0, "furniture": False, "label": False},
+        {"title": "Alignment with existing policies", "number": "2", "level_hint": 1, "x0": 80.0, "furniture": False, "label": True},
+        {"title": "List of Abbreviations", "number": None, "level_hint": None, "x0": 80.0, "furniture": True, "label": False},
+        {"title": "Appendix A | Consultation", "number": None, "level_hint": None, "x0": 80.0, "furniture": False, "label": False},
+    ]
+    levelled, signal = _infer_levels(entries)
+
+    assert signal == "label"
+    assert [(e["title"], e["level"]) for e in levelled] == [
+        ("Foreword", 1), ("Summary", 1), ("Introduction", 1), ("Purpose of Policy", 2),
+        ("Alignment with existing policies", 1), ("List of Abbreviations", 1),
+        ("Appendix A | Consultation", 1)]
+
+
+def test_a_repeated_chapter_number_is_a_section_of_that_chapter():
+    from steps.detect_structure.process import _infer_levels
+
+    def entry(title, number):
+        return {"title": title, "number": number, "level_hint": 1, "x0": 62.0,
+                "furniture": False, "label": True}
+    levelled, signal = _infer_levels([entry("Recommendations", "4"), entry("Freight", "4"),
+                                      entry("Benefits and Costs", "5")])
+
+    assert signal == "label"
+    assert [e["level"] for e in levelled] == [1, 2, 1]
+
+
+def test_a_single_chapter_label_is_not_a_level_signal():
+    from steps.detect_structure.process import _infer_levels
+
+    entries = [{"title": "Alpha", "number": "1", "level_hint": 1, "x0": 80.0, "furniture": False, "label": True},
+               {"title": "Beta", "number": None, "level_hint": None, "x0": 80.0, "furniture": False, "label": False}]
+    _levelled, signal = _infer_levels(entries)
+
+    assert signal == "none"
+
+
+def test_a_body_heading_with_a_chapter_label_meets_the_toc_entry_without_it():
+    from steps.detect_structure.process import build_occurrence_index, find_occurrences
+
+    body = page([span("Chapter 1 | Purpose", size=18.0, y0=60.0, block=0)], number=2)
+    index = build_occurrence_index([body], set(), set(), 10.0)
+
+    assert find_occurrences(index, "Purpose")

@@ -182,3 +182,32 @@ Summaries are unchanged from D3 (tuning 10 / 3 fully correct / exact F1 0.53 / p
 **Known limitation (recorded, not tuned):** a TOC that prints the page number on the *first* line of a wrapped entry is the opposite layout to the one this rule targets. `sustainable-mobility-policy-year-two-progress-report` has one such case (`System in Ireland` + `Case Study: ...`); the joined title will not match the body and is logged `TocEntryUnmatched` for review. It was wrong before (a stray `System in Ireland` entry) and is wrong in a different way now.
 
 **Spec change made while implementing:** the "TOC entry continuation" requirement said a line with its own page number always starts a new entry, which contradicted its own scenario. It now says a line follows an entry only when that entry has no page yet; the guards are in a new requirement, "Continuation guards".
+
+### D5b — TOC chapter labels
+
+- **Change:** `Chapter N` (any case, optional `:`, `–`, `-`, `|`) is read as heading number `N` of a level-1 entry, on the title line or alone on the line above it. A body heading printed with the label (`Chapter 1 | Purpose`) now meets the TOC entry `Purpose` (`build_occurrence_index`). New level signal `label` (after `numbering`, before `indent`, needs at least two labels): unnumbered non-furniture entries between labels are level 2; a repeated chapter number is a section of that chapter; entries before the first label, furniture and division labels (`Appendix A`, `Annex 2`, `Part B`) stay level 1.
+- **Commit:** see git log (`feat(detect_structure): TOC chapter labels`)
+- **Kind:** detector change
+
+| Summary (raw tree) | Documents | Fully correct | Exact F1 (macro) | Page attribution (macro) | Title accuracy (macro) |
+|---|---:|---:|---:|---:|---:|
+| tuning, before | 10 | 3 | 0.53 | 0.39 | 0.87 |
+| tuning, after | 10 | 3 | 0.58 | 0.42 | 0.87 |
+| held out, before | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| held out, after | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| all, before | 14 | 4 | 0.55 | 0.46 | 0.90 |
+| all, after | 14 | 4 | 0.59 | 0.48 | 0.90 |
+
+**Per-document changes** (baseline diff, before = after 5a):
+
+| Document | Metric | Before | After | Reason |
+|---|---|---:|---:|---|
+| `sustainable-mobility-policy` | exact F1 | 0.22 | 0.71 | its `Chapter N – …` entries were all level 1 and unmatched; chapters are now level 1 with their sections beneath, and 5 of 9 chapters land exactly |
+| `sustainable-mobility-policy` | exact precision / recall | 0.17 / 0.33 | 1.00 / 0.56 | same; the 4 missing chapters are the ones set as artwork (D8) |
+| `sustainable-mobility-policy` | page attribution / tolerant F1 | 0.12 / 0.44 | 0.40 / 0.71 | same |
+
+No regressions in the final state. **A regression appeared first and was fixed before this entry** (kept here because it is a real failure mode of the rule): the first version took `all-island-strategic-rail-review-final-report` from fully correct to exact F1 0.10. Its contents list repeats `Chapter 4 |` on six sub-entries (`Decarbonisation`, `Freight`, ...). Previously those entries kept the label in their title, matched nothing, and were dropped by accident; once the label was stripped, the bare titles matched body headings and became six false chapters. Two further defects followed: the body heading for `Chapter 1 | Purpose` no longer met the stripped title (fixed by indexing the body heading without its label), and `Appendix A | …` fell to level 2 after the last chapter. The rules "a repeated chapter number is a section" and "a division label stays level 1" came from this document. After the fix it is fully correct again, with six additional correct level-2 sections (nodes 11 -> 17).
+
+**Documents without gold** (`production_view.py` and `compare.py`, refreshed in `eval/expected.json`): production detection methods unchanged for all 40 documents; `InvalidStructure` 12 -> 12; no override orphaned. In `compare.py`'s TOC view: `emra` match rate 0.534 -> 0.595 (entries 94 -> 85; still just under the 0.60 gate), `code-of-practice-recreational-craft` 0.385 -> 0.462, `climate-action-plan-2025` TOC strategy 4/26 -> 26/26 matched (its production method stays `outline`, which is plausible).
+
+**Notes:** the held-out documents did not move.

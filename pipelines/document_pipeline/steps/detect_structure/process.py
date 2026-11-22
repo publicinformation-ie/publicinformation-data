@@ -743,11 +743,17 @@ TOC_WRAP_MAX_GAP = 0.6
 TOC_WRAP_SIZE_TOLERANCE = 0.5
 # A row that opens with its own label (`Goal 7:`, `Chapter 2 \u2013`, `Appendix 1:`) is
 # a sibling entry, never the tail of a wrapped title.
+# `Chapter 2`, `CHAPTER 2:`, `Chapter 1 \u2013 Introduction`: the label, then the title if it
+# is on the same line. Group 1 is the chapter number, group 2 the rest.
+_CHAPTER_LABEL_RE = re.compile(r"^chapter\s+(\d{1,3})\s*[:\u2013\u2014-]?\s*(.*)$", re.IGNORECASE)
+# `Appendix A | ...`, `Annex 2`, `Part B`: a top-level division of the document.
+_DIVISION_LABEL_RE = re.compile(r"^(?:appendix|annex|annexe|schedule|part)\s+[A-Za-z0-9]{1,4}\b",
+                                re.IGNORECASE)
 _ENTRY_LABEL_RE = re.compile(r"^[A-Za-z]+\s+\d{1,3}\s*[:.\u2013\u2014-]")
 
 
-def _row_from(line, title, number, level_hint, page, furniture) -> dict:
-    return {"title": title, "number": number, "level_hint": level_hint,
+def _row_from(line, title, number, level_hint, page, furniture, label=False) -> dict:
+    return {"title": title, "number": number, "level_hint": level_hint, "label": label,
             "x0": round(line.bbox[0], 1), "furniture": furniture, "printed_page": page,
             "top": line.y0, "bottom": line.bbox[3], "right": line.bbox[2], "size": line.size}
 
@@ -771,7 +777,7 @@ def _join_wrapped_rows(rows: list) -> list:
     for row in rows:
         previous = joined[-1] if joined else None
         if (previous is not None and previous["printed_page"] is None
-                and row["number"] is None and not row.get("label_only")
+                and row["number"] is None and not row.get("label")
                 and not _ENTRY_LABEL_RE.match(row["title"])
                 and abs(row["size"] - previous["size"]) <= TOC_WRAP_SIZE_TOLERANCE
                 and not previous.get("label_only")
@@ -822,6 +828,7 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
                 flags["ascii_dot_leader"] = True
 
     numbers = []   # bare page-number lines, matched to rows by position afterwards
+    pending_label = None   # a `CHAPTER 2:` line waiting for the title on the next line
 
     i = 0
     while i < len(lines):
@@ -894,10 +901,25 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
                 rows.append(row)
             continue
 
+        # A chapter label: `Chapter 1 \u2013 Introduction`, or `CHAPTER 2:` alone on
+        # its line with the title on the line below.
+        label_match = _CHAPTER_LABEL_RE.match(text)
+        if label_match and not label_match.group(2).strip():
+            pending_label = label_match.group(1)
+            i += 1
+            continue
+
         # Ordinary entry: title, maybe dot leaders, maybe an inline number.
-        m = NUMBER_PREFIX_RE.match(text)
+        label = None
+        if label_match:
+            label, text = label_match.group(1), label_match.group(2).strip()
+        elif pending_label is not None:
+            label, pending_label = pending_label, None
+        m = NUMBER_PREFIX_RE.match(text) if label is None else None
         number = None
-        if m:
+        if label is not None:
+            number = label
+        elif m:
             number = m.group(1)
             text = m.group(2)
         stripped, page = _split_toc_suffix(text)
@@ -909,7 +931,7 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
             _note_leader(text)
             rows.append(_row_from(line, title, number,
                                   len(number.split(".")) if number else None, page,
-                                  _classify_furniture(title)))
+                                  _classify_furniture(title), label=label is not None))
         i += 1
 
     # A page number belongs to the row on its own baseline, to its left. A number
@@ -925,22 +947,42 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
     entries = []
     for row in _join_wrapped_rows(rows):
         entry = {key: row[key] for key in ("title", "number", "level_hint", "x0",
-                                           "furniture", "printed_page")}
+                                           "furniture", "printed_page", "label")}
         entry["furniture"] = _classify_furniture(entry["title"])
         entries.append(entry)
     return entries, flags
 
 
 def _infer_levels(entries):
-    """Infer a level per entry from numbering depth, else indentation, else 1.
+    """Infer a level per entry from numbering depth, else `Chapter N` labels, else
+    indentation, else 1.
 
-    Returns (entries_with_level, signal) where signal is 'numbering', 'indent',
-    or 'none'. A missing signal is not a failure: a flat document gets a flat
+    Returns (entries_with_level, signal) where signal is 'numbering', 'label',
+    'indent', or 'none'. A missing signal is not a failure: a flat document gets a flat
     level-1 tree, which is correct for it.
     """
     numbered = [e for e in entries if e["number"]]
     if len(numbered) >= 2 and any(e["level_hint"] and e["level_hint"] > 1 for e in numbered):
         return [{**e, "level": e["level_hint"] or 1} for e in entries], "numbering"
+    if sum(1 for e in entries if e.get("label")) >= 2:
+        # `Chapter N` labels: each is a chapter; an unnumbered, non-furniture
+        # entry between one label and the next is a section of the chapter
+        # before it. Entries before the first label, and furniture, stay level 1.
+        result, in_chapter, last_label = [], False, None
+        for e in entries:
+            if e.get("label"):
+                # The same chapter number again (`Chapter 4 | Freight` after
+                # `Chapter 4 | Recommendations`) is a section of that chapter.
+                level = 2 if e["number"] == last_label else 1
+                in_chapter, last_label = True, e["number"]
+            elif _DIVISION_LABEL_RE.match(e["title"]):
+                level = 1   # `Appendix A | ...` is a division of the document, not a section
+            elif in_chapter and not e["number"] and not e["furniture"]:
+                level = 2
+            else:
+                level = 1
+            result.append({**e, "level": level})
+        return result, "label"
     x0s = sorted({e["x0"] for e in entries})
     if len(x0s) >= 2:
         levels = {x0: min(i + 1, 3) for i, x0 in enumerate(x0s[:3])}
@@ -1092,6 +1134,13 @@ def build_occurrence_index(pages: list, toc_page_numbers: set, running_headers: 
             number, rest = _split_number(joined)
             if number:
                 index.setdefault(normalize_heading_text(clean_title(rest)), []).append(occ)
+            else:
+                # A body heading `Chapter 1 | Purpose` meets the TOC entry `Purpose`:
+                # the TOC side reads the `Chapter N` label as a heading number.
+                label = _CHAPTER_LABEL_RE.match(joined)
+                if label and label.group(2).strip():
+                    index.setdefault(normalize_heading_text(clean_title(label.group(2))),
+                                     []).append(occ)
     return index
 
 

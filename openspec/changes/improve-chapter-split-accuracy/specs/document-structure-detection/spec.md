@@ -123,7 +123,7 @@ The system SHALL join continuation lines only in a TOC that prints page numbers,
 
 ### Requirement: TOC chapter labels
 
-The system SHALL read a `Chapter N` label (any case, with an optional `:`, `–` or `-` separator) as the heading number `N` of a level-1 entry. The label may be on the same line as the title or on its own line directly above it. In a TOC that has chapter labels, an unnumbered, non-furniture entry after the first labelled chapter and before the next one SHALL be a level-2 entry of the chapter before it. Entries before the first label and furniture entries SHALL stay level 1.
+The system SHALL read a `Chapter N` label (any case, with an optional `:`, `–`, `-` or `|` separator) as the heading number `N` of a level-1 entry. The label may be on the same line as the title or on its own line directly above it. A body heading printed with the same label SHALL match the TOC entry by its title alone.
 
 #### Scenario: Label on the title line
 
@@ -135,11 +135,27 @@ The system SHALL read a `Chapter N` label (any case, with an optional `:`, `–`
 - **WHEN** a TOC line `CHAPTER 2:` is directly followed by `Strategic Vision`
 - **THEN** one level-1 entry numbered `2` and titled `Strategic Vision` is produced, and no entry is produced for the label
 
+#### Scenario: Body heading carries the label
+
+- **GIVEN** a TOC entry `Purpose` read from `Chapter 1 | Purpose`, and a body heading printed `Chapter 1 | Purpose`
+- **WHEN** the entry is matched
+- **THEN** the body heading is its occurrence
+
+### Requirement: Levels from chapter labels
+
+In a TOC with at least two chapter labels, an unnumbered, non-furniture entry after the first label and before the next one SHALL be a level-2 entry of the chapter before it. A label that repeats the previous label's chapter number SHALL be a level-2 entry of that chapter. Entries before the first label, furniture entries, and entries opening with a division label (`Appendix A`, `Annex 2`, `Part B`, `Schedule 1`) SHALL stay level 1.
+
 #### Scenario: Entries between labels are sections
 
 - **GIVEN** a TOC listing `Foreword`, `Summary`, `Chapter 1 – Introduction`, `Purpose of Policy`, `Chapter 2 – Alignment with existing policies`, and finally `List of Abbreviations`
 - **WHEN** levels are inferred
-- **THEN** `Foreword`, `Summary`, both chapters and `List of Abbreviations` are level 1, and `Purpose of Policy` is level 2 under chapter 1
+- **THEN** `Foreword`, `Summary`, both chapters and `List of Abbreviations` are level 1, and `Purpose of Policy` is level 2 under chapter 1; an `Appendix A | …` entry after the last chapter is level 1
+
+#### Scenario: Repeated chapter number is a section
+
+- **GIVEN** TOC entries `Chapter 4 | Recommendations` and `Chapter 4 | Freight`, then `Chapter 5 | Benefits and Costs`
+- **WHEN** levels are inferred
+- **THEN** `Recommendations` and `Benefits and Costs` are level 1 and `Freight` is level 2
 
 ### Requirement: TOC continuation pages
 
