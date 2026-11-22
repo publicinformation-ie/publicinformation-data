@@ -157,6 +157,7 @@ def score_document(slug: str, document: dict, gold_doc, overrides: dict) -> dict
         "doc_slug": slug,
         "method": method,
         "has_overrides": bool(patches),
+        "held_out": bool(getattr(gold_doc, "held_out", False)),
         "raw": raw,
         "post_override": post,
         "warnings": list(gold_doc.warnings),
@@ -195,15 +196,22 @@ def build_report(source: dict, gold_load, overrides: dict) -> dict:
             excluded.append({"doc_slug": slug, "reason": EXCLUDED_DETECTION,
                              "detail": f"{type(exc).__name__}: {exc}"})
 
-    raw_summary = metrics.summarise([doc["raw"] for doc in documents])
-    published = [doc["post_override"] or doc["raw"] for doc in documents]
+    def summarise_group(group: list) -> dict:
+        return {
+            "raw": metrics.summarise([doc["raw"] for doc in group]),
+            "post_override": metrics.summarise(
+                [doc["post_override"] or doc["raw"] for doc in group]),
+        }
+
+    # `raw` / `post_override` stay the all-documents summary; the tuning and
+    # held-out groups sit alongside. A held-out file is read only at acceptance.
+    summary = summarise_group(documents)
+    summary["tuning"] = summarise_group([d for d in documents if not d["held_out"]])
+    summary["held_out"] = summarise_group([d for d in documents if d["held_out"]])
     return {
         "source": {"kind": source["kind"], "drifted": source["drifted"]},
         "documents": documents,
-        "summary": {
-            "raw": raw_summary,
-            "post_override": metrics.summarise(published),
-        },
+        "summary": summary,
         "excluded": excluded,
         "warnings": warnings,
     }
@@ -239,24 +247,38 @@ def format_table(report: dict) -> str:
                 f"{_num(score['tolerant']['precision']):>6} {_num(score['tolerant']['recall']):>6} "
                 f"{_num(score['tolerant']['f1']):>6} "
                 f"{_pct(score['page_accuracy']):>6} {_pct(score['title_accuracy']):>6} "
-                f" {'yes' if score['fully_correct'] else 'no'}")
+                f" {'yes' if score['fully_correct'] else 'no'}"
+                + ("  [held out]" if doc.get("held_out") else ""))
     return "\n".join(lines)
 
 
 def format_summary(report: dict) -> str:
     lines = []
-    for name in ("raw", "post_override"):
-        summary = report["summary"][name]
-        if name == "post_override" and not any(
-                doc["post_override"] is not None for doc in report["documents"]):
-            continue
-        label = "published tree (post-override)" if name == "post_override" else "raw tree"
-        lines.append(f"\n{label}: {summary['documents']} documents, "
-                     f"{summary['fully_correct']}/{summary['documents']} fully correct")
-        lines.append(f"  {'metric':<28} {'macro':>8} {'micro':>8}")
-        for key in metrics.METRIC_KEYS:
-            lines.append(f"  {key:<28} {_num(summary['macro'][key]):>8} "
-                         f"{_num(summary['micro'][key]):>8}")
+    documents = report["documents"]
+    has_held_out = any(doc.get("held_out") for doc in documents)
+    # Without held-out documents there is one group, exactly as before.
+    groups = [("", report["summary"], documents)]
+    if has_held_out:
+        groups = [
+            (" [all]", report["summary"], documents),
+            (" [tuning]", report["summary"]["tuning"],
+             [d for d in documents if not d.get("held_out")]),
+            (" [held out]", report["summary"]["held_out"],
+             [d for d in documents if d.get("held_out")]),
+        ]
+    for suffix, group_summary, group_docs in groups:
+        for name in ("raw", "post_override"):
+            summary = group_summary[name]
+            if name == "post_override" and not any(
+                    doc["post_override"] is not None for doc in group_docs):
+                continue
+            label = "published tree (post-override)" if name == "post_override" else "raw tree"
+            lines.append(f"\n{label}{suffix}: {summary['documents']} documents, "
+                         f"{summary['fully_correct']}/{summary['documents']} fully correct")
+            lines.append(f"  {'metric':<28} {'macro':>8} {'micro':>8}")
+            for key in metrics.METRIC_KEYS:
+                lines.append(f"  {key:<28} {_num(summary['macro'][key]):>8} "
+                             f"{_num(summary['micro'][key]):>8}")
     return "\n".join(lines)
 
 
@@ -300,7 +322,7 @@ def baseline_payload(report: dict) -> dict:
         "source": report["source"]["kind"],
         "documents": [
             {"doc_slug": doc["doc_slug"], "method": doc["method"],
-             "has_overrides": doc["has_overrides"],
+             "has_overrides": doc["has_overrides"], "held_out": doc["held_out"],
              "raw": doc["raw"], "post_override": doc["post_override"]}
             for doc in report["documents"]
         ],

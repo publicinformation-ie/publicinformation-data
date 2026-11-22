@@ -317,3 +317,60 @@ def test_plain_run_writes_nothing(workspace, capsys, monkeypatch):
 
     assert code == 0
     assert _tree_state(step_dir, eval_dir) == before
+
+
+# --------------------------------------------------------------------------
+# Held-out gold: separate summaries
+# --------------------------------------------------------------------------
+
+def _held_out_workspace(workspace, held_out_slugs):
+    for slug in held_out_slugs:
+        path = workspace["gold_dir"] / f"{slug}.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        data["held_out"] = True
+        path.write_text(json.dumps(data), encoding="utf-8")
+
+
+def test_summaries_are_separate_for_tuning_held_out_and_all(workspace, capsys, monkeypatch):
+    _held_out_workspace(workspace, ["overridden-doc"])
+    report = _report(workspace, overrides={})
+
+    by_slug = {doc["doc_slug"]: doc for doc in report["documents"]}
+    assert by_slug["overridden-doc"]["held_out"] is True
+    assert by_slug["plain-doc"]["held_out"] is False
+    assert report["summary"]["raw"]["documents"] == 2          # all
+    assert report["summary"]["tuning"]["raw"]["documents"] == 1
+    assert report["summary"]["held_out"]["raw"]["documents"] == 1
+    assert report["summary"]["tuning"]["raw"]["fully_correct"] == 1
+    assert report["summary"]["held_out"]["raw"]["fully_correct"] == 0
+
+    monkeypatch.setattr(score, "load_overrides", lambda step_dir: {})
+    score.main(["--gold", str(workspace["gold_dir"]), "--baseline", str(workspace["baseline"])])
+    out = capsys.readouterr().out
+    assert "raw tree [all]: 2 documents" in out
+    assert "raw tree [tuning]: 1 documents" in out
+    assert "raw tree [held out]: 1 documents" in out
+    held_row = [line for line in out.splitlines() if line.startswith("overridden-doc")]
+    assert held_row and held_row[0].rstrip().endswith("[held out]")
+
+
+def test_gold_without_held_out_flag_is_a_tuning_document(workspace, capsys, monkeypatch):
+    report = _report(workspace, overrides={})
+
+    assert all(doc["held_out"] is False for doc in report["documents"])
+    assert report["summary"]["held_out"]["raw"]["documents"] == 0
+    assert report["summary"]["tuning"]["raw"]["documents"] == 2
+
+    monkeypatch.setattr(score, "load_overrides", lambda step_dir: {})
+    score.main(["--gold", str(workspace["gold_dir"]), "--baseline", str(workspace["baseline"])])
+    out = capsys.readouterr().out
+    assert "[held out]" not in out and "[tuning]" not in out
+
+
+def test_baseline_payload_carries_the_held_out_marker(workspace):
+    _held_out_workspace(workspace, ["plain-doc"])
+    payload = score.baseline_payload(_report(workspace, overrides={}))
+
+    flags = {doc["doc_slug"]: doc["held_out"] for doc in payload["documents"]}
+    assert flags == {"plain-doc": True, "overridden-doc": False}
+    assert "tuning" in payload["summary"] and "held_out" in payload["summary"]

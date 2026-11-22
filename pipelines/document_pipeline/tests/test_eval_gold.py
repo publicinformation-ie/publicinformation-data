@@ -203,3 +203,18 @@ def test_normalise_title_strips_decorative_toc_labels():
     assert gold.normalise_title("RE | Research and Innovation") == \
         "research and innovation"
     assert gold.normalise_title("| The Railway Today") == "the railway today"
+
+
+def test_held_out_is_optional_and_must_be_a_boolean(tmp_path):
+    assert gold.validate_gold(_gold()) == []
+    assert gold.validate_gold(_gold(held_out=True)) == []
+    assert gold.validate_gold(_gold(held_out="yes")) == ["held_out must be true or false when present"]
+
+
+def test_load_gold_reads_the_held_out_flag(tmp_path):
+    _write_gold(tmp_path, _gold(doc_slug="held-doc", held_out=True))
+    _write_gold(tmp_path, _gold(doc_slug="tuning-doc"))
+    loaded = gold.load_gold(tmp_path)
+
+    assert loaded.documents["held-doc"].held_out is True
+    assert loaded.documents["tuning-doc"].held_out is False

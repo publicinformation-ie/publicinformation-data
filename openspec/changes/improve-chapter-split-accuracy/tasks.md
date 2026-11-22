@@ -8,8 +8,8 @@ Run from `pipelines/document_pipeline` with `PYTHONPATH=".:../../src" ../../.ven
 
 ## 1. Held-out gold and eval support (D9)
 
-- [ ] 1.1 Add optional boolean `held_out` to gold validation in `eval/gold.py`, and add the separate held-out, tuning and all summaries to `score.py`, including the table marker and the baseline payload. Verify with unit tests that reproduce the spec scenarios "Separate summaries" and "Held-out flag absent".
-- [ ] 1.2 Create `eval/RESULTS.md` with the entry template (step, commit, tuning, held-out and all summaries before and after, per-document diff, reasons for regressions, and `compare.py` notes on the 30 documents without gold). Verify it is linked from the "Accuracy evaluation" section of `steps/detect_structure/README.md`.
+- [x] 1.1 Add optional boolean `held_out` to gold validation in `eval/gold.py`, and add the separate held-out, tuning and all summaries to `score.py`, including the table marker and the baseline payload. Verify with unit tests that reproduce the spec scenarios "Separate summaries" and "Held-out flag absent".
+- [x] 1.2 Create `eval/RESULTS.md` with the entry template (step, commit, tuning, held-out and all summaries before and after, per-document diff, reasons for regressions, and `compare.py` notes on the 30 documents without gold). Verify it is linked from the "Accuracy evaluation" section of `steps/detect_structure/README.md`.
 - [ ] 1.3 **Maintainer:** annotate the first four D9 candidates that have a printed TOC, with `annotate.py` and the review page, without running `score.py` or opening detector output for them, and set `held_out: true` and `reviewed: true`. Record any candidate without a TOC in `no_toc.json`. Verify that `score.py --check-gold` passes and every consistency warning is fixed or explained in `notes`.
 - [ ] 1.4 Refresh the baseline with the held-out documents included and commit. Verify that the report scores 14 documents (10 tuning, 4 held out) and excludes none without a reason. Record this as the starting entry in `RESULTS.md`.
 

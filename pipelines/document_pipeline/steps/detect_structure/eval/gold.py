@@ -95,6 +95,7 @@ class GoldDocument:
     annotator: str = ""
     annotated_on: str = ""
     notes: str = ""
+    held_out: bool = False
     warnings: list = field(default_factory=list)
 
     def chapter_titles(self) -> list:
@@ -145,6 +146,9 @@ def validate_gold(data, expected_slug=None) -> list:
     for key in ("annotator", "annotated_on", "notes"):
         if not isinstance(data[key], str):
             errors.append(f"{key} must be a string")
+    # Optional: a held-out document is read only at acceptance, never tuned on.
+    if "held_out" in data and not isinstance(data["held_out"], bool):
+        errors.append("held_out must be true or false when present")
 
     chapters = data["chapters"]
     if not isinstance(chapters, list) or not chapters:
@@ -235,6 +239,7 @@ def load_gold(gold_dir=GOLD_DIR) -> GoldLoad:
             annotator=data["annotator"],
             annotated_on=data["annotated_on"],
             notes=data["notes"],
+            held_out=data.get("held_out") is True,
         )
 
     for slug, reason in sorted(load_no_toc(gold_dir).items()):

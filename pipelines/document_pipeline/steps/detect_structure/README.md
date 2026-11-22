@@ -142,6 +142,11 @@ The report is read-only and offline: a plain run writes nothing, `--json` writes
 name, and `--refresh-baseline` is the only write in the step's own directory. It makes no network or
 paid calls. It is not a CI gate — run it by hand before and after a detector change.
 
+A gold file may set `"held_out": true`. Held-out documents are scored and baselined like any other,
+but the report prints separate `[tuning]`, `[held out]` and `[all]` summaries, and the held-out
+documents are read only at acceptance — never used to design or tune a rule. Each measured
+detector change is recorded in [`eval/RESULTS.md`](eval/RESULTS.md) before the baseline is refreshed.
+
 `eval/score.py` (report and metrics), `eval/gold.py` (gold loading, validation and consistency
 warnings) and `eval/annotate.py` (the annotation helper) sit beside `eval/compare.py`; the snapshot
 fingerprint shared by `eval/make_input.py` and the report is in `eval/snapshot.py`.
