@@ -1132,3 +1132,75 @@ def test_process_and_the_eval_write_identical_trees(tmp_path, make_writer):
     assert method == record["detection_method"]
     assert [n.to_dict() for n in nodes] == record["nodes"]
     assert page_count == record["page_count"]
+
+
+# --- outline entry normalisation (D2) ----------------------------------------
+
+def _wrapped_heading_pages():
+    """p. 2 prints one heading wrapped over two lines; p. 3 prints two headings."""
+    def body(number):
+        return [span(f"Body sentence number {i} of page {number}.", size=10.0,
+                     y0=300.0 + 14 * i, block=i + 10) for i in range(15)]
+    pages = []
+    for number in range(1, 5):
+        spans = body(number)
+        if number == 2:
+            spans += [span("15. Freight, Delivery and", size=20.0, y0=80.0, block=0, line=0),
+                      span("Servicing", size=20.0, y0=104.0, block=0, line=1)]
+        if number == 3:
+            spans += [span("Alpha", size=20.0, y0=80.0, block=0),
+                      span("Beta", size=20.0, y0=160.0, block=1)]
+        pages.append(page(spans, number=number))
+    return pages
+
+
+def test_multiline_outline_title_loses_its_number():
+    from steps.detect_structure.process import from_outline
+
+    (node,) = from_outline([{"level": 1, "page": 21,
+                             "title": "3 \x07Long Term Strategic Issues\nfor National Roads"}])
+
+    assert node.number == "3"
+    assert node.title == "Long Term Strategic Issues for National Roads"
+
+
+def test_wrapped_outline_fragments_are_merged_when_the_page_prints_the_joined_title():
+    from steps.detect_structure.process import detect_document_structure
+
+    outline = [{"level": 1, "title": "15. Freight, Delivery and", "page": 2},
+               {"level": 1, "title": "Servicing", "page": 2},
+               {"level": 1, "title": "Alpha", "page": 3}]
+    nodes, method, _report, problems = detect_document_structure(_wrapped_heading_pages(), outline, 4)
+
+    assert method == "outline"
+    assert [(n.number, n.title, n.start_page) for n in nodes] == [
+        ("15", "Freight, Delivery and Servicing", 2), (None, "Alpha", 3)]
+    assert not [p for p in problems if p["error_type"] == "OutlineEntryUnresolved"]
+
+
+def test_unverified_outline_fragments_stay_separate():
+    from steps.detect_structure.process import merge_wrapped_outline_entries
+
+    # `Alpha Beta` is not printed anywhere on p. 3, so the entries must not join.
+    outline = [{"level": 1, "title": "Alpha", "page": 3},
+               {"level": 1, "title": "Beta", "page": 3}]
+    merged, count = merge_wrapped_outline_entries(outline, _wrapped_heading_pages())
+
+    assert count == 0
+    assert [e["title"] for e in merged] == ["Alpha", "Beta"]
+
+
+def test_outline_fragments_are_not_merged_across_levels_numbers_or_sentences():
+    from steps.detect_structure.process import merge_wrapped_outline_entries
+
+    pages = _wrapped_heading_pages()
+    base = [{"level": 1, "title": "15. Freight, Delivery and", "page": 2},
+            {"level": 1, "title": "Servicing", "page": 2}]
+    assert merge_wrapped_outline_entries(base, pages)[1] == 1
+    # different level
+    assert merge_wrapped_outline_entries([base[0], {**base[1], "level": 2}], pages)[1] == 0
+    # second carries its own number
+    assert merge_wrapped_outline_entries([base[0], {**base[1], "title": "16 Servicing"}], pages)[1] == 0
+    # first ends a sentence
+    assert merge_wrapped_outline_entries([{**base[0], "title": "15. Freight, Delivery and."}, base[1]],
+                                         pages)[1] == 0

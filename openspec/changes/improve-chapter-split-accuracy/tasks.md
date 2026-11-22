@@ -21,8 +21,8 @@ Run from `pipelines/document_pipeline` with `PYTHONPATH=".:../../src" ../../.ven
 
 ## 3. Outline entry normalisation (D2)
 
-- [ ] 3.1 Collapse whitespace before the number split in `from_outline`. Verify with a unit test of the "Multi-line outline title loses its number" scenario.
-- [ ] 3.2 Merge wrapped same-page outline fragments, verifying each join against the page's text. Verify with unit tests of the "Wrapped outline fragments are merged" and "Unverified fragments stay separate" scenarios, plus a two-headings-on-one-page fixture that stays split.
+- [x] 3.1 Collapse whitespace before the number split in `from_outline`. Verify with a unit test of the "Multi-line outline title loses its number" scenario.
+- [x] 3.2 Merge wrapped same-page outline fragments, verifying each join against the page's text. Verify with unit tests of the "Wrapped outline fragments are merged" and "Unverified fragments stay separate" scenarios, plus a two-headings-on-one-page fixture that stays split.
 - [ ] 3.3 Document the outline normalisation in `steps/detect_structure/README.md`, then measure. Verify that GDA's `Freight, Delivery and Servicing` and `Enviromental Assessment` are single predicted chapters.
 
 ## 4. Outline plausibility (D3)

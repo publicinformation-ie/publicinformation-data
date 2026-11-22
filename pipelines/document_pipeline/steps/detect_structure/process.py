@@ -375,6 +375,17 @@ def is_heading_candidate(title) -> bool:
 _WORD_AUTO_BOOKMARK_RE = re.compile(r"^_(?:Hlk|Toc|Ref|GoBack)\w*$", re.I)
 
 
+def _split_outline_title(raw):
+    """`(number, title)` of an outline bookmark title.
+
+    Whitespace is collapsed first (line breaks, thin spaces, control characters),
+    so a heading number followed by a line break or a stray control character is
+    still split off: `3\u2009\x07Long Term Strategic Issues\nfor National Roads`
+    is number `3`, title `Long Term Strategic Issues for National Roads`.
+    """
+    return _split_number(clean_title(raw))
+
+
 def filter_outline(outline):
     """Drop bookmarks that have no usable title.
 
@@ -467,8 +478,8 @@ def resolve_outline_positions(outline, pages: list):
             resolved.append(entry)
             continue
         page_no = int(entry.get("page", 1))
-        _, title = _split_number(str(entry.get("title", "")))
-        want = normalize_heading_text(clean_title(title))
+        _, title = _split_outline_title(entry.get("title", ""))
+        want = normalize_heading_text(title)
         found_page = page_no
         found = _find_title_line(page_no, by_page.get(page_no), want, used)
         if found is None and page_no > 1:
@@ -488,10 +499,53 @@ def resolve_outline_positions(outline, pages: list):
     return resolved, problems
 
 
+_SENTENCE_END_RE = re.compile(r"[.!?]$")
+
+
+def merge_wrapped_outline_entries(outline, pages: list):
+    """Join an outline heading that a producer split across two bookmarks.
+
+    Two adjacent entries are merged only when all of these hold: same level, same
+    page, the second has no heading number, the first does not end a sentence
+    (`.`, `!`, `?`), and the two titles joined are the exact text of a heading
+    line on that page. The last test is the same exact-match rule
+    `resolve_outline_positions` uses, and it is what keeps two real headings that
+    share a page (`2.7` and `2.8`) apart. Anything that fails a condition is left
+    unchanged. Returns `(outline, merged_count)`.
+    """
+    if not outline:
+        return outline, 0
+    by_page = {int(p.get("number", i + 1)): p for i, p in enumerate(pages)}
+    result, merged = [], 0
+    for entry in outline:
+        previous = result[-1] if result else None
+        if previous is not None and _can_merge_outline(previous, entry, by_page):
+            result[-1] = {**previous, "title":
+                          f"{clean_title(previous.get('title', ''))} {clean_title(entry.get('title', ''))}"}
+            merged += 1
+            continue
+        result.append(entry)
+    return result, merged
+
+
+def _can_merge_outline(first: dict, second: dict, by_page: dict) -> bool:
+    if first.get("level") != second.get("level") or first.get("page") != second.get("page"):
+        return False
+    first_number, first_title = _split_outline_title(first.get("title", ""))
+    second_number, second_title = _split_outline_title(second.get("title", ""))
+    if second_number or not first_title or not second_title:
+        return False
+    if _SENTENCE_END_RE.search(first_title):
+        return False
+    page_no = int(first.get("page", 1))
+    want = normalize_heading_text(f"{first_title} {second_title}")
+    return _find_title_line(page_no, by_page.get(page_no), want, set()) is not None
+
+
 def from_outline(outline: list) -> list:
     nodes = []
     for entry in outline or []:
-        number, title = _split_number(str(entry.get("title", "")))
+        number, title = _split_outline_title(entry.get("title", ""))
         if not title:
             continue
         nodes.append(_make(entry.get("level", 1), number, title, entry.get("page", 1),
@@ -1216,6 +1270,7 @@ def detect_document_structure(pages: list, raw_outline, page_count=None):
     Keeping this in one place stops the eval scoring a tree production never writes.
     """
     outline, problems = filter_outline(raw_outline)
+    outline, _merged = merge_wrapped_outline_entries(outline, pages)
     outline, unresolved = resolve_outline_positions(outline, pages)
     problems = list(problems) + list(unresolved)
     nodes, method, toc_report = detect_structure(pages, outline, page_count)

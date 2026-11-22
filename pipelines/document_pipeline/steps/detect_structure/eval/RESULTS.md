@@ -97,3 +97,35 @@ No regressions. Held-out documents did not move (none has a filtered bookmark or
 **Documents without gold** (`production_view.py`, 40 documents): no change. Production output is identical by construction, because `process()` already ran these steps. Method counts: 21 toc, 14 outline, 4 numbering, 1 font; `InvalidStructure` total 12. `compare.py` was not used for this step: it runs its own cascade and does not go through the production entry point. `production_view.py` (new) does, and is the tool for steps D2 to D8.
 
 **Notes:** prediction in the design held: national-roads lost its `_Hlk` chapters, and GDA's boundaries moved.
+
+### D2 — Outline entry normalisation
+
+- **Change:** whitespace is collapsed before the heading number is split (`_split_outline_title`, used by `from_outline` and `resolve_outline_positions`); adjacent same-level, same-page outline fragments are merged only when the joined title is the exact text of a heading line on that page (`merge_wrapped_outline_entries`).
+- **Commit:** see git log (`feat(detect_structure): normalise outline entries`)
+- **Kind:** detector change
+
+| Summary (raw tree) | Documents | Fully correct | Exact F1 (macro) | Page attribution (macro) | Title accuracy (macro) |
+|---|---:|---:|---:|---:|---:|
+| tuning, before (post-D1) | 10 | 3 | 0.49 | 0.37 | 0.83 |
+| tuning, after | 10 | 3 | 0.49 | 0.37 | 0.87 |
+| held out, before | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| held out, after | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| all, before | 14 | 4 | 0.52 | 0.44 | 0.87 |
+| all, after | 14 | 4 | 0.52 | 0.45 | 0.90 |
+
+**Per-document changes:**
+
+| Document | Metric | Before | After | Reason |
+|---|---|---:|---:|---|
+| `gda-transport-strategy-2022-2042` | title accuracy | 0.67 | 1.00 | `15. Freight, Delivery and` + `Servicing` is now one chapter |
+| `gda-transport-strategy-2022-2042` | page attribution / tolerant F1 | 0.26 / 0.88 | 0.29 / 0.90 | the merge removes a spurious boundary |
+
+No regressions.
+
+**Prediction not met (recorded, not tuned):** the design expected `18. Enviromental` + `Assessment` to merge as well. They do not. The bookmarks name p. 227 but the heading is printed on p. 228, so the joined title is not on the stated page and the exact-match rule declines to merge. This is a bookmark-points-one-page-early fault, a different problem from wrapping; GDA's `override.json` already covers it. Not addressed by this change.
+
+**Documents without gold** (`production_view.py`): no method change; `InvalidStructure` 12 -> 12. Slugs changed on two documents, no override orphaned:
+- `gda-transport-strategy-2022-2042`: `15-freight-delivery-and` + `servicing` -> `15-freight-delivery-and-servicing` (override slugs `assessment` and `18-enviromental` are untouched).
+- `moving-together-strategy` (no gold): three wrapped appendix headings merged (`appendix-1` + `case-studies`, `appendix-2` + `ensuring-a-just-transition-through-investment`, `appendix-3` + `implementation-plan`); nodes 103 -> 100. Each join was verified against the page text. Its override slugs are not affected.
+
+**Notes:** exact F1 for GDA stays at 0.14: its remaining chapters are on pages that differ from gold by one, so the outline pages themselves are off. That is a separate cause and not part of D2.

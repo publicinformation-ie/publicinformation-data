@@ -67,8 +67,10 @@ def diff(before: dict, after: dict, overrides: dict) -> list:
         if old["slugs"] != new["slugs"]:
             gone = sorted(set(old["slugs"]) - set(new["slugs"]))
             notes.append(f"slugs changed ({len(gone)} no longer present)")
-            if overrides.get(slug) and gone:
-                notes.append("OVERRIDE MAY BE ORPHANED")
+            orphaned = sorted({patch.get("slug") for patch in overrides.get(slug) or []}
+                              & set(gone))
+            if orphaned:
+                notes.append(f"ORPHANED OVERRIDE slug(s): {', '.join(orphaned)}")
         if notes:
             lines.append(f"{slug}: " + "; ".join(notes))
     return lines
