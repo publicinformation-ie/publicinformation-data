@@ -828,7 +828,7 @@ Table 1 Review Goals and Objectives
 
 ### Chapter 4 | Recommendations
 
-*Pages 43–88*
+*Pages 43–48*
 
 ![Figure from page 43](assets/p043-f01.webp)
 
@@ -979,6 +979,10 @@ Please note: This is an indicative artistic interpretation of the recommendation
 
 Figure 8 A potential future railway on the island of Ireland
 
+### Decarbonisation
+
+*Pages 49–52*
+
 Decarbonisation
 
 now. The proposed approach to decarbonising the island’s railway is therefore based on proven, available solutions. At the time of writing, the strategic options available for decarbonising the island’s railways that appear to be most viable are:
@@ -1046,6 +1050,10 @@ A hydrogen powered passenger train (Credit: Alstom)
 *Figure 9*
 
 Figure 9 Decarbonisation interventions
+
+### Intercity Spine
+
+*Pages 53–58*
 
 Intercity Spine
 
@@ -1199,6 +1207,10 @@ Figure 10 Intercity network interventions
 |  | reduce journey times between major cities |  |  |
 |  | in the country and the achievement of a |  |  |
 |  | concept called the Hour Model. |  |  |
+
+### Regional and Rural
+
+*Pages 59–70*
 
 Regional and Rural
 
@@ -1403,6 +1415,10 @@ The good news is that, despite some of the challenges presented by infrastructur
 In reality, demand for the Borders Railway far exceeded expectations. It became so popular that the annual return journey demand in the first year alone was 75% greater than estimated in the Business Case, which assumed just under 650,000 passengers would use the railway in its first year of operation. This grew to 1.7 million journeys in 2018/19.
 
 It is a difficult balance to strike between future proofing infrastructure and minimising exposure to perceived goldplating. In this sense, the borders railway offers a cautionary tale for pessimists.
+
+### Sustainable Cities
+
+*Pages 71–76*
 
 Sustainable Cities
 
@@ -1638,6 +1654,10 @@ The map above shows the core routes served by the “Devon Metro”. At the time
 
 Exeter’s regional network has also recently expanded with the reopening of a previously decommissioned line to Okehampton, a community in Dartmoor with a population of around 7,500.
 
+### Freight
+
+*Pages 77–82*
+
 Freight
 
 Despite recent challenges, the Iarnród Éireann Rail Freight 2040 Strategy aims to grow rail freight towards levels seen in Europe and provides a framework to achieve this goal.
@@ -1761,6 +1781,10 @@ Thanks to recent investment, some ports have experienced significant growth in r
 The Government considers rail an essential part of the freight industry, providing resilience through offering an alternative transport option for importers and exporters. Investing in restoring the rail freight network is one of two strategic investment priorities in the recently published 2021 Rail New Zealand Plan, which sets a framework for delivering a resilient and reliable rail network.
 
 New Zealand shows it is possible for rail freight to compete and succeed on an island network.
+
+### Customer Experience
+
+*Pages 83–88*
 
 Customer
 

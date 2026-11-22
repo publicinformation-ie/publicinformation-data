@@ -6,7 +6,7 @@ Source: https://www.emra.ie/rses-download/EMRA-RSES.pdf
 
 ### Front Matter
 
-*Pages 1–6*
+*Pages 1–5*
 
 |  |  |  |  |  |
 | --- | --- | --- | --- | --- |
@@ -100,6 +100,12 @@ The RSES builds on the foundations of Government policy in Project Ireland 2040,
 
 *Figure from page 5*
 
+## Cathaoirleach’s Message
+
+### Cathaoirleach’s Message
+
+*Pages 5–5*
+
 Cathaoirleach’s Message
 
 It gives me great pleasure to introduce the ﬁrst Regional Spatial and Economic Strategy for the Eastern and Midland Region, which has been made by the Regional Assembly. It marks the result of extensive consultation and work across the region and it demonstrates the importance and effectiveness of regional government.
@@ -128,61 +134,7 @@ Eddie Fitzpatrick, Cathoirleach
 
 *Figure from page 5*
 
-Members of the Eastern and Midland Regional Assembly
-
-Dublin City Council (DCC)
-
-South Dublin County Council (SDCC)
-
-Fingal County Council (FCC)
-
-Kildare County Council
-
-Wicklow County Council
-
-Longford County Council
-
-Paddy Bourke Christy Burke Ciarán Cuffe Gaye Fagan Mary Freehill Dermot Lacey Claire O’Connor
-
-Francis Duffy Pamela Kearns Robert Russell
-
-Kieran Dennison David Healy Brian McDonagh
-
-Ivan Keatley Padraig McEvoy Martin Miley
-
-Thomas Cullen Derek Mitchell Pat Vance Irene Winters
-
-Mick Cahill PJ Reilly
-
-Westmeath County Council
-
-Dún Laoghaire - Rathdown County Council (DLR)
-
-Louth County Council
-
-Meath County Council
-
-Offaly County Council
-
-Conor Keelan Colm Markey
-
-Andrew Duncan Paddy Hill
-
-Brian Fitzgerald Maria Murphy Tommy Reilly
-
-Kate Feeney Mary Hanaﬁn Pat Hand Lettie McCarthy Barry Ward
-
-Eamon Dooley Eddie Fitzpatrick
-
-Laois County Council
-
-Paddy Bracken Catherine Fitzgerald
-
-Regional Spatial & Economic Strategy
-
 ## 1 Introduction
-
-## 1.1 Vision and Eastern and Midland Regional Assembly
 
 ### 1.1 Vision and Eastern and Midland Regional Assembly
 
@@ -263,8 +215,6 @@ of European funding post 2020 in line with that of the other two Regional Assemb
 *Figure from page 8*
 
 Regional Spatial & Economic Strategy
-
-## 1.3 What is a Regional Spatial and Economic Strategy (RSES)?
 
 ### 1.3 What is a Regional Spatial and Economic Strategy (RSES)?
 
@@ -351,8 +301,6 @@ Climate Action Plan
 *Figure from page 10*
 
 Regional Spatial & Economic Strategy
-
-## 1.4 Spatial and Economic Policy Background
 
 ### 1.4 Spatial and Economic Policy Background
 
@@ -454,8 +402,6 @@ Key national economic priorities in Enterprise 2025 that set the parameters for 
 
 Introduction
 
-## 1.5 The RSES Process
-
 ### 1.5 The RSES Process
 
 *Pages 13–14*
@@ -484,11 +430,9 @@ Stage 4: Final RSES Following consideration of the Director’s Report on the Pr
 
 *Figure from page 14*
 
-## 1.6 Regional Proﬁle
-
 ### 1.6 Regional Proﬁle
 
-*Pages 14–16*
+*Pages 14–20*
 
 The EMRA is one of the three Regional Assemblies in Ireland. The Region covers nearly 14,500 square kilometres, which is the smallest in terms of land area but the largest in population size, with over 2.3 million people. The Eastern and Midland Region is also the primary economic engine of the state providing more than 1 million jobs. The main settlement is the capital city of Dublin, which is home to 1.2 million people and is supported by a network of regional and county towns and an extensive rural hinterland.
 
@@ -564,53 +508,236 @@ EMRA Age Profile (CSO, 2016)
 
 *Figure from page 16*
 
-## 16 Regional Strategic Outcomes (RSOs) are aligned to the UN Sustainable Development Goals, the EU thematic
+65 + years 12%
 
-### 1.9 Deﬁning Functional Urban Areas, Census 2016 ...19
+0-14 years 21%
 
-*Pages 243–244*
+45-64 years 23%
 
-2. Strategic Vision
+15-24 years 12%
 
-7. Environment and Climate
+25-44 years 32%
 
-2.1 EU Thematic Objectives ......................................... 20 2.2 UN Sustainable Development Goals ....................... 21 2.3 National Strategic Outcomes ...................................22 2.4 Regional Strategic Outcomes .................................. 24
+Figure 1.7 Age structure – EMRA and State, CSO 2016
 
-7.1 Status of Water Bodies ............................................156 7.2 Designated Sites in the Region .............................. 160 7.3 Navigational map of the Region’s main Green/ Blueway routes ..........................................................166 7.4 Climate Stategy .........................................................173 7.5 Observed and projected climate changes and impacts for Ireland ....................................................173 7.6 Carbon Dioxide Emissions in the Region ..............175
+Young: In 2016 the age proﬁle of the Region is young with nearly half a million children or 1 in 5 people in the Region that are aged under 14 years of age, rising to 1 in 4 of the population in fast growing counties like Fingal and Laois. The population surge is moving up from primary school age and the number of children of secondary school age children is expected to rise to 2026 and decline thereafter. By 2031 there will be a signiﬁcant increase in the number of people in the 15-24 years age cohort, which will lead to greater demand for third level education.
 
-3. Growth Strategy
+Ageing: In line with state-wide trends the population is rapidly ageing. Dún Laoghaire-Rathdown, at an average age of 39 years, is the oldest county in the Region and state. By 2031 there will be a signiﬁcant increase in the regional population aged over 65 and we need to plan for adequate healthcare, accommodation and services to enable independent living for as long as possible, encourage active lifestyles and address isolation for our older residents.
 
-3.1 Growth Strategy – Strategic Connections ............. 29
+Diverse: In 2016 the Region is the most demographically diverse in the state, with nearly 300,000 people or more than 1 in 8 residents who are non-Irish nationals, rising to around 1 in 6 in Dublin City, Fingal and Longford counties. Countries of origin include Poland, Lithuania, UK and other EU nationals while migrants from Africa and Asia are mostly concentrated in Dublin. The number of non-Irish nationals fell for the ﬁrst time between 2011-2016 partly due to the increase in dual citizenship, as more people become Irish citizens.
 
-8. Connectivity
+Labour force: There are over one and a half million people of working age (15 – 64 years) in the Region, a key human capital asset with nearly 1 in 3 of the population in Dublin alone between 25 and 44 years. Labour force growth is set to continue and although its relative share is to decrease, the overall size of the working age population is projected to rise, with increases in the cohorts between 15-29 years and 45-64 years. Accordingly, there will be continued demand for ongoing skills development and also for family homes as well as smaller and one-person households.
 
-4. People and Place
+![Figure from page 17](assets/p017-f01.webp)
 
-8.1 EMRA Strategic Transport Infrastructure ............186
+*Figure from page 17*
 
-4.1 EMRA Large Towns .................................................... 43 4.2 Settlement Strategy ................................................... 45 4.3 Regional Growth Centres ...........................................53
+Introduction
 
-9. Quality of Life
+Quality of Life
 
-9.1 Changing Demographic Proﬁle ..............................198 9.2 Healthy Placemaking Stategy ................................205 9.3 Pobal HP Deprivation Index ....................................210
+Placemaking is an essential link between spatial planning, improved quality of life and creating places that are attractive to live, work, visit and invest in. Along with demographic change here are a number of issues to consider when seeking to promote and create healthier places including access to services, housing, sustainable transport and social and economic opportunities.
 
-5. MASP
+Housing: The Region is home to over 800,000 households, with 4 out of 5 living in conventional housing while apartments account for around 18% or our housing stock. Homeownership is still the dominant tenure but rental is growing, with 1 in 5 households in the private rental market and 1 in 10 households living in social rented accommodation. One of the challenges facing the Region is the continued growth rates of household formation coupled with a severe slowdown in the development of new housing stock during the economic recession, resulting in housing supply and affordability pressures in both sale and rental markets, particularly in Dublin and urban areas but affecting all of the Region.
 
-5.1 MASP Boundary ......................................................... 99 5.2 Dublin Metropolitan Area Strategic Pan ..............103 5.3 Metropolitan Cycle Network .................................. 110 5.4 Greater Dublin Area Public Transport Network 2027 ............................................................. 111 5.5 Green Infrastructure and Ecosystem Services Mapping ......................................................................119
+Deprivation; The Trutz Haase deprivation index identiﬁes areas of afﬂuence and deprivation in the Region. Dún Laoghaire-Rathdown is the most afﬂuent local authority in the State and the Region, while Longford is the most disadvantaged in the Region and is the third most disadvantaged local authority in the State, see Figure 9.3 (Chapter 9 Quality of Life). However there are pockets of disadvantage across the Region, with 15% of the population living in disadvantaged areas, sometimes in close proximity to areas of relative afﬂuence. Education and skills are closely related to employment opportunities, with rates of third level education highest in Dublin and lowest in the Midlands, while rates of technical/apprenticeships were higher in the Eastern and Midland counties.
 
-11. All Island Cohesion
+Travel patterns; Where there is a mismatch between the locations of jobs and where people live, it leads to long distance commuting, see Figure 1.8 which shows the location of jobs compared to the number of resident workers across the region. The commuter catchment of the Dublin Metropolitan Area now extends into parts of the Midlands, Louth and south into Wexford. While Dublin has higher rates of sustainable transport, private vehicles remain the primary mode of travel to work or education across the whole of the region. Long distance car-based commuting is a key challenge that is leading to congestion of transport networks and negative impacts on people’s quality of life and on the environment.
 
-11.1 TENT-T Core Network .............................................230
+Employment; The Region has a robust enterprise base of traditional and emerging sectors and strong clusters of universities and research centres to support innovation. A highly skilled labour force has helped the Region attract FDI and multi-national enterprises (MNEs). The Dublin region is a global hub for international investment and high value jobs in ICT, ﬁnancial and business services while local enterprise and small and medium sized enterprises (SMEs) provide vital employment across the whole of the Region. The Eastern and Midland counties have the highest share of micro-enterprises with specialisations, which include tourism, the equine, food and creative industries.
 
-Photographs
+![Fig 1.8 Resident Workers and Local Jobs, CSO 2016](assets/p017-f02.webp)
 
-In addition to the resources of the Eastern and Midland Regional Assembly, images have been provided courtesy of the 12 Local Authorities within the Eastern and Midland Region and Maynooth University.
+*Fig 1.8 Resident Workers and Local Jobs, CSO 2016*
 
-|  |  |  |  |  |
-| --- | --- | --- | --- | --- |
-|  |  | EASTERN & MIDLAND REGIONAL ASSEMBLY 3rd Floor Ballymun Civic Centre Main Street Ballymun Dublin 9 D09 C8P5 +353 (0) 1 807 4482 www.emra.ie |  |  |
+![Figure from page 18](assets/p018-f01.webp)
 
-Tionól Reigiúnach Oirthir agus Lár-Tíre Eastern and Midland Regional Assembly
+*Figure from page 18*
+
+Regional Spatial & Economic Strategy
+
+Functional Urban Areas (FUAs)
+
+Urban and rural areas can be interconnected to each other through many different social and economic interactions. As the places where people live, work and socialise often extend across local and regional administrative boundaries, an understanding of these cross boundary ‘functional’ areas is needed to help better plan for the provision of infrastructure, transport, housing, services and amenities in our Region.
+
+The National Planning Framework identiﬁes an urban structure for the Region based on commuting patterns, with reference to the EU/OECD deﬁnition of ‘functional urban areas’ (FUAs)1 which is used to identify areas with different sub-regional interdependencies and inﬂuence in the region. The FUAs support and augment the Strategic Planning Areas (SPAs), which provide for a sub-regional planning remit, through recognising spatial, social and economic similarities and differences within each SPA. These FUAs are;
+
+While the inﬂuence of Dublin extends across much of the Region, it is important to recognise that the Region also contains an extensive network of large economically active towns, which provide key services and employment functions for their own hinterlands or ‘Functional Urban Areas’ (FUAs). The size of the FUA, relative to the urban core, shows the inﬂuence of these urban centres over their surrounding hinterlands. See Figure 1.9 which shows those large towns4 in the Region that have an identiﬁable FUA.
+
+See also Appendix E for deﬁnition of Functional Urban Areas in the Region.
+
+• The Dublin Metropolitan Area (DMA), home to 1.4 million people in 2016, is the main international gateway to Ireland and includes the continuous built up city area and a number of highly urbanised surrounding settlements within a polycentric metropolitan area. The Metropolitan Area Strategic Plan (MASP) in Chapter 5 identiﬁes a number of large-scale strategic residential and economic development areas, that will deliver signiﬁcant development in an integrated and sustainable manner in the metropolitan area.
+
+![Figure from page 18](assets/p018-f02.webp)
+
+*Figure from page 18*
+
+• The Core Region; which is the peri-urban ‘hinterlands’2 within the commuter catchment around Dublin, which covers the Eastern counties and extends into the Midlands, north into Louth and south beyond the Region into Wexford. The Core Region is home to over 550,000 people with some of the youngest and fastest growing towns in the Region and the State.
+
+• The Gateway Region3; includes the Midlands and north east border areas, outside the Core Region, which are strategically located as inter-regional portals to the Northern and Western and Southern Regions, where over 400,000 people reside. The Gateway Region also includes the Regional Growth Centres of Athlone and Dundalk, a number of large county towns as well as smaller towns and villages which support the wider rural and agricultural area where the population is more dispersed.
+
+1 The standardised EU/OECD deﬁnition of a city region or urban ‘hinterlands’ is the commuter catchment from which are least 15% of the relevant ‘urban core’ workforce is drawn.
+
+2 The functional urban ‘hinterland’ of the Dublin Metropolitan Area includes all Electoral Districts (EDs) where at least 15% of their employed residents are working in the Dublin Metropolitan Area based on Place of Work (POWCAR) 2016 census data.
+
+3 The urban core for this analysis are based on NTA/TII delineations of settlements which are modiﬁcations of CSO settlement boundaries to allow for additional local jobs locations outside residential areas.
+
+4 ‘Large towns’ in the Region are towns with a population over 10,000 people or 2,500 local jobs.
+
+![Figure from page 19](assets/p019-f01.webp)
+
+*Figure from page 19*
+
+Introduction
+
+![Figure 1.9 Functional Urban Areas, Dublin and Large Towns CSO 2016](assets/p019-f02.webp)
+
+*Figure 1.9 Functional Urban Areas, Dublin and Large Towns CSO 2016*
+
+Regional Spatial & Economic Strategy
+
+## Members of the Eastern and Midland Regional Assembly
+
+### Members of the Eastern and Midland Regional Assembly
+
+*Pages 5–6*
+
+Members of the Eastern and Midland Regional Assembly
+
+Dublin City Council (DCC)
+
+South Dublin County Council (SDCC)
+
+Fingal County Council (FCC)
+
+Kildare County Council
+
+Wicklow County Council
+
+Longford County Council
+
+Paddy Bourke Christy Burke Ciarán Cuffe Gaye Fagan Mary Freehill Dermot Lacey Claire O’Connor
+
+Francis Duffy Pamela Kearns Robert Russell
+
+Kieran Dennison David Healy Brian McDonagh
+
+Ivan Keatley Padraig McEvoy Martin Miley
+
+Thomas Cullen Derek Mitchell Pat Vance Irene Winters
+
+Mick Cahill PJ Reilly
+
+Westmeath County Council
+
+Dún Laoghaire - Rathdown County Council (DLR)
+
+Louth County Council
+
+Meath County Council
+
+Offaly County Council
+
+Conor Keelan Colm Markey
+
+Andrew Duncan Paddy Hill
+
+Brian Fitzgerald Maria Murphy Tommy Reilly
+
+Kate Feeney Mary Hanaﬁn Pat Hand Lettie McCarthy Barry Ward
+
+Eamon Dooley Eddie Fitzpatrick
+
+Laois County Council
+
+Paddy Bracken Catherine Fitzgerald
+
+Regional Spatial & Economic Strategy
+
+## 2 Strategic Vision
+
+### 2.1 Our Shared Goals
+
+*Pages 20–23*
+
+2.1 Our Shared Goals
+
+At its core, the Regional Spatial and Economic Strategy (RSES) sets out a settlement and economic growth strategy that seeks to ensure that the needs of the Region’s citizens such as access to employment opportunities and services, ease of travel and overall well-being are met.
+
+16 Regional Strategic Outcomes (RSOs) are aligned to the UN Sustainable Development Goals, the EU thematic objectives and national policy including the NPF’s National Strategic Outcomes (NSOs) to embed a coherent policy hierarchy and to ensure that future investment is targeted towards identiﬁed policy recommendations and goals.
+
+The shared vision and set of outcomes for the RSES have been informed by an extensive public consultation and developed in collaboration with our elected members and key stakeholders, reﬂecting the Assembly’s co-production approach to regional policy formulation. Using a regional collaboration approach the RSES has developed a shared vision, on behalf of our citizens, that sets the strategic direction for where we want our Region to be by 2031 and beyond.
+
+There is signiﬁcant policy alignment between the UN SDGs and the National Planning Framework’s National Strategic Outcomes (NSOs). The development of Regional Strategic Outcomes in the RSES is also closely aligned and supportive of the NSOs.
+
+![Figure 2.1 EU Thematic Objectives](assets/p020-f01.webp)
+
+*Figure 2.1 EU Thematic Objectives*
+
+![Figure from page 21](assets/p021-f01.webp)
+
+*Figure from page 21*
+
+Strategic Vision
+
+![Figure from page 22](assets/p022-f01.webp)
+
+*Figure from page 22*
+
+Regional Spatial & Economic Strategy
+
+![Figure 2.3 National Strategic Outcomes.](assets/p022-f02.webp)
+
+*Figure 2.3 National Strategic Outcomes.*
+
+National Planning Framework and its National Strategic Outcomes and Priorities of the National Development Plan
+
+| 2. n_an1ed !e]ional 11essi0ili\| |  |
+| --- | --- |
+|  |  |
+
+| 3. Strengthened !ral 1onolies and Collnities |  |
+| --- | --- |
+|  |  |
+
+1.Colra1| ro|_
+
+| 10. 11ess \|o  C_ild1areķ d1a and eal\|_ "eri1es | ali\| tion |
+| --- | --- |
+|  |  |
+
+|  | tional "\|ra\|e]i1 |  |  | 5.  "\|ro srror\|e n\|errris and "hill | n] 1onol d 0 eķ Innoation s |
+| --- | --- | --- | --- | --- | --- |
+|  | \|1oles |  | leni\| 6. i]_Ŋ In\|ernati Conne1t |  |  |
+|  | \|o a o 7. n_an1ed  Clila\|e and Heritage ie\| |  |  |  |  |
+| 8. $ransition Car0on and !esilien\| "o1 | \|o a o Clila\|e ie\| | 7. n_an1ed  and Heritage | leni\| | 6. i]_Ŋ In\|ernati Conne1t |  |
+|  |  |  |  |  |  |
+
+9."s|aina0le ana]elen| o= )a|erķ )as|e and o|_er nironlen|al !esor1es
+
+"|ra|e]i1 Ines|len| riorities
+
+National Road Network
+
+Environmentally Sustainable
+
+Public Transport
+
+Airports and Ports
+
+Climate Action
+
+Education, Health and Childcare
+
+Figure 2.3 National Strategic Outcomes. Source: Ireland 2040 - National Planning Framework (NPF)6
+
+6 https://www.gov.ie/en/campaigns/09022006-project-ireland-2040/
+
+![Figure from page 23](assets/p023-f01.webp)
+
+*Figure from page 23*
+
+Strategic Vision
 
 ### 2.2 Vision and Key Principles
 
@@ -674,7 +801,7 @@ Regional Spatial & Economic Strategy
 
 ### 2.3 Regional Strategic Outcomes
 
-*Pages 24–27*
+*Pages 24–26*
 
 2.3 Regional Strategic Outcomes
 
@@ -880,7 +1007,25 @@ The 16 RSOs set out in Figure 2.4 is also cross referenced and aligned with the 
 
 Regional Spatial & Economic Strategy
 
-## 3
+## 3 Growth Strategy
+
+### Settlement Strategy
+
+*Pages 45–46*
+
+![Figure from page 45](assets/p045-f03.webp)
+
+*Figure from page 45*
+
+![Figure from page 46](assets/p046-f01.webp)
+
+*Figure from page 46*
+
+Regional Spatial & Economic Strategy
+
+### 3 Growth Strategy
+
+*Pages 26–27*
 
 ### Growth Strategy
 
@@ -1051,7 +1196,7 @@ Growth Strategy
 
 ### 3.2 Growth Enablers for the Region
 
-*Pages 33–42*
+*Pages 33–45*
 
 3.2 Growth Enablers for the Region
 
@@ -1326,10 +1471,6 @@ Regional Spatial & Economic Strategy
 
 ## 4 People & Place
 
-### 4.1 Introduction and context
-
-*Pages 42–44*
-
 4.1 Introduction and context
 
 This chapter sets out a settlement hierarchy and the identiﬁcation of key growth areas in the Region that will see signiﬁcant development up to 2031 and beyond. The Settlement Strategy will build on the policy direction adopted by the previous Regional Planning Guidelines (RPGs) to facilitate growth that is directed towards a number of key designated settlements as part of an integrated land use and transportation strategy to achieve more co-ordinated and sustainable settlement and travel patterns across the Region.
@@ -1359,10 +1500,6 @@ It is clear that the RSES, while looking at the coherence of the Region as a who
 *Table 4.1 NPF Population Projections*
 
 Regional Spatial & Economic Strategy
-
-### 4.2 Settlement Strategy
-
-*Pages 44–46*
 
 4.2 Settlement Strategy
 
@@ -1406,16 +1543,6 @@ People & Place
 | Self-Sustaining Growth Towns Self-Sustaining Towns Settlements with strong service and Some settlements, particular employment functions may have the capacity have undergone rapid reside to support a level of commensurate population expansion will require target and employment growth to become more in local employment and serv self-sustaining, in line with their capacity of at a more sustainable level a public transport, services and infrastructure, to their position in the hierarchy be determined by local authorities. determined by local authoriti | Rural Places ly those that Support the sustainable growth of rural areas ntial by promoting the revitalisation of rural towns ed investment and villages, including ready to go ices to grow regeneration projects coupled with investment ppropriate to where required in local employment and , to be services and targeted rural housing policies, to es. be determined by local authorities. |
 |  |  |
 | Dublin City & Suburbs Metropolitan Area Dublin-B Regional Growth Centres Core Region Key road Key Towns Gateway Region Rail | elfast Corridor |
-
-![Figure from page 45](assets/p045-f03.webp)
-
-*Figure from page 45*
-
-![Figure from page 46](assets/p046-f01.webp)
-
-*Figure from page 46*
-
-Regional Spatial & Economic Strategy
 
 ### 4.3 Deﬁning a Settlement Typology
 
@@ -2674,7 +2801,7 @@ People & Place
 
 ### 4.7 Self-Sustaining Growth Towns and Self-Sustaining Towns
 
-*Pages 93–94*
+*Pages 93–98*
 
 4.7 Self-Sustaining Growth Towns and Self-Sustaining Towns
 
@@ -2705,10 +2832,6 @@ Towns recording the highest growth rates in the country over the last ten years 
 *Figure from page 94*
 
 Regional Spatial & Economic Strategy
-
-### 4.8 Rural Places: Towns, Villages and the Countryside
-
-*Pages 94–98*
 
 4.8 Rural Places: Towns, Villages and the Countryside
 
@@ -2938,7 +3061,7 @@ Regional Spatial & Economic Strategy
 
 ### 5.4 Metropolitan Area Strategy
 
-*Pages 102–106*
+*Pages 102–103*
 
 5.4 Metropolitan Area Strategy
 
@@ -2971,6 +3094,12 @@ Dublin Metropolitan Area Strategic Plan (MASP)
 ![Figure from page 103](assets/p103-f02.webp)
 
 *Figure from page 103*
+
+## Dublin Metropolitan Area Strategic Plan
+
+### Dublin Metropolitan Area Strategic Plan
+
+*Pages 103–106*
 
 Swords
 
@@ -3019,6 +3148,114 @@ Dublin Metropolitan Area Strategic Plan (MASP)
 ![Figure from page 106](assets/p106-f01.webp)
 
 *Figure from page 106*
+
+Regional Spatial & Economic Strategy
+
+### Rural Places: Towns, Villages and the Countryside
+
+*Pages 133–136*
+
+Rural Places: Towns, Villages and the Countryside
+
+Advanced manufacturing, smart manufacturing, biopharma, bioprocessing, applied nanotechnology, alcoholic beverages, marine energy, energy storage, wind energy, advance manufacturing, experiential tourism, and Fintech.
+
+The Action Plan for Rural Development set for 2020 aims to protect and promote the sense of place and culture and the quality, character and distinctiveness of the Irish rural landscape that make Ireland’s rural areas authentic and attractive as places to live, work and visit.
+
+Regional Growth Centres: Athlone, Drogheda and Dundalk
+
+The current Action Plan places a major focus on strengthening Ireland’s rural fabric and supporting the communities who live there; Planning for the future growth and development of rural areas, including addressing decline, with a special focus on activating the potential for the renewal and development of smaller towns and villages; Putting in place planning and investment policies to support job creation in the rural economy; addressing connectivity gaps; better co-ordination of existing investment programmes dealing with social inclusion, rural development and town and village renewal.
+
+The role of these Regional Growth Centres within the RSES is to serve as a focal point to gain critical mass and to deliver positive impacts to their surrounding areas and enhance overall regional and national growth (see Chapter 4 People and Place). A coordinated approach to infrastructure investment will be taken for the development of all urban centres and inter-connections in order to build greater levels of critical mass and to facilitate effective movement of goods and people internationally and nationally.
+
+Sectoral Opportunities Key Towns, Self- Sustaining Growth Towns, Self- Sustaining Towns and Rural Places
+
+The presence of Third level institutes in Athlone and Dundalk can play an increasingly strong role as key drivers of economic growth. These Technology and Innovation Poles envisage building facilities, developing the expertise and supportive capabilities of the Institutes of Technologies (IoTs) working with Enterprise Ireland (EI) and IDA. The IoTs can play a key role as drivers of enterprise activity across the Regions through inter-institutional connections and impactful collaboration.
+
+Precision farming, biotechnology, Tourism including experiential tourism, food and beverage products, functional food premium, renewable energy, solar energy microgeneration, wind energy, energy storage, and low carbon construction.
+
+![Figure from page 134](assets/p134-f01.webp)
+
+*Figure from page 134*
+
+Regional Spatial & Economic Strategy
+
+The smaller towns and the rural economy are an important part of the social fabric in the Region. There is a need for promotion in rural places of new economic opportunities arising from digital connectivity and indigenous innovation and enterprise as well as more traditional natural and resource assets (e.g. food, energy, tourism), underpinned by the quality of life offering.
+
+Local authorities may leverage the Local Enterprise Ofﬁce (LEO) network, Chambers of Commerce and business networks to expand and diversify their rural enterprise base (see Figures 6.5 and 6.6 Enterprise Development and Innovation Assets maps for Dublin and the Region).
+
+The Assembly, through its European functions, will assist in leveraging of the EU’s Common Agricultural Policy to improve agricultural productivity, ensuring that farmers earn a reasonable living, help to address climate change, maintain rural areas and landscapes and keep the rural economy alive.
+
+New business formation and innovation in rural areas depend on drivers such as the presence of human capital, proximity and access to higher education institutions, ICT infrastructure including broadband, transport infrastructure and the presence of a wide sectoral mix.
+
+It is an ambition of the RSES to stimulate a greater number of start-ups, more export focussed companies, and to enhance the business survival rates overall in the Region. Many companies will continue to trade on the domestic market and they play an important role in Ireland’s economy across a broad range of sectors and activities. In terms of employment-intensive sectors such as retail, tourism, construction, education and health, while these may not be the focus of an export-led technology-focussed economic strategy they are core employers in the Region and will continue to do so. These sectors also have signiﬁcant implications for the RSO of placemaking and creating attractive environments in which to live and work.
+
+The Partnership Companies, Local Community Development Committees (LCDCs), Local Enterprise Centres and LECPs in rural areas should prioritise regeneration of town and village cores, promotion of local industry and enable the ambition of all places and enhance quality of life.
+
+CASE STUDY:
+
+Irish Rural Link Programme
+
+Irish Rural Link (IRL), is a national network of organisations and individuals campaigning for sustainable rural development in Ireland and Europe. IRL, a non-proﬁt organisation directly represents over 600 community groups and is a member of the Community and Voluntary Pillar of Social Partnership.
+
+While the RSES seeks to anticipate and plan for jobs growth and economic development, new and unexpected opportunities for enterprise development are likely to arise for particular locational reasons, such as local resources, skills, assets, innovation or quality of life.
+
+The network provides a structure through which rural groups and individuals, representing disadvantaged rural communities, can articulate their common needs and priorities, share their experiences and present their case to policy-makers at local, national and European Level. Projects include the Farm Safety Programme, National Rural Network and Local Public Banking and a number of EU funded projects.25
+
+CASE STUDY:
+
+Boyne Valley Food Hub
+
+The Boyne Valley region has been synonymous with food production and trade as far back as 10,000 years ago. The Boyne Valley Food Hub is a ﬂagship project of Boyne Valley Food Innovation District in partnership with local authorities and LEOs, Enterprise Ireland, Bord Bia, IDA, Teagasc and with leading universities and industry. The aim is to accelerate the growth of the agri-food sector through collaboration, innovation, and clustering to support scalable, sustainable and proﬁtable food businesses in Meath, Louth, Kildare and Wicklow.
+
+Local authorities should enable the identiﬁcation of regeneration and rural development projects within existing towns and villages by identifying and quantifying available land (serviced or with potential to be serviced) and vacant buildings. Cross-boundary and inter-regional partnerships should be prioritised and nurtured. For instance, the Upper Shannon Erne Future Economy Project brings together the counties of Cavan, Leitrim, Roscommon and Longford to explore and develop opportunities in renewable energy, tourism, and digital strategies.
+
+Boyne Valley Food Hub packages a number of industry deliverables including food units for startup and scaling food business, a community kitchen, a Food Innovation and Research Lab and onsite food technologist and business development manager, to support food innovation programmes.
+
+25 www.irishrurallink.ie
+
+![Figure from page 135](assets/p135-f01.webp)
+
+*Figure from page 135*
+
+Economy & Employment
+
+REGIONAL POLICY OBJECTIVES:
+
+RPO 6.7: Support local authorities to develop sustainable and economically efﬁcient rural economies through initiatives to enhance sectors such as agricultural and food, forestry, ﬁshing and aquaculture, energy and extractive industries, the bioeconomy, tourism, and diversiﬁcation into alternative on-farm and off-farm activities, while at the same time noting the importance of maintaining and protecting the natural landscape and built heritage.
+
+Unexpected Opportunities for Enterprise Development
+
+RPO 6.2: Support local authorities to ensure their LECPs and city and county development plans are sufﬁciently agile to account for unexpected opportunities, to accommodate valid propositions for enterprise development that may emerge and for which there are strong locational drivers that do not apply to the same extent elsewhere.
+
+RPO 6.8: To support the sustainable development of tourism in the Region in line with the strategic objectives of both Ireland’s Ancient East and Ireland’s Hidden Heartlands experience brand propositions.
+
+REGIONAL POLICY OBJECTIVE:
+
+REGIONAL POLICY OBJECTIVES:
+
+Dublin – Belfast Economic Corridor
+
+Regional Enterprise Plans
+
+RPO 6.3: Support the effective planning and development of large centres of population and employment along the main economic corridor, in particular Drogheda and Dundalk.
+
+RPO 6.9: The Regional Assembly supports the Regional Enterprise Plans to focus on;
+
+• Support a high level of economic success throughout the region by building on local strengths and regional innovation capacity. • Position and support the growth of the Midlands as an advanced manufacturing centre of excellence. • Leverage opportunities in big data and data analytics from iLOFAR. • Ensure that the Midlands is well positioned to address the challenges posed by the transition to a low carbon economy and renewable energy. • Increase enterprise engagement in innovation, research and development to ensure Dublin’s continued competitiveness and productivity. • Build a pipeline of sustainable and scalable startups in Dublin and provide quality support. • Develop the Mid-East as a hub for the Screen Content Creation Sector. • Build an ecosystem framework to support the ﬁnancial services, payments and agrifood sectors throughout the Region. • Develop a network of innovative co-working spaces in the region to mitigate long commuting times, promote remote working opportunities and life-style beneﬁts.
+
+REGIONAL POLICY OBJECTIVES:
+
+Rural Economy
+
+RPO 6.4: Local authorities shall identify measures in LECPs for regeneration in small towns and villages cores.
+
+RPO 6.5: Local authorities shall explore projects in LECPs for the enhancement of the competitiveness of their rural areas by supporting innovation in rural economic development and enterprise through the diversiﬁcation of the rural economy into new sectors and services, including ICT-based industries and those addressing climate change and sustainability. Cross-boundary and inter-regional partnerships are encouraged and they will be supported.
+
+RPO 6.6: Support local authorities to explore mechanisms for the emergence of a diversiﬁed sectoral mix in rural areas. This includes the identiﬁcation of appropriate locations to drive regeneration of these rural towns and villages for example by the provision of serviced sites for housing and co-working/incubator space near Institutes of Technology to facilitate technological spillovers through greater connections and linkages.
+
+![Figure from page 136](assets/p136-f01.webp)
+
+*Figure from page 136*
 
 Regional Spatial & Economic Strategy
 
@@ -3406,7 +3643,7 @@ Regional Spatial & Economic Strategy
 
 ### 5.9 Green Infrastructure and Amenities
 
-*Pages 116–120*
+*Pages 116–122*
 
 5.9 Green Infrastructure and Amenities
 
@@ -3491,10 +3728,6 @@ Dublin Metropolitan Area Strategic Plan (MASP)
 *Figure 5.5 Green Infrastruture and Ecosystem services*
 
 ### Economy & Employment
-
-### 6.1 Introduction
-
-*Pages 120–122*
 
 This RSES – as a regional expression of the national enterprise policy Enterprise 2025 Renewed - is a principle-based framework which sets out Regional Policy Objectives (RPOs) for the Region and guides relevant actors that support the development of the Region. As a statutorily based document the RSES informs effective planning and investments in placemaking throughout the Region that facilitate enterprise development among other objectives. In accordance with Project Ireland 2040 the Region will accommodate around 320,000 additional people in employment.
 
@@ -3847,7 +4080,7 @@ Regional Spatial & Economic Strategy
 
 ### 6.4 The Region’s Economic Engines and their Sectoral Opportunities
 
-*Pages 132–136*
+*Pages 132–133*
 
 6.4 The Region’s Economic Engines and their Sectoral Opportunities
 
@@ -3900,110 +4133,6 @@ The RSES Growth Strategy set out in Chapter 3 and settlement hierarchy in Chapte
 Key Towns, strong market/sub county towns are locations that have an economic function that provides employment for their surrounding areas and have a wide catchment. In many cases these areas have varying economies and sectors and the Strategy will support their sustainable growth.
 
 Sectoral Opportunities Dublin-Belfast Economic Corridor (including Dundalk and Drogheda)
-
-Rural Places: Towns, Villages and the Countryside
-
-Advanced manufacturing, smart manufacturing, biopharma, bioprocessing, applied nanotechnology, alcoholic beverages, marine energy, energy storage, wind energy, advance manufacturing, experiential tourism, and Fintech.
-
-The Action Plan for Rural Development set for 2020 aims to protect and promote the sense of place and culture and the quality, character and distinctiveness of the Irish rural landscape that make Ireland’s rural areas authentic and attractive as places to live, work and visit.
-
-Regional Growth Centres: Athlone, Drogheda and Dundalk
-
-The current Action Plan places a major focus on strengthening Ireland’s rural fabric and supporting the communities who live there; Planning for the future growth and development of rural areas, including addressing decline, with a special focus on activating the potential for the renewal and development of smaller towns and villages; Putting in place planning and investment policies to support job creation in the rural economy; addressing connectivity gaps; better co-ordination of existing investment programmes dealing with social inclusion, rural development and town and village renewal.
-
-The role of these Regional Growth Centres within the RSES is to serve as a focal point to gain critical mass and to deliver positive impacts to their surrounding areas and enhance overall regional and national growth (see Chapter 4 People and Place). A coordinated approach to infrastructure investment will be taken for the development of all urban centres and inter-connections in order to build greater levels of critical mass and to facilitate effective movement of goods and people internationally and nationally.
-
-Sectoral Opportunities Key Towns, Self- Sustaining Growth Towns, Self- Sustaining Towns and Rural Places
-
-The presence of Third level institutes in Athlone and Dundalk can play an increasingly strong role as key drivers of economic growth. These Technology and Innovation Poles envisage building facilities, developing the expertise and supportive capabilities of the Institutes of Technologies (IoTs) working with Enterprise Ireland (EI) and IDA. The IoTs can play a key role as drivers of enterprise activity across the Regions through inter-institutional connections and impactful collaboration.
-
-Precision farming, biotechnology, Tourism including experiential tourism, food and beverage products, functional food premium, renewable energy, solar energy microgeneration, wind energy, energy storage, and low carbon construction.
-
-![Figure from page 134](assets/p134-f01.webp)
-
-*Figure from page 134*
-
-Regional Spatial & Economic Strategy
-
-The smaller towns and the rural economy are an important part of the social fabric in the Region. There is a need for promotion in rural places of new economic opportunities arising from digital connectivity and indigenous innovation and enterprise as well as more traditional natural and resource assets (e.g. food, energy, tourism), underpinned by the quality of life offering.
-
-Local authorities may leverage the Local Enterprise Ofﬁce (LEO) network, Chambers of Commerce and business networks to expand and diversify their rural enterprise base (see Figures 6.5 and 6.6 Enterprise Development and Innovation Assets maps for Dublin and the Region).
-
-The Assembly, through its European functions, will assist in leveraging of the EU’s Common Agricultural Policy to improve agricultural productivity, ensuring that farmers earn a reasonable living, help to address climate change, maintain rural areas and landscapes and keep the rural economy alive.
-
-New business formation and innovation in rural areas depend on drivers such as the presence of human capital, proximity and access to higher education institutions, ICT infrastructure including broadband, transport infrastructure and the presence of a wide sectoral mix.
-
-It is an ambition of the RSES to stimulate a greater number of start-ups, more export focussed companies, and to enhance the business survival rates overall in the Region. Many companies will continue to trade on the domestic market and they play an important role in Ireland’s economy across a broad range of sectors and activities. In terms of employment-intensive sectors such as retail, tourism, construction, education and health, while these may not be the focus of an export-led technology-focussed economic strategy they are core employers in the Region and will continue to do so. These sectors also have signiﬁcant implications for the RSO of placemaking and creating attractive environments in which to live and work.
-
-The Partnership Companies, Local Community Development Committees (LCDCs), Local Enterprise Centres and LECPs in rural areas should prioritise regeneration of town and village cores, promotion of local industry and enable the ambition of all places and enhance quality of life.
-
-CASE STUDY:
-
-Irish Rural Link Programme
-
-Irish Rural Link (IRL), is a national network of organisations and individuals campaigning for sustainable rural development in Ireland and Europe. IRL, a non-proﬁt organisation directly represents over 600 community groups and is a member of the Community and Voluntary Pillar of Social Partnership.
-
-While the RSES seeks to anticipate and plan for jobs growth and economic development, new and unexpected opportunities for enterprise development are likely to arise for particular locational reasons, such as local resources, skills, assets, innovation or quality of life.
-
-The network provides a structure through which rural groups and individuals, representing disadvantaged rural communities, can articulate their common needs and priorities, share their experiences and present their case to policy-makers at local, national and European Level. Projects include the Farm Safety Programme, National Rural Network and Local Public Banking and a number of EU funded projects.25
-
-CASE STUDY:
-
-Boyne Valley Food Hub
-
-The Boyne Valley region has been synonymous with food production and trade as far back as 10,000 years ago. The Boyne Valley Food Hub is a ﬂagship project of Boyne Valley Food Innovation District in partnership with local authorities and LEOs, Enterprise Ireland, Bord Bia, IDA, Teagasc and with leading universities and industry. The aim is to accelerate the growth of the agri-food sector through collaboration, innovation, and clustering to support scalable, sustainable and proﬁtable food businesses in Meath, Louth, Kildare and Wicklow.
-
-Local authorities should enable the identiﬁcation of regeneration and rural development projects within existing towns and villages by identifying and quantifying available land (serviced or with potential to be serviced) and vacant buildings. Cross-boundary and inter-regional partnerships should be prioritised and nurtured. For instance, the Upper Shannon Erne Future Economy Project brings together the counties of Cavan, Leitrim, Roscommon and Longford to explore and develop opportunities in renewable energy, tourism, and digital strategies.
-
-Boyne Valley Food Hub packages a number of industry deliverables including food units for startup and scaling food business, a community kitchen, a Food Innovation and Research Lab and onsite food technologist and business development manager, to support food innovation programmes.
-
-25 www.irishrurallink.ie
-
-![Figure from page 135](assets/p135-f01.webp)
-
-*Figure from page 135*
-
-Economy & Employment
-
-REGIONAL POLICY OBJECTIVES:
-
-RPO 6.7: Support local authorities to develop sustainable and economically efﬁcient rural economies through initiatives to enhance sectors such as agricultural and food, forestry, ﬁshing and aquaculture, energy and extractive industries, the bioeconomy, tourism, and diversiﬁcation into alternative on-farm and off-farm activities, while at the same time noting the importance of maintaining and protecting the natural landscape and built heritage.
-
-Unexpected Opportunities for Enterprise Development
-
-RPO 6.2: Support local authorities to ensure their LECPs and city and county development plans are sufﬁciently agile to account for unexpected opportunities, to accommodate valid propositions for enterprise development that may emerge and for which there are strong locational drivers that do not apply to the same extent elsewhere.
-
-RPO 6.8: To support the sustainable development of tourism in the Region in line with the strategic objectives of both Ireland’s Ancient East and Ireland’s Hidden Heartlands experience brand propositions.
-
-REGIONAL POLICY OBJECTIVE:
-
-REGIONAL POLICY OBJECTIVES:
-
-Dublin – Belfast Economic Corridor
-
-Regional Enterprise Plans
-
-RPO 6.3: Support the effective planning and development of large centres of population and employment along the main economic corridor, in particular Drogheda and Dundalk.
-
-RPO 6.9: The Regional Assembly supports the Regional Enterprise Plans to focus on;
-
-• Support a high level of economic success throughout the region by building on local strengths and regional innovation capacity. • Position and support the growth of the Midlands as an advanced manufacturing centre of excellence. • Leverage opportunities in big data and data analytics from iLOFAR. • Ensure that the Midlands is well positioned to address the challenges posed by the transition to a low carbon economy and renewable energy. • Increase enterprise engagement in innovation, research and development to ensure Dublin’s continued competitiveness and productivity. • Build a pipeline of sustainable and scalable startups in Dublin and provide quality support. • Develop the Mid-East as a hub for the Screen Content Creation Sector. • Build an ecosystem framework to support the ﬁnancial services, payments and agrifood sectors throughout the Region. • Develop a network of innovative co-working spaces in the region to mitigate long commuting times, promote remote working opportunities and life-style beneﬁts.
-
-REGIONAL POLICY OBJECTIVES:
-
-Rural Economy
-
-RPO 6.4: Local authorities shall identify measures in LECPs for regeneration in small towns and villages cores.
-
-RPO 6.5: Local authorities shall explore projects in LECPs for the enhancement of the competitiveness of their rural areas by supporting innovation in rural economic development and enterprise through the diversiﬁcation of the rural economy into new sectors and services, including ICT-based industries and those addressing climate change and sustainability. Cross-boundary and inter-regional partnerships are encouraged and they will be supported.
-
-RPO 6.6: Support local authorities to explore mechanisms for the emergence of a diversiﬁed sectoral mix in rural areas. This includes the identiﬁcation of appropriate locations to drive regeneration of these rural towns and villages for example by the provision of serviced sites for housing and co-working/incubator space near Institutes of Technology to facilitate technological spillovers through greater connections and linkages.
-
-![Figure from page 136](assets/p136-f01.webp)
-
-*Figure from page 136*
-
-Regional Spatial & Economic Strategy
 
 ### 6.5 Speciﬁc Sectors: Retail, Tourism, Marine, Low Carbon Economy and Agriculture
 
@@ -4243,7 +4372,7 @@ Regional Spatial & Economic Strategy
 
 ### 6.6 Drivers for Resilient, Sustainable and Inclusive Economic Growth
 
-*Pages 142–148*
+*Pages 142–218*
 
 6.6 Drivers for Resilient, Sustainable and Inclusive Economic Growth
 
@@ -4471,10 +4600,6 @@ RPO 6.34: EMRA will support the construction of a regional brand that is consist
 
 Regional Spatial & Economic Strategy
 
-### 6.7 Capacity Building: Bidding Capacity, Shared Evidence Base, Future Proof and Anticipating Economic Structural Changes
-
-*Pages 148–150*
-
 6.7 Capacity Building: Bidding Capacity, Shared Evidence Base, Future Proof and Anticipating Economic Structural Changes
 
 An inherent part of the Strategy is the building of institutional capacity to enable an effective implementation and to respond to emerging challenges.
@@ -4543,10 +4668,6 @@ Regional Spatial & Economic Strategy
 
 ## 7 Environment and Climate
 
-### 7.1 Introduction
-
-*Pages 150–152*
-
 7.1 Introduction
 
 A clean well protected environment supports human health and wellbeing and provides a natural resource for our agriculture and tourism industries. While the overall quality of our environment is good and progress has been made in reducing air pollutants and protecting the quality of water bodies and our natural and wild places, challenges remain in relation to biodiversity protection, water and urban waste water treatment and some localised air quality issues.
@@ -4578,10 +4699,6 @@ The European Directive on the Assessment of the Effects of Certain Plans and Pro
 *Figure from page 152*
 
 Regional Spatial & Economic Strategy
-
-### 7.2 Integrated Land and Marine Planning
-
-*Pages 152–155*
 
 7.2 Integrated Land and Marine Planning
 
@@ -4689,10 +4806,6 @@ RPO 7.5: EMRA shall work with coastal stakeholders to support the sustainable de
 *Figure from page 155*
 
 Environment and Climate
-
-### 7.3 A Clean and Healthy Environment
-
-*Pages 155–158*
 
 7.3 A Clean and Healthy Environment
 
@@ -4814,10 +4927,6 @@ The Regional Committees are developing a Regional Integrated Catchment Managemen
 
 Regional Spatial & Economic Strategy
 
-### 7.4 Flood Risk Management
-
-*Pages 158–160*
-
 7.4 Flood Risk Management
 
 Flooding is a natural process that plays a role in shaping the natural environment. Floods are a regular occurrence and the Region has experienced a number of severe ﬂooding events in recent years, particularly on ﬂood plains and in coastal areas, where ﬂood risks will increase due to more frequent extreme weather events and sea level rise linked to climate change. Flooding can occur from a range of sources, individually or combined, including: coastal ﬂooding (from the sea or estuaries); ﬂuvial ﬂooding (from rivers or streams); pluvial ﬂooding (from intense rainfall events and overland ﬂow); groundwater ﬂooding (typically from Turloughs), and other sources, such as from blocked culverts. The long-term land use planning of the Region must also consider the likelihood of higher ﬂood risks both inland and in coastal locations due to climate change.
@@ -4879,10 +4988,6 @@ RPO 7.15: Local authorities shall take opportunities to enhance biodiversity and
 *Figure from page 160*
 
 Regional Spatial & Economic Strategy
-
-### 7.5 Biodiversity and Natural Heritage
-
-*Pages 160–163*
 
 7.5 Biodiversity and Natural Heritage
 
@@ -4974,10 +5079,6 @@ RPO 7.20: Promote the development of improved visitor experiences, nature conser
 
 Environment and Climate
 
-### 7.6 Ecosystem Services
-
-*Pages 163–164*
-
 7.6 Ecosystem Services
 
 Ecosystem services are the direct and indirect contributions of ecosystems to human wellbeing, there are four main types; provisioning, regulating, supporting and cultural services.
@@ -5005,10 +5106,6 @@ The incorporation and consideration of an ecosystem services approach can lead t
 *Figure from page 164*
 
 Regional Spatial & Economic Strategy
-
-### 7.7 Green Infrastructure
-
-*Pages 164–169*
 
 7.7 Green Infrastructure
 
@@ -5138,10 +5235,6 @@ Careful routing and design is needed to ensure that greenways do not impact nega
 
 Environment and Climate
 
-### 7.8 Landscape
-
-*Pages 169–172*
-
 7.8 Landscape
 
 The RSES recognises the important place of landscape considerations, including in terms of placemaking, culture and attractiveness. The diverse range of scenic landscapes of the Region stretch from the Irish Sea and the eastern seaboard with its islands, seascapes, waterscapes, beaches, bays and estuaries westwards to the River Shannon and its callows; and to the lakes, wetlands, fens, eskers, bogs and agricultural lands in between. The Region is home to the Slieve Bloom and the Wicklow Mountains and signiﬁcant natural and built watercourses such as the Royal and Grand canals and the rolling riverine landscapes of the Boyne, Liffey, Barrow and Nore River Valleys and a number of historic and demesne landscapes, planned estates and gardens.
@@ -5233,10 +5326,6 @@ RPO 7.29: Support collaboration between local authorities, the Bord na Móna Tra
 *Figure from page 172*
 
 Regional Spatial & Economic Strategy
-
-### 7.9 Climate Change
-
-*Pages 172–182*
 
 7.9 Climate Change
 
@@ -5603,10 +5692,6 @@ Regional Spatial & Economic Strategy
 
 ## 8 Connectivity
 
-### 8.1 Introduction
-
-*Pages 182–183*
-
 8.1 Introduction
 
 Connectivity, which includes transport connectivity and digital networks connectivity, has a major impact on the quality of life, the level of community interaction, the economic prosperity, and the environmental quality of the Region.
@@ -5622,10 +5707,6 @@ This chapter sets out proposals to help to achieve the National Strategic Outcom
 *Figure from page 183*
 
 Connectivity
-
-### 8.2 Transport Strategy
-
-*Pages 183–185*
 
 8.2 Transport Strategy
 
@@ -5664,10 +5745,6 @@ The Strategy aims to provide a spatial framework to promote smart compact growth
 *Figure from page 185*
 
 Connectivity
-
-### 8.3 Framework for the Integration of Transport planning with Spatial Planning Policies
-
-*Pages 185–190*
 
 8.3 Framework for the Integration of Transport planning with Spatial Planning Policies
 
@@ -5835,15 +5912,9 @@ RPO 8.7: To promote the use of mobility management and travel plans to bring abo
 
 Regional Spatial & Economic Strategy
 
-### 8.4 Transport Investment Priorities
-
-*Pages 190–194*
-
 8.4 Transport Investment Priorities
 
 Major transport infrastructure investments, identiﬁed in the Project Ireland 2040 - National Development Plan, have an important role in enabling the sustainable and balanced development of the Region over the period of the RSES.
-
-Table 8.2: Rail Projects for the Region
 
 DART Expansion Programme - new infrastructure and electriﬁcation of existing lines, including provision of electriﬁed services to Drogheda or further north on the Northern Line, Celbridge-Hazelhatch or further south on the Kildare Line, Maynooth and M3 Parkway on the Maynooth/ Sligo Line, while continuing to improve DART services on the South-Eastern Line as far south as Greystones
 
@@ -6067,10 +6138,6 @@ In addition, others may be developed in appropriate locations where the national
 
 Regional Spatial & Economic Strategy
 
-### 8.5 International Connectivity
-
-*Pages 194–197*
-
 8.5 International Connectivity
 
 High quality accessibility to international gateways, located both within and outside of the Region, for people and internationally traded goods / services is of fundamental importance to economic competitiveness at regional and national levels.
@@ -6167,10 +6234,6 @@ RPO 8.24: The EMRA supports the undertaking of feasibility studies to determine 
 
 Connectivity
 
-### 8.6 Communications Network and Digital Infrastructure
-
-*Pages 197–198*
-
 8.6 Communications Network and Digital Infrastructure
 
 Access to broadband in the Region is improving but remains incomplete. Many rural and peripheral areas of the Region are poorly served by broadband and there is a need to increase the rate of investment in broadband, in particular in rural areas.
@@ -6199,10 +6262,6 @@ Regional Spatial & Economic Strategy
 
 ### Quality of Life
 
-### 9.1 Introduction
-
-*Pages 198–199*
-
 9.1 Introduction
 
 The place or environment in which we live or work, including its physical nature and social environment or community, has a profound impact on physical and mental health wellbeing, and quality of life. Irish culture has a longstanding identiﬁcation with place. Placemaking is an essential link between spatial planning and facilitating improvements to people’s quality of life and developing places that are attractive to live, work, visit and in which to invest.
@@ -6226,10 +6285,6 @@ Figure 9.1 Changing Demographic Proﬁle – Age Structure 2016 to 2031 Source: 
 ![Figure from page 199](assets/p199-f01.webp)
 
 *Figure from page 199*
-
-### 9.2 Diverse and Inclusive Region
-
-*Pages 199–201*
 
 9.2 Diverse and Inclusive Region
 
@@ -6284,10 +6339,6 @@ The dispersed settlement patterns for in migration in Ireland are atypical in a 
 *Figure from page 201*
 
 Quality of Life
-
-### 9.3 Housing and Regeneration
-
-*Pages 201–205*
 
 9.3 Housing and Regeneration
 
@@ -6450,10 +6501,6 @@ NPO 66 A more effective strategic and centrally managed approach will be taken t
 
 Quality of Life
 
-### 9.4 Healthy Placemaking
-
-*Pages 205–208*
-
 9.4 Healthy Placemaking
 
 Healthy placemaking seeks to protect and enhance the unique identity and character of places and to facilitate improvements to human wellbeing and the quality of life that comes from the interaction of people and their environment. Placemaking is underpinned by good urban design, which seeks to create public spaces that are vibrant, distinctive, safe and accessible and which promote and facilitate social interaction.
@@ -6604,10 +6651,6 @@ RPO 9.17: To support local authorities in the development of regional scale Open
 
 Regional Spatial & Economic Strategy
 
-### 9.5 Social and Economic Opportunity
-
-*Pages 208–211*
-
 9.5 Social and Economic Opportunity
 
 Social Inclusion is a key objective at national and local level. It refers to the way in which all persons in a community are integrated in an equal manner by reducing barriers to social inclusion for example belonging to a jobless household; being a lone parent; having a disability; being homeless or affected by housing exclusion; and belonging to an ethnic minority.
@@ -6679,10 +6722,6 @@ Regional Spatial & Economic Strategy
 *Figure from page 211*
 
 Quality of Life
-
-### 9.6 Access to Childcare, Education and Health Services
-
-*Pages 211–214*
 
 9.6 Access to Childcare, Education and Health Services
 
@@ -6771,10 +6810,6 @@ Enhancement of the quality of the built and natural environments can improve men
 *Figure from page 214*
 
 Regional Spatial & Economic Strategy
-
-### 9.7 Access to Arts, Culture, Language and Heritage
-
-*Pages 214–218*
 
 9.7 Access to Arts, Culture, Language and Heritage
 
@@ -6894,7 +6929,73 @@ RPO 9.30: Support the sensitive reuse of protected structures.
 
 Regional Spatial & Economic Strategy
 
-## 10
+## 4 People and Place
+
+### 4 People and Place
+
+*Pages 243–244*
+
+4. People and Place
+
+8.1 EMRA Strategic Transport Infrastructure ............186
+
+4.1 EMRA Large Towns .................................................... 43 4.2 Settlement Strategy ................................................... 45 4.3 Regional Growth Centres ...........................................53
+
+9. Quality of Life
+
+9.1 Changing Demographic Proﬁle ..............................198 9.2 Healthy Placemaking Stategy ................................205 9.3 Pobal HP Deprivation Index ....................................210
+
+5. MASP
+
+5.1 MASP Boundary ......................................................... 99 5.2 Dublin Metropolitan Area Strategic Pan ..............103 5.3 Metropolitan Cycle Network .................................. 110 5.4 Greater Dublin Area Public Transport Network 2027 ............................................................. 111 5.5 Green Infrastructure and Ecosystem Services Mapping ......................................................................119
+
+11. All Island Cohesion
+
+11.1 TENT-T Core Network .............................................230
+
+Photographs
+
+In addition to the resources of the Eastern and Midland Regional Assembly, images have been provided courtesy of the 12 Local Authorities within the Eastern and Midland Region and Maynooth University.
+
+|  |  |  |  |  |
+| --- | --- | --- | --- | --- |
+|  |  | EASTERN & MIDLAND REGIONAL ASSEMBLY 3rd Floor Ballymun Civic Centre Main Street Ballymun Dublin 9 D09 C8P5 +353 (0) 1 807 4482 www.emra.ie |  |  |
+
+Tionól Reigiúnach Oirthir agus Lár-Tíre Eastern and Midland Regional Assembly
+
+## 6 Economy and Employment
+
+### 6 Economy and Employment
+
+*Pages 243–243*
+
+1. Introduction
+
+6. Economy and Employment
+
+1.1 EMRA Strategic Planning Areas .................................7 1.2 Spatial Planning Hierarchy in Ireland ........................9 1.3 NPF Map ........................................................................11 1.4 RSES Process ............................................................... 13 1.5 Our Strategic Planning Areas ...................................14 1.6 Population Change 2006-2016 ................................ 15 1.7 Age structure – EMRA and State .............................16 1.8 Resident Workers and Local Jobs ............................ 17 1.9 Deﬁning Functional Urban Areas, Census 2016 ...19
+
+6.1 Eastern & Midland Region Total Employment ....122 6.2 Percentage of Local Jobs by Industry ....................123 6.3 The Economic Strategy ...........................................126 6.4 Enterprise 2025 Renewed Sectoral Cohorts .......127 6.5 EMRA’s Enterprise Development and Innovation Assets......................................................128 6.6 Dublin SPA’s Enterprise Development and Innovation Assets......................................................129 6.7 Smart City Concepts ................................................ 144
+
+2. Strategic Vision
+
+7. Environment and Climate
+
+2.1 EU Thematic Objectives ......................................... 20 2.2 UN Sustainable Development Goals ....................... 21 2.3 National Strategic Outcomes ...................................22 2.4 Regional Strategic Outcomes .................................. 24
+
+7.1 Status of Water Bodies ............................................156 7.2 Designated Sites in the Region .............................. 160 7.3 Navigational map of the Region’s main Green/ Blueway routes ..........................................................166 7.4 Climate Stategy .........................................................173 7.5 Observed and projected climate changes and impacts for Ireland ....................................................173 7.6 Carbon Dioxide Emissions in the Region ..............175
+
+3. Growth Strategy
+
+3.1 Growth Strategy – Strategic Connections ............. 29
+
+8. Connectivity
+
+## 10 Infrastructure
+
+### 10 Infrastructure
+
+*Pages 218–218*
 
 ### Infrastructure
 
@@ -7346,7 +7447,9 @@ RPO 11.1: In co-operation with relevant departments in Northern Ireland, the Eas
 
 Regional Spatial & Economic Strategy
 
-## 12
+### 12 Implementation
+
+*Pages 234–234*
 
 ### Implementation & Monitoring
 
@@ -7629,194 +7732,3 @@ List of Tables EMRA RSES
 *Figure from page 243*
 
 List of Figures EMRA RSES
-
-1. Introduction
-
-6. Economy and Employment
-
-1.1 EMRA Strategic Planning Areas .................................7 1.2 Spatial Planning Hierarchy in Ireland ........................9 1.3 NPF Map ........................................................................11 1.4 RSES Process ............................................................... 13 1.5 Our Strategic Planning Areas ...................................14 1.6 Population Change 2006-2016 ................................ 15 1.7 Age structure – EMRA and State .............................16 1.8 Resident Workers and Local Jobs ............................ 17 1.9 Deﬁning Functional Urban Areas, Census 2016 ...19
-
-6.1 Eastern & Midland Region Total Employment ....122 6.2 Percentage of Local Jobs by Industry ....................123 6.3 The Economic Strategy ...........................................126 6.4 Enterprise 2025 Renewed Sectoral Cohorts .......127 6.5 EMRA’s Enterprise Development and Innovation Assets......................................................128 6.6 Dublin SPA’s Enterprise Development and Innovation Assets......................................................129 6.7 Smart City Concepts ................................................ 144
-
-### 16 Regional Strategic Outcomes (RSOs) are aligned to the UN Sustainable Development Goals, the EU thematic
-
-*Pages 20–23*
-
-16 Regional Strategic Outcomes (RSOs) are aligned to the UN Sustainable Development Goals, the EU thematic objectives and national policy including the NPF’s National Strategic Outcomes (NSOs) to embed a coherent policy hierarchy and to ensure that future investment is targeted towards identiﬁed policy recommendations and goals.
-
-The shared vision and set of outcomes for the RSES have been informed by an extensive public consultation and developed in collaboration with our elected members and key stakeholders, reﬂecting the Assembly’s co-production approach to regional policy formulation. Using a regional collaboration approach the RSES has developed a shared vision, on behalf of our citizens, that sets the strategic direction for where we want our Region to be by 2031 and beyond.
-
-There is signiﬁcant policy alignment between the UN SDGs and the National Planning Framework’s National Strategic Outcomes (NSOs). The development of Regional Strategic Outcomes in the RSES is also closely aligned and supportive of the NSOs.
-
-![Figure 2.1 EU Thematic Objectives](assets/p020-f01.webp)
-
-*Figure 2.1 EU Thematic Objectives*
-
-![Figure from page 21](assets/p021-f01.webp)
-
-*Figure from page 21*
-
-Strategic Vision
-
-![Figure from page 22](assets/p022-f01.webp)
-
-*Figure from page 22*
-
-Regional Spatial & Economic Strategy
-
-![Figure 2.3 National Strategic Outcomes.](assets/p022-f02.webp)
-
-*Figure 2.3 National Strategic Outcomes.*
-
-National Planning Framework and its National Strategic Outcomes and Priorities of the National Development Plan
-
-| 2. n_an1ed !e]ional 11essi0ili\| |  |
-| --- | --- |
-|  |  |
-
-| 3. Strengthened !ral 1onolies and Collnities |  |
-| --- | --- |
-|  |  |
-
-1.Colra1| ro|_
-
-| 10. 11ess \|o  C_ild1areķ d1a and eal\|_ "eri1es | ali\| tion |
-| --- | --- |
-|  |  |
-
-|  | tional "\|ra\|e]i1 |  |  | 5.  "\|ro srror\|e n\|errris and "hill | n] 1onol d 0 eķ Innoation s |
-| --- | --- | --- | --- | --- | --- |
-|  | \|1oles |  | leni\| 6. i]_Ŋ In\|ernati Conne1t |  |  |
-|  | \|o a o 7. n_an1ed  Clila\|e and Heritage ie\| |  |  |  |  |
-| 8. $ransition Car0on and !esilien\| "o1 | \|o a o Clila\|e ie\| | 7. n_an1ed  and Heritage | leni\| | 6. i]_Ŋ In\|ernati Conne1t |  |
-|  |  |  |  |  |  |
-
-9."s|aina0le ana]elen| o= )a|erķ )as|e and o|_er nironlen|al !esor1es
-
-"|ra|e]i1 Ines|len| riorities
-
-National Road Network
-
-Environmentally Sustainable
-
-Public Transport
-
-Airports and Ports
-
-Climate Action
-
-Education, Health and Childcare
-
-Figure 2.3 National Strategic Outcomes. Source: Ireland 2040 - National Planning Framework (NPF)6
-
-6 https://www.gov.ie/en/campaigns/09022006-project-ireland-2040/
-
-![Figure from page 23](assets/p023-f01.webp)
-
-*Figure from page 23*
-
-Strategic Vision
-
-## 65 + years 12%
-
-### 2.1 Our Shared Goals
-
-*Pages 20–20*
-
-2.1 Our Shared Goals
-
-At its core, the Regional Spatial and Economic Strategy (RSES) sets out a settlement and economic growth strategy that seeks to ensure that the needs of the Region’s citizens such as access to employment opportunities and services, ease of travel and overall well-being are met.
-
-### 65 + years 12%
-
-*Pages 16–20*
-
-65 + years 12%
-
-0-14 years 21%
-
-45-64 years 23%
-
-15-24 years 12%
-
-25-44 years 32%
-
-Figure 1.7 Age structure – EMRA and State, CSO 2016
-
-Young: In 2016 the age proﬁle of the Region is young with nearly half a million children or 1 in 5 people in the Region that are aged under 14 years of age, rising to 1 in 4 of the population in fast growing counties like Fingal and Laois. The population surge is moving up from primary school age and the number of children of secondary school age children is expected to rise to 2026 and decline thereafter. By 2031 there will be a signiﬁcant increase in the number of people in the 15-24 years age cohort, which will lead to greater demand for third level education.
-
-Ageing: In line with state-wide trends the population is rapidly ageing. Dún Laoghaire-Rathdown, at an average age of 39 years, is the oldest county in the Region and state. By 2031 there will be a signiﬁcant increase in the regional population aged over 65 and we need to plan for adequate healthcare, accommodation and services to enable independent living for as long as possible, encourage active lifestyles and address isolation for our older residents.
-
-Diverse: In 2016 the Region is the most demographically diverse in the state, with nearly 300,000 people or more than 1 in 8 residents who are non-Irish nationals, rising to around 1 in 6 in Dublin City, Fingal and Longford counties. Countries of origin include Poland, Lithuania, UK and other EU nationals while migrants from Africa and Asia are mostly concentrated in Dublin. The number of non-Irish nationals fell for the ﬁrst time between 2011-2016 partly due to the increase in dual citizenship, as more people become Irish citizens.
-
-Labour force: There are over one and a half million people of working age (15 – 64 years) in the Region, a key human capital asset with nearly 1 in 3 of the population in Dublin alone between 25 and 44 years. Labour force growth is set to continue and although its relative share is to decrease, the overall size of the working age population is projected to rise, with increases in the cohorts between 15-29 years and 45-64 years. Accordingly, there will be continued demand for ongoing skills development and also for family homes as well as smaller and one-person households.
-
-![Figure from page 17](assets/p017-f01.webp)
-
-*Figure from page 17*
-
-Introduction
-
-Quality of Life
-
-Placemaking is an essential link between spatial planning, improved quality of life and creating places that are attractive to live, work, visit and invest in. Along with demographic change here are a number of issues to consider when seeking to promote and create healthier places including access to services, housing, sustainable transport and social and economic opportunities.
-
-Housing: The Region is home to over 800,000 households, with 4 out of 5 living in conventional housing while apartments account for around 18% or our housing stock. Homeownership is still the dominant tenure but rental is growing, with 1 in 5 households in the private rental market and 1 in 10 households living in social rented accommodation. One of the challenges facing the Region is the continued growth rates of household formation coupled with a severe slowdown in the development of new housing stock during the economic recession, resulting in housing supply and affordability pressures in both sale and rental markets, particularly in Dublin and urban areas but affecting all of the Region.
-
-Deprivation; The Trutz Haase deprivation index identiﬁes areas of afﬂuence and deprivation in the Region. Dún Laoghaire-Rathdown is the most afﬂuent local authority in the State and the Region, while Longford is the most disadvantaged in the Region and is the third most disadvantaged local authority in the State, see Figure 9.3 (Chapter 9 Quality of Life). However there are pockets of disadvantage across the Region, with 15% of the population living in disadvantaged areas, sometimes in close proximity to areas of relative afﬂuence. Education and skills are closely related to employment opportunities, with rates of third level education highest in Dublin and lowest in the Midlands, while rates of technical/apprenticeships were higher in the Eastern and Midland counties.
-
-Travel patterns; Where there is a mismatch between the locations of jobs and where people live, it leads to long distance commuting, see Figure 1.8 which shows the location of jobs compared to the number of resident workers across the region. The commuter catchment of the Dublin Metropolitan Area now extends into parts of the Midlands, Louth and south into Wexford. While Dublin has higher rates of sustainable transport, private vehicles remain the primary mode of travel to work or education across the whole of the region. Long distance car-based commuting is a key challenge that is leading to congestion of transport networks and negative impacts on people’s quality of life and on the environment.
-
-Employment; The Region has a robust enterprise base of traditional and emerging sectors and strong clusters of universities and research centres to support innovation. A highly skilled labour force has helped the Region attract FDI and multi-national enterprises (MNEs). The Dublin region is a global hub for international investment and high value jobs in ICT, ﬁnancial and business services while local enterprise and small and medium sized enterprises (SMEs) provide vital employment across the whole of the Region. The Eastern and Midland counties have the highest share of micro-enterprises with specialisations, which include tourism, the equine, food and creative industries.
-
-![Fig 1.8 Resident Workers and Local Jobs, CSO 2016](assets/p017-f02.webp)
-
-*Fig 1.8 Resident Workers and Local Jobs, CSO 2016*
-
-![Figure from page 18](assets/p018-f01.webp)
-
-*Figure from page 18*
-
-Regional Spatial & Economic Strategy
-
-Functional Urban Areas (FUAs)
-
-Urban and rural areas can be interconnected to each other through many different social and economic interactions. As the places where people live, work and socialise often extend across local and regional administrative boundaries, an understanding of these cross boundary ‘functional’ areas is needed to help better plan for the provision of infrastructure, transport, housing, services and amenities in our Region.
-
-The National Planning Framework identiﬁes an urban structure for the Region based on commuting patterns, with reference to the EU/OECD deﬁnition of ‘functional urban areas’ (FUAs)1 which is used to identify areas with different sub-regional interdependencies and inﬂuence in the region. The FUAs support and augment the Strategic Planning Areas (SPAs), which provide for a sub-regional planning remit, through recognising spatial, social and economic similarities and differences within each SPA. These FUAs are;
-
-While the inﬂuence of Dublin extends across much of the Region, it is important to recognise that the Region also contains an extensive network of large economically active towns, which provide key services and employment functions for their own hinterlands or ‘Functional Urban Areas’ (FUAs). The size of the FUA, relative to the urban core, shows the inﬂuence of these urban centres over their surrounding hinterlands. See Figure 1.9 which shows those large towns4 in the Region that have an identiﬁable FUA.
-
-See also Appendix E for deﬁnition of Functional Urban Areas in the Region.
-
-• The Dublin Metropolitan Area (DMA), home to 1.4 million people in 2016, is the main international gateway to Ireland and includes the continuous built up city area and a number of highly urbanised surrounding settlements within a polycentric metropolitan area. The Metropolitan Area Strategic Plan (MASP) in Chapter 5 identiﬁes a number of large-scale strategic residential and economic development areas, that will deliver signiﬁcant development in an integrated and sustainable manner in the metropolitan area.
-
-![Figure from page 18](assets/p018-f02.webp)
-
-*Figure from page 18*
-
-• The Core Region; which is the peri-urban ‘hinterlands’2 within the commuter catchment around Dublin, which covers the Eastern counties and extends into the Midlands, north into Louth and south beyond the Region into Wexford. The Core Region is home to over 550,000 people with some of the youngest and fastest growing towns in the Region and the State.
-
-• The Gateway Region3; includes the Midlands and north east border areas, outside the Core Region, which are strategically located as inter-regional portals to the Northern and Western and Southern Regions, where over 400,000 people reside. The Gateway Region also includes the Regional Growth Centres of Athlone and Dundalk, a number of large county towns as well as smaller towns and villages which support the wider rural and agricultural area where the population is more dispersed.
-
-1 The standardised EU/OECD deﬁnition of a city region or urban ‘hinterlands’ is the commuter catchment from which are least 15% of the relevant ‘urban core’ workforce is drawn.
-
-2 The functional urban ‘hinterland’ of the Dublin Metropolitan Area includes all Electoral Districts (EDs) where at least 15% of their employed residents are working in the Dublin Metropolitan Area based on Place of Work (POWCAR) 2016 census data.
-
-3 The urban core for this analysis are based on NTA/TII delineations of settlements which are modiﬁcations of CSO settlement boundaries to allow for additional local jobs locations outside residential areas.
-
-4 ‘Large towns’ in the Region are towns with a population over 10,000 people or 2,500 local jobs.
-
-![Figure from page 19](assets/p019-f01.webp)
-
-*Figure from page 19*
-
-Introduction
-
-![Figure 1.9 Functional Urban Areas, Dublin and Large Towns CSO 2016](assets/p019-f02.webp)
-
-*Figure 1.9 Functional Urban Areas, Dublin and Large Towns CSO 2016*
-
-Regional Spatial & Economic Strategy
-
-## 2 Strategic Vision

@@ -10,8 +10,6 @@
   - [Front Matter](sections/front-matter/front-matter.md) — pages 1–6
 - [1 Introduction](sections/1-introduction/) — pages 7–10
   - [1 Introduction](sections/1-introduction/overview.md) — pages 7–10
-- [Servicing](sections/servicing/) — pages 197–202
-  - [Servicing](sections/servicing/overview.md) — pages 197–202
 - [2 Progress Made on the Prior Transport Strategy](sections/2-progress-made-on-the-prior-transport-strategy/) — pages 11–16
   - [2 Progress Made on the Prior Transport Strategy](sections/2-progress-made-on-the-prior-transport-strategy/overview.md) — pages 11–16
 - [3 Strategy Challenges](sections/3-strategy-challenges/) — pages 17–24
@@ -38,6 +36,8 @@
   - [13 Roads](sections/13-roads/overview.md) — pages 167–180
 - [14 Traffic Management and Travel Options](sections/14-traffic-management-and-travel-options/) — pages 181–196
   - [14 Traffic Management and Travel Options](sections/14-traffic-management-and-travel-options/overview.md) — pages 181–196
+- [15 Freight, Delivery and Servicing](sections/15-freight-delivery-and-servicing/) — pages 197–202
+  - [15 Freight, Delivery and Servicing](sections/15-freight-delivery-and-servicing/overview.md) — pages 197–202
 - [16 Climate Action Management](sections/16-climate-action-management/) — pages 203–211
   - [16 Climate Action Management](sections/16-climate-action-management/overview.md) — pages 203–211
 - [17 Strategy Outcomes](sections/17-strategy-outcomes/) — pages 213–228

@@ -1,6 +1,6 @@
 # National Investment Framework for Transport in Ireland
 
-> Department of Transport — 5 chapters, 63 sections, 72 source pages.
+> Department of Transport — 7 chapters, 66 sections, 72 source pages.
 > Source: https://assets.gov.ie/static/documents/national-investment-framework-for-transport-in-ireland-e0da00c5-441f-44bd-955c-a4bcdac.pdf
 > Full text: full.md
 
@@ -14,7 +14,7 @@
   - [List of Tables](sections/list-of-tables/overview.md) — pages 7–7
 - [Foreword](sections/foreword/) — pages 7–8
   - [Foreword](sections/foreword/overview.md) — pages 7–8
-- [Executive Summary](sections/executive-summary/) — pages 8–72
+- [Executive Summary](sections/executive-summary/) — pages 8–70
   - [1.1 Introduction](sections/executive-summary/1-1-introduction.md) — pages 13–13
   - [1.2 Investing in Transport](sections/executive-summary/1-2-investing-in-transport.md) — pages 13–14
   - [1.3 Project Ireland 2040](sections/executive-summary/1-3-project-ireland-2040.md) — pages 14–15
@@ -37,40 +37,45 @@
   - [2.7 Promoting a Strong and Balanced Economy](sections/executive-summary/2-7-promoting-a-strong-and-balanced-economy.md) — pages 26–29
   - [2.8 Conclusion](sections/executive-summary/2-8-conclusion.md) — pages 26–26
   - [3.1 Introduction](sections/executive-summary/3-1-introduction.md) — pages 29–30
-  - [3.2 Context and](sections/executive-summary/3-2-context-and.md) — pages 30–34
-  - [3.3 Current Network](sections/executive-summary/3-3-current-network.md) — pages 34–37
-  - [3.4 Future Network](sections/executive-summary/3-4-future-network.md) — pages 37–43
-  - [3.5 Conclusion](sections/executive-summary/3-5-conclusion.md) — pages 43–45
+  - [3.2 Context and Background](sections/executive-summary/3-2-context-and-background.md) — pages 30–34
+  - [3.3 Current Network Analysis](sections/executive-summary/3-3-current-network-analysis.md) — pages 34–37
+  - [3.4 Future Network Analysis](sections/executive-summary/3-4-future-network-analysis.md) — pages 37–43
+  - [3.5 Conclusion](sections/executive-summary/3-5-conclusion.md) — pages 43–43
   - [Executive Summary](sections/executive-summary/overview.md) — pages 8–13
+  - [4 Investment Priorities](sections/executive-summary/4-investment-priorities.md) — pages 45–45
   - [4.1 Introduction](sections/executive-summary/4-1-introduction.md) — pages 45–45
   - [4.2 Investment Priorities](sections/executive-summary/4-2-investment-priorities.md) — pages 45–46
-  - [4.2.1 NIFTI Investment](sections/executive-summary/4-2-1-nifti-investment.md) — pages 46–47
-  - [4.2.3 NIFTI Investment](sections/executive-summary/4-2-3-nifti-investment.md) — pages 47–47
-  - [4.2.2 NIFTI Investment](sections/executive-summary/4-2-2-nifti-investment.md) — pages 47–48
-  - [4.3 Investment](sections/executive-summary/4-3-investment.md) — pages 48–48
-  - [4.2.4 NIFTI Investment](sections/executive-summary/4-2-4-nifti-investment.md) — pages 48–48
+  - [4.2.1 NIFTI Investment Priority: Decarbonisation](sections/executive-summary/4-2-1-nifti-investment-priority-decarbonisation.md) — pages 46–47
+  - [4.2.3 NIFTI Investment Priority: Mobility of People and Goods in Urban Areas](sections/executive-summary/4-2-3-nifti-investment-priority-mobility-of-people-and-goods-in-urban-areas.md) — pages 47–47
+  - [4.2.2 NIFTI Investment Priority: Protection and Renewal](sections/executive-summary/4-2-2-nifti-investment-priority-protection-and-renewal.md) — pages 47–48
+  - [4.3 Investment Hierarchies](sections/executive-summary/4-3-investment-hierarchies.md) — pages 48–48
+  - [4.2.4 NIFTI Investment Priority: Enhanced Regional and Rural Connectivity](sections/executive-summary/4-2-4-nifti-investment-priority-enhanced-regional-and-rural-connectivity.md) — pages 48–48
   - [4.3.1 Modal Hierarchy](sections/executive-summary/4-3-1-modal-hierarchy.md) — pages 48–50
-  - [4.3.2 Intervention](sections/executive-summary/4-3-2-intervention.md) — pages 50–52
+  - [4.3.2 Intervention Hierarchy](sections/executive-summary/4-3-2-intervention-hierarchy.md) — pages 50–52
   - [4.4 Conclusion](sections/executive-summary/4-4-conclusion.md) — pages 52–55
   - [5.1 Introduction](sections/executive-summary/5-1-introduction.md) — pages 55–55
   - [5.2 Identifying Transport Investments](sections/executive-summary/5-2-identifying-transport-investments.md) — pages 55–56
   - [5.3 Project Development](sections/executive-summary/5-3-project-development.md) — pages 56–56
-  - [5.4 Supporting the](sections/executive-summary/5-4-supporting-the.md) — pages 56–57
-  - [5.5 Developing](sections/executive-summary/5-5-developing.md) — pages 57–58
-  - [5.6 Enhancing Transport](sections/executive-summary/5-6-enhancing-transport.md) — pages 58–59
-  - [5.8 Monitoring and](sections/executive-summary/5-8-monitoring-and.md) — pages 59–61
+  - [5.4 Supporting the National Strategic Outcomes](sections/executive-summary/5-4-supporting-the-national-strategic-outcomes.md) — pages 56–57
+  - [5.5 Developing Investment Plans](sections/executive-summary/5-5-developing-investment-plans.md) — pages 57–58
+  - [5.6 Enhancing Transport Project Appraisal Guidance](sections/executive-summary/5-6-enhancing-transport-project-appraisal-guidance.md) — pages 58–59
+  - [5.8 Monitoring and Oversight](sections/executive-summary/5-8-monitoring-and-oversight.md) — pages 59–61
   - [5.9 Conclusion](sections/executive-summary/5-9-conclusion.md) — pages 61–63
   - [6.1 Introduction](sections/executive-summary/6-1-introduction.md) — pages 63–63
-  - [6.2 Strategic Environmental](sections/executive-summary/6-2-strategic-environmental.md) — pages 63–65
+  - [6.2 Strategic Environmental Assessment](sections/executive-summary/6-2-strategic-environmental-assessment.md) — pages 63–65
   - [6.2.1 Purpose of the SEA](sections/executive-summary/6-2-1-purpose-of-the-sea.md) — pages 65–65
-  - [6.2.2 Summary of the](sections/executive-summary/6-2-2-summary-of-the.md) — pages 65–66
-  - [6.3 Appropriate](sections/executive-summary/6-3-appropriate.md) — pages 66–66
+  - [6.2.2 Summary of the Assessment Approach](sections/executive-summary/6-2-2-summary-of-the-assessment-approach.md) — pages 65–66
+  - [6.3 Appropriate Assessment](sections/executive-summary/6-3-appropriate-assessment.md) — pages 66–66
   - [6.3.1 Purpose of the AA](sections/executive-summary/6-3-1-purpose-of-the-aa.md) — pages 66–66
   - [6.4.1 Purpose of the SFRA](sections/executive-summary/6-4-1-purpose-of-the-sfra.md) — pages 66–66
   - [6.3.2 Findings of the AA](sections/executive-summary/6-3-2-findings-of-the-aa.md) — pages 66–66
   - [6.4.2 Findings of the SFRA](sections/executive-summary/6-4-2-findings-of-the-sfra.md) — pages 66–67
-  - [6.5.1 Exploring](sections/executive-summary/6-5-1-exploring.md) — pages 67–67
+  - [6.5.1 Exploring Alternatives to NIFTI](sections/executive-summary/6-5-1-exploring-alternatives-to-nifti.md) — pages 67–67
   - [6.5 Integrating](sections/executive-summary/6-5-integrating.md) — pages 67–68
-  - [6.5.2 Summary of SEA](sections/executive-summary/6-5-2-summary-of-sea.md) — pages 68–69
+  - [6.5.2 Summary of SEA Recommendations](sections/executive-summary/6-5-2-summary-of-sea-recommendations.md) — pages 68–69
   - [6.6 Conclusion](sections/executive-summary/6-6-conclusion.md) — pages 69–69
-  - [6.5.3 Monitoring NIFTI](sections/executive-summary/6-5-3-monitoring-nifti.md) — pages 69–72
+  - [6.5.3 Monitoring NIFTI](sections/executive-summary/6-5-3-monitoring-nifti.md) — pages 69–70
+- [List of Abbreviations](sections/list-of-abbreviations/) — pages 70–71
+  - [List of Abbreviations](sections/list-of-abbreviations/overview.md) — pages 70–71
+- [References](sections/references/) — pages 71–72
+  - [References](sections/references/overview.md) — pages 71–72

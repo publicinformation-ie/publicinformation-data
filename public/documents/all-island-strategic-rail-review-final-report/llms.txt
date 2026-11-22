@@ -1,6 +1,6 @@
 # All-Island Strategic Rail Review Final Report
 
-> Department of Transport — 12 chapters, 12 sections, 162 source pages.
+> Department of Transport — 12 chapters, 18 sections, 162 source pages.
 > Source: https://assets.gov.ie/static/documents/final-report-of-the-all-island-strategic-rail-review.pdf
 > Full text: full.md
 
@@ -17,7 +17,13 @@
 - [Chapter 3 | The Case for Change](sections/chapter-3-the-case-for-change/) — pages 33–42
   - [Chapter 3 | The Case for Change](sections/chapter-3-the-case-for-change/overview.md) — pages 33–42
 - [Chapter 4 | Recommendations](sections/chapter-4-recommendations/) — pages 43–88
-  - [Chapter 4 | Recommendations](sections/chapter-4-recommendations/overview.md) — pages 43–88
+  - [Chapter 4 | Recommendations](sections/chapter-4-recommendations/overview.md) — pages 43–48
+  - [Decarbonisation](sections/chapter-4-recommendations/decarbonisation.md) — pages 49–52
+  - [Intercity Spine](sections/chapter-4-recommendations/intercity-spine.md) — pages 53–58
+  - [Regional and Rural](sections/chapter-4-recommendations/regional-and-rural.md) — pages 59–70
+  - [Sustainable Cities](sections/chapter-4-recommendations/sustainable-cities.md) — pages 71–76
+  - [Freight](sections/chapter-4-recommendations/freight.md) — pages 77–82
+  - [Customer Experience](sections/chapter-4-recommendations/customer-experience.md) — pages 83–88
 - [Chapter 5 | Benefits and Costs](sections/chapter-5-benefits-and-costs/) — pages 89–100
   - [Chapter 5 | Benefits and Costs](sections/chapter-5-benefits-and-costs/overview.md) — pages 89–100
 - [Chapter 6 | Roadmap for Delivery](sections/chapter-6-roadmap-for-delivery/) — pages 101–106

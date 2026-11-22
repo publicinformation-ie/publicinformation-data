@@ -1,6 +1,6 @@
 # Code of Practice: Design, Construction, Equipment, and Operation of Small Fishing Vessels of less than 15 metres Length overall
 
-> Department of Transport — 14 chapters, 138 sections, 72 source pages.
+> Department of Transport — 12 chapters, 136 sections, 72 source pages.
 > Source: https://assets.gov.ie/static/documents/code-of-practice-for-fishing-vessels-of-less-than-15-metres-length-overall-revision-3.pdf
 > Full text: full.md
 
@@ -97,18 +97,17 @@
   - [7.7 Loose Equipment](sections/3-2-1-stability/7-7-loose-equipment.md) — pages 42–42
   - [7.8 Distress Signals](sections/3-2-1-stability/7-8-distress-signals.md) — pages 42–42
   - [7.9 Means for Recovering Persons from the Water](sections/3-2-1-stability/7-9-means-for-recovering-persons-from-the-water.md) — pages 42–42
-- [8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND](sections/8-manning-training-certification-emergency-procedures-and/) — pages 43–44
-  - [8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND](sections/8-manning-training-certification-emergency-procedures-and/overview.md) — pages 43–43
-  - [8.2 Safety Training](sections/8-manning-training-certification-emergency-procedures-and/8-2-safety-training.md) — pages 43–43
-  - [8.3 Standards of Competence](sections/8-manning-training-certification-emergency-procedures-and/8-3-standards-of-competence.md) — pages 43–43
-  - [8.4 Operation and Maintenance of Propulsion Machinery](sections/8-manning-training-certification-emergency-procedures-and/8-4-operation-and-maintenance-of-propulsion-machinery.md) — pages 43–43
-  - [8.5 Operation of Radio Equipment](sections/8-manning-training-certification-emergency-procedures-and/8-5-operation-of-radio-equipment.md) — pages 43–43
-  - [8.6 Responsibility of the Owner for Safe Manning of Vessel](sections/8-manning-training-certification-emergency-procedures-and/8-6-responsibility-of-the-owner-for-safe-manning-of-vessel.md) — pages 44–44
-  - [8.7 Safe Navigational Watch](sections/8-manning-training-certification-emergency-procedures-and/8-7-safe-navigational-watch.md) — pages 44–44
-  - [8.8 Musters and Drills for Emergency Procedures](sections/8-manning-training-certification-emergency-procedures-and/8-8-musters-and-drills-for-emergency-procedures.md) — pages 44–44
-- [8.9 Organisation of Working Time](sections/8-9-organisation-of-working-time/) — pages 45–45
-  - [8.9 Organisation of Working Time](sections/8-9-organisation-of-working-time/overview.md) — pages 45–45
-- [9 RADIO COMMUNICATIONS](sections/9-radio-communications/) — pages 46–56
+- [8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND ORGANISATION OF WORKING TIME](sections/8-manning-training-certification-emergency-procedures-and-organisation-of-working-time/) — pages 43–45
+  - [8 MANNING, TRAINING, CERTIFICATION, EMERGENCY PROCEDURES AND ORGANISATION OF WORKING TIME](sections/8-manning-training-certification-emergency-procedures-and-organisation-of-working-time/overview.md) — pages 43–43
+  - [8.2 Safety Training](sections/8-manning-training-certification-emergency-procedures-and-organisation-of-working-time/8-2-safety-training.md) — pages 43–43
+  - [8.3 Standards of Competence](sections/8-manning-training-certification-emergency-procedures-and-organisation-of-working-time/8-3-standards-of-competence.md) — pages 43–43
+  - [8.4 Operation and Maintenance of Propulsion Machinery](sections/8-manning-training-certification-emergency-procedures-and-organisation-of-working-time/8-4-operation-and-maintenance-of-propulsion-machinery.md) — pages 43–43
+  - [8.5 Operation of Radio Equipment](sections/8-manning-training-certification-emergency-procedures-and-organisation-of-working-time/8-5-operation-of-radio-equipment.md) — pages 43–43
+  - [8.6 Responsibility of the Owner for Safe Manning of Vessel](sections/8-manning-training-certification-emergency-procedures-and-organisation-of-working-time/8-6-responsibility-of-the-owner-for-safe-manning-of-vessel.md) — pages 44–44
+  - [8.7 Safe Navigational Watch](sections/8-manning-training-certification-emergency-procedures-and-organisation-of-working-time/8-7-safe-navigational-watch.md) — pages 44–44
+  - [8.8 Musters and Drills for Emergency Procedures](sections/8-manning-training-certification-emergency-procedures-and-organisation-of-working-time/8-8-musters-and-drills-for-emergency-procedures.md) — pages 44–44
+  - [8.9 Organisation of Working Time](sections/8-manning-training-certification-emergency-procedures-and-organisation-of-working-time/8-9-organisation-of-working-time.md) — pages 45–45
+- [9 RADIO COMMUNICATIONS](sections/9-radio-communications/) — pages 46–57
   - [9 RADIO COMMUNICATIONS](sections/9-radio-communications/overview.md) — pages 46–46
   - [9.1 Part 1 – General](sections/9-radio-communications/9-1-part-1-general.md) — pages 46–46
   - [9.1.1 The Global Maritime Distress and Safety System (GMDSS)](sections/9-radio-communications/9-1-1-the-global-maritime-distress-and-safety-system-gmdss.md) — pages 46–46
@@ -134,9 +133,7 @@
   - [10.11 Charts and Nautical Publications](sections/9-radio-communications/10-11-charts-and-nautical-publications.md) — pages 56–56
   - [10.12 Signalling Lamp](sections/9-radio-communications/10-12-signalling-lamp.md) — pages 56–56
   - [10.13 Radar Reflector](sections/9-radio-communications/10-13-radar-reflector.md) — pages 56–56
-  - [10.14 Search Light](sections/9-radio-communications/10-14-search-light.md) — pages 56–56
-- [11 ACCOMMODATION AND WORKING SPACES](sections/11-accommodation-and-working-spaces/) — pages 57–57
-  - [11 ACCOMMODATION AND WORKING SPACES](sections/11-accommodation-and-working-spaces/overview.md) — pages 57–57
+  - [10.14 Search Light](sections/9-radio-communications/10-14-search-light.md) — pages 56–57
 - [11.1 General](sections/11-1-general/) — pages 57–71
   - [11.1 General](sections/11-1-general/overview.md) — pages 57–57
   - [11.2 Living Quarters](sections/11-1-general/11-2-living-quarters.md) — pages 57–57
@@ -149,8 +146,7 @@
   - [11.10 Lighting](sections/11-1-general/11-10-lighting.md) — pages 58–58
   - [11.11 Temperature](sections/11-1-general/11-11-temperature.md) — pages 59–59
   - [11.12 Hand Holds and Grab-rails](sections/11-1-general/11-12-hand-holds-and-grab-rails.md) — pages 59–60
-  - [12.1 Determination of vessel's stability by means of rolling period tests](sections/11-1-general/12-1-determination-of-vessel-s-stability-by-means-of-rolling-period-tests.md) — pages 60–63
-  - [12.2.2 Limitations on the use of this method](sections/11-1-general/12-2-2-limitations-on-the-use-of-this-method.md) — pages 64–65
+  - [12.1 Determination of vessel's stability by means of rolling period tests](sections/11-1-general/12-1-determination-of-vessel-s-stability-by-means-of-rolling-period-tests.md) — pages 60–65
   - [13.1 Guidance on Capsize Safety](sections/11-1-general/13-1-guidance-on-capsize-safety.md) — pages 65–65
   - [13.1.1 Actions in Port](sections/11-1-general/13-1-1-actions-in-port.md) — pages 65–65
   - [13.1.2 Reducing Top Weight](sections/11-1-general/13-1-2-reducing-top-weight.md) — pages 65–65
