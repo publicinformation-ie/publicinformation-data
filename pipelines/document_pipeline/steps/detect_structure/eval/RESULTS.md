@@ -241,3 +241,33 @@ No regressions.
 **D5 as a whole** (5a + 5b + 5c, against the post-D3 reference: tuning exact F1 0.53 -> 0.61, page attribution 0.39 -> 0.48; held out unchanged): the rule improves its target `sustainable-mobility-policy` (exact F1 0.22 -> 1.00, page attribution 0.12 -> 1.00), so D10(c) holds for D5. `emra-regional-spatial-and-economic-strategy` and `connecting-ireland-rural-mobility-plan` did not move: emra's TOC match rate is now 0.595, just under the 0.60 gate (D6 removes its unpaged entries from the denominator), and connecting-ireland's text layer is garbled (a stated non-goal).
 
 **Notes:** `sustainable-mobility-policy` being fully correct also removes its D8 target; D8 is now judged on emra alone.
+
+### D6 — Unpaged TOC entries leave the gate
+
+- **Change:** an entry with no printed page is `unpaged` once a left-edge column of the contents list prints page numbers (at least three entries, half or more paged). Unpaged entries are excluded from the match-rate numerator and denominator, but are still matched, still create a boundary when they match, and are still logged `TocEntryUnmatched` when they do not. Wrapped-title joining is also confined to such a column.
+- **Commit:** see git log (`feat(detect_structure): exclude unpaged TOC entries from the gate`)
+- **Kind:** detector change
+
+| Summary (raw tree) | Documents | Fully correct | Exact F1 (macro) | Page attribution (macro) | Title accuracy (macro) |
+|---|---:|---:|---:|---:|---:|
+| tuning, before | 10 | 4 | 0.61 | 0.48 | 0.87 |
+| tuning, after | 10 | 4 | 0.63 | 0.50 | 0.96 |
+| held out, before | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| held out, after | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| all, before | 14 | 5 | 0.61 | 0.52 | 0.90 |
+| all, after | 14 | 5 | 0.63 | 0.53 | 0.97 |
+
+**Per-document changes:**
+
+| Document | Metric | Before | After | Reason |
+|---|---|---:|---:|---|
+| `emra-regional-spatial-and-economic-strategy` | exact F1 | 0.17 | 0.44 | its 26 unpaged entries (front-matter roman folios, appendices) left the denominator: match rate 0.595 -> 0.807, above the gate, so the method changes `numbering` -> `toc` and `InvalidStructure` 1 -> 0 |
+| `emra-regional-spatial-and-economic-strategy` | title accuracy / page attribution / exact recall | 0.00 / 0.04 / 0.13 | 0.83 / 0.18 / 0.40 | same |
+
+No regressions. (`climate-action-plan-2025-annex-of-actions` does not change here and is the D7 target: 20 of its 36 entries are now excluded as unpaged, but only 4 of the 16 paged entries match until pipe-separated codes are read, match rate 0.139 -> 0.25.)
+
+**Design correction made while implementing (spec updated):** the rule was first written as "at least half of the TOC's entries carry a page number". The corpus case it was written for, the CAP 2025 annex (16 paged chapter entries and 20 prose lines), is only 44% paged, so that rule would not have fired on it. The test is now applied per left-edge column: the contents list is paged, the side panel is a column with no page numbers. A single stray page number in an otherwise pageless list still does not count. This was found by writing the scenario test for the annex shape, not by fitting a threshold to the score.
+
+**Orphaned override (to be handled in 9.3):** `emra-regional-spatial-and-economic-strategy` has an override for slug `1-1-vision` (and a drop of `1-2-eastern-and-midland-regional-assembly`) that was written for the old `numbering` tree, where two headings sit side by side on one baseline. The new `toc` tree has `1-2-...` but not `1-1-vision`, so `merge_overrides` logs `OverrideTargetMissing`-style output for it and still applies the drop. The published emra tree therefore needs the override re-pointed or removed before regeneration.
+
+**Documents without gold** (`production_view.py`, `compare.py` refreshed): methods unchanged for 39 of 40 documents (emra above); `InvalidStructure` 12 -> 11. Match rates in `compare.py` move slightly because matched unpaged entries no longer count: `sustainable-mobility-policy-action-plan-2026-2030` 0.667 -> 0.80, `ev-infrastructure-strategy` 0.667 -> 0.767, `national-roads-2040-final-report` 0.906 -> 0.966, `code-of-practice-fishing-vessels-under-15m` 0.871 -> 0.870, `national-ports-policy` 0.833 -> 0.829.

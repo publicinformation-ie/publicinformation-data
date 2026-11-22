@@ -758,6 +758,29 @@ def _row_from(line, title, number, level_hint, page, furniture, label=False) -> 
             "top": line.y0, "bottom": line.bbox[3], "right": line.bbox[2], "size": line.size}
 
 
+# Entries are grouped into columns by left edge, in 10-point buckets, so the
+# small x-jitter between a chapter line and its sub-lines does not split a column.
+TOC_COLUMN_BUCKET = 10.0
+TOC_MIN_COLUMN_ENTRIES = 3
+
+
+def _column(item) -> int:
+    return round(item["x0"] / TOC_COLUMN_BUCKET)
+
+
+def _paged_columns(items: list) -> set:
+    """The left-edge columns of a TOC that print page numbers: those with at
+    least three entries, half or more of which carry one. A pageless contents
+    list has none. A side panel of prose beside a contents list is a column
+    without page numbers, so it is not one of these."""
+    groups = {}
+    for item in items:
+        groups.setdefault(_column(item), []).append(item)
+    return {column for column, group in groups.items()
+            if len(group) >= TOC_MIN_COLUMN_ENTRIES
+            and sum(1 for i in group if i.get("printed_page") is not None) * 2 >= len(group)}
+
+
 def _join_wrapped_rows(rows: list) -> list:
     """Join a wrapped TOC title onto the entry before it.
 
@@ -768,16 +791,16 @@ def _join_wrapped_rows(rows: list) -> list:
     label (`Goal 7:`). The joined entry keeps the first line's indentation and takes
     the page number of the last line. A row that follows an entry that already has
     a page number starts a new entry, and so does any row with its own number.
-    Only done on a TOC that prints page numbers (at least half its rows have one):
-    in a pageless contents list every line is an entry.
+    Only done in a column that prints page numbers (`_paged_columns`): in a
+    pageless contents list, or in a side panel of prose, every line is an entry.
     """
-    if sum(1 for r in rows if r["printed_page"] is not None) * 2 < len(rows):
-        return rows
+    paged_columns = _paged_columns(rows)
     joined = []
     for row in rows:
         previous = joined[-1] if joined else None
         if (previous is not None and previous["printed_page"] is None
                 and row["number"] is None and not row.get("label")
+                and _column(row) in paged_columns and _column(previous) in paged_columns
                 and not _ENTRY_LABEL_RE.match(row["title"])
                 and abs(row["size"] - previous["size"]) <= TOC_WRAP_SIZE_TOLERANCE
                 and not previous.get("label_only")
@@ -1047,6 +1070,16 @@ def _continuation_pages(pages: list, toc_pages: list, body: float,
     return added
 
 
+def _tag_unpaged(entries: list) -> list:
+    """Mark entries that print no page number as `unpaged`, once the TOC has a
+    column that prints page numbers (`_paged_columns`). Side-panel prose and
+    appendices published separately have none; they are not evidence about the
+    match rate. A TOC that prints no page numbers has no unpaged entries."""
+    if not _paged_columns(entries):
+        return [{**e, "unpaged": False} for e in entries]
+    return [{**e, "unpaged": e.get("printed_page") is None} for e in entries]
+
+
 def parse_toc(pages: list, body: float):
     """Detect the document's main TOC and parse its entries.
 
@@ -1098,6 +1131,7 @@ def parse_toc(pages: list, body: float):
     level_signal = "none"
     if all_entries:
         all_entries, level_signal = _infer_levels(all_entries)
+        all_entries = _tag_unpaged(all_entries)
 
     return all_entries, toc_pages, level_signal, flags
 
@@ -1259,7 +1293,10 @@ def from_toc(pages: list, body: float, parsed=None):
 
     running = running_header_texts(pages)
     index = build_occurrence_index(pages, set(toc_pages), running, body)
-    plausible = [e for e in entries if not e["furniture"]]
+    # Unpaged entries (no printed page, in a TOC that prints pages) are matched
+    # like any other but are not counted: the gate measures the entries a body
+    # heading is expected for.
+    plausible = [e for e in entries if not e["furniture"] and not e.get("unpaged")]
 
     nodes = []
     errors = []
@@ -1285,7 +1322,7 @@ def from_toc(pages: list, body: float, parsed=None):
         number, title = _split_number(best["text"])
         nodes.append(_make(entry["level"], number, title, best["page"], best["y0"],
                            CONFIDENCE["toc"]))
-        if not entry["furniture"]:
+        if not entry["furniture"] and not entry.get("unpaged"):
             matched_plausible += 1
 
     match_rate = matched_plausible / len(plausible) if plausible else 0.0

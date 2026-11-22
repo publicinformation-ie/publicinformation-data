@@ -38,7 +38,7 @@ Run from `pipelines/document_pipeline` with `PYTHONPATH=".:../../src" ../../.ven
 
 ## 6. Gate denominator and heading codes (D6, D7)
 
-- [ ] 6.1 Classify unpaged entries and exclude them from the gate denominator. Verify with unit tests of both "Unpaged TOC entries excluded from the gate" scenarios, then measure.
+- [x] 6.1 Classify unpaged entries and exclude them from the gate denominator. Verify with unit tests of both "Unpaged TOC entries excluded from the gate" scenarios, then measure.
 - [ ] 6.2 Treat pipe-separated codes as heading numbers in `_split_number`. Verify with unit tests of "Code prefix matched across TOC and body" and "Ordinary pipe kept", and a slug test (`re-research-and-innovation`). Document the rule in the README, then measure. Check the slug changes on the other CAP annexes in `compare.py`'s output.
 
 ## 7. Supplement confinement (D4)

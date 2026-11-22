@@ -1501,3 +1501,73 @@ def test_a_list_of_abbreviations_entry_does_not_disqualify_a_continuation_page()
     _entries, toc_pages, _signal, _flags = parse_toc(pages, 10.0)
 
     assert toc_pages == [4, 5]
+
+
+# --- unpaged TOC entries and the gate (D6) --------------------------------------
+
+def _gate_document():
+    """Four body pages, each opened by a bold heading the contents list names."""
+    names = ["Alpha", "Bravo", "Charlie", "Delta"]
+    return [_body_page(index + 2, name) for index, name in enumerate(names)], names
+
+
+def _entry(title, printed_page, furniture=False, x0=72.0):
+    return {"title": title, "number": None, "level_hint": None, "x0": x0, "furniture": furniture,
+            "printed_page": printed_page, "label": False, "level": 1}
+
+
+def _gate_report(entries):
+    from steps.detect_structure.process import _tag_unpaged, from_toc
+
+    pages, _names = _gate_document()
+    parsed = (_tag_unpaged(entries), [1], "none", {})
+    return from_toc(pages, body_size(pages), parsed)
+
+
+def test_side_panel_prose_without_page_numbers_does_not_depress_the_gate():
+    paged = [_entry(name, 2 + index) for index, name in enumerate(["Alpha", "Bravo", "Charlie", "Delta"])]
+    # The side panel is a second column of the contents page, with no page numbers.
+    prose = [_entry(f"Explanatory sentence number {i} in a side panel", None, x0=435.0)
+             for i in range(20)]
+    nodes, report = _gate_report(paged + prose)
+
+    assert nodes is not None and [n.title for n in nodes] == ["Alpha", "Bravo", "Charlie", "Delta"]
+    assert report["match_rate"] == 1.0            # 4 of the 4 paged entries
+    assert report["matched_count"] == 4
+
+
+def test_without_the_unpaged_rule_the_same_prose_would_fall_below_the_gate():
+    # The same entries with page numbers everywhere: 4 matched of 12 is below the gate.
+    entries = [_entry(name, 2 + i) for i, name in enumerate(["Alpha", "Bravo", "Charlie", "Delta"])]
+    entries += [_entry(f"Explanatory sentence number {i} in a side panel", 9 + i) for i in range(8)]
+    nodes, report = _gate_report(entries)
+
+    assert nodes is None and report["errors"][0]["error_type"] == "LowTocMatchRate"
+
+
+def test_unpaged_appendices_are_excluded_from_the_gate_and_logged_when_unmatched():
+    paged = [_entry(name, 2 + index) for index, name in enumerate(["Alpha", "Bravo", "Charlie", "Delta"])]
+    appendices = [_entry(f"Appendix {c}", None) for c in "ABC"]
+    nodes, report = _gate_report(paged + appendices)
+
+    assert nodes is not None
+    unmatched = [e["context"]["title"] for e in report["errors"] if e["error_type"] == "TocEntryUnmatched"]
+    assert unmatched == [f"Appendix {c}" for c in "ABC"]
+
+
+def test_a_column_of_prose_beside_a_paged_column_is_not_part_of_the_gate_but_one_stray_page_is_not_a_column():
+    from steps.detect_structure.process import _tag_unpaged
+
+    # One stray page number in an otherwise pageless list does not make a paged column.
+    stray = _tag_unpaged([_entry("Alpha", 4), _entry("Bravo", None), _entry("Charlie", None),
+                          _entry("Delta", None)])
+
+    assert [e["unpaged"] for e in stray] == [False] * 4
+
+
+def test_a_toc_that_prints_no_page_numbers_has_no_unpaged_entries():
+    from steps.detect_structure.process import _tag_unpaged
+
+    tagged = _tag_unpaged([_entry("Alpha", None), _entry("Bravo", None)])
+
+    assert [e["unpaged"] for e in tagged] == [False, False]

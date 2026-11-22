@@ -108,7 +108,7 @@ When the system parses a TOC page, it SHALL join a line that has no heading numb
 
 ### Requirement: Continuation guards
 
-The system SHALL join continuation lines only in a TOC that prints page numbers, meaning at least half of its entries have one, and only when the line is not indented less than the entry before it and is set in the same type size. A line that is a chapter label, or that opens with its own label such as `Goal 7:` or `Chapter 2 –`, SHALL NOT be joined: it is an entry of its own.
+The system SHALL join continuation lines only within a column that prints page numbers (as defined for unpaged entries), and only when the line is not indented less than the entry before it and is set in the same type size. A line that is a chapter label, or that opens with its own label such as `Goal 7:` or `Chapter 2 –`, SHALL NOT be joined: it is an entry of its own.
 
 #### Scenario: A labelled line is a sibling, not a continuation
 
@@ -188,11 +188,11 @@ The system SHALL record each TOC entry's printed page number when the TOC prints
 
 ### Requirement: Unpaged TOC entries excluded from the gate
 
-When at least half of a TOC's entries carry a printed page number, the system SHALL classify each entry without one as unpaged. An unpaged entry SHALL be excluded from the match-rate gate's denominator. It SHALL still be matched like any other entry. When it matches, it creates a boundary. When it does not, it is recorded as `TocEntryUnmatched`.
+When a column of a TOC prints page numbers, meaning it has at least three entries (columns are grouped by left edge in 10-point buckets) and half or more of them carry one, the system SHALL classify each entry without a page number as unpaged. An unpaged entry SHALL be excluded from the match-rate gate's numerator and denominator. It SHALL still be matched like any other entry. When it matches, it creates a boundary. When it does not, it is recorded as `TocEntryUnmatched`. A TOC with no such column has no unpaged entries.
 
 #### Scenario: Side-panel prose does not depress the gate
 
-- **GIVEN** a contents page listing 16 paged chapter entries plus 20 lines of explanatory prose in a side panel without page numbers
+- **GIVEN** a contents page listing 16 paged chapter entries in one column plus 20 lines of explanatory prose in a side panel column without page numbers
 - **WHEN** the match rate is computed
 - **THEN** the denominator is the 16 paged entries
 
