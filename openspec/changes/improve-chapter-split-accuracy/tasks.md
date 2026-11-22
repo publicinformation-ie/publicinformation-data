@@ -54,7 +54,7 @@ Run from `pipelines/document_pipeline` with `PYTHONPATH=".:../../src" ../../.ven
 
 - [ ] 9.1 Read the held-out summary against the post-D1 reference, and write the final `RESULTS.md` entry comparing the post-D1 and final results for tuning, held-out and all documents. Verify every D10 criterion (a) to (e) holds, or record which one fails and why.
 - [ ] 9.2 Refresh `eval/expected.json` with `compare.py --refresh-expected` and review the diff. Verify that `uv run pytest pipelines/document_pipeline/tests -q`, `uv run pytest tests/ -q`, `cd pipelines/foi_pipeline && uv run pytest tests/ -q` and `uv run pyright` all pass.
-- [ ] 9.3 List every `override.json` entry that the new trees orphan (from `compare.py`), and re-point or remove each one in a reviewed commit. Verify that `merge_overrides` reports no unmatched slug for any document.
+- [x] 9.3 List every `override.json` entry that the new trees orphan (from `compare.py`), and re-point or remove each one in a reviewed commit. Verify that `merge_overrides` reports no unmatched slug for any document.
 
 ## Workflow follow-up
 

@@ -9,8 +9,7 @@
   {"slug": "abbreviations", "level": 1}
 ],
 "emra-regional-spatial-and-economic-strategy": [
-  {"slug": "1-2-eastern-and-midland-regional-assembly", "drop": true},
-  {"slug": "1-1-vision", "title": "Vision and Eastern and Midland Regional Assembly"}
+  {"slug": "1-2-eastern-and-midland-regional-assembly", "number": "1.1", "title": "Vision and Eastern and Midland Regional Assembly"}
 ],
 "sustainable-mobility-policy-year-one-progress-report": [
   {"slug": "delivery-team", "drop": true},

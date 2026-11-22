@@ -379,3 +379,13 @@ Most rejected headings in the first four are real sections (`11.1 State of Play`
 - **Decision under D0:** a rule that improves no targeted document is reverted, not tuned. It is not merged into this change, and its requirement is removed from the spec.
 - **Effect it would have had on documents without gold** (not scored, so not claimed as an improvement): 21 placed boundaries in five documents, all at confidence 0.5: `gda-cycle-network-plan-2022` (7, the district chapters), `national-investment-framework-for-transport-in-ireland` (6, e.g. `Section 1: Overview` placed on p. 12, where the text layer prints `1 overview`), `sustainable-mobility-policy-year-two-progress-report` (4), `climate-action-plan-2025-q4-progress-report` (2, image pages with no text layer) and `sustainable-mobility-policy-action-plan-2022-2025-final-progress-report` (2). Spot checks look plausible, one of them lands a junk joined entry (`System in Ireland Case Study: …`), and none can be scored.
 - **To revisit:** annotate one or two of those documents (NIFTI is a good candidate: a 3-level contents list with numbered `Section N:` chapters) and re-run the branch. If it scores, the work is ready to merge.
+
+### 9.3 — Orphaned overrides
+
+Every `override.json` entry was applied to its document's final tree with `merge_overrides`.
+
+- `emra-regional-spatial-and-economic-strategy`: its entry for `1-1-vision` no longer matched. It existed to merge two headings that share one baseline (`1.1 Vision` and `1.2 Eastern and Midland Regional Assembly`): rename 1.1 and drop 1.2. In the new `toc` tree only the `1-2-…` node exists, so the old drop would have deleted the p. 6 boundary altogether. Re-pointed to rename that node (`number` 1.1, title `Vision and Eastern and Midland Regional Assembly`) with no drop. Its published slug for this section is now `1-2-eastern-and-midland-regional-assembly` instead of `1-1-vision`.
+- `road-safety-strategy-phase-2-action-plan-2025-2027`: the document is not in `documents.yml` or in the 40-document snapshot, so its override cannot be checked. It predates this change and is left as it is; it should be removed or its document added.
+- All other overrides (gda, moving-together, national-ports, recreational-craft, ndp, sustainable-mobility year-one) apply with no unmatched slug.
+
+After this, `merge_overrides` reports no unmatched slug for any document in the snapshot.
