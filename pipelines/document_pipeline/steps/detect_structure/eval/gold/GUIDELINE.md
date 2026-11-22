@@ -46,6 +46,18 @@ Figures, Tables or Maps is a secondary listing, not a chapter, even when it is p
 level. A glossary, an acronym list or an abbreviations list *is* a top-level section and is a chapter
 when the TOC prints it at the top level.
 
+**R1a — A separately-titled report bound into the same PDF is a chapter of the bundle.**
+Some files are composites: after the document's own last chapter, one or more separately-authored
+reports (an SEA Environmental Report, a Natura Impact Statement, …) are bound into the same PDF,
+with their own title pages and restarted pagination, and the document's printed contents does not
+list them. When a human review establishes that (a FOLLOWUPS issue, a publication decision), each
+bound-in report is a gold chapter: copy the report's own title from its title page, record the title
+page as `pdf_page`, and record `printed_page: null` — the report's restarted numbering is not the
+document's. Say in `notes` that they are bound-in reports and who decided. The detector is not
+changed — it stays TOC-faithful by R1 — so such chapters are supplied by hand via
+`steps/detect_structure/override.json`, and such a document legitimately scores lower raw than
+post-override.
+
 **R2 — "Top level" is decided by the TOC's typography, in this order:**
 1. indentation (an entry indented under another is not top level);
 2. numbering depth (`1` is top level, `1.1` is not; `Appendix A` at the same indent as `1` is top

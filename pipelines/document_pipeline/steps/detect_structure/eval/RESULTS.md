@@ -449,3 +449,38 @@ sustainable-mobility-policy                     tune  toc                 0.22>1
 | emra improved but probably still below the gate | Better than predicted: it now passes the gate (match rate 0.807, method `toc`), exact F1 0.17 -> 0.48; still far from correct (artwork chapter titles match at wrong pages) |
 
 **Remaining failures on tuning documents** (not addressed here): `connecting-ireland-rural-mobility-plan` (garbled text layer, a stated non-goal), `gda-transport-strategy-2022-2042` (outline pages off by one against gold; PART A/B), `emra` (artwork titles matched at wrong pages), `climate-action-plan-2023` (see above), `climate-action-plan-2025-annex-of-actions` (0.94).
+
+### 1.2 — Bound-in reports of `national-cycle-network-plan` become chapters (FOLLOWUPS 1.2, publication decision)
+
+- **Change:** No detector code changed. The gold grows 8 → 10 chapters: the PDF is a composite, and after the Plan's chapter 8 (its own last content page is p. 192) two separately-authored statutory reports are bound into the same file — the SEA Environmental Report (Updated) behind the Plan's `Appendix G` divider from p. 193, and the Appropriate Assessment Screening and Natura Impact Statement from p. 494 — which the Plan's printed contents never lists. Rulebook **R1a** added: a separately-titled report bound into the same PDF is a chapter of the bundle. The detector stays TOC-faithful by R1; `override.json` supplies the two chapters by promoting the two supplemented nodes (`overview` → level 1, retitled, p. 193 at the `Appendix G` divider; `2-methodology` → level 1, retitled, moved to its title page p. 494, `number` nulled).
+- **Commit:** measured at `fix/assemble-sections-slug-collision` `524417f7` plus this change's gold/override edits (this entry's own commit).
+- **Kind:** gold + hand override (publication decision; not a detector change)
+
+| Summary | Documents | Fully correct | Exact F1 (macro) | Page attribution (macro) | Title accuracy (macro) |
+|---|---:|---:|---:|---:|---:|
+| tuning, raw, before | 10 | 5 | 0.81 | 0.71 | 0.96 |
+| tuning, raw, after | 10 | 4 | 0.80 | 0.63 | 0.96 |
+| tuning, published, before | 10 | 5 | 0.81 | 0.71 | 0.96 |
+| tuning, published, after | 10 | 5 | 0.81 | 0.71 | 0.96 |
+| held out, raw, before = after | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| held out, published, before = after | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| all, raw, before | 14 | 6 | 0.75 | 0.68 | 0.97 |
+| all, raw, after | 14 | 5 | 0.74 | 0.63 | 0.97 |
+| all, published, before | 14 | 6 | 0.75 | 0.69 | 0.97 |
+| all, published, after | 14 | 6 | 0.75 | 0.69 | 0.97 |
+
+**Per-document changes** (from the baseline diff):
+
+| Document | Tree | Metric | Before | After | Reason (required for every regression) |
+|---|---|---|---:|---:|---|
+| `national-cycle-network-plan` | raw | page attribution | 1.00 | 0.17 | gold grew 8 → 10: the raw detector is TOC-faithful (R1) and cannot list the two bound-in reports; expected, not a detector regression |
+| `national-cycle-network-plan` | raw | exact F1 / recall | 1.00 / 1.00 | 0.89 / 0.80 | same: 2 of 10 gold chapters are missing from the raw tree by design |
+| `national-cycle-network-plan` | published | all | 1.00 (8/8) | 1.00 (10/10) | the override supplies both chapters exactly: titles match, boundaries 193 and 494, fully correct |
+
+**Documents without gold (`compare.py`, 30 documents):**
+
+- Detection-method changes: none (no code change; the compare table still matches `expected.json`, asserted by `tests/test_comparison.py`).
+- `InvalidStructure` count: unchanged (national-cycle 0 → 0).
+- Slug changes / orphaned overrides: node slugs unchanged (`overview`, `2-methodology` keep theirs; the override never rewrites slugs). Both targets are produced by every detection run, so no orphans.
+
+**Notes:** Evidence trail: the two reports were identified from the extracted text (the Plan's `Appendix G` divider p. 193 and the SEA ER's cover p. 194, quality page p. 195 and own contents pp. 196–197, `1. Introduction` p. 198; NIS title page p. 494, its own contents p. 496, `2. Methodology` p. 501; NIS Appendices A–D at pp. 567/897/899/1100; the SEA ER's 91 corridor option assessment tables pp. 302–448), the rendered start pages were served for review on the LAN, and the human chose the split on 2026-11-22 (FOLLOWUPS 1.2). The first cut of the override used p. 198 (the report's first body page); it was corrected to the p. 193 divider after re-reading the pages — five pages of report front matter had stranded in the MELF chapter, which is why the raw page-attribution diff reads 0.17 rather than 0.18. Teaching the detector to find bound-in reports generally (option C) was considered and deferred: this PDF has no outline to lean on, so a general rule would guess at report title pages, and 6 documents carry `Appendix` headings (`all-island-strategic-rail-review-final-report`, `national-roads-2040-final-report`, this one, `tii-sustainability-implementation-plan-2026`, two CAP progress reports) that would each need gold review first. The gold `notes` and `GUIDELINE.md` R1a record the rule this entry measures against, so the raw/published gap for this document is legitimate and expected to persist.

@@ -7,7 +7,7 @@
   "annotator": "Dave",
   "annotated_on": "2026-11-22",
   "reviewed": true,
-  "notes": "Contents: page 4. Every chapter opens with an unnumbered full-page divider that carries its number and title; the divider is recorded as the chapter start. Those divider pages are not counted in the printed page numbers, so the printed-to-PDF offset grows through the document (11, 12, 13, ...). That is expected, not a transcription slip.",
+  "notes": "Contents: page 4. Every chapter opens with an unnumbered full-page divider that carries its number and title; the divider is recorded as the chapter start. Those divider pages are not counted in the printed page numbers, so the printed-to-PDF offset grows through the document (11, 12, 13, ...). That is expected, not a transcription slip. The file is a composite: the Plan's own last content page is p. 192, and from p. 193 two separately-authored statutory reports are bound into the same PDF — the SEA Environmental Report (Updated) behind the Plan's 'Appendix G' divider (p. 193; report cover p. 194, its own contents pp. 196-197, '1. Introduction' p. 198) and the Appropriate Assessment Screening and Natura Impact Statement (title page p. 494). The Plan's contents does not list them; they are recorded as chapters under rulebook R1a after the human publication decision of 2026-11-22 (FOLLOWUPS 1.2), with both start pages verified against the extracted text layer and the rendered pages served for review. Both reports restart their own pagination, so no printed_page is recorded for them. The detector stays TOC-faithful by R1; these two chapters are supplied by hand via steps/detect_structure/override.json, so this document legitimately scores lower raw than post-override.",
   "chapters": [
     {
       "title": "Introduction",
@@ -48,6 +48,16 @@
       "title": "Monitoring, Evaluation and Learning Framework",
       "printed_page": "45",
       "pdf_page": 63
+    },
+    {
+      "title": "SEA Environmental Report (Updated)",
+      "printed_page": null,
+      "pdf_page": 193
+    },
+    {
+      "title": "Appropriate Assessment Screening and Natura Impact Statement",
+      "printed_page": null,
+      "pdf_page": 494
     }
   ]
 }
