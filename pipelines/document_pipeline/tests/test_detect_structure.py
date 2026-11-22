@@ -1246,3 +1246,97 @@ def test_a_plausible_outline_still_wins_and_logs_nothing():
 
     assert method == "outline"
     assert not [p for p in problems if p["error_type"] == "OutlineNotUsed"]
+
+
+# --- TOC entry continuation and printed pages (D5, 5.1) -----------------------
+
+def _toc_row(spans, text, y, number_page=None, x0=72.0, block=None):
+    """One TOC row: the entry text on the left, an optional page number at the right."""
+    block = block if block is not None else len(spans) + 1
+    spans.append(span(text, y0=y, x0=x0, block=block, line=0))
+    if number_page is not None:
+        spans.append(span(str(number_page), y0=y, x0=520.0, block=block, line=1))
+
+
+def test_wrapped_toc_entry_is_joined_and_takes_the_last_lines_page():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    _toc_row(spans, "3 Long Term Strategic Issues", 120.0)
+    _toc_row(spans, "for National Roads", 133.0, number_page=11)
+    _toc_row(spans, "4 Vision and Key Objectives", 160.0, number_page=33)
+    entries, _flags = _parse_toc_page(page(spans))
+
+    assert [(e["number"], e["title"], e["printed_page"]) for e in entries] == [
+        ("3", "Long Term Strategic Issues for National Roads", 11),
+        ("4", "Vision and Key Objectives", 33)]
+    assert not any(e["title"] == "for National Roads" for e in entries)
+
+
+def test_toc_entries_that_each_carry_a_page_number_stay_separate():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    _toc_row(spans, "Introduction", 120.0, number_page=7)
+    _toc_row(spans, "Background", 133.0, number_page=9)
+    entries, _flags = _parse_toc_page(page(spans))
+
+    assert [(e["title"], e["printed_page"]) for e in entries] == [("Introduction", 7), ("Background", 9)]
+
+
+def test_a_pageless_contents_list_is_never_joined():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    for index, title in enumerate(["Introduction", "Background", "Method"]):
+        _toc_row(spans, title, 120.0 + 13.0 * index)
+    entries, _flags = _parse_toc_page(page(spans))
+
+    assert [e["title"] for e in entries] == ["Introduction", "Background", "Method"]
+    assert all(e["printed_page"] is None for e in entries)
+
+
+def test_a_right_column_page_number_is_recorded_and_a_footer_number_is_not():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    _toc_row(spans, "Introduction", 120.0, number_page=7)
+    spans.append(span("3", y0=800.0, x0=40.0, block=9))   # footer, left edge
+    entries, _flags = _parse_toc_page(page(spans))
+
+    assert [(e["title"], e["printed_page"]) for e in entries] == [("Introduction", 7)]
+
+
+def test_a_roman_page_number_is_kept_as_printed():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    spans.append(span("Annex of Actions Guide . . . . . . ii", y0=120.0, block=1))
+    _toc_row(spans, "Introduction", 140.0, number_page=1)
+    entries, _flags = _parse_toc_page(page(spans))
+
+    assert [(e["title"], e["printed_page"]) for e in entries] == [
+        ("Annex of Actions Guide", "ii"), ("Introduction", 1)]
+
+
+def test_a_line_that_opens_with_its_own_label_is_not_joined_onto_the_entry_before():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    _toc_row(spans, "Goal 6: Take a whole of journey approach", 120.0, number_page=23)
+    _toc_row(spans, "for all", 133.0)
+    _toc_row(spans, "Goal 7: Design infrastructure according to principles", 146.0, number_page=28)
+    entries, _flags = _parse_toc_page(page(spans))
+
+    assert [(e["title"], e["printed_page"]) for e in entries] == [
+        ("Goal 6: Take a whole of journey approach", 23),
+        ("for all", None),
+        ("Goal 7: Design infrastructure according to principles", 28)]
+
+
+def test_a_line_in_a_different_type_size_is_not_a_wrapped_tail():
+    spans = [span("Contents", size=20.0, y0=60.0, block=0)]
+    spans.append(span("Foreword", size=11.0, y0=100.0, block=1))
+    spans.append(span("General Introduction and Safety Checklists", size=9.5, y0=114.0, block=2))
+    spans.append(span("3", size=9.5, y0=114.0, x0=520.0, block=2, line=1))
+    _toc_row(spans, "Think and Prepare", 128.0, number_page=5)
+    entries, _flags = _parse_toc_page(page(spans))
+
+    assert [e["title"] for e in entries] == [
+        "Foreword", "General Introduction and Safety Checklists", "Think and Prepare"]
+
+
+def test_the_contents_heading_with_a_roman_page_is_not_an_entry():
+    spans = [span("Table of Contents . . . . . . i", y0=60.0, block=0)]
+    _toc_row(spans, "Introduction", 120.0, number_page=1)
+    entries, _flags = _parse_toc_page(page(spans))
+
+    assert [e["title"] for e in entries] == ["Introduction"]

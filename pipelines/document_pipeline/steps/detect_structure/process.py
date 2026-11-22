@@ -689,12 +689,30 @@ def _page_kind(page: dict):
     return None
 
 
+def _split_toc_suffix(text: str):
+    """`(title_text, printed_page)` for a TOC line: remove trailing dot leaders
+    and the page number glued to them. An arabic number is returned as an int; a
+    lowercase roman numeral (`ii`) only after at least three leader characters,
+    and as the string printed, so a title that ends in a roman-looking word is
+    never cut. `printed_page` is None when the line prints none."""
+    t = text.strip()
+    page = None
+    m = re.search(r"[\s.\u2026]+(\d{1,3})\s*$", t)
+    if m:
+        page = int(m.group(1))
+        t = t[:m.start()]
+    else:
+        m = re.search(r"[\s.\u2026]{3,}([ivxlc]{1,6})\s*$", t)
+        if m:
+            page = m.group(1)
+            t = t[:m.start()]
+    t = re.sub(r"[\s.\u2026]+$", "", t)             # "Title ......."
+    return t.strip(), page
+
+
 def _strip_toc_suffix(text: str) -> str:
     """Remove trailing dot leaders and any page number glued to them."""
-    t = text.strip()
-    t = re.sub(r"[\s.\u2026]+\d{1,3}\s*$", "", t)  # "Title ... 12"
-    t = re.sub(r"[\s.\u2026]+$", "", t)             # "Title ......."
-    return t.strip()
+    return _split_toc_suffix(text)[0]
 
 
 def _toc_reading_order(page: dict) -> list:
@@ -715,12 +733,69 @@ def _toc_reading_order(page: dict) -> list:
                                  l.block, l.index))
 
 
+_BARE_ARABIC_RE = re.compile(r"\d{1,3}")
+_BARE_ROMAN_RE = re.compile(r"[ivxlc]{1,6}")
+# A wrapped TOC title line sits right under its first line: the gap between the
+# first line's bottom and the next line's top is well under one line height.
+TOC_WRAP_MAX_GAP = 0.6
+# ...and in the type size of its first line (a heading line above a body-size
+# entry is two entries, not one wrapped title).
+TOC_WRAP_SIZE_TOLERANCE = 0.5
+# A row that opens with its own label (`Goal 7:`, `Chapter 2 \u2013`, `Appendix 1:`) is
+# a sibling entry, never the tail of a wrapped title.
+_ENTRY_LABEL_RE = re.compile(r"^[A-Za-z]+\s+\d{1,3}\s*[:.\u2013\u2014-]")
+
+
+def _row_from(line, title, number, level_hint, page, furniture) -> dict:
+    return {"title": title, "number": number, "level_hint": level_hint,
+            "x0": round(line.bbox[0], 1), "furniture": furniture, "printed_page": page,
+            "top": line.y0, "bottom": line.bbox[3], "right": line.bbox[2], "size": line.size}
+
+
+def _join_wrapped_rows(rows: list) -> list:
+    """Join a wrapped TOC title onto the entry before it.
+
+    A row with no heading number is the continuation of the previous row when
+    that row has no printed page yet (the page number sits on the last line of a
+    wrapped title), the row is not indented less than the first line, it sits
+    right under it in the same type size, and it does not open with its own
+    label (`Goal 7:`). The joined entry keeps the first line's indentation and takes
+    the page number of the last line. A row that follows an entry that already has
+    a page number starts a new entry, and so does any row with its own number.
+    Only done on a TOC that prints page numbers (at least half its rows have one):
+    in a pageless contents list every line is an entry.
+    """
+    if sum(1 for r in rows if r["printed_page"] is not None) * 2 < len(rows):
+        return rows
+    joined = []
+    for row in rows:
+        previous = joined[-1] if joined else None
+        if (previous is not None and previous["printed_page"] is None
+                and row["number"] is None and not row.get("label_only")
+                and not _ENTRY_LABEL_RE.match(row["title"])
+                and abs(row["size"] - previous["size"]) <= TOC_WRAP_SIZE_TOLERANCE
+                and not previous.get("label_only")
+                and row["x0"] >= previous["x0"] - 2.0
+                and 0 <= row["top"] - previous["bottom"] <= TOC_WRAP_MAX_GAP * row["size"]):
+            joined[-1] = {**previous, "title": f"{previous['title']} {row['title']}",
+                          "printed_page": row["printed_page"], "bottom": row["bottom"],
+                          "top": previous["top"]}
+            continue
+        joined.append(row)
+    return joined
+
+
 def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
     """Return (entries, flags) for one TOC page.
 
-    Each entry is {title, number, level_hint, x0, furniture}. Handles the
-    entry shapes the experiment documented: separate-line numbers (`1.` on its
-    own line), right-hand page-number lines, and inline numbers.
+    Each entry is {title, number, level_hint, x0, furniture, printed_page}.
+    Handles the entry shapes the experiment documented: separate-line numbers
+    (`1.` on its own line), right-hand page-number lines, and inline numbers.
+    `printed_page` is the page number the contents list prints for the entry
+    (an int for arabic, the printed string for roman, None when there is none);
+    it is read from the dot-leader suffix, from a bare number to the right on
+    the same row, or, for a separate-line number layout, from the bare number on
+    the line after the title. A wrapped title is joined (`_join_wrapped_rows`).
 
     Lines are consumed in reading order. Collection starts after the
     `contents` title line (anything above it is page furniture); bare page
@@ -735,7 +810,7 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
             lines = lines[position + 1:]
             break
     width = float(page.get("width") or 595.0)
-    entries = []
+    rows = []
     flags = {"separate_line_number": False, "right_page_number": False,
              "unicode_dot_leader": False, "ascii_dot_leader": False}
 
@@ -745,6 +820,8 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
                 flags["unicode_dot_leader"] = True
             else:
                 flags["ascii_dot_leader"] = True
+
+    numbers = []   # bare page-number lines, matched to rows by position afterwards
 
     i = 0
     while i < len(lines):
@@ -764,10 +841,23 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
         # A bare page number (`12`, no trailing dot) is a page number wherever
         # it sits: far right is the usual shape, but a footer number sits at
         # the left edge. Dotted numbers (`1.`, `1.1`) stay separate-line
-        # section numbers, handled below.
-        if re.fullmatch(r"\d{1,3}", text):
+        # section numbers, handled below. One that sits on the previous entry's
+        # row, to its right, is that entry's printed page.
+        if _BARE_ARABIC_RE.fullmatch(text):
             if line.bbox[0] > width * RIGHT_COLUMN_MIN_X_FRACTION:
                 flags["right_page_number"] = True
+            if rows and rows[-1].pop("page_follows", False):
+                rows[-1]["printed_page"] = int(text)
+            else:
+                numbers.append((line, int(text)))
+            i += 1
+            continue
+
+        # A lowercase roman numeral alone at the right edge is a page number
+        # (front matter), never an entry.
+        if (_BARE_ROMAN_RE.fullmatch(text)
+                and line.bbox[0] > width * RIGHT_COLUMN_MIN_X_FRACTION):
+            numbers.append((line, text))
             i += 1
             continue
 
@@ -780,7 +870,7 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
             while i < len(lines):
                 nxt = lines[i]
                 nt = nxt.text.strip()
-                if re.fullmatch(r"\d{1,3}", nt) or normalize_heading_text(nt) in TOC_TITLES:
+                if _BARE_ARABIC_RE.fullmatch(nt) or normalize_heading_text(nt) in TOC_TITLES:
                     break
                 # Footer/header lines are page furniture, not title lines.
                 if (normalize_heading_text(nt) in running
@@ -792,13 +882,16 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
                 title_parts.append(nt)
                 i += 1
             raw = " ".join(title_parts)
-            title = clean_title(_strip_toc_suffix(raw))
+            stripped, suffix_page = _split_toc_suffix(raw)
+            title = clean_title(stripped)
             if title and is_heading_candidate(title):
                 _note_leader(raw)
-                entries.append({"title": title, "number": number,
-                                "level_hint": len(number.split(".")),
-                                "x0": round(line.bbox[0], 1),
-                                "furniture": _classify_furniture(title)})
+                row = _row_from(line, title, number, len(number.split(".")), suffix_page,
+                                _classify_furniture(title))
+                # The page number of this layout is the bare number on the line
+                # after the title, which the loop above stopped at.
+                row["page_follows"] = suffix_page is None
+                rows.append(row)
             continue
 
         # Ordinary entry: title, maybe dot leaders, maybe an inline number.
@@ -807,14 +900,34 @@ def _parse_toc_page(page: dict, running=frozenset(), running_leads=frozenset()):
         if m:
             number = m.group(1)
             text = m.group(2)
-        title = clean_title(_strip_toc_suffix(text))
+        stripped, page = _split_toc_suffix(text)
+        title = clean_title(stripped)
+        if normalize_heading_text(title) in TOC_TITLES:
+            i += 1   # the contents heading itself, with a page number after leaders
+            continue
         if title and is_heading_candidate(title):
             _note_leader(text)
-            entries.append({"title": title, "number": number,
-                            "level_hint": len(number.split(".")) if number else None,
-                            "x0": round(line.bbox[0], 1),
-                            "furniture": _classify_furniture(title)})
+            rows.append(_row_from(line, title, number,
+                                  len(number.split(".")) if number else None, page,
+                                  _classify_furniture(title)))
         i += 1
+
+    # A page number belongs to the row on its own baseline, to its left. A number
+    # with no row to its left (a footer at the page edge) belongs to no entry.
+    for number_line, value in numbers:
+        tolerance = max(READING_ORDER_Y_GRID, 0.5 * number_line.size)
+        candidates = [r for r in rows if r["printed_page"] is None
+                      and abs(r["top"] - number_line.y0) <= tolerance
+                      and r["right"] <= number_line.bbox[0] + 1.0]
+        if candidates:
+            max(candidates, key=lambda r: r["right"])["printed_page"] = value
+
+    entries = []
+    for row in _join_wrapped_rows(rows):
+        entry = {key: row[key] for key in ("title", "number", "level_hint", "x0",
+                                           "furniture", "printed_page")}
+        entry["furniture"] = _classify_furniture(entry["title"])
+        entries.append(entry)
     return entries, flags
 
 

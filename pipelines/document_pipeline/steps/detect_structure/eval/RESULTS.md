@@ -159,3 +159,26 @@ One regression, explained and expected to reverse with D6 and D7; checked again 
 **Documents without gold** (`production_view.py`): the only method changes are the two documents above (`climate-action-plan-2023` outline -> toc; `climate-action-plan-2025-annex-of-actions` outline -> numbering). No other document has an outline that fails the check. `InvalidStructure` 12 -> 12. No override is orphaned.
 
 **Notes:** this check does not reach the held-out set; none of the four held-out documents has an implausible outline.
+
+### D5a — TOC printed pages and wrapped-entry continuation
+
+- **Change:** each TOC entry records its `printed_page` (int for arabic, the printed string for roman, none otherwise; matched to its row by position because right-column numbers are read after the left column). A wrapped title is joined onto the entry before it when that entry has no page yet, the line sits directly under it, is not indented less, is in the same type size, has no heading number and does not open with its own label (`Goal 7:`); joining is done only in a TOC that prints page numbers. A bare roman numeral at the right edge is a page number, not an entry. The contents heading itself, with a page after its leaders, is never an entry.
+- **Commit:** see git log (`feat(detect_structure): TOC printed pages and wrapped entries`)
+- **Kind:** detector change (first of three D5 sub-steps; judged against D10(c) together with 5b and 5c)
+
+Summaries are unchanged from D3 (tuning 10 / 3 fully correct / exact F1 0.53 / page attribution 0.39; held out 4 / 1 / 0.62 / 0.63; all 14 / 4 / 0.55 / 0.46). **No per-document change on any gold document**, and no regression.
+
+**Why no scored gain yet.** The documents this targets, emra and connecting-ireland, are still below the TOC gate (emra: 104 -> 94 entries, matched 42 -> 47, match rate 0.429 -> 0.534, gate 0.60), so they stay on `numbering`. The captured pages are what D6 (gate denominator) and D8 (placement) consume. The scored effect of D5 is therefore judged after 5c.
+
+**Documents without gold** (`production_view.py` and the frozen `compare.py` comparison, which was refreshed for this step: `eval/expected.json`):
+- `emra`: 9 genuine wrapped titles joined (`Members of the Eastern and` + `Midland Regional Assembly`, ...).
+- `code-of-practice-fishing-vessels-under-15m`: 1 wrapped title joined; slug `8-manning-...-and` -> `8-manning-...-and-organisation-of-working-time`; match rate 0.865 -> 0.871. No override orphaned.
+- `climate-action-plan-2023-q2-progress-report`: a junk `ii` entry no longer produced; match rate 0.923 -> 1.0.
+- `sustainable-mobility-policy-year-two-progress-report`: 24 -> 23 entries, match rate 0.708 -> 0.739 (see limitation).
+- Detection methods unchanged for all 40 documents; `InvalidStructure` 12 -> 12.
+
+**Defects found and fixed while measuring** (each has a test): a roman page-number suffix exposed the contents heading line as an entry (CAP 2023 q1/q3); `Goal 7:` was joined onto the entry before it (`sustainable-mobility-policy-action-plan-2026-2030`); `Foreword` (11 pt) was joined onto the 9.5 pt entry after it (`code-of-practice-recreational-craft`). The label and same-size guards came from those two.
+
+**Known limitation (recorded, not tuned):** a TOC that prints the page number on the *first* line of a wrapped entry is the opposite layout to the one this rule targets. `sustainable-mobility-policy-year-two-progress-report` has one such case (`System in Ireland` + `Case Study: ...`); the joined title will not match the body and is logged `TocEntryUnmatched` for review. It was wrong before (a stray `System in Ireland` entry) and is wrong in a different way now.
+
+**Spec change made while implementing:** the "TOC entry continuation" requirement said a line with its own page number always starts a new entry, which contradicted its own scenario. It now says a line follows an entry only when that entry has no page yet; the guards are in a new requirement, "Continuation guards".

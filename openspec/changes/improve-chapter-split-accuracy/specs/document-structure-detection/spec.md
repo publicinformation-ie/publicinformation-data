@@ -93,7 +93,7 @@ Before outline entries become nodes, the system SHALL collapse whitespace (inclu
 
 ### Requirement: TOC entry continuation
 
-When the system parses a TOC page, it SHALL join a line that has no heading number and no page number onto the entry before it, provided that entry has no page number of its own and the line is not a chapter label. A joined entry SHALL take its indentation from its first line. A line that carries its own page number SHALL always start a new entry.
+When the system parses a TOC page, it SHALL join a line that has no heading number onto the entry before it when that entry has no page number yet and the line sits directly below it. The joined entry's page number is the one on its last line, and its indentation is that of its first line. A line that has its own heading number, or that follows an entry that already has a page number, SHALL start a new entry.
 
 #### Scenario: Wrapped TOC entry joined
 
@@ -105,6 +105,21 @@ When the system parses a TOC page, it SHALL join a line that has no heading numb
 
 - **WHEN** two consecutive TOC lines each carry their own page number
 - **THEN** they produce two entries
+
+### Requirement: Continuation guards
+
+The system SHALL join continuation lines only in a TOC that prints page numbers, meaning at least half of its entries have one, and only when the line is not indented less than the entry before it and is set in the same type size. A line that is a chapter label, or that opens with its own label such as `Goal 7:` or `Chapter 2 –`, SHALL NOT be joined: it is an entry of its own.
+
+#### Scenario: A labelled line is a sibling, not a continuation
+
+- **GIVEN** TOC lines `for all` (no page number) followed by `Goal 7: Design infrastructure …` with page number `28`
+- **WHEN** the TOC is parsed
+- **THEN** two entries are produced and `Goal 7: …` is not joined onto `for all`
+
+#### Scenario: A TOC without page numbers is not joined
+
+- **WHEN** no line of a contents list carries a page number
+- **THEN** every line remains its own entry
 
 ### Requirement: TOC chapter labels
 
