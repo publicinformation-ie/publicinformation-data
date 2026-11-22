@@ -1741,3 +1741,50 @@ def test_a_sentence_ending_in_an_ellipsis_is_not_dot_leader_evidence():
              span("Version 2. 3", y0=140.0, block=3)]
 
     assert _leader_page_lines(page(spans)) == 0
+
+
+# --- a contents header set in the right column (CAP 2023 pp. 5 and 7) ---------
+
+def test_a_contents_title_in_the_right_column_does_not_discard_the_rows_below_it():
+    # climate-action-plan-2023's continuation contents pages 5 and 7 repeat the
+    # small 'Contents' header on the right edge of the page. Column-major
+    # reading order puts that header after every left-column row, so starting
+    # collection after the title *in reading order* discarded the whole page
+    # and chapters 11-15 and 21-22 never became TOC entries.
+    spans = _header_spans("Foreword")
+    spans.append(span("Contents", size=10.0, y0=43.4, x0=475.6, block=1))
+    rows = [("11. ", "Carbon Pricing and Cross-cutting Policies. . . . . 116"),
+            ("12. ", "Electricity. . . . . . . . . . . . . . 128"),
+            ("13. ", "Industry. . . . . . . . . . . . . . . . 146")]
+    for index, (number, row) in enumerate(rows):
+        y = 124.9 + 9.7 * index
+        spans.append(span(number, size=9.0, y0=y, x0=79.4, block=10 + 2 * index))
+        spans.append(span(row, size=9.0, y0=y, x0=113.4, block=11 + 2 * index))
+    pages = [_body(1), _body(2), page(spans, number=3), _body(4)]
+    entries, toc_pages, _signal, _flags = parse_toc(pages, 9.0)
+
+    assert toc_pages == [3]
+    assert [e["title"] for e in entries] == [
+        "Carbon Pricing and Cross-cutting Policies", "Electricity", "Industry"]
+    assert [e["printed_page"] for e in entries] == [116, 128, 146]
+
+
+def test_an_occurrence_score_tie_takes_the_earlier_page_in_document_order():
+    # climate-action-plan-2023 prints chapter 11's divider twice: on its own
+    # page 116 and again as the artwork on page 128 (the gold notes record the
+    # repeat). The two occurrences score identically, so the pick between them
+    # must follow document order - the first divider is the chapter start.
+    from steps.detect_structure.process import from_toc
+
+    toc = page([span("Table of contents", size=20.0, y0=60.0, block=0),
+                span("Industry . . . . . . . . . . . 2", size=12.0, y0=100.0, block=1)], number=1)
+    early = page([span("Industry", size=40.0, y0=100.0, block=0)], number=2)
+    late = page([span("Industry", size=40.0, y0=100.0, block=0)], number=10)
+    # Filler pages keep the shared title below the running-header fraction, so
+    # the two real occurrences stay in the index.
+    fillers = [_body(number) for number in range(3, 10)]
+    nodes, report = from_toc([toc, early] + fillers + [late], 10.0)
+
+    assert nodes is not None
+    assert [n.title for n in nodes] == ["Industry"]
+    assert nodes[0].start_page == 2
