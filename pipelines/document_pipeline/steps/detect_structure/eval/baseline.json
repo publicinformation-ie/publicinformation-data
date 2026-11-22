@@ -6,6 +6,7 @@
       "doc_slug": "all-island-strategic-rail-review-final-report",
       "method": "toc",
       "has_overrides": false,
+      "held_out": false,
       "raw": {
         "gold_chapters": 11,
         "predicted_chapters": 11,
@@ -35,6 +36,7 @@
       "doc_slug": "climate-action-plan-2023",
       "method": "outline",
       "has_overrides": false,
+      "held_out": false,
       "raw": {
         "gold_chapters": 25,
         "predicted_chapters": 1,
@@ -61,9 +63,40 @@
       "post_override": null
     },
     {
+      "doc_slug": "climate-action-plan-2023-annex-of-actions",
+      "method": "numbering",
+      "has_overrides": false,
+      "held_out": true,
+      "raw": {
+        "gold_chapters": 21,
+        "predicted_chapters": 4,
+        "exact": {
+          "matched": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "tolerant": {
+          "matched": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "page_count": 103,
+        "pages_correct": 2,
+        "page_accuracy": 0.019417475728155338,
+        "matched_pairs": 0,
+        "titles_correct": 0,
+        "title_accuracy": null,
+        "fully_correct": false
+      },
+      "post_override": null
+    },
+    {
       "doc_slug": "climate-action-plan-2024-q1-q2-progress-report",
       "method": "toc",
       "has_overrides": false,
+      "held_out": false,
       "raw": {
         "gold_chapters": 9,
         "predicted_chapters": 9,
@@ -90,9 +123,40 @@
       "post_override": null
     },
     {
+      "doc_slug": "climate-action-plan-2025",
+      "method": "outline",
+      "has_overrides": false,
+      "held_out": true,
+      "raw": {
+        "gold_chapters": 26,
+        "predicted_chapters": 26,
+        "exact": {
+          "matched": 25,
+          "precision": 0.9615384615384616,
+          "recall": 0.9615384615384616,
+          "f1": 0.9615384615384616
+        },
+        "tolerant": {
+          "matched": 25,
+          "precision": 0.9615384615384616,
+          "recall": 0.9615384615384616,
+          "f1": 0.9615384615384616
+        },
+        "page_count": 188,
+        "pages_correct": 179,
+        "page_accuracy": 0.9521276595744681,
+        "matched_pairs": 25,
+        "titles_correct": 25,
+        "title_accuracy": 1.0,
+        "fully_correct": false
+      },
+      "post_override": null
+    },
+    {
       "doc_slug": "climate-action-plan-2025-annex-of-actions",
       "method": "outline",
       "has_overrides": false,
+      "held_out": false,
       "raw": {
         "gold_chapters": 16,
         "predicted_chapters": 1,
@@ -122,6 +186,7 @@
       "doc_slug": "connecting-ireland-rural-mobility-plan",
       "method": "numbering",
       "has_overrides": false,
+      "held_out": false,
       "raw": {
         "gold_chapters": 9,
         "predicted_chapters": 5,
@@ -151,6 +216,7 @@
       "doc_slug": "emra-regional-spatial-and-economic-strategy",
       "method": "numbering",
       "has_overrides": true,
+      "held_out": false,
       "raw": {
         "gold_chapters": 15,
         "predicted_chapters": 8,
@@ -202,6 +268,7 @@
       "doc_slug": "gda-transport-strategy-2022-2042",
       "method": "outline",
       "has_overrides": true,
+      "held_out": false,
       "raw": {
         "gold_chapters": 22,
         "predicted_chapters": 21,
@@ -253,6 +320,7 @@
       "doc_slug": "national-cycle-network-plan",
       "method": "toc",
       "has_overrides": false,
+      "held_out": false,
       "raw": {
         "gold_chapters": 8,
         "predicted_chapters": 24,
@@ -279,9 +347,62 @@
       "post_override": null
     },
     {
+      "doc_slug": "national-ports-policy",
+      "method": "outline",
+      "has_overrides": true,
+      "held_out": true,
+      "raw": {
+        "gold_chapters": 9,
+        "predicted_chapters": 11,
+        "exact": {
+          "matched": 5,
+          "precision": 0.45454545454545453,
+          "recall": 0.5555555555555556,
+          "f1": 0.5
+        },
+        "tolerant": {
+          "matched": 6,
+          "precision": 0.5454545454545454,
+          "recall": 0.6666666666666666,
+          "f1": 0.6
+        },
+        "page_count": 60,
+        "pages_correct": 32,
+        "page_accuracy": 0.5333333333333333,
+        "matched_pairs": 5,
+        "titles_correct": 5,
+        "title_accuracy": 1.0,
+        "fully_correct": false
+      },
+      "post_override": {
+        "gold_chapters": 9,
+        "predicted_chapters": 11,
+        "exact": {
+          "matched": 5,
+          "precision": 0.45454545454545453,
+          "recall": 0.5555555555555556,
+          "f1": 0.5
+        },
+        "tolerant": {
+          "matched": 6,
+          "precision": 0.5454545454545454,
+          "recall": 0.6666666666666666,
+          "f1": 0.6
+        },
+        "page_count": 60,
+        "pages_correct": 32,
+        "page_accuracy": 0.5333333333333333,
+        "matched_pairs": 5,
+        "titles_correct": 5,
+        "title_accuracy": 1.0,
+        "fully_correct": false
+      }
+    },
+    {
       "doc_slug": "national-roads-2040-final-report",
       "method": "outline",
       "has_overrides": false,
+      "held_out": false,
       "raw": {
         "gold_chapters": 12,
         "predicted_chapters": 18,
@@ -308,9 +429,40 @@
       "post_override": null
     },
     {
+      "doc_slug": "nta-statement-of-strategy-2026-2030",
+      "method": "toc",
+      "has_overrides": false,
+      "held_out": true,
+      "raw": {
+        "gold_chapters": 13,
+        "predicted_chapters": 13,
+        "exact": {
+          "matched": 13,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "tolerant": {
+          "matched": 13,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "page_count": 28,
+        "pages_correct": 28,
+        "page_accuracy": 1.0,
+        "matched_pairs": 13,
+        "titles_correct": 13,
+        "title_accuracy": 1.0,
+        "fully_correct": true
+      },
+      "post_override": null
+    },
+    {
       "doc_slug": "sustainable-mobility-policy",
       "method": "toc",
       "has_overrides": false,
+      "held_out": false,
       "raw": {
         "gold_chapters": 9,
         "predicted_chapters": 18,
@@ -339,51 +491,151 @@
   ],
   "summary": {
     "raw": {
-      "documents": 10,
-      "fully_correct": 2,
+      "documents": 14,
+      "fully_correct": 3,
       "macro": {
-        "boundary_precision_exact": 0.555952380952381,
-        "boundary_recall_exact": 0.5221085858585859,
-        "boundary_f1_exact": 0.4667602922530657,
-        "boundary_precision_tolerant": 0.6375,
-        "boundary_recall_tolerant": 0.6121085858585859,
-        "boundary_f1_tolerant": 0.5488409573468754,
-        "page_accuracy": 0.3443891225269736,
-        "title_accuracy": 0.8296296296296296
+        "boundary_precision_exact": 0.5696862661148375,
+        "boundary_recall_exact": 0.552727133977134,
+        "boundary_f1_exact": 0.5092243845763657,
+        "boundary_precision_tolerant": 0.6344280719280719,
+        "boundary_recall_tolerant": 0.6249493561993562,
+        "boundary_f1_tolerant": 0.5749962882148011,
+        "page_accuracy": 0.42491212099326375,
+        "title_accuracy": 0.8722222222222222
       },
       "micro": {
-        "boundary_precision_exact": 0.46551724137931033,
-        "boundary_recall_exact": 0.39705882352941174,
-        "boundary_f1_exact": 0.42857142857142855,
-        "boundary_precision_tolerant": 0.5948275862068966,
-        "boundary_recall_tolerant": 0.5073529411764706,
-        "boundary_f1_tolerant": 0.5476190476190476,
-        "page_accuracy": 0.19146341463414634,
-        "title_accuracy": 0.9259259259259259
+        "boundary_precision_exact": 0.5705882352941176,
+        "boundary_recall_exact": 0.47317073170731705,
+        "boundary_f1_exact": 0.5173333333333333,
+        "boundary_precision_tolerant": 0.6647058823529411,
+        "boundary_recall_tolerant": 0.551219512195122,
+        "boundary_f1_tolerant": 0.6026666666666667,
+        "page_accuracy": 0.25079253258189504,
+        "title_accuracy": 0.9587628865979382
       }
     },
     "post_override": {
-      "documents": 10,
-      "fully_correct": 2,
+      "documents": 14,
+      "fully_correct": 3,
       "macro": {
-        "boundary_precision_exact": 0.5602380952380952,
-        "boundary_recall_exact": 0.5221085858585859,
-        "boundary_f1_exact": 0.46788303200067904,
-        "boundary_precision_tolerant": 0.6319047619047619,
-        "boundary_recall_tolerant": 0.6054419191919191,
-        "boundary_f1_tolerant": 0.5424862066038536,
-        "page_accuracy": 0.3456186307236949,
-        "title_accuracy": 0.8296296296296296
+        "boundary_precision_exact": 0.5727474906046334,
+        "boundary_recall_exact": 0.552727133977134,
+        "boundary_f1_exact": 0.5100263415389465,
+        "boundary_precision_tolerant": 0.6304314732886162,
+        "boundary_recall_tolerant": 0.6201874514374515,
+        "boundary_f1_tolerant": 0.5704571805412141,
+        "page_accuracy": 0.425790341133779,
+        "title_accuracy": 0.8722222222222222
       },
       "micro": {
-        "boundary_precision_exact": 0.47368421052631576,
-        "boundary_recall_exact": 0.39705882352941174,
-        "boundary_f1_exact": 0.432,
-        "boundary_precision_tolerant": 0.5964912280701754,
-        "boundary_recall_tolerant": 0.5,
-        "boundary_f1_tolerant": 0.5439999999999999,
-        "page_accuracy": 0.1926829268292683,
-        "title_accuracy": 0.9259259259259259
+        "boundary_precision_exact": 0.5773809523809523,
+        "boundary_recall_exact": 0.47317073170731705,
+        "boundary_f1_exact": 0.5201072386058981,
+        "boundary_precision_tolerant": 0.6666666666666666,
+        "boundary_recall_tolerant": 0.5463414634146342,
+        "boundary_f1_tolerant": 0.6005361930294907,
+        "page_accuracy": 0.25184924269108844,
+        "title_accuracy": 0.9587628865979382
+      }
+    },
+    "tuning": {
+      "raw": {
+        "documents": 10,
+        "fully_correct": 2,
+        "macro": {
+          "boundary_precision_exact": 0.555952380952381,
+          "boundary_recall_exact": 0.5221085858585859,
+          "boundary_f1_exact": 0.4667602922530657,
+          "boundary_precision_tolerant": 0.6375,
+          "boundary_recall_tolerant": 0.6121085858585859,
+          "boundary_f1_tolerant": 0.5488409573468754,
+          "page_accuracy": 0.3443891225269736,
+          "title_accuracy": 0.8296296296296296
+        },
+        "micro": {
+          "boundary_precision_exact": 0.46551724137931033,
+          "boundary_recall_exact": 0.39705882352941174,
+          "boundary_f1_exact": 0.42857142857142855,
+          "boundary_precision_tolerant": 0.5948275862068966,
+          "boundary_recall_tolerant": 0.5073529411764706,
+          "boundary_f1_tolerant": 0.5476190476190476,
+          "page_accuracy": 0.19146341463414634,
+          "title_accuracy": 0.9259259259259259
+        }
+      },
+      "post_override": {
+        "documents": 10,
+        "fully_correct": 2,
+        "macro": {
+          "boundary_precision_exact": 0.5602380952380952,
+          "boundary_recall_exact": 0.5221085858585859,
+          "boundary_f1_exact": 0.46788303200067904,
+          "boundary_precision_tolerant": 0.6319047619047619,
+          "boundary_recall_tolerant": 0.6054419191919191,
+          "boundary_f1_tolerant": 0.5424862066038536,
+          "page_accuracy": 0.3456186307236949,
+          "title_accuracy": 0.8296296296296296
+        },
+        "micro": {
+          "boundary_precision_exact": 0.47368421052631576,
+          "boundary_recall_exact": 0.39705882352941174,
+          "boundary_f1_exact": 0.432,
+          "boundary_precision_tolerant": 0.5964912280701754,
+          "boundary_recall_tolerant": 0.5,
+          "boundary_f1_tolerant": 0.5439999999999999,
+          "page_accuracy": 0.1926829268292683,
+          "title_accuracy": 0.9259259259259259
+        }
+      }
+    },
+    "held_out": {
+      "raw": {
+        "documents": 4,
+        "fully_correct": 1,
+        "macro": {
+          "boundary_precision_exact": 0.6040209790209791,
+          "boundary_recall_exact": 0.6292735042735043,
+          "boundary_f1_exact": 0.6153846153846154,
+          "boundary_precision_tolerant": 0.6267482517482518,
+          "boundary_recall_tolerant": 0.657051282051282,
+          "boundary_f1_tolerant": 0.6403846153846153,
+          "page_accuracy": 0.6262196171589892,
+          "title_accuracy": 1.0
+        },
+        "micro": {
+          "boundary_precision_exact": 0.7962962962962963,
+          "boundary_recall_exact": 0.6231884057971014,
+          "boundary_f1_exact": 0.6991869918699186,
+          "boundary_precision_tolerant": 0.8148148148148148,
+          "boundary_recall_tolerant": 0.6376811594202898,
+          "boundary_f1_tolerant": 0.7154471544715448,
+          "page_accuracy": 0.6358839050131926,
+          "title_accuracy": 1.0
+        }
+      },
+      "post_override": {
+        "documents": 4,
+        "fully_correct": 1,
+        "macro": {
+          "boundary_precision_exact": 0.6040209790209791,
+          "boundary_recall_exact": 0.6292735042735043,
+          "boundary_f1_exact": 0.6153846153846154,
+          "boundary_precision_tolerant": 0.6267482517482518,
+          "boundary_recall_tolerant": 0.657051282051282,
+          "boundary_f1_tolerant": 0.6403846153846153,
+          "page_accuracy": 0.6262196171589892,
+          "title_accuracy": 1.0
+        },
+        "micro": {
+          "boundary_precision_exact": 0.7962962962962963,
+          "boundary_recall_exact": 0.6231884057971014,
+          "boundary_f1_exact": 0.6991869918699186,
+          "boundary_precision_tolerant": 0.8148148148148148,
+          "boundary_recall_tolerant": 0.6376811594202898,
+          "boundary_f1_tolerant": 0.7154471544715448,
+          "page_accuracy": 0.6358839050131926,
+          "title_accuracy": 1.0
+        }
       }
     }
   }

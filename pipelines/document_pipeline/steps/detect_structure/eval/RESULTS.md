@@ -53,3 +53,18 @@ PYTHONPATH=".:../../src" python steps/detect_structure/eval/compare.py
 ---
 
 ## Entries
+
+### 1.4 — Starting baseline (held-out gold added)
+
+- **Change:** none to the detector. Four held-out gold documents added (`ev-infrastructure-strategy` and `sustainable-mobility-policy-action-plan-2022-2025` were tried and registered in `no_toc.json`: malformed contents listing, and no contents page).
+- **Commit:** 83214cab
+- **Kind:** measurement (baseline extended)
+
+| Summary (raw tree) | Documents | Fully correct | Exact F1 (macro) | Page attribution (macro) | Title accuracy (macro) |
+|---|---:|---:|---:|---:|---:|
+| tuning | 10 | 2 | 0.47 | 0.34 | 0.83 |
+| held out | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| all | 14 | 3 | 0.51 | 0.42 | 0.87 |
+
+Held-out documents: `climate-action-plan-2023-annex-of-actions`, `climate-action-plan-2025`, `national-ports-policy`, `nta-statement-of-strategy-2026-2030`.
+Tuning numbers are unchanged from the pre-held-out snapshot baseline. The held-out gold was committed before the detector was scored against it. Gold pages were verified against each chapter's opener page in the text layer (divider pages recorded, per `GUIDELINE.md`).
