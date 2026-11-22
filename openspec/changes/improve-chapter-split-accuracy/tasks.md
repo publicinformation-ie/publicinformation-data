@@ -53,7 +53,7 @@ Run from `pipelines/document_pipeline` with `PYTHONPATH=".:../../src" ../../.ven
 ## 9. Acceptance and integration
 
 - [x] 9.1 Read the held-out summary against the post-D1 reference, and write the final `RESULTS.md` entry comparing the post-D1 and final results for tuning, held-out and all documents. Verify every D10 criterion (a) to (e) holds, or record which one fails and why.
-- [ ] 9.2 **(open: one unrelated pre-existing root-suite failure, see `eval/RESULTS.md` 9.1)** Refresh `eval/expected.json` with `compare.py --refresh-expected` and review the diff. Verify that `uv run pytest pipelines/document_pipeline/tests -q`, `uv run pytest tests/ -q`, `cd pipelines/foi_pipeline && uv run pytest tests/ -q` and `uv run pyright` all pass.
+- [x] 9.2 **(closed 2026-11-22 on the `chore/detect-structure-housekeeping` branch: `expected.json` refreshed with `compare.py --refresh-expected` in the 1.3 and 1.5 commits, diffs reviewed in those RESULTS entries; `pipelines/document_pipeline/tests` 600 passed 4 skipped, root `tests/` 537 passed 6 skipped after `scripts/build_foi_combined.py` (the pre-existing failure is the missing combined build on a fresh checkout), `pipelines/foi_pipeline/tests` 2015 passed, `pyright` 0 errors)** Refresh `eval/expected.json` with `compare.py --refresh-expected` and review the diff. Verify that `uv run pytest pipelines/document_pipeline/tests -q`, `uv run pytest tests/ -q`, `cd pipelines/foi_pipeline && uv run pytest tests/ -q` and `uv run pyright` all pass.
 - [x] 9.3 List every `override.json` entry that the new trees orphan (from `compare.py`), and re-point or remove each one in a reviewed commit. Verify that `merge_overrides` reports no unmatched slug for any document.
 
 ## Workflow follow-up
