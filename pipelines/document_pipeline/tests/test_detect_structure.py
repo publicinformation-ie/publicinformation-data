@@ -576,16 +576,29 @@ def test_toc_page_exclusion_legacy_cascade_takes_the_toc_page_set():
     assert not any(n.start_page == 2 for n in without_toc)
 
 
+def _chapter(number, title, page):
+    from steps.detect_structure.process import _make
+
+    return _make(1, number, title, page, 0.0, 0.95)
+
+
+def _chapter_entry(number, title):
+    return {"title": title, "number": number, "level": 1}
+
+
 def test_toc_page_exclusion_supplement_adds_nothing_from_a_toc_page():
     toc_page = page([span("Contents", size=20.0, font="Helvetica-Bold", y0=60.0, block=0),
-                     span("9.9 Orphan Heading", size=14.0, font="Helvetica-Bold", y0=120.0, block=1)],
+                     span("1.9 Orphan Heading", size=14.0, font="Helvetica-Bold", y0=120.0, block=1)],
                     number=2)
-    body = _body_page(3, "1 Alpha Chapter")
+    body = _body_page(3, "1.1 Alpha Section")
+    chapters, entries = [_chapter("1", "Alpha", 1)], [_chapter_entry("1", "Alpha")]
 
-    assert [n.title for n in _supplement_numbered_nodes([toc_page, body], 9.0, [], [], set(), {2})] \
-        == ["Alpha Chapter"]
+    assert [n.title for n in _supplement_numbered_nodes([toc_page, body], 9.0, chapters, entries,
+                                                        set(), {2})
+            if n.level == 2] == ["Alpha Section"]
     assert "Orphan Heading" in [n.title for n in
-                                _supplement_numbered_nodes([toc_page, body], 9.0, [], [], set())]
+                                _supplement_numbered_nodes([toc_page, body], 9.0, chapters,
+                                                           entries, set())]
 
 
 # --- title_cleanup ---------------------------------------------------------
@@ -1039,13 +1052,21 @@ def test_split_number_keeps_four_level_numbers_whole():
 
 # --- supplement_dedupe -----------------------------------------------------
 
+def _nifti_chapters():
+    """The two chapters whose first section is `N.1 | Introduction` (pages 13 and 21)."""
+    chapters = [_chapter("1", "Chapter One", 12), _chapter("2", "Chapter Two", 20)]
+    entries = [_chapter_entry("1", "Chapter One"), _chapter_entry("2", "Chapter Two")]
+    return chapters, entries
+
+
 def test_supplement_dedupe_keeps_repeated_numbered_introductions():
     """Real NIFTI pages 13 and 21 each open with `N.1 | Introduction`. A single
     TOC `Introduction` must not drop either one."""
     pages = load_pages("pages_nifti_intro.json")
-    entries = [{"title": "Introduction"}]
+    chapters, entries = _nifti_chapters()
 
-    nodes = _supplement_numbered_nodes(pages, 10.0, [], entries, set())
+    nodes = _supplement_numbered_nodes(pages, 10.0, chapters, entries + [{"title": "Introduction"}],
+                                       set())
 
     intros = [(n.number, n.title, n.start_page) for n in nodes if n.title == "Introduction"]
     assert intros == [("1.1", "Introduction", 13), ("2.1", "Introduction", 21)]
@@ -1055,11 +1076,92 @@ def test_supplement_dedupe_does_not_duplicate_the_toc_matched_heading():
     pages = load_pages("pages_nifti_intro.json")
     nodes = from_numbering(pages, 10.0)
     first = next(n for n in nodes if n.start_page == 13 and n.title == "Introduction")
-    base = [Node(**{**first.__dict__})]
+    chapters, entries = _nifti_chapters()
+    base = chapters + [Node(**{**first.__dict__})]
 
-    out = _supplement_numbered_nodes(pages, 10.0, base, [{"title": "Introduction"}], set())
+    out = _supplement_numbered_nodes(pages, 10.0, base, entries + [{"title": "Introduction"}], set())
 
     assert [n.start_page for n in out if n.title == "Introduction"] == [13, 21]
+
+
+# --- supplement confinement (D4) ----------------------------------------------------
+
+def _supplement(pages_by_heading, chapters, entries, errors):
+    pages = [_body_page(number, heading) for number, heading in pages_by_heading]
+    return _supplement_numbered_nodes(pages, 9.0, chapters, entries, set(), frozenset(), errors)
+
+
+def test_a_supplemented_heading_cannot_become_a_chapter():
+    chapters = [_chapter("8", "Routes", 1)]
+    entries = [_chapter_entry("8", "Routes")]
+    errors = []
+
+    nodes = _supplement([(2, "30 [approximately 50kph]")], chapters, entries, errors)
+
+    assert [n.title for n in nodes] == ["Routes"]
+    (rejected,) = errors
+    assert rejected["error_type"] == "SupplementHeadingRejected"
+    assert rejected["context"]["page"] == 2 and "approximately 50kph" in rejected["context"]["title"]
+    assert "never a chapter" in rejected["context"]["reason"]
+
+
+def test_a_supplemented_section_under_its_own_numbered_chapter_is_kept():
+    chapters = [_chapter("1", "Alpha", 1)]
+    entries = [_chapter_entry("1", "Alpha")]
+    errors = []
+
+    nodes = _supplement([(2, "1.6 Summary")], chapters, entries, errors)
+
+    assert [(n.number, n.title, n.level) for n in nodes if n.level == 2] == [("1.6", "Summary", 2)]
+    assert errors == []
+
+
+def test_an_unnumbered_toc_chapter_takes_its_number_from_its_numbered_children():
+    chapters = [_chapter(None, "Introduction", 1)]
+    entries = [{"title": "Introduction", "number": None, "level": 1}] + [
+        {"title": f"Child {c}", "number": f"1.{i}", "level": 2} for i, c in enumerate("ABCDE", start=1)]
+    errors = []
+
+    nodes = _supplement([(2, "1.6 Summary")], chapters, entries, errors)
+
+    assert [(n.number, n.title) for n in nodes if n.level == 2] == [("1.6", "Summary")]
+    assert errors == []
+
+
+def test_a_heading_whose_number_belongs_to_another_chapter_is_rejected():
+    chapters = [_chapter("1", "Alpha", 1), _chapter("2", "Beta", 3)]
+    entries = [_chapter_entry("1", "Alpha"), _chapter_entry("2", "Beta")]
+    errors = []
+
+    nodes = _supplement([(2, "2.1 Wrong Place")], chapters, entries, errors)   # p. 2 is in chapter 1
+
+    assert [n.title for n in nodes if n.level == 2] == []
+    assert errors[0]["error_type"] == "SupplementHeadingRejected"
+    assert "does not belong" in errors[0]["context"]["reason"]
+
+
+def test_a_section_of_an_unmatched_chapter_is_kept_in_the_span_after_the_chapter_before_it():
+    """Chapter 2 is in the contents but its title was never found in the body (set
+    as artwork), so its sections sit after chapter 1's last match, before chapter 3."""
+    chapters = [_chapter("1", "Alpha", 1), _chapter("3", "Gamma", 5)]
+    entries = [_chapter_entry("1", "Alpha"), _chapter_entry("2", "Beta"), _chapter_entry("3", "Gamma")]
+    errors = []
+
+    nodes = _supplement([(3, "2.4 A Section Of The Missing Chapter")], chapters, entries, errors)
+
+    assert [n.number for n in nodes if n.level == 2] == ["2.4"]
+    assert errors == []
+
+
+def test_a_chapter_with_no_number_cannot_take_supplemented_sections():
+    chapters = [_chapter(None, "Infrastructure", 1)]
+    entries = [{"title": "Infrastructure", "number": None, "level": 1}]
+    errors = []
+
+    nodes = _supplement([(2, "5.1 Some Section")], chapters, entries, errors)
+
+    assert [n.level for n in nodes] == [1]
+    assert "no TOC chapter" in errors[0]["context"]["reason"]
 
 
 # --- toc_separate_number_running -------------------------------------------

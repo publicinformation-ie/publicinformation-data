@@ -327,3 +327,46 @@ No regressions. This is the document that D3 had worsened (0.12 -> 0.00) when it
 One explained regression, in a metric whose recall rose by 0.32 in the same document.
 
 **Documents without gold** (`production_view.py`, `compare.py` refreshed): production methods unchanged for all 40 documents; `InvalidStructure` 11 -> 11. `code-of-practice-recreational-craft` (production method `outline`) now reads a 130-entry TOC in `compare.py`'s view (49 -> 130 entries, match rate 0.556 -> 0.703). No override is orphaned.
+
+### D4 — The TOC defines the chapters; the supplement only adds sections
+
+- **Change:** `_supplement_numbered_nodes` keeps a numbered body heading the TOC does not list only as a level-2-or-deeper section, in the page span of a TOC chapter, when its leading number equals that chapter's number (own printed number, or the leading component shared by its numbered child entries). The span after a matched chapter also belongs to the unmatched TOC chapters listed after it, up to the next matched one. Anything else is dropped and logged `SupplementHeadingRejected` (heading, page, reason).
+- **Commit:** see git log (`feat(detect_structure): confine the TOC supplement to sections`)
+- **Kind:** detector change
+
+| Summary (raw tree) | Documents | Fully correct | Exact F1 (macro) | Page attribution (macro) | Title accuracy (macro) |
+|---|---:|---:|---:|---:|---:|
+| tuning, before | 10 | 4 | 0.75 | 0.61 | 0.96 |
+| tuning, after | 10 | 5 | 0.81 | 0.71 | 0.96 |
+| held out, before | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| held out, after | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| all, before | 14 | 5 | 0.71 | 0.61 | 0.97 |
+| all, after | 14 | 6 | 0.75 | 0.68 | 0.97 |
+
+**Per-document changes:**
+
+| Document | Metric | Before | After | Reason |
+|---|---|---:|---:|---|
+| `national-cycle-network-plan` | exact F1 | 0.50 | 1.00 | the 16 level-1 junk headings (`30 [approximately 50kph]`, route names, the address, `4 Public Consultation.`) are no longer chapters: predicted chapters are exactly the 8 TOC chapters; fully correct |
+| `national-cycle-network-plan` | page attribution / exact precision | 0.09 / 0.33 | 1.00 / 1.00 | same |
+| `climate-action-plan-2025-annex-of-actions` | exact F1 | 0.91 | 0.94 | a level-1 heading and six `0.3 Mt CO2eq.`-style numbers (lead `0`, no such chapter) rejected; exact precision 0.88 -> 0.94 |
+| `emra-regional-spatial-and-economic-strategy` | exact F1 | 0.44 | 0.48 | two level-1 headings rejected (`65 + years 12%`, a sentence fragment); exact precision 0.50 -> 0.60 |
+
+No regressions in any scored metric.
+
+**What it costs, and why it is accepted (please review).** The rule removes numbered sections from the published tree in six documents, each one logged as `SupplementHeadingRejected` for a reviewer:
+
+| Document (production method `toc`) | Nodes before -> after | Rejected | Of which level 1 |
+|---|---:|---:|---:|
+| `national-cycle-network-plan` | 69 -> 35 | 34 | 16 |
+| `climate-action-plan-2023` | 213 -> 158 | 55 | 0 |
+| `emra-regional-spatial-and-economic-strategy` | 83 -> 53 | 30 | 2 |
+| `ev-infrastructure-strategy` | 57 -> 35 | 22 | 0 |
+| `climate-action-plan-2025-annex-of-actions` | 24 -> 17 | 7 | 1 |
+| `code-of-practice-fishing-vessels-under-15m` | 137 -> 135 | 2 | 1 |
+
+Most rejected headings in the first four are real sections (`11.1 State of Play`, `4.2 Settlement Strategy`), not junk. They are rejected because the chapter that owns them was not matched in the right place, so nothing can say which chapter they belong to. In `climate-action-plan-2023` the old tree hung them under whichever chapter happened to precede them (the `11.x` sections under chapter 10), which is a confidently wrong parent; in `emra` the chapter titles are set as artwork and match far from their real position (`People and Place` at p. 243 against p. 42), which cuts off the unmatched-chapter span. `ev-infrastructure-strategy`'s chapter `Infrastructure` has no number and no numbered children in its malformed TOC. Under the repo's data-handling rule (an explicit, reviewable error beats a confidently wrong value) these are dropped and logged, not guessed. D8 (guarded placement by printed page) is the step expected to recover emra's. If the section loss is not acceptable for publication, the alternative is to keep a heading whose number matches *any* TOC chapter, and accept that some would then sit under the wrong parent.
+
+**A design correction made while implementing (spec updated):** the first version required a supplemented heading to lie in a *matched* chapter's page range, which rejected 134 of CAP 2023's sections because chapters 7 to 25 were not in the TOC tree at all. That led to the D5c-fix above (CAP 2023's later contents pages were never read); the span rule for unmatched chapters followed from the emra case.
+
+**Documents without gold** (`production_view.py`, `compare.py` refreshed): production detection methods unchanged for all 40 documents; `InvalidStructure` 11 -> 11. The other documents' trees are unchanged in production. `compare.py`'s TOC view (which does not use the production outline) also shrinks for outline documents (`climate-action-plan-2024` 267 -> 49 nodes, `national-roads-2040-final-report` 59 -> 31, `code-of-practice-recreational-craft` 179 -> 105), but those documents publish their outline tree, so this is not a published change today. No override is orphaned by this step.

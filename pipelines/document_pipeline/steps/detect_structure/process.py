@@ -1277,15 +1277,90 @@ def _below_score_floor(occ: dict, body: float) -> bool:
     return occ["size"] < body * SCORE_FLOOR and not occ["bold"]
 
 
+def _lead(number):
+    """The leading component of a heading number: `4.2` -> `4`, `RE` -> `RE`."""
+    return str(number).split(".")[0] if number else None
+
+
+def _toc_chapters(entries) -> list:
+    """The level-1 TOC entries in TOC order, as `(normalized title, number)`.
+
+    A chapter's number is the leading component of its own printed number or,
+    when it has none, the leading component shared by all the numbered entries
+    beneath it (up to the next level-1 entry) if they agree. A chapter with
+    neither has number None: nothing can be supplemented under it.
+    """
+    chapters = []
+    for position, entry in enumerate(entries):
+        if entry.get("level", 1) != 1:
+            continue
+        number = _lead(entry.get("number"))
+        if number is None:
+            leads = set()
+            for child in entries[position + 1:]:
+                if child.get("level", 1) == 1:
+                    break
+                if child.get("number"):
+                    leads.add(_lead(child["number"]))
+            number = leads.pop() if len(leads) == 1 else None
+        chapters.append((normalize_heading_text(entry["title"]), number))
+    return chapters
+
+
 def _supplement_numbered_nodes(pages, body, base_nodes, entries, running_headers,
-                               toc_pages=frozenset()):
-    """Add legacy numbered headings not already among the base nodes. The font
-    strategy is not used — it is the low-precision over-splitter this strategy
-    replaces, and re-adding its nodes reintroduces the junk. TOC pages are
-    excluded so a TOC line cannot re-enter as a body heading."""
+                               toc_pages=frozenset(), errors=None):
+    """Add numbered body headings the TOC does not list, as sections only.
+
+    The TOC defines the chapters. A supplemented heading is kept only when it is
+    level 2 or deeper, lies inside a TOC chapter's page range, and its leading
+    number component equals that chapter's number; anything else (a stray `30
+    [approximately 50kph]` set in a larger size, a figure number, an address) is
+    dropped and, when `errors` is given, recorded as `SupplementHeadingRejected`.
+    The font strategy is not used: it is the low-precision over-splitter this
+    strategy replaces. TOC pages are excluded so a TOC line cannot re-enter as a
+    body heading.
+    """
     claimed = {(n.start_page, round(n.start_y, 1)) for n in base_nodes}
     extra = []
     seen = {(normalize_heading_text(n.title), n.start_page) for n in base_nodes}
+    toc_chapters = _toc_chapters(entries)
+    matched_titles = {normalize_heading_text(n.title) for n in base_nodes if n.level == 1}
+    chapters = sorted((n for n in base_nodes if n.level == 1),
+                      key=lambda n: (n.start_page, n.start_y))
+
+    def chapter_of(node):
+        owner = None
+        for chapter in chapters:
+            if (chapter.start_page, chapter.start_y) <= (node.start_page, node.start_y):
+                owner = chapter
+        return owner
+
+    def candidate_numbers(owner):
+        """Numbers of the TOC chapters that can own a heading in the page span that
+        starts at `owner`: the owner itself and, in TOC order, every unmatched TOC
+        chapter listed after it up to the next matched one (their own headings
+        cannot be placed by page, so they sit in this span). Before the first
+        matched chapter: the unmatched chapters that lead the TOC."""
+        titles = [title for title, _number in toc_chapters]
+        start = titles.index(normalize_heading_text(owner.title)) if owner is not None \
+            and normalize_heading_text(owner.title) in titles else (-1 if owner is None else None)
+        if start is None:
+            return None
+        numbers = [toc_chapters[start][1]] if start >= 0 else []
+        for title, number in toc_chapters[start + 1:]:
+            if title in matched_titles:
+                break
+            numbers.append(number)
+        return {n for n in numbers if n is not None}
+
+    def reject(node, reason):
+        if errors is not None:
+            errors.append(_error(
+                "SupplementHeadingRejected",
+                f"Numbered heading {node.title!r} on page {node.start_page} was not added: {reason}.",
+                {"title": node.title, "page": node.start_page, "number": node.number,
+                 "reason": reason}))
+
     for node in from_numbering(pages, body, toc_pages):
         # Skip only a duplicate of a node already present (same title, same
         # page); a title merely listed in the TOC may recur as `N.1 Introduction`.
@@ -1295,6 +1370,23 @@ def _supplement_numbered_nodes(pages, body, base_nodes, entries, running_headers
             continue
         key = (node.start_page, round(node.start_y, 1))
         if key in claimed:
+            continue
+        if node.level < 2:
+            reject(node, "a supplemented heading can only be a section, never a chapter")
+            continue
+        owner = chapter_of(node)
+        numbers = candidate_numbers(owner)
+        if numbers is None:
+            reject(node, f"its TOC chapter {owner.title!r} cannot be found in the contents list")
+            continue
+        if not numbers:
+            reject(node, "no TOC chapter that could own it has a number to match" if owner is not None
+                   else "it lies before the first TOC chapter")
+            continue
+        if _lead(node.number) not in numbers:
+            where = f" ({owner.title!r})" if owner is not None else ""
+            reject(node, f"its number {node.number} does not belong to the chapter{where} "
+                         f"or to the unmatched chapters after it ({', '.join(sorted(numbers))})")
             continue
         claimed.add(key)
         extra.append(node)
@@ -1364,7 +1456,8 @@ def from_toc(pages: list, body: float, parsed=None):
              "match_rate": round(match_rate, 3), "gate": MATCH_RATE_GATE})]
         return None, report
 
-    nodes = _supplement_numbered_nodes(pages, body, nodes, entries, running, set(toc_pages))
+    nodes = _supplement_numbered_nodes(pages, body, nodes, entries, running, set(toc_pages),
+                                       errors)
     report["errors"] = errors
     return nodes, report
 

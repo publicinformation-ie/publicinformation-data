@@ -43,8 +43,8 @@ Run from `pipelines/document_pipeline` with `PYTHONPATH=".:../../src" ../../.ven
 
 ## 7. Supplement confinement (D4)
 
-- [ ] 7.1 Derive TOC chapter numbers (own number, or the shared lead of their numbered children), confine supplemented headings to level-2+ sections under the matching chapter, and log `SupplementHeadingRejected`. Verify with unit tests of "Supplemented heading cannot become a chapter" and "Supplemented section under its own chapter is kept".
-- [ ] 7.2 Update the README's supplement description, then measure. Verify that national-cycle's predicted chapters are the 8 TOC chapters.
+- [x] 7.1 Derive TOC chapter numbers (own number, or the shared lead of their numbered children), confine supplemented headings to level-2+ sections under the matching chapter, and log `SupplementHeadingRejected`. Verify with unit tests of "Supplemented heading cannot become a chapter" and "Supplemented section under its own chapter is kept".
+- [x] 7.2 Update the README's supplement description, then measure. Verify that national-cycle's predicted chapters are the 8 TOC chapters.
 
 ## 8. Guarded placement by printed page (D8)
 

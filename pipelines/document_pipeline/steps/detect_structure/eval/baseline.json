@@ -159,22 +159,22 @@
       "held_out": false,
       "raw": {
         "gold_chapters": 16,
-        "predicted_chapters": 17,
+        "predicted_chapters": 16,
         "exact": {
           "matched": 15,
-          "precision": 0.8823529411764706,
+          "precision": 0.9375,
           "recall": 0.9375,
-          "f1": 0.9090909090909091
+          "f1": 0.9375
         },
         "tolerant": {
           "matched": 15,
-          "precision": 0.8823529411764706,
+          "precision": 0.9375,
           "recall": 0.9375,
-          "f1": 0.9090909090909091
+          "f1": 0.9375
         },
         "page_count": 96,
-        "pages_correct": 86,
-        "page_accuracy": 0.8958333333333334,
+        "pages_correct": 89,
+        "page_accuracy": 0.9270833333333334,
         "matched_pairs": 15,
         "titles_correct": 15,
         "title_accuracy": 1.0,
@@ -219,22 +219,22 @@
       "held_out": false,
       "raw": {
         "gold_chapters": 15,
-        "predicted_chapters": 12,
+        "predicted_chapters": 10,
         "exact": {
           "matched": 6,
-          "precision": 0.5,
+          "precision": 0.6,
           "recall": 0.4,
-          "f1": 0.4444444444444445
+          "f1": 0.48
         },
         "tolerant": {
           "matched": 7,
-          "precision": 0.5833333333333334,
+          "precision": 0.7,
           "recall": 0.4666666666666667,
-          "f1": 0.5185185185185186
+          "f1": 0.56
         },
         "page_count": 244,
-        "pages_correct": 45,
-        "page_accuracy": 0.18442622950819673,
+        "pages_correct": 55,
+        "page_accuracy": 0.22540983606557377,
         "matched_pairs": 6,
         "titles_correct": 5,
         "title_accuracy": 0.8333333333333334,
@@ -242,22 +242,22 @@
       },
       "post_override": {
         "gold_chapters": 15,
-        "predicted_chapters": 12,
+        "predicted_chapters": 10,
         "exact": {
           "matched": 6,
-          "precision": 0.5,
+          "precision": 0.6,
           "recall": 0.4,
-          "f1": 0.4444444444444445
+          "f1": 0.48
         },
         "tolerant": {
           "matched": 7,
-          "precision": 0.5833333333333334,
+          "precision": 0.7,
           "recall": 0.4666666666666667,
-          "f1": 0.5185185185185186
+          "f1": 0.56
         },
         "page_count": 244,
-        "pages_correct": 45,
-        "page_accuracy": 0.18442622950819673,
+        "pages_correct": 55,
+        "page_accuracy": 0.22540983606557377,
         "matched_pairs": 6,
         "titles_correct": 5,
         "title_accuracy": 0.8333333333333334,
@@ -323,26 +323,26 @@
       "held_out": false,
       "raw": {
         "gold_chapters": 8,
-        "predicted_chapters": 24,
+        "predicted_chapters": 8,
         "exact": {
           "matched": 8,
-          "precision": 0.3333333333333333,
+          "precision": 1.0,
           "recall": 1.0,
-          "f1": 0.5
+          "f1": 1.0
         },
         "tolerant": {
           "matched": 8,
-          "precision": 0.3333333333333333,
+          "precision": 1.0,
           "recall": 1.0,
-          "f1": 0.5
+          "f1": 1.0
         },
         "page_count": 1107,
-        "pages_correct": 101,
-        "page_accuracy": 0.09123757904245709,
+        "pages_correct": 1107,
+        "page_accuracy": 1.0,
         "matched_pairs": 8,
         "titles_correct": 8,
         "title_accuracy": 1.0,
-        "fully_correct": false
+        "fully_correct": true
       },
       "post_override": null
     },
@@ -492,98 +492,98 @@
   "summary": {
     "raw": {
       "documents": 14,
-      "fully_correct": 5,
+      "fully_correct": 6,
       "macro": {
-        "boundary_precision_exact": 0.7304439025027261,
+        "boundary_precision_exact": 0.7891448828948829,
         "boundary_recall_exact": 0.7304652292152293,
-        "boundary_f1_exact": 0.7116367390453769,
-        "boundary_precision_tolerant": 0.8040009010597247,
+        "boundary_f1_exact": 0.751919928078566,
+        "boundary_precision_tolerant": 0.8638923576423576,
         "boundary_recall_tolerant": 0.7979688367188367,
-        "boundary_f1_tolerant": 0.781814629322935,
-        "page_accuracy": 0.6146811703278997,
+        "boundary_f1_tolerant": 0.8225210987794044,
+        "page_accuracy": 0.6847523151503941,
         "title_accuracy": 0.9717948717948718
       },
       "micro": {
-        "boundary_precision_exact": 0.7225130890052356,
+        "boundary_precision_exact": 0.8023255813953488,
         "boundary_recall_exact": 0.6731707317073171,
-        "boundary_f1_exact": 0.696969696969697,
-        "boundary_precision_tolerant": 0.8219895287958116,
+        "boundary_f1_exact": 0.7320954907161804,
+        "boundary_precision_tolerant": 0.9127906976744186,
         "boundary_recall_tolerant": 0.7658536585365854,
-        "boundary_f1_tolerant": 0.7929292929292929,
-        "page_accuracy": 0.376541035575907,
+        "boundary_f1_tolerant": 0.83289124668435,
+        "page_accuracy": 0.7354702359985911,
         "title_accuracy": 0.9855072463768116
       }
     },
     "post_override": {
       "documents": 14,
-      "fully_correct": 5,
+      "fully_correct": 6,
       "macro": {
-        "boundary_precision_exact": 0.731007812277162,
+        "boundary_precision_exact": 0.7897087926693189,
         "boundary_recall_exact": 0.7304652292152293,
-        "boundary_f1_exact": 0.7118856190851978,
-        "boundary_precision_tolerant": 0.8075723296311531,
+        "boundary_f1_exact": 0.7521688081183867,
+        "boundary_precision_tolerant": 0.8674637862137863,
         "boundary_recall_tolerant": 0.7979688367188367,
-        "boundary_f1_tolerant": 0.7833908695751334,
-        "page_accuracy": 0.6149739103747383,
+        "boundary_f1_tolerant": 0.8240973390316029,
+        "page_accuracy": 0.6850450551972325,
         "title_accuracy": 0.9717948717948718
       },
       "micro": {
-        "boundary_precision_exact": 0.7263157894736842,
+        "boundary_precision_exact": 0.8070175438596491,
         "boundary_recall_exact": 0.6731707317073171,
-        "boundary_f1_exact": 0.6987341772151899,
-        "boundary_precision_tolerant": 0.8263157894736842,
+        "boundary_f1_exact": 0.7340425531914895,
+        "boundary_precision_tolerant": 0.9181286549707602,
         "boundary_recall_tolerant": 0.7658536585365854,
-        "boundary_f1_tolerant": 0.7949367088607595,
-        "page_accuracy": 0.37689327227897146,
+        "boundary_f1_tolerant": 0.8351063829787234,
+        "page_accuracy": 0.7358224727016555,
         "title_accuracy": 0.9855072463768116
       }
     },
     "tuning": {
       "raw": {
         "documents": 10,
-        "fully_correct": 4,
+        "fully_correct": 5,
         "macro": {
-          "boundary_precision_exact": 0.7810130718954248,
+          "boundary_precision_exact": 0.8631944444444445,
           "boundary_recall_exact": 0.7709419191919192,
-          "boundary_f1_exact": 0.7501375885096816,
-          "boundary_precision_tolerant": 0.8749019607843136,
+          "boundary_f1_exact": 0.8065340531561462,
+          "boundary_precision_tolerant": 0.95875,
           "boundary_recall_tolerant": 0.8543358585858586,
-          "boundary_f1_tolerant": 0.8383866348982629,
-          "page_accuracy": 0.6100657915954641,
+          "boundary_f1_tolerant": 0.89537569213732,
+          "page_accuracy": 0.708165394346956,
           "title_accuracy": 0.9633333333333333
         },
         "micro": {
-          "boundary_precision_exact": 0.6934306569343066,
+          "boundary_precision_exact": 0.8050847457627118,
           "boundary_recall_exact": 0.6985294117647058,
-          "boundary_f1_exact": 0.695970695970696,
-          "boundary_precision_tolerant": 0.8248175182481752,
+          "boundary_f1_exact": 0.7480314960629922,
+          "boundary_precision_tolerant": 0.9576271186440678,
           "boundary_recall_tolerant": 0.8308823529411765,
-          "boundary_f1_tolerant": 0.827838827838828,
-          "page_accuracy": 0.33658536585365856,
+          "boundary_f1_tolerant": 0.8897637795275591,
+          "page_accuracy": 0.7508130081300813,
           "title_accuracy": 0.9789473684210527
         }
       },
       "post_override": {
         "documents": 10,
-        "fully_correct": 4,
+        "fully_correct": 5,
         "macro": {
-          "boundary_precision_exact": 0.7818025455796354,
+          "boundary_precision_exact": 0.863983918128655,
           "boundary_recall_exact": 0.7709419191919192,
-          "boundary_f1_exact": 0.7504860205654307,
-          "boundary_precision_tolerant": 0.8799019607843137,
+          "boundary_f1_exact": 0.8068824852118952,
+          "boundary_precision_tolerant": 0.9637499999999999,
           "boundary_recall_tolerant": 0.8543358585858586,
-          "boundary_f1_tolerant": 0.8405933712513406,
-          "page_accuracy": 0.6104756276610378,
+          "boundary_f1_tolerant": 0.8975824284903979,
+          "page_accuracy": 0.7085752304125299,
           "title_accuracy": 0.9633333333333333
         },
         "micro": {
-          "boundary_precision_exact": 0.6985294117647058,
+          "boundary_precision_exact": 0.811965811965812,
           "boundary_recall_exact": 0.6985294117647058,
-          "boundary_f1_exact": 0.6985294117647058,
-          "boundary_precision_tolerant": 0.8308823529411765,
+          "boundary_f1_exact": 0.7509881422924901,
+          "boundary_precision_tolerant": 0.9658119658119658,
           "boundary_recall_tolerant": 0.8308823529411765,
-          "boundary_f1_tolerant": 0.8308823529411766,
-          "page_accuracy": 0.33699186991869917,
+          "boundary_f1_tolerant": 0.8932806324110673,
+          "page_accuracy": 0.751219512195122,
           "title_accuracy": 0.9789473684210527
         }
       }
