@@ -12,13 +12,15 @@ For each document in `extract_pages/output.json`:
 
    | Strategy | Fires when | `confidence` |
    |---|---|---|
-   | `outline` | The PDF has a table of contents (`extract_pages`'s `outline`) | 1.0 |
+   | `outline` | The PDF has a **plausible** outline (`extract_pages`'s `outline`): after unusable bookmarks are filtered out, at least two entries at its shallowest level | 1.0 |
    | `toc` | No outline, but a parseable Table of Contents page whose entries match body headings at or above the match-rate gate | 0.95 |
    | `numbering` | Lines of the form `1 First Chapter` / `1.1 Introduction` (≤3 levels), set above body size **or** bold | 0.9 |
    | `font` | No numbering, but distinct styles larger than body+0.5pt exist; the largest three rank into levels 1–3 | 0.6 |
    | `flat` | Nothing above applied — one node per page (`page-001`, `page-002`, …) | 0.2 |
 
    Two guards keep prose out of the numbering strategy: a candidate is rejected if it is set at body size and not bold, or if its title is longer than 120 characters or reads as a sentence (ends in `.` and has more than four words). `2.4 million trips are made each day.` matches the heading pattern perfectly and is rejected only by the size guard.
+
+   An outline with one entry at its shallowest level (a lone `Untitled`, a document-title wrapper, or one root over its own children) says nothing about where chapters start, so it is not used: the cascade continues as if there were no outline, `detection_method` names the strategy that actually produced the tree, and an informational `OutlineNotUsed` error records why.
 
    **Outline preparation** happens before the cascade, in `detect_document_structure` (the one entry point shared by `process()` and the accuracy eval, so both score the same tree): non-heading bookmarks are dropped, wrapped bookmarks are merged, and each entry is moved to the page where its heading is printed. Titles have whitespace collapsed (line breaks, thin spaces, control characters) before the heading number is split off, so `3 Long Term Strategic Issues⏎for National Roads` is number `3`. Two adjacent same-level, same-page entries are merged only when the second has no number, the first does not end in `.`, `!` or `?`, and the joined title is the exact text of a heading line on that page (`15. Freight, Delivery and` + `Servicing`); two real headings that share a page, such as `2.7` and `2.8`, stay apart because their join matches no line. An unverified pair is left as it is.
 
@@ -78,6 +80,7 @@ Repeated headings — `1.1 Introduction` continued onto the next page, or the sa
   | `LowTocMatchRate` | A TOC was detected but its match rate was below the gate, so the legacy cascade was used |
   | `TocEntryUnmatched` | A TOC entry had no body occurrence under the matching rule; no boundary created |
   | `TocEntryNoHeading` | A TOC entry matched a body line below the score floor (not above body size or bold); no boundary created |
+  | `OutlineNotUsed` | The PDF outline had fewer than two entries at its shallowest level, so it was not used as chapter evidence and detection continued with the TOC, numbering, font or flat strategy. Informational |
   | `OutlineEntryDropped` | An outline bookmark had no usable title (empty, no letters such as `1.`, or a Word `_Hlk`/`_Toc` auto-bookmark) and was dropped from the tree |
   | `OutlineEntryUnresolved` | An outline bookmark names only a page and its exact title was not found, so its `y` stays at the page top (the validation gate will usually flag the resulting duplicate boundary). Resolution joins up to 4 wrapped lines (running headers of another size are skipped) and, only after an exact miss on the stated page, tries the previous page for a heading-sized line (InDesign `/Fit` bookmarks can point one page late); it never guesses or tries the next page |
   | `InvalidStructure` | The final tree (after overrides) failed `validate_split` (e.g. no level-1 node, orphaned or empty sections). The tree is not altered and the record is still written. Validation always runs in production; an unresolved entry blocks the merge — fix it with an `override.json` entry |

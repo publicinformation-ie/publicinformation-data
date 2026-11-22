@@ -74,11 +74,12 @@ def by_slug(nodes):
 
 def test_the_outline_strategy_wins_when_the_pdf_has_an_outline():
     outline = [{"level": 1, "title": "1 First Chapter", "page": 2, "y": 76.0},
-               {"level": 2, "title": "1.1 Introduction", "page": 2, "y": 118.0}]
+               {"level": 2, "title": "1.1 Introduction", "page": 2, "y": 118.0},
+               {"level": 1, "title": "2 Second Chapter", "page": 3, "y": 76.0}]
     nodes, method, _ = detect_structure(load_pages("pages_numbered.json"), outline, 4)
 
     assert method == "outline"
-    assert [n.slug for n in nodes] == ["1-first-chapter", "1-1-introduction"]
+    assert [n.slug for n in nodes] == ["1-first-chapter", "1-1-introduction", "2-second-chapter"]
     assert nodes[0].number == "1"
     assert nodes[1].title == "Introduction"
     assert all(n.confidence == 1.0 for n in nodes)
@@ -203,6 +204,7 @@ def test_merge_overrides_can_flatten_a_staircase_outline():
     override.json escape hatch fixes this by patching `level`, which must
     recompute `parent` for every affected node, not just the patched one."""
     outline = [{"level": 1, "title": "Foreword", "page": 1, "y": 0.0},
+               {"level": 1, "title": "Preface", "page": 1, "y": 10.0},
                {"level": 2, "title": "Introduction", "page": 2, "y": 0.0},
                {"level": 3, "title": "Safe System Approach", "page": 3, "y": 0.0},
                {"level": 4, "title": "Vision Zero", "page": 4, "y": 0.0},
@@ -1204,3 +1206,43 @@ def test_outline_fragments_are_not_merged_across_levels_numbers_or_sentences():
     # first ends a sentence
     assert merge_wrapped_outline_entries([{**base[0], "title": "15. Freight, Delivery and."}, base[1]],
                                          pages)[1] == 0
+
+
+# --- outline plausibility (D3) -------------------------------------------------
+
+def test_a_single_entry_outline_is_not_chapter_evidence():
+    from steps.detect_structure.process import detect_document_structure
+
+    pages = load_pages("pages_numbered.json")
+    nodes, method, _report, problems = detect_document_structure(
+        pages, [{"level": 1, "title": "Untitled", "page": 1, "y": 0.0}], 4)
+
+    assert method != "outline"                       # names the strategy that produced the tree
+    assert [p["error_type"] for p in problems].count("OutlineNotUsed") == 1
+    assert "Untitled" not in [n.title for n in nodes]
+
+
+def test_a_single_root_outline_is_not_chapter_evidence():
+    from steps.detect_structure.process import detect_document_structure
+
+    outline = [{"level": 1, "title": "Annex", "page": 1, "y": 0.0}] + [
+        {"level": 2, "title": f"Section {i}", "page": 1 + i % 3, "y": 10.0 * i} for i in range(1, 16)]
+    _nodes, method, _report, problems = detect_document_structure(
+        load_pages("pages_numbered.json"), outline, 4)
+
+    assert method != "outline"
+    (problem,) = [p for p in problems if p["error_type"] == "OutlineNotUsed"]
+    assert problem["context"]["entries_at_shallowest_level"] == 1
+    assert problem["context"]["outline_entries"] == 16
+
+
+def test_a_plausible_outline_still_wins_and_logs_nothing():
+    from steps.detect_structure.process import detect_document_structure
+
+    outline = [{"level": 1, "title": "1 First Chapter", "page": 2, "y": 76.0},
+               {"level": 1, "title": "2 Second Chapter", "page": 3, "y": 76.0}]
+    _nodes, method, _report, problems = detect_document_structure(
+        load_pages("pages_numbered.json"), outline, 4)
+
+    assert method == "outline"
+    assert not [p for p in problems if p["error_type"] == "OutlineNotUsed"]

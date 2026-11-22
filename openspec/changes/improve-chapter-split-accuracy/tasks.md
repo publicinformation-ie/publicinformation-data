@@ -27,8 +27,8 @@ Run from `pipelines/document_pipeline` with `PYTHONPATH=".:../../src" ../../.ven
 
 ## 4. Outline plausibility (D3)
 
-- [ ] 4.1 Reject outlines with fewer than two entries at their shallowest level, fall through the cascade, and log `OutlineNotUsed`. Verify with unit tests of the "Single-entry outline is not chapter evidence", "Single-root outline is not chapter evidence" and "Outline still wins" scenarios.
-- [ ] 4.2 Update the strategy table and the `errors.json` types in the README, then measure. Verify that `climate-action-plan-2023` is no longer `outline`. Record in `RESULTS.md` the method change for every document without gold whose outline fails the check.
+- [x] 4.1 Reject outlines with fewer than two entries at their shallowest level, fall through the cascade, and log `OutlineNotUsed`. Verify with unit tests of the "Single-entry outline is not chapter evidence", "Single-root outline is not chapter evidence" and "Outline still wins" scenarios.
+- [x] 4.2 Update the strategy table and the `errors.json` types in the README, then measure. Verify that `climate-action-plan-2023` is no longer `outline`. Record in `RESULTS.md` the method change for every document without gold whose outline fails the check.
 
 ## 5. TOC parsing (D5), measured as three sub-steps
 

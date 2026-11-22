@@ -34,30 +34,30 @@
     },
     {
       "doc_slug": "climate-action-plan-2023",
-      "method": "outline",
+      "method": "toc",
       "has_overrides": false,
       "held_out": false,
       "raw": {
         "gold_chapters": 25,
-        "predicted_chapters": 1,
+        "predicted_chapters": 9,
         "exact": {
-          "matched": 0,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0
+          "matched": 9,
+          "precision": 1.0,
+          "recall": 0.36,
+          "f1": 0.5294117647058824
         },
         "tolerant": {
-          "matched": 0,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0
+          "matched": 9,
+          "precision": 1.0,
+          "recall": 0.36,
+          "f1": 0.5294117647058824
         },
         "page_count": 284,
-        "pages_correct": 7,
-        "page_accuracy": 0.02464788732394366,
-        "matched_pairs": 0,
-        "titles_correct": 0,
-        "title_accuracy": null,
+        "pages_correct": 66,
+        "page_accuracy": 0.2323943661971831,
+        "matched_pairs": 9,
+        "titles_correct": 9,
+        "title_accuracy": 1.0,
         "fully_correct": false
       },
       "post_override": null
@@ -154,30 +154,30 @@
     },
     {
       "doc_slug": "climate-action-plan-2025-annex-of-actions",
-      "method": "outline",
+      "method": "numbering",
       "has_overrides": false,
       "held_out": false,
       "raw": {
         "gold_chapters": 16,
-        "predicted_chapters": 1,
+        "predicted_chapters": 3,
         "exact": {
-          "matched": 1,
-          "precision": 1.0,
-          "recall": 0.0625,
-          "f1": 0.11764705882352941
+          "matched": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
         },
         "tolerant": {
-          "matched": 1,
-          "precision": 1.0,
-          "recall": 0.0625,
-          "f1": 0.11764705882352941
+          "matched": 2,
+          "precision": 0.6666666666666666,
+          "recall": 0.125,
+          "f1": 0.21052631578947367
         },
         "page_count": 96,
-        "pages_correct": 9,
-        "page_accuracy": 0.09375,
-        "matched_pairs": 1,
-        "titles_correct": 1,
-        "title_accuracy": 1.0,
+        "pages_correct": 7,
+        "page_accuracy": 0.07291666666666667,
+        "matched_pairs": 0,
+        "titles_correct": 0,
+        "title_accuracy": null,
         "fully_correct": false
       },
       "post_override": null
@@ -495,23 +495,23 @@
       "fully_correct": 4,
       "macro": {
         "boundary_precision_exact": 0.594005994005994,
-        "boundary_recall_exact": 0.552727133977134,
-        "boundary_f1_exact": 0.5237474030860951,
-        "boundary_precision_tolerant": 0.6784756909756909,
-        "boundary_recall_tolerant": 0.6411831224331224,
-        "boundary_f1_tolerant": 0.6073962249336747,
-        "page_accuracy": 0.4463729947718312,
+        "boundary_recall_exact": 0.5739771339771339,
+        "boundary_f1_exact": 0.5531591677919774,
+        "boundary_precision_tolerant": 0.7260947385947386,
+        "boundary_recall_tolerant": 0.6713616938616939,
+        "boundary_f1_tolerant": 0.6518455836245194,
+        "page_accuracy": 0.4597239337389673,
         "title_accuracy": 0.9
       },
       "micro": {
-        "boundary_precision_exact": 0.5950920245398773,
-        "boundary_recall_exact": 0.47317073170731705,
-        "boundary_f1_exact": 0.5271739130434783,
-        "boundary_precision_tolerant": 0.7239263803680982,
-        "boundary_recall_tolerant": 0.5756097560975609,
-        "boundary_f1_tolerant": 0.641304347826087,
-        "page_accuracy": 0.2613596336738288,
-        "title_accuracy": 0.9690721649484536
+        "boundary_precision_exact": 0.6069364161849711,
+        "boundary_recall_exact": 0.5121951219512195,
+        "boundary_f1_exact": 0.5555555555555555,
+        "boundary_precision_tolerant": 0.7398843930635838,
+        "boundary_recall_tolerant": 0.624390243902439,
+        "boundary_f1_tolerant": 0.6772486772486772,
+        "page_accuracy": 0.281437125748503,
+        "title_accuracy": 0.9714285714285714
       }
     },
     "post_override": {
@@ -519,23 +519,23 @@
       "fully_correct": 4,
       "macro": {
         "boundary_precision_exact": 0.5971209241885934,
-        "boundary_recall_exact": 0.552727133977134,
-        "boundary_f1_exact": 0.5245609358644817,
-        "boundary_precision_tolerant": 0.6756695685267113,
-        "boundary_recall_tolerant": 0.6364212176712176,
-        "boundary_f1_tolerant": 0.6033259378002153,
-        "page_accuracy": 0.4472512149123464,
+        "boundary_recall_exact": 0.5739771339771339,
+        "boundary_f1_exact": 0.5539727005703641,
+        "boundary_precision_tolerant": 0.7232886161457589,
+        "boundary_recall_tolerant": 0.666599789099789,
+        "boundary_f1_tolerant": 0.6477752964910601,
+        "page_accuracy": 0.46060215387948256,
         "title_accuracy": 0.9
       },
       "micro": {
-        "boundary_precision_exact": 0.6024844720496895,
-        "boundary_recall_exact": 0.47317073170731705,
-        "boundary_f1_exact": 0.5300546448087431,
-        "boundary_precision_tolerant": 0.7267080745341615,
-        "boundary_recall_tolerant": 0.5707317073170731,
-        "boundary_f1_tolerant": 0.6393442622950819,
-        "page_accuracy": 0.2624163437830222,
-        "title_accuracy": 0.9690721649484536
+        "boundary_precision_exact": 0.6140350877192983,
+        "boundary_recall_exact": 0.5121951219512195,
+        "boundary_f1_exact": 0.5585106382978723,
+        "boundary_precision_tolerant": 0.7426900584795322,
+        "boundary_recall_tolerant": 0.6195121951219512,
+        "boundary_f1_tolerant": 0.6755319148936171,
+        "page_accuracy": 0.2824938358576964,
+        "title_accuracy": 0.9714285714285714
       }
     },
     "tuning": {
@@ -544,23 +544,23 @@
         "fully_correct": 3,
         "macro": {
           "boundary_precision_exact": 0.5900000000000001,
-          "boundary_recall_exact": 0.5221085858585859,
-          "boundary_f1_exact": 0.48709251816668697,
-          "boundary_precision_tolerant": 0.6991666666666666,
-          "boundary_recall_tolerant": 0.6348358585858586,
-          "boundary_f1_tolerant": 0.5942008687532984,
-          "page_accuracy": 0.37443434581696794,
+          "boundary_recall_exact": 0.5518585858585858,
+          "boundary_f1_exact": 0.5282689887549223,
+          "boundary_precision_tolerant": 0.7658333333333334,
+          "boundary_recall_tolerant": 0.6770858585858586,
+          "boundary_f1_tolerant": 0.656429970920481,
+          "page_accuracy": 0.3931256603709586,
           "title_accuracy": 0.8666666666666667
         },
         "micro": {
-          "boundary_precision_exact": 0.4954128440366973,
-          "boundary_recall_exact": 0.39705882352941174,
-          "boundary_f1_exact": 0.4408163265306122,
-          "boundary_precision_tolerant": 0.6788990825688074,
-          "boundary_recall_tolerant": 0.5441176470588235,
-          "boundary_f1_tolerant": 0.6040816326530611,
-          "page_accuracy": 0.20365853658536584,
-          "title_accuracy": 0.9444444444444444
+          "boundary_precision_exact": 0.5210084033613446,
+          "boundary_recall_exact": 0.45588235294117646,
+          "boundary_f1_exact": 0.48627450980392156,
+          "boundary_precision_tolerant": 0.7058823529411765,
+          "boundary_recall_tolerant": 0.6176470588235294,
+          "boundary_f1_tolerant": 0.6588235294117647,
+          "page_accuracy": 0.22682926829268293,
+          "title_accuracy": 0.9516129032258065
         }
       },
       "post_override": {
@@ -568,23 +568,23 @@
         "fully_correct": 3,
         "macro": {
           "boundary_precision_exact": 0.5943609022556391,
-          "boundary_recall_exact": 0.5221085858585859,
-          "boundary_f1_exact": 0.48823146405642814,
-          "boundary_precision_tolerant": 0.6952380952380952,
-          "boundary_recall_tolerant": 0.628169191919192,
-          "boundary_f1_tolerant": 0.5885024667664552,
-          "page_accuracy": 0.3756638540136893,
+          "boundary_recall_exact": 0.5518585858585858,
+          "boundary_f1_exact": 0.5294079346446635,
+          "boundary_precision_tolerant": 0.7619047619047619,
+          "boundary_recall_tolerant": 0.6704191919191919,
+          "boundary_f1_tolerant": 0.6507315689336379,
+          "page_accuracy": 0.3943551685676799,
           "title_accuracy": 0.8666666666666667
         },
         "micro": {
-          "boundary_precision_exact": 0.5046728971962616,
-          "boundary_recall_exact": 0.39705882352941174,
-          "boundary_f1_exact": 0.4444444444444444,
-          "boundary_precision_tolerant": 0.6822429906542056,
-          "boundary_recall_tolerant": 0.5367647058823529,
-          "boundary_f1_tolerant": 0.6008230452674896,
-          "page_accuracy": 0.2048780487804878,
-          "title_accuracy": 0.9444444444444444
+          "boundary_precision_exact": 0.5299145299145299,
+          "boundary_recall_exact": 0.45588235294117646,
+          "boundary_f1_exact": 0.4901185770750988,
+          "boundary_precision_tolerant": 0.7094017094017094,
+          "boundary_recall_tolerant": 0.6102941176470589,
+          "boundary_f1_tolerant": 0.6561264822134387,
+          "page_accuracy": 0.2280487804878049,
+          "title_accuracy": 0.9516129032258065
         }
       }
     },

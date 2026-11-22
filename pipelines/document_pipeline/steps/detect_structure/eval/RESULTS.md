@@ -129,3 +129,33 @@ No regressions.
 - `moving-together-strategy` (no gold): three wrapped appendix headings merged (`appendix-1` + `case-studies`, `appendix-2` + `ensuring-a-just-transition-through-investment`, `appendix-3` + `implementation-plan`); nodes 103 -> 100. Each join was verified against the page text. Its override slugs are not affected.
 
 **Notes:** exact F1 for GDA stays at 0.14: its remaining chapters are on pages that differ from gold by one, so the outline pages themselves are off. That is a separate cause and not part of D2.
+
+### D3 — Outline plausibility
+
+- **Change:** an outline is chapter evidence only if, after filtering, at least two entries sit at its shallowest level (`outline_is_plausible`). Otherwise the cascade continues as if there were no outline and logs an informational `OutlineNotUsed`.
+- **Commit:** see git log (`feat(detect_structure): reject implausible outlines`)
+- **Kind:** detector change
+
+| Summary (raw tree) | Documents | Fully correct | Exact F1 (macro) | Page attribution (macro) | Title accuracy (macro) |
+|---|---:|---:|---:|---:|---:|
+| tuning, before (post-D2) | 10 | 3 | 0.49 | 0.37 | 0.87 |
+| tuning, after | 10 | 3 | 0.53 | 0.39 | 0.87 |
+| held out, before (post-D2) | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| held out, after | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| all, before (post-D2) | 14 | 4 | 0.52 | 0.45 | 0.90 |
+| all, after | 14 | 4 | 0.55 | 0.46 | 0.90 |
+
+**Per-document changes:**
+
+| Document | Metric | Before | After | Reason |
+|---|---|---:|---:|---|
+| `climate-action-plan-2023` | exact F1 | 0.00 | 0.53 | its outline was one `Untitled` entry; the cascade now reaches the TOC (method `outline` -> `toc`, 1 -> 193 nodes) |
+| `climate-action-plan-2023` | page attribution / exact precision / exact recall | 0.02 / 0.00 / 0.00 | 0.23 / 1.00 / 0.36 | same |
+| `climate-action-plan-2025-annex-of-actions` | exact F1 | 0.12 | **0.00 (regression)** | its outline (1 level-1 root, 15 level-2) is rejected, as intended, but the fall-through does not yet find the chapters: the TOC match rate is 14%, below the gate (`LowTocMatchRate`), so the cascade lands on `numbering` with 7 nodes, none at a gold boundary. The old tree was 1 node (the root) that happened to sit on one gold boundary (precision 1.00, recall 0.06). The TOC path is blocked by the `RE \|Title` code mismatch and the side-panel prose in the gate denominator, which are D7 and D6 |
+| `climate-action-plan-2025-annex-of-actions` | page attribution / tolerant F1 | 0.09 / 0.12 | 0.07 / 0.21 | same |
+
+One regression, explained and expected to reverse with D6 and D7; checked again in those entries.
+
+**Documents without gold** (`production_view.py`): the only method changes are the two documents above (`climate-action-plan-2023` outline -> toc; `climate-action-plan-2025-annex-of-actions` outline -> numbering). No other document has an outline that fails the check. `InvalidStructure` 12 -> 12. No override is orphaned.
+
+**Notes:** this check does not reach the held-out set; none of the four held-out documents has an implausible outline.

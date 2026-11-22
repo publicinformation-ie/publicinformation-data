@@ -1230,6 +1230,16 @@ def validate_split(nodes: list, page_count: int) -> list:
     return [issue["message"] for issue in split_issues(nodes, page_count)]
 
 
+def outline_is_plausible(outline) -> bool:
+    """An outline is chapter evidence only if, after unusable entries are
+    filtered out, at least two entries sit at its shallowest level. One entry
+    (`Untitled`, a document-title wrapper) or a single root over its own
+    children (`CAP 2025 annex`: one level-1, fifteen level-2) says nothing about
+    where the chapters are, so the cascade moves on as if there were no outline."""
+    levels = [int(entry.get("level", 1)) for entry in outline or []]
+    return bool(levels) and levels.count(min(levels)) >= 2
+
+
 def detect_structure(pages: list, outline=None, page_count=None):
     """Return (nodes, detection_method, toc_report) for one document's pages.
 
@@ -1241,7 +1251,7 @@ def detect_structure(pages: list, outline=None, page_count=None):
     match rate, and any TOC errors (see `from_toc`).
     """
     toc_report = None
-    if outline:
+    if outline_is_plausible(outline):
         nodes, method = from_outline(outline), "outline"
     else:
         body = body_size(pages)
@@ -1273,6 +1283,17 @@ def detect_document_structure(pages: list, raw_outline, page_count=None):
     outline, _merged = merge_wrapped_outline_entries(outline, pages)
     outline, unresolved = resolve_outline_positions(outline, pages)
     problems = list(problems) + list(unresolved)
+    if outline and not outline_is_plausible(outline):
+        shallowest = min(int(entry.get("level", 1)) for entry in outline)
+        problems.append({
+            "error_type": "OutlineNotUsed",
+            "error_message": ("The PDF outline was not used as chapter evidence: it has fewer than "
+                              "two entries at its shallowest level, so it cannot say where chapters "
+                              "start. Detection continued as if there were no outline."),
+            "context": {"outline_entries": len(outline), "shallowest_level": shallowest,
+                        "entries_at_shallowest_level":
+                            sum(1 for e in outline if int(e.get("level", 1)) == shallowest)},
+        })
     nodes, method, toc_report = detect_structure(pages, outline, page_count)
     if toc_report is not None:
         problems += list(toc_report.get("errors", []))
