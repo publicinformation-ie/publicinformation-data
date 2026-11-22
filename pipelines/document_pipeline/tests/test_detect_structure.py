@@ -1076,3 +1076,59 @@ def test_toc_separate_number_running_footer_is_not_a_title_line():
     assert len(entries) == 6
     assert titles[5] == "Next Steps"
     assert not any("Prepared for" in t or "AECOM" in t for t in titles)
+
+
+# --- one detection entry point (production and eval agree) ------------------
+
+def _outline_prep_pages():
+    """Five pages: `Alpha` is printed on p. 2 and `Beta` on p. 4; the rest is body text."""
+    def body(number):
+        return [span(f"Body sentence number {i} of page {number}.", size=10.0,
+                     y0=200.0 + 14 * i, block=i + 1) for i in range(20)]
+    pages = []
+    for number in range(1, 6):
+        spans = body(number)
+        if number == 2:
+            spans.append(span("Alpha", size=20.0, y0=80.0, block=0))
+        if number == 4:
+            spans.append(span("Beta", size=20.0, y0=80.0, block=0))
+        pages.append(page(spans, number=number))
+    return pages
+
+
+def _outline_prep_outline():
+    return [{"level": 1, "title": "Alpha", "page": 3},          # one page late
+            {"level": 1, "title": "_Hlk25760943", "page": 4},   # Word bookmark
+            {"level": 1, "title": "Beta", "page": 4}]
+
+
+def test_detect_document_structure_prepares_the_outline_like_production():
+    from steps.detect_structure.process import detect_document_structure
+
+    nodes, method, _report, problems = detect_document_structure(
+        _outline_prep_pages(), _outline_prep_outline(), 5)
+
+    assert method == "outline"
+    assert [(n.title, n.start_page) for n in nodes] == [("Alpha", 2), ("Beta", 4)]
+    assert [p["error_type"] for p in problems] == ["OutlineEntryDropped"]
+    assert not any("Hlk" in n.title for n in nodes)
+
+
+def test_process_and_the_eval_write_identical_trees(tmp_path, make_writer):
+    from steps.detect_structure.eval import score
+
+    pages, outline = _outline_prep_pages(), _outline_prep_outline()
+    upstream, records = write_upstream(tmp_path, pages, outline=outline)
+    step_dir = tmp_path / "detect_structure"
+    step_dir.mkdir()
+    writer = make_writer("detect_structure")
+    process(records, upstream, step_dir, writer, overrides={})
+    writer.finalize()
+    (record,) = json.loads((tmp_path / "output.json").read_text())["results"]
+
+    document = {"doc_slug": "fixture-doc", "page_count": 5, "outline": outline, "pages": pages}
+    nodes, method, page_count = score.detect_document(document)
+
+    assert method == record["detection_method"]
+    assert [n.to_dict() for n in nodes] == record["nodes"]
+    assert page_count == record["page_count"]

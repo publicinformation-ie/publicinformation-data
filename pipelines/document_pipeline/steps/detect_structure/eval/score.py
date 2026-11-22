@@ -32,7 +32,7 @@ sys.path.insert(0, str(_DOC_PIPELINE.parent / "src"))
 sys.path.insert(0, str(_HERE))
 
 from steps.detect_structure.process import (  # noqa: E402
-    detect_structure,
+    detect_document_structure,
     load_overrides,
     merge_overrides,
 )
@@ -132,10 +132,15 @@ def load_live(snapshot: dict | None = None) -> dict:
 # --------------------------------------------------------------------------
 
 def detect_document(document: dict):
-    """Run the production detector on one document's pages."""
+    """Run the production detector on one document's pages.
+
+    Goes through `detect_document_structure`, the same entry point `process()`
+    uses, so the outline filter and position resolution are never skipped.
+    """
     pages = document["pages"]
     page_count = int(document.get("page_count") or len(pages))
-    nodes, method, _report = detect_structure(pages, document.get("outline"), page_count)
+    nodes, method, _report, _problems = detect_document_structure(
+        pages, document.get("outline"), page_count)
     return nodes, method, page_count
 
 

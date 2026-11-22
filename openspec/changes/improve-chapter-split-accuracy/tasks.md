@@ -15,9 +15,9 @@ Run from `pipelines/document_pipeline` with `PYTHONPATH=".:../../src" ../../.ven
 
 ## 2. One detection entry point (D1)
 
-- [ ] 2.1 Extract `detect_document_structure` in `process.py` (outline filter, position resolution, and the cascade), and route `process()` through it with no change to `errors.json` output. Verify the existing detect_structure tests pass unchanged.
-- [ ] 2.2 Make `score.detect_document` call it. Verify with a new test that `process()` and `score_document` produce identical raw trees on one fixture whose outline has an `_Hlk` bookmark and a one-page-late entry (spec: "Same tree in production and evaluation", "Outline preparation applied").
-- [ ] 2.3 Measure, and label the entry in `RESULTS.md` a **measurement correction**. Verify that national-roads has no `_Hlk` chapter in its predicted list and that GDA's boundaries moved. This baseline becomes the post-D1 reference used in D10.
+- [x] 2.1 Extract `detect_document_structure` in `process.py` (outline filter, position resolution, and the cascade), and route `process()` through it with no change to `errors.json` output. Verify the existing detect_structure tests pass unchanged.
+- [x] 2.2 Make `score.detect_document` call it. Verify with a new test that `process()` and `score_document` produce identical raw trees on one fixture whose outline has an `_Hlk` bookmark and a one-page-late entry (spec: "Same tree in production and evaluation", "Outline preparation applied").
+- [x] 2.3 Measure, and label the entry in `RESULTS.md` a **measurement correction**. Verify that national-roads has no `_Hlk` chapter in its predicted list and that GDA's boundaries moved. This baseline becomes the post-D1 reference used in D10.
 
 ## 3. Outline entry normalisation (D2)
 

@@ -1205,6 +1205,25 @@ def detect_structure(pages: list, outline=None, page_count=None):
     return assign_page_ranges(nodes, total), method, toc_report
 
 
+def detect_document_structure(pages: list, raw_outline, page_count=None):
+    """The one detection entry point, shared by `process()` and the accuracy eval.
+
+    Prepares the outline exactly as production does (drops `_Hlk` bookmarks and
+    other non-headings, then moves each entry to the page where its heading is
+    printed) and runs the cascade. Returns `(nodes, method, toc_report, problems)`;
+    `problems` are the outline and TOC error dicts `process()` writes to
+    `errors.json` (`error_type`, `error_message`, `context`, no `doc_slug`).
+    Keeping this in one place stops the eval scoring a tree production never writes.
+    """
+    outline, problems = filter_outline(raw_outline)
+    outline, unresolved = resolve_outline_positions(outline, pages)
+    problems = list(problems) + list(unresolved)
+    nodes, method, toc_report = detect_structure(pages, outline, page_count)
+    if toc_report is not None:
+        problems += list(toc_report.get("errors", []))
+    return nodes, method, toc_report, problems
+
+
 def merge_overrides(nodes: list, patches: list, page_count=None):
     """Merge a document's override.json entries over its detected tree.
 
@@ -1331,10 +1350,9 @@ def process(upstream_records, pages_base_dir, step_dir, writer, doc_slug=None,
 
         pages = load_pages(pages_base_dir, record)
         page_count = int(record.get("page_count") or len(pages))
-        outline, outline_problems = filter_outline(record.get("outline"))
-        outline, unresolved = resolve_outline_positions(outline, pages)
-        outline_problems += unresolved
-        for problem in outline_problems:
+        nodes, method, toc_report, problems = detect_document_structure(
+            pages, record.get("outline"), page_count)
+        for problem in problems:
             append_error(step_dir, {
                 "step": STEP_NAME,
                 "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -1342,17 +1360,6 @@ def process(upstream_records, pages_base_dir, step_dir, writer, doc_slug=None,
                 "error_message": problem["error_message"],
                 "context": {"doc_slug": slug, **problem["context"]},
             })
-        nodes, method, toc_report = detect_structure(pages, outline, page_count)
-
-        if toc_report is not None:
-            for problem in toc_report.get("errors", []):
-                append_error(step_dir, {
-                    "step": STEP_NAME,
-                    "timestamp": datetime.now(timezone.utc).isoformat(),
-                    "error_type": problem["error_type"],
-                    "error_message": problem["error_message"],
-                    "context": {"doc_slug": slug, **problem["context"]},
-                })
 
         patches = overrides.get(slug) or []
         overridden = False
