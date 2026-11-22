@@ -84,6 +84,8 @@ The pattern `^([A-Z0-9]{2,5})\s*\|\s*(\S.*)$` is checked in `_split_number` befo
 
 ### D8. Guarded placement by printed page
 
+> **Status: evaluated, not shipped.** Measured under D0 on a side branch (`experiment/d8-guarded-placement`): no gold document improved, so it was not merged. The requirement is not in this change's spec. See `eval/RESULTS.md`. The design below is kept as the record of what was tried.
+
 For each unmatched top-level entry with an arabic `printed_page`, find the nearest text-matched top-level entries before and after it that have arabic printed pages. If both exist and `pdf_page - printed_page` is equal for the two, place the entry at `(printed + offset, y = 0)` with `CONFIDENCE["toc_placed"] = 0.5`, and log `TocEntryPlacedByPageNumber`. A placed entry never counts as matched for the gate (spec).
 
 National-cycle's offsets differ between neighbours, because its unnumbered divider pages make the offset grow. There the rule declines to place anything, which is correct: no evidence, no boundary.
@@ -109,7 +111,7 @@ The change is accepted when all of the following hold:
 
 - (a) Every step's entry is in `RESULTS.md`.
 - (b) No tuning or held-out document has an unexplained regression in raw exact F1 or page attribution against the post-D1 baseline.
-- (c) Every rule D2 to D8 improves at least one of its target documents (Context table).
+- (c) Every rule D2 to D7 improves at least one of its target documents (Context table). D8 did not and is not shipped.
 - (d) The held-out macro page attribution does not fall below its post-D1 value.
 - (e) The `InvalidStructure` count across all 40 documents does not rise.
 - (f) The three test suites and pyright pass.

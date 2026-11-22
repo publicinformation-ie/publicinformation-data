@@ -234,31 +234,6 @@ The system SHALL treat a leading code of two to five uppercase letters or digits
 - **WHEN** a title contains `|` after a word that is not an uppercase code, as in `Walking | Cycling`
 - **THEN** the title is unchanged
 
-### Requirement: Guarded placement by printed page
-
-The system SHALL place a top-level TOC entry that has no body occurrence and an arabic printed page at the top of PDF page `printed + offset`, but only when the nearest text-matched top-level entries before and after it share that offset. A placement SHALL be logged as `TocEntryPlacedByPageNumber`, SHALL carry lower confidence, and SHALL NOT count towards the gate. Otherwise the entry stays unmatched.
-
-#### Scenario: Artwork chapter placed
-
-- **GIVEN** TOC chapters at printed pages 4, 7 and 17, where the chapters at printed 4 and 17 matched body headings on PDF pages 6 and 19, and the chapter at printed 7 has no body occurrence
-- **WHEN** the TOC strategy runs
-- **THEN** that chapter starts at the top of PDF page 9, carries placement confidence, and a `TocEntryPlacedByPageNumber` error names it, its printed page and the offset 2
-
-#### Scenario: Disagreeing neighbours prevent placement
-
-- **WHEN** the matched chapters either side of an unmatched chapter have offsets 11 and 13
-- **THEN** no boundary is created and the entry is recorded as `TocEntryUnmatched`
-
-#### Scenario: No neighbour on one side
-
-- **WHEN** an unmatched chapter is the first or last top-level entry, so it has a matched neighbour on one side only
-- **THEN** no boundary is created and the entry is recorded as `TocEntryUnmatched`
-
-#### Scenario: Placement does not open the gate
-
-- **WHEN** a TOC's text-matched share is below the match-rate gate, but would meet it if placed entries were counted
-- **THEN** the TOC-name strategy does not fire, and `LowTocMatchRate` is logged
-
 ### Requirement: Single detection entry point
 
 The system SHALL expose one detection entry point that takes a document's pages, raw outline and page count. It SHALL perform every outline preparation step (filtering unusable entries, resolving positions, normalising entries) and run the strategy cascade. It SHALL return the tree, the detection method and every problem found. The production step SHALL use this entry point, and so SHALL any evaluation or comparison tool that claims to score production behaviour.

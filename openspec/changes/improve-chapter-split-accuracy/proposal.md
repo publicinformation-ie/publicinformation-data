@@ -18,7 +18,7 @@ Each item is implemented and measured on its own, against the baseline set by th
   - A page that directly follows the TOC block and has the same page-number column continues the TOC (sustainable-mobility p. 5).
   - Each entry keeps its printed page number. In a mostly paged TOC, an entry with no page number (side-panel prose on the CAP 2025 annex, emra's appendices, which are not in the PDF) is left out of the match-rate gate's denominator.
   - A leading uppercase code followed by `|` (`RE |Research and Innovation`) is read as the heading number, so the TOC and body forms match whatever spacing surrounds the `|`. This is the CAP annex sector-code style.
-- **Guarded placement by printed page.** A top-level TOC entry with no body occurrence is placed at its printed page plus an offset, but only when the nearest matched chapters before and after it give the same printed-to-PDF offset. The node gets lower confidence and a `TocEntryPlacedByPageNumber` informational error. Otherwise the entry stays unmatched, as today. Targets: chapters whose titles are artwork (sustainable-mobility, emra).
+- ~~**Guarded placement by printed page.**~~ Evaluated and **not shipped**: it improved no gold document under the results-log protocol (see `eval/RESULTS.md`); the implementation is preserved on `experiment/d8-guarded-placement`.
 - **Acceptance.** The exact metrics and their thresholds are in the design. No scored document's raw exact F1 or page attribution may regress unless the regression is explained in the results log. The held-out summary is reported alongside the tuning-set summary, and is not used as a target.
 
 **Non-goals:** decoding or flagging garbled subset-font text layers (`connecting-ireland` gains only from TOC entry continuation), section-level (level ≥ 2) accuracy, a CI gate, and changing how the gold or the metrics are defined.
@@ -33,7 +33,7 @@ Each item is implemented and measured on its own, against the baseline set by th
 
 - `document-structure-detection`:
   - **MODIFIED** `Strategy placement and fallback`: outline plausibility; the supplement is confined to sections under a matching TOC chapter.
-  - **ADDED** outline entry normalisation (merging wrapped entries, splitting numbers off multi-line titles); TOC entry continuation; TOC chapter labels; TOC continuation pages; printed page numbers on TOC entries; unpaged entries left out of the gate; pipe-separated heading codes; guarded placement by printed page; one shared detection entry point for production and evaluation.
+  - **ADDED** outline entry normalisation (merging wrapped entries, splitting numbers off multi-line titles); TOC entry continuation; TOC chapter labels; TOC continuation pages; printed page numbers on TOC entries; unpaged entries left out of the gate; pipe-separated heading codes; one shared detection entry point for production and evaluation.
 - `document-structure-evaluation`:
   - **ADDED** the report scores the production detection path; held-out gold documents are reported separately; a per-step results log.
 
@@ -42,5 +42,5 @@ Each item is implemented and measured on its own, against the baseline set by th
 - Code: `steps/detect_structure/process.py` (the new shared entry point, `from_outline`, `parse_toc`/`_parse_toc_page`, `from_toc`, `_supplement_numbered_nodes`, `detect_structure`) and `eval/score.py`, plus tests in `pipelines/document_pipeline/tests/`.
 - Data: four new gold files in `eval/gold/` (manual annotation by the maintainer); `eval/baseline.json` is refreshed at each step, and a new `eval/RESULTS.md` records every step's diff.
 - Published trees, and therefore slugs, change for every document whose chapters change, including the 30 documents without gold. Existing `override.json` entries can be orphaned, so the orphaned-override report in `compare.py` must be reviewed before `document_pipeline` output is regenerated. `eval/expected.json` is refreshed.
-- Dependency: `fix-document-structure-corruption` is complete but not archived. Archive it first, so the `MODIFIED` requirement here builds on its text.
+- Dependency: `fix-document-structure-corruption` has been archived, so the `MODIFIED` requirement here builds on its text.
 - No network or paid calls.

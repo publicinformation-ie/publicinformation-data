@@ -46,10 +46,9 @@ Run from `pipelines/document_pipeline` with `PYTHONPATH=".:../../src" ../../.ven
 - [x] 7.1 Derive TOC chapter numbers (own number, or the shared lead of their numbered children), confine supplemented headings to level-2+ sections under the matching chapter, and log `SupplementHeadingRejected`. Verify with unit tests of "Supplemented heading cannot become a chapter" and "Supplemented section under its own chapter is kept".
 - [x] 7.2 Update the README's supplement description, then measure. Verify that national-cycle's predicted chapters are the 8 TOC chapters.
 
-## 8. Guarded placement by printed page (D8)
+## 8. Guarded placement by printed page (D8): evaluated, not shipped
 
-- [ ] 8.1 Place unmatched top-level entries when both neighbours' offsets agree, with `toc_placed` confidence and a `TocEntryPlacedByPageNumber` error, and keep placed entries out of the gate. Verify with unit tests of the four "Guarded placement by printed page" scenarios.
-- [ ] 8.2 Add `toc_placed` to the README's confidence notes and errors list, then measure. Verify in `RESULTS.md` that every placement made on a gold document lands on its gold page, and list any placement that does not.
+- [x] 8.1 Implement guarded placement on a side branch (`experiment/d8-guarded-placement`, commit `61ed78b7`) and measure it under D0. Result: no gold document improves (the two targets are unaffected: `sustainable-mobility-policy` was already fully correct after D5, and `emra`'s artwork chapters are *matched* at wrong pages, not unmatched), so the rule is not merged. Evidence and the placements it made in five documents without gold are in `eval/RESULTS.md`; the requirement is removed from this change's spec.
 
 ## 9. Acceptance and integration
 
