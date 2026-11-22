@@ -23,7 +23,7 @@ Run from `pipelines/document_pipeline` with `PYTHONPATH=".:../../src" ../../.ven
 
 - [x] 3.1 Collapse whitespace before the number split in `from_outline`. Verify with a unit test of the "Multi-line outline title loses its number" scenario.
 - [x] 3.2 Merge wrapped same-page outline fragments, verifying each join against the page's text. Verify with unit tests of the "Wrapped outline fragments are merged" and "Unverified fragments stay separate" scenarios, plus a two-headings-on-one-page fixture that stays split.
-- [ ] 3.3 Document the outline normalisation in `steps/detect_structure/README.md`, then measure. Verify that GDA's `Freight, Delivery and Servicing` and `Enviromental Assessment` are single predicted chapters.
+- [ ] 3.3 **(open: README and measurement done; the verify clause is half met, `Freight, Delivery and Servicing` merges but `Enviromental Assessment` does not because its bookmark names the page before its heading, see `eval/RESULTS.md` D2)** Document the outline normalisation in `steps/detect_structure/README.md`, then measure. Verify that GDA's `Freight, Delivery and Servicing` and `Enviromental Assessment` are single predicted chapters.
 
 ## 4. Outline plausibility (D3)
 
@@ -52,8 +52,8 @@ Run from `pipelines/document_pipeline` with `PYTHONPATH=".:../../src" ../../.ven
 
 ## 9. Acceptance and integration
 
-- [ ] 9.1 Read the held-out summary against the post-D1 reference, and write the final `RESULTS.md` entry comparing the post-D1 and final results for tuning, held-out and all documents. Verify every D10 criterion (a) to (e) holds, or record which one fails and why.
-- [ ] 9.2 Refresh `eval/expected.json` with `compare.py --refresh-expected` and review the diff. Verify that `uv run pytest pipelines/document_pipeline/tests -q`, `uv run pytest tests/ -q`, `cd pipelines/foi_pipeline && uv run pytest tests/ -q` and `uv run pyright` all pass.
+- [x] 9.1 Read the held-out summary against the post-D1 reference, and write the final `RESULTS.md` entry comparing the post-D1 and final results for tuning, held-out and all documents. Verify every D10 criterion (a) to (e) holds, or record which one fails and why.
+- [ ] 9.2 **(open: one unrelated pre-existing root-suite failure, see `eval/RESULTS.md` 9.1)** Refresh `eval/expected.json` with `compare.py --refresh-expected` and review the diff. Verify that `uv run pytest pipelines/document_pipeline/tests -q`, `uv run pytest tests/ -q`, `cd pipelines/foi_pipeline && uv run pytest tests/ -q` and `uv run pyright` all pass.
 - [x] 9.3 List every `override.json` entry that the new trees orphan (from `compare.py`), and re-point or remove each one in a reviewed commit. Verify that `merge_overrides` reports no unmatched slug for any document.
 
 ## Workflow follow-up

@@ -389,3 +389,63 @@ Every `override.json` entry was applied to its document's final tree with `merge
 - All other overrides (gda, moving-together, national-ports, recreational-craft, ndp, sustainable-mobility year-one) apply with no unmatched slug.
 
 After this, `merge_overrides` reports no unmatched slug for any document in the snapshot.
+
+### 9.1 — Final result against the post-D1 reference, and acceptance (D10)
+
+Reference = the state after D1 (the eval corrected to score the production path), so the comparison excludes the measurement correction. Final = this branch's head with D2 to D7 shipped and D8 not shipped.
+
+| Summary (raw tree) | Documents | Fully correct | Exact F1 (macro) | Page attribution (macro) | Title accuracy (macro) |
+|---|---:|---:|---:|---:|---:|
+| tuning, post-D1 | 10 | 3 | 0.49 | 0.37 | 0.83 |
+| **tuning, final** | 10 | 5 | 0.81 | 0.71 | 0.96 |
+| held out, post-D1 | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| **held out, final** | 4 | 1 | 0.62 | 0.63 | 1.00 |
+| all, post-D1 | 14 | 4 | 0.52 | 0.44 | 0.87 |
+| **all, final** | 14 | 6 | 0.75 | 0.68 | 0.97 |
+
+Per document (raw tree; exact F1 and page attribution, post-D1 > final; `HELD` = held out):
+
+```
+document                                        set   method              exact F1     page attr    full
+all-island-strategic-rail-review-final-report   tune  toc                 1.00>1.00   1.00>1.00   Y>Y
+climate-action-plan-2023                        tune  outline>toc         0.00>0.79   0.02>0.56   n>n
+climate-action-plan-2023-annex-of-actions       HELD  numbering           0.00>0.00   0.02>0.02   n>n
+climate-action-plan-2024-q1-q2-progress-report  tune  toc                 1.00>1.00   1.00>1.00   Y>Y
+climate-action-plan-2025                        HELD  outline             0.96>0.96   0.95>0.95   n>n
+climate-action-plan-2025-annex-of-actions       tune  outline>toc         0.12>0.94   0.09>0.93   n>n
+connecting-ireland-rural-mobility-plan          tune  numbering           0.71>0.71   0.09>0.09   n>n
+emra-regional-spatial-and-economic-strategy     tune  numbering>toc       0.17>0.48   0.04>0.23   n>n
+gda-transport-strategy-2022-2042                tune  outline             0.14>0.14   0.26>0.29   n>n
+national-cycle-network-plan                     tune  toc                 0.50>1.00   0.09>1.00   n>Y
+national-ports-policy                           HELD  outline             0.50>0.50   0.53>0.53   n>n
+national-roads-2040-final-report                tune  outline             1.00>1.00   1.00>1.00   Y>Y
+nta-statement-of-strategy-2026-2030             HELD  toc                 1.00>1.00   1.00>1.00   Y>Y
+sustainable-mobility-policy                     tune  toc                 0.22>1.00   0.12>1.00   n>Y
+
+```
+
+**What the held-out set says.** None of the four held-out documents changed. That is not evidence the rules are wrong (none regressed), but it is also not evidence they generalise: the tuning gain is entirely on documents the rules were designed from. Two held-out documents were already right (`nta-statement-of-strategy-2026-2030` 1.00, `climate-action-plan-2025` 0.96), and the other two fail for causes no rule here targets and that were deliberately not examined or tuned on:
+- `climate-action-plan-2023-annex-of-actions` (method `numbering`, exact F1 0.00): the annotation helper also found no entries on its contents page, which uses dot leaders that `DOT_LEADER_RE` does not see, so the TOC path is probably never reached.
+- `national-ports-policy` (method `outline`, 0.50): an outline that disagrees with the printed contents list, the same family as GDA's `PART A/B` (a stated non-goal).
+
+**D10 acceptance:**
+
+| | Criterion | Result |
+|---|---|---|
+| (a) | Every step's entry is in this log | Holds: D1, D2, D3, D5a, D5b, D5c, D6, D7, D5c-fix, D4, D8 (not shipped), 9.3 |
+| (b) | No tuning or held-out document has an unexplained regression in raw exact F1 or page attribution against post-D1 | Holds: none (table above). Intermediate regressions seen along the way (CAP 2025 annex at D3, CAP 2023 exact precision at D5c-fix, all-island during D5b) were each explained and are in their entries |
+| (c) | Every rule D2 to D7 improves at least one target | Holds: D2 GDA (title accuracy 0.67 -> 1.00); D3 CAP 2023 (0.00 -> 0.53); D4 national-cycle (0.50 -> 1.00); D5 sustainable-mobility-policy (0.22 -> 1.00); D6 emra (0.17 -> 0.44); D7 CAP 2025 annex (0.00 -> 0.91). **D8 improved none and is not shipped.** |
+| (d) | Held-out macro page attribution does not fall below its post-D1 value | Holds: 0.63 -> 0.63 |
+| (e) | `InvalidStructure` count across all 40 documents does not rise | Holds: 12 -> 11 |
+| (f) | The three test suites and pyright pass | **Partly.** Document pipeline 595 passed; FOI pipeline 2015 passed; pyright 0 errors (its config covers only `src/`, which this change does not touch). The root suite has 1 failure, `tests/test_dataset_discovery.py::test_every_latest_dataset_csv_is_linked_from_get_the_data` (`dataset foi-disclosures has no CSV files`), which fails identically on the branch's base commit because the gitignored combined FOI files are not built in a fresh worktree; it is unrelated to this change |
+
+**Predictions in the design against the outcome** (they were not targets):
+
+| Prediction | Outcome |
+|---|---|
+| national-roads and CAP 2024 Q1-Q2 fully correct or title-only misses | Both fully correct |
+| CAP 2023 and national-cycle exact F1 >= 0.9 | national-cycle 1.00 (met); **CAP 2023 0.79 (not met)**: 8 of 17 gold chapters are still missing (e.g. `Carbon Pricing`, `Electricity`) and one is a page late |
+| sustainable-mobility page attribution >= 0.8 | 1.00 |
+| emra improved but probably still below the gate | Better than predicted: it now passes the gate (match rate 0.807, method `toc`), exact F1 0.17 -> 0.48; still far from correct (artwork chapter titles match at wrong pages) |
+
+**Remaining failures on tuning documents** (not addressed here): `connecting-ireland-rural-mobility-plan` (garbled text layer, a stated non-goal), `gda-transport-strategy-2022-2042` (outline pages off by one against gold; PART A/B), `emra` (artwork titles matched at wrong pages), `climate-action-plan-2023` (see above), `climate-action-plan-2025-annex-of-actions` (0.94).
