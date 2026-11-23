@@ -1,40 +1,40 @@
 # ocr_pages
 
-Reads curator-listed image-only pages with Tesseract so they have a text layer. Third step in `document_pipeline`, right after `extract_pages`; it does one thing and `extract_pages` is unaware of it.
+Reads image-only pages that the curator lists, with Tesseract, so that they have a text layer. It is the third step in `document_pipeline`, right after `extract_pages`. It does one thing, and `extract_pages` is not aware of it.
 
 ## What it does
 
-OCR is **opt-in per page**. The curator lists 1-based page numbers under `ocr_pages` in `documents.yml` (validated in `documents.py`, carried to this step through `fetch_pdfs/output.json`). Nothing else is ever OCR'd.
+OCR (optical character recognition, the reading of text from an image) is opt-in per page. The curator lists 1-based page numbers under `ocr_pages` in `documents.yml`. `documents.py` validates the list, and the list reaches this step through `fetch_pdfs/output.json`. The step OCRs no other page.
 
-- A document with no `ocr_pages` passes through; its PDF is not opened.
-- A listed page that is a full-page raster image (one image covering at least `OCR_MIN_IMAGE_COVERAGE` = 75% of the page) with at most `OCR_MAX_NATIVE_LETTERS` = 20 letters of native text (a printed page number is fine) is rendered at 300 dpi and OCR'd (`src/lib/ocr.py`: `--psm 3`, `eng`, deterministic).
-- A listed page that fails that test (real text layer, no full-page image) or is beyond the page count is not OCR'd and logs `OcrPageNotScanned`.
-- Each OCR line becomes a span in the native shape (`font: "tesseract-ocr"`, `size` = median word height in pt, plus `source: "ocr"`); native spans are kept and OCR words that sit on them are skipped. The page JSON gains `ocr: {engine, lang, psm, dpi, word_count, mean_confidence}`.
+- A document with no `ocr_pages` passes through, and the step does not open its PDF.
+- A full-page raster image is one image that covers at least `OCR_MIN_IMAGE_COVERAGE` = 75% of the page. A listed page can be a full-page raster image with at most `OCR_MAX_NATIVE_LETTERS` = 20 letters of native text. A printed page number is fine. For such a page, the step renders the page at 300 dpi and OCRs it (`src/lib/ocr.py`: `--psm 3`, `eng`, deterministic).
+- The step does not OCR a listed page that fails that test, because it has a real text layer or no full-page image. It also does not OCR a page beyond the page count. In both cases it logs `OcrPageNotScanned`.
+- Each OCR line becomes a span in the native shape (`font: "tesseract-ocr"`, `size` = median word height in pt, plus `source: "ocr"`). Native spans are kept, and OCR words that sit on them are skipped. The page JSON gains `ocr: {engine, lang, psm, dpi, word_count, mean_confidence}`.
 
 ## Prerequisites
 
 - Python dependencies: `pytesseract` and `pymupdf` (pinned in `pipelines/document_pipeline/requirements.txt`).
-- System binary: `tesseract` must be on `PATH` (e.g. `brew install tesseract` on macOS). Tests stub OCR, so the suite runs without it; only a live run needs the binary.
+- System binary: `tesseract` must be on `PATH` (for example, `brew install tesseract` on macOS). The tests stub OCR, so the suite runs without the binary. Only a live run needs it.
 
 ## Input / output
 
-Input: `extract_pages/output.json` (`--input`). The step also reads `fetch_pdfs/output.json` directly for each document's `pdf_path` and curated `ocr_pages` list (`documents.py` validates them as unique 1-based positive integers). Output: `output.json` with the same record shape. `extract_pages/pages/*` is never modified. Each entry's `file` is resolved against this step's directory (as `clean_text` does against its input's parent), so:
+Input: `extract_pages/output.json` (`--input`). The step also reads `fetch_pdfs/output.json` directly, for the `pdf_path` and the curated `ocr_pages` list of each document (`documents.py` validates them as unique 1-based positive integers). Output: `output.json` with the same record shape. `extract_pages/pages/*` is never modified. Each entry's `file` is resolved against the directory of this step (as `clean_text` does against the parent of its input), so:
 
-- not-OCR'd pages point at the upstream file, e.g. `../extract_pages/pages/<slug>/004.json`;
-- OCR'd pages are merged copies at `pages/<slug>/NNN.json` here, with `span_count` updated.
+- A page that the step does not OCR points at the upstream file, for example `../extract_pages/pages/<slug>/004.json`.
+- A page that the step OCRs is a merged copy at `pages/<slug>/NNN.json` here, with `span_count` updated.
 
-`clean_text` reads this step's output (`pipeline.json` `input_steps`); `detect_structure` and `extract_figures` stay on `extract_pages`. The `source: "ocr"` marker flows via `clean_text` blocks to the section note and `meta.json` `ocr_pages`.
+`clean_text` reads the output of this step (`pipeline.json` `input_steps`). `detect_structure` and `extract_figures` stay on `extract_pages`. The `source: "ocr"` marker flows through the `clean_text` blocks to the section note and to `meta.json` `ocr_pages`.
 
-Supports **incremental resumption** via `IncrementalWriter` (`key_field="doc_slug"`) and `--doc` scoping. A reprocessed document's `pages/<slug>/` is rebuilt from scratch, and a document that no longer lists pages has its stale OCR page directory removed.
+The step supports incremental resumption (a later run continues from earlier work and does not redo it) via `IncrementalWriter` (`key_field="doc_slug"`) and `--doc` scoping. It rebuilds the `pages/<slug>/` directory of a reprocessed document from scratch. It removes the stale OCR page directory of a document that no longer lists pages.
 
 ## errors.json
 
 | `error_type` | Cause |
 |---|---|
-| `OcrPageNotScanned` | Listed page is not a scanned full-page image, or is out of range; not OCR'd. Fix `documents.yml` |
-| `OcrEmpty` | Tesseract found no text; the page stays uncovered. Review it |
-| `OcrLowConfidence` | Mean word confidence < `OCR_MIN_CONFIDENCE` (60); text is still emitted. Review it |
-| `OcrFailed` | The PDF is missing or Tesseract raised; the document gets no record (fail closed) |
+| `OcrPageNotScanned` | The listed page is not a scanned full-page image, or it is out of range, so the step does not OCR it. Fix `documents.yml` |
+| `OcrEmpty` | Tesseract found no text. The page stays uncovered. Review the page |
+| `OcrLowConfidence` | The mean word confidence is less than `OCR_MIN_CONFIDENCE` (60). The step still emits the text. Review it |
+| `OcrFailed` | The PDF is missing, or Tesseract raised an error. The document gets no record, because the step fails closed |
 
 ## Flags
 
