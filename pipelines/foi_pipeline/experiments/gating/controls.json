@@ -1,62 +1,74 @@
 [
-  {
-    "file_url": "https://assets.gov.ie/static/documents/c0ffce5e/12._Non-personal_FOI_requests_answered_in_Dec_2025.pdf",
-    "public_body_id": 1204,
-    "pdf_extractor": "pdfplumber",
-    "records": 20
-  },
-  {
-    "file_url": "https://about.rte.ie/wp-content/uploads/2023/03/RTE-FOI-Disclosure-Log-Q3.pdf",
-    "public_body_id": 1655,
-    "pdf_extractor": "camelot_lattice",
-    "records": 31
-  },
-  {
-    "file_url": "https://assets.gov.ie/static/documents/foi-requests-january-march-2024.pdf",
-    "public_body_id": 1210,
-    "pdf_extractor": "pymupdf",
-    "records": 24
-  },
-  {
-    "file_url": "https://www.centralbank.ie/docs/default-source/tns/about---tns/freedom-of-information/disclosure-logs/freedom-of-information-disclosure-log---2022.pdf?sfvrsn=4d6f991d_5",
-    "public_body_id": 1104,
-    "pdf_extractor": "mistral_cache",
-    "records": 44
-  },
-  {
-    "file_url": "https://www.mayo.ie/getmedia/25fd167c-a70c-4a45-930e-3ddb56e8cbea/FOI-Disclosure-Log-Q3-2024.pdf",
-    "public_body_id": 1508,
-    "pdf_extractor": "camelot_stream",
-    "records": 27
-  },
-  {
-    "file_url": "https://www.offaly.ie/app/uploads/Council/Publications_Reports/Disclosure-Log-2022.pdf",
-    "public_body_id": 1590,
-    "pdf_extractor": "pdfplumber",
-    "records": 67
-  },
-  {
-    "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-october-to-december-2023.pdf",
-    "public_body_id": 1207,
-    "pdf_extractor": "camelot_lattice",
-    "records": 82
-  },
-  {
-    "file_url": "https://www.universityofgalway.ie/media/corporateandlegalaffairs/files/FOI-Disclosure-Log-2024.pdf",
-    "public_body_id": 1574,
-    "pdf_extractor": "mistral_cache",
-    "records": 48
-  },
-  {
-    "file_url": "https://www.dublincity.ie/sites/default/files/2026-02/disclosure-log-2025.pdf",
-    "public_body_id": 1235,
-    "pdf_extractor": "camelot_stream",
-    "records": 547
-  },
-  {
-    "file_url": "https://www.nationaltransport.ie/wp-content/uploads/2025/09/2025-Q1-FOI-Disclosure-Log.pdf",
-    "public_body_id": 1570,
-    "pdf_extractor": "pdfplumber",
-    "records": 55
-  }
+ {
+  "file_url": "https://assets.gov.ie/static/documents/c0ffce5e/12._Non-personal_FOI_requests_answered_in_Dec_2025.pdf",
+  "public_body_id": 1204,
+  "pdf_extractor": "pdfplumber",
+  "records": 20,
+  "cell_score": 1.0,
+  "checked": "2026-11-17"
+ },
+ {
+  "file_url": "https://about.rte.ie/wp-content/uploads/2023/03/RTE-FOI-Disclosure-Log-Q3.pdf",
+  "public_body_id": 1655,
+  "pdf_extractor": "camelot_lattice",
+  "records": 31,
+  "cell_score": 1.0,
+  "checked": "2026-11-17"
+ },
+ {
+  "file_url": "https://www.centralbank.ie/docs/default-source/tns/about---tns/freedom-of-information/disclosure-logs/freedom-of-information-disclosure-log---2022.pdf?sfvrsn=4d6f991d_5",
+  "public_body_id": 1104,
+  "pdf_extractor": "mistral_cache",
+  "records": 44,
+  "cell_score": 1.0,
+  "checked": "2026-11-17"
+ },
+ {
+  "file_url": "https://www.offaly.ie/app/uploads/Council/Publications_Reports/Disclosure-Log-2022.pdf",
+  "public_body_id": 1590,
+  "pdf_extractor": "pdfplumber",
+  "records": 67,
+  "cell_score": 1.0,
+  "checked": "2026-11-17"
+ },
+ {
+  "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-october-to-december-2023.pdf",
+  "public_body_id": 1207,
+  "pdf_extractor": "camelot_lattice",
+  "records": 82,
+  "cell_score": 1.0,
+  "checked": "2026-11-17"
+ },
+ {
+  "file_url": "https://www.universityofgalway.ie/media/corporateandlegalaffairs/files/FOI-Disclosure-Log-2024.pdf",
+  "public_body_id": 1574,
+  "pdf_extractor": "mistral_cache",
+  "records": 48,
+  "cell_score": 1.0,
+  "checked": "2026-11-17"
+ },
+ {
+  "file_url": "https://www.nationaltransport.ie/wp-content/uploads/2025/09/2025-Q1-FOI-Disclosure-Log.pdf",
+  "public_body_id": 1570,
+  "pdf_extractor": "pdfplumber",
+  "records": 55,
+  "cell_score": 1.0,
+  "checked": "2026-11-17"
+ },
+ {
+  "file_url": "https://www.centralbank.ie/docs/default-source/tns/about---tns/freedom-of-information/disclosure-logs/freedom-of-information-disclosure-log-q2-2026-non-personal-requests.pdf?sfvrsn=17b0711a_4",
+  "public_body_id": 1104,
+  "pdf_extractor": "camelot_stream",
+  "records": 29,
+  "cell_score": 1.0,
+  "checked": "2026-11-17"
+ },
+ {
+  "file_url": "https://assets.gov.ie/static/documents/q1-2016-foi-disclosure-log.pdf",
+  "public_body_id": 1213,
+  "pdf_extractor": "camelot_stream",
+  "records": 50,
+  "cell_score": 1.0,
+  "checked": "2026-11-17"
+ }
 ]

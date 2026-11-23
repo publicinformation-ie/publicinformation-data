@@ -1,0 +1,676 @@
+[
+ {
+  "sha": "d7587dfa0397360b6c0514b3407c13993adef27a63c9f1e8b11a83cf98010aee",
+  "sha12": "d7587dfa0397",
+  "body": 1655,
+  "name": "Raidió Teilifís Éireann - RTÉ",
+  "url": "https://about.rte.ie/wp-content/uploads/2022/01/RTE-FOI-DISCLOSURE-LOG-Q3-2021.pdf",
+  "extractor": "docling",
+  "origin": "reroute",
+  "n_rows": 37,
+  "n_pages": 9,
+  "header": [
+   "FOI No.",
+   "Date FOI Received",
+   "Freedom of Information Request",
+   "Requester",
+   "Decision"
+  ],
+  "items": [
+   {
+    "key": "d7587dfa0397|r1",
+    "row": 1,
+    "cells": [
+     "102.",
+     "02.07.20201",
+     "In 2019, 2020 and March 2020 to date, how many text messages were sent to: The Ryan Tubridy Show; the Today programme; the Ronan Collins programme; 'Liveline'; The Ray D'Arcy Show; Drivetime; The Brendan O'Connor Show. How many phone calls were received by 'Liveline'.",
+     "Journalist",
+     "Refused. Section 15(1)(a)."
+    ],
+    "img": "img/d7587dfa0397-1.png",
+    "page": 1
+   },
+   {
+    "key": "d7587dfa0397|r2",
+    "row": 2,
+    "cells": [
+     "103.",
+     "06.07.2021",
+     "A copy of the voluntary disclosure made by RTÉ to the Revenue Commissioners in relation to the use of self-employment contracts by RTÉ.",
+     "Member of the public",
+     "Refused. Sections: 16(1)(b); 35(1)(b)."
+    ],
+    "img": "img/d7587dfa0397-2.png",
+    "page": 1
+   },
+   {
+    "key": "d7587dfa0397|r12",
+    "row": 12,
+    "cells": [
+     "113.",
+     "28.07.2021",
+     "All public submissions made as part of the Public Service Statement Public Consultation, the report of which was published in July 2021.",
+     "Member of the public.",
+     "Refused. Section 15(1)(c)."
+    ],
+    "img": "img/d7587dfa0397-12.png",
+    "page": 3
+   },
+   {
+    "key": "d7587dfa0397|r14",
+    "row": 14,
+    "cells": [
+     "115.",
+     "04.08.2021",
+     "Any correspondence between RTÉ's Director General and the Minister for Communications between 1 January 2021 to present",
+     "Journalist.",
+     "Granted in part. Sections: 36(1)(b) and (c). Statutory Instrument SI 115 of 2000."
+    ],
+    "img": "img/d7587dfa0397-14.png",
+    "page": 4
+   },
+   {
+    "key": "d7587dfa0397|r20",
+    "row": 20,
+    "cells": [
+     "121.",
+     "16.08.2021",
+     "From 2017-2020: provide a list of methods of funding: Public, government, advertising, donations and investments.",
+     "Member of the public",
+     "Granted."
+    ],
+    "img": "img/d7587dfa0397-20.png",
+    "page": 5
+   },
+   {
+    "key": "d7587dfa0397|r26",
+    "row": 26,
+    "cells": [
+     "127.",
+     "03.09.2021",
+     "The numbers who applied for RTÉ's Voluntary redundancy programme. The number of journalists to have applied to participate in the voluntary redundancy scheme. The numbers of those (across all depts) who have applied who have had their applications accepted for redundancy. The numbers of those who have applied who have had their applications turned down for redundancy. The total paid out to date in redundancy lump sums from those who have been made redundant. The numbers who applied and were turned down as they were deemed 'broadcast critical' by RTÉ. A copy of any report by the RTÉ HR dept to RTÉ management on the take up of the scheme.",
+     "Journalist.",
+     "Refused. Section: 15(1)(a)."
+    ],
+    "img": "img/d7587dfa0397-26.png",
+    "page": 6
+   },
+   {
+    "key": "d7587dfa0397|r35",
+    "row": 35,
+    "cells": [
+     "136.",
+     "24.09.2021",
+     "All correspondence re treatment of RTÉ workers by crowds in League of Ireland grounds (re. the comments by Group Head of RTÉ Sport Declan McBennett in Irish Independent (link provided)). Also requesting all records of internal departmental discussion of same and any responses from FAI or clubs contacted. Records should include but not be limited to any e-mails, attachments therein/mobile phone text messages/Whatsapp, or other messaging services.",
+     "Journalist.",
+     "Refused. Statutory Instrument SI 115 of 2000."
+    ],
+    "img": "img/d7587dfa0397-35.png",
+    "page": 9
+   },
+   {
+    "key": "d7587dfa0397|r37",
+    "row": 37,
+    "cells": [
+     "138.",
+     "29.09.2021",
+     "The rate RTÉ pays production companies/licence holders: 1. to broadcast a film/documentary/show on its stations, and 2. to host same on the RTÉ player.",
+     "Member of the public.",
+     "Handled outside of Freedom of Information Act."
+    ],
+    "img": "img/d7587dfa0397-37.png",
+    "page": 9
+   }
+  ],
+  "missing_key": "d7587dfa0397|missing"
+ },
+ {
+  "sha": "c95c5fad60cee5de9951534de856a84a4a4d83c1fcc6825794447ed3746cf4b9",
+  "sha12": "c95c5fad60ce",
+  "body": 1244,
+  "name": "Dun Laoghaire Rathdown County Council",
+  "url": "https://www.dlrcoco.ie/sites/dlrcoco/files/2025-01/2024%20Freedom%20of%20Information%20Disclosure%20Log.pdf",
+  "extractor": "force:mistral_cache",
+  "origin": "reroute",
+  "n_rows": 106,
+  "n_pages": 4,
+  "header": [
+   "Uimhi r thaga rtha / Refer ence No.",
+   "Catagóir an iarrthóra / Requester Category",
+   "Tuairisc ar Iarrataís / Description of Request",
+   "Cinnead h / Decisio n",
+   "Dáta an Iarrataís /Date of Request",
+   "Dáta Eisiúna / Decision Date",
+   "Breith ar Athbhr eithniú Inmhé anach / Intern"
+  ],
+  "items": [
+   {
+    "key": "c95c5fad60ce|r1",
+    "row": 1,
+    "cells": [
+     "FOI 001",
+     "Member of the Public",
+     "Number of Parking Fines Issued",
+     "Grant",
+     "04/01/2024",
+     "31/01/2024"
+    ],
+    "img": "img/c95c5fad60ce-1.png",
+    "page": 1
+   },
+   {
+    "key": "c95c5fad60ce|r2",
+    "row": 2,
+    "cells": [
+     "FOI 003",
+     "Member of the Public",
+     "Planning-Vibration/Noise Stats",
+     "Part Grant",
+     "09/01/2024",
+     "06/02/2024"
+    ],
+    "img": "img/c95c5fad60ce-2.png",
+    "page": 1
+   },
+   {
+    "key": "c95c5fad60ce|r50",
+    "row": 50,
+    "cells": [
+     "FOI-073 Member of the Public",
+     "Records of Weed Killer used",
+     "Refused",
+     "22/05/2024",
+     "18/06/2024"
+    ],
+    "img": "img/c95c5fad60ce-50.png",
+    "page": 2
+   },
+   {
+    "key": "c95c5fad60ce|r51",
+    "row": 51,
+    "cells": [
+     "FOI-074 Member of the Public",
+     "Legal framework & Regs re. cycling on the right side of Deansgrange Rd",
+     "Refused",
+     "30/05/2024",
+     "20/06/2024"
+    ],
+    "img": "img/c95c5fad60ce-51.png",
+    "page": 2
+   },
+   {
+    "key": "c95c5fad60ce|r77",
+    "row": 77,
+    "cells": [
+     "FOI-112 Member of the Public",
+     "Proposed Bellaramine Halting Site",
+     "Withdrawn",
+     "14/08/2024",
+     "10/08/2024"
+    ],
+    "img": "img/c95c5fad60ce-77.png",
+    "page": 3
+   },
+   {
+    "key": "c95c5fad60ce|r89",
+    "row": 89,
+    "cells": [
+     "FOI-130 Business (Solicitor)",
+     "Request for Info on a commercial property",
+     "Refused",
+     "03/10/2024",
+     "31/10/2024"
+    ],
+    "img": "img/c95c5fad60ce-89.png",
+    "page": 4
+   },
+   {
+    "key": "c95c5fad60ce|r98",
+    "row": 98,
+    "cells": [
+     "FOI-147 Journalist",
+     "Street Lights",
+     "Part Grant",
+     "18/11/2024",
+     "13/12/2024"
+    ],
+    "img": "img/c95c5fad60ce-98.png",
+    "page": 4
+   },
+   {
+    "key": "c95c5fad60ce|r106",
+    "row": 106,
+    "cells": [
+     "FOI-160 Member of the Public",
+     "Planning Enforcement",
+     "Part Grant",
+     "18/12/2024",
+     "22/01/2024"
+    ],
+    "img": "img/c95c5fad60ce-106.png",
+    "page": 4
+   }
+  ],
+  "missing_key": "c95c5fad60ce|missing"
+ },
+ {
+  "sha": "9b3b4dbc082051ecac510571e38d7b9ddb625c7b1b0beb6267766cba53bbe212",
+  "sha12": "9b3b4dbc0820",
+  "body": 1210,
+  "name": "Department of Rural and Community Development and the Gaeltacht",
+  "url": "https://assets.gov.ie/static/documents/foi-requests-january-march-2024.pdf",
+  "extractor": "docling",
+  "origin": "reroute",
+  "n_rows": 27,
+  "n_pages": 5,
+  "header": [
+   "Request Assignment ID",
+   "Date Received",
+   "Category",
+   "Request Type",
+   "Due Date",
+   "Decision Date",
+   "Decision Made",
+   "Summary"
+  ],
+  "items": [
+   {
+    "key": "9b3b4dbc0820|r1",
+    "row": 1,
+    "cells": [
+     "DRCD-FOI-2024-0018",
+     "26/03/2024",
+     "Other",
+     "Non personal",
+     "25/04/2024",
+     "25/04/2024",
+     "Part- Granted",
+     "Under the Freedom of Information Act 2014, I am seeking the release of the signed contracts between the Department and suppliers of heavy cargo transport services between the mainland and the islands listed below since June 2021 to March 2024. The contracts requested are as follows; Toraigh - Realt an Maidne Teo, Inishturk/Clare Island - O'Malley Ferries Ltd, Inishlyre, Clnish & Collanmore - Mayo Islands Committee, Inishbofin - Inishbofin Island Discovery Ltd, Oileáin Árann - Lasta Mara Teo, Cléire, Sherkin, Heir Island & Long Island - Carbery Isle Ferries Ltd, Dursey - Bere Island Project Group, Whiddy - Bere Island Project Group, Bere Island - Bere Island Project Group"
+    ],
+    "img": "img/9b3b4dbc0820-1.png",
+    "page": 1
+   },
+   {
+    "key": "9b3b4dbc0820|r2",
+    "row": 2,
+    "cells": [
+     "DRCD-FOI-2024-0025",
+     "25/03/2024",
+     "Other",
+     "Non personal",
+     "24/04/2024",
+     "15/04/2024",
+     "Granted",
+     "I would like to submit a freedom of information request under the Freedom of Information ACT 2014 in relation to the Clár Programme 2023. Funding was provided for two sites in my locality, namely (1) Catholes Falls Amenity Area and (2) Cappard Amenity area. As a resident of the area I would like to be provided with information regarding the applications made for the aforementioned sites, the plans submitted in the applications and the subsequent provisions and framework / rules for the spending of the allocated grant money and any reporting requirements etc. If reports or updates have already been submitted I also wish to receive those reports."
+    ],
+    "img": "img/9b3b4dbc0820-2.png",
+    "page": 1
+   },
+   {
+    "key": "9b3b4dbc0820|r4",
+    "row": 4,
+    "cells": [
+     "DRCD-FOI-2024-0023",
+     "22/03/2024",
+     "Other",
+     "Non personal",
+     "22/04/2024",
+     "19/04/2024",
+     "Granted",
+     "I am writing to make a request for documents under the FOI and AIE legislation. I am seeking the following documents 1. Applications for ORIS funding by Wexford county council for the period 2017 to 2022 2. Documents recording or evening a decisions by the Department/Minister to award or refuse ORIS funding to Wexford County Council for the period between 2017 to 2022Scope of request clarified as follows: The records I'm looking for relate to a walking trail. It went by several names during its development. Arthurstown duncannon Arthurstown Dunbrody Ballyhack dunbrody"
+    ],
+    "img": "img/9b3b4dbc0820-4.png",
+    "page": 1
+   },
+   {
+    "key": "9b3b4dbc0820|r13",
+    "row": 13,
+    "cells": [
+     "DRCD-FOI-2024-0013",
+     "14/02/2024",
+     "Journalist",
+     "Non personal",
+     "13/03/2024",
+     "12/03/2024",
+     "Granted",
+     "1. Correspondence (sent and received including any referenced attachments) between Fighting Blindness and the department, related to the Pobal audit of Fighting Blindness, between 1st April 2022 and 1st December 2022. 2. Minutes of meetings between Fighting Blindness and the department, related to the Pobal audit, between 1st April 2022 and 7th February 2024. (*For reference I imagine the only meetings will have taken place in 2022, but am leaving a longer time frame in case there was one or two sometime after the fact, but I can refine the time scale if that causes issues) 3. Minutes of meetings between the Department and Pobal, related to the Pobal audit of Fighting Blindness, between 1st June 2022 and 1st December 2022, and also separately between 1st November 2023 and 7th February 2024."
+    ],
+    "img": "img/9b3b4dbc0820-13.png",
+    "page": 3
+   },
+   {
+    "key": "9b3b4dbc0820|r17",
+    "row": 17,
+    "cells": [
+     "DRCD-FOI-2024-0011",
+     "06/02/2024",
+     "Journalist",
+     "Non personal",
+     "05/03/2024",
+     "07/02/2024",
+     "Handled outside of FOI",
+     "Under the FOI Act 2014 I am requesting access to the following records; - Records relating to persons working within the Department who have been the subject of disciplinary action between January 1, 2019, and February 6, 2024. Can I request that this information be broken down by year and include the specific disciplinary action taken, the outcome of that action, and the reason for the person being disciplined."
+    ],
+    "img": "img/9b3b4dbc0820-17.png",
+    "page": 4
+   },
+   {
+    "key": "9b3b4dbc0820|r23",
+    "row": 23,
+    "cells": [
+     "DRCD-FOI-2024-0005",
+     "09/01/2024",
+     "Journalist",
+     "Non personal",
+     "07/02/2024",
+     "02/02/2024",
+     "Refused",
+     "Under the FOI acts, I request the following: Records of correspondence and meetings about provision of accommodation for refugees and asylum seekers in the period 01/07/23 - 04/01/24."
+    ],
+    "img": "img/9b3b4dbc0820-23.png",
+    "page": 5
+   },
+   {
+    "key": "9b3b4dbc0820|r26",
+    "row": 26,
+    "cells": [
+     "DRCD-FOI-2024-0002",
+     "02/01/2024",
+     "Other",
+     "Non personal",
+     "30/01/2024",
+     "19/01/2024",
+     "Refused",
+     "I wish to make a request under the FOI Act for access to - 1. any submission(s) your organisation made to the Department of Public Expenditure and Reform in relation to that Department's review of the FOI Acts, 2. any record which is an analysis* of FOI requests received in your organisation in 2022, and 3. any record which is an analysis* of FOI requests received in your organisation in 2023. I recognise that the record mentioned at 3. Above may not exist on 2 January, 2024. Please either provide an analysis (if it exists) or requests received up to 30 November 2023, or (preferably) delay processing of this part of my request until an analysis of the complete year exists."
+    ],
+    "img": "img/9b3b4dbc0820-26.png",
+    "page": 5
+   },
+   {
+    "key": "9b3b4dbc0820|r27",
+    "row": 27,
+    "cells": [
+     "DRCD-FOI-2024-0001",
+     "02/01/2024",
+     "Journalist",
+     "Non personal",
+     "30/01/2024",
+     "15/01/2024",
+     "Handled outside of FOI",
+     "Under the Freedom of Information Act 2014 I am seeking a list of esubmissions submitted to the Minister for Rural and Community Development through the e-submissions channel. I wish for my request to cover the period from 01-12-2023 - 31-12-2023."
+    ],
+    "img": "img/9b3b4dbc0820-27.png",
+    "page": 5
+   }
+  ],
+  "missing_key": "9b3b4dbc0820|missing"
+ },
+ {
+  "sha": "a0acc423d6a9a2b3dc103e3bcd63e749e330303d2a3779c5bdfdd147ae2cd6d0",
+  "sha12": "a0acc423d6a9",
+  "body": 1508,
+  "name": "Mayo County Council",
+  "url": "https://www.mayo.ie/getmedia/25fd167c-a70c-4a45-930e-3ddb56e8cbea/FOI-Disclosure-Log-Q3-2024.pdf",
+  "extractor": "force:pdfplumber",
+  "origin": "reroute",
+  "n_rows": 27,
+  "n_pages": 2,
+  "header": [
+   "Ref. No",
+   "Date Request Received",
+   "Category of Requester",
+   "Brief Description",
+   "Date of Release",
+   "Decision"
+  ],
+  "items": [
+   {
+    "key": "a0acc423d6a9|r1",
+    "row": 1,
+    "cells": [
+     "FOI 2324",
+     "10-Jul-24",
+     "Other",
+     "Records in relation to part 8 processes conducted\nby MCC to lands and infrastructure on the West\nRd Westport between 2001 and 2004.",
+     "02/08/2024",
+     "Grant"
+    ],
+    "img": "img/a0acc423d6a9-1.png",
+    "page": 1
+   },
+   {
+    "key": "a0acc423d6a9|r2",
+    "row": 2,
+    "cells": [
+     "FOI 2384",
+     "12-Jul-24",
+     "Other",
+     "How many dwellings in Ballinrobe are under\nconstructions or reconstruction for social housing\nat this time and when are those dwellings\nexpected to be completed.",
+     "12/07/2024",
+     "O/s FOI"
+    ],
+    "img": "img/a0acc423d6a9-2.png",
+    "page": 1
+   },
+   {
+    "key": "a0acc423d6a9|r6",
+    "row": 6,
+    "cells": [
+     "FOI 2388",
+     "10-Jul-24",
+     "Journalist",
+     "Any records held that give a list of all official and\nnon-official Traveller halting sites in the local\nauthority area.",
+     "25/07/2024",
+     "Part Grant"
+    ],
+    "img": "img/a0acc423d6a9-6.png",
+    "page": 1
+   },
+   {
+    "key": "a0acc423d6a9|r9",
+    "row": 9,
+    "cells": [
+     "FOI 2392",
+     "15-Jul-24",
+     "Other",
+     "In the last 13 months have MCC purchased\nhouses in Ballinrobe for the purpose of social\nhousing and when will these become available.",
+     "17/07/2024",
+     "O/s FOI"
+    ],
+    "img": "img/a0acc423d6a9-9.png",
+    "page": 1
+   },
+   {
+    "key": "a0acc423d6a9|r18",
+    "row": 18,
+    "cells": [
+     "FOI 2406",
+     "23-Aug-24",
+     "Other",
+     "Records of any correspondence regarding litter\nfines in year 2024-23 to the requestors name and\naddress.",
+     "06/09/2024",
+     "Refuse"
+    ],
+    "img": "img/a0acc423d6a9-18.png",
+    "page": 2
+   },
+   {
+    "key": "a0acc423d6a9|r21",
+    "row": 21,
+    "cells": [
+     "FOI 2409",
+     "03-Sep-24",
+     "Journalist",
+     "Any records held by the CEO referring or relating\nto proposals to prohibit media from attending SPC\nmeetings of MCC from the 1st of January 2024 to\ndate.",
+     "11/09/2024",
+     "Refuse"
+    ],
+    "img": "img/a0acc423d6a9-21.png",
+    "page": 2
+   },
+   {
+    "key": "a0acc423d6a9|r22",
+    "row": 22,
+    "cells": [
+     "FOI 2410",
+     "02-Sep-24",
+     "Other",
+     "Records in relation to an inspection carried out by\nMCC.",
+     "30/09/2024",
+     "Part Grant"
+    ],
+    "img": "img/a0acc423d6a9-22.png",
+    "page": 2
+   },
+   {
+    "key": "a0acc423d6a9|r27",
+    "row": 27,
+    "cells": [
+     "FOI 2416",
+     "26-Sep-24",
+     "Journalist",
+     "Questions in relation to environmental complaints\nregarding halting sites in the years 2021 - 2023.",
+     "04/10/2024",
+     "O/s FOI"
+    ],
+    "img": "img/a0acc423d6a9-27.png",
+    "page": 2
+   }
+  ],
+  "missing_key": "a0acc423d6a9|missing"
+ },
+ {
+  "sha": "321826761b9345608d983727613ee4a869c427f2efeb0ed9c73052bbcf3aadf1",
+  "sha12": "321826761b93",
+  "body": 1235,
+  "name": "Dublin City Council",
+  "url": "https://www.dublincity.ie/sites/default/files/2026-02/disclosure-log-2025.pdf",
+  "extractor": "force:mistral_cache",
+  "origin": "reroute",
+  "n_rows": 569,
+  "n_pages": 23,
+  "header": [
+   "Reference Number",
+   "Request Details",
+   "Request Type",
+   "Decision Type",
+   "Date Opened",
+   "Date Closed"
+  ],
+  "items": [
+   {
+    "key": "321826761b93|r1",
+    "row": 1,
+    "cells": [
+     "FOI/1874/2025",
+     "records of photography relating to the Office of the Lord Mayor",
+     "Non-Personal",
+     "Grant",
+     "02/01/2025",
+     "28/01/2025"
+    ],
+    "img": "img/321826761b93-1.png",
+    "page": 1
+   },
+   {
+    "key": "321826761b93|r2",
+    "row": 2,
+    "cells": [
+     "FOI/1875/2025",
+     "Seeks records of correspondence regarding IPAS applicants for housing.",
+     "Non-Personal",
+     "Refuse",
+     "02/01/2025",
+     "28/01/2025"
+    ],
+    "img": "img/321826761b93-2.png",
+    "page": 1
+   },
+   {
+    "key": "321826761b93|r47",
+    "row": 47,
+    "cells": [
+     "FOI/1966/2025",
+     "Requests records regarding Holocaust memorial",
+     "Non-Personal",
+     "Part-Grant",
+     "28/01/2025",
+     "21/02/2025"
+    ],
+    "img": "img/321826761b93-47.png",
+    "page": 2
+   },
+   {
+    "key": "321826761b93|r259",
+    "row": 259,
+    "cells": [
+     "FOI/2455/2025",
+     "seeks records in relation to allotments",
+     "Non-Personal",
+     "Grant",
+     "13/06/2025",
+     "21/11/2025"
+    ],
+    "img": "img/321826761b93-259.png",
+    "page": 11
+   },
+   {
+    "key": "321826761b93|r413",
+    "row": 413,
+    "cells": [
+     "FOI/2790/2025",
+     "requests records re: parking scheme",
+     "Non-Personal",
+     "Part-Grant",
+     "19/09/2025",
+     "23/10/2025"
+    ],
+    "img": "img/321826761b93-413.png",
+    "page": 16
+   },
+   {
+    "key": "321826761b93|r505",
+    "row": 505,
+    "cells": [
+     "FOI/2984/2025",
+     "seeks records re: park and ride facilities in the Dublin City Council area, during",
+     "Non-Personal",
+     "Refuse",
+     "12/11/2025",
+     "09/12/2025"
+    ],
+    "img": "img/321826761b93-505.png",
+    "page": 20
+   },
+   {
+    "key": "321826761b93|r560",
+    "row": 560,
+    "cells": [
+     "FOI/3108/2025",
+     "seeks records re: Trinity consultations",
+     "Non-Personal",
+     "Grant",
+     "15/12/2025",
+     "23/01/2026"
+    ],
+    "img": "img/321826761b93-560.png",
+    "page": 23
+   },
+   {
+    "key": "321826761b93|r569",
+    "row": 569,
+    "cells": [
+     "FOI/3138/2025",
+     "seeks records re: City Block 19/ Graving Docks",
+     "Non-Personal",
+     "Grant",
+     "23/12/2025",
+     "16/01/2026"
+    ],
+    "img": "img/321826761b93-569.png",
+    "page": 23
+   }
+  ],
+  "missing_key": "321826761b93|missing"
+ }
+]

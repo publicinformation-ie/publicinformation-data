@@ -1,0 +1,1434 @@
+[
+ {
+  "sha": "d9c6ec262afae60db456d7ed9adf0a0b0fb833960a702fb4dcb20cea2d7f4f7d",
+  "sha12": "d9c6ec262afa",
+  "body": 1204,
+  "name": "Department of Foreign Affairs and Trade",
+  "url": "https://assets.gov.ie/static/documents/c0ffce5e/12._Non-personal_FOI_requests_answered_in_Dec_2025.pdf",
+  "extractor": "pdfplumber",
+  "origin": "control",
+  "n_rows": 22,
+  "n_pages": 5,
+  "header": [
+   "Case Number",
+   "Date Received",
+   "Requester Type",
+   "Request",
+   "Decision"
+  ],
+  "items": [
+   {
+    "key": "d9c6ec262afa|r1",
+    "row": 1,
+    "cells": [
+     "FOI/Req/25/391",
+     "24/10/2025",
+     "Media",
+     "- Records, including correspondence and any and all other documentation\nheld by your department in regard to the MV Gary Chouest and its recent\noperating in Irish waters and berthing in Cork Harbour.\n- A copy of the diplomatic clearance document in regard to the MV Gary\nChouest.",
+     "Part-Granted"
+    ],
+    "img": "img/d9c6ec262afa-1.png",
+    "page": 1
+   },
+   {
+    "key": "d9c6ec262afa|r2",
+    "row": 2,
+    "cells": [
+     "FOI/Req/25/411",
+     "03/11/2025",
+     "Media",
+     "Under the Freedom of Information Act 2014 I am seeking a list of\nesubmissions submitted to the Minister for Foreign Affairs through the e-\nsubmissions channel. I wish for my request to cover the period from 01-10-\n2025 - 31-10-2025.",
+     "Part-Granted"
+    ],
+    "img": "img/d9c6ec262afa-2.png",
+    "page": 1
+   },
+   {
+    "key": "d9c6ec262afa|r13",
+    "row": 13,
+    "cells": [
+     "FOI/Req/25/431",
+     "17/11/2025",
+     "Media",
+     "A copy of the following evaluation reports completed by the Department in\n2024: The Application of Ireland’s Soft Power: What Influences Outcomes?\nEvaluation of Ireland’s UN Security Council Term 2021–2022 Spending Review\nof Ireland’s Mandatory Contributions to International Organisations\n(conducted jointly with DPENDPR)",
+     "Part-Granted"
+    ],
+    "img": "img/d9c6ec262afa-13.png",
+    "page": 3
+   },
+   {
+    "key": "d9c6ec262afa|r14",
+    "row": 14,
+    "cells": [
+     "FOI/Req/25/432",
+     "17/11/2025",
+     "Media",
+     "A copy of a report received by the department's audit committee and DCAD\nSenior Management Group, related to fraud/suspected fraud between 1st\nJanuary 2024 and 17th November 2025 (referenced in the audit committee's\n2024 report: https://www.gov.ie/en/department-of-foreign-\naffairs/publications/dfat-audit-committee-annual-report-2024/).",
+     "Refused"
+    ],
+    "img": "img/d9c6ec262afa-14.png",
+    "page": 3
+   },
+   {
+    "key": "d9c6ec262afa|r17",
+    "row": 17,
+    "cells": [
+     "FOI/Req/25/441",
+     "24/11/2025",
+     "Media",
+     "I request copies of the following audits: • Embassy of Ireland South Africa -\nAudit Report and Financial Statements year ended Dec 2024; • Audit of\nProcurement at Embassy Pretoria, March 2025 with a Limited rating",
+     "Part-Granted"
+    ],
+    "img": "img/d9c6ec262afa-17.png",
+    "page": 4
+   },
+   {
+    "key": "d9c6ec262afa|r18",
+    "row": 18,
+    "cells": [
+     "FOI/Req/25/442",
+     "24/11/2025",
+     "Other",
+     "Briefing notes prepared for the Department of Foreign Affairs for meetings\nand other engagements on the Joint Statement on Efforts to Counter the\nProliferation and Misuse of Commercial Spyware, from the period of\n20/5/2025 to 24/11/2025",
+     "Refused"
+    ],
+    "img": "img/d9c6ec262afa-18.png",
+    "page": 4
+   },
+   {
+    "key": "d9c6ec262afa|r21",
+    "row": 21,
+    "cells": [
+     "FOI/Req/25/451",
+     "01/12/2025",
+     "Media",
+     "Seeking a list of esubmissions submitted to the Minister for Foreign Affairs\nthrough the e-submissions channel. I wish for my request to cover the period\nfrom 01-11-2025 - 30-11-2025.",
+     "Part-Granted"
+    ],
+    "img": "img/d9c6ec262afa-21.png",
+    "page": 4
+   },
+   {
+    "key": "d9c6ec262afa|r22",
+    "row": 22,
+    "cells": [
+     "FOI/Req/25/466",
+     "16/12/2025",
+     "Media",
+     "A breakdown in grants awarded by the Irish embassy Kenya, for the years\n2023 and 2024, broken down by value of grant, organisations funds were\nawarded to, and the stated aim of the programme or grant.",
+     "Granted"
+    ],
+    "img": "img/d9c6ec262afa-22.png",
+    "page": 4
+   }
+  ],
+  "missing_key": "d9c6ec262afa|missing"
+ },
+ {
+  "sha": "61aa93f4e43a87f7ee8fd554a8441da4075d667aa91d67dbc2a9a27cfe08bd43",
+  "sha12": "61aa93f4e43a",
+  "body": 1655,
+  "name": "Raidió Teilifís Éireann - RTÉ",
+  "url": "https://about.rte.ie/wp-content/uploads/2023/03/RTE-FOI-Disclosure-Log-Q3.pdf",
+  "extractor": "camelot_lattice",
+  "origin": "control",
+  "n_rows": 31,
+  "n_pages": 7,
+  "header": [
+   "FOI No.",
+   "Date FOI Received",
+   "Freedom Of Information Request",
+   "Requester",
+   "Decision"
+  ],
+  "items": [
+   {
+    "key": "61aa93f4e43a|r1",
+    "row": 1,
+    "cells": [
+     "80.",
+     "06.07.2022",
+     "External Board evaluations / Governance reviews of the RTÉ board \nsince the start of 2018.",
+     "Journalist",
+     "Granted."
+    ],
+    "img": "img/61aa93f4e43a-1.png",
+    "page": 1
+   },
+   {
+    "key": "61aa93f4e43a|r2",
+    "row": 2,
+    "cells": [
+     "81.",
+     "08.07.2022",
+     "RTÉ \nIT  systems:  number  of  devices  (by \ntype);  device  replace/ \n'refresh' plans and expected expenditure on same.",
+     "Business / \nInterest Group",
+     "Granted."
+    ],
+    "img": "img/61aa93f4e43a-2.png",
+    "page": 1
+   },
+   {
+    "key": "61aa93f4e43a|r3",
+    "row": 3,
+    "cells": [
+     "82.",
+     "11.07.2022",
+     "From 2019 to date: how many invitations to appear on The Week in \nPolitics,  Drivetime,  Claire  Byrne  Live,  Today  with  Claire  Byrne, \nMorning Ireland, Late Debate and The week with Katie Shannon the \nfollowing  politicians have received:  Catherine Connolly and Verona \nMurphy.",
+     "Member of the \npublic",
+     "Refused. \nSection 15(1)(a). \nStatutory Instrument SI 115 of \n2000."
+    ],
+    "img": "img/61aa93f4e43a-3.png",
+    "page": 1
+   },
+   {
+    "key": "61aa93f4e43a|r14",
+    "row": 14,
+    "cells": [
+     "93.",
+     "08.08.202",
+     "Copies of all information in whatever form it exists re. RTÉ’s \ndecision not to report on Friday last, 5 August 2022, atrocities \ncommitted by the criminal, apartheid, Nazi-imitating state of Israel \non the people of Gaza that day; include any decisions taken in \nimmediate response to those atrocities or any policy document re. \nRTÉ's overall censorship of reports about Israel's atrocities in \ngeneral.",
+     "Member of the \npublic.",
+     "Refused. \nStatutory Instrument SI 115 of \n2000."
+    ],
+    "img": "img/61aa93f4e43a-14.png",
+    "page": 3
+   },
+   {
+    "key": "61aa93f4e43a|r15",
+    "row": 15,
+    "cells": [
+     "94.",
+     "09.08.2022",
+     "From 1 March-9 August 2022 a copy of all documents, briefing \nnotes, emails and internal discussion documents relating to the \nfollowing topics: Tavistock, TENI, puberty blockers, Dublin Pride; \ndocuments that advise staff how to cover these topics, and any \nemails exchanged in re these topics including recommendations, \nadvice, regulations, concerns, warnings.",
+     "Member of the \npublic.",
+     "Granted in part. \nSection 15(1)(a)."
+    ],
+    "img": "img/61aa93f4e43a-15.png",
+    "page": 3
+   },
+   {
+    "key": "61aa93f4e43a|r17",
+    "row": 17,
+    "cells": [
+     "96.",
+     "19.08.2022",
+     "Records showing the amounts of financial payments or \nassistance or grants provided by RTÉ to Dublin Pride in the 5 most \nrecent years to 1 Jan 2022.",
+     "Member of the \npublic.",
+     "Refused. \nSection 15(1)(a)."
+    ],
+    "img": "img/61aa93f4e43a-17.png",
+    "page": 4
+   },
+   {
+    "key": "61aa93f4e43a|r27",
+    "row": 27,
+    "cells": [
+     "106.",
+     "16.09.2022",
+     "A database/spreadsheet/record of the amount paid in fees to guests \nor contributors for the following shows in each of 2021 and thus far \nin 2022: The Late Late Show, Primetime, Claire Byrne Live, the \nTommy Tiernan Show, Saturday with Katie Hannon, Sunday with \nMiriam, the Brendan O'Connor Show, Morning Ireland, the Ray \nD'Arcy Show, Drivetime, Today with Claire Byrne, the Ryan Tubridy \nShow.",
+     "Journalist.",
+     "Refused. Section 15(1)(a). \nGranted in part on Internal \nReview: Sections 15(1)(a), \n35(1)(b); 36(1)(b) and (c)."
+    ],
+    "img": "img/61aa93f4e43a-27.png",
+    "page": 6
+   },
+   {
+    "key": "61aa93f4e43a|r31",
+    "row": 31,
+    "cells": [
+     "110.",
+     "30.09.2022",
+     "How much has RTÉ paid Professor Luke O'Neill in the last three \nyears.",
+     "Member of the \npublic.",
+     "Refused. \nSection 37(1). \nStatutory Instrument SI 115 of \n2000."
+    ],
+    "img": "img/61aa93f4e43a-31.png",
+    "page": 7
+   }
+  ],
+  "missing_key": "61aa93f4e43a|missing"
+ },
+ {
+  "sha": "7b410e36369ec73263339e0fcd13237d57e0062869e759608cec99bfa0e24eba",
+  "sha12": "7b410e36369e",
+  "body": 1104,
+  "name": "Central Bank of Ireland",
+  "url": "https://www.centralbank.ie/docs/default-source/tns/about---tns/freedom-of-information/disclosure-logs/freedom-of-information-disclosure-log---2022.pdf?sfvrsn=4d6f991d_5",
+  "extractor": "mistral_cache",
+  "origin": "control",
+  "n_rows": 44,
+  "n_pages": 6,
+  "header": [
+   "Ref ID",
+   "Request Received Date",
+   "Description",
+   "Requestor Category",
+   "Request Outcome",
+   "Response Sent Date"
+  ],
+  "items": [
+   {
+    "key": "7b410e36369e|r1",
+    "row": 1,
+    "cells": [
+     "FOI-2021-001359",
+     "06/12/2021",
+     "Refined: • Copies of any internal correspondence, briefings or memos between Heads of Division in the relevant Enforcement Division and the director of Enforcement regarding a fine of 24.5 million to a named financial service provider by the Central Bank for IT failures dating back to 2008. • Copies of any correspondence, briefings, memos or meeting minutes between Central Bank officials- Enforcement Division and the Minister for Finance or named financial service provider officials re same. Covering the time period 1st September 2021 to 2nd December 2021.",
+     "Media",
+     "Refused",
+     "17/01/2022"
+    ],
+    "img": "img/7b410e36369e-1.png",
+    "page": 1
+   },
+   {
+    "key": "7b410e36369e|r2",
+    "row": 2,
+    "cells": [
+     "FOI-2022-001360",
+     "13/12/2021",
+     "Any records held by the Irish Central Bank relating to the selection of a named candidate for the Theme Advisory Group for the selection of new Euro banknotes.",
+     "Media",
+     "Part Granted",
+     "13/01/2022"
+    ],
+    "img": "img/7b410e36369e-2.png",
+    "page": 1
+   },
+   {
+    "key": "7b410e36369e|r19",
+    "row": 19,
+    "cells": [
+     "FOI-2022-001386",
+     "17/05/2022",
+     "Communication from (a named financial service provider) relating to volunteer club customer account.",
+     "Individual",
+     "Request withdrawn/ handled outside FOI",
+     "18/05/2022"
+    ],
+    "img": "img/7b410e36369e-19.png",
+    "page": 3
+   },
+   {
+    "key": "7b410e36369e|r24",
+    "row": 24,
+    "cells": [
+     "FOI-2022-001393",
+     "17/06/2022",
+     "...any statistics available on the outstanding balance of credit card debts with Irish banks.",
+     "Individual",
+     "Request withdrawn/ handled outside FOI",
+     "20/06/2022"
+    ],
+    "img": "img/7b410e36369e-24.png",
+    "page": 4
+   },
+   {
+    "key": "7b410e36369e|r28",
+    "row": 28,
+    "cells": [
+     "FOI-2022-001399",
+     "12/08/2022",
+     "I am researching a company called a named financial service provider. Under the FOI, I require the following information. Were they a licenced entity and if so what was their licence number.",
+     "Individual",
+     "Part Granted",
+     "05/09/2022"
+    ],
+    "img": "img/7b410e36369e-28.png",
+    "page": 4
+   },
+   {
+    "key": "7b410e36369e|r33",
+    "row": 33,
+    "cells": [
+     "FOI-2022-001404",
+     "03/10/2022",
+     "- A record of the number of people (FTE) employed by your organisation. - A record of the number of people earning in each of the following salary bands: €0 - €49,999, €50,000 to €74,999, €75,000 to €99,999, €100,000 to €124,999, €124,999 to €149,999, €150,000 to €199,999, over €200,000. - A record breaking down each of the above categories/salary bands according to gender.",
+     "Media",
+     "Granted",
+     "28/10/2022"
+    ],
+    "img": "img/7b410e36369e-33.png",
+    "page": 5
+   },
+   {
+    "key": "7b410e36369e|r37",
+    "row": 37,
+    "cells": [
+     "FOI-2022-001409",
+     "26/10/2022",
+     "On the page https://www.centralbank.ie/docs/default-source/regulation/industry-market-sectors/credit-unions/communications/update-on-restructuring.pdf?sfvrsn=1fd3891d_2 on page 3 there is a reference to 419 credit unions. Can I get a list of the credit unions names that agrees with this list which shows the home county of each credit union?",
+     "Individual",
+     "Granted",
+     "22/11/2022"
+    ],
+    "img": "img/7b410e36369e-37.png",
+    "page": 5
+   },
+   {
+    "key": "7b410e36369e|r44",
+    "row": 44,
+    "cells": [
+     "FOI-2022-001416",
+     "02/12/2022",
+     "... any records held by Central Bank of Ireland covering the following 1. Name of company who currently supplies your print equipment (multi-functional devices) 2. If known, how many devices supplied or at least please state an approximate number 3. Start and end date of the contract 4. Details of any extension options 5. What route to market used – ie framework or open competition process 6. Is this arrangement shared with any other organisation/s? If yes, please name the organisation that heads the contract 7. Estimated total value of contract, or your annual spend if the contract is shared 8. Primary contact name",
+     "Individual",
+     "Part Granted",
+     "30/12/2022"
+    ],
+    "img": "img/7b410e36369e-44.png",
+    "page": 6
+   }
+  ],
+  "missing_key": "7b410e36369e|missing"
+ },
+ {
+  "sha": "ad0a7cabe2e846b482d6040c4eb94efcb7753f9a30f058da95a90129073904b7",
+  "sha12": "ad0a7cabe2e8",
+  "body": 1590,
+  "name": "Offaly County Council",
+  "url": "https://www.offaly.ie/app/uploads/Council/Publications_Reports/Disclosure-Log-2022.pdf",
+  "extractor": "pdfplumber",
+  "origin": "control",
+  "n_rows": 67,
+  "n_pages": 4,
+  "header": [
+   "Date Received",
+   "Ref. No",
+   "Description of Request",
+   "Requester Category",
+   "Decision",
+   "Decision letter issued"
+  ],
+  "items": [
+   {
+    "key": "ad0a7cabe2e8|r1",
+    "row": 1,
+    "cells": [
+     "05.01.2022",
+     "1.22",
+     "Details of typs of fines issused by OCC/Dog\nWarden and revenue generated from same 2018-\n2020",
+     "Client",
+     "Granted",
+     "31.01.2022"
+    ],
+    "img": "img/ad0a7cabe2e8-1.png",
+    "page": 1
+   },
+   {
+    "key": "ad0a7cabe2e8|r2",
+    "row": 2,
+    "cells": [
+     "10.01.2022",
+     "2.22",
+     "Number of parking fines levied by OCC from\n2019-2021",
+     "Journalist",
+     "Granted",
+     "02.02.2022"
+    ],
+    "img": "img/ad0a7cabe2e8-2.png",
+    "page": 1
+   },
+   {
+    "key": "ad0a7cabe2e8|r5",
+    "row": 5,
+    "cells": [
+     "28.01.2022",
+     "5.22",
+     "Information on Fire Services fees charged to the\npublic by OCC",
+     "Journalist",
+     "Withdrawn",
+     "28.1.2022"
+    ],
+    "img": "img/ad0a7cabe2e8-5.png",
+    "page": 1
+   },
+   {
+    "key": "ad0a7cabe2e8|r8",
+    "row": 8,
+    "cells": [
+     "08.02.2022",
+     "8.22",
+     "Request for information held on a housing file",
+     "Business",
+     "Granted",
+     "04.03.2022"
+    ],
+    "img": "img/ad0a7cabe2e8-8.png",
+    "page": 1
+   },
+   {
+    "key": "ad0a7cabe2e8|r18",
+    "row": 18,
+    "cells": [
+     "12.04.2022",
+     "18.22",
+     "Request for information held on a housing file",
+     "Business",
+     "Granted",
+     "16.06.2022"
+    ],
+    "img": "img/ad0a7cabe2e8-18.png",
+    "page": 2
+   },
+   {
+    "key": "ad0a7cabe2e8|r26",
+    "row": 26,
+    "cells": [
+     "13.06.2022",
+     "26.22",
+     "Information in relation to CCTV cameras from\n2017-present",
+     "Business",
+     "Deemed Refusal",
+     "11.07.2022"
+    ],
+    "img": "img/ad0a7cabe2e8-26.png",
+    "page": 2
+   },
+   {
+    "key": "ad0a7cabe2e8|r35",
+    "row": 35,
+    "cells": [
+     "04.08.2022",
+     "35.22",
+     "Auctioneers report in relation to a property",
+     "Business",
+     "Granted",
+     "05.09.2022"
+    ],
+    "img": "img/ad0a7cabe2e8-35.png",
+    "page": 2
+   },
+   {
+    "key": "ad0a7cabe2e8|r67",
+    "row": 67,
+    "cells": [
+     "12.12.2022",
+     "67.22",
+     "Records held by OCC in relation to IS service and\nsupplies provision",
+     "Business",
+     "Withdrawn",
+     "31.12.2022"
+    ],
+    "img": "img/ad0a7cabe2e8-67.png",
+    "page": 4
+   }
+  ],
+  "missing_key": "ad0a7cabe2e8|missing"
+ },
+ {
+  "sha": "34316df0df3cccec7ec9708c5de4f34ac57bc76fe6f34e4108e0cd75a190b9be",
+  "sha12": "34316df0df3c",
+  "body": 1207,
+  "name": "Department of Housing, Local Government and Heritage",
+  "url": "https://assets.gov.ie/static/documents/foi-disclosure-log-october-to-december-2023.pdf",
+  "extractor": "camelot_lattice",
+  "origin": "control",
+  "n_rows": 82,
+  "n_pages": 14,
+  "header": [
+   "FOI Reference Number",
+   "FOI Request Date Received",
+   "Request Description",
+   "Decision Date",
+   "Decision Made",
+   "Requester Category"
+  ],
+  "items": [
+   {
+    "key": "34316df0df3c|r2",
+    "row": 2,
+    "cells": [
+     "FOI-0412-2023",
+     "02/10/2023",
+     "Request for records of communications between Fuinneamh Sceirdre \nTeoranta/Corio/representatives acting on their behalf and the NPWS regarding \nthe requirement for Derogations under the Habitats Directive (Article 54) related \nto the activities referenced in Foreshore Licence FS007161 and Marine Notices \n54, 47 & 46 of 2023.",
+     "13/10/2023",
+     "Granted",
+     "Journalist"
+    ],
+    "img": "img/34316df0df3c-2.png",
+    "page": 1
+   },
+   {
+    "key": "34316df0df3c|r3",
+    "row": 3,
+    "cells": [
+     "FOI-0428-2023",
+     "03/10/2023",
+     "In the period of 01/05/2023 to 31/08/2023 Requesting any emails, notes, \nmemos, briefings and/or records ahead of/ from the call between member of \nthe public and The Minister which took place sometime.",
+     "26/10/2023",
+     "Refused",
+     "Oireachtas/Public \nRepresentatives"
+    ],
+    "img": "img/34316df0df3c-3.png",
+    "page": 1
+   },
+   {
+    "key": "34316df0df3c|r18",
+    "row": 18,
+    "cells": [
+     "FOI-0438-2023",
+     "12/10/2023",
+     "Request for a copy of communications between the Department and the \nbanking federation / financial lenders (banks, credit unions etc. \nRE: Discussing potential support / solutions for homeowners impacted by \ndefective blocks.",
+     "07/11/2023",
+     "Part-Granted",
+     "Journalist"
+    ],
+    "img": "img/34316df0df3c-18.png",
+    "page": 3
+   },
+   {
+    "key": "34316df0df3c|r40",
+    "row": 40,
+    "cells": [
+     "FOI-0471-2023",
+     "31/10/2023",
+     "In the period of 17/10/2023 to 22/10/2023: Request for copies of all emails and \nother correspondence received by Met Eireann from the public or public \nrepresentatives regarding weather warnings.",
+     "27/11/2023",
+     "Part-Granted",
+     "Journalist"
+    ],
+    "img": "img/34316df0df3c-40.png",
+    "page": 6
+   },
+   {
+    "key": "34316df0df3c|r53",
+    "row": 53,
+    "cells": [
+     "FOI-0480-2023",
+     "03/11/2023",
+     "Seeking the release of the Inis Ealga Foreshore Application Environmental \nAssessment produced by a named Consulting Engineer.",
+     "29/11/2023",
+     "Part-Granted",
+     "Client"
+    ],
+    "img": "img/34316df0df3c-53.png",
+    "page": 8
+   },
+   {
+    "key": "34316df0df3c|r61",
+    "row": 61,
+    "cells": [
+     "FOI-0504-2023",
+     "14/11/2023",
+     "As per the submission process for the Draft Sustainable and Compact Settlement \nGuidelines for Planning Authorities I would like to request access to all \nsubmissions made to the Department.",
+     "04/12/2023",
+     "Refused",
+     "Client"
+    ],
+    "img": "img/34316df0df3c-61.png",
+    "page": 10
+   },
+   {
+    "key": "34316df0df3c|r74",
+    "row": 74,
+    "cells": [
+     "FOI-0532-2023",
+     "27/11/2023",
+     "In the period 01/07/2023 to 27/11/2023: Request copies of any records held \nreferring or relating to the possibility of changing the name of An Bord Pleanala.",
+     "21/12/2023",
+     "Refused",
+     "Journalist"
+    ],
+    "img": "img/34316df0df3c-74.png",
+    "page": 11
+   },
+   {
+    "key": "34316df0df3c|r83",
+    "row": 83,
+    "cells": [
+     "FOI-0545-2023",
+     "05/12/2023",
+     "Re: Enhanced Grant Scheme for Remediation of Dwellings Damaged by the use \nof Defective Concrete Blocks in their Construction. \nRequest for… Ministerial Guidelines for Designated Local Authorities and the \nHousing Agency Dated June 2023. \n1. RE: The above Guidelines and to the Time Limits, Section 6.7 and in particular \nto the last sentence of the first paragraph. \n\"The applicant must also have submitted their final grant payment application \nfollowing the completion of work within 65 weeks of having commenced \nworks\" \n2. Request for copies of minutes, scoping exercises and/or background notes \nand copies of emails where this 65 week was discussed? \n3. The criteria/parameters used by the Department in arriving at a time limit of \n65 weeks? \n4. Copies of any advice received from anybody or organisation representing \nbuilding professionals?",
+     "18/12/2023",
+     "Part-Granted",
+     "Client"
+    ],
+    "img": "img/34316df0df3c-83.png",
+    "page": 14
+   }
+  ],
+  "missing_key": "34316df0df3c|missing"
+ },
+ {
+  "sha": "269ad3fd2bccb1ccdc071514d6ce46c270df5dcca0bfe5fcc1f8860fbbdb7549",
+  "sha12": "269ad3fd2bcc",
+  "body": 1574,
+  "name": "National University of Ireland Galway",
+  "url": "https://www.universityofgalway.ie/media/corporateandlegalaffairs/files/FOI-Disclosure-Log-2024.pdf",
+  "extractor": "mistral_cache",
+  "origin": "control",
+  "n_rows": 48,
+  "n_pages": 2,
+  "header": [
+   "Date Received",
+   "Request",
+   "Category",
+   "Stage"
+  ],
+  "items": [
+   {
+    "key": "269ad3fd2bcc|r1",
+    "row": 1,
+    "cells": [
+     "05/01/2024",
+     "The amount of money received from €400 million capital development programme, 'Campus of the future'.",
+     "Other",
+     "Refused"
+    ],
+    "img": "img/269ad3fd2bcc-1.png",
+    "page": 1
+   },
+   {
+    "key": "269ad3fd2bcc|r2",
+    "row": 2,
+    "cells": [
+     "12/01/2024",
+     "Miontuaïrísí cruinnnithe de chuid Grúpa/Coiste Feidhmiúcháin Choláiste na nDán, na nEolaíochtaí Sóisialta, agus an Léinn Cheiltigh. Miontuaïrísí cruinnnithe de chuid Chomhairle Bainistíochta Acadamh na hOllscolaíochta Gaeilge. Miontuaïrísí cruinnnithe de chuid Choiste Straitéiseach na hOllscoile don Ghaeilge.",
+     "Journalist",
+     "Withdrawn/Closed"
+    ],
+    "img": "img/269ad3fd2bcc-2.png",
+    "page": 1
+   },
+   {
+    "key": "269ad3fd2bcc|r4",
+    "row": 4,
+    "cells": [
+     "09/02/2024",
+     "The charge incurred by the student to cover their membership in the students' union, whether it be part of the student contribution charge, tuition fees or other levy.",
+     "Other",
+     "Withdrawn/Closed"
+    ],
+    "img": "img/269ad3fd2bcc-4.png",
+    "page": 1
+   },
+   {
+    "key": "269ad3fd2bcc|r9",
+    "row": 9,
+    "cells": [
+     "17/04/2024",
+     "A copy of all invoices provided by a named company to University of Galway in the last five years.",
+     "Other",
+     "Part Granted"
+    ],
+    "img": "img/269ad3fd2bcc-9.png",
+    "page": 1
+   },
+   {
+    "key": "269ad3fd2bcc|r11",
+    "row": 11,
+    "cells": [
+     "25/04/2024",
+     "The original job advertisement seeking a Project Manager, Grade 5, Development & Alumni Relations.",
+     "Other",
+     "Withdrawn"
+    ],
+    "img": "img/269ad3fd2bcc-11.png",
+    "page": 1
+   },
+   {
+    "key": "269ad3fd2bcc|r19",
+    "row": 19,
+    "cells": [
+     "05/07/2024",
+     "I request: Copies of minutes of all University of Galway Governing Body meetings (including Board-only meetings) held from July 2023 to June 31, 2024, inclusive.",
+     "Journalist",
+     "Granted"
+    ],
+    "img": "img/269ad3fd2bcc-19.png",
+    "page": 1
+   },
+   {
+    "key": "269ad3fd2bcc|r30",
+    "row": 30,
+    "cells": [
+     "16/09/2024",
+     "The fees payable by students for each postgraduate course offered at the institution, covering the years 2019 to 2024. Planned fees payable by students for each postgraduate course offered at the institution, covering the year 2024-2025.",
+     "Other",
+     "Granted"
+    ],
+    "img": "img/269ad3fd2bcc-30.png",
+    "page": 1
+   },
+   {
+    "key": "269ad3fd2bcc|r48",
+    "row": 48,
+    "cells": [
+     "10/12/2024",
+     "I am requesting all records pertaining to the University's relationship with a named company.",
+     "Other",
+     "Refused"
+    ],
+    "img": "img/269ad3fd2bcc-48.png",
+    "page": 2
+   }
+  ],
+  "missing_key": "269ad3fd2bcc|missing"
+ },
+ {
+  "sha": "cab248cfb89b2273b641dea3e237bb6bb4619f151e501b9dba81c9baa78de2c2",
+  "sha12": "cab248cfb89b",
+  "body": 1570,
+  "name": "National Transport Authority (NTA)",
+  "url": "https://www.nationaltransport.ie/wp-content/uploads/2025/09/2025-Q1-FOI-Disclosure-Log.pdf",
+  "extractor": "pdfplumber",
+  "origin": "control",
+  "n_rows": 55,
+  "n_pages": 8,
+  "header": [
+   "FOI Reference",
+   "Date Received",
+   "Brief Description of Request",
+   "Requestor Category",
+   "Decision",
+   "Date Decision letter issued",
+   "Reason for refusal / part- grant"
+  ],
+  "items": [
+   {
+    "key": "cab248cfb89b|r2",
+    "row": 2,
+    "cells": [
+     "2025-0001",
+     "03/01/2025",
+     "A copy of the Emerging Risk Radar report (referred to in board meeting of Oct '24).",
+     "Journalist",
+     "Grant",
+     "31/01/2025",
+     ""
+    ],
+    "img": "img/cab248cfb89b-2.png",
+    "page": 1
+   },
+   {
+    "key": "cab248cfb89b|r3",
+    "row": 3,
+    "cells": [
+     "2025-0002",
+     "03/01/2025",
+     "Full details of taxi complaints, including a breakdown of such complaints and the\nlocation of such incidents, in County Kerry from the time period Monday, January 1st\n2024 to Tuesday, December 31st 2024, with days inclusive.",
+     "Journalist",
+     "Non FOI",
+     "21/01/2025",
+     ""
+    ],
+    "img": "img/cab248cfb89b-3.png",
+    "page": 1
+   },
+   {
+    "key": "cab248cfb89b|r27",
+    "row": 27,
+    "cells": [
+     "2025-0026",
+     "30/01/2025",
+     "[1.] a copy of records containing any report, briefing paper or analysis on the 2025\nbudget announcement to extend the Free Travel Pass to companions of anyone over\n70 and its impact on PSO revenue\n[2.] any communications on the issue within the NTA or with external stakeholders",
+     "Journalist",
+     "Refused",
+     "28/02/2025",
+     "Section\n29(1)(a)"
+    ],
+    "img": "img/cab248cfb89b-27.png",
+    "page": 3
+   },
+   {
+    "key": "cab248cfb89b|r30",
+    "row": 30,
+    "cells": [
+     "2025-0030",
+     "10/02/2025",
+     "[i.] Records of all services withdrawn by local Link since 01/01/15.\n[ii.] Reports for each service withdrawn since 01/01/15.\n[iii.] Scoring matrix for each service tendered by local link since 01/01/23\n[iv.] All internal and external correspondence referring to [a specified invidual] and [a\nspecified company] from 01/01/22. Should include but not limited to emails, letters,\ndraft letters, phone call notes, meetings, minutes of meeting.",
+     "Business / Industry",
+     "Part-Granted",
+     "08/04/2025",
+     "Section\n15(1)(a);\nSection\n15(1)(d);\nSection\n31(1)(a)"
+    ],
+    "img": "img/cab248cfb89b-30.png",
+    "page": 4
+   },
+   {
+    "key": "cab248cfb89b|r37",
+    "row": 37,
+    "cells": [
+     "2025-0038",
+     "28/02/2025",
+     "A copy of engineers/risk assessment that would have been carried out on bus stop in\nGlanmire village, Cork on the 214 bus route from CUH TO Glanmire.",
+     "Member of the\nPublic",
+     "Refused",
+     "31/03/2025",
+     "Section\n15(1)(a)"
+    ],
+    "img": "img/cab248cfb89b-37.png",
+    "page": 5
+   },
+   {
+    "key": "cab248cfb89b|r40",
+    "row": 40,
+    "cells": [
+     "2025-0041",
+     "05/03/2025",
+     "The number of lost kilometres, late and early buses from 1st July to the latest available\ndate for all Kerry buses under the PSO by route in spreadsheet format.",
+     "Oireachtas / Public\nRepresentative",
+     "Non FOI",
+     "12/03/2025",
+     ""
+    ],
+    "img": "img/cab248cfb89b-40.png",
+    "page": 5
+   },
+   {
+    "key": "cab248cfb89b|r44",
+    "row": 44,
+    "cells": [
+     "2025-0045",
+     "05/03/2025",
+     "The precise times the 16-bus serviced 1339 bus stop on the 27th February 2025 from\n8.30-9.20am",
+     "Member of the\nPublic",
+     "Grant",
+     "02/04/2025",
+     ""
+    ],
+    "img": "img/cab248cfb89b-44.png",
+    "page": 6
+   },
+   {
+    "key": "cab248cfb89b|r56",
+    "row": 56,
+    "cells": [
+     "2025-0058",
+     "27/03/2025",
+     "[1.] Any corporate and business unit/divisional risk registers from 1 Jan 2024 to date\n[2.] Copies of all reports arising from internal and external audits/reviews of the NTA\n(or its constituent parts) which either commenced or were reported upon from 1 Jan\n2024 to date.",
+     "Member of the\nPublic",
+     "Refused",
+     "07/05/2025",
+     "Section\n15(1)(c)"
+    ],
+    "img": "img/cab248cfb89b-56.png",
+    "page": 8
+   }
+  ],
+  "missing_key": "cab248cfb89b|missing"
+ },
+ {
+  "sha": "54c109ca2503b31b21b66a2f73243de5ba970210874ee41a5a1da55f2b572967",
+  "sha12": "54c109ca2503",
+  "body": 1104,
+  "name": "Central Bank of Ireland",
+  "url": "https://www.centralbank.ie/docs/default-source/tns/about---tns/freedom-of-information/disclosure-logs/freedom-of-information-disclosure-log-q2-2026-non-personal-requests.pdf?sfvrsn=17b0711a_4",
+  "extractor": "camelot_stream",
+  "origin": "candidate",
+  "n_rows": 257,
+  "n_pages": 9,
+  "header": [
+   "Ref ID",
+   "Request Received",
+   "Description",
+   "Requestor Category",
+   "Request Outcome",
+   "Response Sent Date"
+  ],
+  "items": [
+   {
+    "key": "54c109ca2503|r2",
+    "row": 2,
+    "cells": [
+     "FOI-2026-001746",
+     "19/03/2026",
+     "Refined records of the most current analysis about the \"Commercial Agent Exemption\" [under PSD2 or PSD3 if already available] that defines or define (in case of multiple documents): •  In what circumstances does the commercial agent exemption apply? To be limited from start 2018 to date",
+     "Individual",
+     "Refused",
+     "16/04/2026"
+    ],
+    "img": "img/54c109ca2503-2.png",
+    "page": 1
+   },
+   {
+    "key": "54c109ca2503|r7",
+    "row": 7,
+    "cells": [
+     "FOI-2026-001748",
+     "10/03/2026",
+     "the name and business address of the independent advisor on the enclosed list of public contracts (Q4) for 2025. https://www.centralbank.ie/docs/default-source/tns/about---tns/freedom-of-information/procurement/q4-2025-contracts- awarded.pdf?sfvrsn=c865721a_1 Any report describing the range of work/advice provided by the independent advisor. Copies of any reports in the course of work carried out by the Independent Advisor to date. Copy of the brief by the Central Bank outlining the need for the services of the independent advisor. Copies of invoices submitted by the independent advisor to date.",
+     "Media",
+     "Part Granted",
+     "09/04/2026"
+    ],
+    "img": "img/54c109ca2503-7.png",
+    "page": 1
+   },
+   {
+    "key": "54c109ca2503|r78",
+    "row": 78,
+    "cells": [
+     "FOI-2026-001757",
+     "09/04/2026",
+     "Revised: Specifically, I request any and all records, including but not limited to: • Correspondence (emails, letters, or other communications) • Internal memos or briefing notes • Policy deliberations • Meeting minutes or records • Reports, analyses, or notes of discussions",
+     "Individual",
+     "Refused",
+     "07/05/2026"
+    ],
+    "img": "img/54c109ca2503-78.png",
+    "page": 3
+   },
+   {
+    "key": "54c109ca2503|r140",
+    "row": 140,
+    "cells": [
+     "FOI-2026-001762",
+     "15/04/2026",
+     "1. All expense submissions and copies of receipts for expenses lodged by the governor/chair from April 1, 2024, to April 1, 2026.",
+     "Media",
+     "Part Granted",
+     "14/05/2026"
+    ],
+    "img": "img/54c109ca2503-140.png",
+    "page": 5
+   },
+   {
+    "key": "54c109ca2503|r154",
+    "row": 154,
+    "cells": [
+     "FOI-2026-001766",
+     "30/04/2026",
+     "Any written material including instruction manuals, technical documents, emails, memos and internal and external",
+     "Media",
+     "Request withdrawn/handled",
+     "06/05/2026"
+    ],
+    "img": "img/54c109ca2503-154.png",
+    "page": 6
+   },
+   {
+    "key": "54c109ca2503|r155",
+    "row": 155,
+    "cells": [
+     "",
+     "",
+     "communications mentioning a specific named software .",
+     "",
+     "outside FOI",
+     ""
+    ],
+    "img": "img/54c109ca2503-155.png",
+    "page": 6
+   },
+   {
+    "key": "54c109ca2503|r166",
+    "row": 166,
+    "cells": [
+     "FOI-2026-001771",
+     "11/05/2026",
+     "Time period: 1 January 2026-present: - A copy of any briefing, review, assessment or report prepared by this authority for the Anti-Money Laundering Steering Committee (including sub-committees) concerning the EU’s Sixth Anti-Money Laundering Directive (6AMLD) and/or beneficial ownership and/or beneficial ownership database(s); - A copy of the most recent departmental briefing and/or memo and/or report for SecGen or Ministerial level concerning the EU’s Sixth Ant-Money Laundering Directive (6AMLD) and/or beneficial ownership and/or beneficial ownership database(s)",
+     "Media",
+     "Refused",
+     "25/05/2026"
+    ],
+    "img": "img/54c109ca2503-166.png",
+    "page": 6
+   },
+   {
+    "key": "54c109ca2503|r240",
+    "row": 240,
+    "cells": [
+     "FOI-2026-001781",
+     "01/06/2026",
+     "aggregate, anonymised statistics on personal contract plan (PCP) and hire-purchase car finance agreements in Ireland. Specifically, for each calendar year from 2019 to the latest available year, could you please provide the number of newly originated agreements and total financed amount, broken down by: 1.  Loan type: - Personal Contract Plan (PCP) - Hire Purchase, excluding PCP 2.  Borrower age band at origination:",
+     "Individual",
+     "Refused",
+     "16/06/2026"
+    ],
+    "img": "img/54c109ca2503-240.png",
+    "page": 9
+   }
+  ],
+  "missing_key": "54c109ca2503|missing"
+ },
+ {
+  "sha": "d7587dfa0397360b6c0514b3407c13993adef27a63c9f1e8b11a83cf98010aee",
+  "sha12": "d7587dfa0397",
+  "body": 1655,
+  "name": "Raidió Teilifís Éireann - RTÉ",
+  "url": "https://about.rte.ie/wp-content/uploads/2022/01/RTE-FOI-DISCLOSURE-LOG-Q3-2021.pdf",
+  "extractor": "pymupdf",
+  "origin": "candidate",
+  "n_rows": 45,
+  "n_pages": 9,
+  "header": [
+   "FOI No.",
+   "",
+   "Date FOI",
+   "",
+   "Freedom of Information Request",
+   "Requester",
+   "Decision"
+  ],
+  "items": [
+   {
+    "key": "d7587dfa0397|r2",
+    "row": 2,
+    "cells": [
+     "102.",
+     "02.07.20201",
+     "",
+     "",
+     "In 2019, 2020 and March 2020 to date, how many text messages were\nsent to: The Ryan Tubridy Show; the Today programme; the Ronan\nCollins programme; ‘Liveline’; The Ray D’Arcy Show; Drivetime; The\nBrendan O’Connor Show.\nHow many phone calls were received by ‘Liveline’.",
+     "Journalist",
+     "Refused.\nSection 15(1)(a)."
+    ],
+    "img": "img/d7587dfa0397-2.png",
+    "page": 1
+   },
+   {
+    "key": "d7587dfa0397|r3",
+    "row": 3,
+    "cells": [
+     "103.",
+     "06.07.2021",
+     "",
+     "",
+     "A copy of the voluntary disclosure made by RTÉ to the Revenue\nCommissioners in relation to the use of self-employment contracts\nby RTÉ.",
+     "Member of the\npublic",
+     "Refused.\nSections: 16(1)(b); 35(1)(b)."
+    ],
+    "img": "img/d7587dfa0397-3.png",
+    "page": 1
+   },
+   {
+    "key": "d7587dfa0397|r16",
+    "row": 16,
+    "cells": [
+     "113. All documents/correspondence regarding a legal action taken by (identifiable) individuals against RTÉ.",
+     "28.07.2021",
+     "",
+     "",
+     "All public submissions made as part of the Public Service Statement Public\nConsultation, the report of which was published in July 2021.",
+     "Member of\nthe public.",
+     "Refused.\nSection 15(1)(c)."
+    ],
+    "img": "img/d7587dfa0397-16.png",
+    "page": 3
+   },
+   {
+    "key": "d7587dfa0397|r20",
+    "row": 20,
+    "cells": [
+     "115.",
+     "04.08.2021",
+     "",
+     "",
+     "Any correspondence between RTÉ's Director General and the Minister for\nCommunications between 1 January 2021 to present",
+     "Journalist.",
+     "Granted in part.\nSections: 36(1)(b) and (c).\nStatutory Instrument SI 115 of 2000."
+    ],
+    "img": "img/d7587dfa0397-20.png",
+    "page": 4
+   },
+   {
+    "key": "d7587dfa0397|r27",
+    "row": 27,
+    "cells": [
+     "121.",
+     "16.08.2021",
+     "",
+     "",
+     "From 2017-2020: provide a list of methods of funding: Public,\ngovernment, advertising, donations and investments.",
+     "Member of the\npublic",
+     "Granted."
+    ],
+    "img": "img/d7587dfa0397-27.png",
+    "page": 5
+   },
+   {
+    "key": "d7587dfa0397|r33",
+    "row": 33,
+    "cells": [
+     "127.",
+     "03.09.2021",
+     "",
+     "",
+     "The numbers who applied for RTÉ’s Voluntary redundancy\nprogramme. The number of journalists to have applied to participate\nin the voluntary redundancy scheme. The numbers of those (across all\ndepts) who have applied who have had their applications accepted for\nredundancy. The numbers of those who have applied who have had\ntheir applications turned down for redundancy. The total paid out to\ndate in redundancy lump sums from those who have been made\nredundant. The numbers who applied and were turned down as they\nwere deemed ‘broadcast critical’ by RTÉ. A copy of any report by the\nRTÉ HR dept to RTÉ management on the take up of the scheme.",
+     "Journalist.",
+     "Refused.\nSection: 15(1)(a)."
+    ],
+    "img": "img/d7587dfa0397-33.png",
+    "page": 6
+   },
+   {
+    "key": "d7587dfa0397|r43",
+    "row": 43,
+    "cells": [
+     "136.",
+     "24.09.2021",
+     "",
+     "",
+     "All correspondence re treatment of RTÉ workers by crowds in League\nof Ireland grounds (re. the comments by Group Head of RTÉ Sport\nDeclan McBennett in Irish Independent (link provided)). Also\nrequesting all records of internal departmental discussion of same and\nany responses from FAI or clubs contacted. Records should include\nbut not be limited to any e-mails, attachments therein/mobile phone\ntext messages/Whatsapp, or other messaging services.",
+     "Journalist.",
+     "Refused.\nStatutory Instrument SI 115 of 2000."
+    ],
+    "img": "img/d7587dfa0397-43.png",
+    "page": 9
+   },
+   {
+    "key": "d7587dfa0397|r45",
+    "row": 45,
+    "cells": [
+     "138.",
+     "29.09.2021",
+     "",
+     "",
+     "The rate RTÉ pays production companies/licence holders:\n1. to broadcast a film/documentary/show on its stations, and\n2. to host same on the RTÉ player.",
+     "Member of the\npublic.",
+     "Handled outside of Freedom of\nInformation Act."
+    ],
+    "img": "img/d7587dfa0397-45.png",
+    "page": 9
+   }
+  ],
+  "missing_key": "d7587dfa0397|missing"
+ },
+ {
+  "sha": "fa4c063637eb53f5c002bd46ab5ea717c6981597ab4781d53e60e2373ed6b51d",
+  "sha12": "fa4c063637eb",
+  "body": 1213,
+  "name": "Department of Transport",
+  "url": "https://assets.gov.ie/static/documents/q1-2016-foi-disclosure-log.pdf",
+  "extractor": "camelot_stream",
+  "origin": "candidate",
+  "n_rows": 162,
+  "n_pages": 6,
+  "header": [
+   "Ref Number",
+   "Category Of Request",
+   "Description Of Request",
+   "Decision"
+  ],
+  "items": [
+   {
+    "key": "fa4c063637eb|r1",
+    "row": 1,
+    "cells": [
+     "FOI2016001",
+     "Journalists",
+     "Total cost of tea, coffee and biscuits to the Department from 01.01. 2015 to 11.01.2016.",
+     "Grant"
+    ],
+    "img": "img/fa4c063637eb-1.png",
+    "page": 1
+   },
+   {
+    "key": "fa4c063637eb|r2",
+    "row": 2,
+    "cells": [
+     "FOI2016002",
+     "Journalists",
+     "For each of the years 2013, 2014 and 2015, a list of all contracts awarded by the Department, including (i) date contract awarded, (ii) value of contract, (iii) company, organisation or individual to whom contract awarded, (iv) location of contractors’ business, and (v) Department representative who signed off on each contract.",
+     "Refuse"
+    ],
+    "img": "img/fa4c063637eb-2.png",
+    "page": 1
+   },
+   {
+    "key": "fa4c063637eb|r15",
+    "row": 15,
+    "cells": [
+     "FOI2016005",
+     "Journalists",
+     "For each of the years 2013, 2014, 2015 and for the first two weeks of 2016: (1) the total amount of money spent by the Department on hiring photographers or obtaining photography; (2) a detailed list of the events/media engagements at which an external photographer was engaged by the Department, including the contract price, a description of the event and a record of which, if any, Minister attended; (3) the total amount of money spent by the Department on makeup, hair styling, other beauty products and the hiring of any supplier of these services; and (4) a detailed list of the events /media engagements for",
+     "Refuse"
+    ],
+    "img": "img/fa4c063637eb-15.png",
+    "page": 1
+   },
+   {
+    "key": "fa4c063637eb|r53",
+    "row": 53,
+    "cells": [
+     "FOI2016015",
+     "Others",
+     "Details of DTTAS consultations with Local Authorities, RSA and An Garda Siochana regarding the configuration and operation of traffic signals to promote safe cycling practices, with particular reference to the detection of bicycles by means of induction loops or other sensors, such that cyclists are not held up at traffic signals that do not detect their presence.",
+     "Refuse"
+    ],
+    "img": "img/fa4c063637eb-53.png",
+    "page": 2
+   },
+   {
+    "key": "fa4c063637eb|r78",
+    "row": 78,
+    "cells": [
+     "FOI2016026",
+     "Journalists",
+     "Any info regarding contracts/email/correspondence in relation to private detective contracts etc from 2011-2015.",
+     "Refuse"
+    ],
+    "img": "img/fa4c063637eb-78.png",
+    "page": 3
+   },
+   {
+    "key": "fa4c063637eb|r138",
+    "row": 138,
+    "cells": [
+     "FOI2016048",
+     "Others",
+     "(i) A copy of the Consent given by Minister O'Donoghue to FOI ACT 2014 (Exempted Public Bodies) Order 2015; (ii) copies of all correspondence both internal and to and from the Department including correspondence to and from the Minister(s) in relation to the Shannon Group’s inclusion in that consent; (iii) copy of any Strategic Review of the heritage activities and functions of the Shannon Group, in particular Shannon Heritage, received in 2014 - 2016 along with any correspondence, specification and/or request in relation to same.",
+     "Part Grant"
+    ],
+    "img": "img/fa4c063637eb-138.png",
+    "page": 5
+   },
+   {
+    "key": "fa4c063637eb|r153",
+    "row": 153,
+    "cells": [
+     "FOI2016053",
+     "Journalists",
+     "(1) a list of all reports commissioned, in progress, or finalised by the Department in 2015; (1a) the cost of all such reports where available; (2) a list of all consultancy commissioned or in progress for the calendar year 2015; and (2a) the cost of such.",
+     "Refuse"
+    ],
+    "img": "img/fa4c063637eb-153.png",
+    "page": 5
+   },
+   {
+    "key": "fa4c063637eb|r160",
+    "row": 160,
+    "cells": [
+     "FOI2016023 50",
+     "Journalists",
+     "All correspondence between Minister Donohoe and his special advisors, Secretary General, or Assistant Secretaries in relation to proposed m20 Cork - Limerick motorway.",
+     "Grant"
+    ],
+    "img": "img/fa4c063637eb-160.png",
+    "page": 6
+   }
+  ],
+  "missing_key": "fa4c063637eb|missing"
+ },
+ {
+  "sha": "c95c5fad60cee5de9951534de856a84a4a4d83c1fcc6825794447ed3746cf4b9",
+  "sha12": "c95c5fad60ce",
+  "body": 1244,
+  "name": "Dun Laoghaire Rathdown County Council",
+  "url": "https://www.dlrcoco.ie/sites/dlrcoco/files/2025-01/2024%20Freedom%20of%20Information%20Disclosure%20Log.pdf",
+  "extractor": "camelot_stream",
+  "origin": "candidate",
+  "n_rows": 119,
+  "n_pages": 4,
+  "header": [
+   "Uimhi",
+   "",
+   "",
+   "",
+   "",
+   ""
+  ],
+  "items": [
+   {
+    "key": "c95c5fad60ce|r4",
+    "row": 4,
+    "cells": [
+     "Catagóir an thaga",
+     "",
+     "Cinnead",
+     "Dáta an",
+     "Dáta",
+     "Athbhr"
+    ],
+    "img": "img/c95c5fad60ce-4.png",
+    "page": 1
+   },
+   {
+    "key": "c95c5fad60ce|r6",
+    "row": 6,
+    "cells": [
+     "iarrthóra /",
+     "",
+     "h /",
+     "Iarrataís",
+     "Eisiúna /",
+     "eithniú"
+    ],
+    "img": "img/c95c5fad60ce-6.png",
+    "page": 1
+   },
+   {
+    "key": "c95c5fad60ce|r59",
+    "row": 59,
+    "cells": [
+     "FOI-066 Business",
+     "Records relating to Enforcement Notice",
+     "Part Grant",
+     "13/05/2024",
+     "10/06/2024"
+    ],
+    "img": "img/c95c5fad60ce-59.png",
+    "page": 2
+   },
+   {
+    "key": "c95c5fad60ce|r60",
+    "row": 60,
+    "cells": [
+     "FOI-069 Member of the Public",
+     "Records relating to Living Streets",
+     "Part Grant",
+     "08/05/2024",
+     "04/06/2024"
+    ],
+    "img": "img/c95c5fad60ce-60.png",
+    "page": 2
+   },
+   {
+    "key": "c95c5fad60ce|r86",
+    "row": 86,
+    "cells": [
+     "FOI-107 Business",
+     "Section 47 Covenant Agreements",
+     "Refused",
+     "31/07/2024",
+     "28/08/2024"
+    ],
+    "img": "img/c95c5fad60ce-86.png",
+    "page": 3
+   },
+   {
+    "key": "c95c5fad60ce|r98",
+    "row": 98,
+    "cells": [
+     "FOI-122 Member of the Public",
+     "Par 3 Golf Club Marlay Park",
+     "Refused",
+     "09/09/2024",
+     "02/10/2024"
+    ],
+    "img": "img/c95c5fad60ce-98.png",
+    "page": 3
+   },
+   {
+    "key": "c95c5fad60ce|r107",
+    "row": 107,
+    "cells": [
+     "FOI-136 Business",
+     "Anti-Social Behaviour Strategy",
+     "Part Grant",
+     "17/10/2024",
+     "14/11/2024"
+    ],
+    "img": "img/c95c5fad60ce-107.png",
+    "page": 4
+   },
+   {
+    "key": "c95c5fad60ce|r120",
+    "row": 120,
+    "cells": [
+     "FOI-160 Member of the Public",
+     "Planning Enforcement",
+     "Part Grant",
+     "18/12/2024",
+     "22/01/2024"
+    ],
+    "img": "img/c95c5fad60ce-120.png",
+    "page": 4
+   }
+  ],
+  "missing_key": "c95c5fad60ce|missing"
+ }
+]

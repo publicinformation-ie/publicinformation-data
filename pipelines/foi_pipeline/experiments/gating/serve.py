@@ -72,7 +72,11 @@ def make_server(round_dir: Path, host: str, port: int) -> ThreadingHTTPServer:
             m = _PDF.match(path)
             if m:
                 try:
-                    files = json.loads((round_dir / "results.json").read_text())["files"]
+                    if (round_dir / "files.json").is_file():  # control review: a list of {sha, url}
+                        listed = json.loads((round_dir / "files.json").read_text())
+                        files = {f["url"]: {"sha256": f["sha"]} for f in listed}
+                    else:
+                        files = json.loads((round_dir / "results.json").read_text())["files"]
                 except (OSError, ValueError, KeyError):
                     return self._send(404, b"not found")
                 url = next((u for u, f in files.items() if f.get("sha256") == m.group(1)), None)

@@ -16,11 +16,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1089-S-split_word_rate",
+    "cluster": "1089-E-split_word_rate",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 10
   },
   {
     "file_url": "http://www.galway.ie/sites/default/files/2025-06/FOI%20Disclosure%20log%202019.pdf",
@@ -44,7 +45,8 @@
     "status": "open",
     "recoverable": 199,
     "evidence": "gate-only failure; 199 records before at 1.5% errors",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://about.rte.ie/wp-content/uploads/2019/07/rte-freedom-of-information-q4-disclosure-log-2018.pdf",
@@ -67,7 +69,8 @@
     "status": "open",
     "recoverable": 62,
     "evidence": "gated on role_contamination",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://about.rte.ie/wp-content/uploads/2020/10/RTE-FOI-DISCLOSURE-LOG-Q2-2020.pdf",
@@ -90,7 +93,8 @@
     "status": "open",
     "recoverable": 22,
     "evidence": "gated on role_contamination",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://assets-eu-01.kc-usercontent.com:443/5608854e-b2c7-0144-a5f6-88a7e629b0a4/e1a94111-56fd-43da-8326-7c328c24478c/foi-disclosure-log-2024.pdf",
@@ -117,7 +121,8 @@
     "status": "open",
     "recoverable": 0,
     "evidence": "min_rows failed: too few rows extracted",
-    "triage_class": "small_log"
+    "triage_class": "small_log",
+    "est_rows": 0
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/2371ea98/Freedom_of_Information_Quarter_3_Requests_2025.pdf",
@@ -137,11 +142,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1212-S-fragment_share+width_uniformity",
+    "cluster": "1212-E-fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 95
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/5f66a911/Non_Personal_FOI_Requests_Q3_2025.pdf",
@@ -163,11 +169,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1594-S-column_type_purity+fragment_share+role_contamination+width_uniformity",
+    "cluster": "1594-E-column_type_purity+fragment_share+role_contamination+width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 114
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/aie-requests-2021.pdf",
@@ -193,7 +200,8 @@
     "status": "open",
     "recoverable": 37,
     "evidence": "gated on width_uniformity+fragment_share+role_contamination+anchored_row_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/dfheris-foi-logs-april-to-june-2024.pdf",
@@ -213,11 +221,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1205-S-role_contamination+width_uniformity",
+    "cluster": "1205-E-role_contamination+width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 21
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/disclosure-log-february-f47a48e8-e6c9-4b97-8ae6-174f9437481b.pdf",
@@ -237,11 +246,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1196-S-fragment_share+width_uniformity",
+    "cluster": "1196-E-fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 44
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-2019-c85f2f5e-3495-405f-a35d-4bb31b1b7bd4.pdf",
@@ -264,7 +274,8 @@
     "status": "open",
     "recoverable": 86,
     "evidence": "gated on role_contamination",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-2020-2106a63b-a10d-4afc-815c-8db8609eb8f5.pdf",
@@ -283,11 +294,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1200-S-column_type_purity",
+    "cluster": "1200-E-column_type_purity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 237
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/foi-disclosure-log-q4-2021.pdf",
@@ -312,7 +324,8 @@
     "status": "open",
     "recoverable": 23,
     "evidence": "gated on fragment_share+role_contamination+anchored_row_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/foi-requests-july-december-2017.pdf",
@@ -335,7 +348,8 @@
     "status": "open",
     "recoverable": 13,
     "evidence": "gated on role_contamination",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/foi-requests-july-september-2018.pdf",
@@ -361,7 +375,8 @@
     "status": "open",
     "recoverable": 7,
     "evidence": "gated on width_uniformity+fragment_share+split_word_rate+anchored_row_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/freedom-of-information-requests-2021.pdf",
@@ -382,11 +397,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1204-S-anchored_row_share+fragment_share+width_uniformity",
+    "cluster": "1204-E-anchored_row_share+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 517
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/non-personal-foi-requests-q1-2024.pdf",
@@ -409,7 +425,8 @@
     "status": "open",
     "recoverable": 68,
     "evidence": "gated on role_contamination",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/non-personal-foi-requests-q2-2024.pdf",
@@ -432,7 +449,8 @@
     "status": "open",
     "recoverable": 30,
     "evidence": "gated on role_contamination",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://assets.gov.ie/static/documents/q4-2017-foi-disclosure-log.pdf",
@@ -451,11 +469,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1213-S-split_word_rate",
+    "cluster": "1213-E-split_word_rate",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 64
   },
   {
     "file_url": "https://assets.hpra.ie/data/docs/default-source/corporate/freedom-of-information/foi-disclosure-log---april-to-june-2026-q2.pdf?sfvrsn=47d99c2c_3",
@@ -477,11 +496,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1392-S-anchored_row_share+fragment_share+role_contamination+width_uniformity",
+    "cluster": "1392-E-anchored_row_share+fragment_share+role_contamination+width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 22
   },
   {
     "file_url": "https://assets.nama.ie/uploads/documents/Copy-of-FOI-Disclosure-log-2024.pdf",
@@ -500,11 +520,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1544-S-split_word_rate",
+    "cluster": "1544-E-split_word_rate",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 42
   },
   {
     "file_url": "https://assets.nama.ie/uploads/documents/FOI-Disclosure-Log-Q4-2025.pdf",
@@ -527,7 +548,8 @@
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "small_log"
+    "triage_class": "small_log",
+    "est_rows": 17
   },
   {
     "file_url": "https://bim.ie/wp-content/uploads/2024/11/FOI-Log-2023.pdf",
@@ -551,7 +573,8 @@
     "status": "open",
     "recoverable": 17,
     "evidence": "gated on role_contamination+anchored_row_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://crawfordartgallery.ie/wp-content/uploads/20260527_FOI-LOG.pdf",
@@ -575,7 +598,8 @@
     "status": "open",
     "recoverable": 15,
     "evidence": "gated on width_uniformity+fragment_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://enterprise.gov.ie/en/publications/publication-files/foi-log-2025.pdf",
@@ -596,11 +620,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1202-S-anchored_row_share+fragment_share+width_uniformity",
+    "cluster": "1202-E-anchored_row_share+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 868
   },
   {
     "file_url": "https://lcetb.ie/wp-content/uploads/2026/06/FOI-DISCLOSURE-LOG_2025.pdf",
@@ -621,11 +646,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1484-S-anchored_row_share+fragment_share+width_uniformity",
+    "cluster": "1484-E-anchored_row_share+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 190
   },
   {
     "file_url": "https://ncca.ie/media/4qffya5u/ncca-disclosure-log-2024.pdf",
@@ -651,7 +677,8 @@
     "status": "open",
     "recoverable": 101,
     "evidence": "has a column_mapping or header override",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://westerndevelopment.ie/wp-content/uploads/2021/02/2018-FOI-published-list.pdf",
@@ -677,7 +704,8 @@
     "status": "open",
     "recoverable": 4,
     "evidence": "gated on width_uniformity+fragment_share+column_type_purity+anchored_row_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://westerndevelopment.ie/wp-content/uploads/2021/02/2020-FOI-published-list.pdf",
@@ -700,7 +728,8 @@
     "status": "open",
     "recoverable": 2,
     "evidence": "gated on anchored_row_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://westerndevelopment.ie/wp-content/uploads/2026/01/FOI-2025.pdf",
@@ -723,7 +752,8 @@
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "small_log"
+    "triage_class": "small_log",
+    "est_rows": 9
   },
   {
     "file_url": "https://www.bordbia.ie/globalassets/bordbia.ie/about/governance/foi-disclosure-log/bord-bia-foi-disclosure-log-2023.pdf",
@@ -746,7 +776,8 @@
     "status": "open",
     "recoverable": 21,
     "evidence": "gated on role_contamination",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.centralbank.ie/docs/default-source/tns/about---tns/freedom-of-information/disclosure-logs/freedom-of-information-disclosure-log---2024-(non-personal-requests).pdf?sfvrsn=8155651a_3",
@@ -769,7 +800,8 @@
     "status": "open",
     "recoverable": 69,
     "evidence": "has a column_mapping or header override",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.centralbank.ie/docs/default-source/tns/about---tns/freedom-of-information/disclosure-logs/freedom-of-information-disclosure-log-2023-(non-personal-requests).pdf?sfvrsn=81cf621a_9",
@@ -792,7 +824,8 @@
     "status": "open",
     "recoverable": 69,
     "evidence": "has a column_mapping or header override",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.centralbank.ie/docs/default-source/tns/about---tns/freedom-of-information/disclosure-logs/freedom-of-information-disclosure-log-2025-(non-personal-requests).pdf?sfvrsn=7bc26d1a_2",
@@ -817,7 +850,8 @@
     "status": "open",
     "recoverable": 130,
     "evidence": "has a column_mapping or header override",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.cityofdublinetb.ie/media/2025-Quarters-1-4-FOI-Disclosure-Log.pdf",
@@ -838,11 +872,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1122-S-anchored_row_share+column_type_purity+role_contamination",
+    "cluster": "1122-E-anchored_row_share+column_type_purity+role_contamination",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 168
   },
   {
     "file_url": "https://www.cityofdublinetb.ie/media/City-of-Dublin-ETB-FOI-Disclosure-Log-Q1-and-Q2-2026.pdf",
@@ -865,7 +900,8 @@
     "status": "open",
     "recoverable": 19,
     "evidence": "gated on role_contamination",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.cityofdublinetb.ie/media/City-of-Dublin-FOI-Disclosure-Log-2023-(1).pdf",
@@ -891,7 +927,8 @@
     "status": "open",
     "recoverable": 20,
     "evidence": "gated on width_uniformity+fragment_share+column_type_purity+anchored_row_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.cityofdublinetb.ie/media/City-of-Dublin-FOI-Disclosure-Log-Q3-Q4-2022.pdf",
@@ -917,7 +954,8 @@
     "status": "open",
     "recoverable": 6,
     "evidence": "gated on width_uniformity+fragment_share+column_type_purity+anchored_row_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.cityofdublinetb.ie/media/Disclosure-Log-2021.pdf",
@@ -942,7 +980,8 @@
     "status": "open",
     "recoverable": 25,
     "evidence": "gated on width_uniformity+fragment_share+anchored_row_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.cityofdublinetb.ie/media/Disclosure-Log-2022-Q1-and-Q2.pdf",
@@ -963,11 +1002,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1122-S-anchored_row_share+fragment_share+width_uniformity",
+    "cluster": "1122-E-anchored_row_share+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 49
   },
   {
     "file_url": "https://www.cityofdublinetb.ie/media/FOI-Disclosure-Log-2024-2.pdf",
@@ -991,7 +1031,8 @@
     "status": "open",
     "recoverable": 27,
     "evidence": "gated on width_uniformity+anchored_row_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.comreg.ie/media/2016/03/Disclosure-Log-2015-Publication-1.pdf",
@@ -1016,7 +1057,8 @@
     "status": "open",
     "recoverable": 14,
     "evidence": "gated on width_uniformity+fragment_share+anchored_row_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.corkcoco.ie/sites/default/files/2023-01/freedom-of-information-disclosure-log-2021-pdf.pdf",
@@ -1035,11 +1077,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1163-S-split_word_rate",
+    "cluster": "1163-E-split_word_rate",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 516
   },
   {
     "file_url": "https://www.corkcoco.ie/sites/default/files/2023-06/freedom-of-information-disclosure-log-2022-pdf.pdf",
@@ -1058,11 +1101,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1163-S-split_word_rate",
+    "cluster": "1163-E-split_word_rate",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 429
   },
   {
     "file_url": "https://www.corketb.ie/wp-content/uploads/2026/06/FOI-Disclosure-Log-2018.pdf",
@@ -1085,7 +1129,8 @@
     "status": "open",
     "recoverable": 12,
     "evidence": "gated on anchored_row_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.corketb.ie/wp-content/uploads/2026/06/FOI-Disclosure-Log-2019.pdf",
@@ -1109,7 +1154,8 @@
     "status": "open",
     "recoverable": 8,
     "evidence": "gated on role_contamination+anchored_row_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.corketb.ie/wp-content/uploads/2026/06/FOI-Disclosure-Log-2022.pdf",
@@ -1128,11 +1174,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1164-S-split_word_rate",
+    "cluster": "1164-E-split_word_rate",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 8
   },
   {
     "file_url": "https://www.corketb.ie/wp-content/uploads/2026/07/CETB-FOI-Disclosure-Log-2025.pdf",
@@ -1155,7 +1202,8 @@
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "small_log"
+    "triage_class": "small_log",
+    "est_rows": 15
   },
   {
     "file_url": "https://www.coru.ie/media/vdwdvd42/coru-foi-log-2022.pdf",
@@ -1176,11 +1224,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1389-S-anchored_row_share+fragment_share+width_uniformity",
+    "cluster": "1389-E-anchored_row_share+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 49
   },
   {
     "file_url": "https://www.cru.ie/documents/28336/CRU_2021_FOI_Disclosure_Log_1.pdf",
@@ -1203,7 +1252,8 @@
     "status": "open",
     "recoverable": 25,
     "evidence": "gate-only failure; 25 records before at 0.0% errors",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.cru.ie/documents/28657/CRU_2022_FOI_Discloure_Log.pdf",
@@ -1226,7 +1276,8 @@
     "status": "open",
     "recoverable": 48,
     "evidence": "gate-only failure; 48 records before at 0.0% errors",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.cru.ie/documents/28765/2023-FOI-Disclosure-Log_1_1_3.pdf",
@@ -1249,7 +1300,8 @@
     "status": "open",
     "recoverable": 39,
     "evidence": "gate-only failure; 39 records before at 0.0% errors",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.cru.ie/documents/29700/2024_FOI_Disclosure_Log.pdf",
@@ -1275,7 +1327,8 @@
     "status": "open",
     "recoverable": 27,
     "evidence": "gated on width_uniformity+fragment_share+role_contamination+anchored_row_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.cru.ie/documents/30609/2025_FOI_Disclosure_Log.pdf",
@@ -1300,7 +1353,8 @@
     "status": "open",
     "recoverable": 53,
     "evidence": "gated on width_uniformity+fragment_share+anchored_row_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.cru.ie/documents/30857/2026_FOI_Disclosure_Log_1.pdf",
@@ -1323,7 +1377,8 @@
     "status": "open",
     "recoverable": 57,
     "evidence": "gated on role_contamination",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.fingal.ie/sites/default/files/2019-03/FOI%20Disclosure%20Log%202016.pdf",
@@ -1346,7 +1401,8 @@
     "status": "open",
     "recoverable": 119,
     "evidence": "has a column_mapping or header override",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.fiscalcouncil.ie/wp-content/uploads/2021/03/FOI-Disclosure-Log-2017.pdf",
@@ -1373,7 +1429,8 @@
     "status": "open",
     "recoverable": 0,
     "evidence": "min_rows failed: too few rows extracted",
-    "triage_class": "small_log"
+    "triage_class": "small_log",
+    "est_rows": 0
   },
   {
     "file_url": "https://www.fspo.ie/documents/FOI-Disclosure-Log-2022.pdf",
@@ -1392,11 +1449,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1293-S-split_word_rate",
+    "cluster": "1293-E-split_word_rate",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 16
   },
   {
     "file_url": "https://www.fspo.ie/documents/FOI-Disclosure-Log-Q1-2026.pdf",
@@ -1415,11 +1473,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1293-S-split_word_rate",
+    "cluster": "1293-E-split_word_rate",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 15
   },
   {
     "file_url": "https://www.fspo.ie/documents/FOI-Disclosure-Log-Q3-2024.pdf",
@@ -1445,7 +1504,8 @@
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "small_log"
+    "triage_class": "small_log",
+    "est_rows": 1
   },
   {
     "file_url": "https://www.hiqa.ie/sites/default/files/2020-05/FOI-Disclosure-Log-2018.pdf",
@@ -1468,7 +1528,8 @@
     "status": "open",
     "recoverable": 49,
     "evidence": "gate-only failure; 49 records before at 0.0% errors",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.hiqa.ie/sites/default/files/2020-05/FOI-Disclosure-Log-2019.pdf",
@@ -1491,7 +1552,8 @@
     "status": "open",
     "recoverable": 55,
     "evidence": "gate-only failure; 55 records before at 0.0% errors",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.hsa.ie/media/ccanh352/foi-disclosure-log-2018.pdf",
@@ -1514,7 +1576,8 @@
     "status": "open",
     "recoverable": 16,
     "evidence": "gated on role_contamination",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.hsa.ie/media/lnmki5ak/foi-disclosure-log-2020.pdf",
@@ -1537,7 +1600,8 @@
     "status": "open",
     "recoverable": 23,
     "evidence": "gate-only failure; 23 records before at 0.0% errors",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.hsa.ie/media/mqhlwofq/foi-disclosure-log-2019.pdf",
@@ -1560,7 +1624,8 @@
     "status": "open",
     "recoverable": 10,
     "evidence": "gated on role_contamination",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.irishrail.ie/_kontent/d2e85689-fbf9-010a-a02e-587ed94b5032/72460e33-7efe-41f2-8dcb-929c804b8c46/2019%20Procurement.pdf",
@@ -1579,11 +1644,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1443-S-width_uniformity",
+    "cluster": "1443-E-width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 10
   },
   {
     "file_url": "https://www.irishrail.ie/_kontent/d2e85689-fbf9-010a-a02e-587ed94b5032/8c1e8e80-74ad-4f75-8fed-98518b8651a2/2024-Finance.pdf",
@@ -1602,11 +1668,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1443-S-width_uniformity",
+    "cluster": "1443-E-width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 18
   },
   {
     "file_url": "https://www.lawreform.ie/wp-content/uploads/2026/03/foi-log-10072025-1.pdf",
@@ -1632,7 +1699,8 @@
     "status": "open",
     "recoverable": 22,
     "evidence": "gated on width_uniformity+fragment_share+column_type_purity+anchored_row_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Disclosure-Log/Disclosure-Log-Q4-2024.pdf",
@@ -1651,11 +1719,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1475-S-width_uniformity",
+    "cluster": "1475-E-width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 51
   },
   {
     "file_url": "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q1-2021.pdf",
@@ -1674,11 +1743,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1475-S-width_uniformity",
+    "cluster": "1475-E-width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 16
   },
   {
     "file_url": "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q1-2024.pdf",
@@ -1697,11 +1767,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1475-S-width_uniformity",
+    "cluster": "1475-E-width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 60
   },
   {
     "file_url": "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q3-2023.pdf",
@@ -1720,11 +1791,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1475-S-width_uniformity",
+    "cluster": "1475-E-width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 69
   },
   {
     "file_url": "https://www.leitrim.ie/Council/Corporate-Governance/Freedom-of-Information/Freedom-of-Information-Requests/Disclosure-Log-Q4-2021.pdf",
@@ -1747,7 +1819,8 @@
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "small_log"
+    "triage_class": "small_log",
+    "est_rows": 48
   },
   {
     "file_url": "https://www.louthcoco.ie/media/0d3hkhve/foi-disclosures-log-2019.pdf",
@@ -1770,7 +1843,8 @@
     "status": "open",
     "recoverable": 107,
     "evidence": "gate-only failure; 107 records before at 0.0% errors",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.louthcoco.ie/media/bwcfc1mo/foi-disclosures-log-2020.pdf",
@@ -1797,7 +1871,8 @@
     "status": "open",
     "recoverable": 65,
     "evidence": "gated on width_uniformity+fragment_share+column_type_purity+role_contamination+anchored_row_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.louthcoco.ie/media/c2rdezoc/foi-2016.pdf",
@@ -1820,7 +1895,8 @@
     "status": "open",
     "recoverable": 36,
     "evidence": "gate-only failure; 36 records before at 0.0% errors",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.louthcoco.ie/media/jgmmylj5/foi-disclosure-log-2021.pdf",
@@ -1843,7 +1919,8 @@
     "status": "open",
     "recoverable": 88,
     "evidence": "gate-only failure; 88 records before at 0.0% errors",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.louthcoco.ie/media/mmrfs4gu/foi-disclosure-log-2017-louth-county-council.pdf",
@@ -1866,7 +1943,8 @@
     "status": "open",
     "recoverable": 64,
     "evidence": "gated on width_uniformity",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.mayo.ie/getmedia/1d36077f-63b0-4f22-8d19-06e739f1e0d6/Disclosure-Log-Q1-2025.pdf",
@@ -1891,7 +1969,8 @@
     "status": "open",
     "recoverable": 32,
     "evidence": "gated on width_uniformity+fragment_share+split_word_rate",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.mayo.ie/getmedia/5bd554a5-67ff-4c94-b0ad-8f9b325e4534/FOI-Disclosure-Log-Q4-2024.pdf",
@@ -1916,7 +1995,8 @@
     "status": "open",
     "recoverable": 31,
     "evidence": "gated on width_uniformity+split_word_rate+role_contamination",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.museum.ie/getmedia/c53add27-b3eb-4214-94fa-a68ebd325065/FOI-2024-Log-Non-personal.pdf",
@@ -1937,11 +2017,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1562-S-fragment_share+role_contamination+width_uniformity",
+    "cluster": "1562-E-fragment_share+role_contamination+width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 79
   },
   {
     "file_url": "https://www.pleanala.ie/getattachment/0c25a07b-6742-4fa6-91cd-f06a9d8e8668/FOI-Disclosure-log-2025-Q2-ENG.pdf?lang=en-IE",
@@ -1961,11 +2042,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1010-S-role_contamination+split_word_rate",
+    "cluster": "1010-E-role_contamination+split_word_rate",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 44
   },
   {
     "file_url": "https://www.pleanala.ie/getmedia/5cd8504d-f3ef-412c-ac3c-ea11405591c8/FOI-Disclosure-Log-2025-Q4.pdf",
@@ -1986,11 +2068,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1010-S-anchored_row_share+fragment_share+width_uniformity",
+    "cluster": "1010-E-anchored_row_share+fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 74
   },
   {
     "file_url": "https://www.pleanala.ie/getmedia/5d0c2ca0-549d-48cc-adb2-d70abb399fac/FOI-Disclosure-log-2025-Q1.pdf",
@@ -2009,11 +2092,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1010-S-split_word_rate",
+    "cluster": "1010-E-split_word_rate",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 54
   },
   {
     "file_url": "https://www.pleanala.ie/getmedia/a2ca1da6-8dc0-4547-b753-96fc647c1f48/FOI-Disclosure-Log-2026-Q2.pdf",
@@ -2035,11 +2119,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1010-S-anchored_row_share+fragment_share+role_contamination+width_uniformity",
+    "cluster": "1010-E-anchored_row_share+fragment_share+role_contamination+width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 71
   },
   {
     "file_url": "https://www.pleanala.ie/getmedia/ca4bcd8a-e0e8-4e5d-bd27-d33870385e6d/2015_Q4.pdf",
@@ -2058,11 +2143,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1010-S-split_word_rate",
+    "cluster": "1010-E-split_word_rate",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 14
   },
   {
     "file_url": "https://www.pleanala.ie/getmedia/d6bfbbf5-425c-4af0-be47-38c2fbd742b4/2016-Q1.pdf",
@@ -2081,11 +2167,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1010-S-width_uniformity",
+    "cluster": "1010-E-width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 17
   },
   {
     "file_url": "https://www.pleanala.ie/getmedia/e3049b15-8e01-4388-836a-5cb53667c531/2016-Q2.pdf",
@@ -2104,11 +2191,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1010-S-width_uniformity",
+    "cluster": "1010-E-width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 11
   },
   {
     "file_url": "https://www.taxappeals.ie/_fileupload/Freedom%20of%20Information/FOIDecisions/FOI%20Disclosure%20Log%20Q2%202020.pdf",
@@ -2135,7 +2223,8 @@
     "status": "open",
     "recoverable": 0,
     "evidence": "min_rows failed: too few rows extracted",
-    "triage_class": "small_log"
+    "triage_class": "small_log",
+    "est_rows": 9
   },
   {
     "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q1%202018.pdf",
@@ -2158,7 +2247,8 @@
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "small_log"
+    "triage_class": "small_log",
+    "est_rows": 0
   },
   {
     "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q1%202021.pdf",
@@ -2181,7 +2271,8 @@
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "small_log"
+    "triage_class": "small_log",
+    "est_rows": 0
   },
   {
     "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q1%202024.pdf",
@@ -2208,7 +2299,8 @@
     "status": "open",
     "recoverable": 0,
     "evidence": "min_rows failed: too few rows extracted",
-    "triage_class": "small_log"
+    "triage_class": "small_log",
+    "est_rows": 0
   },
   {
     "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q1%202025.pdf",
@@ -2235,7 +2327,8 @@
     "status": "open",
     "recoverable": 0,
     "evidence": "min_rows failed: too few rows extracted",
-    "triage_class": "small_log"
+    "triage_class": "small_log",
+    "est_rows": 0
   },
   {
     "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q2%202018.pdf",
@@ -2258,7 +2351,8 @@
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "small_log"
+    "triage_class": "small_log",
+    "est_rows": 0
   },
   {
     "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q4%202019.pdf",
@@ -2281,7 +2375,8 @@
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "small_log"
+    "triage_class": "small_log",
+    "est_rows": 0
   },
   {
     "file_url": "https://www.taxappeals.ie/_fileupload/Purchases/PromptPayments/FOI%20Disclosure%20Log%20Q4%202024.pdf",
@@ -2308,7 +2403,8 @@
     "status": "open",
     "recoverable": 0,
     "evidence": "min_rows failed: too few rows extracted",
-    "triage_class": "small_log"
+    "triage_class": "small_log",
+    "est_rows": 0
   },
   {
     "file_url": "https://www.tcd.ie/media/tcd/infocompliance/pdfs/FOI-Disclosure-Log-2017.pdf",
@@ -2334,7 +2430,8 @@
     "status": "open",
     "recoverable": 73,
     "evidence": "gated on fragment_share+column_type_purity+role_contamination+anchored_row_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20April%202020.pdf",
@@ -2353,11 +2450,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1817-S-split_word_rate",
+    "cluster": "1817-E-split_word_rate",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 24
   },
   {
     "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20December%202018.pdf",
@@ -2381,7 +2479,8 @@
     "status": "open",
     "recoverable": 0,
     "evidence": "gated on split_word_rate+role_contamination",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": 24
   },
   {
     "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20February%202019.pdf",
@@ -2400,11 +2499,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1817-S-split_word_rate",
+    "cluster": "1817-E-split_word_rate",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 28
   },
   {
     "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20February%202020.pdf",
@@ -2423,11 +2523,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1817-S-width_uniformity",
+    "cluster": "1817-E-width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 34
   },
   {
     "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20January%202022.pdf",
@@ -2447,11 +2548,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1817-S-fragment_share+width_uniformity",
+    "cluster": "1817-E-fragment_share+width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 32
   },
   {
     "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20March%202019.pdf",
@@ -2474,7 +2576,8 @@
     "status": "open",
     "recoverable": 1,
     "evidence": "gated on role_contamination",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   },
   {
     "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20September%202018.pdf",
@@ -2497,7 +2600,8 @@
     "status": "open",
     "recoverable": 0,
     "evidence": "gated on role_contamination",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": 22
   },
   {
     "file_url": "https://www.tipperarycoco.ie/sites/default/files/2022-07/FOI%20Disclosure%20Log%20September%202021.pdf",
@@ -2517,11 +2621,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1817-S-split_word_rate+width_uniformity",
+    "cluster": "1817-E-split_word_rate+width_uniformity",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 51
   },
   {
     "file_url": "https://www.tudublin.ie/media/website/explore/foi/documents/TU-Dublin-FOI-Disclosure-Log-Q1-2026.pdf",
@@ -2540,11 +2645,12 @@
     "errors_now": 0,
     "fault_kind": "E",
     "fault_firm": true,
-    "cluster": "1775-S-split_word_rate",
+    "cluster": "1775-E-split_word_rate",
     "status": "open",
     "recoverable": 0,
     "evidence": "gated; no rows at all before role-aware gate",
-    "triage_class": "hard_table"
+    "triage_class": "hard_table",
+    "est_rows": 26
   },
   {
     "file_url": "https://www.udaras.ie/assets/uploads/2021/09/Loga-Nochta-2020-ASF-.pdf",
@@ -2567,6 +2673,7 @@
     "status": "open",
     "recoverable": 12,
     "evidence": "gated on anchored_row_share",
-    "triage_class": null
+    "triage_class": null,
+    "est_rows": null
   }
 ]
