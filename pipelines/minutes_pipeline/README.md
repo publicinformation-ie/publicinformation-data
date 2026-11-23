@@ -13,7 +13,7 @@ The authoritative step order is defined in [`pipeline.json`](pipeline.json). Ste
 | 3 | [`find_meeting_minutes_pages_search`](steps/find_meeting_minutes_pages_search/) | Apify batch search for bodies where crawl failed (`APIFY_TOKEN` required); passes crawl successes through unchanged. |
 | 4 | [`find_minutes_files`](steps/find_minutes_files/) | Crawls each minutes page (following year links one level deep), collecting links to minutes PDFs with a deterministic `meeting_date` where derivable. |
 | 5 | [`transform_minutes_files`](steps/transform_minutes_files/) | Downloads each PDF and extracts prose text with pdfplumber (image-only scans yield empty text). |
-| 6 | [`ocr_minutes_files`](steps/ocr_minutes_files/) | OCRs empty-text records with Tesseract (pymupdf render + pytesseract); passes the rest through unchanged. |
+| 6 | [`ocr_minutes_files`](steps/ocr_minutes_files/) | OCRs records whose text is blank or under 200 chars with Tesseract (pymupdf render + pytesseract); passes usable records through unchanged and quarantines still-unusable ones. |
 | 7 | [`extract_motions`](steps/extract_motions/) | One LLM request per chunk (documents ≤ 80,000 characters are one chunk) via the shared `src/lib/llm_extract.py`, returning `{"motions": [{motion_text, proposer, seconder, status_label}, …], "meeting_date": <LLM guess or null>}`; chunk results merge in order and the LLM's first non-null date is carried forward as `stated_date`. A two-stage guard skips extreme CE-recommendation schedules before the LLM call and quarantines procedural acceptance dumps after extraction (`motions: null`, `skip_reason`, `guard_evidence`). Reads `ocr_minutes_files/output.json`. |
 | 8 | [`resolve_meeting_date`](steps/resolve_meeting_date/) | Deterministic per-document date resolution: a full date from `find_minutes_files`, else an LLM `stated_date` that parses to a full day, else a `<day> <Month>` from the document header combined with the `<Month> <YYYY>` in the link text (month cross-checked; the URL folder is never a year source). Unresolvable + has motions → `UnresolvedMeetingDate`. |
 | 9 | [`canonicalize_motions`](steps/canonicalize_motions/) | Deterministic fan-in: maps status to the closed set, resolves the composite id `<slug>/<meeting_date>/m<NNN>`, dedupes, classifies meeting type. |
@@ -38,7 +38,7 @@ uv run python pipelines/minutes_pipeline/process.py pipelines/minutes_pipeline -
 uv run python pipelines/minutes_pipeline/process.py pipelines/minutes_pipeline --public-body 1511 --force --stop-on-error
 ```
 
-`find_meeting_minutes_pages`, `find_meeting_minutes_pages_search` (Apify credits), `find_minutes_files`, `transform_minutes_files` and `extract_motions` make live HTTP / LLM calls; `extract_motions` requires the `MOTIONS_LLM_*` env config (see `src/lib/llm_extract.py`). Run the test suite with `uv run pytest pipelines/minutes_pipeline/tests -q`.
+`find_meeting_minutes_pages`, `find_meeting_minutes_pages_search` (Apify credits), `find_minutes_files`, `transform_minutes_files` and `extract_motions` make live HTTP / LLM calls; `extract_motions` requires the `MOTIONS_LLM_*` env config (see `src/lib/llm_extract.py`). The OCR step needs the `tesseract` system binary on `PATH` (see [`steps/ocr_minutes_files/README.md`](steps/ocr_minutes_files/)). Run the test suite with `uv run pytest pipelines/minutes_pipeline/tests -q`.
 
 ## Status script
 

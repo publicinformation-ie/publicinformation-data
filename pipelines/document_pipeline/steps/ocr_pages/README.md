@@ -11,14 +11,21 @@ OCR is **opt-in per page**. The curator lists 1-based page numbers under `ocr_pa
 - A listed page that fails that test (real text layer, no full-page image) or is beyond the page count is not OCR'd and logs `OcrPageNotScanned`.
 - Each OCR line becomes a span in the native shape (`font: "tesseract-ocr"`, `size` = median word height in pt, plus `source: "ocr"`); native spans are kept and OCR words that sit on them are skipped. The page JSON gains `ocr: {engine, lang, psm, dpi, word_count, mean_confidence}`.
 
+## Prerequisites
+
+- Python dependencies: `pytesseract` and `pymupdf` (pinned in `pipelines/document_pipeline/requirements.txt`).
+- System binary: `tesseract` must be on `PATH` (e.g. `brew install tesseract` on macOS). Tests stub OCR, so the suite runs without it; only a live run needs the binary.
+
 ## Input / output
 
-Input: `extract_pages/output.json` (`--input`). Output: `output.json` with the same record shape. `extract_pages/pages/*` is never modified. Each entry's `file` is resolved against this step's directory (as `clean_text` does against its input's parent), so:
+Input: `extract_pages/output.json` (`--input`). The step also reads `fetch_pdfs/output.json` directly for each document's `pdf_path` and curated `ocr_pages` list (`documents.py` validates them as unique 1-based positive integers). Output: `output.json` with the same record shape. `extract_pages/pages/*` is never modified. Each entry's `file` is resolved against this step's directory (as `clean_text` does against its input's parent), so:
 
 - not-OCR'd pages point at the upstream file, e.g. `../extract_pages/pages/<slug>/004.json`;
 - OCR'd pages are merged copies at `pages/<slug>/NNN.json` here, with `span_count` updated.
 
 `clean_text` reads this step's output (`pipeline.json` `input_steps`); `detect_structure` and `extract_figures` stay on `extract_pages`. The `source: "ocr"` marker flows via `clean_text` blocks to the section note and `meta.json` `ocr_pages`.
+
+Supports **incremental resumption** via `IncrementalWriter` (`key_field="doc_slug"`) and `--doc` scoping. A reprocessed document's `pages/<slug>/` is rebuilt from scratch, and a document that no longer lists pages has its stale OCR page directory removed.
 
 ## errors.json
 
@@ -31,4 +38,4 @@ Input: `extract_pages/output.json` (`--input`). Output: `output.json` with the s
 
 ## Flags
 
-`--doc SLUG`, `--force`, `--verbose`, `--output`.
+`--input`, `--doc SLUG`, `--force`, `--verbose`, `--output`.

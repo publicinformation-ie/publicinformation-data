@@ -16,7 +16,7 @@ The authoritative step order is defined in [`../pipeline.json`](../pipeline.json
 | 8 | [`get_foi_emails`](get_foi_emails/) | Scrapes each FOI page and extracts the FOI contact email address. |
 | 9 | [`find_disclosure_pages`](find_disclosure_pages/) | Locates the disclosure log page for each body using domain-specific rules or crawl fallback. |
 | 10 | [`find_disclosure_files`](find_disclosure_files/) | Crawls each disclosure log page and collects links to PDF/XLSX/XLS files. |
-| 11 | [`transform_disclosure_files`](transform_disclosure_files/) | Downloads spreadsheet files and converts them into JSON row arrays; PDFs are passed through unmodified. |
+| 11 | [`transform_disclosure_files`](transform_disclosure_files/) | Downloads spreadsheet and PDF files and converts them into JSON row arrays; PDF tables use structure-based extraction, with the Mistral OCR cache as one scored candidate (live OCR opt-in via `--allow-paid-ocr`). |
 | 11a | [`assess_table_structure`](assess_table_structure/) | Fail-closed gate: scores PDF table structure and empties structurally unreliable PDFs (logged as `TableStructureUnreliable`). |
 | 12 | [`normalize_disclosure_cells`](normalize_disclosure_cells/) | Normalizes string cell values in extracted disclosure log data (removes CID artifacts, normalizes whitespace). |
 | 13 | [`extract_disclosures_detect_header_row`](extract_disclosures_detect_header_row/) | Detects which spreadsheet row is the header using a 2-non-empty-cell heuristic. |

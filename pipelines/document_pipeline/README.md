@@ -10,7 +10,7 @@ The authoritative step order is defined in [`pipeline.json`](pipeline.json). Ste
 |---|---|---|
 | 1 | [`fetch_pdfs`](steps/fetch_pdfs/) | Downloads (or reuses a cached copy of) each document's source PDF from `documents.yml`, its only source. `documents.yml` is curated per policy; the `input_plans_<domain>.md` files (transport, climate) define the policies. |
 | 2 | [`extract_pages`](steps/extract_pages/) | Extracts page-level text spans, drawings, images and tables from each PDF. |
-| 3 | [`ocr_pages`](steps/ocr_pages/) | OCRs only the pages the curator lists under `ocr_pages` in `documents.yml` (full-page images with no text layer); every other page passes through untouched. |
+| 3 | [`ocr_pages`](steps/ocr_pages/) | OCRs only the pages the curator lists under `ocr_pages` in `documents.yml` (full-page images with little or no text layer); every other page passes through untouched. |
 | 4 | [`detect_structure`](steps/detect_structure/) | Detects each document's chapter/section tree — outline, numbering, font-hierarchy or flat fallback. |
 | 5 | [`extract_figures`](steps/extract_figures/) | Clusters page geometry into figures, renders them to WebP, writes a contact sheet per document. |
 | 6 | [`clean_text`](steps/clean_text/) | Reflows raw positioned spans into headings, paragraphs, lists and tables. |

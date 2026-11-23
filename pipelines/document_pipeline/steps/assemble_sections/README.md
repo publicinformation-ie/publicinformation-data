@@ -76,11 +76,13 @@ The shared runner passes exactly one `--input`, so further upstreams are resolve
 | `doc_title`, `source_url`, `public_body_id` | Provenance, carried from `fetch_pdfs` |
 | `page_count`, `detection_method` | Carried from `detect_structure` |
 | `sections_dir` | `sections/<doc_slug>`, relative to this step directory |
-| `chapters` | `[{slug, title, order, source_pages, sections: [{slug, title, order, file, source_pages, word_count, assets}]}]` |
+| `chapters` | `[{slug, title, order, source_pages, sections: [{slug, title, order, file, source_pages, word_count, assets, ocr_pages?}]}]` |
 | `coverage` | `{page_count, covered, gaps, overlaps, empty_sections, furniture_pages, title_only_pages}` |
 | `publishable` | `false` when `gaps` or `overlaps` is non-empty |
 
-`file` paths are relative to **this step directory** (`sections/<doc_slug>/<chapter-slug>/<section-slug>.md`) and so carry a `<doc_slug>` segment the contract's `meta.json` does not — a bundle is per-document, so `publish_bundles` strips it when it writes `meta.json`.
+| `file` paths are relative to **this step directory** (`sections/<doc_slug>/<chapter-slug>/<section-slug>.md`) and so carry a `<doc_slug>` segment the contract's `meta.json` does not — a bundle is per-document, so `publish_bundles` strips it when it writes `meta.json`.
+
+`ocr_pages` is present on a section only when part of its text came from OCR (the pages carrying `source: "ocr"` blocks); `publish_bundles` carries it into `meta.json`.
 
 `order` is `chapter_number * 100 + section_number`, computed by `detect_structure`; chapters use `* 100 + 0`. It gives a stable integer sort across the whole document without parsing slugs.
 

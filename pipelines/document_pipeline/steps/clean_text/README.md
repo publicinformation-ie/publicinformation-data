@@ -48,6 +48,8 @@ Each block has a `type` of exactly `heading`, `paragraph`, `list` or `table` —
 
 `y` is each block's top edge in PDF points (top-down). Blocks within a page are in ascending-`y` order on single-column pages; on multi-column pages they are grouped column by column (left to right), each column's blocks in ascending-`y` order.
 
+On a page `ocr_pages` OCR'd (`page["ocr"]` present), every non-table block also carries `source: "ocr"`, marking machine-read text. `assemble_sections` uses that marker for the section's OCR note and `meta.json` `ocr_pages`.
+
 ## Notable files
 
 - `errors.json` — truncated to `[]` at the start of every run. Nothing here is process-fatal.
