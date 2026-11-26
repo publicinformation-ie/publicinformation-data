@@ -42,6 +42,25 @@ DECISION_TYPES = (
     "agreed", "adopted", "recommended_to_council", "referred", "deferred", "appointment",
 )
 _MINUTES_APPROVAL_CODE = "01.1.1"
+_MIN_DECISION_CHARS = 10
+_MIN_DECISION_TOKENS = 3
+
+#: Vocabulary accepted as minutes-approval language. A quote containing any
+#: other word is not discarded as a minutes approval, so a compound decision
+#: survives. Months and day numbers are accepted because approved minutes are
+#: usually dated.
+_APPROVAL_TOKENS = frozenset("""
+a accurate adopt adopted adopts agree agreed agrees all also amendment amendments
+and approved approve approves are as at be been by cathaoirleach chair chairperson
+changes committee confirm confirmed confirms council dated day further held hereby
+is it its leas matter matters meeting meetings members minute minutes no noted of
+on previous proposed received record seconded sign signed taken read that the then
+thereto these they this those to true unanimously was were with without year
+""".split())
+_MONTHS = frozenset(
+    "january february march april may june july august september october "
+    "november december".split()
+)
 
 RESPONSE_SCHEMA = {
     "type": "object",
@@ -248,12 +267,28 @@ def _resolve_person(value, meeting_initials, alias_index, initials_index):
 
 
 def _is_minutes_approval_decision(text: str) -> bool:
-    """True when the quote only approves/confirms earlier minutes."""
-    pattern = (
-        r"(?i)\b(approv\w*|adopt\w*|confirm\w*)\b[^.]{0,80}\bminutes\b"
-        r"|\bminutes\b[^.]{0,80}\b(approv\w*|adopt\w*|confirm\w*)\b"
+    """True only when the whole quote is minutes-approval language.
+
+    The earlier pattern discarded any quote that mentioned approving minutes
+    within 80 characters, including a compound decision that also did
+    something substantive ("approve the minutes **and** defer the footpath
+    programme"). Every token must belong to the approval vocabulary now; an
+    unfamiliar word keeps the decision, which is the safe direction for a
+    verbatim quote that may carry a real decision.
+    """
+    tokens = re.findall(r"[a-z]+|\d+(?:st|nd|rd|th)?", text.casefold())
+    if not tokens:
+        return False
+    token_set = set(tokens)
+    if not {"minute", "minutes"} & token_set:
+        return False
+    if not ({"approve", "approved", "approves", "adopt", "adopted", "adopts",
+             "confirm", "confirmed", "confirms"} & token_set):
+        return False
+    return all(
+        token in _APPROVAL_TOKENS or token in _MONTHS or token.isdigit()
+        for token in tokens
     )
-    return re.search(pattern, text) is not None
 
 
 def _squash(text: str) -> str:
@@ -291,6 +326,71 @@ def _validate_echoed_context(response: dict, meeting: dict) -> None:
         )
 
 
+def _grounded(text: str, raw: object, person: dict) -> bool:
+    """True when the printed name or initials appear in the item text."""
+    candidates = [
+        "" if raw is None else str(raw),
+        person["canonical_name"],
+        *person.get("aliases", []),
+        *person.get("initials", []),
+    ]
+    normalised_text = _normalise_text(text).casefold()
+    for candidate in candidates:
+        value = _normalise_text(str(candidate))
+        if not value:
+            continue
+        if value.casefold() in normalised_text:
+            return True
+        if len(value) <= 6 and value.isupper():
+            if re.search(rf"\b{re.escape(value)}\b", text):
+                return True
+        match = re.search(r"\(([A-Za-z'’]{1,6})\)\s*$", str(candidate))
+        if match and re.search(rf"\b{re.escape(match.group(1))}\b", text):
+            return True
+    return False
+
+
+def _present_person_ids(meeting: dict) -> set[str] | None:
+    """Present ids, or None when attendance is withheld or absent."""
+    if meeting.get("attendance_published") is False:
+        return None
+    rows = meeting.get("attendance")
+    if rows is None:
+        return None
+    return {row["person_id"] for row in rows if row.get("status") == "present"}
+
+
+def _attribute(raw: object, person: str | None, error: str | None, text: str,
+               meeting: dict, number: str, field: str,
+               register_by_id: dict[str, dict],
+               errors: list[dict]) -> tuple[bool, str | None]:
+    """Return ``(unresolved, person_id)``, withholding an unsafe attribution."""
+    if error:
+        errors.append(_error(
+            "UnresolvedDecisionPerson", f"item {number} {field}: {error}",
+            meeting, item_number=number, field=field,
+        ))
+        return True, None
+    if person is None:
+        return False, None
+    if not _grounded(text, raw, register_by_id[person]):
+        errors.append(_error(
+            "UnresolvedDecisionPerson",
+            f"item {number} {field} {raw!r} is not printed in the item text",
+            meeting, item_number=number, field=field,
+        ))
+        return True, None
+    present = _present_person_ids(meeting)
+    if present is not None and person not in present:
+        errors.append(_error(
+            "UnresolvedDecisionPerson",
+            f"item {number} {field} {raw!r} is not recorded present at this meeting",
+            meeting, item_number=number, field=field,
+        ))
+        return True, None
+    return False, person
+
+
 def validate_response(meeting: dict, response: dict, cofog: dict[str, str],
                       subdomains: dict[str, str], register: list[dict],
                       model: str | None = None) -> tuple[dict, list[dict]]:
@@ -304,6 +404,7 @@ def validate_response(meeting: dict, response: dict, cofog: dict[str, str],
 
     alias_index = build_alias_index(register)
     initials_index = build_initials_index(register)
+    register_by_id = {person["person_id"]: person for person in register}
     meeting_initials = meeting.get("initials", {})
 
     response_by_key: dict[str, dict] = {}
@@ -311,17 +412,16 @@ def validate_response(meeting: dict, response: dict, cofog: dict[str, str],
     for entry in response["items"]:
         key = str(entry["item_key"])
         if key in response_by_key:
-            errors.append(_error("UnexpectedItem", f"item {key} returned twice", meeting))
-            continue
+            raise ExtractionFailed(f"response returns item {key} twice")
         response_by_key[key] = entry
 
     known_items = {item["item_key"]: item for item in meeting.get("items", [])}
-    for key in response_by_key:
-        if key not in known_items:
-            errors.append(_error(
-                "UnexpectedItem", f"response names item {key}, which is not in the meeting",
-                meeting,
-            ))
+    unknown_keys = sorted(key for key in response_by_key if key not in known_items)
+    if unknown_keys:
+        raise ExtractionFailed(
+            "response names item(s) not in the meeting: "
+            + ", ".join(unknown_keys)
+        )
 
     decisions: list[dict] = []
     item_topics: list[dict] = []
@@ -397,8 +497,10 @@ def validate_response(meeting: dict, response: dict, cofog: dict[str, str],
         })
         errors.extend(item_errors)
 
+        item_texts: set[str] = set()
         for decision in entry["decisions"]:
             text = decision["decision_text"]
+            normalised = _normalise_text(text)
             if decision["decision_type"] not in DECISION_TYPES:
                 errors.append(_error(
                     "UnknownDecisionType",
@@ -407,7 +509,24 @@ def validate_response(meeting: dict, response: dict, cofog: dict[str, str],
                     meeting, item_number=number,
                 ))
                 continue
-            if _normalise_text(text) not in _normalise_text(item["text"]):
+            if (len(normalised) < _MIN_DECISION_CHARS
+                    or len(normalised.split()) < _MIN_DECISION_TOKENS):
+                errors.append(_error(
+                    "DecisionTooShort",
+                    f"item {number} decision text is too short to be a decision: "
+                    f"{text!r}",
+                    meeting, item_number=number,
+                ))
+                continue
+            if normalised in item_texts:
+                errors.append(_error(
+                    "DuplicateDecision",
+                    f"item {number} returns the same decision twice: {text!r}",
+                    meeting, item_number=number,
+                ))
+                continue
+            item_texts.add(normalised)
+            if normalised not in _normalise_text(item["text"]):
                 errors.append(_error(
                     "DecisionNotInSource",
                     f"item {number} decision is not a verbatim quote: {text!r}",
@@ -421,18 +540,12 @@ def validate_response(meeting: dict, response: dict, cofog: dict[str, str],
                 decision["proposer"], meeting_initials, alias_index, initials_index)
             seconder, seconder_error = _resolve_person(
                 decision["seconder"], meeting_initials, alias_index, initials_index)
-            if proposer_error:
-                errors.append(_error(
-                    "UnresolvedDecisionPerson",
-                    f"item {number} proposer: {proposer_error}",
-                    meeting, item_number=number, field="proposer",
-                ))
-            if seconder_error:
-                errors.append(_error(
-                    "UnresolvedDecisionPerson",
-                    f"item {number} seconder: {seconder_error}",
-                    meeting, item_number=number, field="seconder",
-                ))
+            proposer_unresolved, proposer = _attribute(
+                decision["proposer"], proposer, proposer_error, item["text"],
+                meeting, number, "proposer", register_by_id, errors)
+            seconder_unresolved, seconder = _attribute(
+                decision["seconder"], seconder, seconder_error, item["text"],
+                meeting, number, "seconder", register_by_id, errors)
             decisions.append({
                 "item_key": item_key,
                 "item_number": number,
@@ -440,6 +553,8 @@ def validate_response(meeting: dict, response: dict, cofog: dict[str, str],
                 "decision_type": decision["decision_type"],
                 "proposer": proposer,
                 "seconder": seconder,
+                "proposer_unresolved": proposer_unresolved,
+                "seconder_unresolved": seconder_unresolved,
             })
 
     for index, decision in enumerate(decisions, start=1):

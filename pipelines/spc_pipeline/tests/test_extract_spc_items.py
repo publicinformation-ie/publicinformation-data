@@ -48,7 +48,8 @@ def _meeting():
                 "item_key": "item-2-0",
                 "number": "2.0",
                 "title": "Matters Arising from Minutes",
-                "text": QUOTE,
+                "text": QUOTE + " Proposed by: Cllr Amanda Smith (AS) "
+                        "Seconded by: Cllr Sean Drew (SD).",
                 "is_minutes_approval": False,
             },
         ],
@@ -264,6 +265,8 @@ def test_unresolved_initials_yield_a_null_field_and_an_error():
         }]), COFOG, SUBDOMAINS, REGISTER)
     assert [e["error_type"] for e in errors] == ["UnresolvedDecisionPerson"]
     assert result["decisions"][0]["proposer"] is None
+    assert result["decisions"][0]["proposer_unresolved"] is True
+    assert result["decisions"][0]["seconder_unresolved"] is False
 
 
 def test_a_matching_echoed_meeting_id_is_accepted():
@@ -326,6 +329,89 @@ def test_minutes_approval_decision_is_discarded_and_counted():
     assert errors == []
     assert result["decisions"] == []
     assert result["minutes_approval_discarded"] == 1
+
+
+def test_a_compound_decision_that_also_approves_minutes_is_kept():
+    compound = ("It was agreed to approve the minutes of the previous meeting "
+                "and to defer the footpath programme.")
+    meeting = _meeting()
+    meeting["items"][1]["text"] = compound
+    result, errors = validate_response(
+        meeting, _response(decisions=[{
+            "decision_text": compound,
+            "decision_type": "agreed", "proposer": None, "seconder": None,
+        }]), COFOG, SUBDOMAINS, REGISTER)
+    assert errors == []
+    assert len(result["decisions"]) == 1
+    assert result["minutes_approval_discarded"] == 0
+
+
+def test_a_blank_decision_text_is_rejected():
+    result, errors = validate_response(
+        _meeting(), _response(decisions=[{
+            "decision_text": "   ", "decision_type": "agreed",
+            "proposer": None, "seconder": None,
+        }]), COFOG, SUBDOMAINS, REGISTER)
+    assert [e["error_type"] for e in errors] == ["DecisionTooShort"]
+    assert result["decisions"] == []
+
+
+def test_a_duplicated_decision_text_is_rejected():
+    decision = {"decision_text": QUOTE, "decision_type": "agreed",
+                "proposer": None, "seconder": None}
+    result, errors = validate_response(
+        _meeting(), _response(decisions=[decision, dict(decision)]),
+        COFOG, SUBDOMAINS, REGISTER)
+    assert "DuplicateDecision" in [e["error_type"] for e in errors]
+    assert len(result["decisions"]) == 1
+
+
+def test_a_duplicate_item_key_fails_the_whole_meeting():
+    response = _response()
+    response["items"].append(dict(response["items"][0]))
+    with pytest.raises(ExtractionFailed, match="twice"):
+        validate_response(_meeting(), response, COFOG, SUBDOMAINS, REGISTER)
+
+
+def test_an_unknown_item_key_fails_the_whole_meeting():
+    with pytest.raises(ExtractionFailed, match="not in the meeting"):
+        validate_response(_meeting(), _response(item_key="item-9-9"),
+                          COFOG, SUBDOMAINS, REGISTER)
+
+
+def test_a_proposer_not_printed_in_the_item_is_withheld():
+    result, errors = validate_response(
+        _meeting(), _response(decisions=[{
+            "decision_text": QUOTE, "decision_type": "agreed",
+            "proposer": "Cllr Niamh Nobody", "seconder": None,
+        }]), COFOG, SUBDOMAINS, REGISTER)
+    assert "UnresolvedDecisionPerson" in [e["error_type"] for e in errors]
+    decision = result["decisions"][0]
+    assert decision["proposer"] is None and decision["proposer_unresolved"] is True
+
+
+def test_a_proposer_absent_from_the_meeting_is_withheld():
+    meeting = _meeting()
+    meeting["attendance_published"] = True
+    meeting["attendance"] = [{
+        "person_id": "meath/sean-drew", "status": "present",
+    }]
+    result, errors = validate_response(
+        meeting, _response(), COFOG, SUBDOMAINS, REGISTER)
+    assert "UnresolvedDecisionPerson" in [e["error_type"] for e in errors]
+    decision = result["decisions"][0]
+    assert decision["proposer"] is None and decision["proposer_unresolved"] is True
+    assert decision["seconder"] == "meath/sean-drew"
+
+
+def test_presence_is_not_checked_when_attendance_is_withheld():
+    meeting = _meeting()
+    meeting["attendance_published"] = False
+    meeting["attendance"] = []
+    result, errors = validate_response(
+        meeting, _response(), COFOG, SUBDOMAINS, REGISTER)
+    assert errors == []
+    assert result["decisions"][0]["proposer"] == "meath/amanda-smith"
 
 
 def test_model_override_varies_the_cache_key_and_the_call(tmp_path, monkeypatch):
