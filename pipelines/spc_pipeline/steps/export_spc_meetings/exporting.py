@@ -28,7 +28,7 @@ def _meeting_record(record: dict) -> dict:
         "source_url": record["source_url"],
         "source_sha256": record["source_sha256"],
         "minutes_path": _minutes_path(record),
-        "attendance_published": bool(record.get("attendance_published", True)),
+        "attendance_published": record["attendance_published"],
     }
 
 
@@ -100,6 +100,18 @@ def export(input_data: dict, register: list[dict]) -> tuple[dict, dict]:
             render_failures += 1
             continue
 
+        published = record.get("attendance_published")
+        if not isinstance(published, bool):
+            raise ValueError(
+                f"{record.get('meeting_id')}: attendance_published must be a boolean"
+            )
+        rows = record.get("attendance", [])
+        if not published and rows:
+            raise ValueError(
+                f"{record.get('meeting_id')}: attendance_published is false but "
+                f"{len(rows)} attendance row(s) are present"
+            )
+
         meetings.append(_meeting_record(record))
         minutes.append({
             "meeting_id": record["meeting_id"],
@@ -139,7 +151,10 @@ def export(input_data: dict, register: list[dict]) -> tuple[dict, dict]:
     people = _person_records(referenced_people, register_by_id)
     missing_people = referenced_people - {person["person_id"] for person in people}
     if missing_people:
-        reported_errors["UnknownPerson"] += len(missing_people)
+        raise ValueError(
+            "attendance or a decision references person id(s) with no register "
+            f"entry: {', '.join(sorted(missing_people))}"
+        )
 
     dataset = {
         "meetings": meetings,

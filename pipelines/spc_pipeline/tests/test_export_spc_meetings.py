@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import pytest
+
 from steps.export_spc_meetings.exporting import export
 from steps.resolve_attendees.resolving import load_register
 
@@ -113,3 +115,31 @@ def test_render_failure_publishes_nothing():
     assert dataset == {"meetings": [], "people": [], "attendance": [],
                        "items": [], "decisions": [], "minutes": []}
     assert report["render_failures"] == 1
+
+
+def test_attendance_flag_must_be_a_boolean():
+    record = _record()
+    del record["attendance_published"]
+    with pytest.raises(ValueError, match="attendance_published"):
+        export({"results": [record]}, REGISTER)
+
+
+def test_withheld_attendance_with_rows_is_a_contradiction():
+    record = _record(attendance_published=False)
+    with pytest.raises(ValueError, match="attendance_published"):
+        export({"results": [record]}, REGISTER)
+
+
+def test_a_dangling_person_reference_fails_export():
+    record = _record(attendance=[{
+        "meeting_id": "meath/transportation-urban-regeneration/2026-02-19",
+        "person_id": "meath/ghost",
+        "printed_name": "Ghost Person",
+        "category": "officials",
+        "role": None,
+        "status": "present",
+        "mode": "not_stated",
+        "presented": False,
+    }])
+    with pytest.raises(ValueError, match="meath/ghost"):
+        export({"results": [record]}, REGISTER)
