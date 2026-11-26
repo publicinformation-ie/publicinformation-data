@@ -10,6 +10,7 @@ from __future__ import annotations
 import hashlib
 import io
 import json
+import os
 import re
 from datetime import datetime, timezone
 from pathlib import Path
@@ -23,10 +24,15 @@ from lib.certs import requests_verify
 STEP_NAME = "fetch_spc_minutes"
 
 _WORD_FIELDS = ("text", "x0", "x1", "top", "bottom")
+_PDF_MAGIC = b"%PDF-"
 
 
 class NoTextLayer(ValueError):
     """The PDF yields no extractable text on any page."""
+
+
+class InvalidPdf(ValueError):
+    """The downloaded or cached bytes are not a readable PDF."""
 
 
 def cache_path(cache_dir: Path, url: str) -> Path:
@@ -47,11 +53,20 @@ def download(url: str) -> bytes:
     """Fetch a PDF with certificate verification on.
 
     Verification is never disabled: a certificate failure must fail the step
-    rather than be retried insecurely.
+    rather than be retried insecurely. A response that is not a PDF (an HTML
+    error page served with 200, for example) is rejected before it can be
+    cached.
     """
     response = requests.get(url, verify=requests_verify(), timeout=120)
     response.raise_for_status()
-    return response.content
+    data = response.content
+    if not _is_pdf(data):
+        raise InvalidPdf(f"{url} did not return a PDF")
+    return data
+
+
+def _is_pdf(data: bytes) -> bool:
+    return _PDF_MAGIC in data[:1024]
 
 
 def sha256_hex(data: bytes) -> str:
@@ -90,27 +105,66 @@ def _read_sidecar(pdf_path: Path) -> dict | None:
 
 
 def _write_sidecar(pdf_path: Path, metadata: dict) -> None:
-    sidecar_path(pdf_path).write_text(json.dumps(metadata, indent=2), encoding="utf-8")
+    _write_atomic(sidecar_path(pdf_path),
+                  json.dumps(metadata, indent=2).encode("utf-8"))
+
+
+def _write_atomic(path: Path, data: bytes) -> None:
+    """Write through a sibling temp file so a crash cannot leave half a PDF."""
+    temporary = path.with_name(path.name + ".tmp")
+    temporary.write_bytes(data)
+    os.replace(temporary, path)
+
+
+def _cached_bytes(pdf_path: Path) -> bytes | None:
+    """Cached bytes only when the sidecar proves them; otherwise a cache miss."""
+    if not pdf_path.exists():
+        return None
+    metadata = _read_sidecar(pdf_path)
+    if not metadata or not metadata.get("sha256"):
+        return None
+    data = pdf_path.read_bytes()
+    if sha256_hex(data) != metadata["sha256"]:
+        return None
+    return data
 
 
 def fetch_one(record: dict, cache_dir: Path, downloader=download) -> dict:
-    """Return one output record, downloading only on a cold cache.
+    """Return one output record, downloading only on a cold or invalid cache.
 
-    Raises NoTextLayer when the cached or downloaded PDF has no text.
+    Raises NoTextLayer when the PDF has no text, and InvalidPdf when the bytes
+    are not a PDF or cannot be parsed. A corrupt cached PDF is retried once
+    from the source before that error is reported, so a bad download cannot
+    stick forever.
     """
     pdf_path = cache_path(cache_dir, record["file_url"])
-    if not pdf_path.exists():
-        data = downloader(record["file_url"])
-        pdf_path.parent.mkdir(parents=True, exist_ok=True)
-        pdf_path.write_bytes(data)
-        _write_sidecar(pdf_path, {
-            "sha256": sha256_hex(data),
-            "size_bytes": len(data),
-            "retrieved_at": datetime.now(timezone.utc).isoformat(),
-        })
-    data = pdf_path.read_bytes()
+    data = _cached_bytes(pdf_path)
+    from_cache = data is not None
+    pages: list[dict] | None = None
+    while pages is None:
+        if data is None:
+            data = downloader(record["file_url"])
+            if not _is_pdf(data):
+                raise InvalidPdf(f"{record['file_url']} did not return a PDF")
+            pdf_path.parent.mkdir(parents=True, exist_ok=True)
+            _write_atomic(pdf_path, data)
+            _write_sidecar(pdf_path, {
+                "sha256": sha256_hex(data),
+                "size_bytes": len(data),
+                "retrieved_at": datetime.now(timezone.utc).isoformat(),
+            })
+            from_cache = False
+        try:
+            pages = extract_pages(data)
+        except NoTextLayer:
+            raise
+        except Exception as exc:
+            if from_cache:
+                data = None
+                continue
+            raise InvalidPdf(f"could not parse the PDF: {exc}") from exc
+
     metadata = _read_sidecar(pdf_path) or {}
-    pages = extract_pages(data)
     return {
         "committee_id": record["committee_id"],
         "committee_name": record["committee_name"],
@@ -138,6 +192,12 @@ def run(input_data: dict, cache_dir: Path, downloader=download) -> tuple[list[di
             errors.append(_error(
                 "NoTextLayer",
                 f"no extractable text in {source['file_url']}",
+                source,
+            ))
+        except InvalidPdf as exc:
+            errors.append(_error(
+                "InvalidPdf",
+                f"{source['file_url']}: {exc}",
                 source,
             ))
         except Exception as exc:

@@ -1,3 +1,4 @@
+import pytest
 import requests
 
 from steps.fetch_spc_minutes import fetching
@@ -42,7 +43,7 @@ def test_warm_cache_makes_no_http_request(tmp_path, monkeypatch):
     pdf.parent.mkdir(parents=True, exist_ok=True)
     pdf.write_bytes(b"%PDF-1.4 cached")
     fetching._write_sidecar(pdf, {
-        "sha256": "a" * 64, "size_bytes": 15,
+        "sha256": fetching.sha256_hex(b"%PDF-1.4 cached"), "size_bytes": 15,
         "retrieved_at": "2026-01-01T00:00:00+00:00",
     })
 
@@ -54,18 +55,75 @@ def test_warm_cache_makes_no_http_request(tmp_path, monkeypatch):
     assert record["retrieved_at"] == "2026-01-01T00:00:00+00:00"
 
 
-def test_warm_cache_without_sidecar_still_makes_no_request(tmp_path, monkeypatch):
+def test_warm_cache_without_sidecar_redownloads(tmp_path, monkeypatch):
     monkeypatch.setattr(fetching, "extract_pages", lambda data: [{"page": 1, "words": [{"text": "x"}]}])
     pdf = cache_path(tmp_path, SOURCE["file_url"])
     pdf.parent.mkdir(parents=True, exist_ok=True)
-    pdf.write_bytes(b"%PDF-1.4 cached")
+    pdf.write_bytes(b"%PDF-1.4 unverified")
+    calls = []
 
     def downloader(url):
-        raise AssertionError("the cache should have answered this request")
+        calls.append(url)
+        return b"%PDF-1.4 refreshed"
 
     record = fetch_one(SOURCE, tmp_path, downloader=downloader)
-    assert record["sha256"] == fetching.sha256_hex(b"%PDF-1.4 cached")
-    assert record["retrieved_at"]
+    assert calls == [SOURCE["file_url"]]
+    assert record["sha256"] == fetching.sha256_hex(b"%PDF-1.4 refreshed")
+    assert pdf.read_bytes() == b"%PDF-1.4 refreshed"
+
+
+def test_warm_cache_with_a_mismatched_sidecar_redownloads(tmp_path, monkeypatch):
+    monkeypatch.setattr(fetching, "extract_pages", lambda data: [{"page": 1, "words": [{"text": "x"}]}])
+    pdf = cache_path(tmp_path, SOURCE["file_url"])
+    pdf.parent.mkdir(parents=True, exist_ok=True)
+    pdf.write_bytes(b"%PDF-1.4 corrupt")
+    fetching._write_sidecar(pdf, {"sha256": "a" * 64, "size_bytes": 15})
+
+    def downloader(url):
+        return b"%PDF-1.4 fresh"
+
+    record = fetch_one(SOURCE, tmp_path, downloader=downloader)
+    assert record["sha256"] == fetching.sha256_hex(b"%PDF-1.4 fresh")
+    assert pdf.read_bytes() == b"%PDF-1.4 fresh"
+
+
+def test_a_non_pdf_response_is_rejected_before_it_is_cached(tmp_path):
+    def downloader(url):
+        return b"<html><body>404</body></html>"
+
+    with pytest.raises(fetching.InvalidPdf):
+        fetch_one(SOURCE, tmp_path, downloader=downloader)
+    assert not cache_path(tmp_path, SOURCE["file_url"]).exists()
+
+
+def test_a_non_pdf_response_is_reported_as_invalid_not_download_failed(tmp_path):
+    records, errors = run({"results": [SOURCE]}, tmp_path,
+                          downloader=lambda url: b"<html>not a pdf</html>")
+    assert records == []
+    assert [e["error_type"] for e in errors] == ["InvalidPdf"]
+
+
+def test_a_corrupt_cached_pdf_is_redownloaded_once(tmp_path, monkeypatch):
+    pdf = cache_path(tmp_path, SOURCE["file_url"])
+    pdf.parent.mkdir(parents=True, exist_ok=True)
+    pdf.write_bytes(b"%PDF-1.4 corrupt")
+    fetching._write_sidecar(pdf, {
+        "sha256": fetching.sha256_hex(b"%PDF-1.4 corrupt"), "size_bytes": 15,
+    })
+    calls = []
+
+    def flaky(data):
+        calls.append(data)
+        if data == b"%PDF-1.4 corrupt":
+            raise ValueError("broken xref")
+        return [{"page": 1, "words": [{"text": "x"}]}]
+
+    monkeypatch.setattr(fetching, "extract_pages", flaky)
+
+    record = fetch_one(SOURCE, tmp_path,
+                       downloader=lambda url: b"%PDF-1.4 repaired")
+    assert calls == [b"%PDF-1.4 corrupt", b"%PDF-1.4 repaired"]
+    assert record["sha256"] == fetching.sha256_hex(b"%PDF-1.4 repaired")
 
 
 def test_pdf_without_text_layer_is_an_error_and_no_record(tmp_path, monkeypatch):
