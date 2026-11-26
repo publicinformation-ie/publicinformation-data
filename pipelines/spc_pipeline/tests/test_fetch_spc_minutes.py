@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 import pytest
 import requests
 
@@ -167,16 +170,25 @@ def test_download_keeps_verification_on(monkeypatch):
     assert captured["verify"]
 
 
-def test_real_cached_pdfs_have_words():
-    """Parse the six real PDFs when the (git-ignored) cache is present."""
-    from pathlib import Path
+FIXTURES = Path(__file__).resolve().parent / "fixtures"
+MANIFEST = FIXTURES / "meetings.json"
 
-    cache = Path(__file__).resolve().parents[1] / "cache"
-    pdfs = sorted(cache.glob("*-*Minutes*.pdf"))
-    if len(pdfs) < 6:
-        import pytest
 
-        pytest.skip("the six minutes PDFs are not cached in this checkout")
-    for pdf in pdfs:
-        pages = extract_pages(pdf.read_bytes())
-        assert pages and any(p["words"] for p in pages)
+def _manifest() -> list[dict]:
+    return json.loads(MANIFEST.read_text())["meetings"]
+
+
+def test_committed_fixture_pdfs_are_sha_pinned():
+    meetings = _manifest()
+    assert len(meetings) == 6
+    for entry in meetings:
+        pdf = FIXTURES / "pdf" / entry["pdf"]
+        assert pdf.exists(), entry["pdf"]
+        assert fetching.sha256_hex(pdf.read_bytes()) == entry["sha256"], entry["pdf"]
+
+
+def test_committed_pdfs_have_words():
+    """The fixture PDFs, not a git-ignored cache, are what CI parses."""
+    for entry in _manifest():
+        pages = extract_pages((FIXTURES / "pdf" / entry["pdf"]).read_bytes())
+        assert pages and any(page["words"] for page in pages)

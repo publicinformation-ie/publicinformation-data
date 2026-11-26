@@ -10,19 +10,17 @@ def _sweep_module():
 
 EXPERIMENT = Path(__file__).resolve().parents[1] / "experiments/2026-11-26-spc-model-sweep"
 GOLD = EXPERIMENT / "gold.json"
-RENDER = Path(__file__).resolve().parents[1] / "steps/render_spc_minutes/output.json"
 
 
 def _gold():
     return json.loads(GOLD.read_text())
 
 
-@pytest.mark.skipif(not RENDER.exists(), reason="rendered meetings are a git-ignored cache")
-def test_gold_covers_every_rendered_item_and_quotes_are_verbatim():
+def test_gold_covers_every_rendered_item_and_quotes_are_verbatim(rendered_meetings):
     import re
 
     gold = _gold()
-    rendered = json.loads(RENDER.read_text())["results"]
+    rendered = rendered_meetings
     cofog = json.loads((Path(__file__).resolve().parents[1] / "reference/cofog_1999.json").read_text())
     codes = {entry["code"] for entry in cofog["codes"]}
     subdomains = json.loads(

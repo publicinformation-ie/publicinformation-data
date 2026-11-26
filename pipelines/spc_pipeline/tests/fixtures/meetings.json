@@ -1,0 +1,82 @@
+{
+  "meetings": [
+    {
+      "committee_id": "meath/transportation-urban-regeneration",
+      "committee_name": "Transportation & Urban Regeneration Strategic Policy Committee",
+      "public_body_id": 1511,
+      "page_url": "https://www.meath.ie/council/your-council/your-elected-council/strategic-policy-committees/transportation-and-urban-regeneration-spc",
+      "file_url": "https://www.meath.ie/system/files/media/file-uploads/2026-09/February%202026%20-%20Minutes%20-%20SPC%20Transportation%20and%20Urban%20Regeneration_0.pdf",
+      "link_text": "February 2026 - Minutes - SPC Transportation and Urban Regeneration",
+      "sha256": "5c8ee59ba08631373f4ce443d9454293c03274a491600a2ddab68daca1f3cd35",
+      "size_bytes": 221779,
+      "retrieved_at": "2026-11-26T18:51:37.282558+00:00",
+      "page_count": 4,
+      "pdf": "2026-02-19.pdf"
+    },
+    {
+      "committee_id": "meath/transportation-urban-regeneration",
+      "committee_name": "Transportation & Urban Regeneration Strategic Policy Committee",
+      "public_body_id": 1511,
+      "page_url": "https://www.meath.ie/council/your-council/your-elected-council/strategic-policy-committees/transportation-and-urban-regeneration-spc",
+      "file_url": "https://www.meath.ie/system/files/media/file-uploads/2026-10/May%202026%20-%20Minutes%20-%20SPC%20Transportation%20and%20Urban%20Regeneration.pdf",
+      "link_text": "May 2026 - Minutes - SPC Transportation and Urban Regeneration",
+      "sha256": "5fa6fe2d87259d094e49509613bebe6f532dfc4a86204d5347084a707859e298",
+      "size_bytes": 249002,
+      "retrieved_at": "2026-11-26T18:51:37.482552+00:00",
+      "page_count": 6,
+      "pdf": "2026-05-21.pdf"
+    },
+    {
+      "committee_id": "meath/transportation-urban-regeneration",
+      "committee_name": "Transportation & Urban Regeneration Strategic Policy Committee",
+      "public_body_id": 1511,
+      "page_url": "https://www.meath.ie/council/your-council/your-elected-council/strategic-policy-committees/transportation-and-urban-regeneration-spc",
+      "file_url": "https://www.meath.ie/system/files/media/file-uploads/2025-10/February%202025%20Minutes%20-%20Transportation%20%20Urban%20Regeneration%20SPC.pdf",
+      "link_text": "February 2025 - Minutes - SPC Transportation and Urban Regeneration",
+      "sha256": "b1ef7cf7a7dd988bdf8e82ab40b61b4685444217cf53ca0ac3ed05278119458a",
+      "size_bytes": 210894,
+      "retrieved_at": "2026-11-26T18:51:37.729318+00:00",
+      "page_count": 4,
+      "pdf": "2025-02-20.pdf"
+    },
+    {
+      "committee_id": "meath/transportation-urban-regeneration",
+      "committee_name": "Transportation & Urban Regeneration Strategic Policy Committee",
+      "public_body_id": 1511,
+      "page_url": "https://www.meath.ie/council/your-council/your-elected-council/strategic-policy-committees/transportation-and-urban-regeneration-spc",
+      "file_url": "https://www.meath.ie/system/files/media/file-uploads/2025-10/FINAL%20May%202025%20Minutes%20-%20Transportation%20%20Urban%20Regeneration%20SPC.pdf",
+      "link_text": "May 2025 - Minutes - SPC Transportation and Urban Regeneration",
+      "sha256": "f3ba1f233e44d269bc3984a9f3018adda8e03c5dd28622da10db588fde6f164a",
+      "size_bytes": 220717,
+      "retrieved_at": "2026-11-26T18:51:37.976487+00:00",
+      "page_count": 5,
+      "pdf": "2025-05-27.pdf"
+    },
+    {
+      "committee_id": "meath/transportation-urban-regeneration",
+      "committee_name": "Transportation & Urban Regeneration Strategic Policy Committee",
+      "public_body_id": 1511,
+      "page_url": "https://www.meath.ie/council/your-council/your-elected-council/strategic-policy-committees/transportation-and-urban-regeneration-spc",
+      "file_url": "https://www.meath.ie/system/files/media/file-uploads/2025-11/September%202025%20Minutes%20-%20Transportation%20%20Urban%20Regeneration%20SPC.pdf",
+      "link_text": "September 2025 - Minutes - SPC Transportation and Urban Regeneration",
+      "sha256": "5426364164bf13258ccb25659a9c1813169bb5c40c4fbd44fde35843b6d271e3",
+      "size_bytes": 274345,
+      "retrieved_at": "2026-11-26T18:51:38.210172+00:00",
+      "page_count": 4,
+      "pdf": "2025-09-11.pdf"
+    },
+    {
+      "committee_id": "meath/transportation-urban-regeneration",
+      "committee_name": "Transportation & Urban Regeneration Strategic Policy Committee",
+      "public_body_id": 1511,
+      "page_url": "https://www.meath.ie/council/your-council/your-elected-council/strategic-policy-committees/transportation-and-urban-regeneration-spc",
+      "file_url": "https://www.meath.ie/system/files/media/file-uploads/2026-02/November%202025%20Minutes%20-%20Transportation%20%20Urban%20Regeneration%20SPC.pdf",
+      "link_text": "November 2025 - Minutes - SPC Transportation and Urban Regeneration",
+      "sha256": "5f6b82189edf3200e3ac540616ecaa411319da9a6a580baab0056cab37a4ddbb",
+      "size_bytes": 218475,
+      "retrieved_at": "2026-11-26T18:51:38.464749+00:00",
+      "page_count": 4,
+      "pdf": "2025-11-20.pdf"
+    }
+  ]
+}

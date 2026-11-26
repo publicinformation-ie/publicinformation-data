@@ -1,6 +1,4 @@
-import json
 from datetime import date
-from pathlib import Path
 
 import pytest
 
@@ -17,8 +15,6 @@ from steps.parse_meeting_header.header import (
     run,
 )
 
-PIPELINE = Path(__file__).resolve().parents[1]
-FETCH_OUTPUT = PIPELINE / "steps/fetch_spc_minutes/output.json"
 EXPECTED_DATES = {
     "2025-02-20", "2025-05-27", "2025-09-11",
     "2025-11-20", "2026-02-19", "2026-05-21",
@@ -230,24 +226,14 @@ def test_synthetic_meeting_parses_end_to_end():
     assert [e["printed_name"] for e in record["attendance"]] == ["Mike Bray", "Joan Carroll"]
 
 
-def _real_sources():
-    if not FETCH_OUTPUT.exists():
-        return []
-    return json.loads(FETCH_OUTPUT.read_text())["results"]
-
-
-@pytest.mark.skipif(not FETCH_OUTPUT.exists(),
-                    reason="the fetched minutes are a git-ignored cache")
-def test_all_six_real_meetings_have_the_expected_dates():
-    records, errors = run({"results": _real_sources()})
+def test_all_six_real_meetings_have_the_expected_dates(fetched_meetings):
+    records, errors = run({"results": fetched_meetings})
     assert errors == []
     assert {r["meeting_date"] for r in records} == EXPECTED_DATES
 
 
-@pytest.mark.skipif(not FETCH_OUTPUT.exists(),
-                    reason="the fetched minutes are a git-ignored cache")
-def test_all_six_real_meetings_resolve_their_attendance_without_errors():
-    records, _ = run({"results": _real_sources()})
+def test_all_six_real_meetings_resolve_their_attendance_without_errors(fetched_meetings):
+    records, _ = run({"results": fetched_meetings})
     by_id = {r["meeting_id"].rsplit("/", 1)[-1]: r for r in records}
     # The interleaved "Cllr Sean Drew Cllr Paddy Meade" row.
     feb26 = by_id["2026-02-19"]

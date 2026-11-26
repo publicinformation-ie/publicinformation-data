@@ -1,4 +1,3 @@
-import json
 from pathlib import Path
 
 import pytest
@@ -8,24 +7,15 @@ from steps.render_spc_minutes.rendering import (
     UnrecognisedFurniture,
     check_words,
     render_meeting,
-    run,
 )
 
 PIPELINE = Path(__file__).resolve().parents[1]
-RESOLVE_OUTPUT = PIPELINE / "steps/resolve_attendees/output.json"
-
-
-def _records():
-    return json.loads(RESOLVE_OUTPUT.read_text())["results"]
+PUBLISHED_MINUTES = PIPELINE.parents[1] / "public/latest/spc-meetings/minutes"
 
 
 @pytest.fixture(scope="module")
-def rendered():
-    if not RESOLVE_OUTPUT.exists():
-        pytest.skip("resolved meetings are a git-ignored cache")
-    results, errors = run({"results": _records()})
-    assert errors == []
-    return {r["meeting_id"]: r for r in results}
+def rendered(rendered_meetings):
+    return {r["meeting_id"]: r for r in rendered_meetings}
 
 
 def test_furniture_is_removed_and_counted(rendered):
@@ -102,20 +92,22 @@ def test_attendance_block_keeps_printed_names(rendered):
     assert "- Martin Murray (MM), DOS" in feb["markdown"]
 
 
-def test_markdown_matches_the_committed_snapshot(rendered):
-    import hashlib
+def test_markdown_matches_the_published_snapshot(rendered):
+    """The renderer's output is the committed, human-reviewable artifact.
 
-    snapshot = json.loads((Path(__file__).parent / "fixtures/render_sha256.json").read_text())
-    assert set(rendered) == set(snapshot)
+    A render change therefore shows as an ordinary diff in `public/latest/`
+    instead of an opaque changed hash.
+    """
     for meeting_id, record in rendered.items():
-        digest = hashlib.sha256(record["markdown"].encode("utf-8")).hexdigest()
-        assert digest == snapshot[meeting_id], meeting_id
+        published = PUBLISHED_MINUTES / f"{meeting_id}.md"
+        assert published.exists(), published
+        assert record["markdown"].encode("utf-8") == published.read_bytes(), meeting_id
 
 
-def test_withheld_attendance_is_visible_but_minutes_still_render(rendered):
-    record = dict(_records()[0])
+def test_withheld_attendance_is_visible_but_minutes_still_render(resolved_meetings):
+    record = dict(resolved_meetings[0])
     record["attendance_published"] = False
-    record["printed_attendance"] = _records()[0]["printed_attendance"]
+    record["printed_attendance"] = resolved_meetings[0]["printed_attendance"]
     result = render_meeting(record)
     assert "Attendance is withheld" in result["markdown"]
     assert result["word_check"] == "passed"

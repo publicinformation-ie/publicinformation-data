@@ -15,7 +15,6 @@ from steps.resolve_attendees.resolving import (
 
 PIPELINE = Path(__file__).resolve().parents[1]
 REGISTER = PIPELINE / "reference" / "people.json"
-PARSE_OUTPUT = PIPELINE / "steps/parse_meeting_header/output.json"
 
 
 @pytest.fixture(scope="module")
@@ -232,11 +231,8 @@ def test_printed_initials_that_do_not_resolve_error_instead_of_guessing(register
     assert "no registered person" in error
 
 
-@pytest.mark.skipif(not PARSE_OUTPUT.exists(),
-                    reason="parsed meetings are a git-ignored cache")
-def test_all_six_real_meetings_resolve_with_zero_errors(register):
-    input_data = json.loads(PARSE_OUTPUT.read_text())
-    results, errors = run(input_data, register)
+def test_all_six_real_meetings_resolve_with_zero_errors(register, parsed_meetings):
+    results, errors = run({"results": parsed_meetings}, register)
     assert errors == []
     assert len(results) == 6
     assert all(r["attendance_published"] for r in results)
