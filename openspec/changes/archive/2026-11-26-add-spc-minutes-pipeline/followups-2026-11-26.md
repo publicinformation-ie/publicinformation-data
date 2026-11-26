@@ -10,11 +10,20 @@ This is a **handoff doc, not an OpenSpec change.** The review findings below are
 
 ## 0. Where the next session starts
 
-**§6 step 2 (the fail-closed sweep) is done locally and not yet pushed** — 2026-11-26.
+**§6 step 3 (guard it) is done locally and not yet pushed** — 2026-11-26.
 
-- `main` is **ahead of `origin/main`** (`9cf4bcc4..HEAD`, the step-2 work alone). Nothing new is live until `git push origin main`, which triggers Deploy Pages. Review the `public/` diff first.
-- Working tree clean apart from the three foreign untracked entries in §1. The implementation plan is `plan-fail-closed-sweep.md` in this directory.
-- **Next action:** §6 step 3 (guard it). No API spend. Step 5 remains paid.
+- `main` is **ahead of `origin/main`** (`9cf4bcc4..HEAD`, steps 2 and 3). Nothing new is live until `git push origin main`, which triggers Deploy Pages. Review the `public/` diff first; step 3 does not change it.
+- Working tree clean apart from the three foreign untracked entries in §1. The implementation plans are `plan-fail-closed-sweep.md` and `plan-guard-it.md` in this directory.
+- **Next action:** §6 step 4 (docs). No API spend. Step 5 remains paid and needs explicit permission.
+
+What step 3 changed — do not redo it:
+
+| Item | Where it now lives |
+|---|---|
+| P3.1 CI | `.github/workflows/ci.yml` runs `pipelines/spc_pipeline/tests`; `AGENTS.md` lists the suite and says four suites |
+| P3.2 fixtures | the six minutes PDFs are committed under `tests/fixtures/pdf/` with a sha256 manifest; `conftest.py` builds `fetched_meetings` → `parsed_meetings` → `resolved_meetings` → `rendered_meetings` once per session, so the six cache-guarded tests always run |
+| P3.3 snapshot | `tests/fixtures/render_sha256.json` is gone; the render test compares Markdown byte-for-byte with `public/latest/spc-meetings/minutes/` |
+| P3.7 status | `status.py` reads `pipeline.json` for the order (authorities included) and joins records and errors through `source_url`/`file_url` → `meeting_id`; a file stalled before the header stays listed under its URL |
 
 What step 2 changed — do not redo it:
 
@@ -32,6 +41,8 @@ What step 2 changed — do not redo it:
 | P2.8 contract | schema 1.1.0: `additionalProperties: false`, `item_id` in the items CSV, `item_key` + flags in the decisions CSV, CSVW `separator`/`null` |
 
 Evidence for step 2: 144 SPC tests, 567 root tests, `pyright` clean, docs check clean, 195 records valid under the closed schema in **both** `v1.0.0/` and `v1.1.0/`, `latest/` identical to `v1.1.0/`, and the six cached responses replayed (zero spend).
+
+Evidence for step 3: 149 SPC tests run with every SPC step `output.json` removed (no cache-based skips); with the generated local-authority list removed too, 148 pass and its single reference-input guard skips. 567 root tests, `pyright` clean, docs check clean, and `status.py` reports all six meetings through every stage with the two `ProceduralNotProceduralCode` errors attributed to 2025-05-27.
 
 > **Cache-key migration:** the local cache files were renamed to the prompt-digest key. The cache is git-ignored, so a fresh clone has none and its first extraction is paid. Do not delete `pipelines/spc_pipeline/cache/llm/` in this checkout.
 
@@ -54,7 +65,7 @@ Evidence from the release: 115 SPC tests and 562 root tests pass, `pyright` clea
 
 ## 1. State and ground rules
 
-- Branch `main`, **ahead of `origin/main`** (`9cf4bcc4..HEAD`, all step 2), tracked tree clean. Earlier commits: `f0f02971` (correction release), `0ba8f792` (CI rdflib pin), `9f7acd95` (merge), `f7f97f1f` (spec sync + archive), `320861fc` (implementation + publication).
+- Branch `main`, **ahead of `origin/main`** (`9cf4bcc4..HEAD`, steps 2 and 3), tracked tree clean. Earlier commits: `f0f02971` (correction release), `0ba8f792` (CI rdflib pin), `9f7acd95` (merge), `f7f97f1f` (spec sync + archive), `320861fc` (implementation + publication).
 - The change is archived at `openspec/changes/archive/2026-11-26-add-spc-minutes-pipeline/`; six capability specs are live in `openspec/specs/spc-*/`; `openspec validate --specs` passes 17/17.
 - **The local `public/` tree (unpushed)** is now schema **1.1.0**: 6 meetings, 28 people, 98 attendance rows, 46 items, 17 decisions and 6 minutes files, with `latest/` identical to `v1.1.0/`. `v1.0.0/` is kept as the previous release and still validates under the closed schema. The live site stays on 1.0.0 until the push.
 - Untracked and **not ours — leave alone**: `openspec/changes/improve-chapter-split-accuracy/`, `pipelines/foi_pipeline/experiments/gating/populate_docling_cache.py`, `pipelines/foi_pipeline/steps/transform_disclosure_files/docling_cache/`, and `stash@{0}`.
@@ -212,15 +223,21 @@ public/schemas/spc-meetings.schema.json — "additionalProperties" occurs 0 time
 
 ### P3.1 CI never runs the SPC suite
 
-`.github/workflows/ci.yml:38-43` runs the FOI, document and root suites only. The pipeline's **144 tests are unguarded on a branch where pushing publishes**. The `rdflib` miss in `0ba8f792` came from the same gap, and neither the correction release nor the step-2 sweep touched CI. Fix: add `uv run pytest pipelines/spc_pipeline/tests -q`, add the suite to the `AGENTS.md` "Tests" table, and correct "CI currently enforces the three test suites".
+**Fixed.** `.github/workflows/ci.yml` runs `uv run pytest pipelines/spc_pipeline/tests -q`, `AGENTS.md` lists the suite, and the text now says four suites. The step-3 suite (149 tests) is enforced on every push.
+
+Original diagnosis: `.github/workflows/ci.yml:38-43` ran the FOI, document and root suites only. The pipeline's **144 tests were unguarded on a branch where pushing publishes**. The `rdflib` miss in `0ba8f792` came from the same gap.
 
 ### P3.2 The strongest tests skip without git-ignored caches
 
-Nine skip guards exist in the suite; six gate the tests that matter most on files that exist only after a local run — `test_fetch_spc_minutes.py:121`, `test_parse_meeting_header.py:225` and `:233`, `test_resolve_attendees.py:177`, `test_render_spc_minutes.py:24` (a module fixture, so it skips the word check on all six meetings, the snapshot, and the furniture and anchor tests), `test_model_sweep.py:20`. Note that four of these are `@pytest.mark.skipif` decorators, not `pytest.skip` calls, so a `grep` for the latter under-counts them. The remaining three guard absent reference inputs (`test_find_spc_minutes_files.py:82`, `test_resolve_attendees.py:55`, `test_reference_data.py:65`). Locally they read outputs left by an earlier run, so a stale `output.json` can mask a broken step. Fix: commit small fixtures (per-page words, or six sha-pinned PDFs under LFS) so the lossless-render guarantee is actually enforced.
+**Fixed.** The six minutes PDFs are committed under `tests/fixtures/pdf/` in ordinary git (1.3 MB) with a sha256 manifest at `tests/fixtures/meetings.json`; `conftest.py` builds the fetch → parse → resolve → render chain once per session. All six cache-based skip guards are gone and the suite passes with every step `output.json` removed. The three reference-input guards remain (the generated local-authority list, the councillor reference, the transport vocabulary).
+
+Original diagnosis: nine skip guards existed; six gated the tests that matter most on files that existed only after a local run — `test_fetch_spc_minutes.py:121`, `test_parse_meeting_header.py:225` and `:233`, `test_resolve_attendees.py:177`, `test_render_spc_minutes.py:24` (a module fixture, so it skipped the word check on all six meetings, the snapshot, and the furniture and anchor tests), `test_model_sweep.py:20`. Locally they read outputs left by an earlier run, so a stale `output.json` could mask a broken step.
 
 ### P3.3 The render "snapshot" is only a hash
 
-`tests/test_render_spc_minutes.py:105-108` + `fixtures/render_sha256.json` commit one sha256 per meeting. Task 5.1 promised snapshots "reviewed by eye … committed". A hash cannot be reviewed and gives an opaque diff. Commit the Markdown or a diff-friendly excerpt.
+**Fixed.** `fixtures/render_sha256.json` is deleted. `test_markdown_matches_the_published_snapshot` compares the renderer's Markdown byte-for-byte with the committed `public/latest/spc-meetings/minutes/`, so a render change is an ordinary, reviewable `public/` diff.
+
+Original diagnosis: `test_render_spc_minutes.py:105-108` + `fixtures/render_sha256.json` committed one sha256 per meeting. Task 5.1 promised snapshots "reviewed by eye … committed"; a hash cannot be reviewed and gives an opaque diff.
 
 ### P3.4 The model choice rests on a buggy scorer and an incomplete gold set
 
@@ -249,11 +266,13 @@ Original findings:
 
 ### P3.7 `status.py` does not deliver the per-meeting funnel it claims
 
-It hardcodes the step list instead of reading `pipeline.json` order and omits step 1; the `active`/`meetings`/`meeting_key`/`stages` structure is dead code because early steps key on `file_url` and later ones on `meeting_id`, so they never join; per-meeting `errors` is always 0. Output is aggregate counts only, while `AGENTS.md`, the docstring and `review-2026-11-26.md` all promise per-meeting. `test_status.py` writes only `{"meeting_id": …}` stubs, so it never exercises the real shape. Either implement the join via `source_url`→`meeting_id`, or drop the claim and the dead code.
+**Fixed.** `status.py` reads `pipeline.json` for the step order (the cross-pipeline local-authority step included), builds a `source_url`/`file_url` → `meeting_id` index from the header, and attributes every record and error to its meeting. A file stalled before the header is listed under its URL with the stages it reached. On the real outputs it reports all six meetings through every stage and attributes the two `ProceduralNotProceduralCode` errors to 2025-05-27. `test_status.py` seeds a real pipeline layout, a file-URL stage and a meeting-id stage.
+
+Original diagnosis: it hardcoded the step list instead of reading `pipeline.json` order and omitted step 1; the `active`/`meetings`/`meeting_key`/`stages` structure was dead code because early steps key on `file_url` and later ones on `meeting_id`, so they never joined; per-meeting `errors` was always 0. `test_status.py` wrote only `{"meeting_id": …}` stubs, so it never exercised the real shape.
 
 ### P3.8 Untested spec scenarios
 
-No test found for: *Typos are preserved*; *Initials are preserved*; *Body text resembling furniture is kept*; *Sentence across a page break*; *Footer removed from every page* (real-cache only); *Presenter who sent apologies* (real-cache only); *Acting chair elected*; *Item referred onward*; *Consensus decision*; *Decision ID*; *Vocabulary gains a subdomain*; *Footpath programme* / *Road item* / *Non-transport item* (sweep only, not in CI); *Meeting schedule*; *Certificate failure is not bypassed* (mock only — `test_fetch_spc_minutes.py:93` asserts the `verify` kwarg is truthy, it does not exercise a real failure); *Count meetings attended*; *Withheld attendance is visible* (partial). Also untested: the P2.2 initials conflict, duplicate/unexpected `item_key`, cache invalidation, blank decision text, the over-broad discard, proposer grounding, procedural↔`01.1.1` consistency, injection-style item text.
+No test found for: *Typos are preserved*; *Initials are preserved*; *Body text resembling furniture is kept*; *Sentence across a page break*; *Footer removed from every page* (real data only); *Presenter who sent apologies* (real data only); *Acting chair elected*; *Item referred onward*; *Consensus decision*; *Decision ID*; *Vocabulary gains a subdomain*; *Footpath programme* / *Road item* / *Non-transport item* (sweep only, not in CI); *Meeting schedule*; *Certificate failure is not bypassed* (mock only — `test_fetch_spc_minutes.py:93` asserts the `verify` kwarg is truthy, it does not exercise a real failure); *Count meetings attended*; *Withheld attendance is visible* (partial). Also untested: the P2.2 initials conflict, duplicate/unexpected `item_key`, cache invalidation, blank decision text, the over-broad discard, proposer grounding, procedural↔`01.1.1` consistency, injection-style item text.
 
 ---
 
@@ -278,23 +297,22 @@ No test found for: *Typos are preserved*; *Initials are preserved*; *Body text r
 |---|---|---|
 | 1 | ~~**Correction release**~~ — **DONE and live in `f0f02971`** (P1.1, P2.1, P1.2, P1.3) | none — replayed from cache |
 | 2 | ~~**Fail-closed sweep**~~ — **DONE locally in `9cf4bcc4..HEAD`** (P2.2–P2.8, P3.6, P2.3 residuals, COFOG levels, schema 1.1.0) | none — replayed from cache |
-| 3 | **Guard it — start here**: P3.1, P3.2, P3.3, P3.7 | none |
-| 4 | **Docs**: P4 (coverage wording, attribution/personal data, field table, reproducibility, CSVW, distribution URL) | none |
+| 3 | ~~**Guard it**~~ — **DONE locally in `9cf4bcc4..HEAD`** (P3.1, P3.2, P3.3, P3.7) | none |
+| 4 | **Docs — start here**: P4 (coverage wording, attribution/personal data, field table, reproducibility, CSVW, distribution URL) | none |
 | 5 | **Re-open the model question**: P3.4, P3.5, plus the prompt changes for P1.2 and injection — needs a `PROMPT_VERSION` bump and therefore re-extraction; remove the `d01` override when the prompt no longer produces it | **PAID — ask first.** 6 calls to re-extract; 18 more for a sweep re-run |
 
-Steps 3–4 need no API spend. Step 5 requires explicit per-run permission.
+Step 4 needs no API spend. Step 5 requires explicit per-run permission.
 
 Verification commands for any of it:
 
 ```bash
-cd pipelines/spc_pipeline && uv run pytest tests/ -q      # 144 tests
+cd pipelines/spc_pipeline && uv run pytest tests/ -q      # 149 tests
 uv run pytest tests/ -q                                   # root suite (567)
 uv run pytest pipelines/document_pipeline/tests -q
 uv run pyright
 uv run python scripts/generate_pipeline_docs.py --check
 uv run python pipelines/spc_pipeline/status.py
-git log --oneline origin/main..HEAD                       # the unpushed step-2 work
-git log --oneline origin/main..HEAD                        # the unpushed step-2 work
+git log --oneline origin/main..HEAD                       # the unpushed step-2/3 work
 ```
 
 Pushing a `public/` change to `main` is what publishes. Review the generated `public/` diff before pushing.
