@@ -33,13 +33,91 @@ def normalise_name(value: str) -> str:
     return text.strip(" ,;.").casefold()
 
 
-def load_register(path: Path) -> list[dict]:
+def load_register(path: Path, councillor_reference: Path | None = None) -> list[dict]:
+    """Load and validate the committed people register.
+
+    Shape, kinds and councillor ids are checked here rather than in a test, so
+    a bad register stops the step. When the motions councillor reference is
+    available, every councillor id must exist in it.
+    """
     import json
 
     data = json.loads(Path(path).read_text(encoding="utf-8"))
     if not isinstance(data, list):
         raise ValueError(f"{path}: the people register must be a JSON list")
+    for person in data:
+        _validate_person(person, path)
+
+    reference = councillor_reference or _default_councillor_reference(path)
+    known = _read_councillor_ids(reference)
+    if known is not None:
+        unknown = sorted(
+            person["councillor_id"] for person in data
+            if person["kind"] == "councillor" and person["councillor_id"] not in known
+        )
+        if unknown:
+            raise ValueError(
+                f"{path}: unknown councillor id(s) not in {reference}: "
+                f"{', '.join(unknown)}"
+            )
     return data
+
+
+def _validate_person(person: object, path: Path) -> None:
+    if not isinstance(person, dict):
+        raise ValueError(f"{path}: every register entry must be a JSON object")
+    person_id = person.get("person_id")
+    for key in ("person_id", "canonical_name", "kind", "public_body_id"):
+        if not person.get(key):
+            raise ValueError(f"{path}: register entry {person_id!r} has no {key}")
+    kind = person["kind"]
+    if kind not in VALID_KINDS:
+        raise ValueError(
+            f"{path}: {person_id!r} has unknown kind {kind!r}; "
+            f"expected one of {', '.join(VALID_KINDS)}"
+        )
+    if not isinstance(person["public_body_id"], int):
+        raise ValueError(f"{path}: {person_id!r} public_body_id must be an integer")
+    for field in ("aliases", "initials"):
+        values = person.get(field, [])
+        if not isinstance(values, list) or not all(
+                isinstance(value, str) and value for value in values):
+            raise ValueError(
+                f"{path}: {person_id!r} {field} must be a list of non-empty strings"
+            )
+    councillor_id = person.get("councillor_id")
+    if kind == "councillor":
+        if not councillor_id:
+            raise ValueError(f"{path}: councillor {person_id!r} has no councillor_id")
+        if councillor_id != person_id:
+            raise ValueError(
+                f"{path}: councillor {person_id!r} has councillor_id "
+                f"{councillor_id!r}, which differs from its person_id"
+            )
+    elif councillor_id is not None:
+        raise ValueError(
+            f"{path}: non-councillor {person_id!r} must not have a councillor_id"
+        )
+
+
+def _default_councillor_reference(path: Path) -> Path | None:
+    for parent in Path(path).resolve().parents:
+        candidate = parent / "minutes_pipeline" / "reference" / "councillors.csv"
+        if candidate.exists():
+            return candidate
+    return None
+
+
+def _read_councillor_ids(path: Path | None) -> set[str] | None:
+    import csv
+
+    if path is None or not Path(path).exists():
+        return None
+    with Path(path).open(encoding="utf-8", newline="") as handle:
+        return {
+            row["councillor_id"] for row in csv.DictReader(handle)
+            if row.get("councillor_id")
+        }
 
 
 def build_alias_index(register: list[dict]) -> dict[str, str]:
@@ -83,6 +161,10 @@ def resolve_initials(initials: str, meeting_initials: dict[str, str],
         person_id = alias_index.get(normalise_name(printed))
         if person_id:
             return person_id, None
+        return None, (
+            f"the meeting prints {printed!r} for initials {initials!r}, "
+            f"which matches no registered person"
+        )
     candidates = initials_index.get(initials, [])
     if len(candidates) == 1:
         return candidates[0], None

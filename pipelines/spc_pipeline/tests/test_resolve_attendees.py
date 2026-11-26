@@ -63,6 +63,51 @@ def test_every_councillor_id_exists_in_the_councillor_reference(register):
         assert person["councillor_id"] in known
 
 
+def _person(**overrides):
+    person = {
+        "person_id": "meath/michael-bray",
+        "canonical_name": "Mike Bray",
+        "kind": "councillor",
+        "councillor_id": "meath/michael-bray",
+        "public_body_id": 1511,
+        "aliases": ["Mike Bray"],
+        "initials": ["MB"],
+    }
+    person.update(overrides)
+    return person
+
+
+def test_load_register_rejects_an_unknown_kind(tmp_path):
+    path = tmp_path / "people.json"
+    path.write_text(json.dumps([_person(kind="minister")]), encoding="utf-8")
+    with pytest.raises(ValueError, match="kind"):
+        load_register(path)
+
+
+def test_load_register_rejects_a_councillor_without_a_councillor_id(tmp_path):
+    path = tmp_path / "people.json"
+    path.write_text(json.dumps([_person(councillor_id=None)]), encoding="utf-8")
+    with pytest.raises(ValueError, match="councillor_id"):
+        load_register(path)
+
+
+def test_load_register_rejects_aliases_that_are_not_a_list(tmp_path):
+    path = tmp_path / "people.json"
+    path.write_text(json.dumps([_person(aliases="Mike Bray")]), encoding="utf-8")
+    with pytest.raises(ValueError, match="aliases"):
+        load_register(path)
+
+
+def test_load_register_rejects_a_councillor_absent_from_the_reference(tmp_path):
+    path = tmp_path / "people.json"
+    path.write_text(json.dumps([_person()]), encoding="utf-8")
+    reference = tmp_path / "councillors.csv"
+    reference.write_text("councillor_id,canonical_name\nmeath/other,Cllr Other\n",
+                         encoding="utf-8")
+    with pytest.raises(ValueError, match="unknown councillor"):
+        load_register(path, councillor_reference=reference)
+
+
 def _meeting(entries, initials=None):
     return {
         "meeting_id": "meath/transportation-urban-regeneration/2026-02-19",
@@ -172,6 +217,19 @@ def test_initials_prefer_the_meeting_map_then_the_register(register):
     assert (person, error) == ("meath/paddy-meade", None)
     person, error = resolve_initials("ZZ", {}, alias_index, initials_index)
     assert person is None and "no registered person" in error
+
+
+def test_printed_initials_that_do_not_resolve_error_instead_of_guessing(register):
+    # The meeting prints SD for a new person, but the register's SD is Sean
+    # Drew. Falling through to the register would attribute the wrong person's
+    # attendance and decisions.
+    alias_index = build_alias_index(register)
+    initials_index = build_initials_index(register)
+    person, error = resolve_initials(
+        "SD", {"SD": "Someone New"}, alias_index, initials_index)
+    assert person is None
+    assert "Someone New" in error
+    assert "no registered person" in error
 
 
 @pytest.mark.skipif(not PARSE_OUTPUT.exists(),
