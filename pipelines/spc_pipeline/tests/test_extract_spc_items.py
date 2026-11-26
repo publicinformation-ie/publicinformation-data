@@ -368,3 +368,28 @@ def test_a_second_unchanged_run_makes_no_model_call(tmp_path):
     assert len(calls) == 1
     assert first["decisions"] == second["decisions"]
     assert errors == errors2 == []
+
+
+def test_changing_the_prompt_text_invalidates_the_cache(tmp_path):
+    calls = []
+
+    def api(system, user, session):
+        calls.append(user)
+        return json.dumps(_response())
+
+    meeting = _meeting()
+    extract_meeting(meeting, tmp_path, REGISTER, COFOG, SUBDOMAINS, api_fn=api)
+    changed = _meeting()
+    changed["items"][1]["text"] = QUOTE + " Extra detail."
+    extract_meeting(changed, tmp_path, REGISTER, COFOG, SUBDOMAINS, api_fn=api)
+    assert len(calls) == 2
+
+
+def test_a_response_that_fails_the_schema_is_not_cached(tmp_path):
+    def api(system, user, session):
+        return json.dumps({"items": [{"item_key": "item-2-0"}]})
+
+    with pytest.raises(ExtractionFailed):
+        extract_meeting(_meeting(), tmp_path, REGISTER, COFOG, SUBDOMAINS,
+                        api_fn=api)
+    assert list((tmp_path / "llm").glob("*.json")) == []

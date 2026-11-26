@@ -17,6 +17,7 @@ prompt version so an unchanged re-run makes no model call.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import re
@@ -203,9 +204,22 @@ def build_prompt(meeting: dict, cofog: dict[str, str],
     return system, user
 
 
-def cache_path(cache_dir: Path, source_sha256: str, model: str) -> Path:
+def prompt_hash(system: str, user: str) -> str:
+    """A short digest of the whole prompt, so a text change invalidates the cache."""
+    return hashlib.sha256(f"{system}\n{user}".encode("utf-8")).hexdigest()[:16]
+
+
+def cache_path(cache_dir: Path, source_sha256: str, model: str,
+               prompt_digest: str) -> Path:
     safe_model = re.sub(r"[^A-Za-z0-9._-]+", "-", model)
-    return Path(cache_dir) / "llm" / f"{source_sha256}-{safe_model}-{PROMPT_VERSION}.json"
+    return (Path(cache_dir) / "llm"
+            / f"{source_sha256}-{safe_model}-{PROMPT_VERSION}-{prompt_digest}.json")
+
+
+def _write_atomic(path: Path, data: bytes) -> None:
+    temporary = path.with_name(path.name + ".tmp")
+    temporary.write_bytes(data)
+    os.replace(temporary, path)
 
 
 def _normalise_text(text: str) -> str:
@@ -535,7 +549,8 @@ def extract_meeting(meeting: dict, cache_dir: Path, register: list[dict],
 
     chosen_model = model or spc_model()
     system, user = build_prompt(meeting, cofog, subdomains)
-    path = cache_path(cache_dir, meeting["source_sha256"], chosen_model)
+    digest = prompt_hash(system, user)
+    path = cache_path(cache_dir, meeting["source_sha256"], chosen_model, digest)
     if path.exists():
         try:
             response = json.loads(path.read_text(encoding="utf-8"))
@@ -552,8 +567,14 @@ def extract_meeting(meeting: dict, cache_dir: Path, register: list[dict],
                 response = llm_extract.extract_json(system, user, model=chosen_model)
         if response is None:
             raise ExtractionFailed("the model returned no parseable JSON")
+        # Validate before caching: a response that fails the schema or echo
+        # check must not become a permanent cache hit.
+        result, errors = validate_response(meeting, response, cofog, subdomains,
+                                           register, model=chosen_model)
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(json.dumps(response, indent=2, ensure_ascii=False), encoding="utf-8")
+        _write_atomic(path, json.dumps(response, indent=2,
+                                       ensure_ascii=False).encode("utf-8"))
+        return result, errors
 
     return validate_response(meeting, response, cofog, subdomains, register,
                              model=chosen_model)

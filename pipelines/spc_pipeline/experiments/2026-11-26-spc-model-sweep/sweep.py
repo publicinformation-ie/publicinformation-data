@@ -291,6 +291,7 @@ def live_runner():
         cache_path,
         extract_meeting,
         load_taxonomy,
+        prompt_hash,
     )
     from steps.resolve_attendees.resolving import load_register
 
@@ -319,7 +320,8 @@ def live_runner():
         # deterministic chars/4 estimate the motion sweep used: consistent
         # between models, indicative rather than billable.
         system, user = build_prompt(meeting, cofog, subdomains)
-        path = cache_path(cache, meeting["source_sha256"], model)
+        path = cache_path(cache, meeting["source_sha256"], model,
+                          prompt_hash(system, user))
         completion_chars = path.stat().st_size if path.exists() else 0
         usage = {
             "prompt_tokens": (len(system) + len(user)) // 4,

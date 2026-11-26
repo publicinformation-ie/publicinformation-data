@@ -54,11 +54,15 @@ prompt is fixed and re-extraction reproduces the corrected values.
 
 ## Cache
 
-`pipelines/spc_pipeline/cache/llm/<sha256>-<model>-spc-items-v1.json` stores
-the raw response. A re-run with the same source sha256, model and prompt
-version makes no model call. A deliberate re-extraction that changes a
-published decision set is a reviewed content change and belongs in
-`public/CHANGELOG.md`.
+`pipelines/spc_pipeline/cache/llm/<sha256>-<model>-spc-items-v1-<prompt>.json`
+stores the raw response. The `<prompt>` component is a digest of the whole
+system and user prompt, so editing the prompt text — not just bumping
+`PROMPT_VERSION` — invalidates the cache. A re-run with the same source sha256,
+model and prompt makes no model call. A response is written only after it
+passes the schema and echo checks, and the write is atomic, so a malformed
+response can never become a permanent cache hit. A deliberate re-extraction
+that changes a published decision set is a reviewed content change and belongs
+in `public/CHANGELOG.md`.
 
 ## Configuration
 
