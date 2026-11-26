@@ -70,10 +70,13 @@ def _export():
             "meeting_id": "meath/transportation-urban-regeneration/2026-02-19",
             "meeting_date": "2026-02-19",
             "item_number": "2.0",
+            "item_key": "item-2-0",
             "decision_text": "It was agreed to circulate the policy.",
             "decision_type": "agreed",
             "proposer": "meath/michael-bray",
             "seconder": None,
+            "proposer_unresolved": False,
+            "seconder_unresolved": False,
         }],
         "minutes": [{
             "meeting_id": "meath/transportation-urban-regeneration/2026-02-19",
@@ -126,6 +129,36 @@ def test_schema_rejects_an_unpublished_cofog_code():
         jsonschema.validate(record, SCHEMA)
 
 
+def test_schema_rejects_an_undeclared_field():
+    record = _records()["decisions"][0]
+    record["unexpected"] = "value"
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.validate(record, SCHEMA)
+
+
+def test_decisions_csv_carries_the_item_key_and_unresolved_flags():
+    text = csv_bytes("decisions", _records()["decisions"]).decode("utf-8")
+    header = text.splitlines()[0].split(",")
+    assert "item_key" in header
+    assert "proposer_unresolved" in header
+    assert "seconder_unresolved" in header
+    assert "item-2-0" in text
+
+
+def test_items_csv_carries_the_item_id():
+    text = csv_bytes("items", _records()["items"]).decode("utf-8")
+    assert text.splitlines()[0].split(",")[1] == "item_id"
+    assert "2026-02-19/item-2-0" in text
+
+
+def test_csvw_marks_pipe_separated_arrays():
+    columns = {column["name"]: column for column in
+               json.loads(csvw_metadata("items"))["tableSchema"]["columns"]}
+    for field in ("cofog", "subdomains"):
+        assert columns[field]["separator"] == "|"
+        assert columns[field]["null"] == ""
+
+
 def test_unresolvable_public_body_fails_publication():
     with pytest.raises(ValueError, match="does not resolve"):
         build_records(_export(), {})
@@ -136,7 +169,7 @@ def test_csv_joins_array_fields():
     assert "04.5.1" in text
     assert "infra/regional-local-roads" in text
     header = text.splitlines()[0]
-    assert header.startswith("id,meeting_id,item_number")
+    assert header.startswith("id,item_id,meeting_id")
     assert text.splitlines()[1].split(",")[0].startswith(
         "https://data.publicinformation.ie/spc-meetings/item/")
 
@@ -192,7 +225,7 @@ def _ttl(path: Path):
 
 
 def test_latest_mirrors_the_versioned_release_and_unchanged_rerun_is_a_noop(tmp_path):
-    output_dir = tmp_path / "v1.0.0" / "spc-meetings"
+    output_dir = tmp_path / "v1.1.0" / "spc-meetings"
     latest_dir = tmp_path / "latest" / "spc-meetings"
     ttl = tmp_path / "dataset.ttl"
     _ttl(ttl)
@@ -282,7 +315,7 @@ def test_every_real_exported_record_validates_and_links_its_body():
     reason="the dataset has not been published in this checkout",
 )
 def test_published_latest_and_versioned_files_are_byte_identical():
-    versioned = REPO / "public/v1.0.0/spc-meetings"
+    versioned = REPO / "public/v1.1.0/spc-meetings"
     latest = REPO / "public/latest/spc-meetings"
     versioned_files = sorted(p.relative_to(versioned) for p in versioned.rglob("*") if p.is_file())
     latest_files = sorted(p.relative_to(latest) for p in latest.rglob("*") if p.is_file())
@@ -292,7 +325,7 @@ def test_published_latest_and_versioned_files_are_byte_identical():
 
 
 def test_a_content_change_stamps_dct_modified(tmp_path):
-    output_dir = tmp_path / "v1.0.0" / "spc-meetings"
+    output_dir = tmp_path / "v1.1.0" / "spc-meetings"
     ttl = tmp_path / "dataset.ttl"
     _ttl(ttl)
     export = _export()

@@ -85,7 +85,7 @@ cache makes no HTTP request.
 
 ## Published dataset
 
-`scripts/transform_spc_meetings.py` writes `public/v1.0.0/spc-meetings/` and
+`scripts/transform_spc_meetings.py` writes `public/v1.1.0/spc-meetings/` and
 mirrors it to `public/latest/spc-meetings/`, with JSON-LD, CSV and CSVW
 metadata for meetings, people, attendance, items and decisions, one Markdown
 file per meeting under `minutes/`, and a README. `dct:modified` changes only

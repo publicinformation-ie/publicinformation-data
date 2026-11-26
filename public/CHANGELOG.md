@@ -4,6 +4,20 @@ All notable changes to the Public Bodies dataset will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [spc-meetings 1.1.0] - 2026-11-26
+
+### Added
+- `decisions.csv` now carries `item_key`, `proposer_unresolved` and `seconder_unresolved`, so a decision joins its item even when two items share a number, and a consumer can tell "not named" from "named but withheld". `items.csv` carries the `item_id` already present in `items.jsonld`.
+- The JSON Schema closes every record type (`additionalProperties: false`) and declares `item_id`, `item_key` and the unresolved flags. CSVW marks the pipe-separated arrays with `"separator": "|"` and `"null": ""`.
+
+### Changed
+- MINOR: additive fields and a closed schema. Published at `public/v1.1.0/spc-meetings/`; `v1.0.0/` remains the previous release.
+- A proposer or seconder is withheld when the named person is not printed in the item text or is not recorded present. The decision still publishes, with the field null and the matching `*_unresolved` flag true.
+
+### Fixed
+- A decision that approves the minutes and also does something substantive is no longer discarded as a minutes approval.
+- A duplicate or unknown item key, a blank or duplicated decision, a division COFOG code, or a group code not justified by the item's detail now withholds the affected data (or fails the meeting) instead of publishing it.
+
 ## [spc-meetings 1.0.0] - 2026-11-26
 
 ### Added

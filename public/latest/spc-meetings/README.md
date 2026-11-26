@@ -16,6 +16,9 @@ decisions as verbatim quotes, and the minutes rendered verbatim as Markdown.
 - `minutes/<council>/<committee>/<date>.md` – the verbatim minutes
 
 Each table is published as JSON-LD and CSV with CSVW metadata.
+In CSV, an empty array and a withheld value both appear as an empty cell;
+`topics_published` distinguishes a withheld item's topics from a genuine
+empty subdomain list.
 
 ## Counts
 

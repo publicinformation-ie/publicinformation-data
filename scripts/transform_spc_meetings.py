@@ -4,7 +4,7 @@
 Reads pipelines/spc_pipeline/steps/export_spc_meetings/output.json and the
 authoritative Public Bodies data, then writes JSON-LD, CSV and CSVW metadata
 for meetings, people, attendance, items and decisions, the verbatim Markdown
-minutes and a README to public/v1.0.0/spc-meetings/, mirrors that directory to
+minutes and a README to public/v1.1.0/spc-meetings/, mirrors that directory to
 public/latest/spc-meetings/, and stamps dct:modified only when the payload
 changes.
 
@@ -27,7 +27,7 @@ from src.lib.dataset_publish import render_jsonld, stamp_if_changed, stamp_modif
 EXPORT_PATH = "pipelines/spc_pipeline/steps/export_spc_meetings/output.json"
 FIND_PUBLIC_BODIES_PATH = "pipelines/foi_pipeline/steps/find_public_bodies/output.json"
 SLUG_SEED_PATH = "pipelines/foi_pipeline/steps/db_upload/slug_seed.json"
-OUTPUT_DIR = "public/v1.0.0/spc-meetings"
+OUTPUT_DIR = "public/v1.1.0/spc-meetings"
 LATEST_DIR = "public/latest/spc-meetings"
 TTL_PATH = "public/catalog/dataset-spc-meetings.ttl"
 
@@ -41,11 +41,12 @@ CSV_FIELDS = {
                "public_body", "public_body_id"],
     "attendance": ["id", "meeting_id", "meeting_date", "person_id", "category", "role",
                    "status", "mode", "presented"],
-    "items": ["id", "meeting_id", "item_number", "item_key", "title", "text",
+    "items": ["id", "item_id", "meeting_id", "item_number", "item_key", "title", "text",
               "is_minutes_approval", "topics_published", "cofog", "subdomains",
               "procedural"],
     "decisions": ["id", "decision_id", "meeting_id", "meeting_date", "item_number",
-                  "decision_text", "decision_type", "proposer", "seconder"],
+                  "item_key", "decision_text", "decision_type", "proposer", "seconder",
+                  "proposer_unresolved", "seconder_unresolved"],
 }
 
 ARRAY_FIELDS = {"cofog", "subdomains"}
@@ -85,6 +86,7 @@ FIELD_SPECS = {
     "mode": ("string", "remote, in_person or not_stated"),
     "presented": ("boolean", "true when the person's name also appears in the presenters block"),
     "item_number": ("string", "Number as printed; not unique (two items may share one)"),
+    "item_id": ("uri", "Dataset-relative item identifier, <meeting_id>/<item_key>"),
     "item_key": ("string", "Stable item key, e.g. item-6-0 and item-6-0-2"),
     "title": ("string", "Item title as printed"),
     "text": ("string", "Item text, page furniture removed"),
@@ -98,6 +100,8 @@ FIELD_SPECS = {
     "decision_type": ("string", "agreed, adopted, recommended_to_council, referred, deferred or appointment"),
     "proposer": ("string", "Person ID of the proposer; empty when the minutes do not name one"),
     "seconder": ("string", "Person ID of the seconder; empty when the minutes do not name one"),
+    "proposer_unresolved": ("boolean", "true when a named proposer could not be resolved, grounded or found present"),
+    "seconder_unresolved": ("boolean", "true when a named seconder could not be resolved, grounded or found present"),
 }
 
 FIELD_TITLES = {
@@ -194,12 +198,16 @@ def csvw_metadata(kind: str) -> bytes:
     columns = []
     for field in CSV_FIELDS[kind]:
         datatype, description = FIELD_SPECS[field]
-        columns.append({
+        column = {
             "name": field,
             "titles": FIELD_TITLES.get(field, field.replace("_", " ").title()),
             "datatype": datatype,
             "description": description,
-        })
+        }
+        if field in ARRAY_FIELDS:
+            column["separator"] = "|"
+            column["null"] = ""
+        columns.append(column)
     return json.dumps({
         "@context": "http://www.w3.org/ns/csvw",
         "url": f"{kind}.csv",
@@ -231,6 +239,9 @@ def readme_bytes(export: dict, report: dict) -> bytes:
         "- `minutes/<council>/<committee>/<date>.md` – the verbatim minutes",
         "",
         "Each table is published as JSON-LD and CSV with CSVW metadata.",
+        "In CSV, an empty array and a withheld value both appear as an empty cell;",
+        "`topics_published` distinguishes a withheld item's topics from a genuine",
+        "empty subdomain list.",
         "",
         "## Counts",
         "",
