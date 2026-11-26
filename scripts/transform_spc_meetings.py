@@ -22,7 +22,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from src.lib.body_refs import BASE_URI, build_body_slug_lookup, body_uri
-from src.lib.dataset_publish import render_jsonld, stamp_if_changed
+from src.lib.dataset_publish import render_jsonld, stamp_if_changed, stamp_modified
 
 EXPORT_PATH = "pipelines/spc_pipeline/steps/export_spc_meetings/output.json"
 FIND_PUBLIC_BODIES_PATH = "pipelines/foi_pipeline/steps/find_public_bodies/output.json"
@@ -265,11 +265,36 @@ def build_outputs(export: dict, records: dict[str, list[dict]],
     return generated
 
 
-def write_if_changed(generated: dict[Path, bytes], ttl_path: Path) -> bool:
-    """Write changed files and stamp dct:modified only when something changed."""
+def write_if_changed(generated: dict[Path, bytes], ttl_path: Path,
+                     output_dir: Path) -> bool:
+    """Write changed files, delete stale ones, and stamp only on a real change.
+
+    ``output_dir`` is owned by the dataset: a file left there by an earlier run
+    (a minutes file whose meeting now fails render, for example) is deleted, so
+    it cannot stay public. Deleting a file is a content change.
+    """
     for path in generated:
         path.parent.mkdir(parents=True, exist_ok=True)
-    return stamp_if_changed(ttl_path, list(generated), generated)
+    output_dir = Path(output_dir)
+    stale = [
+        path for path in output_dir.rglob("*")
+        if path.is_file() and path not in generated
+    ] if output_dir.exists() else []
+    for path in stale:
+        path.unlink()
+    _remove_empty_directories(output_dir, stale)
+    changed = stamp_if_changed(ttl_path, list(generated), generated)
+    if stale and not changed:
+        stamp_modified(ttl_path)
+    return changed or bool(stale)
+
+
+def _remove_empty_directories(output_dir: Path, removed: list[Path]) -> None:
+    for path in sorted({path.parent for path in removed}, key=lambda p: len(p.parts),
+                       reverse=True):
+        while path != output_dir and path.exists() and not any(path.iterdir()):
+            path.rmdir()
+            path = path.parent
 
 
 def mirror_to_latest(output_dir: Path, latest_dir: Path) -> None:
@@ -292,7 +317,7 @@ def main() -> None:
     output_dir = Path(OUTPUT_DIR)
     output_dir.mkdir(parents=True, exist_ok=True)
     generated = build_outputs(export, records, output_dir)
-    changed = write_if_changed(generated, Path(TTL_PATH))
+    changed = write_if_changed(generated, Path(TTL_PATH), output_dir)
     if changed:
         mirror_to_latest(output_dir, Path(LATEST_DIR))
         print(f"Published {len(records['meetings'])} meetings (content changed, "

@@ -200,7 +200,7 @@ def test_latest_mirrors_the_versioned_release_and_unchanged_rerun_is_a_noop(tmp_
     export = _export()
     records = build_records(export, BODY_LOOKUP)
     generated = build_outputs(export, records, output_dir)
-    assert write_if_changed(generated, ttl) is True
+    assert write_if_changed(generated, ttl, output_dir) is True
     mirror_to_latest(output_dir, latest_dir)
 
     for path in generated:
@@ -209,9 +209,27 @@ def test_latest_mirrors_the_versioned_release_and_unchanged_rerun_is_a_noop(tmp_
 
     after_first = ttl.read_text()
     changed_again = write_if_changed(
-        build_outputs(export, build_records(export, BODY_LOOKUP), output_dir), ttl)
+        build_outputs(export, build_records(export, BODY_LOOKUP), output_dir),
+        ttl, output_dir)
     assert changed_again is False
     assert ttl.read_text() == after_first
+
+
+def test_stale_generated_files_are_deleted_and_count_as_a_change(tmp_path):
+    output_dir = tmp_path / "v1.1.0" / "spc-meetings"
+    ttl = tmp_path / "dataset.ttl"
+    _ttl(ttl)
+    export = _export()
+    generated = build_outputs(export, build_records(export, BODY_LOOKUP), output_dir)
+    assert write_if_changed(generated, ttl, output_dir) is True
+
+    stale = output_dir / "minutes" / "meath" / "old" / "2024-01-01.md"
+    stale.parent.mkdir(parents=True, exist_ok=True)
+    stale.write_text("# a meeting that later failed to render\n", encoding="utf-8")
+
+    assert write_if_changed(generated, ttl, output_dir) is True
+    assert not stale.exists()
+    assert not stale.parent.exists()
 
 
 def test_catalogue_parses_as_turtle():
@@ -279,9 +297,11 @@ def test_a_content_change_stamps_dct_modified(tmp_path):
     _ttl(ttl)
     export = _export()
     assert write_if_changed(
-        build_outputs(export, build_records(export, BODY_LOOKUP), output_dir), ttl)
+        build_outputs(export, build_records(export, BODY_LOOKUP), output_dir),
+        ttl, output_dir)
 
     export["items"][0]["title"] = "Matters Arising"
     assert write_if_changed(
-        build_outputs(export, build_records(export, BODY_LOOKUP), output_dir), ttl) is True
+        build_outputs(export, build_records(export, BODY_LOOKUP), output_dir),
+        ttl, output_dir) is True
     assert "2026-01-01" not in ttl.read_text()
