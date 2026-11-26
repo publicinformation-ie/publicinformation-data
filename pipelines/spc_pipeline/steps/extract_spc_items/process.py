@@ -20,6 +20,7 @@ from lib.file_utils import append_errors, read_json, write_json, write_status
 from steps.extract_spc_items.extraction import (
     PROMPT_VERSION,
     STEP_NAME,
+    load_overrides,
     load_taxonomy,
     run,
     spc_model,
@@ -29,6 +30,7 @@ from steps.resolve_attendees.resolving import load_register
 PIPELINE_DIR = Path(__file__).resolve().parents[2]
 CACHE_DIR = PIPELINE_DIR / "cache"
 REGISTER_PATH = PIPELINE_DIR / "reference" / "people.json"
+OVERRIDE_PATH = Path(__file__).parent / "override.json"
 
 
 def main() -> None:
@@ -44,8 +46,10 @@ def main() -> None:
     input_data = read_json(args.input)
     cofog, subdomains = load_taxonomy(PIPELINE_DIR)
     register = load_register(REGISTER_PATH)
+    overrides = load_overrides(OVERRIDE_PATH)
 
-    results, errors = run(input_data, CACHE_DIR, register, cofog, subdomains)
+    results, errors = run(input_data, CACHE_DIR, register, cofog, subdomains,
+                          overrides=overrides)
     append_errors(step_dir, errors)
 
     write_json(output_path, {"metadata": {"step": STEP_NAME}, "results": results})

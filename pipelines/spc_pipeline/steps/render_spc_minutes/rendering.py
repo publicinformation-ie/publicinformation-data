@@ -5,14 +5,17 @@ counted. Lines broken by the PDF are rejoined; item headings, AOB sections,
 bullets and labelled lines start new blocks. Markdown/HTML markup characters
 are escaped so the file can be rendered without sanitisation.
 
-The word check is an order-sensitive equality: the source body words (minus
-furniture and bullet glyphs) must equal the rendered body words (markup
-stripped). A single lost, added or reordered word is a ``RenderMismatch``.
+The word check is an order-sensitive equality between two independent
+readings: the body words read straight from the PDF pages (minus furniture
+and bullet glyphs) and the words recovered from the rendered Markdown with
+escapes undone. The attendance block is checked separately, so a parsed role
+fragment that never reaches the printed text is a ``RenderMismatch`` rather
+than a silent loss.
 """
 from __future__ import annotations
 
 import re
-from collections import Counter
+from collections import Counter, defaultdict
 
 STEP_NAME = "render_spc_minutes"
 
@@ -23,6 +26,13 @@ _BULLET_GLYPHS = ("•", "\uf071")
 _LABELLED_PREFIXES = ("Proposed by", "Seconded by", "Meeting ended")
 _MINUTES_APPROVAL_RE = re.compile(r"^Minutes of (the )?previous meeting\b", re.IGNORECASE)
 _RUNNING_HEADER = "Miontuairiscí/Meeting Minutes"
+_ANCHOR_RE = re.compile(r"\s*\{#[^}]*\}\s*$")
+
+#: A line repeated across pages is furniture only when it sits at the page
+#: edge on every occurrence. A body line can repeat ("Noted.") without being
+#: page furniture, so position, not frequency alone, decides.
+_TOP_BAND = 0.02
+_BOTTOM_BAND = 0.95
 
 _ESCAPE_CHARS = "\\`*_{}[]<>#|&"
 
@@ -47,33 +57,48 @@ def _normalise(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+def _page_span(lines: list[dict]) -> tuple[float, float]:
+    tops = [line["top"] for line in lines]
+    if not tops:
+        return 0.0, 1.0
+    lowest, highest = min(tops), max(tops)
+    return lowest, (highest - lowest) or 1.0
+
+
 def detect_furniture(pages: list[dict]) -> tuple[set[str], Counter]:
-    """Texts that repeat on at least three pages, plus page-number lines."""
+    """Texts repeated on at least three pages and lying at a page edge.
+
+    The edge requirement keeps a genuine body line that repeats on several
+    pages ("Noted.") in the body; only running headers, footers and page
+    numbers sit at the top or bottom of every page they appear on.
+    """
     pages_with = Counter()
     occurrences = Counter()
+    positions: dict[str, list[float]] = defaultdict(list)
     for page in pages:
         seen = set()
+        lowest, span = _page_span(page["lines"])
         for line in page["lines"]:
             text = _normalise(line["text"])
+            if not text:
+                continue
             occurrences[text] += 1
+            positions[text].append((line["top"] - lowest) / span)
             if text not in seen:
                 pages_with[text] += 1
                 seen.add(text)
-    furniture = {text for text, count in pages_with.items() if count >= 3}
+    furniture = {
+        text for text, count in pages_with.items()
+        if count >= 3 and all(
+            fraction <= _TOP_BAND or fraction >= _BOTTOM_BAND
+            for fraction in positions[text]
+        )
+    }
     return furniture, occurrences
 
 
-def body_source_lines(record: dict) -> tuple[list[dict], dict]:
-    """The body lines after the attendance table, furniture removed and counted."""
-    pages = record["pages"]
-    page_lines = [
-        {"page": index + 1,
-         "lines": [{"text": line["text"], "top": line["top"]} for line in _lines(page)]}
-        for index, page in enumerate(pages)
-    ]
-    furniture, occurrences = detect_furniture(page_lines)
-
-    first_page_lines = page_lines[0]["lines"] if page_lines else []
+def _body_start(first_page_lines: list[dict]) -> int:
+    """Index of the first agenda item on page 1, after the table header."""
     header_index = next(
         (i for i, line in enumerate(first_page_lines)
          if line["text"].strip().startswith("Item")),
@@ -87,6 +112,21 @@ def body_source_lines(record: dict) -> tuple[list[dict], dict]:
     while (body_start < len(first_page_lines)
            and first_page_lines[body_start]["text"].strip().startswith("Item Discussion")):
         body_start += 1
+    return body_start
+
+
+def body_source_lines(record: dict) -> tuple[list[dict], dict]:
+    """The body lines after the attendance table, furniture removed and counted."""
+    pages = record["pages"]
+    page_lines = [
+        {"page": index + 1,
+         "lines": [{"text": line["text"], "top": line["top"]} for line in _lines(page)]}
+        for index, page in enumerate(pages)
+    ]
+    furniture, occurrences = detect_furniture(page_lines)
+
+    first_page_lines = page_lines[0]["lines"] if page_lines else []
+    body_start = _body_start(first_page_lines)
 
     removed = Counter()
     page_numbers = 0
@@ -122,6 +162,36 @@ def body_source_lines(record: dict) -> tuple[list[dict], dict]:
         ],
     }
     return body, stats
+
+
+def source_body_words(record: dict) -> list[str]:
+    """The body words read directly from the PDF pages.
+
+    Deliberately independent of ``body_source_lines`` and ``segment_blocks``:
+    a lost or reordered block, an over-eager page-1 header cut or an escaping
+    bug shows up as a mismatch instead of being compared with itself. The
+    furniture set itself is position-limited by ``detect_furniture`` so a body
+    line that merely repeats cannot be folded into it.
+    """
+    page_lines = [
+        {"page": index + 1, "lines": _lines(page)}
+        for index, page in enumerate(record["pages"])
+    ]
+    furniture, _ = detect_furniture(page_lines)
+    body_start = _body_start(page_lines[0]["lines"] if page_lines else [])
+
+    words: list[str] = []
+    for page_index, page in enumerate(page_lines):
+        for line_index, line in enumerate(page["lines"]):
+            text = line["text"]
+            normalised = _normalise(text)
+            if page_index == 0 and line_index < body_start:
+                continue
+            if _PAGE_RE.match(normalised) or normalised in furniture:
+                continue
+            words.extend(token for token in text.split()
+                         if token not in _BULLET_GLYPHS)
+    return words
 
 
 def _lines(page: dict) -> list[dict]:
@@ -225,22 +295,57 @@ def segment_blocks(body_lines: list[dict]) -> tuple[list[dict], list[dict]]:
     return blocks, items
 
 
-def source_words(body_lines: list[dict]) -> list[str]:
-    """Whitespace tokens of the body, without furniture or bullet glyphs."""
+def unescape_inline(text: str) -> str:
+    """Undo ``escape_inline`` so rendered words can be compared with source."""
+    return re.sub(r"\\(.)", r"\1", text)
+
+
+def markdown_words(markdown: str, *, drop_headings: bool = False) -> list[str]:
+    """Words of a rendered Markdown fragment, with markup and escapes undone.
+
+    ``drop_headings`` is used for the attendance block, whose category
+    headings are generated text rather than printed names.
+    """
     words: list[str] = []
-    for line in body_lines:
-        for token in line["text"].split():
-            if token in _BULLET_GLYPHS:
+    for raw_line in markdown.splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
+        if line.startswith(("## ", "### ")):
+            if drop_headings:
                 continue
-            words.append(token)
+            line = _ANCHOR_RE.sub("", line[3:])
+        elif line.startswith("- "):
+            line = line[2:]
+        words.extend(unescape_inline(line).split())
     return words
 
 
-def rendered_words(blocks: list[dict]) -> list[str]:
-    words: list[str] = []
-    for block in blocks:
-        words.extend(block["text"].split())
-    return words
+def check_attendance(record: dict) -> None:
+    """Prove the rendered attendance keeps every printed name and role word.
+
+    The renderer writes each entry's ``raw`` text, so role words parsed out of
+    a separate printed fragment must have been folded back into ``raw``;
+    otherwise the verbatim minutes would silently drop them.
+    """
+    if not record.get("attendance_published", True):
+        return
+    expected: list[str] = []
+    for entry in record.get("printed_attendance", []):
+        raw = (entry.get("raw") or entry["printed_name"]).strip().strip(",;.")
+        role = (entry.get("role") or "").strip()
+        # Compare as substrings: the printed text may glue the role to a
+        # bracket or dash ("(MD’A)Climate", "-Senior Engineer-"), and a
+        # trailing comma must not count as a different word.
+        missing = [token for token in role.split() if token not in raw]
+        if missing:
+            raise RenderMismatch(
+                f"attendance entry {entry['printed_name']!r}: role text "
+                f"{' '.join(missing)!r} is not in the printed text {raw!r}"
+            )
+        expected.extend(raw.split())
+    check_words(expected, markdown_words(render_attendance(record),
+                                          drop_headings=True))
 
 
 def check_words(source: list[str], rendered: list[str]) -> None:
@@ -345,7 +450,12 @@ def render_body(blocks: list[dict]) -> str:
 def render_meeting(record: dict) -> dict:
     body_lines, furniture = body_source_lines(record)
     blocks, items = segment_blocks(body_lines)
-    check_words(source_words(body_lines), rendered_words(blocks))
+    body_markdown = render_body(blocks)
+    # Both sides of the check are independent of the renderer's own line
+    # selection: the source words come straight from the PDF, the rendered
+    # words from the final Markdown with escapes undone.
+    check_words(source_body_words(record), markdown_words(body_markdown))
+    check_attendance(record)
 
     markdown = (
         front_matter(record)
@@ -357,7 +467,7 @@ def render_meeting(record: dict) -> dict:
         + ".\n\n"
         + render_attendance(record)
         + "\n## Agenda items\n\n"
-        + render_body(blocks)
+        + body_markdown
     )
 
     result = {key: value for key, value in record.items() if key != "pages"}

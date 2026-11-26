@@ -5,10 +5,13 @@ that no source word was added, lost or changed.
 
 ## Furniture
 
-Lines that repeat on at least three pages, the `Page N of M` line, and the
-page-1 running header are removed and counted in `furniture_removed`
-(`total`, `page_numbers`, and `by_text` with a `kind` of `running_header` or
-`footer`). Body text that merely mentions `www.meath.ie` is kept.
+Lines that repeat on at least three pages **and sit at the top or bottom edge
+of the page on every occurrence**, the `Page N of M` line, and the page-1
+running header are removed and counted in `furniture_removed` (`total`,
+`page_numbers`, and `by_text` with a `kind` of `running_header` or `footer`).
+The edge requirement matters: a genuine body line that repeats on three pages
+("Noted.") stays in the body. Body text that merely mentions `www.meath.ie`
+is kept.
 
 ## Blocks
 
@@ -36,9 +39,19 @@ entry's printed text; a withheld attendance is marked in the block.
 
 ## Word check
 
-The source body words (furniture and bullet glyphs removed) must equal the
-rendered body words (markup stripped) in the same order. On any difference the
-meeting is not published.
+Two independent checks run before a meeting is eligible for publication:
+
+1. **Body.** The words read straight from the PDF pages (furniture and bullet
+   glyphs removed) must equal the words recovered from the rendered body with
+   markup and escapes undone, in the same order. Because the source side is not
+   derived from the renderer's own block-splitting, a lost block, an
+   over-eager page-1 header cut or a wrong furniture removal is a mismatch.
+2. **Attendance.** Every word of a parsed role must appear in the printed text
+   kept for that entry, and the rendered attendance list must equal the
+   concatenated printed entries. A role fragment that never reached `raw`
+   (and therefore never reached the Markdown) fails here.
+
+On any difference the meeting is not published.
 
 ## Output
 

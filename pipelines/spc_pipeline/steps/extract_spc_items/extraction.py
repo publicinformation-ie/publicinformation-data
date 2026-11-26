@@ -365,6 +365,13 @@ def validate_response(meeting: dict, response: dict, cofog: dict[str, str],
                 f"item {number} carries a subdomain but no 04.5 COFOG code",
                 meeting, item_number=number,
             ))
+        if topics["procedural"] and codes[0] != _MINUTES_APPROVAL_CODE:
+            item_errors.append(_error(
+                "ProceduralNotProceduralCode",
+                f"item {number} is flagged procedural but its primary COFOG code "
+                f"is {codes[0]!r}, not {_MINUTES_APPROVAL_CODE!r}",
+                meeting, item_number=number,
+            ))
         topics_valid = not item_errors
         item_topics.append({
             "item_key": item_key,
@@ -439,6 +446,81 @@ def validate_response(meeting: dict, response: dict, cofog: dict[str, str],
     return result, errors
 
 
+def load_overrides(path: Path) -> list[dict]:
+    """Load the committed manual corrections; an absent file means none."""
+    if not path.exists():
+        return []
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, list):
+        raise ValueError(f"{path} must contain a JSON array")
+    for entry in data:
+        if not isinstance(entry, dict) or not entry.get("meeting_id"):
+            raise ValueError(f"{path}: every override needs a meeting_id")
+        if entry.get("source_method") != "manual" or entry.get("overridden") is not True:
+            raise ValueError(
+                f"{path}: the override for {entry['meeting_id']} must be marked "
+                f'"source_method": "manual" and "overridden": true'
+            )
+    return data
+
+
+def apply_overrides(result: dict, overrides: list[dict],
+                    cofog: dict[str, str], subdomains: dict[str, str]) -> dict:
+    """Apply committed manual corrections to one validated meeting.
+
+    Corrections are applied after decision IDs are assigned, so dropping one
+    decision never renumbers the others. A correction that targets an item or
+    decision the meeting does not contain fails closed: a stale override must
+    stop the run for review rather than silently do nothing.
+    """
+    for override in overrides:
+        if override["meeting_id"] != result.get("meeting_id"):
+            continue
+        topics = {topic["item_key"]: topic for topic in result.get("item_topics", [])}
+        for correction in override.get("item_topics") or []:
+            key = correction.get("item_key")
+            target = topics.get(key)
+            if target is None:
+                raise ExtractionFailed(
+                    f"manual override for {result['meeting_id']} targets item "
+                    f"{key!r}, which the meeting does not contain"
+                )
+            codes = correction.get("cofog") or []
+            unknown = [code for code in codes if code not in cofog]
+            if not codes or unknown:
+                raise ExtractionFailed(
+                    f"manual override for item {key!r} has invalid COFOG code(s): "
+                    f"{', '.join(unknown) or 'none given'}"
+                )
+            chosen_subdomains = correction.get("subdomains") or []
+            unknown_subdomains = [s for s in chosen_subdomains if s not in subdomains]
+            if unknown_subdomains:
+                raise ExtractionFailed(
+                    f"manual override for item {key!r} has unknown subdomain(s): "
+                    f"{', '.join(unknown_subdomains)}"
+                )
+            target.update({
+                "cofog": list(codes),
+                "subdomains": list(chosen_subdomains),
+                "procedural": bool(correction["procedural"]),
+                "withheld": False,
+            })
+        drop = set(override.get("drop_decisions") or [])
+        if drop:
+            known = {decision["decision_id"] for decision in result.get("decisions", [])}
+            missing = sorted(drop - known)
+            if missing:
+                raise ExtractionFailed(
+                    f"manual override for {result['meeting_id']} drops unknown "
+                    f"decision(s): {', '.join(missing)}"
+                )
+            result["decisions"] = [
+                decision for decision in result["decisions"]
+                if decision["decision_id"] not in drop
+            ]
+    return result
+
+
 def extract_meeting(meeting: dict, cache_dir: Path, register: list[dict],
                     cofog: dict[str, str], subdomains: dict[str, str],
                     api_fn=None, model: str | None = None) -> tuple[dict, list[dict]]:
@@ -479,13 +561,16 @@ def extract_meeting(meeting: dict, cache_dir: Path, register: list[dict],
 
 def run(input_data: dict, cache_dir: Path, register: list[dict],
         cofog: dict[str, str], subdomains: dict[str, str],
-        api_fn=None) -> tuple[list[dict], list[dict]]:
+        api_fn=None, overrides: list[dict] | None = None) -> tuple[list[dict], list[dict]]:
     results: list[dict] = []
     errors: list[dict] = []
+    overrides = overrides or []
+    seen: set[str] = set()
     for meeting in input_data.get("results", []):
         try:
             result, meeting_errors = extract_meeting(
                 meeting, cache_dir, register, cofog, subdomains, api_fn=api_fn)
+            apply_overrides(result, overrides, cofog, subdomains)
         except ExtractionFailed as exc:
             failed = dict(meeting)
             failed.update({
@@ -497,10 +582,20 @@ def run(input_data: dict, cache_dir: Path, register: list[dict],
                 "extraction_failed": True,
             })
             results.append(failed)
+            seen.add(failed["meeting_id"])
             errors.append(_error(exc.error_type, str(exc), meeting))
             continue
         results.append(result)
+        seen.add(result["meeting_id"])
         errors.extend(meeting_errors)
+    for override in overrides:
+        if override["meeting_id"] not in seen:
+            errors.append(_error(
+                "UnappliedOverride",
+                f"manual override targets {override['meeting_id']}, which this run "
+                f"did not extract",
+                {"meeting_id": override["meeting_id"]},
+            ))
     return results, errors
 
 

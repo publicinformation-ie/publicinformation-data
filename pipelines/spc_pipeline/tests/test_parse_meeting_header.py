@@ -150,6 +150,20 @@ def test_role_fragment_attaches_to_the_name_before_it():
         ("Martin Murray", "DOS"),
         ("Fiona Beers", "Acting Senior Engineer"),
     ]
+    # The printed text kept for the verbatim minutes must include the role
+    # fragment, even though it arrived as a separate printed fragment.
+    assert entries[0]["raw"] == "Martin Murray (MM), DOS"
+
+
+def test_role_printed_before_the_name_is_kept_in_the_printed_text():
+    words = _attendance_words([
+        (["(Officials):"], [[
+            "Chair,", "Martin", "Murray", "(MM),", "DOS",
+        ]]),
+    ])
+    entries, _ = parse_entries(_values(words), "officials")
+    assert entries[0]["role"] == "Chair, DOS"
+    assert entries[0]["raw"] == "Chair, Martin Murray (MM), DOS"
 
 
 def test_wrapped_line_without_a_comma_starts_a_new_person():

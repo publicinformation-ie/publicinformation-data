@@ -36,8 +36,10 @@ after the dash; the label is skipped and the values parsed.
   printed before a name applies to the previous entry.
 
 Each entry has `category`, `printed_name`, `title`, `initials`, `role`,
-`markers` and `raw`. A stray title fragment (`Cllr,`) is ignored and counted in
-`ignored_fragments`.
+`markers` and `raw`. `raw` is the printed text kept for the verbatim minutes;
+when a role fragment is attached to the person before it, that fragment is
+appended to `raw` too, so role text is never lost from the minutes. A stray
+title fragment (`Cllr,`) is ignored and counted in `ignored_fragments`.
 
 ## Dates and identity
 

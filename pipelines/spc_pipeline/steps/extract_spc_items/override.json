@@ -1,0 +1,31 @@
+[
+  {
+    "meeting_id": "meath/transportation-urban-regeneration/2025-05-27",
+    "source_method": "manual",
+    "overridden": true,
+    "reason": "Items 7.0 and 9.0 are printed as 'No update'. The model gave them a transport code and subdomains but also flagged them procedural; the topic spec classifies a purely procedural item as 01.1.1 with no subdomains. Corrected by hand from the minutes; re-extraction will withhold these items until the prompt is fixed.",
+    "item_topics": [
+      {
+        "item_key": "item-7-0",
+        "cofog": ["01.1.1"],
+        "subdomains": [],
+        "procedural": true
+      },
+      {
+        "item_key": "item-9-0",
+        "cofog": ["01.1.1"],
+        "subdomains": [],
+        "procedural": true
+      }
+    ]
+  },
+  {
+    "meeting_id": "meath/transportation-urban-regeneration/2025-11-20",
+    "source_method": "manual",
+    "overridden": true,
+    "reason": "d01 is an information note under Matters Arising recording that the Plenary Council adopted the Traffic Calming Policy on 3 November 2025. It is not a decision of this committee, so it must not be published as one. The hand-labelled gold set omits it; the model extracted it from all three swept models.",
+    "drop_decisions": [
+      "meath/transportation-urban-regeneration/2025-11-20/d01"
+    ]
+  }
+]

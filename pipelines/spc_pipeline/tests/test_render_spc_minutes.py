@@ -97,6 +97,8 @@ def test_attendance_block_keeps_printed_names(rendered):
     assert "### Councillors" in feb["markdown"]
     assert "- Cllr Mike Bray (MB) Chair" in feb["markdown"]
     assert "- Mr. Dave Anderson (DA) PPN Rep" in feb["markdown"]
+    # Role text printed as a separate fragment is not lost from the minutes.
+    assert "- Martin Murray (MM), DOS" in feb["markdown"]
 
 
 def test_markdown_matches_the_committed_snapshot(rendered):
@@ -116,3 +118,89 @@ def test_withheld_attendance_is_visible_but_minutes_still_render(rendered):
     result = render_meeting(record)
     assert "Attendance is withheld" in result["markdown"]
     assert result["word_check"] == "passed"
+
+
+# ---------------------------------------------------------------------------
+# Synthetic records: these do not need the git-ignored pipeline caches.
+# ---------------------------------------------------------------------------
+
+def _w(text, x0, top):
+    width = max(5, 5.0 * len(text))
+    return {"text": text, "x0": x0, "x1": x0 + width, "top": top,
+            "bottom": top + 10}
+
+
+def _line(text, top):
+    words = []
+    x = 50.0
+    for token in text.split():
+        words.append(_w(token, x, top))
+        x += 5.0 * len(token) + 2
+    return words
+
+
+def _synthetic_record(*, body_lines, role="DOS", raw="A B, DOS", pages=3):
+    """Three pages with running header, page number and footer furniture."""
+    page_words = []
+    for index in range(pages):
+        words = _line("Miontuairiscí/Meeting Minutes", 0)
+        if index == 0:
+            words += _line("Item", 20)
+        words += _line(body_lines, 50)
+        words += _line(f"Page {index + 1} of {pages}", 92)
+        words += _line("Transportation Section, Meath County Council", 100)
+        page_words.append({"words": words})
+    return {
+        "meeting_id": "meath/test/2026-01-01",
+        "committee_id": "meath/test",
+        "committee_name": "Test Committee",
+        "public_body_id": 1511,
+        "meeting_date": "2026-01-01",
+        "date_text": "1st January 2026",
+        "venue": "Room",
+        "start_time": "2.30 pm",
+        "end_time": "3.30 pm",
+        "source_url": "https://example.test/minutes.pdf",
+        "source_sha256": "abc",
+        "page_count": pages,
+        "printed_attendance": [{
+            "category": "officials",
+            "printed_name": "A B",
+            "title": None,
+            "initials": None,
+            "role": role,
+            "markers": [],
+            "raw": raw,
+        }],
+        "pages": page_words,
+    }
+
+
+def test_furniture_rule_keeps_a_body_line_that_repeats_on_three_pages():
+    record = _synthetic_record(body_lines="Noted.")
+    result = render_meeting(record)
+    removed = {entry["text"] for entry in result["furniture_removed"]["by_text"]}
+    assert "Noted." not in removed
+    assert result["markdown"].count("Noted.") == 3
+
+
+def test_attendance_role_text_must_be_in_the_printed_text():
+    # The role survived parsing but not in the text kept for the verbatim
+    # minutes: publishing it would silently drop "DOS".
+    record = _synthetic_record(body_lines="Noted.", role="DOS", raw="A B")
+    with pytest.raises(RenderMismatch, match="attendance"):
+        render_meeting(record)
+
+
+def test_attendance_role_text_is_rendered_verbatim():
+    record = _synthetic_record(body_lines="Noted.", role="DOS", raw="A B, DOS")
+    result = render_meeting(record)
+    assert "- A B, DOS" in result["markdown"]
+    assert result["word_check"] == "passed"
+
+
+def test_attendance_role_text_may_be_glued_to_a_bracket():
+    record = _synthetic_record(body_lines="Noted.", role="Climate Officer",
+                               raw="A B (AB)Climate Officer")
+    result = render_meeting(record)
+    assert "A B (AB)Climate Officer" in result["markdown"]

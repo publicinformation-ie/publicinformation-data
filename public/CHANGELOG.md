@@ -17,6 +17,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Topics or a single decision are withheld when the model's response violates a closed list or the verbatim-quote check; the rest of the meeting still publishes.
 - `extract_spc_items` is a paid step and needs explicit permission per run; results are cached by source sha256, model and prompt version.
 
+### Fixed
+- Verbatim minutes now keep attendance role text printed as a separate fragment: 24 entries across the six files, for example "Martin Murray (MM), DOS" and the full "Footpath Extension Programme & Abandonment of unused public roads". The render word check now compares the words read from the PDF pages with the words recovered from the final Markdown and also checks the attendance block, so role text that fails to reach the minutes stops that meeting's render instead of being dropped silently.
+- Removed decision `meath/transportation-urban-regeneration/2025-11-20/d01`: it recorded a Plenary Council adoption noted under Matters Arising, not a decision of this committee. The meeting's other decision IDs are unchanged.
+- Items 7.0 and 9.0 of 2025-05-27 ("No update") are now `01.1.1` with no subdomains, as the topic spec requires for procedural items. Extraction now withholds an item flagged procedural whose primary COFOG code is not `01.1.1`.
+
 ## [datacatalogue-gov-ie-links 1.0.0] - 2026-11-20
 
 ### Added

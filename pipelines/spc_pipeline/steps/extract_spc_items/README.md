@@ -31,6 +31,8 @@ fails the meeting closed. Any other extra key is still a schema failure.
    affected topics/decision.
 3. The `04.5` rule: a subdomain without a `04.5` code withholds the item's
    topics.
+4. A `procedural: true` item whose primary code is not `01.1.1` withholds the
+   item's topics (`ProceduralNotProceduralCode`).
 4. Verbatim quote check (whitespace-normalised) against the item text; a
    paraphrase is `DecisionNotInSource` and is dropped.
 5. Minutes-approval decisions are discarded and counted.
@@ -39,6 +41,16 @@ fails the meeting closed. Any other extra key is still a schema failure.
    guessed.
 
 Decision IDs are `<meeting_id>/dNN` in order of appearance.
+
+## Manual corrections
+
+`override.json` (this directory) holds hand-curated corrections marked
+`"source_method": "manual"` and `"overridden": true`. They are applied after
+validation and after decision IDs are assigned, so dropping one decision never
+renumbers the rest. A correction may replace an item's topics or drop
+decisions by ID; targeting an item or decision the meeting does not contain
+fails closed. Overrides are committed source of truth and are removed when the
+prompt is fixed and re-extraction reproduces the corrected values.
 
 ## Cache
 
@@ -87,4 +99,5 @@ window ends at `--to render_spc_minutes`.
 
 `ExtractionFailed`, `MissingItem`, `UnexpectedItem`, `UnknownCofogCode`,
 `DuplicateCofogCode`, `UnknownSubdomain`, `SubdomainWithoutTransport`,
-`UnknownDecisionType`, `DecisionNotInSource`, `UnresolvedDecisionPerson`.
+`ProceduralNotProceduralCode`, `UnknownDecisionType`, `DecisionNotInSource`,
+`UnresolvedDecisionPerson`, `UnappliedOverride`.

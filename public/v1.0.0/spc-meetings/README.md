@@ -23,7 +23,7 @@ Each table is published as JSON-LD and CSV with CSVW metadata.
 - People: 28
 - Attendance rows: 98
 - Items: 46
-- Decisions: 18
+- Decisions: 17
 
 ## Sources
 

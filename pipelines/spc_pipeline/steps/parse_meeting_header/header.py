@@ -402,6 +402,13 @@ def _strip_title(name: str) -> tuple[str, str | None]:
     return name.strip(), None
 
 
+def _append_fragment(raw: str, text: str) -> str:
+    """Append a printed fragment to the text kept for the verbatim minutes."""
+    raw = raw.rstrip()
+    separator = " " if raw.endswith((",", ";", "&", "-", "–", "/")) else ", "
+    return f"{raw}{separator}{text}".strip()
+
+
 def parse_entries(words: list[dict], category: str) -> tuple[list[dict], int]:
     """Parse one attendance block's value words into entries.
 
@@ -431,6 +438,7 @@ def parse_entries(words: list[dict], category: str) -> tuple[list[dict], int]:
                 existing = entries[-1]["role"]
                 separator = " " if existing.rstrip().endswith(("&", "-", "–", "/")) else ", "
                 entries[-1]["role"] = (existing + (separator if existing else "") + text).strip(", ")
+                entries[-1]["raw"] = _append_fragment(entries[-1]["raw"], text)
             else:
                 pending_role = (pending_role + ", " + text).strip(", ")
             continue
@@ -440,6 +448,9 @@ def parse_entries(words: list[dict], category: str) -> tuple[list[dict], int]:
         if not name:
             ignored += 1
             continue
+        printed = fragment.strip()
+        if pending_role:
+            printed = f"{pending_role}, {printed}"
         entries.append({
             "category": category,
             "printed_name": name,
@@ -447,7 +458,7 @@ def parse_entries(words: list[dict], category: str) -> tuple[list[dict], int]:
             "initials": initials,
             "role": (pending_role + (", " if pending_role and role else "") + role).strip(", "),
             "markers": markers + pending_markers,
-            "raw": fragment.strip(),
+            "raw": printed,
         })
         pending_markers = []
         pending_role = ""

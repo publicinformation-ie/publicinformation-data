@@ -6,8 +6,10 @@ import pytest
 from steps.extract_spc_items.extraction import (
     DECISION_TYPES,
     ExtractionFailed,
+    apply_overrides,
     build_prompt,
     extract_meeting,
+    load_overrides,
     load_taxonomy,
     run,
     validate_response,
@@ -150,6 +152,88 @@ def test_subdomain_without_a_transport_code_is_an_error():
     assert "SubdomainWithoutTransport" in [e["error_type"] for e in errors]
     item = next(t for t in result["item_topics"] if t["number"] == "2.0")
     assert item["withheld"] is True
+
+
+def test_a_procedural_item_must_use_the_procedural_code():
+    result, errors = validate_response(
+        _meeting(), _response(topics={"cofog": ["04.5.1"],
+                                      "subdomains": ["infra/regional-local-roads"],
+                                      "procedural": True}),
+        COFOG, SUBDOMAINS, REGISTER)
+    assert [e["error_type"] for e in errors] == ["ProceduralNotProceduralCode"]
+    item = next(t for t in result["item_topics"] if t["number"] == "2.0")
+    assert item["withheld"] is True and item["cofog"] is None
+
+
+def test_a_procedural_item_with_01_1_1_is_accepted():
+    result, errors = validate_response(
+        _meeting(), _response(topics={"cofog": ["01.1.1"], "subdomains": [],
+                                      "procedural": True}),
+        COFOG, SUBDOMAINS, REGISTER)
+    assert errors == []
+    item = next(t for t in result["item_topics"] if t["number"] == "2.0")
+    assert item["procedural"] is True and item["cofog"] == ["01.1.1"]
+
+
+def _manual(**fields):
+    return {"source_method": "manual", "overridden": True, **fields}
+
+
+def test_a_manual_topic_override_replaces_a_withheld_model_topic():
+    result, _ = validate_response(
+        _meeting(), _response(topics={"cofog": ["04.5.1"],
+                                      "subdomains": ["infra/regional-local-roads"],
+                                      "procedural": True}),
+        COFOG, SUBDOMAINS, REGISTER)
+    assert next(t for t in result["item_topics"] if t["item_key"] == "item-2-0")["withheld"]
+    apply_overrides(result, [_manual(
+        meeting_id=result["meeting_id"],
+        item_topics=[{"item_key": "item-2-0", "cofog": ["01.1.1"],
+                      "subdomains": [], "procedural": True}],
+    )], COFOG, SUBDOMAINS)
+    topic = next(t for t in result["item_topics"] if t["item_key"] == "item-2-0")
+    assert topic == {"item_key": "item-2-0", "number": "2.0",
+                     "cofog": ["01.1.1"], "subdomains": [],
+                     "procedural": True, "withheld": False}
+
+
+def test_a_manual_decision_drop_keeps_the_other_decision_ids():
+    result = {"meeting_id": "meath/test/2026-01-01", "item_topics": [],
+              "decisions": [{"decision_id": "meath/test/2026-01-01/d01"},
+                            {"decision_id": "meath/test/2026-01-01/d02"}]}
+    apply_overrides(result, [_manual(
+        meeting_id="meath/test/2026-01-01",
+        drop_decisions=["meath/test/2026-01-01/d01"],
+    )], COFOG, SUBDOMAINS)
+    assert [d["decision_id"] for d in result["decisions"]] == [
+        "meath/test/2026-01-01/d02"]
+
+
+def test_an_override_for_an_unknown_item_fails_closed():
+    with pytest.raises(ExtractionFailed, match="item-9-9"):
+        apply_overrides(
+            {"meeting_id": "meath/test/2026-01-01", "item_topics": [],
+             "decisions": []},
+            [_manual(meeting_id="meath/test/2026-01-01",
+                     item_topics=[{"item_key": "item-9-9", "cofog": ["01.1.1"],
+                                   "subdomains": [], "procedural": True}])],
+            COFOG, SUBDOMAINS)
+
+
+def test_load_overrides_rejects_a_non_manual_entry(tmp_path):
+    path = tmp_path / "override.json"
+    path.write_text('[{"meeting_id": "meath/test/2026-01-01"}]')
+    with pytest.raises(ValueError, match="manual"):
+        load_overrides(path)
+
+
+def test_the_committed_override_file_loads():
+    overrides = load_overrides(PIPELINE / "steps/extract_spc_items/override.json")
+    assert overrides
+    assert {entry["meeting_id"] for entry in overrides} == {
+        "meath/transportation-urban-regeneration/2025-05-27",
+        "meath/transportation-urban-regeneration/2025-11-20",
+    }
 
 
 def test_paraphrased_decision_is_dropped():
