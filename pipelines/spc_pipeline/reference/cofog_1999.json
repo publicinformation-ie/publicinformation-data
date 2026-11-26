@@ -1,0 +1,1326 @@
+{
+  "metadata": {
+    "source_url": "https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/COFOG_english_structure.txt",
+    "retrieved_date": "2026-11-26",
+    "sha256": "5368887bb253a1819bfefc6a9eedc74cb76f50c6a7c35133d2420b1d4a3b39b5",
+    "byte_size": 8159
+  },
+  "codes": [
+    {
+      "code": "01",
+      "level": "division",
+      "description": "General public services",
+      "marker": null,
+      "parent": null
+    },
+    {
+      "code": "01.1",
+      "level": "group",
+      "description": "Executive and legislative organs, financial and fiscal affairs, external affairs",
+      "marker": null,
+      "parent": "01"
+    },
+    {
+      "code": "01.1.1",
+      "level": "class",
+      "description": "Executive and legislative organs",
+      "marker": "CS",
+      "parent": "01.1"
+    },
+    {
+      "code": "01.1.2",
+      "level": "class",
+      "description": "Financial and fiscal affairs",
+      "marker": "CS",
+      "parent": "01.1"
+    },
+    {
+      "code": "01.1.3",
+      "level": "class",
+      "description": "External affairs",
+      "marker": "CS",
+      "parent": "01.1"
+    },
+    {
+      "code": "01.2",
+      "level": "group",
+      "description": "Foreign economic aid",
+      "marker": null,
+      "parent": "01"
+    },
+    {
+      "code": "01.2.1",
+      "level": "class",
+      "description": "Economic aid to developing countries and countries in transition",
+      "marker": "CS",
+      "parent": "01.2"
+    },
+    {
+      "code": "01.2.2",
+      "level": "class",
+      "description": "Economic aid routed through international organizations",
+      "marker": "CS",
+      "parent": "01.2"
+    },
+    {
+      "code": "01.3",
+      "level": "group",
+      "description": "General services",
+      "marker": null,
+      "parent": "01"
+    },
+    {
+      "code": "01.3.1",
+      "level": "class",
+      "description": "General personnel services",
+      "marker": "CS",
+      "parent": "01.3"
+    },
+    {
+      "code": "01.3.2",
+      "level": "class",
+      "description": "Overall planning and statistical services",
+      "marker": "CS",
+      "parent": "01.3"
+    },
+    {
+      "code": "01.3.3",
+      "level": "class",
+      "description": "Other general services",
+      "marker": "CS",
+      "parent": "01.3"
+    },
+    {
+      "code": "01.4",
+      "level": "group",
+      "description": "Basic research",
+      "marker": null,
+      "parent": "01"
+    },
+    {
+      "code": "01.4.0",
+      "level": "class",
+      "description": "Basic research",
+      "marker": "CS",
+      "parent": "01.4"
+    },
+    {
+      "code": "01.5",
+      "level": "group",
+      "description": "R&D General public services",
+      "marker": null,
+      "parent": "01"
+    },
+    {
+      "code": "01.5.0",
+      "level": "class",
+      "description": "R&D General public services",
+      "marker": "CS",
+      "parent": "01.5"
+    },
+    {
+      "code": "01.6",
+      "level": "group",
+      "description": "General public services n.e.c.",
+      "marker": null,
+      "parent": "01"
+    },
+    {
+      "code": "01.6.0",
+      "level": "class",
+      "description": "General public services n.e.c.",
+      "marker": "CS",
+      "parent": "01.6"
+    },
+    {
+      "code": "01.7",
+      "level": "group",
+      "description": "Public debt transactions",
+      "marker": null,
+      "parent": "01"
+    },
+    {
+      "code": "01.7.0",
+      "level": "class",
+      "description": "Public debt transactions",
+      "marker": "CS",
+      "parent": "01.7"
+    },
+    {
+      "code": "01.8",
+      "level": "group",
+      "description": "Transfers of a general character between different levels of government",
+      "marker": null,
+      "parent": "01"
+    },
+    {
+      "code": "01.8.0",
+      "level": "class",
+      "description": "Transfers of a general character between different levels of government",
+      "marker": "CS",
+      "parent": "01.8"
+    },
+    {
+      "code": "02",
+      "level": "division",
+      "description": "Defence",
+      "marker": null,
+      "parent": null
+    },
+    {
+      "code": "02.1",
+      "level": "group",
+      "description": "Military defence",
+      "marker": null,
+      "parent": "02"
+    },
+    {
+      "code": "02.1.0",
+      "level": "class",
+      "description": "Military defence",
+      "marker": "CS",
+      "parent": "02.1"
+    },
+    {
+      "code": "02.2",
+      "level": "group",
+      "description": "Civil defence",
+      "marker": null,
+      "parent": "02"
+    },
+    {
+      "code": "02.2.0",
+      "level": "class",
+      "description": "Civil defence",
+      "marker": "CS",
+      "parent": "02.2"
+    },
+    {
+      "code": "02.3",
+      "level": "group",
+      "description": "Foreign military aid",
+      "marker": null,
+      "parent": "02"
+    },
+    {
+      "code": "02.3.0",
+      "level": "class",
+      "description": "Foreign military aid",
+      "marker": "CS",
+      "parent": "02.3"
+    },
+    {
+      "code": "02.4",
+      "level": "group",
+      "description": "R&D Defence",
+      "marker": null,
+      "parent": "02"
+    },
+    {
+      "code": "02.4.0",
+      "level": "class",
+      "description": "R&D Defence",
+      "marker": "CS",
+      "parent": "02.4"
+    },
+    {
+      "code": "02.5",
+      "level": "group",
+      "description": "Defence n.e.c.",
+      "marker": null,
+      "parent": "02"
+    },
+    {
+      "code": "02.5.0",
+      "level": "class",
+      "description": "Defence n.e.c.",
+      "marker": "CS",
+      "parent": "02.5"
+    },
+    {
+      "code": "03",
+      "level": "division",
+      "description": "Public order and safety",
+      "marker": null,
+      "parent": null
+    },
+    {
+      "code": "03.1",
+      "level": "group",
+      "description": "Police services",
+      "marker": null,
+      "parent": "03"
+    },
+    {
+      "code": "03.1.0",
+      "level": "class",
+      "description": "Police services",
+      "marker": "CS",
+      "parent": "03.1"
+    },
+    {
+      "code": "03.2",
+      "level": "group",
+      "description": "Fire-protection services",
+      "marker": null,
+      "parent": "03"
+    },
+    {
+      "code": "03.2.0",
+      "level": "class",
+      "description": "Fire-protection services",
+      "marker": "CS",
+      "parent": "03.2"
+    },
+    {
+      "code": "03.3",
+      "level": "group",
+      "description": "Law courts",
+      "marker": null,
+      "parent": "03"
+    },
+    {
+      "code": "03.3.0",
+      "level": "class",
+      "description": "Law courts",
+      "marker": "CS",
+      "parent": "03.3"
+    },
+    {
+      "code": "03.4",
+      "level": "group",
+      "description": "Prisons",
+      "marker": null,
+      "parent": "03"
+    },
+    {
+      "code": "03.4.0",
+      "level": "class",
+      "description": "Prisons",
+      "marker": "CS",
+      "parent": "03.4"
+    },
+    {
+      "code": "03.5",
+      "level": "group",
+      "description": "R&D Public order and safety",
+      "marker": null,
+      "parent": "03"
+    },
+    {
+      "code": "03.5.0",
+      "level": "class",
+      "description": "R&D Public order and safety",
+      "marker": "CS",
+      "parent": "03.5"
+    },
+    {
+      "code": "03.6",
+      "level": "group",
+      "description": "Public order and safety n.e.c.",
+      "marker": null,
+      "parent": "03"
+    },
+    {
+      "code": "03.6.0",
+      "level": "class",
+      "description": "Public order and safety n.e.c.",
+      "marker": "CS",
+      "parent": "03.6"
+    },
+    {
+      "code": "04",
+      "level": "division",
+      "description": "Economic affairs",
+      "marker": null,
+      "parent": null
+    },
+    {
+      "code": "04.1",
+      "level": "group",
+      "description": "General economic, commercial and labour affairs",
+      "marker": null,
+      "parent": "04"
+    },
+    {
+      "code": "04.1.1",
+      "level": "class",
+      "description": "General economic and commercial affairs",
+      "marker": "CS",
+      "parent": "04.1"
+    },
+    {
+      "code": "04.1.2",
+      "level": "class",
+      "description": "General labour affairs",
+      "marker": "CS",
+      "parent": "04.1"
+    },
+    {
+      "code": "04.2",
+      "level": "group",
+      "description": "Agriculture, forestry, fishing and hunting",
+      "marker": null,
+      "parent": "04"
+    },
+    {
+      "code": "04.2.1",
+      "level": "class",
+      "description": "Agriculture",
+      "marker": "CS",
+      "parent": "04.2"
+    },
+    {
+      "code": "04.2.2",
+      "level": "class",
+      "description": "Forestry",
+      "marker": "CS",
+      "parent": "04.2"
+    },
+    {
+      "code": "04.2.3",
+      "level": "class",
+      "description": "Fishing and hunting",
+      "marker": "CS",
+      "parent": "04.2"
+    },
+    {
+      "code": "04.3",
+      "level": "group",
+      "description": "Fuel and energy",
+      "marker": null,
+      "parent": "04"
+    },
+    {
+      "code": "04.3.1",
+      "level": "class",
+      "description": "Coal and other solid mineral fuels",
+      "marker": "CS",
+      "parent": "04.3"
+    },
+    {
+      "code": "04.3.2",
+      "level": "class",
+      "description": "Petroleum and natural gas",
+      "marker": "CS",
+      "parent": "04.3"
+    },
+    {
+      "code": "04.3.3",
+      "level": "class",
+      "description": "Nuclear fuel",
+      "marker": "CS",
+      "parent": "04.3"
+    },
+    {
+      "code": "04.3.4",
+      "level": "class",
+      "description": "Other fuels",
+      "marker": "CS",
+      "parent": "04.3"
+    },
+    {
+      "code": "04.3.5",
+      "level": "class",
+      "description": "Electricity",
+      "marker": "CS",
+      "parent": "04.3"
+    },
+    {
+      "code": "04.3.6",
+      "level": "class",
+      "description": "Non-electric energy",
+      "marker": "CS",
+      "parent": "04.3"
+    },
+    {
+      "code": "04.4",
+      "level": "group",
+      "description": "Mining, manufacturing and construction",
+      "marker": null,
+      "parent": "04"
+    },
+    {
+      "code": "04.4.1",
+      "level": "class",
+      "description": "Mining of mineral resources other than mineral fuels",
+      "marker": "CS",
+      "parent": "04.4"
+    },
+    {
+      "code": "04.4.2",
+      "level": "class",
+      "description": "Manufacturing",
+      "marker": "CS",
+      "parent": "04.4"
+    },
+    {
+      "code": "04.4.3",
+      "level": "class",
+      "description": "Construction",
+      "marker": "CS",
+      "parent": "04.4"
+    },
+    {
+      "code": "04.5",
+      "level": "group",
+      "description": "Transport",
+      "marker": null,
+      "parent": "04"
+    },
+    {
+      "code": "04.5.1",
+      "level": "class",
+      "description": "Road transport",
+      "marker": "CS",
+      "parent": "04.5"
+    },
+    {
+      "code": "04.5.2",
+      "level": "class",
+      "description": "Water transport",
+      "marker": "CS",
+      "parent": "04.5"
+    },
+    {
+      "code": "04.5.3",
+      "level": "class",
+      "description": "Railway transport",
+      "marker": "CS",
+      "parent": "04.5"
+    },
+    {
+      "code": "04.5.4",
+      "level": "class",
+      "description": "Air transport",
+      "marker": "CS",
+      "parent": "04.5"
+    },
+    {
+      "code": "04.5.5",
+      "level": "class",
+      "description": "Pipeline and other transport",
+      "marker": "CS",
+      "parent": "04.5"
+    },
+    {
+      "code": "04.6",
+      "level": "group",
+      "description": "Communication",
+      "marker": null,
+      "parent": "04"
+    },
+    {
+      "code": "04.6.0",
+      "level": "class",
+      "description": "Communication",
+      "marker": "CS",
+      "parent": "04.6"
+    },
+    {
+      "code": "04.7",
+      "level": "group",
+      "description": "Other industries",
+      "marker": null,
+      "parent": "04"
+    },
+    {
+      "code": "04.7.1",
+      "level": "class",
+      "description": "Distributive trades, storage and warehousing",
+      "marker": "CS",
+      "parent": "04.7"
+    },
+    {
+      "code": "04.7.2",
+      "level": "class",
+      "description": "Hotels and restaurants",
+      "marker": "CS",
+      "parent": "04.7"
+    },
+    {
+      "code": "04.7.3",
+      "level": "class",
+      "description": "Tourism",
+      "marker": "CS",
+      "parent": "04.7"
+    },
+    {
+      "code": "04.7.4",
+      "level": "class",
+      "description": "Multi-purpose development projects",
+      "marker": "CS",
+      "parent": "04.7"
+    },
+    {
+      "code": "04.8",
+      "level": "group",
+      "description": "R&D Economic affairs",
+      "marker": null,
+      "parent": "04"
+    },
+    {
+      "code": "04.8.1",
+      "level": "class",
+      "description": "R&D General economic, commercial and labour affairs",
+      "marker": "CS",
+      "parent": "04.8"
+    },
+    {
+      "code": "04.8.2",
+      "level": "class",
+      "description": "R&D Agriculture, forestry, fishing and hunting",
+      "marker": "CS",
+      "parent": "04.8"
+    },
+    {
+      "code": "04.8.3",
+      "level": "class",
+      "description": "R&D Fuel and energy",
+      "marker": "CS",
+      "parent": "04.8"
+    },
+    {
+      "code": "04.8.4",
+      "level": "class",
+      "description": "R&D Mining, manufacturing and construction",
+      "marker": "CS",
+      "parent": "04.8"
+    },
+    {
+      "code": "04.8.5",
+      "level": "class",
+      "description": "R&D Transport",
+      "marker": "CS",
+      "parent": "04.8"
+    },
+    {
+      "code": "04.8.6",
+      "level": "class",
+      "description": "R&D Communication",
+      "marker": "CS",
+      "parent": "04.8"
+    },
+    {
+      "code": "04.8.7",
+      "level": "class",
+      "description": "R&D Other industries",
+      "marker": "CS",
+      "parent": "04.8"
+    },
+    {
+      "code": "04.9",
+      "level": "group",
+      "description": "Economic affairs n.e.c.",
+      "marker": null,
+      "parent": "04"
+    },
+    {
+      "code": "04.9.0",
+      "level": "class",
+      "description": "Economic affairs n.e.c.",
+      "marker": "CS",
+      "parent": "04.9"
+    },
+    {
+      "code": "05",
+      "level": "division",
+      "description": "Environmental protection",
+      "marker": null,
+      "parent": null
+    },
+    {
+      "code": "05.1",
+      "level": "group",
+      "description": "Waste management",
+      "marker": null,
+      "parent": "05"
+    },
+    {
+      "code": "05.1.0",
+      "level": "class",
+      "description": "Waste management",
+      "marker": "CS",
+      "parent": "05.1"
+    },
+    {
+      "code": "05.2",
+      "level": "group",
+      "description": "Waste water management",
+      "marker": null,
+      "parent": "05"
+    },
+    {
+      "code": "05.2.0",
+      "level": "class",
+      "description": "Waste water management",
+      "marker": "CS",
+      "parent": "05.2"
+    },
+    {
+      "code": "05.3",
+      "level": "group",
+      "description": "Pollution abatement",
+      "marker": null,
+      "parent": "05"
+    },
+    {
+      "code": "05.3.0",
+      "level": "class",
+      "description": "Pollution abatement",
+      "marker": "CS",
+      "parent": "05.3"
+    },
+    {
+      "code": "05.4",
+      "level": "group",
+      "description": "Protection of biodiversity and landscape",
+      "marker": null,
+      "parent": "05"
+    },
+    {
+      "code": "05.4.0",
+      "level": "class",
+      "description": "Protection of biodiversity and landscape",
+      "marker": "CS",
+      "parent": "05.4"
+    },
+    {
+      "code": "05.5",
+      "level": "group",
+      "description": "R&D Environmental protection",
+      "marker": null,
+      "parent": "05"
+    },
+    {
+      "code": "05.5.0",
+      "level": "class",
+      "description": "R&D Environmental protection",
+      "marker": "CS",
+      "parent": "05.5"
+    },
+    {
+      "code": "05.6",
+      "level": "group",
+      "description": "Environmental protection n.e.c.",
+      "marker": null,
+      "parent": "05"
+    },
+    {
+      "code": "05.6.0",
+      "level": "class",
+      "description": "Environmental protection n.e.c.",
+      "marker": "CS",
+      "parent": "05.6"
+    },
+    {
+      "code": "06",
+      "level": "division",
+      "description": "Housing and community amenities",
+      "marker": null,
+      "parent": null
+    },
+    {
+      "code": "06.1",
+      "level": "group",
+      "description": "Housing development",
+      "marker": null,
+      "parent": "06"
+    },
+    {
+      "code": "06.1.0",
+      "level": "class",
+      "description": "Housing development",
+      "marker": "CS",
+      "parent": "06.1"
+    },
+    {
+      "code": "06.2",
+      "level": "group",
+      "description": "Community development",
+      "marker": null,
+      "parent": "06"
+    },
+    {
+      "code": "06.2.0",
+      "level": "class",
+      "description": "Community development",
+      "marker": "CS",
+      "parent": "06.2"
+    },
+    {
+      "code": "06.3",
+      "level": "group",
+      "description": "Water supply",
+      "marker": null,
+      "parent": "06"
+    },
+    {
+      "code": "06.3.0",
+      "level": "class",
+      "description": "Water supply",
+      "marker": "CS",
+      "parent": "06.3"
+    },
+    {
+      "code": "06.4",
+      "level": "group",
+      "description": "Street lighting",
+      "marker": null,
+      "parent": "06"
+    },
+    {
+      "code": "06.4.0",
+      "level": "class",
+      "description": "Street lighting",
+      "marker": "CS",
+      "parent": "06.4"
+    },
+    {
+      "code": "06.5",
+      "level": "group",
+      "description": "R&D Housing and community amenities",
+      "marker": null,
+      "parent": "06"
+    },
+    {
+      "code": "06.5.0",
+      "level": "class",
+      "description": "R&D Housing and community amenities",
+      "marker": "CS",
+      "parent": "06.5"
+    },
+    {
+      "code": "06.6",
+      "level": "group",
+      "description": "Housing and community amenities n.e.c.",
+      "marker": null,
+      "parent": "06"
+    },
+    {
+      "code": "06.6.0",
+      "level": "class",
+      "description": "Housing and community amenities n.e.c.",
+      "marker": "CS",
+      "parent": "06.6"
+    },
+    {
+      "code": "07",
+      "level": "division",
+      "description": "Health",
+      "marker": null,
+      "parent": null
+    },
+    {
+      "code": "07.1",
+      "level": "group",
+      "description": "Medical products, appliances and equipment",
+      "marker": null,
+      "parent": "07"
+    },
+    {
+      "code": "07.1.1",
+      "level": "class",
+      "description": "Pharmaceutical products",
+      "marker": "IS",
+      "parent": "07.1"
+    },
+    {
+      "code": "07.1.2",
+      "level": "class",
+      "description": "Other medical products",
+      "marker": "IS",
+      "parent": "07.1"
+    },
+    {
+      "code": "07.1.3",
+      "level": "class",
+      "description": "Therapeutic appliances and equipment",
+      "marker": "IS",
+      "parent": "07.1"
+    },
+    {
+      "code": "07.2",
+      "level": "group",
+      "description": "Outpatient services",
+      "marker": null,
+      "parent": "07"
+    },
+    {
+      "code": "07.2.1",
+      "level": "class",
+      "description": "General medical services",
+      "marker": "IS",
+      "parent": "07.2"
+    },
+    {
+      "code": "07.2.2",
+      "level": "class",
+      "description": "Specialized medical services",
+      "marker": "IS",
+      "parent": "07.2"
+    },
+    {
+      "code": "07.2.3",
+      "level": "class",
+      "description": "Dental services",
+      "marker": "IS",
+      "parent": "07.2"
+    },
+    {
+      "code": "07.2.4",
+      "level": "class",
+      "description": "Paramedical services",
+      "marker": "IS",
+      "parent": "07.2"
+    },
+    {
+      "code": "07.3",
+      "level": "group",
+      "description": "Hospital services",
+      "marker": null,
+      "parent": "07"
+    },
+    {
+      "code": "07.3.1",
+      "level": "class",
+      "description": "General hospital services",
+      "marker": "IS",
+      "parent": "07.3"
+    },
+    {
+      "code": "07.3.2",
+      "level": "class",
+      "description": "Specialized hospital services",
+      "marker": "IS",
+      "parent": "07.3"
+    },
+    {
+      "code": "07.3.3",
+      "level": "class",
+      "description": "Medical and maternity centre services",
+      "marker": "IS",
+      "parent": "07.3"
+    },
+    {
+      "code": "07.3.4",
+      "level": "class",
+      "description": "Nursing and convalescent home services",
+      "marker": "IS",
+      "parent": "07.3"
+    },
+    {
+      "code": "07.4",
+      "level": "group",
+      "description": "Public health services",
+      "marker": null,
+      "parent": "07"
+    },
+    {
+      "code": "07.4.0",
+      "level": "class",
+      "description": "Public health services",
+      "marker": "IS",
+      "parent": "07.4"
+    },
+    {
+      "code": "07.5",
+      "level": "group",
+      "description": "R&D Health",
+      "marker": null,
+      "parent": "07"
+    },
+    {
+      "code": "07.5.0",
+      "level": "class",
+      "description": "R&D Health",
+      "marker": "CS",
+      "parent": "07.5"
+    },
+    {
+      "code": "07.6",
+      "level": "group",
+      "description": "Health n.e.c.",
+      "marker": null,
+      "parent": "07"
+    },
+    {
+      "code": "07.6.0",
+      "level": "class",
+      "description": "Health n.e.c.",
+      "marker": "CS",
+      "parent": "07.6"
+    },
+    {
+      "code": "08",
+      "level": "division",
+      "description": "Recreation, culture and religion",
+      "marker": null,
+      "parent": null
+    },
+    {
+      "code": "08.1",
+      "level": "group",
+      "description": "Recreational and sporting services",
+      "marker": null,
+      "parent": "08"
+    },
+    {
+      "code": "08.1.0",
+      "level": "class",
+      "description": "Recreational and sporting services",
+      "marker": "IS",
+      "parent": "08.1"
+    },
+    {
+      "code": "08.2",
+      "level": "group",
+      "description": "Cultural services",
+      "marker": null,
+      "parent": "08"
+    },
+    {
+      "code": "08.2.0",
+      "level": "class",
+      "description": "Cultural services",
+      "marker": "IS",
+      "parent": "08.2"
+    },
+    {
+      "code": "08.3",
+      "level": "group",
+      "description": "Broadcasting and publishing services",
+      "marker": null,
+      "parent": "08"
+    },
+    {
+      "code": "08.3.0",
+      "level": "class",
+      "description": "Broadcasting and publishing services",
+      "marker": "CS",
+      "parent": "08.3"
+    },
+    {
+      "code": "08.4",
+      "level": "group",
+      "description": "Religious and other community services",
+      "marker": null,
+      "parent": "08"
+    },
+    {
+      "code": "08.4.0",
+      "level": "class",
+      "description": "Religious and other community services",
+      "marker": "CS",
+      "parent": "08.4"
+    },
+    {
+      "code": "08.5",
+      "level": "group",
+      "description": "R&D Recreation, culture and religion",
+      "marker": null,
+      "parent": "08"
+    },
+    {
+      "code": "08.5.0",
+      "level": "class",
+      "description": "R&D Recreation, culture and religion",
+      "marker": "CS",
+      "parent": "08.5"
+    },
+    {
+      "code": "08.6",
+      "level": "group",
+      "description": "Recreation, culture and religion n.e.c.",
+      "marker": null,
+      "parent": "08"
+    },
+    {
+      "code": "08.6.0",
+      "level": "class",
+      "description": "Recreation, culture and religion n.e.c.",
+      "marker": "CS",
+      "parent": "08.6"
+    },
+    {
+      "code": "09",
+      "level": "division",
+      "description": "Education",
+      "marker": null,
+      "parent": null
+    },
+    {
+      "code": "09.1",
+      "level": "group",
+      "description": "Pre-primary and primary education",
+      "marker": null,
+      "parent": "09"
+    },
+    {
+      "code": "09.1.1",
+      "level": "class",
+      "description": "Pre-primary education",
+      "marker": "IS",
+      "parent": "09.1"
+    },
+    {
+      "code": "09.1.2",
+      "level": "class",
+      "description": "Primary education",
+      "marker": "IS",
+      "parent": "09.1"
+    },
+    {
+      "code": "09.2",
+      "level": "group",
+      "description": "Secondary education",
+      "marker": null,
+      "parent": "09"
+    },
+    {
+      "code": "09.2.1",
+      "level": "class",
+      "description": "Lower-secondary education",
+      "marker": "IS",
+      "parent": "09.2"
+    },
+    {
+      "code": "09.2.2",
+      "level": "class",
+      "description": "Upper-secondary education",
+      "marker": "IS",
+      "parent": "09.2"
+    },
+    {
+      "code": "09.3",
+      "level": "group",
+      "description": "Post-secondary non-tertiary education",
+      "marker": null,
+      "parent": "09"
+    },
+    {
+      "code": "09.3.0",
+      "level": "class",
+      "description": "Post-secondary non-tertiary education",
+      "marker": "IS",
+      "parent": "09.3"
+    },
+    {
+      "code": "09.4",
+      "level": "group",
+      "description": "Tertiary education",
+      "marker": null,
+      "parent": "09"
+    },
+    {
+      "code": "09.4.1",
+      "level": "class",
+      "description": "First stage of tertiary education",
+      "marker": "IS",
+      "parent": "09.4"
+    },
+    {
+      "code": "09.4.2",
+      "level": "class",
+      "description": "Second stage of tertiary education",
+      "marker": "IS",
+      "parent": "09.4"
+    },
+    {
+      "code": "09.5",
+      "level": "group",
+      "description": "Education not definable by level",
+      "marker": null,
+      "parent": "09"
+    },
+    {
+      "code": "09.5.0",
+      "level": "class",
+      "description": "Education not definable by level",
+      "marker": "IS",
+      "parent": "09.5"
+    },
+    {
+      "code": "09.6",
+      "level": "group",
+      "description": "Subsidiary services to education",
+      "marker": null,
+      "parent": "09"
+    },
+    {
+      "code": "09.6.0",
+      "level": "class",
+      "description": "Subsidiary services to education",
+      "marker": "IS",
+      "parent": "09.6"
+    },
+    {
+      "code": "09.7",
+      "level": "group",
+      "description": "R&D Education",
+      "marker": null,
+      "parent": "09"
+    },
+    {
+      "code": "09.7.0",
+      "level": "class",
+      "description": "R&D Education",
+      "marker": "CS",
+      "parent": "09.7"
+    },
+    {
+      "code": "09.8",
+      "level": "group",
+      "description": "Education n.e.c.",
+      "marker": null,
+      "parent": "09"
+    },
+    {
+      "code": "09.8.0",
+      "level": "class",
+      "description": "Education n.e.c.",
+      "marker": "CS",
+      "parent": "09.8"
+    },
+    {
+      "code": "10",
+      "level": "division",
+      "description": "Social protection",
+      "marker": null,
+      "parent": null
+    },
+    {
+      "code": "10.1",
+      "level": "group",
+      "description": "Sickness and disability",
+      "marker": null,
+      "parent": "10"
+    },
+    {
+      "code": "10.1.1",
+      "level": "class",
+      "description": "Sickness",
+      "marker": "IS",
+      "parent": "10.1"
+    },
+    {
+      "code": "10.1.2",
+      "level": "class",
+      "description": "Disability",
+      "marker": "IS",
+      "parent": "10.1"
+    },
+    {
+      "code": "10.2",
+      "level": "group",
+      "description": "Old age",
+      "marker": null,
+      "parent": "10"
+    },
+    {
+      "code": "10.2.0",
+      "level": "class",
+      "description": "Old age",
+      "marker": "IS",
+      "parent": "10.2"
+    },
+    {
+      "code": "10.3",
+      "level": "group",
+      "description": "Survivors",
+      "marker": null,
+      "parent": "10"
+    },
+    {
+      "code": "10.3.0",
+      "level": "class",
+      "description": "Survivors",
+      "marker": "IS",
+      "parent": "10.3"
+    },
+    {
+      "code": "10.4",
+      "level": "group",
+      "description": "Family and children",
+      "marker": null,
+      "parent": "10"
+    },
+    {
+      "code": "10.4.0",
+      "level": "class",
+      "description": "Family and children",
+      "marker": "IS",
+      "parent": "10.4"
+    },
+    {
+      "code": "10.5",
+      "level": "group",
+      "description": "Unemployment",
+      "marker": null,
+      "parent": "10"
+    },
+    {
+      "code": "10.5.0",
+      "level": "class",
+      "description": "Unemployment",
+      "marker": "IS",
+      "parent": "10.5"
+    },
+    {
+      "code": "10.6",
+      "level": "group",
+      "description": "Housing",
+      "marker": null,
+      "parent": "10"
+    },
+    {
+      "code": "10.6.0",
+      "level": "class",
+      "description": "Housing",
+      "marker": "IS",
+      "parent": "10.6"
+    },
+    {
+      "code": "10.7",
+      "level": "group",
+      "description": "Social exclusion n.e.c.",
+      "marker": null,
+      "parent": "10"
+    },
+    {
+      "code": "10.7.0",
+      "level": "class",
+      "description": "Social exclusion n.e.c.",
+      "marker": "IS",
+      "parent": "10.7"
+    },
+    {
+      "code": "10.8",
+      "level": "group",
+      "description": "R&D Social protection",
+      "marker": null,
+      "parent": "10"
+    },
+    {
+      "code": "10.8.0",
+      "level": "class",
+      "description": "R&D Social protection",
+      "marker": "CS",
+      "parent": "10.8"
+    },
+    {
+      "code": "10.9",
+      "level": "group",
+      "description": "Social protection n.e.c.",
+      "marker": null,
+      "parent": "10"
+    },
+    {
+      "code": "10.9.0",
+      "level": "class",
+      "description": "Social protection n.e.c.",
+      "marker": "CS",
+      "parent": "10.9"
+    }
+  ]
+}

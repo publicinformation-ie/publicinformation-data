@@ -1,0 +1,5 @@
+{
+  "opencode-go/deepseek-v4.1-flash": {"input": 0.15, "output": 0.60},
+  "opencode-go/glm-5.3-flash": {"input": 0.15, "output": 0.50},
+  "opencode-go/gpt-6-luna": {"input": 0.10, "output": 0.50}
+}

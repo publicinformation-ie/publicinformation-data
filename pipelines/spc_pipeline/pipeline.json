@@ -1,0 +1,18 @@
+{
+  "steps": [
+    "/pipelines/minutes_pipeline/steps/find_local_authorities",
+    "find_spc_minutes_files",
+    "fetch_spc_minutes",
+    "parse_meeting_header",
+    "resolve_attendees",
+    "render_spc_minutes",
+    "extract_spc_items",
+    "export_spc_meetings"
+  ],
+  "body_list_step": "/pipelines/minutes_pipeline/steps/find_local_authorities",
+  "paid_steps": {
+    "extract_spc_items": [
+      "llm"
+    ]
+  }
+}

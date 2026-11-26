@@ -178,6 +178,21 @@ Paid steps: `find_foi_pages_search` (apify), `find_disclosure_pages` (apify), `t
 
 Paid steps: `find_meeting_minutes_pages_search` (apify), `extract_motions` (llm).
 
+### `spc_pipeline` (8 steps)
+
+| # | Step |
+|---:|---|
+| 1 | `/pipelines/minutes_pipeline/steps/find_local_authorities` |
+| 2 | `find_spc_minutes_files` |
+| 3 | `fetch_spc_minutes` |
+| 4 | `parse_meeting_header` |
+| 5 | `resolve_attendees` |
+| 6 | `render_spc_minutes` |
+| 7 | `extract_spc_items` |
+| 8 | `export_spc_meetings` |
+
+Paid steps: `extract_spc_items` (llm).
+
 ### `staffnumbers_pipeline` (3 steps)
 
 | # | Step |
@@ -228,6 +243,7 @@ For a per-item view, some pipelines also ship a `status.py` next to `process.py`
 | `foi_pipeline` | `cd pipelines/foi_pipeline && uv run python status.py` | per-step completion, record counts, staleness, errors |
 | `minutes_pipeline` | `uv run python pipelines/minutes_pipeline/status.py --public-body <id\|slug>` | per-body funnel: record counts per step, body errors, dry-step verdict |
 | `activetravel_pipeline` | `uv run python pipelines/activetravel_pipeline/status.py --all` (or `--document <id\|year>`) | per-document funnel: rows per step, per-document errors, dry-step verdict |
+| `spc_pipeline` | `uv run python pipelines/spc_pipeline/status.py` | per-meeting funnel: discovered → fetched → header → attendance → rendered → extracted → exported, per-step errors, dry-step verdict |
 
 A new pipeline is covered by `scripts/pipeline_status.py` automatically. Add a pipeline-specific `status.py` only for a per-item view (same contract: read step outputs in `pipeline.json` order, report counts + errors, zero new dependencies) and document its specifics in that pipeline's `README.md`.
 

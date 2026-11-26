@@ -4,6 +4,19 @@ All notable changes to the Public Bodies dataset will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [spc-meetings 1.0.0] - 2026-11-26
+
+### Added
+- A new dataset, `spc-meetings`: Meath County Council's Transportation and Urban Regeneration Strategic Policy Committee meetings from February 2025 to May 2026. It publishes meetings, people, attendance, agenda items with COFOG 1999 topics, official decisions as verbatim quotes, and one verbatim Markdown file per meeting.
+- A new pipeline, `pipelines/spc_pipeline/`, with eight steps from the local-authority list to the export, plus committed committee, people, COFOG and transport-subdomain reference data and a `status.py` funnel view.
+- `public/catalog/dataset-spc-meetings.ttl`, `public/schemas/spc-meetings.schema.json`, `scripts/transform_spc_meetings.py`, the vocabularies (`cofog-1999`, `transport-subdomain`, `spc-attendance-status`, `spc-attendance-mode`, `spc-attendee-category`, `spc-decision-type`), and discovery links.
+
+### Notes
+- MAJOR: initial publication of a new dataset at schema version 1.0.0. No existing dataset is modified.
+- Attendance is withheld for a whole meeting when any printed name cannot be resolved to the committed register; the meeting record then carries `attendance_published: false`.
+- Topics or a single decision are withheld when the model's response violates a closed list or the verbatim-quote check; the rest of the meeting still publishes.
+- `extract_spc_items` is a paid step and needs explicit permission per run; results are cached by source sha256, model and prompt version.
+
 ## [datacatalogue-gov-ie-links 1.0.0] - 2026-11-20
 
 ### Added

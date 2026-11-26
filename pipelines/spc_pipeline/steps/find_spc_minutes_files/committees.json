@@ -1,0 +1,9 @@
+[
+  {
+    "committee_id": "meath/transportation-urban-regeneration",
+    "name": "Transportation & Urban Regeneration Strategic Policy Committee",
+    "public_body_id": 1511,
+    "page_url": "https://www.meath.ie/council/your-council/your-elected-council/strategic-policy-committees/transportation-and-urban-regeneration-spc",
+    "minutes_link_pattern": "(?i)\\bminutes\\b"
+  }
+]

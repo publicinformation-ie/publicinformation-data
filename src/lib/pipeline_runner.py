@@ -14,6 +14,27 @@ def is_stale(step_out, prev_out):
     return False
 
 
+def resolve_step_index(steps, name):
+    """Index of ``name`` in ``steps``, matching a cross-pipeline reference by
+    its step basename ("--to find_local_authorities" selects
+    "/pipelines/minutes_pipeline/steps/find_local_authorities").
+
+    Returns None if absent and raises SystemExit naming an ambiguous match.
+    """
+    if name in steps:
+        return steps.index(name)
+    matches = [
+        (i, step) for i, step in enumerate(steps)
+        if step.startswith("/") and Path(step).name == name
+    ]
+    if len(matches) == 1:
+        return matches[0][0]
+    if len(matches) > 1:
+        paths = ", ".join(step for _, step in matches)
+        sys.exit(f"Error: step name '{name}' is ambiguous: {paths}")
+    return None
+
+
 def main():
     parser = argparse.ArgumentParser(description="Pipeline runner")
     parser.add_argument("pipeline_dir", nargs="?", default=".",
@@ -31,24 +52,39 @@ def main():
     args = parser.parse_args()
 
     pipeline_dir = Path(args.pipeline_dir).resolve()
+    # Pipelines live at <repo_root>/pipelines/<name>/, so repo_root is two levels up
+    repo_root = pipeline_dir.parent.parent
     config = json.loads((pipeline_dir / "pipeline.json").read_text())
     steps = config["steps"]
     always_run = set(config.get("always_run", []))
     input_steps = config.get("input_steps", {})
 
-    if args.from_step is not None and args.from_step not in steps:
-        sys.exit(f"Error: --from step '{args.from_step}' not found in pipeline steps")
-    if args.to_step is not None and args.to_step not in steps:
-        sys.exit(f"Error: --to step '{args.to_step}' not found in pipeline steps")
+    if args.from_step is not None:
+        from_index = resolve_step_index(steps, args.from_step)
+        if from_index is None:
+            sys.exit(f"Error: --from step '{args.from_step}' not found in pipeline steps")
+    else:
+        from_index = None
+    if args.to_step is not None:
+        to_index = resolve_step_index(steps, args.to_step)
+        if to_index is None:
+            sys.exit(f"Error: --to step '{args.to_step}' not found in pipeline steps")
+    else:
+        to_index = None
 
-    start_index = steps.index(args.from_step) if args.from_step is not None else 0
-    end_index = steps.index(args.to_step) if args.to_step is not None else len(steps) - 1
+    start_index = from_index if from_index is not None else 0
+    end_index = to_index if to_index is not None else len(steps) - 1
     if end_index < start_index:
         sys.exit(f"Error: --to step '{args.to_step}' precedes --from step '{args.from_step}'")
 
     if args.public_body is not None:
         body_list_step = config.get("body_list_step", "find_public_bodies")
-        bodies_path = pipeline_dir / "steps" / body_list_step / "output.json"
+        # A cross-pipeline reference ("/pipelines/<p>/steps/<s>") is resolved
+        # from the repo root; a local step from this pipeline's steps/.
+        if body_list_step.startswith("/"):
+            bodies_path = repo_root / body_list_step.lstrip("/") / "output.json"
+        else:
+            bodies_path = pipeline_dir / "steps" / body_list_step / "output.json"
         if not bodies_path.exists():
             sys.exit(f"Error: --public-body requires {body_list_step}/output.json; "
                      f"run {body_list_step} first.")
@@ -63,7 +99,6 @@ def main():
                      f"{body_list_step}/output.json")
 
     # Pipelines live at <repo_root>/pipelines/<name>/, so repo_root is two levels up
-    repo_root = pipeline_dir.parent.parent
     src_path = repo_root / "src"
 
     prev_out = None

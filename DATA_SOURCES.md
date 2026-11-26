@@ -90,4 +90,28 @@ Quarterly public service numbers (full-time-equivalent staff) by department, sec
 
 ---
 
+## Meath County Council
+
+**Source:** [Transportation and Urban Regeneration Strategic Policy Committee](https://www.meath.ie/council/your-council/your-elected-council/strategic-policy-committees/transportation-and-urban-regeneration-spc)
+
+The council publishes the committee's agendas and minutes as PDFs on one page. We ingest the minutes only (February 2025 to May 2026), record each file's sha256, and reproduce each meeting's text verbatim as Markdown. Attendance, decisions and topics are derived from that text; names are reproduced as the council published them.
+
+**Licence:** the minutes are published by Meath County Council as public sector information. The derived dataset is published under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+> Source: Meath County Council, Transportation and Urban Regeneration Strategic Policy Committee minutes.
+
+---
+
+## United Nations Statistics Division — COFOG 1999
+
+**Source:** [COFOG 1999 English structure file](https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/COFOG_english_structure.txt)
+
+The UN Statistics Division's Classification of the Functions of Government (COFOG) 1999, used as the common taxonomy for agenda-item topics. The committed list records the source file's sha256 (`5368887b…4b39b5`, retrieved 2026-11-26).
+
+**Licence:** the classification is published by the United Nations for statistical use. The derived code list and dataset are published under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+> Source: United Nations Statistics Division, Classification of the Functions of Government (COFOG) 1999.
+
+---
+
 *If you are a public body and have a concern about how your data is represented here, please contact us.*
