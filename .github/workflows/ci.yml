@@ -39,6 +39,8 @@ jobs:
         run: uv run pytest pipelines/foi_pipeline/tests -q
       - name: Document pipeline tests
         run: uv run pytest pipelines/document_pipeline/tests -q
+      - name: SPC pipeline tests
+        run: uv run pytest pipelines/spc_pipeline/tests -q
       - name: Root tests
         run: uv run pytest tests -q
       - name: Type check

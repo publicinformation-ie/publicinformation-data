@@ -221,16 +221,17 @@ Paid steps: `extract_spc_items` (llm).
 
 ## Tests
 
-Three separate suites, all via `uv run pytest`:
+Four separate suites, all via `uv run pytest`:
 
 | Suite | Command |
 |---|---|
 | FOI pipeline steps + eval | `cd pipelines/foi_pipeline && uv run pytest tests/ -q` |
 | Document pipeline | `uv run pytest pipelines/document_pipeline/tests -q` |
+| SPC pipeline steps | `uv run pytest pipelines/spc_pipeline/tests -q` |
 | Scripts / transforms (repo root) | `uv run pytest tests/ -q` |
 | Type checking | `uv run pyright` (shared `src/` library) |
 
-CI currently enforces the three test suites, `pyright`, and generated-document consistency. No formatter or linter is enforced.
+CI currently enforces the four test suites, `pyright`, and generated-document consistency. No formatter or linter is enforced.
 
 ## Pipeline Status
 
@@ -243,7 +244,7 @@ For a per-item view, some pipelines also ship a `status.py` next to `process.py`
 | `foi_pipeline` | `cd pipelines/foi_pipeline && uv run python status.py` | per-step completion, record counts, staleness, errors |
 | `minutes_pipeline` | `uv run python pipelines/minutes_pipeline/status.py --public-body <id\|slug>` | per-body funnel: record counts per step, body errors, dry-step verdict |
 | `activetravel_pipeline` | `uv run python pipelines/activetravel_pipeline/status.py --all` (or `--document <id\|year>`) | per-document funnel: rows per step, per-document errors, dry-step verdict |
-| `spc_pipeline` | `uv run python pipelines/spc_pipeline/status.py` | per-meeting funnel: discovered → fetched → header → attendance → rendered → extracted → exported, per-step errors, dry-step verdict |
+| `spc_pipeline` | `uv run python pipelines/spc_pipeline/status.py` | per-meeting funnel in `pipeline.json` order (authorities → discovered → … → exported), joined through `source_url`, with each meeting's errors and a dry-step verdict |
 
 A new pipeline is covered by `scripts/pipeline_status.py` automatically. Add a pipeline-specific `status.py` only for a per-item view (same contract: read step outputs in `pipeline.json` order, report counts + errors, zero new dependencies) and document its specifics in that pipeline's `README.md`.
 
