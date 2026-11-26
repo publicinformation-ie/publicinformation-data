@@ -10,9 +10,9 @@ This is a **handoff doc, not an OpenSpec change.** The review findings below are
 
 ## 0. Where the next session starts
 
-**The correction release (§6 step 1) is committed but was not pushed when this doc was last updated.**
+**The correction release (§6 step 1) is pushed and live** — verified 2026-11-26.
 
-- `main` is **ahead of `origin/main`** by the correction release `f0f02971 fix(spc): keep attendance role text and correct two live data defects` plus this handoff-doc update. Nothing is live until `git push origin main`, which triggers Deploy Pages. If it is still unpushed, check `git log origin/main..HEAD`, review the `public/` diff in `f0f02971`, then push or revert before starting anything else.
+- `main` and `origin/main` are level at `653933d6`. CI `verify` (45897958316) and Deploy Pages (45897958422) both passed on push. The live site serves 17 decisions, the restored role text and no `2025-11-20/d01`; all three checks were confirmed against `data.publicinformation.ie` after deploy.
 - Working tree clean; the only untracked entries are the three foreign ones in §1 — leave them alone.
 - **Next action:** §6 step 2 (fail-closed sweep). It needs no API spend. The only paid step is step 5; read the cost rule first.
 
@@ -31,9 +31,9 @@ Evidence from the release: 115 SPC tests and 562 root tests pass, `pyright` clea
 
 ## 1. State and ground rules
 
-- Branch `main`, **ahead of `origin/main`** (correction release `f0f02971` plus this handoff update), tracked tree clean. Earlier commits: `0ba8f792` (CI rdflib pin), `9f7acd95` (merge), `f7f97f1f` (spec sync + archive), `320861fc` (implementation + publication).
+- Branch `main`, level with `origin/main` at `653933d6`, tracked tree clean. Earlier commits: `f0f02971` (correction release), `0ba8f792` (CI rdflib pin), `9f7acd95` (merge), `f7f97f1f` (spec sync + archive), `320861fc` (implementation + publication).
 - The change is archived at `openspec/changes/archive/2026-11-26-add-spc-minutes-pipeline/`; six capability specs are live in `openspec/specs/spc-*/`; `openspec validate --specs` passes 17/17.
-- **The regenerated `public/` tree (still unpushed)** holds 6 meetings, 28 people, 98 attendance rows, 46 items, **17 decisions** (was 18 before `d01` was removed) and 6 minutes files. The live site keeps showing 18 until the push; CI `verify` and Deploy Pages passed for the previous commit and will run again on push.
+- **The published dataset** holds 6 meetings, 28 people, 98 attendance rows, 46 items, **17 decisions** (was 18 before `d01` was removed) and 6 minutes files, and `latest/` and `v1.0.0/` are identical.
 - Untracked and **not ours — leave alone**: `openspec/changes/improve-chapter-split-accuracy/`, `pipelines/foi_pipeline/experiments/gating/populate_docling_cache.py`, `pipelines/foi_pipeline/steps/transform_disclosure_files/docling_cache/`, and `stash@{0}`.
 
 ### Cost rule — read before running anything
@@ -52,7 +52,7 @@ At review time, no reviewer found cause for a takedown: identifiers are stable a
 
 ---
 
-## 2. P1 — wrong in the live dataset (fixed locally in `f0f02971`, pending push)
+## 2. P1 — wrong in the live dataset (fixed and live in `f0f02971`)
 
 ### P1.1 Verbatim minutes drop printed attendance role text
 
@@ -91,7 +91,7 @@ Violates `openspec/specs/spc-minutes-rendering/spec.md` ("keeping each name's te
 
 ### P1.2 Another body's decision published as an SPC decision
 
-**Partly fixed — the data is corrected in the unpushed release, the generator is not.** `d01` is no longer in the regenerated `public/` tree: a committed `extract_spc_items/override.json` drops it, `d02`–`d04` keep their IDs, and `public/CHANGELOG.md` records it. The prompt still does not say "decisions of *this committee*", so a re-extraction with a bumped `PROMPT_VERSION` will produce it again until step 5. When the prompt is fixed, remove the override entry (a stale drop target fails the run closed).
+**Partly fixed — the data is corrected and live, the generator is not.** `d01` is no longer published: a committed `extract_spc_items/override.json` drops it, `d02`–`d04` keep their IDs, and `public/CHANGELOG.md` records it. The prompt still does not say "decisions of *this committee*", so a re-extraction with a bumped `PROMPT_VERSION` will produce it again until step 5. When the prompt is fixed, remove the override entry (a stale drop target fails the run closed).
 
 Original finding, verified live at the time: `https://data.publicinformation.ie/spc-meetings/decision/meath/transportation-urban-regeneration/2025-11-20/d01`
 
@@ -107,7 +107,7 @@ Fix: tighten the prompt (and bump `PROMPT_VERSION` → paid re-extraction), remo
 
 ### P1.3 Topic rules the spec fixes are breached in published items
 
-**Fixed in the unpushed release for the two real breaches; one row below was a misreading.** `validate_response` now withholds an item flagged `procedural: true` whose primary code is not `01.1.1` (`ProceduralNotProceduralCode`), and the committed override sets 2025-05-27 items 7.0 and 9.0 to `01.1.1` with no subdomains. `2025-02-20 item-2-0` is **unchanged on purpose**: the spec says purely procedural items SHALL be `01.1.1`, not that every `01.1.1` item is procedural, so the second table row was an over-reading of `spc-topic-classification/spec.md:58-65`. Enforcing the converse would have been a wrong correction.
+**Fixed and live for the two real breaches; one row below was a misreading.** `validate_response` now withholds an item flagged `procedural: true` whose primary code is not `01.1.1` (`ProceduralNotProceduralCode`), and the committed override sets 2025-05-27 items 7.0 and 9.0 to `01.1.1` with no subdomains. `2025-02-20 item-2-0` is **unchanged on purpose**: the spec says purely procedural items SHALL be `01.1.1`, not that every `01.1.1` item is procedural, so the second table row was an over-reading of `spc-topic-classification/spec.md:58-65`. Enforcing the converse would have been a wrong correction.
 
 Not addressed here: class-vs-group COFOG level (see step 2), and the extractor still emits the two model violations every run, so `extract_spc_items/errors.json` will show 2 `ProceduralNotProceduralCode` entries until the prompt is fixed.
 
@@ -239,7 +239,7 @@ No test found for: *Typos are preserved*; *Initials are preserved*; *Body text r
 
 | # | Work | Model spend |
 |---|---|---|
-| 1 | ~~**Correction release**~~ — **DONE in `f0f02971`** (P1.1, P2.1, P1.2, P1.3; commit unpushed at handoff) | none — replayed from cache |
+| 1 | ~~**Correction release**~~ — **DONE and live in `f0f02971`** (P1.1, P2.1, P1.2, P1.3) | none — replayed from cache |
 | 2 | **Fail-closed sweep — start here**: P2.2, P2.4, P2.5, P2.6, P2.7, P3.6, P2.8 (declare or drop the fields, `additionalProperties: false`, `item_key` in `decisions.csv`), plus the P2.3 residuals and class-vs-group COFOG | none |
 | 3 | **Guard it**: P3.1, P3.2, P3.3, P3.7 | none |
 | 4 | **Docs**: P4 (coverage wording, attribution/personal data, field table, reproducibility, CSVW, distribution URL) | none |
