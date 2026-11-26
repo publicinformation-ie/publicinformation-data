@@ -5,13 +5,16 @@ that no source word was added, lost or changed.
 
 ## Furniture
 
-Lines that repeat on at least three pages **and sit at the top or bottom edge
-of the page on every occurrence**, the `Page N of M` line, and the page-1
-running header are removed and counted in `furniture_removed` (`total`,
-`page_numbers`, and `by_text` with a `kind` of `running_header` or `footer`).
-The edge requirement matters: a genuine body line that repeats on three pages
-("Noted.") stays in the body. Body text that merely mentions `www.meath.ie`
-is kept.
+Lines that repeat at the top or bottom edge of every page, the `Page N of M`
+line, and the page-1 running header are removed and counted in
+`furniture_removed` (`total`, `page_numbers`, and `by_text` with a `kind` of
+`running_header`, `footer` or `unrecognised`). Three pages are normally needed;
+a two-page document needs both. A single-page document keeps everything, since
+frequency cannot tell a footer from the body. The edge requirement matters: a
+genuine body line that repeats on three pages ("Noted.") stays in the body.
+Body text that merely mentions `www.meath.ie` is kept. A removed edge line that
+is neither the running header nor a recognisable Meath footer fails the meeting
+(`UnrecognisedFurniture`) instead of silently deleting text.
 
 ## Blocks
 

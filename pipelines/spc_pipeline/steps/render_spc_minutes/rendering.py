@@ -33,6 +33,10 @@ _ANCHOR_RE = re.compile(r"\s*\{#[^}]*\}\s*$")
 #: page furniture, so position, not frequency alone, decides.
 _TOP_BAND = 0.02
 _BOTTOM_BAND = 0.95
+_FOOTER_RE = re.compile(
+    r"(meath\.ie|Meath County Council|Telephone:|Fax:|Email:|Buvinda House)",
+    re.IGNORECASE,
+)
 
 _ESCAPE_CHARS = "\\`*_{}[]<>#|&"
 
@@ -47,6 +51,10 @@ class UnrecognisedBodyLayout(RenderError):
 
 class RenderMismatch(RenderError):
     error_type = "RenderMismatch"
+
+
+class UnrecognisedFurniture(RenderError):
+    error_type = "UnrecognisedFurniture"
 
 
 # ---------------------------------------------------------------------------
@@ -66,12 +74,16 @@ def _page_span(lines: list[dict]) -> tuple[float, float]:
 
 
 def detect_furniture(pages: list[dict]) -> tuple[set[str], Counter]:
-    """Texts repeated on at least three pages and lying at a page edge.
+    """Texts repeated at a page edge, on enough pages to be running furniture.
 
     The edge requirement keeps a genuine body line that repeats on several
     pages ("Noted.") in the body; only running headers, footers and page
-    numbers sit at the top or bottom of every page they appear on.
+    numbers sit at the top or bottom of every page they appear on. A two-page
+    document needs both pages, not three, so its footer is still removed; a
+    single-page document keeps everything, because frequency alone cannot
+    distinguish a footer from the body.
     """
+    threshold = 2 if len(pages) == 2 else 3
     pages_with = Counter()
     occurrences = Counter()
     positions: dict[str, list[float]] = defaultdict(list)
@@ -89,12 +101,20 @@ def detect_furniture(pages: list[dict]) -> tuple[set[str], Counter]:
                 seen.add(text)
     furniture = {
         text for text, count in pages_with.items()
-        if count >= 3 and all(
+        if count >= threshold and all(
             fraction <= _TOP_BAND or fraction >= _BOTTOM_BAND
             for fraction in positions[text]
         )
     }
     return furniture, occurrences
+
+
+def _furniture_kind(text: str) -> str:
+    if text == _RUNNING_HEADER:
+        return "running_header"
+    if _FOOTER_RE.search(text):
+        return "footer"
+    return "unrecognised"
 
 
 def _body_start(first_page_lines: list[dict]) -> int:
@@ -156,11 +176,17 @@ def body_source_lines(record: dict) -> tuple[list[dict], dict]:
         "total": sum(removed.values()) + page_numbers,
         "page_numbers": page_numbers,
         "by_text": [
-            {"text": text, "count": count,
-             "kind": "running_header" if text == _RUNNING_HEADER else "footer"}
+            {"text": text, "count": count, "kind": _furniture_kind(text)}
             for text, count in sorted(removed.items())
         ],
     }
+    unrecognised = [entry["text"] for entry in stats["by_text"]
+                    if entry["kind"] == "unrecognised"]
+    if unrecognised:
+        raise UnrecognisedFurniture(
+            "removed repeating page-edge line(s) that are neither the running "
+            "header nor a recognisable footer: " + "; ".join(unrecognised)
+        )
     return body, stats
 
 

@@ -5,6 +5,7 @@ import pytest
 
 from steps.render_spc_minutes.rendering import (
     RenderMismatch,
+    UnrecognisedFurniture,
     check_words,
     render_meeting,
     run,
@@ -139,7 +140,8 @@ def _line(text, top):
     return words
 
 
-def _synthetic_record(*, body_lines, role="DOS", raw="A B, DOS", pages=3):
+def _synthetic_record(*, body_lines, role="DOS", raw="A B, DOS", pages=3,
+                      footer="Transportation Section, Meath County Council"):
     """Three pages with running header, page number and footer furniture."""
     page_words = []
     for index in range(pages):
@@ -148,7 +150,7 @@ def _synthetic_record(*, body_lines, role="DOS", raw="A B, DOS", pages=3):
             words += _line("Item", 20)
         words += _line(body_lines, 50)
         words += _line(f"Page {index + 1} of {pages}", 92)
-        words += _line("Transportation Section, Meath County Council", 100)
+        words += _line(footer, 100)
         page_words.append({"words": words})
     return {
         "meeting_id": "meath/test/2026-01-01",
@@ -182,6 +184,30 @@ def test_furniture_rule_keeps_a_body_line_that_repeats_on_three_pages():
     removed = {entry["text"] for entry in result["furniture_removed"]["by_text"]}
     assert "Noted." not in removed
     assert result["markdown"].count("Noted.") == 3
+
+
+def test_a_two_page_footer_is_still_removed():
+    record = _synthetic_record(body_lines="Body text.", pages=2)
+    result = render_meeting(record)
+    removed = {entry["text"] for entry in result["furniture_removed"]["by_text"]}
+    assert "Transportation Section, Meath County Council" in removed
+    assert "Miontuairiscí/Meeting Minutes" in removed
+    assert "Transportation Section" not in result["markdown"]
+
+
+def test_a_one_page_document_keeps_its_lower_lines():
+    record = _synthetic_record(body_lines="Body text.", pages=1)
+    result = render_meeting(record)
+    removed = {entry["text"] for entry in result["furniture_removed"]["by_text"]}
+    assert removed == set()
+    assert "Transportation Section, Meath County Council" in result["markdown"]
+
+
+def test_an_unrecognised_repeating_edge_line_fails_closed():
+    record = _synthetic_record(body_lines="Body text.", pages=3,
+                               footer="A sentence that is not page furniture")
+    with pytest.raises(UnrecognisedFurniture, match="not page furniture"):
+        render_meeting(record)
 
 
 def test_attendance_role_text_must_be_in_the_printed_text():
