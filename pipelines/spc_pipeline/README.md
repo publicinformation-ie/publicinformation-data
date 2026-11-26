@@ -55,6 +55,22 @@ uv run python pipelines/spc_pipeline/process.py pipelines/spc_pipeline \
 uv run python pipelines/spc_pipeline/status.py
 ```
 
+`status.py` reads `pipeline.json` for the step order (including the local-authority
+list) and joins each meeting's stages through the header's `source_url`. A file
+that never reaches the header stays listed under its file URL, and errors are
+attributed to the meeting they belong to.
+
+## Tests
+
+`uv run pytest pipelines/spc_pipeline/tests -q` — also run by CI.
+
+The six real minutes PDFs are committed under `tests/fixtures/pdf/` with a
+sha256 manifest in `tests/fixtures/meetings.json`, so parsing, attendance
+resolution and rendering run end to end without the git-ignored step caches.
+The rendered Markdown is compared byte-for-byte with the committed
+`public/latest/spc-meetings/minutes/` snapshot, so a render change shows as a
+reviewable `public/` diff rather than a changed hash.
+
 `extract_spc_items` makes a paid model call per meeting. **Never run it, a full
 pipeline, or a `--from`/`--to` window reaching it, without the user's explicit
 permission for that run.** Results are cached by source sha256, model and

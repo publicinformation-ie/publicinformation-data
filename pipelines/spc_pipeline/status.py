@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """Per-meeting funnel for spc_pipeline.
 
-Shows how many meetings survive each stage (discovered → fetched → header →
-attendance → rendered → extracted → exported), the errors recorded per step,
-and a verdict naming the first dry step. Read-only: it stats the step outputs
+Shows how many records each step produced (in the order `pipeline.json`
+declares, including the cross-pipeline local-authority list), the errors each
+step recorded, and — for every meeting — which stages it reached and which
+errors belong to it. Early steps key on `file_url`; header and later steps key
+on `meeting_id`, so the funnel joins them through the header's `source_url`.
+A file that never reaches the header stays in the list under its file URL, so
+a stall is visible rather than dropped. Read-only: it stats the step outputs
 and never imports or runs a step.
 
 Usage (from the repo root):
@@ -22,15 +26,16 @@ from pathlib import Path
 
 PIPELINE_DIR = Path(__file__).resolve().parent
 
-STEPS = [
-    ("find_spc_minutes_files", "discovered"),
-    ("fetch_spc_minutes", "fetched"),
-    ("parse_meeting_header", "header"),
-    ("resolve_attendees", "attendance"),
-    ("render_spc_minutes", "rendered"),
-    ("extract_spc_items", "extracted"),
-    ("export_spc_meetings", "exported"),
-]
+STAGE_LABELS = {
+    "find_local_authorities": "authorities",
+    "find_spc_minutes_files": "discovered",
+    "fetch_spc_minutes": "fetched",
+    "parse_meeting_header": "header",
+    "resolve_attendees": "attendance",
+    "render_spc_minutes": "rendered",
+    "extract_spc_items": "extracted",
+    "export_spc_meetings": "exported",
+}
 
 
 def load_json(path: Path):
@@ -40,8 +45,29 @@ def load_json(path: Path):
         return None
 
 
+def step_name(step: str) -> str:
+    return step.rstrip("/").rsplit("/", 1)[-1]
+
+
+def steps_for(pipeline_dir: Path) -> list[tuple[str, str]]:
+    """(step reference, stage label) in the order `pipeline.json` declares."""
+    config = json.loads((Path(pipeline_dir) / "pipeline.json").read_text())
+    return [
+        (step, STAGE_LABELS.get(step_name(step), step_name(step)))
+        for step in config["steps"]
+    ]
+
+
+def step_dir(pipeline_dir: Path, step: str) -> Path:
+    """A step's directory; a leading `/` is repo-relative, as the runner reads it."""
+    if step.startswith("/"):
+        repo_root = Path(pipeline_dir).resolve().parent.parent
+        return repo_root / step.lstrip("/")
+    return Path(pipeline_dir) / "steps" / step
+
+
 def records_for(pipeline_dir: Path, step: str):
-    data = load_json(pipeline_dir / "steps" / step / "output.json")
+    data = load_json(step_dir(pipeline_dir, step) / "output.json")
     if data is None:
         return None
     results = data.get("results", data)
@@ -51,33 +77,112 @@ def records_for(pipeline_dir: Path, step: str):
 
 
 def errors_for(pipeline_dir: Path, step: str) -> list[dict]:
-    data = load_json(pipeline_dir / "steps" / step / "errors.json")
+    data = load_json(step_dir(pipeline_dir, step) / "errors.json")
     return data if isinstance(data, list) else []
 
 
-def meeting_key(step: str, record: dict) -> str:
-    return record.get("meeting_id") or record.get("file_url") or "?"
+def _url_index(loaded: list[tuple]) -> dict[str, str]:
+    """Map every printed source URL to the meeting id the header assigned it."""
+    index: dict[str, str] = {}
+    for _step, _label, records, _errors in loaded:
+        for record in records:
+            meeting_id = record.get("meeting_id")
+            if not meeting_id:
+                continue
+            for field in ("source_url", "file_url"):
+                url = record.get(field)
+                if url:
+                    index[url] = meeting_id
+    return index
+
+
+def _entry(meetings: dict[str, dict], key: str,
+           meeting_ids: set[str]) -> dict:
+    entry = meetings.setdefault(key, {
+        "meeting_id": key if key in meeting_ids else None,
+        "file_url": None if key in meeting_ids else key,
+        "stages": [],
+        "last_stage": None,
+        "errors": [],
+        "error_count": 0,
+    })
+    return entry
+
+
+def _record_key(record: dict, url_to_meeting: dict[str, str]):
+    meeting_id = record.get("meeting_id")
+    if meeting_id:
+        return meeting_id
+    for field in ("file_url", "source_url", "page_url"):
+        url = record.get(field)
+        if url:
+            return url_to_meeting.get(url, url)
+    return None
+
+
+def _error_key(error: dict, url_to_meeting: dict[str, str]):
+    context = error.get("context") or {}
+    meeting_id = context.get("meeting_id") or error.get("meeting_id")
+    if meeting_id:
+        return meeting_id
+    for field in ("file_url", "source_url", "page_url"):
+        url = context.get(field) or error.get(field)
+        if url:
+            return url_to_meeting.get(url, url)
+    return None
 
 
 def funnel(pipeline_dir: Path = PIPELINE_DIR) -> dict:
-    rows = []
-    active: dict[str, dict] = {}
-    for step, label in STEPS:
-        records = records_for(pipeline_dir, step)
-        errors = errors_for(pipeline_dir, step)
-        if records is None:
-            return {"error": f"{step}/output.json is missing or unreadable", "rows": rows}
-        rows.append({"step": step, "label": label, "count": len(records),
-                     "errors": len(errors)})
-        for record in records:
-            key = meeting_key(step, record)
-            entry = active.setdefault(key, {"meeting": key, "stages": {},
-                                            "errors": 0})
-            entry["stages"][label] = True
+    pipeline_dir = Path(pipeline_dir)
+    try:
+        steps = steps_for(pipeline_dir)
+    except (OSError, ValueError, KeyError):
+        return {"error": "pipeline.json is missing or unreadable", "rows": []}
 
-    # A meeting is identified by its id from parse_meeting_header onward; the
-    # earlier steps carry file URLs, so match them by prefix in the id.
-    return {"rows": rows, "meetings": list(active.values())}
+    loaded: list[tuple[str, str, list[dict], list[dict]]] = []
+    rows: list[dict] = []
+    for step, label in steps:
+        records = records_for(pipeline_dir, step)
+        if records is None:
+            return {
+                "error": f"{step_name(step)} output.json is missing or unreadable",
+                "rows": rows,
+            }
+        errors = errors_for(pipeline_dir, step)
+        loaded.append((step, label, records, errors))
+        rows.append({"step": step_name(step), "stage": label,
+                     "count": len(records), "errors": len(errors)})
+
+    url_to_meeting = _url_index(loaded)
+    meeting_ids = {record["meeting_id"] for _s, _l, records, _e in loaded
+                   for record in records if record.get("meeting_id")}
+
+    meetings: dict[str, dict] = {}
+    for step, label, records, errors in loaded:
+        for record in records:
+            key = _record_key(record, url_to_meeting)
+            if key is None:
+                continue  # the authority list is not a meeting
+            entry = _entry(meetings, key, meeting_ids)
+            url = record.get("file_url") or record.get("source_url")
+            if url and entry["file_url"] is None:
+                entry["file_url"] = url
+            if label not in entry["stages"]:
+                entry["stages"].append(label)
+            entry["last_stage"] = label
+        for error in errors:
+            key = _error_key(error, url_to_meeting)
+            if key is None:
+                continue
+            entry = _entry(meetings, key, meeting_ids)
+            entry["errors"].append({
+                "step": step_name(step),
+                "error_type": error.get("error_type"),
+                "error_message": error.get("error_message"),
+            })
+            entry["error_count"] = len(entry["errors"])
+
+    return {"rows": rows, "meetings": list(meetings.values())}
 
 
 def verdict(status: dict) -> list[str]:
@@ -114,7 +219,7 @@ def main() -> int:
         print(json.dumps(status, indent=2))
     else:
         headers = ["STEP", "STAGE", "RECORDS", "ERRORS"]
-        rows = [[row["step"], row["label"], str(row["count"]), str(row["errors"])]
+        rows = [[row["step"], row["stage"], str(row["count"]), str(row["errors"])]
                 for row in status["rows"]]
         widths = [max(len(h), *(len(r[i]) for r in rows)) for i, h in enumerate(headers)]
         for cells in [headers, *rows]:
@@ -122,6 +227,13 @@ def main() -> int:
         print()
         for line in status["verdict"]:
             print(line)
+        warnings = [meeting for meeting in status["meetings"] if meeting["errors"]]
+        if warnings:
+            print()
+            for meeting in warnings:
+                name = meeting["meeting_id"] or meeting["file_url"]
+                rendered = ", ".join(sorted({error["error_type"] for error in meeting["errors"]}))
+                print(f"  {name}: {meeting['error_count']} error(s) — {rendered}")
     return 0 if status["rows"] and status["rows"][-1]["count"] > 0 else 1
 
 
