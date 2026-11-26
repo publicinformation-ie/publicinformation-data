@@ -10,11 +10,25 @@ This is a **handoff doc, not an OpenSpec change.** The review findings below are
 
 ## 0. Where the next session starts
 
-**§6 step 3 (guard it) is done locally and not yet pushed** — 2026-11-26.
+**§6 steps 2–4 are done locally and not yet pushed** — 2026-11-26. Step 4 is the docs commit at the tip.
 
 - `main` is **ahead of `origin/main`** (`9cf4bcc4..HEAD`, steps 2 and 3). Nothing new is live until `git push origin main`, which triggers Deploy Pages. Review the `public/` diff first; step 3 does not change it.
 - Working tree clean apart from the three foreign untracked entries in §1. The implementation plans are `plan-fail-closed-sweep.md` and `plan-guard-it.md` in this directory.
-- **Next action:** §6 step 4 (docs). No API spend. Step 5 remains paid and needs explicit permission.
+- **Next action:** review `git diff origin/main..HEAD -- public`, then push. After that, §6 step 5, which is paid and needs explicit permission.
+
+What step 4 changed (P4) — do not redo it:
+
+| Item | Where it now lives |
+|---|---|
+| Coverage wording | `COVERAGE` in `transform_spc_meetings.py`, the TTL `dct:description` (plus `dct:spatial` and `dct:temporal`), `public/README.md`, `GET_THE_DATA.md`, `get-the-data.html` |
+| Attribution and personal data | the generated dataset README: "People named in this dataset" and "Source, attribution and licence". Meath's own re-use terms could **not** be confirmed (www.meath.ie was unreachable); the README says so and a human should check them |
+| README depth | dataset URI, versioning, links, a field table per file generated from `FIELD_SPECS`, null/withheld semantics |
+| Cold re-run | `pipelines/spc_pipeline/requirements.txt` and a "Running it cold" section in the pipeline README (LFS, step 1's generated list, credentials, cost) |
+| CSVW | already declared `separator`/`null` for `cofog` and `subdomains`; the README now explains `[]` vs withheld |
+| Minutes distribution | `minutes/index.md` is generated and the TTL points at it |
+| Process slips | `tasks.md` 9.4 records the `index.html` deviation; `scripts/AGENTS.md` and `scripts/README.md` have a `transform_spc_meetings.py` entry; `src/lib/certs/README.md` points at the archived design; `requirements-build.txt` says its `rdflib` pin is test-only; `extract_spc_items/README.md` no longer claims a `MOTIONS_LLM_MODEL` fallback |
+
+Left open on purpose: the vocabulary concept URIs (`ns/spc#agreed`, slash-in-fragment subdomains) still do not resolve, and the minor code notes in P4's last bullet. The prompt-injection line belongs to step 5.
 
 What step 3 changed — do not redo it:
 
@@ -298,10 +312,10 @@ No test found for: *Typos are preserved*; *Initials are preserved*; *Body text r
 | 1 | ~~**Correction release**~~ — **DONE and live in `f0f02971`** (P1.1, P2.1, P1.2, P1.3) | none — replayed from cache |
 | 2 | ~~**Fail-closed sweep**~~ — **DONE locally in `9cf4bcc4..HEAD`** (P2.2–P2.8, P3.6, P2.3 residuals, COFOG levels, schema 1.1.0) | none — replayed from cache |
 | 3 | ~~**Guard it**~~ — **DONE locally in `9cf4bcc4..HEAD`** (P3.1, P3.2, P3.3, P3.7) | none |
-| 4 | **Docs — start here**: P4 (coverage wording, attribution/personal data, field table, reproducibility, CSVW, distribution URL) | none |
+| 4 | ~~**Docs**~~ — **DONE locally** (P4, except vocabulary URIs, minor code notes and the injection line) | none |
 | 5 | **Re-open the model question**: P3.4, P3.5, plus the prompt changes for P1.2 and injection — needs a `PROMPT_VERSION` bump and therefore re-extraction; remove the `d01` override when the prompt no longer produces it | **PAID — ask first.** 6 calls to re-extract; 18 more for a sweep re-run |
 
-Step 4 needs no API spend. Step 5 requires explicit per-run permission.
+Step 5 requires explicit per-run permission.
 
 Verification commands for any of it:
 

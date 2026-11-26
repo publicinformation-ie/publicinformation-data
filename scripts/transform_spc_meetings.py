@@ -219,29 +219,95 @@ def csvw_metadata(kind: str) -> bytes:
     }, indent=2).encode("utf-8") + b"\n"
 
 
+COVERAGE = ("Meath County Council's Transportation and Urban Regeneration Strategic Policy "
+            "Committee: six meetings, February 2025 to May 2026")
+
+TABLE_BLURBS = {
+    "meetings": "one row per meeting",
+    "people": "one row per person recorded in attendance",
+    "attendance": "one row per person per meeting",
+    "items": "agenda items with their topics",
+    "decisions": "official decisions as contiguous quotes from the minutes",
+}
+
+
+def field_table(kind: str) -> list[str]:
+    lines = ["| Field | Type | Description |", "|---|---|---|"]
+    for field in CSV_FIELDS[kind]:
+        datatype, description = FIELD_SPECS[field]
+        lines.append(f"| `{field}` | {datatype} | {description} |")
+    return lines
+
+
+def minutes_index_bytes(export: dict) -> bytes:
+    """A resolvable listing of the verbatim minutes (Pages serves no directory index)."""
+    lines = ["# Verbatim minutes", "",
+             "One Markdown file per meeting, rendered from the council's published PDF.", ""]
+    for minutes in sorted(export.get("minutes", []), key=lambda m: m["path"]):
+        name = minutes["path"].removeprefix("minutes/")
+        lines.append(f"- [{name}]({name})")
+    lines.append("")
+    return "\n".join(lines).encode("utf-8")
+
+
 def readme_bytes(export: dict, report: dict) -> bytes:
     lines = [
         "# SPC meetings",
         "",
-        "Strategic Policy Committee meetings of Irish local authorities: the people who",
-        "attended, their attendance, agenda items with COFOG 1999 topics, official",
-        "decisions as verbatim quotes, and the minutes rendered verbatim as Markdown.",
+        "**Dataset URI:** `https://data.publicinformation.ie/dataset/spc-meetings`",
+        "",
+        f"Coverage: {COVERAGE}. No other council or committee is published yet.",
+        "The dataset holds who attended, their attendance, agenda items with COFOG 1999",
+        "topics, official decisions as verbatim quotes, and the minutes rendered verbatim",
+        "as Markdown.",
+        "",
+        "## Versioning",
+        "",
+        "This directory mirrors the newest immutable release, `../../v1.1.0/spc-meetings/`",
+        "(earlier releases stay in place). `owl:versionInfo` is bumped by hand for a breaking",
+        "or additive schema change; `dct:modified` in the catalogue record changes only when",
+        "the published content changes.",
         "",
         "## Files",
         "",
-        "- `meetings` – one row per meeting",
-        "- `people` – one row per person recorded in attendance",
-        "- `attendance` – one row per person per meeting (`attendance_published` is false",
-        "  on a meeting whose attendance is withheld)",
-        "- `items` – agenda items with their topics; `topics_published` is false when",
-        "  the topics were withheld",
-        "- `decisions` – official decisions as contiguous quotes from the minutes",
-        "- `minutes/<council>/<committee>/<date>.md` – the verbatim minutes",
+    ]
+    for kind in KINDS:
+        lines.append(f"- `{kind}` – {TABLE_BLURBS[kind]}")
+    lines += [
+        "- `minutes/<council>/<committee>/<date>.md` – the verbatim minutes; "
+        "[`minutes/index.md`](minutes/index.md) lists them",
         "",
-        "Each table is published as JSON-LD and CSV with CSVW metadata.",
-        "In CSV, an empty array and a withheld value both appear as an empty cell;",
-        "`topics_published` distinguishes a withheld item's topics from a genuine",
-        "empty subdomain list.",
+        "Each table is published as JSON-LD and CSV with CSVW metadata "
+        "(`<table>.csv-metadata.json`). Related: "
+        "[JSON Schema](../../schemas/spc-meetings.schema.json), "
+        "[DCAT-AP catalogue record](../../catalog/dataset-spc-meetings.ttl), and the "
+        "vocabularies `cofog-1999`, `transport-subdomain`, `spc-attendance-status`, "
+        "`spc-attendance-mode`, `spc-attendee-category` and `spc-decision-type` under "
+        "[`../../vocabularies/`](../../vocabularies/).",
+        "",
+        "## Tables and fields",
+        "",
+        "Tables join on `meeting_id`, `item_key` (with `meeting_id`) and `person_id`.",
+        "",
+    ]
+    for kind in KINDS:
+        lines += [f"### {kind}", ""] + field_table(kind) + [""]
+    lines += [
+        "## Reading withheld and empty values",
+        "",
+        "- The pipeline fails closed: a value it cannot confirm is withheld, not guessed.",
+        "- `attendance_published` is false on a meeting whose attendance is withheld because",
+        "  a printed name could not be resolved to the committed register. That meeting has",
+        "  no attendance rows.",
+        "- `topics_published` is false when an item's topics were withheld; `cofog`,",
+        "  `subdomains` and `procedural` are then null.",
+        "- In JSON-LD, null means withheld and `[]` means genuinely none. In CSV both are an",
+        "  empty cell, so read `topics_published` to tell them apart.",
+        "- `cofog` and `subdomains` are pipe-joined in CSV (`a|b`); CSVW declares",
+        "  `\"separator\": \"|\"`. They are arrays in JSON-LD.",
+        "- `proposer` and `seconder` are empty when the minutes name no one, or the name",
+        "  could not be confirmed; the matching `*_unresolved` flag is true in the second",
+        "  case.",
         "",
         "## Counts",
         "",
@@ -251,13 +317,37 @@ def readme_bytes(export: dict, report: dict) -> bytes:
         f"- Items: {report.get('items', 0)}",
         f"- Decisions: {report.get('decisions', 0)}",
         "",
-        "## Sources",
+        "## People named in this dataset",
         "",
-        "Minutes are published by Meath County Council and are reproduced verbatim.",
-        "COFOG 1999 is the UN Statistics Division classification; transport",
-        "subdomains follow the transport-governance vocabulary.",
+        "The dataset names councillors, council officials, sectoral representatives (which",
+        "can include private citizens, for example Public Participation Network",
+        "representatives), presenters and guests, with their attendance, apologies and",
+        "the role printed in the minutes. Every name and role comes from minutes the",
+        "council itself published. Names are matched to a committed register; nothing is",
+        "added about a person beyond what the minutes print. To ask for a correction or",
+        "removal, write to dave@publicinformation.ie.",
         "",
-        "License: CC BY 4.0. See `DATA_SOURCES.md`.",
+        "## Source, attribution and licence",
+        "",
+        "Source: Meath County Council, Transportation and Urban Regeneration Strategic",
+        "Policy Committee minutes, retrieved from www.meath.ie; each meeting records its",
+        "`source_url` and the PDF's `source_sha256`. The minutes are the council's",
+        "material, reproduced here without alteration to their wording.",
+        "",
+        "COFOG 1999 is the UN Statistics Division classification; transport subdomains",
+        "follow the transport-governance vocabulary. The topics, decisions and attendance",
+        "tables are derived by PublicInformation.ie (an LLM proposes topics and decisions;",
+        "each decision is checked to be a verbatim quote).",
+        "",
+        "The derived dataset is published under CC BY 4.0. Meath County Council's own",
+        "re-use terms for the underlying minutes have not been independently confirmed",
+        "against www.meath.ie; if you re-use the verbatim minutes, check them.",
+        "Attribute as: *Source: Meath County Council; processed by PublicInformation.ie.*",
+        "",
+        "## Reproducing",
+        "",
+        "See `pipelines/spc_pipeline/README.md` in the repository: requirements, the LLM",
+        "credentials and cost, and the step order.",
         "",
     ]
     return "\n".join(lines).encode("utf-8")
@@ -272,6 +362,7 @@ def build_outputs(export: dict, records: dict[str, list[dict]],
         generated[output_dir / f"{kind}.csv-metadata.json"] = csvw_metadata(kind)
     for minutes in export.get("minutes", []):
         generated[output_dir / minutes["path"]] = minutes["markdown"].encode("utf-8")
+    generated[output_dir / "minutes" / "index.md"] = minutes_index_bytes(export)
     generated[output_dir / "README.md"] = readme_bytes(export, export.get("report", {}))
     return generated
 

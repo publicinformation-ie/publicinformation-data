@@ -140,6 +140,18 @@ git push
 
 Override files take effect when the pipeline is re-run — accepted corrections bypass the normal pipeline logic for that body/field combination.
 
+## transform_spc_meetings.py
+
+Publishes the SPC meetings dataset from the SPC pipeline's export.
+
+Reads `pipelines/spc_pipeline/steps/export_spc_meetings/output.json` and the authoritative Public Bodies data, then writes five tables (`meetings`, `people`, `attendance`, `items`, `decisions`) as JSON-LD and CSV with CSVW metadata, the verbatim minutes, a minutes index and a generated README (field tables come from `FIELD_SPECS`) to `public/v1.1.0/spc-meetings/`. It deletes any file in that directory it did not generate, and mirrors to `public/latest/spc-meetings/` only when content changes.
+
+### Usage
+
+```bash
+uv run python scripts/transform_spc_meetings.py
+```
+
 ## transform_motions.py
 
 Publishes the Motions dataset from the minutes pipeline's canonical output.

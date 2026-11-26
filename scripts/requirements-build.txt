@@ -1,4 +1,6 @@
 # Dependencies for scripts/build_foi_combined.py (CI deploy + release).
+# CI also installs this file for the root tests, so `rdflib` below is a test-only pin
+# that deploy and release install but do not use.
 # Keep openpyxl pinned to the same version as pipelines/foi_pipeline/requirements.txt.
 openpyxl==3.1.5
 # The root tests parse the SPC dataset's catalogue Turtle with rdflib.

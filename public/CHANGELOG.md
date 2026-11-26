@@ -14,6 +14,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - MINOR: additive fields and a closed schema. Published at `public/v1.1.0/spc-meetings/`; `v1.0.0/` remains the previous release.
 - A proposer or seconder is withheld when the named person is not printed in the item text or is not recorded present. The decision still publishes, with the field null and the matching `*_unresolved` flag true.
 
+### Documentation
+- The dataset README, catalogue record and the three discovery pages now state the real coverage: Meath County Council's Transportation and Urban Regeneration committee, six meetings, February 2025 to May 2026. The catalogue adds `dct:spatial` and `dct:temporal`.
+- The dataset README now has the dataset URI, versioning, a field table per file, null and withheld semantics, a "People named in this dataset" statement, attribution, and a note that Meath's own re-use terms are unconfirmed.
+- Added `minutes/index.md`, which the catalogue's "Verbatim minutes" distribution now points at (the `minutes/` directory has no index on Pages).
+
 ### Fixed
 - A decision that approves the minutes and also does something substantive is no longer discarded as a minutes approval.
 - A duplicate or unknown item key, a blank or duplicated decision, a division COFOG code, or a group code not justified by the item's detail now withholds the affected data (or fails the meeting) instead of publishing it.

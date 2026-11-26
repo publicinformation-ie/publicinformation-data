@@ -1,0 +1,10 @@
+# Direct dependencies of spc_pipeline, pinned to the same versions as
+# pipelines/foi_pipeline/requirements.txt (the two pipelines share one environment).
+beautifulsoup4==4.14.3
+jsonschema==4.26.0
+requests==2.33.1
+pdfplumber==0.11.4
+pytest==9.0.3
+# Only for `scripts/transform_spc_meetings.py` tests (catalogue Turtle parsing);
+# pinned in scripts/requirements-build.txt.
+rdflib==7.6.0

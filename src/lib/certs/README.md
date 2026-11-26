@@ -20,7 +20,7 @@ stays on.
 
 `www.meath.ie` serves its leaf certificate and the DigiCert Global Root G2 but
 not this intermediate, so the pipeline supplies it (see
-`openspec/changes/add-spc-minutes-pipeline/design.md` D10).
+`openspec/changes/archive/2026-11-26-add-spc-minutes-pipeline/design.md` D10).
 
 ## Helper
 

@@ -63,7 +63,7 @@ Motions moved at meetings of Irish local authorities, from the authorities' publ
 
 ## [SPC meetings](latest/spc-meetings/meetings.csv)
 
-Strategic Policy Committee meetings: who attended, their attendance, agenda items with COFOG 1999 topics, official decisions as verbatim quotes, and the minutes themselves rendered verbatim as Markdown. Five tables — [meetings](latest/spc-meetings/meetings.csv), [people](latest/spc-meetings/people.csv), [attendance](latest/spc-meetings/attendance.csv), [items](latest/spc-meetings/items.csv) and [decisions](latest/spc-meetings/decisions.csv) — join on `meeting_id` and `person_id`.
+Meath County Council's Transportation and Urban Regeneration Strategic Policy Committee (six meetings, February 2025 to May 2026): who attended, their attendance, agenda items with COFOG 1999 topics, official decisions as verbatim quotes, and the minutes themselves rendered verbatim as Markdown. Five tables — [meetings](latest/spc-meetings/meetings.csv), [people](latest/spc-meetings/people.csv), [attendance](latest/spc-meetings/attendance.csv), [items](latest/spc-meetings/items.csv) and [decisions](latest/spc-meetings/decisions.csv) — join on `meeting_id` and `person_id`.
 
 ## [Transport policies](latest/transport-policies/transport-policies.csv)
 

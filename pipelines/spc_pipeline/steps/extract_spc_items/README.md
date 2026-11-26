@@ -69,8 +69,10 @@ in `public/CHANGELOG.md`.
 The production model is `opencode-go/deepseek-v4.1-flash`
 (`extraction.DEFAULT_MODEL`). `SPC_LLM_PROVIDER`, `SPC_LLM_MODEL`,
 `SPC_LLM_BASE_URL`, `SPC_LLM_API_KEY` and `SPC_LLM_SESSION_ID` override it;
-each falls back to the corresponding `MOTIONS_LLM_*` value when unset, then to
-`llm_extract`'s defaults. The model is part of the cache key, so switching it
+each, when set, is exposed to `llm_extract` as the corresponding `MOTIONS_LLM_*`
+variable. The model itself never falls back to `MOTIONS_LLM_MODEL`: it is
+`SPC_LLM_MODEL` or `DEFAULT_MODEL`. Provider, base URL, key and session fall back
+to `MOTIONS_LLM_*`, then to `llm_extract`'s defaults. The model is part of the cache key, so switching it
 extracts afresh instead of reading another model's responses.
 
 ## Model choice

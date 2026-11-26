@@ -79,6 +79,29 @@ prompt version, so an unchanged re-run makes no call.
 The PDF cache lives in `pipelines/spc_pipeline/cache/` (git-ignored). A warm
 cache makes no HTTP request.
 
+## Running it cold
+
+1. **Environment.** Python 3.14 and `uv`. Install
+   `pipelines/spc_pipeline/requirements.txt`, which pins the same versions as the
+   FOI pipeline (`pdfplumber`, `beautifulsoup4`, `jsonschema`, `requests`) plus
+   `rdflib` for the catalogue tests.
+2. **Git LFS.** Run `git lfs install` once, and `git lfs pull` for the schemas under
+   `public/schemas/`. The committed test PDFs are ordinary git, not LFS.
+3. **Step 1 is generated.** Every run, even `--to render_spc_minutes`, needs
+   `pipelines/minutes_pipeline/steps/find_local_authorities/output.json`, which is
+   not committed. Produce it first with
+   `uv run python pipelines/minutes_pipeline/process.py pipelines/minutes_pipeline --to find_local_authorities --force --stop-on-error`.
+4. **Free part.** `uv run python pipelines/spc_pipeline/process.py pipelines/spc_pipeline --force --stop-on-error --to render_spc_minutes`
+   needs the network (the council's page and PDFs) but no credentials.
+5. **Paid part.** `extract_spc_items` calls a model once per meeting and needs
+   `SPC_LLM_API_KEY` (or `MOTIONS_LLM_API_KEY`); see that step's README for the
+   provider, model and base URL variables. The sweep put the chosen model at about
+   US$0.001 per meeting (a chars/4 estimate, `experiments/2026-11-26-spc-model-sweep/REPORT.md`),
+   so six meetings cost cents. Responses are cached by source hash, model and
+   prompt, so an unchanged re-run is free and reproducible without the key.
+6. **Publish.** `uv run python scripts/transform_spc_meetings.py` writes
+   `public/v<schema>/spc-meetings/` and mirrors it to `public/latest/`.
+
 ## Fail-closed rules
 
 - An unknown `public_body_id` in the committee list, an unfetchable page or a

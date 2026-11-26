@@ -338,3 +338,51 @@ def test_a_content_change_stamps_dct_modified(tmp_path):
         build_outputs(export, build_records(export, BODY_LOOKUP), output_dir),
         ttl, output_dir) is True
     assert "2026-01-01" not in ttl.read_text()
+
+
+def _readme(tmp_path):
+    outputs = build_outputs(_export(), _records(), tmp_path)
+    return outputs[tmp_path / "README.md"].decode("utf-8")
+
+
+def test_readme_states_the_real_coverage_not_all_authorities(tmp_path):
+    text = _readme(tmp_path)
+    assert "Meath County Council" in text
+    assert "six meetings" in text
+    assert "Irish local authorities" not in text
+
+
+def test_readme_documents_fields_from_field_specs_and_null_semantics(tmp_path):
+    from scripts.transform_spc_meetings import CSV_FIELDS, FIELD_SPECS
+
+    text = _readme(tmp_path)
+    for kind, fields in CSV_FIELDS.items():
+        assert f"### {kind}" in text
+        for field in fields:
+            assert f"| `{field}` | {FIELD_SPECS[field][0]} |" in text
+    for phrase in ("topics_published", "attendance_published", "pipe-joined",
+                   "https://data.publicinformation.ie/dataset/spc-meetings"):
+        assert phrase in text
+
+
+def test_readme_names_the_people_and_attribution(tmp_path):
+    text = _readme(tmp_path)
+    assert "People named in this dataset" in text
+    assert "Source: Meath County Council" in text
+    assert "DATA_SOURCES.md" not in text  # not published, so it must not be the only pointer
+
+
+def test_minutes_have_a_resolvable_index_and_the_catalogue_links_to_it(tmp_path):
+    outputs = build_outputs(_export(), _records(), tmp_path)
+    index = outputs[tmp_path / "minutes" / "index.md"].decode("utf-8")
+    assert "(meath/transportation-urban-regeneration/2026-02-19.md)" in index
+    ttl = (REPO / "public/catalog/dataset-spc-meetings.ttl").read_text()
+    assert "minutes/index.md" in ttl
+    assert "spc-meetings/minutes/>" not in ttl
+
+
+def test_catalogue_and_discovery_pages_state_the_real_scope():
+    for relative in ("public/catalog/dataset-spc-meetings.ttl", "public/README.md",
+                     "public/GET_THE_DATA.md", "public/get-the-data.html"):
+        text = (REPO / relative).read_text(encoding="utf-8")
+        assert "Meath County Council" in text, relative

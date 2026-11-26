@@ -9,7 +9,7 @@
 <https://data.publicinformation.ie/dataset/spc-meetings>
     a dcat:Dataset ;
     dct:title "Strategic Policy Committee Meetings"@en ;
-    dct:description "Meetings of Irish local authority Strategic Policy Committees: who attended, their attendance, agenda items with COFOG 1999 topics, official decisions as verbatim quotes, and the minutes rendered verbatim as Markdown."@en ;
+    dct:description "Meetings of one committee of one council: Meath County Council's Transportation and Urban Regeneration Strategic Policy Committee (six meetings, February 2025 to May 2026). Who attended, their attendance, agenda items with COFOG 1999 topics, official decisions as verbatim quotes, and the minutes rendered verbatim as Markdown."@en ;
     dct:publisher <https://www.publicinformation.ie/> ;
     dct:creator <https://www.publicinformation.ie/> ;
     dct:issued "2026-11-26"^^xsd:date ;
@@ -23,6 +23,12 @@
         a vcard:Organization ;
         vcard:fn "PublicInformation.ie" ;
         vcard:hasEmail <mailto:dave@publicinformation.ie> ;
+    ] ;
+    dct:spatial <https://data.publicinformation.ie/body/meath-county-council> ;
+    dct:temporal [
+        a dct:PeriodOfTime ;
+        dcat:startDate "2025-02-20"^^xsd:date ;
+        dcat:endDate "2026-05-21"^^xsd:date ;
     ] ;
     dct:relation <https://data.publicinformation.ie/dataset/public-bodies> ;
     dct:relation <https://data.publicinformation.ie/dataset/motions> ;
@@ -126,8 +132,8 @@
         a dcat:Distribution ;
         dct:title "Verbatim minutes (Markdown, latest)"@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/MD> ;
-        dcat:accessURL <https://data.publicinformation.ie/latest/spc-meetings/minutes/> ;
-        dcat:downloadURL <https://data.publicinformation.ie/v1.1.0/spc-meetings/minutes/> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/spc-meetings/minutes/index.md> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.1.0/spc-meetings/minutes/index.md> ;
         dct:license <https://creativecommons.org/licenses/by/4.0/> ;
         dcat:mediaType "text/markdown" ;
     ] .
