@@ -10,13 +10,36 @@ This is a **handoff doc, not an OpenSpec change.** The review findings below are
 
 ## 0. Where the next session starts
 
-**The correction release (§6 step 1) is pushed and live** — verified 2026-11-26.
+**§6 step 2 (the fail-closed sweep) is done locally and not yet pushed** — 2026-11-26.
 
-- `main` and `origin/main` are level at `653933d6`. CI `verify` (45897958316) and Deploy Pages (45897958422) both passed on push. The live site serves 17 decisions, the restored role text and no `2025-11-20/d01`; all three checks were confirmed against `data.publicinformation.ie` after deploy.
-- Working tree clean; the only untracked entries are the three foreign ones in §1 — leave them alone.
-- **Next action:** §6 step 2 (fail-closed sweep). It needs no API spend. The only paid step is step 5; read the cost rule first.
+- `main` is **9 commits ahead of `origin/main`** (`9cf4bcc4..ee31751b`, the step-2 work alone). Nothing new is live until `git push origin main`, which triggers Deploy Pages. Review the `public/` diff first.
+- Working tree clean apart from the three foreign untracked entries in §1. The implementation plan is `plan-fail-closed-sweep.md` in this directory.
+- **Next action:** §6 step 3 (guard it). No API spend. Step 5 remains paid.
 
-What the correction release already changed — do not redo it:
+What step 2 changed — do not redo it:
+
+| Item | Where it now lives |
+|---|---|
+| P2.2 initials | `resolve_attendees/resolving.py`: a printed name that does not resolve errors instead of falling back to the register |
+| P3.6 register | `load_register` validates shape, kinds, councillor ids and the councillors reference at load time |
+| P2.4 stale files | `transform_spc_meetings.py` `write_if_changed(..., output_dir)` deletes files the run did not generate and stamps the change |
+| P2.5 dangling people | `export_spc_meetings/exporting.py` raises; requires a boolean `attendance_published`; rejects false-with-rows |
+| P2.6 fetch cache | `fetch_spc_minutes/fetching.py`: `%PDF` check, atomic write, sidecar sha verified on read, corrupt cache re-downloaded once, `InvalidPdf` distinct from `DownloadFailed` |
+| P2.7 model cache | `extract_spc_items/extraction.py`: prompt digest in the key; cache written only after schema/echo validation; atomic |
+| P3.6 extraction | approval-only discard; minimum decision length/tokens; duplicate decision; duplicate or unknown `item_key` fails the meeting; proposer/seconder grounded in the item text and present, with `*_unresolved` flags |
+| COFOG levels | division rejected; a group needs two transport subdomains (`04.5`) or two child class codes |
+| P2.3 furniture | two-page footer removed; one-page document keeps all lines; an unrecognised repeating edge line fails the meeting |
+| P2.8 contract | schema 1.1.0: `additionalProperties: false`, `item_id` in the items CSV, `item_key` + flags in the decisions CSV, CSVW `separator`/`null` |
+
+Evidence for step 2: 144 SPC tests, 567 root tests, `pyright` clean, docs check clean, 195 records valid under the closed schema in **both** `v1.0.0/` and `v1.1.0/`, `latest/` identical to `v1.1.0/`, and the six cached responses replayed (zero spend).
+
+> **Cache-key migration:** the local cache files were renamed to the prompt-digest key. The cache is git-ignored, so a fresh clone has none and its first extraction is paid. Do not delete `pipelines/spc_pipeline/cache/llm/` in this checkout.
+
+The correction release (§6 step 1) is pushed and live — verified 2026-11-26:
+
+- The correction release `f0f02971` was pushed at `653933d6`: CI `verify` (45897958316) and Deploy Pages (45897958422) both passed, and the live site serves 17 decisions, the restored role text and no `2025-11-20/d01`.
+
+What the correction release changed — do not redo it:
 
 | Item | Where it now lives |
 |---|---|
@@ -31,9 +54,9 @@ Evidence from the release: 115 SPC tests and 562 root tests pass, `pyright` clea
 
 ## 1. State and ground rules
 
-- Branch `main`, level with `origin/main` at `653933d6`, tracked tree clean. Earlier commits: `f0f02971` (correction release), `0ba8f792` (CI rdflib pin), `9f7acd95` (merge), `f7f97f1f` (spec sync + archive), `320861fc` (implementation + publication).
+- Branch `main`, **9 commits ahead of `origin/main`** (`9cf4bcc4..ee31751b`, all step 2), tracked tree clean. Earlier commits: `f0f02971` (correction release), `0ba8f792` (CI rdflib pin), `9f7acd95` (merge), `f7f97f1f` (spec sync + archive), `320861fc` (implementation + publication).
 - The change is archived at `openspec/changes/archive/2026-11-26-add-spc-minutes-pipeline/`; six capability specs are live in `openspec/specs/spc-*/`; `openspec validate --specs` passes 17/17.
-- **The published dataset** holds 6 meetings, 28 people, 98 attendance rows, 46 items, **17 decisions** (was 18 before `d01` was removed) and 6 minutes files, and `latest/` and `v1.0.0/` are identical.
+- **The local `public/` tree (unpushed)** is now schema **1.1.0**: 6 meetings, 28 people, 98 attendance rows, 46 items, 17 decisions and 6 minutes files, with `latest/` identical to `v1.1.0/`. `v1.0.0/` is kept as the previous release and still validates under the closed schema. The live site stays on 1.0.0 until the push.
 - Untracked and **not ours — leave alone**: `openspec/changes/improve-chapter-split-accuracy/`, `pipelines/foi_pipeline/experiments/gating/populate_docling_cache.py`, `pipelines/foi_pipeline/steps/transform_disclosure_files/docling_cache/`, and `stash@{0}`.
 
 ### Cost rule — read before running anything
@@ -44,11 +67,11 @@ Evidence from the release: 115 SPC tests and 562 root tests pass, `pyright` clea
 uv run python pipelines/spc_pipeline/process.py pipelines/spc_pipeline --force --stop-on-error --to render_spc_minutes
 ```
 
-Responses are cached in `pipelines/spc_pipeline/cache/llm/` (git-ignored), keyed by `source_sha256 + model + PROMPT_VERSION`. While the source PDFs, model and `spc-items-v1` are unchanged, extraction and export replay from cache at **zero** cost. **Bumping `PROMPT_VERSION` or editing a source PDF makes the step paid again (6 calls, ~$0.0011/meeting).** A sweep re-run is 18 calls. Editing `override.json`, the validation rules or the renderer does **not** invalidate the cache: extraction replays and re-applies the overrides for free. The correction release was produced with `--from extract_spc_items --to export_spc_meetings --force --stop-on-error`; a render-only change can use `--from render_spc_minutes --to render_spc_minutes`.
+Responses are cached in `pipelines/spc_pipeline/cache/llm/` (git-ignored), keyed by `source_sha256 + model + PROMPT_VERSION + a digest of the whole prompt`. While the source PDFs, model and prompt text are unchanged, extraction and export replay from cache at **zero** cost. **Editing the prompt text now invalidates the cache** (it did not before 2026-11-26); bumping `PROMPT_VERSION` or editing a source PDF also makes the step paid (6 calls, ~$0.0011/meeting). A sweep re-run is 18 calls. Editing `override.json`, the validation rules or the renderer does **not** invalidate the cache: extraction replays and re-applies the overrides for free. The step-2 release was produced with `--from render_spc_minutes --to export_spc_meetings --force --stop-on-error` after migrating the six local cache files; a render-only change can use `--from render_spc_minutes --to render_spc_minutes`.
 
 ### Verdict
 
-At review time, no reviewer found cause for a takedown: identifiers are stable and correctly namespaced, all 196 records validated against the schema, `v1.0.0/` and `latest/` were byte-identical, and the TTL parsed (134 triples). Three defects were nevertheless **wrong in the live data**, and two of the checks that should have caught them could not fail. Those three are fixed in `f0f02971`; the word check is rebuilt, and furniture removal is now position-limited (with the residual under P2.3). What remains below is fail-open paths, unverified edges and documentation — not live wrong data.
+At review time, no reviewer found cause for a takedown: identifiers are stable and correctly namespaced, all 196 records validated against the schema, `v1.0.0/` and `latest/` were byte-identical, and the TTL parsed (134 triples). Three defects were nevertheless **wrong in the live data**, and two of the checks that should have caught them could not fail. Those three are fixed in `f0f02971`; the word check is rebuilt, and the fail-open paths below were closed in the step-2 sweep. What remains is verification, documentation and the paid model question.
 
 ---
 
@@ -119,11 +142,11 @@ Original finding, verified against `public/latest/spc-meetings/items.jsonld`:
 | ~~primary `01.1.1` ⇒ `procedural: true`~~ | not a spec rule; `2025-02-20 item-2-0` is valid as published |
 | `04.5*` ⇒ at least one subdomain | 0 (this one *is* enforced, `extraction.py:361-367`) |
 
-8 items carry more than one COFOG code; class-vs-group level is not enforced at all. The original fix note said "validate all three rules"; only the first and third are real rules. The class-vs-group check remains open under step 2.
+8 items carry more than one COFOG code; class-vs-group level is now enforced: a division code is rejected, and a group code needs two subdomains (`04.5`) or two child class codes. The original fix note said "validate all three rules"; only the first and third are real rules.
 
 ---
 
-## 3. P2 — fail-open paths (P2.1 fixed, P2.3 partly fixed; the rest open)
+## 3. P2 — fail-open paths (all fixed 2026-11-26; §0 lists the code)
 
 ### P2.1 The word-preservation check cannot catch its own failure modes
 
@@ -135,35 +158,47 @@ Original diagnosis: `rendering.py:348` called `check_words(source_words(body_lin
 
 ### P2.2 Register initials fallback overrides the meeting's own printed map
 
-`steps/resolve_attendees/resolving.py:81-92`. When the meeting prints `(XX)` for a name absent from the register, `alias_index.get` misses and control falls through to `initials_index[XX]`, returning a registered person **with no error** — despite the docstring saying the meeting's print wins and it "never guesses".
+**Fixed.** `resolve_initials` returns an error when the meeting prints a name for `(XX)` that does not resolve; the register fallback runs only when the meeting prints nothing for that key. Test: `test_printed_initials_that_do_not_resolve_error_instead_of_guessing`.
+
+Original diagnosis: `steps/resolve_attendees/resolving.py:81-92`. When the meeting prints `(XX)` for a name absent from the register, `alias_index.get` misses and control falls through to `initials_index[XX]`, returning a registered person **with no error** — despite the docstring saying the meeting's print wins and it "never guesses".
 
 Not triggered by today's data. It fires the first time a new councillor, official or guest shares initials with someone registered. Attendance would then be withheld by `UnresolvedAttendee`, but **decisions still publish with the wrong proposer or seconder**. Fix: if `printed` exists and does not resolve, return an error; use the register fallback only when the meeting prints nothing for that key. Add a test.
 
 ### P2.3 Furniture removal can delete body lines
 
-**Partly fixed.** `detect_furniture` now removes a repeated line only when every occurrence sits in the top 2% or bottom 5% of its page, so a mid-page `Noted.`/`Agreed.` survives; the synthetic `test_furniture_rule_keeps_a_body_line_that_repeats_on_three_pages` locks it in. Still open: the edge bands are tuned to this publisher's template, a genuine line at the very bottom repeated on three pages would still be removed, a 1–2 page PDF never reaches the frequency threshold (its footer stays in the body), and no error is logged for a removed line that is not a recognised pattern. Step 2 should decide whether to add the pattern log and a per-page height, or to leave the bands as the recognisable definition of furniture.
+**Fixed for the reported cases.** `detect_furniture` still requires a page edge, and now: a two-page PDF treats a line on both pages as furniture, a one-page PDF keeps everything, and a removed edge line that is not the running header or a recognisable Meath footer fails the meeting (`UnrecognisedFurniture`). Tests: `test_a_two_page_footer_is_still_removed`, `test_a_one_page_document_keeps_its_lower_lines`, `test_an_unrecognised_repeating_edge_line_fails_closed`. Residual: a genuine body line repeated at the very bottom edge of three pages would still be removed, and the footer patterns name this publisher's template.
 
 Original diagnosis: `rendering.py:50-62` removed any normalised line appearing on ≥3 pages. A genuine body line ("Noted.", "Agreed.") repeating on three pages was deleted; only a count survived in `furniture_removed`, and the old word check could not see it.
 
 ### P2.4 Stale output files are never deleted
 
-`scripts/transform_spc_meetings.py:255-272` only ever writes; `stamp_if_changed` ignores files present on disk but absent from `generated`, and `mirror_to_latest` (`:275`) copies the already-polluted tree. If a meeting later fails render or the word check, **its `minutes/*.md` stays public in both directories**, which the dataset spec forbids. Fix: delete files under `OUTPUT_DIR` that are not in `generated`, and count that as a change.
+**Fixed.** `write_if_changed(generated, ttl, output_dir)` deletes every file under the versioned directory that the run did not generate, removes the emptied directories, and stamps `dct:modified` when only a deletion changed things. Test: `test_stale_generated_files_are_deleted_and_count_as_a_change`.
+
+Original diagnosis: `scripts/transform_spc_meetings.py:255-272` only ever writes; `stamp_if_changed` ignores files present on disk but absent from `generated`, and `mirror_to_latest` (`:275`) copies the already-polluted tree.
 
 ### P2.5 Dangling person references are published
 
-`exporting.py:139-142` counts `UnknownPerson` and carries on; the attendance/decision rows still publish a `person_id`/`proposer`/`seconder` with no `people` row. Also `exporting.py:31` defaults `attendance_published` to `True` when absent, and the export never asserts that a meeting marked `False` has zero attendance rows. Fix: withhold the affected meeting's attendance or decisions, or raise.
+**Fixed.** Export now requires a boolean `attendance_published`, raises when a withheld meeting still carries attendance rows, and raises on any person id with no register entry instead of counting `UnknownPerson` and publishing the row. Tests: `test_attendance_flag_must_be_a_boolean`, `test_withheld_attendance_with_rows_is_a_contradiction`, `test_a_dangling_person_reference_fails_export`.
+
+Original diagnosis: `exporting.py:139-142` counts `UnknownPerson` and carries on; the attendance/decision rows still publish a `person_id`/`proposer`/`seconder` with no `people` row. Also `exporting.py:31` defaulted `attendance_published` to `True` when absent.
 
 ### P2.6 Fetch cache is unverified and a bad download sticks forever
 
-`steps/fetch_spc_minutes/fetching.py:96-121`: bytes are written (`:105`) with no `%PDF`/content-type check, so a 200 carrying an HTML error page is cached; the sidecar `sha256` (`:107`) is written but never compared on read, so a corrupt cache silently redefines `source_sha256`; the write is not atomic; and the catch-all at `:143` reports the resulting parse failure as `DownloadFailed`, so it never re-downloads. A changed PDF at the same URL is never re-fetched. Fix: validate on download, temp-file + rename, verify the sidecar on every read and re-download on mismatch, and separate parse errors from download errors.
+**Fixed, except re-fetching a changed remote PDF.** A download must look like a PDF, writes go through a temp file and `os.replace`, the sidecar sha is checked on every read (a missing or mismatched sidecar is a miss), a corrupt cached PDF is re-downloaded once, and parse failures are `InvalidPdf`, distinct from `DownloadFailed`. Tests: `test_a_non_pdf_response_is_rejected_before_it_is_cached`, `test_warm_cache_without_sidecar_redownloads`, `test_warm_cache_with_a_mismatched_sidecar_redownloads`, `test_a_corrupt_cached_pdf_is_redownloaded_once`. A PDF replaced at the same URL is still not detected; that needs a conditional GET.
+
+Original diagnosis: `steps/fetch_spc_minutes/fetching.py:96-121`.
 
 ### P2.7 LLM cache key is incomplete and failures are cached permanently
 
-`steps/extract_spc_items/extraction.py:206-208` keys on `source_sha256 + model + PROMPT_VERSION` (`:39`). Editing the prompt text, `reference/cofog_1999.json`, the subdomain list or the render logic without remembering to bump the version **silently serves stale classifications**. Worse, `:474` writes the raw response *before* validation, so a response failing the schema or echo check is cached and that meeting stays `extraction_failed` until someone deletes the file by hand (undocumented). Fix: hash the full `system + user` prompt into the key, write only after validation (or store failures separately), write atomically.
+**Fixed.** The key includes `prompt_hash(system, user)`, so editing the prompt text invalidates it; a response is validated (schema and echo) before it is cached, and the write is atomic. Tests: `test_changing_the_prompt_text_invalidates_the_cache`, `test_a_response_that_fails_the_schema_is_not_cached`. The six local cache files were migrated to the new key, so the step-2 replay cost nothing (see §1).
+
+Original diagnosis: `steps/extract_spc_items/extraction.py:206-208` keyed only on `source_sha256 + model + PROMPT_VERSION`, and `:474` wrote the raw response *before* validation.
 
 ### P2.8 1.0.0 contract drift
 
-**Verified:**
+**Fixed in 1.1.0.** `item_id` is declared in the schema and carried by `items.csv`; `decisions.csv` gains `item_key`, `proposer_unresolved` and `seconder_unresolved`; every record type has `additionalProperties: false`; CSVW marks the pipe-separated arrays with `"separator": "|"` and `"null": ""`. Published at `public/v1.1.0/spc-meetings/`; `v1.0.0/` still validates under the closed schema. Tests: `test_schema_rejects_an_undeclared_field`, `test_decisions_csv_carries_the_item_key_and_unresolved_flags`, `test_items_csv_carries_the_item_id`, `test_csvw_marks_pipe_separated_arrays`.
+
+Original findings:
 
 ```
 items.jsonld     has item_id   — absent from items.csv, the schema and the CSVW
@@ -171,15 +206,13 @@ decisions.jsonld has item_key  — absent from decisions.csv and the schema
 public/schemas/spc-meetings.schema.json — "additionalProperties" occurs 0 times
 ```
 
-Undeclared, unversioned fields become part of the 1.0.0 contract the moment anyone relies on them. Separately, `decisions.csv` can only join to its item via `item_number`, which `FIELD_SPECS` itself documents as non-unique (2026-05-21 already prints two `6.0` items) — add `item_key` to the decisions columns. Fix all three together and treat it as a documented 1.0.0 correction or a 1.1.0 bump.
-
 ---
 
 ## 4. P3 — verification you cannot currently rely on
 
 ### P3.1 CI never runs the SPC suite
 
-`.github/workflows/ci.yml:38-43` runs the FOI, document and root suites only. The pipeline's **115 tests are unguarded on a branch where pushing publishes**. The `rdflib` miss in `0ba8f792` came from the same gap, and the correction release did not touch CI. Fix: add `uv run pytest pipelines/spc_pipeline/tests -q`, add the suite to the `AGENTS.md` "Tests" table, and correct "CI currently enforces the three test suites".
+`.github/workflows/ci.yml:38-43` runs the FOI, document and root suites only. The pipeline's **144 tests are unguarded on a branch where pushing publishes**. The `rdflib` miss in `0ba8f792` came from the same gap, and neither the correction release nor the step-2 sweep touched CI. Fix: add `uv run pytest pipelines/spc_pipeline/tests -q`, add the suite to the `AGENTS.md` "Tests" table, and correct "CI currently enforces the three test suites".
 
 ### P3.2 The strongest tests skip without git-ignored caches
 
@@ -203,6 +236,10 @@ Fix: token-sequence containment, complete double-labelled gold, a precision floo
 Against gold on the production output (measured before the correction release; the two 2025-05-27 items have since lost four subdomains): **16 true positives, 27 false positives, 4 false negatives**; only 6 of 25 items match exactly; items often carry 3–4 subdomains. `procedural` agreement is 36/46. The sweep scores COFOG and decisions only — subdomain, `procedural` and proposer/seconder are unscored. Fix: score them, cap the subdomain count, and until then document the field as low-confidence.
 
 ### P3.6 Over-broad silent discards and unvalidated edges
+
+**Fixed.** Minutes approval is discarded only when every token in the quote is approval language, so a compound decision survives. A decision must have at least 10 normalised characters and 3 tokens, and the same text cannot repeat within an item. A duplicate or unknown `item_key` fails the whole meeting. A proposer/seconder must be printed in the item text and recorded present; otherwise the field is null and `*_unresolved` is true. `load_register` validates shape, kinds and councillor ids at load time.
+
+Original findings:
 
 - `extraction.py:236-242, 396-398`: the minutes-approval regex discards any quote containing approve/adopt/confirm within 80 chars of "minutes". A real compound decision ("agreed to approve the minutes **and** to defer the footpath programme") is dropped with no error, only a counter. The spec says "only approves".
 - `extraction.py:95` (`minLength: 1`) + `:389`: `"   "` normalises to `""` and `"" in text` is true, so a blank or one-character decision passes. Require a minimum normalised length and token count; reject duplicate decision texts within an item.
@@ -240,23 +277,24 @@ No test found for: *Typos are preserved*; *Initials are preserved*; *Body text r
 | # | Work | Model spend |
 |---|---|---|
 | 1 | ~~**Correction release**~~ — **DONE and live in `f0f02971`** (P1.1, P2.1, P1.2, P1.3) | none — replayed from cache |
-| 2 | **Fail-closed sweep — start here**: P2.2, P2.4, P2.5, P2.6, P2.7, P3.6, P2.8 (declare or drop the fields, `additionalProperties: false`, `item_key` in `decisions.csv`), plus the P2.3 residuals and class-vs-group COFOG | none |
-| 3 | **Guard it**: P3.1, P3.2, P3.3, P3.7 | none |
+| 2 | ~~**Fail-closed sweep**~~ — **DONE locally in `9cf4bcc4..ee31751b`** (P2.2–P2.8, P3.6, P2.3 residuals, COFOG levels, schema 1.1.0) | none — replayed from cache |
+| 3 | **Guard it — start here**: P3.1, P3.2, P3.3, P3.7 | none |
 | 4 | **Docs**: P4 (coverage wording, attribution/personal data, field table, reproducibility, CSVW, distribution URL) | none |
 | 5 | **Re-open the model question**: P3.4, P3.5, plus the prompt changes for P1.2 and injection — needs a `PROMPT_VERSION` bump and therefore re-extraction; remove the `d01` override when the prompt no longer produces it | **PAID — ask first.** 6 calls to re-extract; 18 more for a sweep re-run |
 
-Steps 2–4 need no API spend. Step 5 requires explicit per-run permission.
+Steps 3–4 need no API spend. Step 5 requires explicit per-run permission.
 
 Verification commands for any of it:
 
 ```bash
-cd pipelines/spc_pipeline && uv run pytest tests/ -q      # 115 tests
-uv run pytest tests/ -q                                   # root suite (562)
+cd pipelines/spc_pipeline && uv run pytest tests/ -q      # 144 tests
+uv run pytest tests/ -q                                   # root suite (567)
 uv run pytest pipelines/document_pipeline/tests -q
 uv run pyright
 uv run python scripts/generate_pipeline_docs.py --check
 uv run python pipelines/spc_pipeline/status.py
-git show --stat f0f02971                                  # the correction release
+git log --oneline origin/main..HEAD                       # the unpushed step-2 work
+git show --stat ee31751b                                  # the 1.1.0 publication
 ```
 
 Pushing a `public/` change to `main` is what publishes. Review the generated `public/` diff before pushing.
