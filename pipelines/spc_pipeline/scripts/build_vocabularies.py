@@ -1,0 +1,119 @@
+#!/usr/bin/env python3
+"""Write the closed vocabularies the SPC meetings dataset publishes.
+
+Usage:
+    uv run python pipelines/spc_pipeline/scripts/build_vocabularies.py
+
+The COFOG and transport-subdomain lists are derived from the committed
+reference data; the small term lists are defined here. Each vocabulary is a
+CSV file plus CSVW metadata, following public/vocabularies/.
+"""
+from __future__ import annotations
+
+import csv
+import json
+from pathlib import Path
+
+PIPELINE = Path(__file__).resolve().parents[1]
+REPO = PIPELINE.parents[1]
+OUT = REPO / "public" / "vocabularies"
+
+BASE = "https://data.publicinformation.ie/ns"
+COLUMNS = [
+    {"name": "uri", "titles": "URI", "datatype": "uri",
+     "description": "Persistent URI for this term"},
+    {"name": "notation", "titles": "Notation", "datatype": "string",
+     "description": "Short notation used in the dataset"},
+    {"name": "name", "titles": "Name", "datatype": "string",
+     "description": "Human-readable name"},
+    {"name": "description", "titles": "Description", "datatype": "string",
+     "description": "Meaning of the term"},
+]
+
+SPC_TERMS = {
+    "spc-attendance-status": ("spc", [
+        ("present", "Present", "Recorded as attending the meeting."),
+        ("apologies", "Apologies", "Listed under apologies or absent, so did not attend."),
+    ]),
+    "spc-attendance-mode": ("spc", [
+        ("remote", "Remote", "Attended online or via Teams."),
+        ("in_person", "In person", "Attended in person."),
+        ("not_stated", "Mode not stated", "The minutes do not say how the person attended."),
+    ]),
+    "spc-attendee-category": ("spc", [
+        ("councillors", "Councillors", "Elected members of the committee."),
+        ("sectoral_representatives", "Sectoral representatives", "Sectoral or PPN representatives."),
+        ("apologies", "Apologies", "People listed as absent or sending apologies."),
+        ("officials", "Officials", "Council officials present."),
+        ("presenters", "Presenters", "People who made a presentation to the committee."),
+    ]),
+    "spc-decision-type": ("spc", [
+        ("agreed", "Agreed", "The committee agreed a course of action."),
+        ("adopted", "Adopted", "The committee adopted a document or policy."),
+        ("recommended_to_council", "Recommended to council", "The committee recommended a matter to the full council."),
+        ("referred", "Referred", "The committee referred an item onward or to a later meeting."),
+        ("deferred", "Deferred", "The committee deferred an item."),
+        ("appointment", "Appointment", "The committee appointed or elected someone to a role."),
+    ]),
+}
+
+
+def write_vocabulary(name: str, namespace: str, rows: list[dict]) -> None:
+    csv_path = OUT / f"{name}.csv"
+    metadata_path = OUT / f"{name}.csv-metadata.json"
+    with csv_path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=["uri", "notation", "name", "description"])
+        writer.writeheader()
+        writer.writerows(rows)
+    metadata_path.write_text(json.dumps({
+        "@context": "http://www.w3.org/ns/csvw",
+        "url": csv_path.name,
+        "tableSchema": {"columns": COLUMNS, "primaryKey": "uri",
+                        "aboutUrl": "{uri}"},
+    }, indent=2) + "\n", encoding="utf-8")
+
+
+def spc_rows(namespace: str, terms) -> list[dict]:
+    return [{
+        "uri": f"{BASE}/{namespace}#{notation}",
+        "notation": notation,
+        "name": label,
+        "description": description,
+    } for notation, label, description in terms]
+
+
+def cofog_rows() -> list[dict]:
+    data = json.loads((PIPELINE / "reference" / "cofog_1999.json").read_text())
+    rows = []
+    for entry in data["codes"]:
+        marker = f" ({entry['marker']})" if entry.get("marker") else ""
+        rows.append({
+            "uri": f"{BASE}/cofog#{entry['code']}",
+            "notation": entry["code"],
+            "name": entry["description"],
+            "description": f"COFOG 1999 {entry['level']}{marker}",
+        })
+    return rows
+
+
+def subdomain_rows() -> list[dict]:
+    data = json.loads((PIPELINE / "reference" / "transport_subdomains.json").read_text())
+    return [{
+        "uri": f"{BASE}/transport-subdomain#{entry['id']}",
+        "notation": entry["id"],
+        "name": entry["term"],
+        "description": entry["plain_label"],
+    } for entry in data["subdomains"]]
+
+
+def main() -> None:
+    OUT.mkdir(parents=True, exist_ok=True)
+    for name, (namespace, terms) in SPC_TERMS.items():
+        write_vocabulary(name, namespace, spc_rows(namespace, terms))
+    write_vocabulary("cofog-1999", "cofog", cofog_rows())
+    write_vocabulary("transport-subdomain", "transport-subdomain", subdomain_rows())
+    print(f"Wrote vocabularies to {OUT}")
+
+
+if __name__ == "__main__":
+    main()

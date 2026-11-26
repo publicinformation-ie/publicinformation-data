@@ -1,0 +1,254 @@
+[
+  {
+    "person_id": "meath/michael-bray",
+    "canonical_name": "Mike Bray",
+    "kind": "councillor",
+    "councillor_id": "meath/michael-bray",
+    "aliases": ["Mike Bray"],
+    "initials": ["MB"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/paddy-meade",
+    "canonical_name": "Paddy Meade",
+    "kind": "councillor",
+    "councillor_id": "meath/paddy-meade",
+    "aliases": ["Paddy Meade"],
+    "initials": ["PM"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/amanda-smith",
+    "canonical_name": "Amanda Smith",
+    "kind": "councillor",
+    "councillor_id": "meath/amanda-smith",
+    "aliases": ["Amanda Smith"],
+    "initials": ["AS"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/sean-drew",
+    "canonical_name": "Sean Drew",
+    "kind": "councillor",
+    "councillor_id": "meath/sean-drew",
+    "aliases": ["Sean Drew"],
+    "initials": ["SD"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/caroline-oreilly",
+    "canonical_name": "Caroline O'Reilly",
+    "kind": "councillor",
+    "councillor_id": "meath/caroline-oreilly",
+    "aliases": ["Caroline O'Reilly", "Caroline O’ Reilly"],
+    "initials": ["COR"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/wayne-harding",
+    "canonical_name": "Wayne Harding",
+    "kind": "councillor",
+    "councillor_id": "meath/wayne-harding",
+    "aliases": ["Wayne Harding"],
+    "initials": ["WH"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/alan-tobin",
+    "canonical_name": "Alan Tobin",
+    "kind": "councillor",
+    "councillor_id": "meath/alan-tobin",
+    "aliases": ["Alan Tobin"],
+    "initials": [],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/helen-meyer",
+    "canonical_name": "Helen Meyer",
+    "kind": "councillor",
+    "councillor_id": "meath/helen-meyer",
+    "aliases": ["Helen Meyer"],
+    "initials": [],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/sharon-tolan",
+    "canonical_name": "Sharon Tolan",
+    "kind": "councillor",
+    "councillor_id": "meath/sharon-tolan",
+    "aliases": ["Sharon Tolan"],
+    "initials": [],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/person/dave-anderson",
+    "canonical_name": "Dave Anderson",
+    "kind": "sectoral_representative",
+    "councillor_id": null,
+    "aliases": ["Dave Anderson"],
+    "initials": ["DA"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/person/josephine-reynolds-oconnor",
+    "canonical_name": "Josephine Reynolds O'Connor",
+    "kind": "sectoral_representative",
+    "councillor_id": null,
+    "aliases": ["Josephine Reynolds O'Connor", "Josephine Reynolds O’Connor"],
+    "initials": ["JROC"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/person/paula-mc-caul",
+    "canonical_name": "Paula Mc Caul",
+    "kind": "sectoral_representative",
+    "councillor_id": null,
+    "aliases": ["Paula Mc Caul"],
+    "initials": ["PMC"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/person/martin-murray",
+    "canonical_name": "Martin Murray",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Martin Murray", "Martin Murry"],
+    "initials": ["MM"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/person/caroline-corrigan",
+    "canonical_name": "Caroline Corrigan",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Caroline Corrigan"],
+    "initials": ["CC"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/person/nicholas-wyatt",
+    "canonical_name": "Nicholas Wyatt",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Nicholas Wyatt", "Nicholas Whyatt"],
+    "initials": ["NW"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/person/joan-carroll",
+    "canonical_name": "Joan Carroll",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Joan Carroll"],
+    "initials": ["JC"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/person/john-mcgrath",
+    "canonical_name": "John McGrath",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["John McGrath", "John Mc Grath"],
+    "initials": ["JMG"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/person/mary-loughran",
+    "canonical_name": "Mary Loughran",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Mary Loughran"],
+    "initials": ["ML"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/person/lorraine-sherrock",
+    "canonical_name": "Lorraine Sherrock",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Lorraine Sherrock"],
+    "initials": ["LS"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/person/fiona-beers",
+    "canonical_name": "Fiona Beers",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Fiona Beers"],
+    "initials": ["FB"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/person/jamie-nolan",
+    "canonical_name": "Jamie Nolan",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Jamie Nolan"],
+    "initials": ["JN"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/person/marc-cahill",
+    "canonical_name": "Marc Cahill",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Marc Cahill"],
+    "initials": ["MC"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/person/mary-darcy",
+    "canonical_name": "Mary D'Arcy",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Mary D'Arcy", "Mary D’Arcy"],
+    "initials": ["MD’A", "MD'A"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/person/joe-mcgarvey",
+    "canonical_name": "Joe McGarvey",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Joe McGarvey"],
+    "initials": ["JMcG"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/person/audrey-norris",
+    "canonical_name": "Audrey Norris",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Audrey Norris"],
+    "initials": [],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/person/bernard-cooney",
+    "canonical_name": "Bernard Cooney",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Bernard Cooney"],
+    "initials": [],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/person/enda-weldon",
+    "canonical_name": "Enda Weldon",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Enda Weldon"],
+    "initials": ["EW"],
+    "public_body_id": 1511
+  },
+  {
+    "person_id": "meath/person/andy-faulkner",
+    "canonical_name": "Andy Faulkner",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Andy Faulkner"],
+    "initials": ["AF"],
+    "public_body_id": 1511
+  }
+]

@@ -1,0 +1,145 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+<https://data.publicinformation.ie/dataset/spc-meetings>
+    a dcat:Dataset ;
+    dct:title "Strategic Policy Committee Meetings"@en ;
+    dct:description "Meetings of Irish local authority Strategic Policy Committees: who attended, their attendance, agenda items with COFOG 1999 topics, official decisions as verbatim quotes, and the minutes rendered verbatim as Markdown."@en ;
+    dct:publisher <https://www.publicinformation.ie/> ;
+    dct:creator <https://www.publicinformation.ie/> ;
+    dct:issued "2026-11-26"^^xsd:date ;
+    dct:modified "2026-11-26"^^xsd:date ;
+    owl:versionInfo "1.0.0" ;
+    dct:language <http://publications.europa.eu/resource/authority/language/ENG> ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcat:keyword "SPC", "committee minutes", "attendance", "local authorities", "Ireland", "open data"@en ;
+    dcat:theme <http://data.europa.eu/m8g/GOVERNMENT> ;
+    dcat:contactPoint [
+        a vcard:Organization ;
+        vcard:fn "PublicInformation.ie" ;
+        vcard:hasEmail <mailto:dave@publicinformation.ie> ;
+    ] ;
+    dct:relation <https://data.publicinformation.ie/dataset/public-bodies> ;
+    dct:relation <https://data.publicinformation.ie/dataset/motions> ;
+
+    dcat:distribution [
+        a dcat:Distribution ;
+        dct:title "Meetings (JSON-LD, latest)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/spc-meetings/meetings.jsonld> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/spc-meetings/meetings.jsonld> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "application/ld+json" ;
+        dct:conformsTo <https://data.publicinformation.ie/schemas/spc-meetings.schema.json> ;
+    ] , [
+        a dcat:Distribution ;
+        dct:title "Meetings (CSV, latest)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/spc-meetings/meetings.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/spc-meetings/meetings.csv> ;
+        dct:conformsTo <http://www.w3.org/ns/csvw> ;
+        dct:conformsTo <https://data.publicinformation.ie/v1.0.0/spc-meetings/meetings.csv-metadata.json> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "text/csv" ;
+    ] , [
+        a dcat:Distribution ;
+        dct:title "People (JSON-LD, latest)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/spc-meetings/people.jsonld> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/spc-meetings/people.jsonld> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "application/ld+json" ;
+        dct:conformsTo <https://data.publicinformation.ie/schemas/spc-meetings.schema.json> ;
+    ] , [
+        a dcat:Distribution ;
+        dct:title "People (CSV, latest)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/spc-meetings/people.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/spc-meetings/people.csv> ;
+        dct:conformsTo <http://www.w3.org/ns/csvw> ;
+        dct:conformsTo <https://data.publicinformation.ie/v1.0.0/spc-meetings/people.csv-metadata.json> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "text/csv" ;
+    ] , [
+        a dcat:Distribution ;
+        dct:title "Attendance (JSON-LD, latest)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/spc-meetings/attendance.jsonld> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/spc-meetings/attendance.jsonld> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "application/ld+json" ;
+        dct:conformsTo <https://data.publicinformation.ie/schemas/spc-meetings.schema.json> ;
+    ] , [
+        a dcat:Distribution ;
+        dct:title "Attendance (CSV, latest)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/spc-meetings/attendance.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/spc-meetings/attendance.csv> ;
+        dct:conformsTo <http://www.w3.org/ns/csvw> ;
+        dct:conformsTo <https://data.publicinformation.ie/v1.0.0/spc-meetings/attendance.csv-metadata.json> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "text/csv" ;
+    ] , [
+        a dcat:Distribution ;
+        dct:title "Agenda items (JSON-LD, latest)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/spc-meetings/items.jsonld> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/spc-meetings/items.jsonld> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "application/ld+json" ;
+        dct:conformsTo <https://data.publicinformation.ie/schemas/spc-meetings.schema.json> ;
+    ] , [
+        a dcat:Distribution ;
+        dct:title "Agenda items (CSV, latest)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/spc-meetings/items.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/spc-meetings/items.csv> ;
+        dct:conformsTo <http://www.w3.org/ns/csvw> ;
+        dct:conformsTo <https://data.publicinformation.ie/v1.0.0/spc-meetings/items.csv-metadata.json> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "text/csv" ;
+    ] , [
+        a dcat:Distribution ;
+        dct:title "Decisions (JSON-LD, latest)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/spc-meetings/decisions.jsonld> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/spc-meetings/decisions.jsonld> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "application/ld+json" ;
+        dct:conformsTo <https://data.publicinformation.ie/schemas/spc-meetings.schema.json> ;
+    ] , [
+        a dcat:Distribution ;
+        dct:title "Decisions (CSV, latest)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/spc-meetings/decisions.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/spc-meetings/decisions.csv> ;
+        dct:conformsTo <http://www.w3.org/ns/csvw> ;
+        dct:conformsTo <https://data.publicinformation.ie/v1.0.0/spc-meetings/decisions.csv-metadata.json> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "text/csv" ;
+    ] , [
+        a dcat:Distribution ;
+        dct:title "Verbatim minutes (Markdown, latest)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/MD> ;
+        dcat:accessURL <https://data.publicinformation.ie/latest/spc-meetings/minutes/> ;
+        dcat:downloadURL <https://data.publicinformation.ie/v1.0.0/spc-meetings/minutes/> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "text/markdown" ;
+    ] .
+
+<https://data.publicinformation.ie/dataset/spc-meetings>
+    prov:wasGeneratedBy [
+        a prov:Activity ;
+        prov:startedAtTime "2026-11-26T00:00:00Z"^^xsd:dateTime ;
+        prov:wasAssociatedWith [
+            a prov:Agent ;
+            prov:actedOnBehalfOf <https://www.publicinformation.ie/> ;
+            foaf:name "PublicInformation.ie Pipeline" ;
+            foaf:homepage <https://github.com/publicinformation-ie/publicinformation-data> ;
+        ] ;
+    ] .

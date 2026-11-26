@@ -1,0 +1,557 @@
+{
+  "metadata": {
+    "labelled_by": "hand",
+    "labelled_date": "2026-11-26",
+    "meetings": 6
+  },
+  "meetings": {
+    "meath/transportation-urban-regeneration/2025-02-20": {
+      "items": {
+        "item-1-0": {
+          "number": "1.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        },
+        "item-2-0": {
+          "number": "2.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        },
+        "item-3-0": {
+          "number": "3.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        },
+        "item-4-0": {
+          "number": "4.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        },
+        "item-5-0": {
+          "number": "5.0",
+          "cofog": [
+            "04.5.1"
+          ],
+          "subdomains": [
+            "users/traffic-law"
+          ],
+          "procedural": false
+        }
+      },
+      "decisions": [
+        {
+          "item_key": "item-2-0",
+          "decision_text": "Acceptance of the Terms of Reference as presented was proposed by AS and seconded by SD.",
+          "decision_type": "adopted",
+          "proposer": "AS",
+          "seconder": "SD"
+        },
+        {
+          "item_key": "item-3-0",
+          "decision_text": "Agenda Items agreed are as follows:",
+          "decision_type": "agreed",
+          "proposer": null,
+          "seconder": null
+        },
+        {
+          "item_key": "item-4-0",
+          "decision_text": "It was agreed that subsequent meetings would be as follows:",
+          "decision_type": "agreed",
+          "proposer": null,
+          "seconder": null
+        }
+      ]
+    },
+    "meath/transportation-urban-regeneration/2025-05-27": {
+      "items": {
+        "item-0-0": {
+          "number": "0.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        },
+        "item-1-0": {
+          "number": "1.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        },
+        "item-2-0": {
+          "number": "2.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        },
+        "item-3-0": {
+          "number": "3.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        },
+        "item-4-0": {
+          "number": "4.0",
+          "cofog": [
+            "04.5.1"
+          ],
+          "subdomains": [
+            "infra/regional-local-roads"
+          ],
+          "procedural": false
+        },
+        "item-5-0": {
+          "number": "5.0",
+          "cofog": [
+            "04.5.1"
+          ],
+          "subdomains": [
+            "users/traffic-law"
+          ],
+          "procedural": false
+        },
+        "item-6-0": {
+          "number": "6.0",
+          "cofog": [
+            "04.5.1"
+          ],
+          "subdomains": [
+            "infra/active-travel"
+          ],
+          "procedural": false
+        },
+        "item-7-0": {
+          "number": "7.0",
+          "cofog": [
+            "04.5"
+          ],
+          "subdomains": [
+            "svc/pso-bus",
+            "svc/rail"
+          ],
+          "procedural": false
+        },
+        "item-8-0": {
+          "number": "8.0",
+          "cofog": [
+            "04.5.3"
+          ],
+          "subdomains": [
+            "infra/heavy-rail"
+          ],
+          "procedural": false
+        },
+        "item-9-0": {
+          "number": "9.0",
+          "cofog": [
+            "04.5.1"
+          ],
+          "subdomains": [
+            "infra/regional-local-roads"
+          ],
+          "procedural": false
+        },
+        "item-10-0": {
+          "number": "10.0",
+          "cofog": [
+            "06.4.0"
+          ],
+          "subdomains": [],
+          "procedural": false
+        },
+        "item-11-0": {
+          "number": "11.0",
+          "cofog": [
+            "04.5.1"
+          ],
+          "subdomains": [
+            "infra/regional-local-roads"
+          ],
+          "procedural": false
+        },
+        "item-12-0": {
+          "number": "12.0",
+          "cofog": [
+            "04.5.1"
+          ],
+          "subdomains": [
+            "infra/active-travel"
+          ],
+          "procedural": false
+        },
+        "item-13-0": {
+          "number": "13.0",
+          "cofog": [
+            "06.2.0"
+          ],
+          "subdomains": [],
+          "procedural": false
+        },
+        "item-14-0": {
+          "number": "14.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        },
+        "item-15-0": {
+          "number": "15.0",
+          "cofog": [
+            "04.5.1"
+          ],
+          "subdomains": [
+            "users/traffic-law"
+          ],
+          "procedural": false
+        }
+      },
+      "decisions": [
+        {
+          "item_key": "item-0-0",
+          "decision_text": "Cllr Sean Drew (SD) was proposed as Acting Chair by Cllr Paddy Meade and Seconded by Cllr Amanda Smith (AS).",
+          "decision_type": "appointment",
+          "proposer": "Cllr Paddy Meade",
+          "seconder": "Cllr Amanda Smith (AS)"
+        },
+        {
+          "item_key": "item-11-0",
+          "decision_text": "The committee agreed in principle to commence the process.",
+          "decision_type": "agreed",
+          "proposer": "Cllr Amanda Smith (AS)",
+          "seconder": "Cllr Sean Drew (SD)"
+        },
+        {
+          "item_key": "item-12-0",
+          "decision_text": "Acceptance of the Footpath extension Programme was agreed by the Committee.",
+          "decision_type": "agreed",
+          "proposer": "Cllr Paddy Meade",
+          "seconder": "Cllr Amanda Smith"
+        }
+      ]
+    },
+    "meath/transportation-urban-regeneration/2025-09-11": {
+      "items": {
+        "item-1-0": {
+          "number": "1.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        },
+        "item-2-0": {
+          "number": "2.0",
+          "cofog": [
+            "04.5"
+          ],
+          "subdomains": [
+            "infra/national-roads"
+          ],
+          "procedural": false
+        },
+        "item-3-0": {
+          "number": "3.0",
+          "cofog": [
+            "04.5.1"
+          ],
+          "subdomains": [
+            "infra/regional-local-roads"
+          ],
+          "procedural": false
+        },
+        "item-4-0": {
+          "number": "4.0",
+          "cofog": [
+            "04.5.1"
+          ],
+          "subdomains": [
+            "users/traffic-law"
+          ],
+          "procedural": false
+        },
+        "item-5-0": {
+          "number": "5.0",
+          "cofog": [
+            "04.5.1"
+          ],
+          "subdomains": [
+            "infra/active-travel"
+          ],
+          "procedural": false
+        },
+        "item-6-0": {
+          "number": "6.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        }
+      },
+      "decisions": [
+        {
+          "item_key": "item-4-0",
+          "decision_text": "It was agreed to seek a budget allocation, subject to the SPC returning their comments by 25th September 2025, to allow us to bring the draft Policy to the MDs and the Plenary.",
+          "decision_type": "agreed",
+          "proposer": null,
+          "seconder": null
+        },
+        {
+          "item_key": "item-5-0",
+          "decision_text": "If funding becomes available, acceptance of the Community Centers Footpath Programme was agreed by the members.",
+          "decision_type": "agreed",
+          "proposer": null,
+          "seconder": null
+        }
+      ]
+    },
+    "meath/transportation-urban-regeneration/2025-11-20": {
+      "items": {
+        "item-1-0": {
+          "number": "1.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        },
+        "item-2-0": {
+          "number": "2.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        },
+        "item-3-0": {
+          "number": "3.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        },
+        "item-4-0": {
+          "number": "4.0",
+          "cofog": [
+            "04.5.1"
+          ],
+          "subdomains": [
+            "users/traffic-law"
+          ],
+          "procedural": false
+        },
+        "item-5-0": {
+          "number": "5.0",
+          "cofog": [
+            "05.3.0"
+          ],
+          "subdomains": [],
+          "procedural": false
+        },
+        "item-6-0": {
+          "number": "6.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        }
+      },
+      "decisions": [
+        {
+          "item_key": "item-3-0",
+          "decision_text": "It was agreed that 2026 meetings would be as follows:",
+          "decision_type": "agreed",
+          "proposer": "Cllr Amanda Smith (AS)",
+          "seconder": "Cllr Caroline O’Reilly"
+        },
+        {
+          "item_key": "item-5-0",
+          "decision_text": "Members agreed that an immediate ban would not be feasible at this time, given current operational needs and regulatory best practices.",
+          "decision_type": "agreed",
+          "proposer": null,
+          "seconder": null
+        },
+        {
+          "item_key": "item-6-0",
+          "decision_text": "It was agreed to circulate the DoT & TII Policy on Roadside Memorials to the members.",
+          "decision_type": "agreed",
+          "proposer": null,
+          "seconder": null
+        }
+      ]
+    },
+    "meath/transportation-urban-regeneration/2026-02-19": {
+      "items": {
+        "item-1-0": {
+          "number": "1.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        },
+        "item-2-0": {
+          "number": "2.0",
+          "cofog": [
+            "04.5.1"
+          ],
+          "subdomains": [
+            "users/traffic-law"
+          ],
+          "procedural": false
+        },
+        "item-3-0": {
+          "number": "3.0",
+          "cofog": [
+            "05.3.0"
+          ],
+          "subdomains": [],
+          "procedural": false
+        },
+        "item-4-0": {
+          "number": "4.0",
+          "cofog": [
+            "05.6.0"
+          ],
+          "subdomains": [],
+          "procedural": false
+        },
+        "item-5-0": {
+          "number": "5.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        },
+        "item-6-0": {
+          "number": "6.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        }
+      },
+      "decisions": [
+        {
+          "item_key": "item-3-0",
+          "decision_text": "MB referred Item to the next SPC in order to facilitate attendance of Cllr. Helen Meyer who could not attend due to other commitments.",
+          "decision_type": "referred",
+          "proposer": null,
+          "seconder": null
+        },
+        {
+          "item_key": "item-5-0",
+          "decision_text": "It was agreed to be reviewed on assessment of the maps with the “red “roads.",
+          "decision_type": "agreed",
+          "proposer": null,
+          "seconder": null
+        }
+      ]
+    },
+    "meath/transportation-urban-regeneration/2026-05-21": {
+      "items": {
+        "item-1-0": {
+          "number": "1.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        },
+        "item-2-0": {
+          "number": "2.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        },
+        "item-3-0": {
+          "number": "3.0",
+          "cofog": [
+            "05.3.0"
+          ],
+          "subdomains": [],
+          "procedural": false
+        },
+        "item-4-0": {
+          "number": "4.0",
+          "cofog": [
+            "04.5.1"
+          ],
+          "subdomains": [
+            "users/traffic-law"
+          ],
+          "procedural": false
+        },
+        "item-5-0": {
+          "number": "5.0",
+          "cofog": [
+            "04.5.1"
+          ],
+          "subdomains": [
+            "infra/kerbside"
+          ],
+          "procedural": false
+        },
+        "item-6-0": {
+          "number": "6.0",
+          "cofog": [
+            "04.5.1"
+          ],
+          "subdomains": [
+            "infra/regional-local-roads"
+          ],
+          "procedural": false
+        },
+        "item-6-0-2": {
+          "number": "6.0",
+          "cofog": [
+            "01.1.1"
+          ],
+          "subdomains": [],
+          "procedural": true
+        }
+      },
+      "decisions": [
+        {
+          "item_key": "item-3-0",
+          "decision_text": "It was agreed that the SPC should continue to work towards developing a practical approach, with the aim of putting an alternative method in place.",
+          "decision_type": "agreed",
+          "proposer": null,
+          "seconder": null
+        },
+        {
+          "item_key": "item-5-0",
+          "decision_text": "It was agreed to investigate how a pilot scheme could operate on a county-wide basis, rather than being limited to a specific Municipal District.",
+          "decision_type": "agreed",
+          "proposer": null,
+          "seconder": null
+        }
+      ]
+    }
+  }
+}

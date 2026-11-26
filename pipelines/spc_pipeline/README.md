@@ -1,0 +1,92 @@
+# spc_pipeline — Strategic Policy Committee minutes
+
+Turns a committee's published minutes PDFs into a verbatim Markdown reading copy
+and a published dataset of meetings, people, attendance, agenda items with
+topics, and official decisions.
+
+The MVP committee is Meath County Council's Transportation and Urban
+Regeneration SPC (six meetings, February 2025 to May 2026). Adding another
+committee is a configuration edit plus new register aliases; new layout quirks
+may still need parser changes, which is accepted.
+
+## Steps
+
+| # | Step | Paid | Output |
+|---|---|---|---|
+| 1 | `/pipelines/minutes_pipeline/steps/find_local_authorities` | — | local-authority list (read-only) |
+| 2 | `find_spc_minutes_files` | — | one record per minutes PDF |
+| 3 | `fetch_spc_minutes` | — | sha256, size, retrieval time and per-page words |
+| 4 | `parse_meeting_header` | — | meeting id/date, venue, times, printed attendance |
+| 5 | `resolve_attendees` | — | one attendance row per person with person IDs, or withheld |
+| 6 | `render_spc_minutes` | — | verbatim Markdown and the item list |
+| 7 | `extract_spc_items` | **llm** | decisions and COFOG/subdomain topics |
+| 8 | `export_spc_meetings` | — | the tables `transform_spc_meetings.py` publishes |
+
+## Committed inputs
+
+- `steps/find_spc_minutes_files/committees.json` — committees, their
+  `public_body_id`, page URL and minutes-link pattern.
+- `reference/people.json` — every person who may appear in attendance, with
+  aliases and initials. A councillor's ID is their `councillors.csv` ID.
+- `reference/cofog_1999.json` — generated from the UNSD structure file by
+  `scripts/build_cofog.py`; records the source URL, retrieval date and sha256
+  `5368887bb253a1819bfefc6a9eedc74cb76f50c6a7c35133d2420b1d4a3b39b5`.
+- `reference/transport_subdomains.json` — the transport-governance
+  vocabulary's Subdomains table.
+- `public/schemas/spc-meetings.schema.json` and the published vocabularies are
+  generated from the same reference data (see `scripts/build_vocabularies.py`).
+- The extraction model is chosen by the sweep in
+  `experiments/2026-11-26-spc-model-sweep/` and recorded in
+  `steps/extract_spc_items/README.md` (currently
+  `opencode-go/deepseek-v4.1-flash`).
+
+## Running
+
+```bash
+# Deterministic window — no paid call:
+uv run python pipelines/spc_pipeline/process.py pipelines/spc_pipeline \
+  --to render_spc_minutes --force --stop-on-error
+
+# One step at a time for debugging (from the repo root):
+uv run python pipelines/spc_pipeline/process.py pipelines/spc_pipeline \
+  --from resolve_attendees --to render_spc_minutes --force --stop-on-error
+
+# Funnel view (read-only):
+uv run python pipelines/spc_pipeline/status.py
+```
+
+`extract_spc_items` makes a paid model call per meeting. **Never run it, a full
+pipeline, or a `--from`/`--to` window reaching it, without the user's explicit
+permission for that run.** Results are cached by source sha256, model and
+prompt version, so an unchanged re-run makes no call.
+
+The PDF cache lives in `pipelines/spc_pipeline/cache/` (git-ignored). A warm
+cache makes no HTTP request.
+
+## Fail-closed rules
+
+- An unknown `public_body_id` in the committee list, an unfetchable page or a
+  PDF whose chain cannot be verified stops discovery; TLS verification is never
+  disabled (the missing intermediate is supplied from
+  `src/lib/certs/extra_intermediates.pem`).
+- A PDF with no text layer is a `NoTextLayer` error; the pipeline never runs
+  OCR.
+- A header whose date is missing or disagrees with its link text, or two files
+  resolving to the same meeting, withholds that meeting.
+- A printed name that does not match the register withholds the **whole
+  meeting's attendance** (`attendance_published: false`); its minutes still
+  publish. The fix is one register line.
+- A render that loses, adds or reorders a word fails the word check and the
+  meeting is not published.
+- A model response outside the closed lists, not verbatim, or failing the
+  schema withholds the affected topics/decision (or the whole meeting's
+  extracted parts for a schema failure). The export report counts every
+  withholding by error type.
+
+## Published dataset
+
+`scripts/transform_spc_meetings.py` writes `public/v1.0.0/spc-meetings/` and
+mirrors it to `public/latest/spc-meetings/`, with JSON-LD, CSV and CSVW
+metadata for meetings, people, attendance, items and decisions, one Markdown
+file per meeting under `minutes/`, and a README. `dct:modified` changes only
+when the payload changes.

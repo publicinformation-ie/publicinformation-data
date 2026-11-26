@@ -61,6 +61,10 @@ This dataset has four tables: [actions](latest/public-body-actions/actions.csv) 
 
 Motions moved at meetings of Irish local authorities, from the authorities' published meeting minutes: who proposed and seconded each motion, the meeting date and type, and the outcome.
 
+## [SPC meetings](latest/spc-meetings/meetings.csv)
+
+Strategic Policy Committee meetings: who attended, their attendance, agenda items with COFOG 1999 topics, official decisions as verbatim quotes, and the minutes themselves rendered verbatim as Markdown. Five tables — [meetings](latest/spc-meetings/meetings.csv), [people](latest/spc-meetings/people.csv), [attendance](latest/spc-meetings/attendance.csv), [items](latest/spc-meetings/items.csv) and [decisions](latest/spc-meetings/decisions.csv) — join on `meeting_id` and `person_id`.
+
 ## [Transport policies](latest/transport-policies/transport-policies.csv)
 
 The 21 transport policies, strategies and codes of practice that define the transport document corpus: who issued each, the period it covers, its scope, and links to its official pages and its curated PDFs (curated in the documents pipeline; see [documents/index.json](documents/index.json) for whether each is published or listed under `failed`).
@@ -86,6 +90,6 @@ In Google Sheets, use `=IMPORTDATA("https://data.publicinformation.ie/latest/act
 
 ---
 
-Want the full technical details behind each file (every column, how the data was collected, what to watch out for)? See the [Public Bodies](latest/public-bodies/README.md), [FOI Disclosures](latest/foi-disclosures/README.md), [FOI Request Files](latest/foi-request-files/README.md), [Who Does What](latest/who-does-what/README.md), [data.gov.ie Links](latest/data-gov-ie-links/README.md), [datacatalogue.gov.ie Links](latest/datacatalogue-gov-ie-links/README.md), [lobbying.ie Links](latest/lobbying-ie-links/README.md), [Staff Numbers](latest/staff-numbers/README.md), [Public Body Actions](latest/public-body-actions/README.md), [Motions](latest/motions/README.md), and [Transport Policies](latest/transport-policies/README.md) reference pages.
+Want the full technical details behind each file (every column, how the data was collected, what to watch out for)? See the [Public Bodies](latest/public-bodies/README.md), [FOI Disclosures](latest/foi-disclosures/README.md), [FOI Request Files](latest/foi-request-files/README.md), [Who Does What](latest/who-does-what/README.md), [data.gov.ie Links](latest/data-gov-ie-links/README.md), [datacatalogue.gov.ie Links](latest/datacatalogue-gov-ie-links/README.md), [lobbying.ie Links](latest/lobbying-ie-links/README.md), [Staff Numbers](latest/staff-numbers/README.md), [Public Body Actions](latest/public-body-actions/README.md), [Motions](latest/motions/README.md), [SPC Meetings](latest/spc-meetings/README.md), and [Transport Policies](latest/transport-policies/README.md) reference pages.
 
 Wondering how complete this data is, or found something that looks wrong? See [Data quality & reporting a problem](DATA_QUALITY.md).

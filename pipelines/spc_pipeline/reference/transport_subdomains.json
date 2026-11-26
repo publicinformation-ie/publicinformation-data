@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "source": ".claude/skills/transport-governance/vocabulary.md#Subdomains",
+    "retrieved_date": "2026-11-26"
+  },
+  "subdomains": [
+    {"id": "infra/national-roads", "term": "National roads", "plain_label": "national roads and motorways"},
+    {"id": "infra/regional-local-roads", "term": "Regional and local roads", "plain_label": "regional and local roads"},
+    {"id": "infra/active-travel", "term": "Active travel infrastructure", "plain_label": "footpaths, cycle lanes and crossings"},
+    {"id": "infra/bus", "term": "Bus infrastructure", "plain_label": "bus stops, shelters and bus lanes"},
+    {"id": "infra/heavy-rail", "term": "Heavy rail infrastructure", "plain_label": "railway lines and stations"},
+    {"id": "infra/light-rail", "term": "Light rail infrastructure", "plain_label": "Luas and metro lines"},
+    {"id": "infra/kerbside", "term": "Kerbside", "plain_label": "parking, taxi ranks, loading bays and charging points"},
+    {"id": "infra/ports-airfields", "term": "Ports and airfields", "plain_label": "ports and airports"},
+    {"id": "svc/pso-bus", "term": "PSO bus services", "plain_label": "subsidised bus services"},
+    {"id": "svc/commercial-bus", "term": "Commercial bus services", "plain_label": "private bus and coach services"},
+    {"id": "svc/rail", "term": "Rail services", "plain_label": "train services"},
+    {"id": "svc/light-rail", "term": "Light rail services", "plain_label": "Luas and metro services"},
+    {"id": "svc/spsv", "term": "Small public service vehicles", "plain_label": "taxis, hackneys and limousines"},
+    {"id": "svc/school-transport", "term": "School transport", "plain_label": "school buses"},
+    {"id": "svc/shared-mobility", "term": "Shared mobility", "plain_label": "bike, scooter and car sharing"},
+    {"id": "users/vehicles-drivers", "term": "Vehicles and drivers", "plain_label": "driving licences and vehicle tests"},
+    {"id": "users/traffic-law", "term": "Traffic law", "plain_label": "road traffic law"}
+  ]
+}

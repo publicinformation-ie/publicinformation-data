@@ -44,6 +44,11 @@ Each resolved name SHALL produce one attendance record with the meeting ID, pers
 - **WHEN** the officials row lists "Joan Carroll (JC) Senior Executive Officer"
 - **THEN** an attendance record has person `meath/person/joan-carroll`, category `official`, role "Senior Executive Officer" and status `present`
 
+#### Scenario: Official who also presented
+
+- **WHEN** the officials row lists "Caroline Corrigan (CC) Senior Engineer" and the presenters row lists her presentation
+- **THEN** one attendance record is produced, category `officials`, `presented: true`, and both printed roles joined
+
 #### Scenario: Presenter who sent apologies
 
 - **WHEN** the presenters row reads "Cllr Alan Tobin, Cllr Helen Meyer, apologies, …"

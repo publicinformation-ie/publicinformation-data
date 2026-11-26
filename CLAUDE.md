@@ -9,3 +9,13 @@ The `extract_motions` step (minutes_pipeline) makes a paid model call per file, 
 - running from an upstream step with `--from` (e.g. `--from transform_minutes_files`) when the window reaches `extract_motions`.
 
 Before any such run, stop and ask. Otherwise bound the run so it ends before the step, e.g. `--to ocr_minutes_files`. Permission for one run does not carry over to later runs, and "run the pipeline" or "go through to export" does not by itself count as permission.
+
+## Cost rule: `extract_spc_items` needs explicit permission
+
+The `extract_spc_items` step (spc_pipeline) makes a paid model call per meeting, so it incurs a real cost. **Never run it without explicit permission from the user, given for that run.** This covers every way of triggering it:
+
+- running the step directly (`steps/extract_spc_items/process.py`);
+- running the full pipeline, or any run that includes it (`process.py` with no `--to`, or `--to` at or past `extract_spc_items`);
+- running from an upstream step with `--from` when the window reaches `extract_spc_items`.
+
+Before any such run, stop and ask. Otherwise bound the run so it ends before the step, e.g. `--to render_spc_minutes`. Permission for one run does not carry over to later runs, and "run the pipeline" or "go through to export" does not by itself count as permission. The step caches results by source sha256, model and prompt version, so a re-run with unchanged inputs makes no model call.

@@ -315,6 +315,29 @@ def test_orchestrator_public_body_body_list_step_not_found_exits(tmp_path):
         assert exc.value.code != 0
 
 
+def test_orchestrator_public_body_absolute_body_list_step(tmp_path):
+    """A cross-pipeline body_list_step reference is resolved from the repo root."""
+    pipeline_dir = _make_pipeline_with_abs(
+        tmp_path,
+        ["/pipelines/minutes_pipeline/steps/find_local_authorities", "find_spc_minutes_files"],
+    )
+    config_path = pipeline_dir / "pipeline.json"
+    config = json.loads(config_path.read_text())
+    config["body_list_step"] = "/pipelines/minutes_pipeline/steps/find_local_authorities"
+    config_path.write_text(json.dumps(config))
+    _seed_upstream(
+        tmp_path,
+        "/pipelines/minutes_pipeline/steps/find_local_authorities",
+        json.dumps({"results": [{"public_body_id": 1511}]}),
+    )
+
+    with patch("lib.pipeline_runner.subprocess.run") as mock_run:
+        mock_run.return_value.returncode = 0
+        sys.argv = ["process.py", str(pipeline_dir), "--public-body", "1511"]
+        main()
+        mock_run.assert_called_once()
+
+
 # --- absolute-path step tests ---
 
 def _make_pipeline_with_abs(tmp_path, steps):
