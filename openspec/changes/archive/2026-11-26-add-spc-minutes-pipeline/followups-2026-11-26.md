@@ -12,7 +12,7 @@ This is a **handoff doc, not an OpenSpec change.** The review findings below are
 
 **§6 step 2 (the fail-closed sweep) is done locally and not yet pushed** — 2026-11-26.
 
-- `main` is **9 commits ahead of `origin/main`** (`9cf4bcc4..ee31751b`, the step-2 work alone). Nothing new is live until `git push origin main`, which triggers Deploy Pages. Review the `public/` diff first.
+- `main` is **ahead of `origin/main`** (`9cf4bcc4..HEAD`, the step-2 work alone). Nothing new is live until `git push origin main`, which triggers Deploy Pages. Review the `public/` diff first.
 - Working tree clean apart from the three foreign untracked entries in §1. The implementation plan is `plan-fail-closed-sweep.md` in this directory.
 - **Next action:** §6 step 3 (guard it). No API spend. Step 5 remains paid.
 
@@ -54,7 +54,7 @@ Evidence from the release: 115 SPC tests and 562 root tests pass, `pyright` clea
 
 ## 1. State and ground rules
 
-- Branch `main`, **9 commits ahead of `origin/main`** (`9cf4bcc4..ee31751b`, all step 2), tracked tree clean. Earlier commits: `f0f02971` (correction release), `0ba8f792` (CI rdflib pin), `9f7acd95` (merge), `f7f97f1f` (spec sync + archive), `320861fc` (implementation + publication).
+- Branch `main`, **ahead of `origin/main`** (`9cf4bcc4..HEAD`, all step 2), tracked tree clean. Earlier commits: `f0f02971` (correction release), `0ba8f792` (CI rdflib pin), `9f7acd95` (merge), `f7f97f1f` (spec sync + archive), `320861fc` (implementation + publication).
 - The change is archived at `openspec/changes/archive/2026-11-26-add-spc-minutes-pipeline/`; six capability specs are live in `openspec/specs/spc-*/`; `openspec validate --specs` passes 17/17.
 - **The local `public/` tree (unpushed)** is now schema **1.1.0**: 6 meetings, 28 people, 98 attendance rows, 46 items, 17 decisions and 6 minutes files, with `latest/` identical to `v1.1.0/`. `v1.0.0/` is kept as the previous release and still validates under the closed schema. The live site stays on 1.0.0 until the push.
 - Untracked and **not ours — leave alone**: `openspec/changes/improve-chapter-split-accuracy/`, `pipelines/foi_pipeline/experiments/gating/populate_docling_cache.py`, `pipelines/foi_pipeline/steps/transform_disclosure_files/docling_cache/`, and `stash@{0}`.
@@ -277,7 +277,7 @@ No test found for: *Typos are preserved*; *Initials are preserved*; *Body text r
 | # | Work | Model spend |
 |---|---|---|
 | 1 | ~~**Correction release**~~ — **DONE and live in `f0f02971`** (P1.1, P2.1, P1.2, P1.3) | none — replayed from cache |
-| 2 | ~~**Fail-closed sweep**~~ — **DONE locally in `9cf4bcc4..ee31751b`** (P2.2–P2.8, P3.6, P2.3 residuals, COFOG levels, schema 1.1.0) | none — replayed from cache |
+| 2 | ~~**Fail-closed sweep**~~ — **DONE locally in `9cf4bcc4..HEAD`** (P2.2–P2.8, P3.6, P2.3 residuals, COFOG levels, schema 1.1.0) | none — replayed from cache |
 | 3 | **Guard it — start here**: P3.1, P3.2, P3.3, P3.7 | none |
 | 4 | **Docs**: P4 (coverage wording, attribution/personal data, field table, reproducibility, CSVW, distribution URL) | none |
 | 5 | **Re-open the model question**: P3.4, P3.5, plus the prompt changes for P1.2 and injection — needs a `PROMPT_VERSION` bump and therefore re-extraction; remove the `d01` override when the prompt no longer produces it | **PAID — ask first.** 6 calls to re-extract; 18 more for a sweep re-run |
@@ -294,7 +294,7 @@ uv run pyright
 uv run python scripts/generate_pipeline_docs.py --check
 uv run python pipelines/spc_pipeline/status.py
 git log --oneline origin/main..HEAD                       # the unpushed step-2 work
-git show --stat ee31751b                                  # the 1.1.0 publication
+git log --oneline origin/main..HEAD                        # the unpushed step-2 work
 ```
 
 Pushing a `public/` change to `main` is what publishes. Review the generated `public/` diff before pushing.

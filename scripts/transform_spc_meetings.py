@@ -86,7 +86,7 @@ FIELD_SPECS = {
     "mode": ("string", "remote, in_person or not_stated"),
     "presented": ("boolean", "true when the person's name also appears in the presenters block"),
     "item_number": ("string", "Number as printed; not unique (two items may share one)"),
-    "item_id": ("uri", "Dataset-relative item identifier, <meeting_id>/<item_key>"),
+    "item_id": ("string", "Dataset-relative item identifier, <meeting_id>/<item_key>"),
     "item_key": ("string", "Stable item key, e.g. item-6-0 and item-6-0-2"),
     "title": ("string", "Item title as printed"),
     "text": ("string", "Item text, page furniture removed"),
