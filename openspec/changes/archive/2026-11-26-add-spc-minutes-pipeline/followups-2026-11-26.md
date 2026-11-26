@@ -4,17 +4,36 @@
 **Reviewed range:** `df6dc5ce..0ba8f792` (149 files, ~13.2k insertions)
 **Method:** four parallel reviewers over partitioned slices (ingestion+rendering; attendance+extraction+sweep; publication+dataset; scaffolding+tests+docs), then every published-data claim re-verified by hand against the live files and the code.
 
-This is a **handoff doc, not an OpenSpec change.** Turning P1–P2 into a proper change (`openspec propose`) is the natural first move for whoever picks this up; the raw material is below.
-
-> **Status 2026-11-26 (correction release):** §6 step 1 is done. P1.1 (all 24 attendance role fragments now kept), P2.1 (word check rebuilt from the PDF pages, with an attendance check) and P1.2/P1.3 (decision `d01` removed; the two "No update" items corrected) are fixed, tested and regenerated into `public/`. Note that P1.3's second row below is an over-reading: the spec requires "procedural ⇒ `01.1.1`" but not the converse, so `2025-02-20 item-2-0` was left unchanged. Steps 2–5 remain open.
+This is a **handoff doc, not an OpenSpec change.** The review findings below are the raw material for a proper change (`openspec propose`) covering the remaining P2–P4 work.
 
 ---
 
-## 1. State at handoff
+## 0. Where the next session starts
 
-- Branch `main`, level with `origin/main`, tracked tree clean. Last commits: `0ba8f792` (CI rdflib pin), `9f7acd95` (merge), `f7f97f1f` (spec sync + archive), `320861fc` (implementation + publication).
+**The correction release (§6 step 1) is committed but was not pushed when this doc was last updated.**
+
+- `main` is **ahead of `origin/main`** by the correction release `f0f02971 fix(spc): keep attendance role text and correct two live data defects` plus this handoff-doc update. Nothing is live until `git push origin main`, which triggers Deploy Pages. If it is still unpushed, check `git log origin/main..HEAD`, review the `public/` diff in `f0f02971`, then push or revert before starting anything else.
+- Working tree clean; the only untracked entries are the three foreign ones in §1 — leave them alone.
+- **Next action:** §6 step 2 (fail-closed sweep). It needs no API spend. The only paid step is step 5; read the cost rule first.
+
+What the correction release already changed — do not redo it:
+
+| Item | Where it now lives |
+|---|---|
+| P1.1 role text kept | `parse_meeting_header/header.py` `_append_fragment`; tests `test_role_fragment_attaches_to_the_name_before_it`, `test_role_printed_before_the_name_is_kept_in_the_printed_text` |
+| P2.1 word check rebuilt | `render_spc_minutes/rendering.py` `source_body_words`, `markdown_words`, `check_attendance`; `detect_furniture` now requires a page edge; snapshot regenerated |
+| P1.2 `d01` removed | `extract_spc_items/override.json` drops it; `d02`–`d04` keep their IDs. The prompt is **not** fixed — step 5 still owes that |
+| P1.3 two items corrected | `ProceduralNotProceduralCode` validation + the same `override.json`. `item-2-0` was deliberately left alone (see the P1.3 note) |
+
+Evidence from the release: 115 SPC tests and 562 root tests pass, `pyright` clean, 195 records validate against the schema (196 minus `d01`), `latest/` and `v1.0.0/` identical, and the 6 cached model responses were reused with unchanged mtimes (zero spend).
+
+---
+
+## 1. State and ground rules
+
+- Branch `main`, **ahead of `origin/main`** (correction release `f0f02971` plus this handoff update), tracked tree clean. Earlier commits: `0ba8f792` (CI rdflib pin), `9f7acd95` (merge), `f7f97f1f` (spec sync + archive), `320861fc` (implementation + publication).
 - The change is archived at `openspec/changes/archive/2026-11-26-add-spc-minutes-pipeline/`; six capability specs are live in `openspec/specs/spc-*/`; `openspec validate --specs` passes 17/17.
-- **The dataset is live** at `https://data.publicinformation.ie/latest/spc-meetings/` — 6 meetings, 28 people, 98 attendance rows, 46 items, 18 decisions, 6 minutes files. CI `verify` and Deploy Pages both pass.
+- **The regenerated `public/` tree (still unpushed)** holds 6 meetings, 28 people, 98 attendance rows, 46 items, **17 decisions** (was 18 before `d01` was removed) and 6 minutes files. The live site keeps showing 18 until the push; CI `verify` and Deploy Pages passed for the previous commit and will run again on push.
 - Untracked and **not ours — leave alone**: `openspec/changes/improve-chapter-split-accuracy/`, `pipelines/foi_pipeline/experiments/gating/populate_docling_cache.py`, `pipelines/foi_pipeline/steps/transform_disclosure_files/docling_cache/`, and `stash@{0}`.
 
 ### Cost rule — read before running anything
@@ -25,22 +44,24 @@ This is a **handoff doc, not an OpenSpec change.** Turning P1–P2 into a proper
 uv run python pipelines/spc_pipeline/process.py pipelines/spc_pipeline --force --stop-on-error --to render_spc_minutes
 ```
 
-Responses are cached in `pipelines/spc_pipeline/cache/llm/` (git-ignored), keyed by `source_sha256 + model + PROMPT_VERSION`. While the source PDFs, model and `spc-items-v1` are unchanged, extraction and export replay from cache at **zero** cost. **Bumping `PROMPT_VERSION` or editing a source PDF makes the step paid again (6 calls, ~$0.0011/meeting).** A sweep re-run is 18 calls.
+Responses are cached in `pipelines/spc_pipeline/cache/llm/` (git-ignored), keyed by `source_sha256 + model + PROMPT_VERSION`. While the source PDFs, model and `spc-items-v1` are unchanged, extraction and export replay from cache at **zero** cost. **Bumping `PROMPT_VERSION` or editing a source PDF makes the step paid again (6 calls, ~$0.0011/meeting).** A sweep re-run is 18 calls. Editing `override.json`, the validation rules or the renderer does **not** invalidate the cache: extraction replays and re-applies the overrides for free. The correction release was produced with `--from extract_spc_items --to export_spc_meetings --force --stop-on-error`; a render-only change can use `--from render_spc_minutes --to render_spc_minutes`.
 
 ### Verdict
 
-No reviewer found cause for a takedown: identifiers are stable and correctly namespaced, all 196 records validate against the schema, `v1.0.0/` and `latest/` are byte-identical, and the TTL parses (134 triples). Three defects are nevertheless **wrong in the live data today**, and two of the checks that should have caught them cannot fail.
+At review time, no reviewer found cause for a takedown: identifiers are stable and correctly namespaced, all 196 records validated against the schema, `v1.0.0/` and `latest/` were byte-identical, and the TTL parsed (134 triples). Three defects were nevertheless **wrong in the live data**, and two of the checks that should have caught them could not fail. Those three are fixed in `f0f02971`; the word check is rebuilt, and furniture removal is now position-limited (with the residual under P2.3). What remains below is fail-open paths, unverified edges and documentation — not live wrong data.
 
 ---
 
-## 2. P1 — wrong in the live dataset now
+## 2. P1 — wrong in the live dataset (fixed locally in `f0f02971`, pending push)
 
 ### P1.1 Verbatim minutes drop printed attendance role text
 
-**Verified.** 24 instances across all six published files.
+**Fixed.** `parse_entries` now appends the role fragment to `raw` (and prefixes a role printed before the name), so the renderer's `entry["raw"]` includes it. The render step now fails a meeting if a parsed role word is absent from `raw`. Re-rendering restored all 24 entries; the only Markdown diff in the six files was those 24 lines.
 
-- `pipelines/spc_pipeline/steps/parse_meeting_header/header.py:431-433` appends a non-person fragment to the previous entry's `role`, but `raw` (set at `:450`) is never extended.
-- `pipelines/spc_pipeline/steps/render_spc_minutes/rendering.py:317` renders `entry.get("raw")`, so that text never reaches the Markdown.
+The original diagnosis, kept for context: 24 instances across all six published files.
+
+- pre-fix line numbers: `pipelines/spc_pipeline/steps/parse_meeting_header/header.py:431-433` appended a non-person fragment to the previous entry's `role`, but `raw` (set at `:450`) was never extended.
+- `pipelines/spc_pipeline/steps/render_spc_minutes/rendering.py:317` renders `entry.get("raw")`, so text missing from `raw` never reaches the Markdown.
 
 Evidence:
 
@@ -70,7 +91,9 @@ Violates `openspec/specs/spc-minutes-rendering/spec.md` ("keeping each name's te
 
 ### P1.2 Another body's decision published as an SPC decision
 
-**Verified, live:** `https://data.publicinformation.ie/spc-meetings/decision/meath/transportation-urban-regeneration/2025-11-20/d01`
+**Partly fixed — the data is corrected in the unpushed release, the generator is not.** `d01` is no longer in the regenerated `public/` tree: a committed `extract_spc_items/override.json` drops it, `d02`–`d04` keep their IDs, and `public/CHANGELOG.md` records it. The prompt still does not say "decisions of *this committee*", so a re-extraction with a bumped `PROMPT_VERSION` will produce it again until step 5. When the prompt is fixed, remove the override entry (a stale drop target fails the run closed).
+
+Original finding, verified live at the time: `https://data.publicinformation.ie/spc-meetings/decision/meath/transportation-urban-regeneration/2025-11-20/d01`
 
 ```
 decision_type: "adopted"
@@ -84,27 +107,31 @@ Fix: tighten the prompt (and bump `PROMPT_VERSION` → paid re-extraction), remo
 
 ### P1.3 Topic rules the spec fixes are breached in published items
 
-**Verified** against `public/latest/spc-meetings/items.jsonld`:
+**Fixed in the unpushed release for the two real breaches; one row below was a misreading.** `validate_response` now withholds an item flagged `procedural: true` whose primary code is not `01.1.1` (`ProceduralNotProceduralCode`), and the committed override sets 2025-05-27 items 7.0 and 9.0 to `01.1.1` with no subdomains. `2025-02-20 item-2-0` is **unchanged on purpose**: the spec says purely procedural items SHALL be `01.1.1`, not that every `01.1.1` item is procedural, so the second table row was an over-reading of `spc-topic-classification/spec.md:58-65`. Enforcing the converse would have been a wrong correction.
+
+Not addressed here: class-vs-group COFOG level (see step 2), and the extractor still emits the two model violations every run, so `extract_spc_items/errors.json` will show 2 `ProceduralNotProceduralCode` entries until the prompt is fixed.
+
+Original finding, verified against `public/latest/spc-meetings/items.jsonld`:
 
 | Rule (`openspec/specs/spc-topic-classification/spec.md:58-65`) | Breaches |
 |---|---|
 | `procedural: true` ⇒ primary COFOG `01.1.1` | 2 items (2025-05-27 items 7 and 9, "No update", are `04.5.1` with subdomains) |
-| primary `01.1.1` ⇒ `procedural: true` | 1 item (2025-02-20 `item-2-0`) |
+| ~~primary `01.1.1` ⇒ `procedural: true`~~ | not a spec rule; `2025-02-20 item-2-0` is valid as published |
 | `04.5*` ⇒ at least one subdomain | 0 (this one *is* enforced, `extraction.py:361-367`) |
 
-8 items carry more than one COFOG code; class-vs-group level is not enforced at all. Fix: validate all three rules in `_validate_topics`, turn violations into per-item errors, and correct the three live items.
+8 items carry more than one COFOG code; class-vs-group level is not enforced at all. The original fix note said "validate all three rules"; only the first and third are real rules. The class-vs-group check remains open under step 2.
 
 ---
 
-## 3. P2 — fail-open paths that will publish wrong data
+## 3. P2 — fail-open paths (P2.1 fixed, P2.3 partly fixed; the rest open)
 
 ### P2.1 The word-preservation check cannot catch its own failure modes
 
-`rendering.py:348` calls `check_words(source_words(body_lines), rendered_words(blocks))` where `blocks = segment_blocks(body_lines)`. **Both sides derive from the same post-furniture-removal lines.** It therefore verifies block segmentation only — not furniture removal, not the page-1 header cut, not escaping (which happens afterwards, `escape_inline` at `:264`), and not attendance at all.
+**Fixed.** `render_meeting` now compares `source_body_words(record)` — read straight from the PDF pages — against `markdown_words(render_body(blocks))`, with `escape_inline` undone, and `check_attendance(record)` checks the attendance block (every parsed role word must appear in `raw`, and the rendered list must equal the concatenated entries). `detect_furniture` now requires a page-edge position, so a repeated body line cannot be folded into the furniture set. Three synthetic tests cover the failure modes without the git-ignored caches: a repeated `Noted.`, a role outside `raw`, and a role glued to a bracket.
 
-`spec.md:78` requires the rendered body's words to equal the source's **minus furniture**, and `export_spc_meetings/exporting.py:99` gates publication on `word_check == "passed"` (`rendering.py:367`). So the gate is far narrower than it claims, and the original run's "zero errors" was reported from a check that could not fail. **This is the root cause of P1.1.**
+Original diagnosis: `rendering.py:348` called `check_words(source_words(body_lines), rendered_words(blocks))` where `blocks = segment_blocks(body_lines)`. **Both sides derived from the same post-furniture-removal lines.** It verified block segmentation only — not furniture removal, not the page-1 header cut, not escaping (`escape_inline` at `:264`), and not attendance at all.
 
-Fix: rebuild the check from the raw PDF words — all words on all pages, minus counted furniture and the page-1 header block, compared against the words recovered from the final Markdown with escapes undone, including the attendance block.
+`spec.md:78` requires the rendered body's words to equal the source's **minus furniture**, and `export_spc_meetings/exporting.py:99` gates publication on `word_check == "passed"` (`rendering.py:367`). So the gate was far narrower than it claimed, and the original run's "zero errors" was reported from a check that could not fail. **This was the root cause of P1.1.**
 
 ### P2.2 Register initials fallback overrides the meeting's own printed map
 
@@ -114,7 +141,9 @@ Not triggered by today's data. It fires the first time a new councillor, officia
 
 ### P2.3 Furniture removal can delete body lines
 
-`rendering.py:50-62`: any normalised line appearing on ≥3 pages is removed. A genuine body line ("Noted.", "Agreed.") repeating on three pages is deleted; only a count survives in `furniture_removed`, and P2.1 means the word check cannot see it. Conversely a 1–2 page PDF never reaches the threshold, so its footer stays in the body. Fix: make removal positional (top/bottom y-band) or pattern-based, and log every removed line that is not a known pattern.
+**Partly fixed.** `detect_furniture` now removes a repeated line only when every occurrence sits in the top 2% or bottom 5% of its page, so a mid-page `Noted.`/`Agreed.` survives; the synthetic `test_furniture_rule_keeps_a_body_line_that_repeats_on_three_pages` locks it in. Still open: the edge bands are tuned to this publisher's template, a genuine line at the very bottom repeated on three pages would still be removed, a 1–2 page PDF never reaches the frequency threshold (its footer stays in the body), and no error is logged for a removed line that is not a recognised pattern. Step 2 should decide whether to add the pattern log and a per-page height, or to leave the bands as the recognisable definition of furniture.
+
+Original diagnosis: `rendering.py:50-62` removed any normalised line appearing on ≥3 pages. A genuine body line ("Noted.", "Agreed.") repeating on three pages was deleted; only a count survived in `furniture_removed`, and the old word check could not see it.
 
 ### P2.4 Stale output files are never deleted
 
@@ -150,7 +179,7 @@ Undeclared, unversioned fields become part of the 1.0.0 contract the moment anyo
 
 ### P3.1 CI never runs the SPC suite
 
-`.github/workflows/ci.yml:38-43` runs the FOI, document and root suites only. The pipeline's **103 tests are unguarded on a branch where merging publishes**. The `rdflib` miss in `0ba8f792` came from the same gap. Fix: add `uv run pytest pipelines/spc_pipeline/tests -q`, add the suite to the `AGENTS.md` "Tests" table, and correct "CI currently enforces the three test suites".
+`.github/workflows/ci.yml:38-43` runs the FOI, document and root suites only. The pipeline's **115 tests are unguarded on a branch where pushing publishes**. The `rdflib` miss in `0ba8f792` came from the same gap, and the correction release did not touch CI. Fix: add `uv run pytest pipelines/spc_pipeline/tests -q`, add the suite to the `AGENTS.md` "Tests" table, and correct "CI currently enforces the three test suites".
 
 ### P3.2 The strongest tests skip without git-ignored caches
 
@@ -171,7 +200,7 @@ Fix: token-sequence containment, complete double-labelled gold, a precision floo
 
 ### P3.5 Subdomains are published with no accuracy evidence
 
-Against gold on the production output: **16 true positives, 27 false positives, 4 false negatives**; only 6 of 25 items match exactly; items often carry 3–4 subdomains. `procedural` agreement is 36/46. The sweep scores COFOG and decisions only — subdomain, `procedural` and proposer/seconder are unscored. Fix: score them, cap the subdomain count, and until then document the field as low-confidence.
+Against gold on the production output (measured before the correction release; the two 2025-05-27 items have since lost four subdomains): **16 true positives, 27 false positives, 4 false negatives**; only 6 of 25 items match exactly; items often carry 3–4 subdomains. `procedural` agreement is 36/46. The sweep scores COFOG and decisions only — subdomain, `procedural` and proposer/seconder are unscored. Fix: score them, cap the subdomain count, and until then document the field as low-confidence.
 
 ### P3.6 Over-broad silent discards and unvalidated edges
 
@@ -210,26 +239,27 @@ No test found for: *Typos are preserved*; *Initials are preserved*; *Body text r
 
 | # | Work | Model spend |
 |---|---|---|
-| 1 | **Correction release**: P1.1 (fix `raw`, rebuild the word check per P2.1, re-render, re-export, republish), P1.2 (pull `d01`), P1.3 (fix the three items), `public/CHANGELOG.md` entry | none — replays from cache |
-| 2 | **Fail-closed sweep**: P2.2, P2.4, P2.5, P2.6, P2.7, P3.6, P2.8 (declare or drop the fields, `additionalProperties: false`, `item_key` in `decisions.csv`) | none |
+| 1 | ~~**Correction release**~~ — **DONE in `f0f02971`** (P1.1, P2.1, P1.2, P1.3; commit unpushed at handoff) | none — replayed from cache |
+| 2 | **Fail-closed sweep — start here**: P2.2, P2.4, P2.5, P2.6, P2.7, P3.6, P2.8 (declare or drop the fields, `additionalProperties: false`, `item_key` in `decisions.csv`), plus the P2.3 residuals and class-vs-group COFOG | none |
 | 3 | **Guard it**: P3.1, P3.2, P3.3, P3.7 | none |
 | 4 | **Docs**: P4 (coverage wording, attribution/personal data, field table, reproducibility, CSVW, distribution URL) | none |
-| 5 | **Re-open the model question**: P3.4, P3.5, plus the prompt changes for P1.2 and injection — needs a `PROMPT_VERSION` bump and therefore re-extraction | **PAID — ask first.** 6 calls to re-extract; 18 more for a sweep re-run |
+| 5 | **Re-open the model question**: P3.4, P3.5, plus the prompt changes for P1.2 and injection — needs a `PROMPT_VERSION` bump and therefore re-extraction; remove the `d01` override when the prompt no longer produces it | **PAID — ask first.** 6 calls to re-extract; 18 more for a sweep re-run |
 
-Steps 1–4 need no API spend. Step 5 requires explicit per-run permission.
+Steps 2–4 need no API spend. Step 5 requires explicit per-run permission.
 
 Verification commands for any of it:
 
 ```bash
-cd pipelines/spc_pipeline && uv run pytest tests/ -q      # 103 tests
-uv run pytest tests/ -q                                   # root suite (562; FOI has 6 pre-existing pymupdf failures)
+cd pipelines/spc_pipeline && uv run pytest tests/ -q      # 115 tests
+uv run pytest tests/ -q                                   # root suite (562)
 uv run pytest pipelines/document_pipeline/tests -q
 uv run pyright
 uv run python scripts/generate_pipeline_docs.py --check
 uv run python pipelines/spc_pipeline/status.py
+git show --stat f0f02971                                  # the correction release
 ```
 
-Merging a `public/` change to `main` is what publishes. Review the generated `public/` diff before merging.
+Pushing a `public/` change to `main` is what publishes. Review the generated `public/` diff before pushing.
 
 ---
 
