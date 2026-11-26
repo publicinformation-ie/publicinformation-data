@@ -391,6 +391,47 @@ def _attribute(raw: object, person: str | None, error: str | None, text: str,
     return False, person
 
 
+def _cofog_level_errors(codes: list[str], subdomains: list[str], number: str,
+                        meeting: dict) -> list[dict]:
+    """Reject a division, and a group not justified by the item's detail.
+
+    The spec allows a class, or a group "only where the item spans several
+    classes of that group". For ``04.5`` the transport subdomains are the
+    available evidence; for other groups, two or more child class codes in the
+    same item are. This is deterministic, so it never guesses.
+    """
+    errors: list[dict] = []
+    for code in codes:
+        if code.count(".") == 0:
+            errors.append(_error(
+                "CofogLevelNotClassOrGroup",
+                f"item {number} returned division code {code!r}; use a class "
+                f"or, only for a multi-class item, a group",
+                meeting, item_number=number,
+            ))
+    for code in codes:
+        if code.count(".") != 1:
+            continue
+        if code == "04.5":
+            spanned = len(set(subdomains)) >= 2
+            detail = "fewer than two transport subdomains"
+        else:
+            children = {
+                child for child in codes
+                if child.count(".") == 2 and child.rsplit(".", 1)[0] == code
+            }
+            spanned = len(children) >= 2
+            detail = "fewer than two child class codes"
+        if not spanned:
+            errors.append(_error(
+                "CofogGroupNotSpanned",
+                f"item {number} uses group code {code!r} but carries {detail}; "
+                f"use a class code",
+                meeting, item_number=number,
+            ))
+    return errors
+
+
 def validate_response(meeting: dict, response: dict, cofog: dict[str, str],
                       subdomains: dict[str, str], register: list[dict],
                       model: str | None = None) -> tuple[dict, list[dict]]:
@@ -464,6 +505,9 @@ def validate_response(meeting: dict, response: dict, cofog: dict[str, str],
                 "DuplicateCofogCode", f"item {number} repeats a COFOG code",
                 meeting, item_number=number,
             ))
+        if not unknown_codes:
+            item_errors.extend(_cofog_level_errors(
+                codes, topics["subdomains"], number, meeting))
         unknown_subdomains = [s for s in topics["subdomains"] if s not in subdomains]
         if unknown_subdomains:
             item_errors.append(_error(

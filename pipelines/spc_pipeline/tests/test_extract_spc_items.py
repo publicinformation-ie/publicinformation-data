@@ -176,6 +176,63 @@ def test_a_procedural_item_with_01_1_1_is_accepted():
     assert item["procedural"] is True and item["cofog"] == ["01.1.1"]
 
 
+def test_a_division_code_is_not_a_class_or_group():
+    result, errors = validate_response(
+        _meeting(), _response(topics={"cofog": ["04"], "subdomains": [],
+                                      "procedural": False}),
+        COFOG, SUBDOMAINS, REGISTER)
+    assert [e["error_type"] for e in errors] == ["CofogLevelNotClassOrGroup"]
+    item = next(t for t in result["item_topics"] if t["number"] == "2.0")
+    assert item["withheld"] is True
+
+
+def test_a_transport_group_needs_several_subdomains():
+    result, errors = validate_response(
+        _meeting(), _response(topics={
+            "cofog": ["04.5"],
+            "subdomains": ["infra/regional-local-roads"],
+            "procedural": False,
+        }), COFOG, SUBDOMAINS, REGISTER)
+    assert [e["error_type"] for e in errors] == ["CofogGroupNotSpanned"]
+    item = next(t for t in result["item_topics"] if t["number"] == "2.0")
+    assert item["withheld"] is True
+
+
+def test_a_transport_group_spanning_several_modes_is_accepted():
+    result, errors = validate_response(
+        _meeting(), _response(topics={
+            "cofog": ["04.5"],
+            "subdomains": ["infra/regional-local-roads", "infra/active-travel"],
+            "procedural": False,
+        }), COFOG, SUBDOMAINS, REGISTER)
+    assert errors == []
+    item = next(t for t in result["item_topics"] if t["number"] == "2.0")
+    assert item["cofog"] == ["04.5"] and item["withheld"] is False
+
+
+def test_a_non_transport_group_needs_two_child_classes():
+    meeting = _meeting()
+    meeting["items"][1]["text"] += (" It covers tourism and a "
+                                    "multi-purpose development project.")
+    result, errors = validate_response(
+        meeting, _response(topics={
+            "cofog": ["04.7", "04.7.3", "04.7.4"], "subdomains": [],
+            "procedural": False,
+        }), COFOG, SUBDOMAINS, REGISTER)
+    assert errors == []
+    item = next(t for t in result["item_topics"] if t["number"] == "2.0")
+    assert item["cofog"] == ["04.7", "04.7.3", "04.7.4"]
+
+    result, errors = validate_response(
+        meeting, _response(topics={
+            "cofog": ["04.7", "04.7.4"], "subdomains": [],
+            "procedural": False,
+        }), COFOG, SUBDOMAINS, REGISTER)
+    assert [e["error_type"] for e in errors] == ["CofogGroupNotSpanned"]
+    item = next(t for t in result["item_topics"] if t["number"] == "2.0")
+    assert item["withheld"] is True
+
+
 def _manual(**fields):
     return {"source_method": "manual", "overridden": True, **fields}
 
