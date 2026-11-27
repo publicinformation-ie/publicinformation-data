@@ -33,12 +33,14 @@ def normalise_name(value: str) -> str:
     return text.strip(" ,;.").casefold()
 
 
-def load_register(path: Path, councillor_reference: Path | None = None) -> list[dict]:
+def load_register(path: Path, councillor_reference: Path | None = None,
+                  roster: Path | None = None) -> list[dict]:
     """Load and validate the committed people register.
 
     Shape, kinds and councillor ids are checked here rather than in a test, so
-    a bad register stops the step. When the motions councillor reference is
-    available, every councillor id must exist in it.
+    a bad register stops the step. A councillor id must exist in the motions
+    councillor reference (``councillors.csv``, Meath) or in the committed SPC
+    councillor roster (``reference/councillors.json``, the other councils).
     """
     import json
 
@@ -49,18 +51,87 @@ def load_register(path: Path, councillor_reference: Path | None = None) -> list[
         _validate_person(person, path)
 
     reference = councillor_reference or _default_councillor_reference(path)
+    roster_path = roster or Path(path).with_name("councillors.json")
+    roster_ids = {entry["councillor_id"] for entry in load_roster(roster_path, reference)}
     known = _read_councillor_ids(reference)
-    if known is not None:
+    if known is not None or roster_ids:
+        known = (known or set()) | roster_ids
         unknown = sorted(
             person["councillor_id"] for person in data
             if person["kind"] == "councillor" and person["councillor_id"] not in known
         )
         if unknown:
             raise ValueError(
-                f"{path}: unknown councillor id(s) not in {reference}: "
-                f"{', '.join(unknown)}"
+                f"{path}: unknown councillor id(s) in neither {reference} nor the SPC "
+                f"councillor roster {roster_path.name}: {', '.join(unknown)}"
             )
     return data
+
+
+_COUNCILLOR_ID = re.compile(r"^[a-z0-9-]+/[a-z0-9-]+$")
+_PERSON_ID = re.compile(r"^[a-z0-9-]+/person/[a-z0-9-]+$")
+
+
+def load_roster(path: Path, reference: Path | None = None) -> list[dict]:
+    """Load the SPC councillor roster and check it against ``councillors.csv``.
+
+    The roster lists councillors of councils the motions councillor reference
+    does not cover, as ``{councillor_id, name, public_body_id, source_url}``.
+    Fails when an entry's council is one the reference covers (the reference
+    owns it), or when an ID is in both files with a different name or body.
+    A missing roster file is an empty roster.
+    """
+    import json
+
+    path = Path(path)
+    if not path.exists():
+        return []
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, list):
+        raise ValueError(f"{path}: the councillor roster must be a JSON list")
+    seen: set[str] = set()
+    for entry in data:
+        councillor_id = entry.get("councillor_id") if isinstance(entry, dict) else None
+        if (not isinstance(entry, dict) or not councillor_id
+                or not _COUNCILLOR_ID.match(councillor_id)):
+            raise ValueError(
+                f"{path}: roster entry {entry!r} needs a councillor_id of the form "
+                f"<council_slug>/<name-slug>")
+        for key in ("name", "source_url"):
+            if not entry.get(key):
+                raise ValueError(f"{path}: roster entry {councillor_id!r} has no {key}")
+        if not isinstance(entry.get("public_body_id"), int):
+            raise ValueError(f"{path}: roster entry {councillor_id!r} public_body_id must be an integer")
+        if councillor_id in seen:
+            raise ValueError(f"{path}: duplicate roster councillor_id {councillor_id!r}")
+        seen.add(councillor_id)
+
+    reference_rows = _read_councillor_rows(reference)
+    covered = {row["councillor_id"].split("/")[0] for row in reference_rows.values()}
+    for entry in data:
+        council = entry["councillor_id"].split("/")[0]
+        if council in covered:
+            raise ValueError(
+                f"{path}: roster entry {entry['councillor_id']!r}: council {council!r} "
+                f"is covered by the councillor reference, which owns its councillors")
+        row = reference_rows.get(entry["councillor_id"])
+        if row and (row.get("canonical_name") != entry["name"]
+                    or str(row.get("public_body_id")) != str(entry["public_body_id"])):
+            raise ValueError(
+                f"{path}: {entry['councillor_id']!r} is in the councillor reference as "
+                f"{row.get('canonical_name')!r} (body {row.get('public_body_id')}), "
+                f"not {entry['name']!r} (body {entry['public_body_id']})")
+    return data
+
+
+def _read_councillor_rows(path: Path | None) -> dict[str, dict]:
+    import csv
+
+    if path is None or not Path(path).exists():
+        return {}
+    with Path(path).open(encoding="utf-8", newline="") as handle:
+        return {row["councillor_id"]: row for row in csv.DictReader(handle)
+                if row.get("councillor_id")}
 
 
 def _validate_person(person: object, path: Path) -> None:
@@ -97,6 +168,10 @@ def _validate_person(person: object, path: Path) -> None:
     elif councillor_id is not None:
         raise ValueError(
             f"{path}: non-councillor {person_id!r} must not have a councillor_id"
+        )
+    if kind != "councillor" and not _PERSON_ID.match(person_id):
+        raise ValueError(
+            f"{path}: person_id {person_id!r} must be <council_slug>/person/<name-slug>"
         )
 
 
@@ -175,6 +250,9 @@ def resolve_initials(initials: str, meeting_initials: dict[str, str],
 
 
 def _status(entry: dict) -> str:
+    """``absent`` is a row printed apart from apologies (Kildare's "Not Present")."""
+    if entry["category"] == "absent":
+        return "absent"
     if entry["category"] == "apologies" or "apologies" in entry.get("markers", []):
         return "apologies"
     return "present"
@@ -200,8 +278,10 @@ CATEGORY_ORDER = {
     "councillors": 0,
     "sectoral_representatives": 1,
     "officials": 2,
-    "presenters": 3,
-    "apologies": 4,
+    "guests": 3,
+    "presenters": 4,
+    "apologies": 5,
+    "absent": 6,
 }
 
 

@@ -3,7 +3,28 @@
 Renders each meeting's minutes as verbatim, phone-readable Markdown and proves
 that no source word was added, lost or changed.
 
-## Furniture
+## Layouts
+
+How a meeting is rendered follows its committee's layout profile
+(`parse_meeting_header/layouts.py`):
+
+| | `meath-table` | `kildare-table`, `westmeath-list` |
+|---|---|---|
+| Furniture | running header, `Page N of M`, footer (below) | none declared: nothing is removed |
+| Body starts | after the `Item` table header | at the `body_start` the header parse recorded: the first line below the attendance block |
+| Item headings | `N.N Title` | `Item 2 — Title`, `Item 2: Title`, `Item 9- Title`; `Item` is matched case-insensitively and `ltem` is read as `Item` |
+| Attendance headings | Councillors, Sectoral Representatives, Absent / Apologies, Officials, Presenters | the layout's printed labels (`Attendees`, `Also present`, `Guests`, `Apologies`, `Not present`; `Members present`, `Sectoral reps`, ...) |
+
+For a scanned meeting the source words are its OCR words, grouped into lines by
+Tesseract's own line numbers and read in page order, so the word check proves
+the render is **verbatim to the OCR text**, not to the printed page. Only
+declared furniture is removed: a stray mark OCR reads that passed the
+confidence gate is source text, and stays. Pages skipped by a reviewed override
+have no words. An item heading OCR misreads (`Item &:` for `Item 8:`) is not a
+heading: its words stay in the previous block, so nothing is lost. A heading
+printed twice with the same number gets `item-3`, then `item-3-2`.
+
+## Furniture (Meath)
 
 Lines that repeat at the top or bottom edge of every page, the `Page N of M`
 line, and the page-1 running header are removed and counted in
@@ -35,10 +56,11 @@ contains no raw HTML.
 ## Front matter and attendance
 
 The file begins with YAML front matter: meeting ID, committee ID and name,
-`public_body_id`, date, venue, start/end times as printed, source URL and
-sha256. The attendance block lists each printed category (Councillors,
-Sectoral Representatives, Absent / Apologies, Officials, Presenters) with each
-entry's printed text; a withheld attendance is marked in the block.
+`public_body_id`, date, venue, start/end times as printed, source URL, sha256,
+`text_source` (`text_layer`, `ocr` or `mixed`) and, when any page was OCR'd, the
+`ocr_engine`. The attendance block lists each printed category (the layout's
+headings, above) with each entry's printed text; a withheld attendance is
+marked in the block.
 
 ## Word check
 

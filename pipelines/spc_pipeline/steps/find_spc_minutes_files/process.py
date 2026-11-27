@@ -5,8 +5,10 @@ Input: the local-authority list (cross-pipeline reference), used only to
 validate that every committee's ``public_body_id`` is a real local authority.
 Output: one record per minutes PDF, de-duplicated by URL.
 
-Agenda PDFs and every other link are ignored. A page that cannot be fetched,
-or a committee list that does not validate, is fatal (fail closed).
+Agenda PDFs and every other link are ignored. A committee may declare several
+pages (``page_urls``) and a year window (``years``). A page that cannot be
+fetched (including a bot-protection challenge, which is never bypassed), or a
+committee list that does not validate, is fatal (fail closed).
 """
 import argparse
 import sys
@@ -21,8 +23,10 @@ from lib.file_utils import append_error, read_json, write_json, write_status
 from steps.find_spc_minutes_files.discovery import (
     STEP_NAME,
     CommitteeConfigError,
-    discover_committee,
+    committee_pages,
+    discover_page,
     error,
+    is_bot_challenge,
     load_committees,
     validate_committees,
 )
@@ -61,25 +65,34 @@ def run(input_data, committees_path: Path, step_dir: Path, fetcher=fetch_html,
     records: list[dict] = []
     errors: list[dict] = []
     for committee in committees:
-        try:
-            html = fetcher(committee["page_url"])
-        except Exception as exc:  # network, TLS, HTTP status
-            errors.append(error(
-                STEP_NAME, "PageFetchFailed",
-                f"could not fetch {committee['page_url']}: {exc}",
-                committee_id=committee["committee_id"],
-                public_body_id=committee["public_body_id"],
-                page_url=committee["page_url"],
-            ))
-            continue
-        found = discover_committee(committee, html)
-        if not found:
+        found: list[dict] = []
+        seen: set[str] = set()
+        for page_url in committee_pages(committee):
+            context = dict(committee_id=committee["committee_id"],
+                           public_body_id=committee["public_body_id"], page_url=page_url)
+            try:
+                html = fetcher(page_url)
+            except Exception as exc:  # network, TLS, HTTP status (including a 403 block)
+                errors.append(error(
+                    STEP_NAME, "PageFetchFailed",
+                    f"could not fetch {page_url}: {exc}", **context))
+                continue
+            if is_bot_challenge(html):
+                errors.append(error(
+                    STEP_NAME, "PageFetchFailed",
+                    f"{page_url} returned a bot-protection challenge; the pipeline "
+                    "does not solve or bypass challenges", **context))
+                continue
+            page_records, page_errors = discover_page(committee, html, page_url, seen)
+            found.extend(page_records)
+            errors.extend(page_errors)
+        if not found and not any(
+                e["context"].get("committee_id") == committee["committee_id"] for e in errors):
             errors.append(error(
                 STEP_NAME, "NoMinutesFound",
-                f"no minutes links matched on {committee['page_url']}",
+                f"no minutes links matched on {', '.join(committee_pages(committee))}",
                 committee_id=committee["committee_id"],
                 public_body_id=committee["public_body_id"],
-                page_url=committee["page_url"],
             ))
         records.extend(found)
     return records, errors

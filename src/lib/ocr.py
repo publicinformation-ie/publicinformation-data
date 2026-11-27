@@ -42,6 +42,54 @@ def ocr_words(image, lang: str = OCR_LANG, config: str = OCR_CONFIG) -> list[dic
     return words
 
 
+def engine_string(lang: str = OCR_LANG, psm: int = OCR_PSM, dpi: int = OCR_DPI) -> str:
+    """Identify the OCR engine and every setting that changes its output, e.g.
+    ``tesseract 5.5.2 lang=eng psm=4 dpi=300``. Used as part of cache keys."""
+    import pytesseract
+
+    version = str(pytesseract.get_tesseract_version()).split()[0]
+    return f"tesseract {version} lang={lang} psm={psm} dpi={dpi}"
+
+
+def words_in_points(words: list[dict], dpi: int = OCR_DPI) -> list[dict]:
+    """Convert pixel word boxes to the PDF-point word shape used by the SPC
+    pipeline: ``{text, x0, x1, top, bottom, conf, line}``, origin top left,
+    scaled by 72/dpi and rounded to 2 places. Order is preserved.
+
+    ``line`` numbers Tesseract's own text lines on the page (0, 1, 2, ... in
+    the order Tesseract reports them). A scan is rarely perfectly level, so
+    two words on one printed line can differ by several points in ``top``;
+    consumers group OCR words by ``line`` rather than by ``top``.
+    """
+    scale = 72.0 / dpi
+    line_ids: dict[tuple[int, int, int], int] = {}
+    converted = []
+    for w in words:
+        key = (w.get("block", 0), w.get("par", 0), w.get("line", 0))
+        line = line_ids.setdefault(key, len(line_ids))
+        converted.append({
+            "text": w["text"],
+            "x0": round(w["left"] * scale, 2),
+            "x1": round((w["left"] + w["width"]) * scale, 2),
+            "top": round(w["top"] * scale, 2),
+            "bottom": round((w["top"] + w["height"]) * scale, 2),
+            "conf": w["conf"],
+            "line": line,
+        })
+    return converted
+
+
+def ocr_page_words(page, lang: str = OCR_LANG, psm: int = OCR_PSM,
+                   dpi: int = OCR_DPI) -> list[dict]:
+    """OCR one ``pymupdf`` page: render at ``dpi``, recognise with the given
+    settings, and return words in PDF points (see ``words_in_points``)."""
+    from PIL import Image
+
+    pix = page.get_pixmap(dpi=dpi)
+    image = Image.frombytes("RGB", (pix.width, pix.height), pix.samples)
+    return words_in_points(ocr_words(image, lang=lang, config=f"--psm {psm}"), dpi)
+
+
 def mean_confidence(words: list[dict]) -> float | None:
     """Mean word confidence (0-100), or None when there are no words."""
     if not words:

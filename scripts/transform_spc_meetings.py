@@ -4,7 +4,7 @@
 Reads pipelines/spc_pipeline/steps/export_spc_meetings/output.json and the
 authoritative Public Bodies data, then writes JSON-LD, CSV and CSVW metadata
 for meetings, people, attendance, items and decisions, the verbatim Markdown
-minutes and a README to public/v1.1.0/spc-meetings/, mirrors that directory to
+minutes and a README to public/v1.2.0/spc-meetings/, mirrors that directory to
 public/latest/spc-meetings/, and stamps dct:modified only when the payload
 changes.
 
@@ -27,7 +27,7 @@ from src.lib.dataset_publish import render_jsonld, stamp_if_changed, stamp_modif
 EXPORT_PATH = "pipelines/spc_pipeline/steps/export_spc_meetings/output.json"
 FIND_PUBLIC_BODIES_PATH = "pipelines/foi_pipeline/steps/find_public_bodies/output.json"
 SLUG_SEED_PATH = "pipelines/foi_pipeline/steps/db_upload/slug_seed.json"
-OUTPUT_DIR = "public/v1.1.0/spc-meetings"
+OUTPUT_DIR = "public/v1.2.0/spc-meetings"
 LATEST_DIR = "public/latest/spc-meetings"
 TTL_PATH = "public/catalog/dataset-spc-meetings.ttl"
 
@@ -36,7 +36,8 @@ KINDS = ("meetings", "people", "attendance", "items", "decisions")
 CSV_FIELDS = {
     "meetings": ["id", "meeting_id", "committee_id", "committee_name", "public_body",
                  "public_body_id", "meeting_date", "venue", "start_time", "end_time",
-                 "source_url", "source_sha256", "minutes_path", "attendance_published"],
+                 "source_url", "source_sha256", "minutes_path", "attendance_published",
+                 "text_source", "ocr_engine"],
     "people": ["id", "person_id", "canonical_name", "kind", "councillor_id",
                "public_body", "public_body_id"],
     "attendance": ["id", "meeting_id", "meeting_date", "person_id", "category", "role",
@@ -76,13 +77,15 @@ FIELD_SPECS = {
     "source_sha256": ("string", "SHA-256 of the source PDF bytes"),
     "minutes_path": ("string", "Verbatim Markdown minutes, relative to the dataset root"),
     "attendance_published": ("boolean", "false when the meeting's attendance was withheld"),
+    "text_source": ("string", "Where the minutes' text came from: text_layer, ocr or mixed"),
+    "ocr_engine": ("string", "OCR engine and settings that read the scanned pages; empty when no page was OCR'd"),
     "person_id": ("string", "Stable person identifier"),
     "canonical_name": ("string", "Canonical name from the committed register"),
     "kind": ("string", "councillor, sectoral_representative, official or guest"),
     "councillor_id": ("string", "Councillor ID used by the motions dataset; empty for other kinds"),
-    "category": ("string", "councillors, sectoral_representatives, apologies, officials or presenters"),
+    "category": ("string", "councillors, sectoral_representatives, apologies, officials, presenters, guests or absent"),
     "role": ("string", "Role as printed, empty when none is printed"),
-    "status": ("string", "present or apologies"),
+    "status": ("string", "present, apologies or absent"),
     "mode": ("string", "remote, in_person or not_stated"),
     "presented": ("boolean", "true when the person's name also appears in the presenters block"),
     "item_number": ("string", "Number as printed; not unique (two items may share one)"),
@@ -219,8 +222,48 @@ def csvw_metadata(kind: str) -> bytes:
     }, indent=2).encode("utf-8") + b"\n"
 
 
-COVERAGE = ("Meath County Council's Transportation and Urban Regeneration Strategic Policy "
-            "Committee: six meetings, February 2025 to May 2026")
+#: council slug (the first part of a committee_id) -> display name and the page the
+#: minutes are retrieved from. A council not listed here stops the build, so a new
+#: council cannot be published without its attribution.
+COUNCILS = {
+    "meath": ("Meath County Council",
+              "https://www.meath.ie/council/your-council/your-elected-council/"
+              "strategic-policy-committees/transportation-and-urban-regeneration-spc"),
+    "kildare": ("Kildare County Council",
+                "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/Committees/"
+                "StrategicPolicyCommittees/TransportationSafetyandEmergencyServices/"),
+    "westmeath": ("Westmeath County Council",
+                  "https://www.westmeathcoco.ie/en/ourservices/yourcouncil/"
+                  "meetingsminutesagendasandreports/strategicpolicycommittees/"
+                  "planningregenerationtransportation/"),
+}
+
+
+def _council(committee_id: str) -> tuple[str, str]:
+    slug = committee_id.split("/")[0]
+    try:
+        return COUNCILS[slug]
+    except KeyError:
+        raise ValueError(
+            f"committee {committee_id!r}: council {slug!r} has no entry in COUNCILS "
+            f"(display name and source page) in scripts/transform_spc_meetings.py"
+        ) from None
+
+
+def coverage_lines(export: dict) -> list[str]:
+    """One line per committee: its council, name, meeting count and date range."""
+    by_committee: dict[str, list[dict]] = {}
+    for meeting in export.get("meetings", []):
+        by_committee.setdefault(meeting["committee_id"], []).append(meeting)
+    lines = []
+    for committee_id in sorted(by_committee):
+        meetings = by_committee[committee_id]
+        dates = sorted(m["meeting_date"] for m in meetings)
+        council, _ = _council(committee_id)
+        noun = "meeting" if len(meetings) == 1 else "meetings"
+        lines.append(f"- {council}, {meetings[0]['committee_name']}: "
+                     f"{len(meetings)} {noun}, {dates[0]} to {dates[-1]}")
+    return lines
 
 TABLE_BLURBS = {
     "meetings": "one row per meeting",
@@ -250,20 +293,38 @@ def minutes_index_bytes(export: dict) -> bytes:
     return "\n".join(lines).encode("utf-8")
 
 
+def _councils_in(export: dict) -> list[tuple[str, str]]:
+    seen: dict[str, tuple[str, str]] = {}
+    for meeting in export.get("meetings", []):
+        seen.setdefault(meeting["committee_id"].split("/")[0], _council(meeting["committee_id"]))
+    return [seen[slug] for slug in sorted(seen)]
+
+
+def source_lines(export: dict) -> list[str]:
+    return [f"- {name}: {url}" for name, url in _councils_in(export)]
+
+
+def attribution(export: dict) -> str:
+    return "Source: " + ", ".join(name for name, _ in _councils_in(export))
+
+
 def readme_bytes(export: dict, report: dict) -> bytes:
     lines = [
         "# SPC meetings",
         "",
         "**Dataset URI:** `https://data.publicinformation.ie/dataset/spc-meetings`",
         "",
-        f"Coverage: {COVERAGE}. No other council or committee is published yet.",
+        "Coverage (no other council or committee is published yet):",
+        "",
+        *coverage_lines(export),
+        "",
         "The dataset holds who attended, their attendance, agenda items with COFOG 1999",
         "topics, official decisions as verbatim quotes, and the minutes rendered verbatim",
         "as Markdown.",
         "",
         "## Versioning",
         "",
-        "This directory mirrors the newest immutable release, `../../v1.1.0/spc-meetings/`",
+        "This directory mirrors the newest immutable release, `../../v1.2.0/spc-meetings/`",
         "(earlier releases stay in place). `owl:versionInfo` is bumped by hand for a breaking",
         "or additive schema change; `dct:modified` in the catalogue record changes only when",
         "the published content changes.",
@@ -282,7 +343,8 @@ def readme_bytes(export: dict, report: dict) -> bytes:
         "[JSON Schema](../../schemas/spc-meetings.schema.json), "
         "[DCAT-AP catalogue record](../../catalog/dataset-spc-meetings.ttl), and the "
         "vocabularies `cofog-1999`, `transport-subdomain`, `spc-attendance-status`, "
-        "`spc-attendance-mode`, `spc-attendee-category` and `spc-decision-type` under "
+        "`spc-attendance-mode`, `spc-attendee-category`, `spc-decision-type` and "
+        "`spc-text-source` under "
         "[`../../vocabularies/`](../../vocabularies/).",
         "",
         "## Tables and fields",
@@ -297,6 +359,22 @@ def readme_bytes(export: dict, report: dict) -> bytes:
     for kind in KINDS:
         lines += [f"### {kind}", ""] + field_table(kind) + [""]
     lines += [
+        "## Where the text came from (`text_source`)",
+        "",
+        "Most council minutes are published as scanned images with no text layer. Each",
+        "meeting's `text_source` says how its text was read: `text_layer` (the PDF's own",
+        "text), `ocr` (every page scanned) or `mixed`. For `ocr` and `mixed` meetings,",
+        "`ocr_engine` names the engine and its settings (Tesseract, language, page",
+        "segmentation mode and resolution).",
+        "",
+        "For `ocr` and `mixed` meetings, \"verbatim\" means **verbatim to the OCR text**, not",
+        "to the printed page: the render is checked against the words the OCR read, word",
+        "for word. OCR can misread words, accents, bullet marks and handwriting, and a",
+        "mark on the paper can become a stray token, so the source PDF, identified by",
+        "`source_url` and `source_sha256`, is authoritative. A page whose OCR confidence",
+        "is below the pipeline's threshold is never published, and a blank page is",
+        "skipped only by a reviewed, committed override.",
+        "",
         "## Reading withheld and empty values",
         "",
         "- The pipeline fails closed: a value it cannot confirm is withheld, not guessed.",
@@ -333,20 +411,21 @@ def readme_bytes(export: dict, report: dict) -> bytes:
         "",
         "## Source, attribution and licence",
         "",
-        "Source: Meath County Council, Transportation and Urban Regeneration Strategic",
-        "Policy Committee minutes, retrieved from www.meath.ie; each meeting records its",
-        "`source_url` and the PDF's `source_sha256`. The minutes are the council's",
-        "material, reproduced here without alteration to their wording.",
+        "Sources (each meeting records its `source_url` and the PDF's `source_sha256`;",
+        "the minutes are the councils' material, reproduced here without alteration to",
+        "their wording):",
+        "",
+        *source_lines(export),
         "",
         "COFOG 1999 is the UN Statistics Division classification; transport subdomains",
         "follow the transport-governance vocabulary. The topics, decisions and attendance",
         "tables are derived by PublicInformation.ie (an LLM proposes topics and decisions;",
         "each decision is checked to be a verbatim quote).",
         "",
-        "The derived dataset is published under CC BY 4.0. Meath County Council's own",
-        "re-use terms for the underlying minutes have not been independently confirmed",
-        "against www.meath.ie; if you re-use the verbatim minutes, check them.",
-        "Attribute as: *Source: Meath County Council; processed by PublicInformation.ie.*",
+        "The derived dataset is published under CC BY 4.0. Each council's own re-use",
+        "terms for the underlying minutes have not been independently confirmed against",
+        "its website; if you re-use the verbatim minutes, check them.",
+        "Attribute as: *" + attribution(export) + "; processed by PublicInformation.ie.*",
         "",
         "## Reproducing",
         "",

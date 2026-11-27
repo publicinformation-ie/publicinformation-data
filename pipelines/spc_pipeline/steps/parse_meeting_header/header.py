@@ -14,6 +14,8 @@ from __future__ import annotations
 import re
 from datetime import date, datetime, timezone
 
+from steps.parse_meeting_header.layouts import LayoutProfile, profile_for
+
 MONTHS = {
     "january": 1, "february": 2, "march": 3, "april": 4, "may": 5, "june": 6,
     "july": 7, "august": 8, "september": 9, "october": 10, "november": 11,
@@ -25,7 +27,14 @@ _DATE_RE = re.compile(
     re.IGNORECASE,
 )
 _START_RE = re.compile(r"\bat\s+(\d{1,2}[.:]\d{2}\s*(?:am|pm)?)", re.IGNORECASE)
-_LINK_MONTH_RE = re.compile(r"\b(" + "|".join(m.title() for m in MONTHS) + r")\s+(\d{4})\b")
+_MONTH_ABBREVIATIONS = {
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "jun": 6, "jul": 7, "aug": 8,
+    "sep": 9, "sept": 9, "oct": 10, "nov": 11, "dec": 12,
+}
+_LINK_MONTH_RE = re.compile(
+    r"\b(" + "|".join(m.title() for m in MONTHS)
+    + "|" + "|".join(a.title() for a in sorted(_MONTH_ABBREVIATIONS, key=len, reverse=True))
+    + r")\.?\s+(\d{4})\b")
 _END_RE = re.compile(
     r"Meeting ended\s*@?\s*([0-9]{1,2}[.:][0-9]{2}\s*(?:am|pm)?)", re.IGNORECASE
 )
@@ -77,7 +86,15 @@ class MeetingDateMismatch(HeaderParseError):
 # ---------------------------------------------------------------------------
 
 def words_to_lines(words: list[dict], tolerance: float = 2.0) -> list[dict]:
-    """Group words into physical lines by ``top``; each line keeps x order."""
+    """Group words into physical lines; each line keeps x order.
+
+    Text-layer words are grouped by ``top``. OCR words carry the ``line`` id
+    Tesseract assigned, and are grouped by it: a scan is rarely level, so two
+    words on one printed line can differ by several points in ``top``, which
+    a ``top`` tolerance would split into separate lines.
+    """
+    if words and all("line" in word for word in words):
+        return _ocr_lines(words)
     lines: list[dict] = []
     for word in sorted(words, key=lambda w: (round(w["top"], 1), w["x0"])):
         if lines and abs(word["top"] - lines[-1]["top"]) <= tolerance:
@@ -87,6 +104,22 @@ def words_to_lines(words: list[dict], tolerance: float = 2.0) -> list[dict]:
     for line in lines:
         line["words"].sort(key=lambda w: w["x0"])
         line["text"] = " ".join(w["text"] for w in line["words"])
+    return lines
+
+
+def _ocr_lines(words: list[dict]) -> list[dict]:
+    by_id: dict[int, list[dict]] = {}
+    for word in words:
+        by_id.setdefault(word["line"], []).append(word)
+    lines = []
+    for members in by_id.values():
+        members = sorted(members, key=lambda w: w["x0"])
+        lines.append({
+            "top": sum(w["top"] for w in members) / len(members),
+            "words": members,
+            "text": " ".join(w["text"] for w in members),
+        })
+    lines.sort(key=lambda line: (round(line["top"], 1), line["words"][0]["x0"]))
     return lines
 
 
@@ -513,7 +546,9 @@ def link_month_year(link_text: str | None) -> tuple[int, int] | None:
     match = _LINK_MONTH_RE.search(link_text)
     if not match:
         return None
-    return MONTHS[match.group(1).lower()], int(match.group(2))
+    name = match.group(1).lower()
+    month = MONTHS.get(name) or _MONTH_ABBREVIATIONS[name]
+    return month, int(match.group(2))
 
 
 def make_meeting_id(committee_id: str, meeting_date: date) -> str:
@@ -525,7 +560,19 @@ def make_meeting_id(committee_id: str, meeting_date: date) -> str:
 # ---------------------------------------------------------------------------
 
 def parse_record(source: dict) -> dict:
-    """Parse one fetched record into a meeting record (or raise HeaderParseError)."""
+    """Parse one fetched record into a meeting record (or raise HeaderParseError).
+
+    The committee's layout profile (``source["layout"]``, carried from
+    ``committees.json``) selects the routine; a record with no layout is a
+    Meath one, which is what the unit tests build.
+    """
+    profile = profile_for(source.get("layout") or "meath-table")
+    if profile.routine == "meath-table":
+        return _parse_meath_table(source)
+    return _parse_label_value(source, profile)
+
+
+def _parse_meath_table(source: dict) -> dict:
     pages = source["pages"]
     if not pages:
         raise UnrecognisedHeaderLayout("the PDF has no pages")
@@ -564,6 +611,14 @@ def parse_record(source: dict) -> dict:
         entries.extend(parsed)
         ignored_total += ignored
 
+    return _build_record(source, meeting_date, date_text, venue, start_time,
+                         end_time, entries, ignored_total)
+
+
+def _build_record(source: dict, meeting_date: date, date_text: str, venue: str,
+                  start_time: str | None, end_time: str | None, entries: list[dict],
+                  ignored_total: int, **extra) -> dict:
+    pages = source["pages"]
     initials: dict[str, str] = {}
     initials_conflicts: list[dict] = []
     for entry in entries:
@@ -596,8 +651,329 @@ def parse_record(source: dict) -> dict:
         "initials_conflicts": initials_conflicts,
         "ignored_fragments": ignored_total,
         "attendance": entries,
+        "layout": source.get("layout") or "meath-table",
+        "text_source": source.get("text_source", "text_layer"),
+        "ocr_engine": source.get("ocr_engine"),
+        "ocr_skipped_pages": source.get("ocr_skipped_pages", 0),
         "pages": pages,
+        **extra,
     }
+
+
+# ---------------------------------------------------------------------------
+# Label/value layouts (Kildare, Westmeath)
+# ---------------------------------------------------------------------------
+
+#: A continuation line sits under the value column, within this many points of
+#: its left edge (scans are not perfectly aligned).
+_VALUE_TOLERANCE = 12.0
+#: A gap this wide between two words separates a label from its value.
+_LABEL_GAP = 20.0
+#: A continuation line is at most this many line pitches below the previous one.
+_MAX_PITCH_RATIO = 1.5
+#: Stray marks OCR reads from table borders and bullets; never a name.
+_NOISE_TOKENS = {"|", "-", "–", "—"}
+
+
+def _match_label(line: dict, profile: LayoutProfile):
+    """``(label, consumed_words)`` when the line starts with a mapped label."""
+    text = line["text"]
+    for label in profile.labels:
+        match = label.match(text)
+        if match:
+            consumed = len(text[:match.end()].split())
+            return label, consumed
+    return None
+
+
+def _is_unmapped_label_line(line: dict, value_left: float) -> bool:
+    """A line printed as ``Label   value``: a wide gap that lands in the value column."""
+    words = line["words"]
+    if words[0]["x0"] >= value_left - _VALUE_TOLERANCE:
+        return False
+    for index in range(1, len(words)):
+        gap = words[index]["x0"] - words[index - 1]["x1"]
+        if gap >= _LABEL_GAP and words[index]["x0"] >= value_left - _VALUE_TOLERANCE:
+            return True
+    return False
+
+
+def _label_text(line: dict, value_left: float) -> str:
+    """The words left of the value column, for an error message."""
+    return " ".join(w["text"] for w in line["words"]
+                    if w["x1"] < value_left - _VALUE_TOLERANCE)
+
+
+def _level(line: dict) -> list[dict]:
+    """The line's words with ``top`` set to the line's, for the entry splitter.
+
+    A scan is rarely level, so words on one printed line differ in ``top``; the
+    splitter reads a change in ``top`` as a new line. Only the geometry is
+    levelled, never the text.
+    """
+    return [{**word, "top": line["top"]} for word in line["words"]]
+
+
+def _parse_label_value(source: dict, profile: LayoutProfile) -> dict:
+    pages = source["pages"]
+    if not pages:
+        raise UnrecognisedHeaderLayout("the PDF has no pages")
+    lines = [line for line in words_to_lines(pages[0]["words"]) if line["words"]]
+
+    first = next((i for i, line in enumerate(lines) if _match_label(line, profile)), None)
+    if first is None:
+        raise UnrecognisedHeaderLayout(
+            f"no attendance label found on page 1 (layout {profile.name})")
+
+    header_text = "\n".join(line["text"] for line in lines[:first])
+    linked = link_month_year(source.get("link_text"))
+    date_text, meeting_date, venue, start_time, year_source = parse_label_value_date(
+        header_text, profile, linked)
+
+    if linked is not None and (linked[0], linked[1]) != (meeting_date.month, meeting_date.year):
+        raise MeetingDateMismatch(
+            f"header says {date_text!r} but link text says {source.get('link_text')!r}"
+        )
+
+    # The value column starts where the first value word of each mapped label line sits.
+    starts = []
+    for line in lines[first:]:
+        found = _match_label(line, profile)
+        if found and found[1] < len(line["words"]):
+            starts.append(line["words"][found[1]]["x0"])
+    if not starts:
+        raise UnrecognisedHeaderLayout("no values in the attendance value column")
+    starts.sort()
+    value_left = starts[len(starts) // 2]
+
+    deltas = [b["top"] - a["top"] for a, b in zip(lines[first:], lines[first + 1:])]
+    pitches = [d for d in deltas if d > 8]
+    max_gap = _MAX_PITCH_RATIO * (min(pitches) if pitches else 20.0)
+
+    blocks: list[dict] = []
+    previous = lines[first]["top"]
+    end_index = len(lines)
+    for index in range(first, len(lines)):
+        line = lines[index]
+        found = _match_label(line, profile)
+        if found:
+            label, consumed = found
+            blocks.append({"label": label, "words": _level(line)[consumed:]})
+        elif _is_unmapped_label_line(line, value_left):
+            raise UnrecognisedHeaderLayout(
+                f"unrecognised attendance label {_label_text(line, value_left)!r} "
+                f"(layout {profile.name})")
+        elif (blocks and line["words"][0]["x0"] >= value_left - _VALUE_TOLERANCE
+              and line["top"] - previous <= max_gap):
+            blocks[-1]["words"].extend(_level(line))
+        else:
+            end_index = index
+            break
+        previous = line["top"]
+
+    entries: list[dict] = []
+    ignored_total = 0
+    for block in blocks:
+        label = block["label"]
+        words = []
+        for word in block["words"]:
+            if word["text"] in _NOISE_TOKENS:
+                ignored_total += 1
+                continue
+            words.append(word)
+        parsed, ignored = parse_label_value_entries(words, label.category, profile)
+        if label.marker:
+            for entry in parsed:
+                entry["markers"].append(label.marker)
+        entries.extend(parsed)
+        ignored_total += ignored
+
+    # None: the attendance block runs to the end of page 1, so the body starts on page 2.
+    body_top = lines[end_index]["top"] if end_index < len(lines) else None
+    return _build_record(
+        source, meeting_date, date_text, venue, start_time, None, entries,
+        ignored_total, body_start={"page": 1, "top": body_top}, year_source=year_source)
+
+
+def _strip_trailing_and(tokens: list[str]) -> list[str]:
+    while tokens and tokens[-1].strip(",;.").lower() in ("and", "&"):
+        tokens = tokens[:-1]
+    return tokens
+
+
+def _clean_brackets(text: str) -> str:
+    """Remove the empty brackets a stripped marker leaves: ``Paul Ward ( )``."""
+    return re.sub(r"\s*\(\s*\)", "", text).strip()
+
+
+def _entry_from(tokens: list[str], category: str, profile: LayoutProfile,
+                name_end: int | None = None) -> dict | None:
+    """Build one entry from a person's tokens (``name_end``: index where the name stops)."""
+    tokens = _strip_trailing_and(tokens)
+    if not tokens:
+        return None
+    raw = " ".join(tokens)
+    title = None
+    if tokens[0].rstrip(".,") in profile.titles:
+        title = tokens[0].rstrip(".,")
+        tokens = tokens[1:]
+        if name_end is not None:
+            name_end -= 1
+        # A printed double title ("Mr. Mr. Jonathan Hennessy") is one person.
+        while tokens and tokens[0].rstrip(".,") in profile.titles:
+            tokens = tokens[1:]
+            if name_end is not None:
+                name_end -= 1
+    if name_end is None:
+        name_end = len(tokens)
+    name = " ".join(tokens[:name_end]).strip(" ,;.")
+    role = " ".join(tokens[name_end:]).strip(" ,;.")
+    # "(Chair)" and "(Cathaoirleach)" print a role, never initials, in these layouts.
+    paren = name.find("(")
+    if paren > 0:
+        role = (name[paren:] + " " + role).strip()
+        name = name[:paren].strip()
+    role, markers = _strip_markers(role)
+    name, name_markers = _strip_markers(name)
+    markers = markers + name_markers
+    role = _clean_brackets(role).strip(" ,;.")
+    if re.fullmatch(r"\(([^)]*)\)", role):
+        role = role[1:-1].strip()
+    name = _clean_brackets(name).strip(" ,;.")
+    if not name:
+        return None
+    return {
+        "category": category,
+        "printed_name": name,
+        "title": title,
+        "initials": None,
+        "role": role,
+        "markers": markers,
+        "raw": raw,
+    }
+
+
+def _titled_runs(words: list[dict], profile: LayoutProfile) -> list[list[str]]:
+    """Split value words into one token run per person: a title starts a person."""
+    runs: list[list[str]] = []
+    for word in words:
+        token = word["text"]
+        if token.rstrip(".,;") in profile.titles and runs and any(
+                t.rstrip(".,;") not in profile.titles and t.strip(",;.").lower() not in ("and", "&")
+                for t in runs[-1]):
+            runs.append([token])
+        elif runs:
+            runs[-1].append(token)
+        else:
+            runs.append([token])
+    return runs
+
+
+def _titled_name_end(tokens: list[str], profile: LayoutProfile) -> int:
+    """Index into ``tokens`` where the name stops and the role starts."""
+    offset = 1 if tokens and tokens[0].rstrip(".,") in profile.titles else 0
+    for index, token in enumerate(tokens[offset:]):
+        bare = token.strip(",;.")
+        if index > 0 and (token.startswith("(") or bare.startswith("A/")
+                          or bare in profile.role_words):
+            return index + offset
+        if token.endswith((",", ";")):
+            return index + offset + 1
+        if token.endswith(".") and index >= 1 and len(bare) > 2:
+            return index + offset + 1
+    return len(tokens)
+
+
+def _split_at_and(tokens: list[str], name_end: int, profile: LayoutProfile) -> list[list[str]]:
+    """Split "Mr Cormac Browne and Eamonn Mahoney" into two people.
+
+    Only when "and" sits inside the name span with at least two capitalised
+    words on each side and no title follows: the second person is then printed
+    without a title, and nothing else in the run can say where they start.
+    """
+    offset = 1 if tokens and tokens[0].rstrip(".,") in profile.titles else 0
+    for index in range(offset + 2, name_end - 2):
+        if tokens[index].lower() in ("and", "&"):
+            before, after = tokens[offset:index], tokens[index + 1:name_end]
+            if (len(before) >= 2 and len(after) >= 2
+                    and all(t[:1].isupper() for t in before + after)):
+                return [tokens[:index], tokens[index + 1:]]
+    return [tokens]
+
+
+def parse_label_value_entries(words: list[dict], category: str,
+                              profile: LayoutProfile) -> tuple[list[dict], int]:
+    """Entries for one block of a label/value layout; ``(entries, ignored_count)``."""
+    entries: list[dict] = []
+    if profile.entries == "titled-run":
+        for run in _titled_runs(words, profile):
+            for person in _split_at_and(run, _titled_name_end(run, profile), profile):
+                entry = _entry_from(person, category, profile,
+                                    name_end=_titled_name_end(person, profile))
+                if entry:
+                    entries.append(entry)
+        return entries, 0
+
+    # one-per-line: a new line starts a new person unless it continues the last
+    # (starts lower case, or after a comma-ended line).
+    lines: list[list[str]] = []
+    last_top = None
+    for word in words:
+        token = word["text"]
+        new_line = last_top is None or abs(word["top"] - last_top) > 2
+        last_top = word["top"]
+        if new_line and lines and token[:1].isupper() and not lines[-1][-1].endswith(","):
+            lines.append([token])
+        elif lines:
+            lines[-1].append(token)
+        else:
+            lines.append([token])
+    for tokens in lines:
+        text = " ".join(_strip_trailing_and(tokens))
+        comma = text.find(",")
+        entry = _entry_from(
+            text.split(), category, profile,
+            name_end=len(text[:comma].split()) if comma > 0 else None)
+        if entry:
+            entries.append(entry)
+    return entries, 0
+
+
+def parse_label_value_date(header_text: str, profile: LayoutProfile,
+                           linked: tuple[int, int] | None = None
+                           ) -> tuple[str, date, str, str | None, str]:
+    """``(date_text, date, venue, start_time, year_source)`` from a label/value header.
+
+    The year is the header's. A header that prints day and month but no year
+    takes the year from the link text, and only when the link text's month
+    agrees with the header's month; otherwise it is ``MeetingDateUnparseable``.
+    ``year_source`` is ``header`` or ``link_text``.
+    """
+    flat = re.sub(r"\s+", " ", header_text).strip()
+    match = re.search(profile.date_line, flat, re.IGNORECASE)
+    if not match:
+        raise MeetingDateUnparseable(
+            f"no date line ('held ... <day> <month> <year>') for layout {profile.name} in the header")
+    groups = match.groupdict()
+    year = groups.get("year")
+    year_source = "header"
+    if not year:
+        month = MONTHS[groups["month"].lower()]
+        if linked is None or linked[0] != month:
+            raise MeetingDateUnparseable(
+                f"the header prints no year and the link text cannot supply it: "
+                f"{match.group(0)!r}")
+        year, year_source = str(linked[1]), "link_text"
+    try:
+        meeting_date = date(int(year), MONTHS[groups["month"].lower()], int(groups["day"]))
+    except ValueError as exc:
+        raise MeetingDateUnparseable(f"invalid header date: {exc}") from exc
+    date_text = f"{groups['day']} {groups['month']} {year}"
+    venue = re.sub(r"\s+", " ", (groups.get("venue") or "")).strip(" .,;")
+    venue = re.sub(r"^(?:in\s+the|in)\s+", "", venue, flags=re.IGNORECASE)
+    time = groups.get("time")
+    return (date_text, meeting_date, venue,
+            (re.sub(r"\s+", " ", time).strip() if time else None), year_source)
 
 
 def _value_words(lines: list[dict], block_top: float, block_end: float,

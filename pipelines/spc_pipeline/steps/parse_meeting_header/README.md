@@ -1,8 +1,65 @@
 # parse_meeting_header
 
-Reads the meeting date, venue and times from page 1, and the two-column
-attendance table by word coordinates so label text never becomes part of a
-name.
+Reads the meeting date, venue and times from page 1, and the attendance block
+by word coordinates so label text never becomes part of a name.
+
+## Layout profiles
+
+Each committee names a profile (`layout` in `committees.json`). A profile is
+data in `layouts.py`: the label vocabulary, the date line and the item heading
+forms. Geometry is code in `header.py`. A label a profile does not map is
+`UnrecognisedHeaderLayout`; a layout is never inferred.
+
+| Profile | Council | Routine |
+|---|---|---|
+| `meath-table` | Meath | labels in a left column, values in a right column (the section below) |
+| `kildare-table` | Kildare | `Label:  value` rows; continuation lines align under the value |
+| `westmeath-list` | Westmeath | the same geometry, one person per line |
+
+`kildare-table` and `westmeath-list` share one routine: the value column starts
+where the first value word of each mapped label line sits, a continuation line
+sits under it (within 12 pt, and within 1.5 line pitches of the previous line),
+and the block ends at the first line that is neither. A line printed as
+`Label   value` whose label is not mapped is an error naming the label.
+
+| Profile | Printed label | Category | Status |
+|---|---|---|---|
+| Kildare | `Attendees` | `councillors` | present |
+| Kildare | `Online` | `councillors`, mode `remote` | present |
+| Kildare | `Also Present`, `Also` | `officials` | present |
+| Kildare | `Guest` | `guests` | present |
+| Kildare | `Apologies` | `apologies` | apologies |
+| Kildare | `Not Present` | `absent` | absent |
+| Westmeath | `Members Present` | `councillors` | present |
+| Westmeath | `Sectoral Reps` | `sectoral_representatives` | present |
+| Westmeath | `Officials Present` | `officials` | present |
+| Westmeath | `External Presenters` | `presenters` | present |
+| Westmeath | `Apologies` | `apologies` | apologies |
+
+The category is the printed label's: Kildare's `Attendees` row also lists
+non-councillors (PPN members), who are recorded under `councillors` here and
+told apart by their `kind` in the people register.
+
+Kildare entries start at each title (`Mr`, `Ms`, `Cllr`, `Councillor`,
+`Cathaoirleach`); the name ends at a comma, a bracket or the first role word.
+`Mr Cormac Browne and Eamonn Mahoney` is two people. Westmeath entries are one
+per line, `Name, Role`. In these layouts a bracket prints a role
+(`(Chair)`, `(Cathaoirleach)`), never initials, and an empty bracket left by a
+mode marker (`(Online)`) is removed. Scanner noise tokens (`|`, a leading `-`)
+are never names and are counted in `ignored_fragments`. Entry `raw` text keeps
+what was printed.
+
+Scanned pages arrive as OCR words with Tesseract's own line numbers. A scan is
+rarely level, so words are grouped into lines by that number, not by `top`.
+
+The header's date line is per profile. Kildare:
+`held on Thursday, 11 December 2025 at 3.30p.m. in the Committee Room, ...`;
+Westmeath: `held in the Executive Lounge, ... at 10am on Friday 6th March 2026`. A
+date line with no year is `MeetingDateUnparseable`. The output record carries
+`layout`, `text_source`, `ocr_engine` and `body_start` (`{page, top}`, where the
+body begins below the attendance block).
+
+## Meath layout (the table)
 
 ## Labels and blocks
 
@@ -44,7 +101,8 @@ title fragment (`Cllr,`) is ignored and counted in `ignored_fragments`.
 ## Dates and identity
 
 - Date: `19th February 2026` in the header line above the table.
-- Month and year must agree with the link text when it gives them.
+- Month and year must agree with the link text when it gives them (full or
+  abbreviated month: `Nov`, `Sept`).
 - End time: the printed value after `Meeting ended @` (formats vary).
 - Meeting ID: `<committee_id>/<YYYY-MM-DD>`.
 

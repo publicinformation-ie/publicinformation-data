@@ -7,6 +7,7 @@ from steps.resolve_attendees.resolving import (
     build_alias_index,
     build_initials_index,
     load_register,
+    load_roster,
     normalise_name,
     resolve_initials,
     resolve_meeting,
@@ -15,6 +16,7 @@ from steps.resolve_attendees.resolving import (
 
 PIPELINE = Path(__file__).resolve().parents[1]
 REGISTER = PIPELINE / "reference" / "people.json"
+ROSTER = PIPELINE / "reference" / "councillors.json"
 
 
 @pytest.fixture(scope="module")
@@ -44,11 +46,12 @@ def test_register_has_valid_kinds_and_person_id_shapes(register):
         if person["kind"] == "councillor":
             assert person["person_id"] == person["councillor_id"]
         else:
-            assert person["person_id"].startswith("meath/person/")
+            council = person["person_id"].split("/")[0]
+            assert person["person_id"].startswith(f"{council}/person/")
             assert person["councillor_id"] is None
 
 
-def test_every_councillor_id_exists_in_the_councillor_reference(register):
+def test_every_councillor_id_exists_in_the_councillor_reference_or_the_roster(register):
     csv_path = (PIPELINE / "../minutes_pipeline/reference/councillors.csv").resolve()
     if not csv_path.exists():
         pytest.skip("the councillor reference is not present")
@@ -56,6 +59,7 @@ def test_every_councillor_id_exists_in_the_councillor_reference(register):
         line.split(",")[0] for line in csv_path.read_text(encoding="utf-8").splitlines()[1:]
         if line
     }
+    known |= {entry["councillor_id"] for entry in load_roster(ROSTER, csv_path)}
     councillors = [p for p in register if p["kind"] == "councillor"]
     assert councillors
     for person in councillors:
@@ -238,3 +242,162 @@ def test_all_six_real_meetings_resolve_with_zero_errors(register, parsed_meeting
     assert all(r["attendance_published"] for r in results)
     for result in results:
         assert {row["person_id"] for row in result["attendance"]}
+
+
+# ---------------------------------------------------------------------------
+# SPC councillor roster, new statuses and the Kildare / Westmeath register
+# ---------------------------------------------------------------------------
+
+def _roster_entry(**overrides):
+    entry = {"councillor_id": "kildare/kevin-duffy", "name": "Kevin Duffy",
+             "public_body_id": 1456, "source_url": "https://kildarecoco.ie/x"}
+    entry.update(overrides)
+    return entry
+
+
+def _write(tmp_path, name, data):
+    path = tmp_path / name
+    path.write_text(json.dumps(data), encoding="utf-8")
+    return path
+
+
+def _reference(tmp_path, rows):
+    path = tmp_path / "councillors.csv"
+    path.write_text(
+        "councillor_id,canonical_name,public_body_id\n" + "".join(
+            f"{i},{n},{b}\n" for i, n, b in rows), encoding="utf-8")
+    return path
+
+
+def test_the_committed_roster_covers_only_councils_the_reference_does_not():
+    reference = (PIPELINE / "../minutes_pipeline/reference/councillors.csv").resolve()
+    roster = load_roster(ROSTER, reference)           # raises on any inconsistency
+    assert {e["councillor_id"].split("/")[0] for e in roster} == {"kildare", "westmeath"}
+    assert all(e["source_url"].startswith("http") for e in roster)
+
+
+def test_a_roster_councillor_id_is_accepted_by_the_register(tmp_path):
+    roster = _write(tmp_path, "councillors.json", [_roster_entry()])
+    people = _write(tmp_path, "people.json", [_person(
+        person_id="kildare/kevin-duffy", councillor_id="kildare/kevin-duffy",
+        canonical_name="Kevin Duffy", public_body_id=1456, aliases=["Kevin Duffy"])])
+    reference = _reference(tmp_path, [("meath/other", "Other", 1511)])
+    register = load_register(people, councillor_reference=reference, roster=roster)
+    assert register[0]["person_id"] == "kildare/kevin-duffy"
+
+
+def test_a_councillor_in_neither_file_stops_the_run_naming_the_entry(tmp_path):
+    roster = _write(tmp_path, "councillors.json", [_roster_entry()])
+    people = _write(tmp_path, "people.json", [_person(
+        person_id="kildare/nobody", councillor_id="kildare/nobody",
+        canonical_name="Nobody", public_body_id=1456, aliases=["Nobody"])])
+    reference = _reference(tmp_path, [("meath/other", "Other", 1511)])
+    with pytest.raises(ValueError, match="kildare/nobody"):
+        load_register(people, councillor_reference=reference, roster=roster)
+
+
+def test_a_roster_entry_for_a_council_the_reference_covers_fails(tmp_path):
+    roster = _write(tmp_path, "councillors.json", [_roster_entry(
+        councillor_id="meath/jane-doe", name="Jane Doe", public_body_id=1511)])
+    reference = _reference(tmp_path, [("meath/other", "Other", 1511)])
+    with pytest.raises(ValueError, match="meath/jane-doe.*covered by the councillor reference"):
+        load_roster(roster, reference)
+
+
+def test_a_shared_id_with_a_different_name_or_body_fails(tmp_path):
+    roster = _write(tmp_path, "councillors.json", [_roster_entry()])
+    # Kildare later enters the reference (so it is no longer an uncovered council)
+    # with a different name for the same ID.
+    reference = _reference(tmp_path, [("kildare/kevin-duffy", "Kevin Duffie", 1456)])
+    with pytest.raises(ValueError, match="kildare/kevin-duffy"):
+        load_roster(roster, reference)
+
+
+def test_roster_entries_need_a_well_formed_id_and_a_source(tmp_path):
+    for bad in (_roster_entry(councillor_id="Kevin Duffy"), _roster_entry(source_url=""),
+                _roster_entry(public_body_id="1456")):
+        with pytest.raises(ValueError):
+            load_roster(_write(tmp_path, "councillors.json", [bad]), None)
+    with pytest.raises(ValueError, match="duplicate"):
+        load_roster(_write(tmp_path, "d.json", [_roster_entry(), _roster_entry()]), None)
+
+
+def test_a_non_councillor_person_id_must_be_council_person_slug(tmp_path):
+    bad = _person(kind="official", councillor_id=None, person_id="kildare/jo-bloggs")
+    with pytest.raises(ValueError, match="<council_slug>/person/<name-slug>"):
+        load_register(_write(tmp_path, "people.json", [bad]))
+
+
+def _kildare_meeting(entries):
+    return {
+        "meeting_id": "kildare/transport-mobility-open-spaces/2025-12-11",
+        "public_body_id": 1456, "source_url": "https://kildarecoco.ie/x.pdf",
+        "initials": {}, "attendance": entries,
+    }
+
+
+def test_not_present_is_status_absent_not_apologies(register):
+    index = build_alias_index(register)
+    result, errors = resolve_meeting(_kildare_meeting([
+        _entry("Ger Dunne", category="absent", title="Councillor"),
+        _entry("Peter Melrose", category="apologies", title="Councillor"),
+        _entry("Bill Clear", category="guests", title="Councillor"),
+    ]), index)
+    assert errors == []
+    rows = {r["person_id"]: r for r in result["attendance"]}
+    assert (rows["kildare/ger-dunne"]["category"], rows["kildare/ger-dunne"]["status"]) == ("absent", "absent")
+    assert rows["kildare/peter-melrose"]["status"] == "apologies"
+    assert (rows["kildare/bill-clear"]["category"], rows["kildare/bill-clear"]["status"]) == ("guests", "present")
+
+
+def test_meath_absent_mapping_is_unchanged(register):
+    """Meath's 'Absent' row stays category apologies, status apologies."""
+    result, _ = resolve_meeting(_meeting([_entry("Mike Bray", category="apologies")]),
+                                build_alias_index(register))
+    assert result["attendance"][0]["status"] == "apologies"
+
+
+def test_online_marker_in_any_letter_case_is_remote(register):
+    result, _ = resolve_meeting(_kildare_meeting([
+        _entry("Paul Ward", title="Cllr", markers=["remote"])]), build_alias_index(register))
+    assert result["attendance"][0]["mode"] == "remote"
+
+
+def test_ocr_misreads_resolve_through_register_aliases_only(register):
+    index = build_alias_index(register)
+    assert index[normalise_name("Pau! Ward")] == "kildare/paul-ward"
+    assert index[normalise_name("Noel Connelly")] == "kildare/noel-connolly"
+    assert index[normalise_name("Cilr. Frankie Keena")] == "westmeath/frankie-keena"
+    assert index[normalise_name("Liam McDaniels")] == "westmeath/liam-mcdaniel"
+    assert normalise_name("Tracey O’Dwyer") == normalise_name("Tracey O'Dwyer")
+
+
+def test_a_name_in_no_register_withholds_that_meetings_attendance(register):
+    result, errors = resolve_meeting(_kildare_meeting([
+        _entry("Joseph Knox", title="Mr")]), build_alias_index(register))
+    assert [e["error_type"] for e in errors] == ["UnresolvedAttendee"]
+    assert result["attendance_published"] is False
+
+
+def test_new_council_meetings_resolve_except_the_one_unregistered_name(register, fetched_new_meetings):
+    """All eleven Kildare and Westmeath meetings resolve against the committed register.
+
+    Joseph Knox (Kildare, 6 Feb 2025) is deliberately not registered: the sources
+    do not say whether he is a sectoral representative or a guest, so that
+    meeting's attendance is withheld for review instead of being guessed.
+    """
+    from steps.parse_meeting_header.header import run as parse_headers
+
+    parsed, parse_errors = parse_headers({"results": fetched_new_meetings})
+    assert parse_errors == []
+    results, errors = run({"results": parsed}, register)
+    withheld = {r["meeting_id"]: r["withheld_reasons"] for r in results
+                if not r["attendance_published"]}
+    assert withheld == {
+        "kildare/transport-mobility-open-spaces/2025-02-06":
+            ["UnresolvedAttendee: 'Joseph Knox' matches no registered person"],
+    }
+    published = [r for r in results if r["attendance_published"]]
+    assert len(published) == 10
+    statuses = {row["status"] for r in published for row in r["attendance"]}
+    assert statuses == {"present", "apologies", "absent"}

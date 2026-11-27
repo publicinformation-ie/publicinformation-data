@@ -1,0 +1,80 @@
+[
+  {
+    "councillor_id": "kildare/kevin-duffy",
+    "name": "Kevin Duffy",
+    "public_body_id": 1456,
+    "source_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/CouncillorsDetails"
+  },
+  {
+    "councillor_id": "kildare/tracey-odwyer",
+    "name": "Tracey O'Dwyer",
+    "public_body_id": 1456,
+    "source_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/CouncillorsDetails"
+  },
+  {
+    "councillor_id": "kildare/paul-ward",
+    "name": "Paul Ward",
+    "public_body_id": 1456,
+    "source_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/CouncillorsDetails"
+  },
+  {
+    "councillor_id": "kildare/paul-brooks",
+    "name": "Paul Brooks",
+    "public_body_id": 1456,
+    "source_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/CouncillorsDetails"
+  },
+  {
+    "councillor_id": "kildare/bill-clear",
+    "name": "Bill Clear",
+    "public_body_id": 1456,
+    "source_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/CouncillorsDetails"
+  },
+  {
+    "councillor_id": "kildare/peter-melrose",
+    "name": "Peter Melrose",
+    "public_body_id": 1456,
+    "source_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/CouncillorsDetails"
+  },
+  {
+    "councillor_id": "kildare/noel-connolly",
+    "name": "Noel Connolly",
+    "public_body_id": 1456,
+    "source_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/CouncillorsDetails"
+  },
+  {
+    "councillor_id": "kildare/ger-dunne",
+    "name": "Ger Dunne",
+    "public_body_id": 1456,
+    "source_url": "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/CouncillorsDetails"
+  },
+  {
+    "councillor_id": "westmeath/frankie-keena",
+    "name": "Frankie Keena",
+    "public_body_id": 1870,
+    "source_url": "http://www.westmeathcoco.ie/en/ourservices/yourcouncil/councillorsandcommittees/councillors/"
+  },
+  {
+    "councillor_id": "westmeath/tom-farrell",
+    "name": "Tom Farrell",
+    "public_body_id": 1870,
+    "source_url": "http://www.westmeathcoco.ie/en/ourservices/yourcouncil/councillorsandcommittees/councillors/"
+  },
+  {
+    "councillor_id": "westmeath/niall-gaffney",
+    "name": "Niall Gaffney",
+    "public_body_id": 1870,
+    "source_url": "http://www.westmeathcoco.ie/en/ourservices/yourcouncil/councillorsandcommittees/councillors/"
+  },
+  {
+    "councillor_id": "westmeath/david-jones",
+    "name": "David Jones",
+    "public_body_id": 1870,
+    "source_url": "http://www.westmeathcoco.ie/en/ourservices/yourcouncil/councillorsandcommittees/councillors/"
+  },
+  {
+    "councillor_id": "westmeath/liam-mcdaniel",
+    "name": "Liam McDaniel",
+    "public_body_id": 1870,
+    "source_url": "http://www.westmeathcoco.ie/en/ourservices/yourcouncil/councillorsandcommittees/councillors/"
+  }
+]
