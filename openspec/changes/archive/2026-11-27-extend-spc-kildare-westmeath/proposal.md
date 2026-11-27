@@ -34,5 +34,5 @@ The SPC pipeline has only ever read one committee: Meath's six minutes PDFs, all
 - `parse_meeting_header`, `resolve_attendees`, `render_spc_minutes`: new layouts; `reference/people.json` entries.
 - `extract_spc_items`: no code change expected. Running it for 11 new meetings is a paid step that needs the user's permission for that run (`CLAUDE.md`). New decisions are registered in `decision_ids.json` as usual.
 - `scripts/transform_spc_meetings.py`, `public/schemas/spc-meetings.schema.json`, a new `public/v<next minor>/spc-meetings/`, `public/CHANGELOG.md`, `DATA_SOURCES.md` (Kildare and Westmeath minutes).
-- Dependencies: `pytesseract` and `pymupdf` added to `pipelines/spc_pipeline/requirements.txt`, pinned as in `document_pipeline`. The `tesseract` binary is needed only for live runs, and is not installed on the current development machine (`brew install tesseract`).
+- Dependencies: `pytesseract` and `pymupdf` added to `pipelines/spc_pipeline/requirements.txt`, pinned as in `document_pipeline`. The `tesseract` binary is needed only for live runs and fixture generation, not for CI (`brew install tesseract`). It is installed on the current development machine (tesseract 5.5.2, `eng` data).
 - Tests: about 11 new PDF fixtures, with committed OCR outputs and sha256 manifest entries.

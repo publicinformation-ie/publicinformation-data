@@ -47,6 +47,11 @@ The attendance block SHALL be read by the geometry its committee's layout declar
 - **WHEN** a Kildare header has rows labelled "Attendees:", "Also Present", "Guest:", "Apologies:" and "Not Present:"
 - **THEN** their names are in categories `councillors`, `officials`, `guests`, `apologies` and `absent` respectively
 
+#### Scenario: Kildare "Also" and "Online" rows
+
+- **WHEN** a Kildare header has a row labelled "Also" (without "Present") and a row labelled "Online:" listing "Councillor Kevin Duffy (Chair)"
+- **THEN** the "Also" names are in category `officials`, and Kevin Duffy is in category `councillors` with mode `remote`, because the label itself prints the mode
+
 #### Scenario: Unmapped label
 
 - **WHEN** a header has a label row "Observers:" that its layout does not map

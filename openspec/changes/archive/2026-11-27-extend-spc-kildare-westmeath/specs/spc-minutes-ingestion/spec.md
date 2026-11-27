@@ -9,7 +9,7 @@
 
 ### Requirement: Meeting date comes from the document header
 
-Each meeting's date SHALL be read from the header's date line as defined by the committee's layout (for example "Transportation & Urban Regeneration Strategic Policy Committee 19th February 2026", or "Minutes of Meeting held on Thursday, 11 December 2025 at 3.30p.m."). The date's month and year SHALL agree with the month and year in the link text where the link text gives them. A missing, unparseable or disagreeing date SHALL produce an error, and no meeting SHALL be produced.
+Each meeting's date SHALL be read from the header's date line as defined by the committee's layout (for example "Transportation & Urban Regeneration Strategic Policy Committee 19th February 2026", or "Minutes of Meeting held on Thursday, 11 December 2025 at 3.30p.m."). The date's month and year SHALL agree with the month and year in the link text where the link text gives them. A missing, unparseable or disagreeing date SHALL produce an error, and no meeting SHALL be produced. A header that prints a day and month but no year SHALL take the year from the link text, and only when the link text's month agrees with the header's month; otherwise it is an error.
 
 #### Scenario: Header date resolves
 
@@ -20,6 +20,16 @@ Each meeting's date SHALL be read from the header's date line as defined by the 
 
 - **WHEN** the header reads "Minutes of Meeting held on Thursday, 11 December 2025 at 3.30p.m. in the Committee Room, Aras Chill Dara, Naas." and the link text reads "Minutes of Transportation, Mobility and Open Spaces SPC Meeting 11 December 2025 (Acrobat pdf, 759KB)"
 - **THEN** the meeting date is `2025-12-11`
+
+#### Scenario: Header prints no year
+
+- **WHEN** the header reads "held in the Council Chambers ... at 10am on Thursday 13 February - Hybrid Meeting" and the link text reads "Minutes of SPC Meeting 13th February 2025"
+- **THEN** the meeting date is `2025-02-13` and the record states that the year came from the link text
+
+#### Scenario: Header prints no year and the link text cannot supply it
+
+- **WHEN** the header prints no year and the link text names a different month or no month and year
+- **THEN** a `MeetingDateUnparseable` error is recorded and no meeting is produced
 
 #### Scenario: Header and link disagree
 
@@ -134,13 +144,24 @@ An OCR'd page whose mean word confidence is below the step's committed threshold
 
 ### Requirement: Blank pages are skipped only by reviewed override
 
-An OCR'd page with no recognised words SHALL produce an `EmptyOcrPage` error, and no meeting SHALL be produced from that file, unless a committed override names that file's sha256 and page with a reason. An override that matches no fetched file SHALL produce an error. Skipped pages SHALL be counted.
+An OCR'd page that would fail the confidence gate SHALL be skipped only by a committed override naming that file's sha256 and page with a reason. A page with no recognised words SHALL produce an `EmptyOcrPage` error, and a page below the threshold an `OcrLowConfidence` error, and no meeting SHALL be produced from that file, unless such an override exists. A skipped page's words, including scanner speckle read as junk words, SHALL be dropped from the record and counted. An override SHALL NOT skip a page that passes the gate. An override that matches no fetched file SHALL produce an error. Skipped pages SHALL be counted.
 
 #### Scenario: Signature page
 
 - **GIVEN** an override names the sha256 of the Westmeath 6 March 2026 minutes, page 4, reason "signature page"
 - **WHEN** that page yields no OCR words
 - **THEN** the page is skipped and counted, and the meeting proceeds
+
+#### Scenario: Blank sheet read as junk
+
+- **GIVEN** an override names the sha256 of the Westmeath 28 November 2025 minutes, page 4, reason "blank sheet"
+- **WHEN** OCR reads three junk words on that page with mean confidence below the threshold
+- **THEN** the page is skipped, its three words are dropped and counted, and the meeting proceeds
+
+#### Scenario: Override on a good page
+
+- **WHEN** an override names a page whose OCR passes the confidence gate
+- **THEN** the page is kept, not skipped
 
 #### Scenario: File republished
 

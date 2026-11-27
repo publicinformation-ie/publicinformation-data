@@ -6,12 +6,17 @@ Records who attended each SPC meeting, covering councillors, sectoral representa
 
 ### Requirement: People are held in a committed register
 
-Every person who may appear in attendance SHALL be listed in a committed people register with a person ID, a canonical name, a kind (`councillor`, `sectoral_representative`, `official` or `guest`) and every alias and initialism they appear under. A councillor's person ID SHALL be their existing councillor ID (for example `meath/sean-drew`). Any other person's ID SHALL be `<council_slug>/person/<name-slug>`.
+Every person who may appear in attendance SHALL be listed in a committed people register with a person ID, a canonical name, a kind (`councillor`, `sectoral_representative`, `official` or `guest`) and every alias and initialism they appear under. A councillor's person ID SHALL be their councillor ID from the councillor reference or, for a council it does not cover, from the committed SPC councillor roster. Any other person's ID SHALL be `<council_slug>/person/<name-slug>`.
 
 #### Scenario: Councillor reuses the councillor ID
 
 - **WHEN** the register lists Cllr Mike Bray
 - **THEN** his person ID is `meath/michael-bray`, the ID already in the councillor reference
+
+#### Scenario: Councillor from the SPC roster
+
+- **WHEN** the register lists Councillor Kevin Duffy of Kildare County Council, who is absent from the councillor reference
+- **THEN** his person ID is `kildare/kevin-duffy`, the ID in the SPC councillor roster
 
 #### Scenario: Sectoral representative
 
@@ -20,12 +25,12 @@ Every person who may appear in attendance SHALL be listed in a committed people 
 
 #### Scenario: Unknown councillor ID
 
-- **WHEN** a register entry of kind `councillor` names an ID absent from the councillor reference
+- **WHEN** a register entry of kind `councillor` names an ID absent from both the councillor reference and the SPC councillor roster
 - **THEN** the run stops with an error naming the entry
 
 ### Requirement: Attendance is parsed by category
 
-The attendance table SHALL be read by column, so label text never becomes part of a name. Every printed name SHALL be assigned the category of the row it is printed in: councillors, sectoral representatives, absent/apologies, officials or presenters.
+The attendance block SHALL be read by the geometry its committee's layout declares (a two-column table, or labelled lines whose continuation lines align with the value), so label text never becomes part of a name. Every printed name SHALL be assigned the category and status the layout maps its label to. A label the layout does not map SHALL produce an `UnrecognisedHeaderLayout` error, and no meeting is produced.
 
 #### Scenario: Two-column table
 
@@ -33,9 +38,30 @@ The attendance table SHALL be read by column, so label text never becomes part o
 - **WHEN** attendance is parsed
 - **THEN** the names are Mike Bray, Amanda Smith, Sean Drew and Paddy Meade, and none contains the text "(Councillors):"
 
+#### Scenario: Labelled list with continuation lines
+
+- **GIVEN** a Westmeath header with "Members Present: Cllr. Frankie Keena (Cathaoirleach)" followed by the lines "Cllr. Tom Farrell" and "Cllr. Niall Gaffney" aligned under the value
+- **WHEN** attendance is parsed
+- **THEN** all three names are in category `councillors` and none contains "Members Present:"
+
+#### Scenario: Kildare labels
+
+- **WHEN** a Kildare header has rows labelled "Attendees:", "Also Present", "Guest:", "Apologies:" and "Not Present:"
+- **THEN** their names are in categories `councillors`, `officials`, `guests`, `apologies` and `absent` respectively
+
+#### Scenario: Kildare "Also" and "Online" rows
+
+- **WHEN** a Kildare header has a row labelled "Also" (without "Present") and a row labelled "Online:" listing "Councillor Kevin Duffy (Chair)"
+- **THEN** the "Also" names are in category `officials`, and Kevin Duffy is in category `councillors` with mode `remote`, because the label itself prints the mode
+
+#### Scenario: Unmapped label
+
+- **WHEN** a header has a label row "Observers:" that its layout does not map
+- **THEN** an `UnrecognisedHeaderLayout` error names the meeting and the label, and no meeting is produced
+
 ### Requirement: Every attendee gets an attendance record
 
-Each resolved name SHALL produce one attendance record with the meeting ID, person ID, the name as printed, the category, the role as printed (for example "Chair", "PPN Rep", "Senior Engineer"), a status and a mode. Status SHALL be `present` for attendee, official and presenter rows, and `apologies` for names in the absent/apologies row or marked "apologies".
+Each resolved name SHALL produce one attendance record with the meeting ID, person ID, the name as printed, the category, the role as printed (for example "Chair", "PPN Rep", "Senior Engineer"), a status and a mode. Status SHALL be `present` for attendee, official, guest and presenter rows, `apologies` for names in an absent/apologies row or marked "apologies", and `absent` for names in a row that records non-attendance separately from apologies (Kildare's "Not Present").
 
 #### Scenario: Official is recorded
 
@@ -57,9 +83,14 @@ Each resolved name SHALL produce one attendance record with the meeting ID, pers
 - **WHEN** the absent/apologies row lists "Cllr Wayne Harding (WH)"
 - **THEN** an attendance record has person `meath/wayne-harding` and status `apologies`
 
+#### Scenario: Not present without apologies
+
+- **WHEN** a Kildare "Not Present:" row lists "Councillor Ger Dunne"
+- **THEN** an attendance record has category `absent` and status `absent`, not `apologies`
+
 ### Requirement: Mode is recorded only when printed
 
-Mode SHALL be `remote` when the name's entry is marked "online" or "via Teams", `in_person` when marked "in person", and `not_stated` otherwise. A mode marker SHALL apply only to the entry it is printed in and SHALL NOT be carried to other names.
+Mode SHALL be `remote` when the name's entry is marked "online" or "via Teams", in any letter case, `in_person` when marked "in person", and `not_stated` otherwise. A mode marker SHALL apply only to the entry it is printed in and SHALL NOT be carried to other names.
 
 #### Scenario: Remote attendee
 
@@ -70,6 +101,11 @@ Mode SHALL be `remote` when the name's entry is marked "online" or "via Teams", 
 
 - **WHEN** the entry reads "Cllr Amanda Smith (AS)" with no marker
 - **THEN** her mode is `not_stated`
+
+#### Scenario: Capitalised marker
+
+- **WHEN** a Kildare entry reads "Cllr Paul Ward (Online)"
+- **THEN** his mode is `remote`
 
 ### Requirement: Names resolve only through the register
 
@@ -99,3 +135,17 @@ A printed name that matches no person, or matches more than one, SHALL produce a
 
 - **WHEN** the presenter is added to the register and the pipeline is re-run
 - **THEN** that meeting's attendance is published in full
+
+### Requirement: The SPC councillor roster agrees with the councillor reference
+
+The committed SPC councillor roster SHALL list, for each councillor of a council the councillor reference does not cover, a councillor ID of the form `<council_slug>/<name-slug>`, name, `public_body_id` and the source page. An ID in both files with a different name or body, or a roster entry for a council the reference covers, SHALL fail validation.
+
+#### Scenario: Council covered by the reference
+
+- **WHEN** the roster lists a Meath councillor
+- **THEN** validation fails, naming the entry, because Meath is covered by the councillor reference
+
+#### Scenario: Reference later covers a roster council
+
+- **WHEN** the councillor reference gains Kildare councillors and one shares an ID with a roster entry but has a different name
+- **THEN** validation fails, naming the ID
