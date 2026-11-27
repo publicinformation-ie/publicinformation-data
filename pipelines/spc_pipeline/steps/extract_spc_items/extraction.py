@@ -601,9 +601,8 @@ def validate_response(meeting: dict, response: dict, cofog: dict[str, str],
                 "seconder_unresolved": seconder_unresolved,
             })
 
-    for index, decision in enumerate(decisions, start=1):
-        decision["decision_id"] = f"{meeting['meeting_id']}/d{index:02d}"
-
+    # decision_id is assigned later by assign_decision_ids from the committed
+    # registry, never by position.
     # Carry the whole meeting through: export_spc_meetings reads this step's
     # output, so dropping the rendered minutes, items or attendance here would
     # silently publish nothing.
@@ -617,6 +616,142 @@ def validate_response(meeting: dict, response: dict, cofog: dict[str, str],
         "extraction_failed": False,
     })
     return result, errors
+
+
+_ID_PATTERN = re.compile(r"^(?P<meeting>.+)/d(?P<number>\d{2,})$")
+_STATUSES = ("active", "retired")
+
+
+def _tokens(text: str) -> list[str]:
+    return re.findall(r"\w+", text.lower())
+
+
+def _overlaps(a: str, b: str) -> bool:
+    """True when one quote's token sequence contains the other's."""
+    left, right = _tokens(a), _tokens(b)
+    if not left or not right:
+        return False
+    short, long_ = (left, right) if len(left) <= len(right) else (right, left)
+    width = len(short)
+    return any(long_[i:i + width] == short
+               for i in range(len(long_) - width + 1))
+
+
+def load_decision_ids(path: Path) -> dict[str, list[dict]]:
+    """Load the committed decision ID registry; an absent file means empty.
+
+    The file maps a meeting_id to its entries ``{id, item_key, quote, status,
+    reason?}``. It is rejected, not repaired, when a number repeats within a
+    meeting, an id is malformed or belongs to another meeting, a status is
+    unknown, or a retired entry has no reason.
+    """
+    if not path.exists():
+        return {}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise ValueError(f"{path} must contain a JSON object keyed by meeting_id")
+    schema = json.loads((path.parent / "decision_ids.schema.json")
+                        .read_text(encoding="utf-8"))
+    try:
+        jsonschema.validate(data, schema)
+    except jsonschema.ValidationError as exc:
+        raise ValueError(f"{path}: {exc.message}") from exc
+    for meeting_id, entries in data.items():
+        if not isinstance(entries, list):
+            raise ValueError(f"{path}: {meeting_id} must map to a list")
+        numbers: set[int] = set()
+        for entry in entries:
+            if not isinstance(entry, dict) or not {
+                    "id", "item_key", "quote", "status"} <= entry.keys():
+                raise ValueError(
+                    f"{path}: every entry of {meeting_id} needs id, item_key, "
+                    f"quote and status")
+            match = _ID_PATTERN.match(entry["id"])
+            if not match or match["meeting"] != meeting_id:
+                raise ValueError(
+                    f"{path}: malformed decision id {entry['id']!r} for {meeting_id}")
+            if entry["status"] not in _STATUSES:
+                raise ValueError(
+                    f"{path}: {entry['id']} has unknown status {entry['status']!r}")
+            if entry["status"] == "retired" and not entry.get("reason"):
+                raise ValueError(f"{path}: retired {entry['id']} needs a reason")
+            number = int(match["number"])
+            if number in numbers:
+                raise ValueError(f"{path}: {meeting_id} reuses d{number:02d}")
+            numbers.add(number)
+    return data
+
+
+def assign_decision_ids(meeting: dict, decisions: list[dict],
+                        registry: dict[str, list[dict]]
+                        ) -> tuple[list[dict], list[dict]]:
+    """Give each decision its registered ID, or the next unused number.
+
+    Returns the decisions to publish and any errors. New decisions are
+    appended to ``registry[meeting_id]``; existing entries are never edited.
+    Drift (a quote that overlaps an unmatched registered quote, or a
+    registered decision no longer extracted) is an error and the affected
+    decision is not published. A retired match is suppressed.
+    """
+    meeting_id = meeting["meeting_id"]
+    entries = registry.setdefault(meeting_id, [])
+    errors: list[dict] = []
+    keyed = [(_normalise_text(d["decision_text"]), d) for d in decisions]
+    matched: set[str] = set()
+    accounted: set[str] = set()
+    assigned: dict[int, str] = {}
+
+    for quote, decision in keyed:
+        for entry in entries:
+            if (entry["item_key"] == decision["item_key"]
+                    and entry["quote"] == quote and entry["id"] not in matched):
+                matched.add(entry["id"])
+                assigned[id(decision)] = entry["id"]
+                break
+
+    published: list[dict] = []
+    new_entries: list[dict] = []
+    for quote, decision in keyed:
+        if id(decision) in assigned:
+            entry_id = assigned[id(decision)]
+            entry = next(e for e in entries if e["id"] == entry_id)
+            if entry["status"] == "retired":
+                continue
+            decision["decision_id"] = entry_id
+            published.append(decision)
+            continue
+        clash = [e for e in entries
+                 if e["status"] == "active" and e["id"] not in matched
+                 and e["item_key"] == decision["item_key"]
+                 and _overlaps(e["quote"], quote)]
+        if clash:
+            accounted.update(e["id"] for e in clash)
+            errors.append(_error(
+                "DecisionIdAmbiguous",
+                f"item {decision['item_number']} quote overlaps registered "
+                f"{clash[0]['id']} without matching it; map or retire the "
+                f"registry entry. New quote: {decision['decision_text']!r}; "
+                f"registered quote: {clash[0]['quote']!r}",
+                meeting, item_number=decision["item_number"]))
+            continue
+        top = max([int(_ID_PATTERN.match(e["id"])["number"])
+                   for e in entries + new_entries] or [0])
+        new_id = f"{meeting_id}/d{top + 1:02d}"
+        new_entries.append({"id": new_id, "item_key": decision["item_key"],
+                            "quote": quote, "status": "active"})
+        decision["decision_id"] = new_id
+        published.append(decision)
+
+    for entry in entries:
+        if (entry["status"] == "active" and entry["id"] not in matched
+                and entry["id"] not in accounted):
+            errors.append(_error(
+                "RegisteredDecisionMissing",
+                f"registered decision {entry['id']} was not extracted; its "
+                f"number stays reserved",
+                meeting, item_number=entry["item_key"]))
+    entries.extend(new_entries)
+    return published, errors
 
 
 def load_overrides(path: Path) -> list[dict]:
@@ -641,9 +776,7 @@ def apply_overrides(result: dict, overrides: list[dict],
                     cofog: dict[str, str], subdomains: dict[str, str]) -> dict:
     """Apply committed manual corrections to one validated meeting.
 
-    Corrections are applied after decision IDs are assigned, so dropping one
-    decision never renumbers the others. A correction that targets an item or
-    decision the meeting does not contain fails closed: a stale override must
+    A correction that targets an item the meeting does not contain fails closed: a stale override must
     stop the run for review rather than silently do nothing.
     """
     for override in overrides:
@@ -678,19 +811,6 @@ def apply_overrides(result: dict, overrides: list[dict],
                 "procedural": bool(correction["procedural"]),
                 "withheld": False,
             })
-        drop = set(override.get("drop_decisions") or [])
-        if drop:
-            known = {decision["decision_id"] for decision in result.get("decisions", [])}
-            missing = sorted(drop - known)
-            if missing:
-                raise ExtractionFailed(
-                    f"manual override for {result['meeting_id']} drops unknown "
-                    f"decision(s): {', '.join(missing)}"
-                )
-            result["decisions"] = [
-                decision for decision in result["decisions"]
-                if decision["decision_id"] not in drop
-            ]
     return result
 
 
@@ -741,7 +861,11 @@ def extract_meeting(meeting: dict, cache_dir: Path, register: list[dict],
 
 def run(input_data: dict, cache_dir: Path, register: list[dict],
         cofog: dict[str, str], subdomains: dict[str, str],
-        api_fn=None, overrides: list[dict] | None = None) -> tuple[list[dict], list[dict]]:
+        api_fn=None, overrides: list[dict] | None = None,
+        registry: dict[str, list[dict]] | None = None
+        ) -> tuple[list[dict], list[dict]]:
+    """Extract every meeting; ``registry`` is updated in place with new IDs."""
+    registry = registry if registry is not None else {}
     results: list[dict] = []
     errors: list[dict] = []
     overrides = overrides or []
@@ -751,6 +875,9 @@ def run(input_data: dict, cache_dir: Path, register: list[dict],
             result, meeting_errors = extract_meeting(
                 meeting, cache_dir, register, cofog, subdomains, api_fn=api_fn)
             apply_overrides(result, overrides, cofog, subdomains)
+            result["decisions"], id_errors = assign_decision_ids(
+                result, result["decisions"], registry)
+            meeting_errors.extend(id_errors)
         except ExtractionFailed as exc:
             failed = dict(meeting)
             failed.update({

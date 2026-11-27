@@ -29,6 +29,8 @@ Each table is published as JSON-LD and CSV with CSVW metadata (`<table>.csv-meta
 
 Tables join on `meeting_id`, `item_key` (with `meeting_id`) and `person_id`.
 
+A `decision_id` (`<meeting_id>/d<NN>`) is allocated once and never changes or is reused, even if the extraction is re-run. A number can be missing from a meeting where a decision was retired; it is not reassigned.
+
 ### meetings
 
 | Field | Type | Description |

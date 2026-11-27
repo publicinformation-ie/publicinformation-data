@@ -40,17 +40,27 @@ fails the meeting closed. Any other extra key is still a schema failure.
    register. An unresolved value is an error and the field is `null`, never
    guessed.
 
-Decision IDs are `<meeting_id>/dNN` in order of appearance.
+Decision IDs are `<meeting_id>/dNN`, allocated once from the committed registry
+`decision_ids.json` (schema: `decision_ids.schema.json`), keyed by meeting, item
+and whitespace-normalised quote. The step appends entries for brand-new
+decisions (next unused number, counting retired ones) and never edits or removes
+an entry; mapping, re-keying and retiring are manual edits. A retired entry is
+never published and its number stays reserved. Drift fails closed:
+
+- `DecisionIdAmbiguous`: a new quote overlaps an unmatched registered quote in
+  the same item. Neither is published; map or retire the entry.
+- `RegisteredDecisionMissing`: an active registered decision was not extracted.
+  It is not published; its number stays reserved.
 
 ## Manual corrections
 
 `override.json` (this directory) holds hand-curated corrections marked
-`"source_method": "manual"` and `"overridden": true`. They are applied after
-validation and after decision IDs are assigned, so dropping one decision never
-renumbers the rest. A correction may replace an item's topics or drop
-decisions by ID; targeting an item or decision the meeting does not contain
-fails closed. Overrides are committed source of truth and are removed when the
-prompt is fixed and re-extraction reproduces the corrected values.
+`"source_method": "manual"` and `"overridden": true`, applied after validation.
+A correction replaces an item's topics; targeting an item the meeting does not
+contain fails closed. To keep a non-decision out of the dataset, retire its
+entry in `decision_ids.json` with a reason. Overrides are committed source of
+truth and are removed when the prompt is fixed and re-extraction reproduces the
+corrected values.
 
 ## Cache
 

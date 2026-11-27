@@ -11,6 +11,7 @@ meeting's decisions and topics; per-item violations withhold the affected
 item's topics or decision. Neither stops the pipeline.
 """
 import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -20,6 +21,7 @@ from lib.file_utils import append_errors, read_json, write_json, write_status
 from steps.extract_spc_items.extraction import (
     PROMPT_VERSION,
     STEP_NAME,
+    load_decision_ids,
     load_overrides,
     load_taxonomy,
     run,
@@ -31,6 +33,7 @@ PIPELINE_DIR = Path(__file__).resolve().parents[2]
 CACHE_DIR = PIPELINE_DIR / "cache"
 REGISTER_PATH = PIPELINE_DIR / "reference" / "people.json"
 OVERRIDE_PATH = Path(__file__).parent / "override.json"
+DECISION_IDS_PATH = Path(__file__).parent / "decision_ids.json"
 
 
 def main() -> None:
@@ -48,8 +51,15 @@ def main() -> None:
     register = load_register(REGISTER_PATH)
     overrides = load_overrides(OVERRIDE_PATH)
 
+    registry = load_decision_ids(DECISION_IDS_PATH)
+    before = json.dumps(registry, sort_keys=True)
     results, errors = run(input_data, CACHE_DIR, register, cofog, subdomains,
-                          overrides=overrides)
+                          overrides=overrides, registry=registry)
+    registry = {k: v for k, v in registry.items() if v}
+    if json.dumps(registry, sort_keys=True) != before:
+        DECISION_IDS_PATH.write_text(
+            json.dumps(registry, indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8")
     append_errors(step_dir, errors)
 
     write_json(output_path, {"metadata": {"step": STEP_NAME}, "results": results})

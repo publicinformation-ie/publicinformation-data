@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Documentation
 - The dataset README, catalogue record and the three discovery pages now state the real coverage: Meath County Council's Transportation and Urban Regeneration committee, six meetings, February 2025 to May 2026. The catalogue adds `dct:spatial` and `dct:temporal`.
 - The dataset README now has the dataset URI, versioning, a field table per file, null and withheld semantics, a "People named in this dataset" statement, attribution, and a note that Meath's own re-use terms are unconfirmed.
+- Decision IDs are now allocated from a committed registry, so a `decision_id` stays the same however the extraction is re-run. No published ID changed. A number can be absent from a meeting (a retired decision); it is never reused.
 - Added `minutes/index.md`, which the catalogue's "Verbatim minutes" distribution now points at (the `minutes/` directory has no index on Pages).
 
 ### Fixed

@@ -116,7 +116,7 @@ def test_valid_response_produces_topics_and_decisions():
     assert approval == {"item_key": "item-1-0", "number": "1.0",
                         "cofog": ["01.1.1"], "subdomains": [], "procedural": True}
     decision = result["decisions"][0]
-    assert decision["decision_id"].endswith("/d01")
+    assert "decision_id" not in decision  # assigned from the registry afterwards
     assert decision["proposer"] == "meath/amanda-smith"
     assert decision["seconder"] == "meath/sean-drew"
 
@@ -255,18 +255,6 @@ def test_a_manual_topic_override_replaces_a_withheld_model_topic():
                      "procedural": True, "withheld": False}
 
 
-def test_a_manual_decision_drop_keeps_the_other_decision_ids():
-    result = {"meeting_id": "meath/test/2026-01-01", "item_topics": [],
-              "decisions": [{"decision_id": "meath/test/2026-01-01/d01"},
-                            {"decision_id": "meath/test/2026-01-01/d02"}]}
-    apply_overrides(result, [_manual(
-        meeting_id="meath/test/2026-01-01",
-        drop_decisions=["meath/test/2026-01-01/d01"],
-    )], COFOG, SUBDOMAINS)
-    assert [d["decision_id"] for d in result["decisions"]] == [
-        "meath/test/2026-01-01/d02"]
-
-
 def test_an_override_for_an_unknown_item_fails_closed():
     with pytest.raises(ExtractionFailed, match="item-9-9"):
         apply_overrides(
@@ -290,7 +278,6 @@ def test_the_committed_override_file_loads():
     assert overrides
     assert {entry["meeting_id"] for entry in overrides} == {
         "meath/transportation-urban-regeneration/2025-05-27",
-        "meath/transportation-urban-regeneration/2025-11-20",
     }
 
 

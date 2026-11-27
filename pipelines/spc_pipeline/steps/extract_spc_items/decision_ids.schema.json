@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SPC decision ID registry",
+  "description": "Append-only registry of published decision IDs, keyed by meeting_id. Automation appends entries for new decisions; mapping, re-keying and retiring are manual edits.",
+  "type": "object",
+  "additionalProperties": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "required": ["id", "item_key", "quote", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "pattern": "^.+/d[0-9]{2,}$"},
+        "item_key": {"type": "string", "minLength": 1},
+        "quote": {"type": "string", "minLength": 1},
+        "status": {"enum": ["active", "retired"]},
+        "reason": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}
