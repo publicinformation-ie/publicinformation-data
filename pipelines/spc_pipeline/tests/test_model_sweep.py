@@ -151,6 +151,16 @@ def test_same_decision_tolerates_a_boundary_difference():
     assert sweep.same_decision(model, gold)
 
 
+def test_same_decision_matches_a_prefix_followed_by_punctuation():
+    sweep = _sweep_module()
+    gold = "Members agreed that glyphosate is a harmful product and should be avoided"
+    model = ("Members agreed that glyphosate is a harmful product and should be "
+             "avoided. Further discussion followed on the matter.")
+    assert sweep.same_decision(gold, model)
+    assert not sweep.same_decision("agreed that the glyphosate is a harm",
+                                   "Members agreed that the glyphosate is a harmful product")
+
+
 def test_same_decision_rejects_a_bare_fragment_or_a_different_quote():
     sweep = _sweep_module()
     assert not sweep.same_decision("It was agreed", "It was agreed that the policy be adopted")

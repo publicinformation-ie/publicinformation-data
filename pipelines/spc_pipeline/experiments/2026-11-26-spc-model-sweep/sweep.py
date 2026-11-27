@@ -51,8 +51,17 @@ def same_decision(left: str, right: str) -> bool:
     if not (len(shorter) / len(longer) >= MIN_SPAN_RATIO
             or len(shorter.split()) >= MIN_SPAN_TOKENS):
         return False
-    # Word-boundary containment, so "the policy be" cannot match mid-word.
-    return f" {shorter} " in f" {longer} "
+    # Token-sequence containment: punctuation is not a word, so a correct
+    # prefix followed by a full stop still matches, and "the policy be" still
+    # cannot match mid-word.
+    shorter_tokens, longer_tokens = _tokens(shorter), _tokens(longer)
+    width = len(shorter_tokens)
+    return any(longer_tokens[start:start + width] == shorter_tokens
+               for start in range(len(longer_tokens) - width + 1))
+
+
+def _tokens(text: str) -> list[str]:
+    return re.findall(r"\w+", text.lower())
 
 
 def decision_metrics(extracted: list[dict], gold: list[dict]) -> dict:

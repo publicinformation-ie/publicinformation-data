@@ -336,3 +336,18 @@ Pushing a `public/` change to `main` is what publishes. Review the generated `pu
 ## 7. What each reviewer explicitly declined to judge
 
 Carried forward so nothing is dropped silently: OpenSSL partial-chain behaviour across versions; whether the parsed output matches the source PDFs word-for-word (no step was run); whether CC BY 4.0 is legally assertable over Meath's minutes; the lawfulness of publishing named officials' attendance; whether `reference/cofog_1999.json` matches the UN source byte-for-byte (structure and provenance only were checked); the suitability of the 17 transport subdomains as a vocabulary; `prices.json` accuracy; `src/lib/llm_extract.py` backend behaviour; the `opencode-go/*` models' identity and availability; whether `status.py` and `scripts/pipeline_status.py` agree on staleness; the deploy workflow and LFS behaviour beyond tracking; the FOI suite's pre-existing `pymupdf` failures.
+
+
+---
+
+## 7. Step 5 attempt — 2026-11-27 (partly done; prompt v2 NOT adopted)
+
+Done and committed: the P3.4 scorer bug (token-sequence containment, with a regression test).
+
+Tried and parked: prompt `spc-items-v2` (committee-only decisions, untrusted-text line, procedural ⇒ `01.1.1` and no subdomains, at most two subdomains), saved as `.scratch/spc-prompt-v2.patch`; the 3-model sweep report is `.scratch/spc-sweep-v2-REPORT.md` (18 paid calls, all three pass the gate; deepseek precision 0.945, recall 1.0, type 0.945, topic agreement 0.796). The v2 responses are in the local cache. v2 does stop the model producing the `d01` Plenary note and fixes the 2025-05-27 procedural items, so both overrides could go.
+
+Why it was not published — a human decision is needed:
+
+1. **Decision IDs are positional (`dNN`).** Removing the `d01` drop override renumbers the published `2025-11-20` decisions (old `d02`–`d04` become `d01`–`d03`), so a permanent URI would point at a different decision. Keeping the override instead would drop the wrong decision under v2. IDs need a stable scheme (e.g. hash of item_key + quote) before the override can go.
+2. **Re-extraction is not stable.** Against the live data v2 loses the 2026-05-21 glyphosate agreement, drops the 2026-02-19 `michael-bray` proposer, turns 2025-02-20 `d01` from `adopted` to `agreed`, and shifts several subdomains. The gold set (incomplete; it omits the glyphosate decision) cannot arbitrate these.
+3. P3.4 gold completion, precision floor/per-field gates and P3.5 subdomain scoring are still undone.
