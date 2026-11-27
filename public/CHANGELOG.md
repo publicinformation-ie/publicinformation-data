@@ -21,6 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Added `minutes/index.md`, which the catalogue's "Verbatim minutes" distribution now points at (the `minutes/` directory has no index on Pages).
 
 ### Fixed
+- Extraction prompt `spc-items-v4`: a purely procedural item is always 01.1.1 with no subdomains, at most two subdomains per item, a note that another body decided something is not extracted as a committee decision, and a proposer named in the decision sentence is recorded. Content refresh, no schema change. 2025-11-20 `d03` now quotes its full sentence, and item topics change in 5 meetings.
 - A decision that approves the minutes and also does something substantive is no longer discarded as a minutes approval.
 - A duplicate or unknown item key, a blank or duplicated decision, a division COFOG code, or a group code not justified by the item's detail now withholds the affected data (or fails the meeting) instead of publishing it.
 

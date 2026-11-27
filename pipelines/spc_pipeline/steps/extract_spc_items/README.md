@@ -5,7 +5,7 @@ transport-subdomain topics from the rendered agenda items.
 
 ## Prompt
 
-`PROMPT_VERSION = "spc-items-v1"`. The prompt contains:
+`PROMPT_VERSION = "spc-items-v4"`. The prompt contains:
 
 - the meeting ID, date and committee;
 - every item's number, title and text **except** minutes-approval items, which

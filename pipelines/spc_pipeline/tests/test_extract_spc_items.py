@@ -274,11 +274,8 @@ def test_load_overrides_rejects_a_non_manual_entry(tmp_path):
 
 
 def test_the_committed_override_file_loads():
-    overrides = load_overrides(PIPELINE / "steps/extract_spc_items/override.json")
-    assert overrides
-    assert {entry["meeting_id"] for entry in overrides} == {
-        "meath/transportation-urban-regeneration/2025-05-27",
-    }
+    # v4 prompt reproduces the corrected 2025-05-27 topics, so no override remains.
+    assert load_overrides(PIPELINE / "steps/extract_spc_items/override.json") == []
 
 
 def test_paraphrased_decision_is_dropped():

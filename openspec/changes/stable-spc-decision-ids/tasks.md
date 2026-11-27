@@ -20,5 +20,5 @@
 
 ## 4. Follow-on review gate (no code until reviewed)
 
-- [ ] 4.1 With the registry in place, apply `.scratch/spc-prompt-v2.patch` locally against the cached v2 responses and list every error and content difference against the live data.
-- [ ] 4.2 Present the list to the user for a decision: adopt v2, adopt v2 with registry edits, or stay on v1. Record the outcome in the follow-ups doc §7.
+- [x] 4.1 With the registry in place, apply `.scratch/spc-prompt-v2.patch` locally against the cached v2 responses and list every error and content difference against the live data.
+- [x] 4.2 Present the list to the user for a decision: adopt v2, adopt v2 with registry edits, or stay on v1. Record the outcome in the follow-ups doc §7. (Outcome: adopted v4 after trials v2, v3, v4.)
