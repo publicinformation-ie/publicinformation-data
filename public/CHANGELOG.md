@@ -4,6 +4,21 @@ All notable changes to the Public Bodies dataset will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [spc-meetings 1.2.0] - 2026-11-27
+
+### Added
+- Two more committees: Kildare County Council's Transport, Mobility and Open Spaces SPC and Westmeath County Council's Planning, Regeneration & Transportation SPC, minutes for 2025 and 2026. Wicklow and Monaghan block non-browser clients and are not covered.
+- `meetings` carries `text_source` (`text_layer`, `ocr` or `mixed`) and `ocr_engine` (the engine and settings, empty when no page was OCR'd). Most Kildare and Westmeath minutes are scanned images; they are read by OCR (Tesseract). Meath's meetings are `text_layer`.
+- Vocabulary terms: attendance status `absent` and attendee categories `guests` and `absent` (Kildare prints "Not Present" apart from "Apologies"; it is not folded into apologies), and a new `spc-text-source` vocabulary.
+- Each rendered minutes file's front matter carries `text_source` and, for OCR'd meetings, `ocr_engine`.
+
+- 42 decisions in total (25 new, all with newly allocated IDs; no Meath decision ID or topic changed). 14 proposers and seconders named only by surname ("Cllr Farrell") are withheld with their `*_unresolved` flag set, because the pipeline resolves only full names. Three items' topics are withheld (`CofogGroupNotSpanned`). Kildare 6 February 2025 has no attendance rows (`attendance_published: false`): "Joseph Knox" is not in the register.
+
+### Changed
+- MINOR: additive fields and vocabulary terms. Published at `public/v1.2.0/spc-meetings/`; `v1.1.0/` is unchanged. Meath meetings gain only `text_source: text_layer` and an empty `ocr_engine`.
+- For `ocr` and `mixed` meetings "verbatim" means verbatim to the OCR text. OCR can misread words, accents and bullet marks, so the source PDF (`source_url`, `source_sha256`) is authoritative. A page whose OCR confidence is below the pipeline's threshold is never published.
+- The `status` and `category` columns document the new values. The dataset README lists every council covered, its source page and the attribution.
+
 ## [spc-meetings 1.1.0] - 2026-11-26
 
 ### Added

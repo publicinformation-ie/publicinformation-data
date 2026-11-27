@@ -2,14 +2,19 @@
 
 **Dataset URI:** `https://data.publicinformation.ie/dataset/spc-meetings`
 
-Coverage: Meath County Council's Transportation and Urban Regeneration Strategic Policy Committee: six meetings, February 2025 to May 2026. No other council or committee is published yet.
+Coverage (no other council or committee is published yet):
+
+- Kildare County Council, Transport, Mobility and Open Spaces Strategic Policy Committee: 6 meetings, 2025-02-06 to 2026-05-21
+- Meath County Council, Transportation & Urban Regeneration Strategic Policy Committee: 6 meetings, 2025-02-20 to 2026-05-21
+- Westmeath County Council, Planning, Regeneration & Transportation Strategic Policy Committee: 5 meetings, 2025-02-13 to 2026-03-06
+
 The dataset holds who attended, their attendance, agenda items with COFOG 1999
 topics, official decisions as verbatim quotes, and the minutes rendered verbatim
 as Markdown.
 
 ## Versioning
 
-This directory mirrors the newest immutable release, `../../v1.1.0/spc-meetings/`
+This directory mirrors the newest immutable release, `../../v1.2.0/spc-meetings/`
 (earlier releases stay in place). `owl:versionInfo` is bumped by hand for a breaking
 or additive schema change; `dct:modified` in the catalogue record changes only when
 the published content changes.
@@ -23,7 +28,7 @@ the published content changes.
 - `decisions` – official decisions as contiguous quotes from the minutes
 - `minutes/<council>/<committee>/<date>.md` – the verbatim minutes; [`minutes/index.md`](minutes/index.md) lists them
 
-Each table is published as JSON-LD and CSV with CSVW metadata (`<table>.csv-metadata.json`). Related: [JSON Schema](../../schemas/spc-meetings.schema.json), [DCAT-AP catalogue record](../../catalog/dataset-spc-meetings.ttl), and the vocabularies `cofog-1999`, `transport-subdomain`, `spc-attendance-status`, `spc-attendance-mode`, `spc-attendee-category` and `spc-decision-type` under [`../../vocabularies/`](../../vocabularies/).
+Each table is published as JSON-LD and CSV with CSVW metadata (`<table>.csv-metadata.json`). Related: [JSON Schema](../../schemas/spc-meetings.schema.json), [DCAT-AP catalogue record](../../catalog/dataset-spc-meetings.ttl), and the vocabularies `cofog-1999`, `transport-subdomain`, `spc-attendance-status`, `spc-attendance-mode`, `spc-attendee-category`, `spc-decision-type` and `spc-text-source` under [`../../vocabularies/`](../../vocabularies/).
 
 ## Tables and fields
 
@@ -49,6 +54,8 @@ A `decision_id` (`<meeting_id>/d<NN>`) is allocated once and never changes or is
 | `source_sha256` | string | SHA-256 of the source PDF bytes |
 | `minutes_path` | string | Verbatim Markdown minutes, relative to the dataset root |
 | `attendance_published` | boolean | false when the meeting's attendance was withheld |
+| `text_source` | string | Where the minutes' text came from: text_layer, ocr or mixed |
+| `ocr_engine` | string | OCR engine and settings that read the scanned pages; empty when no page was OCR'd |
 
 ### people
 
@@ -70,9 +77,9 @@ A `decision_id` (`<meeting_id>/d<NN>`) is allocated once and never changes or is
 | `meeting_id` | string | Canonical meeting identifier, <council>/<committee>/<YYYY-MM-DD> |
 | `meeting_date` | date | Date of the meeting |
 | `person_id` | string | Stable person identifier |
-| `category` | string | councillors, sectoral_representatives, apologies, officials or presenters |
+| `category` | string | councillors, sectoral_representatives, apologies, officials, presenters, guests or absent |
 | `role` | string | Role as printed, empty when none is printed |
-| `status` | string | present or apologies |
+| `status` | string | present, apologies or absent |
 | `mode` | string | remote, in_person or not_stated |
 | `presented` | boolean | true when the person's name also appears in the presenters block |
 
@@ -110,6 +117,22 @@ A `decision_id` (`<meeting_id>/d<NN>`) is allocated once and never changes or is
 | `proposer_unresolved` | boolean | true when a named proposer could not be resolved, grounded or found present |
 | `seconder_unresolved` | boolean | true when a named seconder could not be resolved, grounded or found present |
 
+## Where the text came from (`text_source`)
+
+Most council minutes are published as scanned images with no text layer. Each
+meeting's `text_source` says how its text was read: `text_layer` (the PDF's own
+text), `ocr` (every page scanned) or `mixed`. For `ocr` and `mixed` meetings,
+`ocr_engine` names the engine and its settings (Tesseract, language, page
+segmentation mode and resolution).
+
+For `ocr` and `mixed` meetings, "verbatim" means **verbatim to the OCR text**, not
+to the printed page: the render is checked against the words the OCR read, word
+for word. OCR can misread words, accents, bullet marks and handwriting, and a
+mark on the paper can become a stray token, so the source PDF, identified by
+`source_url` and `source_sha256`, is authoritative. A page whose OCR confidence
+is below the pipeline's threshold is never published, and a blank page is
+skipped only by a reviewed, committed override.
+
 ## Reading withheld and empty values
 
 - The pipeline fails closed: a value it cannot confirm is withheld, not guessed.
@@ -128,11 +151,11 @@ A `decision_id` (`<meeting_id>/d<NN>`) is allocated once and never changes or is
 
 ## Counts
 
-- Meetings: 6
-- People: 28
-- Attendance rows: 98
-- Items: 46
-- Decisions: 17
+- Meetings: 17
+- People: 90
+- Attendance rows: 280
+- Items: 128
+- Decisions: 42
 
 ## People named in this dataset
 
@@ -146,20 +169,23 @@ removal, write to dave@publicinformation.ie.
 
 ## Source, attribution and licence
 
-Source: Meath County Council, Transportation and Urban Regeneration Strategic
-Policy Committee minutes, retrieved from www.meath.ie; each meeting records its
-`source_url` and the PDF's `source_sha256`. The minutes are the council's
-material, reproduced here without alteration to their wording.
+Sources (each meeting records its `source_url` and the PDF's `source_sha256`;
+the minutes are the councils' material, reproduced here without alteration to
+their wording):
+
+- Kildare County Council: https://kildarecoco.ie/YourCouncil/YourElectedCouncil/Committees/StrategicPolicyCommittees/TransportationSafetyandEmergencyServices/
+- Meath County Council: https://www.meath.ie/council/your-council/your-elected-council/strategic-policy-committees/transportation-and-urban-regeneration-spc
+- Westmeath County Council: https://www.westmeathcoco.ie/en/ourservices/yourcouncil/meetingsminutesagendasandreports/strategicpolicycommittees/planningregenerationtransportation/
 
 COFOG 1999 is the UN Statistics Division classification; transport subdomains
 follow the transport-governance vocabulary. The topics, decisions and attendance
 tables are derived by PublicInformation.ie (an LLM proposes topics and decisions;
 each decision is checked to be a verbatim quote).
 
-The derived dataset is published under CC BY 4.0. Meath County Council's own
-re-use terms for the underlying minutes have not been independently confirmed
-against www.meath.ie; if you re-use the verbatim minutes, check them.
-Attribute as: *Source: Meath County Council; processed by PublicInformation.ie.*
+The derived dataset is published under CC BY 4.0. Each council's own re-use
+terms for the underlying minutes have not been independently confirmed against
+its website; if you re-use the verbatim minutes, check them.
+Attribute as: *Source: Kildare County Council, Meath County Council, Westmeath County Council; processed by PublicInformation.ie.*
 
 ## Reproducing
 
