@@ -113,6 +113,12 @@ Each assessed line says how confident the role is:
 The evidence level belongs to the line, not to the dataset. A single row can
 mix a statutory role with an unverified one.
 
+A role usually takes its line's evidence. Where a ruling or a correction put a
+party in place on a different basis, the role carries its own evidence, and
+the wide view adds it after the party's name. For example, the Gardaí are
+Consulted on the s.38 route rows on the strength of official guidance, although
+those lines are otherwise assumed by default.
+
 ## Boundary rules
 
 These rules decide which stage a decision belongs to. They are published with

@@ -17,7 +17,13 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
-from .model import INTERNAL_REF, PUBLIC_TEXT_FIELDS, Master
+from .model import (
+    CORRECTABLE_FIELDS,
+    INTERNAL_REF,
+    PUBLIC_TEXT_FIELDS,
+    Master,
+    split_ids,
+)
 
 REPO = Path(__file__).resolve().parents[3]
 COFOG_PATH = REPO / "public" / "vocabularies" / "cofog-1999.json"
@@ -116,6 +122,8 @@ def validate(
         for s in master.assignment_sources])
     errors.unique("migration_resolutions", [
         (r.error_key, r) for r in master.migration_resolutions])
+    errors.unique("corrections", [
+        (_key(c.table, c.key, c.field), c) for c in master.corrections])
 
     # Value vocabularies.
     for grouping in master.groupings:
@@ -361,4 +369,105 @@ def validate(
             errors.add("assignment_sources", key,
                        f"unknown source {link.source_id!r}")
 
+    _validate_evidence_inputs(master, errors, evidence, sources, assignments)
     return errors.items
+
+
+def _validate_evidence_inputs(
+    master: Master,
+    errors: _Errors,
+    evidence: dict,
+    sources: set[str],
+    assignments: dict,
+) -> None:
+    """Per-role evidence, rulings with evidence and corrections.
+
+    A ruling or correction that sets evidence must cite sources and give a
+    rationale; a rationale never cites an internal reference. A correction's
+    ``corrected`` value must equal what the master now holds, so a hand edit
+    to a corrected field is detected.
+    """
+    sources_by_assignment: dict[str, int] = {}
+    for link in master.assignment_sources:
+        sources_by_assignment[link.assignment_id] = (
+            sources_by_assignment.get(link.assignment_id, 0) + 1)
+    for role in master.assignment_roles:
+        key = _key(role.assignment_id, role.role, role.party_id)
+        if role.evidence_id and role.evidence_id not in evidence:
+            errors.add("assignment_roles", key,
+                       f"unknown evidence level {role.evidence_id!r}")
+        if (role.evidence_id and role.assignment_id in assignments
+                and not sources_by_assignment.get(role.assignment_id)):
+            errors.add("assignment_roles", key,
+                       "role has its own evidence but its assignment cites "
+                       "no source")
+
+    for resolution in master.migration_resolutions:
+        _check_basis(
+            errors, "migration_resolutions", resolution.error_key,
+            resolution.evidence_id, resolution.source_ids,
+            resolution.rationale, evidence, sources)
+
+    by_table: dict[str, dict[str, object]] = {
+        "activities": {a.activity_id: a for a in master.activities},
+        "stages": {s.stage_id: s for s in master.stages},
+        "parties": {p.party_id: p for p in master.parties},
+        "sources": {s.source_id: s for s in master.sources},
+        "assignments": {a.assignment_id: a for a in master.assignments},
+    }
+    for correction in master.corrections:
+        key = _key(correction.table, correction.key, correction.field)
+        fields = CORRECTABLE_FIELDS.get(correction.table)
+        if fields is None or correction.field not in fields:
+            errors.add("corrections", key,
+                       "table or field cannot be corrected")
+            continue
+        _check_basis(
+            errors, "corrections", key, correction.evidence_id,
+            correction.source_ids, correction.rationale, evidence, sources)
+        if not correction.rationale.strip():
+            errors.add("corrections", key, "rationale is required")
+        if not correction.ruled_by.strip() or not correction.date.strip():
+            errors.add("corrections", key, "ruled_by and date are required")
+        if correction.table == "assignment_roles":
+            if not correction.evidence_id:
+                errors.add("corrections", key,
+                           "a role correction must set evidence_id")
+            assignment_id, _, party_id = correction.key.partition("|")
+            lines = [line for line in master.assignment_roles
+                     if line.assignment_id == assignment_id
+                     and line.party_id == party_id]
+            if len(lines) != 1:
+                errors.add("corrections", key,
+                           f"matches {len(lines)} role lines, expected one")
+            elif (lines[0].role != correction.corrected
+                  or lines[0].evidence_id != correction.evidence_id):
+                errors.add("corrections", key,
+                           "the master role line does not carry the "
+                           "corrected role and evidence")
+            continue
+        record = by_table[correction.table].get(correction.key)
+        if record is None:
+            errors.add("corrections", key, "no such record")
+        elif getattr(record, correction.field) != correction.corrected:
+            errors.add("corrections", key,
+                       "the master does not hold the corrected value")
+
+
+def _check_basis(
+    errors: _Errors, table: str, key: str, evidence_id: str, source_ids: str,
+    rationale: str, evidence: dict, sources: set[str],
+) -> None:
+    cited = split_ids(source_ids)
+    if evidence_id and evidence_id not in evidence:
+        errors.add(table, key, f"unknown evidence level {evidence_id!r}")
+    if bool(evidence_id) != bool(cited):
+        errors.add(table, key,
+                   "evidence_id and source_ids must be set together")
+    if evidence_id and not rationale.strip():
+        errors.add(table, key, "evidence needs a rationale")
+    for source_id in cited:
+        if source_id not in sources:
+            errors.add(table, key, f"unknown source {source_id!r}")
+    if INTERNAL_REF.search(rationale):
+        errors.add(table, key, "rationale cites an internal reference")

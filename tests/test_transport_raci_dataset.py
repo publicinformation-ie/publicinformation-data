@@ -189,8 +189,9 @@ def test_readme_gives_a_correction_route_and_keeps_variant_labels() -> None:
     email = re.search(r"vcard:hasEmail <mailto:([^>]+)>", catalogue)
     assert email
     assert f"email {email.group(1)}" in readme
-    assert "(s.75 closure order (works or events))" in readme
-    assert "(LA scheme, NTA-funded (e.g. SRTS, Active Travel))" in readme
+    assert "(Garda-run event closures (e.g. Slane 2026))" in readme
+    assert "NTA-delivered (BusConnects, GDA)" in readme
+    assert "Royal Canal Greenway (Waterways Ireland land)" in readme
 
 
 def test_scope_statement_is_in_readme_and_llms() -> None:

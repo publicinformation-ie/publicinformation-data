@@ -1,7 +1,7 @@
-assignment_id,role,party_id,qualifier
-A-01.S1,R,LA-CE,
-A-01.S1,A,LA-CE,
-A-01.S1,C,NTA,
-A-01.S2~v-developer,R,TP,
-A-01.S2~v-developer,A,TP,
-A-01.S2~v-developer,C,LA-CE,
+assignment_id,role,party_id,qualifier,evidence_id
+A-01.S1,R,LA-CE,,
+A-01.S1,A,LA-CE,,
+A-01.S1,C,NTA,,
+A-01.S2~v-developer,R,TP,,
+A-01.S2~v-developer,A,TP,,
+A-01.S2~v-developer,C,LA-CE,,

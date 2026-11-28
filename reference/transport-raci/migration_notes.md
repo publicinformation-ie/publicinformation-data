@@ -7,15 +7,19 @@ this note and the committed master are the durable record.
 ## Reproducibility
 
 Every CSV in this folder and `migration_errors.json` are written by the
-migration and are never edited by hand, except `public_text.csv`.
-`migration_resolutions.csv` is a human input that the migration reads and
-writes back unchanged. The migration reads two committed human inputs:
+migration and are never edited by hand, except `public_text.csv`, which it
+reads only. Four committed human inputs are read:
 
-- `migration_resolutions.csv`: rulings on logged role errors;
+- `migration_resolutions.csv`: rulings on logged role errors (read and written
+  back unchanged);
 - `public_text.csv`: reviewed public copies of prose that cites an internal
-  reference.
+  reference;
+- `corrections.csv`: corrections to handoff facts that are not role errors
+  (read and written back unchanged);
+- `added_sources.csv`: sources the handoff lacks, merged into `sources.csv`
+  after the handoff's own sources.
 
-Re-running the migration on the handoff with these two files reproduces every
+Re-running the migration on the handoff with these four files reproduces every
 migration output byte for byte. `tests/test_transport_raci_migration.py`
 checks this whenever the handoff is present (it is skipped in CI).
 `migration_errors.json` is exactly what the script writes.
@@ -39,10 +43,42 @@ checks this whenever the handoff is present (it is skipped in CI).
 - Dave's rulings of 28 November 2026 on `GS` cells: `X-02.S14` (Speed limits)
   A and R → `AGS`; C on `RT-24.S1`, `RT-24.S13a`, `RT-25.S13a` (both national
   road variants), `RT-37.S13b` (road works speed limit order) and `RT-40.S1`,
-  and I on `RT-40.S13a` → `RSA; AGS`.
+  and I on `RT-40.S13a` → `RSA; AGS`;
+- Dave's rulings of the same date on the remaining `GS` cells, after the
+  research in `gs_research.md`: 30 cells → `AGS` (and `RT-26.S13a` C →
+  `RSA; AGS`). Each records its own `evidence_id`, `source_ids` and
+  `rationale`.
 
-No other `GS` cell has a ruling; in particular `RT-37.S13b` (s.75 closure
-order) is still open.
+Five `GS` cells have no ruling and stay on the review list: `RT-10.S14` C,
+`RT-26.S14` C, `RT-37.S15` C, `RT-37.S11` (Garda-run event closures) R and
+`RT-37.S14` (Offences) R.
+
+## Per-role evidence
+
+Evidence is recorded on the assignment line, and a role usually takes the
+line's evidence. A ruling or correction may set `evidence_id` on the role
+itself (`assignment_roles.csv`), with `source_ids` linked to the assignment.
+For example the Gardaí are Consulted on the s.38 route rows on the strength of
+official guidance, while those lines are otherwise assumed by the s.149(4)
+default; the published role therefore carries `source`, not the line's
+`default-s149-4`. The wide view marks such a role after its name.
+
+## Corrections
+
+`corrections.csv` corrects a handoff fact that is wrong, rather than rewriting
+prose that cites an internal reference. Each row names the exact `original` it
+replaces, the `corrected` value, the evidence, the sources, a rationale, the
+ruling and the date. A correction fails the run when the source text no longer
+matches, the record does not exist, or the field is not correctable. Four are
+recorded, all ruled by Dave on 28 November 2026:
+
+- `activities` `X-18` definition and `assignments` `X-18.S13b` note: event
+  licensing is now Part 16 of the Planning and Development Act 2024, s.479, and
+  S.I. No. 468 of 2026; Part XVI of the 2000 Act, including s.230, was repealed
+  on 9 September 2026;
+- `sources` `S153` citation: the Meath page predates that repeal;
+- `assignment_roles` `RT-37.S14~offences|LA-CE`: role C → R, because Roads Act
+  1993 s.81(3)(a) lets the road authority prosecute summary offences.
 
 ## Public text layer
 
@@ -81,19 +117,19 @@ Every entry is marked `agent draft — awaiting review` (28 November 2026).
 
 | Table | Key | Field | Public text |
 |---|---|---|---|
-| `assignments` | `RT-04.S7b~s38-route` | note | Garda consultation is statutory. The body that signs the Traffic Works Order is not confirmed. |
-| `assignments` | `RT-06.S7b~s38-route` | note | Garda consultation is statutory. The body that signs the Traffic Works Order is not confirmed. |
-| `assignments` | `RT-07.S7b~s38-route` | note | Garda consultation is statutory. The body that signs the Traffic Works Order is not confirmed. |
-| `assignments` | `RT-09.S7b~s38-route` | note | Garda consultation is statutory. The body that signs the Traffic Works Order is not confirmed. |
+| `assignments` | `RT-04.S7b~s38-route` | note | Garda consultation under s.38(3) applies only to prescribed classes of measure, and none has been prescribed. Section 95(3)(b) of the Road Traffic Act 1961 requires Garda consultation where regulatory traffic signs are provided. The body that signs the Traffic Works Order is not confirmed. |
+| `assignments` | `RT-06.S7b~s38-route` | note | Garda consultation under s.38(3) applies only to prescribed classes of measure, and none has been prescribed. Section 95(3)(b) of the Road Traffic Act 1961 requires Garda consultation where regulatory traffic signs are provided. The body that signs the Traffic Works Order is not confirmed. |
+| `assignments` | `RT-07.S7b~s38-route` | note | Garda consultation under s.38(3) applies only to prescribed classes of measure, and none has been prescribed. Section 95(3)(b) of the Road Traffic Act 1961 requires Garda consultation where regulatory traffic signs are provided. The body that signs the Traffic Works Order is not confirmed. |
+| `assignments` | `RT-09.S7b~s38-route` | note | Garda consultation under s.38(3) applies only to prescribed classes of measure, and none has been prescribed. Section 95(3)(b) of the Road Traffic Act 1961 requires Garda consultation where regulatory traffic signs are provided. The body that signs the Traffic Works Order is not confirmed. |
 | `assignments` | `RT-11.S10~nta-scheme-tfi-bikes` | note | The split between the National Transport Authority and the local authority is not confirmed. |
 | `assignments` | `RT-13.S12~nta-delivered-busconnects` | note | The Accountable party may be the local authority executive or the National Transport Authority; no handover provision was found. |
 | `assignments` | `RT-13.S5G~nta-delivered-busconnects` | note | It is not confirmed who sanctions the National Transport Authority's own schemes. |
-| `assignments` | `RT-14a.S7b~s38-route` | note | Garda consultation is statutory. The body that signs the Traffic Works Order is not confirmed. |
-| `assignments` | `RT-29.S7b~s38-route` | note | Garda consultation is statutory. The body that signs the Traffic Works Order is not confirmed. |
+| `assignments` | `RT-14a.S7b~s38-route` | note | Garda consultation under s.38(3) applies only to prescribed classes of measure, and none has been prescribed. Section 95(3)(b) of the Road Traffic Act 1961 requires Garda consultation where regulatory traffic signs are provided. The body that signs the Traffic Works Order is not confirmed. |
+| `assignments` | `RT-29.S7b~s38-route` | note | Garda consultation under s.38(3) applies only to prescribed classes of measure, and none has been prescribed. Section 95(3)(b) of the Road Traffic Act 1961 requires Garda consultation where regulatory traffic signs are provided. The body that signs the Traffic Works Order is not confirmed. |
 | `assignments` | `RT-36.S13b~esb-openings` | note | The sources conflict: one records consultation only, another a licence requirement. |
 | `assignments` | `RT-37.S11~garda-run-event-closures-eg-slane-2026` | note | The legal basis is not confirmed; no Council s.75 order was found. |
 | `assignments` | `RT-38.S5G` | note | Inspection and acceptance of estate infrastructure. |
-| `assignments` | `RT-42.S7b~s38-route` | note | Garda consultation is statutory. The body that signs the Traffic Works Order is not confirmed. |
+| `assignments` | `RT-42.S7b~s38-route` | note | Garda consultation under s.38(3) applies only to prescribed classes of measure, and none has been prescribed. Section 95(3)(b) of the Road Traffic Act 1961 requires Garda consultation where regulatory traffic signs are provided. The body that signs the Traffic Works Order is not confirmed. |
 | `activities` | `RT-14a` | definition | Kerbs, hardstanding, footpath links and other civil works at bus stops, and approval of bus stop locations (s.16 RTA 2002; S.I. 12 of 2013). |
 | `activities` | `RT-14b` | definition | Shelters, poles, flags and passenger furniture at bus stops, typically supplied and maintained through the NTA's shelter contractor. |
 | `activities` | `RT-24` | definition | Special speed-limit bye-laws under s.9 RTA 2004 (reserved, s.9(10)), including 30 km/h urban limits, and other local road traffic bye-laws. Excludes national managed roads (RT-25), national default limits (RT-40) and road works speed limit orders (RT-37, boundary rule B12). S5G covers TII's prior consent on national roads. |
@@ -142,7 +178,10 @@ Each removes only the version tag or the history sentence.
 
 `migration_errors.json` is the review list. It records:
 
-- 35 unresolved `GS` role tokens (each listed by row, variant, role and token);
+- 5 unresolved `GS` role tokens: `RT-10.S14` C, `RT-26.S14` C, `RT-37.S15` C,
+  `RT-37.S11` (Garda-run event closures) R and `RT-37.S14` (Offences) R. The
+  research in `gs_research.md` found no basis for the first three, and only an
+  inferred basis for the last two;
 - 2 possible near-duplicate variants, detected by comparing the label stem
   before the first " (": "NTA-delivered (BusConnects)" / "NTA-delivered
   (BusConnects, GDA)" and "Royal Canal Greenway" / "Royal Canal Greenway

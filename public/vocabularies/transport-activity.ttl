@@ -1100,7 +1100,7 @@
     a skos:Concept ;
     skos:notation "X-18" ;
     skos:prefLabel "License outdoor events (transport interface)"@en ;
-    skos:definition "Event licences for audiences of 5,000 or more (s.230 PDA 2000; s.479 PDA 2024), whose conditions include traffic management plans agreed with the LA and An Garda Síochána. Road closures for events stay in RT-37."@en ;
+    skos:definition "Event licences for audiences of 5,000 or more (Part 16 of the Planning and Development Act 2024, s.479, and the Planning and Development (Licensing of Outdoor Events) Regulations 2026, S.I. No. 468 of 2026; Part XVI of the Planning and Development Act 2000 was repealed on 9 September 2026), whose conditions include traffic management plans agreed with the LA and An Garda Síochána. Road closures for events stay in RT-37."@en ;
     skos:broader <https://data.publicinformation.ie/ns/transport-activity#X3> ;
     skos:related <https://data.publicinformation.ie/ns/cofog#06.2.0> ;
     skos:scopeNote "COFOG 06.2.0: candidate"@en ;

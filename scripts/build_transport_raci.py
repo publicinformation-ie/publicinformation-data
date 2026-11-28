@@ -43,6 +43,7 @@ from src.lib.transport_raci.model import (  # noqa: E402
     INTERNAL_REF,
     LEAK_REF,
     MASTER_DIR,
+    AssignmentRole,
     Master,
     Party,
 )
@@ -91,6 +92,12 @@ VOCABULARIES = {
     "raci-evidence-level": "RACI evidence levels",
 }
 
+ROLE_EVIDENCE_DESCRIPTIONS = {
+    "evidence": (
+        "Evidence for this role. It is the evidence of the assignment line "
+        "unless a ruling set a different evidence for this role."),
+}
+
 DATASET_TABLES = [
     "assignments", "assignment-roles", "assignment-sources", "variants",
     "sources", "boundary-rules", "rows", "raci-wide",
@@ -114,7 +121,8 @@ def json_bytes(payload: Any) -> bytes:
 
 
 def metadata_bytes(name: str, fields: list[str], primary_key: list[str],
-                   uri_fields: set[str]) -> bytes:
+                   uri_fields: set[str],
+                   descriptions: dict[str, str] | None = None) -> bytes:
     columns: list[dict[str, Any]] = []
     for field in fields:
         column: dict[str, Any] = {
@@ -122,6 +130,8 @@ def metadata_bytes(name: str, fields: list[str], primary_key: list[str],
             "titles": field.replace("_", " ").title(),
             "datatype": "uri" if field in uri_fields else "string",
         }
+        if descriptions and field in descriptions:
+            column["dc:description"] = descriptions[field]
         if field == "no_local_authority_role":
             column["datatype"] = "boolean"
             column["null"] = "unknown"
@@ -505,6 +515,11 @@ def flag_cell(value: bool | None) -> str:
     return "true" if value else "false"
 
 
+def role_evidence_id(line: AssignmentRole, assignment_evidence: str) -> str:
+    """A role's evidence: its own where a ruling set one, else its line's."""
+    return line.evidence_id or assignment_evidence
+
+
 def party_label(party: Party | None, party_id: str, council: str) -> str:
     """A party's plain label, naming the assignment's council for an organ."""
     if party is None:
@@ -527,7 +542,6 @@ def dataset_tables(master: Master) -> dict[str, tuple[list[str], list[list[objec
     jurisdictions = {jurisdiction.public_body_uri: jurisdiction
                      for jurisdiction in master.jurisdictions}
     sources = master.sources_by_id()
-
     roles_by_assignment: dict[str, list] = {}
     for role in master.assignment_roles:
         roles_by_assignment.setdefault(role.assignment_id, []).append(role)
@@ -555,9 +569,11 @@ def dataset_tables(master: Master) -> dict[str, tuple[list[str], list[list[objec
         for line in roles_by_assignment.get(assignment.assignment_id, []):
             role_rows.append([
                 line.assignment_id, line.role,
-                f"{NS}/transport-raci-party#{line.party_id}", line.qualifier])
+                f"{NS}/transport-raci-party#{line.party_id}", line.qualifier,
+                f"{NS}/raci-evidence-level#"
+                f"{role_evidence_id(line, assignment.evidence_id)}"])
     tables["assignment-roles"] = (
-        ["assignment_id", "role", "party", "qualifier"], role_rows)
+        ["assignment_id", "role", "party", "qualifier", "evidence"], role_rows)
 
     tables["assignment-sources"] = (
         ["assignment_id", "source_id"],
@@ -606,6 +622,9 @@ def dataset_tables(master: Master) -> dict[str, tuple[list[str], list[list[objec
                                     jurisdictions[assignment.applies_to].name)
                 if line.qualifier:
                     label = f"{label} ({line.qualifier})"
+                own = role_evidence_id(line, assignment.evidence_id)
+                if own != assignment.evidence_id:
+                    label = f"{label} ({evidence[own].plain_label})"
                 labels.append(label)
             readable[role] = "; ".join(labels)
         activity = next(
@@ -652,8 +671,10 @@ def build_dataset_tables(master: Master) -> dict[str, bytes]:
             "assignment-roles": ["assignment_id", "role", "party"],
             "assignment-sources": ["assignment_id", "source_id"],
         }.get(name, [fields[0]])
+        descriptions = ROLE_EVIDENCE_DESCRIPTIONS if name == "assignment-roles" \
+            else None
         outputs[f"{name}.csv-metadata.json"] = metadata_bytes(
-            f"{name}.csv", fields, key, uri_fields)
+            f"{name}.csv", fields, key, uri_fields, descriptions)
     outputs["transport-raci.json"] = json_bytes(nested_json(master))
     return outputs
 
@@ -721,6 +742,17 @@ def nested_json(master: Master) -> dict[str, Any]:
                                 parties.get(line.party_id), line.party_id,
                                 jurisdictions[assignment.applies_to].name),
                             "qualifier": line.qualifier,
+                            "evidence_id": role_evidence_id(
+                                line, assignment.evidence_id),
+                            "evidence_label": evidence[role_evidence_id(
+                                line, assignment.evidence_id)].label,
+                            "evidence_plain_label": evidence[
+                                role_evidence_id(
+                                    line, assignment.evidence_id)].plain_label,
+                            "evidence_differs_from_line": (
+                                role_evidence_id(
+                                    line, assignment.evidence_id)
+                                != assignment.evidence_id),
                         }
                         for line in roles_by_assignment.get(
                             assignment.assignment_id, [])
@@ -799,6 +831,47 @@ def load_unresolved() -> list[dict[str, str]]:
     return result
 
 
+def load_other_review_items() -> list[str]:
+    """Review items that are not roles: variant pairs and ambiguous groupings."""
+    path = MASTER / "migration_errors.json"
+    if not path.exists():
+        return []
+    lines = []
+    for error in json.loads(path.read_text(encoding="utf-8")):
+        if error["column"] == "Variant":
+            lines.append(
+                f"- Variant labels that may be the same: {error['value']} "
+                "(not merged).")
+        elif error["column"] == "Grouping":
+            lines.append(
+                f"- `{error['row_id']}`: the register's grouping "
+                f"`{error['value']}` is ambiguous; the first clean grouping "
+                "is used.")
+    return lines
+
+
+def correction_lines(master: Master) -> list[str]:
+    """One README line per correction to the source analysis."""
+    evidence = master.evidence_by_id()
+    lines = []
+    for item in master.corrections:
+        if item.table == "assignment_roles":
+            assignment_id, _, party_id = item.key.partition("|")
+            what = (f"assignment `{assignment_id}`, party `{party_id}`: role "
+                    f"changed from {item.original} to {item.corrected}")
+        else:
+            singular = {"activities": "activity", "stages": "stage",
+                        "parties": "party", "sources": "source",
+                        "assignments": "assignment"}.get(item.table, item.table)
+            what = f"{singular} `{item.key}`, {item.field}"
+        basis = ""
+        if item.evidence_id:
+            basis = (f" Evidence: {evidence[item.evidence_id].plain_label}; "
+                     f"sources {item.source_ids.replace(';', ',')}.")
+        lines.append(f"- {what}. {item.rationale}{basis}")
+    return lines
+
+
 def build_readme(master: Master, tables: dict[str, bytes]) -> str:
     rows = generate_rows(master)
     assessed_rows = sum(1 for row in rows if row.coverage == "assessed")
@@ -809,6 +882,10 @@ def build_readme(master: Master, tables: dict[str, bytes]) -> str:
         unresolved_lines.append(
             f"- `{item['row_id']}`{variant}, role {item['role']}: role not yet "
             f"published: awaiting review (recorded value `{item['token']}`).")
+    other_items = load_other_review_items()
+    own_evidence = sum(1 for line in master.assignment_roles
+                       if line.evidence_id)
+    corrections = correction_lines(master)
     evidence_rows = "\n".join(
         f"| `{level.evidence_id}` | {level.plain_label} |"
         for level in master.evidence_levels)
@@ -862,18 +939,28 @@ metadata declares the column as boolean with `unknown` as its null value.
 |---|---|
 {evidence_rows}
 
+Evidence is recorded per line. Where a ruling gives a role its own evidence, the
+role carries that instead. This happens when the role rests on different
+sources from the rest of the line, for example a Garda consultation role that is
+stated in official guidance on a line that is otherwise assumed by default.
+`assignment-roles.csv` and `transport-raci.json` give the evidence of every
+role. In `raci-wide.csv` a role whose evidence differs from its line's is
+marked after its name, for example "An Garda Síochána (stated in official
+guidance or observed practice)".
+
 ## Coverage
 
 - {len(rows)} activity × stage rows.
 - {assessed_rows} rows assessed; {len(rows) - assessed_rows} not assessed.
 - {len(master.assignments)} assessed lines.
 - {len(unresolved)} roles awaiting review.
+- {own_evidence} roles with evidence of their own.
 
 ## Files
 
 - [assignments.csv](assignments.csv) — one line per assessed assignment.
 - [assignment-roles.csv](assignment-roles.csv) — one line per role, with the
-  party URI.
+  party URI and the evidence for that role.
 - [assignment-sources.csv](assignment-sources.csv) — the sources for each line.
 - [rows.csv](rows.csv) — every activity × stage row with its coverage state.
 - [raci-wide.csv](raci-wide.csv) — a generated reading view, one line per
@@ -891,6 +978,17 @@ These roles are recorded in the working model but are not published yet. They
 are listed here so the gap is visible.
 
 {chr(10).join(unresolved_lines)}
+
+## Other items awaiting review
+
+{chr(10).join(other_items)}
+
+## Corrections to the source analysis
+
+These facts were corrected after the original analysis was compiled. Each one
+is listed with its reason and its evidence.
+
+{chr(10).join(corrections)}
 
 ## Corrections
 
@@ -953,7 +1051,7 @@ def build_catalogue(master: Master, modified: str) -> bytes:
     distributions = []
     descriptions = {
         "assignments": "One line per assessed activity × stage assignment.",
-        "assignment-roles": "One line per role (R, A, C or I) and party.",
+        "assignment-roles": "One line per role (R, A, C or I) and party, with the evidence for that role.",
         "assignment-sources": "The source IDs cited by each assignment.",
         "variants": "The variant labels used on assignments.",
         "sources": "Citations and URLs for every source cited.",

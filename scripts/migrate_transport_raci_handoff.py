@@ -17,6 +17,15 @@ internal reference is published only through a reviewed entry in
 ``public_text.csv``; the original text stays in the master. Re-running with
 both committed inputs reproduces every output byte for byte.
 
+Five committed human inputs sit beside the master and are read, never
+written (except the two that are master tables and are written back
+unchanged): ``migration_resolutions.csv`` (rulings on logged role errors, each
+optionally with its own evidence and sources), ``public_text.csv`` (reviewed
+public copies of prose), ``corrections.csv`` (corrections to handoff facts that
+are not role errors), ``added_sources.csv`` (sources the handoff lacks) and the
+``EXTRA_PARTIES`` below. A correction or ruling that no longer matches the
+handoff fails the run.
+
 The handoff lives in ``docs/`` and is gitignored. This script is kept for
 traceability but is not part of the regular build; after migration the master
 tables are the source of truth.
@@ -43,7 +52,11 @@ from src.lib.transport_raci.model import (  # noqa: E402
     Assignment,
     AssignmentRole,
     AssignmentSource,
+    ADDED_SOURCES_FILE,
     BoundaryRule,
+    CORRECTABLE_FIELDS,
+    CORRECTIONS_FILE,
+    Correction,
     INTERNAL_REF,
     PUBLIC_TEXT_FIELDS,
     PUBLIC_TEXT_FILE,
@@ -60,6 +73,7 @@ from src.lib.transport_raci.model import (  # noqa: E402
     TABLE_FIELDS,
     TABLE_FILES,
     Variant,
+    split_ids,
 )
 from src.lib.transport_raci.rows import generate_rows  # noqa: E402
 from src.lib.transport_raci.validate import validate  # noqa: E402
@@ -147,6 +161,9 @@ EXTRA_PARTIES = [
     Party("RSA", "Road Safety Authority", "the Road Safety Authority",
           "body", "https://data.publicinformation.ie/body/road-safety-authority",
           "", "The national road safety body.", "", ""),
+    Party("HSE", "Health Service Executive", "the Health Service Executive",
+          "body", "https://data.publicinformation.ie/body/health-service-executive",
+          "", "The national public health service.", "", ""),
     Party("prescribed-bodies", "Prescribed bodies", "prescribed bodies",
           "category", "", "",
           "Statutory consultees under the Part 8 regulations.", "", ""),
@@ -416,6 +433,146 @@ def read_public_text(path: Path) -> dict[tuple[str, str, str], dict[str, str]]:
     return entries
 
 
+def read_input_csv(path: Path, header: list[str]) -> list[dict[str, str]]:
+    """Read a committed human-input CSV with an exact header; absent means none."""
+    if not path.exists():
+        return []
+    with path.open(encoding="utf-8", newline="") as handle:
+        reader = csv.DictReader(handle)
+        if reader.fieldnames != header:
+            raise ValueError(
+                f"{path.name}: unexpected header {reader.fieldnames!r}")
+        rows = []
+        for line_number, row in enumerate(reader, start=2):
+            if None in row:
+                raise ValueError(
+                    f"{path.name} line {line_number}: more cells than header")
+            rows.append({key: (value or "").strip()
+                         for key, value in row.items()})
+        return rows
+
+
+def read_resolutions(path: Path) -> dict[str, MigrationResolution]:
+    resolutions: dict[str, MigrationResolution] = {}
+    for row in read_input_csv(path, TABLE_FIELDS["migration_resolutions"]):
+        if row["error_key"] in resolutions:
+            raise ValueError(
+                f"{path.name}: duplicate ruling {row['error_key']!r}")
+        resolutions[row["error_key"]] = MigrationResolution(**row)
+    return resolutions
+
+
+def read_corrections(path: Path) -> list[Correction]:
+    corrections = [Correction(**row)
+                   for row in read_input_csv(path, TABLE_FIELDS["corrections"])]
+    seen: set[tuple[str, str, str]] = set()
+    for item in corrections:
+        index = (item.table, item.key, item.field)
+        if index in seen:
+            raise ValueError(f"{path.name}: duplicate correction {index!r}")
+        seen.add(index)
+        if item.field not in CORRECTABLE_FIELDS.get(item.table, ()):
+            raise ValueError(
+                f"{path.name}: {item.table}.{item.field} cannot be corrected")
+    return corrections
+
+
+def read_added_sources(path: Path) -> list[Source]:
+    return [Source(**row) for row in
+            read_input_csv(path, TABLE_FIELDS["sources"])]
+
+
+class Corrector:
+    """Apply reviewed corrections to handoff facts, tracking what is used.
+
+    A correction names the exact ``original`` it replaces. It is stale when the
+    handoff value no longer equals that original, and unused when its record
+    does not exist. Either fails the run: a correction never lands on text it
+    was not written for.
+    """
+
+    def __init__(self, corrections: list[Correction]):
+        self.corrections = corrections
+        self.by_index = {
+            (item.table, item.key, item.field): item for item in corrections}
+        self.used: set[tuple[str, str, str]] = set()
+        self.stale: list[str] = []
+
+    def apply(self, table: str, key: str, field_name: str, value: str) -> str:
+        index = (table, key, field_name)
+        item = self.by_index.get(index)
+        if item is None:
+            return value
+        self.used.add(index)
+        if item.original != value:
+            self.stale.append(
+                f"{table}|{key}|{field_name}: original no longer matches "
+                "the handoff value")
+            return value
+        return item.corrected
+
+    def apply_records(self, table: str, key_field: str, records: list) -> list:
+        result = []
+        for record in records:
+            key = getattr(record, key_field)
+            changes = {
+                field_name: self.apply(
+                    table, key, field_name, getattr(record, field_name))
+                for field_name in CORRECTABLE_FIELDS[table]
+            }
+            result.append(replace(record, **changes))
+        return result
+
+    def role_corrections(self) -> list[Correction]:
+        return [item for item in self.corrections
+                if item.table == "assignment_roles"]
+
+    def apply_roles(self, roles: list[AssignmentRole]) -> list[AssignmentRole]:
+        """Change the role letter of the one line each correction names."""
+        result = list(roles)
+        for item in self.role_corrections():
+            index = (item.table, item.key, item.field)
+            self.used.add(index)
+            assignment_id, _, party_id = item.key.partition("|")
+            matches = [position for position, line in enumerate(result)
+                       if line.assignment_id == assignment_id
+                       and line.party_id == party_id]
+            if len(matches) != 1:
+                self.stale.append(
+                    f"{item.table}|{item.key}|{item.field}: matches "
+                    f"{len(matches)} role lines, expected one")
+                continue
+            line = result[matches[0]]
+            if line.role != item.original:
+                self.stale.append(
+                    f"{item.table}|{item.key}|{item.field}: original no "
+                    "longer matches the handoff role")
+                continue
+            result[matches[0]] = replace(
+                line, role=item.corrected, evidence_id=item.evidence_id)
+        return result
+
+    def unused(self) -> list[str]:
+        return [f"{table}|{key}|{field_name}: no such record"
+                for table, key, field_name in sorted(
+                    set(self.by_index) - self.used)]
+
+    def linked_sources(self) -> dict[str, list[str]]:
+        """Source IDs to link to each assignment a correction touches."""
+        linked: dict[str, list[str]] = {}
+        for item in self.corrections:
+            if item.table == "assignments":
+                assignment_id = item.key
+            elif item.table == "assignment_roles":
+                assignment_id = item.key.partition("|")[0]
+            else:
+                continue
+            for source_id in split_ids(item.source_ids):
+                if source_id not in linked.setdefault(assignment_id, []):
+                    linked[assignment_id].append(source_id)
+        return linked
+
+
 class PublicText:
     """Resolve the public copy of each prose field, tracking what is used.
 
@@ -509,24 +666,35 @@ def run(args: argparse.Namespace) -> int:
     parties = parse_parties(register)
     boundary_rules = parse_boundary_rules(register)
     sources = parse_sources(args.sources)
-    parties_by_id = {party.party_id: party for party in parties}
+    added_sources_path = (
+        args.added_sources if args.added_sources is not None
+        else args.out / ADDED_SOURCES_FILE)
+    added_sources = read_added_sources(added_sources_path)
+    handoff_source_ids = {source.source_id for source in sources}
+    for added in added_sources:
+        if added.source_id in handoff_source_ids:
+            raise ValueError(
+                f"{added_sources_path.name}: {added.source_id!r} is already "
+                "a handoff source")
+    sources = sources + added_sources
     source_ids = {source.source_id for source in sources}
+
+    corrections_path = (
+        args.corrections if args.corrections is not None
+        else args.out / CORRECTIONS_FILE)
+    corrections = read_corrections(corrections_path)
+    corrector = Corrector(corrections)
+    stages = corrector.apply_records("stages", "stage_id", stages)
+    activities = corrector.apply_records(
+        "activities", "activity_id", activities)
+    parties = corrector.apply_records("parties", "party_id", parties)
+    sources = corrector.apply_records("sources", "source_id", sources)
+    parties_by_id = {party.party_id: party for party in parties}
 
     resolutions_path = (
         args.resolutions if args.resolutions is not None
         else args.out / "migration_resolutions.csv")
-    resolutions: dict[str, MigrationResolution] = {}
-    if resolutions_path.exists():
-        with resolutions_path.open(encoding="utf-8", newline="") as handle:
-            reader = csv.DictReader(handle)
-            if reader.fieldnames != TABLE_FIELDS["migration_resolutions"]:
-                raise ValueError(
-                    f"{resolutions_path.name}: unexpected header "
-                    f"{reader.fieldnames!r}")
-            for row in reader:
-                resolutions[row["error_key"].strip()] = MigrationResolution(
-                    row["error_key"].strip(), row["ruling"].strip(),
-                    row["ruled_by"].strip(), row["date"].strip())
+    resolutions = read_resolutions(resolutions_path)
 
     public_text_path = (
         args.public_text if args.public_text is not None
@@ -561,6 +729,7 @@ def run(args: argparse.Namespace) -> int:
     assignments: list[Assignment] = []
     roles: list[AssignmentRole] = []
     assignment_sources: list[AssignmentSource] = []
+    correction_sources = corrector.linked_sources()
 
     with args.assignments.open(encoding="utf-8", newline="") as handle:
         rows = list(csv.DictReader(handle))
@@ -581,7 +750,8 @@ def run(args: argparse.Namespace) -> int:
             log(row_id, "Evidence", row["Evidence"].strip(),
                 "evidence label has no exact mapping", variant_label or "-")
             continue
-        note = row["Note"].strip()
+        note = corrector.apply(
+            "assignments", assignment_id, "note", row["Note"].strip())
         needs_before = len(public_text.needs)
         public_note = public_text.resolve(
             "assignments", assignment_id, "note", note)
@@ -595,8 +765,10 @@ def run(args: argparse.Namespace) -> int:
             variant_id, MEATH_URI, evidence, note, public_note,
             row["Scenario"].strip()))
 
+        ruling_sources: list[str] = []
         for role in ("R", "A", "C", "I"):
             for token in split_party_cell(row[role]):
+                resolution: MigrationResolution | None = None
                 parsed = parse_party_token(token, set(parties_by_id))
                 if parsed is None:
                     key = log(row_id, role, token,
@@ -606,6 +778,9 @@ def run(args: argparse.Namespace) -> int:
                     if resolution is None:
                         continue
                     errors.pop(key, None)
+                    for source_id in split_ids(resolution.source_ids):
+                        if source_id not in ruling_sources:
+                            ruling_sources.append(source_id)
                     parsed = []
                     for replacement in split_party_cell(resolution.ruling):
                         replacement_parsed = parse_party_token(
@@ -615,9 +790,12 @@ def run(args: argparse.Namespace) -> int:
                                 f"resolution {key!r} names unknown party "
                                 f"{replacement!r}")
                         parsed.extend(replacement_parsed)
+                ruled_evidence = (
+                    resolution.evidence_id if resolution is not None else "")
                 for party_id, qualifier in parsed:
                     roles.append(AssignmentRole(
-                        assignment_id, role, party_id, qualifier))
+                        assignment_id, role, party_id, qualifier,
+                        ruled_evidence))
 
         cited = [value.strip()
                  for value in row["Sources"].split(",") if value.strip()]
@@ -628,19 +806,41 @@ def run(args: argparse.Namespace) -> int:
                 continue
             assignment_sources.append(AssignmentSource(
                 assignment_id, source_id))
+        linked = {link.source_id for link in assignment_sources
+                  if link.assignment_id == assignment_id}
+        for source_id in [*ruling_sources,
+                          *correction_sources.get(assignment_id, [])]:
+            if source_id not in linked:
+                assignment_sources.append(AssignmentSource(
+                    assignment_id, source_id))
+                linked.add(source_id)
 
     variants_sorted = list(variants.values())
     for left, right in near_duplicate_variants(variants_sorted):
         log("", "Variant", f"{left} | {right}",
             "possible duplicate variants; not merged")
 
+    roles = corrector.apply_roles(roles)
+
+    cited_by_inputs = {
+        source_id
+        for item in [*resolutions.values(), *corrections]
+        for source_id in split_ids(item.source_ids)}
     stale = sorted(set(resolutions) - encountered)
     stale_text = public_text.stale + public_text.unused()
-    if stale or stale_text:
+    stale_corrections = corrector.stale + corrector.unused()
+    stale_sources = sorted(
+        item.source_id for item in added_sources
+        if item.source_id not in cited_by_inputs)
+    if stale or stale_text or stale_corrections or stale_sources:
         for key in stale:
             print(f"stale ruling: {key}", file=sys.stderr)
         for item in stale_text:
             print(f"stale public_text: {item}", file=sys.stderr)
+        for item in stale_corrections:
+            print(f"stale correction: {item}", file=sys.stderr)
+        for source_id in stale_sources:
+            print(f"unused added source: {source_id}", file=sys.stderr)
         raise SystemExit(1)
 
     jurisdictions = [Jurisdiction(
@@ -663,6 +863,7 @@ def run(args: argparse.Namespace) -> int:
         assignment_roles=roles,
         assignment_sources=assignment_sources,
         migration_resolutions=list(resolutions.values()),
+        corrections=corrections,
     )
 
     validation_errors = validate(master)
@@ -708,8 +909,16 @@ def run(args: argparse.Namespace) -> int:
         args.out / TABLE_FILES["migration_resolutions"],
         TABLE_FIELDS["migration_resolutions"],
         [[resolution.error_key, resolution.ruling, resolution.ruled_by,
-          resolution.date]
+          resolution.date, resolution.evidence_id, resolution.source_ids,
+          resolution.rationale]
          for resolution in master.migration_resolutions])
+    write_table(
+        args.out / TABLE_FILES["corrections"],
+        TABLE_FIELDS["corrections"],
+        [[item.table, item.key, item.field, item.original, item.corrected,
+          item.evidence_id, item.source_ids, item.rationale, item.ruled_by,
+          item.date]
+         for item in master.corrections])
     print(
         f"Wrote {len(generated)} rows ({len(assessed_rows)} assessed), "
         f"{len(assignments)} assignments, {len(errors)} logged errors to "
@@ -783,7 +992,8 @@ def write_master(out: Path, master: Master) -> None:
         for assignment in master.assignments])
     write_table(out / TABLE_FILES["assignment_roles"],
                 TABLE_FIELDS["assignment_roles"], [
-                    [role.assignment_id, role.role, role.party_id, role.qualifier]
+                    [role.assignment_id, role.role, role.party_id,
+                     role.qualifier, role.evidence_id]
                     for role in master.assignment_roles])
     write_table(out / TABLE_FILES["assignment_sources"],
                 TABLE_FIELDS["assignment_sources"], [
@@ -803,6 +1013,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--public-text", type=Path, default=None,
         help="reviewed public copies CSV (default: <out>/public_text.csv)")
+    parser.add_argument(
+        "--corrections", type=Path, default=None,
+        help="corrections CSV (default: <out>/corrections.csv)")
+    parser.add_argument(
+        "--added-sources", type=Path, default=None,
+        help="sources the handoff lacks (default: <out>/added_sources.csv)")
     parser.add_argument(
         "--no-count-check", action="store_true",
         help="skip the 613/184/224 acceptance counts (synthetic fixtures only)")
