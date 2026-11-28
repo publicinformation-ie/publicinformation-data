@@ -11,7 +11,7 @@ SAMPLE_SIZE = 10
 # Paths relative to repository root
 # Find repo root by looking for .git/ directory (unique to repo root)
 REPO_ROOT = Path(__file__).resolve()
-while REPO_ROOT.exists() and not (REPO_ROOT / ".git").is_dir():
+while REPO_ROOT != REPO_ROOT.parent and not (REPO_ROOT / ".git").exists():
     REPO_ROOT = REPO_ROOT.parent
 VERIFY_OUTPUT = REPO_ROOT / "pipelines/foi_pipeline/steps/verify_disclosure_files/output.json"
 TRANSFORM_CACHE = REPO_ROOT / "pipelines/foi_pipeline/steps/transform_disclosure_files/cache"

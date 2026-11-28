@@ -10,7 +10,7 @@ import importlib.util
 # Import the normalization helper functions from normalize_disclosure_cells
 # Find the repo root first
 _REPO_ROOT = Path(__file__).resolve()
-while _REPO_ROOT.exists() and not (_REPO_ROOT / ".git").is_dir():
+while _REPO_ROOT != _REPO_ROOT.parent and not (_REPO_ROOT / ".git").exists():
     _REPO_ROOT = _REPO_ROOT.parent
 
 # Set up PYTHONPATH to include src/ so that lib modules can be imported

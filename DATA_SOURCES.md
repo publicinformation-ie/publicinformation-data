@@ -113,6 +113,8 @@ Wicklow (a Sucuri JavaScript challenge) and Monaghan (Cloudflare 403) block non-
 
 The UN Statistics Division's Classification of the Functions of Government (COFOG) 1999, used as the common taxonomy for agenda-item topics. The committed list records the source file's sha256 (`5368887b…4b39b5`, retrieved 2026-11-26).
 
+The classification is published as a vocabulary: [cofog-1999.json](public/vocabularies/cofog-1999.json), [cofog-1999.csv](public/vocabularies/cofog-1999.csv) and [cofog-1999.ttl](public/vocabularies/cofog-1999.ttl) under [`public/vocabularies/`](public/vocabularies/), with term URIs under `https://data.publicinformation.ie/ns/cofog#<code>` (see the [vocabulary README](public/vocabularies/cofog-1999.md)).
+
 **Licence:** the classification is published by the United Nations for statistical use. The derived code list and dataset are published under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
 > Source: United Nations Statistics Division, Classification of the Functions of Government (COFOG) 1999.

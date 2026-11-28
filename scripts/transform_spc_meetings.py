@@ -342,9 +342,13 @@ def readme_bytes(export: dict, report: dict) -> bytes:
         "(`<table>.csv-metadata.json`). Related: "
         "[JSON Schema](../../schemas/spc-meetings.schema.json), "
         "[DCAT-AP catalogue record](../../catalog/dataset-spc-meetings.ttl), and the "
-        "vocabularies `cofog-1999`, `transport-subdomain`, `spc-attendance-status`, "
-        "`spc-attendance-mode`, `spc-attendee-category`, `spc-decision-type` and "
-        "`spc-text-source` under "
+        "vocabularies [`cofog-1999`](../../vocabularies/cofog-1999.md), "
+        "[`transport-subdomain`](../../vocabularies/transport-subdomain.csv), "
+        "[`spc-attendance-status`](../../vocabularies/spc-attendance-status.csv), "
+        "[`spc-attendance-mode`](../../vocabularies/spc-attendance-mode.csv), "
+        "[`spc-attendee-category`](../../vocabularies/spc-attendee-category.csv), "
+        "[`spc-decision-type`](../../vocabularies/spc-decision-type.csv) and "
+        "[`spc-text-source`](../../vocabularies/spc-text-source.csv) under "
         "[`../../vocabularies/`](../../vocabularies/).",
         "",
         "## Tables and fields",

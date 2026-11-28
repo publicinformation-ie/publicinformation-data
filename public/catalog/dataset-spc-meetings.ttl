@@ -13,7 +13,7 @@
     dct:publisher <https://www.publicinformation.ie/> ;
     dct:creator <https://www.publicinformation.ie/> ;
     dct:issued "2026-11-26"^^xsd:date ;
-    dct:modified "2026-11-27"^^xsd:date ;
+    dct:modified "2026-11-28"^^xsd:date ;
     owl:versionInfo "1.2.0" ;
     dct:language <http://publications.europa.eu/resource/authority/language/ENG> ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
@@ -34,6 +34,7 @@
     ] ;
     dct:relation <https://data.publicinformation.ie/dataset/public-bodies> ;
     dct:relation <https://data.publicinformation.ie/dataset/motions> ;
+    dct:relation <https://data.publicinformation.ie/dataset/cofog-1999> ;
 
     dcat:distribution [
         a dcat:Distribution ;

@@ -1,0 +1,69 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+<https://data.publicinformation.ie/dataset/cofog-1999>
+    a dcat:Dataset ;
+    dct:title "COFOG 1999 vocabulary"@en ;
+    dct:description "The United Nations' Classification of the Functions of Government (COFOG) 1999 as an open vocabulary: ten divisions, 69 groups and 109 classes, each class marked as a collective or individual service. Used to classify agenda-item topics in the SPC meetings dataset."@en ;
+    dct:publisher <https://www.publicinformation.ie/> ;
+    dct:creator <https://www.publicinformation.ie/> ;
+    dct:issued "2026-11-28"^^xsd:date ;
+    dct:modified "2026-11-28"^^xsd:date ;
+    owl:versionInfo "1999" ;
+    dct:language <http://publications.europa.eu/resource/authority/language/ENG> ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:source <https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/COFOG_english_structure.txt> ;
+    dct:relation <https://data.publicinformation.ie/dataset/spc-meetings> ;
+    dcat:keyword "COFOG", "classification", "vocabulary", "SKOS", "government functions", "open data"@en ;
+    dcat:theme <http://data.europa.eu/m8g/GOVERNMENT> ;
+    dcat:contactPoint [
+        a vcard:Organization ;
+        vcard:fn "PublicInformation.ie" ;
+        vcard:hasEmail <mailto:dave@publicinformation.ie> ;
+    ] ;
+
+    dcat:distribution [
+        a dcat:Distribution ;
+        dct:title "COFOG 1999 vocabulary (JSON)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
+        dcat:accessURL <https://data.publicinformation.ie/vocabularies/cofog-1999.json> ;
+        dcat:downloadURL <https://data.publicinformation.ie/vocabularies/cofog-1999.json> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "application/json" ;
+    ] , [
+        a dcat:Distribution ;
+        dct:title "COFOG 1999 vocabulary (CSV)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+        dcat:accessURL <https://data.publicinformation.ie/vocabularies/cofog-1999.csv> ;
+        dcat:downloadURL <https://data.publicinformation.ie/vocabularies/cofog-1999.csv> ;
+        dct:conformsTo <http://www.w3.org/ns/csvw> ;
+        dct:conformsTo <https://data.publicinformation.ie/vocabularies/cofog-1999.csv-metadata.json> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "text/csv" ;
+    ] , [
+        a dcat:Distribution ;
+        dct:title "COFOG 1999 vocabulary (Turtle)"@en ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/TTL> ;
+        dcat:accessURL <https://data.publicinformation.ie/vocabularies/cofog-1999.ttl> ;
+        dcat:downloadURL <https://data.publicinformation.ie/vocabularies/cofog-1999.ttl> ;
+        dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+        dcat:mediaType "text/turtle" ;
+        dct:conformsTo <http://www.w3.org/2004/02/skos/core#> ;
+    ] .
+
+<https://data.publicinformation.ie/dataset/cofog-1999>
+    prov:wasGeneratedBy [
+        a prov:Activity ;
+        prov:startedAtTime "2026-11-28T00:00:00Z"^^xsd:dateTime ;
+        prov:wasAssociatedWith [
+            a prov:Agent ;
+            prov:actedOnBehalfOf <https://www.publicinformation.ie/> ;
+            foaf:name "PublicInformation.ie Pipeline" ;
+            foaf:homepage <https://github.com/publicinformation-ie/publicinformation-data> ;
+        ] ;
+    ] .

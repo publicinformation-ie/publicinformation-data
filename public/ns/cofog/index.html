@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>COFOG 1999 — PublicInformation.ie</title>
+<link rel="alternate" type="application/json" title="COFOG 1999 vocabulary (JSON)" href="../../vocabularies/cofog-1999.json">
+<link rel="alternate" type="text/csv" title="COFOG 1999 vocabulary (CSV)" href="../../vocabularies/cofog-1999.csv">
+<link rel="describedby" type="application/ld+json" title="COFOG 1999 vocabulary (CSVW metadata)" href="../../vocabularies/cofog-1999.csv-metadata.json">
+<link rel="alternate" type="text/turtle" title="COFOG 1999 vocabulary (Turtle)" href="../../vocabularies/cofog-1999.ttl">
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+         max-width: 64rem; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; line-height: 1.6; }
+  h1 { font-size: 1.6rem; }
+  p.lead { font-size: 1.05rem; color: #333; }
+  a { color: #0645ad; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  table { border-collapse: collapse; margin: 1rem 0; width: 100%; }
+  th, td { text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid #ddd; font-size: 0.95em; vertical-align: top; }
+  th { color: #555; font-weight: 600; }
+  code { background: #f2f2f2; padding: 0.1em 0.35em; border-radius: 3px; }
+</style>
+</head>
+<body>
+<h1>COFOG 1999</h1>
+<p class="lead">The United Nations' Classification of the Functions of
+Government (COFOG) 1999 as published by PublicInformation.ie: ten divisions,
+split into 69 groups and 109 classes. PublicInformation.ie uses it to classify
+agenda-item topics in its
+<a href="../../latest/spc-meetings/README.md">SPC meetings dataset</a>.</p>
+
+<h2>Term URIs</h2>
+<p>Every term has a persistent URI of the form
+<code>https://data.publicinformation.ie/ns/cofog#<em>&lt;code&gt;</em></code>,
+for example <code>https://data.publicinformation.ie/ns/cofog#04.5.1</code>
+("Road transport"). This namespace means COFOG&nbsp;1999; a future revision of
+the classification will be published under a new namespace and will not change
+what these URIs mean. Each code below links to its term URI.</p>
+
+<h2>Divisions</h2>
+<table>
+  <tr><th>Code</th><th>Division</th></tr>
+  <tr><td><a href="https://data.publicinformation.ie/ns/cofog#01">01</a></td><td>General public services</td></tr>
+  <tr><td><a href="https://data.publicinformation.ie/ns/cofog#02">02</a></td><td>Defence</td></tr>
+  <tr><td><a href="https://data.publicinformation.ie/ns/cofog#03">03</a></td><td>Public order and safety</td></tr>
+  <tr><td><a href="https://data.publicinformation.ie/ns/cofog#04">04</a></td><td>Economic affairs</td></tr>
+  <tr><td><a href="https://data.publicinformation.ie/ns/cofog#05">05</a></td><td>Environmental protection</td></tr>
+  <tr><td><a href="https://data.publicinformation.ie/ns/cofog#06">06</a></td><td>Housing and community amenities</td></tr>
+  <tr><td><a href="https://data.publicinformation.ie/ns/cofog#07">07</a></td><td>Health</td></tr>
+  <tr><td><a href="https://data.publicinformation.ie/ns/cofog#08">08</a></td><td>Recreation, culture and religion</td></tr>
+  <tr><td><a href="https://data.publicinformation.ie/ns/cofog#09">09</a></td><td>Education</td></tr>
+  <tr><td><a href="https://data.publicinformation.ie/ns/cofog#10">10</a></td><td>Social protection</td></tr>
+</table>
+
+<h2>Downloads</h2>
+<table>
+  <tr><th>Format</th><th>File</th><th>Use it for</th></tr>
+  <tr><td>JSON</td><td><a href="../../vocabularies/cofog-1999.json">cofog-1999.json</a></td>
+      <td>The full hierarchy (divisions → groups → classes) plus a flat concept index, with each class's service type.</td></tr>
+  <tr><td>CSV</td><td><a href="../../vocabularies/cofog-1999.csv">cofog-1999.csv</a></td>
+      <td>Spreadsheets and joins, one row per term, with the CSVW metadata in <a href="../../vocabularies/cofog-1999.csv-metadata.json">cofog-1999.csv-metadata.json</a>.</td></tr>
+  <tr><td>Turtle</td><td><a href="../../vocabularies/cofog-1999.ttl">cofog-1999.ttl</a></td>
+      <td>Linked-data tooling: the vocabulary as SKOS, one concept per term.</td></tr>
+</table>
+<p>See the <a href="../../vocabularies/cofog-1999.md">vocabulary README</a>
+for provenance, licence and how to regenerate these files.</p>
+</body>
+</html>

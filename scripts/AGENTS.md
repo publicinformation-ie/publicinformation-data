@@ -17,6 +17,7 @@ Before writing a new one-off analysis snippet, check whether one of these alread
 | Reviewing/accepting user-submitted corrections from the public API | `admin-corrections.mjs` |
 | Publish the public-body-actions dataset (3 tables) from actions_pipeline output | `transform_public_body_actions.py` — asserts the §12 validation invariants before writing. |
 | Publish the SPC meetings dataset (5 tables, verbatim minutes, README) from spc_pipeline output | `transform_spc_meetings.py` — writes `public/v<schema>/spc-meetings/`, deletes stale files, and stamps `dct:modified` only on a content change. |
+| Publish the COFOG 1999 vocabulary (JSON, CSV + CSVW, SKOS Turtle) from the pinned SPC reference | `build_cofog_vocabulary.py` — validates fail closed, single writer of `public/vocabularies/cofog-1999.*`; `--check` compares without writing. |
 | Publish the motions dataset (JSON-LD + CSV) from minutes_pipeline output | `transform_motions.py` — resolves `public_body_id` through the permanent slug machinery (never the motion's own slug) and raises on an unresolvable id. |
 
 ## Prefer extending over duplicating

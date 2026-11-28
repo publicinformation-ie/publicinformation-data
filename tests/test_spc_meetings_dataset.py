@@ -480,6 +480,21 @@ def test_readme_names_the_people_and_attribution(tmp_path):
     assert "DATA_SOURCES.md" not in text  # not published, so it must not be the only pointer
 
 
+def test_readme_links_the_vocabularies_as_the_published_readme_does(tmp_path):
+    """The generator, not a hand edit, owns the vocabulary links in the README."""
+    text = _readme(tmp_path)
+    assert "[`cofog-1999`](../../vocabularies/cofog-1999.md)" in text
+    related = next(line for line in text.splitlines() if line.startswith("Each table is published"))
+    from scripts.transform_spc_meetings import OUTPUT_DIR
+
+    repo = Path(__file__).resolve().parents[1]
+    # The current release and its latest/ mirror; older releases are frozen.
+    for published in (repo / OUTPUT_DIR / "README.md",
+                      repo / "public/latest/spc-meetings/README.md"):
+        lines = published.read_text(encoding="utf-8").splitlines()
+        assert related in lines, published
+
+
 def test_minutes_have_a_resolvable_index_and_the_catalogue_links_to_it(tmp_path):
     outputs = build_outputs(_export(), _records(), tmp_path)
     index = outputs[tmp_path / "minutes" / "index.md"].decode("utf-8")

@@ -4,6 +4,35 @@ All notable changes to the Public Bodies dataset will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [cofog-1999 vocabulary] - 2026-11-28
+
+### Added
+- The COFOG 1999 classification is now published as a first-class vocabulary,
+  not only the flat CSV. New files under `public/vocabularies/`:
+  [cofog-1999.json](vocabularies/cofog-1999.json) (scheme metadata, the nested
+  divisions → groups → classes tree and a flat concept index, with each
+  class's collective/individual service type),
+  [cofog-1999.ttl](vocabularies/cofog-1999.ttl) (SKOS: one concept per term,
+  the `skos:broader` hierarchy, and a `skos:scopeNote` on each class), plus a
+  README at [cofog-1999.md](vocabularies/cofog-1999.md) and a DCAT record at
+  `catalog/dataset-cofog-1999.ttl`.
+- Term URIs (`https://data.publicinformation.ie/ns/cofog#<code>`) now resolve:
+  `ns/cofog/` serves a page naming the vocabulary, listing the ten divisions
+  and linking every distribution.
+- All four vocabulary files (JSON, CSV, CSVW metadata, Turtle) are generated
+  by `scripts/build_cofog_vocabulary.py` from the pinned UNSD reference, with
+  a `--check` mode that fails when a committed file drifts.
+
+### Notes
+- The CSV keeps its existing four-column shape (`uri`, `notation`, `name`,
+  `description`) and is byte-identical to the previous file; the CSVW metadata
+  is unchanged.
+- No published SPC record changes: the SPC schema's COFOG enum, and every
+  record under `latest/spc-meetings/` and the versioned releases, are exactly
+  as before. The SPC vocabulary build no longer writes `cofog-1999` (the root
+  script owns it) but still writes the attendance, decision and
+  transport-subdomain vocabularies.
+
 ## [spc-meetings 1.2.0] - 2026-11-27
 
 ### Added
