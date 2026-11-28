@@ -7,7 +7,7 @@
     dct:title "Transport RACI parties"@en ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     owl:versionInfo "0.1.0" ;
-    skos:hasTopConcept <https://data.publicinformation.ie/ns/transport-raci-party#DoT>, <https://data.publicinformation.ie/ns/transport-raci-party#NTA>, <https://data.publicinformation.ie/ns/transport-raci-party#TII>, <https://data.publicinformation.ie/ns/transport-raci-party#DHLGH>, <https://data.publicinformation.ie/ns/transport-raci-party#DoE>, <https://data.publicinformation.ie/ns/transport-raci-party#DRCD>, <https://data.publicinformation.ie/ns/transport-raci-party#ACP>, <https://data.publicinformation.ie/ns/transport-raci-party#LA-M>, <https://data.publicinformation.ie/ns/transport-raci-party#LA-CE>, <https://data.publicinformation.ie/ns/transport-raci-party#RMO>, <https://data.publicinformation.ie/ns/transport-raci-party#WI>, <https://data.publicinformation.ie/ns/transport-raci-party#OPS>, <https://data.publicinformation.ie/ns/transport-raci-party#DA>, <https://data.publicinformation.ie/ns/transport-raci-party#AT>, <https://data.publicinformation.ie/ns/transport-raci-party#SCH>, <https://data.publicinformation.ie/ns/transport-raci-party#PP>, <https://data.publicinformation.ie/ns/transport-raci-party#TP>, <https://data.publicinformation.ie/ns/transport-raci-party#AGS>, <https://data.publicinformation.ie/ns/transport-raci-party#RSA>, <https://data.publicinformation.ie/ns/transport-raci-party#prescribed-bodies> .
+    skos:hasTopConcept <https://data.publicinformation.ie/ns/transport-raci-party#DoT>, <https://data.publicinformation.ie/ns/transport-raci-party#NTA>, <https://data.publicinformation.ie/ns/transport-raci-party#TII>, <https://data.publicinformation.ie/ns/transport-raci-party#DHLGH>, <https://data.publicinformation.ie/ns/transport-raci-party#DoE>, <https://data.publicinformation.ie/ns/transport-raci-party#DRCD>, <https://data.publicinformation.ie/ns/transport-raci-party#ACP>, <https://data.publicinformation.ie/ns/transport-raci-party#LA-M>, <https://data.publicinformation.ie/ns/transport-raci-party#LA-CE>, <https://data.publicinformation.ie/ns/transport-raci-party#RMO>, <https://data.publicinformation.ie/ns/transport-raci-party#WI>, <https://data.publicinformation.ie/ns/transport-raci-party#OPS>, <https://data.publicinformation.ie/ns/transport-raci-party#DA>, <https://data.publicinformation.ie/ns/transport-raci-party#AT>, <https://data.publicinformation.ie/ns/transport-raci-party#SCH>, <https://data.publicinformation.ie/ns/transport-raci-party#PP>, <https://data.publicinformation.ie/ns/transport-raci-party#TP>, <https://data.publicinformation.ie/ns/transport-raci-party#AGS>, <https://data.publicinformation.ie/ns/transport-raci-party#RSA>, <https://data.publicinformation.ie/ns/transport-raci-party#HSE>, <https://data.publicinformation.ie/ns/transport-raci-party#prescribed-bodies> .
 
 <https://data.publicinformation.ie/ns/transport-raci-party#DoT>
     a skos:Concept ;
@@ -187,6 +187,16 @@
     skos:definition "The national road safety body."@en ;
     skos:exactMatch <https://data.publicinformation.ie/body/road-safety-authority> ;
     skos:altLabel "the Road Safety Authority"@en ;
+    skos:scopeNote "Kind: body"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#HSE>
+    a skos:Concept ;
+    skos:notation "HSE" ;
+    skos:prefLabel "Health Service Executive"@en ;
+    skos:definition "The national public health service."@en ;
+    skos:exactMatch <https://data.publicinformation.ie/body/health-service-executive> ;
+    skos:altLabel "the Health Service Executive"@en ;
     skos:scopeNote "Kind: body"@en ;
     skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
 

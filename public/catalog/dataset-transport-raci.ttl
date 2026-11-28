@@ -231,6 +231,20 @@
     prov:wasDerivedFrom <https://meathlive.net/2023/04/27/new-bike-scheme-launched-in-ashbourne/> ;
     prov:wasDerivedFrom <https://sligococo.ie/planning/FestivalandEvents/WildRootsFestival2024/Schedule%20of%20Conditions%20(12%20Apr'24).pdf> ;
     prov:wasDerivedFrom <https://meath.ie/notices/temporary-closure-of-roads-in-trim-and-athboy-co-meath-in-connection-with-the-puca-festival> ;
+    prov:wasDerivedFrom <https://revisedacts.lawreform.ie/eli/1961/act/24/section/95/revised/en/html> ;
+    prov:wasDerivedFrom <https://assets.gov.ie/273747/752924fd-da41-4c49-a8d1-dd669275d309.pdf> ;
+    prov:wasDerivedFrom <https://www.roadguidelines.ie/wp-content/uploads/2025/05/Traffic-Management-Guidelines.pdf> ;
+    prov:wasDerivedFrom <https://roadguidelines.ie/wp-content/uploads/2025/10/TSM-2019-Ch-8-Approved-Version-August-19-Online.pdf> ;
+    prov:wasDerivedFrom <https://cdn.tii.ie/publications/GE-STY-01024-09.pdf> ;
+    prov:wasDerivedFrom <https://revisedacts.lawreform.ie/eli/2001/act/37/section/204/revised/en/html> ;
+    prov:wasDerivedFrom <https://www.irishstatutebook.ie/eli/2006/si/362/made/en/print> ;
+    prov:wasDerivedFrom <https://nationaltransport.ie/wp-content/uploads/2016/11/Guidance_on_Bus_Stop_Locations_in_Rural_Areas.pdf> ;
+    prov:wasDerivedFrom <https://www.gov.ie/en/department-of-transport/publications/advice-note-for-local-authorities-shared-micromobility-services> ;
+    prov:wasDerivedFrom <https://assets.gov.ie/295764/73994291-8e51-405a-9c50-39eec18efb23.pdf> ;
+    prov:wasDerivedFrom <https://revisedacts.lawreform.ie/eli/1993/act/14/section/81/revised/en/html> ;
+    prov:wasDerivedFrom <https://www.irishstatutebook.ie/eli/2024/act/34/section/479/enacted/en/html> ;
+    prov:wasDerivedFrom <https://www.irishstatutebook.ie/eli/2026/si/468/made/en/print> ;
+    prov:wasDerivedFrom <https://www.irishstatutebook.ie/eli/2026/si/466/made/en/print> ;
     dcat:distribution [
         a dcat:Distribution ;
         dct:title "assignments.csv"@en ;
@@ -246,7 +260,7 @@
     dcat:distribution [
         a dcat:Distribution ;
         dct:title "assignment-roles.csv"@en ;
-        dct:description "One line per role (R, A, C or I) and party."@en ;
+        dct:description "One line per role (R, A, C or I) and party, with the evidence for that role."@en ;
         dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
         dcat:accessURL <https://data.publicinformation.ie/latest/transport-raci/assignment-roles.csv> ;
         dcat:downloadURL <https://data.publicinformation.ie/v0.1.0/transport-raci/assignment-roles.csv> ;

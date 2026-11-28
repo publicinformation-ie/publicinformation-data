@@ -92,8 +92,18 @@
 - [x] 5.3 Run the full checks: `uv run pytest tests/ -q`, `uv run pyright`, and `uv run python scripts/build_transport_raci.py --check` (exits 0). Review the generated `public/` diff before merging.
   - Note: the full root suite has one pre-existing failure, `tests/test_spc_meetings_dataset.py::test_every_real_exported_record_validates_and_links_its_body`, which reads stale local SPC output and is unrelated to this change.
 
+## 6. Rulings and corrections (28 November 2026)
+
+- [x] 6.1 Research the 35 `GS` cells against primary law and official guidance; record the findings and citations in `reference/transport-raci/gs_research.md`.
+- [x] 6.2 Record Dave's rulings in `migration_resolutions.csv`: 30 cells resolved (29 × `AGS`, plus `RT-26.S13a` C → `RSA; AGS`), 5 left unresolved (`RT-10.S14` C, `RT-26.S14` C, `RT-37.S15` C, `RT-37.S11` Garda-run closures R, `RT-37.S14` Offences R).
+- [x] 6.3 Record evidence per ruled role. Add `evidence_id`, `source_ids` and `rationale` to rulings; add `evidence_id` to `assignment_roles.csv`; add the cited provisions as `added_sources.csv` (`P1`–`P13`); link ruling sources to the assignment. Publish the per-role evidence and mark it in the wide view.
+- [x] 6.4 Add the corrections layer. `corrections.csv` corrects facts that are not role errors, with a staleness check: the X-18 event-licensing law change (Part 16 PDA 2024, S.I. 468/2026, repeal of Part XVI PDA 2000), the Meath source page note, and RT-37.S14 offences C → R under s.81(3)(a) Roads Act 1993. Add the HSE as a party and publish it, with the NTA, as Consulted on X-18.S13b.
+- [x] 6.5 Correct the seven `s.38 route` public notes: the s.38(3) duty applies only to prescribed classes of measures and none has been prescribed; the operative duty is s.95(3)(b) RTA 1961 where regulatory signs are provided.
+- [x] 6.7 Record Dave's decisions on the source ambiguities in `review_decisions.csv`: both variant pairs kept separate, X-07 kept on X5. The item leaves the error log, the decision stays in the record, and the README lists it.
+- [x] 6.6 Update the docs (`migration_notes.md`, `skill_mismatches.md`, the dataset README review list) and the tests, including the byte-for-byte rerun with the new inputs.
+
 ## Workflow follow-up
 
-- Hand Dave the `migration_errors.json` review list (the 35 remaining GS cells, variant merges, the X-07 grouping) and the `public_text.csv` drafts for review; each ruling ships in a later build. `X-02.S14` and eight other GS cells were ruled on 28 November 2026.
+- Remaining review items after the rulings: the 5 unresolved `GS` cells, the 2 variant merges, the X-07 grouping, and the `public_text.csv` drafts (47 rewrites). Each ruling ships in a later build.
 - Start the follow-up change: rebuild the `transport-governance` skill on this model, deprecate `transport-subdomain`, and re-tag SPC (paid step `extract_spc_items`).
 - Archive this change after review and publication.

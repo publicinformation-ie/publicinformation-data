@@ -1,0 +1,4 @@
+error_key,decision,rationale,ruled_by,date
+"|-|Variant|NTA-delivered (BusConnects) | NTA-delivered (BusConnects, GDA)",kept separate,"The two GDA lines record a separate open question (Ministerial approval of the GDA Strategy), and RT-17 appears only under the GDA variant.",Dave,2026-11-28
+|-|Variant|Royal Canal Greenway | Royal Canal Greenway (Waterways Ireland land),kept separate,The Waterways Ireland variant records a different landowner question; the plain line never carried that note.,Dave,2026-11-28
+X-07|-|Grouping|X5 / RT1-RT4,kept on X5,"A charge point is an electricity supply asset before it is a road asset; the register already marks its COFOG placement as a candidate, and the ambiguity is noted in the activity.",Dave,2026-11-28

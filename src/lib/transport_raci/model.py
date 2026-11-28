@@ -31,6 +31,11 @@ ASSIGNMENTS_FILE = "assignments.csv"
 ASSIGNMENT_ROLES_FILE = "assignment_roles.csv"
 ASSIGNMENT_SOURCES_FILE = "assignment_sources.csv"
 MIGRATION_RESOLUTIONS_FILE = "migration_resolutions.csv"
+CORRECTIONS_FILE = "corrections.csv"
+REVIEW_DECISIONS_FILE = "review_decisions.csv"
+# Committed input read by the migration. Its rows are merged into sources.csv,
+# after the handoff's sources, so it is not a master table of its own.
+ADDED_SOURCES_FILE = "added_sources.csv"
 
 TABLE_FILES = {
     "stages": STAGES_FILE,
@@ -49,6 +54,8 @@ TABLE_FILES = {
     "assignment_roles": ASSIGNMENT_ROLES_FILE,
     "assignment_sources": ASSIGNMENT_SOURCES_FILE,
     "migration_resolutions": MIGRATION_RESOLUTIONS_FILE,
+    "corrections": CORRECTIONS_FILE,
+    "review_decisions": REVIEW_DECISIONS_FILE,
 }
 
 TABLE_FIELDS: dict[str, list[str]] = {
@@ -71,10 +78,36 @@ TABLE_FIELDS: dict[str, list[str]] = {
     "assignments": ["assignment_id", "activity_id", "stage_id", "variant_id",
                     "applies_to", "evidence_id", "note", "public_note",
                     "scenario_refs"],
-    "assignment_roles": ["assignment_id", "role", "party_id", "qualifier"],
+    "assignment_roles": ["assignment_id", "role", "party_id", "qualifier",
+                         "evidence_id"],
     "assignment_sources": ["assignment_id", "source_id"],
-    "migration_resolutions": ["error_key", "ruling", "ruled_by", "date"],
+    "migration_resolutions": ["error_key", "ruling", "ruled_by", "date",
+                              "evidence_id", "source_ids", "rationale"],
+    "corrections": ["table", "key", "field", "original", "corrected",
+                    "evidence_id", "source_ids", "rationale", "ruled_by",
+                    "date"],
+    # A decision on a logged ambiguity that is not a role: a proposed variant
+    # merge, or an ambiguous grouping. "keep" records that it was reviewed and
+    # left as it is, so it leaves the open review list.
+    "review_decisions": ["error_key", "decision", "rationale", "ruled_by",
+                         "date"],
 }
+
+# What a correction may change, per table. A role line is keyed by
+# ``assignment_id|party_id`` and must match exactly one line.
+CORRECTABLE_FIELDS: dict[str, tuple[str, ...]] = {
+    "activities": ("name", "definition"),
+    "stages": ("name", "definition"),
+    "parties": ("name", "description"),
+    "sources": ("citation", "urls"),
+    "assignments": ("note",),
+    "assignment_roles": ("role",),
+}
+
+
+def split_ids(value: str) -> list[str]:
+    """Split a ``"; "``-separated list of IDs, dropping empty items."""
+    return [part.strip() for part in value.split(";") if part.strip()]
 
 BOOLEAN_FIELDS = {("activity_groupings", "is_primary")}
 
@@ -233,6 +266,9 @@ class AssignmentRole:
     role: str
     party_id: str
     qualifier: str
+    # Blank: the role takes its assignment's evidence. Set: a ruling or
+    # correction supplied the role, with this evidence.
+    evidence_id: str = ""
 
 
 @dataclass(frozen=True)
@@ -245,6 +281,33 @@ class AssignmentSource:
 class MigrationResolution:
     error_key: str
     ruling: str
+    ruled_by: str
+    date: str
+    # Blank: the ruled roles take the line's evidence.
+    evidence_id: str = ""
+    source_ids: str = ""
+    rationale: str = ""
+
+
+@dataclass(frozen=True)
+class ReviewDecision:
+    error_key: str
+    decision: str
+    rationale: str
+    ruled_by: str
+    date: str
+
+
+@dataclass(frozen=True)
+class Correction:
+    table: str
+    key: str
+    field: str
+    original: str
+    corrected: str
+    evidence_id: str
+    source_ids: str
+    rationale: str
     ruled_by: str
     date: str
 
@@ -267,6 +330,8 @@ class Master:
     assignment_roles: list[AssignmentRole] = field(default_factory=list)
     assignment_sources: list[AssignmentSource] = field(default_factory=list)
     migration_resolutions: list[MigrationResolution] = field(default_factory=list)
+    corrections: list[Correction] = field(default_factory=list)
+    review_decisions: list[ReviewDecision] = field(default_factory=list)
 
     def activities_by_id(self) -> dict[str, Activity]:
         return {activity.activity_id: activity for activity in self.activities}
@@ -402,6 +467,16 @@ def load_master(directory: Path | str | None = None) -> Master:
         for row in rows("migration_resolutions")
     ]
 
+    corrections = [
+        Correction(**{key: row[key] for key in TABLE_FIELDS["corrections"]})
+        for row in rows("corrections")
+    ]
+    review_decisions = [
+        ReviewDecision(**{
+            key: row[key] for key in TABLE_FIELDS["review_decisions"]})
+        for row in rows("review_decisions")
+    ]
+
     return Master(
         stages=stages,
         groupings=groupings,
@@ -419,4 +494,6 @@ def load_master(directory: Path | str | None = None) -> Master:
         assignment_roles=assignment_roles,
         assignment_sources=assignment_sources,
         migration_resolutions=migration_resolutions,
+        corrections=corrections,
+        review_decisions=review_decisions,
     )

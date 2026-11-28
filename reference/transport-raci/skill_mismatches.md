@@ -15,9 +15,8 @@ assignment ID; only assessed rows are compared. Unassessed rows are stated as
 gaps, not mismatches.
 
 Rows were re-derived after the rulings of 28 November 2026 in
-`migration_resolutions.csv` (several `GS` cells now read RSA and AGS). Where a
-comparison depends on a `GS` cell that has no ruling yet, the verdict reads
-"undetermined (GS awaiting review)"; that role is not published.
+`migration_resolutions.csv` (several `GS` cells now read RSA and AGS). The five `GS` cells that still have no ruling do not appear in a comparison
+below, so no verdict is marked undetermined.
 
 ## National roads
 
@@ -43,7 +42,7 @@ comparison depends on a `GS` cell that has no ruling yet, the verdict reads
 | 13 | `infra/regional-local-roads` · Funding, annual budget: A LA-members, R LA-CE | `RT-02.S3` (LA own resources variant) R LA-CE, I LA-M, evidence UNVERIFIED, no A | Mismatch: the new model records the split as unverified and does not publish an Accountable party |
 | 14 | `infra/regional-local-roads` · Specification, schedule of municipal district works: A LA-MD, R LA-CE | `RT-02.S2` A LA-M, R LA-CE, I TP | Agree (LA-MD and LA-M name the same municipal-district organ) |
 | 15 | `infra/regional-local-roads` · Maintenance: A LA-CE, R LA-CE | `RT-02.S12` A LA-CE, R LA-CE, R DA, I LA-M | Agree on A and R; the new model adds a delivery agent and an Informed party |
-| 16 | `infra/regional-local-roads` · Consent, Section 38: A LA-CE, R LA-CE, C AGS | `RT-02` has no S7b (MAINT profile); `RT-09.S7b` is the nearest assessed road-works consent row, A LA-CE, R LA-CE, C TP, plus one C cell recorded as `GS` | Gap: no regional-road S38 row in the new model. On the nearest row, AGS as Consulted is undetermined (GS awaiting review) |
+| 16 | `infra/regional-local-roads` · Consent, Section 38: A LA-CE, R LA-CE, C AGS | `RT-02` has no S7b (MAINT profile); `RT-09.S7b` is the nearest assessed road-works consent row, A LA-CE, R LA-CE, C TP, AGS | Gap: no regional-road S38 row in the new model. On the nearest row, AGS as Consulted is agreed (stated in official guidance) |
 | 17 | `infra/regional-local-roads` · Consent, Part 8: A LA-members, R LA-CE | `RT-02` has no S7a (MAINT profile) | Gap in the new model |
 
 ## Active travel
@@ -54,8 +53,8 @@ comparison depends on a `GS` cell that has no ruling yet, the verdict reads
 | 19 | `infra/active-travel` · Strategic planning: A DoT, R NTA, C LA-CE | `RT-09.S2` (NTA-funded LA scheme) A LA-CE, R AT and LA-CE, C SCH and TP | Mismatch: the new model is at scheme rather than network level; A and R differ |
 | 20 | `infra/active-travel` · Funding: A NTA, R NTA, C DoT | `RT-09.S3` (NTA-funded LA scheme) A NTA, R NTA, C DoT, I LA-CE | Agree |
 | 21 | `infra/active-travel` · Consent, Part 8: A LA-members, R LA-CE | `RT-09.S7a` (Part 8 route) A LA-M, R LA-CE, C TP, prescribed bodies | Agree on A and R; mismatch on C (new adds TP and prescribed bodies) |
-| 22 | `infra/active-travel` · Consent, Section 38: A LA-CE, R LA-CE, C AGS, NTA | `RT-09.S7b` (s.38 route) A LA-CE, R LA-CE, C TP, plus one C cell recorded as `GS`, I LA-M, NTA | Agree on A and R; mismatch on NTA (Informed, not Consulted); AGS as Consulted is undetermined (GS awaiting review) |
-| 23 | `infra/active-travel` · Delivery: A LA-CE, R LA-CE, C NTA | `RT-09.S10` (NTA-funded LA scheme) A LA-CE, R LA-CE and DA, C SCH, plus one C cell recorded as `GS`, I NTA, LA-M | Agree on A; mismatch on R and on NTA (Informed, not Consulted) |
+| 22 | `infra/active-travel` · Consent, Section 38: A LA-CE, R LA-CE, C AGS, NTA | `RT-09.S7b` (s.38 route) A LA-CE, R LA-CE, C TP, AGS, I LA-M, NTA | Agree on A, R and AGS as Consulted; mismatch on NTA (Informed, not Consulted) |
+| 23 | `infra/active-travel` · Delivery: A LA-CE, R LA-CE, C NTA | `RT-09.S10` (NTA-funded LA scheme) A LA-CE, R LA-CE and DA, C SCH and AGS, I NTA, LA-M | Agree on A; mismatch on R and on NTA (Informed, not Consulted) |
 | 24 | `infra/active-travel` · Maintenance: A LA-CE, R LA-CE | `RT-09.S12` A LA-CE, R LA-CE and DA, I LA-M | Agree on A and R; the new model adds a delivery agent and an Informed party |
 | 25 | `infra/active-travel` · Regulation: A LA-CE, R LA-CE, C AGS | `RT-09` has no S13a or S13b row (INF profile) | Gap in the new model |
 | 26 | `infra/active-travel` · Operation and Enforcement not applicable | `RT-10` (greenways) adds S11, S13a and S14; `RT-10.S13a` A LA-M, R LA-CE and `RT-10.S14` A LA-CE, R LA-CE | Mismatch in scope: greenway operation and enforcement are assessed, active-travel infrastructure is not |
@@ -70,7 +69,7 @@ comparison depends on a `GS` cell that has no ruling yet, the verdict reads
 | 30 | `infra/bus` · Consent, Section 51 approval: A ACP, R ACP | `RT-13.S7c` (BusConnects) A ACP, R NTA, C TP, LA-CE, prescribed bodies | Agree on A; mismatch on R and C |
 | 31 | `infra/bus` · Delivery: A NTA, R NTA, LA-CE | `RT-13.S10` (BusConnects) A NTA, R NTA and DA, C LA-CE, I TP | Agree on A; mismatch on R (new uses a delivery agent, not LA-CE) |
 | 32 | `infra/bus` · Maintenance: A LA-CE, R LA-CE, C NTA | `RT-13.S12` is not assessed | Gap in the new model |
-| 33 | `infra/bus` · Regulation: A LA-CE, R LA-CE, C NTA, AGS | `RT-14a.S13b` (bus-stop location approval) A LA-CE, R LA-CE, C OPS, DA (TCU), plus one C cell recorded as `GS`, I NTA | Agree on A and R; mismatch on NTA (Informed, not Consulted); AGS as Consulted is undetermined (GS awaiting review) |
+| 33 | `infra/bus` · Regulation: A LA-CE, R LA-CE, C NTA, AGS | `RT-14a.S13b` (bus-stop location approval) A LA-CE, R LA-CE, C OPS, DA (TCU), AGS, I NTA | Agree on A, R and AGS as Consulted; mismatch on NTA (Informed, not Consulted) |
 
 ## Speed limits
 

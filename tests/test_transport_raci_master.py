@@ -31,6 +31,11 @@ HANDOFF = REPO / "docs" / "handoff-l4-raci"
 EXCLUDED_ASSESSED_LINES = 0
 
 
+def read_csv(path: Path) -> list[dict[str, str]]:
+    with path.open(encoding="utf-8", newline="") as handle:
+        return list(csv.DictReader(handle))
+
+
 def variant_slug(label: str) -> str:
     slug = label.lower().replace(".", "")
     return re.sub(r"[^a-z0-9]+", "-", slug).strip("-")
@@ -112,24 +117,37 @@ def test_published_role_counts_equal_resolved_handoff_tokens() -> None:
             encoding="utf-8", newline="") as handle:
         rows = [row for row in csv.DictReader(handle)
                 if row["Evidence"].strip() != "Not assessed"]
+    expected: dict[tuple[str, str], int] = {}
     checked = 0
     for row in rows:
         variant = row["Variant"].strip() or "-"
         assignment_id = assignment_id_for(row["Row ID"].strip(), variant)
         for role in ("R", "A", "C", "I"):
-            expected = 0
+            key_of_line = (assignment_id, role)
             for token in [t.strip() for t in row[role].split(";") if t.strip()]:
                 key = f"{row['Row ID'].strip()}|{variant}|{role}|{token}"
                 if key in unresolved:
                     continue
                 if key in rulings:
-                    expected += len([t for t in rulings[key].split(";")
-                                     if t.strip()])
+                    count = len([t for t in rulings[key].split(";")
+                                 if t.strip()])
                 else:
-                    expected += 1
-            assert len(published.get((assignment_id, role), [])) == expected, (
-                assignment_id, role)
+                    count = 1
+                expected[key_of_line] = expected.get(key_of_line, 0) + count
             checked += 1
+    # A role correction moves one party from the recorded role to the ruled one.
+    with (MASTER / "corrections.csv").open(
+            encoding="utf-8", newline="") as handle:
+        for correction in csv.DictReader(handle):
+            if correction["table"] != "assignment_roles":
+                continue
+            assignment_id, party_id = correction["key"].split("|", 1)
+            before = (assignment_id, correction["original"])
+            after = (assignment_id, correction["corrected"])
+            expected[before] = expected.get(before, 0) - 1
+            expected[after] = expected.get(after, 0) + 1
+    for key, count in expected.items():
+        assert len(published.get(key, [])) == count, key
     assert checked == 224 * 4
 
 
@@ -138,11 +156,52 @@ def test_rulings_are_applied() -> None:
     assert published[("X-02.S14~speed-limits", "A")] == ["AGS"]
     assert published[("X-02.S14~speed-limits", "R")] == ["AGS"]
     assert {"RSA", "AGS"} <= set(published[("RT-24.S13a", "C")])
+    assert "AGS" in published[("RT-37.S13b~s75-closure-order-works-or-events",
+                               "C")]
     keys = {error["error_key"] for error in role_errors()}
-    assert "RT-37.S13b|s.75 closure order (works or events)|C|GS" in keys
+    assert "RT-37.S13b|s.75 closure order (works or events)|C|GS" not in keys
     assert "X-02.S14|Speed limits|A|GS" not in keys
     assert "X-02.S14|Speed limits|R|GS" not in keys
-    assert sum(1 for error in role_errors() if error["value"] == "GS") == 35
+    assert sum(1 for error in role_errors() if error["value"] == "GS") == 5
+
+
+def test_ruled_roles_carry_their_own_evidence() -> None:
+    rows = [
+        row for row in read_csv(LATEST / "assignment-roles.csv")
+        if row["assignment_id"] == "RT-04.S7b~s38-route"
+        and row["role"] == "C"
+        and row["party"].endswith("#AGS")]
+    assert rows
+    # The line's evidence is the default assumption; the Gardaí's role is
+    # stated in official guidance, so it carries evidence of its own.
+    assert rows[0]["evidence"].endswith("#source")
+    wide = next(
+        row for row in read_csv(LATEST / "raci-wide.csv")
+        if row["assignment_id"] == "RT-04.S7b~s38-route")
+    assert "(stated in official guidance or observed practice)" in wide["C"]
+
+
+def test_role_correction_is_published() -> None:
+    published = published_roles()
+    assert published[("RT-37.S14~offences", "R")] == ["LA-CE"]
+    assert "LA-CE" not in published.get(("RT-37.S14~offences", "C"), [])
+
+
+def test_x18_event_licensing_follows_the_current_law() -> None:
+    published = published_roles()
+    consulted = set(published[("X-18.S13b", "C")])
+    assert {"AGS", "HSE", "NTA"} <= consulted
+    roles = read_csv(LATEST / "assignment-roles.csv")
+    for row in roles:
+        if row["assignment_id"] == "X-18.S13b" and row["party"].endswith(
+                ("#AGS", "#HSE", "#NTA")):
+            assert row["evidence"].endswith("#statute")
+    assignments = {
+        row["assignment_id"]: row
+        for row in read_csv(LATEST / "assignments.csv")}
+    assert "s.479" in assignments["X-18.S13b"]["public_note"]
+    assert "S.I. No. 468 of 2026" in assignments["X-18.S13b"]["public_note"]
+    assert "s.230 PDA 2000 /" not in assignments["X-18.S13b"]["public_note"]
 
 
 def test_public_copies_equal_sources_without_internal_references() -> None:

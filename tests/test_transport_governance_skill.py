@@ -77,7 +77,8 @@ def test_the_retired_gda_file_is_gone_and_unreferenced():
         assert "raci-gda" not in path.read_text(encoding="utf-8"), path.name
     result = subprocess.run(
         ["git", "grep", "-l", "raci-gda", "--", ".",
-         ":(exclude)openspec/changes/archive/*"],
+         ":(exclude)openspec/changes/archive/*",
+         f":(exclude){Path(__file__).resolve().relative_to(REPO)}"],
         cwd=REPO, capture_output=True, text=True)
     if result.returncode not in (0, 1):
         return  # not a git checkout; the directory check above still ran

@@ -52,7 +52,7 @@ The dataset SHALL publish `raci-wide.csv`, a generated view with one line per as
 
 ### Requirement: "No local authority role" is derived
 
-Each assessed line in the JSON and wide view SHALL carry a derived three-valued `no_local_authority_role`: `false` when a council organ (LA-M or LA-CE) holds any role; `true` only when the line has an Accountable party and no council organ holds any role; `unknown` when the line has no Accountable party. In the JSON the value SHALL be a boolean, with `null` for unknown; in `raci-wide.csv` the cell SHALL read `true`, `false` or `unknown`, and the CSVW metadata SHALL declare the column as `boolean` with `null` `unknown`. Unknown SHALL be documented as "it is not established who is Accountable", never as "no role".
+Each assessed line SHALL carry a derived three-valued `no_local_authority_role`: `false` when a council organ (LA-M or LA-CE) holds any role; `true` only when the line has an Accountable party and no council organ holds any role; `unknown` when the line has no Accountable party.
 
 #### Scenario: Line with no council role
 
@@ -63,6 +63,15 @@ Each assessed line in the JSON and wide view SHALL carry a derived three-valued 
 
 - **WHEN** an assessed line has no Accountable party and no council organ holds a role
 - **THEN** its flag is `null` in the JSON and `unknown` in the wide view
+
+### Requirement: The derived flag is typed for each format
+
+In the JSON the `no_local_authority_role` value SHALL be a boolean, with `null` for unknown. In `raci-wide.csv` the cell SHALL read `true`, `false` or `unknown`, and the CSVW metadata SHALL declare the column as `boolean` with `null` `unknown`. Unknown SHALL be documented as "it is not established who is Accountable", never as "no role".
+
+#### Scenario: CSV and JSON agree
+
+- **WHEN** a line's flag is `unknown`
+- **THEN** the wide view cell reads `unknown`, the JSON value is `null`, and the CSVW column declares `datatype` `boolean` with `null` `unknown`
 
 ### Requirement: Nested JSON serves programs and LLMs
 

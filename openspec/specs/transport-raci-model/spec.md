@@ -157,7 +157,7 @@ A one-off migration SHALL read the handoff register and CSV from paths given as 
 
 ### Requirement: Human rulings are recorded as data
 
-Rulings on migration errors SHALL be held in a committed `migration_resolutions.csv` with the error key, the ruling, who ruled and the date. The migration SHALL apply rulings it finds and SHALL log any error that has no ruling. A ruling that matches no error SHALL fail the migration.
+Rulings on migration errors SHALL be held in a committed `migration_resolutions.csv` with the error key, the ruling, who ruled and the date, plus optional evidence, sources and rationale. The migration SHALL apply rulings it finds and SHALL log any error that has no ruling. A ruling that matches no error SHALL fail the migration.
 
 #### Scenario: Ruling applied
 
@@ -168,6 +168,48 @@ Rulings on migration errors SHALL be held in a committed `migration_resolutions.
 
 - **WHEN** a resolution's error key matches nothing in the handoff
 - **THEN** the migration fails and names the resolution
+
+### Requirement: A ruled role carries its own evidence
+
+A ruling MAY record an `evidence_id`, the sources it relies on and a rationale. A role that a ruling creates SHALL publish that evidence; a role without one SHALL take its assignment line's evidence. The published wide view SHALL mark a role whose evidence differs from its line.
+
+#### Scenario: Ruling on a different basis
+
+- **WHEN** a ruling adds a party on the strength of official guidance to a line whose evidence is the s.149(4) default
+- **THEN** the published role line records `source`, its sources are linked to the assignment, and the wide view marks the role with that evidence
+
+#### Scenario: Role inherits the line
+
+- **WHEN** a ruling or handoff role records no evidence of its own
+- **THEN** the role publishes the assignment line's evidence, and the wide view does not mark it
+
+### Requirement: Corrections to handoff facts are recorded as data
+
+A fact in the handoff that is wrong (as distinct from prose that cites an internal reference) SHALL be corrected through a committed `corrections.csv` that names the table, key, field, the exact original text, the corrected value, evidence, sources, rationale, who ruled and the date. The correction SHALL fail the migration when the original no longer matches, the record does not exist, or the field is not correctable. Every correction SHALL be listed in the published README with its reason.
+
+#### Scenario: Correction is applied and published
+
+- **WHEN** a correction changes an assignment line's role from C to R with statute evidence
+- **THEN** the published role line reads R, and the README lists the correction with its reason and sources
+
+#### Scenario: Stale correction fails
+
+- **WHEN** the source text a correction names has changed
+- **THEN** the migration fails and names the correction
+
+### Requirement: Reviewed ambiguities are recorded as decisions
+
+A logged ambiguity that is not a role (a proposed variant merge, an ambiguous grouping) SHALL be resolved through a committed `review_decisions.csv` recording the error key, the decision, a reason, who ruled and the date. The migration SHALL remove a decided item from the error log and keep the decision. A decision on an error key that no longer exists SHALL fail the migration, and a decision SHALL NOT clear a role error.
+
+#### Scenario: Ambiguity kept as it is
+
+- **WHEN** a decision keeps two similar variant labels separate
+- **THEN** the error log no longer lists the pair, and the published README lists the decision with its reason
+
+#### Scenario: Decision may not clear a role
+
+- **WHEN** a decision names an unresolved role cell
+- **THEN** the migration fails and points to `migration_resolutions.csv`
 
 ### Requirement: The master is pinned in tests
 

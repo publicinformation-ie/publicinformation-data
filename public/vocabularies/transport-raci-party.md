@@ -1,6 +1,6 @@
 # Transport RACI parties
 
-This vocabulary holds 20 terms. It is generated from the transport RACI master and is not edited by hand.
+This vocabulary holds 21 terms. It is generated from the transport RACI master and is not edited by hand.
 
 - Namespace: `https://data.publicinformation.ie/ns/transport-raci-party#`
 - JSON: [transport-raci-party.json](transport-raci-party.json)
@@ -31,4 +31,5 @@ A term URI has the form `https://data.publicinformation.ie/ns/transport-raci-par
 | `TP` | Third parties |
 | `AGS` | An Garda Síochána |
 | `RSA` | Road Safety Authority |
+| `HSE` | Health Service Executive |
 | `prescribed-bodies` | Prescribed bodies |

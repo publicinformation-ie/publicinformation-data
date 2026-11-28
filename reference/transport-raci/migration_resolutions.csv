@@ -1,22 +1,52 @@
-error_key,ruling,ruled_by,date
-RT-04.S7a|Part 8 route|C|prescribed bodies,prescribed-bodies,design (approved by Dave),2026-11-28
-"RT-05.S1|-|C|DoE, AT (SRTS)",DoE; AT (SRTS),design (approved by Dave),2026-11-28
-"RT-06.S1|-|C|DoE, AT (SRTS)",DoE; AT (SRTS),design (approved by Dave),2026-11-28
-RT-06.S7a|Part 8 route|C|prescribed bodies,prescribed-bodies,design (approved by Dave),2026-11-28
-RT-07.S7a|Part 8 route|C|prescribed bodies,prescribed-bodies,design (approved by Dave),2026-11-28
-"RT-09.S1|-|C|DoE, AT (SRTS)",DoE; AT (SRTS),design (approved by Dave),2026-11-28
-RT-09.S7a|Part 8 route|C|prescribed bodies,prescribed-bodies,design (approved by Dave),2026-11-28
-RT-10.S7c|-|C|prescribed bodies,prescribed-bodies,design (approved by Dave),2026-11-28
-RT-13.S7c|NTA-delivered (BusConnects)|C|prescribed bodies,prescribed-bodies,design (approved by Dave),2026-11-28
-RT-14a.S7a|Part 8 route|C|prescribed bodies,prescribed-bodies,design (approved by Dave),2026-11-28
-RT-29.S7a|Part 8 route|C|prescribed bodies,prescribed-bodies,design (approved by Dave),2026-11-28
-RT-42.S7a|Part 8 route|C|prescribed bodies,prescribed-bodies,design (approved by Dave),2026-11-28
-X-02.S14|Speed limits|A|GS,AGS,Dave,2026-11-28
-X-02.S14|Speed limits|R|GS,AGS,Dave,2026-11-28
-RT-24.S1|-|C|GS,RSA; AGS,Dave,2026-11-28
-RT-24.S13a|-|C|GS,RSA; AGS,Dave,2026-11-28
-RT-25.S13a|National managed roads|C|GS,RSA; AGS,Dave,2026-11-28
-RT-25.S13a|Other national roads|C|GS,RSA; AGS,Dave,2026-11-28
-RT-37.S13b|Road works speed limit order|C|GS,RSA; AGS,Dave,2026-11-28
-RT-40.S1|-|C|GS,RSA; AGS,Dave,2026-11-28
-RT-40.S13a|-|I|GS,RSA; AGS,Dave,2026-11-28
+error_key,ruling,ruled_by,date,evidence_id,source_ids,rationale
+RT-04.S7a|Part 8 route|C|prescribed bodies,prescribed-bodies,design (approved by Dave),2026-11-28,,,
+"RT-05.S1|-|C|DoE, AT (SRTS)",DoE; AT (SRTS),design (approved by Dave),2026-11-28,,,
+"RT-06.S1|-|C|DoE, AT (SRTS)",DoE; AT (SRTS),design (approved by Dave),2026-11-28,,,
+RT-06.S7a|Part 8 route|C|prescribed bodies,prescribed-bodies,design (approved by Dave),2026-11-28,,,
+RT-07.S7a|Part 8 route|C|prescribed bodies,prescribed-bodies,design (approved by Dave),2026-11-28,,,
+"RT-09.S1|-|C|DoE, AT (SRTS)",DoE; AT (SRTS),design (approved by Dave),2026-11-28,,,
+RT-09.S7a|Part 8 route|C|prescribed bodies,prescribed-bodies,design (approved by Dave),2026-11-28,,,
+RT-10.S7c|-|C|prescribed bodies,prescribed-bodies,design (approved by Dave),2026-11-28,,,
+RT-13.S7c|NTA-delivered (BusConnects)|C|prescribed bodies,prescribed-bodies,design (approved by Dave),2026-11-28,,,
+RT-14a.S7a|Part 8 route|C|prescribed bodies,prescribed-bodies,design (approved by Dave),2026-11-28,,,
+RT-29.S7a|Part 8 route|C|prescribed bodies,prescribed-bodies,design (approved by Dave),2026-11-28,,,
+RT-42.S7a|Part 8 route|C|prescribed bodies,prescribed-bodies,design (approved by Dave),2026-11-28,,,
+X-02.S14|Speed limits|A|GS,AGS,Dave,2026-11-28,,,
+X-02.S14|Speed limits|R|GS,AGS,Dave,2026-11-28,,,
+RT-24.S1|-|C|GS,RSA; AGS,Dave,2026-11-28,,,
+RT-24.S13a|-|C|GS,RSA; AGS,Dave,2026-11-28,,,
+RT-25.S13a|National managed roads|C|GS,RSA; AGS,Dave,2026-11-28,,,
+RT-25.S13a|Other national roads|C|GS,RSA; AGS,Dave,2026-11-28,,,
+RT-37.S13b|Road works speed limit order|C|GS,RSA; AGS,Dave,2026-11-28,,,
+RT-40.S1|-|C|GS,RSA; AGS,Dave,2026-11-28,,,
+RT-40.S13a|-|I|GS,RSA; AGS,Dave,2026-11-28,,,
+"RT-04.S10|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",AGS,Dave,2026-11-28,source,P4; P5,"The traffic signs manual says the Gardaí should be consulted before temporary traffic measures are deployed, and the road safety audit standard has the client invite them to the stage 3 and stage 4 site visits."
+"RT-04.S5|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",AGS,Dave,2026-11-28,source,P3,"Traffic management guidance lists An Garda Síochána among those to be consulted on traffic management schemes, but no statute requires it at the design stage."
+RT-04.S7b|s.38 route|C|GS,AGS,Dave,2026-11-28,source,P1; P2,"Garda consultation under s.38(3) of the 1994 Act applies only to prescribed classes of traffic calming measure and none has been prescribed, but s.95(3)(b) of the Road Traffic Act 1961 requires the road authority to consult the Garda Commissioner before providing regulatory signs and the Department's guidelines advise consulting the Gardaí on trial schemes."
+"RT-06.S10|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",AGS,Dave,2026-11-28,source,P4; P5,"The traffic signs manual says the Gardaí should be consulted before temporary traffic measures are deployed, and the road safety audit standard has the client invite them to the stage 3 and stage 4 site visits."
+"RT-06.S5|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",AGS,Dave,2026-11-28,source,P3,"Traffic management guidance lists An Garda Síochána among those to be consulted on traffic management schemes, but no statute requires it at the design stage."
+RT-06.S7b|s.38 route|C|GS,AGS,Dave,2026-11-28,source,P1; P2,"Garda consultation under s.38(3) of the 1994 Act applies only to prescribed classes of traffic calming measure and none has been prescribed, but s.95(3)(b) of the Road Traffic Act 1961 requires the road authority to consult the Garda Commissioner before providing regulatory signs and the Department's guidelines advise consulting the Gardaí on trial schemes."
+"RT-07.S10|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",AGS,Dave,2026-11-28,source,P4; P5,"The traffic signs manual says the Gardaí should be consulted before temporary traffic measures are deployed, and the road safety audit standard has the client invite them to the stage 3 and stage 4 site visits."
+"RT-07.S5|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",AGS,Dave,2026-11-28,source,P3,"Traffic management guidance lists An Garda Síochána among those to be consulted on traffic management schemes, but no statute requires it at the design stage."
+RT-07.S7b|s.38 route|C|GS,AGS,Dave,2026-11-28,source,P1; P2,"Garda consultation under s.38(3) of the 1994 Act applies only to prescribed classes of traffic calming measure and none has been prescribed, but s.95(3)(b) of the Road Traffic Act 1961 requires the road authority to consult the Garda Commissioner before providing regulatory signs and the Department's guidelines advise consulting the Gardaí on trial schemes."
+"RT-09.S10|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",AGS,Dave,2026-11-28,source,P4; P5,"The traffic signs manual says the Gardaí should be consulted before temporary traffic measures are deployed, and the road safety audit standard has the client invite them to the stage 3 and stage 4 site visits."
+"RT-09.S5|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",AGS,Dave,2026-11-28,source,P3,"Traffic management guidance lists An Garda Síochána among those to be consulted on traffic management schemes, but no statute requires it at the design stage."
+RT-09.S7b|s.38 route|C|GS,AGS,Dave,2026-11-28,source,P1; P2,"Garda consultation under s.38(3) of the 1994 Act applies only to prescribed classes of traffic calming measure and none has been prescribed, but s.95(3)(b) of the Road Traffic Act 1961 requires the road authority to consult the Garda Commissioner before providing regulatory signs and the Department's guidelines advise consulting the Gardaí on trial schemes."
+RT-10.S13a|-|I|GS,AGS,Dave,2026-11-28,statute,P7,Article 4(b) of S.I. 362 of 2006 requires a council to send each draft bye-law notice to the Garda Superintendent of every district where the bye-law would apply.
+"RT-14a.S10|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",AGS,Dave,2026-11-28,source,P4; P5,"The traffic signs manual says the Gardaí should be consulted before temporary traffic measures are deployed, and the road safety audit standard has the client invite them to the stage 3 and stage 4 site visits."
+RT-14a.S13b|-|C|GS,AGS,Dave,2026-11-28,source,P8,"NTA guidance says the road authority should consult An Garda Síochána on bus stop locations, although the statute names only the bus operator as a consultee."
+"RT-14a.S5|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",AGS,Dave,2026-11-28,source,P3,"Traffic management guidance lists An Garda Síochána among those to be consulted on traffic management schemes, but no statute requires it at the design stage."
+RT-14a.S7b|s.38 route|C|GS,AGS,Dave,2026-11-28,source,P1; P2,"Garda consultation under s.38(3) of the 1994 Act applies only to prescribed classes of traffic calming measure and none has been prescribed, but s.95(3)(b) of the Road Traffic Act 1961 requires the road authority to consult the Garda Commissioner before providing regulatory signs and the Department's guidelines advise consulting the Gardaí on trial schemes."
+RT-26.S13a|-|C|GS,RSA; AGS,Dave,2026-11-28,source,P9; P7,"The Department's advice note advises councils to work closely with the Road Safety Authority and An Garda Síochána on safety when setting up shared micromobility services, and the Gardaí are sent each draft bye-law."
+RT-26.S14|-|R|GS,AGS,Dave,2026-11-28,statute,P6; P7,"Under s.204(1) of the Local Government Act 2001 a member of the Garda Síochána is an authorised person who may arrest without warrant for a bye-law offence, and under article 8 of S.I. 362 of 2006 an authorised person may sign a fixed payment notice for the council."
+"RT-29.S10|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",AGS,Dave,2026-11-28,source,P4; P5,"The traffic signs manual says the Gardaí should be consulted before temporary traffic measures are deployed, and the road safety audit standard has the client invite them to the stage 3 and stage 4 site visits."
+"RT-29.S5|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",AGS,Dave,2026-11-28,source,P3,"Traffic management guidance lists An Garda Síochána among those to be consulted on traffic management schemes, but no statute requires it at the design stage."
+RT-29.S7b|s.38 route|C|GS,AGS,Dave,2026-11-28,source,P1; P2,"Garda consultation under s.38(3) of the 1994 Act applies only to prescribed classes of traffic calming measure and none has been prescribed, but s.95(3)(b) of the Road Traffic Act 1961 requires the road authority to consult the Garda Commissioner before providing regulatory signs and the Department's guidelines advise consulting the Gardaí on trial schemes."
+RT-36.S13b|-|C|GS,AGS,Dave,2026-11-28,source,S91; P4,The road opening guidelines and the traffic signs manual say An Garda Síochána is consulted on temporary closures and must be consulted before temporary traffic lights or stop-go control are used.
+RT-37.S11|Council works|C|GS,AGS,Dave,2026-11-28,source,P4,The traffic signs manual says An Garda Síochána should be consulted before temporary traffic measures are deployed and must be consulted before stop-go control or temporary signals.
+RT-37.S11|Event under s.75 order|C|GS,AGS,Dave,2026-11-28,source,P4; S150; S152,"The Roads Regulations 1994 require the Gardaí to be notified of a closure, the council's event guidance asks for a Garda letter where they are part of the event plan, and the traffic signs manual says they should be consulted before temporary traffic measures."
+RT-37.S13b|s.75 closure order (works or events)|C|GS,AGS,Dave,2026-11-28,source,S150; S91; S152,"The Roads Regulations 1994 require written notice of a closure to the Garda Superintendent and the road opening guidelines say closures involve input from An Garda Síochána, so consultation rests on guidance rather than statute."
+"RT-42.S10|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",AGS,Dave,2026-11-28,source,P4; P5,"The traffic signs manual says the Gardaí should be consulted before temporary traffic measures are deployed, and the road safety audit standard has the client invite them to the stage 3 and stage 4 site visits."
+"RT-42.S5|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",AGS,Dave,2026-11-28,source,P3,"Traffic management guidance lists An Garda Síochána among those to be consulted on traffic management schemes, but no statute requires it at the design stage."
+RT-42.S7b|s.38 route|C|GS,AGS,Dave,2026-11-28,source,P1; P2,"Garda consultation under s.38(3) of the 1994 Act applies only to prescribed classes of traffic calming measure and none has been prescribed, but s.95(3)(b) of the Road Traffic Act 1961 requires the road authority to consult the Garda Commissioner before providing regulatory signs and the Department's guidelines advise consulting the Gardaí on trial schemes."
+X-18.S13b|-|C|GS,AGS; HSE; NTA,Dave,2026-11-28,statute,P12; P11,"Regulation 9(1) of S.I. 468 of 2026 requires the council to consult the prescribed bodies, which regulation 2 defines as the Garda Chief Superintendent, the Health Service Executive, the National Transport Authority and any local, regional or planning authority, and the council is itself the licensing authority so it is not listed as a separate consultee."

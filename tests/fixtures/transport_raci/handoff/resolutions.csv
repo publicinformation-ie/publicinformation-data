@@ -1,2 +1,2 @@
-error_key,ruling,ruled_by,date
-"T-01.S1|-|C|DoE, AT (SRTS)",DoE; AT (SRTS),Test reviewer,2026-11-28
+error_key,ruling,ruled_by,date,evidence_id,source_ids,rationale
+"T-01.S1|-|C|DoE, AT (SRTS)",DoE; AT (SRTS),Test reviewer,2026-11-28,,,
