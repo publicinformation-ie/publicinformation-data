@@ -1,0 +1,179 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://data.publicinformation.ie/ns/transport-subdomain>
+    a skos:ConceptScheme ;
+    dct:title "Transport subdomains (retired)"@en ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:description "Retired transport subdomain vocabulary. Each term is deprecated and linked to the transport-activity grouping that replaces it. The CSV and its CSVW metadata stay published unchanged at their existing URLs."@en ;
+    skos:hasTopConcept <https://data.publicinformation.ie/ns/transport-subdomain#infra/national-roads>, <https://data.publicinformation.ie/ns/transport-subdomain#infra/regional-local-roads>, <https://data.publicinformation.ie/ns/transport-subdomain#infra/active-travel>, <https://data.publicinformation.ie/ns/transport-subdomain#infra/bus>, <https://data.publicinformation.ie/ns/transport-subdomain#infra/heavy-rail>, <https://data.publicinformation.ie/ns/transport-subdomain#infra/light-rail>, <https://data.publicinformation.ie/ns/transport-subdomain#infra/kerbside>, <https://data.publicinformation.ie/ns/transport-subdomain#infra/ports-airfields>, <https://data.publicinformation.ie/ns/transport-subdomain#svc/pso-bus>, <https://data.publicinformation.ie/ns/transport-subdomain#svc/commercial-bus>, <https://data.publicinformation.ie/ns/transport-subdomain#svc/rail>, <https://data.publicinformation.ie/ns/transport-subdomain#svc/light-rail>, <https://data.publicinformation.ie/ns/transport-subdomain#svc/spsv>, <https://data.publicinformation.ie/ns/transport-subdomain#svc/school-transport>, <https://data.publicinformation.ie/ns/transport-subdomain#svc/shared-mobility>, <https://data.publicinformation.ie/ns/transport-subdomain#users/vehicles-drivers>, <https://data.publicinformation.ie/ns/transport-subdomain#users/traffic-law> .
+
+<https://data.publicinformation.ie/ns/transport-subdomain#infra/national-roads>
+    a skos:Concept ;
+    skos:notation "infra/national-roads"@en ;
+    skos:prefLabel "National roads"@en ;
+    skos:definition "national roads and motorways"@en ;
+    skos:note "Retired. Replaced by the transport-activity grouping RT1."@en ;
+    owl:deprecated true ;
+    dct:isReplacedBy <https://data.publicinformation.ie/ns/transport-activity#RT1> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-subdomain> .
+
+<https://data.publicinformation.ie/ns/transport-subdomain#infra/regional-local-roads>
+    a skos:Concept ;
+    skos:notation "infra/regional-local-roads"@en ;
+    skos:prefLabel "Regional and local roads"@en ;
+    skos:definition "regional and local roads"@en ;
+    skos:note "Retired. Replaced by the transport-activity grouping RT1."@en ;
+    owl:deprecated true ;
+    dct:isReplacedBy <https://data.publicinformation.ie/ns/transport-activity#RT1> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-subdomain> .
+
+<https://data.publicinformation.ie/ns/transport-subdomain#infra/active-travel>
+    a skos:Concept ;
+    skos:notation "infra/active-travel"@en ;
+    skos:prefLabel "Active travel infrastructure"@en ;
+    skos:definition "footpaths, cycle lanes and crossings"@en ;
+    skos:note "Retired. Replaced by the transport-activity grouping RT2, RT3."@en ;
+    owl:deprecated true ;
+    dct:isReplacedBy <https://data.publicinformation.ie/ns/transport-activity#RT2>, <https://data.publicinformation.ie/ns/transport-activity#RT3> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-subdomain> .
+
+<https://data.publicinformation.ie/ns/transport-subdomain#infra/bus>
+    a skos:Concept ;
+    skos:notation "infra/bus"@en ;
+    skos:prefLabel "Bus infrastructure"@en ;
+    skos:definition "bus stops, shelters and bus lanes"@en ;
+    skos:note "Retired. Replaced by the transport-activity grouping RT4."@en ;
+    owl:deprecated true ;
+    dct:isReplacedBy <https://data.publicinformation.ie/ns/transport-activity#RT4> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-subdomain> .
+
+<https://data.publicinformation.ie/ns/transport-subdomain#infra/heavy-rail>
+    a skos:Concept ;
+    skos:notation "infra/heavy-rail"@en ;
+    skos:prefLabel "Heavy rail infrastructure"@en ;
+    skos:definition "railway lines and stations"@en ;
+    skos:note "Retired. Replaced by the transport-activity grouping RL1."@en ;
+    owl:deprecated true ;
+    dct:isReplacedBy <https://data.publicinformation.ie/ns/transport-activity#RL1> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-subdomain> .
+
+<https://data.publicinformation.ie/ns/transport-subdomain#infra/light-rail>
+    a skos:Concept ;
+    skos:notation "infra/light-rail"@en ;
+    skos:prefLabel "Light rail infrastructure"@en ;
+    skos:definition "Luas and metro lines"@en ;
+    skos:note "Retired. Replaced by the transport-activity grouping RL2."@en ;
+    owl:deprecated true ;
+    dct:isReplacedBy <https://data.publicinformation.ie/ns/transport-activity#RL2> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-subdomain> .
+
+<https://data.publicinformation.ie/ns/transport-subdomain#infra/kerbside>
+    a skos:Concept ;
+    skos:notation "infra/kerbside"@en ;
+    skos:prefLabel "Kerbside"@en ;
+    skos:definition "parking, taxi ranks, loading bays and charging points"@en ;
+    skos:note "Retired. Replaced by the transport-activity grouping RT7."@en ;
+    owl:deprecated true ;
+    dct:isReplacedBy <https://data.publicinformation.ie/ns/transport-activity#RT7> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-subdomain> .
+
+<https://data.publicinformation.ie/ns/transport-subdomain#infra/ports-airfields>
+    a skos:Concept ;
+    skos:notation "infra/ports-airfields"@en ;
+    skos:prefLabel "Ports and airfields"@en ;
+    skos:definition "ports and airports"@en ;
+    skos:note "Retired. Replaced by the transport-activity grouping WT1, AT1."@en ;
+    owl:deprecated true ;
+    dct:isReplacedBy <https://data.publicinformation.ie/ns/transport-activity#WT1>, <https://data.publicinformation.ie/ns/transport-activity#AT1> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-subdomain> .
+
+<https://data.publicinformation.ie/ns/transport-subdomain#svc/pso-bus>
+    a skos:Concept ;
+    skos:notation "svc/pso-bus"@en ;
+    skos:prefLabel "PSO bus services"@en ;
+    skos:definition "subsidised bus services"@en ;
+    skos:note "Retired. Replaced by the transport-activity grouping RT5."@en ;
+    owl:deprecated true ;
+    dct:isReplacedBy <https://data.publicinformation.ie/ns/transport-activity#RT5> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-subdomain> .
+
+<https://data.publicinformation.ie/ns/transport-subdomain#svc/commercial-bus>
+    a skos:Concept ;
+    skos:notation "svc/commercial-bus"@en ;
+    skos:prefLabel "Commercial bus services"@en ;
+    skos:definition "private bus and coach services"@en ;
+    skos:note "Retired. Replaced by the transport-activity grouping RT5."@en ;
+    owl:deprecated true ;
+    dct:isReplacedBy <https://data.publicinformation.ie/ns/transport-activity#RT5> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-subdomain> .
+
+<https://data.publicinformation.ie/ns/transport-subdomain#svc/rail>
+    a skos:Concept ;
+    skos:notation "svc/rail"@en ;
+    skos:prefLabel "Rail services"@en ;
+    skos:definition "train services"@en ;
+    skos:note "Retired. Replaced by the transport-activity grouping RL3."@en ;
+    owl:deprecated true ;
+    dct:isReplacedBy <https://data.publicinformation.ie/ns/transport-activity#RL3> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-subdomain> .
+
+<https://data.publicinformation.ie/ns/transport-subdomain#svc/light-rail>
+    a skos:Concept ;
+    skos:notation "svc/light-rail"@en ;
+    skos:prefLabel "Light rail services"@en ;
+    skos:definition "Luas and metro services"@en ;
+    skos:note "Retired. No transport-activity grouping replaces it: The current model has urban rapid transit infrastructure (RL2) but no services grouping, so this retired term has no grouping equivalent."@en ;
+    owl:deprecated true ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-subdomain> .
+
+<https://data.publicinformation.ie/ns/transport-subdomain#svc/spsv>
+    a skos:Concept ;
+    skos:notation "svc/spsv"@en ;
+    skos:prefLabel "Small public service vehicles"@en ;
+    skos:definition "taxis, hackneys and limousines"@en ;
+    skos:note "Retired. Replaced by the transport-activity grouping RT5."@en ;
+    owl:deprecated true ;
+    dct:isReplacedBy <https://data.publicinformation.ie/ns/transport-activity#RT5> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-subdomain> .
+
+<https://data.publicinformation.ie/ns/transport-subdomain#svc/school-transport>
+    a skos:Concept ;
+    skos:notation "svc/school-transport"@en ;
+    skos:prefLabel "School transport"@en ;
+    skos:definition "school buses"@en ;
+    skos:note "Retired. Replaced by the transport-activity grouping X6."@en ;
+    owl:deprecated true ;
+    dct:isReplacedBy <https://data.publicinformation.ie/ns/transport-activity#X6> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-subdomain> .
+
+<https://data.publicinformation.ie/ns/transport-subdomain#svc/shared-mobility>
+    a skos:Concept ;
+    skos:notation "svc/shared-mobility"@en ;
+    skos:prefLabel "Shared mobility"@en ;
+    skos:definition "bike, scooter and car sharing"@en ;
+    skos:note "Retired. Replaced by the transport-activity grouping RT5."@en ;
+    owl:deprecated true ;
+    dct:isReplacedBy <https://data.publicinformation.ie/ns/transport-activity#RT5> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-subdomain> .
+
+<https://data.publicinformation.ie/ns/transport-subdomain#users/vehicles-drivers>
+    a skos:Concept ;
+    skos:notation "users/vehicles-drivers"@en ;
+    skos:prefLabel "Vehicles and drivers"@en ;
+    skos:definition "driving licences and vehicle tests"@en ;
+    skos:note "Retired. Replaced by the transport-activity grouping RT8."@en ;
+    owl:deprecated true ;
+    dct:isReplacedBy <https://data.publicinformation.ie/ns/transport-activity#RT8> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-subdomain> .
+
+<https://data.publicinformation.ie/ns/transport-subdomain#users/traffic-law>
+    a skos:Concept ;
+    skos:notation "users/traffic-law"@en ;
+    skos:prefLabel "Traffic law"@en ;
+    skos:definition "road traffic law"@en ;
+    skos:note "Retired. Replaced by the transport-activity grouping X1."@en ;
+    owl:deprecated true ;
+    dct:isReplacedBy <https://data.publicinformation.ie/ns/transport-activity#X1> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-subdomain> .

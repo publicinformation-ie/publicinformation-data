@@ -1,25 +1,27 @@
 {
   "metadata": {
     "source": ".claude/skills/transport-governance/vocabulary.md#Subdomains",
-    "retrieved_date": "2026-11-26"
+    "retrieved_date": "2026-11-26",
+    "frozen": true,
+    "frozen_reason": "The transport subdomain vocabulary is retired (see public/vocabularies/transport-subdomain.ttl). extract_spc_items still reads this list as its closed tag vocabulary, so the file stays, but it must not gain, lose or rename a term. The export maps each term to its transport-activity groupings through grouping_ids; an unmapped tag fails the export."
   },
   "subdomains": [
-    {"id": "infra/national-roads", "term": "National roads", "plain_label": "national roads and motorways"},
-    {"id": "infra/regional-local-roads", "term": "Regional and local roads", "plain_label": "regional and local roads"},
-    {"id": "infra/active-travel", "term": "Active travel infrastructure", "plain_label": "footpaths, cycle lanes and crossings"},
-    {"id": "infra/bus", "term": "Bus infrastructure", "plain_label": "bus stops, shelters and bus lanes"},
-    {"id": "infra/heavy-rail", "term": "Heavy rail infrastructure", "plain_label": "railway lines and stations"},
-    {"id": "infra/light-rail", "term": "Light rail infrastructure", "plain_label": "Luas and metro lines"},
-    {"id": "infra/kerbside", "term": "Kerbside", "plain_label": "parking, taxi ranks, loading bays and charging points"},
-    {"id": "infra/ports-airfields", "term": "Ports and airfields", "plain_label": "ports and airports"},
-    {"id": "svc/pso-bus", "term": "PSO bus services", "plain_label": "subsidised bus services"},
-    {"id": "svc/commercial-bus", "term": "Commercial bus services", "plain_label": "private bus and coach services"},
-    {"id": "svc/rail", "term": "Rail services", "plain_label": "train services"},
-    {"id": "svc/light-rail", "term": "Light rail services", "plain_label": "Luas and metro services"},
-    {"id": "svc/spsv", "term": "Small public service vehicles", "plain_label": "taxis, hackneys and limousines"},
-    {"id": "svc/school-transport", "term": "School transport", "plain_label": "school buses"},
-    {"id": "svc/shared-mobility", "term": "Shared mobility", "plain_label": "bike, scooter and car sharing"},
-    {"id": "users/vehicles-drivers", "term": "Vehicles and drivers", "plain_label": "driving licences and vehicle tests"},
-    {"id": "users/traffic-law", "term": "Traffic law", "plain_label": "road traffic law"}
+    {"id": "infra/national-roads", "term": "National roads", "plain_label": "national roads and motorways", "grouping_ids": ["RT1"]},
+    {"id": "infra/regional-local-roads", "term": "Regional and local roads", "plain_label": "regional and local roads", "grouping_ids": ["RT1"]},
+    {"id": "infra/active-travel", "term": "Active travel infrastructure", "plain_label": "footpaths, cycle lanes and crossings", "grouping_ids": ["RT2", "RT3"]},
+    {"id": "infra/bus", "term": "Bus infrastructure", "plain_label": "bus stops, shelters and bus lanes", "grouping_ids": ["RT4"]},
+    {"id": "infra/heavy-rail", "term": "Heavy rail infrastructure", "plain_label": "railway lines and stations", "grouping_ids": ["RL1"]},
+    {"id": "infra/light-rail", "term": "Light rail infrastructure", "plain_label": "Luas and metro lines", "grouping_ids": ["RL2"]},
+    {"id": "infra/kerbside", "term": "Kerbside", "plain_label": "parking, taxi ranks, loading bays and charging points", "grouping_ids": ["RT7"]},
+    {"id": "infra/ports-airfields", "term": "Ports and airfields", "plain_label": "ports and airports", "grouping_ids": ["WT1", "AT1"]},
+    {"id": "svc/pso-bus", "term": "PSO bus services", "plain_label": "subsidised bus services", "grouping_ids": ["RT5"]},
+    {"id": "svc/commercial-bus", "term": "Commercial bus services", "plain_label": "private bus and coach services", "grouping_ids": ["RT5"]},
+    {"id": "svc/rail", "term": "Rail services", "plain_label": "train services", "grouping_ids": ["RL3"]},
+    {"id": "svc/light-rail", "term": "Light rail services", "plain_label": "Luas and metro services", "grouping_ids": [], "no_replacement_reason": "The current model has urban rapid transit infrastructure (RL2) but no services grouping, so this retired term has no grouping equivalent."},
+    {"id": "svc/spsv", "term": "Small public service vehicles", "plain_label": "taxis, hackneys and limousines", "grouping_ids": ["RT5"]},
+    {"id": "svc/school-transport", "term": "School transport", "plain_label": "school buses", "grouping_ids": ["X6"]},
+    {"id": "svc/shared-mobility", "term": "Shared mobility", "plain_label": "bike, scooter and car sharing", "grouping_ids": ["RT5"]},
+    {"id": "users/vehicles-drivers", "term": "Vehicles and drivers", "plain_label": "driving licences and vehicle tests", "grouping_ids": ["RT8"]},
+    {"id": "users/traffic-law", "term": "Traffic law", "plain_label": "road traffic law", "grouping_ids": ["X1"]}
   ]
 }

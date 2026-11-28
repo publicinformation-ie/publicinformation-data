@@ -1,3 +1,4 @@
+import csv
 import json
 import re
 from pathlib import Path
@@ -6,7 +7,7 @@ PIPELINE = Path(__file__).resolve().parents[1]
 REPO = PIPELINE.parents[1]
 COFOG = PIPELINE / "reference" / "cofog_1999.json"
 SUBDOMAINS = PIPELINE / "reference" / "transport_subdomains.json"
-VOCABULARY = REPO / ".claude" / "skills" / "transport-governance" / "vocabulary.md"
+RETIRED_VOCABULARY = REPO / "public" / "vocabularies" / "transport-subdomain.csv"
 
 
 def _cofog():
@@ -47,24 +48,15 @@ def test_cofog_metadata_records_provenance():
     assert metadata["byte_size"] > 0
 
 
-def _vocabulary_subdomain_ids() -> set[str]:
-    text = VOCABULARY.read_text(encoding="utf-8")
-    section = text.split("## Subdomains", 1)[1].split("\n## ", 1)[0]
-    ids = set()
-    for line in section.splitlines():
-        match = re.match(r"\|\s*([a-z]+/[a-z-]+)\s*\|", line)
-        if match:
-            ids.add(match.group(1))
-    return ids
+def _retired_vocabulary_subdomain_ids() -> set[str]:
+    with RETIRED_VOCABULARY.open(encoding="utf-8", newline="") as handle:
+        return {row["notation"] for row in csv.DictReader(handle)}
 
 
-def test_subdomain_ids_match_the_governance_vocabulary():
-    if not VOCABULARY.exists():
-        import pytest
-
-        pytest.skip("the transport-governance vocabulary is not present")
+def test_subdomain_ids_match_the_retired_vocabulary():
     data = json.loads(SUBDOMAINS.read_text())
-    assert {entry["id"] for entry in data["subdomains"]} == _vocabulary_subdomain_ids()
+    assert {entry["id"] for entry in data["subdomains"]} == \
+        _retired_vocabulary_subdomain_ids()
 
 
 def test_subdomains_have_terms_and_plain_labels():

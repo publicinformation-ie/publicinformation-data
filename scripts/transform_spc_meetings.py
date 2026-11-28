@@ -4,7 +4,7 @@
 Reads pipelines/spc_pipeline/steps/export_spc_meetings/output.json and the
 authoritative Public Bodies data, then writes JSON-LD, CSV and CSVW metadata
 for meetings, people, attendance, items and decisions, the verbatim Markdown
-minutes and a README to public/v1.2.0/spc-meetings/, mirrors that directory to
+minutes and a README to public/v2.0.0/spc-meetings/, mirrors that directory to
 public/latest/spc-meetings/, and stamps dct:modified only when the payload
 changes.
 
@@ -27,7 +27,9 @@ from src.lib.dataset_publish import render_jsonld, stamp_if_changed, stamp_modif
 EXPORT_PATH = "pipelines/spc_pipeline/steps/export_spc_meetings/output.json"
 FIND_PUBLIC_BODIES_PATH = "pipelines/foi_pipeline/steps/find_public_bodies/output.json"
 SLUG_SEED_PATH = "pipelines/foi_pipeline/steps/db_upload/slug_seed.json"
-OUTPUT_DIR = "public/v1.2.0/spc-meetings"
+CROSSWALK_PATH = "pipelines/spc_pipeline/reference/transport_subdomains.json"
+ACTIVITY_VOCABULARY_PATH = "public/vocabularies/transport-activity.csv"
+OUTPUT_DIR = "public/v2.0.0/spc-meetings"
 LATEST_DIR = "public/latest/spc-meetings"
 TTL_PATH = "public/catalog/dataset-spc-meetings.ttl"
 
@@ -43,20 +45,20 @@ CSV_FIELDS = {
     "attendance": ["id", "meeting_id", "meeting_date", "person_id", "category", "role",
                    "status", "mode", "presented"],
     "items": ["id", "item_id", "meeting_id", "item_number", "item_key", "title", "text",
-              "is_minutes_approval", "topics_published", "cofog", "subdomains",
+              "is_minutes_approval", "topics_published", "cofog", "groupings",
               "procedural"],
     "decisions": ["id", "decision_id", "meeting_id", "meeting_date", "item_number",
                   "item_key", "decision_text", "decision_type", "proposer", "seconder",
                   "proposer_unresolved", "seconder_unresolved"],
 }
 
-ARRAY_FIELDS = {"cofog", "subdomains"}
+ARRAY_FIELDS = {"cofog", "groupings"}
 
 CSVW_DESCRIPTIONS = {
     "meetings": "One SPC meeting, its date and its source minutes.",
     "people": "One person recorded in SPC attendance.",
     "attendance": "One person's attendance at one meeting.",
-    "items": "One agenda item with its COFOG 1999 and transport-subdomain topics.",
+    "items": "One agenda item with its COFOG 1999 and transport-activity topics.",
     "decisions": "One official decision, as a verbatim quote.",
 }
 
@@ -96,7 +98,7 @@ FIELD_SPECS = {
     "is_minutes_approval": ("boolean", "true for approval of the previous meeting's minutes"),
     "topics_published": ("boolean", "false when the item's topics were withheld"),
     "cofog": ("string", "Pipe-separated COFOG 1999 codes, primary first; empty when withheld"),
-    "subdomains": ("string", "Pipe-separated transport subdomains; empty for non-transport items"),
+    "groupings": ("string", "Pipe-separated transport-activity groupings; empty for non-transport items"),
     "procedural": ("boolean", "true for a purely procedural item; empty when withheld"),
     "decision_id": ("string", "Stable decision identifier, <meeting_id>/d<NN>"),
     "decision_text": ("string", "Verbatim contiguous quote from the item text"),
@@ -131,9 +133,79 @@ def _body_uri_for(body_id: int, lookup: dict[int, str]) -> str:
         ) from None
 
 
+def load_crosswalk() -> dict[str, tuple[str, ...]]:
+    """Retired transport subdomain -> transport-activity groupings, in file order."""
+    data = json.loads(Path(CROSSWALK_PATH).read_text(encoding="utf-8"))
+    crosswalk: dict[str, tuple[str, ...]] = {}
+    for entry in data["subdomains"]:
+        # Deduplicate while keeping the crosswalk's order, so a repeated grouping
+        # cannot appear twice in one item.
+        crosswalk[entry["id"]] = tuple(dict.fromkeys(entry.get("grouping_ids", [])))
+    return crosswalk
+
+
+def load_crosswalk_reasons() -> dict[str, str]:
+    """Retired terms the current model has no replacement grouping for."""
+    data = json.loads(Path(CROSSWALK_PATH).read_text(encoding="utf-8"))
+    return {entry["id"]: entry["no_replacement_reason"]
+            for entry in data["subdomains"] if entry.get("no_replacement_reason")}
+
+
+def load_activity_notations() -> set[str]:
+    with Path(ACTIVITY_VOCABULARY_PATH).open(encoding="utf-8", newline="") as handle:
+        return {row["notation"] for row in csv.DictReader(handle)}
+
+
+def groupings_for(subdomains: list[str] | None,
+                  crosswalk: dict[str, tuple[str, ...]] | None = None,
+                  activity_notations: set[str] | None = None,
+                  reasons: dict[str, str] | None = None) -> list[str] | None:
+    """Map the classification step's subdomains to published activity groupings.
+
+    A subdomain the crosswalk does not hold, a subdomain recorded with no
+    replacement grouping, or a grouping the published vocabulary does not
+    define stops the export: the tag is never dropped or coerced onto a
+    neighbouring grouping. ``None`` (topics withheld) stays ``None``; an empty
+    list stays empty.
+    """
+    if subdomains is None:
+        return None
+    crosswalk = load_crosswalk() if crosswalk is None else crosswalk
+    if activity_notations is None:
+        activity_notations = load_activity_notations()
+    groupings: list[str] = []
+    for subdomain in subdomains:
+        try:
+            mapped = crosswalk[subdomain]
+        except KeyError:
+            raise ValueError(
+                f"transport subdomain {subdomain!r} has no row in {CROSSWALK_PATH}; "
+                f"the export cannot tag this item"
+            ) from None
+        if not mapped:
+            if reasons is None:
+                reasons = load_crosswalk_reasons()
+            raise ValueError(
+                f"transport subdomain {subdomain!r} has no replacement grouping: "
+                f"{reasons.get(subdomain, 'no reason recorded')}. The export cannot "
+                f"tag this item."
+            )
+        for grouping in mapped:
+            if grouping not in activity_notations:
+                raise ValueError(
+                    f"transport subdomain {subdomain!r} maps to {grouping!r}, which "
+                    f"{ACTIVITY_VOCABULARY_PATH} does not define"
+                )
+            if grouping not in groupings:
+                groupings.append(grouping)
+    return groupings
+
+
 def build_records(export: dict, body_slug_lookup: dict[int, str]) -> dict[str, list[dict]]:
     """Add @id/@type and resolved public-body URIs to every exported record."""
     records: dict[str, list[dict]] = {kind: [] for kind in KINDS}
+    crosswalk = load_crosswalk()
+    activity_notations = load_activity_notations()
     for kind in KINDS:
         for row in export.get(kind, []):
             record = dict(row)
@@ -142,6 +214,9 @@ def build_records(export: dict, body_slug_lookup: dict[int, str]) -> dict[str, l
             if "public_body_id" in record:
                 record["public_body"] = _body_uri_for(
                     int(record["public_body_id"]), body_slug_lookup)
+            if kind == "items":
+                record["groupings"] = groupings_for(
+                    record.pop("subdomains", None), crosswalk, activity_notations)
             records[kind].append(record)
 
     # The export identifies each record by its canonical key; derive the @id
@@ -324,7 +399,7 @@ def readme_bytes(export: dict, report: dict) -> bytes:
         "",
         "## Versioning",
         "",
-        "This directory mirrors the newest immutable release, `../../v1.2.0/spc-meetings/`",
+        "This directory mirrors the newest immutable release, `../../v2.0.0/spc-meetings/`",
         "(earlier releases stay in place). `owl:versionInfo` is bumped by hand for a breaking",
         "or additive schema change; `dct:modified` in the catalogue record changes only when",
         "the published content changes.",
@@ -343,7 +418,7 @@ def readme_bytes(export: dict, report: dict) -> bytes:
         "[JSON Schema](../../schemas/spc-meetings.schema.json), "
         "[DCAT-AP catalogue record](../../catalog/dataset-spc-meetings.ttl), and the "
         "vocabularies [`cofog-1999`](../../vocabularies/cofog-1999.md), "
-        "[`transport-subdomain`](../../vocabularies/transport-subdomain.csv), "
+        "[`transport-activity`](../../vocabularies/transport-activity.md), "
         "[`spc-attendance-status`](../../vocabularies/spc-attendance-status.csv), "
         "[`spc-attendance-mode`](../../vocabularies/spc-attendance-mode.csv), "
         "[`spc-attendee-category`](../../vocabularies/spc-attendee-category.csv), "
@@ -386,10 +461,10 @@ def readme_bytes(export: dict, report: dict) -> bytes:
         "  a printed name could not be resolved to the committed register. That meeting has",
         "  no attendance rows.",
         "- `topics_published` is false when an item's topics were withheld; `cofog`,",
-        "  `subdomains` and `procedural` are then null.",
+        "  `groupings` and `procedural` are then null.",
         "- In JSON-LD, null means withheld and `[]` means genuinely none. In CSV both are an",
         "  empty cell, so read `topics_published` to tell them apart.",
-        "- `cofog` and `subdomains` are pipe-joined in CSV (`a|b`); CSVW declares",
+        "- `cofog` and `groupings` are pipe-joined in CSV (`a|b`); CSVW declares",
         "  `\"separator\": \"|\"`. They are arrays in JSON-LD.",
         "- `proposer` and `seconder` are empty when the minutes name no one, or the name",
         "  could not be confirmed; the matching `*_unresolved` flag is true in the second",
@@ -421,10 +496,15 @@ def readme_bytes(export: dict, report: dict) -> bytes:
         "",
         *source_lines(export),
         "",
-        "COFOG 1999 is the UN Statistics Division classification; transport subdomains",
-        "follow the transport-governance vocabulary. The topics, decisions and attendance",
-        "tables are derived by PublicInformation.ie (an LLM proposes topics and decisions;",
-        "each decision is checked to be a verbatim quote).",
+        "COFOG 1999 is the UN Statistics Division classification. Transport items carry",
+        "`transport-activity` groupings. Each grouping is mapped, through a committed",
+        "crosswalk, from the transport subdomain tags the classification step recorded, so",
+        "the groupings are coarser than the earlier subdomain tagging: national and regional",
+        "roads both become `RT1`, and an active-travel item is tagged both `RT2` and `RT3`.",
+        "The retired `transport-subdomain` vocabulary stays published for readers of earlier",
+        "releases. The topics, decisions and attendance tables are derived by",
+        "PublicInformation.ie (an LLM proposes topics and decisions; each decision is",
+        "checked to be a verbatim quote).",
         "",
         "The derived dataset is published under CC BY 4.0. Each council's own re-use",
         "terms for the underlying minutes have not been independently confirmed against",

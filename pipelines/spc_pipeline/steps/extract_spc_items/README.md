@@ -3,6 +3,13 @@
 One paid model call per meeting extracts official decisions and COFOG 1999 /
 transport-subdomain topics from the rendered agenda items.
 
+The transport subdomain vocabulary is retired. The step keeps emitting those
+tags as its closed list; `scripts/transform_spc_meetings.py` maps each tag to
+`transport-activity` groupings through `reference/transport_subdomains.json`
+when it publishes, so the published dataset carries `groupings`, never
+`subdomains`. Re-running this step is never needed to change a tag: a tag the
+crosswalk does not hold fails the export rather than being dropped.
+
 ## Prompt
 
 `PROMPT_VERSION = "spc-items-v4"`. The prompt contains:

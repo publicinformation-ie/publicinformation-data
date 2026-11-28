@@ -14,7 +14,7 @@ as Markdown.
 
 ## Versioning
 
-This directory mirrors the newest immutable release, `../../v1.2.0/spc-meetings/`
+This directory mirrors the newest immutable release, `../../v2.0.0/spc-meetings/`
 (earlier releases stay in place). `owl:versionInfo` is bumped by hand for a breaking
 or additive schema change; `dct:modified` in the catalogue record changes only when
 the published content changes.
@@ -28,7 +28,7 @@ the published content changes.
 - `decisions` – official decisions as contiguous quotes from the minutes
 - `minutes/<council>/<committee>/<date>.md` – the verbatim minutes; [`minutes/index.md`](minutes/index.md) lists them
 
-Each table is published as JSON-LD and CSV with CSVW metadata (`<table>.csv-metadata.json`). Related: [JSON Schema](../../schemas/spc-meetings.schema.json), [DCAT-AP catalogue record](../../catalog/dataset-spc-meetings.ttl), and the vocabularies [`cofog-1999`](../../vocabularies/cofog-1999.md), [`transport-subdomain`](../../vocabularies/transport-subdomain.csv), [`spc-attendance-status`](../../vocabularies/spc-attendance-status.csv), [`spc-attendance-mode`](../../vocabularies/spc-attendance-mode.csv), [`spc-attendee-category`](../../vocabularies/spc-attendee-category.csv), [`spc-decision-type`](../../vocabularies/spc-decision-type.csv) and [`spc-text-source`](../../vocabularies/spc-text-source.csv) under [`../../vocabularies/`](../../vocabularies/).
+Each table is published as JSON-LD and CSV with CSVW metadata (`<table>.csv-metadata.json`). Related: [JSON Schema](../../schemas/spc-meetings.schema.json), [DCAT-AP catalogue record](../../catalog/dataset-spc-meetings.ttl), and the vocabularies [`cofog-1999`](../../vocabularies/cofog-1999.md), [`transport-activity`](../../vocabularies/transport-activity.md), [`spc-attendance-status`](../../vocabularies/spc-attendance-status.csv), [`spc-attendance-mode`](../../vocabularies/spc-attendance-mode.csv), [`spc-attendee-category`](../../vocabularies/spc-attendee-category.csv), [`spc-decision-type`](../../vocabularies/spc-decision-type.csv) and [`spc-text-source`](../../vocabularies/spc-text-source.csv) under [`../../vocabularies/`](../../vocabularies/).
 
 ## Tables and fields
 
@@ -97,7 +97,7 @@ A `decision_id` (`<meeting_id>/d<NN>`) is allocated once and never changes or is
 | `is_minutes_approval` | boolean | true for approval of the previous meeting's minutes |
 | `topics_published` | boolean | false when the item's topics were withheld |
 | `cofog` | string | Pipe-separated COFOG 1999 codes, primary first; empty when withheld |
-| `subdomains` | string | Pipe-separated transport subdomains; empty for non-transport items |
+| `groupings` | string | Pipe-separated transport-activity groupings; empty for non-transport items |
 | `procedural` | boolean | true for a purely procedural item; empty when withheld |
 
 ### decisions
@@ -140,10 +140,10 @@ skipped only by a reviewed, committed override.
   a printed name could not be resolved to the committed register. That meeting has
   no attendance rows.
 - `topics_published` is false when an item's topics were withheld; `cofog`,
-  `subdomains` and `procedural` are then null.
+  `groupings` and `procedural` are then null.
 - In JSON-LD, null means withheld and `[]` means genuinely none. In CSV both are an
   empty cell, so read `topics_published` to tell them apart.
-- `cofog` and `subdomains` are pipe-joined in CSV (`a|b`); CSVW declares
+- `cofog` and `groupings` are pipe-joined in CSV (`a|b`); CSVW declares
   `"separator": "|"`. They are arrays in JSON-LD.
 - `proposer` and `seconder` are empty when the minutes name no one, or the name
   could not be confirmed; the matching `*_unresolved` flag is true in the second
@@ -177,10 +177,15 @@ their wording):
 - Meath County Council: https://www.meath.ie/council/your-council/your-elected-council/strategic-policy-committees/transportation-and-urban-regeneration-spc
 - Westmeath County Council: https://www.westmeathcoco.ie/en/ourservices/yourcouncil/meetingsminutesagendasandreports/strategicpolicycommittees/planningregenerationtransportation/
 
-COFOG 1999 is the UN Statistics Division classification; transport subdomains
-follow the transport-governance vocabulary. The topics, decisions and attendance
-tables are derived by PublicInformation.ie (an LLM proposes topics and decisions;
-each decision is checked to be a verbatim quote).
+COFOG 1999 is the UN Statistics Division classification. Transport items carry
+`transport-activity` groupings. Each grouping is mapped, through a committed
+crosswalk, from the transport subdomain tags the classification step recorded, so
+the groupings are coarser than the earlier subdomain tagging: national and regional
+roads both become `RT1`, and an active-travel item is tagged both `RT2` and `RT3`.
+The retired `transport-subdomain` vocabulary stays published for readers of earlier
+releases. The topics, decisions and attendance tables are derived by
+PublicInformation.ie (an LLM proposes topics and decisions; each decision is
+checked to be a verbatim quote).
 
 The derived dataset is published under CC BY 4.0. Each council's own re-use
 terms for the underlying minutes have not been independently confirmed against

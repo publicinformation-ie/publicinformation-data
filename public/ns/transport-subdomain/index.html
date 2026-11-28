@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Transport subdomains (retired) — PublicInformation.ie</title>
+<link rel="alternate" type="text/csv" title="Transport subdomains (CSV)" href="../../vocabularies/transport-subdomain.csv">
+<link rel="describedby" type="application/ld+json" title="Transport subdomains (CSVW metadata)" href="../../vocabularies/transport-subdomain.csv-metadata.json">
+<link rel="alternate" type="text/turtle" title="Transport subdomains (Turtle)" href="../../vocabularies/transport-subdomain.ttl">
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+         max-width: 64rem; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; line-height: 1.6; }
+  h1 { font-size: 1.6rem; }
+  p.lead { font-size: 1.05rem; color: #333; }
+  a { color: #0645ad; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  table { border-collapse: collapse; margin: 1rem 0; width: 100%; }
+  th, td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid #ddd; font-size: 0.95em; vertical-align: top; }
+  th { color: #555; font-weight: 600; }
+  code { background: #f2f2f2; padding: 0.1em 0.35em; border-radius: 3px; }
+</style>
+</head>
+<body>
+<h1>Transport subdomains (retired)</h1>
+<p class="lead">This vocabulary is retired. The 17 terms below were used to tag SPC
+agenda items; they are replaced by
+<a href="../transport-activity/">transport-activity</a> groupings, and the SPC
+meetings dataset publishes <code>groupings</code> instead of <code>subdomains</code>.
+The <a href="../../vocabularies/transport-subdomain.csv">CSV</a> stays published
+unchanged so an existing link keeps working.</p>
+
+<h2>Downloads</h2>
+<table>
+  <tr><th>Format</th><th>File</th><th>Use it for</th></tr>
+  <tr><td>CSV</td><td><a href="../../vocabularies/transport-subdomain.csv">transport-subdomain.csv</a></td>
+      <td>The retired terms as published; CSVW metadata in
+      <a href="../../vocabularies/transport-subdomain.csv-metadata.json">transport-subdomain.csv-metadata.json</a>.</td></tr>
+  <tr><td>Turtle</td><td><a href="../../vocabularies/transport-subdomain.ttl">transport-subdomain.ttl</a></td>
+      <td>SKOS with <code>owl:deprecated</code> and <code>dct:isReplacedBy</code>.</td></tr>
+</table>
+
+<h2>Retired terms and their replacements</h2>
+<table>
+  <tr><th>Term</th><th>Name</th><th>Replaced by</th></tr>
+  <tr><td><code>infra/national-roads</code></td><td>National roads</td><td><a href="../transport-activity/#RT1">RT1</a></td></tr>
+  <tr><td><code>infra/regional-local-roads</code></td><td>Regional and local roads</td><td><a href="../transport-activity/#RT1">RT1</a></td></tr>
+  <tr><td><code>infra/active-travel</code></td><td>Active travel infrastructure</td><td><a href="../transport-activity/#RT2">RT2</a>, <a href="../transport-activity/#RT3">RT3</a></td></tr>
+  <tr><td><code>infra/bus</code></td><td>Bus infrastructure</td><td><a href="../transport-activity/#RT4">RT4</a></td></tr>
+  <tr><td><code>infra/heavy-rail</code></td><td>Heavy rail infrastructure</td><td><a href="../transport-activity/#RL1">RL1</a></td></tr>
+  <tr><td><code>infra/light-rail</code></td><td>Light rail infrastructure</td><td><a href="../transport-activity/#RL2">RL2</a></td></tr>
+  <tr><td><code>infra/kerbside</code></td><td>Kerbside</td><td><a href="../transport-activity/#RT7">RT7</a></td></tr>
+  <tr><td><code>infra/ports-airfields</code></td><td>Ports and airfields</td><td><a href="../transport-activity/#WT1">WT1</a>, <a href="../transport-activity/#AT1">AT1</a></td></tr>
+  <tr><td><code>svc/pso-bus</code></td><td>PSO bus services</td><td><a href="../transport-activity/#RT5">RT5</a></td></tr>
+  <tr><td><code>svc/commercial-bus</code></td><td>Commercial bus services</td><td><a href="../transport-activity/#RT5">RT5</a></td></tr>
+  <tr><td><code>svc/rail</code></td><td>Rail services</td><td><a href="../transport-activity/#RL3">RL3</a></td></tr>
+  <tr><td><code>svc/light-rail</code></td><td>Light rail services</td><td>none: The current model has urban rapid transit infrastructure (RL2) but no services grouping, so this retired term has no grouping equivalent.</td></tr>
+  <tr><td><code>svc/spsv</code></td><td>Small public service vehicles</td><td><a href="../transport-activity/#RT5">RT5</a></td></tr>
+  <tr><td><code>svc/school-transport</code></td><td>School transport</td><td><a href="../transport-activity/#X6">X6</a></td></tr>
+  <tr><td><code>svc/shared-mobility</code></td><td>Shared mobility</td><td><a href="../transport-activity/#RT5">RT5</a></td></tr>
+  <tr><td><code>users/vehicles-drivers</code></td><td>Vehicles and drivers</td><td><a href="../transport-activity/#RT8">RT8</a></td></tr>
+  <tr><td><code>users/traffic-law</code></td><td>Traffic law</td><td><a href="../transport-activity/#X1">X1</a></td></tr>
+</table>
+</body>
+</html>

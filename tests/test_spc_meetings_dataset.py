@@ -169,7 +169,7 @@ def test_items_csv_carries_the_item_id():
 def test_csvw_marks_pipe_separated_arrays():
     columns = {column["name"]: column for column in
                json.loads(csvw_metadata("items"))["tableSchema"]["columns"]}
-    for field in ("cofog", "subdomains"):
+    for field in ("cofog", "groupings"):
         assert columns[field]["separator"] == "|"
         assert columns[field]["null"] == ""
 
@@ -182,7 +182,8 @@ def test_unresolvable_public_body_fails_publication():
 def test_csv_joins_array_fields():
     text = csv_bytes("items", _records()["items"]).decode("utf-8")
     assert "04.5.1" in text
-    assert "infra/regional-local-roads" in text
+    assert "RT1" in text
+    assert "infra/regional-local-roads" not in text
     header = text.splitlines()[0]
     assert header.startswith("id,item_id,meeting_id")
     assert text.splitlines()[1].split(",")[0].startswith(
@@ -229,7 +230,112 @@ def test_published_vocabulary_notations_match_the_schema_enums():
     assert _notations("spc-decision-type") == set(decisions["decision_type"]["enum"])
     items = SCHEMA["$defs"]["item"]["properties"]
     assert _notations("cofog-1999") == set(items["cofog"]["items"]["enum"])
-    assert _notations("transport-subdomain") == set(items["subdomains"]["items"]["enum"])
+    groupings = {notation for notation in _notations("transport-activity") if "-" not in notation}
+    assert groupings == set(items["groupings"]["items"]["enum"])
+
+
+CROSSWALK = REPO / "pipelines/spc_pipeline/reference/transport_subdomains.json"
+
+
+def _crosswalk_entries() -> list[dict]:
+    return json.loads(CROSSWALK.read_text(encoding="utf-8"))["subdomains"]
+
+
+def test_crosswalk_holds_seventeen_frozen_terms_each_mapped_or_reasoned():
+    from scripts.transform_spc_meetings import load_crosswalk
+
+    entries = _crosswalk_entries()
+    assert len(entries) == 17
+    for entry in entries:
+        assert isinstance(entry.get("grouping_ids"), list), entry["id"]
+        assert entry["grouping_ids"] or entry.get("no_replacement_reason"), entry["id"]
+    assert set(load_crosswalk()) == {entry["id"] for entry in entries}
+    assert json.loads(CROSSWALK.read_text(encoding="utf-8"))["metadata"]["frozen"] is True
+
+
+def test_crosswalk_groupings_all_exist_in_the_published_activity_vocabulary():
+    from scripts.transform_spc_meetings import load_activity_notations
+
+    published = load_activity_notations()
+    for entry in _crosswalk_entries():
+        for grouping in entry["grouping_ids"]:
+            assert grouping in published, (entry["id"], grouping)
+
+
+def test_groupings_are_mapped_deduplicated_and_ordered():
+    from scripts.transform_spc_meetings import groupings_for
+
+    assert groupings_for(["infra/regional-local-roads"]) == ["RT1"]
+    assert groupings_for(["infra/active-travel"]) == ["RT2", "RT3"]
+    assert groupings_for(["infra/ports-airfields"]) == ["WT1", "AT1"]
+    assert groupings_for(["infra/active-travel", "infra/active-travel"]) == ["RT2", "RT3"]
+    assert groupings_for([]) == []
+    assert groupings_for(None) is None
+
+
+def test_an_unknown_subdomain_stops_the_export():
+    from scripts.transform_spc_meetings import groupings_for
+
+    with pytest.raises(ValueError, match="infra/not-a-subdomain"):
+        groupings_for(["infra/not-a-subdomain"])
+
+
+def test_a_subdomain_with_no_replacement_stops_the_export_with_its_reason():
+    from scripts.transform_spc_meetings import groupings_for
+
+    with pytest.raises(ValueError, match="no replacement grouping"):
+        groupings_for(["svc/light-rail"])
+    with pytest.raises(ValueError, match="no services grouping"):
+        groupings_for(["svc/light-rail"])
+
+
+def test_a_grouping_outside_the_published_vocabulary_stops_the_export():
+    from scripts.transform_spc_meetings import groupings_for
+
+    with pytest.raises(ValueError, match="RT99"):
+        groupings_for(["infra/regional-local-roads"],
+                      crosswalk={"infra/regional-local-roads": ("RT99",)})
+
+
+def test_items_without_published_topics_keep_null_groupings():
+    export = _export()
+    export["items"][0]["topics_published"] = False
+    export["items"][0]["subdomains"] = None
+    record = build_records(export, BODY_LOOKUP)["items"][0]
+    assert record["groupings"] is None
+    jsonschema.validate(record, SCHEMA)
+
+
+def test_retired_subdomain_turtle_matches_the_crosswalk():
+    from rdflib import Graph, URIRef
+    from rdflib.namespace import DCTERMS, OWL, SKOS
+
+    graph = Graph()
+    graph.parse(REPO / "public/vocabularies/transport-subdomain.ttl", format="turtle")
+    deprecated = set(graph.subjects(OWL.deprecated, None))
+    assert len(deprecated) == 17
+    for entry in _crosswalk_entries():
+        term = URIRef(
+            f"https://data.publicinformation.ie/ns/transport-subdomain#{entry['id']}")
+        assert term in deprecated, entry["id"]
+        replacements = {str(uri).rsplit("#", 1)[-1]
+                        for uri in graph.objects(term, DCTERMS.isReplacedBy)}
+        assert replacements == set(entry["grouping_ids"]), entry["id"]
+        note = str(next(graph.objects(term, SKOS.note)))
+        if entry["grouping_ids"]:
+            assert "Replaced by" in note, entry["id"]
+        else:
+            assert entry["no_replacement_reason"] in note, entry["id"]
+
+
+def test_retired_subdomain_page_is_published():
+    for relative in ("public/vocabularies/transport-subdomain.md",
+                     "public/ns/transport-subdomain/index.html",
+                     "public/vocabularies/transport-subdomain.csv"):
+        assert (REPO / relative).exists(), relative
+    page = (REPO / "public/vocabularies/transport-subdomain.md").read_text(encoding="utf-8")
+    assert "retired" in page.lower()
+    assert "transport-activity.md" in page
 
 
 def _ttl(path: Path):
@@ -336,7 +442,9 @@ def test_every_real_exported_record_validates_and_links_its_body():
     reason="the dataset has not been published in this checkout",
 )
 def test_published_latest_and_versioned_files_are_byte_identical():
-    versioned = REPO / "public/v1.2.0/spc-meetings"
+    from scripts.transform_spc_meetings import OUTPUT_DIR
+
+    versioned = REPO / OUTPUT_DIR
     latest = REPO / "public/latest/spc-meetings"
     versioned_files = sorted(p.relative_to(versioned) for p in versioned.rglob("*") if p.is_file())
     latest_files = sorted(p.relative_to(latest) for p in latest.rglob("*") if p.is_file())
@@ -471,6 +579,14 @@ def test_readme_documents_fields_from_field_specs_and_null_semantics(tmp_path):
     for phrase in ("topics_published", "attendance_published", "pipe-joined",
                    "https://data.publicinformation.ie/dataset/spc-meetings"):
         assert phrase in text
+
+
+def test_readme_states_the_groupings_are_mapped_from_the_retired_tags(tmp_path):
+    text = _readme(tmp_path)
+    assert "mapped, through a committed" in text
+    assert "coarser than the earlier subdomain tagging" in text
+    assert "[`transport-activity`](../../vocabularies/transport-activity.md)" in text
+    assert "[`transport-subdomain`](../../vocabularies/transport-subdomain.csv)" not in text
 
 
 def test_readme_names_the_people_and_attribution(tmp_path):

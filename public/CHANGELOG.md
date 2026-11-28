@@ -4,6 +4,19 @@ All notable changes to the Public Bodies dataset will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [spc-meetings 2.0.0] - 2026-11-28
+
+### Changed
+- MAJOR: transport agenda items carry `groupings`, a JSON-LD array and a pipe-separated CSV column declaring its separator, holding `transport-activity` grouping IDs such as `RT1`, `RT2` and `RL3`. Published at `public/v2.0.0/spc-meetings/`; `v1.2.0/` stays in place.
+- The groupings are mapped from the transport subdomain tags the classification step already recorded, through the committed crosswalk `pipelines/spc_pipeline/reference/transport_subdomains.json`. No paid step was re-run; no decision, item key or attendance record changed. The groupings are coarser than the retired tags: national and regional roads both become `RT1`, and an active-travel item is tagged `RT2` and `RT3`.
+- `vocabularies/transport-subdomain.csv` and its CSVW metadata are unchanged and stay published. The vocabulary is retired: `vocabularies/transport-subdomain.ttl` marks every term `owl:deprecated` with a `dct:isReplacedBy` link, `vocabularies/transport-subdomain.md` is its human page, and `ns/transport-subdomain/` resolves the term URIs to a retirement notice. One tag, `svc/light-rail`, has no replacement grouping and is recorded as such with its reason rather than mapped to the nearest term.
+
+### Removed
+- The `subdomains` field in `items` (CSV column, JSON-LD property and CSVW description), replaced by `groupings`.
+
+### Documentation
+- The SPC meetings README, `GET_THE_DATA.md` and `get-the-data.html` link `transport-activity` and say the groupings are mapped from the retired subdomain tags and are coarser than them.
+
 ## [transport-raci 0.1.0] - 2026-11-28
 
 ### Added
