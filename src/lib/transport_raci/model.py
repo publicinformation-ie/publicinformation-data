@@ -32,6 +32,7 @@ ASSIGNMENT_ROLES_FILE = "assignment_roles.csv"
 ASSIGNMENT_SOURCES_FILE = "assignment_sources.csv"
 MIGRATION_RESOLUTIONS_FILE = "migration_resolutions.csv"
 CORRECTIONS_FILE = "corrections.csv"
+REVIEW_DECISIONS_FILE = "review_decisions.csv"
 # Committed input read by the migration. Its rows are merged into sources.csv,
 # after the handoff's sources, so it is not a master table of its own.
 ADDED_SOURCES_FILE = "added_sources.csv"
@@ -54,6 +55,7 @@ TABLE_FILES = {
     "assignment_sources": ASSIGNMENT_SOURCES_FILE,
     "migration_resolutions": MIGRATION_RESOLUTIONS_FILE,
     "corrections": CORRECTIONS_FILE,
+    "review_decisions": REVIEW_DECISIONS_FILE,
 }
 
 TABLE_FIELDS: dict[str, list[str]] = {
@@ -84,6 +86,11 @@ TABLE_FIELDS: dict[str, list[str]] = {
     "corrections": ["table", "key", "field", "original", "corrected",
                     "evidence_id", "source_ids", "rationale", "ruled_by",
                     "date"],
+    # A decision on a logged ambiguity that is not a role: a proposed variant
+    # merge, or an ambiguous grouping. "keep" records that it was reviewed and
+    # left as it is, so it leaves the open review list.
+    "review_decisions": ["error_key", "decision", "rationale", "ruled_by",
+                         "date"],
 }
 
 # What a correction may change, per table. A role line is keyed by
@@ -283,6 +290,15 @@ class MigrationResolution:
 
 
 @dataclass(frozen=True)
+class ReviewDecision:
+    error_key: str
+    decision: str
+    rationale: str
+    ruled_by: str
+    date: str
+
+
+@dataclass(frozen=True)
 class Correction:
     table: str
     key: str
@@ -315,6 +331,7 @@ class Master:
     assignment_sources: list[AssignmentSource] = field(default_factory=list)
     migration_resolutions: list[MigrationResolution] = field(default_factory=list)
     corrections: list[Correction] = field(default_factory=list)
+    review_decisions: list[ReviewDecision] = field(default_factory=list)
 
     def activities_by_id(self) -> dict[str, Activity]:
         return {activity.activity_id: activity for activity in self.activities}
@@ -454,6 +471,11 @@ def load_master(directory: Path | str | None = None) -> Master:
         Correction(**{key: row[key] for key in TABLE_FIELDS["corrections"]})
         for row in rows("corrections")
     ]
+    review_decisions = [
+        ReviewDecision(**{
+            key: row[key] for key in TABLE_FIELDS["review_decisions"]})
+        for row in rows("review_decisions")
+    ]
 
     return Master(
         stages=stages,
@@ -473,4 +495,5 @@ def load_master(directory: Path | str | None = None) -> Master:
         assignment_sources=assignment_sources,
         migration_resolutions=migration_resolutions,
         corrections=corrections,
+        review_decisions=review_decisions,
     )

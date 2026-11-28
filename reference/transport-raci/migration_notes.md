@@ -17,9 +17,12 @@ reads only. Four committed human inputs are read:
 - `corrections.csv`: corrections to handoff facts that are not role errors
   (read and written back unchanged);
 - `added_sources.csv`: sources the handoff lacks, merged into `sources.csv`
-  after the handoff's own sources.
+  after the handoff's own sources;
+- `review_decisions.csv`: decisions on logged ambiguities that are not roles
+  (a proposed variant merge, an ambiguous grouping), read and written back
+  unchanged.
 
-Re-running the migration on the handoff with these four files reproduces every
+Re-running the migration on the handoff with these five files reproduces every
 migration output byte for byte. `tests/test_transport_raci_migration.py`
 checks this whenever the handoff is present (it is skipped in CI).
 `migration_errors.json` is exactly what the script writes.
@@ -174,20 +177,28 @@ Each removes only the version tag or the history sentence.
 | `parties` | `AT` | name | An Taisce as programme co-ordinator |
 | `parties` | `SCH` | name | Schools / Boards of Management |
 
+## Decisions on the source material
+
+`review_decisions.csv` records the ambiguities that were reviewed and left as
+they are, so they leave the open review list without disappearing from the
+record:
+
+- both near-duplicate variant pairs are kept separate: the GDA lines record a
+  separate open question and RT-17 appears only under the GDA variant; the
+  Waterways Ireland lines record a different landowner question;
+- `X-07` stays on grouping `X5` (electricity supply), with the register's
+  candidate COFOG placement kept.
+
+A decision on an error key that no longer exists fails the run, and a decision
+may not clear a role error: roles go through `migration_resolutions.csv`.
+
 ## Still open
 
-`migration_errors.json` is the review list. It records:
-
-- 5 unresolved `GS` role tokens: `RT-10.S14` C, `RT-26.S14` C, `RT-37.S15` C,
-  `RT-37.S11` (Garda-run event closures) R and `RT-37.S14` (Offences) R. The
-  research in `gs_research.md` found no basis for the first three, and only an
-  inferred basis for the last two;
-- 2 possible near-duplicate variants, detected by comparing the label stem
-  before the first " (": "NTA-delivered (BusConnects)" / "NTA-delivered
-  (BusConnects, GDA)" and "Royal Canal Greenway" / "Royal Canal Greenway
-  (Waterways Ireland land)" (not merged);
-- 1 ambiguous grouping, `X-07` "X5 / RT1-RT4" — the range is not expanded, so
-  `X5` is the primary grouping and the ambiguity is logged.
+`migration_errors.json` is the review list. It records 5 unresolved `GS` role
+tokens: `RT-10.S14` C, `RT-26.S14` C, `RT-37.S15` C, `RT-37.S11` (Garda-run
+event closures) R and `RT-37.S14` (Offences) R. The research in
+`gs_research.md` found no basis for the first three, and only an inferred basis
+for the last two.
 
 Roles still awaiting a ruling are absent from the published dataset. The
 dataset README lists each as "role not yet published: awaiting review".

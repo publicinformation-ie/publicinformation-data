@@ -196,6 +196,20 @@ A fact in the handoff that is wrong (as distinct from prose that cites an intern
 - **WHEN** the source text a correction names has changed
 - **THEN** the migration fails and names the correction
 
+### Requirement: Reviewed ambiguities are recorded as decisions
+
+A logged ambiguity that is not a role (a proposed variant merge, an ambiguous grouping) SHALL be resolved through a committed `review_decisions.csv` recording the error key, the decision, a reason, who ruled and the date. The migration SHALL remove a decided item from the error log and keep the decision. A decision on an error key that no longer exists SHALL fail the migration, and a decision SHALL NOT clear a role error.
+
+#### Scenario: Ambiguity kept as it is
+
+- **WHEN** a decision keeps two similar variant labels separate
+- **THEN** the error log no longer lists the pair, and the published README lists the decision with its reason
+
+#### Scenario: Decision may not clear a role
+
+- **WHEN** a decision names an unresolved role cell
+- **THEN** the migration fails and points to `migration_resolutions.csv`
+
 ### Requirement: The master is pinned in tests
 
 Tests SHALL pin the generated row count (613), the count of assessed rows (184) and the count of assessed lines (224 less the lines excluded by recorded rulings), without reading the gitignored handoff.

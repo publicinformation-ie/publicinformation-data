@@ -62,12 +62,14 @@ from src.lib.transport_raci.model import (  # noqa: E402
     PUBLIC_TEXT_FILE,
     PUBLIC_TEXT_HEADER,
     PUBLIC_TEXT_KEYS,
+    REVIEW_DECISIONS_FILE,
     EvidenceLevel,
     Grouping,
     Jurisdiction,
     Master,
     MigrationResolution,
     Party,
+    ReviewDecision,
     Source,
     Stage,
     TABLE_FIELDS,
@@ -477,6 +479,21 @@ def read_corrections(path: Path) -> list[Correction]:
     return corrections
 
 
+def read_review_decisions(path: Path) -> list[ReviewDecision]:
+    decisions = [ReviewDecision(**row) for row in
+                 read_input_csv(path, TABLE_FIELDS["review_decisions"])]
+    seen: set[str] = set()
+    for item in decisions:
+        if item.error_key in seen:
+            raise ValueError(
+                f"{path.name}: duplicate decision {item.error_key!r}")
+        seen.add(item.error_key)
+        if not item.decision.strip():
+            raise ValueError(f"{path.name}: empty decision for "
+                             f"{item.error_key!r}")
+    return decisions
+
+
 def read_added_sources(path: Path) -> list[Source]:
     return [Source(**row) for row in
             read_input_csv(path, TABLE_FIELDS["sources"])]
@@ -820,6 +837,22 @@ def run(args: argparse.Namespace) -> int:
         log("", "Variant", f"{left} | {right}",
             "possible duplicate variants; not merged")
 
+    decisions_path = (
+        args.review_decisions if args.review_decisions is not None
+        else args.out / REVIEW_DECISIONS_FILE)
+    review_decisions = read_review_decisions(decisions_path)
+    role_columns = {"R", "A", "C", "I"}
+    for item in review_decisions:
+        if item.error_key not in encountered:
+            print(f"stale review decision: {item.error_key}", file=sys.stderr)
+            raise SystemExit(1)
+        error = errors.get(item.error_key)
+        if error is not None and error["column"] in role_columns:
+            raise ValueError(
+                f"{decisions_path.name}: {item.error_key!r} is a role error; "
+                "record a ruling in migration_resolutions.csv instead")
+        errors.pop(item.error_key, None)
+
     roles = corrector.apply_roles(roles)
 
     cited_by_inputs = {
@@ -864,6 +897,7 @@ def run(args: argparse.Namespace) -> int:
         assignment_sources=assignment_sources,
         migration_resolutions=list(resolutions.values()),
         corrections=corrections,
+        review_decisions=review_decisions,
     )
 
     validation_errors = validate(master)
@@ -912,6 +946,12 @@ def run(args: argparse.Namespace) -> int:
           resolution.date, resolution.evidence_id, resolution.source_ids,
           resolution.rationale]
          for resolution in master.migration_resolutions])
+    write_table(
+        args.out / TABLE_FILES["review_decisions"],
+        TABLE_FIELDS["review_decisions"],
+        [[item.error_key, item.decision, item.rationale, item.ruled_by,
+          item.date]
+         for item in master.review_decisions])
     write_table(
         args.out / TABLE_FILES["corrections"],
         TABLE_FIELDS["corrections"],
@@ -1016,6 +1056,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--corrections", type=Path, default=None,
         help="corrections CSV (default: <out>/corrections.csv)")
+    parser.add_argument(
+        "--review-decisions", type=Path, default=None,
+        help="decisions on logged ambiguities (default: "
+             "<out>/review_decisions.csv)")
     parser.add_argument(
         "--added-sources", type=Path, default=None,
         help="sources the handoff lacks (default: <out>/added_sources.csv)")

@@ -97,9 +97,16 @@ are listed here so the gap is visible.
 
 ## Other items awaiting review
 
-- Variant labels that may be the same: NTA-delivered (BusConnects) | NTA-delivered (BusConnects, GDA) (not merged).
-- Variant labels that may be the same: Royal Canal Greenway | Royal Canal Greenway (Waterways Ireland land) (not merged).
-- `X-07`: the register's grouping `X5 / RT1-RT4` is ambiguous; the first clean grouping is used.
+- None.
+
+## Decisions on the source material
+
+These ambiguities in the source were reviewed and left as they are. Each one is
+recorded in `review_decisions.csv`.
+
+- Variant labels `NTA-delivered (BusConnects) | NTA-delivered (BusConnects, GDA)`: kept separate. The two GDA lines record a separate open question (Ministerial approval of the GDA Strategy), and RT-17 appears only under the GDA variant.
+- Variant labels `Royal Canal Greenway | Royal Canal Greenway (Waterways Ireland land)`: kept separate. The Waterways Ireland variant records a different landowner question; the plain line never carried that note.
+- `X-07`, the register's grouping `X5 / RT1-RT4`: kept on X5. A charge point is an electricity supply asset before it is a road asset; the register already marks its COFOG placement as a candidate, and the ambiguity is noted in the activity.
 
 ## Corrections to the source analysis
 

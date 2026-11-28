@@ -31,10 +31,12 @@ def migrate(out: Path, resolutions: Path = RESOLUTIONS,
             public_text: Path | None = None,
             register: Path = REGISTER,
             corrections: Path | None = None,
-            added_sources: Path | None = None) -> int:
+            added_sources: Path | None = None,
+            review_decisions: Path | None = None,
+            assignments: Path = ASSIGNMENTS) -> int:
     argv = [
         "--register", str(register),
-        "--assignments", str(ASSIGNMENTS),
+        "--assignments", str(assignments),
         "--sources", str(SOURCES),
         "--out", str(out),
         "--resolutions", str(resolutions),
@@ -46,6 +48,8 @@ def migrate(out: Path, resolutions: Path = RESOLUTIONS,
         argv += ["--corrections", str(corrections)]
     if added_sources is not None:
         argv += ["--added-sources", str(added_sources)]
+    if review_decisions is not None:
+        argv += ["--review-decisions", str(review_decisions)]
     return main(argv)
 
 
@@ -281,6 +285,7 @@ def test_rerun_reproduces_the_committed_master(tmp_path: Path) -> None:
         "--public-text", str(MASTER / "public_text.csv"),
         "--corrections", str(MASTER / "corrections.csv"),
         "--added-sources", str(MASTER / "added_sources.csv"),
+        "--review-decisions", str(MASTER / "review_decisions.csv"),
     ]) == 0
     written = {path.name for path in out.iterdir()}
     committed = {path.name for path in MASTER.iterdir() if path.is_file()}
@@ -316,6 +321,70 @@ def test_stale_correction_fails(tmp_path: Path, change) -> None:
     with pytest.raises((SystemExit, ValueError)):
         migrate(out, corrections=corrections)
     assert not (out / "activities.csv").exists()
+
+
+def test_review_decision_clears_the_item_but_is_kept(tmp_path: Path) -> None:
+    assignments = tmp_path / "assignments.csv"
+    assignments.write_text(
+        ASSIGNMENTS.read_text(encoding="utf-8").rstrip("\n") +
+        "\nT-01.S2,T-01,Test activity,S2,Test variant (two),LA-CE,LA-CE,,,"
+        "Source,S1,2,Plain note\n",
+        encoding="utf-8")
+    decisions = tmp_path / "review_decisions.csv"
+    with decisions.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(
+            handle, fieldnames=TABLE_FIELDS["review_decisions"],
+            lineterminator="\n")
+        writer.writeheader()
+        writer.writerow({
+            "error_key": "|-|Variant|Test variant (one) | Test variant (two)",
+            "decision": "kept separate",
+            "rationale": "A test reason.", "ruled_by": "Test",
+            "date": "2026-11-28"})
+    out = tmp_path / "out"
+    assert migrate(out, assignments=assignments,
+                   review_decisions=decisions) == 0
+    master = load_master(out)
+    assert [item.decision for item in master.review_decisions] == [
+        "kept separate"]
+    errors = json.loads((out / "migration_errors.json").read_text())
+    assert not [error for error in errors if error["column"] == "Variant"]
+    written = list(csv.DictReader(
+        (out / "review_decisions.csv").open(encoding="utf-8", newline="")))
+    assert written[0]["decision"] == "kept separate"
+
+
+def test_stale_review_decision_fails(tmp_path: Path) -> None:
+    decisions = tmp_path / "review_decisions.csv"
+    with decisions.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(
+            handle, fieldnames=TABLE_FIELDS["review_decisions"],
+            lineterminator="\n")
+        writer.writeheader()
+        writer.writerow({
+            "error_key": "|-|Variant|Not | A pair",
+            "decision": "kept separate", "rationale": "A test reason.",
+            "ruled_by": "Test", "date": "2026-11-28"})
+    out = tmp_path / "out"
+    with pytest.raises(SystemExit):
+        migrate(out, review_decisions=decisions)
+    assert not (out / "assignments.csv").exists()
+
+
+def test_review_decision_may_not_clear_a_role_error(tmp_path: Path) -> None:
+    decisions = tmp_path / "review_decisions.csv"
+    with decisions.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(
+            handle, fieldnames=TABLE_FIELDS["review_decisions"],
+            lineterminator="\n")
+        writer.writeheader()
+        writer.writerow({
+            "error_key": "T-01.S2|Test variant (one)|C|mystery bodies",
+            "decision": "accept", "rationale": "A test reason.",
+            "ruled_by": "Test", "date": "2026-11-28"})
+    out = tmp_path / "out"
+    with pytest.raises(ValueError):
+        migrate(out, review_decisions=decisions)
 
 
 def test_version_marker_needs_public_text(tmp_path: Path) -> None:

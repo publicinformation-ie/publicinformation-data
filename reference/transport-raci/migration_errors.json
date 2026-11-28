@@ -1,19 +1,5 @@
 [
   {
-    "error_key": "|-|Variant|NTA-delivered (BusConnects) | NTA-delivered (BusConnects, GDA)",
-    "row_id": "",
-    "column": "Variant",
-    "value": "NTA-delivered (BusConnects) | NTA-delivered (BusConnects, GDA)",
-    "reason": "possible duplicate variants; not merged"
-  },
-  {
-    "error_key": "|-|Variant|Royal Canal Greenway | Royal Canal Greenway (Waterways Ireland land)",
-    "row_id": "",
-    "column": "Variant",
-    "value": "Royal Canal Greenway | Royal Canal Greenway (Waterways Ireland land)",
-    "reason": "possible duplicate variants; not merged"
-  },
-  {
     "error_key": "RT-10.S14|-|C|GS",
     "row_id": "RT-10.S14",
     "column": "C",
@@ -47,12 +33,5 @@
     "column": "C",
     "value": "GS",
     "reason": "party token does not resolve to a known party"
-  },
-  {
-    "error_key": "X-07|-|Grouping|X5 / RT1-RT4",
-    "row_id": "X-07",
-    "column": "Grouping",
-    "value": "X5 / RT1-RT4",
-    "reason": "grouping range or unresolved grouping; first clean grouping used"
   }
 ]

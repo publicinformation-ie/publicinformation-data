@@ -850,6 +850,21 @@ def load_other_review_items() -> list[str]:
     return lines
 
 
+def review_decision_lines(master: Master) -> list[str]:
+    """One README line per reviewed ambiguity that was left as it is."""
+    lines = []
+    for item in master.review_decisions:
+        row_id, _, column, value = item.error_key.split("|", 3)
+        if column == "Variant":
+            what = f"Variant labels `{value}`"
+        elif column == "Grouping":
+            what = f"`{row_id}`, the register's grouping `{value}`"
+        else:
+            what = f"`{row_id}`, {column} `{value}`"
+        lines.append(f"- {what}: {item.decision}. {item.rationale}")
+    return lines
+
+
 def correction_lines(master: Master) -> list[str]:
     """One README line per correction to the source analysis."""
     evidence = master.evidence_by_id()
@@ -882,7 +897,8 @@ def build_readme(master: Master, tables: dict[str, bytes]) -> str:
         unresolved_lines.append(
             f"- `{item['row_id']}`{variant}, role {item['role']}: role not yet "
             f"published: awaiting review (recorded value `{item['token']}`).")
-    other_items = load_other_review_items()
+    other_items = load_other_review_items() or ["- None."]
+    decisions = review_decision_lines(master) or ["- None."]
     own_evidence = sum(1 for line in master.assignment_roles
                        if line.evidence_id)
     corrections = correction_lines(master)
@@ -982,6 +998,13 @@ are listed here so the gap is visible.
 ## Other items awaiting review
 
 {chr(10).join(other_items)}
+
+## Decisions on the source material
+
+These ambiguities in the source were reviewed and left as they are. Each one is
+recorded in `review_decisions.csv`.
+
+{chr(10).join(decisions)}
 
 ## Corrections to the source analysis
 

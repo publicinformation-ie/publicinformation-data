@@ -99,6 +99,7 @@
 - [x] 6.3 Record evidence per ruled role. Add `evidence_id`, `source_ids` and `rationale` to rulings; add `evidence_id` to `assignment_roles.csv`; add the cited provisions as `added_sources.csv` (`P1`–`P13`); link ruling sources to the assignment. Publish the per-role evidence and mark it in the wide view.
 - [x] 6.4 Add the corrections layer. `corrections.csv` corrects facts that are not role errors, with a staleness check: the X-18 event-licensing law change (Part 16 PDA 2024, S.I. 468/2026, repeal of Part XVI PDA 2000), the Meath source page note, and RT-37.S14 offences C → R under s.81(3)(a) Roads Act 1993. Add the HSE as a party and publish it, with the NTA, as Consulted on X-18.S13b.
 - [x] 6.5 Correct the seven `s.38 route` public notes: the s.38(3) duty applies only to prescribed classes of measures and none has been prescribed; the operative duty is s.95(3)(b) RTA 1961 where regulatory signs are provided.
+- [x] 6.7 Record Dave's decisions on the source ambiguities in `review_decisions.csv`: both variant pairs kept separate, X-07 kept on X5. The item leaves the error log, the decision stays in the record, and the README lists it.
 - [x] 6.6 Update the docs (`migration_notes.md`, `skill_mismatches.md`, the dataset README review list) and the tests, including the byte-for-byte rerun with the new inputs.
 
 ## Workflow follow-up
