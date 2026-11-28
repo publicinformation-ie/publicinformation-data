@@ -112,7 +112,7 @@ rewrite keeps it in the present tense. Where a finding number named a boundary
 rule, the rewrite names the rule: `F29` is the source of boundary rule B9, so
 RT-25 now cites B9.
 
-Every entry is marked `agent draft — awaiting review` (28 November 2026).
+Every entry was reviewed and approved by Dave on 28 November 2026.
 `public_text.csv` holds 47 entries. The first 31 rewrites:
 
 | Table | Key | Field | Public text |
