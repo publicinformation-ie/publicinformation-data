@@ -1,0 +1,51 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://data.publicinformation.ie/ns/raci-evidence-level>
+    a skos:ConceptScheme ;
+    dct:title "RACI evidence levels"@en ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:versionInfo "0.1.0" ;
+    skos:hasTopConcept <https://data.publicinformation.ie/ns/raci-evidence-level#statute>, <https://data.publicinformation.ie/ns/raci-evidence-level#source>, <https://data.publicinformation.ie/ns/raci-evidence-level#default-s149-4>, <https://data.publicinformation.ie/ns/raci-evidence-level#unverified>, <https://data.publicinformation.ie/ns/raci-evidence-level#not-assessed> .
+
+<https://data.publicinformation.ie/ns/raci-evidence-level#statute>
+    a skos:Concept ;
+    skos:notation "statute" ;
+    skos:prefLabel "Statute"@en ;
+    skos:definition "The role is set by statute."@en ;
+    skos:altLabel "set by law"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/raci-evidence-level> .
+
+<https://data.publicinformation.ie/ns/raci-evidence-level#source>
+    a skos:Concept ;
+    skos:notation "source" ;
+    skos:prefLabel "Source"@en ;
+    skos:definition "The role is stated in official guidance or observed in practice."@en ;
+    skos:altLabel "stated in official guidance or observed practice"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/raci-evidence-level> .
+
+<https://data.publicinformation.ie/ns/raci-evidence-level#default-s149-4>
+    a skos:Concept ;
+    skos:notation "default-s149-4" ;
+    skos:prefLabel "Default (s.149(4))"@en ;
+    skos:definition "The role is assumed from the s.149(4) Local Government Act 2001 default for executive functions."@en ;
+    skos:altLabel "assumed by default (an executive function because it is not reserved to elected members)"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/raci-evidence-level> .
+
+<https://data.publicinformation.ie/ns/raci-evidence-level#unverified>
+    a skos:Concept ;
+    skos:notation "unverified" ;
+    skos:prefLabel "UNVERIFIED"@en ;
+    skos:definition "The role is recorded but has not been confirmed."@en ;
+    skos:altLabel "not yet confirmed"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/raci-evidence-level> .
+
+<https://data.publicinformation.ie/ns/raci-evidence-level#not-assessed>
+    a skos:Concept ;
+    skos:notation "not-assessed" ;
+    skos:prefLabel "Not assessed"@en ;
+    skos:definition "A generated coverage state: the activity x stage row has no assessment. It is never stored on an assignment."@en ;
+    skos:altLabel "not yet assessed"@en ;
+    skos:note "Generated coverage state; never stored on an assignment."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/raci-evidence-level> .

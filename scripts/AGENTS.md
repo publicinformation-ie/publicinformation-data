@@ -19,6 +19,8 @@ Before writing a new one-off analysis snippet, check whether one of these alread
 | Publish the SPC meetings dataset (5 tables, verbatim minutes, README) from spc_pipeline output | `transform_spc_meetings.py` — writes `public/v<schema>/spc-meetings/`, deletes stale files, and stamps `dct:modified` only on a content change. |
 | Publish the COFOG 1999 vocabulary (JSON, CSV + CSVW, SKOS Turtle) from the pinned SPC reference | `build_cofog_vocabulary.py` — validates fail closed, single writer of `public/vocabularies/cofog-1999.*`; `--check` compares without writing. |
 | Publish the motions dataset (JSON-LD + CSV) from minutes_pipeline output | `transform_motions.py` — resolves `public_body_id` through the permanent slug machinery (never the motion's own slug) and raises on an unresolvable id. |
+| Publish the transport RACI vocabularies and dataset | `build_transport_raci.py` — single writer of `public/vocabularies/transport-*`, `raci-evidence-level.*`, `public/ns/<vocabulary>/`, `public/latest/transport-raci/`, `public/v0.1.0/transport-raci/` and the DCAT record; validates and leak-checks fail closed. `--check` compares without writing. |
+| Rebuild the transport RACI master from the L4 handoff | `migrate_transport_raci_handoff.py` — exact mapping only, logs every unmappable value, applies human rulings as data. One-off; the committed master is the source of truth after it runs. |
 
 ## Prefer extending over duplicating
 

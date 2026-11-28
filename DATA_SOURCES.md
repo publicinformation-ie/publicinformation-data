@@ -121,4 +121,26 @@ The classification is published as a vocabulary: [cofog-1999.json](public/vocabu
 
 ---
 
+## PublicInformation.ie — transport RACI analysis
+
+**Source:** the analysis itself, compiled by PublicInformation.ie from the
+legislation, official guidance and observed practice cited in the dataset
+([`public/latest/transport-raci/sources.csv`](public/latest/transport-raci/sources.csv)).
+The working model is committed under
+[`reference/transport-raci/`](reference/transport-raci/), and the method is
+described in the dataset's
+[METHODOLOGY.md](public/latest/transport-raci/METHODOLOGY.md).
+
+The dataset is analytical and derived. It does not republish any single source,
+and it is not official data or legal advice. Assignments have been analysed for
+Meath County Council only; they may differ for other councils. Meath is in the
+Greater Dublin Area.
+
+**Licence:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+> Source: PublicInformation.ie, transport RACI analysis, citing the sources
+> listed in the dataset.
+
+---
+
 *If you are a public body and have a concern about how your data is represented here, please contact us.*

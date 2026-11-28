@@ -1,0 +1,5 @@
+evidence_id,label,plain_label,definition
+statute,Statute,set by law,Set by statute.
+source,Source,stated in official guidance or observed practice,Stated in a source.
+default-s149-4,Default (s.149(4)),assumed by default (an executive function because it is not reserved to elected members),Default.
+unverified,UNVERIFIED,not yet confirmed,Not yet confirmed.

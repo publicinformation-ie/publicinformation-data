@@ -1,0 +1,6 @@
+party_id,name,plain_label,kind,public_body_uri,parent_party_id,description,public_name,public_description
+LA-CE,LA - Chief Executive and executive,the Chief Executive and executive of the council,organ,,,Executive functions.,LA - Chief Executive and executive,Executive functions.
+LA-M,LA - elected members,the elected members of the council,organ,,,Reserved functions.,LA - elected members,Reserved functions.
+NTA,National Transport Authority,the National Transport Authority,body,https://data.publicinformation.ie/body/national-transport-authority-nta,,Approving authority.,National Transport Authority,Approving authority.
+DA,Delivery agents,delivery agents,category,,,Contractors and consultants.,Delivery agents,Contractors and consultants.
+TP,Third parties,third parties,category,,,Developers and others.,Third parties,Developers and others.

@@ -75,6 +75,23 @@ Every project the National Transport Authority gave Active Travel Investment Gra
 
 Each row is one grant allocation for one project in one year, so the same project appears once for every year it was funded — filter the `project_code` column to follow one scheme across the five years. Rows marked `project_code_provisional` (`True`) carry a placeholder code that the NTA had not yet assigned, so use the project name for those. The `funding_stream` column separates the authority's Active Travel grant (`active_travel`) from money allocated through other NTA funding streams such as bus priority (`other_nta_streams`).
 
+## [Transport RACI](latest/transport-raci/assignments.csv)
+
+Who is Responsible, Accountable, Consulted and Informed for local transport activities and lifecycle stages. This is analysis compiled by PublicInformation.ie, not official data: the assignments have been analysed for Meath County Council only, and they may differ for other councils. Meath is in the Greater Dublin Area.
+
+Each row is one activity × lifecycle stage. The main tables are:
+
+- [assignments.csv](latest/transport-raci/assignments.csv) — one line per assessed assignment, with the activity, stage, evidence and public note.
+- [assignment-roles.csv](latest/transport-raci/assignment-roles.csv) — one line per role (R, A, C or I) and party URI.
+- [assignment-sources.csv](latest/transport-raci/assignment-sources.csv) — the source IDs behind each assignment.
+- [rows.csv](latest/transport-raci/rows.csv) — every activity × stage row and whether it has been assessed.
+- [raci-wide.csv](latest/transport-raci/raci-wide.csv) — the same assignments in a readable view, one line per assignment.
+- [variants.csv](latest/transport-raci/variants.csv) — the variant labels used on assignments.
+- [sources.csv](latest/transport-raci/sources.csv) — the citation and URL for every source.
+- [boundary-rules.csv](latest/transport-raci/boundary-rules.csv) — the rules used to decide which stage a decision belongs to.
+
+The [README](latest/transport-raci/README.md) explains how to read a RACI line, what the evidence levels mean and which roles are still awaiting review. The activity, stage, party and evidence-level terms are published as [vocabularies](vocabularies/transport-activity.md), and the full nested data is in [transport-raci.json](latest/transport-raci/transport-raci.json).
+
 **Smaller files for Google Sheets.** Rather than the whole 4,875-row file, pull in just the part you need:
 
 - One file per recipient, all years: [by-recipient/index.csv](latest/active-travel-allocations/by-recipient/index.csv) lists every recipient and its file, e.g. `latest/active-travel-allocations/by-recipient/carlow-county-council.csv`.
@@ -90,6 +107,6 @@ In Google Sheets, use `=IMPORTDATA("https://data.publicinformation.ie/latest/act
 
 ---
 
-Want the full technical details behind each file (every column, how the data was collected, what to watch out for)? See the [Public Bodies](latest/public-bodies/README.md), [FOI Disclosures](latest/foi-disclosures/README.md), [FOI Request Files](latest/foi-request-files/README.md), [Who Does What](latest/who-does-what/README.md), [data.gov.ie Links](latest/data-gov-ie-links/README.md), [datacatalogue.gov.ie Links](latest/datacatalogue-gov-ie-links/README.md), [lobbying.ie Links](latest/lobbying-ie-links/README.md), [Staff Numbers](latest/staff-numbers/README.md), [Public Body Actions](latest/public-body-actions/README.md), [Motions](latest/motions/README.md), [SPC Meetings](latest/spc-meetings/README.md), and [Transport Policies](latest/transport-policies/README.md) reference pages.
+Want the full technical details behind each file (every column, how the data was collected, what to watch out for)? See the [Public Bodies](latest/public-bodies/README.md), [FOI Disclosures](latest/foi-disclosures/README.md), [FOI Request Files](latest/foi-request-files/README.md), [Who Does What](latest/who-does-what/README.md), [data.gov.ie Links](latest/data-gov-ie-links/README.md), [datacatalogue.gov.ie Links](latest/datacatalogue-gov-ie-links/README.md), [lobbying.ie Links](latest/lobbying-ie-links/README.md), [Staff Numbers](latest/staff-numbers/README.md), [Public Body Actions](latest/public-body-actions/README.md), [Motions](latest/motions/README.md), [SPC Meetings](latest/spc-meetings/README.md), [Transport Policies](latest/transport-policies/README.md) and [Transport RACI](latest/transport-raci/README.md) reference pages.
 
 Wondering how complete this data is, or found something that looks wrong? See [Data quality & reporting a problem](DATA_QUALITY.md).

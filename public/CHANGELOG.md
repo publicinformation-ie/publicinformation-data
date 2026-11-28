@@ -4,6 +4,35 @@ All notable changes to the Public Bodies dataset will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [transport-raci 0.1.0] - 2026-11-28
+
+### Added
+- New analytical dataset [Transport RACI](latest/transport-raci/README.md):
+  who is Responsible, Accountable, Consulted and Informed for local transport
+  activities and lifecycle stages, analysed for Meath County Council only.
+  Every line carries its evidence (`statute`, `source`, `default-s149-4` or
+  `unverified`) and its sources; rows with no assessment are published as
+  `not assessed`, never as "no role".
+- Four vocabularies under `public/vocabularies/`, each as JSON, CSV with CSVW
+  metadata, SKOS Turtle and a README: `transport-stage`, `transport-activity`
+  (groupings and activities in one scheme, linked to COFOG 1999 by URI),
+  `transport-raci-party` (linked to `public-bodies`) and
+  `raci-evidence-level`. Each namespace resolves at `ns/<vocabulary>/`.
+- The dataset is published at `latest/transport-raci/` and `v0.1.0/transport-raci/`,
+  with a wide reading view, coverage rows, nested JSON, `llms.txt` and a
+  hand-reviewed methodology. A DCAT record is at
+  `catalog/dataset-transport-raci.ttl`.
+- The master tables are committed under `reference/transport-raci/`, with the
+  one-off migration in `scripts/migrate_transport_raci_handoff.py` and the
+  single writer `scripts/build_transport_raci.py` (with `--check`).
+
+### Notes
+- This is analysis by PublicInformation.ie, not official or republished data.
+  It is not legal advice. Roles still awaiting a ruling are not published and
+  are listed in the README.
+- Scenario, finding and decision references stay internal; published notes
+  cite only sources and boundary rules.
+
 ## [cofog-1999 vocabulary] - 2026-11-28
 
 ### Added

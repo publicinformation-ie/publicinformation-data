@@ -1,0 +1,3 @@
+grouping_id,name,cofog_class,cofog_status,status
+RT1,Road network infrastructure,04.5.1,confirmed,active
+RT9,Road transport funding and administration,04.5.1,confirmed,active

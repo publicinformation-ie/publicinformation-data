@@ -1,0 +1,1109 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://data.publicinformation.ie/ns/transport-activity>
+    a skos:ConceptScheme ;
+    dct:title "Transport activities and L4 groupings"@en ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:versionInfo "0.1.0" ;
+    skos:hasTopConcept <https://data.publicinformation.ie/ns/transport-activity#RT1>, <https://data.publicinformation.ie/ns/transport-activity#RT2>, <https://data.publicinformation.ie/ns/transport-activity#RT3>, <https://data.publicinformation.ie/ns/transport-activity#RT4>, <https://data.publicinformation.ie/ns/transport-activity#RT5>, <https://data.publicinformation.ie/ns/transport-activity#RT6>, <https://data.publicinformation.ie/ns/transport-activity#RT7>, <https://data.publicinformation.ie/ns/transport-activity#RT8>, <https://data.publicinformation.ie/ns/transport-activity#RT9>, <https://data.publicinformation.ie/ns/transport-activity#WT1>, <https://data.publicinformation.ie/ns/transport-activity#WT2>, <https://data.publicinformation.ie/ns/transport-activity#WT3>, <https://data.publicinformation.ie/ns/transport-activity#WT4>, <https://data.publicinformation.ie/ns/transport-activity#RL1>, <https://data.publicinformation.ie/ns/transport-activity#RL2>, <https://data.publicinformation.ie/ns/transport-activity#RL3>, <https://data.publicinformation.ie/ns/transport-activity#RL4>, <https://data.publicinformation.ie/ns/transport-activity#RL5>, <https://data.publicinformation.ie/ns/transport-activity#AT1>, <https://data.publicinformation.ie/ns/transport-activity#AT2>, <https://data.publicinformation.ie/ns/transport-activity#AT3>, <https://data.publicinformation.ie/ns/transport-activity#AT4>, <https://data.publicinformation.ie/ns/transport-activity#OT1>, <https://data.publicinformation.ie/ns/transport-activity#OT2>, <https://data.publicinformation.ie/ns/transport-activity#X1>, <https://data.publicinformation.ie/ns/transport-activity#X2>, <https://data.publicinformation.ie/ns/transport-activity#X3>, <https://data.publicinformation.ie/ns/transport-activity#X4>, <https://data.publicinformation.ie/ns/transport-activity#X5>, <https://data.publicinformation.ie/ns/transport-activity#X6>, <https://data.publicinformation.ie/ns/transport-activity#X7> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT1>
+    a skos:Concept ;
+    skos:notation "RT1" ;
+    skos:prefLabel "Road network infrastructure"@en ;
+    skos:definition "Road network infrastructure. COFOG class 04.5.1 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.1> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT2>
+    a skos:Concept ;
+    skos:notation "RT2" ;
+    skos:prefLabel "Walking infrastructure"@en ;
+    skos:definition "Walking infrastructure. COFOG class 04.5.1 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.1> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT3>
+    a skos:Concept ;
+    skos:notation "RT3" ;
+    skos:prefLabel "Cycling infrastructure"@en ;
+    skos:definition "Cycling infrastructure. COFOG class 04.5.1 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.1> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT4>
+    a skos:Concept ;
+    skos:notation "RT4" ;
+    skos:prefLabel "Road passenger transport infrastructure"@en ;
+    skos:definition "Road passenger transport infrastructure. COFOG class 04.5.1 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.1> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT5>
+    a skos:Concept ;
+    skos:notation "RT5" ;
+    skos:prefLabel "Road passenger transport services"@en ;
+    skos:definition "Road passenger transport services. COFOG class 04.5.1 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.1> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT6>
+    a skos:Concept ;
+    skos:notation "RT6" ;
+    skos:prefLabel "Road freight and logistics"@en ;
+    skos:definition "Road freight and logistics. COFOG class 04.5.1 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.1> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT7>
+    a skos:Concept ;
+    skos:notation "RT7" ;
+    skos:prefLabel "Parking and kerbside management"@en ;
+    skos:definition "Parking and kerbside management. COFOG class 04.5.1 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.1> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT8>
+    a skos:Concept ;
+    skos:notation "RT8" ;
+    skos:prefLabel "Road transport regulation"@en ;
+    skos:definition "Road transport regulation. COFOG class 04.5.1 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.1> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT9>
+    a skos:Concept ;
+    skos:notation "RT9" ;
+    skos:prefLabel "Road transport funding and administration"@en ;
+    skos:definition "Road transport funding and administration. COFOG class 04.5.1 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.1> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#WT1>
+    a skos:Concept ;
+    skos:notation "WT1" ;
+    skos:prefLabel "Port and harbour infrastructure"@en ;
+    skos:definition "Port and harbour infrastructure. COFOG class 04.5.2 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.2> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#WT2>
+    a skos:Concept ;
+    skos:notation "WT2" ;
+    skos:prefLabel "Water transport infrastructure"@en ;
+    skos:definition "Water transport infrastructure. COFOG class 04.5.2 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.2> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#WT3>
+    a skos:Concept ;
+    skos:notation "WT3" ;
+    skos:prefLabel "Water passenger and freight services"@en ;
+    skos:definition "Water passenger and freight services. COFOG class 04.5.2 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.2> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#WT4>
+    a skos:Concept ;
+    skos:notation "WT4" ;
+    skos:prefLabel "Water transport regulation and administration"@en ;
+    skos:definition "Water transport regulation and administration. COFOG class 04.5.2 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.2> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RL1>
+    a skos:Concept ;
+    skos:notation "RL1" ;
+    skos:prefLabel "Railway infrastructure"@en ;
+    skos:definition "Railway infrastructure. COFOG class 04.5.3 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.3> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RL2>
+    a skos:Concept ;
+    skos:notation "RL2" ;
+    skos:prefLabel "Urban rapid transit infrastructure"@en ;
+    skos:definition "Urban rapid transit infrastructure. COFOG class 04.5.3 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.3> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RL3>
+    a skos:Concept ;
+    skos:notation "RL3" ;
+    skos:prefLabel "Railway passenger and freight services"@en ;
+    skos:definition "Railway passenger and freight services. COFOG class 04.5.3 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.3> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RL4>
+    a skos:Concept ;
+    skos:notation "RL4" ;
+    skos:prefLabel "Railway regulation and safety"@en ;
+    skos:definition "Railway regulation and safety. COFOG class 04.5.3 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.3> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RL5>
+    a skos:Concept ;
+    skos:notation "RL5" ;
+    skos:prefLabel "Rail funding and administration"@en ;
+    skos:definition "Rail funding and administration. COFOG class 04.5.3 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.3> ;
+    skos:note "Status: retired"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#AT1>
+    a skos:Concept ;
+    skos:notation "AT1" ;
+    skos:prefLabel "Airport and airfield infrastructure"@en ;
+    skos:definition "Airport and airfield infrastructure. COFOG class 04.5.4 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.4> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#AT2>
+    a skos:Concept ;
+    skos:notation "AT2" ;
+    skos:prefLabel "Air passenger and freight services"@en ;
+    skos:definition "Air passenger and freight services. COFOG class 04.5.4 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.4> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#AT3>
+    a skos:Concept ;
+    skos:notation "AT3" ;
+    skos:prefLabel "Aviation regulation and administration"@en ;
+    skos:definition "Aviation regulation and administration. COFOG class 04.5.4 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.4> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#AT4>
+    a skos:Concept ;
+    skos:notation "AT4" ;
+    skos:prefLabel "Aviation funding and investment"@en ;
+    skos:definition "Aviation funding and investment. COFOG class 04.5.4 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.4> ;
+    skos:note "Status: retired"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#OT1>
+    a skos:Concept ;
+    skos:notation "OT1" ;
+    skos:prefLabel "Pipeline transport"@en ;
+    skos:definition "Pipeline transport. COFOG class 04.5.5 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.5> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#OT2>
+    a skos:Concept ;
+    skos:notation "OT2" ;
+    skos:prefLabel "Other transport systems"@en ;
+    skos:definition "Other transport systems. COFOG class 04.5.5 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5.5> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X1>
+    a skos:Concept ;
+    skos:notation "X1" ;
+    skos:prefLabel "Traffic control, policing and enforcement"@en ;
+    skos:definition "Traffic control, policing and enforcement. COFOG class 03.1.0 (candidate)."@en ;
+    skos:related <https://data.publicinformation.ie/ns/cofog#03.1.0> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X2>
+    a skos:Concept ;
+    skos:notation "X2" ;
+    skos:prefLabel "Transport-related pollution abatement"@en ;
+    skos:definition "Transport-related pollution abatement. COFOG class 05.3.0 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#05.3.0> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X3>
+    a skos:Concept ;
+    skos:notation "X3" ;
+    skos:prefLabel "Land-use and spatial planning, including the event-licensing interface"@en ;
+    skos:definition "Land-use and spatial planning, including the event-licensing interface. COFOG class 06.2.0 (candidate)."@en ;
+    skos:related <https://data.publicinformation.ie/ns/cofog#06.2.0> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X4>
+    a skos:Concept ;
+    skos:notation "X4" ;
+    skos:prefLabel "Street lighting"@en ;
+    skos:definition "Street lighting. COFOG class 06.4.0 (confirmed)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#06.4.0> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X5>
+    a skos:Concept ;
+    skos:notation "X5" ;
+    skos:prefLabel "Electricity supply infrastructure"@en ;
+    skos:definition "Electricity supply infrastructure. COFOG class 04.3.5 (candidate)."@en ;
+    skos:related <https://data.publicinformation.ie/ns/cofog#04.3.5> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X6>
+    a skos:Concept ;
+    skos:notation "X6" ;
+    skos:prefLabel "Education and school-facility functions"@en ;
+    skos:definition "Education and school-facility functions. COFOG class 09 (candidate)."@en ;
+    skos:related <https://data.publicinformation.ie/ns/cofog#09> ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X7>
+    a skos:Concept ;
+    skos:notation "X7" ;
+    skos:prefLabel "Climate policy and cross-cutting administration, including transport funding programmes"@en ;
+    skos:definition "Climate policy and cross-cutting administration, including transport funding programmes. A cross-cutting grouping with no single COFOG class."@en ;
+    skos:note "Status: active"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-01>
+    a skos:Concept ;
+    skos:notation "RT-01" ;
+    skos:prefLabel "Construct, improve and renew national roads"@en ;
+    skos:definition "Physical construction, improvement and major renewal of national road assets. Distinguish statutory road authority functions, TII oversight and project delivery."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT1> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S4, S5, S5G, S6, S7a, S7b, S7c, S8, S9, S10, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-02>
+    a skos:Concept ;
+    skos:notation "RT-02" ;
+    skos:prefLabel "Maintain and rehabilitate regional and local roads"@en ;
+    skos:definition "Routine and periodic maintenance, pavement renewal (e.g. surface dressing, strengthening/resurfacing) and rehabilitation of regional and local roads. Statutory duty of the road authority under s.13 Roads Act 1993; funded by own resources plus DoT Protection and Renewal grants. Improvement and new construction: RT-35; winter and emergency maintenance: RT-39. S6 covers conditional AA/EIA screening and exemption check."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT1> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S2, S3, S4, S6, S9, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-03>
+    a skos:Concept ;
+    skos:notation "RT-03" ;
+    skos:prefLabel "Manage road bridges, structures and drainage"@en ;
+    skos:definition "Lifecycle management, inspection, maintenance and renewal of bridges, retaining structures, culverts and road drainage."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT1> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S4, S5, S5G, S6, S7a, S7c, S8, S9, S10, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-04>
+    a skos:Concept ;
+    skos:notation "RT-04" ;
+    skos:prefLabel "Provide and maintain road signs and markings"@en ;
+    skos:definition "Road signs, road markings, delineation and associated physical road safety assets, including speed-limit signs. Excludes enforcement."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT1> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S2, S3, S4, S5, S5G, S6, S7a, S7b, S7c, S9, S10, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-05>
+    a skos:Concept ;
+    skos:notation "RT-05" ;
+    skos:prefLabel "Plan and manage pedestrian networks"@en ;
+    skos:definition "Planning, development and management of public pedestrian routes and footpath networks."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT2> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-06>
+    a skos:Concept ;
+    skos:notation "RT-06" ;
+    skos:prefLabel "Construct and maintain footpaths and pedestrian routes"@en ;
+    skos:definition "Provision, repair and maintenance of footpaths and pedestrian links within the relevant public realm."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT2> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S4, S5, S5G, S6, S7a, S7b, S7c, S8, S9, S10, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-07>
+    a skos:Concept ;
+    skos:notation "RT-07" ;
+    skos:prefLabel "Provide pedestrian crossings and crossing infrastructure"@en ;
+    skos:definition "Physical provision and maintenance of pedestrian crossings, refuge islands, tactile paving and associated infrastructure."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT2> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S2, S3, S4, S5, S5G, S6, S7a, S7b, S7c, S9, S10, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-08>
+    a skos:Concept ;
+    skos:notation "RT-08" ;
+    skos:prefLabel "Provide accessible pedestrian infrastructure"@en ;
+    skos:definition "Universal-access features within pedestrian routes and crossings, including dropped kerbs, tactile surfaces and accessible connections."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT2> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S2, S3, S4, S5, S5G, S6, S7a, S7b, S7c, S9, S10, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-09>
+    a skos:Concept ;
+    skos:notation "RT-09" ;
+    skos:prefLabel "Provide, maintain and renew local and regional cycle networks"@en ;
+    skos:definition "Cycling infrastructure on roads and other public routes (excluding greenways, RT-10) across all applicable stages, including maintenance and renewal (S12)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT3> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S4, S5, S5G, S6, S7a, S7b, S7c, S8, S9, S10, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-10>
+    a skos:Concept ;
+    skos:notation "RT-10" ;
+    skos:prefLabel "Develop and maintain greenways"@en ;
+    skos:definition "Plan, construct, improve, operate, regulate and maintain greenways. All greenways are treated as serving a transport function. S13a covers greenway bye-laws and S14 their enforcement."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT3> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S4, S5, S5G, S6, S7a, S7c, S8, S9, S10, S11, S12, S13a, S14, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-11>
+    a skos:Concept ;
+    skos:notation "RT-11" ;
+    skos:prefLabel "Provide and maintain cycle parking in the public realm"@en ;
+    skos:definition "Publicly accessible bicycle parking and associated facilities in the public realm, including near educational institutions and bike-share docking stations, racks and bays."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT3> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S2, S3, S4, S5, S5G, S6, S7a, S7b, S7c, S9, S10, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-12>
+    a skos:Concept ;
+    skos:notation "RT-12" ;
+    skos:prefLabel "Develop and apply walking and cycling design standards"@en ;
+    skos:definition "Preparation, adoption and application of design standards and technical guidance for walking and cycling infrastructure."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT3> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S5, S5G, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-13>
+    a skos:Concept ;
+    skos:notation "RT-13" ;
+    skos:prefLabel "Provide bus priority infrastructure"@en ;
+    skos:definition "Physical bus lanes, bus gates and other infrastructure intended to prioritise bus movement. Excludes signal control operation. The delivering body may be the NTA (e.g. BusConnects Core Bus Corridors under s.51 Roads Act 1993). Post-construction maintenance party UNVERIFIED."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT4> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S4, S5, S5G, S6, S7a, S7b, S7c, S8, S9, S10, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-14a>
+    a skos:Concept ;
+    skos:notation "RT-14a" ;
+    skos:prefLabel "Provide and maintain bus stop civil works"@en ;
+    skos:definition "Kerbs, hardstanding, footpath links and other civil works at bus stops, and approval of bus stop locations (s.16 RTA 2002; S.I. 12 of 2013)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT4> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S2, S3, S4, S5, S5G, S6, S7a, S7b, S7c, S9, S10, S12, S13b, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-14b>
+    a skos:Concept ;
+    skos:notation "RT-14b" ;
+    skos:prefLabel "Provide and maintain bus stop furniture and shelters"@en ;
+    skos:definition "Shelters, poles, flags and passenger furniture at bus stops, typically supplied and maintained through the NTA's shelter contractor."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT4> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S2, S3, S4, S5, S5G, S6, S7a, S7b, S7c, S9, S10, S11, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-15>
+    a skos:Concept ;
+    skos:notation "RT-15" ;
+    skos:prefLabel "Provide road-based public transport interchange facilities"@en ;
+    skos:definition "Bus stations, interchange areas and associated physical facilities. Classify individual rail or ferry components under their respective modes."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT4> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S4, S5, S5G, S6, S7a, S7c, S8, S9, S10, S11, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-16>
+    a skos:Concept ;
+    skos:notation "RT-16" ;
+    skos:prefLabel "Provide passenger information infrastructure for road transport"@en ;
+    skos:definition "Physical passenger information facilities and infrastructure associated with road passenger transport."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT4> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S2, S3, S4, S5, S5G, S6, S7a, S7b, S7c, S9, S10, S11, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-17>
+    a skos:Concept ;
+    skos:notation "RT-17" ;
+    skos:prefLabel "Plan road passenger transport networks and services"@en ;
+    skos:definition "Network-wide service design, route planning, frequency and service integration for bus and other road passenger transport. Route design for TFI Local Link services sits in RT-19.S2 (boundary rule B13)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT5> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-18>
+    a skos:Concept ;
+    skos:notation "RT-18" ;
+    skos:prefLabel "Administer fares and passenger service arrangements"@en ;
+    skos:definition "Fare structures and service arrangements where the relevant public authority has responsibility. Separate from infrastructure and operator licensing."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT5> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S13a, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-19>
+    a skos:Concept ;
+    skos:notation "RT-19" ;
+    skos:prefLabel "Coordinate rural and community transport services"@en ;
+    skos:definition "Planning, coordination and development of rural and community road passenger transport services, including TFI Local Link. The NTA is responsible; 15 Transport Co-ordination Units administer operator contracts on its behalf. The LA has no funding, procurement or operating role in this activity; LA decisions sit in RT-14a.S13b (stop approvals), RT-15 (interchanges), X-08.S1 and RT-32.S2."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT5> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S9, S11, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-20>
+    a skos:Concept ;
+    skos:notation "RT-20" ;
+    skos:prefLabel "Plan and provide road freight and logistics facilities"@en ;
+    skos:definition "Road-based freight hubs, loading facilities and last-mile logistics facilities."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT6> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S4, S5, S5G, S6, S7a, S7c, S8, S9, S10, S11, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-21>
+    a skos:Concept ;
+    skos:notation "RT-21" ;
+    skos:prefLabel "Manage local freight access and delivery arrangements"@en ;
+    skos:definition "Local freight access arrangements, delivery windows and freight movement plans. Separate physical facilities from regulatory restrictions."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT6> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S13a, S14, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-22>
+    a skos:Concept ;
+    skos:notation "RT-22" ;
+    skos:prefLabel "Plan and manage public parking and kerbside space"@en ;
+    skos:definition "On-street and off-street parking policy, parking supply, charges, permits, loading bays and kerbside allocation."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT7> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S11, S13a, S13b, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-23>
+    a skos:Concept ;
+    skos:notation "RT-23" ;
+    skos:prefLabel "Designate and provide taxi ranks"@en ;
+    skos:definition "Designation, siting and physical provision of taxi ranks and associated kerbside space."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT7> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S2, S10, S12, S13a"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-24>
+    a skos:Concept ;
+    skos:notation "RT-24" ;
+    skos:prefLabel "Make and administer local road traffic and speed-limit bye-laws"@en ;
+    skos:definition "Special speed-limit bye-laws under s.9 RTA 2004 (reserved, s.9(10)), including 30 km/h urban limits, and other local road traffic bye-laws. Excludes national managed roads (RT-25), national default limits (RT-40) and road works speed limit orders (RT-37, boundary rule B12). S5G covers TII's prior consent on national roads."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT8> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S5G, S13a, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-25>
+    a skos:Concept ;
+    skos:notation "RT-25" ;
+    skos:prefLabel "Set or amend speed limits on national roads"@en ;
+    skos:definition "Speed-limit decisions on national roads: TII bye-laws on national managed roads (s.9A RTA 2004); LA bye-laws on other national roads with TII's prior written consent (s.9(7)). S5G follows boundary rule B9."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT8> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S2, S5G, S13a, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-26>
+    a skos:Concept ;
+    skos:notation "RT-26" ;
+    skos:prefLabel "Regulate shared micromobility services"@en ;
+    skos:definition "Bye-laws for stationless or shared bike and e-scooter hire (s.199 LGA 2001; reserved) and operator licences and permits issued under them. Separate from service provision (RT-41)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT8> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S13a, S13b, S14, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-27>
+    a skos:Concept ;
+    skos:notation "RT-27" ;
+    skos:prefLabel "Regulate taxi and small public service vehicle services"@en ;
+    skos:definition "Statutory regulation and licensing of SPSVs and taxi services, including relevant standards and conditions."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT8> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S13a, S13b, S14, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-28>
+    a skos:Concept ;
+    skos:notation "RT-28" ;
+    skos:prefLabel "Regulate road passenger and freight operators"@en ;
+    skos:definition "Commercial operator licensing and regulatory controls for passenger and haulage operators, distinguishing national licensing from local road controls."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT8> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S13a, S13b, S14, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-29>
+    a skos:Concept ;
+    skos:notation "RT-29" ;
+    skos:prefLabel "Manage road traffic calming and physical public-realm reallocation"@en ;
+    skos:definition "Design and implementation of physical traffic-calming measures and reallocation of road space. Excludes policing, enforcement and signal control operations."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT8> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S2, S3, S4, S5, S5G, S6, S7a, S7b, S7c, S9, S10, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-30>
+    a skos:Concept ;
+    skos:notation "RT-30" ;
+    skos:prefLabel "Administer active travel and road transport capital programmes"@en ;
+    skos:definition "Retired activity. Retired. Programme-level functions now sit in X-17; project allocation in S3 of each asset activity. Row retained for traceability only."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT9> ;
+    skos:note "Status: retired"@en ;
+    skos:note "Stages: none"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-31>
+    a skos:Concept ;
+    skos:notation "RT-31" ;
+    skos:prefLabel "Manage transport infrastructure projects and statutory planning processes"@en ;
+    skos:definition "Retired activity. Retired. Now stages S5–S9 of each asset activity, with consent routes S7a–S7c. Row retained for traceability only."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT9> ;
+    skos:note "Status: retired"@en ;
+    skos:note "Stages: none"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-32>
+    a skos:Concept ;
+    skos:notation "RT-32" ;
+    skos:prefLabel "Plan and integrate local transport networks"@en ;
+    skos:definition "Strategic coordination of road transport networks and their interfaces with other modes and land-use planning, including Local Transport Plans."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT9> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S6, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-33>
+    a skos:Concept ;
+    skos:notation "RT-33" ;
+    skos:prefLabel "Manage road transport infrastructure assets"@en ;
+    skos:definition "Asset inventories, condition assessment (MapRoad pavement management system), lifecycle planning and maintenance programming. The works it programmes are recorded at S12 of the relevant asset row."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT9> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S11, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-34>
+    a skos:Concept ;
+    skos:notation "RT-34" ;
+    skos:prefLabel "Audit accessibility of transport infrastructure"@en ;
+    skos:definition "Accessibility assessment and audit of transport infrastructure. The infrastructure itself remains classified under its relevant transport mode."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT9> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S5, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-35>
+    a skos:Concept ;
+    skos:notation "RT-35" ;
+    skos:prefLabel "Construct and improve regional and local roads"@en ;
+    skos:definition "New roads, relief roads, realignments, junction and safety improvement schemes on regional and local roads (e.g. DoT Specific Improvement and Strategic Regional and Local Road grants)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT1> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S4, S5, S5G, S6, S7a, S7b, S7c, S8, S9, S10, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-36>
+    a skos:Concept ;
+    skos:notation "RT-36" ;
+    skos:prefLabel "Control works on public roads by others"@en ;
+    skos:definition "Road opening licences (s.13(10) Roads Act 1993; MapRoad Roadworks Licensing), sectoral consents for statutory undertakers, s.101D RTA 1961 directions, co-ordination of works, the licence holder's works and reinstatement, and enforcement."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT1> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S10, S11, S13b, S14, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-37>
+    a skos:Concept ;
+    skos:notation "RT-37" ;
+    skos:prefLabel "Temporarily close roads and manage temporary traffic arrangements"@en ;
+    skos:definition "Temporary road closure orders for events, works or other purposes (s.75 Roads Act 1993; Arts 12 and 14 Roads Regulations 1994), road works speed limit orders (s.10 RTA 2004), temporary traffic management, offences and cost recovery."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT8> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S11, S13b, S14, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-38>
+    a skos:Concept ;
+    skos:notation "RT-38" ;
+    skos:prefLabel "Declare public roads and take roads in charge"@en ;
+    skos:definition "Declaring roads public and taking estate roads, footpaths and public lighting in charge (s.11 Roads Act 1993; s.180 PDA 2000 until 25 Nov 2026, then s.261 PDA 2024, with s.263 transitional); extinguishing public rights of way. Transfers maintenance responsibility to the Local Authority. The order sits in S7D."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT9> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S5G, S7D, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-39>
+    a skos:Concept ;
+    skos:notation "RT-39" ;
+    skos:prefLabel "Provide winter and emergency road maintenance"@en ;
+    skos:definition "Winter service (salting/gritting priorities), storm, flood and emergency response on the road network, including footways and cycle routes where included in the winter service plan."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT1> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S11, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-40>
+    a skos:Concept ;
+    skos:notation "RT-40" ;
+    skos:prefLabel "Set national default speed limits"@en ;
+    skos:definition "Default speed limits for classes of road set in RTA 2004 as amended by RTA 2024, and their commencement. Rural local roads 60 km/h from 7 Feb 2025; the built-up 30 km/h and national road changes are enacted but not commenced. Not an LA function. Signs: RT-04."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT8> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S13a, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-41>
+    a skos:Concept ;
+    skos:notation "RT-41" ;
+    skos:prefLabel "Provide and operate shared bicycle and micromobility services"@en ;
+    skos:definition "Funding, procurement and operation of public bike-share and shared micromobility services: NTA model (TFI Bikes contract) or LA model (procured or concession pilots). Separate from regulation (RT-26) and from stations, racks and bays (RT-11)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT5> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S9, S11, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RT-42>
+    a skos:Concept ;
+    skos:notation "RT-42" ;
+    skos:prefLabel "Provide and maintain traffic signal and ITS assets"@en ;
+    skos:definition "Physical traffic signals, detectors, cameras and other ITS equipment on the road. Operation and control of signals stays in X-01."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT1> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S2, S3, S4, S5, S5G, S6, S7a, S7b, S7c, S9, S10, S11, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#WT-01>
+    a skos:Concept ;
+    skos:notation "WT-01" ;
+    skos:prefLabel "Plan and develop commercial port infrastructure"@en ;
+    skos:definition "Strategic planning and development of port infrastructure, distinguishing port-company functions from statutory planning authority decisions."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#WT1> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S4, S5, S5G, S6, S7a, S7c, S8, S9, S10, S11, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#WT-02>
+    a skos:Concept ;
+    skos:notation "WT-02" ;
+    skos:prefLabel "Own, operate and maintain local authority piers and harbours"@en ;
+    skos:definition "Management, operation, maintenance and renewal of Local Authority-owned or controlled piers, harbours and marine assets."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#WT1> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S4, S5, S5G, S6, S7a, S7c, S8, S9, S10, S11, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#WT-03>
+    a skos:Concept ;
+    skos:notation "WT-03" ;
+    skos:prefLabel "Provide and maintain local water transport facilities"@en ;
+    skos:definition "Local passenger or freight ferry terminals, landing places and other water transport facilities where a Local Authority has a role."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#WT2> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S4, S5, S5G, S6, S7a, S7c, S8, S9, S10, S11, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#WT-04>
+    a skos:Concept ;
+    skos:notation "WT-04" ;
+    skos:prefLabel "Plan or support local water passenger and freight services"@en ;
+    skos:definition "Planning, coordination or support of water passenger and freight services where a Local Authority has an established role."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#WT3> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S9, S11, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#WT-05>
+    a skos:Concept ;
+    skos:notation "WT-05" ;
+    skos:prefLabel "Administer local harbour and marine asset arrangements"@en ;
+    skos:definition "Local harbour-related operational and administrative arrangements, excluding national maritime safety and coastguard functions."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#WT4> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S11, S13a, S14, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RL-01>
+    a skos:Concept ;
+    skos:notation "RL-01" ;
+    skos:prefLabel "Plan, construct and maintain heavy railway infrastructure"@en ;
+    skos:definition "Railway tracks, stations, bridges, tunnels and associated infrastructure. National infrastructure responsibility to be validated."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RL1> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S4, S5, S5G, S6, S7a, S7c, S8, S9, S10, S11, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RL-02>
+    a skos:Concept ;
+    skos:notation "RL-02" ;
+    skos:prefLabel "Plan, construct and maintain urban rapid transit infrastructure"@en ;
+    skos:definition "Luas, metro and other urban rapid transit infrastructure, including alignment and physical assets."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RL2> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S4, S5, S5G, S6, S7a, S7c, S8, S9, S10, S11, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RL-03>
+    a skos:Concept ;
+    skos:notation "RL-03" ;
+    skos:prefLabel "Plan and provide railway passenger and freight services"@en ;
+    skos:definition "Rail passenger and freight service planning, procurement and operation, distinguishing public authority and operator roles."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RL3> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S9, S11, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RL-04>
+    a skos:Concept ;
+    skos:notation "RL-04" ;
+    skos:prefLabel "Provide and manage railway freight interchange facilities"@en ;
+    skos:definition "Physical rail freight interchange and terminal facilities, separated from road last-mile logistics facilities."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RL3> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S4, S5, S5G, S6, S7a, S7c, S8, S9, S10, S11, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RL-05>
+    a skos:Concept ;
+    skos:notation "RL-05" ;
+    skos:prefLabel "Regulate railway safety and certify railway operations"@en ;
+    skos:definition "Independent safety oversight, authorisation and certification for railway and urban rapid transit systems."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RL4> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S13b, S14, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#RL-06>
+    a skos:Concept ;
+    skos:notation "RL-06" ;
+    skos:prefLabel "Administer railway infrastructure funding and investment programmes"@en ;
+    skos:definition "Retired activity. Retired for consistency with RT-30. Programme level: X-17; project allocation: RL-01/RL-02 × S3."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RL5> ;
+    skos:note "Status: retired"@en ;
+    skos:note "Stages: none"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#AT-01>
+    a skos:Concept ;
+    skos:notation "AT-01" ;
+    skos:prefLabel "Plan, develop and maintain airport and airfield infrastructure"@en ;
+    skos:definition "Airport and airfield infrastructure, including regional airfields and general aviation facilities where the Local Authority owns, operates or partners."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#AT1> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S4, S5, S5G, S6, S7a, S7c, S8, S9, S10, S11, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#AT-02>
+    a skos:Concept ;
+    skos:notation "AT-02" ;
+    skos:prefLabel "Plan and coordinate airport surface access"@en ;
+    skos:definition "Strategic access planning for airports. Physical access roads and public transport components are classified under their respective modes."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#AT1> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#AT-03>
+    a skos:Concept ;
+    skos:notation "AT-03" ;
+    skos:prefLabel "Plan or support regional air passenger and freight services"@en ;
+    skos:definition "Air passenger and freight service arrangements where a Local Authority has an established role."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#AT2> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S9, S11, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#AT-04>
+    a skos:Concept ;
+    skos:notation "AT-04" ;
+    skos:prefLabel "Administer local airport and airfield arrangements"@en ;
+    skos:definition "Local administrative and operational arrangements for Local Authority-owned or partnered airfields, excluding national aviation safety regulation."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#AT3> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S11, S13a, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#AT-05>
+    a skos:Concept ;
+    skos:notation "AT-05" ;
+    skos:prefLabel "Administer regional aviation infrastructure funding"@en ;
+    skos:definition "Retired activity. Retired for consistency with RT-30. Programme level: X-17; project allocation: AT-01 × S3."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#AT4> ;
+    skos:note "Status: retired"@en ;
+    skos:note "Stages: none"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#OT-01>
+    a skos:Concept ;
+    skos:notation "OT-01" ;
+    skos:prefLabel "Provide or oversee pipeline transport infrastructure"@en ;
+    skos:definition "Placeholder activity. Pipeline transport infrastructure and operations, if a relevant Local Authority function is identified."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#OT1> ;
+    skos:note "Status: placeholder"@en ;
+    skos:note "Stages: none"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#OT-02>
+    a skos:Concept ;
+    skos:notation "OT-02" ;
+    skos:prefLabel "Provide or oversee other transport systems"@en ;
+    skos:definition "Placeholder activity. Cableways, funiculars, chairlifts or other transport systems where a relevant Local Authority function is identified."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#OT2> ;
+    skos:note "Status: placeholder"@en ;
+    skos:note "Stages: none"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X-01>
+    a skos:Concept ;
+    skos:notation "X-01" ;
+    skos:prefLabel "Operate and control traffic signals"@en ;
+    skos:definition "Operational control of traffic signals and traffic flows. Distinguish the signal asset (RT-42) from the traffic-control function; exact COFOG treatment to verify."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#X1> ;
+    skos:related <https://data.publicinformation.ie/ns/cofog#03.1.0> ;
+    skos:scopeNote "COFOG 03.1.0: candidate"@en ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S11, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X-02>
+    a skos:Concept ;
+    skos:notation "X-02" ;
+    skos:prefLabel "Enforce road traffic and parking regulations"@en ;
+    skos:definition "Policing and enforcement of road traffic, speed-limit and parking rules, including the role of An Garda Síochána and any local enforcement arrangements."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#X1> ;
+    skos:related <https://data.publicinformation.ie/ns/cofog#03.1.0> ;
+    skos:scopeNote "COFOG 03.1.0: candidate"@en ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S9, S14, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X-03>
+    a skos:Concept ;
+    skos:notation "X-03" ;
+    skos:prefLabel "Provide school crossing patrols"@en ;
+    skos:definition "Deployment and operation of school crossing patrols. COFOG classification and statutory character require specific verification."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#X1> ;
+    skos:related <https://data.publicinformation.ie/ns/cofog#03.1.0> ;
+    skos:scopeNote "COFOG 03.1.0: candidate"@en ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S3, S11, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X-04>
+    a skos:Concept ;
+    skos:notation "X-04" ;
+    skos:prefLabel "Implement low-emission zones and congestion charging"@en ;
+    skos:definition "Separate traffic restriction/enforcement mechanisms from road pricing, transport demand management and associated infrastructure."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#X1> ;
+    skos:related <https://data.publicinformation.ie/ns/transport-activity#RT8> ;
+    skos:related <https://data.publicinformation.ie/ns/cofog#03.1.0> ;
+    skos:scopeNote "COFOG 03.1.0: candidate"@en ;
+    skos:related <https://data.publicinformation.ie/ns/cofog#04.5.1> ;
+    skos:scopeNote "COFOG 04.5.1: confirmed"@en ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S5, S6, S10, S11, S13a, S14, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X-05>
+    a skos:Concept ;
+    skos:notation "X-05" ;
+    skos:prefLabel "Monitor and mitigate transport-related air pollution and noise"@en ;
+    skos:definition "Air and noise monitoring, mitigation and pollution abatement along transport corridors. Physical transport infrastructure remains classified by its function."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#X2> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S10, S11, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X-06>
+    a skos:Concept ;
+    skos:notation "X-06" ;
+    skos:prefLabel "Set and monitor transport-related climate objectives"@en ;
+    skos:definition "Transport emissions targets and actions within Local Authority climate action planning. Classify individual expenditure and activities by their actual function."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#X7> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S6, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X-07>
+    a skos:Concept ;
+    skos:notation "X-07" ;
+    skos:prefLabel "Plan and provide public EV charging infrastructure"@en ;
+    skos:definition "Distinguish electricity supply/network infrastructure from charging facilities provided as road transport infrastructure. Apply a consistent primary-purpose rule."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#X5> ;
+    skos:related <https://data.publicinformation.ie/ns/cofog#04.3.5> ;
+    skos:scopeNote "COFOG 04.3.5: candidate"@en ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S4, S5, S5G, S6, S7a, S7c, S8, S9, S10, S11, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X-08>
+    a skos:Concept ;
+    skos:notation "X-08" ;
+    skos:prefLabel "Integrate transport and land-use planning"@en ;
+    skos:definition "Spatial planning, zoning and development-plan functions affecting transport patterns. Classify actual transport infrastructure separately."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#X3> ;
+    skos:related <https://data.publicinformation.ie/ns/cofog#06.2.0> ;
+    skos:scopeNote "COFOG 06.2.0: candidate"@en ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S6, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X-09>
+    a skos:Concept ;
+    skos:notation "X-09" ;
+    skos:prefLabel "Provide and maintain street lighting"@en ;
+    skos:definition "Street lighting provision and maintenance, excluding lighting integral to highway construction or operation where COFOG guidance provides otherwise."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#X4> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S2, S3, S4, S5, S5G, S6, S7a, S7c, S9, S10, S11, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X-10>
+    a skos:Concept ;
+    skos:notation "X-10" ;
+    skos:prefLabel "Provide school travel education and behaviour-change programmes"@en ;
+    skos:definition "Educational programmes delivered through schools, distinguished from public-road infrastructure and traffic enforcement."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#X6> ;
+    skos:related <https://data.publicinformation.ie/ns/cofog#09> ;
+    skos:scopeNote "COFOG 09: candidate"@en ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S3, S9, S11, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X-11>
+    a skos:Concept ;
+    skos:notation "X-11" ;
+    skos:prefLabel "Provide and maintain bicycle parking on school or campus property"@en ;
+    skos:definition "Facilities on school, university or other educational property, subject to the property owner's responsibilities and relevant agreements. Consent route depends on the property owner (UNVERIFIED)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#X6> ;
+    skos:related <https://data.publicinformation.ie/ns/cofog#09> ;
+    skos:scopeNote "COFOG 09: candidate"@en ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S2, S3, S4, S5, S5G, S6, S7a, S7c, S9, S10, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X-12>
+    a skos:Concept ;
+    skos:notation "X-12" ;
+    skos:prefLabel "Develop and implement road safety plans and campaigns"@en ;
+    skos:definition "Separate policing/enforcement, education and physical road engineering components rather than treating a road safety plan as one function."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#X1> ;
+    skos:related <https://data.publicinformation.ie/ns/transport-activity#X6> ;
+    skos:related <https://data.publicinformation.ie/ns/transport-activity#RT9> ;
+    skos:related <https://data.publicinformation.ie/ns/cofog#03.1.0> ;
+    skos:scopeNote "COFOG 03.1.0: candidate"@en ;
+    skos:related <https://data.publicinformation.ie/ns/cofog#09> ;
+    skos:scopeNote "COFOG 09: candidate"@en ;
+    skos:related <https://data.publicinformation.ie/ns/cofog#04.5.1> ;
+    skos:scopeNote "COFOG 04.5.1: confirmed"@en ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S11, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X-13>
+    a skos:Concept ;
+    skos:notation "X-13" ;
+    skos:prefLabel "Provide and maintain port access roads"@en ;
+    skos:definition "Road access infrastructure connecting ports to local and national networks. Classify the road itself as road transport infrastructure."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT1> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S2, S3, S4, S5, S5G, S6, S7a, S7b, S7c, S8, S9, S10, S12, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X-14>
+    a skos:Concept ;
+    skos:notation "X-14" ;
+    skos:prefLabel "Administer commercial road transport licensing"@en ;
+    skos:definition "Licensing and regulation of commercial passenger and freight road operators, subject to the statutory remit of the relevant national authority. Possible duplicate of RT-28 (open question)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT8> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S13a, S13b, S14, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X-15>
+    a skos:Concept ;
+    skos:notation "X-15" ;
+    skos:prefLabel "Administer driver and vehicle standards"@en ;
+    skos:definition "Driver testing, vehicle roadworthiness inspection and associated national standards. Included in the wider model but not presumed to be an LA function."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#RT8> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S13a, S13b, S14, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X-16>
+    a skos:Concept ;
+    skos:notation "X-16" ;
+    skos:prefLabel "Secure transport infrastructure through development management"@en ;
+    skos:definition "Transport impacts of planning applications, planning conditions requiring developer-delivered footpaths, cycle routes and junctions, development contributions (s.48 PDA 2000 → s.584 PDA 2024), discharge of conditions and release of security, and planning enforcement. Distinct from plan-making (X-08)."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#X3> ;
+    skos:related <https://data.publicinformation.ie/ns/cofog#06.2.0> ;
+    skos:scopeNote "COFOG 06.2.0: candidate"@en ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S3, S5G, S7D, S14, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X-17>
+    a skos:Concept ;
+    skos:notation "X-17" ;
+    skos:prefLabel "Administer transport funding programmes"@en ;
+    skos:definition "Programme-level funding functions: programme terms and conditions, envelope allocations (e.g. DoT → NTA, TII; DoT → LAs by formula), programme co-ordination contracts and programme reporting. Allocation to individual projects stays in S3 of each asset or service activity."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#X7> ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S1, S3, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .
+
+<https://data.publicinformation.ie/ns/transport-activity#X-18>
+    a skos:Concept ;
+    skos:notation "X-18" ;
+    skos:prefLabel "License outdoor events (transport interface)"@en ;
+    skos:definition "Event licences for audiences of 5,000 or more (s.230 PDA 2000; s.479 PDA 2024), whose conditions include traffic management plans agreed with the LA and An Garda Síochána. Road closures for events stay in RT-37."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/transport-activity#X3> ;
+    skos:related <https://data.publicinformation.ie/ns/cofog#06.2.0> ;
+    skos:scopeNote "COFOG 06.2.0: candidate"@en ;
+    skos:note "Status: active"@en ;
+    skos:note "Stages: S13b, S14, S15"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-activity> .

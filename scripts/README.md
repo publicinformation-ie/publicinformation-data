@@ -165,6 +165,41 @@ uv run python scripts/build_cofog_vocabulary.py           # write (no-op when un
 uv run python scripts/build_cofog_vocabulary.py --check   # compare only; exit 1 and name differing files
 ```
 
+## build_transport_raci.py
+
+Publishes the transport RACI vocabularies and dataset from the committed master.
+
+Reads every table under `reference/transport-raci/`, validates fail closed (unique keys, foreign keys, COFOG codes and public-body URIs, accountability rules, one primary grouping per active activity, retired activities with no stages), then builds every output in memory and writes it through `stamp_if_changed`:
+
+- four vocabularies in `public/vocabularies/` (`transport-stage`, `transport-activity`, `transport-raci-party`, `raci-evidence-level`), each as JSON, CSV with CSVW metadata, SKOS Turtle and a README, plus a resolver page at `public/ns/<vocabulary>/`;
+- the dataset at `public/latest/transport-raci/` and `public/v0.1.0/transport-raci/` (tables, wide reading view, coverage rows, nested JSON, README, `llms.txt` and the hand-reviewed `METHODOLOGY.md`);
+- the DCAT record at `public/catalog/dataset-transport-raci.ttl`.
+
+It also runs the leak check (no `F` numbers, `Decision` numbers or scenario references; every internal note has a `public_note`) and refuses to write if it fails. `--check` compares without writing, names every differing file and exits non-zero.
+
+### Usage
+
+```bash
+uv run python scripts/build_transport_raci.py           # write (no-op when unchanged)
+uv run python scripts/build_transport_raci.py --check   # compare only
+```
+
+## migrate_transport_raci_handoff.py
+
+One-off migration of the L4 RACI handoff into the committed master tables.
+
+Parses the register's Sections 3–6 and the assignments CSV by exact rules only, writes `reference/transport-raci/`, and logs every unmappable value to `migration_errors.json` (row, variant, column, value, reason). A party token is left out until a human ruling in `migration_resolutions.csv` supplies a replacement; a ruling that matches no error fails the run. Prose that cites an internal reference (an assignment note, or an activity, stage or party name, definition or description) is published only through a reviewed entry in `public_text.csv` (table, key, field, original, public_text, reviewed_by, date); a missing entry is logged as `needs_public_note` / `needs_public_text`, and a stale entry (its `original` no longer matches, its key does not exist, or the source cites no internal reference) fails the run. Re-running with the committed `migration_resolutions.csv` and `public_text.csv` reproduces the master byte for byte; `--resolutions` and `--public-text` override their default paths under `--out`. The handoff lives in gitignored `docs/`; after migration the master tables are the source of truth, so this script is kept for traceability and is not part of the regular build.
+
+### Usage
+
+```bash
+uv run python scripts/migrate_transport_raci_handoff.py \
+  --register docs/handoff-l4-raci/L4_Activity_Register_v0.4.md \
+  --assignments docs/handoff-l4-raci/L4_RACI_Assignments_v0.1.csv \
+  --sources docs/handoff-l4-raci/L4_Sources.csv \
+  --out reference/transport-raci/
+```
+
 ## transform_motions.py
 
 Publishes the Motions dataset from the minutes pipeline's canonical output.
