@@ -1,6 +1,6 @@
 ## Purpose
 
-Tags each SPC agenda item with what it is about, using the UN Classification of the Functions of Government (COFOG 1999) as a common cross-government taxonomy. Transport items get a finer transport-governance subdomain, so discussion topics can be counted and compared across meetings, committees and councils.
+Tags each SPC agenda item with what it is about, using the UN Classification of the Functions of Government (COFOG 1999) as a common cross-government taxonomy. Transport items get a transport-activity grouping, mapped from the retired subdomain tags, so discussion topics can be counted and compared across meetings, committees and councils.
 
 ## Requirements
 
@@ -32,28 +32,54 @@ Every classified agenda item SHALL carry between one and three COFOG codes, the 
 - **WHEN** a model returns the code `04.5.9`
 - **THEN** an `UnknownCofogCode` error is recorded and that item's topics are not published
 
-### Requirement: Transport items carry a transport-governance subdomain
+### Requirement: Transport items carry a transport-activity grouping
 
-An item with a code under `04.5` SHALL also carry one or more transport-governance subdomain IDs from the committed subdomain list (for example `infra/active-travel`, `infra/regional-local-roads`, `svc/pso-bus`). An item with no `04.5` code SHALL carry no subdomain. A subdomain ID absent from the committed list SHALL be rejected with an error.
+An item with a code under `04.5` SHALL also carry one or more transport-activity grouping IDs from the published `transport-activity` vocabulary (for example `RT1`, `RT7`, `RL3`). The classification step produces the retired transport subdomain tags; the export SHALL map each of them to its grouping through the committed crosswalk. An item with no `04.5` code SHALL carry no grouping.
+
+A source subdomain absent from the crosswalk, or a grouping absent from the published vocabulary, SHALL be rejected with an error and the item's topics SHALL NOT be published. A source tag SHALL never be dropped silently.
 
 #### Scenario: Footpath programme
 
-- **WHEN** item "5.0 Presentation on Community Centers Footpath Programme" is classified
-- **THEN** it has COFOG `04.5.1` and subdomain `infra/active-travel`
+- **WHEN** item "5.0 Presentation on Community Centers Footpath Programme" is classified with COFOG `04.5.1` and subdomain `infra/active-travel`
+- **THEN** it is published with groupings `RT2` and `RT3`
 
 #### Scenario: Subdomain without a transport code
 
-- **WHEN** an item's codes are only `06.4.0` and a model also returns subdomain `infra/regional-local-roads`
+- **WHEN** an item's codes are only `06.4.0` and the classification step also records subdomain `infra/regional-local-roads`
 - **THEN** an error is recorded and that item's topics are not published
 
-### Requirement: The subdomain list matches the transport-governance vocabulary
+#### Scenario: Unknown source tag
 
-The committed transport subdomain list SHALL contain exactly the subdomain IDs defined in the transport-governance vocabulary, each with its term and plain label. A difference between the two SHALL fail the test suite.
+- **WHEN** the classification step records a subdomain that the crosswalk does not hold
+- **THEN** an error is recorded and that item's topics are not published
+
+### Requirement: The crosswalk matches the retired vocabulary and the published activity vocabulary
+
+The committed crosswalk SHALL hold exactly the subdomain IDs defined in the retired transport subdomain vocabulary, each with its term and plain label, and for each one a list of replacement grouping IDs present in the published `transport-activity` vocabulary, or an empty list with a recorded reason where the new model has no equivalent. A difference between the crosswalk and either vocabulary SHALL fail the test suite.
 
 #### Scenario: Vocabulary gains a subdomain
 
-- **WHEN** a subdomain is added to the transport-governance vocabulary but not to the committed list
+- **WHEN** a subdomain is added to the retired vocabulary list but not to the committed crosswalk
 - **THEN** the test suite fails, naming the missing ID
+
+#### Scenario: Mapping to a term that does not exist
+
+- **WHEN** a crosswalk row names a grouping that the published activity vocabulary lacks
+- **THEN** the test suite fails, naming the grouping
+
+### Requirement: Transport tags are mapped, not re-extracted
+
+The export SHALL derive the published groupings from the subdomain tags already recorded by the classification step. It SHALL NOT re-query a model to produce transport topics. The published dataset README SHALL say that transport groupings are mapped from the earlier subdomain tagging, so a reader knows the tag is a derivation of deeper analysis.
+
+#### Scenario: Export without a model call
+
+- **WHEN** the export is re-run on the committed classification output
+- **THEN** every grouping is the crosswalk image of a recorded subdomain, and no decision, item key or attendance record changes
+
+#### Scenario: Provenance stated
+
+- **WHEN** a reader opens the SPC meetings README
+- **THEN** it says the transport groupings are mapped from the earlier subdomain tags
 
 ### Requirement: Procedural items are classified as such
 
