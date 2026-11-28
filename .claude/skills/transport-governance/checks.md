@@ -1,58 +1,48 @@
-# Transport governance checks (GDA)
+# Transport governance checks
 
-Read only when changing or validating the model. Each question has its expected answer as row
-references with A and R. Checks marked `motion` are drawn from real council motions in
-`pipelines/minutes_pipeline/steps/extract_motions/output.json` (read only; `extract_motions` is
-never run for this).
+Read only when validating or changing the skill. Each question expects one or more
+published assignment lines: the assignment ID, the role that is Accountable and the role
+that is Responsible, plus the line's evidence level. Every expected assignment ID must
+exist in `public/latest/transport-raci/raci-wide.csv`; `tests/test_transport_governance_skill.py`
+checks that.
 
 ## Procedure
 
-1. Copy `SKILL.md`, `vocabulary.md` and `raci-gda.md` (not this file) to an empty scratch
-   directory.
-2. Give a fresh subagent only that directory and the Question column below. It answers each
-   question with the row reference(s) and their A and R, citing the row it used.
-3. Compare each answer with Expected. Resolve every miss as either a model gap or ambiguity (fix
-   the model) or a wrong expectation (fix this file), and record it in the Validation log.
-4. In the same pass, run the banned-term grep over `raci-gda.md` and `SKILL.md`.
+1. Copy `SKILL.md` and `vocabulary.md` (not this file) to an empty scratch directory. Give
+   the fresh agent a read-only pointer to the published dataset and vocabularies
+   (`public/latest/transport-raci/` and `public/vocabularies/` in the repository).
+2. Give it only that material and the Question column below. It answers with the activity,
+   stage and variant it used, the `A` and `R` parties, and the line's evidence level.
+3. Compare each answer with Expected. Resolve every miss as either a dataset gap (raise it
+   for a dataset change) or a wrong expectation (fix this file), and record it in the
+   Validation log.
+4. In the same pass, run the banned-term grep over `SKILL.md` and `vocabulary.md`, and check
+   that neither file carries an assignment ID.
 
 ## Questions
 
-| # | Question | Expected | Covers | Source |
+| # | Question | Expected | Evidence | Covers |
 |---|---|---|---|---|
-| 1 | Who maintains the N3 national road near Navan? | infra/national-roads · Maintenance → A: TII, R: LA-CE, TII | trap: national road maintenance | design |
-| 2 | Does An Bord Pleanála still approve new Luas lines? If not, who does? | infra/light-rail · Consent → A: ACP, R: ACP | renamed body | design |
-| 3 | Who sets the fare on a Dublin Bus route, and who sets the fare on a licensed commercial coach route? | svc/pso-bus · Specification → A: NTA, R: NTA; svc/commercial-bus · Specification → A: Comm-op, R: Comm-op | trap: PSO vs commercial fares | design |
-| 4 | Who sets the maximum taxi fare? | svc/spsv · Regulation → A: NTA, R: NTA | trap: taxi rank vs SPSV | design |
-| 5 | Who issues driving licences? | users/vehicles-drivers · Regulation → A: RSA, R: RSA | subdomain coverage | design |
-| 6 | Who enforces speed limits? | users/traffic-law · Enforcement → A: AGS, R: AGS | subdomain coverage | design |
-| 7 | Who issues pay-parking fines in a town centre? | infra/kerbside · Enforcement · parking → A: LA-CE, R: LA-CE | LA enforcement | design |
-| 8 | Who licenses clamping companies? | infra/kerbside · Regulation · clamping → A: NTA, R: NTA | non-obvious regulator | design |
-| 9 | Who approves a new footpath and cycle track scheme that goes through Part 8? | infra/active-travel · Consent · Part 8 → A: LA-members, R: LA-CE | reserved function | design |
-| 10 | Who runs DART trains day to day? | svc/rail · Operation → A: NTA, R: IE | subdomain coverage | design |
-| 11 | Who maintains the railway track between Drogheda and Dublin? | infra/heavy-rail · Maintenance → A: IE, R: IE | subdomain coverage | design |
-| 12 | Who pays for BusConnects bus priority works, and who builds them? | infra/bus · Funding → A: NTA, R: NTA; infra/bus · Delivery → A: NTA, R: NTA, LA-CE | Funding, Delivery | design |
-| 13 | Who draws up Dublin Port's masterplan? | infra/ports-airfields · Strategic planning · port → A: Port-co, R: Port-co | subdomain coverage | design |
-| 14 | Who makes the rules for a shared e-scooter scheme in a town? | svc/shared-mobility · Regulation → A: LA-members, R: LA-CE | subdomain coverage | design |
-| 15 | Who sets national policy on licensing commercial bus routes? | svc/commercial-bus · Policy → A: DoT, R: DoT | Policy | design |
-| 16 | Who runs Luas trams day to day? | svc/light-rail · Operation → A: NTA, R: PSO-op | subdomain coverage | design |
-| 17 | A motion asks the NTA to add later evening services to the TFI Local Link 188 Drogheda–Athboy bus. Who decides? | svc/pso-bus · Specification → A: NTA, R: NTA | motion | motion: 1511, 2026-06-11 |
-| 18 | A motion asks that proposed housing estate special speed limit bye-laws go to full council for approval. Who decides? | infra/regional-local-roads · Regulation · special speed limit → A: LA-members, R: LA-CE | motion; trap: special speed limit bye-law | motion: 1511, 2023-07-06 |
-| 19 | A motion calls on Bus Éireann and the Department of Education to provide a school bus place for every pupil who needs one. Who decides? | svc/school-transport · Specification → A: DoE, R: BE | motion; trap: school transport | motion: 1511, 2023-10-02 |
-| 20 | A motion asks that a taxi rank be installed in a town, with locations put to the elected members. Who decides? | infra/kerbside · Regulation · appointed stand → A: LA-members, R: LA-CE | motion; trap: taxi rank vs SPSV | motion: 1511, 2017-04-24 |
-| 21 | A motion asks for high-powered EV charging hubs in a Municipal District. Who pays, and who decides where they go? | infra/kerbside · Funding · EV charging → A: DoT, R: DoT; infra/kerbside · Specification → A: LA-CE, R: LA-CE | motion | motion: 1511, 2024-09-03 |
-| 22 | A motion calls on the local authority to take a housing estate in charge and repair its roads and footpaths. Who decides the taking in charge in a council with Municipal Districts? | infra/regional-local-roads · Specification · taking in charge · Municipal District → A: LA-MD, R: LA-CE | motion; trap: Municipal District reserved function | motion: 1511, 2026-05-20 |
-| 23 | A motion asks for a pedestrian crossing at a bus stop. Who decides whether it is built? | infra/active-travel · Specification → A: LA-CE, R: LA-CE | boundary: crossing at a bus stop | motion: 1511, 2026-05-20 |
-| 24 | Who decides the yearly programme of road maintenance works in Dún Laoghaire–Rathdown, and in Meath? | infra/regional-local-roads · Specification → A: LA-CE, R: LA-CE; infra/regional-local-roads · Specification · schedule of municipal district works → A: LA-MD, R: LA-CE | with and without Municipal Districts | design |
-| 25 | Who pays for a licensed commercial bus route? | svc/commercial-bus · Funding → Not applicable | answer is no body | design |
-| 26 | Write one sentence of public-facing copy saying who decides where taxi ranks go. | copy: uses the plain labels of LA-members and LA-CE; no IDs, no row references, no banned terms | public register | design |
-| 27 | A Municipal District member asks for traffic calming on an estate road in Meath. Who decides? | infra/regional-local-roads · Consent · Section 38 · Municipal District → A: LA-MD, R: LA-CE | Section 38 where Municipal Districts exist | motion: 1511, 2014-09-10 |
-| 28 | Who makes the parking bye-laws for a town in a Meath Municipal District? | infra/kerbside · Regulation · parking · Municipal District → A: LA-MD, R: LA-CE | Municipal District reserved function | motion: 1511, 2014-10-13 |
-| 29 | Who approves a national road scheme that does not need environmental impact assessment? | infra/national-roads · Consent · Part 8 → A: LA-members, R: LA-CE | national road Consent split | design |
-| 30 | Who regulates aircraft noise at Dublin Airport? | infra/ports-airfields · Regulation · aircraft noise → A: LA-CE, R: LA-CE | Fingal at Dublin Airport | design |
+| 1 | Who maintains a regional or local road? | `RT-02.S12` → A: the Chief Executive and executive of Meath County Council; R: the Chief Executive and executive of Meath County Council and delivery agents | set by law | regional and local roads |
+| 2 | Who maintains the N3 national road near Navan? | `RT-01.S12` is `not assessed`: say the dataset does not assess national road maintenance, and do not name a party | not assessed | trap: national vs regional roads |
+| 3 | Who approves the yearly schedule of municipal district works? | `RT-02.S2` → A: the elected members of Meath County Council; R: the Chief Executive and executive | set by law | reserved function |
+| 4 | Who approves a footpath scheme that goes through Part 8? | `RT-06.S7a~part-8-route` → A: the elected members of Meath County Council; R: the Chief Executive and executive | set by law | trap: Part 8 |
+| 5 | The same footpath works are consented under s.38 instead. Who approves them? | `RT-06.S7b~s38-route` → A: the Chief Executive and executive of Meath County Council; R: the Chief Executive and executive | assumed by default (an executive function) | trap: s.38 against Part 8 |
+| 6 | Who makes the parking bye-laws for a town? | `RT-24.S13a` → A: the elected members of Meath County Council; R: the Chief Executive and executive | set by law | kerbside parking |
+| 7 | Who sets the special speed limit on a national managed road? | `RT-25.S13a~national-managed-roads` → A: Transport Infrastructure Ireland; R: Transport Infrastructure Ireland | set by law | national roads |
+| 8 | Who sets the special speed limit on another national road? | `RT-25.S13a~other-national-roads` → A: the elected members of Meath County Council; R: the Chief Executive and executive | set by law | trap: national vs regional roads |
+| 9 | Who enforces the speed limit? | `X-02.S14~speed-limits` → A: the Gardaí; R: the Gardaí | stated in official guidance or observed practice | enforcement |
+| 10 | Who enforces the rules on a greenway? | `RT-10.S14` → A: the Chief Executive and executive of Meath County Council; R: the Chief Executive and executive | stated in official guidance or observed practice | greenway enforcement |
+| 11 | Who makes the bye-laws for shared e-scooter hire? | `RT-26.S13a` → A: the elected members of Meath County Council; R: the Chief Executive and executive | set by law | shared micromobility |
+| 12 | Who issues the operator licence under those bye-laws? | `RT-26.S13b` → A: the Chief Executive and executive of Meath County Council; R: the Chief Executive and executive | assumed by default (an executive function) | rules against licences |
+| 13 | Who decides whether a school bus service is provided? | No activity covers school bus services. `X-03.S11` and `X-10.S11` are `not assessed`: report the gap, and do not name a party | not assessed | trap: school transport, deliberate gap |
+| 14 | Who delivers a new bus lane in Kildare? | `RT-13.S10~nta-delivered-busconnects` → A: the National Transport Authority; R: the National Transport Authority and delivery agents; say it was analysed for Meath and may differ in Kildare | set by law | variant, other council |
+| 15 | Who decides that a housing estate's roads are taken in charge? | `RT-38.S7D` → A: the elected members of Meath County Council (the municipal district members in Meath); R: the Chief Executive and executive | set by law | taking in charge |
+| 16 | Who issues a road opening licence? | `RT-36.S13b` → A: the Chief Executive and executive of Meath County Council; R: the Chief Executive and executive | assumed by default (an executive function) | road works by others |
+| 17 | Write one sentence of public copy saying who decides where parking is allowed on a street. | Plain party names only: the elected members make the bye-laws, the Chief Executive and staff apply them. No assignment, activity or stage ID, and no banned term | n/a | public register |
 
 ## Validation log
 
 | Date | # | Answer given | Resolution |
 |---|---|---|---|
-| 2026-10-14 | all | 26/26 matched on first run (fresh subagent, SKILL.md, vocabulary.md and raci-gda.md only; check 26 used the plain labels, no IDs or banned terms) | No model or expectation change. Note: checks 11 and 17 name Drogheda, which is outside the GDA; the subagent answered from the GDA rows and said so. |
-| 2026-10-14 | 22, 24, 27–30 | Final-review fix pass: expectations written first (6 refs failed the lint), then model changed; fresh subagent re-run 6/6 matched | Municipal District splits for Section 38, parking bye-laws and taking in charge; works-schedule qualifier narrowed; national road Consent split into Part 8 and Section 51; aircraft noise row added; boundary rule 5 limited to works and service contractors |
+| 2026-11-28 | all | Question set rewritten against the transport RACI dataset v0.1.0 after the GDA model was retired. Every expected assignment ID was checked against `raci-wide.csv` by `tests/test_transport_governance_skill.py`. | No fresh-agent run yet; the previous run (2026-10-14) tested the retired model and is not comparable. |

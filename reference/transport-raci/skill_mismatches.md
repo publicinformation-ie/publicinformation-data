@@ -1,11 +1,11 @@
 # Transport RACI against the `transport-governance` skill
 
 One-off comparison produced during the migration, as required by the handoff.
-It compares the new master's assessed rows with
-`.claude/skills/transport-governance/raci-gda.md` where the two overlap:
+It compares the new master's assessed rows with the retired GDA RACI skill
+(deleted when the skill was rebuilt against this dataset) where the two overlap:
 national and regional roads, active travel, bus infrastructure, speed limits
-and kerbside. **Neither side was changed.** The new data is canonical for this
-change; Project 3 replaces the skill. A mismatch that shows an error in the new
+and kerbside. **Neither side was changed.** The new data is canonical; the skill
+now reads this dataset directly. A mismatch that shows an error in the new
 data is fixed through `migration_resolutions.csv`, not here.
 
 "Agree" means the same party holds the same role for the same function.
@@ -21,7 +21,7 @@ comparison depends on a `GS` cell that has no ruling yet, the verdict reads
 
 ## National roads
 
-| # | Skill row (`raci-gda.md`) | New model row | Verdict |
+| # | Retired skill row | New model row | Verdict |
 |---|---|---|---|
 | 1 | `infra/national-roads` · Policy: A DoT, R DoT, C TII | `RT-24.S1` (policy for speed limits, the only assessed national-road policy row) A DoT, R DoT, C RSA, AGS, TII, LA-CE, I LA-M | Agree on A and R; mismatch on C (new adds LA-CE, RSA and AGS) |
 | 2 | `infra/national-roads` · Strategic planning: A TII, R TII | No assessed row: `RT-01` is entirely not assessed | Gap in the new model |
@@ -36,7 +36,7 @@ comparison depends on a `GS` cell that has no ruling yet, the verdict reads
 
 ## Regional and local roads
 
-| # | Skill row (`raci-gda.md`) | New model row | Verdict |
+| # | Retired skill row | New model row | Verdict |
 |---|---|---|---|
 | 11 | `infra/regional-local-roads` · Policy: A DoT, R DoT, C DHLGH | No assessed row: `RT-02.S1` does not exist (MAINT profile) | Gap in the new model |
 | 12 | `infra/regional-local-roads` · Funding, state grant: A DoT, R DoT | `RT-02.S3` A DoT, R DoT, I LA-CE, I LA-M | Agree |
@@ -48,7 +48,7 @@ comparison depends on a `GS` cell that has no ruling yet, the verdict reads
 
 ## Active travel
 
-| # | Skill row (`raci-gda.md`) | New model row | Verdict |
+| # | Retired skill row | New model row | Verdict |
 |---|---|---|---|
 | 18 | `infra/active-travel` · Policy: A DoT, R DoT, C NTA | `RT-09.S1` A DoT, R DoT, C NTA, TII, DoE, AT | Agree on A and R; mismatch on C (new adds TII, DoE and An Taisce) |
 | 19 | `infra/active-travel` · Strategic planning: A DoT, R NTA, C LA-CE | `RT-09.S2` (NTA-funded LA scheme) A LA-CE, R AT and LA-CE, C SCH and TP | Mismatch: the new model is at scheme rather than network level; A and R differ |
@@ -62,7 +62,7 @@ comparison depends on a `GS` cell that has no ruling yet, the verdict reads
 
 ## Bus infrastructure
 
-| # | Skill row (`raci-gda.md`) | New model row | Verdict |
+| # | Retired skill row | New model row | Verdict |
 |---|---|---|---|
 | 27 | `infra/bus` · Policy: A DoT, R DoT, C NTA | `RT-09.S1` is the assessed active-travel policy row; `RT-13.S1` is only assessed in the NTA-delivered variant, A NTA, R NTA, C LA-CE, DoT | Mismatch: the new model gives NTA A for a BusConnects scheme and has no generic bus-infrastructure policy row |
 | 28 | `infra/bus` · Funding: A NTA, R NTA | `RT-13.S3` is not assessed | Gap in the new model |
@@ -74,7 +74,7 @@ comparison depends on a `GS` cell that has no ruling yet, the verdict reads
 
 ## Speed limits
 
-| # | Skill row (`raci-gda.md`) | New model row | Verdict |
+| # | Retired skill row | New model row | Verdict |
 |---|---|---|---|
 | 34 | `infra/national-roads` · Regulation, special speed limit: A LA-members, R LA-CE, C TII, AGS | `RT-25.S13a` (national managed roads) A TII, R TII, C RSA, AGS | Mismatch (also row 8) |
 | 35 | `infra/regional-local-roads` · Regulation, special speed limit: A LA-members, R LA-CE, C AGS | `RT-24.S13a` A LA-M, R LA-CE, C RSA, AGS, TP | Agree on A and R; mismatch on C (new adds RSA and TP to AGS) |
@@ -84,7 +84,7 @@ comparison depends on a `GS` cell that has no ruling yet, the verdict reads
 
 ## Kerbside
 
-| # | Skill row (`raci-gda.md`) | New model row | Verdict |
+| # | Retired skill row | New model row | Verdict |
 |---|---|---|---|
 | 39 | `infra/kerbside` · Policy: A DoT, R DoT | `RT-22.S1` is not assessed | Gap in the new model |
 | 40 | `infra/kerbside` · Funding: A LA-members, R LA-CE | `RT-22` has no S3 row (custom profile) | Gap in the new model |
