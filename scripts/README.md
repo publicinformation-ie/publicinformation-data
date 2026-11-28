@@ -152,6 +152,19 @@ Reads `pipelines/spc_pipeline/steps/export_spc_meetings/output.json` and the aut
 uv run python scripts/transform_spc_meetings.py
 ```
 
+## build_cofog_vocabulary.py
+
+Publishes the COFOG 1999 vocabulary from the pinned SPC reference.
+
+Reads `pipelines/spc_pipeline/reference/cofog_1999.json` (UNSD source URL, retrieval date, sha256), validates it fail closed (complete provenance, unique codes, known parents at the right level, no control characters, exactly 10 divisions / 69 groups / 109 classes), builds every distribution in memory, then writes `cofog-1999.json`, `.csv`, `.csv-metadata.json` and `.ttl` to `public/vocabularies/` through `stamp_if_changed`, which restamps `dct:modified` in `public/catalog/dataset-cofog-1999.ttl` only when content changes. It is the only writer of those files.
+
+### Usage
+
+```bash
+uv run python scripts/build_cofog_vocabulary.py           # write (no-op when unchanged)
+uv run python scripts/build_cofog_vocabulary.py --check   # compare only; exit 1 and name differing files
+```
+
 ## transform_motions.py
 
 Publishes the Motions dataset from the minutes pipeline's canonical output.

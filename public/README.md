@@ -46,7 +46,8 @@ provenance rather than everyday use:
 
 - [catalog/](catalog/) — DCAT dataset descriptions.
 - [schemas/](schemas/) — JSON schemas for the datasets.
-- [vocabularies/](vocabularies/) — controlled vocabularies and term URIs.
+- [vocabularies/](vocabularies/) — controlled vocabularies and term URIs:
+  - [COFOG 1999](vocabularies/cofog-1999.md) — the UN's Classification of the Functions of Government (1999 edition), used for SPC agenda-item topics. Published as JSON, CSV and SKOS Turtle, with terms resolvable under `https://data.publicinformation.ie/ns/cofog#<code>`.
 - [CHANGELOG.md](CHANGELOG.md) — release history.
 - [LICENSE](LICENSE) — licence terms.
 

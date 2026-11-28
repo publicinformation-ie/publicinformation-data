@@ -23,7 +23,7 @@ the published content changes.
 - `decisions` – official decisions as contiguous quotes from the minutes
 - `minutes/<council>/<committee>/<date>.md` – the verbatim minutes; [`minutes/index.md`](minutes/index.md) lists them
 
-Each table is published as JSON-LD and CSV with CSVW metadata (`<table>.csv-metadata.json`). Related: [JSON Schema](../../schemas/spc-meetings.schema.json), [DCAT-AP catalogue record](../../catalog/dataset-spc-meetings.ttl), and the vocabularies `cofog-1999`, `transport-subdomain`, `spc-attendance-status`, `spc-attendance-mode`, `spc-attendee-category` and `spc-decision-type` under [`../../vocabularies/`](../../vocabularies/).
+Each table is published as JSON-LD and CSV with CSVW metadata (`<table>.csv-metadata.json`). Related: [JSON Schema](../../schemas/spc-meetings.schema.json), [DCAT-AP catalogue record](../../catalog/dataset-spc-meetings.ttl), and the vocabularies [`cofog-1999`](../../vocabularies/cofog-1999.md), [`transport-subdomain`](../../vocabularies/transport-subdomain.csv), [`spc-attendance-status`](../../vocabularies/spc-attendance-status.csv), [`spc-attendance-mode`](../../vocabularies/spc-attendance-mode.csv), [`spc-attendee-category`](../../vocabularies/spc-attendee-category.csv) and [`spc-decision-type`](../../vocabularies/spc-decision-type.csv) under [`../../vocabularies/`](../../vocabularies/).
 
 ## Tables and fields
 

@@ -32,6 +32,7 @@
     ] ;
     dct:relation <https://data.publicinformation.ie/dataset/public-bodies> ;
     dct:relation <https://data.publicinformation.ie/dataset/motions> ;
+    dct:relation <https://data.publicinformation.ie/dataset/cofog-1999> ;
 
     dcat:distribution [
         a dcat:Distribution ;

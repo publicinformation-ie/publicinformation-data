@@ -1,0 +1,1426 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://data.publicinformation.ie/ns/cofog>
+    a skos:ConceptScheme ;
+    dct:title "Classification of the Functions of Government (COFOG) 1999"@en ;
+    dct:source <https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/COFOG_english_structure.txt> ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:versionInfo "1999" ;
+    skos:hasTopConcept <https://data.publicinformation.ie/ns/cofog#01>, <https://data.publicinformation.ie/ns/cofog#02>, <https://data.publicinformation.ie/ns/cofog#03>, <https://data.publicinformation.ie/ns/cofog#04>, <https://data.publicinformation.ie/ns/cofog#05>, <https://data.publicinformation.ie/ns/cofog#06>, <https://data.publicinformation.ie/ns/cofog#07>, <https://data.publicinformation.ie/ns/cofog#08>, <https://data.publicinformation.ie/ns/cofog#09>, <https://data.publicinformation.ie/ns/cofog#10> .
+
+<https://data.publicinformation.ie/ns/cofog#01>
+    a skos:Concept ;
+    skos:notation "01" ;
+    skos:prefLabel "General public services"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.1>
+    a skos:Concept ;
+    skos:notation "01.1" ;
+    skos:prefLabel "Executive and legislative organs, financial and fiscal affairs, external affairs"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.1.1>
+    a skos:Concept ;
+    skos:notation "01.1.1" ;
+    skos:prefLabel "Executive and legislative organs"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01.1> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.1.2>
+    a skos:Concept ;
+    skos:notation "01.1.2" ;
+    skos:prefLabel "Financial and fiscal affairs"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01.1> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.1.3>
+    a skos:Concept ;
+    skos:notation "01.1.3" ;
+    skos:prefLabel "External affairs"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01.1> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.2>
+    a skos:Concept ;
+    skos:notation "01.2" ;
+    skos:prefLabel "Foreign economic aid"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.2.1>
+    a skos:Concept ;
+    skos:notation "01.2.1" ;
+    skos:prefLabel "Economic aid to developing countries and countries in transition"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01.2> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.2.2>
+    a skos:Concept ;
+    skos:notation "01.2.2" ;
+    skos:prefLabel "Economic aid routed through international organizations"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01.2> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.3>
+    a skos:Concept ;
+    skos:notation "01.3" ;
+    skos:prefLabel "General services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.3.1>
+    a skos:Concept ;
+    skos:notation "01.3.1" ;
+    skos:prefLabel "General personnel services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01.3> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.3.2>
+    a skos:Concept ;
+    skos:notation "01.3.2" ;
+    skos:prefLabel "Overall planning and statistical services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01.3> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.3.3>
+    a skos:Concept ;
+    skos:notation "01.3.3" ;
+    skos:prefLabel "Other general services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01.3> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.4>
+    a skos:Concept ;
+    skos:notation "01.4" ;
+    skos:prefLabel "Basic research"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.4.0>
+    a skos:Concept ;
+    skos:notation "01.4.0" ;
+    skos:prefLabel "Basic research"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01.4> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.5>
+    a skos:Concept ;
+    skos:notation "01.5" ;
+    skos:prefLabel "R&D General public services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.5.0>
+    a skos:Concept ;
+    skos:notation "01.5.0" ;
+    skos:prefLabel "R&D General public services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01.5> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.6>
+    a skos:Concept ;
+    skos:notation "01.6" ;
+    skos:prefLabel "General public services n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.6.0>
+    a skos:Concept ;
+    skos:notation "01.6.0" ;
+    skos:prefLabel "General public services n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01.6> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.7>
+    a skos:Concept ;
+    skos:notation "01.7" ;
+    skos:prefLabel "Public debt transactions"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.7.0>
+    a skos:Concept ;
+    skos:notation "01.7.0" ;
+    skos:prefLabel "Public debt transactions"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01.7> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.8>
+    a skos:Concept ;
+    skos:notation "01.8" ;
+    skos:prefLabel "Transfers of a general character between different levels of government"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#01.8.0>
+    a skos:Concept ;
+    skos:notation "01.8.0" ;
+    skos:prefLabel "Transfers of a general character between different levels of government"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#01.8> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#02>
+    a skos:Concept ;
+    skos:notation "02" ;
+    skos:prefLabel "Defence"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#02.1>
+    a skos:Concept ;
+    skos:notation "02.1" ;
+    skos:prefLabel "Military defence"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#02> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#02.1.0>
+    a skos:Concept ;
+    skos:notation "02.1.0" ;
+    skos:prefLabel "Military defence"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#02.1> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#02.2>
+    a skos:Concept ;
+    skos:notation "02.2" ;
+    skos:prefLabel "Civil defence"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#02> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#02.2.0>
+    a skos:Concept ;
+    skos:notation "02.2.0" ;
+    skos:prefLabel "Civil defence"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#02.2> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#02.3>
+    a skos:Concept ;
+    skos:notation "02.3" ;
+    skos:prefLabel "Foreign military aid"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#02> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#02.3.0>
+    a skos:Concept ;
+    skos:notation "02.3.0" ;
+    skos:prefLabel "Foreign military aid"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#02.3> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#02.4>
+    a skos:Concept ;
+    skos:notation "02.4" ;
+    skos:prefLabel "R&D Defence"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#02> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#02.4.0>
+    a skos:Concept ;
+    skos:notation "02.4.0" ;
+    skos:prefLabel "R&D Defence"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#02.4> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#02.5>
+    a skos:Concept ;
+    skos:notation "02.5" ;
+    skos:prefLabel "Defence n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#02> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#02.5.0>
+    a skos:Concept ;
+    skos:notation "02.5.0" ;
+    skos:prefLabel "Defence n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#02.5> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#03>
+    a skos:Concept ;
+    skos:notation "03" ;
+    skos:prefLabel "Public order and safety"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#03.1>
+    a skos:Concept ;
+    skos:notation "03.1" ;
+    skos:prefLabel "Police services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#03> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#03.1.0>
+    a skos:Concept ;
+    skos:notation "03.1.0" ;
+    skos:prefLabel "Police services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#03.1> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#03.2>
+    a skos:Concept ;
+    skos:notation "03.2" ;
+    skos:prefLabel "Fire-protection services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#03> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#03.2.0>
+    a skos:Concept ;
+    skos:notation "03.2.0" ;
+    skos:prefLabel "Fire-protection services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#03.2> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#03.3>
+    a skos:Concept ;
+    skos:notation "03.3" ;
+    skos:prefLabel "Law courts"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#03> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#03.3.0>
+    a skos:Concept ;
+    skos:notation "03.3.0" ;
+    skos:prefLabel "Law courts"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#03.3> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#03.4>
+    a skos:Concept ;
+    skos:notation "03.4" ;
+    skos:prefLabel "Prisons"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#03> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#03.4.0>
+    a skos:Concept ;
+    skos:notation "03.4.0" ;
+    skos:prefLabel "Prisons"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#03.4> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#03.5>
+    a skos:Concept ;
+    skos:notation "03.5" ;
+    skos:prefLabel "R&D Public order and safety"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#03> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#03.5.0>
+    a skos:Concept ;
+    skos:notation "03.5.0" ;
+    skos:prefLabel "R&D Public order and safety"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#03.5> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#03.6>
+    a skos:Concept ;
+    skos:notation "03.6" ;
+    skos:prefLabel "Public order and safety n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#03> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#03.6.0>
+    a skos:Concept ;
+    skos:notation "03.6.0" ;
+    skos:prefLabel "Public order and safety n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#03.6> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04>
+    a skos:Concept ;
+    skos:notation "04" ;
+    skos:prefLabel "Economic affairs"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.1>
+    a skos:Concept ;
+    skos:notation "04.1" ;
+    skos:prefLabel "General economic, commercial and labour affairs"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.1.1>
+    a skos:Concept ;
+    skos:notation "04.1.1" ;
+    skos:prefLabel "General economic and commercial affairs"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.1> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.1.2>
+    a skos:Concept ;
+    skos:notation "04.1.2" ;
+    skos:prefLabel "General labour affairs"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.1> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.2>
+    a skos:Concept ;
+    skos:notation "04.2" ;
+    skos:prefLabel "Agriculture, forestry, fishing and hunting"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.2.1>
+    a skos:Concept ;
+    skos:notation "04.2.1" ;
+    skos:prefLabel "Agriculture"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.2> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.2.2>
+    a skos:Concept ;
+    skos:notation "04.2.2" ;
+    skos:prefLabel "Forestry"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.2> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.2.3>
+    a skos:Concept ;
+    skos:notation "04.2.3" ;
+    skos:prefLabel "Fishing and hunting"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.2> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.3>
+    a skos:Concept ;
+    skos:notation "04.3" ;
+    skos:prefLabel "Fuel and energy"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.3.1>
+    a skos:Concept ;
+    skos:notation "04.3.1" ;
+    skos:prefLabel "Coal and other solid mineral fuels"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.3> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.3.2>
+    a skos:Concept ;
+    skos:notation "04.3.2" ;
+    skos:prefLabel "Petroleum and natural gas"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.3> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.3.3>
+    a skos:Concept ;
+    skos:notation "04.3.3" ;
+    skos:prefLabel "Nuclear fuel"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.3> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.3.4>
+    a skos:Concept ;
+    skos:notation "04.3.4" ;
+    skos:prefLabel "Other fuels"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.3> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.3.5>
+    a skos:Concept ;
+    skos:notation "04.3.5" ;
+    skos:prefLabel "Electricity"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.3> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.3.6>
+    a skos:Concept ;
+    skos:notation "04.3.6" ;
+    skos:prefLabel "Non-electric energy"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.3> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.4>
+    a skos:Concept ;
+    skos:notation "04.4" ;
+    skos:prefLabel "Mining, manufacturing and construction"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.4.1>
+    a skos:Concept ;
+    skos:notation "04.4.1" ;
+    skos:prefLabel "Mining of mineral resources other than mineral fuels"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.4> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.4.2>
+    a skos:Concept ;
+    skos:notation "04.4.2" ;
+    skos:prefLabel "Manufacturing"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.4> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.4.3>
+    a skos:Concept ;
+    skos:notation "04.4.3" ;
+    skos:prefLabel "Construction"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.4> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.5>
+    a skos:Concept ;
+    skos:notation "04.5" ;
+    skos:prefLabel "Transport"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.5.1>
+    a skos:Concept ;
+    skos:notation "04.5.1" ;
+    skos:prefLabel "Road transport"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.5.2>
+    a skos:Concept ;
+    skos:notation "04.5.2" ;
+    skos:prefLabel "Water transport"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.5.3>
+    a skos:Concept ;
+    skos:notation "04.5.3" ;
+    skos:prefLabel "Railway transport"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.5.4>
+    a skos:Concept ;
+    skos:notation "04.5.4" ;
+    skos:prefLabel "Air transport"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.5.5>
+    a skos:Concept ;
+    skos:notation "04.5.5" ;
+    skos:prefLabel "Pipeline and other transport"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.5> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.6>
+    a skos:Concept ;
+    skos:notation "04.6" ;
+    skos:prefLabel "Communication"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.6.0>
+    a skos:Concept ;
+    skos:notation "04.6.0" ;
+    skos:prefLabel "Communication"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.6> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.7>
+    a skos:Concept ;
+    skos:notation "04.7" ;
+    skos:prefLabel "Other industries"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.7.1>
+    a skos:Concept ;
+    skos:notation "04.7.1" ;
+    skos:prefLabel "Distributive trades, storage and warehousing"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.7> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.7.2>
+    a skos:Concept ;
+    skos:notation "04.7.2" ;
+    skos:prefLabel "Hotels and restaurants"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.7> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.7.3>
+    a skos:Concept ;
+    skos:notation "04.7.3" ;
+    skos:prefLabel "Tourism"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.7> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.7.4>
+    a skos:Concept ;
+    skos:notation "04.7.4" ;
+    skos:prefLabel "Multi-purpose development projects"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.7> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.8>
+    a skos:Concept ;
+    skos:notation "04.8" ;
+    skos:prefLabel "R&D Economic affairs"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.8.1>
+    a skos:Concept ;
+    skos:notation "04.8.1" ;
+    skos:prefLabel "R&D General economic, commercial and labour affairs"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.8> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.8.2>
+    a skos:Concept ;
+    skos:notation "04.8.2" ;
+    skos:prefLabel "R&D Agriculture, forestry, fishing and hunting"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.8> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.8.3>
+    a skos:Concept ;
+    skos:notation "04.8.3" ;
+    skos:prefLabel "R&D Fuel and energy"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.8> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.8.4>
+    a skos:Concept ;
+    skos:notation "04.8.4" ;
+    skos:prefLabel "R&D Mining, manufacturing and construction"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.8> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.8.5>
+    a skos:Concept ;
+    skos:notation "04.8.5" ;
+    skos:prefLabel "R&D Transport"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.8> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.8.6>
+    a skos:Concept ;
+    skos:notation "04.8.6" ;
+    skos:prefLabel "R&D Communication"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.8> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.8.7>
+    a skos:Concept ;
+    skos:notation "04.8.7" ;
+    skos:prefLabel "R&D Other industries"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.8> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.9>
+    a skos:Concept ;
+    skos:notation "04.9" ;
+    skos:prefLabel "Economic affairs n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#04.9.0>
+    a skos:Concept ;
+    skos:notation "04.9.0" ;
+    skos:prefLabel "Economic affairs n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#04.9> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#05>
+    a skos:Concept ;
+    skos:notation "05" ;
+    skos:prefLabel "Environmental protection"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#05.1>
+    a skos:Concept ;
+    skos:notation "05.1" ;
+    skos:prefLabel "Waste management"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#05> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#05.1.0>
+    a skos:Concept ;
+    skos:notation "05.1.0" ;
+    skos:prefLabel "Waste management"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#05.1> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#05.2>
+    a skos:Concept ;
+    skos:notation "05.2" ;
+    skos:prefLabel "Waste water management"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#05> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#05.2.0>
+    a skos:Concept ;
+    skos:notation "05.2.0" ;
+    skos:prefLabel "Waste water management"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#05.2> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#05.3>
+    a skos:Concept ;
+    skos:notation "05.3" ;
+    skos:prefLabel "Pollution abatement"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#05> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#05.3.0>
+    a skos:Concept ;
+    skos:notation "05.3.0" ;
+    skos:prefLabel "Pollution abatement"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#05.3> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#05.4>
+    a skos:Concept ;
+    skos:notation "05.4" ;
+    skos:prefLabel "Protection of biodiversity and landscape"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#05> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#05.4.0>
+    a skos:Concept ;
+    skos:notation "05.4.0" ;
+    skos:prefLabel "Protection of biodiversity and landscape"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#05.4> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#05.5>
+    a skos:Concept ;
+    skos:notation "05.5" ;
+    skos:prefLabel "R&D Environmental protection"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#05> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#05.5.0>
+    a skos:Concept ;
+    skos:notation "05.5.0" ;
+    skos:prefLabel "R&D Environmental protection"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#05.5> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#05.6>
+    a skos:Concept ;
+    skos:notation "05.6" ;
+    skos:prefLabel "Environmental protection n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#05> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#05.6.0>
+    a skos:Concept ;
+    skos:notation "05.6.0" ;
+    skos:prefLabel "Environmental protection n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#05.6> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#06>
+    a skos:Concept ;
+    skos:notation "06" ;
+    skos:prefLabel "Housing and community amenities"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#06.1>
+    a skos:Concept ;
+    skos:notation "06.1" ;
+    skos:prefLabel "Housing development"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#06> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#06.1.0>
+    a skos:Concept ;
+    skos:notation "06.1.0" ;
+    skos:prefLabel "Housing development"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#06.1> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#06.2>
+    a skos:Concept ;
+    skos:notation "06.2" ;
+    skos:prefLabel "Community development"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#06> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#06.2.0>
+    a skos:Concept ;
+    skos:notation "06.2.0" ;
+    skos:prefLabel "Community development"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#06.2> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#06.3>
+    a skos:Concept ;
+    skos:notation "06.3" ;
+    skos:prefLabel "Water supply"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#06> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#06.3.0>
+    a skos:Concept ;
+    skos:notation "06.3.0" ;
+    skos:prefLabel "Water supply"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#06.3> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#06.4>
+    a skos:Concept ;
+    skos:notation "06.4" ;
+    skos:prefLabel "Street lighting"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#06> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#06.4.0>
+    a skos:Concept ;
+    skos:notation "06.4.0" ;
+    skos:prefLabel "Street lighting"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#06.4> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#06.5>
+    a skos:Concept ;
+    skos:notation "06.5" ;
+    skos:prefLabel "R&D Housing and community amenities"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#06> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#06.5.0>
+    a skos:Concept ;
+    skos:notation "06.5.0" ;
+    skos:prefLabel "R&D Housing and community amenities"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#06.5> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#06.6>
+    a skos:Concept ;
+    skos:notation "06.6" ;
+    skos:prefLabel "Housing and community amenities n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#06> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#06.6.0>
+    a skos:Concept ;
+    skos:notation "06.6.0" ;
+    skos:prefLabel "Housing and community amenities n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#06.6> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07>
+    a skos:Concept ;
+    skos:notation "07" ;
+    skos:prefLabel "Health"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.1>
+    a skos:Concept ;
+    skos:notation "07.1" ;
+    skos:prefLabel "Medical products, appliances and equipment"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.1.1>
+    a skos:Concept ;
+    skos:notation "07.1.1" ;
+    skos:prefLabel "Pharmaceutical products"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07.1> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.1.2>
+    a skos:Concept ;
+    skos:notation "07.1.2" ;
+    skos:prefLabel "Other medical products"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07.1> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.1.3>
+    a skos:Concept ;
+    skos:notation "07.1.3" ;
+    skos:prefLabel "Therapeutic appliances and equipment"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07.1> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.2>
+    a skos:Concept ;
+    skos:notation "07.2" ;
+    skos:prefLabel "Outpatient services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.2.1>
+    a skos:Concept ;
+    skos:notation "07.2.1" ;
+    skos:prefLabel "General medical services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07.2> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.2.2>
+    a skos:Concept ;
+    skos:notation "07.2.2" ;
+    skos:prefLabel "Specialized medical services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07.2> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.2.3>
+    a skos:Concept ;
+    skos:notation "07.2.3" ;
+    skos:prefLabel "Dental services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07.2> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.2.4>
+    a skos:Concept ;
+    skos:notation "07.2.4" ;
+    skos:prefLabel "Paramedical services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07.2> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.3>
+    a skos:Concept ;
+    skos:notation "07.3" ;
+    skos:prefLabel "Hospital services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.3.1>
+    a skos:Concept ;
+    skos:notation "07.3.1" ;
+    skos:prefLabel "General hospital services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07.3> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.3.2>
+    a skos:Concept ;
+    skos:notation "07.3.2" ;
+    skos:prefLabel "Specialized hospital services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07.3> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.3.3>
+    a skos:Concept ;
+    skos:notation "07.3.3" ;
+    skos:prefLabel "Medical and maternity centre services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07.3> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.3.4>
+    a skos:Concept ;
+    skos:notation "07.3.4" ;
+    skos:prefLabel "Nursing and convalescent home services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07.3> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.4>
+    a skos:Concept ;
+    skos:notation "07.4" ;
+    skos:prefLabel "Public health services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.4.0>
+    a skos:Concept ;
+    skos:notation "07.4.0" ;
+    skos:prefLabel "Public health services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07.4> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.5>
+    a skos:Concept ;
+    skos:notation "07.5" ;
+    skos:prefLabel "R&D Health"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.5.0>
+    a skos:Concept ;
+    skos:notation "07.5.0" ;
+    skos:prefLabel "R&D Health"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07.5> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.6>
+    a skos:Concept ;
+    skos:notation "07.6" ;
+    skos:prefLabel "Health n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#07.6.0>
+    a skos:Concept ;
+    skos:notation "07.6.0" ;
+    skos:prefLabel "Health n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#07.6> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#08>
+    a skos:Concept ;
+    skos:notation "08" ;
+    skos:prefLabel "Recreation, culture and religion"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#08.1>
+    a skos:Concept ;
+    skos:notation "08.1" ;
+    skos:prefLabel "Recreational and sporting services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#08> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#08.1.0>
+    a skos:Concept ;
+    skos:notation "08.1.0" ;
+    skos:prefLabel "Recreational and sporting services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#08.1> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#08.2>
+    a skos:Concept ;
+    skos:notation "08.2" ;
+    skos:prefLabel "Cultural services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#08> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#08.2.0>
+    a skos:Concept ;
+    skos:notation "08.2.0" ;
+    skos:prefLabel "Cultural services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#08.2> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#08.3>
+    a skos:Concept ;
+    skos:notation "08.3" ;
+    skos:prefLabel "Broadcasting and publishing services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#08> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#08.3.0>
+    a skos:Concept ;
+    skos:notation "08.3.0" ;
+    skos:prefLabel "Broadcasting and publishing services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#08.3> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#08.4>
+    a skos:Concept ;
+    skos:notation "08.4" ;
+    skos:prefLabel "Religious and other community services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#08> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#08.4.0>
+    a skos:Concept ;
+    skos:notation "08.4.0" ;
+    skos:prefLabel "Religious and other community services"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#08.4> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#08.5>
+    a skos:Concept ;
+    skos:notation "08.5" ;
+    skos:prefLabel "R&D Recreation, culture and religion"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#08> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#08.5.0>
+    a skos:Concept ;
+    skos:notation "08.5.0" ;
+    skos:prefLabel "R&D Recreation, culture and religion"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#08.5> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#08.6>
+    a skos:Concept ;
+    skos:notation "08.6" ;
+    skos:prefLabel "Recreation, culture and religion n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#08> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#08.6.0>
+    a skos:Concept ;
+    skos:notation "08.6.0" ;
+    skos:prefLabel "Recreation, culture and religion n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#08.6> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09>
+    a skos:Concept ;
+    skos:notation "09" ;
+    skos:prefLabel "Education"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09.1>
+    a skos:Concept ;
+    skos:notation "09.1" ;
+    skos:prefLabel "Pre-primary and primary education"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#09> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09.1.1>
+    a skos:Concept ;
+    skos:notation "09.1.1" ;
+    skos:prefLabel "Pre-primary education"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#09.1> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09.1.2>
+    a skos:Concept ;
+    skos:notation "09.1.2" ;
+    skos:prefLabel "Primary education"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#09.1> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09.2>
+    a skos:Concept ;
+    skos:notation "09.2" ;
+    skos:prefLabel "Secondary education"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#09> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09.2.1>
+    a skos:Concept ;
+    skos:notation "09.2.1" ;
+    skos:prefLabel "Lower-secondary education"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#09.2> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09.2.2>
+    a skos:Concept ;
+    skos:notation "09.2.2" ;
+    skos:prefLabel "Upper-secondary education"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#09.2> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09.3>
+    a skos:Concept ;
+    skos:notation "09.3" ;
+    skos:prefLabel "Post-secondary non-tertiary education"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#09> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09.3.0>
+    a skos:Concept ;
+    skos:notation "09.3.0" ;
+    skos:prefLabel "Post-secondary non-tertiary education"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#09.3> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09.4>
+    a skos:Concept ;
+    skos:notation "09.4" ;
+    skos:prefLabel "Tertiary education"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#09> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09.4.1>
+    a skos:Concept ;
+    skos:notation "09.4.1" ;
+    skos:prefLabel "First stage of tertiary education"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#09.4> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09.4.2>
+    a skos:Concept ;
+    skos:notation "09.4.2" ;
+    skos:prefLabel "Second stage of tertiary education"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#09.4> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09.5>
+    a skos:Concept ;
+    skos:notation "09.5" ;
+    skos:prefLabel "Education not definable by level"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#09> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09.5.0>
+    a skos:Concept ;
+    skos:notation "09.5.0" ;
+    skos:prefLabel "Education not definable by level"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#09.5> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09.6>
+    a skos:Concept ;
+    skos:notation "09.6" ;
+    skos:prefLabel "Subsidiary services to education"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#09> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09.6.0>
+    a skos:Concept ;
+    skos:notation "09.6.0" ;
+    skos:prefLabel "Subsidiary services to education"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#09.6> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09.7>
+    a skos:Concept ;
+    skos:notation "09.7" ;
+    skos:prefLabel "R&D Education"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#09> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09.7.0>
+    a skos:Concept ;
+    skos:notation "09.7.0" ;
+    skos:prefLabel "R&D Education"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#09.7> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09.8>
+    a skos:Concept ;
+    skos:notation "09.8" ;
+    skos:prefLabel "Education n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#09> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#09.8.0>
+    a skos:Concept ;
+    skos:notation "09.8.0" ;
+    skos:prefLabel "Education n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#09.8> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10>
+    a skos:Concept ;
+    skos:notation "10" ;
+    skos:prefLabel "Social protection"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10.1>
+    a skos:Concept ;
+    skos:notation "10.1" ;
+    skos:prefLabel "Sickness and disability"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#10> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10.1.1>
+    a skos:Concept ;
+    skos:notation "10.1.1" ;
+    skos:prefLabel "Sickness"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#10.1> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10.1.2>
+    a skos:Concept ;
+    skos:notation "10.1.2" ;
+    skos:prefLabel "Disability"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#10.1> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10.2>
+    a skos:Concept ;
+    skos:notation "10.2" ;
+    skos:prefLabel "Old age"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#10> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10.2.0>
+    a skos:Concept ;
+    skos:notation "10.2.0" ;
+    skos:prefLabel "Old age"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#10.2> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10.3>
+    a skos:Concept ;
+    skos:notation "10.3" ;
+    skos:prefLabel "Survivors"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#10> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10.3.0>
+    a skos:Concept ;
+    skos:notation "10.3.0" ;
+    skos:prefLabel "Survivors"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#10.3> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10.4>
+    a skos:Concept ;
+    skos:notation "10.4" ;
+    skos:prefLabel "Family and children"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#10> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10.4.0>
+    a skos:Concept ;
+    skos:notation "10.4.0" ;
+    skos:prefLabel "Family and children"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#10.4> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10.5>
+    a skos:Concept ;
+    skos:notation "10.5" ;
+    skos:prefLabel "Unemployment"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#10> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10.5.0>
+    a skos:Concept ;
+    skos:notation "10.5.0" ;
+    skos:prefLabel "Unemployment"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#10.5> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10.6>
+    a skos:Concept ;
+    skos:notation "10.6" ;
+    skos:prefLabel "Housing"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#10> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10.6.0>
+    a skos:Concept ;
+    skos:notation "10.6.0" ;
+    skos:prefLabel "Housing"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#10.6> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10.7>
+    a skos:Concept ;
+    skos:notation "10.7" ;
+    skos:prefLabel "Social exclusion n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#10> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10.7.0>
+    a skos:Concept ;
+    skos:notation "10.7.0" ;
+    skos:prefLabel "Social exclusion n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#10.7> ;
+    skos:scopeNote "Individual service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10.8>
+    a skos:Concept ;
+    skos:notation "10.8" ;
+    skos:prefLabel "R&D Social protection"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#10> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10.8.0>
+    a skos:Concept ;
+    skos:notation "10.8.0" ;
+    skos:prefLabel "R&D Social protection"@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#10.8> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10.9>
+    a skos:Concept ;
+    skos:notation "10.9" ;
+    skos:prefLabel "Social protection n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#10> ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
+
+<https://data.publicinformation.ie/ns/cofog#10.9.0>
+    a skos:Concept ;
+    skos:notation "10.9.0" ;
+    skos:prefLabel "Social protection n.e.c."@en ;
+    skos:broader <https://data.publicinformation.ie/ns/cofog#10.9> ;
+    skos:scopeNote "Collective service"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/cofog> .
