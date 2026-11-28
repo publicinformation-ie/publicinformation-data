@@ -4,6 +4,29 @@
     "name": "Transportation & Urban Regeneration Strategic Policy Committee",
     "public_body_id": 1511,
     "page_url": "https://www.meath.ie/council/your-council/your-elected-council/strategic-policy-committees/transportation-and-urban-regeneration-spc",
-    "minutes_link_pattern": "(?i)\\bminutes\\b"
+    "minutes_link_pattern": "(?i)\\bminutes\\b",
+    "layout": "meath-table"
+  },
+  {
+    "committee_id": "kildare/transport-mobility-open-spaces",
+    "name": "Transport, Mobility and Open Spaces Strategic Policy Committee",
+    "site_name": "Transportation, Safety and Emergency Services",
+    "public_body_id": 1456,
+    "page_urls": [
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/Committees/StrategicPolicyCommittees/TransportationSafetyandEmergencyServices/2025/Minutes/",
+      "https://kildarecoco.ie/YourCouncil/YourElectedCouncil/Committees/StrategicPolicyCommittees/TransportationSafetyandEmergencyServices/2026/Minutes/"
+    ],
+    "years": [2025, 2026],
+    "minutes_link_pattern": "(?i)\\bminutes\\b",
+    "layout": "kildare-table"
+  },
+  {
+    "committee_id": "westmeath/planning-regeneration-transportation",
+    "name": "Planning, Regeneration & Transportation Strategic Policy Committee",
+    "public_body_id": 1870,
+    "page_url": "https://www.westmeathcoco.ie/en/ourservices/yourcouncil/meetingsminutesagendasandreports/strategicpolicycommittees/planningregenerationtransportation/",
+    "years": [2025, 2026],
+    "minutes_link_pattern": "(?i)\\bminutes\\b",
+    "layout": "westmeath-list"
   }
 ]

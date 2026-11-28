@@ -1,0 +1,14 @@
+[
+  {
+    "file_sha256": "5c1fa9d9ff35f3292cca805dfd90a07f297f5b7946a144f3fcb941f946207ece",
+    "page": 4,
+    "action": "skip",
+    "reason": "Blank sheet at the end of the scan (Westmeath 19 September 2025 minutes): no printed text, checked against the page image."
+  },
+  {
+    "file_sha256": "719555fdab514ca5a95e7624177db33f61caa92bb5631bd40ae4f30109dd7572",
+    "page": 4,
+    "action": "skip",
+    "reason": "Blank sheet at the end of the scan (Westmeath 28 November 2025 minutes): no printed text; OCR read scanner speckle as 3 junk words (mean confidence 13.7). Checked against the page image."
+  }
+]

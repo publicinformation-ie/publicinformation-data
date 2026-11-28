@@ -34,6 +34,8 @@ def _export():
             "minutes_path": ("minutes/meath/transportation-urban-regeneration/"
                              "2026-02-19.md"),
             "attendance_published": True,
+            "text_source": "text_layer",
+            "ocr_engine": None,
         }],
         "people": [{
             "person_id": "meath/michael-bray",
@@ -115,6 +117,19 @@ def test_every_record_validates_against_the_schema():
             jsonschema.validate(record, SCHEMA)
 
 
+def test_schema_accepts_the_new_terms_and_requires_the_provenance_fields():
+    attendance = _records()["attendance"][0]
+    for category, status in (("absent", "absent"), ("guests", "present")):
+        jsonschema.validate({**attendance, "category": category, "status": status}, SCHEMA)
+    meeting = _records()["meetings"][0]
+    for field in ("text_source", "ocr_engine"):
+        broken = {k: v for k, v in meeting.items() if k != field}
+        with pytest.raises(jsonschema.ValidationError):
+            jsonschema.validate(broken, SCHEMA)
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.validate({**meeting, "text_source": "scanned"}, SCHEMA)
+
+
 def test_schema_rejects_an_unknown_attendance_status():
     record = _records()["attendance"][0]
     record["status"] = "late"
@@ -191,7 +206,7 @@ def test_csvw_metadata_declares_real_datatypes_and_descriptions():
 
 def test_boolean_cells_are_written_as_true_and_false():
     text = csv_bytes("meetings", _records()["meetings"]).decode("utf-8")
-    assert text.splitlines()[1].endswith(",true")
+    assert text.splitlines()[1].endswith(",true,text_layer,")
     assert "True" not in text and "False" not in text
 
 
@@ -208,6 +223,8 @@ def test_published_vocabulary_notations_match_the_schema_enums():
     assert _notations("spc-attendance-status") == set(attendance["status"]["enum"])
     assert _notations("spc-attendance-mode") == set(attendance["mode"]["enum"])
     assert _notations("spc-attendee-category") == set(attendance["category"]["enum"])
+    meeting = SCHEMA["$defs"]["meeting"]["properties"]
+    assert _notations("spc-text-source") == set(meeting["text_source"]["enum"])
     decisions = SCHEMA["$defs"]["decision"]["properties"]
     assert _notations("spc-decision-type") == set(decisions["decision_type"]["enum"])
     items = SCHEMA["$defs"]["item"]["properties"]
@@ -301,6 +318,10 @@ def _real_records():
     reason="the export is a git-ignored pipeline output",
 )
 def test_every_real_exported_record_validates_and_links_its_body():
+    export = json.loads((REPO / "pipelines/spc_pipeline/steps/export_spc_meetings/output.json")
+                        .read_text())["results"]
+    if any("text_source" not in meeting for meeting in export["meetings"]):
+        pytest.skip("the local export predates schema 1.2.0 (no text_source); re-run export_spc_meetings")
     records = _real_records()
     for kind, rows in records.items():
         for record in rows:
@@ -315,7 +336,7 @@ def test_every_real_exported_record_validates_and_links_its_body():
     reason="the dataset has not been published in this checkout",
 )
 def test_published_latest_and_versioned_files_are_byte_identical():
-    versioned = REPO / "public/v1.1.0/spc-meetings"
+    versioned = REPO / "public/v1.2.0/spc-meetings"
     latest = REPO / "public/latest/spc-meetings"
     versioned_files = sorted(p.relative_to(versioned) for p in versioned.rglob("*") if p.is_file())
     latest_files = sorted(p.relative_to(latest) for p in latest.rglob("*") if p.is_file())
@@ -347,9 +368,96 @@ def _readme(tmp_path):
 
 def test_readme_states_the_real_coverage_not_all_authorities(tmp_path):
     text = _readme(tmp_path)
-    assert "Meath County Council" in text
-    assert "six meetings" in text
+    assert ("- Meath County Council, Transportation & Urban Regeneration Strategic Policy "
+            "Committee: 1 meeting, 2026-02-19 to 2026-02-19") in text
+    assert "no other council or committee is published yet" in text
     assert "Irish local authorities" not in text
+
+
+KILDARE_ID = "kildare/transport-mobility-open-spaces/2025-12-11"
+ENGINE = "tesseract 5.5.2 lang=eng psm=4 dpi=300"
+
+
+def _three_council_export():
+    """The Meath export plus one Kildare (scanned) and one Westmeath (mixed) meeting."""
+    import copy
+
+    export = _export()
+    template = export["meetings"][0]
+    for council, committee, name, body, date, source, engine in (
+        ("kildare", "transport-mobility-open-spaces",
+         "Transport, Mobility and Open Spaces Strategic Policy Committee", 1456,
+         "2025-12-11", "ocr", ENGINE),
+        ("westmeath", "planning-regeneration-transportation",
+         "Planning, Regeneration & Transportation Strategic Policy Committee", 1870,
+         "2026-03-06", "mixed", ENGINE),
+    ):
+        meeting = copy.deepcopy(template)
+        meeting.update(
+            meeting_id=f"{council}/{committee}/{date}", committee_id=f"{council}/{committee}",
+            committee_name=name, public_body_id=body, meeting_date=date,
+            minutes_path=f"minutes/{council}/{committee}/{date}.md",
+            text_source=source, ocr_engine=engine,
+            source_url=f"https://example.ie/{council}.pdf")
+        export["meetings"].append(meeting)
+        export["minutes"].append({"meeting_id": meeting["meeting_id"],
+                                  "path": meeting["minutes_path"], "markdown": "# Minutes\n"})
+    return export
+
+
+LOOKUP3 = {1511: "meath-county-council", 1456: "kildare-county-council",
+           1870: "westmeath-county-council"}
+
+
+def test_kildare_meeting_links_its_own_council_and_sits_under_its_own_slugs():
+    records = build_records(_three_council_export(), LOOKUP3)
+    kildare = next(m for m in records["meetings"] if m["meeting_id"] == KILDARE_ID)
+    assert kildare["public_body"] == "https://data.publicinformation.ie/body/kildare-county-council"
+    assert kildare["minutes_path"] == (
+        "minutes/kildare/transport-mobility-open-spaces/2025-12-11.md")
+    assert (kildare["text_source"], kildare["ocr_engine"]) == ("ocr", ENGINE)
+    meath = next(m for m in records["meetings"] if m["meeting_id"].startswith("meath/"))
+    assert meath["public_body"].endswith("/meath-county-council")
+    assert (meath["text_source"], meath["ocr_engine"]) == ("text_layer", None)
+    for record in records["meetings"]:
+        jsonschema.validate(record, SCHEMA)
+
+
+def test_the_published_minutes_land_under_each_councils_slugs(tmp_path):
+    export = _three_council_export()
+    outputs = build_outputs(export, build_records(export, LOOKUP3), tmp_path)
+    for relative in ("minutes/kildare/transport-mobility-open-spaces/2025-12-11.md",
+                     "minutes/westmeath/planning-regeneration-transportation/2026-03-06.md",
+                     "minutes/meath/transportation-urban-regeneration/2026-02-19.md"):
+        assert tmp_path / relative in outputs
+
+
+def test_a_council_with_no_entry_stops_the_build(tmp_path):
+    export = _three_council_export()
+    export["meetings"][1]["committee_id"] = "galway/some-committee"
+    with pytest.raises(ValueError, match="galway"):
+        build_outputs(export, build_records(export, LOOKUP3), tmp_path)
+
+
+def test_scanned_meeting_csv_row_gives_text_source_and_engine():
+    records = build_records(_three_council_export(), LOOKUP3)
+    lines = csv_bytes("meetings", records["meetings"]).decode().splitlines()
+    assert lines[0].endswith(",attendance_published,text_source,ocr_engine")
+    assert lines[1].endswith(",true,text_layer,")
+    assert any(line.endswith(f",true,ocr,{ENGINE}") for line in lines[2:])
+
+
+def test_readme_lists_every_council_and_states_what_verbatim_means_for_ocr(tmp_path):
+    export = _three_council_export()
+    text = build_outputs(export, build_records(export, LOOKUP3), tmp_path)[
+        tmp_path / "README.md"].decode("utf-8")
+    for council in ("Meath County Council", "Kildare County Council", "Westmeath County Council"):
+        assert f"- {council}: https://" in text
+    assert "Attribute as: *Source: Kildare County Council, Meath County Council, Westmeath" in text
+    assert "verbatim to the OCR text" in text
+    assert "source PDF, identified by" in text and "authoritative" in text
+    assert "`spc-text-source`" in text
+    assert "1 meeting, 2025-12-11 to 2025-12-11" in text
 
 
 def test_readme_documents_fields_from_field_specs_and_null_semantics(tmp_path):

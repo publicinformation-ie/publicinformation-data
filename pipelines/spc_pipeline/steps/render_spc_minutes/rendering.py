@@ -11,21 +11,34 @@ and bullet glyphs) and the words recovered from the rendered Markdown with
 escapes undone. The attendance block is checked separately, so a parsed role
 fragment that never reaches the printed text is a ``RenderMismatch`` rather
 than a silent loss.
+
+Each committee's layout profile (``layouts.py``) says how its minutes are laid
+out. Meath's header table, running header and footer are removed as before. The
+scanned layouts (Kildare, Westmeath) declare no furniture: the body is every
+line below the attendance block, item headings follow the profile's forms, and
+the source words are the OCR (or text-layer) words of each page in reading
+order, so "verbatim" means verbatim to the text the ingestion step read.
 """
 from __future__ import annotations
 
 import re
 from collections import Counter, defaultdict
 
+from steps.parse_meeting_header.header import words_to_lines
+from steps.parse_meeting_header.layouts import LayoutProfile, profile_for
+
 STEP_NAME = "render_spc_minutes"
 
 _ITEM_RE = re.compile(r"^(\d+\.\d+)\s+(.*)$")
 _AOB_RE = re.compile(r"^[^\w]*AOB\s*$", re.IGNORECASE)
-_PAGE_RE = re.compile(r"^Page\s+\d+\s+of\s+\d+$", re.IGNORECASE)
+# Meath's declared furniture (layouts.py); the scanned layouts declare none.
+_MEATH_FURNITURE = dict(profile_for("meath-table").furniture)
+_PAGE_RE = re.compile(_MEATH_FURNITURE["page_number"], re.IGNORECASE)
 _BULLET_GLYPHS = ("•", "\uf071")
 _LABELLED_PREFIXES = ("Proposed by", "Seconded by", "Meeting ended")
 _MINUTES_APPROVAL_RE = re.compile(r"^Minutes of (the )?previous meeting\b", re.IGNORECASE)
-_RUNNING_HEADER = "Miontuairiscí/Meeting Minutes"
+_MINUTES_ITEM_RE = re.compile(r"^Minutes\b", re.IGNORECASE)
+_RUNNING_HEADER = _MEATH_FURNITURE["running_header"].strip("^$")
 _ANCHOR_RE = re.compile(r"\s*\{#[^}]*\}\s*$")
 
 #: A line repeated across pages is furniture only when it sits at the page
@@ -33,10 +46,7 @@ _ANCHOR_RE = re.compile(r"\s*\{#[^}]*\}\s*$")
 #: page furniture, so position, not frequency alone, decides.
 _TOP_BAND = 0.02
 _BOTTOM_BAND = 0.95
-_FOOTER_RE = re.compile(
-    r"(meath\.ie|Meath County Council|Telephone:|Fax:|Email:|Buvinda House)",
-    re.IGNORECASE,
-)
+_FOOTER_RE = re.compile(_MEATH_FURNITURE["footer"], re.IGNORECASE)
 
 _ESCAPE_CHARS = "\\`*_{}[]<>#|&"
 
@@ -135,8 +145,39 @@ def _body_start(first_page_lines: list[dict]) -> int:
     return body_start
 
 
+def _profile(record: dict) -> LayoutProfile:
+    return profile_for(record.get("layout") or "meath-table")
+
+
+def _label_value_page_lines(record: dict) -> list[tuple[int, dict]]:
+    """``(page, line)`` for every body line of a label/value layout.
+
+    The body is everything below the attendance block on page 1 (the parse
+    step records where that block ends) and every line of the later pages.
+    Skipped pages have no words, so they contribute no lines.
+    """
+    body_start = record.get("body_start")
+    if not body_start:
+        raise UnrecognisedBodyLayout("the meeting record has no body_start from the header parse")
+    lines: list[tuple[int, dict]] = []
+    for page in record["pages"]:
+        for line in _lines(page):
+            if page["page"] == body_start["page"] and (
+                    body_start["top"] is None or line["top"] < body_start["top"] - 0.01):
+                continue
+            if page["page"] < body_start["page"]:
+                continue
+            lines.append((page["page"], line))
+    return lines
+
+
 def body_source_lines(record: dict) -> tuple[list[dict], dict]:
     """The body lines after the attendance table, furniture removed and counted."""
+    if _profile(record).routine == "label-value":
+        # These layouts declare no page furniture, so nothing is removed.
+        lines = [{"text": line["text"], "page": page}
+                 for page, line in _label_value_page_lines(record)]
+        return lines, {"total": 0, "page_numbers": 0, "by_text": []}
     pages = record["pages"]
     page_lines = [
         {"page": index + 1,
@@ -199,6 +240,20 @@ def source_body_words(record: dict) -> list[str]:
     furniture set itself is position-limited by ``detect_furniture`` so a body
     line that merely repeats cannot be folded into it.
     """
+    if _profile(record).routine == "label-value":
+        words: list[str] = []
+        body_start = record.get("body_start")
+        for page in record["pages"]:
+            if body_start and page["page"] < body_start["page"]:
+                continue
+            for line in _lines(page):
+                if (body_start and page["page"] == body_start["page"]
+                        and (body_start["top"] is None
+                             or line["top"] < body_start["top"] - 0.01)):
+                    continue
+                words.extend(token for token in line["text"].split()
+                             if token not in _BULLET_GLYPHS)
+        return words
     page_lines = [
         {"page": index + 1, "lines": _lines(page)}
         for index, page in enumerate(record["pages"])
@@ -221,17 +276,9 @@ def source_body_words(record: dict) -> list[str]:
 
 
 def _lines(page: dict) -> list[dict]:
-    """Physical lines of a page (words grouped by top)."""
-    lines: list[dict] = []
-    for word in sorted(page["words"], key=lambda w: (round(w["top"], 1), w["x0"])):
-        if lines and abs(word["top"] - lines[-1]["top"]) <= 2.0:
-            lines[-1]["words"].append(word)
-        else:
-            lines.append({"top": word["top"], "words": [word]})
-    for line in lines:
-        line["words"].sort(key=lambda w: w["x0"])
-        line["text"] = " ".join(w["text"] for w in line["words"])
-    return lines
+    """Physical lines of a page: text-layer words grouped by ``top``, OCR words
+    by Tesseract's own line numbers (see ``words_to_lines``)."""
+    return words_to_lines(page["words"])
 
 
 # ---------------------------------------------------------------------------
@@ -251,14 +298,28 @@ def _strip_bullet(text: str) -> str:
     return stripped
 
 
-def _item_heading(text: str) -> tuple[str, str] | None:
-    match = _ITEM_RE.match(text.strip())
+def _item_heading(text: str, profile: LayoutProfile | None = None) -> tuple[str, str, str] | None:
+    """``(number, title, printed_line)`` when the line is an item heading.
+
+    Meath's headings are "4.0 Title"; a label/value profile lists its own forms
+    ("Item 2 — Title", "Item 2: Title"), compared case-insensitively.
+    """
+    text = text.strip()
+    if profile is not None and profile.routine == "label-value":
+        for pattern in profile.item_headings:
+            match = re.match(pattern, text, re.IGNORECASE)
+            if match:
+                return match.group(1), match.group(2).strip(), _normalise(text)
+        return None
+    match = _ITEM_RE.match(text)
     if not match:
         return None
-    return match.group(1), match.group(2).strip()
+    number, title = match.group(1), match.group(2).strip()
+    return number, title, f"{number} {title}"
 
 
-def segment_blocks(body_lines: list[dict]) -> tuple[list[dict], list[dict]]:
+def segment_blocks(body_lines: list[dict],
+                   profile: LayoutProfile | None = None) -> tuple[list[dict], list[dict]]:
     """Group body lines into blocks and numbered items.
 
     Returns ``(blocks, items)``. Blocks carry a ``kind``
@@ -283,9 +344,9 @@ def segment_blocks(body_lines: list[dict]) -> tuple[list[dict], list[dict]]:
         if _starts_with_bullet(text):
             add_block("bullet", _strip_bullet(text))
             continue
-        heading = _item_heading(text)
+        heading = _item_heading(text, profile)
         if heading:
-            number, title = heading
+            number, title, printed = heading
             item_key = "item-" + number.replace(".", "-")
             if any(item["item_key"] == item_key for item in items):
                 suffix = 2
@@ -297,11 +358,14 @@ def segment_blocks(body_lines: list[dict]) -> tuple[list[dict], list[dict]]:
                 "number": number,
                 "title": title,
                 "blocks": [],
-                "is_minutes_approval": bool(_MINUTES_APPROVAL_RE.match(title)),
+                "is_minutes_approval": bool(
+                    (_MINUTES_ITEM_RE if profile is not None and profile.routine == "label-value"
+                     else _MINUTES_APPROVAL_RE).match(title)),
             }
             items.append(current_item)
             block = {"kind": "heading", "number": number, "title": title,
-                     "item_key": item_key, "text": f"{number} {title}"}
+                     "item_key": item_key, "text": printed, "printed": printed,
+                     "printed_form": bool(profile is not None and profile.routine == "label-value")}
             blocks.append(block)
             current_item["blocks"].append(block)
             continue
@@ -357,7 +421,13 @@ def check_attendance(record: dict) -> None:
     if not record.get("attendance_published", True):
         return
     expected: list[str] = []
-    for entry in record.get("printed_attendance", []):
+    # The render lists entries by category, in the layout's heading order, so the
+    # expected words follow that grouping (a layout may print Apologies before
+    # Officials); within a category the printed order is kept.
+    order = {category: index for index, (category, _) in enumerate(_attendance_labels(record))}
+    entries = sorted(record.get("printed_attendance", []),
+                     key=lambda e: order.get(e["category"], len(order)))
+    for entry in entries:
         raw = (entry.get("raw") or entry["printed_name"]).strip().strip(",;.")
         role = (entry.get("role") or "").strip()
         # Compare as substrings: the printed text may glue the role to a
@@ -420,7 +490,10 @@ def front_matter(record: dict) -> str:
         ("end_time", record.get("end_time")),
         ("source_url", record["source_url"]),
         ("source_sha256", record["source_sha256"]),
+        ("text_source", record.get("text_source") or "text_layer"),
     ]
+    if record.get("ocr_engine"):
+        fields.append(("ocr_engine", record["ocr_engine"]))
     return "---\n" + "\n".join(f"{key}: {_yaml_value(value)}" for key, value in fields) + "\n---\n"
 
 
@@ -433,13 +506,19 @@ _ATTENDANCE_LABELS = [
 ]
 
 
+def _attendance_labels(record: dict) -> list[tuple[str, str]]:
+    """The attendance headings: the layout's printed labels, else Meath's."""
+    headings = _profile(record).attendance_headings
+    return list(headings) if headings else _ATTENDANCE_LABELS
+
+
 def render_attendance(record: dict) -> str:
     entries = record.get("printed_attendance", [])
     lines = ["## Attendance", ""]
     if not record.get("attendance_published", True):
         lines.append("_Attendance is withheld pending review of an unresolved name._")
         lines.append("")
-    for category, label in _ATTENDANCE_LABELS:
+    for category, label in _attendance_labels(record):
         group = [entry for entry in entries if entry["category"] == category]
         if not group:
             continue
@@ -458,10 +537,9 @@ def render_body(blocks: list[dict]) -> str:
     for block in blocks:
         kind = block["kind"]
         if kind == "heading":
-            parts.append(
-                f"## {escape_inline(block['number'])} {escape_inline(block['title'])} "
-                f"{{#{block['item_key']}}}"
-            )
+            heading = (escape_inline(block["printed"]) if block.get("printed_form")
+                       else f"{escape_inline(block['number'])} {escape_inline(block['title'])}")
+            parts.append(f"## {heading} {{#{block['item_key']}}}")
         elif kind == "aob":
             anchor += 1
             suffix = "" if anchor == 1 else f"-{anchor}"
@@ -475,7 +553,7 @@ def render_body(blocks: list[dict]) -> str:
 
 def render_meeting(record: dict) -> dict:
     body_lines, furniture = body_source_lines(record)
-    blocks, items = segment_blocks(body_lines)
+    blocks, items = segment_blocks(body_lines, _profile(record))
     body_markdown = render_body(blocks)
     # Both sides of the check are independent of the renderer's own line
     # selection: the source words come straight from the PDF, the rendered
@@ -488,7 +566,8 @@ def render_meeting(record: dict) -> dict:
         + "\n"
         + f"# {escape_inline(record['committee_name'])}\n\n"
         + f"**{escape_inline(record['date_text'])}**, {escape_inline(record.get('venue') or '')}"
-        + (f". {escape_inline(record['start_time'])}" if record.get("start_time") else "")
+        + (f". {escape_inline(record['start_time'].rstrip('.'))}"
+           if record.get("start_time") else "")
         + (f" – {escape_inline(record['end_time'])}" if record.get("end_time") else "")
         + ".\n\n"
         + render_attendance(record)

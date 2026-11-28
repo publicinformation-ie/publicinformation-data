@@ -90,15 +90,20 @@ Quarterly public service numbers (full-time-equivalent staff) by department, sec
 
 ---
 
-## Meath County Council
+## Meath, Kildare and Westmeath County Councils — SPC minutes
 
-**Source:** [Transportation and Urban Regeneration Strategic Policy Committee](https://www.meath.ie/council/your-council/your-elected-council/strategic-policy-committees/transportation-and-urban-regeneration-spc)
+**Sources:**
+- Meath: [Transportation and Urban Regeneration Strategic Policy Committee](https://www.meath.ie/council/your-council/your-elected-council/strategic-policy-committees/transportation-and-urban-regeneration-spc)
+- Kildare: [Transport, Mobility and Open Spaces SPC](https://kildarecoco.ie/YourCouncil/YourElectedCouncil/Committees/StrategicPolicyCommittees/TransportationSafetyandEmergencyServices/) (the council's page still calls it Transportation, Safety and Emergency Services), one minutes page per year ([2025](https://kildarecoco.ie/YourCouncil/YourElectedCouncil/Committees/StrategicPolicyCommittees/TransportationSafetyandEmergencyServices/2025/Minutes/), [2026](https://kildarecoco.ie/YourCouncil/YourElectedCouncil/Committees/StrategicPolicyCommittees/TransportationSafetyandEmergencyServices/2026/Minutes/))
+- Westmeath: [Planning, Regeneration & Transportation SPC](https://www.westmeathcoco.ie/en/ourservices/yourcouncil/meetingsminutesagendasandreports/strategicpolicycommittees/planningregenerationtransportation/)
 
-The council publishes the committee's agendas and minutes as PDFs on one page. We ingest the minutes only (February 2025 to May 2026), record each file's sha256, and reproduce each meeting's text verbatim as Markdown. Attendance, decisions and topics are derived from that text; names are reproduced as the council published them.
+Each council publishes the committee's agendas and minutes as PDFs. We ingest the minutes only (Meath from February 2025; Kildare and Westmeath for 2025 and 2026), record each file's sha256, and reproduce each meeting's text verbatim as Markdown. Most Kildare and Westmeath minutes are scanned images with no text layer; those are read by OCR (Tesseract, run locally), and each meeting records `text_source` and `ocr_engine`. For such a meeting "verbatim" means verbatim to the OCR text, and the source PDF is authoritative. Attendance, decisions and topics are derived from that text; names are reproduced as the council published them.
 
-**Licence:** the minutes are published by Meath County Council as public sector information. The derived dataset is published under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+Wicklow (a Sucuri JavaScript challenge) and Monaghan (Cloudflare 403) block non-browser clients. They are not ingested, and the pipeline never solves or evades a bot-protection challenge.
 
-> Source: Meath County Council, Transportation and Urban Regeneration Strategic Policy Committee minutes.
+**Licence:** the minutes are published by the councils as public sector information; each council's own re-use terms have not been independently confirmed. The derived dataset is published under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+> Source: Meath County Council, Kildare County Council and Westmeath County Council, Strategic Policy Committee minutes.
 
 ---
 

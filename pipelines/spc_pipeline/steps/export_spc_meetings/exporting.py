@@ -29,6 +29,8 @@ def _meeting_record(record: dict) -> dict:
         "source_sha256": record["source_sha256"],
         "minutes_path": _minutes_path(record),
         "attendance_published": record["attendance_published"],
+        "text_source": record["text_source"],
+        "ocr_engine": record["ocr_engine"],
     }
 
 

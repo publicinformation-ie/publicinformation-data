@@ -15,7 +15,7 @@ may still need parser changes, which is accepted.
 |---|---|---|---|
 | 1 | `/pipelines/minutes_pipeline/steps/find_local_authorities` | — | local-authority list (read-only) |
 | 2 | `find_spc_minutes_files` | — | one record per minutes PDF |
-| 3 | `fetch_spc_minutes` | — | sha256, size, retrieval time and per-page words |
+| 3 | `fetch_spc_minutes` | — | sha256, size, retrieval time, per-page words (text layer, else OCR) and text source |
 | 4 | `parse_meeting_header` | — | meeting id/date, venue, times, printed attendance |
 | 5 | `resolve_attendees` | — | one attendance row per person with person IDs, or withheld |
 | 6 | `render_spc_minutes` | — | verbatim Markdown and the item list |
@@ -110,8 +110,11 @@ cache makes no HTTP request.
   PDF whose chain cannot be verified stops discovery; TLS verification is never
   disabled (the missing intermediate is supplied from
   `src/lib/certs/extra_intermediates.pem`).
-- A PDF with no text layer is a `NoTextLayer` error; the pipeline never runs
-  OCR.
+- A page with no text layer is read by OCR (tesseract). A file with no words at
+  all (`NoTextRecovered`), a page below the OCR confidence threshold
+  (`OcrLowConfidence`) or an empty OCR page with no reviewed override
+  (`EmptyOcrPage`) produces an error and no meeting. Low-confidence words are
+  never dropped or rewritten.
 - A header whose date is missing or disagrees with its link text, or two files
   resolving to the same meeting, withholds that meeting.
 - A printed name that does not match the register withholds the **whole

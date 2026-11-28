@@ -36,6 +36,7 @@ SPC_TERMS = {
     "spc-attendance-status": ("spc", [
         ("present", "Present", "Recorded as attending the meeting."),
         ("apologies", "Apologies", "Listed under apologies or absent, so did not attend."),
+        ("absent", "Absent", "Listed as not present, separately from any apologies."),
     ]),
     "spc-attendance-mode": ("spc", [
         ("remote", "Remote", "Attended online or via Teams."),
@@ -48,6 +49,13 @@ SPC_TERMS = {
         ("apologies", "Apologies", "People listed as absent or sending apologies."),
         ("officials", "Officials", "Council officials present."),
         ("presenters", "Presenters", "People who made a presentation to the committee."),
+        ("guests", "Guests", "Guests of the committee, listed apart from its members and officials."),
+        ("absent", "Absent", "People listed as not present, separately from any apologies."),
+    ]),
+    "spc-text-source": ("spc", [
+        ("text_layer", "Text layer", "Every page was read from the PDF's own text layer."),
+        ("ocr", "OCR", "Every page is a scan, read by optical character recognition."),
+        ("mixed", "Mixed", "Some pages were read from the text layer and some by OCR."),
     ]),
     "spc-decision-type": ("spc", [
         ("agreed", "Agreed", "The committee agreed a course of action."),

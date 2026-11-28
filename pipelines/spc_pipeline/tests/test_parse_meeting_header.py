@@ -261,3 +261,171 @@ def test_duplicate_meeting_withholds_both_files():
     records, errors = run({"results": [first, second]})
     assert records == []
     assert [e["error_type"] for e in errors] == ["DuplicateMeeting"]
+
+
+# ---------------------------------------------------------------------------
+# Kildare and Westmeath layout profiles (scanned minutes, via committed OCR)
+# ---------------------------------------------------------------------------
+
+from steps.find_spc_minutes_files.discovery import KNOWN_LAYOUTS
+from steps.parse_meeting_header.layouts import PROFILES
+from steps.parse_meeting_header.header import words_to_lines
+
+
+def _new(fetched_new_meetings, name):
+    return next(r for r in fetched_new_meetings if r["file_url"].endswith(name)
+                or r["link_text"].endswith(name))
+
+
+def _by_date(fetched_new_meetings, committee_prefix, iso):
+    records = [r for r in fetched_new_meetings if r["committee_id"].startswith(committee_prefix)]
+    parsed = {}
+    for record in records:
+        try:
+            parsed[parse_record(record)["meeting_date"]] = parse_record(record)
+        except Exception:
+            continue
+    return parsed[iso]
+
+
+def test_profiles_match_the_layouts_discovery_accepts():
+    assert set(PROFILES) == set(KNOWN_LAYOUTS)
+
+
+def test_kildare_header_date_time_and_venue(fetched_new_meetings):
+    meeting = _by_date(fetched_new_meetings, "kildare/", "2025-12-11")
+    assert meeting["date_text"] == "11 December 2025"
+    assert meeting["start_time"] == "3.30p.m."
+    assert meeting["venue"] == "Committee Room, Aras Chill Dara, Naas"
+    assert meeting["meeting_id"] == "kildare/transport-mobility-open-spaces/2025-12-11"
+
+
+def test_kildare_labels_map_to_their_categories(fetched_new_meetings):
+    meeting = _by_date(fetched_new_meetings, "kildare/", "2025-12-11")
+    by_category = {}
+    for entry in meeting["attendance"]:
+        by_category.setdefault(entry["category"], []).append(entry["printed_name"])
+    assert set(by_category) == {"councillors", "officials", "guests", "apologies", "absent"}
+    assert by_category["guests"] == ["Bill Clear"]
+    assert by_category["absent"] == ["Cormac Browne", "Gerry Prendergast", "Ger Dunne"]
+    assert "Peter Melrose" in by_category["apologies"]
+    assert not any("Attendees" in n or ":" in n for names in by_category.values() for n in names)
+
+
+def test_kildare_online_marker_applies_only_to_that_entry(fetched_new_meetings):
+    meeting = _by_date(fetched_new_meetings, "kildare/", "2025-12-11")
+    modes = {e["printed_name"]: e["markers"] for e in meeting["attendance"]}
+    assert modes["Paul Ward"] == ["remote"] and modes["Paul Brooks"] == ["remote"]
+    assert modes["Kevin Duffy"] == [] and modes["Tracey O’Dwyer"] == []
+
+
+def test_kildare_names_with_a_printed_role_in_brackets(fetched_new_meetings):
+    meeting = _by_date(fetched_new_meetings, "kildare/", "2025-12-11")
+    chair = next(e for e in meeting["attendance"] if e["printed_name"] == "Kevin Duffy")
+    assert chair["role"] == "Chair" and chair["initials"] is None
+
+
+def test_two_names_joined_by_and_are_two_people(fetched_new_meetings):
+    meeting = _by_date(fetched_new_meetings, "kildare/", "2025-02-06")
+    absent = [e["printed_name"] for e in meeting["attendance"] if e["category"] == "absent"]
+    assert "Cormac Browne" in absent and "Eamonn Mahoney" in absent
+    assert not any(" and " in n for n in absent)
+
+
+def test_a_printed_double_title_is_one_person(fetched_new_meetings):
+    meeting = _by_date(fetched_new_meetings, "kildare/", "2026-02-05")
+    names = [e["printed_name"] for e in meeting["attendance"]]
+    assert "Jonathan Hennessy" in names and not any(n.startswith("Mr") for n in names)
+
+
+def test_westmeath_continuation_lines_belong_to_their_label(fetched_new_meetings):
+    meeting = _by_date(fetched_new_meetings, "westmeath/", "2026-03-06")
+    councillors = [e["printed_name"] for e in meeting["attendance"]
+                   if e["category"] == "councillors"]
+    assert councillors == ["Frankie Keena", "Liam McDaniels", "Tom Farrell", "David Jones"]
+    assert not any("Members" in n or "Present" in n for n in councillors)
+    keena = next(e for e in meeting["attendance"] if e["printed_name"] == "Frankie Keena")
+    assert keena["role"] == "Cathaoirleach"
+
+
+def test_westmeath_labels_and_header(fetched_new_meetings):
+    meeting = _by_date(fetched_new_meetings, "westmeath/", "2026-03-06")
+    categories = {e["category"] for e in meeting["attendance"]}
+    assert categories == {"councillors", "sectoral_representatives", "officials", "apologies"}
+    assert meeting["start_time"] == "10am"
+    assert meeting["venue"].startswith("Executive Lounge, Aras an Chontae, Mullingar")
+    assert meeting["text_source"] == "mixed"
+
+
+def test_a_header_with_no_year_takes_it_from_the_link_text(fetched_new_meetings):
+    source = next(r for r in fetched_new_meetings if "13th February 2025" in r["link_text"])
+    meeting = parse_record(source)
+    assert meeting["meeting_date"] == "2025-02-13"
+    assert meeting["date_text"] == "13 February 2025"
+    assert meeting["year_source"] == "link_text"
+    other = _by_date(fetched_new_meetings, "westmeath/", "2026-03-06")
+    assert other["year_source"] == "header"
+
+
+def test_a_missing_year_is_unparseable_when_the_link_text_cannot_supply_it(fetched_new_meetings):
+    source = next(r for r in fetched_new_meetings if "13th February 2025" in r["link_text"])
+    for link_text in ("Minutes of SPC Meeting", "Minutes of SPC Meeting 13th March 2025"):
+        with pytest.raises(MeetingDateUnparseable, match="no year"):
+            parse_record({**source, "link_text": link_text})
+
+
+def test_body_starts_after_the_attendance_block(fetched_new_meetings):
+    meeting = _by_date(fetched_new_meetings, "westmeath/", "2025-09-19")
+    assert meeting["body_start"]["page"] == 1
+    first_body = next(line for line in words_to_lines(meeting["pages"][0]["words"])
+                      if line["top"] >= meeting["body_start"]["top"] - 0.01)
+    assert first_body["text"].startswith("Cllr. Frankie Keena opened the meeting")
+
+
+def _label_page(labels):
+    words = []
+    for number, (label, value) in enumerate(labels):
+        top = 200 + number * 40
+        for index, part in enumerate(label.split(" ")):
+            words.append(_word(part, 77.0 + index * 40, top))
+        words.append(_word(value, 189.0, top))
+    header = [_word(t, 90 + i * 30, 100) for i, t in enumerate(
+        "Minutes of Meeting held on Thursday, 05 February 2026 at 3.30p.m. in the Boardroom".split())]
+    return {"page": 1, "width": 595.0, "height": 842.0, "words": header + words}
+
+
+def _kildare_source(labels, link_text="Minutes of SPC Meeting 05 February 2026"):
+    return {"committee_id": "kildare/x", "committee_name": "X", "public_body_id": 1456,
+            "page_url": "https://x", "file_url": "https://x/a.pdf", "sha256": "0" * 64,
+            "page_count": 1, "link_text": link_text, "layout": "kildare-table",
+            "pages": [_label_page(labels)]}
+
+
+def test_an_unmapped_label_is_an_error_naming_the_label():
+    source = _kildare_source([("Attendees:", "Councillor"), ("Observers:", "Councillor")])
+    with pytest.raises(UnrecognisedHeaderLayout, match="Observers"):
+        parse_record(source)
+
+
+def test_no_mapped_label_is_unrecognised():
+    with pytest.raises(UnrecognisedHeaderLayout, match="no attendance label"):
+        parse_record(_kildare_source([("Observers:", "Councillor")]))
+
+
+def test_link_text_with_an_abbreviated_month_is_still_checked():
+    assert link_month_year("Minutes of SPC Meeting 28th Nov 2025") == (11, 2025)
+    assert link_month_year("Minutes of SPC Meeting 19th Sept 2025") == (9, 2025)
+    source = _kildare_source([("Attendees:", "Councillor")],
+                             link_text="Minutes of SPC Meeting 12th Nov 2025")
+    with pytest.raises(MeetingDateMismatch):
+        parse_record(source)
+
+
+def test_ocr_words_on_a_skewed_line_are_one_line():
+    """Tesseract's line id groups words whose tops differ by more than 2 points."""
+    words = [
+        {"text": "On", "x0": 10, "x1": 20, "top": 100.0, "bottom": 110, "conf": 90, "line": 0},
+        {"text": "the", "x0": 300, "x1": 320, "top": 104.5, "bottom": 114, "conf": 90, "line": 0},
+        {"text": "Next", "x0": 10, "x1": 40, "top": 120.0, "bottom": 130, "conf": 90, "line": 1},
+    ]
+    assert [line["text"] for line in words_to_lines(words)] == ["On the", "Next"]

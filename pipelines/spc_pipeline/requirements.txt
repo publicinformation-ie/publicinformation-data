@@ -4,6 +4,11 @@ beautifulsoup4==4.14.3
 jsonschema==4.26.0
 requests==2.33.1
 pdfplumber==0.11.4
+# OCR for scanned minutes (see src/lib/ocr.py). Pinned as in document_pipeline.
+# The `tesseract` binary is needed only for live runs and fixture generation.
+pymupdf==1.28.0
+pillow==11.3.0
+pytesseract==0.3.13
 pytest==9.0.3
 # Only for `scripts/transform_spc_meetings.py` tests (catalogue Turtle parsing);
 # pinned in scripts/requirements-build.txt.

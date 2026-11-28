@@ -23,6 +23,8 @@ def _record(**overrides):
         "source_sha256": "a" * 64,
         "markdown": "# Minutes\n",
         "word_check": "passed",
+        "text_source": "text_layer",
+        "ocr_engine": None,
         "attendance_published": True,
         "withheld_reasons": [],
         "attendance": [{
@@ -72,6 +74,7 @@ def test_clean_meeting_is_assembled_with_a_minutes_path():
         "minutes/meath/transportation-urban-regeneration/2026-02-19.md"
     )
     assert meeting["attendance_published"] is True
+    assert (meeting["text_source"], meeting["ocr_engine"]) == ("text_layer", None)
     assert dataset["attendance"][0]["person_id"] == "meath/michael-bray"
     assert dataset["items"][0]["cofog"] == ["04.5.1"]
     assert dataset["decisions"][0]["decision_id"].endswith("/d01")
@@ -143,3 +146,17 @@ def test_a_dangling_person_reference_fails_export():
     }])
     with pytest.raises(ValueError, match="meath/ghost"):
         export({"results": [record]}, REGISTER)
+
+
+def test_a_scanned_meeting_carries_its_text_source_and_ocr_engine():
+    engine = "tesseract 5.5.2 lang=eng psm=4 dpi=300"
+    record = _record(meeting_id="kildare/transport-mobility-open-spaces/2025-12-11",
+                     committee_id="kildare/transport-mobility-open-spaces",
+                     public_body_id=1456, meeting_date="2025-12-11",
+                     text_source="ocr", ocr_engine=engine,
+                     attendance_published=False, attendance=[], decisions=[],
+                     item_topics=[], items=[])
+    dataset, _ = export({"results": [record]}, REGISTER)
+    meeting = dataset["meetings"][0]
+    assert (meeting["text_source"], meeting["ocr_engine"]) == ("ocr", engine)
+    assert meeting["minutes_path"] == "minutes/kildare/transport-mobility-open-spaces/2025-12-11.md"

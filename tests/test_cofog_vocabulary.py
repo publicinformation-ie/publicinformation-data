@@ -377,7 +377,7 @@ def test_spc_builder_still_writes_its_vocabularies(tmp_path):
     module.main()
     expected = {
         "spc-attendance-status", "spc-attendance-mode", "spc-attendee-category",
-        "spc-decision-type", "transport-subdomain"}
+        "spc-decision-type", "spc-text-source", "transport-subdomain"}
     names = {path.stem for path in tmp_path.glob("*.csv")}
     assert names == expected
     assert not (tmp_path / "cofog-1999.csv").exists()

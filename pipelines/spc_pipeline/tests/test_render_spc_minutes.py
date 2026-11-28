@@ -104,6 +104,13 @@ def test_markdown_matches_the_published_snapshot(rendered):
         assert record["markdown"].encode("utf-8") == published.read_bytes(), meeting_id
 
 
+def test_new_council_markdown_matches_the_published_snapshot(rendered_new_meetings):
+    for record in rendered_new_meetings:
+        published = PUBLISHED_MINUTES / f"{record['meeting_id']}.md"
+        assert published.exists(), published
+        assert record["markdown"].encode("utf-8") == published.read_bytes(), record["meeting_id"]
+
+
 def test_withheld_attendance_is_visible_but_minutes_still_render(resolved_meetings):
     record = dict(resolved_meetings[0])
     record["attendance_published"] = False
@@ -222,3 +229,138 @@ def test_attendance_role_text_may_be_glued_to_a_bracket():
                                raw="A B (AB)Climate Officer")
     result = render_meeting(record)
     assert "A B (AB)Climate Officer" in result["markdown"]
+
+
+# ---------------------------------------------------------------------------
+# Scanned layouts (Kildare, Westmeath): OCR words, no declared furniture
+# ---------------------------------------------------------------------------
+
+def _new(rendered_new_meetings, committee, iso):
+    return next(r for r in rendered_new_meetings
+                if r["committee_id"].startswith(committee) and r["meeting_date"] == iso)
+
+
+def test_every_scanned_meeting_passes_the_word_check(rendered_new_meetings):
+    assert len(rendered_new_meetings) == 11
+    assert all(r["word_check"] == "passed" for r in rendered_new_meetings)
+
+
+def test_scanned_layouts_remove_no_furniture(rendered_new_meetings):
+    for record in rendered_new_meetings:
+        assert record["furniture_removed"] == {"total": 0, "page_numbers": 0, "by_text": []}
+
+
+def test_front_matter_gives_the_text_source_and_ocr_engine(rendered_new_meetings, rendered):
+    kildare = _new(rendered_new_meetings, "kildare/", "2025-12-11")
+    assert 'text_source: "ocr"\n' in kildare["markdown"]
+    assert 'ocr_engine: "tesseract 5.5.2 lang=eng psm=4 dpi=300"\n' in kildare["markdown"]
+    mixed = _new(rendered_new_meetings, "westmeath/", "2026-03-06")
+    assert 'text_source: "mixed"\n' in mixed["markdown"]
+    for record in rendered.values():                       # Meath: text layer, no engine
+        assert 'text_source: "text_layer"\n' in record["markdown"]
+        assert "ocr_engine" not in record["markdown"]
+
+
+def test_kildare_item_word_forms_become_headings_with_item_anchors(rendered_new_meetings):
+    markdown = _new(rendered_new_meetings, "kildare/", "2025-12-11")["markdown"]
+    assert "## Item 2 — Minutes-of the meeting held on 2 October 2025 {#item-2}" in markdown
+    assert "## Item 9- Any Other Business {#item-9}" in markdown
+
+
+def test_westmeath_colon_headings_keep_their_printed_case_and_number_a_repeat(rendered_new_meetings):
+    sept = _new(rendered_new_meetings, "westmeath/", "2025-09-19")
+    assert "## item 1: Minutes {#item-1}" in sept["markdown"]
+    assert "## Item 2: Matters Arising {#item-2}" in sept["markdown"]
+    keys = [item["item_key"] for item in sept["items"]]
+    assert keys.count("item-3") == 1 and "item-3-2" in keys            # "Item 3" printed twice
+    assert sept["items"][0]["is_minutes_approval"] is True
+
+
+def test_a_misread_heading_stays_in_the_text_not_dropped(rendered_new_meetings):
+    mar = _new(rendered_new_meetings, "westmeath/", "2026-03-06")
+    assert "Item \\&: Aon Gno Eile" in mar["markdown"]               # OCR read "8" as "&"
+    assert "## Item \\&" not in mar["markdown"]
+
+
+def test_attendance_uses_the_printed_labels_and_new_categories(rendered_new_meetings):
+    markdown = _new(rendered_new_meetings, "kildare/", "2025-12-11")["markdown"]
+    for heading in ("### Attendees", "### Also present", "### Guests", "### Apologies",
+                    "### Not present"):
+        assert heading in markdown
+    assert "- Councillor Bill Clear" in markdown
+    westmeath = _new(rendered_new_meetings, "westmeath/", "2025-11-28") if any(
+        r["meeting_date"] == "2025-11-28" for r in rendered_new_meetings) else \
+        _new(rendered_new_meetings, "westmeath/", "2025-09-19")
+    assert "### External presenters" in westmeath["markdown"]
+
+
+def test_start_time_with_a_trailing_full_stop_has_no_doubled_full_stop(rendered_new_meetings):
+    markdown = _new(rendered_new_meetings, "kildare/", "2025-12-11")["markdown"]
+    assert "Naas. 3.30p.m.\n" in markdown and "p.m..\n" not in markdown
+
+
+def _ocr_word(text, x0, top, line, conf=95.0):
+    return {"text": text, "x0": x0, "x1": x0 + 5.0 * len(text), "top": top,
+            "bottom": top + 9, "conf": conf, "line": line}
+
+
+def _ocr_record(page2_lines):
+    page1 = [_ocr_word("Item", 80, 100, 0), _ocr_word("1:", 110, 100, 0),
+             _ocr_word("Minutes", 130, 100, 0)]
+    page2 = []
+    for number, text in enumerate(page2_lines):
+        x = 80.0
+        for token in text.split():
+            page2.append(_ocr_word(token, x, 60 + number * 20, number))
+            x += 5.0 * len(token) + 3
+    return {
+        "meeting_id": "westmeath/test/2026-01-01", "committee_id": "westmeath/test",
+        "committee_name": "Test", "public_body_id": 1870, "meeting_date": "2026-01-01",
+        "date_text": "1 January 2026", "venue": "Room", "start_time": "10am", "end_time": None,
+        "source_url": "https://example.test/m.pdf", "source_sha256": "abc",
+        "layout": "westmeath-list", "text_source": "ocr", "ocr_engine": "tesseract 5.5.2 x",
+        "body_start": {"page": 1, "top": 100.0}, "printed_attendance": [],
+        "pages": [{"page": 1, "words": page1, "source": "ocr"},
+                  {"page": 2, "words": page2, "source": "ocr"}],
+    }
+
+
+def test_a_stray_token_that_is_not_declared_furniture_is_kept_in_the_body():
+    record = _ocr_record([",", "The committee noted the report."])
+    result = render_meeting(record)
+    assert result["word_check"] == "passed"
+    assert ", The committee noted the report." in result["markdown"]
+
+
+def test_a_lost_ocr_word_fails_the_word_check_as_render_mismatch(monkeypatch):
+    from steps.render_spc_minutes import rendering
+
+    real = rendering.render_body
+    monkeypatch.setattr(rendering, "render_body",
+                        lambda blocks: real(blocks).replace("noted ", "", 1))
+    with pytest.raises(RenderMismatch, match="word"):
+        render_meeting(_ocr_record(["The committee noted the report."]))
+
+
+def test_a_skipped_page_contributes_no_words_to_the_check():
+    record = _ocr_record(["Body words."])
+    record["pages"].append({"page": 3, "words": [], "source": "skipped",
+                            "skip_reason": "blank sheet"})
+    assert render_meeting(record)["word_check"] == "passed"
+
+
+def test_a_header_with_no_body_start_is_unrecognised():
+    record = _ocr_record(["Body."])
+    del record["body_start"]
+    from steps.render_spc_minutes.rendering import UnrecognisedBodyLayout
+
+    with pytest.raises(UnrecognisedBodyLayout):
+        render_meeting(record)
+
+
+def test_attendance_check_follows_the_render_grouping_when_apologies_print_before_officials(
+        rendered_new_meetings):
+    feb = _new(rendered_new_meetings, "westmeath/", "2025-02-13")
+    assert feb["word_check"] == "passed"
+    markdown = feb["markdown"]
+    assert markdown.index("### Officials present") < markdown.index("### Apologies")

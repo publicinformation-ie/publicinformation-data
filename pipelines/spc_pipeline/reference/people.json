@@ -250,5 +250,563 @@
     "aliases": ["Andy Faulkner"],
     "initials": ["AF"],
     "public_body_id": 1511
+  },
+  {
+    "person_id": "kildare/kevin-duffy",
+    "canonical_name": "Kevin Duffy",
+    "kind": "councillor",
+    "councillor_id": "kildare/kevin-duffy",
+    "aliases": ["Kevin Duffy"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/tracey-odwyer",
+    "canonical_name": "Tracey O'Dwyer",
+    "kind": "councillor",
+    "councillor_id": "kildare/tracey-odwyer",
+    "aliases": ["Tracey O'Dwyer", "Tracey O’Dwyer"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/paul-ward",
+    "canonical_name": "Paul Ward",
+    "kind": "councillor",
+    "councillor_id": "kildare/paul-ward",
+    "aliases": ["Paul Ward", "Pau! Ward"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/paul-brooks",
+    "canonical_name": "Paul Brooks",
+    "kind": "councillor",
+    "councillor_id": "kildare/paul-brooks",
+    "aliases": ["Paul Brooks"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/bill-clear",
+    "canonical_name": "Bill Clear",
+    "kind": "councillor",
+    "councillor_id": "kildare/bill-clear",
+    "aliases": ["Bill Clear"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/peter-melrose",
+    "canonical_name": "Peter Melrose",
+    "kind": "councillor",
+    "councillor_id": "kildare/peter-melrose",
+    "aliases": ["Peter Melrose"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/noel-connolly",
+    "canonical_name": "Noel Connolly",
+    "kind": "councillor",
+    "councillor_id": "kildare/noel-connolly",
+    "aliases": ["Noel Connolly", "Noel Connelly"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/ger-dunne",
+    "canonical_name": "Ger Dunne",
+    "kind": "councillor",
+    "councillor_id": "kildare/ger-dunne",
+    "aliases": ["Ger Dunne"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "westmeath/frankie-keena",
+    "canonical_name": "Frankie Keena",
+    "kind": "councillor",
+    "councillor_id": "westmeath/frankie-keena",
+    "aliases": ["Frankie Keena", "Cilr. Frankie Keena"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/tom-farrell",
+    "canonical_name": "Tom Farrell",
+    "kind": "councillor",
+    "councillor_id": "westmeath/tom-farrell",
+    "aliases": ["Tom Farrell"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/niall-gaffney",
+    "canonical_name": "Niall Gaffney",
+    "kind": "councillor",
+    "councillor_id": "westmeath/niall-gaffney",
+    "aliases": ["Niall Gaffney"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/david-jones",
+    "canonical_name": "David Jones",
+    "kind": "councillor",
+    "councillor_id": "westmeath/david-jones",
+    "aliases": ["David Jones"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/liam-mcdaniel",
+    "canonical_name": "Liam McDaniel",
+    "kind": "councillor",
+    "councillor_id": "westmeath/liam-mcdaniel",
+    "aliases": ["Liam McDaniel", "Liam McDaniels"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "kildare/person/gerry-prendergast",
+    "canonical_name": "Gerry Prendergast",
+    "kind": "sectoral_representative",
+    "councillor_id": null,
+    "aliases": ["Gerry Prendergast"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/eamonn-mahoney",
+    "canonical_name": "Eamonn Mahoney",
+    "kind": "sectoral_representative",
+    "councillor_id": null,
+    "aliases": ["Eamonn Mahoney"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/cormac-browne",
+    "canonical_name": "Cormac Browne",
+    "kind": "sectoral_representative",
+    "councillor_id": null,
+    "aliases": ["Cormac Browne"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/celina-barrett",
+    "canonical_name": "Celina Barrett",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Celina Barrett"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/mark-mcloughlin",
+    "canonical_name": "Mark McLoughlin",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Mark McLoughlin"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/donal-hodgins",
+    "canonical_name": "Dónal Hodgins",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Dónal Hodgins", "Donal Hodgins"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/daragh-conlan",
+    "canonical_name": "Daragh Conlan",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Daragh Conlan"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/chris-galvin",
+    "canonical_name": "Chris Galvin",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Chris Galvin"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/sinead-martin",
+    "canonical_name": "Sinead Martin",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Sinead Martin"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/una-shannon",
+    "canonical_name": "Una Shannon",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Una Shannon"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/paula-jennings",
+    "canonical_name": "Paula Jennings",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Paula Jennings"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/marie-kelly",
+    "canonical_name": "Marie Kelly",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Marie Kelly"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/simon-wallace",
+    "canonical_name": "Simon Wallace",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Simon Wallace"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/carthac-de-bri",
+    "canonical_name": "Carthac De Brí",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Carthac De Brí", "Carthac De Bri"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/susan-donohoe",
+    "canonical_name": "Susan Donohoe",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Susan Donohoe"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/claire-whelan",
+    "canonical_name": "Claire Whelan",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Claire Whelan"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/jonathan-hennessy",
+    "canonical_name": "Jonathan Hennessy",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Jonathan Hennessy"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/james-malone",
+    "canonical_name": "James Malone",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["James Malone"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/siobhan-scully",
+    "canonical_name": "Siobhan Scully",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Siobhan Scully"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/cyril-buggie",
+    "canonical_name": "Cyril Buggie",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Cyril Buggie"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/michael-yallop",
+    "canonical_name": "Michael Yallop",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Michael Yallop"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "kildare/person/noeleen-smullen",
+    "canonical_name": "Noeleen Smullen",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Noeleen Smullen"],
+    "initials": [],
+    "public_body_id": 1456
+  },
+  {
+    "person_id": "westmeath/person/therese-mccullough-melia",
+    "canonical_name": "Therese McCullough-Melia",
+    "kind": "sectoral_representative",
+    "councillor_id": null,
+    "aliases": ["Therese McCullough-Melia"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/paul-bruton",
+    "canonical_name": "Paul Bruton",
+    "kind": "sectoral_representative",
+    "councillor_id": null,
+    "aliases": ["Paul Bruton"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/alison-hough",
+    "canonical_name": "Alison Hough",
+    "kind": "sectoral_representative",
+    "councillor_id": null,
+    "aliases": ["Alison Hough"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/james-bourke",
+    "canonical_name": "James Bourke",
+    "kind": "sectoral_representative",
+    "councillor_id": null,
+    "aliases": ["James Bourke"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/jean-ryan",
+    "canonical_name": "Jean Ryan",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Jean Ryan"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/damien-grennan",
+    "canonical_name": "Damien Grennan",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Damien Grennan"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/eamonn-brennan",
+    "canonical_name": "Eamonn Brennan",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Eamonn Brennan"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/aisling-stafford",
+    "canonical_name": "Aisling Stafford",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Aisling Stafford"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/anne-marie-corroon",
+    "canonical_name": "Anne Marie Corroon",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Anne Marie Corroon"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/daniella-egan",
+    "canonical_name": "Daniella Egan",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Daniella Egan"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/cathaldus-hartin",
+    "canonical_name": "Cathaldus Hartin",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Cathaldus Hartin"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/colm-smith",
+    "canonical_name": "Colm Smith",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Colm Smith"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/alan-kelly",
+    "canonical_name": "Alan Kelly",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Alan Kelly"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/christina-sweeney",
+    "canonical_name": "Christina Sweeney",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Christina Sweeney"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/suzanne-cooke",
+    "canonical_name": "Suzanne Cooke",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Suzanne Cooke"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/orla-mcgann",
+    "canonical_name": "Orla McGann",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Orla McGann"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/eugene-duffy",
+    "canonical_name": "Eugene Duffy",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Eugene Duffy"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/marie-mcgovern",
+    "canonical_name": "Marie McGovern",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Marie McGovern"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/ciara-brennan",
+    "canonical_name": "Ciara Brennan",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Ciara Brennan"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/damien-oneill",
+    "canonical_name": "Damien O'Neill",
+    "kind": "guest",
+    "councillor_id": null,
+    "aliases": ["Damien O'Neill", "Damien O’Neill"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/david-connolly",
+    "canonical_name": "David Connolly",
+    "kind": "guest",
+    "councillor_id": null,
+    "aliases": ["David Connolly"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/kieran-collins",
+    "canonical_name": "Kieran Collins",
+    "kind": "guest",
+    "councillor_id": null,
+    "aliases": ["Kieran Collins"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/thomas-lawrence",
+    "canonical_name": "Thomas Lawrence",
+    "kind": "guest",
+    "councillor_id": null,
+    "aliases": ["Thomas Lawrence", "Thomas Lawrence Westmeath Topic"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/ronan-fagan",
+    "canonical_name": "Ronan Fagan",
+    "kind": "guest",
+    "councillor_id": null,
+    "aliases": ["Ronan Fagan", "Ronan Fagan Westmeath Independent"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/frances-lynch",
+    "canonical_name": "Frances Lynch",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Frances Lynch"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/helena-heffernan",
+    "canonical_name": "Helena Heffernan",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Helena Heffernan"],
+    "initials": [],
+    "public_body_id": 1870
+  },
+  {
+    "person_id": "westmeath/person/grainne-coyle",
+    "canonical_name": "Grainne Coyle",
+    "kind": "official",
+    "councillor_id": null,
+    "aliases": ["Grainne Coyle"],
+    "initials": [],
+    "public_body_id": 1870
   }
 ]
