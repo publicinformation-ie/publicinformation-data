@@ -1,0 +1,5 @@
+evidence_id,label,plain_label,definition
+statute,Statute,set by law,The role is set by statute.
+source,Source,stated in official guidance or observed practice,The role is stated in official guidance or observed in practice.
+default-s149-4,Default (s.149(4)),assumed by default (an executive function because it is not reserved to elected members),The role is assumed from the s.149(4) Local Government Act 2001 default for executive functions.
+unverified,UNVERIFIED,not yet confirmed,The role is recorded but has not been confirmed.

@@ -1,0 +1,3 @@
+activity_id,name,definition,status,register_note,public_name,public_definition
+A-01,Test activity,A test activity.,active,Fixture only.,Test activity,A test activity.
+A-02,Retired activity,A retired activity.,retired,Retired in v0.3.,Retired activity,A retired activity.

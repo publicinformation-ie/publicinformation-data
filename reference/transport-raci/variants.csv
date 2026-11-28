@@ -1,0 +1,41 @@
+variant_id,label,description
+la-own-resources-eg-local-tertiary-roads,LA own resources (e.g. local tertiary roads),A variant recorded on an assignment.
+dot-inspectorate-verification,DoT Inspectorate verification,A variant recorded on an assignment.
+progress-report-to-md-members,Progress report to MD members,A variant recorded on an assignment.
+la-scheme-nta-funded-eg-srts-active-travel,"LA scheme, NTA-funded (e.g. SRTS, Active Travel)",A variant recorded on an assignment.
+national-road-tii-prior-consent-to-s38,National road: TII prior consent to s.38,A variant recorded on an assignment.
+part-8-route,Part 8 route,A variant recorded on an assignment.
+s38-route,s.38 route,A variant recorded on an assignment.
+schedule-of-md-works-maintenance,Schedule of MD Works (maintenance),A variant recorded on an assignment.
+developer-delivered-under-permission,Developer-delivered under permission,A variant recorded on an assignment.
+nta-delivered-busconnects,NTA-delivered (BusConnects),A variant recorded on an assignment.
+non-transport-funding-rrdf-oris,Non-transport funding (RRDF/ORIS),A variant recorded on an assignment.
+royal-canal-greenway-waterways-ireland-land,Royal Canal Greenway (Waterways Ireland land),A variant recorded on an assignment.
+royal-canal-greenway,Royal Canal Greenway,A variant recorded on an assignment.
+nta-scheme-tfi-bikes,NTA scheme (TFI Bikes),A variant recorded on an assignment.
+la-scheme,LA scheme,A variant recorded on an assignment.
+nta-delivered-busconnects-gda,"NTA-delivered (BusConnects, GDA)",A variant recorded on an assignment.
+nta-bus-stop-enhancement-programme,NTA Bus Stop Enhancement Programme,A variant recorded on an assignment.
+s38-trial,s.38 trial,A variant recorded on an assignment.
+local-link-fares,Local Link fares,A variant recorded on an assignment.
+la-bye-laws-on-other-national-roads,LA bye-laws on other national roads,A variant recorded on an assignment.
+national-managed-roads,National managed roads,A variant recorded on an assignment.
+other-national-roads,Other national roads,A variant recorded on an assignment.
+telecoms-on-national-road,Telecoms on national road,A variant recorded on an assignment.
+esb-openings,ESB openings,A variant recorded on an assignment.
+council-works,Council works,A variant recorded on an assignment.
+utility-works-under-licence,Utility works under licence,A variant recorded on an assignment.
+event-under-s75-order,Event under s.75 order,A variant recorded on an assignment.
+garda-run-event-closures-eg-slane-2026,Garda-run event closures (e.g. Slane 2026),A variant recorded on an assignment.
+s75-closure-order-works-or-events,s.75 closure order (works or events),A variant recorded on an assignment.
+road-works-speed-limit-order,Road works speed limit order,A variant recorded on an assignment.
+cost-recovery-and-damage-repair,Cost recovery and damage repair,A variant recorded on an assignment.
+offences,Offences,A variant recorded on an assignment.
+speed-limits,Speed limits,A variant recorded on an assignment.
+discharge-of-conditions,Discharge of conditions,A variant recorded on an assignment.
+release-of-planning-security,Release of planning security,A variant recorded on an assignment.
+planning-decision,Planning decision,A variant recorded on an assignment.
+appeal,Appeal,A variant recorded on an assignment.
+material-contravention,Material contravention,A variant recorded on an assignment.
+srts-co-ordinator-contract,SRTS co-ordinator contract,A variant recorded on an assignment.
+srts-annual-report,SRTS annual report,A variant recorded on an assignment.

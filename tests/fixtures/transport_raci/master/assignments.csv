@@ -1,0 +1,4 @@
+assignment_id,activity_id,stage_id,variant_id,applies_to,evidence_id,note,public_note,scenario_refs
+A-01.S1,A-01,S1,,https://data.publicinformation.ie/body/meath-county-council,statute,,,1
+A-01.S2~v-developer,A-01,S2,v-developer,https://data.publicinformation.ie/body/meath-county-council,source,Developer delivers under permission (B14),Developer delivers under permission (B14),12
+A-01.S2,A-01,S2,,https://data.publicinformation.ie/body/meath-county-council,unverified,Not confirmed.,Not confirmed.,2

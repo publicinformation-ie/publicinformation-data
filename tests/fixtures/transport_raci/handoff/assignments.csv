@@ -1,0 +1,4 @@
+Row ID,Activity ID,Activity,Stage,Variant,R,A,C,I,Evidence,Sources,Scenario,Note
+T-01.S1,T-01,Test activity,S1,,LA-CE; DA (contractor),LA-CE,"DoE, AT (SRTS)",TP,Statute,"S1, S2",1,Plain note
+T-01.S2,T-01,Test activity,S2,Test variant (one),LA-CE,LA-CE,mystery bodies,,Source,S1,2,See F9
+T-01.S2,T-01,Test activity,S2,Ignored,,,,,Not assessed,,,

@@ -1,0 +1,268 @@
+[
+  {
+    "error_key": "|-|Variant|NTA-delivered (BusConnects) | NTA-delivered (BusConnects, GDA)",
+    "row_id": "",
+    "column": "Variant",
+    "value": "NTA-delivered (BusConnects) | NTA-delivered (BusConnects, GDA)",
+    "reason": "possible duplicate variants; not merged"
+  },
+  {
+    "error_key": "|-|Variant|Royal Canal Greenway | Royal Canal Greenway (Waterways Ireland land)",
+    "row_id": "",
+    "column": "Variant",
+    "value": "Royal Canal Greenway | Royal Canal Greenway (Waterways Ireland land)",
+    "reason": "possible duplicate variants; not merged"
+  },
+  {
+    "error_key": "RT-04.S10|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",
+    "row_id": "RT-04.S10",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-04.S5|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",
+    "row_id": "RT-04.S5",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-04.S7b|s.38 route|C|GS",
+    "row_id": "RT-04.S7b",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-06.S10|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",
+    "row_id": "RT-06.S10",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-06.S5|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",
+    "row_id": "RT-06.S5",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-06.S7b|s.38 route|C|GS",
+    "row_id": "RT-06.S7b",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-07.S10|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",
+    "row_id": "RT-07.S10",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-07.S5|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",
+    "row_id": "RT-07.S5",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-07.S7b|s.38 route|C|GS",
+    "row_id": "RT-07.S7b",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-09.S10|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",
+    "row_id": "RT-09.S10",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-09.S5|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",
+    "row_id": "RT-09.S5",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-09.S7b|s.38 route|C|GS",
+    "row_id": "RT-09.S7b",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-10.S13a|-|I|GS",
+    "row_id": "RT-10.S13a",
+    "column": "I",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-10.S14|-|C|GS",
+    "row_id": "RT-10.S14",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-14a.S10|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",
+    "row_id": "RT-14a.S10",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-14a.S13b|-|C|GS",
+    "row_id": "RT-14a.S13b",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-14a.S5|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",
+    "row_id": "RT-14a.S5",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-14a.S7b|s.38 route|C|GS",
+    "row_id": "RT-14a.S7b",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-26.S13a|-|C|GS",
+    "row_id": "RT-26.S13a",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-26.S14|-|C|GS",
+    "row_id": "RT-26.S14",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-26.S14|-|R|GS",
+    "row_id": "RT-26.S14",
+    "column": "R",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-29.S10|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",
+    "row_id": "RT-29.S10",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-29.S5|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",
+    "row_id": "RT-29.S5",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-29.S7b|s.38 route|C|GS",
+    "row_id": "RT-29.S7b",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-36.S13b|-|C|GS",
+    "row_id": "RT-36.S13b",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-37.S11|Council works|C|GS",
+    "row_id": "RT-37.S11",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-37.S11|Event under s.75 order|C|GS",
+    "row_id": "RT-37.S11",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-37.S11|Garda-run event closures (e.g. Slane 2026)|R|GS",
+    "row_id": "RT-37.S11",
+    "column": "R",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-37.S13b|s.75 closure order (works or events)|C|GS",
+    "row_id": "RT-37.S13b",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-37.S14|Offences|R|GS",
+    "row_id": "RT-37.S14",
+    "column": "R",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-37.S15|-|C|GS",
+    "row_id": "RT-37.S15",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-42.S10|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",
+    "row_id": "RT-42.S10",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-42.S5|LA scheme, NTA-funded (e.g. SRTS, Active Travel)|C|GS",
+    "row_id": "RT-42.S5",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "RT-42.S7b|s.38 route|C|GS",
+    "row_id": "RT-42.S7b",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  },
+  {
+    "error_key": "X-07|-|Grouping|X5 / RT1-RT4",
+    "row_id": "X-07",
+    "column": "Grouping",
+    "value": "X5 / RT1-RT4",
+    "reason": "grouping range or unresolved grouping; first clean grouping used"
+  },
+  {
+    "error_key": "X-18.S13b|-|C|GS",
+    "row_id": "X-18.S13b",
+    "column": "C",
+    "value": "GS",
+    "reason": "party token does not resolve to a known party"
+  }
+]

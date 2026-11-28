@@ -1,0 +1,32 @@
+# Transport RACI
+
+> Who is Responsible, Accountable, Consulted and Informed for local transport
+> activities and lifecycle stages. Compiled by PublicInformation.ie as
+> analysis, not official data and not legal advice.
+
+The assignments have been analysed for Meath County Council only. They may differ for other councils. Meath is in the Greater Dublin Area.
+
+## How to answer a question
+
+1. Read the activity from the JSON (nested activity → stage → assignment) or
+   filter `raci-wide.csv` by activity and stage.
+2. Check the row's `coverage`. `not assessed` means the model has not assessed
+   it; say so and do not invent a role.
+3. Read the roles from `A`, `R`, `C` and `I`. A is the Accountable party.
+4. State the evidence in plain words from the `evidence` column.
+5. Read `no_local_authority_role` (`true` / `false` / `null` in the JSON;
+   `true` / `false` / `unknown` in the CSV): `true` means no council organ
+   holds a role on the assessed line; `false` means one does; unknown means it
+   is not established who is Accountable — not that the council has no role.
+   Do not say the council has no role.
+6. Cite the row ID (for example `RT-09.S12`) and the dataset version.
+
+## Files
+
+- [README](https://data.publicinformation.ie/latest/transport-raci/README.md)
+- [Methodology](https://data.publicinformation.ie/latest/transport-raci/METHODOLOGY.md)
+- [Nested JSON](https://data.publicinformation.ie/latest/transport-raci/transport-raci.json)
+- [Wide reading view](https://data.publicinformation.ie/latest/transport-raci/raci-wide.csv)
+- [Coverage rows](https://data.publicinformation.ie/latest/transport-raci/rows.csv)
+- [Assignments](https://data.publicinformation.ie/latest/transport-raci/assignments.csv)
+- [Version 0.1.0](https://data.publicinformation.ie/v0.1.0/transport-raci/README.md)

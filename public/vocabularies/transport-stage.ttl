@@ -1,0 +1,150 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://data.publicinformation.ie/ns/transport-stage>
+    a skos:ConceptScheme ;
+    dct:title "Transport lifecycle stages"@en ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:versionInfo "0.1.0" ;
+    skos:hasTopConcept <https://data.publicinformation.ie/ns/transport-stage#S1>, <https://data.publicinformation.ie/ns/transport-stage#S2>, <https://data.publicinformation.ie/ns/transport-stage#S3>, <https://data.publicinformation.ie/ns/transport-stage#S4>, <https://data.publicinformation.ie/ns/transport-stage#S5>, <https://data.publicinformation.ie/ns/transport-stage#S5G>, <https://data.publicinformation.ie/ns/transport-stage#S6>, <https://data.publicinformation.ie/ns/transport-stage#S7a>, <https://data.publicinformation.ie/ns/transport-stage#S7b>, <https://data.publicinformation.ie/ns/transport-stage#S7c>, <https://data.publicinformation.ie/ns/transport-stage#S7D>, <https://data.publicinformation.ie/ns/transport-stage#S8>, <https://data.publicinformation.ie/ns/transport-stage#S9>, <https://data.publicinformation.ie/ns/transport-stage#S10>, <https://data.publicinformation.ie/ns/transport-stage#S11>, <https://data.publicinformation.ie/ns/transport-stage#S12>, <https://data.publicinformation.ie/ns/transport-stage#S13a>, <https://data.publicinformation.ie/ns/transport-stage#S13b>, <https://data.publicinformation.ie/ns/transport-stage#S14>, <https://data.publicinformation.ie/ns/transport-stage#S15> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S1>
+    a skos:Concept ;
+    skos:notation "S1" ;
+    skos:prefLabel "Policy and strategy"@en ;
+    skos:definition "National or local policy, strategy and target setting for the function."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S2>
+    a skos:Concept ;
+    skos:notation "S2" ;
+    skos:prefLabel "Network and investment planning"@en ;
+    skos:definition "Identifying needs and candidate schemes; network plans and prioritised programmes, including an outline delivery plan prepared by a partner (B3) and the Schedule of MD Works."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S3>
+    a skos:Concept ;
+    skos:notation "S3" ;
+    skos:prefLabel "Allocation to project"@en ;
+    skos:definition "Allocating funding to a project or service within an activity, with the allocating body Accountable. Programme envelopes, terms and conditions sit in X-17."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S4>
+    a skos:Concept ;
+    skos:notation "S4" ;
+    skos:prefLabel "Sponsorship and funding application"@en ;
+    skos:definition "Preparing and submitting a bid or business case as Sponsoring Agency; accepting allocations and their conditions."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S5>
+    a skos:Concept ;
+    skos:notation "S5" ;
+    skos:prefLabel "Appraisal and design"@en ;
+    skos:definition "Feasibility, options, preliminary and detailed design, non-statutory consultation and business-case preparation by the sponsor. Excludes the approval decision (S5G)."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S5G>
+    a skos:Concept ;
+    skos:notation "S5G" ;
+    skos:prefLabel "Gateway and acceptance decision"@en ;
+    skos:definition "A decision by a funder, Approving Authority, asset owner or consenting body that allows progression or accepts something: NTA/TII gateways, design departures, acceptance of works for taking in charge, discharge of planning conditions, and **prior statutory consents by another body** (e.g. TII consent under s.38(5) RTA 1994 or s.9(7) RTA 2004) (B9)."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S6>
+    a skos:Concept ;
+    skos:notation "S6" ;
+    skos:prefLabel "Environmental assessment, screening and exemption check"@en ;
+    skos:definition "EIA and AA screening and, where required, full assessment; publication of determinations. **Records the exemption basis** where no consent is needed (s.4(1)(e)/(g) PDA 2000; s.152 PDA 2024) and the check that it is not lost under s.4(4). Replaces the dropped S7d."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S7a>
+    a skos:Concept ;
+    skos:notation "S7a" ;
+    skos:prefLabel "Statutory consent: LA development"@en ;
+    skos:definition "The LA's own development consented by Part 8 (s.179 PDA 2000 until 25 Nov 2026; s.159 PDA 2024 from 26 Nov 2026). Reserved: elected members."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S7b>
+    a skos:Concept ;
+    skos:notation "S7b" ;
+    skos:prefLabel "Statutory consent: road traffic works"@en ;
+    skos:definition "Works by the road authority under s.38 RTA 1994 (standard Traffic Works Order or trial), with Garda consultation and public notice. Executive. Only for activities on public road space."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S7c>
+    a skos:Concept ;
+    skos:notation "S7c" ;
+    skos:prefLabel "Statutory consent: application or appeal to ACP"@en ;
+    skos:definition "Applications to An Coimisiún Pleanála (e.g. s.177AE or s.175 PDA 2000, s.51 Roads Act 1993) and **CPO confirmation** (B1)."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S7D>
+    a skos:Concept ;
+    skos:notation "S7D" ;
+    skos:prefLabel "Statutory determination"@en ;
+    skos:definition "A decision by a public body that fixes the legal status of land or an asset (declaring a road public; extinguishing a public right of way) or decides whether another party's development may proceed (planning permission, appeal, material contravention resolution). Excludes consent for the sponsor's own works (S7a–c), rules and licences governing use (S13a/b) and acceptance or discharge decisions (S5G). **Tie-break:** a decision that creates an offence for users of the asset is S13a/b."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S8>
+    a skos:Concept ;
+    skos:notation "S8" ;
+    skos:prefLabel "Land and rights acquisition"@en ;
+    skos:definition "The acquiring authority's actions: voluntary agreements, making a CPO, wayleaves and access licences. CPO confirmation is S7c (B1)."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S9>
+    a skos:Concept ;
+    skos:notation "S9" ;
+    skos:prefLabel "Procurement and contract award"@en ;
+    skos:definition "Procurement of consultants, contractors, operators and suppliers; frameworks; concession contracts; contract award."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S10>
+    a skos:Concept ;
+    skos:notation "S10" ;
+    skos:prefLabel "Construction and implementation"@en ;
+    skos:definition "Delivery of works or implementation of measures, including site supervision, client duties and handover."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S11>
+    a skos:Concept ;
+    skos:notation "S11" ;
+    skos:prefLabel "Operation and service management"@en ;
+    skos:definition "Day-to-day operation of an asset or service, including co-ordination of works by others and temporary traffic management."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S12>
+    a skos:Concept ;
+    skos:notation "S12" ;
+    skos:prefLabel "Maintenance and renewal"@en ;
+    skos:definition "Routine, reactive, winter and periodic maintenance, and like-for-like renewal of an existing asset, including its funding source. A funded upgrade or layout change is a new S3–S10 cycle (B10)."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S13a>
+    a skos:Concept ;
+    skos:notation "S13a" ;
+    skos:prefLabel "Rules and bye-laws"@en ;
+    skos:definition "Making rules that govern use of an asset or service: bye-laws, special speed limits, default limits, standards, fare rules."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S13b>
+    a skos:Concept ;
+    skos:notation "S13b" ;
+    skos:prefLabel "Licences, permits and orders"@en ;
+    skos:definition "Individual decisions under those rules or under statute: licences, permits, approvals of locations, closure orders and road works speed limit orders."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S14>
+    a skos:Concept ;
+    skos:notation "S14" ;
+    skos:prefLabel "Enforcement"@en ;
+    skos:definition "Enforcing rules, licences and orders: offences, fixed payment notices, compliance inspection, T5 acceptance and cost recovery (B7, B8)."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .
+
+<https://data.publicinformation.ie/ns/transport-stage#S15>
+    a skos:Concept ;
+    skos:notation "S15" ;
+    skos:prefLabel "Monitoring, close-out and reporting"@en ;
+    skos:definition "Project close-out and review, funder close-out acceptance and verification (B4), grant reporting, performance monitoring and evaluation."@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-stage> .

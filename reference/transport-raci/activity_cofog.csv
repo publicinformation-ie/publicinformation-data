@@ -1,0 +1,15 @@
+activity_id,cofog_code,status
+X-01,03.1.0,candidate
+X-02,03.1.0,candidate
+X-03,03.1.0,candidate
+X-04,03.1.0,candidate
+X-04,04.5.1,confirmed
+X-07,04.3.5,candidate
+X-08,06.2.0,candidate
+X-10,09,candidate
+X-11,09,candidate
+X-12,03.1.0,candidate
+X-12,09,candidate
+X-12,04.5.1,confirmed
+X-16,06.2.0,candidate
+X-18,06.2.0,candidate

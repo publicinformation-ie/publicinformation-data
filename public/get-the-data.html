@@ -77,6 +77,21 @@
 <h2><a href="latest/active-travel-allocations/active-travel-allocations.csv">Active Travel allocations</a></h2>
 <p>Every project the National Transport Authority gave Active Travel Investment Grant money to between 2022 and 2026: which local authority received it, the project's code and name, how much was allocated, and which page of which PDF it came from. Each row is one grant allocation for one project in one year, so the same project appears once for every year it was funded — filter the <code>project_code</code> column to follow a scheme across the five years.</p>
 
+<h2><a href="latest/transport-raci/assignments.csv">Transport RACI</a></h2>
+<p>Who is Responsible, Accountable, Consulted and Informed for local transport activities and lifecycle stages. This is analysis compiled by PublicInformation.ie, not official data: the assignments have been analysed for Meath County Council only. Each row is one activity × lifecycle stage.</p>
+<table>
+  <tr><th>File</th><th>What it holds</th></tr>
+  <tr><td><a href="latest/transport-raci/assignments.csv">assignments.csv</a></td><td>One line per assessed assignment, with activity, stage, evidence and public note.</td></tr>
+  <tr><td><a href="latest/transport-raci/assignment-roles.csv">assignment-roles.csv</a></td><td>One line per role (R, A, C or I) and party.</td></tr>
+  <tr><td><a href="latest/transport-raci/assignment-sources.csv">assignment-sources.csv</a></td><td>The source IDs behind each assignment.</td></tr>
+  <tr><td><a href="latest/transport-raci/rows.csv">rows.csv</a></td><td>Every activity × stage row and whether it has been assessed.</td></tr>
+  <tr><td><a href="latest/transport-raci/raci-wide.csv">raci-wide.csv</a></td><td>The readable view: one line per assignment with party names and evidence in plain words.</td></tr>
+  <tr><td><a href="latest/transport-raci/variants.csv">variants.csv</a></td><td>The variant labels used on assignments.</td></tr>
+  <tr><td><a href="latest/transport-raci/sources.csv">sources.csv</a></td><td>The citation and URL for every source.</td></tr>
+  <tr><td><a href="latest/transport-raci/boundary-rules.csv">boundary-rules.csv</a></td><td>The rules that decide which stage a decision belongs to.</td></tr>
+</table>
+<p>Read the <a href="latest/transport-raci/README.md">README</a> for how to read a RACI line and which roles are still awaiting review, or take the <a href="latest/transport-raci/transport-raci.json">nested JSON</a>.</p>
+
 <h2>Worked example: find a body's FOI contact email</h2>
 <ol>
   <li>Open <a href="latest/public-bodies/public-bodies.csv">public-bodies.csv</a> in a spreadsheet program.</li>
@@ -85,7 +100,7 @@
 </ol>
 
 <div class="back">
-  <p>Want the full technical details behind each file (every column, how the data was collected, what to watch out for)? See the <a href="latest/public-bodies/README.md">Public Bodies</a>, <a href="latest/foi-disclosures/README.md">FOI Disclosures</a>, <a href="latest/foi-request-files/README.md">FOI Request Files</a>, <a href="latest/who-does-what/README.md">Who Does What</a>, <a href="latest/data-gov-ie-links/README.md">data.gov.ie Links</a>, <a href="latest/datacatalogue-gov-ie-links/README.md">datacatalogue.gov.ie Links</a>, <a href="latest/lobbying-ie-links/README.md">lobbying.ie Links</a>, <a href="latest/staff-numbers/README.md">Staff Numbers</a>, <a href="latest/public-body-actions/README.md">Public Body Actions</a>, <a href="latest/motions/README.md">Motions</a>, <a href="latest/spc-meetings/README.md">SPC Meetings</a>, and <a href="latest/active-travel-allocations/README.md">Active Travel Allocations</a> reference pages.</p>
+  <p>Want the full technical details behind each file (every column, how the data was collected, what to watch out for)? See the <a href="latest/public-bodies/README.md">Public Bodies</a>, <a href="latest/foi-disclosures/README.md">FOI Disclosures</a>, <a href="latest/foi-request-files/README.md">FOI Request Files</a>, <a href="latest/who-does-what/README.md">Who Does What</a>, <a href="latest/data-gov-ie-links/README.md">data.gov.ie Links</a>, <a href="latest/datacatalogue-gov-ie-links/README.md">datacatalogue.gov.ie Links</a>, <a href="latest/lobbying-ie-links/README.md">lobbying.ie Links</a>, <a href="latest/staff-numbers/README.md">Staff Numbers</a>, <a href="latest/public-body-actions/README.md">Public Body Actions</a>, <a href="latest/motions/README.md">Motions</a>, <a href="latest/spc-meetings/README.md">SPC Meetings</a>, <a href="latest/active-travel-allocations/README.md">Active Travel Allocations</a> and <a href="latest/transport-raci/README.md">Transport RACI</a> reference pages.</p>
   <p>Wondering how complete this data is, or found something that looks wrong? See <a href="data-quality.html">Data quality &amp; reporting a problem</a>.</p>
 </div>
 </body>

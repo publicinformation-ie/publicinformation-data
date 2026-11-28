@@ -1,0 +1,200 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party>
+    a skos:ConceptScheme ;
+    dct:title "Transport RACI parties"@en ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:versionInfo "0.1.0" ;
+    skos:hasTopConcept <https://data.publicinformation.ie/ns/transport-raci-party#DoT>, <https://data.publicinformation.ie/ns/transport-raci-party#NTA>, <https://data.publicinformation.ie/ns/transport-raci-party#TII>, <https://data.publicinformation.ie/ns/transport-raci-party#DHLGH>, <https://data.publicinformation.ie/ns/transport-raci-party#DoE>, <https://data.publicinformation.ie/ns/transport-raci-party#DRCD>, <https://data.publicinformation.ie/ns/transport-raci-party#ACP>, <https://data.publicinformation.ie/ns/transport-raci-party#LA-M>, <https://data.publicinformation.ie/ns/transport-raci-party#LA-CE>, <https://data.publicinformation.ie/ns/transport-raci-party#RMO>, <https://data.publicinformation.ie/ns/transport-raci-party#WI>, <https://data.publicinformation.ie/ns/transport-raci-party#OPS>, <https://data.publicinformation.ie/ns/transport-raci-party#DA>, <https://data.publicinformation.ie/ns/transport-raci-party#AT>, <https://data.publicinformation.ie/ns/transport-raci-party#SCH>, <https://data.publicinformation.ie/ns/transport-raci-party#PP>, <https://data.publicinformation.ie/ns/transport-raci-party#TP>, <https://data.publicinformation.ie/ns/transport-raci-party#AGS>, <https://data.publicinformation.ie/ns/transport-raci-party#RSA>, <https://data.publicinformation.ie/ns/transport-raci-party#prescribed-bodies> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#DoT>
+    a skos:Concept ;
+    skos:notation "DoT" ;
+    skos:prefLabel "Department of Transport"@en ;
+    skos:definition "Policy; Exchequer funding; national default speed limits and their commencement."@en ;
+    skos:exactMatch <https://data.publicinformation.ie/body/department-of-transport> ;
+    skos:altLabel "the Department of Transport"@en ;
+    skos:scopeNote "Kind: body"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#NTA>
+    a skos:Concept ;
+    skos:notation "NTA" ;
+    skos:prefLabel "National Transport Authority"@en ;
+    skos:definition "Approving Authority for NTA-funded projects; allocates active travel funding; responsible for TFI Local Link and TFI Bikes; applicant and delivery body for BusConnects."@en ;
+    skos:exactMatch <https://data.publicinformation.ie/body/national-transport-authority-nta> ;
+    skos:altLabel "the National Transport Authority"@en ;
+    skos:scopeNote "Kind: body"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#TII>
+    a skos:Concept ;
+    skos:notation "TII" ;
+    skos:prefLabel "Transport Infrastructure Ireland"@en ;
+    skos:definition "National roads; Approving Authority for greenways; prior consent on national roads (s.38(5) RTA 1994; s.9(7) RTA 2004); special speed-limit bye-laws on national managed roads (s.9A RTA 2004)."@en ;
+    skos:exactMatch <https://data.publicinformation.ie/body/transport-infrastructure-ireland> ;
+    skos:altLabel "Transport Infrastructure Ireland"@en ;
+    skos:scopeNote "Kind: body"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#DHLGH>
+    a skos:Concept ;
+    skos:notation "DHLGH" ;
+    skos:prefLabel "Department of Housing, Local Government and Heritage"@en ;
+    skos:definition "Planning legislation, Part 8 / s.159 procedure, other capital funds."@en ;
+    skos:exactMatch <https://data.publicinformation.ie/body/department-of-housing-local-government-and-heritage> ;
+    skos:altLabel "the Department of Housing, Local Government and Heritage"@en ;
+    skos:scopeNote "Kind: body"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#DoE>
+    a skos:Concept ;
+    skos:notation "DoE" ;
+    skos:prefLabel "Department of Education"@en ;
+    skos:definition "Safe Routes to School co-sponsor."@en ;
+    skos:exactMatch <https://data.publicinformation.ie/body/department-of-education-and-youth> ;
+    skos:altLabel "the Department of Education"@en ;
+    skos:scopeNote "Kind: body"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#DRCD>
+    a skos:Concept ;
+    skos:notation "DRCD" ;
+    skos:prefLabel "Department of Rural and Community Development"@en ;
+    skos:definition "Non-transport funding of transport assets (RRDF, ORIS)."@en ;
+    skos:exactMatch <https://data.publicinformation.ie/body/department-of-rural-and-community-development-and-the-gaeltacht> ;
+    skos:altLabel "the Department of Rural and Community Development"@en ;
+    skos:scopeNote "Kind: body"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#ACP>
+    a skos:Concept ;
+    skos:notation "ACP" ;
+    skos:prefLabel "An Coimisiún Pleanála"@en ;
+    skos:definition "Consent authority for applications and appeals made to it; CPO confirmation."@en ;
+    skos:exactMatch <https://data.publicinformation.ie/body/an-coimisiun-pleanala> ;
+    skos:altLabel "An Coimisiún Pleanála, the national planning body"@en ;
+    skos:scopeNote "Kind: body"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#LA-M>
+    a skos:Concept ;
+    skos:notation "LA-M" ;
+    skos:prefLabel "LA – elected members (plenary or Municipal District)"@en ;
+    skos:definition "Reserved functions: Part 8 resolutions, bye-laws, special speed limits, taking-in-charge orders, Schedule of MD Works, development contribution schemes."@en ;
+    skos:altLabel "the elected members of the council"@en ;
+    skos:scopeNote "Kind: organ"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#LA-CE>
+    a skos:Concept ;
+    skos:notation "LA-CE" ;
+    skos:prefLabel "LA – Chief Executive and executive"@en ;
+    skos:definition "Executive functions: s.38 schemes, road opening licences, closure orders, road works speed limit orders, planning decisions, procurement, maintenance."@en ;
+    skos:altLabel "the Chief Executive and executive of the council"@en ;
+    skos:scopeNote "Kind: organ"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#RMO>
+    a skos:Concept ;
+    skos:notation "RMO" ;
+    skos:prefLabel "Road Management Office / CCMA shared service"@en ;
+    skos:definition "Runs MapRoad and MapRoad Roadworks Licensing; national licence fees."@en ;
+    skos:altLabel "the Road Management Office"@en ;
+    skos:scopeNote "Kind: body"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#WI>
+    a skos:Concept ;
+    skos:notation "WI" ;
+    skos:prefLabel "Waterways Ireland"@en ;
+    skos:definition "Landowner for canal greenways (e.g. Royal Canal Greenway)."@en ;
+    skos:exactMatch <https://data.publicinformation.ie/body/waterways-ireland> ;
+    skos:altLabel "Waterways Ireland"@en ;
+    skos:scopeNote "Kind: body"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#OPS>
+    a skos:Concept ;
+    skos:notation "OPS" ;
+    skos:prefLabel "Public transport operators"@en ;
+    skos:definition "Bus and Local Link operators; consulted on stops, priority and routes."@en ;
+    skos:altLabel "public transport operators"@en ;
+    skos:scopeNote "Kind: category"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#DA>
+    a skos:Concept ;
+    skos:notation "DA" ;
+    skos:prefLabel "Delivery agents"@en ;
+    skos:definition "Consultants, contractors, service operators under contract (Responsible only); Regional Design Offices; TFI Local Link Transport Co-ordination Units."@en ;
+    skos:altLabel "delivery agents"@en ;
+    skos:scopeNote "Kind: category"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#AT>
+    a skos:Concept ;
+    skos:notation "AT" ;
+    skos:prefLabel "An Taisce as programme co-ordinator"@en ;
+    skos:definition "Safe Routes to School co-ordination; Green-Schools."@en ;
+    skos:altLabel "An Taisce"@en ;
+    skos:scopeNote "Kind: category"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#SCH>
+    a skos:Concept ;
+    skos:notation "SCH" ;
+    skos:prefLabel "Schools / Boards of Management"@en ;
+    skos:definition "SRTS applicants and partners; owners of school grounds."@en ;
+    skos:altLabel "schools and boards of management"@en ;
+    skos:scopeNote "Kind: category"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#PP>
+    a skos:Concept ;
+    skos:notation "PP" ;
+    skos:prefLabel "Programme partners"@en ;
+    skos:definition "Other partners, e.g. Fáilte Ireland."@en ;
+    skos:altLabel "programme partners"@en ;
+    skos:scopeNote "Kind: category"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#TP>
+    a skos:Concept ;
+    skos:notation "TP" ;
+    skos:prefLabel "Third parties"@en ;
+    skos:definition "Utilities, developers, event organisers, landowners and the public. Accountable only under B14."@en ;
+    skos:altLabel "third parties"@en ;
+    skos:scopeNote "Kind: category"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#AGS>
+    a skos:Concept ;
+    skos:notation "AGS" ;
+    skos:prefLabel "An Garda Síochána"@en ;
+    skos:definition "The national police service."@en ;
+    skos:exactMatch <https://data.publicinformation.ie/body/an-garda-siochana> ;
+    skos:altLabel "the Gardaí"@en ;
+    skos:scopeNote "Kind: body"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#RSA>
+    a skos:Concept ;
+    skos:notation "RSA" ;
+    skos:prefLabel "Road Safety Authority"@en ;
+    skos:definition "The national road safety body."@en ;
+    skos:exactMatch <https://data.publicinformation.ie/body/road-safety-authority> ;
+    skos:altLabel "the Road Safety Authority"@en ;
+    skos:scopeNote "Kind: body"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .
+
+<https://data.publicinformation.ie/ns/transport-raci-party#prescribed-bodies>
+    a skos:Concept ;
+    skos:notation "prescribed-bodies" ;
+    skos:prefLabel "Prescribed bodies"@en ;
+    skos:definition "Statutory consultees under the Part 8 regulations."@en ;
+    skos:altLabel "prescribed bodies"@en ;
+    skos:scopeNote "Kind: category"@en ;
+    skos:inScheme <https://data.publicinformation.ie/ns/transport-raci-party> .

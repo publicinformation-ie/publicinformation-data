@@ -1,0 +1,32 @@
+grouping_id,name,cofog_class,cofog_status,status
+RT1,Road network infrastructure,04.5.1,confirmed,active
+RT2,Walking infrastructure,04.5.1,confirmed,active
+RT3,Cycling infrastructure,04.5.1,confirmed,active
+RT4,Road passenger transport infrastructure,04.5.1,confirmed,active
+RT5,Road passenger transport services,04.5.1,confirmed,active
+RT6,Road freight and logistics,04.5.1,confirmed,active
+RT7,Parking and kerbside management,04.5.1,confirmed,active
+RT8,Road transport regulation,04.5.1,confirmed,active
+RT9,Road transport funding and administration,04.5.1,confirmed,active
+WT1,Port and harbour infrastructure,04.5.2,confirmed,active
+WT2,Water transport infrastructure,04.5.2,confirmed,active
+WT3,Water passenger and freight services,04.5.2,confirmed,active
+WT4,Water transport regulation and administration,04.5.2,confirmed,active
+RL1,Railway infrastructure,04.5.3,confirmed,active
+RL2,Urban rapid transit infrastructure,04.5.3,confirmed,active
+RL3,Railway passenger and freight services,04.5.3,confirmed,active
+RL4,Railway regulation and safety,04.5.3,confirmed,active
+RL5,Rail funding and administration,04.5.3,confirmed,retired
+AT1,Airport and airfield infrastructure,04.5.4,confirmed,active
+AT2,Air passenger and freight services,04.5.4,confirmed,active
+AT3,Aviation regulation and administration,04.5.4,confirmed,active
+AT4,Aviation funding and investment,04.5.4,confirmed,retired
+OT1,Pipeline transport,04.5.5,confirmed,active
+OT2,Other transport systems,04.5.5,confirmed,active
+X1,"Traffic control, policing and enforcement",03.1.0,candidate,active
+X2,Transport-related pollution abatement,05.3.0,confirmed,active
+X3,"Land-use and spatial planning, including the event-licensing interface",06.2.0,candidate,active
+X4,Street lighting,06.4.0,confirmed,active
+X5,Electricity supply infrastructure,04.3.5,candidate,active
+X6,Education and school-facility functions,09,candidate,active
+X7,"Climate policy and cross-cutting administration, including transport funding programmes",,,active
